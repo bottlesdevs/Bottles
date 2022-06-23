@@ -28,11 +28,14 @@ from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.manager import ManagerUtils
 
+from bottles.backend.models.result import Result
+
 from bottles.dialogs.filechooser import FileChooser
 from bottles.dialogs.envvars import EnvVarsDialog
 from bottles.dialogs.drives import DrivesDialog
 from bottles.dialogs.dlloverrides import DLLOverridesDialog
 from bottles.dialogs.gamescope import GamescopeDialog
+from bottles.dialogs.protonalert import ProtonAlertDialog
 
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
@@ -733,8 +736,9 @@ class PreferencesView(Adw.PreferencesPage):
                 self.spinner_runner.start()
 
         def update(result, error=False):
-            if result and "config" in result.data.keys():
-                self.config = result.data["config"]
+            if result:
+                if "config" in result.data.keys():
+                    self.config = result.data["config"]
                 if self.config["Parameters"].get("use_steam_runtime"):
                     self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
                     self.switch_steam_runtime.set_active(True)
@@ -744,13 +748,27 @@ class PreferencesView(Adw.PreferencesPage):
         set_widgets_status(False)
         runner = widget.get_active_id()
 
-        RunAsync(
-            Runner.runner_update,
-            callback=update,
-            config=self.config,
-            manager=self.manager,
-            runner=runner
-        )
+        def run_task(status=True):
+            if not status:
+                update(Result(True))
+                self.combo_runner.handler_block_by_func(self.__set_runner)
+                self.combo_runner.set_active_id(self.config.get("Runner"))
+                self.combo_runner.handler_unblock_by_func(self.__set_runner)
+                return
+
+            RunAsync(
+                Runner.runner_update,
+                callback=update,
+                config=self.config,
+                manager=self.manager,
+                runner=runner
+            )
+
+        if "proton" in runner.lower():
+            dialog = ProtonAlertDialog(self.window, run_task)
+            dialog.show()
+        else:
+            run_task()
 
     def __dll_component_task_func(self, *args, **kwargs):
         # Remove old version
