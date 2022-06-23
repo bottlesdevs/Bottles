@@ -679,7 +679,7 @@ class Manager:
             if conf_file_yaml.get("Latest_Executables"):
                 conf_file_yaml["Latest_Executables"] = []
 
-            # Migrate old programs to [id]
+            # Migrate old programs to [id] and [name]
             _temp = conf_file_yaml.get("External_Programs").copy()
             _changed = False
             for k, v in _temp.items():
@@ -687,6 +687,8 @@ class Manager:
                 if "id" not in v:
                     _temp[k]["id"] = _uuid
                     _changed = True
+                if "name" not in v:
+                    _temp[k]["name"] = _temp[k]["executable"].split(".")[0]
             if _changed:
                 self.update_config(
                     config=conf_file_yaml,
