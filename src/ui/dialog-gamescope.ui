@@ -80,6 +80,7 @@
                                 <child>
                                     <object class="AdwActionRow">
                                         <property name="title" translatable="yes">Use integer scaling</property>
+                                        <property name="activatable-widget">switch_scaling</property>
                                         <child>
                                             <object class="GtkSwitch" id="switch_scaling">
                                                 <property name="valign">center</property>
