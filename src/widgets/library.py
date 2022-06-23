@@ -95,7 +95,7 @@ class LibraryEntry(Gtk.Box):
 
     def __get_program(self):
         programs = self.manager.get_programs(self.config)
-        programs = [p for p in programs if p["name"] == self.entry['name']]
+        programs = [p for p in programs if p["id"] == self.entry["id"] or p["name"] == self.entry["name"]]
         if len(programs) == 0:
             return None  # TODO: remove entry from library
         return programs[0]

@@ -17,6 +17,8 @@
 
 import os
 import subprocess
+import uuid
+
 import markdown
 import urllib.request
 from typing import Union, NewType
@@ -481,11 +483,13 @@ class InstallerManager:
                 _userdir = WineUtils.get_user_dir(bottle)
                 executable['path'] = executable['path'].replace("userdir/", f"/users/{_userdir}/")
             _path = f'C:\\{executable["path"]}'.replace("/", "\\")
+            _uuid = str (uuid.uuid4())
             _program = {
                 "executable": executable["file"],
                 "arguments": executable.get("arguments", ""),
                 "name": executable["name"],
-                "path": _path
+                "path": _path,
+                "id": _uuid
             }
 
             if "dxvk" in executable:
@@ -497,7 +501,7 @@ class InstallerManager:
 
             self.__manager.update_config(
                 config=config,
-                key=executable["file"],
+                key=_uuid,
                 value=_program,
                 scope="External_Programs"
             )
