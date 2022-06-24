@@ -57,7 +57,10 @@ class TemplateManager:
         ]
         _path = f"{Paths.templates}/{_uuid}"
         logging.info("Copying files …")
-        shutil.copytree(bottle, _path, symlinks=True, ignore=shutil.ignore_patterns(*ignored))
+        try:
+            shutil.copytree(bottle, _path, symlinks=True, ignore=shutil.ignore_patterns(*ignored))
+        except:
+            pass  # safely ignore, will be re-generated on wineprefix update
 
         template = {
             "uuid": _uuid,
