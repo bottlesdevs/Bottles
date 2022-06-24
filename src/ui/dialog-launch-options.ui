@@ -63,11 +63,48 @@
                                                     <object class="GtkButton" id="btn_script_reset">
                                                         <property name="tooltip-text" translatable="yes">Reset to default</property>
                                                         <property name="valign">center</property>
+                                                        <property name="visible">False</property>
                                                         <property name="icon-name">edit-undo-symbolic</property>
+                                                        <style>
+                                                            <class name="flat"/>
+                                                        </style>
                                                     </object>
                                                 </child>
                                                 <child>
                                                     <object class="GtkButton" id="btn_script">
+                                                        <property name="tooltip-text" translatable="yes">Choose a script</property>
+                                                        <property name="valign">center</property>
+                                                        <property name="icon-name">document-open-symbolic</property>
+                                                        <style>
+                                                            <class name="flat"/>
+                                                        </style>
+                                                    </object>
+                                                </child>
+                                            </object>
+                                        </child>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwActionRow" id="action_cwd">
+                                        <property name="activatable-widget">btn_cwd</property>
+                                        <property name="title" translatable="yes">Working Directory</property>
+                                        <property name="subtitle" translatable="yes">Choose from where start the program.</property>
+                                        <child>
+                                            <object class="GtkBox">
+                                                <property name="spacing">6</property>
+                                                <child>
+                                                    <object class="GtkButton" id="btn_cwd_reset">
+                                                        <property name="tooltip-text" translatable="yes">Reset to default</property>
+                                                        <property name="valign">center</property>
+                                                        <property name="visible">False</property>
+                                                        <property name="icon-name">edit-undo-symbolic</property>
+                                                        <style>
+                                                            <class name="flat"/>
+                                                        </style>
+                                                    </object>
+                                                </child>
+                                                <child>
+                                                    <object class="GtkButton" id="btn_cwd">
                                                         <property name="tooltip-text" translatable="yes">Choose a directory</property>
                                                         <property name="valign">center</property>
                                                         <property name="icon-name">document-open-symbolic</property>
