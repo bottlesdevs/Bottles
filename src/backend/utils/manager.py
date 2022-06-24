@@ -163,8 +163,8 @@ class ManagerUtils:
             return ManagerUtils.get_bottle_path(config) + p
 
         p = "\\".join(executable_path.split("/")[:-1])
-        p = f"/drive_c/{p}"
-        return p.replace("\\", "/")
+        p = f"/drive_c/{p}".replace("\\", "/")
+        return os.path.dirname(p)
 
     @staticmethod
     def extract_icon(config: dict, program_name: str, program_path: str) -> str:

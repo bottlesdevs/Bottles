@@ -19,12 +19,12 @@ import os
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
+from bottles.backend.utils.manager import ManagerUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class LaunchOptionsDialog(Adw.Window):
     __gtype_name__ = 'LaunchOptionsDialog'
-    __default_msg = _("Choose a script which should be executed after run.")
 
     # region Widgets
     entry_arguments = Gtk.Template.Child()
@@ -32,6 +32,8 @@ class LaunchOptionsDialog(Adw.Window):
     btn_save = Gtk.Template.Child()
     btn_script = Gtk.Template.Child()
     btn_script_reset = Gtk.Template.Child()
+    btn_cwd = Gtk.Template.Child()
+    btn_cwd_reset = Gtk.Template.Child()
     action_script = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
@@ -39,11 +41,14 @@ class LaunchOptionsDialog(Adw.Window):
     action_dxvk = Gtk.Template.Child()
     action_vkd3d = Gtk.Template.Child()
     action_nvapi = Gtk.Template.Child()
+    action_cwd = Gtk.Template.Child()
 
     # endregion
 
-    msg_disabled = _("{0} is already disabled for this bottle.")
-    msg_override = _("This setting is different from the bottle's default.")
+    __default_script_msg = _("Choose a script which should be executed after run.")
+    __default_cwd_msg = _("Choose from where start the program.")
+    __msg_disabled = _("{0} is already disabled for this bottle.")
+    __msg_override = _("This setting is different from the bottle's default.")
 
     def __init__(self, parent, config, program, **kwargs):
         super().__init__(**kwargs)
@@ -65,6 +70,8 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_save.connect("clicked", self.__save_options)
         self.btn_script.connect("clicked", self.__choose_script)
         self.btn_script_reset.connect("clicked", self.__reset_script)
+        self.btn_cwd.connect("clicked", self.__choose_cwd)
+        self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
         self.entry_arguments.connect("activate", self.__save_options)
         self.switch_dxvk.connect(
             "state-set",
@@ -85,9 +92,13 @@ class LaunchOptionsDialog(Adw.Window):
             self.action_nvapi
         )
 
-        # set script path if available
-        if program.get("script"):
+        if program.get("script") not in ["", None]:
             self.action_script.set_subtitle(program["script"])
+            self.action_script.set_visible(True)
+
+        if program.get("folder") != ManagerUtils.get_exe_parent_dir(self.config, self.program["path"]):
+            self.action_cwd.set_subtitle(program["folder"])
+            self.action_cwd.set_visible(True)
 
         # set overrides status
         dxvk = config["Parameters"].get("dxvk")
@@ -95,21 +106,21 @@ class LaunchOptionsDialog(Adw.Window):
         nvapi = config["Parameters"].get("dxvk_nvapi")
 
         if not dxvk:
-            self.action_dxvk.set_subtitle(self.msg_disabled.format("DXVK"))
+            self.action_dxvk.set_subtitle(self.__msg_disabled.format("DXVK"))
             self.switch_dxvk.set_sensitive(False)
         if not vkd3d:
-            self.action_vkd3d.set_subtitle(self.msg_disabled.format("VKD3D"))
+            self.action_vkd3d.set_subtitle(self.__msg_disabled.format("VKD3D"))
             self.switch_vkd3d.set_sensitive(False)
         if not nvapi:
-            self.action_nvapi.set_subtitle(self.msg_disabled.format("DXVK-Nvapi"))
+            self.action_nvapi.set_subtitle(self.__msg_disabled.format("DXVK-Nvapi"))
             self.switch_nvapi.set_sensitive(False)
 
         if dxvk != self.program["dxvk"]:
-            self.action_dxvk.set_subtitle(self.msg_override)
+            self.action_dxvk.set_subtitle(self.__msg_override)
         if vkd3d != self.program["vkd3d"]:
-            self.action_vkd3d.set_subtitle(self.msg_override)
+            self.action_vkd3d.set_subtitle(self.__msg_override)
         if nvapi != self.program["dxvk_nvapi"]:
-            self.action_nvapi.set_subtitle(self.msg_override)
+            self.action_nvapi.set_subtitle(self.__msg_override)
 
         if "dxvk" in self.program:
             dxvk = self.program["dxvk"]
@@ -124,7 +135,7 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __check_override(self, widget, state, value, action):
         if state != value:
-            action.set_subtitle(self.msg_override)
+            action.set_subtitle(self.__msg_override)
         else:
             action.set_subtitle("")
 
@@ -134,11 +145,6 @@ class LaunchOptionsDialog(Adw.Window):
         self.destroy()
 
     def __save_options(self, widget):
-        """
-        This function save the launch options in the bottle
-        configuration. It also closes the window and update the
-        programs list.
-        """
         dxvk = self.switch_dxvk.get_state()
         vkd3d = self.switch_vkd3d.get_state()
         nvapi = self.switch_nvapi.get_state()
@@ -157,11 +163,6 @@ class LaunchOptionsDialog(Adw.Window):
         GLib.idle_add(self.__close_window)
 
     def __choose_script(self, _widget):
-        """
-        This function open a file chooser dialog to choose the
-        script which will be executed before the program.
-        """
-
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
@@ -169,7 +170,7 @@ class LaunchOptionsDialog(Adw.Window):
                 self.action_script.set_subtitle(_file.get_path())
                 return
 
-            self.action_script.set_subtitle(self.__default_msg)
+            self.action_script.set_subtitle(self.__default_script_msg)
 
         FileChooser(
             parent=self.window,
@@ -180,8 +181,30 @@ class LaunchOptionsDialog(Adw.Window):
         )
 
     def __reset_script(self, _widget):
+        self.program["script"] = ""
+        self.action_script.set_subtitle(self.__default_script_msg)
+
+    def __choose_cwd(self, _widget):
+        def set_path(_dialog, response, _file_dialog):
+            if response == -3:
+                _file = _file_dialog.get_file()
+                self.program["folder"] = _file.get_path()
+                self.action_cwd.set_subtitle(_file.get_path())
+                return
+
+            self.action_cwd.set_subtitle(self.__default_cwd_msg)
+
+        FileChooser(
+            parent=self.window,
+            title=_("Choose the Working Directory"),
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(_("Cancel"), _("Select")),
+            callback=set_path
+        )
+
+    def __reset_cwd(self, _widget):
         """
         This function reset the script path.
         """
-        self.program["script"] = ""
-        self.action_script.set_subtitle(self.__default_msg)
+        self.program["folder"] = ManagerUtils.get_exe_parent_dir(self.config, self.program["path"])
+        self.action_script.set_subtitle(self.__default_cwd_msg)
