@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-21 15:57+0000\n"
-"Last-Translator: Andrija <bozika331@yahoo.com>\n"
+"PO-Revision-Date: 2022-06-26 17:54+0000\n"
+"Last-Translator: Andrija Djakovic <bozika331@yahoo.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/bottles/bottles/"
 "sr/>\n"
 "Language: sr\n"
@@ -58,7 +58,7 @@ msgid ""
 msgstr ""
 "Наш интегрисани систем за инсталацију зависних датотека омогућава аутоматски "
 "приступ компатибилности софтвера. Употреби менаџер преузимања да преузмеш "
-"официјалне компоненте: покретач (Вајн, Протон), ДЏВК, зависне датотеке, итд."
+"официјалне компоненте: покретач (Вајн, Протон), ДКСВК, зависне датотеке, итд."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
@@ -94,7 +94,7 @@ msgstr "Зачас додај варијабле окружења"
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from per-bottle preferences"
-msgstr "Премости ДЛЛ директно из постваки по флаши"
+msgstr "Премости ДЛЛ директно из поставки по флаши"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
@@ -105,8 +105,8 @@ msgid ""
 "Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
 "compiler, offload … and much more.)"
 msgstr ""
-"Разноразне оптимизације гејминг перформанси (\"esync, fsync, DXVK, cache, "
-"shader compiler, offload... \" и још доста тога.)"
+"Разноразне оптимизације гејминг перформанси (есинк, фсинк, ДКСВК, кеш, "
+"шејдер компајлер, офлоад... и још доста тога.)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:25
 msgid "Automatic installation and management of Wine and Proton runners"
@@ -308,8 +308,8 @@ msgid ""
 "Preferences.\n"
 "Fall-backing to the default path; no bottles from that path will be listed!"
 msgstr ""
-"Прилагођена путања флаше није нађена. Молим, проверите путању у "
-"Преференцијама. \n"
+"Прилагођена путања флаше није нађена. Молим, проверите путању у Поставкама. "
+"\n"
 "Враћам се на подразумевану путању; ниједна флаша из те путање неће бити "
 "наведена!"
 
@@ -403,11 +403,11 @@ msgstr "Вајн конфигурација ажурирана!"
 
 #: src/backend/managers/manager.py:1071
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Покрећем као Флетпек, покрећем \"userdir\" у сендбокс окружењу…"
+msgstr "Покрећем као Флетпек, покрећем јусердир у сендбокс окружењу…"
 
 #: src/backend/managers/manager.py:1073
 msgid "Sandboxing userdir…"
-msgstr "Покрећем \"userdir\" у сендбокс окружењу…"
+msgstr "Покрећем јусердир у сендбокс окружењу…"
 
 #: src/backend/managers/manager.py:1091
 msgid "Setting Windows version…"
@@ -436,15 +436,15 @@ msgstr "(!) Рецепт није пронађен или није важећи�
 
 #: src/backend/managers/manager.py:1148
 msgid "Installing DXVK…"
-msgstr "Инсталирам \"DXVK\"…"
+msgstr "Инсталирам ДКСВК…"
 
 #: src/backend/managers/manager.py:1156
 msgid "Installing VKD3D…"
-msgstr "Инсталирам \"VKD3D\"…"
+msgstr "Инсталирам ВКД3Д…"
 
 #: src/backend/managers/manager.py:1164
 msgid "Installing DXVK-NVAPI…"
-msgstr "Инсталирам \"DXVK-NVAPI\"…"
+msgstr "Инсталирам ДКСВК-НВАПИ…"
 
 #: src/backend/managers/manager.py:1173
 #, python-format
@@ -531,7 +531,7 @@ msgstr "Одабери скрипту која ће бити извршена н
 #: src/dialogs/launchoptions.py:43
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "{0}је већ онемогућен за ову флашу."
+msgstr "{0} је већ онемогућен за ову флашу."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
@@ -583,211 +583,213 @@ msgstr "Извези"
 
 #: src/views/bottle_details.py:304
 msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr ""
+msgstr "Да ли си сигуран да желиш да обришеш ову Флашу и све фајлове?"
 
 #: src/views/bottle_details.py:380
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
 msgstr ""
+"Да ли си сигуран да желиш да прекинеш све процесе?\n"
+"То може проузроковати губитак података."
 
 #: src/views/bottle_preferences.py:185
 msgid "This feature is not available on your system."
-msgstr ""
+msgstr "Ова функција није доступна на твом систему."
 
 #: src/views/bottle_preferences.py:226 src/views/bottle_preferences.py:243
 #: src/views/bottle_preferences.py:370
 msgid "Default to the bottle path."
-msgstr ""
+msgstr "Подразумевана путања до флаше."
 
 #: src/views/bottle_preferences.py:234
 msgid "Choose working directory for executables"
-msgstr ""
+msgstr "Одабери радни директоријум за извршне фајлове"
 
 #: src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
-msgstr ""
+msgstr "'{0}' додато."
 
 #: src/views/bottle_programs.py:87
 msgid "Choose an executable path"
-msgstr ""
+msgstr "Одабери извршну путању"
 
 #: src/views/bottle_programs.py:89
 msgid "Add"
-msgstr ""
+msgstr "Додај"
 
 #: src/views/details.py:145
 msgid "Details & Utilities"
-msgstr ""
+msgstr "Детаљи и Услуге"
 
 #: src/views/details.py:149 src/ui/preferences.ui:6 src/ui/window.ui:30
 msgid "Preferences"
-msgstr ""
+msgstr "Поставке"
 
 #: src/views/details.py:153
 msgid "Dependencies"
-msgstr ""
+msgstr "Зависне датотеке"
 
 #: src/views/details.py:157 src/ui/details-bottle.ui:232
 msgid "Programs"
-msgstr ""
+msgstr "Програми"
 
 #: src/views/details.py:158
 msgid "Found in your bottle's Start menu."
-msgstr ""
+msgstr "Налази се у Почетном менију твоје флаше."
 
 #: src/views/details.py:161 src/ui/new.ui:116
 msgid "Versioning"
-msgstr ""
+msgstr "Верзије"
 
 #: src/views/details.py:165
 msgid "Installers"
-msgstr ""
+msgstr "Инсталери"
 
 #: src/views/details.py:169
 msgid "Task manager"
-msgstr ""
+msgstr "Менаџер задатака"
 
 #: src/views/importer.py:89
 msgid "Backup imported successfully."
-msgstr ""
+msgstr "Резервна копија успешно увезена."
 
 #: src/views/importer.py:91
 msgid "Import failed."
-msgstr ""
+msgstr "Увоз није успео."
 
 #: src/views/importer.py:103 src/views/importer.py:132
 msgid "Importing backup.."
-msgstr ""
+msgstr "Увозим резервну копију..."
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
-msgstr ""
+msgstr "Одабери архиву резервне копије"
 
 #: src/views/importer.py:117 src/views/importer.py:146
 msgid "Import"
-msgstr ""
+msgstr "Увези"
 
 #: src/views/importer.py:144
 msgid "Choose a configuration file"
-msgstr ""
+msgstr "Одабери конфигурациони фајл"
 
 #: src/views/list.py:60 src/views/list.py:66
 msgid "N/A"
-msgstr ""
+msgstr "Недоступно"
 
 #: src/views/list.py:103
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
-msgstr ""
+msgstr "Аргумент пронађен за извршни фајл: [{executable}]."
 
 #: src/views/list.py:249
 msgid "Your Bottles"
-msgstr ""
+msgstr "Твоје Флаше"
 
 #: src/views/new.py:119
 msgid "Choose a recipe file"
-msgstr ""
+msgstr "Одабери рецепт фајл"
 
 #: src/views/new.py:135
 msgid "Choose where to store the bottle"
-msgstr ""
+msgstr "Одабери где да сачувам флашу"
 
 #: src/views/new.py:219
 msgid "There was an error creating the bottle."
-msgstr ""
+msgstr "Догодила се грешка приликом прављења флаше."
 
 #: src/views/new.py:227
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr ""
+msgstr "Флаша под именом \"{0}\" је успешно направљена"
 
 #: src/views/preferences.py:150 src/views/preferences.py:166
 #: src/ui/preferences.ui:78
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
-msgstr ""
+msgstr "Одабери где да се чувају нове флаше (ово неће преместити постојеће)"
 
 #: src/views/preferences.py:155
 msgid "Choose new bottles path"
-msgstr ""
+msgstr "Одабери нову путању флаша"
 
 #: src/views/preferences.py:202
 msgid "Other"
-msgstr ""
+msgstr "Остало"
 
 #: src/widgets/component.py:70
 msgid "Upgrade"
-msgstr ""
+msgstr "Ажурирај"
 
 #: src/widgets/component.py:145
 msgid "Installing..."
-msgstr ""
+msgstr "Инсталирам..."
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr ""
+msgstr "Манифест за {0}"
 
 #: src/widgets/dependency.py:166
 #, python-brace-format
 msgid "'{0}' installed."
-msgstr ""
+msgstr "'{0}' инсталиран."
 
 #: src/widgets/importer.py:66
 #, python-brace-format
 msgid "'{0}' imported."
-msgstr ""
+msgstr "'{0}' увезен."
 
 #: src/widgets/installer.py:87
 #, python-brace-format
 msgid "Review for {0}"
-msgstr ""
+msgstr "Преглед за {0}"
 
 #: src/widgets/installer.py:102
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "Инсталер није успео због непознате грешке"
 
 #: src/widgets/installer.py:133
 #, python-brace-format
 msgid "{0} installed."
-msgstr ""
+msgstr "{0} инсталиран."
 
 #: src/widgets/installer.py:153
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
-msgstr ""
+msgstr "Корак {self.__step} од {self.steps}"
 
 #: src/widgets/program.py:202
 #, python-brace-format
 msgid "'{0}' launched."
-msgstr ""
+msgstr "'{0}' покренут."
 
 #: src/widgets/program.py:208
 #, python-brace-format
 msgid "'{0}' launched with Steam."
-msgstr ""
+msgstr "'{0}' покренут са Стимом."
 
 #: src/widgets/program.py:229
 #, python-brace-format
 msgid "'{0}' hidden."
-msgstr ""
+msgstr "'{0}' сакривен."
 
 #: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' showed."
-msgstr ""
+msgstr "'{0}' приказан."
 
 #: src/widgets/program.py:254
 #, python-brace-format
 msgid "'{0}' removed."
-msgstr ""
+msgstr "'{0}' уклоњен."
 
 #: src/widgets/program.py:268
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
-msgstr ""
+msgstr "'{0}' преименован у '{1}'."
 
 #: src/widgets/program.py:290
 msgid ""
@@ -795,270 +797,279 @@ msgid ""
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
 "a> about how to fix that in Flatpak."
 msgstr ""
+"Не могу да направим унос на радној површини због недостатка привилегија.\n"
+"Погледај <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\"> наш видео</"
+"a>о томе како да поправиш то у Флетпеку."
 
 #: src/widgets/program.py:298
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr ""
+msgstr "Унос на радној површини направљен за '{0}'"
 
 #: src/widgets/program.py:318
 #, python-brace-format
 msgid "'{0}' added to your library"
-msgstr ""
+msgstr "'{0}' додат у твоју библиотеку"
 
 #: src/widgets/program.py:323
 #, python-brace-format
 msgid "'{0}' added to your Steam library"
-msgstr ""
+msgstr "'{0}' додат у твоју Стим библиотеку"
 
 #: src/widgets/state.py:95
 #, python-brace-format
 msgid "Index for state {0}"
-msgstr ""
+msgstr "Индекс за стање{0}"
 
 #: src/utils/connection.py:68
 msgid "You are offline, unable to download."
-msgstr ""
+msgstr "Ниси повезан на интернет, не могу да преузмем."
 
 #: src/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
-msgstr ""
+msgstr "© 2017-2022 - Програмери \"Флаша\""
 
 #: src/ui/about.ui:9
 msgid "Easily manage wineprefix using environments"
-msgstr ""
+msgstr "С лакоћом управљај Вајн префиксима користећи окружења"
 
 #: src/ui/component-entry.ui:6
 msgid "Component version"
-msgstr ""
+msgstr "Верзија компоненте"
 
 #: src/ui/component-entry.ui:15 src/ui/dependency-entry.ui:34
 #: src/ui/program-entry.ui:88
 msgid "Uninstall"
-msgstr ""
+msgstr "Деинсталирај"
 
 #: src/ui/component-entry.ui:23 src/ui/importer-entry.ui:15
 msgid "Browse files"
-msgstr ""
+msgstr "Претражи фајлове"
 
 #: src/ui/component-entry.ui:34
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
+"Инсталација неуспела. Могући узроци: грешка репозиторијума, делимично "
+"преузимање или непоклапање чексума. Притисни за поновни покушај."
 
 #: src/ui/component-entry.ui:45
 msgid "Download & Install"
-msgstr ""
+msgstr "Преузми и инсталирај"
 
 #: src/ui/component-entry.ui:58
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: src/ui/dependency-entry.ui:18
 msgid "Show Manifest"
-msgstr ""
+msgstr "Прикажи Манифест"
 
 #: src/ui/dependency-entry.ui:23
 msgid "License"
-msgstr ""
+msgstr "Лиценца"
 
 #: src/ui/dependency-entry.ui:28
 msgid "Reinstall"
-msgstr ""
+msgstr "Поново инсталирај"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Пријави Баг…"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "Преузми и Инсталирај ову зависну датотеку"
 
 #: src/ui/dependency-entry.ui:89
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"Догодила се грешка током инсталације. Поново покрени Флаше да прочиташ "
+"Извештај о краху или покрени у терминалу да видиш излазне информације."
 
 #: src/ui/details-bottle.ui:18
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Решавање проблема"
 
 #: src/ui/details-bottle.ui:26
 msgid "Browse Files…"
-msgstr ""
+msgstr "Претражи Фајлове…"
 
 #: src/ui/details-bottle.ui:31
 msgid "Duplicate Bottle…"
-msgstr ""
+msgstr "Дуплирај Флашу…"
 
 #: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
+msgstr "Ово је комплетна архива твоје флаше, укључујући и личне фајлове."
 
 #: src/ui/details-bottle.ui:37
 msgid "Full Backup…"
-msgstr ""
+msgstr "Поптуна Резервна копија…"
 
 #: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
+"Ово је само конфигурација флаше, савршено ако желиш да направиш нову флашу, "
+"али без личних фајлова."
 
 #: src/ui/details-bottle.ui:43
 msgid "Export Configuration…"
-msgstr ""
+msgstr "Конфигурација Извоза…"
 
 #: src/ui/details-bottle.ui:51
 msgid "Delete Bottle…"
-msgstr ""
+msgstr "Обриши Флашу…"
 
 #: src/ui/details-bottle.ui:86
 msgid "Kill all Processes"
-msgstr ""
+msgstr "Прекини све Процесе"
 
 #: src/ui/details-bottle.ui:91
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Симулирај искључивање Виндовс система."
 
 #: src/ui/details-bottle.ui:92
 msgid "Shutdown"
-msgstr ""
+msgstr "Искључивање"
 
 #: src/ui/details-bottle.ui:97
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Симулирај поновно покретање Виндовс система."
 
 #: src/ui/details-bottle.ui:98
 msgid "Reboot"
-msgstr ""
+msgstr "Поновно покретање"
 
 #: src/ui/details-bottle.ui:117
 msgid "Run with Arguments…"
-msgstr ""
+msgstr "Покрени уз Аргументе…"
 
 #: src/ui/details-bottle.ui:122
 msgid "Launch in Terminal…"
-msgstr ""
+msgstr "Покрени у Терминалу…"
 
 #: src/ui/details-bottle.ui:148
 msgid "My bottle"
-msgstr ""
+msgstr "Моја флаша"
 
 #: src/ui/details-bottle.ui:160
 msgid "Win64"
-msgstr ""
+msgstr "Вин64"
 
 #: src/ui/details-bottle.ui:168 src/ui/new.ui:76
 msgid "Environment"
-msgstr ""
+msgstr "Окружење"
 
 #: src/ui/details-bottle.ui:176 src/ui/details-preferences.ui:304
 #: src/ui/new.ui:140
 msgid "Runner"
-msgstr ""
+msgstr "Покретач"
 
 #: src/ui/details-bottle.ui:184 src/ui/list-entry.ui:23
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "Верзије су омогућене за ову флашу"
 
 #: src/ui/details-bottle.ui:189 src/ui/list-entry.ui:28
 msgid "Versioning is active in this bottle."
-msgstr ""
+msgstr "Верзије су активне за ову флашу."
 
 #: src/ui/details-bottle.ui:199 src/ui/list-entry.ui:34
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: src/ui/details-bottle.ui:210
 msgid "Run Executable…"
-msgstr ""
+msgstr "Покрени извршни фајл…"
 
 #: src/ui/details-bottle.ui:226
 msgid "Layers"
-msgstr ""
+msgstr "Слојеви"
 
 #: src/ui/details-bottle.ui:237
 msgid "Tools"
-msgstr ""
+msgstr "Алат"
 
 #: src/ui/details-bottle.ui:241
 msgid "Command Line"
-msgstr ""
+msgstr "Командна Линија"
 
 #: src/ui/details-bottle.ui:242
 msgid "Run commands inside the Bottle."
-msgstr ""
+msgstr "Покрени команде унутар Флаше."
 
 #: src/ui/details-bottle.ui:253
 msgid "Registry Editor"
-msgstr ""
+msgstr "Уређивач Регистра"
 
 #: src/ui/details-bottle.ui:254
 msgid "Edit the internal registry."
-msgstr ""
+msgstr "Измени унутрашњи регистар."
 
 #: src/ui/details-bottle.ui:264
 msgid "Legacy Tools"
-msgstr ""
+msgstr "Застареле Алатке"
 
 #: src/ui/details-bottle.ui:268
 msgid "Explorer"
-msgstr ""
+msgstr "Истраживач"
 
 #: src/ui/details-bottle.ui:269
 msgid "Browse internal files with the Wine explorer."
-msgstr ""
+msgstr "Претражи унутрашње фајлове уз Вајн истраживач."
 
 #: src/ui/details-bottle.ui:280
 msgid "Task Manager"
-msgstr ""
+msgstr "Менаџер Задатака"
 
 #: src/ui/details-bottle.ui:281
 msgid "Manage processes with the Wine task manager."
-msgstr ""
+msgstr "Управљај процесима уз Вајнов менаџер задатака."
 
 #: src/ui/details-bottle.ui:292
 msgid "Debug"
-msgstr ""
+msgstr "Отклањање грешака"
 
 #: src/ui/details-bottle.ui:293
 msgid "Debug wine processes."
-msgstr ""
+msgstr "Отклони грешке Вајнових процеса."
 
 #: src/ui/details-bottle.ui:304
 msgid "Wine Configuration"
-msgstr ""
+msgstr "Конфигурација Вајна"
 
 #: src/ui/details-bottle.ui:305
 msgid "Adjust internal settings."
-msgstr ""
+msgstr "Прилагоди унутрашње поставке."
 
 #: src/ui/details-bottle.ui:316
 msgid "Uninstaller"
-msgstr ""
+msgstr "Деинсталер"
 
 #: src/ui/details-bottle.ui:317
 msgid "Uninstall programs using Wine uninstaller."
-msgstr ""
+msgstr "Деинсталирај програм користећи Вајнов деинсталер."
 
 #: src/ui/details-bottle.ui:328
 msgid "Control Panel"
-msgstr ""
+msgstr "Контролна Табла"
 
 #: src/ui/details-bottle.ui:329
 msgid "Access the internal Wine Control Panel."
-msgstr ""
+msgstr "Приступи унутрашњој Вајновој Контролној табли."
 
 #: src/ui/details-bottle.ui:348
 msgid "Use the Installers section or the \"Run executable\" button."
-msgstr ""
+msgstr "Употреби одељак за инсталере или дугме \"Покрени извршни фајл\"."
 
 #: src/ui/details-dependencies.ui:13
 msgid "Search for dependencies…"
-msgstr ""
+msgstr "Тражим зависне датотеке…"
 
 #: src/ui/details-dependencies.ui:22
 msgid ""
@@ -1066,529 +1077,553 @@ msgid ""
 "compatibility of Windows software. Install from here to meet your program "
 "requirements."
 msgstr ""
+"Зависне датотеке су софтвер, библиотеке и кодекси који побољшавају "
+"компатибилност Виндовс софтвера. Инсталирај их одавде како би испунио "
+"захтеве твог програма."
 
 #: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
 msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Фајлови на овој страници су пружени од треће стране под власничком лиценцом. "
+"Њиховим инсталирањем пристајеш на њихове услове лиценцирања."
 
 #: src/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
-msgstr ""
+msgstr "Пријави проблем или недостајаћу зависну датотеку."
 
 #: src/ui/details-dependencies.ui:63
 msgid "Report missing dependency"
-msgstr ""
+msgstr "Пријави недостајаћу зависну датотеку"
 
 #: src/ui/details-dependencies.ui:68
 msgid "Read documentation about dependencies."
-msgstr ""
+msgstr "Прочитај документацију о зависним датотекама."
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
 #: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:81
 #: src/ui/window.ui:44
 msgid "Documentation"
-msgstr ""
+msgstr "Документација"
 
 #: src/ui/details-dependencies.ui:80
 msgid "Install Selected"
-msgstr ""
+msgstr "Инсталирај Изабрано"
 
 #: src/ui/details-dependencies.ui:81
 msgid "We strongly advise against installing multiple dependencies at once."
-msgstr ""
+msgstr "Изричито саветујемо да не инсталирате више зависних датотека одједном."
 
 #: src/ui/details-dependencies.ui:88
 msgid "Select Dependencies"
-msgstr ""
+msgstr "Одабери Зависне датотеке"
 
 #: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:62
 #: src/ui/window.ui:96
 msgid "Search"
-msgstr ""
+msgstr "Потражи"
 
 #: src/ui/details-installers.ui:13
 msgid "Search for Programs…"
-msgstr ""
+msgstr "Потражи Програме…"
 
 #: src/ui/details-installers.ui:48
 msgid "No installers found"
-msgstr ""
+msgstr "Ниједан инсталер није пронађен"
 
 #: src/ui/details-installers.ui:51
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
+"Репозиторијум није доступан или ниједан инсталер није компактибилан са овом "
+"флашом."
 
 #: src/ui/details-preferences.ui:8
 msgid "Bottle Details"
-msgstr ""
+msgstr "Детаљи о Флаши"
 
 #: src/ui/details-preferences.ui:11 src/ui/dialog-duplicate.ui:55
 #: src/ui/new.ui:69
 msgid "Name"
-msgstr ""
+msgstr "Име"
 
 #: src/ui/details-preferences.ui:19
 msgid "Graphics"
-msgstr ""
+msgstr "Графика"
 
 #: src/ui/details-preferences.ui:23 src/ui/preferences.ui:136
 msgid "DXVK"
-msgstr ""
+msgstr "ДКСВК"
 
 #: src/ui/details-preferences.ui:24
 msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr ""
+msgstr "Побољшава перформансе ДиректЕкс 11 игара и 3Д апликације."
 
 #: src/ui/details-preferences.ui:27 src/ui/details-preferences.ui:328
 msgid "Updating DXVK, please wait…"
-msgstr ""
+msgstr "Ажурирам ДКСВК, молим сачекајте…"
 
 #: src/ui/details-preferences.ui:42 src/ui/preferences.ui:141
 msgid "VKD3D"
-msgstr ""
+msgstr "ВКД3Д"
 
 #: src/ui/details-preferences.ui:43
 msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr ""
+msgstr "Побољшава перформансе ДиректЕкс 12 игара и 3Д апликације."
 
 #: src/ui/details-preferences.ui:46 src/ui/details-preferences.ui:351
 msgid "Updating VKD3D, please wait…"
-msgstr ""
+msgstr "Ажурирам ВКД3Д, молим сачекајте…"
 
 #: src/ui/details-preferences.ui:61
 msgid "DLSS (DXVK-NVAPI)"
-msgstr ""
+msgstr "ДЛСС (ДКСВК-НВАПИ)"
 
 #: src/ui/details-preferences.ui:62
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr ""
+msgstr "Даје ДЛСС подршку уколико је доступна и Нвидијин НВАПИ."
 
 #: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
 #: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr ""
+msgstr "Ажурирам ДКСВК-НВАПИ, молим сачекајте…"
 
 #: src/ui/details-preferences.ui:80
 msgid "FSR"
-msgstr ""
+msgstr "ФСР"
 
 #: src/ui/details-preferences.ui:81
 msgid ""
 "FSR uses cutting-edge up-scaling technologies to help boost your framerate."
 msgstr ""
+"ФСР користи најсавременију технологију Апскејлинга како би помогао у "
+"повећању фрејмрејта."
 
 #: src/ui/details-preferences.ui:88
 msgid "Ultra Quality"
-msgstr ""
+msgstr "Ултра Квалитет"
 
 #: src/ui/details-preferences.ui:89
 msgid "Quality"
-msgstr ""
+msgstr "Квалитет"
 
 #: src/ui/details-preferences.ui:90
 msgid "Balanced"
-msgstr ""
+msgstr "Балансовано"
 
 #: src/ui/details-preferences.ui:91
 msgid "Performance"
-msgstr ""
+msgstr "Перформансе"
 
 #: src/ui/details-preferences.ui:108 src/ui/preferences.ui:151
 msgid "LatencyFleX"
-msgstr ""
+msgstr "ЛатенсиФлеКс"
 
 #: src/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
 msgstr ""
+"Алтернатива Нвидиа-ином \"Reflex-u\". Може бити детектовано од стране "
+"појединих Анти-читова."
 
 #: src/ui/details-preferences.ui:128
 msgid "Discrete GPU"
-msgstr ""
+msgstr "Дискретна ГПУ"
 
 #: src/ui/details-preferences.ui:129
 msgid "Improves performance at the cost of increased power usage."
-msgstr ""
+msgstr "Побољшава перформансе уз цену повећане потрошње снаге."
 
 #: src/ui/details-preferences.ui:140
 msgid "vkBasalt"
-msgstr ""
+msgstr "вкБазалт"
 
 #: src/ui/details-preferences.ui:141
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
+"вкБазалт је Вулканов слој накнадне обраде који побољшава визуелну графику "
+"игара."
 
 #: src/ui/details-preferences.ui:151
 msgid "Display Settings"
-msgstr ""
+msgstr "Подешавања Екрана"
 
 #: src/ui/details-preferences.ui:155
 msgid "Virtual Desktop"
-msgstr ""
+msgstr "Виртуелна Радна површина"
 
 #: src/ui/details-preferences.ui:156
 msgid "Use the Wine virtual desktop."
-msgstr ""
+msgstr "Користи Вајнову виртуелну радну површину."
 
 #: src/ui/details-preferences.ui:194
 msgid "Fullscreen Mouse Capture"
-msgstr ""
+msgstr "Детектовање Миша у Целом приказу екрана"
 
 #: src/ui/details-preferences.ui:195
 msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
+msgstr "Дозволи програму да детектује унос миша у целом приказу екрана."
 
 #: src/ui/details-preferences.ui:206
 msgid "Take Focus"
-msgstr ""
+msgstr "Фокусирај"
 
 #: src/ui/details-preferences.ui:207
 msgid "Activate it if the program does not retake focus on switch."
-msgstr ""
+msgstr "Активирај ако програм не преузме фокус приликом промене."
 
 #: src/ui/details-preferences.ui:218
 msgid "Mouse Warp"
-msgstr ""
+msgstr "Позиционирање миша"
 
 #: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
-msgstr ""
+msgstr "Промени ово ако наилазиш на лаговање миша или десинк."
 
 #: src/ui/details-preferences.ui:231
 msgid "Screen Scaling"
-msgstr ""
+msgstr "Скалирање Екрана"
 
 #: src/ui/details-preferences.ui:232
 msgid "Set custom DPI."
-msgstr ""
+msgstr "Подеси свој ДПИ."
 
 #: src/ui/details-preferences.ui:238
 msgid "96"
-msgstr ""
+msgstr "96"
 
 #: src/ui/details-preferences.ui:239
 msgid "120"
-msgstr ""
+msgstr "120"
 
 #: src/ui/details-preferences.ui:240
 msgid "144"
-msgstr ""
+msgstr "144"
 
 #: src/ui/details-preferences.ui:241
 msgid "168"
-msgstr ""
+msgstr "168"
 
 #: src/ui/details-preferences.ui:242
 msgid "192"
-msgstr ""
+msgstr "192"
 
 #: src/ui/details-preferences.ui:243
 msgid "216"
-msgstr ""
+msgstr "216"
 
 #: src/ui/details-preferences.ui:244
 msgid "240"
-msgstr ""
+msgstr "240"
 
 #: src/ui/details-preferences.ui:245
 msgid "288"
-msgstr ""
+msgstr "288"
 
 #: src/ui/details-preferences.ui:246
 msgid "336"
-msgstr ""
+msgstr "336"
 
 #: src/ui/details-preferences.ui:247
 msgid "384"
-msgstr ""
+msgstr "384"
 
 #: src/ui/details-preferences.ui:248
 msgid "432"
-msgstr ""
+msgstr "432"
 
 #: src/ui/details-preferences.ui:249
 msgid "480"
-msgstr ""
+msgstr "480"
 
 #: src/ui/details-preferences.ui:262
 msgid "Renderer"
-msgstr ""
+msgstr "Визуелизатор"
 
 #: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
-msgstr ""
+msgstr "Одабери који бекенд да се користи за винед3д."
 
 #: src/ui/details-preferences.ui:269
 msgid "gl (default)"
-msgstr ""
+msgstr "гл (стандардно)"
 
 #: src/ui/details-preferences.ui:270
 msgid "gdi"
-msgstr ""
+msgstr "гди"
 
 #: src/ui/details-preferences.ui:271
 msgid "vulkan"
-msgstr ""
+msgstr "вулкан"
 
 #: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
 msgid "System"
-msgstr ""
+msgstr "Систем"
 
 #: src/ui/details-preferences.ui:289
 msgid "Manage DXVK versions"
-msgstr ""
+msgstr "Управљај верзијама ДКСВК-а"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
-msgstr ""
+msgstr "Компоненте"
 
 #: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Ажурирам Покретач и компоненте, молим сачекајте…"
 
 #. TODO: replace with ComboRow
 #: src/ui/details-preferences.ui:324
 msgid "DXVK Version"
-msgstr ""
+msgstr "Верзија ДКСВК-а"
 
 #: src/ui/details-preferences.ui:348
 msgid "VKD3D Version"
-msgstr ""
+msgstr "Верзија ВКД3Д-а"
 
 #: src/ui/details-preferences.ui:372
 msgid "DXVK NVAPI Version"
-msgstr ""
+msgstr "Верзија ДКСВК НВАПИ-а"
 
 #: src/ui/details-preferences.ui:394
 msgid "LatencyFleX Version"
-msgstr ""
+msgstr "Верзија ЛатенсиФлеКса"
 
 #: src/ui/details-preferences.ui:416
 msgid "Enable synchronization to increase performance of multicore processors."
-msgstr ""
+msgstr "Омогући синхронизацију да повећаш перформансе вишејазгарних процесора."
 
 #: src/ui/details-preferences.ui:417
 msgid "Synchronization"
-msgstr ""
+msgstr "Синхронизација"
 
 #: src/ui/details-preferences.ui:428
 msgid "Esync"
-msgstr ""
+msgstr "Есинк"
 
 #: src/ui/details-preferences.ui:434
 msgid "Fsync"
-msgstr ""
+msgstr "Фсинк"
 
 #: src/ui/details-preferences.ui:440
 msgid "Futex2"
-msgstr ""
+msgstr "Футекс2"
 
 #: src/ui/details-preferences.ui:455
 msgid "Windows version"
-msgstr ""
+msgstr "Верзија Виндовса"
 
 #: src/ui/details-preferences.ui:458
 msgid "Updating Windows version, please wait…"
-msgstr ""
+msgstr "Ажурирам верзију Виндовса, молим сачекајте…"
 
 #: src/ui/details-preferences.ui:487
 msgid "Bottles Runtime"
-msgstr ""
+msgstr "Рантајм Флаша"
 
 #: src/ui/details-preferences.ui:488
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
 msgstr ""
+"Обезбеђује пакет додатних библиотека за већу компактибилност, искључи "
+"уколико налетиш на проблеме."
 
 #: src/ui/details-preferences.ui:499
 msgid "Steam Runtime"
-msgstr ""
+msgstr "Рантајм Стима"
 
 #: src/ui/details-preferences.ui:500
 msgid "The same as the Bottles one but provided by Steam."
-msgstr ""
+msgstr "Исти као и код Флаша, али пружен од стране Стима."
 
 #: src/ui/details-preferences.ui:511
 msgid "GameMode"
-msgstr ""
+msgstr "ГејмМод"
 
 #: src/ui/details-preferences.ui:512
 msgid "Optimise gaming performance on demand."
-msgstr ""
+msgstr "Оптимизуј гејминг перформансе на захтев."
 
 #: src/ui/details-preferences.ui:523
 msgid "Gamescope"
-msgstr ""
+msgstr "Гејмскоп"
 
 #: src/ui/details-preferences.ui:524
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "Користи Гејмскопов микро-композитор."
 
 #: src/ui/details-preferences.ui:532
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "Управљај подешавањима Гејмскопа"
 
 #: src/ui/details-preferences.ui:545
 msgid "Working Directory"
-msgstr ""
+msgstr "Радни Директоријум"
 
 #: src/ui/details-preferences.ui:546
 msgid "Defaults to the bottle path."
-msgstr ""
+msgstr "Подразумевана путања флаше."
 
 #: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
 msgid "Reset to default"
-msgstr ""
+msgstr "Врати на подразумевано"
 
 #: src/ui/details-preferences.ui:559 src/ui/dialog-launch-options.ui:71
 #: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:93
 msgid "Choose a directory"
-msgstr ""
+msgstr "Изабери директоријум"
 
 #: src/ui/details-preferences.ui:572 src/ui/dialog-dll-overrides.ui:9
 #: src/ui/dialog-dll-overrides.ui:15
 msgid "DLL Overrides"
-msgstr ""
+msgstr "ДЛЛ Премошћавање"
 
 #: src/ui/details-preferences.ui:583 src/ui/dialog-env-vars.ui:16
 msgid "Environment Variables"
-msgstr ""
+msgstr "Варијабле Окружења"
 
 #: src/ui/details-preferences.ui:594
 msgid "Manage Drives"
-msgstr ""
+msgstr "Управљај Драјвовима"
 
 #: src/ui/details-preferences.ui:606
 msgid "Audio"
-msgstr ""
+msgstr "Звук"
 
 #: src/ui/details-preferences.ui:610
 msgid "Reduce Latency"
-msgstr ""
+msgstr "Смањи Кашњење"
 
 #: src/ui/details-preferences.ui:611
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
-msgstr ""
+msgstr "Подеси кашњење ПулсАудиа на 60мс и повећај квалитет звука"
 
 #: src/ui/details-preferences.ui:623
 msgid "Development and Debugging"
-msgstr ""
+msgstr "Развој и Отклањање багова"
 
 #: src/ui/details-preferences.ui:627
 msgid "DXVK HUD"
-msgstr ""
+msgstr "ДКСВК ХАД"
 
 #: src/ui/details-preferences.ui:628
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
+"Укључи \"DXVK\" оверлеј са приказом ФПС-а и осталих детаља у Д3Д "
+"апликацијама."
 
 #: src/ui/details-preferences.ui:639
 msgid "MangoHud"
-msgstr ""
+msgstr "МангоХад"
 
 #: src/ui/details-preferences.ui:640
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
+"Вулкан и ОпенГЛ оверлеј за праћење ФПС-а, температуре, ЦПУ/ГПУ оптерећења и "
+"још тога."
 
 #: src/ui/details-preferences.ui:651
 msgid "OBS Vulkan Capture"
-msgstr ""
+msgstr "ОБС Вулкан Хватање"
 
 #: src/ui/details-preferences.ui:652
 msgid "Toggle OBS game capture for all programs."
-msgstr ""
+msgstr "Укључи хватање игре ОБС-ом за све програме."
 
 #: src/ui/details-preferences.ui:663
 msgid "Wine 'fixme' Logs"
-msgstr ""
+msgstr "Вајнове 'fixme' Евиденције"
 
 #: src/ui/details-preferences.ui:664
 msgid "Log code paths that are unimplemented in Wine."
-msgstr ""
+msgstr "Путање кодова евиденције које нису имплементиране у Вајну."
 
 #: src/ui/details-programs.ui:9
 msgid "No Programs found"
-msgstr ""
+msgstr "Ниједан Програм није пронађен"
 
 #: src/ui/details-programs.ui:10
 msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button."
 msgstr ""
+"Инсталирај програме из секције за инсталирање или покретањем извршног фајла "
+"инсталера, такође, можеш и ручно да додаш извршне фајлове дугметом \"+\"."
 
 #: src/ui/details-programs.ui:31
 msgid "Toggle Hidden"
-msgstr ""
+msgstr "Укључи Скривено"
 
 #: src/ui/details-programs.ui:39
 msgid "Read documentation about programs"
-msgstr ""
+msgstr "Прочитај документацију о програмима"
 
 #: src/ui/details-programs.ui:50
 msgid "Add a custom executable path"
-msgstr ""
+msgstr "Додај прилагођену путању извршних фајлова"
 
 #: src/ui/details-programs.ui:56
 msgid "Search for installed programs"
-msgstr ""
+msgstr "Претражи инсталиране програме"
 
 #: src/ui/details-taskmanager.ui:18
 msgid "Refresh"
-msgstr ""
+msgstr "Освежи"
 
 #: src/ui/details-taskmanager.ui:24
 msgid "Stop process"
-msgstr ""
+msgstr "Заустави процес"
 
 #: src/ui/details-versioning.ui:25
 msgid "No states found"
-msgstr ""
+msgstr "Ниједно стање није нађено"
 
 #: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "Направи прво стање како би почео са коришћењем верзија."
 
 #: src/ui/details-versioning.ui:41
 msgid "Type a short comment:"
-msgstr ""
+msgstr "Напиши кратак коментар:"
 
 #: src/ui/details-versioning.ui:49
 msgid "A short comment"
-msgstr ""
+msgstr "Кратак коментар"
 
 #: src/ui/details-versioning.ui:54
 msgid "Save the bottle state."
-msgstr ""
+msgstr "Сачувај стање флаше."
 
 #: src/ui/details-versioning.ui:74
 msgid "Create new state"
-msgstr ""
+msgstr "Направи ново стање"
 
 #: src/ui/details.ui:76
 msgid "Operations"
-msgstr ""
+msgstr "Операције"
 
 #: src/ui/dialog-crash-report.ui:10
 msgid "Bottles crash report"
-msgstr ""
+msgstr "Извештај о изненадном затварању Флаша"
 
 #: src/ui/dialog-crash-report.ui:23
 msgid "Send report"
-msgstr ""
+msgstr "Пошаљи извештај"
 
 #: src/ui/dialog-crash-report.ui:43
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"Десио се квар са Флашама претходни пут. Молим испуните извештај уз прилагање "
+"следећих ставки како би нам помогао са идентификацијом проблема и "
+"спречавањем да се догоди поново."
 
 #: src/ui/dialog-crash-report.ui:75
 msgid ""
@@ -1597,32 +1632,38 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Пронашли смо један или више сличних (или истих) извештаја. Молим те постарај "
+"се и пажљиво провери да сличан извештај већ није поднет, пре подношења "
+"новог. Сваки извештај захтева труд програмера око дијагностике, молим те "
+"поштуј њихов рад и постарај се да не подносиш дупликате."
 
 #: src/ui/dialog-crash-report.ui:96
 msgid "I still want to report."
-msgstr ""
+msgstr "И даље желим да пријавим."
 
 #: src/ui/dialog-crash-report.ui:102
 msgid "Advanced options"
-msgstr ""
+msgstr "Напредне опције"
 
 #: src/ui/dialog-dll-overrides.ui:14
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
+"Динамик Линк Библиотеке могу бити назначене да буду уграђене (пружене од "
+"стране Вајна) или изворне (пружене од стране програма)."
 
 #: src/ui/dialog-dll-overrides.ui:18
 msgid "New Override"
-msgstr ""
+msgstr "Ново Премошћивање"
 
 #: src/ui/dialog-dll-overrides.ui:26
 msgid "Overrides"
-msgstr ""
+msgstr "Премости"
 
 #: src/ui/dialog-drives.ui:9
 msgid "Drives"
-msgstr ""
+msgstr "Дискови"
 
 #: src/ui/dialog-drives.ui:21
 msgid ""
@@ -1630,254 +1671,264 @@ msgid ""
 "devices by the runner (e.g. C: D:..).\n"
 "                                "
 msgstr ""
+"Ово су путање од твог система домаћина које су мапиране и препознате као "
+"уређаји од стране покретача (пр. Ц: Д:...).\n"
+"                                "
 
 #: src/ui/dialog-drives.ui:25
 msgid "Letter"
-msgstr ""
+msgstr "Слово"
 
 #: src/ui/dialog-drives.ui:49
 msgid "Existing drives"
-msgstr ""
+msgstr "Постојећи дискови"
 
 #: src/ui/dialog-duplicate.ui:17
 msgid "Duplicate Bottle"
-msgstr ""
+msgstr "Направи дупликат Флаше"
 
 #: src/ui/dialog-duplicate.ui:38
 msgid "Duplicate"
-msgstr ""
+msgstr "Направи дупликат"
 
 #: src/ui/dialog-duplicate.ui:52
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr ""
+msgstr "Унеси назив за дупликат Флаше."
 
 #: src/ui/dialog-duplicate.ui:75
 msgid "Duplicating…"
-msgstr ""
+msgstr "Правим дупликат…"
 
 #: src/ui/dialog-duplicate.ui:84
 msgid "Take a break, it may take a while"
-msgstr ""
+msgstr "Направи паузу, можда потраје"
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
-msgstr ""
+msgstr "Дупликат Флаше је направљен"
 
 #: src/ui/dialog-env-vars.ui:25
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Варијабле окружења су динамично именоване вредности које могу утицати на "
+"начин на који ће се покренути процеси понашати у твојој флаши."
 
 #: src/ui/dialog-env-vars.ui:28
 msgid "Variable name"
-msgstr ""
+msgstr "Назив варијабле"
 
 #: src/ui/dialog-env-vars.ui:36
 msgid "Existing variables"
-msgstr ""
+msgstr "Постојеће варијабле"
 
 #: src/ui/dialog-gamescope.ui:9
 msgid "Gamescope Settings"
-msgstr ""
+msgstr "Подешавања Гејмскопа"
 
 #: src/ui/dialog-gamescope.ui:34
 msgid ""
 "Configure how Gamescope should manage the window for the games you will run."
-msgstr ""
+msgstr "Подеси како да Гејмскоп управља прозором за игре које ћеш покретати."
 
 #: src/ui/dialog-gamescope.ui:39
 msgid "Game resolution"
-msgstr ""
+msgstr "Резолуција игре"
 
 #: src/ui/dialog-gamescope.ui:42 src/ui/dialog-gamescope.ui:57
 msgid "Width (e.g. 1280)"
-msgstr ""
+msgstr "Ширина (пр. 1280)"
 
 #: src/ui/dialog-gamescope.ui:47 src/ui/dialog-gamescope.ui:62
 msgid "Height (e.g. 720)"
-msgstr ""
+msgstr "Висина (пр. 720)"
 
 #: src/ui/dialog-gamescope.ui:54
 msgid "Gamescope resolution"
-msgstr ""
+msgstr "Резолуција Гејмскопа"
 
 #: src/ui/dialog-gamescope.ui:69
 msgid "Extra settings"
-msgstr ""
+msgstr "Додатна подешавања"
 
 #: src/ui/dialog-gamescope.ui:72
 msgid "Frame rate limit (e.g. 60)"
-msgstr ""
+msgstr "Лимит фрејмрејта (пр. 60)"
 
 #: src/ui/dialog-gamescope.ui:77
 msgid "Frame rate limit (when unfocused)"
-msgstr ""
+msgstr "Лимит фрејмрејта (када није фокусиран)"
 
 #: src/ui/dialog-gamescope.ui:82
 msgid "Use integer scaling"
-msgstr ""
+msgstr "Користи скејловање целим бројевима"
 
 #: src/ui/dialog-gamescope.ui:92
 msgid "Window type"
-msgstr ""
+msgstr "Тип прозора"
 
 #: src/ui/dialog-gamescope.ui:97
 msgid "Borderless"
-msgstr ""
+msgstr "Без ивица"
 
 #: src/ui/dialog-gamescope.ui:104
 msgid "Fullscreen"
-msgstr ""
+msgstr "Цео екран"
 
 #: src/ui/dialog-journal.ui:12
 msgid "All messages"
-msgstr ""
+msgstr "Све поруке"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr ""
+msgstr "Критичне"
 
 #: src/ui/dialog-journal.ui:22
 msgid "Errors"
-msgstr ""
+msgstr "Грешке"
 
 #: src/ui/dialog-journal.ui:27
 msgid "Warnings"
-msgstr ""
+msgstr "Упозорења"
 
 #: src/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr ""
+msgstr "Инфо"
 
 #: src/ui/dialog-journal.ui:56
 msgid "Journal Browser"
-msgstr ""
+msgstr "Џурнал Прегледач"
 
 #: src/ui/dialog-journal.ui:62
 msgid ""
 "Change logging level.\n"
 "                                        "
 msgstr ""
+"Промени ниво логовања\n"
+"                                        "
 
 #: src/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "Све"
 
 #: src/ui/dialog-launch-options.ui:9
 msgid "Launch Options"
-msgstr ""
+msgstr "Опције Покретања"
 
 #: src/ui/dialog-launch-options.ui:46
 msgid "Those arguments will be passed at launch."
-msgstr ""
+msgstr "Ти аргументи ће бити изнети приликом покретања."
 
 #: src/ui/dialog-launch-options.ui:47
 msgid "Custom Arguments"
-msgstr ""
+msgstr "Прилагођени Аргументи"
 
 #: src/ui/dialog-launch-options.ui:50
 msgid "Command Arguments"
-msgstr ""
+msgstr "Командни Аргументи"
 
 #: src/ui/dialog-launch-options.ui:51
 #, python-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "пр. : \" VAR=value %command% -example1 -example2 -example3=hello\""
 
 #: src/ui/dialog-launch-options.ui:57
 msgid "Post-run Script"
-msgstr ""
+msgstr "Скрипта након покретања"
 
 #: src/ui/dialog-launch-options.ui:87
 msgid "These settings will override the default settings for this executable."
 msgstr ""
+"Ова подешавања ће изменити подразумевана подешавања за овај извршни фајл."
 
 #: src/ui/dialog-launch-options.ui:88
 msgid "Preferences Overrides"
-msgstr ""
+msgstr "Премошћавање Поставки"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
-msgstr ""
+msgstr "Локални Ресурси"
 
 #: src/ui/dialog-local-resources.ui:38
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
 msgstr ""
+"Овај инсталер захтева извесне локалне ресурсе који не могу бити пружени "
+"другачије."
 
 #: src/ui/dialog-rename.ui:9
 msgid "Rename"
-msgstr ""
+msgstr "Преименуј"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "Одабери нов назив за изабрани програм."
 
 #: src/ui/dialog-rename.ui:37
 msgid "New Name"
-msgstr ""
+msgstr "Нов Назив"
 
 #: src/ui/dialog-run-args.ui:14
 msgid "Run With Arguments"
-msgstr ""
+msgstr "Покрени Уз Аргументе"
 
 #: src/ui/dialog-run-args.ui:47
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "Напиши испод аргументе који ће бити пренети на извршни фајл."
 
 #: src/ui/dialog-run-args.ui:50
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "пр.: \"-opengl -SkipBuildPatchPrereq\""
 
 #: src/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
-msgstr ""
+msgstr "Уграђени (Вајн)"
 
 #: src/ui/dll-override-entry.ui:11
 msgid "Native (Windows)"
-msgstr ""
+msgstr "Изворни (Виндовс)"
 
 #: src/ui/dll-override-entry.ui:12
 msgid "Builtin, then Native"
-msgstr ""
+msgstr "Уграђени, затим Изворни"
 
 #: src/ui/dll-override-entry.ui:13
 msgid "Native, then Builtin"
-msgstr ""
+msgstr "Изворни, затим Уграђени"
 
 #: src/ui/dll-override-entry.ui:21 src/ui/drive-entry.ui:14
 msgid "Remove"
-msgstr ""
+msgstr "Уклони"
 
 #: src/ui/drive-entry.ui:7
 msgid "/point/to/path"
-msgstr ""
+msgstr "/покажи/на/путању"
 
 #: src/ui/drive-entry.ui:24
 msgid "Choose a Directory"
-msgstr ""
+msgstr "Одабери Директоријум"
 
 #: src/ui/env-var-entry.ui:6
 msgid "Value"
-msgstr ""
+msgstr "Вредност"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
-msgstr ""
+msgstr "Овај вајнпрефикс је већ увезен у Флаше."
 
 #: src/ui/importer.ui:24
 msgid "Import Bottles backup"
-msgstr ""
+msgstr "Увези резервну копију Флаша"
 
 #: src/ui/importer.ui:31
 msgid "Search again for prefixes"
-msgstr ""
+msgstr "Потражи поново префиксе"
 
 #: src/ui/importer.ui:45
 msgid "No prefixes found"
-msgstr ""
+msgstr "Ниједан префикс није пронађен"
 
 #: src/ui/importer.ui:46
 msgid ""
@@ -1885,408 +1936,417 @@ msgid ""
 "                                    Use the icon on the top to import a "
 "bottle from a backup"
 msgstr ""
+"Ниједан префикс није нађен за Лутрис, ПлејОнЛинукс, итд.\n"
+"............................ Употреби иконицу на врху да увезеш флашу из "
+"резервне копије"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
-msgstr ""
+msgstr "Конфигурација"
 
 #: src/ui/importer.ui:87
 msgid "Full Archive"
-msgstr ""
+msgstr "Цела Архива"
 
 #: src/ui/installer-entry.ui:18
 msgid "Show Manifest…"
-msgstr ""
+msgstr "Прикажи Манифест…"
 
 #: src/ui/installer-entry.ui:23
 msgid "Read Review…"
-msgstr ""
+msgstr "Прочитај Преглед…"
 
 #: src/ui/installer-entry.ui:62
 msgid "Install this program"
-msgstr ""
+msgstr "Инсталирај овај програм"
 
 #: src/ui/library-entry.ui:14
 msgid "Remove from Library"
-msgstr ""
+msgstr "Уклони из Библиотеке"
 
 #: src/ui/library-entry.ui:70 src/ui/program-entry.ui:102
 msgid "Launch with Steam"
-msgstr ""
+msgstr "Покрени са Стимом"
 
 #: src/ui/library.ui:22
 msgid "Search for Prefixes"
-msgstr ""
+msgstr "Потражи Префиксе"
 
 #: src/ui/library.ui:42 src/ui/preferences.ui:193
 msgid "Library"
-msgstr ""
+msgstr "Библиотека"
 
 #: src/ui/library.ui:43
 msgid "Add items here from your bottle's program list"
-msgstr ""
+msgstr "Додај ствари овде из листе програма твоје флаше"
 
 #: src/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
-msgstr ""
+msgstr "Ова флаша делује оштећено."
 
 #: src/ui/list-entry.ui:60
 msgid "Execute in this bottle"
-msgstr ""
+msgstr "Покрени у овој флаши"
 
 #: src/ui/list-entry.ui:75
 msgid "Run Here"
-msgstr ""
+msgstr "Покрени овде"
 
 #: src/ui/list-entry.ui:84
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
+"Ова флаша делује оштећено, конфигурациони фајл недостаје. Могу покушати да "
+"поправим креирањем нове конфигурације."
 
 #: src/ui/list-entry.ui:96
 msgid "Run .exe/.msi in this bottle"
-msgstr ""
+msgstr "Покрени .ексе/.мси у овој флаши"
 
 #: src/ui/list.ui:17
 msgid "Search your bottles…"
-msgstr ""
+msgstr "Претражи твоје флаше…"
 
 #: src/ui/list.ui:38
 msgid "Steam Proton"
-msgstr ""
+msgstr "Стим Протон"
 
 #: src/ui/list.ui:55
 msgid "Start off by creating a Bottle."
-msgstr ""
+msgstr "Започни прављењем Флаше."
 
 #: src/ui/list.ui:62
 msgid "Create a new Bottle"
-msgstr ""
+msgstr "Направи нову Флашу"
 
 #: src/ui/list.ui:75
 msgid "No Results Found"
-msgstr ""
+msgstr "Ниједан Резултат Није Пронађен"
 
 #: src/ui/list.ui:76
 msgid "Try a different search."
-msgstr ""
+msgstr "Покушај другачијом претрагом."
 
 #: src/ui/loading.ui:13
 msgid "Starting up…"
-msgstr ""
+msgstr "Започињем…"
 
 #: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
-msgstr ""
+msgstr "Овај ресурс недостаје."
 
 #: src/ui/local-resource-entry.ui:10
 msgid "Browse"
-msgstr ""
+msgstr "Претражи"
 
 #: src/ui/new.ui:17 src/ui/new.ui:63
 msgid "New Bottle"
-msgstr ""
+msgstr "Нова Флаша"
 
 #: src/ui/new.ui:38
 msgid "Create"
-msgstr ""
+msgstr "Направи"
 
 #: src/ui/new.ui:46 src/ui/new.ui:279
 msgid "Close"
-msgstr ""
+msgstr "Затвори"
 
 #: src/ui/new.ui:66
 msgid "Bottle Information"
-msgstr ""
+msgstr "Информације о Флаши"
 
 #: src/ui/new.ui:83
 msgid "Gaming"
-msgstr ""
+msgstr "Гејминг"
 
 #: src/ui/new.ui:84
 msgid "An environment improved for Windows games."
-msgstr ""
+msgstr "Побољшано окружење за Виндовс игре."
 
 #: src/ui/new.ui:92
 msgid "Application"
-msgstr ""
+msgstr "Апликација"
 
 #: src/ui/new.ui:93
 msgid "An environment improved for Windows applications."
-msgstr ""
+msgstr "Побољшано окружење за Виндовс апликације."
 
 #: src/ui/new.ui:102
 msgid "Layered"
-msgstr ""
+msgstr "Слојевито"
 
 #: src/ui/new.ui:103
 msgid "A layered environment, where every app is a layer."
-msgstr ""
+msgstr "Слојевито окружење, у ком је свака апликација слој."
 
 #: src/ui/new.ui:111
 msgid "Custom"
-msgstr ""
+msgstr "Прилагођено"
 
 #: src/ui/new.ui:112
 msgid "A clear environment for your experiments"
-msgstr ""
+msgstr "Чисто окружење за твоје апликације"
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
-msgstr ""
+msgstr "Омогући верзије да сачуваш и повратиш флашу у стање."
 
 #: src/ui/new.ui:128
 msgid "Unlinked Home Directory"
-msgstr ""
+msgstr "Неповезан Кућни Директоријум"
 
 #: src/ui/new.ui:129
 msgid "Do not link the userdir to the homedir"
-msgstr ""
+msgstr "Не повезуј јусердир са хомедир"
 
 #: src/ui/new.ui:154
 msgid "Architecture"
-msgstr ""
+msgstr "Архитектура"
 
 #: src/ui/new.ui:155
 msgid "We recommend using 32bit only if strictly necessary"
-msgstr ""
+msgstr "Препоручујемо коришћење 32бита једино ако је изричито неопходно"
 
 #: src/ui/new.ui:159
 msgid "64 bit"
-msgstr ""
+msgstr "64 бита"
 
 #: src/ui/new.ui:160
 msgid "32 bit"
-msgstr ""
+msgstr "32 бита"
 
 #: src/ui/new.ui:168
 msgid "Custom Recipe"
-msgstr ""
+msgstr "Прилагођени Рецепт"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
+msgstr "Одабери прилагођени рецепт за окружење ако имаш један."
 
 #: src/ui/new.ui:185
 msgid "Custom Path"
-msgstr ""
+msgstr "Прилагођена Путања"
 
 #: src/ui/new.ui:186
 msgid "Store this bottle in another place."
-msgstr ""
+msgstr "Сачувај флашу на другом месту."
 
 #: src/ui/new.ui:273
 msgid "Bottle created"
-msgstr ""
+msgstr "Флаша је направљена"
 
 #: src/ui/onboard.ui:36
 msgid "Previous"
-msgstr ""
+msgstr "Претходан"
 
 #: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
-msgstr ""
+msgstr "Добродошао/ла у Флаше"
 
 #: src/ui/onboard.ui:63
 msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
+"Покрећи Виндовс Софтвер на Линуксу\n"
+"                                                "
 
 #: src/ui/onboard.ui:71
 msgid "Windows in Bottles"
-msgstr ""
+msgstr "Виндовс у Флашама"
 
 #: src/ui/onboard.ui:72
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
+"Флаше користе компактибилне покретаче да пруже изолована контејнеризована "
+"окружења слична Виндовсу у којима се програми покрећу."
 
 #: src/ui/onboard.ui:79
 msgid "Almost Done"
-msgstr ""
+msgstr "Скоро завршено"
 
 #: src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up.."
-msgstr ""
+msgstr "Потребно је још неколико минута да се све подеси.."
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
-msgstr ""
+msgstr "Настави"
 
 #: src/ui/onboard.ui:113
 msgid "All ready!"
-msgstr ""
+msgstr "Све спремно!"
 
 #: src/ui/onboard.ui:119
 msgid "Start using Bottles"
-msgstr ""
+msgstr "Почни да користиш Флаше"
 
 #: src/ui/onboard.ui:138
 msgid "Next"
-msgstr ""
+msgstr "Следеће"
 
 #: src/ui/preferences.ui:13 src/ui/preferences.ui:33
 msgid "General"
-msgstr ""
+msgstr "Генерално"
 
 #: src/ui/preferences.ui:16
 msgid "Appearance"
-msgstr ""
+msgstr "Изглед"
 
 #: src/ui/preferences.ui:19
 msgid "Show Update Date"
-msgstr ""
+msgstr "Прикажи Датум Ажурирања"
 
 #: src/ui/preferences.ui:20
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "Да ли да се приказује датум ажурирања у листи флаше."
 
 #: src/ui/preferences.ui:37
 msgid "Show notifications for downloads and installs."
-msgstr ""
+msgstr "Приказуј обавештења за преузимања и инсталирања."
 
 #: src/ui/preferences.ui:48
 msgid "Temp files"
-msgstr ""
+msgstr "Привремени фајлови"
 
 #: src/ui/preferences.ui:49
 msgid "Clean temp files when Bottles launches?"
-msgstr ""
+msgstr "Очисти привремене фајлове када се Флаше покрену?"
 
 #: src/ui/preferences.ui:60
 msgid "Close Bottles after starting a program"
-msgstr ""
+msgstr "Затвори флаше након покретања програма"
 
 #: src/ui/preferences.ui:61
 msgid "Close Bottles after starting a program from the file manager"
-msgstr ""
+msgstr "Затвори Флаше након покретања програма из менаџера фајлова"
 
 #: src/ui/preferences.ui:74
 msgid "Advanced"
-msgstr ""
+msgstr "Напредно"
 
 #: src/ui/preferences.ui:77
 msgid "Custom bottles path (requires restart)"
-msgstr ""
+msgstr "Прилагођена путања флаша (захтева поновно покретање)"
 
 #: src/ui/preferences.ui:111
 msgid "Runners"
-msgstr ""
+msgstr "Покретачи"
 
 #: src/ui/preferences.ui:116
 msgid "Pre-release"
-msgstr ""
+msgstr "Пре-објављивања"
 
 #: src/ui/preferences.ui:117
 msgid "Display unstable versions of runners."
-msgstr ""
+msgstr "Прикажи нестабилне верзије покретача."
 
 #: src/ui/preferences.ui:133
 msgid "DLL Components"
-msgstr ""
+msgstr "ДЛЛ Компоненте"
 
 #: src/ui/preferences.ui:146
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "ДКСВК-НВАПИ"
 
 #: src/ui/preferences.ui:159
 msgid "Core"
-msgstr ""
+msgstr "Језгро"
 
 #: src/ui/preferences.ui:163
 msgid "Runtime"
-msgstr ""
+msgstr "Рантајм"
 
 #: src/ui/preferences.ui:168
 msgid "WineBridge"
-msgstr ""
+msgstr "ВајнБриџ"
 
 #: src/ui/preferences.ui:181
 msgid "Steam Proton Prefixes"
-msgstr ""
+msgstr "Стим Протон Префикси"
 
 #: src/ui/preferences.ui:182 src/ui/preferences.ui:194
 msgid "In early development (requires restart)"
-msgstr ""
+msgstr "У раном развоју (захтева поновно покретање)"
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
-msgstr ""
+msgstr "Покрени терминалом"
 
 #: src/ui/program-entry.ui:28
 msgid "Browse path"
-msgstr ""
+msgstr "Претражи путању"
 
 #: src/ui/program-entry.ui:40
 msgid "Change Launch Options…"
-msgstr ""
+msgstr "Промени Опције Покретања…"
 
 #: src/ui/program-entry.ui:45
 msgid "Add to My Library"
-msgstr ""
+msgstr "Додај у Моју Библиотеку"
 
 #: src/ui/program-entry.ui:50
 msgid "Add Desktop Entry"
-msgstr ""
+msgstr "Додај на Радну Површину"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
-msgstr ""
+msgstr "Додај у Стим"
 
 #: src/ui/program-entry.ui:60
 msgid "Rename…"
-msgstr ""
+msgstr "Преименуј…"
 
 #: src/ui/program-entry.ui:69
 msgid "Hide Program"
-msgstr ""
+msgstr "Сакриј Програм"
 
 #: src/ui/program-entry.ui:74
 msgid "Show Program"
-msgstr ""
+msgstr "Прикажи Програм"
 
 #: src/ui/program-entry.ui:79
 msgid "Remove from List"
-msgstr ""
+msgstr "Уклони са Листе"
 
 #: src/ui/state-entry.ui:23
 msgid "Restore this state"
-msgstr ""
+msgstr "Поврати ово стање"
 
 #: src/ui/task-entry.ui:24
 msgid "Delete message"
-msgstr ""
+msgstr "Обриши поруку"
 
 #: src/ui/window.ui:20
 msgid "Your Library"
-msgstr ""
+msgstr "Твоја Библиотека"
 
 #: src/ui/window.ui:25
 msgid "Import/Export…"
-msgstr ""
+msgstr "Увоз/Извоз…"
 
 #: src/ui/window.ui:39
 msgid "Support"
-msgstr ""
+msgstr "Подршка"
 
 #: src/ui/window.ui:49
 msgid "Forums"
-msgstr ""
+msgstr "Форуми"
 
 #: src/ui/window.ui:54
 msgid "Health Check"
-msgstr ""
+msgstr "Провера Здравља"
 
 #: src/ui/window.ui:59
 msgid "About Bottles"
-msgstr ""
+msgstr "О Флашама"
 
 #: src/ui/window.ui:89
 msgid "Open menu"
-msgstr ""
+msgstr "Отвори мени"
 
 #: src/ui/window.ui:103
 msgid ""
@@ -2294,7 +2354,9 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
+"Делује да ниси повезан на интернет. Без њега нећеш моћи да преузмеш "
+"неопходне компоненте. Кликни на ову иконицу када поново успоставиш везу."
 
 #: src/ui/window.ui:109
 msgid "New bottle"
-msgstr ""
+msgstr "Нова флаша"
