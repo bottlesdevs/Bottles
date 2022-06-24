@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-22 13:29+0000\n"
+"PO-Revision-Date: 2022-06-26 17:54+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bottles/bottles/"
 "ca/>\n"
@@ -43,7 +43,7 @@ msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Executeu programari de Windows en Linus amb Bottles!"
+msgstr "Executeu programari de Windows en Linux amb el Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -413,11 +413,11 @@ msgstr "Aïllant el directori d'usuari…"
 
 #: src/backend/managers/manager.py:1091
 msgid "Setting Windows version…"
-msgstr "S'està configurant la versió de Windows…"
+msgstr "S’està configurant la versió del Windows…"
 
 #: src/backend/managers/manager.py:1099
 msgid "Apply CMD default settings…"
-msgstr "Aplica la configuració predeterminada de CMD…"
+msgstr "Aplica els paràmetres per defecte de CMD…"
 
 #: src/backend/managers/manager.py:1107
 msgid "Optimizing environment…"
@@ -463,7 +463,7 @@ msgstr "S'està finalitzant…"
 
 #: src/backend/managers/manager.py:1208
 msgid "Caching template…"
-msgstr ""
+msgstr "S’està emmagatzemant la plantilla en memòria cau…"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -537,7 +537,7 @@ msgstr "{0} ja està desactivat per a aquesta ampolla."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
-msgstr "Aquesta configuració és diferent de la predeterminada de l'ampolla."
+msgstr "Aquest paràmetre és diferent del valor per defecte de l’ampolla."
 
 #: src/dialogs/launchoptions.py:174
 msgid "Choose the script"
@@ -1050,7 +1050,7 @@ msgstr "Configuració de Wine"
 
 #: src/ui/details-bottle.ui:305
 msgid "Adjust internal settings."
-msgstr "Ajustar la configuració interna."
+msgstr "Ajusta els paràmetres interns."
 
 #: src/ui/details-bottle.ui:316
 msgid "Uninstaller"
@@ -1254,7 +1254,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:151
 msgid "Display Settings"
-msgstr "Configuració de la pantalla"
+msgstr "Paràmetres de la pantalla"
 
 #: src/ui/details-preferences.ui:155
 msgid "Virtual Desktop"
@@ -1431,7 +1431,7 @@ msgstr "S'està actualitzant la versió de Windows, espereu…"
 
 #: src/ui/details-preferences.ui:487
 msgid "Bottles Runtime"
-msgstr ""
+msgstr "Entorn d’execució del Bottles"
 
 #: src/ui/details-preferences.ui:488
 msgid ""
@@ -1443,7 +1443,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:499
 msgid "Steam Runtime"
-msgstr ""
+msgstr "Entorn d’execució de l’Steam"
 
 #: src/ui/details-preferences.ui:500
 msgid "The same as the Bottles one but provided by Steam."
@@ -1467,7 +1467,7 @@ msgstr "Utilitzar el microcompositor Gamescope."
 
 #: src/ui/details-preferences.ui:532
 msgid "Manage Gamescope settings"
-msgstr "Gestionar la configuració de Gamescope"
+msgstr "Gestiona els paràmetres del Gamescope"
 
 #: src/ui/details-preferences.ui:545
 msgid "Working Directory"
@@ -1475,7 +1475,7 @@ msgstr "Directori de treball"
 
 #: src/ui/details-preferences.ui:546
 msgid "Defaults to the bottle path."
-msgstr ""
+msgstr "El valor per defecte és el del camí de l’ampolla."
 
 #: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
@@ -1586,15 +1586,15 @@ msgstr "Cercar programes instal·lats"
 
 #: src/ui/details-taskmanager.ui:18
 msgid "Refresh"
-msgstr "Actualitzar"
+msgstr "Actualitza"
 
 #: src/ui/details-taskmanager.ui:24
 msgid "Stop process"
-msgstr "Aturar el procés"
+msgstr "Atura el procés"
 
 #: src/ui/details-versioning.ui:25
 msgid "No states found"
-msgstr ""
+msgstr "No s’ha trobat cap estat"
 
 #: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
@@ -1614,7 +1614,7 @@ msgstr "Deseu l'estat de l'ampolla."
 
 #: src/ui/details-versioning.ui:74
 msgid "Create new state"
-msgstr ""
+msgstr "Crea un estat nou"
 
 #: src/ui/details.ui:76
 msgid "Operations"
@@ -1626,13 +1626,16 @@ msgstr ""
 
 #: src/ui/dialog-crash-report.ui:23
 msgid "Send report"
-msgstr "Enviar informe"
+msgstr "Envia l’informe"
 
 #: src/ui/dialog-crash-report.ui:43
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"El Bottles s’ha tancat inesperadament. Empleneu un informe, adjuntant la "
+"traça següent per a ajudar-nos a identificar el problema i evitar que passi "
+"una altra vegada."
 
 #: src/ui/dialog-crash-report.ui:75
 msgid ""
@@ -1692,7 +1695,7 @@ msgstr "Unitats existents"
 
 #: src/ui/dialog-duplicate.ui:17
 msgid "Duplicate Bottle"
-msgstr "Duplicar ampolla"
+msgstr "Duplica l’ampolla"
 
 #: src/ui/dialog-duplicate.ui:38
 msgid "Duplicate"
@@ -1704,7 +1707,7 @@ msgstr "Introduïu un nom per al duplicat de l'ampolla."
 
 #: src/ui/dialog-duplicate.ui:75
 msgid "Duplicating…"
-msgstr "S'està duplicant…"
+msgstr "S’està duplicant…"
 
 #: src/ui/dialog-duplicate.ui:84
 msgid "Take a break, it may take a while"
@@ -1732,7 +1735,7 @@ msgstr "Variables existents"
 
 #: src/ui/dialog-gamescope.ui:9
 msgid "Gamescope Settings"
-msgstr "Configuració de Gamescope"
+msgstr "Paràmetres del Gamescope"
 
 #: src/ui/dialog-gamescope.ui:34
 msgid ""
@@ -1759,7 +1762,7 @@ msgstr "Resolució del gamescope"
 
 #: src/ui/dialog-gamescope.ui:69
 msgid "Extra settings"
-msgstr "Configuracions addicionals"
+msgstr "Paràmetres addicionals"
 
 #: src/ui/dialog-gamescope.ui:72
 msgid "Frame rate limit (e.g. 60)"
@@ -1835,12 +1838,12 @@ msgstr "Arguments personalitzats"
 
 #: src/ui/dialog-launch-options.ui:50
 msgid "Command Arguments"
-msgstr "Arguments d'ordres"
+msgstr "Arguments d’ordres"
 
 #: src/ui/dialog-launch-options.ui:51
 #, python-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "p. ex.: VAR=valor %comand% -exemple1 -exemple2 -exemple3=hola"
+msgstr "p. ex.: VAR=valor %ordre% -exemple1 -exemple2 -exemple3=hola"
 
 #: src/ui/dialog-launch-options.ui:57
 msgid "Post-run Script"
@@ -1849,7 +1852,7 @@ msgstr "Script post-execució"
 #: src/ui/dialog-launch-options.ui:87
 msgid "These settings will override the default settings for this executable."
 msgstr ""
-"Aquesta configuració substituirà la configuració per defecte d'aquest "
+"Aquests paràmetres substituiran la configuració per defecte d’aquest "
 "executable."
 
 #: src/ui/dialog-launch-options.ui:88
@@ -1868,7 +1871,7 @@ msgstr ""
 
 #: src/ui/dialog-rename.ui:9
 msgid "Rename"
-msgstr ""
+msgstr "Canvia el nom"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
@@ -1876,11 +1879,11 @@ msgstr ""
 
 #: src/ui/dialog-rename.ui:37
 msgid "New Name"
-msgstr ""
+msgstr "Nom nou"
 
 #: src/ui/dialog-run-args.ui:14
 msgid "Run With Arguments"
-msgstr ""
+msgstr "Executa amb arguments"
 
 #: src/ui/dialog-run-args.ui:47
 msgid "Write below the arguments to be passed to the executable."
@@ -1920,7 +1923,7 @@ msgstr ""
 
 #: src/ui/env-var-entry.ui:6
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -1947,15 +1950,15 @@ msgstr ""
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
-msgstr ""
+msgstr "Configuració"
 
 #: src/ui/importer.ui:87
 msgid "Full Archive"
-msgstr ""
+msgstr "Arxiu complet"
 
 #: src/ui/installer-entry.ui:18
 msgid "Show Manifest…"
-msgstr ""
+msgstr "Mostra el manifest…"
 
 #: src/ui/installer-entry.ui:23
 msgid "Read Review…"
@@ -1979,7 +1982,7 @@ msgstr ""
 
 #: src/ui/library.ui:42 src/ui/preferences.ui:193
 msgid "Library"
-msgstr ""
+msgstr "Biblioteca"
 
 #: src/ui/library.ui:43
 msgid "Add items here from your bottle's program list"
@@ -2025,7 +2028,7 @@ msgstr ""
 
 #: src/ui/list.ui:75
 msgid "No Results Found"
-msgstr ""
+msgstr "No s’ha trobat cap resultat"
 
 #: src/ui/list.ui:76
 msgid "Try a different search."
@@ -2041,7 +2044,7 @@ msgstr ""
 
 #: src/ui/local-resource-entry.ui:10
 msgid "Browse"
-msgstr ""
+msgstr "Navega"
 
 #: src/ui/new.ui:17 src/ui/new.ui:63
 msgid "New Bottle"
@@ -2049,11 +2052,11 @@ msgstr ""
 
 #: src/ui/new.ui:38
 msgid "Create"
-msgstr ""
+msgstr "Crea"
 
 #: src/ui/new.ui:46 src/ui/new.ui:279
 msgid "Close"
-msgstr ""
+msgstr "Tanca"
 
 #: src/ui/new.ui:66
 msgid "Bottle Information"
@@ -2069,7 +2072,7 @@ msgstr ""
 
 #: src/ui/new.ui:92
 msgid "Application"
-msgstr ""
+msgstr "Aplicació"
 
 #: src/ui/new.ui:93
 msgid "An environment improved for Windows applications."
@@ -2085,7 +2088,7 @@ msgstr ""
 
 #: src/ui/new.ui:111
 msgid "Custom"
-msgstr ""
+msgstr "Personalitzat"
 
 #: src/ui/new.ui:112
 msgid "A clear environment for your experiments"
@@ -2105,7 +2108,7 @@ msgstr ""
 
 #: src/ui/new.ui:154
 msgid "Architecture"
-msgstr ""
+msgstr "Arquitectura"
 
 #: src/ui/new.ui:155
 msgid "We recommend using 32bit only if strictly necessary"
@@ -2113,15 +2116,15 @@ msgstr ""
 
 #: src/ui/new.ui:159
 msgid "64 bit"
-msgstr ""
+msgstr "64 bits"
 
 #: src/ui/new.ui:160
 msgid "32 bit"
-msgstr ""
+msgstr "32 bits"
 
 #: src/ui/new.ui:168
 msgid "Custom Recipe"
-msgstr ""
+msgstr "Recepta personalitzada"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
@@ -2129,23 +2132,23 @@ msgstr ""
 
 #: src/ui/new.ui:185
 msgid "Custom Path"
-msgstr ""
+msgstr "Camí personalitzat"
 
 #: src/ui/new.ui:186
 msgid "Store this bottle in another place."
-msgstr ""
+msgstr "Emmagatzema aquesta ampolla en aquest lloc."
 
 #: src/ui/new.ui:273
 msgid "Bottle created"
-msgstr ""
+msgstr "S’ha creat l’ampolla"
 
 #: src/ui/onboard.ui:36
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
-msgstr ""
+msgstr "Us donem la benvinguda al Bottles"
 
 #: src/ui/onboard.ui:63
 msgid ""
@@ -2155,7 +2158,7 @@ msgstr ""
 
 #: src/ui/onboard.ui:71
 msgid "Windows in Bottles"
-msgstr ""
+msgstr "El Windows al Bottles"
 
 #: src/ui/onboard.ui:72
 msgid ""
@@ -2173,7 +2176,7 @@ msgstr ""
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
-msgstr ""
+msgstr "Continua"
 
 #: src/ui/onboard.ui:113
 msgid "All ready!"
@@ -2185,7 +2188,7 @@ msgstr ""
 
 #: src/ui/onboard.ui:138
 msgid "Next"
-msgstr ""
+msgstr "Següent"
 
 #: src/ui/preferences.ui:13 src/ui/preferences.ui:33
 msgid "General"
@@ -2193,7 +2196,7 @@ msgstr ""
 
 #: src/ui/preferences.ui:16
 msgid "Appearance"
-msgstr ""
+msgstr "Aspecte"
 
 #: src/ui/preferences.ui:19
 msgid "Show Update Date"
@@ -2209,7 +2212,7 @@ msgstr ""
 
 #: src/ui/preferences.ui:48
 msgid "Temp files"
-msgstr ""
+msgstr "Fitxers temporals"
 
 #: src/ui/preferences.ui:49
 msgid "Clean temp files when Bottles launches?"
@@ -2257,7 +2260,7 @@ msgstr ""
 
 #: src/ui/preferences.ui:163
 msgid "Runtime"
-msgstr ""
+msgstr "Entorn d’execució"
 
 #: src/ui/preferences.ui:168
 msgid "WineBridge"
@@ -2273,75 +2276,75 @@ msgstr ""
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
-msgstr ""
+msgstr "Inicia amb un terminal"
 
 #: src/ui/program-entry.ui:28
 msgid "Browse path"
-msgstr ""
+msgstr "Explora el camí"
 
 #: src/ui/program-entry.ui:40
 msgid "Change Launch Options…"
-msgstr ""
+msgstr "Canvia les opcions d’inici…"
 
 #: src/ui/program-entry.ui:45
 msgid "Add to My Library"
-msgstr ""
+msgstr "Afegeix a La meva biblioteca"
 
 #: src/ui/program-entry.ui:50
 msgid "Add Desktop Entry"
-msgstr ""
+msgstr "Afegeix una entrada d’escriptori"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
-msgstr ""
+msgstr "Afegeix a l’Steam"
 
 #: src/ui/program-entry.ui:60
 msgid "Rename…"
-msgstr ""
+msgstr "Canvia el nom…"
 
 #: src/ui/program-entry.ui:69
 msgid "Hide Program"
-msgstr ""
+msgstr "Amaga el programa"
 
 #: src/ui/program-entry.ui:74
 msgid "Show Program"
-msgstr ""
+msgstr "Mostra el programa"
 
 #: src/ui/program-entry.ui:79
 msgid "Remove from List"
-msgstr ""
+msgstr "Treu de la llista"
 
 #: src/ui/state-entry.ui:23
 msgid "Restore this state"
-msgstr ""
+msgstr "Restaura aquest estat"
 
 #: src/ui/task-entry.ui:24
 msgid "Delete message"
-msgstr ""
+msgstr "Suprimeix el missatge"
 
 #: src/ui/window.ui:20
 msgid "Your Library"
-msgstr ""
+msgstr "La vostra biblioteca"
 
 #: src/ui/window.ui:25
 msgid "Import/Export…"
-msgstr ""
+msgstr "Importa/exporta…"
 
 #: src/ui/window.ui:39
 msgid "Support"
-msgstr ""
+msgstr "Assistència"
 
 #: src/ui/window.ui:49
 msgid "Forums"
-msgstr ""
+msgstr "Fòrums"
 
 #: src/ui/window.ui:54
 msgid "Health Check"
-msgstr ""
+msgstr "Comprovació d’integritat"
 
 #: src/ui/window.ui:59
 msgid "About Bottles"
-msgstr ""
+msgstr "Quant al Bottles"
 
 #: src/ui/window.ui:89
 msgid "Open menu"
@@ -2356,4 +2359,4 @@ msgstr ""
 
 #: src/ui/window.ui:109
 msgid "New bottle"
-msgstr ""
+msgstr "Ampolla nova"
