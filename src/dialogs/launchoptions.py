@@ -38,9 +38,13 @@ class LaunchOptionsDialog(Adw.Window):
     switch_dxvk = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
+    switch_fsr = Gtk.Template.Child()
+    switch_pulse_latency = Gtk.Template.Child()
     action_dxvk = Gtk.Template.Child()
     action_vkd3d = Gtk.Template.Child()
     action_nvapi = Gtk.Template.Child()
+    action_fsr = Gtk.Template.Child()
+    action_pulse_latency = Gtk.Template.Child()
     action_cwd = Gtk.Template.Child()
 
     # endregion
@@ -91,6 +95,18 @@ class LaunchOptionsDialog(Adw.Window):
             config["Parameters"].get("dxvk_nvapi"),
             self.action_nvapi
         )
+        self.switch_fsr.connect(
+            "state-set",
+            self.__check_override,
+            config["Parameters"].get("fsr"),
+            self.action_fsr
+        )
+        self.switch_pulse_latency.connect(
+            "state-set",
+            self.__check_override,
+            config["Parameters"].get("pulseaudio_latency"),
+            self.action_pulse_latency
+        )
 
         if program.get("script") not in ["", None]:
             self.action_script.set_subtitle(program["script"])
@@ -104,6 +120,8 @@ class LaunchOptionsDialog(Adw.Window):
         dxvk = config["Parameters"].get("dxvk")
         vkd3d = config["Parameters"].get("vkd3d")
         nvapi = config["Parameters"].get("dxvk_nvapi")
+        fsr = config["Parameters"].get("fsr")
+        pulse_latency = config["Parameters"].get("pulseaudio_latency")
 
         if not dxvk:
             self.action_dxvk.set_subtitle(self.__msg_disabled.format("DXVK"))
@@ -121,6 +139,10 @@ class LaunchOptionsDialog(Adw.Window):
             self.action_vkd3d.set_subtitle(self.__msg_override)
         if nvapi != self.program["dxvk_nvapi"]:
             self.action_nvapi.set_subtitle(self.__msg_override)
+        if fsr != self.program["fsr"]:
+            self.action_fsr.set_subtitle(self.__msg_override)
+        if pulse_latency != self.program["pulseaudio_latency"]:
+            self.action_pulse_latency.set_subtitle(self.__msg_override)
 
         if "dxvk" in self.program:
             dxvk = self.program["dxvk"]
@@ -128,10 +150,16 @@ class LaunchOptionsDialog(Adw.Window):
             vkd3d = self.program["vkd3d"]
         if "dxvk_nvapi" in self.program:
             nvapi = self.program["dxvk_nvapi"]
+        if "fsr" in self.program:
+            fsr = self.program["fsr"]
+        if "pulseaudio_latency" in self.program:
+            pulse_latency = self.program["pulseaudio_latency"]
 
         self.switch_dxvk.set_active(dxvk)
         self.switch_vkd3d.set_active(vkd3d)
         self.switch_nvapi.set_active(nvapi)
+        self.switch_fsr.set_active(fsr)
+        self.switch_pulse_latency.set_active(pulse_latency)
 
     def __check_override(self, widget, state, value, action):
         if state != value:
@@ -148,12 +176,16 @@ class LaunchOptionsDialog(Adw.Window):
         dxvk = self.switch_dxvk.get_state()
         vkd3d = self.switch_vkd3d.get_state()
         nvapi = self.switch_nvapi.get_state()
+        fsr = self.switch_fsr.get_state()
+        pulse_latency = self.switch_pulse_latency.get_state()
 
         self.program["dxvk"] = dxvk
         self.program["vkd3d"] = vkd3d
         self.program["dxvk_nvapi"] = nvapi
-
+        self.program["fsr"] = fsr
+        self.program["pulseaudio_latency"] = pulse_latency
         self.program["arguments"] = self.entry_arguments.get_text()
+
         self.config = self.manager.update_config(
             config=self.config,
             key=self.program["id"],

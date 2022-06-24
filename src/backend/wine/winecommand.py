@@ -289,7 +289,7 @@ class WineCommand:
         # FSR
         if params["fsr"]:
             env.add("WINE_FULLSCREEN_FSR", "1")
-            env.add("WINE_FULLSCREEN_FSR_STRENGHT", str(params["fsr_level"]))
+            env.add("WINE_FULLSCREEN_FSR_STRENGTH", str(params["fsr_level"]))
 
         # PulseAudio latency
         if params["pulseaudio_latency"]:

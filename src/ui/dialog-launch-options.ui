@@ -153,6 +153,26 @@
                                         </child>
                                     </object>
                                 </child>
+                                <child>
+                                    <object class="AdwActionRow" id="action_fsr">
+                                        <property name="title">FSR</property>
+                                        <child>
+                                            <object class="GtkSwitch" id="switch_fsr">
+                                                <property name="valign">center</property>
+                                            </object>
+                                        </child>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwActionRow" id="action_pulse_latency">
+                                        <property name="title">Reduce Latency</property>
+                                        <child>
+                                            <object class="GtkSwitch" id="switch_pulse_latency">
+                                                <property name="valign">center</property>
+                                            </object>
+                                        </child>
+                                    </object>
+                                </child>
                             </object>
                         </child>
                     </object>

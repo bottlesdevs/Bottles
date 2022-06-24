@@ -184,6 +184,8 @@ class ProgramEntry(Adw.ActionRow):
             dxvk = self.config["Parameters"]["dxvk"]
             vkd3d = self.config["Parameters"]["vkd3d"]
             nvapi = self.config["Parameters"]["dxvk_nvapi"]
+            fsr = self.config["Parameters"]["fsr"]
+            pulse_latency = self.config["Parameters"]["pulseaudio_latency"]
 
             if self.program.get("dxvk") != dxvk:
                 dxvk = self.program.get("dxvk")
@@ -191,6 +193,10 @@ class ProgramEntry(Adw.ActionRow):
                 vkd3d = self.program.get("vkd3d")
             if self.program.get("dxvk_nvapi") != nvapi:
                 nvapi = self.program.get("dxvk_nvapi")
+            if self.program.get("fsr") != fsr:
+                fsr = self.program.get("fsr")
+            if self.program.get("pulseaudio_latency") != pulse_latency:
+                pulse_latency = self.program.get("pulseaudio_latency")
 
             WineExecutor(
                 self.config,
@@ -201,7 +207,9 @@ class ProgramEntry(Adw.ActionRow):
                 terminal=with_terminal,
                 override_dxvk=dxvk,
                 override_vkd3d=vkd3d,
-                override_nvapi=nvapi
+                override_nvapi=nvapi,
+                override_fsr=fsr,
+                override_pulse_latency=pulse_latency
             ).run()
             self.pop_actions.popdown()  # workaround #1640
             return True
