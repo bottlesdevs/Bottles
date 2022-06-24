@@ -79,7 +79,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
         self.switch_temp.set_active(self.settings.get_boolean("temp"))
         self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
-        self.switch_steam.set_active(self.settings.get_boolean("experiments-steam"))
+        self.switch_steam.set_active(self.settings.get_boolean("steam-proton-support"))
         self.switch_library.set_active(self.settings.get_boolean("experiments-library"))
         self.switch_auto_close.set_active(self.settings.get_boolean("auto-close-bottles"))
         self.switch_update_date.set_active(self.settings.get_boolean("update-date"))
@@ -130,7 +130,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.set_boolean("temp", state)
 
     def __toggle_steam(self, widget, state):
-        self.settings.set_boolean("experiments-steam", state)
+        self.settings.set_boolean("steam-proton-support", state)
 
     def __toggle_library(self, widget, state):
         self.settings.set_boolean("experiments-library", state)

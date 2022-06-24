@@ -177,7 +177,7 @@ class Manager:
             logging.info("Bottles path doesn't exist, creating now.")
             os.makedirs(Paths.bottles, exist_ok=True)
 
-        if self.settings.get_boolean("experiments-steam") and SteamManager.is_steam_supported():
+        if self.settings.get_boolean("steam-proton-support") and SteamManager.is_steam_supported():
             if not os.path.isdir(Paths.steam):
                 logging.info("Steam path doesn't exist, creating now.")
                 os.makedirs(Paths.steam, exist_ok=True)
@@ -746,7 +746,7 @@ class Manager:
         if len(self.local_bottles) > 0 and not silent:
             logging.info("Bottles found:\n - {0}".format("\n - ".join(self.local_bottles)))
 
-        if self.settings.get_boolean("experiments-steam") and SteamManager.is_steam_supported() and not self.is_cli:
+        if self.settings.get_boolean("steam-proton-support") and SteamManager.is_steam_supported() and not self.is_cli:
             SteamManager.update_bottles()
             self.local_bottles.update(SteamManager.list_prefixes())
 
