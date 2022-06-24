@@ -108,3 +108,20 @@ class Samples:
             "Layers": {}
         },
     }
+
+    bottles_to_steam_relations = {
+        "DXVK_HUD": ("dxvk_hud", True),
+        "MANGOHUD": ("mangohud", True),
+        "OBS_VKCAPTURE": ("obsvkc", True),
+        "ENABLE_VKBASALT": ("vkbasalt", True),
+        "WINEESYNC": ("sync", "esync"),
+        "WINEFSYNC": ("sync", "fsync"),
+        "WINEFSYNC_FUTEX2": ("sync", "futex2"),
+        "WINE_FULLSCREEN_FSR": ("fsr", True),
+        "WINE_FULLSCREEN_FSR_STRENGTH": ("fsr_level", None),
+        "DRI_PRIME": ("discrete_gpu", True),
+        "__NV_PRIME_RENDER_OFFLOAD": ("discrete_gpu", True),
+        "PULSE_LATENCY_MSEC": ("pulseaudio_latency", True),
+        "PROTON_EAC_RUNTIME": ("use_eac_runtime", True),
+        "PROTON_BATTLEYE_RUNTIME": ("use_be_runtime", True)
+    }
