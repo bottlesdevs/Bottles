@@ -572,7 +572,7 @@ class Manager:
                 "arguments": _program.get("arguments", ""),
                 "name": _program["name"],
                 "path": _program["path"],
-                "folder": program_folder,
+                "folder": _program.get("folder", program_folder),
                 "icon": "com.usebottles.bottles-program",
                 "script": _program.get("script"),
                 "dxvk": _program.get("dxvk", config["Parameters"]["dxvk"]),
