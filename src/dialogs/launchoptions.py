@@ -110,11 +110,13 @@ class LaunchOptionsDialog(Adw.Window):
 
         if program.get("script") not in ["", None]:
             self.action_script.set_subtitle(program["script"])
-            self.action_script.set_visible(True)
+            self.btn_script_reset.set_visible(True)
 
-        if program.get("folder") != ManagerUtils.get_exe_parent_dir(self.config, self.program["path"]):
+        print(program.get("folder"))
+        print(ManagerUtils.get_exe_parent_dir(self.config, self.program["path"]))
+        if program.get("folder", "") != ManagerUtils.get_exe_parent_dir(self.config, self.program["path"]):
             self.action_cwd.set_subtitle(program["folder"])
-            self.action_cwd.set_visible(True)
+            self.btn_cwd_reset.set_visible(True)
 
         # set overrides status
         dxvk = config["Parameters"].get("dxvk")
@@ -200,6 +202,7 @@ class LaunchOptionsDialog(Adw.Window):
                 _file = _file_dialog.get_file()
                 self.program["script"] = _file.get_path()
                 self.action_script.set_subtitle(_file.get_path())
+                self.btn_script_reset.set_visible(True)
                 return
 
             self.action_script.set_subtitle(self.__default_script_msg)
@@ -215,6 +218,7 @@ class LaunchOptionsDialog(Adw.Window):
     def __reset_script(self, _widget):
         self.program["script"] = ""
         self.action_script.set_subtitle(self.__default_script_msg)
+        self.btn_script_reset.set_visible(False)
 
     def __choose_cwd(self, _widget):
         def set_path(_dialog, response, _file_dialog):
@@ -222,6 +226,7 @@ class LaunchOptionsDialog(Adw.Window):
                 _file = _file_dialog.get_file()
                 self.program["folder"] = _file.get_path()
                 self.action_cwd.set_subtitle(_file.get_path())
+                self.btn_cwd_reset.set_visible(True)
                 return
 
             self.action_cwd.set_subtitle(self.__default_cwd_msg)
@@ -239,4 +244,5 @@ class LaunchOptionsDialog(Adw.Window):
         This function reset the script path.
         """
         self.program["folder"] = ManagerUtils.get_exe_parent_dir(self.config, self.program["path"])
-        self.action_script.set_subtitle(self.__default_cwd_msg)
+        self.action_cwd.set_subtitle(self.__default_cwd_msg)
+        self.btn_cwd_reset.set_visible(False)
