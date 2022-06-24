@@ -81,7 +81,7 @@ class TemplateManager:
     def __validate_template(template_uuid: str):
         # TODO: just a workaround, need to be improved
         result = True
-        template_path = f"{Paths.templates}/{template_uuid}"
+        template_path = os.path.join(Paths.templates, template_uuid)
 
         if not os.path.exists(template_path):
             logging.error(f"Template {template_uuid} not found!")
@@ -96,7 +96,7 @@ class TemplateManager:
 
     @staticmethod
     def get_template_manifest(template: str):
-        with open(f"{Paths.templates}/{template}/template.yml", "r") as f:
+        with open(os.path.join(Paths.templates, template, "template.yml"), "r") as f:
             return yaml.safe_load(f)
 
     @staticmethod
@@ -105,7 +105,7 @@ class TemplateManager:
         templates = os.listdir(Paths.templates)
 
         for template in templates:
-            if os.path.exists(f"{Paths.templates}/{template}/template.yml"):
+            if os.path.exists(os.path.join(Paths.templates, template, "template.yml")):
                 _manifest = TemplateManager.get_template_manifest(template)
                 res.append(_manifest)
 
@@ -162,7 +162,7 @@ class TemplateManager:
     def unpack_template(template: dict, config: dict):
         logging.info(f"Unpacking template: {template['uuid']}")
         bottle = ManagerUtils.get_bottle_path(config)
-        _path = f"{Paths.templates}/{template['uuid']}"
+        _path = os.path.join(Paths.templates, template['uuid'])
 
         shutil.copytree(_path, bottle, symlinks=False, dirs_exist_ok=True)
         logging.info("Template unpacked successfully!")
