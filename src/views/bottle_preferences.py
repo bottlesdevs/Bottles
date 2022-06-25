@@ -183,6 +183,7 @@ class PreferencesView(Adw.PreferencesPage):
         '''Toggle some utilities according to its availability'''
         self.switch_gamemode.set_sensitive(gamemode_available)
         self.switch_gamescope.set_sensitive(gamescope_available)
+        self.btn_manage_gamescope.set_sensitive(gamescope_available)
         self.switch_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         _not_available = _("This feature is not available on your system.")
@@ -190,6 +191,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_gamemode.set_tooltip_text(_not_available)
         if not gamescope_available:
             self.switch_gamescope.set_tooltip_text(_not_available)
+            self.btn_manage_gamescope.set_tooltip_text(_not_available)
         if not mangohud_available:
             self.switch_mangohud.set_tooltip_text(_not_available)
         if not obs_vkc_available:
