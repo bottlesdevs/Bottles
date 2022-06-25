@@ -49,6 +49,7 @@ class LocalResourceEntry(Adw.ActionRow):
         def set_path(_dialog, response, _file_dialog):
             _file = _file_dialog.get_file()
             if _file is None or response != -3:
+                _dialog.destroy()
                 return
             path = _file.get_path()
             self.parent.add_resource(self.resource, path)

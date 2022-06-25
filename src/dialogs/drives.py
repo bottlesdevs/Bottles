@@ -58,7 +58,8 @@ class DriveEntry(Adw.ActionRow):
         """
         def set_path(_dialog, response, _file_dialog):
             _file = _file_dialog.get_file()
-            if _file is None or response != -3:
+            if _file is None or response != Gtk.ResponseType.OK:
+                _dialog.destroy()
                 return
             path = _file.get_path()
             Drives(self.config).new_drive(self.drive[0], path)
