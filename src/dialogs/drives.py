@@ -66,7 +66,7 @@ class DriveEntry(Adw.ActionRow):
             _dialog.destroy()
 
         FileChooser(
-            parent=self.window,
+            parent=self.parent.window,
             title=_("Choose path"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
             buttons=(_("Cancel"), _("Select")),
