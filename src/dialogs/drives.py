@@ -17,7 +17,8 @@
 
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.backend.wine.drives import Drives  # pyright: reportMissingImports=false
+from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
+from bottles.backend.wine.drives import Drives
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/drive-entry.ui')
