@@ -48,7 +48,7 @@ class ConnectionUtils:
             return False
 
         try:
-            urllib.request.urlopen('https://usebottles.com/', timeout=5)
+            urllib.request.urlopen('https://repo.usebottles.com/components/index.yml', timeout=5)
             if self.window is not None:
                 self.window.toggle_btn_noconnection(False)
 

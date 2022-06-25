@@ -99,6 +99,8 @@ class Manager:
     def __init__(self, window, is_cli=False, **kwargs):
         super().__init__(**kwargs)
 
+        times = {"start": time.time()}
+
         # common variables
         self.window = window
         self.settings = window.settings
@@ -107,33 +109,85 @@ class Manager:
         _offline = not window.utils_conn.check_connection()
 
         self.repository_manager = RepositoryManager()
+        times["RepositoryManager"] = time.time()
+
         self.versioning_manager = VersioningManager(window, self)
+        times["VersioningManager"] = time.time()
+
         self.component_manager = ComponentManager(self, _offline)
+        times["ComponentManager"] = time.time()
+
         self.installer_manager = InstallerManager(self, _offline)
+        times["InstallerManager"] = time.time()
+
         self.dependency_manager = DependencyManager(self, _offline)
+        times["DependencyManager"] = time.time()
+
         self.import_manager = ImportManager(self)
+        times["ImportManager"] = time.time()
 
         if not is_cli:
-            self.checks(install_latest=False, first_run=True)
+            times.update(self.checks(install_latest=False, first_run=True))
         else:
             logging.set_silent()
 
+        if "BOOT_TIME" in os.environ:
+            _temp_times = times.copy()
+            last = 0
+            times_str = "Boot times:"
+            for f, t in _temp_times.items():
+                if last == 0:
+                    last = int(round(t))
+                    continue
+                t = int(round(t))
+                times_str += f"\n\t - {f} took: {t - last}s"
+                last = t
+            logging.info(times_str)
+
     def checks(self, install_latest=False, first_run=False):
         logging.info("Performing Bottles checks...")
+        times = {}
+
         self.check_app_dirs()
+        times["check_app_dirs"] = time.time()
+
         self.check_dxvk(install_latest)
+        times["check_dxvk"] = time.time()
+
         self.check_vkd3d(install_latest)
+        times["check_vkd3d"] = time.time()
+
         self.check_nvapi(install_latest)
+        times["check_nvapi"] = time.time()
+
         self.check_latencyflex(install_latest)
+        times["check_latencyflex"] = time.time()
+
         self.check_runtimes(install_latest)
+        times["check_runtimes"] = time.time()
+
         self.check_winebridge(install_latest)
+        times["check_winebridge"] = time.time()
+
         self.check_runners(install_latest)
+        times["check_runners"] = time.time()
+
         if first_run:
             self.organize_components()
+            times["organize_components"] = time.time()
             self.__clear_temp()
-        self.check_bottles()
+            times["clear_temp"] = time.time()
+
         self.organize_dependencies()
+        times["organize_dependencies"] = time.time()
+
         self.organize_installers()
+        times["organize_installers"] = time.time()
+
+        self.check_bottles()
+        times["check_bottles"] = time.time()
+
+        return times
 
     def __clear_temp(self, force: bool = False):
         """Clears the temp directory if user setting allows it. Use the force
