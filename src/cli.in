@@ -544,6 +544,8 @@ class CLI:
         _dxvk = bottle["Parameters"]["dxvk"]
         _vkd3d = bottle["Parameters"]["vkd3d"]
         _nvapi = bottle["Parameters"]["dxvk_nvapi"]
+        _fsr = bottle["Parameters"]["fsr"]
+        _pulse = bottle["Parameters"]["pulseaudio_latency"]
 
         if _program is not None:
             if _executable is not None:
@@ -566,6 +568,10 @@ class CLI:
                 _vkd3d = program.get("vkd3d")
             if program.get("dxvk_nvapi") != _nvapi:
                 _nvapi = program.get("dxvk_nvapi")
+            if program.get("fsr") != _fsr:
+                _fsr = program.get("fsr")
+            if program.get("pulseaudio_latency") != _pulse:
+                _pulse = program.get("pulseaudio_latency")
 
         WineExecutor(
             bottle,
@@ -575,7 +581,9 @@ class CLI:
             post_script=_script,
             override_dxvk=_dxvk,
             override_vkd3d=_vkd3d,
-            override_nvapi=_nvapi
+            override_nvapi=_nvapi,
+            override_fsr=_fsr,
+            override_pulse_latency=_pulse
         ).run_cli()
 
     # endregion
