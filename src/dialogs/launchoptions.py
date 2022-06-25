@@ -40,13 +40,14 @@ class LaunchOptionsDialog(Adw.Window):
     switch_nvapi = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
     switch_pulse_latency = Gtk.Template.Child()
+    switch_virt_desktop = Gtk.Template.Child()
     action_dxvk = Gtk.Template.Child()
     action_vkd3d = Gtk.Template.Child()
     action_nvapi = Gtk.Template.Child()
     action_fsr = Gtk.Template.Child()
     action_pulse_latency = Gtk.Template.Child()
     action_cwd = Gtk.Template.Child()
-
+    action_virt_desktop = Gtk.Template.Child()
     # endregion
 
     __default_script_msg = _("Choose a script which should be executed after run.")
@@ -107,13 +108,17 @@ class LaunchOptionsDialog(Adw.Window):
             config["Parameters"].get("pulseaudio_latency"),
             self.action_pulse_latency
         )
+        self.switch_virt_desktop.connect(
+            "state-set",
+            self.__check_override,
+            config["Parameters"].get("virtual_desktop"),
+            self.action_virt_desktop
+        )
 
         if program.get("script") not in ["", None]:
             self.action_script.set_subtitle(program["script"])
             self.btn_script_reset.set_visible(True)
 
-        print(program.get("folder"))
-        print(ManagerUtils.get_exe_parent_dir(self.config, self.program["path"]))
         if program.get("folder", "") != ManagerUtils.get_exe_parent_dir(self.config, self.program["path"]):
             self.action_cwd.set_subtitle(program["folder"])
             self.btn_cwd_reset.set_visible(True)
@@ -124,6 +129,7 @@ class LaunchOptionsDialog(Adw.Window):
         nvapi = config["Parameters"].get("dxvk_nvapi")
         fsr = config["Parameters"].get("fsr")
         pulse_latency = config["Parameters"].get("pulseaudio_latency")
+        virt_desktop = config["Parameters"].get("virtual_desktop")
 
         if not dxvk:
             self.action_dxvk.set_subtitle(self.__msg_disabled.format("DXVK"))
@@ -145,6 +151,8 @@ class LaunchOptionsDialog(Adw.Window):
             self.action_fsr.set_subtitle(self.__msg_override)
         if pulse_latency != self.program["pulseaudio_latency"]:
             self.action_pulse_latency.set_subtitle(self.__msg_override)
+        if virt_desktop != self.program["virtual_desktop"]:
+            self.action_virt_desktop.set_subtitle(self.__msg_override)
 
         if "dxvk" in self.program:
             dxvk = self.program["dxvk"]
@@ -156,12 +164,15 @@ class LaunchOptionsDialog(Adw.Window):
             fsr = self.program["fsr"]
         if "pulseaudio_latency" in self.program:
             pulse_latency = self.program["pulseaudio_latency"]
+        if "virtual_desktop" in self.program:
+            virt_desktop = self.program["virtual_desktop"]
 
         self.switch_dxvk.set_active(dxvk)
         self.switch_vkd3d.set_active(vkd3d)
         self.switch_nvapi.set_active(nvapi)
         self.switch_fsr.set_active(fsr)
         self.switch_pulse_latency.set_active(pulse_latency)
+        self.switch_virt_desktop.set_active(virt_desktop)
 
     def __check_override(self, widget, state, value, action):
         if state != value:
@@ -180,12 +191,14 @@ class LaunchOptionsDialog(Adw.Window):
         nvapi = self.switch_nvapi.get_state()
         fsr = self.switch_fsr.get_state()
         pulse_latency = self.switch_pulse_latency.get_state()
+        virt_desktop = self.switch_virt_desktop.get_state()
 
         self.program["dxvk"] = dxvk
         self.program["vkd3d"] = vkd3d
         self.program["dxvk_nvapi"] = nvapi
         self.program["fsr"] = fsr
         self.program["pulseaudio_latency"] = pulse_latency
+        self.program["virtual_desktop"] = virt_desktop
         self.program["arguments"] = self.entry_arguments.get_text()
 
         self.config = self.manager.update_config(

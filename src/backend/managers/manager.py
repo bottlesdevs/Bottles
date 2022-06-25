@@ -634,6 +634,7 @@ class Manager:
                 "dxvk_nvapi": _program.get("dxvk_nvapi", config["Parameters"]["dxvk_nvapi"]),
                 "fsr": _program.get("fsr", config["Parameters"]["fsr"]),
                 "pulseaudio_latency": _program.get("pulseaudio_latency", config["Parameters"]["pulseaudio_latency"]),
+                "virtual_desktop": _program.get("virtual_desktop", config["Parameters"]["virtual_desktop"]),
                 "removed": _program.get("removed"),
                 "id": _program.get("id")
             })
@@ -682,6 +683,7 @@ class Manager:
                         "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
                         "fsr": config["Parameters"]["fsr"],
                         "pulseaudio_latency": config["Parameters"]["pulseaudio_latency"],
+                        "virtual_desktop": config["Parameters"]["virtual_desktop"],
                         "auto_discovered": True
                     })
                     found.append(executable_name)

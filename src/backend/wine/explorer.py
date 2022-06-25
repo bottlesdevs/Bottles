@@ -10,12 +10,23 @@ class Explorer(WineProgram):
     program = "Wine Explorer"
     command = "explorer"
 
-    def launch_desktop(self, desktop: str = "shell", width: int = 0, height: int = 0, program: str = None):
-        args = f"/desktop={desktop}"
+    def launch_desktop(
+            self,
+            desktop: str = "shell",
+            width: int = 0,
+            height: int = 0,
+            program: str = None,
+            args: str = None,
+            environment: dict = None,
+            cwd: str = None
+    ):
+        _args = f"/desktop={desktop}"
 
         if width and height:
-            args += f",{width}x{height}"
+            _args += f",{width}x{height}"
         if program:
-            args += f" {program}"
+            _args += f" {program}"
+        if args:
+            _args += args
 
-        return self.launch(args=args, communicate=True, action_name="launch_desktop")
+        return self.launch(args=_args, communicate=True, action_name="launch_desktop", environment=environment, cwd=cwd)

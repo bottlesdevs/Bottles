@@ -173,6 +173,16 @@
                                         </child>
                                     </object>
                                 </child>
+                                <child>
+                                    <object class="AdwActionRow" id="action_virt_desktop">
+                                        <property name="title" translatable="yes">Virtual Desktop</property>
+                                        <child>
+                                            <object class="GtkSwitch" id="switch_virt_desktop">
+                                                <property name="valign">center</property>
+                                            </object>
+                                        </child>
+                                    </object>
+                                </child>
                             </object>
                         </child>
                     </object>
