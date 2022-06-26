@@ -73,7 +73,7 @@
                     <object class="AdwPreferencesGroup">
                         <property name="title" translatable="yes">Integrations</property>
                         <child>
-                            <object class="AdwActionRow">
+                            <object class="AdwActionRow" id="action_steam_proton">
                                 <property name="title" translatable="yes">Steam Proton Prefixes</property>
                                 <property name="subtitle" translatable="yes">List and manage Steam Proton prefixes.</property>
                                 <property name="activatable-widget">switch_steam</property>
@@ -153,7 +153,7 @@
                 <child>
                     <object class="AdwPreferencesGroup" id="list_runners">
                         <child>
-                            <object class="AdwActionRow" id="actionrow_prerelease">
+                            <object class="AdwActionRow" id="action_prerelease">
                                 <property name="title" translatable="yes">Pre-Release</property>
                                 <property name="subtitle" translatable="yes">Display unstable versions of runners.</property>
                                 <property name="activatable-widget">switch_release_candidate</property>

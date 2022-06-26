@@ -25,7 +25,6 @@ from bottles.utils.gtk import GtkUtils
 
 from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
 from bottles.backend.managers.runtime import RuntimeManager
-from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.backend.models.result import Result

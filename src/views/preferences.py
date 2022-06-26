@@ -48,8 +48,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
     list_vkd3d = Gtk.Template.Child()
     list_nvapi = Gtk.Template.Child()
     list_latencyflex = Gtk.Template.Child()
-    actionrow_prerelease = Gtk.Template.Child()
+    action_prerelease = Gtk.Template.Child()
     action_bottles_path = Gtk.Template.Child()
+    action_steam_proton = Gtk.Template.Child()
     btn_bottles_path = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
     pref_core = Gtk.Template.Child()
@@ -108,6 +109,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         if not SteamManager.is_steam_supported():
             self.switch_steam.set_sensitive(False)
+            self.action_steam_proton.set_tooltip_text(
+                _("Steam was not found or Bottles does not have enough permissions.\
+Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
 
     def __toggle_update_date(self, widget, state):
         self.settings.set_boolean("update-date", state)
