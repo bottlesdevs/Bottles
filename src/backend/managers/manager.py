@@ -96,7 +96,7 @@ class Manager:
     supported_dependencies = {}
     supported_installers = {}
 
-    def __init__(self, window, is_cli=False, **kwargs):
+    def __init__(self, window, is_cli=False, repo_fn_update=None, **kwargs):
         super().__init__(**kwargs)
 
         times = {"start": time.time()}
@@ -108,7 +108,7 @@ class Manager:
         self.is_cli = is_cli
         _offline = not window.utils_conn.check_connection()
 
-        self.repository_manager = RepositoryManager()
+        self.repository_manager = RepositoryManager(repo_fn_update)
         times["RepositoryManager"] = time.time()
 
         self.versioning_manager = VersioningManager(window, self)

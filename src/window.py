@@ -239,12 +239,13 @@ class MainWindow(Adw.ApplicationWindow):
                 self.show_list_view()
             self.arg_exe = None
 
-        def get_manager(window):
-            mng = Manager(window)
+        def get_manager(window, repo_fn_update):
+            mng = Manager(window=window, repo_fn_update=repo_fn_update)
             return mng
 
         self.show_loading_view()
-        RunAsync(get_manager, callback=set_manager, window=self)
+        repo_fn_update = self.page_loading.add_fetched if self.utils_conn.check_connection() else None
+        RunAsync(get_manager, callback=set_manager, window=self, repo_fn_update=repo_fn_update)
 
         self.check_crash_log()
 
