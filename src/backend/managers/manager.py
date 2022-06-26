@@ -717,8 +717,6 @@ class Manager:
                         else:
                             raise Exception("Missing Path in placeholder.yml")
                     except (yaml.YAMLError, Exception):
-                        if not silent:
-                            logging.error("Placeholder found but could not be parsed")
                         continue
 
             try:
@@ -727,12 +725,9 @@ class Manager:
                 with open(_config, "r") as f:
                     conf_file_yaml = yaml.safe_load(f)
             except (FileNotFoundError, AttributeError, yaml.YAMLError):
-                if not silent:
-                    logging.warning(f"Bottle {_name} is missing a config file")
                 continue
 
             if conf_file_yaml is None:
-                logging.warning(f"Config file is empty: {_config}")
                 continue
 
             # Clear Latest_Executables on new session start
