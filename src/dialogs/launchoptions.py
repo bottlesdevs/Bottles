@@ -34,6 +34,7 @@ class LaunchOptionsDialog(Adw.Window):
     btn_script_reset = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
+    btn_reset_defaults = Gtk.Template.Child()
     action_script = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
@@ -77,6 +78,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_script_reset.connect("clicked", self.__reset_script)
         self.btn_cwd.connect("clicked", self.__choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
+        self.btn_reset_defaults.connect("clicked", self.__reset_defaults)
         self.entry_arguments.connect("activate", self.__save_options)
         self.switch_dxvk.connect(
             "state-set",
@@ -185,7 +187,7 @@ class LaunchOptionsDialog(Adw.Window):
             self.parent.page_details.set_config(self.config, rebuild_pages=False)
         self.destroy()
 
-    def __save_options(self, widget):
+    def __save_options(self, *args):
         dxvk = self.switch_dxvk.get_state()
         vkd3d = self.switch_vkd3d.get_state()
         nvapi = self.switch_nvapi.get_state()
@@ -209,7 +211,7 @@ class LaunchOptionsDialog(Adw.Window):
         ).data["config"]
         GLib.idle_add(self.__close_window)
 
-    def __choose_script(self, _widget):
+    def __choose_script(self, *args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
@@ -228,12 +230,12 @@ class LaunchOptionsDialog(Adw.Window):
             callback=set_path
         )
 
-    def __reset_script(self, _widget):
+    def __reset_script(self, *args):
         self.program["script"] = ""
         self.action_script.set_subtitle(self.__default_script_msg)
         self.btn_script_reset.set_visible(False)
 
-    def __choose_cwd(self, _widget):
+    def __choose_cwd(self, *args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
@@ -252,10 +254,18 @@ class LaunchOptionsDialog(Adw.Window):
             callback=set_path
         )
 
-    def __reset_cwd(self, _widget):
+    def __reset_cwd(self, *args):
         """
         This function reset the script path.
         """
         self.program["folder"] = ManagerUtils.get_exe_parent_dir(self.config, self.program["path"])
         self.action_cwd.set_subtitle(self.__default_cwd_msg)
         self.btn_cwd_reset.set_visible(False)
+
+    def __reset_defaults(self, *args):
+        self.switch_dxvk.set_active(self.config["Parameters"]["dxvk"])
+        self.switch_vkd3d.set_active(self.config["Parameters"]["vkd3d"])
+        self.switch_nvapi.set_active(self.config["Parameters"]["dxvk_nvapi"])
+        self.switch_fsr.set_active(self.config["Parameters"]["fsr"])
+        self.switch_pulse_latency.set_active(self.config["Parameters"]["pulseaudio_latency"])
+        self.switch_virt_desktop.set_active(self.config["Parameters"]["virtual_desktop"])

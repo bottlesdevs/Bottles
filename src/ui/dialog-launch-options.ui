@@ -123,6 +123,16 @@
                             <object class="AdwPreferencesGroup">
                                 <property name="description" translatable="yes">These settings will override the default settings for this executable.</property>
                                 <property name="title" translatable="yes">Preferences Overrides</property>
+                                <child type="header-suffix">
+                                    <object class="GtkButton" id="btn_reset_defaults">
+                                        <property name="tooltip-text" translatable="yes">Reset to Bottle's Defaults</property>
+                                        <property name="valign">center</property>
+                                        <property name="icon-name">edit-undo-symbolic</property>
+                                        <style>
+                                            <class name="flat"/>
+                                        </style>
+                                    </object>
+                                </child>
                                 <child>
                                     <object class="AdwActionRow" id="action_dxvk">
                                         <property name="title">DXVK</property>
