@@ -698,11 +698,7 @@ class Manager:
         """
         bottles = os.listdir(Paths.bottles)
 
-        for bottle in bottles:
-            '''
-            For each bottle add the path name to the `local_bottles` variable
-            and append the config.
-            '''
+        def process_bottle(bottle):
             _name = bottle
             _bottle = os.path.join(Paths.bottles, bottle)
             _placeholder = os.path.join(_bottle, "placeholder.yml")
@@ -717,7 +713,7 @@ class Manager:
                         else:
                             raise Exception("Missing Path in placeholder.yml")
                     except (yaml.YAMLError, Exception):
-                        continue
+                        return
 
             try:
                 if not os.path.exists(_config):
@@ -725,10 +721,10 @@ class Manager:
                 with open(_config, "r") as f:
                     conf_file_yaml = yaml.safe_load(f)
             except (FileNotFoundError, AttributeError, yaml.YAMLError):
-                continue
+                return
 
             if conf_file_yaml is None:
-                continue
+                return
 
             # Clear Latest_Executables on new session start
             if conf_file_yaml.get("Latest_Executables"):
@@ -738,7 +734,7 @@ class Manager:
             _temp = conf_file_yaml.get("External_Programs").copy()
             _changed = False
             for k, v in _temp.items():
-                _uuid = str (uuid.uuid4())
+                _uuid = str(uuid.uuid4())
                 if "id" not in v:
                     _temp[k]["id"] = _uuid
                     _changed = True
@@ -787,12 +783,20 @@ class Manager:
                     os.makedirs(p)
 
             for c in os.listdir(_bottle):
+                c = str(c)
                 if c.endswith(".dxvk-cache"):
                     shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "dxvk_state"))
                 elif "vkd3d-proton.cache" in c:
                     shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "vkd3d_shader"))
                 elif c == "GLCache":
                     shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "gl_shader"))
+
+        for b in bottles:
+            '''
+            For each bottle add the path name to the `local_bottles` variable
+            and append the config.
+            '''
+            process_bottle(b)
 
         if len(self.local_bottles) > 0 and not silent:
             logging.info("Bottles found:\n - {0}".format("\n - ".join(self.local_bottles)))

@@ -301,7 +301,6 @@ class SteamManager:
             _name, _conf = prefix
             _bottle = os.path.join(Paths.steam, _conf["CompatData"])
 
-            logging.info(f"Creating bottle for Steam prefix {_conf['CompatData']}...")
             os.makedirs(_bottle, exist_ok=True)
 
             with open(os.path.join(_bottle, "bottle.yml"), "w") as f:
