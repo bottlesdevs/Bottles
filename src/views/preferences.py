@@ -151,7 +151,7 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
                 self.action_bottles_path.set_subtitle(_file.get_path())
             else:
                 self.action_bottles_path.set_subtitle(
-                    _("Choose where to store the new bottles (this will not move the existing ones)"))
+                    _("Choose where to store the new bottles (this will not move the existing ones)."))
             _file_dialog.destroy()
 
         FileChooser(
@@ -167,7 +167,7 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
         self.data.remove("custom_bottles_path")
         self.btn_bottles_path_reset.set_visible(False)
         self.action_bottles_path.set_subtitle(
-            _("Choose where to store the new bottles (this will not move the existing ones)"))
+            _("Choose where to store the new bottles (this will not move the existing ones)."))
 
     def populate_runtimes_list(self):
         for runtime in self.manager.supported_runtimes.items():

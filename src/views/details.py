@@ -169,7 +169,7 @@ class DetailsView(Adw.Bin):
                 "description": "",
             },
             "taskmanager": {
-                "title": _("Task manager"),
+                "title": _("Task Manager"),
                 "description": "",
             }
         }

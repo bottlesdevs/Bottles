@@ -58,7 +58,7 @@
                         <child>
                             <object class="AdwActionRow">
                                 <property name="title" translatable="yes">Close Bottles After Starting a Program</property>
-                                <property name="subtitle" translatable="yes">Close Bottles after starting a program from the file manager</property>
+                                <property name="subtitle" translatable="yes">Close Bottles after starting a program from the file manager.</property>
                                 <property name="activatable-widget">switch_auto_close</property>
                                 <child>
                                     <object class="GtkSwitch" id="switch_auto_close">
@@ -116,7 +116,7 @@
                         <child>
                             <object class="AdwActionRow" id="action_bottles_path">
                                 <property name="title" translatable="yes">Custom Bottles Path (Requires Restart)</property>
-                                <property name="subtitle" translatable="yes">Choose where to store the new bottles (this will not move the existing ones)</property>
+                                <property name="subtitle" translatable="yes">Choose where to store the new bottles (this will not move the existing ones).</property>
                                 <property name="activatable-widget">btn_bottles_path</property>
                                 <child>
                                     <object class="GtkButton" id="btn_bottles_path_reset">
@@ -220,7 +220,7 @@
                         <child>
                             <object class="AdwActionRow">
                                 <property name="title" translatable="yes">Library</property>
-                                <property name="subtitle" translatable="yes">In early development (requires restart)</property>
+                                <property name="subtitle" translatable="yes">In early development (requires restart).</property>
                                 <property name="activatable-widget">switch_library</property>
                                 <child>
                                     <object class="GtkSwitch" id="switch_library">

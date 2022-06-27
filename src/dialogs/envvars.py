@@ -130,7 +130,7 @@ class EnvVarsDialog(Adw.Window):
         """
         envs = self.config.get("Environment_Variables").items()
         if len(envs) == 0:
-            self.group_vars.set_description(_("No environment variables defined"))
+            self.group_vars.set_description(_("No environment variables defined."))
             return
 
         self.group_vars.set_description("")

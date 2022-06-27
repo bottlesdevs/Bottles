@@ -22,7 +22,7 @@
         <child>
             <object class="AdwStatusPage" id="status_page">
                 <property name="icon-name">preferences-system-time-symbolic</property>
-                <property name="title" translatable="yes">No states found</property>
+                <property name="title" translatable="yes">No States Found</property>
                 <property name="description" translatable="yes">Create first state to start using versioning.</property>
             </object>
         </child>
@@ -35,12 +35,6 @@
                 <style>
                     <class name="menu"/>
                 </style>
-                <child>
-                    <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">Type a short comment:</property>
-                    </object>
-                </child>
                 <child>
                     <object class="GtkBox">
                         <child>
