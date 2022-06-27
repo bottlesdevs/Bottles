@@ -26,7 +26,7 @@ logging = Logger()
 class Downloader:
     """
     Download a resource from a given URL. It shows and update a progress
-    bar while downloading but can also be used to pdate external progress
+    bar while downloading but can also be used to update external progress
     bars using the func parameter.
     """
 
