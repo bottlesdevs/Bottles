@@ -58,6 +58,10 @@ class TerminalUtils:
         self.terminal = None
 
     def check_support(self):
+        if "FLATPAK_ID" in os.environ:
+            self.terminal = self.terminals[0]
+            return True
+
         for terminal in self.terminals:
             terminal_check = subprocess.Popen(
                 f"command -v {terminal[0]} > /dev/null && echo 1 || echo 0",
