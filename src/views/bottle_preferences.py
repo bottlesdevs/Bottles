@@ -23,7 +23,8 @@ from gi.repository import Gtk, Adw
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.gtk import GtkUtils
 
-from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
+from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, \
+    obs_vkc_available
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.utils.manager import ManagerUtils
 
@@ -99,6 +100,7 @@ class PreferencesView(Adw.PreferencesPage):
     combo_latencyflex = Gtk.Template.Child()
     combo_windows = Gtk.Template.Child()
     combo_renderer = Gtk.Template.Child()
+    combo_language = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
     spinner_dxvkbool = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
@@ -112,6 +114,7 @@ class PreferencesView(Adw.PreferencesPage):
     box_sync = Gtk.Template.Child()
     group_details = Gtk.Template.Child()
     exp_components = Gtk.Template.Child()
+    str_list_languages = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -167,6 +170,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.connect('changed', self.__set_latencyflex)
         self.combo_windows.connect('changed', self.__set_windows)
         self.combo_renderer.connect('changed', self.__set_renderer)
+        self.combo_language.connect('notify::selected-item', self.__set_language)
         self.ev_controller.connect("key-released", self.__check_entry_name)
         self.entry_name.connect("apply", self.__save_name)
         # endregion
@@ -214,6 +218,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def choose_cwd(self, widget, reset=False):
         """Change the default current working directory for the bottle"""
+
         def set_path(_dialog, response, _file_dialog):
             if response == Gtk.ResponseType.OK:
                 _file = _file_dialog.get_file()
@@ -259,12 +264,14 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
+        self.combo_language.handler_block_by_func(self.__set_language)
 
         self.combo_runner.remove_all()
         self.combo_dxvk.remove_all()
         self.combo_vkd3d.remove_all()
         self.combo_nvapi.remove_all()
         self.combo_latencyflex.remove_all()
+        self.str_list_languages.splice(0, self.str_list_languages.get_n_items())
 
         for runner in self.manager.runners_available:
             self.combo_runner.append(runner, runner)
@@ -281,11 +288,15 @@ class PreferencesView(Adw.PreferencesPage):
         for latencyflex in self.manager.latencyflex_available:
             self.combo_latencyflex.append(latencyflex, latencyflex)
 
+        for l in ManagerUtils.get_languages():
+            self.str_list_languages.append(l)
+
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
+        self.combo_language.handler_unblock_by_func(self.__set_language)
 
     def set_config(self, config):
         self.config = config
@@ -323,6 +334,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_windows.handler_block_by_func(self.__set_windows)
         self.combo_renderer.handler_block_by_func(self.__set_renderer)
+        self.combo_language.handler_block_by_func(self.__set_language)
         self.combo_dpi.handler_block_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_block_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_block_by_func(self.__set_esync)
@@ -388,6 +400,10 @@ class PreferencesView(Adw.PreferencesPage):
             self.combo_windows.append("win95", "Windows 95")
 
         self.combo_windows.set_active_id(self.config.get("Windows"))
+        self.combo_language.set_selected(ManagerUtils.get_languages(
+            from_locale=self.config.get("Language"),
+            get_index=True
+        ))
 
         # unlock functions connected to the widgets
         self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)
@@ -421,6 +437,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
         self.combo_renderer.handler_unblock_by_func(self.__set_renderer)
+        self.combo_language.handler_unblock_by_func(self.__set_language)
         self.combo_dpi.handler_unblock_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_unblock_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_unblock_by_func(self.__set_esync)
@@ -457,6 +474,7 @@ class PreferencesView(Adw.PreferencesPage):
         Set the sync type (wine, esync, fsync, futext2)
         Don't use this directly, use dedicated wrappers instead (e.g. __set_wine_sync)
         """
+
         def update(result, error=False):
             self.config = result.data["config"]
             toggles = [
@@ -873,6 +891,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_renderer(self, widget):
         """Set the renderer to use for the bottle"""
+
         def update(result, error=False):
             self.config = self.manager.update_config(
                 config=self.config,
@@ -891,6 +910,16 @@ class PreferencesView(Adw.PreferencesPage):
             callback=update,
             value=renderer
         )
+
+    def __set_language(self, *args):
+        """Set the language to use for the bottle"""
+        index = self.combo_language.get_selected()
+        language = ManagerUtils.get_languages(from_index=index)
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="Language",
+            value=language[0],
+        ).data["config"]
 
     def __toggle_pulse_latency(self, widget, state):
         """Set the pulse latency to use for the bottle"""

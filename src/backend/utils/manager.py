@@ -18,6 +18,7 @@ import shlex
 import shutil
 import gi
 import os
+import locale
 import subprocess
 from glob import glob
 from typing import NewType, Union
@@ -299,3 +300,93 @@ class ManagerUtils:
             path_type="custom",
             custom_path=wineprefix.get("Path")
         )
+
+    @staticmethod
+    def get_languages(from_name=None, from_locale=None, from_index=None, get_index=False, get_locales=False):
+        locales = [
+            'sys',
+            'bg_BG',
+            'cs_CZ',
+            'da_DK',
+            'de_DE',
+            'el_GR',
+            'en_US',
+            'es_ES',
+            'et_EE',
+            'fi_FI',
+            'fr_FR',
+            'hr_HR',
+            'hu_HU',
+            'it_IT',
+            'lt_LT',
+            'lv_LV',
+            'nl_NL',
+            'no_NO',
+            'pl_PL',
+            'pt_PT',
+            'ro_RO',
+            'ru_RU',
+            'sk_SK',
+            'sl_SI',
+            'sv_SE',
+            'tr_TR',
+            'zh_CN'
+        ]
+        names = [
+            _('System'),
+            _('Bulgarian'),
+            _('Czech'),
+            _('Danish'),
+            _('German'),
+            _('Greek'),
+            _('English'),
+            _('Spanish'),
+            _('Estonian'),
+            _('Finnish'),
+            _('French'),
+            _('Croatian'),
+            _('Hungarian'),
+            _('Italian'),
+            _('Lithuanian'),
+            _('Latvian'),
+            _('Dutch'),
+            _('Norwegian'),
+            _('Polish'),
+            _('Portuguese'),
+            _('Romanian'),
+            _('Russian'),
+            _('Slovak'),
+            _('Slovenian'),
+            _('Swedish'),
+            _('Turkish'),
+            _('Chinese'),
+        ]
+
+        if from_name and from_locale:
+            raise ValueError("Cannot pass both from_name, from_locale and from_index.")
+
+        if from_name:
+            if from_name not in names:
+                raise ValueError("Given name not in list.")
+            i = names.index(from_name)
+            if get_index:
+                return i
+            return from_name, locales[i]
+
+        if from_locale:
+            if from_locale not in locales:
+                raise ValueError("Given locale not in list.")
+            i = locales.index(from_locale)
+            if get_index:
+                return i
+            return from_locale, names[i]
+
+        if isinstance(from_index, int):
+            if from_index not in range(0, len(locales)):
+                raise ValueError("Given index not in range.")
+            return locales[from_index], names[from_index]
+
+        if get_locales:
+            return locales
+
+        return names

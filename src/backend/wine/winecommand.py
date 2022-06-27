@@ -150,7 +150,7 @@ class WineCommand:
             for var in config.get("Environment_Variables").items():
                 env.add(var[0], var[1], override=True)
 
-        # Environment variables from argument 
+        # Environment variables from argument
         if environment:
             if environment.get("WINEDLLOVERRIDES"):
                 dll_overrides.append(environment["WINEDLLOVERRIDES"])
@@ -158,6 +158,10 @@ class WineCommand:
 
             for e in environment:
                 env.add(e, environment[e], override=True)
+
+        # Language
+        if config["Language"] != "sys":
+            env.add("LC_ALL", config["Language"])
 
         # Bottle DLL_Overrides
         if config["DLL_Overrides"]:

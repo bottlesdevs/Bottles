@@ -63,7 +63,8 @@ class Samples:
         "DLL_Overrides": {},
         "External_Programs": {},
         "Uninstallers": {},
-        "Latest_Executables": []
+        "Latest_Executables": [],
+        "Language": "sys"
     }
 
     environments = {

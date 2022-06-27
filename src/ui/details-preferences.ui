@@ -452,7 +452,7 @@
                     <object class="AdwActionRow">
                         <!-- TODO: replace with ComboRow -->
                         <property name="activatable-widget">combo_windows</property>
-                        <property name="title" translatable="yes">Windows version</property>
+                        <property name="title" translatable="yes">Windows Version</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_win">
                                 <property name="tooltip-text" translatable="yes">Updating Windows version, please wait…</property>
@@ -479,6 +479,16 @@
                                 </style>
                             </object>
                         </child>
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwComboRow" id="combo_language">
+                        <property name="title" translatable="yes">Language</property>
+                        <property name="subtitle" translatable="yes">Choose the language to use with programs.</property>
+                        <property name="model">
+                            <object class="GtkStringList" id="str_list_languages">
+                            </object>
+                        </property>
                     </object>
                 </child>
                 <child>
