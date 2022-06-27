@@ -145,7 +145,7 @@ class Manager:
             logging.info(times_str)
 
     def checks(self, install_latest=False, first_run=False):
-        logging.info("Performing Bottles checks...")
+        logging.info("Performing Bottles checks…")
         times = {}
 
         self.check_app_dirs()
@@ -536,7 +536,7 @@ class Manager:
     @staticmethod
     def launch_layer_program(config, layer):
         """Mount a layer and launch the program on it."""
-        logging.info(f"Preparing {len(layer['mounts'])} layer(s)..")
+        logging.info(f"Preparing {len(layer['mounts'])} layer(s)…")
         layer_conf = LayersStore.get_layer_by_uuid(layer['uuid'])
         if not layer_conf:
             logging.error("Layer not found.")
@@ -553,16 +553,16 @@ class Manager:
             mounts.append(_layer["UUID"])
 
         for mount in mounts:
-            logging.info("Mounting layers..")
+            logging.info("Mounting layers…")
             program_layer.mount(_uuid=mount)
 
-        logging.info("Launching program..")
+        logging.info("Launching program…")
         runtime_conf = program_layer.runtime_conf
         wineboot = WineBoot(runtime_conf)
         wineboot.update()
         Runner.run_layer_executable(runtime_conf, layer)
 
-        logging.info("Program exited, unmounting layers..")
+        logging.info("Program exited, unmounting layers…")
         program_layer.sweep()
         program_layer.save()
 
@@ -1347,12 +1347,12 @@ class Manager:
         wineserver.wait()
 
         if config.get("Path"):
-            logging.info(f"Removing applications installed with the bottle ..")
+            logging.info(f"Removing applications installed with the bottle…")
             for inst in glob(f"{Paths.applications}/{config.get('Name')}--*"):
                 os.remove(inst)
 
             if config.get("Custom_Path"):
-                logging.info(f"Removing placeholder ..")
+                logging.info(f"Removing placeholder…")
                 try:
                     os.remove(os.path.join(
                         Paths.bottles,

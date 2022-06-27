@@ -254,7 +254,7 @@ class SteamManager:
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
 
             if _acf is None or not _acf.get("AppState"):
-                logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping...")
+                logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping…")
                 continue
 
             if _acf["AppState"]["name"] == "Proton Experimental":
@@ -262,7 +262,7 @@ class SteamManager:
                 continue
 
             if _runner is None:
-                logging.warning(f"A Steam prefix was found, but there is no Proton for it: {_dir_name}, skipping...")
+                logging.warning(f"A Steam prefix was found, but there is no Proton for it: {_dir_name}, skipping…")
                 continue
 
             _conf = Samples.config.copy()

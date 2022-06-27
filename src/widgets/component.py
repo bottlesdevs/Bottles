@@ -142,7 +142,7 @@ class ComponentEntry(Adw.ActionRow):
             percent = 100
 
         if percent == 100:
-            self.label_task_status.set_text(_("Installing..."))
+            self.label_task_status.set_text(_("Installing…"))
 
     def set_err(self, msg=None, retry=True):
         self.box_download_status.set_visible(False)

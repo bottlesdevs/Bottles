@@ -38,7 +38,7 @@ class TaskEntry(Adw.ActionRow):
         self.window = op_manager.window
 
         if len(title) > 30:
-            title = f"{title[:20]}..."
+            title = f"{title[:20]}…"
 
         # Populate widgets data
         self.set_title(title)
@@ -47,7 +47,7 @@ class TaskEntry(Adw.ActionRow):
 
     def update_status(self, count=False, block_size=False, total_size=False, completed=False):
         if total_size == 0:
-            self.set_subtitle(_("Calculating..."))
+            self.set_subtitle(_("Calculating…"))
             return
 
         if not completed:

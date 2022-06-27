@@ -271,7 +271,7 @@ class InstallerManager:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         ).communicate()
-        logging.info(f"Executing installer script..")
+        logging.info(f"Executing installer script…")
         logging.info(f"Finished executing installer script.")
 
     @staticmethod

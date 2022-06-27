@@ -126,7 +126,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.stack_main.add_titled(
             child=self.page_loading,
             name="page_loading",
-            title=_("Loading...")
+            title=_("Loading…")
         )
         self.headerbar.add_css_class("flat")
 
