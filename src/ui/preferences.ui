@@ -229,6 +229,18 @@
                                 </child>
                             </object>
                         </child>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Sandbox per bottle</property>
+                                <property name="subtitle" translatable="yes">In early development.</property>
+                                <property name="activatable-widget">switch_sandbox</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_sandbox">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
                     </object>
                 </child>
             </object>

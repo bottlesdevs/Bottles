@@ -37,6 +37,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_release_candidate = Gtk.Template.Child()
     switch_steam = Gtk.Template.Child()
     switch_library = Gtk.Template.Child()
+    switch_sandbox = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
@@ -82,6 +83,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
         self.switch_steam.set_active(self.settings.get_boolean("steam-proton-support"))
         self.switch_library.set_active(self.settings.get_boolean("experiments-library"))
+        self.switch_sandbox.set_active(self.settings.get_boolean("experiments-sandbox"))
         self.switch_auto_close.set_active(self.settings.get_boolean("auto-close-bottles"))
         self.switch_update_date.set_active(self.settings.get_boolean("update-date"))
         self.switch_steam_programs.set_active(self.settings.get_boolean("steam-programs"))
@@ -100,6 +102,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.switch_release_candidate.connect('state-set', self.__toggle_rc)
         self.switch_steam.connect('state-set', self.__toggle_steam)
         self.switch_library.connect('state-set', self.__toggle_library)
+        self.switch_sandbox.connect('state-set', self.__toggle_sandbox)
         self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
         self.switch_steam_programs.connect('state-set', self.__toggle_steam_programs)
@@ -138,6 +141,9 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
 
     def __toggle_library(self, widget, state):
         self.settings.set_boolean("experiments-library", state)
+
+    def __toggle_sandbox(self, widget, state):
+        self.settings.set_boolean("experiments-sandbox", state)
 
     def __toggle_autoclose(self, widget, state):
         self.settings.set_boolean("auto-close-bottles", state)
