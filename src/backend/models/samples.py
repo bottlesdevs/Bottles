@@ -57,6 +57,15 @@ class Samples:
             "use_eac_runtime": True,
             "use_be_runtime": True,
             "use_steam_runtime": False,
+            "sandbox": False,
+        },
+        "Sandbox": {
+            # "share_paths_ro": [], # TODO: implement
+            # "share_paths_rw": [], # TODO: implement
+            "share_net": True,
+            # "share_host_ro": True, # TODO: implement, requires the Bottles runtime (next) for a minimal sandbox
+            "share_sound": True,
+            # "share_gpu": True # not available on bwrap yet
         },
         "Environment_Variables": {},
         "Installed_Dependencies": [],

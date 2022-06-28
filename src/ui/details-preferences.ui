@@ -492,6 +492,29 @@
                     </object>
                 </child>
                 <child>
+                    <object class="AdwActionRow" id="row_sandbox">
+                        <property name="activatable-widget">switch_sandbox</property>
+                        <property name="visible" translatable="yes">false</property>
+                        <property name="title" translatable="yes">Dedicated Sandbox</property>
+                        <property name="subtitle" translatable="yes">Use a restricted/managed environment for this bottle.</property>
+                        <child>
+                            <object class="GtkButton" id="btn_manage_sandbox">
+                                <property name="tooltip-text" translatable="yes">Manage Sandbox permissions</property>
+                                <property name="valign">center</property>
+                                <property name="icon-name">applications-system-symbolic</property>
+                                <style>
+                                    <class name="flat"/>
+                                </style>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkSwitch" id="switch_sandbox">
+                                <property name="valign">center</property>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                <child>
                     <object class="AdwActionRow" id="row_runtime">
                         <property name="activatable-widget">switch_runtime</property>
                         <property name="title" translatable="yes">Bottles Runtime</property>

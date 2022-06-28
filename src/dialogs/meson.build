@@ -19,7 +19,8 @@ bottles_sources = [
   'filechooser.py',
   'localresources.py',
   'bottlepicker.py',
-  'protonalert.py'
+  'protonalert.py',
+  'sandbox.py'
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)

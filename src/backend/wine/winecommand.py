@@ -490,7 +490,8 @@ class WineCommand:
         if None in [self.runner, self.env]:
             return
 
-        if "USE_SANDBOX" in os.environ:
+        if self.config["Parameters"].get("sandbox"):
+            permissions = self.config["Sandbox"]
             sandbox = SandboxManager(
                 envs=self.env,
                 chdir=self.cwd,
@@ -499,7 +500,8 @@ class WineCommand:
                     Paths.runners,
                     Paths.temp
                 ],
-                share_net=False
+                share_net=permissions.get("share_net", False),
+                share_sound=permissions.get("share_sound", False),
             )
             if self.terminal:
                 return TerminalUtils().execute(sandbox.get_cmd(self.command), self.env, self.colors)
