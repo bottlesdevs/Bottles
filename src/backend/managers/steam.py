@@ -42,7 +42,6 @@ logging = Logger()
 class SteamManager:
 
     @staticmethod
-    @lru_cache
     def find_steam_path(scope: str = "", is_windows: bool = False, config: dict = None) -> Union[str, None]:
         """scopes: steamapps, userdata, empty for base path"""
         if is_windows and config:
@@ -74,7 +73,6 @@ class SteamManager:
         return data
 
     @staticmethod
-    @lru_cache
     def get_local_config_path(is_windows: bool = False, config: dict = None) -> Union[str, None]:
         steam_path = SteamManager.find_steam_path("userdata", is_windows, config)
 
@@ -134,7 +132,6 @@ class SteamManager:
         return None
 
     @staticmethod
-    @lru_cache
     def get_local_config(is_windows: bool = False, config: dict = None) -> dict:
         conf_path = SteamManager.get_local_config_path(is_windows, config)
         if conf_path is None:
