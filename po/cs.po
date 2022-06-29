@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-11 18:08+0200\n"
+"POT-Creation-Date: 2022-06-29 18:03+0200\n"
 "PO-Revision-Date: 2022-06-11 20:24+0000\n"
 "Last-Translator: vikdevelop <super-vik1@protonmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
@@ -173,58 +173,77 @@ msgid "Toggle the update date in list of bottles."
 msgstr "Zda se má v seznamu lahví zobrazovat datum aktualizace."
 
 #: data/com.usebottles.bottles.gschema.xml:21
+msgid "Steam apps listing"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:22
+#, fuzzy
+msgid "Toggle steam apps listing."
+msgstr "Přepnout datum aktualizace v seznamu"
+
+#: data/com.usebottles.bottles.gschema.xml:26
+#, fuzzy
+msgid "Epic Games listing"
+msgstr "Epic Games obchod .."
+
+#: data/com.usebottles.bottles.gschema.xml:27
+#, fuzzy
+msgid "Toggle epic games listing."
+msgstr "Přepnout datum aktualizace v seznamu"
+
+#: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
 msgstr "Šířka okna"
 
-#: data/com.usebottles.bottles.gschema.xml:22
+#: data/com.usebottles.bottles.gschema.xml:32
 msgid "Change the window width."
 msgstr "Změna šířky okna."
 
-#: data/com.usebottles.bottles.gschema.xml:26
+#: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window height"
 msgstr "Výška okna"
 
-#: data/com.usebottles.bottles.gschema.xml:27
+#: data/com.usebottles.bottles.gschema.xml:37
 msgid "Change the window height."
 msgstr "Změna výšky okna."
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:36
+#: data/com.usebottles.bottles.gschema.xml:41 src/ui/preferences.ui:36
 msgid "Notifications"
 msgstr "Upozornění"
 
-#: data/com.usebottles.bottles.gschema.xml:32
+#: data/com.usebottles.bottles.gschema.xml:42
 msgid "Show notifications."
 msgstr "Povolit upozornění."
 
-#: data/com.usebottles.bottles.gschema.xml:36
+#: data/com.usebottles.bottles.gschema.xml:46
 msgid "Temp cleaning"
 msgstr "Dočasné soubory"
 
-#: data/com.usebottles.bottles.gschema.xml:37
+#: data/com.usebottles.bottles.gschema.xml:47
 msgid "Clean the temp path when booting the system."
 msgstr "Vyčistit složku dočasných souborů při startu systému."
 
-#: data/com.usebottles.bottles.gschema.xml:41
+#: data/com.usebottles.bottles.gschema.xml:51
 msgid "Release Candidate"
 msgstr "Release Candidate"
 
-#: data/com.usebottles.bottles.gschema.xml:42
+#: data/com.usebottles.bottles.gschema.xml:52
 msgid "Toggle release candidate for runners."
 msgstr "Přepnout na verzi Release Candidate pro spouštěče."
 
-#: data/com.usebottles.bottles.gschema.xml:46
+#: data/com.usebottles.bottles.gschema.xml:56
 msgid "Startup view"
 msgstr "Zobrazení po spuštění"
 
-#: data/com.usebottles.bottles.gschema.xml:47
+#: data/com.usebottles.bottles.gschema.xml:57
 msgid "Choose which view the application should be started in."
 msgstr "Zvolte které zobrazení by mělo být zobrazeno po spuštění aplikace."
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:176
+#: data/com.usebottles.bottles.gschema.xml:61 src/ui/preferences.ui:217
 msgid "Experiments"
 msgstr "Experimenty"
 
-#: data/com.usebottles.bottles.gschema.xml:52
+#: data/com.usebottles.bottles.gschema.xml:62
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
@@ -232,73 +251,87 @@ msgstr ""
 "Zapnout experimentální funkce jako například správa verzí a installers."
 "Release Candidate pro spouštěče."
 
-#: data/com.usebottles.bottles.gschema.xml:56
-msgid "Experiments:steam"
-msgstr "Experimenty:steam"
+#: data/com.usebottles.bottles.gschema.xml:66
+#, fuzzy
+msgid "Steam Proton Support"
+msgstr "Steam Proton"
 
-#: data/com.usebottles.bottles.gschema.xml:57
-msgid "Toggle experimental Steam Proton prefixes support."
+#: data/com.usebottles.bottles.gschema.xml:67
+#, fuzzy
+msgid "Toggle Steam Proton prefixes support."
 msgstr "Zapnout experimentální funkci správy verzí pro Steam Proton prefixy."
 
-#: data/com.usebottles.bottles.gschema.xml:61
+#: data/com.usebottles.bottles.gschema.xml:71
+#, fuzzy
+msgid "Experiments:sandbox"
+msgstr "Experimenty:steam"
+
+#: data/com.usebottles.bottles.gschema.xml:72
+#, fuzzy
+msgid "Toggle experimental Sandbox per bottle."
+msgstr "Povolit experimentální Režim knihovny."
+
+#: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
 msgstr "Experimenty:knihovna"
 
-#: data/com.usebottles.bottles.gschema.xml:62
+#: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Library mode."
 msgstr "Povolit experimentální Režim knihovny."
 
-#: data/com.usebottles.bottles.gschema.xml:66
+#: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
 msgstr "Automatické zavření Láhví"
 
-#: data/com.usebottles.bottles.gschema.xml:67
+#: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr "Zavření Láhví po spuštění spustitelného souboru ze správce souborů."
 
-#: src/main.py:104
+#: src/main.py:106
 msgid "Show version"
 msgstr "Zobrazit verzi"
 
-#: src/main.py:112
+#: src/main.py:114
 msgid "Executable path"
 msgstr "Cesta ke spustitelnému souboru"
 
-#: src/main.py:120
+#: src/main.py:122
 msgid "lnk path"
 msgstr "lnk cesta"
 
-#: src/main.py:128
+#: src/main.py:130
 msgid "Bottle name"
 msgstr "Název láhve"
 
-#: src/main.py:136
+#: src/main.py:138
 msgid "Pass arguments"
 msgstr "Předat argumenty"
 
-#: src/main.py:201
+#: src/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
 msgstr "Neplatná URI (syntaxe: bottles:run/<bottle>/<program>)"
 
-#: src/main.py:244
+#: src/main.py:246
 msgid "[Quit] request received."
 msgstr "[Quit] žádost přijata."
 
-#: src/main.py:253
+#: src/main.py:255
 msgid "[Help] request received."
 msgstr "[Help] žádost přijata."
 
-#: src/main.py:261
+#: src/main.py:263
 msgid "[Refresh] request received."
 msgstr "[Refresh] žádost přijata."
 
 #: src/operation.py:50
-msgid "Calculating..."
+#, fuzzy
+msgid "Calculating…"
 msgstr "Výpočet..."
 
 #: src/window.py:129
-msgid "Loading..."
-msgstr "Načítání..."
+#, fuzzy
+msgid "Loading…"
+msgstr "Stahuji…"
 
 #: src/window.py:226
 msgid ""
@@ -310,43 +343,43 @@ msgstr ""
 "Předvolbách.\n"
 "Vraťte se k výchozí cestě; žádné láhve z této cesty nebudou uvedeny!"
 
-#: src/window.py:282
+#: src/window.py:283
 msgid "Health check"
 msgstr "Kontrola zdraví"
 
-#: src/window.py:287 src/ui/dialog-journal.ui:49
+#: src/window.py:288 src/ui/dialog-journal.ui:49
 msgid "Journal browser"
 msgstr "Prohlížeč deníků"
 
-#: src/backend/managers/versioning.py:65
+#: src/backend/managers/versioning.py:60
 msgid "Generating state files index …"
 msgstr "Generování indexu státních souborů …"
 
-#: src/backend/managers/versioning.py:144
+#: src/backend/managers/versioning.py:139
 msgid "Creating a restore point …"
 msgstr "Vytváření bodu obnovení …"
 
-#: src/backend/managers/versioning.py:168
+#: src/backend/managers/versioning.py:163
 msgid "Could not create the state folder."
 msgstr "Nebylo možné vytvořit stavovou složku."
 
-#: src/backend/managers/versioning.py:175
+#: src/backend/managers/versioning.py:170
 msgid "Updating index …"
 msgstr "Aktualizování index …"
 
-#: src/backend/managers/versioning.py:199
+#: src/backend/managers/versioning.py:194
 msgid "Updating states …"
 msgstr "Aktualizování stavů …"
 
-#: src/backend/managers/versioning.py:228
+#: src/backend/managers/versioning.py:223
 msgid "Could not update the states file."
 msgstr "Nebylo možné aktualizovat soubor se stavy."
 
-#: src/backend/managers/versioning.py:242
+#: src/backend/managers/versioning.py:237
 msgid "Could not update the index file."
 msgstr "Nebylo možné aktualizovat soubor s indexy."
 
-#: src/backend/managers/versioning.py:268
+#: src/backend/managers/versioning.py:263
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
 msgstr "Nový stav [{0}] byl úspěšně vytvořen!"
@@ -365,98 +398,98 @@ msgstr "Záloha {0}"
 msgid "Importing backup: {0}"
 msgstr "Importuji zálohu: {0}"
 
-#: src/backend/managers/manager.py:922
+#: src/backend/managers/manager.py:1013
 msgid "Fail to install components, tried 3 times."
 msgstr "Instalace komponent selhala, bylo vyzkoušeno 3krát."
 
-#: src/backend/managers/manager.py:933
+#: src/backend/managers/manager.py:1024
 msgid "Missing essential components. Installing…"
 msgstr "Chybí základní součásti. Instalace…"
 
-#: src/backend/managers/manager.py:1009
+#: src/backend/managers/manager.py:1100
 msgid "Failed to create bottle directory."
 msgstr "Nepodařilo se vytvořit adresář láhve."
 
-#: src/backend/managers/manager.py:1021
+#: src/backend/managers/manager.py:1112
 msgid "Failed to create placeholder directory/file."
 msgstr "Nastal problém s vytvořením zástupce adresáře/souboru."
 
-#: src/backend/managers/manager.py:1026
+#: src/backend/managers/manager.py:1117
 msgid "Generating bottle configuration…"
 msgstr "Vytváření konfigurace láhve…"
 
-#: src/backend/managers/manager.py:1049
+#: src/backend/managers/manager.py:1140
 msgid "Template found, applying…"
 msgstr "Šablona nalezena, probíhá aplikování…"
 
 #. execute wineboot on the bottle path
-#: src/backend/managers/manager.py:1061
+#: src/backend/managers/manager.py:1152
 msgid "The Wine config is being updated…"
 msgstr "Konfigurace Wine se aktualizuje…"
 
-#: src/backend/managers/manager.py:1063
+#: src/backend/managers/manager.py:1154
 msgid "Wine config updated!"
 msgstr "Konfigurace Wine byla aktualizována!"
 
-#: src/backend/managers/manager.py:1071
+#: src/backend/managers/manager.py:1162
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "Spuštění jako Flatpak, v uživatelském sandboxu…"
 
-#: src/backend/managers/manager.py:1073
+#: src/backend/managers/manager.py:1164
 msgid "Sandboxing userdir…"
 msgstr "Sandboxuji uživatelskou složku…"
 
-#: src/backend/managers/manager.py:1091
+#: src/backend/managers/manager.py:1182
 msgid "Setting Windows version…"
 msgstr "Nastavení verze Windows…"
 
-#: src/backend/managers/manager.py:1099
+#: src/backend/managers/manager.py:1191
 msgid "Apply CMD default settings…"
 msgstr "Aplikuji výchozí nastavení CMD…"
 
-#: src/backend/managers/manager.py:1107
+#: src/backend/managers/manager.py:1199
 msgid "Optimizing environment…"
 msgstr "Optimizace prostředí…"
 
-#: src/backend/managers/manager.py:1118
+#: src/backend/managers/manager.py:1210
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Aplikuji prostředí: [{0}]…"
 
-#: src/backend/managers/manager.py:1128
+#: src/backend/managers/manager.py:1220
 msgid "(!) Using a custom environment recipe…"
 msgstr "(!) Použit vlastní recept prostředí…"
 
-#: src/backend/managers/manager.py:1131
+#: src/backend/managers/manager.py:1223
 msgid "(!) Recipe not not found or not valid…"
 msgstr "(!) Recept není možné najít, nebo je invalidní…"
 
-#: src/backend/managers/manager.py:1148
+#: src/backend/managers/manager.py:1240
 msgid "Installing DXVK…"
 msgstr "Instalování DXVK …"
 
-#: src/backend/managers/manager.py:1156
+#: src/backend/managers/manager.py:1248
 msgid "Installing VKD3D…"
 msgstr "Instalování VKD3D…"
 
-#: src/backend/managers/manager.py:1164
+#: src/backend/managers/manager.py:1256
 msgid "Installing DXVK-NVAPI…"
 msgstr "Instalování DXVK-NVAPI …"
 
-#: src/backend/managers/manager.py:1173
+#: src/backend/managers/manager.py:1265
 #, python-format
 msgid "Installing dependency: %s …"
 msgstr "Instalování {0} závislosti: %s …"
 
-#: src/backend/managers/manager.py:1189
+#: src/backend/managers/manager.py:1281
 msgid "Creating versioning state 0…"
 msgstr "Vytváření verzovacího stavu 0 …"
 
-#: src/backend/managers/manager.py:1197
+#: src/backend/managers/manager.py:1289
 msgid "Finalizing…"
 msgstr "Dokončuji…"
 
-#: src/backend/managers/manager.py:1208
+#: src/backend/managers/manager.py:1300
 msgid "Caching template…"
 msgstr "Ukládaní šablony do mezipaměti…"
 
@@ -472,20 +505,21 @@ msgstr ""
 "            Tento problém byl nahlášen 5krát a nemůže být poslán znovu.\n"
 "Nahlaste svoji odezvu v jednom z existujících nahlášení."
 
-#: src/dialogs/dlloverrides.py:135
+#: src/dialogs/dlloverrides.py:136
 msgid "No overrides found."
 msgstr "Nebyly nalezeny žádné přepisy."
 
-#: src/dialogs/drives.py:69
+#: src/dialogs/drives.py:71
 msgid "Choose path"
 msgstr "Vybrat umístění"
 
-#: src/dialogs/drives.py:71 src/dialogs/filechooser.py:63
-#: src/dialogs/launchoptions.py:176 src/dialogs/localresources.py:63
-#: src/views/bottle_details.py:194 src/views/bottle_details.py:274
-#: src/views/bottle_preferences.py:236 src/views/bottle_programs.py:89
-#: src/views/importer.py:117 src/views/importer.py:146 src/views/list.py:138
-#: src/views/new.py:121 src/views/new.py:137 src/views/preferences.py:157
+#: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
+#: src/dialogs/launchoptions.py:229 src/dialogs/launchoptions.py:253
+#: src/dialogs/localresources.py:63 src/views/bottle_details.py:194
+#: src/views/bottle_details.py:276 src/views/bottle_preferences.py:251
+#: src/views/bottle_programs.py:89 src/views/importer.py:117
+#: src/views/importer.py:146 src/views/list.py:138 src/views/new.py:137
+#: src/views/new.py:153 src/views/preferences.py:167
 #: src/ui/dialog-crash-report.ui:18 src/ui/dialog-duplicate.ui:22
 #: src/ui/dialog-gamescope.ui:17 src/ui/dialog-launch-options.ui:18
 #: src/ui/dialog-local-resources.ui:19 src/ui/dialog-rename.ui:17
@@ -493,14 +527,16 @@ msgstr "Vybrat umístění"
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: src/dialogs/drives.py:71 src/dialogs/launchoptions.py:176
-#: src/dialogs/localresources.py:63 src/views/bottle_preferences.py:236
-#: src/views/new.py:121 src/views/new.py:137 src/views/preferences.py:157
+#: src/dialogs/drives.py:73 src/dialogs/launchoptions.py:229
+#: src/dialogs/launchoptions.py:253 src/dialogs/localresources.py:63
+#: src/views/bottle_preferences.py:251 src/views/new.py:137
+#: src/views/new.py:153 src/views/preferences.py:167
 msgid "Select"
 msgstr "Vybrat"
 
-#: src/dialogs/envvars.py:135
-msgid "No environment variables defined"
+#: src/dialogs/envvars.py:133
+#, fuzzy
+msgid "No environment variables defined."
 msgstr "Nejsou definovány žádné proměnné prostředí"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
@@ -518,23 +554,33 @@ msgstr "Došlo k chybě."
 msgid "Copy to clipboard"
 msgstr "Zkopírovat do schránky"
 
-#: src/dialogs/launchoptions.py:25 src/ui/dialog-launch-options.ui:58
+#. endregion
+#: src/dialogs/launchoptions.py:54 src/ui/dialog-launch-options.ui:58
 msgid "Choose a script which should be executed after run."
 msgstr "Vyberte který skript by měl být spuštěn po spuštění."
 
-#. endregion
-#: src/dialogs/launchoptions.py:43
+#: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
+#, fuzzy
+msgid "Choose from where start the program."
+msgstr "Po spuštění programu zavřít lahve"
+
+#: src/dialogs/launchoptions.py:56
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
 msgstr "{0} je pro tuto láhev již zakázáno."
 
-#: src/dialogs/launchoptions.py:44
+#: src/dialogs/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
 msgstr "Toto nastavení se liší od výchozího nastavení láhve."
 
-#: src/dialogs/launchoptions.py:174
+#: src/dialogs/launchoptions.py:227
 msgid "Choose the script"
 msgstr "Vyberte skript"
+
+#: src/dialogs/launchoptions.py:251
+#, fuzzy
+msgid "Choose the Working Directory"
+msgstr "Pracovní adresář"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -554,33 +600,33 @@ msgstr "Vyberte spustitelný soubor Windows"
 msgid "Run"
 msgstr "Spustit"
 
-#: src/views/bottle_details.py:245
+#: src/views/bottle_details.py:247
 msgid "Select the location where to save the backup config"
 msgstr "Vyberte umístění, kam chcete uložit zálohu konfigurace"
 
-#: src/views/bottle_details.py:249
+#: src/views/bottle_details.py:251
 msgid "Select the location where to save the backup archive"
 msgstr "Vyberte lokaci do které chcete uložit archiv se zálohou"
 
-#: src/views/bottle_details.py:254
+#: src/views/bottle_details.py:256
 #, python-brace-format
 msgid "Backup created for '{0}'."
 msgstr "Záloha byla vytvořena pro '{0}'."
 
-#: src/views/bottle_details.py:256
+#: src/views/bottle_details.py:258
 #, python-brace-format
 msgid "Backup failed for '{0}'."
 msgstr "Zálohování selhalo pro '{0}'."
 
-#: src/views/bottle_details.py:274
+#: src/views/bottle_details.py:276
 msgid "Export"
 msgstr "Export"
 
-#: src/views/bottle_details.py:304
+#: src/views/bottle_details.py:306
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Jste si jisti že chcete odstranit tuto láhev a všechny její soubory?"
 
-#: src/views/bottle_details.py:380
+#: src/views/bottle_details.py:382
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
@@ -588,16 +634,16 @@ msgstr ""
 "Jste si jisti, že chcete ukončit všechny procesy?\n"
 "To může způsobit ztrátu dat."
 
-#: src/views/bottle_preferences.py:185
+#: src/views/bottle_preferences.py:198
 msgid "This feature is not available on your system."
 msgstr "Tato funkce není ve vašem systému k dispozici."
 
-#: src/views/bottle_preferences.py:226 src/views/bottle_preferences.py:243
-#: src/views/bottle_preferences.py:370
+#: src/views/bottle_preferences.py:241 src/views/bottle_preferences.py:258
+#: src/views/bottle_preferences.py:394
 msgid "Default to the bottle path."
 msgstr "Výchozí nastavení cesty láhve."
 
-#: src/views/bottle_preferences.py:234
+#: src/views/bottle_preferences.py:249
 msgid "Choose working directory for executables"
 msgstr "Vyberte pracovní složku pro spustitelné soubory"
 
@@ -614,36 +660,36 @@ msgstr "Výběr cesty ke spustitelnému souboru"
 msgid "Add"
 msgstr "Přidat"
 
-#: src/views/details.py:145
+#: src/views/details.py:148
 msgid "Details & Utilities"
 msgstr "Detaily a nástroje"
 
-#: src/views/details.py:149 src/ui/preferences.ui:6 src/ui/window.ui:30
+#: src/views/details.py:152 src/ui/preferences.ui:6 src/ui/window.ui:30
 msgid "Preferences"
 msgstr "Předvolby"
 
-#: src/views/details.py:153
+#: src/views/details.py:156
 msgid "Dependencies"
 msgstr "Závislosti"
 
-#: src/views/details.py:157 src/ui/details-bottle.ui:232
+#: src/views/details.py:160 src/ui/details-bottle.ui:232
 msgid "Programs"
 msgstr "Programy"
 
-#: src/views/details.py:158
+#: src/views/details.py:161
 msgid "Found in your bottle's Start menu."
 msgstr "Nachází se v nabídce Start vaší láhve."
 
-#: src/views/details.py:161 src/ui/new.ui:116
+#: src/views/details.py:164 src/ui/new.ui:116
 msgid "Versioning"
 msgstr "Správa verzí"
 
-#: src/views/details.py:165
+#: src/views/details.py:168
 msgid "Installers"
 msgstr "Instalátory"
 
-#: src/views/details.py:169
-msgid "Task manager"
+#: src/views/details.py:172 src/ui/details-bottle.ui:280
+msgid "Task Manager"
 msgstr "Správce úloh"
 
 #: src/views/importer.py:89
@@ -655,7 +701,8 @@ msgid "Import failed."
 msgstr "Import se nezdařil."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-msgid "Importing backup.."
+#, fuzzy
+msgid "Importing backup…"
 msgstr "Importování zálohy.."
 
 #: src/views/importer.py:115
@@ -683,34 +730,40 @@ msgstr "Argumenty nalezené pro spustitelný soubor: [{executable}]."
 msgid "Your Bottles"
 msgstr "Vaše láhve"
 
-#: src/views/new.py:119
+#: src/views/new.py:135
 msgid "Choose a recipe file"
 msgstr "Vybrat konfigurační soubor"
 
-#: src/views/new.py:135
+#: src/views/new.py:151
 msgid "Choose where to store the bottle"
 msgstr "Zvolte místo uložení láhve"
 
-#: src/views/new.py:219
+#: src/views/new.py:206
 msgid "There was an error creating the bottle."
 msgstr "Při vytváření láhve se vyskytla chyba."
 
-#: src/views/new.py:227
+#: src/views/new.py:214
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Láhev pojmenovaná “{0}” byla úspěšně vytvořena"
 
-#: src/views/preferences.py:150 src/views/preferences.py:166
-#: src/ui/preferences.ui:78
+#: src/views/preferences.py:116
 msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)"
-msgstr "Vyberte kam se budou ukládat nové láhve (nepřesune stávající)"
+"Steam was not found or Bottles does not have enough permissions.Visit "
+"https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
+msgstr ""
 
-#: src/views/preferences.py:155
+#: src/views/preferences.py:160 src/views/preferences.py:176
+#: src/ui/preferences.ui:119
+msgid ""
+"Choose where to store the new bottles (this will not move the existing ones)."
+msgstr "Zvolte místo uložení nových lahví (stávající lahve se nepřesunou)."
+
+#: src/views/preferences.py:165
 msgid "Choose new bottles path"
 msgstr "Vyberte nové umístění k láhvi"
 
-#: src/views/preferences.py:202
+#: src/views/preferences.py:213
 msgid "Other"
 msgstr "Jiné"
 
@@ -719,8 +772,9 @@ msgid "Upgrade"
 msgstr "Povýšit"
 
 #: src/widgets/component.py:145
-msgid "Installing..."
-msgstr "Instalování..."
+#, fuzzy
+msgid "Installing…"
+msgstr "Instalování DXVK …"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -756,67 +810,57 @@ msgstr "{0} nainstalováno."
 msgid "Step {self.__step} of {self.steps}"
 msgstr "Krok {self.__step} z {self.steps}"
 
-#: src/widgets/program.py:202
+#: src/widgets/program.py:221
 #, python-brace-format
 msgid "'{0}' launched."
 msgstr "'{0}' spuštěn."
 
-#: src/widgets/program.py:208
+#: src/widgets/program.py:227
 #, python-brace-format
 msgid "'{0}' launched with Steam."
 msgstr "'{0}' spuštěna ve službě Steam."
 
-#: src/widgets/program.py:229
+#: src/widgets/program.py:248
 #, python-brace-format
 msgid "'{0}' hidden."
 msgstr "'{0}' byl skryt."
 
-#: src/widgets/program.py:231
+#: src/widgets/program.py:250
 #, python-brace-format
 msgid "'{0}' showed."
 msgstr "'{0}' se objevil."
 
-#: src/widgets/program.py:254
+#: src/widgets/program.py:273
 #, python-brace-format
 msgid "'{0}' removed."
 msgstr "'{0}' odstraněn."
 
-#: src/widgets/program.py:268
+#: src/widgets/program.py:287
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
 msgstr "'{0}' byl přejmenován na '{1}'."
 
-#: src/widgets/program.py:290
-msgid ""
-"Can't create Desktop Entry due to missing privileges.\n"
-"Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
-"a> about how to fix that in Flatpak."
-msgstr ""
-"Nelze vytvořit položku plochy kvůli chybějícím oprávněním.\n"
-"Podívejte se na <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">naše "
-"video</a> o tom, jak to ve Flatpaku opravit."
-
-#: src/widgets/program.py:298
+#: src/widgets/program.py:307
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
 msgstr "Položka plochy byla vytvořena pro '{0}'"
 
-#: src/widgets/program.py:318
+#: src/widgets/program.py:328
 #, python-brace-format
 msgid "'{0}' added to your library"
 msgstr "'{0}' přidán do vaší knihovny"
 
-#: src/widgets/program.py:323
+#: src/widgets/program.py:333
 #, python-brace-format
 msgid "'{0}' added to your Steam library"
 msgstr "'{0}' přidáno do knihovny služby Steam"
 
-#: src/widgets/state.py:95
+#: src/widgets/state.py:92
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Index pro stav {0}"
 
-#: src/utils/connection.py:68
+#: src/utils/connection.py:67
 msgid "You are offline, unable to download."
 msgstr "Jste offline, nemohu stahovat."
 
@@ -837,11 +881,11 @@ msgstr "Verze komponenty"
 msgid "Uninstall"
 msgstr "Odinstalovat"
 
-#: src/ui/component-entry.ui:23 src/ui/importer-entry.ui:15
+#: src/ui/component-entry.ui:26 src/ui/importer-entry.ui:15
 msgid "Browse files"
 msgstr "Procházet soubory"
 
-#: src/ui/component-entry.ui:34
+#: src/ui/component-entry.ui:37
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
@@ -849,11 +893,11 @@ msgstr ""
 "Instalace selhala. Toto může být z důvodu chyby repozitáře, neshoda "
 "checksumu. Stiskněte pro vyzkoušení znovu."
 
-#: src/ui/component-entry.ui:45
+#: src/ui/component-entry.ui:48
 msgid "Download & Install"
 msgstr "Stáhnout a nainstalovat"
 
-#: src/ui/component-entry.ui:58
+#: src/ui/component-entry.ui:61
 msgid "0%"
 msgstr "0%"
 
@@ -1018,10 +1062,6 @@ msgstr "Prohlížeč"
 msgid "Browse internal files with the Wine explorer."
 msgstr "Procházejte interní soubory pomocí Průzkumníka Wine."
 
-#: src/ui/details-bottle.ui:280
-msgid "Task Manager"
-msgstr "Správce úloh"
-
 #: src/ui/details-bottle.ui:281
 msgid "Manage processes with the Wine task manager."
 msgstr "Spravovat procesy pomocí Wine Správce úloh."
@@ -1099,7 +1139,7 @@ msgid "Read documentation about dependencies."
 msgstr "Přečtěte si dokumentaci o závislostech."
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
-#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:81
+#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:75
 #: src/ui/window.ui:44
 msgid "Documentation"
 msgstr "Dokumentace"
@@ -1126,7 +1166,8 @@ msgid "Search for Programs…"
 msgstr "Hledat programy…"
 
 #: src/ui/details-installers.ui:48
-msgid "No installers found"
+#, fuzzy
+msgid "No Installers Found"
 msgstr "Nebyly nalezeny žádné instalační programy"
 
 #: src/ui/details-installers.ui:51
@@ -1149,7 +1190,7 @@ msgstr "Jméno"
 msgid "Graphics"
 msgstr "Grafika"
 
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:136
+#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:177
 msgid "DXVK"
 msgstr "DXVK"
 
@@ -1161,7 +1202,7 @@ msgstr "Zlepšuje výkon DirectX 11 her a 3D aplikací."
 msgid "Updating DXVK, please wait…"
 msgstr "Aktualizuji DXVK, prosím počkejte…"
 
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:141
+#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:182
 msgid "VKD3D"
 msgstr "VKD3D"
 
@@ -1213,7 +1254,7 @@ msgstr "Vyvážený"
 msgid "Performance"
 msgstr "Výkon"
 
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:151
+#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:192
 msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
@@ -1246,7 +1287,7 @@ msgstr ""
 msgid "Display Settings"
 msgstr "Nastavení zobrazení"
 
-#: src/ui/details-preferences.ui:155
+#: src/ui/details-preferences.ui:155 src/ui/dialog-launch-options.ui:188
 msgid "Virtual Desktop"
 msgstr "Virtuální plocha"
 
@@ -1361,8 +1402,9 @@ msgid "System"
 msgstr "Systém"
 
 #: src/ui/details-preferences.ui:289
-msgid "Manage DXVK versions"
-msgstr "Spravovat verze DXVK"
+#, fuzzy
+msgid "Manage Components Versions"
+msgstr "Verze komponent"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1410,18 +1452,45 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-msgid "Windows version"
+#, fuzzy
+msgid "Windows Version"
 msgstr "Verze Windows"
 
 #: src/ui/details-preferences.ui:458
 msgid "Updating Windows version, please wait…"
 msgstr "Aktualizuji verzi Windows, prosím počkejte…"
 
+#: src/ui/details-preferences.ui:486
+msgid "Language"
+msgstr ""
+
 #: src/ui/details-preferences.ui:487
+#, fuzzy
+msgid "Choose the language to use with programs."
+msgstr "Vyberte nový název pro vybraný program."
+
+#: src/ui/details-preferences.ui:497
+msgid "false"
+msgstr ""
+
+#: src/ui/details-preferences.ui:498
+msgid "Dedicated Sandbox"
+msgstr ""
+
+#: src/ui/details-preferences.ui:499
+msgid "Use a restricted/managed environment for this bottle."
+msgstr ""
+
+#: src/ui/details-preferences.ui:502
+#, fuzzy
+msgid "Manage Sandbox permissions"
+msgstr "Spravovat verze DXVK"
+
+#: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
 msgstr "Použít běhové prostředí láhví"
 
-#: src/ui/details-preferences.ui:488
+#: src/ui/details-preferences.ui:521
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
@@ -1429,95 +1498,95 @@ msgstr ""
 "Poskytuje balík dalších knihoven pro větší kompatibilitu,vypněte, pokud "
 "narazíte na problémy."
 
-#: src/ui/details-preferences.ui:499
+#: src/ui/details-preferences.ui:532
 msgid "Steam Runtime"
 msgstr "Použít běhové prostředí Steam"
 
-#: src/ui/details-preferences.ui:500
+#: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
 msgstr "Stejný jako v případě Bottles, ale poskytovaný službou Steam."
 
-#: src/ui/details-preferences.ui:511
+#: src/ui/details-preferences.ui:544
 msgid "GameMode"
 msgstr "Použít GameMode (herní režim *cs_CZ)"
 
-#: src/ui/details-preferences.ui:512
+#: src/ui/details-preferences.ui:545
 msgid "Optimise gaming performance on demand."
 msgstr "Optimalizovat herní výkon na vyžádání."
 
-#: src/ui/details-preferences.ui:523
+#: src/ui/details-preferences.ui:556
 msgid "Gamescope"
 msgstr "Gamescope"
 
-#: src/ui/details-preferences.ui:524
+#: src/ui/details-preferences.ui:557
 msgid "Use the Gamescope micro-compositor."
 msgstr "Použít kompozitor Gamescope."
 
-#: src/ui/details-preferences.ui:532
+#: src/ui/details-preferences.ui:560
 msgid "Manage Gamescope settings"
 msgstr "Spravovat nastavení Gamescope"
 
-#: src/ui/details-preferences.ui:545
+#: src/ui/details-preferences.ui:578 src/ui/dialog-launch-options.ui:90
 msgid "Working Directory"
 msgstr "Pracovní adresář"
 
-#: src/ui/details-preferences.ui:546
+#: src/ui/details-preferences.ui:579
 msgid "Defaults to the bottle path."
 msgstr "Výchozí nastavení cesty láhve."
 
-#: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
-#: src/ui/preferences.ui:82
+#: src/ui/details-preferences.ui:582 src/ui/dialog-launch-options.ui:64
+#: src/ui/dialog-launch-options.ui:97 src/ui/preferences.ui:123
 msgid "Reset to default"
 msgstr "Resetovat do výchozího nastavení"
 
-#: src/ui/details-preferences.ui:559 src/ui/dialog-launch-options.ui:71
-#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:93
+#: src/ui/details-preferences.ui:592 src/ui/dialog-launch-options.ui:108
+#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:134
 msgid "Choose a directory"
 msgstr "Výběr adresáře"
 
-#: src/ui/details-preferences.ui:572 src/ui/dialog-dll-overrides.ui:9
+#: src/ui/details-preferences.ui:605 src/ui/dialog-dll-overrides.ui:9
 #: src/ui/dialog-dll-overrides.ui:15
 msgid "DLL Overrides"
 msgstr "Přepsání knihovny DLL"
 
-#: src/ui/details-preferences.ui:583 src/ui/dialog-env-vars.ui:16
+#: src/ui/details-preferences.ui:616 src/ui/dialog-env-vars.ui:16
 msgid "Environment Variables"
 msgstr "Proměnné prostředí"
 
-#: src/ui/details-preferences.ui:594
+#: src/ui/details-preferences.ui:627
 msgid "Manage Drives"
 msgstr "Spravovat úložiště"
 
-#: src/ui/details-preferences.ui:606
+#: src/ui/details-preferences.ui:639
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details-preferences.ui:610
+#: src/ui/details-preferences.ui:643
 msgid "Reduce Latency"
 msgstr "Sníží latenci"
 
-#: src/ui/details-preferences.ui:611
+#: src/ui/details-preferences.ui:644
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
 msgstr "Nastavte latenci PulseAudio na 60 ms, čímž zvýšíte kvalitu zvuku"
 
-#: src/ui/details-preferences.ui:623
+#: src/ui/details-preferences.ui:656
 msgid "Development and Debugging"
 msgstr "Vývoj a ladění"
 
-#: src/ui/details-preferences.ui:627
+#: src/ui/details-preferences.ui:660
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details-preferences.ui:628
+#: src/ui/details-preferences.ui:661
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Zapne DXVK překrytí které zobrazuje FPS a další detaily v D3D aplikacích."
 
-#: src/ui/details-preferences.ui:639
+#: src/ui/details-preferences.ui:672
 msgid "MangoHud"
 msgstr "MangoHud"
 
-#: src/ui/details-preferences.ui:640
+#: src/ui/details-preferences.ui:673
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
@@ -1525,19 +1594,19 @@ msgstr ""
 "Překrytí Vulkan a OpenGL pro sledování FPS, teplot, zatížení CPU/GPU a "
 "dalších parametrů."
 
-#: src/ui/details-preferences.ui:651
+#: src/ui/details-preferences.ui:684
 msgid "OBS Vulkan Capture"
 msgstr "Zachycení OBS Vulkan"
 
-#: src/ui/details-preferences.ui:652
+#: src/ui/details-preferences.ui:685
 msgid "Toggle OBS game capture for all programs."
 msgstr "Přepnout zachycení hry OBS pro všechny programy."
 
-#: src/ui/details-preferences.ui:663
+#: src/ui/details-preferences.ui:696
 msgid "Wine 'fixme' Logs"
 msgstr "Wine-fixme protokoly"
 
-#: src/ui/details-preferences.ui:664
+#: src/ui/details-preferences.ui:697
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Protokolujte cesty kódu, které nejsou ve Wine implementovány."
 
@@ -1578,30 +1647,27 @@ msgid "Stop process"
 msgstr "Zastavit proces"
 
 #: src/ui/details-versioning.ui:25
-msgid "No states found"
+#, fuzzy
+msgid "No States Found"
 msgstr "Nebyly nalezeny žádné stavy"
 
 #: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
 msgstr "Vytvořit první stav a začít používat verzování."
 
-#: src/ui/details-versioning.ui:41
-msgid "Type a short comment:"
-msgstr "Napište krátký komentář:"
-
-#: src/ui/details-versioning.ui:49
+#: src/ui/details-versioning.ui:43
 msgid "A short comment"
 msgstr "Krátký komentář"
 
-#: src/ui/details-versioning.ui:54
+#: src/ui/details-versioning.ui:48
 msgid "Save the bottle state."
 msgstr "Uložit stav láhve."
 
-#: src/ui/details-versioning.ui:74
+#: src/ui/details-versioning.ui:68
 msgid "Create new state"
 msgstr "Vytvořit nový stav"
 
-#: src/ui/details.ui:76
+#: src/ui/details.ui:74
 msgid "Operations"
 msgstr "Operace"
 
@@ -1663,9 +1729,10 @@ msgid "Drives"
 msgstr "Ovladače"
 
 #: src/ui/dialog-drives.ui:21
+#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
-"devices by the runner (e.g. C: D:..).\n"
+"devices by the runner (e.g. C: D:…).\n"
 "                                "
 msgstr ""
 "Jedná se o cesty z hostitelského systému, které jsou mapovány a rozpoznány "
@@ -1677,7 +1744,8 @@ msgid "Letter"
 msgstr "Dopis"
 
 #: src/ui/dialog-drives.ui:49
-msgid "Existing drives"
+#, fuzzy
+msgid "Existing Drives"
 msgstr "Existující úložiště"
 
 #: src/ui/dialog-duplicate.ui:17
@@ -1697,7 +1765,8 @@ msgid "Duplicating…"
 msgstr "Duplikuji…"
 
 #: src/ui/dialog-duplicate.ui:84
-msgid "Take a break, it may take a while"
+#, fuzzy
+msgid "Take a break, it may take a while."
 msgstr "Dejte si pauzu, může to chvíli trvat"
 
 #: src/ui/dialog-duplicate.ui:105
@@ -1713,11 +1782,13 @@ msgstr ""
 "procesy běží ve vaší láhvi."
 
 #: src/ui/dialog-env-vars.ui:28
-msgid "Variable name"
+#, fuzzy
+msgid "Variable Name"
 msgstr "Název proměnné"
 
 #: src/ui/dialog-env-vars.ui:36
-msgid "Existing variables"
+#, fuzzy
+msgid "Existing Variables"
 msgstr "Existující proměnné"
 
 #: src/ui/dialog-gamescope.ui:9
@@ -1761,15 +1832,15 @@ msgstr "Limit snímkové frekvence (když není zaostřeno)"
 msgid "Use integer scaling"
 msgstr "Použít celočíselné škálování (integer scaling)"
 
-#: src/ui/dialog-gamescope.ui:92
+#: src/ui/dialog-gamescope.ui:93
 msgid "Window type"
 msgstr "Typ okna"
 
-#: src/ui/dialog-gamescope.ui:97
+#: src/ui/dialog-gamescope.ui:98
 msgid "Borderless"
 msgstr "Bez ohraničení"
 
-#: src/ui/dialog-gamescope.ui:104
+#: src/ui/dialog-gamescope.ui:105
 msgid "Fullscreen"
 msgstr "Celá obrazovka"
 
@@ -1834,13 +1905,23 @@ msgstr "např.: VAR=hodnota %cpříkaz% -epříklad1 -příklad2 -příklad3=aho
 msgid "Post-run Script"
 msgstr "Skript po spuštění"
 
-#: src/ui/dialog-launch-options.ui:87
+#: src/ui/dialog-launch-options.ui:75
+#, fuzzy
+msgid "Choose a script"
+msgstr "Vyberte skript"
+
+#: src/ui/dialog-launch-options.ui:124
 msgid "These settings will override the default settings for this executable."
 msgstr "Tato nastavení přepíší výchozí nastavení tohoto spustitelného souboru."
 
-#: src/ui/dialog-launch-options.ui:88
+#: src/ui/dialog-launch-options.ui:125
 msgid "Preferences Overrides"
 msgstr "Přepisy předvoleb"
+
+#: src/ui/dialog-launch-options.ui:128
+#, fuzzy
+msgid "Reset to Bottle's Defaults"
+msgstr "Resetovat do výchozího nastavení"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -1894,7 +1975,11 @@ msgstr "Builtin, pak Native"
 msgid "Native, then Builtin"
 msgstr "Nativní, pak vestavěný"
 
-#: src/ui/dll-override-entry.ui:21 src/ui/drive-entry.ui:14
+#: src/ui/dll-override-entry.ui:14
+msgid "Disabled"
+msgstr ""
+
+#: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
 msgstr "Odstranit"
 
@@ -1923,14 +2008,15 @@ msgid "Search again for prefixes"
 msgstr "Znovu vyhledejte předpony"
 
 #: src/ui/importer.ui:45
-msgid "No prefixes found"
+#, fuzzy
+msgid "No Prefixes Found"
 msgstr "Nebyly nalezeny žádné předpony"
 
 #: src/ui/importer.ui:46
+#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
-"                                    Use the icon on the top to import a "
-"bottle from a backup"
+"Use the icon on the top to import a bottle from a backup"
 msgstr ""
 "Nebyly nalezeny žádné předpony z Lutris, PlayOnLinux atd.\n"
 "                                    Pro import lahve ze zálohy použijte "
@@ -1968,7 +2054,7 @@ msgstr "Spustit pomocí Steam"
 msgid "Search for Prefixes"
 msgstr "Hledat předpony"
 
-#: src/ui/library.ui:42 src/ui/preferences.ui:193
+#: src/ui/library.ui:42 src/ui/preferences.ui:222
 msgid "Library"
 msgstr "Knihovna"
 
@@ -2024,7 +2110,7 @@ msgstr "Nebyly nalezeny žádné výsledky"
 msgid "Try a different search."
 msgstr "Zkuste jiné vyhledávání."
 
-#: src/ui/loading.ui:13
+#: src/ui/loading.ui:16
 msgid "Starting up…"
 msgstr "Spouštění…"
 
@@ -2081,7 +2167,8 @@ msgid "Custom"
 msgstr "Vlastní"
 
 #: src/ui/new.ui:112
-msgid "A clear environment for your experiments"
+#, fuzzy
+msgid "A clear environment for your experiments."
 msgstr "Přehledné prostředí pro vaše experimenty"
 
 #: src/ui/new.ui:117
@@ -2101,7 +2188,8 @@ msgid "Architecture"
 msgstr "Architektura"
 
 #: src/ui/new.ui:155
-msgid "We recommend using 32bit only if strictly necessary"
+#, fuzzy
+msgid "We recommend using 32bit only if strictly necessary."
 msgstr "Doporučujeme používat pouze 32bit, pokud je to jen nezbytně nutné"
 
 #: src/ui/new.ui:159
@@ -2165,7 +2253,8 @@ msgid "Almost Done"
 msgstr "Téměř hotovo"
 
 #: src/ui/onboard.ui:80
-msgid "We need a few more minutes to set everything up.."
+#, fuzzy
+msgid "We need a few more minutes to set everything up…"
 msgstr "Potřebujeme ještě několik minut, abychom vše připravili.."
 
 #: src/ui/onboard.ui:88
@@ -2205,7 +2294,8 @@ msgid "Show notifications for downloads and installs."
 msgstr "Zobrazit oznámení o stažení a instalaci."
 
 #: src/ui/preferences.ui:48
-msgid "Temp files"
+#, fuzzy
+msgid "Temp Files"
 msgstr "Dočasné soubory"
 
 #: src/ui/preferences.ui:49
@@ -2213,59 +2303,99 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "Vyčistit dočasné soubory při spuštění láhví?"
 
 #: src/ui/preferences.ui:60
-msgid "Close Bottles after starting a program"
+#, fuzzy
+msgid "Close Bottles After Starting a Program"
 msgstr "Po spuštění programu zavřít lahve"
 
 #: src/ui/preferences.ui:61
-msgid "Close Bottles after starting a program from the file manager"
+#, fuzzy
+msgid "Close Bottles after starting a program from the file manager."
 msgstr "Zavřít Láhve po spuštění programu ze správce souborů"
 
 #: src/ui/preferences.ui:74
-msgid "Advanced"
-msgstr "Pokročilé"
+#, fuzzy
+msgid "Integrations"
+msgstr "Operace"
 
 #: src/ui/preferences.ui:77
-msgid "Custom bottles path (requires restart)"
-msgstr "Vlastní umíštění Láhví (vyžaduje restart)"
-
-#: src/ui/preferences.ui:111
-msgid "Runners"
-msgstr "Runnery"
-
-#: src/ui/preferences.ui:116
-msgid "Pre-release"
-msgstr "Předběžné vydání"
-
-#: src/ui/preferences.ui:117
-msgid "Display unstable versions of runners."
-msgstr "Zobrazit nestabilní verze runnerů."
-
-#: src/ui/preferences.ui:133
-msgid "DLL Components"
-msgstr "Komponenty DDL"
-
-#: src/ui/preferences.ui:146
-msgid "DXVK-NVAPI"
-msgstr "DXVK-NVAPI"
-
-#: src/ui/preferences.ui:159
-msgid "Core"
-msgstr "Jádro"
-
-#: src/ui/preferences.ui:163
-msgid "Runtime"
-msgstr "runtime"
-
-#: src/ui/preferences.ui:168
-msgid "WineBridge"
-msgstr "Winebridge"
-
-#: src/ui/preferences.ui:181
 msgid "Steam Proton Prefixes"
 msgstr "Prefixy Steam Protonu"
 
-#: src/ui/preferences.ui:182 src/ui/preferences.ui:194
-msgid "In early development (requires restart)"
+#: src/ui/preferences.ui:78
+#, fuzzy
+msgid "List and manage Steam Proton prefixes."
+msgstr "Prefixy Steam Protonu"
+
+#: src/ui/preferences.ui:89
+msgid "List Steam Apps in Programs List"
+msgstr ""
+
+#: src/ui/preferences.ui:90
+msgid "Requires Steam for Windows installed in the bottle."
+msgstr ""
+
+#: src/ui/preferences.ui:101
+msgid "List Epic Games in Programs List"
+msgstr ""
+
+#: src/ui/preferences.ui:102
+msgid "Requires Epic Games Store installed in the bottle."
+msgstr ""
+
+#: src/ui/preferences.ui:115
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: src/ui/preferences.ui:118
+#, fuzzy
+msgid "Custom Bottles Path (Requires Restart)"
+msgstr "Vlastní umíštění Láhví (vyžaduje restart)"
+
+#: src/ui/preferences.ui:152
+msgid "Runners"
+msgstr "Runnery"
+
+#: src/ui/preferences.ui:157
+#, fuzzy
+msgid "Pre-Release"
+msgstr "Předběžné vydání"
+
+#: src/ui/preferences.ui:158
+msgid "Display unstable versions of runners."
+msgstr "Zobrazit nestabilní verze runnerů."
+
+#: src/ui/preferences.ui:174
+msgid "DLL Components"
+msgstr "Komponenty DDL"
+
+#: src/ui/preferences.ui:187
+msgid "DXVK-NVAPI"
+msgstr "DXVK-NVAPI"
+
+#: src/ui/preferences.ui:200
+msgid "Core"
+msgstr "Jádro"
+
+#: src/ui/preferences.ui:204
+msgid "Runtime"
+msgstr "runtime"
+
+#: src/ui/preferences.ui:209
+msgid "WineBridge"
+msgstr "Winebridge"
+
+#: src/ui/preferences.ui:223
+#, fuzzy
+msgid "In early development (requires restart)."
+msgstr "V rané fázi vývoje (vyžaduje restart)"
+
+#: src/ui/preferences.ui:234
+msgid "Sandbox per bottle"
+msgstr ""
+
+#: src/ui/preferences.ui:235
+#, fuzzy
+msgid "In early development."
 msgstr "V rané fázi vývoje (vyžaduje restart)"
 
 #: src/ui/program-entry.ui:21
@@ -2308,7 +2438,7 @@ msgstr "Zobrazit program"
 msgid "Remove from List"
 msgstr "Odebrat ze seznamu"
 
-#: src/ui/state-entry.ui:23
+#: src/ui/state-entry.ui:20
 msgid "Restore this state"
 msgstr "Obnovit tento stav"
 
@@ -2356,6 +2486,32 @@ msgstr ""
 #: src/ui/window.ui:109
 msgid "New bottle"
 msgstr "Nová láhev"
+
+#~ msgid "Loading..."
+#~ msgstr "Načítání..."
+
+#~ msgid "Task manager"
+#~ msgstr "Správce úloh"
+
+#~ msgid ""
+#~ "Choose where to store the new bottles (this will not move the existing "
+#~ "ones)"
+#~ msgstr "Vyberte kam se budou ukládat nové láhve (nepřesune stávající)"
+
+#~ msgid "Installing..."
+#~ msgstr "Instalování..."
+
+#~ msgid ""
+#~ "Can't create Desktop Entry due to missing privileges.\n"
+#~ "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our "
+#~ "video</a> about how to fix that in Flatpak."
+#~ msgstr ""
+#~ "Nelze vytvořit položku plochy kvůli chybějícím oprávněním.\n"
+#~ "Podívejte se na <a href=\"https://www.youtube.com/watch?"
+#~ "v=tPFNg9AU5k4\">naše video</a> o tom, jak to ve Flatpaku opravit."
+
+#~ msgid "Type a short comment:"
+#~ msgstr "Napište krátký komentář:"
 
 #~ msgid "Caffe"
 #~ msgstr "Kafé"
@@ -2445,9 +2601,6 @@ msgstr "Nová láhev"
 #~ "Zatímco soubory na této stránce byly ověřeny, mohou být pod proprietární "
 #~ "licencí."
 
-#~ msgid "Epic Games Store .."
-#~ msgstr "Epic Games obchod .."
-
 #~ msgid ""
 #~ "Use this section to install programs curated by our community, without "
 #~ "having to proceed manually. Consider the <a href=\"https://docs."
@@ -2492,9 +2645,6 @@ msgstr "Nová láhev"
 
 #~ msgid "Mouse capture fullscreen"
 #~ msgstr "Snímání myši na celou obrazovku"
-
-#~ msgid "Components version"
-#~ msgstr "Verze komponent"
 
 #~ msgid "Manage runners"
 #~ msgstr "Spravovat runnery"
@@ -2653,9 +2803,6 @@ msgstr "Nová láhev"
 #~ "\n"
 #~ "Až budete připraveni, stiskněte tlačítko <b>Instalovat</b>."
 
-#~ msgid "Downloading…"
-#~ msgstr "Stahuji…"
-
 #~ msgid "Sit down and relax, it may take a few minutes."
 #~ msgstr "Posaďte se a uvolněte se, může to trvat pár minut."
 
@@ -2670,11 +2817,6 @@ msgstr "Nová láhev"
 
 #~ msgid "Finish"
 #~ msgstr "Dokončit"
-
-#~ msgid ""
-#~ "Choose where to store the new bottles (this will not move the existing "
-#~ "ones)."
-#~ msgstr "Zvolte místo uložení nových lahví (stávající lahve se nepřesunou)."
 
 #~ msgid ""
 #~ "Warning: Be sure to give permission to the Flatpak to access the new "
