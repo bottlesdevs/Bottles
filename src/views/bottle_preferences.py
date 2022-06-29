@@ -808,7 +808,7 @@ class PreferencesView(Adw.PreferencesPage):
                 runner=runner
             )
 
-        if "proton" in runner.lower():
+        if re.search("^(GE-)?Proton", runner):
             dialog = ProtonAlertDialog(self.window, run_task)
             dialog.show()
         else:
