@@ -42,6 +42,7 @@ logging = Logger()
 class SteamManager:
 
     @staticmethod
+    @lru_cache
     def find_steam_path(scope: str = "", is_windows: bool = False, config: dict = None) -> Union[str, None]:
         """scopes: steamapps, userdata, empty for base path"""
         if is_windows and config:
@@ -73,6 +74,7 @@ class SteamManager:
         return data
 
     @staticmethod
+    @lru_cache
     def get_local_config_path(is_windows: bool = False, config: dict = None) -> Union[str, None]:
         steam_path = SteamManager.find_steam_path("userdata", is_windows, config)
 
@@ -87,6 +89,7 @@ class SteamManager:
         return confs[0]
 
     @staticmethod
+    @lru_cache
     def get_library_folders() -> Union[list, None]:
         steam_path = SteamManager.find_steam_path("steamapps")
         libraryfolders_path = os.path.join(steam_path, "libraryfolders.vdf")
@@ -117,6 +120,7 @@ class SteamManager:
         return libraryfolders if len(libraryfolders) > 0 else None
 
     @staticmethod
+    @lru_cache
     def get_appid_library_path(appid: str) -> Union[str, None]:
         libraryfolders = SteamManager.get_library_folders()
 
@@ -130,6 +134,7 @@ class SteamManager:
         return None
 
     @staticmethod
+    @lru_cache
     def get_local_config(is_windows: bool = False, config: dict = None) -> dict:
         conf_path = SteamManager.get_local_config_path(is_windows, config)
         if conf_path is None:
@@ -159,6 +164,7 @@ class SteamManager:
         logging.info(f"Steam config saved")
 
     @staticmethod
+    @lru_cache
     def get_runner_path(pfx_path: str) -> Union[tuple, None]:
         """Get runner path from config_info file"""
         config_info = os.path.join(pfx_path, "config_info")
