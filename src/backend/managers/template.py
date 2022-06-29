@@ -107,7 +107,8 @@ class TemplateManager:
         for template in templates:
             if os.path.exists(os.path.join(Paths.templates, template, "template.yml")):
                 _manifest = TemplateManager.get_template_manifest(template)
-                res.append(_manifest)
+                if _manifest is not None:
+                    res.append(_manifest)
 
         return res
 
