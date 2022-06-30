@@ -318,7 +318,9 @@ class Manager:
             Uninstaller(config).from_name(uninstaller)
 
         # remove dependency from bottle configuration
-        config["Installed_Dependencies"].pop(dependency, None)
+        if dependency in config["Installed_Dependencies"]:
+            config["Installed_Dependencies"].remove(dependency)
+
         self.update_config(
             config,
             key="Installed_Dependencies",
