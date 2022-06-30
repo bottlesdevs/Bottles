@@ -126,13 +126,17 @@ class WineCommand:
 
         return cwd
 
-    def get_env(self, environment, return_steam_env: bool = False) -> dict:
-        env = WineEnv(clean=return_steam_env)
+    def get_env(self, environment: dict = None, return_steam_env: bool = False, return_clean_env: bool = False) -> dict:
+        env = WineEnv(clean=return_steam_env or return_clean_env)
         config = self.config
         arch = config.get("Arch", None)
         params = config.get("Parameters", None)
+
         if None in [arch, params]:
             return env.get()["envs"]
+
+        if environment is None:
+            environment = {}
 
         if config.get("IsLayer"):
             bottle = f"{Paths.layers}/{config['Path']}"  # TODO: should not be handled here, just for testing
@@ -395,11 +399,15 @@ class WineCommand:
 
         return runner
 
-    def get_cmd(self, command, post_script: str = None, return_steam_cmd: bool = False) -> str:
+    def get_cmd(self, command, post_script: str = None, return_steam_cmd: bool = False, return_clean_cmd: bool = False) -> str:
         config = self.config
         params = config.get("Parameters", {})
         runner = self.runner
-        if not return_steam_cmd:
+
+        if return_clean_cmd:
+            return_steam_cmd = True
+
+        if not return_steam_cmd and not return_clean_cmd:
             command = f"{runner} {command}"
 
         if not self.minimal:

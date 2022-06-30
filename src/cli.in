@@ -139,6 +139,10 @@ class CLI:
         run_parser.add_argument("-a", "--args", help="Arguments to pass to the executable")
         run_parser.add_argument("-p", "--program", help="Program to run")
 
+        standalone_parser = subparsers.add_parser("standalone", help="Generate a standalone script to launch commands "
+                                                                     "without passing trough Bottles")
+        standalone_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+
         shell_parser = subparsers.add_parser("shell", help="Launch commands in a Wine shell")
         shell_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
         shell_parser.add_argument("-i", "--input", help="Command to execute", required=True)
@@ -196,8 +200,11 @@ class CLI:
 
         # SHELL parser
         elif self.args.command == "shell":
-            print("shell")
             self.run_shell()
+
+        # STANDALONE parser
+        elif self.args.command == "standalone":
+            self.generate_standalone()
 
     # region INFO
     def show_info(self):
@@ -609,6 +616,38 @@ class CLI:
         winecommand.run()
 
     # endregion
+
+    # region STANDALONE
+    def generate_standalone(self):
+        self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
+        _bottle = self.args.bottle
+        mng = Manager(self, is_cli=True)
+        mng.checks()
+
+        if _bottle not in mng.local_bottles:
+            sys.stderr.write(f"Bottle {_bottle} not found\n")
+            exit(1)
+
+        bottle = mng.local_bottles[_bottle]
+        path = ManagerUtils.get_bottle_path(bottle)
+        standalone_path = os.path.join(path, "standalone")
+        winecommand = WineCommand(config=bottle, command='"$@"')
+        env = winecommand.get_env(return_clean_env=True)
+        cmd = winecommand.get_cmd('"$@"', return_clean_cmd=True)
+        winecommand.command.replace("/usr/lib/extensions/vulkan/MangoHud/bin/mangohud", "")
+
+        if os.path.isfile(standalone_path):
+            os.remove(standalone_path)
+
+        with open(standalone_path, "w") as f:
+            f.write(f"#!/bin/bash\n")
+            for k, v in env.items():
+                f.write(f"export {k}='{v}'\n")
+            f.write(f"{cmd}\n")
+
+        os.chmod(os.path.join(path, "standalone"), 0o755)
+        sys.stdout.write(f"Standalone generated in {path}\n")
+        sys.stdout.write("Re-generate after every bottle change.\n")
 
 
 if __name__ == '__main__':
