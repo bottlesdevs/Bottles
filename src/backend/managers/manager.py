@@ -718,7 +718,7 @@ class Manager:
                         return
 
             try:
-                if not os.path.exists(_config):
+                if not os.path.is_file(_config):
                     raise AttributeError
                 with open(_config, "r") as f:
                     conf_file_yaml = yaml.safe_load(f)
