@@ -92,13 +92,6 @@ class ComponentManager:
             '''
 
             if component[1]["Category"] == "runners":
-                if "FLATPAK_ID" in os.environ and "-lol" in component[0].lower():
-                    '''
-                    Hide the lutris-lol runner if Bottles is running as 
-                    Flatpak  because it is not compatible under sandbox
-                    https://github.com/bottlesdevs/components/issues/54
-                    '''
-                    continue
                 if "soda" in component[0].lower() or "caffe" in component[0].lower():
                     if not is_glibc_min_available():
                         logging.warning(f"{component[0]} was found but it requires "
