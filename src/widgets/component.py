@@ -169,7 +169,9 @@ class ComponentEntry(Adw.ActionRow):
 
 class ComponentExpander(Adw.ExpanderRow):
 
-    def __init__(self, title, **kwargs):
+    def __init__(self, title, subtitle=None, **kwargs):
         super().__init__(**kwargs)
 
         self.set_title(title)
+        if subtitle:
+            self.set_subtitle(subtitle)

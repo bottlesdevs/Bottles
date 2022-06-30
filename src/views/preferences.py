@@ -205,14 +205,16 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
             if parent:
                 parent.remove(w)
 
-        exp_soda = ComponentExpander("Soda")
-        exp_caffe = ComponentExpander("Caffe")
+        exp_soda = ComponentExpander("Soda", _("Based on Valve's Wine, includes staging and Proton patches."))
+        exp_caffe = ComponentExpander("Caffe", _("Based on Wine upstream, includes staging and Proton patches."))
         exp_wine_ge = ComponentExpander("GE Wine")
         exp_lutris = ComponentExpander("Lutris")
-        exp_proton = ComponentExpander("GE Proton")
+        exp_vaniglia = ComponentExpander("Vaniglia", _("Based on Wine upstream, includes staging patches."))
+        exp_proton = ComponentExpander("GE Proton", _("Based on Valve's Wine, includes staging, Proton and "
+                                                      "Steam-specific patches. Requires the Steam Runtime turned on."))
         exp_other = ComponentExpander(_("Other"))
 
-        count = {"soda": 0, "caffe": 0, "wine-ge": 0, "lutris": 0, "proton": 0, "other": 0}
+        count = {"soda": 0, "caffe": 0, "wine-ge": 0, "lutris": 0, "vaniglia": 0, "proton": 0, "other": 0}
 
         for runner in self.manager.supported_wine_runners.items():
             _runner_name = runner[0].lower()
@@ -233,6 +235,9 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
             elif _runner_name.startswith("lutris"):
                 exp_lutris.add_row(_entry)
                 count["lutris"] += 1
+            elif _runner_name.startswith("vaniglia"):
+                exp_lutris.add_row(_entry)
+                count["vaniglia"] += 1
             else:
                 exp_other.add_row(_entry)
                 count["other"] += 1
@@ -258,6 +263,9 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
         if count["lutris"] > 0:
             self.list_runners.add(exp_lutris)
             self.__registry.append(exp_lutris)
+        if count["vaniglia"] > 0:
+            self.list_runners.add(exp_vaniglia)
+            self.__registry.append(exp_vaniglia)
         if count["proton"] > 0:
             self.list_runners.add(exp_proton)
             self.__registry.append(exp_proton)
