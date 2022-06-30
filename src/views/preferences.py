@@ -205,14 +205,14 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
             if parent:
                 parent.remove(w)
 
-        exp_caffe = ComponentExpander("Caffe")
         exp_soda = ComponentExpander("Soda")
+        exp_caffe = ComponentExpander("Caffe")
         exp_wine_ge = ComponentExpander("GE Wine")
         exp_lutris = ComponentExpander("Lutris")
         exp_proton = ComponentExpander("GE Proton")
         exp_other = ComponentExpander(_("Other"))
 
-        count = {"caffe": 0, "soda": 0, "wine-ge": 0, "lutris": 0, "proton": 0, "other": 0}
+        count = {"soda": 0, "caffe": 0, "wine-ge": 0, "lutris": 0, "proton": 0, "other": 0}
 
         for runner in self.manager.supported_wine_runners.items():
             _runner_name = runner[0].lower()
@@ -221,12 +221,12 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
                 continue
 
             _entry = ComponentEntry(self.window, runner, "runner")
-            if _runner_name.startswith("caffe"):
-                exp_caffe.add_row(_entry)
-                count["caffe"] += 1
-            elif _runner_name.startswith("soda"):
+            if _runner_name.startswith("soda"):
                 exp_soda.add_row(_entry)
                 count["soda"] += 1
+            elif _runner_name.startswith("caffe"):
+                exp_caffe.add_row(_entry)
+                count["caffe"] += 1
             elif _runner_name.startswith("wine-ge"):
                 exp_wine_ge.add_row(_entry)
                 count["wine-ge"] += 1
@@ -246,12 +246,12 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
             exp_proton.add_row(_entry)
             count["proton"] += 1
 
-        if count["caffe"] > 0:
-            self.list_runners.add(exp_caffe)
-            self.__registry.append(exp_caffe)
         if count["soda"] > 0:
             self.list_runners.add(exp_soda)
             self.__registry.append(exp_soda)
+        if count["caffe"] > 0:
+            self.list_runners.add(exp_caffe)
+            self.__registry.append(exp_caffe)
         if count["wine-ge"] > 0:
             self.list_runners.add(exp_wine_ge)
             self.__registry.append(exp_wine_ge)

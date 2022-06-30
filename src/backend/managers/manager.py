@@ -887,7 +887,7 @@ class Manager:
         if config["Runner"] not in self.runners_available:
             '''
             If the runner is not in the list of available runners, set it
-            to latest Caffe. If there is no Caffe, set it to the
+            to latest Soda. If there is no Soda, set it to the
             first one.
             '''
             config["Runner"] = self.get_latest_runner("wine")
@@ -1180,7 +1180,8 @@ class Manager:
         if not template and not custom_environment:
             logging.info("Setting Windows version…")
             log_update(_("Setting Windows version…"))
-            if "caffe" not in runner_name.lower():  # Caffe came with win10 and doesn't need this
+            if "soda" not in runner_name.lower() \
+                    and "caffe" not in runner_name.lower():  # Caffe/Soda came with win10 by default
                 rk.set_windows(config["Windows"])
                 wineboot.update()
 
@@ -1329,7 +1330,7 @@ class Manager:
         """Return the latest available runner for a given type."""
         try:
             if runner_type in ["", "wine"]:
-                return self.__sort_runners("caffe")
+                return self.__sort_runners("soda")
             return self.__sort_runners("proton")
         except IndexError:
             return []

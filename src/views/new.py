@@ -85,19 +85,30 @@ class NewView(Adw.Window):
         for runner in self.manager.runners_available:
             self.combo_runner.append(runner, runner)
 
-        rc = [i for i in self.manager.runners_available if i.startswith('caffe')]
-        rv = [i for i in self.manager.runners_available if i.startswith('vaniglia')]
-        rl = [i for i in self.manager.runners_available if i.startswith('lutris')]
-        rs = [i for i in self.manager.runners_available if i.startswith('sys-')]
+        rs, rc, rv, rl, ry = [], [], [], [], []
 
-        if len(rc) > 0:  # use the latest from caffe
+        for i in self.manager.runners_available:
+            if i.startswith('soda'):
+                rs.append(i)
+            elif i.startswith('caffe'):
+                rc.append(i)
+            elif i.startswith('vaniglia'):
+                rv.append(i)
+            elif i.startswith('lutris'):
+                rl.append(i)
+            elif i.startswith('sys-'):
+                ry.append(i)
+
+        if len(rs) > 0:  # use the latest from Soda
+            self.runner = rs[0]
+        elif len(rc) > 0:  # use the latest from caffe
             self.runner = rc[0]
         elif len(rv) > 0:  # use the latest from vaniglia
             self.runner = rv[0]
         elif len(rl) > 0:  # use the latest from lutris
             self.runner = rl[0]
-        elif len(rs) > 0:  # use the latest from system
-            self.runner = rs[0]
+        elif len(ry) > 0:  # use the latest from system
+            self.runner = ry[0]
         else:  # use any other runner available
             self.runner = self.manager.runners_available[0]
 
