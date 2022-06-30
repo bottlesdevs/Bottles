@@ -617,8 +617,8 @@ class Manager:
         Process External_Programs
         '''
         for program in ext_programs:
-            found.append(program)
             _program = ext_programs[program]
+            found.append(_program["executable"] )
             if winepath.is_windows(_program["path"]):
                 program_folder = ManagerUtils.get_exe_parent_dir(config, _program["path"])
             else:
