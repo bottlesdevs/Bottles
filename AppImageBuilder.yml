@@ -167,6 +167,7 @@ AppDir:
     arch: [ x86_64, i386 ]
     env:
       GDK_BACKEND: x11
+      PYTHONHOME: '${APPDIR}/usr'
       PYTHONPATH: '$APPDIR/usr/lib/python3/dist-packages'
       SSL_CERT_FILE: "$APPDIR/usr/lib/python3/dist-packages/certifi/cacert.pem"
       APPDIR_MODULE_DIR: $HOME/.local/share/bottles/
