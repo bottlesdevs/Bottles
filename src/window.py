@@ -332,15 +332,14 @@ class MainWindow(Adw.ApplicationWindow):
     def check_crash_log(self):
         xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
         log_path = f"{xdg_data_home}/bottles/crash.log"
-        crash_log = False
 
         with contextlib.suppress(FileNotFoundError):
             with open(log_path, "r") as log_file:
                 crash_log = log_file.readlines()
                 os.remove(log_path)
 
-        if crash_log:
-            CrashReportDialog(self, crash_log).present()
+            if crash_log:
+                CrashReportDialog(self, crash_log).present()
 
     def toggle_selection_mode(self, status: bool = True):
         context = self.headerbar.get_style_context()
