@@ -122,7 +122,11 @@ class CrashReportDialog(Adw.Window):
         issue body.
         """
         log = log.lower()
-        report = issue["body"].lower()
+        report = issue["body"]
+        if report is None:
+            return 0
+
+        report = report.lower()
 
         log_words = log.split(" ")
         report_words = report.split(" ")
