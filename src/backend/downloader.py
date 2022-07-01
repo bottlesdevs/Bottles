@@ -15,10 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import time
 import requests
 from gi.repository import GLib
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.utils.file import FileUtils
 
 logging = Logger()
 
@@ -31,6 +33,7 @@ class Downloader:
     """
 
     def __init__(self, url: str, file: str, func: callable = None, task_id: int = None):
+        self.start_time = None
         self.url = url
         self.file = file
         self.func = func
@@ -40,6 +43,7 @@ class Downloader:
         """Start the download."""
         try:
             with open(self.file, "wb") as file:
+                self.start_time = time.time()
                 headers = {"User-Agent": "curl/7.79.1"}
                 response = requests.get(self.url, stream=True, headers=headers)
                 total_size = int(response.headers.get("content-length", 0))
@@ -81,8 +85,15 @@ class Downloader:
     def __progress(self, count, block_size, total_size):
         """Update the progress bar."""
         percent = int(count * block_size * 100 / total_size)
+        done_str = FileUtils.get_human_size(count * block_size)
+        total_str = FileUtils.get_human_size(total_size)
+        speed_str = FileUtils.get_human_size(count * block_size / (time.time() - self.start_time))
         name = self.file.split("/")[-1]
         c_close, c_complete, c_incomplete = "\033[0m", "\033[92m", "\033[90m"
-        print(f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) {'━' * int(percent / 2)}", end="")
+        print(
+            f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) \
+{'━' * int(percent / 2)} ({done_str}/{total_str} - {speed_str})",
+            end=""
+        )
         if percent == 100:
             print(f"{c_close}\n")
