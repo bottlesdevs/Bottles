@@ -46,7 +46,7 @@ fi
 
 if ! command -v python3 &> /dev/null
 then
-    python $APPDIR/usr/bin/bottles $1
+    python $APPDIR/usr/bin/bottles "$@"
 else
-    python3 $APPDIR/usr/bin/bottles $1
+    python3 $APPDIR/usr/bin/bottles "$@"
 fi
