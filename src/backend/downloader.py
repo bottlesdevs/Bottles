@@ -82,7 +82,7 @@ class Downloader:
         """Update the progress bar."""
         percent = int(count * block_size * 100 / total_size)
         name = self.file.split("/")[-1]
-        print(f"\r{name} ({percent}%) {'━' * int(percent / 2)}", end="")
-
+        c_close, c_complete, c_incomplete = "\033[0m", "\033[92m", "\033[90m"
+        print(f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) {'━' * int(percent / 2)}", end="")
         if percent == 100:
-            print("\n")
+            print(f"{c_close}\n")
