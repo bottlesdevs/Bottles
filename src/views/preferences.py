@@ -22,7 +22,6 @@ from gi.repository import Gtk, Adw
 from bottles.widgets.component import ComponentEntry, ComponentExpander  # pyright: reportMissingImports=false
 from bottles.dialogs.filechooser import FileChooser
 
-from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.data import DataManager
 
 
@@ -110,7 +109,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
 
-        if not SteamManager.is_steam_supported():
+        if not self.manager.is_steam_supported:
             self.switch_steam.set_sensitive(False)
             self.action_steam_proton.set_tooltip_text(
                 _("Steam was not found or Bottles does not have enough permissions.\

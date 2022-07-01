@@ -127,6 +127,9 @@ class Manager:
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
 
+        self.steam_manager = SteamManager()
+        times["SteamManager"] = time.time()
+
         if not is_cli:
             times.update(self.checks(install_latest=False, first_run=True))
         else:
@@ -230,7 +233,7 @@ class Manager:
             logging.info("Bottles path doesn't exist, creating now.")
             os.makedirs(Paths.bottles, exist_ok=True)
 
-        if self.settings.get_boolean("steam-proton-support") and SteamManager.is_steam_supported():
+        if self.settings.get_boolean("steam-proton-support") and self.steam_manager.is_steam_supported:
             if not os.path.isdir(Paths.steam):
                 logging.info("Steam path doesn't exist, creating now.")
                 os.makedirs(Paths.steam, exist_ok=True)
@@ -712,8 +715,8 @@ class Manager:
                         if placeholder_yaml.get("Path"):
                             _config = os.path.join(placeholder_yaml.get("Path"), "bottle.yml")
                         else:
-                            raise Exception("Missing Path in placeholder.yml")
-                    except (yaml.YAMLError, Exception):
+                            raise ValueError("Missing Path in placeholder.yml")
+                    except (yaml.YAMLError, ValueError):
                         return
 
             try:
@@ -802,9 +805,11 @@ class Manager:
         if len(self.local_bottles) > 0 and not silent:
             logging.info("Bottles found:\n - {0}".format("\n - ".join(self.local_bottles)))
 
-        if self.settings.get_boolean("steam-proton-support") and SteamManager.is_steam_supported() and not self.is_cli:
-            SteamManager.update_bottles()
-            self.local_bottles.update(SteamManager.list_prefixes())
+        if self.settings.get_boolean("steam-proton-support") \
+                and self.steam_manager.is_steam_supported \
+                and not self.is_cli:
+            self.steam_manager.update_bottles()
+            self.local_bottles.update(self.steam_manager.list_prefixes())
 
     # Update parameters in bottle config
     @staticmethod
@@ -865,7 +870,7 @@ class Manager:
         config["Update_Date"] = str(datetime.now())
 
         if config.get("Environment") == "Steam":
-            config = SteamManager.update_bottle(config)
+            config = self.steam_manager.update_bottle(config)
 
         return Result(status=True, data={"config": config})
 

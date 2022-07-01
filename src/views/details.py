@@ -298,16 +298,15 @@ class DetailsView(Adw.Bin):
         def process_programs():
             wineserver_status = WineServer(self.config).is_alive()
             programs = self.manager.get_programs(self.config)
+            win_steam_manager = SteamManager(self.config, is_windows=True)
 
-            if self.window.settings.get_boolean("steam-programs") \
-                    and SteamManager.is_steam_supported(is_windows=True, config=self.config):
+            if self.window.settings.get_boolean("steam-programs") and win_steam_manager.is_steam_supported:
                 programs_names = [p.get("name", "") for p in programs]
-                for app in SteamManager.get_installed_apps_as_programs(True, self.config):
+                for app in win_steam_manager.get_installed_apps_as_programs():
                     if app["name"] not in programs_names:
                         programs.append(app)
 
-            if self.window.settings.get_boolean("epic-games") \
-                    and EpicGamesStoreManager.is_epic_supported(self.config):
+            if self.window.settings.get_boolean("epic-games") and EpicGamesStoreManager.is_epic_supported(self.config):
                 programs_names = [p.get("name", "") for p in programs]
                 for app in EpicGamesStoreManager.get_installed_games(self.config):
                     if app["name"] not in programs_names:

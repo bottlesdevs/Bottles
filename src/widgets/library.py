@@ -150,7 +150,7 @@ class LibraryEntry(Gtk.Box):
         self.__reset_buttons()
 
     def run_steam(self, widget):
-        SteamManager.launch_app(self.config["CompatData"])
+        self.manager.steam_manager.launch_app(self.config["CompatData"])
 
     def stop_process(self, widget):
         winedbg = WineDbg(self.config)
