@@ -86,7 +86,7 @@ title "Compiling and installing translations"
 cat ../po/LINGUAS | while read lang
 do
 	print_execution "mkdir -p appdir/usr/share/locale/$lang/LC_MESSAGES"
-	print_execution "msgfmt -o appdir/usr/share/locale/$lang/LC_MESSAGES/bottles.mo ../po/$lang.po"
+	print_execution "msgfmt -o appdir/usr/share/locale/$lang/LC_MESSAGES/bottles.mo ../po/*.po"
 done
 
 title "Copying icons"
