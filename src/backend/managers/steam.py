@@ -153,8 +153,7 @@ class SteamManager:
 
         return data
 
-    @staticmethod
-    def save_local_config(new_data: dict):
+    def save_local_config(self, new_data: dict):
         if self.localconfig_path is None:
             return
 
@@ -314,11 +313,11 @@ class SteamManager:
     def get_app_config(self, prefix: str) -> dict:
         _fail_msg = f"Fail to get app config from Steam for: {prefix}"
 
-        if len(self.localconfig_path) == 0:
+        if len(self.localconfig) == 0:
             logging.warning(_fail_msg)
             return {}
 
-        apps = self.localconfig_path.get("UserLocalConfigStore", {}) \
+        apps = self.localconfig.get("UserLocalConfigStore", {}) \
             .get("Software", {}) \
             .get("Valve", {}) \
             .get("Steam", {})
@@ -389,7 +388,7 @@ class SteamManager:
         original_launch_options = self.get_launch_options(prefix)
         _fail_msg = f"Fail to set launch options for: {prefix}"
 
-        if 0 in [len(self.localconfig_path), len(original_launch_options)]:
+        if 0 in [len(self.localconfig), len(original_launch_options)]:
             logging.warning(_fail_msg)
             return
 
@@ -408,13 +407,13 @@ class SteamManager:
         launch_options += f"{command} %command% {original_launch_options['args']}"
 
         try:
-            self.localconfig_path["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"][
-                prefix]["LaunchOptions"] = launch_options
+            self.localconfig["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"][prefix]["LaunchOptions"] \
+                = launch_options
         except (KeyError, TypeError):
-            self.localconfig_path["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["Apps"][
-                prefix]["LaunchOptions"] = launch_options
+            self.localconfig["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["Apps"][prefix]["LaunchOptions"] \
+                = launch_options
 
-        self.save_local_config(self.localconfig_path)
+        self.save_local_config(self.localconfig)
 
     # noinspection PyTypeChecker
     def del_launch_option(self, prefix: str, key_type: str, key: str):
@@ -422,7 +421,7 @@ class SteamManager:
         key_types = ["env_vars", "command"]
         _fail_msg = f"Fail to delete a launch option for: {prefix}"
 
-        if 0 in [len(self.localconfig_path), len(original_launch_options)]:
+        if 0 in [len(self.localconfig), len(original_launch_options)]:
             logging.warning(_fail_msg)
             return
 
@@ -444,13 +443,13 @@ class SteamManager:
 
         launch_options += f"{original_launch_options['command']} %command% {original_launch_options['args']}"
         try:
-            self.localconfig_path["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"][
-                prefix]["LaunchOptions"] = launch_options
+            self.localconfig["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"][prefix]["LaunchOptions"] \
+                = launch_options
         except (KeyError, TypeError):
-            self.localconfig_path["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["Apps"][
-                prefix]["LaunchOptions"] = launch_options
+            self.localconfig["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["Apps"][prefix]["LaunchOptions"] \
+                = launch_options
 
-        self.save_local_config(self.localconfig_path)
+        self.save_local_config(self.localconfig)
 
     def update_bottle(self, config: dict) -> dict:
         pfx = config.get("CompatData")
