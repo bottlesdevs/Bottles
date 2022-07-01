@@ -31,7 +31,7 @@ script:
   - cat po/LINGUAS | while read lang
   - do
   - mkdir -p AppDir/usr/share/locale/$lang/LC_MESSAGES
-  - msgfmt -o AppDir/usr/share/locale/$lang/LC_MESSAGES/bottles.mo po/*.po
+  - msgfmt -o AppDir/usr/share/locale/$lang/LC_MESSAGES/bottles.mo po/$lang.po
   - done
   
   # Copying icons
