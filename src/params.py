@@ -2,8 +2,8 @@
 APP_NAME = "Bottles"
 APP_NAME_LOWER = APP_NAME.lower()
 APP_ID = "com.usebottles.bottles"
-VERSION = "2022.6.14-brescia-1"
-VERSION_NUM = "2022.6.14-brescia-1"
+VERSION = "2022.6.28-brescia"
+VERSION_NUM = "2022.6.28-brescia"
 
 # Internal settings not user editable
 ANIM_DURATION = 120

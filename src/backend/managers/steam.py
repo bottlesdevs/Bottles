@@ -87,6 +87,7 @@ class SteamManager:
         return confs[0]
 
     @staticmethod
+    @lru_cache
     def get_library_folders() -> Union[list, None]:
         steam_path = SteamManager.find_steam_path("steamapps")
         libraryfolders_path = os.path.join(steam_path, "libraryfolders.vdf")
@@ -117,6 +118,7 @@ class SteamManager:
         return libraryfolders if len(libraryfolders) > 0 else None
 
     @staticmethod
+    @lru_cache
     def get_appid_library_path(appid: str) -> Union[str, None]:
         libraryfolders = SteamManager.get_library_folders()
 
@@ -159,6 +161,7 @@ class SteamManager:
         logging.info(f"Steam config saved")
 
     @staticmethod
+    @lru_cache
     def get_runner_path(pfx_path: str) -> Union[tuple, None]:
         """Get runner path from config_info file"""
         config_info = os.path.join(pfx_path, "config_info")
@@ -254,7 +257,7 @@ class SteamManager:
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
 
             if _acf is None or not _acf.get("AppState"):
-                logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping...")
+                logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping…")
                 continue
 
             if _acf["AppState"]["name"] == "Proton Experimental":
@@ -262,7 +265,7 @@ class SteamManager:
                 continue
 
             if _runner is None:
-                logging.warning(f"A Steam prefix was found, but there is no Proton for it: {_dir_name}, skipping...")
+                logging.warning(f"A Steam prefix was found, but there is no Proton for it: {_dir_name}, skipping…")
                 continue
 
             _conf = Samples.config.copy()
@@ -281,7 +284,8 @@ class SteamManager:
             _conf["Parameters"]["mangohud"] = "mangohud" in _launch_options["command"]
             _conf["Parameters"]["gamemode"] = "gamemode" in _launch_options["command"]
             _conf["Environment_Variables"] = _launch_options["env_vars"]
-            # TODO: implement missing options
+            for p in _launch_options["env_params"]:
+                _conf["Parameters"][p] = _launch_options["env_params"][p]
 
             prefixes[_dir_name] = _conf
 
@@ -300,7 +304,6 @@ class SteamManager:
             _name, _conf = prefix
             _bottle = os.path.join(Paths.steam, _conf["CompatData"])
 
-            logging.info(f"Creating bottle for Steam prefix {_conf['CompatData']}...")
             os.makedirs(_bottle, exist_ok=True)
 
             with open(os.path.join(_bottle, "bottle.yml"), "w") as f:
@@ -338,8 +341,9 @@ class SteamManager:
         env_vars = {}
         res = {
             "command": "",
-            "args": {},
-            "env_vars": {}
+            "args": "",
+            "env_vars": {},
+            "env_params": {}
         }
 
         if len(launch_options) == 0:
@@ -366,8 +370,18 @@ class SteamManager:
         res = {
             "command": command,
             "args": args,
-            "env_vars": env_vars
+            "env_vars": env_vars,
+            "env_params": {}
         }
+        tmp_env_vars = res["env_vars"].copy()
+
+        for e in tmp_env_vars:
+            if e in Samples.bottles_to_steam_relations:
+                k, v = Samples.bottles_to_steam_relations[e]
+                if v is None:
+                    v = tmp_env_vars[e]
+                res["env_params"][k] = v
+                del res["env_vars"][e]
 
         return res
 
@@ -393,8 +407,8 @@ class SteamManager:
 
         for e, v in original_launch_options["env_vars"].items():
             launch_options += f"{e}={v} "
-
         launch_options += f"{command} %command% {original_launch_options['args']}"
+        print(launch_options)
 
         try:
             local_config["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"][
@@ -449,16 +463,15 @@ class SteamManager:
         _fail_msg = f"Fail to update bottle for: {pfx}"
 
         args = launch_options.get("args", "")
-        if isinstance(args, dict):
+        if isinstance(args, dict) or args == "{}":
             args = ""
 
         winecmd = WineCommand(config, "%command%", args)
-
         command = winecmd.get_cmd("%command%", return_steam_cmd=True)
         env_vars = winecmd.get_env(launch_options["env_vars"], return_steam_env=True)
 
         if "%command%" in command:
-            command, _args = command.split("%command%", 1)
+            command, _args = command.split("%command%")
             args = args + " " + _args
 
         options = {

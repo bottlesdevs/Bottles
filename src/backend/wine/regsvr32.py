@@ -14,11 +14,11 @@ class Regsvr32(WineProgram):
 
     def register(self, dll: str):
         args = f"/s {dll}"
-        return self.launch(args=args, comunicate=True, action_name="register")
+        return self.launch(args=args, communicate=True, action_name="register")
 
     def unregister(self, dll: str):
         args = f"/s /u {dll}"
-        return self.launch(args=args, comunicate=True, action_name="unregister")
+        return self.launch(args=args, communicate=True, action_name="unregister")
 
     def register_all(self, dlls: list):
         for dll in dlls:

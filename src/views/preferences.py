@@ -37,6 +37,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_release_candidate = Gtk.Template.Child()
     switch_steam = Gtk.Template.Child()
     switch_library = Gtk.Template.Child()
+    switch_sandbox = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
@@ -48,8 +49,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
     list_vkd3d = Gtk.Template.Child()
     list_nvapi = Gtk.Template.Child()
     list_latencyflex = Gtk.Template.Child()
-    actionrow_prerelease = Gtk.Template.Child()
+    action_prerelease = Gtk.Template.Child()
     action_bottles_path = Gtk.Template.Child()
+    action_steam_proton = Gtk.Template.Child()
     btn_bottles_path = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
     pref_core = Gtk.Template.Child()
@@ -79,8 +81,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
         self.switch_temp.set_active(self.settings.get_boolean("temp"))
         self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
-        self.switch_steam.set_active(self.settings.get_boolean("experiments-steam"))
+        self.switch_steam.set_active(self.settings.get_boolean("steam-proton-support"))
         self.switch_library.set_active(self.settings.get_boolean("experiments-library"))
+        self.switch_sandbox.set_active(self.settings.get_boolean("experiments-sandbox"))
         self.switch_auto_close.set_active(self.settings.get_boolean("auto-close-bottles"))
         self.switch_update_date.set_active(self.settings.get_boolean("update-date"))
         self.switch_steam_programs.set_active(self.settings.get_boolean("steam-programs"))
@@ -99,6 +102,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.switch_release_candidate.connect('state-set', self.__toggle_rc)
         self.switch_steam.connect('state-set', self.__toggle_steam)
         self.switch_library.connect('state-set', self.__toggle_library)
+        self.switch_sandbox.connect('state-set', self.__toggle_sandbox)
         self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
         self.switch_steam_programs.connect('state-set', self.__toggle_steam_programs)
@@ -108,6 +112,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         if not SteamManager.is_steam_supported():
             self.switch_steam.set_sensitive(False)
+            self.action_steam_proton.set_tooltip_text(
+                _("Steam was not found or Bottles does not have enough permissions.\
+Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
 
     def __toggle_update_date(self, widget, state):
         self.settings.set_boolean("update-date", state)
@@ -130,10 +137,13 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.set_boolean("temp", state)
 
     def __toggle_steam(self, widget, state):
-        self.settings.set_boolean("experiments-steam", state)
+        self.settings.set_boolean("steam-proton-support", state)
 
     def __toggle_library(self, widget, state):
         self.settings.set_boolean("experiments-library", state)
+
+    def __toggle_sandbox(self, widget, state):
+        self.settings.set_boolean("experiments-sandbox", state)
 
     def __toggle_autoclose(self, widget, state):
         self.settings.set_boolean("auto-close-bottles", state)
@@ -147,7 +157,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 self.action_bottles_path.set_subtitle(_file.get_path())
             else:
                 self.action_bottles_path.set_subtitle(
-                    _("Choose where to store the new bottles (this will not move the existing ones)"))
+                    _("Choose where to store the new bottles (this will not move the existing ones)."))
             _file_dialog.destroy()
 
         FileChooser(
@@ -163,7 +173,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.data.remove("custom_bottles_path")
         self.btn_bottles_path_reset.set_visible(False)
         self.action_bottles_path.set_subtitle(
-            _("Choose where to store the new bottles (this will not move the existing ones)"))
+            _("Choose where to store the new bottles (this will not move the existing ones)."))
 
     def populate_runtimes_list(self):
         for runtime in self.manager.supported_runtimes.items():
@@ -195,11 +205,16 @@ class PreferencesWindow(Adw.PreferencesWindow):
             if parent:
                 parent.remove(w)
 
-        exp_caffe = ComponentExpander("Caffe")
+        exp_soda = ComponentExpander("Soda", _("Based on Valve's Wine, includes staging and Proton patches."))
+        exp_caffe = ComponentExpander("Caffe", _("Based on Wine upstream, includes staging and Proton patches."))
         exp_wine_ge = ComponentExpander("GE Wine")
         exp_lutris = ComponentExpander("Lutris")
-        exp_proton = ComponentExpander("GE Proton")
+        exp_vaniglia = ComponentExpander("Vaniglia", _("Based on Wine upstream, includes staging patches."))
+        exp_proton = ComponentExpander("GE Proton", _("Based on Valve's Wine, includes staging, Proton and "
+                                                      "Steam-specific patches. Requires the Steam Runtime turned on."))
         exp_other = ComponentExpander(_("Other"))
+
+        count = {"soda": 0, "caffe": 0, "wine-ge": 0, "lutris": 0, "vaniglia": 0, "proton": 0, "other": 0}
 
         for runner in self.manager.supported_wine_runners.items():
             _runner_name = runner[0].lower()
@@ -208,14 +223,24 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 continue
 
             _entry = ComponentEntry(self.window, runner, "runner")
-            if _runner_name.startswith("caffe"):
+            if _runner_name.startswith("soda"):
+                exp_soda.add_row(_entry)
+                count["soda"] += 1
+            elif _runner_name.startswith("caffe"):
                 exp_caffe.add_row(_entry)
+                count["caffe"] += 1
             elif _runner_name.startswith("wine-ge"):
                 exp_wine_ge.add_row(_entry)
+                count["wine-ge"] += 1
             elif _runner_name.startswith("lutris"):
                 exp_lutris.add_row(_entry)
+                count["lutris"] += 1
+            elif _runner_name.startswith("vaniglia"):
+                exp_lutris.add_row(_entry)
+                count["vaniglia"] += 1
             else:
                 exp_other.add_row(_entry)
+                count["other"] += 1
 
         for runner in self.manager.supported_proton_runners.items():
             if (not self.window.settings.get_boolean("release-candidate")
@@ -224,15 +249,26 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
             _entry = ComponentEntry(self.window, runner, "runner:proton")
             exp_proton.add_row(_entry)
+            count["proton"] += 1
 
-        self.list_runners.add(exp_caffe)
-        self.list_runners.add(exp_wine_ge)
-        self.list_runners.add(exp_lutris)
-        self.list_runners.add(exp_proton)
-        self.list_runners.add(exp_other)
-
-        self.__registry.append(exp_caffe)
-        self.__registry.append(exp_wine_ge)
-        self.__registry.append(exp_lutris)
-        self.__registry.append(exp_proton)
-        self.__registry.append(exp_other)
+        if count["soda"] > 0:
+            self.list_runners.add(exp_soda)
+            self.__registry.append(exp_soda)
+        if count["caffe"] > 0:
+            self.list_runners.add(exp_caffe)
+            self.__registry.append(exp_caffe)
+        if count["wine-ge"] > 0:
+            self.list_runners.add(exp_wine_ge)
+            self.__registry.append(exp_wine_ge)
+        if count["lutris"] > 0:
+            self.list_runners.add(exp_lutris)
+            self.__registry.append(exp_lutris)
+        if count["vaniglia"] > 0:
+            self.list_runners.add(exp_vaniglia)
+            self.__registry.append(exp_vaniglia)
+        if count["proton"] > 0:
+            self.list_runners.add(exp_proton)
+            self.__registry.append(exp_proton)
+        if count["other"] > 0:
+            self.list_runners.add(exp_other)
+            self.__registry.append(exp_other)

@@ -77,6 +77,10 @@ class Runner:
         # kill wineserver after update
         wineboot.kill()
 
+        # force kill if still running
+        if wineserver.is_alive():
+            wineserver.force_kill()
+
         # wait for wineserver to go away
         wineserver.wait()
 

@@ -18,6 +18,7 @@
 import os
 import urllib.request
 from typing import Union, NewType
+from gi.repository import GLib
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.repos.dependency import DependencyRepo
@@ -47,7 +48,8 @@ class RepositoryManager:
         }
     }
 
-    def __init__(self):
+    def __init__(self, repo_fn_update=None):
+        self.repo_fn_update = repo_fn_update
         self.__check_locals()
         self.__get_index()
 
@@ -81,17 +83,23 @@ class RepositoryManager:
                 logging.error(f"Local {repo} path does not exist: {_path}")
 
     def __get_index(self):
+        total = len(self.__repositories)
+
         for repo, data in self.__repositories.items():
             __index = os.path.join(data["url"], f"{VERSION_NUM}.yml")
             __fallback = os.path.join(data["url"], "index.yml")
 
             try:
-                with urllib.request.urlopen(__index) as res:
+                with urllib.request.urlopen(__index) as _:
                     data["index"] = __index
+                    if self.repo_fn_update is not None:
+                        GLib.idle_add(self.repo_fn_update, total)
             except (urllib.error.HTTPError, urllib.error.URLError):
                 try:
-                    with urllib.request.urlopen(__fallback) as res:
+                    with urllib.request.urlopen(__fallback) as _:
                         data["index"] = __fallback
+                        if self.repo_fn_update is not None:
+                            GLib.idle_add(self.repo_fn_update, total)
                 except (urllib.error.HTTPError, urllib.error.URLError):
                     logging.error(f"Could not get index for {repo} repository")
                     continue

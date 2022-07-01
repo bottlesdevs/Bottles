@@ -53,6 +53,13 @@ class LibraryManager:
         if self.__library is None:
             self.__library = {}
 
+        _tmp = self.__library.copy()
+        for k, v in _tmp.items():
+            if "id" not in v:
+                del self.__library[k]
+
+        self.save_library()
+
     def add_to_library(self, data: dict):
         """
         Adds a new entry to the library.yml file.

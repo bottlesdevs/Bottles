@@ -57,12 +57,16 @@ class LibraryEntry(Gtk.Box):
         self.label_bottle.set_text(entry['bottle']['name'])
 
         if entry.get('icon'):
-            if entry['icon'] == "com.usebottles.bottles-program":
-                self.img_icon.set_from_icon_name(entry['icon'])
+            use_default = False
+            if os.path.exists(entry['icon']):
+                try:
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(entry['icon'], 24, 24)
+                    self.img_icon.set_from_pixbuf(pixbuf)
+                except GLib.GError:
+                    use_default = True
+            if entry['icon'] == "com.usebottles.bottles-program" or use_default:
+                self.img_icon.set_from_icon_name("com.usebottles.bottles-program")
                 self.img_icon.set_pixel_size(32)
-            elif os.path.exists(entry['icon']):
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(entry['icon'], 24, 24)
-                self.img_icon.set_from_pixbuf(pixbuf)
             self.img_icon.set_visible(True)
 
         self.btn_run.connect("clicked", self.run_executable)
@@ -95,7 +99,7 @@ class LibraryEntry(Gtk.Box):
 
     def __get_program(self):
         programs = self.manager.get_programs(self.config)
-        programs = [p for p in programs if p["name"] == self.entry['name']]
+        programs = [p for p in programs if p["id"] == self.entry["id"] or p["name"] == self.entry["name"]]
         if len(programs) == 0:
             return None  # TODO: remove entry from library
         return programs[0]

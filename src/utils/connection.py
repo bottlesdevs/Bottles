@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import urllib.request
-
 from datetime import datetime
 from gettext import gettext as _
 
@@ -40,7 +40,7 @@ class ConnectionUtils:
         self.force_offline = force_offline
 
     def check_connection(self, show_notification=False):
-        if self.force_offline:
+        if self.force_offline or "FORCE_OFFLINE" in os.environ:
             logging.info("Forcing offline mode")
             self.status = False
             if self.window is not None:
@@ -48,7 +48,7 @@ class ConnectionUtils:
             return False
 
         try:
-            urllib.request.urlopen('https://usebottles.com/', timeout=5)
+            urllib.request.urlopen('https://repo.usebottles.com/components/index.yml', timeout=5)
             if self.window is not None:
                 self.window.toggle_btn_noconnection(False)
 

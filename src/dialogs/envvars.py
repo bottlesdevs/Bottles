@@ -56,7 +56,6 @@ class EnvVarEntry(Adw.EntryRow):
             value=self.get_text(),
             scope="Environment_Variables"
         )
-        self.set_text("")
 
     def __remove(self, *args):
         """
@@ -117,13 +116,12 @@ class EnvVarsDialog(Adw.Window):
         self.manager.update_config(
             config=self.config,
             key=env_name,
-            value="",
+            value="value",
             scope="Environment_Variables"
         )
-        _entry = EnvVarEntry(parent=self, env=[env_name, ""])
+        _entry = EnvVarEntry(parent=self, env=[env_name, "value"])
         GLib.idle_add(self.group_vars.add, _entry)
         self.entry_name.set_text("")
-        self.entry_name.set_show_apply_button(False)
 
     def __populate_vars_list(self):
         """
@@ -132,7 +130,7 @@ class EnvVarsDialog(Adw.Window):
         """
         envs = self.config.get("Environment_Variables").items()
         if len(envs) == 0:
-            self.group_vars.set_description(_("No environment variables defined"))
+            self.group_vars.set_description(_("No environment variables defined."))
             return
 
         self.group_vars.set_description("")

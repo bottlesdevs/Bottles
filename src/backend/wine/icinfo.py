@@ -11,10 +11,10 @@ class Icinfo(WineProgram):
     command = "icinfo"
 
     def get_output(self):
-        return self.launch(comunicate=True, action_name="get_output")
+        return self.launch(communicate=True, action_name="get_output")
 
     def get_dict(self):
-        res = self.launch(comunicate=True, action_name="get_dict")
+        res = self.launch(communicate=True, action_name="get_dict")
         if res is None or len(res) == 0:
             return {}
 

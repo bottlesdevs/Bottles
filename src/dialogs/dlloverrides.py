@@ -35,13 +35,14 @@ class DLLEntry(Adw.ComboRow):
         self.manager = window.manager
         self.config = config
         self.override = override
+        types = ("b", "n", "b,n", "n,b", "d")
 
         '''
         Set the DLL name as ActionRow title and set the
         combo_type to the type of override
         '''
         self.set_title(self.override[0])
-        self.set_selected(0)
+        self.set_selected(types.index(self.override[1]))
 
         # connect signals
         self.btn_remove.connect("clicked", self.__remove_override)

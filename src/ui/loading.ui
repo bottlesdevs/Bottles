@@ -8,9 +8,35 @@
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <child>
-                    <object class="AdwStatusPage">
-                        <property name="icon-name">com.usebottles.bottles-symbolic</property>
-                        <property name="title" translatable="yes">Starting up…</property>
+                    <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <child>
+                            <object class="AdwStatusPage">
+                                <property name="icon-name">com.usebottles.bottles</property>
+                                <property name="title" translatable="yes">Starting up…</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkLabel" id="label_fetched">
+                                <property name="label">
+                                </property>
+                                <style>
+                                    <class name="dim-label"/>
+                                </style>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkLabel" id="label_downloading">
+                                <property name="label">
+                                </property>
+                                <property name="margin-bottom">20</property>
+                                <style>
+                                    <class name="dim-label"/>
+                                </style>
+                            </object>
+                        </child>
                     </object>
                 </child>
             </object>

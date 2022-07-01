@@ -100,7 +100,7 @@ class ImporterView(Adw.Bin):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
-                self.window.show_toast(_("Importing backup.."))
+                self.window.show_toast(_("Importing backup…"))
                 RunAsync(
                     task_func=BackupManager.import_backup,
                     callback=self.__finish,
@@ -129,7 +129,7 @@ class ImporterView(Adw.Bin):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
-                self.window.show_toast(_("Importing backup.."))
+                self.window.show_toast(_("Importing backup…"))
                 RunAsync(
                     task_func=BackupManager.import_backup,
                     callback=self.__finish,

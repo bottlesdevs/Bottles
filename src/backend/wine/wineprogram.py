@@ -36,7 +36,7 @@ class WineProgram:
             args: Union[tuple, str] = None,
             terminal: bool = False,
             minimal: bool = True,
-            comunicate: bool = False,
+            communicate: bool = False,
             environment: dict = None,
             cwd: str = None,
             action_name: str = "launch"
@@ -60,7 +60,7 @@ class WineProgram:
             command=command,
             terminal=terminal,
             minimal=minimal,
-            comunicate=comunicate,
+            communicate=communicate,
             colors=self.colors,
             environment=environment,
             cwd=cwd,

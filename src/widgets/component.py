@@ -142,7 +142,7 @@ class ComponentEntry(Adw.ActionRow):
             percent = 100
 
         if percent == 100:
-            self.label_task_status.set_text(_("Installing..."))
+            self.label_task_status.set_text(_("Installing…"))
 
     def set_err(self, msg=None, retry=True):
         self.box_download_status.set_visible(False)
@@ -169,7 +169,9 @@ class ComponentEntry(Adw.ActionRow):
 
 class ComponentExpander(Adw.ExpanderRow):
 
-    def __init__(self, title, **kwargs):
+    def __init__(self, title, subtitle=None, **kwargs):
         super().__init__(**kwargs)
 
         self.set_title(title)
+        if subtitle:
+            self.set_subtitle(subtitle)

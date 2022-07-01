@@ -19,7 +19,7 @@ import os
 import subprocess
 
 
-class ImageMagick:
+class ImageMagickUtils:
     def __init__(self, path: str):
         self.path = path
 

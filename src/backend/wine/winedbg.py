@@ -31,7 +31,7 @@ class WineDbg(WineProgram):
 
         res = self.launch(
             args='--command "info proc"',
-            comunicate=True,
+            communicate=True,
             action_name="get_processes"
         )
         if res in [None, ""]:
@@ -104,7 +104,7 @@ class WineDbg(WineProgram):
             ])
             res = self.launch(
                 args=args,
-                comunicate=True,
+                communicate=True,
                 action_name="kill_process"
             )
             if "error 5" in res and name:

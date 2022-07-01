@@ -1,5 +1,6 @@
 import os
 import shlex
+import uuid
 from typing import NewType, Union
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
@@ -9,6 +10,7 @@ from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.msiexec import MsiExec
 from bottles.backend.wine.start import Start
+from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.winepath import WinePath
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.winebridge import WineBridge
@@ -32,7 +34,10 @@ class WineExecutor:
             monitoring: list = None,
             override_dxvk: bool = False,
             override_vkd3d: bool = False,
-            override_nvapi: bool = False
+            override_nvapi: bool = False,
+            override_fsr: bool = False,
+            override_pulse_latency: bool = False,
+            override_virt_desktop: bool = False
     ):
         logging.info("Launching an executable…")
         self.config = config
@@ -55,19 +60,25 @@ class WineExecutor:
         self.environment = environment
         self.post_script = post_script
         self.monitoring = monitoring
+        self.use_virt_desktop = override_virt_desktop
 
-        env_overrides = []
+        env_dll_overrides = []
         if not override_dxvk and self.config["Parameters"]["dxvk"]:
-            env_overrides.append("d3d9,d3d11,d3d10core,dxgi=b")
+            env_dll_overrides.append("d3d9,d3d11,d3d10core,dxgi=b")
         if not override_vkd3d and self.config["Parameters"]["vkd3d"]:
-            env_overrides.append("d3d12=b")
+            env_dll_overrides.append("d3d12=b")
         if not override_nvapi and self.config["Parameters"]["dxvk_nvapi"]:
-            env_overrides.append("nvapi,nvapi64=b")
+            env_dll_overrides.append("nvapi,nvapi64=b")
+        if override_fsr:
+            self.environment["WINE_FULLSCREEN_FSR"] = "1"
+            self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(self.config['Parameters']['fsr_level'])
+        if override_pulse_latency:
+            self.environment["PULSE_LATENCY_MSEC"] = "60"
 
         if "WINEDLLOVERRIDES" in self.environment:
-            self.environment["WINEDLLOVERRIDES"] += "," + ",".join(env_overrides)
+            self.environment["WINEDLLOVERRIDES"] += "," + ",".join(env_dll_overrides)
         else:
-            self.environment["WINEDLLOVERRIDES"] = ",".join(env_overrides)
+            self.environment["WINEDLLOVERRIDES"] = ",".join(env_dll_overrides)
 
     def __get_cwd(self, cwd: str) -> Union[str, None]:
         winepath = WinePath(self.config)
@@ -177,6 +188,10 @@ class WineExecutor:
         #         data={"output": res}
         #     )
         winepath = WinePath(self.config)
+        if self.use_virt_desktop:
+            if winepath.is_unix(self.exec_path):
+                self.exec_path = winepath.to_windows(self.exec_path)
+            return self.__launch_with_explorer()
         if winepath.is_windows(self.exec_path):
             return self.__launch_with_starter()
         if self.exec_type == "exe":
@@ -208,7 +223,7 @@ class WineExecutor:
             terminal=self.terminal,
             cwd=self.cwd,
             environment=self.environment,
-            comunicate=True,
+            communicate=True,
             post_script=self.post_script
         )
         res = winecmd.run()
@@ -252,6 +267,24 @@ class WineExecutor:
         res = start.run(
             file=self.exec_path,
             terminal=self.terminal,
+            args=self.args,
+            environment=self.environment,
+            cwd=self.cwd
+        )
+        self.__set_monitors()
+        return Result(
+            status=True,
+            data={"output": res}
+        )
+
+    def __launch_with_explorer(self):
+        w, h = self.config["Parameters"]["virtual_desktop_res"].split("x")
+        start = Explorer(self.config)
+        res = start.launch_desktop(
+            desktop=str(uuid.uuid4()),
+            width=w,
+            height=h,
+            program=self.exec_path,
             args=self.args,
             environment=self.environment,
             cwd=self.cwd

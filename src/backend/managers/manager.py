@@ -96,8 +96,10 @@ class Manager:
     supported_dependencies = {}
     supported_installers = {}
 
-    def __init__(self, window, is_cli=False, **kwargs):
+    def __init__(self, window, is_cli=False, repo_fn_update=None, **kwargs):
         super().__init__(**kwargs)
+
+        times = {"start": time.time()}
 
         # common variables
         self.window = window
@@ -106,34 +108,86 @@ class Manager:
         self.is_cli = is_cli
         _offline = not window.utils_conn.check_connection()
 
-        self.repository_manager = RepositoryManager()
+        self.repository_manager = RepositoryManager(repo_fn_update)
+        times["RepositoryManager"] = time.time()
+
         self.versioning_manager = VersioningManager(window, self)
+        times["VersioningManager"] = time.time()
+
         self.component_manager = ComponentManager(self, _offline)
+        times["ComponentManager"] = time.time()
+
         self.installer_manager = InstallerManager(self, _offline)
+        times["InstallerManager"] = time.time()
+
         self.dependency_manager = DependencyManager(self, _offline)
+        times["DependencyManager"] = time.time()
+
         self.import_manager = ImportManager(self)
+        times["ImportManager"] = time.time()
 
         if not is_cli:
-            self.checks(install_latest=False, first_run=True)
+            times.update(self.checks(install_latest=False, first_run=True))
         else:
             logging.set_silent()
 
+        if "BOOT_TIME" in os.environ:
+            _temp_times = times.copy()
+            last = 0
+            times_str = "Boot times:"
+            for f, t in _temp_times.items():
+                if last == 0:
+                    last = int(round(t))
+                    continue
+                t = int(round(t))
+                times_str += f"\n\t - {f} took: {t - last}s"
+                last = t
+            logging.info(times_str)
+
     def checks(self, install_latest=False, first_run=False):
-        logging.info("Performing Bottles checks...")
+        logging.info("Performing Bottles checks…")
+        times = {}
+
         self.check_app_dirs()
+        times["check_app_dirs"] = time.time()
+
         self.check_dxvk(install_latest)
+        times["check_dxvk"] = time.time()
+
         self.check_vkd3d(install_latest)
+        times["check_vkd3d"] = time.time()
+
         self.check_nvapi(install_latest)
+        times["check_nvapi"] = time.time()
+
         self.check_latencyflex(install_latest)
+        times["check_latencyflex"] = time.time()
+
         self.check_runtimes(install_latest)
+        times["check_runtimes"] = time.time()
+
         self.check_winebridge(install_latest)
+        times["check_winebridge"] = time.time()
+
         self.check_runners(install_latest)
+        times["check_runners"] = time.time()
+
         if first_run:
             self.organize_components()
+            times["organize_components"] = time.time()
             self.__clear_temp()
-        self.check_bottles()
+            times["clear_temp"] = time.time()
+
         self.organize_dependencies()
+        times["organize_dependencies"] = time.time()
+
         self.organize_installers()
+        times["organize_installers"] = time.time()
+
+        self.check_bottles()
+        times["check_bottles"] = time.time()
+
+        return times
 
     def __clear_temp(self, force: bool = False):
         """Clears the temp directory if user setting allows it. Use the force
@@ -177,7 +231,7 @@ class Manager:
             logging.info("Bottles path doesn't exist, creating now.")
             os.makedirs(Paths.bottles, exist_ok=True)
 
-        if self.settings.get_boolean("experiments-steam") and SteamManager.is_steam_supported():
+        if self.settings.get_boolean("steam-proton-support") and SteamManager.is_steam_supported():
             if not os.path.isdir(Paths.steam):
                 logging.info("Steam path doesn't exist, creating now.")
                 os.makedirs(Paths.steam, exist_ok=True)
@@ -264,7 +318,9 @@ class Manager:
             Uninstaller(config).from_name(uninstaller)
 
         # remove dependency from bottle configuration
-        config["Installed_Dependencies"].remove(dependency)
+        if dependency in config["Installed_Dependencies"]:
+            config["Installed_Dependencies"].remove(dependency)
+
         self.update_config(
             config,
             key="Installed_Dependencies",
@@ -482,7 +538,7 @@ class Manager:
     @staticmethod
     def launch_layer_program(config, layer):
         """Mount a layer and launch the program on it."""
-        logging.info(f"Preparing {len(layer['mounts'])} layer(s)..")
+        logging.info(f"Preparing {len(layer['mounts'])} layer(s)…")
         layer_conf = LayersStore.get_layer_by_uuid(layer['uuid'])
         if not layer_conf:
             logging.error("Layer not found.")
@@ -499,20 +555,21 @@ class Manager:
             mounts.append(_layer["UUID"])
 
         for mount in mounts:
-            logging.info("Mounting layers..")
+            logging.info("Mounting layers…")
             program_layer.mount(_uuid=mount)
 
-        logging.info("Launching program..")
+        logging.info("Launching program…")
         runtime_conf = program_layer.runtime_conf
         wineboot = WineBoot(runtime_conf)
         wineboot.update()
         Runner.run_layer_executable(runtime_conf, layer)
 
-        logging.info("Program exited, unmounting layers..")
+        logging.info("Program exited, unmounting layers…")
         program_layer.sweep()
         program_layer.save()
 
-    def get_programs(self, config: dict) -> list:
+    @staticmethod
+    def get_programs(config: dict) -> list:
         """
         Get the list of programs (both from the drive and the user defined
         in the bottle configuration file).
@@ -560,8 +617,8 @@ class Manager:
         Process External_Programs
         '''
         for program in ext_programs:
-            found.append(program)
             _program = ext_programs[program]
+            found.append(_program["executable"] )
             if winepath.is_windows(_program["path"]):
                 program_folder = ManagerUtils.get_exe_parent_dir(config, _program["path"])
             else:
@@ -571,14 +628,17 @@ class Manager:
                 "arguments": _program.get("arguments", ""),
                 "name": _program["name"],
                 "path": _program["path"],
-                "folder": program_folder,
+                "folder": _program.get("folder", program_folder),
                 "icon": "com.usebottles.bottles-program",
                 "script": _program.get("script"),
                 "dxvk": _program.get("dxvk", config["Parameters"]["dxvk"]),
                 "vkd3d": _program.get("vkd3d", config["Parameters"]["vkd3d"]),
                 "dxvk_nvapi": _program.get("dxvk_nvapi", config["Parameters"]["dxvk_nvapi"]),
+                "fsr": _program.get("fsr", config["Parameters"]["fsr"]),
+                "pulseaudio_latency": _program.get("pulseaudio_latency", config["Parameters"]["pulseaudio_latency"]),
+                "virtual_desktop": _program.get("virtual_desktop", config["Parameters"]["virtual_desktop"]),
                 "removed": _program.get("removed"),
-                "id": program
+                "id": _program.get("id")
             })
 
         for program in results:
@@ -618,11 +678,14 @@ class Manager:
                         "path": executable_path,
                         "folder": program_folder,
                         "icon": "com.usebottles.bottles-program",
-                        "id": executable_name,
+                        "id": str(uuid.uuid4()),
                         "script": "",
                         "dxvk": config["Parameters"]["dxvk"],
                         "vkd3d": config["Parameters"]["vkd3d"],
                         "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
+                        "fsr": config["Parameters"]["fsr"],
+                        "pulseaudio_latency": config["Parameters"]["pulseaudio_latency"],
+                        "virtual_desktop": config["Parameters"]["virtual_desktop"],
                         "auto_discovered": True
                     })
                     found.append(executable_name)
@@ -637,11 +700,7 @@ class Manager:
         """
         bottles = os.listdir(Paths.bottles)
 
-        for bottle in bottles:
-            '''
-            For each bottle add the path name to the `local_bottles` variable
-            and append the config.
-            '''
+        def process_bottle(bottle):
             _name = bottle
             _bottle = os.path.join(Paths.bottles, bottle)
             _placeholder = os.path.join(_bottle, "placeholder.yml")
@@ -656,27 +715,40 @@ class Manager:
                         else:
                             raise Exception("Missing Path in placeholder.yml")
                     except (yaml.YAMLError, Exception):
-                        if not silent:
-                            logging.error("Placeholder found but could not be parsed")
-                        continue
+                        return
 
             try:
-                if not os.path.exists(_config):
+                if not os.path.is_file(_config):
                     raise AttributeError
                 with open(_config, "r") as f:
                     conf_file_yaml = yaml.safe_load(f)
             except (FileNotFoundError, AttributeError, yaml.YAMLError):
-                if not silent:
-                    logging.warning(f"Bottle {_name} is missing a config file")
-                continue
+                return
 
             if conf_file_yaml is None:
-                logging.warning(f"Config file is empty: {_config}")
-                continue
+                return
 
             # Clear Latest_Executables on new session start
             if conf_file_yaml.get("Latest_Executables"):
                 conf_file_yaml["Latest_Executables"] = []
+
+            # Migrate old programs to [id] and [name]
+            _temp = conf_file_yaml.get("External_Programs").copy()
+            _changed = False
+            for k, v in _temp.items():
+                _uuid = str(uuid.uuid4())
+                if "id" not in v:
+                    _temp[k]["id"] = _uuid
+                    _changed = True
+                if "name" not in v:
+                    _temp[k]["name"] = _temp[k]["executable"].split(".")[0]
+            if _changed:
+                self.update_config(
+                    config=conf_file_yaml,
+                    key="External_Programs",
+                    value=_temp
+                )
+                conf_file_yaml["External_Programs"] = _temp
 
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
             for key in miss_keys:
@@ -713,6 +785,7 @@ class Manager:
                     os.makedirs(p)
 
             for c in os.listdir(_bottle):
+                c = str(c)
                 if c.endswith(".dxvk-cache"):
                     shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "dxvk_state"))
                 elif "vkd3d-proton.cache" in c:
@@ -720,10 +793,17 @@ class Manager:
                 elif c == "GLCache":
                     shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "gl_shader"))
 
+        for b in bottles:
+            '''
+            For each bottle add the path name to the `local_bottles` variable
+            and append the config.
+            '''
+            process_bottle(b)
+
         if len(self.local_bottles) > 0 and not silent:
             logging.info("Bottles found:\n - {0}".format("\n - ".join(self.local_bottles)))
 
-        if self.settings.get_boolean("experiments-steam") and SteamManager.is_steam_supported() and not self.is_cli:
+        if self.settings.get_boolean("steam-proton-support") and SteamManager.is_steam_supported() and not self.is_cli:
             SteamManager.update_bottles()
             self.local_bottles.update(SteamManager.list_prefixes())
 
@@ -809,7 +889,7 @@ class Manager:
         if config["Runner"] not in self.runners_available:
             '''
             If the runner is not in the list of available runners, set it
-            to latest Caffe. If there is no Caffe, set it to the
+            to latest Soda. If there is no Soda, set it to the
             first one.
             '''
             config["Runner"] = self.get_latest_runner("wine")
@@ -1102,8 +1182,10 @@ class Manager:
         if not template and not custom_environment:
             logging.info("Setting Windows version…")
             log_update(_("Setting Windows version…"))
-            rk.set_windows(config["Windows"])
-            wineboot.update()
+            if "soda" not in runner_name.lower() \
+                    and "caffe" not in runner_name.lower():  # Caffe/Soda came with win10 by default
+                rk.set_windows(config["Windows"])
+                wineboot.update()
 
             FileUtils.wait_for_files(reg_files)
 
@@ -1118,7 +1200,7 @@ class Manager:
             # blacklisting processes
             logging.info("Optimizing environment…")
             log_update(_("Optimizing environment…"))
-            _blacklist_dll = ["winemenubuilder.exe"]
+            _blacklist_dll = ["winemenubuilder.exe", "mshtml", "mscoree"]  # avoid gecko, mono popups
             for _dll in _blacklist_dll:
                 reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
@@ -1250,7 +1332,7 @@ class Manager:
         """Return the latest available runner for a given type."""
         try:
             if runner_type in ["", "wine"]:
-                return self.__sort_runners("caffe")
+                return self.__sort_runners("soda")
             return self.__sort_runners("proton")
         except IndexError:
             return []
@@ -1268,12 +1350,12 @@ class Manager:
         wineserver.wait()
 
         if config.get("Path"):
-            logging.info(f"Removing applications installed with the bottle ..")
+            logging.info(f"Removing applications installed with the bottle…")
             for inst in glob(f"{Paths.applications}/{config.get('Name')}--*"):
                 os.remove(inst)
 
             if config.get("Custom_Path"):
-                logging.info(f"Removing placeholder ..")
+                logging.info(f"Removing placeholder…")
                 try:
                     os.remove(os.path.join(
                         Paths.bottles,

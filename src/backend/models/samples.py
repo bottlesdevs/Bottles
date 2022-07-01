@@ -57,13 +57,23 @@ class Samples:
             "use_eac_runtime": True,
             "use_be_runtime": True,
             "use_steam_runtime": False,
+            "sandbox": False,
+        },
+        "Sandbox": {
+            # "share_paths_ro": [], # TODO: implement
+            # "share_paths_rw": [], # TODO: implement
+            "share_net": True,
+            # "share_host_ro": True, # TODO: implement, requires the Bottles runtime (next) for a minimal sandbox
+            "share_sound": True,
+            # "share_gpu": True # not available on bwrap yet
         },
         "Environment_Variables": {},
         "Installed_Dependencies": [],
         "DLL_Overrides": {},
         "External_Programs": {},
         "Uninstallers": {},
-        "Latest_Executables": []
+        "Latest_Executables": [],
+        "Language": "sys"
     }
 
     environments = {
@@ -107,4 +117,21 @@ class Samples:
             "Runner": "wine",
             "Layers": {}
         },
+    }
+
+    bottles_to_steam_relations = {
+        "DXVK_HUD": ("dxvk_hud", True),
+        "MANGOHUD": ("mangohud", True),
+        "OBS_VKCAPTURE": ("obsvkc", True),
+        "ENABLE_VKBASALT": ("vkbasalt", True),
+        "WINEESYNC": ("sync", "esync"),
+        "WINEFSYNC": ("sync", "fsync"),
+        "WINEFSYNC_FUTEX2": ("sync", "futex2"),
+        "WINE_FULLSCREEN_FSR": ("fsr", True),
+        "WINE_FULLSCREEN_FSR_STRENGTH": ("fsr_level", None),
+        "DRI_PRIME": ("discrete_gpu", True),
+        "__NV_PRIME_RENDER_OFFLOAD": ("discrete_gpu", True),
+        "PULSE_LATENCY_MSEC": ("pulseaudio_latency", True),
+        "PROTON_EAC_RUNTIME": ("use_eac_runtime", True),
+        "PROTON_BATTLEYE_RUNTIME": ("use_be_runtime", True)
     }

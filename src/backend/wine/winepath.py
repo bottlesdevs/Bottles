@@ -39,7 +39,7 @@ class WinePath(WineProgram):
             )
             return self.__clean_path(path)
         args = f"--unix '{path}'"
-        res = self.launch(args=args, comunicate=True, action_name="--unix")
+        res = self.launch(args=args, communicate=True, action_name="--unix")
         return self.__clean_path(res)
 
     @lru_cache
@@ -62,17 +62,17 @@ class WinePath(WineProgram):
             return self.__clean_path(path)
 
         args = f"--windows '{path}'"
-        res = self.launch(args=args, comunicate=True, action_name="--windows")
+        res = self.launch(args=args, communicate=True, action_name="--windows")
         return self.__clean_path(res)
 
     @lru_cache
     def to_long(self, path: str):
         args = f"--long '{path}'"
-        res = self.launch(args=args, comunicate=True, action_name="--long")
+        res = self.launch(args=args, communicate=True, action_name="--long")
         return self.__clean_path(res)
 
     @lru_cache
     def to_short(self, path: str):
         args = f"--short '{path}'"
-        res = self.launch(args=args, comunicate=True, action_name="--short")
+        res = self.launch(args=args, communicate=True, action_name="--short")
         return self.__clean_path(res)

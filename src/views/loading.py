@@ -21,3 +21,14 @@ from gi.repository import Gtk, Adw
 @Gtk.Template(resource_path='/com/usebottles/bottles/loading.ui')
 class LoadingView(Adw.Bin):
     __gtype_name__ = 'LoadingView'
+    __fetched = 0
+
+    # region widgets
+    label_fetched = Gtk.Template.Child()
+    label_downloading = Gtk.Template.Child()
+    # endregion
+
+    def add_fetched(self, total):
+        self.__fetched += 1
+        self.label_downloading.set_text(_("Downloading ~{0} of packages…").format("20kb"))
+        self.label_fetched.set_text(_("Fetched {0} of {1} packages").format(self.__fetched, total))

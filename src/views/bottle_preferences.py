@@ -23,16 +23,20 @@ from gi.repository import Gtk, Adw
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.gtk import GtkUtils
 
-from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
+from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, \
+    obs_vkc_available
 from bottles.backend.managers.runtime import RuntimeManager
-from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.manager import ManagerUtils
+
+from bottles.backend.models.result import Result
 
 from bottles.dialogs.filechooser import FileChooser
 from bottles.dialogs.envvars import EnvVarsDialog
 from bottles.dialogs.drives import DrivesDialog
 from bottles.dialogs.dlloverrides import DLLOverridesDialog
 from bottles.dialogs.gamescope import GamescopeDialog
+from bottles.dialogs.sandbox import SandboxDialog
+from bottles.dialogs.protonalert import ProtonAlertDialog
 
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
@@ -47,6 +51,7 @@ class PreferencesView(Adw.PreferencesPage):
     # region Widgets
     btn_manage_components = Gtk.Template.Child()
     btn_manage_gamescope = Gtk.Template.Child()
+    btn_manage_sandbox = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
     row_dxvk = Gtk.Template.Child()
@@ -62,6 +67,7 @@ class PreferencesView(Adw.PreferencesPage):
     row_env_variables = Gtk.Template.Child()
     row_overrides = Gtk.Template.Child()
     row_drives = Gtk.Template.Child()
+    row_sandbox = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
@@ -83,6 +89,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_mouse_capture = Gtk.Template.Child()
     switch_take_focus = Gtk.Template.Child()
     switch_mouse_warp = Gtk.Template.Child()
+    switch_sandbox = Gtk.Template.Child()
     toggle_sync = Gtk.Template.Child()
     toggle_esync = Gtk.Template.Child()
     toggle_fsync = Gtk.Template.Child()
@@ -97,6 +104,7 @@ class PreferencesView(Adw.PreferencesPage):
     combo_latencyflex = Gtk.Template.Child()
     combo_windows = Gtk.Template.Child()
     combo_renderer = Gtk.Template.Child()
+    combo_language = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
     spinner_dxvkbool = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
@@ -110,6 +118,7 @@ class PreferencesView(Adw.PreferencesPage):
     box_sync = Gtk.Template.Child()
     group_details = Gtk.Template.Child()
     exp_components = Gtk.Template.Child()
+    str_list_languages = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -130,6 +139,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.row_drives.connect("activated", self.__show_drives)
         self.btn_manage_components.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
+        self.btn_manage_sandbox.connect("clicked", self.__show_sandbox_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.choose_cwd, True)
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
@@ -146,6 +156,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
         self.switch_gamemode.connect('state-set', self.__toggle_gamemode)
         self.switch_gamescope.connect('state-set', self.__toggle_gamescope)
+        self.switch_sandbox.connect('state-set', self.__toggle_sandbox)
         self.switch_fsr.connect('state-set', self.__toggle_fsr)
         self.switch_discrete.connect('state-set', self.__toggle_discrete_gpu)
         self.switch_virt_desktop.connect('state-set', self.__toggle_virt_desktop)
@@ -165,6 +176,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.connect('changed', self.__set_latencyflex)
         self.combo_windows.connect('changed', self.__set_windows)
         self.combo_renderer.connect('changed', self.__set_renderer)
+        self.combo_language.connect('notify::selected-item', self.__set_language)
         self.ev_controller.connect("key-released", self.__check_entry_name)
         self.entry_name.connect("apply", self.__save_name)
         # endregion
@@ -180,6 +192,7 @@ class PreferencesView(Adw.PreferencesPage):
         '''Toggle some utilities according to its availability'''
         self.switch_gamemode.set_sensitive(gamemode_available)
         self.switch_gamescope.set_sensitive(gamescope_available)
+        self.btn_manage_gamescope.set_sensitive(gamescope_available)
         self.switch_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         _not_available = _("This feature is not available on your system.")
@@ -187,6 +200,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_gamemode.set_tooltip_text(_not_available)
         if not gamescope_available:
             self.switch_gamescope.set_tooltip_text(_not_available)
+            self.btn_manage_gamescope.set_tooltip_text(_not_available)
         if not mangohud_available:
             self.switch_mangohud.set_tooltip_text(_not_available)
         if not obs_vkc_available:
@@ -210,6 +224,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def choose_cwd(self, widget, reset=False):
         """Change the default current working directory for the bottle"""
+
         def set_path(_dialog, response, _file_dialog):
             if response == Gtk.ResponseType.OK:
                 _file = _file_dialog.get_file()
@@ -255,12 +270,14 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
+        self.combo_language.handler_block_by_func(self.__set_language)
 
         self.combo_runner.remove_all()
         self.combo_dxvk.remove_all()
         self.combo_vkd3d.remove_all()
         self.combo_nvapi.remove_all()
         self.combo_latencyflex.remove_all()
+        self.str_list_languages.splice(0, self.str_list_languages.get_n_items())
 
         for runner in self.manager.runners_available:
             self.combo_runner.append(runner, runner)
@@ -277,11 +294,15 @@ class PreferencesView(Adw.PreferencesPage):
         for latencyflex in self.manager.latencyflex_available:
             self.combo_latencyflex.append(latencyflex, latencyflex)
 
+        for l in ManagerUtils.get_languages():
+            self.str_list_languages.append(l)
+
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
+        self.combo_language.handler_unblock_by_func(self.__set_language)
 
     def set_config(self, config):
         self.config = config
@@ -302,6 +323,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_obsvkc.handler_block_by_func(self.__toggle_obsvkc)
         self.switch_gamemode.handler_block_by_func(self.__toggle_gamemode)
         self.switch_gamescope.handler_block_by_func(self.__toggle_gamescope)
+        self.switch_sandbox.handler_block_by_func(self.__toggle_sandbox)
         self.switch_discrete.handler_block_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
         self.switch_pulse_latency.handler_block_by_func(self.__toggle_pulse_latency)
@@ -319,6 +341,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_windows.handler_block_by_func(self.__set_windows)
         self.combo_renderer.handler_block_by_func(self.__set_renderer)
+        self.combo_language.handler_block_by_func(self.__set_language)
         self.combo_dpi.handler_block_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_block_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_block_by_func(self.__set_esync)
@@ -336,6 +359,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_latencyflex.set_active(parameters["latencyflex"])
         self.switch_gamemode.set_active(parameters["gamemode"])
         self.switch_gamescope.set_active(parameters["gamescope"])
+        self.switch_sandbox.set_active(parameters["sandbox"])
         self.switch_fsr.set_active(parameters["fsr"])
         self.switch_runtime.set_active(parameters["use_runtime"])
         self.switch_steam_runtime.set_active(parameters["use_steam_runtime"])
@@ -384,6 +408,10 @@ class PreferencesView(Adw.PreferencesPage):
             self.combo_windows.append("win95", "Windows 95")
 
         self.combo_windows.set_active_id(self.config.get("Windows"))
+        self.combo_language.set_selected(ManagerUtils.get_languages(
+            from_locale=self.config.get("Language"),
+            get_index=True
+        ))
 
         # unlock functions connected to the widgets
         self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)
@@ -400,6 +428,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_obsvkc)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_gamemode)
         self.switch_gamescope.handler_unblock_by_func(self.__toggle_gamescope)
+        self.switch_sandbox.handler_unblock_by_func(self.__toggle_sandbox)
         self.switch_discrete.handler_unblock_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_unblock_by_func(self.__toggle_fsr)
         self.switch_pulse_latency.handler_unblock_by_func(self.__toggle_pulse_latency)
@@ -417,6 +446,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
         self.combo_renderer.handler_unblock_by_func(self.__set_renderer)
+        self.combo_language.handler_unblock_by_func(self.__set_language)
         self.combo_dpi.handler_unblock_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_unblock_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_unblock_by_func(self.__set_esync)
@@ -428,6 +458,13 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __show_gamescope_settings(self, widget):
         new_window = GamescopeDialog(
+            window=self.window,
+            config=self.config
+        )
+        new_window.present()
+
+    def __show_sandbox_settings(self, widget):
+        new_window = SandboxDialog(
             window=self.window,
             config=self.config
         )
@@ -453,6 +490,7 @@ class PreferencesView(Adw.PreferencesPage):
         Set the sync type (wine, esync, fsync, futext2)
         Don't use this directly, use dedicated wrappers instead (e.g. __set_wine_sync)
         """
+
         def update(result, error=False):
             self.config = result.data["config"]
             toggles = [
@@ -622,6 +660,15 @@ class PreferencesView(Adw.PreferencesPage):
             scope="Parameters"
         ).data["config"]
 
+    def __toggle_sandbox(self, widget=False, state=False):
+        """Toggle the sandbox for current bottle"""
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="sandbox",
+            value=state,
+            scope="Parameters"
+        ).data["config"]
+
     def __toggle_fsr(self, widget, state):
         """Toggle the FSR for current bottle"""
         self.config = self.manager.update_config(
@@ -733,8 +780,9 @@ class PreferencesView(Adw.PreferencesPage):
                 self.spinner_runner.start()
 
         def update(result, error=False):
-            if result and "config" in result.data.keys():
-                self.config = result.data["config"]
+            if result:
+                if "config" in result.data.keys():
+                    self.config = result.data["config"]
                 if self.config["Parameters"].get("use_steam_runtime"):
                     self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
                     self.switch_steam_runtime.set_active(True)
@@ -744,13 +792,27 @@ class PreferencesView(Adw.PreferencesPage):
         set_widgets_status(False)
         runner = widget.get_active_id()
 
-        RunAsync(
-            Runner.runner_update,
-            callback=update,
-            config=self.config,
-            manager=self.manager,
-            runner=runner
-        )
+        def run_task(status=True):
+            if not status:
+                update(Result(True))
+                self.combo_runner.handler_block_by_func(self.__set_runner)
+                self.combo_runner.set_active_id(self.config.get("Runner"))
+                self.combo_runner.handler_unblock_by_func(self.__set_runner)
+                return
+
+            RunAsync(
+                Runner.runner_update,
+                callback=update,
+                config=self.config,
+                manager=self.manager,
+                runner=runner
+            )
+
+        if "proton" in runner.lower():
+            dialog = ProtonAlertDialog(self.window, run_task)
+            dialog.show()
+        else:
+            run_task()
 
     def __dll_component_task_func(self, *args, **kwargs):
         # Remove old version
@@ -854,6 +916,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_renderer(self, widget):
         """Set the renderer to use for the bottle"""
+
         def update(result, error=False):
             self.config = self.manager.update_config(
                 config=self.config,
@@ -872,6 +935,16 @@ class PreferencesView(Adw.PreferencesPage):
             callback=update,
             value=renderer
         )
+
+    def __set_language(self, *args):
+        """Set the language to use for the bottle"""
+        index = self.combo_language.get_selected()
+        language = ManagerUtils.get_languages(from_index=index)
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="Language",
+            value=language[0],
+        ).data["config"]
 
     def __toggle_pulse_latency(self, widget, state):
         """Set the pulse latency to use for the bottle"""
@@ -1025,8 +1098,11 @@ class PreferencesView(Adw.PreferencesPage):
             self.row_vkd3d,
             self.row_nvapi,
             self.row_latencyflex,
+            self.row_sandbox,
             self.group_details,
             self.exp_components
         ]:
             w.set_visible(status)
             w.set_sensitive(status)
+
+        self.row_sandbox.set_visible(self.window.settings.get_boolean("experiments-sandbox"))

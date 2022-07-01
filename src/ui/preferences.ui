@@ -33,30 +33,6 @@
                         <property name="title" translatable="yes">General</property>
                         <child>
                             <object class="AdwActionRow">
-                                <property name="title" translatable="yes">List Steam Apps in Programs List</property>
-                                <property name="subtitle" translatable="yes">Requires Steam for Windows installed in the bottle.</property>
-                                <property name="activatable-widget">switch_steam_programs</property>
-                                <child>
-                                    <object class="GtkSwitch" id="switch_steam_programs">
-                                        <property name="valign">center</property>
-                                    </object>
-                                </child>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="AdwActionRow">
-                                <property name="title" translatable="yes">List Epic Games in Programs List</property>
-                                <property name="subtitle" translatable="yes">Requires Epic Games Store installed in the bottle.</property>
-                                <property name="activatable-widget">switch_epic_games</property>
-                                <child>
-                                    <object class="GtkSwitch" id="switch_epic_games">
-                                        <property name="valign">center</property>
-                                    </object>
-                                </child>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="AdwActionRow">
                                 <property name="title" translatable="yes">Notifications</property>
                                 <property name="subtitle" translatable="yes">Show notifications for downloads and installs.</property>
                                 <property name="activatable-widget">switch_notifications</property>
@@ -82,10 +58,51 @@
                         <child>
                             <object class="AdwActionRow">
                                 <property name="title" translatable="yes">Close Bottles After Starting a Program</property>
-                                <property name="subtitle" translatable="yes">Close Bottles after starting a program from the file manager</property>
+                                <property name="subtitle" translatable="yes">Close Bottles after starting a program from the file manager.</property>
                                 <property name="activatable-widget">switch_auto_close</property>
                                 <child>
                                     <object class="GtkSwitch" id="switch_auto_close">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwPreferencesGroup">
+                        <property name="title" translatable="yes">Integrations</property>
+                        <child>
+                            <object class="AdwActionRow" id="action_steam_proton">
+                                <property name="title" translatable="yes">Steam Proton Prefixes</property>
+                                <property name="subtitle" translatable="yes">List and manage Steam Proton prefixes.</property>
+                                <property name="activatable-widget">switch_steam</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_steam">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">List Steam Apps in Programs List</property>
+                                <property name="subtitle" translatable="yes">Requires Steam for Windows installed in the bottle.</property>
+                                <property name="activatable-widget">switch_steam_programs</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_steam_programs">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">List Epic Games in Programs List</property>
+                                <property name="subtitle" translatable="yes">Requires Epic Games Store installed in the bottle.</property>
+                                <property name="activatable-widget">switch_epic_games</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_epic_games">
                                         <property name="valign">center</property>
                                     </object>
                                 </child>
@@ -99,7 +116,7 @@
                         <child>
                             <object class="AdwActionRow" id="action_bottles_path">
                                 <property name="title" translatable="yes">Custom Bottles Path (Requires Restart)</property>
-                                <property name="subtitle" translatable="yes">Choose where to store the new bottles (this will not move the existing ones)</property>
+                                <property name="subtitle" translatable="yes">Choose where to store the new bottles (this will not move the existing ones).</property>
                                 <property name="activatable-widget">btn_bottles_path</property>
                                 <child>
                                     <object class="GtkButton" id="btn_bottles_path_reset">
@@ -136,7 +153,7 @@
                 <child>
                     <object class="AdwPreferencesGroup" id="list_runners">
                         <child>
-                            <object class="AdwActionRow" id="actionrow_prerelease">
+                            <object class="AdwActionRow" id="action_prerelease">
                                 <property name="title" translatable="yes">Pre-Release</property>
                                 <property name="subtitle" translatable="yes">Display unstable versions of runners.</property>
                                 <property name="activatable-widget">switch_release_candidate</property>
@@ -202,11 +219,11 @@
                     <object class="AdwPreferencesGroup">
                         <child>
                             <object class="AdwActionRow">
-                                <property name="title" translatable="yes">Steam Proton Prefixes</property>
-                                <property name="subtitle" translatable="yes">In early development (requires restart)</property>
-                                <property name="activatable-widget">switch_steam</property>
+                                <property name="title" translatable="yes">Library</property>
+                                <property name="subtitle" translatable="yes">In early development (requires restart).</property>
+                                <property name="activatable-widget">switch_library</property>
                                 <child>
-                                    <object class="GtkSwitch" id="switch_steam">
+                                    <object class="GtkSwitch" id="switch_library">
                                         <property name="valign">center</property>
                                     </object>
                                 </child>
@@ -214,11 +231,11 @@
                         </child>
                         <child>
                             <object class="AdwActionRow">
-                                <property name="title" translatable="yes">Library</property>
-                                <property name="subtitle" translatable="yes">In early development (requires restart)</property>
-                                <property name="activatable-widget">switch_library</property>
+                                <property name="title" translatable="yes">Sandbox per bottle</property>
+                                <property name="subtitle" translatable="yes">In early development.</property>
+                                <property name="activatable-widget">switch_sandbox</property>
                                 <child>
-                                    <object class="GtkSwitch" id="switch_library">
+                                    <object class="GtkSwitch" id="switch_sandbox">
                                         <property name="valign">center</property>
                                     </object>
                                 </child>

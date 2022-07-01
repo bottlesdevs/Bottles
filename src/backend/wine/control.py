@@ -12,7 +12,7 @@ class Control(WineProgram):
 
     def load_applet(self, name: str):
         args = name
-        return self.launch(args=args, comunicate=True, action_name="load_applet")
+        return self.launch(args=args, communicate=True, action_name="load_applet")
 
     def load_joystick(self):
         return self.load_applet("joy.cpl")

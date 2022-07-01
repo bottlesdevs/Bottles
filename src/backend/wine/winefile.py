@@ -12,4 +12,4 @@ class WineFile(WineProgram):
 
     def open_path(self, path: str = "C:\\\\"):
         args = path
-        return self.launch(args=args, comunicate=True, action_name="open_path")
+        return self.launch(args=args, communicate=True, action_name="open_path")

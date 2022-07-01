@@ -45,12 +45,7 @@ class VersioningManager:
         self.manager = manager
         self.__operation_manager = OperationManager(self.window)
 
-    def create_state(
-            self,
-            config: dict,
-            comment: str = "No comment",
-            update: bool = False
-    ):
+    def create_state(self, config: dict, comment: str = "No comment", update: bool = False):
         """
         Create a new bottle state. It will list all files in the bottle and
         compare them with the current index, looking for differences.
@@ -372,7 +367,7 @@ class VersioningManager:
         search_sources = list(range(int(state_id) + 1))
         search_sources.reverse()
 
-        # check for removed and chaged files
+        # check for removed and changed files
         remove_files = []
         edit_files = []
         for file in bottle_index.get("Files"):
@@ -396,11 +391,7 @@ class VersioningManager:
 
         for file in add_files:
             for i in search_sources:
-                source = "%s/states/%s/drive_c/%s" % (
-                    bottle_path, str(i), file["file"]
-                )
-                if os.path.isfile(source):
-                    break
+                source = "%s/states/%s/drive_c/%s" % (bottle_path, str(state_id), file["file"])
                 target = "%s/drive_c/%s" % (bottle_path, file["file"])
                 shutil.copy2(source, target)
 

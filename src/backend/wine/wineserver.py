@@ -5,6 +5,7 @@ import subprocess
 from typing import NewType
 
 from bottles.backend.utils.manager import ManagerUtils  # pyright: reportMissingImports=false
+from bottles.backend.utils.proc import ProcUtils
 from bottles.backend.utils.decorators import cache
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.logger import Logger
@@ -79,6 +80,15 @@ class WineServer(WineProgram):
 
         self.launch(
             args=args,
-            comunicate=True,
+            communicate=True,
             action_name="sending signal to the wine server"
         )
+
+    def force_kill(self):
+        bottle = ManagerUtils.get_bottle_path(self.config)
+        procs = ProcUtils.get_by_env(f"WINEPREFIX={bottle}")
+        for proc in procs:
+            proc.kill()
+
+        if len(procs) == 0:
+            self.kill(9)

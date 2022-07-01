@@ -17,7 +17,8 @@
 
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.backend.wine.drives import Drives  # pyright: reportMissingImports=false
+from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
+from bottles.backend.wine.drives import Drives
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/drive-entry.ui')
@@ -57,7 +58,8 @@ class DriveEntry(Adw.ActionRow):
         """
         def set_path(_dialog, response, _file_dialog):
             _file = _file_dialog.get_file()
-            if _file is None or response != -3:
+            if _file is None or response != Gtk.ResponseType.OK:
+                _dialog.destroy()
                 return
             path = _file.get_path()
             Drives(self.config).new_drive(self.drive[0], path)
@@ -65,7 +67,7 @@ class DriveEntry(Adw.ActionRow):
             _dialog.destroy()
 
         FileChooser(
-            parent=self.window,
+            parent=self.parent.window,
             title=_("Choose path"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
             buttons=(_("Cancel"), _("Select")),
