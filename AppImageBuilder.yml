@@ -20,8 +20,9 @@ script:
   # Copying Bottles binary
   - cp build/src/bottles AppDir/usr/bin/
 
-  # Copying AppRun script
+  # Copying AppRun script and making it executable
   - cp AppRun AppDir/usr/bin/
+  - chmod +x /home/runner/work/Bottles/Bottles/AppDir/usr/bin/AppRun
   
   # Copying Bottles python package and remove not useful files
   - cp -a src AppDir/usr/local/share/bottles/bottles
