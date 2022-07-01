@@ -19,6 +19,9 @@ script:
   
   # Copying Bottles binary
   - cp build/src/bottles AppDir/usr/bin/
+
+  # Copying AppRun script
+  - cp AppRun AppDir/usr/bin/
   
   # Copying Bottles python package and remove not useful files
   - cp -a src AppDir/usr/local/share/bottles/bottles
@@ -80,10 +83,10 @@ AppDir:
     version: 2022.6.28-brescia
     
     # Set the python executable as entry point
-    exec: usr/bin/python3.10
+    exec: usr/bin/AppRun
     
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
-    exec_args: "$APPDIR/usr/bin/bottles $@"
+    exec_args: "$@"
 
   apt:
     arch: [amd64, i386]
