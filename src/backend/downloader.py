@@ -82,7 +82,7 @@ class Downloader:
         """Update the progress bar."""
         percent = int(count * block_size * 100 / total_size)
         name = self.file.split("/")[-1]
-        print(f"\rDownloading {name}: {percent}% [{'=' * int(percent / 2)}>", end="")
+        print(f"\r{name} ({percent}%) {'━' * int(percent / 2)}", end="")
 
         if percent == 100:
             print("\n")
