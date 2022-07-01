@@ -87,10 +87,7 @@ class VersioningManager:
                                     )
             state_index = yaml.safe_load(state_index_file)
             state_index_file.close()
-            state_index_files = state_index["Additions"] + \
-                                state_index["Removed"] + \
-                                state_index["Changes"]
-
+            state_index_files = state_index["Additions"] + state_index["Removed"] + state_index["Changes"]
             state_temp_checksums = [f["checksum"] for f in state_index_files]
             state_temp_files = [
                 tuple([f["file"], f["checksum"]])
