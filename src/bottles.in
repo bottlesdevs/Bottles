@@ -37,6 +37,7 @@ if __name__ == '__main__':
 
     from gi.repository import Gio
     resource = Gio.Resource.load(gresource_path)
+    # noinspection PyProtectedMember
     resource._register()
 
     from bottles import main

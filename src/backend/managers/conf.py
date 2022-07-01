@@ -25,6 +25,7 @@ class ConfigManager(object):
         if self.config_type == 'ini':
             config = ConfigParser()
             config.read(self.config_file)
+            # noinspection PyProtectedMember
             res = config._sections
         elif self.config_type == 'json':
             with open(self.config_file, 'r') as f:

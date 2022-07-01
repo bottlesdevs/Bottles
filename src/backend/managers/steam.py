@@ -21,6 +21,7 @@ import yaml
 import shlex
 import shutil
 import subprocess
+import contextlib
 from glob import glob
 from pathlib import Path
 from functools import lru_cache
@@ -295,10 +296,8 @@ class SteamManager:
     def update_bottles():
         prefixes = SteamManager.list_prefixes()
 
-        try:
+        with contextlib.suppress(FileNotFoundError):
             shutil.rmtree(Paths.steam)  # generate new configs at start
-        except:
-            pass
 
         for prefix in prefixes.items():
             _name, _conf = prefix

@@ -23,6 +23,7 @@ from bottles.backend.logger import Logger
 logging = Logger()
 
 
+# noinspection PyTypeChecker
 class GPUUtils:
     __vendors = {
         "nvidia": "NVIDIA Corporation",

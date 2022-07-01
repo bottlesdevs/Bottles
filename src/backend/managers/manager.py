@@ -24,6 +24,7 @@ import uuid
 import yaml
 import shutil
 import fnmatch
+import contextlib
 from glob import glob
 from datetime import datetime
 from gettext import gettext as _
@@ -205,10 +206,8 @@ class Manager:
         """Checks for new bottles and update the list view.
         TODO: list view should not be updated by the backend"""
         self.check_bottles(silent)
-        try:
+        with contextlib.suppress(AttributeError):
             self.window.page_list.update_bottles()
-        except AttributeError:
-            pass
 
     def check_app_dirs(self):
         """
@@ -1169,11 +1168,9 @@ class Manager:
 
             for user_path in users_dir:
                 if os.path.islink(user_path):
-                    try:
+                    with contextlib.suppress(IOError, OSError):
                         os.unlink(user_path)
                         os.makedirs(user_path)
-                    except (OSError, IOError):
-                        pass
 
         # wait for registry files to be created
         FileUtils.wait_for_files(reg_files)
@@ -1356,24 +1353,19 @@ class Manager:
 
             if config.get("Custom_Path"):
                 logging.info(f"Removing placeholder…")
-                try:
+                with contextlib.suppress(FileNotFoundError):
                     os.remove(os.path.join(
                         Paths.bottles,
                         os.path.basename(config.get("Path")),
                         "placeholder.yml"
                     ))
-                except FileNotFoundError:
-                    pass
 
             logging.info(f"Removing the bottle…")
             path = ManagerUtils.get_bottle_path(config)
             shutil.rmtree(path, ignore_errors=True)
 
-            try:
+            if config.get("Path") in self.local_bottles:
                 del self.local_bottles[config.get("Path")]
-            except KeyError:
-                # ref: #676
-                pass
 
             logging.info(f"Deleted the bottle in: {path}")
             GLib.idle_add(self.window.page_list.update_bottles)

@@ -63,7 +63,7 @@ class LayersStore:
                 conf = yaml.safe_load(f)
                 return conf
 
-        return False
+        return {}
 
     @staticmethod
     def get_layer_by_name(name: str) -> dict:
@@ -71,9 +71,9 @@ class LayersStore:
         return LayersStore.get(name=name)
 
     @staticmethod
-    def get_layer_by_uuid(uuid: str) -> dict:
+    def get_layer_by_uuid(_uuid: str) -> dict:
         """Get layer by uuid and return as a dict."""
-        return LayersStore.get(_uuid=uuid)
+        return LayersStore.get(_uuid=_uuid)
 
 
 class Layer:

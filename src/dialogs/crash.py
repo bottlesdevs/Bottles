@@ -17,6 +17,7 @@
 
 import os
 import json
+import contextlib
 import webbrowser
 import urllib.request
 from urllib.parse import quote
@@ -143,7 +144,7 @@ class CrashReportDialog(Adw.Window):
         """
         similar_issues = []
         api_url = "https://api.github.com/repos/bottlesdevs/Bottles/issues?filter=all&state=all"
-        try:
+        with contextlib.suppress(urllib.error.HTTPError, urllib.error.URLError, json.JSONDecodeError, TypeError):
             with urllib.request.urlopen(api_url) as r:
                 data = r.read().decode("utf-8")
                 data = json.loads(data)
@@ -152,8 +153,6 @@ class CrashReportDialog(Adw.Window):
                 similarity = CrashReportDialog.__get_similarity(log, d)
                 if similarity >= 19:
                     similar_issues.append(d)
-        except:
-            pass
 
         return similar_issues
 

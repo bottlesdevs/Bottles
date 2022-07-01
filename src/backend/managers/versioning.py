@@ -38,6 +38,7 @@ from bottles.backend.logger import Logger
 logging = Logger()
 
 
+# noinspection PyTypeChecker
 class VersioningManager:
 
     def __init__(self, window, manager):
@@ -324,7 +325,6 @@ class VersioningManager:
     def get_index(config: dict):
         """List all files in a bottle and return as dict."""
         bottle_path = ManagerUtils.get_bottle_path(config)
-
         cur_index = {
             "Update_Date": str(datetime.now()),
             "Files": []

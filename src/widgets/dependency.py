@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import webbrowser
+import contextlib
 from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
@@ -194,7 +195,5 @@ class DependencyEntry(Adw.ActionRow):
 
         self.btn_reinstall.set_sensitive(True)
 
-        try:
+        with contextlib.suppress(AttributeError):
             self.get_parent().set_sensitive(True)
-        except AttributeError:
-            pass

@@ -68,7 +68,7 @@ class LocalResourceEntry(Adw.ActionRow):
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-local-resources.ui')
 class LocalResourcesDialog(Adw.Window):
     __gtype_name__ = 'LocalResourcesDialog'
-    __resources = {}
+    __resources: dict = {}
 
     # region Widgets
     btn_save = Gtk.Template.Child()

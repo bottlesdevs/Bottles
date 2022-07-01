@@ -17,6 +17,7 @@
 
 import os
 import time
+import contextlib
 import webbrowser
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Gio, Adw, GObject
@@ -333,15 +334,13 @@ class MainWindow(Adw.ApplicationWindow):
         log_path = f"{xdg_data_home}/bottles/crash.log"
         crash_log = False
 
-        try:
+        with contextlib.suppress(FileNotFoundError):
             with open(log_path, "r") as log_file:
                 crash_log = log_file.readlines()
                 os.remove(log_path)
 
-            if crash_log:
-                CrashReportDialog(self, crash_log).present()
-        except FileNotFoundError:
-            pass
+        if crash_log:
+            CrashReportDialog(self, crash_log).present()
 
     def toggle_selection_mode(self, status: bool = True):
         context = self.headerbar.get_style_context()
