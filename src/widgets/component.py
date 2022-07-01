@@ -77,7 +77,7 @@ class ComponentEntry(Adw.ActionRow):
 
     def download(self, widget):
         def update(result, error=False):
-            if result.status:
+            if not result or result.status:
                 return self.set_installed()
 
             return self.update_status(failed=True)
