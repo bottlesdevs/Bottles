@@ -66,7 +66,7 @@ class LibraryEntry(Gtk.Box):
                     use_default = True
             if entry['icon'] == "com.usebottles.bottles-program" or use_default:
                 self.img_icon.set_from_icon_name("com.usebottles.bottles-program")
-                self.img_icon.set_pixel_size(32)
+            self.img_icon.set_pixel_size(24)
             self.img_icon.set_visible(True)
 
         self.btn_run.connect("clicked", self.run_executable)
