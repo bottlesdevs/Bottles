@@ -22,12 +22,12 @@ class GtkUtils:
 
     @staticmethod
     def validate_entry(entry) -> bool:
-        regex = re.compile("[@!#$%^&*()<>?/|}{~:.;,'\"]")
         text = entry.get_text()
-
-        if (regex.search(text) is None) and text != "" and not text.isspace():
+        if re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text):
+            entry.add_css_class("error")
+            print("false")
+            return False
+        else:
             entry.remove_css_class("error")
+            print("true")
             return True
-
-        entry.add_css_class("error")
-        return False
