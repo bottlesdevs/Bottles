@@ -53,7 +53,6 @@ class NewView(Adw.Window):
     row_sandbox = Gtk.Template.Child()
     title = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
-    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -71,7 +70,6 @@ class NewView(Adw.Window):
         self.runner = None
 
         # connect signals
-        self.entry_name.add_controller(self.ev_controller)
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_close.connect("clicked", self.__close_window)
         self.btn_close_pill.connect("clicked", self.__close_window)
@@ -79,7 +77,7 @@ class NewView(Adw.Window):
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.btn_choose_path.connect("clicked", self.choose_path)
         self.list_envs.connect('row-selected', self.set_active_env)
-        self.ev_controller.connect("key-released", self.__check_entry_name)
+        self.entry_name.connect('changed', self.__check_entry_name)
 
         # populate combo_runner with runner versions from the manager
         for runner in self.manager.runners_available:
