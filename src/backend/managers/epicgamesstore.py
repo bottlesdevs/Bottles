@@ -81,26 +81,74 @@ class EpicGamesStoreManager:
                     "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
                     "id": uuid.uuid4(),
                 })
-                # TODO: epic games should be launched trough the Epic Games Launcher
-                #       btw seems like the com.epicgames.launcher protocol is not
-                #       working also tried in other wineprefix manager and it doesn't
-                #       work, we will keep this disabled and launching the game
-                #       executable directly until it gets fixed.
-                # data = json.load(f)
-                # _uri = f"-com.epicgames.launcher://apps/{data['AppName']}?action=launch&silent=true"
-                # _path = "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\" \
-                #         "EpicGamesLauncher.exe"
-                # _folder = ManagerUtils.get_exe_parent_dir(config, _path)
-                # games.append({
-                #     "executable": "EpicGamesLauncher.exe",
-                #     "arguments": f"-opengl -SkipBuildPatchPrereq {_uri}",
-                #     "name": data["DisplayName"],
-                #     "path": _path,
-                #     "folder": _folder,
-                #     "icon": "com.usebottles.bottles-program",
-                #     "dxvk": config["Parameters"]["dxvk"],
-                #     "vkd3d": config["Parameters"]["vkd3d"],
-                #     "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                #     "id": str(uuid.uuid4()),
-                # })
         return games
+
+    '''
+    TODO: the following code is conceptually correct, it read the dat file which
+          lists all the installed games, then generate a new entry using the
+          -com.epicgames.launcher:// protocol and the AppName, but it doesn't
+          works for some reason. I was unable to make it works on other prefix
+          managers and seems like it's a bug in the Epic Games Launcher. Keeping
+          this disabled until I find a solution or the bug is fixed.
+    @staticmethod
+    def find_dat_path(config: dict) -> Union[str, None]:
+        """
+        Finds the Epic Games dat file path.
+        """
+        paths = [
+            os.path.join(
+                ManagerUtils.get_bottle_path(config),
+                "drive_c/ProgramData/Epic/UnrealEngineLauncher")
+        ]
+
+        for path in paths:
+            if os.path.exists(path):
+                return path
+        return None
+
+    @staticmethod
+    def is_epic_supported(config: dict) -> bool:
+        """
+        Checks if Epic Games is supported.
+        """
+        return EpicGamesStoreManager.find_dat_path(config) is not None
+
+    @staticmethod
+    def get_installed_games(config: dict) -> list:
+        """
+        Gets the games.
+        """
+        games = []
+        dat_path = EpicGamesStoreManager.find_dat_path(config)
+
+        if dat_path is None:
+            return []
+
+        with open(os.path.join(dat_path, "LauncherInstalled.dat"), "r") as dat:
+            data = json.load(dat)
+
+            for game in data["InstallationList"]:
+                _uri = f"-com.epicgames.launcher://apps/{game['AppName']}?action=launch&silent=true"
+                _args = f"-opengl -SkipBuildPatchPrereq {_uri}"
+                _name = game["InstallLocation"].split("\\")[-1]
+                _path = "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\" \
+                        "EpicGamesLauncher.exe"
+                _executable = _path.split("\\")[-1]
+                _folder = ManagerUtils.get_exe_parent_dir(config, _path)
+                games.append({
+                    "executable": _path,
+                    "arguments": _args,
+                    "name": _name,
+                    "path": _path,
+                    "folder": _folder,
+                    "icon": "com.usebottles.bottles-program",
+                    "dxvk": config["Parameters"]["dxvk"],
+                    "vkd3d": config["Parameters"]["vkd3d"],
+                    "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
+                    "fsr": config["Parameters"]["fsr"],
+                    "virtual_desktop": config["Parameters"]["virtual_desktop"],
+                    "pulseaudio_latency": config["Parameters"]["pulseaudio_latency"],
+                    "id": str(uuid.uuid4()),
+                })
+        return games
+        '''
