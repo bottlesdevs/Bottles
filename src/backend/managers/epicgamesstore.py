@@ -27,70 +27,6 @@ from bottles.backend.utils.manager import ManagerUtils
 class EpicGamesStoreManager:
 
     @staticmethod
-    def find_games_path(config: dict) -> Union[str, None]:
-        """
-        Finds the Epic Games path.
-        """
-        paths = [
-            os.path.join(
-                ManagerUtils.get_bottle_path(config),
-                "drive_c/ProgramData/Epic/EpicGamesLauncher/Data/Manifests")
-        ]
-
-        for path in paths:
-            if os.path.isdir(path):
-                return path
-        return None
-
-    @staticmethod
-    def is_epic_supported(config: dict) -> bool:
-        """
-        Checks if Epic Games is supported.
-        """
-        return EpicGamesStoreManager.find_games_path(config) is not None
-
-    @staticmethod
-    def get_installed_games(config: dict) -> list:
-        """
-        Gets the games.
-        """
-        games = []
-        path = EpicGamesStoreManager.find_games_path(config)
-
-        if path is None:
-            return []
-
-        for file in os.listdir(path):
-            if not file.endswith(".item"):
-                continue
-
-            with open(os.path.join(path, file), "r") as f:
-                data = json.load(f)
-                _path = f"{data['InstallLocation']}/{data['LaunchExecutable']}"
-                _executable = _path.split("\\")[-1]
-                _folder = ManagerUtils.get_exe_parent_dir(config, _path)
-                games.append({
-                    "executable": _executable,
-                    "arguments": "",
-                    "name": data["DisplayName"],
-                    "path": _path,
-                    "folder": _folder,
-                    "icon": "com.usebottles.bottles-program",
-                    "dxvk": config["Parameters"]["dxvk"],
-                    "vkd3d": config["Parameters"]["vkd3d"],
-                    "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                    "id": uuid.uuid4(),
-                })
-        return games
-
-    '''
-    TODO: the following code is conceptually correct, it read the dat file which
-          lists all the installed games, then generate a new entry using the
-          -com.epicgames.launcher:// protocol and the AppName, but it doesn't
-          works for some reason. I was unable to make it works on other prefix
-          managers and seems like it's a bug in the Epic Games Launcher. Keeping
-          this disabled until I find a solution or the bug is fixed.
-    @staticmethod
     def find_dat_path(config: dict) -> Union[str, None]:
         """
         Finds the Epic Games dat file path.
@@ -151,4 +87,3 @@ class EpicGamesStoreManager:
                     "id": str(uuid.uuid4()),
                 })
         return games
-        '''
