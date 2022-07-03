@@ -17,6 +17,7 @@
 
 import os
 import yaml
+import contextlib
 from pathlib import Path
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
@@ -77,21 +78,17 @@ class DataManager:
             else:
                 self.__data[key] = value
 
-        try:
+        with contextlib.suppress(FileNotFoundError):
             with open(self.__p_data, 'w') as s:
                 yaml.dump(self.__data, s)
-        except FileNotFoundError:
-            pass
 
     def remove(self, key):
         """Removes a key from the data dictionary."""
         if self.__data.get(key):
             del self.__data[key]
-            try:
+            with contextlib.suppress(FileNotFoundError):
                 with open(self.__p_data, 'w') as s:
                     yaml.dump(self.__data, s)
-            except FileNotFoundError:
-                pass
 
     def get(self, key):
         """Returns the value of a key in the data dictionary."""

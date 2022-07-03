@@ -19,6 +19,7 @@ import os
 import yaml
 import uuid
 import shutil
+import contextlib
 from pathlib import Path
 from datetime import datetime, timedelta
 
@@ -95,11 +96,9 @@ class JournalManager:
         """Save the journal to the journal file."""
         if journal is None:
             journal = JournalManager.__get_journal()
-        try:
+        with contextlib.suppress(IOError, OSError):
             with open(JournalManager.path, "w") as f:
                 yaml.dump(journal, f)
-        except:
-            pass  # TODO: Handle this
 
     @staticmethod
     def get(period: str = "today", plain: bool = False):

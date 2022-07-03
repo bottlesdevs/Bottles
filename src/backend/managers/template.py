@@ -19,6 +19,7 @@ import os
 import yaml
 import uuid
 import shutil
+import contextlib
 from datetime import datetime
 from pathlib import Path
 
@@ -57,10 +58,8 @@ class TemplateManager:
         ]
         _path = f"{Paths.templates}/{_uuid}"
         logging.info("Copying files …")
-        try:
+        with contextlib.suppress(FileNotFoundError):
             shutil.copytree(bottle, _path, symlinks=True, ignore=shutil.ignore_patterns(*ignored))
-        except:
-            pass  # safely ignore, will be re-generated on wineprefix update
 
         template = {
             "uuid": _uuid,

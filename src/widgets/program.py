@@ -26,7 +26,6 @@ from bottles.dialogs.rename import RenameDialog
 from bottles.dialogs.generic import MessageDialog
 
 from bottles.backend.globals import user_apps_dir
-from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.library import LibraryManager
 
 from bottles.backend.utils.manager import ManagerUtils
@@ -102,7 +101,7 @@ class ProgramEntry(Adw.ActionRow):
         if window.settings.get_boolean("experiments-library"):
             self.btn_add_library.set_visible(True)
 
-        if SteamManager.is_steam_supported():
+        if self.manager.steam_manager.is_steam_supported:
             self.btn_add_steam.set_visible(True)
 
         external_programs = []
@@ -223,7 +222,7 @@ class ProgramEntry(Adw.ActionRow):
         self.__reset_buttons()
 
     def run_steam(self, widget):
-        SteamManager.launch_app(self.config["CompatData"])
+        self.manager.steam_manager.launch_app(self.config["CompatData"])
         self.window.show_toast(_("'{0}' launched with Steam.").format(self.program["name"]))
 
     def stop_process(self, widget):
@@ -333,7 +332,7 @@ class ProgramEntry(Adw.ActionRow):
                 self.window.show_toast(_("'{0}' added to your Steam library").format(self.program["name"]))
 
         RunAsync(
-            SteamManager.add_shortcut,
+            self.manager.steam_manager.add_shortcut,
             update,
             self.config,
             self.program["name"],

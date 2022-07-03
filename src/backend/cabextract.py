@@ -39,11 +39,13 @@ class CabExtract:
     files: list
     destination: str
 
+    def __init__(self):
+        self.cabextract_bin = shutil.which("cabextract")
+
     def run(self, path: str, name: str = "", files: list = None, destination: str = ""):
         if files is None:
             files = []
 
-        self.cabextract_bin = shutil.which("cabextract")
         self.path = path
         self.name = name
         self.files = files

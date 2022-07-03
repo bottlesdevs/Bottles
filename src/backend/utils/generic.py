@@ -17,6 +17,7 @@
 
 import re
 import sys
+import contextlib
 import subprocess
 
 
@@ -78,11 +79,9 @@ def detect_encoding(text: bytes):
         encodings.append(sys.stdout.encoding)
 
     for encoding in encodings:
-        try:
+        with contextlib.suppress(UnicodeDecodeError):
             text.decode(encoding)
             return encoding
-        except UnicodeDecodeError:
-            pass
 
     return None
 
@@ -114,10 +113,8 @@ def sort_by_version(_list: list, extra_check: str = "async"):
 
 def get_mime(path: str):
     """Get the mime type of file."""
-    try:
+    with contextlib.suppress(FileNotFoundError):
         res = subprocess.check_output(["file", "--mime-type", path])
         if res:
             return res.decode('utf-8').split(':')[1].strip()
-    except:
-        pass
     return None

@@ -66,16 +66,17 @@ class VersioningView(Adw.PreferencesPage):
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, widget=False, config=None):
+    def update(self, widget=False, config=None, states=None):
         """
         This function update the states list with the
         ones from the bottle configuration.
         """
         if config is None:
             config = {}
-        self.config = config
-        states = self.versioning_manager.list_states(self.config)
+        if states is None:
+            states = self.versioning_manager.list_states(config)
 
+        self.config = config
         self.list_states.set_sensitive(False)
 
         def new_state(_state):
@@ -107,7 +108,7 @@ class VersioningView(Adw.PreferencesPage):
 
         RunAsync(process_states, callback)
 
-    def check_entry_state_comment(self, widget, event_key):
+    def check_entry_state_comment(self, *args):
         """
         This function check if the entry state comment is valid,
         looking for special characters. It also toggles the widget icon

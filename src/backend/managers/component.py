@@ -20,6 +20,7 @@ import uuid
 import shutil
 import tarfile
 import requests
+import contextlib
 from functools import lru_cache
 from gi.repository import GLib
 from typing import Union
@@ -40,6 +41,7 @@ from bottles.backend.logger import Logger
 logging = Logger()
 
 
+# noinspection PyTypeChecker
 class ComponentManager:
 
     def __init__(self, manager, offline: bool = False):
@@ -296,18 +298,11 @@ class ComponentManager:
             else:
                 tar.extractall(path)
             tar.close()
-        except:
-            if os.path.isfile(os.path.join(Paths.temp, archive)):
-                try:
-                    os.remove(os.path.join(Paths.temp, archive))
-                except:
-                    pass  # safely ignore the error, there is nothing to remove
-
-            if os.path.isdir(os.path.join(path, archive[:-7])):
-                try:
-                    shutil.rmtree(os.path.join(path, archive[:-7]))
-                except:
-                    pass  # safely ignore the error, there is nothing to remove
+        except (tarfile.TarError, IOError, EOFError):
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(os.path.join(Paths.temp, archive))
+            with contextlib.suppress(FileNotFoundError):
+                shutil.rmtree(os.path.join(path, archive[:-7]))
 
             logging.error("Extraction failed! Archive ends earlier than expected.")
             return False
@@ -345,13 +340,13 @@ class ComponentManager:
             return Result(False)
 
         logging.info(f"Installing component: [{component_name}].")
-
+        file = manifest["File"][0]
         # Download component
         download = self.download(
-            download_url=manifest["File"][0]["url"],
-            file=manifest["File"][0]["file_name"],
-            rename=manifest["File"][0]["rename"],
-            checksum=manifest["File"][0]["file_checksum"],
+            download_url=file["url"],
+            file=file["file_name"],
+            rename=file["rename"],
+            checksum=file["file_checksum"],
             func=func
         )
 
@@ -390,10 +385,8 @@ class ComponentManager:
         please give feedback if you know a better way to avoid this.
         '''
         if component_type in ["runtime", "winebridge"]:
-            try:
+            with contextlib.suppress(FileNotFoundError):
                 os.remove(os.path.join(Paths.temp, archive))
-            except FileNotFoundError:
-                pass  # safely ignore the error, there is nothing to remove
 
         if component_type in ["runner", "runner:proton"]:
             self.__manager.check_runners()

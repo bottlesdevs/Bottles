@@ -128,19 +128,19 @@ class RuntimeManager:
     def __get_steam_runtime():
         from bottles.backend.managers.steam import SteamManager
         available_runtimes = {}
-        steam_path = SteamManager.find_steam_path()
+        steam_manager = SteamManager(check_only=True)
 
-        if not steam_path:
+        if not steam_manager.is_steam_supported:
             return available_runtimes
 
         lookup = {
             "soldier": {
                 "name": "soldier",
-                "entry_point": os.path.join(steam_path, "steamapps/common/SteamLinuxRuntime_soldier/_v2-entry-point"),
+                "entry_point": os.path.join(steam_manager.steam_path, "steamapps/common/SteamLinuxRuntime_soldier/_v2-entry-point"),
             },
             "scout": {
                 "name": "scout",
-                "entry_point": os.path.join(steam_path, "ubuntu12_32/steam-runtime/run.sh"),
+                "entry_point": os.path.join(steam_manager.steam_path, "ubuntu12_32/steam-runtime/run.sh"),
             }
         }
 

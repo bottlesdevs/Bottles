@@ -15,12 +15,6 @@
                 <property name="margin-start">6</property>
                 <property name="margin-end">6</property>
                 <child>
-                    <object class="GtkModelButton" id="btn_library">
-                        <property name="visible">False</property>
-                        <property name="text" translatable="yes">Your Library</property>
-                    </object>
-                </child>
-                <child>
                     <object class="GtkModelButton" id="btn_importer">
                         <property name="text" translatable="yes">Import/Export…</property>
                     </object>
@@ -72,73 +66,67 @@
             <object class="AdwToastOverlay" id="toasts">
                 <child>
                     <object class="AdwLeaflet" id="main_leaf">
-                <property name="can-unfold">False</property>
-                <property name="can-navigate-back">True</property>
-                <child>
-                <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <child>
-                <object class="GtkHeaderBar" id="headerbar">
-                <property name="title-widget">
-                <object class="AdwWindowTitle" id="window_title">
-                    <property name="title" translatable="yes">Bottles</property>
-                </object>
-                </property>
-                <child type="end">
-                <object class="GtkMenuButton" id="btn_menu">
-                    <property name="tooltip-text" translatable="yes">Open menu</property>
-                    <property name="popover">pop_menu</property>
-                    <property name="icon-name">open-menu-symbolic</property>
-                </object>
-                </child>
-                <child type="end">
-                <object class="GtkToggleButton" id="btn_search">
-                    <property name="tooltip-text" translatable="yes">Search</property>
-                    <property name="icon-name">system-search-symbolic</property>
-                </object>
-                </child>
-                <child type="end">
-                <object class="GtkButton" id="btn_noconnection">
-                    <property name="visible">False</property>
-                    <property name="tooltip-text" translatable="yes">You don't seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.</property>
-                    <property name="icon-name">network-error-symbolic</property>
-                </object>
-                </child>
-                <child type="start">
-                <object class="GtkButton" id="btn_add">
-                    <property name="tooltip-text" translatable="yes">New bottle</property>
-                    <property name="icon-name">list-add-symbolic</property>
-                </object>
-                </child>
-                <child>
-                <object class="GtkBox" id="box_actions"/>
-                </child>
-                <style>
-                <class name="titlebar"/>
-                </style>
-                </object>
-                </child>
-                <child>
-                <object class="GtkSearchBar" id="searchbar">
-                </object>
-                </child>
-                <child>
-                <object class="GtkStack" id="stack">
-                <property name="vexpand">True</property>
-                <child>
-                <!-- n-columns=3 n-rows=3 -->
-                <object class="GtkGrid" id="grid_main"/>
-                </child>
-                </object>
-                </child>
-                </object>
-                </child>
-                </object>
+                        <property name="can-unfold">False</property>
+                        <property name="can-navigate-back">True</property>
+                        <child>
+                            <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                                <child>
+                                    <object class="GtkHeaderBar" id="headerbar">
+                                        <property name="title-widget">
+                                            <object class="AdwViewSwitcherTitle" id="view_switcher">
+                                                <property name="title" translatable="yes">Bottles</property>
+                                                <property name="stack">stack_main</property>
+                                            </object>
+                                        </property>
+                                        <child type="end">
+                                            <object class="GtkMenuButton" id="btn_menu">
+                                                <property name="tooltip-text" translatable="yes">Open menu</property>
+                                                <property name="popover">pop_menu</property>
+                                                <property name="icon-name">open-menu-symbolic</property>
+                                            </object>
+                                        </child>
+                                        <child type="end">
+                                            <object class="GtkToggleButton" id="btn_search">
+                                                <property name="tooltip-text" translatable="yes">Search</property>
+                                                <property name="icon-name">system-search-symbolic</property>
+                                            </object>
+                                        </child>
+                                        <child type="end">
+                                            <object class="GtkButton" id="btn_noconnection">
+                                                <property name="visible">False</property>
+                                                <property name="tooltip-text" translatable="yes">You don't seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.</property>
+                                                <property name="icon-name">network-error-symbolic</property>
+                                            </object>
+                                        </child>
+                                        <child type="start">
+                                            <object class="GtkButton" id="btn_add">
+                                                <property name="tooltip-text" translatable="yes">New bottle</property>
+                                                <property name="icon-name">list-add-symbolic</property>
+                                            </object>
+                                        </child>
+                                        <child>
+                                            <object class="GtkBox" id="box_actions"/>
+                                        </child>
+                                        <style>
+                                            <class name="titlebar"/>
+                                        </style>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkSearchBar" id="searchbar">
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwViewStack" id="stack_main">
+                                        <property name="vexpand">True</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
                 </child>
             </object>
         </child>
     </template>
-    <object class="GtkStack" id="stack_main">
-        <property name="transition-type">crossfade</property>
-    </object>
 </interface>

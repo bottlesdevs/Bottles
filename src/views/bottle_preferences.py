@@ -17,6 +17,7 @@
 
 import os
 import re
+import contextlib
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
@@ -294,8 +295,8 @@ class PreferencesView(Adw.PreferencesPage):
         for latencyflex in self.manager.latencyflex_available:
             self.combo_latencyflex.append(latencyflex, latencyflex)
 
-        for l in ManagerUtils.get_languages():
-            self.str_list_languages.append(l)
+        for lang in ManagerUtils.get_languages():
+            self.str_list_languages.append(lang)
 
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
@@ -327,11 +328,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_discrete.handler_block_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
         self.switch_pulse_latency.handler_block_by_func(self.__toggle_pulse_latency)
-        try:
+        with contextlib.suppress(TypeError):
             self.switch_runtime.handler_block_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
-        except TypeError:
-            pass  # already disconnected
         self.combo_fsr.handler_block_by_func(self.__set_fsr_level)
         self.combo_virt_res.handler_block_by_func(self.__set_virtual_desktop_res)
         self.combo_runner.handler_block_by_func(self.__set_runner)
@@ -432,11 +431,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_discrete.handler_unblock_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_unblock_by_func(self.__toggle_fsr)
         self.switch_pulse_latency.handler_unblock_by_func(self.__toggle_pulse_latency)
-        try:
+        with contextlib.suppress(TypeError):
             self.switch_runtime.handler_unblock_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
-        except TypeError:
-            pass  # already connected
         self.combo_fsr.handler_unblock_by_func(self.__set_fsr_level)
         self.combo_virt_res.handler_unblock_by_func(self.__set_virtual_desktop_res)
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
@@ -808,7 +805,7 @@ class PreferencesView(Adw.PreferencesPage):
                 runner=runner
             )
 
-        if "proton" in runner.lower():
+        if re.search("^(GE-)?Proton", runner):
             dialog = ProtonAlertDialog(self.window, run_task)
             dialog.show()
         else:

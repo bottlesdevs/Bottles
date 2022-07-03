@@ -402,7 +402,7 @@ class InstallerManager:
         files = [s.get("file_name", "") for s in exe_msi_steps]
         return files
 
-    def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True, local_resources: list = None):
+    def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True, local_resources: dict = None):
         if config.get("Environment") == "Layered":
             self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
             self.__layer.mount_bottle(config)

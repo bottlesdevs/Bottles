@@ -19,6 +19,7 @@ import os
 import yaml
 import shutil
 import platform
+import contextlib
 import subprocess
 
 from bottles.backend.utils.display import DisplayUtils  # pyright: reportMissingImports=false
@@ -108,14 +109,12 @@ class HealthChecker:
 
     @staticmethod
     def __get_distro():
-        try:  # only Python 3.10+
+        with contextlib.suppress(AttributeError):
             _platform = platform.freedesktop_os_release()
             return {
                 "name": _platform.get("NAME", "Unknown"),
                 "version": _platform.get("VERSION_ID", "Unknown")
             }
-        except AttributeError:
-            pass
 
         if shutil.which("lsb_release"):
             _proc = subprocess.Popen(
@@ -178,15 +177,13 @@ class HealthChecker:
         }
 
     def get_ram_data(self):
-        try:
+        with contextlib.suppress(FileNotFoundError, PermissionError):
             with open('/proc/meminfo') as file:
                 for line in file:
                     if 'MemTotal' in line:
                         self.ram["MemTotal"] = self.file_utils.get_human_size(float(line.split()[1])*1024.0)
                     if 'MemAvailable' in line:
                         self.ram["MemAvailable"] = self.file_utils.get_human_size(float(line.split()[1])*1024.0)
-        except(FileNotFoundError, PermissionError):
-            pass
 
     def get_results(self, plain: bool = False):
         results = {

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-22 13:29+0000\n"
+"PO-Revision-Date: 2022-07-03 09:06+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -177,22 +177,19 @@ msgstr "Schakel de updatedatum in de lijst met bottles om."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Lijst met Steam-apps"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Updatedatum in lijst omschakelen"
+msgstr "Toon/verberg lijst met Steam-apps."
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic Games Store ..."
+msgstr "Lijst met Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "Updatedatum in lijst omschakelen"
+msgstr "Toon/verberg lijst met Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -255,24 +252,20 @@ msgstr ""
 "candidate voor runners."
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Steam-Proton"
+msgstr "Ondersteuning voor Steam-Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Schakel experimentele ondersteuning voor Steam-Proton-prefixes om."
+msgstr "Schakel ondersteuning voor Steam-Proton-prefixes om."
 
 #: data/com.usebottles.bottles.gschema.xml:71
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "Experimenten:steam"
+msgstr "Experimenten:zandbak"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Schakel de experimentele bibliotheekmodus om."
+msgstr "Schakel de experimentele zandbak per bottle om."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -328,14 +321,12 @@ msgid "[Refresh] request received."
 msgstr "[Verversen] verzoek ontvangen."
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
-msgstr "Berekenen..."
+msgstr "Berekenen…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
-msgstr "Downloaden…"
+msgstr "Laden…"
 
 #: src/window.py:226
 msgid ""
@@ -541,9 +532,8 @@ msgid "Select"
 msgstr "Selecteer"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Geen omgevingsvariabelen gedefinieerd"
+msgstr "Geen omgevingsvariabelen gedefinieerd."
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -566,9 +556,8 @@ msgid "Choose a script which should be executed after run."
 msgstr "Kies een script dat na het uitvoeren moet worden uitgevoerd."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "Bottles sluiten na het starten van een programma"
+msgstr "Kies vanaf waar het programma start."
 
 #: src/dialogs/launchoptions.py:56
 #, python-brace-format
@@ -581,12 +570,11 @@ msgstr "Deze instelling is anders dan de standaard van de bottle."
 
 #: src/dialogs/launchoptions.py:227
 msgid "Choose the script"
-msgstr "Kies het script"
+msgstr "Script selecteren"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "Werkmap"
+msgstr "Werkmap selecteren"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -604,7 +592,7 @@ msgstr "Kies een uitvoerbaar Windows-bestand"
 #: src/views/bottle_details.py:194 src/views/list.py:138
 #: src/ui/dialog-run-args.ui:35
 msgid "Run"
-msgstr "Start"
+msgstr "Uitvoeren"
 
 #: src/views/bottle_details.py:247
 msgid "Select the location where to save the backup config"

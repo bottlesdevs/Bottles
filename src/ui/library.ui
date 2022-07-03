@@ -5,34 +5,21 @@
     <template class="LibraryView" parent="AdwBin">
         <child>
             <object class="GtkBox">
-                <property name="orientation">vertical</property>
                 <child>
-                    <object class="GtkHeaderBar" id="headerbar">
-                        <property name="title-widget">
-                            <object class="AdwWindowTitle" id="window_title">
-                            </object>
-                        </property>
-                        <child type="start">
-                            <object class="GtkButton" id="btn_back">
-                                <property name="icon-name">go-previous-symbolic</property>
+                    <object class="GtkScrolledWindow">
+                      <property name="hexpand">True</property>
+                      <property name="vexpand">True</property>
+                        <child>
+                            <object class="GtkFlowBox" id="main_flow">
+                                <property name="halign">fill</property>
+                                <property name="valign">start</property>
+                                <property name="margin-start">5</property>
+                                <property name="margin-end">5</property>
+                                <property name="homogeneous">True</property>
+                                <property name="selection-mode">none</property>
+                                <property name="activate-on-single-click">False</property>
                             </object>
                         </child>
-                        <child type="end">
-                            <object class="GtkButton" id="btn_update">
-                                <property name="tooltip-text" translatable="yes">Search for Prefixes</property>
-                                <property name="icon-name">view-refresh-symbolic</property>
-                            </object>
-                        </child>
-                    </object>
-                </child>
-                <child>
-                    <object class="GtkFlowBox" id="main_flow">
-                        <property name="halign">start</property>
-                        <property name="valign">start</property>
-                        <property name="margin-end">10</property>
-                        <property name="homogeneous">True</property>
-                        <property name="selection-mode">none</property>
-                        <property name="activate-on-single-click">False</property>
                     </object>
                 </child>
                 <child>

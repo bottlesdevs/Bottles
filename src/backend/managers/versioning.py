@@ -38,6 +38,7 @@ from bottles.backend.logger import Logger
 logging = Logger()
 
 
+# noinspection PyTypeChecker
 class VersioningManager:
 
     def __init__(self, window, manager):
@@ -87,10 +88,7 @@ class VersioningManager:
                                     )
             state_index = yaml.safe_load(state_index_file)
             state_index_file.close()
-            state_index_files = state_index["Additions"] + \
-                                state_index["Removed"] + \
-                                state_index["Changes"]
-
+            state_index_files = state_index["Additions"] + state_index["Removed"] + state_index["Changes"]
             state_temp_checksums = [f["checksum"] for f in state_index_files]
             state_temp_files = [
                 tuple([f["file"], f["checksum"]])
@@ -327,7 +325,6 @@ class VersioningManager:
     def get_index(config: dict):
         """List all files in a bottle and return as dict."""
         bottle_path = ManagerUtils.get_bottle_path(config)
-
         cur_index = {
             "Update_Date": str(datetime.now()),
             "Files": []

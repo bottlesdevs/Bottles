@@ -27,18 +27,18 @@ from bottles.backend.utils.manager import ManagerUtils
 class EpicGamesStoreManager:
 
     @staticmethod
-    def find_games_path(config: dict) -> Union[str, None]:
+    def find_dat_path(config: dict) -> Union[str, None]:
         """
-        Finds the Epic Games path.
+        Finds the Epic Games dat file path.
         """
         paths = [
             os.path.join(
                 ManagerUtils.get_bottle_path(config),
-                "drive_c/ProgramData/Epic/EpicGamesLauncher/Data/Manifests")
+                "drive_c/ProgramData/Epic/UnrealEngineLauncher")
         ]
 
         for path in paths:
-            if os.path.isdir(path):
+            if os.path.exists(path):
                 return path
         return None
 
@@ -47,7 +47,7 @@ class EpicGamesStoreManager:
         """
         Checks if Epic Games is supported.
         """
-        return EpicGamesStoreManager.find_games_path(config) is not None
+        return EpicGamesStoreManager.find_dat_path(config) is not None
 
     @staticmethod
     def get_installed_games(config: dict) -> list:
@@ -55,52 +55,35 @@ class EpicGamesStoreManager:
         Gets the games.
         """
         games = []
-        path = EpicGamesStoreManager.find_games_path(config)
+        dat_path = EpicGamesStoreManager.find_dat_path(config)
 
-        if path is None:
+        if dat_path is None:
             return []
 
-        for file in os.listdir(path):
-            if not file.endswith(".item"):
-                continue
+        with open(os.path.join(dat_path, "LauncherInstalled.dat"), "r") as dat:
+            data = json.load(dat)
 
-            with open(os.path.join(path, file), "r") as f:
-                data = json.load(f)
-                _path = f"{data['InstallLocation']}/{data['LaunchExecutable']}"
+            for game in data["InstallationList"]:
+                _uri = f"-com.epicgames.launcher://apps/{game['AppName']}?action=launch&silent=true"
+                _args = f"-opengl -SkipBuildPatchPrereq {_uri}"
+                _name = game["InstallLocation"].split("\\")[-1]
+                _path = "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\" \
+                        "EpicGamesLauncher.exe"
                 _executable = _path.split("\\")[-1]
                 _folder = ManagerUtils.get_exe_parent_dir(config, _path)
                 games.append({
-                    "executable": _executable,
-                    "arguments": "",
-                    "name": data["DisplayName"],
+                    "executable": _path,
+                    "arguments": _args,
+                    "name": _name,
                     "path": _path,
                     "folder": _folder,
                     "icon": "com.usebottles.bottles-program",
                     "dxvk": config["Parameters"]["dxvk"],
                     "vkd3d": config["Parameters"]["vkd3d"],
                     "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                    "id": uuid.uuid4(),
+                    "fsr": config["Parameters"]["fsr"],
+                    "virtual_desktop": config["Parameters"]["virtual_desktop"],
+                    "pulseaudio_latency": config["Parameters"]["pulseaudio_latency"],
+                    "id": str(uuid.uuid4()),
                 })
-                # TODO: epic games should be launched trough the Epic Games Launcher
-                #       btw seems like the com.epicgames.launcher protocol is not
-                #       working also tried in other wineprefix manager and it doesn't
-                #       work, we will keep this disabled and launching the game
-                #       executable directly until it gets fixed.
-                # data = json.load(f)
-                # _uri = f"-com.epicgames.launcher://apps/{data['AppName']}?action=launch&silent=true"
-                # _path = "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\" \
-                #         "EpicGamesLauncher.exe"
-                # _folder = ManagerUtils.get_exe_parent_dir(config, _path)
-                # games.append({
-                #     "executable": "EpicGamesLauncher.exe",
-                #     "arguments": f"-opengl -SkipBuildPatchPrereq {_uri}",
-                #     "name": data["DisplayName"],
-                #     "path": _path,
-                #     "folder": _folder,
-                #     "icon": "com.usebottles.bottles-program",
-                #     "dxvk": config["Parameters"]["dxvk"],
-                #     "vkd3d": config["Parameters"]["vkd3d"],
-                #     "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                #     "id": str(uuid.uuid4()),
-                # })
         return games
