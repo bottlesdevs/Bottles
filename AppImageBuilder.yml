@@ -21,8 +21,8 @@ script:
   - cp build/src/bottles AppDir/usr/bin/
 
   # Copying AppRun script and making it executable
-  - cp AppRun AppDir/usr/bin/
-  - chmod +x /home/runner/work/Bottles/Bottles/AppDir/usr/bin/AppRun
+  - cp AppRun AppDir/bin/
+  - chmod +x /home/runner/work/Bottles/Bottles/AppDir/bin/AppRun
   
   # Copying Bottles python package and remove not useful files
   - cp -a src AppDir/usr/local/share/bottles/bottles
@@ -89,7 +89,7 @@ AppDir:
     exec: bin/bash
     
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
-    exec_args: usr/bin/AppRun "$@"
+    exec_args: AppRun "$@"
 
   apt:
     arch: [amd64, i386]
