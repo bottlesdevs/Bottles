@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-13 07:03+0000\n"
+"PO-Revision-Date: 2022-07-03 08:50+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -171,19 +171,16 @@ msgid "Steam apps listing"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "切换列表中的更新日期"
+msgstr "切换 steam 应用清单。"
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic 游戏商店 .."
+msgstr "Epic 游戏清单"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "切换列表中的更新日期"
+msgstr "切换 epic 游戏清单。"
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -1354,7 +1351,7 @@ msgstr "480"
 
 #: src/ui/details-preferences.ui:262
 msgid "Renderer"
-msgstr "解析器"
+msgstr "渲染程序"
 
 #: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
@@ -1473,7 +1470,7 @@ msgstr "提供额外库以提高兼容性，如遇到问题则禁用。"
 
 #: src/ui/details-preferences.ui:532
 msgid "Steam Runtime"
-msgstr "Stream 运行时"
+msgstr "Steam 运行时"
 
 #: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
