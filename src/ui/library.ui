@@ -26,13 +26,20 @@
                     </object>
                 </child>
                 <child>
-                    <object class="GtkFlowBox" id="main_flow">
-                        <property name="halign">start</property>
-                        <property name="valign">start</property>
-                        <property name="margin-end">10</property>
-                        <property name="homogeneous">True</property>
-                        <property name="selection-mode">none</property>
-                        <property name="activate-on-single-click">False</property>
+                    <object class="GtkScrolledWindow">
+                      <property name="hexpand">True</property>
+                      <property name="vexpand">True</property>
+                        <child>
+                            <object class="GtkFlowBox" id="main_flow">
+                                <property name="halign">fill</property>
+                                <property name="valign">start</property>
+                                <property name="margin-start">5</property>
+                                <property name="margin-end">5</property>
+                                <property name="homogeneous">True</property>
+                                <property name="selection-mode">none</property>
+                                <property name="activate-on-single-click">False</property>
+                            </object>
+                        </child>
                     </object>
                 </child>
                 <child>

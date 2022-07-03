@@ -7,8 +7,11 @@
         </style>
         <child>
             <object class="GtkBox">
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
                 <property name="orientation">vertical</property>
-                <property name="spacing">3</property>
                 <child>
                     <object class="GtkModelButton" id="btn_remove">
                         <property name="text" translatable="yes">Remove from Library</property>
@@ -19,9 +22,11 @@
     </object>
     <template class="LibraryEntry" parent="GtkBox">
         <property name="orientation">vertical</property>
+        <property name="halign">fill</property>
+        <property name="width-request">128</property>
         <child>
             <object class="GtkImage" id="img_cover">
-                <!--<property name="height-request">128</property>-->
+                <property name="height-request">128</property>
             </object>
         </child>
         <child>
