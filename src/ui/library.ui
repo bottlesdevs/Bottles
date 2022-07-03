@@ -5,26 +5,6 @@
     <template class="LibraryView" parent="AdwBin">
         <child>
             <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <child>
-                    <object class="GtkHeaderBar" id="headerbar">
-                        <property name="title-widget">
-                            <object class="AdwWindowTitle" id="window_title">
-                            </object>
-                        </property>
-                        <child type="start">
-                            <object class="GtkButton" id="btn_back">
-                                <property name="icon-name">go-previous-symbolic</property>
-                            </object>
-                        </child>
-                        <child type="end">
-                            <object class="GtkButton" id="btn_update">
-                                <property name="tooltip-text" translatable="yes">Search for Prefixes</property>
-                                <property name="icon-name">view-refresh-symbolic</property>
-                            </object>
-                        </child>
-                    </object>
-                </child>
                 <child>
                     <object class="GtkScrolledWindow">
                       <property name="hexpand">True</property>
