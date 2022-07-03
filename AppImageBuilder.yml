@@ -86,10 +86,10 @@ AppDir:
     version: 2022.6.28-brescia
     
     # Set the python executable as entry point
-    exec: usr/bin/AppRun
+    exec: usr/bin/bash
     
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
-    exec_args: "$@"
+    exec_args: usr/bin/AppRun "$@"
 
   apt:
     arch: [amd64, i386]
