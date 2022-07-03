@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-26 17:54+0000\n"
+"PO-Revision-Date: 2022-07-04 17:16+0000\n"
 "Last-Translator: Roger VC <rogervilarasau@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bottles/bottles/"
 "ca/>\n"
@@ -145,7 +145,7 @@ msgstr "Importa prefixos de Wine d'altres gestors"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning"
-msgstr ""
+msgstr "Versionat d'ampolles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -177,21 +177,19 @@ msgstr "Commuta la data d'actualització a la llista d'ampolles."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Llistat d'aplicacions de Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Commuta la data d'actualització a la llista"
+msgstr "Commuta la llista d'aplicacions de Steam."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr ""
+msgstr "Llistat d'Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "Commuta la data d'actualització a la llista"
+msgstr "Commuta la llista de Epic Games."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -254,24 +252,20 @@ msgstr ""
 "instal·ladors. Alliberament del candidat per a corredors."
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Prefixos de Steam Proton"
+msgstr "Suport de Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Commuta el suport experimental dels prefixos de Steam Proton."
+msgstr "Commuta el suport dels prefixos de Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:71
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "Experiments:steam"
+msgstr "Experiments:espai aïllat"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Canvia el mode de biblioteca experimental."
+msgstr "Commuta l'espai aïllat experimental per ampolla."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -301,7 +295,7 @@ msgstr "Camí executable"
 
 #: src/main.py:122
 msgid "lnk path"
-msgstr ""
+msgstr "camí lnk"
 
 #: src/main.py:130
 msgid "Bottle name"
@@ -328,14 +322,12 @@ msgid "[Refresh] request received."
 msgstr "S'ha rebut la sol·licitud [Actualització]."
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
-msgstr "Calculant..."
+msgstr "S'està calculant…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
-msgstr "Carregant..."
+msgstr "S'està carregant…"
 
 #: src/window.py:226
 msgid ""
@@ -416,7 +408,7 @@ msgstr "No s'ha pogut crear el directori d'ampolles."
 
 #: src/backend/managers/manager.py:1112
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "No s'ha pogut crear el directori/fitxer de marcador de posició."
 
 #: src/backend/managers/manager.py:1117
 msgid "Generating bottle configuration…"
@@ -541,7 +533,6 @@ msgid "Select"
 msgstr "Seleccioneu"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
 msgstr "No s'han definit variables d'entorn"
 
@@ -566,9 +557,8 @@ msgid "Choose a script which should be executed after run."
 msgstr "Trieu un script que s'hagi d'executar després de l'execució."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "Tancar Bottles després d'iniciar un programa"
+msgstr "Trieu des d'on començar el programa."
 
 #: src/dialogs/launchoptions.py:56
 #, python-brace-format
@@ -584,9 +574,8 @@ msgid "Choose the script"
 msgstr "Trieu l'script"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "Directori de treball"
+msgstr "Trieu el directori de treball"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -647,7 +636,7 @@ msgstr "Aquesta funció no està disponible al vostre sistema."
 #: src/views/bottle_preferences.py:241 src/views/bottle_preferences.py:258
 #: src/views/bottle_preferences.py:394
 msgid "Default to the bottle path."
-msgstr ""
+msgstr "Per defecte, el camí de l'ampolla."
 
 #: src/views/bottle_preferences.py:249
 msgid "Choose working directory for executables"
@@ -688,7 +677,7 @@ msgstr "Es troba al menú Inici de la vostra ampolla."
 
 #: src/views/details.py:164 src/ui/new.ui:116
 msgid "Versioning"
-msgstr ""
+msgstr "Versionat"
 
 #: src/views/details.py:168
 msgid "Installers"
@@ -707,9 +696,8 @@ msgid "Import failed."
 msgstr "La importació ha fallat."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
-msgstr "S'està important la còpia de seguretat.."
+msgstr "S'està important la còpia de seguretat…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
@@ -758,13 +746,14 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"No s'ha trobat Steam o Bottles no té prou permisos. Visiteu https://docs."
+"usebottles.com/flatpak/cant-enable-steam-proton-manager"
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
-#, fuzzy
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
-msgstr "Trieu on emmagatzemar les ampolles noves (això no mourà les existents)"
+msgstr "Trieu on emmagatzemar les ampolles noves (això no mourà les existents)."
 
 #: src/views/preferences.py:165
 msgid "Choose new bottles path"
@@ -779,7 +768,6 @@ msgid "Upgrade"
 msgstr "Actualitza"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
 msgstr "S'està instal·lant DXVK…"
 
@@ -1022,11 +1010,11 @@ msgstr "Corredor"
 
 #: src/ui/details-bottle.ui:184 src/ui/list-entry.ui:23
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "Versions activades per a aquesta ampolla"
 
 #: src/ui/details-bottle.ui:189 src/ui/list-entry.ui:28
 msgid "Versioning is active in this bottle."
-msgstr ""
+msgstr "El versionat està actiu en aquesta ampolla."
 
 #: src/ui/details-bottle.ui:199 src/ui/list-entry.ui:34
 msgid "0"
@@ -1110,7 +1098,7 @@ msgstr "Accediu al Tauler de control intern del Wine."
 
 #: src/ui/details-bottle.ui:348
 msgid "Use the Installers section or the \"Run executable\" button."
-msgstr ""
+msgstr "Utilitzeu la secció Instal·ladors o el botó \"Iniciar executable\"."
 
 #: src/ui/details-dependencies.ui:13
 msgid "Search for dependencies…"
@@ -1176,7 +1164,6 @@ msgid "Search for Programs…"
 msgstr "Cercar programes…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
 msgstr "No s'han trobat instal·ladors"
 
@@ -1325,7 +1312,7 @@ msgstr "Activeu-lo si el programa no recupera el focus en canviar."
 
 #: src/ui/details-preferences.ui:218
 msgid "Mouse Warp"
-msgstr ""
+msgstr "Centrar cursor del ratolí"
 
 #: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
@@ -1393,7 +1380,7 @@ msgstr "Renderitzador"
 
 #: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
-msgstr ""
+msgstr "Seleccioneu quin backend voleu utilitzar per a wined3d."
 
 #: src/ui/details-preferences.ui:269
 msgid "gl (default)"
@@ -1412,9 +1399,8 @@ msgid "System"
 msgstr "Sistema"
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "Versió del component"
+msgstr "Administra les versions dels components"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1464,9 +1450,8 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
-msgstr "Versió de Windows"
+msgstr "Versió del Windows"
 
 #: src/ui/details-preferences.ui:458
 msgid "Updating Windows version, please wait…"
@@ -1474,28 +1459,27 @@ msgstr "S'està actualitzant la versió de Windows, espereu…"
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: src/ui/details-preferences.ui:487
 msgid "Choose the language to use with programs."
-msgstr ""
+msgstr "Trieu l'idioma que voleu utilitzar amb els programes."
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
-msgstr ""
+msgstr "fals"
 
 #: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "Espai aïllat dedicat"
 
 #: src/ui/details-preferences.ui:499
 msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
+msgstr "Utilitzeu un entorn restringit/gestionat per a aquesta ampolla."
 
 #: src/ui/details-preferences.ui:502
-#, fuzzy
 msgid "Manage Sandbox permissions"
-msgstr "Gestioneu les versions de DXVK"
+msgstr "Administra els permisos d'espai aïllat"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
@@ -1621,7 +1605,7 @@ msgstr "Registres de 'fixme' de Wine"
 
 #: src/ui/details-preferences.ui:697
 msgid "Log code paths that are unimplemented in Wine."
-msgstr ""
+msgstr "Registra els camins de codi que no estan implementats a Wine."
 
 #: src/ui/details-programs.ui:9
 msgid "No Programs found"
@@ -1638,7 +1622,7 @@ msgstr ""
 
 #: src/ui/details-programs.ui:31
 msgid "Toggle Hidden"
-msgstr ""
+msgstr "Commuta l'ocultació"
 
 #: src/ui/details-programs.ui:39
 msgid "Read documentation about programs"
@@ -1661,13 +1645,12 @@ msgid "Stop process"
 msgstr "Atura el procés"
 
 #: src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
 msgstr "No s’ha trobat cap estat"
 
 #: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "Creeu el primer estat per començar a utilitzar versions."
 
 #: src/ui/details-versioning.ui:43
 msgid "A short comment"
@@ -1687,7 +1670,7 @@ msgstr "Operacions"
 
 #: src/ui/dialog-crash-report.ui:10
 msgid "Bottles crash report"
-msgstr ""
+msgstr "Informe de tancament inesperat de Bottles"
 
 #: src/ui/dialog-crash-report.ui:23
 msgid "Send report"
@@ -1749,13 +1732,15 @@ msgid ""
 "devices by the runner (e.g. C: D:…).\n"
 "                                "
 msgstr ""
+"Aquests són els camins del vostre sistema amfitrió que el corredor mapeja i "
+"reconeix com a dispositius (p. ex., C: D:...).\n"
+"                                "
 
 #: src/ui/dialog-drives.ui:25
 msgid "Letter"
 msgstr "Lletra"
 
 #: src/ui/dialog-drives.ui:49
-#, fuzzy
 msgid "Existing Drives"
 msgstr "Unitats existents"
 
@@ -1776,9 +1761,8 @@ msgid "Duplicating…"
 msgstr "S’està duplicant…"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "Feu una pausa, pot trigar una estona"
+msgstr "Feu una pausa, pot trigar una estona."
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -1793,12 +1777,10 @@ msgstr ""
 "manera com es comportaran els processos en execució a l'ampolla."
 
 #: src/ui/dialog-env-vars.ui:28
-#, fuzzy
 msgid "Variable Name"
 msgstr "Nom de la variable"
 
 #: src/ui/dialog-env-vars.ui:36
-#, fuzzy
 msgid "Existing Variables"
 msgstr "Variables existents"
 
@@ -1919,9 +1901,8 @@ msgid "Post-run Script"
 msgstr "Script post-execució"
 
 #: src/ui/dialog-launch-options.ui:75
-#, fuzzy
 msgid "Choose a script"
-msgstr "Trieu l'script"
+msgstr "Trieu un script"
 
 #: src/ui/dialog-launch-options.ui:124
 msgid "These settings will override the default settings for this executable."
@@ -1934,19 +1915,20 @@ msgid "Preferences Overrides"
 msgstr "Substitució de les preferències"
 
 #: src/ui/dialog-launch-options.ui:128
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
-msgstr "Restableix els valors predeterminats"
+msgstr "Restableix als valors per defecte de l'ampolla"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
-msgstr ""
+msgstr "Recursos locals"
 
 #: src/ui/dialog-local-resources.ui:38
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
 msgstr ""
+"Aquest instal·lador requereix alguns recursos locals que no es poden "
+"proporcionar d'una altra manera."
 
 #: src/ui/dialog-rename.ui:9
 msgid "Rename"
@@ -1954,7 +1936,7 @@ msgstr "Canvia el nom"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "Trieu un nom nou per al programa seleccionat."
 
 #: src/ui/dialog-rename.ui:37
 msgid "New Name"
@@ -1966,43 +1948,43 @@ msgstr "Executa amb arguments"
 
 #: src/ui/dialog-run-args.ui:47
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "Escriviu a sota dels arguments que s'han de passar a l'executable."
 
 #: src/ui/dialog-run-args.ui:50
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "p. ex.: -opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
-msgstr ""
+msgstr "Incorporat (Wine)"
 
 #: src/ui/dll-override-entry.ui:11
 msgid "Native (Windows)"
-msgstr ""
+msgstr "Natiu (Windows)"
 
 #: src/ui/dll-override-entry.ui:12
 msgid "Builtin, then Native"
-msgstr ""
+msgstr "Incorporat, després natiu"
 
 #: src/ui/dll-override-entry.ui:13
 msgid "Native, then Builtin"
-msgstr ""
+msgstr "Natiu, després Incorporat"
 
 #: src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Inhabilitat"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
-msgstr ""
+msgstr "Suprimir"
 
 #: src/ui/drive-entry.ui:7
 msgid "/point/to/path"
-msgstr ""
+msgstr "/punt/al/camí"
 
 #: src/ui/drive-entry.ui:24
 msgid "Choose a Directory"
-msgstr ""
+msgstr "Trieu un directori"
 
 #: src/ui/env-var-entry.ui:6
 msgid "Value"
@@ -2010,26 +1992,28 @@ msgstr "Valor"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
-msgstr ""
+msgstr "Aquest prefix de Wine ja s'havia imporatat al Bottles."
 
 #: src/ui/importer.ui:24
 msgid "Import Bottles backup"
-msgstr ""
+msgstr "Importar copia de seguretat de Bottles"
 
 #: src/ui/importer.ui:31
 msgid "Search again for prefixes"
-msgstr ""
+msgstr "Torna a cercar prefixos"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
-msgstr "No s’ha trobat cap resultat"
+msgstr "No s'ha trobat cap prefix"
 
 #: src/ui/importer.ui:46
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
+"No s'ha trobat cap prefix de Lutris, PlayOnLinux, etc.\n"
+"Utilitzeu la icona de la part superior per importar una ampolla des d'una "
+"còpia de seguretat"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
@@ -2045,23 +2029,23 @@ msgstr "Mostra el manifest…"
 
 #: src/ui/installer-entry.ui:23
 msgid "Read Review…"
-msgstr ""
+msgstr "Llegeir la ressenya…"
 
 #: src/ui/installer-entry.ui:62
 msgid "Install this program"
-msgstr ""
+msgstr "Instal·la aquest programa"
 
 #: src/ui/library-entry.ui:14
 msgid "Remove from Library"
-msgstr ""
+msgstr "Suprimeix de la biblioteca"
 
 #: src/ui/library-entry.ui:70 src/ui/program-entry.ui:102
 msgid "Launch with Steam"
-msgstr ""
+msgstr "Llançar amb Steam"
 
 #: src/ui/library.ui:22
 msgid "Search for Prefixes"
-msgstr ""
+msgstr "Cerca prefixos"
 
 #: src/ui/library.ui:42 src/ui/preferences.ui:222
 msgid "Library"
@@ -2069,45 +2053,47 @@ msgstr "Biblioteca"
 
 #: src/ui/library.ui:43
 msgid "Add items here from your bottle's program list"
-msgstr ""
+msgstr "Afegiu aquí elements de la llista de programes de a vostra ampolla"
 
 #: src/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
-msgstr ""
+msgstr "Aquesta ampolla sembla malmesa."
 
 #: src/ui/list-entry.ui:60
 msgid "Execute in this bottle"
-msgstr ""
+msgstr "Executa en aquesta ampolla"
 
 #: src/ui/list-entry.ui:75
 msgid "Run Here"
-msgstr ""
+msgstr "Executa aquí"
 
 #: src/ui/list-entry.ui:84
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
+"Aquesta ampolla sembla malmesa, falta el fitxer de configuració. Es pot "
+"intentar resoldre-ho creant una nova configuració."
 
 #: src/ui/list-entry.ui:96
 msgid "Run .exe/.msi in this bottle"
-msgstr ""
+msgstr "Executa .exe/.msi en aquesta ampolla"
 
 #: src/ui/list.ui:17
 msgid "Search your bottles…"
-msgstr ""
+msgstr "Cerca les vostres ampolles…"
 
 #: src/ui/list.ui:38
 msgid "Steam Proton"
-msgstr ""
+msgstr "Steam Proton"
 
 #: src/ui/list.ui:55
 msgid "Start off by creating a Bottle."
-msgstr ""
+msgstr "Comenceu creant una ampolla."
 
 #: src/ui/list.ui:62
 msgid "Create a new Bottle"
-msgstr ""
+msgstr "Crea una ampolla nova"
 
 #: src/ui/list.ui:75
 msgid "No Results Found"
@@ -2115,11 +2101,11 @@ msgstr "No s’ha trobat cap resultat"
 
 #: src/ui/list.ui:76
 msgid "Try a different search."
-msgstr ""
+msgstr "Proveu una cerca diferent."
 
 #: src/ui/loading.ui:16
 msgid "Starting up…"
-msgstr ""
+msgstr "S'està iniciant…"
 
 #: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
@@ -2131,7 +2117,7 @@ msgstr "Navega"
 
 #: src/ui/new.ui:17 src/ui/new.ui:63
 msgid "New Bottle"
-msgstr ""
+msgstr "Nova ampolla"
 
 #: src/ui/new.ui:38
 msgid "Create"
@@ -2159,15 +2145,15 @@ msgstr "Aplicació"
 
 #: src/ui/new.ui:93
 msgid "An environment improved for Windows applications."
-msgstr ""
+msgstr "Un entorn millorat per a les aplicacions de Windows."
 
 #: src/ui/new.ui:102
 msgid "Layered"
-msgstr ""
+msgstr "En capes"
 
 #: src/ui/new.ui:103
 msgid "A layered environment, where every app is a layer."
-msgstr ""
+msgstr "Un entorn en capes, on cada aplicació és una capa."
 
 #: src/ui/new.ui:111
 msgid "Custom"
@@ -2175,19 +2161,19 @@ msgstr "Personalitzat"
 
 #: src/ui/new.ui:112
 msgid "A clear environment for your experiments."
-msgstr ""
+msgstr "Un entorn net per als vostres experiments."
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
-msgstr ""
+msgstr "Activeu el versionat per desar i restaurar l'ampolla a un estat."
 
 #: src/ui/new.ui:128
 msgid "Unlinked Home Directory"
-msgstr ""
+msgstr "Directori d'inici desenllaçat"
 
 #: src/ui/new.ui:129
 msgid "Do not link the userdir to the homedir"
-msgstr ""
+msgstr "No enllaçar el directori d'usuari amb el directori inicial"
 
 #: src/ui/new.ui:154
 msgid "Architecture"
@@ -2195,7 +2181,7 @@ msgstr "Arquitectura"
 
 #: src/ui/new.ui:155
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr ""
+msgstr "Recomanem utilitzar 32 bits només si és estrictament necessari."
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2211,7 +2197,7 @@ msgstr "Recepta personalitzada"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
+msgstr "Trieu una recepta personalitzada per a l'entorn si en teniu una."
 
 #: src/ui/new.ui:185
 msgid "Custom Path"
@@ -2250,15 +2236,16 @@ msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
+"Bottles utilitza corredors de compatibilitat per proporcionar entorns "
+"aïllats en contenidors semblants a Windows on s'executen programes."
 
 #: src/ui/onboard.ui:79
 msgid "Almost Done"
 msgstr "Gairebé fet"
 
 #: src/ui/onboard.ui:80
-#, fuzzy
 msgid "We need a few more minutes to set everything up…"
-msgstr "Necessitem uns minuts més per configurar-ho tot..."
+msgstr "Necessitem uns minuts més per configurar-ho tot…"
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
@@ -2270,7 +2257,7 @@ msgstr "Tot a punt!"
 
 #: src/ui/onboard.ui:119
 msgid "Start using Bottles"
-msgstr ""
+msgstr "Començar a utilitzar Bottles"
 
 #: src/ui/onboard.ui:138
 msgid "Next"
@@ -2297,7 +2284,6 @@ msgid "Show notifications for downloads and installs."
 msgstr "Mostra les notificacions de baixades i instal·lacions."
 
 #: src/ui/preferences.ui:48
-#, fuzzy
 msgid "Temp Files"
 msgstr "Fitxers temporals"
 
@@ -2306,66 +2292,60 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "Voleu netejar els fitxers temporals quan s'iniciï Bottles?"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
 msgstr "Tancar Bottles després d'iniciar un programa"
 
 #: src/ui/preferences.ui:61
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "Tancar Bottles després d'iniciar un programa des del gestor de fitxers"
+msgstr "Tancar Bottles després d'iniciar un programa des del gestor de fitxers."
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "Operacions"
+msgstr "Integracions"
 
 #: src/ui/preferences.ui:77
-#, fuzzy
 msgid "Steam Proton Prefixes"
 msgstr "Prefixos de Steam Proton"
 
 #: src/ui/preferences.ui:78
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Prefixos de Steam Proton"
+msgstr "Llista i gestiona els prefixos de Steam Proton."
 
 #: src/ui/preferences.ui:89
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Llista les aplicacions de Steam a la llista de programes"
 
 #: src/ui/preferences.ui:90
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "Requereix Steam per a Windows instal·lat a l'ampolla."
 
 #: src/ui/preferences.ui:101
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "Llista Epic Games a la llista de programes"
 
 #: src/ui/preferences.ui:102
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "Requereix Epic Games Store instal·lat a l'ampolla."
 
 #: src/ui/preferences.ui:115
 msgid "Advanced"
 msgstr "Avançat"
 
 #: src/ui/preferences.ui:118
-#, fuzzy
 msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Camí de les ampolles personalitzades (cal reiniciar)"
+msgstr "Camí de les ampolles personalitzades (requereix reiniciar)"
 
 #: src/ui/preferences.ui:152
 msgid "Runners"
-msgstr ""
+msgstr "Corredors"
 
 #: src/ui/preferences.ui:157
 msgid "Pre-Release"
-msgstr ""
+msgstr "Pre-alliberament"
 
 #: src/ui/preferences.ui:158
 msgid "Display unstable versions of runners."
-msgstr ""
+msgstr "Mostra versions inestables dels corredors."
 
 #: src/ui/preferences.ui:174
 msgid "DLL Components"
@@ -2385,21 +2365,19 @@ msgstr "Entorn d’execució"
 
 #: src/ui/preferences.ui:209
 msgid "WineBridge"
-msgstr ""
+msgstr "WineBridge"
 
 #: src/ui/preferences.ui:223
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "En desenvolupament inicial (cal reiniciar)"
+msgstr "En desenvolupament inicial (requereix reiniciar)."
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "Entorn aïllat per ampolla"
 
 #: src/ui/preferences.ui:235
-#, fuzzy
 msgid "In early development."
-msgstr "En desenvolupament inicial (cal reiniciar)"
+msgstr "En desenvolupament inicial."
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
@@ -2478,7 +2456,6 @@ msgid "Open menu"
 msgstr "Obre el menú"
 
 #: src/ui/window.ui:103
-#, fuzzy
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
