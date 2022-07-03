@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-05-15 05:13+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2022-07-04 17:16+0000\n"
+"Last-Translator: Stian Øverbye <stian@overbye.dev>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/bottles/"
 "bottles/nb_NO/>\n"
 "Language: nb_NO\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -42,9 +42,8 @@ msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
-#, fuzzy
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Kjør Windows-programvare på Linux med Flasker 🍷!"
+msgstr "Kjør Windows-programvare på Linux med Flasker!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -73,11 +72,9 @@ msgid "Features:"
 msgstr "Funksjoner:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:18
-#, fuzzy
 msgid "Create bottles using preconfigured environments or create your own"
 msgstr ""
-"Opprett dine flasker ved bruk av forhåndsoppsatte miljøer, eller lag dine "
-"egne"
+"Opprett flasker ved bruk av forhåndsinnstilte miljøer, eller lag dine egne"
 
 #: data/com.usebottles.bottles.appdata.xml.in:19
 msgid ""
@@ -146,19 +143,16 @@ msgid "Back up and import bottles"
 msgstr "Sikkerhetkopier og importer flasker"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
-#, fuzzy
 msgid "Import Wine prefixes from other managers"
-msgstr "Importer fra sikkerhetskopi eller andre håndterere"
+msgstr "Importer Wine-prefikser fra andre behandlere"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
-#, fuzzy
 msgid "Bottles versioning"
-msgstr "Skru på versjonering"
+msgstr "Flasker versjonering"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
-#, fuzzy
 msgid "... and much more that you can find by installing Bottles!"
-msgstr "… og mye mer du finner ved å installere Flasker."
+msgstr "… og mye mer som du finner ved å installere Flasker!"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -175,7 +169,7 @@ msgstr "Mørk drakt"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "Påtving bruken av mørkt tema."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -188,17 +182,15 @@ msgstr "Skru av/på oppdatering av dato i flaskeliste."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Steam programliste"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Skru av/på oppdatering av dato i liste"
+msgstr "Skru av/på Steam programliste."
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic Games-butikken …"
+msgstr "Epic Games-oppføring"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 #, fuzzy
@@ -337,7 +329,7 @@ msgstr "Kjør med argumenter"
 
 #: src/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Ugyldig URI (syntaks: bottles:run/<flaske></<program>)"
 
 #: src/main.py:246
 #, fuzzy
@@ -370,14 +362,18 @@ msgid ""
 "Preferences.\n"
 "Fall-backing to the default path; no bottles from that path will be listed!"
 msgstr ""
+"Den egendefinerte flaske-stien ble ikke funnet. Vennligst sjekk stien i "
+"Innstillinger.\n"
+"Faller tilbake til standardstien; ingen flasker fra den stien vil bli "
+"oppført!"
 
 #: src/window.py:283
 msgid "Health check"
-msgstr ""
+msgstr "Helsesjekk"
 
 #: src/window.py:288 src/ui/dialog-journal.ui:49
 msgid "Journal browser"
-msgstr ""
+msgstr "Journal-leser"
 
 #: src/backend/managers/versioning.py:60
 #, fuzzy
@@ -391,7 +387,7 @@ msgstr "Oppretter wineprefiks …"
 
 #: src/backend/managers/versioning.py:163
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "Kunne ikke opprette tilstandsmappe."
 
 #: src/backend/managers/versioning.py:170
 #, fuzzy
@@ -405,11 +401,11 @@ msgstr "Oppretter flaske …"
 
 #: src/backend/managers/versioning.py:223
 msgid "Could not update the states file."
-msgstr ""
+msgstr "Kunne ikke oppdatere tilstandsfil."
 
 #: src/backend/managers/versioning.py:237
 msgid "Could not update the index file."
-msgstr ""
+msgstr "Kunne ikke oppdatere indeksfil."
 
 #: src/backend/managers/versioning.py:263
 #, fuzzy, python-brace-format
@@ -418,7 +414,7 @@ msgstr "En flaske ved navn «{0}» ble opprettet"
 
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "Ingen sti spesifisert"
 
 #: src/backend/managers/backup.py:71
 #, fuzzy, python-brace-format
@@ -432,11 +428,11 @@ msgstr "Importerer sikkerhetskopi: {0}"
 
 #: src/backend/managers/manager.py:1013
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "Mislyktes i å installere komponenter, forsøkt 3 ganger."
 
 #: src/backend/managers/manager.py:1024
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Mangler viktige komponenter. Installerer…"
 
 #: src/backend/managers/manager.py:1100
 #, fuzzy
@@ -445,7 +441,7 @@ msgstr "Jeg må velge en egedefinert sti"
 
 #: src/backend/managers/manager.py:1112
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Mislyktes i å opprette plassholder mappe/fil."
 
 #: src/backend/managers/manager.py:1117
 #, fuzzy
@@ -454,7 +450,7 @@ msgstr "Oppretter wineprefiks …"
 
 #: src/backend/managers/manager.py:1140
 msgid "Template found, applying…"
-msgstr ""
+msgstr "Mal funnet, anvender…"
 
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1152
@@ -474,7 +470,7 @@ msgstr "Kjører som Flatpak. Oppretter sandkasse-mapper…"
 
 #: src/backend/managers/manager.py:1164
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Sandbokser brukermappe…"
 
 #: src/backend/managers/manager.py:1182
 #, fuzzy
@@ -483,7 +479,7 @@ msgstr "Versjonering"
 
 #: src/backend/managers/manager.py:1191
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Anvend CMD standardinnstillinger…"
 
 #: src/backend/managers/manager.py:1199
 #, fuzzy
@@ -497,11 +493,11 @@ msgstr "Tar i bruk miljø: {0}…"
 
 #: src/backend/managers/manager.py:1220
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Bruker en egendefinert miljøoppskrift…"
 
 #: src/backend/managers/manager.py:1223
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Oppskrift ikke funnet eller ugyldig…"
 
 #: src/backend/managers/manager.py:1240
 #, fuzzy
@@ -577,7 +573,7 @@ msgstr "Avbryt"
 #: src/views/bottle_preferences.py:251 src/views/new.py:137
 #: src/views/new.py:153 src/views/preferences.py:167
 msgid "Select"
-msgstr ""
+msgstr "Velg"
 
 #: src/dialogs/envvars.py:133
 #, fuzzy
@@ -602,7 +598,7 @@ msgstr "Kopier til utklippstavle"
 #. endregion
 #: src/dialogs/launchoptions.py:54 src/ui/dialog-launch-options.ui:58
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "Velg skript som skal utføres etter kjøring."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
 #, fuzzy
@@ -616,7 +612,7 @@ msgstr "Versjonering påskrudd for denne flasken"
 
 #: src/dialogs/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "Denne innstillingene er annerledes fra flaskens standard."
 
 #: src/dialogs/launchoptions.py:227
 msgid "Choose the script"
@@ -629,7 +625,7 @@ msgstr "Arbeidsmappe"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "Velg ressursfil"
 
 #: src/views/bottle_details.py:140
 #, python-format
@@ -660,12 +656,12 @@ msgstr "Velg sted å lagre sikkerhetskopiert arkiv"
 #: src/views/bottle_details.py:256
 #, python-brace-format
 msgid "Backup created for '{0}'."
-msgstr ""
+msgstr "Backup opprettet for '{0}'."
 
 #: src/views/bottle_details.py:258
 #, python-brace-format
 msgid "Backup failed for '{0}'."
-msgstr ""
+msgstr "Backup feilet for '{0}'."
 
 #: src/views/bottle_details.py:276
 #, fuzzy
@@ -703,7 +699,7 @@ msgstr "Velg en kjørbar Windows-fil"
 #: src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
-msgstr ""
+msgstr "'{0}' lagt til."
 
 #: src/views/bottle_programs.py:87
 #, fuzzy
@@ -753,7 +749,7 @@ msgstr "Oppgavebehandler"
 
 #: src/views/importer.py:89
 msgid "Backup imported successfully."
-msgstr ""
+msgstr "Backup importert vellykket."
 
 #: src/views/importer.py:91
 #, fuzzy
@@ -818,12 +814,16 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"Steam ble ikke funnet eller så har ikke Flasker nok tillatelser. Besøk "
+"https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
 msgstr ""
+"Velg hvor å oppbevare de nye flaskene (dette vil ikke flytte de eksisterende "
+"flaskene)."
 
 #: src/views/preferences.py:165
 #, fuzzy
@@ -832,7 +832,7 @@ msgstr "Velg en kjørbar Windows-fil"
 
 #: src/views/preferences.py:213
 msgid "Other"
-msgstr ""
+msgstr "Andre"
 
 #: src/widgets/component.py:70
 #, fuzzy
@@ -852,12 +852,12 @@ msgstr "Manifest for {0}"
 #: src/widgets/dependency.py:166
 #, python-brace-format
 msgid "'{0}' installed."
-msgstr ""
+msgstr "'{0}' installert."
 
 #: src/widgets/importer.py:66
 #, python-brace-format
 msgid "'{0}' imported."
-msgstr ""
+msgstr "'{0}' importert."
 
 #: src/widgets/installer.py:87
 #, fuzzy, python-brace-format
@@ -866,7 +866,7 @@ msgstr "Manifest for {0}"
 
 #: src/widgets/installer.py:102
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "Installasjonsprogram feilet med ukjent feilmelding"
 
 #: src/widgets/installer.py:133
 #, fuzzy, python-brace-format
@@ -881,42 +881,42 @@ msgstr "Steg {self.__step} av {self.steps}"
 #: src/widgets/program.py:221
 #, python-brace-format
 msgid "'{0}' launched."
-msgstr ""
+msgstr "'{0}' kjørt."
 
 #: src/widgets/program.py:227
 #, python-brace-format
 msgid "'{0}' launched with Steam."
-msgstr ""
+msgstr "'{0}' kjørt med Steam."
 
 #: src/widgets/program.py:248
 #, python-brace-format
 msgid "'{0}' hidden."
-msgstr ""
+msgstr "'{0}' gjemt."
 
 #: src/widgets/program.py:250
 #, python-brace-format
 msgid "'{0}' showed."
-msgstr ""
+msgstr "'{0}' vist."
 
 #: src/widgets/program.py:273
 #, python-brace-format
 msgid "'{0}' removed."
-msgstr ""
+msgstr "'{0}' fjernet."
 
 #: src/widgets/program.py:287
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
-msgstr ""
+msgstr "'{0}' endret navn til '{1}'."
 
 #: src/widgets/program.py:307
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr ""
+msgstr "Skrivebords-oppføring opprettet for '{0}'"
 
 #: src/widgets/program.py:328
 #, python-brace-format
 msgid "'{0}' added to your library"
-msgstr ""
+msgstr "'{0}' lagt til biblioteket ditt"
 
 #: src/widgets/program.py:333
 #, python-brace-format
