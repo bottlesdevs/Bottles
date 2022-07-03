@@ -12,7 +12,7 @@ script:
   - cd ..
   
   # Preparing directories
-  - mkdir -p AppDir/usr AppDir/usr/local/share/bottles AppDir/usr/bin AppDir/usr/share/glib-2.0/schemas AppDir/usr/share/applications AppDir/usr/share/metainfo AppDir/usr/share/icons
+  - mkdir -p AppDir/usr AppDir/usr/local/share/bottles AppDir/bin AppDir/usr/bin AppDir/usr/share/glib-2.0/schemas AppDir/usr/share/applications AppDir/usr/share/metainfo AppDir/usr/share/icons
   
   # Compiling and installing glib-resources
   - glib-compile-resources --sourcedir=src/ui/ src/ui/bottles.gresource.xml --target=AppDir/usr/local/share/bottles/bottles.gresource
