@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-07-03 08:50+0000\n"
+"PO-Revision-Date: 2022-07-03 09:06+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -168,7 +168,7 @@ msgstr "开关 bottles 列表上的更新日期。"
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Steam 应用清单"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
@@ -241,24 +241,20 @@ msgid ""
 msgstr "开关如版本控制、安装器和运行器候选版本等实验性功能。"
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Steam Proton"
+msgstr "Steam Proton 支持"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "开关实验性的 Steam Proton 前缀支持。"
+msgstr "开/关 Steam Proton 前缀支持。"
 
 #: data/com.usebottles.bottles.gschema.xml:71
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "实验功能：steam"
+msgstr "实验功能：沙盒"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "开关实验性的库模式。"
+msgstr "决定每个 bottle 实验性“沙盒”功能的开启状态。"
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -313,14 +309,12 @@ msgid "[Refresh] request received."
 msgstr "[刷新] 请求已收到。"
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
 msgstr "计算中…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
-msgstr "正在下载…"
+msgstr "加载中…"
 
 #: src/window.py:226
 msgid ""
@@ -523,9 +517,8 @@ msgid "Select"
 msgstr "选择"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "未定义环境变量"
+msgstr "未定义环境变量。"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -548,9 +541,8 @@ msgid "Choose a script which should be executed after run."
 msgstr "选择应该在运行后执行的脚本。"
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "启动程序后关闭 Bottles"
+msgstr "选择从何处启动程序。"
 
 #: src/dialogs/launchoptions.py:56
 #, python-brace-format
@@ -566,9 +558,8 @@ msgid "Choose the script"
 msgstr "选择脚本"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "工作目录"
+msgstr "选择工作目录"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -689,9 +680,8 @@ msgid "Import failed."
 msgstr "导入失败。"
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
-msgstr "正在导入备份.."
+msgstr "正在导入备份…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
@@ -740,6 +730,8 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"未找到 Steam 或 Bottles 权限不足。访问 https://docs.usebottles.com/flatpak/"
+"cant-enable-steam-proton-manager"
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
@@ -760,9 +752,8 @@ msgid "Upgrade"
 msgstr "升级"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "正在安装 DXVK …"
+msgstr "正在安装…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -1147,7 +1138,6 @@ msgid "Search for Programs…"
 msgstr "搜索程序…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
 msgstr "未找到安装包"
 
@@ -1374,9 +1364,8 @@ msgid "System"
 msgstr "系统"
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "组件版本"
+msgstr "管理组件版本"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1424,7 +1413,6 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
 msgstr "Windows 版本"
 
@@ -1434,29 +1422,27 @@ msgstr "正在更新 Windows 版本，请稍等…"
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "语言"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Choose the language to use with programs."
-msgstr "为所选程序挑选新名称。"
+msgstr "选择程序所用的语言。"
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
-msgstr ""
+msgstr "false"
 
 #: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "专用沙盒"
 
 #: src/ui/details-preferences.ui:499
 msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
+msgstr "对此 bottle 使用受限/受管理环境。"
 
 #: src/ui/details-preferences.ui:502
-#, fuzzy
 msgid "Manage Sandbox permissions"
-msgstr "管理 DXVK 版本"
+msgstr "管理沙盒权限"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
@@ -1614,7 +1600,6 @@ msgid "Stop process"
 msgstr "停止进程"
 
 #: src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
 msgstr "未找到状态"
 
@@ -1692,13 +1677,12 @@ msgid "Drives"
 msgstr "驱动器"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…).\n"
 "                                "
 msgstr ""
-"这些是来自你主机系统的路径，由运行器映射并识别为设备（如 C: D:..)。\n"
+"这些是来自你主机系统的路径，由运行器映射并识别为设备（如 C: D:…)。\n"
 "                                "
 
 #: src/ui/dialog-drives.ui:25
@@ -1706,7 +1690,6 @@ msgid "Letter"
 msgstr "字母"
 
 #: src/ui/dialog-drives.ui:49
-#, fuzzy
 msgid "Existing Drives"
 msgstr "现存驱动器"
 
@@ -1727,9 +1710,8 @@ msgid "Duplicating…"
 msgstr "正在复制…"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "喝杯茶，它可能会花一点时间"
+msgstr "休息一下，它可能会花一点时间。"
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -1742,12 +1724,10 @@ msgid ""
 msgstr "环境变量是动态命名的值，可以影响运行中进程在 Bottle 上的行为方式。"
 
 #: src/ui/dialog-env-vars.ui:28
-#, fuzzy
 msgid "Variable Name"
 msgstr "变量名"
 
 #: src/ui/dialog-env-vars.ui:36
-#, fuzzy
 msgid "Existing Variables"
 msgstr "现有变量"
 
@@ -1866,7 +1846,6 @@ msgid "Post-run Script"
 msgstr "运行后脚本"
 
 #: src/ui/dialog-launch-options.ui:75
-#, fuzzy
 msgid "Choose a script"
 msgstr "选择脚本"
 
@@ -1879,9 +1858,8 @@ msgid "Preferences Overrides"
 msgstr "首选项覆盖"
 
 #: src/ui/dialog-launch-options.ui:128
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
-msgstr "重置为默认"
+msgstr "重置为 Bottle 的默认值"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -1935,7 +1913,7 @@ msgstr "原生先于内置"
 
 #: src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "禁用"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -1966,18 +1944,16 @@ msgid "Search again for prefixes"
 msgstr "再次搜索前缀"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
 msgstr "未找到前缀"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
-"未从 Lutris、PlayOnLinux 等找到前缀。\n"
-"                                            使用顶部的图标从备份导入 Bottle"
+"从 Lutris、PlayOnLinux 等处未找到前缀。\n"
+"使用顶部的图标从备份中导入 Bottle"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
@@ -2122,9 +2098,8 @@ msgid "Custom"
 msgstr "自定义"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments."
-msgstr "为您的实验提供的清洁环境"
+msgstr "为您的实验提供的清洁环境。"
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -2143,9 +2118,8 @@ msgid "Architecture"
 msgstr "架构"
 
 #: src/ui/new.ui:155
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr "我们建议仅在绝对必要时使用 32 位"
+msgstr "我们建议仅在绝对必要时使用 32 位。"
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2206,9 +2180,8 @@ msgid "Almost Done"
 msgstr "即将完成"
 
 #: src/ui/onboard.ui:80
-#, fuzzy
 msgid "We need a few more minutes to set everything up…"
-msgstr "我们还需要几分钟来设置一切.."
+msgstr "我们还需要几分钟来设置一切…"
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
@@ -2247,7 +2220,6 @@ msgid "Show notifications for downloads and installs."
 msgstr "为下载和安装显示通知。"
 
 #: src/ui/preferences.ui:48
-#, fuzzy
 msgid "Temp Files"
 msgstr "临时文件"
 
@@ -2256,28 +2228,24 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "在 Bottles 启动时清理临时文件吗？"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
 msgstr "启动程序后关闭 Bottles"
 
 #: src/ui/preferences.ui:61
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "从文件管理器启动程序后关闭 Bottles"
+msgstr "从文件管理器启动程序后关闭 Bottles。"
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "操作"
+msgstr "集成"
 
 #: src/ui/preferences.ui:77
 msgid "Steam Proton Prefixes"
 msgstr "Steam Proton 前缀"
 
 #: src/ui/preferences.ui:78
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Steam Proton 前缀"
+msgstr "列出并管理 Steam Proton 前缀。"
 
 #: src/ui/preferences.ui:89
 msgid "List Steam Apps in Programs List"
@@ -2300,18 +2268,16 @@ msgid "Advanced"
 msgstr "高级"
 
 #: src/ui/preferences.ui:118
-#, fuzzy
 msgid "Custom Bottles Path (Requires Restart)"
-msgstr "自定义 bottles 路径（需要重启）"
+msgstr "自定义 Bottles 路径（需要重启）"
 
 #: src/ui/preferences.ui:152
 msgid "Runners"
 msgstr "运行器"
 
 #: src/ui/preferences.ui:157
-#, fuzzy
 msgid "Pre-Release"
-msgstr "预发布"
+msgstr "预发行"
 
 #: src/ui/preferences.ui:158
 msgid "Display unstable versions of runners."
@@ -2338,18 +2304,16 @@ msgid "WineBridge"
 msgstr "WineBridge"
 
 #: src/ui/preferences.ui:223
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "早期开发中（需要重启）"
+msgstr "早期开发中（需要重启）。"
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
 msgstr ""
 
 #: src/ui/preferences.ui:235
-#, fuzzy
 msgid "In early development."
-msgstr "早期开发中（需要重启）"
+msgstr "早期开发中。"
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
