@@ -31,15 +31,11 @@ class LibraryView(Adw.Bin):
     # region Widgets
     main_flow = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
-    btn_update = Gtk.Template.Child()
-    btn_back = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
         self.window = window
-
-        self.btn_back.connect("clicked", self.go_back)
         self.update()
 
     def update(self):

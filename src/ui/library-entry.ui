@@ -7,8 +7,11 @@
         </style>
         <child>
             <object class="GtkBox">
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
                 <property name="orientation">vertical</property>
-                <property name="spacing">3</property>
                 <child>
                     <object class="GtkModelButton" id="btn_remove">
                         <property name="text" translatable="yes">Remove from Library</property>
@@ -19,16 +22,16 @@
     </object>
     <template class="LibraryEntry" parent="GtkBox">
         <property name="orientation">vertical</property>
+        <property name="halign">fill</property>
+        <property name="width-request">128</property>
         <child>
-            <object class="GtkImage" id="img_cover">
-                <!--<property name="height-request">128</property>-->
-            </object>
-        </child>
-        <child>
-            <object class="GtkBox">
-                <property name="spacing">6</property>
-                <child>
+            <object class="GtkOverlay">
+                <child type="overlay">
                     <object class="GtkMenuButton">
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
+                        <property name="margin-top">5</property>
+                        <property name="margin-start">5</property>
                         <property name="popover">pop_context</property>
                         <property name="icon-name">view-more-symbolic</property>
                         <style>
@@ -36,6 +39,17 @@
                         </style>
                     </object>
                 </child>
+                <child>
+                    <object class="GtkImage" id="img_cover">
+                        <property name="width-request">256</property>
+                        <property name="height-request">225</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+        <child>
+            <object class="GtkBox">
+                <property name="spacing">6</property>
                 <child>
                     <object class="GtkImage" id="img_icon">
                         <property name="icon-name">applications-games-symbolic</property>
@@ -64,19 +78,24 @@
                 </child>
                 <child type="end">
                     <object class="GtkBox">
-                        <property name="spacing">6</property>
                         <child>
                             <object class="GtkButton" id="btn_launch_steam">
                                 <property name="tooltip-text" translatable="yes">Launch with Steam</property>
                                 <property name="valign">center</property>
                                 <property name="icon-name">bottles-steam-symbolic</property>
                                 <property name="visible">false</property>
+                                <style>
+                                    <class name="flat"/>
+                                </style>
                             </object>
                         </child>
                         <child>
                             <object class="GtkButton" id="btn_run">
                                 <property name="valign">center</property>
                                 <property name="icon-name">media-playback-start-symbolic</property>
+                                <style>
+                                    <class name="flat"/>
+                                </style>
                             </object>
                         </child>
                         <child>
@@ -84,6 +103,9 @@
                                 <property name="visible">False</property>
                                 <property name="halign">center</property>
                                 <property name="icon-name">media-playback-stop-symbolic</property>
+                                <style>
+                                    <class name="flat"/>
+                                </style>
                             </object>
                         </child>
                     </object>
