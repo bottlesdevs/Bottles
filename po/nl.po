@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-07-03 09:06+0000\n"
+"PO-Revision-Date: 2022-07-04 17:16+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -189,7 +189,7 @@ msgstr "Lijst met Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr "Toon/verberg lijst met Epic Games"
+msgstr "Toon/verberg lijst met Epic Games."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -619,7 +619,7 @@ msgstr "Exporteren"
 
 #: src/views/bottle_details.py:306
 msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Weet je zeker dat je deze bottle en alle bestanden wilt verwijderen?"
+msgstr "Weet u zeker dat u deze bottle en alle bestanden wilt verwijderen?"
 
 #: src/views/bottle_details.py:382
 msgid ""
@@ -636,7 +636,7 @@ msgstr "Deze functie is niet beschikbaar op uw systeem."
 #: src/views/bottle_preferences.py:241 src/views/bottle_preferences.py:258
 #: src/views/bottle_preferences.py:394
 msgid "Default to the bottle path."
-msgstr "Standaard naar het bottlespad."
+msgstr "Standaardwaarde is het bottlespad."
 
 #: src/views/bottle_preferences.py:249
 msgid "Choose working directory for executables"
@@ -696,9 +696,8 @@ msgid "Import failed."
 msgstr "Importeren mislukt."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
-msgstr "Backup importeren…"
+msgstr "Back-up importeren…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
@@ -747,6 +746,9 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"Steam kon niet worden gevonden of Bottles heeft geen rechten hiervoor. Zie "
+"https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager voor "
+"meer informatie."
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
@@ -769,9 +771,8 @@ msgid "Upgrade"
 msgstr "Opwaarderen"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "DXVK installeren…"
+msgstr "Installeren…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -1166,7 +1167,6 @@ msgid "Search for Programs…"
 msgstr "Zoeken naar programma's…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
 msgstr "Geen installers gevonden"
 
@@ -1179,7 +1179,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:8
 msgid "Bottle Details"
-msgstr "Bottle Details"
+msgstr "Bottle-details"
 
 #: src/ui/details-preferences.ui:11 src/ui/dialog-duplicate.ui:55
 #: src/ui/new.ui:69
@@ -1403,9 +1403,8 @@ msgid "System"
 msgstr "Systeem"
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "Componenten versie"
+msgstr "Componentenversies beheren"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1455,7 +1454,6 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
 msgstr "Windows-versie"
 
@@ -1465,30 +1463,27 @@ msgstr "Windows-versie bijwerken, even geduld a.u.b…"
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "Taal"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Choose the language to use with programs."
-msgstr "Kies een nieuwe naam voor het geselecteerde programma."
+msgstr "Kies de taal om voor programma's te gebruiken."
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
-msgstr ""
+msgstr "onwaar"
 
 #: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "Toegewijde zandbak"
 
 #: src/ui/details-preferences.ui:499
-#, fuzzy
 msgid "Use a restricted/managed environment for this bottle."
-msgstr "Stel een andere runner in voor deze bottle."
+msgstr "Gebruik een beperkte/beheerde omgeving voor deze bottle."
 
 #: src/ui/details-preferences.ui:502
-#, fuzzy
 msgid "Manage Sandbox permissions"
-msgstr "DXVK-versies beheren"
+msgstr "Zandbakrechten beheren"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
@@ -1655,7 +1650,6 @@ msgid "Stop process"
 msgstr "Proces stoppen"
 
 #: src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
 msgstr "Geen staten gevonden"
 
@@ -1738,14 +1732,13 @@ msgid "Drives"
 msgstr "Stations"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…).\n"
 "                                "
 msgstr ""
 "Dit zijn paden van uw hostsysteem die door de runner in kaart worden "
-"gebracht en herkend als apparaten (bijv. \"C:\", \"D:\", …).\n"
+"gebracht en worden herkend als apparaten (bijv. ‘C:’, ‘D:’, …).\n"
 "                                "
 
 #: src/ui/dialog-drives.ui:25
@@ -1753,7 +1746,6 @@ msgid "Letter"
 msgstr "Brief"
 
 #: src/ui/dialog-drives.ui:49
-#, fuzzy
 msgid "Existing Drives"
 msgstr "Bestaande schijven"
 
@@ -1774,9 +1766,8 @@ msgid "Duplicating…"
 msgstr "Dupliceren…"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "Neem een pauze, het kan een tijdje duren"
+msgstr "Neem een pauze, het kan een tijdje duren."
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -1791,12 +1782,10 @@ msgstr ""
 "hebben op de manier waarop processen zich zullen gedragen in uw bottle."
 
 #: src/ui/dialog-env-vars.ui:28
-#, fuzzy
 msgid "Variable Name"
 msgstr "Naam van variabele"
 
 #: src/ui/dialog-env-vars.ui:36
-#, fuzzy
 msgid "Existing Variables"
 msgstr "Bestaande variabelen"
 
@@ -1917,9 +1906,8 @@ msgid "Post-run Script"
 msgstr "Script voor na het uitvoeren"
 
 #: src/ui/dialog-launch-options.ui:75
-#, fuzzy
 msgid "Choose a script"
-msgstr "Kies het script"
+msgstr "Script selecteren"
 
 #: src/ui/dialog-launch-options.ui:124
 msgid "These settings will override the default settings for this executable."
@@ -1932,9 +1920,8 @@ msgid "Preferences Overrides"
 msgstr "Overschrijvingsvoorkeuren"
 
 #: src/ui/dialog-launch-options.ui:128
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
-msgstr "Standaardwaarden herstellen"
+msgstr "Standaardwaarden van Bottles herstellen"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -1992,7 +1979,7 @@ msgstr "Lokaal, daarna ingebouwd"
 
 #: src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Uitgeschakeld"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -2023,19 +2010,16 @@ msgid "Search again for prefixes"
 msgstr "Opnieuw zoeken naar prefixes"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
 msgstr "Geen prefixes gevonden"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
 "Er zijn geen prefixes gevonden van Lutris, PlayOnLinux, etc.\n"
-"                                    Gebruik het pictogram bovenaan om een "
-"bottle uit een back-up te importeren"
+"Gebruik het pictogram bovenaan om een bottle uit een back-up te importeren"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
@@ -2182,7 +2166,6 @@ msgid "Custom"
 msgstr "Aangepast"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments."
 msgstr "Een duidelijke omgeving voor uw experimenten."
 
@@ -2205,10 +2188,9 @@ msgid "Architecture"
 msgstr "Architectuur"
 
 #: src/ui/new.ui:155
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary."
 msgstr ""
-"We raden aan om 32-bits alleen te gebruiken als dit strikt noodzakelijk is"
+"We raden aan om 32-bits alleen te gebruiken als dit strikt noodzakelijk is."
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2271,7 +2253,6 @@ msgid "Almost Done"
 msgstr "Bijna klaar"
 
 #: src/ui/onboard.ui:80
-#, fuzzy
 msgid "We need a few more minutes to set everything up…"
 msgstr "We hebben een paar extra minuten nodig om alles op te zetten…"
 
@@ -2312,7 +2293,6 @@ msgid "Show notifications for downloads and installs."
 msgstr "Toon meldingen voor downloads en installaties."
 
 #: src/ui/preferences.ui:48
-#, fuzzy
 msgid "Temp Files"
 msgstr "Tijdelijke bestanden"
 
@@ -2321,53 +2301,47 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "Tijdelijke bestanden opschonen als Bottles opstart?"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
 msgstr "Bottles sluiten na het starten van een programma"
 
 #: src/ui/preferences.ui:61
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
 msgstr ""
-"Bottles sluiten na het starten van een programma vanuit de bestandsbeheerder"
+"Sluit Bottles na het starten van een programma vanuit de bestandsbeheerder."
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "Activiteiten"
+msgstr "Integraties"
 
 #: src/ui/preferences.ui:77
 msgid "Steam Proton Prefixes"
-msgstr "Steam-Proton-Prefixes"
+msgstr "Steam-Proton-prefixes"
 
 #: src/ui/preferences.ui:78
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Steam-Proton-Prefixes"
+msgstr "Bekijk en beheer Steam-Proton-prefixes."
 
 #: src/ui/preferences.ui:89
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Steam-apps in programmalijst weergeven"
 
 #: src/ui/preferences.ui:90
-#, fuzzy
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr "Weergeef, beheer en start de progamma's geïnstalleerd in deze bottle."
+msgstr "Vereist dat Steam voor Windows in de bottle is geïnstalleerd."
 
 #: src/ui/preferences.ui:101
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "Epic Games in programmalijst weergeven"
 
 #: src/ui/preferences.ui:102
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "Vereist dat de Epic Games Store in de bottle is geïnstalleerd."
 
 #: src/ui/preferences.ui:115
 msgid "Advanced"
 msgstr "Geavanceerd"
 
 #: src/ui/preferences.ui:118
-#, fuzzy
 msgid "Custom Bottles Path (Requires Restart)"
 msgstr "Aangepast bottles-pad (opnieuw opstarten vereist)"
 
@@ -2376,7 +2350,6 @@ msgid "Runners"
 msgstr "Runners"
 
 #: src/ui/preferences.ui:157
-#, fuzzy
 msgid "Pre-Release"
 msgstr "Pre-release"
 
@@ -2405,18 +2378,16 @@ msgid "WineBridge"
 msgstr "WineBridge"
 
 #: src/ui/preferences.ui:223
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "In vroege ontwikkeling (vereist opnieuw opstarten)"
+msgstr "In vroege ontwikkeling (opnieuw opstarten vereist)."
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "Zandbak per bottle"
 
 #: src/ui/preferences.ui:235
-#, fuzzy
 msgid "In early development."
-msgstr "In vroege ontwikkeling (vereist opnieuw opstarten)"
+msgstr "In vroege ontwikkeling."
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
