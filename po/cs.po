@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-11 20:24+0000\n"
+"PO-Revision-Date: 2022-07-04 17:16+0000\n"
 "Last-Translator: vikdevelop <super-vik1@protonmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -174,22 +174,19 @@ msgstr "Zda se má v seznamu lahví zobrazovat datum aktualizace."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Seznam Steam aplikací"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Přepnout datum aktualizace v seznamu"
+msgstr "Přepnout výpis Steam aplikací."
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic Games obchod .."
+msgstr "Seznam her Epic"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "Přepnout datum aktualizace v seznamu"
+msgstr "Přepnout seznam her Epic."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -252,24 +249,20 @@ msgstr ""
 "Release Candidate pro spouštěče."
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Steam Proton"
+msgstr "Podpora Steam Protonu"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Zapnout experimentální funkci správy verzí pro Steam Proton prefixy."
+msgstr "Přepnout podporu prefixů Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:71
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "Experimenty:steam"
+msgstr "Experimenty:sandbox"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Povolit experimentální Režim knihovny."
+msgstr "Přepnout experimentální Sandbox na láhev."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -324,14 +317,12 @@ msgid "[Refresh] request received."
 msgstr "[Refresh] žádost přijata."
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
-msgstr "Výpočet..."
+msgstr "Počítání…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
-msgstr "Stahuji…"
+msgstr "Načítání…"
 
 #: src/window.py:226
 msgid ""
@@ -535,9 +526,8 @@ msgid "Select"
 msgstr "Vybrat"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Nejsou definovány žádné proměnné prostředí"
+msgstr "Nejsou definovány žádné proměnné prostředí."
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -560,9 +550,8 @@ msgid "Choose a script which should be executed after run."
 msgstr "Vyberte který skript by měl být spuštěn po spuštění."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "Po spuštění programu zavřít lahve"
+msgstr "Vyberte, odkud program spustit."
 
 #: src/dialogs/launchoptions.py:56
 #, python-brace-format
@@ -578,9 +567,8 @@ msgid "Choose the script"
 msgstr "Vyberte skript"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "Pracovní adresář"
+msgstr "Vyberte pracovní adresář"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -701,9 +689,8 @@ msgid "Import failed."
 msgstr "Import se nezdařil."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
-msgstr "Importování zálohy.."
+msgstr "Importování zálohy…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
@@ -752,6 +739,9 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"Aplikace Steam nebyla nalezena nebo program Bottles nemá dostatečná "
+"oprávnění.Navštivte stránku https://docs.usebottles.com/flatpak/cant-enable-"
+"steam-proton-manager"
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
@@ -772,9 +762,8 @@ msgid "Upgrade"
 msgstr "Povýšit"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "Instalování DXVK …"
+msgstr "Instalace…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -1166,7 +1155,6 @@ msgid "Search for Programs…"
 msgstr "Hledat programy…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
 msgstr "Nebyly nalezeny žádné instalační programy"
 
@@ -1402,9 +1390,8 @@ msgid "System"
 msgstr "Systém"
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "Verze komponent"
+msgstr "Správa verzí komponent"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1452,9 +1439,8 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
-msgstr "Verze Windows"
+msgstr "Verze systému Windows"
 
 #: src/ui/details-preferences.ui:458
 msgid "Updating Windows version, please wait…"
@@ -1462,29 +1448,27 @@ msgstr "Aktualizuji verzi Windows, prosím počkejte…"
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "Jazyk"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Choose the language to use with programs."
-msgstr "Vyberte nový název pro vybraný program."
+msgstr "Zvolte jazyk, který chcete používat s programy."
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
-msgstr ""
+msgstr "lež"
 
 #: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "Vyhrazený sandbox"
 
 #: src/ui/details-preferences.ui:499
 msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
+msgstr "Pro tuto láhev použijte omezené/řízené prostředí."
 
 #: src/ui/details-preferences.ui:502
-#, fuzzy
 msgid "Manage Sandbox permissions"
-msgstr "Spravovat verze DXVK"
+msgstr "Správa oprávnění Sandboxu"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
@@ -1647,9 +1631,8 @@ msgid "Stop process"
 msgstr "Zastavit proces"
 
 #: src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
-msgstr "Nebyly nalezeny žádné stavy"
+msgstr "Nebyly nalezeny žádné státy"
 
 #: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
@@ -1729,14 +1712,13 @@ msgid "Drives"
 msgstr "Ovladače"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…).\n"
 "                                "
 msgstr ""
 "Jedná se o cesty z hostitelského systému, které jsou mapovány a rozpoznány "
-"jako zařízení v programu Runner (např. C: D:..).\n"
+"jako zařízení v programu Runner (např. C: D:...).\n"
 "                                "
 
 #: src/ui/dialog-drives.ui:25
@@ -1744,9 +1726,8 @@ msgid "Letter"
 msgstr "Dopis"
 
 #: src/ui/dialog-drives.ui:49
-#, fuzzy
 msgid "Existing Drives"
-msgstr "Existující úložiště"
+msgstr "Stávající disky"
 
 #: src/ui/dialog-duplicate.ui:17
 msgid "Duplicate Bottle"
@@ -1765,9 +1746,8 @@ msgid "Duplicating…"
 msgstr "Duplikuji…"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "Dejte si pauzu, může to chvíli trvat"
+msgstr "Dejte si pauzu, může to chvíli trvat."
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -1782,14 +1762,12 @@ msgstr ""
 "procesy běží ve vaší láhvi."
 
 #: src/ui/dialog-env-vars.ui:28
-#, fuzzy
 msgid "Variable Name"
 msgstr "Název proměnné"
 
 #: src/ui/dialog-env-vars.ui:36
-#, fuzzy
 msgid "Existing Variables"
-msgstr "Existující proměnné"
+msgstr "Stávající proměnné"
 
 #: src/ui/dialog-gamescope.ui:9
 msgid "Gamescope Settings"
@@ -1906,7 +1884,6 @@ msgid "Post-run Script"
 msgstr "Skript po spuštění"
 
 #: src/ui/dialog-launch-options.ui:75
-#, fuzzy
 msgid "Choose a script"
 msgstr "Vyberte skript"
 
@@ -1919,9 +1896,8 @@ msgid "Preferences Overrides"
 msgstr "Přepisy předvoleb"
 
 #: src/ui/dialog-launch-options.ui:128
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
-msgstr "Resetovat do výchozího nastavení"
+msgstr "Resetovat Bottles do výchozího nastavení"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -1977,7 +1953,7 @@ msgstr "Nativní, pak vestavěný"
 
 #: src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Zakázáno"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -2008,19 +1984,16 @@ msgid "Search again for prefixes"
 msgstr "Znovu vyhledejte předpony"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
-msgstr "Nebyly nalezeny žádné předpony"
+msgstr "Nebyly nalezeny žádné prefixy"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
-"Nebyly nalezeny žádné předpony z Lutris, PlayOnLinux atd.\n"
-"                                    Pro import lahve ze zálohy použijte "
-"ikonu nahoře"
+"Nebyly nalezeny žádné prefixy z Lutris, PlayOnLinux atd.\n"
+"Pro import lahve ze zálohy použijte ikonu nahoře"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
@@ -2167,9 +2140,8 @@ msgid "Custom"
 msgstr "Vlastní"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments."
-msgstr "Přehledné prostředí pro vaše experimenty"
+msgstr "Přehledné prostředí pro vaše experimenty."
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -2188,9 +2160,10 @@ msgid "Architecture"
 msgstr "Architektura"
 
 #: src/ui/new.ui:155
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr "Doporučujeme používat pouze 32bit, pokud je to jen nezbytně nutné"
+msgstr ""
+"Doporučujeme používat 32bitový systém pouze v případě, že je to nezbytně "
+"nutné."
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2253,9 +2226,8 @@ msgid "Almost Done"
 msgstr "Téměř hotovo"
 
 #: src/ui/onboard.ui:80
-#, fuzzy
 msgid "We need a few more minutes to set everything up…"
-msgstr "Potřebujeme ještě několik minut, abychom vše připravili.."
+msgstr "Potřebujeme ještě pár minut, abychom vše připravili…"
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
@@ -2294,7 +2266,6 @@ msgid "Show notifications for downloads and installs."
 msgstr "Zobrazit oznámení o stažení a instalaci."
 
 #: src/ui/preferences.ui:48
-#, fuzzy
 msgid "Temp Files"
 msgstr "Dočasné soubory"
 
@@ -2303,60 +2274,54 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "Vyčistit dočasné soubory při spuštění láhví?"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
-msgstr "Po spuštění programu zavřít lahve"
+msgstr "Po spuštění programu zavřít láhve"
 
 #: src/ui/preferences.ui:61
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "Zavřít Láhve po spuštění programu ze správce souborů"
+msgstr "Zavřít Láhve po spuštění programu ze správce souborů."
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "Operace"
+msgstr "Integrace"
 
 #: src/ui/preferences.ui:77
 msgid "Steam Proton Prefixes"
 msgstr "Prefixy Steam Protonu"
 
 #: src/ui/preferences.ui:78
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Prefixy Steam Protonu"
+msgstr "Seznam a správa prefixů služby Steam Proton."
 
 #: src/ui/preferences.ui:89
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Seznam Steam aplikací v seznamu programů"
 
 #: src/ui/preferences.ui:90
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "Vyžaduje Steam pro Windows nainstalovaný v Láhvi."
 
 #: src/ui/preferences.ui:101
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "Seznam Her Epic v seznamu programů"
 
 #: src/ui/preferences.ui:102
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "Vyžaduje obchod Epic Games Store nainstalovaný v lahvi."
 
 #: src/ui/preferences.ui:115
 msgid "Advanced"
 msgstr "Pokročilé"
 
 #: src/ui/preferences.ui:118
-#, fuzzy
 msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Vlastní umíštění Láhví (vyžaduje restart)"
+msgstr "Cesta k vlastním lahvím (vyžaduje restart)"
 
 #: src/ui/preferences.ui:152
 msgid "Runners"
 msgstr "Runnery"
 
 #: src/ui/preferences.ui:157
-#, fuzzy
 msgid "Pre-Release"
 msgstr "Předběžné vydání"
 
@@ -2385,18 +2350,16 @@ msgid "WineBridge"
 msgstr "Winebridge"
 
 #: src/ui/preferences.ui:223
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "V rané fázi vývoje (vyžaduje restart)"
+msgstr "V rané fázi vývoje (vyžaduje restart)."
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "Sandbox pro Láhev"
 
 #: src/ui/preferences.ui:235
-#, fuzzy
 msgid "In early development."
-msgstr "V rané fázi vývoje (vyžaduje restart)"
+msgstr "V raném stádiu vývoje."
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
