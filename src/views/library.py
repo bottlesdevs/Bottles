@@ -29,6 +29,7 @@ class LibraryView(Adw.Bin):
     __gtype_name__ = 'LibraryView'
 
     # region Widgets
+    scroll_window = Gtk.Template.Child()
     main_flow = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     # endregion
@@ -46,7 +47,7 @@ class LibraryView(Adw.Bin):
             self.main_flow.remove(self.main_flow.get_first_child())
 
         self.status_page.set_visible(len(entries) == 0)
-        self.main_flow.set_visible(not len(entries) == 0)
+        self.scroll_window.set_visible(not len(entries) == 0)
 
         for u, e in entries.items():
             entry = LibraryEntry(self, u, e)
