@@ -19,9 +19,8 @@ from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 import webbrowser
 
-from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
-from bottles.dialogs.generic import SourceDialog
-from bottles.dialogs.localresources import LocalResourcesDialog
+from bottles.dialogs.generic import SourceDialog  # pyright: reportMissingImports=false
+from bottles.dialogs.installer import InstallerDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
@@ -95,64 +94,4 @@ class InstallerEntry(Adw.ActionRow):
         webbrowser.open("https://github.com/bottlesdevs/programs/issues")
 
     def __execute_installer(self, widget):
-        """Execute installer"""
-        def set_status(result, error=False):
-            if result.status:
-                return self.set_installed()
-            _err = result.data.get("message", _("Installer failed with unknown error"))
-            self.set_err(_err)
-
-        self.set_steps(self.manager.installer_manager.count_steps(self.installer))
-        self.get_parent().set_sensitive(False)
-        self.label_step.set_visible(True)
-
-        widget.set_visible(False)
-        widget.set_sensitive(False)
-        self.spinner.set_visible(True)
-        GLib.idle_add(self.spinner.start)
-
-        final_resources = []
-        local_resources = self.manager.installer_manager.has_local_resources(self.installer)
-        if local_resources:
-            dialog = LocalResourcesDialog(self.window, local_resources)
-            dialog.run()
-            final_resources = dialog.get_resources()
-
-        RunAsync(
-            task_func=self.manager.installer_manager.install,
-            callback=set_status,
-            config=self.config,
-            installer=self.installer,
-            step_fn=self.next_step,
-            local_resources=final_resources
-        )
-
-    def set_installed(self):
-        """Set installed status"""
-        self.spinner.stop()
-        self.window.show_toast(_("{0} installed.").format(self.installer[1].get("Name")))
-        self.btn_install.set_visible(False)
-        self.label_step.set_visible(False)
-        self.img_installed.set_visible(True)
-        self.get_parent().set_sensitive(True)
-        self.window.page_details.update_programs()
-
-    def set_err(self, msg="Something went wrong"):
-        """Set error status"""
-        self.spinner.stop()
-        self.btn_install.set_visible(False)
-        self.img_error.set_visible(True)
-        self.label_step.set_visible(False)
-        self.img_error.set_tooltip_text(msg)
-        self.get_parent().set_sensitive(True)
-
-    def next_step(self):
-        """Next step"""
-        self.__step += 1
-        self.label_step.set_text(
-            _(f"Step {self.__step} of {self.steps}")
-        )
-
-    def set_steps(self, steps):
-        """Set steps"""
-        self.steps = steps
+        InstallerDialog(self.window, self.config, self.installer).present()

@@ -44,8 +44,8 @@
                 <child>
                     <object class="GtkImage" id="img_cover">
                         <property name="visible">False</property>
-                        <property name="hexpand">center</property>
-                        <property name="vexpand">center</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
                     </object>
                 </child>
                 <child>
@@ -53,8 +53,8 @@
                         <property name="visible">False</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
-                        <property name="hexpand">center</property>
-                        <property name="vexpand">center</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
                         <property name="label" translatable="True">No Thumbnail</property>
                         <style>
                             <class name="dim-label"/>
