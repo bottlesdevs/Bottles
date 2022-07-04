@@ -102,6 +102,14 @@ class InstallerDialog(Adw.Window):
         self.config = config
         self.installer = installer
 
+        self.__steps_phrases = {
+            "deps": _("Installing Windows dependencies…"),
+            "params": _("Configuring the bottle…"),
+            "steps": _("Processing installer steps…"),
+            "exe": _("Installing the {}…".format(installer[1].get("Name"))),
+            "checks": _("Performing final checks…")
+        }
+
         self.status_init.set_title(installer[1].get("Name"))
         self.label_installing_name.set_text(_("Installing {0}…").format(installer[1].get("Name")))
         self.status_installed.set_description(_("{0} is now available in the programs view.").format(installer[1].get("Name")))
@@ -173,6 +181,8 @@ class InstallerDialog(Adw.Window):
 
     def next_step(self):
         """Next step"""
+        phrase = self.__steps_phrases[self.__sections[self.__current_step]]
+        self.progressbar.set_text(phrase)
         self.__current_step += 1
         self.progressbar.set_fraction(self.__current_step * (1 / self.__steps))
 

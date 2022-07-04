@@ -381,21 +381,23 @@ class InstallerManager:
 
     def count_steps(self, installer) -> dict:
         manifest = self.get_installer(installer[0])
-        steps = {"total": 0, "sections": {}}
+        steps = {"total": 0, "sections": []}
         if manifest.get("Dependencies"):
-            steps["sections"]["dependencies"] = int(len(manifest.get("Dependencies")))
-            steps["total"] += steps["sections"]["dependencies"]
+            i = int(len(manifest.get("Dependencies")))
+            steps["sections"] += i * ["deps"]
+            steps["total"] += i
         if manifest.get("Parameters"):
-            steps["sections"]["parameters"] = 1
+            steps["sections"].append("params")
             steps["total"] += 1
         if manifest.get("Steps"):
-            steps["sections"]["steps"] = int(len(manifest.get("Steps")))
-            steps["total"] += steps["sections"]["steps"]
+            i = int(len(manifest.get("Steps")))
+            steps["sections"] += i * ["steps"]
+            steps["total"] += i
         if manifest.get("Executable"):
-            steps["sections"]["executable"] = 1
+            steps["sections"].append("exe")
             steps["total"] += 1
         if manifest.get("Checks"):
-            steps["sections"]["checks"] = 1
+            steps["sections"].append("checks")
             steps["total"] += 1
 
         return steps
