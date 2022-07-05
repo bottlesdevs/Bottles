@@ -178,12 +178,13 @@ class DependencyManager:
             '''
             uninstaller = manifest.get("Uninstaller")
 
-        self.__manager.update_config(
-            config,
-            dependency[0],
-            uninstaller,
-            "Uninstallers"
-        )
+        if dependency[0] not in config["Installed_Dependencies"]:
+            self.__manager.update_config(
+                config,
+                dependency[0],
+                uninstaller,
+                "Uninstallers"
+            )
 
         # Remove entry from operation manager
         GLib.idle_add(self.__operation_manager.remove_task, task_id)
