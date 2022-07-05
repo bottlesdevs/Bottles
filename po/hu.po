@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-19 19:48+0000\n"
-"Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
+"PO-Revision-Date: 2022-07-06 00:05+0000\n"
+"Last-Translator: Jabybaby <jabybaby@protonmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
 "Language: hu\n"
@@ -178,22 +178,19 @@ msgstr "A palacklista frissítési dátumának be-/kikapcsolása."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Steam alkalmazás lista"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Frissítési dátum be-/kikapcsolása a listában"
+msgstr "Steam alkalmazások listájának ki-/bekapcsolása."
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic Games Store..."
+msgstr "Epic Games lista"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "Frissítési dátum be-/kikapcsolása a listában"
+msgstr "Epic Games lista ki-/bekapcsolása."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -256,14 +253,12 @@ msgstr ""
 "telepítők. Kiadásra jelölt a futtatók számára."
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Steam Proton"
+msgstr "Steam Proton támogatás"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Kísérleti Steam Proton prefixek támogatásának be-/kikapcsolása."
+msgstr "Kísérleti Steam Proton prefixek támogatásának ki-/bekapcsolása."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 #, fuzzy
@@ -313,9 +308,8 @@ msgid "Pass arguments"
 msgstr "Argumentumok átadása"
 
 #: src/main.py:203
-#, fuzzy
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "Érvénytelen URI (szintaxis: bottles:run/<bottle>/<program>)"
+msgstr "Érvénytelen URI (szintaxis: bottles:run/<palack>/<program>)"
 
 #: src/main.py:246
 msgid "[Quit] request received."
@@ -330,14 +324,12 @@ msgid "[Refresh] request received."
 msgstr "[Frissítési] kérelem érkezett."
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
-msgstr "Számolás..."
+msgstr "Számítás…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
-msgstr "Letöltés folyamatban van…"
+msgstr "Betöltés…"
 
 #: src/window.py:226
 msgid ""
@@ -544,9 +536,8 @@ msgid "Select"
 msgstr "Kiválasztás"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Nincs környezeti változó megadva"
+msgstr "Nincs környezeti változó megadva."
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -569,9 +560,8 @@ msgid "Choose a script which should be executed after run."
 msgstr "Válasszon egy szkriptet, amelyet a futás után végre kell hajtani."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "A program indítása után zárja be a Palackokat"
+msgstr "Válassza ki a program indítási helyét."
 
 #: src/dialogs/launchoptions.py:56
 #, python-brace-format
@@ -711,7 +701,6 @@ msgid "Import failed."
 msgstr "Az importálás sikertelen."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
 msgstr "Biztonsági mentés importálása…"
 
@@ -762,15 +751,17 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"A Steam nem található vagy a Palackok alkalmazás nem rendelkezik a szükséges "
+"engedélyekkel. Lásd: https://docs.usebottles.com/flatpak/cant-enable-steam-"
+"proton-manager"
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
-#, fuzzy
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
 msgstr ""
 "Válassza ki, hogy hol szeretné tárolni az új palackokat (ez nem fogja "
-"áthelyezni a létezőket)"
+"áthelyezni a létezőket)."
 
 #: src/views/preferences.py:165
 msgid "Choose new bottles path"
@@ -1178,7 +1169,6 @@ msgid "Search for Programs…"
 msgstr "Programok keresése…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
 msgstr "Nem található telepítő"
 
@@ -1328,10 +1318,8 @@ msgid "Mouse Warp"
 msgstr "Egérrögzítés"
 
 #: src/ui/details-preferences.ui:219
-#, fuzzy
 msgid "Change this if you are running into mouse lag or desync."
-msgstr ""
-"Változtassa meg, ha az egér szakadozását, vagy a leválását tapasztalja."
+msgstr "Változtassa meg, ha az egér szakadozását, vagy leválását tapasztalja."
 
 #: src/ui/details-preferences.ui:231
 msgid "Screen Scaling"
@@ -1414,9 +1402,8 @@ msgid "System"
 msgstr "Rendszer"
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "Összetevők verziója"
+msgstr "Összetevők verziójának kezelése"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1466,7 +1453,6 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
 msgstr "Windows verzió"
 
@@ -1476,24 +1462,23 @@ msgstr "Windows verzió frissítése…"
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "Nyelv"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Choose the language to use with programs."
-msgstr "Válasszon új nevet a kiválasztott program számára."
+msgstr "Válassza ki a programokhoz használt nyelvet."
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
-msgstr ""
+msgstr "hamis"
 
 #: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "Dedikált homokozó"
 
 #: src/ui/details-preferences.ui:499
 msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
+msgstr "Korlátozott/kezelt környezet használata ennél a palacknál."
 
 #: src/ui/details-preferences.ui:502
 #, fuzzy
@@ -1509,7 +1494,7 @@ msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
 msgstr ""
-"Egy csomag extra könyvtárat biztosít a nagyobb kompatibilitás érdekében,\n"
+"Egy csomag extra könyvtárat biztosít a nagyobb kompatibilitás érdekében "
 "tiltsa le, ha problémákba ütközik."
 
 #: src/ui/details-preferences.ui:532
@@ -1783,9 +1768,8 @@ msgid "Duplicating…"
 msgstr "Duplikálás…"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "Tartson egy kis szünetet, ez eltarthat egy ideig"
+msgstr "Tartson egy kis szünetet, ez eltarthat egy ideig."
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -1999,7 +1983,7 @@ msgstr "Natív majd beépített"
 
 #: src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Letiltva"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -2212,9 +2196,8 @@ msgid "Architecture"
 msgstr "Architektúra"
 
 #: src/ui/new.ui:155
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr "Csak akkor ajánljuk a 32 bit használatát, ha feltétlenül szükséges"
+msgstr "Csak akkor ajánljuk a 32-bit használatát, ha feltétlenül szükséges."
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2345,25 +2328,24 @@ msgid "Steam Proton Prefixes"
 msgstr "Steam Proton prefixek"
 
 #: src/ui/preferences.ui:78
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Steam Proton prefixek"
+msgstr "Steam Proton prefixek listázása és kezelése."
 
 #: src/ui/preferences.ui:89
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Steam alkalmazások listázása a programok listájában"
 
 #: src/ui/preferences.ui:90
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "Igényli a Steam Windows verziójának palackba való telepítését."
 
 #: src/ui/preferences.ui:101
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "Epic Games alkalmazások listázása a programok listájában"
 
 #: src/ui/preferences.ui:102
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "Igényli az Epic Games palackba való telepítését."
 
 #: src/ui/preferences.ui:115
 msgid "Advanced"
@@ -2412,7 +2394,7 @@ msgstr "Korai fejlesztésben (újraindítás szükséges)."
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "Palackonkénti homokozó"
 
 #: src/ui/preferences.ui:235
 #, fuzzy
