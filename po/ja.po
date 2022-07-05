@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-26 17:54+0000\n"
+"PO-Revision-Date: 2022-07-06 00:05+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -252,24 +252,20 @@ msgstr ""
 "ナーのリリース候補です。"
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Steam Proton環境"
+msgstr "Steam Protonへの対応"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "実験的なSteam Proton環境対応機能を有効／無効にします。"
+msgstr "Steam Proton環境への対応機能を有効／無効にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:71
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "実験的な機能: Steam"
+msgstr "実験的な機能: サンドボックス"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "実験的なライブラリモードを有効／無効にします。"
+msgstr "実験的なサンドボックスをボトル単位で有効／無効にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -325,14 +321,12 @@ msgid "[Refresh] request received."
 msgstr "[リフレシュ]リクエストを受信しました。"
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
 msgstr "計算しています…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
-msgstr "ダウンロードしています…"
+msgstr "読み込んでいます…"
 
 #: src/window.py:226
 msgid ""
@@ -505,9 +499,8 @@ msgstr ""
 "            以下の既存の報告の中から選んでフィードバックを報告してください。"
 
 #: src/dialogs/dlloverrides.py:136
-#, fuzzy
 msgid "No overrides found."
-msgstr "プログラムが見つかりません"
+msgstr "オーバーライドが見つかりませんでした。"
 
 #: src/dialogs/drives.py:71
 msgid "Choose path"
@@ -535,9 +528,8 @@ msgid "Select"
 msgstr "選択"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "環境変数が設定されていません"
+msgstr "環境変数が未定義です。"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -578,9 +570,8 @@ msgid "Choose the script"
 msgstr "スクリプトを選択"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "カレントディレクトリ"
+msgstr "カレントディレクトリを選択"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -701,7 +692,6 @@ msgid "Import failed."
 msgstr "インポートに失敗しました。"
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
 msgstr "バックアップをインポートしています…"
 
@@ -755,10 +745,9 @@ msgstr ""
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
-#, fuzzy
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
-msgstr "新しいボトルの保存先を選択します (既存のボトルは移動しません)"
+msgstr "新しいボトルの保存先を選択します (既存のボトルは移動しません)。"
 
 #: src/views/preferences.py:165
 msgid "Choose new bottles path"
@@ -773,9 +762,8 @@ msgid "Upgrade"
 msgstr "アップグレード"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "DXVKをインストールしています…"
+msgstr "インストールしています…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -1166,9 +1154,8 @@ msgid "Search for Programs…"
 msgstr "プログラムを検索…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
-msgstr "インストーラーはありません"
+msgstr "インストーラーが見つかりませんでした"
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -1405,9 +1392,8 @@ msgid "System"
 msgstr "システム"
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "コンポーネントのバージョン"
+msgstr "コンポーネントのバージョンを管理"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1455,7 +1441,6 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
 msgstr "Windowsのバージョン"
 
@@ -1484,9 +1469,8 @@ msgid "Use a restricted/managed environment for this bottle."
 msgstr ""
 
 #: src/ui/details-preferences.ui:502
-#, fuzzy
 msgid "Manage Sandbox permissions"
-msgstr "DXVKバージョンを管理"
+msgstr "サンドボックスのパーミッションを管理"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
@@ -1652,7 +1636,6 @@ msgid "Stop process"
 msgstr "プロセスを停止"
 
 #: src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
 msgstr "バックアップはありません"
 
@@ -1733,7 +1716,6 @@ msgid "Drives"
 msgstr "ドライブ"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…).\n"
@@ -1748,7 +1730,6 @@ msgid "Letter"
 msgstr "ドライブレター"
 
 #: src/ui/dialog-drives.ui:49
-#, fuzzy
 msgid "Existing Drives"
 msgstr "既存のドライブ"
 
@@ -1769,9 +1750,8 @@ msgid "Duplicating…"
 msgstr "複製しています…"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "しばらくお待ちください。これには少し時間がかかります"
+msgstr "しばらくお待ちください。これには少し時間がかかることがあります。"
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -1786,12 +1766,10 @@ msgstr ""
 "す。"
 
 #: src/ui/dialog-env-vars.ui:28
-#, fuzzy
 msgid "Variable Name"
 msgstr "変数名"
 
 #: src/ui/dialog-env-vars.ui:36
-#, fuzzy
 msgid "Existing Variables"
 msgstr "既存の変数"
 
@@ -1911,7 +1889,6 @@ msgid "Post-run Script"
 msgstr "起動後スクリプト"
 
 #: src/ui/dialog-launch-options.ui:75
-#, fuzzy
 msgid "Choose a script"
 msgstr "スクリプトを選択"
 
@@ -1944,15 +1921,13 @@ msgstr "名前を変更"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "選択したプログラムの新しい名前を選択してください。"
 
 #: src/ui/dialog-rename.ui:37
-#, fuzzy
 msgid "New Name"
-msgstr "名前"
+msgstr "新しい名前"
 
 #: src/ui/dialog-run-args.ui:14
-#, fuzzy
 msgid "Run With Arguments"
 msgstr "引数を指定して実行"
 
@@ -1961,7 +1936,6 @@ msgid "Write below the arguments to be passed to the executable."
 msgstr "実行可能ファイルに渡す引数を以下に記述してください。"
 
 #: src/ui/dialog-run-args.ui:50
-#, fuzzy
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
 msgstr "例: -opengl -SkipBuildPatchPrereq"
 
@@ -1974,12 +1948,10 @@ msgid "Native (Windows)"
 msgstr "ネイティブ (Windows)"
 
 #: src/ui/dll-override-entry.ui:12
-#, fuzzy
 msgid "Builtin, then Native"
 msgstr "組み込みが利用できなければネイティブを使う"
 
 #: src/ui/dll-override-entry.ui:13
-#, fuzzy
 msgid "Native, then Builtin"
 msgstr "ネイティブが利用できなければ組み込みを使う"
 
@@ -1989,19 +1961,17 @@ msgstr ""
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
-msgstr ""
+msgstr "削除"
 
 #: src/ui/drive-entry.ui:7
 msgid "/point/to/path"
 msgstr "パスを指定"
 
 #: src/ui/drive-entry.ui:24
-#, fuzzy
 msgid "Choose a Directory"
 msgstr "ディレクトリを選択"
 
 #: src/ui/env-var-entry.ui:6
-#, fuzzy
 msgid "Value"
 msgstr "値"
 
@@ -2014,14 +1984,12 @@ msgid "Import Bottles backup"
 msgstr "Bottlesのバックアップをインポート"
 
 #: src/ui/importer.ui:31
-#, fuzzy
 msgid "Search again for prefixes"
-msgstr "Steam Proton環境"
+msgstr "環境を対象に再検索"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
-msgstr "プログラムが見つかりません"
+msgstr "環境が見つかりません"
 
 #: src/ui/importer.ui:46
 msgid ""
@@ -2034,7 +2002,6 @@ msgid "Configuration"
 msgstr "設定"
 
 #: src/ui/importer.ui:87
-#, fuzzy
 msgid "Full Archive"
 msgstr "完全なアーカイブ"
 
@@ -2047,33 +2014,28 @@ msgid "Read Review…"
 msgstr "レビューを読む…"
 
 #: src/ui/installer-entry.ui:62
-#, fuzzy
 msgid "Install this program"
-msgstr "インストールされているプログラム"
+msgstr "このプログラムをインストール"
 
 #: src/ui/library-entry.ui:14
-#, fuzzy
 msgid "Remove from Library"
-msgstr "プログラムから削除"
+msgstr "ライブラリから削除"
 
 #: src/ui/library-entry.ui:70 src/ui/program-entry.ui:102
 msgid "Launch with Steam"
 msgstr "Steamを使って起動"
 
 #: src/ui/library.ui:22
-#, fuzzy
 msgid "Search for Prefixes"
-msgstr "Steam Proton環境"
+msgstr "環境を検索"
 
 #: src/ui/library.ui:42 src/ui/preferences.ui:222
-#, fuzzy
 msgid "Library"
-msgstr "ライブラリモード"
+msgstr "ライブラリ"
 
 #: src/ui/library.ui:43
-#, fuzzy
 msgid "Add items here from your bottle's program list"
-msgstr "プログラムリストに外部実行可能ファイルを追加します"
+msgstr "ボトルのプログラム一覧から、ここに項目を追加してください"
 
 #: src/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
@@ -2100,14 +2062,12 @@ msgid "Run .exe/.msi in this bottle"
 msgstr "このボトルで.exe / .msiを実行します"
 
 #: src/ui/list.ui:17
-#, fuzzy
 msgid "Search your bottles…"
 msgstr "ボトルを検索…"
 
 #: src/ui/list.ui:38
-#, fuzzy
 msgid "Steam Proton"
-msgstr "Steam Proton環境"
+msgstr "Steam Proton"
 
 #: src/ui/list.ui:55
 msgid "Start off by creating a Bottle."
@@ -2118,13 +2078,12 @@ msgid "Create a new Bottle"
 msgstr "新しいボトルを作成"
 
 #: src/ui/list.ui:75
-#, fuzzy
 msgid "No Results Found"
-msgstr "バックアップはありません"
+msgstr "検索結果はありません"
 
 #: src/ui/list.ui:76
 msgid "Try a different search."
-msgstr ""
+msgstr "別の単語を入力してみてください。"
 
 #: src/ui/loading.ui:16
 msgid "Starting up…"
@@ -2132,7 +2091,7 @@ msgstr "起動しています…"
 
 #: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
-msgstr ""
+msgstr "このリソースは破損しています。"
 
 #: src/ui/local-resource-entry.ui:10
 #, fuzzy
@@ -2184,16 +2143,14 @@ msgid "Custom"
 msgstr "カスタム"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments."
-msgstr "実験目的での使用に適した、まっさらな環境です"
+msgstr "実験目的での使用に適した、まっさらな環境です。"
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
 msgstr "バージョン管理を使うことで、ボトルの状態の保存と復元が可能です。"
 
 #: src/ui/new.ui:128
-#, fuzzy
 msgid "Unlinked Home Directory"
 msgstr "ホームディレクトリを独立させる"
 
@@ -2206,9 +2163,8 @@ msgid "Architecture"
 msgstr "アーキテクチャ"
 
 #: src/ui/new.ui:155
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr "特に理由がなければ、32bitの使用をお勧めします"
+msgstr "特に理由がなければ、32bitの使用をお勧めします。"
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2270,7 +2226,6 @@ msgid "Almost Done"
 msgstr "もう少しです"
 
 #: src/ui/onboard.ui:80
-#, fuzzy
 msgid "We need a few more minutes to set everything up…"
 msgstr "セットアップはあと数分で完了します…"
 
@@ -2311,31 +2266,26 @@ msgid "Show notifications for downloads and installs."
 msgstr "ダウンロードとインストールに関する通知を表示します。"
 
 #: src/ui/preferences.ui:48
-#, fuzzy
 msgid "Temp Files"
 msgstr "一時ファイル"
 
 #: src/ui/preferences.ui:49
 msgid "Clean temp files when Bottles launches?"
-msgstr "Bottlesの起動時に一時ファイルをクリーンアップするかどうかの設定です。"
+msgstr "Bottlesの起動時、一時ファイルをクリーンアップするかどうかの設定です。"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
 msgstr "プログラム起動後にBottlesを閉じる"
 
 #: src/ui/preferences.ui:61
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "ファイルマネージャからプログラムを起動した後、Bottlesを終了します"
+msgstr "ファイルマネージャーからプログラムを起動した後、Bottlesを終了します。"
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "操作"
+msgstr "統合"
 
 #: src/ui/preferences.ui:77
-#, fuzzy
 msgid "Steam Proton Prefixes"
 msgstr "Steam Proton環境"
 
@@ -2365,7 +2315,6 @@ msgid "Advanced"
 msgstr "高度な設定"
 
 #: src/ui/preferences.ui:118
-#, fuzzy
 msgid "Custom Bottles Path (Requires Restart)"
 msgstr "ボトルパスのカスタマイズ (再起動が必要)"
 
@@ -2374,13 +2323,12 @@ msgid "Runners"
 msgstr "ランナー"
 
 #: src/ui/preferences.ui:157
-#, fuzzy
 msgid "Pre-Release"
 msgstr "プレリリース"
 
 #: src/ui/preferences.ui:158
 msgid "Display unstable versions of runners."
-msgstr ""
+msgstr "不安定版のランナーを表示します。"
 
 #: src/ui/preferences.ui:174
 msgid "DLL Components"
@@ -2403,18 +2351,16 @@ msgid "WineBridge"
 msgstr "WineBridge"
 
 #: src/ui/preferences.ui:223
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "開発初期段階の機能 (再起動が必要)"
+msgstr "開発初期段階の機能です (再起動が必要)。"
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "ボトル単位のサンドボックス"
 
 #: src/ui/preferences.ui:235
-#, fuzzy
 msgid "In early development."
-msgstr "開発初期段階の機能 (再起動が必要)"
+msgstr "開発初期段階の機能です。"
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
@@ -2429,37 +2375,32 @@ msgid "Change Launch Options…"
 msgstr "プログラム起動オプションを変更…"
 
 #: src/ui/program-entry.ui:45
-#, fuzzy
 msgid "Add to My Library"
 msgstr "ライブラリに追加"
 
 #: src/ui/program-entry.ui:50
-#, fuzzy
 msgid "Add Desktop Entry"
 msgstr "デスクトップエントリを追加"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
-msgstr ""
+msgstr "Steamに追加"
 
 #: src/ui/program-entry.ui:60
 msgid "Rename…"
 msgstr "名前を変更…"
 
 #: src/ui/program-entry.ui:69
-#, fuzzy
 msgid "Hide Program"
-msgstr "プログラム"
+msgstr "プログラムを非表示"
 
 #: src/ui/program-entry.ui:74
-#, fuzzy
 msgid "Show Program"
-msgstr "プログラム"
+msgstr "プログラムを表示"
 
 #: src/ui/program-entry.ui:79
-#, fuzzy
 msgid "Remove from List"
-msgstr "プログラムから削除"
+msgstr "一覧から削除"
 
 #: src/ui/state-entry.ui:20
 msgid "Restore this state"
