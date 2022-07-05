@@ -32,11 +32,7 @@ class InstallerEntry(Adw.ActionRow):
     btn_review = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
     btn_report = Gtk.Template.Child()
-    img_installed = Gtk.Template.Child()
-    img_error = Gtk.Template.Child()
-    label_step = Gtk.Template.Child()
     label_grade = Gtk.Template.Child()
-    spinner = Gtk.Template.Child()
 
     # endregion
 
