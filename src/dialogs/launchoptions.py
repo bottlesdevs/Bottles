@@ -65,6 +65,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.manager = parent.window.manager
         self.config = config
         self.program = program
+        self.main_loop = GLib.MainLoop()
 
         self.set_transient_for(self.window)
 
@@ -72,7 +73,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.entry_arguments.set_text(program.get("arguments", ""))
 
         # connect signals
-        self.btn_cancel.connect("clicked", self.__close_window, False)
+        self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_save.connect("clicked", self.__save_options)
         self.btn_script.connect("clicked", self.__choose_script)
         self.btn_script_reset.connect("clicked", self.__reset_script)
@@ -182,10 +183,13 @@ class LaunchOptionsDialog(Adw.Window):
         else:
             action.set_subtitle("")
 
-    def __close_window(self, widget=None, save=True):
-        if save:
-            self.parent.page_details.set_config(self.config, rebuild_pages=False)
+    def __close_window(self, *args):
+        self.main_loop.quit()
         self.destroy()
+        self.close()
+
+    def get_config(self):
+        return self.config
 
     def __save_options(self, *args):
         dxvk = self.switch_dxvk.get_state()
@@ -269,3 +273,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_fsr.set_active(self.config["Parameters"]["fsr"])
         self.switch_pulse_latency.set_active(self.config["Parameters"]["pulseaudio_latency"])
         self.switch_virt_desktop.set_active(self.config["Parameters"]["virtual_desktop"])
+
+    def run(self):
+        self.present()
+        self.main_loop.run()

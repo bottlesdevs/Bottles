@@ -136,7 +136,8 @@ class ProgramEntry(Adw.ActionRow):
             self.config,
             self.program
         )
-        new_window.present()
+        new_window.run()
+        self.config = new_window.get_config()
         self.update_programs()
 
     def __reset_buttons(self, result=False, error=False):
