@@ -86,6 +86,7 @@ class BottleView(Adw.PreferencesPage):
     extra_separator = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
+    pop_run = Gtk.Template.Child()
 
     # endregion
 

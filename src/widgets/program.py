@@ -179,6 +179,7 @@ class ProgramEntry(Adw.ActionRow):
                 config=self.config,
                 layer=self.program
             )
+        self.pop_actions.popdown()  # workaround #1640
 
         def _run():
             dxvk = self.config["Parameters"]["dxvk"]
@@ -225,6 +226,7 @@ class ProgramEntry(Adw.ActionRow):
     def run_steam(self, widget):
         self.manager.steam_manager.launch_app(self.config["CompatData"])
         self.window.show_toast(_("'{0}' launched with Steam.").format(self.program["name"]))
+        self.pop_actions.popdown()  # workaround #1640
 
     def stop_process(self, widget):
         winedbg = WineDbg(self.config)
