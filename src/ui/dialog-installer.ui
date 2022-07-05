@@ -16,16 +16,6 @@
                             <object class="AdwWindowTitle" id="window_title">
                             </object>
                         </property>
-                        <child type="end">
-                            <object class="GtkButton" id="btn_proceed">
-                                <property name="label" translatable="yes">Proceed</property>
-                                <property name="sensitive">False</property>
-                                <property name="visible">False</property>
-                                <style>
-                                    <class name="suggested-action"/>
-                                </style>
-                            </object>
-                        </child>
                         <style>
                             <class name="flat" />
                         </style>
@@ -80,6 +70,19 @@
                                         <child>
                                             <object class="AdwPreferencesGroup" id="group_resources">
                                                 <property name="description" translatable="yes">This installer requires some local resources which cannot be provided otherwise.</property>
+                                            </object>
+                                        </child>
+                                        <child>
+                                            <object class="GtkButton" id="btn_proceed">
+                                                <property name="label" translatable="yes">Proceed</property>
+                                                <property name="sensitive">False</property>
+                                                <property name="visible">False</property>
+                                                <property name="halign">center</property>
+                                                <property name="valign">center</property>
+                                                <style>
+                                                    <class name="pill"/>
+                                                    <class name="suggested-action"/>
+                                                </style>
                                             </object>
                                         </child>
                                     </object>
