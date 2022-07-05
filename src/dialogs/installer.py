@@ -88,14 +88,23 @@ class InstallerDialog(Adw.Window):
     status_error = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
     group_resources = Gtk.Template.Child()
-    label_installing_name = Gtk.Template.Child()
+    install_status_page = Gtk.Template.Child()
     img_icon = Gtk.Template.Child()
+    img_icon_install = Gtk.Template.Child()
+    style_provider = Gtk.CssProvider()
 
     # endregion
 
     def __init__(self, window, config, installer, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
+        self.style_provider.load_from_data(b"progressbar { line-height: 2.0; }")
+        Gtk.StyleContext.add_provider(
+            self.progressbar.get_style_context(),
+            self.style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+
 
         self.window = window
         self.manager = window.manager
@@ -111,7 +120,7 @@ class InstallerDialog(Adw.Window):
         }
 
         self.status_init.set_title(installer[1].get("Name"))
-        self.label_installing_name.set_text(_("Installing {0}…").format(installer[1].get("Name")))
+        self.install_status_page.set_title(_("Installing {0}…").format(installer[1].get("Name")))
         self.status_installed.set_description(
             _("{0} is now available in the programs view.").format(installer[1].get("Name")))
         self.__set_icon()
@@ -125,6 +134,7 @@ class InstallerDialog(Adw.Window):
             url = self.manager.installer_manager.get_icon_url(self.installer[0])
             if url is None:
                 self.img_icon.set_visible(False)
+                self.img_icon_install.set_visible(False)
                 return
 
             with urllib.request.urlopen(url) as res:
@@ -132,8 +142,11 @@ class InstallerDialog(Adw.Window):
                 pixbuf = GdkPixbuf.Pixbuf.new_from_stream(stream, None)
                 self.img_icon.set_pixel_size(78)
                 self.img_icon.set_from_pixbuf(pixbuf)
+                self.img_icon_install.set_pixel_size(78)
+                self.img_icon_install.set_from_pixbuf(pixbuf)
         except:
             self.img_icon.set_visible(False)
+            self.img_icon_install.set_visible(False)
 
     def __check_resources(self, *args):
         self.__local_resources = self.manager.installer_manager.has_local_resources(self.installer)
