@@ -44,8 +44,7 @@ class InstallerEntry(Adw.ActionRow):
         self.manager = window.manager
         self.config = config
         self.installer = installer
-        self.__step = 0
-        self.steps = 0
+
         name = installer[1].get("Name")
         description = installer[1].get("Description")
         grade = installer[1].get('Grade')

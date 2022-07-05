@@ -23,6 +23,7 @@ from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=fa
 from bottles.utils.common import open_doc_url
 from bottles.widgets.page import PageRow
 
+from bottles.backend.managers.queue import QueueManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.models.result import Result
@@ -73,14 +74,15 @@ class DetailsView(Adw.Bin):
         self.manager = window.manager
         self.versioning_manager = window.manager.versioning_manager
         self.config = config
+        self.queue = QueueManager(add_fn=self.lock_back, end_fn=self.unlock_back)
 
-        self.view_bottle = BottleView(window, config)
-        self.view_installers = InstallersView(window, config)
-        self.view_dependencies = DependenciesView(window, config)
-        self.view_preferences = PreferencesView(window, config)
+        self.view_bottle = BottleView(self, config)
+        self.view_installers = InstallersView(self, config)
+        self.view_dependencies = DependenciesView(self, config)
+        self.view_preferences = PreferencesView(self, config)
         self.view_programs = ProgramsView(self, config)
-        self.view_versioning = VersioningView(window, config)
-        self.view_taskmanager = TaskManagerView(window, config)
+        self.view_versioning = VersioningView(self, config)
+        self.view_taskmanager = TaskManagerView(self, config)
 
         self.btn_back.connect("clicked", self.go_back)
         self.btn_back_sidebar.connect("clicked", self.go_back_sidebar)
@@ -354,3 +356,11 @@ class DetailsView(Adw.Bin):
     def unload_view(self, *args):
         while self.stack_bottle.get_first_child():
             self.stack_bottle.remove(self.stack_bottle.get_first_child())
+
+    def lock_back(self):
+        self.btn_back.set_sensitive(False)
+        self.btn_back.set_tooltip_text(_("Operations in progress, please wait."))
+
+    def unlock_back(self):
+        self.btn_back.set_sensitive(True)
+        self.btn_back.set_tooltip_text(_("Return to your bottles."))

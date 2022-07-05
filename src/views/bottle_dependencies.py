@@ -43,19 +43,20 @@ class DependenciesView(Adw.Bin):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
+        self.window = details.window
+        self.manager = details.window.manager
         self.config = config
+        self.queue = details.queue
         self.selected_dependencies = []
 
         self.ev_controller.connect("key-released", self.__search_dependencies)
 
         self.entry_search.add_controller(self.ev_controller)
-        self.search_bar.set_key_capture_widget(window)
+        self.search_bar.set_key_capture_widget(self.window)
 
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
@@ -72,12 +73,14 @@ class DependenciesView(Adw.Bin):
             nonlocal self
             self.selected_dependencies = []
             self.update(config=self.config)
+            self.queue.end_task()
 
         def process_queue():
             nonlocal self
             for d in self.selected_dependencies:
                 self.manager.dependency_manager.install(self.config, d)
 
+        self.queue.add_task()
         self.btn_toggle_selection.set_active(False)
         self.list_dependencies.set_sensitive(False)
 

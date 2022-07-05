@@ -124,13 +124,14 @@ class PreferencesView(Adw.PreferencesPage):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
+        self.window = details.window
+        self.manager = details.window.manager
         self.config = config
+        self.queue = details.queue
 
         self.entry_name.add_controller(self.ev_controller)
 
@@ -504,7 +505,9 @@ class PreferencesView(Adw.PreferencesPage):
                     toggle.set_active(False)
                 toggle.handler_unblock_by_func(func)
             self.box_sync.set_sensitive(True)
+            self.queue.end_task()
 
+        self.queue.add_task()
         self.box_sync.set_sensitive(False)
         RunAsync(
             self.manager.update_config,
@@ -529,6 +532,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_dxvk(self, widget=False, state=False):
         """Install/Uninstall DXVK from the bottle"""
+        self.queue.add_task()
         self.set_dxvk_status(pending=True)
 
         RunAsync(
@@ -584,6 +588,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_vkd3d(self, widget=False, state=False):
         """Install/Uninstall VKD3D from the bottle"""
+        self.queue.add_task()
         self.set_vkd3d_status(pending=True)
 
         RunAsync(
@@ -603,6 +608,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_nvapi(self, widget=False, state=False):
         """Install/Uninstall NVAPI from the bottle"""
+        self.queue.add_task()
         self.set_nvapi_status(pending=True)
 
         RunAsync(
@@ -622,6 +628,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_latencyflex(self, widget=False, state=False):
         """Install/Uninstall LatencyFlex from the bottle"""
+        self.queue.add_task()
         self.set_latencyflex_status(pending=True)
 
         RunAsync(
@@ -704,7 +711,6 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_virt_desktop(self, widget, state):
         """Toggle the virtual desktop option."""
-        widget.set_sensitive(False)
 
         def update(result, error=False):
             self.config = self.manager.update_config(
@@ -714,7 +720,10 @@ class PreferencesView(Adw.PreferencesPage):
                 scope="Parameters"
             ).data["config"]
             widget.set_sensitive(True)
+            self.queue.end_task()
 
+        self.queue.add_task()
+        widget.set_sensitive(False)
         rk = RegKeys(self.config)
         resolution = self.combo_virt_res.get_active_id()
         RunAsync(
@@ -726,7 +735,6 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_virtual_desktop_res(self, widget):
         """Set the virtual desktop resolution."""
-        widget.set_sensitive(False)
 
         def update(result, error=False):
             self.config = self.manager.update_config(
@@ -736,7 +744,10 @@ class PreferencesView(Adw.PreferencesPage):
                 scope="Parameters"
             ).data["config"]
             widget.set_sensitive(True)
+            self.queue.end_task()
 
+        self.queue.add_task()
+        widget.set_sensitive(False)
         rk = RegKeys(self.config)
         resolution = widget.get_active_id()
         if self.switch_virt_desktop.get_active():
@@ -785,6 +796,7 @@ class PreferencesView(Adw.PreferencesPage):
                     self.switch_steam_runtime.set_active(True)
                     self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
             set_widgets_status(True)
+            self.queue.end_task()
 
         set_widgets_status(False)
         runner = widget.get_active_id()
@@ -797,6 +809,7 @@ class PreferencesView(Adw.PreferencesPage):
                 self.combo_runner.handler_unblock_by_func(self.__set_runner)
                 return
 
+            self.queue.add_task()
             RunAsync(
                 Runner.runner_update,
                 callback=update,
@@ -816,11 +829,12 @@ class PreferencesView(Adw.PreferencesPage):
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"], remove=True)
         # Install new version
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"])
+        self.queue.end_task()
 
     def __set_dxvk(self, widget):
         """Set the DXVK version to use for the bottle"""
         self.set_dxvk_status(pending=True)
-
+        self.queue.add_task()
         dxvk = widget.get_active_id()
         self.config = self.manager.update_config(
             config=self.config,
@@ -838,7 +852,7 @@ class PreferencesView(Adw.PreferencesPage):
     def __set_vkd3d(self, widget):
         """Set the VKD3D version to use for the bottle"""
         self.set_vkd3d_status(pending=True)
-
+        self.queue.add_task()
         vkd3d = widget.get_active_id()
         self.config = self.manager.update_config(
             config=self.config,
@@ -856,7 +870,7 @@ class PreferencesView(Adw.PreferencesPage):
     def __set_nvapi(self, widget):
         """Set the NVAPI version to use for the bottle"""
         self.set_nvapi_status(pending=True)
-
+        self.queue.add_task()
         nvapi = widget.get_active_id()
         self.config = self.manager.update_config(
             config=self.config,
@@ -874,6 +888,7 @@ class PreferencesView(Adw.PreferencesPage):
     def __set_latencyflex(self, widget):
         """Set the latency flex value"""
         latencyflex = widget.get_active_id()
+        self.queue.add_task()
         self.config = self.manager.update_config(
             config=self.config,
             key="LatencyFleX",
@@ -893,7 +908,9 @@ class PreferencesView(Adw.PreferencesPage):
         def update(result, error=False):
             self.spinner_win.stop()
             widget.set_sensitive(True)
+            self.queue.end_task()
 
+        self.queue.add_task()
         self.spinner_win.start()
         widget.set_sensitive(False)
         rk = RegKeys(self.config)
@@ -922,7 +939,9 @@ class PreferencesView(Adw.PreferencesPage):
                 scope="Parameters"
             ).data["config"]
             widget.set_sensitive(True)
+            self.queue.end_task()
 
+        self.queue.add_task()
         rk = RegKeys(self.config)
         widget.set_sensitive(False)
         renderer = widget.get_active_id()
@@ -973,7 +992,9 @@ class PreferencesView(Adw.PreferencesPage):
                 scope="Parameters"
             ).data["config"]
             widget.set_sensitive(True)
+            self.queue.end_task()
 
+        self.queue.add_task()
         reg = Reg(self.config)
         widget.set_sensitive(False)
         _rule = "Y" if state else "N"
@@ -997,7 +1018,9 @@ class PreferencesView(Adw.PreferencesPage):
                 scope="Parameters"
             ).data["config"]
             widget.set_sensitive(True)
+            self.queue.end_task()
 
+        self.queue.add_task()
         rk = RegKeys(self.config)
         widget.set_sensitive(False)
         value = 1 if state else 0
@@ -1019,7 +1042,9 @@ class PreferencesView(Adw.PreferencesPage):
                 scope="Parameters"
             ).data["config"]
             widget.set_sensitive(True)
+            self.queue.end_task()
 
+        self.queue.add_task()
         rk = RegKeys(self.config)
         widget.set_sensitive(False)
         dpi = int(widget.get_active_id())
@@ -1048,6 +1073,7 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.spinner_dxvk.stop()
             self.spinner_dxvkbool.stop()
+            self.queue.end_task()
 
     def set_vkd3d_status(self, status=None, error=None, pending=False):
         """Set the vkd3d status"""
@@ -1059,6 +1085,7 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.spinner_vkd3d.stop()
             self.spinner_vkd3dbool.stop()
+            self.queue.end_task()
 
     def set_nvapi_status(self, status=None, error=None, pending=False):
         """Set the nvapi status"""
@@ -1070,6 +1097,7 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.spinner_nvapi.stop()
             self.spinner_nvapibool.stop()
+            self.queue.end_task()
 
     def set_latencyflex_status(self, status=None, error=None, pending=False):
         """Set the latencyflex status"""
@@ -1081,6 +1109,7 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.spinner_latencyflex.stop()
             self.spinner_latencyflexbool.stop()
+            self.queue.end_task()
 
     def __set_steam_rules(self):
         """Set the Steam Environment specific rules"""

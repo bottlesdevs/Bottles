@@ -36,12 +36,12 @@ class TaskManagerView(Gtk.ScrolledWindow):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
+        self.window = details.window
+        self.manager = details.window.manager
         self.config = config
 
         self.btn_update.connect("clicked", self.sensitive_update)

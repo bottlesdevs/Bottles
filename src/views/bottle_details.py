@@ -89,12 +89,12 @@ class BottleView(Adw.PreferencesPage):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
+        self.window = details.window
+        self.manager = details.window.manager
         self.config = config
 
         self.btn_execute.connect("clicked", self.run_executable)
