@@ -25,9 +25,7 @@ class GtkUtils:
         text = entry.get_text()
         if re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text):
             entry.add_css_class("error")
-            print("false")
             return False
         else:
             entry.remove_css_class("error")
-            print("true")
             return True

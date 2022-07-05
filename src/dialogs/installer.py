@@ -112,7 +112,8 @@ class InstallerDialog(Adw.Window):
 
         self.status_init.set_title(installer[1].get("Name"))
         self.label_installing_name.set_text(_("Installing {0}…").format(installer[1].get("Name")))
-        self.status_installed.set_description(_("{0} is now available in the programs view.").format(installer[1].get("Name")))
+        self.status_installed.set_description(
+            _("{0} is now available in the programs view.").format(installer[1].get("Name")))
         self.__set_icon()
 
         self.btn_install.connect("clicked", self.__check_resources)
