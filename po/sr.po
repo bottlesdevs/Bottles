@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-26 17:54+0000\n"
+"PO-Revision-Date: 2022-07-06 18:18+0000\n"
 "Last-Translator: Andrija Djakovic <bozika331@yahoo.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/bottles/bottles/"
 "sr/>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
@@ -176,21 +176,19 @@ msgstr "Укључи датум ажурирања у листи за флаше
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Листинг Стим апликација"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Укључи датум ажурирања листе"
+msgstr "Укључи листинг Стим апликација."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr ""
+msgstr "Листинг Епик Гејмс игара"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "Укључи датум ажурирања листе"
+msgstr "Укључи листинг Епик гејмс игара."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -253,24 +251,20 @@ msgstr ""
 "Кандидати за издавање за покретаче."
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Стим Протон"
+msgstr "Подршка за Стим Протон"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Укључи експерименталне Стим Протон префиксе подршке."
+msgstr "Укључи подршку око Стим Протон префикса."
 
 #: data/com.usebottles.bottles.gschema.xml:71
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "Експериментално: стим"
+msgstr "Експериментално: сендбокс окружење"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Укључи експериментални мод Датотека."
+msgstr "Укључи експериментално Сендбокс окружење по Флаши."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -325,14 +319,12 @@ msgid "[Refresh] request received."
 msgstr "[Освежи] захтев примљен."
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
-msgstr "Рачунам..."
+msgstr "Рачунам…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
-msgstr "Учитавам..."
+msgstr "Учитавам…"
 
 #: src/window.py:226
 msgid ""
@@ -539,9 +531,8 @@ msgid "Select"
 msgstr "Одабери"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Ниједна варијабла окружења није дефинисана"
+msgstr "Ниједна варијабла окружења није дефинисана."
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -564,9 +555,8 @@ msgid "Choose a script which should be executed after run."
 msgstr "Одабери скрипту која ће бити извршена након покретања."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "Затвори флаше након покретања програма"
+msgstr "Одабери одакле да се програм покрене."
 
 #: src/dialogs/launchoptions.py:56
 #, python-brace-format
@@ -582,9 +572,8 @@ msgid "Choose the script"
 msgstr "Одабери скрипту"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "Радни Директоријум"
+msgstr "Одабери Радни Директоријум"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -705,9 +694,8 @@ msgid "Import failed."
 msgstr "Увоз није успео."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
-msgstr "Увозим резервну копију..."
+msgstr "Увозим резервну копију…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
@@ -756,13 +744,14 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"Стим није пронађен или Флаше немају потребне дозволе. Посети \"https://docs."
+"usebottles.com/flatpak/cant-enable-steam-proton-manager\""
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
-#, fuzzy
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
-msgstr "Одабери где да се чувају нове флаше (ово неће преместити постојеће)"
+msgstr "Одабери где да се чувају нове флаше (ово неће преместити постојеће)."
 
 #: src/views/preferences.py:165
 msgid "Choose new bottles path"
@@ -777,9 +766,8 @@ msgid "Upgrade"
 msgstr "Ажурирај"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "Инсталирам ДКСВК…"
+msgstr "Инсталирам…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -1169,9 +1157,8 @@ msgid "Search for Programs…"
 msgstr "Потражи Програме…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
-msgstr "Ниједан инсталер није пронађен"
+msgstr "Ниједан Инсталер Није пронађен"
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -1404,9 +1391,8 @@ msgid "System"
 msgstr "Систем"
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "Верзија компоненте"
+msgstr "Управљај Верзијама Компоненти"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1454,7 +1440,6 @@ msgid "Futex2"
 msgstr "Футекс2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
 msgstr "Верзија Виндовса"
 
@@ -1464,29 +1449,27 @@ msgstr "Ажурирам верзију Виндовса, молим сачек�
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "Језик"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Choose the language to use with programs."
-msgstr "Одабери нов назив за изабрани програм."
+msgstr "Одабери који језик да се користи за програме."
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
-msgstr ""
+msgstr "нетачно"
 
 #: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "Наменско Сендбокс окружење"
 
 #: src/ui/details-preferences.ui:499
 msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
+msgstr "Користи ограничено/контролисано окружење за ову Флашу."
 
 #: src/ui/details-preferences.ui:502
-#, fuzzy
 msgid "Manage Sandbox permissions"
-msgstr "Управљај верзијама ДКСВК-а"
+msgstr "Управљај дозволама Сендбокс окружења"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
@@ -1502,7 +1485,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:532
 msgid "Steam Runtime"
-msgstr "Рантајм Стима"
+msgstr "Стим Рантајм"
 
 #: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
@@ -1518,7 +1501,7 @@ msgstr "Оптимизуј гејминг перформансе на захте
 
 #: src/ui/details-preferences.ui:556
 msgid "Gamescope"
-msgstr "Гејмскоп"
+msgstr "Гејмскоуп"
 
 #: src/ui/details-preferences.ui:557
 msgid "Use the Gamescope micro-compositor."
@@ -1650,9 +1633,8 @@ msgid "Stop process"
 msgstr "Заустави процес"
 
 #: src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
-msgstr "Ниједно стање није нађено"
+msgstr "Ниједно Стање Није нађено"
 
 #: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
@@ -1732,7 +1714,6 @@ msgid "Drives"
 msgstr "Дискови"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…).\n"
@@ -1747,9 +1728,8 @@ msgid "Letter"
 msgstr "Слово"
 
 #: src/ui/dialog-drives.ui:49
-#, fuzzy
 msgid "Existing Drives"
-msgstr "Постојећи дискови"
+msgstr "Постојећи Дискови"
 
 #: src/ui/dialog-duplicate.ui:17
 msgid "Duplicate Bottle"
@@ -1768,9 +1748,8 @@ msgid "Duplicating…"
 msgstr "Правим дупликат…"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "Направи паузу, можда потраје"
+msgstr "Направи паузу, можда потраје."
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -1785,14 +1764,12 @@ msgstr ""
 "начин на који ће се покренути процеси понашати у твојој флаши."
 
 #: src/ui/dialog-env-vars.ui:28
-#, fuzzy
 msgid "Variable Name"
-msgstr "Назив варијабле"
+msgstr "Назив Варијабле"
 
 #: src/ui/dialog-env-vars.ui:36
-#, fuzzy
 msgid "Existing Variables"
-msgstr "Постојеће варијабле"
+msgstr "Постојеће Варијабле"
 
 #: src/ui/dialog-gamescope.ui:9
 msgid "Gamescope Settings"
@@ -1909,7 +1886,6 @@ msgid "Post-run Script"
 msgstr "Скрипта након покретања"
 
 #: src/ui/dialog-launch-options.ui:75
-#, fuzzy
 msgid "Choose a script"
 msgstr "Одабери скрипту"
 
@@ -1923,9 +1899,8 @@ msgid "Preferences Overrides"
 msgstr "Премошћавање Поставки"
 
 #: src/ui/dialog-launch-options.ui:128
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
-msgstr "Врати на подразумевано"
+msgstr "Врати на Подразумевана подешавања Флаше"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -1981,7 +1956,7 @@ msgstr "Изворни, затим Уграђени"
 
 #: src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Онемогућено"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -2012,19 +1987,16 @@ msgid "Search again for prefixes"
 msgstr "Потражи поново префиксе"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
-msgstr "Ниједан префикс није пронађен"
+msgstr "Ниједан Префикс Није пронађен"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
 "Ниједан префикс није нађен за Лутрис, ПлејОнЛинукс, итд.\n"
-"............................ Употреби иконицу на врху да увезеш флашу из "
-"резервне копије"
+"Употреби иконицу на врху да увезеш флашу из резервне копије"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
@@ -2171,9 +2143,8 @@ msgid "Custom"
 msgstr "Прилагођено"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments."
-msgstr "Чисто окружење за твоје апликације"
+msgstr "Чисто окружење за твоје експерименте."
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -2192,9 +2163,8 @@ msgid "Architecture"
 msgstr "Архитектура"
 
 #: src/ui/new.ui:155
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr "Препоручујемо коришћење 32бита једино ако је изричито неопходно"
+msgstr "Препоручујемо коришћење 32бита једино ако је изричито неопходно."
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2257,9 +2227,8 @@ msgid "Almost Done"
 msgstr "Скоро завршено"
 
 #: src/ui/onboard.ui:80
-#, fuzzy
 msgid "We need a few more minutes to set everything up…"
-msgstr "Потребно је још неколико минута да се све подеси.."
+msgstr "Потребно је још неколико минута да се све подеси…"
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
@@ -2298,71 +2267,64 @@ msgid "Show notifications for downloads and installs."
 msgstr "Приказуј обавештења за преузимања и инсталирања."
 
 #: src/ui/preferences.ui:48
-#, fuzzy
 msgid "Temp Files"
-msgstr "Привремени фајлови"
+msgstr "Привремени Фајлови"
 
 #: src/ui/preferences.ui:49
 msgid "Clean temp files when Bottles launches?"
 msgstr "Очисти привремене фајлове када се Флаше покрену?"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
-msgstr "Затвори флаше након покретања програма"
+msgstr "Затвори Флаше Након Покретања Програма"
 
 #: src/ui/preferences.ui:61
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "Затвори Флаше након покретања програма из менаџера фајлова"
+msgstr "Затвори Флаше након покретања програма из менаџера фајлова."
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "Операције"
+msgstr "Интеграције"
 
 #: src/ui/preferences.ui:77
 msgid "Steam Proton Prefixes"
 msgstr "Стим Протон Префикси"
 
 #: src/ui/preferences.ui:78
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Стим Протон Префикси"
+msgstr "Листај и управљај Стим Протон Префиксима."
 
 #: src/ui/preferences.ui:89
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Излистај Стим Апликације у Листи Програма"
 
 #: src/ui/preferences.ui:90
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "Захтева инсталиран Стим за Виндовс унутар Флаше."
 
 #: src/ui/preferences.ui:101
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "Излистај Епик Гејмс у Листи рограма"
 
 #: src/ui/preferences.ui:102
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "Захтева инсталирану Епик Гејмс Продавницу унутар Флаше."
 
 #: src/ui/preferences.ui:115
 msgid "Advanced"
 msgstr "Напредно"
 
 #: src/ui/preferences.ui:118
-#, fuzzy
 msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Прилагођена путања флаша (захтева поновно покретање)"
+msgstr "Прилагођена Путања Флаша (Захтева Поновно покретање)"
 
 #: src/ui/preferences.ui:152
 msgid "Runners"
 msgstr "Покретачи"
 
 #: src/ui/preferences.ui:157
-#, fuzzy
 msgid "Pre-Release"
-msgstr "Пре-објављивања"
+msgstr "Пре-Издање"
 
 #: src/ui/preferences.ui:158
 msgid "Display unstable versions of runners."
@@ -2389,18 +2351,16 @@ msgid "WineBridge"
 msgstr "ВајнБриџ"
 
 #: src/ui/preferences.ui:223
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "У раном развоју (захтева поновно покретање)"
+msgstr "У раном развоју (захтева поновно покретање)."
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "Сендбокс окружење по флаши"
 
 #: src/ui/preferences.ui:235
-#, fuzzy
 msgid "In early development."
-msgstr "У раном развоју (захтева поновно покретање)"
+msgstr "У раном развоју."
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
