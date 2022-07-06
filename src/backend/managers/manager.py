@@ -821,11 +821,11 @@ class Manager:
             self,
             config: dict,
             key: str,
-            value: str,
+            value: Any,
             scope: str = "",
             remove: bool = False,
             fallback: bool = False
-    ) -> dict:
+    ) -> Union[Result, dict]:
         """
         Update parameters in bottle config. Use the scope argument to
         update the parameters in the specified scope (e.g. Parameters).
