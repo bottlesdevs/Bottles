@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import re
+import time
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
@@ -298,6 +299,7 @@ class DetailsView(Adw.Bin):
             self.view_programs.group_programs.set_sensitive(not handled_p)
 
         def process_programs():
+            time.sleep(.2)
             wineserver_status = WineServer(self.config).is_alive()
             programs = self.manager.get_programs(self.config)
             win_steam_manager = SteamManager(self.config, is_windows=True)

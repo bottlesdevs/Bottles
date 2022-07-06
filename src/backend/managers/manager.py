@@ -736,6 +736,7 @@ class Manager:
 
             # Migrate old programs to [id] and [name]
             _temp = {}
+            _changed = False
             for k, v in conf_file_yaml.get("External_Programs").items():
                 _uuid = str(uuid.uuid4())
                 _k = k
@@ -744,17 +745,21 @@ class Manager:
                     uuid.UUID(k)
                 except ValueError:
                     _k = _uuid
+                    _changed = True
                 if "id" not in v:
                     _v["id"] = _uuid
+                    _changed = True
                 if "name" not in v:
                     _v["name"] = _v["executable"].split(".")[0]
+                    _changed = True
                 _temp[_k] = _v
 
-            self.update_config(
-                config=conf_file_yaml,
-                key="External_Programs",
-                value=_temp
-            )
+            if _changed:
+                self.update_config(
+                    config=conf_file_yaml,
+                    key="External_Programs",
+                    value=_temp
+                )
             conf_file_yaml["External_Programs"] = _temp
 
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
