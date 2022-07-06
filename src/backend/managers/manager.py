@@ -735,22 +735,27 @@ class Manager:
                 conf_file_yaml["Latest_Executables"] = []
 
             # Migrate old programs to [id] and [name]
-            _temp = conf_file_yaml.get("External_Programs").copy()
-            _changed = False
-            for k, v in _temp.items():
+            _temp = {}
+            for k, v in conf_file_yaml.get("External_Programs").items():
                 _uuid = str(uuid.uuid4())
+                _k = k
+                _v = v
+                try:
+                    uuid.UUID(k)
+                except ValueError:
+                    _k = _uuid
                 if "id" not in v:
-                    _temp[k]["id"] = _uuid
-                    _changed = True
+                    _v["id"] = _uuid
                 if "name" not in v:
-                    _temp[k]["name"] = _temp[k]["executable"].split(".")[0]
-            if _changed:
-                self.update_config(
-                    config=conf_file_yaml,
-                    key="External_Programs",
-                    value=_temp
-                )
-                conf_file_yaml["External_Programs"] = _temp
+                    _v["name"] = _v["executable"].split(".")[0]
+                _temp[_k] = _v
+
+            self.update_config(
+                config=conf_file_yaml,
+                key="External_Programs",
+                value=_temp
+            )
+            conf_file_yaml["External_Programs"] = _temp
 
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
             for key in miss_keys:
