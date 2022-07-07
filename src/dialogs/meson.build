@@ -20,7 +20,8 @@ bottles_sources = [
   'bottlepicker.py',
   'protonalert.py',
   'sandbox.py',
-  'installer.py'
+  'installer.py',
+  'depscheck.py'
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)
