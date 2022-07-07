@@ -239,6 +239,7 @@ class WineCommand:
         # Mangohud environment variables
         if params["mangohud"] and not self.minimal and not (gamescope_available and params.get("gamescope")):
             env.add("MANGOHUD", "1")
+            env.add("MANGOHUD_DLSYM", "1")
 
         # vkBasalt environment variables
         if params["vkbasalt"] and not self.minimal:
