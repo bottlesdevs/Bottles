@@ -21,6 +21,7 @@ bottles_sources = [
   'sandbox.py',
   'steam.py',
   'epicgamesstore.py',
+  'ubisoftconnect.py',
   'queue.py',
 ]
 

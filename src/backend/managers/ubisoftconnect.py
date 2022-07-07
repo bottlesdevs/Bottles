@@ -1,4 +1,4 @@
-# epicgamesstore.py
+# ubisoftconnect.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #
@@ -24,17 +24,17 @@ from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.utils.manager import ManagerUtils
 
 
-class EpicGamesStoreManager:
+class UbisoftConnectManager:
 
     @staticmethod
-    def find_dat_path(config: dict) -> Union[str, None]:
+    def find_conf_path(config: dict) -> Union[str, None]:
         """
-        Finds the Epic Games dat file path.
+        Finds the Ubisoft Connect configurations file path.
         """
         paths = [
             os.path.join(
                 ManagerUtils.get_bottle_path(config),
-                "drive_c/ProgramData/Epic/UnrealEngineLauncher/LauncherInstalled.dat")
+                "drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/cache/configuration/configurations")
         ]
 
         for path in paths:
@@ -43,38 +43,62 @@ class EpicGamesStoreManager:
         return None
 
     @staticmethod
-    def is_epic_supported(config: dict) -> bool:
+    def is_uconnect_supported(config: dict) -> bool:
         """
-        Checks if Epic Games is supported.
+        Checks if Ubisoft Connect is supported.
         """
-        return EpicGamesStoreManager.find_dat_path(config) is not None
+        return UbisoftConnectManager.find_conf_path(config) is not None
 
     @staticmethod
     def get_installed_games(config: dict) -> list:
         """
         Gets the games.
         """
+        found = {}
         games = []
-        dat_path = EpicGamesStoreManager.find_dat_path(config)
+        key = None
+        reg_key = "register: HKEY_LOCAL_MACHINE\\SOFTWARE\\Ubisoft\\Launcher\\Installs\\"
+        conf_path = UbisoftConnectManager.find_conf_path(config)
+        games_path = os.path.join(
+                ManagerUtils.get_bottle_path(config),
+                "drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/games")
 
-        if dat_path is None:
+        if conf_path is None:
             return []
 
-        with open(dat_path, "r") as dat:
-            data = json.load(dat)
+        with open(conf_path, "r", encoding="iso-8859-15") as c:
+            for r in c.readlines():
+                r = r.strip()
 
-            for game in data["InstallationList"]:
-                _uri = f"-com.epicgames.launcher://apps/{game['AppName']}?action=launch&silent=true"
-                _args = f"-opengl -SkipBuildPatchPrereq {_uri}"
-                _name = game["InstallLocation"].split("\\")[-1]
-                _path = "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\" \
-                        "EpicGamesLauncher.exe"
+                if r.startswith("- shortcut_name:"):
+                    _key = r.replace("- shortcut_name:", "").strip()
+                    if _key != "" and _key not in found.keys():
+                        key = _key
+                        found[key] = None
+
+                elif not key and r.startswith("game_identifier"):
+                    _key = r.replace("game_identifier:", "").strip()
+                    if _key != "" and _key not in found.keys():
+                        key = _key
+                        found[key] = None
+
+                elif key and r.startswith(reg_key):
+                    appid = r.replace(reg_key, "").replace("\\InstallDir", "").strip()
+                    found[key] = appid
+                    key, appid = None, None
+
+            for k, v in found.items():
+                if not os.path.exists(os.path.join(games_path, k)):
+                    continue
+
+                _args = f"uplay://launch/{v}/0"
+                _path = "C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\UbisoftConnect.exe"
                 _executable = _path.split("\\")[-1]
                 _folder = ManagerUtils.get_exe_parent_dir(config, _path)
                 games.append({
                     "executable": _path,
                     "arguments": _args,
-                    "name": _name,
+                    "name": k,
                     "path": _path,
                     "folder": _folder,
                     "icon": "com.usebottles.bottles-program",
