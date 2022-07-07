@@ -1,7 +1,7 @@
 #! /bin/bash
 export APPDIR="$ORIGIN"
 export PATH="$APPDIR/bin/:$APPDIR/usr/sbin:$APPDIR/usr/bin:$PATH"
-export LD_LIBRARY_PATH="$APPDIR/lib:$APPDIR/usr/lib:$PATH"
+export LD_LIBRARY_PATH="$APPDIR/lib:$APPDIR/usr/lib:$PATH:$APPDIR/lib/x86_64-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu:$APPDIR/runtime/compat/lib/x86_64-linux-gnu:$APPDIR/runtime/compat/lib/i386-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so"
 export XDG_DATA_DIRS="$APPDIR/usr/share/:/usr/share/:$XDG_DATA_DIRS"
 export DESKTOP_FILE_PATH=$APPDIR/usr/share/applications/com.usebottles.bottles.desktop
 export ICON_FILE_PATH=$APPDIR/usr/share/icons/hicolor/scalable/apps/com.usebottles.bottles.svg
