@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-07-04 17:16+0000\n"
+"PO-Revision-Date: 2022-07-07 10:19+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -412,7 +412,7 @@ msgstr "Kan geen tijdelijke aanduiding voor map/bestand maken."
 
 #: src/backend/managers/manager.py:1117
 msgid "Generating bottle configuration…"
-msgstr "Bottle configuratie genereren…"
+msgstr "Bottle-configuratie aanmaken…"
 
 #: src/backend/managers/manager.py:1140
 msgid "Template found, applying…"
@@ -421,19 +421,19 @@ msgstr "Sjabloon gevonden, toepassen…"
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1152
 msgid "The Wine config is being updated…"
-msgstr "De Wine configuratie wordt bijgewerkt…"
+msgstr "De Wine-configuratie wordt bijgewerkt…"
 
 #: src/backend/managers/manager.py:1154
 msgid "Wine config updated!"
-msgstr "Wine configuratie bijgewerkt!"
+msgstr "Wine-configuratie bijgewerkt!"
 
 #: src/backend/managers/manager.py:1162
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Uitvoeren als Flatpak, sandboxing userdir…"
+msgstr "Als Flatpak uitvoeren, gebruikersmap in een zandbak verwerken…"
 
 #: src/backend/managers/manager.py:1164
 msgid "Sandboxing userdir…"
-msgstr "Sandboxing userdir…"
+msgstr "Gebruikersmap in een zandbak verwerken…"
 
 #: src/backend/managers/manager.py:1182
 msgid "Setting Windows version…"
@@ -441,7 +441,7 @@ msgstr "Windows-versie instellen…"
 
 #: src/backend/managers/manager.py:1191
 msgid "Apply CMD default settings…"
-msgstr "CMD standaardinstellingen toepassen…"
+msgstr "standaardinstellingen van CMD toepassen…"
 
 #: src/backend/managers/manager.py:1199
 msgid "Optimizing environment…"
@@ -479,7 +479,7 @@ msgstr "Afhankelijkheid installeren: %s …"
 
 #: src/backend/managers/manager.py:1281
 msgid "Creating versioning state 0…"
-msgstr "Aanmaken van versiestatus 0…"
+msgstr "Initiële staat aanmaken…"
 
 #: src/backend/managers/manager.py:1289
 msgid "Finalizing…"
@@ -487,7 +487,7 @@ msgstr "Afronden…"
 
 #: src/backend/managers/manager.py:1300
 msgid "Caching template…"
-msgstr "Caching sjabloon…"
+msgstr "Sjabloon inladen…"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -498,7 +498,7 @@ msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
-"            Dit probleem werd 5 keer gemeld en kan niet opnieuw worden "
+"            Dit probleem is al 5 keer gemeld en kan niet opnieuw worden "
 "verzonden.\n"
 "            Meld uw feedback in een van de onderstaande bestaande rapporten."
 
@@ -508,7 +508,7 @@ msgstr "Geen overschrijvingen gevonden."
 
 #: src/dialogs/drives.py:71
 msgid "Choose path"
-msgstr "Kies pad"
+msgstr "Pad kiezen"
 
 #: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
 #: src/dialogs/launchoptions.py:229 src/dialogs/launchoptions.py:253
@@ -529,7 +529,7 @@ msgstr "Annuleren"
 #: src/views/bottle_preferences.py:251 src/views/new.py:137
 #: src/views/new.py:153 src/views/preferences.py:167
 msgid "Select"
-msgstr "Selecteer"
+msgstr "Selecteren"
 
 #: src/dialogs/envvars.py:133
 msgid "No environment variables defined."
@@ -548,7 +548,7 @@ msgstr "Er is een fout opgetreden."
 #: src/dialogs/generic.py:91 src/dialogs/generic.py:137
 #: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
-msgstr "Kopieer naar klembord"
+msgstr "Naar klembord kopiëren"
 
 #. endregion
 #: src/dialogs/launchoptions.py:54 src/ui/dialog-launch-options.ui:58
@@ -597,21 +597,21 @@ msgstr "Uitvoeren"
 #: src/views/bottle_details.py:247
 msgid "Select the location where to save the backup config"
 msgstr ""
-"Selecteer de locatie waar de backup configuratie moet worden opgeslagen"
+"Selecteer de locatie waar de back-up-configuratie moet worden opgeslagen"
 
 #: src/views/bottle_details.py:251
 msgid "Select the location where to save the backup archive"
-msgstr "Selecteer de locatie waar het back-uparchief opgeslagen zal worden"
+msgstr "Selecteer de locatie waar het back-up-archief moet worden opgeslagen"
 
 #: src/views/bottle_details.py:256
 #, python-brace-format
 msgid "Backup created for '{0}'."
-msgstr "Backup gemaakt voor '{0}'."
+msgstr "Back-up gemaakt voor '{0}'."
 
 #: src/views/bottle_details.py:258
 #, python-brace-format
 msgid "Backup failed for '{0}'."
-msgstr "Backup mislukt voor '{0}'."
+msgstr "Back-up mislukt voor '{0}'."
 
 #: src/views/bottle_details.py:276
 msgid "Export"
