@@ -70,9 +70,13 @@ script:
   
   # Install LibAdwaita
   - git clone https://gitlab.gnome.org/GNOME/libadwaita.git && cd ./libadwaita
-  - git reset --hard 5cb00a274318b870f4b3ff09ed8f24d52f11f7de && export DESTDIR=../../AppDir
+  - git reset --hard 5cb00a274318b870f4b3ff09ed8f24d52f11f7de && export DESTDIR=../../../AppDir
   - mkdir build && meson build -Dtests=false -Dexamples=false --prefix=/usr --buildtype=release
   - cd ./build && ninja install && cd ../../ && rm -rf ./libadwaita && unset DESTDIR
+  
+  # Install Proot
+  - wget -q "https://github.com/proot-me/proot/releases/download/v5.3.0/proot-v5.3.0-x86_64-static" -o AppDir/bin/proot
+  - chmod +x AppDir/bin/proot
 
 AppDir:
   path: ./AppDir
@@ -83,11 +87,11 @@ AppDir:
     icon: com.usebottles.bottles
     version: 2022.6.28-brescia
     
-    # Set the python executable as entry point
-    exec: bin/bash
+    # Set proot executable as entry point
+    exec: bin/proot
     
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
-    exec_args: AppRun "$@"
+    exec_args:  -b "$APPDIR/lib:/lib/ld-linux.so.2" bash "$APPDIR/bin/AppRun" "$@"
 
   apt:
     arch: [amd64, i386]
@@ -142,6 +146,7 @@ AppDir:
     - x11-utils
     - libpcre3
     - icoextract
+    - base-files
 
     exclude:
     - humanity-icon-theme
@@ -168,6 +173,7 @@ AppDir:
       - AppDir/usr/share/doc/*/changelog.*
       - AppDir/usr/share/doc/*/NEWS.*
       - AppDir/usr/share/doc/*/TODO.*
+      - AppDir/usr/share/common-licenses/*
 
   runtime:
     arch: [ x86_64, i386 ]
