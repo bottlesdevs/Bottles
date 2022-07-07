@@ -44,13 +44,13 @@ class VersioningView(Adw.PreferencesPage):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
-        self.versioning_manager = window.manager.versioning_manager
+        self.window = details.window
+        self.manager = details.window.manager
+        self.versioning_manager = details.window.manager.versioning_manager
         self.config = config
 
         self.ev_controller.connect("key-released", self.check_entry_state_comment)

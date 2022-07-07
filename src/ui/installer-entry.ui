@@ -53,11 +53,6 @@
                     </object>
                 </child>
                 <child>
-                    <object class="GtkSpinner" id="spinner">
-                        <property name="visible">false</property>
-                    </object>
-                </child>
-                <child>
                     <object class="GtkButton" id="btn_install">
                         <property name="tooltip-text" translatable="yes">Install this program</property>
                         <property name="valign">center</property>
@@ -66,21 +61,6 @@
                             <class name="flat"/>
                         </style>
                     </object>
-                </child>
-                <child>
-                    <object class="GtkImage" id="img_error">
-                        <property name="icon-name">dialog-warning-symbolic</property>
-                        <property name="visible">False</property>
-                    </object>
-                </child>
-                <child>
-                    <object class="GtkImage" id="img_installed">
-                        <property name="icon-name">object-select-symbolic</property>
-                        <property name="visible">False</property>
-                    </object>
-                </child>
-                <child>
-                    <object class="GtkLabel" id="label_step"/>
                 </child>
                 <child>
                     <object class="GtkSeparator">

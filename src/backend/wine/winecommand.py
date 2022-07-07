@@ -147,6 +147,7 @@ class WineCommand:
 
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
+        is_nvidia = DisplayUtils.check_nvidia_device()
         ld = []
 
         # Bottle environment variables
@@ -259,7 +260,7 @@ class WineCommand:
             env.add("DXVK_ENABLE_NVAPI", "1")
 
             # Prevent wine from hiding the Nvidia GPU with DXVK-Nvapi enabled
-            if DisplayUtils.check_nvidia_device():
+            if is_nvidia:
                 env.add("WINE_HIDE_NVIDIA_GPU", "1")
 
         # DXVK HUD environment variable
@@ -335,6 +336,10 @@ class WineCommand:
             # Add ld to LD_LIBRARY_PATH
             if ld:
                 env.concat("LD_LIBRARY_PATH", ld)
+
+        # Vblank
+        # env.add("__GL_SYNC_TO_VBLANK", "0")
+        # env.add("vblank_mode", "0")
 
         # DLL Overrides
         env.concat("WINEDLLOVERRIDES", dll_overrides, sep=";")

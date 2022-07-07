@@ -26,6 +26,8 @@
         <property name="width-request">128</property>
         <child>
             <object class="GtkOverlay">
+                <property name="width-request">256</property>
+                <property name="height-request">225</property>
                 <child type="overlay">
                     <object class="GtkMenuButton">
                         <property name="halign">start</property>
@@ -41,8 +43,22 @@
                 </child>
                 <child>
                     <object class="GtkImage" id="img_cover">
-                        <property name="width-request">256</property>
-                        <property name="height-request">225</property>
+                        <property name="visible">False</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkLabel" id="label_no_cover">
+                        <property name="visible">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="label" translatable="True">No Thumbnail</property>
+                        <style>
+                            <class name="dim-label"/>
+                        </style>
                     </object>
                 </child>
             </object>

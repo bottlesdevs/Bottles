@@ -39,6 +39,7 @@ class LibraryEntry(Gtk.Box):
     btn_remove = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_bottle = Gtk.Template.Child()
+    label_no_cover = Gtk.Template.Child()
     img_cover = Gtk.Template.Child()
     img_icon = Gtk.Template.Child()
 
@@ -68,6 +69,13 @@ class LibraryEntry(Gtk.Box):
                 self.img_icon.set_from_icon_name("com.usebottles.bottles-program")
             self.img_icon.set_pixel_size(24)
             self.img_icon.set_visible(True)
+
+        # TODO:
+        # is has cover:
+            # set img_cover visible
+        # else
+            # set label_no_cover visible
+        self.label_no_cover.set_visible(True)
 
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)

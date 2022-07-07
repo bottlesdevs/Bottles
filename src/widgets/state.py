@@ -40,6 +40,7 @@ class StateEntry(Adw.ActionRow):
         # common variables and references
         self.window = window
         self.manager = window.manager
+        self.queue = window.page_details.queue
         self.state = state
         self.state_name = "State: {0}".format(state[0])
         self.config = config
@@ -66,6 +67,7 @@ class StateEntry(Adw.ActionRow):
         """
         Set the bottle state to this one.
         """
+        self.queue.add_task()
         widget.set_sensitive(False)
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
@@ -100,3 +102,4 @@ class StateEntry(Adw.ActionRow):
         self.spinner.stop()
         self.btn_restore.set_visible(False)
         self.set_sensitive(True)
+        self.queue.end_task()

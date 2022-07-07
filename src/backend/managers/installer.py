@@ -97,6 +97,10 @@ class InstallerManager:
         catalog = dict(sorted(catalog.items()))
         return catalog
 
+    def  get_icon_url(self, installer):
+        '''Wrapper for the repo method.'''
+        return self.__repo.get_icon(installer)
+
     def __download_icon(self, config, executable: dict, manifest):
         """
         Download the installer icon from the repository to the bottle
@@ -375,19 +379,26 @@ class InstallerManager:
                 scope="Parameters"
             )
 
-    def count_steps(self, installer):
+    def count_steps(self, installer) -> dict:
         manifest = self.get_installer(installer[0])
-        steps = 0
+        steps = {"total": 0, "sections": []}
         if manifest.get("Dependencies"):
-            steps += int(len(manifest.get("Dependencies")))
+            i = int(len(manifest.get("Dependencies")))
+            steps["sections"] += i * ["deps"]
+            steps["total"] += i
         if manifest.get("Parameters"):
-            steps += 1
+            steps["sections"].append("params")
+            steps["total"] += 1
         if manifest.get("Steps"):
-            steps += int(len(manifest.get("Steps")))
+            i = int(len(manifest.get("Steps")))
+            steps["sections"] += i * ["steps"]
+            steps["total"] += i
         if manifest.get("Executable"):
-            steps += 1
+            steps["sections"].append("exe")
+            steps["total"] += 1
         if manifest.get("Checks"):
-            steps += 1
+            steps["sections"].append("checks")
+            steps["total"] += 1
 
         return steps
 

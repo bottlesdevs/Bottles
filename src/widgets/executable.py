@@ -40,3 +40,4 @@ class ExecButton(Gtk.Button):
             args=self.data.get("args")
         )
         RunAsync(executor.run)
+        self.parent.pop_run.popdown()  # workaround #1640

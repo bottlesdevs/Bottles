@@ -1,4 +1,4 @@
-# gtk.py
+# queue.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #
@@ -15,17 +15,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import re
+
+from gi.repository import GLib
 
 
-class GtkUtils:
+class QueueManager:
+    __queue = 0
 
-    @staticmethod
-    def validate_entry(entry) -> bool:
-        text = entry.get_text()
-        if re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text):
-            entry.add_css_class("error")
-            return False
-        else:
-            entry.remove_css_class("error")
-            return True
+    def __init__(self, end_fn, add_fn=None):
+        self.__add_fn = add_fn
+        self.__end_fn = end_fn
+
+    def add_task(self):
+        self.__queue += 1
+        if self.__add_fn and self.__queue == 1:
+            GLib.idle_add(self.__add_fn)
+
+    def end_task(self):
+        self.__queue -= 1
+        if self.__queue <= 0:
+            GLib.idle_add(self.__end_fn)

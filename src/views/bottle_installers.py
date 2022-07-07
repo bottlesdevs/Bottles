@@ -44,18 +44,18 @@ class InstallersView(Adw.Bin):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
+        self.window = details.window
+        self.manager = details.window.manager
         self.config = config
 
         self.ev_controller.connect("key-released", self.__search_installers)
         self.entry_search.add_controller(self.ev_controller)
 
-        self.search_bar.set_key_capture_widget(window)
+        self.search_bar.set_key_capture_widget(self.window)
         self.btn_help.connect("clicked", open_doc_url, "bottles/installers")
         self.entry_search.connect('changed', self.__search_installers)
 

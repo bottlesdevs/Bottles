@@ -40,13 +40,13 @@ class ProgramsView(Adw.PreferencesPage):
 
     # endregion
 
-    def __init__(self, parent, config, **kwargs):
+    def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.parent = parent
-        self.window = parent.window
-        self.manager = parent.manager
+        self.parent = details
+        self.window = details.window
+        self.manager = details.manager
         self.config = config
         self.show_removed = False
 
