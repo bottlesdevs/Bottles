@@ -20,6 +20,7 @@ import gi
 import os
 import locale
 import subprocess
+import icoextract
 from glob import glob
 from typing import NewType, Union
 from datetime import datetime
@@ -172,7 +173,6 @@ class ManagerUtils:
         bottle_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
 
         try:
-            import icoextract
             if winepath.is_windows(program_path):
                 program_path = winepath.to_unix(program_path)
 
@@ -198,7 +198,7 @@ class ManagerUtils:
             else:
                 shutil.move(ico_dest_temp, ico_dest)
                 icon = ico_dest
-        except:
+        except:  # TODO: handle those
             pass
 
         return icon

@@ -22,11 +22,14 @@ import platform
 import contextlib
 import subprocess
 
-from bottles.backend.utils.display import DisplayUtils  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.file import FileUtils
 from bottles.params import VERSION
+
+logging = Logger()
 
 
 class HealthChecker:
@@ -38,6 +41,11 @@ class HealthChecker:
     cabextract: bool = False
     p7zip: bool = False
     patool: bool = False
+    icoextract: bool = False
+    pefile: bool = False
+    markdown: bool = False
+    xdpyinfo: bool = False
+    ImageMagick: bool = False
     glibc_min: str = ""
     kernel: str = ""
     kernel_version: str = ""
@@ -54,6 +62,11 @@ class HealthChecker:
         self.cabextract = self.check_cabextract()
         self.p7zip = self.check_p7zip()
         self.patool = self.check_patool()
+        self.icoextract = self.check_icoextract()
+        self.pefile = self.check_pefile()
+        self.markdown = self.check_markdown()
+        self.xdpyinfo = self.check_xdpyinfo()
+        self.ImageMagick = self.check_ImageMagick()
         self.glibc_min = is_glibc_min_available()
         self.bottles_envs = self.get_bottles_envs()
         self.check_system_info()
@@ -103,6 +116,44 @@ class HealthChecker:
     @staticmethod
     def check_patool():
         res = shutil.which("patool")
+        if res is None:
+            return False
+        return True
+
+    @staticmethod
+    def check_icoextract():
+        try:
+            import icoextract
+            return True
+        except ModuleNotFoundError:
+            return False
+
+    @staticmethod
+    def check_pefile():
+        try:
+            import pefile
+            return True
+        except ModuleNotFoundError:
+            return False
+
+    @staticmethod
+    def check_markdown():
+        try:
+            import markdown
+            return True
+        except ModuleNotFoundError:
+            return False
+
+    @staticmethod
+    def check_xdpyinfo():
+        res = shutil.which("xdpyinfo")
+        if res is None:
+            return False
+        return True
+
+    @staticmethod
+    def check_ImageMagick():
+        res = shutil.which("identify")
         if res is None:
             return False
         return True
@@ -204,11 +255,15 @@ class HealthChecker:
             },
             "Disk": self.disk,
             "RAM": self.ram,
-            "Tools": {
+            "Tools and Libraries": {
                 "cabextract": self.cabextract,
                 "p7zip": self.p7zip,
                 "patool": self.patool,
-                "glibc_min": self.glibc_min
+                "glibc_min": self.glibc_min,
+                "icoextract": self.icoextract,
+                "pefile": self.pefile,
+                "markdown": self.markdown,
+                "xdpyinfo": self.xdpyinfo
             },
             "Bottles_envs": self.bottles_envs
         }
@@ -219,3 +274,13 @@ class HealthChecker:
             return _yaml
 
         return results
+
+    def has_core_deps(self):
+        result = True
+
+        for k, v in self.get_results()["Tools and Libraries"].items():
+            if v is False:
+                logging.error(f"Core dependency {k} not found, Bottles can't be started.")
+                result = False
+
+        return result
