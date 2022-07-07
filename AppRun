@@ -1,5 +1,5 @@
 #!/bin/bash
-export APPDIR="$(dirname "$(readlink -f "$0")")"
+export APPDIR="$(find /tmp/.mount_Bottle*)" #If there are mutliple instances of the appimage running then we are screwed
 export PATH="$APPDIR/usr/bin/:$PATH"
 export LD_LIBRARY_PATH="$APPDIR/usr/lib:$PATH"
 export XDG_DATA_DIRS="$APPDIR/usr/share/:/usr/share/:$XDG_DATA_DIRS"
