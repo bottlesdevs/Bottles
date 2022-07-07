@@ -29,8 +29,6 @@ script:
   - rm AppDir/usr/local/share/bottles/bottles/bottles.in AppDir/usr/local/share/bottles/bottles/meson.build
   
   # Compiling and installing translations
-  - sed -i '41d' po/LINGUAS && sed -i '41d' po/LINGUAS
-  - sed -i '41d' po/LINGUAS # useless lines that mess up cat
   - cat po/LINGUAS | while read lang
   - do
   - mkdir -p AppDir/usr/share/locale/$lang/LC_MESSAGES
