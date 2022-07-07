@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-28 04:21+0000\n"
-"Last-Translator: lebao3105 <bao12345yocoo@gmail.com>\n"
+"PO-Revision-Date: 2022-07-07 10:19+0000\n"
+"Last-Translator: CuCai2413 <matbao221@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bottles/"
 "bottles/vi/>\n"
 "Language: vi\n"
@@ -141,9 +141,8 @@ msgid "Import Wine prefixes from other managers"
 msgstr "Nhập các tiền tố Wine từ các trình quản lý khác"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
-#, fuzzy
 msgid "Bottles versioning"
-msgstr "Sử dụng trình phiên bản"
+msgstr "Lập phiên bản Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -163,7 +162,7 @@ msgstr "Chế độ tối"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr "Buộc kích hoạt chế độ tối"
+msgstr "Bắt buộc kích hoạt chế độ tối"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -175,17 +174,15 @@ msgstr "Bật / Tắt ngày cập nhật trong danh sách Chai."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Danh sách ứng dụng Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Kích hoạt / Vô hiệu hóa ngày cập nhật trong danh sách"
+msgstr "Kích hoạt / Vô hiệu hóa danh sách app từ Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic Games Store .."
+msgstr "Danh sách Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 #, fuzzy
@@ -253,9 +250,8 @@ msgstr ""
 "cài đặt phiên bản. Phát hành ứng viên cho trình thực thi."
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "ProtonDB"
+msgstr "Hỗ trợ Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 #, fuzzy
@@ -313,7 +309,7 @@ msgstr "Bỏ qua đối số"
 
 #: src/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "URI không hợp lệ (syntax: bottles:run/<bottle>/<program>)"
 
 #: src/main.py:246
 msgid "[Quit] request received."
@@ -1300,7 +1296,7 @@ msgstr "Hiệu suất"
 
 #: src/ui/details-preferences.ui:108 src/ui/preferences.ui:192
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: src/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
@@ -1423,7 +1419,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:262
 msgid "Renderer"
-msgstr ""
+msgstr "Trình kết xuất"
 
 #: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
@@ -1435,11 +1431,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:270
 msgid "gdi"
-msgstr ""
+msgstr "gdi"
 
 #: src/ui/details-preferences.ui:271
 msgid "vulkan"
-msgstr ""
+msgstr "Vulkan"
 
 #: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
 msgid "System"
@@ -1499,7 +1495,7 @@ msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:440
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
 #, fuzzy
@@ -1536,9 +1532,8 @@ msgid "Manage Sandbox permissions"
 msgstr "Quản lý các phiên bản DXVK"
 
 #: src/ui/details-preferences.ui:520
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "Sử dụng môi trường thực thi Chai"
+msgstr "Bottles Runtime"
 
 #: src/ui/details-preferences.ui:521
 #, fuzzy
@@ -1550,9 +1545,8 @@ msgstr ""
 "vô hiệu hóa nếu bạn gặp sự cố."
 
 #: src/ui/details-preferences.ui:532
-#, fuzzy
 msgid "Steam Runtime"
-msgstr "Sử dụng môi trường thực thi Chai"
+msgstr "Steam Runtime"
 
 #: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
@@ -1568,9 +1562,8 @@ msgid "Optimise gaming performance on demand."
 msgstr "Tối ưu hóa hiệu suất chơi game theo yêu cầu."
 
 #: src/ui/details-preferences.ui:556
-#, fuzzy
 msgid "Gamescope"
-msgstr "Sử dụng Gamescope"
+msgstr "Gamescope"
 
 #: src/ui/details-preferences.ui:557
 msgid "Use the Gamescope micro-compositor."
@@ -1648,7 +1641,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:672
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
 #: src/ui/details-preferences.ui:673
 msgid ""
@@ -2469,7 +2462,7 @@ msgstr ""
 
 #: src/ui/preferences.ui:204
 msgid "Runtime"
-msgstr ""
+msgstr "Runtime"
 
 #: src/ui/preferences.ui:209
 msgid "WineBridge"
