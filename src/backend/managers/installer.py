@@ -97,7 +97,7 @@ class InstallerManager:
         catalog = dict(sorted(catalog.items()))
         return catalog
 
-    def  get_icon_url(self, installer):
+    def get_icon_url(self, installer):
         '''Wrapper for the repo method.'''
         return self.__repo.get_icon(installer)
 
@@ -413,7 +413,8 @@ class InstallerManager:
         files = [s.get("file_name", "") for s in exe_msi_steps]
         return files
 
-    def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True, local_resources: dict = None):
+    def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True,
+                local_resources: dict = None):
         if config.get("Environment") == "Layered":
             self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
             self.__layer.mount_bottle(config)
@@ -494,7 +495,7 @@ class InstallerManager:
                 _userdir = WineUtils.get_user_dir(bottle)
                 executable['path'] = executable['path'].replace("userdir/", f"/users/{_userdir}/")
             _path = f'C:\\{executable["path"]}'.replace("/", "\\")
-            _uuid = str (uuid.uuid4())
+            _uuid = str(uuid.uuid4())
             _program = {
                 "executable": executable["file"],
                 "arguments": executable.get("arguments", ""),
@@ -510,12 +511,24 @@ class InstallerManager:
             if "dxvk_nvapi" in executable:
                 _program["dxvk_nvapi"] = executable["dxvk_nvapi"]
 
-            self.__manager.update_config(
-                config=config,
-                key=_uuid,
-                value=_program,
-                scope="External_Programs"
-            )
+            duplicates = [k for k, v in config["External_Programs"].items() if v["path"] == _path]
+            ext = config["External_Programs"]
+            if duplicates:
+                for d in duplicates:
+                    del ext[d]
+                ext[_uuid] = _program
+                self.__manager.update_config(
+                    config=config,
+                    key="External_Programs",
+                    value=ext
+                )
+            else:
+                self.__manager.update_config(
+                    config=config,
+                    key=_uuid,
+                    value=_program,
+                    scope="External_Programs"
+                )
 
             # create Desktop entry
             bottles_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
