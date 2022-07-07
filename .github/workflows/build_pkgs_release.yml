@@ -19,7 +19,7 @@ jobs:
       # --------------------------------------
       - name: Install build dependencies
         run: |
-          sudo apt-get update && sudo apt-get install -y squashfs-tools debhelper python3 python3.10-minimal valac libfuse2 gstreamer1.0-tools zstd python3-pip python3-setuptools python3-yaml python3-requests gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind wget git libgtksourceview-5-dev libadwaita-1-dev gir1.2-adw-1 appstream-util
+          sudo apt-get update && sudo apt-get install -y libpcre3 squashfs-tools debhelper python3 python3.10-minimal valac libfuse2 gstreamer1.0-tools zstd python3-pip python3-setuptools python3-yaml python3-requests gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind wget git libgtksourceview-5-dev libadwaita-1-dev gir1.2-adw-1 appstream-util
 
       # Fix python interpreter
       # --------------------------------------
