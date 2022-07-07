@@ -1,48 +1,27 @@
 #! /bin/bash
 export APPDIR="$ORIGIN"
-export PATH="$APPDIR/bin/:$APPDIR/usr/sbin:$APPDIR/usr/bin:$APPDIR/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so:$PATH"
-export LD_LIBRARY_PATH="$APPDIR/lib:$APPDIR/usr/lib:$PATH:$APPDIR/lib/x86_64-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu:$APPDIR/usr/lib/i386-linux-gnu:$APPDIR/runtime/compat/lib/x86_64-linux-gnu:$APPDIR/runtime/compat/lib/i386-linux-gnu"
-export XDG_DATA_DIRS="$APPDIR/usr/share/:/usr/share/:$XDG_DATA_DIRS"
-export DESKTOP_FILE_PATH=$APPDIR/usr/share/applications/com.usebottles.bottles.desktop
-export ICON_FILE_PATH=$APPDIR/usr/share/icons/hicolor/scalable/apps/com.usebottles.bottles.svg
-export SYMBOLIC_ICON_FILE_PATH=$APPDIR/usr/share/icons/symbolic/scalable/apps/com.usebottles.bottles-symbolic.svg
-export INSTALLED_DESKTOP_FILE_PATH=~/.local/share/applications/bottles.desktop
-export INSTALLED_ICON_FILE_PATH=~/.local/share/icons/hicolor/scalable/apps/com.usebottles.bottles.svg
-export INSTALLED_SYMBOLIC_ICON_FILE_PATH=~/.local/share/icons/hicolor/symbolic/apps/com.usebottles.bottles-symbolic.svg
-export G_MESSAGES_DEBUG="fatal"
-INSTALL_DESKTOP_FILE=false
-
-if ! test -f $INSTALLED_ICON_FILE_PATH; then
-	mkdir -p ~/.local/share/icons/hicolor/scalable/apps/
-	cp $ICON_FILE_PATH $INSTALLED_SYMBOLIC_ICON_FILE_PATH
-fi
-
-if ! test -f $INSTALLED_SYMBOLIC_ICON_FILE_PATH; then
-	mkdir -p ~/.local/share/icons/hicolor/symbolic/apps/
-	cp $ICON_FILE_PATH $INSTALLED_SYMBOLIC_ICON_FILE_PATH
-fi
-
-if ! test -f $INSTALLED_DESKTOP_FILE_PATH; then
-	if command -v zenity &> /dev/null
-	then
-		zenity --question --text="Do you want to install this AppImage?" --title "Bottles Installation"
-		if [ $? = 0 ]; then
-			INSTALL_DESKTOP_FILE=true
-		fi
-	elif command -v kdialog &> /dev/null
-	then
-		kdialog --yesno "Do you want to install this AppImage?" --yes-label "Install" --no-label "Just run" --title "Bottles Installation"
-		if [ $? = 0 ]; then
-			INSTALL_DESKTOP_FILE=true
-		fi
-	fi
-
-	if $INSTALL_DESKTOP_FILE
-	then
-		cp $DESKTOP_FILE_PATH $INSTALLED_DESKTOP_FILE_PATH
-		sed -i -e 's|Exec=bottles|Exec='$APPIMAGE' %F|g' $INSTALLED_DESKTOP_FILE_PATH
-	fi
-fi
+export APPIMAGE_UUID=iQY9rIz
+export XDG_DATA_DIRS=$APPDIR/usr/local/share:$APPDIR/usr/share:$XDG_DATA_DIRS
+export XDG_CONFIG_DIRS=$APPDIR/etc/xdg:$XDG_CONFIG_DIRS
+export LD_LIBRARY_PATH=$APPDIR/AppDir/usr/lib/x86_64-linux-gnu:$APPDIR/lib:$APPDIR/lib/x86_64-linux-gnu:$APPDIR/lib/x86_64-linux-gnu/security:$APPDIR/lib32:$APPDIR/usr/lib/aspell/x86_64-linux-gnu:$APPDIR/usr/lib/i386-linux-gnu:$APPDIR/usr/lib/pulse-16.1+dfsg1/modules:$APPDIR/usr/lib/python3.10/config-3.10-x86_64-linux-gnu:$APPDIR/usr/lib/python3/dist-packages:$APPDIR/usr/lib/python3/dist-packages/samba:$APPDIR/usr/lib/python3/dist-packages/samba/dcerpc:$APPDIR/usr/lib/python3/dist-packages/samba/samba3:$APPDIR/usr/lib/x86_64-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu/alsa-lib:$APPDIR/usr/lib/x86_64-linux-gnu/caca:$APPDIR/usr/lib/x86_64-linux-gnu/enchant-2:$APPDIR/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders:$APPDIR/usr/lib/x86_64-linux-gnu/gstreamer-1.0:$APPDIR/usr/lib/x86_64-linux-gnu/gtk-3.0/3.0.0/immodules:$APPDIR/usr/lib/x86_64-linux-gnu/gtk-3.0/3.0.0/printbackends:$APPDIR/usr/lib/x86_64-linux-gnu/gtk-4.0/4.0.0/immodules:$APPDIR/usr/lib/x86_64-linux-gnu/krb5/plugins/preauth:$APPDIR/usr/lib/x86_64-linux-gnu/libcanberra-0.30:$APPDIR/usr/lib/x86_64-linux-gnu/libv4l:$APPDIR/usr/lib/x86_64-linux-gnu/libv4l/plugins:$APPDIR/usr/lib/x86_64-linux-gnu/pulseaudio:$APPDIR/usr/lib/x86_64-linux-gnu/samba:$APPDIR/usr/lib/x86_64-linux-gnu/samba/auth:$APPDIR/usr/lib/x86_64-linux-gnu/samba/bind9:$APPDIR/usr/lib/x86_64-linux-gnu/samba/gensec:$APPDIR/usr/lib/x86_64-linux-gnu/samba/idmap:$APPDIR/usr/lib/x86_64-linux-gnu/samba/krb5:$APPDIR/usr/lib/x86_64-linux-gnu/samba/ldb:$APPDIR/usr/lib/x86_64-linux-gnu/samba/nss_info:$APPDIR/usr/lib/x86_64-linux-gnu/samba/process_model:$APPDIR/usr/lib/x86_64-linux-gnu/sasl2:$APPDIR/usr/lib32/gconv:$APPDIR/lib/x86_64:$APPDIR/lib/i386
+export PATH=$APPDIR/AppDir/usr/lib/x86_64-linux-gnu:$APPDIR/bin:$APPDIR/etc/dhcp/dhclient-enter-hooks.d:$APPDIR/etc/init.d:$APPDIR/etc/xdg/Xwayland-session.d:$APPDIR/lib:$APPDIR/lib32:$APPDIR/usr/bin:$APPDIR/usr/bin/Codecs:$APPDIR/usr/lib/aspell:$APPDIR/usr/lib/dbus-1.0:$APPDIR/usr/lib/emacsen-common:$APPDIR/usr/lib/emacsen-common/packages/install:$APPDIR/usr/lib/emacsen-common/packages/remove:$APPDIR/usr/lib/python3.10:$APPDIR/usr/lib/python3.10/encodings:$APPDIR/usr/lib/python3.10/lib2to3/pgen2:$APPDIR/usr/lib/python3.10/test:$APPDIR/usr/lib/ssl/misc:$APPDIR/usr/lib/x86_64-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0:$APPDIR/usr/lib/x86_64-linux-gnu/glib-2.0:$APPDIR/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0:$APPDIR/usr/lib/x86_64-linux-gnu/libgtk-3-0:$APPDIR/usr/lib/x86_64-linux-gnu/libv4lconvert0:$APPDIR/usr/lib/x86_64-linux-gnu/webkit2gtk-4.0:$APPDIR/usr/libexec:$APPDIR/usr/libexec/coreutils:$APPDIR/usr/libexec/samba:$APPDIR/usr/local/share/bottles/bottles:$APPDIR/usr/sbin:$APPDIR/usr/share:$APPDIR/usr/share/bug:$APPDIR/usr/share/bug/samba-common:$APPDIR/usr/share/bug/winbind:$APPDIR/usr/share/doc/bubblewrap/examples:$APPDIR/usr/share/doc/ca-certificates/examples/ca-certificates-local/debian:$APPDIR/usr/share/doc/python3-yaml/examples/yaml-highlight:$APPDIR/usr/share/glib-2.0:$APPDIR/usr/share/icu/71.1:$APPDIR/usr/share/libgcrypt20:$APPDIR/usr/share/python3:$APPDIR/usr/share/python3/runtime.d:$APPDIR/usr/share/samba:$APPDIR/usr/share/session-migration/scripts:$PATH
+export GDK_PIXBUF_MODULEDIR=$APPDIR/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+export GDK_PIXBUF_MODULE_FILE=$APPDIR/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders.cache
+export GI_TYPELIB_PATH=$APPDIR/usr/lib/x86_64-linux-gnu/girepository-1.0
+export GST_PLUGIN_PATH=$APPDIR/usr/lib/x86_64-linux-gnu/gstreamer-1.0
+export GST_PLUGIN_SYSTEM_PATH=$APPDIR/usr/lib/x86_64-linux-gnu/gstreamer-1.0
+export GST_REGISTRY_REUSE_PLUGIN_SCANNER=no
+export GST_PLUGIN_SCANNER=$APPDIR/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner
+export GST_PTP_HELPER=$APPDIR/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper
+export GST_REGISTRY=$APPDIR/usr/lib/x86_64-linux-gnu/gstreamer-1.0/registry.bin
+export GST_REGISTRY_UPDATE=no
+export GTK_EXE_PREFIX=$APPDIR/usr
+export GTK_DATA_PREFIX=$APPDIR/usr
+export GTK_PATH=$APPDIR/usr/lib/x86_64-linux-gnu/gtk-3.0:$APPDIR/usr/lib/x86_64-linux-gnu/gtk-4.0
+export PYTHONHOME=$APPDIR/usr
+export GDK_BACKEND=x11
+export PYTHONPATH=$APPDIR/usr/lib/python3/dist-packages
+export SSL_CERT_FILE=$APPDIR/usr/lib/python3/dist-packages/certifi/cacert.pem
 
 if ! command -v python3 &> /dev/null
 then
