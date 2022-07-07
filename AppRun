@@ -23,9 +23,4 @@ export GDK_BACKEND=x11
 export PYTHONPATH=$APPDIR/usr/lib/python3/dist-packages
 export SSL_CERT_FILE=$APPDIR/usr/lib/python3/dist-packages/certifi/cacert.pem
 
-if ! command -v python3 &> /dev/null
-then
-    python $APPDIR/usr/bin/bottles "$@"
-else
-    python3 $APPDIR/usr/bin/bottles "$@"
-fi
+$APPDIR/usr/bin/python3 $APPDIR/usr/bin/bottles "$@"
