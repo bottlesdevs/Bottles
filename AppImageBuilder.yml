@@ -84,7 +84,7 @@ AppDir:
     version: 2022.6.28-brescia
     
     # Set proot executable as entry point
-    exec: bin/proot
+    exec: usr/bin/proot
     
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
     exec_args:  -b "$APPDIR/lib:/lib/ld-linux.so.2" bash "$APPDIR/bin/AppRun" "$@"
