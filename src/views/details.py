@@ -27,6 +27,7 @@ from bottles.widgets.page import PageRow
 from bottles.backend.managers.queue import QueueManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
+from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.models.result import Result
 from bottles.backend.wine.wineserver import WineServer
 
@@ -313,6 +314,13 @@ class DetailsView(Adw.Bin):
             if self.window.settings.get_boolean("epic-games") and EpicGamesStoreManager.is_epic_supported(self.config):
                 programs_names = [p.get("name", "") for p in programs]
                 for app in EpicGamesStoreManager.get_installed_games(self.config):
+                    if app["name"] not in programs_names:
+                        programs.append(app)
+
+            if self.window.settings.get_boolean("ubisoft-connect") \
+                    and UbisoftConnectManager.is_uconnect_supported(self.config):
+                programs_names = [p.get("name", "") for p in programs]
+                for app in UbisoftConnectManager.get_installed_games(self.config):
                     if app["name"] not in programs_names:
                         programs.append(app)
 

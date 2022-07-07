@@ -108,6 +108,18 @@
                                 </child>
                             </object>
                         </child>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">List Ubisoft Games in Programs List</property>
+                                <property name="subtitle" translatable="yes">Requires Ubisoft Connect installed in the bottle.</property>
+                                <property name="activatable-widget">switch_ubisoft_connect</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_ubisoft_connect">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
                     </object>
                 </child>
                 <child>
