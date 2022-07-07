@@ -73,10 +73,6 @@ script:
   - git reset --hard 5cb00a274318b870f4b3ff09ed8f24d52f11f7de && export DESTDIR=../../../AppDir
   - mkdir build && meson build -Dtests=false -Dexamples=false --prefix=/usr --buildtype=release
   - cd ./build && ninja install && cd ../../ && rm -rf ./libadwaita && unset DESTDIR
-  
-  # Install Proot
-  - wget -q "https://github.com/proot-me/proot/releases/download/v5.3.0/proot-v5.3.0-x86_64-static" -o AppDir/bin/proot
-  - chmod +x AppDir/bin/proot
 
 AppDir:
   path: ./AppDir
@@ -147,6 +143,7 @@ AppDir:
     - libpcre3
     - icoextract
     - base-files
+    - proot #Is out-dated but should be fine
 
     exclude:
     - humanity-icon-theme
