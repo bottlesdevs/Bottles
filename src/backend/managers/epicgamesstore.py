@@ -34,7 +34,7 @@ class EpicGamesStoreManager:
         paths = [
             os.path.join(
                 ManagerUtils.get_bottle_path(config),
-                "drive_c/ProgramData/Epic/UnrealEngineLauncher")
+                "drive_c/ProgramData/Epic/UnrealEngineLauncher/LauncherInstalled.dat")
         ]
 
         for path in paths:
@@ -60,7 +60,7 @@ class EpicGamesStoreManager:
         if dat_path is None:
             return []
 
-        with open(os.path.join(dat_path, "LauncherInstalled.dat"), "r") as dat:
+        with open(dat_path, "r") as dat:
             data = json.load(dat)
 
             for game in data["InstallationList"]:
