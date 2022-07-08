@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-07-08 01:20+0000\n"
+"PO-Revision-Date: 2022-07-08 18:02+0000\n"
 "Last-Translator: Вадим Илларионов <gbimobou@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
@@ -100,7 +100,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
-msgstr "Смена пускателя для любой «бутылки» на лету"
+msgstr "Замена пускателя для любой «бутылки» на лету"
 
 #: data/com.usebottles.bottles.appdata.xml.in:24
 msgid ""
@@ -169,11 +169,11 @@ msgstr "Принудительное использование тёмной т�
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr "Показывать даты обновления в списке"
+msgstr "Дата обновления в списке"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr "Показывать дату обновления в списке «бутылок»."
+msgstr "Отображение даты обновления в списке «бутылок»."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
@@ -213,7 +213,7 @@ msgstr "Уведомления"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Show notifications."
-msgstr "Включить уведомления."
+msgstr "Отображение уведомлений."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Temp cleaning"
@@ -248,8 +248,8 @@ msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Включить экспериментальные функции, такие как установщики, версионирование "
-"«бутылок» и показ предварительных версий для пускателей."
+"Доступ к экспериментальным функциям, таким как установщики, версионирование "
+"«бутылок», показ предварительных версий для пускателей."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Steam Proton Support"
@@ -257,7 +257,7 @@ msgstr "Поддержка Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Включить поддержку префиксов Steam Proton."
+msgstr "Доступ к префиксам Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Experiments:sandbox"
@@ -265,7 +265,7 @@ msgstr "Эксперименты:песочница"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Включить экспериментальный режим Песочницы для отдельных «бутылок»."
+msgstr "Включить экспериментальный режим «песочницы» для отдельных «бутылок»."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -273,7 +273,7 @@ msgstr "Эксперименты:библиотека"
 
 #: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Library mode."
-msgstr "Включить экспериментальный режим Библиотеки."
+msgstr "Включить экспериментальный режим библиотеки."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
@@ -281,7 +281,7 @@ msgstr "Автоматическое закрытие Bottles"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
-msgstr "Закрывать Bottles после запуска исполняемого файла из файл-менеджера."
+msgstr "Закрывать Bottles после запуска программ из файл-менеджера."
 
 #: src/main.py:106
 msgid "Show version"
@@ -305,7 +305,7 @@ msgstr "Запуск с аргументами"
 
 #: src/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "Некорректный URI (синтаксис: bottles:run/<bottle>/<program>)"
+msgstr "Некорректный ресурс (синтаксис: bottles:run/<бутылка>/<программа>)"
 
 #: src/main.py:246
 msgid "[Quit] request received."
@@ -397,7 +397,7 @@ msgstr "Ошибка установки компонентов, 3 неудачн
 
 #: src/backend/managers/manager.py:1024
 msgid "Missing essential components. Installing…"
-msgstr "Отсутствуют важные компоненты. Установка…"
+msgstr "Отсутствуют необходимые компоненты. Установка…"
 
 #: src/backend/managers/manager.py:1100
 msgid "Failed to create bottle directory."
@@ -452,11 +452,11 @@ msgstr "Применение среды: {0}…"
 
 #: src/backend/managers/manager.py:1220
 msgid "(!) Using a custom environment recipe…"
-msgstr "(!) Использование пользовательского «рецепта» для среды…"
+msgstr "(!) Использование пользовательского рецепта для среды…"
 
 #: src/backend/managers/manager.py:1223
 msgid "(!) Recipe not not found or not valid…"
-msgstr "(!) «Рецепт» не найден или недействителен…"
+msgstr "(!) Рецепт не найден или недействителен…"
 
 #: src/backend/managers/manager.py:1240
 msgid "Installing DXVK…"
@@ -551,7 +551,7 @@ msgstr "Копировать в буфер обмена"
 #. endregion
 #: src/dialogs/launchoptions.py:54 src/ui/dialog-launch-options.ui:58
 msgid "Choose a script which should be executed after run."
-msgstr "Выберите скрипт, который должен быть выполнен после запуска программы."
+msgstr "Выберите скрипт, который следует выполнить после запуска программы."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
 msgid "Choose from where start the program."
@@ -723,7 +723,7 @@ msgstr "Ваши «Бутылки»"
 
 #: src/views/new.py:135
 msgid "Choose a recipe file"
-msgstr "Выберите файл с «рецептом»"
+msgstr "Выберите файл с рецептом"
 
 #: src/views/new.py:151
 msgid "Choose where to store the bottle"
@@ -2172,11 +2172,11 @@ msgstr "32 бита"
 
 #: src/ui/new.ui:168
 msgid "Custom Recipe"
-msgstr "Пользовательский «рецепт»"
+msgstr "Пользовательский рецепт"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr "Выберите пользовательский «рецепт» для среды, если он у вас есть."
+msgstr "Выберите пользовательский рецепт для среды, если он у вас есть."
 
 #: src/ui/new.ui:185
 msgid "Custom Path"
