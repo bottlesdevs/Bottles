@@ -608,6 +608,7 @@ class Manager:
             "*err*",
             "_*",
             "start",
+            "OriginEr",
             "*website*",
             "*web site*",
             "*user_manual*"

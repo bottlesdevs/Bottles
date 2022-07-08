@@ -21,9 +21,13 @@
                         <property name="vexpand">True</property>
                         <child>
                             <object class="GtkFlowBox" id="main_flow">
+                                <property name="row-spacing">5</property>
+                                <property name="column-spacing">5</property>
                                 <property name="halign">fill</property>
                                 <property name="valign">start</property>
+                                <property name="margin-top">5</property>
                                 <property name="margin-start">5</property>
+                                <property name="margin-bottom">5</property>
                                 <property name="margin-end">5</property>
                                 <property name="homogeneous">True</property>
                                 <property name="selection-mode">none</property>
