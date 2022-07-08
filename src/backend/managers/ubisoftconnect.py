@@ -49,6 +49,7 @@ class UbisoftConnectManager:
         """
         return UbisoftConnectManager.find_conf_path(config) is not None
 
+    # noinspection PyTypeChecker
     @staticmethod
     def get_installed_games(config: dict) -> list:
         """
@@ -57,6 +58,8 @@ class UbisoftConnectManager:
         found = {}
         games = []
         key = None
+        appid = None
+        thumb = None
         reg_key = "register: HKEY_LOCAL_MACHINE\\SOFTWARE\\Ubisoft\\Launcher\\Installs\\"
         conf_path = UbisoftConnectManager.find_conf_path(config)
         games_path = os.path.join(
@@ -70,35 +73,51 @@ class UbisoftConnectManager:
             for r in c.readlines():
                 r = r.strip()
 
-                if r.startswith("- shortcut_name:"):
-                    _key = r.replace("- shortcut_name:", "").strip()
+                if r.startswith("name:"):
+                    _key = r.replace("name:", "").strip()
                     if _key != "" and _key not in found.keys():
                         key = _key
-                        found[key] = None
+                        found[key] = {
+                            "name": None,
+                            "appid": None,
+                            "thumb_image": None
+                        }
 
-                elif not key and r.startswith("game_identifier"):
-                    _key = r.replace("game_identifier:", "").strip()
-                    if _key != "" and _key not in found.keys():
-                        key = _key
-                        found[key] = None
+                elif key and r.startswith("- shortcut_name:"):
+                    _name = r.replace("- shortcut_name:", "").strip()
+                    if _name != "":
+                        name = _name
+                        found[key]["name"] = name
+
+                elif key and found[key]["name"] is None and r.startswith("display_name:"):
+                    name = r.replace("display_name:", "").strip()
+                    found[key]["name"] = name
+
+                elif key and r.startswith("thumb_image:"):
+                    thumb = r.replace("thumb_image:", "").strip()
+                    found[key]["thumb_image"] = thumb
 
                 elif key and r.startswith(reg_key):
                     appid = r.replace(reg_key, "").replace("\\InstallDir", "").strip()
-                    found[key] = appid
-                    key, appid = None, None
+                    found[key]["appid"] = appid
+
+                if None not in [key, appid, thumb]:
+                    key, name, appid, thumb = None, None, None, None
 
             for k, v in found.items():
-                if not os.path.exists(os.path.join(games_path, k)):
+                if v["name"] is None or not os.path.exists(os.path.join(games_path, v["name"])):
                     continue
 
                 _args = f"uplay://launch/{v}/0"
                 _path = "C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\UbisoftConnect.exe"
                 _executable = _path.split("\\")[-1]
                 _folder = ManagerUtils.get_exe_parent_dir(config, _path)
+                _thumb = "" if v['thumb_image'] is None else f"ubisoft:{v['thumb_image']}"
                 games.append({
                     "executable": _path,
                     "arguments": _args,
-                    "name": k,
+                    "name": v["name"],
+                    "thumb": _thumb,
                     "path": _path,
                     "folder": _folder,
                     "icon": "com.usebottles.bottles-program",
