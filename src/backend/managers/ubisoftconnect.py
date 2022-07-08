@@ -108,7 +108,7 @@ class UbisoftConnectManager:
                 if v["name"] is None or not os.path.exists(os.path.join(games_path, v["name"])):
                     continue
 
-                _args = f"uplay://launch/{v}/0"
+                _args = f"uplay://launch/{v['appid']}/0"
                 _path = "C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\UbisoftConnect.exe"
                 _executable = _path.split("\\")[-1]
                 _folder = ManagerUtils.get_exe_parent_dir(config, _path)
