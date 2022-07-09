@@ -6,11 +6,16 @@ from configparser import ConfigParser
 
 class ConfigManager(object):
 
-    def __init__(self, config_file: str, config_type: str = 'ini'):
+    def __init__(self, config_file: str = None, config_string: str = None, config_type: str = 'ini'):
         self.config_file = config_file
+        self.config_string = config_string
         self.config_type = config_type
-        self.checks()
+        if self.config_file is not None:
+            self.checks()
         self.config_dict = self.read()
+
+        if self.config_file is not None and self.config_string is not None:
+            raise ValueError('Passing both config_file and config_string is not allowed')
 
     def checks(self):
         """Checks if the configuration file exists, if not, create it."""
@@ -21,20 +26,32 @@ class ConfigManager(object):
                 f.write('')
 
     def read(self):
-        """Reads the configuration file and returns it as a dictionary"""
-        if self.config_type == 'ini':
-            config = ConfigParser()
-            config.read(self.config_file)
-            # noinspection PyProtectedMember
-            res = config._sections
-        elif self.config_type == 'json':
-            with open(self.config_file, 'r') as f:
-                res = json.load(f)
-        elif self.config_type == 'yaml':
-            with open(self.config_file, 'r') as f:
-                res = yaml.safe_load(f)
-        else:
-            raise ValueError('Invalid configuration type')
+        if self.config_file is not None:
+            """Reads the configuration file and returns it as a dictionary"""
+            if self.config_type == 'ini':
+                config = ConfigParser()
+                config.read(self.config_file)
+                # noinspection PyProtectedMember
+                res = config._sections
+            elif self.config_type == 'json':
+                with open(self.config_file, 'r') as f:
+                    res = json.load(f)
+            elif self.config_type == 'yaml' or self.config_type == 'yml' :
+                with open(self.config_file, 'r') as f:
+                    res = yaml.safe_load(f)
+            else:
+                raise ValueError('Invalid configuration type')
+        elif self.config_string is not None:
+            if self.config_type == 'ini':
+                config = ConfigParser()
+                config.read_string(self.config_string)
+                res = config._sections
+            elif self.config_type == 'json':
+                res = json.loads(self.config_string)
+            elif self.config_type == 'yaml' or self.config_type == 'yml':
+                res = yaml.safe_load(self.config_string)
+            else:
+                raise ValueError('Invalid configuration type')
 
         if res in [None, ""]:
             res = {}
@@ -64,7 +81,12 @@ class ConfigManager(object):
         with open(self.config_file, 'w') as f:
             config.write(f)
 
-    def write_dict(self):
+    def write_dict(self, config_file: str=None):
+        if self.config_file is None and config_file is None:
+            raise ValueError('No config path specified')
+        elif self.config_file is None and config_file is not None:
+            self.config_file = config_file
+
         """Writes the configuration to the file"""
         if self.config_type == 'ini':
             self.write_ini()
