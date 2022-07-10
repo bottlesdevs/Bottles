@@ -213,16 +213,12 @@ class MainWindow(Adw.ApplicationWindow):
             self.headerbar.get_style_context().remove_class("flat")
 
             if Paths.custom_bottles_path_err:
-                dialog = Gtk.MessageDialog(
-                    transient_for=self,
-                    flags=0,
-                    message_type=Gtk.MessageType.ERROR,
-                    buttons=Gtk.ButtonsType.OK,
-                    text=_("The custom bottles path was not found. "
-                           "Please, check the path in Preferences.\n"
-                           "Fall-backing to the default path; "
-                           "no bottles from that path will be listed!")
-                )
+                dialog = Adw.MessageDialog.new(
+                                                self,
+                                                "Custom Bottles Path not Found",
+                                                "Falling back to default path. No bottles from the given path will be listed."
+                                                )
+                dialog.add_response("cancel", "Close")
                 dialog.present()
 
             if self.arg_exe and not self.arg_bottle:
@@ -376,3 +372,4 @@ class MainWindow(Adw.ApplicationWindow):
     @staticmethod
     def open_url(widget, url):
         webbrowser.open_new_tab(url)
+
