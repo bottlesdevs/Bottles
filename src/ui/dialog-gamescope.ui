@@ -48,7 +48,8 @@
                         </child>
                         <child>
                             <object class="AdwPreferencesGroup">
-                                <property name="title" translatable="yes">Game resolution</property>
+                                <property name="title" translatable="yes">Game Resolution</property>
+                                <property name="description" translatable="yes">Uses the resolution of the video game as a reference.</property>
                                 <child>
                                     <object class="AdwEntryRow" id="arg_w">
                                       <property name="title" translatable="yes">Width (e.g. 1280)</property>
@@ -63,7 +64,8 @@
                         </child>
                         <child>
                             <object class="AdwPreferencesGroup">
-                                <property name="title" translatable="yes">Gamescope resolution</property>
+                                <property name="title" translatable="yes">Gamescope Resolution</property>
+                                <property name="description" translatable="yes">Upscales the resolution when using a resolution higher than the game resolution.</property>
                                 <child>
                                     <object class="AdwEntryRow" id="arg_W">
                                       <property name="title" translatable="yes">Width (e.g. 1280)</property>
@@ -78,20 +80,20 @@
                         </child>
                         <child>
                             <object class="AdwPreferencesGroup">
-                                <property name="title" translatable="yes">Extra settings</property>
+                                <property name="title" translatable="yes">Extra Settings</property>
                                 <child>
                                     <object class="AdwEntryRow" id="arg_fps">
-                                      <property name="title" translatable="yes">Frame rate limit (e.g. 60)</property>
+                                      <property name="title" translatable="yes">Frame Rate Limit (e.g. 60)</property>
                                     </object>
                                 </child>
                                 <child>
                                     <object class="AdwEntryRow" id="arg_fps_no_focus">
-                                      <property name="title" translatable="yes">Frame rate limit (when unfocused)</property>
+                                      <property name="title" translatable="yes">Frame Rate Limit (When Unfocused)</property>
                                     </object>
                                 </child>
                                 <child>
                                     <object class="AdwActionRow">
-                                        <property name="title" translatable="yes">Use integer scaling</property>
+                                        <property name="title" translatable="yes">Use Integer Scaling</property>
                                         <property name="activatable-widget">switch_scaling</property>
                                         <child>
                                             <object class="GtkSwitch" id="switch_scaling">
@@ -102,7 +104,7 @@
                                 </child>
                                 <child>
                                     <object class="AdwActionRow">
-                                        <property name="title" translatable="yes">Window type</property>
+                                        <property name="title" translatable="yes">Window Type</property>
                                         <child>
                                             <object class="GtkBox">
                                                 <child>
