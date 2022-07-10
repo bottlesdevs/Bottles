@@ -78,7 +78,6 @@ class EnvVarsDialog(Adw.Window):
     # region Widgets
     entry_name = Gtk.Template.Child()
     group_vars = Gtk.Template.Child()
-    ev_controller = Gtk.EventControllerKey.new()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -91,10 +90,9 @@ class EnvVarsDialog(Adw.Window):
         self.config = config
 
         self.__populate_vars_list()
-        self.entry_name.add_controller(self.ev_controller)
 
         # connect signals
-        self.ev_controller.connect("key-released", self.__validate)
+        self.entry_name.connect("changed", self.__validate)
         self.entry_name.connect("apply", self.__save_var)
 
     def __validate(self, *args):
