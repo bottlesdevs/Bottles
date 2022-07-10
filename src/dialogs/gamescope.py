@@ -48,7 +48,6 @@ class GamescopeDialog(Adw.Window):
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
-        self.btn_cancel.connect("clicked", self.__close_window)
         self.toggle_borderless.connect("toggled", self.__change_wtype, "b")
         self.toggle_fullscreen.connect("toggled", self.__change_wtype, "f")
 
@@ -109,5 +108,3 @@ class GamescopeDialog(Adw.Window):
     def __save(self, *args):
         GLib.idle_add(self.__idle_save)
 
-    def __close_window(self, *args):
-        self.destroy()
