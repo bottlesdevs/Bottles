@@ -192,11 +192,3 @@ class WebDialog(Adw.Window):
         clipboard = Gdk.Display.get_clipboard(Gdk.Display.get_default())
         clipboard.set_content(Gdk.ContentProvider.new_for_value(self.message))
 
-
-#@Gtk.Template(resource_path='/com/usebottles/bottles/about.ui')
-#class AboutDialog(Adw.AboutWindow):
-#    __gtype_name__ = 'AboutDialog'
-
-#    def __init__(self, window, **kwargs):
-#        super().__init__(**kwargs)
-#        self.set_transient_for(window)
