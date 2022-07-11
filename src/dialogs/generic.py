@@ -200,8 +200,3 @@ class AboutDialog(Adw.AboutWindow):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
-        self.set_modal(True)
-
-    def do_response(self, response_id):
-        if response_id == Gtk.ResponseType.DELETE_EVENT:
-            self.destroy()
