@@ -294,20 +294,22 @@ class BottleView(Adw.PreferencesPage):
         """
 
         def handle_response(_widget, response_id):
-            if response_id == Gtk.ResponseType.OK:
+            if response_id == "ok":
                 RunAsync(self.manager.delete_bottle, config=self.config)
                 self.window.page_list.disable_bottle(self.config)
             _widget.destroy()
 
         widget.set_sensitive(False)
 
-        dialog = MessageDialog(
-            window=self.window,
-            message=_("Are you sure you want to delete this Bottle and all files?")
+        dialog = Adw.MessageDialog.new(
+            self.window,
+            _("Confirm"),
+            _("Are you sure you want to delete this Bottle and all files?")
         )
+        dialog.add_response("cancel", "Cancel")
+        dialog.add_response("ok", "Confirm")
         dialog.connect("response", handle_response)
-        dialog.show()
-
+        dialog.present()
     def __update_by_env(self):
         widgets = [self.row_uninstaller, self.row_regedit]
         if self.config.get("Environment") == "Layered":
