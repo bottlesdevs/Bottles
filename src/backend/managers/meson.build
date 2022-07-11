@@ -22,6 +22,7 @@ bottles_sources = [
   'steam.py',
   'epicgamesstore.py',
   'ubisoftconnect.py',
+  'origin.py',
   'queue.py',
 ]
 
