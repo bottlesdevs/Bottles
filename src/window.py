@@ -41,7 +41,7 @@ from bottles.views.importer import ImporterView
 from bottles.views.loading import LoadingView
 
 from bottles.dialogs.crash import CrashReportDialog
-from bottles.dialogs.generic import AboutDialog, SourceDialog
+from bottles.dialogs.generic import SourceDialog
 from bottles.dialogs.onboard import OnboardDialog
 from bottles.dialogs.journal import JournalDialog
 from bottles.dialogs.depscheck import DependenciesCheckDialog
@@ -367,7 +367,11 @@ class MainWindow(Adw.ApplicationWindow):
         quit()
 
     def show_about_dialog(self, *args):
-        AboutDialog(self).present()
+        builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
+        about_window = builder.get_object("about_window")
+        about_window.set_transient_for(self)
+        about_window.present()
+
 
     @staticmethod
     def open_url(widget, url):

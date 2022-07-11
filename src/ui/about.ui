@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 <requires lib="gtk" version="4.0"/>
-  <template class="AboutDialog" parent="AdwAboutWindow">
-    <property name="hide-on-close">True</property>
+  <object class="AdwAboutWindow" id="about_window">
     <property name="application-name">Bottles</property>
     <property name="modal">True</property>
     <property name="version">2022.6.28-brescia</property>
@@ -103,5 +102,5 @@ Hebi-no-Sekigae https://github.com/Hebi-no-Sekigae</property>
 Noëlle https://github.com/jannuary
 Alvar Lagerlöf https://github.com/alvarlagerlof
 Ezekiel Smith https://github.com/ZekeSmith</property>
-  </template>
+  </object>
 </interface>
