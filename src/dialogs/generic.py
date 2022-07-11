@@ -194,7 +194,7 @@ class WebDialog(Adw.Window):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/about.ui')
-class AboutDialog(Gtk.AboutDialog):
+class AboutDialog(Adw.AboutWindow):
     __gtype_name__ = 'AboutDialog'
 
     def __init__(self, window, **kwargs):
