@@ -214,10 +214,10 @@ class MainWindow(Adw.ApplicationWindow):
 
             if Paths.custom_bottles_path_err:
                 dialog = Adw.MessageDialog.new(
-                                                self,
-                                                "Custom Bottles Path not Found",
-                                                "Falling back to default path. No bottles from the given path will be listed."
-                                                )
+                    self,
+                    _("Custom Bottles Path not Found"),
+                    _("Falling back to default path. No bottles from the given path will be listed.")
+                )
                 dialog.add_response("cancel", "Close")
                 dialog.present()
 
@@ -372,4 +372,3 @@ class MainWindow(Adw.ApplicationWindow):
     @staticmethod
     def open_url(widget, url):
         webbrowser.open_new_tab(url)
-
