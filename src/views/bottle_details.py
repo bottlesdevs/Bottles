@@ -299,8 +299,6 @@ class BottleView(Adw.PreferencesPage):
                 self.window.page_list.disable_bottle(self.config)
             _widget.destroy()
 
-        widget.set_sensitive(False)
-
         dialog = Adw.MessageDialog.new(
             self.window,
             _("Confirm"),
@@ -310,6 +308,7 @@ class BottleView(Adw.PreferencesPage):
         dialog.add_response("ok", "Confirm")
         dialog.connect("response", handle_response)
         dialog.present()
+
     def __update_by_env(self):
         widgets = [self.row_uninstaller, self.row_regedit]
         if self.config.get("Environment") == "Layered":
