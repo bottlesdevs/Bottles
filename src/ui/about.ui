@@ -2,6 +2,7 @@
 <interface>
 <requires lib="gtk" version="4.0"/>
   <template class="AboutDialog" parent="AdwAboutWindow">
+    <property name="hide-on-close">True</property>
     <property name="application-name">Bottles</property>
     <property name="modal">True</property>
     <property name="version">2022.6.28-brescia</property>
