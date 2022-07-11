@@ -58,6 +58,8 @@ class Paths:
     # Set errors status
     custom_bottles_path_err = False
 
+    box = os.path.join(Path.home(), "Documents/Bottles")
+    box_instructions = os.path.join(Path.home(), "Documents/Bottles/instructions.txt")
     temp = f"{base}/temp"
     runtimes = f"{base}/runtimes"
     winebridge = f"{base}/winebridge"
