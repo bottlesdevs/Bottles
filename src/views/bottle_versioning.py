@@ -71,7 +71,7 @@ class VersioningView(Adw.PreferencesPage):
         ones from the bottle configuration.
         """
         if config is None:
-            config = {}
+            config = self.config
         if states is None:
             states = self.versioning_manager.list_states(config)
 
@@ -99,9 +99,8 @@ class VersioningView(Adw.PreferencesPage):
             if len(states) == 0:
                 return Result(False)
 
-            if self.config.get("Versioning"):
-                for state in states.items():
-                    GLib.idle_add(new_state, state)
+            for state in states.items():
+                GLib.idle_add(new_state, state)
 
             return Result(True)
 
@@ -132,6 +131,7 @@ class VersioningView(Adw.PreferencesPage):
 
         def update(result, error):
             if result.status:
+                print(result.data)
                 self.update(states=result.data.get('states'))
 
         comment = self.entry_state_comment.get_text()
