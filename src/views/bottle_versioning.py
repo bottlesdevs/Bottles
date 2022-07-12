@@ -131,7 +131,6 @@ class VersioningView(Adw.PreferencesPage):
 
         def update(result, error):
             if result.status:
-                print(result.data)
                 self.update(states=result.data.get('states'))
 
         comment = self.entry_state_comment.get_text()
