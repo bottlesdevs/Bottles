@@ -216,22 +216,6 @@ class Manager:
         Checks for the existence of the bottles' directories, and creates them
         if they don't exist.
         """
-        if "FLATPAK_ID" in os.environ and not os.path.exists(Paths.box_instructions):
-            logging.info("Box path (~/Documents/Bottles) doesn't exist, creating now.")
-            os.makedirs(Paths.box, exist_ok=True)
-            with open(Paths.box_instructions, "w") as f:
-                f.write("Bottles' box path\n")
-                f.write("============================\n\n")
-                f.write("Purpose:\n")
-                f.write("This folder should be used to run all those executables which need some resources in\n")
-                f.write("the same path and which normally cannot be run via Bottles (Flatpak) due to the sandbox.\n\n")
-                f.write("This is a safe path, bottles and programs running within them cannot see other files on\n")
-                f.write("your system by default.\n\n")
-                f.write("Instructions:\n")
-                f.write("1. Copy the executable and all the resources needed to run it to this folder.\n")
-                f.write("2. (for installers) Run the executable through Bottles.\n")
-                f.write("3. (for non installers) add the executable in the Programs view.\n")
-
         if not os.path.isdir(Paths.runners):
             logging.info("Runners path doesn't exist, creating now.")
             os.makedirs(Paths.runners, exist_ok=True)
