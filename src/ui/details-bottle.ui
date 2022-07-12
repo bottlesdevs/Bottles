@@ -130,10 +130,13 @@
                     </object>
                 </child>
                 <child>
-                    <object class="GtkSeparator" id="extra_separator"/>
+                    <object class="GtkSeparator" id="extra_separator">
+                        <property name="margin-bottom">5</property>
+                    </object>
                 </child>
                 <child>
                     <object class="GtkBox" id="box_history">
+                        <property name="spacing">5</property>
                         <property name="orientation">vertical</property>
                     </object>
                 </child>
@@ -362,4 +365,5 @@
         </child>
     </object>
 </interface>
+
 
