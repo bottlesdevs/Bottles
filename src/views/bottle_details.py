@@ -201,7 +201,7 @@ class BottleView(Adw.PreferencesPage):
             dialog = Adw.MessageDialog.new(
                 self.window,
                 _("Be Aware of Sandbox"),
-                _("Bottles is running in a sandbox, a restricted permission environment needed to keep you safe. If the executable you are choosing needs resources in the same directory, consider moving them inside the bottle (use the icon with the 3 dots at the top to reach the bottle), this will avoid any permissions related problem.")
+                _("Bottles is running in a sandbox, a restricted permission environment needed to keep you safe. If the program won't run, consider moving inside the bottle (3 dots icon on the top), then launch from there.")
             )
             dialog.add_response("ok", _("Ok"))
             dialog.connect("response", show_chooser)
