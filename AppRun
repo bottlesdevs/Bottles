@@ -22,5 +22,7 @@ export PYTHONHOME=$APPDIR/usr
 export GDK_BACKEND=x11
 export PYTHONPATH=$APPDIR/usr/lib/python3/dist-packages
 export SSL_CERT_FILE=$APPDIR/usr/lib/python3/dist-packages/certifi/cacert.pem
+export FONTCONFIG_PATH=/etc/fonts
+export WINELDLIBRARY=$APPDIR/lib/ld-linux.so.2
 
-$APPDIR/usr/bin/python3 $APPDIR/usr/bin/bottles "$@"
+"$WINELDLIBRARY" "$APPDIR"/usr/bin/python3 "$APPDIR"/usr/bin/bottles "$@"
