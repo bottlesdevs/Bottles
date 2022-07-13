@@ -16,7 +16,6 @@ finish-args:
   - --socket=pulseaudio
   - --device=all
   - --system-talk-name=org.freedesktop.UDisks2
-  - --system-talk-name=org.freedesktop.Flatpak
   - --talk-name=org.freedesktop.Notifications
   - --env=LD_LIBRARY_PATH=/app/lib:/app/lib32
   - --env=PATH=/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/bin:/usr/lib/extensions/vulkan/OBSVkCapture/bin/
@@ -277,7 +276,8 @@ modules:
     sources:
     - type: git
       url: https://gitlab.gnome.org/GNOME/libadwaita.git
-      commit: da4125248a434ba7caaec85186db6ab44deecad7
+      tag: 1.2.alpha
+      commit: 9150f4016a04064a00733b78391c8e6aad49bee8
     modules:
     - name: libsass
       buildsystem: meson

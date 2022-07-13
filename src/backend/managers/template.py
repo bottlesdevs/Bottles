@@ -1,11 +1,10 @@
 # template.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -55,6 +54,7 @@ class TemplateManager:
             "dosdevices",
             "states",
             "*.yml"
+            ".*"
         ]
         _path = f"{Paths.templates}/{_uuid}"
         logging.info("Copying files …")
@@ -164,5 +164,5 @@ class TemplateManager:
         bottle = ManagerUtils.get_bottle_path(config)
         _path = os.path.join(Paths.templates, template['uuid'])
 
-        shutil.copytree(_path, bottle, symlinks=False, dirs_exist_ok=True)
+        shutil.copytree(_path, bottle, symlinks=False, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.*'))
         logging.info("Template unpacked successfully!")

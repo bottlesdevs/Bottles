@@ -161,6 +161,9 @@ class WineCommand:
                 dll_overrides.append(environment["WINEDLLOVERRIDES"])
                 del environment["WINEDLLOVERRIDES"]
 
+            if environment.get("DXVK_CONFIG_FILE", "") == "bottle_root":
+                environment["DXVK_CONFIG_FILE"] = os.path.join(bottle, "dxvk.conf")
+
             for e in environment:
                 env.add(e, environment[e], override=True)
 

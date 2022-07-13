@@ -1,11 +1,10 @@
 # gamescope.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -49,7 +48,6 @@ class GamescopeDialog(Adw.Window):
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
-        self.btn_cancel.connect("clicked", self.__close_window)
         self.toggle_borderless.connect("toggled", self.__change_wtype, "b")
         self.toggle_fullscreen.connect("toggled", self.__change_wtype, "f")
 
@@ -110,5 +108,3 @@ class GamescopeDialog(Adw.Window):
     def __save(self, *args):
         GLib.idle_add(self.__idle_save)
 
-    def __close_window(self, *args):
-        self.destroy()

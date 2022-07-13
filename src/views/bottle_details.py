@@ -1,11 +1,10 @@
 # bottle_details.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -188,13 +187,27 @@ class BottleView(Adw.PreferencesPage):
         The file will be executed by the runner after the
         user confirmation.
         """
-        FileChooser(
-            parent=self.window,
-            title=_("Choose a Windows executable file"),
-            action=Gtk.FileChooserAction.OPEN,
-            buttons=(_("Cancel"), _("Run")),
-            callback=self.__execute
-        )
+        def show_chooser(*args):
+            self.window.settings.set_boolean("show-sandbox-warning", False)
+            FileChooser(
+                parent=self.window,
+                title=_("Choose a Windows executable file"),
+                action=Gtk.FileChooserAction.OPEN,
+                buttons=(_("Cancel"), _("Run")),
+                callback=self.__execute
+            )
+
+        if "FLATPAK_ID" in os.environ and self.window.settings.get_boolean("show-sandbox-warning"):
+            dialog = Adw.MessageDialog.new(
+                self.window,
+                _("Be Aware of Sandbox"),
+                _("Bottles is running in a sandbox, a restricted permission environment needed to keep you safe. If the program won't run, consider moving inside the bottle (3 dots icon on the top), then launch from there.")
+            )
+            dialog.add_response("ok", _("Ok"))
+            dialog.connect("response", show_chooser)
+            dialog.present()
+        else:
+            show_chooser()
 
     def __execute(self, _dialog, response, file_dialog, args=""):
         def do_update_programs(result, error=False):
@@ -295,19 +308,20 @@ class BottleView(Adw.PreferencesPage):
         """
 
         def handle_response(_widget, response_id):
-            if response_id == Gtk.ResponseType.OK:
+            if response_id == "ok":
                 RunAsync(self.manager.delete_bottle, config=self.config)
                 self.window.page_list.disable_bottle(self.config)
             _widget.destroy()
 
-        widget.set_sensitive(False)
-
-        dialog = MessageDialog(
-            window=self.window,
-            message=_("Are you sure you want to delete this Bottle and all files?")
+        dialog = Adw.MessageDialog.new(
+            self.window,
+            _("Confirm"),
+            _("Are you sure you want to delete this Bottle and all files?")
         )
+        dialog.add_response("cancel", _("Cancel"))
+        dialog.add_response("ok", _("Confirm"))
         dialog.connect("response", handle_response)
-        dialog.show()
+        dialog.present()
 
     def __update_by_env(self):
         widgets = [self.row_uninstaller, self.row_regedit]
@@ -368,7 +382,7 @@ class BottleView(Adw.PreferencesPage):
             widget.set_sensitive(True)
 
         def handle_response(_widget, response_id):
-            if response_id == Gtk.ResponseType.OK:
+            if response_id == "ok":
                 RunAsync(wineboot.send_status, reset, status)
             else:
                 reset()
@@ -378,12 +392,15 @@ class BottleView(Adw.PreferencesPage):
         widget.set_sensitive(False)
 
         if status == 0:
-            dialog = MessageDialog(
-                window=self.window,
-                message=_("Are you sure you want to terminate all processes?\nThis can cause data loss.")
+            dialog = Adw.MessageDialog.new(
+                self.window,
+                _("Confirm"),
+                _("Are you sure you want to terminate all processes?\nThis can cause data loss.")
             )
+            dialog.add_response("cancel", _("Cancel"))
+            dialog.add_response("ok", _("Confirm"))
             dialog.connect("response", handle_response)
-            dialog.show()
+            dialog.present()
 
     def __set_steam_rules(self):
         status = False if self.config.get("Environment") == "Steam" else True

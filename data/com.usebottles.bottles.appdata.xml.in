@@ -2,7 +2,7 @@
 <component type="desktop">
     <id>com.usebottles.bottles.desktop</id>
     <metadata_license>CC0-1.0</metadata_license>
-    <project_license>GPL-3.0-or-later</project_license>
+    <project_license>GPL-3.0-only</project_license>
     <name>Bottles</name>
     <summary>Run Windows software</summary>
     <developer_name translatable="no">Mirko Brombin</developer_name>
@@ -96,82 +96,66 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.6.28-brescia" date="2022-06-14">
+        <release version="2022.7.14-brescia" date="2022-07-14">
           <description>
             <p>News</p>
             <ul>
-                <li>Support for Steam Proton prefixes</li>
-                <li>Option to list programs from Epic Games Store</li>
-                <li>New path for shader cache (auto-migrated)</li>
-                <li>Mesa shader cache is now stored in the bottle</li>
-                <li>VKD3D shader cache is now stored in the bottle</li>
-                <li>Update Bottles Runtime to 0.5</li>
-                <li>Initial support for EAC Runtime</li>
-                <li>Initial support for Battleye Runtime</li>
-                <li>Improved speed on runner change using native method to stop the wineserver when stalled</li>
-                <li>Setting Windows version during bottle creation is now skipped when using Caffe</li>
-                <li>Support for adding new programs using bottle-cli</li>
-                <li>Programs are now stored with a unique ID, other ones will automatically be migrated on first launch</li>
-                <li>A disclaimer is shown when setting Proton as runner</li>
-                <li>Allow overriding cwd per program</li>
-                <li>Allow overriding/using FSR per program</li>
-                <li>Allow overriding PulseAudio latency per program</li>
-                <li>Allow overriding/using a virtual desktop per program</li>
-                <li>Cwd for programs with unix path is now automatically set to the executable root if not already defined</li>
-                <li>New option to choose the language for the programs running inside the bottle</li>
-                <li>Minor UI/UX improvements for better consistency</li>
-                <li>FORCE_OFFLINE=1 can be used to force-launching Bottles in offline mode</li>
-                <li>BOOT_TIME=1 can be used to benchmark Bottles' boot</li>
-                <li>Repositories update status is now displayed during boot</li>
-                <li>Programs overrides can now be reverted to the bottle's defaults using the dedicated option</li>
-                <li>Gamescope settings are now hidden when the utility is not available, thanks to @TheEvilSkeleton</li>
-                <li>Support for kgx terminal, thanks to @SuperSandro2000</li>
-                <li>Improve terminal emulators priorities (easyterm, user-installed, desktop bundled, others), thanks to @jtojnar</li>
+                <li>New experimental feature: sandbox per bottle</li>
+                <li>Soda is the default runner based on Valve's Wine plus some TKG/GE patches</li>
+                <li>Installers has a new refreshed UI with more info and tracking process</li>
+                <li>Ubisoft Connect integration</li>
+                <li>Wine LoL runners are now unlocked in Flatpak</li>
+                <li>New "standalone" option in bottles-cli to generate a custom script for running programs in a bottle without passing though Bottles</li>
+                <li>Some performance improvements</li>
+                <li>New CLI download progress bar with speed, size and eta</li>
+                <li>New SteamManager which improve performances a bit</li>
+                <li>Improved UI for experimental library mode</li>
+                <li>Discovered Epic Games are now launched brought the Epic Games Store, using Cloud Sync and Anti cheat</li>
+                <li>Core dependencies are now checked on boot on non Flatpak packages</li>
+                <li>Now setting the env var DXVK_CONFIG_FILE=bottle_root will automatically point to the dxvk.conf file in the bottle root</li>
+                <li>Some dialogs improvements (thanks to @TheEvilSkeleton)</li>
+                <li>A dialog warning of the sandbox is shown by launching the first executable</li>
+                <li>Improved bottle template caching for smallest sizes</li>
+                <li>Runners now show a description of their purpose and composition</li>
+                <li>Minor UI improvements</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fix missing icons when using custom themes</li>
-                <li>Fix bottles location for non-flatpak packages</li>
-                <li>Fix regression in DXVK-Nvapi for DLSS support</li>
-                <li>Fix wrong window decoration layout, thanks to @nahuelwexd</li>
-                <li>Fix for window freeze when menus are still open</li>
-                <li>Fix runtime download, was trying to update the one bundled with Flatpak</li>
-                <li>Fix desktop entry assistance dialog not showing up</li>
-                <li>Fix not saving DLL Overrides</li>
-                <li>Fix inconsistent runner choose when using the Custom environment</li>
-                <li>Fix regression on bottle creation which was allowing mono and gecko dialogs</li>
-                <li>Fix duplicate entries in installers view</li>
-                <li>Fix not saving Environment Variables</li>
-                <li>Fix path picker not showing for drives</li>
-                <li>Fix regression in versioning, drive_c were not updated</li>
-                <li>Fix Library not showing when a program is not found</li>
-                <li>Fix regression in Steam launch options, were not properly parsed</li>
-                <li>Fix for Gamescope when using MangoHud, thanks to @jntesteves</li>
-                <li>Fix for dependencies removal, causing a crash when the entry was manually removed from the bottle configuration file</li>
+                <li>Fix for broken templates not being re-generated</li>
+                <li>Fix dependencies keys not being removed on uninstall</li>
+                <li>Fix duplicated dependencies on re-install</li>
+                <li>Fix a regression in hiding auto-discovered programs</li>
+                <li>Fix a regression in adding entries to the library, were not supporting the new programs structure</li>
+                <li>Fix Wine-GE builds being detected as Proton builds (thanks to @nicobatty)</li>
+                <li>Fix a regression in the issues similarity check for the crash report dialog</li>
+                <li>Fix issue of being able to add colon to bottle name (thanks to @axtloss)</li>
+                <li>Fix issue of invisible checkbox in 'launch as terminal' dropdown (thanks to @axtloss)</li>
+                <li>Fix a bug in External_Programs migration when its structure was compromised</li>
+                <li>Fix duplicated programs when re-executing installers</li>
+                <li>Fix UI disappearing on two-finger swipe</li>
+                <li>Fix a regression in Environment Variables dialog not storing new entries on first save</li>
+                <li>Fix states not being displayed on first state generation</li>
+                <li>Fix regression in bottles-cli edit option</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Ukrainian translations thanks to @Socially-disabled</li>
-                <li>Thai translations thanks to @SashaPGT</li>
-                <li>Croatian translations thanks to @milotype</li>
-                <li>Malay translations thanks to Niskala Airaha</li>
-                <li>Slovenian translations thanks to @Sporknife</li>
-                <li>German translations thanks to @Arctize, @ThatRedKite, @Sematre</li>
+                <li>Vietnamese translations thanks to @lebao3105, @CuCai2413</li>
+                <li>Chinese (Simplified) translations thanks to Eric</li>
                 <li>Dutch translations thanks to @flipflop97</li>
-                <li>Turkish translations thanks to @mucahitkurtlar</li>
-                <li>Italian translations thanks to @musiclover382</li>
-                <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>Russian translations thanks to @Knebergish, Corvurius</li>
+                <li>Norwegian translations Bokmål thanks to Stian Øverbye</li>
+                <li>Russian translations thanks to @Knebergish, Nikita Epifanov, @Smoque</li>
+                <li>Czech translations thanks to @vikdevelop</li>
+                <li>Polish translations thanks to @Mikutut</li>
                 <li>Catalan translations thanks to @rogervc</li>
-                <li>French translations thanks to @renwe, J. Lavoie</li>
-                <li>Lithuanian translations thanks to @TilloestTillo</li>
-                <li>Hungarian translations thanks to @zoli111</li>
-                <li>Bulgarian translations thanks to @RacerBG</li>
-                <li>Serbian translations thanks to Andrija</li>
-                <li>Spanish translations thanks to @fitjob</li>
-                <li>Persian translations thanks to @retrhryhrth</li>
+                <li>Swedish translations thanks to @alvarlagerlof, @Lemonmeth</li>
+                <li>Japanese translations thanks to @ryonakano</li>
+                <li>Hungarian translations thanks to @Jabybaby</li>
+                <li>Serbian translations thanks to Andrija Djakovic</li>
+                <li>Indonesian translations thanks to @engkih</li>
+                <li>Portuguese (Brazil) translations thanks to @vitorhcl</li>
+                <li>Korean translations thanks to @PolyPaul</li>
             </ul>
           </description>
         </release>

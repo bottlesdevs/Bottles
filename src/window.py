@@ -1,11 +1,10 @@
 # window.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -42,7 +41,7 @@ from bottles.views.importer import ImporterView
 from bottles.views.loading import LoadingView
 
 from bottles.dialogs.crash import CrashReportDialog
-from bottles.dialogs.generic import AboutDialog, SourceDialog
+from bottles.dialogs.generic import SourceDialog
 from bottles.dialogs.onboard import OnboardDialog
 from bottles.dialogs.journal import JournalDialog
 from bottles.dialogs.depscheck import DependenciesCheckDialog
@@ -214,16 +213,12 @@ class MainWindow(Adw.ApplicationWindow):
             self.headerbar.get_style_context().remove_class("flat")
 
             if Paths.custom_bottles_path_err:
-                dialog = Gtk.MessageDialog(
-                    transient_for=self,
-                    flags=0,
-                    message_type=Gtk.MessageType.ERROR,
-                    buttons=Gtk.ButtonsType.OK,
-                    text=_("The custom bottles path was not found. "
-                           "Please, check the path in Preferences.\n"
-                           "Fall-backing to the default path; "
-                           "no bottles from that path will be listed!")
+                dialog = Adw.MessageDialog.new(
+                    self,
+                    _("Custom Bottles Path not Found"),
+                    _("Falling back to default path. No bottles from the given path will be listed.")
                 )
+                dialog.add_response("cancel", _("Close"))
                 dialog.present()
 
             if self.arg_exe and not self.arg_bottle:
@@ -372,7 +367,11 @@ class MainWindow(Adw.ApplicationWindow):
         quit()
 
     def show_about_dialog(self, *args):
-        AboutDialog(self).present()
+        builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
+        about_window = builder.get_object("about_window")
+        about_window.set_transient_for(self)
+        about_window.present()
+
 
     @staticmethod
     def open_url(widget, url):

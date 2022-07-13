@@ -1,11 +1,10 @@
 # ubisoftconnect.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -108,7 +107,7 @@ class UbisoftConnectManager:
                 if v["name"] is None or not os.path.exists(os.path.join(games_path, v["name"])):
                     continue
 
-                _args = f"uplay://launch/{v}/0"
+                _args = f"uplay://launch/{v['appid']}/0"
                 _path = "C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\UbisoftConnect.exe"
                 _executable = _path.split("\\")[-1]
                 _folder = ManagerUtils.get_exe_parent_dir(config, _path)

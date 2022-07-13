@@ -1,11 +1,10 @@
 # generic.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -193,16 +192,3 @@ class WebDialog(Adw.Window):
         clipboard = Gdk.Display.get_clipboard(Gdk.Display.get_default())
         clipboard.set_content(Gdk.ContentProvider.new_for_value(self.message))
 
-
-@Gtk.Template(resource_path='/com/usebottles/bottles/about.ui')
-class AboutDialog(Gtk.AboutDialog):
-    __gtype_name__ = 'AboutDialog'
-
-    def __init__(self, window, **kwargs):
-        super().__init__(**kwargs)
-        self.set_transient_for(window)
-        self.set_modal(True)
-
-    def do_response(self, response_id):
-        if response_id == Gtk.ResponseType.DELETE_EVENT:
-            self.destroy()

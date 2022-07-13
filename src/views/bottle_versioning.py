@@ -1,11 +1,10 @@
 # bottle_versioning.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -72,7 +71,7 @@ class VersioningView(Adw.PreferencesPage):
         ones from the bottle configuration.
         """
         if config is None:
-            config = {}
+            config = self.config
         if states is None:
             states = self.versioning_manager.list_states(config)
 
@@ -100,9 +99,8 @@ class VersioningView(Adw.PreferencesPage):
             if len(states) == 0:
                 return Result(False)
 
-            if self.config.get("Versioning"):
-                for state in states.items():
-                    GLib.idle_add(new_state, state)
+            for state in states.items():
+                GLib.idle_add(new_state, state)
 
             return Result(True)
 

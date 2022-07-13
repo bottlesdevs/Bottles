@@ -1,11 +1,10 @@
 # envvars.py
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2022 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, in version 3 of the License.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -79,7 +78,6 @@ class EnvVarsDialog(Adw.Window):
     # region Widgets
     entry_name = Gtk.Template.Child()
     group_vars = Gtk.Template.Child()
-    ev_controller = Gtk.EventControllerKey.new()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -92,10 +90,9 @@ class EnvVarsDialog(Adw.Window):
         self.config = config
 
         self.__populate_vars_list()
-        self.entry_name.add_controller(self.ev_controller)
 
         # connect signals
-        self.ev_controller.connect("key-released", self.__validate)
+        self.entry_name.connect("changed", self.__validate)
         self.entry_name.connect("apply", self.__save_var)
 
     def __validate(self, *args):

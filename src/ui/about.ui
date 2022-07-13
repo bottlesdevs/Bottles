@@ -1,103 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 <requires lib="gtk" version="4.0"/>
-  <template class="AboutDialog" parent="GtkAboutDialog">
-    <property name="program-name">Bottles</property>
+  <object class="AdwAboutWindow" id="about_window">
+    <property name="application-name">Bottles</property>
     <property name="modal">True</property>
-    <property name="version">2022.6.28-brescia</property>
+    <property name="version">2022.7.14-brescia</property>
     <property name="copyright" translatable="yes">© 2017-2022 - Bottles Developers</property>
     <property name="comments" translatable="yes">Easily manage wineprefix using environments</property>
     <property name="website">https://usebottles.com</property>
-    <property name="website-label">usebottles.com</property>
-    <property name="authors">Mirko Brombin &lt;https://github.com/mirkobrombin/&gt;
-hthre7 &lt;https://github.com/hthre7&gt;
-Kekun &lt;https://github.com/Kekun&gt;
-Sonny Piers &lt;https://github.com/sonnyp&gt;
-BrainBlasted &lt;https://github.com/BrainBlasted&gt;
-Francesco Masala &lt;mail@francescomasala.me&gt;</property>
-    <property name="translator-credits">Lahfa Samy &lt;samy@lahfa.xyz&gt;
-Filipe de Almeida Garrett &lt;https://github.com/filipegarrett&gt;
-Allan Nordhøy &lt;https://github.com/comradekingu&gt;
-Leandro Stanger &lt;https://github.com/LeandroStanger&gt;
-Fábio Rodrigues Ribeiro &lt;https://github.com/farribeiro&gt;
-Gabriel Mattoso &lt;https://github.com/realgrm&gt;
-Gündüzhan Gündüz &lt;https://github.com/gunduzhan&gt;
-Yannick A. &lt;https://github.com/yannicka&gt;
-bloomvdomino &lt;https://github.com/bloomvdomino&gt;
-Åke Engelbrektson &lt;https://github.com/eson57&gt;
-Adolfo Jayme-Barrientos &lt;https://github.com/fitojb&gt;
-Gündüzhan Gündüz &lt;https://github.com/gunduzhan&gt;
-Reza &lt;https://github.com/rezaalmanda&gt;
-Jakub Fabijan &lt;https://github.com/jakubfabijan&gt;
-Andrey Ilin &lt;https://github.com/mclvren&gt;
-Rens Oliemans &lt;https://github.com/RensOliemans&gt;
-Fábio Rodrigues Ribeiro &lt;farribeiro@gmail.com&gt;
-soheil &lt;https://github.com/soheilkhanalipur&gt;
-liimee &lt;https://github.com/liimee&gt;
-catsout &lt;https://github.com/catsout&gt;
-SeaDve &lt;https://github.com/SeaDve&gt;
-t4llkr &lt;https://github.com/t4llkr&gt;
-luxmaroc &lt;https://github.com/luxmaroc&gt;
-Ricky-Tigg &lt;https://github.com/Ricky-Tigg&gt;
-Yuzaihhhh &lt;https://github.com/Yuzaihhhh&gt;
-SCOTT-HAMILTON &lt;https://github.com/SCOTT-HAMILTON&gt;
-SantosSi &lt;https://github.com/SantosSi&gt;
-vitor180396 &lt;https://github.com/vitor180396&gt;
-julroy67 &lt;https://github.com/julroy67&gt;
-MartinIIOT &lt;https://github.com/MartinIIOT&gt;
-thericosanto &lt;https://github.com/thericosanto&gt;
-phlostically &lt;https://github.com/phlostically&gt;
-jatin-cbs &lt;https://github.com/jatin-cbs&gt;
-duhow &lt;https://github.com/duhow&gt;
-milotype &lt;https://github.com/milotype&gt;
-rffontenelle &lt;https://github.com/rffontenelle&gt;
-udopton &lt;https://github.com/udopton&gt;
-oscfdezdz &lt;https://github.com/oscfdezdz&gt;
-Flywater Zh &lt;https://github.com/bottlesdevs/Bottles/blob/master/po/README.md&gt;
-rmnscnce &lt;https://github.com/rmnscnce&gt;
-panmourovaty &lt;https://github.com/panmourovaty&gt;
-marchellodev &lt;https://github.com/marchellodev&gt;
-laralem &lt;https://github.com/laralem&gt;
-Vojtěch Perník &lt;https://github.com/pervoj&gt;
-Krzysztof Marcinek &lt;https://github.com/bottlesdevs/Bottles/blob/master/po/README.md&gt;
-tacitcoast &lt;https://github.com/tacitcoast&gt;
-blackcat-917 &lt;https://github.com/blackcat-917&gt;
-kenpb &lt;https://github.com/kenpb&gt;
-swyknox &lt;https://github.com/swyknox&gt;
-bittin &lt;https://github.com/bittin&gt;
-sr093906 &lt;https://github.com/sr093906&gt;
-davipatricio &lt;https://github.com/davipatricio&gt;
-Ricardo Porto &lt;https://github.com/bottlesdevs/Bottles/blob/master/po/README.md&gt;
-hugok79 &lt;https://github.com/hugok79&gt;
-gauthamkrishna9991 &lt;https://github.com/gauthamkrishna9991&gt;
-ExistingProgrammer &lt;https://github.com/ExistingProgrammer&gt;
-Jiri Grönroos &lt;https://github.com/bottlesdevs&gt;
-Martinligabue &lt;https://github.com/Martinligabue&gt;
-Lasse Palm &lt;https://github.com/bottlesdevs&gt;
-SoongVilda &lt;https://github.com/SoongVilda&gt;
-ersen0 &lt;https://github.com/ersen0&gt;
-CheesersY5 &lt;https://github.com/CheesersY5&gt;
-seldon1000 &lt;https://github.com/seldon1000&gt;
-ettmetal &lt;https://github.com/ettmetal&gt;
-XiaoPanPanKevinPan &lt;https://github.com/XiaoPanPanKevinPan&gt;
-AlexzanDev &lt;https://github.com/AlexzanDev&gt;
-ZSHFan &lt;https://github.com/ZSHFan&gt;
-GoudronViande24 &lt;https://github.com/GoudronViande24&gt;
-Bloombug &lt;https://github.com/Bloombug&gt;
-OctopusET &lt;https://github.com/OctopusET&gt;
-qogusdn1017 &lt;https://github.com/qogusdn1017&gt;
-redvulps &lt;https://github.com/redvulps&gt;
-athenasaurav &lt;https://github.com/athenasaurav&gt;
-Alberto Cañaveras &lt;https://github.com/bottlesdevs&gt;
-neko &lt;https://github.com/bottlesdevs&gt;
-McLutzifer &lt;https://github.com/McLutzifer&gt;
-Translator5 &lt;https://github.com/Translator5&gt;
-Hebi-no-Sekigae &lt;https://github.com/Hebi-no-Sekigae&gt;</property>
-    <property name="artists">Marco Montini &lt;https://github.com/marckniack&gt;
-Noëlle &lt;https://github.com/jannuary&gt;
-Alvar Lagerlöf &lt;https://github.com/alvarlagerlof&gt;
-Ezekiel Smith &lt;https://github.com/ZekeSmith&gt;</property>
-    <property name="logo-icon-name">com.usebottles.bottles</property>
+    <property name="issue-url">https://github.com/bottlesdevs/Bottles/issues</property>
+    <property name="application-icon">com.usebottles.bottles</property>
     <property name="license-type">gpl-3-0-only</property>
-  </template>
+    <property name="developer-name">Bottles Developers</property>
+    <property name="developers">Mirko Brombin https://github.com/mirkobrombin/
+hthre7 https://github.com/hthre7
+Kekun https://github.com/Kekun
+Sonny Piers https://github.com/sonnyp
+BrainBlasted https://github.com/BrainBlasted
+Francesco Masala &lt;mail@francescomasala.me&gt;
+Hari Rana (TheEvilSkeleton) https://theevilskeleton.gitlab.io/
+axtlos https://axtloss.github.io/</property>
+    <property name="translator-credits">Lahfa Samy &lt;samy@lahfa.xyz&gt;
+Filipe de Almeida Garrett https://github.com/filipegarrett
+Allan Nordhøy https://github.com/comradekingu
+Leandro Stanger https://github.com/LeandroStanger
+Fábio Rodrigues Ribeiro https://github.com/farribeiro&gt;
+Gabriel Mattoso https://github.com/realgrm
+Gündüzhan Gündüz https://github.com/gunduzhan
+Yannick A. https://github.com/yannicka
+bloomvdomino https://github.com/bloomvdomino
+Åke Engelbrektson https://github.com/eson57
+Adolfo Jayme-Barrientos https://github.com/fitojb
+Gündüzhan Gündüz https://github.com/gunduzhan
+Reza https://github.com/rezaalmanda
+Jakub Fabijan https://github.com/jakubfabijan
+Andrey Ilin https://github.com/mclvren
+Rens Oliemans https://github.com/RensOliemans
+Fábio Rodrigues Ribeiro &lt;farribeiro@gmail.com&gt;
+soheil https://github.com/soheilkhanalipur
+liimee https://github.com/liimee
+catsout https://github.com/catsout
+SeaDve https://github.com/SeaDve
+t4llkr https://github.com/t4llkr
+luxmaroc https://github.com/luxmaroc
+Ricky-Tigg https://github.com/Ricky-Tigg
+Yuzaihhhh https://github.com/Yuzaihhhh
+SCOTT-HAMILTON https://github.com/SCOTT-HAMILTON
+SantosSi https://github.com/SantosSi
+vitor180396 https://github.com/vitor180396
+julroy67 https://github.com/julroy67
+MartinIIOT https://github.com/MartinIIOT
+thericosanto https://github.com/thericosanto
+phlostically https://github.com/phlostically
+jatin-cbs https://github.com/jatin-cbs
+duhow https://github.com/duhow
+milotype https://github.com/milotype
+rffontenelle https://github.com/rffontenelle
+udopton https://github.com/udopton
+oscfdezdz https://github.com/oscfdezdz
+Flywater Zh https://github.com/bottlesdevs/Bottles/blob/master/po/README.md
+rmnscnce https://github.com/rmnscnce
+panmourovaty https://github.com/panmourovaty
+marchellodev https://github.com/marchellodev
+laralem https://github.com/laralem
+Vojtěch Perník https://github.com/pervoj
+Krzysztof Marcinek https://github.com/bottlesdevs/Bottles/blob/master/po/README.md
+tacitcoast https://github.com/tacitcoast
+blackcat-917 https://github.com/blackcat-917
+kenpb https://github.com/kenpb
+swyknox https://github.com/swyknox
+bittin https://github.com/bittin
+sr093906 https://github.com/sr093906
+davipatricio https://github.com/davipatricio
+Ricardo Porto https://github.com/bottlesdevs/Bottles/blob/master/po/README.md
+hugok79 https://github.com/hugok79
+gauthamkrishna9991 https://github.com/gauthamkrishna9991
+ExistingProgrammer https://github.com/ExistingProgrammer
+Jiri Grönroos https://github.com/bottlesdevs
+Martinligabue https://github.com/Martinligabue
+Lasse Palm https://github.com/bottlesdevs
+SoongVilda https://github.com/SoongVilda
+ersen0 https://github.com/ersen0
+CheesersY5 https://github.com/CheesersY5
+seldon1000 https://github.com/seldon1000
+ettmetal https://github.com/ettmetal
+XiaoPanPanKevinPan https://github.com/XiaoPanPanKevinPan
+AlexzanDev https://github.com/AlexzanDev
+ZSHFan https://github.com/ZSHFan
+GoudronViande24 https://github.com/GoudronViande24
+Bloombug https://github.com/Bloombug
+OctopusET https://github.com/OctopusET
+qogusdn1017 https://github.com/qogusdn1017
+redvulps https://github.com/redvulps
+athenasaurav https://github.com/athenasaurav
+Alberto Cañaveras https://github.com/bottlesdevs
+neko https://github.com/bottlesdevs
+McLutzifer https://github.com/McLutzifer
+Translator5 https://github.com/Translator5
+Hebi-no-Sekigae https://github.com/Hebi-no-Sekigae</property>
+    <property name="artists">Marco Montini https://github.com/marckniack
+Noëlle https://github.com/jannuary
+Alvar Lagerlöf https://github.com/alvarlagerlof
+Ezekiel Smith https://github.com/ZekeSmith</property>
+  </object>
 </interface>
