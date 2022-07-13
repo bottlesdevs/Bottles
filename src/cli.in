@@ -458,7 +458,7 @@ class CLI:
             RegKeys(bottle).set_windows(_win)
 
         if _runner is not None:
-            Runner.runner_update(bottles, mng, _runner)
+            Runner.runner_update(bottle, mng, _runner)
 
         if _dxvk is not None:
             mng.check_dxvk(False)
