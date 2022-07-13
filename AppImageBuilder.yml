@@ -3,52 +3,52 @@ script:
   # Remove any previous build
   - rm -rf AppDir | true
   - rm -rf build  | true
-  
+
   # Building with meson and ninja
   - DESTDIR=$TARGET_APPDIR
   - mkdir build & meson build --prefix=/usr --buildtype=release
   - cd build
   - ninja ; ninja install ; ninja bottles-pot ; ninja bottles-update-po
   - cd ..
-  
+
   # Preparing directories
   - mkdir -p AppDir/usr AppDir/usr/local/share/bottles AppDir/bin AppDir/usr/bin AppDir/usr/share/glib-2.0/schemas AppDir/usr/share/applications AppDir/usr/share/metainfo AppDir/usr/share/icons
-  
+
   # Compiling and installing glib-resources
   - glib-compile-resources --sourcedir=src/ui/ src/ui/bottles.gresource.xml --target=AppDir/usr/local/share/bottles/bottles.gresource
-  
+
   # Copying Bottles binary
   - cp build/src/bottles AppDir/usr/bin/
 
   # Copying AppRun script and making it executable
   - cp AppRun AppDir/bin/
   - chmod +x /home/runner/work/Bottles/Bottles/AppDir/bin/AppRun
-  
+
   # Copying Bottles python package and remove not useful files
   - cp -a src AppDir/usr/local/share/bottles/bottles
   - rm AppDir/usr/local/share/bottles/bottles/bottles.in AppDir/usr/local/share/bottles/bottles/meson.build
-  
+
   # Compiling and installing translations
   - cat po/LINGUAS | while read lang
   - do
   - mkdir -p AppDir/usr/share/locale/$lang/LC_MESSAGES
   - msgfmt -o AppDir/usr/share/locale/$lang/LC_MESSAGES/bottles.mo po/$lang.po
   - done
-  
+
   # Copying icons
   - cp -a data/icons AppDir/usr/share
   - mv AppDir/usr/share/icons/symbolic/scalable/apps/*.svg AppDir/usr/share/icons/hicolor/scalable/apps/
-  
+
   # Copying Desktop file
   - cp build/data/com.usebottles.bottles.desktop AppDir/usr/share/applications/
-  
+
   # Copying and compiling gschema
   - cp data/com.usebottles.bottles.gschema.xml AppDir/usr/share/glib-2.0/schemas/com.usebottles.bottles.gschema.xml
   - glib-compile-schemas AppDir/usr/share/glib-2.0/schemas/
-  
+
   # Copying appdata
   - cp -a data/com.usebottles.bottles.appdata.xml.in AppDir/usr/share/metainfo/com.usebottles.bottles.appdata.xml
-  
+
   # Set bash as default shell
   - mkdir -p AppDir/bin
   - ln -sf bash AppDir/bin/sh
@@ -67,7 +67,7 @@ script:
   - tar zxvf 0.2.0.tar.gz -C $HOME/easyterm
   - cp $HOME/easyterm/EasyTerm-*/easyterm/easyterm.py AppDir/usr/bin/
   - chmod +x AppDir/usr/bin/easyterm.py
-  
+
   # Install LibAdwaita
   - git clone https://gitlab.gnome.org/GNOME/libadwaita.git && cd ./libadwaita
   - git reset --hard 5cb00a274318b870f4b3ff09ed8f24d52f11f7de && export DESTDIR=../../AppDir
@@ -78,15 +78,15 @@ AppDir:
   path: ./AppDir
 
   app_info:
-     id: com.usebottles.bottles
-     name: Bottles
-     icon: com.usebottles.bottles
-     version: 2022.7.14-brescia
-    
+    id: com.usebottles.bottles
+    name: Bottles
+    icon: com.usebottles.bottles
+    version: 2022.7.14-brescia
+
     exec: bin/bash
-    
+
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
-    exec_args: "$APPDIR/bin/AppRun" "$@"
+    exec_args: "$APPDIR/bin/AppRun $@"
 
   apt:
     arch: [amd64, i386]
@@ -95,61 +95,61 @@ AppDir:
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
 
     include:
-    - bash
-    - coreutils
-    - gsettings-desktop-schemas
-    - dconf-gsettings-backend
-    - gsettings-backend
-    - libgtksourceview-5-0
-    - libbz2-1.0
-    - libcanberra-pulse
-    - libexpat1
-    - libgcc-s1
-    - libc6
-    - libc6-i386
-    - libgpg-error0
-    - libpcre3
-    - libprocps8
-    - libpython3.10-stdlib
-    - librsvg2-common
-    - libselinux1
-    - libgtk-4-1
-    - libwebkit2gtk-4.0
-    - libglib2.0-0
-    - libglib2.0-bin
-    - libgee-0.8-2
-    - libffi8ubuntu1
-    - libportal1
-    - libportal-gtk4-1
-    - python3-gi-cairo
-    - python3-certifi
-    - python3-yaml
-    - python3-requests
-    - python3-markdown
-    - gir1.2-gtk-4.0
-    - gir1.2-gtksource-5
-    - gir1.2-notify-0.7
-    - ibus-gtk4
-    - zlib1g
-    - libfreetype6
-    - libfreetype6:i386
-    - libgamemode0
-    - winbind
-    - cabextract
-    - patool
-    # - p7zip
-    - x11-utils
-    - libpcre3
-    - icoextract
+      - bash
+      - coreutils
+      - gsettings-desktop-schemas
+      - dconf-gsettings-backend
+      - gsettings-backend
+      - libgtksourceview-5-0
+      - libbz2-1.0
+      - libcanberra-pulse
+      - libexpat1
+      - libgcc-s1
+      - libc6
+      - libc6-i386
+      - libgpg-error0
+      - libpcre3
+      - libprocps8
+      - libpython3.10-stdlib
+      - librsvg2-common
+      - libselinux1
+      - libgtk-4-1
+      - libwebkit2gtk-4.0
+      - libglib2.0-0
+      - libglib2.0-bin
+      - libgee-0.8-2
+      - libffi8ubuntu1
+      - libportal1
+      - libportal-gtk4-1
+      - python3-gi-cairo
+      - python3-certifi
+      - python3-yaml
+      - python3-requests
+      - python3-markdown
+      - gir1.2-gtk-4.0
+      - gir1.2-gtksource-5
+      - gir1.2-notify-0.7
+      - ibus-gtk4
+      - zlib1g
+      - libfreetype6
+      - libfreetype6:i386
+      - libgamemode0
+      - winbind
+      - cabextract
+      - patool
+#     - p7zip
+      - x11-utils
+      - libpcre3
+      - icoextract
 
     exclude:
-    - humanity-icon-theme
+      - humanity-icon-theme
 
   after_runtime: |
     # rm -f $APPDIR/.bundle.yml
     # rm -rf $APPDIR/usr/share/doc
     # rm -rf $APPDIR/usr/share/man
-    # mkdir -p $APPDIR/usr/local/lib/p7zip/ 
+    # mkdir -p $APPDIR/usr/local/lib/p7zip/
     # ln -s $APPDIR/usr/lib/p7zip/ $APPDIR/usr/local/lib/p7zip/
     true
   files:
@@ -169,7 +169,7 @@ AppDir:
       - AppDir/usr/share/common-licenses/*
 
   runtime:
-    arch: [ x86_64, i386 ]
+    arch: [x86_64, i386]
     env:
       GDK_BACKEND: x11
       PYTHONHOME: '${APPDIR}/usr'
