@@ -73,10 +73,6 @@ script:
   - git reset --hard 5cb00a274318b870f4b3ff09ed8f24d52f11f7de && export DESTDIR=../../AppDir
   - mkdir build && meson build -Dtests=false -Dexamples=false --prefix=/usr --buildtype=release
   - cd ./build && ninja install && cd ../../ && rm -rf ./libadwaita && unset DESTDIR
-   
-   # Install Proot
-  - wget -q "https://github.com/proot-me/proot/releases/download/v5.3.0/proot-v5.3.0-x86_64-static" -o AppDir/usr/bin/proot
-  - chmod +x AppDir/usr/bin/proot
 
 AppDir:
   path: ./AppDir
@@ -88,10 +84,10 @@ AppDir:
     version: 2022.7.14-brescia
     
     # Set proot executable as entry point
-    exec: usr/bin/proot
+    exec: bin/bash
     
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
-    exec_args:  -b "$APPDIR/lib:/lib/ld-linux.so.2" bash "$APPDIR/bin/AppRun" "$@"
+    exec_args: "$APPDIR/bin/AppRun" "$@"
 
   apt:
     arch: [amd64, i386]
@@ -146,7 +142,6 @@ AppDir:
     - x11-utils
     - libpcre3
     - icoextract
-    - base-files
 
     exclude:
     - humanity-icon-theme
@@ -189,24 +184,8 @@ AppDir:
       - /usr/share/bottles:$APPDIR/usr/local/share/bottles
 
   test:
-    fedora:
-      image: appimagecrafters/tests-env:fedora-30
-      command: ./AppRun
-      use_host_x: true
-    debian:
-      image: appimagecrafters/tests-env:debian-stable
-      command: ./AppRun
-      use_host_x: true
     arch:
       image: appimagecrafters/tests-env:archlinux-latest
-      command: ./AppRun
-      use_host_x: true
-    centos:
-      image: appimagecrafters/tests-env:centos-7
-      command: ./AppRun
-      use_host_x: true
-    ubuntu:
-      image: appimagecrafters/tests-env:ubuntu-xenial
       command: ./AppRun
       use_host_x: true
 
