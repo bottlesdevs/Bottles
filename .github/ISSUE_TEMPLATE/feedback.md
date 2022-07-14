@@ -4,3 +4,4 @@ about: Send your feedback, start a discussion, or ask a question to the develope
 labels: Feedback
 ---
 
+!!! PLEASE DON'T OPEN ISSUES FOR PROGRAMS NOT RUNNING IN BOTTLES, USE THE programs REPOSITORY INSTEAD !!!
