@@ -289,7 +289,7 @@ class InstallerManager:
             current_user = os.getenv("USER")
             conf_path = conf_path.replace("userdir/", f"drive_c/users/{current_user}/")
         conf_path = f"{bottle}/{conf_path}"
-        _conf = ConfigManager(conf_path, conf_type)
+        _conf = ConfigManager(config_file=conf_path, config_type=conf_type)
 
         for d in del_keys:
             _conf.del_key(d)
