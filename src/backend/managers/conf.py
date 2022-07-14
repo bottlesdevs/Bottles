@@ -6,7 +6,7 @@ from configparser import ConfigParser
 
 class ConfigManager(object):
 
-    def __init__(self, config_file: str = None, config_string: str = None, config_type: str = 'ini'):
+    def __init__(self, config_file: str = None, config_type: str = 'ini', config_string: str = None):
         self.config_file = config_file
         self.config_string = config_string
         self.config_type = config_type
