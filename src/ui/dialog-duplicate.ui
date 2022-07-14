@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
     <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
     <template class="DuplicateDialog" parent="AdwWindow">
         <property name="modal">True</property>
         <property name="default_width">400</property>
@@ -10,8 +11,8 @@
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
-                    <object class="GtkHeaderBar">
-                        <property name="show-title-buttons">False</property>
+                    <object class="AdwHeaderBar">
+                        <property name="show-end-title-buttons">False</property>
                         <property name="title-widget">
                             <object class="AdwWindowTitle">
                                 <property name="title" translatable="yes">Duplicate Bottle</property>
@@ -19,16 +20,18 @@
                         </property>
                         <child>
                             <object class="GtkButton" id="btn_cancel">
-                                <property name="label" translatable="yes">Cancel</property>
+                                <property name="label" translatable="yes">_Cancel</property>
+                                <property name="use_underline">True</property>
+                                <property name="action_name">window.close</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class='GtkShortcutController'>
+                                <property name='scope'>managed</property>
                                 <child>
-                                    <object class='GtkShortcutController'>
-                                        <property name='scope'>managed</property>
-                                        <child>
-                                            <object class='GtkShortcut'>
-                                                <property name='trigger'>Escape</property>
-                                                <property name='action'>activate</property>
-                                            </object>
-                                        </child>
+                                    <object class='GtkShortcut'>
+                                        <property name='trigger'>Escape</property>
+                                        <property name='action'>action(window.close)</property>
                                     </object>
                                 </child>
                             </object>
