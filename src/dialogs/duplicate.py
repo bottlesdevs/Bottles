@@ -49,15 +49,11 @@ class DuplicateDialog(Adw.Window):
         self.entry_name.add_controller(self.ev_controller)
 
         # connect signals
-        self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_duplicate.connect("clicked", self.__duplicate_bottle)
 
     def __check_entry_name(self, *args):
         result = GtkUtils.validate_entry(self.entry_name)
         self.btn_duplicate.set_sensitive(result)
-
-    def __close_window(self, widget=None):
-        self.close()
 
     def __duplicate_bottle(self, widget):
         """
@@ -89,3 +85,4 @@ class DuplicateDialog(Adw.Window):
         while True:
             time.sleep(.5)
             self.progressbar.pulse()
+
