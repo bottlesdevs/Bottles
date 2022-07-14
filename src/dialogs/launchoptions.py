@@ -72,14 +72,13 @@ class LaunchOptionsDialog(Adw.Window):
         self.entry_arguments.set_text(program.get("arguments", ""))
 
         # connect signals
-        self.btn_cancel.connect("clicked", self.__close_window)
-        self.btn_save.connect("clicked", self.__save_options)
+        self.btn_save.connect("clicked", self.__save)
         self.btn_script.connect("clicked", self.__choose_script)
         self.btn_script_reset.connect("clicked", self.__reset_script)
         self.btn_cwd.connect("clicked", self.__choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
         self.btn_reset_defaults.connect("clicked", self.__reset_defaults)
-        self.entry_arguments.connect("activate", self.__save_options)
+        self.entry_arguments.connect("activate", self.__save)
         self.switch_dxvk.connect(
             "state-set",
             self.__check_override,
@@ -182,15 +181,10 @@ class LaunchOptionsDialog(Adw.Window):
         else:
             action.set_subtitle("")
 
-    def __close_window(self, *args):
-        self.main_loop.quit()
-        self.destroy()
-        self.close()
-
     def get_config(self):
         return self.config
 
-    def __save_options(self, *args):
+    def __idle_save(self, *args):
         dxvk = self.switch_dxvk.get_state()
         vkd3d = self.switch_vkd3d.get_state()
         nvapi = self.switch_nvapi.get_state()
@@ -212,7 +206,12 @@ class LaunchOptionsDialog(Adw.Window):
             value=self.program,
             scope="External_Programs"
         ).data["config"]
-        GLib.idle_add(self.__close_window)
+
+        self.close()
+        return
+
+    def __save(self, *args):
+        GLib.idle_add(self.__idle_save)
 
     def __choose_script(self, *args):
         def set_path(_dialog, response, _file_dialog):
