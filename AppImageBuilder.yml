@@ -86,7 +86,7 @@ AppDir:
     exec: usr/bin/bwrap
 
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
-    exec_args: "--ro-bind / / --dev /dev --ro-bind $APPDIR/lib/ /lib $APPDIR/bin/AppRun $@"
+    exec_args: "--bind / / --dev /dev --ro-bind $APPDIR/lib/ /lib $APPDIR/bin/AppRun $@"
 
   apt:
     arch: [amd64, i386]
@@ -143,6 +143,7 @@ AppDir:
       - icoextract
 #      - libc-bin
       - libc-bin:i386
+      - base-files
 
     exclude:
       - humanity-icon-theme
