@@ -27,7 +27,6 @@ class LaunchOptionsDialog(Adw.Window):
 
     # region Widgets
     entry_arguments = Gtk.Template.Child()
-    btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_script = Gtk.Template.Child()
     btn_script_reset = Gtk.Template.Child()
