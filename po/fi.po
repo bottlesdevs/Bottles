@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-16 08:19+0000\n"
+"PO-Revision-Date: 2022-07-15 08:23+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -252,9 +252,8 @@ msgstr ""
 "julkaisuehdokas ajajia varten"
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Steam Proton"
+msgstr "Steam Proton -tuki"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 #, fuzzy
@@ -327,12 +326,10 @@ msgid "[Refresh] request received."
 msgstr "[Refresh]-pyyntö vastaanotettu."
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
-msgstr "Lasketaan..."
+msgstr "Lasketaan…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
 msgstr "Ladataan…"
 
@@ -536,9 +533,8 @@ msgid "Select"
 msgstr "Valitse"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Ympäristömuuttujia ei ole määritetty"
+msgstr "Ympäristömuuttujia ei ole määritetty."
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -579,9 +575,8 @@ msgid "Choose the script"
 msgstr "Valitse skripti"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "Työskentelyhakemisto"
+msgstr "Valitse työskentelyhakemisto"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -703,9 +698,8 @@ msgid "Import failed."
 msgstr "Tuonti epäonnistui."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
-msgstr "Tuodaan varmuuskopio..."
+msgstr "Tuodaan varmuuskopio…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
@@ -777,9 +771,8 @@ msgid "Upgrade"
 msgstr "Päivitä"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "Asennetaan DXVK…"
+msgstr "Asennetaan…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -1171,7 +1164,6 @@ msgid "Search for Programs…"
 msgstr "Etsi ohjelmia…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
 msgstr "Asentajia ei löytynyt"
 
@@ -1457,7 +1449,6 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
 msgstr "Windows-versio"
 
@@ -1467,12 +1458,11 @@ msgstr "Päivitetään Windows-versiota…"
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "Kieli"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Choose the language to use with programs."
-msgstr "Valitse uusi nimi valitulle ohjelmalle."
+msgstr "Valitse ohjelmissa käytettävä kieli."
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
@@ -1744,7 +1734,6 @@ msgid "Letter"
 msgstr "Kirjain"
 
 #: src/ui/dialog-drives.ui:49
-#, fuzzy
 msgid "Existing Drives"
 msgstr "Olemassa olevat asemat"
 
@@ -1765,9 +1754,8 @@ msgid "Duplicating…"
 msgstr "Monistetaan…"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "Ota tauko, tämä saattaa kestää hetken"
+msgstr "Ota tauko, tämä saattaa kestää hetken."
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -1782,12 +1770,10 @@ msgstr ""
 "vaikuttaa millä tavalla prosessit käyttäytyvät pullossa."
 
 #: src/ui/dialog-env-vars.ui:28
-#, fuzzy
 msgid "Variable Name"
 msgstr "Muuttujan nimi"
 
 #: src/ui/dialog-env-vars.ui:36
-#, fuzzy
 msgid "Existing Variables"
 msgstr "Olemassa olevat muuttujat"
 
@@ -1978,7 +1964,7 @@ msgstr "Natiivi, sitten sisäänrakennettu"
 
 #: src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Poistettu käytöstä"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -2009,7 +1995,6 @@ msgid "Search again for prefixes"
 msgstr "Etsi uudelleen etuliitteitä"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
 msgstr "Etuliitteitä ei löytynyt"
 
@@ -2037,7 +2022,7 @@ msgstr "Näytä manifesti…"
 
 #: src/ui/installer-entry.ui:23
 msgid "Read Review…"
-msgstr ""
+msgstr "Lue arvio…"
 
 #: src/ui/installer-entry.ui:62
 msgid "Install this program"
@@ -2169,9 +2154,8 @@ msgid "Custom"
 msgstr "Mukautettu"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments."
-msgstr "Tyhjä ympäristö kokeiluillesi"
+msgstr "Tyhjä ympäristö kokeiluillesi."
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -2191,9 +2175,8 @@ msgid "Architecture"
 msgstr "Arkkitehtuuri"
 
 #: src/ui/new.ui:155
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr "Käytä 32-bittistä vain jos se on tarpeellista"
+msgstr "Käytä 32-bittistä vain jos se on tarpeellista."
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2257,7 +2240,6 @@ msgid "Almost Done"
 msgstr "Melkein valmista"
 
 #: src/ui/onboard.ui:80
-#, fuzzy
 msgid "We need a few more minutes to set everything up…"
 msgstr "Vielä muutama minuutti, että kaikki on valmiina…"
 
@@ -2306,7 +2288,6 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "Tyhjennetäänkö väliaikaiset tiedostot, kun Pullot käynnistetään?"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
 msgstr "Sulje Pullot ohjelman käynnistämisen jälkeen"
 
@@ -2315,9 +2296,8 @@ msgid "Close Bottles after starting a program from the file manager."
 msgstr "Sulje Pullot, kun ohjelma on käynnistetty tiedostonhallinnasta."
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "Toiminnot"
+msgstr "Integraatiot"
 
 #: src/ui/preferences.ui:77
 msgid "Steam Proton Prefixes"
@@ -2386,9 +2366,8 @@ msgid "WineBridge"
 msgstr ""
 
 #: src/ui/preferences.ui:223
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "Aikaisessa kehityksessä (vaatii uudelleenkäynnistyksen)"
+msgstr "Aikaisessa kehitysvaiheessa (vaatii uudelleenkäynnistyksen)."
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
