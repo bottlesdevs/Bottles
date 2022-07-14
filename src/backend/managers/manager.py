@@ -743,7 +743,7 @@ class Manager:
                 _v = v
                 try:
                     uuid.UUID(k)
-                except ValueError:
+                except (ValueError, TypeError):
                     _k = _uuid
                     _changed = True
                 if "id" not in v:
