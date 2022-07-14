@@ -83,10 +83,10 @@ AppDir:
     icon: com.usebottles.bottles
     version: 2022.7.14-brescia
 
-    exec: bin/bash
+    exec: usr/bin/bwrap
 
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
-    exec_args: "$APPDIR/bin/AppRun $@"
+    exec_args: "--ro-bind / / --dev /dev --ro-bind $APPDIR/etc/ /etc $APPDIR/bin/AppRun $@"
 
   apt:
     arch: [amd64, i386]
@@ -142,6 +142,7 @@ AppDir:
       - libpcre3
       - icoextract
       - libc-bin
+      - libc-bin:i386
 
     exclude:
       - humanity-icon-theme
