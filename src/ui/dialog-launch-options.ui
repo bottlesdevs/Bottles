@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-    <requires lib="gtk+" version="4.0"/>
+    <requires lib="gtk" version="4.0"/>
     <requires lib="libadwaita" version="1.0"/>
     <template class="LaunchOptionsDialog" parent="AdwWindow">
         <property name="modal">True</property>
-        <property name="deletable">False</property>
         <property name="default-width">500</property>
         <property name="title" translatable="yes">Launch Options</property>
         <child>
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
-                    <object class="GtkHeaderBar">
-                        <property name="show-title-buttons">False</property>
+                    <object class="AdwHeaderBar">
+                        <property name="show-end-title-buttons">False</property>
                         <child type="start">
                             <object class="GtkButton" id="btn_cancel">
-                                <property name="label" translatable="yes">Cancel</property>
+                                <property name="label" translatable="yes">_Cancel</property>
+                                <property name="use_underline">True</property>
+                                <property name="action_name">window.close</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class='GtkShortcutController'>
+                                <property name='scope'>managed</property>
                                 <child>
-                                    <object class='GtkShortcutController'>
-                                        <property name='scope'>managed</property>
-                                        <child>
-                                            <object class='GtkShortcut'>
-                                                <property name='trigger'>Escape</property>
-                                                <property name='action'>activate</property>
-                                            </object>
-                                        </child>
+                                    <object class='GtkShortcut'>
+                                        <property name='trigger'>Escape</property>
+                                        <property name='action'>action(window.close)</property>
                                     </object>
                                 </child>
                             </object>
@@ -136,6 +137,7 @@
                                 <child>
                                     <object class="AdwActionRow" id="action_dxvk">
                                         <property name="title">DXVK</property>
+                                        <property name="activatable-widget">switch_dxvk</property>
                                         <child>
                                             <object class="GtkSwitch" id="switch_dxvk">
                                                 <property name="valign">center</property>
@@ -146,6 +148,7 @@
                                 <child>
                                     <object class="AdwActionRow" id="action_vkd3d">
                                         <property name="title">VKD3D</property>
+                                        <property name="activatable-widget">switch_vkd3d</property>
                                         <child>
                                             <object class="GtkSwitch" id="switch_vkd3d">
                                                 <property name="valign">center</property>
@@ -156,6 +159,7 @@
                                 <child>
                                     <object class="AdwActionRow" id="action_nvapi">
                                         <property name="title">DLSS (DXVK-NVAPI)</property>
+                                        <property name="activatable-widget">switch_nvapi</property>
                                         <child>
                                             <object class="GtkSwitch" id="switch_nvapi">
                                                 <property name="valign">center</property>
@@ -165,6 +169,7 @@
                                 </child>
                                 <child>
                                     <object class="AdwActionRow" id="action_fsr">
+                                        <property name="activatable-widget">switch_fsr</property>
                                         <property name="title">FSR</property>
                                         <child>
                                             <object class="GtkSwitch" id="switch_fsr">
@@ -176,6 +181,7 @@
                                 <child>
                                     <object class="AdwActionRow" id="action_pulse_latency">
                                         <property name="title">Reduce Latency</property>
+                                        <property name="activatable-widget">switch_pulse_latency</property>
                                         <child>
                                             <object class="GtkSwitch" id="switch_pulse_latency">
                                                 <property name="valign">center</property>
@@ -186,6 +192,7 @@
                                 <child>
                                     <object class="AdwActionRow" id="action_virt_desktop">
                                         <property name="title" translatable="yes">Virtual Desktop</property>
+                                        <property name="activatable-widget">switch_virt_desktop</property>
                                         <child>
                                             <object class="GtkSwitch" id="switch_virt_desktop">
                                                 <property name="valign">center</property>
