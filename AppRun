@@ -23,6 +23,9 @@ export GDK_BACKEND=x11
 export PYTHONPATH=$APPDIR/usr/lib/python3/dist-packages
 export SSL_CERT_FILE=$APPDIR/usr/lib/python3/dist-packages/certifi/cacert.pem
 export FONTCONFIG_PATH=/etc/fonts
-export WINELDLIBRARY=$APPDIR/runtime/compat/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+#export WINELDLIBRARY=$APPDIR/runtime/compat/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
 
-"$WINELDLIBRARY" "$APPDIR"/usr/bin/python3 "$APPDIR"/usr/bin/bottles "$@"
+tail -n +2 "$APPDIR/etc/ld.so.conf.d/libc.conf" > "$APPDIR/etc/ld.so.conf.d/libc.conf.tmp" && mv "$APPDIR/etc/ld.so.conf.d/libc.conf.tmp" "$APPDIR/etc/ld.so.conf.d/libc.conf"
+sed -i "s%^%$APPDIR%" "$APPDIR/etc/ld.so.conf"
+
+"$APPDIR"/usr/bin/bottles "$@"
