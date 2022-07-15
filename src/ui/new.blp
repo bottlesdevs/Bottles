@@ -65,7 +65,10 @@ template NewView : Adw.Window {
           Adw.PreferencesGroup {
             title: _("Bottle Information");
 
-            ????????????
+            Adw.EntryRow {
+              name: "entry_name";
+              title: _("Name");
+              }
           }
 
           Adw.PreferencesGroup {
@@ -141,8 +144,12 @@ template NewView : Adw.Window {
                   title: _("Architecture");
                   subtitle: _("We recommend using 32bit only if strictly necessary.");
                   model:
-                  StringList {
-                  }
+                    StringList {
+                      items [
+                        "64 bit",
+                        "32 bit",
+                      ]
+                    }
 
                   ;
                 }
