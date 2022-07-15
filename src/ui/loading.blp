@@ -1,0 +1,36 @@
+using Gtk 4.0;
+
+template LoadingView : .AdwBin {
+  WindowHandle {
+    hexpand: true;
+    vexpand: true;
+
+    Box {
+      orientation: vertical;
+
+      .AdwStatusPage {
+        icon-name: "com.usebottles.bottles";
+        title: _("Starting up…");
+        hexpand: "True";
+        vexpand: "True";
+      }
+
+      Label label_fetched {
+        label: "\n                                ";
+
+        styles [
+          "dim-label",
+        ]
+      }
+
+      Label label_downloading {
+        label: "\n                                ";
+        margin-bottom: 20;
+
+        styles [
+          "dim-label",
+        ]
+      }
+    }
+  }
+}

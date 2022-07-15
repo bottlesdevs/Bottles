@@ -1,0 +1,131 @@
+using Gtk 4.0;
+
+Popover pop_context {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+    orientation: vertical;
+
+    .GtkModelButton btn_remove {
+      text: _("Remove from Library");
+    }
+  }
+}
+
+template LibraryEntry : Box {
+  orientation: vertical;
+  halign: fill;
+  width-request: 128;
+
+  Overlay {
+    width-request: 256;
+    height-request: 225;
+
+    [overlay]
+    MenuButton {
+      halign: start;
+      valign: start;
+      margin-top: 5;
+      margin-start: 5;
+      popover: pop_context;
+      icon-name: "view-more-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Image img_cover {
+      visible: false;
+      hexpand: true;
+      vexpand: true;
+    }
+
+    Label label_no_cover {
+      visible: false;
+      halign: center;
+      valign: center;
+      hexpand: true;
+      vexpand: true;
+      label: _("No Thumbnail");
+
+      styles [
+        "dim-label",
+      ]
+    }
+  }
+
+  Box {
+    spacing: 6;
+
+    Image img_icon {
+      icon-name: "applications-games-symbolic";
+    }
+
+    Box {
+      orientation: vertical;
+      hexpand: true;
+
+      Label label_name {
+        halign: start;
+        label: "Item name";
+
+        styles [
+          "title",
+        ]
+      }
+
+      Label label_bottle {
+        halign: start;
+        label: "Bottle name";
+      }
+    }
+
+    [end]
+    Box {
+      Button btn_launch_steam {
+        tooltip-text: _("Launch with Steam");
+        valign: center;
+        icon-name: "bottles-steam-symbolic";
+        visible: false;
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Button btn_run {
+        valign: center;
+        icon-name: "media-playback-start-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Button btn_stop {
+        visible: false;
+        halign: center;
+        icon-name: "media-playback-stop-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+    }
+
+    styles [
+      "library-entry-details",
+    ]
+  }
+
+  styles [
+    "card",
+  ]
+}

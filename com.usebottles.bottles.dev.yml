@@ -351,6 +351,13 @@ modules:
         url: https://github.com/bottlesdevs/runtime/releases/download/0.5/runtime.tar.gz
         sha256: 00f7e57f0b54057343cfe49de52690c7b3024771478fc75cfe55c2154e13834f
 
+  - name: blueprint-compiler
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/jwestman/blueprint-compiler
+        branch: main
+
   - name: bottles
     builddir: true
     buildsystem: meson

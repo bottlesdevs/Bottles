@@ -1,0 +1,15 @@
+using Gtk 4.0;
+
+template EnvVarEntry : .AdwEntryRow {
+  title: _("Value");
+  show-apply-button: "True";
+
+  Button btn_remove {
+    valign: center;
+    icon-name: "user-trash-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+using Gtk 4.0;
+
+template StateEntry : .AdwActionRow {
+  activatable-widget: "btn_restore";
+  title: "State id";
+  subtitle: "State comment";
+
+  Button btn_manifest {
+    valign: center;
+    icon-name: "emblem-documents-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+
+  Button btn_restore {
+    tooltip-text: _("Restore this state");
+    valign: center;
+    icon-name: "document-open-recent-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+
+  Spinner spinner {
+  }
+}
