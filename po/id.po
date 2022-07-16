@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-07-10 07:50+0000\n"
-"Last-Translator: engkih <achmadricky01@gmail.com>\n"
+"PO-Revision-Date: 2022-07-17 10:16+0000\n"
+"Last-Translator: liimee <alt3753.7@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
 "bottles/id/>\n"
 "Language: id\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -43,7 +43,7 @@ msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Jalankan perangkat lunak Windows di Linux menggunakan Bottles!"
+msgstr "Jalankan perangkat lunak Windows di Linux dengan Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -55,7 +55,7 @@ msgid ""
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
-"Sistem instalasi dependensi bawaan kami memungkinkan akses kompatibilitas "
+"Sistem pemasangan dependensi bawaan kami memungkinkan akses kompatibilitas "
 "perangkat lunak yang luas. Kami juga menyertakan manajer unduhan untuk "
 "mengunduh komponen resmi: runner (Wine, Proton), DXVK, dependensi, dll."
 
@@ -86,7 +86,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr "Deteksi otomatis aplikasi yang dipasang dalam bottles Anda"
+msgstr "Deteksi otomatis aplikasi yang dipasang dalam bottle Anda"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
@@ -110,7 +110,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:25
 msgid "Automatic installation and management of Wine and Proton runners"
-msgstr "Instalasi otomatis dan manajemen runner Wine dan Proton"
+msgstr "Pemasangan otomatis dan manajemen runner Wine dan Proton"
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
@@ -770,9 +770,8 @@ msgid "Upgrade"
 msgstr "Meningkatkan"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "Memasang DXVK…"
+msgstr "Memasang…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -782,7 +781,7 @@ msgstr "Manifes untuk {0}"
 #: src/widgets/dependency.py:166
 #, python-brace-format
 msgid "'{0}' installed."
-msgstr "'{0}' terinstal."
+msgstr "'{0}' terpasang."
 
 #: src/widgets/importer.py:66
 #, python-brace-format
@@ -796,12 +795,12 @@ msgstr "Tinjauan untuk {0}"
 
 #: src/widgets/installer.py:102
 msgid "Installer failed with unknown error"
-msgstr "Penginstalan gagal dengan galat yang tidak diketahui"
+msgstr "Pemasangan gagal dengan kesalahan yang tidak dikenal"
 
 #: src/widgets/installer.py:133
 #, python-brace-format
 msgid "{0} installed."
-msgstr "{0} terinstall."
+msgstr "{0} terpasang."
 
 #: src/widgets/installer.py:153
 #, python-brace-format
@@ -888,12 +887,12 @@ msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"Instalasi gagal. Ini mungkin karena kesalahan repositori, unduhan parsial "
+"Pemasangan gagal. Ini mungkin karena kesalahan repositori, unduhan parsial "
 "atau ketidakcocokan checksum. Tekan untuk mencoba lagi."
 
 #: src/ui/component-entry.ui:48
 msgid "Download & Install"
-msgstr "Unduh & pasang"
+msgstr "Unduh & Pasang"
 
 #: src/ui/component-entry.ui:61
 msgid "0%"
@@ -1082,11 +1081,11 @@ msgstr "Sesuaikan pengaturan internal."
 
 #: src/ui/details-bottle.ui:316
 msgid "Uninstaller"
-msgstr "Penghapus Instalasi"
+msgstr "Penghapus Pemasangan"
 
 #: src/ui/details-bottle.ui:317
 msgid "Uninstall programs using Wine uninstaller."
-msgstr "Hapus instalasi program menggunakan penghapus instalasi WINE."
+msgstr "Hapus pemasangan program menggunakan penghapus pemasangan WINE."
 
 #: src/ui/details-bottle.ui:328
 msgid "Control Panel"
@@ -1098,7 +1097,7 @@ msgstr "Akses panel kontrol internal WINE."
 
 #: src/ui/details-bottle.ui:348
 msgid "Use the Installers section or the \"Run executable\" button."
-msgstr "Gunakan bagian Penginstall atau tombol \"Jalankan berkas eksekusi\"."
+msgstr "Gunakan bagian Pemasang atau tombol \"Jalankan berkas eksekusi\"."
 
 #: src/ui/details-dependencies.ui:13
 msgid "Search for dependencies…"
@@ -1111,8 +1110,8 @@ msgid ""
 "requirements."
 msgstr ""
 "Dependensi adalah perangkat lunak, perpustakaan dan kodek yang meningkatkan "
-"kekompatibelan sebuah perangkat lunak Windows. Install dari sini untuk "
-"memenuhi persyaratan programmu."
+"kekompatibelan sebuah perangkat lunak Windows. Pasang dari sini untuk "
+"memenuhi persyaratan program Anda."
 
 #: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
 msgid ""
@@ -1120,7 +1119,7 @@ msgid ""
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
 "Berkas di laman ini disediakan dengan jenis lisensi proprietari. Dengan "
-"menginstallnya, kamu telah menyetujui persyaratan lisensi yang digunakan."
+"memasangnya, Anda telah menyetujui persyaratan lisensi yang digunakan."
 
 #: src/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
@@ -1142,7 +1141,7 @@ msgstr "Dokumentasi"
 
 #: src/ui/details-dependencies.ui:80
 msgid "Install Selected"
-msgstr "Install Terpilih"
+msgstr "Pasang Terpilih"
 
 #: src/ui/details-dependencies.ui:81
 msgid "We strongly advise against installing multiple dependencies at once."
@@ -1163,15 +1162,14 @@ msgid "Search for Programs…"
 msgstr "Cari program yang terpasang…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
-msgstr "Penginstall tidak ditemukan"
+msgstr "Tak Ditemukan Pemasang"
 
 #: src/ui/details-installers.ui:51
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
-"Repository ini tidak dapat diraih atau tidak ada penginstal yang kompatibel "
+"Repositori ini tidak terjangkau atau tidak ada pemasang yang kompatibel "
 "dengan bottle ini."
 
 #: src/ui/details-preferences.ui:8
@@ -1905,7 +1903,7 @@ msgstr ""
 
 #: src/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "Semua"
 
 #: src/ui/dialog-launch-options.ui:9
 #, fuzzy
@@ -1973,7 +1971,7 @@ msgstr "Ubah nama"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "Pilih nama baru untuk program yang dipilih."
 
 #: src/ui/dialog-rename.ui:37
 #, fuzzy
@@ -2018,7 +2016,7 @@ msgstr ""
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
-msgstr ""
+msgstr "Hapus"
 
 #: src/ui/drive-entry.ui:7
 msgid "/point/to/path"
@@ -2077,9 +2075,8 @@ msgid "Read Review…"
 msgstr "Baca ulasan"
 
 #: src/ui/installer-entry.ui:62
-#, fuzzy
 msgid "Install this program"
-msgstr "Program yang terpasang"
+msgstr "Pasang program ini"
 
 #: src/ui/library-entry.ui:14
 #, fuzzy
@@ -2154,11 +2151,11 @@ msgstr "Keadaan tidak ditemukan"
 
 #: src/ui/list.ui:76
 msgid "Try a different search."
-msgstr ""
+msgstr "Coba pencarian lain."
 
 #: src/ui/loading.ui:16
 msgid "Starting up…"
-msgstr ""
+msgstr "Memulai…"
 
 #: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
@@ -2276,7 +2273,7 @@ msgstr "Bottle telah dibuat"
 
 #: src/ui/onboard.ui:36
 msgid "Previous"
-msgstr ""
+msgstr "Sebelumnya"
 
 #: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
@@ -2287,6 +2284,8 @@ msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
+"Jalankan Perangkat Lunak Windows di Linux.\n"
+"                                                "
 
 #: src/ui/onboard.ui:71
 #, fuzzy
@@ -2301,7 +2300,7 @@ msgstr ""
 
 #: src/ui/onboard.ui:79
 msgid "Almost Done"
-msgstr ""
+msgstr "Hampir Selesai"
 
 #: src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up…"
@@ -2309,11 +2308,11 @@ msgstr ""
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
-msgstr ""
+msgstr "Lanjut"
 
 #: src/ui/onboard.ui:113
 msgid "All ready!"
-msgstr ""
+msgstr "Semua siap!"
 
 #: src/ui/onboard.ui:119
 #, fuzzy
@@ -2384,7 +2383,7 @@ msgstr ""
 
 #: src/ui/preferences.ui:90
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "Membutuhkan Steam untuk Windows terpasang pada bottle ini."
 
 #: src/ui/preferences.ui:101
 msgid "List Epic Games in Programs List"
@@ -2392,7 +2391,7 @@ msgstr ""
 
 #: src/ui/preferences.ui:102
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "Membutuhkan Epic Games Store terpasang pada bottle ini."
 
 #: src/ui/preferences.ui:115
 msgid "Advanced"
