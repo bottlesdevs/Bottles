@@ -25,8 +25,7 @@ from bottles.backend.utils.manager import ManagerUtils
 class LaunchOptionsDialog(Adw.Window):
     __gtype_name__ = 'LaunchOptionsDialog'
     __gsignals__ = {
-        "options-saved": (GObject.SIGNAL_RUN_FIRST, None, (str,)),  # str would be dict here, it just raise errors
-        "options-cancel": (GObject.SIGNAL_RUN_FIRST, None, ())
+        "options-saved": (GObject.SIGNAL_RUN_FIRST, None, (str,)),  # str would be dict here, it just raises errors
     }
 
     # region Widgets
@@ -74,7 +73,6 @@ class LaunchOptionsDialog(Adw.Window):
         self.entry_arguments.set_text(program.get("arguments", ""))
 
         # connect signals
-        self.connect("destroy", self.__emit_cancel)
         self.btn_save.connect("clicked", self.__save)
         self.btn_script.connect("clicked", self.__choose_script)
         self.btn_script_reset.connect("clicked", self.__reset_script)
@@ -275,6 +273,3 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_fsr.set_active(self.config["Parameters"]["fsr"])
         self.switch_pulse_latency.set_active(self.config["Parameters"]["pulseaudio_latency"])
         self.switch_virt_desktop.set_active(self.config["Parameters"]["virtual_desktop"])
-
-    def __emit_cancel(self, *args):
-        self.emit("options-cancel")
