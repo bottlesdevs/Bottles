@@ -32,11 +32,16 @@
                     </object>
                 </child>
                 <child>
+                    <object class="GtkModelButton" id="btn_update">
+                        <property name="text" translatable="yes">Search for new programs</property>
+                    </object>
+                </child>
+                <child>
                     <object class="GtkSeparator" />
                 </child>
                 <child>
                     <object class="GtkModelButton" id="btn_help">
-                        <property name="tooltip-text" translatable="yes">Read documentation about programs</property>
+                        <property name="tooltip-text" translatable="yes">Read documentation</property>
                         <property name="text" translatable="yes">Documentation</property>
                     </object>
                 </child>
@@ -49,12 +54,6 @@
             <object class="GtkButton" id="btn_add">
                 <property name="tooltip-text" translatable="yes">Add a custom executable path</property>
                 <property name="icon-name">list-add-symbolic</property>
-            </object>
-        </child>
-        <child>
-            <object class="GtkButton" id="btn_update">
-                <property name="tooltip-text" translatable="yes">Search for installed programs</property>
-                <property name="icon-name">view-refresh-symbolic</property>
             </object>
         </child>
         <child>
