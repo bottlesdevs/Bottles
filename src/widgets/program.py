@@ -127,17 +127,14 @@ class ProgramEntry(Adw.ActionRow):
         if not program.get("removed") and not is_steam and check_boot:
             self.__is_alive()
 
-    '''Show dialog for launch options'''
-
     def show_launch_options_view(self, widget=False):
-        new_window = LaunchOptionsDialog(
-            self,
-            self.config,
-            self.program
-        )
-        new_window.run()
-        self.config = new_window.get_config()
-        self.update_programs()
+        def update(widget, config):
+            self.config = config
+            self.update_programs()
+
+        dialog = LaunchOptionsDialog(self, self.config, self.program)
+        dialog.present()
+        dialog.connect("options-saved", update)
 
     def __reset_buttons(self, result=False, error=False):
         status = False

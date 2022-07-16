@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from gi.repository import Gtk, GLib, Adw
+from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
 from bottles.backend.utils.manager import ManagerUtils
@@ -24,6 +24,10 @@ from bottles.backend.utils.manager import ManagerUtils
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class LaunchOptionsDialog(Adw.Window):
     __gtype_name__ = 'LaunchOptionsDialog'
+    __gsignals__ = {
+        "options-saved": (GObject.SIGNAL_RUN_FIRST, None, (str,)),  # str would be dict here, it just raise errors
+        "options-cancel": (GObject.SIGNAL_RUN_FIRST, None, ())
+    }
 
     # region Widgets
     entry_arguments = Gtk.Template.Child()
@@ -63,7 +67,6 @@ class LaunchOptionsDialog(Adw.Window):
         self.manager = parent.window.manager
         self.config = config
         self.program = program
-        self.main_loop = GLib.MainLoop()
 
         self.set_transient_for(self.window)
 
@@ -71,6 +74,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.entry_arguments.set_text(program.get("arguments", ""))
 
         # connect signals
+        self.connect("destroy", self.__emit_cancel)
         self.btn_save.connect("clicked", self.__save)
         self.btn_script.connect("clicked", self.__choose_script)
         self.btn_script_reset.connect("clicked", self.__reset_script)
@@ -206,6 +210,7 @@ class LaunchOptionsDialog(Adw.Window):
             scope="External_Programs"
         ).data["config"]
 
+        self.emit("options-saved", self.config)
         self.close()
         return
 
@@ -271,6 +276,5 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_pulse_latency.set_active(self.config["Parameters"]["pulseaudio_latency"])
         self.switch_virt_desktop.set_active(self.config["Parameters"]["virtual_desktop"])
 
-    def run(self):
-        self.present()
-        self.main_loop.run()
+    def __emit_cancel(self, *args):
+        self.emit("options-cancel")
