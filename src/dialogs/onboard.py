@@ -39,6 +39,7 @@ class OnboardDialog(Adw.Window):
     page_download = Gtk.Template.Child()
     page_finish = Gtk.Template.Child()
     img_welcome = Gtk.Template.Child()
+    label_skip = Gtk.Template.Child()
     # endregion
 
     carousel_pages = [
@@ -68,6 +69,8 @@ class OnboardDialog(Adw.Window):
         self.btn_next.connect("clicked", self.__next_page)
         self.btn_install.connect("clicked", self.__install_runner)
         self.__settings.connect("notify::gtk-application-prefer-dark-theme", self.__theme_changed)
+
+        self.btn_close.set_sensitive(False)
 
         if self.__settings.get_property("gtk-application-prefer-dark-theme"):
             self.img_welcome.set_from_resource(self.images[1])
@@ -108,6 +111,8 @@ class OnboardDialog(Adw.Window):
 
     def __install_runner(self, widget):
         def set_completed(result, error=False):
+            self.label_skip.set_visible(False)
+            self.btn_close.set_sensitive(True)
             self.__next_page()
 
         self.__installing = True
