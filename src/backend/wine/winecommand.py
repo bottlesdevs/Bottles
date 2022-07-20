@@ -207,16 +207,25 @@ class WineCommand:
 
         # Get Runner libraries
         runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
-        for lib in [
-            "lib/wine/x86_64-unix",
-            "lib32/wine/x86_64-unix",
-            "lib64/wine/x86_64-unix",
-            "lib/wine/i386-unix",
-            "lib32/wine/i386-unix",
-            "lib64/wine/i386-unix"
-        ]:
-            if os.path.exists(f"{runner_path}/{lib}"):
-                ld.append(f"{runner_path}/{lib}")
+        if arch == "win64":
+            runner_libs = [
+                "lib/wine/x86_64-unix",
+                "lib32/wine/x86_64-unix",
+                "lib64/wine/x86_64-unix",
+                "lib/wine/i386-unix",
+                "lib32/wine/i386-unix",
+                "lib64/wine/i386-unix"
+            ]
+        else:
+            runner_libs = [
+                "lib/wine/i386-unix",
+                "lib32/wine/i386-unix",
+                "lib64/wine/i386-unix"
+            ]
+        for lib in runner_libs:
+            _path = os.path.join(runner_path, lib)
+            if os.path.exists(_path):
+                ld.append(_path)
 
         # DXVK environment variables
         if params["dxvk"] and not return_steam_env:
