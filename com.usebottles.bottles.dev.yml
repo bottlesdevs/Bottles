@@ -341,6 +341,31 @@ modules:
             url: https://gitlab.gnome.org/GNOME/vte/-/archive/0.66.2/vte-0.66.2.tar.gz
             sha256: a486e389e3d16f903ed6f27d9513c2a44bff5945a12af4fcfe48ce00992c42ab
 
+  - name: FVS
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: git
+        url: https://github.com/mirkobrombin/FVS
+        tag: 0.1
+        commit: cecae479fff8d61ce9480fce067d6998bcb9d1d2
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/mirkobrombin/FVS/releases/latest
+          tag-query: .tag_name
+          version-query: .tag_name
+          timestamp-query: .published_at
+    modules:
+      - name: orjson
+        buildsystem: simple
+        build-commands:
+          - python3 setup.py install --prefix=/app --root=/
+        sources:
+          - type: archive
+            url: https://github.com/ijl/orjson/archive/refs/tags/3.7.8.tar.gz
+            sha256: 6ad913aa0490b6db67ebd6879cbef57f90a84c1fe611454aeaa99afa03dc8213
+
   - name: runtime
     buildsystem: simple
     build-commands:
