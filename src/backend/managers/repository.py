@@ -99,6 +99,6 @@ class RepositoryManager:
                         data["index"] = __fallback
                         if self.repo_fn_update is not None:
                             GLib.idle_add(self.repo_fn_update, total)
-                except (urllib.error.HTTPError, urllib.error.URLError):
+                except (urllib.error.HTTPError, urllib.error.URLError, http.client.RemoteDisconnected):
                     logging.error(f"Could not get index for {repo} repository")
                     continue
