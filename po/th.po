@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-14 11:18+0000\n"
+"PO-Revision-Date: 2022-07-21 16:14+0000\n"
 "Last-Translator: VRSasha <pongpeera054@protonmail.com>\n"
-"Language-Team: Thai <https://hosted.weblate.org/projects/bottles/bottles/th/"
-">\n"
+"Language-Team: Thai <https://hosted.weblate.org/projects/bottles/bottles/th/>"
+"\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -137,9 +137,8 @@ msgid "Import Wine prefixes from other managers"
 msgstr "นำเข้า Wine prefixes จากตัวจัดการอื่น ๆ"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
-#, fuzzy
 msgid "Bottles versioning"
-msgstr "ระบบเวอร์ชันขวด (อยู่ในช่วงทดลอง)"
+msgstr "ระบบเวอร์ชันขวด"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -147,11 +146,11 @@ msgstr "และอื่น ๆ อีกมากมายให้ค้น�
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
-msgstr ""
+msgstr "การย้ายไป Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr ""
+msgstr "เปิดหรือปิดหน้าต่างการย้ายไป Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
@@ -163,7 +162,7 @@ msgstr "บังคับใช้ธีมมืด"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "เปิดหรือปิดการแสดงวันที่อัปเดตในรายการ"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
@@ -171,20 +170,19 @@ msgstr "เปิดใช้วันที่อัปเดตในราย
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "แสดงแอปพลิเคชันจาก Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
-msgstr ""
+msgstr "เปิดหรือปิดการแสดงแอปพลิเคชันจาก Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic Games Store .."
+msgstr "แสดงรายการจาก Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr ""
+msgstr "เปิดหรือปิดการแสดงแอปพลิเคชันจาก Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -232,7 +230,7 @@ msgstr "มุมของเมื่อเปิดโปรแกรม"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Choose which view the application should be started in."
-msgstr ""
+msgstr "เลือกมุมมองเมื่อเปิดแอปพลิเคชัน"
 
 #: data/com.usebottles.bottles.gschema.xml:61 src/ui/preferences.ui:217
 msgid "Experiments"
@@ -247,28 +245,27 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Steam Proton Support"
-msgstr ""
+msgstr "การรองรับ Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid "Toggle Steam Proton prefixes support."
-msgstr ""
+msgstr "เปิดหรือปิดการรองรับ Prefixes ของ Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:71
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "การทดลอง"
+msgstr "การทดลอง:แซนด์บอกซ์"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle experimental Sandbox per bottle."
-msgstr ""
+msgstr "เปิดหรือปิดการทดลองใช้งานแซนด์บอกซ์ของแต่ละขวด"
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
-msgstr ""
+msgstr "การทดลอง:ไลบรารี"
 
 #: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Library mode."
-msgstr ""
+msgstr "เปิดหรือปิดการทดลองใช้งานโหมดไลบรารี"
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
@@ -276,15 +273,15 @@ msgstr "ปิดขวดโดยอัตโนมัติ"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
-msgstr ""
+msgstr "ปิด Bottles หลังจากเปิด Executable จากตัวจัดการไฟล์"
 
 #: src/main.py:106
 msgid "Show version"
-msgstr ""
+msgstr "แสดงเวอร์ชัน"
 
 #: src/main.py:114
 msgid "Executable path"
-msgstr ""
+msgstr "Path ของ Executable"
 
 #: src/main.py:122
 msgid "lnk path"
@@ -292,35 +289,35 @@ msgstr ""
 
 #: src/main.py:130
 msgid "Bottle name"
-msgstr ""
+msgstr "ชื่อขวด"
 
 #: src/main.py:138
 msgid "Pass arguments"
-msgstr ""
+msgstr "ส่งต่อ Arguments"
 
 #: src/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "URI ไม่ถูกต้อง (syntax: bottles:run/<ขวด>/<โปรแกรม>)"
 
 #: src/main.py:246
 msgid "[Quit] request received."
-msgstr ""
+msgstr "[ปิด] ได้รับรีเควสต์แล้ว"
 
 #: src/main.py:255
 msgid "[Help] request received."
-msgstr ""
+msgstr "[ช่วยเหลือ] ได้รับรีเควสต์แล้ว"
 
 #: src/main.py:263
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "[รีเฟรช] ได้รับรีเควสต์แล้ว"
 
 #: src/operation.py:50
 msgid "Calculating…"
-msgstr ""
+msgstr "กำลังคำนวณ…"
 
 #: src/window.py:129
 msgid "Loading…"
-msgstr ""
+msgstr "กำลังโหลด…"
 
 #: src/window.py:226
 msgid ""
@@ -331,7 +328,7 @@ msgstr ""
 
 #: src/window.py:283
 msgid "Health check"
-msgstr ""
+msgstr "ตรวจสุขภาพและความสมบูรณ์ของระบบ"
 
 #: src/window.py:288 src/ui/dialog-journal.ui:49
 msgid "Journal browser"
@@ -339,62 +336,62 @@ msgstr ""
 
 #: src/backend/managers/versioning.py:60
 msgid "Generating state files index …"
-msgstr ""
+msgstr "กำลังสร้าง Index ของไฟล์สถานะ…"
 
 #: src/backend/managers/versioning.py:139
 msgid "Creating a restore point …"
-msgstr ""
+msgstr "กำลังสร้าง Restore point …"
 
 #: src/backend/managers/versioning.py:163
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "ไม่สามารถสร้างโฟลเดอร์สถานะได้"
 
 #: src/backend/managers/versioning.py:170
 msgid "Updating index …"
-msgstr ""
+msgstr "กำลังอัปเดต Index…"
 
 #: src/backend/managers/versioning.py:194
 msgid "Updating states …"
-msgstr ""
+msgstr "กำลังอัปเดตสถานะ…"
 
 #: src/backend/managers/versioning.py:223
 msgid "Could not update the states file."
-msgstr ""
+msgstr "ไม่สามารถอัปเดตไฟล์สถานะได้"
 
 #: src/backend/managers/versioning.py:237
 msgid "Could not update the index file."
-msgstr ""
+msgstr "ไม่สามารถอัปเดตไฟล์ Index ได้"
 
 #: src/backend/managers/versioning.py:263
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "สรา้งสถานะ [{0}] ใหม่เรียบร้อยแล้ว!"
 
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "ไม่ได้ระบุ Path"
 
 #: src/backend/managers/backup.py:71
 #, python-brace-format
 msgid "Backup {0}"
-msgstr ""
+msgstr "แบ็กอัป {0}"
 
 #: src/backend/managers/backup.py:124
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr ""
+msgstr "กำลังนำเข้าแบ็กอัป: {0}"
 
 #: src/backend/managers/manager.py:1013
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "ติดตั้งชิ้นส่วนล้มเหลว ลองแล้ว 3 ครั้ง"
 
 #: src/backend/managers/manager.py:1024
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "ชิ้นส่วนที่สำคัญขาดหายไป กำลังติดตั้ง…"
 
 #: src/backend/managers/manager.py:1100
 msgid "Failed to create bottle directory."
-msgstr ""
+msgstr "ไม่สามารถสร้างไดเรกทอรีของขวดได้"
 
 #: src/backend/managers/manager.py:1112
 msgid "Failed to create placeholder directory/file."
@@ -402,100 +399,102 @@ msgstr ""
 
 #: src/backend/managers/manager.py:1117
 msgid "Generating bottle configuration…"
-msgstr ""
+msgstr "กำลังสร้างการตั้งค่าขวด…"
 
 #: src/backend/managers/manager.py:1140
 msgid "Template found, applying…"
-msgstr ""
+msgstr "พบเทมเพลต กำลังนำมาใช้…"
 
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1152
 msgid "The Wine config is being updated…"
-msgstr ""
+msgstr "กำลังอัปเดตการตั้งค่า Wine…"
 
 #: src/backend/managers/manager.py:1154
 msgid "Wine config updated!"
-msgstr ""
+msgstr "อัปเดตการตั้งค่า Wine แล้ว!"
 
 #: src/backend/managers/manager.py:1162
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr ""
+msgstr "กำลังรันด้วย Flatpak, แซนด์บอกซ์ไดเรกทอรีของผู้ใช้…"
 
 #: src/backend/managers/manager.py:1164
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "กำลังแซนด์บอกซ์ไดเรกทอรีของผู้ใช้…"
 
 #: src/backend/managers/manager.py:1182
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "กำลังกำหนดเวอร์ชันของวินโดวส์…"
 
 #: src/backend/managers/manager.py:1191
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "กำลังนำค่าเริ่มต้นของ CMD มาใช้…"
 
 #: src/backend/managers/manager.py:1199
 msgid "Optimizing environment…"
-msgstr ""
+msgstr "กำลังปรับปรุงสภาพแวดล้อม…"
 
 #: src/backend/managers/manager.py:1210
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "กำลังนำสภาพแวดล้อมมาใช้: {0}…"
 
 #: src/backend/managers/manager.py:1220
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) กำลังใช้สูตรสภาพแวดล้อมที่กำหนดเอง…"
 
 #: src/backend/managers/manager.py:1223
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) ไม่พบสูตรหรือไม่ถูกต้อง…"
 
 #: src/backend/managers/manager.py:1240
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "กำลังติดตั้ง DXVK…"
 
 #: src/backend/managers/manager.py:1248
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "กำลังติดตั้ง VKD3D…"
 
 #: src/backend/managers/manager.py:1256
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "กำลังติดตั้ง DXVK-NVAPI…"
 
 #: src/backend/managers/manager.py:1265
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "กำลังติดตั้ง Dependency: %s…"
 
 #: src/backend/managers/manager.py:1281
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "กำลังสร้างสถานะเวอร์ชัน 0…"
 
 #: src/backend/managers/manager.py:1289
 msgid "Finalizing…"
-msgstr ""
+msgstr "กำลังทำให้เสร็จสิ้น…"
 
 #: src/backend/managers/manager.py:1300
 msgid "Caching template…"
-msgstr ""
+msgstr "กำลังแคชเทมเพลต…"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
-msgstr ""
+msgstr "แสดงรายงาน"
 
 #: src/dialogs/crash.py:87
 msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            ปัญหานี้ถูกรายงานแล้ว 5 ครั้ง และไม่สามารถส่งได้อีก\n"
+"            รายงานการตอบกลับของคุณในรายงานที่มีอยู่แล้วด้านล่าง"
 
 #: src/dialogs/dlloverrides.py:136
 msgid "No overrides found."
-msgstr ""
+msgstr "ไม่พบ overrides"
 
 #: src/dialogs/drives.py:71
 msgid "Choose path"
-msgstr ""
+msgstr "เลือก Path"
 
 #: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
 #: src/dialogs/launchoptions.py:229 src/dialogs/launchoptions.py:253
@@ -509,39 +508,38 @@ msgstr ""
 #: src/ui/dialog-local-resources.ui:19 src/ui/dialog-rename.ui:17
 #: src/ui/dialog-run-args.ui:19 src/ui/new.ui:33
 msgid "Cancel"
-msgstr ""
+msgstr "ยกเลิก"
 
 #: src/dialogs/drives.py:73 src/dialogs/launchoptions.py:229
 #: src/dialogs/launchoptions.py:253 src/dialogs/localresources.py:63
 #: src/views/bottle_preferences.py:251 src/views/new.py:137
 #: src/views/new.py:153 src/views/preferences.py:167
 msgid "Select"
-msgstr ""
+msgstr "เลือก"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "เพิ่ม Environment variables อย่างรวดเร็ว"
+msgstr "ไม่ได้กำหนด Environment variables"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
 #: src/ui/dialog-rename.ui:22
 msgid "Save"
-msgstr ""
+msgstr "บันทึก"
 
 #: src/dialogs/generic.py:24
 msgid "An error has occurred."
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขึ้น"
 
 #: src/dialogs/generic.py:91 src/dialogs/generic.py:137
 #: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "คัดลอกไปยังคลิปบอร์ด"
 
 #. endregion
 #: src/dialogs/launchoptions.py:54 src/ui/dialog-launch-options.ui:58
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "เลือกสคริปต์ที่จะเรียกใช้หลังจากการรัน"
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
 #, fuzzy
@@ -549,65 +547,65 @@ msgid "Choose from where start the program."
 msgstr "เลือกที่จัดเก็บขวด"
 
 #: src/dialogs/launchoptions.py:56
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "เปิดใช้งานระบบเวอร์ชันสำหรับขวดนี้"
+msgstr "{0} ถูกปิดการใช้งานสำหรับขวดนี้แล้ว"
 
 #: src/dialogs/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "การตั้งค่านี้ต่างจากค่าเริ่มต้นของขวด"
 
 #: src/dialogs/launchoptions.py:227
 msgid "Choose the script"
-msgstr ""
+msgstr "เลือกสคริปต์"
 
 #: src/dialogs/launchoptions.py:251
 msgid "Choose the Working Directory"
-msgstr ""
+msgstr "เลือกไดเรกทอรีในการทำงาน"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "เลือกไฟล์ทรัพยากร"
 
 #: src/views/bottle_details.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "อัปเดตแล้ว: %s"
 
 #: src/views/bottle_details.py:192 src/views/list.py:136
 msgid "Choose a Windows executable file"
-msgstr ""
+msgstr "เลือกไฟล์ Executable ของวินโดวส์"
 
 #: src/views/bottle_details.py:194 src/views/list.py:138
 #: src/ui/dialog-run-args.ui:35
 msgid "Run"
-msgstr ""
+msgstr "รัน"
 
 #: src/views/bottle_details.py:247
 msgid "Select the location where to save the backup config"
-msgstr ""
+msgstr "เลือกตำแหน่งในการจัดเก็บการตั้งค่าแบ็กอัป"
 
 #: src/views/bottle_details.py:251
 msgid "Select the location where to save the backup archive"
-msgstr ""
+msgstr "เลือกตำแหน่งในการจัดเก็บไฟล์แบ็กอัป"
 
 #: src/views/bottle_details.py:256
 #, python-brace-format
 msgid "Backup created for '{0}'."
-msgstr ""
+msgstr "สร้างแบ็กอัปสำหรับ '{0}' แล้ว"
 
 #: src/views/bottle_details.py:258
 #, python-brace-format
 msgid "Backup failed for '{0}'."
-msgstr ""
+msgstr "ข้อผิดพลาดในการแบ็กอัป '{0}'"
 
 #: src/views/bottle_details.py:276
 msgid "Export"
-msgstr ""
+msgstr "ส่งออก"
 
 #: src/views/bottle_details.py:306
 msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr ""
+msgstr "คุณแน่ใจหรือไม่ที่จะลบขวดนี้และไฟล์ทั้งหมด?"
 
 #: src/views/bottle_details.py:382
 msgid ""
@@ -626,32 +624,32 @@ msgstr ""
 
 #: src/views/bottle_preferences.py:249
 msgid "Choose working directory for executables"
-msgstr ""
+msgstr "เลือกไดเรกทอรีในการทำงานของ Executables"
 
 #: src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
-msgstr ""
+msgstr "เพิ่ม '{0}' แล้ว"
 
 #: src/views/bottle_programs.py:87
 msgid "Choose an executable path"
-msgstr ""
+msgstr "เลือก Path ของ Executable"
 
 #: src/views/bottle_programs.py:89
 msgid "Add"
-msgstr ""
+msgstr "เพิ่ม"
 
 #: src/views/details.py:148
 msgid "Details & Utilities"
-msgstr ""
+msgstr "รายละเอียดและเครื่องมือ"
 
 #: src/views/details.py:152 src/ui/preferences.ui:6 src/ui/window.ui:30
 msgid "Preferences"
-msgstr ""
+msgstr "การตั้งค่า"
 
 #: src/views/details.py:156
 msgid "Dependencies"
-msgstr ""
+msgstr "Dependencies"
 
 #: src/views/details.py:160 src/ui/details-bottle.ui:232
 msgid "Programs"
@@ -659,7 +657,7 @@ msgstr "โปรแกรม"
 
 #: src/views/details.py:161
 msgid "Found in your bottle's Start menu."
-msgstr ""
+msgstr "พบใน Start menu ของขวดของคุณ"
 
 #: src/views/details.py:164 src/ui/new.ui:116
 msgid "Versioning"
@@ -671,49 +669,48 @@ msgstr "ตัวติดตั้ง"
 
 #: src/views/details.py:172 src/ui/details-bottle.ui:280
 msgid "Task Manager"
-msgstr ""
+msgstr "ตัวจัดการงาน"
 
 #: src/views/importer.py:89
 msgid "Backup imported successfully."
-msgstr ""
+msgstr "นำเข้าแบ็กอัปเสร็จสมบูรณ์"
 
 #: src/views/importer.py:91
 msgid "Import failed."
-msgstr ""
+msgstr "นำเข้าล้มเหลว"
 
 #: src/views/importer.py:103 src/views/importer.py:132
 msgid "Importing backup…"
-msgstr ""
+msgstr "กำลังนำเข้าแบ็กอัป…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
-msgstr ""
+msgstr "เลือกไฟล์แบ็กอัป"
 
 #: src/views/importer.py:117 src/views/importer.py:146
 msgid "Import"
-msgstr ""
+msgstr "นำเข้า"
 
 #: src/views/importer.py:144
 msgid "Choose a configuration file"
-msgstr ""
+msgstr "เลือกไฟล์การตั้งค่า"
 
 #: src/views/list.py:60 src/views/list.py:66
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: src/views/list.py:103
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
-msgstr ""
+msgstr "พบ Arguments สำหรับ Executable: [{executable}]"
 
 #: src/views/list.py:249
-#, fuzzy
 msgid "Your Bottles"
-msgstr "ขวด"
+msgstr "ขวดของคุณ"
 
 #: src/views/new.py:135
 msgid "Choose a recipe file"
-msgstr ""
+msgstr "เลือกไฟล์สูตร"
 
 #: src/views/new.py:151
 msgid "Choose where to store the bottle"
@@ -733,10 +730,11 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"ไม่พบ Steam หรือ Bottles ไม่มีสิทธิ์มากพอ ดู https://docs.usebottles.com/"
+"flatpak/cant-enable-steam-proton-manager"
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
-#, fuzzy
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
 msgstr "เลือกที่จัดเก็บขวดใหม่ (จะไม่ย้ายขวดที่สร้างไว้ก่อนหน้านี้)"
@@ -754,38 +752,37 @@ msgid "Upgrade"
 msgstr "อัปเกรด"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "ตัวติดตั้ง"
+msgstr "กำลังติดตั้ง…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr ""
+msgstr "Manifest สำหรับ {0}"
 
 #: src/widgets/dependency.py:166
 #, python-brace-format
 msgid "'{0}' installed."
-msgstr ""
+msgstr "ติดตั้ง '{0}' แล้ว"
 
 #: src/widgets/importer.py:66
 #, python-brace-format
 msgid "'{0}' imported."
-msgstr ""
+msgstr "นำเข้า '{0}' แล้ว"
 
 #: src/widgets/installer.py:87
 #, python-brace-format
 msgid "Review for {0}"
-msgstr ""
+msgstr "รีวิวสำหรับ {0}"
 
 #: src/widgets/installer.py:102
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "ตัวติดตั้งล้มเหลวด้วยข้อผิดพลาดที่ไม่รู้จัก"
 
 #: src/widgets/installer.py:133
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} installed."
-msgstr "ตัวถอนการติดตั้ง"
+msgstr "ติดตั้ง {0} แล้ว"
 
 #: src/widgets/installer.py:153
 #, python-brace-format
@@ -795,56 +792,56 @@ msgstr "ขั้นตอนที่ {self.__step} จาก {self.steps}"
 #: src/widgets/program.py:221
 #, python-brace-format
 msgid "'{0}' launched."
-msgstr ""
+msgstr "เปิด '{0}' แล้ว"
 
 #: src/widgets/program.py:227
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' launched with Steam."
-msgstr "เปิดด้วยเทอร์มินัล"
+msgstr "เปิด {0} แล้วด้วย Steam"
 
 #: src/widgets/program.py:248
 #, python-brace-format
 msgid "'{0}' hidden."
-msgstr ""
+msgstr "'{0}' ถูกซ่อน"
 
 #: src/widgets/program.py:250
 #, python-brace-format
 msgid "'{0}' showed."
-msgstr ""
+msgstr "แสดง '{0}' แล้ว"
 
 #: src/widgets/program.py:273
 #, python-brace-format
 msgid "'{0}' removed."
-msgstr ""
+msgstr "'{0}' ถูกนำออกแล้ว"
 
 #: src/widgets/program.py:287
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
-msgstr ""
+msgstr "'{0}' ถูกเปลี่ยนชื่อเป็น '{1}'"
 
 #: src/widgets/program.py:307
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr ""
+msgstr "สร้าง Desktop entry สำหรับ '{0}' แล้ว"
 
 #: src/widgets/program.py:328
 #, python-brace-format
 msgid "'{0}' added to your library"
-msgstr ""
+msgstr "เพิ่ม '{0}' ในไลบรารีแล้ว"
 
 #: src/widgets/program.py:333
 #, python-brace-format
 msgid "'{0}' added to your Steam library"
-msgstr ""
+msgstr "เพิ่ม '{0}' ในไลบรารี Steam แล้ว"
 
 #: src/widgets/state.py:92
 #, python-brace-format
 msgid "Index for state {0}"
-msgstr ""
+msgstr "Index สำหรับสถานะ {0}"
 
 #: src/utils/connection.py:67
 msgid "You are offline, unable to download."
-msgstr ""
+msgstr "คุณกำลังออฟไลน์ ไม่สามารถดาวน์โหลดได้"
 
 #: src/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
@@ -856,7 +853,7 @@ msgstr "จัดการ wineprefix อย่างง่ายดายด้
 
 #: src/ui/component-entry.ui:6
 msgid "Component version"
-msgstr ""
+msgstr "เวอร์ชันของชิ้นส่วน"
 
 #: src/ui/component-entry.ui:15 src/ui/dependency-entry.ui:34
 #: src/ui/program-entry.ui:88
@@ -865,7 +862,7 @@ msgstr "ถอนการติดตั้ง"
 
 #: src/ui/component-entry.ui:26 src/ui/importer-entry.ui:15
 msgid "Browse files"
-msgstr ""
+msgstr "เรียกดูไฟล์"
 
 #: src/ui/component-entry.ui:37
 msgid ""
@@ -878,12 +875,10 @@ msgid "Download & Install"
 msgstr "ดาวน์โหลดและติดตั้ง"
 
 #: src/ui/component-entry.ui:61
-#, fuzzy
 msgid "0%"
 msgstr "0%"
 
 #: src/ui/dependency-entry.ui:18
-#, fuzzy
 msgid "Show Manifest"
 msgstr "แสดง Manifest"
 
@@ -897,11 +892,11 @@ msgstr "ติดตั้งใหม่"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr ""
+msgstr "รายงานบั๊ก…"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "ดาวน์โหลดและติดตั้ง Dependency นี้"
 
 #: src/ui/dependency-entry.ui:89
 msgid ""
@@ -915,12 +910,11 @@ msgstr "การแก้ปัญหา"
 
 #: src/ui/details-bottle.ui:26
 msgid "Browse Files…"
-msgstr ""
+msgstr "เรียกดูไฟล์…"
 
 #: src/ui/details-bottle.ui:31
-#, fuzzy
 msgid "Duplicate Bottle…"
-msgstr "ลบขวด"
+msgstr "โคลนขวด…"
 
 #: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
@@ -928,7 +922,7 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:37
 msgid "Full Backup…"
-msgstr ""
+msgstr "แบ็กอัปเต็มรูปแบบ…"
 
 #: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
 msgid ""
@@ -937,14 +931,12 @@ msgid ""
 msgstr ""
 
 #: src/ui/details-bottle.ui:43
-#, fuzzy
 msgid "Export Configuration…"
-msgstr "ส่งออกการตั้งค่า"
+msgstr "ส่งออกการตั้งค่า…"
 
 #: src/ui/details-bottle.ui:51
-#, fuzzy
 msgid "Delete Bottle…"
-msgstr "ลบขวด"
+msgstr "ลบขวด…"
 
 #: src/ui/details-bottle.ui:86
 msgid "Kill all Processes"
@@ -968,12 +960,11 @@ msgstr "รีบูต"
 
 #: src/ui/details-bottle.ui:117
 msgid "Run with Arguments…"
-msgstr ""
+msgstr "รันด้วย Arguments…"
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Launch in Terminal…"
-msgstr "เปิดด้วยเทอร์มินัล"
+msgstr "เปิดด้วยเทอร์มินัล…"
 
 #: src/ui/details-bottle.ui:148
 msgid "My bottle"
@@ -985,12 +976,12 @@ msgstr "Win64"
 
 #: src/ui/details-bottle.ui:168 src/ui/new.ui:76
 msgid "Environment"
-msgstr ""
+msgstr "สภาพแวดล้อม"
 
 #: src/ui/details-bottle.ui:176 src/ui/details-preferences.ui:304
 #: src/ui/new.ui:140
 msgid "Runner"
-msgstr ""
+msgstr "รันเนอร์"
 
 #: src/ui/details-bottle.ui:184 src/ui/list-entry.ui:23
 msgid "Versioning enabled for this bottle"
@@ -1006,7 +997,7 @@ msgstr "0"
 
 #: src/ui/details-bottle.ui:210
 msgid "Run Executable…"
-msgstr ""
+msgstr "รัน Executable…"
 
 #: src/ui/details-bottle.ui:226
 msgid "Layers"
@@ -1014,10 +1005,9 @@ msgstr "เลเยอร์"
 
 #: src/ui/details-bottle.ui:237
 msgid "Tools"
-msgstr ""
+msgstr "เครื่องมือ"
 
 #: src/ui/details-bottle.ui:241
-#, fuzzy
 msgid "Command Line"
 msgstr "คอมมานด์ไลน์"
 
@@ -1026,7 +1016,6 @@ msgid "Run commands inside the Bottle."
 msgstr "รันคำสั่งในขวด"
 
 #: src/ui/details-bottle.ui:253
-#, fuzzy
 msgid "Registry Editor"
 msgstr "ตัวแก้ Registry"
 
@@ -1059,7 +1048,6 @@ msgid "Debug wine processes."
 msgstr ""
 
 #: src/ui/details-bottle.ui:304
-#, fuzzy
 msgid "Wine Configuration"
 msgstr "การตั้งค่า Wine"
 
@@ -1072,17 +1060,14 @@ msgid "Uninstaller"
 msgstr "ตัวถอนการติดตั้ง"
 
 #: src/ui/details-bottle.ui:317
-#, fuzzy
 msgid "Uninstall programs using Wine uninstaller."
 msgstr "ถอนการติดตั้งโปรแกรมด้วยตัวถอนการติดตั้งของ Wine"
 
 #: src/ui/details-bottle.ui:328
-#, fuzzy
 msgid "Control Panel"
 msgstr "แผงควบคุม"
 
 #: src/ui/details-bottle.ui:329
-#, fuzzy
 msgid "Access the internal Wine Control Panel."
 msgstr "เข้าถึงแผงควบคุมภายในของ Wine"
 
@@ -1091,9 +1076,8 @@ msgid "Use the Installers section or the \"Run executable\" button."
 msgstr ""
 
 #: src/ui/details-dependencies.ui:13
-#, fuzzy
 msgid "Search for dependencies…"
-msgstr "เลือก Dependencies"
+msgstr "ค้นหา Dependencies…"
 
 #: src/ui/details-dependencies.ui:22
 msgid ""
@@ -1117,9 +1101,8 @@ msgid "Report missing dependency"
 msgstr ""
 
 #: src/ui/details-dependencies.ui:68
-#, fuzzy
 msgid "Read documentation about dependencies."
-msgstr "อ่านเอกสารเกี่ยวกับ dependencies\t"
+msgstr "อ่านเอกสารเกี่ยวกับ dependencies"
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
 #: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:75
@@ -1128,7 +1111,6 @@ msgid "Documentation"
 msgstr "เอกสาร"
 
 #: src/ui/details-dependencies.ui:80
-#, fuzzy
 msgid "Install Selected"
 msgstr "ติดตั้งที่เลือกไว้"
 
@@ -1137,7 +1119,6 @@ msgid "We strongly advise against installing multiple dependencies at once."
 msgstr ""
 
 #: src/ui/details-dependencies.ui:88
-#, fuzzy
 msgid "Select Dependencies"
 msgstr "เลือก Dependencies"
 
@@ -1151,9 +1132,8 @@ msgid "Search for Programs…"
 msgstr ""
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
-msgstr "ตัวติดตั้ง"
+msgstr "ไม่พบตัวติดตั้ง"
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -1237,7 +1217,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:108 src/ui/preferences.ui:192
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: src/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
@@ -1355,7 +1335,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:262
 msgid "Renderer"
-msgstr ""
+msgstr "Renderer"
 
 #: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
@@ -1367,11 +1347,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:270
 msgid "gdi"
-msgstr ""
+msgstr "gdi"
 
 #: src/ui/details-preferences.ui:271
 msgid "vulkan"
-msgstr ""
+msgstr "Vulkan"
 
 #: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
 msgid "System"
@@ -1391,14 +1371,12 @@ msgstr ""
 
 #. TODO: replace with ComboRow
 #: src/ui/details-preferences.ui:324
-#, fuzzy
 msgid "DXVK Version"
-msgstr "ระบบเวอร์ชัน"
+msgstr "เวอร์ชันของ DXVK"
 
 #: src/ui/details-preferences.ui:348
-#, fuzzy
 msgid "VKD3D Version"
-msgstr "ระบบเวอร์ชัน"
+msgstr "เวอร์ชันของ VKD3D"
 
 #: src/ui/details-preferences.ui:372
 msgid "DXVK NVAPI Version"
@@ -1426,12 +1404,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:440
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
-msgstr "ความสูงของหน้าต่าง"
+msgstr "เวอร์ชันของวินโดวส์"
 
 #: src/ui/details-preferences.ui:458
 msgid "Updating Windows version, please wait…"
@@ -1462,9 +1439,8 @@ msgid "Manage Sandbox permissions"
 msgstr ""
 
 #: src/ui/details-preferences.ui:520
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "ขวด"
+msgstr "รันไทม์ Bottles"
 
 #: src/ui/details-preferences.ui:521
 msgid ""
@@ -1474,7 +1450,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:532
 msgid "Steam Runtime"
-msgstr ""
+msgstr "รันไทม์ Steam"
 
 #: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
@@ -1490,7 +1466,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:556
 msgid "Gamescope"
-msgstr ""
+msgstr "Gamescope"
 
 #: src/ui/details-preferences.ui:557
 msgid "Use the Gamescope micro-compositor."
@@ -1582,9 +1558,8 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr ""
 
 #: src/ui/details-programs.ui:9
-#, fuzzy
 msgid "No Programs found"
-msgstr "โปรแกรม"
+msgstr "ไม่พบโปรแกรม"
 
 #: src/ui/details-programs.ui:10
 msgid ""
@@ -1597,9 +1572,8 @@ msgid "Toggle Hidden"
 msgstr ""
 
 #: src/ui/details-programs.ui:39
-#, fuzzy
 msgid "Read documentation about programs"
-msgstr "อ่านเอกสารเกี่ยวกับ dependencies\t"
+msgstr "อ่านเอกสารเกี่ยวกับโปรแกรม"
 
 #: src/ui/details-programs.ui:50
 msgid "Add a custom executable path"
@@ -1618,9 +1592,8 @@ msgid "Stop process"
 msgstr ""
 
 #: src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
-msgstr "ตัวติดตั้ง"
+msgstr "ไม่พบสถานะ"
 
 #: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
@@ -1706,9 +1679,8 @@ msgid "Existing Drives"
 msgstr ""
 
 #: src/ui/dialog-duplicate.ui:17
-#, fuzzy
 msgid "Duplicate Bottle"
-msgstr "ลบขวด"
+msgstr "โคลนขวด"
 
 #: src/ui/dialog-duplicate.ui:38
 msgid "Duplicate"
@@ -1844,9 +1816,8 @@ msgid "Custom Arguments"
 msgstr ""
 
 #: src/ui/dialog-launch-options.ui:50
-#, fuzzy
 msgid "Command Arguments"
-msgstr "คอมมานด์ไลน์"
+msgstr "Arguments ของคำสั่ง"
 
 #: src/ui/dialog-launch-options.ui:51
 #, python-format
@@ -1956,9 +1927,8 @@ msgid "Search again for prefixes"
 msgstr ""
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
-msgstr "โปรแกรม"
+msgstr "ไม่พบ Prefixes"
 
 #: src/ui/importer.ui:46
 msgid ""
@@ -1975,9 +1945,8 @@ msgid "Full Archive"
 msgstr ""
 
 #: src/ui/installer-entry.ui:18
-#, fuzzy
 msgid "Show Manifest…"
-msgstr "แสดง Manifest"
+msgstr "แสดง Manifest…"
 
 #: src/ui/installer-entry.ui:23
 msgid "Read Review…"
@@ -2142,18 +2111,16 @@ msgid "32 bit"
 msgstr ""
 
 #: src/ui/new.ui:168
-#, fuzzy
 msgid "Custom Recipe"
-msgstr "กำหนดเอง"
+msgstr "สูตรที่กำหนดเอง"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
 msgstr ""
 
 #: src/ui/new.ui:185
-#, fuzzy
 msgid "Custom Path"
-msgstr "กำหนดเอง"
+msgstr "Path ที่กำหนดเอง"
 
 #: src/ui/new.ui:186
 msgid "Store this bottle in another place."
@@ -2178,9 +2145,8 @@ msgid ""
 msgstr ""
 
 #: src/ui/onboard.ui:71
-#, fuzzy
 msgid "Windows in Bottles"
-msgstr "ความกว้างของหน้าต่าง"
+msgstr "วินโดวส์ใน Bottles"
 
 #: src/ui/onboard.ui:72
 msgid ""
@@ -2233,9 +2199,8 @@ msgid "Show notifications for downloads and installs."
 msgstr ""
 
 #: src/ui/preferences.ui:48
-#, fuzzy
 msgid "Temp Files"
-msgstr "ทำความสะอาดไฟล์ชั่วคราว"
+msgstr "ไฟล์ชั่วคราว"
 
 #: src/ui/preferences.ui:49
 msgid "Clean temp files when Bottles launches?"
@@ -2250,9 +2215,8 @@ msgid "Close Bottles after starting a program from the file manager."
 msgstr ""
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "การตั้งค่า Wine"
+msgstr ""
 
 #: src/ui/preferences.ui:77
 msgid "Steam Proton Prefixes"
@@ -2312,7 +2276,7 @@ msgstr ""
 
 #: src/ui/preferences.ui:204
 msgid "Runtime"
-msgstr ""
+msgstr "รันไทม์"
 
 #: src/ui/preferences.ui:209
 msgid "WineBridge"
@@ -2359,14 +2323,12 @@ msgid "Rename…"
 msgstr ""
 
 #: src/ui/program-entry.ui:69
-#, fuzzy
 msgid "Hide Program"
-msgstr "โปรแกรม"
+msgstr "ซ่อนโปรแกรม"
 
 #: src/ui/program-entry.ui:74
-#, fuzzy
 msgid "Show Program"
-msgstr "โปรแกรม"
+msgstr "แสดงโปรแกรม"
 
 #: src/ui/program-entry.ui:79
 msgid "Remove from List"
