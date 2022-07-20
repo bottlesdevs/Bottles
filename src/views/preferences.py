@@ -240,7 +240,7 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
                 exp_lutris.add_row(_entry)
                 count["lutris"] += 1
             elif _runner_name.startswith("vaniglia"):
-                exp_lutris.add_row(_entry)
+                exp_vaniglia.add_row(_entry)
                 count["vaniglia"] += 1
             else:
                 exp_other.add_row(_entry)
