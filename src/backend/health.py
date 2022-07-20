@@ -45,6 +45,7 @@ class HealthChecker:
     markdown: bool = False
     xdpyinfo: bool = False
     ImageMagick: bool = False
+    FVS: bool = False
     glibc_min: str = ""
     kernel: str = ""
     kernel_version: str = ""
@@ -66,6 +67,7 @@ class HealthChecker:
         self.markdown = self.check_markdown()
         self.xdpyinfo = self.check_xdpyinfo()
         self.ImageMagick = self.check_ImageMagick()
+        self.FVS = self.check_FVS()
         self.glibc_min = is_glibc_min_available()
         self.bottles_envs = self.get_bottles_envs()
         self.check_system_info()
@@ -156,6 +158,14 @@ class HealthChecker:
         if res is None:
             return False
         return True
+
+    @staticmethod
+    def check_FVS():
+        try:
+            from fvs.repo import FVSRepo
+            return True
+        except ModuleNotFoundError:
+            return False
 
     @staticmethod
     def __get_distro():
