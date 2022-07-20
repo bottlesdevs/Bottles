@@ -65,7 +65,6 @@ class MainWindow(Adw.ApplicationWindow):
     btn_forum = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
-    btn_health = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     view_switcher = Gtk.Template.Child()
@@ -134,7 +133,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_preferences.connect("clicked", self.show_prefs_view)
         self.btn_importer.connect("clicked", self.show_importer_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
-        self.btn_health.connect("clicked", self.show_health_view)
         self.__on_start()
 
         if self.arg_exe:
@@ -260,27 +258,6 @@ class MainWindow(Adw.ApplicationWindow):
     def go_back(self, *args):
         self.main_leaf.navigate(direction=Adw.NavigationDirection.BACK)
 
-    def show_health_view(self, _widget):
-        """
-        This method is called when the user presses the health button.
-        It will show the health view.
-        """
-
-        def show_journal_view(_widget):
-            JournalDialog().present()
-
-        ht = HealthChecker().get_results(plain=True)
-        SourceDialog(
-            parent=self,
-            title=_("Health check"),
-            message=ht,
-            buttons=[{
-                "callback": show_journal_view,
-                "icon": "document-open-recent-symbolic",
-                "tooltip": _("Journal browser")
-            }]
-        ).present()
-
     def show_details_view(self, widget=False, config=dict):
         self.main_leaf.set_visible_child(self.page_details)
         self.page_details.set_config(config)
@@ -369,6 +346,7 @@ class MainWindow(Adw.ApplicationWindow):
     def show_about_dialog(self, *args):
         builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
         about_window = builder.get_object("about_window")
+        about_window.set_debug_info(HealthChecker().get_results(plain=True))
         about_window.set_transient_for(self)
         about_window.present()
 
