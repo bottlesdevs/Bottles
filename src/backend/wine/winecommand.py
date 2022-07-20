@@ -104,9 +104,7 @@ class WineCommand:
     def __get_cwd(self, cwd) -> str:
         config = self.config
 
-        if config.get("IsLayer"):
-            bottle = f"{Paths.layers}/{config['Path']}"  # TODO: should not be handled here, just for testing
-        elif config.get("Environment", "Custom") == "Steam":
+        if config.get("Environment", "Custom") == "Steam":
             bottle = config.get("Path")
         else:
             bottle = ManagerUtils.get_bottle_path(config)
@@ -138,9 +136,7 @@ class WineCommand:
         if environment is None:
             environment = {}
 
-        if config.get("IsLayer"):
-            bottle = f"{Paths.layers}/{config['Path']}"  # TODO: should not be handled here, just for testing
-        elif config.get("Environment", "Custom") == "Steam":
+        if config.get("Environment", "Custom") == "Steam":
             bottle = config.get("Path")
         else:
             bottle = ManagerUtils.get_bottle_path(config)

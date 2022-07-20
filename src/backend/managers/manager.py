@@ -839,9 +839,6 @@ class Manager:
         TODO: move to bottle.py (Bottle manager)
         """
         _name = config.get('Name')
-        if config.get("IsLayer"):
-            return Result(status=True, data={"config": {}})
-
         logging.info(f"Setting Key {key}={value} for bottle {_name}…")
 
         _config = config
