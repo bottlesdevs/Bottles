@@ -22,7 +22,7 @@ class GtkUtils:
     @staticmethod
     def validate_entry(entry) -> bool:
         text = entry.get_text()
-        if re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text):
+        if re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text) or len(text) == 0 or text.isspace():
             entry.add_css_class("error")
             return False
         else:
