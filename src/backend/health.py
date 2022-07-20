@@ -42,6 +42,8 @@ class HealthChecker:
     patool: bool = False
     icoextract: bool = False
     pefile: bool = False
+    yaml: bool = False
+    orjson: bool = False
     markdown: bool = False
     xdpyinfo: bool = False
     ImageMagick: bool = False
@@ -59,15 +61,6 @@ class HealthChecker:
         self.wayland = self.check_wayland()
         self.xwayland = self.check_xwayland()
         self.gpus = self.check_gpus()
-        self.cabextract = self.check_cabextract()
-        self.p7zip = self.check_p7zip()
-        self.patool = self.check_patool()
-        self.icoextract = self.check_icoextract()
-        self.pefile = self.check_pefile()
-        self.markdown = self.check_markdown()
-        self.xdpyinfo = self.check_xdpyinfo()
-        self.ImageMagick = self.check_ImageMagick()
-        self.FVS = self.check_FVS()
         self.glibc_min = is_glibc_min_available()
         self.bottles_envs = self.get_bottles_envs()
         self.check_system_info()
@@ -77,6 +70,29 @@ class HealthChecker:
             "MemAvailable": "n/a"
         }
         self.get_ram_data()
+        if not "FLATPAK_ID" in os.environ:
+            self.cabextract = self.check_cabextract()
+            self.p7zip = self.check_p7zip()
+            self.patool = self.check_patool()
+            self.icoextract = self.check_icoextract()
+            self.pefile = self.check_pefile()
+            self.yaml = self.check_yaml()
+            self.orjson = self.check_orjson()
+            self.markdown = self.check_markdown()
+            self.xdpyinfo = self.check_xdpyinfo()
+            self.ImageMagick = self.check_ImageMagick()
+            self.FVS = self.check_FVS()
+        else:
+            self.cabextract = True
+            self.p7zip = True
+            self.patool = True
+            self.icoextract = True
+            self.pefile = True
+            self.yaml = True
+            self.orjson = True
+            self.markdown = True
+            self.ImageMagick = True
+            self.FVS = True
 
     @staticmethod
     def check_gpus():
@@ -141,6 +157,22 @@ class HealthChecker:
     def check_markdown():
         try:
             import markdown
+            return True
+        except ModuleNotFoundError:
+            return False
+
+    @staticmethod
+    def check_yaml():
+        try:
+            import yaml
+            return True
+        except ModuleNotFoundError:
+            return False
+
+    @staticmethod
+    def check_orjson():
+        try:
+            import orjson
             return True
         except ModuleNotFoundError:
             return False
@@ -264,18 +296,24 @@ class HealthChecker:
             },
             "Disk": self.disk,
             "RAM": self.ram,
-            "Tools and Libraries": {
+            "Bottles_envs": self.bottles_envs
+        }
+
+        if not "FLATPAK_ID" in os.environ:
+            results["Tools and Libraries"] = {
                 "cabextract": self.cabextract,
                 "p7zip": self.p7zip,
                 "patool": self.patool,
                 "glibc_min": self.glibc_min,
                 "icoextract": self.icoextract,
                 "pefile": self.pefile,
+                "yaml": self.yaml,
+                "orjson": self.orjson,
                 "markdown": self.markdown,
+                "ImageMagick": self.ImageMagick,
+                "FVS": self.FVS,
                 "xdpyinfo": self.xdpyinfo
-            },
-            "Bottles_envs": self.bottles_envs
-        }
+            }
 
         if plain:
             _yaml = yaml.dump(results, sort_keys=False, indent=4)
