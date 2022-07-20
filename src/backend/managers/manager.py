@@ -735,12 +735,15 @@ class Manager:
                 conf_file_yaml["Latest_Executables"] = []
 
             # Migrate old programs to [id] and [name]
+            # TODO: remove this migration after 2022.9.28
             _temp = {}
             _changed = False
             for k, v in conf_file_yaml.get("External_Programs").items():
                 _uuid = str(uuid.uuid4())
                 _k = k
                 _v = v
+                if isinstance(v, str):
+                    continue
                 try:
                     uuid.UUID(k)
                 except (ValueError, TypeError):
