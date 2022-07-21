@@ -71,7 +71,7 @@ class StateEntry(Adw.ActionRow):
         self.queue.add_task()
         widget.set_sensitive(False)
         self.spinner.show()
-        self.spinner.start
+        self.spinner.start()
         RunAsync(
             task_func=self.versioning_manager.set_state,
             callback=self.set_completed,
