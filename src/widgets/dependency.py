@@ -163,7 +163,6 @@ class DependencyEntry(Adw.ActionRow):
         self.queue.end_task()
         if result is not None and result.status:
             if self.config["Parameters"]["versioning_automatic"]:
-                print("zi")
                 self.window.page_details.view_versioning.update()
             uninstaller = result.data.get("uninstaller")
             removed = result.data.get("removed")
