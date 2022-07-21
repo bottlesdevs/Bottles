@@ -3,33 +3,20 @@
     "tasks": [
         {
             "label": "Flatpak: build",
-            "command": "/usr/bin/flatpak-builder",
+            "command": "flatpak-spawn",
             "args": [
-                "build",
-                "com.usebottles.bottles.dev.json",
-                "--user",
-                "--install",
-                "--force-clean",
-                "-y",
-                "&&",
-                "GTK_THEME=Adwaita",
+                "--host",
                 "flatpak",
                 "run",
-                "com.usebottles.bottles"
-            ],
-            "type": "shell"
-        },
-        {
-            "label": "Flatpak: build-eos",
-            "command": "/usr/bin/flatpak-builder",
-            "args": [
+                "org.flatpak.Builder",
                 "build",
-                "com.usebottles.bottles.elementary.yml",
+                "com.usebottles.bottles.dev.yml",
                 "--user",
                 "--install",
                 "--force-clean",
-                "-y",
                 "&&",
+                "flatpak-spawn",
+                "--host",
                 "flatpak",
                 "run",
                 "com.usebottles.bottles"

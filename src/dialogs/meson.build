@@ -21,7 +21,9 @@ bottles_sources = [
   'protonalert.py',
   'sandbox.py',
   'installer.py',
-  'depscheck.py'
+  'depscheck.py',
+  'exclusionpatterns.py',
+  'upgradeversioning.py',
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)

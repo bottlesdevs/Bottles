@@ -39,6 +39,7 @@ class VersioningView(Adw.PreferencesPage):
     entry_state_comment = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     pref_page = Gtk.Template.Child()
+    btn_add = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -58,6 +59,10 @@ class VersioningView(Adw.PreferencesPage):
         self.btn_save.connect("clicked", self.add_state)
         self.btn_help.connect("clicked", open_doc_url, "bottles/versioning")
         self.entry_state_comment.connect("activate", self.add_state)
+
+        if self.config.get("Versioning"):
+            self.btn_add.set_sensitive(True)
+            self.btn_add.set_tooltip_text(_("Please migrate to the new Versioning system to create new states."))
 
     def empty_list(self):
         for r in self.__registry:

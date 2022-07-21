@@ -84,7 +84,7 @@
     <object class="GtkBox" id="actions">
         <property name="spacing">6</property>
         <child>
-            <object class="GtkMenuButton">
+            <object class="GtkMenuButton" id="btn_add">
                 <property name="tooltip-text" translatable="yes">Create new state</property>
                 <property name="popover">pop_state</property>
                 <property name="icon-name">list-add-symbolic</property>

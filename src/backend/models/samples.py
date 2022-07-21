@@ -60,6 +60,7 @@ class Samples:
             "use_steam_runtime": False,
             "sandbox": False,
             "versioning_compression": False,
+            "versioning_automatic": False,
             "versioning_exclusion_patterns": False,
         },
         "Sandbox": {
