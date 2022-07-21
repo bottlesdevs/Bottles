@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-26 17:54+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2022-07-23 12:17+0000\n"
+"Last-Translator: Pablo Munoz Alabau <pamual@posteo.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -175,22 +175,19 @@ msgstr "Conmuta la fecha de actualización en la lista de bottles."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Listado de aplicaciones de Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Conmutar la fecha de actualización en la lista"
+msgstr "Conmutar el listado de aplicaciones de Steam."
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Tienda de Epic Games .."
+msgstr "Listado de Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "Conmutar la fecha de actualización en la lista"
+msgstr "Conmutar el listado de Epic Games."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -253,25 +250,20 @@ msgstr ""
 "instaladores. Versión candidata para los ejecutores."
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Steam Proton"
+msgstr "Soporte de Proton de Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr ""
-"Conmutar la compatibilidad con los prefijos experimentales de Steam Proton."
+msgstr "Conmutar la compatibilidad con los prefijos de Proton de Steam."
 
 #: data/com.usebottles.bottles.gschema.xml:71
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "Experimentos:steam"
+msgstr "Experimentos:sandbox"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Conmutar el modo Biblioteca experimental."
+msgstr "Conmutar Sandbox experimental por botella."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -327,14 +319,12 @@ msgid "[Refresh] request received."
 msgstr "Se recibió la solicitud [Actualizar]."
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
 msgstr "Calculando…"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
-msgstr "Descargando…"
+msgstr "Cargando…"
 
 #: src/window.py:226
 msgid ""
@@ -541,9 +531,8 @@ msgid "Select"
 msgstr "Seleccionar"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "No variables de entorno definidas"
+msgstr "Variables de entorno no definidas."
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -567,9 +556,8 @@ msgstr ""
 "Elija una secuencia de comandos que debe ejecutarse después de la ejecución."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "Cerrar Bottles tras iniciar un programa"
+msgstr "Elija dónde iniciar el programa."
 
 #: src/dialogs/launchoptions.py:56
 #, python-brace-format
@@ -585,9 +573,8 @@ msgid "Choose the script"
 msgstr "Elija el script"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "Directorio de ejecución"
+msgstr "Elija el directorio de ejecución"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -708,9 +695,8 @@ msgid "Import failed."
 msgstr "Importación fallida."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
-msgstr "Importando respaldo.."
+msgstr "Importando respaldo…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
@@ -759,6 +745,8 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"Steam no fue encontrado o Bottles no tiene suficientes permisos. Visite "
+"https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
@@ -779,9 +767,8 @@ msgid "Upgrade"
 msgstr "Actualizar"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "Instalando DXVK…"
+msgstr "Instalando…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -1174,7 +1161,6 @@ msgid "Search for Programs…"
 msgstr "Buscar programas…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
 msgstr "No se encontraron instaladores"
 
@@ -1411,9 +1397,8 @@ msgid "System"
 msgstr "Sistema"
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "Versión de los componentes"
+msgstr "Gestionar la versión de los componentes"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1463,7 +1448,6 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
 msgstr "Versión de Windows"
 
@@ -1473,30 +1457,27 @@ msgstr "Actualizando la versión de Windows, por favor espere…"
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Choose the language to use with programs."
-msgstr "Elija un nuevo nombre para el programa seleccionado."
+msgstr "Elija el idioma a utilizar en los programas."
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
-msgstr ""
+msgstr "falso"
 
 #: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "Sandbox dedicada"
 
 #: src/ui/details-preferences.ui:499
-#, fuzzy
 msgid "Use a restricted/managed environment for this bottle."
-msgstr "Establezca un instalador diferente para esta botella."
+msgstr "Utilice un entorno restringido/gestionado para esta botella."
 
 #: src/ui/details-preferences.ui:502
-#, fuzzy
 msgid "Manage Sandbox permissions"
-msgstr "Gestionar versiones de DXVK"
+msgstr "Gestionar permisos del Sandbox"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
@@ -1663,7 +1644,6 @@ msgid "Stop process"
 msgstr "Detener el proceso"
 
 #: src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
 msgstr "No se encontraron estados"
 
@@ -1762,7 +1742,6 @@ msgid "Letter"
 msgstr "Letra"
 
 #: src/ui/dialog-drives.ui:49
-#, fuzzy
 msgid "Existing Drives"
 msgstr "Unidades existentes"
 
@@ -1783,9 +1762,8 @@ msgid "Duplicating…"
 msgstr "Duplicando…"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "La acción podría demorar un poco"
+msgstr "Tome un descanso, esto puede tardar."
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -1800,12 +1778,10 @@ msgstr ""
 "en que los procesos en ejecución se comportarán en su botella."
 
 #: src/ui/dialog-env-vars.ui:28
-#, fuzzy
 msgid "Variable Name"
 msgstr "Nombre de la variable"
 
 #: src/ui/dialog-env-vars.ui:36
-#, fuzzy
 msgid "Existing Variables"
 msgstr "Variables existentes"
 
@@ -1926,9 +1902,8 @@ msgid "Post-run Script"
 msgstr "Secuencia postejecución"
 
 #: src/ui/dialog-launch-options.ui:75
-#, fuzzy
 msgid "Choose a script"
-msgstr "Elija el script"
+msgstr "Elija un script"
 
 #: src/ui/dialog-launch-options.ui:124
 msgid "These settings will override the default settings for this executable."
@@ -1940,9 +1915,8 @@ msgid "Preferences Overrides"
 msgstr "Anulaciones de preferencias"
 
 #: src/ui/dialog-launch-options.ui:128
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
-msgstr "Restablecer a predeterminado"
+msgstr "Restablecer a los valores predeterminados de Bottles"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -1998,7 +1972,7 @@ msgstr "Nativo, después incorporado"
 
 #: src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Deshabilitado"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -2029,7 +2003,6 @@ msgid "Search again for prefixes"
 msgstr "Buscar de nuevo los prefijos"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
 msgstr "No se han encontrado prefijos"
 
