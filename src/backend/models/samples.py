@@ -61,7 +61,7 @@ class Samples:
             "sandbox": False,
             "versioning_compression": False,
             "versioning_automatic": False,
-            "versioning_exclusion_patterns": False,
+            "versioning_exclusion_patterns": [],
         },
         "Sandbox": {
             # "share_paths_ro": [], # TODO: implement

@@ -746,7 +746,7 @@ class PreferencesView(Adw.PreferencesPage):
         """Toggle the auto versioning for current bottle"""
         self.config = self.manager.update_config(
             config=self.config,
-            key="versioning_auto",
+            key="versioning_automatic",
             value=state,
             scope="Parameters"
         ).data["config"]

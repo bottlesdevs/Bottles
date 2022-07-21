@@ -348,8 +348,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mirkobrombin/FVS
-        tag: 0.1
-        commit: cecae479fff8d61ce9480fce067d6998bcb9d1d2
+        tag: "0.2"
+        commit: 4c68f020ab711b7ca28632c3071d473c7c8d9423
         x-checker-data:
           type: json
           url: https://api.github.com/repos/mirkobrombin/FVS/releases/latest
@@ -360,11 +360,11 @@ modules:
       - name: orjson
         buildsystem: simple
         build-commands:
-          - python3 setup.py install --prefix=/app --root=/
+          - pip3 install --prefix /app --no-deps orjson-*.whl
         sources:
-          - type: archive
-            url: https://github.com/ijl/orjson/archive/refs/tags/3.7.8.tar.gz
-            sha256: 6ad913aa0490b6db67ebd6879cbef57f90a84c1fe611454aeaa99afa03dc8213
+          - type: file
+            url: https://files.pythonhosted.org/packages/d6/79/174c198de7beb2f5ce06c41ecafb1aafc0714bb61a051ad9dfbc2fed76e8/orjson-3.7.8-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+            sha256: 7ef66e7c47e9531dfa3b3ffb791b548c84903570b0914b01acc5eeb56ff5bc33
 
   - name: runtime
     buildsystem: simple

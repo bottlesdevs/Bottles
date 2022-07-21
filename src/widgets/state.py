@@ -28,12 +28,11 @@ class StateEntry(Adw.ActionRow):
 
     # region Widgets
     btn_restore = Gtk.Template.Child()
-    btn_manifest = Gtk.Template.Child()
     spinner = Gtk.Template.Child()
 
     # endregion
 
-    def __init__(self, window, config, state, **kwargs):
+    def __init__(self, window, config, state, active, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -41,26 +40,29 @@ class StateEntry(Adw.ActionRow):
         self.manager = window.manager
         self.queue = window.page_details.queue
         self.state = state
-        self.state_name = "State: {0}".format(state[0])
+
+        if config.get("Versioning"):
+            self.state_name = "#{} - {}".format(
+                state[0], 
+                datetime.strptime(
+                    state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f")
+                ).strftime("%d %B %Y, %H:%M")
+                
+            self.set_subtitle(self.state[1]["Comment"])
+            if state[0] == config.get("State"):
+                self.add_css_class("current-state")
+        else:
+            self.state_name = "{} - {}".format(state[0], datetime.fromtimestamp(state[1]["timestamp"]).strftime("%d %B %Y, %H:%M"))
+            self.set_subtitle(state[1]["message"])
+            if active:
+                self.add_css_class("current-state")
+            
+        self.set_title(self.state_name)
         self.config = config
         self.versioning_manager = self.manager.versioning_manager
 
-        # format creation date
-        creation_date = datetime.strptime(
-            state[1].get("Creation_Date"), "%Y-%m-%d %H:%M:%S.%f"
-        )
-        creation_date = creation_date.strftime("%d %B %Y, %H:%M")
-        
-        self.state_name = "#{0} - {1}".format(state[0], creation_date)
-        # populate widgets
-        self.set_title(self.state_name)
-        self.set_subtitle(self.state[1].get("Comment"))
-        if state[0] == config.get("State"):
-            self.add_css_class("current-state")
-
         # connect signals
         self.btn_restore.connect("clicked", self.set_state)
-        self.btn_manifest.connect("clicked", self.open_index)
 
     def set_state(self, widget):
         """
@@ -72,33 +74,21 @@ class StateEntry(Adw.ActionRow):
         GLib.idle_add(self.spinner.start)
         RunAsync(
             task_func=self.versioning_manager.set_state,
+            callback=self.set_completed,
             config=self.config,
             state_id=self.state[0],
-            after=self.set_completed
         )
 
-    def open_index(self, widget):
-        """
-        Open the manifest for the state index in a new
-        dialog.
-        """
-        plain_state = self.versioning_manager.get_state_edits(
-            self.config,
-            self.state[0],
-            True
-        ).get("Plain")
-
-        SourceDialog(
-            parent=self.window,
-            title=_("Index for state {0}").format(self.state[0]),
-            message=plain_state
-        ).present()
-
-    def set_completed(self):
+    def set_completed(self, result, error=False):
         """
         Set completed status to the widget.
         """
+        if not self.config["Versioning"] and result.message:
+            self.window.show_toast(result.message)
         self.spinner.stop()
         self.btn_restore.set_visible(False)
         self.set_sensitive(True)
         self.queue.end_task()
+        self.manager.update_bottles()
+        config = self.manager.local_bottles[self.config["Path"]]
+        self.window.page_details.set_config(config)

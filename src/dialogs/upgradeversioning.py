@@ -60,19 +60,15 @@ class UpgradeVersioningDialog(Adw.Window):
         self.btn_cancel.set_label("Close")
 
         RunAsync(self.pulse)
-        # RunAsync(
-        #     task_func=BackupManager.duplicate_bottle,
-        #     callback=self.finish,
-        #     config=self.config,
-        #     name=name
-        # )
+        RunAsync(self.parent.manager.versioning_manager.update_system, self.finish, self.config)
     
     def __proceed(self, widget):
         self.stack_switcher.set_visible_child_name("page_info")
         self.btn_proceed.set_visible(False)
         self.btn_upgrade.set_visible(True)
 
-    def finish(self, result, error=None):
+    def finish(self, result, error=False):
+        self.btn_cancel.set_visible(True)
         self.parent.manager.update_bottles()
         self.stack_switcher.set_visible_child_name("page_finish")
 
