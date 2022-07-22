@@ -18,6 +18,7 @@ bottles_sources = [
   'vdf.py',
   'imagemagick.py',
   'proc.py',
+  'yaml.py'
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)

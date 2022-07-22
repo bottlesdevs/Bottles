@@ -16,7 +16,7 @@
 
 import os
 import uuid
-import yaml
+from bottles.backend.utils import yaml
 import shutil
 from glob import glob
 from typing import NewType
@@ -59,7 +59,7 @@ class LayersStore:
 
         if layer:
             with open(f"{layer}/layer.yml", "r") as f:
-                conf = yaml.safe_load(f)
+                conf = yaml.load(f)
                 return conf
 
         return {}

@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import yaml
+from bottles.backend.utils import yaml
 import urllib.request
 from http.client import RemoteDisconnected
 
@@ -36,7 +36,7 @@ class Repo:
 
         try:
             with urllib.request.urlopen(index) as url:
-                index = yaml.safe_load(url.read())
+                index = yaml.load(url.read())
                 logging.info(f"Catalog {self.name} loaded")
                 return index
         except (urllib.error.HTTPError, urllib.error.URLError, yaml.YAMLError):
@@ -49,7 +49,7 @@ class Repo:
                 res = u.read()
                 if plain:
                     return res.decode("utf-8")
-                return yaml.safe_load(res)
+                return yaml.load(res)
         except (urllib.error.HTTPError, urllib.error.URLError, RemoteDisconnected, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} manifest.")
             return

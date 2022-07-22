@@ -16,7 +16,7 @@
 
 import os
 import uuid
-import yaml
+from bottles.backend.utils import yaml
 from pathlib import Path
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
@@ -47,7 +47,7 @@ class LibraryManager:
             self.save_library()
         else:
             with open(self.library_path, 'r') as library_file:
-                self.__library = yaml.safe_load(library_file)
+                self.__library = yaml.load(library_file)
 
         if self.__library is None:
             self.__library = {}

@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import yaml
+from bottles.backend.utils import yaml
 import uuid
 import shutil
 import contextlib
@@ -96,7 +96,7 @@ class TemplateManager:
     @staticmethod
     def get_template_manifest(template: str):
         with open(os.path.join(Paths.templates, template, "template.yml"), "r") as f:
-            return yaml.safe_load(f)
+            return yaml.load(f)
 
     @staticmethod
     def get_templates():

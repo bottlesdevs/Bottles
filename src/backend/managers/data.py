@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import yaml
+from bottles.backend.utils import yaml
 import contextlib
 from pathlib import Path
 
@@ -43,7 +43,7 @@ class DataManager:
     def __get_data(self):
         try:
             with open(self.__p_data, 'r') as s:
-                self.__data = yaml.safe_load(s)
+                self.__data = yaml.load(s)
                 if self.__data == None:
                     raise AttributeError
         except FileNotFoundError:

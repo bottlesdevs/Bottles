@@ -20,7 +20,7 @@ import subprocess
 import random
 import time
 import uuid
-import yaml
+from bottles.backend.utils import yaml
 import shutil
 import fnmatch
 import contextlib
@@ -426,7 +426,7 @@ class Manager:
 
         if os.path.exists(manifest):
             with open(manifest, "r") as f:
-                data = yaml.safe_load(f)
+                data = yaml.load(f)
                 version = data.get("version")
                 if version:
                     version = f"runtime-{version}"
@@ -711,7 +711,7 @@ class Manager:
             if os.path.exists(_placeholder):
                 with open(_placeholder, "r") as f:
                     try:
-                        placeholder_yaml = yaml.safe_load(f)
+                        placeholder_yaml = yaml.load(f)
                         if placeholder_yaml.get("Path"):
                             _config = os.path.join(placeholder_yaml.get("Path"), "bottle.yml")
                         else:
@@ -723,7 +723,7 @@ class Manager:
                 if not os.path.exists(_config):
                     raise AttributeError
                 with open(_config, "r") as f:
-                    conf_file_yaml = yaml.safe_load(f)
+                    conf_file_yaml = yaml.load(f)
             except (FileNotFoundError, AttributeError, yaml.YAMLError):
                 return
 
@@ -1230,7 +1230,7 @@ class Manager:
         elif custom_environment:
             try:
                 with open(custom_environment, "r") as f:
-                    env = yaml.safe_load(f.read())
+                    env = yaml.load(f.read())
                     logging.warning("Using a custom environment recipe…")
                     log_update(_("(!) Using a custom environment recipe…"))
             except (FileNotFoundError, PermissionError, yaml.YAMLError):

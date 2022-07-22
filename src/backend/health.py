@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import yaml
+from bottles.backend.utils import yaml
 import shutil
 import platform
 import contextlib
@@ -42,7 +42,6 @@ class HealthChecker:
     patool: bool = False
     icoextract: bool = False
     pefile: bool = False
-    yaml: bool = False
     orjson: bool = False
     markdown: bool = False
     xdpyinfo: bool = False
@@ -76,7 +75,6 @@ class HealthChecker:
             self.patool = self.check_patool()
             self.icoextract = self.check_icoextract()
             self.pefile = self.check_pefile()
-            self.yaml = self.check_yaml()
             self.orjson = self.check_orjson()
             self.markdown = self.check_markdown()
             self.xdpyinfo = self.check_xdpyinfo()
@@ -88,7 +86,6 @@ class HealthChecker:
             self.patool = True
             self.icoextract = True
             self.pefile = True
-            self.yaml = True
             self.orjson = True
             self.markdown = True
             self.ImageMagick = True
@@ -157,14 +154,6 @@ class HealthChecker:
     def check_markdown():
         try:
             import markdown
-            return True
-        except ModuleNotFoundError:
-            return False
-
-    @staticmethod
-    def check_yaml():
-        try:
-            import yaml
             return True
         except ModuleNotFoundError:
             return False
@@ -307,7 +296,6 @@ class HealthChecker:
                 "glibc_min": self.glibc_min,
                 "icoextract": self.icoextract,
                 "pefile": self.pefile,
-                "yaml": self.yaml,
                 "orjson": self.orjson,
                 "markdown": self.markdown,
                 "ImageMagick": self.ImageMagick,

@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import yaml
+from bottles.backend.utils import yaml
 import uuid
 import shutil
 from glob import glob
@@ -118,7 +118,7 @@ class VersioningManager:
 
         try:
             states_file = open('%s/states/states.yml' % bottle_path)
-            states_file_yaml = yaml.safe_load(states_file)
+            states_file_yaml = yaml.load(states_file)
             states_file.close()
             states = states_file_yaml.get("States")
             logging.info(f"Found [{len(states)}] states for bottle: [{config['Name']}]")
@@ -237,7 +237,7 @@ class VersioningManager:
         """
         try:
             file = open('%s/states/%s/files.yml' % (ManagerUtils.get_bottle_path(config), state_id))
-            files = file.read() if plain else yaml.safe_load(file.read())
+            files = file.read() if plain else yaml.load(file.read())
             file.close()
             return files
         except (OSError, IOError, yaml.YAMLError):

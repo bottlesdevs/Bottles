@@ -16,7 +16,7 @@
 
 import os
 import uuid
-import yaml
+from bottles.backend.utils import yaml
 import shlex
 import shutil
 import subprocess
