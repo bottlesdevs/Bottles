@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
 "PO-Revision-Date: 2022-07-23 12:17+0000\n"
-"Last-Translator: Pablo Munoz Alabau <pamual@posteo.es>\n"
+"Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -1481,7 +1481,7 @@ msgstr "Gestionar permisos del Sandbox"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
-msgstr "Entorno de ejecución de Bottles"
+msgstr "Tiempo de ejecución de Bottles"
 
 #: src/ui/details-preferences.ui:521
 msgid ""
@@ -1493,7 +1493,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:532
 msgid "Steam Runtime"
-msgstr "Entorno de ejecución de Steam"
+msgstr "Tiempo de ejecución de Steam"
 
 #: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
@@ -1727,14 +1727,13 @@ msgid "Drives"
 msgstr "Unidades"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…).\n"
 "                                "
 msgstr ""
 "Son rutas asignadas del sistema anfitrión que el ejecutor reconoce como "
-"dispositivos (p. ej., C: o D:).\n"
+"dispositivos por el ejecutante (p. ej., C: o D:).\n"
 "                                "
 
 #: src/ui/dialog-drives.ui:25
@@ -2007,14 +2006,12 @@ msgid "No Prefixes Found"
 msgstr "No se han encontrado prefijos"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
 "No se encontraron Wine Prefixes de Lutris, PlayOnLinux, etc.\n"
-"Utilice el icono de la parte superior para importar una botella desde un "
-"respaldo"
+"Use el icono de la parte superior para importar una botella desde un respaldo"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
@@ -2161,9 +2158,8 @@ msgid "Custom"
 msgstr "Personalizado"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments."
-msgstr "Un entorno limpio para sus experimentos"
+msgstr "Un entorno limpio para sus experimentos."
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -2184,9 +2180,8 @@ msgid "Architecture"
 msgstr "Arquitectura"
 
 #: src/ui/new.ui:155
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr "Se recomienda usar 32 bits sólo si es estrictamente necesario"
+msgstr "Se recomienda usar 32 bits sólo si es estrictamente necesario."
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2249,9 +2244,8 @@ msgid "Almost Done"
 msgstr "Casi listo"
 
 #: src/ui/onboard.ui:80
-#, fuzzy
 msgid "We need a few more minutes to set everything up…"
-msgstr "Necesitamos unos minutos más para preparar todo.."
+msgstr "Necesitamos unos minutos más para preparar todo…"
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
@@ -2298,7 +2292,6 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "¿Limpiar archivos temporales cuando se lance Bottles?"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
 msgstr "Cerrar Bottles después de iniciar los programas"
 
@@ -2308,45 +2301,40 @@ msgstr ""
 "Cerrar Bottles después de iniciar un programa desde el gestor de archivos."
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "Operaciones"
+msgstr "Integraciones"
 
 #: src/ui/preferences.ui:77
 msgid "Steam Proton Prefixes"
 msgstr "Prefijos de Steam Proton"
 
 #: src/ui/preferences.ui:78
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Prefijos de Steam Proton"
+msgstr "Listar y gestionar los prefijos de Steam Proton."
 
 #: src/ui/preferences.ui:89
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Listar las aplicaciones de Steam en la lista de programas"
 
 #: src/ui/preferences.ui:90
-#, fuzzy
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
-"Enumere, administre y ejecute los programas instalados en esta Botella."
+msgstr "Requiere que Steam para Windows esté instalado en la botella."
 
 #: src/ui/preferences.ui:101
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "Listar Epic Games en la lista de programas"
 
 #: src/ui/preferences.ui:102
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "Requiere Epic Games Store instalado en la botella."
 
 #: src/ui/preferences.ui:115
 msgid "Advanced"
 msgstr "Avanzado"
 
 #: src/ui/preferences.ui:118
-#, fuzzy
 msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Ruta personalizada para las botellas (requiere reinicio)"
+msgstr "Ruta de las botellas personalizadas (requiere reiniciar)"
 
 #: src/ui/preferences.ui:152
 msgid "Runners"
@@ -2374,7 +2362,7 @@ msgstr "Núcleo"
 
 #: src/ui/preferences.ui:204
 msgid "Runtime"
-msgstr "Entorno de ejecución"
+msgstr "Tiempo de ejecución"
 
 #: src/ui/preferences.ui:209
 msgid "WineBridge"
@@ -2386,12 +2374,11 @@ msgstr "En fase de desarrollo (requiere reinicio)."
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "Depósito aislado por botella"
 
 #: src/ui/preferences.ui:235
-#, fuzzy
 msgid "In early development."
-msgstr "En fase de desarrollo (requiere reinicio)."
+msgstr "En fase de desarrollo."
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
