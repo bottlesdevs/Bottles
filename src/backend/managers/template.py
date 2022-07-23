@@ -51,8 +51,10 @@ class TemplateManager:
         del config["Update_Date"]
 
         ignored = [
+            "users/*",
             "dosdevices",
             "states",
+            ".fvs",
             "*.yml"
             ".*"
         ]
