@@ -67,14 +67,14 @@ class LibraryEntry(Gtk.Box):
             if entry['icon'] == "com.usebottles.bottles-program" or use_default:
                 self.img_icon.set_from_icon_name("com.usebottles.bottles-program")
             self.img_icon.set_pixel_size(24)
-            self.img_icon.set_visible(True)
+            self.img_icon..show()
 
         # TODO:
         # is has cover:
             # set img_cover visible
         # else
             # set label_no_cover visible
-        self.label_no_cover.set_visible(True)
+        self.label_no_cover..show()
 
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)
@@ -90,9 +90,9 @@ class LibraryEntry(Gtk.Box):
                 self.btn_menu,
                 self.sep
             ]:
-                w.set_visible(False)
+                w..hide()
                 w.set_sensitive(False)
-            self.btn_launch_steam.set_visible(True)
+            self.btn_launch_steam..show()
             self.btn_launch_steam.set_sensitive(True)
         '''
 

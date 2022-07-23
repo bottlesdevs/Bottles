@@ -62,7 +62,7 @@ class DuplicateDialog(Adw.Window):
         stack_switcher page when the process is finished.
         """
         self.stack_switcher.set_visible_child_name("page_duplicating")
-        self.btn_duplicate.set_visible(False)
+        self.btn_duplicate..hide()
         self.btn_cancel.set_label("Close")
 
         RunAsync(self.pulse)

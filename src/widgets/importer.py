@@ -45,7 +45,7 @@ class ImporterEntry(Adw.ActionRow):
         self.label_manager.set_text(prefix.get("Manager"))
 
         if prefix.get("Lock"):
-            self.img_lock.set_visible(True)
+            self.img_lock..show()
 
         self.label_manager.add_css_class("tag-%s" % prefix.get("Manager").lower())
 

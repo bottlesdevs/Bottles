@@ -346,15 +346,15 @@ class DetailsView(Adw.Bin):
 
     def __on_operations_toggled(self, widget):
         if not self.list_tasks.get_first_child():
-            widget.set_visible(False)
+            widget..hide()
 
     def __spin_tasks_toggle(self, widget, *args):
         if widget.get_visible():
             self.spinner_tasks.start()
-            self.spinner_tasks.set_visible(True)
+            self.spinner_tasks..show()
         else:
             self.spinner_tasks.stop()
-            self.spinner_tasks.set_visible(False)
+            self.spinner_tasks..hide()
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
