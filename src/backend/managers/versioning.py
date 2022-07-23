@@ -41,7 +41,9 @@ logging = Logger()
 
 # noinspection PyTypeChecker
 class VersioningManager:
-
+    # TODO: avoid instancing this class from the main manager when the old 
+    #       versioning system will be deprecated
+    
     def __init__(self, window, manager):
         self.window = window
         self.manager = manager
@@ -49,10 +51,31 @@ class VersioningManager:
     
     @staticmethod
     def __get_patterns(config: dict):
-        return [
+        patterns = [
             "*dosdevices*",
             "*cache*"
-        ] + config["Parameters"]["versioning_exclusion_patterns"]
+        ]
+        if config["Parameters"]["versioning_exclusion_patterns"]:
+            patterns += config["Versioning_Exclusion_Patterns"]
+        return patterns
+    
+    @staticmethod
+    def is_initialized(config: dict):
+        try:
+            repo = FVSRepo(
+                repo_path=ManagerUtils.get_bottle_path(config),
+                use_compression=config["Parameters"]["versioning_compression"],
+                no_init=True
+            )
+        except FileNotFoundError:
+            return False
+        return not repo.has_no_states
+    
+    @staticmethod
+    def re_initialize(config: dict):
+        fvs_path = os.path.join(ManagerUtils.get_bottle_path(config), ".fvs")
+        if os.path.exists(fvs_path):
+            shutil.rmtree(fvs_path)
     
     def update_system(self, config: dict):
         states_path = os.path.join(ManagerUtils.get_bottle_path(config), "states")

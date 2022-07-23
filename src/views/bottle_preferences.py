@@ -735,12 +735,31 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_versioning_compression(self, widget, state):
         """Toggle the versioning compression for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="versioning_compression",
-            value=state,
-            scope="Parameters"
-        ).data["config"]
+        def update():
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="versioning_compression",
+                value=state,
+                scope="Parameters"
+            ).data["config"]
+
+        def handle_response(_widget, response_id):
+            if response_id == "ok":
+                RunAsync(self.manager.versioning_manager.re_initialize, config=self.config)
+            _widget.destroy()
+
+        if self.manager.versioning_manager.is_initialized(self.config):
+            dialog = Adw.MessageDialog.new(
+                self.window,
+                _("Toggling Compression Require Re-Initialization"),
+                _("This will kepp all your files but will delete all states. Do you want to continue?"),
+            )
+            dialog.add_response("cancel", _("Cancel"))
+            dialog.add_response("ok", _("Confirm"))
+            dialog.connect("response", handle_response)
+            dialog.present()
+        else:
+            update()
     
     def __toggle_auto_versioning(self, widget, state):
         """Toggle the auto versioning for current bottle"""
