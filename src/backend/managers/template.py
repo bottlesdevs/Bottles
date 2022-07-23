@@ -59,7 +59,7 @@ class TemplateManager:
         _path = f"{Paths.templates}/{_uuid}"
         logging.info("Copying files …")
         with contextlib.suppress(FileNotFoundError):
-            shutil.copytree(bottle, _path, symlinks=False, ignore=shutil.ignore_patterns(*ignored))
+            shutil.copytree(bottle, _path, symlinks=True, ignore=shutil.ignore_patterns(*ignored))
 
         template = {
             "uuid": _uuid,
@@ -164,5 +164,5 @@ class TemplateManager:
         bottle = ManagerUtils.get_bottle_path(config)
         _path = os.path.join(Paths.templates, template['uuid'])
 
-        shutil.copytree(_path, bottle, symlinks=False, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.*'))
+        shutil.copytree(_path, bottle, symlinks=True, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.*'))
         logging.info("Template unpacked successfully!")
