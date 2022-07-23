@@ -86,7 +86,7 @@ class StateEntry(Adw.ActionRow):
         if not self.config["Versioning"] and result.message:
             self.window.show_toast(result.message)
         self.spinner.stop()
-        self.btn_restore.hide()
+        self.btn_restore.set_visible(False)
         self.set_sensitive(True)
         self.queue.end_task()
         self.manager.update_bottles()

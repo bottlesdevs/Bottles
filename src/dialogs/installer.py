@@ -132,8 +132,8 @@ class InstallerDialog(Adw.Window):
         try:
             url = self.manager.installer_manager.get_icon_url(self.installer[0])
             if url is None:
-                self.img_icon.hide()
-                self.img_icon_install.hide()
+                self.img_icon.set_visible(False)
+                self.img_icon_install.set_visible(False)
                 return
 
             with urllib.request.urlopen(url) as res:
@@ -144,8 +144,8 @@ class InstallerDialog(Adw.Window):
                 self.img_icon_install.set_pixel_size(78)
                 self.img_icon_install.set_from_pixbuf(pixbuf)
         except:
-            self.img_icon.hide()
-            self.img_icon_install.hide()
+            self.img_icon.set_visible(False)
+            self.img_icon_install.set_visible(False)
 
     def __check_resources(self, *args):
         self.__local_resources = self.manager.installer_manager.has_local_resources(self.installer)
@@ -157,7 +157,7 @@ class InstallerDialog(Adw.Window):
             _entry = LocalResourceEntry(self, resource)
             GLib.idle_add(self.group_resources.add, _entry)
 
-        self.btn_proceed.show()
+        self.btn_proceed.set_visible(True)
         self.stack.set_visible_child_name("page_resources")
 
     def __install(self, *args):

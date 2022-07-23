@@ -121,7 +121,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.stack_main.add_named(
             child=self.page_loading,
             name="page_loading"
-        ).hide()
+        ).set_visible(False)
         self.headerbar.add_css_class("flat")
 
         # Signal connections

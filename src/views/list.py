@@ -89,7 +89,7 @@ class BottleViewEntry(Adw.ActionRow):
         '''If config is broken'''
         if self.config.get("Broken"):
             for w in [self.btn_repair, self.icon_damaged]:
-                w.show()
+                w.set_visible(True)
                 w.set_sensitive(True)
 
             self.btn_run.set_sensitive(False)
@@ -106,8 +106,8 @@ class BottleViewEntry(Adw.ActionRow):
                 self.connect('activated', self.run_executable)
 
                 for w in [self.details_image, self.btn_run]:
-                    w.hide()
-                self.btn_run_executable.show()
+                    w.set_visible(False)
+                self.btn_run_executable.set_visible(True)
 
     '''Repair bottle'''
 
@@ -158,7 +158,7 @@ class BottleViewEntry(Adw.ActionRow):
         self.window.go_back()
         self.handler_block_by_func(self.show_details)
         self.spinner.start()
-        self.spinner.show()
+        self.spinner.set_visible(True)
         self.set_sensitive(False)
 
 
@@ -225,11 +225,11 @@ class BottleView(Adw.Bin):
         bottles = local_bottles.items()
 
         if len(bottles) == 0:
-            self.pref_page.hide()
-            self.bottle_status.show()
+            self.pref_page.set_visible(False)
+            self.bottle_status.set_visible(True)
         else:
-            self.pref_page.show()
-            self.bottle_status.hide()
+            self.pref_page.set_visible(True)
+            self.bottle_status.set_visible(False)
 
         for bottle in bottles:
             _entry = BottleViewEntry(self.window, bottle, self.arg_exe)
@@ -241,10 +241,10 @@ class BottleView(Adw.Bin):
                 self.list_steam.append(_entry)
 
             if self.list_steam.get_first_child() is None:
-                self.group_steam.hide()
+                self.group_steam.set_visible(False)
                 self.group_bottles.set_title("")
             else:
-                self.group_steam.show()
+                self.group_steam.set_visible(True)
                 self.group_bottles.set_title(_("Your Bottles"))
 
         self.arg_exe = None

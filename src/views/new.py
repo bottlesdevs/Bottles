@@ -114,7 +114,7 @@ class NewView(Adw.Window):
 
         # if running under Flatpak, hide row_sandbox
         if "FLATPAK_ID" in os.environ:
-            self.row_sandbox.hide()
+            self.row_sandbox.set_visible(False)
 
         # focus on the entry_name
         self.entry_name.grab_focus()
@@ -165,10 +165,10 @@ class NewView(Adw.Window):
 
     def create_bottle(self, *args):
         # set widgets states
-        self.btn_cancel.hide()
-        self.btn_create.hide()
-        self.page_create.hide()
-        self.title.hide()
+        self.btn_cancel.set_visible(False)
+        self.btn_create.set_visible(False)
+        self.page_create.set_visible(False)
+        self.title.set_visible(False)
         self.headerbar.add_css_class("flat")
         self.stack_create.set_visible_child_name("page_creating")
 
@@ -212,8 +212,8 @@ class NewView(Adw.Window):
     def finish(self, result, error=None):
         if not result or not result.status or error:
             self.update_output(_("There was an error creating the bottle."))
-            self.btn_cancel.hide()
-            self.btn_close.show()
+            self.btn_cancel.set_visible(False)
+            self.btn_close.set_visible(True)
             self.headerbar.remove_css_class("flat")
             return
 
@@ -223,7 +223,7 @@ class NewView(Adw.Window):
                 self.entry_name.get_text()
             )
         )
-        self.btn_cancel.hide()
+        self.btn_cancel.set_visible(False)
         self.stack_create.set_visible_child_name("page_created")
 
         '''

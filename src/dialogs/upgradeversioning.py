@@ -55,8 +55,8 @@ class UpgradeVersioningDialog(Adw.Window):
         stack_switcher page when the process is finished.
         """
         self.stack_switcher.set_visible_child_name("page_upgrading")
-        self.btn_upgrade.hide()
-        self.btn_cancel.hide()
+        self.btn_upgrade.set_visible(False)
+        self.btn_cancel.set_visible(False)
         self.btn_cancel.set_label("Close")
 
         RunAsync(self.pulse)
@@ -64,11 +64,11 @@ class UpgradeVersioningDialog(Adw.Window):
     
     def __proceed(self, widget):
         self.stack_switcher.set_visible_child_name("page_info")
-        self.btn_proceed.hide()
-        self.btn_upgrade.show()
+        self.btn_proceed.set_visible(False)
+        self.btn_upgrade.set_visible(True)
 
     def finish(self, result, error=False):
-        self.btn_cancel.show()
+        self.btn_cancel.set_visible(True)
         self.parent.manager.update_bottles()
         self.stack_switcher.set_visible_child_name("page_finish")
 

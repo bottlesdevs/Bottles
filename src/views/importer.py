@@ -66,8 +66,8 @@ class ImporterView(Adw.Bin):
                 if len(wineprefixes) == 0:
                     return
 
-                self.status_page.hide()
-                self.group_prefixes.show()
+                self.status_page.set_visible(False)
+                self.group_prefixes.set_visible(True)
 
                 while self.list_prefixes.get_first_child():
                     _w = self.list_prefixes.get_first_child()

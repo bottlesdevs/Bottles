@@ -80,9 +80,9 @@ class ProgramEntry(Adw.ActionRow):
                 self.btn_stop,
                 self.btn_menu
             ]:
-                w.hide()
+                w.set_visible(False)
                 w.set_sensitive(False)
-            self.btn_launch_steam.show()
+            self.btn_launch_steam.set_visible(True)
             self.btn_launch_steam.set_sensitive(True)
             self.set_activatable_widget(self.btn_launch_steam)
         else:
@@ -92,16 +92,16 @@ class ProgramEntry(Adw.ActionRow):
             self.add_css_class("removed")
 
         if program.get("auto_discovered"):
-            self.btn_remove.hide()
+            self.btn_remove.set_visible(False)
 
         self.btn_hide.set_visible(not program.get("removed"))
         self.btn_unhide.set_visible(program.get("removed"))
 
         if window.settings.get_boolean("experiments-library"):
-            self.btn_add_library.show()
+            self.btn_add_library.set_visible(True)
 
         if self.manager.steam_manager.is_steam_supported:
-            self.btn_add_steam.show()
+            self.btn_add_steam.set_visible(True)
 
         external_programs = []
         for p in self.config.get("External_Programs"):

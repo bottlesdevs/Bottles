@@ -103,7 +103,7 @@ class CrashReportDialog(Adw.Window):
                 i += 1
                 if i == 5:
                     break
-            self.box_related.show()
+            self.box_related.set_visible(True)
         else:
             self.btn_send.set_sensitive(True)
 

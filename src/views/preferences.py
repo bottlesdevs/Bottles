@@ -74,7 +74,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         bottles_path = self.data.get("custom_bottles_path")
         if bottles_path:
             self.action_bottles_path.set_subtitle(bottles_path)
-            self.btn_bottles_path_reset.show()
+            self.btn_bottles_path_reset.set_visible(True)
 
         # set widget defaults
         self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
@@ -154,7 +154,7 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
 
     def __choose_bottles_path(self, widget):
         def set_path(_dialog, response, _file_dialog):
-            self.btn_bottles_path_reset.show()
+            self.btn_bottles_path_reset.set_visible(True)
             if response == Gtk.ResponseType.OK:
                 _file = _file_dialog.get_file()
                 self.data.set("custom_bottles_path", _file.get_path())
@@ -175,7 +175,7 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
 
     def __reset_bottles_path(self, widget):
         self.data.remove("custom_bottles_path")
-        self.btn_bottles_path_reset.hide()
+        self.btn_bottles_path_reset.set_visible(False)
         self.action_bottles_path.set_subtitle(
             _("Choose where to store the new bottles (this will not move the existing ones)."))
 

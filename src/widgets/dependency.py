@@ -57,9 +57,9 @@ class DependencyEntry(Adw.ActionRow):
             '''
             self.set_title(dependency)
             self.set_subtitle("")
-            self.btn_install.hide()
-            self.btn_remove.hide()
-            self.btn_reinstall.show()
+            self.btn_install.set_visible(False)
+            self.btn_remove.set_visible(False)
+            self.btn_reinstall.set_visible(True)
             return
 
         # populate widgets
@@ -76,16 +76,16 @@ class DependencyEntry(Adw.ActionRow):
 
         # hide action widgets on selection
         if selection:
-            self.box_actions.hide()
+            self.box_actions.set_visible(False)
 
         if dependency[0] in self.config.get("Installed_Dependencies"):
             '''
             If the dependency is installed, hide the btn_install
             button and show the btn_remove button
             '''
-            self.btn_install.hide()
-            self.btn_remove.show()
-            self.btn_reinstall.show()
+            self.btn_install.set_visible(False)
+            self.btn_remove.set_visible(True)
+            self.btn_reinstall.set_visible(True)
 
         if dependency[0] in self.config.get("Uninstallers").keys():
             '''
@@ -130,7 +130,7 @@ class DependencyEntry(Adw.ActionRow):
         """
         self.queue.add_task()
         self.get_parent().set_sensitive(False)
-        self.btn_install.hide()
+        self.btn_install.set_visible(False)
         self.spinner.show()
         self.spinner.start()
 
@@ -176,9 +176,9 @@ class DependencyEntry(Adw.ActionRow):
         if errors occur during installation
         """
         self.spinner.stop()
-        self.btn_install.hide()
-        self.btn_remove.hide()
-        self.btn_err.show()
+        self.btn_install.set_visible(False)
+        self.btn_remove.set_visible(False)
+        self.btn_err.set_visible(True)
         self.get_parent().set_sensitive(True)
 
     def set_installed(self, installer=True, removed=False):
@@ -187,13 +187,13 @@ class DependencyEntry(Adw.ActionRow):
         """
         self.spinner.stop()
         if not removed:
-            self.btn_install.hide()
+            self.btn_install.set_visible(False)
             if installer:
-                self.btn_remove.show()
+                self.btn_remove.set_visible(True)
                 self.btn_remove.set_sensitive(True)
         else:
-            self.btn_remove.hide()
-            self.btn_install.show()
+            self.btn_remove.set_visible(False)
+            self.btn_install.set_visible(True)
 
         self.btn_reinstall.set_sensitive(True)
 
