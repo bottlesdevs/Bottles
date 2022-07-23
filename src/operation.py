@@ -78,7 +78,7 @@ class OperationManager:
 
     def new_task(self, task_id, title, cancellable=True):
         self.__tasks[task_id] = self.__new_widget(title, cancellable)
-        self.window.page_details.btn_operations..show()
+        self.window.page_details.btn_operations.show()
 
     def update_task(self, task_id, count=False, block_size=False, total_size=False, completed=False):
         if self.get_task(task_id):
@@ -92,13 +92,13 @@ class OperationManager:
             del self.__tasks[task_id]
 
         if self.get_task_count() == 0:
-            self.window.page_details.btn_operations..hide()
+            self.window.page_details.btn_operations.hide()
 
     def remove_all_tasks(self):
         for task in self.__tasks:
             self.__tasks[task].remove()
         self.__tasks = {}
-        self.window.page_details.btn_operations..hide()
+        self.window.page_details.btn_operations.hide()
 
     def get_tasks(self):
         return self.__tasks

@@ -92,18 +92,18 @@ class OnboardDialog(Adw.Window):
         page = self.__get_page(index)
 
         if page == "finish":
-            self.btn_back..hide()
-            self.btn_next..hide()
+            self.btn_back.hide()
+            self.btn_next.hide()
         elif page == "download":
-            self.btn_back..show()
-            self.btn_next..hide()
-            self.btn_install..show()
+            self.btn_back.show()
+            self.btn_next.hide()
+            self.btn_install.show()
         elif page == "welcome":
-            self.btn_back..hide()
-            self.btn_next..show()
+            self.btn_back.hide()
+            self.btn_next.show()
         else:
-            self.btn_back..show()
-            self.btn_next..show()
+            self.btn_back.show()
+            self.btn_next.show()
 
     @staticmethod
     def __quit(widget=False):
@@ -111,15 +111,15 @@ class OnboardDialog(Adw.Window):
 
     def __install_runner(self, widget):
         def set_completed(result, error=False):
-            self.label_skip..hide()
+            self.label_skip.hide()
             self.btn_close.set_sensitive(True)
             self.__next_page()
 
         self.__installing = True
-        self.btn_back..hide()
-        self.btn_next..hide()
-        self.btn_install..hide()
-        self.progressbar..show()
+        self.btn_back.hide()
+        self.btn_next.hide()
+        self.btn_install.hide()
+        self.progressbar.show()
         self.carousel.set_allow_long_swipes(False)
         self.carousel.set_allow_mouse_drag(False)
         self.carousel.set_allow_scroll_wheel(False)

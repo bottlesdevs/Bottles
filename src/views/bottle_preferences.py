@@ -192,11 +192,11 @@ class PreferencesView(Adw.PreferencesPage):
         # endregion
 
         if RuntimeManager.get_runtimes("bottles"):
-            self.row_runtime..show()
+            self.row_runtime.show()
             self.switch_runtime.connect('state-set', self.__toggle_runtime)
 
         if RuntimeManager.get_runtimes("steam"):
-            self.row_steam_runtime..show()
+            self.row_steam_runtime.show()
             self.switch_steam_runtime.connect('state-set', self.__toggle_steam_runtime)
 
         '''Toggle some utilities according to its availability'''
@@ -246,10 +246,10 @@ class PreferencesView(Adw.PreferencesPage):
                         key="WorkingDir",
                         value=_path
                     )
-                    self.btn_cwd_reset..show()
+                    self.btn_cwd_reset.show()
                 else:
                     self.row_cwd.set_subtitle(_("Default to the bottle path."))
-                    self.btn_cwd_reset..hide()
+                    self.btn_cwd_reset.hide()
 
             _dialog.destroy()
 
@@ -266,7 +266,7 @@ class PreferencesView(Adw.PreferencesPage):
 
         self.manager.update_config(config=self.config, key="WorkingDir", value="")
         self.row_cwd.set_subtitle(_("Default to the bottle path."))
-        self.btn_cwd_reset..hide()
+        self.btn_cwd_reset.hide()
 
     def update_combo_components(self):
         """

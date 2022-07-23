@@ -57,12 +57,12 @@ class ComponentEntry(Adw.ActionRow):
         self.set_title(self.name)
 
         if component[1].get("Installed"):
-            self.btn_browse..show()
+            self.btn_browse.show()
             if not self.manager.component_manager.is_in_use(self.component_type, self.name):
-                self.btn_remove..show()
+                self.btn_remove.show()
         else:
-            self.btn_download..show()
-            self.btn_browse..hide()
+            self.btn_download.show()
+            self.btn_browse.hide()
 
         if is_upgradable:
             self.btn_download.set_icon_name('software-update-available-symbolic')
@@ -81,9 +81,9 @@ class ComponentEntry(Adw.ActionRow):
 
             return self.update_status(failed=True)
 
-        self.btn_download..hide()
-        self.btn_cancel..hide()  # TODO: unimplemented
-        self.box_download_status..show()
+        self.btn_download.hide()
+        self.btn_cancel.hide()  # TODO: unimplemented
+        self.box_download_status.show()
 
         RunAsync(
             task_func=self.component_manager.install,
@@ -100,8 +100,8 @@ class ComponentEntry(Adw.ActionRow):
 
             return self.set_err(result.data.get("message"), retry=False)
 
-        self.btn_err..hide()
-        self.btn_remove..hide()
+        self.btn_err.hide()
+        self.btn_remove.hide()
 
         RunAsync(
             task_func=self.component_manager.uninstall,
@@ -111,7 +111,7 @@ class ComponentEntry(Adw.ActionRow):
         )
 
     def run_browse(self, widget):
-        self.btn_download..hide()
+        self.btn_download.hide()
 
         ManagerUtils.open_filemanager(
             path_type=self.component_type,
@@ -132,7 +132,7 @@ class ComponentEntry(Adw.ActionRow):
             self.set_err()
             return False
 
-        self.box_download_status..show()
+        self.box_download_status.show()
 
         if not completed:
             percent = int(count * block_size * 100 / total_size)
@@ -144,26 +144,26 @@ class ComponentEntry(Adw.ActionRow):
             self.label_task_status.set_text(_("Installing…"))
 
     def set_err(self, msg=None, retry=True):
-        self.box_download_status..hide()
-        self.btn_remove..hide()
-        self.btn_cancel..hide()
-        self.btn_browse..hide()
-        self.btn_err..show()
+        self.box_download_status.hide()
+        self.btn_remove.hide()
+        self.btn_cancel.hide()
+        self.btn_browse.hide()
+        self.btn_err.show()
         if msg:
             self.btn_err.set_tooltip_text(msg)
         if not retry:
             self.btn_err.set_sensitive(False)
 
     def set_installed(self):
-        self.btn_err..hide()
-        self.box_download_status..hide()
-        self.btn_browse..show()
-        self.btn_cancel..hide()
+        self.btn_err.hide()
+        self.box_download_status.hide()
+        self.btn_browse.show()
+        self.btn_cancel.hide()
 
     def set_uninstalled(self):
-        self.btn_browse..hide()
-        self.btn_err..hide()
-        self.btn_download..show()
+        self.btn_browse.hide()
+        self.btn_err.hide()
+        self.btn_download.show()
 
 
 class ComponentExpander(Adw.ExpanderRow):

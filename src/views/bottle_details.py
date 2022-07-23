@@ -127,7 +127,7 @@ class BottleView(Adw.PreferencesPage):
             If Flatpak, show the btn_flatpak_doc widget to reach
             the documentation on how to expose directories
             '''
-            self.btn_flatpak_doc..show()
+            self.btn_flatpak_doc.show()
 
         self.__update_latest_executables()
 
@@ -340,10 +340,10 @@ class BottleView(Adw.PreferencesPage):
         widgets = [self.row_uninstaller, self.row_regedit]
         if self.config.get("Environment") == "Layered":
             for widget in widgets:
-                widget..hide()
+                widget.hide()
         else:
             for widget in widgets:
-                widget..show()
+                widget.show()
 
     '''
     The following functions are used like wrappers for the
