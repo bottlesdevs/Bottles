@@ -15,6 +15,7 @@ finish-args:
   - --socket=wayland
   - --socket=pulseaudio
   - --device=all
+  - --filesystem=xdg-download
   - --system-talk-name=org.freedesktop.UDisks2
   - --talk-name=org.freedesktop.Notifications
   - --env=LD_LIBRARY_PATH=/app/lib:/app/lib32
