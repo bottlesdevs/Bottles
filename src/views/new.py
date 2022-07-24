@@ -55,13 +55,12 @@ class NewView(Adw.Window):
 
     # endregion
 
-    def __init__(self, window, arg_exe=None, **kwargs):
+    def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
         # common variables and references
         self.window = window
         self.manager = window.manager
-        self.arg_exe = arg_exe
         self.selected_env = "gaming"
         self.env_recipe_path = None
         self.new_bottle_config = {}
@@ -240,11 +239,4 @@ class NewView(Adw.Window):
         bottles and will close the bottle creation dialog. If there is
         no arguments, it will simply close the dialog.
         """
-        if self.arg_exe:
-            executor = WineExecutor(
-                self.new_bottle_config,
-                exec_path=self.arg_exe
-            )
-            RunAsync(executor.run)
-
         self.destroy()

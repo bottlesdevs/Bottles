@@ -45,7 +45,7 @@ class BottleViewEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, arg_exe=None, **kwargs):
+    def __init__(self, window, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -53,7 +53,6 @@ class BottleViewEntry(Adw.ActionRow):
         self.manager = window.manager
         self.config = config[1]
         self.label_env_context = self.label_env.get_style_context()
-        self.arg_exe = arg_exe
 
         '''Format update date'''
         update_date = _("N/A")
@@ -95,20 +94,6 @@ class BottleViewEntry(Adw.ActionRow):
             self.btn_run.set_sensitive(False)
             self.handler_block_by_func(self.show_details)
 
-        else:
-            '''Check for arguments from config'''
-            if self.arg_exe is not None:
-                logging.info(
-                    _("Arguments found for executable: [{executable}].").format(
-                        executable=self.arg_exe))
-
-                self.disconnect(activate_handler)
-                self.connect('activated', self.run_executable)
-
-                for w in [self.details_image, self.btn_run]:
-                    w.set_visible(False)
-                self.btn_run_executable.set_visible(True)
-
     '''Repair bottle'''
 
     def repair(self, widget):
@@ -121,32 +106,19 @@ class BottleViewEntry(Adw.ActionRow):
     '''Display file dialog for executable'''
 
     def run_executable(self, *args):
-        exec_path = self.arg_exe
-
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
                 _executor = WineExecutor(self.config, exec_path=_file.get_path())
                 RunAsync(_executor.run)
 
-        if not exec_path:
-            FileChooser(
-                parent=self.window,
-                title=_("Choose a Windows executable file"),
-                action=Gtk.FileChooserAction.OPEN,
-                buttons=(_("Cancel"), _("Run")),
-                callback=set_path
-            )
-            return
-
-        executor = WineExecutor(self.config, exec_path=exec_path)
-        RunAsync(executor.run)
-
-        if self.window.settings.get_boolean("auto-close-bottles"):
-            self.window.proper_close()
-
-        self.arg_exe = None
-        self.manager.update_bottles()
+        FileChooser(
+            parent=self.window,
+            title=_("Choose a Windows executable file"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(_("Cancel"), _("Run")),
+            callback=set_path
+        )
 
     def show_details(self, widget=None, config=None):
         if config is None:
@@ -181,13 +153,12 @@ class BottleView(Adw.Bin):
 
     # endregion
 
-    def __init__(self, window, arg_bottle=None, arg_exe=None, **kwargs):
+    def __init__(self, window, arg_bottle=None, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
         self.window = window
         self.arg_bottle = arg_bottle
-        self.arg_exe = arg_exe
 
         # connect signals
         self.btn_create.connect("clicked", self.window.show_add_view)
@@ -232,7 +203,7 @@ class BottleView(Adw.Bin):
             self.bottle_status.set_visible(False)
 
         for bottle in bottles:
-            _entry = BottleViewEntry(self.window, bottle, self.arg_exe)
+            _entry = BottleViewEntry(self.window, bottle)
             self.__bottles[bottle[1]["Path"]] = _entry
 
             if bottle[1].get("Environment") != "Steam":
@@ -247,7 +218,6 @@ class BottleView(Adw.Bin):
                 self.group_steam.set_visible(True)
                 self.group_bottles.set_title(_("Your Bottles"))
 
-        self.arg_exe = None
         if self.arg_bottle is not None and self.arg_bottle in local_bottles.keys():
             _config = local_bottles[self.arg_bottle]
             self.window.page_details.view_preferences.update_combo_components()

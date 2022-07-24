@@ -78,41 +78,18 @@ class MainWindow(Adw.ApplicationWindow):
     settings = Gio.Settings.new(APP_ID)
     argument_executed = False
 
-    def __init__(self, arg_exe, arg_bottle, arg_passed, **kwargs):
+    def __init__(self, arg_bottle, **kwargs):
         super().__init__(**kwargs)
 
         self.disable_onboard = False
         self.utils_conn = ConnectionUtils(self)
         self.manager = None
         self.arg_bottle = arg_bottle
-        self.arg_exe = arg_exe
 
         # Set night theme according to user settings
         if self.settings.get_boolean("dark-theme"):
             manager = Adw.StyleManager.get_default()
             manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
-
-        # Validate arg_exe extension
-        if not str(arg_exe).endswith(EXECUTABLE_EXTS):
-            self.arg_exe = None
-
-        if arg_bottle:
-            self.manager = Manager(self)
-            if arg_bottle.lower() in self.manager.local_bottles.keys():
-                '''
-                If Bottles was started with a bottle and an executable as
-                arguments, then the executable will be run in the bottle.
-                '''
-                bottle_config = self.manager.local_bottles[arg_bottle]
-                arg_passed = arg_passed or ""
-                if self.arg_exe:
-                    executor = WineExecutor(
-                        bottle_config,
-                        exec_path=self.arg_exe,
-                        args=arg_passed
-                    )
-                    executor.run_cli()
-                    self.proper_close()
 
         # Loading view
         self.page_loading = LoadingView()
@@ -125,7 +102,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.headerbar.add_css_class("flat")
 
         # Signal connections
-        self.btn_add.connect("clicked", self.show_add_view, self.arg_exe)
+        self.btn_add.connect("clicked", self.show_add_view)
         self.btn_about.connect("clicked", self.show_about_dialog)
         self.btn_support.connect("clicked", self.open_url, FUNDING_URL)
         self.btn_docs.connect("clicked", self.open_url, DOC_URL)
@@ -134,16 +111,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_importer.connect("clicked", self.show_importer_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.__on_start()
-
-        if self.arg_exe:
-            '''
-            If Bottles was started with an executable as argument, without
-            a bottle, the user will be prompted to select a bottle from the
-            bottles list.
-            '''
-            self.show_list_view()
-
-        self.arg_exe = False
         logging.info("Bottles Started!", )
 
     def update_library(self):
@@ -181,7 +148,7 @@ class MainWindow(Adw.ApplicationWindow):
 
             # Pages
             self.page_details = DetailsView(self)
-            self.page_list = BottleView(self, self.arg_exe)
+            self.page_list = BottleView(self, arg_bottle=self.arg_bottle)
             self.page_importer = ImporterView(self)
             self.page_library = LibraryView(self)
 
@@ -218,15 +185,6 @@ class MainWindow(Adw.ApplicationWindow):
                 )
                 dialog.add_response("cancel", _("Close"))
                 dialog.present()
-
-            if self.arg_exe and not self.arg_bottle:
-                '''
-                If Bottles was started with an executable as argument, without
-                a bottle, the user will be prompted to select a bottle from the
-                bottles list.
-                '''
-                self.show_list_view()
-            self.arg_exe = None
 
         def get_manager(window, repo_fn_update):
             mng = Manager(window=window, repo_fn_update=repo_fn_update)
@@ -273,12 +231,8 @@ class MainWindow(Adw.ApplicationWindow):
         onboard_window = OnboardDialog(self)
         onboard_window.present()
 
-    def show_add_view(self, widget=False, arg_exe=None):
-        if not self.argument_executed:
-            self.argument_executed = True
-            new_window = NewView(self, self.arg_exe)
-        else:
-            new_window = NewView(self)
+    def show_add_view(self, widget=False):
+        new_window = NewView(self)
         new_window.present()
 
     def show_list_view(self, widget=False):
