@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import webbrowser
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
@@ -53,6 +54,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     action_steam_proton = Gtk.Template.Child()
     btn_bottles_path = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
+    btn_steam_proton_doc = Gtk.Template.Child()
     pref_core = Gtk.Template.Child()
 
     # endregion
@@ -110,12 +112,13 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.switch_ubisoft_connect.connect('state-set', self.__toggle_ubisoft_connect)
         self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
+        self.btn_steam_proton_doc.connect('clicked', self.__open_steam_proton_doc)
 
         if not self.manager.steam_manager.is_steam_supported:
             self.switch_steam.set_sensitive(False)
             self.action_steam_proton.set_tooltip_text(
-                _("Steam was not found or Bottles does not have enough permissions.\
-Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
+                _("Steam was not found or Bottles does not have enough permissions."))
+            self.btn_steam_proton_doc.set_visible(True)
 
     def __toggle_update_date(self, widget, state):
         self.settings.set_boolean("update-date", state)
@@ -151,6 +154,9 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
 
     def __toggle_autoclose(self, widget, state):
         self.settings.set_boolean("auto-close-bottles", state)
+
+    def __open_steam_proton_doc(self, widget):
+        webbrowser.open("https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager")
 
     def __choose_bottles_path(self, widget):
         def set_path(_dialog, response, _file_dialog):

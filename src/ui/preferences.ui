@@ -78,6 +78,17 @@
                                 <property name="subtitle" translatable="yes">List and manage Steam Proton prefixes.</property>
                                 <property name="activatable-widget">switch_steam</property>
                                 <child>
+                                    <object class="GtkButton" id="btn_steam_proton_doc">
+                                        <property name="tooltip-text" translatable="yes">Read Documentation</property>
+                                        <property name="valign">center</property>
+                                        <property name="visible">False</property>
+                                        <property name="icon-name">help-browser-symbolic</property>
+                                        <style>
+                                            <class name="flat"/>
+                                        </style>
+                                    </object>
+                                </child>
+                                <child>
                                     <object class="GtkSwitch" id="switch_steam">
                                         <property name="valign">center</property>
                                     </object>
