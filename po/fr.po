@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-07-19 11:18+0000\n"
+"PO-Revision-Date: 2022-07-25 21:24+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
@@ -265,11 +265,11 @@ msgstr "Activer/désactiver la prise en charge des préfixes Proton Steam."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Experiments:sandbox"
-msgstr "Expérimental : Bac à Sable"
+msgstr "Expérimental : Bac à sable"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Activer/désactiver le \"Bac à Sable par Bouteille\" expérimental."
+msgstr "Activer/désactiver le bac à sable par bouteille expérimental."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -581,7 +581,7 @@ msgstr "Choisissez le script"
 
 #: src/dialogs/launchoptions.py:251
 msgid "Choose the Working Directory"
-msgstr "Choisir le Répertoire de travail"
+msgstr "Choisir le répertoire de travail"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -755,8 +755,9 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
-"Steam n'a pas été trouvé ou Bouteilles n'a pas assez de permissions. Voir "
-"https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
+"Steam n’a pas été trouvé ou Bouteilles n’a pas assez de permissions. "
+"Veuillez consulter https://docs.usebottles.com/flatpak/cant-enable-steam-"
+"proton-manager"
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
@@ -1417,7 +1418,7 @@ msgstr "Système"
 
 #: src/ui/details-preferences.ui:289
 msgid "Manage Components Versions"
-msgstr "Gérer les Versions des Composants"
+msgstr "Gérer les versions des composants"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1476,11 +1477,11 @@ msgstr "Mise à jour de la version Windows, veuillez patienter…"
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr "Langage"
+msgstr "Langue"
 
 #: src/ui/details-preferences.ui:487
 msgid "Choose the language to use with programs."
-msgstr "Choisir le langage a utiliser pour les programmes."
+msgstr "Choisir la langue à utiliser pour les programmes."
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
@@ -1488,7 +1489,7 @@ msgstr "faux"
 
 #: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
-msgstr "Bac à Sable dédié"
+msgstr "Bac à sable dédié"
 
 #: src/ui/details-preferences.ui:499
 msgid "Use a restricted/managed environment for this bottle."
@@ -1496,11 +1497,11 @@ msgstr "Définir un environnement restreint/géré pour cette Bouteille."
 
 #: src/ui/details-preferences.ui:502
 msgid "Manage Sandbox permissions"
-msgstr "Gérer les permissions du Bac à Sable"
+msgstr "Gérer les permissions du Bac à sable"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
-msgstr "Environnement d’exécution de Bouteilles"
+msgstr "Environnement d’exécution Bouteilles"
 
 #: src/ui/details-preferences.ui:521
 msgid ""
@@ -1512,7 +1513,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:532
 msgid "Steam Runtime"
-msgstr "Runtime Steam"
+msgstr "Environnement d’exécution Steam"
 
 #: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
@@ -1520,7 +1521,7 @@ msgstr "Le même que celui de Bouteilles mais fourni par Steam."
 
 #: src/ui/details-preferences.ui:544
 msgid "GameMode"
-msgstr "ModeJeu"
+msgstr "GameMode"
 
 #: src/ui/details-preferences.ui:545
 msgid "Optimise gaming performance on demand."
@@ -1936,7 +1937,7 @@ msgstr "Remplacement des préférences"
 
 #: src/ui/dialog-launch-options.ui:128
 msgid "Reset to Bottle's Defaults"
-msgstr "Réinitialiser aux valeurs par défaut de la Bouteille"
+msgstr "Réinitialiser aux valeurs par défaut de Bouteilles"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -2347,7 +2348,7 @@ msgstr "Lister les applications Steam dans la liste des programmes"
 
 #: src/ui/preferences.ui:90
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr "Steam pour Windows est requis pour cette bouteille."
+msgstr "Nécessite l’installation de Steam dans la bouteille."
 
 #: src/ui/preferences.ui:101
 msgid "List Epic Games in Programs List"
@@ -2355,7 +2356,7 @@ msgstr "Lister les jeux Epic Games dans la liste des programmes"
 
 #: src/ui/preferences.ui:102
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr "L'installation d'Epic Games Store dans cette Bouteille est requise."
+msgstr "Nécessite l’installation d’Epic Games Store dans la bouteille."
 
 #: src/ui/preferences.ui:115
 msgid "Advanced"
@@ -2403,7 +2404,7 @@ msgstr "En développement (nécessite un redémarrage)."
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
-msgstr "Bac à Sable par Bouteille"
+msgstr "Bac à sable par bouteille"
 
 #: src/ui/preferences.ui:235
 msgid "In early development."
