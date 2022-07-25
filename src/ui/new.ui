@@ -113,18 +113,6 @@
                                                                 <property name="subtitle" translatable="yes">A clear environment for your experiments.</property>
                                                                 <property name="icon-name">applications-science-symbolic</property>
                                                                 <child>
-                                                                    <object class="AdwActionRow">
-                                                                        <property name="title" translatable="yes">Versioning</property>
-                                                                        <property name="subtitle" translatable="yes">Enable versioning to save and restore the bottle to a state.</property>
-                                                                        <property name="activatable_widget">switch_versioning</property>
-                                                                        <child>
-                                                                            <object class="GtkSwitch" id="switch_versioning">
-                                                                                <property name="valign">center</property>
-                                                                            </object>
-                                                                        </child>
-                                                                    </object>
-                                                                </child>
-                                                                <child>
                                                                     <object class="AdwActionRow" id="row_sandbox">
                                                                         <property name="title" translatable="yes">Unlinked Home Directory</property>
                                                                         <property name="subtitle" translatable="yes">Do not link the userdir to the homedir</property>
