@@ -357,7 +357,10 @@ class SteamManager:
         else:
             args = launch_options
 
-        prefix = shlex.split(prefix.strip())
+        try:
+            prefix = shlex.split(prefix.strip())
+        except ValueError:
+            prefix = prefix.split(shlex.quote(prefix.strip()))
 
         for p in prefix.copy():
             if "=" in p:
