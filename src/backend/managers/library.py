@@ -21,6 +21,7 @@ from pathlib import Path
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths
+from bottles.backend.managers.steamgriddb import SteamGridDBManager
 
 logging = Logger()
 
@@ -59,12 +60,16 @@ class LibraryManager:
 
         self.save_library()
 
-    def add_to_library(self, data: dict):
+    def add_to_library(self, data: dict, config: dict):
         """
         Adds a new entry to the library.yml file.
         """
         _uuid = str(uuid.uuid4())
         logging.info(f'Adding new entry to library: {_uuid}')
+
+        if not data.get("thumbnail") and os.environ.get("SGDB_KEY"):
+            sgdb = SteamGridDBManager(os.environ.get("SGDB_KEY"))
+            data['thumbnail'] = sgdb.get_game_grid(data['name'], config)
 
         self.__library[_uuid] = data
         self.save_library()

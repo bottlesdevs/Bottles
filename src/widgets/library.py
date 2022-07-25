@@ -22,6 +22,7 @@ from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.managers.library import LibraryManager
+from bottles.backend.managers.thumbnail import ThumbnailManager
 from bottles.backend.runner import Runner
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.executor import WineExecutor
@@ -69,12 +70,13 @@ class LibraryEntry(Gtk.Box):
             self.img_icon.set_pixel_size(24)
             self.img_icon.set_visible(True)
 
-        # TODO:
-        # is has cover:
-            # set img_cover visible
-        # else
-            # set label_no_cover visible
-        self.label_no_cover.set_visible(True)
+        if entry.get('thumbnail'):
+            path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
+            # self.img_cover.set_filename(path)
+            self.img_cover.set_from_pixbuf(pixbuf)
+            self.img_cover.set_visible(True)
+            self.label_no_cover.set_visible(False)
 
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)

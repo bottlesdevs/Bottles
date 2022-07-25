@@ -38,27 +38,44 @@
                         <property name="icon-name">view-more-symbolic</property>
                         <style>
                             <class name="flat"/>
+                            <!--<class name="library-content-btn"/>-->
                         </style>
                     </object>
                 </child>
                 <child>
-                    <object class="GtkImage" id="img_cover">
-                        <property name="visible">False</property>
+                    <object class="GtkBox">
+                        <property name="orientation">vertical</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
+                        <child>
+                            <object class="GtkImage" id="img_cover">
+                                <property name="visible">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkLabel" id="label_no_cover">
+                                <property name="visible">False</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="label" translatable="True">No Thumbnail</property>
+                                <style>
+                                    <class name="dim-label"/>
+                                </style>
+                            </object>
+                        </child>
                     </object>
                 </child>
-                <child>
-                    <object class="GtkLabel" id="label_no_cover">
-                        <property name="visible">False</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <property name="label" translatable="True">No Thumbnail</property>
-                        <style>
-                            <class name="dim-label"/>
-                        </style>
+                <child type="overlay">
+                    <object class="GtkImage" id="img_icon">
+                        <property name="icon-name">applications-games-symbolic</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="margin-bottom">10</property>
+                        <property name="margin-end">10</property>
                     </object>
                 </child>
             </object>
@@ -66,11 +83,6 @@
         <child>
             <object class="GtkBox">
                 <property name="spacing">6</property>
-                <child>
-                    <object class="GtkImage" id="img_icon">
-                        <property name="icon-name">applications-games-symbolic</property>
-                    </object>
-                </child>
                 <child>
                     <object class="GtkBox">
                         <property name="orientation">vertical</property>

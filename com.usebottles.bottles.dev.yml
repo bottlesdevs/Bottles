@@ -178,6 +178,16 @@ modules:
         url: https://github.com/erocarrera/pefile/releases/download/v2021.9.3/pefile-2021.9.3.tar.gz
         sha256: 344a49e40a94e10849f0fe34dddc80f773a12b40675bf2f7be4b8be578bdd94a
 
+  - name: python-steamgrid
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: git
+        url: https://github.com/ZebcoWeb/python-steamgriddb
+        tag: "v1.0.4"
+        commit: f9c9142480d4d5e22f69aac3316236b6ffdbff15
+
   # Tools / Codecs
   # ----------------------------------------------------------------------------
   - name: vulkan-tools

@@ -321,7 +321,7 @@ class ProgramEntry(Adw.ActionRow):
             "name": self.program["name"],
             "id": str(self.program["id"]),
             "icon": ManagerUtils.extract_icon(self.config, self.program["name"], self.program["path"]),
-        })
+        }, self.config)
         self.window.update_library()
         self.window.show_toast(_("'{0}' added to your library").format(self.program["name"]))
 
