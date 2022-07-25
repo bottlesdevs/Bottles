@@ -72,9 +72,8 @@ class LibraryEntry(Gtk.Box):
 
         if entry.get('thumbnail'):
             path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
-            # self.img_cover.set_filename(path)
-            self.img_cover.set_from_pixbuf(pixbuf)
+            texture = Gdk.Texture.new_from_filename(path)
+            self.img_cover.set_paintable(texture)
             self.img_cover.set_visible(True)
             self.label_no_cover.set_visible(False)
 
