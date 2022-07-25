@@ -88,7 +88,7 @@ class VersioningView(Adw.PreferencesPage):
 
         def new_state(_state, active):
             entry = StateEntry(
-                window=self.window,
+                parent=self,
                 config=self.config,
                 state=_state,
                 active=active

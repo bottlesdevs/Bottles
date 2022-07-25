@@ -32,13 +32,14 @@ class StateEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, state, active, **kwargs):
+    def __init__(self, parent, config, state, active, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
-        self.queue = window.page_details.queue
+        self.parent = parent
+        self.window = parent.window
+        self.manager = parent.window.manager
+        self.queue = parent.window.page_details.queue
         self.state = state
 
         if config.get("Versioning"):
@@ -69,7 +70,7 @@ class StateEntry(Adw.ActionRow):
         Set the bottle state to this one.
         """
         self.queue.add_task()
-        widget.set_sensitive(False)
+        self.parent.set_sensitive(False)
         self.spinner.show()
         self.spinner.start()
         RunAsync(
@@ -86,8 +87,9 @@ class StateEntry(Adw.ActionRow):
         if not self.config["Versioning"] and result.message:
             self.window.show_toast(result.message)
         self.spinner.stop()
+        self.spinner.hide()
         self.btn_restore.set_visible(False)
-        self.set_sensitive(True)
+        self.parent.set_sensitive(True)
         self.queue.end_task()
         self.manager.update_bottles()
         config = self.manager.local_bottles[self.config["Path"]]

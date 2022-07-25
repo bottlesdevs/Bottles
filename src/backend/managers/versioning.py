@@ -116,17 +116,24 @@ class VersioningManager:
         )
     
 
-    @staticmethod
-    def list_states(config: dict) -> Result:
+    def list_states(self, config: dict) -> Result:
         """
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.
         """
         if not config.get("Versioning"):
-            repo = FVSRepo(
-                repo_path=ManagerUtils.get_bottle_path(config),
-                use_compression=config["Parameters"]["versioning_compression"]
-            )
+            try:
+                repo = FVSRepo(
+                    repo_path=ManagerUtils.get_bottle_path(config),
+                    use_compression=config["Parameters"]["versioning_compression"]
+                )
+            except FVSStateNotFound:
+                logging.warning("The FVS repository may be corrupted, trying to re-initialize it")
+                self.re_initialize(config)
+                repo = FVSRepo(
+                    repo_path=ManagerUtils.get_bottle_path(config),
+                    use_compression=config["Parameters"]["versioning_compression"]
+                )
             return Result(
                 status=True,
                 message=_("States list retrieved successfully!"),
