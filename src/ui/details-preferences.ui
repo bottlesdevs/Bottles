@@ -707,18 +707,6 @@
                 <property name="title" translatable="yes">Development and Debugging</property>
                 <child>
                     <object class="AdwActionRow">
-                        <property name="activatable-widget">switch_dxvk_hud</property>
-                        <property name="title" translatable="yes">DXVK HUD</property>
-                        <property name="subtitle" translatable="yes">Toggle DXVK overlay showing FPS and other details in D3D applications.</property>
-                        <child>
-                            <object class="GtkSwitch" id="switch_dxvk_hud">
-                                <property name="valign">center</property>
-                            </object>
-                        </child>
-                    </object>
-                </child>
-                <child>
-                    <object class="AdwActionRow">
                         <property name="activatable-widget">switch_mangohud</property>
                         <property name="title" translatable="yes">MangoHud</property>
                         <property name="subtitle" translatable="yes">A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more.</property>

@@ -72,7 +72,6 @@ class PreferencesView(Adw.PreferencesPage):
     row_sandbox = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
-    switch_dxvk_hud = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
     switch_obsvkc = Gtk.Template.Child()
     switch_vkbasalt = Gtk.Template.Child()
@@ -154,7 +153,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.toggle_fsync.connect('toggled', self.__set_fsync)
         self.toggle_futex2.connect('toggled', self.__set_futex2)
         self.switch_dxvk.connect('state-set', self.__toggle_dxvk)
-        self.switch_dxvk_hud.connect('state-set', self.__toggle_dxvk_hud)
         self.switch_mangohud.connect('state-set', self.__toggle_mangohud)
         self.switch_obsvkc.connect('state-set', self.__toggle_obsvkc)
         self.switch_vkbasalt.connect('state-set', self.__toggle_vkbasalt)
@@ -320,7 +318,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         # temporary lock functions connected to the widgets
         self.switch_dxvk.handler_block_by_func(self.__toggle_dxvk)
-        self.switch_dxvk_hud.handler_block_by_func(self.__toggle_dxvk_hud)
         self.switch_mangohud.handler_block_by_func(self.__toggle_mangohud)
         self.switch_vkd3d.handler_block_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
@@ -361,7 +358,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.ev_controller.handler_block_by_func(self.__check_entry_name)
 
         self.switch_dxvk.set_active(parameters["dxvk"])
-        self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         self.switch_mangohud.set_active(parameters["mangohud"])
         self.switch_obsvkc.set_active(parameters["obsvkc"])
         self.switch_vkbasalt.set_active(parameters["vkbasalt"])
@@ -429,7 +425,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         # unlock functions connected to the widgets
         self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)
-        self.switch_dxvk_hud.handler_unblock_by_func(self.__toggle_dxvk_hud)
         self.switch_mangohud.handler_unblock_by_func(self.__toggle_mangohud)
         self.switch_vkd3d.handler_unblock_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
@@ -570,15 +565,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = self.manager.update_config(
             config=self.config,
             key="dxvk",
-            value=state,
-            scope="Parameters"
-        ).data["config"]
-
-    def __toggle_dxvk_hud(self, widget, state):
-        """Toggle the DXVK HUD for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="dxvk_hud",
             value=state,
             scope="Parameters"
         ).data["config"]

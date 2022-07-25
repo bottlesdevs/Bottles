@@ -23,7 +23,6 @@ class Samples:
         "State": 0,
         "Parameters": {
             "dxvk": False,
-            "dxvk_hud": False,
             "dxvk_nvapi": False,
             "vkd3d": False,
             "latencyflex": False,
@@ -124,7 +123,6 @@ class Samples:
     }
 
     bottles_to_steam_relations = {
-        "DXVK_HUD": ("dxvk_hud", True),
         "MANGOHUD": ("mangohud", True),
         "OBS_VKCAPTURE": ("obsvkc", True),
         "ENABLE_VKBASALT": ("vkbasalt", True),
