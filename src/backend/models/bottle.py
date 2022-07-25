@@ -26,7 +26,6 @@ class Bottle:
 
     # Parameters
     dxvk: bool = False
-    dxvk_hud: bool = False
     dxvk_nvapi: bool = False
     vkd3d: bool = False
     gamemode: bool = False
@@ -60,7 +59,6 @@ class Bottle:
         self.versioning = conf.get('Versioning', self.versioning)
         self.state = conf.get('State', self.state)
         self.dxvk = conf.get('dxvk', self.dxvk)
-        self.dxvk_hud = conf.get('dxvk_hud', self.dxvk_hud)
         self.dxvk_nvapi = conf.get('dxvk_nvapi', self.dxvk_nvapi)
         self.vkd3d = conf.get('vkd3d', self.vkd3d)
         self.gamemode = conf.get('gamemode', self.gamemode)

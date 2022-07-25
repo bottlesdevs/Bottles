@@ -272,10 +272,6 @@ class WineCommand:
             if is_nvidia:
                 env.add("WINE_HIDE_NVIDIA_GPU", "1")
 
-        # DXVK HUD environment variable
-        if params["dxvk_hud"]:
-            env.add("DXVK_HUD", "full")
-
         # Esync environment variable
         if params["sync"] == "esync":
             env.add("WINEESYNC", "1")
