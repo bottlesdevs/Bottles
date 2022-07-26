@@ -26,6 +26,7 @@ from bottles.dialogs.generic import MessageDialog
 
 from bottles.backend.globals import user_apps_dir
 from bottles.backend.managers.library import LibraryManager
+from bottles.backend.managers.steam import SteamManager
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winedbg import WineDbg
@@ -330,8 +331,10 @@ class ProgramEntry(Adw.ActionRow):
             if result.status:
                 self.window.show_toast(_("'{0}' added to your Steam library").format(self.program["name"]))
 
+        steam_manager = SteamManager(self.config)
+
         RunAsync(
-            self.manager.steam_manager.add_shortcut,
+            steam_manager.add_shortcut,
             update,
             self.program["name"],
             self.program["path"]
