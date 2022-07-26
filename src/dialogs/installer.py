@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import urllib.request
 from gi.repository import Gtk, GLib, Gio, GdkPixbuf, Adw
@@ -43,7 +45,7 @@ class LocalResourceEntry(Adw.ActionRow):
         # connect signals
         self.btn_path.connect("clicked", self.__choose_path)
 
-    def __choose_path(self, *args):
+    def __choose_path(self, *_args):
         """
         Open the file chooser dialog and set the path to the
         selected file
@@ -147,7 +149,7 @@ class InstallerDialog(Adw.Window):
             self.img_icon.set_visible(False)
             self.img_icon_install.set_visible(False)
 
-    def __check_resources(self, *args):
+    def __check_resources(self, *_args):
         self.__local_resources = self.manager.installer_manager.has_local_resources(self.installer)
         if len(self.__local_resources) == 0:
             self.__install()
@@ -160,7 +162,7 @@ class InstallerDialog(Adw.Window):
         self.btn_proceed.set_visible(True)
         self.stack.set_visible_child_name("page_resources")
 
-    def __install(self, *args):
+    def __install(self, *_args):
         self.set_deletable(False)
         self.stack.set_visible_child_name("page_install")
 
@@ -209,5 +211,5 @@ class InstallerDialog(Adw.Window):
         if len(self.__local_resources) == len(self.__final_resources):
             self.btn_proceed.set_sensitive(True)
 
-    def __close(self, *args):
+    def __close(self, *_args):
         self.destroy()

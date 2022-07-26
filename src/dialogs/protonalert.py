@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 from gi.repository import Gtk, GLib, Adw
 
@@ -47,5 +49,5 @@ class ProtonAlertDialog(Adw.Window):
         self.callback(status)
         self.close()
 
-    def __toggle_btn_use(self, widget, *args):
+    def __toggle_btn_use(self, widget, *_args):
         self.btn_use.set_sensitive(widget.get_active())

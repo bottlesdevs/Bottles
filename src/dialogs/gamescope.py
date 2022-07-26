@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import re
 from gi.repository import Gtk, GLib, Adw
@@ -84,7 +86,7 @@ class GamescopeDialog(Adw.Window):
         self.toggle_borderless.handler_unblock_by_func(self.__change_wtype)
         self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)
 
-    def __idle_save(self, *args):
+    def __idle_save(self, *_args):
         settings = {"gamescope_game_width": int(self.arg_w.get_text()),
                     "gamescope_game_height": int(self.arg_h.get_text()),
                     "gamescope_window_width": int(self.arg_W.get_text()),
@@ -105,6 +107,6 @@ class GamescopeDialog(Adw.Window):
 
         self.destroy()
 
-    def __save(self, *args):
+    def __save(self, *_args):
         GLib.idle_add(self.__idle_save)
 

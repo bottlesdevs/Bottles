@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import os
 import re
@@ -214,10 +216,10 @@ class PreferencesView(Adw.PreferencesPage):
         if not obs_vkc_available:
             self.switch_obsvkc.set_tooltip_text(_not_available)
 
-    def __check_entry_name(self, *args):
+    def __check_entry_name(self, *_args):
         self.__valid_name = GtkUtils.validate_entry(self.entry_name)
 
-    def __save_name(self, *args):
+    def __save_name(self, *_args):
         if not self.__valid_name:
             self.entry_name.set_text(self.config.get("Name"))
             self.__valid_name = True
@@ -1008,7 +1010,7 @@ class PreferencesView(Adw.PreferencesPage):
             value=renderer
         )
 
-    def __set_language(self, *args):
+    def __set_language(self, *_args):
         """Set the language to use for the bottle"""
         index = self.combo_language.get_selected()
         language = ManagerUtils.get_languages(from_index=index)

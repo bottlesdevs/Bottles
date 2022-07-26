@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import logging
 from datetime import datetime
@@ -105,7 +107,7 @@ class BottleViewEntry(Adw.ActionRow):
 
     '''Display file dialog for executable'''
 
-    def run_executable(self, *args):
+    def run_executable(self, *_args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()

@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import os
 import re
@@ -126,11 +128,11 @@ class NewView(Adw.Window):
         """
         self.selected_env = row.get_buildable_id()
 
-    def __check_entry_name(self, *args):
+    def __check_entry_name(self, *_args):
         result = GtkUtils.validate_entry(self.entry_name)
         self.btn_create.set_sensitive(result)
 
-    def choose_env_recipe(self, *args):
+    def choose_env_recipe(self, *_args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
@@ -145,7 +147,7 @@ class NewView(Adw.Window):
             callback=set_path
         )
 
-    def choose_path(self, *args):
+    def choose_path(self, *_args):
         def set_path(_dialog, response, _file_dialog):
             if response == Gtk.ResponseType.OK:
                 _file = _file_dialog.get_file()
@@ -161,7 +163,7 @@ class NewView(Adw.Window):
             callback=set_path
         )
 
-    def create_bottle(self, *args):
+    def create_bottle(self, *_args):
         # set widgets states
         self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
@@ -229,7 +231,7 @@ class NewView(Adw.Window):
         self.manager.check_bottles()
         self.window.page_list.update_bottles()
 
-    def __close_window(self, *args):
+    def __close_window(self, *_args):
         """
         This function check if an executable was passed to Bottles as
         a command line argument. If so, it will be launched in the new

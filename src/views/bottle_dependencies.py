@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import os
 import time
@@ -85,7 +87,7 @@ class DependenciesView(Adw.Bin):
 
         RunAsync(process_queue, callback=callback)
 
-    def __search_dependencies(self, *args):
+    def __search_dependencies(self, *_args):
         """
         This function search in the list of dependencies the
         text written in the search entry.

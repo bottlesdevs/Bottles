@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import time
 from gettext import gettext as _
@@ -58,7 +60,7 @@ class InstallersView(Adw.Bin):
         self.btn_help.connect("clicked", open_doc_url, "bottles/installers")
         self.entry_search.connect('changed', self.__search_installers)
 
-    def __search_installers(self, *args):
+    def __search_installers(self, *_args):
         """
         This function search in the list of installers the
         text written in the search entry.

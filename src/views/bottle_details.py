@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import os
 import re
@@ -192,7 +194,7 @@ class BottleView(Adw.PreferencesPage):
         The file will be executed by the runner after the
         user confirmation.
         """
-        def show_chooser(*args):
+        def show_chooser(*_args):
             self.window.settings.set_boolean("show-sandbox-warning", False)
             FileChooser(
                 parent=self.window,

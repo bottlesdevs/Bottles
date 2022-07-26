@@ -157,8 +157,8 @@ class VDFDict(dict):
         self.__kcount.clear()
         self.__omap = list()
 
-    def get(self, key, *args):
-        return super(VDFDict, self).get(self._normalize_key(key), *args)
+    def get(self, key, *_args):
+        return super(VDFDict, self).get(self._normalize_key(key), *_args)
 
     def setdefault(self, key, default=None):
         if key not in self:

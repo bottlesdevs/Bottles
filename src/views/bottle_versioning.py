@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import re
 from gettext import gettext as _
@@ -116,7 +118,7 @@ class VersioningView(Adw.PreferencesPage):
 
         RunAsync(process_states, callback)
 
-    def check_entry_state_message(self, *args):
+    def check_entry_state_message(self, *_args):
         """
         This function check if the entry state message is valid,
         looking for special characters. It also toggles the widget icon

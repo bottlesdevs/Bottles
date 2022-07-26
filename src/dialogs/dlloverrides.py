@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 from gi.repository import Gtk, GLib, Adw
 
@@ -47,7 +49,7 @@ class DLLEntry(Adw.ComboRow):
         self.btn_remove.connect("clicked", self.__remove_override)
         self.connect('notify::selected', self.__set_override_type)
 
-    def __set_override_type(self, *args):
+    def __set_override_type(self, *_args):
         """
         Change the override type according to the selected
         and update the bottle configuration
@@ -61,7 +63,7 @@ class DLLEntry(Adw.ComboRow):
             scope="DLL_Overrides"
         )
 
-    def __remove_override(self, *args):
+    def __remove_override(self, *_args):
         """
         Remove the override from the bottle configuration and
         destroy the widget
@@ -100,7 +102,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
         # connect signals
         self.entry_row.connect("apply", self.__save_override)
 
-    def __save_override(self, *args):
+    def __save_override(self, *_args):
         """
         This function check if the override name is not empty, then
         store it in the bottle configuration and add a new entry to

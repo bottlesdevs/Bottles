@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import os
 import time
@@ -213,7 +215,7 @@ class MainWindow(Adw.ApplicationWindow):
 
             self.props.application.send_notification(None, notification)
 
-    def go_back(self, *args):
+    def go_back(self, *_args):
         self.main_leaf.navigate(direction=Adw.NavigationDirection.BACK)
 
     def show_details_view(self, widget=False, config=dict):
@@ -297,7 +299,7 @@ class MainWindow(Adw.ApplicationWindow):
         """Properly close Bottles"""
         quit()
 
-    def show_about_dialog(self, *args):
+    def show_about_dialog(self, *_args):
         builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
         about_window = builder.get_object("about_window")
         about_window.set_debug_info(HealthChecker().get_results(plain=True))

@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 from bottles.backend.dlls.dll import DLLComponent  # pyright: reportMissingImports=false
 from bottles.backend.utils.manager import ManagerUtils

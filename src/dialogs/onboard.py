@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# pylint: disable=import-error,missing-docstring
 
 import time
 
@@ -83,7 +85,7 @@ class OnboardDialog(Adw.Window):
     def __get_page(self, index):
         return self.carousel_pages[index]
 
-    def __page_changed(self, widget=False, index=0, *args):
+    def __page_changed(self, widget=False, index=0, *_args):
         """
         This function is called on first load and when the user require
         to change the page. It sets the widgets' status according to
