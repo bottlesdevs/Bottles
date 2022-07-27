@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-06-15 15:02+0000\n"
+"PO-Revision-Date: 2022-07-27 11:48+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -178,22 +178,19 @@ msgstr "Uključi/isključi datum aktualiziranja u popisu butelja."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Popis Steam aplikacija"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Uključi/isključi datum aktualiziranja u popisu"
+msgstr "Uključi/isključi popis Steam aplikacija."
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic Games trgovina …"
+msgstr "Popis Epic igara"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "Uključi/isključi datum aktualiziranja u popisu"
+msgstr "Uključi/isključi popis Epic igara."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -543,9 +540,8 @@ msgid "Select"
 msgstr "Odaberi"
 
 #: src/dialogs/envvars.py:133
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Nijedna varijabla okruženja nije određena"
+msgstr "Nijedna varijabla okruženja nije određena."
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -568,9 +564,8 @@ msgid "Choose a script which should be executed after run."
 msgstr "Odaberi skripta koji se treba izvršiti nakon pokretanja."
 
 #: src/dialogs/launchoptions.py:55 src/ui/dialog-launch-options.ui:91
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "Zatvori Butelje nakon pokretanja jednog programa"
+msgstr "Odaberi otkuda pokrenuti program."
 
 #: src/dialogs/launchoptions.py:56
 #, python-brace-format
@@ -763,12 +758,11 @@ msgstr ""
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
-#, fuzzy
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
 msgstr ""
 "Odaberi mjesto za spremanje novih butelja (ovime se neće premjestiti "
-"postojeće)"
+"postojeće)."
 
 #: src/views/preferences.py:165
 msgid "Choose new bottles path"
@@ -1781,9 +1775,8 @@ msgid "Duplicating…"
 msgstr "Dupliciranje …"
 
 #: src/ui/dialog-duplicate.ui:84
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "Odmori malo. Ovo može potrajati"
+msgstr "Odmori malo. Ovo može potrajati."
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -2032,14 +2025,12 @@ msgid "No Prefixes Found"
 msgstr "Nije pronađena nijedna mapa"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
 "Nije pronađena nijedna mapa od Lutrisa, PlayOnLinuxa, itd.\n"
-"                                    Koristi gornju ikonu za uvoz butelje iz "
-"sigurnosne kopije"
+"Koristi gornju ikonu za uvoz butelje iz sigurnosne kopije"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
@@ -2186,9 +2177,8 @@ msgid "Custom"
 msgstr "Prilagođeno"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments."
-msgstr "Čisto okruženje za tvoje eksperimente"
+msgstr "Čisto okruženje za tvoje eksperimente."
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -2207,9 +2197,8 @@ msgid "Architecture"
 msgstr "Arhitektura"
 
 #: src/ui/new.ui:155
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr "Preporučujemo koristiti 32-bitnu verziju samo ako je nužno potrebno"
+msgstr "Preporučujemo koristiti 32-bitnu verziju samo ako je izričito potrebno."
 
 #: src/ui/new.ui:159
 msgid "64 bit"
@@ -2313,7 +2302,6 @@ msgid "Show notifications for downloads and installs."
 msgstr "Pokaži obavijesti za preuzimanja i instalacije."
 
 #: src/ui/preferences.ui:48
-#, fuzzy
 msgid "Temp Files"
 msgstr "Privremene datoteke"
 
@@ -2322,29 +2310,25 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "Izbrisati privremene datoteke kad se pokrene program Butelje?"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
 msgstr "Zatvori Butelje nakon pokretanja jednog programa"
 
 #: src/ui/preferences.ui:61
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
 msgstr ""
-"Zatvori Butelje nakon pokretanja jednog programa iz upravljača datoteka"
+"Zatvori Butelje nakon pokretanja jednog programa iz upravljača datoteka."
 
 #: src/ui/preferences.ui:74
-#, fuzzy
 msgid "Integrations"
-msgstr "Operacije"
+msgstr "Integracije"
 
 #: src/ui/preferences.ui:77
 msgid "Steam Proton Prefixes"
 msgstr "Steam Proton mape"
 
 #: src/ui/preferences.ui:78
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Steam Proton mape"
+msgstr "Popiši i upravljaj Steam Proton mapama."
 
 #: src/ui/preferences.ui:89
 msgid "List Steam Apps in Programs List"
@@ -2405,18 +2389,16 @@ msgid "WineBridge"
 msgstr "WineBridge"
 
 #: src/ui/preferences.ui:223
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "U ranoj fazi razvoja (zahtijeva ponovno pokretanje)"
+msgstr "U ranoj fazi razvoja (zahtijeva ponovno pokretanje)."
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
 msgstr ""
 
 #: src/ui/preferences.ui:235
-#, fuzzy
 msgid "In early development."
-msgstr "U ranoj fazi razvoja (zahtijeva ponovno pokretanje)"
+msgstr "U ranoj fazi razvoja."
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
