@@ -318,14 +318,20 @@ class ProgramEntry(Adw.ActionRow):
         )
 
     def add_to_library(self, widget):
-        LibraryManager().add_to_library({
-            "bottle": {"name": self.config["Name"], "path": self.config["Path"]},
-            "name": self.program["name"],
-            "id": str(self.program["id"]),
-            "icon": ManagerUtils.extract_icon(self.config, self.program["name"], self.program["path"]),
-        }, self.config)
-        self.window.update_library()
-        self.window.show_toast(_("'{0}' added to your library").format(self.program["name"]))
+        def update(result, error=False):
+            self.window.update_library()
+            self.window.show_toast(_("'{0}' added to your library").format(self.program["name"]))
+
+        def add_to_library():
+            library_manager = LibraryManager()
+            library_manager.add_to_library({
+                "bottle": {"name": self.config["Name"], "path": self.config["Path"]},
+                "name": self.program["name"],
+                "id": str(self.program["id"]),
+                "icon": ManagerUtils.extract_icon(self.config, self.program["name"], self.program["path"]),
+            }, self.config)
+
+        RunAsync(add_to_library, update)
 
     def add_to_steam(self, widget):
         def update(result, error=False):
