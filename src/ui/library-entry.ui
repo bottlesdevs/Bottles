@@ -31,7 +31,7 @@
                 <property name="width-request">256</property>
                 <property name="height-request">384</property>
                 <child type="overlay">
-                    <object class="GtkMenuButton">
+                    <object class="GtkMenuButton" id="btn_menu">
                         <property name="halign">start</property>
                         <property name="valign">start</property>
                         <property name="margin-top">5</property>
@@ -39,8 +39,7 @@
                         <property name="popover">pop_context</property>
                         <property name="icon-name">view-more-symbolic</property>
                         <style>
-                            <class name="osd"/>
-                            <class name="circular"/>
+                            <class name="flat"/>
                         </style>
                     </object>
                 </child>
@@ -153,3 +152,4 @@
         </style>
     </template>
 </interface>
+
