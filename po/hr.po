@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-29 18:03+0200\n"
-"PO-Revision-Date: 2022-07-27 11:48+0000\n"
+"PO-Revision-Date: 2022-07-27 15:13+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -95,7 +95,7 @@ msgstr "Brzo dodavanje varijabla okruženja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from per-bottle preferences"
-msgstr "Zamjena DLL biblioteka izravno u postavkama pojedinačnih butelja"
+msgstr "Prepiši DLL biblioteke izravno iz postavki pojedinačnih butelja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
@@ -186,11 +186,11 @@ msgstr "Uključi/isključi popis Steam aplikacija."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr "Popis Epic igara"
+msgstr "Popis Epic Games igara"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr "Uključi/isključi popis Epic igara."
+msgstr "Uključi/isključi popis Epic Games igara."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Window width"
@@ -253,24 +253,21 @@ msgstr ""
 "instalacijski programi. Kandidat izdanja za pokretače."
 
 #: data/com.usebottles.bottles.gschema.xml:66
-#, fuzzy
 msgid "Steam Proton Support"
-msgstr "Steam Proton"
+msgstr "Podrška za Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Uključi/Isključi eksperimentalnu podršku za Steam Proton mapa."
+msgstr "Uključi/Isključi podršku za Steam Proton mape."
 
 #: data/com.usebottles.bottles.gschema.xml:71
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "Eksperimenti:steam"
+msgstr "Eksperimenti:testno okruženje"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Uključi/Isključi eksperimentalni modus Biblioteka."
+msgstr ""
+"Uključi/Isključi eksperimentalno testno okruženje za butelje pojedinačno."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:library"
@@ -326,14 +323,12 @@ msgid "[Refresh] request received."
 msgstr "Primljen je zahtjev za [Aktualiziraj]."
 
 #: src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
 msgstr "Izračunavanje …"
 
 #: src/window.py:129
-#, fuzzy
 msgid "Loading…"
-msgstr "Preuzimanje …"
+msgstr "Učitavanje …"
 
 #: src/window.py:226
 msgid ""
@@ -581,9 +576,8 @@ msgid "Choose the script"
 msgstr "Odaberi skripta"
 
 #: src/dialogs/launchoptions.py:251
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "Radna mapa"
+msgstr "Odaberi radnu mapu"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
@@ -704,7 +698,6 @@ msgid "Import failed."
 msgstr "Uvoz neuspio."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup…"
 msgstr "Uvoz sigurnosne kopije …"
 
@@ -755,6 +748,8 @@ msgid ""
 "Steam was not found or Bottles does not have enough permissions.Visit "
 "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
 msgstr ""
+"Steam nije pronađen ili Butelje nema potrebne dozvole. Posjeti https://docs."
+"usebottles.com/flatpak/cant-enable-steam-proton-manager"
 
 #: src/views/preferences.py:160 src/views/preferences.py:176
 #: src/ui/preferences.ui:119
@@ -777,9 +772,8 @@ msgid "Upgrade"
 msgstr "Nadogradi"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing…"
-msgstr "Instaliranje DXVK-a …"
+msgstr "Instaliranje …"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -1172,9 +1166,8 @@ msgid "Search for Programs…"
 msgstr "Traži programe …"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No Installers Found"
-msgstr "Nema instalacijskih programa"
+msgstr "Nijedan instalacijski program nije pronađen"
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -1408,9 +1401,8 @@ msgid "System"
 msgstr "Sustav"
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "Verzija komponente"
+msgstr "Upravljaj verzijama komponenata"
 
 #: src/ui/details-preferences.ui:299
 msgid "Components"
@@ -1459,7 +1451,6 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
 msgstr "Windows verzija"
 
@@ -1469,29 +1460,27 @@ msgstr "Aktualiziranje verzije Windowsa, pričekaj …"
 
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Choose the language to use with programs."
-msgstr "Odaberi novo ime za odabrani program."
+msgstr "Odaberi jezik za programe."
 
 #: src/ui/details-preferences.ui:497
 msgid "false"
-msgstr ""
+msgstr "krivo"
 
 #: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "Namjensko testno okruženje"
 
 #: src/ui/details-preferences.ui:499
 msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
+msgstr "Koristi ograničeno/upravljano okruženje za ovu buelju."
 
 #: src/ui/details-preferences.ui:502
-#, fuzzy
 msgid "Manage Sandbox permissions"
-msgstr "Upravljaj DXVK verzijama"
+msgstr "Upravljaj dozvolama testnog okruženja"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
@@ -1657,9 +1646,8 @@ msgid "Stop process"
 msgstr "Prekini proces"
 
 #: src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
-msgstr "Nema stanja"
+msgstr "Nijedno stanje nije pronađeno"
 
 #: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
@@ -1739,14 +1727,13 @@ msgid "Drives"
 msgstr "Pogoni"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…).\n"
 "                                "
 msgstr ""
-"Ovo su staze tvog sustava za hosting koje pokretač mapira i prepoznaje kao "
-"uređaje (npr. C: D: …).\n"
+"Ovo su staze tvog sustava za hosting koje su mapirane i koje pokretač "
+"prepoznaje kao uređaje (npr. C: D: …).\n"
 "                                "
 
 #: src/ui/dialog-drives.ui:25
@@ -1754,7 +1741,6 @@ msgid "Letter"
 msgstr "Slovo"
 
 #: src/ui/dialog-drives.ui:49
-#, fuzzy
 msgid "Existing Drives"
 msgstr "Postojeći pogoni"
 
@@ -1791,12 +1777,10 @@ msgstr ""
 "način na koji će se pokrenuti procesi ponašati na tvojoj butelji."
 
 #: src/ui/dialog-env-vars.ui:28
-#, fuzzy
 msgid "Variable Name"
 msgstr "Ime varijable"
 
 #: src/ui/dialog-env-vars.ui:36
-#, fuzzy
 msgid "Existing Variables"
 msgstr "Postojeće varijable"
 
@@ -1917,7 +1901,6 @@ msgid "Post-run Script"
 msgstr "Skripta nakon pokretanja"
 
 #: src/ui/dialog-launch-options.ui:75
-#, fuzzy
 msgid "Choose a script"
 msgstr "Odaberi skripta"
 
@@ -1931,9 +1914,8 @@ msgid "Preferences Overrides"
 msgstr "Zamjene postavki"
 
 #: src/ui/dialog-launch-options.ui:128
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
-msgstr "Vrati na standardne vrijednosti"
+msgstr "Vrati na standardne postavke programa Butelje"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -1989,7 +1971,7 @@ msgstr "Izvorni, zatim ugrađeni"
 
 #: src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Isključeno"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -2020,7 +2002,6 @@ msgid "Search again for prefixes"
 msgstr "Ponovo traži mape"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No Prefixes Found"
 msgstr "Nije pronađena nijedna mapa"
 
@@ -2261,7 +2242,6 @@ msgid "Almost Done"
 msgstr "Skoro gotovo"
 
 #: src/ui/onboard.ui:80
-#, fuzzy
 msgid "We need a few more minutes to set everything up…"
 msgstr "Trebamo još par minuta kako bismo sve postavili …"
 
@@ -2328,39 +2308,37 @@ msgstr "Steam Proton mape"
 
 #: src/ui/preferences.ui:78
 msgid "List and manage Steam Proton prefixes."
-msgstr "Popiši i upravljaj Steam Proton mapama."
+msgstr "Prikaži i upravljaj Steam Proton mapama."
 
 #: src/ui/preferences.ui:89
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Prikaži Steam aplikacije u popisu programa"
 
 #: src/ui/preferences.ui:90
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "Zahtijeva instaliran Steam za Windows u butelji."
 
 #: src/ui/preferences.ui:101
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "Prikaži Epic Games u popisu programa"
 
 #: src/ui/preferences.ui:102
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "Zahtijeva instaliranu Epic Games trgovinu u butelji."
 
 #: src/ui/preferences.ui:115
 msgid "Advanced"
 msgstr "Napredno"
 
 #: src/ui/preferences.ui:118
-#, fuzzy
 msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Prilagođena staza butelja (zahtijeva ponovno pokretanje)"
+msgstr "Prilagođena staza za „Butelje” (zahtijeva ponovno pokretanje)"
 
 #: src/ui/preferences.ui:152
 msgid "Runners"
 msgstr "Pokretači"
 
 #: src/ui/preferences.ui:157
-#, fuzzy
 msgid "Pre-Release"
 msgstr "Predizdanje"
 
@@ -2394,7 +2372,7 @@ msgstr "U ranoj fazi razvoja (zahtijeva ponovno pokretanje)."
 
 #: src/ui/preferences.ui:234
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "Testno okruženje pojedinačne butelje"
 
 #: src/ui/preferences.ui:235
 msgid "In early development."
