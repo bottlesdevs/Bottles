@@ -1,6 +1,6 @@
 project(
 	'bottles',
-	version: '2022.7.14-brescia-3',
+	version: '2022.7.28-brescia',
 	meson_version: '>= 0.50.0',
 	default_options: [
 		'warning_level=2',
