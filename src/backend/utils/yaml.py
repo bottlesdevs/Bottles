@@ -29,3 +29,6 @@ def load(stream, Loader=Loader):
     if _c:
         return _yaml.load(stream, Loader=Loader)
     return _yaml.safe_load(stream)
+
+
+YAMLError = _yaml.YAMLError
