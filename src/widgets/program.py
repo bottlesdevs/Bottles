@@ -339,7 +339,6 @@ class ProgramEntry(Adw.ActionRow):
                 self.window.show_toast(_("'{0}' added to your Steam library").format(self.program["name"]))
 
         steam_manager = SteamManager(self.config)
-
         RunAsync(
             steam_manager.add_shortcut,
             update,
