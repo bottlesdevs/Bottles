@@ -17,6 +17,8 @@
 
 import logging
 import os
+import math
+from PIL import Image
 from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Adw
@@ -43,6 +45,7 @@ class LibraryEntry(Gtk.Box):
     label_no_cover = Gtk.Template.Child()
     img_cover = Gtk.Template.Child()
     img_icon = Gtk.Template.Child()
+    btn_menu = Gtk.Template.Child()
 
     # endregion
 
@@ -79,6 +82,7 @@ class LibraryEntry(Gtk.Box):
             #self.img_cover.set_paintable(texture)
             self.img_cover.set_visible(True)
             self.label_no_cover.set_visible(False)
+            self.__calculate_button_color(path=path)
 
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)
@@ -146,6 +150,15 @@ class LibraryEntry(Gtk.Box):
 
     def __remove_entry(self, widget):
         self.library.remove_entry(self.uuid)
+
+    def __calculate_button_color(self, path):
+        image = Image.open(path)
+        image = image.crop((0, 0, 47, 58))
+        image.thumbnail((150, 150))
+        palette = image.convert('P', palette=Image.ADAPTIVE, colors=1).getpalette()
+        rgb = (255-palette[0], 255-palette[1], 255-palette[2])
+        button_color = math.floor(0.299*rgb[0])+math.floor(0.587*rgb[1])+math.floor(0.144*rgb[2])
+        self.library.add_css_entry(entry=self, color=button_color)
 
     def run_executable(self, widget, with_terminal=False):
         executor = WineExecutor(
