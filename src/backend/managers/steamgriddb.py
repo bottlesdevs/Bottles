@@ -19,7 +19,6 @@ import os
 import uuid
 import requests
 from functools import lru_cache
-from steamgrid import SteamGridDB
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.utils.manager import ManagerUtils
@@ -28,24 +27,18 @@ logging = Logger()
 
 
 class SteamGridDBManager:
-
-    def __init__(self, api_key):
-        self.__sgdb = SteamGridDB(api_key)
     
-    def get_game_grid(self, name: str, config: dict):
-        results = self.__sgdb.search_game(name)
-
-        if len(results) == 0:
-            return
-
-        grids = self.__sgdb.get_grids_by_gameid([results[0].id])
-
-        if len(grids) == 0:
+    @staticmethod
+    def get_game_grid(name: str, config: dict):
+        try:
+            res = requests.get(f"https://steamgrid.usebottles.com/api/search/{name}")
+        except:
             return
             
-        return self.__save_grid(grids[0].url, config)
+        if res.status_code == 200:
+            return SteamGridDBManager.__save_grid(res.json(), config)
 
-    def __save_grid(self, url: str, config: dict):
+    def __save_grid(url: str, config: dict):
         grids_path = os.path.join(ManagerUtils.get_bottle_path(config), 'grids')
         if not os.path.exists(grids_path):
             os.makedirs(grids_path)
@@ -59,7 +52,6 @@ class SteamGridDBManager:
             with open(path, 'wb') as f:
                 f.write(r.content)
         except Exception as e:
-            logging.error(e)
             return
 
         return f"grid:{filename}"
