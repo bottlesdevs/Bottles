@@ -302,6 +302,28 @@ class MainWindow(Adw.ApplicationWindow):
         builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
         about_window = builder.get_object("about_window")
         about_window.set_debug_info(HealthChecker().get_results(plain=True))
+        about_window.add_credit_section(
+            _("Third-Party Libraries and Special Thanks"),
+            [
+                "DXVK https://github.com/doitsujin/dxvk",
+                "VKD3D https://github.com/HansKristian-Work/vkd3d-proton",
+                "DXVK-NVAPI https://github.com/jp7677/dxvk-nvapi",
+                "LatencyFleX https://github.com/ishitatsuyuki/LatencyFleX",
+                "MangoHud https://github.com/flightlessmango/MangoHud",
+                "AMD FidelityFX™ Super Resolution https://www.amd.com/en/technologies/fidelityfx-super-resolution",
+                "vkBasalt https://github.com/DadSchoorse/vkBasalt",
+                "GameMode https://github.com/FeralInteractive/gamemode",
+                "Gamescope https://github.com/Plagman/gamescope",
+                "OBS Vulkan/OpenGL capture https://github.com/nowrep/obs-vkcapture",
+                "Wine-TKG https://github.com/Frogging-Family/wine-tkg-git",
+                "Proton https://github.com/ValveSoftware/proton",
+                "Wine-GE https://github.com/GloriousEggroll/wine-ge-custom",
+                "Wine https://www.winehq.org/",
+                "orjson https://github.com/ijl/orjson",
+                "libadwaita https://gitlab.gnome.org/GNOME/libadwaita",
+                "icoextract https://github.com/jlu5/icoextract"
+            ]
+        )
         about_window.set_transient_for(self)
         about_window.present()
 
