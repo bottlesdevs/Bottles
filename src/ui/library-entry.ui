@@ -39,8 +39,8 @@
                         <property name="popover">pop_context</property>
                         <property name="icon-name">view-more-symbolic</property>
                         <style>
-                            <class name="flat"/>
                             <class name="osd"/>
+                            <class name="circular"/>
                         </style>
                     </object>
                 </child>
@@ -102,6 +102,9 @@
                             <object class="GtkLabel" id="label_bottle">
                                 <property name="halign">start</property>
                                 <property name="label">Bottle name</property>
+                                <style>
+                                    <class name="caption"/>
+                                </style>
                             </object>
                         </child>
                     </object>
