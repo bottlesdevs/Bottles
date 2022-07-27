@@ -54,7 +54,7 @@ class LibraryEntry(Gtk.Box):
         self.entry = entry
         self.config = self.__get_config()
         self.program = self.__get_program()
-
+        self.set_size_request(240, 420)
         self.label_name.set_text(entry['name'])
         self.label_bottle.set_text(entry['bottle']['name'])
 
@@ -73,8 +73,10 @@ class LibraryEntry(Gtk.Box):
 
         if entry.get('thumbnail'):
             path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
-            texture = Gdk.Texture.new_from_filename(path)
-            self.img_cover.set_paintable(texture)
+            #texture = Gdk.Texture.new_from_filename(path)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 240, 360)
+            self.img_cover.set_pixbuf(pixbuf)
+            #self.img_cover.set_paintable(texture)
             self.img_cover.set_visible(True)
             self.label_no_cover.set_visible(False)
 
