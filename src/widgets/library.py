@@ -161,16 +161,12 @@ class LibraryEntry(Gtk.Box):
         self.library.add_css_entry(entry=self, color=button_color)
 
     def run_executable(self, widget, with_terminal=False):
-        executor = WineExecutor(
-            self.config,
-            exec_path=self.program["path"],
-            args=self.program["arguments"],
-            cwd=self.program["folder"],
-            post_script=self.program.get("script", None),
-            terminal=with_terminal
+        RunAsync(
+            WineExecutor.run_program, 
+            callback=self.__reset_buttons, 
+            config=self.config, 
+            program=self.program
         )
-        RunAsync(executor.run, callback=self.__reset_buttons)
-
         self.__reset_buttons()
 
     def run_steam(self, widget):

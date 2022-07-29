@@ -180,40 +180,7 @@ class ProgramEntry(Adw.ActionRow):
         self.pop_actions.popdown()  # workaround #1640
 
         def _run():
-            dxvk = self.config["Parameters"]["dxvk"]
-            vkd3d = self.config["Parameters"]["vkd3d"]
-            nvapi = self.config["Parameters"]["dxvk_nvapi"]
-            fsr = self.config["Parameters"]["fsr"]
-            pulse_latency = self.config["Parameters"]["pulseaudio_latency"]
-            virt_desktop = self.config["Parameters"]["virtual_desktop"]
-
-            if self.program.get("dxvk") != dxvk:
-                dxvk = self.program.get("dxvk")
-            if self.program.get("vkd3d") != vkd3d:
-                vkd3d = self.program.get("vkd3d")
-            if self.program.get("dxvk_nvapi") != nvapi:
-                nvapi = self.program.get("dxvk_nvapi")
-            if self.program.get("fsr") != fsr:
-                fsr = self.program.get("fsr")
-            if self.program.get("pulseaudio_latency") != pulse_latency:
-                pulse_latency = self.program.get("pulseaudio_latency")
-            if self.program.get("virtual_desktop") != virt_desktop:
-                virt_desktop = self.program.get("virtual_desktop")
-
-            WineExecutor(
-                self.config,
-                exec_path=self.program["path"],
-                args=self.program["arguments"],
-                cwd=self.program["folder"],
-                post_script=self.program.get("script", None),
-                terminal=with_terminal,
-                override_dxvk=dxvk,
-                override_vkd3d=vkd3d,
-                override_nvapi=nvapi,
-                override_fsr=fsr,
-                override_pulse_latency=pulse_latency,
-                override_virt_desktop=virt_desktop
-            ).run()
+            WineExecutor.run_program(self.config, self.program, with_terminal)
             self.pop_actions.popdown()  # workaround #1640
             return True
 
