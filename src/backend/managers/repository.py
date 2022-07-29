@@ -17,6 +17,7 @@
 
 import os
 import urllib.request
+import http
 from typing import Union, NewType
 from gi.repository import GLib
 
