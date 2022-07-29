@@ -16,6 +16,7 @@
 #
 
 import logging
+import re
 from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk, GLib, Adw
@@ -62,8 +63,8 @@ class LibraryView(Adw.Bin):
 
     def add_css_entry(self, entry, color):
         gtk_context = self.get_style_context()
-        Gtk.StyleContext.add_class(entry.btn_menu.get_style_context(), entry.entry['name']+"_menu_button")
-        self.css = self.css+b"\n"+b"."+bytes(entry.entry["name"], 'utf-8')+b"_menu_button { color: rgba("+bytes(str(color), 'utf-8')+b","+bytes(str(color), 'utf-8')+b","+bytes(str(color), 'utf-8')+b", 255); }"
+        Gtk.StyleContext.add_class(entry.btn_menu.get_style_context(), re.sub('[~!@$%^&*()+=,./\';:"?><\[\]\{}|`#]', '', entry.entry["name"]).strip(' ')+"_menu_button")
+        self.css = self.css+b"\n"+b"."+bytes(re.sub('[~!@$%^&*()+=,./\';:"?><\[\]\{}|`#]', '', entry.entry["name"]).strip(' '), 'utf-8')+b"_menu_button { color: rgba("+bytes(str(color), 'utf-8')+b","+bytes(str(color), 'utf-8')+b","+bytes(str(color), 'utf-8')+b", 255); }"
         self.style_provider.load_from_data(self.css)
         Gtk.StyleContext.add_provider(
             entry.btn_menu.get_style_context(),
