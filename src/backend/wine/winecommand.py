@@ -506,9 +506,28 @@ class WineCommand:
 
         return " ".join(gamescope_cmd)
 
+    def vmtouch_preload(self):
+        print("!!using vmtouch!!")
+        print("command:")
+        print(self.command)
+        print("cwd:")
+        print(self.cwd)
+        print("main executable:")
+        if self.command.find("C:\\") > 0:
+            executable = (self.cwd+"/"+(self.command.split(" ")[-1].split('\\')[-1])).replace('\'', "")
+        else:
+            executable = self.command.split(" ")[-1]
+        print(self.command.split(" ")[-1])
+        print("executable")
+        print(executable)
+        self.command = "/app/bin/vmtouch -t -l -v '"+executable+"' & "+self.command
+
     def run(self):
         if None in [self.runner, self.env]:
             return
+
+        if self.config["Parameters"].get("vmtouch"):
+            self.vmtouch_preload()
 
         if self.config["Parameters"].get("sandbox"):
             permissions = self.config["Sandbox"]

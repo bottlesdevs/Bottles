@@ -189,6 +189,14 @@ modules:
 
   # Tools / Codecs
   # ----------------------------------------------------------------------------
+  - name: vmtouch
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/hoytech/vmtouch
+    build-commands:
+      - make
+      - make install PREFIX=/app
   - name: vulkan-tools
     buildsystem: cmake-ninja
     config-opts:
