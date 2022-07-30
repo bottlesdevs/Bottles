@@ -789,7 +789,7 @@ class Manager:
                     value=Samples.config["Parameters"][key],
                     scope="Parameters"
                 )
-            self.local_bottles[_name] = conf_file_yaml
+            self.local_bottles[conf_file_yaml['Name']] = conf_file_yaml
 
             for p in [
                 os.path.join(_bottle, "cache", "dxvk_state"),
