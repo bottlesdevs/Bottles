@@ -489,6 +489,8 @@ class WineCommand:
                 gamescope_cmd.append("-b")
             if params["gamescope_scaling"]:
                 gamescope_cmd.append("-n")
+            if params["fsr"]:
+                gamescope_cmd.append("-U")
             if params["gamescope_fps"] > 0:
                 gamescope_cmd.append(f"-r {params['gamescope_fps']}")
             if params["gamescope_fps_no_focus"] > 0:
