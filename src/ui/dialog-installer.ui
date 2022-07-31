@@ -43,12 +43,12 @@
                                         </child>
                                         <child>
                                             <object class="AdwStatusPage" id="status_init">>
-                                                <property name="description">Do you want to proceed with the installation?</property>
+                                                <property name="description" translatable="yes">Do you want to proceed with the installation?</property>
                                                 <property name="hexpand">True</property>
                                                 <property name="vexpand">True</property>
                                                 <child>
                                                     <object class="GtkButton" id="btn_install">
-                                                        <property name="label">Start Installation</property>
+                                                        <property name="label" translatable="yes">Start Installation</property>
                                                         <property name="halign">center</property>
                                                         <style>
                                                             <class name="pill"/>
@@ -112,7 +112,7 @@
                                         <child>
                                           <object class="AdwStatusPage" id="install_status_page">
                                             <property name="title">name</property>
-                                            <property name="description">It could take a while, take a break.</property>
+                                            <property name="description" translatable="yes">It could take a while, take a break.</property>
                                             <child>
                                               <object class="GtkProgressBar" id="progressbar">
                                                 <property name="width_request">300</property>
@@ -135,10 +135,10 @@
                                 <property name="child">
                                     <object class="AdwStatusPage" id="status_installed">
                                         <property name="icon-name">selection-mode-symbolic</property>
-                                        <property name="title">Completed!</property>
+                                        <property name="title" translatable="yes">Completed!</property>
                                         <child>
                                             <object class="GtkButton" id="btn_close">
-                                                <property name="label">Show Programs</property>
+                                                <property name="label" translatable="yes">Show Programs</property>
                                                 <property name="halign">center</property>
                                                 <style>
                                                     <class name="pill"/>
@@ -157,8 +157,8 @@
                                 <property name="child">
                                     <object class="AdwStatusPage" id="status_error">
                                         <property name="icon-name">dialog-warning-symbolic</property>
-                                        <property name="title">Installation Failed!</property>
-                                        <property name="description">Something goes wrong.</property>
+                                        <property name="title" translatable="yes">Installation Failed!</property>
+                                        <property name="description" translatable="yes">Something goes wrong.</property>
                                     </object>
                                 </property>
                             </object>

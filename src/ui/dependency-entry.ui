@@ -47,16 +47,16 @@
         </child>
     </object>
     <template class="DependencyEntry" parent="AdwActionRow">
-        <property name="title">Dependency name</property>
+        <property name="title" translatable="yes">Dependency name</property>
         <property name="activatable-widget">btn_install</property>
-        <property name="subtitle">Dependency description</property>
+        <property name="subtitle" translatable="yes">Dependency description</property>
         <child>
             <object class="GtkBox" id="box_actions">
                 <property name="spacing">6</property>
                 <child>
                     <object class="GtkLabel" id="label_category">
                         <property name="valign">center</property>
-                        <property name="label">Category</property>
+                        <property name="label" translatable="yes">Category</property>
                         <style>
                             <class name="tag"/>
                             <class name="caption"/>
