@@ -32,6 +32,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
     __registry = []
 
     # region Widgets
+    row_theme = Gtk.Template.Child()
+    switch_theme = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
@@ -70,6 +72,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.default_settings = window.default_settings
         self.manager = window.manager
         self.data = DataManager()
+        self.style_manager = Adw.StyleManager.get_default()
 
         if "FLATPAK_ID" in os.environ:
             self.remove(self.pref_core)
@@ -100,6 +103,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.populate_latencyflex_list()
 
         # connect signals
+        self.switch_theme.connect('state-set', self.__toggle_night)
         self.switch_notifications.connect('state-set', self.__toggle_notify)
         self.switch_temp.connect('state-set', self.__toggle_temp)
         self.switch_release_candidate.connect('state-set', self.__toggle_rc)
@@ -120,6 +124,19 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.action_steam_proton.set_tooltip_text(
                 _("Steam was not found or Bottles does not have enough permissions."))
             self.btn_steam_proton_doc.set_visible(True)
+        
+
+        if not self.style_manager.get_system_supports_color_schemes():
+            self.row_theme.set_visible(True)
+
+    def __toggle_night(self, widget, state):
+        self.settings.set_boolean("dark-theme", state)
+        manager = Adw.StyleManager.get_default()
+        if state:
+            manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+        else:
+            manager.set_color_scheme(Adw.ColorScheme.DEFAULT)
+
 
     def __toggle_update_date(self, widget, state):
         self.settings.set_boolean("update-date", state)

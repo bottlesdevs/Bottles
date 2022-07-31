@@ -15,6 +15,19 @@
                     <object class="AdwPreferencesGroup">
                         <property name="title" translatable="yes">Appearance</property>
                         <child>
+                            <object class="AdwActionRow" id="row_theme">
+                                <property name="title" translatable="yes">Dark Mode</property>
+                                <property name="subtitle" translatable="yes">Whether Bottles should use the dark color scheme.</property>
+                                <property name="visible">False</property>
+                                <property name="activatable-widget">switch_theme</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_theme">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
                             <object class="AdwActionRow">
                                 <property name="title" translatable="yes">Show Update Date</property>
                                 <property name="subtitle" translatable="yes">Whether to show the update date in the bottle list.</property>
