@@ -62,7 +62,7 @@ class Samples:
             "versioning_automatic": False,
             "versioning_exclusion_patterns": False,
             "vmtouch": False,
-            "vmtouch_cached_files": [],
+            "vmtouch_cache_cwd": False,
             "vmtouch_max_file_size": 0,
             "vmtouch_lock_memory": False
         },

@@ -24,6 +24,7 @@ bottles_sources = [
   'depscheck.py',
   'exclusionpatterns.py',
   'upgradeversioning.py',
+  'vmtouch.py',
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)

@@ -39,6 +39,7 @@ from bottles.dialogs.gamescope import GamescopeDialog
 from bottles.dialogs.sandbox import SandboxDialog
 from bottles.dialogs.protonalert import ProtonAlertDialog
 from bottles.dialogs.exclusionpatterns import ExclusionPatternsDialog
+from bottles.dialogs.vmtouch import VmtouchDialog
 
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
@@ -55,6 +56,7 @@ class PreferencesView(Adw.PreferencesPage):
     btn_manage_gamescope = Gtk.Template.Child()
     btn_manage_sandbox = Gtk.Template.Child()
     btn_manage_versioning_patterns = Gtk.Template.Child()
+    btn_manage_vmtouch = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
     row_dxvk = Gtk.Template.Child()
@@ -95,6 +97,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_versioning_compression = Gtk.Template.Child()
     switch_auto_versioning = Gtk.Template.Child()
     switch_versioning_patterns = Gtk.Template.Child()
+    switch_vmtouch = Gtk.Template.Child()
     toggle_sync = Gtk.Template.Child()
     toggle_esync = Gtk.Template.Child()
     toggle_fsync = Gtk.Template.Child()
@@ -147,6 +150,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_manage_sandbox.connect("clicked", self.__show_sandbox_settings)
         self.btn_manage_versioning_patterns.connect("clicked", self.__show_exclusionpatterns_settings)
+        self.btn_manage_vmtouch.connect("clicked", self.__show_vmtouch_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.choose_cwd, True)
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
@@ -175,6 +179,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_versioning_compression.connect('state-set', self.__toggle_versioning_compression)
         self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
         self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
+        self.switch_vmtouch.connect('state-set', self.__toggle_vmtouch)
         self.combo_fsr.connect('changed', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_dpi.connect('changed', self.__set_custom_dpi)
@@ -374,6 +379,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_versioning_patterns.set_active(parameters["versioning_exclusion_patterns"])
         self.switch_runtime.set_active(parameters["use_runtime"])
         self.switch_steam_runtime.set_active(parameters["use_steam_runtime"])
+        self.switch_vmtouch.set_active(parameters["vmtouch"])
 
         self.toggle_sync.set_active(parameters["sync"] == "wine")
         self.toggle_esync.set_active(parameters["sync"] == "esync")
@@ -498,6 +504,13 @@ class PreferencesView(Adw.PreferencesPage):
     def __show_environment_variables(self, widget=False):
         """Show the environment variables dialog"""
         new_window = EnvVarsDialog(
+            window=self.window,
+            config=self.config
+        )
+        new_window.present()
+
+    def __show_vmtouch_settings(self, widget):
+        new_window = VmtouchDialog(
             window=self.window,
             config=self.config
         )
@@ -762,6 +775,15 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = self.manager.update_config(
             config=self.config,
             key="versioning_exclusion_patterns",
+            value=state,
+            scope="Parameters"
+        ).data["config"]
+
+    def __toggle_vmtouch(self, widget=False, state=False):
+        """Toggle vmtouch for current bottle"""
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="vmtouch",
             value=state,
             scope="Parameters"
         ).data["config"]
