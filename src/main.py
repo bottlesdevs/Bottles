@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import sys
 import gi
@@ -75,7 +76,6 @@ _ = gettext.gettext
 class Bottles(Adw.Application):
     arg_exe = None
     arg_bottle = None
-    arg_passed = None
     dark_provider = None
 
     def __init__(self):
@@ -162,14 +162,8 @@ class Bottles(Adw.Application):
             print(VERSION)
             quit()
 
-        if commands.contains("lnk"):
-            self.arg_exe = commands.lookup_value("lnk").get_string()
-
         if commands.contains("bottle"):
             self.arg_bottle = commands.lookup_value("bottle").get_string()
-
-        if commands.contains("arguments"):
-            self.arg_passed = commands.lookup_value("arguments").get_string()
 
         if not self.arg_exe:
             '''
@@ -229,9 +223,7 @@ class Bottles(Adw.Application):
         if not win:
             win = MainWindow(
                 application=self,
-                arg_exe=self.arg_exe,
-                arg_bottle=self.arg_bottle,
-                arg_passed=self.arg_passed
+                arg_bottle=self.arg_bottle
             )
         self.win = win
         win.present()

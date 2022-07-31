@@ -13,10 +13,11 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
 import uuid
-import yaml
+from bottles.backend.utils import yaml
 import shlex
 import shutil
 import subprocess
@@ -357,7 +358,10 @@ class SteamManager:
         else:
             args = launch_options
 
-        prefix = shlex.split(prefix.strip())
+        try:
+            prefix = shlex.split(prefix.strip())
+        except ValueError:
+            prefix = prefix.split(shlex.quote(prefix.strip()))
 
         for p in prefix.copy():
             if "=" in p:
@@ -508,12 +512,14 @@ class SteamManager:
         return runners
 
     def add_shortcut(self, program_name: str, program_path: str):
+        logging.info(f"Adding shortcut for {program_name}")
         cmd = "xdg-open"
         args = "bottles:run/{0}/'{1}'"
 
         if self.userdata_path is None:
+            logging.warning("Userdata path is not set")
             return Result(False)
-
+        
         confs = glob(os.path.join(self.userdata_path, "*/config/"))
         shortcut = {
             "AppName": program_name,
@@ -550,4 +556,5 @@ class SteamManager:
             with open(os.path.join(c, "shortcuts.vdf"), "wb") as f:
                 f.write(vdf.binary_dumps(_shortcuts))
 
+        logging.info(f"Added shortcut for {program_name}")
         return Result(True)

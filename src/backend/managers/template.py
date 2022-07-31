@@ -13,9 +13,10 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
-import yaml
+from bottles.backend.utils import yaml
 import uuid
 import shutil
 import contextlib
@@ -53,6 +54,7 @@ class TemplateManager:
         ignored = [
             "dosdevices",
             "states",
+            ".fvs",
             "*.yml"
             ".*"
         ]
@@ -96,7 +98,7 @@ class TemplateManager:
     @staticmethod
     def get_template_manifest(template: str):
         with open(os.path.join(Paths.templates, template, "template.yml"), "r") as f:
-            return yaml.safe_load(f)
+            return yaml.load(f)
 
     @staticmethod
     def get_templates():
@@ -164,5 +166,5 @@ class TemplateManager:
         bottle = ManagerUtils.get_bottle_path(config)
         _path = os.path.join(Paths.templates, template['uuid'])
 
-        shutil.copytree(_path, bottle, symlinks=False, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.*'))
+        shutil.copytree(_path, bottle, symlinks=True, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.*'))
         logging.info("Template unpacked successfully!")

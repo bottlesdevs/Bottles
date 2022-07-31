@@ -13,9 +13,10 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
-from gi.repository import Gtk, GLib, Adw
+from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
 from bottles.backend.utils.manager import ManagerUtils
@@ -24,10 +25,12 @@ from bottles.backend.utils.manager import ManagerUtils
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class LaunchOptionsDialog(Adw.Window):
     __gtype_name__ = 'LaunchOptionsDialog'
+    __gsignals__ = {
+        "options-saved": (GObject.SIGNAL_RUN_FIRST, None, (str,)),  # str would be dict here, it just raises errors
+    }
 
     # region Widgets
     entry_arguments = Gtk.Template.Child()
-    btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_script = Gtk.Template.Child()
     btn_script_reset = Gtk.Template.Child()
@@ -64,7 +67,6 @@ class LaunchOptionsDialog(Adw.Window):
         self.manager = parent.window.manager
         self.config = config
         self.program = program
-        self.main_loop = GLib.MainLoop()
 
         self.set_transient_for(self.window)
 
@@ -72,14 +74,13 @@ class LaunchOptionsDialog(Adw.Window):
         self.entry_arguments.set_text(program.get("arguments", ""))
 
         # connect signals
-        self.btn_cancel.connect("clicked", self.__close_window)
-        self.btn_save.connect("clicked", self.__save_options)
+        self.btn_save.connect("clicked", self.__save)
         self.btn_script.connect("clicked", self.__choose_script)
         self.btn_script_reset.connect("clicked", self.__reset_script)
         self.btn_cwd.connect("clicked", self.__choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
         self.btn_reset_defaults.connect("clicked", self.__reset_defaults)
-        self.entry_arguments.connect("activate", self.__save_options)
+        self.entry_arguments.connect("activate", self.__save)
         self.switch_dxvk.connect(
             "state-set",
             self.__check_override,
@@ -182,15 +183,10 @@ class LaunchOptionsDialog(Adw.Window):
         else:
             action.set_subtitle("")
 
-    def __close_window(self, *args):
-        self.main_loop.quit()
-        self.destroy()
-        self.close()
-
     def get_config(self):
         return self.config
 
-    def __save_options(self, *args):
+    def __idle_save(self, *_args):
         dxvk = self.switch_dxvk.get_state()
         vkd3d = self.switch_vkd3d.get_state()
         nvapi = self.switch_nvapi.get_state()
@@ -212,9 +208,15 @@ class LaunchOptionsDialog(Adw.Window):
             value=self.program,
             scope="External_Programs"
         ).data["config"]
-        GLib.idle_add(self.__close_window)
 
-    def __choose_script(self, *args):
+        self.emit("options-saved", self.config)
+        self.close()
+        return
+
+    def __save(self, *_args):
+        GLib.idle_add(self.__idle_save)
+
+    def __choose_script(self, *_args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
@@ -233,12 +235,12 @@ class LaunchOptionsDialog(Adw.Window):
             callback=set_path
         )
 
-    def __reset_script(self, *args):
+    def __reset_script(self, *_args):
         self.program["script"] = ""
         self.action_script.set_subtitle(self.__default_script_msg)
         self.btn_script_reset.set_visible(False)
 
-    def __choose_cwd(self, *args):
+    def __choose_cwd(self, *_args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
@@ -257,7 +259,7 @@ class LaunchOptionsDialog(Adw.Window):
             callback=set_path
         )
 
-    def __reset_cwd(self, *args):
+    def __reset_cwd(self, *_args):
         """
         This function reset the script path.
         """
@@ -265,14 +267,10 @@ class LaunchOptionsDialog(Adw.Window):
         self.action_cwd.set_subtitle(self.__default_cwd_msg)
         self.btn_cwd_reset.set_visible(False)
 
-    def __reset_defaults(self, *args):
+    def __reset_defaults(self, *_args):
         self.switch_dxvk.set_active(self.config["Parameters"]["dxvk"])
         self.switch_vkd3d.set_active(self.config["Parameters"]["vkd3d"])
         self.switch_nvapi.set_active(self.config["Parameters"]["dxvk_nvapi"])
         self.switch_fsr.set_active(self.config["Parameters"]["fsr"])
         self.switch_pulse_latency.set_active(self.config["Parameters"]["pulseaudio_latency"])
         self.switch_virt_desktop.set_active(self.config["Parameters"]["virtual_desktop"])
-
-    def run(self):
-        self.present()
-        self.main_loop.run()

@@ -13,9 +13,10 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
-import yaml
+from bottles.backend.utils import yaml
 import uuid
 import tarfile
 import shutil
@@ -136,7 +137,7 @@ class BackupManager:
 
             try:
                 with open(path, "r") as config_backup:
-                    config = yaml.safe_load(config_backup)
+                    config = yaml.load(config_backup)
                     config_backup.close()
 
                 if manager.create_bottle_from_config(config):
@@ -202,7 +203,7 @@ class BackupManager:
             shutil.copyfile(source_config, dest_config)
 
             with open(dest_config, "r") as config_file:
-                config = yaml.safe_load(config_file)
+                config = yaml.load(config_file)
                 config["Name"] = name
                 config["Path"] = name
 

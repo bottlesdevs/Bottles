@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
@@ -89,7 +90,7 @@ class ImporterView(Adw.Bin):
         else:
             self.window.show_toast(_("Import failed."))
 
-    def __import_full_bck(self, *args):
+    def __import_full_bck(self, *_args):
         """
         This function show a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It supports only .tar.gz files
@@ -118,7 +119,7 @@ class ImporterView(Adw.Bin):
             callback=set_path
         )
 
-    def __import_config_bck(self, *args):
+    def __import_config_bck(self, *_args):
         """
         This function show a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It supports only .yml files
@@ -147,5 +148,5 @@ class ImporterView(Adw.Bin):
             callback=set_path
         )
 
-    def go_back(self, *args):
+    def go_back(self, *_args):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)

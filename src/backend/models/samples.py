@@ -19,10 +19,10 @@ class Samples:
         "Creation_Date": "",
         "Update_Date": "",
         "Versioning": False,
+        "Versioning_Exclusion_Patterns": [],
         "State": 0,
         "Parameters": {
             "dxvk": False,
-            "dxvk_hud": False,
             "dxvk_nvapi": False,
             "vkd3d": False,
             "latencyflex": False,
@@ -58,6 +58,9 @@ class Samples:
             "use_be_runtime": True,
             "use_steam_runtime": False,
             "sandbox": False,
+            "versioning_compression": False,
+            "versioning_automatic": False,
+            "versioning_exclusion_patterns": False,
         },
         "Sandbox": {
             # "share_paths_ro": [], # TODO: implement
@@ -120,7 +123,6 @@ class Samples:
     }
 
     bottles_to_steam_relations = {
-        "DXVK_HUD": ("dxvk_hud", True),
         "MANGOHUD": ("mangohud", True),
         "OBS_VKCAPTURE": ("obsvkc", True),
         "ENABLE_VKBASALT": ("vkbasalt", True),

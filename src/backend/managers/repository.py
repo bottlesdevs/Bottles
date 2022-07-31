@@ -13,9 +13,11 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
 import urllib.request
+import http
 from typing import Union, NewType
 from gi.repository import GLib
 
@@ -99,6 +101,6 @@ class RepositoryManager:
                         data["index"] = __fallback
                         if self.repo_fn_update is not None:
                             GLib.idle_add(self.repo_fn_update, total)
-                except (urllib.error.HTTPError, urllib.error.URLError):
+                except (urllib.error.HTTPError, urllib.error.URLError, http.client.RemoteDisconnected):
                     logging.error(f"Could not get index for {repo} repository")
                     continue

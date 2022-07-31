@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 import shlex
 import shutil
 import gi
@@ -82,8 +83,6 @@ class ManagerUtils:
 
     @staticmethod
     def get_bottle_path(config: dict) -> str:
-        if config.get("IsLayer"):
-            return ManagerUtils.get_layer_path(config["Path"])
         if config.get("Environment") == "Steam":
             return os.path.join(Paths.steam, config.get("CompatData"))
         return os.path.join(Paths.bottles, config.get("Path"))

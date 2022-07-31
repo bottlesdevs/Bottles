@@ -115,14 +115,26 @@
                                         <property name="hexpand">True</property>
                                         <property name="valign">center</property>
                                         <property name="child">
-                                            <object class="GtkButton" id="btn_close">
-                                                <property name="label" translatable="yes">Start using Bottles</property>
-                                                <property name="use-underline">True</property>
-                                                <property name="halign">center</property>
-                                                <style>
-                                                    <class name="suggested-action"/>
-                                                    <class name="pill"/>
-                                                </style>
+                                            <object class="GtkBox">
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                    <object class="GtkLabel" id="label_skip">
+                                                        <property name="label" translatable="yes">Please Finish the setup first</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="margin-bottom">5</property>
+                                                    </object>
+                                                </child>
+                                                <child>
+                                                    <object class="GtkButton" id="btn_close">
+                                                        <property name="label" translatable="yes">Start using Bottles</property>
+                                                        <property name="use-underline">True</property>
+                                                        <property name="halign">center</property>
+                                                        <style>
+                                                            <class name="suggested-action"/>
+                                                            <class name="pill"/>
+                                                        </style>
+                                                    </object>
+                                                </child>
                                             </object>
                                         </property>
                                     </object>

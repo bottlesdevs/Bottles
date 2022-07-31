@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 from gi.repository import Gtk, GLib, Adw
 
@@ -50,7 +51,7 @@ class DriveEntry(Adw.ActionRow):
         self.btn_path.connect("clicked", self.__choose_path)
         self.btn_remove.connect("clicked", self.__remove)
 
-    def __choose_path(self, *args):
+    def __choose_path(self, *_args):
         """
         Open the file chooser dialog and set the path to the
         selected file
@@ -74,7 +75,7 @@ class DriveEntry(Adw.ActionRow):
             native=False
         )
 
-    def __remove(self, *args):
+    def __remove(self, *_args):
         """
         Remove the drive from the bottle configuration and
         destroy the widget
@@ -115,7 +116,7 @@ class DrivesDialog(Adw.Window):
         # connect signals
         self.btn_save.connect("clicked", self.__save)
 
-    def __save(self, *args):
+    def __save(self, *_args):
         """
         This function add a new drive to the bottle configuration
         """

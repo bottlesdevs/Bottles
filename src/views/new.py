@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
 import re
@@ -44,7 +45,6 @@ class NewView(Adw.Window):
     page_create = Gtk.Template.Child()
     page_creating = Gtk.Template.Child()
     created = Gtk.Template.Child()
-    switch_versioning = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
@@ -55,13 +55,12 @@ class NewView(Adw.Window):
 
     # endregion
 
-    def __init__(self, window, arg_exe=None, **kwargs):
+    def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
         # common variables and references
         self.window = window
         self.manager = window.manager
-        self.arg_exe = arg_exe
         self.selected_env = "gaming"
         self.env_recipe_path = None
         self.new_bottle_config = {}
@@ -128,11 +127,11 @@ class NewView(Adw.Window):
         """
         self.selected_env = row.get_buildable_id()
 
-    def __check_entry_name(self, *args):
+    def __check_entry_name(self, *_args):
         result = GtkUtils.validate_entry(self.entry_name)
         self.btn_create.set_sensitive(result)
 
-    def choose_env_recipe(self, *args):
+    def choose_env_recipe(self, *_args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
@@ -147,7 +146,7 @@ class NewView(Adw.Window):
             callback=set_path
         )
 
-    def choose_path(self, *args):
+    def choose_path(self, *_args):
         def set_path(_dialog, response, _file_dialog):
             if response == Gtk.ResponseType.OK:
                 _file = _file_dialog.get_file()
@@ -163,7 +162,7 @@ class NewView(Adw.Window):
             callback=set_path
         )
 
-    def create_bottle(self, *args):
+    def create_bottle(self, *_args):
         # set widgets states
         self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
@@ -175,7 +174,6 @@ class NewView(Adw.Window):
         # avoid giant/empty window
         self.set_default_size(450, 430)
 
-        versioning_state = self.switch_versioning.get_state()
         sandbox_state = self.switch_sandbox.get_state()
         if self.selected_env == "custom":
             self.runner = self.combo_runner.get_active_id()
@@ -194,7 +192,6 @@ class NewView(Adw.Window):
             runner=self.runner,
             arch=arch,
             dxvk=self.manager.dxvk_available[0],
-            versioning=versioning_state,
             sandbox=sandbox_state,
             fn_logger=self.update_output,
             custom_environment=self.env_recipe_path
@@ -233,18 +230,11 @@ class NewView(Adw.Window):
         self.manager.check_bottles()
         self.window.page_list.update_bottles()
 
-    def __close_window(self, *args):
+    def __close_window(self, *_args):
         """
         This function check if an executable was passed to Bottles as
         a command line argument. If so, it will be launched in the new
         bottles and will close the bottle creation dialog. If there is
         no arguments, it will simply close the dialog.
         """
-        if self.arg_exe:
-            executor = WineExecutor(
-                self.new_bottle_config,
-                exec_path=self.arg_exe
-            )
-            RunAsync(executor.run)
-
         self.destroy()

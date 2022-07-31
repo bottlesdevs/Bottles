@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
 import uuid
@@ -90,7 +91,7 @@ class DependencyManager:
         task_id = str(uuid.uuid4())
         uninstaller = True
 
-        if config["Versioning"]:
+        if config["Parameters"]["versioning_automatic"]:
             '''
             If the bottle has the versioning system enabled, we need
             to create a new version of the bottle, before installing
@@ -98,8 +99,7 @@ class DependencyManager:
             '''
             self.__manager.versioning_manager.create_state(
                 config=config,
-                comment=f"before {dependency[0]}",
-                update=True
+                message=f"Before installing {dependency[0]}"
             )
 
         GLib.idle_add(

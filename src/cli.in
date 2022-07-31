@@ -21,7 +21,6 @@
 import gi
 import os
 import sys
-import yaml
 import uuid
 import json
 import signal
@@ -612,8 +611,8 @@ class CLI:
             exit(1)
 
         bottle = mng.local_bottles[_bottle]
-        winecommand = WineCommand(config=bottle, command=_input)
-        winecommand.run()
+        winecommand = WineCommand(config=bottle, command=_input, communicate=True)
+        sys.stdout.write(winecommand.run())
 
     # endregion
 

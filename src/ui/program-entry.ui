@@ -36,6 +36,10 @@
                     </object>
                 </child>
                 <child>
+                    <object class="GtkSeparator">
+                    </object>
+                </child>
+                <child>
                     <object class="GtkModelButton" id="btn_launch_options">
                         <property name="text" translatable="yes">Change Launch Options…</property>
                     </object>
@@ -92,7 +96,6 @@
         </child>
     </object>
     <template class="ProgramEntry" parent="AdwActionRow">
-        <property name="activatable-widget">btn_run</property>
         <property name="title">Program name</property>
         <child>
             <object class="GtkBox">

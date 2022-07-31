@@ -13,14 +13,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
-import re
+
 import time
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
-from bottles.utils.common import open_doc_url
+from bottles.utils.threading import RunAsync
 from bottles.widgets.page import PageRow
 
 from bottles.backend.managers.queue import QueueManager
@@ -40,12 +40,16 @@ from bottles.views.bottle_taskmanager import TaskManagerView
 
 from bottles.widgets.program import ProgramEntry
 
-pages = {}
-
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class DetailsView(Adw.Bin):
+    """
+    This class is the starting point for all the pages concerning the
+    bottle (details, preferences, dependencies ..).
+    """
+
     __gtype_name__ = 'Details'
+    __pages = {}
 
     # region Widgets
     leaflet = Gtk.Template.Child()
@@ -100,27 +104,30 @@ class DetailsView(Adw.Bin):
         # self.build_pages()
 
     def set_title(self, title, subtitle: str = ""):
+        """
+        This function is used to set the title of the DetailsView
+        headerbar.
+        """
         self.content_title.set_title(title)
         self.content_title.set_subtitle(subtitle)
 
-    def __on_leaflet_folded(self, widget, *args):
+    def __on_leaflet_folded(self, widget, *_args):
         folded = widget.get_folded()
         self.sidebar_headerbar.set_show_end_title_buttons(folded)
         self.content_headerbar.set_show_start_title_buttons(folded)
         self.btn_back_sidebar.set_visible(folded)
 
-    def __on_page_change(self, *args):
+    def __on_page_change(self, *_args):
         """
         Update headerbar title according to the current page.
         """
-        global pages
         self.window.toggle_selection_mode(False)
         page = self.stack_bottle.get_visible_child_name()
 
         if page is None:
             page = "bottle"
 
-        self.set_title(pages[page]['title'], pages[page]['description'])
+        self.set_title(self.__pages[page]['title'], self.__pages[page]['description'])
         if page in ["bottle", None]:
             self.set_actions(self.view_bottle.actions)
         elif page == "programs":
@@ -136,17 +143,13 @@ class DetailsView(Adw.Bin):
         else:
             self.set_actions(None)
 
-    def set_visible_child_name(self, name):
-        self.stack_bottle.set_visible_child_name(name)
-
     def build_pages(self):
         """
         This function build the pages list according to the
         user settings (some pages are shown only if experimental
         features are enabled).
         """
-        global pages
-        pages = {
+        self.__pages = {
             "bottle": {
                 "title": _("Details & Utilities"),
                 "description": "",
@@ -178,18 +181,18 @@ class DetailsView(Adw.Bin):
         }
 
         if self.config.get("Environment") == "Layered":
-            del pages["dependencies"]
-            del pages["preferences"]
-            del pages["versioning"]
+            del self.__pages["dependencies"]
+            del self.__pages["preferences"]
+            del self.__pages["versioning"]
         elif self.config.get("Environment") == "Steam":
-            del pages["programs"]
-            del pages["versioning"]
+            del self.__pages["programs"]
+            del self.__pages["versioning"]
 
         while self.list_pages.get_first_child():
             self.list_pages.remove(self.list_pages.get_first_child())
 
-        for p in pages:
-            self.list_pages.append(PageRow(p, pages[p]))
+        for page, data in self.__pages.items():
+            self.list_pages.append(PageRow(page, data))
 
         self.stack_bottle.add_named(self.view_bottle, "bottle")
         self.stack_bottle.add_named(self.view_preferences, "preferences")
@@ -202,7 +205,7 @@ class DetailsView(Adw.Bin):
         self.set_actions(self.view_bottle.actions)
         self.list_pages.select_row(self.list_pages.get_first_child())
 
-    def __change_page(self, widget, row):
+    def __change_page(self, _widget, row):
         """
         This function try to change the page based on user choice, if
         the page is not available, it will show the "bottle" page.
@@ -210,7 +213,7 @@ class DetailsView(Adw.Bin):
         try:
             self.stack_bottle.set_visible_child_name(row.page_name)
             self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
-        except:
+        except:  # pylint: disable=bare-except
             pass
 
     def set_actions(self, widget: Gtk.Widget = None):
@@ -237,7 +240,7 @@ class DetailsView(Adw.Bin):
         self.view_preferences.set_config(config=config)
         self.view_taskmanager.set_config(config=config)
         self.view_programs.set_config(config=config)
-        self.view_dependencies.update(config=config)  # TODO: cause slow down
+        self.view_dependencies.update(config=config)
         self.view_installers.update(config=config)
         self.view_versioning.update(config=config)
         self.update_programs()
@@ -259,7 +262,8 @@ class DetailsView(Adw.Bin):
         self.view_bottle.group_programs.set_sensitive(False)
         self.view_programs.group_programs.set_sensitive(False)
 
-        def new_program(_program, check_boot=None, is_steam=False, to_home=False, wineserver_status=False):
+        def new_program(_program, check_boot=None, is_steam=False,
+                        to_home=False, wineserver_status=False):
             if check_boot is None:
                 check_boot = wineserver_status
 
@@ -279,7 +283,7 @@ class DetailsView(Adw.Bin):
                 check_boot=check_boot,
             ))
 
-        def callback(result, error=False):
+        def callback(result, _error=False):
             row_no_programs = self.view_bottle.row_no_programs
             handled = result.data.get("handled")
 
@@ -304,13 +308,15 @@ class DetailsView(Adw.Bin):
             programs = self.manager.get_programs(self.config)
             win_steam_manager = SteamManager(self.config, is_windows=True)
 
-            if self.window.settings.get_boolean("steam-programs") and win_steam_manager.is_steam_supported:
+            if self.window.settings.get_boolean("steam-programs") \
+                    and win_steam_manager.is_steam_supported:
                 programs_names = [p.get("name", "") for p in programs]
                 for app in win_steam_manager.get_installed_apps_as_programs():
                     if app["name"] not in programs_names:
                         programs.append(app)
 
-            if self.window.settings.get_boolean("epic-games") and EpicGamesStoreManager.is_epic_supported(self.config):
+            if self.window.settings.get_boolean("epic-games") \
+                    and EpicGamesStoreManager.is_epic_supported(self.config):
                 programs_names = [p.get("name", "") for p in programs]
                 for app in EpicGamesStoreManager.get_installed_games(self.config):
                     if app["name"] not in programs_names:
@@ -348,7 +354,7 @@ class DetailsView(Adw.Bin):
         if not self.list_tasks.get_first_child():
             widget.set_visible(False)
 
-    def __spin_tasks_toggle(self, widget, *args):
+    def __spin_tasks_toggle(self, widget, *_args):
         if widget.get_visible():
             self.spinner_tasks.start()
             self.spinner_tasks.set_visible(True)
@@ -356,13 +362,13 @@ class DetailsView(Adw.Bin):
             self.spinner_tasks.stop()
             self.spinner_tasks.set_visible(False)
 
-    def go_back(self, widget=False):
+    def go_back(self, _widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
 
-    def go_back_sidebar(self, *args):
+    def go_back_sidebar(self, *_args):
         self.leaflet.navigate(Adw.NavigationDirection.BACK)
 
-    def unload_view(self, *args):
+    def unload_view(self, *_args):
         while self.stack_bottle.get_first_child():
             self.stack_bottle.remove(self.stack_bottle.get_first_child())
 

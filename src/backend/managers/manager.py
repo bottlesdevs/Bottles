@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
 import hashlib
@@ -20,7 +21,7 @@ import subprocess
 import random
 import time
 import uuid
-import yaml
+from bottles.backend.utils import yaml
 import shutil
 import fnmatch
 import contextlib
@@ -426,7 +427,7 @@ class Manager:
 
         if os.path.exists(manifest):
             with open(manifest, "r") as f:
-                data = yaml.safe_load(f)
+                data = yaml.load(f)
                 version = data.get("version")
                 if version:
                     version = f"runtime-{version}"
@@ -711,7 +712,7 @@ class Manager:
             if os.path.exists(_placeholder):
                 with open(_placeholder, "r") as f:
                     try:
-                        placeholder_yaml = yaml.safe_load(f)
+                        placeholder_yaml = yaml.load(f)
                         if placeholder_yaml.get("Path"):
                             _config = os.path.join(placeholder_yaml.get("Path"), "bottle.yml")
                         else:
@@ -723,7 +724,7 @@ class Manager:
                 if not os.path.exists(_config):
                     raise AttributeError
                 with open(_config, "r") as f:
-                    conf_file_yaml = yaml.safe_load(f)
+                    conf_file_yaml = yaml.load(f)
             except (FileNotFoundError, AttributeError, yaml.YAMLError):
                 return
 
@@ -735,15 +736,18 @@ class Manager:
                 conf_file_yaml["Latest_Executables"] = []
 
             # Migrate old programs to [id] and [name]
+            # TODO: remove this migration after 2022.9.28
             _temp = {}
             _changed = False
             for k, v in conf_file_yaml.get("External_Programs").items():
                 _uuid = str(uuid.uuid4())
                 _k = k
                 _v = v
+                if isinstance(v, str):
+                    continue
                 try:
                     uuid.UUID(k)
-                except ValueError:
+                except (ValueError, TypeError):
                     _k = _uuid
                     _changed = True
                 if "id" not in v:
@@ -785,7 +789,7 @@ class Manager:
                     value=Samples.config["Parameters"][key],
                     scope="Parameters"
                 )
-            self.local_bottles[_name] = conf_file_yaml
+            self.local_bottles[conf_file_yaml['Name']] = conf_file_yaml
 
             for p in [
                 os.path.join(_bottle, "cache", "dxvk_state"),
@@ -839,9 +843,6 @@ class Manager:
         TODO: move to bottle.py (Bottle manager)
         """
         _name = config.get('Name')
-        if config.get("IsLayer"):
-            return Result(status=True, data={"config": {}})
-
         logging.info(f"Setting Key {key}={value} for bottle {_name}…")
 
         _config = config
@@ -959,7 +960,7 @@ class Manager:
             with open(os.path.join(bottle_path, "bottle.yml"), "w") as conf_file:
                 yaml.dump(config, conf_file, indent=4)
                 conf_file.close()
-        except (OSError, IOError, yaml.YAMLError) as e:
+        except (OSError, IOError, yaml.YAMLError, FileNotFoundError, PermissionError) as e:
             logging.error(f"Error writing config file {e}")
             return False
 
@@ -1212,7 +1213,7 @@ class Manager:
             # blacklisting processes
             logging.info("Optimizing environment…")
             log_update(_("Optimizing environment…"))
-            _blacklist_dll = ["winemenubuilder.exe", "mshtml", "mscoree"]  # avoid gecko, mono popups
+            _blacklist_dll = ["winemenubuilder.exe", "mshtml"]  # avoid gecko, mono popups
             for _dll in _blacklist_dll:
                 reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
@@ -1230,7 +1231,7 @@ class Manager:
         elif custom_environment:
             try:
                 with open(custom_environment, "r") as f:
-                    env = yaml.safe_load(f.read())
+                    env = yaml.load(f.read())
                     logging.warning("Using a custom environment recipe…")
                     log_update(_("(!) Using a custom environment recipe…"))
             except (FileNotFoundError, PermissionError, yaml.YAMLError):

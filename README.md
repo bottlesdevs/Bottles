@@ -19,9 +19,6 @@
   <a href="https://github.com/bottlesdevs/Bottles/actions">
     <img src="https://github.com/bottlesdevs/Bottles/workflows/Build%20release%20packages/badge.svg">
   </a>
-  <a href="https://aur.archlinux.org/packages/bottles/">
-    <img alt="AUR version" src="https://img.shields.io/aur/version/bottles">
-  </a>
   <br>
   <a href="https://stopthemingmy.app" title="Please do not theme this app">
     <img src="https://stopthemingmy.app/badge.svg">
@@ -77,9 +74,7 @@ translate Bottles in your language or how to help improve existing ones.
 - Layers (dependencies and programs on different layers) [#510](https://github.com/bottlesdevs/Bottles/issues/510)
 
 ## ↗️ Install
-Bottles is officially provided as [Flatpak](https://flathub.org/apps/details/com.usebottles.bottles) and [AUR package](https://aur.archlinux.org/packages/bottles/). 
-There are also other packages maintained by our community, like Fedora, 
-[AUR (bottles-git)](https://aur.archlinux.org/packages/bottles-git/), [CachyOS AUR](https://github.com/CachyOS/linux-cachyos#we-are-providing-a-repo-which-includes-all-kernels-in-generic-v3-and-generic-and-more-optimized-packages), and MX Linux.
+Bottles is officially provided as [Flatpak](https://flathub.org/apps/details/com.usebottles.bottles).
 
 Read [here](https://docs.usebottles.com/getting-started/installation) how to
 install Bottles on your distribution.

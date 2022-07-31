@@ -1,12 +1,12 @@
 import os
 import json
-import yaml
+from bottles.backend.utils import yaml
 from configparser import ConfigParser
 
 
 class ConfigManager(object):
 
-    def __init__(self, config_file: str = None, config_string: str = None, config_type: str = 'ini'):
+    def __init__(self, config_file: str = None, config_type: str = 'ini', config_string: str = None):
         self.config_file = config_file
         self.config_string = config_string
         self.config_type = config_type
@@ -38,7 +38,7 @@ class ConfigManager(object):
                     res = json.load(f)
             elif self.config_type == 'yaml' or self.config_type == 'yml' :
                 with open(self.config_file, 'r') as f:
-                    res = yaml.safe_load(f)
+                    res = yaml.load(f)
             else:
                 raise ValueError('Invalid configuration type')
         elif self.config_string is not None:
@@ -49,7 +49,7 @@ class ConfigManager(object):
             elif self.config_type == 'json':
                 res = json.loads(self.config_string)
             elif self.config_type == 'yaml' or self.config_type == 'yml':
-                res = yaml.safe_load(self.config_string)
+                res = yaml.load(self.config_string)
             else:
                 raise ValueError('Invalid configuration type')
 

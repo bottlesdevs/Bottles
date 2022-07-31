@@ -24,6 +24,8 @@ bottles_sources = [
   'ubisoftconnect.py',
   'origin.py',
   'queue.py',
+  'steamgriddb.py',
+  'thumbnail.py'
 ]
 
 install_data(bottles_sources, install_dir: managersdir)

@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import time
 import requests
@@ -75,6 +76,9 @@ class Downloader:
                     if self.func is not None:
                         GLib.idle_add(self.func, 1, 1, 1)
                         self.__progress(1, 1, 1)
+        except requests.exceptions.SSLError:
+            logging.error("Download failed due to a SSL error. Your system may have a wrong date/time or wrong certificates.")
+            return False
         except (requests.exceptions.RequestException, OSError):
             logging.error("Download failed! Check your internet connection.")
             return False

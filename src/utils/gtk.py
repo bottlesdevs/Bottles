@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import re
 
@@ -22,7 +23,7 @@ class GtkUtils:
     @staticmethod
     def validate_entry(entry) -> bool:
         text = entry.get_text()
-        if re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text):
+        if re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text) or len(text) == 0 or text.isspace():
             entry.add_css_class("error")
             return False
         else:

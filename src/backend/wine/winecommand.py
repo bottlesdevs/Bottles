@@ -104,9 +104,7 @@ class WineCommand:
     def __get_cwd(self, cwd) -> str:
         config = self.config
 
-        if config.get("IsLayer"):
-            bottle = f"{Paths.layers}/{config['Path']}"  # TODO: should not be handled here, just for testing
-        elif config.get("Environment", "Custom") == "Steam":
+        if config.get("Environment", "Custom") == "Steam":
             bottle = config.get("Path")
         else:
             bottle = ManagerUtils.get_bottle_path(config)
@@ -138,9 +136,7 @@ class WineCommand:
         if environment is None:
             environment = {}
 
-        if config.get("IsLayer"):
-            bottle = f"{Paths.layers}/{config['Path']}"  # TODO: should not be handled here, just for testing
-        elif config.get("Environment", "Custom") == "Steam":
+        if config.get("Environment", "Custom") == "Steam":
             bottle = config.get("Path")
         else:
             bottle = ManagerUtils.get_bottle_path(config)
@@ -207,16 +203,25 @@ class WineCommand:
 
         # Get Runner libraries
         runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
-        for lib in [
-            "lib/wine/x86_64-unix",
-            "lib32/wine/x86_64-unix",
-            "lib64/wine/x86_64-unix",
-            "lib/wine/i386-unix",
-            "lib32/wine/i386-unix",
-            "lib64/wine/i386-unix"
-        ]:
-            if os.path.exists(f"{runner_path}/{lib}"):
-                ld.append(f"{runner_path}/{lib}")
+        if arch == "win64":
+            runner_libs = [
+                "lib/wine/x86_64-unix",
+                "lib32/wine/x86_64-unix",
+                "lib64/wine/x86_64-unix",
+                "lib/wine/i386-unix",
+                "lib32/wine/i386-unix",
+                "lib64/wine/i386-unix"
+            ]
+        else:
+            runner_libs = [
+                "lib/wine/i386-unix",
+                "lib32/wine/i386-unix",
+                "lib64/wine/i386-unix"
+            ]
+        for lib in runner_libs:
+            _path = os.path.join(runner_path, lib)
+            if os.path.exists(_path):
+                ld.append(_path)
 
         # DXVK environment variables
         if params["dxvk"] and not return_steam_env:
@@ -266,10 +271,6 @@ class WineCommand:
             # Prevent wine from hiding the Nvidia GPU with DXVK-Nvapi enabled
             if is_nvidia:
                 env.add("WINE_HIDE_NVIDIA_GPU", "1")
-
-        # DXVK HUD environment variable
-        if params["dxvk_hud"]:
-            env.add("DXVK_HUD", "full")
 
         # Esync environment variable
         if params["sync"] == "esync":
@@ -488,6 +489,8 @@ class WineCommand:
                 gamescope_cmd.append("-b")
             if params["gamescope_scaling"]:
                 gamescope_cmd.append("-n")
+            if params["fsr"]:
+                gamescope_cmd.append("-U")
             if params["gamescope_fps"] > 0:
                 gamescope_cmd.append(f"-r {params['gamescope_fps']}")
             if params["gamescope_fps_no_focus"] > 0:

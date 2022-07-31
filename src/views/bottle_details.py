@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
 import re
@@ -35,6 +36,7 @@ from bottles.dialogs.filechooser import FileChooser
 from bottles.dialogs.runargs import RunArgsDialog
 from bottles.dialogs.generic import MessageDialog
 from bottles.dialogs.duplicate import DuplicateDialog
+from bottles.dialogs.upgradeversioning import UpgradeVersioningDialog
 
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winecfg import WineCfg
@@ -155,6 +157,10 @@ class BottleView(Adw.PreferencesPage):
 
         self.__set_steam_rules()
 
+        # check for old versioning system enabled
+        if config["Versioning"]:
+            self.__upgrade_versioning()
+
     def update_programs(self, widget=False, config=None):
         if config is None:
             config = self.config
@@ -187,7 +193,7 @@ class BottleView(Adw.PreferencesPage):
         The file will be executed by the runner after the
         user confirmation.
         """
-        def show_chooser(*args):
+        def show_chooser(*_args):
             self.window.settings.set_boolean("show-sandbox-warning", False)
             FileChooser(
                 parent=self.window,
@@ -298,6 +304,14 @@ class BottleView(Adw.PreferencesPage):
         choose the new bottle name and perform duplication.
         """
         new_window = DuplicateDialog(self)
+        new_window.present()
+
+    def __upgrade_versioning(self):
+        """
+        This function pop up the upgrade versioning dialog, so the user can
+        upgrade the versioning system from old Bottles built-in to FVS.
+        """
+        new_window = UpgradeVersioningDialog(self)
         new_window.present()
 
     def __confirm_delete(self, widget):

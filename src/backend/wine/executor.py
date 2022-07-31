@@ -80,6 +80,43 @@ class WineExecutor:
         else:
             self.environment["WINEDLLOVERRIDES"] = ",".join(env_dll_overrides)
 
+    @classmethod
+    def run_program(cls,config: dict, program: dict, terminal: bool=False):
+        dxvk = config["Parameters"]["dxvk"]
+        vkd3d = config["Parameters"]["vkd3d"]
+        nvapi = config["Parameters"]["dxvk_nvapi"]
+        fsr = config["Parameters"]["fsr"]
+        pulse_latency = config["Parameters"]["pulseaudio_latency"]
+        virt_desktop = config["Parameters"]["virtual_desktop"]
+
+        if program.get("dxvk") != dxvk:
+            dxvk = program.get("dxvk")
+        if program.get("vkd3d") != vkd3d:
+            vkd3d = program.get("vkd3d")
+        if program.get("dxvk_nvapi") != nvapi:
+            nvapi = program.get("dxvk_nvapi")
+        if program.get("fsr") != fsr:
+            fsr = program.get("fsr")
+        if program.get("pulseaudio_latency") != pulse_latency:
+            pulse_latency = program.get("pulseaudio_latency")
+        if program.get("virtual_desktop") != virt_desktop:
+            virt_desktop = program.get("virtual_desktop")
+
+        return cls(
+            config=config,
+            exec_path=program["path"],
+            args=program["arguments"],
+            cwd=program["folder"],
+            post_script=program.get("script", None),
+            terminal=terminal,
+            override_dxvk=dxvk,
+            override_vkd3d=vkd3d,
+            override_nvapi=nvapi,
+            override_fsr=fsr,
+            override_pulse_latency=pulse_latency,
+            override_virt_desktop=virt_desktop
+        ).run()
+
     def __get_cwd(self, cwd: str) -> Union[str, None]:
         winepath = WinePath(self.config)
         if cwd in [None, ""]:

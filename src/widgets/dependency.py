@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import webbrowser
 import contextlib
@@ -162,8 +163,8 @@ class DependencyEntry(Adw.ActionRow):
         """
         self.queue.end_task()
         if result is not None and result.status:
-            if self.config.get("Versioning"):
-                self.window.page_details.view_versioning.update(config=self.config)
+            if self.config["Parameters"]["versioning_automatic"]:
+                self.window.page_details.view_versioning.update()
             uninstaller = result.data.get("uninstaller")
             removed = result.data.get("removed")
             self.window.show_toast(_("'{0}' installed.").format(self.dependency[0]))
@@ -180,6 +181,7 @@ class DependencyEntry(Adw.ActionRow):
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
         self.get_parent().set_sensitive(True)
+        self.window.show_toast(_("'{0}' failed to install.").format(self.dependency[0]))
 
     def set_installed(self, installer=True, removed=False):
         """

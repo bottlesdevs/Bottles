@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import re
 from gettext import gettext as _
@@ -36,9 +37,10 @@ class VersioningView(Adw.PreferencesPage):
     pop_state = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_help = Gtk.Template.Child()
-    entry_state_comment = Gtk.Template.Child()
+    entry_state_message = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     pref_page = Gtk.Template.Child()
+    btn_add = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -52,12 +54,12 @@ class VersioningView(Adw.PreferencesPage):
         self.versioning_manager = details.window.manager.versioning_manager
         self.config = config
 
-        self.ev_controller.connect("key-released", self.check_entry_state_comment)
-        self.entry_state_comment.add_controller(self.ev_controller)
+        self.ev_controller.connect("key-released", self.check_entry_state_message)
+        self.entry_state_message.add_controller(self.ev_controller)
 
         self.btn_save.connect("clicked", self.add_state)
         self.btn_help.connect("clicked", open_doc_url, "bottles/versioning")
-        self.entry_state_comment.connect("activate", self.add_state)
+        self.entry_state_message.connect("activate", self.add_state)
 
     def empty_list(self):
         for r in self.__registry:
@@ -65,7 +67,7 @@ class VersioningView(Adw.PreferencesPage):
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, widget=False, config=None, states=None):
+    def update(self, widget=False, config=None, states=None, active=0):
         """
         This function update the states list with the
         ones from the bottle configuration.
@@ -74,15 +76,23 @@ class VersioningView(Adw.PreferencesPage):
             config = self.config
         if states is None:
             states = self.versioning_manager.list_states(config)
+            if not config.get("Versioning"):
+                active = states.data.get('state_id')
+                states = states.data.get('states')
 
         self.config = config
         self.list_states.set_sensitive(False)
 
-        def new_state(_state):
+        if self.config.get("Versioning"):
+            self.btn_add.set_sensitive(False)
+            self.btn_add.set_tooltip_text(_("Please migrate to the new Versioning system to create new states."))
+
+        def new_state(_state, active):
             entry = StateEntry(
-                window=self.window,
+                parent=self,
                 config=self.config,
-                state=_state
+                state=_state,
+                active=active
             )
             self.__registry.append(entry)
             self.list_states.append(entry)
@@ -100,46 +110,48 @@ class VersioningView(Adw.PreferencesPage):
                 return Result(False)
 
             for state in states.items():
-                GLib.idle_add(new_state, state)
+                _active = int(state[0]) == int(active)
+                GLib.idle_add(new_state, state, _active)
 
             return Result(True)
 
         RunAsync(process_states, callback)
 
-    def check_entry_state_comment(self, *args):
+    def check_entry_state_message(self, *_args):
         """
-        This function check if the entry state comment is valid,
+        This function check if the entry state message is valid,
         looking for special characters. It also toggles the widget icon
         and the save button sensitivity according to the result.
         """
         regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,"]')
-        comment = self.entry_state_comment.get_text()
-        check = regex.search(comment) is None
+        message = self.entry_state_message.get_text()
+        check = regex.search(message) is None
 
         self.btn_save.set_sensitive(check)
-        self.entry_state_comment.set_icon_from_icon_name(
+        self.entry_state_message.set_icon_from_icon_name(
             1, '' if check else 'dialog-warning-symbolic"'
         )
 
     def add_state(self, widget):
         """
         This function create ask the versioning manager to
-        create a new bottle state with the given comment.
+        create a new bottle state with the given message.
         """
         if not self.btn_save.get_sensitive():
             return
 
         def update(result, error):
+            self.window.show_toast(result.message)
             if result.status:
-                self.update(states=result.data.get('states'))
+                self.update(states=result.data.get('states'), active=result.data.get('state_id'))
 
-        comment = self.entry_state_comment.get_text()
-        if comment != "":
+        message = self.entry_state_message.get_text()
+        if message != "":
             RunAsync(
                 task_func=self.versioning_manager.create_state,
                 callback=update,
                 config=self.config,
-                comment=comment
+                message=message
             )
-            self.entry_state_comment.set_text("")
+            self.entry_state_message.set_text("")
             self.pop_state.popdown()

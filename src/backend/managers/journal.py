@@ -13,9 +13,10 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
-import yaml
+from bottles.backend.utils import yaml
 import uuid
 import shutil
 import contextlib
@@ -52,7 +53,7 @@ class JournalManager:
 
         with open(JournalManager.path, "r") as f:
             try:
-                journal = yaml.safe_load(f)
+                journal = yaml.load(f)
             except yaml.YAMLError:
                 journal_backup = f"{JournalManager.path}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.bak"
                 shutil.copy2(JournalManager.path, journal_backup)

@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import subprocess
 from gi.repository import Gio, Gtk, Adw
@@ -61,15 +62,15 @@ class BottlePickerDialog(Adw.ApplicationWindow):
         self.btn_open.connect('clicked', self.__open)
 
     @staticmethod
-    def __close(*args):
+    def __close(*_args):
         quit()
 
-    def __select(self, *args):
+    def __select(self, *_args):
         row = self.list_bottles.get_selected_row()
         if row:
             self.destroy()
             subprocess.Popen(["bottles-cli", "run", "-b", row.bottle, "-e", self.arg_exe])
 
-    def __open(self, *args):
+    def __open(self, *_args):
         self.destroy()
         subprocess.Popen(["bottles"])

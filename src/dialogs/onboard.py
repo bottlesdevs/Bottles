@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import time
 
@@ -39,6 +40,7 @@ class OnboardDialog(Adw.Window):
     page_download = Gtk.Template.Child()
     page_finish = Gtk.Template.Child()
     img_welcome = Gtk.Template.Child()
+    label_skip = Gtk.Template.Child()
     # endregion
 
     carousel_pages = [
@@ -69,6 +71,8 @@ class OnboardDialog(Adw.Window):
         self.btn_install.connect("clicked", self.__install_runner)
         self.__settings.connect("notify::gtk-application-prefer-dark-theme", self.__theme_changed)
 
+        self.btn_close.set_sensitive(False)
+
         if self.__settings.get_property("gtk-application-prefer-dark-theme"):
             self.img_welcome.set_from_resource(self.images[1])
 
@@ -80,7 +84,7 @@ class OnboardDialog(Adw.Window):
     def __get_page(self, index):
         return self.carousel_pages[index]
 
-    def __page_changed(self, widget=False, index=0, *args):
+    def __page_changed(self, widget=False, index=0, *_args):
         """
         This function is called on first load and when the user require
         to change the page. It sets the widgets' status according to
@@ -108,6 +112,8 @@ class OnboardDialog(Adw.Window):
 
     def __install_runner(self, widget):
         def set_completed(result, error=False):
+            self.label_skip.set_visible(False)
+            self.btn_close.set_sensitive(True)
             self.__next_page()
 
         self.__installing = True

@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 from gi.repository import Gtk, Adw
 
@@ -48,13 +49,13 @@ class RenameDialog(Adw.Window):
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_save.connect("clicked", self.__on_save)
 
-    def __on_save(self, *args):
+    def __on_save(self, *_args):
         text = self.entry_name.get_text()
         self.on_save(new_name=text)
         self.destroy()
 
-    def __close_window(self, *args):
+    def __close_window(self, *_args):
         self.destroy()
 
-    def on_change(self, *args):
+    def on_change(self, *_args):
         self.btn_save.set_sensitive(len(self.entry_name.get_text()) > 0)

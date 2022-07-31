@@ -13,14 +13,16 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
 import uuid
-import yaml
+from bottles.backend.utils import yaml
 from pathlib import Path
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths
+from bottles.backend.managers.steamgriddb import SteamGridDBManager
 
 logging = Logger()
 
@@ -47,7 +49,7 @@ class LibraryManager:
             self.save_library()
         else:
             with open(self.library_path, 'r') as library_file:
-                self.__library = yaml.safe_load(library_file)
+                self.__library = yaml.load(library_file)
 
         if self.__library is None:
             self.__library = {}
@@ -59,12 +61,15 @@ class LibraryManager:
 
         self.save_library()
 
-    def add_to_library(self, data: dict):
+    def add_to_library(self, data: dict, config: dict):
         """
         Adds a new entry to the library.yml file.
         """
         _uuid = str(uuid.uuid4())
         logging.info(f'Adding new entry to library: {_uuid}')
+
+        if not data.get("thumbnail"):
+            data['thumbnail'] = SteamGridDBManager.get_game_grid(data['name'], config)
 
         self.__library[_uuid] = data
         self.save_library()

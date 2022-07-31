@@ -13,8 +13,10 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import os
+import webbrowser
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
@@ -30,6 +32,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
     __registry = []
 
     # region Widgets
+    row_theme = Gtk.Template.Child()
+    switch_theme = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
@@ -53,6 +57,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     action_steam_proton = Gtk.Template.Child()
     btn_bottles_path = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
+    btn_steam_proton_doc = Gtk.Template.Child()
     pref_core = Gtk.Template.Child()
 
     # endregion
@@ -67,6 +72,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.default_settings = window.default_settings
         self.manager = window.manager
         self.data = DataManager()
+        self.style_manager = Adw.StyleManager.get_default()
 
         if "FLATPAK_ID" in os.environ:
             self.remove(self.pref_core)
@@ -97,6 +103,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.populate_latencyflex_list()
 
         # connect signals
+        self.switch_theme.connect('state-set', self.__toggle_night)
         self.switch_notifications.connect('state-set', self.__toggle_notify)
         self.switch_temp.connect('state-set', self.__toggle_temp)
         self.switch_release_candidate.connect('state-set', self.__toggle_rc)
@@ -110,12 +117,26 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.switch_ubisoft_connect.connect('state-set', self.__toggle_ubisoft_connect)
         self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
+        self.btn_steam_proton_doc.connect('clicked', self.__open_steam_proton_doc)
 
         if not self.manager.steam_manager.is_steam_supported:
             self.switch_steam.set_sensitive(False)
             self.action_steam_proton.set_tooltip_text(
-                _("Steam was not found or Bottles does not have enough permissions.\
-Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
+                _("Steam was not found or Bottles does not have enough permissions."))
+            self.btn_steam_proton_doc.set_visible(True)
+        
+
+        if not self.style_manager.get_system_supports_color_schemes():
+            self.row_theme.set_visible(True)
+
+    def __toggle_night(self, widget, state):
+        self.settings.set_boolean("dark-theme", state)
+        manager = Adw.StyleManager.get_default()
+        if state:
+            manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+        else:
+            manager.set_color_scheme(Adw.ColorScheme.DEFAULT)
+
 
     def __toggle_update_date(self, widget, state):
         self.settings.set_boolean("update-date", state)
@@ -151,6 +172,9 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
 
     def __toggle_autoclose(self, widget, state):
         self.settings.set_boolean("auto-close-bottles", state)
+
+    def __open_steam_proton_doc(self, widget):
+        webbrowser.open("https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager")
 
     def __choose_bottles_path(self, widget):
         def set_path(_dialog, response, _file_dialog):
@@ -240,7 +264,7 @@ Visit https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"))
                 exp_lutris.add_row(_entry)
                 count["lutris"] += 1
             elif _runner_name.startswith("vaniglia"):
-                exp_lutris.add_row(_entry)
+                exp_vaniglia.add_row(_entry)
                 count["vaniglia"] += 1
             else:
                 exp_other.add_row(_entry)
