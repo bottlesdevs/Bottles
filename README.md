@@ -75,8 +75,6 @@ translate Bottles in your language or how to help improve existing ones.
 
 ## ↗️ Install
 Bottles is officially provided as [Flatpak](https://flathub.org/apps/details/com.usebottles.bottles).
-There are also other packages maintained by our community, like Fedora, 
-[AUR (bottles-git)](https://aur.archlinux.org/packages/bottles-git/), [CachyOS AUR](https://github.com/CachyOS/linux-cachyos#we-are-providing-a-repo-which-includes-all-kernels-in-generic-v3-and-generic-and-more-optimized-packages), and MX Linux.
 
 Read [here](https://docs.usebottles.com/getting-started/installation) how to
 install Bottles on your distribution.
