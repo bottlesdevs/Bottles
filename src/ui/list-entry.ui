@@ -4,14 +4,14 @@
     <requires lib="libadwaita" version="1.0"/>
     <template class="BottleViewEntry" parent="AdwActionRow">
         <property name="activatable">True</property>
-        <property name="title">Bottle name</property>
+        <property name="title" translatable="yes">Bottle name</property>
         <child>
             <object class="GtkBox" id="list_labels">
                 <property name="spacing">1</property>
                 <child>
                     <object class="GtkLabel" id="label_env">
                         <property name="valign">center</property>
-                        <property name="label">Environment</property>
+                        <property name="label" translatable="yes">Environment</property>
                         <style>
                             <class name="tag"/>
                             <class name="caption"/>

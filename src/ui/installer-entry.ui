@@ -37,15 +37,15 @@
     </object>
     <template class="InstallerEntry" parent="AdwActionRow">
         <property name="activatable-widget">btn_install</property>
-        <property name="title">Installer name</property>
-        <property name="subtitle">Installer description</property>
+        <property name="title" translatable="yes">Installer name</property>
+        <property name="subtitle" translatable="yes">Installer description</property>
         <child>
             <object class="GtkBox">
                 <property name="spacing">6</property>
                 <child>
                     <object class="GtkLabel" id="label_grade">
                         <property name="valign">center</property>
-                        <property name="label">Unknown</property>
+                        <property name="label" translatable="yes">Unknown</property>
                         <style>
                             <class name="tag"/>
                             <class name="caption"/>

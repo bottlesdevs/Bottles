@@ -12,13 +12,13 @@
                 <child>
                     <object class="AdwStatusPage">
                         <property name="icon-name">dialog-warning-symbolic</property>
-                        <property name="title">Incomplete package</property>
-                        <property name="description">This version of Bottles does not seem to provide all the necessary core dependencies, please contact the package maintainer or use an official version.
+                        <property name="title" translatable="yes">Incomplete package</property>
+                        <property name="description" translatable="yes">This version of Bottles does not seem to provide all the necessary core dependencies, please contact the package maintainer or use an official version.
                         </property>
                         <child>
                             <object class="GtkButton" id="btn_quit">
                                 <property name="halign">center</property>
-                                <property name="label">Quit</property>
+                                <property name="label" translatable="yes">Quit</property>
                                 <style>
                                     <class name="pill"/>
                                     <class name="suggested-action"/>

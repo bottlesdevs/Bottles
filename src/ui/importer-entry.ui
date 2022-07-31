@@ -19,14 +19,14 @@
         </child>
     </object>
     <template class="ImporterEntry" parent="AdwActionRow">
-        <property name="title">Wineprefix name</property>
+        <property name="title" comments="Wineprefix is a prefix for the wine program" translatable="yes">Wineprefix name</property>
         <child>
             <object class="GtkBox">
                 <property name="spacing">6</property>
                 <child>
                     <object class="GtkLabel" id="label_manager">
                         <property name="valign">center</property>
-                        <property name="label">Manager</property>
+                        <property name="label" translatable="yes">Manager</property>
                         <style>
                             <class name="tag"/>
                             <class name="caption"/>
