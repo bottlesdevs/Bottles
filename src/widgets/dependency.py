@@ -181,6 +181,7 @@ class DependencyEntry(Adw.ActionRow):
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
         self.get_parent().set_sensitive(True)
+        self.window.show_toast(_("'{0}' failed to install.").format(self.dependency[0]))
 
     def set_installed(self, installer=True, removed=False):
         """

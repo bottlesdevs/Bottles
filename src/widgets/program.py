@@ -184,13 +184,13 @@ class ProgramEntry(Adw.ActionRow):
             self.pop_actions.popdown()  # workaround #1640
             return True
 
-        self.window.show_toast(_("'{0}' launched.").format(self.program["name"]))
+        self.window.show_toast(_("Launching '{0}'…").format(self.program["name"]))
         RunAsync(_run, callback=self.__reset_buttons)
         self.__reset_buttons()
 
     def run_steam(self, widget):
         self.manager.steam_manager.launch_app(self.config["CompatData"])
-        self.window.show_toast(_("'{0}' launched with Steam.").format(self.program["name"]))
+        self.window.show_toast(_("Launching '{0}' with Steam…").format(self.program["name"]))
         self.pop_actions.popdown()  # workaround #1640
 
     def stop_process(self, widget):
