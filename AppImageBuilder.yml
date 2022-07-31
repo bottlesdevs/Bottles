@@ -69,7 +69,12 @@ script:
   - git reset --hard 5cb00a274318b870f4b3ff09ed8f24d52f11f7de && export DESTDIR=../../AppDir
   - mkdir build && meson build -Dtests=false -Dexamples=false --prefix=/usr --buildtype=release
   - cd ./build && ninja install && cd ../../ && rm -rf ./libadwaita && unset DESTDIR
-
+  
+  # Fetch appimage_module_patcher.sh
+  - wget https://gist.githubusercontent.com/azubieta/202c85f1f5a9e5c6be5cb066fcb2d5e2/raw/40f04063fa5fff21310ba075922295b09dd84bee/appimage_module_patcher.sh
+  - cp appimage_module_patcher.sh AppDir/usr/bin/appimage_module_patcher
+  - chmod +x AppDir/usr/bin/appimage_module_patcher.sh
+  
 AppDir:
   path: ./AppDir
 
@@ -146,7 +151,7 @@ AppDir:
     # rm -rf $APPDIR/usr/share/man
     # mkdir -p $APPDIR/usr/local/lib/p7zip/ 
     # ln -s $APPDIR/usr/lib/p7zip/ $APPDIR/usr/local/lib/p7zip/
-    true
+    $APPDIR/usr/bin/appimage_module_patcher $APPDIR/usr/bin/*
 
   files:
     include:
