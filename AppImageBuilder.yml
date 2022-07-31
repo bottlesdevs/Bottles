@@ -73,7 +73,7 @@ script:
   # Fetch appimage_module_patcher.sh
   - wget https://gist.githubusercontent.com/azubieta/202c85f1f5a9e5c6be5cb066fcb2d5e2/raw/40f04063fa5fff21310ba075922295b09dd84bee/appimage_module_patcher.sh
   - cp appimage_module_patcher.sh AppDir/usr/bin/appimage_module_patcher
-  - chmod +x AppDir/usr/bin/appimage_module_patcher.sh
+  - chmod +x AppDir/usr/bin/appimage_module_patcher
   
 AppDir:
   path: ./AppDir
