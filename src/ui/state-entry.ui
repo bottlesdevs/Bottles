@@ -4,8 +4,8 @@
     <requires lib="libadwaita" version="1.0"/>
     <template class="StateEntry" parent="AdwActionRow">
         <property name="activatable-widget">btn_restore</property>
-        <property name="title">State id</property>
-        <property name="subtitle">State comment</property>
+        <property name="title" translatable="yes" comments="id as identification">State id</property>
+        <property name="subtitle" translatable="yes">State comment</property>
         <child>
             <object class="GtkSpinner" id="spinner">
                 <property name="visible">False</property>
