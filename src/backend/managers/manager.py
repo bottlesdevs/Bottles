@@ -960,7 +960,7 @@ class Manager:
             with open(os.path.join(bottle_path, "bottle.yml"), "w") as conf_file:
                 yaml.dump(config, conf_file, indent=4)
                 conf_file.close()
-        except (OSError, IOError, yaml.YAMLError) as e:
+        except (OSError, IOError, yaml.YAMLError, FileNotFoundError, PermissionError) as e:
             logging.error(f"Error writing config file {e}")
             return False
 
