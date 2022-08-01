@@ -142,169 +142,158 @@ msgstr "消息"
 msgid ""
 "New versioning system which allow versioning the whole bottle (also "
 "configuration)"
-msgstr ""
+msgstr "允许对整个 bottle （包括配置）进行版本控制的新版本控制系统"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Automatic versioning can now be toggled on and off"
-msgstr ""
+msgstr "现在可以打开和关闭自动版本控制"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "Exclude paths from versioning using patterns"
-msgstr ""
+msgstr "使用模式将路径排除于版本控制之外"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "Use compression for versioning states"
-msgstr "正在创建版本状态 0 …"
+msgstr "对版本控制状态使用压缩"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
-msgstr ""
+msgstr "改进“启动选项”保存，无需多次更新 UI"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid ""
 "Improved YAML performance using libyaml (the python-yaml package must "
 "provide support for it)"
-msgstr ""
+msgstr "使用 libyaml 改进了 YAML 性能（python-yaml 包必须为其提供支持）"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
-#, fuzzy
 msgid "New About dialog"
-msgstr "新建 bottle"
+msgstr "新“关于”对话框"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "Covers support in Library mode (thanks to SteamGridDB)"
-msgstr ""
+msgstr "涵盖库模式下的支持（感谢 SteamGridDB）"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid "Removed DXVK HUD option, use the Environment Variables section instead"
-msgstr ""
+msgstr "删除了 DXVK HUD 选项，改为使用“环境变量”部分"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "bottles-cli shell option now provide command output"
-msgstr ""
+msgstr "bottles-cli shell 选项现在提供命令输出"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
 msgid "The Health Check is now in the About´s Troubleshooting section"
-msgstr ""
+msgstr "“健康检查”现在位于“关于”的“故障排除”部分"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
 msgid ""
 "Extended Core dependencies check, packagers are invited to double-check "
 "their packages"
-msgstr ""
+msgstr "扩展了核心依赖项检查，请求打包者仔细检查包"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "New default permission for the Flatpak package: xdg-download"
-msgstr ""
+msgstr "Flatpak 包的新默认权限：xdg-download"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Added credits for Third-Party Libraries in the Credits section"
-msgstr ""
+msgstr "在“致谢”部分添加了对第三方库的致谢"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
-msgstr ""
+msgstr "小幅 UI 改进"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
-msgstr ""
+msgstr "修复"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Fix for skipable onboard dialog"
-msgstr ""
+msgstr "修复可跳过的首次使用对话框"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Fix for empty bottle name"
-msgstr ""
+msgstr "修复空 bottle 名称"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
 msgid "Fix gstreamer libs for win32 bottles"
-msgstr ""
+msgstr "修复 win32 系统 bottles 的 gstreamer 库"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Fix for RemoteDisconnected error causing a crash"
-msgstr ""
+msgstr "修复导致崩溃的 RemoteDisconnected 错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
 msgid "Fix wrong Vaniglia listing"
-msgstr ""
+msgstr "修复错误的 Vaniglia 列表"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
 msgid "Fix templates being generated with symlinked paths causing loops"
-msgstr ""
+msgstr "修复使用符号链接路径生成的模板导致循环"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 msgid ""
 "Fix configuration migration causing a crash when the user altered the "
 "configuration"
-msgstr ""
+msgstr "修复配置迁移在用户更改配置时导致崩溃"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
 msgid "Fix mscoree.dll not found"
-msgstr ""
+msgstr "修复未找到 mscoree.dll"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 msgid "Fix regression for the -b option of the legacy bottles cli"
-msgstr ""
+msgstr "修复旧版 bottles cli -b 选项的回归缺陷"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
 msgid "Fix Steam Launch Options parser causing a crash"
-msgstr ""
+msgstr "修复 Steam 启动选项解析器导致崩溃"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
 msgid ""
 "Fix a regression in the Add to Steam button not adding the new entry in Steam"
-msgstr ""
+msgstr "修复了“添加到 Steam”按钮的回归故障，表现为未在 Steam 中添加新条目"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "Translations"
 msgstr "翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:137
-#, fuzzy
 msgid "Finnish translations thanks to Jiri Grönroos"
-msgstr "感谢 @bittin 的瑞典语翻译"
+msgstr "感谢 Jiri Grönroos 的芬兰语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:138
-#, fuzzy
 msgid "French translations thanks to @rjousse18, @julroy67"
-msgstr "感谢 @luxmaroc 的阿拉伯语翻译"
+msgstr "感谢 @rjousse18、@julroy67 的法语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:139
-#, fuzzy
 msgid "Indonesian translations thanks to @liimee"
-msgstr "印尼语翻译，感谢 @rezaalmanda"
+msgstr "感谢 @liimee 的印尼语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:140
-#, fuzzy
 msgid "Russian translations thanks to @Knebergish, @lenemter, @Smoque"
-msgstr "感谢 @tacitcoast 的俄语翻译"
+msgstr "感谢 @Knebergish、@lenemter、@Smoque 的俄语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
-#, fuzzy
 msgid "Thai translations thanks to @SashaPGT"
-msgstr "感谢 @ovari 的匈牙利语翻译"
+msgstr "感谢 @SashaPGT 的泰语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:142
-#, fuzzy
 msgid "Spanish translations thanks to Pablo Munoz Alabau, @oscfdezdz"
-msgstr "西班牙语翻译，感谢 @oscfdezdz"
+msgstr "感谢 Pablo Munoz Alabau、@oscfdezdz 的西班牙语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:143
-#, fuzzy
 msgid "Italian translations thanks to @gdonisi"
-msgstr "感谢 @ovari 的匈牙利语翻译"
+msgstr "感谢 @gdonisi 的意大利语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @geraldohomero"
-msgstr "葡萄牙语翻译，感谢 @hugok79"
+msgstr "感谢 @geraldohomero 的葡萄牙语（巴西）翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:145
-#, fuzzy
 msgid "German translations thanks to Patrick Ulbricht"
-msgstr "德语翻译，感谢 @thericosanto"
+msgstr "感谢 Patrick Ulbricht 的德语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:146
 msgid "Croatian translations thanks to @milotype"
@@ -360,12 +349,11 @@ msgstr "切换 epic 游戏清单。"
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "Ubisoft Connect 列表"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Toggle ubisoft connect listing."
-msgstr "切换 steam 应用清单。"
+msgstr "切换 ubisoft 连接列表。"
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
@@ -459,12 +447,11 @@ msgstr "从文件管理器启动可执行文件后关闭 Bottles。"
 
 #: data/com.usebottles.bottles.gschema.xml:91
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "显示沙盒警告"
 
 #: data/com.usebottles.bottles.gschema.xml:92
-#, fuzzy
 msgid "Toggle sandbox warning."
-msgstr "切换 steam 应用清单。"
+msgstr "切换沙盒警告。"
 
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
@@ -576,13 +563,12 @@ msgid "Caching template…"
 msgstr "正在缓存模板…"
 
 #: src/backend/managers/versioning.py:97
-#, fuzzy
 msgid "Committing state …"
-msgstr "正在更新状态…"
+msgstr "正在提交状态…"
 
 #: src/backend/managers/versioning.py:106
 msgid "Nothing to commit"
-msgstr ""
+msgstr "没有什么可提交的"
 
 #: src/backend/managers/versioning.py:112
 #, python-brace-format
@@ -590,28 +576,25 @@ msgid "New state [{0}] created successfully!"
 msgstr "成功创建了新状态 [{0}]！"
 
 #: src/backend/managers/versioning.py:140
-#, fuzzy
 msgid "States list retrieved successfully!"
-msgstr "成功创建了新状态 [{0}]！"
+msgstr "成功获取了状态列表！"
 
 #: src/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "成功创建了新状态 [{0}]！"
+msgstr "成功恢复了状态 [{0}]！"
 
 #: src/backend/managers/versioning.py:176
-#, fuzzy
 msgid "Restoring state {} …"
-msgstr "正在恢复至状态：[{0}]"
+msgstr "正在恢复状态 {} …"
 
 #: src/backend/managers/versioning.py:185
-#, fuzzy
 msgid "State not found"
 msgstr "未找到状态"
 
 #: src/backend/managers/versioning.py:191
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "{} 状态已是活跃状态"
 
 #: src/dialogs/crash.py:37
 msgid "Show report"
@@ -659,9 +642,8 @@ msgid "No environment variables defined."
 msgstr "未定义环境变量。"
 
 #: src/dialogs/exclusionpatterns.py:108
-#, fuzzy
 msgid "No exclusion patterns defined."
-msgstr "未定义环境变量。"
+msgstr "未定义排除模式。"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:34
 #: src/ui/dialog-launch-options.ui:35 src/ui/dialog-rename.ui:22
@@ -682,37 +664,34 @@ msgid "Select Resource FIle"
 msgstr "选择资源文件"
 
 #: src/dialogs/installer.py:115
-#, fuzzy
 msgid "Installing Windows dependencies…"
-msgstr "正在安装依赖项：%s…"
+msgstr "正在安装 Windows 依赖项…"
 
 #: src/dialogs/installer.py:116
-#, fuzzy
 msgid "Configuring the bottle…"
-msgstr "正在创建 bottle…"
+msgstr "正在配置 bottle…"
 
 #: src/dialogs/installer.py:117
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "正在处理安装程序步骤…"
 
 #: src/dialogs/installer.py:118
-#, fuzzy
 msgid "Installing the {}…"
-msgstr "正在安装…"
+msgstr "正在安装 {}…"
 
 #: src/dialogs/installer.py:119
 msgid "Performing final checks…"
-msgstr ""
+msgstr "正在执行最终检查…"
 
 #: src/dialogs/installer.py:123
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing {0}…"
-msgstr "正在安装…"
+msgstr "正在安装 {0}…"
 
 #: src/dialogs/installer.py:125
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr ""
+msgstr "现在可以在程序视图中看到 {0} 了。"
 
 #: src/dialogs/installer.py:171
 msgid "Installer failed with unknown error"
@@ -1070,9 +1049,8 @@ msgid "Report missing dependency"
 msgstr "报告丢失的依赖项"
 
 #: src/ui/details-dependencies.ui:68
-#, fuzzy
 msgid "Read documentation."
-msgstr "阅读文档"
+msgstr "阅读文档。"
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:71
 #: src/ui/details-programs.ui:45 src/ui/details-versioning.ui:44
@@ -1501,9 +1479,8 @@ msgid "Reduce Latency"
 msgstr "降低延迟"
 
 #: src/ui/details-preferences.ui:644
-#, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
-msgstr "将 PulseAudio 的延迟设置在 60 毫秒以提升音质"
+msgstr "将 PulseAudio 延迟设为 60 毫秒以提升音质。"
 
 #: src/ui/details-preferences.ui:656 src/views/details.py:170
 msgid "Versioning"
@@ -1511,35 +1488,33 @@ msgstr "版本控制"
 
 #: src/ui/details-preferences.ui:660
 msgid "Use Compression for States"
-msgstr ""
+msgstr "对状态使用压缩"
 
 #: src/ui/details-preferences.ui:661
 msgid ""
 "This will reduce the space used by the states but slow down their creation."
-msgstr ""
+msgstr "这将减少状态使用的空间，但会减慢它们的创建速度。"
 
 #: src/ui/details-preferences.ui:672
-#, fuzzy
 msgid "Automatic Versioning"
-msgstr "版本控制"
+msgstr "自动版本控制"
 
 #: src/ui/details-preferences.ui:673
 msgid ""
 "Bottles will create a state before running any dependencies or installers."
-msgstr ""
+msgstr "Bottles 将在运行任何依赖项或安装程序之前创建一个状态。"
 
 #: src/ui/details-preferences.ui:684
 msgid "Use Exclusion Patterns"
-msgstr ""
+msgstr "使用排除模式"
 
 #: src/ui/details-preferences.ui:685
 msgid "Use custom patterns to exclude some paths from versioning."
-msgstr ""
+msgstr "使用自定义模式从版本控制中排除一些路径。"
 
 #: src/ui/details-preferences.ui:688
-#, fuzzy
 msgid "Manage Patterns"
-msgstr "管理运行器"
+msgstr "管理模式"
 
 #: src/ui/details-preferences.ui:707
 msgid "Development and Debugging"
@@ -1588,9 +1563,8 @@ msgid "Toggle Hidden"
 msgstr "隐藏/取消隐藏"
 
 #: src/ui/details-programs.ui:36
-#, fuzzy
 msgid "Search for new programs"
-msgstr "搜索已安装的程序"
+msgstr "搜索新程序"
 
 #: src/ui/details-programs.ui:55
 msgid "Add a custom executable path"
@@ -1634,9 +1608,8 @@ msgid "Select Bottle"
 msgstr "删除 Bottle…"
 
 #: src/ui/dialog-bottle-picker.ui:42
-#, fuzzy
 msgid "Create New Bottle"
-msgstr "新建一个 Bottle"
+msgstr "新建 Bottle"
 
 #: src/ui/dialog-crash-report.ui:10
 msgid "Bottles crash report"
@@ -1730,9 +1703,8 @@ msgstr "复制 Bottle"
 
 #: src/ui/dialog-duplicate.ui:23 src/ui/dialog-gamescope.ui:17
 #: src/ui/dialog-launch-options.ui:17 src/ui/dialog-upgrade-versioning.ui:23
-#, fuzzy
 msgid "_Cancel"
-msgstr "取消"
+msgstr "取消(_C)"
 
 #: src/ui/dialog-duplicate.ui:41
 msgid "Duplicate"
@@ -1771,23 +1743,21 @@ msgstr "现有变量"
 
 #: src/ui/dialog-exclusion-patterns.ui:16
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "排除模式"
 
 #: src/ui/dialog-exclusion-patterns.ui:35
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
-msgstr ""
+msgstr "定义用于防止某些目录被纳入版本控制的模式。"
 
 #: src/ui/dialog-exclusion-patterns.ui:38
-#, fuzzy
 msgid "Pattern"
-msgstr "字母"
+msgstr "模式"
 
 #: src/ui/dialog-exclusion-patterns.ui:46
-#, fuzzy
 msgid "Existing Patterns"
-msgstr "现存驱动器"
+msgstr "现存模式"
 
 #: src/ui/dialog-gamescope.ui:8
 msgid "Gamescope Settings"
@@ -1799,13 +1769,12 @@ msgid ""
 msgstr "配置 Gamescope 应如何为您将运行的游戏管理窗口。"
 
 #: src/ui/dialog-gamescope.ui:51
-#, fuzzy
 msgid "Game Resolution"
 msgstr "游戏分辨率"
 
 #: src/ui/dialog-gamescope.ui:52
 msgid "Uses the resolution of the video game as a reference."
-msgstr ""
+msgstr "使用视频游戏的分辨率作为参考。"
 
 #: src/ui/dialog-gamescope.ui:55 src/ui/dialog-gamescope.ui:71
 msgid "Width (e.g. 1280)"
@@ -1816,7 +1785,6 @@ msgid "Height (e.g. 720)"
 msgstr "高度 (如， 720)"
 
 #: src/ui/dialog-gamescope.ui:67
-#, fuzzy
 msgid "Gamescope Resolution"
 msgstr "Gamescope 分辨率"
 
@@ -1824,29 +1792,25 @@ msgstr "Gamescope 分辨率"
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution."
-msgstr ""
+msgstr "使用高于游戏分辨率的分辨率时，提升分辨率。"
 
 #: src/ui/dialog-gamescope.ui:83
 msgid "Miscellaneous"
-msgstr ""
+msgstr "杂项"
 
 #: src/ui/dialog-gamescope.ui:86
-#, fuzzy
 msgid "Frame Rate Limit (e.g. 60)"
-msgstr "帧率限制(如，60)"
+msgstr "帧率限制（如，60）"
 
 #: src/ui/dialog-gamescope.ui:91
-#, fuzzy
 msgid "Frame Rate Limit (When Unfocused)"
 msgstr "帧率限制（失去焦点时）"
 
 #: src/ui/dialog-gamescope.ui:96
-#, fuzzy
 msgid "Use Integer Scaling"
 msgstr "使用整数缩放"
 
 #: src/ui/dialog-gamescope.ui:107
-#, fuzzy
 msgid "Window Type"
 msgstr "窗口类型"
 
@@ -1915,7 +1879,7 @@ msgid "Command Arguments"
 msgstr "命令参数"
 
 #: src/ui/dialog-launch-options.ui:52
-#, c-format
+#, c-format, python-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr "例如： VAR=value %command% -example1 -example2 -example3=hello"
 
@@ -1944,9 +1908,8 @@ msgid "Proton Disclaimer"
 msgstr ""
 
 #: src/ui/dialog-proton-alert.ui:22
-#, fuzzy
 msgid "Use Proton"
-msgstr "GE Proton"
+msgstr "使用 Proton"
 
 #: src/ui/dialog-proton-alert.ui:37
 msgid ""
@@ -1962,10 +1925,18 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"请注意，在非 Steam 瓶中使用基于 Proton 的运行器可能会导致问题并阻止它们正常运"
+"行。\n"
+"\n"
+"我们建议使用 Wine-GE，它是一种在 Steam 之外运行的 Proton 版本。\n"
+"\n"
+"继续将自动启用 Steam 运行时（如果系统中存在并被 Bottles 检测到），以允许它访"
+"问必要的库并限制兼容性问题。 请注意，runner 的提供者 GloriousEggroll 不对任何"
+"问题负责，我们要求您不要向他们报告问题。"
 
 #: src/ui/dialog-proton-alert.ui:50
 msgid "I got it."
-msgstr ""
+msgstr "我知道了。"
 
 #: src/ui/dialog-rename.ui:9
 msgid "Rename"
@@ -1997,41 +1968,36 @@ msgid "e.g.: -opengl -SkipBuildPatchPrereq"
 msgstr "如：-opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dialog-sandbox.ui:9
-#, fuzzy
 msgid "Sandbox Settings"
-msgstr "Gamescope 设置"
+msgstr "沙盒设置"
 
 #: src/ui/dialog-sandbox.ui:23
 msgid "Share Network"
-msgstr ""
+msgstr "分享网络"
 
 #: src/ui/dialog-sandbox.ui:34
-#, fuzzy
 msgid "Share Sound"
-msgstr "未找到状态"
+msgstr "分享声音"
 
 #: src/ui/dialog-upgrade-versioning.ui:18
-#, fuzzy
 msgid "Upgrade Needed"
-msgstr "升级"
+msgstr "需要升级"
 
 #: src/ui/dialog-upgrade-versioning.ui:41 src/ui/onboard.ui:88
 msgid "Continue"
 msgstr "继续"
 
 #: src/ui/dialog-upgrade-versioning.ui:49
-#, fuzzy
 msgid "Launch upgrade"
-msgstr "确认升级"
+msgstr "启动升级"
 
 #: src/ui/dialog-upgrade-versioning.ui:69
-#, fuzzy
 msgid "New Versioning System"
-msgstr "版本控制"
+msgstr "新版本控制系统"
 
 #: src/ui/dialog-upgrade-versioning.ui:72
 msgid "The new bottle versioning system has landed."
-msgstr ""
+msgstr "新的 bottle 版本控制系统已经登陆。"
 
 #: src/ui/dialog-upgrade-versioning.ui:86
 msgid ""
@@ -2048,15 +2014,23 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"Bottles 有一个不向后兼容的全新版本控制系统。\n"
+"\n"
+"要继续使用版本控制，我们需要重新初始化 bottle 存储库。 这不会从您的 bottle 中"
+"删除数据，但会删除所有现有状态并创建一个新状态。\n"
+"\n"
+"如果您需要在继续之前返回之前的状态，请关闭此窗口并恢复状态，然后重新打开 "
+"bottle 以再次显示此窗口。\n"
+"\n"
+"旧系统将在后续版本中的一个版本停止使用。"
 
 #: src/ui/dialog-upgrade-versioning.ui:112
-#, fuzzy
 msgid "Re-initializing repository…"
-msgstr "重新初始化注册表…"
+msgstr "重新初始化存储库…"
 
 #: src/ui/dialog-upgrade-versioning.ui:144
 msgid "Done! Please restart Bottles."
-msgstr ""
+msgstr "完毕！ 请重新启动 bottles。"
 
 #: src/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
@@ -2378,7 +2352,7 @@ msgstr "大功告成！"
 
 #: src/ui/onboard.ui:122
 msgid "Please Finish the setup first"
-msgstr ""
+msgstr "请先完成设置"
 
 #: src/ui/onboard.ui:129
 msgid "Start using Bottles"
@@ -2405,9 +2379,8 @@ msgid "Dark Mode"
 msgstr "深色模式"
 
 #: src/ui/preferences.ui:20
-#, fuzzy
 msgid "Whether Bottles should use the dark color scheme."
-msgstr "Bottles 是否应使用夜间主题。"
+msgstr "Bottles 是否应使用深色主题。"
 
 #: src/ui/preferences.ui:32
 msgid "Show Update Date"
@@ -2450,7 +2423,6 @@ msgid "List and manage Steam Proton prefixes."
 msgstr "列出并管理 Steam Proton 前缀。"
 
 #: src/ui/preferences.ui:95
-#, fuzzy
 msgid "Read Documentation"
 msgstr "阅读文档"
 
@@ -2471,14 +2443,12 @@ msgid "Requires Epic Games Store installed in the bottle."
 msgstr "需在 bottle 中安装 Epic 游戏商店。"
 
 #: src/ui/preferences.ui:137
-#, fuzzy
 msgid "List Ubisoft Games in Programs List"
-msgstr "列出“程序列表”中的 Epic 游戏"
+msgstr "在程序列表中列出 Ubisoft 游戏"
 
 #: src/ui/preferences.ui:138
-#, fuzzy
 msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr "需在 bottle 中安装 Epic 游戏商店。"
+msgstr "需在 bottle 中安装 Ubisoft Connect。"
 
 #: src/ui/preferences.ui:151
 msgid "Advanced"
@@ -2530,7 +2500,7 @@ msgstr "WineBridge"
 msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
-msgstr ""
+msgstr "这些功能正在开发中，可能不稳定，预计会出现错误和损坏。"
 
 #: src/ui/preferences.ui:260
 msgid "In early development (requires restart)."
@@ -2655,9 +2625,8 @@ msgid "Choose a Windows executable file"
 msgstr "选择一个 Windows 可执行文件"
 
 #: src/views/bottle_details.py:209
-#, fuzzy
 msgid "Be Aware of Sandbox"
-msgstr "专用沙盒"
+msgstr "小心沙盒"
 
 #: src/views/bottle_details.py:210
 msgid ""
@@ -2665,10 +2634,12 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
+"Bottles 在沙箱中运行，这是一个确保安全所需的权限受限环境。 如果程序无法运行，"
+"请考虑在 bottle 内移动（顶部的 3 点图标），然后从那里启动。"
 
 #: src/views/bottle_details.py:212
 msgid "Ok"
-msgstr ""
+msgstr "好"
 
 #: src/views/bottle_details.py:267
 msgid "Select the location where to save the backup config"
@@ -2725,13 +2696,13 @@ msgstr "选择可执行文件的工作目录"
 
 #: src/views/bottle_preferences.py:741
 msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
+msgstr "切换压缩开启状态需要重新初始化"
 
 #: src/views/bottle_preferences.py:742
 msgid ""
 "This will kepp all your files but will delete all states. Do you want to "
 "continue?"
-msgstr ""
+msgstr "这将保留您的所有文件，但会删除所有状态。 你想继续吗？"
 
 #: src/views/bottle_programs.py:83
 #, python-brace-format
@@ -2748,7 +2719,7 @@ msgstr "添加"
 
 #: src/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
+msgstr "要创建新状态，请迁移到新的版本控制系统。"
 
 #: src/views/details.py:154
 msgid "Details & Utilities"
@@ -2767,14 +2738,12 @@ msgid "Installers"
 msgstr "安装器"
 
 #: src/views/details.py:377
-#, fuzzy
 msgid "Operations in progress, please wait."
-msgstr "正在更新 Windows 版本，请稍等…"
+msgstr "操作中，请稍候。"
 
 #: src/views/details.py:381
-#, fuzzy
 msgid "Return to your bottles."
-msgstr "搜索你的 bottles…"
+msgstr "返回你的 bottles。"
 
 #: src/views/importer.py:89
 msgid "Backup imported successfully."
@@ -2811,12 +2780,12 @@ msgstr "你的 Bottles"
 #: src/views/loading.py:33
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
-msgstr ""
+msgstr "正在下载 ~{0} 个软件包…"
 
 #: src/views/loading.py:34
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
-msgstr ""
+msgstr "已获取 {1} 个软件包中的 {0} 个"
 
 #: src/views/new.py:142
 msgid "Choose a recipe file"
@@ -2836,11 +2805,8 @@ msgid "A bottle named “{0}” was created successfully"
 msgstr "成功创建了名为“{0}”的 bottle"
 
 #: src/views/preferences.py:125
-#, fuzzy
 msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-"未找到 Steam 或 Bottles 权限不足。访问 https://docs.usebottles.com/flatpak/"
-"cant-enable-steam-proton-manager"
+msgstr "未找到 Steam 或 Bottles 没有足够的权限。"
 
 #: src/views/preferences.py:193
 msgid "Choose new bottles path"
@@ -2848,21 +2814,23 @@ msgstr "选择新的 Bottles 路径"
 
 #: src/views/preferences.py:236
 msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
+msgstr "基于 Valve 的 Wine，包括 staging 和 Proton 补丁。"
 
 #: src/views/preferences.py:237
 msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
+msgstr "基于 Wine 上游，包括 staging 和 Proton 补丁。"
 
 #: src/views/preferences.py:240
 msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
+msgstr "基于 Wine 上游，包括 staging 补丁。"
 
 #: src/views/preferences.py:241
 msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
+"基于 Valve 的 Wine，包括 staging、Proton 和 特定于 Steam 的补丁。 需要开启 "
+"Steam 运行时。"
 
 #: src/views/preferences.py:243
 msgid "Other"
@@ -2887,9 +2855,9 @@ msgid "'{0}' installed."
 msgstr "'{0}' 已安装。"
 
 #: src/widgets/dependency.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' failed to install."
-msgstr "'{0}' 已安装。"
+msgstr "'{0}' 安装失败。"
 
 #: src/widgets/importer.py:66
 #, python-brace-format
@@ -2902,14 +2870,14 @@ msgid "Review for {0}"
 msgstr "{0} 的评论"
 
 #: src/widgets/program.py:187
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching '{0}'…"
-msgstr "在终端启动…"
+msgstr "正在启动 '{0}'…"
 
 #: src/widgets/program.py:193
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching '{0}' with Steam…"
-msgstr "随 Steam 启动"
+msgstr "正在使用 Steam 启动“{0}”…"
 
 #: src/widgets/program.py:215
 #, python-brace-format
@@ -2947,18 +2915,17 @@ msgid "'{0}' added to your Steam library"
 msgstr "'{0}' 已添加至你的 Steam 库"
 
 #: src/window.py:184
-#, fuzzy
 msgid "Custom Bottles Path not Found"
-msgstr "自定义 Bottles 路径（需要重启）"
+msgstr "未找到自定义 Bottles 路径"
 
 #: src/window.py:185
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
+msgstr "退回到默认路径。 不会列出来自给定路径的 bottles。"
 
 #: src/window.py:306
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "第三方库和特别感谢"
 
 #~ msgid "Loading…"
 #~ msgstr "加载中…"
@@ -4352,3 +4319,16 @@ msgstr ""
 
 #~ msgid "Kill all wine processes"
 #~ msgstr "杀死所有 wine 进程"
+
+#~ msgid ""
+#~ "Use this section to install programs curated by our community, without "
+#~ "having to proceed manually. Consider the <a href=\"https://docs."
+#~ "usebottles.com/bottles/installers#compatibility-grades\">compatibility "
+#~ "grade</a> when choosing."
+#~ msgstr ""
+#~ "使用本部分安装由我们社区策划的程序，而无需手动进行。选择安装什么程序时请考"
+#~ "虑 <a href=\"https://docs.usebottles.com/bottles/installers#compatibility-"
+#~ "grades\">兼容性等级</a> 。"
+
+#~ msgid "Deleting a bottle …"
+#~ msgstr "正在删除 bottle …"
