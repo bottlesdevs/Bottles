@@ -145,26 +145,27 @@ msgstr "... i molt més que podeu trobar instal·lant Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
 msgid "News"
-msgstr ""
+msgstr "Notícies"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid ""
 "New versioning system which allow versioning the whole bottle (also "
 "configuration)"
 msgstr ""
+"Nou sistema de versions que permet versionar tota l'ampolla (també "
+"configuració)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Automatic versioning can now be toggled on and off"
-msgstr ""
+msgstr "Ara es pot activar i desactivar el control automàtic de versions"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "Exclude paths from versioning using patterns"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "Use compression for versioning states"
-msgstr "S'està creant l'estat de versionat 0…"
+msgstr "Utilitzeu la compressió per als estats de versions"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
@@ -175,57 +176,62 @@ msgid ""
 "Improved YAML performance using libyaml (the python-yaml package must "
 "provide support for it)"
 msgstr ""
+"Rendiment YAML millorat mitjançant libyaml (el paquet python-yaml ha de "
+"proporcionar-hi suport)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
-#, fuzzy
 msgid "New About dialog"
-msgstr "Ampolla nova"
+msgstr "Nou diàleg Quant a"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "Covers support in Library mode (thanks to SteamGridDB)"
-msgstr ""
+msgstr "Cobreix el suport en mode Biblioteca (gràcies a SteamGridDB)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid "Removed DXVK HUD option, use the Environment Variables section instead"
-msgstr ""
+msgstr "S'ha eliminat l'opció DXVK HUD, utilitzeu la secció Variables d'entorn"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "bottles-cli shell option now provide command output"
-msgstr ""
+msgstr "L'opció bottles-cli shell ara proporciona una sortida de comanda"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
 msgid "The Health Check is now in the About´s Troubleshooting section"
 msgstr ""
+"El Health Check ja es troba a la secció Quant a la resolució de problemes"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
 msgid ""
 "Extended Core dependencies check, packagers are invited to double-check "
 "their packages"
 msgstr ""
+"Comprovació de dependències del nucli estès, els empaquetadors estan "
+"convidats a revisar els seus paquets"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "New default permission for the Flatpak package: xdg-download"
-msgstr ""
+msgstr "Nou permís per defecte per al paquet Flatpak: xdg-download"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Added credits for Third-Party Libraries in the Credits section"
 msgstr ""
+"S'han afegit crèdits per a biblioteques de tercers a la secció de crèdits"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
-msgstr ""
+msgstr "Millores menors en la interfície d'usuari"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
-msgstr ""
+msgstr "Correccions"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Fix for skipable onboard dialog"
-msgstr ""
+msgstr "S'ha solucionat el diàleg a bord que es pot ometre"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Fix for empty bottle name"
-msgstr ""
+msgstr "Correcció per al nom de l'ampolla buida"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
 msgid "Fix gstreamer libs for win32 bottles"
@@ -1955,7 +1961,7 @@ msgid "Command Arguments"
 msgstr "Arguments d’ordres"
 
 #: src/ui/dialog-launch-options.ui:52
-#, fuzzy, c-format
+#, python-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr "p. ex.: VAR=valor %ordre% -exemple1 -exemple2 -exemple3=hola"
 
