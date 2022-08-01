@@ -64,8 +64,9 @@ class SteamManager:
             paths = [os.path.join(ManagerUtils.get_bottle_path(self.config), "drive_c/Program Files (x86)/Steam")]
         else:
             paths = [
-                os.path.join(Path.home(), ".local/share/Steam"),
                 os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam"),
+                os.path.join(Path.home(), ".local/share/Steam"),
+                os.path.join(Path.home(), ".steam"),
             ]
 
         for path in paths:
