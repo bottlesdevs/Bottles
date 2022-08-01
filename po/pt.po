@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 12:08+0200\n"
+"POT-Creation-Date: 2022-08-01 22:54+0200\n"
 "PO-Revision-Date: 2022-06-08 22:17+0000\n"
 "Last-Translator: Lucas Frohlich <lucasfrohlich@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bottles/"
@@ -19,19 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.13-dev\n"
 
-#: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:165
-#: src/ui/list.ui:54 src/ui/window.ui:56 src/ui/window.ui:73
+#: data/com.usebottles.bottles.appdata.xml.in:6
+#: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
+#: src/ui/window.ui:56 src/ui/window.ui:73 src/window.py:165
 msgid "Bottles"
 msgstr "Bottles"
-
-#: data/com.usebottles.bottles.desktop.in:4
-msgid "Easily manage wineprefix"
-msgstr "Define um wineprefix"
-
-#: data/com.usebottles.bottles.desktop.in:13
-msgid "wine;windows;"
-msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -327,6 +319,14 @@ msgstr "Traduções para o Croata graças a @milotype"
 msgid "Croatian translations thanks to @milotype"
 msgstr "Traduções para o Croata graças a @milotype"
 
+#: data/com.usebottles.bottles.desktop.in:4
+msgid "Easily manage wineprefix"
+msgstr "Define um wineprefix"
+
+#: data/com.usebottles.bottles.desktop.in:13
+msgid "wine;windows;"
+msgstr "wine;windows;"
+
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
 msgstr "Migração Flatpak"
@@ -488,107 +488,6 @@ msgstr ""
 msgid "Toggle sandbox warning."
 msgstr "Accionar a data de atualização na lista"
 
-#: src/main.py:105
-msgid "Show version"
-msgstr "Mostrar versão"
-
-#: src/main.py:113
-msgid "Executable path"
-msgstr "Correr o executável"
-
-#: src/main.py:121
-msgid "lnk path"
-msgstr "Caminho lnk"
-
-#: src/main.py:129
-msgid "Bottle name"
-msgstr "Nome do Bottle"
-
-#: src/main.py:137
-msgid "Pass arguments"
-msgstr "Adicionar parâmetros"
-
-#: src/main.py:196
-msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
-
-#: src/main.py:237
-msgid "[Quit] request received."
-msgstr "Solicitação [Sair] recebida."
-
-#: src/main.py:246
-msgid "[Help] request received."
-msgstr "Solicitação [Ajuda] recebida."
-
-#: src/main.py:254
-msgid "[Refresh] request received."
-msgstr "Solicitação [Atualizar] recebida."
-
-#: src/operation.py:50
-#, fuzzy
-msgid "Calculating…"
-msgstr "A calcular..."
-
-#: src/window.py:171 src/ui/library.ui:14 src/ui/preferences.ui:259
-#, fuzzy
-msgid "Library"
-msgstr "Tema escuro"
-
-#: src/window.py:184
-msgid "Custom Bottles Path not Found"
-msgstr ""
-
-#: src/window.py:185
-msgid ""
-"Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
-
-#: src/window.py:187 src/ui/new.ui:47 src/ui/new.ui:268
-msgid "Close"
-msgstr "Fechar"
-
-#: src/window.py:306
-msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
-
-#: src/backend/managers/versioning.py:97
-#, fuzzy
-msgid "Committing state …"
-msgstr "Atualizando estados…"
-
-#: src/backend/managers/versioning.py:106
-msgid "Nothing to commit"
-msgstr ""
-
-#: src/backend/managers/versioning.py:112
-#, python-brace-format
-msgid "New state [{0}] created successfully!"
-msgstr "Novo estado [{0}] criado com sucesso!"
-
-#: src/backend/managers/versioning.py:140
-#, fuzzy
-msgid "States list retrieved successfully!"
-msgstr "Novo estado [{0}] criado com sucesso!"
-
-#: src/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
-msgid "State {0} restored successfully!"
-msgstr "Novo estado [{0}] criado com sucesso!"
-
-#: src/backend/managers/versioning.py:176
-#, fuzzy
-msgid "Restoring state {} …"
-msgstr "A restaurar para o estado: [{0}]"
-
-#: src/backend/managers/versioning.py:185
-#, fuzzy
-msgid "State not found"
-msgstr "Nenhum estado encontrado"
-
-#: src/backend/managers/versioning.py:191
-msgid "State {} is already the active state"
-msgstr ""
-
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
 msgstr ""
@@ -702,6 +601,44 @@ msgstr "Finalizando…"
 msgid "Caching template…"
 msgstr "A criar Bottle…"
 
+#: src/backend/managers/versioning.py:97
+#, fuzzy
+msgid "Committing state …"
+msgstr "Atualizando estados…"
+
+#: src/backend/managers/versioning.py:106
+msgid "Nothing to commit"
+msgstr ""
+
+#: src/backend/managers/versioning.py:112
+#, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "Novo estado [{0}] criado com sucesso!"
+
+#: src/backend/managers/versioning.py:140
+#, fuzzy
+msgid "States list retrieved successfully!"
+msgstr "Novo estado [{0}] criado com sucesso!"
+
+#: src/backend/managers/versioning.py:171
+#, fuzzy, python-brace-format
+msgid "State {0} restored successfully!"
+msgstr "Novo estado [{0}] criado com sucesso!"
+
+#: src/backend/managers/versioning.py:176
+#, fuzzy
+msgid "Restoring state {} …"
+msgstr "A restaurar para o estado: [{0}]"
+
+#: src/backend/managers/versioning.py:185
+#, fuzzy
+msgid "State not found"
+msgstr "Nenhum estado encontrado"
+
+#: src/backend/managers/versioning.py:191
+msgid "State {} is already the active state"
+msgstr ""
+
 #: src/dialogs/crash.py:37
 msgid "Show report"
 msgstr "Mostrar relatório"
@@ -726,30 +663,34 @@ msgid "Choose path"
 msgstr "Navegar no local"
 
 #: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
-#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
-#: src/dialogs/installer.py:66 src/views/bottle_details.py:202
-#: src/views/bottle_details.py:296 src/views/bottle_details.py:335
-#: src/views/bottle_details.py:414 src/views/bottle_preferences.py:260
-#: src/views/bottle_preferences.py:744 src/views/bottle_programs.py:89
-#: src/views/importer.py:117 src/views/importer.py:146 src/views/list.py:120
-#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-rename.ui:17
-#: src/ui/dialog-run-args.ui:19 src/ui/dialog-bottle-picker.ui:17
-#: src/ui/dialog-proton-alert.ui:17 src/ui/new.ui:33
+#: src/dialogs/installer.py:66 src/dialogs/launchoptions.py:234
+#: src/dialogs/launchoptions.py:258 src/ui/dialog-bottle-picker.ui:17
+#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-proton-alert.ui:17
+#: src/ui/dialog-rename.ui:17 src/ui/dialog-run-args.ui:19 src/ui/new.ui:33
+#: src/views/bottle_details.py:202 src/views/bottle_details.py:296
+#: src/views/bottle_details.py:335 src/views/bottle_details.py:414
+#: src/views/bottle_preferences.py:260 src/views/bottle_preferences.py:744
+#: src/views/bottle_programs.py:89 src/views/importer.py:117
+#: src/views/importer.py:146 src/views/list.py:120 src/views/new.py:144
+#: src/views/new.py:160 src/views/preferences.py:195
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/dialogs/drives.py:73 src/dialogs/launchoptions.py:234
-#: src/dialogs/launchoptions.py:258 src/dialogs/installer.py:66
-#: src/views/bottle_preferences.py:260 src/views/new.py:144
-#: src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-bottle-picker.ui:22
+#: src/dialogs/drives.py:73 src/dialogs/installer.py:66
+#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
+#: src/ui/dialog-bottle-picker.ui:22 src/views/bottle_preferences.py:260
+#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
 msgid "Select"
 msgstr ""
 
 #: src/dialogs/envvars.py:131
 #, fuzzy
 msgid "No environment variables defined."
+msgstr "Variáveis de ambiente"
+
+#: src/dialogs/exclusionpatterns.py:108
+#, fuzzy
+msgid "No exclusion patterns defined."
 msgstr "Variáveis de ambiente"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:34
@@ -765,34 +706,6 @@ msgstr "Ocorreu um erro."
 #: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
 msgstr "Copiar para a área de transferência"
-
-#. endregion
-#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
-msgid "Choose a script which should be executed after run."
-msgstr ""
-
-#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
-#, fuzzy
-msgid "Choose from where start the program."
-msgstr "Fechar Bottles automaticamente após iniciar um programa"
-
-#: src/dialogs/launchoptions.py:58
-#, fuzzy, python-brace-format
-msgid "{0} is already disabled for this bottle."
-msgstr "Controlo da versão ativado para este Bottle"
-
-#: src/dialogs/launchoptions.py:59
-msgid "This setting is different from the bottle's default."
-msgstr ""
-
-#: src/dialogs/launchoptions.py:232
-msgid "Choose the script"
-msgstr ""
-
-#: src/dialogs/launchoptions.py:256
-#, fuzzy
-msgid "Choose the Working Directory"
-msgstr "Diretório de trabalho"
 
 #: src/dialogs/installer.py:64
 msgid "Select Resource FIle"
@@ -835,348 +748,74 @@ msgstr ""
 msgid "Installer failed with unknown error"
 msgstr ""
 
-#: src/dialogs/exclusionpatterns.py:108
+#. endregion
+#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
+msgid "Choose a script which should be executed after run."
+msgstr ""
+
+#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
 #, fuzzy
-msgid "No exclusion patterns defined."
-msgstr "Variáveis de ambiente"
+msgid "Choose from where start the program."
+msgstr "Fechar Bottles automaticamente após iniciar um programa"
 
-#: src/views/bottle_details.py:142
-#, python-format
-msgid "Updated: %s"
-msgstr "Atualizado: %s"
-
-#: src/views/bottle_details.py:200 src/views/list.py:118
-msgid "Choose a Windows executable file"
-msgstr "Escolha um ficheiro executável do Windows"
-
-#: src/views/bottle_details.py:202 src/views/list.py:120
-#: src/ui/dialog-run-args.ui:35
-msgid "Run"
-msgstr "Executar"
-
-#: src/views/bottle_details.py:209
-msgid "Be Aware of Sandbox"
-msgstr ""
-
-#: src/views/bottle_details.py:210
-msgid ""
-"Bottles is running in a sandbox, a restricted permission environment needed "
-"to keep you safe. If the program won't run, consider moving inside the "
-"bottle (3 dots icon on the top), then launch from there."
-msgstr ""
-
-#: src/views/bottle_details.py:212
-msgid "Ok"
-msgstr ""
-
-#: src/views/bottle_details.py:267
-msgid "Select the location where to save the backup config"
-msgstr "Selecione o local onde gravar a configuração da cópia de segurança"
-
-#: src/views/bottle_details.py:271
-msgid "Select the location where to save the backup archive"
-msgstr "Selecione o local onde gravar o ficheiro da cópia de segurança"
-
-#: src/views/bottle_details.py:276
+#: src/dialogs/launchoptions.py:58
 #, fuzzy, python-brace-format
-msgid "Backup created for '{0}'."
-msgstr "Cópia de segurança guardada no caminho: {0}."
+msgid "{0} is already disabled for this bottle."
+msgstr "Controlo da versão ativado para este Bottle"
 
-#: src/views/bottle_details.py:278
-#, fuzzy, python-brace-format
-msgid "Backup failed for '{0}'."
-msgstr "Cópia de segurança guardada no caminho: {0}."
+#: src/dialogs/launchoptions.py:59
+msgid "This setting is different from the bottle's default."
+msgstr ""
 
-#: src/views/bottle_details.py:296
-msgid "Export"
-msgstr "Exportar"
+#: src/dialogs/launchoptions.py:232
+msgid "Choose the script"
+msgstr ""
 
-#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
-#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
-#: src/views/bottle_preferences.py:745
-msgid "Confirm"
-msgstr "Confirmar"
-
-#: src/views/bottle_details.py:333
-msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Tem certeza de que quer eliminar este Bottle e todos os ficheiros?"
-
-#: src/views/bottle_details.py:412
+#: src/dialogs/launchoptions.py:256
 #, fuzzy
-msgid ""
-"Are you sure you want to terminate all processes?\n"
-"This can cause data loss."
-msgstr "Tem certeza de que quer eliminar este Bottle e todos os ficheiros?"
+msgid "Choose the Working Directory"
+msgstr "Diretório de trabalho"
 
-#: src/views/bottle_preferences.py:207
+#: src/main.py:105
+msgid "Show version"
+msgstr "Mostrar versão"
+
+#: src/main.py:113
+msgid "Executable path"
+msgstr "Correr o executável"
+
+#: src/main.py:121
+msgid "lnk path"
+msgstr "Caminho lnk"
+
+#: src/main.py:129 src/ui/library-entry.ui:103 src/ui/list-entry.ui:7
+msgid "Bottle name"
+msgstr "Nome do Bottle"
+
+#: src/main.py:137
+msgid "Pass arguments"
+msgstr "Adicionar parâmetros"
+
+#: src/main.py:196
+msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
+msgstr ""
+
+#: src/main.py:237
+msgid "[Quit] request received."
+msgstr "Solicitação [Sair] recebida."
+
+#: src/main.py:246
+msgid "[Help] request received."
+msgstr "Solicitação [Ajuda] recebida."
+
+#: src/main.py:254
+msgid "[Refresh] request received."
+msgstr "Solicitação [Atualizar] recebida."
+
+#: src/operation.py:50
 #, fuzzy
-msgid "This feature is not available on your system."
-msgstr "O Gamemode não está disponível no seu sistema ou não está a funcionar."
-
-#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:405
-#, fuzzy
-msgid "Default to the bottle path."
-msgstr "Aponte para o caminho da garrafa"
-
-#: src/views/bottle_preferences.py:258
-msgid "Choose working directory for executables"
-msgstr "Escolha um ficheiro executável do Windows"
-
-#: src/views/bottle_preferences.py:741
-msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
-
-#: src/views/bottle_preferences.py:742
-msgid ""
-"This will kepp all your files but will delete all states. Do you want to "
-"continue?"
-msgstr ""
-
-#: src/views/bottle_programs.py:83
-#, python-brace-format
-msgid "'{0}' added."
-msgstr ""
-
-#: src/views/bottle_programs.py:87
-msgid "Choose an executable path"
-msgstr "Escolha um caminho executável"
-
-#: src/views/bottle_programs.py:89
-msgid "Add"
-msgstr "Adicionar"
-
-#: src/views/details.py:154
-msgid "Details & Utilities"
-msgstr "Detalhes e utilitários"
-
-#: src/views/details.py:158 src/ui/preferences.ui:6 src/ui/window.ui:24
-msgid "Preferences"
-msgstr "Preferências"
-
-#: src/views/details.py:162
-msgid "Dependencies"
-msgstr "Dependências"
-
-#: src/views/details.py:166 src/ui/details-bottle.ui:241
-msgid "Programs"
-msgstr "Programas"
-
-#: src/views/details.py:167
-msgid "Found in your bottle's Start menu."
-msgstr "Encontrados no menu Iniciar do seu Bottles."
-
-#: src/views/details.py:170 src/ui/details-preferences.ui:656
-msgid "Versioning"
-msgstr "Controlo da versão"
-
-#: src/views/details.py:174
-msgid "Installers"
-msgstr "Instaladores"
-
-#: src/views/details.py:178 src/ui/details-bottle.ui:289
-msgid "Task Manager"
-msgstr "Gestor de tarefas"
-
-#: src/views/details.py:377
-#, fuzzy
-msgid "Operations in progress, please wait."
-msgstr "Configurando versão do Windows…"
-
-#: src/views/details.py:381
-#, fuzzy
-msgid "Return to your bottles."
-msgstr "Escolha um nome para o seu Bottle"
-
-#: src/views/importer.py:89
-#, fuzzy
-msgid "Backup imported successfully."
-msgstr "Cópia de segurança: [{0}] importada com sucesso."
-
-#: src/views/importer.py:91
-#, fuzzy
-msgid "Import failed."
-msgstr "Importador"
-
-#: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
-msgid "Importing backup…"
-msgstr "A importar a cópia de segurança: {0}"
-
-#: src/views/importer.py:115
-msgid "Choose a backup archive"
-msgstr "Escolha um ficheiro de cópia de segurança"
-
-#: src/views/importer.py:117 src/views/importer.py:146
-#, fuzzy
-msgid "Import"
-msgstr "Importador"
-
-#: src/views/importer.py:144
-msgid "Choose a configuration file"
-msgstr "Escolha um ficheiro de configuração"
-
-#: src/views/list.py:59 src/views/list.py:65
-msgid "N/A"
-msgstr "N/A"
-
-#: src/views/list.py:220
-#, fuzzy
-msgid "Your Bottles"
-msgstr "Sobre o Bottles"
-
-#: src/views/new.py:142
-#, fuzzy
-msgid "Choose a recipe file"
-msgstr "Escolha um ficheiro de configuração"
-
-#: src/views/new.py:158
-#, fuzzy
-msgid "Choose where to store the bottle"
-msgstr "Escolha um nome para o seu Bottle"
-
-#: src/views/new.py:211
-msgid "There was an error creating the bottle."
-msgstr "Houve um erro ao criar a garrafa."
-
-#: src/views/new.py:219
-#, python-brace-format
-msgid "A bottle named “{0}” was created successfully"
-msgstr "Um bottle chamado “{0}” foi criado com sucesso"
-
-#: src/views/preferences.py:125
-msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-
-#: src/views/preferences.py:188 src/views/preferences.py:204
-#: src/ui/preferences.ui:155
-msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)."
-msgstr ""
-
-#: src/views/preferences.py:193
-#, fuzzy
-msgid "Choose new bottles path"
-msgstr "Escolha um caminho executável"
-
-#: src/views/preferences.py:236
-msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:237
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:240
-msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
-
-#: src/views/preferences.py:241
-msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
-msgstr ""
-
-#: src/views/preferences.py:243
-msgid "Other"
-msgstr ""
-
-#: src/views/bottle_versioning.py:88
-msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
-
-#: src/views/loading.py:33
-#, python-brace-format
-msgid "Downloading ~{0} of packages…"
-msgstr ""
-
-#: src/views/loading.py:34
-#, python-brace-format
-msgid "Fetched {0} of {1} packages"
-msgstr ""
-
-#: src/widgets/component.py:70
-msgid "Upgrade"
-msgstr ""
-
-#: src/widgets/component.py:145
-#, fuzzy
-msgid "Installing…"
-msgstr "A instalar DXVK…"
-
-#: src/widgets/dependency.py:107 src/widgets/installer.py:72
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "Manifest para {0}"
-
-#: src/widgets/dependency.py:170
-#, python-brace-format
-msgid "'{0}' installed."
-msgstr ""
-
-#: src/widgets/dependency.py:184
-#, fuzzy, python-brace-format
-msgid "'{0}' failed to install."
-msgstr "[{0}] ficheiros para adicionar."
-
-#: src/widgets/importer.py:66
-#, python-brace-format
-msgid "'{0}' imported."
-msgstr ""
-
-#: src/widgets/installer.py:81
-#, python-brace-format
-msgid "Review for {0}"
-msgstr "Análise de {0}"
-
-#: src/widgets/program.py:187
-#, python-brace-format
-msgid "Launching '{0}'…"
-msgstr ""
-
-#: src/widgets/program.py:193
-#, python-brace-format
-msgid "Launching '{0}' with Steam…"
-msgstr ""
-
-#: src/widgets/program.py:215
-#, python-brace-format
-msgid "'{0}' hidden."
-msgstr ""
-
-#: src/widgets/program.py:217
-#, python-brace-format
-msgid "'{0}' showed."
-msgstr ""
-
-#: src/widgets/program.py:240
-#, fuzzy, python-brace-format
-msgid "'{0}' removed."
-msgstr "[{0}] ficheiros para remover."
-
-#: src/widgets/program.py:254
-#, python-brace-format
-msgid "'{0}' renamed to '{1}'."
-msgstr ""
-
-#: src/widgets/program.py:274
-#, python-brace-format
-msgid "Desktop Entry created for '{0}'"
-msgstr ""
-
-#: src/widgets/program.py:290
-#, python-brace-format
-msgid "'{0}' added to your library"
-msgstr ""
-
-#: src/widgets/program.py:306
-#, python-brace-format
-msgid "'{0}' added to your Steam library"
-msgstr ""
-
-#: src/utils/connection.py:67
-msgid "You are offline, unable to download."
-msgstr "Está offline, incapaz de descarregar."
+msgid "Calculating…"
+msgstr "A calcular..."
 
 #: src/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
@@ -1234,6 +873,20 @@ msgstr "Desinstalar"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
+msgstr ""
+
+#: src/ui/dependency-entry.ui:50
+#, fuzzy
+msgid "Dependency name"
+msgstr "Dependências"
+
+#: src/ui/dependency-entry.ui:52
+#, fuzzy
+msgid "Dependency description"
+msgstr "Dependências"
+
+#: src/ui/dependency-entry.ui:59
+msgid "Category"
 msgstr ""
 
 #: src/ui/dependency-entry.ui:73
@@ -1330,7 +983,7 @@ msgstr "Novo bottle"
 msgid "Win64"
 msgstr ""
 
-#: src/ui/details-bottle.ui:177 src/ui/new.ui:77
+#: src/ui/details-bottle.ui:177 src/ui/list-entry.ui:14 src/ui/new.ui:77
 msgid "Environment"
 msgstr "Ambiente"
 
@@ -1360,6 +1013,10 @@ msgstr "Correr o executável"
 #, fuzzy
 msgid "Layers"
 msgstr "Em camadas"
+
+#: src/ui/details-bottle.ui:241 src/views/details.py:166
+msgid "Programs"
+msgstr "Programas"
 
 #: src/ui/details-bottle.ui:246
 msgid "Tools"
@@ -1393,6 +1050,10 @@ msgstr ""
 #, fuzzy
 msgid "Browse internal files with the Wine explorer."
 msgstr "Navegue pelos ficheiros internos."
+
+#: src/ui/details-bottle.ui:289 src/views/details.py:178
+msgid "Task Manager"
+msgstr "Gestor de tarefas"
 
 #: src/ui/details-bottle.ui:290
 msgid "Manage processes with the Wine task manager."
@@ -1498,6 +1159,12 @@ msgstr ""
 #, fuzzy
 msgid "Search for Programs…"
 msgstr "Procurar programas instalados"
+
+#: src/ui/details-installers.ui:22
+msgid ""
+"Use this section to install programs curated by our community, without "
+"having to proceed manually."
+msgstr ""
 
 #: src/ui/details-installers.ui:48
 #, fuzzy
@@ -1928,7 +1595,7 @@ msgstr "Gerir agentes de execução"
 msgid "Audio"
 msgstr "Áudio"
 
-#: src/ui/details-preferences.ui:643
+#: src/ui/details-preferences.ui:643 src/ui/dialog-launch-options.ui:183
 #, fuzzy
 msgid "Reduce Latency"
 msgstr "Reduza a latência do PulseAudio"
@@ -1939,6 +1606,10 @@ msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
 msgstr ""
 "Defina a latência do PulseAudio para 60 milissegundos para aumentar a "
 "qualidade do som"
+
+#: src/ui/details-preferences.ui:656 src/views/details.py:170
+msgid "Versioning"
+msgstr "Controlo da versão"
 
 #: src/ui/details-preferences.ui:660
 msgid "Use Compression for States"
@@ -2063,6 +1734,16 @@ msgstr "Crie um novo estado"
 msgid "Operations"
 msgstr "Operações"
 
+#: src/ui/dialog-bottle-picker.ui:6
+#, fuzzy
+msgid "Select Bottle"
+msgstr "Criar bottle"
+
+#: src/ui/dialog-bottle-picker.ui:42
+#, fuzzy
+msgid "Create New Bottle"
+msgstr "Crie um novo Bottle"
+
 #: src/ui/dialog-crash-report.ui:10
 #, fuzzy
 msgid "Bottles crash report"
@@ -2100,6 +1781,22 @@ msgstr "Ainda quero reportar."
 #: src/ui/dialog-crash-report.ui:102
 msgid "Advanced options"
 msgstr "Opções avançadas"
+
+#: src/ui/dialog-deps-check.ui:15
+msgid "Incomplete package"
+msgstr ""
+
+#: src/ui/dialog-deps-check.ui:16
+msgid ""
+"This version of Bottles does not seem to provide all the necessary core "
+"dependencies, please contact the package maintainer or use an official "
+"version.\n"
+"                        "
+msgstr ""
+
+#: src/ui/dialog-deps-check.ui:21
+msgid "Quit"
+msgstr "Sair"
 
 #: src/ui/dialog-dll-overrides.ui:14
 #, fuzzy
@@ -2165,6 +1862,7 @@ msgid "Duplicating…"
 msgstr "A duplicar…"
 
 #: src/ui/dialog-duplicate.ui:87 src/ui/dialog-upgrade-versioning.ui:121
+#: src/ui/new.ui:216
 #, fuzzy
 msgid "Take a break, it may take a while."
 msgstr "Pode ir tomar um café, isto poderá demorar um pouco"
@@ -2190,6 +1888,25 @@ msgstr ""
 #, fuzzy
 msgid "Existing Variables"
 msgstr "Variáveis existentes"
+
+#: src/ui/dialog-exclusion-patterns.ui:16
+msgid "Exclusion Patterns"
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:35
+msgid ""
+"Define patterns that will be used to prevent some directories to being "
+"versioned."
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:38
+msgid "Pattern"
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:46
+#, fuzzy
+msgid "Existing Patterns"
+msgstr "Substituições existentes"
 
 #: src/ui/dialog-gamescope.ui:8
 msgid "Gamescope Settings"
@@ -2318,7 +2035,7 @@ msgid "Command Arguments"
 msgstr "Adicionar parâmetros"
 
 #: src/ui/dialog-launch-options.ui:52
-#, python-format
+#, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr "ex.: VAR=valor %comando% -exemplo1 -exemplo2 -exemplo3=olá"
 
@@ -2345,56 +2062,9 @@ msgstr "Preferências"
 msgid "Reset to Bottle's Defaults"
 msgstr "Detalhes do Bottle"
 
-#: src/ui/dialog-rename.ui:9
-msgid "Rename"
-msgstr "Renomear"
-
-#: src/ui/dialog-rename.ui:34
-msgid "Choose a new name for the selected program."
+#: src/ui/dialog-proton-alert.ui:6
+msgid "Proton Disclaimer"
 msgstr ""
-
-#: src/ui/dialog-rename.ui:37
-#, fuzzy
-msgid "New Name"
-msgstr "Nome"
-
-#: src/ui/dialog-run-args.ui:14
-#, fuzzy
-msgid "Run With Arguments"
-msgstr "Executar com argumentos"
-
-#: src/ui/dialog-run-args.ui:47
-msgid "Write below the arguments to be passed to the executable."
-msgstr "Escreva abaixo os argumentos a serem passados para o executável."
-
-#: src/ui/dialog-run-args.ui:50
-#, fuzzy
-msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "ex.: -opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-bottle-picker.ui:42
-#, fuzzy
-msgid "Create New Bottle"
-msgstr "Crie um novo Bottle"
-
-#: src/ui/dialog-exclusion-patterns.ui:16
-msgid "Exclusion Patterns"
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:35
-msgid ""
-"Define patterns that will be used to prevent some directories to being "
-"versioned."
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:38
-msgid "Pattern"
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:46
-#, fuzzy
-msgid "Existing Patterns"
-msgstr "Substituições existentes"
 
 #: src/ui/dialog-proton-alert.ui:22
 #, fuzzy
@@ -2419,6 +2089,38 @@ msgstr ""
 #: src/ui/dialog-proton-alert.ui:50
 msgid "I got it."
 msgstr ""
+
+#: src/ui/dialog-rename.ui:9
+msgid "Rename"
+msgstr "Renomear"
+
+#: src/ui/dialog-rename.ui:34
+msgid "Choose a new name for the selected program."
+msgstr ""
+
+#: src/ui/dialog-rename.ui:37
+#, fuzzy
+msgid "New Name"
+msgstr "Nome"
+
+#: src/ui/dialog-run-args.ui:14
+#, fuzzy
+msgid "Run With Arguments"
+msgstr "Executar com argumentos"
+
+#: src/ui/dialog-run-args.ui:35 src/views/bottle_details.py:202
+#: src/views/list.py:120
+msgid "Run"
+msgstr "Executar"
+
+#: src/ui/dialog-run-args.ui:47
+msgid "Write below the arguments to be passed to the executable."
+msgstr "Escreva abaixo os argumentos a serem passados para o executável."
+
+#: src/ui/dialog-run-args.ui:50
+#, fuzzy
+msgid "e.g.: -opengl -SkipBuildPatchPrereq"
+msgstr "ex.: -opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dialog-sandbox.ui:9
 #, fuzzy
@@ -2480,20 +2182,6 @@ msgstr ""
 msgid "Done! Please restart Bottles."
 msgstr ""
 
-#: src/ui/exclusion-pattern-entry.ui:6 src/ui/env-var-entry.ui:6
-#, fuzzy
-msgid "Value"
-msgstr "valor"
-
-#: src/ui/local-resource-entry.ui:6
-msgid "This resource is missing."
-msgstr ""
-
-#: src/ui/local-resource-entry.ui:10
-#, fuzzy
-msgid "Browse"
-msgstr "Navegar em C:"
-
 #: src/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
 msgstr "Integrado (Wine)"
@@ -2528,6 +2216,21 @@ msgstr ""
 #, fuzzy
 msgid "Choose a Directory"
 msgstr "Escolha o espaço de trabalho"
+
+#: src/ui/env-var-entry.ui:6 src/ui/exclusion-pattern-entry.ui:6
+#, fuzzy
+msgid "Value"
+msgstr "valor"
+
+#. Wineprefix is a prefix for the wine program
+#: src/ui/importer-entry.ui:22
+msgid "Wineprefix name"
+msgstr ""
+
+#: src/ui/importer-entry.ui:29
+#, fuzzy
+msgid "Manager"
+msgstr "Gestor de tarefas"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -2571,6 +2274,20 @@ msgstr "Mostrar manifesto"
 msgid "Read Review…"
 msgstr "Ler crítica"
 
+#: src/ui/installer-entry.ui:40
+#, fuzzy
+msgid "Installer name"
+msgstr "Instaladores"
+
+#: src/ui/installer-entry.ui:41
+#, fuzzy
+msgid "Installer description"
+msgstr "Instaladores"
+
+#: src/ui/installer-entry.ui:48
+msgid "Unknown"
+msgstr ""
+
 #: src/ui/installer-entry.ui:57
 #, fuzzy
 msgid "Install this program"
@@ -2581,9 +2298,19 @@ msgstr "Programas instalados"
 msgid "Remove from Library"
 msgstr "Remover dos Programas"
 
+#: src/ui/library-entry.ui:94
+#, fuzzy
+msgid "Item name"
+msgstr "Nome do Bottle"
+
 #: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
 msgid "Launch with Steam"
 msgstr ""
+
+#: src/ui/library.ui:14 src/ui/preferences.ui:259 src/window.py:171
+#, fuzzy
+msgid "Library"
+msgstr "Tema escuro"
 
 #: src/ui/library.ui:15
 msgid "Add items here from your bottle's program list"
@@ -2645,6 +2372,15 @@ msgstr ""
 msgid "Starting up…"
 msgstr ""
 
+#: src/ui/local-resource-entry.ui:6
+msgid "This resource is missing."
+msgstr ""
+
+#: src/ui/local-resource-entry.ui:10
+#, fuzzy
+msgid "Browse"
+msgstr "Navegar em C:"
+
 #: src/ui/new.ui:17 src/ui/new.ui:64
 msgid "New Bottle"
 msgstr "Novo Bottle"
@@ -2652,6 +2388,10 @@ msgstr "Novo Bottle"
 #: src/ui/new.ui:38
 msgid "Create"
 msgstr "Criar"
+
+#: src/ui/new.ui:47 src/ui/new.ui:268 src/window.py:187
+msgid "Close"
+msgstr "Fechar"
 
 #: src/ui/new.ui:67
 #, fuzzy
@@ -2736,6 +2476,11 @@ msgstr "Personalizado"
 msgid "Store this bottle in another place."
 msgstr ""
 
+#: src/ui/new.ui:215
+#, fuzzy
+msgid "Creating a Bottle…"
+msgstr "A apagar um bottle …"
+
 #: src/ui/new.ui:262
 msgid "Bottle created"
 msgstr "Bottle criada"
@@ -2789,6 +2534,10 @@ msgstr "Comece a criar um Bottle."
 #: src/ui/onboard.ui:150
 msgid "Next"
 msgstr "Próximo"
+
+#: src/ui/preferences.ui:6 src/ui/window.ui:24 src/views/details.py:158
+msgid "Preferences"
+msgstr "Preferências"
 
 #: src/ui/preferences.ui:13 src/ui/preferences.ui:46
 msgid "General"
@@ -2896,6 +2645,12 @@ msgstr "Opções avançadas"
 msgid "Custom Bottles Path (Requires Restart)"
 msgstr ""
 
+#: src/ui/preferences.ui:155 src/views/preferences.py:188
+#: src/views/preferences.py:204
+msgid ""
+"Choose where to store the new bottles (this will not move the existing ones)."
+msgstr ""
+
 #: src/ui/preferences.ui:188
 msgid "Runners"
 msgstr "Runners"
@@ -2994,6 +2749,22 @@ msgstr "Programas"
 msgid "Remove from List"
 msgstr "Remover dos Programas"
 
+#: src/ui/program-entry.ui:99
+#, fuzzy
+msgid "Program name"
+msgstr "Programas"
+
+#. id as identification
+#: src/ui/state-entry.ui:7
+#, fuzzy
+msgid "State id"
+msgstr "Nenhum estado encontrado"
+
+#: src/ui/state-entry.ui:8
+#, fuzzy
+msgid "State comment"
+msgstr "Um comentário bem curto"
+
 #: src/ui/state-entry.ui:16
 msgid "Restore this state"
 msgstr "Execute neste bottle"
@@ -3036,6 +2807,330 @@ msgstr ""
 #: src/ui/window.ui:99
 msgid "New bottle"
 msgstr "Novo bottle"
+
+#: src/utils/connection.py:67
+msgid "You are offline, unable to download."
+msgstr "Está offline, incapaz de descarregar."
+
+#: src/views/bottle_details.py:142
+#, python-format
+msgid "Updated: %s"
+msgstr "Atualizado: %s"
+
+#: src/views/bottle_details.py:200 src/views/list.py:118
+msgid "Choose a Windows executable file"
+msgstr "Escolha um ficheiro executável do Windows"
+
+#: src/views/bottle_details.py:209
+msgid "Be Aware of Sandbox"
+msgstr ""
+
+#: src/views/bottle_details.py:210
+msgid ""
+"Bottles is running in a sandbox, a restricted permission environment needed "
+"to keep you safe. If the program won't run, consider moving inside the "
+"bottle (3 dots icon on the top), then launch from there."
+msgstr ""
+
+#: src/views/bottle_details.py:212
+msgid "Ok"
+msgstr ""
+
+#: src/views/bottle_details.py:267
+msgid "Select the location where to save the backup config"
+msgstr "Selecione o local onde gravar a configuração da cópia de segurança"
+
+#: src/views/bottle_details.py:271
+msgid "Select the location where to save the backup archive"
+msgstr "Selecione o local onde gravar o ficheiro da cópia de segurança"
+
+#: src/views/bottle_details.py:276
+#, fuzzy, python-brace-format
+msgid "Backup created for '{0}'."
+msgstr "Cópia de segurança guardada no caminho: {0}."
+
+#: src/views/bottle_details.py:278
+#, fuzzy, python-brace-format
+msgid "Backup failed for '{0}'."
+msgstr "Cópia de segurança guardada no caminho: {0}."
+
+#: src/views/bottle_details.py:296
+msgid "Export"
+msgstr "Exportar"
+
+#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
+#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
+#: src/views/bottle_preferences.py:745
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: src/views/bottle_details.py:333
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Tem certeza de que quer eliminar este Bottle e todos os ficheiros?"
+
+#: src/views/bottle_details.py:412
+#, fuzzy
+msgid ""
+"Are you sure you want to terminate all processes?\n"
+"This can cause data loss."
+msgstr "Tem certeza de que quer eliminar este Bottle e todos os ficheiros?"
+
+#: src/views/bottle_preferences.py:207
+#, fuzzy
+msgid "This feature is not available on your system."
+msgstr "O Gamemode não está disponível no seu sistema ou não está a funcionar."
+
+#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
+#: src/views/bottle_preferences.py:405
+#, fuzzy
+msgid "Default to the bottle path."
+msgstr "Aponte para o caminho da garrafa"
+
+#: src/views/bottle_preferences.py:258
+msgid "Choose working directory for executables"
+msgstr "Escolha um ficheiro executável do Windows"
+
+#: src/views/bottle_preferences.py:741
+msgid "Toggling Compression Require Re-Initialization"
+msgstr ""
+
+#: src/views/bottle_preferences.py:742
+msgid ""
+"This will kepp all your files but will delete all states. Do you want to "
+"continue?"
+msgstr ""
+
+#: src/views/bottle_programs.py:83
+#, python-brace-format
+msgid "'{0}' added."
+msgstr ""
+
+#: src/views/bottle_programs.py:87
+msgid "Choose an executable path"
+msgstr "Escolha um caminho executável"
+
+#: src/views/bottle_programs.py:89
+msgid "Add"
+msgstr "Adicionar"
+
+#: src/views/bottle_versioning.py:88
+msgid "Please migrate to the new Versioning system to create new states."
+msgstr ""
+
+#: src/views/details.py:154
+msgid "Details & Utilities"
+msgstr "Detalhes e utilitários"
+
+#: src/views/details.py:162
+msgid "Dependencies"
+msgstr "Dependências"
+
+#: src/views/details.py:167
+msgid "Found in your bottle's Start menu."
+msgstr "Encontrados no menu Iniciar do seu Bottles."
+
+#: src/views/details.py:174
+msgid "Installers"
+msgstr "Instaladores"
+
+#: src/views/details.py:377
+#, fuzzy
+msgid "Operations in progress, please wait."
+msgstr "Configurando versão do Windows…"
+
+#: src/views/details.py:381
+#, fuzzy
+msgid "Return to your bottles."
+msgstr "Escolha um nome para o seu Bottle"
+
+#: src/views/importer.py:89
+#, fuzzy
+msgid "Backup imported successfully."
+msgstr "Cópia de segurança: [{0}] importada com sucesso."
+
+#: src/views/importer.py:91
+#, fuzzy
+msgid "Import failed."
+msgstr "Importador"
+
+#: src/views/importer.py:103 src/views/importer.py:132
+#, fuzzy
+msgid "Importing backup…"
+msgstr "A importar a cópia de segurança: {0}"
+
+#: src/views/importer.py:115
+msgid "Choose a backup archive"
+msgstr "Escolha um ficheiro de cópia de segurança"
+
+#: src/views/importer.py:117 src/views/importer.py:146
+#, fuzzy
+msgid "Import"
+msgstr "Importador"
+
+#: src/views/importer.py:144
+msgid "Choose a configuration file"
+msgstr "Escolha um ficheiro de configuração"
+
+#: src/views/list.py:59 src/views/list.py:65
+msgid "N/A"
+msgstr "N/A"
+
+#: src/views/list.py:220
+#, fuzzy
+msgid "Your Bottles"
+msgstr "Sobre o Bottles"
+
+#: src/views/loading.py:33
+#, python-brace-format
+msgid "Downloading ~{0} of packages…"
+msgstr ""
+
+#: src/views/loading.py:34
+#, python-brace-format
+msgid "Fetched {0} of {1} packages"
+msgstr ""
+
+#: src/views/new.py:142
+#, fuzzy
+msgid "Choose a recipe file"
+msgstr "Escolha um ficheiro de configuração"
+
+#: src/views/new.py:158
+#, fuzzy
+msgid "Choose where to store the bottle"
+msgstr "Escolha um nome para o seu Bottle"
+
+#: src/views/new.py:211
+msgid "There was an error creating the bottle."
+msgstr "Houve um erro ao criar a garrafa."
+
+#: src/views/new.py:219
+#, python-brace-format
+msgid "A bottle named “{0}” was created successfully"
+msgstr "Um bottle chamado “{0}” foi criado com sucesso"
+
+#: src/views/preferences.py:125
+msgid "Steam was not found or Bottles does not have enough permissions."
+msgstr ""
+
+#: src/views/preferences.py:193
+#, fuzzy
+msgid "Choose new bottles path"
+msgstr "Escolha um caminho executável"
+
+#: src/views/preferences.py:236
+msgid "Based on Valve's Wine, includes staging and Proton patches."
+msgstr ""
+
+#: src/views/preferences.py:237
+msgid "Based on Wine upstream, includes staging and Proton patches."
+msgstr ""
+
+#: src/views/preferences.py:240
+msgid "Based on Wine upstream, includes staging patches."
+msgstr ""
+
+#: src/views/preferences.py:241
+msgid ""
+"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
+"Requires the Steam Runtime turned on."
+msgstr ""
+
+#: src/views/preferences.py:243
+msgid "Other"
+msgstr ""
+
+#: src/widgets/component.py:70
+msgid "Upgrade"
+msgstr ""
+
+#: src/widgets/component.py:145
+#, fuzzy
+msgid "Installing…"
+msgstr "A instalar DXVK…"
+
+#: src/widgets/dependency.py:107 src/widgets/installer.py:72
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "Manifest para {0}"
+
+#: src/widgets/dependency.py:170
+#, python-brace-format
+msgid "'{0}' installed."
+msgstr ""
+
+#: src/widgets/dependency.py:184
+#, fuzzy, python-brace-format
+msgid "'{0}' failed to install."
+msgstr "[{0}] ficheiros para adicionar."
+
+#: src/widgets/importer.py:66
+#, python-brace-format
+msgid "'{0}' imported."
+msgstr ""
+
+#: src/widgets/installer.py:81
+#, python-brace-format
+msgid "Review for {0}"
+msgstr "Análise de {0}"
+
+#: src/widgets/program.py:187
+#, python-brace-format
+msgid "Launching '{0}'…"
+msgstr ""
+
+#: src/widgets/program.py:193
+#, python-brace-format
+msgid "Launching '{0}' with Steam…"
+msgstr ""
+
+#: src/widgets/program.py:215
+#, python-brace-format
+msgid "'{0}' hidden."
+msgstr ""
+
+#: src/widgets/program.py:217
+#, python-brace-format
+msgid "'{0}' showed."
+msgstr ""
+
+#: src/widgets/program.py:240
+#, fuzzy, python-brace-format
+msgid "'{0}' removed."
+msgstr "[{0}] ficheiros para remover."
+
+#: src/widgets/program.py:254
+#, python-brace-format
+msgid "'{0}' renamed to '{1}'."
+msgstr ""
+
+#: src/widgets/program.py:274
+#, python-brace-format
+msgid "Desktop Entry created for '{0}'"
+msgstr ""
+
+#: src/widgets/program.py:290
+#, python-brace-format
+msgid "'{0}' added to your library"
+msgstr ""
+
+#: src/widgets/program.py:306
+#, python-brace-format
+msgid "'{0}' added to your Steam library"
+msgstr ""
+
+#: src/window.py:184
+msgid "Custom Bottles Path not Found"
+msgstr ""
+
+#: src/window.py:185
+msgid ""
+"Falling back to default path. No bottles from the given path will be listed."
+msgstr ""
+
+#: src/window.py:306
+msgid "Third-Party Libraries and Special Thanks"
+msgstr ""
 
 #, fuzzy
 #~ msgid "Loading…"
@@ -3125,9 +3220,6 @@ msgstr "Novo bottle"
 #, fuzzy
 #~ msgid "Lutris"
 #~ msgstr "Wine Runners"
-
-#~ msgid "Quit"
-#~ msgstr "Sair"
 
 #~ msgid "Bottles versioning (experimental)"
 #~ msgstr "Versão do Bottles (experimental)"
@@ -3900,9 +3992,6 @@ msgstr "Novo bottle"
 
 #~ msgid "Bottle: [{0}] successfully created!"
 #~ msgstr "Bottle: [{0}] criada com sucesso!"
-
-#~ msgid "Deleting a bottle …"
-#~ msgstr "A apagar um bottle …"
 
 #~ msgid "Successfully deleted bottle in path: [{0}]"
 #~ msgstr "Bottle apagada com sucesso no caminho: [{0}]"

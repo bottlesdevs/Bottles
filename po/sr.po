@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 12:08+0200\n"
+"POT-Creation-Date: 2022-08-01 22:54+0200\n"
 "PO-Revision-Date: 2022-07-06 18:18+0000\n"
 "Last-Translator: Andrija Djakovic <bozika331@yahoo.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -20,19 +20,11 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.13.1-dev\n"
 
-#: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:165
-#: src/ui/list.ui:54 src/ui/window.ui:56 src/ui/window.ui:73
+#: data/com.usebottles.bottles.appdata.xml.in:6
+#: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
+#: src/ui/window.ui:56 src/ui/window.ui:73 src/window.py:165
 msgid "Bottles"
 msgstr "Флаше"
-
-#: data/com.usebottles.bottles.desktop.in:4
-msgid "Easily manage wineprefix"
-msgstr "Лако управљај вајн префиксима"
-
-#: data/com.usebottles.bottles.desktop.in:13
-msgid "wine;windows;"
-msgstr "вајн;виндовс;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -318,6 +310,14 @@ msgstr ""
 msgid "Croatian translations thanks to @milotype"
 msgstr ""
 
+#: data/com.usebottles.bottles.desktop.in:4
+msgid "Easily manage wineprefix"
+msgstr "Лако управљај вајн префиксима"
+
+#: data/com.usebottles.bottles.desktop.in:13
+msgid "wine;windows;"
+msgstr "вајн;виндовс;"
+
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
 msgstr "Миграција Флетпекова"
@@ -468,106 +468,6 @@ msgstr ""
 msgid "Toggle sandbox warning."
 msgstr "Укључи листинг Стим апликација."
 
-#: src/main.py:105
-msgid "Show version"
-msgstr "Прикажи верзију"
-
-#: src/main.py:113
-msgid "Executable path"
-msgstr "Путања извршне датотеке"
-
-#: src/main.py:121
-msgid "lnk path"
-msgstr "Путања лнк-а"
-
-#: src/main.py:129
-msgid "Bottle name"
-msgstr "Име Флаше"
-
-#: src/main.py:137
-msgid "Pass arguments"
-msgstr "Пренесите аргументе"
-
-#: src/main.py:196
-msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "Неважећи УРЛ (syntax: bottles:run/<bottle>/<program>)"
-
-#: src/main.py:237
-msgid "[Quit] request received."
-msgstr "[Изађи] захтев примљен."
-
-#: src/main.py:246
-msgid "[Help] request received."
-msgstr "[Помоћ] захтев примљен."
-
-#: src/main.py:254
-msgid "[Refresh] request received."
-msgstr "[Освежи] захтев примљен."
-
-#: src/operation.py:50
-msgid "Calculating…"
-msgstr "Рачунам…"
-
-#: src/window.py:171 src/ui/library.ui:14 src/ui/preferences.ui:259
-msgid "Library"
-msgstr "Библиотека"
-
-#: src/window.py:184
-#, fuzzy
-msgid "Custom Bottles Path not Found"
-msgstr "Прилагођена Путања Флаша (Захтева Поновно покретање)"
-
-#: src/window.py:185
-msgid ""
-"Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
-
-#: src/window.py:187 src/ui/new.ui:47 src/ui/new.ui:268
-msgid "Close"
-msgstr "Затвори"
-
-#: src/window.py:306
-msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
-
-#: src/backend/managers/versioning.py:97
-#, fuzzy
-msgid "Committing state …"
-msgstr "Ажурирам стања…"
-
-#: src/backend/managers/versioning.py:106
-msgid "Nothing to commit"
-msgstr ""
-
-#: src/backend/managers/versioning.py:112
-#, python-brace-format
-msgid "New state [{0}] created successfully!"
-msgstr "Ново стање [{0}] успешно направљено!"
-
-#: src/backend/managers/versioning.py:140
-#, fuzzy
-msgid "States list retrieved successfully!"
-msgstr "Ново стање [{0}] успешно направљено!"
-
-#: src/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
-msgid "State {0} restored successfully!"
-msgstr "Ново стање [{0}] успешно направљено!"
-
-#: src/backend/managers/versioning.py:176
-#, fuzzy
-msgid "Restoring state {} …"
-msgstr "Ажурирам стања…"
-
-#: src/backend/managers/versioning.py:185
-#, fuzzy
-msgid "State not found"
-msgstr "Ниједно Стање Није нађено"
-
-#: src/backend/managers/versioning.py:191
-msgid "State {} is already the active state"
-msgstr ""
-
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
 msgstr "Путања није прецизирана"
@@ -677,6 +577,44 @@ msgstr "Завршавање…"
 msgid "Caching template…"
 msgstr "Кеширам образац…"
 
+#: src/backend/managers/versioning.py:97
+#, fuzzy
+msgid "Committing state …"
+msgstr "Ажурирам стања…"
+
+#: src/backend/managers/versioning.py:106
+msgid "Nothing to commit"
+msgstr ""
+
+#: src/backend/managers/versioning.py:112
+#, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "Ново стање [{0}] успешно направљено!"
+
+#: src/backend/managers/versioning.py:140
+#, fuzzy
+msgid "States list retrieved successfully!"
+msgstr "Ново стање [{0}] успешно направљено!"
+
+#: src/backend/managers/versioning.py:171
+#, fuzzy, python-brace-format
+msgid "State {0} restored successfully!"
+msgstr "Ново стање [{0}] успешно направљено!"
+
+#: src/backend/managers/versioning.py:176
+#, fuzzy
+msgid "Restoring state {} …"
+msgstr "Ажурирам стања…"
+
+#: src/backend/managers/versioning.py:185
+#, fuzzy
+msgid "State not found"
+msgstr "Ниједно Стање Није нађено"
+
+#: src/backend/managers/versioning.py:191
+msgid "State {} is already the active state"
+msgstr ""
+
 #: src/dialogs/crash.py:37
 msgid "Show report"
 msgstr "Прикажи извештај"
@@ -700,29 +638,33 @@ msgid "Choose path"
 msgstr "Одабери путању"
 
 #: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
-#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
-#: src/dialogs/installer.py:66 src/views/bottle_details.py:202
-#: src/views/bottle_details.py:296 src/views/bottle_details.py:335
-#: src/views/bottle_details.py:414 src/views/bottle_preferences.py:260
-#: src/views/bottle_preferences.py:744 src/views/bottle_programs.py:89
-#: src/views/importer.py:117 src/views/importer.py:146 src/views/list.py:120
-#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-rename.ui:17
-#: src/ui/dialog-run-args.ui:19 src/ui/dialog-bottle-picker.ui:17
-#: src/ui/dialog-proton-alert.ui:17 src/ui/new.ui:33
+#: src/dialogs/installer.py:66 src/dialogs/launchoptions.py:234
+#: src/dialogs/launchoptions.py:258 src/ui/dialog-bottle-picker.ui:17
+#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-proton-alert.ui:17
+#: src/ui/dialog-rename.ui:17 src/ui/dialog-run-args.ui:19 src/ui/new.ui:33
+#: src/views/bottle_details.py:202 src/views/bottle_details.py:296
+#: src/views/bottle_details.py:335 src/views/bottle_details.py:414
+#: src/views/bottle_preferences.py:260 src/views/bottle_preferences.py:744
+#: src/views/bottle_programs.py:89 src/views/importer.py:117
+#: src/views/importer.py:146 src/views/list.py:120 src/views/new.py:144
+#: src/views/new.py:160 src/views/preferences.py:195
 msgid "Cancel"
 msgstr "Откажи"
 
-#: src/dialogs/drives.py:73 src/dialogs/launchoptions.py:234
-#: src/dialogs/launchoptions.py:258 src/dialogs/installer.py:66
-#: src/views/bottle_preferences.py:260 src/views/new.py:144
-#: src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-bottle-picker.ui:22
+#: src/dialogs/drives.py:73 src/dialogs/installer.py:66
+#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
+#: src/ui/dialog-bottle-picker.ui:22 src/views/bottle_preferences.py:260
+#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
 msgid "Select"
 msgstr "Одабери"
 
 #: src/dialogs/envvars.py:131
 msgid "No environment variables defined."
+msgstr "Ниједна варијабла окружења није дефинисана."
+
+#: src/dialogs/exclusionpatterns.py:108
+#, fuzzy
+msgid "No exclusion patterns defined."
 msgstr "Ниједна варијабла окружења није дефинисана."
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:34
@@ -738,32 +680,6 @@ msgstr "Грешка се догодила."
 #: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
 msgstr "Копирај у клипбоард"
-
-#. endregion
-#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
-msgid "Choose a script which should be executed after run."
-msgstr "Одабери скрипту која ће бити извршена након покретања."
-
-#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
-msgid "Choose from where start the program."
-msgstr "Одабери одакле да се програм покрене."
-
-#: src/dialogs/launchoptions.py:58
-#, python-brace-format
-msgid "{0} is already disabled for this bottle."
-msgstr "{0} је већ онемогућен за ову флашу."
-
-#: src/dialogs/launchoptions.py:59
-msgid "This setting is different from the bottle's default."
-msgstr "Ово подешавање се разликује од подразумеваног за ову флашу."
-
-#: src/dialogs/launchoptions.py:232
-msgid "Choose the script"
-msgstr "Одабери скрипту"
-
-#: src/dialogs/launchoptions.py:256
-msgid "Choose the Working Directory"
-msgstr "Одабери Радни Директоријум"
 
 #: src/dialogs/installer.py:64
 msgid "Select Resource FIle"
@@ -805,343 +721,71 @@ msgstr ""
 msgid "Installer failed with unknown error"
 msgstr "Инсталер није успео због непознате грешке"
 
-#: src/dialogs/exclusionpatterns.py:108
-#, fuzzy
-msgid "No exclusion patterns defined."
-msgstr "Ниједна варијабла окружења није дефинисана."
+#. endregion
+#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
+msgid "Choose a script which should be executed after run."
+msgstr "Одабери скрипту која ће бити извршена након покретања."
 
-#: src/views/bottle_details.py:142
-#, python-format
-msgid "Updated: %s"
-msgstr "Ажурирано:%s"
+#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
+msgid "Choose from where start the program."
+msgstr "Одабери одакле да се програм покрене."
 
-#: src/views/bottle_details.py:200 src/views/list.py:118
-msgid "Choose a Windows executable file"
-msgstr "Одабери Виндовс ивршни фајл"
-
-#: src/views/bottle_details.py:202 src/views/list.py:120
-#: src/ui/dialog-run-args.ui:35
-msgid "Run"
-msgstr "Покрени"
-
-#: src/views/bottle_details.py:209
-#, fuzzy
-msgid "Be Aware of Sandbox"
-msgstr "Наменско Сендбокс окружење"
-
-#: src/views/bottle_details.py:210
-msgid ""
-"Bottles is running in a sandbox, a restricted permission environment needed "
-"to keep you safe. If the program won't run, consider moving inside the "
-"bottle (3 dots icon on the top), then launch from there."
-msgstr ""
-
-#: src/views/bottle_details.py:212
-msgid "Ok"
-msgstr ""
-
-#: src/views/bottle_details.py:267
-msgid "Select the location where to save the backup config"
-msgstr "Одабери локацију за чување конфигурације резервне копије"
-
-#: src/views/bottle_details.py:271
-msgid "Select the location where to save the backup archive"
-msgstr "Одабери локацију за чување архиве резервне копије"
-
-#: src/views/bottle_details.py:276
+#: src/dialogs/launchoptions.py:58
 #, python-brace-format
-msgid "Backup created for '{0}'."
-msgstr "Резервна копија направљена за '{0}'."
+msgid "{0} is already disabled for this bottle."
+msgstr "{0} је већ онемогућен за ову флашу."
 
-#: src/views/bottle_details.py:278
-#, python-brace-format
-msgid "Backup failed for '{0}'."
-msgstr "Резервна копија неуспела за '{0}'."
+#: src/dialogs/launchoptions.py:59
+msgid "This setting is different from the bottle's default."
+msgstr "Ово подешавање се разликује од подразумеваног за ову флашу."
 
-#: src/views/bottle_details.py:296
-msgid "Export"
-msgstr "Извези"
+#: src/dialogs/launchoptions.py:232
+msgid "Choose the script"
+msgstr "Одабери скрипту"
 
-#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
-#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
-#: src/views/bottle_preferences.py:745
-#, fuzzy
-msgid "Confirm"
-msgstr "Конфигурација"
+#: src/dialogs/launchoptions.py:256
+msgid "Choose the Working Directory"
+msgstr "Одабери Радни Директоријум"
 
-#: src/views/bottle_details.py:333
-msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Да ли си сигуран да желиш да обришеш ову Флашу и све фајлове?"
+#: src/main.py:105
+msgid "Show version"
+msgstr "Прикажи верзију"
 
-#: src/views/bottle_details.py:412
-msgid ""
-"Are you sure you want to terminate all processes?\n"
-"This can cause data loss."
-msgstr ""
-"Да ли си сигуран да желиш да прекинеш све процесе?\n"
-"То може проузроковати губитак података."
+#: src/main.py:113
+msgid "Executable path"
+msgstr "Путања извршне датотеке"
 
-#: src/views/bottle_preferences.py:207
-msgid "This feature is not available on your system."
-msgstr "Ова функција није доступна на твом систему."
+#: src/main.py:121
+msgid "lnk path"
+msgstr "Путања лнк-а"
 
-#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:405
-msgid "Default to the bottle path."
-msgstr "Подразумевана путања до флаше."
+#: src/main.py:129 src/ui/library-entry.ui:103 src/ui/list-entry.ui:7
+msgid "Bottle name"
+msgstr "Име Флаше"
 
-#: src/views/bottle_preferences.py:258
-msgid "Choose working directory for executables"
-msgstr "Одабери радни директоријум за извршне фајлове"
+#: src/main.py:137
+msgid "Pass arguments"
+msgstr "Пренесите аргументе"
 
-#: src/views/bottle_preferences.py:741
-msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
+#: src/main.py:196
+msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
+msgstr "Неважећи УРЛ (syntax: bottles:run/<bottle>/<program>)"
 
-#: src/views/bottle_preferences.py:742
-msgid ""
-"This will kepp all your files but will delete all states. Do you want to "
-"continue?"
-msgstr ""
+#: src/main.py:237
+msgid "[Quit] request received."
+msgstr "[Изађи] захтев примљен."
 
-#: src/views/bottle_programs.py:83
-#, python-brace-format
-msgid "'{0}' added."
-msgstr "'{0}' додато."
+#: src/main.py:246
+msgid "[Help] request received."
+msgstr "[Помоћ] захтев примљен."
 
-#: src/views/bottle_programs.py:87
-msgid "Choose an executable path"
-msgstr "Одабери извршну путању"
+#: src/main.py:254
+msgid "[Refresh] request received."
+msgstr "[Освежи] захтев примљен."
 
-#: src/views/bottle_programs.py:89
-msgid "Add"
-msgstr "Додај"
-
-#: src/views/details.py:154
-msgid "Details & Utilities"
-msgstr "Детаљи и Услуге"
-
-#: src/views/details.py:158 src/ui/preferences.ui:6 src/ui/window.ui:24
-msgid "Preferences"
-msgstr "Поставке"
-
-#: src/views/details.py:162
-msgid "Dependencies"
-msgstr "Зависне датотеке"
-
-#: src/views/details.py:166 src/ui/details-bottle.ui:241
-msgid "Programs"
-msgstr "Програми"
-
-#: src/views/details.py:167
-msgid "Found in your bottle's Start menu."
-msgstr "Налази се у Почетном менију твоје флаше."
-
-#: src/views/details.py:170 src/ui/details-preferences.ui:656
-msgid "Versioning"
-msgstr "Верзије"
-
-#: src/views/details.py:174
-msgid "Installers"
-msgstr "Инсталери"
-
-#: src/views/details.py:178 src/ui/details-bottle.ui:289
-msgid "Task Manager"
-msgstr "Менаџер Задатака"
-
-#: src/views/details.py:377
-#, fuzzy
-msgid "Operations in progress, please wait."
-msgstr "Ажурирам верзију Виндовса, молим сачекајте…"
-
-#: src/views/details.py:381
-#, fuzzy
-msgid "Return to your bottles."
-msgstr "Претражи твоје флаше…"
-
-#: src/views/importer.py:89
-msgid "Backup imported successfully."
-msgstr "Резервна копија успешно увезена."
-
-#: src/views/importer.py:91
-msgid "Import failed."
-msgstr "Увоз није успео."
-
-#: src/views/importer.py:103 src/views/importer.py:132
-msgid "Importing backup…"
-msgstr "Увозим резервну копију…"
-
-#: src/views/importer.py:115
-msgid "Choose a backup archive"
-msgstr "Одабери архиву резервне копије"
-
-#: src/views/importer.py:117 src/views/importer.py:146
-msgid "Import"
-msgstr "Увези"
-
-#: src/views/importer.py:144
-msgid "Choose a configuration file"
-msgstr "Одабери конфигурациони фајл"
-
-#: src/views/list.py:59 src/views/list.py:65
-msgid "N/A"
-msgstr "Недоступно"
-
-#: src/views/list.py:220
-msgid "Your Bottles"
-msgstr "Твоје Флаше"
-
-#: src/views/new.py:142
-msgid "Choose a recipe file"
-msgstr "Одабери рецепт фајл"
-
-#: src/views/new.py:158
-msgid "Choose where to store the bottle"
-msgstr "Одабери где да сачувам флашу"
-
-#: src/views/new.py:211
-msgid "There was an error creating the bottle."
-msgstr "Догодила се грешка приликом прављења флаше."
-
-#: src/views/new.py:219
-#, python-brace-format
-msgid "A bottle named “{0}” was created successfully"
-msgstr "Флаша под именом \"{0}\" је успешно направљена"
-
-#: src/views/preferences.py:125
-#, fuzzy
-msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-"Стим није пронађен или Флаше немају потребне дозволе. Посети \"https://docs."
-"usebottles.com/flatpak/cant-enable-steam-proton-manager\""
-
-#: src/views/preferences.py:188 src/views/preferences.py:204
-#: src/ui/preferences.ui:155
-msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)."
-msgstr "Одабери где да се чувају нове флаше (ово неће преместити постојеће)."
-
-#: src/views/preferences.py:193
-msgid "Choose new bottles path"
-msgstr "Одабери нову путању флаша"
-
-#: src/views/preferences.py:236
-msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:237
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:240
-msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
-
-#: src/views/preferences.py:241
-msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
-msgstr ""
-
-#: src/views/preferences.py:243
-msgid "Other"
-msgstr "Остало"
-
-#: src/views/bottle_versioning.py:88
-msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
-
-#: src/views/loading.py:33
-#, python-brace-format
-msgid "Downloading ~{0} of packages…"
-msgstr ""
-
-#: src/views/loading.py:34
-#, python-brace-format
-msgid "Fetched {0} of {1} packages"
-msgstr ""
-
-#: src/widgets/component.py:70
-msgid "Upgrade"
-msgstr "Ажурирај"
-
-#: src/widgets/component.py:145
-msgid "Installing…"
-msgstr "Инсталирам…"
-
-#: src/widgets/dependency.py:107 src/widgets/installer.py:72
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "Манифест за {0}"
-
-#: src/widgets/dependency.py:170
-#, python-brace-format
-msgid "'{0}' installed."
-msgstr "'{0}' инсталиран."
-
-#: src/widgets/dependency.py:184
-#, fuzzy, python-brace-format
-msgid "'{0}' failed to install."
-msgstr "'{0}' инсталиран."
-
-#: src/widgets/importer.py:66
-#, python-brace-format
-msgid "'{0}' imported."
-msgstr "'{0}' увезен."
-
-#: src/widgets/installer.py:81
-#, python-brace-format
-msgid "Review for {0}"
-msgstr "Преглед за {0}"
-
-#: src/widgets/program.py:187
-#, fuzzy, python-brace-format
-msgid "Launching '{0}'…"
-msgstr "Покрени у Терминалу…"
-
-#: src/widgets/program.py:193
-#, fuzzy, python-brace-format
-msgid "Launching '{0}' with Steam…"
-msgstr "Покрени са Стимом"
-
-#: src/widgets/program.py:215
-#, python-brace-format
-msgid "'{0}' hidden."
-msgstr "'{0}' сакривен."
-
-#: src/widgets/program.py:217
-#, python-brace-format
-msgid "'{0}' showed."
-msgstr "'{0}' приказан."
-
-#: src/widgets/program.py:240
-#, python-brace-format
-msgid "'{0}' removed."
-msgstr "'{0}' уклоњен."
-
-#: src/widgets/program.py:254
-#, python-brace-format
-msgid "'{0}' renamed to '{1}'."
-msgstr "'{0}' преименован у '{1}'."
-
-#: src/widgets/program.py:274
-#, python-brace-format
-msgid "Desktop Entry created for '{0}'"
-msgstr "Унос на радној површини направљен за '{0}'"
-
-#: src/widgets/program.py:290
-#, python-brace-format
-msgid "'{0}' added to your library"
-msgstr "'{0}' додат у твоју библиотеку"
-
-#: src/widgets/program.py:306
-#, python-brace-format
-msgid "'{0}' added to your Steam library"
-msgstr "'{0}' додат у твоју Стим библиотеку"
-
-#: src/utils/connection.py:67
-msgid "You are offline, unable to download."
-msgstr "Ниси повезан на интернет, не могу да преузмем."
+#: src/operation.py:50
+msgid "Calculating…"
+msgstr "Рачунам…"
 
 #: src/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
@@ -1195,6 +839,20 @@ msgstr "Поново инсталирај"
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
 msgstr "Пријави Баг…"
+
+#: src/ui/dependency-entry.ui:50
+#, fuzzy
+msgid "Dependency name"
+msgstr "Зависне датотеке"
+
+#: src/ui/dependency-entry.ui:52
+#, fuzzy
+msgid "Dependency description"
+msgstr "Зависне датотеке"
+
+#: src/ui/dependency-entry.ui:59
+msgid "Category"
+msgstr ""
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -1280,7 +938,7 @@ msgstr "Моја флаша"
 msgid "Win64"
 msgstr "Вин64"
 
-#: src/ui/details-bottle.ui:177 src/ui/new.ui:77
+#: src/ui/details-bottle.ui:177 src/ui/list-entry.ui:14 src/ui/new.ui:77
 msgid "Environment"
 msgstr "Окружење"
 
@@ -1308,6 +966,10 @@ msgstr "Покрени извршни фајл…"
 #: src/ui/details-bottle.ui:235
 msgid "Layers"
 msgstr "Слојеви"
+
+#: src/ui/details-bottle.ui:241 src/views/details.py:166
+msgid "Programs"
+msgstr "Програми"
 
 #: src/ui/details-bottle.ui:246
 msgid "Tools"
@@ -1340,6 +1002,10 @@ msgstr "Истраживач"
 #: src/ui/details-bottle.ui:278
 msgid "Browse internal files with the Wine explorer."
 msgstr "Претражи унутрашње фајлове уз Вајн истраживач."
+
+#: src/ui/details-bottle.ui:289 src/views/details.py:178
+msgid "Task Manager"
+msgstr "Менаџер Задатака"
 
 #: src/ui/details-bottle.ui:290
 msgid "Manage processes with the Wine task manager."
@@ -1442,6 +1108,12 @@ msgstr "Потражи"
 #: src/ui/details-installers.ui:13
 msgid "Search for Programs…"
 msgstr "Потражи Програме…"
+
+#: src/ui/details-installers.ui:22
+msgid ""
+"Use this section to install programs curated by our community, without "
+"having to proceed manually."
+msgstr ""
 
 #: src/ui/details-installers.ui:48
 msgid "No Installers Found"
@@ -1839,7 +1511,7 @@ msgstr "Управљај Драјвовима"
 msgid "Audio"
 msgstr "Звук"
 
-#: src/ui/details-preferences.ui:643
+#: src/ui/details-preferences.ui:643 src/ui/dialog-launch-options.ui:183
 msgid "Reduce Latency"
 msgstr "Смањи Кашњење"
 
@@ -1847,6 +1519,10 @@ msgstr "Смањи Кашњење"
 #, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
 msgstr "Подеси кашњење ПулсАудиа на 60мс и повећај квалитет звука"
+
+#: src/ui/details-preferences.ui:656 src/views/details.py:170
+msgid "Versioning"
+msgstr "Верзије"
 
 #: src/ui/details-preferences.ui:660
 msgid "Use Compression for States"
@@ -1969,6 +1645,16 @@ msgstr "Направи ново стање"
 msgid "Operations"
 msgstr "Операције"
 
+#: src/ui/dialog-bottle-picker.ui:6
+#, fuzzy
+msgid "Select Bottle"
+msgstr "Обриши Флашу…"
+
+#: src/ui/dialog-bottle-picker.ui:42
+#, fuzzy
+msgid "Create New Bottle"
+msgstr "Направи нову Флашу"
+
 #: src/ui/dialog-crash-report.ui:10
 msgid "Bottles crash report"
 msgstr "Извештај о изненадном затварању Флаша"
@@ -2005,6 +1691,22 @@ msgstr "И даље желим да пријавим."
 #: src/ui/dialog-crash-report.ui:102
 msgid "Advanced options"
 msgstr "Напредне опције"
+
+#: src/ui/dialog-deps-check.ui:15
+msgid "Incomplete package"
+msgstr ""
+
+#: src/ui/dialog-deps-check.ui:16
+msgid ""
+"This version of Bottles does not seem to provide all the necessary core "
+"dependencies, please contact the package maintainer or use an official "
+"version.\n"
+"                        "
+msgstr ""
+
+#: src/ui/dialog-deps-check.ui:21
+msgid "Quit"
+msgstr ""
 
 #: src/ui/dialog-dll-overrides.ui:14
 msgid ""
@@ -2067,6 +1769,7 @@ msgid "Duplicating…"
 msgstr "Правим дупликат…"
 
 #: src/ui/dialog-duplicate.ui:87 src/ui/dialog-upgrade-versioning.ui:121
+#: src/ui/new.ui:216
 msgid "Take a break, it may take a while."
 msgstr "Направи паузу, можда потраје."
 
@@ -2089,6 +1792,26 @@ msgstr "Назив Варијабле"
 #: src/ui/dialog-env-vars.ui:46
 msgid "Existing Variables"
 msgstr "Постојеће Варијабле"
+
+#: src/ui/dialog-exclusion-patterns.ui:16
+msgid "Exclusion Patterns"
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:35
+msgid ""
+"Define patterns that will be used to prevent some directories to being "
+"versioned."
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:38
+#, fuzzy
+msgid "Pattern"
+msgstr "Слово"
+
+#: src/ui/dialog-exclusion-patterns.ui:46
+#, fuzzy
+msgid "Existing Patterns"
+msgstr "Постојећи Дискови"
 
 #: src/ui/dialog-gamescope.ui:8
 msgid "Gamescope Settings"
@@ -2216,7 +1939,7 @@ msgid "Command Arguments"
 msgstr "Командни Аргументи"
 
 #: src/ui/dialog-launch-options.ui:52
-#, python-format
+#, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr "пр. : \" VAR=value %command% -example1 -example2 -example3=hello\""
 
@@ -2241,54 +1964,9 @@ msgstr "Премошћавање Поставки"
 msgid "Reset to Bottle's Defaults"
 msgstr "Врати на Подразумевана подешавања Флаше"
 
-#: src/ui/dialog-rename.ui:9
-msgid "Rename"
-msgstr "Преименуј"
-
-#: src/ui/dialog-rename.ui:34
-msgid "Choose a new name for the selected program."
-msgstr "Одабери нов назив за изабрани програм."
-
-#: src/ui/dialog-rename.ui:37
-msgid "New Name"
-msgstr "Нов Назив"
-
-#: src/ui/dialog-run-args.ui:14
-msgid "Run With Arguments"
-msgstr "Покрени Уз Аргументе"
-
-#: src/ui/dialog-run-args.ui:47
-msgid "Write below the arguments to be passed to the executable."
-msgstr "Напиши испод аргументе који ће бити пренети на извршни фајл."
-
-#: src/ui/dialog-run-args.ui:50
-msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "пр.: \"-opengl -SkipBuildPatchPrereq\""
-
-#: src/ui/dialog-bottle-picker.ui:42
-#, fuzzy
-msgid "Create New Bottle"
-msgstr "Направи нову Флашу"
-
-#: src/ui/dialog-exclusion-patterns.ui:16
-msgid "Exclusion Patterns"
+#: src/ui/dialog-proton-alert.ui:6
+msgid "Proton Disclaimer"
 msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:35
-msgid ""
-"Define patterns that will be used to prevent some directories to being "
-"versioned."
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:38
-#, fuzzy
-msgid "Pattern"
-msgstr "Слово"
-
-#: src/ui/dialog-exclusion-patterns.ui:46
-#, fuzzy
-msgid "Existing Patterns"
-msgstr "Постојећи Дискови"
 
 #: src/ui/dialog-proton-alert.ui:22
 #, fuzzy
@@ -2313,6 +1991,35 @@ msgstr ""
 #: src/ui/dialog-proton-alert.ui:50
 msgid "I got it."
 msgstr ""
+
+#: src/ui/dialog-rename.ui:9
+msgid "Rename"
+msgstr "Преименуј"
+
+#: src/ui/dialog-rename.ui:34
+msgid "Choose a new name for the selected program."
+msgstr "Одабери нов назив за изабрани програм."
+
+#: src/ui/dialog-rename.ui:37
+msgid "New Name"
+msgstr "Нов Назив"
+
+#: src/ui/dialog-run-args.ui:14
+msgid "Run With Arguments"
+msgstr "Покрени Уз Аргументе"
+
+#: src/ui/dialog-run-args.ui:35 src/views/bottle_details.py:202
+#: src/views/list.py:120
+msgid "Run"
+msgstr "Покрени"
+
+#: src/ui/dialog-run-args.ui:47
+msgid "Write below the arguments to be passed to the executable."
+msgstr "Напиши испод аргументе који ће бити пренети на извршни фајл."
+
+#: src/ui/dialog-run-args.ui:50
+msgid "e.g.: -opengl -SkipBuildPatchPrereq"
+msgstr "пр.: \"-opengl -SkipBuildPatchPrereq\""
 
 #: src/ui/dialog-sandbox.ui:9
 #, fuzzy
@@ -2374,18 +2081,6 @@ msgstr ""
 msgid "Done! Please restart Bottles."
 msgstr ""
 
-#: src/ui/exclusion-pattern-entry.ui:6 src/ui/env-var-entry.ui:6
-msgid "Value"
-msgstr "Вредност"
-
-#: src/ui/local-resource-entry.ui:6
-msgid "This resource is missing."
-msgstr "Овај ресурс недостаје."
-
-#: src/ui/local-resource-entry.ui:10
-msgid "Browse"
-msgstr "Претражи"
-
 #: src/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
 msgstr "Уграђени (Вајн)"
@@ -2417,6 +2112,20 @@ msgstr "/покажи/на/путању"
 #: src/ui/drive-entry.ui:24
 msgid "Choose a Directory"
 msgstr "Одабери Директоријум"
+
+#: src/ui/env-var-entry.ui:6 src/ui/exclusion-pattern-entry.ui:6
+msgid "Value"
+msgstr "Вредност"
+
+#. Wineprefix is a prefix for the wine program
+#: src/ui/importer-entry.ui:22
+msgid "Wineprefix name"
+msgstr ""
+
+#: src/ui/importer-entry.ui:29
+#, fuzzy
+msgid "Manager"
+msgstr "Менаџер Задатака"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -2458,6 +2167,20 @@ msgstr "Прикажи Манифест…"
 msgid "Read Review…"
 msgstr "Прочитај Преглед…"
 
+#: src/ui/installer-entry.ui:40
+#, fuzzy
+msgid "Installer name"
+msgstr "Инсталери"
+
+#: src/ui/installer-entry.ui:41
+#, fuzzy
+msgid "Installer description"
+msgstr "Инсталери"
+
+#: src/ui/installer-entry.ui:48
+msgid "Unknown"
+msgstr ""
+
 #: src/ui/installer-entry.ui:57
 msgid "Install this program"
 msgstr "Инсталирај овај програм"
@@ -2466,9 +2189,18 @@ msgstr "Инсталирај овај програм"
 msgid "Remove from Library"
 msgstr "Уклони из Библиотеке"
 
+#: src/ui/library-entry.ui:94
+#, fuzzy
+msgid "Item name"
+msgstr "Име Флаше"
+
 #: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
 msgid "Launch with Steam"
 msgstr "Покрени са Стимом"
+
+#: src/ui/library.ui:14 src/ui/preferences.ui:259 src/window.py:171
+msgid "Library"
+msgstr "Библиотека"
 
 #: src/ui/library.ui:15
 msgid "Add items here from your bottle's program list"
@@ -2526,6 +2258,14 @@ msgstr "Покушај другачијом претрагом."
 msgid "Starting up…"
 msgstr "Започињем…"
 
+#: src/ui/local-resource-entry.ui:6
+msgid "This resource is missing."
+msgstr "Овај ресурс недостаје."
+
+#: src/ui/local-resource-entry.ui:10
+msgid "Browse"
+msgstr "Претражи"
+
 #: src/ui/new.ui:17 src/ui/new.ui:64
 msgid "New Bottle"
 msgstr "Нова Флаша"
@@ -2533,6 +2273,10 @@ msgstr "Нова Флаша"
 #: src/ui/new.ui:38
 msgid "Create"
 msgstr "Направи"
+
+#: src/ui/new.ui:47 src/ui/new.ui:268 src/window.py:187
+msgid "Close"
+msgstr "Затвори"
 
 #: src/ui/new.ui:67
 msgid "Bottle Information"
@@ -2610,6 +2354,11 @@ msgstr "Прилагођена Путања"
 msgid "Store this bottle in another place."
 msgstr "Сачувај флашу на другом месту."
 
+#: src/ui/new.ui:215
+#, fuzzy
+msgid "Creating a Bottle…"
+msgstr "Направи нову Флашу"
+
 #: src/ui/new.ui:262
 msgid "Bottle created"
 msgstr "Флаша је направљена"
@@ -2665,6 +2414,10 @@ msgstr "Почни да користиш Флаше"
 #: src/ui/onboard.ui:150
 msgid "Next"
 msgstr "Следеће"
+
+#: src/ui/preferences.ui:6 src/ui/window.ui:24 src/views/details.py:158
+msgid "Preferences"
+msgstr "Поставке"
 
 #: src/ui/preferences.ui:13 src/ui/preferences.ui:46
 msgid "General"
@@ -2762,6 +2515,12 @@ msgstr "Напредно"
 msgid "Custom Bottles Path (Requires Restart)"
 msgstr "Прилагођена Путања Флаша (Захтева Поновно покретање)"
 
+#: src/ui/preferences.ui:155 src/views/preferences.py:188
+#: src/views/preferences.py:204
+msgid ""
+"Choose where to store the new bottles (this will not move the existing ones)."
+msgstr "Одабери где да се чувају нове флаше (ово неће преместити постојеће)."
+
 #: src/ui/preferences.ui:188
 msgid "Runners"
 msgstr "Покретачи"
@@ -2852,6 +2611,22 @@ msgstr "Прикажи Програм"
 msgid "Remove from List"
 msgstr "Уклони са Листе"
 
+#: src/ui/program-entry.ui:99
+#, fuzzy
+msgid "Program name"
+msgstr "Програми"
+
+#. id as identification
+#: src/ui/state-entry.ui:7
+#, fuzzy
+msgid "State id"
+msgstr "Ниједно Стање Није нађено"
+
+#: src/ui/state-entry.ui:8
+#, fuzzy
+msgid "State comment"
+msgstr "Кратак коментар"
+
 #: src/ui/state-entry.ui:16
 msgid "Restore this state"
 msgstr "Поврати ово стање"
@@ -2892,6 +2667,326 @@ msgstr ""
 #: src/ui/window.ui:99
 msgid "New bottle"
 msgstr "Нова флаша"
+
+#: src/utils/connection.py:67
+msgid "You are offline, unable to download."
+msgstr "Ниси повезан на интернет, не могу да преузмем."
+
+#: src/views/bottle_details.py:142
+#, python-format
+msgid "Updated: %s"
+msgstr "Ажурирано:%s"
+
+#: src/views/bottle_details.py:200 src/views/list.py:118
+msgid "Choose a Windows executable file"
+msgstr "Одабери Виндовс ивршни фајл"
+
+#: src/views/bottle_details.py:209
+#, fuzzy
+msgid "Be Aware of Sandbox"
+msgstr "Наменско Сендбокс окружење"
+
+#: src/views/bottle_details.py:210
+msgid ""
+"Bottles is running in a sandbox, a restricted permission environment needed "
+"to keep you safe. If the program won't run, consider moving inside the "
+"bottle (3 dots icon on the top), then launch from there."
+msgstr ""
+
+#: src/views/bottle_details.py:212
+msgid "Ok"
+msgstr ""
+
+#: src/views/bottle_details.py:267
+msgid "Select the location where to save the backup config"
+msgstr "Одабери локацију за чување конфигурације резервне копије"
+
+#: src/views/bottle_details.py:271
+msgid "Select the location where to save the backup archive"
+msgstr "Одабери локацију за чување архиве резервне копије"
+
+#: src/views/bottle_details.py:276
+#, python-brace-format
+msgid "Backup created for '{0}'."
+msgstr "Резервна копија направљена за '{0}'."
+
+#: src/views/bottle_details.py:278
+#, python-brace-format
+msgid "Backup failed for '{0}'."
+msgstr "Резервна копија неуспела за '{0}'."
+
+#: src/views/bottle_details.py:296
+msgid "Export"
+msgstr "Извези"
+
+#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
+#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
+#: src/views/bottle_preferences.py:745
+#, fuzzy
+msgid "Confirm"
+msgstr "Конфигурација"
+
+#: src/views/bottle_details.py:333
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Да ли си сигуран да желиш да обришеш ову Флашу и све фајлове?"
+
+#: src/views/bottle_details.py:412
+msgid ""
+"Are you sure you want to terminate all processes?\n"
+"This can cause data loss."
+msgstr ""
+"Да ли си сигуран да желиш да прекинеш све процесе?\n"
+"То може проузроковати губитак података."
+
+#: src/views/bottle_preferences.py:207
+msgid "This feature is not available on your system."
+msgstr "Ова функција није доступна на твом систему."
+
+#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
+#: src/views/bottle_preferences.py:405
+msgid "Default to the bottle path."
+msgstr "Подразумевана путања до флаше."
+
+#: src/views/bottle_preferences.py:258
+msgid "Choose working directory for executables"
+msgstr "Одабери радни директоријум за извршне фајлове"
+
+#: src/views/bottle_preferences.py:741
+msgid "Toggling Compression Require Re-Initialization"
+msgstr ""
+
+#: src/views/bottle_preferences.py:742
+msgid ""
+"This will kepp all your files but will delete all states. Do you want to "
+"continue?"
+msgstr ""
+
+#: src/views/bottle_programs.py:83
+#, python-brace-format
+msgid "'{0}' added."
+msgstr "'{0}' додато."
+
+#: src/views/bottle_programs.py:87
+msgid "Choose an executable path"
+msgstr "Одабери извршну путању"
+
+#: src/views/bottle_programs.py:89
+msgid "Add"
+msgstr "Додај"
+
+#: src/views/bottle_versioning.py:88
+msgid "Please migrate to the new Versioning system to create new states."
+msgstr ""
+
+#: src/views/details.py:154
+msgid "Details & Utilities"
+msgstr "Детаљи и Услуге"
+
+#: src/views/details.py:162
+msgid "Dependencies"
+msgstr "Зависне датотеке"
+
+#: src/views/details.py:167
+msgid "Found in your bottle's Start menu."
+msgstr "Налази се у Почетном менију твоје флаше."
+
+#: src/views/details.py:174
+msgid "Installers"
+msgstr "Инсталери"
+
+#: src/views/details.py:377
+#, fuzzy
+msgid "Operations in progress, please wait."
+msgstr "Ажурирам верзију Виндовса, молим сачекајте…"
+
+#: src/views/details.py:381
+#, fuzzy
+msgid "Return to your bottles."
+msgstr "Претражи твоје флаше…"
+
+#: src/views/importer.py:89
+msgid "Backup imported successfully."
+msgstr "Резервна копија успешно увезена."
+
+#: src/views/importer.py:91
+msgid "Import failed."
+msgstr "Увоз није успео."
+
+#: src/views/importer.py:103 src/views/importer.py:132
+msgid "Importing backup…"
+msgstr "Увозим резервну копију…"
+
+#: src/views/importer.py:115
+msgid "Choose a backup archive"
+msgstr "Одабери архиву резервне копије"
+
+#: src/views/importer.py:117 src/views/importer.py:146
+msgid "Import"
+msgstr "Увези"
+
+#: src/views/importer.py:144
+msgid "Choose a configuration file"
+msgstr "Одабери конфигурациони фајл"
+
+#: src/views/list.py:59 src/views/list.py:65
+msgid "N/A"
+msgstr "Недоступно"
+
+#: src/views/list.py:220
+msgid "Your Bottles"
+msgstr "Твоје Флаше"
+
+#: src/views/loading.py:33
+#, python-brace-format
+msgid "Downloading ~{0} of packages…"
+msgstr ""
+
+#: src/views/loading.py:34
+#, python-brace-format
+msgid "Fetched {0} of {1} packages"
+msgstr ""
+
+#: src/views/new.py:142
+msgid "Choose a recipe file"
+msgstr "Одабери рецепт фајл"
+
+#: src/views/new.py:158
+msgid "Choose where to store the bottle"
+msgstr "Одабери где да сачувам флашу"
+
+#: src/views/new.py:211
+msgid "There was an error creating the bottle."
+msgstr "Догодила се грешка приликом прављења флаше."
+
+#: src/views/new.py:219
+#, python-brace-format
+msgid "A bottle named “{0}” was created successfully"
+msgstr "Флаша под именом \"{0}\" је успешно направљена"
+
+#: src/views/preferences.py:125
+#, fuzzy
+msgid "Steam was not found or Bottles does not have enough permissions."
+msgstr ""
+"Стим није пронађен или Флаше немају потребне дозволе. Посети \"https://docs."
+"usebottles.com/flatpak/cant-enable-steam-proton-manager\""
+
+#: src/views/preferences.py:193
+msgid "Choose new bottles path"
+msgstr "Одабери нову путању флаша"
+
+#: src/views/preferences.py:236
+msgid "Based on Valve's Wine, includes staging and Proton patches."
+msgstr ""
+
+#: src/views/preferences.py:237
+msgid "Based on Wine upstream, includes staging and Proton patches."
+msgstr ""
+
+#: src/views/preferences.py:240
+msgid "Based on Wine upstream, includes staging patches."
+msgstr ""
+
+#: src/views/preferences.py:241
+msgid ""
+"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
+"Requires the Steam Runtime turned on."
+msgstr ""
+
+#: src/views/preferences.py:243
+msgid "Other"
+msgstr "Остало"
+
+#: src/widgets/component.py:70
+msgid "Upgrade"
+msgstr "Ажурирај"
+
+#: src/widgets/component.py:145
+msgid "Installing…"
+msgstr "Инсталирам…"
+
+#: src/widgets/dependency.py:107 src/widgets/installer.py:72
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "Манифест за {0}"
+
+#: src/widgets/dependency.py:170
+#, python-brace-format
+msgid "'{0}' installed."
+msgstr "'{0}' инсталиран."
+
+#: src/widgets/dependency.py:184
+#, fuzzy, python-brace-format
+msgid "'{0}' failed to install."
+msgstr "'{0}' инсталиран."
+
+#: src/widgets/importer.py:66
+#, python-brace-format
+msgid "'{0}' imported."
+msgstr "'{0}' увезен."
+
+#: src/widgets/installer.py:81
+#, python-brace-format
+msgid "Review for {0}"
+msgstr "Преглед за {0}"
+
+#: src/widgets/program.py:187
+#, fuzzy, python-brace-format
+msgid "Launching '{0}'…"
+msgstr "Покрени у Терминалу…"
+
+#: src/widgets/program.py:193
+#, fuzzy, python-brace-format
+msgid "Launching '{0}' with Steam…"
+msgstr "Покрени са Стимом"
+
+#: src/widgets/program.py:215
+#, python-brace-format
+msgid "'{0}' hidden."
+msgstr "'{0}' сакривен."
+
+#: src/widgets/program.py:217
+#, python-brace-format
+msgid "'{0}' showed."
+msgstr "'{0}' приказан."
+
+#: src/widgets/program.py:240
+#, python-brace-format
+msgid "'{0}' removed."
+msgstr "'{0}' уклоњен."
+
+#: src/widgets/program.py:254
+#, python-brace-format
+msgid "'{0}' renamed to '{1}'."
+msgstr "'{0}' преименован у '{1}'."
+
+#: src/widgets/program.py:274
+#, python-brace-format
+msgid "Desktop Entry created for '{0}'"
+msgstr "Унос на радној површини направљен за '{0}'"
+
+#: src/widgets/program.py:290
+#, python-brace-format
+msgid "'{0}' added to your library"
+msgstr "'{0}' додат у твоју библиотеку"
+
+#: src/widgets/program.py:306
+#, python-brace-format
+msgid "'{0}' added to your Steam library"
+msgstr "'{0}' додат у твоју Стим библиотеку"
+
+#: src/window.py:184
+#, fuzzy
+msgid "Custom Bottles Path not Found"
+msgstr "Прилагођена Путања Флаша (Захтева Поновно покретање)"
+
+#: src/window.py:185
+msgid ""
+"Falling back to default path. No bottles from the given path will be listed."
+msgstr ""
+
+#: src/window.py:306
+msgid "Third-Party Libraries and Special Thanks"
+msgstr ""
 
 #~ msgid "Loading…"
 #~ msgstr "Учитавам…"

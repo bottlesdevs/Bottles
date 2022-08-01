@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 12:08+0200\n"
+"POT-Creation-Date: 2022-08-01 22:54+0200\n"
 "PO-Revision-Date: 2022-04-03 20:25+0000\n"
 "Last-Translator: Aga Ismael <agaesmaeel@gmail.com>\n"
 "Language-Team: Kurdish (Central) <https://hosted.weblate.org/projects/"
@@ -19,19 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.12-dev\n"
 
-#: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:165
-#: src/ui/list.ui:54 src/ui/window.ui:56 src/ui/window.ui:73
+#: data/com.usebottles.bottles.appdata.xml.in:6
+#: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
+#: src/ui/window.ui:56 src/ui/window.ui:73 src/window.py:165
 msgid "Bottles"
 msgstr "بۆتڵز"
-
-#: data/com.usebottles.bottles.desktop.in:4
-msgid "Easily manage wineprefix"
-msgstr "بەشێوەیەکی ئاسان واینپریفیکس (wineprefix) بەڕێوەبەرە"
-
-#: data/com.usebottles.bottles.desktop.in:13
-msgid "wine;windows;"
-msgstr "واین؛ویندۆز;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -319,6 +311,14 @@ msgstr ""
 msgid "Croatian translations thanks to @milotype"
 msgstr ""
 
+#: data/com.usebottles.bottles.desktop.in:4
+msgid "Easily manage wineprefix"
+msgstr "بەشێوەیەکی ئاسان واینپریفیکس (wineprefix) بەڕێوەبەرە"
+
+#: data/com.usebottles.bottles.desktop.in:13
+msgid "wine;windows;"
+msgstr "واین؛ویندۆز;"
+
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
 msgstr "گواستنەوەی فلاتپاک"
@@ -479,107 +479,6 @@ msgstr ""
 msgid "Toggle sandbox warning."
 msgstr "پیشاندان و شاردنەوەی بەرواوی نوێبوونەوە لە لیست"
 
-#: src/main.py:105
-msgid "Show version"
-msgstr "پشاندانی وەشان"
-
-#: src/main.py:113
-msgid "Executable path"
-msgstr "شوێنی ئێکسکیوتەبڵ"
-
-#: src/main.py:121
-msgid "lnk path"
-msgstr "شوێنی مرەکەب"
-
-#: src/main.py:129
-msgid "Bottle name"
-msgstr "ناوی بۆتڵ"
-
-#: src/main.py:137
-msgid "Pass arguments"
-msgstr "ناردنی ئارگیومێنتەکان"
-
-#: src/main.py:196
-msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
-
-#: src/main.py:237
-msgid "[Quit] request received."
-msgstr "[داخستک] داواکاری وەرگیرا."
-
-#: src/main.py:246
-msgid "[Help] request received."
-msgstr "[یارمەتی] داواکاری وەرگیرا."
-
-#: src/main.py:254
-msgid "[Refresh] request received."
-msgstr "[تازەکردنەوە] داواکاری وەرگیرا."
-
-#: src/operation.py:50
-#, fuzzy
-msgid "Calculating…"
-msgstr "هەژمارکردن..."
-
-#: src/window.py:171 src/ui/library.ui:14 src/ui/preferences.ui:259
-msgid "Library"
-msgstr ""
-
-#: src/window.py:184
-#, fuzzy
-msgid "Custom Bottles Path not Found"
-msgstr "شوێنی تایبەتی بۆتڵز (پێویستی بە دوبارە دەستپێکردنەوە هەیە)"
-
-#: src/window.py:185
-msgid ""
-"Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
-
-#: src/window.py:187 src/ui/new.ui:47 src/ui/new.ui:268
-msgid "Close"
-msgstr "داخستن"
-
-#: src/window.py:306
-msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
-
-#: src/backend/managers/versioning.py:97
-#, fuzzy
-msgid "Committing state …"
-msgstr "نوێکردنەوەی دۆخەکان…"
-
-#: src/backend/managers/versioning.py:106
-msgid "Nothing to commit"
-msgstr ""
-
-#: src/backend/managers/versioning.py:112
-#, python-brace-format
-msgid "New state [{0}] created successfully!"
-msgstr "دۆخی تازە [{0}] بەسەرکەوتووی دروستکرا!"
-
-#: src/backend/managers/versioning.py:140
-#, fuzzy
-msgid "States list retrieved successfully!"
-msgstr "دۆخی تازە [{0}] بەسەرکەوتووی دروستکرا!"
-
-#: src/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
-msgid "State {0} restored successfully!"
-msgstr "دۆخی تازە [{0}] بەسەرکەوتووی دروستکرا!"
-
-#: src/backend/managers/versioning.py:176
-#, fuzzy
-msgid "Restoring state {} …"
-msgstr "نوێکردنەوەی دۆخەکان…"
-
-#: src/backend/managers/versioning.py:185
-#, fuzzy
-msgid "State not found"
-msgstr "هیچ دۆخێک نەدۆزرایەوە"
-
-#: src/backend/managers/versioning.py:191
-msgid "State {} is already the active state"
-msgstr ""
-
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
 msgstr ""
@@ -692,6 +591,44 @@ msgstr "تەواوکردن…"
 msgid "Caching template…"
 msgstr "دروستکردنی بتڵ…"
 
+#: src/backend/managers/versioning.py:97
+#, fuzzy
+msgid "Committing state …"
+msgstr "نوێکردنەوەی دۆخەکان…"
+
+#: src/backend/managers/versioning.py:106
+msgid "Nothing to commit"
+msgstr ""
+
+#: src/backend/managers/versioning.py:112
+#, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "دۆخی تازە [{0}] بەسەرکەوتووی دروستکرا!"
+
+#: src/backend/managers/versioning.py:140
+#, fuzzy
+msgid "States list retrieved successfully!"
+msgstr "دۆخی تازە [{0}] بەسەرکەوتووی دروستکرا!"
+
+#: src/backend/managers/versioning.py:171
+#, fuzzy, python-brace-format
+msgid "State {0} restored successfully!"
+msgstr "دۆخی تازە [{0}] بەسەرکەوتووی دروستکرا!"
+
+#: src/backend/managers/versioning.py:176
+#, fuzzy
+msgid "Restoring state {} …"
+msgstr "نوێکردنەوەی دۆخەکان…"
+
+#: src/backend/managers/versioning.py:185
+#, fuzzy
+msgid "State not found"
+msgstr "هیچ دۆخێک نەدۆزرایەوە"
+
+#: src/backend/managers/versioning.py:191
+msgid "State {} is already the active state"
+msgstr ""
+
 #: src/dialogs/crash.py:37
 msgid "Show report"
 msgstr "پشاندانی ڕاپۆرت"
@@ -714,30 +651,34 @@ msgid "Choose path"
 msgstr "هەڵبژاردنی شوێن"
 
 #: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
-#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
-#: src/dialogs/installer.py:66 src/views/bottle_details.py:202
-#: src/views/bottle_details.py:296 src/views/bottle_details.py:335
-#: src/views/bottle_details.py:414 src/views/bottle_preferences.py:260
-#: src/views/bottle_preferences.py:744 src/views/bottle_programs.py:89
-#: src/views/importer.py:117 src/views/importer.py:146 src/views/list.py:120
-#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-rename.ui:17
-#: src/ui/dialog-run-args.ui:19 src/ui/dialog-bottle-picker.ui:17
-#: src/ui/dialog-proton-alert.ui:17 src/ui/new.ui:33
+#: src/dialogs/installer.py:66 src/dialogs/launchoptions.py:234
+#: src/dialogs/launchoptions.py:258 src/ui/dialog-bottle-picker.ui:17
+#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-proton-alert.ui:17
+#: src/ui/dialog-rename.ui:17 src/ui/dialog-run-args.ui:19 src/ui/new.ui:33
+#: src/views/bottle_details.py:202 src/views/bottle_details.py:296
+#: src/views/bottle_details.py:335 src/views/bottle_details.py:414
+#: src/views/bottle_preferences.py:260 src/views/bottle_preferences.py:744
+#: src/views/bottle_programs.py:89 src/views/importer.py:117
+#: src/views/importer.py:146 src/views/list.py:120 src/views/new.py:144
+#: src/views/new.py:160 src/views/preferences.py:195
 msgid "Cancel"
 msgstr "هەڵوەشاندنەوە"
 
-#: src/dialogs/drives.py:73 src/dialogs/launchoptions.py:234
-#: src/dialogs/launchoptions.py:258 src/dialogs/installer.py:66
-#: src/views/bottle_preferences.py:260 src/views/new.py:144
-#: src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-bottle-picker.ui:22
+#: src/dialogs/drives.py:73 src/dialogs/installer.py:66
+#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
+#: src/ui/dialog-bottle-picker.ui:22 src/views/bottle_preferences.py:260
+#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
 msgid "Select"
 msgstr "دیاریکردن"
 
 #: src/dialogs/envvars.py:131
 #, fuzzy
 msgid "No environment variables defined."
+msgstr "گۆڕاوەکانی ژینگە"
+
+#: src/dialogs/exclusionpatterns.py:108
+#, fuzzy
+msgid "No exclusion patterns defined."
 msgstr "گۆڕاوەکانی ژینگە"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:34
@@ -753,34 +694,6 @@ msgstr "هەڵەیەک ڕوویدا."
 #: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
 msgstr "لەبەرگرتنەوە بۆ کلیپبۆرد"
-
-#. endregion
-#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
-msgid "Choose a script which should be executed after run."
-msgstr "سکریپتێک هەڵبژێرە کە دەبێت دوای ڕەن کردن ئێکسکیوت ببێت."
-
-#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
-#, fuzzy
-msgid "Choose from where start the program."
-msgstr "بۆتڵز دابخە دوای کردنەوەی پڕۆگرامێک"
-
-#: src/dialogs/launchoptions.py:58
-#, fuzzy, python-brace-format
-msgid "{0} is already disabled for this bottle."
-msgstr "وەشانکردن بۆ یەم بۆتڵە کارا کراوە"
-
-#: src/dialogs/launchoptions.py:59
-msgid "This setting is different from the bottle's default."
-msgstr ""
-
-#: src/dialogs/launchoptions.py:232
-msgid "Choose the script"
-msgstr "سکریپت هەڵبژێرە"
-
-#: src/dialogs/launchoptions.py:256
-#, fuzzy
-msgid "Choose the Working Directory"
-msgstr "بوخچەی کارلێکردن"
 
 #: src/dialogs/installer.py:64
 msgid "Select Resource FIle"
@@ -823,348 +736,74 @@ msgstr ""
 msgid "Installer failed with unknown error"
 msgstr ""
 
-#: src/dialogs/exclusionpatterns.py:108
+#. endregion
+#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
+msgid "Choose a script which should be executed after run."
+msgstr "سکریپتێک هەڵبژێرە کە دەبێت دوای ڕەن کردن ئێکسکیوت ببێت."
+
+#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
 #, fuzzy
-msgid "No exclusion patterns defined."
-msgstr "گۆڕاوەکانی ژینگە"
+msgid "Choose from where start the program."
+msgstr "بۆتڵز دابخە دوای کردنەوەی پڕۆگرامێک"
 
-#: src/views/bottle_details.py:142
-#, python-format
-msgid "Updated: %s"
-msgstr "نوێبووەوە: %s"
-
-#: src/views/bottle_details.py:200 src/views/list.py:118
-msgid "Choose a Windows executable file"
-msgstr "پەڕگەیەکی exe ی ویندۆز هەڵبژێرە"
-
-#: src/views/bottle_details.py:202 src/views/list.py:120
-#: src/ui/dialog-run-args.ui:35
-msgid "Run"
-msgstr "ڕەن"
-
-#: src/views/bottle_details.py:209
-msgid "Be Aware of Sandbox"
-msgstr ""
-
-#: src/views/bottle_details.py:210
-msgid ""
-"Bottles is running in a sandbox, a restricted permission environment needed "
-"to keep you safe. If the program won't run, consider moving inside the "
-"bottle (3 dots icon on the top), then launch from there."
-msgstr ""
-
-#: src/views/bottle_details.py:212
-msgid "Ok"
-msgstr ""
-
-#: src/views/bottle_details.py:267
-msgid "Select the location where to save the backup config"
-msgstr "شوێنێک دیاریبکە بۆ پاشەکەوتی کۆنفیگی باکئەپ"
-
-#: src/views/bottle_details.py:271
-msgid "Select the location where to save the backup archive"
-msgstr "شوێنێک دیاریبکە بۆ پاشەکەوتی ئەرشیفی باکئەپ"
-
-#: src/views/bottle_details.py:276
-#, python-brace-format
-msgid "Backup created for '{0}'."
-msgstr ""
-
-#: src/views/bottle_details.py:278
-#, python-brace-format
-msgid "Backup failed for '{0}'."
-msgstr ""
-
-#: src/views/bottle_details.py:296
-msgid "Export"
-msgstr "هاوردە"
-
-#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
-#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
-#: src/views/bottle_preferences.py:745
-msgid "Confirm"
-msgstr "دڵنیاکردنەوە"
-
-#: src/views/bottle_details.py:333
-msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "ئایە تۆ دڵنیایت لە سڕینەوەی ئەم بتڵە و هەموو پەڕگەکان؟"
-
-#: src/views/bottle_details.py:412
-#, fuzzy
-msgid ""
-"Are you sure you want to terminate all processes?\n"
-"This can cause data loss."
-msgstr "ئایە تۆ دڵنیایت لە سڕینەوەی ئەم بتڵە و هەموو پەڕگەکان؟"
-
-#: src/views/bottle_preferences.py:207
-msgid "This feature is not available on your system."
-msgstr "ئەم تایبتەمەندییە لەسەر سیستەمەکەی تۆ بەردەست نییە."
-
-#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:405
-msgid "Default to the bottle path."
-msgstr "دیفۆڵت بۆ شوێنی سەرەکی."
-
-#: src/views/bottle_preferences.py:258
-msgid "Choose working directory for executables"
-msgstr "بوخچەی کارکردن هەڵبژێرە بۆ پەڕگە exeییەکان"
-
-#: src/views/bottle_preferences.py:741
-msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
-
-#: src/views/bottle_preferences.py:742
-msgid ""
-"This will kepp all your files but will delete all states. Do you want to "
-"continue?"
-msgstr ""
-
-#: src/views/bottle_programs.py:83
-#, python-brace-format
-msgid "'{0}' added."
-msgstr ""
-
-#: src/views/bottle_programs.py:87
-msgid "Choose an executable path"
-msgstr "شوێنێکی exe هەڵبژێرە"
-
-#: src/views/bottle_programs.py:89
-msgid "Add"
-msgstr "زیادکردن"
-
-#: src/views/details.py:154
-msgid "Details & Utilities"
-msgstr "وردەکاری & ئامرازەکان"
-
-#: src/views/details.py:158 src/ui/preferences.ui:6 src/ui/window.ui:24
-msgid "Preferences"
-msgstr "ڕێکخستنەکان"
-
-#: src/views/details.py:162
-msgid "Dependencies"
-msgstr "پێبەندییەکان"
-
-#: src/views/details.py:166 src/ui/details-bottle.ui:241
-msgid "Programs"
-msgstr "پڕۆگرامەکان"
-
-#: src/views/details.py:167
-msgid "Found in your bottle's Start menu."
-msgstr "لە لیستی ستارتی بتڵەکەتدا دۆزرایەوە."
-
-#: src/views/details.py:170 src/ui/details-preferences.ui:656
-msgid "Versioning"
-msgstr "وەشانکردن"
-
-#: src/views/details.py:174
-msgid "Installers"
-msgstr "دامەزرێنەرەکان"
-
-#: src/views/details.py:178 src/ui/details-bottle.ui:289
-#, fuzzy
-msgid "Task Manager"
-msgstr "تاسک مانیجەر"
-
-#: src/views/details.py:377
-#, fuzzy
-msgid "Operations in progress, please wait."
-msgstr "نوێکردنەوەی وەشانی ویندۆز، تکایە چاوەڕوان بە…"
-
-#: src/views/details.py:381
-#, fuzzy
-msgid "Return to your bottles."
-msgstr "بەدوای بۆتڵەکانتدا بگەڕێ..."
-
-#: src/views/importer.py:89
-msgid "Backup imported successfully."
-msgstr ""
-
-#: src/views/importer.py:91
-#, fuzzy
-msgid "Import failed."
-msgstr "هاوردەکەر"
-
-#: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
-msgid "Importing backup…"
-msgstr "هاوردەکردنی باکئەپ: {0}"
-
-#: src/views/importer.py:115
-msgid "Choose a backup archive"
-msgstr "ئەرشیفێکی باکئەپ هەڵبژێرە"
-
-#: src/views/importer.py:117 src/views/importer.py:146
-#, fuzzy
-msgid "Import"
-msgstr "هاوردەکەر"
-
-#: src/views/importer.py:144
-msgid "Choose a configuration file"
-msgstr "پەڕگەیەکی ڕێکخستن هەڵبژێرە"
-
-#: src/views/list.py:59 src/views/list.py:65
-msgid "N/A"
-msgstr "N/A"
-
-#: src/views/list.py:220
-#, fuzzy
-msgid "Your Bottles"
-msgstr "دەربارەی بۆتڵز"
-
-#: src/views/new.py:142
-#, fuzzy
-msgid "Choose a recipe file"
-msgstr "پەڕگەیەکی ڕێکخستن هەڵبژێرە"
-
-#: src/views/new.py:158
-#, fuzzy
-msgid "Choose where to store the bottle"
-msgstr "ناوێک بۆ بۆتڵەکەت هەڵبژێرە"
-
-#: src/views/new.py:211
-msgid "There was an error creating the bottle."
-msgstr "هەڵەیەک هەبوو لە کاتی دروستکردنی بتڵەکە."
-
-#: src/views/new.py:219
-#, python-brace-format
-msgid "A bottle named “{0}” was created successfully"
-msgstr "بتڵێک بە ناوی \"{0}\" بەسەرکەوتووی دروستکرا"
-
-#: src/views/preferences.py:125
-msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-
-#: src/views/preferences.py:188 src/views/preferences.py:204
-#: src/ui/preferences.ui:155
-#, fuzzy
-msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)."
-msgstr ""
-"دیاریبکە کە بتڵە تازەکان لە کوێ پاشەکەوت بن (بتڵەکانی ئێستات ناگوازرێنەوە بۆ "
-"ئەو جێگە)"
-
-#: src/views/preferences.py:193
-msgid "Choose new bottles path"
-msgstr "شوێنی بتڵە تازەکان هەڵبژێرە"
-
-#: src/views/preferences.py:236
-msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:237
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:240
-msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
-
-#: src/views/preferences.py:241
-msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
-msgstr ""
-
-#: src/views/preferences.py:243
-msgid "Other"
-msgstr ""
-
-#: src/views/bottle_versioning.py:88
-msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
-
-#: src/views/loading.py:33
-#, python-brace-format
-msgid "Downloading ~{0} of packages…"
-msgstr ""
-
-#: src/views/loading.py:34
-#, python-brace-format
-msgid "Fetched {0} of {1} packages"
-msgstr ""
-
-#: src/widgets/component.py:70
-msgid "Upgrade"
-msgstr "بەرزکردنەوە"
-
-#: src/widgets/component.py:145
-#, fuzzy
-msgid "Installing…"
-msgstr "دامەزراندنی DXVK…"
-
-#: src/widgets/dependency.py:107 src/widgets/installer.py:72
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "مەنەفێست بۆ {0}"
-
-#: src/widgets/dependency.py:170
-#, python-brace-format
-msgid "'{0}' installed."
-msgstr ""
-
-#: src/widgets/dependency.py:184
+#: src/dialogs/launchoptions.py:58
 #, fuzzy, python-brace-format
-msgid "'{0}' failed to install."
-msgstr "ڕەشکەرەوە"
+msgid "{0} is already disabled for this bottle."
+msgstr "وەشانکردن بۆ یەم بۆتڵە کارا کراوە"
 
-#: src/widgets/importer.py:66
-#, python-brace-format
-msgid "'{0}' imported."
+#: src/dialogs/launchoptions.py:59
+msgid "This setting is different from the bottle's default."
 msgstr ""
 
-#: src/widgets/installer.py:81
-#, python-brace-format
-msgid "Review for {0}"
-msgstr "پێداچوونەوە بۆ {0}"
+#: src/dialogs/launchoptions.py:232
+msgid "Choose the script"
+msgstr "سکریپت هەڵبژێرە"
 
-#: src/widgets/program.py:187
-#, fuzzy, python-brace-format
-msgid "Launching '{0}'…"
-msgstr "کردنەوەی بە تێرمیناڵ"
+#: src/dialogs/launchoptions.py:256
+#, fuzzy
+msgid "Choose the Working Directory"
+msgstr "بوخچەی کارلێکردن"
 
-#: src/widgets/program.py:193
-#, fuzzy, python-brace-format
-msgid "Launching '{0}' with Steam…"
-msgstr "کردنەوەی بە تێرمیناڵ"
+#: src/main.py:105
+msgid "Show version"
+msgstr "پشاندانی وەشان"
 
-#: src/widgets/program.py:215
-#, python-brace-format
-msgid "'{0}' hidden."
+#: src/main.py:113
+msgid "Executable path"
+msgstr "شوێنی ئێکسکیوتەبڵ"
+
+#: src/main.py:121
+msgid "lnk path"
+msgstr "شوێنی مرەکەب"
+
+#: src/main.py:129 src/ui/library-entry.ui:103 src/ui/list-entry.ui:7
+msgid "Bottle name"
+msgstr "ناوی بۆتڵ"
+
+#: src/main.py:137
+msgid "Pass arguments"
+msgstr "ناردنی ئارگیومێنتەکان"
+
+#: src/main.py:196
+msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
 msgstr ""
 
-#: src/widgets/program.py:217
-#, python-brace-format
-msgid "'{0}' showed."
-msgstr ""
+#: src/main.py:237
+msgid "[Quit] request received."
+msgstr "[داخستک] داواکاری وەرگیرا."
 
-#: src/widgets/program.py:240
-#, python-brace-format
-msgid "'{0}' removed."
-msgstr ""
+#: src/main.py:246
+msgid "[Help] request received."
+msgstr "[یارمەتی] داواکاری وەرگیرا."
 
-#: src/widgets/program.py:254
-#, python-brace-format
-msgid "'{0}' renamed to '{1}'."
-msgstr ""
+#: src/main.py:254
+msgid "[Refresh] request received."
+msgstr "[تازەکردنەوە] داواکاری وەرگیرا."
 
-#: src/widgets/program.py:274
-#, python-brace-format
-msgid "Desktop Entry created for '{0}'"
-msgstr ""
-
-#: src/widgets/program.py:290
-#, python-brace-format
-msgid "'{0}' added to your library"
-msgstr ""
-
-#: src/widgets/program.py:306
-#, python-brace-format
-msgid "'{0}' added to your Steam library"
-msgstr ""
-
-#: src/utils/connection.py:67
-msgid "You are offline, unable to download."
-msgstr "تۆ دەرهێڵیت، نەتوانرا دابگیرێت."
+#: src/operation.py:50
+#, fuzzy
+msgid "Calculating…"
+msgstr "هەژمارکردن..."
 
 #: src/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
@@ -1221,6 +860,20 @@ msgstr "دوبارە دامەزراندن"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
+msgstr ""
+
+#: src/ui/dependency-entry.ui:50
+#, fuzzy
+msgid "Dependency name"
+msgstr "پێبەندییەکان"
+
+#: src/ui/dependency-entry.ui:52
+#, fuzzy
+msgid "Dependency description"
+msgstr "پێبەندییەکان"
+
+#: src/ui/dependency-entry.ui:59
+msgid "Category"
 msgstr ""
 
 #: src/ui/dependency-entry.ui:73
@@ -1316,7 +969,7 @@ msgstr "بۆتڵی نوێ"
 msgid "Win64"
 msgstr ""
 
-#: src/ui/details-bottle.ui:177 src/ui/new.ui:77
+#: src/ui/details-bottle.ui:177 src/ui/list-entry.ui:14 src/ui/new.ui:77
 msgid "Environment"
 msgstr "ژینگە"
 
@@ -1345,6 +998,10 @@ msgstr "کردنەوەی exe"
 #: src/ui/details-bottle.ui:235
 msgid "Layers"
 msgstr "لایەرەکان"
+
+#: src/ui/details-bottle.ui:241 src/views/details.py:166
+msgid "Programs"
+msgstr "پڕۆگرامەکان"
 
 #: src/ui/details-bottle.ui:246
 msgid "Tools"
@@ -1380,6 +1037,11 @@ msgstr ""
 #, fuzzy
 msgid "Browse internal files with the Wine explorer."
 msgstr "کردنەوەی پەڕگە ناوخۆییەکان."
+
+#: src/ui/details-bottle.ui:289 src/views/details.py:178
+#, fuzzy
+msgid "Task Manager"
+msgstr "تاسک مانیجەر"
 
 #: src/ui/details-bottle.ui:290
 msgid "Manage processes with the Wine task manager."
@@ -1488,6 +1150,12 @@ msgstr ""
 #, fuzzy
 msgid "Search for Programs…"
 msgstr "گەڕان بە دوای پڕۆگرامە دامەزراوەکان"
+
+#: src/ui/details-installers.ui:22
+msgid ""
+"Use this section to install programs curated by our community, without "
+"having to proceed manually."
+msgstr ""
 
 #: src/ui/details-installers.ui:48
 #, fuzzy
@@ -1915,7 +1583,7 @@ msgstr "بەڕێوەبردنی دراڤەکان"
 msgid "Audio"
 msgstr "دەنگ"
 
-#: src/ui/details-preferences.ui:643
+#: src/ui/details-preferences.ui:643 src/ui/dialog-launch-options.ui:183
 #, fuzzy
 msgid "Reduce Latency"
 msgstr "کەمکردنەوەی دواکەوتنی PulseAudio"
@@ -1924,6 +1592,10 @@ msgstr "کەمکردنەوەی دواکەوتنی PulseAudio"
 #, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
 msgstr "دانانی دواکەوتنی PulseAudio بۆ ٦٠ میلی چرکە بۆ بەرزکردنی کوالێتی"
+
+#: src/ui/details-preferences.ui:656 src/views/details.py:170
+msgid "Versioning"
+msgstr "وەشانکردن"
 
 #: src/ui/details-preferences.ui:660
 msgid "Use Compression for States"
@@ -2048,6 +1720,16 @@ msgstr "دۆخی نوێ دروست بکە"
 msgid "Operations"
 msgstr "کردارەکان"
 
+#: src/ui/dialog-bottle-picker.ui:6
+#, fuzzy
+msgid "Select Bottle"
+msgstr "بەدووکردنی بۆتڵ"
+
+#: src/ui/dialog-bottle-picker.ui:42
+#, fuzzy
+msgid "Create New Bottle"
+msgstr "دروستکردنی بۆتڵێکی تازە"
+
 #: src/ui/dialog-crash-report.ui:10
 #, fuzzy
 msgid "Bottles crash report"
@@ -2084,6 +1766,22 @@ msgstr "هێشتا دەمەوێت ڕاپۆرت بنێرم."
 #: src/ui/dialog-crash-report.ui:102
 msgid "Advanced options"
 msgstr "بژاردە پێشکەوتووەکان"
+
+#: src/ui/dialog-deps-check.ui:15
+msgid "Incomplete package"
+msgstr ""
+
+#: src/ui/dialog-deps-check.ui:16
+msgid ""
+"This version of Bottles does not seem to provide all the necessary core "
+"dependencies, please contact the package maintainer or use an official "
+"version.\n"
+"                        "
+msgstr ""
+
+#: src/ui/dialog-deps-check.ui:21
+msgid "Quit"
+msgstr "داخستن"
 
 #: src/ui/dialog-dll-overrides.ui:14
 #, fuzzy
@@ -2153,6 +1851,7 @@ msgid "Duplicating…"
 msgstr "بەدووکردن…"
 
 #: src/ui/dialog-duplicate.ui:87 src/ui/dialog-upgrade-versioning.ui:121
+#: src/ui/new.ui:216
 #, fuzzy
 msgid "Take a break, it may take a while."
 msgstr "ئیسراحەتی خۆت وەرگرە، لەوانەیە ئەمە کەمێکی پێ بچێت"
@@ -2178,6 +1877,26 @@ msgstr ""
 #, fuzzy
 msgid "Existing Variables"
 msgstr "گۆراوە هەبووەکان"
+
+#: src/ui/dialog-exclusion-patterns.ui:16
+msgid "Exclusion Patterns"
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:35
+msgid ""
+"Define patterns that will be used to prevent some directories to being "
+"versioned."
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:38
+#, fuzzy
+msgid "Pattern"
+msgstr "پیت"
+
+#: src/ui/dialog-exclusion-patterns.ui:46
+#, fuzzy
+msgid "Existing Patterns"
+msgstr "درایڤە هەبووەکان"
 
 #: src/ui/dialog-gamescope.ui:8
 #, fuzzy
@@ -2313,7 +2032,7 @@ msgid "Command Arguments"
 msgstr "ناردنی ئارگیومێنتەکان"
 
 #: src/ui/dialog-launch-options.ui:52
-#, python-format
+#, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr "بۆ نموونە: VAR=value %command% -example1 -example2 -example3=hello"
 
@@ -2341,57 +2060,9 @@ msgstr "ڕێکخستنەکان"
 msgid "Reset to Bottle's Defaults"
 msgstr "دووبارە ڕێکخستنەوەی بۆ بنەڕەت"
 
-#: src/ui/dialog-rename.ui:9
-msgid "Rename"
-msgstr "ناوگۆڕین"
-
-#: src/ui/dialog-rename.ui:34
-msgid "Choose a new name for the selected program."
+#: src/ui/dialog-proton-alert.ui:6
+msgid "Proton Disclaimer"
 msgstr ""
-
-#: src/ui/dialog-rename.ui:37
-#, fuzzy
-msgid "New Name"
-msgstr "ناو"
-
-#: src/ui/dialog-run-args.ui:14
-#, fuzzy
-msgid "Run With Arguments"
-msgstr "ڕەن کردن لەگەڵ ئارگیومێنتەکان"
-
-#: src/ui/dialog-run-args.ui:47
-msgid "Write below the arguments to be passed to the executable."
-msgstr "لە خوار ئارگیومێنتەکانەوە بنووسە بۆ ئەوەی بگەن بە executable."
-
-#: src/ui/dialog-run-args.ui:50
-#, fuzzy
-msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "بۆ نموونە:-opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-bottle-picker.ui:42
-#, fuzzy
-msgid "Create New Bottle"
-msgstr "دروستکردنی بۆتڵێکی تازە"
-
-#: src/ui/dialog-exclusion-patterns.ui:16
-msgid "Exclusion Patterns"
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:35
-msgid ""
-"Define patterns that will be used to prevent some directories to being "
-"versioned."
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:38
-#, fuzzy
-msgid "Pattern"
-msgstr "پیت"
-
-#: src/ui/dialog-exclusion-patterns.ui:46
-#, fuzzy
-msgid "Existing Patterns"
-msgstr "درایڤە هەبووەکان"
 
 #: src/ui/dialog-proton-alert.ui:22
 #, fuzzy
@@ -2416,6 +2087,38 @@ msgstr ""
 #: src/ui/dialog-proton-alert.ui:50
 msgid "I got it."
 msgstr ""
+
+#: src/ui/dialog-rename.ui:9
+msgid "Rename"
+msgstr "ناوگۆڕین"
+
+#: src/ui/dialog-rename.ui:34
+msgid "Choose a new name for the selected program."
+msgstr ""
+
+#: src/ui/dialog-rename.ui:37
+#, fuzzy
+msgid "New Name"
+msgstr "ناو"
+
+#: src/ui/dialog-run-args.ui:14
+#, fuzzy
+msgid "Run With Arguments"
+msgstr "ڕەن کردن لەگەڵ ئارگیومێنتەکان"
+
+#: src/ui/dialog-run-args.ui:35 src/views/bottle_details.py:202
+#: src/views/list.py:120
+msgid "Run"
+msgstr "ڕەن"
+
+#: src/ui/dialog-run-args.ui:47
+msgid "Write below the arguments to be passed to the executable."
+msgstr "لە خوار ئارگیومێنتەکانەوە بنووسە بۆ ئەوەی بگەن بە executable."
+
+#: src/ui/dialog-run-args.ui:50
+#, fuzzy
+msgid "e.g.: -opengl -SkipBuildPatchPrereq"
+msgstr "بۆ نموونە:-opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dialog-sandbox.ui:9
 #, fuzzy
@@ -2477,20 +2180,6 @@ msgstr ""
 msgid "Done! Please restart Bottles."
 msgstr ""
 
-#: src/ui/exclusion-pattern-entry.ui:6 src/ui/env-var-entry.ui:6
-#, fuzzy
-msgid "Value"
-msgstr "نرخ"
-
-#: src/ui/local-resource-entry.ui:6
-msgid "This resource is missing."
-msgstr ""
-
-#: src/ui/local-resource-entry.ui:10
-#, fuzzy
-msgid "Browse"
-msgstr "کردنەوەی بوخچەی C:"
-
 #: src/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
 msgstr "لەناودا دروستکراو (واین)"
@@ -2525,6 +2214,21 @@ msgstr "/point/to/path"
 #, fuzzy
 msgid "Choose a Directory"
 msgstr "بوخچەیەک هەڵبژێرە"
+
+#: src/ui/env-var-entry.ui:6 src/ui/exclusion-pattern-entry.ui:6
+#, fuzzy
+msgid "Value"
+msgstr "نرخ"
+
+#. Wineprefix is a prefix for the wine program
+#: src/ui/importer-entry.ui:22
+msgid "Wineprefix name"
+msgstr ""
+
+#: src/ui/importer-entry.ui:29
+#, fuzzy
+msgid "Manager"
+msgstr "تاسک مانیجەر"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -2569,6 +2273,20 @@ msgstr "پشاندنی مەنەفێست"
 msgid "Read Review…"
 msgstr "خونێدنەوەی پێداچوونەوە"
 
+#: src/ui/installer-entry.ui:40
+#, fuzzy
+msgid "Installer name"
+msgstr "دامەزرێنەرەکان"
+
+#: src/ui/installer-entry.ui:41
+#, fuzzy
+msgid "Installer description"
+msgstr "دامەزرێنەرەکان"
+
+#: src/ui/installer-entry.ui:48
+msgid "Unknown"
+msgstr ""
+
 #: src/ui/installer-entry.ui:57
 msgid "Install this program"
 msgstr ""
@@ -2578,10 +2296,19 @@ msgstr ""
 msgid "Remove from Library"
 msgstr "ڕەشکردنەوەی لەناو پڕۆگرامەکان"
 
+#: src/ui/library-entry.ui:94
+#, fuzzy
+msgid "Item name"
+msgstr "ناوی بۆتڵ"
+
 #: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
 #, fuzzy
 msgid "Launch with Steam"
 msgstr "کردنەوەی بە تێرمیناڵ"
+
+#: src/ui/library.ui:14 src/ui/preferences.ui:259 src/window.py:171
+msgid "Library"
+msgstr ""
 
 #: src/ui/library.ui:15
 msgid "Add items here from your bottle's program list"
@@ -2643,6 +2370,15 @@ msgstr ""
 msgid "Starting up…"
 msgstr ""
 
+#: src/ui/local-resource-entry.ui:6
+msgid "This resource is missing."
+msgstr ""
+
+#: src/ui/local-resource-entry.ui:10
+#, fuzzy
+msgid "Browse"
+msgstr "کردنەوەی بوخچەی C:"
+
 #: src/ui/new.ui:17 src/ui/new.ui:64
 #, fuzzy
 msgid "New Bottle"
@@ -2651,6 +2387,10 @@ msgstr "بۆتڵی نوێ"
 #: src/ui/new.ui:38
 msgid "Create"
 msgstr "دروستکردن"
+
+#: src/ui/new.ui:47 src/ui/new.ui:268 src/window.py:187
+msgid "Close"
+msgstr "داخستن"
 
 #: src/ui/new.ui:67
 #, fuzzy
@@ -2735,6 +2475,11 @@ msgstr "تایبەت"
 msgid "Store this bottle in another place."
 msgstr ""
 
+#: src/ui/new.ui:215
+#, fuzzy
+msgid "Creating a Bottle…"
+msgstr "دروستکردنی بۆتڵێکی تازە"
+
 #: src/ui/new.ui:262
 msgid "Bottle created"
 msgstr "بتڵ دروستکرا"
@@ -2788,6 +2533,10 @@ msgstr "بە دروستکردنی بۆتڵ دەست پێ بکە."
 #: src/ui/onboard.ui:150
 msgid "Next"
 msgstr "دواتر"
+
+#: src/ui/preferences.ui:6 src/ui/window.ui:24 src/views/details.py:158
+msgid "Preferences"
+msgstr "ڕێکخستنەکان"
 
 #: src/ui/preferences.ui:13 src/ui/preferences.ui:46
 msgid "General"
@@ -2893,6 +2642,15 @@ msgstr "پێشکەوتوو"
 msgid "Custom Bottles Path (Requires Restart)"
 msgstr "شوێنی تایبەتی بۆتڵز (پێویستی بە دوبارە دەستپێکردنەوە هەیە)"
 
+#: src/ui/preferences.ui:155 src/views/preferences.py:188
+#: src/views/preferences.py:204
+#, fuzzy
+msgid ""
+"Choose where to store the new bottles (this will not move the existing ones)."
+msgstr ""
+"دیاریبکە کە بتڵە تازەکان لە کوێ پاشەکەوت بن (بتڵەکانی ئێستات ناگوازرێنەوە بۆ "
+"ئەو جێگە)"
+
 #: src/ui/preferences.ui:188
 msgid "Runners"
 msgstr "کارپێکەرەکان"
@@ -2993,6 +2751,22 @@ msgstr "پڕۆگرامەکان"
 msgid "Remove from List"
 msgstr "ڕەشکردنەوەی لەناو پڕۆگرامەکان"
 
+#: src/ui/program-entry.ui:99
+#, fuzzy
+msgid "Program name"
+msgstr "پڕۆگرامەکان"
+
+#. id as identification
+#: src/ui/state-entry.ui:7
+#, fuzzy
+msgid "State id"
+msgstr "هیچ دۆخێک نەدۆزرایەوە"
+
+#: src/ui/state-entry.ui:8
+#, fuzzy
+msgid "State comment"
+msgstr "کۆمێنتێکی زۆر کورت"
+
 #: src/ui/state-entry.ui:16
 msgid "Restore this state"
 msgstr "گەڕاندنەوەی ئەم دۆخە"
@@ -3036,6 +2810,327 @@ msgstr ""
 #: src/ui/window.ui:99
 msgid "New bottle"
 msgstr "بۆتڵی نوێ"
+
+#: src/utils/connection.py:67
+msgid "You are offline, unable to download."
+msgstr "تۆ دەرهێڵیت، نەتوانرا دابگیرێت."
+
+#: src/views/bottle_details.py:142
+#, python-format
+msgid "Updated: %s"
+msgstr "نوێبووەوە: %s"
+
+#: src/views/bottle_details.py:200 src/views/list.py:118
+msgid "Choose a Windows executable file"
+msgstr "پەڕگەیەکی exe ی ویندۆز هەڵبژێرە"
+
+#: src/views/bottle_details.py:209
+msgid "Be Aware of Sandbox"
+msgstr ""
+
+#: src/views/bottle_details.py:210
+msgid ""
+"Bottles is running in a sandbox, a restricted permission environment needed "
+"to keep you safe. If the program won't run, consider moving inside the "
+"bottle (3 dots icon on the top), then launch from there."
+msgstr ""
+
+#: src/views/bottle_details.py:212
+msgid "Ok"
+msgstr ""
+
+#: src/views/bottle_details.py:267
+msgid "Select the location where to save the backup config"
+msgstr "شوێنێک دیاریبکە بۆ پاشەکەوتی کۆنفیگی باکئەپ"
+
+#: src/views/bottle_details.py:271
+msgid "Select the location where to save the backup archive"
+msgstr "شوێنێک دیاریبکە بۆ پاشەکەوتی ئەرشیفی باکئەپ"
+
+#: src/views/bottle_details.py:276
+#, python-brace-format
+msgid "Backup created for '{0}'."
+msgstr ""
+
+#: src/views/bottle_details.py:278
+#, python-brace-format
+msgid "Backup failed for '{0}'."
+msgstr ""
+
+#: src/views/bottle_details.py:296
+msgid "Export"
+msgstr "هاوردە"
+
+#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
+#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
+#: src/views/bottle_preferences.py:745
+msgid "Confirm"
+msgstr "دڵنیاکردنەوە"
+
+#: src/views/bottle_details.py:333
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "ئایە تۆ دڵنیایت لە سڕینەوەی ئەم بتڵە و هەموو پەڕگەکان؟"
+
+#: src/views/bottle_details.py:412
+#, fuzzy
+msgid ""
+"Are you sure you want to terminate all processes?\n"
+"This can cause data loss."
+msgstr "ئایە تۆ دڵنیایت لە سڕینەوەی ئەم بتڵە و هەموو پەڕگەکان؟"
+
+#: src/views/bottle_preferences.py:207
+msgid "This feature is not available on your system."
+msgstr "ئەم تایبتەمەندییە لەسەر سیستەمەکەی تۆ بەردەست نییە."
+
+#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
+#: src/views/bottle_preferences.py:405
+msgid "Default to the bottle path."
+msgstr "دیفۆڵت بۆ شوێنی سەرەکی."
+
+#: src/views/bottle_preferences.py:258
+msgid "Choose working directory for executables"
+msgstr "بوخچەی کارکردن هەڵبژێرە بۆ پەڕگە exeییەکان"
+
+#: src/views/bottle_preferences.py:741
+msgid "Toggling Compression Require Re-Initialization"
+msgstr ""
+
+#: src/views/bottle_preferences.py:742
+msgid ""
+"This will kepp all your files but will delete all states. Do you want to "
+"continue?"
+msgstr ""
+
+#: src/views/bottle_programs.py:83
+#, python-brace-format
+msgid "'{0}' added."
+msgstr ""
+
+#: src/views/bottle_programs.py:87
+msgid "Choose an executable path"
+msgstr "شوێنێکی exe هەڵبژێرە"
+
+#: src/views/bottle_programs.py:89
+msgid "Add"
+msgstr "زیادکردن"
+
+#: src/views/bottle_versioning.py:88
+msgid "Please migrate to the new Versioning system to create new states."
+msgstr ""
+
+#: src/views/details.py:154
+msgid "Details & Utilities"
+msgstr "وردەکاری & ئامرازەکان"
+
+#: src/views/details.py:162
+msgid "Dependencies"
+msgstr "پێبەندییەکان"
+
+#: src/views/details.py:167
+msgid "Found in your bottle's Start menu."
+msgstr "لە لیستی ستارتی بتڵەکەتدا دۆزرایەوە."
+
+#: src/views/details.py:174
+msgid "Installers"
+msgstr "دامەزرێنەرەکان"
+
+#: src/views/details.py:377
+#, fuzzy
+msgid "Operations in progress, please wait."
+msgstr "نوێکردنەوەی وەشانی ویندۆز، تکایە چاوەڕوان بە…"
+
+#: src/views/details.py:381
+#, fuzzy
+msgid "Return to your bottles."
+msgstr "بەدوای بۆتڵەکانتدا بگەڕێ..."
+
+#: src/views/importer.py:89
+msgid "Backup imported successfully."
+msgstr ""
+
+#: src/views/importer.py:91
+#, fuzzy
+msgid "Import failed."
+msgstr "هاوردەکەر"
+
+#: src/views/importer.py:103 src/views/importer.py:132
+#, fuzzy
+msgid "Importing backup…"
+msgstr "هاوردەکردنی باکئەپ: {0}"
+
+#: src/views/importer.py:115
+msgid "Choose a backup archive"
+msgstr "ئەرشیفێکی باکئەپ هەڵبژێرە"
+
+#: src/views/importer.py:117 src/views/importer.py:146
+#, fuzzy
+msgid "Import"
+msgstr "هاوردەکەر"
+
+#: src/views/importer.py:144
+msgid "Choose a configuration file"
+msgstr "پەڕگەیەکی ڕێکخستن هەڵبژێرە"
+
+#: src/views/list.py:59 src/views/list.py:65
+msgid "N/A"
+msgstr "N/A"
+
+#: src/views/list.py:220
+#, fuzzy
+msgid "Your Bottles"
+msgstr "دەربارەی بۆتڵز"
+
+#: src/views/loading.py:33
+#, python-brace-format
+msgid "Downloading ~{0} of packages…"
+msgstr ""
+
+#: src/views/loading.py:34
+#, python-brace-format
+msgid "Fetched {0} of {1} packages"
+msgstr ""
+
+#: src/views/new.py:142
+#, fuzzy
+msgid "Choose a recipe file"
+msgstr "پەڕگەیەکی ڕێکخستن هەڵبژێرە"
+
+#: src/views/new.py:158
+#, fuzzy
+msgid "Choose where to store the bottle"
+msgstr "ناوێک بۆ بۆتڵەکەت هەڵبژێرە"
+
+#: src/views/new.py:211
+msgid "There was an error creating the bottle."
+msgstr "هەڵەیەک هەبوو لە کاتی دروستکردنی بتڵەکە."
+
+#: src/views/new.py:219
+#, python-brace-format
+msgid "A bottle named “{0}” was created successfully"
+msgstr "بتڵێک بە ناوی \"{0}\" بەسەرکەوتووی دروستکرا"
+
+#: src/views/preferences.py:125
+msgid "Steam was not found or Bottles does not have enough permissions."
+msgstr ""
+
+#: src/views/preferences.py:193
+msgid "Choose new bottles path"
+msgstr "شوێنی بتڵە تازەکان هەڵبژێرە"
+
+#: src/views/preferences.py:236
+msgid "Based on Valve's Wine, includes staging and Proton patches."
+msgstr ""
+
+#: src/views/preferences.py:237
+msgid "Based on Wine upstream, includes staging and Proton patches."
+msgstr ""
+
+#: src/views/preferences.py:240
+msgid "Based on Wine upstream, includes staging patches."
+msgstr ""
+
+#: src/views/preferences.py:241
+msgid ""
+"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
+"Requires the Steam Runtime turned on."
+msgstr ""
+
+#: src/views/preferences.py:243
+msgid "Other"
+msgstr ""
+
+#: src/widgets/component.py:70
+msgid "Upgrade"
+msgstr "بەرزکردنەوە"
+
+#: src/widgets/component.py:145
+#, fuzzy
+msgid "Installing…"
+msgstr "دامەزراندنی DXVK…"
+
+#: src/widgets/dependency.py:107 src/widgets/installer.py:72
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "مەنەفێست بۆ {0}"
+
+#: src/widgets/dependency.py:170
+#, python-brace-format
+msgid "'{0}' installed."
+msgstr ""
+
+#: src/widgets/dependency.py:184
+#, fuzzy, python-brace-format
+msgid "'{0}' failed to install."
+msgstr "ڕەشکەرەوە"
+
+#: src/widgets/importer.py:66
+#, python-brace-format
+msgid "'{0}' imported."
+msgstr ""
+
+#: src/widgets/installer.py:81
+#, python-brace-format
+msgid "Review for {0}"
+msgstr "پێداچوونەوە بۆ {0}"
+
+#: src/widgets/program.py:187
+#, fuzzy, python-brace-format
+msgid "Launching '{0}'…"
+msgstr "کردنەوەی بە تێرمیناڵ"
+
+#: src/widgets/program.py:193
+#, fuzzy, python-brace-format
+msgid "Launching '{0}' with Steam…"
+msgstr "کردنەوەی بە تێرمیناڵ"
+
+#: src/widgets/program.py:215
+#, python-brace-format
+msgid "'{0}' hidden."
+msgstr ""
+
+#: src/widgets/program.py:217
+#, python-brace-format
+msgid "'{0}' showed."
+msgstr ""
+
+#: src/widgets/program.py:240
+#, python-brace-format
+msgid "'{0}' removed."
+msgstr ""
+
+#: src/widgets/program.py:254
+#, python-brace-format
+msgid "'{0}' renamed to '{1}'."
+msgstr ""
+
+#: src/widgets/program.py:274
+#, python-brace-format
+msgid "Desktop Entry created for '{0}'"
+msgstr ""
+
+#: src/widgets/program.py:290
+#, python-brace-format
+msgid "'{0}' added to your library"
+msgstr ""
+
+#: src/widgets/program.py:306
+#, python-brace-format
+msgid "'{0}' added to your Steam library"
+msgstr ""
+
+#: src/window.py:184
+#, fuzzy
+msgid "Custom Bottles Path not Found"
+msgstr "شوێنی تایبەتی بۆتڵز (پێویستی بە دوبارە دەستپێکردنەوە هەیە)"
+
+#: src/window.py:185
+msgid ""
+"Falling back to default path. No bottles from the given path will be listed."
+msgstr ""
+
+#: src/window.py:306
+msgid "Third-Party Libraries and Special Thanks"
+msgstr ""
 
 #, fuzzy
 #~ msgid "Loading…"
@@ -3134,9 +3229,6 @@ msgstr "بۆتڵی نوێ"
 #, fuzzy
 #~ msgid "Lutris"
 #~ msgstr "کارپێکەرەکانی Lutris"
-
-#~ msgid "Quit"
-#~ msgstr "داخستن"
 
 #~ msgid "Bottles versioning (experimental)"
 #~ msgstr "وەشانکردنی بۆتڵز (ئەزمونی)"

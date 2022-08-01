@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 12:08+0200\n"
+"POT-Creation-Date: 2022-08-01 22:54+0200\n"
 "PO-Revision-Date: 2022-07-30 01:19+0000\n"
 "Last-Translator: VRSasha <pongpeera054@protonmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/bottles/bottles/th/"
@@ -19,19 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.14-dev\n"
 
-#: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:165
-#: src/ui/list.ui:54 src/ui/window.ui:56 src/ui/window.ui:73
+#: data/com.usebottles.bottles.appdata.xml.in:6
+#: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
+#: src/ui/window.ui:56 src/ui/window.ui:73 src/window.py:165
 msgid "Bottles"
 msgstr "ขวด"
-
-#: data/com.usebottles.bottles.desktop.in:4
-msgid "Easily manage wineprefix"
-msgstr "จัดการ wineprefix อย่างง่ายดาย"
-
-#: data/com.usebottles.bottles.desktop.in:13
-msgid "wine;windows;"
-msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -310,6 +302,14 @@ msgstr ""
 msgid "Croatian translations thanks to @milotype"
 msgstr ""
 
+#: data/com.usebottles.bottles.desktop.in:4
+msgid "Easily manage wineprefix"
+msgstr "จัดการ wineprefix อย่างง่ายดาย"
+
+#: data/com.usebottles.bottles.desktop.in:13
+msgid "wine;windows;"
+msgstr "wine;windows;"
+
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
 msgstr "การย้ายไป Flatpak"
@@ -459,105 +459,6 @@ msgstr ""
 msgid "Toggle sandbox warning."
 msgstr "เปิดหรือปิดการแสดงแอปพลิเคชันจาก Steam"
 
-#: src/main.py:105
-msgid "Show version"
-msgstr "แสดงเวอร์ชัน"
-
-#: src/main.py:113
-msgid "Executable path"
-msgstr "Path ของ Executable"
-
-#: src/main.py:121
-msgid "lnk path"
-msgstr "Path ของ lnk"
-
-#: src/main.py:129
-msgid "Bottle name"
-msgstr "ชื่อขวด"
-
-#: src/main.py:137
-msgid "Pass arguments"
-msgstr "ส่งต่อ Arguments"
-
-#: src/main.py:196
-msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "URI ไม่ถูกต้อง (syntax: bottles:run/<ขวด>/<โปรแกรม>)"
-
-#: src/main.py:237
-msgid "[Quit] request received."
-msgstr "[ปิด] ได้รับรีเควสต์แล้ว"
-
-#: src/main.py:246
-msgid "[Help] request received."
-msgstr "[ช่วยเหลือ] ได้รับรีเควสต์แล้ว"
-
-#: src/main.py:254
-msgid "[Refresh] request received."
-msgstr "[รีเฟรช] ได้รับรีเควสต์แล้ว"
-
-#: src/operation.py:50
-msgid "Calculating…"
-msgstr "กำลังคำนวณ…"
-
-#: src/window.py:171 src/ui/library.ui:14 src/ui/preferences.ui:259
-msgid "Library"
-msgstr ""
-
-#: src/window.py:184
-msgid "Custom Bottles Path not Found"
-msgstr ""
-
-#: src/window.py:185
-msgid ""
-"Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
-
-#: src/window.py:187 src/ui/new.ui:47 src/ui/new.ui:268
-msgid "Close"
-msgstr ""
-
-#: src/window.py:306
-msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
-
-#: src/backend/managers/versioning.py:97
-#, fuzzy
-msgid "Committing state …"
-msgstr "กำลังอัปเดตสถานะ…"
-
-#: src/backend/managers/versioning.py:106
-msgid "Nothing to commit"
-msgstr ""
-
-#: src/backend/managers/versioning.py:112
-#, python-brace-format
-msgid "New state [{0}] created successfully!"
-msgstr "สรา้งสถานะ [{0}] ใหม่เรียบร้อยแล้ว!"
-
-#: src/backend/managers/versioning.py:140
-#, fuzzy
-msgid "States list retrieved successfully!"
-msgstr "สรา้งสถานะ [{0}] ใหม่เรียบร้อยแล้ว!"
-
-#: src/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
-msgid "State {0} restored successfully!"
-msgstr "สรา้งสถานะ [{0}] ใหม่เรียบร้อยแล้ว!"
-
-#: src/backend/managers/versioning.py:176
-#, fuzzy
-msgid "Restoring state {} …"
-msgstr "กำลังอัปเดตสถานะ…"
-
-#: src/backend/managers/versioning.py:185
-#, fuzzy
-msgid "State not found"
-msgstr "ไม่พบสถานะ"
-
-#: src/backend/managers/versioning.py:191
-msgid "State {} is already the active state"
-msgstr ""
-
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
 msgstr "ไม่ได้ระบุ Path"
@@ -667,6 +568,44 @@ msgstr "กำลังทำให้เสร็จสิ้น…"
 msgid "Caching template…"
 msgstr "กำลังแคชเทมเพลต…"
 
+#: src/backend/managers/versioning.py:97
+#, fuzzy
+msgid "Committing state …"
+msgstr "กำลังอัปเดตสถานะ…"
+
+#: src/backend/managers/versioning.py:106
+msgid "Nothing to commit"
+msgstr ""
+
+#: src/backend/managers/versioning.py:112
+#, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "สรา้งสถานะ [{0}] ใหม่เรียบร้อยแล้ว!"
+
+#: src/backend/managers/versioning.py:140
+#, fuzzy
+msgid "States list retrieved successfully!"
+msgstr "สรา้งสถานะ [{0}] ใหม่เรียบร้อยแล้ว!"
+
+#: src/backend/managers/versioning.py:171
+#, fuzzy, python-brace-format
+msgid "State {0} restored successfully!"
+msgstr "สรา้งสถานะ [{0}] ใหม่เรียบร้อยแล้ว!"
+
+#: src/backend/managers/versioning.py:176
+#, fuzzy
+msgid "Restoring state {} …"
+msgstr "กำลังอัปเดตสถานะ…"
+
+#: src/backend/managers/versioning.py:185
+#, fuzzy
+msgid "State not found"
+msgstr "ไม่พบสถานะ"
+
+#: src/backend/managers/versioning.py:191
+msgid "State {} is already the active state"
+msgstr ""
+
 #: src/dialogs/crash.py:37
 msgid "Show report"
 msgstr "แสดงรายงาน"
@@ -688,29 +627,33 @@ msgid "Choose path"
 msgstr "เลือก Path"
 
 #: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
-#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
-#: src/dialogs/installer.py:66 src/views/bottle_details.py:202
-#: src/views/bottle_details.py:296 src/views/bottle_details.py:335
-#: src/views/bottle_details.py:414 src/views/bottle_preferences.py:260
-#: src/views/bottle_preferences.py:744 src/views/bottle_programs.py:89
-#: src/views/importer.py:117 src/views/importer.py:146 src/views/list.py:120
-#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-rename.ui:17
-#: src/ui/dialog-run-args.ui:19 src/ui/dialog-bottle-picker.ui:17
-#: src/ui/dialog-proton-alert.ui:17 src/ui/new.ui:33
+#: src/dialogs/installer.py:66 src/dialogs/launchoptions.py:234
+#: src/dialogs/launchoptions.py:258 src/ui/dialog-bottle-picker.ui:17
+#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-proton-alert.ui:17
+#: src/ui/dialog-rename.ui:17 src/ui/dialog-run-args.ui:19 src/ui/new.ui:33
+#: src/views/bottle_details.py:202 src/views/bottle_details.py:296
+#: src/views/bottle_details.py:335 src/views/bottle_details.py:414
+#: src/views/bottle_preferences.py:260 src/views/bottle_preferences.py:744
+#: src/views/bottle_programs.py:89 src/views/importer.py:117
+#: src/views/importer.py:146 src/views/list.py:120 src/views/new.py:144
+#: src/views/new.py:160 src/views/preferences.py:195
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-#: src/dialogs/drives.py:73 src/dialogs/launchoptions.py:234
-#: src/dialogs/launchoptions.py:258 src/dialogs/installer.py:66
-#: src/views/bottle_preferences.py:260 src/views/new.py:144
-#: src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-bottle-picker.ui:22
+#: src/dialogs/drives.py:73 src/dialogs/installer.py:66
+#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
+#: src/ui/dialog-bottle-picker.ui:22 src/views/bottle_preferences.py:260
+#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
 msgid "Select"
 msgstr "เลือก"
 
 #: src/dialogs/envvars.py:131
 msgid "No environment variables defined."
+msgstr "ไม่ได้กำหนด Environment variables"
+
+#: src/dialogs/exclusionpatterns.py:108
+#, fuzzy
+msgid "No exclusion patterns defined."
 msgstr "ไม่ได้กำหนด Environment variables"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:34
@@ -726,32 +669,6 @@ msgstr "เกิดข้อผิดพลาดขึ้น"
 #: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
 msgstr "คัดลอกไปยังคลิปบอร์ด"
-
-#. endregion
-#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
-msgid "Choose a script which should be executed after run."
-msgstr "เลือกสคริปต์ที่จะเรียกใช้หลังจากการรัน"
-
-#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
-msgid "Choose from where start the program."
-msgstr "เลือกว่าจะเริ่มโปรแกรมในที่ใด"
-
-#: src/dialogs/launchoptions.py:58
-#, python-brace-format
-msgid "{0} is already disabled for this bottle."
-msgstr "{0} ถูกปิดการใช้งานสำหรับขวดนี้แล้ว"
-
-#: src/dialogs/launchoptions.py:59
-msgid "This setting is different from the bottle's default."
-msgstr "การตั้งค่านี้ต่างจากค่าเริ่มต้นของขวด"
-
-#: src/dialogs/launchoptions.py:232
-msgid "Choose the script"
-msgstr "เลือกสคริปต์"
-
-#: src/dialogs/launchoptions.py:256
-msgid "Choose the Working Directory"
-msgstr "เลือกไดเรกทอรีในการทำงาน"
 
 #: src/dialogs/installer.py:64
 msgid "Select Resource FIle"
@@ -793,337 +710,71 @@ msgstr ""
 msgid "Installer failed with unknown error"
 msgstr "ตัวติดตั้งล้มเหลวด้วยข้อผิดพลาดที่ไม่รู้จัก"
 
-#: src/dialogs/exclusionpatterns.py:108
-#, fuzzy
-msgid "No exclusion patterns defined."
-msgstr "ไม่ได้กำหนด Environment variables"
+#. endregion
+#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
+msgid "Choose a script which should be executed after run."
+msgstr "เลือกสคริปต์ที่จะเรียกใช้หลังจากการรัน"
 
-#: src/views/bottle_details.py:142
-#, python-format
-msgid "Updated: %s"
-msgstr "อัปเดตแล้ว: %s"
+#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
+msgid "Choose from where start the program."
+msgstr "เลือกว่าจะเริ่มโปรแกรมในที่ใด"
 
-#: src/views/bottle_details.py:200 src/views/list.py:118
-msgid "Choose a Windows executable file"
-msgstr "เลือกไฟล์ Executable ของวินโดวส์"
-
-#: src/views/bottle_details.py:202 src/views/list.py:120
-#: src/ui/dialog-run-args.ui:35
-msgid "Run"
-msgstr "รัน"
-
-#: src/views/bottle_details.py:209
-msgid "Be Aware of Sandbox"
-msgstr ""
-
-#: src/views/bottle_details.py:210
-msgid ""
-"Bottles is running in a sandbox, a restricted permission environment needed "
-"to keep you safe. If the program won't run, consider moving inside the "
-"bottle (3 dots icon on the top), then launch from there."
-msgstr ""
-
-#: src/views/bottle_details.py:212
-msgid "Ok"
-msgstr ""
-
-#: src/views/bottle_details.py:267
-msgid "Select the location where to save the backup config"
-msgstr "เลือกตำแหน่งในการจัดเก็บการตั้งค่าแบ็กอัป"
-
-#: src/views/bottle_details.py:271
-msgid "Select the location where to save the backup archive"
-msgstr "เลือกตำแหน่งในการจัดเก็บไฟล์แบ็กอัป"
-
-#: src/views/bottle_details.py:276
+#: src/dialogs/launchoptions.py:58
 #, python-brace-format
-msgid "Backup created for '{0}'."
-msgstr "สร้างแบ็กอัปสำหรับ '{0}' แล้ว"
+msgid "{0} is already disabled for this bottle."
+msgstr "{0} ถูกปิดการใช้งานสำหรับขวดนี้แล้ว"
 
-#: src/views/bottle_details.py:278
-#, python-brace-format
-msgid "Backup failed for '{0}'."
-msgstr "ข้อผิดพลาดในการแบ็กอัป '{0}'"
+#: src/dialogs/launchoptions.py:59
+msgid "This setting is different from the bottle's default."
+msgstr "การตั้งค่านี้ต่างจากค่าเริ่มต้นของขวด"
 
-#: src/views/bottle_details.py:296
-msgid "Export"
-msgstr "ส่งออก"
+#: src/dialogs/launchoptions.py:232
+msgid "Choose the script"
+msgstr "เลือกสคริปต์"
 
-#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
-#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
-#: src/views/bottle_preferences.py:745
-msgid "Confirm"
-msgstr ""
+#: src/dialogs/launchoptions.py:256
+msgid "Choose the Working Directory"
+msgstr "เลือกไดเรกทอรีในการทำงาน"
 
-#: src/views/bottle_details.py:333
-msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "คุณแน่ใจหรือไม่ที่จะลบขวดนี้และไฟล์ทั้งหมด?"
+#: src/main.py:105
+msgid "Show version"
+msgstr "แสดงเวอร์ชัน"
 
-#: src/views/bottle_details.py:412
-msgid ""
-"Are you sure you want to terminate all processes?\n"
-"This can cause data loss."
-msgstr ""
+#: src/main.py:113
+msgid "Executable path"
+msgstr "Path ของ Executable"
 
-#: src/views/bottle_preferences.py:207
-msgid "This feature is not available on your system."
-msgstr ""
+#: src/main.py:121
+msgid "lnk path"
+msgstr "Path ของ lnk"
 
-#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:405
-msgid "Default to the bottle path."
-msgstr ""
+#: src/main.py:129 src/ui/library-entry.ui:103 src/ui/list-entry.ui:7
+msgid "Bottle name"
+msgstr "ชื่อขวด"
 
-#: src/views/bottle_preferences.py:258
-msgid "Choose working directory for executables"
-msgstr "เลือกไดเรกทอรีในการทำงานของ Executables"
+#: src/main.py:137
+msgid "Pass arguments"
+msgstr "ส่งต่อ Arguments"
 
-#: src/views/bottle_preferences.py:741
-msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
+#: src/main.py:196
+msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
+msgstr "URI ไม่ถูกต้อง (syntax: bottles:run/<ขวด>/<โปรแกรม>)"
 
-#: src/views/bottle_preferences.py:742
-msgid ""
-"This will kepp all your files but will delete all states. Do you want to "
-"continue?"
-msgstr ""
+#: src/main.py:237
+msgid "[Quit] request received."
+msgstr "[ปิด] ได้รับรีเควสต์แล้ว"
 
-#: src/views/bottle_programs.py:83
-#, python-brace-format
-msgid "'{0}' added."
-msgstr "เพิ่ม '{0}' แล้ว"
+#: src/main.py:246
+msgid "[Help] request received."
+msgstr "[ช่วยเหลือ] ได้รับรีเควสต์แล้ว"
 
-#: src/views/bottle_programs.py:87
-msgid "Choose an executable path"
-msgstr "เลือก Path ของ Executable"
+#: src/main.py:254
+msgid "[Refresh] request received."
+msgstr "[รีเฟรช] ได้รับรีเควสต์แล้ว"
 
-#: src/views/bottle_programs.py:89
-msgid "Add"
-msgstr "เพิ่ม"
-
-#: src/views/details.py:154
-msgid "Details & Utilities"
-msgstr "รายละเอียดและเครื่องมือ"
-
-#: src/views/details.py:158 src/ui/preferences.ui:6 src/ui/window.ui:24
-msgid "Preferences"
-msgstr "การตั้งค่า"
-
-#: src/views/details.py:162
-msgid "Dependencies"
-msgstr "Dependencies"
-
-#: src/views/details.py:166 src/ui/details-bottle.ui:241
-msgid "Programs"
-msgstr "โปรแกรม"
-
-#: src/views/details.py:167
-msgid "Found in your bottle's Start menu."
-msgstr "พบใน Start menu ของขวดของคุณ"
-
-#: src/views/details.py:170 src/ui/details-preferences.ui:656
-msgid "Versioning"
-msgstr "ระบบเวอร์ชัน"
-
-#: src/views/details.py:174
-msgid "Installers"
-msgstr "ตัวติดตั้ง"
-
-#: src/views/details.py:178 src/ui/details-bottle.ui:289
-msgid "Task Manager"
-msgstr "ตัวจัดการงาน"
-
-#: src/views/details.py:377
-msgid "Operations in progress, please wait."
-msgstr ""
-
-#: src/views/details.py:381
-msgid "Return to your bottles."
-msgstr ""
-
-#: src/views/importer.py:89
-msgid "Backup imported successfully."
-msgstr "นำเข้าแบ็กอัปเสร็จสมบูรณ์"
-
-#: src/views/importer.py:91
-msgid "Import failed."
-msgstr "นำเข้าล้มเหลว"
-
-#: src/views/importer.py:103 src/views/importer.py:132
-msgid "Importing backup…"
-msgstr "กำลังนำเข้าแบ็กอัป…"
-
-#: src/views/importer.py:115
-msgid "Choose a backup archive"
-msgstr "เลือกไฟล์แบ็กอัป"
-
-#: src/views/importer.py:117 src/views/importer.py:146
-msgid "Import"
-msgstr "นำเข้า"
-
-#: src/views/importer.py:144
-msgid "Choose a configuration file"
-msgstr "เลือกไฟล์การตั้งค่า"
-
-#: src/views/list.py:59 src/views/list.py:65
-msgid "N/A"
-msgstr "N/A"
-
-#: src/views/list.py:220
-msgid "Your Bottles"
-msgstr "ขวดของคุณ"
-
-#: src/views/new.py:142
-msgid "Choose a recipe file"
-msgstr "เลือกไฟล์สูตร"
-
-#: src/views/new.py:158
-msgid "Choose where to store the bottle"
-msgstr "เลือกที่จัดเก็บขวด"
-
-#: src/views/new.py:211
-msgid "There was an error creating the bottle."
-msgstr "พบข้อผิดพลาดในการสร้างขวด"
-
-#: src/views/new.py:219
-#, python-brace-format
-msgid "A bottle named “{0}” was created successfully"
-msgstr "ขวดชื่อ “{0}” ถูกสร้างสำเร็จแล้ว"
-
-#: src/views/preferences.py:125
-#, fuzzy
-msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-"ไม่พบ Steam หรือ Bottles ไม่มีสิทธิ์มากพอ ดู https://docs.usebottles.com/flatpak/"
-"cant-enable-steam-proton-manager"
-
-#: src/views/preferences.py:188 src/views/preferences.py:204
-#: src/ui/preferences.ui:155
-msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)."
-msgstr "เลือกที่จัดเก็บขวดใหม่ (จะไม่ย้ายขวดที่สร้างไว้ก่อนหน้านี้)"
-
-#: src/views/preferences.py:193
-msgid "Choose new bottles path"
-msgstr "เลือก Path สำหรับขวดใหม่"
-
-#: src/views/preferences.py:236
-msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:237
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:240
-msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
-
-#: src/views/preferences.py:241
-msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
-msgstr ""
-
-#: src/views/preferences.py:243
-msgid "Other"
-msgstr "อื่น ๆ"
-
-#: src/views/bottle_versioning.py:88
-msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
-
-#: src/views/loading.py:33
-#, python-brace-format
-msgid "Downloading ~{0} of packages…"
-msgstr ""
-
-#: src/views/loading.py:34
-#, python-brace-format
-msgid "Fetched {0} of {1} packages"
-msgstr ""
-
-#: src/widgets/component.py:70
-msgid "Upgrade"
-msgstr "อัปเกรด"
-
-#: src/widgets/component.py:145
-msgid "Installing…"
-msgstr "กำลังติดตั้ง…"
-
-#: src/widgets/dependency.py:107 src/widgets/installer.py:72
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "Manifest สำหรับ {0}"
-
-#: src/widgets/dependency.py:170
-#, python-brace-format
-msgid "'{0}' installed."
-msgstr "ติดตั้ง '{0}' แล้ว"
-
-#: src/widgets/dependency.py:184
-#, fuzzy, python-brace-format
-msgid "'{0}' failed to install."
-msgstr "ติดตั้ง '{0}' แล้ว"
-
-#: src/widgets/importer.py:66
-#, python-brace-format
-msgid "'{0}' imported."
-msgstr "นำเข้า '{0}' แล้ว"
-
-#: src/widgets/installer.py:81
-#, python-brace-format
-msgid "Review for {0}"
-msgstr "รีวิวสำหรับ {0}"
-
-#: src/widgets/program.py:187
-#, fuzzy, python-brace-format
-msgid "Launching '{0}'…"
-msgstr "เปิดด้วยเทอร์มินัล…"
-
-#: src/widgets/program.py:193
-#, fuzzy, python-brace-format
-msgid "Launching '{0}' with Steam…"
-msgstr "เปิดด้วยเทอร์มินัล"
-
-#: src/widgets/program.py:215
-#, python-brace-format
-msgid "'{0}' hidden."
-msgstr "'{0}' ถูกซ่อน"
-
-#: src/widgets/program.py:217
-#, python-brace-format
-msgid "'{0}' showed."
-msgstr "แสดง '{0}' แล้ว"
-
-#: src/widgets/program.py:240
-#, python-brace-format
-msgid "'{0}' removed."
-msgstr "'{0}' ถูกนำออกแล้ว"
-
-#: src/widgets/program.py:254
-#, python-brace-format
-msgid "'{0}' renamed to '{1}'."
-msgstr "'{0}' ถูกเปลี่ยนชื่อเป็น '{1}'"
-
-#: src/widgets/program.py:274
-#, python-brace-format
-msgid "Desktop Entry created for '{0}'"
-msgstr "สร้าง Desktop entry สำหรับ '{0}' แล้ว"
-
-#: src/widgets/program.py:290
-#, python-brace-format
-msgid "'{0}' added to your library"
-msgstr "เพิ่ม '{0}' ในไลบรารีแล้ว"
-
-#: src/widgets/program.py:306
-#, python-brace-format
-msgid "'{0}' added to your Steam library"
-msgstr "เพิ่ม '{0}' ในไลบรารี Steam แล้ว"
-
-#: src/utils/connection.py:67
-msgid "You are offline, unable to download."
-msgstr "คุณกำลังออฟไลน์ ไม่สามารถดาวน์โหลดได้"
+#: src/operation.py:50
+msgid "Calculating…"
+msgstr "กำลังคำนวณ…"
 
 #: src/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
@@ -1175,6 +826,20 @@ msgstr "ติดตั้งใหม่"
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
 msgstr "รายงานบั๊ก…"
+
+#: src/ui/dependency-entry.ui:50
+#, fuzzy
+msgid "Dependency name"
+msgstr "Dependencies"
+
+#: src/ui/dependency-entry.ui:52
+#, fuzzy
+msgid "Dependency description"
+msgstr "Dependencies"
+
+#: src/ui/dependency-entry.ui:59
+msgid "Category"
+msgstr ""
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -1256,7 +921,7 @@ msgstr "ขวดของฉัน"
 msgid "Win64"
 msgstr "Win64"
 
-#: src/ui/details-bottle.ui:177 src/ui/new.ui:77
+#: src/ui/details-bottle.ui:177 src/ui/list-entry.ui:14 src/ui/new.ui:77
 msgid "Environment"
 msgstr "สภาพแวดล้อม"
 
@@ -1284,6 +949,10 @@ msgstr "รัน Executable…"
 #: src/ui/details-bottle.ui:235
 msgid "Layers"
 msgstr "เลเยอร์"
+
+#: src/ui/details-bottle.ui:241 src/views/details.py:166
+msgid "Programs"
+msgstr "โปรแกรม"
 
 #: src/ui/details-bottle.ui:246
 msgid "Tools"
@@ -1316,6 +985,10 @@ msgstr ""
 #: src/ui/details-bottle.ui:278
 msgid "Browse internal files with the Wine explorer."
 msgstr ""
+
+#: src/ui/details-bottle.ui:289 src/views/details.py:178
+msgid "Task Manager"
+msgstr "ตัวจัดการงาน"
 
 #: src/ui/details-bottle.ui:290
 msgid "Manage processes with the Wine task manager."
@@ -1412,6 +1085,12 @@ msgstr ""
 
 #: src/ui/details-installers.ui:13
 msgid "Search for Programs…"
+msgstr ""
+
+#: src/ui/details-installers.ui:22
+msgid ""
+"Use this section to install programs curated by our community, without "
+"having to proceed manually."
 msgstr ""
 
 #: src/ui/details-installers.ui:48
@@ -1800,13 +1479,17 @@ msgstr ""
 msgid "Audio"
 msgstr ""
 
-#: src/ui/details-preferences.ui:643
+#: src/ui/details-preferences.ui:643 src/ui/dialog-launch-options.ui:183
 msgid "Reduce Latency"
 msgstr ""
 
 #: src/ui/details-preferences.ui:644
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
 msgstr ""
+
+#: src/ui/details-preferences.ui:656 src/views/details.py:170
+msgid "Versioning"
+msgstr "ระบบเวอร์ชัน"
 
 #: src/ui/details-preferences.ui:660
 msgid "Use Compression for States"
@@ -1924,6 +1607,16 @@ msgstr ""
 msgid "Operations"
 msgstr ""
 
+#: src/ui/dialog-bottle-picker.ui:6
+#, fuzzy
+msgid "Select Bottle"
+msgstr "ลบขวด…"
+
+#: src/ui/dialog-bottle-picker.ui:42
+#, fuzzy
+msgid "Create New Bottle"
+msgstr "โคลนขวด"
+
 #: src/ui/dialog-crash-report.ui:10
 msgid "Bottles crash report"
 msgstr ""
@@ -1952,6 +1645,22 @@ msgstr ""
 
 #: src/ui/dialog-crash-report.ui:102
 msgid "Advanced options"
+msgstr ""
+
+#: src/ui/dialog-deps-check.ui:15
+msgid "Incomplete package"
+msgstr ""
+
+#: src/ui/dialog-deps-check.ui:16
+msgid ""
+"This version of Bottles does not seem to provide all the necessary core "
+"dependencies, please contact the package maintainer or use an official "
+"version.\n"
+"                        "
+msgstr ""
+
+#: src/ui/dialog-deps-check.ui:21
+msgid "Quit"
 msgstr ""
 
 #: src/ui/dialog-dll-overrides.ui:14
@@ -2010,6 +1719,7 @@ msgid "Duplicating…"
 msgstr ""
 
 #: src/ui/dialog-duplicate.ui:87 src/ui/dialog-upgrade-versioning.ui:121
+#: src/ui/new.ui:216
 msgid "Take a break, it may take a while."
 msgstr ""
 
@@ -2029,6 +1739,24 @@ msgstr ""
 
 #: src/ui/dialog-env-vars.ui:46
 msgid "Existing Variables"
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:16
+msgid "Exclusion Patterns"
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:35
+msgid ""
+"Define patterns that will be used to prevent some directories to being "
+"versioned."
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:38
+msgid "Pattern"
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:46
+msgid "Existing Patterns"
 msgstr ""
 
 #: src/ui/dialog-gamescope.ui:8
@@ -2151,7 +1879,7 @@ msgid "Command Arguments"
 msgstr "Arguments ของคำสั่ง"
 
 #: src/ui/dialog-launch-options.ui:52
-#, python-format
+#, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr ""
 
@@ -2175,51 +1903,8 @@ msgstr ""
 msgid "Reset to Bottle's Defaults"
 msgstr ""
 
-#: src/ui/dialog-rename.ui:9
-msgid "Rename"
-msgstr ""
-
-#: src/ui/dialog-rename.ui:34
-msgid "Choose a new name for the selected program."
-msgstr ""
-
-#: src/ui/dialog-rename.ui:37
-msgid "New Name"
-msgstr ""
-
-#: src/ui/dialog-run-args.ui:14
-msgid "Run With Arguments"
-msgstr ""
-
-#: src/ui/dialog-run-args.ui:47
-msgid "Write below the arguments to be passed to the executable."
-msgstr ""
-
-#: src/ui/dialog-run-args.ui:50
-msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr ""
-
-#: src/ui/dialog-bottle-picker.ui:42
-#, fuzzy
-msgid "Create New Bottle"
-msgstr "โคลนขวด"
-
-#: src/ui/dialog-exclusion-patterns.ui:16
-msgid "Exclusion Patterns"
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:35
-msgid ""
-"Define patterns that will be used to prevent some directories to being "
-"versioned."
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:38
-msgid "Pattern"
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:46
-msgid "Existing Patterns"
+#: src/ui/dialog-proton-alert.ui:6
+msgid "Proton Disclaimer"
 msgstr ""
 
 #: src/ui/dialog-proton-alert.ui:22
@@ -2243,6 +1928,35 @@ msgstr ""
 
 #: src/ui/dialog-proton-alert.ui:50
 msgid "I got it."
+msgstr ""
+
+#: src/ui/dialog-rename.ui:9
+msgid "Rename"
+msgstr ""
+
+#: src/ui/dialog-rename.ui:34
+msgid "Choose a new name for the selected program."
+msgstr ""
+
+#: src/ui/dialog-rename.ui:37
+msgid "New Name"
+msgstr ""
+
+#: src/ui/dialog-run-args.ui:14
+msgid "Run With Arguments"
+msgstr ""
+
+#: src/ui/dialog-run-args.ui:35 src/views/bottle_details.py:202
+#: src/views/list.py:120
+msgid "Run"
+msgstr "รัน"
+
+#: src/ui/dialog-run-args.ui:47
+msgid "Write below the arguments to be passed to the executable."
+msgstr ""
+
+#: src/ui/dialog-run-args.ui:50
+msgid "e.g.: -opengl -SkipBuildPatchPrereq"
 msgstr ""
 
 #: src/ui/dialog-sandbox.ui:9
@@ -2304,18 +2018,6 @@ msgstr ""
 msgid "Done! Please restart Bottles."
 msgstr ""
 
-#: src/ui/exclusion-pattern-entry.ui:6 src/ui/env-var-entry.ui:6
-msgid "Value"
-msgstr ""
-
-#: src/ui/local-resource-entry.ui:6
-msgid "This resource is missing."
-msgstr ""
-
-#: src/ui/local-resource-entry.ui:10
-msgid "Browse"
-msgstr ""
-
 #: src/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
 msgstr ""
@@ -2347,6 +2049,20 @@ msgstr ""
 #: src/ui/drive-entry.ui:24
 msgid "Choose a Directory"
 msgstr ""
+
+#: src/ui/env-var-entry.ui:6 src/ui/exclusion-pattern-entry.ui:6
+msgid "Value"
+msgstr ""
+
+#. Wineprefix is a prefix for the wine program
+#: src/ui/importer-entry.ui:22
+msgid "Wineprefix name"
+msgstr ""
+
+#: src/ui/importer-entry.ui:29
+#, fuzzy
+msgid "Manager"
+msgstr "ตัวจัดการงาน"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -2386,6 +2102,20 @@ msgstr "แสดง Manifest…"
 msgid "Read Review…"
 msgstr ""
 
+#: src/ui/installer-entry.ui:40
+#, fuzzy
+msgid "Installer name"
+msgstr "ตัวติดตั้ง"
+
+#: src/ui/installer-entry.ui:41
+#, fuzzy
+msgid "Installer description"
+msgstr "ตัวติดตั้ง"
+
+#: src/ui/installer-entry.ui:48
+msgid "Unknown"
+msgstr ""
+
 #: src/ui/installer-entry.ui:57
 msgid "Install this program"
 msgstr ""
@@ -2394,8 +2124,17 @@ msgstr ""
 msgid "Remove from Library"
 msgstr ""
 
+#: src/ui/library-entry.ui:94
+#, fuzzy
+msgid "Item name"
+msgstr "ชื่อขวด"
+
 #: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
 msgid "Launch with Steam"
+msgstr ""
+
+#: src/ui/library.ui:14 src/ui/preferences.ui:259 src/window.py:171
+msgid "Library"
 msgstr ""
 
 #: src/ui/library.ui:15
@@ -2452,12 +2191,24 @@ msgstr ""
 msgid "Starting up…"
 msgstr ""
 
+#: src/ui/local-resource-entry.ui:6
+msgid "This resource is missing."
+msgstr ""
+
+#: src/ui/local-resource-entry.ui:10
+msgid "Browse"
+msgstr ""
+
 #: src/ui/new.ui:17 src/ui/new.ui:64
 msgid "New Bottle"
 msgstr ""
 
 #: src/ui/new.ui:38
 msgid "Create"
+msgstr ""
+
+#: src/ui/new.ui:47 src/ui/new.ui:268 src/window.py:187
+msgid "Close"
 msgstr ""
 
 #: src/ui/new.ui:67
@@ -2536,6 +2287,11 @@ msgstr "Path ที่กำหนดเอง"
 msgid "Store this bottle in another place."
 msgstr ""
 
+#: src/ui/new.ui:215
+#, fuzzy
+msgid "Creating a Bottle…"
+msgstr "โคลนขวด"
+
 #: src/ui/new.ui:262
 msgid "Bottle created"
 msgstr ""
@@ -2587,6 +2343,10 @@ msgstr ""
 #: src/ui/onboard.ui:150
 msgid "Next"
 msgstr ""
+
+#: src/ui/preferences.ui:6 src/ui/window.ui:24 src/views/details.py:158
+msgid "Preferences"
+msgstr "การตั้งค่า"
 
 #: src/ui/preferences.ui:13 src/ui/preferences.ui:46
 msgid "General"
@@ -2683,6 +2443,12 @@ msgstr ""
 msgid "Custom Bottles Path (Requires Restart)"
 msgstr ""
 
+#: src/ui/preferences.ui:155 src/views/preferences.py:188
+#: src/views/preferences.py:204
+msgid ""
+"Choose where to store the new bottles (this will not move the existing ones)."
+msgstr "เลือกที่จัดเก็บขวดใหม่ (จะไม่ย้ายขวดที่สร้างไว้ก่อนหน้านี้)"
+
 #: src/ui/preferences.ui:188
 msgid "Runners"
 msgstr ""
@@ -2773,6 +2539,21 @@ msgstr "แสดงโปรแกรม"
 msgid "Remove from List"
 msgstr ""
 
+#: src/ui/program-entry.ui:99
+#, fuzzy
+msgid "Program name"
+msgstr "โปรแกรม"
+
+#. id as identification
+#: src/ui/state-entry.ui:7
+#, fuzzy
+msgid "State id"
+msgstr "ไม่พบสถานะ"
+
+#: src/ui/state-entry.ui:8
+msgid "State comment"
+msgstr ""
+
 #: src/ui/state-entry.ui:16
 msgid "Restore this state"
 msgstr ""
@@ -2810,6 +2591,319 @@ msgstr ""
 
 #: src/ui/window.ui:99
 msgid "New bottle"
+msgstr ""
+
+#: src/utils/connection.py:67
+msgid "You are offline, unable to download."
+msgstr "คุณกำลังออฟไลน์ ไม่สามารถดาวน์โหลดได้"
+
+#: src/views/bottle_details.py:142
+#, python-format
+msgid "Updated: %s"
+msgstr "อัปเดตแล้ว: %s"
+
+#: src/views/bottle_details.py:200 src/views/list.py:118
+msgid "Choose a Windows executable file"
+msgstr "เลือกไฟล์ Executable ของวินโดวส์"
+
+#: src/views/bottle_details.py:209
+msgid "Be Aware of Sandbox"
+msgstr ""
+
+#: src/views/bottle_details.py:210
+msgid ""
+"Bottles is running in a sandbox, a restricted permission environment needed "
+"to keep you safe. If the program won't run, consider moving inside the "
+"bottle (3 dots icon on the top), then launch from there."
+msgstr ""
+
+#: src/views/bottle_details.py:212
+msgid "Ok"
+msgstr ""
+
+#: src/views/bottle_details.py:267
+msgid "Select the location where to save the backup config"
+msgstr "เลือกตำแหน่งในการจัดเก็บการตั้งค่าแบ็กอัป"
+
+#: src/views/bottle_details.py:271
+msgid "Select the location where to save the backup archive"
+msgstr "เลือกตำแหน่งในการจัดเก็บไฟล์แบ็กอัป"
+
+#: src/views/bottle_details.py:276
+#, python-brace-format
+msgid "Backup created for '{0}'."
+msgstr "สร้างแบ็กอัปสำหรับ '{0}' แล้ว"
+
+#: src/views/bottle_details.py:278
+#, python-brace-format
+msgid "Backup failed for '{0}'."
+msgstr "ข้อผิดพลาดในการแบ็กอัป '{0}'"
+
+#: src/views/bottle_details.py:296
+msgid "Export"
+msgstr "ส่งออก"
+
+#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
+#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
+#: src/views/bottle_preferences.py:745
+msgid "Confirm"
+msgstr ""
+
+#: src/views/bottle_details.py:333
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "คุณแน่ใจหรือไม่ที่จะลบขวดนี้และไฟล์ทั้งหมด?"
+
+#: src/views/bottle_details.py:412
+msgid ""
+"Are you sure you want to terminate all processes?\n"
+"This can cause data loss."
+msgstr ""
+
+#: src/views/bottle_preferences.py:207
+msgid "This feature is not available on your system."
+msgstr ""
+
+#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
+#: src/views/bottle_preferences.py:405
+msgid "Default to the bottle path."
+msgstr ""
+
+#: src/views/bottle_preferences.py:258
+msgid "Choose working directory for executables"
+msgstr "เลือกไดเรกทอรีในการทำงานของ Executables"
+
+#: src/views/bottle_preferences.py:741
+msgid "Toggling Compression Require Re-Initialization"
+msgstr ""
+
+#: src/views/bottle_preferences.py:742
+msgid ""
+"This will kepp all your files but will delete all states. Do you want to "
+"continue?"
+msgstr ""
+
+#: src/views/bottle_programs.py:83
+#, python-brace-format
+msgid "'{0}' added."
+msgstr "เพิ่ม '{0}' แล้ว"
+
+#: src/views/bottle_programs.py:87
+msgid "Choose an executable path"
+msgstr "เลือก Path ของ Executable"
+
+#: src/views/bottle_programs.py:89
+msgid "Add"
+msgstr "เพิ่ม"
+
+#: src/views/bottle_versioning.py:88
+msgid "Please migrate to the new Versioning system to create new states."
+msgstr ""
+
+#: src/views/details.py:154
+msgid "Details & Utilities"
+msgstr "รายละเอียดและเครื่องมือ"
+
+#: src/views/details.py:162
+msgid "Dependencies"
+msgstr "Dependencies"
+
+#: src/views/details.py:167
+msgid "Found in your bottle's Start menu."
+msgstr "พบใน Start menu ของขวดของคุณ"
+
+#: src/views/details.py:174
+msgid "Installers"
+msgstr "ตัวติดตั้ง"
+
+#: src/views/details.py:377
+msgid "Operations in progress, please wait."
+msgstr ""
+
+#: src/views/details.py:381
+msgid "Return to your bottles."
+msgstr ""
+
+#: src/views/importer.py:89
+msgid "Backup imported successfully."
+msgstr "นำเข้าแบ็กอัปเสร็จสมบูรณ์"
+
+#: src/views/importer.py:91
+msgid "Import failed."
+msgstr "นำเข้าล้มเหลว"
+
+#: src/views/importer.py:103 src/views/importer.py:132
+msgid "Importing backup…"
+msgstr "กำลังนำเข้าแบ็กอัป…"
+
+#: src/views/importer.py:115
+msgid "Choose a backup archive"
+msgstr "เลือกไฟล์แบ็กอัป"
+
+#: src/views/importer.py:117 src/views/importer.py:146
+msgid "Import"
+msgstr "นำเข้า"
+
+#: src/views/importer.py:144
+msgid "Choose a configuration file"
+msgstr "เลือกไฟล์การตั้งค่า"
+
+#: src/views/list.py:59 src/views/list.py:65
+msgid "N/A"
+msgstr "N/A"
+
+#: src/views/list.py:220
+msgid "Your Bottles"
+msgstr "ขวดของคุณ"
+
+#: src/views/loading.py:33
+#, python-brace-format
+msgid "Downloading ~{0} of packages…"
+msgstr ""
+
+#: src/views/loading.py:34
+#, python-brace-format
+msgid "Fetched {0} of {1} packages"
+msgstr ""
+
+#: src/views/new.py:142
+msgid "Choose a recipe file"
+msgstr "เลือกไฟล์สูตร"
+
+#: src/views/new.py:158
+msgid "Choose where to store the bottle"
+msgstr "เลือกที่จัดเก็บขวด"
+
+#: src/views/new.py:211
+msgid "There was an error creating the bottle."
+msgstr "พบข้อผิดพลาดในการสร้างขวด"
+
+#: src/views/new.py:219
+#, python-brace-format
+msgid "A bottle named “{0}” was created successfully"
+msgstr "ขวดชื่อ “{0}” ถูกสร้างสำเร็จแล้ว"
+
+#: src/views/preferences.py:125
+#, fuzzy
+msgid "Steam was not found or Bottles does not have enough permissions."
+msgstr ""
+"ไม่พบ Steam หรือ Bottles ไม่มีสิทธิ์มากพอ ดู https://docs.usebottles.com/flatpak/"
+"cant-enable-steam-proton-manager"
+
+#: src/views/preferences.py:193
+msgid "Choose new bottles path"
+msgstr "เลือก Path สำหรับขวดใหม่"
+
+#: src/views/preferences.py:236
+msgid "Based on Valve's Wine, includes staging and Proton patches."
+msgstr ""
+
+#: src/views/preferences.py:237
+msgid "Based on Wine upstream, includes staging and Proton patches."
+msgstr ""
+
+#: src/views/preferences.py:240
+msgid "Based on Wine upstream, includes staging patches."
+msgstr ""
+
+#: src/views/preferences.py:241
+msgid ""
+"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
+"Requires the Steam Runtime turned on."
+msgstr ""
+
+#: src/views/preferences.py:243
+msgid "Other"
+msgstr "อื่น ๆ"
+
+#: src/widgets/component.py:70
+msgid "Upgrade"
+msgstr "อัปเกรด"
+
+#: src/widgets/component.py:145
+msgid "Installing…"
+msgstr "กำลังติดตั้ง…"
+
+#: src/widgets/dependency.py:107 src/widgets/installer.py:72
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "Manifest สำหรับ {0}"
+
+#: src/widgets/dependency.py:170
+#, python-brace-format
+msgid "'{0}' installed."
+msgstr "ติดตั้ง '{0}' แล้ว"
+
+#: src/widgets/dependency.py:184
+#, fuzzy, python-brace-format
+msgid "'{0}' failed to install."
+msgstr "ติดตั้ง '{0}' แล้ว"
+
+#: src/widgets/importer.py:66
+#, python-brace-format
+msgid "'{0}' imported."
+msgstr "นำเข้า '{0}' แล้ว"
+
+#: src/widgets/installer.py:81
+#, python-brace-format
+msgid "Review for {0}"
+msgstr "รีวิวสำหรับ {0}"
+
+#: src/widgets/program.py:187
+#, fuzzy, python-brace-format
+msgid "Launching '{0}'…"
+msgstr "เปิดด้วยเทอร์มินัล…"
+
+#: src/widgets/program.py:193
+#, fuzzy, python-brace-format
+msgid "Launching '{0}' with Steam…"
+msgstr "เปิดด้วยเทอร์มินัล"
+
+#: src/widgets/program.py:215
+#, python-brace-format
+msgid "'{0}' hidden."
+msgstr "'{0}' ถูกซ่อน"
+
+#: src/widgets/program.py:217
+#, python-brace-format
+msgid "'{0}' showed."
+msgstr "แสดง '{0}' แล้ว"
+
+#: src/widgets/program.py:240
+#, python-brace-format
+msgid "'{0}' removed."
+msgstr "'{0}' ถูกนำออกแล้ว"
+
+#: src/widgets/program.py:254
+#, python-brace-format
+msgid "'{0}' renamed to '{1}'."
+msgstr "'{0}' ถูกเปลี่ยนชื่อเป็น '{1}'"
+
+#: src/widgets/program.py:274
+#, python-brace-format
+msgid "Desktop Entry created for '{0}'"
+msgstr "สร้าง Desktop entry สำหรับ '{0}' แล้ว"
+
+#: src/widgets/program.py:290
+#, python-brace-format
+msgid "'{0}' added to your library"
+msgstr "เพิ่ม '{0}' ในไลบรารีแล้ว"
+
+#: src/widgets/program.py:306
+#, python-brace-format
+msgid "'{0}' added to your Steam library"
+msgstr "เพิ่ม '{0}' ในไลบรารี Steam แล้ว"
+
+#: src/window.py:184
+msgid "Custom Bottles Path not Found"
+msgstr ""
+
+#: src/window.py:185
+msgid ""
+"Falling back to default path. No bottles from the given path will be listed."
+msgstr ""
+
+#: src/window.py:306
+msgid "Third-Party Libraries and Special Thanks"
 msgstr ""
 
 #~ msgid "Loading…"
