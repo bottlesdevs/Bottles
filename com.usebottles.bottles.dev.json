@@ -220,6 +220,21 @@
       ]
     },
     {
+      "name": "vmtouch",
+      "buildsystem": "simple",
+      "build-commands" : [
+        "make",
+	"make install PREFIX=/app"
+      ],
+      "sources": [
+        {
+	  "type": "git",
+	  "url": "https://github.com/hoytech/vmtouch",
+	  "commit": "8f6898e3c027f445962e223ca7a7b33d40395fc6"
+	}
+      ]
+    },
+    {
       "name": "vulkan-tools",
       "buildsystem": "cmake-ninja",
       "config-opts": [
