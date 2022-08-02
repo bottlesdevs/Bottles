@@ -11,7 +11,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
-    obs_vkc_available
+    obs_vkc_available, vmtouch_available
 from bottles.backend.logger import Logger
 from bottles.utils.threading import RunAsync
 
@@ -508,7 +508,7 @@ class WineCommand:
         return " ".join(gamescope_cmd)
 
     def vmtouch_preload(self):
-        vmtouch_command = "/app/bin/vmtouch"
+        vmtouch_command = vmtouch_available
         vmtouch_flags = "-t -v -l -d"
         vmtouch_file_size = " -m 1024M"
         if self.command.find("C:\\") > 0:
@@ -529,7 +529,7 @@ class WineCommand:
         )
         vmtouch_command = "/app/bin/vmtouch"
         vmtouch_flags = "-e -v"
-        command = vmtouch_command+" "+vmtouch_flags+" "+self.vmtouch_files
+        command = vmtouch_available+" "+vmtouch_flags+" "+self.vmtouch_files
         subprocess.Popen(
             command,
             shell=True,
@@ -541,7 +541,7 @@ class WineCommand:
         if None in [self.runner, self.env]:
             return
 
-        if self.config["Parameters"].get("vmtouch"):
+        if vmtouch_available and self.config["Parameters"].get("vmtouch"):
             self.vmtouch_preload()
 
         if self.config["Parameters"].get("sandbox"):
@@ -577,7 +577,7 @@ class WineCommand:
         res = proc.communicate()[0]
         enc = detect_encoding(res)
 
-        if self.config["Parameters"].get("vmtouch"):
+        if vmtouch_available and self.config["Parameters"].get("sandbox"):
             self.vmtouch_free()
 
         if enc is not None:
