@@ -25,7 +25,7 @@ from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=fa
 from bottles.utils.gtk import GtkUtils
 
 from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, \
-    obs_vkc_available
+    obs_vkc_available, vmtouch_available
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.utils.manager import ManagerUtils
 
@@ -209,6 +209,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_gamescope.set_sensitive(gamescope_available)
         self.switch_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
+        self.switch_vmtouch.set_sensitive(vmtouch_available)
         _not_available = _("This feature is not available on your system.")
         if not gamemode_available:
             self.switch_gamemode.set_tooltip_text(_not_available)
@@ -219,6 +220,8 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_mangohud.set_tooltip_text(_not_available)
         if not obs_vkc_available:
             self.switch_obsvkc.set_tooltip_text(_not_available)
+        if not vmtouch_available:
+            self.switch_vmtouch.set_tooltip_text(_not_available)
 
     def __check_entry_name(self, *_args):
         self.__valid_name = GtkUtils.validate_entry(self.entry_name)
