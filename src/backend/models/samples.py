@@ -63,7 +63,7 @@ class Samples:
             "versioning_exclusion_patterns": False,
             "vmtouch": False,
             "vmtouch_cache_cwd": False,
-            "vmtouch_max_file_size": 0,
+            "vmtouch_max_file_size": 500,
             "vmtouch_lock_memory": False
         },
         "Sandbox": {

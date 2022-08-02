@@ -66,18 +66,6 @@
                                       <property name="title" translatable="yes">Maximum file size to cache</property>
                                     </object>
                                 </child>
-                                <child>
-                                    <object class="AdwActionRow">
-                                        <property name="title" translatable="yes">Lock everything in memory</property>
-                                        <property name="subtitle" translatable="yes">This will lock everything related to vmtouch in memory</property>
-                                        <property name="activatable-widget">switch_lock_all</property>
-                                        <child>
-                                            <object class="GtkSwitch" id="switch_lock_all">
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
-                                    </object>
-                                </child>
                             </object>
                         </child>
                     </object>

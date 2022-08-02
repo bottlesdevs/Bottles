@@ -27,7 +27,7 @@ class VmtouchDialog(Adw.Window):
     # region Widgets
     switch_cache_cwd = Gtk.Template.Child()
     arg_max_size = Gtk.Template.Child()
-    switch_lock_all = Gtk.Template.Child()
+    #switch_lock_all = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
 
@@ -51,12 +51,12 @@ class VmtouchDialog(Adw.Window):
         parameters = config["Parameters"]
         self.switch_cache_cwd.set_state(parameters["vmtouch_cache_cwd"])
         self.arg_max_size.set_text(str(parameters["vmtouch_max_file_size"]))
-        self.switch_lock_all.set_state(parameters["vmtouch_lock_memory"])
+        #self.switch_lock_all.set_state(parameters["vmtouch_lock_memory"])
 
     def __idle_save(self, *_args):
         settings = {"vmtouch_cache_cwd": self.switch_cache_cwd.get_state(),
-                    "vmtouch_max_file_size": int(self.arg_max_size.get_text()),
-                    "vmtouch_lock_memory": self.switch_lock_all.get_state()}
+                    "vmtouch_max_file_size": int(self.arg_max_size.get_text())}
+                    #"vmtouch_lock_memory": self.switch_lock_all.get_state()}
 
         for setting in settings.keys():
             self.manager.update_config(

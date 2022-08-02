@@ -507,20 +507,34 @@ class WineCommand:
         return " ".join(gamescope_cmd)
 
     def vmtouch_preload(self):
+        vmtouch_command = "/app/bin/vmtouch"
         print("!!using vmtouch!!")
         print("command:")
         print(self.command)
         print("cwd:")
         print(self.cwd)
         print("main executable:")
+        #if self.config["Parameters"].get("vmtouch_lock_memory"):
+        #    vmtouch_flags = "-t -v -L"
+        #else:
+        vmtouch_flags = "-t -v -l"
+
+        vmtouch_file_size = " -m "+str(self.config["Parameters"].get("vmtouch_max_file_size"))+"M"
         if self.command.find("C:\\") > 0:
-            executable = (self.cwd+"/"+(self.command.split(" ")[-1].split('\\')[-1])).replace('\'', "")
+            vmtouch_files = (self.cwd+"/"+(self.command.split(" ")[-1].split('\\')[-1])).replace('\'', "")
         else:
-            executable = self.command.split(" ")[-1]
+            vmtouch_files = self.command.split(" ")[-1]
+
+        if self.config["Parameters"].get("vmtouch_cache_cwd"):
+            vmtouch_files = vmtouch_files+"' '"+self.cwd+"/"
+        print("command pre split")
+        print(self.command)
+        print("command post split")
         print(self.command.split(" ")[-1])
         print("executable")
-        print(executable)
-        self.command = "/app/bin/vmtouch -t -l -v '"+executable+"' & "+self.command
+        print(vmtouch_files)
+        self.command = vmtouch_command+" "+vmtouch_flags+" "+vmtouch_file_size+" '"+vmtouch_files+"' & "+self.command
+        print(self.command)
 
     def run(self):
         if None in [self.runner, self.env]:
