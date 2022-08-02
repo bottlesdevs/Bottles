@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-01 22:54+0200\n"
-"PO-Revision-Date: 2022-07-04 17:16+0000\n"
+"PO-Revision-Date: 2022-08-04 06:29+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: data/com.usebottles.bottles.appdata.xml.in:6
 #: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
@@ -816,18 +816,16 @@ msgid "Report a Bug…"
 msgstr "报告缺陷…"
 
 #: src/ui/dependency-entry.ui:50
-#, fuzzy
 msgid "Dependency name"
-msgstr "依赖"
+msgstr "依赖项名称"
 
 #: src/ui/dependency-entry.ui:52
-#, fuzzy
 msgid "Dependency description"
-msgstr "依赖"
+msgstr "依赖项描述"
 
 #: src/ui/dependency-entry.ui:59
 msgid "Category"
-msgstr ""
+msgstr "类别"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -1080,14 +1078,10 @@ msgid "Search for Programs…"
 msgstr "搜索程序…"
 
 #: src/ui/details-installers.ui:22
-#, fuzzy
 msgid ""
 "Use this section to install programs curated by our community, without "
 "having to proceed manually."
-msgstr ""
-"使用本部分安装由我们社区策划的程序，而无需手动进行。选择安装什么程序时请考虑 "
-"<a href=\"https://docs.usebottles.com/bottles/installers#compatibility-grades"
-"\">兼容性等级</a> 。"
+msgstr "使用本部分安装由我们社区维护的程序，而无需手动进行。"
 
 #: src/ui/details-installers.ui:48
 msgid "No Installers Found"
@@ -1603,9 +1597,8 @@ msgid "Operations"
 msgstr "操作"
 
 #: src/ui/dialog-bottle-picker.ui:6
-#, fuzzy
 msgid "Select Bottle"
-msgstr "删除 Bottle…"
+msgstr "选择 Bottle"
 
 #: src/ui/dialog-bottle-picker.ui:42
 msgid "Create New Bottle"
@@ -1648,7 +1641,7 @@ msgstr "高级选项"
 
 #: src/ui/dialog-deps-check.ui:15
 msgid "Incomplete package"
-msgstr ""
+msgstr "不完整的包"
 
 #: src/ui/dialog-deps-check.ui:16
 msgid ""
@@ -1657,6 +1650,9 @@ msgid ""
 "version.\n"
 "                        "
 msgstr ""
+"此版本的 Bottles "
+"似乎没有提供所有必要的核心依赖项，请联系包维护人员或使用官方版本。\n"
+"                        "
 
 #: src/ui/dialog-deps-check.ui:21
 msgid "Quit"
@@ -1905,7 +1901,7 @@ msgstr "重置为 Bottle 的默认值"
 
 #: src/ui/dialog-proton-alert.ui:6
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Proton 免责声明"
 
 #: src/ui/dialog-proton-alert.ui:22
 msgid "Use Proton"
@@ -2071,12 +2067,11 @@ msgstr "值"
 #. Wineprefix is a prefix for the wine program
 #: src/ui/importer-entry.ui:22
 msgid "Wineprefix name"
-msgstr ""
+msgstr "Wineprefix 名称"
 
 #: src/ui/importer-entry.ui:29
-#, fuzzy
 msgid "Manager"
-msgstr "任务管理器"
+msgstr "管理器"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -2119,18 +2114,16 @@ msgid "Read Review…"
 msgstr "阅读评论…"
 
 #: src/ui/installer-entry.ui:40
-#, fuzzy
 msgid "Installer name"
-msgstr "安装器"
+msgstr "安装程序名称"
 
 #: src/ui/installer-entry.ui:41
-#, fuzzy
 msgid "Installer description"
-msgstr "安装器"
+msgstr "安装程序描述"
 
 #: src/ui/installer-entry.ui:48
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: src/ui/installer-entry.ui:57
 msgid "Install this program"
@@ -2141,9 +2134,8 @@ msgid "Remove from Library"
 msgstr "从库中删除"
 
 #: src/ui/library-entry.ui:94
-#, fuzzy
 msgid "Item name"
-msgstr "Bottle 名称"
+msgstr "项目名"
 
 #: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
 msgid "Launch with Steam"
@@ -2304,9 +2296,8 @@ msgid "Store this bottle in another place."
 msgstr "将此 bootle 存储在另一个地方。"
 
 #: src/ui/new.ui:215
-#, fuzzy
 msgid "Creating a Bottle…"
-msgstr "正在删除 bottle …"
+msgstr "正在创建 Bottle…"
 
 #: src/ui/new.ui:262
 msgid "Bottle created"
@@ -2555,20 +2546,17 @@ msgid "Remove from List"
 msgstr "从列表中删除"
 
 #: src/ui/program-entry.ui:99
-#, fuzzy
 msgid "Program name"
-msgstr "程序"
+msgstr "程序名称"
 
 #. id as identification
 #: src/ui/state-entry.ui:7
-#, fuzzy
 msgid "State id"
-msgstr "未找到状态"
+msgstr "状态 id"
 
 #: src/ui/state-entry.ui:8
-#, fuzzy
 msgid "State comment"
-msgstr "简短注释"
+msgstr "状态注释"
 
 #: src/ui/state-entry.ui:16
 msgid "Restore this state"
