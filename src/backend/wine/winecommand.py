@@ -508,7 +508,6 @@ class WineCommand:
         return " ".join(gamescope_cmd)
 
     def vmtouch_preload(self):
-        vmtouch_command = vmtouch_available
         vmtouch_flags = "-t -v -l -d"
         vmtouch_file_size = " -m 1024M"
         if self.command.find("C:\\") > 0:
@@ -518,7 +517,7 @@ class WineCommand:
 
         if self.config["Parameters"].get("vmtouch_cache_cwd"):
             self.vmtouch_files = "'"+self.vmtouch_files+"' '"+self.cwd+"/'"
-        self.command = vmtouch_command+" "+vmtouch_flags+" "+vmtouch_file_size+" "+self.vmtouch_files+" && "+self.command
+        self.command = vmtouch_available+" "+vmtouch_flags+" "+vmtouch_file_size+" "+self.vmtouch_files+" && "+self.command
 
     def vmtouch_free(self):
         subprocess.Popen(
@@ -527,7 +526,6 @@ class WineCommand:
             env=self.env,
             cwd=self.cwd,
         )
-        vmtouch_command = "/app/bin/vmtouch"
         vmtouch_flags = "-e -v"
         command = vmtouch_available+" "+vmtouch_flags+" "+self.vmtouch_files
         subprocess.Popen(
