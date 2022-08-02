@@ -13,6 +13,7 @@ from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
     obs_vkc_available
 from bottles.backend.logger import Logger
+from bottles.utils.threading import RunAsync
 
 logging = Logger()
 
@@ -508,33 +509,33 @@ class WineCommand:
 
     def vmtouch_preload(self):
         vmtouch_command = "/app/bin/vmtouch"
-        print("!!using vmtouch!!")
-        print("command:")
-        print(self.command)
-        print("cwd:")
-        print(self.cwd)
-        print("main executable:")
-        #if self.config["Parameters"].get("vmtouch_lock_memory"):
-        #    vmtouch_flags = "-t -v -L"
-        #else:
-        vmtouch_flags = "-t -v -l"
-
+        vmtouch_flags = "-t -v -l -d"
         vmtouch_file_size = " -m "+str(self.config["Parameters"].get("vmtouch_max_file_size"))+"M"
         if self.command.find("C:\\") > 0:
-            vmtouch_files = (self.cwd+"/"+(self.command.split(" ")[-1].split('\\')[-1])).replace('\'', "")
+            self.vmtouch_files = "'"+(self.cwd+"/"+(self.command.split(" ")[-1].split('\\')[-1])).replace('\'', "")+"'"
         else:
-            vmtouch_files = self.command.split(" ")[-1]
+            self.vmtouch_files = "'"+self.command.split(" ")[-1]+"'"
 
         if self.config["Parameters"].get("vmtouch_cache_cwd"):
-            vmtouch_files = vmtouch_files+"' '"+self.cwd+"/"
-        print("command pre split")
-        print(self.command)
-        print("command post split")
-        print(self.command.split(" ")[-1])
-        print("executable")
-        print(vmtouch_files)
-        self.command = vmtouch_command+" "+vmtouch_flags+" "+vmtouch_file_size+" '"+vmtouch_files+"' & "+self.command
-        print(self.command)
+            self.vmtouch_files = "'"+self.vmtouch_files+"' '"+self.cwd+"/'"
+        self.command = vmtouch_command+" "+vmtouch_flags+" "+vmtouch_file_size+" "+self.vmtouch_files+" && "+self.command
+
+    def vmtouch_free(self):
+        subprocess.Popen(
+            "kill $(pidof vmtouch)",
+            shell=True,
+            env=self.env,
+            cwd=self.cwd,
+        )
+        vmtouch_command = "/app/bin/vmtouch"
+        vmtouch_flags = "-e -v"
+        command = vmtouch_command+" "+vmtouch_flags+" "+self.vmtouch_files
+        subprocess.Popen(
+            command,
+            shell=True,
+            env=self.env,
+            cwd=self.cwd,
+        )
 
     def run(self):
         if None in [self.runner, self.env]:
@@ -575,6 +576,9 @@ class WineCommand:
             proc.wait()
         res = proc.communicate()[0]
         enc = detect_encoding(res)
+
+        if self.config["Parameters"].get("vmtouch"):
+            self.vmtouch_free()
 
         if enc is not None:
             res = res.decode(enc)
