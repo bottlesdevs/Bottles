@@ -510,7 +510,7 @@ class WineCommand:
     def vmtouch_preload(self):
         vmtouch_command = "/app/bin/vmtouch"
         vmtouch_flags = "-t -v -l -d"
-        vmtouch_file_size = " -m "+str(self.config["Parameters"].get("vmtouch_max_file_size"))+"M"
+        vmtouch_file_size = " -m 1024M"
         if self.command.find("C:\\") > 0:
             self.vmtouch_files = "'"+(self.cwd+"/"+(self.command.split(" ")[-1].split('\\')[-1])).replace('\'', "")+"'"
         else:
