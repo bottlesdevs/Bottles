@@ -11,7 +11,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
-    obs_vkc_available, vmtouch_available
+    obs_vkc_available, vkbasalt_available, vmtouch_available
 from bottles.backend.logger import Logger
 from bottles.utils.threading import RunAsync
 
@@ -252,6 +252,9 @@ class WineCommand:
 
         # vkBasalt environment variables
         if params["vkbasalt"] and not self.minimal:
+            vkbasalt_conf_path = os.path.join(ManagerUtils.get_bottle_path(config), "vkBasalt.conf")
+            if os.path.isfile(vkbasalt_conf_path):
+                env.add("VKBASALT_CONFIG_FILE", vkbasalt_conf_path)
             env.add("ENABLE_VKBASALT", "1")
 
         # OBS Vulkan Capture environment variables

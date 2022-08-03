@@ -18,6 +18,7 @@ bottles_sources = [
   'vdf.py',
   'imagemagick.py',
   'proc.py',
+  'vkbasalt.py',
   'yaml.py'
 ]
 
