@@ -14,6 +14,7 @@ bottles_sources = [
   'rename.py',
   'drives.py',
   'gamescope.py',
+  'vkbasalt.py',
   'generic_cli.py',
   'journal.py',
   'filechooser.py',

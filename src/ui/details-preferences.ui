@@ -140,6 +140,16 @@
                         <property name="title" translatable="yes">vkBasalt</property>
                         <property name="subtitle" translatable="yes">vkBasalt is a Vulkan post processing layer to enhance the visual graphics of games.</property>
                         <child>
+                            <object class="GtkButton" id="btn_manage_vkbasalt">
+                                <property name="tooltip-text" translatable="yes">Manage vkBasalt settings</property>
+                                <property name="valign">center</property>
+                                <property name="icon-name">applications-system-symbolic</property>
+                                <style>
+                                    <class name="flat"/>
+                                </style>
+                            </object>
+                        </child>
+                        <child>
                             <object class="GtkSwitch" id="switch_vkbasalt">
                                 <property name="valign">center</property>
                             </object>

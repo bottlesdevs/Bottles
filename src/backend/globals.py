@@ -44,6 +44,16 @@ def get_apps_dir():
         _dir = f"{Path.home()}/.local/share/applications"
     return _dir
 
+def VkBasaltPath():
+    vkbasalt_paths = [
+            "/usr/lib/extensions/vulkan/vkBasalt/etc/vkBasalt",
+            "/usr/local",
+            "/usr/share/vkBasalt",
+    ]
+    for path in vkbasalt_paths:
+        if os.path.exists(path):
+            return True
+    return False
 
 @lru_cache
 class Paths:
@@ -94,6 +104,7 @@ class TrdyPaths:
 # Check if some tools are available
 gamemode_available = shutil.which("gamemoderun") or False
 gamescope_available = shutil.which("gamescope") or False
+vkbasalt_available = VkBasaltPath()
 mangohud_available = shutil.which("mangohud") or False
 obs_vkc_available = shutil.which("obs-vkcapture") or False
 vmtouch_available = shutil.which("vmtouch") or False
