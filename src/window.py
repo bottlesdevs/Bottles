@@ -321,7 +321,8 @@ class MainWindow(Adw.ApplicationWindow):
                 "Wine https://www.winehq.org/",
                 "orjson https://github.com/ijl/orjson",
                 "libadwaita https://gitlab.gnome.org/GNOME/libadwaita",
-                "icoextract https://github.com/jlu5/icoextract"
+                "icoextract https://github.com/jlu5/icoextract",
+                "vmtouch https://github.com/hoytech/vmtouch"
             ]
         )
         about_window.set_transient_for(self)
