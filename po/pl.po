@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-01 22:54+0200\n"
-"PO-Revision-Date: 2022-07-04 17:16+0000\n"
+"PO-Revision-Date: 2022-08-04 06:29+0000\n"
 "Last-Translator: Marcin Mikuła <marcinmikula840@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bottles/bottles/"
 "pl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: data/com.usebottles.bottles.appdata.xml.in:6
 #: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
@@ -211,7 +211,7 @@ msgid ""
 "Extended Core dependencies check, packagers are invited to double-check "
 "their packages"
 msgstr ""
-"Rozszerzona weryfikacja podstawowych dependencji, zachęcamy osoby "
+"Rozszerzona weryfikacja podstawowych zależności, zachęcamy osoby "
 "przygotowujące pakiety do podwójnego sprawdzenia swoich pakietów"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
@@ -854,18 +854,16 @@ msgid "Report a Bug…"
 msgstr "Zgłoś błąd…"
 
 #: src/ui/dependency-entry.ui:50
-#, fuzzy
 msgid "Dependency name"
-msgstr "Zależności"
+msgstr "Nazwa zależności"
 
 #: src/ui/dependency-entry.ui:52
-#, fuzzy
 msgid "Dependency description"
-msgstr "Zależności"
+msgstr "Opis zależności"
 
 #: src/ui/dependency-entry.ui:59
 msgid "Category"
-msgstr ""
+msgstr "Kategoria"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -1128,6 +1126,8 @@ msgid ""
 "Use this section to install programs curated by our community, without "
 "having to proceed manually."
 msgstr ""
+"W tej sekcji zainstalujesz programy, nad którymi pieczę sprawuje nasza "
+"społeczność, bez potrzeby manualnego trudzenia się."
 
 #: src/ui/details-installers.ui:48
 msgid "No Installers Found"
@@ -1455,7 +1455,7 @@ msgstr "Zarządzaj uprawnieniami w Sandboksie"
 
 #: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
-msgstr "Środowisko uruchomieniowe Bottles"
+msgstr "Runtime Bottles"
 
 #: src/ui/details-preferences.ui:521
 msgid ""
@@ -1467,7 +1467,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:532
 msgid "Steam Runtime"
-msgstr "Środowisko uruchomieniowe Steam"
+msgstr "Runtime Steam'a"
 
 #: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
@@ -1665,9 +1665,8 @@ msgid "Operations"
 msgstr "Operacje"
 
 #: src/ui/dialog-bottle-picker.ui:6
-#, fuzzy
 msgid "Select Bottle"
-msgstr "Usuń butelkę…"
+msgstr "Wybierz butelkę"
 
 #: src/ui/dialog-bottle-picker.ui:42
 msgid "Create New Bottle"
@@ -1713,7 +1712,7 @@ msgstr "Opcje zaawansowane"
 
 #: src/ui/dialog-deps-check.ui:15
 msgid "Incomplete package"
-msgstr ""
+msgstr "Niepełny pakiet"
 
 #: src/ui/dialog-deps-check.ui:16
 msgid ""
@@ -1722,6 +1721,10 @@ msgid ""
 "version.\n"
 "                        "
 msgstr ""
+"Wygląda na to, że ta wersja Bottles nie zapewnia wszystkich niezbędnych "
+"zależności, skontaktuj się z zarządcą pakietu, bądź zainstaluj Bottles z "
+"oficjalnego źródła\n"
+"                        "
 
 #: src/ui/dialog-deps-check.ui:21
 msgid "Quit"
@@ -1983,7 +1986,7 @@ msgstr "Resetuj do wartości domyślnych Bottles"
 
 #: src/ui/dialog-proton-alert.ui:6
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Proton - Wyłączenie odpowiedzialności"
 
 #: src/ui/dialog-proton-alert.ui:22
 msgid "Use Proton"
@@ -2156,12 +2159,11 @@ msgstr "Wartość"
 #. Wineprefix is a prefix for the wine program
 #: src/ui/importer-entry.ui:22
 msgid "Wineprefix name"
-msgstr ""
+msgstr "Nazwa prefiksu Wine"
 
 #: src/ui/importer-entry.ui:29
-#, fuzzy
 msgid "Manager"
-msgstr "Menedżer Zadań"
+msgstr "Menedżer"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -2204,18 +2206,16 @@ msgid "Read Review…"
 msgstr "Przeczytaj recenzję…"
 
 #: src/ui/installer-entry.ui:40
-#, fuzzy
 msgid "Installer name"
-msgstr "Instalatory"
+msgstr "Nazwa instalatora"
 
 #: src/ui/installer-entry.ui:41
-#, fuzzy
 msgid "Installer description"
-msgstr "Instalatory"
+msgstr "Opis instalatora"
 
 #: src/ui/installer-entry.ui:48
 msgid "Unknown"
-msgstr ""
+msgstr "Nieznany"
 
 #: src/ui/installer-entry.ui:57
 msgid "Install this program"
@@ -2226,9 +2226,8 @@ msgid "Remove from Library"
 msgstr "Usuń z Biblioteki"
 
 #: src/ui/library-entry.ui:94
-#, fuzzy
 msgid "Item name"
-msgstr "Nazwa butelki"
+msgstr "Nazwa przedmiotu"
 
 #: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
 msgid "Launch with Steam"
@@ -2393,9 +2392,8 @@ msgid "Store this bottle in another place."
 msgstr "Przechowuj tą butelkę w innym miejscu."
 
 #: src/ui/new.ui:215
-#, fuzzy
 msgid "Creating a Bottle…"
-msgstr "Stwórz nową butelkę"
+msgstr "Tworzenie butelki…"
 
 #: src/ui/new.ui:262
 msgid "Bottle created"
@@ -2584,7 +2582,7 @@ msgstr "Rdzeń"
 
 #: src/ui/preferences.ui:240
 msgid "Runtime"
-msgstr "Środowisko wykonawcze"
+msgstr "Runtime"
 
 #: src/ui/preferences.ui:245
 msgid "WineBridge"
@@ -2651,20 +2649,17 @@ msgid "Remove from List"
 msgstr "Usuń z listy programów"
 
 #: src/ui/program-entry.ui:99
-#, fuzzy
 msgid "Program name"
-msgstr "Programy"
+msgstr "Nazwa programu"
 
 #. id as identification
 #: src/ui/state-entry.ui:7
-#, fuzzy
 msgid "State id"
-msgstr "Nie znaleziono zapisanych stanów"
+msgstr "ID stanu"
 
 #: src/ui/state-entry.ui:8
-#, fuzzy
 msgid "State comment"
-msgstr "Krótki komentarz"
+msgstr "Krótki komentarz dot. stanu"
 
 #: src/ui/state-entry.ui:16
 msgid "Restore this state"
