@@ -18,7 +18,7 @@
 import os
 import webbrowser
 from gettext import gettext as _
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw, Gio
 
 from bottles.widgets.component import ComponentEntry, ComponentExpander  # pyright: reportMissingImports=false
 from bottles.dialogs.filechooser import FileChooser
@@ -82,18 +82,21 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.action_bottles_path.set_subtitle(bottles_path)
             self.btn_bottles_path_reset.set_visible(True)
 
-        # set widget defaults
-        self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
-        self.switch_temp.set_active(self.settings.get_boolean("temp"))
-        self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
-        self.switch_steam.set_active(self.settings.get_boolean("steam-proton-support"))
-        self.switch_library.set_active(self.settings.get_boolean("experiments-library"))
-        self.switch_sandbox.set_active(self.settings.get_boolean("experiments-sandbox"))
-        self.switch_auto_close.set_active(self.settings.get_boolean("auto-close-bottles"))
-        self.switch_update_date.set_active(self.settings.get_boolean("update-date"))
-        self.switch_steam_programs.set_active(self.settings.get_boolean("steam-programs"))
-        self.switch_epic_games.set_active(self.settings.get_boolean("epic-games"))
-        self.switch_ubisoft_connect.set_active(self.settings.get_boolean("ubisoft-connect"))
+        # bind widgets
+        self.settings.bind("dark-theme", self.switch_theme, "active", Gio.SettingsBindFlags.DEFAULT)
+        self.settings.bind("notifications", self.switch_notifications, "active", Gio.SettingsBindFlags.DEFAULT)
+        self.settings.bind("temp", self.switch_temp, "active", Gio.SettingsBindFlags.DEFAULT)
+        self.settings.bind("release-candidate", self.switch_release_candidate, "active", Gio.SettingsBindFlags.DEFAULT) #Connect RC signal to another func
+        self.settings.bind("steam-proton-support", self.switch_steam, "active", Gio.SettingsBindFlags.DEFAULT)
+        self.settings.bind("experiments-library", self.switch_library, "active", Gio.SettingsBindFlags.DEFAULT)
+        self.settings.bind("experiments-sandbox", self.switch_sandbox, "active", Gio.SettingsBindFlags.DEFAULT)
+        self.settings.bind("auto-close-bottles", self.switch_auto_close, "active", Gio.SettingsBindFlags.DEFAULT)
+        self.settings.bind("update-date", self.switch_update_date, "active", Gio.SettingsBindFlags.DEFAULT)
+        self.settings.bind("steam-programs", self.switch_steam_programs, "active", Gio.SettingsBindFlags.DEFAULT)
+        self.settings.bind("epic-games", self.switch_epic_games, "active", Gio.SettingsBindFlags.DEFAULT)
+        self.settings.bind("ubisoft-connect", self.switch_ubisoft_connect, "active", Gio.SettingsBindFlags.DEFAULT)
+
+        # populate components lists
         self.populate_runtimes_list()
         self.populate_winebridge_list()
         self.populate_runners_list()
@@ -103,18 +106,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.populate_latencyflex_list()
 
         # connect signals
-        self.switch_theme.connect('state-set', self.__toggle_night)
-        self.switch_notifications.connect('state-set', self.__toggle_notify)
-        self.switch_temp.connect('state-set', self.__toggle_temp)
-        self.switch_release_candidate.connect('state-set', self.__toggle_rc)
-        self.switch_steam.connect('state-set', self.__toggle_steam)
-        self.switch_library.connect('state-set', self.__toggle_library)
-        self.switch_sandbox.connect('state-set', self.__toggle_sandbox)
-        self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
-        self.switch_update_date.connect('state-set', self.__toggle_update_date)
-        self.switch_steam_programs.connect('state-set', self.__toggle_steam_programs)
-        self.switch_epic_games.connect('state-set', self.__toggle_epic_games)
-        self.switch_ubisoft_connect.connect('state-set', self.__toggle_ubisoft_connect)
+        self.settings.connect('changed::dark-theme', self.__toggle_night)
+        self.settings.connect('changed::release-candidate', self.__toggle_rc)
+        self.settings.connect('changed::update-date', self.__toggle_update_date)
         self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
         self.btn_steam_proton_doc.connect('clicked', self.__open_steam_proton_doc)
@@ -130,48 +124,17 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.row_theme.set_visible(True)
 
     def __toggle_night(self, widget, state):
-        self.settings.set_boolean("dark-theme", state)
-        manager = Adw.StyleManager.get_default()
-        if state:
-            manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+        if self.settings.get_boolean("dark-theme"):
+            Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK)
         else:
-            manager.set_color_scheme(Adw.ColorScheme.DEFAULT)
+            Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
 
 
     def __toggle_update_date(self, widget, state):
-        self.settings.set_boolean("update-date", state)
         self.window.page_list.update_bottles()
 
-    def __toggle_steam_programs(self, widget, state):
-        self.settings.set_boolean("steam-programs", state)
-
-    def __toggle_epic_games(self, widget, state):
-        self.settings.set_boolean("epic-games", state)
-
-    def __toggle_ubisoft_connect(self, widget, state):
-        self.settings.set_boolean("ubisoft-connect", state)
-
-    def __toggle_notify(self, widget, state):
-        self.settings.set_boolean("notifications", state)
-
     def __toggle_rc(self, widget, state):
-        self.settings.set_boolean("release-candidate", state)
         self.populate_runners_list()
-
-    def __toggle_temp(self, widget, state):
-        self.settings.set_boolean("temp", state)
-
-    def __toggle_steam(self, widget, state):
-        self.settings.set_boolean("steam-proton-support", state)
-
-    def __toggle_library(self, widget, state):
-        self.settings.set_boolean("experiments-library", state)
-
-    def __toggle_sandbox(self, widget, state):
-        self.settings.set_boolean("experiments-sandbox", state)
-
-    def __toggle_autoclose(self, widget, state):
-        self.settings.set_boolean("auto-close-bottles", state)
 
     def __open_steam_proton_doc(self, widget):
         webbrowser.open("https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager")
