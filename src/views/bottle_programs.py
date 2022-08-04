@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import uuid
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
@@ -67,14 +68,16 @@ class ProgramsView(Adw.PreferencesPage):
             if response == -3:
                 _file = _file_dialog.get_file()
                 _file_name = _file.get_path().split("/")[-1]
+                _uuid = str(uuid.uuid4())
                 _program = {
                     "executable": _file_name,
                     "name": _file_name[:-4],
-                    "path": _file.get_path()
+                    "path": _file.get_path(),
+                    "id": _uuid
                 }
                 self.manager.update_config(
                     config=self.config,
-                    key=_file_name,
+                    key=_uuid,
                     value=_program,
                     scope="External_Programs",
                     fallback=True
