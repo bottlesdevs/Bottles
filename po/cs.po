@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-01 22:54+0200\n"
-"PO-Revision-Date: 2022-07-04 17:16+0000\n"
+"PO-Revision-Date: 2022-08-04 11:37+0000\n"
 "Last-Translator: vikdevelop <super-vik1@protonmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: data/com.usebottles.bottles.appdata.xml.in:6
 #: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
@@ -837,18 +837,16 @@ msgid "Report a Bug…"
 msgstr "Nahlásit problém…"
 
 #: src/ui/dependency-entry.ui:50
-#, fuzzy
 msgid "Dependency name"
-msgstr "Závislosti"
+msgstr "Název závislosti"
 
 #: src/ui/dependency-entry.ui:52
-#, fuzzy
 msgid "Dependency description"
-msgstr "Závislosti"
+msgstr "Popis závislosti"
 
 #: src/ui/dependency-entry.ui:59
 msgid "Category"
-msgstr ""
+msgstr "Kategorie"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -1107,15 +1105,12 @@ msgid "Search for Programs…"
 msgstr "Hledat programy…"
 
 #: src/ui/details-installers.ui:22
-#, fuzzy
 msgid ""
 "Use this section to install programs curated by our community, without "
 "having to proceed manually."
 msgstr ""
 "V této sekci můžete instalovat programy doporučené naší komunitou, aniž "
-"byste museli postupovat ručně. Při výběru zohledněte <a href=\"https://docs."
-"usebottles.com/bottles/installers#compatibility-grades\">stupeň "
-"kompatibility</a>."
+"byste museli postupovat ručně."
 
 #: src/ui/details-installers.ui:48
 msgid "No Installers Found"
@@ -1647,9 +1642,8 @@ msgid "Operations"
 msgstr "Operace"
 
 #: src/ui/dialog-bottle-picker.ui:6
-#, fuzzy
 msgid "Select Bottle"
-msgstr "Smazat láhev…"
+msgstr "Vybrat láhev"
 
 #: src/ui/dialog-bottle-picker.ui:42
 msgid "Create New Bottle"
@@ -1694,7 +1688,7 @@ msgstr "Pokročilé možnosti"
 
 #: src/ui/dialog-deps-check.ui:15
 msgid "Incomplete package"
-msgstr ""
+msgstr "Neúplný balíček"
 
 #: src/ui/dialog-deps-check.ui:16
 msgid ""
@@ -1703,6 +1697,9 @@ msgid ""
 "version.\n"
 "                        "
 msgstr ""
+"Zdá se, že tato verze Láhví neobsahuje všechny potřebné závislosti jádra, "
+"obraťte se prosím na správce balíčku nebo použijte oficiální verzi.\n"
+"                        "
 
 #: src/ui/dialog-deps-check.ui:21
 msgid "Quit"
@@ -1958,7 +1955,7 @@ msgstr "Resetovat Bottles do výchozího nastavení"
 
 #: src/ui/dialog-proton-alert.ui:6
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Prohlášení Protonu"
 
 #: src/ui/dialog-proton-alert.ui:22
 msgid "Use Proton"
@@ -2129,12 +2126,11 @@ msgstr "Hodnota"
 #. Wineprefix is a prefix for the wine program
 #: src/ui/importer-entry.ui:22
 msgid "Wineprefix name"
-msgstr ""
+msgstr "Název prefixu Wine"
 
 #: src/ui/importer-entry.ui:29
-#, fuzzy
 msgid "Manager"
-msgstr "Správce úloh"
+msgstr "Manažer"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -2177,18 +2173,16 @@ msgid "Read Review…"
 msgstr "Přečíst recenzi…"
 
 #: src/ui/installer-entry.ui:40
-#, fuzzy
 msgid "Installer name"
-msgstr "Instalátory"
+msgstr "Název instalátoru"
 
 #: src/ui/installer-entry.ui:41
-#, fuzzy
 msgid "Installer description"
-msgstr "Instalátory"
+msgstr "Popis instalátoru"
 
 #: src/ui/installer-entry.ui:48
 msgid "Unknown"
-msgstr ""
+msgstr "Neznámé"
 
 #: src/ui/installer-entry.ui:57
 msgid "Install this program"
@@ -2199,9 +2193,8 @@ msgid "Remove from Library"
 msgstr "Odebrat z knihovny"
 
 #: src/ui/library-entry.ui:94
-#, fuzzy
 msgid "Item name"
-msgstr "Název láhve"
+msgstr "Název položky"
 
 #: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
 msgid "Launch with Steam"
@@ -2366,9 +2359,8 @@ msgid "Store this bottle in another place."
 msgstr "Tuto láhev uložte na jiné místo."
 
 #: src/ui/new.ui:215
-#, fuzzy
 msgid "Creating a Bottle…"
-msgstr "Odstraňuji láhev …"
+msgstr "Vytváření láhve…"
 
 #: src/ui/new.ui:262
 msgid "Bottle created"
@@ -2621,20 +2613,17 @@ msgid "Remove from List"
 msgstr "Odebrat ze seznamu"
 
 #: src/ui/program-entry.ui:99
-#, fuzzy
 msgid "Program name"
-msgstr "Programy"
+msgstr "Název programu"
 
 #. id as identification
 #: src/ui/state-entry.ui:7
-#, fuzzy
 msgid "State id"
-msgstr "Nebyly nalezeny žádné státy"
+msgstr "ID stavu"
 
 #: src/ui/state-entry.ui:8
-#, fuzzy
 msgid "State comment"
-msgstr "Krátký komentář"
+msgstr "Stavový komentář"
 
 #: src/ui/state-entry.ui:16
 msgid "Restore this state"
