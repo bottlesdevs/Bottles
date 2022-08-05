@@ -20,157 +20,189 @@ msgstr ""
 "X-Generator: Weblate 4.13-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
+#: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
 msgstr "Herhangi bir dizin belirtilmedi"
 
-#: bottles/backend/managers/backup.py:71
+#: bottles/backend/managers/backup.py:71 src/backend/managers/backup.py:71
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "{0} yedeklemesi"
 
-#: bottles/backend/managers/backup.py:124
+#: bottles/backend/managers/backup.py:124 src/backend/managers/backup.py:124
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Yedekleme içe aktarılıyor: {0}"
 
 #: bottles/backend/managers/manager.py:1030
+#: src/backend/managers/manager.py:1030
 msgid "Fail to install components, tried 3 times."
 msgstr "Bileşenler yüklenemedi, 3 defa denendi."
 
 #: bottles/backend/managers/manager.py:1041
+#: src/backend/managers/manager.py:1041
 msgid "Missing essential components. Installing…"
 msgstr "Temel bileşenler eksik. Kuruluyor…"
 
 #: bottles/backend/managers/manager.py:1117
+#: src/backend/managers/manager.py:1117
 msgid "Failed to create bottle directory."
 msgstr "Şişe dizini oluşturulamadı."
 
 #: bottles/backend/managers/manager.py:1129
+#: src/backend/managers/manager.py:1129
 msgid "Failed to create placeholder directory/file."
 msgstr "Yer tutucu dizini/dosyası oluşturulamadı."
 
 #: bottles/backend/managers/manager.py:1134
+#: src/backend/managers/manager.py:1134
 msgid "Generating bottle configuration…"
 msgstr "Şişe yapılandırması oluşturuluyor…"
 
 #: bottles/backend/managers/manager.py:1157
+#: src/backend/managers/manager.py:1157
 msgid "Template found, applying…"
 msgstr "Şablon bulundu, uygulanıyor…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1169
+#: src/backend/managers/manager.py:1169
 msgid "The Wine config is being updated…"
 msgstr "Wine yapılandırması güncelleniyor…"
 
 #: bottles/backend/managers/manager.py:1171
+#: src/backend/managers/manager.py:1171
 msgid "Wine config updated!"
 msgstr "Wine yapılandırması güncellendi!"
 
 #: bottles/backend/managers/manager.py:1179
+#: src/backend/managers/manager.py:1179
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "Flatpak olarak çalışıyor, kullanıcı dizini korumalı yapılıyor…"
 
 #: bottles/backend/managers/manager.py:1181
+#: src/backend/managers/manager.py:1181
 msgid "Sandboxing userdir…"
 msgstr "Kullanıcı dizini korumalı yapılıyor…"
 
 #: bottles/backend/managers/manager.py:1211
+#: src/backend/managers/manager.py:1197
 msgid "Setting Windows version…"
 msgstr "Windows sürümü ayarlanıyor…"
 
 #: bottles/backend/managers/manager.py:1221
+#: src/backend/managers/manager.py:1207
 msgid "Apply CMD default settings…"
 msgstr "CMD öntanımlı ayarlarını uygula…"
 
 #: bottles/backend/managers/manager.py:1229
+#: src/backend/managers/manager.py:1215
 msgid "Optimizing environment…"
 msgstr "Ortam en iyi duruma getiriliyor…"
 
 #: bottles/backend/managers/manager.py:1240
+#: src/backend/managers/manager.py:1226
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Ortam uygulanıyor: {0}…"
 
 #: bottles/backend/managers/manager.py:1250
+#: src/backend/managers/manager.py:1236
 msgid "(!) Using a custom environment recipe…"
 msgstr "(!) Özel bir ortam tanımı kullanılıyor…"
 
 #: bottles/backend/managers/manager.py:1253
+#: src/backend/managers/manager.py:1239
 msgid "(!) Recipe not not found or not valid…"
 msgstr "(!) Tanım bulunamadı veya geçerli değil…"
 
 #: bottles/backend/managers/manager.py:1270
+#: src/backend/managers/manager.py:1256
 msgid "Installing DXVK…"
 msgstr "DXVK kuruluyor…"
 
 #: bottles/backend/managers/manager.py:1278
+#: src/backend/managers/manager.py:1264
 msgid "Installing VKD3D…"
 msgstr "VKD3D kuruluyor…"
 
 #: bottles/backend/managers/manager.py:1286
+#: src/backend/managers/manager.py:1272
 msgid "Installing DXVK-NVAPI…"
 msgstr "DXVK-NVAPI kuruluyor…"
 
 #: bottles/backend/managers/manager.py:1295
+#: src/backend/managers/manager.py:1281
 #, python-format
 msgid "Installing dependency: %s …"
 msgstr "Bağımlılık kuruluyor: %s …"
 
 #: bottles/backend/managers/manager.py:1311
+#: src/backend/managers/manager.py:1297
 msgid "Creating versioning state 0…"
 msgstr "Sürüm oluşturma durumu 0 oluşturuluyor…"
 
 #: bottles/backend/managers/manager.py:1319
+#: src/backend/managers/manager.py:1305
 msgid "Finalizing…"
 msgstr "Sonuçlandırılıyor…"
 
 #: bottles/backend/managers/manager.py:1330
+#: src/backend/managers/manager.py:1316
 msgid "Caching template…"
 msgstr "Şablon önbelleğe alınıyor…"
 
 #: bottles/backend/managers/versioning.py:97
+#: src/backend/managers/versioning.py:97
 #, fuzzy
 msgid "Committing state …"
 msgstr "Durumlar güncelleniyor…"
 
 #: bottles/backend/managers/versioning.py:106
+#: src/backend/managers/versioning.py:106
 msgid "Nothing to commit"
 msgstr ""
 
 #: bottles/backend/managers/versioning.py:112
+#: src/backend/managers/versioning.py:112
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
 msgstr "Yeni durum [{0}] başarıyla oluşturuldu!"
 
 #: bottles/backend/managers/versioning.py:140
+#: src/backend/managers/versioning.py:140
 #, fuzzy
 msgid "States list retrieved successfully!"
 msgstr "Yeni durum [{0}] başarıyla oluşturuldu!"
 
 #: bottles/backend/managers/versioning.py:171
+#: src/backend/managers/versioning.py:171
 #, fuzzy, python-brace-format
 msgid "State {0} restored successfully!"
 msgstr "Yeni durum [{0}] başarıyla oluşturuldu!"
 
 #: bottles/backend/managers/versioning.py:176
+#: src/backend/managers/versioning.py:176
 #, fuzzy
 msgid "Restoring state {} …"
 msgstr "Şu duruma geri yükleniyor: [{0}]"
 
 #: bottles/backend/managers/versioning.py:185
+#: src/backend/managers/versioning.py:185
 #, fuzzy
 msgid "State not found"
 msgstr "Durum bulunamadı"
 
 #: bottles/backend/managers/versioning.py:191
+#: src/backend/managers/versioning.py:191
 msgid "State {} is already the active state"
 msgstr ""
 
-#: bottles/frontend/windows/crash.py:37
+#: bottles/frontend/windows/crash.py:37 src/dialogs/crash.py:37
 msgid "Show report"
 msgstr "Raporu göster"
 
-#: bottles/frontend/windows/crash.py:88
+#: bottles/frontend/windows/crash.py:88 src/dialogs/crash.py:88
 msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
@@ -178,11 +210,11 @@ msgstr ""
 "            Bu sorun 5 kez bildirildi ve tekrar gönderilemiyor.\n"
 "            Geri bildiriminizi aşağıdaki mevcut raporlardan birinde bildirin."
 
-#: bottles/frontend/windows/dlloverrides.py:136
+#: bottles/frontend/windows/dlloverrides.py:136 src/dialogs/dlloverrides.py:136
 msgid "No overrides found."
 msgstr "Üstüne yazma bulunamadı."
 
-#: bottles/frontend/windows/drives.py:71
+#: bottles/frontend/windows/drives.py:71 src/dialogs/drives.py:71
 msgid "Choose path"
 msgstr "Yol seç"
 
@@ -207,7 +239,18 @@ msgstr "Yol seç"
 #: bottles/frontend/views/importer.py:117
 #: bottles/frontend/views/importer.py:146 bottles/frontend/views/list.py:120
 #: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
-#: bottles/frontend/views/preferences.py:158
+#: bottles/frontend/views/preferences.py:158 src/dialogs/drives.py:73
+#: src/dialogs/filechooser.py:63 src/dialogs/installer.py:66
+#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
+#: src/ui/dialog-bottle-picker.ui:17 src/ui/dialog-crash-report.ui:18
+#: src/ui/dialog-proton-alert.ui:17 src/ui/dialog-rename.ui:17
+#: src/ui/dialog-run-args.ui:19 src/ui/new.ui:33
+#: src/views/bottle_details.py:202 src/views/bottle_details.py:296
+#: src/views/bottle_details.py:335 src/views/bottle_details.py:414
+#: src/views/bottle_preferences.py:260 src/views/bottle_preferences.py:744
+#: src/views/bottle_programs.py:89 src/views/importer.py:117
+#: src/views/importer.py:146 src/views/list.py:120 src/views/new.py:144
+#: src/views/new.py:160 src/views/preferences.py:195
 msgid "Cancel"
 msgstr "İptal"
 
@@ -218,16 +261,21 @@ msgstr "İptal"
 #: bottles/frontend/ui/dialog-bottle-picker.ui:22
 #: bottles/frontend/views/bottle_preferences.py:276
 #: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
-#: bottles/frontend/views/preferences.py:158
+#: bottles/frontend/views/preferences.py:158 src/dialogs/drives.py:73
+#: src/dialogs/installer.py:66 src/dialogs/launchoptions.py:234
+#: src/dialogs/launchoptions.py:258 src/ui/dialog-bottle-picker.ui:22
+#: src/views/bottle_preferences.py:260 src/views/new.py:144
+#: src/views/new.py:160 src/views/preferences.py:195
 msgid "Select"
 msgstr "Seç"
 
-#: bottles/frontend/windows/envvars.py:131
+#: bottles/frontend/windows/envvars.py:131 src/dialogs/envvars.py:131
 #, fuzzy
 msgid "No environment variables defined."
 msgstr "Ortam değişkenleri tanımlanmadı"
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
+#: src/dialogs/exclusionpatterns.py:108
 #, fuzzy
 msgid "No exclusion patterns defined."
 msgstr "Ortam değişkenleri tanımlanmadı"
@@ -236,87 +284,94 @@ msgstr "Ortam değişkenleri tanımlanmadı"
 #: bottles/frontend/ui/dialog-gamescope.ui:34
 #: bottles/frontend/ui/dialog-launch-options.ui:35
 #: bottles/frontend/ui/dialog-rename.ui:22
-#: bottles/frontend/ui/dialog-vkbasalt.ui:38
+#: bottles/frontend/ui/dialog-vkbasalt.ui:38 src/dialogs/filechooser.py:63
+#: src/ui/dialog-gamescope.ui:34 src/ui/dialog-launch-options.ui:35
+#: src/ui/dialog-rename.ui:22
 msgid "Save"
 msgstr "Kaydet"
 
-#: bottles/frontend/windows/generic.py:24
+#: bottles/frontend/windows/generic.py:24 src/dialogs/generic.py:24
 msgid "An error has occurred."
 msgstr "Bir hata oluştu."
 
 #: bottles/frontend/windows/generic.py:91
 #: bottles/frontend/windows/generic.py:137
-#: bottles/frontend/windows/generic.py:182
+#: bottles/frontend/windows/generic.py:182 src/dialogs/generic.py:91
+#: src/dialogs/generic.py:137 src/dialogs/generic.py:182
 msgid "Copy to clipboard"
 msgstr "Panoya kopyala"
 
-#: bottles/frontend/windows/installer.py:64
+#: bottles/frontend/windows/installer.py:64 src/dialogs/installer.py:64
 msgid "Select Resource FIle"
 msgstr "Kaynak Dosyasını Seçin"
 
-#: bottles/frontend/windows/installer.py:115
+#: bottles/frontend/windows/installer.py:115 src/dialogs/installer.py:115
 #, fuzzy
 msgid "Installing Windows dependencies…"
 msgstr "Bağımlılık kuruluyor: %s …"
 
-#: bottles/frontend/windows/installer.py:116
+#: bottles/frontend/windows/installer.py:116 src/dialogs/installer.py:116
 #, fuzzy
 msgid "Configuring the bottle…"
 msgstr "Şişe oluşturuluyor…"
 
-#: bottles/frontend/windows/installer.py:117
+#: bottles/frontend/windows/installer.py:117 src/dialogs/installer.py:117
 msgid "Processing installer steps…"
 msgstr ""
 
-#: bottles/frontend/windows/installer.py:118
+#: bottles/frontend/windows/installer.py:118 src/dialogs/installer.py:118
 #, fuzzy
 msgid "Installing the {}…"
 msgstr "DXVK kuruluyor…"
 
-#: bottles/frontend/windows/installer.py:119
+#: bottles/frontend/windows/installer.py:119 src/dialogs/installer.py:119
 msgid "Performing final checks…"
 msgstr ""
 
-#: bottles/frontend/windows/installer.py:123
+#: bottles/frontend/windows/installer.py:123 src/dialogs/installer.py:123
 #, fuzzy, python-brace-format
 msgid "Installing {0}…"
 msgstr "DXVK kuruluyor…"
 
-#: bottles/frontend/windows/installer.py:125
+#: bottles/frontend/windows/installer.py:125 src/dialogs/installer.py:125
 #, python-brace-format
 msgid "{0} is now available in the programs view."
 msgstr ""
 
-#: bottles/frontend/windows/installer.py:171
+#: bottles/frontend/windows/installer.py:171 src/dialogs/installer.py:171
 msgid "Installer failed with unknown error"
 msgstr "Kurucu bilinmeyen bir hata nedeniyle başarısız oldu"
 
 #. endregion
 #: bottles/frontend/windows/launchoptions.py:56
 #: bottles/frontend/ui/dialog-launch-options.ui:59
+#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
 msgid "Choose a script which should be executed after run."
 msgstr "Çalışmadan sonra aktif edilecek komutu seç."
 
 #: bottles/frontend/windows/launchoptions.py:57
 #: bottles/frontend/ui/dialog-launch-options.ui:92
+#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
 #, fuzzy
 msgid "Choose from where start the program."
 msgstr "Bir Programı Başlattıktan Sonra Şişeler'i Kapat"
 
-#: bottles/frontend/windows/launchoptions.py:58
+#: bottles/frontend/windows/launchoptions.py:58 src/dialogs/launchoptions.py:58
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "{0} zaten bu bottle için devre dışı bırakıldı."
+msgstr "{0} zaten bu şişe için devre dışı bırakıldı."
 
-#: bottles/frontend/windows/launchoptions.py:59
+#: bottles/frontend/windows/launchoptions.py:59 src/dialogs/launchoptions.py:59
 msgid "This setting is different from the bottle's default."
-msgstr "Bu ayar bottle'ın varsayılan ayarından farklı."
+msgstr "Bu ayar şişe'nin varsayılan ayarından farklı."
 
 #: bottles/frontend/windows/launchoptions.py:232
+#: src/dialogs/launchoptions.py:232
 msgid "Choose the script"
 msgstr "Komutu seç"
 
 #: bottles/frontend/windows/launchoptions.py:256
+#: src/dialogs/launchoptions.py:256
 #, fuzzy
 msgid "Choose the Working Directory"
 msgstr "Çalışma Dizini"
@@ -355,133 +410,136 @@ msgid "Height and width of the image must be equal."
 msgstr ""
 
 #: bottles/frontend/windows/vkbasalt.py:353
-#: bottles/frontend/views/importer.py:144
+#: bottles/frontend/views/importer.py:144 src/views/importer.py:144
 msgid "Choose a configuration file"
 msgstr "Bir yapılandırma dosyası seçin"
 
 #: bottles/frontend/windows/vkbasalt.py:355
 #: bottles/frontend/views/importer.py:117
-#: bottles/frontend/views/importer.py:146
+#: bottles/frontend/views/importer.py:146 src/views/importer.py:117
+#: src/views/importer.py:146
 msgid "Import"
 msgstr "İçe aktar"
 
-#: bottles/frontend/main.py:105
+#: bottles/frontend/main.py:105 src/main.py:105
 msgid "Show version"
 msgstr "Sürümü göster"
 
-#: bottles/frontend/main.py:113
+#: bottles/frontend/main.py:113 src/main.py:113
 msgid "Executable path"
 msgstr "Çalıştırılabilir dosya yolu"
 
-#: bottles/frontend/main.py:121
+#: bottles/frontend/main.py:121 src/main.py:121
 msgid "lnk path"
 msgstr "lnk yolu"
 
 #: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.ui:103
-#: bottles/frontend/ui/list-entry.ui:7
+#: bottles/frontend/ui/list-entry.ui:7 src/main.py:129
+#: src/ui/library-entry.ui:103 src/ui/list-entry.ui:7
 msgid "Bottle name"
 msgstr "Şişe adı"
 
-#: bottles/frontend/main.py:137
+#: bottles/frontend/main.py:137 src/main.py:137
 msgid "Pass arguments"
 msgstr "Argümanları ilet"
 
-#: bottles/frontend/main.py:196
+#: bottles/frontend/main.py:196 src/main.py:196
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
 msgstr "Geçersiz URI (sözdizimi: bottles:run/<bottle>/<program>)"
 
-#: bottles/frontend/main.py:237
+#: bottles/frontend/main.py:237 src/main.py:237
 msgid "[Quit] request received."
 msgstr "[Çık] isteği alındı."
 
-#: bottles/frontend/main.py:246
+#: bottles/frontend/main.py:246 src/main.py:246
 msgid "[Help] request received."
 msgstr "[Yardım] isteği alındı."
 
-#: bottles/frontend/main.py:254
+#: bottles/frontend/main.py:254 src/main.py:254
 msgid "[Refresh] request received."
 msgstr "[Yenile] isteği alındı."
 
-#: bottles/frontend/operation.py:50
+#: bottles/frontend/operation.py:50 src/operation.py:50
 #, fuzzy
 msgid "Calculating…"
 msgstr "Hesaplanıyor..."
 
-#: bottles/frontend/ui/about.ui:8
+#: bottles/frontend/ui/about.ui:8 src/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
 msgstr "© 2017-2022 - Şişeler Geliştiricileri"
 
-#: bottles/frontend/ui/about.ui:9
+#: bottles/frontend/ui/about.ui:9 src/ui/about.ui:9
 msgid "Easily manage wineprefix using environments"
 msgstr "Ortamları kullanarak wineprefix'i kolayca yönetin"
 
-#: bottles/frontend/ui/component-entry.ui:6
+#: bottles/frontend/ui/component-entry.ui:6 src/ui/component-entry.ui:6
 msgid "Component version"
 msgstr "Bileşen sürümü"
 
 #: bottles/frontend/ui/component-entry.ui:15
 #: bottles/frontend/ui/dependency-entry.ui:34
-#: bottles/frontend/ui/program-entry.ui:92
+#: bottles/frontend/ui/program-entry.ui:92 src/ui/component-entry.ui:15
+#: src/ui/dependency-entry.ui:34 src/ui/program-entry.ui:92
 msgid "Uninstall"
 msgstr "Kaldır"
 
 #: bottles/frontend/ui/component-entry.ui:26
-#: bottles/frontend/ui/importer-entry.ui:15
+#: bottles/frontend/ui/importer-entry.ui:15 src/ui/component-entry.ui:26
+#: src/ui/importer-entry.ui:15
 msgid "Browse files"
 msgstr "Dosyalara göz atın"
 
-#: bottles/frontend/ui/component-entry.ui:37
+#: bottles/frontend/ui/component-entry.ui:37 src/ui/component-entry.ui:37
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"Kurulum başarısız oldu. Buna repository hatası, kısmi indirme ya da checksum "
+"Kurulum başarısız oldu. Buna depo hatası, kısmi indirme ya da checksum "
 "uyuşmaması neden olabilir. Lütfen tekrar deneyin."
 
-#: bottles/frontend/ui/component-entry.ui:48
+#: bottles/frontend/ui/component-entry.ui:48 src/ui/component-entry.ui:48
 msgid "Download & Install"
 msgstr "İndir ve Kur"
 
-#: bottles/frontend/ui/component-entry.ui:61
+#: bottles/frontend/ui/component-entry.ui:61 src/ui/component-entry.ui:61
 msgid "0%"
 msgstr "% 0"
 
-#: bottles/frontend/ui/dependency-entry.ui:18
+#: bottles/frontend/ui/dependency-entry.ui:18 src/ui/dependency-entry.ui:18
 msgid "Show Manifest"
 msgstr "Manifestoyu Göster"
 
-#: bottles/frontend/ui/dependency-entry.ui:23
+#: bottles/frontend/ui/dependency-entry.ui:23 src/ui/dependency-entry.ui:23
 msgid "License"
 msgstr "Lisans"
 
-#: bottles/frontend/ui/dependency-entry.ui:28
+#: bottles/frontend/ui/dependency-entry.ui:28 src/ui/dependency-entry.ui:28
 msgid "Reinstall"
 msgstr "Yeniden yükle"
 
 #: bottles/frontend/ui/dependency-entry.ui:43
-#: bottles/frontend/ui/installer-entry.ui:32
+#: bottles/frontend/ui/installer-entry.ui:32 src/ui/dependency-entry.ui:43
+#: src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
 msgstr "Hata bildir…"
 
-#: bottles/frontend/ui/dependency-entry.ui:50
-#, fuzzy
+#: src/ui/dependency-entry.ui:50
 msgid "Dependency name"
-msgstr "Bağımlılıklar"
+msgstr "Bağımlılık adı"
 
-#: bottles/frontend/ui/dependency-entry.ui:52
-#, fuzzy
+#: src/ui/dependency-entry.ui:52
 msgid "Dependency description"
-msgstr "Ortam açıklaması"
+msgstr "Bağımlılık açıklaması"
 
-#: bottles/frontend/ui/dependency-entry.ui:59
+#: src/ui/dependency-entry.ui:59
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
-#: bottles/frontend/ui/dependency-entry.ui:73
+#: bottles/frontend/ui/dependency-entry.ui:73 src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
 msgstr "Bu bağımlılığı indir ve kur"
 
-#: bottles/frontend/ui/dependency-entry.ui:89
+#: bottles/frontend/ui/dependency-entry.ui:89 src/ui/dependency-entry.ui:89
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
@@ -489,27 +547,29 @@ msgstr ""
 "Bir kurulum hatası oluştu. Çökme Raporunu okumak için Şişeler'i yeniden "
 "başlatın veya çıktıyı okumak için terminal aracılığıyla çalıştırın."
 
-#: bottles/frontend/ui/details-bottle.ui:18
+#: bottles/frontend/ui/details-bottle.ui:18 src/ui/details-bottle.ui:18
 msgid "Troubleshooting"
 msgstr "Sorun giderme"
 
-#: bottles/frontend/ui/details-bottle.ui:26
+#: bottles/frontend/ui/details-bottle.ui:26 src/ui/details-bottle.ui:26
 msgid "Browse Files…"
 msgstr "Dosyalara Göz At…"
 
-#: bottles/frontend/ui/details-bottle.ui:31
+#: bottles/frontend/ui/details-bottle.ui:31 src/ui/details-bottle.ui:31
 msgid "Duplicate Bottle…"
-msgstr "Bottle'ı Klonla…"
+msgstr "Şişe'yi Klonla…"
 
 #: bottles/frontend/ui/details-bottle.ui:36 bottles/frontend/ui/importer.ui:86
+#: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr "Kişisel dosyalarınız da dahil, bu sizin şişenizin eksiksiz arşividir."
 
-#: bottles/frontend/ui/details-bottle.ui:37
+#: bottles/frontend/ui/details-bottle.ui:37 src/ui/details-bottle.ui:37
 msgid "Full Backup…"
 msgstr "Tam Yedekleme…"
 
 #: bottles/frontend/ui/details-bottle.ui:42 bottles/frontend/ui/importer.ui:80
+#: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
@@ -517,171 +577,180 @@ msgstr ""
 "Bu sadece şişe yapılandırmasıdır, kişisel dosyalarını kullanmadan yeni bir "
 "tane oluşturmak istiyorsanız mükemmeldir."
 
-#: bottles/frontend/ui/details-bottle.ui:43
+#: bottles/frontend/ui/details-bottle.ui:43 src/ui/details-bottle.ui:43
 msgid "Export Configuration…"
 msgstr "Yapılandırmayı Dışa Aktar…"
 
-#: bottles/frontend/ui/details-bottle.ui:51
+#: bottles/frontend/ui/details-bottle.ui:51 src/ui/details-bottle.ui:51
 msgid "Delete Bottle…"
-msgstr "Bottle'ı Sil…"
+msgstr "Şişe'yi Sil…"
 
-#: bottles/frontend/ui/details-bottle.ui:86
+#: bottles/frontend/ui/details-bottle.ui:86 src/ui/details-bottle.ui:86
 msgid "Kill all Processes"
-msgstr "Tüm İşlemleri Sonlandır"
+msgstr "Bütün İşlemleri Sonlandır"
 
-#: bottles/frontend/ui/details-bottle.ui:91
+#: bottles/frontend/ui/details-bottle.ui:91 src/ui/details-bottle.ui:91
 msgid "Simulate a Windows system shutdown."
 msgstr "Bir Windows sistemi gibi kapat."
 
-#: bottles/frontend/ui/details-bottle.ui:92
+#: bottles/frontend/ui/details-bottle.ui:92 src/ui/details-bottle.ui:92
 msgid "Shutdown"
 msgstr "Kapat"
 
-#: bottles/frontend/ui/details-bottle.ui:97
+#: bottles/frontend/ui/details-bottle.ui:97 src/ui/details-bottle.ui:97
 msgid "Simulate a Windows system reboot."
 msgstr "Bir Windows sistemi gibi yeniden başlat."
 
-#: bottles/frontend/ui/details-bottle.ui:98
+#: bottles/frontend/ui/details-bottle.ui:98 src/ui/details-bottle.ui:98
 msgid "Reboot"
 msgstr "Yeniden başlat"
 
-#: bottles/frontend/ui/details-bottle.ui:121
+#: bottles/frontend/ui/details-bottle.ui:121 src/ui/details-bottle.ui:121
 msgid "Run with Arguments…"
 msgstr "Argümanlarla Çalıştır…"
 
-#: bottles/frontend/ui/details-bottle.ui:126
+#: bottles/frontend/ui/details-bottle.ui:126 src/ui/details-bottle.ui:126
 msgid "Launch in Terminal…"
 msgstr "Terminalde Başlat…"
 
-#: bottles/frontend/ui/details-bottle.ui:157
+#: bottles/frontend/ui/details-bottle.ui:157 src/ui/details-bottle.ui:157
 msgid "My bottle"
 msgstr "Şişem"
 
-#: bottles/frontend/ui/details-bottle.ui:169
+#: bottles/frontend/ui/details-bottle.ui:169 src/ui/details-bottle.ui:169
 msgid "Win64"
 msgstr "Win64"
 
 #: bottles/frontend/ui/details-bottle.ui:177
 #: bottles/frontend/ui/list-entry.ui:14 bottles/frontend/ui/new.ui:77
+#: src/ui/details-bottle.ui:177 src/ui/list-entry.ui:14 src/ui/new.ui:77
 msgid "Environment"
 msgstr "Ortam"
 
 #: bottles/frontend/ui/details-bottle.ui:185
 #: bottles/frontend/ui/details-preferences.ui:314
-#: bottles/frontend/ui/new.ui:129
+#: bottles/frontend/ui/new.ui:129 src/ui/details-bottle.ui:185
+#: src/ui/details-preferences.ui:304 src/ui/new.ui:129
 msgid "Runner"
 msgstr "Çalıştırıcı"
 
 #: bottles/frontend/ui/details-bottle.ui:193
-#: bottles/frontend/ui/list-entry.ui:23
+#: bottles/frontend/ui/list-entry.ui:23 src/ui/details-bottle.ui:193
+#: src/ui/list-entry.ui:23
 msgid "Versioning enabled for this bottle"
 msgstr "Sürüm oluşturma bu şişe için etkinleştirildi"
 
 #: bottles/frontend/ui/details-bottle.ui:198
-#: bottles/frontend/ui/list-entry.ui:28
+#: bottles/frontend/ui/list-entry.ui:28 src/ui/details-bottle.ui:198
+#: src/ui/list-entry.ui:28
 msgid "Versioning is active in this bottle."
 msgstr "Sürüm oluşturma bu şişede etkin."
 
 #: bottles/frontend/ui/details-bottle.ui:208
-#: bottles/frontend/ui/list-entry.ui:34
+#: bottles/frontend/ui/list-entry.ui:34 src/ui/details-bottle.ui:208
+#: src/ui/list-entry.ui:34
 msgid "0"
 msgstr "0"
 
-#: bottles/frontend/ui/details-bottle.ui:219
+#: bottles/frontend/ui/details-bottle.ui:219 src/ui/details-bottle.ui:219
 msgid "Run Executable…"
 msgstr "Dosyayı Çalıştır…"
 
-#: bottles/frontend/ui/details-bottle.ui:235
+#: bottles/frontend/ui/details-bottle.ui:235 src/ui/details-bottle.ui:235
 msgid "Layers"
 msgstr "Katmanlar"
 
 #: bottles/frontend/ui/details-bottle.ui:241
-#: bottles/frontend/views/details.py:166
+#: bottles/frontend/views/details.py:166 src/ui/details-bottle.ui:241
+#: src/views/details.py:166
 msgid "Programs"
 msgstr "Programlar"
 
-#: bottles/frontend/ui/details-bottle.ui:246
+#: bottles/frontend/ui/details-bottle.ui:246 src/ui/details-bottle.ui:246
 msgid "Tools"
 msgstr "Araçlar"
 
-#: bottles/frontend/ui/details-bottle.ui:250
+#: bottles/frontend/ui/details-bottle.ui:250 src/ui/details-bottle.ui:250
 msgid "Command Line"
 msgstr "Komut Satırı"
 
-#: bottles/frontend/ui/details-bottle.ui:251
+#: bottles/frontend/ui/details-bottle.ui:251 src/ui/details-bottle.ui:251
 msgid "Run commands inside the Bottle."
 msgstr "Şişenin içindeki komutları çalıştırın."
 
-#: bottles/frontend/ui/details-bottle.ui:262
+#: bottles/frontend/ui/details-bottle.ui:262 src/ui/details-bottle.ui:262
 msgid "Registry Editor"
 msgstr "Kayıt Defteri Düzenleyicisi"
 
-#: bottles/frontend/ui/details-bottle.ui:263
+#: bottles/frontend/ui/details-bottle.ui:263 src/ui/details-bottle.ui:263
 msgid "Edit the internal registry."
 msgstr "Dahili kayıt defterini düzenleyin."
 
-#: bottles/frontend/ui/details-bottle.ui:273
+#: bottles/frontend/ui/details-bottle.ui:273 src/ui/details-bottle.ui:273
 msgid "Legacy Tools"
 msgstr "Eski Araçlar"
 
-#: bottles/frontend/ui/details-bottle.ui:277
+#: bottles/frontend/ui/details-bottle.ui:277 src/ui/details-bottle.ui:277
 msgid "Explorer"
 msgstr "Gezgin"
 
-#: bottles/frontend/ui/details-bottle.ui:278
+#: bottles/frontend/ui/details-bottle.ui:278 src/ui/details-bottle.ui:278
 msgid "Browse internal files with the Wine explorer."
 msgstr "Dahili dosyalara Wine gezgini ile göz atın."
 
 #: bottles/frontend/ui/details-bottle.ui:289
-#: bottles/frontend/views/details.py:178
+#: bottles/frontend/views/details.py:178 src/ui/details-bottle.ui:289
+#: src/views/details.py:178
 msgid "Task Manager"
 msgstr "Görev yöneticisi"
 
-#: bottles/frontend/ui/details-bottle.ui:290
+#: bottles/frontend/ui/details-bottle.ui:290 src/ui/details-bottle.ui:290
 msgid "Manage processes with the Wine task manager."
 msgstr "Wine görev yöneticisi ile süreçleri yönetin."
 
-#: bottles/frontend/ui/details-bottle.ui:301
+#: bottles/frontend/ui/details-bottle.ui:301 src/ui/details-bottle.ui:301
 msgid "Debug"
 msgstr "Hata ayıklama"
 
-#: bottles/frontend/ui/details-bottle.ui:302
+#: bottles/frontend/ui/details-bottle.ui:302 src/ui/details-bottle.ui:302
 msgid "Debug wine processes."
 msgstr "Wine işlemlerinde hata ayıklayın."
 
-#: bottles/frontend/ui/details-bottle.ui:313
+#: bottles/frontend/ui/details-bottle.ui:313 src/ui/details-bottle.ui:313
 msgid "Wine Configuration"
 msgstr "Wine Yapılandırması"
 
-#: bottles/frontend/ui/details-bottle.ui:314
+#: bottles/frontend/ui/details-bottle.ui:314 src/ui/details-bottle.ui:314
 msgid "Adjust internal settings."
 msgstr "Dahili ayarları düzenleyin."
 
-#: bottles/frontend/ui/details-bottle.ui:325
+#: bottles/frontend/ui/details-bottle.ui:325 src/ui/details-bottle.ui:325
 msgid "Uninstaller"
 msgstr "Kaldırıcı"
 
-#: bottles/frontend/ui/details-bottle.ui:326
+#: bottles/frontend/ui/details-bottle.ui:326 src/ui/details-bottle.ui:326
 msgid "Uninstall programs using Wine uninstaller."
 msgstr "Wine kaldırıcıyı kullanarak programları kaldırın."
 
-#: bottles/frontend/ui/details-bottle.ui:337
+#: bottles/frontend/ui/details-bottle.ui:337 src/ui/details-bottle.ui:337
 msgid "Control Panel"
 msgstr "Denetim masası"
 
-#: bottles/frontend/ui/details-bottle.ui:338
+#: bottles/frontend/ui/details-bottle.ui:338 src/ui/details-bottle.ui:338
 msgid "Access the internal Wine Control Panel."
 msgstr "Dahili Wine Kontrol Paneli'ne erişin."
 
-#: bottles/frontend/ui/details-bottle.ui:357
+#: bottles/frontend/ui/details-bottle.ui:357 src/ui/details-bottle.ui:357
 msgid "Use the Installers section or the \"Run executable\" button."
 msgstr "Kurucular bölümünü veya \"Dosyayı çalıştır\" düğmesini kullanın."
 
 #: bottles/frontend/ui/details-dependencies.ui:13
+#: src/ui/details-dependencies.ui:13
 msgid "Search for dependencies…"
 msgstr "Bağımlılıkları ara…"
 
 #: bottles/frontend/ui/details-dependencies.ui:22
+#: src/ui/details-dependencies.ui:22
 msgid ""
 "Dependencies are software, libraries and codecs that improve the "
 "compatibility of Windows software. Install from here to meet your program "
@@ -693,6 +762,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-dependencies.ui:34
 #: bottles/frontend/ui/details-installers.ui:33
+#: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
 msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
@@ -701,14 +771,17 @@ msgstr ""
 "sağlanmaktadır. İndirerek sözleşmeleri kabul etmiş olursunuz."
 
 #: bottles/frontend/ui/details-dependencies.ui:62
+#: src/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
 msgstr "Sorun veya eksik bağımlılık bildir."
 
 #: bottles/frontend/ui/details-dependencies.ui:63
+#: src/ui/details-dependencies.ui:63
 msgid "Report missing dependency"
 msgstr "Eksik bağımlılığı bildir"
 
 #: bottles/frontend/ui/details-dependencies.ui:68
+#: src/ui/details-dependencies.ui:68
 #, fuzzy
 msgid "Read documentation."
 msgstr "Belgelendirmeyi oku"
@@ -717,33 +790,39 @@ msgstr "Belgelendirmeyi oku"
 #: bottles/frontend/ui/details-installers.ui:71
 #: bottles/frontend/ui/details-programs.ui:45
 #: bottles/frontend/ui/details-versioning.ui:44
-#: bottles/frontend/ui/window.ui:38
+#: bottles/frontend/ui/window.ui:38 src/ui/details-dependencies.ui:69
+#: src/ui/details-installers.ui:71 src/ui/details-programs.ui:45
+#: src/ui/details-versioning.ui:44 src/ui/window.ui:38
 msgid "Documentation"
 msgstr "Belgelendirme"
 
 #: bottles/frontend/ui/details-dependencies.ui:80
+#: src/ui/details-dependencies.ui:80
 msgid "Install Selected"
 msgstr "Seçilenleri Kur"
 
 #: bottles/frontend/ui/details-dependencies.ui:81
+#: src/ui/details-dependencies.ui:81
 msgid "We strongly advise against installing multiple dependencies at once."
 msgstr "Aynı anda birden çok bağımlılık kurmamanızı şiddetle tavsiye ederiz."
 
 #: bottles/frontend/ui/details-dependencies.ui:88
+#: src/ui/details-dependencies.ui:88
 msgid "Select Dependencies"
 msgstr "Bağımlılıkları Seç"
 
 #: bottles/frontend/ui/details-dependencies.ui:95
 #: bottles/frontend/ui/details-installers.ui:82
-#: bottles/frontend/ui/window.ui:86
+#: bottles/frontend/ui/window.ui:86 src/ui/details-dependencies.ui:95
+#: src/ui/details-installers.ui:82 src/ui/window.ui:86
 msgid "Search"
 msgstr "Ara"
 
-#: bottles/frontend/ui/details-installers.ui:13
+#: bottles/frontend/ui/details-installers.ui:13 src/ui/details-installers.ui:13
 msgid "Search for Programs…"
 msgstr "Programları Arayın…"
 
-#: bottles/frontend/ui/details-installers.ui:22
+#: bottles/frontend/ui/details-installers.ui:22 src/ui/details-installers.ui:22
 #, fuzzy
 msgid ""
 "Use this section to install programs curated by our community, without "
@@ -754,69 +833,79 @@ msgstr ""
 "usebottles.com/bottles/installers#compatibility-grades\">uyumluluk "
 "derecesini</a> göz önünde bulundurun."
 
-#: bottles/frontend/ui/details-installers.ui:48
-#, fuzzy
+#: src/ui/details-installers.ui:48
 msgid "No Installers Found"
-msgstr "Kurucu bulunamadı"
+msgstr "Kurucu Bulunamadı"
 
-#: bottles/frontend/ui/details-installers.ui:51
+#: bottles/frontend/ui/details-installers.ui:51 src/ui/details-installers.ui:51
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
-"Repository erişilebilir değil veya hiçbir kurucu bu bottle ile uyumlu değil."
+msgstr "Depo erişilebilir değil veya hiçbir kurucu bu şişe ile uyumlu değil."
 
 #: bottles/frontend/ui/details-installers.ui:70
 #: bottles/frontend/ui/details-programs.ui:44
-#: bottles/frontend/ui/details-versioning.ui:43
+#: bottles/frontend/ui/details-versioning.ui:43 src/ui/details-installers.ui:70
+#: src/ui/details-programs.ui:44 src/ui/details-versioning.ui:43
 msgid "Read documentation"
 msgstr "Belgelendirmeyi oku"
 
-#: bottles/frontend/ui/details-preferences.ui:8
+#: bottles/frontend/ui/details-preferences.ui:8 src/ui/details-preferences.ui:8
 msgid "Bottle Details"
 msgstr "Şişe Ayrıntıları"
 
 #: bottles/frontend/ui/details-preferences.ui:11
 #: bottles/frontend/ui/dialog-duplicate.ui:58 bottles/frontend/ui/new.ui:70
+#: src/ui/details-preferences.ui:11 src/ui/dialog-duplicate.ui:58
+#: src/ui/new.ui:70
 msgid "Name"
 msgstr "Ad"
 
 #: bottles/frontend/ui/details-preferences.ui:19
+#: src/ui/details-preferences.ui:19
 msgid "Graphics"
 msgstr "Grafikler"
 
 #: bottles/frontend/ui/details-preferences.ui:23
-#: bottles/frontend/ui/preferences.ui:213
+#: bottles/frontend/ui/preferences.ui:213 src/ui/details-preferences.ui:23
+#: src/ui/preferences.ui:213
 msgid "DXVK"
 msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.ui:24
+#: src/ui/details-preferences.ui:24
 msgid "Improves performance of DirectX 11 games and 3D applications."
 msgstr "DirectX 11 oyunlarının ve 3D uygulamaların performansını iyileştirir."
 
 #: bottles/frontend/ui/details-preferences.ui:27
 #: bottles/frontend/ui/details-preferences.ui:338
+#: src/ui/details-preferences.ui:27 src/ui/details-preferences.ui:328
 msgid "Updating DXVK, please wait…"
 msgstr "DXVK güncelleniyor, lütfen bekleyin…"
 
 #: bottles/frontend/ui/details-preferences.ui:42
-#: bottles/frontend/ui/preferences.ui:218
+#: bottles/frontend/ui/preferences.ui:218 src/ui/details-preferences.ui:42
+#: src/ui/preferences.ui:218
 msgid "VKD3D"
 msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.ui:43
+#: src/ui/details-preferences.ui:43
 msgid "Improves performance of DirectX 12 games and 3D applications."
 msgstr "DirectX 12 oyunlarının ve 3D uygulamaların performansını iyileştirir."
 
 #: bottles/frontend/ui/details-preferences.ui:46
 #: bottles/frontend/ui/details-preferences.ui:361
+#: src/ui/details-preferences.ui:46 src/ui/details-preferences.ui:351
 msgid "Updating VKD3D, please wait…"
 msgstr "VKD3D güncelleniyor, lütfen bekleyin…"
 
 #: bottles/frontend/ui/details-preferences.ui:61
+#: src/ui/details-preferences.ui:61
 msgid "DLSS (DXVK-NVAPI)"
 msgstr "DLSS (DXVK-NVAPI)"
 
 #: bottles/frontend/ui/details-preferences.ui:62
+#: src/ui/details-preferences.ui:62
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr "Varsa DLSS desteği ve Nvidia'nın NVAPI'sini sağla."
 
@@ -824,14 +913,18 @@ msgstr "Varsa DLSS desteği ve Nvidia'nın NVAPI'sini sağla."
 #: bottles/frontend/ui/details-preferences.ui:112
 #: bottles/frontend/ui/details-preferences.ui:385
 #: bottles/frontend/ui/details-preferences.ui:407
+#: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
+#: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
 msgid "Updating DXVK-NVAPI, please wait…"
 msgstr "DXVK-NVAPI güncelleniyor, lütfen bekleyin…"
 
 #: bottles/frontend/ui/details-preferences.ui:80
+#: src/ui/details-preferences.ui:80
 msgid "FSR"
 msgstr "FSR"
 
 #: bottles/frontend/ui/details-preferences.ui:81
+#: src/ui/details-preferences.ui:81
 msgid ""
 "FSR uses cutting-edge up-scaling technologies to help boost your framerate."
 msgstr ""
@@ -839,45 +932,55 @@ msgstr ""
 "teknolojilerini kullanır."
 
 #: bottles/frontend/ui/details-preferences.ui:88
+#: src/ui/details-preferences.ui:88
 msgid "Ultra Quality"
 msgstr "Çok Kaliteli"
 
 #: bottles/frontend/ui/details-preferences.ui:89
+#: src/ui/details-preferences.ui:89
 msgid "Quality"
 msgstr "Kaliteli"
 
 #: bottles/frontend/ui/details-preferences.ui:90
+#: src/ui/details-preferences.ui:90
 msgid "Balanced"
 msgstr "Dengeli"
 
 #: bottles/frontend/ui/details-preferences.ui:91
+#: src/ui/details-preferences.ui:91
 msgid "Performance"
 msgstr "Performans"
 
 #: bottles/frontend/ui/details-preferences.ui:108
-#: bottles/frontend/ui/preferences.ui:228
+#: bottles/frontend/ui/preferences.ui:228 src/ui/details-preferences.ui:108
+#: src/ui/preferences.ui:228
 msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.ui:109
+#: src/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
 msgstr ""
 "NVIDIA Reflex için bir alternatif. Bazı hile önleme programları tarafından "
 "tespit edilebilir."
 
 #: bottles/frontend/ui/details-preferences.ui:128
+#: src/ui/details-preferences.ui:128
 msgid "Discrete GPU"
 msgstr "Ayrık GPU"
 
 #: bottles/frontend/ui/details-preferences.ui:129
+#: src/ui/details-preferences.ui:129
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Artan güç kullanımı pahasına performansı iyileştirir."
 
 #: bottles/frontend/ui/details-preferences.ui:140
+#: src/ui/details-preferences.ui:140
 msgid "vkBasalt"
 msgstr "vkBasalt"
 
 #: bottles/frontend/ui/details-preferences.ui:141
+#: src/ui/details-preferences.ui:141
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
@@ -891,216 +994,267 @@ msgid "Manage vkBasalt settings"
 msgstr "Gamescope ayarlarını yönet"
 
 #: bottles/frontend/ui/details-preferences.ui:161
+#: src/ui/details-preferences.ui:151
 msgid "Display Settings"
 msgstr "Görüntü Ayarları"
 
 #: bottles/frontend/ui/details-preferences.ui:165
 #: bottles/frontend/ui/dialog-launch-options.ui:194
+#: src/ui/details-preferences.ui:155 src/ui/dialog-launch-options.ui:194
 msgid "Virtual Desktop"
 msgstr "Sanal Masaüstü"
 
 #: bottles/frontend/ui/details-preferences.ui:166
+#: src/ui/details-preferences.ui:156
 msgid "Use the Wine virtual desktop."
 msgstr "Wine sanal masaüstünü kullanın."
 
 #: bottles/frontend/ui/details-preferences.ui:204
+#: src/ui/details-preferences.ui:194
 msgid "Fullscreen Mouse Capture"
 msgstr "Tam Ekran Mouse Girdisi Algılama"
 
 #: bottles/frontend/ui/details-preferences.ui:205
+#: src/ui/details-preferences.ui:195
 msgid "Let the program capture mouse input when fullscreen."
 msgstr "Tam ekran olduğunda programın fare girdisini yakalamasına izin verin."
 
 #: bottles/frontend/ui/details-preferences.ui:216
+#: src/ui/details-preferences.ui:206
 msgid "Take Focus"
 msgstr "Odakla"
 
 #: bottles/frontend/ui/details-preferences.ui:217
+#: src/ui/details-preferences.ui:207
 msgid "Activate it if the program does not retake focus on switch."
 msgstr "Geçiş yapıldığında program yeniden odaklanmazsa etkinleştirin."
 
 #: bottles/frontend/ui/details-preferences.ui:228
+#: src/ui/details-preferences.ui:218
 msgid "Mouse Warp"
 msgstr "Mouse Çevirme"
 
 #: bottles/frontend/ui/details-preferences.ui:229
+#: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
 msgstr ""
 "Mouse gecikmesi veya senkronizasyon bozukluğu yaşıyorsanız bunu değiştirin."
 
 #: bottles/frontend/ui/details-preferences.ui:241
+#: src/ui/details-preferences.ui:231
 msgid "Screen Scaling"
 msgstr "Ekran Ölçekleme"
 
 #: bottles/frontend/ui/details-preferences.ui:242
+#: src/ui/details-preferences.ui:232
 msgid "Set custom DPI."
 msgstr "Özel DPI ayarla."
 
 #: bottles/frontend/ui/details-preferences.ui:248
+#: src/ui/details-preferences.ui:238
 msgid "96"
 msgstr "96"
 
 #: bottles/frontend/ui/details-preferences.ui:249
+#: src/ui/details-preferences.ui:239
 msgid "120"
 msgstr "120"
 
 #: bottles/frontend/ui/details-preferences.ui:250
+#: src/ui/details-preferences.ui:240
 msgid "144"
 msgstr "144"
 
 #: bottles/frontend/ui/details-preferences.ui:251
+#: src/ui/details-preferences.ui:241
 msgid "168"
 msgstr "168"
 
 #: bottles/frontend/ui/details-preferences.ui:252
+#: src/ui/details-preferences.ui:242
 msgid "192"
 msgstr "192"
 
 #: bottles/frontend/ui/details-preferences.ui:253
+#: src/ui/details-preferences.ui:243
 msgid "216"
 msgstr "216"
 
 #: bottles/frontend/ui/details-preferences.ui:254
+#: src/ui/details-preferences.ui:244
 msgid "240"
 msgstr "240"
 
 #: bottles/frontend/ui/details-preferences.ui:255
+#: src/ui/details-preferences.ui:245
 msgid "288"
 msgstr "288"
 
 #: bottles/frontend/ui/details-preferences.ui:256
+#: src/ui/details-preferences.ui:246
 msgid "336"
 msgstr "336"
 
 #: bottles/frontend/ui/details-preferences.ui:257
+#: src/ui/details-preferences.ui:247
 msgid "384"
 msgstr "384"
 
 #: bottles/frontend/ui/details-preferences.ui:258
+#: src/ui/details-preferences.ui:248
 msgid "432"
 msgstr "432"
 
 #: bottles/frontend/ui/details-preferences.ui:259
+#: src/ui/details-preferences.ui:249
 msgid "480"
 msgstr "480"
 
 #: bottles/frontend/ui/details-preferences.ui:272
+#: src/ui/details-preferences.ui:262
 msgid "Renderer"
 msgstr "Görselleştirici"
 
 #: bottles/frontend/ui/details-preferences.ui:273
+#: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
 msgstr "wined3d için hangi arka ucun kullanılacağını seç."
 
 #: bottles/frontend/ui/details-preferences.ui:279
+#: src/ui/details-preferences.ui:269
 msgid "gl (default)"
 msgstr "gl (öntanımlı)"
 
 #: bottles/frontend/ui/details-preferences.ui:280
+#: src/ui/details-preferences.ui:270
 msgid "gdi"
 msgstr "gdi"
 
 #: bottles/frontend/ui/details-preferences.ui:281
+#: src/ui/details-preferences.ui:271
 msgid "vulkan"
 msgstr "vulkan"
 
 #: bottles/frontend/ui/details-preferences.ui:296
 #: bottles/frontend/ui/details-preferences.ui:432
+#: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
 msgid "System"
 msgstr "Sistem"
 
 #: bottles/frontend/ui/details-preferences.ui:299
+#: src/ui/details-preferences.ui:289
 #, fuzzy
 msgid "Manage Components Versions"
 msgstr "Bileşenlerin sürümü"
 
 #: bottles/frontend/ui/details-preferences.ui:309
+#: src/ui/details-preferences.ui:299
 msgid "Components"
 msgstr "Bileşenler"
 
 #: bottles/frontend/ui/details-preferences.ui:317
+#: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
 msgstr "Çalıştırıcı ve bileşenler güncelleniyor, lütfen bekleyin…"
 
 #. TODO: replace with ComboRow
 #: bottles/frontend/ui/details-preferences.ui:334
+#: src/ui/details-preferences.ui:324
 msgid "DXVK Version"
 msgstr "DXVK Sürümü"
 
 #: bottles/frontend/ui/details-preferences.ui:358
+#: src/ui/details-preferences.ui:348
 msgid "VKD3D Version"
 msgstr "VKD3D Sürümü"
 
 #: bottles/frontend/ui/details-preferences.ui:382
+#: src/ui/details-preferences.ui:372
 msgid "DXVK NVAPI Version"
 msgstr "DXVK NVAPI Sürümü"
 
 #: bottles/frontend/ui/details-preferences.ui:404
+#: src/ui/details-preferences.ui:394
 msgid "LatencyFleX Version"
 msgstr "LatencyFleX Sürümü"
 
 #: bottles/frontend/ui/details-preferences.ui:426
+#: src/ui/details-preferences.ui:416
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
 "Çok çekirdekli işlemcilerin performansını artırmak için senkronizasyonu "
 "etkinleştirin."
 
 #: bottles/frontend/ui/details-preferences.ui:427
+#: src/ui/details-preferences.ui:417
 msgid "Synchronization"
 msgstr "Eşzamanlama"
 
 #: bottles/frontend/ui/details-preferences.ui:438
+#: src/ui/details-preferences.ui:428
 msgid "Esync"
 msgstr "Esync"
 
 #: bottles/frontend/ui/details-preferences.ui:444
+#: src/ui/details-preferences.ui:434
 msgid "Fsync"
 msgstr "Fsync"
 
 #: bottles/frontend/ui/details-preferences.ui:450
+#: src/ui/details-preferences.ui:440
 msgid "Futex2"
 msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.ui:465
+#: src/ui/details-preferences.ui:455
 #, fuzzy
 msgid "Windows Version"
 msgstr "Windows sürümü"
 
 #: bottles/frontend/ui/details-preferences.ui:468
+#: src/ui/details-preferences.ui:458
 msgid "Updating Windows version, please wait…"
 msgstr "Windows sürümü güncelleniyor, lütfen bekleyin…"
 
 #: bottles/frontend/ui/details-preferences.ui:496
+#: src/ui/details-preferences.ui:486
 msgid "Language"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:497
+#: src/ui/details-preferences.ui:487
 msgid "Choose the language to use with programs."
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:507
+#: src/ui/details-preferences.ui:497
 msgid "false"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:508
+#: src/ui/details-preferences.ui:498
 msgid "Dedicated Sandbox"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:509
+#: src/ui/details-preferences.ui:499
 #, fuzzy
 msgid "Use a restricted/managed environment for this bottle."
 msgstr "Bu Şişe için farklı bir çalıştırıcı ayarla."
 
 #: bottles/frontend/ui/details-preferences.ui:512
+#: src/ui/details-preferences.ui:502
 #, fuzzy
 msgid "Manage Sandbox permissions"
 msgstr "DXVK sürümlerini yönetin"
 
 #: bottles/frontend/ui/details-preferences.ui:530
+#: src/ui/details-preferences.ui:520
 msgid "Bottles Runtime"
-msgstr "Bottles Çalışma Zamanı"
+msgstr "Şişeler Çalışma Zamanı"
 
 #: bottles/frontend/ui/details-preferences.ui:531
+#: src/ui/details-preferences.ui:521
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
@@ -1109,30 +1263,37 @@ msgstr ""
 "devre dışı bırakın."
 
 #: bottles/frontend/ui/details-preferences.ui:542
+#: src/ui/details-preferences.ui:532
 msgid "Steam Runtime"
 msgstr "Steam Çalışma Zamanı"
 
 #: bottles/frontend/ui/details-preferences.ui:543
+#: src/ui/details-preferences.ui:533
 msgid "The same as the Bottles one but provided by Steam."
 msgstr "Şişeler ile aynı, ancak Steam tarafından sağlanır."
 
 #: bottles/frontend/ui/details-preferences.ui:554
+#: src/ui/details-preferences.ui:544
 msgid "GameMode"
 msgstr "Oyun Modu"
 
 #: bottles/frontend/ui/details-preferences.ui:555
+#: src/ui/details-preferences.ui:545
 msgid "Optimise gaming performance on demand."
 msgstr "İstendiğinde oyun performansını iyileştir."
 
 #: bottles/frontend/ui/details-preferences.ui:566
+#: src/ui/details-preferences.ui:556
 msgid "Gamescope"
 msgstr "Gamescope"
 
 #: bottles/frontend/ui/details-preferences.ui:567
+#: src/ui/details-preferences.ui:557
 msgid "Use the Gamescope micro-compositor."
 msgstr "Gamesscope mikro birleştiricisini kullan."
 
 #: bottles/frontend/ui/details-preferences.ui:570
+#: src/ui/details-preferences.ui:560
 msgid "Manage Gamescope settings"
 msgstr "Gamescope ayarlarını yönet"
 
@@ -1151,102 +1312,126 @@ msgstr "Gamescope ayarlarını yönet"
 
 #: bottles/frontend/ui/details-preferences.ui:610
 #: bottles/frontend/ui/dialog-launch-options.ui:91
+#: src/ui/details-preferences.ui:578 src/ui/dialog-launch-options.ui:91
 msgid "Working Directory"
 msgstr "Çalışma Dizini"
 
 #: bottles/frontend/ui/details-preferences.ui:611
+#: src/ui/details-preferences.ui:579
 msgid "Defaults to the bottle path."
-msgstr "Bottle dizini için varsayılanlar."
+msgstr "Şişeler dizini için varsayılanlar."
 
 #: bottles/frontend/ui/details-preferences.ui:614
 #: bottles/frontend/ui/dialog-launch-options.ui:65
 #: bottles/frontend/ui/dialog-launch-options.ui:98
-#: bottles/frontend/ui/preferences.ui:159
+#: bottles/frontend/ui/preferences.ui:159 src/ui/details-preferences.ui:582
+#: src/ui/dialog-launch-options.ui:65 src/ui/dialog-launch-options.ui:98
+#: src/ui/preferences.ui:159
 msgid "Reset to default"
 msgstr "Varsayılana sıfırla"
 
 #: bottles/frontend/ui/details-preferences.ui:624
 #: bottles/frontend/ui/dialog-launch-options.ui:109
 #: bottles/frontend/ui/new.ui:163 bottles/frontend/ui/new.ui:180
-#: bottles/frontend/ui/preferences.ui:170
+#: bottles/frontend/ui/preferences.ui:170 src/ui/details-preferences.ui:592
+#: src/ui/dialog-launch-options.ui:109 src/ui/new.ui:163 src/ui/new.ui:180
+#: src/ui/preferences.ui:170
 msgid "Choose a directory"
 msgstr "Bir dizin seçin"
 
 #: bottles/frontend/ui/details-preferences.ui:637
 #: bottles/frontend/ui/dialog-dll-overrides.ui:9
 #: bottles/frontend/ui/dialog-dll-overrides.ui:15
+#: src/ui/details-preferences.ui:605 src/ui/dialog-dll-overrides.ui:9
+#: src/ui/dialog-dll-overrides.ui:15
 msgid "DLL Overrides"
 msgstr "DLL Geçersiz Kılmaları"
 
 #: bottles/frontend/ui/details-preferences.ui:648
-#: bottles/frontend/ui/dialog-env-vars.ui:16
+#: bottles/frontend/ui/dialog-env-vars.ui:16 src/ui/details-preferences.ui:616
+#: src/ui/dialog-env-vars.ui:16
 msgid "Environment Variables"
 msgstr "Ortam Değişkenleri"
 
 #: bottles/frontend/ui/details-preferences.ui:659
+#: src/ui/details-preferences.ui:627
 msgid "Manage Drives"
 msgstr "Sürücüleri Yönet"
 
 #: bottles/frontend/ui/details-preferences.ui:671
+#: src/ui/details-preferences.ui:639
 msgid "Audio"
 msgstr "Ses"
 
 #: bottles/frontend/ui/details-preferences.ui:675
 #: bottles/frontend/ui/dialog-launch-options.ui:183
+#: src/ui/details-preferences.ui:643 src/ui/dialog-launch-options.ui:183
 msgid "Reduce Latency"
 msgstr "Gecikmeyi Azalt"
 
 #: bottles/frontend/ui/details-preferences.ui:676
+#: src/ui/details-preferences.ui:644
 #, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
 msgstr "PulseAudio gecikmesini 60 ms'ye ayarlarak ses kalitesini artırın"
 
 #: bottles/frontend/ui/details-preferences.ui:688
-#: bottles/frontend/views/details.py:170
+#: bottles/frontend/views/details.py:170 src/ui/details-preferences.ui:656
+#: src/views/details.py:170
 msgid "Versioning"
 msgstr "Sürüm oluşturma"
 
 #: bottles/frontend/ui/details-preferences.ui:692
+#: src/ui/details-preferences.ui:660
 msgid "Use Compression for States"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:693
+#: src/ui/details-preferences.ui:661
 msgid ""
 "This will reduce the space used by the states but slow down their creation."
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:704
+#: src/ui/details-preferences.ui:672
 #, fuzzy
 msgid "Automatic Versioning"
 msgstr "Sürüm oluşturma"
 
 #: bottles/frontend/ui/details-preferences.ui:705
+#: src/ui/details-preferences.ui:673
 msgid ""
 "Bottles will create a state before running any dependencies or installers."
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:716
+#: src/ui/details-preferences.ui:684
 msgid "Use Exclusion Patterns"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:717
+#: src/ui/details-preferences.ui:685
 msgid "Use custom patterns to exclude some paths from versioning."
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:720
+#: src/ui/details-preferences.ui:688
 #, fuzzy
 msgid "Manage Patterns"
 msgstr "Çalıştırıcıları yönet"
 
 #: bottles/frontend/ui/details-preferences.ui:739
+#: src/ui/details-preferences.ui:707
 msgid "Development and Debugging"
 msgstr "Geliştirme ve Hata Ayıklama"
 
 #: bottles/frontend/ui/details-preferences.ui:743
+#: src/ui/details-preferences.ui:711
 msgid "MangoHud"
 msgstr "MangoHud"
 
 #: bottles/frontend/ui/details-preferences.ui:744
+#: src/ui/details-preferences.ui:712
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
@@ -1255,26 +1440,30 @@ msgstr ""
 "OpenGL katmanı."
 
 #: bottles/frontend/ui/details-preferences.ui:755
+#: src/ui/details-preferences.ui:723
 msgid "OBS Vulkan Capture"
 msgstr "OBS Vulkan Yakalama"
 
 #: bottles/frontend/ui/details-preferences.ui:756
+#: src/ui/details-preferences.ui:724
 msgid "Toggle OBS game capture for all programs."
-msgstr "Tüm programlar için OBS oyun kaydetmeyi aç/kapa."
+msgstr "Bütün programlar için OBS oyun kaydetmeyi aç/kapa."
 
 #: bottles/frontend/ui/details-preferences.ui:767
+#: src/ui/details-preferences.ui:735
 msgid "Wine 'fixme' Logs"
 msgstr "Wine 'fixme' Günlükleri"
 
 #: bottles/frontend/ui/details-preferences.ui:768
+#: src/ui/details-preferences.ui:736
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Wine'da uygulanmayan günlük kodu yolları."
 
-#: bottles/frontend/ui/details-programs.ui:9
+#: bottles/frontend/ui/details-programs.ui:9 src/ui/details-programs.ui:9
 msgid "No Programs found"
 msgstr "Hiçbir program bulunamadı"
 
-#: bottles/frontend/ui/details-programs.ui:10
+#: bottles/frontend/ui/details-programs.ui:10 src/ui/details-programs.ui:10
 #, fuzzy
 msgid ""
 "Install programs from the installers section or by running the installer "
@@ -1283,74 +1472,77 @@ msgstr ""
 "Kurucular bölümünden veya kurucu dosyasını çalıştırarak programları kurun, "
 "ayrıca \"+\" düğmesiyle çalıştırılabilir dosyaları elle ekleyebilirsiniz"
 
-#: bottles/frontend/ui/details-programs.ui:31
+#: bottles/frontend/ui/details-programs.ui:31 src/ui/details-programs.ui:31
 #, fuzzy
 msgid "Toggle Hidden"
 msgstr "Aramayı aç/kapat"
 
-#: bottles/frontend/ui/details-programs.ui:36
+#: bottles/frontend/ui/details-programs.ui:36 src/ui/details-programs.ui:36
 #, fuzzy
 msgid "Search for new programs"
 msgstr "Kurulu programları arayın"
 
-#: bottles/frontend/ui/details-programs.ui:55
+#: bottles/frontend/ui/details-programs.ui:55 src/ui/details-programs.ui:55
 msgid "Add a custom executable path"
 msgstr "Özel bir çalıştırılabilir yol ekle"
 
 #: bottles/frontend/ui/details-taskmanager.ui:18
+#: src/ui/details-taskmanager.ui:18
 msgid "Refresh"
 msgstr "Yenile"
 
 #: bottles/frontend/ui/details-taskmanager.ui:24
+#: src/ui/details-taskmanager.ui:24
 msgid "Stop process"
 msgstr "İşlemi durdur"
 
-#: bottles/frontend/ui/details-versioning.ui:25
+#: bottles/frontend/ui/details-versioning.ui:25 src/ui/details-versioning.ui:25
 #, fuzzy
 msgid "No States Found"
 msgstr "Durum bulunamadı"
 
-#: bottles/frontend/ui/details-versioning.ui:26
+#: bottles/frontend/ui/details-versioning.ui:26 src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
 msgstr "Sürüm oluşturmayı kullanmaya başlamak için ilk durumu oluşturun."
 
-#: bottles/frontend/ui/details-versioning.ui:63
+#: bottles/frontend/ui/details-versioning.ui:63 src/ui/details-versioning.ui:63
 #, fuzzy
 msgid "A short comment"
 msgstr "Gerçekten kısa bir yorum"
 
-#: bottles/frontend/ui/details-versioning.ui:68
+#: bottles/frontend/ui/details-versioning.ui:68 src/ui/details-versioning.ui:68
 msgid "Save the bottle state."
 msgstr "Şişenin durumunu kaydet."
 
-#: bottles/frontend/ui/details-versioning.ui:88
+#: bottles/frontend/ui/details-versioning.ui:88 src/ui/details-versioning.ui:88
 msgid "Create new state"
 msgstr "Yeni durum oluştur"
 
-#: bottles/frontend/ui/details.ui:74
+#: bottles/frontend/ui/details.ui:74 src/ui/details.ui:74
 msgid "Operations"
 msgstr "İşlemler"
 
-#: bottles/frontend/ui/dialog-bottle-picker.ui:6
-#, fuzzy
+#: src/ui/dialog-bottle-picker.ui:6
 msgid "Select Bottle"
-msgstr "Bottle'ı Sil…"
+msgstr "Şişe Seç"
 
-#: bottles/frontend/ui/dialog-bottle-picker.ui:42
-#, fuzzy
+#: src/ui/dialog-bottle-picker.ui:42
 msgid "Create New Bottle"
-msgstr "Yeni şişe oluştur"
+msgstr "Yeni Şişe Oluştur"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:10
+#: src/ui/dialog-crash-report.ui:10
 #, fuzzy
 msgid "Bottles crash report"
 msgstr "Şişeler Çökme Raporu"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:23
+#: src/ui/dialog-crash-report.ui:23
 msgid "Send report"
 msgstr "Rapor gönder"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:43
+#: src/ui/dialog-crash-report.ui:43
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
@@ -1360,6 +1552,7 @@ msgstr ""
 "bir rapor oluşturun."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:75
+#: src/ui/dialog-crash-report.ui:75
 msgid ""
 "We found one or more similar (or identical) reports. Please make sure to "
 "check carefully that it has not already been reported before submitting a "
@@ -1373,18 +1566,20 @@ msgstr ""
 "emin olun."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:96
+#: src/ui/dialog-crash-report.ui:96
 msgid "I still want to report."
 msgstr "Yine de bildirmek istiyorum."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:102
+#: src/ui/dialog-crash-report.ui:102
 msgid "Advanced options"
 msgstr "Gelişmiş seçenekler"
 
-#: bottles/frontend/ui/dialog-deps-check.ui:15
+#: bottles/frontend/ui/dialog-deps-check.ui:15 src/ui/dialog-deps-check.ui:15
 msgid "Incomplete package"
 msgstr ""
 
-#: bottles/frontend/ui/dialog-deps-check.ui:16
+#: bottles/frontend/ui/dialog-deps-check.ui:16 src/ui/dialog-deps-check.ui:16
 msgid ""
 "This version of Bottles does not seem to provide all the necessary core "
 "dependencies, please contact the package maintainer or use an official "
@@ -1392,11 +1587,12 @@ msgid ""
 "                        "
 msgstr ""
 
-#: bottles/frontend/ui/dialog-deps-check.ui:21
+#: bottles/frontend/ui/dialog-deps-check.ui:21 src/ui/dialog-deps-check.ui:21
 msgid "Quit"
 msgstr "istifa etmek"
 
 #: bottles/frontend/ui/dialog-dll-overrides.ui:14
+#: src/ui/dialog-dll-overrides.ui:14
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
@@ -1405,20 +1601,22 @@ msgstr ""
 "yerel (program tarafından sağlanır) olarak belirtilebilir."
 
 #: bottles/frontend/ui/dialog-dll-overrides.ui:18
+#: src/ui/dialog-dll-overrides.ui:18
 #, fuzzy
 msgid "New Override"
 msgstr "Yeni geçersiz kılma"
 
 #: bottles/frontend/ui/dialog-dll-overrides.ui:26
+#: src/ui/dialog-dll-overrides.ui:26
 #, fuzzy
 msgid "Overrides"
 msgstr "DLL Geçersiz Kılmaları"
 
-#: bottles/frontend/ui/dialog-drives.ui:9
+#: bottles/frontend/ui/dialog-drives.ui:9 src/ui/dialog-drives.ui:9
 msgid "Drives"
 msgstr "Sürücüler"
 
-#: bottles/frontend/ui/dialog-drives.ui:31
+#: bottles/frontend/ui/dialog-drives.ui:31 src/ui/dialog-drives.ui:31
 #, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
@@ -1428,55 +1626,51 @@ msgstr ""
 "Bunlar, ana sisteminizden eşlenen ve çalıştırıcı tarafından aygıtlar "
 "(örneğin.C: D:..) olarak tanınan yollardır."
 
-#: bottles/frontend/ui/dialog-drives.ui:35
+#: bottles/frontend/ui/dialog-drives.ui:35 src/ui/dialog-drives.ui:35
 msgid "Letter"
 msgstr "Harf"
 
-#: bottles/frontend/ui/dialog-drives.ui:59
-#, fuzzy
+#: src/ui/dialog-drives.ui:59
 msgid "Existing Drives"
-msgstr "Mevcut sürücüler"
+msgstr "Mevcut Sürücüler"
 
-#: bottles/frontend/ui/dialog-duplicate.ui:18
+#: bottles/frontend/ui/dialog-duplicate.ui:18 src/ui/dialog-duplicate.ui:18
 #, fuzzy
 msgid "Duplicate Bottle"
 msgstr "Şişeyi kopyala"
 
-#: bottles/frontend/ui/dialog-duplicate.ui:23
-#: bottles/frontend/ui/dialog-gamescope.ui:17
-#: bottles/frontend/ui/dialog-launch-options.ui:17
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:23
-#: bottles/frontend/ui/dialog-vkbasalt.ui:31
-#, fuzzy
+#: src/ui/dialog-duplicate.ui:23 src/ui/dialog-gamescope.ui:17
+#: src/ui/dialog-launch-options.ui:17 src/ui/dialog-upgrade-versioning.ui:23
 msgid "_Cancel"
-msgstr "İptal"
+msgstr "_İptal"
 
-#: bottles/frontend/ui/dialog-duplicate.ui:41
+#: bottles/frontend/ui/dialog-duplicate.ui:41 src/ui/dialog-duplicate.ui:41
 msgid "Duplicate"
 msgstr "Kopyala"
 
-#: bottles/frontend/ui/dialog-duplicate.ui:55
+#: bottles/frontend/ui/dialog-duplicate.ui:55 src/ui/dialog-duplicate.ui:55
 #, fuzzy
 msgid "Enter a name for the duplicate of the Bottle."
 msgstr "Yeni şişe için bir ad yazın:"
 
-#: bottles/frontend/ui/dialog-duplicate.ui:78
+#: bottles/frontend/ui/dialog-duplicate.ui:78 src/ui/dialog-duplicate.ui:78
 msgid "Duplicating…"
 msgstr "Kopyalanıyor…"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:87
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
-#: bottles/frontend/ui/new.ui:216
+#: bottles/frontend/ui/new.ui:216 src/ui/dialog-duplicate.ui:87
+#: src/ui/dialog-upgrade-versioning.ui:121 src/ui/new.ui:216
 #, fuzzy
 msgid "Take a break, it may take a while."
 msgstr "Biraz ara verin, bu biraz zaman alabilir"
 
-#: bottles/frontend/ui/dialog-duplicate.ui:108
+#: bottles/frontend/ui/dialog-duplicate.ui:108 src/ui/dialog-duplicate.ui:108
 #, fuzzy
 msgid "Bottle Duplicated"
 msgstr "Şişe kopyalandı"
 
-#: bottles/frontend/ui/dialog-env-vars.ui:35
+#: bottles/frontend/ui/dialog-env-vars.ui:35 src/ui/dialog-env-vars.ui:35
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
@@ -1484,208 +1678,213 @@ msgstr ""
 "Ortam değişkenleri, çalışan işlemlerin şişenizde nasıl davranacağını "
 "etkileyebilecek dinamik adlı değerlerdir."
 
-#: bottles/frontend/ui/dialog-env-vars.ui:38
+#: bottles/frontend/ui/dialog-env-vars.ui:38 src/ui/dialog-env-vars.ui:38
 msgid "Variable Name"
 msgstr ""
 
-#: bottles/frontend/ui/dialog-env-vars.ui:46
+#: bottles/frontend/ui/dialog-env-vars.ui:46 src/ui/dialog-env-vars.ui:46
 #, fuzzy
 msgid "Existing Variables"
 msgstr "Mevcut değişkenler"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
+#: src/ui/dialog-exclusion-patterns.ui:16
 msgid "Exclusion Patterns"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
+#: src/ui/dialog-exclusion-patterns.ui:35
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
+#: src/ui/dialog-exclusion-patterns.ui:38
 #, fuzzy
 msgid "Pattern"
 msgstr "Harf"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:46
+#: src/ui/dialog-exclusion-patterns.ui:46
 #, fuzzy
 msgid "Existing Patterns"
 msgstr "Mevcut sürücüler"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:8
+#: bottles/frontend/ui/dialog-gamescope.ui:8 src/ui/dialog-gamescope.ui:8
 msgid "Gamescope Settings"
 msgstr "Gamescope Ayarları"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:46
+#: bottles/frontend/ui/dialog-gamescope.ui:46 src/ui/dialog-gamescope.ui:46
 msgid ""
 "Configure how Gamescope should manage the window for the games you will run."
 msgstr ""
 "Gamescope'un oyunların pencere ayarlarını nasıl yönetmesi gerektiğini ayarla."
 
-#: bottles/frontend/ui/dialog-gamescope.ui:51
+#: bottles/frontend/ui/dialog-gamescope.ui:51 src/ui/dialog-gamescope.ui:51
 #, fuzzy
 msgid "Game Resolution"
 msgstr "Oyun çözünürlüğü"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:52
+#: bottles/frontend/ui/dialog-gamescope.ui:52 src/ui/dialog-gamescope.ui:52
 msgid "Uses the resolution of the video game as a reference."
 msgstr ""
 
-#: bottles/frontend/ui/dialog-gamescope.ui:55
-#: bottles/frontend/ui/dialog-gamescope.ui:71
-#, fuzzy
+#: src/ui/dialog-gamescope.ui:55 src/ui/dialog-gamescope.ui:71
 msgid "Width (e.g. 1280)"
-msgstr "Örnek: 1280"
+msgstr "En (örn. 1280)"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:60
-#: bottles/frontend/ui/dialog-gamescope.ui:76
-#, fuzzy
+#: src/ui/dialog-gamescope.ui:60 src/ui/dialog-gamescope.ui:76
 msgid "Height (e.g. 720)"
-msgstr "Örnek: 720"
+msgstr "Boy (örn. 720)"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:67
-#, fuzzy
+#: src/ui/dialog-gamescope.ui:67
 msgid "Gamescope Resolution"
-msgstr "Gamescope çözünürlüğü"
+msgstr "Gamescope Çözünürlüğü"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:68
+#: bottles/frontend/ui/dialog-gamescope.ui:68 src/ui/dialog-gamescope.ui:68
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution."
 msgstr ""
 
-#: bottles/frontend/ui/dialog-gamescope.ui:83
+#: bottles/frontend/ui/dialog-gamescope.ui:83 src/ui/dialog-gamescope.ui:83
 msgid "Miscellaneous"
 msgstr ""
 
-#: bottles/frontend/ui/dialog-gamescope.ui:86
+#: bottles/frontend/ui/dialog-gamescope.ui:86 src/ui/dialog-gamescope.ui:86
 #, fuzzy
 msgid "Frame Rate Limit (e.g. 60)"
 msgstr "Çizim sıklığı limiti"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:91
+#: bottles/frontend/ui/dialog-gamescope.ui:91 src/ui/dialog-gamescope.ui:91
 #, fuzzy
 msgid "Frame Rate Limit (When Unfocused)"
 msgstr "Çizim sıklığı limiti (Odak dışındayken)"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:96
+#: bottles/frontend/ui/dialog-gamescope.ui:96 src/ui/dialog-gamescope.ui:96
 #, fuzzy
 msgid "Use Integer Scaling"
 msgstr "Tamsayı ölçeklemeyi kullan"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:107
-#, fuzzy
+#: src/ui/dialog-gamescope.ui:107
 msgid "Window Type"
-msgstr "Pencere tipi"
+msgstr "Pencere Türü"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:112
+#: bottles/frontend/ui/dialog-gamescope.ui:112 src/ui/dialog-gamescope.ui:112
 msgid "Borderless"
 msgstr "Çerçevesiz"
 
-#: bottles/frontend/ui/dialog-gamescope.ui:119
+#: bottles/frontend/ui/dialog-gamescope.ui:119 src/ui/dialog-gamescope.ui:119
 msgid "Fullscreen"
 msgstr "Tam ekran"
 
-#: bottles/frontend/ui/dialog-journal.ui:12
-#, fuzzy
+#: src/ui/dialog-journal.ui:12
 msgid "All messages"
-msgstr "Mesajı sil"
+msgstr "Bütün mesajlar"
 
-#: bottles/frontend/ui/dialog-journal.ui:17
+#: bottles/frontend/ui/dialog-journal.ui:17 src/ui/dialog-journal.ui:17
 msgid "Critical"
 msgstr ""
 
-#: bottles/frontend/ui/dialog-journal.ui:22
+#: src/ui/dialog-journal.ui:22
 msgid "Errors"
-msgstr ""
+msgstr "Hatalar"
 
-#: bottles/frontend/ui/dialog-journal.ui:27
-#, fuzzy
+#: src/ui/dialog-journal.ui:27
 msgid "Warnings"
-msgstr "Uyarı"
+msgstr "Uyarılar"
 
-#: bottles/frontend/ui/dialog-journal.ui:32
+#: src/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr ""
+msgstr "Bilgi"
 
-#: bottles/frontend/ui/dialog-journal.ui:49
+#: bottles/frontend/ui/dialog-journal.ui:49 src/ui/dialog-journal.ui:49
 msgid "Journal browser"
 msgstr "Günlük gezgini"
 
-#: bottles/frontend/ui/dialog-journal.ui:56
-#, fuzzy
+#: src/ui/dialog-journal.ui:56
 msgid "Journal Browser"
-msgstr "Günlük gezgini"
+msgstr "Günlük Gezgini"
 
-#: bottles/frontend/ui/dialog-journal.ui:62
+#: bottles/frontend/ui/dialog-journal.ui:62 src/ui/dialog-journal.ui:62
 msgid ""
 "Change logging level.\n"
 "                                        "
 msgstr ""
 
-#: bottles/frontend/ui/dialog-journal.ui:67
+#: src/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "Hepsi"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:8
+#: src/ui/dialog-launch-options.ui:8
 msgid "Launch Options"
 msgstr "Başlatma Seçenekleri"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:47
+#: src/ui/dialog-launch-options.ui:47
 #, fuzzy
 msgid "Those arguments will be passed at launch."
 msgstr "Bu argümanlar program başlangıcında aktarılır:"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:48
+#: src/ui/dialog-launch-options.ui:48
 #, fuzzy
 msgid "Custom Arguments"
 msgstr "Argümanlarla Çalıştır"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:51
+#: src/ui/dialog-launch-options.ui:51
 #, fuzzy
 msgid "Command Arguments"
 msgstr "Argümanları ilet"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:52
+#: src/ui/dialog-launch-options.ui:52
 #, fuzzy, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr "örneğin: VAR=değer %komut% -örnek1 -örnek2 -örnek3=merhaba"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:58
+#: src/ui/dialog-launch-options.ui:58
 #, fuzzy
 msgid "Post-run Script"
 msgstr "Çalışma-sonrası komutu"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:76
+#: src/ui/dialog-launch-options.ui:76
 #, fuzzy
 msgid "Choose a script"
 msgstr "Komutu seç"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:125
+#: src/ui/dialog-launch-options.ui:125
 msgid "These settings will override the default settings for this executable."
 msgstr ""
 
 #: bottles/frontend/ui/dialog-launch-options.ui:126
+#: src/ui/dialog-launch-options.ui:126
 #, fuzzy
 msgid "Preferences Overrides"
 msgstr "Tercihler"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:129
+#: src/ui/dialog-launch-options.ui:129
 #, fuzzy
 msgid "Reset to Bottle's Defaults"
 msgstr "Varsayılana sıfırla"
 
-#: bottles/frontend/ui/dialog-proton-alert.ui:6
+#: bottles/frontend/ui/dialog-proton-alert.ui:6 src/ui/dialog-proton-alert.ui:6
 msgid "Proton Disclaimer"
 msgstr ""
 
-#: bottles/frontend/ui/dialog-proton-alert.ui:22
-#, fuzzy
+#: src/ui/dialog-proton-alert.ui:22
 msgid "Use Proton"
-msgstr "ProtonDB"
+msgstr "Proton'u kullan"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:37
+#: src/ui/dialog-proton-alert.ui:37
 msgid ""
 "Beware, using Proton-based runners in non-Steam bottles can cause problems "
 "and prevent them from behaving correctly.\n"
@@ -1701,80 +1900,83 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:50
+#: src/ui/dialog-proton-alert.ui:50
 msgid "I got it."
 msgstr ""
 
-#: bottles/frontend/ui/dialog-rename.ui:9
+#: bottles/frontend/ui/dialog-rename.ui:9 src/ui/dialog-rename.ui:9
 msgid "Rename"
 msgstr "Yeniden adlandır"
 
-#: bottles/frontend/ui/dialog-rename.ui:34
+#: bottles/frontend/ui/dialog-rename.ui:34 src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
 msgstr ""
 
-#: bottles/frontend/ui/dialog-rename.ui:37
-#, fuzzy
+#: src/ui/dialog-rename.ui:37
 msgid "New Name"
-msgstr "Ad"
+msgstr "Yeni  Ad"
 
-#: bottles/frontend/ui/dialog-run-args.ui:14
+#: bottles/frontend/ui/dialog-run-args.ui:14 src/ui/dialog-run-args.ui:14
 msgid "Run With Arguments"
 msgstr "Argümanlarla Çalıştır"
 
 #: bottles/frontend/ui/dialog-run-args.ui:35
 #: bottles/frontend/views/bottle_details.py:202
-#: bottles/frontend/views/list.py:120
+#: bottles/frontend/views/list.py:120 src/ui/dialog-run-args.ui:35
+#: src/views/bottle_details.py:202 src/views/list.py:120
 msgid "Run"
 msgstr "Çalıştır"
 
-#: bottles/frontend/ui/dialog-run-args.ui:47
+#: bottles/frontend/ui/dialog-run-args.ui:47 src/ui/dialog-run-args.ui:47
 msgid "Write below the arguments to be passed to the executable."
 msgstr "Çalıştırılabilir dosyaya iletilecek argümanları aşağıya yazın."
 
-#: bottles/frontend/ui/dialog-run-args.ui:50
+#: bottles/frontend/ui/dialog-run-args.ui:50 src/ui/dialog-run-args.ui:50
 #, fuzzy
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
 msgstr "örneğin: -opengl -SkipBuildPatchPrereq"
 
-#: bottles/frontend/ui/dialog-sandbox.ui:9
+#: bottles/frontend/ui/dialog-sandbox.ui:9 src/ui/dialog-sandbox.ui:9
 #, fuzzy
 msgid "Sandbox Settings"
 msgstr "Gamescope Ayarları"
 
-#: bottles/frontend/ui/dialog-sandbox.ui:23
+#: bottles/frontend/ui/dialog-sandbox.ui:23 src/ui/dialog-sandbox.ui:23
 msgid "Share Network"
 msgstr ""
 
-#: bottles/frontend/ui/dialog-sandbox.ui:34
+#: bottles/frontend/ui/dialog-sandbox.ui:34 src/ui/dialog-sandbox.ui:34
 #, fuzzy
 msgid "Share Sound"
 msgstr "Durum bulunamadı"
 
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:18
-#, fuzzy
+#: src/ui/dialog-upgrade-versioning.ui:18
 msgid "Upgrade Needed"
-msgstr "Yükselt"
+msgstr "Yükseltme Gerekli"
 
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:41
-#: bottles/frontend/ui/onboard.ui:88
+#: src/ui/dialog-upgrade-versioning.ui:41 src/ui/onboard.ui:88
 msgid "Continue"
-msgstr ""
+msgstr "Devam et"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:49
+#: src/ui/dialog-upgrade-versioning.ui:49
 #, fuzzy
 msgid "Launch upgrade"
 msgstr "Yükseltmeyi onayla"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:69
+#: src/ui/dialog-upgrade-versioning.ui:69
 #, fuzzy
 msgid "New Versioning System"
 msgstr "Sürüm oluşturma"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:72
+#: src/ui/dialog-upgrade-versioning.ui:72
 msgid "The new bottle versioning system has landed."
 msgstr ""
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:86
+#: src/ui/dialog-upgrade-versioning.ui:86
 msgid ""
 "Bottles has a whole new Versioning System which is not backwards "
 "compatible. \n"
@@ -1791,11 +1993,13 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
+#: src/ui/dialog-upgrade-versioning.ui:112
 #, fuzzy
 msgid "Re-initializing repository…"
 msgstr "Kayıt defteri yeniden başlatılıyor…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
+#: src/ui/dialog-upgrade-versioning.ui:144
 msgid "Done! Please restart Bottles."
 msgstr ""
 
@@ -1991,76 +2195,72 @@ msgid ""
 "file, or a .png file where the height is equal to the width."
 msgstr ""
 
-#: bottles/frontend/ui/dll-override-entry.ui:10
+#: bottles/frontend/ui/dll-override-entry.ui:10 src/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
 msgstr "Yerleşik (Wine)"
 
-#: bottles/frontend/ui/dll-override-entry.ui:11
+#: bottles/frontend/ui/dll-override-entry.ui:11 src/ui/dll-override-entry.ui:11
 msgid "Native (Windows)"
 msgstr "Yerel (Windows)"
 
-#: bottles/frontend/ui/dll-override-entry.ui:12
+#: bottles/frontend/ui/dll-override-entry.ui:12 src/ui/dll-override-entry.ui:12
 #, fuzzy
 msgid "Builtin, then Native"
 msgstr "Yerleşik sonra Yerel"
 
-#: bottles/frontend/ui/dll-override-entry.ui:13
+#: bottles/frontend/ui/dll-override-entry.ui:13 src/ui/dll-override-entry.ui:13
 #, fuzzy
 msgid "Native, then Builtin"
 msgstr "Yerel sonra Yerleşik"
 
-#: bottles/frontend/ui/dll-override-entry.ui:14
+#: bottles/frontend/ui/dll-override-entry.ui:14 src/ui/dll-override-entry.ui:14
 msgid "Disabled"
 msgstr ""
 
-#: bottles/frontend/ui/dll-override-entry.ui:22
-#: bottles/frontend/ui/drive-entry.ui:14
+#: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
-msgstr ""
+msgstr "Kaldır"
 
-#: bottles/frontend/ui/drive-entry.ui:7
+#: bottles/frontend/ui/drive-entry.ui:7 src/ui/drive-entry.ui:7
 msgid "/point/to/path"
 msgstr "/yolu/göster"
 
-#: bottles/frontend/ui/drive-entry.ui:24
-#, fuzzy
+#: src/ui/drive-entry.ui:24
 msgid "Choose a Directory"
-msgstr "Bir dizin seçin"
+msgstr "Bir Dizin Seçin"
 
-#: bottles/frontend/ui/env-var-entry.ui:6
-#: bottles/frontend/ui/exclusion-pattern-entry.ui:6
-#, fuzzy
+#: src/ui/env-var-entry.ui:6 src/ui/exclusion-pattern-entry.ui:6
 msgid "Value"
-msgstr "değer"
+msgstr "Değer"
 
 #. Wineprefix is a prefix for the wine program
-#: bottles/frontend/ui/importer-entry.ui:22
+#: bottles/frontend/ui/importer-entry.ui:22 src/ui/importer-entry.ui:22
 msgid "Wineprefix name"
 msgstr ""
 
-#: bottles/frontend/ui/importer-entry.ui:29
+#: bottles/frontend/ui/importer-entry.ui:29 src/ui/importer-entry.ui:29
 #, fuzzy
 msgid "Manager"
 msgstr "Çalıştırıcıları yönet"
 
-#: bottles/frontend/ui/importer-entry.ui:39
+#: bottles/frontend/ui/importer-entry.ui:39 src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
 msgstr "Bu wineprefix zaten Şişeler'e aktarılmıştı."
 
-#: bottles/frontend/ui/importer.ui:24
+#: bottles/frontend/ui/importer.ui:24 src/ui/importer.ui:24
 msgid "Import Bottles backup"
 msgstr "Şişeleri yedeklemeyi içe aktar"
 
-#: bottles/frontend/ui/importer.ui:31
+#: bottles/frontend/ui/importer.ui:31 src/ui/importer.ui:31
 msgid "Search again for prefixes"
 msgstr "Prefix için tekrar ara"
 
-#: bottles/frontend/ui/importer.ui:45
+#: bottles/frontend/ui/importer.ui:45 src/ui/importer.ui:45
 #, fuzzy
 msgid "No Prefixes Found"
 msgstr "Prefix bulunamadı"
 
-#: bottles/frontend/ui/importer.ui:46
+#: bottles/frontend/ui/importer.ui:46 src/ui/importer.ui:46
 #, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
@@ -2069,81 +2269,75 @@ msgstr ""
 "Lutris, PlayOnLinux, vb.'den prefix bulunamadı.\n"
 "Bir şişeyi yedekten içe aktarmak için üstteki simgeyi kullanın"
 
-#: bottles/frontend/ui/importer.ui:81
+#: bottles/frontend/ui/importer.ui:81 src/ui/importer.ui:81
 msgid "Configuration"
 msgstr "Yapılandırma"
 
-#: bottles/frontend/ui/importer.ui:87
-#, fuzzy
+#: src/ui/importer.ui:87
 msgid "Full Archive"
-msgstr "Tam arşiv"
+msgstr "Tam Arşiv"
 
-#: bottles/frontend/ui/installer-entry.ui:18
+#: bottles/frontend/ui/installer-entry.ui:18 src/ui/installer-entry.ui:18
 #, fuzzy
 msgid "Show Manifest…"
 msgstr "Belirgin göster"
 
-#: bottles/frontend/ui/installer-entry.ui:23
+#: bottles/frontend/ui/installer-entry.ui:23 src/ui/installer-entry.ui:23
 #, fuzzy
 msgid "Read Review…"
 msgstr "İncelemeyi oku"
 
-#: bottles/frontend/ui/installer-entry.ui:40
-#, fuzzy
+#: src/ui/installer-entry.ui:40
 msgid "Installer name"
-msgstr "Yükleyiciler"
+msgstr "Yükleyici adı"
 
-#: bottles/frontend/ui/installer-entry.ui:41
-#, fuzzy
+#: src/ui/installer-entry.ui:41
 msgid "Installer description"
-msgstr "Yükleyiciler"
+msgstr "Yükleyici açıklaması"
 
-#: bottles/frontend/ui/installer-entry.ui:48
+#: src/ui/installer-entry.ui:48
 msgid "Unknown"
-msgstr ""
+msgstr "Bilinmiyor"
 
-#: bottles/frontend/ui/installer-entry.ui:57
+#: bottles/frontend/ui/installer-entry.ui:57 src/ui/installer-entry.ui:57
 msgid "Install this program"
 msgstr "Bu programı kur"
 
-#: bottles/frontend/ui/library-entry.ui:17
-#, fuzzy
+#: src/ui/library-entry.ui:17
 msgid "Remove from Library"
-msgstr "Listeden kaldır"
+msgstr "Kütüphaneden kaldır"
 
-#: bottles/frontend/ui/library-entry.ui:94
-#, fuzzy
+#: src/ui/library-entry.ui:94
 msgid "Item name"
-msgstr "Şişe adı"
+msgstr "Eşya adı"
 
 #: bottles/frontend/ui/library-entry.ui:115
-#: bottles/frontend/ui/program-entry.ui:105
+#: bottles/frontend/ui/program-entry.ui:105 src/ui/library-entry.ui:115
+#: src/ui/program-entry.ui:105
 msgid "Launch with Steam"
 msgstr "Steam ile başlat"
 
-#: bottles/frontend/ui/library.ui:14 bottles/frontend/ui/preferences.ui:259
-#: bottles/frontend/windows/main_window.py:175
-#, fuzzy
+#: src/ui/library.ui:14 src/ui/preferences.ui:259 src/window.py:171
 msgid "Library"
-msgstr "Kütüphane Modu"
+msgstr "Kütüphane"
 
-#: bottles/frontend/ui/library.ui:15
+#: bottles/frontend/ui/library.ui:15 src/ui/library.ui:15
 msgid "Add items here from your bottle's program list"
 msgstr ""
 
-#: bottles/frontend/ui/list-entry.ui:46
+#: bottles/frontend/ui/list-entry.ui:46 src/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
 msgstr "Bu şişe hasarlı görünüyor."
 
-#: bottles/frontend/ui/list-entry.ui:60
+#: bottles/frontend/ui/list-entry.ui:60 src/ui/list-entry.ui:60
 msgid "Execute in this bottle"
 msgstr "Bu şişede çalıştır"
 
-#: bottles/frontend/ui/list-entry.ui:75
+#: bottles/frontend/ui/list-entry.ui:75 src/ui/list-entry.ui:75
 msgid "Run Here"
 msgstr "Burada Çalıştır"
 
-#: bottles/frontend/ui/list-entry.ui:84
+#: bottles/frontend/ui/list-entry.ui:84 src/ui/list-entry.ui:84
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
@@ -2151,485 +2345,469 @@ msgstr ""
 "Bu şişe hasarlı görünüyor, yapılandırma dosyası eksik. Yeni bir "
 "konfigürasyon oluşturarak bu sorunu çözmeye çalışabilirim."
 
-#: bottles/frontend/ui/list-entry.ui:96
+#: bottles/frontend/ui/list-entry.ui:96 src/ui/list-entry.ui:96
 msgid "Run .exe/.msi in this bottle"
 msgstr "Bu şişede .exe/.msi çalıştır"
 
-#: bottles/frontend/ui/list.ui:17
-#, fuzzy
+#: src/ui/list.ui:17
 msgid "Search your bottles…"
-msgstr "Şişelerini ara .."
+msgstr "Şişelerinizi arayın…"
 
-#: bottles/frontend/ui/list.ui:38
-#, fuzzy
+#: src/ui/list.ui:38
 msgid "Steam Proton"
-msgstr "Steam Proton Prefix'leri"
+msgstr "Steam Proton"
 
 #: bottles/frontend/ui/list.ui:54 bottles/frontend/ui/window.ui:56
 #: bottles/frontend/ui/window.ui:73 bottles/frontend/windows/main_window.py:169
 #: data/com.usebottles.bottles.appdata.xml.in:6
-#: data/com.usebottles.bottles.desktop.in:3
+#: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
+#: src/ui/window.ui:56 src/ui/window.ui:73 src/window.py:165
 msgid "Bottles"
 msgstr "Şişeler"
 
-#: bottles/frontend/ui/list.ui:55
-#, fuzzy
+#: src/ui/list.ui:55
 msgid "Start off by creating a Bottle."
-msgstr "Bir şişe oluşturarak başlayın."
+msgstr "Bir Şişe oluşturarak başlayın."
 
-#: bottles/frontend/ui/list.ui:62
+#: bottles/frontend/ui/list.ui:62 src/ui/list.ui:62
 msgid "Create a new Bottle"
 msgstr "Yeni şişe oluştur"
 
-#: bottles/frontend/ui/list.ui:75
+#: bottles/frontend/ui/list.ui:75 src/ui/list.ui:75
 #, fuzzy
 msgid "No Results Found"
 msgstr "Durum bulunamadı"
 
-#: bottles/frontend/ui/list.ui:76
+#: bottles/frontend/ui/list.ui:76 src/ui/list.ui:76
 msgid "Try a different search."
 msgstr ""
 
-#: bottles/frontend/ui/loading.ui:16
+#: bottles/frontend/ui/loading.ui:16 src/ui/loading.ui:16
 msgid "Starting up…"
 msgstr ""
 
 #: bottles/frontend/ui/local-resource-entry.ui:6
+#: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
 msgstr ""
 
-#: bottles/frontend/ui/local-resource-entry.ui:10
-#, fuzzy
+#: src/ui/local-resource-entry.ui:10
 msgid "Browse"
-msgstr "Göz at: C:"
+msgstr "Göz at"
 
-#: bottles/frontend/ui/new.ui:17 bottles/frontend/ui/new.ui:64
+#: bottles/frontend/ui/new.ui:17 bottles/frontend/ui/new.ui:64 src/ui/new.ui:17
+#: src/ui/new.ui:64
 msgid "New Bottle"
 msgstr "Yeni Şişe"
 
-#: bottles/frontend/ui/new.ui:38
+#: bottles/frontend/ui/new.ui:38 src/ui/new.ui:38
 msgid "Create"
 msgstr "Oluştur"
 
 #: bottles/frontend/ui/new.ui:47 bottles/frontend/ui/new.ui:268
-#: bottles/frontend/windows/main_window.py:191
+#: bottles/frontend/windows/main_window.py:191 src/ui/new.ui:47
+#: src/ui/new.ui:268 src/window.py:187
 msgid "Close"
 msgstr "Kapat"
 
-#: bottles/frontend/ui/new.ui:67
+#: bottles/frontend/ui/new.ui:67 src/ui/new.ui:67
 msgid "Bottle Information"
 msgstr "Şişe Bilgileri"
 
-#: bottles/frontend/ui/new.ui:84
+#: bottles/frontend/ui/new.ui:84 src/ui/new.ui:84
 msgid "Gaming"
 msgstr "Oyun"
 
-#: bottles/frontend/ui/new.ui:85
+#: bottles/frontend/ui/new.ui:85 src/ui/new.ui:85
 msgid "An environment improved for Windows games."
 msgstr "Windows oyunları için geliştirilmiş bir ortam."
 
-#: bottles/frontend/ui/new.ui:93
+#: bottles/frontend/ui/new.ui:93 src/ui/new.ui:93
 msgid "Application"
 msgstr "Uygulama"
 
-#: bottles/frontend/ui/new.ui:94
+#: bottles/frontend/ui/new.ui:94 src/ui/new.ui:94
 msgid "An environment improved for Windows applications."
 msgstr "Windows uygulamaları için geliştirilmiş bir ortam."
 
-#: bottles/frontend/ui/new.ui:103
+#: bottles/frontend/ui/new.ui:103 src/ui/new.ui:103
 msgid "Layered"
 msgstr "Katmanlı"
 
-#: bottles/frontend/ui/new.ui:104
+#: bottles/frontend/ui/new.ui:104 src/ui/new.ui:104
 msgid "A layered environment, where every app is a layer."
 msgstr "Her uygulamanın bir katman olduğu katmanlı bir ortam."
 
-#: bottles/frontend/ui/new.ui:112
+#: bottles/frontend/ui/new.ui:112 src/ui/new.ui:112
 msgid "Custom"
 msgstr "Özel"
 
-#: bottles/frontend/ui/new.ui:113
+#: bottles/frontend/ui/new.ui:113 src/ui/new.ui:113
 #, fuzzy
 msgid "A clear environment for your experiments."
 msgstr "Deneyleriniz için temiz bir ortam."
 
-#: bottles/frontend/ui/new.ui:117
-#, fuzzy
+#: src/ui/new.ui:117
 msgid "Unlinked Home Directory"
-msgstr "Bağlantısız ev dizini"
+msgstr "Bağlantısız Ev Dizini"
 
-#: bottles/frontend/ui/new.ui:118
+#: bottles/frontend/ui/new.ui:118 src/ui/new.ui:118
 msgid "Do not link the userdir to the homedir"
 msgstr "Kullanıcı dizinini ev dizinine bağlama"
 
-#: bottles/frontend/ui/new.ui:143
+#: bottles/frontend/ui/new.ui:143 src/ui/new.ui:143
 msgid "Architecture"
 msgstr "Mimari"
 
-#: bottles/frontend/ui/new.ui:144
-#, fuzzy
+#: src/ui/new.ui:144
 msgid "We recommend using 32bit only if strictly necessary."
-msgstr "32 bit'i yalnızca kesinlikle gerekliyse kullanmanızı tavsiye ediyoruz"
+msgstr "32 bit'i yalnızca kesinlikle gerekliyse kullanmanızı tavsiye ediyoruz."
 
-#: bottles/frontend/ui/new.ui:148
+#: bottles/frontend/ui/new.ui:148 src/ui/new.ui:148
 msgid "64 bit"
 msgstr "64 bit"
 
-#: bottles/frontend/ui/new.ui:149
+#: bottles/frontend/ui/new.ui:149 src/ui/new.ui:149
 msgid "32 bit"
 msgstr "32 bit"
 
-#: bottles/frontend/ui/new.ui:157
+#: bottles/frontend/ui/new.ui:157 src/ui/new.ui:157
 #, fuzzy
 msgid "Custom Recipe"
 msgstr "Özel tanım kullan"
 
-#: bottles/frontend/ui/new.ui:158
+#: bottles/frontend/ui/new.ui:158 src/ui/new.ui:158
 msgid "Choose a custom recipe for the environment if you have one."
 msgstr "Varsa, ortam için özel bir tanım seçin."
 
-#: bottles/frontend/ui/new.ui:174
-#, fuzzy
+#: src/ui/new.ui:174
 msgid "Custom Path"
-msgstr "Özel"
+msgstr "Özel Yol"
 
-#: bottles/frontend/ui/new.ui:175
-#, fuzzy
+#: src/ui/new.ui:175
 msgid "Store this bottle in another place."
-msgstr "Bu şişeyi farklı bir yere kaydedin."
+msgstr "Bu şişeyi farklı bir yerde depolayın."
 
-#: bottles/frontend/ui/new.ui:215
-#, fuzzy
+#: src/ui/new.ui:215
 msgid "Creating a Bottle…"
-msgstr "Bir şişe siliniyor…"
+msgstr "Şişe Oluşturuluyor…"
 
-#: bottles/frontend/ui/new.ui:262
+#: bottles/frontend/ui/new.ui:262 src/ui/new.ui:262
 msgid "Bottle created"
 msgstr "Şişe oluşturuldu"
 
-#: bottles/frontend/ui/onboard.ui:36
+#: bottles/frontend/ui/onboard.ui:36 src/ui/onboard.ui:36
 msgid "Previous"
 msgstr ""
 
-#: bottles/frontend/ui/onboard.ui:62
+#: bottles/frontend/ui/onboard.ui:62 src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
 msgstr "Şişelere Hoş Geldiniz"
 
-#: bottles/frontend/ui/onboard.ui:63
+#: src/ui/onboard.ui:63
 msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
+"Linux'ta Windows Yazılımı Çalıştırın.\n"
+"                                                "
 
-#: bottles/frontend/ui/onboard.ui:71
-#, fuzzy
+#: src/ui/onboard.ui:71
 msgid "Windows in Bottles"
-msgstr "Pencere tipi"
+msgstr "Şişelerde Windows"
 
-#: bottles/frontend/ui/onboard.ui:72
+#: bottles/frontend/ui/onboard.ui:72 src/ui/onboard.ui:72
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
 
-#: bottles/frontend/ui/onboard.ui:79
+#: src/ui/onboard.ui:79
 msgid "Almost Done"
-msgstr ""
+msgstr "Neredeyse Tamam"
 
-#: bottles/frontend/ui/onboard.ui:80
+#: bottles/frontend/ui/onboard.ui:80 src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up…"
 msgstr ""
 
-#: bottles/frontend/ui/onboard.ui:113
+#: src/ui/onboard.ui:113
 msgid "All ready!"
-msgstr ""
+msgstr "Her şey hazır!"
 
-#: bottles/frontend/ui/onboard.ui:122
+#: bottles/frontend/ui/onboard.ui:122 src/ui/onboard.ui:122
 msgid "Please Finish the setup first"
 msgstr ""
 
-#: bottles/frontend/ui/onboard.ui:129
-#, fuzzy
+#: src/ui/onboard.ui:129
 msgid "Start using Bottles"
-msgstr "Bir şişe oluşturarak başlayın."
+msgstr "Şişeler'i kullanmaya başlayın"
 
-#: bottles/frontend/ui/onboard.ui:150
+#: bottles/frontend/ui/onboard.ui:150 src/ui/onboard.ui:150
 msgid "Next"
 msgstr "Sonraki"
 
 #: bottles/frontend/ui/preferences.ui:6 bottles/frontend/ui/window.ui:24
-#: bottles/frontend/views/details.py:158
+#: bottles/frontend/views/details.py:158 src/ui/preferences.ui:6
+#: src/ui/window.ui:24 src/views/details.py:158
 msgid "Preferences"
 msgstr "Tercihler"
 
 #: bottles/frontend/ui/preferences.ui:13 bottles/frontend/ui/preferences.ui:46
+#: src/ui/preferences.ui:13 src/ui/preferences.ui:46
 msgid "General"
 msgstr "Genel"
 
-#: bottles/frontend/ui/preferences.ui:16
+#: bottles/frontend/ui/preferences.ui:16 src/ui/preferences.ui:16
 msgid "Appearance"
 msgstr "Görünüm"
 
-#: bottles/frontend/ui/preferences.ui:19
+#: bottles/frontend/ui/preferences.ui:19 src/ui/preferences.ui:19
 msgid "Dark Mode"
 msgstr "Karanlık Mod"
 
-#: bottles/frontend/ui/preferences.ui:20
-#, fuzzy
+#: src/ui/preferences.ui:20
 msgid "Whether Bottles should use the dark color scheme."
-msgstr "Şişelerin Gece teması çeşidini kullanıp kullanmaması."
+msgstr "Şişeler karanlık renk şemasını kullansın mı."
 
-#: bottles/frontend/ui/preferences.ui:32
+#: bottles/frontend/ui/preferences.ui:32 src/ui/preferences.ui:32
 msgid "Show Update Date"
 msgstr "Güncelleme Tarihini Göster"
 
-#: bottles/frontend/ui/preferences.ui:33
+#: bottles/frontend/ui/preferences.ui:33 src/ui/preferences.ui:33
 msgid "Whether to show the update date in the bottle list."
 msgstr "Şişe listesinde güncelleme tarihinin gösterilip gösterilmeyeceği."
 
 #: bottles/frontend/ui/preferences.ui:49
-#: data/com.usebottles.bottles.gschema.xml:46
+#: data/com.usebottles.bottles.gschema.xml:46 src/ui/preferences.ui:49
 msgid "Notifications"
 msgstr "Bildirimler"
 
-#: bottles/frontend/ui/preferences.ui:50
+#: bottles/frontend/ui/preferences.ui:50 src/ui/preferences.ui:50
 msgid "Show notifications for downloads and installs."
 msgstr "İndirmeler ve kurmalar için bildirimleri göster."
 
-#: bottles/frontend/ui/preferences.ui:61
-#, fuzzy
+#: src/ui/preferences.ui:61
 msgid "Temp Files"
 msgstr "Geçici Dosyalar"
 
-#: bottles/frontend/ui/preferences.ui:62
+#: bottles/frontend/ui/preferences.ui:62 src/ui/preferences.ui:62
 msgid "Clean temp files when Bottles launches?"
 msgstr "Şişeler başlatıldığında geçici dosyalar temizlensin mi?"
 
-#: bottles/frontend/ui/preferences.ui:73
+#: bottles/frontend/ui/preferences.ui:73 src/ui/preferences.ui:73
 #, fuzzy
 msgid "Close Bottles After Starting a Program"
 msgstr "Bir Programı Başlattıktan Sonra Şişeler'i Kapat"
 
-#: bottles/frontend/ui/preferences.ui:74
+#: bottles/frontend/ui/preferences.ui:74 src/ui/preferences.ui:74
 #, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
 msgstr "Dosya yöneticisinden bir program başlattıktan sonra Şişeler'i kapat."
 
-#: bottles/frontend/ui/preferences.ui:87
+#: bottles/frontend/ui/preferences.ui:87 src/ui/preferences.ui:87
 #, fuzzy
 msgid "Integrations"
 msgstr "İşlemler"
 
-#: bottles/frontend/ui/preferences.ui:90
+#: bottles/frontend/ui/preferences.ui:90 src/ui/preferences.ui:90
 msgid "Steam Proton Prefixes"
 msgstr "Steam Proton Prefix'leri"
 
-#: bottles/frontend/ui/preferences.ui:91
+#: bottles/frontend/ui/preferences.ui:91 src/ui/preferences.ui:91
 #, fuzzy
 msgid "List and manage Steam Proton prefixes."
 msgstr "Steam Proton Prefix'leri"
 
-#: bottles/frontend/ui/preferences.ui:95
-#, fuzzy
+#: src/ui/preferences.ui:95
 msgid "Read Documentation"
-msgstr "Belgelendirmeyi oku"
+msgstr "Belgelendirmeyi Oku"
 
-#: bottles/frontend/ui/preferences.ui:113
+#: src/ui/preferences.ui:113
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Programlar Listesinde Steam Uygulamalarını Listele"
 
-#: bottles/frontend/ui/preferences.ui:114
-#, fuzzy
+#: src/ui/preferences.ui:114
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr "Bu Şişe'de kurulu olan programları listeleyin, yönetin ve çalıştırın."
+msgstr "Steam'in Windows sürümünün şişede kurulu olması gerekir."
 
-#: bottles/frontend/ui/preferences.ui:125
+#: bottles/frontend/ui/preferences.ui:125 src/ui/preferences.ui:125
 msgid "List Epic Games in Programs List"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.ui:126
+#: bottles/frontend/ui/preferences.ui:126 src/ui/preferences.ui:126
 msgid "Requires Epic Games Store installed in the bottle."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.ui:137
+#: bottles/frontend/ui/preferences.ui:137 src/ui/preferences.ui:137
 msgid "List Ubisoft Games in Programs List"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.ui:138
+#: bottles/frontend/ui/preferences.ui:138 src/ui/preferences.ui:138
 #, fuzzy
 msgid "Requires Ubisoft Connect installed in the bottle."
 msgstr "Bu Şişe'de kurulu olan programları listeleyin, yönetin ve çalıştırın."
 
-#: bottles/frontend/ui/preferences.ui:151
+#: bottles/frontend/ui/preferences.ui:151 src/ui/preferences.ui:151
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-#: bottles/frontend/ui/preferences.ui:154
+#: bottles/frontend/ui/preferences.ui:154 src/ui/preferences.ui:154
 #, fuzzy
 msgid "Custom Bottles Path (Requires Restart)"
 msgstr "Özel Şişeler Yolu (Yeniden Başlatma Gerekli)"
 
 #: bottles/frontend/ui/preferences.ui:155
 #: bottles/frontend/views/preferences.py:151
-#: bottles/frontend/views/preferences.py:167
+#: bottles/frontend/views/preferences.py:167 src/ui/preferences.ui:155
+#: src/views/preferences.py:188 src/views/preferences.py:204
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
 msgstr ""
 "Yeni şişelerin nereye kaydedileceğini seç (zaten kurulu olanlar "
 "taşınmayacak)."
 
-#: bottles/frontend/ui/preferences.ui:188
+#: bottles/frontend/ui/preferences.ui:188 src/ui/preferences.ui:188
 msgid "Runners"
 msgstr "Çalıştırıcı"
 
-#: bottles/frontend/ui/preferences.ui:193
+#: bottles/frontend/ui/preferences.ui:193 src/ui/preferences.ui:193
 #, fuzzy
 msgid "Pre-Release"
 msgstr "Ön Sürüm"
 
-#: bottles/frontend/ui/preferences.ui:194
+#: bottles/frontend/ui/preferences.ui:194 src/ui/preferences.ui:194
 msgid "Display unstable versions of runners."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.ui:210
+#: bottles/frontend/ui/preferences.ui:210 src/ui/preferences.ui:210
 msgid "DLL Components"
 msgstr "DLL Bileşenleri"
 
-#: bottles/frontend/ui/preferences.ui:223
+#: bottles/frontend/ui/preferences.ui:223 src/ui/preferences.ui:223
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: bottles/frontend/ui/preferences.ui:236
+#: bottles/frontend/ui/preferences.ui:236 src/ui/preferences.ui:236
 msgid "Core"
 msgstr "Çekirdek"
 
-#: bottles/frontend/ui/preferences.ui:240
+#: bottles/frontend/ui/preferences.ui:240 src/ui/preferences.ui:240
 msgid "Runtime"
 msgstr "Çalışma-zamanı"
 
-#: bottles/frontend/ui/preferences.ui:245
+#: bottles/frontend/ui/preferences.ui:245 src/ui/preferences.ui:245
 msgid "WineBridge"
 msgstr "WineBridge"
 
 #: bottles/frontend/ui/preferences.ui:253
-#: data/com.usebottles.bottles.gschema.xml:66
+#: data/com.usebottles.bottles.gschema.xml:66 src/ui/preferences.ui:253
 msgid "Experiments"
 msgstr "Deneyler"
 
-#: bottles/frontend/ui/preferences.ui:256
+#: bottles/frontend/ui/preferences.ui:256 src/ui/preferences.ui:256
 msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.ui:260
+#: bottles/frontend/ui/preferences.ui:260 src/ui/preferences.ui:260
 #, fuzzy
 msgid "In early development (requires restart)."
 msgstr "Erken geliştirme aşamasında (yeniden başlatma gerekli)."
 
-#: bottles/frontend/ui/preferences.ui:271
+#: bottles/frontend/ui/preferences.ui:271 src/ui/preferences.ui:271
 msgid "Sandbox per bottle"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.ui:272
+#: bottles/frontend/ui/preferences.ui:272 src/ui/preferences.ui:272
 #, fuzzy
 msgid "In early development."
 msgstr "Erken geliştirme aşamasında (yeniden başlatma gerekli)."
 
-#: bottles/frontend/ui/program-entry.ui:21
+#: bottles/frontend/ui/program-entry.ui:21 src/ui/program-entry.ui:21
 msgid "Launch with terminal"
 msgstr "Terminal ile başlat"
 
-#: bottles/frontend/ui/program-entry.ui:28
+#: bottles/frontend/ui/program-entry.ui:28 src/ui/program-entry.ui:28
 msgid "Browse path"
 msgstr "Yola göz at"
 
-#: bottles/frontend/ui/program-entry.ui:44
-#, fuzzy
+#: src/ui/program-entry.ui:44
 msgid "Change Launch Options…"
-msgstr "Başlatma seçeneklerini değiştir"
+msgstr "Başlatma Seçeneklerini Değiştir…"
 
-#: bottles/frontend/ui/program-entry.ui:49
-#, fuzzy
+#: src/ui/program-entry.ui:49
 msgid "Add to My Library"
-msgstr "Kütüphaneme ekle"
+msgstr "Kütüphaneme Ekle"
 
-#: bottles/frontend/ui/program-entry.ui:54
-#, fuzzy
+#: src/ui/program-entry.ui:54
 msgid "Add Desktop Entry"
-msgstr "Masaüstü girdisi ekle"
+msgstr "Masaüstü Girdisi Ekle"
 
-#: bottles/frontend/ui/program-entry.ui:59
+#: src/ui/program-entry.ui:59
 msgid "Add to Steam"
-msgstr ""
+msgstr "Steam'e Ekle"
 
-#: bottles/frontend/ui/program-entry.ui:64
-#, fuzzy
+#: src/ui/program-entry.ui:64
 msgid "Rename…"
-msgstr "Yeniden adlandır"
+msgstr "Yeniden adlandır…"
 
-#: bottles/frontend/ui/program-entry.ui:73
-#, fuzzy
+#: src/ui/program-entry.ui:73
 msgid "Hide Program"
-msgstr "Bu programı gizle"
+msgstr "Programı Gizle"
 
-#: bottles/frontend/ui/program-entry.ui:78
-#, fuzzy
+#: src/ui/program-entry.ui:78
 msgid "Show Program"
-msgstr "Programlar"
+msgstr "Programı Göster"
 
-#: bottles/frontend/ui/program-entry.ui:83
-#, fuzzy
+#: src/ui/program-entry.ui:83
 msgid "Remove from List"
-msgstr "Listeden kaldır"
+msgstr "Listeden Kaldır"
 
-#: bottles/frontend/ui/program-entry.ui:99
-#, fuzzy
+#: src/ui/program-entry.ui:99
 msgid "Program name"
-msgstr "Programlar"
+msgstr "Program Adı"
 
 #. id as identification
-#: bottles/frontend/ui/state-entry.ui:7
+#: bottles/frontend/ui/state-entry.ui:7 src/ui/state-entry.ui:7
 #, fuzzy
 msgid "State id"
 msgstr "Durum bulunamadı"
 
-#: bottles/frontend/ui/state-entry.ui:8
+#: bottles/frontend/ui/state-entry.ui:8 src/ui/state-entry.ui:8
 #, fuzzy
 msgid "State comment"
 msgstr "Gerçekten kısa bir yorum"
 
-#: bottles/frontend/ui/state-entry.ui:16
+#: bottles/frontend/ui/state-entry.ui:16 src/ui/state-entry.ui:16
 msgid "Restore this state"
 msgstr "Bu durumu geri yükle"
 
-#: bottles/frontend/ui/task-entry.ui:24
+#: bottles/frontend/ui/task-entry.ui:24 src/ui/task-entry.ui:24
 msgid "Delete message"
 msgstr "Mesajı sil"
 
-#: bottles/frontend/ui/window.ui:19
-#, fuzzy
+#: src/ui/window.ui:19
 msgid "Import/Export…"
-msgstr "İçe/dışa aktar"
+msgstr "İçe/Dışa Aktar…"
 
-#: bottles/frontend/ui/window.ui:33
-#, fuzzy
+#: src/ui/window.ui:33
 msgid "Support"
-msgstr "Bizi destekleyin"
+msgstr "Destek"
 
-#: bottles/frontend/ui/window.ui:43
+#: bottles/frontend/ui/window.ui:43 src/ui/window.ui:43
 msgid "Forums"
 msgstr "Forumlar"
 
-#: bottles/frontend/ui/window.ui:48
+#: bottles/frontend/ui/window.ui:48 src/ui/window.ui:48
 msgid "About Bottles"
 msgstr "Şişeler Hakkında"
 
-#: bottles/frontend/ui/window.ui:79
+#: bottles/frontend/ui/window.ui:79 src/ui/window.ui:79
 msgid "Open menu"
 msgstr "Menüyü aç"
 
-#: bottles/frontend/ui/window.ui:93
+#: bottles/frontend/ui/window.ui:93 src/ui/window.ui:93
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -2638,58 +2816,59 @@ msgstr ""
 "İnternete bağlı değilsiniz, internet bağlantısı olmadan temel bileşenleri "
 "indiremezsiniz. Bağlantıyı yeniden kurduğunuzda bu simgeye tıklayın."
 
-#: bottles/frontend/ui/window.ui:99
+#: bottles/frontend/ui/window.ui:99 src/ui/window.ui:99
 msgid "New bottle"
 msgstr "Yeni şişe"
 
-#: bottles/frontend/utils/connection.py:67
+#: bottles/frontend/utils/connection.py:67 src/utils/connection.py:67
 msgid "You are offline, unable to download."
 msgstr "Çevrimdışısınız, karşıdan yükleyemiyorsunuz."
 
-#: bottles/frontend/views/bottle_details.py:142
+#: bottles/frontend/views/bottle_details.py:142 src/views/bottle_details.py:142
 #, python-format
 msgid "Updated: %s"
 msgstr "Güncellendi: %s"
 
 #: bottles/frontend/views/bottle_details.py:200
-#: bottles/frontend/views/list.py:118
+#: bottles/frontend/views/list.py:118 src/views/bottle_details.py:200
+#: src/views/list.py:118
 msgid "Choose a Windows executable file"
 msgstr "Çalıştırılacak bir Windows dosyası seçin"
 
-#: bottles/frontend/views/bottle_details.py:209
+#: bottles/frontend/views/bottle_details.py:209 src/views/bottle_details.py:209
 msgid "Be Aware of Sandbox"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:210
+#: bottles/frontend/views/bottle_details.py:210 src/views/bottle_details.py:210
 msgid ""
 "Bottles is running in a sandbox, a restricted permission environment needed "
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:212
+#: src/views/bottle_details.py:212
 msgid "Ok"
-msgstr ""
+msgstr "Tamam"
 
-#: bottles/frontend/views/bottle_details.py:267
+#: bottles/frontend/views/bottle_details.py:267 src/views/bottle_details.py:267
 msgid "Select the location where to save the backup config"
 msgstr "Yedekleme yapılandırmasının kaydedileceği konumu seç"
 
-#: bottles/frontend/views/bottle_details.py:271
+#: bottles/frontend/views/bottle_details.py:271 src/views/bottle_details.py:271
 msgid "Select the location where to save the backup archive"
 msgstr "Yedek arşivinin kaydedileceği konumu seçin"
 
-#: bottles/frontend/views/bottle_details.py:276
-#, fuzzy, python-brace-format
+#: src/views/bottle_details.py:276
+#, python-brace-format
 msgid "Backup created for '{0}'."
-msgstr "Yedekleme şu yola kaydedildi: {0}."
+msgstr "'{0}' için yedekleme oluşturuldu."
 
-#: bottles/frontend/views/bottle_details.py:278
+#: bottles/frontend/views/bottle_details.py:278 src/views/bottle_details.py:278
 #, python-brace-format
 msgid "Backup failed for '{0}'."
 msgstr "Yedekleme şu yola kaydedilemedi: {0}."
 
-#: bottles/frontend/views/bottle_details.py:296
+#: bottles/frontend/views/bottle_details.py:296 src/views/bottle_details.py:296
 msgid "Export"
 msgstr "Dışa aktar"
 
@@ -2698,120 +2877,129 @@ msgstr "Dışa aktar"
 #: bottles/frontend/views/bottle_details.py:411
 #: bottles/frontend/views/bottle_details.py:415
 #: bottles/frontend/views/bottle_preferences.py:776
+#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
+#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
+#: src/views/bottle_preferences.py:745
 msgid "Confirm"
 msgstr "Onayla"
 
-#: bottles/frontend/views/bottle_details.py:333
+#: bottles/frontend/views/bottle_details.py:333 src/views/bottle_details.py:333
 msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Bu Şişeyi ve tüm dosyaları silmek istediğinizden emin misiniz?"
+msgstr "Bu Şişeyi ve bütün dosyaları silmek istediğinizden emin misiniz?"
 
-#: bottles/frontend/views/bottle_details.py:412
+#: bottles/frontend/views/bottle_details.py:412 src/views/bottle_details.py:412
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
 msgstr ""
-"Tüm işlemleri sonlandırmak istediğinizden emin misiniz?\n"
+"Bütün işlemleri sonlandırmak istediğinizden emin misiniz?\n"
 "Bu veri kaybına neden olabilir."
 
 #: bottles/frontend/views/bottle_preferences.py:218
+#: src/views/bottle_preferences.py:207
 msgid "This feature is not available on your system."
 msgstr "Bu özellik sisteminizde kullanılabilir değil."
 
 #: bottles/frontend/views/bottle_preferences.py:266
 #: bottles/frontend/views/bottle_preferences.py:283
 #: bottles/frontend/views/bottle_preferences.py:422
+#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
+#: src/views/bottle_preferences.py:405
 msgid "Default to the bottle path."
 msgstr "Şişe yolu için öntanımlı."
 
 #: bottles/frontend/views/bottle_preferences.py:274
+#: src/views/bottle_preferences.py:258
 msgid "Choose working directory for executables"
 msgstr "Çalıştırılabilir dosyalar için çalışma dizini seç"
 
 #: bottles/frontend/views/bottle_preferences.py:772
+#: src/views/bottle_preferences.py:741
 msgid "Toggling Compression Require Re-Initialization"
 msgstr ""
 
 #: bottles/frontend/views/bottle_preferences.py:773
+#: src/views/bottle_preferences.py:742
 msgid ""
 "This will kepp all your files but will delete all states. Do you want to "
 "continue?"
 msgstr ""
 
-#: bottles/frontend/views/bottle_programs.py:86
+#: bottles/frontend/views/bottle_programs.py:86 src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
 msgstr "'{0}' eklendi."
 
-#: bottles/frontend/views/bottle_programs.py:90
+#: bottles/frontend/views/bottle_programs.py:90 src/views/bottle_programs.py:87
 msgid "Choose an executable path"
 msgstr "Çalıştırılabilir dosya yolu seç"
 
-#: bottles/frontend/views/bottle_programs.py:92
+#: bottles/frontend/views/bottle_programs.py:92 src/views/bottle_programs.py:89
 msgid "Add"
 msgstr "Ekle"
 
 #: bottles/frontend/views/bottle_versioning.py:88
+#: src/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
 msgstr ""
 
-#: bottles/frontend/views/details.py:154
+#: bottles/frontend/views/details.py:154 src/views/details.py:154
 msgid "Details & Utilities"
 msgstr "Ayrıntılar ve Araçlar"
 
-#: bottles/frontend/views/details.py:162
+#: bottles/frontend/views/details.py:162 src/views/details.py:162
 msgid "Dependencies"
 msgstr "Bağımlılıklar"
 
-#: bottles/frontend/views/details.py:167
+#: bottles/frontend/views/details.py:167 src/views/details.py:167
 msgid "Found in your bottle's Start menu."
 msgstr "Şişenizin Başlat menüsünde bulunur."
 
-#: bottles/frontend/views/details.py:174
+#: bottles/frontend/views/details.py:174 src/views/details.py:174
 msgid "Installers"
 msgstr "Kurucular"
 
-#: bottles/frontend/views/details.py:377
+#: bottles/frontend/views/details.py:377 src/views/details.py:377
 #, fuzzy
 msgid "Operations in progress, please wait."
 msgstr "Windows sürümü güncelleniyor, lütfen bekleyin…"
 
-#: bottles/frontend/views/details.py:381
+#: bottles/frontend/views/details.py:381 src/views/details.py:381
 #, fuzzy
 msgid "Return to your bottles."
 msgstr "Şişelerini ara .."
 
-#: bottles/frontend/views/importer.py:89
+#: bottles/frontend/views/importer.py:89 src/views/importer.py:89
 msgid "Backup imported successfully."
 msgstr "Yedekleme başarıyla içe aktarıldı."
 
-#: bottles/frontend/views/importer.py:91
+#: bottles/frontend/views/importer.py:91 src/views/importer.py:91
 msgid "Import failed."
 msgstr "İçe aktarılamadı."
 
-#: bottles/frontend/views/importer.py:103
-#: bottles/frontend/views/importer.py:132
-#, fuzzy
+#: src/views/importer.py:103 src/views/importer.py:132
 msgid "Importing backup…"
-msgstr "Yedek içe aktarılıyor..."
+msgstr "Yedek içe aktarılıyor…"
 
-#: bottles/frontend/views/importer.py:115
+#: bottles/frontend/views/importer.py:115 src/views/importer.py:115
 msgid "Choose a backup archive"
 msgstr "Bir yedekleme arşivi seçin"
 
 #: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
+#: src/views/list.py:59 src/views/list.py:65
 msgid "N/A"
 msgstr "Yok"
 
-#: bottles/frontend/views/list.py:220
+#: bottles/frontend/views/list.py:220 src/views/list.py:220
 msgid "Your Bottles"
 msgstr "Şişeleriniz"
 
-#: bottles/frontend/views/loading.py:33
+#: bottles/frontend/views/loading.py:33 src/views/loading.py:33
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
 msgstr ""
 
-#: bottles/frontend/views/loading.py:34
+#: bottles/frontend/views/loading.py:34 src/views/loading.py:34
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
 msgstr ""
@@ -2821,144 +3009,143 @@ msgstr ""
 msgid "Name has special characters or already in use."
 msgstr "Özel karakterler kullanmayınız!"
 
-#: bottles/frontend/views/new.py:150
+#: bottles/frontend/views/new.py:150 src/views/new.py:142
 msgid "Choose a recipe file"
 msgstr "Bir tanım dosyası seçin"
 
-#: bottles/frontend/views/new.py:166
+#: bottles/frontend/views/new.py:166 src/views/new.py:158
 msgid "Choose where to store the bottle"
 msgstr "Şişenin nereye kaydedileceğini seç"
 
-#: bottles/frontend/views/new.py:219
+#: bottles/frontend/views/new.py:219 src/views/new.py:211
 msgid "There was an error creating the bottle."
 msgstr "Şişe oluşturulurken bir hata meydana geldi."
 
-#: bottles/frontend/views/new.py:227
+#: bottles/frontend/views/new.py:227 src/views/new.py:219
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "“{0}” adlı bir şişe başarıyla oluşturuldu"
 
-#: bottles/frontend/views/preferences.py:119
+#: bottles/frontend/views/preferences.py:119 src/views/preferences.py:125
 msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:156
+#: bottles/frontend/views/preferences.py:156 src/views/preferences.py:193
 msgid "Choose new bottles path"
 msgstr "Yeni bir Şişeler yolu seç"
 
-#: bottles/frontend/views/preferences.py:199
+#: bottles/frontend/views/preferences.py:199 src/views/preferences.py:236
 msgid "Based on Valve's Wine, includes staging and Proton patches."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:200
+#: bottles/frontend/views/preferences.py:200 src/views/preferences.py:237
 msgid "Based on Wine upstream, includes staging and Proton patches."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:203
+#: bottles/frontend/views/preferences.py:203 src/views/preferences.py:240
 msgid "Based on Wine upstream, includes staging patches."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:204
+#: bottles/frontend/views/preferences.py:204 src/views/preferences.py:241
 msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:206
+#: bottles/frontend/views/preferences.py:206 src/views/preferences.py:243
 msgid "Other"
 msgstr "Diğer"
 
-#: bottles/frontend/widgets/component.py:70
+#: bottles/frontend/widgets/component.py:70 src/widgets/component.py:70
 msgid "Upgrade"
 msgstr "Yükselt"
 
-#: bottles/frontend/widgets/component.py:145
-#, fuzzy
+#: src/widgets/component.py:145
 msgid "Installing…"
-msgstr "DXVK kuruluyor…"
+msgstr "Kuruluyor…"
 
 #: bottles/frontend/widgets/dependency.py:107
-#: bottles/frontend/widgets/installer.py:72
+#: bottles/frontend/widgets/installer.py:72 src/widgets/dependency.py:107
+#: src/widgets/installer.py:72
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "{0} için manifesto"
 
-#: bottles/frontend/widgets/dependency.py:170
+#: bottles/frontend/widgets/dependency.py:170 src/widgets/dependency.py:170
 #, python-brace-format
 msgid "'{0}' installed."
 msgstr "'{0}' kuruldu."
 
-#: bottles/frontend/widgets/dependency.py:184
-#, fuzzy, python-brace-format
+#: src/widgets/dependency.py:184
+#, python-brace-format
 msgid "'{0}' failed to install."
-msgstr "'{0}' kuruldu."
+msgstr "'{0}' kurulamadı."
 
-#: bottles/frontend/widgets/importer.py:66
+#: bottles/frontend/widgets/importer.py:66 src/widgets/importer.py:66
 #, python-brace-format
 msgid "'{0}' imported."
 msgstr "'{0}' içe aktarıldı."
 
-#: bottles/frontend/widgets/installer.py:81
+#: bottles/frontend/widgets/installer.py:81 src/widgets/installer.py:81
 #, python-brace-format
 msgid "Review for {0}"
 msgstr "{0} için inceleme"
 
-#: bottles/frontend/widgets/program.py:187
-#, fuzzy, python-brace-format
+#: src/widgets/program.py:187
+#, python-brace-format
 msgid "Launching '{0}'…"
-msgstr "Terminalde Başlat…"
+msgstr "'{0}' başlatılıyor…"
 
-#: bottles/frontend/widgets/program.py:193
-#, fuzzy, python-brace-format
+#: src/widgets/program.py:193
+#, python-brace-format
 msgid "Launching '{0}' with Steam…"
-msgstr "Steam ile başlat"
+msgstr "'{0}' Steam ile başlatılıyor…"
 
-#: bottles/frontend/widgets/program.py:215
+#: bottles/frontend/widgets/program.py:215 src/widgets/program.py:215
 #, python-brace-format
 msgid "'{0}' hidden."
-msgstr "'{0}' gizli."
+msgstr "'{0}' gizlendi."
 
-#: bottles/frontend/widgets/program.py:217
+#: bottles/frontend/widgets/program.py:217 src/widgets/program.py:217
 #, python-brace-format
 msgid "'{0}' showed."
 msgstr "'{0}' gösterildi."
 
-#: bottles/frontend/widgets/program.py:240
+#: bottles/frontend/widgets/program.py:240 src/widgets/program.py:240
 #, python-brace-format
 msgid "'{0}' removed."
 msgstr "'{0}' kaldırıldı."
 
-#: bottles/frontend/widgets/program.py:254
+#: bottles/frontend/widgets/program.py:254 src/widgets/program.py:254
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
 msgstr "'{0}', '{1}' olarak yeniden adlandırıldı."
 
-#: bottles/frontend/widgets/program.py:274
+#: bottles/frontend/widgets/program.py:274 src/widgets/program.py:274
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
 msgstr "'{0}' için Masaüstü Girdisi oluşturuldu"
 
-#: bottles/frontend/widgets/program.py:290
+#: bottles/frontend/widgets/program.py:290 src/widgets/program.py:290
 #, python-brace-format
 msgid "'{0}' added to your library"
 msgstr "'{0}' kütüphanenize eklendi"
 
-#: bottles/frontend/widgets/program.py:306
+#: bottles/frontend/widgets/program.py:306 src/widgets/program.py:306
 #, python-brace-format
 msgid "'{0}' added to your Steam library"
 msgstr "'{0}' Steam kütüphanenize eklendi"
 
-#: bottles/frontend/windows/main_window.py:188
-#, fuzzy
+#: src/window.py:184
 msgid "Custom Bottles Path not Found"
-msgstr "Özel Şişeler Yolu (Yeniden Başlatma Gerekli)"
+msgstr "Özel Şişeler Yolu Bulunamadı"
 
-#: bottles/frontend/windows/main_window.py:189
+#: bottles/frontend/windows/main_window.py:189 src/window.py:185
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
 msgstr ""
 
-#: bottles/frontend/windows/main_window.py:310
+#: bottles/frontend/windows/main_window.py:310 src/window.py:306
 msgid "Third-Party Libraries and Special Thanks"
 msgstr ""
 
@@ -3010,7 +3197,7 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Şişenizdeki tüm çalıştırabilir (.exe/.msi) dosyaları doğrudan dosya "
+"Şişenizdeki bütün çalıştırılabilir (.exe/.msi) dosyaları doğrudan dosya "
 "yöneticinizden açın"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
@@ -3023,7 +3210,7 @@ msgstr "Ortam değişkenlerini kolayca ekleyin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from per-bottle preferences"
-msgstr "Şişe-başına ayalarından tüm DLL'leri yönetin"
+msgstr "Şişe-başına ayalarından bütün DLL'leri yönetin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
@@ -3071,7 +3258,7 @@ msgstr "Wineprefix'leri diğer yöneticilerden içe aktarın"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning"
-msgstr "Bottles sürüm oluşturma"
+msgstr "Şişeler sürüm oluşturma"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -4890,3 +5077,6 @@ msgstr "Listede güncelleme tarihini göster/gizle"
 
 #~ msgid "Toggle experimental installer features."
 #~ msgstr "Deneysel kurucu özelliklerini aç/kapat."
+
+#~ msgid "Special characters are not allowed!"
+#~ msgstr "Özel karakterler kullanmayınız!"
