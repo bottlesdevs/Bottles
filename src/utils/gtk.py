@@ -21,11 +21,16 @@ import re
 class GtkUtils:
 
     @staticmethod
-    def validate_entry(entry) -> bool:
+    def validate_entry(entry, extend=None) -> bool:
         text = entry.get_text()
         if re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text) or len(text) == 0 or text.isspace():
             entry.add_css_class("error")
             return False
-        else:
-            entry.remove_css_class("error")
-            return True
+
+        if extend is not None:
+            if extend(text):
+                entry.add_css_class("error")
+                return False
+
+        entry.remove_css_class("error")
+        return True
