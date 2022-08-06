@@ -1179,14 +1179,28 @@ class Manager:
                 log_update(_("Running as Flatpak, sandboxing userdir…"))
             if sandbox:
                 log_update(_("Sandboxing userdir…"))
-            users_dir = glob(f"{bottle_complete_path}/drive_c/users/*/*")
-            users_dir += glob(f"{bottle_complete_path}/drive_c/users/*/AppData/Roaming/Microsoft/Windows/*")
+                
+            links = []
+            for user in os.listdir(f"{bottle_complete_path}/drive_c/users"):
+                _user_dir = os.path.join(f"{bottle_complete_path}/drive_c/users", user)
 
-            for user_path in users_dir:
-                if os.path.islink(user_path):
-                    with contextlib.suppress(IOError, OSError):
-                        os.unlink(user_path)
-                        os.makedirs(user_path)
+                if os.path.isdir(_user_dir):
+                    for _dir in os.listdir(_user_dir):
+                        _dir_path = os.path.join(_user_dir, _dir)
+                        if os.path.islink(_dir_path):
+                            links.append(_dir_path)
+
+                    _win_dir = os.path.join(_user_dir, "AppData", "Roaming", "Microsoft", "Windows")
+                    if os.path.isdir(_win_dir):
+                        for _dir in os.listdir(_win_dir):
+                            _dir_path = os.path.join(_win_dir, _dir)
+                            if os.path.islink(_dir_path):
+                                links.append(_dir_path)
+            
+            for link in links:
+                with contextlib.suppress(IOError, OSError):
+                    os.unlink(link)
+                    os.makedirs(link)
 
         # wait for registry files to be created
         FileUtils.wait_for_files(reg_files)
