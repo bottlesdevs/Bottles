@@ -248,6 +248,7 @@ class ManagerUtils:
                 f.write(f"Categories=Application;\n")
                 f.write(f"Icon={icon}\n")
                 f.write(f"Comment=Launch {program.get('name')} using Bottles.\n")
+                f.write(f"StartupWMClass={program.get('name')}\n")
                 # Actions
                 f.write("Actions=Configure;\n")
                 f.write("[Desktop Action Configure]\n")
