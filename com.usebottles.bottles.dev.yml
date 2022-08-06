@@ -406,6 +406,8 @@ modules:
   - name: bottles
     builddir: true
     buildsystem: meson
+    config-opts:
+      - -Ddevel=true
     sources:
       - type: dir
         path: .

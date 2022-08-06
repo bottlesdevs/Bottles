@@ -37,8 +37,15 @@ bottles_sources = [
   'main.py',
   'window.py',
   'params.py',
+  'const.py',
   'operation.py',
   'operation_cli.py',
 ]
+
+if get_option('devel')
+  bottles_sources += [
+    'devel/const.py',
+  ]
+endif
 
 install_data(bottles_sources, install_dir: moduledir)

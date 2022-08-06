@@ -24,6 +24,7 @@ from gi.repository import Gtk, GLib, Gio, Adw, GObject
 from pathlib import Path
 
 from bottles.params import *  # pyright: reportMissingImports=false
+from bottles.const import *
 from bottles.backend.logger import Logger
 from bottles.utils.threading import RunAsync
 from bottles.utils.connection import ConnectionUtils
@@ -86,6 +87,9 @@ class MainWindow(Adw.ApplicationWindow):
         self.utils_conn = ConnectionUtils(self)
         self.manager = None
         self.arg_bottle = arg_bottle
+
+        if BUILD_TYPE == "devel":
+            self.add_css_class("devel")
 
         # Set night theme according to user settings
         if self.settings.get_boolean("dark-theme"):
