@@ -544,8 +544,8 @@ class DependencyManager:
             if "*" in step.get('file_name'):
                 files = glob(f"{path}/{step.get('file_name')}")
                 for fg in files:
-                    _name = fg
-                    _path = os.path.join(path, step.get("file_name"), _name)
+                    _name = fg.split("/")[-1]
+                    _path = os.path.join(path, _name)
                     _dest = os.path.join(dest, _name)
                     logging.info(f"Copying {_name} to {_dest}")
 
