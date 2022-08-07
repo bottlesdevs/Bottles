@@ -12,7 +12,7 @@ i18n = import('i18n')
 localedir = get_option('localedir')
 
 subdir('po')
-subdir('src')
+subdir('bottles')
 subdir('data')
 
 meson.add_install_script('build-aux/meson/postinstall.py')
