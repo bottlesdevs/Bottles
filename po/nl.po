@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-01 22:54+0200\n"
+"POT-Creation-Date: 2022-08-07 23:12+0200\n"
 "PO-Revision-Date: 2022-08-04 11:36+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
@@ -19,11 +19,2859 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.14-dev\n"
 
+#: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
+msgid "No path specified"
+msgstr "Geen pad opgegeven"
+
+#: bottles/backend/managers/backup.py:71
+#, python-brace-format
+msgid "Backup {0}"
+msgstr "Back-up {0}"
+
+#: bottles/backend/managers/backup.py:124
+#, python-brace-format
+msgid "Importing backup: {0}"
+msgstr "Importeer vanuit een back-up: {0}"
+
+#: bottles/backend/managers/manager.py:1030
+msgid "Fail to install components, tried 3 times."
+msgstr "Lukt niet om onderdelen te installeren, 3 keer geprobeerd."
+
+#: bottles/backend/managers/manager.py:1041
+msgid "Missing essential components. Installing…"
+msgstr "Ontbrekende essentiële onderdelen. Installeren…"
+
+#: bottles/backend/managers/manager.py:1117
+msgid "Failed to create bottle directory."
+msgstr "Kan de bottles map niet maken."
+
+#: bottles/backend/managers/manager.py:1129
+msgid "Failed to create placeholder directory/file."
+msgstr "Kan geen tijdelijke aanduiding voor map/bestand maken."
+
+#: bottles/backend/managers/manager.py:1134
+msgid "Generating bottle configuration…"
+msgstr "Bottle-configuratie aanmaken…"
+
+#: bottles/backend/managers/manager.py:1157
+msgid "Template found, applying…"
+msgstr "Sjabloon gevonden, toepassen…"
+
+#. execute wineboot on the bottle path
+#: bottles/backend/managers/manager.py:1169
+msgid "The Wine config is being updated…"
+msgstr "De Wine-configuratie wordt bijgewerkt…"
+
+#: bottles/backend/managers/manager.py:1171
+msgid "Wine config updated!"
+msgstr "Wine-configuratie bijgewerkt!"
+
+#: bottles/backend/managers/manager.py:1179
+msgid "Running as Flatpak, sandboxing userdir…"
+msgstr "Als Flatpak uitvoeren, gebruikersmap in een zandbak verwerken…"
+
+#: bottles/backend/managers/manager.py:1181
+msgid "Sandboxing userdir…"
+msgstr "Gebruikersmap in een zandbak verwerken…"
+
+#: bottles/backend/managers/manager.py:1211
+msgid "Setting Windows version…"
+msgstr "Windows-versie instellen…"
+
+#: bottles/backend/managers/manager.py:1221
+msgid "Apply CMD default settings…"
+msgstr "standaardinstellingen van CMD toepassen…"
+
+#: bottles/backend/managers/manager.py:1229
+msgid "Optimizing environment…"
+msgstr "Omgeving optimaliseren…"
+
+#: bottles/backend/managers/manager.py:1240
+#, python-brace-format
+msgid "Applying environment: {0}…"
+msgstr "Omgeving toepassen: {0}…"
+
+#: bottles/backend/managers/manager.py:1250
+msgid "(!) Using a custom environment recipe…"
+msgstr "(!) Een aangepast omgevingsrecept gebruiken…"
+
+#: bottles/backend/managers/manager.py:1253
+msgid "(!) Recipe not not found or not valid…"
+msgstr "(!) Recept niet gevonden of niet geldig…"
+
+#: bottles/backend/managers/manager.py:1270
+msgid "Installing DXVK…"
+msgstr "DXVK installeren…"
+
+#: bottles/backend/managers/manager.py:1278
+msgid "Installing VKD3D…"
+msgstr "VKD3D installeren…"
+
+#: bottles/backend/managers/manager.py:1286
+msgid "Installing DXVK-NVAPI…"
+msgstr "DXVK-NVAPI installeren…"
+
+#: bottles/backend/managers/manager.py:1295
+#, python-format
+msgid "Installing dependency: %s …"
+msgstr "Afhankelijkheid installeren: %s …"
+
+#: bottles/backend/managers/manager.py:1311
+msgid "Creating versioning state 0…"
+msgstr "Initiële staat aanmaken…"
+
+#: bottles/backend/managers/manager.py:1319
+msgid "Finalizing…"
+msgstr "Afronden…"
+
+#: bottles/backend/managers/manager.py:1330
+msgid "Caching template…"
+msgstr "Sjabloon inladen…"
+
+#: bottles/backend/managers/versioning.py:97
+msgid "Committing state …"
+msgstr "Staat toepassen…"
+
+#: bottles/backend/managers/versioning.py:106
+msgid "Nothing to commit"
+msgstr "Niets om toe te passen"
+
+#: bottles/backend/managers/versioning.py:112
+#, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "Nieuwe staat [{0}] succesvol aangemaakt!"
+
+#: bottles/backend/managers/versioning.py:140
+msgid "States list retrieved successfully!"
+msgstr "Lijst met staten succesvol ontvangen!"
+
+#: bottles/backend/managers/versioning.py:171
+#, python-brace-format
+msgid "State {0} restored successfully!"
+msgstr "Staat [{0}] succesvol hersteld!"
+
+#: bottles/backend/managers/versioning.py:176
+msgid "Restoring state {} …"
+msgstr "Staat {} herstellen…"
+
+#: bottles/backend/managers/versioning.py:185
+msgid "State not found"
+msgstr "Staat niet gevonden"
+
+#: bottles/backend/managers/versioning.py:191
+msgid "State {} is already the active state"
+msgstr "Staat {} is al actief"
+
+#: bottles/frontend/windows/crash.py:37
+msgid "Show report"
+msgstr "Rapport weergeven"
+
+#: bottles/frontend/windows/crash.py:88
+msgid ""
+"            This issue was reported 5 times and cannot be sent again.\n"
+"            Report your feedback in one of the below existing reports."
+msgstr ""
+"            Dit probleem is al 5 keer gemeld en kan niet opnieuw worden "
+"verzonden.\n"
+"            Meld uw feedback in een van de onderstaande bestaande rapporten."
+
+#: bottles/frontend/windows/dlloverrides.py:136
+msgid "No overrides found."
+msgstr "Geen overschrijvingen gevonden."
+
+#: bottles/frontend/windows/drives.py:71
+msgid "Choose path"
+msgstr "Pad kiezen"
+
+#: bottles/frontend/windows/drives.py:73
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:234
+#: bottles/frontend/windows/launchoptions.py:258
+#: bottles/frontend/windows/vkbasalt.py:355
+#: bottles/frontend/ui/dialog-bottle-picker.ui:17
+#: bottles/frontend/ui/dialog-crash-report.ui:18
+#: bottles/frontend/ui/dialog-proton-alert.ui:17
+#: bottles/frontend/ui/dialog-rename.ui:17
+#: bottles/frontend/ui/dialog-run-args.ui:19 bottles/frontend/ui/new.ui:33
+#: bottles/frontend/views/bottle_details.py:202
+#: bottles/frontend/views/bottle_details.py:296
+#: bottles/frontend/views/bottle_details.py:335
+#: bottles/frontend/views/bottle_details.py:414
+#: bottles/frontend/views/bottle_preferences.py:276
+#: bottles/frontend/views/bottle_preferences.py:775
+#: bottles/frontend/views/bottle_programs.py:92
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146 bottles/frontend/views/list.py:120
+#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
+#: bottles/frontend/views/preferences.py:158
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: bottles/frontend/windows/drives.py:73
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:234
+#: bottles/frontend/windows/launchoptions.py:258
+#: bottles/frontend/ui/dialog-bottle-picker.ui:22
+#: bottles/frontend/views/bottle_preferences.py:276
+#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
+#: bottles/frontend/views/preferences.py:158
+msgid "Select"
+msgstr "Selecteren"
+
+#: bottles/frontend/windows/envvars.py:131
+msgid "No environment variables defined."
+msgstr "Geen omgevingsvariabelen gedefinieerd."
+
+#: bottles/frontend/windows/exclusionpatterns.py:108
+msgid "No exclusion patterns defined."
+msgstr "Geen uitsluitingspatronen gedefinieerd."
+
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/ui/dialog-gamescope.ui:34
+#: bottles/frontend/ui/dialog-launch-options.ui:35
+#: bottles/frontend/ui/dialog-rename.ui:22
+#: bottles/frontend/ui/dialog-vkbasalt.ui:38
+msgid "Save"
+msgstr "Opslaan"
+
+#: bottles/frontend/windows/generic.py:24
+msgid "An error has occurred."
+msgstr "Er is een fout opgetreden."
+
+#: bottles/frontend/windows/generic.py:91
+#: bottles/frontend/windows/generic.py:137
+#: bottles/frontend/windows/generic.py:182
+msgid "Copy to clipboard"
+msgstr "Naar klembord kopiëren"
+
+#: bottles/frontend/windows/installer.py:64
+msgid "Select Resource FIle"
+msgstr "Bronbestand selecteren"
+
+#: bottles/frontend/windows/installer.py:115
+msgid "Installing Windows dependencies…"
+msgstr "Windows-afhankelijkheden installeren…"
+
+#: bottles/frontend/windows/installer.py:116
+msgid "Configuring the bottle…"
+msgstr "Bottle configureren…"
+
+#: bottles/frontend/windows/installer.py:117
+msgid "Processing installer steps…"
+msgstr "Installer-stappen verwerken…"
+
+#: bottles/frontend/windows/installer.py:118
+msgid "Installing the {}…"
+msgstr "{} installeren…"
+
+#: bottles/frontend/windows/installer.py:119
+msgid "Performing final checks…"
+msgstr "Laatste controles uitvoeren…"
+
+#: bottles/frontend/windows/installer.py:123
+#, python-brace-format
+msgid "Installing {0}…"
+msgstr "{0} installeren…"
+
+#: bottles/frontend/windows/installer.py:125
+#, python-brace-format
+msgid "{0} is now available in the programs view."
+msgstr "{0} is nu beschikbaar in de lijst met programma's."
+
+#: bottles/frontend/windows/installer.py:171
+msgid "Installer failed with unknown error"
+msgstr "Installer mislukt met onbekende fout"
+
+#. endregion
+#: bottles/frontend/windows/launchoptions.py:56
+#: bottles/frontend/ui/dialog-launch-options.ui:59
+msgid "Choose a script which should be executed after run."
+msgstr "Kies een script dat na het uitvoeren moet worden uitgevoerd."
+
+#: bottles/frontend/windows/launchoptions.py:57
+#: bottles/frontend/ui/dialog-launch-options.ui:92
+msgid "Choose from where start the program."
+msgstr "Kies vanaf waar het programma start."
+
+#: bottles/frontend/windows/launchoptions.py:58
+#, python-brace-format
+msgid "{0} is already disabled for this bottle."
+msgstr "{0} is al uitgeschakeld voor deze bottle."
+
+#: bottles/frontend/windows/launchoptions.py:59
+msgid "This setting is different from the bottle's default."
+msgstr "Deze instelling is anders dan de standaard van de bottle."
+
+#: bottles/frontend/windows/launchoptions.py:232
+msgid "Choose the script"
+msgstr "Script selecteren"
+
+#: bottles/frontend/windows/launchoptions.py:256
+msgid "Choose the Working Directory"
+msgstr "Werkmap selecteren"
+
+#: bottles/frontend/windows/vkbasalt.py:84
+#: bottles/frontend/ui/dialog-vkbasalt.ui:420
+#, fuzzy
+msgid "Choose a file."
+msgstr "Kies een recept bestand"
+
+#: bottles/frontend/windows/vkbasalt.py:306
+#, fuzzy
+msgid "File not Found"
+msgstr "Staat niet gevonden"
+
+#: bottles/frontend/windows/vkbasalt.py:307
+msgid "The given file does not exist. Please choose an appropriate file."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:330
+msgid "Spaces in File Name"
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:331
+msgid ""
+"Color Lookup Table path must not contain any spaces. Please rename the file "
+"to remove all spaces."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:339
+msgid "Invalid Image Dimension"
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:340
+msgid "Height and width of the image must be equal."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:353
+#: bottles/frontend/views/importer.py:144
+msgid "Choose a configuration file"
+msgstr "Kies een configuratiebestand"
+
+#: bottles/frontend/windows/vkbasalt.py:355
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146
+msgid "Import"
+msgstr "Importeren"
+
+#: bottles/frontend/main.py:105
+msgid "Show version"
+msgstr "Toon versie"
+
+#: bottles/frontend/main.py:113
+msgid "Executable path"
+msgstr "Uitvoerbaar pad"
+
+#: bottles/frontend/main.py:121
+msgid "lnk path"
+msgstr "lnk-pad"
+
+#: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.ui:103
+#: bottles/frontend/ui/list-entry.ui:7
+msgid "Bottle name"
+msgstr "Naam van de bottle"
+
+#: bottles/frontend/main.py:137
+msgid "Pass arguments"
+msgstr "Argumenten doorgeven"
+
+#: bottles/frontend/main.py:196
+msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
+msgstr "Ongeldige URI (syntax: bottles:run/<bottle>/<program>)"
+
+#: bottles/frontend/main.py:237
+msgid "[Quit] request received."
+msgstr "[Stoppen] verzoek ontvangen."
+
+#: bottles/frontend/main.py:246
+msgid "[Help] request received."
+msgstr "[Hulp] verzoek ontvangen."
+
+#: bottles/frontend/main.py:254
+msgid "[Refresh] request received."
+msgstr "[Verversen] verzoek ontvangen."
+
+#: bottles/frontend/operation.py:50
+msgid "Calculating…"
+msgstr "Berekenen…"
+
+#: bottles/frontend/ui/about.ui:8
+msgid "© 2017-2022 - Bottles Developers"
+msgstr "© 2017-2022 - Bottles Ontwikkelaars"
+
+#: bottles/frontend/ui/about.ui:9
+msgid "Easily manage wineprefix using environments"
+msgstr "Beheer eenvoudig wineprefix met behulp van omgevingen"
+
+#: bottles/frontend/ui/component-entry.ui:6
+msgid "Component version"
+msgstr "Component versie"
+
+#: bottles/frontend/ui/component-entry.ui:15
+#: bottles/frontend/ui/dependency-entry.ui:34
+#: bottles/frontend/ui/program-entry.ui:92
+msgid "Uninstall"
+msgstr "Verwijderen"
+
+#: bottles/frontend/ui/component-entry.ui:26
+#: bottles/frontend/ui/importer-entry.ui:15
+msgid "Browse files"
+msgstr "Blader door bestanden"
+
+#: bottles/frontend/ui/component-entry.ui:37
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch. Press to try again."
+msgstr ""
+"De installatie is mislukt. Dit kan komen door een repository-fout, "
+"incomplete download of niet-overeenkomende controlesom. Druk om opnieuw te "
+"proberen."
+
+#: bottles/frontend/ui/component-entry.ui:48
+msgid "Download & Install"
+msgstr "Downloaden en installeren"
+
+#: bottles/frontend/ui/component-entry.ui:61
+msgid "0%"
+msgstr "0%"
+
+#: bottles/frontend/ui/dependency-entry.ui:18
+msgid "Show Manifest"
+msgstr "Manifest tonen"
+
+#: bottles/frontend/ui/dependency-entry.ui:23
+msgid "License"
+msgstr "Licentie"
+
+#: bottles/frontend/ui/dependency-entry.ui:28
+msgid "Reinstall"
+msgstr "Opnieuw installeren"
+
+#: bottles/frontend/ui/dependency-entry.ui:43
+#: bottles/frontend/ui/installer-entry.ui:32
+msgid "Report a Bug…"
+msgstr "Een fout melden…"
+
+#: bottles/frontend/ui/dependency-entry.ui:50
+msgid "Dependency name"
+msgstr "Naam van afhankelijkheid"
+
+#: bottles/frontend/ui/dependency-entry.ui:52
+msgid "Dependency description"
+msgstr "Beschrijving van afhankelijkheid"
+
+#: bottles/frontend/ui/dependency-entry.ui:59
+msgid "Category"
+msgstr "Categorie"
+
+#: bottles/frontend/ui/dependency-entry.ui:73
+msgid "Download & Install this dependency"
+msgstr "Download en installeer deze afhankelijkheid"
+
+#: bottles/frontend/ui/dependency-entry.ui:89
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+"Er is een installatiefout opgetreden. Start Bottles opnieuw op om het Crash "
+"Report te lezen of voer het via terminal uit om de uitvoer te lezen."
+
+#: bottles/frontend/ui/details-bottle.ui:18
+msgid "Troubleshooting"
+msgstr "Probleemoplossing"
+
+#: bottles/frontend/ui/details-bottle.ui:26
+msgid "Browse Files…"
+msgstr "Door bestanden bladeren…"
+
+#: bottles/frontend/ui/details-bottle.ui:31
+msgid "Duplicate Bottle…"
+msgstr "Kopie van Bottle maken…"
+
+#: bottles/frontend/ui/details-bottle.ui:36 bottles/frontend/ui/importer.ui:86
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr ""
+"Dit is het complete archief van je bottle, inclusief persoonlijke bestanden."
+
+#: bottles/frontend/ui/details-bottle.ui:37
+msgid "Full Backup…"
+msgstr "Volledige backup maken…"
+
+#: bottles/frontend/ui/details-bottle.ui:42 bottles/frontend/ui/importer.ui:80
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Dit is simpelweg de configuratie van de bottle, die is perfect wanneer je "
+"een nieuwe wilt creëren zonder persoonlijke bestanden."
+
+#: bottles/frontend/ui/details-bottle.ui:43
+msgid "Export Configuration…"
+msgstr "Configuratie exporteren…"
+
+#: bottles/frontend/ui/details-bottle.ui:51
+msgid "Delete Bottle…"
+msgstr "Bottle verwijderen…"
+
+#: bottles/frontend/ui/details-bottle.ui:86
+msgid "Kill all Processes"
+msgstr "Alle processen geforceerd stoppen"
+
+#: bottles/frontend/ui/details-bottle.ui:91
+msgid "Simulate a Windows system shutdown."
+msgstr "Simuleer het afsluiten van Windows."
+
+#: bottles/frontend/ui/details-bottle.ui:92
+msgid "Shutdown"
+msgstr "Afsluiten"
+
+#: bottles/frontend/ui/details-bottle.ui:97
+msgid "Simulate a Windows system reboot."
+msgstr "Simuleer het opnieuw opstarten van Windows."
+
+#: bottles/frontend/ui/details-bottle.ui:98
+msgid "Reboot"
+msgstr "Opnieuw opstarten"
+
+#: bottles/frontend/ui/details-bottle.ui:121
+msgid "Run with Arguments…"
+msgstr "Uitvoeren met argumenten…"
+
+#: bottles/frontend/ui/details-bottle.ui:126
+msgid "Launch in Terminal…"
+msgstr "In terminal starten…"
+
+#: bottles/frontend/ui/details-bottle.ui:157
+msgid "My bottle"
+msgstr "Mijn bottle"
+
+#: bottles/frontend/ui/details-bottle.ui:169
+msgid "Win64"
+msgstr "Win64"
+
+#: bottles/frontend/ui/details-bottle.ui:177
+#: bottles/frontend/ui/list-entry.ui:14 bottles/frontend/ui/new.ui:77
+msgid "Environment"
+msgstr "Omgeving"
+
+#: bottles/frontend/ui/details-bottle.ui:185
+#: bottles/frontend/ui/details-preferences.ui:314
+#: bottles/frontend/ui/new.ui:129
+msgid "Runner"
+msgstr "Runner"
+
+#: bottles/frontend/ui/details-bottle.ui:193
+#: bottles/frontend/ui/list-entry.ui:23
+msgid "Versioning enabled for this bottle"
+msgstr "Versiebeheer is ingeschakeld voor deze bottle"
+
+#: bottles/frontend/ui/details-bottle.ui:198
+#: bottles/frontend/ui/list-entry.ui:28
+msgid "Versioning is active in this bottle."
+msgstr "Versiebeheer is actief binnen deze bottle."
+
+#: bottles/frontend/ui/details-bottle.ui:208
+#: bottles/frontend/ui/list-entry.ui:34
+msgid "0"
+msgstr "0"
+
+#: bottles/frontend/ui/details-bottle.ui:219
+msgid "Run Executable…"
+msgstr "Programmabestand uitvoeren…"
+
+#: bottles/frontend/ui/details-bottle.ui:235
+msgid "Layers"
+msgstr "Lagen"
+
+#: bottles/frontend/ui/details-bottle.ui:241
+#: bottles/frontend/views/details.py:166
+msgid "Programs"
+msgstr "Programma's"
+
+#: bottles/frontend/ui/details-bottle.ui:246
+msgid "Tools"
+msgstr "Gereedschap"
+
+#: bottles/frontend/ui/details-bottle.ui:250
+msgid "Command Line"
+msgstr "Opdrachtregel"
+
+#: bottles/frontend/ui/details-bottle.ui:251
+msgid "Run commands inside the Bottle."
+msgstr "Voer commando's uit in de Bottle."
+
+#: bottles/frontend/ui/details-bottle.ui:262
+msgid "Registry Editor"
+msgstr "Registerbewerker"
+
+#: bottles/frontend/ui/details-bottle.ui:263
+msgid "Edit the internal registry."
+msgstr "Bewerk het interne register."
+
+#: bottles/frontend/ui/details-bottle.ui:273
+msgid "Legacy Tools"
+msgstr "Verouderd gereedschap"
+
+#: bottles/frontend/ui/details-bottle.ui:277
+msgid "Explorer"
+msgstr "Verkenner"
+
+#: bottles/frontend/ui/details-bottle.ui:278
+msgid "Browse internal files with the Wine explorer."
+msgstr "Blader door interne bestanden met de Wine-verkenner."
+
+#: bottles/frontend/ui/details-bottle.ui:289
+#: bottles/frontend/views/details.py:178
+msgid "Task Manager"
+msgstr "Taakbeheer"
+
+#: bottles/frontend/ui/details-bottle.ui:290
+msgid "Manage processes with the Wine task manager."
+msgstr "Beheer processen met het Wine-taakbeheer."
+
+#: bottles/frontend/ui/details-bottle.ui:301
+msgid "Debug"
+msgstr "Foutopsporing"
+
+#: bottles/frontend/ui/details-bottle.ui:302
+msgid "Debug wine processes."
+msgstr "Toon uitvoer van Wine-processen."
+
+#: bottles/frontend/ui/details-bottle.ui:313
+msgid "Wine Configuration"
+msgstr "Wine-configuratie"
+
+#: bottles/frontend/ui/details-bottle.ui:314
+msgid "Adjust internal settings."
+msgstr "Pas interne instellingen aan."
+
+#: bottles/frontend/ui/details-bottle.ui:325
+msgid "Uninstaller"
+msgstr "Uninstaller"
+
+#: bottles/frontend/ui/details-bottle.ui:326
+msgid "Uninstall programs using Wine uninstaller."
+msgstr "Verwijder programma's met de Wine-uninstaller."
+
+#: bottles/frontend/ui/details-bottle.ui:337
+msgid "Control Panel"
+msgstr "Configuratiescherm"
+
+#: bottles/frontend/ui/details-bottle.ui:338
+msgid "Access the internal Wine Control Panel."
+msgstr "Open het interne Wine-configuratiescherm."
+
+#: bottles/frontend/ui/details-bottle.ui:357
+msgid "Use the Installers section or the \"Run executable\" button."
+msgstr ""
+"Gebruik het installers-gedeelte of de knop \"Programmabestand uitvoeren\"."
+
+#: bottles/frontend/ui/details-dependencies.ui:13
+msgid "Search for dependencies…"
+msgstr "Zoeken naar afhankelijkheden…"
+
+#: bottles/frontend/ui/details-dependencies.ui:22
+msgid ""
+"Dependencies are software, libraries and codecs that improve the "
+"compatibility of Windows software. Install from here to meet your program "
+"requirements."
+msgstr ""
+"Afhankelijkheden zijn software, bibliotheken en codecs die de "
+"compatibiliteit van Windows-software verbeteren. Installeer vanaf hier om "
+"aan uw programmavereisten te voldoen."
+
+#: bottles/frontend/ui/details-dependencies.ui:34
+#: bottles/frontend/ui/details-installers.ui:33
+msgid ""
+"Files on this page are provided by third parties under a proprietary "
+"license. By installing them, you agree with their respective licensing terms."
+msgstr ""
+"Bestanden op deze pagina worden geleverd door derden onder een "
+"eigendomslicentie. Door ze te installeren, gaat u akkoord met hun "
+"respectievelijke licentievoorwaarden."
+
+#: bottles/frontend/ui/details-dependencies.ui:62
+msgid "Report a problem or a missing dependency."
+msgstr "Meld een probleem of een ontbrekende afhankelijkheid."
+
+#: bottles/frontend/ui/details-dependencies.ui:63
+msgid "Report missing dependency"
+msgstr "Ontbrekende afhankelijkheid melden"
+
+#: bottles/frontend/ui/details-dependencies.ui:68
+msgid "Read documentation."
+msgstr "Lees de documentatie."
+
+#: bottles/frontend/ui/details-dependencies.ui:69
+#: bottles/frontend/ui/details-installers.ui:71
+#: bottles/frontend/ui/details-programs.ui:45
+#: bottles/frontend/ui/details-versioning.ui:44
+#: bottles/frontend/ui/window.ui:38
+msgid "Documentation"
+msgstr "Documentatie"
+
+#: bottles/frontend/ui/details-dependencies.ui:80
+msgid "Install Selected"
+msgstr "Selectie installeren"
+
+#: bottles/frontend/ui/details-dependencies.ui:81
+msgid "We strongly advise against installing multiple dependencies at once."
+msgstr ""
+"We raden sterk af om meerdere afhankelijkheden tegelijk te installeren."
+
+#: bottles/frontend/ui/details-dependencies.ui:88
+msgid "Select Dependencies"
+msgstr "Afhankelijkheden selecteren"
+
+#: bottles/frontend/ui/details-dependencies.ui:95
+#: bottles/frontend/ui/details-installers.ui:82
+#: bottles/frontend/ui/window.ui:86
+msgid "Search"
+msgstr "Zoeken"
+
+#: bottles/frontend/ui/details-installers.ui:13
+msgid "Search for Programs…"
+msgstr "Zoeken naar programma's…"
+
+#: bottles/frontend/ui/details-installers.ui:22
+msgid ""
+"Use this section to install programs curated by our community, without "
+"having to proceed manually."
+msgstr ""
+"Gebruik dit gedeelte om door onze community verzorgde programma's te "
+"installeren, zonder handmatig te werk te moeten gaan."
+
+#: bottles/frontend/ui/details-installers.ui:48
+msgid "No Installers Found"
+msgstr "Geen installers gevonden"
+
+#: bottles/frontend/ui/details-installers.ui:51
+msgid ""
+"The repository is unreachable or no installer is compatible with this bottle."
+msgstr ""
+"De repository kan niet worden doorzocht, of er is geen installer compatibel "
+"met deze bottle."
+
+#: bottles/frontend/ui/details-installers.ui:70
+#: bottles/frontend/ui/details-programs.ui:44
+#: bottles/frontend/ui/details-versioning.ui:43
+msgid "Read documentation"
+msgstr "Documentatie lezen"
+
+#: bottles/frontend/ui/details-preferences.ui:8
+msgid "Bottle Details"
+msgstr "Bottle-details"
+
+#: bottles/frontend/ui/details-preferences.ui:11
+#: bottles/frontend/ui/dialog-duplicate.ui:58 bottles/frontend/ui/new.ui:70
+msgid "Name"
+msgstr "Naam"
+
+#: bottles/frontend/ui/details-preferences.ui:19
+msgid "Graphics"
+msgstr "Grafisch"
+
+#: bottles/frontend/ui/details-preferences.ui:23
+#: bottles/frontend/ui/preferences.ui:213
+msgid "DXVK"
+msgstr "DXVK"
+
+#: bottles/frontend/ui/details-preferences.ui:24
+msgid "Improves performance of DirectX 11 games and 3D applications."
+msgstr "Verbetert de prestaties van DirectX 11-games en 3D-toepassingen."
+
+#: bottles/frontend/ui/details-preferences.ui:27
+#: bottles/frontend/ui/details-preferences.ui:338
+msgid "Updating DXVK, please wait…"
+msgstr "DXVK bijwerken, even geduld a.u.b…"
+
+#: bottles/frontend/ui/details-preferences.ui:42
+#: bottles/frontend/ui/preferences.ui:218
+msgid "VKD3D"
+msgstr "VKD3D"
+
+#: bottles/frontend/ui/details-preferences.ui:43
+msgid "Improves performance of DirectX 12 games and 3D applications."
+msgstr "Verbetert de prestaties van DirectX 12-games en 3D-toepassingen."
+
+#: bottles/frontend/ui/details-preferences.ui:46
+#: bottles/frontend/ui/details-preferences.ui:361
+msgid "Updating VKD3D, please wait…"
+msgstr "VKD3D bijwerken, even geduld a.u.b…"
+
+#: bottles/frontend/ui/details-preferences.ui:61
+msgid "DLSS (DXVK-NVAPI)"
+msgstr "DLSS (DXVK-NVAPI)"
+
+#: bottles/frontend/ui/details-preferences.ui:62
+msgid "Provide DLSS support if available and Nvidia's NVAPI."
+msgstr "DLSS-ondersteuning en Nvidia's NVAPI inschakelen indien beschikbaar."
+
+#: bottles/frontend/ui/details-preferences.ui:65
+#: bottles/frontend/ui/details-preferences.ui:112
+#: bottles/frontend/ui/details-preferences.ui:385
+#: bottles/frontend/ui/details-preferences.ui:407
+msgid "Updating DXVK-NVAPI, please wait…"
+msgstr "DXVK-NVAPI bijwerken, even geduld a.u.b…"
+
+#: bottles/frontend/ui/details-preferences.ui:80
+msgid "FSR"
+msgstr "FSR"
+
+#: bottles/frontend/ui/details-preferences.ui:81
+msgid ""
+"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
+msgstr ""
+"FSR maakt gebruik van geavanceerde opschalingstechnologieën om uw framerate "
+"te verhogen."
+
+#: bottles/frontend/ui/details-preferences.ui:88
+msgid "Ultra Quality"
+msgstr "Beste kwaliteit"
+
+#: bottles/frontend/ui/details-preferences.ui:89
+msgid "Quality"
+msgstr "Hogere kwaliteit"
+
+#: bottles/frontend/ui/details-preferences.ui:90
+msgid "Balanced"
+msgstr "Gebalanceerd"
+
+#: bottles/frontend/ui/details-preferences.ui:91
+msgid "Performance"
+msgstr "Hogere prestaties"
+
+#: bottles/frontend/ui/details-preferences.ui:108
+#: bottles/frontend/ui/preferences.ui:228
+msgid "LatencyFleX"
+msgstr "LatencyFleX"
+
+#: bottles/frontend/ui/details-preferences.ui:109
+msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
+msgstr ""
+"Een alternatief voor NVIDIA Reflex. Kan worden gedetecteerd door sommige "
+"Anticheats."
+
+#: bottles/frontend/ui/details-preferences.ui:128
+msgid "Discrete GPU"
+msgstr "Discrete GPU"
+
+#: bottles/frontend/ui/details-preferences.ui:129
+msgid "Improves performance at the cost of increased power usage."
+msgstr "Verbetert de prestaties ten koste van een hoger stroomverbruik."
+
+#: bottles/frontend/ui/details-preferences.ui:140
+msgid "vkBasalt"
+msgstr "vkBasalt"
+
+#: bottles/frontend/ui/details-preferences.ui:141
+msgid ""
+"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
+"games."
+msgstr ""
+"vkBasalt is een Vulkan-nabehandelingslaag welke de visuele graphics van "
+"games verbetert."
+
+#: bottles/frontend/ui/details-preferences.ui:144
+#, fuzzy
+msgid "Manage vkBasalt settings"
+msgstr "Gamescope-instellingen beheren"
+
+#: bottles/frontend/ui/details-preferences.ui:161
+msgid "Display Settings"
+msgstr "Scherminstellingen"
+
+#: bottles/frontend/ui/details-preferences.ui:165
+#: bottles/frontend/ui/dialog-launch-options.ui:194
+msgid "Virtual Desktop"
+msgstr "Virtueel Bureaublad"
+
+#: bottles/frontend/ui/details-preferences.ui:166
+msgid "Use the Wine virtual desktop."
+msgstr "Gebruik het virtuele Wine-bureaublad."
+
+#: bottles/frontend/ui/details-preferences.ui:204
+msgid "Fullscreen Mouse Capture"
+msgstr "Muisvergrendeling in volledig scherm"
+
+#: bottles/frontend/ui/details-preferences.ui:205
+msgid "Let the program capture mouse input when fullscreen."
+msgstr ""
+"Laat het programma muisinvoer vastleggen wanneer het volledig scherm is."
+
+#: bottles/frontend/ui/details-preferences.ui:216
+msgid "Take Focus"
+msgstr "Focus nemen"
+
+#: bottles/frontend/ui/details-preferences.ui:217
+msgid "Activate it if the program does not retake focus on switch."
+msgstr ""
+"Activeer dit als het programma niet opnieuw focust bij het overschakelen."
+
+#: bottles/frontend/ui/details-preferences.ui:228
+msgid "Mouse Warp"
+msgstr "Muis-warp"
+
+#: bottles/frontend/ui/details-preferences.ui:229
+msgid "Change this if you are running into mouse lag or desync."
+msgstr "Verander dit als u muis-lag of -desynchronisatie ondervindt."
+
+#: bottles/frontend/ui/details-preferences.ui:241
+msgid "Screen Scaling"
+msgstr "Schermschaling"
+
+#: bottles/frontend/ui/details-preferences.ui:242
+msgid "Set custom DPI."
+msgstr "Aangepaste DPI instellen."
+
+#: bottles/frontend/ui/details-preferences.ui:248
+msgid "96"
+msgstr "96"
+
+#: bottles/frontend/ui/details-preferences.ui:249
+msgid "120"
+msgstr "120"
+
+#: bottles/frontend/ui/details-preferences.ui:250
+msgid "144"
+msgstr "144"
+
+#: bottles/frontend/ui/details-preferences.ui:251
+msgid "168"
+msgstr "168"
+
+#: bottles/frontend/ui/details-preferences.ui:252
+msgid "192"
+msgstr "192"
+
+#: bottles/frontend/ui/details-preferences.ui:253
+msgid "216"
+msgstr "216"
+
+#: bottles/frontend/ui/details-preferences.ui:254
+msgid "240"
+msgstr "240"
+
+#: bottles/frontend/ui/details-preferences.ui:255
+msgid "288"
+msgstr "288"
+
+#: bottles/frontend/ui/details-preferences.ui:256
+msgid "336"
+msgstr "336"
+
+#: bottles/frontend/ui/details-preferences.ui:257
+msgid "384"
+msgstr "384"
+
+#: bottles/frontend/ui/details-preferences.ui:258
+msgid "432"
+msgstr "432"
+
+#: bottles/frontend/ui/details-preferences.ui:259
+msgid "480"
+msgstr "480"
+
+#: bottles/frontend/ui/details-preferences.ui:272
+msgid "Renderer"
+msgstr "Renderer"
+
+#: bottles/frontend/ui/details-preferences.ui:273
+msgid "Select what backend to use for wined3d."
+msgstr "Selecteer welke backend moet worden gebruikt voor wine3d."
+
+#: bottles/frontend/ui/details-preferences.ui:279
+msgid "gl (default)"
+msgstr "gl (standaard)"
+
+#: bottles/frontend/ui/details-preferences.ui:280
+msgid "gdi"
+msgstr "gdi"
+
+#: bottles/frontend/ui/details-preferences.ui:281
+msgid "vulkan"
+msgstr "Vulkan"
+
+#: bottles/frontend/ui/details-preferences.ui:296
+#: bottles/frontend/ui/details-preferences.ui:432
+msgid "System"
+msgstr "Systeem"
+
+#: bottles/frontend/ui/details-preferences.ui:299
+msgid "Manage Components Versions"
+msgstr "Componentenversies beheren"
+
+#: bottles/frontend/ui/details-preferences.ui:309
+msgid "Components"
+msgstr "Componenten"
+
+#: bottles/frontend/ui/details-preferences.ui:317
+msgid "Updating Runner and components, please wait…"
+msgstr "Runner en componenten worden geüpdatet, even geduld a.u.b…"
+
+#. TODO: replace with ComboRow
+#: bottles/frontend/ui/details-preferences.ui:334
+msgid "DXVK Version"
+msgstr "DXVK-versie"
+
+#: bottles/frontend/ui/details-preferences.ui:358
+msgid "VKD3D Version"
+msgstr "VKD3D-versie"
+
+#: bottles/frontend/ui/details-preferences.ui:382
+msgid "DXVK NVAPI Version"
+msgstr "DXVK NVAPI-versie"
+
+#: bottles/frontend/ui/details-preferences.ui:404
+msgid "LatencyFleX Version"
+msgstr "LatencyFleX-versie"
+
+#: bottles/frontend/ui/details-preferences.ui:426
+msgid "Enable synchronization to increase performance of multicore processors."
+msgstr ""
+"Schakel synchronisatie in om de prestaties van multi-core processoren te "
+"verhogen."
+
+#: bottles/frontend/ui/details-preferences.ui:427
+msgid "Synchronization"
+msgstr "Synchronisatie"
+
+#: bottles/frontend/ui/details-preferences.ui:438
+msgid "Esync"
+msgstr "Esync"
+
+#: bottles/frontend/ui/details-preferences.ui:444
+msgid "Fsync"
+msgstr "Fsync"
+
+#: bottles/frontend/ui/details-preferences.ui:450
+msgid "Futex2"
+msgstr "Futex2"
+
+#: bottles/frontend/ui/details-preferences.ui:465
+msgid "Windows Version"
+msgstr "Windows-versie"
+
+#: bottles/frontend/ui/details-preferences.ui:468
+msgid "Updating Windows version, please wait…"
+msgstr "Windows-versie bijwerken, even geduld a.u.b…"
+
+#: bottles/frontend/ui/details-preferences.ui:496
+msgid "Language"
+msgstr "Taal"
+
+#: bottles/frontend/ui/details-preferences.ui:497
+msgid "Choose the language to use with programs."
+msgstr "Kies de taal om voor programma's te gebruiken."
+
+#: bottles/frontend/ui/details-preferences.ui:507
+msgid "false"
+msgstr "onwaar"
+
+#: bottles/frontend/ui/details-preferences.ui:508
+msgid "Dedicated Sandbox"
+msgstr "Toegewijde zandbak"
+
+#: bottles/frontend/ui/details-preferences.ui:509
+msgid "Use a restricted/managed environment for this bottle."
+msgstr "Gebruik een beperkte/beheerde omgeving voor deze bottle."
+
+#: bottles/frontend/ui/details-preferences.ui:512
+msgid "Manage Sandbox permissions"
+msgstr "Zandbakrechten beheren"
+
+#: bottles/frontend/ui/details-preferences.ui:530
+msgid "Bottles Runtime"
+msgstr "Bottles-runtime"
+
+#: bottles/frontend/ui/details-preferences.ui:531
+msgid ""
+"Provides a bundle of extra libraries for more compatibility,disable if you "
+"run into issues."
+msgstr ""
+"Biedt een bundel extra bibliotheken voor meer compatibiliteit aan, schakel "
+"uit als u tegen problemen aanloopt."
+
+#: bottles/frontend/ui/details-preferences.ui:542
+msgid "Steam Runtime"
+msgstr "Steam-runtime"
+
+#: bottles/frontend/ui/details-preferences.ui:543
+msgid "The same as the Bottles one but provided by Steam."
+msgstr "Hetzelfde als de Bottles-versie, maar geleverd door Steam."
+
+#: bottles/frontend/ui/details-preferences.ui:554
+msgid "GameMode"
+msgstr "Gamemodus"
+
+#: bottles/frontend/ui/details-preferences.ui:555
+msgid "Optimise gaming performance on demand."
+msgstr "Optimaliseer gaming-prestaties op verzoek."
+
+#: bottles/frontend/ui/details-preferences.ui:566
+msgid "Gamescope"
+msgstr "Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:567
+msgid "Use the Gamescope micro-compositor."
+msgstr "Gebruik de Gamescope micro-compositor."
+
+#: bottles/frontend/ui/details-preferences.ui:570
+msgid "Manage Gamescope settings"
+msgstr "Gamescope-instellingen beheren"
+
+#: bottles/frontend/ui/details-preferences.ui:588
+msgid "Vmtouch"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:589
+msgid "Preload game files into RAM"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:592
+#, fuzzy
+msgid "Manage vmtouch settings"
+msgstr "Gamescope-instellingen beheren"
+
+#: bottles/frontend/ui/details-preferences.ui:610
+#: bottles/frontend/ui/dialog-launch-options.ui:91
+msgid "Working Directory"
+msgstr "Werkmap"
+
+#: bottles/frontend/ui/details-preferences.ui:611
+msgid "Defaults to the bottle path."
+msgstr "Standaardwaarde is het bottles-pad."
+
+#: bottles/frontend/ui/details-preferences.ui:614
+#: bottles/frontend/ui/dialog-launch-options.ui:65
+#: bottles/frontend/ui/dialog-launch-options.ui:98
+#: bottles/frontend/ui/preferences.ui:159
+msgid "Reset to default"
+msgstr "Standaardwaarden herstellen"
+
+#: bottles/frontend/ui/details-preferences.ui:624
+#: bottles/frontend/ui/dialog-launch-options.ui:109
+#: bottles/frontend/ui/new.ui:163 bottles/frontend/ui/new.ui:180
+#: bottles/frontend/ui/preferences.ui:170
+msgid "Choose a directory"
+msgstr "Kies een map"
+
+#: bottles/frontend/ui/details-preferences.ui:637
+#: bottles/frontend/ui/dialog-dll-overrides.ui:9
+#: bottles/frontend/ui/dialog-dll-overrides.ui:15
+msgid "DLL Overrides"
+msgstr "DLL-overschrijvingen"
+
+#: bottles/frontend/ui/details-preferences.ui:648
+#: bottles/frontend/ui/dialog-env-vars.ui:16
+msgid "Environment Variables"
+msgstr "Omgevingsvariabelen"
+
+#: bottles/frontend/ui/details-preferences.ui:659
+msgid "Manage Drives"
+msgstr "Schijven beheren"
+
+#: bottles/frontend/ui/details-preferences.ui:671
+msgid "Audio"
+msgstr "Audio"
+
+#: bottles/frontend/ui/details-preferences.ui:675
+#: bottles/frontend/ui/dialog-launch-options.ui:183
+msgid "Reduce Latency"
+msgstr "Audiovertraging verminderen"
+
+#: bottles/frontend/ui/details-preferences.ui:676
+msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
+msgstr ""
+"Stel de vertraging van PulseAudio in op 60 ms om de geluidskwaliteit te "
+"verbeteren."
+
+#: bottles/frontend/ui/details-preferences.ui:688
+#: bottles/frontend/views/details.py:170
+msgid "Versioning"
+msgstr "Versiebeheer"
+
+#: bottles/frontend/ui/details-preferences.ui:692
+msgid "Use Compression for States"
+msgstr "Compressie gebruiken voor staten"
+
+#: bottles/frontend/ui/details-preferences.ui:693
+msgid ""
+"This will reduce the space used by the states but slow down their creation."
+msgstr ""
+"Dit zal de gebruikte opslagruimte van staten verminderen maar het aanmaken "
+"vertragen."
+
+#: bottles/frontend/ui/details-preferences.ui:704
+msgid "Automatic Versioning"
+msgstr "Automatisch versiebeheer"
+
+#: bottles/frontend/ui/details-preferences.ui:705
+msgid ""
+"Bottles will create a state before running any dependencies or installers."
+msgstr ""
+"Bottles zal een staat aanmaken voordat afhankelijkheden of installers worden "
+"uitgevoerd."
+
+#: bottles/frontend/ui/details-preferences.ui:716
+msgid "Use Exclusion Patterns"
+msgstr "Uitsluitingspatronen gebruiken"
+
+#: bottles/frontend/ui/details-preferences.ui:717
+msgid "Use custom patterns to exclude some paths from versioning."
+msgstr ""
+"Gebruik aangepaste patronen om bepaalde paden van versiebeheer uit te "
+"sluiten."
+
+#: bottles/frontend/ui/details-preferences.ui:720
+msgid "Manage Patterns"
+msgstr "Patronen beheren"
+
+#: bottles/frontend/ui/details-preferences.ui:739
+msgid "Development and Debugging"
+msgstr "Ontwikkeling en foutopsporing"
+
+#: bottles/frontend/ui/details-preferences.ui:743
+msgid "MangoHud"
+msgstr "MangoHud"
+
+#: bottles/frontend/ui/details-preferences.ui:744
+msgid ""
+"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
+"and more."
+msgstr ""
+"Een Vulkan- en OpenGL-overlay voor het bijhouden van FPS, temperaturen, CPU-/"
+"GPU-belasting en meer."
+
+#: bottles/frontend/ui/details-preferences.ui:755
+msgid "OBS Vulkan Capture"
+msgstr "OBS-Vulkan-opname"
+
+#: bottles/frontend/ui/details-preferences.ui:756
+msgid "Toggle OBS game capture for all programs."
+msgstr "Schakel OBS-gameopname in voor alle programma's."
+
+#: bottles/frontend/ui/details-preferences.ui:767
+msgid "Wine 'fixme' Logs"
+msgstr "'fixme'-logboeken van Wine"
+
+#: bottles/frontend/ui/details-preferences.ui:768
+msgid "Log code paths that are unimplemented in Wine."
+msgstr "Log codepaden die niet in Wine zijn geïmplementeerd."
+
+#: bottles/frontend/ui/details-programs.ui:9
+msgid "No Programs found"
+msgstr "Geen programma's gevonden"
+
+#: bottles/frontend/ui/details-programs.ui:10
+msgid ""
+"Install programs from the installers section or by running the installer "
+"executable, you can also manually add executables with the \"+\" button."
+msgstr ""
+"Installeer programma's vanuit de installer-pagina of door de installer uit "
+"te voeren, u kunt ook handmatig uitvoerbare bestanden toevoegen met de knop "
+"\"+\"."
+
+#: bottles/frontend/ui/details-programs.ui:31
+msgid "Toggle Hidden"
+msgstr "Verbergen/tonen"
+
+#: bottles/frontend/ui/details-programs.ui:36
+msgid "Search for new programs"
+msgstr "Zoeken naar nieuwe programma's"
+
+#: bottles/frontend/ui/details-programs.ui:55
+msgid "Add a custom executable path"
+msgstr "Een aangepast uitvoerbaar pad toevoegen"
+
+#: bottles/frontend/ui/details-taskmanager.ui:18
+msgid "Refresh"
+msgstr "Vernieuwen"
+
+#: bottles/frontend/ui/details-taskmanager.ui:24
+msgid "Stop process"
+msgstr "Proces stoppen"
+
+#: bottles/frontend/ui/details-versioning.ui:25
+msgid "No States Found"
+msgstr "Geen staten gevonden"
+
+#: bottles/frontend/ui/details-versioning.ui:26
+msgid "Create first state to start using versioning."
+msgstr "Creëer eerste staat om versiebeheer te gaan gebruiken."
+
+#: bottles/frontend/ui/details-versioning.ui:63
+msgid "A short comment"
+msgstr "Een korte opmerking"
+
+#: bottles/frontend/ui/details-versioning.ui:68
+msgid "Save the bottle state."
+msgstr "Sla de bottle-status op."
+
+#: bottles/frontend/ui/details-versioning.ui:88
+msgid "Create new state"
+msgstr "Nieuwe staat aanmaken"
+
+#: bottles/frontend/ui/details.ui:74
+msgid "Operations"
+msgstr "Activiteiten"
+
+#: bottles/frontend/ui/dialog-bottle-picker.ui:6
+msgid "Select Bottle"
+msgstr "Bottle selecteren"
+
+#: bottles/frontend/ui/dialog-bottle-picker.ui:42
+msgid "Create New Bottle"
+msgstr "Nieuwe bottle maken"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:10
+msgid "Bottles crash report"
+msgstr "Bottles-crashrapport"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:23
+msgid "Send report"
+msgstr "Rapport verzenden"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:43
+msgid ""
+"Bottles crashed last time. Please fill out a report attaching the following "
+"traceback to help us identify the problem preventing it from happening again."
+msgstr ""
+"Bottles is de laatste keer gecrasht. Gelieve een rapport in te vullen met de "
+"volgende traceback om ons te helpen het probleem te identificeren en te "
+"voorkomen dat het opnieuw gebeurt."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:75
+msgid ""
+"We found one or more similar (or identical) reports. Please make sure to "
+"check carefully that it has not already been reported before submitting a "
+"new one. Each report requires effort on the part of the developers to "
+"diagnose, please respect their work and make sure you don't post duplicates."
+msgstr ""
+"We hebben een of meer soortgelijke (of identieke) meldingen gevonden. "
+"Gelieve zorgvuldig te controleren of het niet reeds gemeld is alvorens een "
+"nieuwe in te dienen. Elk rapport vereist inspanning van de kant van de "
+"ontwikkelaars om een diagnose te stellen, respecteer alstublieft hun werk en "
+"zorg ervoor dat u geen dubbele rapporten plaatst."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:96
+msgid "I still want to report."
+msgstr "Ik wil nog steeds rapporteren."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:102
+msgid "Advanced options"
+msgstr "Geavanceerde opties"
+
+#: bottles/frontend/ui/dialog-deps-check.ui:15
+msgid "Incomplete package"
+msgstr "Onvolledig pakket"
+
+#: bottles/frontend/ui/dialog-deps-check.ui:16
+msgid ""
+"This version of Bottles does not seem to provide all the necessary core "
+"dependencies, please contact the package maintainer or use an official "
+"version.\n"
+"                        "
+msgstr ""
+"Deze versie van Bottles lijkt niet over alle benodigde afhankelijkheden te "
+"beschikken, neem contact op met de pakketbeheerder of gebruik een officiële "
+"versie.\n"
+"                        "
+
+#: bottles/frontend/ui/dialog-deps-check.ui:21
+msgid "Quit"
+msgstr "Verlaten"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:14
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)."
+msgstr ""
+"Dynamic Link Libraries kunnen worden gespecificeerd als builtin (geleverd "
+"door Wine) of native (geleverd door het programma)."
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:18
+msgid "New Override"
+msgstr "Nieuwe overschrijving"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:26
+msgid "Overrides"
+msgstr "DLL-overschrijvingen"
+
+#: bottles/frontend/ui/dialog-drives.ui:9
+msgid "Drives"
+msgstr "Stations"
+
+#: bottles/frontend/ui/dialog-drives.ui:31
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:…).\n"
+"                                "
+msgstr ""
+"Dit zijn paden van uw hostsysteem die door de runner in kaart worden "
+"gebracht en worden herkend als apparaten (bijv. ‘C:’, ‘D:’, …).\n"
+"                                "
+
+#: bottles/frontend/ui/dialog-drives.ui:35
+msgid "Letter"
+msgstr "Brief"
+
+#: bottles/frontend/ui/dialog-drives.ui:59
+msgid "Existing Drives"
+msgstr "Bestaande schijven"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:18
+msgid "Duplicate Bottle"
+msgstr "Bottle dupliceren"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:23
+#: bottles/frontend/ui/dialog-gamescope.ui:17
+#: bottles/frontend/ui/dialog-launch-options.ui:17
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:23
+#: bottles/frontend/ui/dialog-vkbasalt.ui:31
+msgid "_Cancel"
+msgstr "_Annuleren"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:41
+msgid "Duplicate"
+msgstr "Dupliceer"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:55
+msgid "Enter a name for the duplicate of the Bottle."
+msgstr "Voer een naam in voor de kopie van de Bottle."
+
+#: bottles/frontend/ui/dialog-duplicate.ui:78
+msgid "Duplicating…"
+msgstr "Dupliceren…"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:87
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
+#: bottles/frontend/ui/new.ui:216
+msgid "Take a break, it may take a while."
+msgstr "Neem een pauze, het kan een tijdje duren."
+
+#: bottles/frontend/ui/dialog-duplicate.ui:108
+msgid "Bottle Duplicated"
+msgstr "Bottle gedupliceerd"
+
+#: bottles/frontend/ui/dialog-env-vars.ui:35
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
+"Omgevingsvariabelen zijn dynamisch benoemde waarden die invloed kunnen "
+"hebben op de manier waarop processen zich zullen gedragen in uw bottle."
+
+#: bottles/frontend/ui/dialog-env-vars.ui:38
+msgid "Variable Name"
+msgstr "Naam van variabele"
+
+#: bottles/frontend/ui/dialog-env-vars.ui:46
+msgid "Existing Variables"
+msgstr "Bestaande variabelen"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
+msgid "Exclusion Patterns"
+msgstr "Uitsluitingspatronen"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
+msgid ""
+"Define patterns that will be used to prevent some directories to being "
+"versioned."
+msgstr "Stel patronen in welke mappen uitsluit van versiebeheer."
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
+msgid "Pattern"
+msgstr "Patroon"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:46
+msgid "Existing Patterns"
+msgstr "Bestaande patronen"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:8
+msgid "Gamescope Settings"
+msgstr "Gamescope Instellingen"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:46
+msgid ""
+"Configure how Gamescope should manage the window for the games you will run."
+msgstr ""
+"Configureer hoe Gamescope het venster moet beheren voor de spellen die u "
+"uitvoert."
+
+#: bottles/frontend/ui/dialog-gamescope.ui:51
+msgid "Game Resolution"
+msgstr "Spelresolutie"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:52
+msgid "Uses the resolution of the video game as a reference."
+msgstr "Gebruikt de resolutie van het spel als referentie."
+
+#: bottles/frontend/ui/dialog-gamescope.ui:55
+#: bottles/frontend/ui/dialog-gamescope.ui:71
+msgid "Width (e.g. 1280)"
+msgstr "Breedte (bijv. 1280)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:60
+#: bottles/frontend/ui/dialog-gamescope.ui:76
+msgid "Height (e.g. 720)"
+msgstr "Hoogte (bijv. 720)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:67
+msgid "Gamescope Resolution"
+msgstr "Gamescope-resolutie"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:68
+msgid ""
+"Upscales the resolution when using a resolution higher than the game "
+"resolution."
+msgstr ""
+"Schaalt de resolutie van het spel op wanneer deze kleiner is dan de "
+"resolutie van het scherm."
+
+#: bottles/frontend/ui/dialog-gamescope.ui:83
+msgid "Miscellaneous"
+msgstr "Diversen"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:86
+msgid "Frame Rate Limit (e.g. 60)"
+msgstr "Framerate-limiet (bijv. 60)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:91
+msgid "Frame Rate Limit (When Unfocused)"
+msgstr "Framerate-limiet (zonder focus)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:96
+msgid "Use Integer Scaling"
+msgstr "Schalen met geheel getal gebruiken"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:107
+msgid "Window Type"
+msgstr "Venstertype"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:112
+msgid "Borderless"
+msgstr "Randloos"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:119
+msgid "Fullscreen"
+msgstr "Volledig scherm"
+
+#: bottles/frontend/ui/dialog-journal.ui:12
+msgid "All messages"
+msgstr "Alle berichten"
+
+#: bottles/frontend/ui/dialog-journal.ui:17
+msgid "Critical"
+msgstr "Krietiek"
+
+#: bottles/frontend/ui/dialog-journal.ui:22
+msgid "Errors"
+msgstr "Fouten"
+
+#: bottles/frontend/ui/dialog-journal.ui:27
+msgid "Warnings"
+msgstr "Waarschuwingen"
+
+#: bottles/frontend/ui/dialog-journal.ui:32
+msgid "Info"
+msgstr "Info"
+
+#: bottles/frontend/ui/dialog-journal.ui:49
+msgid "Journal browser"
+msgstr "Logboekbrowser"
+
+#: bottles/frontend/ui/dialog-journal.ui:56
+msgid "Journal Browser"
+msgstr "Logboekbrowser"
+
+#: bottles/frontend/ui/dialog-journal.ui:62
+msgid ""
+"Change logging level.\n"
+"                                        "
+msgstr ""
+"Loggingsniveau veranderen.\n"
+"                                        "
+
+#: bottles/frontend/ui/dialog-journal.ui:67
+msgid "All"
+msgstr "Alles"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:8
+msgid "Launch Options"
+msgstr "Startopties"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:47
+msgid "Those arguments will be passed at launch."
+msgstr "Deze argumenten worden doorgegeven bij het starten."
+
+#: bottles/frontend/ui/dialog-launch-options.ui:48
+msgid "Custom Arguments"
+msgstr "Aangepaste argumenten"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:51
+msgid "Command Arguments"
+msgstr "Commando-argumenten"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:52
+#, c-format
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "bijv.: VAR=value %command% -example1 -example2 -example3=hello"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:58
+msgid "Post-run Script"
+msgstr "Script voor na het uitvoeren"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:76
+msgid "Choose a script"
+msgstr "Script selecteren"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:125
+msgid "These settings will override the default settings for this executable."
+msgstr ""
+"Deze instellingen zullen de standaardinstellingen voor dit programmabestand "
+"overschrijven."
+
+#: bottles/frontend/ui/dialog-launch-options.ui:126
+msgid "Preferences Overrides"
+msgstr "Overschrijvingsvoorkeuren"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:129
+msgid "Reset to Bottle's Defaults"
+msgstr "Standaardwaarden van Bottles herstellen"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:6
+msgid "Proton Disclaimer"
+msgstr "Proton-disclaimer"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:22
+msgid "Use Proton"
+msgstr "Proton gebruiken"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:37
+msgid ""
+"Beware, using Proton-based runners in non-Steam bottles can cause problems "
+"and prevent them from behaving correctly.\n"
+"\n"
+"We recommend using Wine-GE rather, a version of Proton meant to run outside "
+"of Steam.\n"
+"\n"
+"Proceeding will automatically enable the Steam runtime (if present in the "
+"system and detected by Bottles) in order to allow it to access the necessary "
+"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
+"the runner's provider, is not responsible for any problems and we ask that "
+"you do not report to them."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:50
+msgid "I got it."
+msgstr "Ik heb het begrepen."
+
+#: bottles/frontend/ui/dialog-rename.ui:9
+msgid "Rename"
+msgstr "Hernoemen"
+
+#: bottles/frontend/ui/dialog-rename.ui:34
+msgid "Choose a new name for the selected program."
+msgstr "Kies een nieuwe naam voor het geselecteerde programma."
+
+#: bottles/frontend/ui/dialog-rename.ui:37
+msgid "New Name"
+msgstr "Nieuwe naam"
+
+#: bottles/frontend/ui/dialog-run-args.ui:14
+msgid "Run With Arguments"
+msgstr "Uitvoeren met argumenten"
+
+#: bottles/frontend/ui/dialog-run-args.ui:35
+#: bottles/frontend/views/bottle_details.py:202
+#: bottles/frontend/views/list.py:120
+msgid "Run"
+msgstr "Uitvoeren"
+
+#: bottles/frontend/ui/dialog-run-args.ui:47
+msgid "Write below the arguments to be passed to the executable."
+msgstr ""
+"Schrijf hieronder de argumenten die aan het programmabestand moeten worden "
+"doorgegeven."
+
+#: bottles/frontend/ui/dialog-run-args.ui:50
+msgid "e.g.: -opengl -SkipBuildPatchPrereq"
+msgstr "bijv.: -opengl -SkipBuildPatchPrereq"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:9
+msgid "Sandbox Settings"
+msgstr "Zandbakinstellingen"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:23
+msgid "Share Network"
+msgstr "Netwerk delen"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:34
+msgid "Share Sound"
+msgstr "Gedeelde map gevonden"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:18
+msgid "Upgrade Needed"
+msgstr "Upgrade benodigd"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:41
+#: bottles/frontend/ui/onboard.ui:88
+msgid "Continue"
+msgstr "Doorgaan"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:49
+msgid "Launch upgrade"
+msgstr "Upgrade starten"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:69
+msgid "New Versioning System"
+msgstr "Nieuw versiebeheersysteem"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:72
+msgid "The new bottle versioning system has landed."
+msgstr "Het nieuwe bottle-versiebeheersysteem is er."
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:86
+msgid ""
+"Bottles has a whole new Versioning System which is not backwards "
+"compatible. \n"
+"\n"
+"To continue using versioning we need to re-initialize the bottle repository. "
+"This will not delete data from your bottle but will delete all existing "
+"states and create a new one. \n"
+"\n"
+"If you need to go back to a previous state before continuing, close this "
+"window and restore the state, then reopen the bottle to show this window "
+"again. \n"
+"\n"
+"The old system will be discontinued in one of the next releases."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
+msgid "Re-initializing repository…"
+msgstr "Repository herinitialiseren…"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
+msgid "Done! Please restart Bottles."
+msgstr "Klaar! Start Bottles opnieuw op."
+
+#. vkBasalt is a Vulkan post processing layer for Linux
+#: bottles/frontend/ui/dialog-vkbasalt.ui:11
+#, fuzzy
+msgid "vkBasalt Settings"
+msgstr "Scherminstellingen"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:50
+#, fuzzy
+msgid "Default"
+msgstr "gl (standaard)"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:54
+#, fuzzy
+msgid "Default Settings"
+msgstr "Scherminstellingen"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:66
+msgid "Effects are applied according to the list order."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:67
+msgid "Effects"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:71
+msgid "Contrast Adaptive Sharpening"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:74
+#: bottles/frontend/ui/dialog-vkbasalt.ui:110
+msgid "Sharpness"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:78
+#: bottles/frontend/ui/dialog-vkbasalt.ui:114
+#: bottles/frontend/ui/dialog-vkbasalt.ui:143
+#: bottles/frontend/ui/dialog-vkbasalt.ui:178
+#: bottles/frontend/ui/dialog-vkbasalt.ui:207
+#: bottles/frontend/ui/dialog-vkbasalt.ui:236
+#: bottles/frontend/ui/dialog-vkbasalt.ui:271
+#: bottles/frontend/ui/dialog-vkbasalt.ui:307
+#: bottles/frontend/ui/dialog-vkbasalt.ui:336
+#: bottles/frontend/ui/dialog-vkbasalt.ui:364
+#: bottles/frontend/ui/dialog-vkbasalt.ui:392
+#: bottles/frontend/ui/dialog-vkbasalt.ui:424
+#, fuzzy
+msgid "Show Information"
+msgstr "Bottle-informatie"
+
+#. Luma is not translatable
+#: bottles/frontend/ui/dialog-vkbasalt.ui:107
+msgid "Denoised Luma Sharpening"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:139
+msgid "Denoise"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:171
+msgid "Fast Approximate Anti-Aliasing"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:174
+#, fuzzy
+msgid "Subpixel Quality"
+msgstr "Beste kwaliteit"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:203
+msgid "Quality Edge Threshold"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:232
+msgid "Quality Edge Threshold Minimum"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:264
+msgid "Subpixel Morphological Anti-Aliasing"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:267
+msgid "Edge Detection"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:283
+msgid "Luma"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:290
+msgid "Color"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:303
+msgid "Threshold"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:332
+msgid "Max Search Steps"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:360
+msgid "Max Search Steps Diagonal"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:388
+msgid "Max Corner Rounding"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:419
+msgid "Color Lookup Table"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:437
+#, fuzzy
+msgid "Reset to Default"
+msgstr "Standaardwaarden herstellen"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:448
+#, fuzzy
+msgid "Select a File"
+msgstr "Bottle selecteren"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:482
+msgid ""
+"CAS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper, whereas values lower than 0 make the frame softer than native."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:500
+msgid ""
+"DLS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:518
+msgid ""
+"DLS denoise decreases the noise of a frame. Higher values make the frame "
+"softer."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:536
+msgid ""
+"FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
+"values make the frame softer."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:554
+msgid ""
+"FXAA edge threshold is the minimum amount of contrast required to apply the "
+"FXAA algorithm. Higher values make the frame have more contrast."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:572
+msgid ""
+"FXAA quality edge threshold minimum is the minimum value of dark pixels that "
+"are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
+"below the specified value and can lead to a performance increase."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:590
+msgid ""
+"Luma detects edges from a monochrome perspective, whereas Color detects "
+"edges based on colors. Luma is more performant than Color."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:608
+msgid ""
+"SMAA threshold specifies the sensitivity of edge detection. Lower values "
+"detect more edges at the expense of performance."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:626
+msgid ""
+"SMAA max search steps specifies how many horizontal and vertical search "
+"steps are performed when searching for edges."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:644
+msgid ""
+"SMAA max diagonal search steps specifies how many diagonal search steps are "
+"performed when searching for edges."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:662
+msgid "SMAA corner rounding specifies the strength of rounding edge corners."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:680
+msgid ""
+"CLUT transforms a range of colors into another range of colors using a .CUBE "
+"file, or a .png file where the height is equal to the width."
+msgstr ""
+
+#: bottles/frontend/ui/dll-override-entry.ui:10
+msgid "Builtin (Wine)"
+msgstr "Ingebouwd (Wine)"
+
+#: bottles/frontend/ui/dll-override-entry.ui:11
+msgid "Native (Windows)"
+msgstr "Lokaal (Windows)"
+
+#: bottles/frontend/ui/dll-override-entry.ui:12
+msgid "Builtin, then Native"
+msgstr "Ingebouwd, daarna lokaal"
+
+#: bottles/frontend/ui/dll-override-entry.ui:13
+msgid "Native, then Builtin"
+msgstr "Lokaal, daarna ingebouwd"
+
+#: bottles/frontend/ui/dll-override-entry.ui:14
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: bottles/frontend/ui/dll-override-entry.ui:22
+#: bottles/frontend/ui/drive-entry.ui:14
+msgid "Remove"
+msgstr "Verwijderen"
+
+#: bottles/frontend/ui/drive-entry.ui:7
+msgid "/point/to/path"
+msgstr "/wijs/naar/pad"
+
+#: bottles/frontend/ui/drive-entry.ui:24
+msgid "Choose a Directory"
+msgstr "Een map kiezen"
+
+#: bottles/frontend/ui/env-var-entry.ui:6
+#: bottles/frontend/ui/exclusion-pattern-entry.ui:6
+msgid "Value"
+msgstr "Waarde"
+
+#. Wineprefix is a prefix for the wine program
+#: bottles/frontend/ui/importer-entry.ui:22
+msgid "Wineprefix name"
+msgstr "Naam van wineprefix"
+
+#: bottles/frontend/ui/importer-entry.ui:29
+msgid "Manager"
+msgstr "Beheerder"
+
+#: bottles/frontend/ui/importer-entry.ui:39
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Deze wineprefix is al geïmporteerd in Bottles."
+
+#: bottles/frontend/ui/importer.ui:24
+msgid "Import Bottles backup"
+msgstr "Back-up van Bottles importeren"
+
+#: bottles/frontend/ui/importer.ui:31
+msgid "Search again for prefixes"
+msgstr "Opnieuw zoeken naar prefixes"
+
+#: bottles/frontend/ui/importer.ui:45
+msgid "No Prefixes Found"
+msgstr "Geen prefixes gevonden"
+
+#: bottles/frontend/ui/importer.ui:46
+msgid ""
+"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
+"Use the icon on the top to import a bottle from a backup"
+msgstr ""
+"Er zijn geen prefixes gevonden van Lutris, PlayOnLinux, etc.\n"
+"Gebruik het pictogram bovenaan om een bottle uit een back-up te importeren"
+
+#: bottles/frontend/ui/importer.ui:81
+msgid "Configuration"
+msgstr "Configuratie"
+
+#: bottles/frontend/ui/importer.ui:87
+msgid "Full Archive"
+msgstr "Volledig archief"
+
+#: bottles/frontend/ui/installer-entry.ui:18
+msgid "Show Manifest…"
+msgstr "Manifest tonen…"
+
+#: bottles/frontend/ui/installer-entry.ui:23
+msgid "Read Review…"
+msgstr "Recensie lezen…"
+
+#: bottles/frontend/ui/installer-entry.ui:40
+msgid "Installer name"
+msgstr "Installer-naam"
+
+#: bottles/frontend/ui/installer-entry.ui:41
+msgid "Installer description"
+msgstr "Installer-beschrijving"
+
+#: bottles/frontend/ui/installer-entry.ui:48
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: bottles/frontend/ui/installer-entry.ui:57
+msgid "Install this program"
+msgstr "Dit programma installeren"
+
+#: bottles/frontend/ui/library-entry.ui:17
+msgid "Remove from Library"
+msgstr "Uit bibliotheek verwijderen"
+
+#: bottles/frontend/ui/library-entry.ui:94
+msgid "Item name"
+msgstr "Item-naam"
+
+#: bottles/frontend/ui/library-entry.ui:115
+#: bottles/frontend/ui/program-entry.ui:105
+msgid "Launch with Steam"
+msgstr "Starten met Steam"
+
+#: bottles/frontend/ui/library.ui:14 bottles/frontend/ui/preferences.ui:259
+#: bottles/frontend/windows/main_window.py:175
+msgid "Library"
+msgstr "Bibliotheek"
+
+#: bottles/frontend/ui/library.ui:15
+msgid "Add items here from your bottle's program list"
+msgstr "Items hier toevoegen vanuit uw bottles-programmalijst"
+
+#: bottles/frontend/ui/list-entry.ui:46
+msgid "This bottle looks damaged."
+msgstr "Deze bottle ziet er beschadigd uit."
+
+#: bottles/frontend/ui/list-entry.ui:60
+msgid "Execute in this bottle"
+msgstr "In deze bottle uitvoeren"
+
+#: bottles/frontend/ui/list-entry.ui:75
+msgid "Run Here"
+msgstr "Hier uitvoeren"
+
+#: bottles/frontend/ui/list-entry.ui:84
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+"Deze bottle ziet er beschadigd uit, het configuratiebestand ontbreekt. Ik "
+"kan het proberen op te lossen door een nieuwe configuratie aan te maken."
+
+#: bottles/frontend/ui/list-entry.ui:96
+msgid "Run .exe/.msi in this bottle"
+msgstr ".exe/.msi in deze bottle uitvoeren"
+
+#: bottles/frontend/ui/list.ui:17
+msgid "Search your bottles…"
+msgstr "Uw bottles doorzoeken…"
+
+#: bottles/frontend/ui/list.ui:38
+msgid "Steam Proton"
+msgstr "Steam-Proton"
+
+#: bottles/frontend/ui/list.ui:54 bottles/frontend/ui/window.ui:56
+#: bottles/frontend/ui/window.ui:73 bottles/frontend/windows/main_window.py:169
 #: data/com.usebottles.bottles.appdata.xml.in:6
-#: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
-#: src/ui/window.ui:56 src/ui/window.ui:73 src/window.py:165
+#: data/com.usebottles.bottles.desktop.in:3
 msgid "Bottles"
 msgstr "Bottles"
+
+#: bottles/frontend/ui/list.ui:55
+msgid "Start off by creating a Bottle."
+msgstr "Begin met het maken van een bottle."
+
+#: bottles/frontend/ui/list.ui:62
+msgid "Create a new Bottle"
+msgstr "Een nieuwe bottle maken"
+
+#: bottles/frontend/ui/list.ui:75
+msgid "No Results Found"
+msgstr "Geen resultaten gevonden"
+
+#: bottles/frontend/ui/list.ui:76
+msgid "Try a different search."
+msgstr "Probeer een andere zoekterm."
+
+#: bottles/frontend/ui/loading.ui:16
+msgid "Starting up…"
+msgstr "Opstarten…"
+
+#: bottles/frontend/ui/local-resource-entry.ui:6
+msgid "This resource is missing."
+msgstr "Deze bron ontbreekt."
+
+#: bottles/frontend/ui/local-resource-entry.ui:10
+msgid "Browse"
+msgstr "Bladeren"
+
+#: bottles/frontend/ui/new.ui:17 bottles/frontend/ui/new.ui:64
+msgid "New Bottle"
+msgstr "Nieuwe bottle"
+
+#: bottles/frontend/ui/new.ui:38
+msgid "Create"
+msgstr "Maken"
+
+#: bottles/frontend/ui/new.ui:47 bottles/frontend/ui/new.ui:268
+#: bottles/frontend/windows/main_window.py:191
+msgid "Close"
+msgstr "Sluiten"
+
+#: bottles/frontend/ui/new.ui:67
+msgid "Bottle Information"
+msgstr "Bottle-informatie"
+
+#: bottles/frontend/ui/new.ui:84
+msgid "Gaming"
+msgstr "Gaming"
+
+#: bottles/frontend/ui/new.ui:85
+msgid "An environment improved for Windows games."
+msgstr "Een omgeving geoptimaliseerd voor Windows-games."
+
+#: bottles/frontend/ui/new.ui:93
+msgid "Application"
+msgstr "Toepassing"
+
+#: bottles/frontend/ui/new.ui:94
+msgid "An environment improved for Windows applications."
+msgstr "Een omgeving geoptimaliseerd voor Windows-toepassingen."
+
+#: bottles/frontend/ui/new.ui:103
+msgid "Layered"
+msgstr "Gelaagd"
+
+#: bottles/frontend/ui/new.ui:104
+msgid "A layered environment, where every app is a layer."
+msgstr "Een gelaagde omgeving, waarbij elke toepassing een laag is."
+
+#: bottles/frontend/ui/new.ui:112
+msgid "Custom"
+msgstr "Aangepast"
+
+#: bottles/frontend/ui/new.ui:113
+msgid "A clear environment for your experiments."
+msgstr "Een duidelijke omgeving voor uw experimenten."
+
+#: bottles/frontend/ui/new.ui:117
+msgid "Unlinked Home Directory"
+msgstr "Niet-gelinkte thuismap"
+
+#: bottles/frontend/ui/new.ui:118
+msgid "Do not link the userdir to the homedir"
+msgstr "Koppel de gebruikersmap niet aan de thuismap"
+
+#: bottles/frontend/ui/new.ui:143
+msgid "Architecture"
+msgstr "Architectuur"
+
+#: bottles/frontend/ui/new.ui:144
+msgid "We recommend using 32bit only if strictly necessary."
+msgstr ""
+"We raden aan om 32-bits alleen te gebruiken als dit strikt noodzakelijk is."
+
+#: bottles/frontend/ui/new.ui:148
+msgid "64 bit"
+msgstr "64-bits"
+
+#: bottles/frontend/ui/new.ui:149
+msgid "32 bit"
+msgstr "32-bits"
+
+#: bottles/frontend/ui/new.ui:157
+msgid "Custom Recipe"
+msgstr "Aangepast recept"
+
+#: bottles/frontend/ui/new.ui:158
+msgid "Choose a custom recipe for the environment if you have one."
+msgstr "Kies een aangepast recept voor de omgeving als u er een hebt."
+
+#: bottles/frontend/ui/new.ui:174
+msgid "Custom Path"
+msgstr "Aangepast pad"
+
+#: bottles/frontend/ui/new.ui:175
+msgid "Store this bottle in another place."
+msgstr "Bewaar deze bottle op een andere plaats."
+
+#: bottles/frontend/ui/new.ui:215
+msgid "Creating a Bottle…"
+msgstr "Bottle maken…"
+
+#: bottles/frontend/ui/new.ui:262
+msgid "Bottle created"
+msgstr "Bottle gemaakt"
+
+#: bottles/frontend/ui/onboard.ui:36
+msgid "Previous"
+msgstr "Vorige"
+
+#: bottles/frontend/ui/onboard.ui:62
+msgid "Welcome to Bottles"
+msgstr "Welkom bij Bottles"
+
+#: bottles/frontend/ui/onboard.ui:63
+msgid ""
+"Run Windows Software on Linux.\n"
+"                                                "
+msgstr ""
+"Voer Windows-software uit op Linux.\n"
+"                                                "
+
+#: bottles/frontend/ui/onboard.ui:71
+msgid "Windows in Bottles"
+msgstr "Windows in Bottles"
+
+#: bottles/frontend/ui/onboard.ui:72
+msgid ""
+"Bottles uses compatibility runners to provide isolated containerized Windows-"
+"like environments where programs run."
+msgstr ""
+"Bottles gebruikt compatibiliteits-runners om programma's van geïsoleerde, "
+"gecontaineriseerde, Windows-achtige omgevingen te voorzien."
+
+#: bottles/frontend/ui/onboard.ui:79
+msgid "Almost Done"
+msgstr "Bijna klaar"
+
+#: bottles/frontend/ui/onboard.ui:80
+msgid "We need a few more minutes to set everything up…"
+msgstr "We hebben een paar extra minuten nodig om alles op te zetten…"
+
+#: bottles/frontend/ui/onboard.ui:113
+msgid "All ready!"
+msgstr "Alles gereed!"
+
+#: bottles/frontend/ui/onboard.ui:122
+msgid "Please Finish the setup first"
+msgstr "Voltooi eerst de setup"
+
+#: bottles/frontend/ui/onboard.ui:129
+msgid "Start using Bottles"
+msgstr "Begin met Bottles gebruiken"
+
+#: bottles/frontend/ui/onboard.ui:150
+msgid "Next"
+msgstr "Volgende"
+
+#: bottles/frontend/ui/preferences.ui:6 bottles/frontend/ui/window.ui:24
+#: bottles/frontend/views/details.py:158
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: bottles/frontend/ui/preferences.ui:13 bottles/frontend/ui/preferences.ui:46
+msgid "General"
+msgstr "Algemeen"
+
+#: bottles/frontend/ui/preferences.ui:16
+msgid "Appearance"
+msgstr "Uiterlijk"
+
+#: bottles/frontend/ui/preferences.ui:19
+msgid "Dark Mode"
+msgstr "Donker thema"
+
+#: bottles/frontend/ui/preferences.ui:20
+msgid "Whether Bottles should use the dark color scheme."
+msgstr "Of Bottles het donkere kleurenschema moet gebruiken."
+
+#: bottles/frontend/ui/preferences.ui:32
+msgid "Show Update Date"
+msgstr "Updatedatum weergeven"
+
+#: bottles/frontend/ui/preferences.ui:33
+msgid "Whether to show the update date in the bottle list."
+msgstr "Of de datum van de update in de bottleslijst moet worden getoond."
+
+#: bottles/frontend/ui/preferences.ui:49
+#: data/com.usebottles.bottles.gschema.xml:46
+msgid "Notifications"
+msgstr "Notificaties"
+
+#: bottles/frontend/ui/preferences.ui:50
+msgid "Show notifications for downloads and installs."
+msgstr "Toon meldingen voor downloads en installaties."
+
+#: bottles/frontend/ui/preferences.ui:61
+msgid "Temp Files"
+msgstr "Tijdelijke bestanden"
+
+#: bottles/frontend/ui/preferences.ui:62
+msgid "Clean temp files when Bottles launches?"
+msgstr "Tijdelijke bestanden opschonen als Bottles opstart?"
+
+#: bottles/frontend/ui/preferences.ui:73
+msgid "Close Bottles After Starting a Program"
+msgstr "Bottles sluiten na het starten van een programma"
+
+#: bottles/frontend/ui/preferences.ui:74
+msgid "Close Bottles after starting a program from the file manager."
+msgstr ""
+"Sluit Bottles na het starten van een programma vanuit de bestandsbeheerder."
+
+#: bottles/frontend/ui/preferences.ui:87
+msgid "Integrations"
+msgstr "Integraties"
+
+#: bottles/frontend/ui/preferences.ui:90
+msgid "Steam Proton Prefixes"
+msgstr "Steam-Proton-prefixes"
+
+#: bottles/frontend/ui/preferences.ui:91
+msgid "List and manage Steam Proton prefixes."
+msgstr "Bekijk en beheer Steam-Proton-prefixes."
+
+#: bottles/frontend/ui/preferences.ui:95
+msgid "Read Documentation"
+msgstr "Documentatie lezen"
+
+#: bottles/frontend/ui/preferences.ui:113
+msgid "List Steam Apps in Programs List"
+msgstr "Steam-apps in programmalijst weergeven"
+
+#: bottles/frontend/ui/preferences.ui:114
+msgid "Requires Steam for Windows installed in the bottle."
+msgstr "Vereist dat Steam voor Windows in de bottle is geïnstalleerd."
+
+#: bottles/frontend/ui/preferences.ui:125
+msgid "List Epic Games in Programs List"
+msgstr "Epic Games in programmalijst weergeven"
+
+#: bottles/frontend/ui/preferences.ui:126
+msgid "Requires Epic Games Store installed in the bottle."
+msgstr "Vereist dat de Epic Games Store in de bottle is geïnstalleerd."
+
+#: bottles/frontend/ui/preferences.ui:137
+msgid "List Ubisoft Games in Programs List"
+msgstr "Ubisoft-games in programmalijst weergeven"
+
+#: bottles/frontend/ui/preferences.ui:138
+msgid "Requires Ubisoft Connect installed in the bottle."
+msgstr "Vereist dat de Ubisoft Connect in de bottle is geïnstalleerd."
+
+#: bottles/frontend/ui/preferences.ui:151
+msgid "Advanced"
+msgstr "Geavanceerd"
+
+#: bottles/frontend/ui/preferences.ui:154
+msgid "Custom Bottles Path (Requires Restart)"
+msgstr "Aangepast bottles-pad (opnieuw opstarten vereist)"
+
+#: bottles/frontend/ui/preferences.ui:155
+#: bottles/frontend/views/preferences.py:151
+#: bottles/frontend/views/preferences.py:167
+msgid ""
+"Choose where to store the new bottles (this will not move the existing ones)."
+msgstr ""
+"Kies waar u de nieuwe bottles wilt bewaren (hierdoor worden de bestaande "
+"niet verplaatst)."
+
+#: bottles/frontend/ui/preferences.ui:188
+msgid "Runners"
+msgstr "Runners"
+
+#: bottles/frontend/ui/preferences.ui:193
+msgid "Pre-Release"
+msgstr "Pre-release"
+
+#: bottles/frontend/ui/preferences.ui:194
+msgid "Display unstable versions of runners."
+msgstr "Toon instabiele versies van runners."
+
+#: bottles/frontend/ui/preferences.ui:210
+msgid "DLL Components"
+msgstr "DLL-componenten"
+
+#: bottles/frontend/ui/preferences.ui:223
+msgid "DXVK-NVAPI"
+msgstr "DXVK-NVAPI"
+
+#: bottles/frontend/ui/preferences.ui:236
+msgid "Core"
+msgstr "Kern"
+
+#: bottles/frontend/ui/preferences.ui:240
+msgid "Runtime"
+msgstr "Looptijd"
+
+#: bottles/frontend/ui/preferences.ui:245
+msgid "WineBridge"
+msgstr "WineBridge"
+
+#: bottles/frontend/ui/preferences.ui:253
+#: data/com.usebottles.bottles.gschema.xml:66
+msgid "Experiments"
+msgstr "Experimenten"
+
+#: bottles/frontend/ui/preferences.ui:256
+msgid ""
+"These features are under heavy development and may be unstable, expect bugs "
+"and breakage."
+msgstr ""
+"Deze functies zijn onder ontwikkeling en kunnen instabiel zijn, houd "
+"rekening met problemen."
+
+#: bottles/frontend/ui/preferences.ui:260
+msgid "In early development (requires restart)."
+msgstr "In vroege ontwikkeling (opnieuw opstarten vereist)."
+
+#: bottles/frontend/ui/preferences.ui:271
+msgid "Sandbox per bottle"
+msgstr "Zandbak per bottle"
+
+#: bottles/frontend/ui/preferences.ui:272
+msgid "In early development."
+msgstr "In vroege ontwikkeling."
+
+#: bottles/frontend/ui/program-entry.ui:21
+msgid "Launch with terminal"
+msgstr "Starten met terminal"
+
+#: bottles/frontend/ui/program-entry.ui:28
+msgid "Browse path"
+msgstr "Blader door pad"
+
+#: bottles/frontend/ui/program-entry.ui:44
+msgid "Change Launch Options…"
+msgstr "Startopties wijzigen…"
+
+#: bottles/frontend/ui/program-entry.ui:49
+msgid "Add to My Library"
+msgstr "Toevoegen aan mijn bibliotheek"
+
+#: bottles/frontend/ui/program-entry.ui:54
+msgid "Add Desktop Entry"
+msgstr "App-icoon toevoegen"
+
+#: bottles/frontend/ui/program-entry.ui:59
+msgid "Add to Steam"
+msgstr "Toevoegen aan Steam"
+
+#: bottles/frontend/ui/program-entry.ui:64
+msgid "Rename…"
+msgstr "Hernoemen…"
+
+#: bottles/frontend/ui/program-entry.ui:73
+msgid "Hide Program"
+msgstr "Programma verbergen"
+
+#: bottles/frontend/ui/program-entry.ui:78
+msgid "Show Program"
+msgstr "Programma tonen"
+
+#: bottles/frontend/ui/program-entry.ui:83
+msgid "Remove from List"
+msgstr "Verwijderen uit lijst"
+
+#: bottles/frontend/ui/program-entry.ui:99
+msgid "Program name"
+msgstr "Programmanaam"
+
+#. id as identification
+#: bottles/frontend/ui/state-entry.ui:7
+msgid "State id"
+msgstr "Staat-id"
+
+#: bottles/frontend/ui/state-entry.ui:8
+msgid "State comment"
+msgstr "Staatopmerking"
+
+#: bottles/frontend/ui/state-entry.ui:16
+msgid "Restore this state"
+msgstr "Herstel deze staat"
+
+#: bottles/frontend/ui/task-entry.ui:24
+msgid "Delete message"
+msgstr "Verwijder bericht"
+
+#: bottles/frontend/ui/window.ui:19
+msgid "Import/Export…"
+msgstr "Importeren/exporteren…"
+
+#: bottles/frontend/ui/window.ui:33
+msgid "Support"
+msgstr "Ondersteuning"
+
+#: bottles/frontend/ui/window.ui:43
+msgid "Forums"
+msgstr "Forums"
+
+#: bottles/frontend/ui/window.ui:48
+msgid "About Bottles"
+msgstr "Over Bottles"
+
+#: bottles/frontend/ui/window.ui:79
+msgid "Open menu"
+msgstr "Open menu"
+
+#: bottles/frontend/ui/window.ui:93
+msgid ""
+"You don't seem connected to the internet. Without it you will not be able to "
+"download essential components. Click this icon when you have reestablished "
+"the connection."
+msgstr ""
+"Je lijkt niet verbonden te zijn met het internet. Zonder verbinding kan je "
+"geen essentiële onderdelen downloaden. Klik op dit icoon wanneer je weer "
+"verbinding hebt."
+
+#: bottles/frontend/ui/window.ui:99
+msgid "New bottle"
+msgstr "Nieuwe bottle"
+
+#: bottles/frontend/utils/connection.py:67
+msgid "You are offline, unable to download."
+msgstr "U bent offline, niet in staat om te downloaden."
+
+#: bottles/frontend/views/bottle_details.py:142
+#, python-format
+msgid "Updated: %s"
+msgstr "Bijgewerkt: %s"
+
+#: bottles/frontend/views/bottle_details.py:200
+#: bottles/frontend/views/list.py:118
+msgid "Choose a Windows executable file"
+msgstr "Kies een uitvoerbaar Windows-bestand"
+
+#: bottles/frontend/views/bottle_details.py:209
+msgid "Be Aware of Sandbox"
+msgstr "Bewust zijn van zandbak"
+
+#: bottles/frontend/views/bottle_details.py:210
+msgid ""
+"Bottles is running in a sandbox, a restricted permission environment needed "
+"to keep you safe. If the program won't run, consider moving inside the "
+"bottle (3 dots icon on the top), then launch from there."
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:212
+msgid "Ok"
+msgstr "Ok"
+
+#: bottles/frontend/views/bottle_details.py:267
+msgid "Select the location where to save the backup config"
+msgstr ""
+"Selecteer de locatie waar de back-up-configuratie moet worden opgeslagen"
+
+#: bottles/frontend/views/bottle_details.py:271
+msgid "Select the location where to save the backup archive"
+msgstr "Selecteer de locatie waar het back-up-archief moet worden opgeslagen"
+
+#: bottles/frontend/views/bottle_details.py:276
+#, python-brace-format
+msgid "Backup created for '{0}'."
+msgstr "Back-up gemaakt voor '{0}'."
+
+#: bottles/frontend/views/bottle_details.py:278
+#, python-brace-format
+msgid "Backup failed for '{0}'."
+msgstr "Back-up mislukt voor '{0}'."
+
+#: bottles/frontend/views/bottle_details.py:296
+msgid "Export"
+msgstr "Exporteren"
+
+#: bottles/frontend/views/bottle_details.py:332
+#: bottles/frontend/views/bottle_details.py:336
+#: bottles/frontend/views/bottle_details.py:411
+#: bottles/frontend/views/bottle_details.py:415
+#: bottles/frontend/views/bottle_preferences.py:776
+msgid "Confirm"
+msgstr "Bevestig"
+
+#: bottles/frontend/views/bottle_details.py:333
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Weet u zeker dat u deze bottle en alle bestanden wilt verwijderen?"
+
+#: bottles/frontend/views/bottle_details.py:412
+msgid ""
+"Are you sure you want to terminate all processes?\n"
+"This can cause data loss."
+msgstr ""
+"Weet u zeker dat u alle processen wilt beëindigen?\n"
+"Dit kan gegevensverlies veroorzaken."
+
+#: bottles/frontend/views/bottle_preferences.py:218
+msgid "This feature is not available on your system."
+msgstr "Deze functie is niet beschikbaar op uw systeem."
+
+#: bottles/frontend/views/bottle_preferences.py:266
+#: bottles/frontend/views/bottle_preferences.py:283
+#: bottles/frontend/views/bottle_preferences.py:422
+msgid "Default to the bottle path."
+msgstr "Standaardwaarde is het bottlespad."
+
+#: bottles/frontend/views/bottle_preferences.py:274
+msgid "Choose working directory for executables"
+msgstr "Kies werkmap voor uitvoerbare bestanden"
+
+#: bottles/frontend/views/bottle_preferences.py:772
+msgid "Toggling Compression Require Re-Initialization"
+msgstr ""
+
+#: bottles/frontend/views/bottle_preferences.py:773
+msgid ""
+"This will kepp all your files but will delete all states. Do you want to "
+"continue?"
+msgstr ""
+
+#: bottles/frontend/views/bottle_programs.py:86
+#, python-brace-format
+msgid "'{0}' added."
+msgstr "'{0}' toegevoegd."
+
+#: bottles/frontend/views/bottle_programs.py:90
+msgid "Choose an executable path"
+msgstr "Kies een uitvoerbaar pad"
+
+#: bottles/frontend/views/bottle_programs.py:92
+msgid "Add"
+msgstr "Toevoegen"
+
+#: bottles/frontend/views/bottle_versioning.py:88
+msgid "Please migrate to the new Versioning system to create new states."
+msgstr ""
+
+#: bottles/frontend/views/details.py:154
+msgid "Details & Utilities"
+msgstr "Details & Hulpprogramma's"
+
+#: bottles/frontend/views/details.py:162
+msgid "Dependencies"
+msgstr "Afhankelijkheden"
+
+#: bottles/frontend/views/details.py:167
+msgid "Found in your bottle's Start menu."
+msgstr "Gevonden in het beginmenu van je bottle."
+
+#: bottles/frontend/views/details.py:174
+msgid "Installers"
+msgstr "Installers"
+
+#: bottles/frontend/views/details.py:377
+msgid "Operations in progress, please wait."
+msgstr "Bezig met handelingen, even geduld."
+
+#: bottles/frontend/views/details.py:381
+msgid "Return to your bottles."
+msgstr "Ga terug naar uw bottles."
+
+#: bottles/frontend/views/importer.py:89
+msgid "Backup imported successfully."
+msgstr "Backup succesvol geïmporteerd."
+
+#: bottles/frontend/views/importer.py:91
+msgid "Import failed."
+msgstr "Importeren mislukt."
+
+#: bottles/frontend/views/importer.py:103
+#: bottles/frontend/views/importer.py:132
+msgid "Importing backup…"
+msgstr "Back-up importeren…"
+
+#: bottles/frontend/views/importer.py:115
+msgid "Choose a backup archive"
+msgstr "Kies een backup archief"
+
+#: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
+msgid "N/A"
+msgstr "N.V.T"
+
+#: bottles/frontend/views/list.py:220
+msgid "Your Bottles"
+msgstr "Jouw bottles"
+
+#: bottles/frontend/views/loading.py:33
+#, python-brace-format
+msgid "Downloading ~{0} of packages…"
+msgstr "~{0} aan pakketten downloaden…"
+
+#: bottles/frontend/views/loading.py:34
+#, python-brace-format
+msgid "Fetched {0} of {1} packages"
+msgstr "{0} van {1} pakketten gedownload"
+
+#: bottles/frontend/views/new.py:133
+#, fuzzy
+msgid "Name has special characters or already in use."
+msgstr "Speciale tekens zijn niet toegestaan!"
+
+#: bottles/frontend/views/new.py:150
+msgid "Choose a recipe file"
+msgstr "Kies een recept bestand"
+
+#: bottles/frontend/views/new.py:166
+msgid "Choose where to store the bottle"
+msgstr "Kies waar u de bottle wilt bewaren"
+
+#: bottles/frontend/views/new.py:219
+msgid "There was an error creating the bottle."
+msgstr "Er is een fout opgetreden bij het maken van de bottle."
+
+#: bottles/frontend/views/new.py:227
+#, python-brace-format
+msgid "A bottle named “{0}” was created successfully"
+msgstr "Een bottle met de naam \"{0}\" is succesvol aangemaakt"
+
+#: bottles/frontend/views/preferences.py:119
+msgid "Steam was not found or Bottles does not have enough permissions."
+msgstr "Steam kon niet worden gevonden of Bottles heeft geen rechten hiervoor."
+
+#: bottles/frontend/views/preferences.py:156
+msgid "Choose new bottles path"
+msgstr "Kies nieuw bottles pad"
+
+#: bottles/frontend/views/preferences.py:199
+msgid "Based on Valve's Wine, includes staging and Proton patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:200
+msgid "Based on Wine upstream, includes staging and Proton patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:203
+msgid "Based on Wine upstream, includes staging patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:204
+msgid ""
+"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
+"Requires the Steam Runtime turned on."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:206
+msgid "Other"
+msgstr "Ander"
+
+#: bottles/frontend/widgets/component.py:70
+msgid "Upgrade"
+msgstr "Opwaarderen"
+
+#: bottles/frontend/widgets/component.py:145
+msgid "Installing…"
+msgstr "Installeren…"
+
+#: bottles/frontend/widgets/dependency.py:107
+#: bottles/frontend/widgets/installer.py:72
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "Manifest voor {0}"
+
+#: bottles/frontend/widgets/dependency.py:170
+#, python-brace-format
+msgid "'{0}' installed."
+msgstr "'{0}' geïnstalleerd."
+
+#: bottles/frontend/widgets/dependency.py:184
+#, python-brace-format
+msgid "'{0}' failed to install."
+msgstr "Kon '{0}' niet installeren."
+
+#: bottles/frontend/widgets/importer.py:66
+#, python-brace-format
+msgid "'{0}' imported."
+msgstr "'{0}' geïmporteerd."
+
+#: bottles/frontend/widgets/installer.py:81
+#, python-brace-format
+msgid "Review for {0}"
+msgstr "Review voor {0}"
+
+#: bottles/frontend/widgets/program.py:187
+#, python-brace-format
+msgid "Launching '{0}'…"
+msgstr "'{0}' starten…"
+
+#: bottles/frontend/widgets/program.py:193
+#, python-brace-format
+msgid "Launching '{0}' with Steam…"
+msgstr "'{0}' starten met Steam…"
+
+#: bottles/frontend/widgets/program.py:215
+#, python-brace-format
+msgid "'{0}' hidden."
+msgstr "'{0}' verborgen."
+
+#: bottles/frontend/widgets/program.py:217
+#, python-brace-format
+msgid "'{0}' showed."
+msgstr "'{0}' getoond."
+
+#: bottles/frontend/widgets/program.py:240
+#, python-brace-format
+msgid "'{0}' removed."
+msgstr "'{0}' verwijderd."
+
+#: bottles/frontend/widgets/program.py:254
+#, python-brace-format
+msgid "'{0}' renamed to '{1}'."
+msgstr "'{0}' hernoemd naar '{1}'."
+
+#: bottles/frontend/widgets/program.py:274
+#, python-brace-format
+msgid "Desktop Entry created for '{0}'"
+msgstr "App-icoon gemaakt voor '{0}'"
+
+#: bottles/frontend/widgets/program.py:290
+#, python-brace-format
+msgid "'{0}' added to your library"
+msgstr "'{0}' toegevoegd aan uw bibliotheek"
+
+#: bottles/frontend/widgets/program.py:306
+#, python-brace-format
+msgid "'{0}' added to your Steam library"
+msgstr "'{0}' toegevoegd aan uw Steam-bibliotheek"
+
+#: bottles/frontend/windows/main_window.py:188
+msgid "Custom Bottles Path not Found"
+msgstr "Aangepast bottles-pad niet gevonden"
+
+#: bottles/frontend/windows/main_window.py:189
+msgid ""
+"Falling back to default path. No bottles from the given path will be listed."
+msgstr ""
+"Standaardpad wordt gebruikt. Bottles van het gegeven pad worden niet "
+"weergegeven."
+
+#: bottles/frontend/windows/main_window.py:310
+msgid "Third-Party Libraries and Special Thanks"
+msgstr "Bibliotheken van derden en speciale dank"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -152,8 +3000,8 @@ msgid ""
 "New versioning system which allow versioning the whole bottle (also "
 "configuration)"
 msgstr ""
-"Nieuw versiebeheersysteem welke staten van complete bottles (en configuratie)"
-" kan maken"
+"Nieuw versiebeheersysteem welke staten van complete bottles (en "
+"configuratie) kan maken"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Automatic versioning can now be toggled on and off"
@@ -397,10 +3245,6 @@ msgstr "Vensterhoogte"
 msgid "Change the window height."
 msgstr "Wijzig de vensterhoogte."
 
-#: data/com.usebottles.bottles.gschema.xml:46 src/ui/preferences.ui:49
-msgid "Notifications"
-msgstr "Notificaties"
-
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
 msgstr "Toon meldingen."
@@ -428,10 +3272,6 @@ msgstr "Opstartscherm"
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
 msgstr "Kies in welke weergave de applicatie moet worden gestart."
-
-#: data/com.usebottles.bottles.gschema.xml:66 src/ui/preferences.ui:253
-msgid "Experiments"
-msgstr "Experimenten"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
@@ -481,2516 +3321,6 @@ msgstr "Zandbakwaarschuwing tonen"
 #: data/com.usebottles.bottles.gschema.xml:92
 msgid "Toggle sandbox warning."
 msgstr "Zandbakwaarschuwing omschakelen."
-
-#: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
-msgid "No path specified"
-msgstr "Geen pad opgegeven"
-
-#: src/backend/managers/backup.py:71
-#, python-brace-format
-msgid "Backup {0}"
-msgstr "Back-up {0}"
-
-#: src/backend/managers/backup.py:124
-#, python-brace-format
-msgid "Importing backup: {0}"
-msgstr "Importeer vanuit een back-up: {0}"
-
-#: src/backend/managers/manager.py:1030
-msgid "Fail to install components, tried 3 times."
-msgstr "Lukt niet om onderdelen te installeren, 3 keer geprobeerd."
-
-#: src/backend/managers/manager.py:1041
-msgid "Missing essential components. Installing…"
-msgstr "Ontbrekende essentiële onderdelen. Installeren…"
-
-#: src/backend/managers/manager.py:1117
-msgid "Failed to create bottle directory."
-msgstr "Kan de bottles map niet maken."
-
-#: src/backend/managers/manager.py:1129
-msgid "Failed to create placeholder directory/file."
-msgstr "Kan geen tijdelijke aanduiding voor map/bestand maken."
-
-#: src/backend/managers/manager.py:1134
-msgid "Generating bottle configuration…"
-msgstr "Bottle-configuratie aanmaken…"
-
-#: src/backend/managers/manager.py:1157
-msgid "Template found, applying…"
-msgstr "Sjabloon gevonden, toepassen…"
-
-#. execute wineboot on the bottle path
-#: src/backend/managers/manager.py:1169
-msgid "The Wine config is being updated…"
-msgstr "De Wine-configuratie wordt bijgewerkt…"
-
-#: src/backend/managers/manager.py:1171
-msgid "Wine config updated!"
-msgstr "Wine-configuratie bijgewerkt!"
-
-#: src/backend/managers/manager.py:1179
-msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Als Flatpak uitvoeren, gebruikersmap in een zandbak verwerken…"
-
-#: src/backend/managers/manager.py:1181
-msgid "Sandboxing userdir…"
-msgstr "Gebruikersmap in een zandbak verwerken…"
-
-#: src/backend/managers/manager.py:1197
-msgid "Setting Windows version…"
-msgstr "Windows-versie instellen…"
-
-#: src/backend/managers/manager.py:1207
-msgid "Apply CMD default settings…"
-msgstr "standaardinstellingen van CMD toepassen…"
-
-#: src/backend/managers/manager.py:1215
-msgid "Optimizing environment…"
-msgstr "Omgeving optimaliseren…"
-
-#: src/backend/managers/manager.py:1226
-#, python-brace-format
-msgid "Applying environment: {0}…"
-msgstr "Omgeving toepassen: {0}…"
-
-#: src/backend/managers/manager.py:1236
-msgid "(!) Using a custom environment recipe…"
-msgstr "(!) Een aangepast omgevingsrecept gebruiken…"
-
-#: src/backend/managers/manager.py:1239
-msgid "(!) Recipe not not found or not valid…"
-msgstr "(!) Recept niet gevonden of niet geldig…"
-
-#: src/backend/managers/manager.py:1256
-msgid "Installing DXVK…"
-msgstr "DXVK installeren…"
-
-#: src/backend/managers/manager.py:1264
-msgid "Installing VKD3D…"
-msgstr "VKD3D installeren…"
-
-#: src/backend/managers/manager.py:1272
-msgid "Installing DXVK-NVAPI…"
-msgstr "DXVK-NVAPI installeren…"
-
-#: src/backend/managers/manager.py:1281
-#, python-format
-msgid "Installing dependency: %s …"
-msgstr "Afhankelijkheid installeren: %s …"
-
-#: src/backend/managers/manager.py:1297
-msgid "Creating versioning state 0…"
-msgstr "Initiële staat aanmaken…"
-
-#: src/backend/managers/manager.py:1305
-msgid "Finalizing…"
-msgstr "Afronden…"
-
-#: src/backend/managers/manager.py:1316
-msgid "Caching template…"
-msgstr "Sjabloon inladen…"
-
-#: src/backend/managers/versioning.py:97
-msgid "Committing state …"
-msgstr "Staat toepassen…"
-
-#: src/backend/managers/versioning.py:106
-msgid "Nothing to commit"
-msgstr "Niets om toe te passen"
-
-#: src/backend/managers/versioning.py:112
-#, python-brace-format
-msgid "New state [{0}] created successfully!"
-msgstr "Nieuwe staat [{0}] succesvol aangemaakt!"
-
-#: src/backend/managers/versioning.py:140
-msgid "States list retrieved successfully!"
-msgstr "Lijst met staten succesvol ontvangen!"
-
-#: src/backend/managers/versioning.py:171
-#, python-brace-format
-msgid "State {0} restored successfully!"
-msgstr "Staat [{0}] succesvol hersteld!"
-
-#: src/backend/managers/versioning.py:176
-msgid "Restoring state {} …"
-msgstr "Staat {} herstellen…"
-
-#: src/backend/managers/versioning.py:185
-msgid "State not found"
-msgstr "Staat niet gevonden"
-
-#: src/backend/managers/versioning.py:191
-msgid "State {} is already the active state"
-msgstr "Staat {} is al actief"
-
-#: src/dialogs/crash.py:37
-msgid "Show report"
-msgstr "Rapport weergeven"
-
-#: src/dialogs/crash.py:88
-msgid ""
-"            This issue was reported 5 times and cannot be sent again.\n"
-"            Report your feedback in one of the below existing reports."
-msgstr ""
-"            Dit probleem is al 5 keer gemeld en kan niet opnieuw worden "
-"verzonden.\n"
-"            Meld uw feedback in een van de onderstaande bestaande rapporten."
-
-#: src/dialogs/dlloverrides.py:136
-msgid "No overrides found."
-msgstr "Geen overschrijvingen gevonden."
-
-#: src/dialogs/drives.py:71
-msgid "Choose path"
-msgstr "Pad kiezen"
-
-#: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
-#: src/dialogs/installer.py:66 src/dialogs/launchoptions.py:234
-#: src/dialogs/launchoptions.py:258 src/ui/dialog-bottle-picker.ui:17
-#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-proton-alert.ui:17
-#: src/ui/dialog-rename.ui:17 src/ui/dialog-run-args.ui:19 src/ui/new.ui:33
-#: src/views/bottle_details.py:202 src/views/bottle_details.py:296
-#: src/views/bottle_details.py:335 src/views/bottle_details.py:414
-#: src/views/bottle_preferences.py:260 src/views/bottle_preferences.py:744
-#: src/views/bottle_programs.py:89 src/views/importer.py:117
-#: src/views/importer.py:146 src/views/list.py:120 src/views/new.py:144
-#: src/views/new.py:160 src/views/preferences.py:195
-msgid "Cancel"
-msgstr "Annuleren"
-
-#: src/dialogs/drives.py:73 src/dialogs/installer.py:66
-#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
-#: src/ui/dialog-bottle-picker.ui:22 src/views/bottle_preferences.py:260
-#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
-msgid "Select"
-msgstr "Selecteren"
-
-#: src/dialogs/envvars.py:131
-msgid "No environment variables defined."
-msgstr "Geen omgevingsvariabelen gedefinieerd."
-
-#: src/dialogs/exclusionpatterns.py:108
-msgid "No exclusion patterns defined."
-msgstr "Geen uitsluitingspatronen gedefinieerd."
-
-#: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:34
-#: src/ui/dialog-launch-options.ui:35 src/ui/dialog-rename.ui:22
-msgid "Save"
-msgstr "Opslaan"
-
-#: src/dialogs/generic.py:24
-msgid "An error has occurred."
-msgstr "Er is een fout opgetreden."
-
-#: src/dialogs/generic.py:91 src/dialogs/generic.py:137
-#: src/dialogs/generic.py:182
-msgid "Copy to clipboard"
-msgstr "Naar klembord kopiëren"
-
-#: src/dialogs/installer.py:64
-msgid "Select Resource FIle"
-msgstr "Bronbestand selecteren"
-
-#: src/dialogs/installer.py:115
-msgid "Installing Windows dependencies…"
-msgstr "Windows-afhankelijkheden installeren…"
-
-#: src/dialogs/installer.py:116
-msgid "Configuring the bottle…"
-msgstr "Bottle configureren…"
-
-#: src/dialogs/installer.py:117
-msgid "Processing installer steps…"
-msgstr "Installer-stappen verwerken…"
-
-#: src/dialogs/installer.py:118
-msgid "Installing the {}…"
-msgstr "{} installeren…"
-
-#: src/dialogs/installer.py:119
-msgid "Performing final checks…"
-msgstr "Laatste controles uitvoeren…"
-
-#: src/dialogs/installer.py:123
-#, python-brace-format
-msgid "Installing {0}…"
-msgstr "{0} installeren…"
-
-#: src/dialogs/installer.py:125
-#, python-brace-format
-msgid "{0} is now available in the programs view."
-msgstr "{0} is nu beschikbaar in de lijst met programma's."
-
-#: src/dialogs/installer.py:171
-msgid "Installer failed with unknown error"
-msgstr "Installer mislukt met onbekende fout"
-
-#. endregion
-#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
-msgid "Choose a script which should be executed after run."
-msgstr "Kies een script dat na het uitvoeren moet worden uitgevoerd."
-
-#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
-msgid "Choose from where start the program."
-msgstr "Kies vanaf waar het programma start."
-
-#: src/dialogs/launchoptions.py:58
-#, python-brace-format
-msgid "{0} is already disabled for this bottle."
-msgstr "{0} is al uitgeschakeld voor deze bottle."
-
-#: src/dialogs/launchoptions.py:59
-msgid "This setting is different from the bottle's default."
-msgstr "Deze instelling is anders dan de standaard van de bottle."
-
-#: src/dialogs/launchoptions.py:232
-msgid "Choose the script"
-msgstr "Script selecteren"
-
-#: src/dialogs/launchoptions.py:256
-msgid "Choose the Working Directory"
-msgstr "Werkmap selecteren"
-
-#: src/main.py:105
-msgid "Show version"
-msgstr "Toon versie"
-
-#: src/main.py:113
-msgid "Executable path"
-msgstr "Uitvoerbaar pad"
-
-#: src/main.py:121
-msgid "lnk path"
-msgstr "lnk-pad"
-
-#: src/main.py:129 src/ui/library-entry.ui:103 src/ui/list-entry.ui:7
-msgid "Bottle name"
-msgstr "Naam van de bottle"
-
-#: src/main.py:137
-msgid "Pass arguments"
-msgstr "Argumenten doorgeven"
-
-#: src/main.py:196
-msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "Ongeldige URI (syntax: bottles:run/<bottle>/<program>)"
-
-#: src/main.py:237
-msgid "[Quit] request received."
-msgstr "[Stoppen] verzoek ontvangen."
-
-#: src/main.py:246
-msgid "[Help] request received."
-msgstr "[Hulp] verzoek ontvangen."
-
-#: src/main.py:254
-msgid "[Refresh] request received."
-msgstr "[Verversen] verzoek ontvangen."
-
-#: src/operation.py:50
-msgid "Calculating…"
-msgstr "Berekenen…"
-
-#: src/ui/about.ui:8
-msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2022 - Bottles Ontwikkelaars"
-
-#: src/ui/about.ui:9
-msgid "Easily manage wineprefix using environments"
-msgstr "Beheer eenvoudig wineprefix met behulp van omgevingen"
-
-#: src/ui/component-entry.ui:6
-msgid "Component version"
-msgstr "Component versie"
-
-#: src/ui/component-entry.ui:15 src/ui/dependency-entry.ui:34
-#: src/ui/program-entry.ui:92
-msgid "Uninstall"
-msgstr "Verwijderen"
-
-#: src/ui/component-entry.ui:26 src/ui/importer-entry.ui:15
-msgid "Browse files"
-msgstr "Blader door bestanden"
-
-#: src/ui/component-entry.ui:37
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch. Press to try again."
-msgstr ""
-"De installatie is mislukt. Dit kan komen door een repository-fout, "
-"incomplete download of niet-overeenkomende controlesom. Druk om opnieuw te "
-"proberen."
-
-#: src/ui/component-entry.ui:48
-msgid "Download & Install"
-msgstr "Downloaden en installeren"
-
-#: src/ui/component-entry.ui:61
-msgid "0%"
-msgstr "0%"
-
-#: src/ui/dependency-entry.ui:18
-msgid "Show Manifest"
-msgstr "Manifest tonen"
-
-#: src/ui/dependency-entry.ui:23
-msgid "License"
-msgstr "Licentie"
-
-#: src/ui/dependency-entry.ui:28
-msgid "Reinstall"
-msgstr "Opnieuw installeren"
-
-#: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
-msgid "Report a Bug…"
-msgstr "Een fout melden…"
-
-#: src/ui/dependency-entry.ui:50
-msgid "Dependency name"
-msgstr "Naam van afhankelijkheid"
-
-#: src/ui/dependency-entry.ui:52
-msgid "Dependency description"
-msgstr "Beschrijving van afhankelijkheid"
-
-#: src/ui/dependency-entry.ui:59
-msgid "Category"
-msgstr "Categorie"
-
-#: src/ui/dependency-entry.ui:73
-msgid "Download & Install this dependency"
-msgstr "Download en installeer deze afhankelijkheid"
-
-#: src/ui/dependency-entry.ui:89
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr ""
-"Er is een installatiefout opgetreden. Start Bottles opnieuw op om het Crash "
-"Report te lezen of voer het via terminal uit om de uitvoer te lezen."
-
-#: src/ui/details-bottle.ui:18
-msgid "Troubleshooting"
-msgstr "Probleemoplossing"
-
-#: src/ui/details-bottle.ui:26
-msgid "Browse Files…"
-msgstr "Door bestanden bladeren…"
-
-#: src/ui/details-bottle.ui:31
-msgid "Duplicate Bottle…"
-msgstr "Kopie van Bottle maken…"
-
-#: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
-msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
-"Dit is het complete archief van je bottle, inclusief persoonlijke bestanden."
-
-#: src/ui/details-bottle.ui:37
-msgid "Full Backup…"
-msgstr "Volledige backup maken…"
-
-#: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
-msgstr ""
-"Dit is simpelweg de configuratie van de bottle, die is perfect wanneer je "
-"een nieuwe wilt creëren zonder persoonlijke bestanden."
-
-#: src/ui/details-bottle.ui:43
-msgid "Export Configuration…"
-msgstr "Configuratie exporteren…"
-
-#: src/ui/details-bottle.ui:51
-msgid "Delete Bottle…"
-msgstr "Bottle verwijderen…"
-
-#: src/ui/details-bottle.ui:86
-msgid "Kill all Processes"
-msgstr "Alle processen geforceerd stoppen"
-
-#: src/ui/details-bottle.ui:91
-msgid "Simulate a Windows system shutdown."
-msgstr "Simuleer het afsluiten van Windows."
-
-#: src/ui/details-bottle.ui:92
-msgid "Shutdown"
-msgstr "Afsluiten"
-
-#: src/ui/details-bottle.ui:97
-msgid "Simulate a Windows system reboot."
-msgstr "Simuleer het opnieuw opstarten van Windows."
-
-#: src/ui/details-bottle.ui:98
-msgid "Reboot"
-msgstr "Opnieuw opstarten"
-
-#: src/ui/details-bottle.ui:121
-msgid "Run with Arguments…"
-msgstr "Uitvoeren met argumenten…"
-
-#: src/ui/details-bottle.ui:126
-msgid "Launch in Terminal…"
-msgstr "In terminal starten…"
-
-#: src/ui/details-bottle.ui:157
-msgid "My bottle"
-msgstr "Mijn bottle"
-
-#: src/ui/details-bottle.ui:169
-msgid "Win64"
-msgstr "Win64"
-
-#: src/ui/details-bottle.ui:177 src/ui/list-entry.ui:14 src/ui/new.ui:77
-msgid "Environment"
-msgstr "Omgeving"
-
-#: src/ui/details-bottle.ui:185 src/ui/details-preferences.ui:304
-#: src/ui/new.ui:129
-msgid "Runner"
-msgstr "Runner"
-
-#: src/ui/details-bottle.ui:193 src/ui/list-entry.ui:23
-msgid "Versioning enabled for this bottle"
-msgstr "Versiebeheer is ingeschakeld voor deze bottle"
-
-#: src/ui/details-bottle.ui:198 src/ui/list-entry.ui:28
-msgid "Versioning is active in this bottle."
-msgstr "Versiebeheer is actief binnen deze bottle."
-
-#: src/ui/details-bottle.ui:208 src/ui/list-entry.ui:34
-msgid "0"
-msgstr "0"
-
-#: src/ui/details-bottle.ui:219
-msgid "Run Executable…"
-msgstr "Programmabestand uitvoeren…"
-
-#: src/ui/details-bottle.ui:235
-msgid "Layers"
-msgstr "Lagen"
-
-#: src/ui/details-bottle.ui:241 src/views/details.py:166
-msgid "Programs"
-msgstr "Programma's"
-
-#: src/ui/details-bottle.ui:246
-msgid "Tools"
-msgstr "Gereedschap"
-
-#: src/ui/details-bottle.ui:250
-msgid "Command Line"
-msgstr "Opdrachtregel"
-
-#: src/ui/details-bottle.ui:251
-msgid "Run commands inside the Bottle."
-msgstr "Voer commando's uit in de Bottle."
-
-#: src/ui/details-bottle.ui:262
-msgid "Registry Editor"
-msgstr "Registerbewerker"
-
-#: src/ui/details-bottle.ui:263
-msgid "Edit the internal registry."
-msgstr "Bewerk het interne register."
-
-#: src/ui/details-bottle.ui:273
-msgid "Legacy Tools"
-msgstr "Verouderd gereedschap"
-
-#: src/ui/details-bottle.ui:277
-msgid "Explorer"
-msgstr "Verkenner"
-
-#: src/ui/details-bottle.ui:278
-msgid "Browse internal files with the Wine explorer."
-msgstr "Blader door interne bestanden met de Wine-verkenner."
-
-#: src/ui/details-bottle.ui:289 src/views/details.py:178
-msgid "Task Manager"
-msgstr "Taakbeheer"
-
-#: src/ui/details-bottle.ui:290
-msgid "Manage processes with the Wine task manager."
-msgstr "Beheer processen met het Wine-taakbeheer."
-
-#: src/ui/details-bottle.ui:301
-msgid "Debug"
-msgstr "Foutopsporing"
-
-#: src/ui/details-bottle.ui:302
-msgid "Debug wine processes."
-msgstr "Toon uitvoer van Wine-processen."
-
-#: src/ui/details-bottle.ui:313
-msgid "Wine Configuration"
-msgstr "Wine-configuratie"
-
-#: src/ui/details-bottle.ui:314
-msgid "Adjust internal settings."
-msgstr "Pas interne instellingen aan."
-
-#: src/ui/details-bottle.ui:325
-msgid "Uninstaller"
-msgstr "Uninstaller"
-
-#: src/ui/details-bottle.ui:326
-msgid "Uninstall programs using Wine uninstaller."
-msgstr "Verwijder programma's met de Wine-uninstaller."
-
-#: src/ui/details-bottle.ui:337
-msgid "Control Panel"
-msgstr "Configuratiescherm"
-
-#: src/ui/details-bottle.ui:338
-msgid "Access the internal Wine Control Panel."
-msgstr "Open het interne Wine-configuratiescherm."
-
-#: src/ui/details-bottle.ui:357
-msgid "Use the Installers section or the \"Run executable\" button."
-msgstr ""
-"Gebruik het installers-gedeelte of de knop \"Programmabestand uitvoeren\"."
-
-#: src/ui/details-dependencies.ui:13
-msgid "Search for dependencies…"
-msgstr "Zoeken naar afhankelijkheden…"
-
-#: src/ui/details-dependencies.ui:22
-msgid ""
-"Dependencies are software, libraries and codecs that improve the "
-"compatibility of Windows software. Install from here to meet your program "
-"requirements."
-msgstr ""
-"Afhankelijkheden zijn software, bibliotheken en codecs die de "
-"compatibiliteit van Windows-software verbeteren. Installeer vanaf hier om "
-"aan uw programmavereisten te voldoen."
-
-#: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
-msgid ""
-"Files on this page are provided by third parties under a proprietary "
-"license. By installing them, you agree with their respective licensing terms."
-msgstr ""
-"Bestanden op deze pagina worden geleverd door derden onder een "
-"eigendomslicentie. Door ze te installeren, gaat u akkoord met hun "
-"respectievelijke licentievoorwaarden."
-
-#: src/ui/details-dependencies.ui:62
-msgid "Report a problem or a missing dependency."
-msgstr "Meld een probleem of een ontbrekende afhankelijkheid."
-
-#: src/ui/details-dependencies.ui:63
-msgid "Report missing dependency"
-msgstr "Ontbrekende afhankelijkheid melden"
-
-#: src/ui/details-dependencies.ui:68
-msgid "Read documentation."
-msgstr "Lees de documentatie."
-
-#: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:71
-#: src/ui/details-programs.ui:45 src/ui/details-versioning.ui:44
-#: src/ui/window.ui:38
-msgid "Documentation"
-msgstr "Documentatie"
-
-#: src/ui/details-dependencies.ui:80
-msgid "Install Selected"
-msgstr "Selectie installeren"
-
-#: src/ui/details-dependencies.ui:81
-msgid "We strongly advise against installing multiple dependencies at once."
-msgstr ""
-"We raden sterk af om meerdere afhankelijkheden tegelijk te installeren."
-
-#: src/ui/details-dependencies.ui:88
-msgid "Select Dependencies"
-msgstr "Afhankelijkheden selecteren"
-
-#: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:82
-#: src/ui/window.ui:86
-msgid "Search"
-msgstr "Zoeken"
-
-#: src/ui/details-installers.ui:13
-msgid "Search for Programs…"
-msgstr "Zoeken naar programma's…"
-
-#: src/ui/details-installers.ui:22
-msgid ""
-"Use this section to install programs curated by our community, without "
-"having to proceed manually."
-msgstr ""
-"Gebruik dit gedeelte om door onze community verzorgde programma's te "
-"installeren, zonder handmatig te werk te moeten gaan."
-
-#: src/ui/details-installers.ui:48
-msgid "No Installers Found"
-msgstr "Geen installers gevonden"
-
-#: src/ui/details-installers.ui:51
-msgid ""
-"The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
-"De repository kan niet worden doorzocht, of er is geen installer compatibel "
-"met deze bottle."
-
-#: src/ui/details-installers.ui:70 src/ui/details-programs.ui:44
-#: src/ui/details-versioning.ui:43
-msgid "Read documentation"
-msgstr "Documentatie lezen"
-
-#: src/ui/details-preferences.ui:8
-msgid "Bottle Details"
-msgstr "Bottle-details"
-
-#: src/ui/details-preferences.ui:11 src/ui/dialog-duplicate.ui:58
-#: src/ui/new.ui:70
-msgid "Name"
-msgstr "Naam"
-
-#: src/ui/details-preferences.ui:19
-msgid "Graphics"
-msgstr "Grafisch"
-
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:213
-msgid "DXVK"
-msgstr "DXVK"
-
-#: src/ui/details-preferences.ui:24
-msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr "Verbetert de prestaties van DirectX 11-games en 3D-toepassingen."
-
-#: src/ui/details-preferences.ui:27 src/ui/details-preferences.ui:328
-msgid "Updating DXVK, please wait…"
-msgstr "DXVK bijwerken, even geduld a.u.b…"
-
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:218
-msgid "VKD3D"
-msgstr "VKD3D"
-
-#: src/ui/details-preferences.ui:43
-msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr "Verbetert de prestaties van DirectX 12-games en 3D-toepassingen."
-
-#: src/ui/details-preferences.ui:46 src/ui/details-preferences.ui:351
-msgid "Updating VKD3D, please wait…"
-msgstr "VKD3D bijwerken, even geduld a.u.b…"
-
-#: src/ui/details-preferences.ui:61
-msgid "DLSS (DXVK-NVAPI)"
-msgstr "DLSS (DXVK-NVAPI)"
-
-#: src/ui/details-preferences.ui:62
-msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "DLSS-ondersteuning en Nvidia's NVAPI inschakelen indien beschikbaar."
-
-#: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
-#: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
-msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "DXVK-NVAPI bijwerken, even geduld a.u.b…"
-
-#: src/ui/details-preferences.ui:80
-msgid "FSR"
-msgstr "FSR"
-
-#: src/ui/details-preferences.ui:81
-msgid ""
-"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
-msgstr ""
-"FSR maakt gebruik van geavanceerde opschalingstechnologieën om uw framerate "
-"te verhogen."
-
-#: src/ui/details-preferences.ui:88
-msgid "Ultra Quality"
-msgstr "Beste kwaliteit"
-
-#: src/ui/details-preferences.ui:89
-msgid "Quality"
-msgstr "Hogere kwaliteit"
-
-#: src/ui/details-preferences.ui:90
-msgid "Balanced"
-msgstr "Gebalanceerd"
-
-#: src/ui/details-preferences.ui:91
-msgid "Performance"
-msgstr "Hogere prestaties"
-
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:228
-msgid "LatencyFleX"
-msgstr "LatencyFleX"
-
-#: src/ui/details-preferences.ui:109
-msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
-msgstr ""
-"Een alternatief voor NVIDIA Reflex. Kan worden gedetecteerd door sommige "
-"Anticheats."
-
-#: src/ui/details-preferences.ui:128
-msgid "Discrete GPU"
-msgstr "Discrete GPU"
-
-#: src/ui/details-preferences.ui:129
-msgid "Improves performance at the cost of increased power usage."
-msgstr "Verbetert de prestaties ten koste van een hoger stroomverbruik."
-
-#: src/ui/details-preferences.ui:140
-msgid "vkBasalt"
-msgstr "vkBasalt"
-
-#: src/ui/details-preferences.ui:141
-msgid ""
-"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
-"games."
-msgstr ""
-"vkBasalt is een Vulkan-nabehandelingslaag welke de visuele graphics van "
-"games verbetert."
-
-#: src/ui/details-preferences.ui:151
-msgid "Display Settings"
-msgstr "Scherminstellingen"
-
-#: src/ui/details-preferences.ui:155 src/ui/dialog-launch-options.ui:194
-msgid "Virtual Desktop"
-msgstr "Virtueel Bureaublad"
-
-#: src/ui/details-preferences.ui:156
-msgid "Use the Wine virtual desktop."
-msgstr "Gebruik het virtuele Wine-bureaublad."
-
-#: src/ui/details-preferences.ui:194
-msgid "Fullscreen Mouse Capture"
-msgstr "Muisvergrendeling in volledig scherm"
-
-#: src/ui/details-preferences.ui:195
-msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
-"Laat het programma muisinvoer vastleggen wanneer het volledig scherm is."
-
-#: src/ui/details-preferences.ui:206
-msgid "Take Focus"
-msgstr "Focus nemen"
-
-#: src/ui/details-preferences.ui:207
-msgid "Activate it if the program does not retake focus on switch."
-msgstr ""
-"Activeer dit als het programma niet opnieuw focust bij het overschakelen."
-
-#: src/ui/details-preferences.ui:218
-msgid "Mouse Warp"
-msgstr "Muis-warp"
-
-#: src/ui/details-preferences.ui:219
-msgid "Change this if you are running into mouse lag or desync."
-msgstr "Verander dit als u muis-lag of -desynchronisatie ondervindt."
-
-#: src/ui/details-preferences.ui:231
-msgid "Screen Scaling"
-msgstr "Schermschaling"
-
-#: src/ui/details-preferences.ui:232
-msgid "Set custom DPI."
-msgstr "Aangepaste DPI instellen."
-
-#: src/ui/details-preferences.ui:238
-msgid "96"
-msgstr "96"
-
-#: src/ui/details-preferences.ui:239
-msgid "120"
-msgstr "120"
-
-#: src/ui/details-preferences.ui:240
-msgid "144"
-msgstr "144"
-
-#: src/ui/details-preferences.ui:241
-msgid "168"
-msgstr "168"
-
-#: src/ui/details-preferences.ui:242
-msgid "192"
-msgstr "192"
-
-#: src/ui/details-preferences.ui:243
-msgid "216"
-msgstr "216"
-
-#: src/ui/details-preferences.ui:244
-msgid "240"
-msgstr "240"
-
-#: src/ui/details-preferences.ui:245
-msgid "288"
-msgstr "288"
-
-#: src/ui/details-preferences.ui:246
-msgid "336"
-msgstr "336"
-
-#: src/ui/details-preferences.ui:247
-msgid "384"
-msgstr "384"
-
-#: src/ui/details-preferences.ui:248
-msgid "432"
-msgstr "432"
-
-#: src/ui/details-preferences.ui:249
-msgid "480"
-msgstr "480"
-
-#: src/ui/details-preferences.ui:262
-msgid "Renderer"
-msgstr "Renderer"
-
-#: src/ui/details-preferences.ui:263
-msgid "Select what backend to use for wined3d."
-msgstr "Selecteer welke backend moet worden gebruikt voor wine3d."
-
-#: src/ui/details-preferences.ui:269
-msgid "gl (default)"
-msgstr "gl (standaard)"
-
-#: src/ui/details-preferences.ui:270
-msgid "gdi"
-msgstr "gdi"
-
-#: src/ui/details-preferences.ui:271
-msgid "vulkan"
-msgstr "Vulkan"
-
-#: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
-msgid "System"
-msgstr "Systeem"
-
-#: src/ui/details-preferences.ui:289
-msgid "Manage Components Versions"
-msgstr "Componentenversies beheren"
-
-#: src/ui/details-preferences.ui:299
-msgid "Components"
-msgstr "Componenten"
-
-#: src/ui/details-preferences.ui:307
-msgid "Updating Runner and components, please wait…"
-msgstr "Runner en componenten worden geüpdatet, even geduld a.u.b…"
-
-#. TODO: replace with ComboRow
-#: src/ui/details-preferences.ui:324
-msgid "DXVK Version"
-msgstr "DXVK-versie"
-
-#: src/ui/details-preferences.ui:348
-msgid "VKD3D Version"
-msgstr "VKD3D-versie"
-
-#: src/ui/details-preferences.ui:372
-msgid "DXVK NVAPI Version"
-msgstr "DXVK NVAPI-versie"
-
-#: src/ui/details-preferences.ui:394
-msgid "LatencyFleX Version"
-msgstr "LatencyFleX-versie"
-
-#: src/ui/details-preferences.ui:416
-msgid "Enable synchronization to increase performance of multicore processors."
-msgstr ""
-"Schakel synchronisatie in om de prestaties van multi-core processoren te "
-"verhogen."
-
-#: src/ui/details-preferences.ui:417
-msgid "Synchronization"
-msgstr "Synchronisatie"
-
-#: src/ui/details-preferences.ui:428
-msgid "Esync"
-msgstr "Esync"
-
-#: src/ui/details-preferences.ui:434
-msgid "Fsync"
-msgstr "Fsync"
-
-#: src/ui/details-preferences.ui:440
-msgid "Futex2"
-msgstr "Futex2"
-
-#: src/ui/details-preferences.ui:455
-msgid "Windows Version"
-msgstr "Windows-versie"
-
-#: src/ui/details-preferences.ui:458
-msgid "Updating Windows version, please wait…"
-msgstr "Windows-versie bijwerken, even geduld a.u.b…"
-
-#: src/ui/details-preferences.ui:486
-msgid "Language"
-msgstr "Taal"
-
-#: src/ui/details-preferences.ui:487
-msgid "Choose the language to use with programs."
-msgstr "Kies de taal om voor programma's te gebruiken."
-
-#: src/ui/details-preferences.ui:497
-msgid "false"
-msgstr "onwaar"
-
-#: src/ui/details-preferences.ui:498
-msgid "Dedicated Sandbox"
-msgstr "Toegewijde zandbak"
-
-#: src/ui/details-preferences.ui:499
-msgid "Use a restricted/managed environment for this bottle."
-msgstr "Gebruik een beperkte/beheerde omgeving voor deze bottle."
-
-#: src/ui/details-preferences.ui:502
-msgid "Manage Sandbox permissions"
-msgstr "Zandbakrechten beheren"
-
-#: src/ui/details-preferences.ui:520
-msgid "Bottles Runtime"
-msgstr "Bottles-runtime"
-
-#: src/ui/details-preferences.ui:521
-msgid ""
-"Provides a bundle of extra libraries for more compatibility,disable if you "
-"run into issues."
-msgstr ""
-"Biedt een bundel extra bibliotheken voor meer compatibiliteit aan, schakel "
-"uit als u tegen problemen aanloopt."
-
-#: src/ui/details-preferences.ui:532
-msgid "Steam Runtime"
-msgstr "Steam-runtime"
-
-#: src/ui/details-preferences.ui:533
-msgid "The same as the Bottles one but provided by Steam."
-msgstr "Hetzelfde als de Bottles-versie, maar geleverd door Steam."
-
-#: src/ui/details-preferences.ui:544
-msgid "GameMode"
-msgstr "Gamemodus"
-
-#: src/ui/details-preferences.ui:545
-msgid "Optimise gaming performance on demand."
-msgstr "Optimaliseer gaming-prestaties op verzoek."
-
-#: src/ui/details-preferences.ui:556
-msgid "Gamescope"
-msgstr "Gamescope"
-
-#: src/ui/details-preferences.ui:557
-msgid "Use the Gamescope micro-compositor."
-msgstr "Gebruik de Gamescope micro-compositor."
-
-#: src/ui/details-preferences.ui:560
-msgid "Manage Gamescope settings"
-msgstr "Gamescope-instellingen beheren"
-
-#: src/ui/details-preferences.ui:578 src/ui/dialog-launch-options.ui:91
-msgid "Working Directory"
-msgstr "Werkmap"
-
-#: src/ui/details-preferences.ui:579
-msgid "Defaults to the bottle path."
-msgstr "Standaardwaarde is het bottles-pad."
-
-#: src/ui/details-preferences.ui:582 src/ui/dialog-launch-options.ui:65
-#: src/ui/dialog-launch-options.ui:98 src/ui/preferences.ui:159
-msgid "Reset to default"
-msgstr "Standaardwaarden herstellen"
-
-#: src/ui/details-preferences.ui:592 src/ui/dialog-launch-options.ui:109
-#: src/ui/new.ui:163 src/ui/new.ui:180 src/ui/preferences.ui:170
-msgid "Choose a directory"
-msgstr "Kies een map"
-
-#: src/ui/details-preferences.ui:605 src/ui/dialog-dll-overrides.ui:9
-#: src/ui/dialog-dll-overrides.ui:15
-msgid "DLL Overrides"
-msgstr "DLL-overschrijvingen"
-
-#: src/ui/details-preferences.ui:616 src/ui/dialog-env-vars.ui:16
-msgid "Environment Variables"
-msgstr "Omgevingsvariabelen"
-
-#: src/ui/details-preferences.ui:627
-msgid "Manage Drives"
-msgstr "Schijven beheren"
-
-#: src/ui/details-preferences.ui:639
-msgid "Audio"
-msgstr "Audio"
-
-#: src/ui/details-preferences.ui:643 src/ui/dialog-launch-options.ui:183
-msgid "Reduce Latency"
-msgstr "Audiovertraging verminderen"
-
-#: src/ui/details-preferences.ui:644
-msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
-msgstr ""
-"Stel de vertraging van PulseAudio in op 60 ms om de geluidskwaliteit te "
-"verbeteren."
-
-#: src/ui/details-preferences.ui:656 src/views/details.py:170
-msgid "Versioning"
-msgstr "Versiebeheer"
-
-#: src/ui/details-preferences.ui:660
-msgid "Use Compression for States"
-msgstr "Compressie gebruiken voor staten"
-
-#: src/ui/details-preferences.ui:661
-msgid ""
-"This will reduce the space used by the states but slow down their creation."
-msgstr ""
-"Dit zal de gebruikte opslagruimte van staten verminderen maar het aanmaken "
-"vertragen."
-
-#: src/ui/details-preferences.ui:672
-msgid "Automatic Versioning"
-msgstr "Automatisch versiebeheer"
-
-#: src/ui/details-preferences.ui:673
-msgid ""
-"Bottles will create a state before running any dependencies or installers."
-msgstr ""
-"Bottles zal een staat aanmaken voordat afhankelijkheden of installers worden "
-"uitgevoerd."
-
-#: src/ui/details-preferences.ui:684
-msgid "Use Exclusion Patterns"
-msgstr "Uitsluitingspatronen gebruiken"
-
-#: src/ui/details-preferences.ui:685
-msgid "Use custom patterns to exclude some paths from versioning."
-msgstr ""
-"Gebruik aangepaste patronen om bepaalde paden van versiebeheer uit te "
-"sluiten."
-
-#: src/ui/details-preferences.ui:688
-msgid "Manage Patterns"
-msgstr "Patronen beheren"
-
-#: src/ui/details-preferences.ui:707
-msgid "Development and Debugging"
-msgstr "Ontwikkeling en foutopsporing"
-
-#: src/ui/details-preferences.ui:711
-msgid "MangoHud"
-msgstr "MangoHud"
-
-#: src/ui/details-preferences.ui:712
-msgid ""
-"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
-"and more."
-msgstr ""
-"Een Vulkan- en OpenGL-overlay voor het bijhouden van FPS, temperaturen, CPU-/"
-"GPU-belasting en meer."
-
-#: src/ui/details-preferences.ui:723
-msgid "OBS Vulkan Capture"
-msgstr "OBS-Vulkan-opname"
-
-#: src/ui/details-preferences.ui:724
-msgid "Toggle OBS game capture for all programs."
-msgstr "Schakel OBS-gameopname in voor alle programma's."
-
-#: src/ui/details-preferences.ui:735
-msgid "Wine 'fixme' Logs"
-msgstr "'fixme'-logboeken van Wine"
-
-#: src/ui/details-preferences.ui:736
-msgid "Log code paths that are unimplemented in Wine."
-msgstr "Log codepaden die niet in Wine zijn geïmplementeerd."
-
-#: src/ui/details-programs.ui:9
-msgid "No Programs found"
-msgstr "Geen programma's gevonden"
-
-#: src/ui/details-programs.ui:10
-msgid ""
-"Install programs from the installers section or by running the installer "
-"executable, you can also manually add executables with the \"+\" button."
-msgstr ""
-"Installeer programma's vanuit de installer-pagina of door de installer uit "
-"te voeren, u kunt ook handmatig uitvoerbare bestanden toevoegen met de knop "
-"\"+\"."
-
-#: src/ui/details-programs.ui:31
-msgid "Toggle Hidden"
-msgstr "Verbergen/tonen"
-
-#: src/ui/details-programs.ui:36
-msgid "Search for new programs"
-msgstr "Zoeken naar nieuwe programma's"
-
-#: src/ui/details-programs.ui:55
-msgid "Add a custom executable path"
-msgstr "Een aangepast uitvoerbaar pad toevoegen"
-
-#: src/ui/details-taskmanager.ui:18
-msgid "Refresh"
-msgstr "Vernieuwen"
-
-#: src/ui/details-taskmanager.ui:24
-msgid "Stop process"
-msgstr "Proces stoppen"
-
-#: src/ui/details-versioning.ui:25
-msgid "No States Found"
-msgstr "Geen staten gevonden"
-
-#: src/ui/details-versioning.ui:26
-msgid "Create first state to start using versioning."
-msgstr "Creëer eerste staat om versiebeheer te gaan gebruiken."
-
-#: src/ui/details-versioning.ui:63
-msgid "A short comment"
-msgstr "Een korte opmerking"
-
-#: src/ui/details-versioning.ui:68
-msgid "Save the bottle state."
-msgstr "Sla de bottle-status op."
-
-#: src/ui/details-versioning.ui:88
-msgid "Create new state"
-msgstr "Nieuwe staat aanmaken"
-
-#: src/ui/details.ui:74
-msgid "Operations"
-msgstr "Activiteiten"
-
-#: src/ui/dialog-bottle-picker.ui:6
-msgid "Select Bottle"
-msgstr "Bottle selecteren"
-
-#: src/ui/dialog-bottle-picker.ui:42
-msgid "Create New Bottle"
-msgstr "Nieuwe bottle maken"
-
-#: src/ui/dialog-crash-report.ui:10
-msgid "Bottles crash report"
-msgstr "Bottles-crashrapport"
-
-#: src/ui/dialog-crash-report.ui:23
-msgid "Send report"
-msgstr "Rapport verzenden"
-
-#: src/ui/dialog-crash-report.ui:43
-msgid ""
-"Bottles crashed last time. Please fill out a report attaching the following "
-"traceback to help us identify the problem preventing it from happening again."
-msgstr ""
-"Bottles is de laatste keer gecrasht. Gelieve een rapport in te vullen met de "
-"volgende traceback om ons te helpen het probleem te identificeren en te "
-"voorkomen dat het opnieuw gebeurt."
-
-#: src/ui/dialog-crash-report.ui:75
-msgid ""
-"We found one or more similar (or identical) reports. Please make sure to "
-"check carefully that it has not already been reported before submitting a "
-"new one. Each report requires effort on the part of the developers to "
-"diagnose, please respect their work and make sure you don't post duplicates."
-msgstr ""
-"We hebben een of meer soortgelijke (of identieke) meldingen gevonden. "
-"Gelieve zorgvuldig te controleren of het niet reeds gemeld is alvorens een "
-"nieuwe in te dienen. Elk rapport vereist inspanning van de kant van de "
-"ontwikkelaars om een diagnose te stellen, respecteer alstublieft hun werk en "
-"zorg ervoor dat u geen dubbele rapporten plaatst."
-
-#: src/ui/dialog-crash-report.ui:96
-msgid "I still want to report."
-msgstr "Ik wil nog steeds rapporteren."
-
-#: src/ui/dialog-crash-report.ui:102
-msgid "Advanced options"
-msgstr "Geavanceerde opties"
-
-#: src/ui/dialog-deps-check.ui:15
-msgid "Incomplete package"
-msgstr "Onvolledig pakket"
-
-#: src/ui/dialog-deps-check.ui:16
-msgid ""
-"This version of Bottles does not seem to provide all the necessary core "
-"dependencies, please contact the package maintainer or use an official "
-"version.\n"
-"                        "
-msgstr ""
-"Deze versie van Bottles lijkt niet over alle benodigde afhankelijkheden te "
-"beschikken, neem contact op met de pakketbeheerder of gebruik een officiële "
-"versie.\n"
-"                        "
-
-#: src/ui/dialog-deps-check.ui:21
-msgid "Quit"
-msgstr "Verlaten"
-
-#: src/ui/dialog-dll-overrides.ui:14
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)."
-msgstr ""
-"Dynamic Link Libraries kunnen worden gespecificeerd als builtin (geleverd "
-"door Wine) of native (geleverd door het programma)."
-
-#: src/ui/dialog-dll-overrides.ui:18
-msgid "New Override"
-msgstr "Nieuwe overschrijving"
-
-#: src/ui/dialog-dll-overrides.ui:26
-msgid "Overrides"
-msgstr "DLL-overschrijvingen"
-
-#: src/ui/dialog-drives.ui:9
-msgid "Drives"
-msgstr "Stations"
-
-#: src/ui/dialog-drives.ui:31
-msgid ""
-"These are paths from your host system that are mapped and recognized as "
-"devices by the runner (e.g. C: D:…).\n"
-"                                "
-msgstr ""
-"Dit zijn paden van uw hostsysteem die door de runner in kaart worden "
-"gebracht en worden herkend als apparaten (bijv. ‘C:’, ‘D:’, …).\n"
-"                                "
-
-#: src/ui/dialog-drives.ui:35
-msgid "Letter"
-msgstr "Brief"
-
-#: src/ui/dialog-drives.ui:59
-msgid "Existing Drives"
-msgstr "Bestaande schijven"
-
-#: src/ui/dialog-duplicate.ui:18
-msgid "Duplicate Bottle"
-msgstr "Bottle dupliceren"
-
-#: src/ui/dialog-duplicate.ui:23 src/ui/dialog-gamescope.ui:17
-#: src/ui/dialog-launch-options.ui:17 src/ui/dialog-upgrade-versioning.ui:23
-msgid "_Cancel"
-msgstr "_Annuleren"
-
-#: src/ui/dialog-duplicate.ui:41
-msgid "Duplicate"
-msgstr "Dupliceer"
-
-#: src/ui/dialog-duplicate.ui:55
-msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Voer een naam in voor de kopie van de Bottle."
-
-#: src/ui/dialog-duplicate.ui:78
-msgid "Duplicating…"
-msgstr "Dupliceren…"
-
-#: src/ui/dialog-duplicate.ui:87 src/ui/dialog-upgrade-versioning.ui:121
-#: src/ui/new.ui:216
-msgid "Take a break, it may take a while."
-msgstr "Neem een pauze, het kan een tijdje duren."
-
-#: src/ui/dialog-duplicate.ui:108
-msgid "Bottle Duplicated"
-msgstr "Bottle gedupliceerd"
-
-#: src/ui/dialog-env-vars.ui:35
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr ""
-"Omgevingsvariabelen zijn dynamisch benoemde waarden die invloed kunnen "
-"hebben op de manier waarop processen zich zullen gedragen in uw bottle."
-
-#: src/ui/dialog-env-vars.ui:38
-msgid "Variable Name"
-msgstr "Naam van variabele"
-
-#: src/ui/dialog-env-vars.ui:46
-msgid "Existing Variables"
-msgstr "Bestaande variabelen"
-
-#: src/ui/dialog-exclusion-patterns.ui:16
-msgid "Exclusion Patterns"
-msgstr "Uitsluitingspatronen"
-
-#: src/ui/dialog-exclusion-patterns.ui:35
-msgid ""
-"Define patterns that will be used to prevent some directories to being "
-"versioned."
-msgstr "Stel patronen in welke mappen uitsluit van versiebeheer."
-
-#: src/ui/dialog-exclusion-patterns.ui:38
-msgid "Pattern"
-msgstr "Patroon"
-
-#: src/ui/dialog-exclusion-patterns.ui:46
-msgid "Existing Patterns"
-msgstr "Bestaande patronen"
-
-#: src/ui/dialog-gamescope.ui:8
-msgid "Gamescope Settings"
-msgstr "Gamescope Instellingen"
-
-#: src/ui/dialog-gamescope.ui:46
-msgid ""
-"Configure how Gamescope should manage the window for the games you will run."
-msgstr ""
-"Configureer hoe Gamescope het venster moet beheren voor de spellen die u "
-"uitvoert."
-
-#: src/ui/dialog-gamescope.ui:51
-msgid "Game Resolution"
-msgstr "Spelresolutie"
-
-#: src/ui/dialog-gamescope.ui:52
-msgid "Uses the resolution of the video game as a reference."
-msgstr "Gebruikt de resolutie van het spel als referentie."
-
-#: src/ui/dialog-gamescope.ui:55 src/ui/dialog-gamescope.ui:71
-msgid "Width (e.g. 1280)"
-msgstr "Breedte (bijv. 1280)"
-
-#: src/ui/dialog-gamescope.ui:60 src/ui/dialog-gamescope.ui:76
-msgid "Height (e.g. 720)"
-msgstr "Hoogte (bijv. 720)"
-
-#: src/ui/dialog-gamescope.ui:67
-msgid "Gamescope Resolution"
-msgstr "Gamescope-resolutie"
-
-#: src/ui/dialog-gamescope.ui:68
-msgid ""
-"Upscales the resolution when using a resolution higher than the game "
-"resolution."
-msgstr ""
-"Schaalt de resolutie van het spel op wanneer deze kleiner is dan de "
-"resolutie van het scherm."
-
-#: src/ui/dialog-gamescope.ui:83
-msgid "Miscellaneous"
-msgstr "Diversen"
-
-#: src/ui/dialog-gamescope.ui:86
-msgid "Frame Rate Limit (e.g. 60)"
-msgstr "Framerate-limiet (bijv. 60)"
-
-#: src/ui/dialog-gamescope.ui:91
-msgid "Frame Rate Limit (When Unfocused)"
-msgstr "Framerate-limiet (zonder focus)"
-
-#: src/ui/dialog-gamescope.ui:96
-msgid "Use Integer Scaling"
-msgstr "Schalen met geheel getal gebruiken"
-
-#: src/ui/dialog-gamescope.ui:107
-msgid "Window Type"
-msgstr "Venstertype"
-
-#: src/ui/dialog-gamescope.ui:112
-msgid "Borderless"
-msgstr "Randloos"
-
-#: src/ui/dialog-gamescope.ui:119
-msgid "Fullscreen"
-msgstr "Volledig scherm"
-
-#: src/ui/dialog-journal.ui:12
-msgid "All messages"
-msgstr "Alle berichten"
-
-#: src/ui/dialog-journal.ui:17
-msgid "Critical"
-msgstr "Krietiek"
-
-#: src/ui/dialog-journal.ui:22
-msgid "Errors"
-msgstr "Fouten"
-
-#: src/ui/dialog-journal.ui:27
-msgid "Warnings"
-msgstr "Waarschuwingen"
-
-#: src/ui/dialog-journal.ui:32
-msgid "Info"
-msgstr "Info"
-
-#: src/ui/dialog-journal.ui:49
-msgid "Journal browser"
-msgstr "Logboekbrowser"
-
-#: src/ui/dialog-journal.ui:56
-msgid "Journal Browser"
-msgstr "Logboekbrowser"
-
-#: src/ui/dialog-journal.ui:62
-msgid ""
-"Change logging level.\n"
-"                                        "
-msgstr ""
-"Loggingsniveau veranderen.\n"
-"                                        "
-
-#: src/ui/dialog-journal.ui:67
-msgid "All"
-msgstr "Alles"
-
-#: src/ui/dialog-launch-options.ui:8
-msgid "Launch Options"
-msgstr "Startopties"
-
-#: src/ui/dialog-launch-options.ui:47
-msgid "Those arguments will be passed at launch."
-msgstr "Deze argumenten worden doorgegeven bij het starten."
-
-#: src/ui/dialog-launch-options.ui:48
-msgid "Custom Arguments"
-msgstr "Aangepaste argumenten"
-
-#: src/ui/dialog-launch-options.ui:51
-msgid "Command Arguments"
-msgstr "Commando-argumenten"
-
-#: src/ui/dialog-launch-options.ui:52
-#, c-format
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "bijv.: VAR=value %command% -example1 -example2 -example3=hello"
-
-#: src/ui/dialog-launch-options.ui:58
-msgid "Post-run Script"
-msgstr "Script voor na het uitvoeren"
-
-#: src/ui/dialog-launch-options.ui:76
-msgid "Choose a script"
-msgstr "Script selecteren"
-
-#: src/ui/dialog-launch-options.ui:125
-msgid "These settings will override the default settings for this executable."
-msgstr ""
-"Deze instellingen zullen de standaardinstellingen voor dit programmabestand "
-"overschrijven."
-
-#: src/ui/dialog-launch-options.ui:126
-msgid "Preferences Overrides"
-msgstr "Overschrijvingsvoorkeuren"
-
-#: src/ui/dialog-launch-options.ui:129
-msgid "Reset to Bottle's Defaults"
-msgstr "Standaardwaarden van Bottles herstellen"
-
-#: src/ui/dialog-proton-alert.ui:6
-msgid "Proton Disclaimer"
-msgstr "Proton-disclaimer"
-
-#: src/ui/dialog-proton-alert.ui:22
-msgid "Use Proton"
-msgstr "Proton gebruiken"
-
-#: src/ui/dialog-proton-alert.ui:37
-msgid ""
-"Beware, using Proton-based runners in non-Steam bottles can cause problems "
-"and prevent them from behaving correctly.\n"
-"\n"
-"We recommend using Wine-GE rather, a version of Proton meant to run outside "
-"of Steam.\n"
-"\n"
-"Proceeding will automatically enable the Steam runtime (if present in the "
-"system and detected by Bottles) in order to allow it to access the necessary "
-"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
-"the runner's provider, is not responsible for any problems and we ask that "
-"you do not report to them."
-msgstr ""
-
-#: src/ui/dialog-proton-alert.ui:50
-msgid "I got it."
-msgstr "Ik heb het begrepen."
-
-#: src/ui/dialog-rename.ui:9
-msgid "Rename"
-msgstr "Hernoemen"
-
-#: src/ui/dialog-rename.ui:34
-msgid "Choose a new name for the selected program."
-msgstr "Kies een nieuwe naam voor het geselecteerde programma."
-
-#: src/ui/dialog-rename.ui:37
-msgid "New Name"
-msgstr "Nieuwe naam"
-
-#: src/ui/dialog-run-args.ui:14
-msgid "Run With Arguments"
-msgstr "Uitvoeren met argumenten"
-
-#: src/ui/dialog-run-args.ui:35 src/views/bottle_details.py:202
-#: src/views/list.py:120
-msgid "Run"
-msgstr "Uitvoeren"
-
-#: src/ui/dialog-run-args.ui:47
-msgid "Write below the arguments to be passed to the executable."
-msgstr ""
-"Schrijf hieronder de argumenten die aan het programmabestand moeten worden "
-"doorgegeven."
-
-#: src/ui/dialog-run-args.ui:50
-msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "bijv.: -opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-sandbox.ui:9
-msgid "Sandbox Settings"
-msgstr "Zandbakinstellingen"
-
-#: src/ui/dialog-sandbox.ui:23
-msgid "Share Network"
-msgstr "Netwerk delen"
-
-#: src/ui/dialog-sandbox.ui:34
-msgid "Share Sound"
-msgstr "Gedeelde map gevonden"
-
-#: src/ui/dialog-upgrade-versioning.ui:18
-msgid "Upgrade Needed"
-msgstr "Upgrade benodigd"
-
-#: src/ui/dialog-upgrade-versioning.ui:41 src/ui/onboard.ui:88
-msgid "Continue"
-msgstr "Doorgaan"
-
-#: src/ui/dialog-upgrade-versioning.ui:49
-msgid "Launch upgrade"
-msgstr "Upgrade starten"
-
-#: src/ui/dialog-upgrade-versioning.ui:69
-msgid "New Versioning System"
-msgstr "Nieuw versiebeheersysteem"
-
-#: src/ui/dialog-upgrade-versioning.ui:72
-msgid "The new bottle versioning system has landed."
-msgstr "Het nieuwe bottle-versiebeheersysteem is er."
-
-#: src/ui/dialog-upgrade-versioning.ui:86
-msgid ""
-"Bottles has a whole new Versioning System which is not backwards "
-"compatible. \n"
-"\n"
-"To continue using versioning we need to re-initialize the bottle repository. "
-"This will not delete data from your bottle but will delete all existing "
-"states and create a new one. \n"
-"\n"
-"If you need to go back to a previous state before continuing, close this "
-"window and restore the state, then reopen the bottle to show this window "
-"again. \n"
-"\n"
-"The old system will be discontinued in one of the next releases."
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:112
-msgid "Re-initializing repository…"
-msgstr "Repository herinitialiseren…"
-
-#: src/ui/dialog-upgrade-versioning.ui:144
-msgid "Done! Please restart Bottles."
-msgstr "Klaar! Start Bottles opnieuw op."
-
-#: src/ui/dll-override-entry.ui:10
-msgid "Builtin (Wine)"
-msgstr "Ingebouwd (Wine)"
-
-#: src/ui/dll-override-entry.ui:11
-msgid "Native (Windows)"
-msgstr "Lokaal (Windows)"
-
-#: src/ui/dll-override-entry.ui:12
-msgid "Builtin, then Native"
-msgstr "Ingebouwd, daarna lokaal"
-
-#: src/ui/dll-override-entry.ui:13
-msgid "Native, then Builtin"
-msgstr "Lokaal, daarna ingebouwd"
-
-#: src/ui/dll-override-entry.ui:14
-msgid "Disabled"
-msgstr "Uitgeschakeld"
-
-#: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
-msgid "Remove"
-msgstr "Verwijderen"
-
-#: src/ui/drive-entry.ui:7
-msgid "/point/to/path"
-msgstr "/wijs/naar/pad"
-
-#: src/ui/drive-entry.ui:24
-msgid "Choose a Directory"
-msgstr "Een map kiezen"
-
-#: src/ui/env-var-entry.ui:6 src/ui/exclusion-pattern-entry.ui:6
-msgid "Value"
-msgstr "Waarde"
-
-#. Wineprefix is a prefix for the wine program
-#: src/ui/importer-entry.ui:22
-msgid "Wineprefix name"
-msgstr "Naam van wineprefix"
-
-#: src/ui/importer-entry.ui:29
-msgid "Manager"
-msgstr "Beheerder"
-
-#: src/ui/importer-entry.ui:39
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Deze wineprefix is al geïmporteerd in Bottles."
-
-#: src/ui/importer.ui:24
-msgid "Import Bottles backup"
-msgstr "Back-up van Bottles importeren"
-
-#: src/ui/importer.ui:31
-msgid "Search again for prefixes"
-msgstr "Opnieuw zoeken naar prefixes"
-
-#: src/ui/importer.ui:45
-msgid "No Prefixes Found"
-msgstr "Geen prefixes gevonden"
-
-#: src/ui/importer.ui:46
-msgid ""
-"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
-"Use the icon on the top to import a bottle from a backup"
-msgstr ""
-"Er zijn geen prefixes gevonden van Lutris, PlayOnLinux, etc.\n"
-"Gebruik het pictogram bovenaan om een bottle uit een back-up te importeren"
-
-#: src/ui/importer.ui:81
-msgid "Configuration"
-msgstr "Configuratie"
-
-#: src/ui/importer.ui:87
-msgid "Full Archive"
-msgstr "Volledig archief"
-
-#: src/ui/installer-entry.ui:18
-msgid "Show Manifest…"
-msgstr "Manifest tonen…"
-
-#: src/ui/installer-entry.ui:23
-msgid "Read Review…"
-msgstr "Recensie lezen…"
-
-#: src/ui/installer-entry.ui:40
-msgid "Installer name"
-msgstr "Installer-naam"
-
-#: src/ui/installer-entry.ui:41
-msgid "Installer description"
-msgstr "Installer-beschrijving"
-
-#: src/ui/installer-entry.ui:48
-msgid "Unknown"
-msgstr "Onbekend"
-
-#: src/ui/installer-entry.ui:57
-msgid "Install this program"
-msgstr "Dit programma installeren"
-
-#: src/ui/library-entry.ui:17
-msgid "Remove from Library"
-msgstr "Uit bibliotheek verwijderen"
-
-#: src/ui/library-entry.ui:94
-msgid "Item name"
-msgstr "Item-naam"
-
-#: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
-msgid "Launch with Steam"
-msgstr "Starten met Steam"
-
-#: src/ui/library.ui:14 src/ui/preferences.ui:259 src/window.py:171
-msgid "Library"
-msgstr "Bibliotheek"
-
-#: src/ui/library.ui:15
-msgid "Add items here from your bottle's program list"
-msgstr "Items hier toevoegen vanuit uw bottles-programmalijst"
-
-#: src/ui/list-entry.ui:46
-msgid "This bottle looks damaged."
-msgstr "Deze bottle ziet er beschadigd uit."
-
-#: src/ui/list-entry.ui:60
-msgid "Execute in this bottle"
-msgstr "In deze bottle uitvoeren"
-
-#: src/ui/list-entry.ui:75
-msgid "Run Here"
-msgstr "Hier uitvoeren"
-
-#: src/ui/list-entry.ui:84
-msgid ""
-"This bottle looks damaged, the configuration file is missing. I can try to "
-"solve by creating a new configuration."
-msgstr ""
-"Deze bottle ziet er beschadigd uit, het configuratiebestand ontbreekt. Ik "
-"kan het proberen op te lossen door een nieuwe configuratie aan te maken."
-
-#: src/ui/list-entry.ui:96
-msgid "Run .exe/.msi in this bottle"
-msgstr ".exe/.msi in deze bottle uitvoeren"
-
-#: src/ui/list.ui:17
-msgid "Search your bottles…"
-msgstr "Uw bottles doorzoeken…"
-
-#: src/ui/list.ui:38
-msgid "Steam Proton"
-msgstr "Steam-Proton"
-
-#: src/ui/list.ui:55
-msgid "Start off by creating a Bottle."
-msgstr "Begin met het maken van een bottle."
-
-#: src/ui/list.ui:62
-msgid "Create a new Bottle"
-msgstr "Een nieuwe bottle maken"
-
-#: src/ui/list.ui:75
-msgid "No Results Found"
-msgstr "Geen resultaten gevonden"
-
-#: src/ui/list.ui:76
-msgid "Try a different search."
-msgstr "Probeer een andere zoekterm."
-
-#: src/ui/loading.ui:16
-msgid "Starting up…"
-msgstr "Opstarten…"
-
-#: src/ui/local-resource-entry.ui:6
-msgid "This resource is missing."
-msgstr "Deze bron ontbreekt."
-
-#: src/ui/local-resource-entry.ui:10
-msgid "Browse"
-msgstr "Bladeren"
-
-#: src/ui/new.ui:17 src/ui/new.ui:64
-msgid "New Bottle"
-msgstr "Nieuwe bottle"
-
-#: src/ui/new.ui:38
-msgid "Create"
-msgstr "Maken"
-
-#: src/ui/new.ui:47 src/ui/new.ui:268 src/window.py:187
-msgid "Close"
-msgstr "Sluiten"
-
-#: src/ui/new.ui:67
-msgid "Bottle Information"
-msgstr "Bottle-informatie"
-
-#: src/ui/new.ui:84
-msgid "Gaming"
-msgstr "Gaming"
-
-#: src/ui/new.ui:85
-msgid "An environment improved for Windows games."
-msgstr "Een omgeving geoptimaliseerd voor Windows-games."
-
-#: src/ui/new.ui:93
-msgid "Application"
-msgstr "Toepassing"
-
-#: src/ui/new.ui:94
-msgid "An environment improved for Windows applications."
-msgstr "Een omgeving geoptimaliseerd voor Windows-toepassingen."
-
-#: src/ui/new.ui:103
-msgid "Layered"
-msgstr "Gelaagd"
-
-#: src/ui/new.ui:104
-msgid "A layered environment, where every app is a layer."
-msgstr "Een gelaagde omgeving, waarbij elke toepassing een laag is."
-
-#: src/ui/new.ui:112
-msgid "Custom"
-msgstr "Aangepast"
-
-#: src/ui/new.ui:113
-msgid "A clear environment for your experiments."
-msgstr "Een duidelijke omgeving voor uw experimenten."
-
-#: src/ui/new.ui:117
-msgid "Unlinked Home Directory"
-msgstr "Niet-gelinkte thuismap"
-
-#: src/ui/new.ui:118
-msgid "Do not link the userdir to the homedir"
-msgstr "Koppel de gebruikersmap niet aan de thuismap"
-
-#: src/ui/new.ui:143
-msgid "Architecture"
-msgstr "Architectuur"
-
-#: src/ui/new.ui:144
-msgid "We recommend using 32bit only if strictly necessary."
-msgstr ""
-"We raden aan om 32-bits alleen te gebruiken als dit strikt noodzakelijk is."
-
-#: src/ui/new.ui:148
-msgid "64 bit"
-msgstr "64-bits"
-
-#: src/ui/new.ui:149
-msgid "32 bit"
-msgstr "32-bits"
-
-#: src/ui/new.ui:157
-msgid "Custom Recipe"
-msgstr "Aangepast recept"
-
-#: src/ui/new.ui:158
-msgid "Choose a custom recipe for the environment if you have one."
-msgstr "Kies een aangepast recept voor de omgeving als u er een hebt."
-
-#: src/ui/new.ui:174
-msgid "Custom Path"
-msgstr "Aangepast pad"
-
-#: src/ui/new.ui:175
-msgid "Store this bottle in another place."
-msgstr "Bewaar deze bottle op een andere plaats."
-
-#: src/ui/new.ui:215
-msgid "Creating a Bottle…"
-msgstr "Bottle maken…"
-
-#: src/ui/new.ui:262
-msgid "Bottle created"
-msgstr "Bottle gemaakt"
-
-#: src/ui/onboard.ui:36
-msgid "Previous"
-msgstr "Vorige"
-
-#: src/ui/onboard.ui:62
-msgid "Welcome to Bottles"
-msgstr "Welkom bij Bottles"
-
-#: src/ui/onboard.ui:63
-msgid ""
-"Run Windows Software on Linux.\n"
-"                                                "
-msgstr ""
-"Voer Windows-software uit op Linux.\n"
-"                                                "
-
-#: src/ui/onboard.ui:71
-msgid "Windows in Bottles"
-msgstr "Windows in Bottles"
-
-#: src/ui/onboard.ui:72
-msgid ""
-"Bottles uses compatibility runners to provide isolated containerized Windows-"
-"like environments where programs run."
-msgstr ""
-"Bottles gebruikt compatibiliteits-runners om programma's van geïsoleerde, "
-"gecontaineriseerde, Windows-achtige omgevingen te voorzien."
-
-#: src/ui/onboard.ui:79
-msgid "Almost Done"
-msgstr "Bijna klaar"
-
-#: src/ui/onboard.ui:80
-msgid "We need a few more minutes to set everything up…"
-msgstr "We hebben een paar extra minuten nodig om alles op te zetten…"
-
-#: src/ui/onboard.ui:113
-msgid "All ready!"
-msgstr "Alles gereed!"
-
-#: src/ui/onboard.ui:122
-msgid "Please Finish the setup first"
-msgstr "Voltooi eerst de setup"
-
-#: src/ui/onboard.ui:129
-msgid "Start using Bottles"
-msgstr "Begin met Bottles gebruiken"
-
-#: src/ui/onboard.ui:150
-msgid "Next"
-msgstr "Volgende"
-
-#: src/ui/preferences.ui:6 src/ui/window.ui:24 src/views/details.py:158
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-#: src/ui/preferences.ui:13 src/ui/preferences.ui:46
-msgid "General"
-msgstr "Algemeen"
-
-#: src/ui/preferences.ui:16
-msgid "Appearance"
-msgstr "Uiterlijk"
-
-#: src/ui/preferences.ui:19
-msgid "Dark Mode"
-msgstr "Donker thema"
-
-#: src/ui/preferences.ui:20
-msgid "Whether Bottles should use the dark color scheme."
-msgstr "Of Bottles het donkere kleurenschema moet gebruiken."
-
-#: src/ui/preferences.ui:32
-msgid "Show Update Date"
-msgstr "Updatedatum weergeven"
-
-#: src/ui/preferences.ui:33
-msgid "Whether to show the update date in the bottle list."
-msgstr "Of de datum van de update in de bottleslijst moet worden getoond."
-
-#: src/ui/preferences.ui:50
-msgid "Show notifications for downloads and installs."
-msgstr "Toon meldingen voor downloads en installaties."
-
-#: src/ui/preferences.ui:61
-msgid "Temp Files"
-msgstr "Tijdelijke bestanden"
-
-#: src/ui/preferences.ui:62
-msgid "Clean temp files when Bottles launches?"
-msgstr "Tijdelijke bestanden opschonen als Bottles opstart?"
-
-#: src/ui/preferences.ui:73
-msgid "Close Bottles After Starting a Program"
-msgstr "Bottles sluiten na het starten van een programma"
-
-#: src/ui/preferences.ui:74
-msgid "Close Bottles after starting a program from the file manager."
-msgstr ""
-"Sluit Bottles na het starten van een programma vanuit de bestandsbeheerder."
-
-#: src/ui/preferences.ui:87
-msgid "Integrations"
-msgstr "Integraties"
-
-#: src/ui/preferences.ui:90
-msgid "Steam Proton Prefixes"
-msgstr "Steam-Proton-prefixes"
-
-#: src/ui/preferences.ui:91
-msgid "List and manage Steam Proton prefixes."
-msgstr "Bekijk en beheer Steam-Proton-prefixes."
-
-#: src/ui/preferences.ui:95
-msgid "Read Documentation"
-msgstr "Documentatie lezen"
-
-#: src/ui/preferences.ui:113
-msgid "List Steam Apps in Programs List"
-msgstr "Steam-apps in programmalijst weergeven"
-
-#: src/ui/preferences.ui:114
-msgid "Requires Steam for Windows installed in the bottle."
-msgstr "Vereist dat Steam voor Windows in de bottle is geïnstalleerd."
-
-#: src/ui/preferences.ui:125
-msgid "List Epic Games in Programs List"
-msgstr "Epic Games in programmalijst weergeven"
-
-#: src/ui/preferences.ui:126
-msgid "Requires Epic Games Store installed in the bottle."
-msgstr "Vereist dat de Epic Games Store in de bottle is geïnstalleerd."
-
-#: src/ui/preferences.ui:137
-msgid "List Ubisoft Games in Programs List"
-msgstr "Ubisoft-games in programmalijst weergeven"
-
-#: src/ui/preferences.ui:138
-msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr "Vereist dat de Ubisoft Connect in de bottle is geïnstalleerd."
-
-#: src/ui/preferences.ui:151
-msgid "Advanced"
-msgstr "Geavanceerd"
-
-#: src/ui/preferences.ui:154
-msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Aangepast bottles-pad (opnieuw opstarten vereist)"
-
-#: src/ui/preferences.ui:155 src/views/preferences.py:188
-#: src/views/preferences.py:204
-msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)."
-msgstr ""
-"Kies waar u de nieuwe bottles wilt bewaren (hierdoor worden de bestaande "
-"niet verplaatst)."
-
-#: src/ui/preferences.ui:188
-msgid "Runners"
-msgstr "Runners"
-
-#: src/ui/preferences.ui:193
-msgid "Pre-Release"
-msgstr "Pre-release"
-
-#: src/ui/preferences.ui:194
-msgid "Display unstable versions of runners."
-msgstr "Toon instabiele versies van runners."
-
-#: src/ui/preferences.ui:210
-msgid "DLL Components"
-msgstr "DLL-componenten"
-
-#: src/ui/preferences.ui:223
-msgid "DXVK-NVAPI"
-msgstr "DXVK-NVAPI"
-
-#: src/ui/preferences.ui:236
-msgid "Core"
-msgstr "Kern"
-
-#: src/ui/preferences.ui:240
-msgid "Runtime"
-msgstr "Looptijd"
-
-#: src/ui/preferences.ui:245
-msgid "WineBridge"
-msgstr "WineBridge"
-
-#: src/ui/preferences.ui:256
-msgid ""
-"These features are under heavy development and may be unstable, expect bugs "
-"and breakage."
-msgstr ""
-"Deze functies zijn onder ontwikkeling en kunnen instabiel zijn, houd "
-"rekening met problemen."
-
-#: src/ui/preferences.ui:260
-msgid "In early development (requires restart)."
-msgstr "In vroege ontwikkeling (opnieuw opstarten vereist)."
-
-#: src/ui/preferences.ui:271
-msgid "Sandbox per bottle"
-msgstr "Zandbak per bottle"
-
-#: src/ui/preferences.ui:272
-msgid "In early development."
-msgstr "In vroege ontwikkeling."
-
-#: src/ui/program-entry.ui:21
-msgid "Launch with terminal"
-msgstr "Starten met terminal"
-
-#: src/ui/program-entry.ui:28
-msgid "Browse path"
-msgstr "Blader door pad"
-
-#: src/ui/program-entry.ui:44
-msgid "Change Launch Options…"
-msgstr "Startopties wijzigen…"
-
-#: src/ui/program-entry.ui:49
-msgid "Add to My Library"
-msgstr "Toevoegen aan mijn bibliotheek"
-
-#: src/ui/program-entry.ui:54
-msgid "Add Desktop Entry"
-msgstr "App-icoon toevoegen"
-
-#: src/ui/program-entry.ui:59
-msgid "Add to Steam"
-msgstr "Toevoegen aan Steam"
-
-#: src/ui/program-entry.ui:64
-msgid "Rename…"
-msgstr "Hernoemen…"
-
-#: src/ui/program-entry.ui:73
-msgid "Hide Program"
-msgstr "Programma verbergen"
-
-#: src/ui/program-entry.ui:78
-msgid "Show Program"
-msgstr "Programma tonen"
-
-#: src/ui/program-entry.ui:83
-msgid "Remove from List"
-msgstr "Verwijderen uit lijst"
-
-#: src/ui/program-entry.ui:99
-msgid "Program name"
-msgstr "Programmanaam"
-
-#. id as identification
-#: src/ui/state-entry.ui:7
-msgid "State id"
-msgstr "Staat-id"
-
-#: src/ui/state-entry.ui:8
-msgid "State comment"
-msgstr "Staatopmerking"
-
-#: src/ui/state-entry.ui:16
-msgid "Restore this state"
-msgstr "Herstel deze staat"
-
-#: src/ui/task-entry.ui:24
-msgid "Delete message"
-msgstr "Verwijder bericht"
-
-#: src/ui/window.ui:19
-msgid "Import/Export…"
-msgstr "Importeren/exporteren…"
-
-#: src/ui/window.ui:33
-msgid "Support"
-msgstr "Ondersteuning"
-
-#: src/ui/window.ui:43
-msgid "Forums"
-msgstr "Forums"
-
-#: src/ui/window.ui:48
-msgid "About Bottles"
-msgstr "Over Bottles"
-
-#: src/ui/window.ui:79
-msgid "Open menu"
-msgstr "Open menu"
-
-#: src/ui/window.ui:93
-msgid ""
-"You don't seem connected to the internet. Without it you will not be able to "
-"download essential components. Click this icon when you have reestablished "
-"the connection."
-msgstr ""
-"Je lijkt niet verbonden te zijn met het internet. Zonder verbinding kan je "
-"geen essentiële onderdelen downloaden. Klik op dit icoon wanneer je weer "
-"verbinding hebt."
-
-#: src/ui/window.ui:99
-msgid "New bottle"
-msgstr "Nieuwe bottle"
-
-#: src/utils/connection.py:67
-msgid "You are offline, unable to download."
-msgstr "U bent offline, niet in staat om te downloaden."
-
-#: src/views/bottle_details.py:142
-#, python-format
-msgid "Updated: %s"
-msgstr "Bijgewerkt: %s"
-
-#: src/views/bottle_details.py:200 src/views/list.py:118
-msgid "Choose a Windows executable file"
-msgstr "Kies een uitvoerbaar Windows-bestand"
-
-#: src/views/bottle_details.py:209
-msgid "Be Aware of Sandbox"
-msgstr "Bewust zijn van zandbak"
-
-#: src/views/bottle_details.py:210
-msgid ""
-"Bottles is running in a sandbox, a restricted permission environment needed "
-"to keep you safe. If the program won't run, consider moving inside the "
-"bottle (3 dots icon on the top), then launch from there."
-msgstr ""
-
-#: src/views/bottle_details.py:212
-msgid "Ok"
-msgstr "Ok"
-
-#: src/views/bottle_details.py:267
-msgid "Select the location where to save the backup config"
-msgstr ""
-"Selecteer de locatie waar de back-up-configuratie moet worden opgeslagen"
-
-#: src/views/bottle_details.py:271
-msgid "Select the location where to save the backup archive"
-msgstr "Selecteer de locatie waar het back-up-archief moet worden opgeslagen"
-
-#: src/views/bottle_details.py:276
-#, python-brace-format
-msgid "Backup created for '{0}'."
-msgstr "Back-up gemaakt voor '{0}'."
-
-#: src/views/bottle_details.py:278
-#, python-brace-format
-msgid "Backup failed for '{0}'."
-msgstr "Back-up mislukt voor '{0}'."
-
-#: src/views/bottle_details.py:296
-msgid "Export"
-msgstr "Exporteren"
-
-#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
-#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
-#: src/views/bottle_preferences.py:745
-msgid "Confirm"
-msgstr "Bevestig"
-
-#: src/views/bottle_details.py:333
-msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Weet u zeker dat u deze bottle en alle bestanden wilt verwijderen?"
-
-#: src/views/bottle_details.py:412
-msgid ""
-"Are you sure you want to terminate all processes?\n"
-"This can cause data loss."
-msgstr ""
-"Weet u zeker dat u alle processen wilt beëindigen?\n"
-"Dit kan gegevensverlies veroorzaken."
-
-#: src/views/bottle_preferences.py:207
-msgid "This feature is not available on your system."
-msgstr "Deze functie is niet beschikbaar op uw systeem."
-
-#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:405
-msgid "Default to the bottle path."
-msgstr "Standaardwaarde is het bottlespad."
-
-#: src/views/bottle_preferences.py:258
-msgid "Choose working directory for executables"
-msgstr "Kies werkmap voor uitvoerbare bestanden"
-
-#: src/views/bottle_preferences.py:741
-msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
-
-#: src/views/bottle_preferences.py:742
-msgid ""
-"This will kepp all your files but will delete all states. Do you want to "
-"continue?"
-msgstr ""
-
-#: src/views/bottle_programs.py:83
-#, python-brace-format
-msgid "'{0}' added."
-msgstr "'{0}' toegevoegd."
-
-#: src/views/bottle_programs.py:87
-msgid "Choose an executable path"
-msgstr "Kies een uitvoerbaar pad"
-
-#: src/views/bottle_programs.py:89
-msgid "Add"
-msgstr "Toevoegen"
-
-#: src/views/bottle_versioning.py:88
-msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
-
-#: src/views/details.py:154
-msgid "Details & Utilities"
-msgstr "Details & Hulpprogramma's"
-
-#: src/views/details.py:162
-msgid "Dependencies"
-msgstr "Afhankelijkheden"
-
-#: src/views/details.py:167
-msgid "Found in your bottle's Start menu."
-msgstr "Gevonden in het beginmenu van je bottle."
-
-#: src/views/details.py:174
-msgid "Installers"
-msgstr "Installers"
-
-#: src/views/details.py:377
-msgid "Operations in progress, please wait."
-msgstr "Bezig met handelingen, even geduld."
-
-#: src/views/details.py:381
-msgid "Return to your bottles."
-msgstr "Ga terug naar uw bottles."
-
-#: src/views/importer.py:89
-msgid "Backup imported successfully."
-msgstr "Backup succesvol geïmporteerd."
-
-#: src/views/importer.py:91
-msgid "Import failed."
-msgstr "Importeren mislukt."
-
-#: src/views/importer.py:103 src/views/importer.py:132
-msgid "Importing backup…"
-msgstr "Back-up importeren…"
-
-#: src/views/importer.py:115
-msgid "Choose a backup archive"
-msgstr "Kies een backup archief"
-
-#: src/views/importer.py:117 src/views/importer.py:146
-msgid "Import"
-msgstr "Importeren"
-
-#: src/views/importer.py:144
-msgid "Choose a configuration file"
-msgstr "Kies een configuratiebestand"
-
-#: src/views/list.py:59 src/views/list.py:65
-msgid "N/A"
-msgstr "N.V.T"
-
-#: src/views/list.py:220
-msgid "Your Bottles"
-msgstr "Jouw bottles"
-
-#: src/views/loading.py:33
-#, python-brace-format
-msgid "Downloading ~{0} of packages…"
-msgstr "~{0} aan pakketten downloaden…"
-
-#: src/views/loading.py:34
-#, python-brace-format
-msgid "Fetched {0} of {1} packages"
-msgstr "{0} van {1} pakketten gedownload"
-
-#: src/views/new.py:142
-msgid "Choose a recipe file"
-msgstr "Kies een recept bestand"
-
-#: src/views/new.py:158
-msgid "Choose where to store the bottle"
-msgstr "Kies waar u de bottle wilt bewaren"
-
-#: src/views/new.py:211
-msgid "There was an error creating the bottle."
-msgstr "Er is een fout opgetreden bij het maken van de bottle."
-
-#: src/views/new.py:219
-#, python-brace-format
-msgid "A bottle named “{0}” was created successfully"
-msgstr "Een bottle met de naam \"{0}\" is succesvol aangemaakt"
-
-#: src/views/preferences.py:125
-msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr "Steam kon niet worden gevonden of Bottles heeft geen rechten hiervoor."
-
-#: src/views/preferences.py:193
-msgid "Choose new bottles path"
-msgstr "Kies nieuw bottles pad"
-
-#: src/views/preferences.py:236
-msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:237
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:240
-msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
-
-#: src/views/preferences.py:241
-msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
-msgstr ""
-
-#: src/views/preferences.py:243
-msgid "Other"
-msgstr "Ander"
-
-#: src/widgets/component.py:70
-msgid "Upgrade"
-msgstr "Opwaarderen"
-
-#: src/widgets/component.py:145
-msgid "Installing…"
-msgstr "Installeren…"
-
-#: src/widgets/dependency.py:107 src/widgets/installer.py:72
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "Manifest voor {0}"
-
-#: src/widgets/dependency.py:170
-#, python-brace-format
-msgid "'{0}' installed."
-msgstr "'{0}' geïnstalleerd."
-
-#: src/widgets/dependency.py:184
-#, python-brace-format
-msgid "'{0}' failed to install."
-msgstr "Kon '{0}' niet installeren."
-
-#: src/widgets/importer.py:66
-#, python-brace-format
-msgid "'{0}' imported."
-msgstr "'{0}' geïmporteerd."
-
-#: src/widgets/installer.py:81
-#, python-brace-format
-msgid "Review for {0}"
-msgstr "Review voor {0}"
-
-#: src/widgets/program.py:187
-#, python-brace-format
-msgid "Launching '{0}'…"
-msgstr "'{0}' starten…"
-
-#: src/widgets/program.py:193
-#, python-brace-format
-msgid "Launching '{0}' with Steam…"
-msgstr "'{0}' starten met Steam…"
-
-#: src/widgets/program.py:215
-#, python-brace-format
-msgid "'{0}' hidden."
-msgstr "'{0}' verborgen."
-
-#: src/widgets/program.py:217
-#, python-brace-format
-msgid "'{0}' showed."
-msgstr "'{0}' getoond."
-
-#: src/widgets/program.py:240
-#, python-brace-format
-msgid "'{0}' removed."
-msgstr "'{0}' verwijderd."
-
-#: src/widgets/program.py:254
-#, python-brace-format
-msgid "'{0}' renamed to '{1}'."
-msgstr "'{0}' hernoemd naar '{1}'."
-
-#: src/widgets/program.py:274
-#, python-brace-format
-msgid "Desktop Entry created for '{0}'"
-msgstr "App-icoon gemaakt voor '{0}'"
-
-#: src/widgets/program.py:290
-#, python-brace-format
-msgid "'{0}' added to your library"
-msgstr "'{0}' toegevoegd aan uw bibliotheek"
-
-#: src/widgets/program.py:306
-#, python-brace-format
-msgid "'{0}' added to your Steam library"
-msgstr "'{0}' toegevoegd aan uw Steam-bibliotheek"
-
-#: src/window.py:184
-msgid "Custom Bottles Path not Found"
-msgstr "Aangepast bottles-pad niet gevonden"
-
-#: src/window.py:185
-msgid ""
-"Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
-"Standaardpad wordt gebruikt. Bottles van het gegeven pad worden niet "
-"weergegeven."
-
-#: src/window.py:306
-msgid "Third-Party Libraries and Special Thanks"
-msgstr "Bibliotheken van derden en speciale dank"
 
 #~ msgid "Loading…"
 #~ msgstr "Laden…"
@@ -3610,9 +3940,6 @@ msgstr "Bibliotheken van derden en speciale dank"
 #, fuzzy
 #~ msgid "Bottle"
 #~ msgstr "Bottles"
-
-#~ msgid "Special characters are not allowed!"
-#~ msgstr "Speciale tekens zijn niet toegestaan!"
 
 #, fuzzy
 #~ msgid "No runners found, please install one."

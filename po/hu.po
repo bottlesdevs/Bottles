@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-01 22:54+0200\n"
+"POT-Creation-Date: 2022-08-07 23:12+0200\n"
 "PO-Revision-Date: 2022-07-06 18:19+0000\n"
 "Last-Translator: Jabybaby <jabybaby@protonmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
@@ -19,11 +19,2906 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.13.1-dev\n"
 
+#: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
+msgid "No path specified"
+msgstr "Nincs útvonal megadva"
+
+#: bottles/backend/managers/backup.py:71
+#, python-brace-format
+msgid "Backup {0}"
+msgstr "{0} biztonsági mentése"
+
+#: bottles/backend/managers/backup.py:124
+#, python-brace-format
+msgid "Importing backup: {0}"
+msgstr "Biztonsági mentés importálása: {0}"
+
+#: bottles/backend/managers/manager.py:1030
+msgid "Fail to install components, tried 3 times."
+msgstr ""
+"Nem sikerült telepíteni az összetevőket, 3 alkalommal volt megpróbálva."
+
+#: bottles/backend/managers/manager.py:1041
+msgid "Missing essential components. Installing…"
+msgstr "Alapvető összetevők telepítése. Telepítés…"
+
+#: bottles/backend/managers/manager.py:1117
+msgid "Failed to create bottle directory."
+msgstr "Nem sikerült a palack könyvtárát létrehozni."
+
+#: bottles/backend/managers/manager.py:1129
+msgid "Failed to create placeholder directory/file."
+msgstr "Nem sikerült létrehozni helykitöltő könyvtárat/fájlt."
+
+#: bottles/backend/managers/manager.py:1134
+msgid "Generating bottle configuration…"
+msgstr "Palack konfigurációs fájljának generálása…"
+
+#: bottles/backend/managers/manager.py:1157
+msgid "Template found, applying…"
+msgstr "Sablon megtalálva, alkalmazás…"
+
+#. execute wineboot on the bottle path
+#: bottles/backend/managers/manager.py:1169
+msgid "The Wine config is being updated…"
+msgstr "A Wine konfigurációjának frissítése…"
+
+#: bottles/backend/managers/manager.py:1171
+msgid "Wine config updated!"
+msgstr "Wine konfiguráció frissítve!"
+
+#: bottles/backend/managers/manager.py:1179
+msgid "Running as Flatpak, sandboxing userdir…"
+msgstr "Futtatás Flatpak-ként, felhasználó mappa homokozóba helyezése…"
+
+#: bottles/backend/managers/manager.py:1181
+msgid "Sandboxing userdir…"
+msgstr "Felhasználó mappa homokozóba helyezése…"
+
+#: bottles/backend/managers/manager.py:1211
+msgid "Setting Windows version…"
+msgstr "Windows verzió beállítása…"
+
+#: bottles/backend/managers/manager.py:1221
+msgid "Apply CMD default settings…"
+msgstr "CMD alapértelmezett beállítások alkalmazása…"
+
+#: bottles/backend/managers/manager.py:1229
+msgid "Optimizing environment…"
+msgstr "Környezet optimalizálása…"
+
+#: bottles/backend/managers/manager.py:1240
+#, python-brace-format
+msgid "Applying environment: {0}…"
+msgstr "Környezet alkalmazása: {0}…"
+
+#: bottles/backend/managers/manager.py:1250
+msgid "(!) Using a custom environment recipe…"
+msgstr "(!) Egyéni környezetrecept használata…"
+
+#: bottles/backend/managers/manager.py:1253
+msgid "(!) Recipe not not found or not valid…"
+msgstr "(!) A recept nem található, vagy érvénytelen…"
+
+#: bottles/backend/managers/manager.py:1270
+msgid "Installing DXVK…"
+msgstr "DXVK telepítése…"
+
+#: bottles/backend/managers/manager.py:1278
+msgid "Installing VKD3D…"
+msgstr "VKD3D telepítése…"
+
+#: bottles/backend/managers/manager.py:1286
+msgid "Installing DXVK-NVAPI…"
+msgstr "DXVK-NVAPI telepítése…"
+
+#: bottles/backend/managers/manager.py:1295
+#, python-format
+msgid "Installing dependency: %s …"
+msgstr "Függőség telepítése: %s…"
+
+#: bottles/backend/managers/manager.py:1311
+msgid "Creating versioning state 0…"
+msgstr "A(z) 0 verziószámozási állapot létrehozása…"
+
+#: bottles/backend/managers/manager.py:1319
+msgid "Finalizing…"
+msgstr "Véglegesítés…"
+
+#: bottles/backend/managers/manager.py:1330
+msgid "Caching template…"
+msgstr "Sablon gyorsítótárazása…"
+
+#: bottles/backend/managers/versioning.py:97
+#, fuzzy
+msgid "Committing state …"
+msgstr "Állapotok frissítése …"
+
+#: bottles/backend/managers/versioning.py:106
+msgid "Nothing to commit"
+msgstr ""
+
+#: bottles/backend/managers/versioning.py:112
+#, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "Az új [{0}] állapot sikeresen létrehozva!"
+
+#: bottles/backend/managers/versioning.py:140
+#, fuzzy
+msgid "States list retrieved successfully!"
+msgstr "Az új [{0}] állapot sikeresen létrehozva!"
+
+#: bottles/backend/managers/versioning.py:171
+#, fuzzy, python-brace-format
+msgid "State {0} restored successfully!"
+msgstr "Az új [{0}] állapot sikeresen létrehozva!"
+
+#: bottles/backend/managers/versioning.py:176
+#, fuzzy
+msgid "Restoring state {} …"
+msgstr "Állapotok frissítése …"
+
+#: bottles/backend/managers/versioning.py:185
+#, fuzzy
+msgid "State not found"
+msgstr "Nem található állapot"
+
+#: bottles/backend/managers/versioning.py:191
+msgid "State {} is already the active state"
+msgstr ""
+
+#: bottles/frontend/windows/crash.py:37
+msgid "Show report"
+msgstr "Jelentés megjelenítése"
+
+#: bottles/frontend/windows/crash.py:88
+msgid ""
+"            This issue was reported 5 times and cannot be sent again.\n"
+"            Report your feedback in one of the below existing reports."
+msgstr ""
+"            Ez a hiba 5 alkalommal lett jelentve és nem lehet újra "
+"beküldeni.\n"
+"Jelentse visszajelzését az alábbi meglévő jelentések egyikében."
+
+#: bottles/frontend/windows/dlloverrides.py:136
+msgid "No overrides found."
+msgstr "Nem találhatók felülbírálások."
+
+#: bottles/frontend/windows/drives.py:71
+msgid "Choose path"
+msgstr "Útvonal kiválasztása"
+
+#: bottles/frontend/windows/drives.py:73
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:234
+#: bottles/frontend/windows/launchoptions.py:258
+#: bottles/frontend/windows/vkbasalt.py:355
+#: bottles/frontend/ui/dialog-bottle-picker.ui:17
+#: bottles/frontend/ui/dialog-crash-report.ui:18
+#: bottles/frontend/ui/dialog-proton-alert.ui:17
+#: bottles/frontend/ui/dialog-rename.ui:17
+#: bottles/frontend/ui/dialog-run-args.ui:19 bottles/frontend/ui/new.ui:33
+#: bottles/frontend/views/bottle_details.py:202
+#: bottles/frontend/views/bottle_details.py:296
+#: bottles/frontend/views/bottle_details.py:335
+#: bottles/frontend/views/bottle_details.py:414
+#: bottles/frontend/views/bottle_preferences.py:276
+#: bottles/frontend/views/bottle_preferences.py:775
+#: bottles/frontend/views/bottle_programs.py:92
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146 bottles/frontend/views/list.py:120
+#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
+#: bottles/frontend/views/preferences.py:158
+msgid "Cancel"
+msgstr "Mégse"
+
+#: bottles/frontend/windows/drives.py:73
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:234
+#: bottles/frontend/windows/launchoptions.py:258
+#: bottles/frontend/ui/dialog-bottle-picker.ui:22
+#: bottles/frontend/views/bottle_preferences.py:276
+#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
+#: bottles/frontend/views/preferences.py:158
+msgid "Select"
+msgstr "Kiválasztás"
+
+#: bottles/frontend/windows/envvars.py:131
+msgid "No environment variables defined."
+msgstr "Nincs környezeti változó megadva."
+
+#: bottles/frontend/windows/exclusionpatterns.py:108
+#, fuzzy
+msgid "No exclusion patterns defined."
+msgstr "Nincs környezeti változó megadva."
+
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/ui/dialog-gamescope.ui:34
+#: bottles/frontend/ui/dialog-launch-options.ui:35
+#: bottles/frontend/ui/dialog-rename.ui:22
+#: bottles/frontend/ui/dialog-vkbasalt.ui:38
+msgid "Save"
+msgstr "Mentés"
+
+#: bottles/frontend/windows/generic.py:24
+msgid "An error has occurred."
+msgstr "Hiba történt."
+
+#: bottles/frontend/windows/generic.py:91
+#: bottles/frontend/windows/generic.py:137
+#: bottles/frontend/windows/generic.py:182
+msgid "Copy to clipboard"
+msgstr "Másolás vágólapra"
+
+#: bottles/frontend/windows/installer.py:64
+msgid "Select Resource FIle"
+msgstr "Erőforrásfájl kiválasztása"
+
+#: bottles/frontend/windows/installer.py:115
+#, fuzzy
+msgid "Installing Windows dependencies…"
+msgstr "Függőség telepítése: %s…"
+
+#: bottles/frontend/windows/installer.py:116
+#, fuzzy
+msgid "Configuring the bottle…"
+msgstr "Palack létrehozása …"
+
+#: bottles/frontend/windows/installer.py:117
+msgid "Processing installer steps…"
+msgstr ""
+
+#: bottles/frontend/windows/installer.py:118
+#, fuzzy
+msgid "Installing the {}…"
+msgstr "Telepítés…"
+
+#: bottles/frontend/windows/installer.py:119
+msgid "Performing final checks…"
+msgstr ""
+
+#: bottles/frontend/windows/installer.py:123
+#, fuzzy, python-brace-format
+msgid "Installing {0}…"
+msgstr "Telepítés…"
+
+#: bottles/frontend/windows/installer.py:125
+#, python-brace-format
+msgid "{0} is now available in the programs view."
+msgstr ""
+
+#: bottles/frontend/windows/installer.py:171
+msgid "Installer failed with unknown error"
+msgstr "A telepítő ismeretlen hibával meghiúsult"
+
+#. endregion
+#: bottles/frontend/windows/launchoptions.py:56
+#: bottles/frontend/ui/dialog-launch-options.ui:59
+msgid "Choose a script which should be executed after run."
+msgstr "Válasszon egy szkriptet, amelyet a futás után végre kell hajtani."
+
+#: bottles/frontend/windows/launchoptions.py:57
+#: bottles/frontend/ui/dialog-launch-options.ui:92
+msgid "Choose from where start the program."
+msgstr "Válassza ki a program indítási helyét."
+
+#: bottles/frontend/windows/launchoptions.py:58
+#, python-brace-format
+msgid "{0} is already disabled for this bottle."
+msgstr "{0} már le van tiltva ebben a palackban."
+
+#: bottles/frontend/windows/launchoptions.py:59
+msgid "This setting is different from the bottle's default."
+msgstr "Ez a beállítás különbözik a palack alapértelmezett beállításától."
+
+#: bottles/frontend/windows/launchoptions.py:232
+msgid "Choose the script"
+msgstr "Szkript kiválasztása"
+
+#: bottles/frontend/windows/launchoptions.py:256
+msgid "Choose the Working Directory"
+msgstr "Válassza ki a munkakönyvtárat"
+
+#: bottles/frontend/windows/vkbasalt.py:84
+#: bottles/frontend/ui/dialog-vkbasalt.ui:420
+#, fuzzy
+msgid "Choose a file."
+msgstr "Válassza ki a receptfájlt"
+
+#: bottles/frontend/windows/vkbasalt.py:306
+#, fuzzy
+msgid "File not Found"
+msgstr "Nem található állapot"
+
+#: bottles/frontend/windows/vkbasalt.py:307
+msgid "The given file does not exist. Please choose an appropriate file."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:330
+msgid "Spaces in File Name"
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:331
+msgid ""
+"Color Lookup Table path must not contain any spaces. Please rename the file "
+"to remove all spaces."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:339
+msgid "Invalid Image Dimension"
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:340
+msgid "Height and width of the image must be equal."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:353
+#: bottles/frontend/views/importer.py:144
+msgid "Choose a configuration file"
+msgstr "Konfigurációs fájl kiválasztása"
+
+#: bottles/frontend/windows/vkbasalt.py:355
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146
+msgid "Import"
+msgstr "Importálás"
+
+#: bottles/frontend/main.py:105
+msgid "Show version"
+msgstr "Verzió megjelenítése"
+
+#: bottles/frontend/main.py:113
+msgid "Executable path"
+msgstr "Végrehajtható fájl elérési útja"
+
+#: bottles/frontend/main.py:121
+msgid "lnk path"
+msgstr "lnk útvonal"
+
+#: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.ui:103
+#: bottles/frontend/ui/list-entry.ui:7
+msgid "Bottle name"
+msgstr "Palack neve"
+
+#: bottles/frontend/main.py:137
+msgid "Pass arguments"
+msgstr "Argumentumok átadása"
+
+#: bottles/frontend/main.py:196
+msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
+msgstr "Érvénytelen URI (szintaxis: bottles:run/<palack>/<program>)"
+
+#: bottles/frontend/main.py:237
+msgid "[Quit] request received."
+msgstr "[Kilépési] kérelem érkezett."
+
+#: bottles/frontend/main.py:246
+msgid "[Help] request received."
+msgstr "[Segítség] kérés érkezett."
+
+#: bottles/frontend/main.py:254
+msgid "[Refresh] request received."
+msgstr "[Frissítési] kérelem érkezett."
+
+#: bottles/frontend/operation.py:50
+msgid "Calculating…"
+msgstr "Számítás…"
+
+#: bottles/frontend/ui/about.ui:8
+msgid "© 2017-2022 - Bottles Developers"
+msgstr "© 2017-2022 - Palackok fejlesztői"
+
+#: bottles/frontend/ui/about.ui:9
+msgid "Easily manage wineprefix using environments"
+msgstr "Wine prefix könnyű kezelése a környezetek használatával"
+
+#: bottles/frontend/ui/component-entry.ui:6
+msgid "Component version"
+msgstr "Összetevőverzió"
+
+#: bottles/frontend/ui/component-entry.ui:15
+#: bottles/frontend/ui/dependency-entry.ui:34
+#: bottles/frontend/ui/program-entry.ui:92
+msgid "Uninstall"
+msgstr "Eltávolítás"
+
+#: bottles/frontend/ui/component-entry.ui:26
+#: bottles/frontend/ui/importer-entry.ui:15
+msgid "Browse files"
+msgstr "Fájlok tallózása"
+
+#: bottles/frontend/ui/component-entry.ui:37
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch. Press to try again."
+msgstr ""
+"A telepítés nem sikerült. Ennek oka lehet a tároló hibája, befejezetlen "
+"letöltés vagy az ellenőrző összeg eltérése. Nyomja meg az újrapróbáláshoz."
+
+#: bottles/frontend/ui/component-entry.ui:48
+msgid "Download & Install"
+msgstr "Letöltés és telepítés"
+
+#: bottles/frontend/ui/component-entry.ui:61
+msgid "0%"
+msgstr "0%"
+
+#: bottles/frontend/ui/dependency-entry.ui:18
+msgid "Show Manifest"
+msgstr "Jegyzékfájl megjelenítése"
+
+#: bottles/frontend/ui/dependency-entry.ui:23
+msgid "License"
+msgstr "Licenc"
+
+#: bottles/frontend/ui/dependency-entry.ui:28
+msgid "Reinstall"
+msgstr "Újratelepítés"
+
+#: bottles/frontend/ui/dependency-entry.ui:43
+#: bottles/frontend/ui/installer-entry.ui:32
+msgid "Report a Bug…"
+msgstr "Hiba bejelentése…"
+
+#: bottles/frontend/ui/dependency-entry.ui:50
+#, fuzzy
+msgid "Dependency name"
+msgstr "Függőségek"
+
+#: bottles/frontend/ui/dependency-entry.ui:52
+#, fuzzy
+msgid "Dependency description"
+msgstr "Függőségek"
+
+#: bottles/frontend/ui/dependency-entry.ui:59
+msgid "Category"
+msgstr ""
+
+#: bottles/frontend/ui/dependency-entry.ui:73
+msgid "Download & Install this dependency"
+msgstr "Függőség letöltése és telepítése"
+
+#: bottles/frontend/ui/dependency-entry.ui:89
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+"Telepítési hiba történt. Indítsa újra a Palackokat az összeomlási jelentés "
+"elolvasásához, vagy futtassa a terminállal a kimenet megtekintéséhez."
+
+#: bottles/frontend/ui/details-bottle.ui:18
+msgid "Troubleshooting"
+msgstr "Hibakeresés"
+
+#: bottles/frontend/ui/details-bottle.ui:26
+msgid "Browse Files…"
+msgstr "Fájlok tallózása…"
+
+#: bottles/frontend/ui/details-bottle.ui:31
+msgid "Duplicate Bottle…"
+msgstr "Palack duplikálása…"
+
+#: bottles/frontend/ui/details-bottle.ui:36 bottles/frontend/ui/importer.ui:86
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr "Ez a palack teljes archívuma, beleértve a személyes fájlokat is."
+
+#: bottles/frontend/ui/details-bottle.ui:37
+msgid "Full Backup…"
+msgstr "Teljes biztonsági mentés…"
+
+#: bottles/frontend/ui/details-bottle.ui:42 bottles/frontend/ui/importer.ui:80
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Ez csak a palack konfigurációja, tökéletes, ha újat szeretne létrehozni, de "
+"személyes fájlok nélkül."
+
+#: bottles/frontend/ui/details-bottle.ui:43
+msgid "Export Configuration…"
+msgstr "Konfiguráció exportálása…"
+
+#: bottles/frontend/ui/details-bottle.ui:51
+msgid "Delete Bottle…"
+msgstr "Palack törlése…"
+
+#: bottles/frontend/ui/details-bottle.ui:86
+msgid "Kill all Processes"
+msgstr "Minden folyamat megszakítása"
+
+#: bottles/frontend/ui/details-bottle.ui:91
+msgid "Simulate a Windows system shutdown."
+msgstr "Windows rendszerleállítás szimulálása."
+
+#: bottles/frontend/ui/details-bottle.ui:92
+msgid "Shutdown"
+msgstr "Leállítás"
+
+#: bottles/frontend/ui/details-bottle.ui:97
+msgid "Simulate a Windows system reboot."
+msgstr "Windows rendszerújraindítás szimulálása."
+
+#: bottles/frontend/ui/details-bottle.ui:98
+msgid "Reboot"
+msgstr "Újraindítás"
+
+#: bottles/frontend/ui/details-bottle.ui:121
+msgid "Run with Arguments…"
+msgstr "Futtatás argumentumokkal…"
+
+#: bottles/frontend/ui/details-bottle.ui:126
+msgid "Launch in Terminal…"
+msgstr "Indítás terminálban…"
+
+#: bottles/frontend/ui/details-bottle.ui:157
+msgid "My bottle"
+msgstr "A palackom"
+
+#: bottles/frontend/ui/details-bottle.ui:169
+msgid "Win64"
+msgstr "Win64"
+
+#: bottles/frontend/ui/details-bottle.ui:177
+#: bottles/frontend/ui/list-entry.ui:14 bottles/frontend/ui/new.ui:77
+msgid "Environment"
+msgstr "Környezet"
+
+#: bottles/frontend/ui/details-bottle.ui:185
+#: bottles/frontend/ui/details-preferences.ui:314
+#: bottles/frontend/ui/new.ui:129
+msgid "Runner"
+msgstr "Futtató"
+
+#: bottles/frontend/ui/details-bottle.ui:193
+#: bottles/frontend/ui/list-entry.ui:23
+msgid "Versioning enabled for this bottle"
+msgstr "A verziókezelés engedélyezve van ehhez a palackhoz"
+
+#: bottles/frontend/ui/details-bottle.ui:198
+#: bottles/frontend/ui/list-entry.ui:28
+msgid "Versioning is active in this bottle."
+msgstr "A verziókezelés aktív ebben a palackban."
+
+#: bottles/frontend/ui/details-bottle.ui:208
+#: bottles/frontend/ui/list-entry.ui:34
+msgid "0"
+msgstr "0"
+
+#: bottles/frontend/ui/details-bottle.ui:219
+msgid "Run Executable…"
+msgstr "Végrehajtható fájl futtatása…"
+
+#: bottles/frontend/ui/details-bottle.ui:235
+msgid "Layers"
+msgstr "Rétegek"
+
+#: bottles/frontend/ui/details-bottle.ui:241
+#: bottles/frontend/views/details.py:166
+msgid "Programs"
+msgstr "Programok"
+
+#: bottles/frontend/ui/details-bottle.ui:246
+msgid "Tools"
+msgstr "Eszközök"
+
+#: bottles/frontend/ui/details-bottle.ui:250
+msgid "Command Line"
+msgstr "Parancssor"
+
+#: bottles/frontend/ui/details-bottle.ui:251
+msgid "Run commands inside the Bottle."
+msgstr "Parancsok futtatása a palackban."
+
+#: bottles/frontend/ui/details-bottle.ui:262
+msgid "Registry Editor"
+msgstr "Rendszerleíró-szerkesztő"
+
+#: bottles/frontend/ui/details-bottle.ui:263
+msgid "Edit the internal registry."
+msgstr "Belső rendszerleíró szerkesztése."
+
+#: bottles/frontend/ui/details-bottle.ui:273
+msgid "Legacy Tools"
+msgstr "Örökölt eszközök"
+
+#: bottles/frontend/ui/details-bottle.ui:277
+msgid "Explorer"
+msgstr "Intéző"
+
+#: bottles/frontend/ui/details-bottle.ui:278
+msgid "Browse internal files with the Wine explorer."
+msgstr "Belső fájlok tallózása a Wine intézővel."
+
+#: bottles/frontend/ui/details-bottle.ui:289
+#: bottles/frontend/views/details.py:178
+msgid "Task Manager"
+msgstr "Feladatkezelő"
+
+#: bottles/frontend/ui/details-bottle.ui:290
+msgid "Manage processes with the Wine task manager."
+msgstr "Folyamatok kezelése a Wine feladatkezelőjével."
+
+#: bottles/frontend/ui/details-bottle.ui:301
+msgid "Debug"
+msgstr "Hibakeresés"
+
+#: bottles/frontend/ui/details-bottle.ui:302
+msgid "Debug wine processes."
+msgstr "Wine folyamatok hibakeresése."
+
+#: bottles/frontend/ui/details-bottle.ui:313
+msgid "Wine Configuration"
+msgstr "Wine konfiguráció"
+
+#: bottles/frontend/ui/details-bottle.ui:314
+msgid "Adjust internal settings."
+msgstr "Belső beállítások módosítása."
+
+#: bottles/frontend/ui/details-bottle.ui:325
+msgid "Uninstaller"
+msgstr "Eltávolító"
+
+#: bottles/frontend/ui/details-bottle.ui:326
+msgid "Uninstall programs using Wine uninstaller."
+msgstr "Programok eltávolítása a Wine eltávolítójának haszálatával."
+
+#: bottles/frontend/ui/details-bottle.ui:337
+msgid "Control Panel"
+msgstr "Vezérlőpult"
+
+#: bottles/frontend/ui/details-bottle.ui:338
+msgid "Access the internal Wine Control Panel."
+msgstr "Hozzáférés a belső Wine vezérlőpulthoz."
+
+#: bottles/frontend/ui/details-bottle.ui:357
+msgid "Use the Installers section or the \"Run executable\" button."
+msgstr ""
+"Használja a telepítők részt vagy a \"Végrehajtható fájl futtatása\" gombot."
+
+#: bottles/frontend/ui/details-dependencies.ui:13
+msgid "Search for dependencies…"
+msgstr "Függőségek keresése…"
+
+#: bottles/frontend/ui/details-dependencies.ui:22
+msgid ""
+"Dependencies are software, libraries and codecs that improve the "
+"compatibility of Windows software. Install from here to meet your program "
+"requirements."
+msgstr ""
+"A függőségek olyan szoftverek, könyvtárak és kodekek, amelyek javítják a "
+"Windows-szoftverek kompatibilitását. Telepítse innen, hogy megfeleljen a "
+"program követelményeinek."
+
+#: bottles/frontend/ui/details-dependencies.ui:34
+#: bottles/frontend/ui/details-installers.ui:33
+msgid ""
+"Files on this page are provided by third parties under a proprietary "
+"license. By installing them, you agree with their respective licensing terms."
+msgstr ""
+"Az ezen az oldalon található fájlokat harmadik felek biztosítják saját "
+"licenc alapján. Telepítésükkel elfogadja a vonatkozó licencfeltételeiket."
+
+#: bottles/frontend/ui/details-dependencies.ui:62
+msgid "Report a problem or a missing dependency."
+msgstr "Hiba vagy hiányzó függőség bejelentése."
+
+#: bottles/frontend/ui/details-dependencies.ui:63
+msgid "Report missing dependency"
+msgstr "Hiányzó függőség bejelentése"
+
+#: bottles/frontend/ui/details-dependencies.ui:68
+#, fuzzy
+msgid "Read documentation."
+msgstr "Dokumentáció elolvasása"
+
+#: bottles/frontend/ui/details-dependencies.ui:69
+#: bottles/frontend/ui/details-installers.ui:71
+#: bottles/frontend/ui/details-programs.ui:45
+#: bottles/frontend/ui/details-versioning.ui:44
+#: bottles/frontend/ui/window.ui:38
+msgid "Documentation"
+msgstr "Dokumentáció"
+
+#: bottles/frontend/ui/details-dependencies.ui:80
+msgid "Install Selected"
+msgstr "Kijelöltek telepítése"
+
+#: bottles/frontend/ui/details-dependencies.ui:81
+msgid "We strongly advise against installing multiple dependencies at once."
+msgstr "Nyomatékosan ajánljuk hogy ne telepítsen több függőséget egyszerre."
+
+#: bottles/frontend/ui/details-dependencies.ui:88
+msgid "Select Dependencies"
+msgstr "Függőségek kiválasztása"
+
+#: bottles/frontend/ui/details-dependencies.ui:95
+#: bottles/frontend/ui/details-installers.ui:82
+#: bottles/frontend/ui/window.ui:86
+msgid "Search"
+msgstr "Keresés"
+
+#: bottles/frontend/ui/details-installers.ui:13
+msgid "Search for Programs…"
+msgstr "Programok keresése…"
+
+#: bottles/frontend/ui/details-installers.ui:22
+#, fuzzy
+msgid ""
+"Use this section to install programs curated by our community, without "
+"having to proceed manually."
+msgstr ""
+"Ebben a részben a közösségünk által válogatott programokat telepíthet "
+"anélkül, hogy manuálisan kellene folytatnia. Vegye figyelembe a <a href="
+"\"https://docs.usebottles.com/bottles/installers#compatibility-grades"
+"\">kompatibilitási fokozatot</a> választáskor."
+
+#: bottles/frontend/ui/details-installers.ui:48
+msgid "No Installers Found"
+msgstr "Nem található telepítő"
+
+#: bottles/frontend/ui/details-installers.ui:51
+msgid ""
+"The repository is unreachable or no installer is compatible with this bottle."
+msgstr "A tároló nem elérhető vagy a telepítő nem kompatibilis a palackkal."
+
+#: bottles/frontend/ui/details-installers.ui:70
+#: bottles/frontend/ui/details-programs.ui:44
+#: bottles/frontend/ui/details-versioning.ui:43
+msgid "Read documentation"
+msgstr "Dokumentáció elolvasása"
+
+#: bottles/frontend/ui/details-preferences.ui:8
+msgid "Bottle Details"
+msgstr "Palack részletek"
+
+#: bottles/frontend/ui/details-preferences.ui:11
+#: bottles/frontend/ui/dialog-duplicate.ui:58 bottles/frontend/ui/new.ui:70
+msgid "Name"
+msgstr "Név"
+
+#: bottles/frontend/ui/details-preferences.ui:19
+msgid "Graphics"
+msgstr "Grafika"
+
+#: bottles/frontend/ui/details-preferences.ui:23
+#: bottles/frontend/ui/preferences.ui:213
+msgid "DXVK"
+msgstr "DXVK"
+
+#: bottles/frontend/ui/details-preferences.ui:24
+msgid "Improves performance of DirectX 11 games and 3D applications."
+msgstr "Javítja a DirectX 11 játékok és 3D alkalmazások teljesítményét."
+
+#: bottles/frontend/ui/details-preferences.ui:27
+#: bottles/frontend/ui/details-preferences.ui:338
+msgid "Updating DXVK, please wait…"
+msgstr "DXVK frissítése…"
+
+#: bottles/frontend/ui/details-preferences.ui:42
+#: bottles/frontend/ui/preferences.ui:218
+msgid "VKD3D"
+msgstr "VKD3D"
+
+#: bottles/frontend/ui/details-preferences.ui:43
+msgid "Improves performance of DirectX 12 games and 3D applications."
+msgstr "Javítja a DirectX 12 játékok és 3D alkalmazások teljesítményét."
+
+#: bottles/frontend/ui/details-preferences.ui:46
+#: bottles/frontend/ui/details-preferences.ui:361
+msgid "Updating VKD3D, please wait…"
+msgstr "VKD3D frissítése…"
+
+#: bottles/frontend/ui/details-preferences.ui:61
+msgid "DLSS (DXVK-NVAPI)"
+msgstr "DLSS (DXVK-NVAPI)"
+
+#: bottles/frontend/ui/details-preferences.ui:62
+msgid "Provide DLSS support if available and Nvidia's NVAPI."
+msgstr "Lehetővé teszi a DLSS támogatást és az Nvidia NVAPI-ját, ha elérhető."
+
+#: bottles/frontend/ui/details-preferences.ui:65
+#: bottles/frontend/ui/details-preferences.ui:112
+#: bottles/frontend/ui/details-preferences.ui:385
+#: bottles/frontend/ui/details-preferences.ui:407
+msgid "Updating DXVK-NVAPI, please wait…"
+msgstr "DXVK-NVAPI frissítése…"
+
+#: bottles/frontend/ui/details-preferences.ui:80
+msgid "FSR"
+msgstr "FSR"
+
+#: bottles/frontend/ui/details-preferences.ui:81
+msgid ""
+"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
+msgstr ""
+"Az FSR élvonalbeli felskálázó technológiákat használ a képkockasebesség "
+"növelésére."
+
+#: bottles/frontend/ui/details-preferences.ui:88
+msgid "Ultra Quality"
+msgstr "Ultra minőség"
+
+#: bottles/frontend/ui/details-preferences.ui:89
+msgid "Quality"
+msgstr "Minőség"
+
+#: bottles/frontend/ui/details-preferences.ui:90
+msgid "Balanced"
+msgstr "Kiegyensúlyozott"
+
+#: bottles/frontend/ui/details-preferences.ui:91
+msgid "Performance"
+msgstr "Teljesítmény"
+
+#: bottles/frontend/ui/details-preferences.ui:108
+#: bottles/frontend/ui/preferences.ui:228
+msgid "LatencyFleX"
+msgstr "LatencyFleX"
+
+#: bottles/frontend/ui/details-preferences.ui:109
+msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
+msgstr ""
+"Az NVIDIA Reflex egy alternatívája. Egyes csalásgátló rendszerek észlelhetik."
+
+#: bottles/frontend/ui/details-preferences.ui:128
+msgid "Discrete GPU"
+msgstr "Diszkrét GPU"
+
+#: bottles/frontend/ui/details-preferences.ui:129
+msgid "Improves performance at the cost of increased power usage."
+msgstr "Javítja a teljesítményt a megnövekedett energiafelhasználás árán."
+
+#: bottles/frontend/ui/details-preferences.ui:140
+msgid "vkBasalt"
+msgstr "vkBasalt"
+
+#: bottles/frontend/ui/details-preferences.ui:141
+msgid ""
+"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
+"games."
+msgstr ""
+"A vkBasalt egy Vulkan utófeldolgozási réteg, amely javítja a játékok "
+"vizuális grafikáját."
+
+#: bottles/frontend/ui/details-preferences.ui:144
+#, fuzzy
+msgid "Manage vkBasalt settings"
+msgstr "Gamescope beállítások kezelése"
+
+#: bottles/frontend/ui/details-preferences.ui:161
+msgid "Display Settings"
+msgstr "Megjelenítő beállítások"
+
+#: bottles/frontend/ui/details-preferences.ui:165
+#: bottles/frontend/ui/dialog-launch-options.ui:194
+msgid "Virtual Desktop"
+msgstr "Virtuális asztal"
+
+#: bottles/frontend/ui/details-preferences.ui:166
+msgid "Use the Wine virtual desktop."
+msgstr "A Wine virtuális asztal használata."
+
+#: bottles/frontend/ui/details-preferences.ui:204
+msgid "Fullscreen Mouse Capture"
+msgstr "Teljes képernyős egérelkapás"
+
+#: bottles/frontend/ui/details-preferences.ui:205
+msgid "Let the program capture mouse input when fullscreen."
+msgstr ""
+"Egérbemenet elkapásának engedélyezése a program számára teljes képernyős "
+"ablak esetén."
+
+#: bottles/frontend/ui/details-preferences.ui:216
+msgid "Take Focus"
+msgstr "Fókusz elvétele"
+
+#: bottles/frontend/ui/details-preferences.ui:217
+msgid "Activate it if the program does not retake focus on switch."
+msgstr "Aktiválás, ha a program nem veszi vissza a fókuszt váltáskor."
+
+#: bottles/frontend/ui/details-preferences.ui:228
+msgid "Mouse Warp"
+msgstr "Egérrögzítés"
+
+#: bottles/frontend/ui/details-preferences.ui:229
+msgid "Change this if you are running into mouse lag or desync."
+msgstr "Változtassa meg, ha az egér szakadozását, vagy leválását tapasztalja."
+
+#: bottles/frontend/ui/details-preferences.ui:241
+msgid "Screen Scaling"
+msgstr "Képernyő méretezése"
+
+#: bottles/frontend/ui/details-preferences.ui:242
+msgid "Set custom DPI."
+msgstr "Egyéni DPI beállítása."
+
+#: bottles/frontend/ui/details-preferences.ui:248
+msgid "96"
+msgstr "96"
+
+#: bottles/frontend/ui/details-preferences.ui:249
+msgid "120"
+msgstr "120"
+
+#: bottles/frontend/ui/details-preferences.ui:250
+msgid "144"
+msgstr "144"
+
+#: bottles/frontend/ui/details-preferences.ui:251
+msgid "168"
+msgstr "168"
+
+#: bottles/frontend/ui/details-preferences.ui:252
+msgid "192"
+msgstr "192"
+
+#: bottles/frontend/ui/details-preferences.ui:253
+msgid "216"
+msgstr "216"
+
+#: bottles/frontend/ui/details-preferences.ui:254
+msgid "240"
+msgstr "240"
+
+#: bottles/frontend/ui/details-preferences.ui:255
+msgid "288"
+msgstr "288"
+
+#: bottles/frontend/ui/details-preferences.ui:256
+msgid "336"
+msgstr "336"
+
+#: bottles/frontend/ui/details-preferences.ui:257
+msgid "384"
+msgstr "384"
+
+#: bottles/frontend/ui/details-preferences.ui:258
+msgid "432"
+msgstr "432"
+
+#: bottles/frontend/ui/details-preferences.ui:259
+msgid "480"
+msgstr "480"
+
+#: bottles/frontend/ui/details-preferences.ui:272
+msgid "Renderer"
+msgstr "Renderelő"
+
+#: bottles/frontend/ui/details-preferences.ui:273
+msgid "Select what backend to use for wined3d."
+msgstr "Válassza melyik backendet használja a wined3d."
+
+#: bottles/frontend/ui/details-preferences.ui:279
+msgid "gl (default)"
+msgstr "gl (alapértelmezett)"
+
+#: bottles/frontend/ui/details-preferences.ui:280
+msgid "gdi"
+msgstr "gdi"
+
+#: bottles/frontend/ui/details-preferences.ui:281
+msgid "vulkan"
+msgstr "vulkan"
+
+#: bottles/frontend/ui/details-preferences.ui:296
+#: bottles/frontend/ui/details-preferences.ui:432
+msgid "System"
+msgstr "Rendszer"
+
+#: bottles/frontend/ui/details-preferences.ui:299
+msgid "Manage Components Versions"
+msgstr "Összetevők verziójának kezelése"
+
+#: bottles/frontend/ui/details-preferences.ui:309
+msgid "Components"
+msgstr "Összetevők"
+
+#: bottles/frontend/ui/details-preferences.ui:317
+msgid "Updating Runner and components, please wait…"
+msgstr "Futtató és összetevők frissítése…"
+
+#. TODO: replace with ComboRow
+#: bottles/frontend/ui/details-preferences.ui:334
+msgid "DXVK Version"
+msgstr "DXVK verzió"
+
+#: bottles/frontend/ui/details-preferences.ui:358
+msgid "VKD3D Version"
+msgstr "VKD3D verzió"
+
+#: bottles/frontend/ui/details-preferences.ui:382
+msgid "DXVK NVAPI Version"
+msgstr "DXVK NVAPI verzió"
+
+#: bottles/frontend/ui/details-preferences.ui:404
+msgid "LatencyFleX Version"
+msgstr "LatencyFleX verzió"
+
+#: bottles/frontend/ui/details-preferences.ui:426
+msgid "Enable synchronization to increase performance of multicore processors."
+msgstr ""
+"Szinkronizáció engedélyezése a többmagos processzorok teljesítményének "
+"növelése érdekében."
+
+#: bottles/frontend/ui/details-preferences.ui:427
+msgid "Synchronization"
+msgstr "Szinkronizáció"
+
+#: bottles/frontend/ui/details-preferences.ui:438
+msgid "Esync"
+msgstr "Esync"
+
+#: bottles/frontend/ui/details-preferences.ui:444
+msgid "Fsync"
+msgstr "Fsync"
+
+#: bottles/frontend/ui/details-preferences.ui:450
+msgid "Futex2"
+msgstr "Futex2"
+
+#: bottles/frontend/ui/details-preferences.ui:465
+msgid "Windows Version"
+msgstr "Windows verzió"
+
+#: bottles/frontend/ui/details-preferences.ui:468
+msgid "Updating Windows version, please wait…"
+msgstr "Windows verzió frissítése…"
+
+#: bottles/frontend/ui/details-preferences.ui:496
+msgid "Language"
+msgstr "Nyelv"
+
+#: bottles/frontend/ui/details-preferences.ui:497
+msgid "Choose the language to use with programs."
+msgstr "Válassza ki a programokhoz használt nyelvet."
+
+#: bottles/frontend/ui/details-preferences.ui:507
+msgid "false"
+msgstr "hamis"
+
+#: bottles/frontend/ui/details-preferences.ui:508
+msgid "Dedicated Sandbox"
+msgstr "Dedikált homokozó"
+
+#: bottles/frontend/ui/details-preferences.ui:509
+msgid "Use a restricted/managed environment for this bottle."
+msgstr "Korlátozott/kezelt környezet használata ennél a palacknál."
+
+#: bottles/frontend/ui/details-preferences.ui:512
+#, fuzzy
+msgid "Manage Sandbox permissions"
+msgstr "DXVK verziók kezelése"
+
+#: bottles/frontend/ui/details-preferences.ui:530
+msgid "Bottles Runtime"
+msgstr "Palackok futtatókörnyezet"
+
+#: bottles/frontend/ui/details-preferences.ui:531
+msgid ""
+"Provides a bundle of extra libraries for more compatibility,disable if you "
+"run into issues."
+msgstr ""
+"Egy csomag extra könyvtárat biztosít a nagyobb kompatibilitás érdekében "
+"tiltsa le, ha problémákba ütközik."
+
+#: bottles/frontend/ui/details-preferences.ui:542
+msgid "Steam Runtime"
+msgstr "Steam futtatókörnyezet"
+
+#: bottles/frontend/ui/details-preferences.ui:543
+msgid "The same as the Bottles one but provided by Steam."
+msgstr "Ugyanaz, mint a Palackoké, de a Steam szolgáltatja."
+
+#: bottles/frontend/ui/details-preferences.ui:554
+msgid "GameMode"
+msgstr "GameMode"
+
+#: bottles/frontend/ui/details-preferences.ui:555
+msgid "Optimise gaming performance on demand."
+msgstr "Játékteljesítmény optimalizálása igény szerint."
+
+#: bottles/frontend/ui/details-preferences.ui:566
+msgid "Gamescope"
+msgstr "Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:567
+msgid "Use the Gamescope micro-compositor."
+msgstr "A Gamescope mikrokompozitor használata."
+
+#: bottles/frontend/ui/details-preferences.ui:570
+msgid "Manage Gamescope settings"
+msgstr "Gamescope beállítások kezelése"
+
+#: bottles/frontend/ui/details-preferences.ui:588
+msgid "Vmtouch"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:589
+msgid "Preload game files into RAM"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:592
+#, fuzzy
+msgid "Manage vmtouch settings"
+msgstr "Gamescope beállítások kezelése"
+
+#: bottles/frontend/ui/details-preferences.ui:610
+#: bottles/frontend/ui/dialog-launch-options.ui:91
+msgid "Working Directory"
+msgstr "Munkakönyvtár"
+
+#: bottles/frontend/ui/details-preferences.ui:611
+msgid "Defaults to the bottle path."
+msgstr "Alapértelmezetten a palack útvonala."
+
+#: bottles/frontend/ui/details-preferences.ui:614
+#: bottles/frontend/ui/dialog-launch-options.ui:65
+#: bottles/frontend/ui/dialog-launch-options.ui:98
+#: bottles/frontend/ui/preferences.ui:159
+msgid "Reset to default"
+msgstr "Visszaállítás alapértelmezettre"
+
+#: bottles/frontend/ui/details-preferences.ui:624
+#: bottles/frontend/ui/dialog-launch-options.ui:109
+#: bottles/frontend/ui/new.ui:163 bottles/frontend/ui/new.ui:180
+#: bottles/frontend/ui/preferences.ui:170
+msgid "Choose a directory"
+msgstr "Könyvtár kiválasztása"
+
+#: bottles/frontend/ui/details-preferences.ui:637
+#: bottles/frontend/ui/dialog-dll-overrides.ui:9
+#: bottles/frontend/ui/dialog-dll-overrides.ui:15
+msgid "DLL Overrides"
+msgstr "DLL felülbírálások"
+
+#: bottles/frontend/ui/details-preferences.ui:648
+#: bottles/frontend/ui/dialog-env-vars.ui:16
+msgid "Environment Variables"
+msgstr "Környezeti változók"
+
+#: bottles/frontend/ui/details-preferences.ui:659
+msgid "Manage Drives"
+msgstr "Meghajtók kezelése"
+
+#: bottles/frontend/ui/details-preferences.ui:671
+msgid "Audio"
+msgstr "Hang"
+
+#: bottles/frontend/ui/details-preferences.ui:675
+#: bottles/frontend/ui/dialog-launch-options.ui:183
+msgid "Reduce Latency"
+msgstr "Késleltetés csökkentése"
+
+#: bottles/frontend/ui/details-preferences.ui:676
+#, fuzzy
+msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
+msgstr "A PulseAudio késleltetés 60 ms-ra állítása, javítva a hangminőséget"
+
+#: bottles/frontend/ui/details-preferences.ui:688
+#: bottles/frontend/views/details.py:170
+msgid "Versioning"
+msgstr "Verziókezelés"
+
+#: bottles/frontend/ui/details-preferences.ui:692
+msgid "Use Compression for States"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:693
+msgid ""
+"This will reduce the space used by the states but slow down their creation."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:704
+#, fuzzy
+msgid "Automatic Versioning"
+msgstr "Verziókezelés"
+
+#: bottles/frontend/ui/details-preferences.ui:705
+msgid ""
+"Bottles will create a state before running any dependencies or installers."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:716
+msgid "Use Exclusion Patterns"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:717
+msgid "Use custom patterns to exclude some paths from versioning."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:720
+#, fuzzy
+msgid "Manage Patterns"
+msgstr "Futtatók kezelése"
+
+#: bottles/frontend/ui/details-preferences.ui:739
+msgid "Development and Debugging"
+msgstr "Fejlesztés és hibakeresés"
+
+#: bottles/frontend/ui/details-preferences.ui:743
+msgid "MangoHud"
+msgstr "MangoHud"
+
+#: bottles/frontend/ui/details-preferences.ui:744
+msgid ""
+"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
+"and more."
+msgstr ""
+"Vulkan és OpenGL átfedés az FPS, a hőmérséklet, a CPU/GPU terhelés és "
+"egyebek figyeléséhez."
+
+#: bottles/frontend/ui/details-preferences.ui:755
+msgid "OBS Vulkan Capture"
+msgstr "OBS Vulkan képernyőfelvétel"
+
+#: bottles/frontend/ui/details-preferences.ui:756
+msgid "Toggle OBS game capture for all programs."
+msgstr "OBS játékrögzítés be-/kikapcsolása az összes program számára."
+
+#: bottles/frontend/ui/details-preferences.ui:767
+msgid "Wine 'fixme' Logs"
+msgstr "Wine 'fixme' naplók"
+
+#: bottles/frontend/ui/details-preferences.ui:768
+msgid "Log code paths that are unimplemented in Wine."
+msgstr "A hosszú kódútvonalak, amelyek nincsenek a Wine-ban implementálva."
+
+#: bottles/frontend/ui/details-programs.ui:9
+msgid "No Programs found"
+msgstr "Nem találhatók programok"
+
+#: bottles/frontend/ui/details-programs.ui:10
+msgid ""
+"Install programs from the installers section or by running the installer "
+"executable, you can also manually add executables with the \"+\" button."
+msgstr ""
+"Telepítse a programokat a telepítők részből vagy a telepítő végrehajható "
+"fájljának futtatásával, de manuálisan is hozzáadhat végrehajtható fájlokat a "
+"\"+\" gombbal."
+
+#: bottles/frontend/ui/details-programs.ui:31
+msgid "Toggle Hidden"
+msgstr "Elrejtett be-/kikapcsolása"
+
+#: bottles/frontend/ui/details-programs.ui:36
+#, fuzzy
+msgid "Search for new programs"
+msgstr "Telepített programok keresése"
+
+#: bottles/frontend/ui/details-programs.ui:55
+msgid "Add a custom executable path"
+msgstr "Egyéni végrehajtható fájl útvonal hozzáadása"
+
+#: bottles/frontend/ui/details-taskmanager.ui:18
+msgid "Refresh"
+msgstr "Frissítés"
+
+#: bottles/frontend/ui/details-taskmanager.ui:24
+msgid "Stop process"
+msgstr "Folyamat leállítása"
+
+#: bottles/frontend/ui/details-versioning.ui:25
+#, fuzzy
+msgid "No States Found"
+msgstr "Nem található állapot"
+
+#: bottles/frontend/ui/details-versioning.ui:26
+msgid "Create first state to start using versioning."
+msgstr ""
+"Hozza létre az első állapotot, hogy elkezdhesse használni a verziókezelést."
+
+#: bottles/frontend/ui/details-versioning.ui:63
+msgid "A short comment"
+msgstr "Egy rövid megjegyzés"
+
+#: bottles/frontend/ui/details-versioning.ui:68
+msgid "Save the bottle state."
+msgstr "Palack állapotának mentése."
+
+#: bottles/frontend/ui/details-versioning.ui:88
+msgid "Create new state"
+msgstr "Új állapot létrehozása"
+
+#: bottles/frontend/ui/details.ui:74
+msgid "Operations"
+msgstr "Műveletek"
+
+#: bottles/frontend/ui/dialog-bottle-picker.ui:6
+#, fuzzy
+msgid "Select Bottle"
+msgstr "Palack törlése…"
+
+#: bottles/frontend/ui/dialog-bottle-picker.ui:42
+#, fuzzy
+msgid "Create New Bottle"
+msgstr "Új palack létrehozása"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:10
+msgid "Bottles crash report"
+msgstr "Palackok összeomlásának jelentése"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:23
+msgid "Send report"
+msgstr "Jelentés küldése"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:43
+msgid ""
+"Bottles crashed last time. Please fill out a report attaching the following "
+"traceback to help us identify the problem preventing it from happening again."
+msgstr ""
+"A Palackok összeomlott legutóbb. Kérjük, töltsön ki egy jelentést, amelyhez "
+"csatolja a következő nyomkövetést, hogy segítsen nekünk azonosítani a "
+"problémát, megakadályozni, hogy ez újból megtörténjen."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:75
+msgid ""
+"We found one or more similar (or identical) reports. Please make sure to "
+"check carefully that it has not already been reported before submitting a "
+"new one. Each report requires effort on the part of the developers to "
+"diagnose, please respect their work and make sure you don't post duplicates."
+msgstr ""
+"Találtunk egy vagy több hasonló (vagy megegyező) jelentést. Győződjön meg, "
+"hogy leellenőrizte, hogy ez nem lett-e már jelentve, mielőtt újat küld be. "
+"Minden jelentés erőfeszítést igényel a fejlesztők részéről a hiba "
+"diagnosztizáláshoz, kérjük, tartsa tiszteletben a munkájukat, és ügyeljen "
+"arra, hogy ne tegyen közzé ismétlődő jelentéseket."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:96
+msgid "I still want to report."
+msgstr "Még mindig szeretném jelenteni."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:102
+msgid "Advanced options"
+msgstr "Haladó beállítások"
+
+#: bottles/frontend/ui/dialog-deps-check.ui:15
+msgid "Incomplete package"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-deps-check.ui:16
+msgid ""
+"This version of Bottles does not seem to provide all the necessary core "
+"dependencies, please contact the package maintainer or use an official "
+"version.\n"
+"                        "
+msgstr ""
+
+#: bottles/frontend/ui/dialog-deps-check.ui:21
+msgid "Quit"
+msgstr "Kilépés"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:14
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)."
+msgstr ""
+"A dinamikus hivatkozási könyvtárak megadhatók beépítettnek (a Wine "
+"szolgáltatja) vagy natívnak (a program biztosítja)."
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:18
+msgid "New Override"
+msgstr "Új felülbírálás"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:26
+msgid "Overrides"
+msgstr "Felülbírálások"
+
+#: bottles/frontend/ui/dialog-drives.ui:9
+msgid "Drives"
+msgstr "Meghajtók"
+
+#: bottles/frontend/ui/dialog-drives.ui:31
+#, fuzzy
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:…).\n"
+"                                "
+msgstr ""
+"Ezek a gazdarendszerből származó útvonalak, amelyeket a futtató eszközként "
+"leképez és felismer (pl. C: D:...).\n"
+"                                "
+
+#: bottles/frontend/ui/dialog-drives.ui:35
+msgid "Letter"
+msgstr "Betű"
+
+#: bottles/frontend/ui/dialog-drives.ui:59
+#, fuzzy
+msgid "Existing Drives"
+msgstr "Létező meghajtók"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:18
+msgid "Duplicate Bottle"
+msgstr "Palack duplikálása"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:23
+#: bottles/frontend/ui/dialog-gamescope.ui:17
+#: bottles/frontend/ui/dialog-launch-options.ui:17
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:23
+#: bottles/frontend/ui/dialog-vkbasalt.ui:31
+#, fuzzy
+msgid "_Cancel"
+msgstr "Mégse"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:41
+msgid "Duplicate"
+msgstr "Duplikálás"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:55
+msgid "Enter a name for the duplicate of the Bottle."
+msgstr "Adjon nevet a palack másolatának."
+
+#: bottles/frontend/ui/dialog-duplicate.ui:78
+msgid "Duplicating…"
+msgstr "Duplikálás…"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:87
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
+#: bottles/frontend/ui/new.ui:216
+msgid "Take a break, it may take a while."
+msgstr "Tartson egy kis szünetet, ez eltarthat egy ideig."
+
+#: bottles/frontend/ui/dialog-duplicate.ui:108
+msgid "Bottle Duplicated"
+msgstr "Palack duplikálva"
+
+#: bottles/frontend/ui/dialog-env-vars.ui:35
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
+"A környezeti változók dinamikusan elnevezett értékek, amelyek "
+"befolyásolhatják a futó folyamatok működését a palackban."
+
+#: bottles/frontend/ui/dialog-env-vars.ui:38
+#, fuzzy
+msgid "Variable Name"
+msgstr "Változónév"
+
+#: bottles/frontend/ui/dialog-env-vars.ui:46
+#, fuzzy
+msgid "Existing Variables"
+msgstr "Létező változók"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
+msgid "Exclusion Patterns"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
+msgid ""
+"Define patterns that will be used to prevent some directories to being "
+"versioned."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
+#, fuzzy
+msgid "Pattern"
+msgstr "Betű"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:46
+#, fuzzy
+msgid "Existing Patterns"
+msgstr "Létező meghajtók"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:8
+msgid "Gamescope Settings"
+msgstr "Gamescope beállítások"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:46
+msgid ""
+"Configure how Gamescope should manage the window for the games you will run."
+msgstr ""
+"Állítsa be, hogy a Gamescope hogyan kezelje a futtatni kívánt játékok "
+"ablakát."
+
+#: bottles/frontend/ui/dialog-gamescope.ui:51
+#, fuzzy
+msgid "Game Resolution"
+msgstr "Játék felbontás"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:52
+msgid "Uses the resolution of the video game as a reference."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.ui:55
+#: bottles/frontend/ui/dialog-gamescope.ui:71
+msgid "Width (e.g. 1280)"
+msgstr "Szélesség (pl. 1280)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:60
+#: bottles/frontend/ui/dialog-gamescope.ui:76
+msgid "Height (e.g. 720)"
+msgstr "Magasság (pl. 750)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:67
+#, fuzzy
+msgid "Gamescope Resolution"
+msgstr "Gamescope felbontás"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:68
+msgid ""
+"Upscales the resolution when using a resolution higher than the game "
+"resolution."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.ui:83
+msgid "Miscellaneous"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.ui:86
+#, fuzzy
+msgid "Frame Rate Limit (e.g. 60)"
+msgstr "Képkockasebesség-korlát (ls. 60)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:91
+#, fuzzy
+msgid "Frame Rate Limit (When Unfocused)"
+msgstr "Képkockasebesség-korlát (amikor nincs fókuszban)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:96
+#, fuzzy
+msgid "Use Integer Scaling"
+msgstr "Egész számú méretezés használata"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:107
+#, fuzzy
+msgid "Window Type"
+msgstr "Ablaktípus"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:112
+msgid "Borderless"
+msgstr "Keret nélküli"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:119
+msgid "Fullscreen"
+msgstr "Teljes képernyős"
+
+#: bottles/frontend/ui/dialog-journal.ui:12
+msgid "All messages"
+msgstr "Összes üzenet"
+
+#: bottles/frontend/ui/dialog-journal.ui:17
+msgid "Critical"
+msgstr "Kritikus"
+
+#: bottles/frontend/ui/dialog-journal.ui:22
+msgid "Errors"
+msgstr "Hibák"
+
+#: bottles/frontend/ui/dialog-journal.ui:27
+msgid "Warnings"
+msgstr "Figyelmeztetések"
+
+#: bottles/frontend/ui/dialog-journal.ui:32
+msgid "Info"
+msgstr "Információ"
+
+#: bottles/frontend/ui/dialog-journal.ui:49
+msgid "Journal browser"
+msgstr "Naplóböngésző"
+
+#: bottles/frontend/ui/dialog-journal.ui:56
+msgid "Journal Browser"
+msgstr "Naplóböngésző"
+
+#: bottles/frontend/ui/dialog-journal.ui:62
+msgid ""
+"Change logging level.\n"
+"                                        "
+msgstr ""
+"Naplózási szint változtatása.\n"
+"                                        "
+
+#: bottles/frontend/ui/dialog-journal.ui:67
+msgid "All"
+msgstr "Összes"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:8
+msgid "Launch Options"
+msgstr "Indítási opciók"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:47
+msgid "Those arguments will be passed at launch."
+msgstr "Ezek az argumentumok lesznek átadva indításkor."
+
+#: bottles/frontend/ui/dialog-launch-options.ui:48
+msgid "Custom Arguments"
+msgstr "Egyéni argumentumok"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:51
+msgid "Command Arguments"
+msgstr "Parancs argumentumai"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:52
+#, fuzzy, c-format
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "pl.: VÁLTOZÓ=érték %command% -példa1 -példa2 -példa3=hello"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:58
+msgid "Post-run Script"
+msgstr "Futtatás utáni szkript"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:76
+#, fuzzy
+msgid "Choose a script"
+msgstr "Szkript kiválasztása"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:125
+msgid "These settings will override the default settings for this executable."
+msgstr ""
+"Ezek a beállítások felülbírálják az alapértelmezett beállításokat ennél a "
+"végrehajtható fájlnál."
+
+#: bottles/frontend/ui/dialog-launch-options.ui:126
+msgid "Preferences Overrides"
+msgstr "Beállítások felülbírálása"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:129
+#, fuzzy
+msgid "Reset to Bottle's Defaults"
+msgstr "Visszaállítás alapértelmezettre"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:6
+msgid "Proton Disclaimer"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:22
+#, fuzzy
+msgid "Use Proton"
+msgstr "GE Proton"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:37
+msgid ""
+"Beware, using Proton-based runners in non-Steam bottles can cause problems "
+"and prevent them from behaving correctly.\n"
+"\n"
+"We recommend using Wine-GE rather, a version of Proton meant to run outside "
+"of Steam.\n"
+"\n"
+"Proceeding will automatically enable the Steam runtime (if present in the "
+"system and detected by Bottles) in order to allow it to access the necessary "
+"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
+"the runner's provider, is not responsible for any problems and we ask that "
+"you do not report to them."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:50
+msgid "I got it."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-rename.ui:9
+msgid "Rename"
+msgstr "Átnevezés"
+
+#: bottles/frontend/ui/dialog-rename.ui:34
+msgid "Choose a new name for the selected program."
+msgstr "Válasszon új nevet a kiválasztott program számára."
+
+#: bottles/frontend/ui/dialog-rename.ui:37
+msgid "New Name"
+msgstr "Új név"
+
+#: bottles/frontend/ui/dialog-run-args.ui:14
+msgid "Run With Arguments"
+msgstr "Futtatás argumentumokkal"
+
+#: bottles/frontend/ui/dialog-run-args.ui:35
+#: bottles/frontend/views/bottle_details.py:202
+#: bottles/frontend/views/list.py:120
+msgid "Run"
+msgstr "Futtatás"
+
+#: bottles/frontend/ui/dialog-run-args.ui:47
+msgid "Write below the arguments to be passed to the executable."
+msgstr "Írja le lentebb a végrehajtható fájlnak átadandó argumentumokat."
+
+#: bottles/frontend/ui/dialog-run-args.ui:50
+msgid "e.g.: -opengl -SkipBuildPatchPrereq"
+msgstr "pl.: -opengl -SkipBuildPatchPrereq"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:9
+#, fuzzy
+msgid "Sandbox Settings"
+msgstr "Gamescope beállítások"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:23
+msgid "Share Network"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-sandbox.ui:34
+#, fuzzy
+msgid "Share Sound"
+msgstr "Nem található állapot"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:18
+#, fuzzy
+msgid "Upgrade Needed"
+msgstr "Frissítés"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:41
+#: bottles/frontend/ui/onboard.ui:88
+msgid "Continue"
+msgstr "Folytatás"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:49
+#, fuzzy
+msgid "Launch upgrade"
+msgstr "Frissítés megerősítése"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:69
+#, fuzzy
+msgid "New Versioning System"
+msgstr "Verziókezelés"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:72
+msgid "The new bottle versioning system has landed."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:86
+msgid ""
+"Bottles has a whole new Versioning System which is not backwards "
+"compatible. \n"
+"\n"
+"To continue using versioning we need to re-initialize the bottle repository. "
+"This will not delete data from your bottle but will delete all existing "
+"states and create a new one. \n"
+"\n"
+"If you need to go back to a previous state before continuing, close this "
+"window and restore the state, then reopen the bottle to show this window "
+"again. \n"
+"\n"
+"The old system will be discontinued in one of the next releases."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
+#, fuzzy
+msgid "Re-initializing repository…"
+msgstr "Rendszerleíró ujraüzembeállása folyamatban van…"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
+msgid "Done! Please restart Bottles."
+msgstr ""
+
+#. vkBasalt is a Vulkan post processing layer for Linux
+#: bottles/frontend/ui/dialog-vkbasalt.ui:11
+#, fuzzy
+msgid "vkBasalt Settings"
+msgstr "Megjelenítő beállítások"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:50
+#, fuzzy
+msgid "Default"
+msgstr "gl (alapértelmezett)"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:54
+#, fuzzy
+msgid "Default Settings"
+msgstr "Megjelenítő beállítások"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:66
+msgid "Effects are applied according to the list order."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:67
+msgid "Effects"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:71
+msgid "Contrast Adaptive Sharpening"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:74
+#: bottles/frontend/ui/dialog-vkbasalt.ui:110
+msgid "Sharpness"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:78
+#: bottles/frontend/ui/dialog-vkbasalt.ui:114
+#: bottles/frontend/ui/dialog-vkbasalt.ui:143
+#: bottles/frontend/ui/dialog-vkbasalt.ui:178
+#: bottles/frontend/ui/dialog-vkbasalt.ui:207
+#: bottles/frontend/ui/dialog-vkbasalt.ui:236
+#: bottles/frontend/ui/dialog-vkbasalt.ui:271
+#: bottles/frontend/ui/dialog-vkbasalt.ui:307
+#: bottles/frontend/ui/dialog-vkbasalt.ui:336
+#: bottles/frontend/ui/dialog-vkbasalt.ui:364
+#: bottles/frontend/ui/dialog-vkbasalt.ui:392
+#: bottles/frontend/ui/dialog-vkbasalt.ui:424
+#, fuzzy
+msgid "Show Information"
+msgstr "Palack információ"
+
+#. Luma is not translatable
+#: bottles/frontend/ui/dialog-vkbasalt.ui:107
+msgid "Denoised Luma Sharpening"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:139
+msgid "Denoise"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:171
+msgid "Fast Approximate Anti-Aliasing"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:174
+#, fuzzy
+msgid "Subpixel Quality"
+msgstr "Ultra minőség"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:203
+msgid "Quality Edge Threshold"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:232
+msgid "Quality Edge Threshold Minimum"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:264
+msgid "Subpixel Morphological Anti-Aliasing"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:267
+msgid "Edge Detection"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:283
+msgid "Luma"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:290
+msgid "Color"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:303
+msgid "Threshold"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:332
+msgid "Max Search Steps"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:360
+msgid "Max Search Steps Diagonal"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:388
+msgid "Max Corner Rounding"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:419
+msgid "Color Lookup Table"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:437
+#, fuzzy
+msgid "Reset to Default"
+msgstr "Visszaállítás alapértelmezettre"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:448
+#, fuzzy
+msgid "Select a File"
+msgstr "Palack törlése…"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:482
+msgid ""
+"CAS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper, whereas values lower than 0 make the frame softer than native."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:500
+msgid ""
+"DLS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:518
+msgid ""
+"DLS denoise decreases the noise of a frame. Higher values make the frame "
+"softer."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:536
+msgid ""
+"FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
+"values make the frame softer."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:554
+msgid ""
+"FXAA edge threshold is the minimum amount of contrast required to apply the "
+"FXAA algorithm. Higher values make the frame have more contrast."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:572
+msgid ""
+"FXAA quality edge threshold minimum is the minimum value of dark pixels that "
+"are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
+"below the specified value and can lead to a performance increase."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:590
+msgid ""
+"Luma detects edges from a monochrome perspective, whereas Color detects "
+"edges based on colors. Luma is more performant than Color."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:608
+msgid ""
+"SMAA threshold specifies the sensitivity of edge detection. Lower values "
+"detect more edges at the expense of performance."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:626
+msgid ""
+"SMAA max search steps specifies how many horizontal and vertical search "
+"steps are performed when searching for edges."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:644
+msgid ""
+"SMAA max diagonal search steps specifies how many diagonal search steps are "
+"performed when searching for edges."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:662
+msgid "SMAA corner rounding specifies the strength of rounding edge corners."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:680
+msgid ""
+"CLUT transforms a range of colors into another range of colors using a .CUBE "
+"file, or a .png file where the height is equal to the width."
+msgstr ""
+
+#: bottles/frontend/ui/dll-override-entry.ui:10
+msgid "Builtin (Wine)"
+msgstr "Beépített (Wine)"
+
+#: bottles/frontend/ui/dll-override-entry.ui:11
+msgid "Native (Windows)"
+msgstr "Natív (Windows)"
+
+#: bottles/frontend/ui/dll-override-entry.ui:12
+msgid "Builtin, then Native"
+msgstr "Beépített majd natív"
+
+#: bottles/frontend/ui/dll-override-entry.ui:13
+msgid "Native, then Builtin"
+msgstr "Natív majd beépített"
+
+#: bottles/frontend/ui/dll-override-entry.ui:14
+msgid "Disabled"
+msgstr "Letiltva"
+
+#: bottles/frontend/ui/dll-override-entry.ui:22
+#: bottles/frontend/ui/drive-entry.ui:14
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: bottles/frontend/ui/drive-entry.ui:7
+msgid "/point/to/path"
+msgstr "/mutasson/az/útvonalára"
+
+#: bottles/frontend/ui/drive-entry.ui:24
+msgid "Choose a Directory"
+msgstr "Könyvtár kiválasztása"
+
+#: bottles/frontend/ui/env-var-entry.ui:6
+#: bottles/frontend/ui/exclusion-pattern-entry.ui:6
+msgid "Value"
+msgstr "Érték"
+
+#. Wineprefix is a prefix for the wine program
+#: bottles/frontend/ui/importer-entry.ui:22
+msgid "Wineprefix name"
+msgstr ""
+
+#: bottles/frontend/ui/importer-entry.ui:29
+#, fuzzy
+msgid "Manager"
+msgstr "Feladatkezelő"
+
+#: bottles/frontend/ui/importer-entry.ui:39
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Ez a Wine prefix már importálva van a Palackokba."
+
+#: bottles/frontend/ui/importer.ui:24
+msgid "Import Bottles backup"
+msgstr "Palackok biztonsági mentésének importálása"
+
+#: bottles/frontend/ui/importer.ui:31
+msgid "Search again for prefixes"
+msgstr "Prefixek újbóli keresése"
+
+#: bottles/frontend/ui/importer.ui:45
+#, fuzzy
+msgid "No Prefixes Found"
+msgstr "Nem találhatók prefixek"
+
+#: bottles/frontend/ui/importer.ui:46
+#, fuzzy
+msgid ""
+"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
+"Use the icon on the top to import a bottle from a backup"
+msgstr ""
+"Nem található prefix Lutristól, PlayOnLinuxtól stb.\n"
+"Használja a felül található ikont egy palack biztonsági másolatból való "
+"importálásához"
+
+#: bottles/frontend/ui/importer.ui:81
+msgid "Configuration"
+msgstr "Konfiguráció"
+
+#: bottles/frontend/ui/importer.ui:87
+msgid "Full Archive"
+msgstr "Teljes archívum"
+
+#: bottles/frontend/ui/installer-entry.ui:18
+msgid "Show Manifest…"
+msgstr "Jegyzékfájl megjelenítése…"
+
+#: bottles/frontend/ui/installer-entry.ui:23
+msgid "Read Review…"
+msgstr "Vélemény olvasása…"
+
+#: bottles/frontend/ui/installer-entry.ui:40
+#, fuzzy
+msgid "Installer name"
+msgstr "Telepítők"
+
+#: bottles/frontend/ui/installer-entry.ui:41
+#, fuzzy
+msgid "Installer description"
+msgstr "Telepítők"
+
+#: bottles/frontend/ui/installer-entry.ui:48
+msgid "Unknown"
+msgstr ""
+
+#: bottles/frontend/ui/installer-entry.ui:57
+msgid "Install this program"
+msgstr "Program telepítése"
+
+#: bottles/frontend/ui/library-entry.ui:17
+msgid "Remove from Library"
+msgstr "Eltávolítás a könyvtárból"
+
+#: bottles/frontend/ui/library-entry.ui:94
+#, fuzzy
+msgid "Item name"
+msgstr "Palack neve"
+
+#: bottles/frontend/ui/library-entry.ui:115
+#: bottles/frontend/ui/program-entry.ui:105
+msgid "Launch with Steam"
+msgstr "Indítás Steammel"
+
+#: bottles/frontend/ui/library.ui:14 bottles/frontend/ui/preferences.ui:259
+#: bottles/frontend/windows/main_window.py:175
+msgid "Library"
+msgstr "Könyvtár"
+
+#: bottles/frontend/ui/library.ui:15
+msgid "Add items here from your bottle's program list"
+msgstr "Adjon hozzá elemeket a palack programlistájából"
+
+#: bottles/frontend/ui/list-entry.ui:46
+msgid "This bottle looks damaged."
+msgstr "Ez a palack sérültnek tűnik."
+
+#: bottles/frontend/ui/list-entry.ui:60
+msgid "Execute in this bottle"
+msgstr "Végrehajtás ebben a palackban"
+
+#: bottles/frontend/ui/list-entry.ui:75
+msgid "Run Here"
+msgstr "Futtatás itt"
+
+#: bottles/frontend/ui/list-entry.ui:84
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+"Ez az palack sérültnek tűnik, hiányzik a konfigurációs fájl. Megpróbálhatom "
+"megoldani egy új konfiguráció létrehozásával."
+
+#: bottles/frontend/ui/list-entry.ui:96
+msgid "Run .exe/.msi in this bottle"
+msgstr ".exe/.msi futtatása ebben a palackban"
+
+#: bottles/frontend/ui/list.ui:17
+msgid "Search your bottles…"
+msgstr "Palackok keresése…"
+
+#: bottles/frontend/ui/list.ui:38
+msgid "Steam Proton"
+msgstr "Steam Proton"
+
+#: bottles/frontend/ui/list.ui:54 bottles/frontend/ui/window.ui:56
+#: bottles/frontend/ui/window.ui:73 bottles/frontend/windows/main_window.py:169
 #: data/com.usebottles.bottles.appdata.xml.in:6
-#: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
-#: src/ui/window.ui:56 src/ui/window.ui:73 src/window.py:165
+#: data/com.usebottles.bottles.desktop.in:3
 msgid "Bottles"
 msgstr "Palackok"
+
+#: bottles/frontend/ui/list.ui:55
+msgid "Start off by creating a Bottle."
+msgstr "Kezdjen egy palack létrehozásával."
+
+#: bottles/frontend/ui/list.ui:62
+msgid "Create a new Bottle"
+msgstr "Új palack létrehozása"
+
+#: bottles/frontend/ui/list.ui:75
+msgid "No Results Found"
+msgstr "Nincs találat"
+
+#: bottles/frontend/ui/list.ui:76
+msgid "Try a different search."
+msgstr "Próbáljon különböző keresést."
+
+#: bottles/frontend/ui/loading.ui:16
+msgid "Starting up…"
+msgstr "Indulás…"
+
+#: bottles/frontend/ui/local-resource-entry.ui:6
+msgid "This resource is missing."
+msgstr "Ez az erőforrás hiányzik."
+
+#: bottles/frontend/ui/local-resource-entry.ui:10
+msgid "Browse"
+msgstr "Tallózás"
+
+#: bottles/frontend/ui/new.ui:17 bottles/frontend/ui/new.ui:64
+msgid "New Bottle"
+msgstr "Új palack"
+
+#: bottles/frontend/ui/new.ui:38
+msgid "Create"
+msgstr "Létrehozás"
+
+#: bottles/frontend/ui/new.ui:47 bottles/frontend/ui/new.ui:268
+#: bottles/frontend/windows/main_window.py:191
+msgid "Close"
+msgstr "Bezárás"
+
+#: bottles/frontend/ui/new.ui:67
+msgid "Bottle Information"
+msgstr "Palack információ"
+
+#: bottles/frontend/ui/new.ui:84
+msgid "Gaming"
+msgstr "Játékok"
+
+#: bottles/frontend/ui/new.ui:85
+msgid "An environment improved for Windows games."
+msgstr "Egy Windowsos játékok számára javított környezet ."
+
+#: bottles/frontend/ui/new.ui:93
+msgid "Application"
+msgstr "Alkalmazás"
+
+#: bottles/frontend/ui/new.ui:94
+msgid "An environment improved for Windows applications."
+msgstr "Egy Windowsos alkalmazások számára javított környezet."
+
+#: bottles/frontend/ui/new.ui:103
+msgid "Layered"
+msgstr "Rétegezett"
+
+#: bottles/frontend/ui/new.ui:104
+msgid "A layered environment, where every app is a layer."
+msgstr "Egy rétegezett környezet, ahol minden alkalmazás egy réteg."
+
+#: bottles/frontend/ui/new.ui:112
+msgid "Custom"
+msgstr "Egyéni"
+
+#: bottles/frontend/ui/new.ui:113
+#, fuzzy
+msgid "A clear environment for your experiments."
+msgstr "Egy tiszta környezet a kísérleteihez."
+
+#: bottles/frontend/ui/new.ui:117
+msgid "Unlinked Home Directory"
+msgstr "Leválasztott kezdőkönyvtár"
+
+#: bottles/frontend/ui/new.ui:118
+msgid "Do not link the userdir to the homedir"
+msgstr "Ne kapcsolja össze a felhasználói könyvtárat a kezdőkönyvtárhoz"
+
+#: bottles/frontend/ui/new.ui:143
+msgid "Architecture"
+msgstr "Architektúra"
+
+#: bottles/frontend/ui/new.ui:144
+msgid "We recommend using 32bit only if strictly necessary."
+msgstr "Csak akkor ajánljuk a 32-bit használatát, ha feltétlenül szükséges."
+
+#: bottles/frontend/ui/new.ui:148
+msgid "64 bit"
+msgstr "64-bit"
+
+#: bottles/frontend/ui/new.ui:149
+msgid "32 bit"
+msgstr "32-bit"
+
+#: bottles/frontend/ui/new.ui:157
+msgid "Custom Recipe"
+msgstr "Egyéni recept"
+
+#: bottles/frontend/ui/new.ui:158
+msgid "Choose a custom recipe for the environment if you have one."
+msgstr ""
+"Válasszon egy egyéni receptet a környezet számára, ha rendelkezik eggyel."
+
+#: bottles/frontend/ui/new.ui:174
+msgid "Custom Path"
+msgstr "Egyéni útvonal"
+
+#: bottles/frontend/ui/new.ui:175
+msgid "Store this bottle in another place."
+msgstr "Tárolja a palackot egy másik helyen."
+
+#: bottles/frontend/ui/new.ui:215
+#, fuzzy
+msgid "Creating a Bottle…"
+msgstr "Új palack létrehozása"
+
+#: bottles/frontend/ui/new.ui:262
+msgid "Bottle created"
+msgstr "Palack létrehozva"
+
+#: bottles/frontend/ui/onboard.ui:36
+msgid "Previous"
+msgstr "Előző"
+
+#: bottles/frontend/ui/onboard.ui:62
+msgid "Welcome to Bottles"
+msgstr "Üdvözöljük a Palackokban"
+
+#: bottles/frontend/ui/onboard.ui:63
+msgid ""
+"Run Windows Software on Linux.\n"
+"                                                "
+msgstr ""
+"Windows szoftverek futtatása Linuxon.\n"
+"                                                "
+
+#: bottles/frontend/ui/onboard.ui:71
+msgid "Windows in Bottles"
+msgstr "Windows bepalackozva"
+
+#: bottles/frontend/ui/onboard.ui:72
+msgid ""
+"Bottles uses compatibility runners to provide isolated containerized Windows-"
+"like environments where programs run."
+msgstr ""
+"A Palackok kompatibilitási futtatókat használ, hogy elkülönített konténeres "
+"Windows-szerű környezeteket biztosítson, ahol a programok futnak."
+
+#: bottles/frontend/ui/onboard.ui:79
+msgid "Almost Done"
+msgstr "Majdnem kész"
+
+#: bottles/frontend/ui/onboard.ui:80
+#, fuzzy
+msgid "We need a few more minutes to set everything up…"
+msgstr "Kell még pár perc, hogy mindent beállítsunk…"
+
+#: bottles/frontend/ui/onboard.ui:113
+msgid "All ready!"
+msgstr "Minden kész!"
+
+#: bottles/frontend/ui/onboard.ui:122
+msgid "Please Finish the setup first"
+msgstr ""
+
+#: bottles/frontend/ui/onboard.ui:129
+msgid "Start using Bottles"
+msgstr "Palackokat használatának elkezdése"
+
+#: bottles/frontend/ui/onboard.ui:150
+msgid "Next"
+msgstr "Következő"
+
+#: bottles/frontend/ui/preferences.ui:6 bottles/frontend/ui/window.ui:24
+#: bottles/frontend/views/details.py:158
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: bottles/frontend/ui/preferences.ui:13 bottles/frontend/ui/preferences.ui:46
+msgid "General"
+msgstr "Általános"
+
+#: bottles/frontend/ui/preferences.ui:16
+msgid "Appearance"
+msgstr "Megjelenés"
+
+#: bottles/frontend/ui/preferences.ui:19
+msgid "Dark Mode"
+msgstr "Sötét mód"
+
+#: bottles/frontend/ui/preferences.ui:20
+#, fuzzy
+msgid "Whether Bottles should use the dark color scheme."
+msgstr "A Palackoknak az éjjeli témaváltozatot kell-e használnia."
+
+#: bottles/frontend/ui/preferences.ui:32
+msgid "Show Update Date"
+msgstr "Frissítési dátum megjelenítése"
+
+#: bottles/frontend/ui/preferences.ui:33
+msgid "Whether to show the update date in the bottle list."
+msgstr "Megjelenjen-e frissítési dátum a palacklistában."
+
+#: bottles/frontend/ui/preferences.ui:49
+#: data/com.usebottles.bottles.gschema.xml:46
+msgid "Notifications"
+msgstr "Értesítések"
+
+#: bottles/frontend/ui/preferences.ui:50
+msgid "Show notifications for downloads and installs."
+msgstr "Értesítések megjelenítése letöltésekről és telepítésekről."
+
+#: bottles/frontend/ui/preferences.ui:61
+msgid "Temp Files"
+msgstr "Ideiglenes fájlok"
+
+#: bottles/frontend/ui/preferences.ui:62
+msgid "Clean temp files when Bottles launches?"
+msgstr "Törölje az ideiglenes fájlokat, amikor a Palackok elindul?"
+
+#: bottles/frontend/ui/preferences.ui:73
+#, fuzzy
+msgid "Close Bottles After Starting a Program"
+msgstr "A programok indítása után zárja be a Palackokat"
+
+#: bottles/frontend/ui/preferences.ui:74
+msgid "Close Bottles after starting a program from the file manager."
+msgstr "Zárja be a Palackokat, miután elindította a programot a fájlkezelőből."
+
+#: bottles/frontend/ui/preferences.ui:87
+#, fuzzy
+msgid "Integrations"
+msgstr "Műveletek"
+
+#: bottles/frontend/ui/preferences.ui:90
+msgid "Steam Proton Prefixes"
+msgstr "Steam Proton prefixek"
+
+#: bottles/frontend/ui/preferences.ui:91
+msgid "List and manage Steam Proton prefixes."
+msgstr "Steam Proton prefixek listázása és kezelése."
+
+#: bottles/frontend/ui/preferences.ui:95
+#, fuzzy
+msgid "Read Documentation"
+msgstr "Dokumentáció elolvasása"
+
+#: bottles/frontend/ui/preferences.ui:113
+msgid "List Steam Apps in Programs List"
+msgstr "Steam alkalmazások listázása a programok listájában"
+
+#: bottles/frontend/ui/preferences.ui:114
+msgid "Requires Steam for Windows installed in the bottle."
+msgstr "Igényli a Steam Windows verziójának palackba való telepítését."
+
+#: bottles/frontend/ui/preferences.ui:125
+msgid "List Epic Games in Programs List"
+msgstr "Epic Games alkalmazások listázása a programok listájában"
+
+#: bottles/frontend/ui/preferences.ui:126
+msgid "Requires Epic Games Store installed in the bottle."
+msgstr "Igényli az Epic Games palackba való telepítését."
+
+#: bottles/frontend/ui/preferences.ui:137
+#, fuzzy
+msgid "List Ubisoft Games in Programs List"
+msgstr "Epic Games alkalmazások listázása a programok listájában"
+
+#: bottles/frontend/ui/preferences.ui:138
+#, fuzzy
+msgid "Requires Ubisoft Connect installed in the bottle."
+msgstr "Igényli az Epic Games palackba való telepítését."
+
+#: bottles/frontend/ui/preferences.ui:151
+msgid "Advanced"
+msgstr "Haladó"
+
+#: bottles/frontend/ui/preferences.ui:154
+#, fuzzy
+msgid "Custom Bottles Path (Requires Restart)"
+msgstr "Egyéni palackok útvonala (újraindítás szükséges)"
+
+#: bottles/frontend/ui/preferences.ui:155
+#: bottles/frontend/views/preferences.py:151
+#: bottles/frontend/views/preferences.py:167
+msgid ""
+"Choose where to store the new bottles (this will not move the existing ones)."
+msgstr ""
+"Válassza ki, hogy hol szeretné tárolni az új palackokat (ez nem fogja "
+"áthelyezni a létezőket)."
+
+#: bottles/frontend/ui/preferences.ui:188
+msgid "Runners"
+msgstr "Futtatók"
+
+#: bottles/frontend/ui/preferences.ui:193
+msgid "Pre-Release"
+msgstr "Előzetes kiadás"
+
+#: bottles/frontend/ui/preferences.ui:194
+msgid "Display unstable versions of runners."
+msgstr "Futtatók instabil verzióinak megjelenítése."
+
+#: bottles/frontend/ui/preferences.ui:210
+msgid "DLL Components"
+msgstr "DLL összetevők"
+
+#: bottles/frontend/ui/preferences.ui:223
+msgid "DXVK-NVAPI"
+msgstr "DXVK-NVAPI"
+
+#: bottles/frontend/ui/preferences.ui:236
+msgid "Core"
+msgstr "Mag"
+
+#: bottles/frontend/ui/preferences.ui:240
+msgid "Runtime"
+msgstr "Futtatókörnyezet"
+
+#: bottles/frontend/ui/preferences.ui:245
+msgid "WineBridge"
+msgstr "WineBridge"
+
+#: bottles/frontend/ui/preferences.ui:253
+#: data/com.usebottles.bottles.gschema.xml:66
+msgid "Experiments"
+msgstr "Kísérleti"
+
+#: bottles/frontend/ui/preferences.ui:256
+msgid ""
+"These features are under heavy development and may be unstable, expect bugs "
+"and breakage."
+msgstr ""
+
+#: bottles/frontend/ui/preferences.ui:260
+msgid "In early development (requires restart)."
+msgstr "Korai fejlesztésben (újraindítás szükséges)."
+
+#: bottles/frontend/ui/preferences.ui:271
+msgid "Sandbox per bottle"
+msgstr "Palackonkénti homokozó"
+
+#: bottles/frontend/ui/preferences.ui:272
+#, fuzzy
+msgid "In early development."
+msgstr "Korai fejlesztésben (újraindítás szükséges)."
+
+#: bottles/frontend/ui/program-entry.ui:21
+msgid "Launch with terminal"
+msgstr "Indítás terminálban"
+
+#: bottles/frontend/ui/program-entry.ui:28
+msgid "Browse path"
+msgstr "Útvonal tallózása"
+
+#: bottles/frontend/ui/program-entry.ui:44
+msgid "Change Launch Options…"
+msgstr "Indítási opciók módosítása…"
+
+#: bottles/frontend/ui/program-entry.ui:49
+msgid "Add to My Library"
+msgstr "Hozzáadás a könyvtáramhoz"
+
+#: bottles/frontend/ui/program-entry.ui:54
+msgid "Add Desktop Entry"
+msgstr "Asztalbejegyzés hozzáadása"
+
+#: bottles/frontend/ui/program-entry.ui:59
+msgid "Add to Steam"
+msgstr "Hozzáadás Steamhez"
+
+#: bottles/frontend/ui/program-entry.ui:64
+msgid "Rename…"
+msgstr "Átnevezés…"
+
+#: bottles/frontend/ui/program-entry.ui:73
+msgid "Hide Program"
+msgstr "Program elrejtése"
+
+#: bottles/frontend/ui/program-entry.ui:78
+msgid "Show Program"
+msgstr "Program megjelenítése"
+
+#: bottles/frontend/ui/program-entry.ui:83
+msgid "Remove from List"
+msgstr "Eltávolítás a listáról"
+
+#: bottles/frontend/ui/program-entry.ui:99
+#, fuzzy
+msgid "Program name"
+msgstr "Programok"
+
+#. id as identification
+#: bottles/frontend/ui/state-entry.ui:7
+#, fuzzy
+msgid "State id"
+msgstr "Nem található állapot"
+
+#: bottles/frontend/ui/state-entry.ui:8
+#, fuzzy
+msgid "State comment"
+msgstr "Egy rövid megjegyzés"
+
+#: bottles/frontend/ui/state-entry.ui:16
+msgid "Restore this state"
+msgstr "Állítsa vissza ezt az állapotot"
+
+#: bottles/frontend/ui/task-entry.ui:24
+msgid "Delete message"
+msgstr "Üzenet törlése"
+
+#: bottles/frontend/ui/window.ui:19
+msgid "Import/Export…"
+msgstr "Importálás/exportálás…"
+
+#: bottles/frontend/ui/window.ui:33
+msgid "Support"
+msgstr "Támogatás"
+
+#: bottles/frontend/ui/window.ui:43
+msgid "Forums"
+msgstr "Fórumok"
+
+#: bottles/frontend/ui/window.ui:48
+msgid "About Bottles"
+msgstr "A Palackok névjegye"
+
+#: bottles/frontend/ui/window.ui:79
+msgid "Open menu"
+msgstr "Menü megnyitása"
+
+#: bottles/frontend/ui/window.ui:93
+msgid ""
+"You don't seem connected to the internet. Without it you will not be able to "
+"download essential components. Click this icon when you have reestablished "
+"the connection."
+msgstr ""
+"Úgy tűnik, nem csatlakozik az internethez. Enélkül nem tudja letölteni az "
+"alapvető összetevőket. Kattintson a ikonra, amikor helyreállította a "
+"kapcsolatot."
+
+#: bottles/frontend/ui/window.ui:99
+msgid "New bottle"
+msgstr "Új palack"
+
+#: bottles/frontend/utils/connection.py:67
+msgid "You are offline, unable to download."
+msgstr "Nincs online kapcsolat, nem tudja letölteni."
+
+#: bottles/frontend/views/bottle_details.py:142
+#, python-format
+msgid "Updated: %s"
+msgstr "Frissítve: %s"
+
+#: bottles/frontend/views/bottle_details.py:200
+#: bottles/frontend/views/list.py:118
+msgid "Choose a Windows executable file"
+msgstr "A Windows végrehajtható fájl kiválasztása"
+
+#: bottles/frontend/views/bottle_details.py:209
+#, fuzzy
+msgid "Be Aware of Sandbox"
+msgstr "Dedikált homokozó"
+
+#: bottles/frontend/views/bottle_details.py:210
+msgid ""
+"Bottles is running in a sandbox, a restricted permission environment needed "
+"to keep you safe. If the program won't run, consider moving inside the "
+"bottle (3 dots icon on the top), then launch from there."
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:212
+msgid "Ok"
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:267
+msgid "Select the location where to save the backup config"
+msgstr "Válassza ki a konfiguráció biztonsági mentésének helyét"
+
+#: bottles/frontend/views/bottle_details.py:271
+msgid "Select the location where to save the backup archive"
+msgstr "Válassza ki a biztonsági mentés archívumának helyét"
+
+#: bottles/frontend/views/bottle_details.py:276
+#, python-brace-format
+msgid "Backup created for '{0}'."
+msgstr "Biztonsági mentés létrehozva {0} számára."
+
+#: bottles/frontend/views/bottle_details.py:278
+#, python-brace-format
+msgid "Backup failed for '{0}'."
+msgstr "{0} biztonsági mentése sikertelen."
+
+#: bottles/frontend/views/bottle_details.py:296
+msgid "Export"
+msgstr "Exportálás"
+
+#: bottles/frontend/views/bottle_details.py:332
+#: bottles/frontend/views/bottle_details.py:336
+#: bottles/frontend/views/bottle_details.py:411
+#: bottles/frontend/views/bottle_details.py:415
+#: bottles/frontend/views/bottle_preferences.py:776
+msgid "Confirm"
+msgstr "Megerősítés"
+
+#: bottles/frontend/views/bottle_details.py:333
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Biztosan törölni szeretné ezt a palackot és az összes fájlját?"
+
+#: bottles/frontend/views/bottle_details.py:412
+msgid ""
+"Are you sure you want to terminate all processes?\n"
+"This can cause data loss."
+msgstr ""
+"Biztosan meg szeretné szakítani az összes folyamatot?\n"
+"Ez adatvesztéshez vezethet."
+
+#: bottles/frontend/views/bottle_preferences.py:218
+msgid "This feature is not available on your system."
+msgstr "Ez a funkció nem elérhető a rendszerén."
+
+#: bottles/frontend/views/bottle_preferences.py:266
+#: bottles/frontend/views/bottle_preferences.py:283
+#: bottles/frontend/views/bottle_preferences.py:422
+#, fuzzy
+msgid "Default to the bottle path."
+msgstr "Alapértelmezetten a palack útvonala."
+
+#: bottles/frontend/views/bottle_preferences.py:274
+msgid "Choose working directory for executables"
+msgstr "Munkakönyvtár kiválasztása a végrehajtható fájlok számára"
+
+#: bottles/frontend/views/bottle_preferences.py:772
+msgid "Toggling Compression Require Re-Initialization"
+msgstr ""
+
+#: bottles/frontend/views/bottle_preferences.py:773
+msgid ""
+"This will kepp all your files but will delete all states. Do you want to "
+"continue?"
+msgstr ""
+
+#: bottles/frontend/views/bottle_programs.py:86
+#, python-brace-format
+msgid "'{0}' added."
+msgstr "{0} hozzáadva."
+
+#: bottles/frontend/views/bottle_programs.py:90
+msgid "Choose an executable path"
+msgstr "Válassza ki egy végrehajtható fájl útvonalát"
+
+#: bottles/frontend/views/bottle_programs.py:92
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: bottles/frontend/views/bottle_versioning.py:88
+msgid "Please migrate to the new Versioning system to create new states."
+msgstr ""
+
+#: bottles/frontend/views/details.py:154
+msgid "Details & Utilities"
+msgstr "Részletek és segédprogramok"
+
+#: bottles/frontend/views/details.py:162
+msgid "Dependencies"
+msgstr "Függőségek"
+
+#: bottles/frontend/views/details.py:167
+msgid "Found in your bottle's Start menu."
+msgstr "A palack Start menüjében található."
+
+#: bottles/frontend/views/details.py:174
+msgid "Installers"
+msgstr "Telepítők"
+
+#: bottles/frontend/views/details.py:377
+#, fuzzy
+msgid "Operations in progress, please wait."
+msgstr "Windows verzió frissítése…"
+
+#: bottles/frontend/views/details.py:381
+#, fuzzy
+msgid "Return to your bottles."
+msgstr "Palackok keresése…"
+
+#: bottles/frontend/views/importer.py:89
+msgid "Backup imported successfully."
+msgstr "A biztonsági mentés sikeresen importálva."
+
+#: bottles/frontend/views/importer.py:91
+msgid "Import failed."
+msgstr "Az importálás sikertelen."
+
+#: bottles/frontend/views/importer.py:103
+#: bottles/frontend/views/importer.py:132
+msgid "Importing backup…"
+msgstr "Biztonsági mentés importálása…"
+
+#: bottles/frontend/views/importer.py:115
+msgid "Choose a backup archive"
+msgstr "Válasszon egy biztonsági mentés archívumot"
+
+#: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
+msgid "N/A"
+msgstr "Nem alkalmazható"
+
+#: bottles/frontend/views/list.py:220
+msgid "Your Bottles"
+msgstr "A Palackjai"
+
+#: bottles/frontend/views/loading.py:33
+#, python-brace-format
+msgid "Downloading ~{0} of packages…"
+msgstr ""
+
+#: bottles/frontend/views/loading.py:34
+#, python-brace-format
+msgid "Fetched {0} of {1} packages"
+msgstr ""
+
+#: bottles/frontend/views/new.py:133
+#, fuzzy
+msgid "Name has special characters or already in use."
+msgstr "Speciális karakterek használata nem megengedett!"
+
+#: bottles/frontend/views/new.py:150
+msgid "Choose a recipe file"
+msgstr "Válassza ki a receptfájlt"
+
+#: bottles/frontend/views/new.py:166
+msgid "Choose where to store the bottle"
+msgstr "Válassza ki, hogy hol tárolja a palackot"
+
+#: bottles/frontend/views/new.py:219
+msgid "There was an error creating the bottle."
+msgstr "Hiba történt a palack létrehozása közben."
+
+#: bottles/frontend/views/new.py:227
+#, python-brace-format
+msgid "A bottle named “{0}” was created successfully"
+msgstr "{0} nevű palack sikeresen létrehozva"
+
+#: bottles/frontend/views/preferences.py:119
+#, fuzzy
+msgid "Steam was not found or Bottles does not have enough permissions."
+msgstr ""
+"A Steam nem található vagy a Palackok alkalmazás nem rendelkezik a szükséges "
+"engedélyekkel. Lásd: https://docs.usebottles.com/flatpak/cant-enable-steam-"
+"proton-manager"
+
+#: bottles/frontend/views/preferences.py:156
+msgid "Choose new bottles path"
+msgstr "Válasszon egy új palack útvonalat"
+
+#: bottles/frontend/views/preferences.py:199
+msgid "Based on Valve's Wine, includes staging and Proton patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:200
+msgid "Based on Wine upstream, includes staging and Proton patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:203
+msgid "Based on Wine upstream, includes staging patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:204
+msgid ""
+"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
+"Requires the Steam Runtime turned on."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:206
+msgid "Other"
+msgstr "Egyéb"
+
+#: bottles/frontend/widgets/component.py:70
+msgid "Upgrade"
+msgstr "Frissítés"
+
+#: bottles/frontend/widgets/component.py:145
+msgid "Installing…"
+msgstr "Telepítés…"
+
+#: bottles/frontend/widgets/dependency.py:107
+#: bottles/frontend/widgets/installer.py:72
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "Jegyzékfájl ehhez: {0}"
+
+#: bottles/frontend/widgets/dependency.py:170
+#, python-brace-format
+msgid "'{0}' installed."
+msgstr "{0} telepítve."
+
+#: bottles/frontend/widgets/dependency.py:184
+#, fuzzy, python-brace-format
+msgid "'{0}' failed to install."
+msgstr "{0} telepítve."
+
+#: bottles/frontend/widgets/importer.py:66
+#, python-brace-format
+msgid "'{0}' imported."
+msgstr "{0} importálva."
+
+#: bottles/frontend/widgets/installer.py:81
+#, python-brace-format
+msgid "Review for {0}"
+msgstr "Vélemény ehhez: {0}"
+
+#: bottles/frontend/widgets/program.py:187
+#, fuzzy, python-brace-format
+msgid "Launching '{0}'…"
+msgstr "Indítás terminálban…"
+
+#: bottles/frontend/widgets/program.py:193
+#, fuzzy, python-brace-format
+msgid "Launching '{0}' with Steam…"
+msgstr "Indítás Steammel"
+
+#: bottles/frontend/widgets/program.py:215
+#, python-brace-format
+msgid "'{0}' hidden."
+msgstr "{0} elrejtve."
+
+#: bottles/frontend/widgets/program.py:217
+#, python-brace-format
+msgid "'{0}' showed."
+msgstr "{0} megjelenítve."
+
+#: bottles/frontend/widgets/program.py:240
+#, python-brace-format
+msgid "'{0}' removed."
+msgstr "{0} eltávolítva."
+
+#: bottles/frontend/widgets/program.py:254
+#, python-brace-format
+msgid "'{0}' renamed to '{1}'."
+msgstr "{0} átnevezve erre: {1}."
+
+#: bottles/frontend/widgets/program.py:274
+#, python-brace-format
+msgid "Desktop Entry created for '{0}'"
+msgstr "Asztalbejegyzés létrehozva {0} számára"
+
+#: bottles/frontend/widgets/program.py:290
+#, python-brace-format
+msgid "'{0}' added to your library"
+msgstr "{0} hozzá lett adva a könyvtárához"
+
+#: bottles/frontend/widgets/program.py:306
+#, python-brace-format
+msgid "'{0}' added to your Steam library"
+msgstr "{0} hozzá lett adva a Steam könyvtárához"
+
+#: bottles/frontend/windows/main_window.py:188
+#, fuzzy
+msgid "Custom Bottles Path not Found"
+msgstr "Egyéni palackok útvonala (újraindítás szükséges)"
+
+#: bottles/frontend/windows/main_window.py:189
+msgid ""
+"Falling back to default path. No bottles from the given path will be listed."
+msgstr ""
+
+#: bottles/frontend/windows/main_window.py:310
+msgid "Third-Party Libraries and Special Thanks"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -393,10 +3288,6 @@ msgstr "Ablakmagasság"
 msgid "Change the window height."
 msgstr "Ablakmagasság módosítása."
 
-#: data/com.usebottles.bottles.gschema.xml:46 src/ui/preferences.ui:49
-msgid "Notifications"
-msgstr "Értesítések"
-
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
 msgstr "Értesítések megjelenítése."
@@ -424,10 +3315,6 @@ msgstr "Indítási nézet"
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
 msgstr "Válassza ki az alkalmazás indításakor betöltendő nézetet."
-
-#: data/com.usebottles.bottles.gschema.xml:66 src/ui/preferences.ui:253
-msgid "Experiments"
-msgstr "Kísérleti"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
@@ -478,2563 +3365,6 @@ msgstr ""
 #, fuzzy
 msgid "Toggle sandbox warning."
 msgstr "Steam alkalmazások listájának ki-/bekapcsolása."
-
-#: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
-msgid "No path specified"
-msgstr "Nincs útvonal megadva"
-
-#: src/backend/managers/backup.py:71
-#, python-brace-format
-msgid "Backup {0}"
-msgstr "{0} biztonsági mentése"
-
-#: src/backend/managers/backup.py:124
-#, python-brace-format
-msgid "Importing backup: {0}"
-msgstr "Biztonsági mentés importálása: {0}"
-
-#: src/backend/managers/manager.py:1030
-msgid "Fail to install components, tried 3 times."
-msgstr ""
-"Nem sikerült telepíteni az összetevőket, 3 alkalommal volt megpróbálva."
-
-#: src/backend/managers/manager.py:1041
-msgid "Missing essential components. Installing…"
-msgstr "Alapvető összetevők telepítése. Telepítés…"
-
-#: src/backend/managers/manager.py:1117
-msgid "Failed to create bottle directory."
-msgstr "Nem sikerült a palack könyvtárát létrehozni."
-
-#: src/backend/managers/manager.py:1129
-msgid "Failed to create placeholder directory/file."
-msgstr "Nem sikerült létrehozni helykitöltő könyvtárat/fájlt."
-
-#: src/backend/managers/manager.py:1134
-msgid "Generating bottle configuration…"
-msgstr "Palack konfigurációs fájljának generálása…"
-
-#: src/backend/managers/manager.py:1157
-msgid "Template found, applying…"
-msgstr "Sablon megtalálva, alkalmazás…"
-
-#. execute wineboot on the bottle path
-#: src/backend/managers/manager.py:1169
-msgid "The Wine config is being updated…"
-msgstr "A Wine konfigurációjának frissítése…"
-
-#: src/backend/managers/manager.py:1171
-msgid "Wine config updated!"
-msgstr "Wine konfiguráció frissítve!"
-
-#: src/backend/managers/manager.py:1179
-msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Futtatás Flatpak-ként, felhasználó mappa homokozóba helyezése…"
-
-#: src/backend/managers/manager.py:1181
-msgid "Sandboxing userdir…"
-msgstr "Felhasználó mappa homokozóba helyezése…"
-
-#: src/backend/managers/manager.py:1197
-msgid "Setting Windows version…"
-msgstr "Windows verzió beállítása…"
-
-#: src/backend/managers/manager.py:1207
-msgid "Apply CMD default settings…"
-msgstr "CMD alapértelmezett beállítások alkalmazása…"
-
-#: src/backend/managers/manager.py:1215
-msgid "Optimizing environment…"
-msgstr "Környezet optimalizálása…"
-
-#: src/backend/managers/manager.py:1226
-#, python-brace-format
-msgid "Applying environment: {0}…"
-msgstr "Környezet alkalmazása: {0}…"
-
-#: src/backend/managers/manager.py:1236
-msgid "(!) Using a custom environment recipe…"
-msgstr "(!) Egyéni környezetrecept használata…"
-
-#: src/backend/managers/manager.py:1239
-msgid "(!) Recipe not not found or not valid…"
-msgstr "(!) A recept nem található, vagy érvénytelen…"
-
-#: src/backend/managers/manager.py:1256
-msgid "Installing DXVK…"
-msgstr "DXVK telepítése…"
-
-#: src/backend/managers/manager.py:1264
-msgid "Installing VKD3D…"
-msgstr "VKD3D telepítése…"
-
-#: src/backend/managers/manager.py:1272
-msgid "Installing DXVK-NVAPI…"
-msgstr "DXVK-NVAPI telepítése…"
-
-#: src/backend/managers/manager.py:1281
-#, python-format
-msgid "Installing dependency: %s …"
-msgstr "Függőség telepítése: %s…"
-
-#: src/backend/managers/manager.py:1297
-msgid "Creating versioning state 0…"
-msgstr "A(z) 0 verziószámozási állapot létrehozása…"
-
-#: src/backend/managers/manager.py:1305
-msgid "Finalizing…"
-msgstr "Véglegesítés…"
-
-#: src/backend/managers/manager.py:1316
-msgid "Caching template…"
-msgstr "Sablon gyorsítótárazása…"
-
-#: src/backend/managers/versioning.py:97
-#, fuzzy
-msgid "Committing state …"
-msgstr "Állapotok frissítése …"
-
-#: src/backend/managers/versioning.py:106
-msgid "Nothing to commit"
-msgstr ""
-
-#: src/backend/managers/versioning.py:112
-#, python-brace-format
-msgid "New state [{0}] created successfully!"
-msgstr "Az új [{0}] állapot sikeresen létrehozva!"
-
-#: src/backend/managers/versioning.py:140
-#, fuzzy
-msgid "States list retrieved successfully!"
-msgstr "Az új [{0}] állapot sikeresen létrehozva!"
-
-#: src/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
-msgid "State {0} restored successfully!"
-msgstr "Az új [{0}] állapot sikeresen létrehozva!"
-
-#: src/backend/managers/versioning.py:176
-#, fuzzy
-msgid "Restoring state {} …"
-msgstr "Állapotok frissítése …"
-
-#: src/backend/managers/versioning.py:185
-#, fuzzy
-msgid "State not found"
-msgstr "Nem található állapot"
-
-#: src/backend/managers/versioning.py:191
-msgid "State {} is already the active state"
-msgstr ""
-
-#: src/dialogs/crash.py:37
-msgid "Show report"
-msgstr "Jelentés megjelenítése"
-
-#: src/dialogs/crash.py:88
-msgid ""
-"            This issue was reported 5 times and cannot be sent again.\n"
-"            Report your feedback in one of the below existing reports."
-msgstr ""
-"            Ez a hiba 5 alkalommal lett jelentve és nem lehet újra "
-"beküldeni.\n"
-"Jelentse visszajelzését az alábbi meglévő jelentések egyikében."
-
-#: src/dialogs/dlloverrides.py:136
-msgid "No overrides found."
-msgstr "Nem találhatók felülbírálások."
-
-#: src/dialogs/drives.py:71
-msgid "Choose path"
-msgstr "Útvonal kiválasztása"
-
-#: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
-#: src/dialogs/installer.py:66 src/dialogs/launchoptions.py:234
-#: src/dialogs/launchoptions.py:258 src/ui/dialog-bottle-picker.ui:17
-#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-proton-alert.ui:17
-#: src/ui/dialog-rename.ui:17 src/ui/dialog-run-args.ui:19 src/ui/new.ui:33
-#: src/views/bottle_details.py:202 src/views/bottle_details.py:296
-#: src/views/bottle_details.py:335 src/views/bottle_details.py:414
-#: src/views/bottle_preferences.py:260 src/views/bottle_preferences.py:744
-#: src/views/bottle_programs.py:89 src/views/importer.py:117
-#: src/views/importer.py:146 src/views/list.py:120 src/views/new.py:144
-#: src/views/new.py:160 src/views/preferences.py:195
-msgid "Cancel"
-msgstr "Mégse"
-
-#: src/dialogs/drives.py:73 src/dialogs/installer.py:66
-#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
-#: src/ui/dialog-bottle-picker.ui:22 src/views/bottle_preferences.py:260
-#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
-msgid "Select"
-msgstr "Kiválasztás"
-
-#: src/dialogs/envvars.py:131
-msgid "No environment variables defined."
-msgstr "Nincs környezeti változó megadva."
-
-#: src/dialogs/exclusionpatterns.py:108
-#, fuzzy
-msgid "No exclusion patterns defined."
-msgstr "Nincs környezeti változó megadva."
-
-#: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:34
-#: src/ui/dialog-launch-options.ui:35 src/ui/dialog-rename.ui:22
-msgid "Save"
-msgstr "Mentés"
-
-#: src/dialogs/generic.py:24
-msgid "An error has occurred."
-msgstr "Hiba történt."
-
-#: src/dialogs/generic.py:91 src/dialogs/generic.py:137
-#: src/dialogs/generic.py:182
-msgid "Copy to clipboard"
-msgstr "Másolás vágólapra"
-
-#: src/dialogs/installer.py:64
-msgid "Select Resource FIle"
-msgstr "Erőforrásfájl kiválasztása"
-
-#: src/dialogs/installer.py:115
-#, fuzzy
-msgid "Installing Windows dependencies…"
-msgstr "Függőség telepítése: %s…"
-
-#: src/dialogs/installer.py:116
-#, fuzzy
-msgid "Configuring the bottle…"
-msgstr "Palack létrehozása …"
-
-#: src/dialogs/installer.py:117
-msgid "Processing installer steps…"
-msgstr ""
-
-#: src/dialogs/installer.py:118
-#, fuzzy
-msgid "Installing the {}…"
-msgstr "Telepítés…"
-
-#: src/dialogs/installer.py:119
-msgid "Performing final checks…"
-msgstr ""
-
-#: src/dialogs/installer.py:123
-#, fuzzy, python-brace-format
-msgid "Installing {0}…"
-msgstr "Telepítés…"
-
-#: src/dialogs/installer.py:125
-#, python-brace-format
-msgid "{0} is now available in the programs view."
-msgstr ""
-
-#: src/dialogs/installer.py:171
-msgid "Installer failed with unknown error"
-msgstr "A telepítő ismeretlen hibával meghiúsult"
-
-#. endregion
-#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
-msgid "Choose a script which should be executed after run."
-msgstr "Válasszon egy szkriptet, amelyet a futás után végre kell hajtani."
-
-#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
-msgid "Choose from where start the program."
-msgstr "Válassza ki a program indítási helyét."
-
-#: src/dialogs/launchoptions.py:58
-#, python-brace-format
-msgid "{0} is already disabled for this bottle."
-msgstr "{0} már le van tiltva ebben a palackban."
-
-#: src/dialogs/launchoptions.py:59
-msgid "This setting is different from the bottle's default."
-msgstr "Ez a beállítás különbözik a palack alapértelmezett beállításától."
-
-#: src/dialogs/launchoptions.py:232
-msgid "Choose the script"
-msgstr "Szkript kiválasztása"
-
-#: src/dialogs/launchoptions.py:256
-msgid "Choose the Working Directory"
-msgstr "Válassza ki a munkakönyvtárat"
-
-#: src/main.py:105
-msgid "Show version"
-msgstr "Verzió megjelenítése"
-
-#: src/main.py:113
-msgid "Executable path"
-msgstr "Végrehajtható fájl elérési útja"
-
-#: src/main.py:121
-msgid "lnk path"
-msgstr "lnk útvonal"
-
-#: src/main.py:129 src/ui/library-entry.ui:103 src/ui/list-entry.ui:7
-msgid "Bottle name"
-msgstr "Palack neve"
-
-#: src/main.py:137
-msgid "Pass arguments"
-msgstr "Argumentumok átadása"
-
-#: src/main.py:196
-msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "Érvénytelen URI (szintaxis: bottles:run/<palack>/<program>)"
-
-#: src/main.py:237
-msgid "[Quit] request received."
-msgstr "[Kilépési] kérelem érkezett."
-
-#: src/main.py:246
-msgid "[Help] request received."
-msgstr "[Segítség] kérés érkezett."
-
-#: src/main.py:254
-msgid "[Refresh] request received."
-msgstr "[Frissítési] kérelem érkezett."
-
-#: src/operation.py:50
-msgid "Calculating…"
-msgstr "Számítás…"
-
-#: src/ui/about.ui:8
-msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2022 - Palackok fejlesztői"
-
-#: src/ui/about.ui:9
-msgid "Easily manage wineprefix using environments"
-msgstr "Wine prefix könnyű kezelése a környezetek használatával"
-
-#: src/ui/component-entry.ui:6
-msgid "Component version"
-msgstr "Összetevőverzió"
-
-#: src/ui/component-entry.ui:15 src/ui/dependency-entry.ui:34
-#: src/ui/program-entry.ui:92
-msgid "Uninstall"
-msgstr "Eltávolítás"
-
-#: src/ui/component-entry.ui:26 src/ui/importer-entry.ui:15
-msgid "Browse files"
-msgstr "Fájlok tallózása"
-
-#: src/ui/component-entry.ui:37
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch. Press to try again."
-msgstr ""
-"A telepítés nem sikerült. Ennek oka lehet a tároló hibája, befejezetlen "
-"letöltés vagy az ellenőrző összeg eltérése. Nyomja meg az újrapróbáláshoz."
-
-#: src/ui/component-entry.ui:48
-msgid "Download & Install"
-msgstr "Letöltés és telepítés"
-
-#: src/ui/component-entry.ui:61
-msgid "0%"
-msgstr "0%"
-
-#: src/ui/dependency-entry.ui:18
-msgid "Show Manifest"
-msgstr "Jegyzékfájl megjelenítése"
-
-#: src/ui/dependency-entry.ui:23
-msgid "License"
-msgstr "Licenc"
-
-#: src/ui/dependency-entry.ui:28
-msgid "Reinstall"
-msgstr "Újratelepítés"
-
-#: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
-msgid "Report a Bug…"
-msgstr "Hiba bejelentése…"
-
-#: src/ui/dependency-entry.ui:50
-#, fuzzy
-msgid "Dependency name"
-msgstr "Függőségek"
-
-#: src/ui/dependency-entry.ui:52
-#, fuzzy
-msgid "Dependency description"
-msgstr "Függőségek"
-
-#: src/ui/dependency-entry.ui:59
-msgid "Category"
-msgstr ""
-
-#: src/ui/dependency-entry.ui:73
-msgid "Download & Install this dependency"
-msgstr "Függőség letöltése és telepítése"
-
-#: src/ui/dependency-entry.ui:89
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr ""
-"Telepítési hiba történt. Indítsa újra a Palackokat az összeomlási jelentés "
-"elolvasásához, vagy futtassa a terminállal a kimenet megtekintéséhez."
-
-#: src/ui/details-bottle.ui:18
-msgid "Troubleshooting"
-msgstr "Hibakeresés"
-
-#: src/ui/details-bottle.ui:26
-msgid "Browse Files…"
-msgstr "Fájlok tallózása…"
-
-#: src/ui/details-bottle.ui:31
-msgid "Duplicate Bottle…"
-msgstr "Palack duplikálása…"
-
-#: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
-msgid "This is the complete archive of your bottle, including personal files."
-msgstr "Ez a palack teljes archívuma, beleértve a személyes fájlokat is."
-
-#: src/ui/details-bottle.ui:37
-msgid "Full Backup…"
-msgstr "Teljes biztonsági mentés…"
-
-#: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
-msgstr ""
-"Ez csak a palack konfigurációja, tökéletes, ha újat szeretne létrehozni, de "
-"személyes fájlok nélkül."
-
-#: src/ui/details-bottle.ui:43
-msgid "Export Configuration…"
-msgstr "Konfiguráció exportálása…"
-
-#: src/ui/details-bottle.ui:51
-msgid "Delete Bottle…"
-msgstr "Palack törlése…"
-
-#: src/ui/details-bottle.ui:86
-msgid "Kill all Processes"
-msgstr "Minden folyamat megszakítása"
-
-#: src/ui/details-bottle.ui:91
-msgid "Simulate a Windows system shutdown."
-msgstr "Windows rendszerleállítás szimulálása."
-
-#: src/ui/details-bottle.ui:92
-msgid "Shutdown"
-msgstr "Leállítás"
-
-#: src/ui/details-bottle.ui:97
-msgid "Simulate a Windows system reboot."
-msgstr "Windows rendszerújraindítás szimulálása."
-
-#: src/ui/details-bottle.ui:98
-msgid "Reboot"
-msgstr "Újraindítás"
-
-#: src/ui/details-bottle.ui:121
-msgid "Run with Arguments…"
-msgstr "Futtatás argumentumokkal…"
-
-#: src/ui/details-bottle.ui:126
-msgid "Launch in Terminal…"
-msgstr "Indítás terminálban…"
-
-#: src/ui/details-bottle.ui:157
-msgid "My bottle"
-msgstr "A palackom"
-
-#: src/ui/details-bottle.ui:169
-msgid "Win64"
-msgstr "Win64"
-
-#: src/ui/details-bottle.ui:177 src/ui/list-entry.ui:14 src/ui/new.ui:77
-msgid "Environment"
-msgstr "Környezet"
-
-#: src/ui/details-bottle.ui:185 src/ui/details-preferences.ui:304
-#: src/ui/new.ui:129
-msgid "Runner"
-msgstr "Futtató"
-
-#: src/ui/details-bottle.ui:193 src/ui/list-entry.ui:23
-msgid "Versioning enabled for this bottle"
-msgstr "A verziókezelés engedélyezve van ehhez a palackhoz"
-
-#: src/ui/details-bottle.ui:198 src/ui/list-entry.ui:28
-msgid "Versioning is active in this bottle."
-msgstr "A verziókezelés aktív ebben a palackban."
-
-#: src/ui/details-bottle.ui:208 src/ui/list-entry.ui:34
-msgid "0"
-msgstr "0"
-
-#: src/ui/details-bottle.ui:219
-msgid "Run Executable…"
-msgstr "Végrehajtható fájl futtatása…"
-
-#: src/ui/details-bottle.ui:235
-msgid "Layers"
-msgstr "Rétegek"
-
-#: src/ui/details-bottle.ui:241 src/views/details.py:166
-msgid "Programs"
-msgstr "Programok"
-
-#: src/ui/details-bottle.ui:246
-msgid "Tools"
-msgstr "Eszközök"
-
-#: src/ui/details-bottle.ui:250
-msgid "Command Line"
-msgstr "Parancssor"
-
-#: src/ui/details-bottle.ui:251
-msgid "Run commands inside the Bottle."
-msgstr "Parancsok futtatása a palackban."
-
-#: src/ui/details-bottle.ui:262
-msgid "Registry Editor"
-msgstr "Rendszerleíró-szerkesztő"
-
-#: src/ui/details-bottle.ui:263
-msgid "Edit the internal registry."
-msgstr "Belső rendszerleíró szerkesztése."
-
-#: src/ui/details-bottle.ui:273
-msgid "Legacy Tools"
-msgstr "Örökölt eszközök"
-
-#: src/ui/details-bottle.ui:277
-msgid "Explorer"
-msgstr "Intéző"
-
-#: src/ui/details-bottle.ui:278
-msgid "Browse internal files with the Wine explorer."
-msgstr "Belső fájlok tallózása a Wine intézővel."
-
-#: src/ui/details-bottle.ui:289 src/views/details.py:178
-msgid "Task Manager"
-msgstr "Feladatkezelő"
-
-#: src/ui/details-bottle.ui:290
-msgid "Manage processes with the Wine task manager."
-msgstr "Folyamatok kezelése a Wine feladatkezelőjével."
-
-#: src/ui/details-bottle.ui:301
-msgid "Debug"
-msgstr "Hibakeresés"
-
-#: src/ui/details-bottle.ui:302
-msgid "Debug wine processes."
-msgstr "Wine folyamatok hibakeresése."
-
-#: src/ui/details-bottle.ui:313
-msgid "Wine Configuration"
-msgstr "Wine konfiguráció"
-
-#: src/ui/details-bottle.ui:314
-msgid "Adjust internal settings."
-msgstr "Belső beállítások módosítása."
-
-#: src/ui/details-bottle.ui:325
-msgid "Uninstaller"
-msgstr "Eltávolító"
-
-#: src/ui/details-bottle.ui:326
-msgid "Uninstall programs using Wine uninstaller."
-msgstr "Programok eltávolítása a Wine eltávolítójának haszálatával."
-
-#: src/ui/details-bottle.ui:337
-msgid "Control Panel"
-msgstr "Vezérlőpult"
-
-#: src/ui/details-bottle.ui:338
-msgid "Access the internal Wine Control Panel."
-msgstr "Hozzáférés a belső Wine vezérlőpulthoz."
-
-#: src/ui/details-bottle.ui:357
-msgid "Use the Installers section or the \"Run executable\" button."
-msgstr ""
-"Használja a telepítők részt vagy a \"Végrehajtható fájl futtatása\" gombot."
-
-#: src/ui/details-dependencies.ui:13
-msgid "Search for dependencies…"
-msgstr "Függőségek keresése…"
-
-#: src/ui/details-dependencies.ui:22
-msgid ""
-"Dependencies are software, libraries and codecs that improve the "
-"compatibility of Windows software. Install from here to meet your program "
-"requirements."
-msgstr ""
-"A függőségek olyan szoftverek, könyvtárak és kodekek, amelyek javítják a "
-"Windows-szoftverek kompatibilitását. Telepítse innen, hogy megfeleljen a "
-"program követelményeinek."
-
-#: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
-msgid ""
-"Files on this page are provided by third parties under a proprietary "
-"license. By installing them, you agree with their respective licensing terms."
-msgstr ""
-"Az ezen az oldalon található fájlokat harmadik felek biztosítják saját "
-"licenc alapján. Telepítésükkel elfogadja a vonatkozó licencfeltételeiket."
-
-#: src/ui/details-dependencies.ui:62
-msgid "Report a problem or a missing dependency."
-msgstr "Hiba vagy hiányzó függőség bejelentése."
-
-#: src/ui/details-dependencies.ui:63
-msgid "Report missing dependency"
-msgstr "Hiányzó függőség bejelentése"
-
-#: src/ui/details-dependencies.ui:68
-#, fuzzy
-msgid "Read documentation."
-msgstr "Dokumentáció elolvasása"
-
-#: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:71
-#: src/ui/details-programs.ui:45 src/ui/details-versioning.ui:44
-#: src/ui/window.ui:38
-msgid "Documentation"
-msgstr "Dokumentáció"
-
-#: src/ui/details-dependencies.ui:80
-msgid "Install Selected"
-msgstr "Kijelöltek telepítése"
-
-#: src/ui/details-dependencies.ui:81
-msgid "We strongly advise against installing multiple dependencies at once."
-msgstr "Nyomatékosan ajánljuk hogy ne telepítsen több függőséget egyszerre."
-
-#: src/ui/details-dependencies.ui:88
-msgid "Select Dependencies"
-msgstr "Függőségek kiválasztása"
-
-#: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:82
-#: src/ui/window.ui:86
-msgid "Search"
-msgstr "Keresés"
-
-#: src/ui/details-installers.ui:13
-msgid "Search for Programs…"
-msgstr "Programok keresése…"
-
-#: src/ui/details-installers.ui:22
-#, fuzzy
-msgid ""
-"Use this section to install programs curated by our community, without "
-"having to proceed manually."
-msgstr ""
-"Ebben a részben a közösségünk által válogatott programokat telepíthet "
-"anélkül, hogy manuálisan kellene folytatnia. Vegye figyelembe a <a href="
-"\"https://docs.usebottles.com/bottles/installers#compatibility-grades"
-"\">kompatibilitási fokozatot</a> választáskor."
-
-#: src/ui/details-installers.ui:48
-msgid "No Installers Found"
-msgstr "Nem található telepítő"
-
-#: src/ui/details-installers.ui:51
-msgid ""
-"The repository is unreachable or no installer is compatible with this bottle."
-msgstr "A tároló nem elérhető vagy a telepítő nem kompatibilis a palackkal."
-
-#: src/ui/details-installers.ui:70 src/ui/details-programs.ui:44
-#: src/ui/details-versioning.ui:43
-msgid "Read documentation"
-msgstr "Dokumentáció elolvasása"
-
-#: src/ui/details-preferences.ui:8
-msgid "Bottle Details"
-msgstr "Palack részletek"
-
-#: src/ui/details-preferences.ui:11 src/ui/dialog-duplicate.ui:58
-#: src/ui/new.ui:70
-msgid "Name"
-msgstr "Név"
-
-#: src/ui/details-preferences.ui:19
-msgid "Graphics"
-msgstr "Grafika"
-
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:213
-msgid "DXVK"
-msgstr "DXVK"
-
-#: src/ui/details-preferences.ui:24
-msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr "Javítja a DirectX 11 játékok és 3D alkalmazások teljesítményét."
-
-#: src/ui/details-preferences.ui:27 src/ui/details-preferences.ui:328
-msgid "Updating DXVK, please wait…"
-msgstr "DXVK frissítése…"
-
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:218
-msgid "VKD3D"
-msgstr "VKD3D"
-
-#: src/ui/details-preferences.ui:43
-msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr "Javítja a DirectX 12 játékok és 3D alkalmazások teljesítményét."
-
-#: src/ui/details-preferences.ui:46 src/ui/details-preferences.ui:351
-msgid "Updating VKD3D, please wait…"
-msgstr "VKD3D frissítése…"
-
-#: src/ui/details-preferences.ui:61
-msgid "DLSS (DXVK-NVAPI)"
-msgstr "DLSS (DXVK-NVAPI)"
-
-#: src/ui/details-preferences.ui:62
-msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "Lehetővé teszi a DLSS támogatást és az Nvidia NVAPI-ját, ha elérhető."
-
-#: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
-#: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
-msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "DXVK-NVAPI frissítése…"
-
-#: src/ui/details-preferences.ui:80
-msgid "FSR"
-msgstr "FSR"
-
-#: src/ui/details-preferences.ui:81
-msgid ""
-"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
-msgstr ""
-"Az FSR élvonalbeli felskálázó technológiákat használ a képkockasebesség "
-"növelésére."
-
-#: src/ui/details-preferences.ui:88
-msgid "Ultra Quality"
-msgstr "Ultra minőség"
-
-#: src/ui/details-preferences.ui:89
-msgid "Quality"
-msgstr "Minőség"
-
-#: src/ui/details-preferences.ui:90
-msgid "Balanced"
-msgstr "Kiegyensúlyozott"
-
-#: src/ui/details-preferences.ui:91
-msgid "Performance"
-msgstr "Teljesítmény"
-
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:228
-msgid "LatencyFleX"
-msgstr "LatencyFleX"
-
-#: src/ui/details-preferences.ui:109
-msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
-msgstr ""
-"Az NVIDIA Reflex egy alternatívája. Egyes csalásgátló rendszerek észlelhetik."
-
-#: src/ui/details-preferences.ui:128
-msgid "Discrete GPU"
-msgstr "Diszkrét GPU"
-
-#: src/ui/details-preferences.ui:129
-msgid "Improves performance at the cost of increased power usage."
-msgstr "Javítja a teljesítményt a megnövekedett energiafelhasználás árán."
-
-#: src/ui/details-preferences.ui:140
-msgid "vkBasalt"
-msgstr "vkBasalt"
-
-#: src/ui/details-preferences.ui:141
-msgid ""
-"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
-"games."
-msgstr ""
-"A vkBasalt egy Vulkan utófeldolgozási réteg, amely javítja a játékok "
-"vizuális grafikáját."
-
-#: src/ui/details-preferences.ui:151
-msgid "Display Settings"
-msgstr "Megjelenítő beállítások"
-
-#: src/ui/details-preferences.ui:155 src/ui/dialog-launch-options.ui:194
-msgid "Virtual Desktop"
-msgstr "Virtuális asztal"
-
-#: src/ui/details-preferences.ui:156
-msgid "Use the Wine virtual desktop."
-msgstr "A Wine virtuális asztal használata."
-
-#: src/ui/details-preferences.ui:194
-msgid "Fullscreen Mouse Capture"
-msgstr "Teljes képernyős egérelkapás"
-
-#: src/ui/details-preferences.ui:195
-msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
-"Egérbemenet elkapásának engedélyezése a program számára teljes képernyős "
-"ablak esetén."
-
-#: src/ui/details-preferences.ui:206
-msgid "Take Focus"
-msgstr "Fókusz elvétele"
-
-#: src/ui/details-preferences.ui:207
-msgid "Activate it if the program does not retake focus on switch."
-msgstr "Aktiválás, ha a program nem veszi vissza a fókuszt váltáskor."
-
-#: src/ui/details-preferences.ui:218
-msgid "Mouse Warp"
-msgstr "Egérrögzítés"
-
-#: src/ui/details-preferences.ui:219
-msgid "Change this if you are running into mouse lag or desync."
-msgstr "Változtassa meg, ha az egér szakadozását, vagy leválását tapasztalja."
-
-#: src/ui/details-preferences.ui:231
-msgid "Screen Scaling"
-msgstr "Képernyő méretezése"
-
-#: src/ui/details-preferences.ui:232
-msgid "Set custom DPI."
-msgstr "Egyéni DPI beállítása."
-
-#: src/ui/details-preferences.ui:238
-msgid "96"
-msgstr "96"
-
-#: src/ui/details-preferences.ui:239
-msgid "120"
-msgstr "120"
-
-#: src/ui/details-preferences.ui:240
-msgid "144"
-msgstr "144"
-
-#: src/ui/details-preferences.ui:241
-msgid "168"
-msgstr "168"
-
-#: src/ui/details-preferences.ui:242
-msgid "192"
-msgstr "192"
-
-#: src/ui/details-preferences.ui:243
-msgid "216"
-msgstr "216"
-
-#: src/ui/details-preferences.ui:244
-msgid "240"
-msgstr "240"
-
-#: src/ui/details-preferences.ui:245
-msgid "288"
-msgstr "288"
-
-#: src/ui/details-preferences.ui:246
-msgid "336"
-msgstr "336"
-
-#: src/ui/details-preferences.ui:247
-msgid "384"
-msgstr "384"
-
-#: src/ui/details-preferences.ui:248
-msgid "432"
-msgstr "432"
-
-#: src/ui/details-preferences.ui:249
-msgid "480"
-msgstr "480"
-
-#: src/ui/details-preferences.ui:262
-msgid "Renderer"
-msgstr "Renderelő"
-
-#: src/ui/details-preferences.ui:263
-msgid "Select what backend to use for wined3d."
-msgstr "Válassza melyik backendet használja a wined3d."
-
-#: src/ui/details-preferences.ui:269
-msgid "gl (default)"
-msgstr "gl (alapértelmezett)"
-
-#: src/ui/details-preferences.ui:270
-msgid "gdi"
-msgstr "gdi"
-
-#: src/ui/details-preferences.ui:271
-msgid "vulkan"
-msgstr "vulkan"
-
-#: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
-msgid "System"
-msgstr "Rendszer"
-
-#: src/ui/details-preferences.ui:289
-msgid "Manage Components Versions"
-msgstr "Összetevők verziójának kezelése"
-
-#: src/ui/details-preferences.ui:299
-msgid "Components"
-msgstr "Összetevők"
-
-#: src/ui/details-preferences.ui:307
-msgid "Updating Runner and components, please wait…"
-msgstr "Futtató és összetevők frissítése…"
-
-#. TODO: replace with ComboRow
-#: src/ui/details-preferences.ui:324
-msgid "DXVK Version"
-msgstr "DXVK verzió"
-
-#: src/ui/details-preferences.ui:348
-msgid "VKD3D Version"
-msgstr "VKD3D verzió"
-
-#: src/ui/details-preferences.ui:372
-msgid "DXVK NVAPI Version"
-msgstr "DXVK NVAPI verzió"
-
-#: src/ui/details-preferences.ui:394
-msgid "LatencyFleX Version"
-msgstr "LatencyFleX verzió"
-
-#: src/ui/details-preferences.ui:416
-msgid "Enable synchronization to increase performance of multicore processors."
-msgstr ""
-"Szinkronizáció engedélyezése a többmagos processzorok teljesítményének "
-"növelése érdekében."
-
-#: src/ui/details-preferences.ui:417
-msgid "Synchronization"
-msgstr "Szinkronizáció"
-
-#: src/ui/details-preferences.ui:428
-msgid "Esync"
-msgstr "Esync"
-
-#: src/ui/details-preferences.ui:434
-msgid "Fsync"
-msgstr "Fsync"
-
-#: src/ui/details-preferences.ui:440
-msgid "Futex2"
-msgstr "Futex2"
-
-#: src/ui/details-preferences.ui:455
-msgid "Windows Version"
-msgstr "Windows verzió"
-
-#: src/ui/details-preferences.ui:458
-msgid "Updating Windows version, please wait…"
-msgstr "Windows verzió frissítése…"
-
-#: src/ui/details-preferences.ui:486
-msgid "Language"
-msgstr "Nyelv"
-
-#: src/ui/details-preferences.ui:487
-msgid "Choose the language to use with programs."
-msgstr "Válassza ki a programokhoz használt nyelvet."
-
-#: src/ui/details-preferences.ui:497
-msgid "false"
-msgstr "hamis"
-
-#: src/ui/details-preferences.ui:498
-msgid "Dedicated Sandbox"
-msgstr "Dedikált homokozó"
-
-#: src/ui/details-preferences.ui:499
-msgid "Use a restricted/managed environment for this bottle."
-msgstr "Korlátozott/kezelt környezet használata ennél a palacknál."
-
-#: src/ui/details-preferences.ui:502
-#, fuzzy
-msgid "Manage Sandbox permissions"
-msgstr "DXVK verziók kezelése"
-
-#: src/ui/details-preferences.ui:520
-msgid "Bottles Runtime"
-msgstr "Palackok futtatókörnyezet"
-
-#: src/ui/details-preferences.ui:521
-msgid ""
-"Provides a bundle of extra libraries for more compatibility,disable if you "
-"run into issues."
-msgstr ""
-"Egy csomag extra könyvtárat biztosít a nagyobb kompatibilitás érdekében "
-"tiltsa le, ha problémákba ütközik."
-
-#: src/ui/details-preferences.ui:532
-msgid "Steam Runtime"
-msgstr "Steam futtatókörnyezet"
-
-#: src/ui/details-preferences.ui:533
-msgid "The same as the Bottles one but provided by Steam."
-msgstr "Ugyanaz, mint a Palackoké, de a Steam szolgáltatja."
-
-#: src/ui/details-preferences.ui:544
-msgid "GameMode"
-msgstr "GameMode"
-
-#: src/ui/details-preferences.ui:545
-msgid "Optimise gaming performance on demand."
-msgstr "Játékteljesítmény optimalizálása igény szerint."
-
-#: src/ui/details-preferences.ui:556
-msgid "Gamescope"
-msgstr "Gamescope"
-
-#: src/ui/details-preferences.ui:557
-msgid "Use the Gamescope micro-compositor."
-msgstr "A Gamescope mikrokompozitor használata."
-
-#: src/ui/details-preferences.ui:560
-msgid "Manage Gamescope settings"
-msgstr "Gamescope beállítások kezelése"
-
-#: src/ui/details-preferences.ui:578 src/ui/dialog-launch-options.ui:91
-msgid "Working Directory"
-msgstr "Munkakönyvtár"
-
-#: src/ui/details-preferences.ui:579
-msgid "Defaults to the bottle path."
-msgstr "Alapértelmezetten a palack útvonala."
-
-#: src/ui/details-preferences.ui:582 src/ui/dialog-launch-options.ui:65
-#: src/ui/dialog-launch-options.ui:98 src/ui/preferences.ui:159
-msgid "Reset to default"
-msgstr "Visszaállítás alapértelmezettre"
-
-#: src/ui/details-preferences.ui:592 src/ui/dialog-launch-options.ui:109
-#: src/ui/new.ui:163 src/ui/new.ui:180 src/ui/preferences.ui:170
-msgid "Choose a directory"
-msgstr "Könyvtár kiválasztása"
-
-#: src/ui/details-preferences.ui:605 src/ui/dialog-dll-overrides.ui:9
-#: src/ui/dialog-dll-overrides.ui:15
-msgid "DLL Overrides"
-msgstr "DLL felülbírálások"
-
-#: src/ui/details-preferences.ui:616 src/ui/dialog-env-vars.ui:16
-msgid "Environment Variables"
-msgstr "Környezeti változók"
-
-#: src/ui/details-preferences.ui:627
-msgid "Manage Drives"
-msgstr "Meghajtók kezelése"
-
-#: src/ui/details-preferences.ui:639
-msgid "Audio"
-msgstr "Hang"
-
-#: src/ui/details-preferences.ui:643 src/ui/dialog-launch-options.ui:183
-msgid "Reduce Latency"
-msgstr "Késleltetés csökkentése"
-
-#: src/ui/details-preferences.ui:644
-#, fuzzy
-msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
-msgstr "A PulseAudio késleltetés 60 ms-ra állítása, javítva a hangminőséget"
-
-#: src/ui/details-preferences.ui:656 src/views/details.py:170
-msgid "Versioning"
-msgstr "Verziókezelés"
-
-#: src/ui/details-preferences.ui:660
-msgid "Use Compression for States"
-msgstr ""
-
-#: src/ui/details-preferences.ui:661
-msgid ""
-"This will reduce the space used by the states but slow down their creation."
-msgstr ""
-
-#: src/ui/details-preferences.ui:672
-#, fuzzy
-msgid "Automatic Versioning"
-msgstr "Verziókezelés"
-
-#: src/ui/details-preferences.ui:673
-msgid ""
-"Bottles will create a state before running any dependencies or installers."
-msgstr ""
-
-#: src/ui/details-preferences.ui:684
-msgid "Use Exclusion Patterns"
-msgstr ""
-
-#: src/ui/details-preferences.ui:685
-msgid "Use custom patterns to exclude some paths from versioning."
-msgstr ""
-
-#: src/ui/details-preferences.ui:688
-#, fuzzy
-msgid "Manage Patterns"
-msgstr "Futtatók kezelése"
-
-#: src/ui/details-preferences.ui:707
-msgid "Development and Debugging"
-msgstr "Fejlesztés és hibakeresés"
-
-#: src/ui/details-preferences.ui:711
-msgid "MangoHud"
-msgstr "MangoHud"
-
-#: src/ui/details-preferences.ui:712
-msgid ""
-"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
-"and more."
-msgstr ""
-"Vulkan és OpenGL átfedés az FPS, a hőmérséklet, a CPU/GPU terhelés és "
-"egyebek figyeléséhez."
-
-#: src/ui/details-preferences.ui:723
-msgid "OBS Vulkan Capture"
-msgstr "OBS Vulkan képernyőfelvétel"
-
-#: src/ui/details-preferences.ui:724
-msgid "Toggle OBS game capture for all programs."
-msgstr "OBS játékrögzítés be-/kikapcsolása az összes program számára."
-
-#: src/ui/details-preferences.ui:735
-msgid "Wine 'fixme' Logs"
-msgstr "Wine 'fixme' naplók"
-
-#: src/ui/details-preferences.ui:736
-msgid "Log code paths that are unimplemented in Wine."
-msgstr "A hosszú kódútvonalak, amelyek nincsenek a Wine-ban implementálva."
-
-#: src/ui/details-programs.ui:9
-msgid "No Programs found"
-msgstr "Nem találhatók programok"
-
-#: src/ui/details-programs.ui:10
-msgid ""
-"Install programs from the installers section or by running the installer "
-"executable, you can also manually add executables with the \"+\" button."
-msgstr ""
-"Telepítse a programokat a telepítők részből vagy a telepítő végrehajható "
-"fájljának futtatásával, de manuálisan is hozzáadhat végrehajtható fájlokat a "
-"\"+\" gombbal."
-
-#: src/ui/details-programs.ui:31
-msgid "Toggle Hidden"
-msgstr "Elrejtett be-/kikapcsolása"
-
-#: src/ui/details-programs.ui:36
-#, fuzzy
-msgid "Search for new programs"
-msgstr "Telepített programok keresése"
-
-#: src/ui/details-programs.ui:55
-msgid "Add a custom executable path"
-msgstr "Egyéni végrehajtható fájl útvonal hozzáadása"
-
-#: src/ui/details-taskmanager.ui:18
-msgid "Refresh"
-msgstr "Frissítés"
-
-#: src/ui/details-taskmanager.ui:24
-msgid "Stop process"
-msgstr "Folyamat leállítása"
-
-#: src/ui/details-versioning.ui:25
-#, fuzzy
-msgid "No States Found"
-msgstr "Nem található állapot"
-
-#: src/ui/details-versioning.ui:26
-msgid "Create first state to start using versioning."
-msgstr ""
-"Hozza létre az első állapotot, hogy elkezdhesse használni a verziókezelést."
-
-#: src/ui/details-versioning.ui:63
-msgid "A short comment"
-msgstr "Egy rövid megjegyzés"
-
-#: src/ui/details-versioning.ui:68
-msgid "Save the bottle state."
-msgstr "Palack állapotának mentése."
-
-#: src/ui/details-versioning.ui:88
-msgid "Create new state"
-msgstr "Új állapot létrehozása"
-
-#: src/ui/details.ui:74
-msgid "Operations"
-msgstr "Műveletek"
-
-#: src/ui/dialog-bottle-picker.ui:6
-#, fuzzy
-msgid "Select Bottle"
-msgstr "Palack törlése…"
-
-#: src/ui/dialog-bottle-picker.ui:42
-#, fuzzy
-msgid "Create New Bottle"
-msgstr "Új palack létrehozása"
-
-#: src/ui/dialog-crash-report.ui:10
-msgid "Bottles crash report"
-msgstr "Palackok összeomlásának jelentése"
-
-#: src/ui/dialog-crash-report.ui:23
-msgid "Send report"
-msgstr "Jelentés küldése"
-
-#: src/ui/dialog-crash-report.ui:43
-msgid ""
-"Bottles crashed last time. Please fill out a report attaching the following "
-"traceback to help us identify the problem preventing it from happening again."
-msgstr ""
-"A Palackok összeomlott legutóbb. Kérjük, töltsön ki egy jelentést, amelyhez "
-"csatolja a következő nyomkövetést, hogy segítsen nekünk azonosítani a "
-"problémát, megakadályozni, hogy ez újból megtörténjen."
-
-#: src/ui/dialog-crash-report.ui:75
-msgid ""
-"We found one or more similar (or identical) reports. Please make sure to "
-"check carefully that it has not already been reported before submitting a "
-"new one. Each report requires effort on the part of the developers to "
-"diagnose, please respect their work and make sure you don't post duplicates."
-msgstr ""
-"Találtunk egy vagy több hasonló (vagy megegyező) jelentést. Győződjön meg, "
-"hogy leellenőrizte, hogy ez nem lett-e már jelentve, mielőtt újat küld be. "
-"Minden jelentés erőfeszítést igényel a fejlesztők részéről a hiba "
-"diagnosztizáláshoz, kérjük, tartsa tiszteletben a munkájukat, és ügyeljen "
-"arra, hogy ne tegyen közzé ismétlődő jelentéseket."
-
-#: src/ui/dialog-crash-report.ui:96
-msgid "I still want to report."
-msgstr "Még mindig szeretném jelenteni."
-
-#: src/ui/dialog-crash-report.ui:102
-msgid "Advanced options"
-msgstr "Haladó beállítások"
-
-#: src/ui/dialog-deps-check.ui:15
-msgid "Incomplete package"
-msgstr ""
-
-#: src/ui/dialog-deps-check.ui:16
-msgid ""
-"This version of Bottles does not seem to provide all the necessary core "
-"dependencies, please contact the package maintainer or use an official "
-"version.\n"
-"                        "
-msgstr ""
-
-#: src/ui/dialog-deps-check.ui:21
-msgid "Quit"
-msgstr "Kilépés"
-
-#: src/ui/dialog-dll-overrides.ui:14
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)."
-msgstr ""
-"A dinamikus hivatkozási könyvtárak megadhatók beépítettnek (a Wine "
-"szolgáltatja) vagy natívnak (a program biztosítja)."
-
-#: src/ui/dialog-dll-overrides.ui:18
-msgid "New Override"
-msgstr "Új felülbírálás"
-
-#: src/ui/dialog-dll-overrides.ui:26
-msgid "Overrides"
-msgstr "Felülbírálások"
-
-#: src/ui/dialog-drives.ui:9
-msgid "Drives"
-msgstr "Meghajtók"
-
-#: src/ui/dialog-drives.ui:31
-#, fuzzy
-msgid ""
-"These are paths from your host system that are mapped and recognized as "
-"devices by the runner (e.g. C: D:…).\n"
-"                                "
-msgstr ""
-"Ezek a gazdarendszerből származó útvonalak, amelyeket a futtató eszközként "
-"leképez és felismer (pl. C: D:...).\n"
-"                                "
-
-#: src/ui/dialog-drives.ui:35
-msgid "Letter"
-msgstr "Betű"
-
-#: src/ui/dialog-drives.ui:59
-#, fuzzy
-msgid "Existing Drives"
-msgstr "Létező meghajtók"
-
-#: src/ui/dialog-duplicate.ui:18
-msgid "Duplicate Bottle"
-msgstr "Palack duplikálása"
-
-#: src/ui/dialog-duplicate.ui:23 src/ui/dialog-gamescope.ui:17
-#: src/ui/dialog-launch-options.ui:17 src/ui/dialog-upgrade-versioning.ui:23
-#, fuzzy
-msgid "_Cancel"
-msgstr "Mégse"
-
-#: src/ui/dialog-duplicate.ui:41
-msgid "Duplicate"
-msgstr "Duplikálás"
-
-#: src/ui/dialog-duplicate.ui:55
-msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Adjon nevet a palack másolatának."
-
-#: src/ui/dialog-duplicate.ui:78
-msgid "Duplicating…"
-msgstr "Duplikálás…"
-
-#: src/ui/dialog-duplicate.ui:87 src/ui/dialog-upgrade-versioning.ui:121
-#: src/ui/new.ui:216
-msgid "Take a break, it may take a while."
-msgstr "Tartson egy kis szünetet, ez eltarthat egy ideig."
-
-#: src/ui/dialog-duplicate.ui:108
-msgid "Bottle Duplicated"
-msgstr "Palack duplikálva"
-
-#: src/ui/dialog-env-vars.ui:35
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr ""
-"A környezeti változók dinamikusan elnevezett értékek, amelyek "
-"befolyásolhatják a futó folyamatok működését a palackban."
-
-#: src/ui/dialog-env-vars.ui:38
-#, fuzzy
-msgid "Variable Name"
-msgstr "Változónév"
-
-#: src/ui/dialog-env-vars.ui:46
-#, fuzzy
-msgid "Existing Variables"
-msgstr "Létező változók"
-
-#: src/ui/dialog-exclusion-patterns.ui:16
-msgid "Exclusion Patterns"
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:35
-msgid ""
-"Define patterns that will be used to prevent some directories to being "
-"versioned."
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:38
-#, fuzzy
-msgid "Pattern"
-msgstr "Betű"
-
-#: src/ui/dialog-exclusion-patterns.ui:46
-#, fuzzy
-msgid "Existing Patterns"
-msgstr "Létező meghajtók"
-
-#: src/ui/dialog-gamescope.ui:8
-msgid "Gamescope Settings"
-msgstr "Gamescope beállítások"
-
-#: src/ui/dialog-gamescope.ui:46
-msgid ""
-"Configure how Gamescope should manage the window for the games you will run."
-msgstr ""
-"Állítsa be, hogy a Gamescope hogyan kezelje a futtatni kívánt játékok "
-"ablakát."
-
-#: src/ui/dialog-gamescope.ui:51
-#, fuzzy
-msgid "Game Resolution"
-msgstr "Játék felbontás"
-
-#: src/ui/dialog-gamescope.ui:52
-msgid "Uses the resolution of the video game as a reference."
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:55 src/ui/dialog-gamescope.ui:71
-msgid "Width (e.g. 1280)"
-msgstr "Szélesség (pl. 1280)"
-
-#: src/ui/dialog-gamescope.ui:60 src/ui/dialog-gamescope.ui:76
-msgid "Height (e.g. 720)"
-msgstr "Magasság (pl. 750)"
-
-#: src/ui/dialog-gamescope.ui:67
-#, fuzzy
-msgid "Gamescope Resolution"
-msgstr "Gamescope felbontás"
-
-#: src/ui/dialog-gamescope.ui:68
-msgid ""
-"Upscales the resolution when using a resolution higher than the game "
-"resolution."
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:83
-msgid "Miscellaneous"
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:86
-#, fuzzy
-msgid "Frame Rate Limit (e.g. 60)"
-msgstr "Képkockasebesség-korlát (ls. 60)"
-
-#: src/ui/dialog-gamescope.ui:91
-#, fuzzy
-msgid "Frame Rate Limit (When Unfocused)"
-msgstr "Képkockasebesség-korlát (amikor nincs fókuszban)"
-
-#: src/ui/dialog-gamescope.ui:96
-#, fuzzy
-msgid "Use Integer Scaling"
-msgstr "Egész számú méretezés használata"
-
-#: src/ui/dialog-gamescope.ui:107
-#, fuzzy
-msgid "Window Type"
-msgstr "Ablaktípus"
-
-#: src/ui/dialog-gamescope.ui:112
-msgid "Borderless"
-msgstr "Keret nélküli"
-
-#: src/ui/dialog-gamescope.ui:119
-msgid "Fullscreen"
-msgstr "Teljes képernyős"
-
-#: src/ui/dialog-journal.ui:12
-msgid "All messages"
-msgstr "Összes üzenet"
-
-#: src/ui/dialog-journal.ui:17
-msgid "Critical"
-msgstr "Kritikus"
-
-#: src/ui/dialog-journal.ui:22
-msgid "Errors"
-msgstr "Hibák"
-
-#: src/ui/dialog-journal.ui:27
-msgid "Warnings"
-msgstr "Figyelmeztetések"
-
-#: src/ui/dialog-journal.ui:32
-msgid "Info"
-msgstr "Információ"
-
-#: src/ui/dialog-journal.ui:49
-msgid "Journal browser"
-msgstr "Naplóböngésző"
-
-#: src/ui/dialog-journal.ui:56
-msgid "Journal Browser"
-msgstr "Naplóböngésző"
-
-#: src/ui/dialog-journal.ui:62
-msgid ""
-"Change logging level.\n"
-"                                        "
-msgstr ""
-"Naplózási szint változtatása.\n"
-"                                        "
-
-#: src/ui/dialog-journal.ui:67
-msgid "All"
-msgstr "Összes"
-
-#: src/ui/dialog-launch-options.ui:8
-msgid "Launch Options"
-msgstr "Indítási opciók"
-
-#: src/ui/dialog-launch-options.ui:47
-msgid "Those arguments will be passed at launch."
-msgstr "Ezek az argumentumok lesznek átadva indításkor."
-
-#: src/ui/dialog-launch-options.ui:48
-msgid "Custom Arguments"
-msgstr "Egyéni argumentumok"
-
-#: src/ui/dialog-launch-options.ui:51
-msgid "Command Arguments"
-msgstr "Parancs argumentumai"
-
-#: src/ui/dialog-launch-options.ui:52
-#, fuzzy, c-format
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "pl.: VÁLTOZÓ=érték %command% -példa1 -példa2 -példa3=hello"
-
-#: src/ui/dialog-launch-options.ui:58
-msgid "Post-run Script"
-msgstr "Futtatás utáni szkript"
-
-#: src/ui/dialog-launch-options.ui:76
-#, fuzzy
-msgid "Choose a script"
-msgstr "Szkript kiválasztása"
-
-#: src/ui/dialog-launch-options.ui:125
-msgid "These settings will override the default settings for this executable."
-msgstr ""
-"Ezek a beállítások felülbírálják az alapértelmezett beállításokat ennél a "
-"végrehajtható fájlnál."
-
-#: src/ui/dialog-launch-options.ui:126
-msgid "Preferences Overrides"
-msgstr "Beállítások felülbírálása"
-
-#: src/ui/dialog-launch-options.ui:129
-#, fuzzy
-msgid "Reset to Bottle's Defaults"
-msgstr "Visszaállítás alapértelmezettre"
-
-#: src/ui/dialog-proton-alert.ui:6
-msgid "Proton Disclaimer"
-msgstr ""
-
-#: src/ui/dialog-proton-alert.ui:22
-#, fuzzy
-msgid "Use Proton"
-msgstr "GE Proton"
-
-#: src/ui/dialog-proton-alert.ui:37
-msgid ""
-"Beware, using Proton-based runners in non-Steam bottles can cause problems "
-"and prevent them from behaving correctly.\n"
-"\n"
-"We recommend using Wine-GE rather, a version of Proton meant to run outside "
-"of Steam.\n"
-"\n"
-"Proceeding will automatically enable the Steam runtime (if present in the "
-"system and detected by Bottles) in order to allow it to access the necessary "
-"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
-"the runner's provider, is not responsible for any problems and we ask that "
-"you do not report to them."
-msgstr ""
-
-#: src/ui/dialog-proton-alert.ui:50
-msgid "I got it."
-msgstr ""
-
-#: src/ui/dialog-rename.ui:9
-msgid "Rename"
-msgstr "Átnevezés"
-
-#: src/ui/dialog-rename.ui:34
-msgid "Choose a new name for the selected program."
-msgstr "Válasszon új nevet a kiválasztott program számára."
-
-#: src/ui/dialog-rename.ui:37
-msgid "New Name"
-msgstr "Új név"
-
-#: src/ui/dialog-run-args.ui:14
-msgid "Run With Arguments"
-msgstr "Futtatás argumentumokkal"
-
-#: src/ui/dialog-run-args.ui:35 src/views/bottle_details.py:202
-#: src/views/list.py:120
-msgid "Run"
-msgstr "Futtatás"
-
-#: src/ui/dialog-run-args.ui:47
-msgid "Write below the arguments to be passed to the executable."
-msgstr "Írja le lentebb a végrehajtható fájlnak átadandó argumentumokat."
-
-#: src/ui/dialog-run-args.ui:50
-msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "pl.: -opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-sandbox.ui:9
-#, fuzzy
-msgid "Sandbox Settings"
-msgstr "Gamescope beállítások"
-
-#: src/ui/dialog-sandbox.ui:23
-msgid "Share Network"
-msgstr ""
-
-#: src/ui/dialog-sandbox.ui:34
-#, fuzzy
-msgid "Share Sound"
-msgstr "Nem található állapot"
-
-#: src/ui/dialog-upgrade-versioning.ui:18
-#, fuzzy
-msgid "Upgrade Needed"
-msgstr "Frissítés"
-
-#: src/ui/dialog-upgrade-versioning.ui:41 src/ui/onboard.ui:88
-msgid "Continue"
-msgstr "Folytatás"
-
-#: src/ui/dialog-upgrade-versioning.ui:49
-#, fuzzy
-msgid "Launch upgrade"
-msgstr "Frissítés megerősítése"
-
-#: src/ui/dialog-upgrade-versioning.ui:69
-#, fuzzy
-msgid "New Versioning System"
-msgstr "Verziókezelés"
-
-#: src/ui/dialog-upgrade-versioning.ui:72
-msgid "The new bottle versioning system has landed."
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:86
-msgid ""
-"Bottles has a whole new Versioning System which is not backwards "
-"compatible. \n"
-"\n"
-"To continue using versioning we need to re-initialize the bottle repository. "
-"This will not delete data from your bottle but will delete all existing "
-"states and create a new one. \n"
-"\n"
-"If you need to go back to a previous state before continuing, close this "
-"window and restore the state, then reopen the bottle to show this window "
-"again. \n"
-"\n"
-"The old system will be discontinued in one of the next releases."
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:112
-#, fuzzy
-msgid "Re-initializing repository…"
-msgstr "Rendszerleíró ujraüzembeállása folyamatban van…"
-
-#: src/ui/dialog-upgrade-versioning.ui:144
-msgid "Done! Please restart Bottles."
-msgstr ""
-
-#: src/ui/dll-override-entry.ui:10
-msgid "Builtin (Wine)"
-msgstr "Beépített (Wine)"
-
-#: src/ui/dll-override-entry.ui:11
-msgid "Native (Windows)"
-msgstr "Natív (Windows)"
-
-#: src/ui/dll-override-entry.ui:12
-msgid "Builtin, then Native"
-msgstr "Beépített majd natív"
-
-#: src/ui/dll-override-entry.ui:13
-msgid "Native, then Builtin"
-msgstr "Natív majd beépített"
-
-#: src/ui/dll-override-entry.ui:14
-msgid "Disabled"
-msgstr "Letiltva"
-
-#: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
-msgid "Remove"
-msgstr "Eltávolítás"
-
-#: src/ui/drive-entry.ui:7
-msgid "/point/to/path"
-msgstr "/mutasson/az/útvonalára"
-
-#: src/ui/drive-entry.ui:24
-msgid "Choose a Directory"
-msgstr "Könyvtár kiválasztása"
-
-#: src/ui/env-var-entry.ui:6 src/ui/exclusion-pattern-entry.ui:6
-msgid "Value"
-msgstr "Érték"
-
-#. Wineprefix is a prefix for the wine program
-#: src/ui/importer-entry.ui:22
-msgid "Wineprefix name"
-msgstr ""
-
-#: src/ui/importer-entry.ui:29
-#, fuzzy
-msgid "Manager"
-msgstr "Feladatkezelő"
-
-#: src/ui/importer-entry.ui:39
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Ez a Wine prefix már importálva van a Palackokba."
-
-#: src/ui/importer.ui:24
-msgid "Import Bottles backup"
-msgstr "Palackok biztonsági mentésének importálása"
-
-#: src/ui/importer.ui:31
-msgid "Search again for prefixes"
-msgstr "Prefixek újbóli keresése"
-
-#: src/ui/importer.ui:45
-#, fuzzy
-msgid "No Prefixes Found"
-msgstr "Nem találhatók prefixek"
-
-#: src/ui/importer.ui:46
-#, fuzzy
-msgid ""
-"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
-"Use the icon on the top to import a bottle from a backup"
-msgstr ""
-"Nem található prefix Lutristól, PlayOnLinuxtól stb.\n"
-"Használja a felül található ikont egy palack biztonsági másolatból való "
-"importálásához"
-
-#: src/ui/importer.ui:81
-msgid "Configuration"
-msgstr "Konfiguráció"
-
-#: src/ui/importer.ui:87
-msgid "Full Archive"
-msgstr "Teljes archívum"
-
-#: src/ui/installer-entry.ui:18
-msgid "Show Manifest…"
-msgstr "Jegyzékfájl megjelenítése…"
-
-#: src/ui/installer-entry.ui:23
-msgid "Read Review…"
-msgstr "Vélemény olvasása…"
-
-#: src/ui/installer-entry.ui:40
-#, fuzzy
-msgid "Installer name"
-msgstr "Telepítők"
-
-#: src/ui/installer-entry.ui:41
-#, fuzzy
-msgid "Installer description"
-msgstr "Telepítők"
-
-#: src/ui/installer-entry.ui:48
-msgid "Unknown"
-msgstr ""
-
-#: src/ui/installer-entry.ui:57
-msgid "Install this program"
-msgstr "Program telepítése"
-
-#: src/ui/library-entry.ui:17
-msgid "Remove from Library"
-msgstr "Eltávolítás a könyvtárból"
-
-#: src/ui/library-entry.ui:94
-#, fuzzy
-msgid "Item name"
-msgstr "Palack neve"
-
-#: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
-msgid "Launch with Steam"
-msgstr "Indítás Steammel"
-
-#: src/ui/library.ui:14 src/ui/preferences.ui:259 src/window.py:171
-msgid "Library"
-msgstr "Könyvtár"
-
-#: src/ui/library.ui:15
-msgid "Add items here from your bottle's program list"
-msgstr "Adjon hozzá elemeket a palack programlistájából"
-
-#: src/ui/list-entry.ui:46
-msgid "This bottle looks damaged."
-msgstr "Ez a palack sérültnek tűnik."
-
-#: src/ui/list-entry.ui:60
-msgid "Execute in this bottle"
-msgstr "Végrehajtás ebben a palackban"
-
-#: src/ui/list-entry.ui:75
-msgid "Run Here"
-msgstr "Futtatás itt"
-
-#: src/ui/list-entry.ui:84
-msgid ""
-"This bottle looks damaged, the configuration file is missing. I can try to "
-"solve by creating a new configuration."
-msgstr ""
-"Ez az palack sérültnek tűnik, hiányzik a konfigurációs fájl. Megpróbálhatom "
-"megoldani egy új konfiguráció létrehozásával."
-
-#: src/ui/list-entry.ui:96
-msgid "Run .exe/.msi in this bottle"
-msgstr ".exe/.msi futtatása ebben a palackban"
-
-#: src/ui/list.ui:17
-msgid "Search your bottles…"
-msgstr "Palackok keresése…"
-
-#: src/ui/list.ui:38
-msgid "Steam Proton"
-msgstr "Steam Proton"
-
-#: src/ui/list.ui:55
-msgid "Start off by creating a Bottle."
-msgstr "Kezdjen egy palack létrehozásával."
-
-#: src/ui/list.ui:62
-msgid "Create a new Bottle"
-msgstr "Új palack létrehozása"
-
-#: src/ui/list.ui:75
-msgid "No Results Found"
-msgstr "Nincs találat"
-
-#: src/ui/list.ui:76
-msgid "Try a different search."
-msgstr "Próbáljon különböző keresést."
-
-#: src/ui/loading.ui:16
-msgid "Starting up…"
-msgstr "Indulás…"
-
-#: src/ui/local-resource-entry.ui:6
-msgid "This resource is missing."
-msgstr "Ez az erőforrás hiányzik."
-
-#: src/ui/local-resource-entry.ui:10
-msgid "Browse"
-msgstr "Tallózás"
-
-#: src/ui/new.ui:17 src/ui/new.ui:64
-msgid "New Bottle"
-msgstr "Új palack"
-
-#: src/ui/new.ui:38
-msgid "Create"
-msgstr "Létrehozás"
-
-#: src/ui/new.ui:47 src/ui/new.ui:268 src/window.py:187
-msgid "Close"
-msgstr "Bezárás"
-
-#: src/ui/new.ui:67
-msgid "Bottle Information"
-msgstr "Palack információ"
-
-#: src/ui/new.ui:84
-msgid "Gaming"
-msgstr "Játékok"
-
-#: src/ui/new.ui:85
-msgid "An environment improved for Windows games."
-msgstr "Egy Windowsos játékok számára javított környezet ."
-
-#: src/ui/new.ui:93
-msgid "Application"
-msgstr "Alkalmazás"
-
-#: src/ui/new.ui:94
-msgid "An environment improved for Windows applications."
-msgstr "Egy Windowsos alkalmazások számára javított környezet."
-
-#: src/ui/new.ui:103
-msgid "Layered"
-msgstr "Rétegezett"
-
-#: src/ui/new.ui:104
-msgid "A layered environment, where every app is a layer."
-msgstr "Egy rétegezett környezet, ahol minden alkalmazás egy réteg."
-
-#: src/ui/new.ui:112
-msgid "Custom"
-msgstr "Egyéni"
-
-#: src/ui/new.ui:113
-#, fuzzy
-msgid "A clear environment for your experiments."
-msgstr "Egy tiszta környezet a kísérleteihez."
-
-#: src/ui/new.ui:117
-msgid "Unlinked Home Directory"
-msgstr "Leválasztott kezdőkönyvtár"
-
-#: src/ui/new.ui:118
-msgid "Do not link the userdir to the homedir"
-msgstr "Ne kapcsolja össze a felhasználói könyvtárat a kezdőkönyvtárhoz"
-
-#: src/ui/new.ui:143
-msgid "Architecture"
-msgstr "Architektúra"
-
-#: src/ui/new.ui:144
-msgid "We recommend using 32bit only if strictly necessary."
-msgstr "Csak akkor ajánljuk a 32-bit használatát, ha feltétlenül szükséges."
-
-#: src/ui/new.ui:148
-msgid "64 bit"
-msgstr "64-bit"
-
-#: src/ui/new.ui:149
-msgid "32 bit"
-msgstr "32-bit"
-
-#: src/ui/new.ui:157
-msgid "Custom Recipe"
-msgstr "Egyéni recept"
-
-#: src/ui/new.ui:158
-msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
-"Válasszon egy egyéni receptet a környezet számára, ha rendelkezik eggyel."
-
-#: src/ui/new.ui:174
-msgid "Custom Path"
-msgstr "Egyéni útvonal"
-
-#: src/ui/new.ui:175
-msgid "Store this bottle in another place."
-msgstr "Tárolja a palackot egy másik helyen."
-
-#: src/ui/new.ui:215
-#, fuzzy
-msgid "Creating a Bottle…"
-msgstr "Új palack létrehozása"
-
-#: src/ui/new.ui:262
-msgid "Bottle created"
-msgstr "Palack létrehozva"
-
-#: src/ui/onboard.ui:36
-msgid "Previous"
-msgstr "Előző"
-
-#: src/ui/onboard.ui:62
-msgid "Welcome to Bottles"
-msgstr "Üdvözöljük a Palackokban"
-
-#: src/ui/onboard.ui:63
-msgid ""
-"Run Windows Software on Linux.\n"
-"                                                "
-msgstr ""
-"Windows szoftverek futtatása Linuxon.\n"
-"                                                "
-
-#: src/ui/onboard.ui:71
-msgid "Windows in Bottles"
-msgstr "Windows bepalackozva"
-
-#: src/ui/onboard.ui:72
-msgid ""
-"Bottles uses compatibility runners to provide isolated containerized Windows-"
-"like environments where programs run."
-msgstr ""
-"A Palackok kompatibilitási futtatókat használ, hogy elkülönített konténeres "
-"Windows-szerű környezeteket biztosítson, ahol a programok futnak."
-
-#: src/ui/onboard.ui:79
-msgid "Almost Done"
-msgstr "Majdnem kész"
-
-#: src/ui/onboard.ui:80
-#, fuzzy
-msgid "We need a few more minutes to set everything up…"
-msgstr "Kell még pár perc, hogy mindent beállítsunk…"
-
-#: src/ui/onboard.ui:113
-msgid "All ready!"
-msgstr "Minden kész!"
-
-#: src/ui/onboard.ui:122
-msgid "Please Finish the setup first"
-msgstr ""
-
-#: src/ui/onboard.ui:129
-msgid "Start using Bottles"
-msgstr "Palackokat használatának elkezdése"
-
-#: src/ui/onboard.ui:150
-msgid "Next"
-msgstr "Következő"
-
-#: src/ui/preferences.ui:6 src/ui/window.ui:24 src/views/details.py:158
-msgid "Preferences"
-msgstr "Beállítások"
-
-#: src/ui/preferences.ui:13 src/ui/preferences.ui:46
-msgid "General"
-msgstr "Általános"
-
-#: src/ui/preferences.ui:16
-msgid "Appearance"
-msgstr "Megjelenés"
-
-#: src/ui/preferences.ui:19
-msgid "Dark Mode"
-msgstr "Sötét mód"
-
-#: src/ui/preferences.ui:20
-#, fuzzy
-msgid "Whether Bottles should use the dark color scheme."
-msgstr "A Palackoknak az éjjeli témaváltozatot kell-e használnia."
-
-#: src/ui/preferences.ui:32
-msgid "Show Update Date"
-msgstr "Frissítési dátum megjelenítése"
-
-#: src/ui/preferences.ui:33
-msgid "Whether to show the update date in the bottle list."
-msgstr "Megjelenjen-e frissítési dátum a palacklistában."
-
-#: src/ui/preferences.ui:50
-msgid "Show notifications for downloads and installs."
-msgstr "Értesítések megjelenítése letöltésekről és telepítésekről."
-
-#: src/ui/preferences.ui:61
-msgid "Temp Files"
-msgstr "Ideiglenes fájlok"
-
-#: src/ui/preferences.ui:62
-msgid "Clean temp files when Bottles launches?"
-msgstr "Törölje az ideiglenes fájlokat, amikor a Palackok elindul?"
-
-#: src/ui/preferences.ui:73
-#, fuzzy
-msgid "Close Bottles After Starting a Program"
-msgstr "A programok indítása után zárja be a Palackokat"
-
-#: src/ui/preferences.ui:74
-msgid "Close Bottles after starting a program from the file manager."
-msgstr "Zárja be a Palackokat, miután elindította a programot a fájlkezelőből."
-
-#: src/ui/preferences.ui:87
-#, fuzzy
-msgid "Integrations"
-msgstr "Műveletek"
-
-#: src/ui/preferences.ui:90
-msgid "Steam Proton Prefixes"
-msgstr "Steam Proton prefixek"
-
-#: src/ui/preferences.ui:91
-msgid "List and manage Steam Proton prefixes."
-msgstr "Steam Proton prefixek listázása és kezelése."
-
-#: src/ui/preferences.ui:95
-#, fuzzy
-msgid "Read Documentation"
-msgstr "Dokumentáció elolvasása"
-
-#: src/ui/preferences.ui:113
-msgid "List Steam Apps in Programs List"
-msgstr "Steam alkalmazások listázása a programok listájában"
-
-#: src/ui/preferences.ui:114
-msgid "Requires Steam for Windows installed in the bottle."
-msgstr "Igényli a Steam Windows verziójának palackba való telepítését."
-
-#: src/ui/preferences.ui:125
-msgid "List Epic Games in Programs List"
-msgstr "Epic Games alkalmazások listázása a programok listájában"
-
-#: src/ui/preferences.ui:126
-msgid "Requires Epic Games Store installed in the bottle."
-msgstr "Igényli az Epic Games palackba való telepítését."
-
-#: src/ui/preferences.ui:137
-#, fuzzy
-msgid "List Ubisoft Games in Programs List"
-msgstr "Epic Games alkalmazások listázása a programok listájában"
-
-#: src/ui/preferences.ui:138
-#, fuzzy
-msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr "Igényli az Epic Games palackba való telepítését."
-
-#: src/ui/preferences.ui:151
-msgid "Advanced"
-msgstr "Haladó"
-
-#: src/ui/preferences.ui:154
-#, fuzzy
-msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Egyéni palackok útvonala (újraindítás szükséges)"
-
-#: src/ui/preferences.ui:155 src/views/preferences.py:188
-#: src/views/preferences.py:204
-msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)."
-msgstr ""
-"Válassza ki, hogy hol szeretné tárolni az új palackokat (ez nem fogja "
-"áthelyezni a létezőket)."
-
-#: src/ui/preferences.ui:188
-msgid "Runners"
-msgstr "Futtatók"
-
-#: src/ui/preferences.ui:193
-msgid "Pre-Release"
-msgstr "Előzetes kiadás"
-
-#: src/ui/preferences.ui:194
-msgid "Display unstable versions of runners."
-msgstr "Futtatók instabil verzióinak megjelenítése."
-
-#: src/ui/preferences.ui:210
-msgid "DLL Components"
-msgstr "DLL összetevők"
-
-#: src/ui/preferences.ui:223
-msgid "DXVK-NVAPI"
-msgstr "DXVK-NVAPI"
-
-#: src/ui/preferences.ui:236
-msgid "Core"
-msgstr "Mag"
-
-#: src/ui/preferences.ui:240
-msgid "Runtime"
-msgstr "Futtatókörnyezet"
-
-#: src/ui/preferences.ui:245
-msgid "WineBridge"
-msgstr "WineBridge"
-
-#: src/ui/preferences.ui:256
-msgid ""
-"These features are under heavy development and may be unstable, expect bugs "
-"and breakage."
-msgstr ""
-
-#: src/ui/preferences.ui:260
-msgid "In early development (requires restart)."
-msgstr "Korai fejlesztésben (újraindítás szükséges)."
-
-#: src/ui/preferences.ui:271
-msgid "Sandbox per bottle"
-msgstr "Palackonkénti homokozó"
-
-#: src/ui/preferences.ui:272
-#, fuzzy
-msgid "In early development."
-msgstr "Korai fejlesztésben (újraindítás szükséges)."
-
-#: src/ui/program-entry.ui:21
-msgid "Launch with terminal"
-msgstr "Indítás terminálban"
-
-#: src/ui/program-entry.ui:28
-msgid "Browse path"
-msgstr "Útvonal tallózása"
-
-#: src/ui/program-entry.ui:44
-msgid "Change Launch Options…"
-msgstr "Indítási opciók módosítása…"
-
-#: src/ui/program-entry.ui:49
-msgid "Add to My Library"
-msgstr "Hozzáadás a könyvtáramhoz"
-
-#: src/ui/program-entry.ui:54
-msgid "Add Desktop Entry"
-msgstr "Asztalbejegyzés hozzáadása"
-
-#: src/ui/program-entry.ui:59
-msgid "Add to Steam"
-msgstr "Hozzáadás Steamhez"
-
-#: src/ui/program-entry.ui:64
-msgid "Rename…"
-msgstr "Átnevezés…"
-
-#: src/ui/program-entry.ui:73
-msgid "Hide Program"
-msgstr "Program elrejtése"
-
-#: src/ui/program-entry.ui:78
-msgid "Show Program"
-msgstr "Program megjelenítése"
-
-#: src/ui/program-entry.ui:83
-msgid "Remove from List"
-msgstr "Eltávolítás a listáról"
-
-#: src/ui/program-entry.ui:99
-#, fuzzy
-msgid "Program name"
-msgstr "Programok"
-
-#. id as identification
-#: src/ui/state-entry.ui:7
-#, fuzzy
-msgid "State id"
-msgstr "Nem található állapot"
-
-#: src/ui/state-entry.ui:8
-#, fuzzy
-msgid "State comment"
-msgstr "Egy rövid megjegyzés"
-
-#: src/ui/state-entry.ui:16
-msgid "Restore this state"
-msgstr "Állítsa vissza ezt az állapotot"
-
-#: src/ui/task-entry.ui:24
-msgid "Delete message"
-msgstr "Üzenet törlése"
-
-#: src/ui/window.ui:19
-msgid "Import/Export…"
-msgstr "Importálás/exportálás…"
-
-#: src/ui/window.ui:33
-msgid "Support"
-msgstr "Támogatás"
-
-#: src/ui/window.ui:43
-msgid "Forums"
-msgstr "Fórumok"
-
-#: src/ui/window.ui:48
-msgid "About Bottles"
-msgstr "A Palackok névjegye"
-
-#: src/ui/window.ui:79
-msgid "Open menu"
-msgstr "Menü megnyitása"
-
-#: src/ui/window.ui:93
-msgid ""
-"You don't seem connected to the internet. Without it you will not be able to "
-"download essential components. Click this icon when you have reestablished "
-"the connection."
-msgstr ""
-"Úgy tűnik, nem csatlakozik az internethez. Enélkül nem tudja letölteni az "
-"alapvető összetevőket. Kattintson a ikonra, amikor helyreállította a "
-"kapcsolatot."
-
-#: src/ui/window.ui:99
-msgid "New bottle"
-msgstr "Új palack"
-
-#: src/utils/connection.py:67
-msgid "You are offline, unable to download."
-msgstr "Nincs online kapcsolat, nem tudja letölteni."
-
-#: src/views/bottle_details.py:142
-#, python-format
-msgid "Updated: %s"
-msgstr "Frissítve: %s"
-
-#: src/views/bottle_details.py:200 src/views/list.py:118
-msgid "Choose a Windows executable file"
-msgstr "A Windows végrehajtható fájl kiválasztása"
-
-#: src/views/bottle_details.py:209
-#, fuzzy
-msgid "Be Aware of Sandbox"
-msgstr "Dedikált homokozó"
-
-#: src/views/bottle_details.py:210
-msgid ""
-"Bottles is running in a sandbox, a restricted permission environment needed "
-"to keep you safe. If the program won't run, consider moving inside the "
-"bottle (3 dots icon on the top), then launch from there."
-msgstr ""
-
-#: src/views/bottle_details.py:212
-msgid "Ok"
-msgstr ""
-
-#: src/views/bottle_details.py:267
-msgid "Select the location where to save the backup config"
-msgstr "Válassza ki a konfiguráció biztonsági mentésének helyét"
-
-#: src/views/bottle_details.py:271
-msgid "Select the location where to save the backup archive"
-msgstr "Válassza ki a biztonsági mentés archívumának helyét"
-
-#: src/views/bottle_details.py:276
-#, python-brace-format
-msgid "Backup created for '{0}'."
-msgstr "Biztonsági mentés létrehozva {0} számára."
-
-#: src/views/bottle_details.py:278
-#, python-brace-format
-msgid "Backup failed for '{0}'."
-msgstr "{0} biztonsági mentése sikertelen."
-
-#: src/views/bottle_details.py:296
-msgid "Export"
-msgstr "Exportálás"
-
-#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
-#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
-#: src/views/bottle_preferences.py:745
-msgid "Confirm"
-msgstr "Megerősítés"
-
-#: src/views/bottle_details.py:333
-msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Biztosan törölni szeretné ezt a palackot és az összes fájlját?"
-
-#: src/views/bottle_details.py:412
-msgid ""
-"Are you sure you want to terminate all processes?\n"
-"This can cause data loss."
-msgstr ""
-"Biztosan meg szeretné szakítani az összes folyamatot?\n"
-"Ez adatvesztéshez vezethet."
-
-#: src/views/bottle_preferences.py:207
-msgid "This feature is not available on your system."
-msgstr "Ez a funkció nem elérhető a rendszerén."
-
-#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:405
-#, fuzzy
-msgid "Default to the bottle path."
-msgstr "Alapértelmezetten a palack útvonala."
-
-#: src/views/bottle_preferences.py:258
-msgid "Choose working directory for executables"
-msgstr "Munkakönyvtár kiválasztása a végrehajtható fájlok számára"
-
-#: src/views/bottle_preferences.py:741
-msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
-
-#: src/views/bottle_preferences.py:742
-msgid ""
-"This will kepp all your files but will delete all states. Do you want to "
-"continue?"
-msgstr ""
-
-#: src/views/bottle_programs.py:83
-#, python-brace-format
-msgid "'{0}' added."
-msgstr "{0} hozzáadva."
-
-#: src/views/bottle_programs.py:87
-msgid "Choose an executable path"
-msgstr "Válassza ki egy végrehajtható fájl útvonalát"
-
-#: src/views/bottle_programs.py:89
-msgid "Add"
-msgstr "Hozzáadás"
-
-#: src/views/bottle_versioning.py:88
-msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
-
-#: src/views/details.py:154
-msgid "Details & Utilities"
-msgstr "Részletek és segédprogramok"
-
-#: src/views/details.py:162
-msgid "Dependencies"
-msgstr "Függőségek"
-
-#: src/views/details.py:167
-msgid "Found in your bottle's Start menu."
-msgstr "A palack Start menüjében található."
-
-#: src/views/details.py:174
-msgid "Installers"
-msgstr "Telepítők"
-
-#: src/views/details.py:377
-#, fuzzy
-msgid "Operations in progress, please wait."
-msgstr "Windows verzió frissítése…"
-
-#: src/views/details.py:381
-#, fuzzy
-msgid "Return to your bottles."
-msgstr "Palackok keresése…"
-
-#: src/views/importer.py:89
-msgid "Backup imported successfully."
-msgstr "A biztonsági mentés sikeresen importálva."
-
-#: src/views/importer.py:91
-msgid "Import failed."
-msgstr "Az importálás sikertelen."
-
-#: src/views/importer.py:103 src/views/importer.py:132
-msgid "Importing backup…"
-msgstr "Biztonsági mentés importálása…"
-
-#: src/views/importer.py:115
-msgid "Choose a backup archive"
-msgstr "Válasszon egy biztonsági mentés archívumot"
-
-#: src/views/importer.py:117 src/views/importer.py:146
-msgid "Import"
-msgstr "Importálás"
-
-#: src/views/importer.py:144
-msgid "Choose a configuration file"
-msgstr "Konfigurációs fájl kiválasztása"
-
-#: src/views/list.py:59 src/views/list.py:65
-msgid "N/A"
-msgstr "Nem alkalmazható"
-
-#: src/views/list.py:220
-msgid "Your Bottles"
-msgstr "A Palackjai"
-
-#: src/views/loading.py:33
-#, python-brace-format
-msgid "Downloading ~{0} of packages…"
-msgstr ""
-
-#: src/views/loading.py:34
-#, python-brace-format
-msgid "Fetched {0} of {1} packages"
-msgstr ""
-
-#: src/views/new.py:142
-msgid "Choose a recipe file"
-msgstr "Válassza ki a receptfájlt"
-
-#: src/views/new.py:158
-msgid "Choose where to store the bottle"
-msgstr "Válassza ki, hogy hol tárolja a palackot"
-
-#: src/views/new.py:211
-msgid "There was an error creating the bottle."
-msgstr "Hiba történt a palack létrehozása közben."
-
-#: src/views/new.py:219
-#, python-brace-format
-msgid "A bottle named “{0}” was created successfully"
-msgstr "{0} nevű palack sikeresen létrehozva"
-
-#: src/views/preferences.py:125
-#, fuzzy
-msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-"A Steam nem található vagy a Palackok alkalmazás nem rendelkezik a szükséges "
-"engedélyekkel. Lásd: https://docs.usebottles.com/flatpak/cant-enable-steam-"
-"proton-manager"
-
-#: src/views/preferences.py:193
-msgid "Choose new bottles path"
-msgstr "Válasszon egy új palack útvonalat"
-
-#: src/views/preferences.py:236
-msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:237
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:240
-msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
-
-#: src/views/preferences.py:241
-msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
-msgstr ""
-
-#: src/views/preferences.py:243
-msgid "Other"
-msgstr "Egyéb"
-
-#: src/widgets/component.py:70
-msgid "Upgrade"
-msgstr "Frissítés"
-
-#: src/widgets/component.py:145
-msgid "Installing…"
-msgstr "Telepítés…"
-
-#: src/widgets/dependency.py:107 src/widgets/installer.py:72
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "Jegyzékfájl ehhez: {0}"
-
-#: src/widgets/dependency.py:170
-#, python-brace-format
-msgid "'{0}' installed."
-msgstr "{0} telepítve."
-
-#: src/widgets/dependency.py:184
-#, fuzzy, python-brace-format
-msgid "'{0}' failed to install."
-msgstr "{0} telepítve."
-
-#: src/widgets/importer.py:66
-#, python-brace-format
-msgid "'{0}' imported."
-msgstr "{0} importálva."
-
-#: src/widgets/installer.py:81
-#, python-brace-format
-msgid "Review for {0}"
-msgstr "Vélemény ehhez: {0}"
-
-#: src/widgets/program.py:187
-#, fuzzy, python-brace-format
-msgid "Launching '{0}'…"
-msgstr "Indítás terminálban…"
-
-#: src/widgets/program.py:193
-#, fuzzy, python-brace-format
-msgid "Launching '{0}' with Steam…"
-msgstr "Indítás Steammel"
-
-#: src/widgets/program.py:215
-#, python-brace-format
-msgid "'{0}' hidden."
-msgstr "{0} elrejtve."
-
-#: src/widgets/program.py:217
-#, python-brace-format
-msgid "'{0}' showed."
-msgstr "{0} megjelenítve."
-
-#: src/widgets/program.py:240
-#, python-brace-format
-msgid "'{0}' removed."
-msgstr "{0} eltávolítva."
-
-#: src/widgets/program.py:254
-#, python-brace-format
-msgid "'{0}' renamed to '{1}'."
-msgstr "{0} átnevezve erre: {1}."
-
-#: src/widgets/program.py:274
-#, python-brace-format
-msgid "Desktop Entry created for '{0}'"
-msgstr "Asztalbejegyzés létrehozva {0} számára"
-
-#: src/widgets/program.py:290
-#, python-brace-format
-msgid "'{0}' added to your library"
-msgstr "{0} hozzá lett adva a könyvtárához"
-
-#: src/widgets/program.py:306
-#, python-brace-format
-msgid "'{0}' added to your Steam library"
-msgstr "{0} hozzá lett adva a Steam könyvtárához"
-
-#: src/window.py:184
-#, fuzzy
-msgid "Custom Bottles Path not Found"
-msgstr "Egyéni palackok útvonala (újraindítás szükséges)"
-
-#: src/window.py:185
-msgid ""
-"Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
-
-#: src/window.py:306
-msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
 
 #~ msgid "Loading…"
 #~ msgstr "Betöltés…"
@@ -3754,9 +4084,6 @@ msgstr ""
 
 #~ msgid "Bottle"
 #~ msgstr "Tároló"
-
-#~ msgid "Special characters are not allowed!"
-#~ msgstr "Speciális karakterek használata nem megengedett!"
 
 #~ msgid "No runners found, please install one."
 #~ msgstr "Nincsenek futtatók, kérjük, telepítsen egyet."

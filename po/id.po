@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-01 22:54+0200\n"
+"POT-Creation-Date: 2022-08-07 23:12+0200\n"
 "PO-Revision-Date: 2022-07-30 01:19+0000\n"
 "Last-Translator: Zhafran Rama Azmi <rushing27alien@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
@@ -19,11 +19,2959 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.14-dev\n"
 
+#: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
+msgid "No path specified"
+msgstr "Jalur tidak disebutkan"
+
+#: bottles/backend/managers/backup.py:71
+#, python-brace-format
+msgid "Backup {0}"
+msgstr "Cadangan {0}"
+
+#: bottles/backend/managers/backup.py:124
+#, python-brace-format
+msgid "Importing backup: {0}"
+msgstr "Mengimpor cadangan: {0}"
+
+#: bottles/backend/managers/manager.py:1030
+msgid "Fail to install components, tried 3 times."
+msgstr "Gagal melakukan pemasangan komponen, telah dicoba 3 kali."
+
+#: bottles/backend/managers/manager.py:1041
+msgid "Missing essential components. Installing…"
+msgstr "Kehilangan komponen penting. Memasang…"
+
+#: bottles/backend/managers/manager.py:1117
+msgid "Failed to create bottle directory."
+msgstr "Gagal untuk membuat direktori bottle."
+
+#: bottles/backend/managers/manager.py:1129
+msgid "Failed to create placeholder directory/file."
+msgstr "Gagal membuat tempat penampung direktori/file."
+
+#: bottles/backend/managers/manager.py:1134
+msgid "Generating bottle configuration…"
+msgstr "Membuat konfigurasi bottle…"
+
+#: bottles/backend/managers/manager.py:1157
+msgid "Template found, applying…"
+msgstr "Templat ditemukan, menerapkan…"
+
+#. execute wineboot on the bottle path
+#: bottles/backend/managers/manager.py:1169
+msgid "The Wine config is being updated…"
+msgstr "Konfigurasi WINE sedang diperbaharui…"
+
+#: bottles/backend/managers/manager.py:1171
+msgid "Wine config updated!"
+msgstr "Konfigurasi WINE diperbaharui!"
+
+#: bottles/backend/managers/manager.py:1179
+msgid "Running as Flatpak, sandboxing userdir…"
+msgstr "Jalankan sebagai Flatpak, membuat berkas pengguna sebagai sandbox…"
+
+#: bottles/backend/managers/manager.py:1181
+msgid "Sandboxing userdir…"
+msgstr "Mensandbox berkas pengguna…"
+
+#: bottles/backend/managers/manager.py:1211
+msgid "Setting Windows version…"
+msgstr "Pengaturan versi Windows…"
+
+#: bottles/backend/managers/manager.py:1221
+msgid "Apply CMD default settings…"
+msgstr "Terapkan pengaturan bawaan CMD…"
+
+#: bottles/backend/managers/manager.py:1229
+msgid "Optimizing environment…"
+msgstr "Mengoptimisasi lingkungan…"
+
+#: bottles/backend/managers/manager.py:1240
+#, python-brace-format
+msgid "Applying environment: {0}…"
+msgstr "Menerapkan lingkungan: {0}…"
+
+#: bottles/backend/managers/manager.py:1250
+msgid "(!) Using a custom environment recipe…"
+msgstr "(!) Sedang menggunakan resep lingkungan kustom…"
+
+#: bottles/backend/managers/manager.py:1253
+msgid "(!) Recipe not not found or not valid…"
+msgstr "(!) Resep tidak ditemukan atau salah…"
+
+#: bottles/backend/managers/manager.py:1270
+msgid "Installing DXVK…"
+msgstr "Memasang DXVK…"
+
+#: bottles/backend/managers/manager.py:1278
+msgid "Installing VKD3D…"
+msgstr "Memasang VKD3D…"
+
+#: bottles/backend/managers/manager.py:1286
+msgid "Installing DXVK-NVAPI…"
+msgstr "Memasang DXVK-NVAPI…"
+
+#: bottles/backend/managers/manager.py:1295
+#, python-format
+msgid "Installing dependency: %s …"
+msgstr "Memasang dependensi: %s …"
+
+#: bottles/backend/managers/manager.py:1311
+msgid "Creating versioning state 0…"
+msgstr "Membuat state versi 0…"
+
+#: bottles/backend/managers/manager.py:1319
+msgid "Finalizing…"
+msgstr "Menyelesaikan…"
+
+#: bottles/backend/managers/manager.py:1330
+msgid "Caching template…"
+msgstr "Templat singgahan…"
+
+#: bottles/backend/managers/versioning.py:97
+#, fuzzy
+msgid "Committing state …"
+msgstr "Memperbarui keadaan…"
+
+#: bottles/backend/managers/versioning.py:106
+msgid "Nothing to commit"
+msgstr ""
+
+#: bottles/backend/managers/versioning.py:112
+#, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "Keadaan baru [{0}] berhasil dibuat!"
+
+#: bottles/backend/managers/versioning.py:140
+#, fuzzy
+msgid "States list retrieved successfully!"
+msgstr "Keadaan baru [{0}] berhasil dibuat!"
+
+#: bottles/backend/managers/versioning.py:171
+#, fuzzy, python-brace-format
+msgid "State {0} restored successfully!"
+msgstr "Keadaan baru [{0}] berhasil dibuat!"
+
+#: bottles/backend/managers/versioning.py:176
+#, fuzzy
+msgid "Restoring state {} …"
+msgstr "Memulihkan ke negara bagian: [{0}]"
+
+#: bottles/backend/managers/versioning.py:185
+#, fuzzy
+msgid "State not found"
+msgstr "Keadaan tidak ditemukan"
+
+#: bottles/backend/managers/versioning.py:191
+msgid "State {} is already the active state"
+msgstr ""
+
+#: bottles/frontend/windows/crash.py:37
+msgid "Show report"
+msgstr "Tampilkan laporan"
+
+#: bottles/frontend/windows/crash.py:88
+msgid ""
+"            This issue was reported 5 times and cannot be sent again.\n"
+"            Report your feedback in one of the below existing reports."
+msgstr ""
+"            ………Masalah ini telah dilaporkan 5 kali dan tidak dapat "
+"dilaporkan lagi.\n"
+"………Laporkan umpan balik disalah satu laporan yang sudah ada di bawah."
+
+#: bottles/frontend/windows/dlloverrides.py:136
+msgid "No overrides found."
+msgstr "Tidak ditemukan yang diganti."
+
+#: bottles/frontend/windows/drives.py:71
+msgid "Choose path"
+msgstr "Pilih jalur"
+
+#: bottles/frontend/windows/drives.py:73
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:234
+#: bottles/frontend/windows/launchoptions.py:258
+#: bottles/frontend/windows/vkbasalt.py:355
+#: bottles/frontend/ui/dialog-bottle-picker.ui:17
+#: bottles/frontend/ui/dialog-crash-report.ui:18
+#: bottles/frontend/ui/dialog-proton-alert.ui:17
+#: bottles/frontend/ui/dialog-rename.ui:17
+#: bottles/frontend/ui/dialog-run-args.ui:19 bottles/frontend/ui/new.ui:33
+#: bottles/frontend/views/bottle_details.py:202
+#: bottles/frontend/views/bottle_details.py:296
+#: bottles/frontend/views/bottle_details.py:335
+#: bottles/frontend/views/bottle_details.py:414
+#: bottles/frontend/views/bottle_preferences.py:276
+#: bottles/frontend/views/bottle_preferences.py:775
+#: bottles/frontend/views/bottle_programs.py:92
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146 bottles/frontend/views/list.py:120
+#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
+#: bottles/frontend/views/preferences.py:158
+msgid "Cancel"
+msgstr "Batalkan"
+
+#: bottles/frontend/windows/drives.py:73
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:234
+#: bottles/frontend/windows/launchoptions.py:258
+#: bottles/frontend/ui/dialog-bottle-picker.ui:22
+#: bottles/frontend/views/bottle_preferences.py:276
+#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
+#: bottles/frontend/views/preferences.py:158
+msgid "Select"
+msgstr "Pilih"
+
+#: bottles/frontend/windows/envvars.py:131
+#, fuzzy
+msgid "No environment variables defined."
+msgstr "Variabel lingkungan tidak ditentukan"
+
+#: bottles/frontend/windows/exclusionpatterns.py:108
+#, fuzzy
+msgid "No exclusion patterns defined."
+msgstr "Variabel lingkungan tidak ditentukan"
+
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/ui/dialog-gamescope.ui:34
+#: bottles/frontend/ui/dialog-launch-options.ui:35
+#: bottles/frontend/ui/dialog-rename.ui:22
+#: bottles/frontend/ui/dialog-vkbasalt.ui:38
+msgid "Save"
+msgstr "Simpan"
+
+#: bottles/frontend/windows/generic.py:24
+msgid "An error has occurred."
+msgstr "Timbul galat."
+
+#: bottles/frontend/windows/generic.py:91
+#: bottles/frontend/windows/generic.py:137
+#: bottles/frontend/windows/generic.py:182
+msgid "Copy to clipboard"
+msgstr "Salin ke papan klip"
+
+#: bottles/frontend/windows/installer.py:64
+msgid "Select Resource FIle"
+msgstr "Pilih File Sumber"
+
+#: bottles/frontend/windows/installer.py:115
+#, fuzzy
+msgid "Installing Windows dependencies…"
+msgstr "Memasang dependensi: %s …"
+
+#: bottles/frontend/windows/installer.py:116
+#, fuzzy
+msgid "Configuring the bottle…"
+msgstr "Membuat bottle…"
+
+#: bottles/frontend/windows/installer.py:117
+msgid "Processing installer steps…"
+msgstr ""
+
+#: bottles/frontend/windows/installer.py:118
+#, fuzzy
+msgid "Installing the {}…"
+msgstr "Memasang…"
+
+#: bottles/frontend/windows/installer.py:119
+msgid "Performing final checks…"
+msgstr ""
+
+#: bottles/frontend/windows/installer.py:123
+#, fuzzy, python-brace-format
+msgid "Installing {0}…"
+msgstr "Memasang…"
+
+#: bottles/frontend/windows/installer.py:125
+#, python-brace-format
+msgid "{0} is now available in the programs view."
+msgstr ""
+
+#: bottles/frontend/windows/installer.py:171
+msgid "Installer failed with unknown error"
+msgstr "Pemasangan gagal dengan kesalahan yang tidak dikenal"
+
+#. endregion
+#: bottles/frontend/windows/launchoptions.py:56
+#: bottles/frontend/ui/dialog-launch-options.ui:59
+msgid "Choose a script which should be executed after run."
+msgstr "Pilih skrip yang akan dieksekusi setelah berjalan."
+
+#: bottles/frontend/windows/launchoptions.py:57
+#: bottles/frontend/ui/dialog-launch-options.ui:92
+#, fuzzy
+msgid "Choose from where start the program."
+msgstr "Pilih awalan untuk memulai program."
+
+#: bottles/frontend/windows/launchoptions.py:58
+#, python-brace-format
+msgid "{0} is already disabled for this bottle."
+msgstr "{0} telah dinonaktifkan untuk bottle ini."
+
+#: bottles/frontend/windows/launchoptions.py:59
+msgid "This setting is different from the bottle's default."
+msgstr "Pengaturan ini berbeda dari setelan asal bottle."
+
+#: bottles/frontend/windows/launchoptions.py:232
+msgid "Choose the script"
+msgstr "Pilih skrip"
+
+#: bottles/frontend/windows/launchoptions.py:256
+#, fuzzy
+msgid "Choose the Working Directory"
+msgstr "Pilih Direktori Kerja"
+
+#: bottles/frontend/windows/vkbasalt.py:84
+#: bottles/frontend/ui/dialog-vkbasalt.ui:420
+#, fuzzy
+msgid "Choose a file."
+msgstr "Pilih sebuah resep file"
+
+#: bottles/frontend/windows/vkbasalt.py:306
+#, fuzzy
+msgid "File not Found"
+msgstr "Keadaan tidak ditemukan"
+
+#: bottles/frontend/windows/vkbasalt.py:307
+msgid "The given file does not exist. Please choose an appropriate file."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:330
+msgid "Spaces in File Name"
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:331
+msgid ""
+"Color Lookup Table path must not contain any spaces. Please rename the file "
+"to remove all spaces."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:339
+msgid "Invalid Image Dimension"
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:340
+msgid "Height and width of the image must be equal."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:353
+#: bottles/frontend/views/importer.py:144
+msgid "Choose a configuration file"
+msgstr "Pilih file konfigurasi"
+
+#: bottles/frontend/windows/vkbasalt.py:355
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146
+msgid "Import"
+msgstr "Impor"
+
+#: bottles/frontend/main.py:105
+msgid "Show version"
+msgstr "Tampilkan versi"
+
+#: bottles/frontend/main.py:113
+msgid "Executable path"
+msgstr "Eksekusi jalur"
+
+#: bottles/frontend/main.py:121
+msgid "lnk path"
+msgstr "Jalur lnk"
+
+#: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.ui:103
+#: bottles/frontend/ui/list-entry.ui:7
+msgid "Bottle name"
+msgstr "Nama bottle"
+
+#: bottles/frontend/main.py:137
+msgid "Pass arguments"
+msgstr "Lewati argumen"
+
+#: bottles/frontend/main.py:196
+msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
+msgstr "URL tidak valid (syntax: bottles:run/<bottle>/<program>)"
+
+#: bottles/frontend/main.py:237
+msgid "[Quit] request received."
+msgstr "Permintaan [Berhenti] diterima."
+
+#: bottles/frontend/main.py:246
+msgid "[Help] request received."
+msgstr "Permintaan [Tolong] diterima."
+
+#: bottles/frontend/main.py:254
+msgid "[Refresh] request received."
+msgstr "Permintaan [Segarkan] diterima."
+
+#: bottles/frontend/operation.py:50
+msgid "Calculating…"
+msgstr "Menghitung…"
+
+#: bottles/frontend/ui/about.ui:8
+msgid "© 2017-2022 - Bottles Developers"
+msgstr "© 2017-2022 - Pengembang Bottles"
+
+#: bottles/frontend/ui/about.ui:9
+msgid "Easily manage wineprefix using environments"
+msgstr "Kelola wineprefix dengan mudah menggunakan lingkungan"
+
+#: bottles/frontend/ui/component-entry.ui:6
+msgid "Component version"
+msgstr "Versi komponen"
+
+#: bottles/frontend/ui/component-entry.ui:15
+#: bottles/frontend/ui/dependency-entry.ui:34
+#: bottles/frontend/ui/program-entry.ui:92
+msgid "Uninstall"
+msgstr "Hapus pemasangan"
+
+#: bottles/frontend/ui/component-entry.ui:26
+#: bottles/frontend/ui/importer-entry.ui:15
+msgid "Browse files"
+msgstr "Jelajahi berkas"
+
+#: bottles/frontend/ui/component-entry.ui:37
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch. Press to try again."
+msgstr ""
+"Pemasangan gagal. Ini mungkin karena kesalahan repositori, unduhan parsial "
+"atau ketidakcocokan checksum. Tekan untuk mencoba lagi."
+
+#: bottles/frontend/ui/component-entry.ui:48
+msgid "Download & Install"
+msgstr "Unduh & Pasang"
+
+#: bottles/frontend/ui/component-entry.ui:61
+msgid "0%"
+msgstr "0%"
+
+#: bottles/frontend/ui/dependency-entry.ui:18
+msgid "Show Manifest"
+msgstr "Tampilkan Manifest"
+
+#: bottles/frontend/ui/dependency-entry.ui:23
+msgid "License"
+msgstr "Lisensi"
+
+#: bottles/frontend/ui/dependency-entry.ui:28
+msgid "Reinstall"
+msgstr "Pasang kembali"
+
+#: bottles/frontend/ui/dependency-entry.ui:43
+#: bottles/frontend/ui/installer-entry.ui:32
+msgid "Report a Bug…"
+msgstr "Laporkan sebuah kekutu…"
+
+#: bottles/frontend/ui/dependency-entry.ui:50
+#, fuzzy
+msgid "Dependency name"
+msgstr "Dependensi"
+
+#: bottles/frontend/ui/dependency-entry.ui:52
+#, fuzzy
+msgid "Dependency description"
+msgstr "Deskripsi lingkungan"
+
+#: bottles/frontend/ui/dependency-entry.ui:59
+msgid "Category"
+msgstr ""
+
+#: bottles/frontend/ui/dependency-entry.ui:73
+msgid "Download & Install this dependency"
+msgstr "Unduh & Pasang dependensi ini"
+
+#: bottles/frontend/ui/dependency-entry.ui:89
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+"Terjadi kesalahan pemasangan. Muat ulang Bottles untuk membaca laporan "
+"kerusakan atau jalankan melalui terminal untuk membaca keluaran."
+
+#: bottles/frontend/ui/details-bottle.ui:18
+msgid "Troubleshooting"
+msgstr "Memecahkan masalah"
+
+#: bottles/frontend/ui/details-bottle.ui:26
+msgid "Browse Files…"
+msgstr "Jelajahi berkas…"
+
+#: bottles/frontend/ui/details-bottle.ui:31
+msgid "Duplicate Bottle…"
+msgstr "Duplikat Bottle…"
+
+#: bottles/frontend/ui/details-bottle.ui:36 bottles/frontend/ui/importer.ui:86
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr "Ini adalah arsip lengkap bottle Anda, termasuk berkas pribadi."
+
+#: bottles/frontend/ui/details-bottle.ui:37
+msgid "Full Backup…"
+msgstr "Cadangkan semua…"
+
+#: bottles/frontend/ui/details-bottle.ui:42 bottles/frontend/ui/importer.ui:80
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Ini hanya konfigurasi bottle, sangat cocok jika Anda ingin membuat yang baru "
+"tetapi tanpa file pribadi."
+
+#: bottles/frontend/ui/details-bottle.ui:43
+msgid "Export Configuration…"
+msgstr "Ekspor Konfigurasi…"
+
+#: bottles/frontend/ui/details-bottle.ui:51
+msgid "Delete Bottle…"
+msgstr "Hapus Bottle…"
+
+#: bottles/frontend/ui/details-bottle.ui:86
+msgid "Kill all Processes"
+msgstr "Hentikan semua Proses"
+
+#: bottles/frontend/ui/details-bottle.ui:91
+msgid "Simulate a Windows system shutdown."
+msgstr "Simulasikan sebuah sistem Windows mati."
+
+#: bottles/frontend/ui/details-bottle.ui:92
+msgid "Shutdown"
+msgstr "Matikan"
+
+#: bottles/frontend/ui/details-bottle.ui:97
+msgid "Simulate a Windows system reboot."
+msgstr "Simulasikan sebuah sistem Windows memuat ulang."
+
+#: bottles/frontend/ui/details-bottle.ui:98
+msgid "Reboot"
+msgstr "Mulai ulang"
+
+#: bottles/frontend/ui/details-bottle.ui:121
+msgid "Run with Arguments…"
+msgstr "Jalankan dengan argumen…"
+
+#: bottles/frontend/ui/details-bottle.ui:126
+msgid "Launch in Terminal…"
+msgstr "Jalankan dengan terminal…"
+
+#: bottles/frontend/ui/details-bottle.ui:157
+msgid "My bottle"
+msgstr "Bottleku"
+
+#: bottles/frontend/ui/details-bottle.ui:169
+msgid "Win64"
+msgstr "Win64"
+
+#: bottles/frontend/ui/details-bottle.ui:177
+#: bottles/frontend/ui/list-entry.ui:14 bottles/frontend/ui/new.ui:77
+msgid "Environment"
+msgstr "Lingkungan"
+
+#: bottles/frontend/ui/details-bottle.ui:185
+#: bottles/frontend/ui/details-preferences.ui:314
+#: bottles/frontend/ui/new.ui:129
+msgid "Runner"
+msgstr "Runner"
+
+#: bottles/frontend/ui/details-bottle.ui:193
+#: bottles/frontend/ui/list-entry.ui:23
+msgid "Versioning enabled for this bottle"
+msgstr "Pembuatan versi diaktifkan untuk bottle ini"
+
+#: bottles/frontend/ui/details-bottle.ui:198
+#: bottles/frontend/ui/list-entry.ui:28
+msgid "Versioning is active in this bottle."
+msgstr "Pembuatan versi aktif di bottle ini."
+
+#: bottles/frontend/ui/details-bottle.ui:208
+#: bottles/frontend/ui/list-entry.ui:34
+msgid "0"
+msgstr "0"
+
+#: bottles/frontend/ui/details-bottle.ui:219
+msgid "Run Executable…"
+msgstr "Jalankan berkas eksekusi…"
+
+#: bottles/frontend/ui/details-bottle.ui:235
+msgid "Layers"
+msgstr "Lapisan"
+
+#: bottles/frontend/ui/details-bottle.ui:241
+#: bottles/frontend/views/details.py:166
+msgid "Programs"
+msgstr "Program"
+
+#: bottles/frontend/ui/details-bottle.ui:246
+msgid "Tools"
+msgstr "Peralatan"
+
+#: bottles/frontend/ui/details-bottle.ui:250
+msgid "Command Line"
+msgstr "Baris Perintah"
+
+#: bottles/frontend/ui/details-bottle.ui:251
+msgid "Run commands inside the Bottle."
+msgstr "Jalankan perintah di dalam Bottle."
+
+#: bottles/frontend/ui/details-bottle.ui:262
+msgid "Registry Editor"
+msgstr "Editor Registri"
+
+#: bottles/frontend/ui/details-bottle.ui:263
+msgid "Edit the internal registry."
+msgstr "Edit registri internal."
+
+#: bottles/frontend/ui/details-bottle.ui:273
+msgid "Legacy Tools"
+msgstr "Peralatan Lampau"
+
+#: bottles/frontend/ui/details-bottle.ui:277
+msgid "Explorer"
+msgstr "Penjelajah Berkas"
+
+#: bottles/frontend/ui/details-bottle.ui:278
+msgid "Browse internal files with the Wine explorer."
+msgstr "Jelajahi berkas-berkas internal dengan explorer WINE."
+
+#: bottles/frontend/ui/details-bottle.ui:289
+#: bottles/frontend/views/details.py:178
+msgid "Task Manager"
+msgstr "Pengelola Tugas"
+
+#: bottles/frontend/ui/details-bottle.ui:290
+msgid "Manage processes with the Wine task manager."
+msgstr "Kelola proses dengan Wine task manager."
+
+#: bottles/frontend/ui/details-bottle.ui:301
+msgid "Debug"
+msgstr "Debug"
+
+#: bottles/frontend/ui/details-bottle.ui:302
+msgid "Debug wine processes."
+msgstr "Debug proses-proses wine."
+
+#: bottles/frontend/ui/details-bottle.ui:313
+msgid "Wine Configuration"
+msgstr "Konfigurasi WINE"
+
+#: bottles/frontend/ui/details-bottle.ui:314
+msgid "Adjust internal settings."
+msgstr "Sesuaikan pengaturan internal."
+
+#: bottles/frontend/ui/details-bottle.ui:325
+msgid "Uninstaller"
+msgstr "Penghapus Pemasangan"
+
+#: bottles/frontend/ui/details-bottle.ui:326
+msgid "Uninstall programs using Wine uninstaller."
+msgstr "Hapus pemasangan program menggunakan penghapus pemasangan WINE."
+
+#: bottles/frontend/ui/details-bottle.ui:337
+msgid "Control Panel"
+msgstr "Panel Kontrol"
+
+#: bottles/frontend/ui/details-bottle.ui:338
+msgid "Access the internal Wine Control Panel."
+msgstr "Akses panel kontrol internal WINE."
+
+#: bottles/frontend/ui/details-bottle.ui:357
+msgid "Use the Installers section or the \"Run executable\" button."
+msgstr "Gunakan bagian Pemasang atau tombol \"Jalankan berkas eksekusi\"."
+
+#: bottles/frontend/ui/details-dependencies.ui:13
+msgid "Search for dependencies…"
+msgstr "Mencari dependensi…"
+
+#: bottles/frontend/ui/details-dependencies.ui:22
+msgid ""
+"Dependencies are software, libraries and codecs that improve the "
+"compatibility of Windows software. Install from here to meet your program "
+"requirements."
+msgstr ""
+"Dependensi adalah perangkat lunak, perpustakaan dan kodek yang meningkatkan "
+"kekompatibelan sebuah perangkat lunak Windows. Pasang dari sini untuk "
+"memenuhi persyaratan program Anda."
+
+#: bottles/frontend/ui/details-dependencies.ui:34
+#: bottles/frontend/ui/details-installers.ui:33
+msgid ""
+"Files on this page are provided by third parties under a proprietary "
+"license. By installing them, you agree with their respective licensing terms."
+msgstr ""
+"Berkas di laman ini disediakan dengan jenis lisensi proprietari. Dengan "
+"memasangnya, Anda telah menyetujui persyaratan lisensi yang digunakan."
+
+#: bottles/frontend/ui/details-dependencies.ui:62
+msgid "Report a problem or a missing dependency."
+msgstr "Laporkan masalah atau dependensi yang hilang."
+
+#: bottles/frontend/ui/details-dependencies.ui:63
+msgid "Report missing dependency"
+msgstr "Laporkan dependensi yang hilang"
+
+#: bottles/frontend/ui/details-dependencies.ui:68
+#, fuzzy
+msgid "Read documentation."
+msgstr "Baca dokumentasi"
+
+#: bottles/frontend/ui/details-dependencies.ui:69
+#: bottles/frontend/ui/details-installers.ui:71
+#: bottles/frontend/ui/details-programs.ui:45
+#: bottles/frontend/ui/details-versioning.ui:44
+#: bottles/frontend/ui/window.ui:38
+msgid "Documentation"
+msgstr "Dokumentasi"
+
+#: bottles/frontend/ui/details-dependencies.ui:80
+msgid "Install Selected"
+msgstr "Pasang Terpilih"
+
+#: bottles/frontend/ui/details-dependencies.ui:81
+msgid "We strongly advise against installing multiple dependencies at once."
+msgstr ""
+"Kami sangat menyarankan untuk tidak memasang beberapa dependensi sekaligus."
+
+#: bottles/frontend/ui/details-dependencies.ui:88
+msgid "Select Dependencies"
+msgstr "Pilih Dependensi"
+
+#: bottles/frontend/ui/details-dependencies.ui:95
+#: bottles/frontend/ui/details-installers.ui:82
+#: bottles/frontend/ui/window.ui:86
+msgid "Search"
+msgstr "Cari"
+
+#: bottles/frontend/ui/details-installers.ui:13
+msgid "Search for Programs…"
+msgstr "Cari program yang terpasang…"
+
+#: bottles/frontend/ui/details-installers.ui:22
+msgid ""
+"Use this section to install programs curated by our community, without "
+"having to proceed manually."
+msgstr ""
+
+#: bottles/frontend/ui/details-installers.ui:48
+msgid "No Installers Found"
+msgstr "Tak Ditemukan Pemasang"
+
+#: bottles/frontend/ui/details-installers.ui:51
+msgid ""
+"The repository is unreachable or no installer is compatible with this bottle."
+msgstr ""
+"Repositori ini tidak terjangkau atau tidak ada pemasang yang kompatibel "
+"dengan bottle ini."
+
+#: bottles/frontend/ui/details-installers.ui:70
+#: bottles/frontend/ui/details-programs.ui:44
+#: bottles/frontend/ui/details-versioning.ui:43
+msgid "Read documentation"
+msgstr "Baca dokumentasi"
+
+#: bottles/frontend/ui/details-preferences.ui:8
+msgid "Bottle Details"
+msgstr "Rincian Bottle"
+
+#: bottles/frontend/ui/details-preferences.ui:11
+#: bottles/frontend/ui/dialog-duplicate.ui:58 bottles/frontend/ui/new.ui:70
+msgid "Name"
+msgstr "Nama"
+
+#: bottles/frontend/ui/details-preferences.ui:19
+msgid "Graphics"
+msgstr "Grafik"
+
+#: bottles/frontend/ui/details-preferences.ui:23
+#: bottles/frontend/ui/preferences.ui:213
+msgid "DXVK"
+msgstr "DXVK"
+
+#: bottles/frontend/ui/details-preferences.ui:24
+msgid "Improves performance of DirectX 11 games and 3D applications."
+msgstr "Meningkatkan kinerja permainan DirectX 11 dan aplikasi 3D."
+
+#: bottles/frontend/ui/details-preferences.ui:27
+#: bottles/frontend/ui/details-preferences.ui:338
+msgid "Updating DXVK, please wait…"
+msgstr "Memperbarui DXVK, mohon tunggu…"
+
+#: bottles/frontend/ui/details-preferences.ui:42
+#: bottles/frontend/ui/preferences.ui:218
+msgid "VKD3D"
+msgstr "VKD3D"
+
+#: bottles/frontend/ui/details-preferences.ui:43
+msgid "Improves performance of DirectX 12 games and 3D applications."
+msgstr "Meningkatkan kinerja permainan DirectX 12 dan aplikasi 3D."
+
+#: bottles/frontend/ui/details-preferences.ui:46
+#: bottles/frontend/ui/details-preferences.ui:361
+msgid "Updating VKD3D, please wait…"
+msgstr "Memperbarui VKD3D, mohon tunggu…"
+
+#: bottles/frontend/ui/details-preferences.ui:61
+msgid "DLSS (DXVK-NVAPI)"
+msgstr "DLSS (DXVK-NVAPI)"
+
+#: bottles/frontend/ui/details-preferences.ui:62
+msgid "Provide DLSS support if available and Nvidia's NVAPI."
+msgstr "Berikan dukungan DLSS jika tersedia dan NVAPI Nvidia."
+
+#: bottles/frontend/ui/details-preferences.ui:65
+#: bottles/frontend/ui/details-preferences.ui:112
+#: bottles/frontend/ui/details-preferences.ui:385
+#: bottles/frontend/ui/details-preferences.ui:407
+msgid "Updating DXVK-NVAPI, please wait…"
+msgstr "Memperbarui DXVK-NVAPI, mohon tunggu…"
+
+#: bottles/frontend/ui/details-preferences.ui:80
+msgid "FSR"
+msgstr "FSR"
+
+#: bottles/frontend/ui/details-preferences.ui:81
+msgid ""
+"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
+msgstr ""
+"FSR menggunakan teknologi up-scaling mutakhir untuk membantu meningkatkan "
+"framerate Anda."
+
+#: bottles/frontend/ui/details-preferences.ui:88
+msgid "Ultra Quality"
+msgstr "Kualitas Ultra"
+
+#: bottles/frontend/ui/details-preferences.ui:89
+msgid "Quality"
+msgstr "Kualitas"
+
+#: bottles/frontend/ui/details-preferences.ui:90
+msgid "Balanced"
+msgstr "Seimbang"
+
+#: bottles/frontend/ui/details-preferences.ui:91
+msgid "Performance"
+msgstr "Performa"
+
+#: bottles/frontend/ui/details-preferences.ui:108
+#: bottles/frontend/ui/preferences.ui:228
+msgid "LatencyFleX"
+msgstr "LatencyFlex"
+
+#: bottles/frontend/ui/details-preferences.ui:109
+msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
+msgstr ""
+"Merupakan sebuah alternatif untuk NVIDIA Reflex. Dapat dideteksi oleh "
+"beberapa Anti-cheats."
+
+#: bottles/frontend/ui/details-preferences.ui:128
+msgid "Discrete GPU"
+msgstr "GPU Diskrit"
+
+#: bottles/frontend/ui/details-preferences.ui:129
+msgid "Improves performance at the cost of increased power usage."
+msgstr "Meningkatkan performa tetapi juga meningkatkan penggunaan daya."
+
+#: bottles/frontend/ui/details-preferences.ui:140
+msgid "vkBasalt"
+msgstr "vkBasalt"
+
+#: bottles/frontend/ui/details-preferences.ui:141
+msgid ""
+"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
+"games."
+msgstr ""
+"vkBasalt merupakan sebuah lapisan pasca pemrosesan untuk menambah grafik "
+"visual pada banyak permainan."
+
+#: bottles/frontend/ui/details-preferences.ui:144
+#, fuzzy
+msgid "Manage vkBasalt settings"
+msgstr "Kelola pengaturan Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:161
+msgid "Display Settings"
+msgstr "Pengaturan Layar"
+
+#: bottles/frontend/ui/details-preferences.ui:165
+#: bottles/frontend/ui/dialog-launch-options.ui:194
+msgid "Virtual Desktop"
+msgstr "Desktop Virtual"
+
+#: bottles/frontend/ui/details-preferences.ui:166
+msgid "Use the Wine virtual desktop."
+msgstr "Gunakan desktop virtual Wine."
+
+#: bottles/frontend/ui/details-preferences.ui:204
+msgid "Fullscreen Mouse Capture"
+msgstr "Penangkap Tetikus Saat Layar Penuh"
+
+#: bottles/frontend/ui/details-preferences.ui:205
+msgid "Let the program capture mouse input when fullscreen."
+msgstr "Izinkan program menangkap tetikus saat layar penuh."
+
+#: bottles/frontend/ui/details-preferences.ui:216
+msgid "Take Focus"
+msgstr "Mengambil Fokus"
+
+#: bottles/frontend/ui/details-preferences.ui:217
+msgid "Activate it if the program does not retake focus on switch."
+msgstr "Aktifkan jika program tidak mengambil kembali fokus saat berpindah."
+
+#: bottles/frontend/ui/details-preferences.ui:228
+msgid "Mouse Warp"
+msgstr "Pemindahan Tetikus"
+
+#: bottles/frontend/ui/details-preferences.ui:229
+msgid "Change this if you are running into mouse lag or desync."
+msgstr ""
+"Ubah ini apabila kamu menghadapi masalah tetikus yang terjeda atau tidak "
+"tersinkronisasi."
+
+#: bottles/frontend/ui/details-preferences.ui:241
+msgid "Screen Scaling"
+msgstr "Penskalaan Layar"
+
+#: bottles/frontend/ui/details-preferences.ui:242
+msgid "Set custom DPI."
+msgstr "Atur DPI tersuai."
+
+#: bottles/frontend/ui/details-preferences.ui:248
+msgid "96"
+msgstr "96"
+
+#: bottles/frontend/ui/details-preferences.ui:249
+msgid "120"
+msgstr "120"
+
+#: bottles/frontend/ui/details-preferences.ui:250
+msgid "144"
+msgstr "144"
+
+#: bottles/frontend/ui/details-preferences.ui:251
+msgid "168"
+msgstr "168"
+
+#: bottles/frontend/ui/details-preferences.ui:252
+msgid "192"
+msgstr "192"
+
+#: bottles/frontend/ui/details-preferences.ui:253
+msgid "216"
+msgstr "216"
+
+#: bottles/frontend/ui/details-preferences.ui:254
+msgid "240"
+msgstr "240"
+
+#: bottles/frontend/ui/details-preferences.ui:255
+msgid "288"
+msgstr "288"
+
+#: bottles/frontend/ui/details-preferences.ui:256
+msgid "336"
+msgstr "336"
+
+#: bottles/frontend/ui/details-preferences.ui:257
+msgid "384"
+msgstr "384"
+
+#: bottles/frontend/ui/details-preferences.ui:258
+msgid "432"
+msgstr "432"
+
+#: bottles/frontend/ui/details-preferences.ui:259
+msgid "480"
+msgstr "480"
+
+#: bottles/frontend/ui/details-preferences.ui:272
+msgid "Renderer"
+msgstr "Mengubah"
+
+#: bottles/frontend/ui/details-preferences.ui:273
+msgid "Select what backend to use for wined3d."
+msgstr "Pilih backend yang digunakan untuk wined3d."
+
+#: bottles/frontend/ui/details-preferences.ui:279
+msgid "gl (default)"
+msgstr "gl (bawaan)"
+
+#: bottles/frontend/ui/details-preferences.ui:280
+msgid "gdi"
+msgstr "gdi"
+
+#: bottles/frontend/ui/details-preferences.ui:281
+msgid "vulkan"
+msgstr "vulkan"
+
+#: bottles/frontend/ui/details-preferences.ui:296
+#: bottles/frontend/ui/details-preferences.ui:432
+msgid "System"
+msgstr "Sistem"
+
+#: bottles/frontend/ui/details-preferences.ui:299
+#, fuzzy
+msgid "Manage Components Versions"
+msgstr "Versi komponen"
+
+#: bottles/frontend/ui/details-preferences.ui:309
+msgid "Components"
+msgstr "Komponen-Komponen"
+
+#: bottles/frontend/ui/details-preferences.ui:317
+msgid "Updating Runner and components, please wait…"
+msgstr "Memperbarui Runner dan komponen, mohon tunggu…"
+
+#. TODO: replace with ComboRow
+#: bottles/frontend/ui/details-preferences.ui:334
+msgid "DXVK Version"
+msgstr "Versi DXVK"
+
+#: bottles/frontend/ui/details-preferences.ui:358
+#, fuzzy
+msgid "VKD3D Version"
+msgstr "Versi VKD3D"
+
+#: bottles/frontend/ui/details-preferences.ui:382
+#, fuzzy
+msgid "DXVK NVAPI Version"
+msgstr "Versi DXVK NVAPI"
+
+#: bottles/frontend/ui/details-preferences.ui:404
+msgid "LatencyFleX Version"
+msgstr "Versi LatencyFleX"
+
+#: bottles/frontend/ui/details-preferences.ui:426
+#, fuzzy
+msgid "Enable synchronization to increase performance of multicore processors."
+msgstr "Aktifkan sinkronisasi untuk meningkatkan kinerja prosesor multi-core."
+
+#: bottles/frontend/ui/details-preferences.ui:427
+msgid "Synchronization"
+msgstr "Sinkronisasi"
+
+#: bottles/frontend/ui/details-preferences.ui:438
+msgid "Esync"
+msgstr "Esync"
+
+#: bottles/frontend/ui/details-preferences.ui:444
+msgid "Fsync"
+msgstr "Fsync"
+
+#: bottles/frontend/ui/details-preferences.ui:450
+msgid "Futex2"
+msgstr "Futex2"
+
+#: bottles/frontend/ui/details-preferences.ui:465
+#, fuzzy
+msgid "Windows Version"
+msgstr "Versi Windows"
+
+#: bottles/frontend/ui/details-preferences.ui:468
+msgid "Updating Windows version, please wait…"
+msgstr "Memperbarui versi Windows, mohon tunggu…"
+
+#: bottles/frontend/ui/details-preferences.ui:496
+msgid "Language"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:497
+msgid "Choose the language to use with programs."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:507
+msgid "false"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:508
+msgid "Dedicated Sandbox"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:509
+msgid "Use a restricted/managed environment for this bottle."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:512
+#, fuzzy
+msgid "Manage Sandbox permissions"
+msgstr "Kelola versi DXVK"
+
+#: bottles/frontend/ui/details-preferences.ui:530
+#, fuzzy
+msgid "Bottles Runtime"
+msgstr "Gunakan runtime Bottles"
+
+#: bottles/frontend/ui/details-preferences.ui:531
+#, fuzzy
+msgid ""
+"Provides a bundle of extra libraries for more compatibility,disable if you "
+"run into issues."
+msgstr ""
+"Menyediakan bundel pustaka tambahan untuk kompatibilitas lebih,\n"
+"nonaktifkan jika menemui masalah."
+
+#: bottles/frontend/ui/details-preferences.ui:542
+#, fuzzy
+msgid "Steam Runtime"
+msgstr "Gunakan runtime Steam"
+
+#: bottles/frontend/ui/details-preferences.ui:543
+msgid "The same as the Bottles one but provided by Steam."
+msgstr "Sama seperti Bottles tapi disediakan oleh Steam."
+
+#: bottles/frontend/ui/details-preferences.ui:554
+#, fuzzy
+msgid "GameMode"
+msgstr "Gunakan GameMode"
+
+#: bottles/frontend/ui/details-preferences.ui:555
+msgid "Optimise gaming performance on demand."
+msgstr "Optimalkan kinerja permainan sesuai permintaan."
+
+#: bottles/frontend/ui/details-preferences.ui:566
+#, fuzzy
+msgid "Gamescope"
+msgstr "Gunakan Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:567
+msgid "Use the Gamescope micro-compositor."
+msgstr "Gunakan micro-compositor Gamescope."
+
+#: bottles/frontend/ui/details-preferences.ui:570
+msgid "Manage Gamescope settings"
+msgstr "Kelola pengaturan Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:588
+msgid "Vmtouch"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:589
+msgid "Preload game files into RAM"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:592
+#, fuzzy
+msgid "Manage vmtouch settings"
+msgstr "Kelola pengaturan Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:610
+#: bottles/frontend/ui/dialog-launch-options.ui:91
+#, fuzzy
+msgid "Working Directory"
+msgstr "Direktori kerja"
+
+#: bottles/frontend/ui/details-preferences.ui:611
+#, fuzzy
+msgid "Defaults to the bottle path."
+msgstr "Arahkan ke jalur bawaan bottle."
+
+#: bottles/frontend/ui/details-preferences.ui:614
+#: bottles/frontend/ui/dialog-launch-options.ui:65
+#: bottles/frontend/ui/dialog-launch-options.ui:98
+#: bottles/frontend/ui/preferences.ui:159
+#, fuzzy
+msgid "Reset to default"
+msgstr "Reset bawaan"
+
+#: bottles/frontend/ui/details-preferences.ui:624
+#: bottles/frontend/ui/dialog-launch-options.ui:109
+#: bottles/frontend/ui/new.ui:163 bottles/frontend/ui/new.ui:180
+#: bottles/frontend/ui/preferences.ui:170
+msgid "Choose a directory"
+msgstr "Pilih direktori"
+
+#: bottles/frontend/ui/details-preferences.ui:637
+#: bottles/frontend/ui/dialog-dll-overrides.ui:9
+#: bottles/frontend/ui/dialog-dll-overrides.ui:15
+#, fuzzy
+msgid "DLL Overrides"
+msgstr "Mengganti DLL"
+
+#: bottles/frontend/ui/details-preferences.ui:648
+#: bottles/frontend/ui/dialog-env-vars.ui:16
+#, fuzzy
+msgid "Environment Variables"
+msgstr "Variabel lingkungan"
+
+#: bottles/frontend/ui/details-preferences.ui:659
+#, fuzzy
+msgid "Manage Drives"
+msgstr "Kelola penyimpanan"
+
+#: bottles/frontend/ui/details-preferences.ui:671
+msgid "Audio"
+msgstr "Audio"
+
+#: bottles/frontend/ui/details-preferences.ui:675
+#: bottles/frontend/ui/dialog-launch-options.ui:183
+#, fuzzy
+msgid "Reduce Latency"
+msgstr "Kurangi latensi PulseAudio"
+
+#: bottles/frontend/ui/details-preferences.ui:676
+#, fuzzy
+msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
+msgstr ""
+"Atur latensi PulseAudio menjadi 60 milidetik untuk meningkatkan kualitas "
+"suara"
+
+#: bottles/frontend/ui/details-preferences.ui:688
+#: bottles/frontend/views/details.py:170
+msgid "Versioning"
+msgstr "Pembuatan versi"
+
+#: bottles/frontend/ui/details-preferences.ui:692
+msgid "Use Compression for States"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:693
+msgid ""
+"This will reduce the space used by the states but slow down their creation."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:704
+#, fuzzy
+msgid "Automatic Versioning"
+msgstr "Pembuatan versi"
+
+#: bottles/frontend/ui/details-preferences.ui:705
+msgid ""
+"Bottles will create a state before running any dependencies or installers."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:716
+msgid "Use Exclusion Patterns"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:717
+msgid "Use custom patterns to exclude some paths from versioning."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:720
+#, fuzzy
+msgid "Manage Patterns"
+msgstr "Kelola runner"
+
+#: bottles/frontend/ui/details-preferences.ui:739
+#, fuzzy
+msgid "Development and Debugging"
+msgstr "Pengembang & Pengawakutuan"
+
+#: bottles/frontend/ui/details-preferences.ui:743
+msgid "MangoHud"
+msgstr "MangoHud"
+
+#: bottles/frontend/ui/details-preferences.ui:744
+msgid ""
+"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
+"and more."
+msgstr ""
+"Sebuah lapisan atas Vulkan dan OpenGL untuk memantau FPS, suhu, beban CPU/"
+"GPU, dan lainnya."
+
+#: bottles/frontend/ui/details-preferences.ui:755
+msgid "OBS Vulkan Capture"
+msgstr "Tangkap OBS Vulkan"
+
+#: bottles/frontend/ui/details-preferences.ui:756
+#, fuzzy
+msgid "Toggle OBS game capture for all programs."
+msgstr "Beralih tangkap permainan OBS untuk semua peluncuran berikutnya"
+
+#: bottles/frontend/ui/details-preferences.ui:767
+#, fuzzy
+msgid "Wine 'fixme' Logs"
+msgstr "Aktifkan catatan wine fixme"
+
+#: bottles/frontend/ui/details-preferences.ui:768
+msgid "Log code paths that are unimplemented in Wine."
+msgstr "Jalur kode catatan yang tidak diterapkan di Wine."
+
+#: bottles/frontend/ui/details-programs.ui:9
+#, fuzzy
+msgid "No Programs found"
+msgstr "Tidak ada program yang ditemukan"
+
+#: bottles/frontend/ui/details-programs.ui:10
+msgid ""
+"Install programs from the installers section or by running the installer "
+"executable, you can also manually add executables with the \"+\" button."
+msgstr ""
+
+#: bottles/frontend/ui/details-programs.ui:31
+#, fuzzy
+msgid "Toggle Hidden"
+msgstr "Beralih cari"
+
+#: bottles/frontend/ui/details-programs.ui:36
+#, fuzzy
+msgid "Search for new programs"
+msgstr "Cari program yang terpasang"
+
+#: bottles/frontend/ui/details-programs.ui:55
+msgid "Add a custom executable path"
+msgstr "Tambah jalur eksekusi kustom"
+
+#: bottles/frontend/ui/details-taskmanager.ui:18
+msgid "Refresh"
+msgstr "Segarkan"
+
+#: bottles/frontend/ui/details-taskmanager.ui:24
+msgid "Stop process"
+msgstr "Hentikan proses"
+
+#: bottles/frontend/ui/details-versioning.ui:25
+#, fuzzy
+msgid "No States Found"
+msgstr "Keadaan tidak ditemukan"
+
+#: bottles/frontend/ui/details-versioning.ui:26
+msgid "Create first state to start using versioning."
+msgstr "Buat keadaan pertama untuk mulai menggunakan pembuatan versi."
+
+#: bottles/frontend/ui/details-versioning.ui:63
+#, fuzzy
+msgid "A short comment"
+msgstr "Sebuah komentar yang sangat singkat"
+
+#: bottles/frontend/ui/details-versioning.ui:68
+msgid "Save the bottle state."
+msgstr "Simpan keadaan bottle."
+
+#: bottles/frontend/ui/details-versioning.ui:88
+msgid "Create new state"
+msgstr "Buat keadaan baru"
+
+#: bottles/frontend/ui/details.ui:74
+msgid "Operations"
+msgstr "Operasi"
+
+#: bottles/frontend/ui/dialog-bottle-picker.ui:6
+#, fuzzy
+msgid "Select Bottle"
+msgstr "Hapus Bottle…"
+
+#: bottles/frontend/ui/dialog-bottle-picker.ui:42
+#, fuzzy
+msgid "Create New Bottle"
+msgstr "Buat Bottle baru"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:10
+#, fuzzy
+msgid "Bottles crash report"
+msgstr "Laporan Kerusakan Bottles"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:23
+msgid "Send report"
+msgstr "Kirim laporan"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:43
+msgid ""
+"Bottles crashed last time. Please fill out a report attaching the following "
+"traceback to help us identify the problem preventing it from happening again."
+msgstr ""
+"Bottles crash terakhir kali. Mohon isi laporan dengan menyertakan traceback "
+"untuk membantu kami mengidentifikasi masalah dan mencegahnya terjadi lagi."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:75
+msgid ""
+"We found one or more similar (or identical) reports. Please make sure to "
+"check carefully that it has not already been reported before submitting a "
+"new one. Each report requires effort on the part of the developers to "
+"diagnose, please respect their work and make sure you don't post duplicates."
+msgstr ""
+"Kami menemukan satu atau banyak yang serupa (atau identik) laporan. Tolong "
+"pastikan untuk melakukan pengecekan bahwa itu belum dilaporkan sebelum "
+"mengirimkan yang baru. Setiap laporan membutuhkan usaha dari pengembang "
+"untuk mengdiagnosisnya, tolong hormati usaha mereka dan pastikan Anda tidak "
+"mengirimkan laporan yang sama."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:96
+msgid "I still want to report."
+msgstr "Saya tetap ingin melaporkan."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:102
+msgid "Advanced options"
+msgstr "Opsi lanjutan"
+
+#: bottles/frontend/ui/dialog-deps-check.ui:15
+msgid "Incomplete package"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-deps-check.ui:16
+msgid ""
+"This version of Bottles does not seem to provide all the necessary core "
+"dependencies, please contact the package maintainer or use an official "
+"version.\n"
+"                        "
+msgstr ""
+
+#: bottles/frontend/ui/dialog-deps-check.ui:21
+msgid "Quit"
+msgstr "Berhenti"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:14
+#, fuzzy
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)."
+msgstr ""
+"Perpustakaan Tautan Dinamis dapat ditentukan untuk dibangun (disediakan oleh "
+"Wine) atau asli (disediakan oleh program)"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:18
+#, fuzzy
+msgid "New Override"
+msgstr "Timpaan baru"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:26
+#, fuzzy
+msgid "Overrides"
+msgstr "Mengganti DLL"
+
+#: bottles/frontend/ui/dialog-drives.ui:9
+msgid "Drives"
+msgstr "Penyimpanan"
+
+#: bottles/frontend/ui/dialog-drives.ui:31
+#, fuzzy
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:…).\n"
+"                                "
+msgstr ""
+"Ini adalah jalur dari sistem host Anda yang dipetakan dan dikenali sebagai "
+"perangkat oleh runner (mis. C: D:..)."
+
+#: bottles/frontend/ui/dialog-drives.ui:35
+msgid "Letter"
+msgstr "Huruf"
+
+#: bottles/frontend/ui/dialog-drives.ui:59
+#, fuzzy
+msgid "Existing Drives"
+msgstr "Penyimpanan yang sudah ada"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:18
+#, fuzzy
+msgid "Duplicate Bottle"
+msgstr "Duplikat bottle"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:23
+#: bottles/frontend/ui/dialog-gamescope.ui:17
+#: bottles/frontend/ui/dialog-launch-options.ui:17
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:23
+#: bottles/frontend/ui/dialog-vkbasalt.ui:31
+#, fuzzy
+msgid "_Cancel"
+msgstr "Batalkan"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:41
+msgid "Duplicate"
+msgstr "Duplikat"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:55
+#, fuzzy
+msgid "Enter a name for the duplicate of the Bottle."
+msgstr "Ketik nama untuk bottle baru"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:78
+msgid "Duplicating…"
+msgstr "Menduplikasi…"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:87
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
+#: bottles/frontend/ui/new.ui:216
+#, fuzzy
+msgid "Take a break, it may take a while."
+msgstr "Tunggu sebentar, ini mungkin membutuhkan waktu"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:108
+#, fuzzy
+msgid "Bottle Duplicated"
+msgstr "Bottle telah diduplikasi"
+
+#: bottles/frontend/ui/dialog-env-vars.ui:35
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
+"Variabel lingkungan adalah nilai bernama dinamis yang dapat memengaruhi cara "
+"proses yang berjalan akan berperilaku di bottle Anda."
+
+#: bottles/frontend/ui/dialog-env-vars.ui:38
+msgid "Variable Name"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-env-vars.ui:46
+#, fuzzy
+msgid "Existing Variables"
+msgstr "Variabel yang sudah ada"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
+msgid "Exclusion Patterns"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
+msgid ""
+"Define patterns that will be used to prevent some directories to being "
+"versioned."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
+#, fuzzy
+msgid "Pattern"
+msgstr "Huruf"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:46
+#, fuzzy
+msgid "Existing Patterns"
+msgstr "Penyimpanan yang sudah ada"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:8
+#, fuzzy
+msgid "Gamescope Settings"
+msgstr "Pengaturan Gamescope"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:46
+msgid ""
+"Configure how Gamescope should manage the window for the games you will run."
+msgstr ""
+"Konfigurasikan bagaimana Gamescope mengelola jendela untuk permainan yang "
+"akan kamu jalankan."
+
+#: bottles/frontend/ui/dialog-gamescope.ui:51
+#, fuzzy
+msgid "Game Resolution"
+msgstr "Resolusi permainan"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:52
+msgid "Uses the resolution of the video game as a reference."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.ui:55
+#: bottles/frontend/ui/dialog-gamescope.ui:71
+msgid "Width (e.g. 1280)"
+msgstr "Lebar (mis. 1280)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:60
+#: bottles/frontend/ui/dialog-gamescope.ui:76
+msgid "Height (e.g. 720)"
+msgstr "Panjang (mis. 720)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:67
+#, fuzzy
+msgid "Gamescope Resolution"
+msgstr "Resolusi Gamescope"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:68
+msgid ""
+"Upscales the resolution when using a resolution higher than the game "
+"resolution."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.ui:83
+msgid "Miscellaneous"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.ui:86
+#, fuzzy
+msgid "Frame Rate Limit (e.g. 60)"
+msgstr "Batasan frame rate (mis. 60)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:91
+#, fuzzy
+msgid "Frame Rate Limit (When Unfocused)"
+msgstr "Batasan frame rate (saat tidak fokus)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:96
+#, fuzzy
+msgid "Use Integer Scaling"
+msgstr "Gunakan skala integer"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:107
+#, fuzzy
+msgid "Window Type"
+msgstr "Tipe jendela"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:112
+msgid "Borderless"
+msgstr "Tanpa batasan"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:119
+msgid "Fullscreen"
+msgstr "Layar penuh"
+
+#: bottles/frontend/ui/dialog-journal.ui:12
+msgid "All messages"
+msgstr "Semua pesan"
+
+#: bottles/frontend/ui/dialog-journal.ui:17
+msgid "Critical"
+msgstr "Kritis"
+
+#: bottles/frontend/ui/dialog-journal.ui:22
+msgid "Errors"
+msgstr "Galat"
+
+#: bottles/frontend/ui/dialog-journal.ui:27
+msgid "Warnings"
+msgstr "Peringatan"
+
+#: bottles/frontend/ui/dialog-journal.ui:32
+msgid "Info"
+msgstr "Info"
+
+#: bottles/frontend/ui/dialog-journal.ui:49
+msgid "Journal browser"
+msgstr "Peramban Jurnal"
+
+#: bottles/frontend/ui/dialog-journal.ui:56
+msgid "Journal Browser"
+msgstr "Peramban Jurnal"
+
+#: bottles/frontend/ui/dialog-journal.ui:62
+msgid ""
+"Change logging level.\n"
+"                                        "
+msgstr ""
+
+#: bottles/frontend/ui/dialog-journal.ui:67
+msgid "All"
+msgstr "Semua"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:8
+#, fuzzy
+msgid "Launch Options"
+msgstr "Ubah Pilihan Peluncuran"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:47
+#, fuzzy
+msgid "Those arguments will be passed at launch."
+msgstr "Argumen-argumen ini diberikan saat peluncuran program:"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:48
+#, fuzzy
+msgid "Custom Arguments"
+msgstr "Jalankan dengan argumen"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:51
+#, fuzzy
+msgid "Command Arguments"
+msgstr "Lewati argumen"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:52
+#, fuzzy, c-format
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "mis: VAR=nilai %perintah% -contoh1 -contoh2 -contoh3=halo"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:58
+#, fuzzy
+msgid "Post-run Script"
+msgstr "Skrip pasca-berjalan"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:76
+#, fuzzy
+msgid "Choose a script"
+msgstr "Pilih skrip"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:125
+msgid "These settings will override the default settings for this executable."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-launch-options.ui:126
+#, fuzzy
+msgid "Preferences Overrides"
+msgstr "Preferensi"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:129
+#, fuzzy
+msgid "Reset to Bottle's Defaults"
+msgstr "Reset bawaan"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:6
+msgid "Proton Disclaimer"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:22
+#, fuzzy
+msgid "Use Proton"
+msgstr "Awalan Steam Proton"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:37
+msgid ""
+"Beware, using Proton-based runners in non-Steam bottles can cause problems "
+"and prevent them from behaving correctly.\n"
+"\n"
+"We recommend using Wine-GE rather, a version of Proton meant to run outside "
+"of Steam.\n"
+"\n"
+"Proceeding will automatically enable the Steam runtime (if present in the "
+"system and detected by Bottles) in order to allow it to access the necessary "
+"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
+"the runner's provider, is not responsible for any problems and we ask that "
+"you do not report to them."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:50
+msgid "I got it."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-rename.ui:9
+msgid "Rename"
+msgstr "Ubah nama"
+
+#: bottles/frontend/ui/dialog-rename.ui:34
+msgid "Choose a new name for the selected program."
+msgstr "Pilih nama baru untuk program yang dipilih."
+
+#: bottles/frontend/ui/dialog-rename.ui:37
+#, fuzzy
+msgid "New Name"
+msgstr "Nama"
+
+#: bottles/frontend/ui/dialog-run-args.ui:14
+#, fuzzy
+msgid "Run With Arguments"
+msgstr "Jalankan dengan argumen"
+
+#: bottles/frontend/ui/dialog-run-args.ui:35
+#: bottles/frontend/views/bottle_details.py:202
+#: bottles/frontend/views/list.py:120
+msgid "Run"
+msgstr "Jalankan"
+
+#: bottles/frontend/ui/dialog-run-args.ui:47
+msgid "Write below the arguments to be passed to the executable."
+msgstr "Tulis di bawah ini argumen untuk diteruskan ke executable."
+
+#: bottles/frontend/ui/dialog-run-args.ui:50
+#, fuzzy
+msgid "e.g.: -opengl -SkipBuildPatchPrereq"
+msgstr "mis: -opengl -SkipBuildPatchPrereq"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:9
+#, fuzzy
+msgid "Sandbox Settings"
+msgstr "Pengaturan Gamescope"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:23
+msgid "Share Network"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-sandbox.ui:34
+#, fuzzy
+msgid "Share Sound"
+msgstr "Keadaan tidak ditemukan"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:18
+#, fuzzy
+msgid "Upgrade Needed"
+msgstr "Meningkatkan"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:41
+#: bottles/frontend/ui/onboard.ui:88
+msgid "Continue"
+msgstr "Lanjut"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:49
+#, fuzzy
+msgid "Launch upgrade"
+msgstr "Konfirmasi pemutakhiran"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:69
+#, fuzzy
+msgid "New Versioning System"
+msgstr "Pembuatan versi"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:72
+msgid "The new bottle versioning system has landed."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:86
+msgid ""
+"Bottles has a whole new Versioning System which is not backwards "
+"compatible. \n"
+"\n"
+"To continue using versioning we need to re-initialize the bottle repository. "
+"This will not delete data from your bottle but will delete all existing "
+"states and create a new one. \n"
+"\n"
+"If you need to go back to a previous state before continuing, close this "
+"window and restore the state, then reopen the bottle to show this window "
+"again. \n"
+"\n"
+"The old system will be discontinued in one of the next releases."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
+msgid "Re-initializing repository…"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
+msgid "Done! Please restart Bottles."
+msgstr ""
+
+#. vkBasalt is a Vulkan post processing layer for Linux
+#: bottles/frontend/ui/dialog-vkbasalt.ui:11
+#, fuzzy
+msgid "vkBasalt Settings"
+msgstr "Pengaturan Layar"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:50
+#, fuzzy
+msgid "Default"
+msgstr "gl (bawaan)"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:54
+#, fuzzy
+msgid "Default Settings"
+msgstr "Pengaturan Layar"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:66
+msgid "Effects are applied according to the list order."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:67
+msgid "Effects"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:71
+msgid "Contrast Adaptive Sharpening"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:74
+#: bottles/frontend/ui/dialog-vkbasalt.ui:110
+msgid "Sharpness"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:78
+#: bottles/frontend/ui/dialog-vkbasalt.ui:114
+#: bottles/frontend/ui/dialog-vkbasalt.ui:143
+#: bottles/frontend/ui/dialog-vkbasalt.ui:178
+#: bottles/frontend/ui/dialog-vkbasalt.ui:207
+#: bottles/frontend/ui/dialog-vkbasalt.ui:236
+#: bottles/frontend/ui/dialog-vkbasalt.ui:271
+#: bottles/frontend/ui/dialog-vkbasalt.ui:307
+#: bottles/frontend/ui/dialog-vkbasalt.ui:336
+#: bottles/frontend/ui/dialog-vkbasalt.ui:364
+#: bottles/frontend/ui/dialog-vkbasalt.ui:392
+#: bottles/frontend/ui/dialog-vkbasalt.ui:424
+#, fuzzy
+msgid "Show Information"
+msgstr "Informasi bottle"
+
+#. Luma is not translatable
+#: bottles/frontend/ui/dialog-vkbasalt.ui:107
+msgid "Denoised Luma Sharpening"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:139
+msgid "Denoise"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:171
+msgid "Fast Approximate Anti-Aliasing"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:174
+#, fuzzy
+msgid "Subpixel Quality"
+msgstr "Kualitas Ultra"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:203
+msgid "Quality Edge Threshold"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:232
+msgid "Quality Edge Threshold Minimum"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:264
+msgid "Subpixel Morphological Anti-Aliasing"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:267
+msgid "Edge Detection"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:283
+msgid "Luma"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:290
+msgid "Color"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:303
+msgid "Threshold"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:332
+msgid "Max Search Steps"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:360
+msgid "Max Search Steps Diagonal"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:388
+msgid "Max Corner Rounding"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:419
+msgid "Color Lookup Table"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:437
+#, fuzzy
+msgid "Reset to Default"
+msgstr "Reset bawaan"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:448
+#, fuzzy
+msgid "Select a File"
+msgstr "Hapus Bottle…"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:482
+msgid ""
+"CAS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper, whereas values lower than 0 make the frame softer than native."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:500
+msgid ""
+"DLS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:518
+msgid ""
+"DLS denoise decreases the noise of a frame. Higher values make the frame "
+"softer."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:536
+msgid ""
+"FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
+"values make the frame softer."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:554
+msgid ""
+"FXAA edge threshold is the minimum amount of contrast required to apply the "
+"FXAA algorithm. Higher values make the frame have more contrast."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:572
+msgid ""
+"FXAA quality edge threshold minimum is the minimum value of dark pixels that "
+"are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
+"below the specified value and can lead to a performance increase."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:590
+msgid ""
+"Luma detects edges from a monochrome perspective, whereas Color detects "
+"edges based on colors. Luma is more performant than Color."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:608
+msgid ""
+"SMAA threshold specifies the sensitivity of edge detection. Lower values "
+"detect more edges at the expense of performance."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:626
+msgid ""
+"SMAA max search steps specifies how many horizontal and vertical search "
+"steps are performed when searching for edges."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:644
+msgid ""
+"SMAA max diagonal search steps specifies how many diagonal search steps are "
+"performed when searching for edges."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:662
+msgid "SMAA corner rounding specifies the strength of rounding edge corners."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:680
+msgid ""
+"CLUT transforms a range of colors into another range of colors using a .CUBE "
+"file, or a .png file where the height is equal to the width."
+msgstr ""
+
+#: bottles/frontend/ui/dll-override-entry.ui:10
+msgid "Builtin (Wine)"
+msgstr "Bawaan (Wine)"
+
+#: bottles/frontend/ui/dll-override-entry.ui:11
+msgid "Native (Windows)"
+msgstr "Asli (Windows)"
+
+#: bottles/frontend/ui/dll-override-entry.ui:12
+#, fuzzy
+msgid "Builtin, then Native"
+msgstr "Bawaan lalu Asli"
+
+#: bottles/frontend/ui/dll-override-entry.ui:13
+#, fuzzy
+msgid "Native, then Builtin"
+msgstr "Asli lalu Bawaan"
+
+#: bottles/frontend/ui/dll-override-entry.ui:14
+msgid "Disabled"
+msgstr ""
+
+#: bottles/frontend/ui/dll-override-entry.ui:22
+#: bottles/frontend/ui/drive-entry.ui:14
+msgid "Remove"
+msgstr "Hapus"
+
+#: bottles/frontend/ui/drive-entry.ui:7
+msgid "/point/to/path"
+msgstr "/poin/ke/jalur"
+
+#: bottles/frontend/ui/drive-entry.ui:24
+#, fuzzy
+msgid "Choose a Directory"
+msgstr "Pilih direktori"
+
+#: bottles/frontend/ui/env-var-entry.ui:6
+#: bottles/frontend/ui/exclusion-pattern-entry.ui:6
+#, fuzzy
+msgid "Value"
+msgstr "nilai"
+
+#. Wineprefix is a prefix for the wine program
+#: bottles/frontend/ui/importer-entry.ui:22
+msgid "Wineprefix name"
+msgstr ""
+
+#: bottles/frontend/ui/importer-entry.ui:29
+#, fuzzy
+msgid "Manager"
+msgstr "Pengelola tugas"
+
+#: bottles/frontend/ui/importer-entry.ui:39
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Wineprefix ini sudah diimpor ke Bottles."
+
+#: bottles/frontend/ui/importer.ui:24
+msgid "Import Bottles backup"
+msgstr "Impor cadangan Bottles"
+
+#: bottles/frontend/ui/importer.ui:31
+msgid "Search again for prefixes"
+msgstr ""
+
+#: bottles/frontend/ui/importer.ui:45
+#, fuzzy
+msgid "No Prefixes Found"
+msgstr "Tidak ada program yang ditemukan"
+
+#: bottles/frontend/ui/importer.ui:46
+msgid ""
+"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
+"Use the icon on the top to import a bottle from a backup"
+msgstr ""
+
+#: bottles/frontend/ui/importer.ui:81
+msgid "Configuration"
+msgstr "Konfigurasi"
+
+#: bottles/frontend/ui/importer.ui:87
+#, fuzzy
+msgid "Full Archive"
+msgstr "Arsip lengkap"
+
+#: bottles/frontend/ui/installer-entry.ui:18
+#, fuzzy
+msgid "Show Manifest…"
+msgstr "Tampilkan manifest"
+
+#: bottles/frontend/ui/installer-entry.ui:23
+#, fuzzy
+msgid "Read Review…"
+msgstr "Baca ulasan"
+
+#: bottles/frontend/ui/installer-entry.ui:40
+#, fuzzy
+msgid "Installer name"
+msgstr "Penghapus Instalasi"
+
+#: bottles/frontend/ui/installer-entry.ui:41
+#, fuzzy
+msgid "Installer description"
+msgstr "Deskripsi lingkungan"
+
+#: bottles/frontend/ui/installer-entry.ui:48
+msgid "Unknown"
+msgstr ""
+
+#: bottles/frontend/ui/installer-entry.ui:57
+msgid "Install this program"
+msgstr "Pasang program ini"
+
+#: bottles/frontend/ui/library-entry.ui:17
+#, fuzzy
+msgid "Remove from Library"
+msgstr "Hapus dari Program"
+
+#: bottles/frontend/ui/library-entry.ui:94
+#, fuzzy
+msgid "Item name"
+msgstr "Nama bottle"
+
+#: bottles/frontend/ui/library-entry.ui:115
+#: bottles/frontend/ui/program-entry.ui:105
+msgid "Launch with Steam"
+msgstr "Luncurkan dengan Steam"
+
+#: bottles/frontend/ui/library.ui:14 bottles/frontend/ui/preferences.ui:259
+#: bottles/frontend/windows/main_window.py:175
+#, fuzzy
+msgid "Library"
+msgstr "Mode Gelap"
+
+#: bottles/frontend/ui/library.ui:15
+msgid "Add items here from your bottle's program list"
+msgstr ""
+
+#: bottles/frontend/ui/list-entry.ui:46
+msgid "This bottle looks damaged."
+msgstr "Bottle ini terlihat rusak."
+
+#: bottles/frontend/ui/list-entry.ui:60
+msgid "Execute in this bottle"
+msgstr "Eksekusi di bottle ini"
+
+#: bottles/frontend/ui/list-entry.ui:75
+msgid "Run Here"
+msgstr "Jalankan di sini"
+
+#: bottles/frontend/ui/list-entry.ui:84
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+"Bottle ini terlihat rusak, berkas konfigurasinya hilang. Saya dapat mencoba "
+"memecahkan masalah ini dengan membuat konfigurasi baru."
+
+#: bottles/frontend/ui/list-entry.ui:96
+msgid "Run .exe/.msi in this bottle"
+msgstr "Jalankan .exe/.msi di bottle ini"
+
+#: bottles/frontend/ui/list.ui:17
+#, fuzzy
+msgid "Search your bottles…"
+msgstr "Cari bottles Anda .."
+
+#: bottles/frontend/ui/list.ui:38
+#, fuzzy
+msgid "Steam Proton"
+msgstr "Awalan Steam Proton"
+
+#: bottles/frontend/ui/list.ui:54 bottles/frontend/ui/window.ui:56
+#: bottles/frontend/ui/window.ui:73 bottles/frontend/windows/main_window.py:169
 #: data/com.usebottles.bottles.appdata.xml.in:6
-#: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
-#: src/ui/window.ui:56 src/ui/window.ui:73 src/window.py:165
+#: data/com.usebottles.bottles.desktop.in:3
 msgid "Bottles"
 msgstr "Bottles"
+
+#: bottles/frontend/ui/list.ui:55
+#, fuzzy
+msgid "Start off by creating a Bottle."
+msgstr "Mulai dengan membuat bottle."
+
+#: bottles/frontend/ui/list.ui:62
+msgid "Create a new Bottle"
+msgstr "Buat Bottle baru"
+
+#: bottles/frontend/ui/list.ui:75
+#, fuzzy
+msgid "No Results Found"
+msgstr "Keadaan tidak ditemukan"
+
+#: bottles/frontend/ui/list.ui:76
+msgid "Try a different search."
+msgstr "Coba pencarian lain."
+
+#: bottles/frontend/ui/loading.ui:16
+msgid "Starting up…"
+msgstr "Memulai…"
+
+#: bottles/frontend/ui/local-resource-entry.ui:6
+msgid "This resource is missing."
+msgstr ""
+
+#: bottles/frontend/ui/local-resource-entry.ui:10
+#, fuzzy
+msgid "Browse"
+msgstr "Jelajahi C:"
+
+#: bottles/frontend/ui/new.ui:17 bottles/frontend/ui/new.ui:64
+msgid "New Bottle"
+msgstr "Bottle Baru"
+
+#: bottles/frontend/ui/new.ui:38
+msgid "Create"
+msgstr "Buat"
+
+#: bottles/frontend/ui/new.ui:47 bottles/frontend/ui/new.ui:268
+#: bottles/frontend/windows/main_window.py:191
+msgid "Close"
+msgstr "Tutup"
+
+#: bottles/frontend/ui/new.ui:67
+#, fuzzy
+msgid "Bottle Information"
+msgstr "Informasi bottle"
+
+#: bottles/frontend/ui/new.ui:84
+msgid "Gaming"
+msgstr "Permainan"
+
+#: bottles/frontend/ui/new.ui:85
+msgid "An environment improved for Windows games."
+msgstr "Sebuah lingkungan yang ditingkatkan untuk permainan Windows."
+
+#: bottles/frontend/ui/new.ui:93
+msgid "Application"
+msgstr "Aplikasi"
+
+#: bottles/frontend/ui/new.ui:94
+msgid "An environment improved for Windows applications."
+msgstr "Sebuah lingkungan yang ditingkatkan untuk aplikasi Windows."
+
+#: bottles/frontend/ui/new.ui:103
+msgid "Layered"
+msgstr "Berlapis"
+
+#: bottles/frontend/ui/new.ui:104
+msgid "A layered environment, where every app is a layer."
+msgstr "Sebuah lingkungan berlapis, di mana setiap aplikasi adalah lapisan."
+
+#: bottles/frontend/ui/new.ui:112
+msgid "Custom"
+msgstr "Kustom"
+
+#: bottles/frontend/ui/new.ui:113
+#, fuzzy
+msgid "A clear environment for your experiments."
+msgstr "Sebuah lingkungan bersih untuk eksperimen Anda."
+
+#: bottles/frontend/ui/new.ui:117
+#, fuzzy
+msgid "Unlinked Home Directory"
+msgstr "Homedir tidak ditautkan"
+
+#: bottles/frontend/ui/new.ui:118
+msgid "Do not link the userdir to the homedir"
+msgstr "Jangan tautkan userdir ke homedir"
+
+#: bottles/frontend/ui/new.ui:143
+msgid "Architecture"
+msgstr "Arsitektur"
+
+#: bottles/frontend/ui/new.ui:144
+#, fuzzy
+msgid "We recommend using 32bit only if strictly necessary."
+msgstr "Sebaiknya gunakan 32bit saja jika benar-benar diperlukan"
+
+#: bottles/frontend/ui/new.ui:148
+msgid "64 bit"
+msgstr "64 bit"
+
+#: bottles/frontend/ui/new.ui:149
+msgid "32 bit"
+msgstr "32 bit"
+
+#: bottles/frontend/ui/new.ui:157
+#, fuzzy
+msgid "Custom Recipe"
+msgstr "Gunakan resep kustom"
+
+#: bottles/frontend/ui/new.ui:158
+msgid "Choose a custom recipe for the environment if you have one."
+msgstr "Pilih sebuah resep kustom untuk lingkungan jika Anda memilikinya."
+
+#: bottles/frontend/ui/new.ui:174
+#, fuzzy
+msgid "Custom Path"
+msgstr "Kustom"
+
+#: bottles/frontend/ui/new.ui:175
+#, fuzzy
+msgid "Store this bottle in another place."
+msgstr "Simpan bottle ini di tempat lain."
+
+#: bottles/frontend/ui/new.ui:215
+#, fuzzy
+msgid "Creating a Bottle…"
+msgstr "Menghapus bottle …"
+
+#: bottles/frontend/ui/new.ui:262
+msgid "Bottle created"
+msgstr "Bottle telah dibuat"
+
+#: bottles/frontend/ui/onboard.ui:36
+msgid "Previous"
+msgstr "Sebelumnya"
+
+#: bottles/frontend/ui/onboard.ui:62
+msgid "Welcome to Bottles"
+msgstr "Selamat datang di Bottles"
+
+#: bottles/frontend/ui/onboard.ui:63
+msgid ""
+"Run Windows Software on Linux.\n"
+"                                                "
+msgstr ""
+"Jalankan Perangkat Lunak Windows di Linux.\n"
+"                                                "
+
+#: bottles/frontend/ui/onboard.ui:71
+#, fuzzy
+msgid "Windows in Bottles"
+msgstr "Tipe jendela"
+
+#: bottles/frontend/ui/onboard.ui:72
+msgid ""
+"Bottles uses compatibility runners to provide isolated containerized Windows-"
+"like environments where programs run."
+msgstr ""
+
+#: bottles/frontend/ui/onboard.ui:79
+msgid "Almost Done"
+msgstr "Hampir Selesai"
+
+#: bottles/frontend/ui/onboard.ui:80
+msgid "We need a few more minutes to set everything up…"
+msgstr ""
+
+#: bottles/frontend/ui/onboard.ui:113
+msgid "All ready!"
+msgstr "Semua siap!"
+
+#: bottles/frontend/ui/onboard.ui:122
+msgid "Please Finish the setup first"
+msgstr ""
+
+#: bottles/frontend/ui/onboard.ui:129
+#, fuzzy
+msgid "Start using Bottles"
+msgstr "Mulai dengan membuat bottle."
+
+#: bottles/frontend/ui/onboard.ui:150
+msgid "Next"
+msgstr "Selanjutnya"
+
+#: bottles/frontend/ui/preferences.ui:6 bottles/frontend/ui/window.ui:24
+#: bottles/frontend/views/details.py:158
+msgid "Preferences"
+msgstr "Preferensi"
+
+#: bottles/frontend/ui/preferences.ui:13 bottles/frontend/ui/preferences.ui:46
+msgid "General"
+msgstr "Umum"
+
+#: bottles/frontend/ui/preferences.ui:16
+msgid "Appearance"
+msgstr "Penampilan"
+
+#: bottles/frontend/ui/preferences.ui:19
+msgid "Dark Mode"
+msgstr "Mode Gelap"
+
+#: bottles/frontend/ui/preferences.ui:20
+#, fuzzy
+msgid "Whether Bottles should use the dark color scheme."
+msgstr "Apakah Bottles harus menggunakan varian tema Gelap."
+
+#: bottles/frontend/ui/preferences.ui:32
+#, fuzzy
+msgid "Show Update Date"
+msgstr "Tampilkan tanggal pembaruan"
+
+#: bottles/frontend/ui/preferences.ui:33
+msgid "Whether to show the update date in the bottle list."
+msgstr "Apakah akan menampilkan tanggal pembaruan dalam daftar bottle."
+
+#: bottles/frontend/ui/preferences.ui:49
+#: data/com.usebottles.bottles.gschema.xml:46
+msgid "Notifications"
+msgstr "Notifikasi"
+
+#: bottles/frontend/ui/preferences.ui:50
+msgid "Show notifications for downloads and installs."
+msgstr "Tampilkan notifikasi untuk pengunduhan dan pemasangan."
+
+#: bottles/frontend/ui/preferences.ui:61
+#, fuzzy
+msgid "Temp Files"
+msgstr "Berkas-berkas temp"
+
+#: bottles/frontend/ui/preferences.ui:62
+msgid "Clean temp files when Bottles launches?"
+msgstr "Bersihkan berkas sementara saat Bottles diluncurkan?"
+
+#: bottles/frontend/ui/preferences.ui:73
+#, fuzzy
+msgid "Close Bottles After Starting a Program"
+msgstr "Tutup Bottle setelah memulai program"
+
+#: bottles/frontend/ui/preferences.ui:74
+#, fuzzy
+msgid "Close Bottles after starting a program from the file manager."
+msgstr "Tutup Bottle setelah memulai program dari manajer file"
+
+#: bottles/frontend/ui/preferences.ui:87
+#, fuzzy
+msgid "Integrations"
+msgstr "Operasi"
+
+#: bottles/frontend/ui/preferences.ui:90
+msgid "Steam Proton Prefixes"
+msgstr ""
+
+#: bottles/frontend/ui/preferences.ui:91
+#, fuzzy
+msgid "List and manage Steam Proton prefixes."
+msgstr "Beralih dukungan awalan Proton Steam eksperimental."
+
+#: bottles/frontend/ui/preferences.ui:95
+#, fuzzy
+msgid "Read Documentation"
+msgstr "Baca dokumentasi"
+
+#: bottles/frontend/ui/preferences.ui:113
+msgid "List Steam Apps in Programs List"
+msgstr ""
+
+#: bottles/frontend/ui/preferences.ui:114
+msgid "Requires Steam for Windows installed in the bottle."
+msgstr "Membutuhkan Steam untuk Windows terpasang pada bottle ini."
+
+#: bottles/frontend/ui/preferences.ui:125
+msgid "List Epic Games in Programs List"
+msgstr ""
+
+#: bottles/frontend/ui/preferences.ui:126
+msgid "Requires Epic Games Store installed in the bottle."
+msgstr "Membutuhkan Epic Games Store terpasang pada bottle ini."
+
+#: bottles/frontend/ui/preferences.ui:137
+msgid "List Ubisoft Games in Programs List"
+msgstr ""
+
+#: bottles/frontend/ui/preferences.ui:138
+#, fuzzy
+msgid "Requires Ubisoft Connect installed in the bottle."
+msgstr "Membutuhkan Epic Games Store terpasang pada bottle ini."
+
+#: bottles/frontend/ui/preferences.ui:151
+msgid "Advanced"
+msgstr "Lanjutan"
+
+#: bottles/frontend/ui/preferences.ui:154
+#, fuzzy
+msgid "Custom Bottles Path (Requires Restart)"
+msgstr "Alamat bottles kustom (butuh mulai ulang)"
+
+#: bottles/frontend/ui/preferences.ui:155
+#: bottles/frontend/views/preferences.py:151
+#: bottles/frontend/views/preferences.py:167
+#, fuzzy
+msgid ""
+"Choose where to store the new bottles (this will not move the existing ones)."
+msgstr ""
+"Pilih di mana bottles baru disimpan (ini tidak akan memindahkan yang sudah "
+"ada)"
+
+#: bottles/frontend/ui/preferences.ui:188
+msgid "Runners"
+msgstr "Runners"
+
+#: bottles/frontend/ui/preferences.ui:193
+#, fuzzy
+msgid "Pre-Release"
+msgstr "Pra-rilis"
+
+#: bottles/frontend/ui/preferences.ui:194
+msgid "Display unstable versions of runners."
+msgstr ""
+
+#: bottles/frontend/ui/preferences.ui:210
+msgid "DLL Components"
+msgstr "Komponen DLL"
+
+#: bottles/frontend/ui/preferences.ui:223
+msgid "DXVK-NVAPI"
+msgstr "DXVK-NVAPI"
+
+#: bottles/frontend/ui/preferences.ui:236
+msgid "Core"
+msgstr "Inti"
+
+#: bottles/frontend/ui/preferences.ui:240
+msgid "Runtime"
+msgstr "Runtime"
+
+#: bottles/frontend/ui/preferences.ui:245
+msgid "WineBridge"
+msgstr "WineBridge"
+
+#: bottles/frontend/ui/preferences.ui:253
+#: data/com.usebottles.bottles.gschema.xml:66
+msgid "Experiments"
+msgstr "Eksperimen"
+
+#: bottles/frontend/ui/preferences.ui:256
+msgid ""
+"These features are under heavy development and may be unstable, expect bugs "
+"and breakage."
+msgstr ""
+
+#: bottles/frontend/ui/preferences.ui:260
+#, fuzzy
+msgid "In early development (requires restart)."
+msgstr "Sedang dalam pengembangan awal (butuh mulai ulang)"
+
+#: bottles/frontend/ui/preferences.ui:271
+msgid "Sandbox per bottle"
+msgstr ""
+
+#: bottles/frontend/ui/preferences.ui:272
+#, fuzzy
+msgid "In early development."
+msgstr "Sedang dalam pengembangan awal (butuh mulai ulang)"
+
+#: bottles/frontend/ui/program-entry.ui:21
+msgid "Launch with terminal"
+msgstr "Jalankan dengan terminal"
+
+#: bottles/frontend/ui/program-entry.ui:28
+msgid "Browse path"
+msgstr "Jelajahi jalur"
+
+#: bottles/frontend/ui/program-entry.ui:44
+#, fuzzy
+msgid "Change Launch Options…"
+msgstr "Ubah Pilihan Peluncuran"
+
+#: bottles/frontend/ui/program-entry.ui:49
+#, fuzzy
+msgid "Add to My Library"
+msgstr "Tambah ke perpustakaan saya"
+
+#: bottles/frontend/ui/program-entry.ui:54
+#, fuzzy
+msgid "Add Desktop Entry"
+msgstr "Tambah entri desktop"
+
+#: bottles/frontend/ui/program-entry.ui:59
+msgid "Add to Steam"
+msgstr ""
+
+#: bottles/frontend/ui/program-entry.ui:64
+#, fuzzy
+msgid "Rename…"
+msgstr "Ubah nama"
+
+#: bottles/frontend/ui/program-entry.ui:73
+#, fuzzy
+msgid "Hide Program"
+msgstr "Sembunyikan program ini"
+
+#: bottles/frontend/ui/program-entry.ui:78
+#, fuzzy
+msgid "Show Program"
+msgstr "Program"
+
+#: bottles/frontend/ui/program-entry.ui:83
+#, fuzzy
+msgid "Remove from List"
+msgstr "Hapus dari Program"
+
+#: bottles/frontend/ui/program-entry.ui:99
+#, fuzzy
+msgid "Program name"
+msgstr "Program"
+
+#. id as identification
+#: bottles/frontend/ui/state-entry.ui:7
+#, fuzzy
+msgid "State id"
+msgstr "Keadaan tidak ditemukan"
+
+#: bottles/frontend/ui/state-entry.ui:8
+#, fuzzy
+msgid "State comment"
+msgstr "Sebuah komentar yang sangat singkat"
+
+#: bottles/frontend/ui/state-entry.ui:16
+msgid "Restore this state"
+msgstr "Kembalikan keadaan ini"
+
+#: bottles/frontend/ui/task-entry.ui:24
+msgid "Delete message"
+msgstr "Hapus pesan"
+
+#: bottles/frontend/ui/window.ui:19
+#, fuzzy
+msgid "Import/Export…"
+msgstr "Impor/ekspor"
+
+#: bottles/frontend/ui/window.ui:33
+#, fuzzy
+msgid "Support"
+msgstr "Dukung kami"
+
+#: bottles/frontend/ui/window.ui:43
+msgid "Forums"
+msgstr "Forum"
+
+#: bottles/frontend/ui/window.ui:48
+msgid "About Bottles"
+msgstr "Tentang Bottles"
+
+#: bottles/frontend/ui/window.ui:79
+msgid "Open menu"
+msgstr "Buka menu"
+
+#: bottles/frontend/ui/window.ui:93
+msgid ""
+"You don't seem connected to the internet. Without it you will not be able to "
+"download essential components. Click this icon when you have reestablished "
+"the connection."
+msgstr ""
+"Kelihatannya Anda tidak terhubung dengan internet. Tanpa itu Anda tidak "
+"dapat mengunduh komponen-komponen dasar. Klik ikon ini saat Anda terhubung "
+"kembali dengan jaringan."
+
+#: bottles/frontend/ui/window.ui:99
+msgid "New bottle"
+msgstr "Bottle baru"
+
+#: bottles/frontend/utils/connection.py:67
+msgid "You are offline, unable to download."
+msgstr "Anda sedang offline, tidak dapat mengunduh."
+
+#: bottles/frontend/views/bottle_details.py:142
+#, python-format
+msgid "Updated: %s"
+msgstr "Diperbarui: %s"
+
+#: bottles/frontend/views/bottle_details.py:200
+#: bottles/frontend/views/list.py:118
+msgid "Choose a Windows executable file"
+msgstr "Pilih berkas bisa-eksekusi Windows"
+
+#: bottles/frontend/views/bottle_details.py:209
+msgid "Be Aware of Sandbox"
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:210
+msgid ""
+"Bottles is running in a sandbox, a restricted permission environment needed "
+"to keep you safe. If the program won't run, consider moving inside the "
+"bottle (3 dots icon on the top), then launch from there."
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:212
+msgid "Ok"
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:267
+msgid "Select the location where to save the backup config"
+msgstr "Pilih lokasi tempat menyimpan konfigurasi cadangan"
+
+#: bottles/frontend/views/bottle_details.py:271
+msgid "Select the location where to save the backup archive"
+msgstr "Pilih lokasi tempat menyimpan di mana arsip dicadangkan"
+
+#: bottles/frontend/views/bottle_details.py:276
+#, python-brace-format
+msgid "Backup created for '{0}'."
+msgstr "Cadangan dibuat untuk '{0}'."
+
+#: bottles/frontend/views/bottle_details.py:278
+#, python-brace-format
+msgid "Backup failed for '{0}'."
+msgstr "Cadangan gagal untuk '{0}'."
+
+#: bottles/frontend/views/bottle_details.py:296
+msgid "Export"
+msgstr "Ekspor"
+
+#: bottles/frontend/views/bottle_details.py:332
+#: bottles/frontend/views/bottle_details.py:336
+#: bottles/frontend/views/bottle_details.py:411
+#: bottles/frontend/views/bottle_details.py:415
+#: bottles/frontend/views/bottle_preferences.py:776
+msgid "Confirm"
+msgstr "Konfirmasi"
+
+#: bottles/frontend/views/bottle_details.py:333
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Anda yakin ingin menghapus Bottle ini berserta seluruh filenya?"
+
+#: bottles/frontend/views/bottle_details.py:412
+msgid ""
+"Are you sure you want to terminate all processes?\n"
+"This can cause data loss."
+msgstr ""
+"Anda yakin untuk menghentikan paksa semua proses?\n"
+"Ini akan membuat data anda hilang."
+
+#: bottles/frontend/views/bottle_preferences.py:218
+msgid "This feature is not available on your system."
+msgstr "Fitur ini tidak tersedia di sistem anda."
+
+#: bottles/frontend/views/bottle_preferences.py:266
+#: bottles/frontend/views/bottle_preferences.py:283
+#: bottles/frontend/views/bottle_preferences.py:422
+msgid "Default to the bottle path."
+msgstr "Arahkan ke jalur bawaan bottle."
+
+#: bottles/frontend/views/bottle_preferences.py:274
+msgid "Choose working directory for executables"
+msgstr "Pilih direktori kerja untuk eksekusi"
+
+#: bottles/frontend/views/bottle_preferences.py:772
+msgid "Toggling Compression Require Re-Initialization"
+msgstr ""
+
+#: bottles/frontend/views/bottle_preferences.py:773
+msgid ""
+"This will kepp all your files but will delete all states. Do you want to "
+"continue?"
+msgstr ""
+
+#: bottles/frontend/views/bottle_programs.py:86
+#, python-brace-format
+msgid "'{0}' added."
+msgstr "'{0}' ditambahkan."
+
+#: bottles/frontend/views/bottle_programs.py:90
+msgid "Choose an executable path"
+msgstr "Pilih jalur yang dapat dieksekusi"
+
+#: bottles/frontend/views/bottle_programs.py:92
+msgid "Add"
+msgstr "Tambah"
+
+#: bottles/frontend/views/bottle_versioning.py:88
+msgid "Please migrate to the new Versioning system to create new states."
+msgstr ""
+
+#: bottles/frontend/views/details.py:154
+msgid "Details & Utilities"
+msgstr "Rincian & Utilitas"
+
+#: bottles/frontend/views/details.py:162
+msgid "Dependencies"
+msgstr "Dependensi"
+
+#: bottles/frontend/views/details.py:167
+msgid "Found in your bottle's Start menu."
+msgstr "Ditemukan di menu Start bottle Anda."
+
+#: bottles/frontend/views/details.py:174
+msgid "Installers"
+msgstr "Pemasang"
+
+#: bottles/frontend/views/details.py:377
+#, fuzzy
+msgid "Operations in progress, please wait."
+msgstr "Memperbarui versi Windows, mohon tunggu…"
+
+#: bottles/frontend/views/details.py:381
+#, fuzzy
+msgid "Return to your bottles."
+msgstr "Cari bottles Anda .."
+
+#: bottles/frontend/views/importer.py:89
+msgid "Backup imported successfully."
+msgstr "Cadangan berhasil diimpor."
+
+#: bottles/frontend/views/importer.py:91
+msgid "Import failed."
+msgstr "Pengimporan gagal."
+
+#: bottles/frontend/views/importer.py:103
+#: bottles/frontend/views/importer.py:132
+#, fuzzy
+msgid "Importing backup…"
+msgstr "Mengimpor cadangan.."
+
+#: bottles/frontend/views/importer.py:115
+msgid "Choose a backup archive"
+msgstr "Pilih arsip cadangan"
+
+#: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
+msgid "N/A"
+msgstr "N/A"
+
+#: bottles/frontend/views/list.py:220
+msgid "Your Bottles"
+msgstr "Bottles Milikmu"
+
+#: bottles/frontend/views/loading.py:33
+#, python-brace-format
+msgid "Downloading ~{0} of packages…"
+msgstr ""
+
+#: bottles/frontend/views/loading.py:34
+#, python-brace-format
+msgid "Fetched {0} of {1} packages"
+msgstr ""
+
+#: bottles/frontend/views/new.py:133
+#, fuzzy
+msgid "Name has special characters or already in use."
+msgstr "Karakter khusus tidak diperbolehkan!"
+
+#: bottles/frontend/views/new.py:150
+msgid "Choose a recipe file"
+msgstr "Pilih sebuah resep file"
+
+#: bottles/frontend/views/new.py:166
+msgid "Choose where to store the bottle"
+msgstr "Pilih tempat di mana bottle akan disimpan"
+
+#: bottles/frontend/views/new.py:219
+msgid "There was an error creating the bottle."
+msgstr "Terdapat galat saat membuat bottle."
+
+#: bottles/frontend/views/new.py:227
+#, python-brace-format
+msgid "A bottle named “{0}” was created successfully"
+msgstr "Seubah bottle bernama \"{0}\" berhasil dibuat"
+
+#: bottles/frontend/views/preferences.py:119
+msgid "Steam was not found or Bottles does not have enough permissions."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:156
+msgid "Choose new bottles path"
+msgstr "Pilih jalur bottle baru"
+
+#: bottles/frontend/views/preferences.py:199
+msgid "Based on Valve's Wine, includes staging and Proton patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:200
+msgid "Based on Wine upstream, includes staging and Proton patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:203
+msgid "Based on Wine upstream, includes staging patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:204
+msgid ""
+"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
+"Requires the Steam Runtime turned on."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:206
+msgid "Other"
+msgstr "Lainnya"
+
+#: bottles/frontend/widgets/component.py:70
+msgid "Upgrade"
+msgstr "Meningkatkan"
+
+#: bottles/frontend/widgets/component.py:145
+msgid "Installing…"
+msgstr "Memasang…"
+
+#: bottles/frontend/widgets/dependency.py:107
+#: bottles/frontend/widgets/installer.py:72
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "Manifes untuk {0}"
+
+#: bottles/frontend/widgets/dependency.py:170
+#, python-brace-format
+msgid "'{0}' installed."
+msgstr "'{0}' terpasang."
+
+#: bottles/frontend/widgets/dependency.py:184
+#, fuzzy, python-brace-format
+msgid "'{0}' failed to install."
+msgstr "'{0}' terpasang."
+
+#: bottles/frontend/widgets/importer.py:66
+#, python-brace-format
+msgid "'{0}' imported."
+msgstr "'{0}' terimpor."
+
+#: bottles/frontend/widgets/installer.py:81
+#, python-brace-format
+msgid "Review for {0}"
+msgstr "Tinjauan untuk {0}"
+
+#: bottles/frontend/widgets/program.py:187
+#, fuzzy, python-brace-format
+msgid "Launching '{0}'…"
+msgstr "Jalankan dengan terminal…"
+
+#: bottles/frontend/widgets/program.py:193
+#, fuzzy, python-brace-format
+msgid "Launching '{0}' with Steam…"
+msgstr "Luncurkan dengan Steam"
+
+#: bottles/frontend/widgets/program.py:215
+#, python-brace-format
+msgid "'{0}' hidden."
+msgstr "'{0}' disembunyikan."
+
+#: bottles/frontend/widgets/program.py:217
+#, python-brace-format
+msgid "'{0}' showed."
+msgstr "'{0}' dimunculkan."
+
+#: bottles/frontend/widgets/program.py:240
+#, python-brace-format
+msgid "'{0}' removed."
+msgstr "'{0}' dihapus."
+
+#: bottles/frontend/widgets/program.py:254
+#, python-brace-format
+msgid "'{0}' renamed to '{1}'."
+msgstr "'{0}' diubah menjadi '{1}'."
+
+#: bottles/frontend/widgets/program.py:274
+#, python-brace-format
+msgid "Desktop Entry created for '{0}'"
+msgstr "Entri Desktop dibuat untuk '{0}'"
+
+#: bottles/frontend/widgets/program.py:290
+#, python-brace-format
+msgid "'{0}' added to your library"
+msgstr "'{0}' ditambahkan ke perpustakaanmu"
+
+#: bottles/frontend/widgets/program.py:306
+#, python-brace-format
+msgid "'{0}' added to your Steam library"
+msgstr "'{0}' ditambahkan ke perpustakaan Steam mu"
+
+#: bottles/frontend/windows/main_window.py:188
+#, fuzzy
+msgid "Custom Bottles Path not Found"
+msgstr "Alamat bottles kustom (butuh mulai ulang)"
+
+#: bottles/frontend/windows/main_window.py:189
+msgid ""
+"Falling back to default path. No bottles from the given path will be listed."
+msgstr ""
+
+#: bottles/frontend/windows/main_window.py:310
+msgid "Third-Party Libraries and Special Thanks"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -392,10 +3340,6 @@ msgstr "Tinggi jendela"
 msgid "Change the window height."
 msgstr "Ubah tinggi jendela."
 
-#: data/com.usebottles.bottles.gschema.xml:46 src/ui/preferences.ui:49
-msgid "Notifications"
-msgstr "Notifikasi"
-
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
 msgstr "Tampilkan notifikasi."
@@ -423,10 +3367,6 @@ msgstr "Antarmuka awal"
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
 msgstr "Pilih tampilan mana yang harus dimulai saat memulai aplikasi."
-
-#: data/com.usebottles.bottles.gschema.xml:66 src/ui/preferences.ui:253
-msgid "Experiments"
-msgstr "Eksperimen"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
@@ -477,2616 +3417,6 @@ msgstr ""
 #, fuzzy
 msgid "Toggle sandbox warning."
 msgstr "Lihat daftar aplikasi steam."
-
-#: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
-msgid "No path specified"
-msgstr "Jalur tidak disebutkan"
-
-#: src/backend/managers/backup.py:71
-#, python-brace-format
-msgid "Backup {0}"
-msgstr "Cadangan {0}"
-
-#: src/backend/managers/backup.py:124
-#, python-brace-format
-msgid "Importing backup: {0}"
-msgstr "Mengimpor cadangan: {0}"
-
-#: src/backend/managers/manager.py:1030
-msgid "Fail to install components, tried 3 times."
-msgstr "Gagal melakukan pemasangan komponen, telah dicoba 3 kali."
-
-#: src/backend/managers/manager.py:1041
-msgid "Missing essential components. Installing…"
-msgstr "Kehilangan komponen penting. Memasang…"
-
-#: src/backend/managers/manager.py:1117
-msgid "Failed to create bottle directory."
-msgstr "Gagal untuk membuat direktori bottle."
-
-#: src/backend/managers/manager.py:1129
-msgid "Failed to create placeholder directory/file."
-msgstr "Gagal membuat tempat penampung direktori/file."
-
-#: src/backend/managers/manager.py:1134
-msgid "Generating bottle configuration…"
-msgstr "Membuat konfigurasi bottle…"
-
-#: src/backend/managers/manager.py:1157
-msgid "Template found, applying…"
-msgstr "Templat ditemukan, menerapkan…"
-
-#. execute wineboot on the bottle path
-#: src/backend/managers/manager.py:1169
-msgid "The Wine config is being updated…"
-msgstr "Konfigurasi WINE sedang diperbaharui…"
-
-#: src/backend/managers/manager.py:1171
-msgid "Wine config updated!"
-msgstr "Konfigurasi WINE diperbaharui!"
-
-#: src/backend/managers/manager.py:1179
-msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Jalankan sebagai Flatpak, membuat berkas pengguna sebagai sandbox…"
-
-#: src/backend/managers/manager.py:1181
-msgid "Sandboxing userdir…"
-msgstr "Mensandbox berkas pengguna…"
-
-#: src/backend/managers/manager.py:1197
-msgid "Setting Windows version…"
-msgstr "Pengaturan versi Windows…"
-
-#: src/backend/managers/manager.py:1207
-msgid "Apply CMD default settings…"
-msgstr "Terapkan pengaturan bawaan CMD…"
-
-#: src/backend/managers/manager.py:1215
-msgid "Optimizing environment…"
-msgstr "Mengoptimisasi lingkungan…"
-
-#: src/backend/managers/manager.py:1226
-#, python-brace-format
-msgid "Applying environment: {0}…"
-msgstr "Menerapkan lingkungan: {0}…"
-
-#: src/backend/managers/manager.py:1236
-msgid "(!) Using a custom environment recipe…"
-msgstr "(!) Sedang menggunakan resep lingkungan kustom…"
-
-#: src/backend/managers/manager.py:1239
-msgid "(!) Recipe not not found or not valid…"
-msgstr "(!) Resep tidak ditemukan atau salah…"
-
-#: src/backend/managers/manager.py:1256
-msgid "Installing DXVK…"
-msgstr "Memasang DXVK…"
-
-#: src/backend/managers/manager.py:1264
-msgid "Installing VKD3D…"
-msgstr "Memasang VKD3D…"
-
-#: src/backend/managers/manager.py:1272
-msgid "Installing DXVK-NVAPI…"
-msgstr "Memasang DXVK-NVAPI…"
-
-#: src/backend/managers/manager.py:1281
-#, python-format
-msgid "Installing dependency: %s …"
-msgstr "Memasang dependensi: %s …"
-
-#: src/backend/managers/manager.py:1297
-msgid "Creating versioning state 0…"
-msgstr "Membuat state versi 0…"
-
-#: src/backend/managers/manager.py:1305
-msgid "Finalizing…"
-msgstr "Menyelesaikan…"
-
-#: src/backend/managers/manager.py:1316
-msgid "Caching template…"
-msgstr "Templat singgahan…"
-
-#: src/backend/managers/versioning.py:97
-#, fuzzy
-msgid "Committing state …"
-msgstr "Memperbarui keadaan…"
-
-#: src/backend/managers/versioning.py:106
-msgid "Nothing to commit"
-msgstr ""
-
-#: src/backend/managers/versioning.py:112
-#, python-brace-format
-msgid "New state [{0}] created successfully!"
-msgstr "Keadaan baru [{0}] berhasil dibuat!"
-
-#: src/backend/managers/versioning.py:140
-#, fuzzy
-msgid "States list retrieved successfully!"
-msgstr "Keadaan baru [{0}] berhasil dibuat!"
-
-#: src/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
-msgid "State {0} restored successfully!"
-msgstr "Keadaan baru [{0}] berhasil dibuat!"
-
-#: src/backend/managers/versioning.py:176
-#, fuzzy
-msgid "Restoring state {} …"
-msgstr "Memulihkan ke negara bagian: [{0}]"
-
-#: src/backend/managers/versioning.py:185
-#, fuzzy
-msgid "State not found"
-msgstr "Keadaan tidak ditemukan"
-
-#: src/backend/managers/versioning.py:191
-msgid "State {} is already the active state"
-msgstr ""
-
-#: src/dialogs/crash.py:37
-msgid "Show report"
-msgstr "Tampilkan laporan"
-
-#: src/dialogs/crash.py:88
-msgid ""
-"            This issue was reported 5 times and cannot be sent again.\n"
-"            Report your feedback in one of the below existing reports."
-msgstr ""
-"            ………Masalah ini telah dilaporkan 5 kali dan tidak dapat "
-"dilaporkan lagi.\n"
-"………Laporkan umpan balik disalah satu laporan yang sudah ada di bawah."
-
-#: src/dialogs/dlloverrides.py:136
-msgid "No overrides found."
-msgstr "Tidak ditemukan yang diganti."
-
-#: src/dialogs/drives.py:71
-msgid "Choose path"
-msgstr "Pilih jalur"
-
-#: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
-#: src/dialogs/installer.py:66 src/dialogs/launchoptions.py:234
-#: src/dialogs/launchoptions.py:258 src/ui/dialog-bottle-picker.ui:17
-#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-proton-alert.ui:17
-#: src/ui/dialog-rename.ui:17 src/ui/dialog-run-args.ui:19 src/ui/new.ui:33
-#: src/views/bottle_details.py:202 src/views/bottle_details.py:296
-#: src/views/bottle_details.py:335 src/views/bottle_details.py:414
-#: src/views/bottle_preferences.py:260 src/views/bottle_preferences.py:744
-#: src/views/bottle_programs.py:89 src/views/importer.py:117
-#: src/views/importer.py:146 src/views/list.py:120 src/views/new.py:144
-#: src/views/new.py:160 src/views/preferences.py:195
-msgid "Cancel"
-msgstr "Batalkan"
-
-#: src/dialogs/drives.py:73 src/dialogs/installer.py:66
-#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
-#: src/ui/dialog-bottle-picker.ui:22 src/views/bottle_preferences.py:260
-#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
-msgid "Select"
-msgstr "Pilih"
-
-#: src/dialogs/envvars.py:131
-#, fuzzy
-msgid "No environment variables defined."
-msgstr "Variabel lingkungan tidak ditentukan"
-
-#: src/dialogs/exclusionpatterns.py:108
-#, fuzzy
-msgid "No exclusion patterns defined."
-msgstr "Variabel lingkungan tidak ditentukan"
-
-#: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:34
-#: src/ui/dialog-launch-options.ui:35 src/ui/dialog-rename.ui:22
-msgid "Save"
-msgstr "Simpan"
-
-#: src/dialogs/generic.py:24
-msgid "An error has occurred."
-msgstr "Timbul galat."
-
-#: src/dialogs/generic.py:91 src/dialogs/generic.py:137
-#: src/dialogs/generic.py:182
-msgid "Copy to clipboard"
-msgstr "Salin ke papan klip"
-
-#: src/dialogs/installer.py:64
-msgid "Select Resource FIle"
-msgstr "Pilih File Sumber"
-
-#: src/dialogs/installer.py:115
-#, fuzzy
-msgid "Installing Windows dependencies…"
-msgstr "Memasang dependensi: %s …"
-
-#: src/dialogs/installer.py:116
-#, fuzzy
-msgid "Configuring the bottle…"
-msgstr "Membuat bottle…"
-
-#: src/dialogs/installer.py:117
-msgid "Processing installer steps…"
-msgstr ""
-
-#: src/dialogs/installer.py:118
-#, fuzzy
-msgid "Installing the {}…"
-msgstr "Memasang…"
-
-#: src/dialogs/installer.py:119
-msgid "Performing final checks…"
-msgstr ""
-
-#: src/dialogs/installer.py:123
-#, fuzzy, python-brace-format
-msgid "Installing {0}…"
-msgstr "Memasang…"
-
-#: src/dialogs/installer.py:125
-#, python-brace-format
-msgid "{0} is now available in the programs view."
-msgstr ""
-
-#: src/dialogs/installer.py:171
-msgid "Installer failed with unknown error"
-msgstr "Pemasangan gagal dengan kesalahan yang tidak dikenal"
-
-#. endregion
-#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
-msgid "Choose a script which should be executed after run."
-msgstr "Pilih skrip yang akan dieksekusi setelah berjalan."
-
-#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
-#, fuzzy
-msgid "Choose from where start the program."
-msgstr "Pilih awalan untuk memulai program."
-
-#: src/dialogs/launchoptions.py:58
-#, python-brace-format
-msgid "{0} is already disabled for this bottle."
-msgstr "{0} telah dinonaktifkan untuk bottle ini."
-
-#: src/dialogs/launchoptions.py:59
-msgid "This setting is different from the bottle's default."
-msgstr "Pengaturan ini berbeda dari setelan asal bottle."
-
-#: src/dialogs/launchoptions.py:232
-msgid "Choose the script"
-msgstr "Pilih skrip"
-
-#: src/dialogs/launchoptions.py:256
-#, fuzzy
-msgid "Choose the Working Directory"
-msgstr "Pilih Direktori Kerja"
-
-#: src/main.py:105
-msgid "Show version"
-msgstr "Tampilkan versi"
-
-#: src/main.py:113
-msgid "Executable path"
-msgstr "Eksekusi jalur"
-
-#: src/main.py:121
-msgid "lnk path"
-msgstr "Jalur lnk"
-
-#: src/main.py:129 src/ui/library-entry.ui:103 src/ui/list-entry.ui:7
-msgid "Bottle name"
-msgstr "Nama bottle"
-
-#: src/main.py:137
-msgid "Pass arguments"
-msgstr "Lewati argumen"
-
-#: src/main.py:196
-msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "URL tidak valid (syntax: bottles:run/<bottle>/<program>)"
-
-#: src/main.py:237
-msgid "[Quit] request received."
-msgstr "Permintaan [Berhenti] diterima."
-
-#: src/main.py:246
-msgid "[Help] request received."
-msgstr "Permintaan [Tolong] diterima."
-
-#: src/main.py:254
-msgid "[Refresh] request received."
-msgstr "Permintaan [Segarkan] diterima."
-
-#: src/operation.py:50
-msgid "Calculating…"
-msgstr "Menghitung…"
-
-#: src/ui/about.ui:8
-msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2022 - Pengembang Bottles"
-
-#: src/ui/about.ui:9
-msgid "Easily manage wineprefix using environments"
-msgstr "Kelola wineprefix dengan mudah menggunakan lingkungan"
-
-#: src/ui/component-entry.ui:6
-msgid "Component version"
-msgstr "Versi komponen"
-
-#: src/ui/component-entry.ui:15 src/ui/dependency-entry.ui:34
-#: src/ui/program-entry.ui:92
-msgid "Uninstall"
-msgstr "Hapus pemasangan"
-
-#: src/ui/component-entry.ui:26 src/ui/importer-entry.ui:15
-msgid "Browse files"
-msgstr "Jelajahi berkas"
-
-#: src/ui/component-entry.ui:37
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch. Press to try again."
-msgstr ""
-"Pemasangan gagal. Ini mungkin karena kesalahan repositori, unduhan parsial "
-"atau ketidakcocokan checksum. Tekan untuk mencoba lagi."
-
-#: src/ui/component-entry.ui:48
-msgid "Download & Install"
-msgstr "Unduh & Pasang"
-
-#: src/ui/component-entry.ui:61
-msgid "0%"
-msgstr "0%"
-
-#: src/ui/dependency-entry.ui:18
-msgid "Show Manifest"
-msgstr "Tampilkan Manifest"
-
-#: src/ui/dependency-entry.ui:23
-msgid "License"
-msgstr "Lisensi"
-
-#: src/ui/dependency-entry.ui:28
-msgid "Reinstall"
-msgstr "Pasang kembali"
-
-#: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
-msgid "Report a Bug…"
-msgstr "Laporkan sebuah kekutu…"
-
-#: src/ui/dependency-entry.ui:50
-#, fuzzy
-msgid "Dependency name"
-msgstr "Dependensi"
-
-#: src/ui/dependency-entry.ui:52
-#, fuzzy
-msgid "Dependency description"
-msgstr "Deskripsi lingkungan"
-
-#: src/ui/dependency-entry.ui:59
-msgid "Category"
-msgstr ""
-
-#: src/ui/dependency-entry.ui:73
-msgid "Download & Install this dependency"
-msgstr "Unduh & Pasang dependensi ini"
-
-#: src/ui/dependency-entry.ui:89
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr ""
-"Terjadi kesalahan pemasangan. Muat ulang Bottles untuk membaca laporan "
-"kerusakan atau jalankan melalui terminal untuk membaca keluaran."
-
-#: src/ui/details-bottle.ui:18
-msgid "Troubleshooting"
-msgstr "Memecahkan masalah"
-
-#: src/ui/details-bottle.ui:26
-msgid "Browse Files…"
-msgstr "Jelajahi berkas…"
-
-#: src/ui/details-bottle.ui:31
-msgid "Duplicate Bottle…"
-msgstr "Duplikat Bottle…"
-
-#: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
-msgid "This is the complete archive of your bottle, including personal files."
-msgstr "Ini adalah arsip lengkap bottle Anda, termasuk berkas pribadi."
-
-#: src/ui/details-bottle.ui:37
-msgid "Full Backup…"
-msgstr "Cadangkan semua…"
-
-#: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
-msgstr ""
-"Ini hanya konfigurasi bottle, sangat cocok jika Anda ingin membuat yang baru "
-"tetapi tanpa file pribadi."
-
-#: src/ui/details-bottle.ui:43
-msgid "Export Configuration…"
-msgstr "Ekspor Konfigurasi…"
-
-#: src/ui/details-bottle.ui:51
-msgid "Delete Bottle…"
-msgstr "Hapus Bottle…"
-
-#: src/ui/details-bottle.ui:86
-msgid "Kill all Processes"
-msgstr "Hentikan semua Proses"
-
-#: src/ui/details-bottle.ui:91
-msgid "Simulate a Windows system shutdown."
-msgstr "Simulasikan sebuah sistem Windows mati."
-
-#: src/ui/details-bottle.ui:92
-msgid "Shutdown"
-msgstr "Matikan"
-
-#: src/ui/details-bottle.ui:97
-msgid "Simulate a Windows system reboot."
-msgstr "Simulasikan sebuah sistem Windows memuat ulang."
-
-#: src/ui/details-bottle.ui:98
-msgid "Reboot"
-msgstr "Mulai ulang"
-
-#: src/ui/details-bottle.ui:121
-msgid "Run with Arguments…"
-msgstr "Jalankan dengan argumen…"
-
-#: src/ui/details-bottle.ui:126
-msgid "Launch in Terminal…"
-msgstr "Jalankan dengan terminal…"
-
-#: src/ui/details-bottle.ui:157
-msgid "My bottle"
-msgstr "Bottleku"
-
-#: src/ui/details-bottle.ui:169
-msgid "Win64"
-msgstr "Win64"
-
-#: src/ui/details-bottle.ui:177 src/ui/list-entry.ui:14 src/ui/new.ui:77
-msgid "Environment"
-msgstr "Lingkungan"
-
-#: src/ui/details-bottle.ui:185 src/ui/details-preferences.ui:304
-#: src/ui/new.ui:129
-msgid "Runner"
-msgstr "Runner"
-
-#: src/ui/details-bottle.ui:193 src/ui/list-entry.ui:23
-msgid "Versioning enabled for this bottle"
-msgstr "Pembuatan versi diaktifkan untuk bottle ini"
-
-#: src/ui/details-bottle.ui:198 src/ui/list-entry.ui:28
-msgid "Versioning is active in this bottle."
-msgstr "Pembuatan versi aktif di bottle ini."
-
-#: src/ui/details-bottle.ui:208 src/ui/list-entry.ui:34
-msgid "0"
-msgstr "0"
-
-#: src/ui/details-bottle.ui:219
-msgid "Run Executable…"
-msgstr "Jalankan berkas eksekusi…"
-
-#: src/ui/details-bottle.ui:235
-msgid "Layers"
-msgstr "Lapisan"
-
-#: src/ui/details-bottle.ui:241 src/views/details.py:166
-msgid "Programs"
-msgstr "Program"
-
-#: src/ui/details-bottle.ui:246
-msgid "Tools"
-msgstr "Peralatan"
-
-#: src/ui/details-bottle.ui:250
-msgid "Command Line"
-msgstr "Baris Perintah"
-
-#: src/ui/details-bottle.ui:251
-msgid "Run commands inside the Bottle."
-msgstr "Jalankan perintah di dalam Bottle."
-
-#: src/ui/details-bottle.ui:262
-msgid "Registry Editor"
-msgstr "Editor Registri"
-
-#: src/ui/details-bottle.ui:263
-msgid "Edit the internal registry."
-msgstr "Edit registri internal."
-
-#: src/ui/details-bottle.ui:273
-msgid "Legacy Tools"
-msgstr "Peralatan Lampau"
-
-#: src/ui/details-bottle.ui:277
-msgid "Explorer"
-msgstr "Penjelajah Berkas"
-
-#: src/ui/details-bottle.ui:278
-msgid "Browse internal files with the Wine explorer."
-msgstr "Jelajahi berkas-berkas internal dengan explorer WINE."
-
-#: src/ui/details-bottle.ui:289 src/views/details.py:178
-msgid "Task Manager"
-msgstr "Pengelola Tugas"
-
-#: src/ui/details-bottle.ui:290
-msgid "Manage processes with the Wine task manager."
-msgstr "Kelola proses dengan Wine task manager."
-
-#: src/ui/details-bottle.ui:301
-msgid "Debug"
-msgstr "Debug"
-
-#: src/ui/details-bottle.ui:302
-msgid "Debug wine processes."
-msgstr "Debug proses-proses wine."
-
-#: src/ui/details-bottle.ui:313
-msgid "Wine Configuration"
-msgstr "Konfigurasi WINE"
-
-#: src/ui/details-bottle.ui:314
-msgid "Adjust internal settings."
-msgstr "Sesuaikan pengaturan internal."
-
-#: src/ui/details-bottle.ui:325
-msgid "Uninstaller"
-msgstr "Penghapus Pemasangan"
-
-#: src/ui/details-bottle.ui:326
-msgid "Uninstall programs using Wine uninstaller."
-msgstr "Hapus pemasangan program menggunakan penghapus pemasangan WINE."
-
-#: src/ui/details-bottle.ui:337
-msgid "Control Panel"
-msgstr "Panel Kontrol"
-
-#: src/ui/details-bottle.ui:338
-msgid "Access the internal Wine Control Panel."
-msgstr "Akses panel kontrol internal WINE."
-
-#: src/ui/details-bottle.ui:357
-msgid "Use the Installers section or the \"Run executable\" button."
-msgstr "Gunakan bagian Pemasang atau tombol \"Jalankan berkas eksekusi\"."
-
-#: src/ui/details-dependencies.ui:13
-msgid "Search for dependencies…"
-msgstr "Mencari dependensi…"
-
-#: src/ui/details-dependencies.ui:22
-msgid ""
-"Dependencies are software, libraries and codecs that improve the "
-"compatibility of Windows software. Install from here to meet your program "
-"requirements."
-msgstr ""
-"Dependensi adalah perangkat lunak, perpustakaan dan kodek yang meningkatkan "
-"kekompatibelan sebuah perangkat lunak Windows. Pasang dari sini untuk "
-"memenuhi persyaratan program Anda."
-
-#: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
-msgid ""
-"Files on this page are provided by third parties under a proprietary "
-"license. By installing them, you agree with their respective licensing terms."
-msgstr ""
-"Berkas di laman ini disediakan dengan jenis lisensi proprietari. Dengan "
-"memasangnya, Anda telah menyetujui persyaratan lisensi yang digunakan."
-
-#: src/ui/details-dependencies.ui:62
-msgid "Report a problem or a missing dependency."
-msgstr "Laporkan masalah atau dependensi yang hilang."
-
-#: src/ui/details-dependencies.ui:63
-msgid "Report missing dependency"
-msgstr "Laporkan dependensi yang hilang"
-
-#: src/ui/details-dependencies.ui:68
-#, fuzzy
-msgid "Read documentation."
-msgstr "Baca dokumentasi"
-
-#: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:71
-#: src/ui/details-programs.ui:45 src/ui/details-versioning.ui:44
-#: src/ui/window.ui:38
-msgid "Documentation"
-msgstr "Dokumentasi"
-
-#: src/ui/details-dependencies.ui:80
-msgid "Install Selected"
-msgstr "Pasang Terpilih"
-
-#: src/ui/details-dependencies.ui:81
-msgid "We strongly advise against installing multiple dependencies at once."
-msgstr ""
-"Kami sangat menyarankan untuk tidak memasang beberapa dependensi sekaligus."
-
-#: src/ui/details-dependencies.ui:88
-msgid "Select Dependencies"
-msgstr "Pilih Dependensi"
-
-#: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:82
-#: src/ui/window.ui:86
-msgid "Search"
-msgstr "Cari"
-
-#: src/ui/details-installers.ui:13
-msgid "Search for Programs…"
-msgstr "Cari program yang terpasang…"
-
-#: src/ui/details-installers.ui:22
-msgid ""
-"Use this section to install programs curated by our community, without "
-"having to proceed manually."
-msgstr ""
-
-#: src/ui/details-installers.ui:48
-msgid "No Installers Found"
-msgstr "Tak Ditemukan Pemasang"
-
-#: src/ui/details-installers.ui:51
-msgid ""
-"The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
-"Repositori ini tidak terjangkau atau tidak ada pemasang yang kompatibel "
-"dengan bottle ini."
-
-#: src/ui/details-installers.ui:70 src/ui/details-programs.ui:44
-#: src/ui/details-versioning.ui:43
-msgid "Read documentation"
-msgstr "Baca dokumentasi"
-
-#: src/ui/details-preferences.ui:8
-msgid "Bottle Details"
-msgstr "Rincian Bottle"
-
-#: src/ui/details-preferences.ui:11 src/ui/dialog-duplicate.ui:58
-#: src/ui/new.ui:70
-msgid "Name"
-msgstr "Nama"
-
-#: src/ui/details-preferences.ui:19
-msgid "Graphics"
-msgstr "Grafik"
-
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:213
-msgid "DXVK"
-msgstr "DXVK"
-
-#: src/ui/details-preferences.ui:24
-msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr "Meningkatkan kinerja permainan DirectX 11 dan aplikasi 3D."
-
-#: src/ui/details-preferences.ui:27 src/ui/details-preferences.ui:328
-msgid "Updating DXVK, please wait…"
-msgstr "Memperbarui DXVK, mohon tunggu…"
-
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:218
-msgid "VKD3D"
-msgstr "VKD3D"
-
-#: src/ui/details-preferences.ui:43
-msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr "Meningkatkan kinerja permainan DirectX 12 dan aplikasi 3D."
-
-#: src/ui/details-preferences.ui:46 src/ui/details-preferences.ui:351
-msgid "Updating VKD3D, please wait…"
-msgstr "Memperbarui VKD3D, mohon tunggu…"
-
-#: src/ui/details-preferences.ui:61
-msgid "DLSS (DXVK-NVAPI)"
-msgstr "DLSS (DXVK-NVAPI)"
-
-#: src/ui/details-preferences.ui:62
-msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "Berikan dukungan DLSS jika tersedia dan NVAPI Nvidia."
-
-#: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
-#: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
-msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "Memperbarui DXVK-NVAPI, mohon tunggu…"
-
-#: src/ui/details-preferences.ui:80
-msgid "FSR"
-msgstr "FSR"
-
-#: src/ui/details-preferences.ui:81
-msgid ""
-"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
-msgstr ""
-"FSR menggunakan teknologi up-scaling mutakhir untuk membantu meningkatkan "
-"framerate Anda."
-
-#: src/ui/details-preferences.ui:88
-msgid "Ultra Quality"
-msgstr "Kualitas Ultra"
-
-#: src/ui/details-preferences.ui:89
-msgid "Quality"
-msgstr "Kualitas"
-
-#: src/ui/details-preferences.ui:90
-msgid "Balanced"
-msgstr "Seimbang"
-
-#: src/ui/details-preferences.ui:91
-msgid "Performance"
-msgstr "Performa"
-
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:228
-msgid "LatencyFleX"
-msgstr "LatencyFlex"
-
-#: src/ui/details-preferences.ui:109
-msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
-msgstr ""
-"Merupakan sebuah alternatif untuk NVIDIA Reflex. Dapat dideteksi oleh "
-"beberapa Anti-cheats."
-
-#: src/ui/details-preferences.ui:128
-msgid "Discrete GPU"
-msgstr "GPU Diskrit"
-
-#: src/ui/details-preferences.ui:129
-msgid "Improves performance at the cost of increased power usage."
-msgstr "Meningkatkan performa tetapi juga meningkatkan penggunaan daya."
-
-#: src/ui/details-preferences.ui:140
-msgid "vkBasalt"
-msgstr "vkBasalt"
-
-#: src/ui/details-preferences.ui:141
-msgid ""
-"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
-"games."
-msgstr ""
-"vkBasalt merupakan sebuah lapisan pasca pemrosesan untuk menambah grafik "
-"visual pada banyak permainan."
-
-#: src/ui/details-preferences.ui:151
-msgid "Display Settings"
-msgstr "Pengaturan Layar"
-
-#: src/ui/details-preferences.ui:155 src/ui/dialog-launch-options.ui:194
-msgid "Virtual Desktop"
-msgstr "Desktop Virtual"
-
-#: src/ui/details-preferences.ui:156
-msgid "Use the Wine virtual desktop."
-msgstr "Gunakan desktop virtual Wine."
-
-#: src/ui/details-preferences.ui:194
-msgid "Fullscreen Mouse Capture"
-msgstr "Penangkap Tetikus Saat Layar Penuh"
-
-#: src/ui/details-preferences.ui:195
-msgid "Let the program capture mouse input when fullscreen."
-msgstr "Izinkan program menangkap tetikus saat layar penuh."
-
-#: src/ui/details-preferences.ui:206
-msgid "Take Focus"
-msgstr "Mengambil Fokus"
-
-#: src/ui/details-preferences.ui:207
-msgid "Activate it if the program does not retake focus on switch."
-msgstr "Aktifkan jika program tidak mengambil kembali fokus saat berpindah."
-
-#: src/ui/details-preferences.ui:218
-msgid "Mouse Warp"
-msgstr "Pemindahan Tetikus"
-
-#: src/ui/details-preferences.ui:219
-msgid "Change this if you are running into mouse lag or desync."
-msgstr ""
-"Ubah ini apabila kamu menghadapi masalah tetikus yang terjeda atau tidak "
-"tersinkronisasi."
-
-#: src/ui/details-preferences.ui:231
-msgid "Screen Scaling"
-msgstr "Penskalaan Layar"
-
-#: src/ui/details-preferences.ui:232
-msgid "Set custom DPI."
-msgstr "Atur DPI tersuai."
-
-#: src/ui/details-preferences.ui:238
-msgid "96"
-msgstr "96"
-
-#: src/ui/details-preferences.ui:239
-msgid "120"
-msgstr "120"
-
-#: src/ui/details-preferences.ui:240
-msgid "144"
-msgstr "144"
-
-#: src/ui/details-preferences.ui:241
-msgid "168"
-msgstr "168"
-
-#: src/ui/details-preferences.ui:242
-msgid "192"
-msgstr "192"
-
-#: src/ui/details-preferences.ui:243
-msgid "216"
-msgstr "216"
-
-#: src/ui/details-preferences.ui:244
-msgid "240"
-msgstr "240"
-
-#: src/ui/details-preferences.ui:245
-msgid "288"
-msgstr "288"
-
-#: src/ui/details-preferences.ui:246
-msgid "336"
-msgstr "336"
-
-#: src/ui/details-preferences.ui:247
-msgid "384"
-msgstr "384"
-
-#: src/ui/details-preferences.ui:248
-msgid "432"
-msgstr "432"
-
-#: src/ui/details-preferences.ui:249
-msgid "480"
-msgstr "480"
-
-#: src/ui/details-preferences.ui:262
-msgid "Renderer"
-msgstr "Mengubah"
-
-#: src/ui/details-preferences.ui:263
-msgid "Select what backend to use for wined3d."
-msgstr "Pilih backend yang digunakan untuk wined3d."
-
-#: src/ui/details-preferences.ui:269
-msgid "gl (default)"
-msgstr "gl (bawaan)"
-
-#: src/ui/details-preferences.ui:270
-msgid "gdi"
-msgstr "gdi"
-
-#: src/ui/details-preferences.ui:271
-msgid "vulkan"
-msgstr "vulkan"
-
-#: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
-msgid "System"
-msgstr "Sistem"
-
-#: src/ui/details-preferences.ui:289
-#, fuzzy
-msgid "Manage Components Versions"
-msgstr "Versi komponen"
-
-#: src/ui/details-preferences.ui:299
-msgid "Components"
-msgstr "Komponen-Komponen"
-
-#: src/ui/details-preferences.ui:307
-msgid "Updating Runner and components, please wait…"
-msgstr "Memperbarui Runner dan komponen, mohon tunggu…"
-
-#. TODO: replace with ComboRow
-#: src/ui/details-preferences.ui:324
-msgid "DXVK Version"
-msgstr "Versi DXVK"
-
-#: src/ui/details-preferences.ui:348
-#, fuzzy
-msgid "VKD3D Version"
-msgstr "Versi VKD3D"
-
-#: src/ui/details-preferences.ui:372
-#, fuzzy
-msgid "DXVK NVAPI Version"
-msgstr "Versi DXVK NVAPI"
-
-#: src/ui/details-preferences.ui:394
-msgid "LatencyFleX Version"
-msgstr "Versi LatencyFleX"
-
-#: src/ui/details-preferences.ui:416
-#, fuzzy
-msgid "Enable synchronization to increase performance of multicore processors."
-msgstr "Aktifkan sinkronisasi untuk meningkatkan kinerja prosesor multi-core."
-
-#: src/ui/details-preferences.ui:417
-msgid "Synchronization"
-msgstr "Sinkronisasi"
-
-#: src/ui/details-preferences.ui:428
-msgid "Esync"
-msgstr "Esync"
-
-#: src/ui/details-preferences.ui:434
-msgid "Fsync"
-msgstr "Fsync"
-
-#: src/ui/details-preferences.ui:440
-msgid "Futex2"
-msgstr "Futex2"
-
-#: src/ui/details-preferences.ui:455
-#, fuzzy
-msgid "Windows Version"
-msgstr "Versi Windows"
-
-#: src/ui/details-preferences.ui:458
-msgid "Updating Windows version, please wait…"
-msgstr "Memperbarui versi Windows, mohon tunggu…"
-
-#: src/ui/details-preferences.ui:486
-msgid "Language"
-msgstr ""
-
-#: src/ui/details-preferences.ui:487
-msgid "Choose the language to use with programs."
-msgstr ""
-
-#: src/ui/details-preferences.ui:497
-msgid "false"
-msgstr ""
-
-#: src/ui/details-preferences.ui:498
-msgid "Dedicated Sandbox"
-msgstr ""
-
-#: src/ui/details-preferences.ui:499
-msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
-
-#: src/ui/details-preferences.ui:502
-#, fuzzy
-msgid "Manage Sandbox permissions"
-msgstr "Kelola versi DXVK"
-
-#: src/ui/details-preferences.ui:520
-#, fuzzy
-msgid "Bottles Runtime"
-msgstr "Gunakan runtime Bottles"
-
-#: src/ui/details-preferences.ui:521
-#, fuzzy
-msgid ""
-"Provides a bundle of extra libraries for more compatibility,disable if you "
-"run into issues."
-msgstr ""
-"Menyediakan bundel pustaka tambahan untuk kompatibilitas lebih,\n"
-"nonaktifkan jika menemui masalah."
-
-#: src/ui/details-preferences.ui:532
-#, fuzzy
-msgid "Steam Runtime"
-msgstr "Gunakan runtime Steam"
-
-#: src/ui/details-preferences.ui:533
-msgid "The same as the Bottles one but provided by Steam."
-msgstr "Sama seperti Bottles tapi disediakan oleh Steam."
-
-#: src/ui/details-preferences.ui:544
-#, fuzzy
-msgid "GameMode"
-msgstr "Gunakan GameMode"
-
-#: src/ui/details-preferences.ui:545
-msgid "Optimise gaming performance on demand."
-msgstr "Optimalkan kinerja permainan sesuai permintaan."
-
-#: src/ui/details-preferences.ui:556
-#, fuzzy
-msgid "Gamescope"
-msgstr "Gunakan Gamescope"
-
-#: src/ui/details-preferences.ui:557
-msgid "Use the Gamescope micro-compositor."
-msgstr "Gunakan micro-compositor Gamescope."
-
-#: src/ui/details-preferences.ui:560
-msgid "Manage Gamescope settings"
-msgstr "Kelola pengaturan Gamescope"
-
-#: src/ui/details-preferences.ui:578 src/ui/dialog-launch-options.ui:91
-#, fuzzy
-msgid "Working Directory"
-msgstr "Direktori kerja"
-
-#: src/ui/details-preferences.ui:579
-#, fuzzy
-msgid "Defaults to the bottle path."
-msgstr "Arahkan ke jalur bawaan bottle."
-
-#: src/ui/details-preferences.ui:582 src/ui/dialog-launch-options.ui:65
-#: src/ui/dialog-launch-options.ui:98 src/ui/preferences.ui:159
-#, fuzzy
-msgid "Reset to default"
-msgstr "Reset bawaan"
-
-#: src/ui/details-preferences.ui:592 src/ui/dialog-launch-options.ui:109
-#: src/ui/new.ui:163 src/ui/new.ui:180 src/ui/preferences.ui:170
-msgid "Choose a directory"
-msgstr "Pilih direktori"
-
-#: src/ui/details-preferences.ui:605 src/ui/dialog-dll-overrides.ui:9
-#: src/ui/dialog-dll-overrides.ui:15
-#, fuzzy
-msgid "DLL Overrides"
-msgstr "Mengganti DLL"
-
-#: src/ui/details-preferences.ui:616 src/ui/dialog-env-vars.ui:16
-#, fuzzy
-msgid "Environment Variables"
-msgstr "Variabel lingkungan"
-
-#: src/ui/details-preferences.ui:627
-#, fuzzy
-msgid "Manage Drives"
-msgstr "Kelola penyimpanan"
-
-#: src/ui/details-preferences.ui:639
-msgid "Audio"
-msgstr "Audio"
-
-#: src/ui/details-preferences.ui:643 src/ui/dialog-launch-options.ui:183
-#, fuzzy
-msgid "Reduce Latency"
-msgstr "Kurangi latensi PulseAudio"
-
-#: src/ui/details-preferences.ui:644
-#, fuzzy
-msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
-msgstr ""
-"Atur latensi PulseAudio menjadi 60 milidetik untuk meningkatkan kualitas "
-"suara"
-
-#: src/ui/details-preferences.ui:656 src/views/details.py:170
-msgid "Versioning"
-msgstr "Pembuatan versi"
-
-#: src/ui/details-preferences.ui:660
-msgid "Use Compression for States"
-msgstr ""
-
-#: src/ui/details-preferences.ui:661
-msgid ""
-"This will reduce the space used by the states but slow down their creation."
-msgstr ""
-
-#: src/ui/details-preferences.ui:672
-#, fuzzy
-msgid "Automatic Versioning"
-msgstr "Pembuatan versi"
-
-#: src/ui/details-preferences.ui:673
-msgid ""
-"Bottles will create a state before running any dependencies or installers."
-msgstr ""
-
-#: src/ui/details-preferences.ui:684
-msgid "Use Exclusion Patterns"
-msgstr ""
-
-#: src/ui/details-preferences.ui:685
-msgid "Use custom patterns to exclude some paths from versioning."
-msgstr ""
-
-#: src/ui/details-preferences.ui:688
-#, fuzzy
-msgid "Manage Patterns"
-msgstr "Kelola runner"
-
-#: src/ui/details-preferences.ui:707
-#, fuzzy
-msgid "Development and Debugging"
-msgstr "Pengembang & Pengawakutuan"
-
-#: src/ui/details-preferences.ui:711
-msgid "MangoHud"
-msgstr "MangoHud"
-
-#: src/ui/details-preferences.ui:712
-msgid ""
-"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
-"and more."
-msgstr ""
-"Sebuah lapisan atas Vulkan dan OpenGL untuk memantau FPS, suhu, beban CPU/"
-"GPU, dan lainnya."
-
-#: src/ui/details-preferences.ui:723
-msgid "OBS Vulkan Capture"
-msgstr "Tangkap OBS Vulkan"
-
-#: src/ui/details-preferences.ui:724
-#, fuzzy
-msgid "Toggle OBS game capture for all programs."
-msgstr "Beralih tangkap permainan OBS untuk semua peluncuran berikutnya"
-
-#: src/ui/details-preferences.ui:735
-#, fuzzy
-msgid "Wine 'fixme' Logs"
-msgstr "Aktifkan catatan wine fixme"
-
-#: src/ui/details-preferences.ui:736
-msgid "Log code paths that are unimplemented in Wine."
-msgstr "Jalur kode catatan yang tidak diterapkan di Wine."
-
-#: src/ui/details-programs.ui:9
-#, fuzzy
-msgid "No Programs found"
-msgstr "Tidak ada program yang ditemukan"
-
-#: src/ui/details-programs.ui:10
-msgid ""
-"Install programs from the installers section or by running the installer "
-"executable, you can also manually add executables with the \"+\" button."
-msgstr ""
-
-#: src/ui/details-programs.ui:31
-#, fuzzy
-msgid "Toggle Hidden"
-msgstr "Beralih cari"
-
-#: src/ui/details-programs.ui:36
-#, fuzzy
-msgid "Search for new programs"
-msgstr "Cari program yang terpasang"
-
-#: src/ui/details-programs.ui:55
-msgid "Add a custom executable path"
-msgstr "Tambah jalur eksekusi kustom"
-
-#: src/ui/details-taskmanager.ui:18
-msgid "Refresh"
-msgstr "Segarkan"
-
-#: src/ui/details-taskmanager.ui:24
-msgid "Stop process"
-msgstr "Hentikan proses"
-
-#: src/ui/details-versioning.ui:25
-#, fuzzy
-msgid "No States Found"
-msgstr "Keadaan tidak ditemukan"
-
-#: src/ui/details-versioning.ui:26
-msgid "Create first state to start using versioning."
-msgstr "Buat keadaan pertama untuk mulai menggunakan pembuatan versi."
-
-#: src/ui/details-versioning.ui:63
-#, fuzzy
-msgid "A short comment"
-msgstr "Sebuah komentar yang sangat singkat"
-
-#: src/ui/details-versioning.ui:68
-msgid "Save the bottle state."
-msgstr "Simpan keadaan bottle."
-
-#: src/ui/details-versioning.ui:88
-msgid "Create new state"
-msgstr "Buat keadaan baru"
-
-#: src/ui/details.ui:74
-msgid "Operations"
-msgstr "Operasi"
-
-#: src/ui/dialog-bottle-picker.ui:6
-#, fuzzy
-msgid "Select Bottle"
-msgstr "Hapus Bottle…"
-
-#: src/ui/dialog-bottle-picker.ui:42
-#, fuzzy
-msgid "Create New Bottle"
-msgstr "Buat Bottle baru"
-
-#: src/ui/dialog-crash-report.ui:10
-#, fuzzy
-msgid "Bottles crash report"
-msgstr "Laporan Kerusakan Bottles"
-
-#: src/ui/dialog-crash-report.ui:23
-msgid "Send report"
-msgstr "Kirim laporan"
-
-#: src/ui/dialog-crash-report.ui:43
-msgid ""
-"Bottles crashed last time. Please fill out a report attaching the following "
-"traceback to help us identify the problem preventing it from happening again."
-msgstr ""
-"Bottles crash terakhir kali. Mohon isi laporan dengan menyertakan traceback "
-"untuk membantu kami mengidentifikasi masalah dan mencegahnya terjadi lagi."
-
-#: src/ui/dialog-crash-report.ui:75
-msgid ""
-"We found one or more similar (or identical) reports. Please make sure to "
-"check carefully that it has not already been reported before submitting a "
-"new one. Each report requires effort on the part of the developers to "
-"diagnose, please respect their work and make sure you don't post duplicates."
-msgstr ""
-"Kami menemukan satu atau banyak yang serupa (atau identik) laporan. Tolong "
-"pastikan untuk melakukan pengecekan bahwa itu belum dilaporkan sebelum "
-"mengirimkan yang baru. Setiap laporan membutuhkan usaha dari pengembang "
-"untuk mengdiagnosisnya, tolong hormati usaha mereka dan pastikan Anda tidak "
-"mengirimkan laporan yang sama."
-
-#: src/ui/dialog-crash-report.ui:96
-msgid "I still want to report."
-msgstr "Saya tetap ingin melaporkan."
-
-#: src/ui/dialog-crash-report.ui:102
-msgid "Advanced options"
-msgstr "Opsi lanjutan"
-
-#: src/ui/dialog-deps-check.ui:15
-msgid "Incomplete package"
-msgstr ""
-
-#: src/ui/dialog-deps-check.ui:16
-msgid ""
-"This version of Bottles does not seem to provide all the necessary core "
-"dependencies, please contact the package maintainer or use an official "
-"version.\n"
-"                        "
-msgstr ""
-
-#: src/ui/dialog-deps-check.ui:21
-msgid "Quit"
-msgstr "Berhenti"
-
-#: src/ui/dialog-dll-overrides.ui:14
-#, fuzzy
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)."
-msgstr ""
-"Perpustakaan Tautan Dinamis dapat ditentukan untuk dibangun (disediakan oleh "
-"Wine) atau asli (disediakan oleh program)"
-
-#: src/ui/dialog-dll-overrides.ui:18
-#, fuzzy
-msgid "New Override"
-msgstr "Timpaan baru"
-
-#: src/ui/dialog-dll-overrides.ui:26
-#, fuzzy
-msgid "Overrides"
-msgstr "Mengganti DLL"
-
-#: src/ui/dialog-drives.ui:9
-msgid "Drives"
-msgstr "Penyimpanan"
-
-#: src/ui/dialog-drives.ui:31
-#, fuzzy
-msgid ""
-"These are paths from your host system that are mapped and recognized as "
-"devices by the runner (e.g. C: D:…).\n"
-"                                "
-msgstr ""
-"Ini adalah jalur dari sistem host Anda yang dipetakan dan dikenali sebagai "
-"perangkat oleh runner (mis. C: D:..)."
-
-#: src/ui/dialog-drives.ui:35
-msgid "Letter"
-msgstr "Huruf"
-
-#: src/ui/dialog-drives.ui:59
-#, fuzzy
-msgid "Existing Drives"
-msgstr "Penyimpanan yang sudah ada"
-
-#: src/ui/dialog-duplicate.ui:18
-#, fuzzy
-msgid "Duplicate Bottle"
-msgstr "Duplikat bottle"
-
-#: src/ui/dialog-duplicate.ui:23 src/ui/dialog-gamescope.ui:17
-#: src/ui/dialog-launch-options.ui:17 src/ui/dialog-upgrade-versioning.ui:23
-#, fuzzy
-msgid "_Cancel"
-msgstr "Batalkan"
-
-#: src/ui/dialog-duplicate.ui:41
-msgid "Duplicate"
-msgstr "Duplikat"
-
-#: src/ui/dialog-duplicate.ui:55
-#, fuzzy
-msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Ketik nama untuk bottle baru"
-
-#: src/ui/dialog-duplicate.ui:78
-msgid "Duplicating…"
-msgstr "Menduplikasi…"
-
-#: src/ui/dialog-duplicate.ui:87 src/ui/dialog-upgrade-versioning.ui:121
-#: src/ui/new.ui:216
-#, fuzzy
-msgid "Take a break, it may take a while."
-msgstr "Tunggu sebentar, ini mungkin membutuhkan waktu"
-
-#: src/ui/dialog-duplicate.ui:108
-#, fuzzy
-msgid "Bottle Duplicated"
-msgstr "Bottle telah diduplikasi"
-
-#: src/ui/dialog-env-vars.ui:35
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr ""
-"Variabel lingkungan adalah nilai bernama dinamis yang dapat memengaruhi cara "
-"proses yang berjalan akan berperilaku di bottle Anda."
-
-#: src/ui/dialog-env-vars.ui:38
-msgid "Variable Name"
-msgstr ""
-
-#: src/ui/dialog-env-vars.ui:46
-#, fuzzy
-msgid "Existing Variables"
-msgstr "Variabel yang sudah ada"
-
-#: src/ui/dialog-exclusion-patterns.ui:16
-msgid "Exclusion Patterns"
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:35
-msgid ""
-"Define patterns that will be used to prevent some directories to being "
-"versioned."
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:38
-#, fuzzy
-msgid "Pattern"
-msgstr "Huruf"
-
-#: src/ui/dialog-exclusion-patterns.ui:46
-#, fuzzy
-msgid "Existing Patterns"
-msgstr "Penyimpanan yang sudah ada"
-
-#: src/ui/dialog-gamescope.ui:8
-#, fuzzy
-msgid "Gamescope Settings"
-msgstr "Pengaturan Gamescope"
-
-#: src/ui/dialog-gamescope.ui:46
-msgid ""
-"Configure how Gamescope should manage the window for the games you will run."
-msgstr ""
-"Konfigurasikan bagaimana Gamescope mengelola jendela untuk permainan yang "
-"akan kamu jalankan."
-
-#: src/ui/dialog-gamescope.ui:51
-#, fuzzy
-msgid "Game Resolution"
-msgstr "Resolusi permainan"
-
-#: src/ui/dialog-gamescope.ui:52
-msgid "Uses the resolution of the video game as a reference."
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:55 src/ui/dialog-gamescope.ui:71
-msgid "Width (e.g. 1280)"
-msgstr "Lebar (mis. 1280)"
-
-#: src/ui/dialog-gamescope.ui:60 src/ui/dialog-gamescope.ui:76
-msgid "Height (e.g. 720)"
-msgstr "Panjang (mis. 720)"
-
-#: src/ui/dialog-gamescope.ui:67
-#, fuzzy
-msgid "Gamescope Resolution"
-msgstr "Resolusi Gamescope"
-
-#: src/ui/dialog-gamescope.ui:68
-msgid ""
-"Upscales the resolution when using a resolution higher than the game "
-"resolution."
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:83
-msgid "Miscellaneous"
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:86
-#, fuzzy
-msgid "Frame Rate Limit (e.g. 60)"
-msgstr "Batasan frame rate (mis. 60)"
-
-#: src/ui/dialog-gamescope.ui:91
-#, fuzzy
-msgid "Frame Rate Limit (When Unfocused)"
-msgstr "Batasan frame rate (saat tidak fokus)"
-
-#: src/ui/dialog-gamescope.ui:96
-#, fuzzy
-msgid "Use Integer Scaling"
-msgstr "Gunakan skala integer"
-
-#: src/ui/dialog-gamescope.ui:107
-#, fuzzy
-msgid "Window Type"
-msgstr "Tipe jendela"
-
-#: src/ui/dialog-gamescope.ui:112
-msgid "Borderless"
-msgstr "Tanpa batasan"
-
-#: src/ui/dialog-gamescope.ui:119
-msgid "Fullscreen"
-msgstr "Layar penuh"
-
-#: src/ui/dialog-journal.ui:12
-msgid "All messages"
-msgstr "Semua pesan"
-
-#: src/ui/dialog-journal.ui:17
-msgid "Critical"
-msgstr "Kritis"
-
-#: src/ui/dialog-journal.ui:22
-msgid "Errors"
-msgstr "Galat"
-
-#: src/ui/dialog-journal.ui:27
-msgid "Warnings"
-msgstr "Peringatan"
-
-#: src/ui/dialog-journal.ui:32
-msgid "Info"
-msgstr "Info"
-
-#: src/ui/dialog-journal.ui:49
-msgid "Journal browser"
-msgstr "Peramban Jurnal"
-
-#: src/ui/dialog-journal.ui:56
-msgid "Journal Browser"
-msgstr "Peramban Jurnal"
-
-#: src/ui/dialog-journal.ui:62
-msgid ""
-"Change logging level.\n"
-"                                        "
-msgstr ""
-
-#: src/ui/dialog-journal.ui:67
-msgid "All"
-msgstr "Semua"
-
-#: src/ui/dialog-launch-options.ui:8
-#, fuzzy
-msgid "Launch Options"
-msgstr "Ubah Pilihan Peluncuran"
-
-#: src/ui/dialog-launch-options.ui:47
-#, fuzzy
-msgid "Those arguments will be passed at launch."
-msgstr "Argumen-argumen ini diberikan saat peluncuran program:"
-
-#: src/ui/dialog-launch-options.ui:48
-#, fuzzy
-msgid "Custom Arguments"
-msgstr "Jalankan dengan argumen"
-
-#: src/ui/dialog-launch-options.ui:51
-#, fuzzy
-msgid "Command Arguments"
-msgstr "Lewati argumen"
-
-#: src/ui/dialog-launch-options.ui:52
-#, fuzzy, c-format
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "mis: VAR=nilai %perintah% -contoh1 -contoh2 -contoh3=halo"
-
-#: src/ui/dialog-launch-options.ui:58
-#, fuzzy
-msgid "Post-run Script"
-msgstr "Skrip pasca-berjalan"
-
-#: src/ui/dialog-launch-options.ui:76
-#, fuzzy
-msgid "Choose a script"
-msgstr "Pilih skrip"
-
-#: src/ui/dialog-launch-options.ui:125
-msgid "These settings will override the default settings for this executable."
-msgstr ""
-
-#: src/ui/dialog-launch-options.ui:126
-#, fuzzy
-msgid "Preferences Overrides"
-msgstr "Preferensi"
-
-#: src/ui/dialog-launch-options.ui:129
-#, fuzzy
-msgid "Reset to Bottle's Defaults"
-msgstr "Reset bawaan"
-
-#: src/ui/dialog-proton-alert.ui:6
-msgid "Proton Disclaimer"
-msgstr ""
-
-#: src/ui/dialog-proton-alert.ui:22
-#, fuzzy
-msgid "Use Proton"
-msgstr "Awalan Steam Proton"
-
-#: src/ui/dialog-proton-alert.ui:37
-msgid ""
-"Beware, using Proton-based runners in non-Steam bottles can cause problems "
-"and prevent them from behaving correctly.\n"
-"\n"
-"We recommend using Wine-GE rather, a version of Proton meant to run outside "
-"of Steam.\n"
-"\n"
-"Proceeding will automatically enable the Steam runtime (if present in the "
-"system and detected by Bottles) in order to allow it to access the necessary "
-"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
-"the runner's provider, is not responsible for any problems and we ask that "
-"you do not report to them."
-msgstr ""
-
-#: src/ui/dialog-proton-alert.ui:50
-msgid "I got it."
-msgstr ""
-
-#: src/ui/dialog-rename.ui:9
-msgid "Rename"
-msgstr "Ubah nama"
-
-#: src/ui/dialog-rename.ui:34
-msgid "Choose a new name for the selected program."
-msgstr "Pilih nama baru untuk program yang dipilih."
-
-#: src/ui/dialog-rename.ui:37
-#, fuzzy
-msgid "New Name"
-msgstr "Nama"
-
-#: src/ui/dialog-run-args.ui:14
-#, fuzzy
-msgid "Run With Arguments"
-msgstr "Jalankan dengan argumen"
-
-#: src/ui/dialog-run-args.ui:35 src/views/bottle_details.py:202
-#: src/views/list.py:120
-msgid "Run"
-msgstr "Jalankan"
-
-#: src/ui/dialog-run-args.ui:47
-msgid "Write below the arguments to be passed to the executable."
-msgstr "Tulis di bawah ini argumen untuk diteruskan ke executable."
-
-#: src/ui/dialog-run-args.ui:50
-#, fuzzy
-msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "mis: -opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-sandbox.ui:9
-#, fuzzy
-msgid "Sandbox Settings"
-msgstr "Pengaturan Gamescope"
-
-#: src/ui/dialog-sandbox.ui:23
-msgid "Share Network"
-msgstr ""
-
-#: src/ui/dialog-sandbox.ui:34
-#, fuzzy
-msgid "Share Sound"
-msgstr "Keadaan tidak ditemukan"
-
-#: src/ui/dialog-upgrade-versioning.ui:18
-#, fuzzy
-msgid "Upgrade Needed"
-msgstr "Meningkatkan"
-
-#: src/ui/dialog-upgrade-versioning.ui:41 src/ui/onboard.ui:88
-msgid "Continue"
-msgstr "Lanjut"
-
-#: src/ui/dialog-upgrade-versioning.ui:49
-#, fuzzy
-msgid "Launch upgrade"
-msgstr "Konfirmasi pemutakhiran"
-
-#: src/ui/dialog-upgrade-versioning.ui:69
-#, fuzzy
-msgid "New Versioning System"
-msgstr "Pembuatan versi"
-
-#: src/ui/dialog-upgrade-versioning.ui:72
-msgid "The new bottle versioning system has landed."
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:86
-msgid ""
-"Bottles has a whole new Versioning System which is not backwards "
-"compatible. \n"
-"\n"
-"To continue using versioning we need to re-initialize the bottle repository. "
-"This will not delete data from your bottle but will delete all existing "
-"states and create a new one. \n"
-"\n"
-"If you need to go back to a previous state before continuing, close this "
-"window and restore the state, then reopen the bottle to show this window "
-"again. \n"
-"\n"
-"The old system will be discontinued in one of the next releases."
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:112
-msgid "Re-initializing repository…"
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:144
-msgid "Done! Please restart Bottles."
-msgstr ""
-
-#: src/ui/dll-override-entry.ui:10
-msgid "Builtin (Wine)"
-msgstr "Bawaan (Wine)"
-
-#: src/ui/dll-override-entry.ui:11
-msgid "Native (Windows)"
-msgstr "Asli (Windows)"
-
-#: src/ui/dll-override-entry.ui:12
-#, fuzzy
-msgid "Builtin, then Native"
-msgstr "Bawaan lalu Asli"
-
-#: src/ui/dll-override-entry.ui:13
-#, fuzzy
-msgid "Native, then Builtin"
-msgstr "Asli lalu Bawaan"
-
-#: src/ui/dll-override-entry.ui:14
-msgid "Disabled"
-msgstr ""
-
-#: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
-msgid "Remove"
-msgstr "Hapus"
-
-#: src/ui/drive-entry.ui:7
-msgid "/point/to/path"
-msgstr "/poin/ke/jalur"
-
-#: src/ui/drive-entry.ui:24
-#, fuzzy
-msgid "Choose a Directory"
-msgstr "Pilih direktori"
-
-#: src/ui/env-var-entry.ui:6 src/ui/exclusion-pattern-entry.ui:6
-#, fuzzy
-msgid "Value"
-msgstr "nilai"
-
-#. Wineprefix is a prefix for the wine program
-#: src/ui/importer-entry.ui:22
-msgid "Wineprefix name"
-msgstr ""
-
-#: src/ui/importer-entry.ui:29
-#, fuzzy
-msgid "Manager"
-msgstr "Pengelola tugas"
-
-#: src/ui/importer-entry.ui:39
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Wineprefix ini sudah diimpor ke Bottles."
-
-#: src/ui/importer.ui:24
-msgid "Import Bottles backup"
-msgstr "Impor cadangan Bottles"
-
-#: src/ui/importer.ui:31
-msgid "Search again for prefixes"
-msgstr ""
-
-#: src/ui/importer.ui:45
-#, fuzzy
-msgid "No Prefixes Found"
-msgstr "Tidak ada program yang ditemukan"
-
-#: src/ui/importer.ui:46
-msgid ""
-"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
-"Use the icon on the top to import a bottle from a backup"
-msgstr ""
-
-#: src/ui/importer.ui:81
-msgid "Configuration"
-msgstr "Konfigurasi"
-
-#: src/ui/importer.ui:87
-#, fuzzy
-msgid "Full Archive"
-msgstr "Arsip lengkap"
-
-#: src/ui/installer-entry.ui:18
-#, fuzzy
-msgid "Show Manifest…"
-msgstr "Tampilkan manifest"
-
-#: src/ui/installer-entry.ui:23
-#, fuzzy
-msgid "Read Review…"
-msgstr "Baca ulasan"
-
-#: src/ui/installer-entry.ui:40
-#, fuzzy
-msgid "Installer name"
-msgstr "Penghapus Instalasi"
-
-#: src/ui/installer-entry.ui:41
-#, fuzzy
-msgid "Installer description"
-msgstr "Deskripsi lingkungan"
-
-#: src/ui/installer-entry.ui:48
-msgid "Unknown"
-msgstr ""
-
-#: src/ui/installer-entry.ui:57
-msgid "Install this program"
-msgstr "Pasang program ini"
-
-#: src/ui/library-entry.ui:17
-#, fuzzy
-msgid "Remove from Library"
-msgstr "Hapus dari Program"
-
-#: src/ui/library-entry.ui:94
-#, fuzzy
-msgid "Item name"
-msgstr "Nama bottle"
-
-#: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
-msgid "Launch with Steam"
-msgstr "Luncurkan dengan Steam"
-
-#: src/ui/library.ui:14 src/ui/preferences.ui:259 src/window.py:171
-#, fuzzy
-msgid "Library"
-msgstr "Mode Gelap"
-
-#: src/ui/library.ui:15
-msgid "Add items here from your bottle's program list"
-msgstr ""
-
-#: src/ui/list-entry.ui:46
-msgid "This bottle looks damaged."
-msgstr "Bottle ini terlihat rusak."
-
-#: src/ui/list-entry.ui:60
-msgid "Execute in this bottle"
-msgstr "Eksekusi di bottle ini"
-
-#: src/ui/list-entry.ui:75
-msgid "Run Here"
-msgstr "Jalankan di sini"
-
-#: src/ui/list-entry.ui:84
-msgid ""
-"This bottle looks damaged, the configuration file is missing. I can try to "
-"solve by creating a new configuration."
-msgstr ""
-"Bottle ini terlihat rusak, berkas konfigurasinya hilang. Saya dapat mencoba "
-"memecahkan masalah ini dengan membuat konfigurasi baru."
-
-#: src/ui/list-entry.ui:96
-msgid "Run .exe/.msi in this bottle"
-msgstr "Jalankan .exe/.msi di bottle ini"
-
-#: src/ui/list.ui:17
-#, fuzzy
-msgid "Search your bottles…"
-msgstr "Cari bottles Anda .."
-
-#: src/ui/list.ui:38
-#, fuzzy
-msgid "Steam Proton"
-msgstr "Awalan Steam Proton"
-
-#: src/ui/list.ui:55
-#, fuzzy
-msgid "Start off by creating a Bottle."
-msgstr "Mulai dengan membuat bottle."
-
-#: src/ui/list.ui:62
-msgid "Create a new Bottle"
-msgstr "Buat Bottle baru"
-
-#: src/ui/list.ui:75
-#, fuzzy
-msgid "No Results Found"
-msgstr "Keadaan tidak ditemukan"
-
-#: src/ui/list.ui:76
-msgid "Try a different search."
-msgstr "Coba pencarian lain."
-
-#: src/ui/loading.ui:16
-msgid "Starting up…"
-msgstr "Memulai…"
-
-#: src/ui/local-resource-entry.ui:6
-msgid "This resource is missing."
-msgstr ""
-
-#: src/ui/local-resource-entry.ui:10
-#, fuzzy
-msgid "Browse"
-msgstr "Jelajahi C:"
-
-#: src/ui/new.ui:17 src/ui/new.ui:64
-msgid "New Bottle"
-msgstr "Bottle Baru"
-
-#: src/ui/new.ui:38
-msgid "Create"
-msgstr "Buat"
-
-#: src/ui/new.ui:47 src/ui/new.ui:268 src/window.py:187
-msgid "Close"
-msgstr "Tutup"
-
-#: src/ui/new.ui:67
-#, fuzzy
-msgid "Bottle Information"
-msgstr "Informasi bottle"
-
-#: src/ui/new.ui:84
-msgid "Gaming"
-msgstr "Permainan"
-
-#: src/ui/new.ui:85
-msgid "An environment improved for Windows games."
-msgstr "Sebuah lingkungan yang ditingkatkan untuk permainan Windows."
-
-#: src/ui/new.ui:93
-msgid "Application"
-msgstr "Aplikasi"
-
-#: src/ui/new.ui:94
-msgid "An environment improved for Windows applications."
-msgstr "Sebuah lingkungan yang ditingkatkan untuk aplikasi Windows."
-
-#: src/ui/new.ui:103
-msgid "Layered"
-msgstr "Berlapis"
-
-#: src/ui/new.ui:104
-msgid "A layered environment, where every app is a layer."
-msgstr "Sebuah lingkungan berlapis, di mana setiap aplikasi adalah lapisan."
-
-#: src/ui/new.ui:112
-msgid "Custom"
-msgstr "Kustom"
-
-#: src/ui/new.ui:113
-#, fuzzy
-msgid "A clear environment for your experiments."
-msgstr "Sebuah lingkungan bersih untuk eksperimen Anda."
-
-#: src/ui/new.ui:117
-#, fuzzy
-msgid "Unlinked Home Directory"
-msgstr "Homedir tidak ditautkan"
-
-#: src/ui/new.ui:118
-msgid "Do not link the userdir to the homedir"
-msgstr "Jangan tautkan userdir ke homedir"
-
-#: src/ui/new.ui:143
-msgid "Architecture"
-msgstr "Arsitektur"
-
-#: src/ui/new.ui:144
-#, fuzzy
-msgid "We recommend using 32bit only if strictly necessary."
-msgstr "Sebaiknya gunakan 32bit saja jika benar-benar diperlukan"
-
-#: src/ui/new.ui:148
-msgid "64 bit"
-msgstr "64 bit"
-
-#: src/ui/new.ui:149
-msgid "32 bit"
-msgstr "32 bit"
-
-#: src/ui/new.ui:157
-#, fuzzy
-msgid "Custom Recipe"
-msgstr "Gunakan resep kustom"
-
-#: src/ui/new.ui:158
-msgid "Choose a custom recipe for the environment if you have one."
-msgstr "Pilih sebuah resep kustom untuk lingkungan jika Anda memilikinya."
-
-#: src/ui/new.ui:174
-#, fuzzy
-msgid "Custom Path"
-msgstr "Kustom"
-
-#: src/ui/new.ui:175
-#, fuzzy
-msgid "Store this bottle in another place."
-msgstr "Simpan bottle ini di tempat lain."
-
-#: src/ui/new.ui:215
-#, fuzzy
-msgid "Creating a Bottle…"
-msgstr "Menghapus bottle …"
-
-#: src/ui/new.ui:262
-msgid "Bottle created"
-msgstr "Bottle telah dibuat"
-
-#: src/ui/onboard.ui:36
-msgid "Previous"
-msgstr "Sebelumnya"
-
-#: src/ui/onboard.ui:62
-msgid "Welcome to Bottles"
-msgstr "Selamat datang di Bottles"
-
-#: src/ui/onboard.ui:63
-msgid ""
-"Run Windows Software on Linux.\n"
-"                                                "
-msgstr ""
-"Jalankan Perangkat Lunak Windows di Linux.\n"
-"                                                "
-
-#: src/ui/onboard.ui:71
-#, fuzzy
-msgid "Windows in Bottles"
-msgstr "Tipe jendela"
-
-#: src/ui/onboard.ui:72
-msgid ""
-"Bottles uses compatibility runners to provide isolated containerized Windows-"
-"like environments where programs run."
-msgstr ""
-
-#: src/ui/onboard.ui:79
-msgid "Almost Done"
-msgstr "Hampir Selesai"
-
-#: src/ui/onboard.ui:80
-msgid "We need a few more minutes to set everything up…"
-msgstr ""
-
-#: src/ui/onboard.ui:113
-msgid "All ready!"
-msgstr "Semua siap!"
-
-#: src/ui/onboard.ui:122
-msgid "Please Finish the setup first"
-msgstr ""
-
-#: src/ui/onboard.ui:129
-#, fuzzy
-msgid "Start using Bottles"
-msgstr "Mulai dengan membuat bottle."
-
-#: src/ui/onboard.ui:150
-msgid "Next"
-msgstr "Selanjutnya"
-
-#: src/ui/preferences.ui:6 src/ui/window.ui:24 src/views/details.py:158
-msgid "Preferences"
-msgstr "Preferensi"
-
-#: src/ui/preferences.ui:13 src/ui/preferences.ui:46
-msgid "General"
-msgstr "Umum"
-
-#: src/ui/preferences.ui:16
-msgid "Appearance"
-msgstr "Penampilan"
-
-#: src/ui/preferences.ui:19
-msgid "Dark Mode"
-msgstr "Mode Gelap"
-
-#: src/ui/preferences.ui:20
-#, fuzzy
-msgid "Whether Bottles should use the dark color scheme."
-msgstr "Apakah Bottles harus menggunakan varian tema Gelap."
-
-#: src/ui/preferences.ui:32
-#, fuzzy
-msgid "Show Update Date"
-msgstr "Tampilkan tanggal pembaruan"
-
-#: src/ui/preferences.ui:33
-msgid "Whether to show the update date in the bottle list."
-msgstr "Apakah akan menampilkan tanggal pembaruan dalam daftar bottle."
-
-#: src/ui/preferences.ui:50
-msgid "Show notifications for downloads and installs."
-msgstr "Tampilkan notifikasi untuk pengunduhan dan pemasangan."
-
-#: src/ui/preferences.ui:61
-#, fuzzy
-msgid "Temp Files"
-msgstr "Berkas-berkas temp"
-
-#: src/ui/preferences.ui:62
-msgid "Clean temp files when Bottles launches?"
-msgstr "Bersihkan berkas sementara saat Bottles diluncurkan?"
-
-#: src/ui/preferences.ui:73
-#, fuzzy
-msgid "Close Bottles After Starting a Program"
-msgstr "Tutup Bottle setelah memulai program"
-
-#: src/ui/preferences.ui:74
-#, fuzzy
-msgid "Close Bottles after starting a program from the file manager."
-msgstr "Tutup Bottle setelah memulai program dari manajer file"
-
-#: src/ui/preferences.ui:87
-#, fuzzy
-msgid "Integrations"
-msgstr "Operasi"
-
-#: src/ui/preferences.ui:90
-msgid "Steam Proton Prefixes"
-msgstr ""
-
-#: src/ui/preferences.ui:91
-#, fuzzy
-msgid "List and manage Steam Proton prefixes."
-msgstr "Beralih dukungan awalan Proton Steam eksperimental."
-
-#: src/ui/preferences.ui:95
-#, fuzzy
-msgid "Read Documentation"
-msgstr "Baca dokumentasi"
-
-#: src/ui/preferences.ui:113
-msgid "List Steam Apps in Programs List"
-msgstr ""
-
-#: src/ui/preferences.ui:114
-msgid "Requires Steam for Windows installed in the bottle."
-msgstr "Membutuhkan Steam untuk Windows terpasang pada bottle ini."
-
-#: src/ui/preferences.ui:125
-msgid "List Epic Games in Programs List"
-msgstr ""
-
-#: src/ui/preferences.ui:126
-msgid "Requires Epic Games Store installed in the bottle."
-msgstr "Membutuhkan Epic Games Store terpasang pada bottle ini."
-
-#: src/ui/preferences.ui:137
-msgid "List Ubisoft Games in Programs List"
-msgstr ""
-
-#: src/ui/preferences.ui:138
-#, fuzzy
-msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr "Membutuhkan Epic Games Store terpasang pada bottle ini."
-
-#: src/ui/preferences.ui:151
-msgid "Advanced"
-msgstr "Lanjutan"
-
-#: src/ui/preferences.ui:154
-#, fuzzy
-msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Alamat bottles kustom (butuh mulai ulang)"
-
-#: src/ui/preferences.ui:155 src/views/preferences.py:188
-#: src/views/preferences.py:204
-#, fuzzy
-msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)."
-msgstr ""
-"Pilih di mana bottles baru disimpan (ini tidak akan memindahkan yang sudah "
-"ada)"
-
-#: src/ui/preferences.ui:188
-msgid "Runners"
-msgstr "Runners"
-
-#: src/ui/preferences.ui:193
-#, fuzzy
-msgid "Pre-Release"
-msgstr "Pra-rilis"
-
-#: src/ui/preferences.ui:194
-msgid "Display unstable versions of runners."
-msgstr ""
-
-#: src/ui/preferences.ui:210
-msgid "DLL Components"
-msgstr "Komponen DLL"
-
-#: src/ui/preferences.ui:223
-msgid "DXVK-NVAPI"
-msgstr "DXVK-NVAPI"
-
-#: src/ui/preferences.ui:236
-msgid "Core"
-msgstr "Inti"
-
-#: src/ui/preferences.ui:240
-msgid "Runtime"
-msgstr "Runtime"
-
-#: src/ui/preferences.ui:245
-msgid "WineBridge"
-msgstr "WineBridge"
-
-#: src/ui/preferences.ui:256
-msgid ""
-"These features are under heavy development and may be unstable, expect bugs "
-"and breakage."
-msgstr ""
-
-#: src/ui/preferences.ui:260
-#, fuzzy
-msgid "In early development (requires restart)."
-msgstr "Sedang dalam pengembangan awal (butuh mulai ulang)"
-
-#: src/ui/preferences.ui:271
-msgid "Sandbox per bottle"
-msgstr ""
-
-#: src/ui/preferences.ui:272
-#, fuzzy
-msgid "In early development."
-msgstr "Sedang dalam pengembangan awal (butuh mulai ulang)"
-
-#: src/ui/program-entry.ui:21
-msgid "Launch with terminal"
-msgstr "Jalankan dengan terminal"
-
-#: src/ui/program-entry.ui:28
-msgid "Browse path"
-msgstr "Jelajahi jalur"
-
-#: src/ui/program-entry.ui:44
-#, fuzzy
-msgid "Change Launch Options…"
-msgstr "Ubah Pilihan Peluncuran"
-
-#: src/ui/program-entry.ui:49
-#, fuzzy
-msgid "Add to My Library"
-msgstr "Tambah ke perpustakaan saya"
-
-#: src/ui/program-entry.ui:54
-#, fuzzy
-msgid "Add Desktop Entry"
-msgstr "Tambah entri desktop"
-
-#: src/ui/program-entry.ui:59
-msgid "Add to Steam"
-msgstr ""
-
-#: src/ui/program-entry.ui:64
-#, fuzzy
-msgid "Rename…"
-msgstr "Ubah nama"
-
-#: src/ui/program-entry.ui:73
-#, fuzzy
-msgid "Hide Program"
-msgstr "Sembunyikan program ini"
-
-#: src/ui/program-entry.ui:78
-#, fuzzy
-msgid "Show Program"
-msgstr "Program"
-
-#: src/ui/program-entry.ui:83
-#, fuzzy
-msgid "Remove from List"
-msgstr "Hapus dari Program"
-
-#: src/ui/program-entry.ui:99
-#, fuzzy
-msgid "Program name"
-msgstr "Program"
-
-#. id as identification
-#: src/ui/state-entry.ui:7
-#, fuzzy
-msgid "State id"
-msgstr "Keadaan tidak ditemukan"
-
-#: src/ui/state-entry.ui:8
-#, fuzzy
-msgid "State comment"
-msgstr "Sebuah komentar yang sangat singkat"
-
-#: src/ui/state-entry.ui:16
-msgid "Restore this state"
-msgstr "Kembalikan keadaan ini"
-
-#: src/ui/task-entry.ui:24
-msgid "Delete message"
-msgstr "Hapus pesan"
-
-#: src/ui/window.ui:19
-#, fuzzy
-msgid "Import/Export…"
-msgstr "Impor/ekspor"
-
-#: src/ui/window.ui:33
-#, fuzzy
-msgid "Support"
-msgstr "Dukung kami"
-
-#: src/ui/window.ui:43
-msgid "Forums"
-msgstr "Forum"
-
-#: src/ui/window.ui:48
-msgid "About Bottles"
-msgstr "Tentang Bottles"
-
-#: src/ui/window.ui:79
-msgid "Open menu"
-msgstr "Buka menu"
-
-#: src/ui/window.ui:93
-msgid ""
-"You don't seem connected to the internet. Without it you will not be able to "
-"download essential components. Click this icon when you have reestablished "
-"the connection."
-msgstr ""
-"Kelihatannya Anda tidak terhubung dengan internet. Tanpa itu Anda tidak "
-"dapat mengunduh komponen-komponen dasar. Klik ikon ini saat Anda terhubung "
-"kembali dengan jaringan."
-
-#: src/ui/window.ui:99
-msgid "New bottle"
-msgstr "Bottle baru"
-
-#: src/utils/connection.py:67
-msgid "You are offline, unable to download."
-msgstr "Anda sedang offline, tidak dapat mengunduh."
-
-#: src/views/bottle_details.py:142
-#, python-format
-msgid "Updated: %s"
-msgstr "Diperbarui: %s"
-
-#: src/views/bottle_details.py:200 src/views/list.py:118
-msgid "Choose a Windows executable file"
-msgstr "Pilih berkas bisa-eksekusi Windows"
-
-#: src/views/bottle_details.py:209
-msgid "Be Aware of Sandbox"
-msgstr ""
-
-#: src/views/bottle_details.py:210
-msgid ""
-"Bottles is running in a sandbox, a restricted permission environment needed "
-"to keep you safe. If the program won't run, consider moving inside the "
-"bottle (3 dots icon on the top), then launch from there."
-msgstr ""
-
-#: src/views/bottle_details.py:212
-msgid "Ok"
-msgstr ""
-
-#: src/views/bottle_details.py:267
-msgid "Select the location where to save the backup config"
-msgstr "Pilih lokasi tempat menyimpan konfigurasi cadangan"
-
-#: src/views/bottle_details.py:271
-msgid "Select the location where to save the backup archive"
-msgstr "Pilih lokasi tempat menyimpan di mana arsip dicadangkan"
-
-#: src/views/bottle_details.py:276
-#, python-brace-format
-msgid "Backup created for '{0}'."
-msgstr "Cadangan dibuat untuk '{0}'."
-
-#: src/views/bottle_details.py:278
-#, python-brace-format
-msgid "Backup failed for '{0}'."
-msgstr "Cadangan gagal untuk '{0}'."
-
-#: src/views/bottle_details.py:296
-msgid "Export"
-msgstr "Ekspor"
-
-#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
-#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
-#: src/views/bottle_preferences.py:745
-msgid "Confirm"
-msgstr "Konfirmasi"
-
-#: src/views/bottle_details.py:333
-msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Anda yakin ingin menghapus Bottle ini berserta seluruh filenya?"
-
-#: src/views/bottle_details.py:412
-msgid ""
-"Are you sure you want to terminate all processes?\n"
-"This can cause data loss."
-msgstr ""
-"Anda yakin untuk menghentikan paksa semua proses?\n"
-"Ini akan membuat data anda hilang."
-
-#: src/views/bottle_preferences.py:207
-msgid "This feature is not available on your system."
-msgstr "Fitur ini tidak tersedia di sistem anda."
-
-#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:405
-msgid "Default to the bottle path."
-msgstr "Arahkan ke jalur bawaan bottle."
-
-#: src/views/bottle_preferences.py:258
-msgid "Choose working directory for executables"
-msgstr "Pilih direktori kerja untuk eksekusi"
-
-#: src/views/bottle_preferences.py:741
-msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
-
-#: src/views/bottle_preferences.py:742
-msgid ""
-"This will kepp all your files but will delete all states. Do you want to "
-"continue?"
-msgstr ""
-
-#: src/views/bottle_programs.py:83
-#, python-brace-format
-msgid "'{0}' added."
-msgstr "'{0}' ditambahkan."
-
-#: src/views/bottle_programs.py:87
-msgid "Choose an executable path"
-msgstr "Pilih jalur yang dapat dieksekusi"
-
-#: src/views/bottle_programs.py:89
-msgid "Add"
-msgstr "Tambah"
-
-#: src/views/bottle_versioning.py:88
-msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
-
-#: src/views/details.py:154
-msgid "Details & Utilities"
-msgstr "Rincian & Utilitas"
-
-#: src/views/details.py:162
-msgid "Dependencies"
-msgstr "Dependensi"
-
-#: src/views/details.py:167
-msgid "Found in your bottle's Start menu."
-msgstr "Ditemukan di menu Start bottle Anda."
-
-#: src/views/details.py:174
-msgid "Installers"
-msgstr "Pemasang"
-
-#: src/views/details.py:377
-#, fuzzy
-msgid "Operations in progress, please wait."
-msgstr "Memperbarui versi Windows, mohon tunggu…"
-
-#: src/views/details.py:381
-#, fuzzy
-msgid "Return to your bottles."
-msgstr "Cari bottles Anda .."
-
-#: src/views/importer.py:89
-msgid "Backup imported successfully."
-msgstr "Cadangan berhasil diimpor."
-
-#: src/views/importer.py:91
-msgid "Import failed."
-msgstr "Pengimporan gagal."
-
-#: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
-msgid "Importing backup…"
-msgstr "Mengimpor cadangan.."
-
-#: src/views/importer.py:115
-msgid "Choose a backup archive"
-msgstr "Pilih arsip cadangan"
-
-#: src/views/importer.py:117 src/views/importer.py:146
-msgid "Import"
-msgstr "Impor"
-
-#: src/views/importer.py:144
-msgid "Choose a configuration file"
-msgstr "Pilih file konfigurasi"
-
-#: src/views/list.py:59 src/views/list.py:65
-msgid "N/A"
-msgstr "N/A"
-
-#: src/views/list.py:220
-msgid "Your Bottles"
-msgstr "Bottles Milikmu"
-
-#: src/views/loading.py:33
-#, python-brace-format
-msgid "Downloading ~{0} of packages…"
-msgstr ""
-
-#: src/views/loading.py:34
-#, python-brace-format
-msgid "Fetched {0} of {1} packages"
-msgstr ""
-
-#: src/views/new.py:142
-msgid "Choose a recipe file"
-msgstr "Pilih sebuah resep file"
-
-#: src/views/new.py:158
-msgid "Choose where to store the bottle"
-msgstr "Pilih tempat di mana bottle akan disimpan"
-
-#: src/views/new.py:211
-msgid "There was an error creating the bottle."
-msgstr "Terdapat galat saat membuat bottle."
-
-#: src/views/new.py:219
-#, python-brace-format
-msgid "A bottle named “{0}” was created successfully"
-msgstr "Seubah bottle bernama \"{0}\" berhasil dibuat"
-
-#: src/views/preferences.py:125
-msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-
-#: src/views/preferences.py:193
-msgid "Choose new bottles path"
-msgstr "Pilih jalur bottle baru"
-
-#: src/views/preferences.py:236
-msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:237
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:240
-msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
-
-#: src/views/preferences.py:241
-msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
-msgstr ""
-
-#: src/views/preferences.py:243
-msgid "Other"
-msgstr "Lainnya"
-
-#: src/widgets/component.py:70
-msgid "Upgrade"
-msgstr "Meningkatkan"
-
-#: src/widgets/component.py:145
-msgid "Installing…"
-msgstr "Memasang…"
-
-#: src/widgets/dependency.py:107 src/widgets/installer.py:72
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "Manifes untuk {0}"
-
-#: src/widgets/dependency.py:170
-#, python-brace-format
-msgid "'{0}' installed."
-msgstr "'{0}' terpasang."
-
-#: src/widgets/dependency.py:184
-#, fuzzy, python-brace-format
-msgid "'{0}' failed to install."
-msgstr "'{0}' terpasang."
-
-#: src/widgets/importer.py:66
-#, python-brace-format
-msgid "'{0}' imported."
-msgstr "'{0}' terimpor."
-
-#: src/widgets/installer.py:81
-#, python-brace-format
-msgid "Review for {0}"
-msgstr "Tinjauan untuk {0}"
-
-#: src/widgets/program.py:187
-#, fuzzy, python-brace-format
-msgid "Launching '{0}'…"
-msgstr "Jalankan dengan terminal…"
-
-#: src/widgets/program.py:193
-#, fuzzy, python-brace-format
-msgid "Launching '{0}' with Steam…"
-msgstr "Luncurkan dengan Steam"
-
-#: src/widgets/program.py:215
-#, python-brace-format
-msgid "'{0}' hidden."
-msgstr "'{0}' disembunyikan."
-
-#: src/widgets/program.py:217
-#, python-brace-format
-msgid "'{0}' showed."
-msgstr "'{0}' dimunculkan."
-
-#: src/widgets/program.py:240
-#, python-brace-format
-msgid "'{0}' removed."
-msgstr "'{0}' dihapus."
-
-#: src/widgets/program.py:254
-#, python-brace-format
-msgid "'{0}' renamed to '{1}'."
-msgstr "'{0}' diubah menjadi '{1}'."
-
-#: src/widgets/program.py:274
-#, python-brace-format
-msgid "Desktop Entry created for '{0}'"
-msgstr "Entri Desktop dibuat untuk '{0}'"
-
-#: src/widgets/program.py:290
-#, python-brace-format
-msgid "'{0}' added to your library"
-msgstr "'{0}' ditambahkan ke perpustakaanmu"
-
-#: src/widgets/program.py:306
-#, python-brace-format
-msgid "'{0}' added to your Steam library"
-msgstr "'{0}' ditambahkan ke perpustakaan Steam mu"
-
-#: src/window.py:184
-#, fuzzy
-msgid "Custom Bottles Path not Found"
-msgstr "Alamat bottles kustom (butuh mulai ulang)"
-
-#: src/window.py:185
-msgid ""
-"Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
-
-#: src/window.py:306
-msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
 
 #~ msgid "Loading…"
 #~ msgstr "Memuat…"
@@ -3774,9 +4104,6 @@ msgstr ""
 
 #~ msgid "Bottle"
 #~ msgstr "Bottle"
-
-#~ msgid "Special characters are not allowed!"
-#~ msgstr "Karakter khusus tidak diperbolehkan!"
 
 #~ msgid "No runners found, please install one."
 #~ msgstr "Tidak ada runner yang ditemukan, silakan instal satu."
