@@ -205,6 +205,8 @@ class WineCommand:
         # Get Runner libraries
         runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
         if arch == "win64":
+            if "FLATPAK_ID" in os.environ:
+                env.add("GST_PLUGIN_SYSTEM_PATH", "/usr/lib/x86_64-linux-gnu/gstreamer-1.0")
             runner_libs = [
                 "lib/wine/x86_64-unix",
                 "lib32/wine/x86_64-unix",
@@ -214,6 +216,8 @@ class WineCommand:
                 "lib64/wine/i386-unix"
             ]
         else:
+            if "FLATPAK_ID" in os.environ:
+                env.add("GST_PLUGIN_SYSTEM_PATH", "/usr/lib/i386-linux-gnu/gstreamer-1.0")
             runner_libs = [
                 "lib/wine/i386-unix",
                 "lib32/wine/i386-unix",
