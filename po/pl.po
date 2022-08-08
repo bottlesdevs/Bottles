@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-04 06:29+0000\n"
+"PO-Revision-Date: 2022-08-08 22:23+0000\n"
 "Last-Translator: Marcin Mikuła <marcinmikula840@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bottles/bottles/"
 "pl/>\n"
@@ -315,36 +315,36 @@ msgstr "Wybierz katalog roboczy"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
-#, fuzzy
 msgid "Choose a file."
-msgstr "Wybierz plik receptury"
+msgstr "Wybierz plik."
 
 #: bottles/frontend/windows/vkbasalt.py:306
-#, fuzzy
 msgid "File not Found"
-msgstr "Nie znaleziono zapisanych stanów"
+msgstr "Nie znaleziono pliku"
 
 #: bottles/frontend/windows/vkbasalt.py:307
 msgid "The given file does not exist. Please choose an appropriate file."
-msgstr ""
+msgstr "Podany plik nie istnieje. Wybierz poprawny plik."
 
 #: bottles/frontend/windows/vkbasalt.py:330
 msgid "Spaces in File Name"
-msgstr ""
+msgstr "Spacje w nazwie pliku"
 
 #: bottles/frontend/windows/vkbasalt.py:331
 msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
 msgstr ""
+"Ścieżka do tabeli do wyszukań kolorów nie może posiadać żadnych spacji. Usuń "
+"wszystkie spacje z nazwy pliku."
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
-msgstr ""
+msgstr "Nieprawidłowe wymiary obrazu"
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr ""
+msgstr "Wysokość i szerokość obrazu muszą być równe."
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144
@@ -874,9 +874,8 @@ msgstr ""
 "wizualną gier."
 
 #: bottles/frontend/ui/details-preferences.ui:144
-#, fuzzy
 msgid "Manage vkBasalt settings"
-msgstr "Zarządzaj ustawieniami Gamescope"
+msgstr "Zarządzaj ustawieniami vkBasalt"
 
 #: bottles/frontend/ui/details-preferences.ui:161
 msgid "Display Settings"
@@ -1123,16 +1122,15 @@ msgstr "Zarządzaj ustawieniami Gamescope"
 
 #: bottles/frontend/ui/details-preferences.ui:588
 msgid "Vmtouch"
-msgstr ""
+msgstr "Vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:589
 msgid "Preload game files into RAM"
-msgstr ""
+msgstr "Wcześnie załaduj pliki gry do pamięci RAM"
 
 #: bottles/frontend/ui/details-preferences.ui:592
-#, fuzzy
 msgid "Manage vmtouch settings"
-msgstr "Zarządzaj ustawieniami Gamescope"
+msgstr "Zarządzaj ustawieniami vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:610
 #: bottles/frontend/ui/dialog-launch-options.ui:91
@@ -1614,10 +1612,9 @@ msgid "Command Arguments"
 msgstr "Argumenty komendy"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:52
-#, fuzzy, c-format
+#, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr ""
-"np.: ZMIENNA=wartosc %polecenie% -przyklad1 -przyklad2 -przyklad3=witam"
+msgstr "np.: VAR=value %command% -example1 -example2 -example3=witam"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:58
 msgid "Post-run Script"
@@ -1780,36 +1777,33 @@ msgstr "Gotowe! Prosimy o zrestartowanie Bottles."
 
 #. vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.ui:11
-#, fuzzy
 msgid "vkBasalt Settings"
-msgstr "Ustawienia obrazu"
+msgstr "Ustawienia vkBasalt"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:50
-#, fuzzy
 msgid "Default"
-msgstr "gl (domyślne)"
+msgstr "Domyślne"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:54
-#, fuzzy
 msgid "Default Settings"
-msgstr "Ustawienia obrazu"
+msgstr "Domyślne ustawienia"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:66
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "Efekty są aplikowane zgodnie z kolejnością listy."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:67
 msgid "Effects"
-msgstr ""
+msgstr "Efekty"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:71
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "Adaptacyjne zaostrzanie kontrastu"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:74
 #: bottles/frontend/ui/dialog-vkbasalt.ui:110
 msgid "Sharpness"
-msgstr ""
+msgstr "Ostrość"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:78
 #: bottles/frontend/ui/dialog-vkbasalt.ui:114
@@ -1823,111 +1817,118 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.ui:364
 #: bottles/frontend/ui/dialog-vkbasalt.ui:392
 #: bottles/frontend/ui/dialog-vkbasalt.ui:424
-#, fuzzy
 msgid "Show Information"
-msgstr "Informacje o butelce"
+msgstr "Informacje"
 
 #. Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.ui:107
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "Zaostrzanie odszumionej Lumy"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:139
 msgid "Denoise"
-msgstr ""
+msgstr "Odszumianie"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:171
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "Szybki przybliżony antyaliasing"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:174
-#, fuzzy
 msgid "Subpixel Quality"
-msgstr "Najwyższa Jakość"
+msgstr "Jakość subpikselowa"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:203
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "Próg jakości krawędzi"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:232
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "Minimalny próg jakości krawędzi"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:264
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "Morfologiczny subpikselowy antyaliasing"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:267
 msgid "Edge Detection"
-msgstr ""
+msgstr "Wykrywanie krawędzi"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:283
 msgid "Luma"
-msgstr ""
+msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
-msgstr ""
+msgstr "Kolor"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:303
 msgid "Threshold"
-msgstr ""
+msgstr "Próg"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:332
 msgid "Max Search Steps"
-msgstr ""
+msgstr "Maksymalna ilość kroków wyszukiwania"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:360
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "Maksymalna ilość kroków wyszukiwania po przekątnej"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:388
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "Maksymalne zaokrąglanie rogów"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:419
 msgid "Color Lookup Table"
-msgstr ""
+msgstr "Tabela do wyszukiwania kolorów"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:437
-#, fuzzy
 msgid "Reset to Default"
 msgstr "Resetuj do wartości domyślnych"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:448
-#, fuzzy
 msgid "Select a File"
-msgstr "Wybierz butelkę"
+msgstr "Wybierz plik"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:482
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"Ostrość CAS zwiększa ostrość klatki. Wyższe wartości zwiększają ostrość "
+"klatki, natomiast wartości mniejsze niż 0 sprawiają, że klatki stają się "
+"gładsze, niż są natywnie."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:500
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"Ostrość DLS zwiększa ostrość klatki. Wyższe wartości sprawiają, że klatka "
+"jest ostrzejsza."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:518
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"Odszumianie DLS zmniejszają szumy klatki. Wyższe wartości sprawiają, że "
+"klatka jest bardziej gładka."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:536
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"Jakość subpikselowa FXAA zmniejsza aliasing na poziomie subpikselowym. "
+"Wyższe wartości sprawiają, że klatka jest bardziej gładka."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:554
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"Próg krawędzi FXAA to minimalna wartość kontrastu wymagana do zaaplikowania "
+"algorytmu FXAA. Wyższe wartości sprawiają, że klatka ma więcej kontrastu."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:572
 msgid ""
@@ -1935,40 +1936,55 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"Minimalny próg jakości krawędzi FXAA to minimalna wartość ciemnych pikseli "
+"ignorowanych przez algorytm FXAA. Wyższe wartości sprawiają, że FXAA będzie "
+"ignorować piksele poniżej podanej wartości i może prowadzić do poprawienia "
+"wydajności."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:590
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"Luma wykrywa krawędzie w perspektywie monochromatycznej, natomiast Kolor "
+"wykrywa krawędzie na podstawie kolorów. Luma jest bardziej wydajna niż Kolor."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:608
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"Próg SMAA określa czułość wykrywania krawędzi. Niższe wartości wykrywają "
+"więcej krawędzi w zamian za mniejszą wydajność."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:626
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"Maksymalna ilość kroków wyszukiwania SMAA określa ile horyzontalnych i "
+"wertykalnych kroków wyszukiwania zostanie przeprowadzonych w poszukiwaniu "
+"krawędzi."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:644
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"Maksymalna ilość kroków wyszukiwania po przekątnej SMAA określa ilość kroków "
+"wyszukiwania po przekątnej przeprowadzanych w poszukiwaniu krawędzi."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:662
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
-msgstr ""
+msgstr "Zaokrąglanie rogów SMAA określa siłę zaokrąglania rogów krawędzi."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:680
 msgid ""
 "CLUT transforms a range of colors into another range of colors using a .CUBE "
 "file, or a .png file where the height is equal to the width."
 msgstr ""
+"CLUT przekształca zakres kolorów w kolejny zakres kolorów wykorzystując plik "
+".CUBE lub plik .png, w którym wysokość jest równa szerokości."
 
 #: bottles/frontend/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
@@ -2756,9 +2772,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Pobrano {0} z {1} pakietów"
 
 #: bottles/frontend/views/new.py:133
-#, fuzzy
 msgid "Name has special characters or already in use."
-msgstr "Znaki specjalne są niedozwolone!"
+msgstr "Nazwa ma znaki specjalne bądź jest już w użyciu."
 
 #: bottles/frontend/views/new.py:150
 msgid "Choose a recipe file"
