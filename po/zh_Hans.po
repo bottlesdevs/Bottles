@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-04 06:29+0000\n"
+"PO-Revision-Date: 2022-08-08 20:40+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -312,36 +312,34 @@ msgstr "选择工作目录"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
-#, fuzzy
 msgid "Choose a file."
-msgstr "选择一个配方文件"
+msgstr "选择一个文件。"
 
 #: bottles/frontend/windows/vkbasalt.py:306
-#, fuzzy
 msgid "File not Found"
-msgstr "未找到状态"
+msgstr "未找到文件"
 
 #: bottles/frontend/windows/vkbasalt.py:307
 msgid "The given file does not exist. Please choose an appropriate file."
-msgstr ""
+msgstr "指定的文件不存在。请选择合适的文件。"
 
 #: bottles/frontend/windows/vkbasalt.py:330
 msgid "Spaces in File Name"
-msgstr ""
+msgstr "文件名中的空格"
 
 #: bottles/frontend/windows/vkbasalt.py:331
 msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
-msgstr ""
+msgstr "颜色查询表路径不能包含任何空格。请重命名文件删除所有空格。"
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
-msgstr ""
+msgstr "无效的图片尺寸"
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr ""
+msgstr "图片高度和宽度必须相等。"
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144
@@ -853,9 +851,8 @@ msgid ""
 msgstr "vkBasalt 是 Vulkan 后期处理层，用来增强游戏的视觉图形。"
 
 #: bottles/frontend/ui/details-preferences.ui:144
-#, fuzzy
 msgid "Manage vkBasalt settings"
-msgstr "管理 Gamescope 设置"
+msgstr "管理 vkBasalt 设置"
 
 #: bottles/frontend/ui/details-preferences.ui:161
 msgid "Display Settings"
@@ -1096,16 +1093,15 @@ msgstr "管理 Gamescope 设置"
 
 #: bottles/frontend/ui/details-preferences.ui:588
 msgid "Vmtouch"
-msgstr ""
+msgstr "Vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:589
 msgid "Preload game files into RAM"
-msgstr ""
+msgstr "将游戏文件预加载进内存"
 
 #: bottles/frontend/ui/details-preferences.ui:592
-#, fuzzy
 msgid "Manage vmtouch settings"
-msgstr "管理 Gamescope 设置"
+msgstr "管理 vmtouch 设置"
 
 #: bottles/frontend/ui/details-preferences.ui:610
 #: bottles/frontend/ui/dialog-launch-options.ui:91
@@ -1721,36 +1717,33 @@ msgstr "完毕！ 请重新启动 bottles。"
 
 #. vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.ui:11
-#, fuzzy
 msgid "vkBasalt Settings"
-msgstr "显示设置"
+msgstr "vkBasalt 设置"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:50
-#, fuzzy
 msgid "Default"
-msgstr "gl (默认)"
+msgstr "默认"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:54
-#, fuzzy
 msgid "Default Settings"
-msgstr "显示设置"
+msgstr "默认设置"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:66
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "根据列表顺序应用效果。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:67
 msgid "Effects"
-msgstr ""
+msgstr "效果"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:71
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "对比度自适应锐化"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:74
 #: bottles/frontend/ui/dialog-vkbasalt.ui:110
 msgid "Sharpness"
-msgstr ""
+msgstr "锐利度"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:78
 #: bottles/frontend/ui/dialog-vkbasalt.ui:114
@@ -1764,152 +1757,150 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.ui:364
 #: bottles/frontend/ui/dialog-vkbasalt.ui:392
 #: bottles/frontend/ui/dialog-vkbasalt.ui:424
-#, fuzzy
 msgid "Show Information"
-msgstr "Bottle 信息"
+msgstr "显示信息"
 
 #. Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.ui:107
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "降噪 Luma 锐化"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:139
 msgid "Denoise"
-msgstr ""
+msgstr "降噪"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:171
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "快速近似反锯齿"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:174
-#, fuzzy
 msgid "Subpixel Quality"
-msgstr "超高品质"
+msgstr "亚像素质量"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:203
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "质量边缘阈值"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:232
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "质量边缘阈值最小值"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:264
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "亚像素形态反锯齿"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:267
 msgid "Edge Detection"
-msgstr ""
+msgstr "边缘检测"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:283
 msgid "Luma"
-msgstr ""
+msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
-msgstr ""
+msgstr "色彩"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:303
 msgid "Threshold"
-msgstr ""
+msgstr "阈值"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:332
 msgid "Max Search Steps"
-msgstr ""
+msgstr "最大搜索步长"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:360
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "最大搜索步长对角"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:388
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "最大圆角"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:419
 msgid "Color Lookup Table"
-msgstr ""
+msgstr "颜色查询表"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:437
-#, fuzzy
 msgid "Reset to Default"
 msgstr "重置为默认"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:448
-#, fuzzy
 msgid "Select a File"
-msgstr "选择 Bottle"
+msgstr "选择文件"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:482
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
-msgstr ""
+msgstr "CAS 锐化增加帧的锐度。较高的值使帧更清晰，低于 0 的值使帧比原生更柔软。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:500
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
-msgstr ""
+msgstr "DLS 锐化增加帧的锐度。数值越高，帧越锐利。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:518
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
-msgstr ""
+msgstr "DLS 降噪可以降低帧的噪声。更高的值使帧更柔软。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:536
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
-msgstr ""
+msgstr "FXAA 亚像素质量减少亚像素级锯齿。更高的值使帧更柔软。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:554
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
-msgstr ""
+msgstr "FXAA 边缘阈值是应用 FXAA 算法所需的最小对比度量。数值越高，帧的对比度越强。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:572
 msgid ""
 "FXAA quality edge threshold minimum is the minimum value of dark pixels that "
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
-msgstr ""
+msgstr "FXAA 质量边缘阈值最小值是 FXAA 算法忽略的暗像素的最小值。较高的值会使 FXAA "
+"忽略低于指定值的像素，可能导致性能提高。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:590
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
-msgstr ""
+msgstr "Luma 从单色角度检测边缘，而 Color 基于颜色检测边缘。Luma 性能比 Color 好。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:608
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
-msgstr ""
+msgstr "SMAA 阈值指定了边缘检测的灵敏度。较低的值以性能为代价检测更多的边缘。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:626
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
-msgstr ""
+msgstr "SMAA 最大搜索步长指定了搜索边缘时执行的水平搜索步长和垂直搜索步长。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:644
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
-msgstr ""
+msgstr "SMAA 最大对角搜索步长指定了搜索边缘时执行的对角搜索步长。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:662
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
-msgstr ""
+msgstr "SMAA 圆角表示倒角边角的强度。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:680
 msgid ""
 "CLUT transforms a range of colors into another range of colors using a .CUBE "
 "file, or a .png file where the height is equal to the width."
-msgstr ""
+msgstr "CLUT 使用. cube 文件或高度宽度相等的 .png "
+"文件将一个颜色范围转换为另一个颜色范围。"
 
 #: bottles/frontend/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
@@ -2680,9 +2671,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "已获取 {1} 个软件包中的 {0} 个"
 
 #: bottles/frontend/views/new.py:133
-#, fuzzy
 msgid "Name has special characters or already in use."
-msgstr "不允许特殊字符！"
+msgstr "名称有特殊字符或已在使用。"
 
 #: bottles/frontend/views/new.py:150
 msgid "Choose a recipe file"
