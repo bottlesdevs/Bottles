@@ -154,8 +154,7 @@ class HealthChecker:
     @staticmethod
     def check_markdown():
         try:
-            import markdown
-            return True
+                        return True
         except ModuleNotFoundError:
             return False
 
