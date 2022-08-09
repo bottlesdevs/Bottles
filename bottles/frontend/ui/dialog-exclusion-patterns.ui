@@ -7,6 +7,16 @@
         <property name="default-width">500</property>
         <property name="default-height">500</property>
         <child>
+            <object class="GtkShortcutController">
+                <child>
+                    <object class="GtkShortcut">
+                        <property name="trigger">Escape</property>
+                        <property name="action">action(window.close)</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+        <child>
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
@@ -16,16 +26,6 @@
                                 <property name="title" translatable="yes">Exclusion Patterns</property>
                             </object>
                         </property>
-                    </object>
-                </child>
-                <child>
-                    <object class="GtkShortcutController">
-                        <child>
-                            <object class="GtkShortcut">
-                                <property name="trigger">Escape</property>
-                                <property name="action">action(window.close)</property>
-                            </object>
-                        </child>
                     </object>
                 </child>
                 <child>

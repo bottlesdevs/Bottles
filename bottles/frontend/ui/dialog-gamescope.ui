@@ -7,6 +7,16 @@
         <property name="default-width">550</property>
         <property name="title" translatable="yes">Gamescope Settings</property>
         <child>
+            <object class="GtkShortcutController">
+                <child>
+                    <object class="GtkShortcut">
+                        <property name="trigger">Escape</property>
+                        <property name="action">action(window.close)</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+        <child>
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
@@ -17,16 +27,6 @@
                                 <property name="label" translatable="yes">_Cancel</property>
                                 <property name="use_underline">True</property>
                                 <property name="action_name">window.close</property>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="GtkShortcutController">
-                                <child>
-                                    <object class="GtkShortcut">
-                                        <property name="trigger">Escape</property>
-                                        <property name="action">action(window.close)</property>
-                                    </object>
-                                </child>
                             </object>
                         </child>
                         <child type="end">
