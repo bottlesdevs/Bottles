@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-05 09:31+0000\n"
+"PO-Revision-Date: 2022-08-09 15:13+0000\n"
 "Last-Translator: Artem <github@knebergish.fastmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
@@ -315,36 +315,36 @@ msgstr "Задайте рабочий каталог"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
-#, fuzzy
 msgid "Choose a file."
-msgstr "Выберите файл с рецептом"
+msgstr "Выберите файл."
 
 #: bottles/frontend/windows/vkbasalt.py:306
-#, fuzzy
 msgid "File not Found"
-msgstr "Состояние не найдено"
+msgstr "Файл не найден"
 
 #: bottles/frontend/windows/vkbasalt.py:307
 msgid "The given file does not exist. Please choose an appropriate file."
-msgstr ""
+msgstr "Указанный файл не существует. Пожалуйста, выберите подходящий файл."
 
 #: bottles/frontend/windows/vkbasalt.py:330
 msgid "Spaces in File Name"
-msgstr ""
+msgstr "Пробелы в имени файла"
 
 #: bottles/frontend/windows/vkbasalt.py:331
 msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
 msgstr ""
+"Путь к Color Lookup Table не может содержать пробелы. Пожалуйста, "
+"переименуйте файл так, чтобы путь к нему не содержал пробелы."
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
-msgstr ""
+msgstr "Недопустимый размер картинки"
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr ""
+msgstr "Высота и ширина картинки должны быть одинаковыми."
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144
@@ -867,9 +867,8 @@ msgid ""
 msgstr "Слой постобработки Vulkan для улучшения графики в играх."
 
 #: bottles/frontend/ui/details-preferences.ui:144
-#, fuzzy
 msgid "Manage vkBasalt settings"
-msgstr "Управление настройками Gamescope"
+msgstr "Управление настройками vkBasalt"
 
 #: bottles/frontend/ui/details-preferences.ui:161
 msgid "Display Settings"
@@ -1114,16 +1113,15 @@ msgstr "Управление настройками Gamescope"
 
 #: bottles/frontend/ui/details-preferences.ui:588
 msgid "Vmtouch"
-msgstr ""
+msgstr "Vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:589
 msgid "Preload game files into RAM"
-msgstr ""
+msgstr "Предзагружает файлы игры в оперативную память"
 
 #: bottles/frontend/ui/details-preferences.ui:592
-#, fuzzy
 msgid "Manage vmtouch settings"
-msgstr "Управление настройками Gamescope"
+msgstr "Управление настройками vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:610
 #: bottles/frontend/ui/dialog-launch-options.ui:91
@@ -1763,27 +1761,24 @@ msgstr "Готово! Пожалуйста, перезапустите Bottles."
 
 #. vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.ui:11
-#, fuzzy
 msgid "vkBasalt Settings"
-msgstr "Настройки экрана"
+msgstr "Настройки vkBasalt"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:50
-#, fuzzy
 msgid "Default"
-msgstr "gl (по умолчанию)"
+msgstr "По умолчанию"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:54
-#, fuzzy
 msgid "Default Settings"
-msgstr "Настройки экрана"
+msgstr "Настройки по умолчанию"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:66
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "Эффекты применяются в соответствии с их порядком в списке."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:67
 msgid "Effects"
-msgstr ""
+msgstr "Эффекты"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:71
 msgid "Contrast Adaptive Sharpening"
@@ -1792,7 +1787,7 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.ui:74
 #: bottles/frontend/ui/dialog-vkbasalt.ui:110
 msgid "Sharpness"
-msgstr ""
+msgstr "Резкость"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:78
 #: bottles/frontend/ui/dialog-vkbasalt.ui:114
@@ -1806,9 +1801,8 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.ui:364
 #: bottles/frontend/ui/dialog-vkbasalt.ui:392
 #: bottles/frontend/ui/dialog-vkbasalt.ui:424
-#, fuzzy
 msgid "Show Information"
-msgstr "Сведения о бутылке"
+msgstr "Показать информацию"
 
 #. Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.ui:107
@@ -1817,16 +1811,15 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:139
 msgid "Denoise"
-msgstr ""
+msgstr "Шумоподавление"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:171
 msgid "Fast Approximate Anti-Aliasing"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:174
-#, fuzzy
 msgid "Subpixel Quality"
-msgstr "Ультра"
+msgstr "Субпиксельное качество"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:203
 msgid "Quality Edge Threshold"
@@ -1842,7 +1835,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:267
 msgid "Edge Detection"
-msgstr ""
+msgstr "Обнаружение краёв"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:283
 msgid "Luma"
@@ -1850,67 +1843,76 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
-msgstr ""
+msgstr "Цвет"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:303
 msgid "Threshold"
-msgstr ""
+msgstr "Порог"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:332
 msgid "Max Search Steps"
-msgstr ""
+msgstr "Максимальный шаг поиска"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:360
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "Максимальный диагональный шаг поиска"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:388
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "Максимальное скругление углов"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:419
 msgid "Color Lookup Table"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:437
-#, fuzzy
 msgid "Reset to Default"
 msgstr "Восстановить значения по умолчанию"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:448
-#, fuzzy
 msgid "Select a File"
-msgstr "Выбор бутылки"
+msgstr "Выберите файл"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:482
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"CAS увеличивает резкость кадра. Более высокие значения делают кадр более "
+"резким, в то время как значения меньше 0 делают кадр более мягким, чем "
+"исходный."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:500
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"DLS Резкость увеличивает резкость кадра. Более высокие значения делают кадр "
+"более резким."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:518
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"DLS Шумоподавление уменьшает уровень шума в кадре. Более высокие значения "
+"делают кадр более мягким."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:536
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"Субпиксельное качество FXAA уменьшает ступенчатость на субпиксельном уровне. "
+"Более высокие значения делают кадр мягче."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:554
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"Порог FXAA — это минимальный контраст, необходимый для применения алгоритма "
+"FXAA. Более высокие значения делают кадр более контрастным."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:572
 msgid ""
@@ -1918,40 +1920,54 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"Минимальный порог качества FXAA — это минимальное значение тёмных пикселей, "
+"которые игнорируются алгоритмом FXAA. Более высокие значения позволят FXAA "
+"игнорировать большее количество пикселей, что приведёт к увеличению "
+"производительности."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:590
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"Luma обнаруживает края с монохромной точки зрения, тогда как Цвет "
+"обнаруживает края на основе цветов. Luma более производителен, чем Цвет."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:608
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"Порог SMAA определяет чувствительность обнаружения краёв. Меньшие значения "
+"обнаруживают больше краев в ущерб производительности."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:626
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"Максимальный шаг поиска SMAA определяет, сколько шагов горизонтального и "
+"вертикального поиска выполняется при поиске краев."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:644
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"Максимальный диагональный шаг поиска SMAA определяет, сколько шагов поиска "
+"по диагонали выполняется при поиске краев."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:662
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
-msgstr ""
+msgstr "Скругление углов SMAA определяет величину скругления углов."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:680
 msgid ""
 "CLUT transforms a range of colors into another range of colors using a .CUBE "
 "file, or a .png file where the height is equal to the width."
 msgstr ""
+"CLUT преобразует один диапазон цветов в другой с помощью файла .CUBE или ."
+"png-файла, высота которого равна ширине."
 
 #: bottles/frontend/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
@@ -2734,9 +2750,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Получено {0} из {1} пакетов"
 
 #: bottles/frontend/views/new.py:133
-#, fuzzy
 msgid "Name has special characters or already in use."
-msgstr "Спецсимволы не допустимы!"
+msgstr "Название уже используется или содержит спецсимволы."
 
 #: bottles/frontend/views/new.py:150
 msgid "Choose a recipe file"
