@@ -1189,6 +1189,13 @@ class Manager:
                         _dir_path = os.path.join(_user_dir, _dir)
                         if os.path.islink(_dir_path):
                             links.append(_dir_path)
+                    
+                    _documents_dir = os.path.join(_user_dir, "Documents")
+                    if os.path.isdir(_documents_dir):
+                        for _dir in os.listdir(_documents_dir):
+                            _dir_path = os.path.join(_documents_dir, _dir)
+                            if os.path.islink(_dir_path):
+                                links.append(_dir_path)
 
                     _win_dir = os.path.join(_user_dir, "AppData", "Roaming", "Microsoft", "Windows")
                     if os.path.isdir(_win_dir):
