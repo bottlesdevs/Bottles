@@ -8,110 +8,113 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-08-11 07:53+0000\n"
+"Last-Translator: K.B.Dharun Krishna <kbdharunkrishna@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/bottles/bottles/ta/"
+">\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "பாதை எதுவும் குறிப்பிடப்படவில்லை"
 
 #: bottles/backend/managers/backup.py:71
 #, python-brace-format
 msgid "Backup {0}"
-msgstr ""
+msgstr "காப்புப்பிரதி {0}"
 
 #: bottles/backend/managers/backup.py:124
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr ""
+msgstr "காப்புப்பிரதியை இறக்குமதி செய்கிறது: {0}"
 
 #: bottles/backend/managers/manager.py:1030
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "கூறுகளை நிறுவ முடியவில்லை, 3 முறை முயற்சித்தேன்."
 
 #: bottles/backend/managers/manager.py:1041
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "அத்தியாவசிய கூறுகளைக் காணவில்லை. நிறுவுகிறது…"
 
 #: bottles/backend/managers/manager.py:1117
 msgid "Failed to create bottle directory."
-msgstr ""
+msgstr "பாட்டில் கோப்பகத்தை உருவாக்குவதில் தோல்வி."
 
 #: bottles/backend/managers/manager.py:1129
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "ஒதுக்கிட கோப்பகம்/கோப்பை உருவாக்க முடியவில்லை."
 
 #: bottles/backend/managers/manager.py:1134
 msgid "Generating bottle configuration…"
-msgstr ""
+msgstr "பாட்டில் உள்ளமைவை உருவாக்குகிறது…"
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Template found, applying…"
-msgstr ""
+msgstr "டெம்ப்ளேட் கிடைத்தது, பயன்படுத்துகிறது…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1169
 msgid "The Wine config is being updated…"
-msgstr ""
+msgstr "ஒயின் கட்டமைப்பு புதுப்பிக்கப்படுகிறது…"
 
 #: bottles/backend/managers/manager.py:1171
 msgid "Wine config updated!"
-msgstr ""
+msgstr "ஒயின் கட்டமைப்பு புதுப்பிக்கப்பட்டது!"
 
 #: bottles/backend/managers/manager.py:1179
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr ""
+msgstr "Flatpak ஆக இயங்குகிறது, சாண்ட்பாக்சிங் பயனர்டிர்…"
 
 #: bottles/backend/managers/manager.py:1181
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "சாண்ட்பாக்சிங் பயனர்டிர் …"
 
 #: bottles/backend/managers/manager.py:1211
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "விண்டோஸ் பதிப்பை அமைக்கிறது…"
 
 #: bottles/backend/managers/manager.py:1221
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "CMD இயல்புநிலை அமைப்புகளைப் பயன்படுத்து…"
 
 #: bottles/backend/managers/manager.py:1229
 msgid "Optimizing environment…"
-msgstr ""
+msgstr "சூழலை மேம்படுத்துகிறது…"
 
 #: bottles/backend/managers/manager.py:1240
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "விண்ணப்பிக்கும் சூழல்: {0}…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) தனிப்பயன் சூழல் செய்முறையைப் பயன்படுத்துதல்…"
 
 #: bottles/backend/managers/manager.py:1253
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) செய்முறை கிடைக்கவில்லை அல்லது செல்லாது…"
 
 #: bottles/backend/managers/manager.py:1270
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "DXVK ஐ நிறுவுகிறது…"
 
 #: bottles/backend/managers/manager.py:1278
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "VKD3D ஐ நிறுவுகிறது…"
 
 #: bottles/backend/managers/manager.py:1286
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "DXVK-NVAPI ஐ நிறுவுகிறது…"
 
 #: bottles/backend/managers/manager.py:1295
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "சார்புநிலையை நிறுவுகிறது: %s…"
 
 #: bottles/backend/managers/manager.py:1311
 msgid "Creating versioning state 0…"
@@ -431,7 +434,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dependency-entry.ui:23
 msgid "License"
-msgstr ""
+msgstr "உரிமம்"
 
 #: bottles/frontend/ui/dependency-entry.ui:28
 msgid "Reinstall"
@@ -608,7 +611,7 @@ msgstr ""
 #: bottles/frontend/ui/details-bottle.ui:289
 #: bottles/frontend/views/details.py:178
 msgid "Task Manager"
-msgstr ""
+msgstr "பணி மேலாளர்"
 
 #: bottles/frontend/ui/details-bottle.ui:290
 msgid "Manage processes with the Wine task manager."
@@ -632,7 +635,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.ui:325
 msgid "Uninstaller"
-msgstr ""
+msgstr "நிறுவல் நீக்கி"
 
 #: bottles/frontend/ui/details-bottle.ui:326
 msgid "Uninstall programs using Wine uninstaller."
@@ -640,7 +643,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.ui:337
 msgid "Control Panel"
-msgstr ""
+msgstr "கண்ட்ரோல் பேனல்"
 
 #: bottles/frontend/ui/details-bottle.ui:338
 msgid "Access the internal Wine Control Panel."
@@ -815,7 +818,7 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.ui:108
 #: bottles/frontend/ui/preferences.ui:228
 msgid "LatencyFleX"
-msgstr ""
+msgstr "லேடென்சிஃப்ளெக்ஸ்"
 
 #: bottles/frontend/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
@@ -938,7 +941,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:272
 msgid "Renderer"
-msgstr ""
+msgstr "வழங்குபவர்"
 
 #: bottles/frontend/ui/details-preferences.ui:273
 msgid "Select what backend to use for wined3d."
@@ -950,11 +953,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:280
 msgid "gdi"
-msgstr ""
+msgstr "ஜிடிஐ"
 
 #: bottles/frontend/ui/details-preferences.ui:281
 msgid "vulkan"
-msgstr ""
+msgstr "வல்கன்"
 
 #: bottles/frontend/ui/details-preferences.ui:296
 #: bottles/frontend/ui/details-preferences.ui:432
@@ -1008,7 +1011,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:450
 msgid "Futex2"
-msgstr ""
+msgstr "ஃபியூடெக்ஸ்2"
 
 #: bottles/frontend/ui/details-preferences.ui:465
 msgid "Windows Version"
@@ -1044,7 +1047,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:530
 msgid "Bottles Runtime"
-msgstr ""
+msgstr "பாட்டில்கள் இயங்கும் நேரம்"
 
 #: bottles/frontend/ui/details-preferences.ui:531
 msgid ""
@@ -1054,7 +1057,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:542
 msgid "Steam Runtime"
-msgstr ""
+msgstr "ஸ்டீம் இயக்க நேரம்"
 
 #: bottles/frontend/ui/details-preferences.ui:543
 msgid "The same as the Bottles one but provided by Steam."
@@ -1070,7 +1073,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:566
 msgid "Gamescope"
-msgstr ""
+msgstr "கேம்ஸ்கோப்"
 
 #: bottles/frontend/ui/details-preferences.ui:567
 msgid "Use the Gamescope micro-compositor."
@@ -1184,7 +1187,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:743
 msgid "MangoHud"
-msgstr ""
+msgstr "மாங்கோஹட்"
 
 #: bottles/frontend/ui/details-preferences.ui:744
 msgid ""
@@ -2016,7 +2019,7 @@ msgstr ""
 #: data/com.usebottles.bottles.appdata.xml.in:6
 #: data/com.usebottles.bottles.desktop.in:3
 msgid "Bottles"
-msgstr ""
+msgstr "பாட்டில்கள்"
 
 #: bottles/frontend/ui/list.ui:55
 msgid "Start off by creating a Bottle."
@@ -2326,7 +2329,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.ui:240
 msgid "Runtime"
-msgstr ""
+msgstr "இயக்க நேரம்"
 
 #: bottles/frontend/ui/preferences.ui:245
 msgid "WineBridge"
