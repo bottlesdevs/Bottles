@@ -44,6 +44,8 @@ from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.steam import SteamManager
+from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
+from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
@@ -570,8 +572,7 @@ class Manager:
         program_layer.sweep()
         program_layer.save()
 
-    @staticmethod
-    def get_programs(config: dict) -> list:
+    def get_programs(self, config: dict) -> list:
         """
         Get the list of programs (both from the drive and the user defined
         in the bottle configuration file).
@@ -692,6 +693,29 @@ class Manager:
                         "auto_discovered": True
                     })
                     found.append(executable_name)
+                    
+            win_steam_manager = SteamManager(config, is_windows=True)
+
+            if self.window.settings.get_boolean("steam-programs") \
+                    and win_steam_manager.is_steam_supported:
+                programs_names = [p.get("name", "") for p in installed_programs]
+                for app in win_steam_manager.get_installed_apps_as_programs():
+                    if app["name"] not in programs_names:
+                        installed_programs.append(app)
+
+            if self.window.settings.get_boolean("epic-games") \
+                    and EpicGamesStoreManager.is_epic_supported(config):
+                programs_names = [p.get("name", "") for p in installed_programs]
+                for app in EpicGamesStoreManager.get_installed_games(config):
+                    if app["name"] not in programs_names:
+                        installed_programs.append(app)
+
+            if self.window.settings.get_boolean("ubisoft-connect") \
+                    and UbisoftConnectManager.is_uconnect_supported(config):
+                programs_names = [p.get("name", "") for p in installed_programs]
+                for app in UbisoftConnectManager.get_installed_games(config):
+                    if app["name"] not in programs_names:
+                        installed_programs.append(app)
 
         return installed_programs
 

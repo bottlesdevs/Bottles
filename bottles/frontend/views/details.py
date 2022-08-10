@@ -24,9 +24,6 @@ from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.widgets.page import PageRow
 
 from bottles.backend.managers.queue import QueueManager
-from bottles.backend.managers.steam import SteamManager
-from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
-from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.models.result import Result
 from bottles.backend.wine.wineserver import WineServer
 
@@ -306,29 +303,6 @@ class DetailsView(Adw.Bin):
             time.sleep(.2)
             wineserver_status = WineServer(self.config).is_alive()
             programs = self.manager.get_programs(self.config)
-            win_steam_manager = SteamManager(self.config, is_windows=True)
-
-            if self.window.settings.get_boolean("steam-programs") \
-                    and win_steam_manager.is_steam_supported:
-                programs_names = [p.get("name", "") for p in programs]
-                for app in win_steam_manager.get_installed_apps_as_programs():
-                    if app["name"] not in programs_names:
-                        programs.append(app)
-
-            if self.window.settings.get_boolean("epic-games") \
-                    and EpicGamesStoreManager.is_epic_supported(self.config):
-                programs_names = [p.get("name", "") for p in programs]
-                for app in EpicGamesStoreManager.get_installed_games(self.config):
-                    if app["name"] not in programs_names:
-                        programs.append(app)
-
-            if self.window.settings.get_boolean("ubisoft-connect") \
-                    and UbisoftConnectManager.is_uconnect_supported(self.config):
-                programs_names = [p.get("name", "") for p in programs]
-                for app in UbisoftConnectManager.get_installed_games(self.config):
-                    if app["name"] not in programs_names:
-                        programs.append(app)
-
             handled = [0, 0]  # home, programs
 
             if self.config.get("Environment") == "Steam":
