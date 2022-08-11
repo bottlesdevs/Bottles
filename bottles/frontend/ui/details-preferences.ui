@@ -20,8 +20,8 @@
                 <child>
                     <object class="AdwActionRow" id="row_dxvk">
                         <property name="activatable-widget">switch_dxvk</property>
-                        <property name="title" translatable="yes">DXVK</property>
-                        <property name="subtitle" translatable="yes">Improves performance of DirectX 11 games and 3D applications.</property>
+                        <property name="title" translatable="yes">Direct3D 9/10/11 Compatibility</property>
+                        <property name="subtitle" translatable="yes">Translate from Direct3D 9, 10 and 11 to Vulkan using DXVK.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_dxvkbool">
                                 <property name="tooltip-text" translatable="yes">Updating DXVK, please wait…</property>
@@ -39,8 +39,8 @@
                 <child>
                     <object class="AdwActionRow" id="row_vkd3d">
                         <property name="activatable-widget">switch_vkd3d</property>
-                        <property name="title" translatable="yes">VKD3D</property>
-                        <property name="subtitle" translatable="yes">Improves performance of DirectX 12 games and 3D applications.</property>
+                        <property name="title" translatable="yes">Direct3D 12 Compatibility</property>
+                        <property name="subtitle" translatable="yes">Translate from Direct3D 12 to Vulkan using VKD3D.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_vkd3dbool">
                                 <property name="tooltip-text" translatable="yes">Updating VKD3D, please wait…</property>
@@ -58,8 +58,8 @@
                 <child>
                     <object class="AdwActionRow" id="row_nvapi">
                         <property name="activatable-widget">switch_nvapi</property>
-                        <property name="title" translatable="yes">DLSS (DXVK-NVAPI)</property>
-                        <property name="subtitle" translatable="yes">Provide DLSS support if available and Nvidia's NVAPI.</property>
+                        <property name="title" translatable="yes">Deep Learning Super Sampling</property>
+                        <property name="subtitle" translatable="yes">Use Deep learning super sampling (DLSS) and NVAPI to increase performance at the expense of visuals using DXVK-NVAPI. Only works on newer NVIDIA GPUs.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_nvapibool">
                                 <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
@@ -77,8 +77,8 @@
                 <child>
                     <object class="AdwActionRow">
                         <property name="activatable-widget">switch_fsr</property>
-                        <property name="title" translatable="yes">FSR</property>
-                        <property name="subtitle" translatable="yes">FSR uses cutting-edge up-scaling technologies to help boost your framerate.</property>
+                        <property name="title" translatable="yes">FidelityFX Super Resolution</property>
+                        <property name="subtitle" translatable="yes">Use FidelityFX super resolution (FSR) to increase performance at the expense of visuals. Only works on Vulkan.</property>
                         <child>
                             <object class="GtkComboBoxText" id="combo_fsr">
                                 <!-- TODO: replace with ComboRow -->
@@ -105,8 +105,8 @@
                 <child>
                     <object class="AdwActionRow" id="row_latencyflex">
                         <property name="activatable-widget">switch_latencyflex</property>
-                        <property name="title" translatable="yes">LatencyFleX</property>
-                        <property name="subtitle" translatable="yes">An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats.</property>
+                        <property name="title" translatable="yes">Reduce Input Latency</property>
+                        <property name="subtitle" translatable="yes">Reduce input latency when the system is GPU bound using LatencyFleX. Can be detected by some anti-cheat software.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_latencyflexbool">
                                 <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
@@ -125,8 +125,8 @@
                 <child>
                     <object class="AdwActionRow" id="row_discrete">
                         <property name="activatable-widget">switch_discrete</property>
-                        <property name="title" translatable="yes">Discrete GPU</property>
-                        <property name="subtitle" translatable="yes">Improves performance at the cost of increased power usage.</property>
+                        <property name="title" translatable="yes">Discrete Graphics</property>
+                        <property name="subtitle" translatable="yes">Use the discrete graphics card to increase performance at the expense of power consumption.</property>
                         <child>
                             <object class="GtkSwitch" id="switch_discrete">
                                 <property name="valign">center</property>
@@ -137,11 +137,11 @@
                 <child>
                     <object class="AdwActionRow" id="row_vkbasalt">
                         <property name="activatable-widget">switch_vkbasalt</property>
-                        <property name="title" translatable="yes">vkBasalt</property>
-                        <property name="subtitle" translatable="yes">vkBasalt is a Vulkan post processing layer to enhance the visual graphics of games.</property>
+                        <property name="title" translatable="yes">Post-Processing Layer</property>
+                        <property name="subtitle" translatable="yes">Enhance sharpness, shaders and more using vkBasalt. Only works on Vulkan.</property>
                         <child>
                             <object class="GtkButton" id="btn_manage_vkbasalt">
-                                <property name="tooltip-text" translatable="yes">Manage vkBasalt settings</property>
+                                <property name="tooltip-text" translatable="yes">Manage Post-Processing Layer Settings</property>
                                 <property name="valign">center</property>
                                 <property name="icon-name">applications-system-symbolic</property>
                                 <style>
@@ -163,7 +163,7 @@
                             <object class="AdwActionRow">
                                 <property name="activatable-widget">switch_virt_desktop</property>
                                 <property name="title" translatable="yes">Virtual Desktop</property>
-                                <property name="subtitle" translatable="yes">Use the Wine virtual desktop.</property>
+                                <property name="subtitle" translatable="yes">Create a virtual environment to place windows inside. Recommended when the application doesn't work as intended.</property>
                                 <child>
                                     <!-- TODO: replace with ComboRow -->
                                     <object class="GtkComboBoxText" id="combo_virt_res">
@@ -563,11 +563,11 @@
                 <child>
                     <object class="AdwActionRow">
                         <property name="activatable-widget">switch_gamescope</property>
-                        <property name="title" translatable="yes">Gamescope</property>
-                        <property name="subtitle" translatable="yes">Use the Gamescope micro-compositor.</property>
+                        <property name="title" translatable="yes">Window Manager</property>
+                        <property name="subtitle" translatable="yes">Manage how Bottles should open windows or games using Gamescope.</property>
                         <child>
                             <object class="GtkButton" id="btn_manage_gamescope">
-                                <property name="tooltip-text" translatable="yes">Manage Gamescope settings</property>
+                                <property name="tooltip-text" translatable="yes">Manage Window Manager Settings</property>
                                 <property name="valign">center</property>
                                 <property name="icon-name">applications-system-symbolic</property>
                                 <style>
@@ -672,8 +672,7 @@
                 <child>
                     <object class="AdwActionRow">
                         <property name="activatable-widget">switch_pulse_latency</property>
-                        <property name="title" translatable="yes">Reduce Latency</property>
-                        <property name="subtitle" translatable="yes">Set PulseAudio latency to 60 ms, increasing sound quality.</property>
+                        <property name="title" translatable="yes">Reduce Audio Latency</property>
                         <child>
                             <object class="GtkSwitch" id="switch_pulse_latency">
                                 <property name="valign">center</property>
@@ -740,8 +739,8 @@
                 <child>
                     <object class="AdwActionRow">
                         <property name="activatable-widget">switch_mangohud</property>
-                        <property name="title" translatable="yes">MangoHud</property>
-                        <property name="subtitle" translatable="yes">A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more.</property>
+                        <property name="title" translatable="yes">Monitor Performance</property>
+                        <property name="subtitle" translatable="yes">Display monitoring information such as framerate, temperatures, CPU/GPU load and more on OpenGL and Vulkan using MangoHud.</property>
                         <child>
                             <object class="GtkSwitch" id="switch_mangohud">
                                 <property name="valign">center</property>
