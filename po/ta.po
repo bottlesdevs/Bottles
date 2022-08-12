@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-11 07:53+0000\n"
+"PO-Revision-Date: 2022-08-12 21:18+0000\n"
 "Last-Translator: K.B.Dharun Krishna <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/bottles/bottles/ta/"
 ">\n"
@@ -118,67 +118,70 @@ msgstr "சார்புநிலையை நிறுவுகிறது: 
 
 #: bottles/backend/managers/manager.py:1311
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "பதிப்பு நிலை 0 ஐ உருவாக்குகிறது…"
 
 #: bottles/backend/managers/manager.py:1319
 msgid "Finalizing…"
-msgstr ""
+msgstr "இறுதி செய்கிறது…"
 
 #: bottles/backend/managers/manager.py:1330
 msgid "Caching template…"
-msgstr ""
+msgstr "டெம்ப்ளேட்டை தற்காலிகமாக சேமிக்கிறது…"
 
 #: bottles/backend/managers/versioning.py:97
 msgid "Committing state …"
-msgstr ""
+msgstr "உறுதியளிக்கும் நிலை…"
 
 #: bottles/backend/managers/versioning.py:106
 msgid "Nothing to commit"
-msgstr ""
+msgstr "கமிட் செய்ய எதுவும் இல்லை"
 
 #: bottles/backend/managers/versioning.py:112
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "புதிய மாநிலம் [{0}] உருவாக்கப்பட்டது!"
 
 #: bottles/backend/managers/versioning.py:140
 msgid "States list retrieved successfully!"
-msgstr ""
+msgstr "மாநிலங்களின் பட்டியல் வெற்றிகரமாக மீட்டெடுக்கப்பட்டது!"
 
 #: bottles/backend/managers/versioning.py:171
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr ""
+msgstr "நிலை {0} வெற்றிகரமாக மீட்டெடுக்கப்பட்டது!"
 
 #: bottles/backend/managers/versioning.py:176
 msgid "Restoring state {} …"
-msgstr ""
+msgstr "நிலையை மீட்டெடுக்கிறது {} …"
 
 #: bottles/backend/managers/versioning.py:185
 msgid "State not found"
-msgstr ""
+msgstr "மாநிலம் கிடைக்கவில்லை"
 
 #: bottles/backend/managers/versioning.py:191
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "மாநிலம் {} ஏற்கனவே செயலில் உள்ள நிலை"
 
 #: bottles/frontend/windows/crash.py:37
 msgid "Show report"
-msgstr ""
+msgstr "அறிக்கையைக் காட்டு"
 
 #: bottles/frontend/windows/crash.py:88
 msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            இந்தச் சிக்கல் 5 முறை புகாரளிக்கப்பட்டதால் மீண்டும் அனுப்ப "
+"முடியாது.\n"
+"               கீழே உள்ள அறிக்கைகளில் ஒன்றில் உங்கள் கருத்தை தெரிவிக்கவும்."
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
-msgstr ""
+msgstr "மீறல்கள் எதுவும் இல்லை."
 
 #: bottles/frontend/windows/drives.py:71
 msgid "Choose path"
-msgstr ""
+msgstr "பாதையைத் தேர்ந்தெடுக்கவும்"
 
 #: bottles/frontend/windows/drives.py:73
 #: bottles/frontend/windows/filechooser.py:63
@@ -203,7 +206,7 @@ msgstr ""
 #: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
 #: bottles/frontend/views/preferences.py:158
 msgid "Cancel"
-msgstr ""
+msgstr "ரத்துசெய்"
 
 #: bottles/frontend/windows/drives.py:73
 #: bottles/frontend/windows/installer.py:66
@@ -214,15 +217,15 @@ msgstr ""
 #: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
 #: bottles/frontend/views/preferences.py:158
 msgid "Select"
-msgstr ""
+msgstr "தேர்ந்தெடு"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
-msgstr ""
+msgstr "சூழல் மாறிகள் எதுவும் வரையறுக்கப்படவில்லை."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
-msgstr ""
+msgstr "விதிவிலக்கு வடிவங்கள் எதுவும் வரையறுக்கப்படவில்லை."
 
 #: bottles/frontend/windows/filechooser.py:63
 #: bottles/frontend/ui/dialog-gamescope.ui:34
@@ -230,207 +233,212 @@ msgstr ""
 #: bottles/frontend/ui/dialog-rename.ui:22
 #: bottles/frontend/ui/dialog-vkbasalt.ui:38
 msgid "Save"
-msgstr ""
+msgstr "சேமி"
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
-msgstr ""
+msgstr "ஒரு பிழை ஏற்பட்டுள்ளது."
 
 #: bottles/frontend/windows/generic.py:91
 #: bottles/frontend/windows/generic.py:137
 #: bottles/frontend/windows/generic.py:182
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "கிளிப்போர்டுக்கு நகலெடுக்கவும்"
 
 #: bottles/frontend/windows/installer.py:64
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "ஆதாரக் கோப்பைத் தேர்ந்தெடுக்கவும்"
 
 #: bottles/frontend/windows/installer.py:115
 msgid "Installing Windows dependencies…"
-msgstr ""
+msgstr "விண்டோஸ் சார்புகளை நிறுவுகிறது…"
 
 #: bottles/frontend/windows/installer.py:116
 msgid "Configuring the bottle…"
-msgstr ""
+msgstr "பாட்டிலை உள்ளமைக்கிறது…"
 
 #: bottles/frontend/windows/installer.py:117
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "நிறுவி படிகளை செயலாக்குகிறது…"
 
 #: bottles/frontend/windows/installer.py:118
 msgid "Installing the {}…"
-msgstr ""
+msgstr "{}ஐ நிறுவுகிறது…"
 
 #: bottles/frontend/windows/installer.py:119
 msgid "Performing final checks…"
-msgstr ""
+msgstr "இறுதிச் சோதனைகளைச் செய்கிறது…"
 
 #: bottles/frontend/windows/installer.py:123
 #, python-brace-format
 msgid "Installing {0}…"
-msgstr ""
+msgstr "{0}ஐ நிறுவுகிறது…"
 
 #: bottles/frontend/windows/installer.py:125
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr ""
+msgstr "{0} இப்போது நிரல் பார்வையில் கிடைக்கிறது."
 
 #: bottles/frontend/windows/installer.py:171
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "அறியப்படாத பிழையால் நிறுவி தோல்வியடைந்தது"
 
 #. endregion
 #: bottles/frontend/windows/launchoptions.py:56
 #: bottles/frontend/ui/dialog-launch-options.ui:59
 msgid "Choose a script which should be executed after run."
 msgstr ""
+"இயக்கத்திற்குப் பிறகு செயல்படுத்தப்பட வேண்டிய ஸ்கிரிப்டைத் தேர்ந்தெடுக்கவும்."
 
 #: bottles/frontend/windows/launchoptions.py:57
 #: bottles/frontend/ui/dialog-launch-options.ui:92
 msgid "Choose from where start the program."
-msgstr ""
+msgstr "நிரலை எங்கிருந்து தொடங்குவது என்பதைத் தேர்ந்தெடுக்கவும்."
 
 #: bottles/frontend/windows/launchoptions.py:58
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr ""
+msgstr "இந்த பாட்டிலுக்கு {0} ஏற்கனவே முடக்கப்பட்டுள்ளது."
 
 #: bottles/frontend/windows/launchoptions.py:59
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "இந்த அமைப்பு பாட்டிலின் இயல்புநிலையிலிருந்து வேறுபட்டது."
 
 #: bottles/frontend/windows/launchoptions.py:232
 msgid "Choose the script"
-msgstr ""
+msgstr "ஸ்கிரிப்டைத் தேர்ந்தெடுக்கவும்"
 
 #: bottles/frontend/windows/launchoptions.py:256
 msgid "Choose the Working Directory"
-msgstr ""
+msgstr "வேலை செய்யும் கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
 msgid "Choose a file."
-msgstr ""
+msgstr "கோப்பைத் தேர்ந்தெடுக்கவும்."
 
 #: bottles/frontend/windows/vkbasalt.py:306
 msgid "File not Found"
-msgstr ""
+msgstr "கோப்பு கிடைக்கவில்லை"
 
 #: bottles/frontend/windows/vkbasalt.py:307
 msgid "The given file does not exist. Please choose an appropriate file."
-msgstr ""
+msgstr "கொடுக்கப்பட்ட கோப்பு இல்லை. பொருத்தமான கோப்பைத் தேர்ந்தெடுக்கவும்."
 
 #: bottles/frontend/windows/vkbasalt.py:330
 msgid "Spaces in File Name"
-msgstr ""
+msgstr "கோப்பு பெயரில் உள்ள இடைவெளிகள்"
 
 #: bottles/frontend/windows/vkbasalt.py:331
 msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
 msgstr ""
+"வண்ணத் தேடல் அட்டவணைப் பாதையில் எந்த இடைவெளிகளும் இருக்கக்கூடாது. எல்லா "
+"இடைவெளிகளையும் அகற்ற கோப்பின் மறுபெயரிடவும்."
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
-msgstr ""
+msgstr "தவறான படப் பரிமாணம்"
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr ""
+msgstr "படத்தின் உயரமும் அகலமும் சமமாக இருக்க வேண்டும்."
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144
 msgid "Choose a configuration file"
-msgstr ""
+msgstr "உள்ளமைவு கோப்பைத் தேர்ந்தெடுக்கவும்"
 
 #: bottles/frontend/windows/vkbasalt.py:355
 #: bottles/frontend/views/importer.py:117
 #: bottles/frontend/views/importer.py:146
 msgid "Import"
-msgstr ""
+msgstr "இறக்குமதி"
 
 #: bottles/frontend/main.py:105
 msgid "Show version"
-msgstr ""
+msgstr "பதிப்பைக் காட்டு"
 
 #: bottles/frontend/main.py:113
 msgid "Executable path"
-msgstr ""
+msgstr "இயங்கக்கூடிய பாதை"
 
 #: bottles/frontend/main.py:121
 msgid "lnk path"
-msgstr ""
+msgstr "இணைப்பு பாதை"
 
 #: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.ui:103
 #: bottles/frontend/ui/list-entry.ui:7
 msgid "Bottle name"
-msgstr ""
+msgstr "பாட்டில் பெயர்"
 
 #: bottles/frontend/main.py:137
 msgid "Pass arguments"
-msgstr ""
+msgstr "வாதங்களை அனுப்பவும்"
 
 #: bottles/frontend/main.py:196
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "தவறான URI (தொடரியல்: பாட்டில்கள்:ரன்/<பாட்டில்>/<நிரல்>)"
 
 #: bottles/frontend/main.py:237
 msgid "[Quit] request received."
-msgstr ""
+msgstr "[வெளியேறு] கோரிக்கை பெறப்பட்டது."
 
 #: bottles/frontend/main.py:246
 msgid "[Help] request received."
-msgstr ""
+msgstr "[உதவி] கோரிக்கை பெறப்பட்டது."
 
 #: bottles/frontend/main.py:254
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "[உதவி] கோரிக்கை பெறப்பட்டது."
 
 #: bottles/frontend/operation.py:50
 msgid "Calculating…"
-msgstr ""
+msgstr "கணக்கீடு செய்கிறது…"
 
 #: bottles/frontend/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
-msgstr ""
+msgstr "© 2017-2022 - பாட்டில்ஸ் டெவலப்பர்கள்"
 
 #: bottles/frontend/ui/about.ui:9
 msgid "Easily manage wineprefix using environments"
-msgstr ""
+msgstr "சூழல்களைப் பயன்படுத்தி ஒயின் முன்னொட்டை எளிதாக நிர்வகிக்கவும்"
 
 #: bottles/frontend/ui/component-entry.ui:6
 msgid "Component version"
-msgstr ""
+msgstr "கூறு பதிப்பு"
 
 #: bottles/frontend/ui/component-entry.ui:15
 #: bottles/frontend/ui/dependency-entry.ui:34
 #: bottles/frontend/ui/program-entry.ui:92
 msgid "Uninstall"
-msgstr ""
+msgstr "நிறுவல் நீக்கவும்"
 
 #: bottles/frontend/ui/component-entry.ui:26
 #: bottles/frontend/ui/importer-entry.ui:15
 msgid "Browse files"
-msgstr ""
+msgstr "கோப்புகளை உலாவவும்"
 
 #: bottles/frontend/ui/component-entry.ui:37
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
+"நிறுவல் தோல்வி அடைந்தது. இது களஞ்சியப் பிழை, பகுதி பதிவிறக்கம் அல்லது "
+"செக்சம் பொருத்தமின்மை காரணமாக இருக்கலாம். மீண்டும் முயற்சிக்க அழுத்தவும்."
 
 #: bottles/frontend/ui/component-entry.ui:48
 msgid "Download & Install"
-msgstr ""
+msgstr "பதிவிறக்கி நிறுவவும்"
 
 #: bottles/frontend/ui/component-entry.ui:61
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.ui:18
 msgid "Show Manifest"
-msgstr ""
+msgstr "மேனிஃபெஸ்டைக் காட்டு"
 
 #: bottles/frontend/ui/dependency-entry.ui:23
 msgid "License"
@@ -438,175 +446,179 @@ msgstr "உரிமம்"
 
 #: bottles/frontend/ui/dependency-entry.ui:28
 msgid "Reinstall"
-msgstr ""
+msgstr "மீண்டும் நிறுவவும்"
 
 #: bottles/frontend/ui/dependency-entry.ui:43
 #: bottles/frontend/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr ""
+msgstr "பிழையைப் புகாரளிக்கவும்…"
 
 #: bottles/frontend/ui/dependency-entry.ui:50
 msgid "Dependency name"
-msgstr ""
+msgstr "சார்பு பெயர்"
 
 #: bottles/frontend/ui/dependency-entry.ui:52
 msgid "Dependency description"
-msgstr ""
+msgstr "சார்பு விளக்கம்"
 
 #: bottles/frontend/ui/dependency-entry.ui:59
 msgid "Category"
-msgstr ""
+msgstr "வகையினம்"
 
 #: bottles/frontend/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "இந்த சார்புநிலையைப் பதிவிறக்கி நிறுவவும்"
 
 #: bottles/frontend/ui/dependency-entry.ui:89
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"நிறுவல் பிழை ஏற்பட்டது. செயலிழப்பு அறிக்கையைப் படிக்க பாட்டில்களை மறுதொடக்கம்"
+" செய்யவும் அல்லது வெளியீட்டைப் படிக்க டெர்மினல் வழியாக இயக்கவும்."
 
 #: bottles/frontend/ui/details-bottle.ui:18
 msgid "Troubleshooting"
-msgstr ""
+msgstr "பழுது நீக்கும்"
 
 #: bottles/frontend/ui/details-bottle.ui:26
 msgid "Browse Files…"
-msgstr ""
+msgstr "கோப்புகளை உலாவுக…"
 
 #: bottles/frontend/ui/details-bottle.ui:31
 msgid "Duplicate Bottle…"
-msgstr ""
+msgstr "நகல் பாட்டில்…"
 
 #: bottles/frontend/ui/details-bottle.ui:36 bottles/frontend/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
+msgstr "இது தனிப்பட்ட கோப்புகள் உட்பட உங்கள் பாட்டிலின் முழுமையான காப்பகமாகும்."
 
 #: bottles/frontend/ui/details-bottle.ui:37
 msgid "Full Backup…"
-msgstr ""
+msgstr "முழு காப்புப்பிரதி…"
 
 #: bottles/frontend/ui/details-bottle.ui:42 bottles/frontend/ui/importer.ui:80
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
+"இது பாட்டில் உள்ளமைவு மட்டுமே, நீங்கள் புதிய ஒன்றை உருவாக்க விரும்பினால், "
+"ஆனால் தனிப்பட்ட கோப்புகள் இல்லாமல் இருந்தால் இது சரியானது."
 
 #: bottles/frontend/ui/details-bottle.ui:43
 msgid "Export Configuration…"
-msgstr ""
+msgstr "ஏற்றுமதி உள்ளமைவு…"
 
 #: bottles/frontend/ui/details-bottle.ui:51
 msgid "Delete Bottle…"
-msgstr ""
+msgstr "பாட்டிலை நீக்கு…"
 
 #: bottles/frontend/ui/details-bottle.ui:86
 msgid "Kill all Processes"
-msgstr ""
+msgstr "அனைத்து செயல்முறைகளையும் அழிக்கவும்"
 
 #: bottles/frontend/ui/details-bottle.ui:91
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "விண்டோஸ் சிஸ்டம் பணிநிறுத்தத்தை உருவகப்படுத்தவும்."
 
 #: bottles/frontend/ui/details-bottle.ui:92
 msgid "Shutdown"
-msgstr ""
+msgstr "பணிநிறுத்தம்"
 
 #: bottles/frontend/ui/details-bottle.ui:97
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "விண்டோஸ் சிஸ்டம் ரீபூட்டை உருவகப்படுத்தவும்."
 
 #: bottles/frontend/ui/details-bottle.ui:98
 msgid "Reboot"
-msgstr ""
+msgstr "மறுதொடக்கம்"
 
 #: bottles/frontend/ui/details-bottle.ui:121
 msgid "Run with Arguments…"
-msgstr ""
+msgstr "வாதங்களுடன் இயக்கவும்…"
 
 #: bottles/frontend/ui/details-bottle.ui:126
 msgid "Launch in Terminal…"
-msgstr ""
+msgstr "டெர்மினலில் தொடங்கவும்…"
 
 #: bottles/frontend/ui/details-bottle.ui:157
 msgid "My bottle"
-msgstr ""
+msgstr "என் பாட்டில்"
 
 #: bottles/frontend/ui/details-bottle.ui:169
 msgid "Win64"
-msgstr ""
+msgstr "வின்64"
 
 #: bottles/frontend/ui/details-bottle.ui:177
 #: bottles/frontend/ui/list-entry.ui:14 bottles/frontend/ui/new.ui:77
 msgid "Environment"
-msgstr ""
+msgstr "சுற்றுச்சூழல்"
 
 #: bottles/frontend/ui/details-bottle.ui:185
 #: bottles/frontend/ui/details-preferences.ui:314
 #: bottles/frontend/ui/new.ui:129
 msgid "Runner"
-msgstr ""
+msgstr "ஓடுபவர்"
 
 #: bottles/frontend/ui/details-bottle.ui:193
 #: bottles/frontend/ui/list-entry.ui:23
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "இந்த பாட்டிலுக்கான பதிப்பு இயக்கப்பட்டது"
 
 #: bottles/frontend/ui/details-bottle.ui:198
 #: bottles/frontend/ui/list-entry.ui:28
 msgid "Versioning is active in this bottle."
-msgstr ""
+msgstr "இந்த பாட்டில் பதிப்பு செயலில் உள்ளது."
 
 #: bottles/frontend/ui/details-bottle.ui:208
 #: bottles/frontend/ui/list-entry.ui:34
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.ui:219
 msgid "Run Executable…"
-msgstr ""
+msgstr "இயங்கக்கூடியது…"
 
 #: bottles/frontend/ui/details-bottle.ui:235
 msgid "Layers"
-msgstr ""
+msgstr "அடுக்குகள்"
 
 #: bottles/frontend/ui/details-bottle.ui:241
 #: bottles/frontend/views/details.py:166
 msgid "Programs"
-msgstr ""
+msgstr "நிகழ்ச்சிகள்"
 
 #: bottles/frontend/ui/details-bottle.ui:246
 msgid "Tools"
-msgstr ""
+msgstr "கருவிகள்"
 
 #: bottles/frontend/ui/details-bottle.ui:250
 msgid "Command Line"
-msgstr ""
+msgstr "கட்டளை வரி"
 
 #: bottles/frontend/ui/details-bottle.ui:251
 msgid "Run commands inside the Bottle."
-msgstr ""
+msgstr "பாட்டிலின் உள்ளே கட்டளைகளை இயக்கவும்."
 
 #: bottles/frontend/ui/details-bottle.ui:262
 msgid "Registry Editor"
-msgstr ""
+msgstr "ரெஜிஸ்ட்ரி எடிட்டர்"
 
 #: bottles/frontend/ui/details-bottle.ui:263
 msgid "Edit the internal registry."
-msgstr ""
+msgstr "உள் பதிவேட்டைத் திருத்தவும்."
 
 #: bottles/frontend/ui/details-bottle.ui:273
 msgid "Legacy Tools"
-msgstr ""
+msgstr "பாரம்பரிய கருவிகள்"
 
 #: bottles/frontend/ui/details-bottle.ui:277
 msgid "Explorer"
-msgstr ""
+msgstr "எக்ஸ்ப்ளோரர்"
 
 #: bottles/frontend/ui/details-bottle.ui:278
 msgid "Browse internal files with the Wine explorer."
-msgstr ""
+msgstr "ஒயின் எக்ஸ்ப்ளோரர் மூலம் உள் கோப்புகளை உலாவவும்."
 
 #: bottles/frontend/ui/details-bottle.ui:289
 #: bottles/frontend/views/details.py:178
@@ -615,23 +627,23 @@ msgstr "பணி மேலாளர்"
 
 #: bottles/frontend/ui/details-bottle.ui:290
 msgid "Manage processes with the Wine task manager."
-msgstr ""
+msgstr "ஒயின் பணி மேலாளருடன் செயல்முறைகளை நிர்வகிக்கவும்."
 
 #: bottles/frontend/ui/details-bottle.ui:301
 msgid "Debug"
-msgstr ""
+msgstr "பிழைத்திருத்தம்"
 
 #: bottles/frontend/ui/details-bottle.ui:302
 msgid "Debug wine processes."
-msgstr ""
+msgstr "ஒயின் செயல்முறைகளை பிழைத்திருத்துதல்."
 
 #: bottles/frontend/ui/details-bottle.ui:313
 msgid "Wine Configuration"
-msgstr ""
+msgstr "ஒயின் கட்டமைப்பு"
 
 #: bottles/frontend/ui/details-bottle.ui:314
 msgid "Adjust internal settings."
-msgstr ""
+msgstr "உள் அமைப்புகளை சரிசெய்யவும்."
 
 #: bottles/frontend/ui/details-bottle.ui:325
 msgid "Uninstaller"
@@ -639,7 +651,7 @@ msgstr "நிறுவல் நீக்கி"
 
 #: bottles/frontend/ui/details-bottle.ui:326
 msgid "Uninstall programs using Wine uninstaller."
-msgstr ""
+msgstr "ஒயின் நிறுவல் நீக்கியைப் பயன்படுத்தி நிரல்களை நிறுவல் நீக்கவும்."
 
 #: bottles/frontend/ui/details-bottle.ui:337
 msgid "Control Panel"
@@ -647,15 +659,15 @@ msgstr "கண்ட்ரோல் பேனல்"
 
 #: bottles/frontend/ui/details-bottle.ui:338
 msgid "Access the internal Wine Control Panel."
-msgstr ""
+msgstr "உள் ஒயின் கண்ட்ரோல் பேனலை அணுகவும்."
 
 #: bottles/frontend/ui/details-bottle.ui:357
 msgid "Use the Installers section or the \"Run executable\" button."
-msgstr ""
+msgstr "நிறுவிகள் பிரிவு அல்லது \"இயக்கக்கூடியது\" பொத்தானைப் பயன்படுத்தவும்."
 
 #: bottles/frontend/ui/details-dependencies.ui:13
 msgid "Search for dependencies…"
-msgstr ""
+msgstr "சார்புகளைத் தேடு…"
 
 #: bottles/frontend/ui/details-dependencies.ui:22
 msgid ""
@@ -663,6 +675,9 @@ msgid ""
 "compatibility of Windows software. Install from here to meet your program "
 "requirements."
 msgstr ""
+"சார்புநிலைகள் என்பது விண்டோஸ் மென்பொருளின் இணக்கத்தன்மையை மேம்படுத்தும் "
+"மென்பொருள், நூலகங்கள் மற்றும் கோடெக்குகள். உங்கள் நிரல் தேவைகளைப் பூர்த்தி "
+"செய்ய இங்கிருந்து நிறுவவும்."
 
 #: bottles/frontend/ui/details-dependencies.ui:34
 #: bottles/frontend/ui/details-installers.ui:33
@@ -670,18 +685,21 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"இந்தப் பக்கத்தில் உள்ள கோப்புகள் தனியுரிம உரிமத்தின் கீழ் மூன்றாம் "
+"தரப்பினரால் வழங்கப்படுகின்றன. அவற்றை நிறுவுவதன் மூலம், அந்தந்த உரிம "
+"விதிமுறைகளை நீங்கள் ஏற்றுக்கொள்கிறீர்கள்."
 
 #: bottles/frontend/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
-msgstr ""
+msgstr "சிக்கல் அல்லது விடுபட்ட சார்புநிலையைப் புகாரளிக்கவும்."
 
 #: bottles/frontend/ui/details-dependencies.ui:63
 msgid "Report missing dependency"
-msgstr ""
+msgstr "விடுபட்ட சார்புநிலையைப் புகாரளிக்கவும்"
 
 #: bottles/frontend/ui/details-dependencies.ui:68
 msgid "Read documentation."
-msgstr ""
+msgstr "ஆவணங்களைப் படிக்கவும்."
 
 #: bottles/frontend/ui/details-dependencies.ui:69
 #: bottles/frontend/ui/details-installers.ui:71
@@ -689,131 +707,141 @@ msgstr ""
 #: bottles/frontend/ui/details-versioning.ui:44
 #: bottles/frontend/ui/window.ui:38
 msgid "Documentation"
-msgstr ""
+msgstr "ஆவணமாக்கம்"
 
 #: bottles/frontend/ui/details-dependencies.ui:80
 msgid "Install Selected"
-msgstr ""
+msgstr "நிறுவல் தேர்ந்தெடுக்கப்பட்டது"
 
 #: bottles/frontend/ui/details-dependencies.ui:81
 msgid "We strongly advise against installing multiple dependencies at once."
 msgstr ""
+"ஒரே நேரத்தில் பல சார்புகளை நிறுவுவதற்கு எதிராக நாங்கள் கடுமையாக "
+"அறிவுறுத்துகிறோம்."
 
 #: bottles/frontend/ui/details-dependencies.ui:88
 msgid "Select Dependencies"
-msgstr ""
+msgstr "சார்புகளைத் தேர்ந்தெடுக்கவும்"
 
 #: bottles/frontend/ui/details-dependencies.ui:95
 #: bottles/frontend/ui/details-installers.ui:82
 #: bottles/frontend/ui/window.ui:86
 msgid "Search"
-msgstr ""
+msgstr "தேடு"
 
 #: bottles/frontend/ui/details-installers.ui:13
 msgid "Search for Programs…"
-msgstr ""
+msgstr "நிரல்களைத் தேடு…"
 
 #: bottles/frontend/ui/details-installers.ui:22
 msgid ""
 "Use this section to install programs curated by our community, without "
 "having to proceed manually."
 msgstr ""
+"கைமுறையாகத் தொடராமல், எங்கள் சமூகத்தால் நிர்வகிக்கப்பட்ட நிரல்களை நிறுவ "
+"இந்தப் பகுதியைப் பயன்படுத்தவும்."
 
 #: bottles/frontend/ui/details-installers.ui:48
 msgid "No Installers Found"
-msgstr ""
+msgstr "நிறுவிகள் எதுவும் இல்லை"
 
 #: bottles/frontend/ui/details-installers.ui:51
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
+"களஞ்சியத்தை அணுக முடியவில்லை அல்லது இந்த பாட்டிலுடன் எந்த நிறுவியும் இணக்கமா"
+"க இல்லை."
 
 #: bottles/frontend/ui/details-installers.ui:70
 #: bottles/frontend/ui/details-programs.ui:44
 #: bottles/frontend/ui/details-versioning.ui:43
 msgid "Read documentation"
-msgstr ""
+msgstr "ஆவணங்களைப் படிக்கவும்"
 
 #: bottles/frontend/ui/details-preferences.ui:8
 msgid "Bottle Details"
-msgstr ""
+msgstr "பாட்டில் விவரங்கள்"
 
 #: bottles/frontend/ui/details-preferences.ui:11
 #: bottles/frontend/ui/dialog-duplicate.ui:58 bottles/frontend/ui/new.ui:70
 msgid "Name"
-msgstr ""
+msgstr "பெயர்"
 
 #: bottles/frontend/ui/details-preferences.ui:19
 msgid "Graphics"
-msgstr ""
+msgstr "வரைகலை"
 
 #: bottles/frontend/ui/details-preferences.ui:23
 #: bottles/frontend/ui/preferences.ui:213
 msgid "DXVK"
-msgstr ""
+msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.ui:24
 msgid "Improves performance of DirectX 11 games and 3D applications."
 msgstr ""
+"DirectX 11 கேம்கள் மற்றும் 3D பயன்பாடுகளின் செயல்திறனை மேம்படுத்துகிறது."
 
 #: bottles/frontend/ui/details-preferences.ui:27
 #: bottles/frontend/ui/details-preferences.ui:338
 msgid "Updating DXVK, please wait…"
-msgstr ""
+msgstr "DXVKஐப் புதுப்பிக்கிறது, காத்திருக்கவும்…"
 
 #: bottles/frontend/ui/details-preferences.ui:42
 #: bottles/frontend/ui/preferences.ui:218
 msgid "VKD3D"
-msgstr ""
+msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.ui:43
 msgid "Improves performance of DirectX 12 games and 3D applications."
 msgstr ""
+"DirectX 12 கேம்கள் மற்றும் 3D பயன்பாடுகளின் செயல்திறனை மேம்படுத்துகிறது."
 
 #: bottles/frontend/ui/details-preferences.ui:46
 #: bottles/frontend/ui/details-preferences.ui:361
 msgid "Updating VKD3D, please wait…"
-msgstr ""
+msgstr "VKD3Dஐப் புதுப்பிக்கிறது, காத்திருக்கவும்…"
 
 #: bottles/frontend/ui/details-preferences.ui:61
 msgid "DLSS (DXVK-NVAPI)"
-msgstr ""
+msgstr "DLSS (DXVK-NVAPI)"
 
 #: bottles/frontend/ui/details-preferences.ui:62
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr ""
+msgstr "DLSS ஆதரவு மற்றும் Nvidia இன் NVAPI இருந்தால் வழங்கவும்."
 
 #: bottles/frontend/ui/details-preferences.ui:65
 #: bottles/frontend/ui/details-preferences.ui:112
 #: bottles/frontend/ui/details-preferences.ui:385
 #: bottles/frontend/ui/details-preferences.ui:407
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr ""
+msgstr "DXVK-NVAPI ஐப் புதுப்பிக்கிறது, காத்திருக்கவும்…"
 
 #: bottles/frontend/ui/details-preferences.ui:80
 msgid "FSR"
-msgstr ""
+msgstr "FSR"
 
 #: bottles/frontend/ui/details-preferences.ui:81
 msgid ""
 "FSR uses cutting-edge up-scaling technologies to help boost your framerate."
 msgstr ""
+"FSR உங்கள் பிரேம்ரேட்டை அதிகரிக்க உதவும் அதிநவீன அப்-ஸ்கேலிங் "
+"தொழில்நுட்பங்களைப் பயன்படுத்துகிறது."
 
 #: bottles/frontend/ui/details-preferences.ui:88
 msgid "Ultra Quality"
-msgstr ""
+msgstr "அல்ட்ரா தரம்"
 
 #: bottles/frontend/ui/details-preferences.ui:89
 msgid "Quality"
-msgstr ""
+msgstr "தரம்"
 
 #: bottles/frontend/ui/details-preferences.ui:90
 msgid "Balanced"
-msgstr ""
+msgstr "சமநிலையானது"
 
 #: bottles/frontend/ui/details-preferences.ui:91
 msgid "Performance"
-msgstr ""
+msgstr "செயல்திறன்"
 
 #: bottles/frontend/ui/details-preferences.ui:108
 #: bottles/frontend/ui/preferences.ui:228
@@ -823,24 +851,28 @@ msgstr "லேடென்சிஃப்ளெக்ஸ்"
 #: bottles/frontend/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
 msgstr ""
+"என்விடியா ரிஃப்ளெக்ஸுக்கு மாற்று. சில ஏமாற்று எதிர்ப்பு மருந்துகளால் கண்டறிய "
+"முடியும்."
 
 #: bottles/frontend/ui/details-preferences.ui:128
 msgid "Discrete GPU"
-msgstr ""
+msgstr "தனி GPU"
 
 #: bottles/frontend/ui/details-preferences.ui:129
 msgid "Improves performance at the cost of increased power usage."
-msgstr ""
+msgstr "அதிகரித்த மின் பயன்பாட்டின் செலவில் செயல்திறனை மேம்படுத்துகிறது."
 
 #: bottles/frontend/ui/details-preferences.ui:140
 msgid "vkBasalt"
-msgstr ""
+msgstr "விகேபாசால்ட்டு"
 
 #: bottles/frontend/ui/details-preferences.ui:141
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
+"vkBasalt என்பது கேம்களின் காட்சி கிராபிக்ஸை மேம்படுத்த வல்கன் போஸ்ட் "
+"ப்ராசசிங் லேயர் ஆகும்."
 
 #: bottles/frontend/ui/details-preferences.ui:144
 msgid "Manage vkBasalt settings"
