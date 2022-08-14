@@ -20,7 +20,7 @@ import re
 import webbrowser
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw, Gdk
 
 from bottles.frontend.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.frontend.utils.common import open_doc_url
@@ -88,8 +88,10 @@ class BottleView(Adw.PreferencesPage):
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
     pop_run = Gtk.Template.Child()
-
     # endregion
+
+    content = Gdk.ContentFormats.new_for_gtype(Gdk.FileList)
+    target = Gtk.DropTarget(formats=content, actions=Gdk.DragAction.COPY)
 
     def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
@@ -98,6 +100,11 @@ class BottleView(Adw.PreferencesPage):
         self.window = details.window
         self.manager = details.window.manager
         self.config = config
+
+        self.target.connect('drop', self.on_drop)
+        self.window.add_controller(self.target)
+        #self.target.connect('enter', on_enter)
+        #self.target.connect('leave', on_leave)
 
         self.btn_execute.connect("clicked", self.run_executable)
         self.btn_run_args.connect("clicked", self.__run_executable_with_args)
@@ -129,6 +136,34 @@ class BottleView(Adw.PreferencesPage):
             the documentation on how to expose directories
             '''
             self.btn_flatpak_doc.set_visible(True)
+
+        self.__update_latest_executables()
+
+    def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
+        files: List[Gio.File] = value.get_files()
+        args=""
+        # Loop through the files and print their names.
+        for file in files:
+            print(file.get_path())
+        file=files[0]
+        print(file.get_path())
+        print(file.get_basename())
+        executor = WineExecutor(
+            self.config,
+            exec_path=file.get_path(),
+            args=args,
+            terminal=self.check_terminal.get_active(),
+        )
+        RunAsync(executor.run, self.do_update_programs)
+        self.manager.update_config(
+            config=self.config,
+            key="Latest_Executables",
+            value=_execs + [{
+                "name": file.get_basename().split("/")[-1],
+                "file": file.get_path(),
+                "args": args
+            }]
+        )
 
         self.__update_latest_executables()
 
@@ -215,9 +250,10 @@ class BottleView(Adw.PreferencesPage):
         else:
             show_chooser()
 
+    def do_update_programs(result, error=False):
+        self.window.page_details.update_programs()
+
     def __execute(self, _dialog, response, file_dialog, args=""):
-        def do_update_programs(result, error=False):
-            self.window.page_details.update_programs()
 
         if response == -3:
             _execs = self.config.get("Latest_Executables", [])
@@ -230,7 +266,7 @@ class BottleView(Adw.PreferencesPage):
                 args=args,
                 terminal=self.check_terminal.get_active(),
             )
-            RunAsync(executor.run, do_update_programs)
+            RunAsync(executor.run, self.do_update_programs)
             self.manager.update_config(
                 config=self.config,
                 key="Latest_Executables",
