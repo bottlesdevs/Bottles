@@ -75,8 +75,8 @@ script:
   - cd ./build && ninja install && cd ../../ && rm -rf ./libadwaita && unset DESTDIR
   
   # Fetch appimage_module_patcher.sh
-  - wget https://gist.githubusercontent.com/azubieta/202c85f1f5a9e5c6be5cb066fcb2d5e2/raw/40f04063fa5fff21310ba075922295b09dd84bee/appimage_module_patcher.sh
-  - cp appimage_module_patcher.sh AppDir/usr/bin/appimage_module_patcher
+  - wget -q https://gist.githubusercontent.com/cat-master21/96a5f5f41b1db0202b208519badfcfcd/raw/0a2ffc81b5391923ea02afa2c36c73c74f05f1fb/appimage_module_patcher.sh
+  - cp appimage_module_patcher.sh /home/runner/work/Bottles/Bottles/AppDir/usr/bin/appimage_module_patcher
   - chmod +x AppDir/usr/bin/appimage_module_patcher
   
 AppDir:
@@ -88,10 +88,9 @@ AppDir:
     icon: com.usebottles.bottles
     version: 2022.7.28-brescia-2
     
-    # Set the python executable as entry point
-    exec: usr/bin/python3.10
+    exec: bin/bash
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
-    exec_args: "--bind / / --dev /dev --ro-bind $APPDIR/usr/lib/ /usr/lib --ro-bind $APPDIR/lib/ /lib $APPDIR/bin/AppRun $@"
+    exec_args: AppRun "$@"
 
   apt:
     arch: [amd64, i386]
@@ -148,8 +147,6 @@ AppDir:
       - icoextract
 #      - libc-bin
       - libc-bin:i386
-      - base-files
-      - libgl1-mesa-dri
 
     exclude:
       - humanity-icon-theme
@@ -160,7 +157,6 @@ AppDir:
     # rm -rf $APPDIR/usr/share/man
     # mkdir -p $APPDIR/usr/local/lib/p7zip/
     # ln -s $APPDIR/usr/lib/p7zip/ $APPDIR/usr/local/lib/p7zip/
-    AppDir/usr/bin/appimage_module_patcher $APPDIR/usr/bin/*
 
   files:
     include:
