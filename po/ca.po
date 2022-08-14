@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 12:08+0200\n"
+"POT-Creation-Date: 2022-08-07 23:12+0200\n"
 "PO-Revision-Date: 2022-07-04 17:16+0000\n"
 "Last-Translator: Roger VC <rogervilarasau@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -19,19 +19,3076 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.13.1-dev\n"
 
-#: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:165
-#: src/ui/list.ui:54 src/ui/window.ui:56 src/ui/window.ui:73
+#: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
+#: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
+msgid "No path specified"
+msgstr "No s'ha especificat cap camí"
+
+#: bottles/backend/managers/backup.py:71 src/backend/managers/backup.py:71
+#, python-brace-format
+msgid "Backup {0}"
+msgstr "Còpia de seguretat {0}"
+
+#: bottles/backend/managers/backup.py:124 src/backend/managers/backup.py:124
+#, python-brace-format
+msgid "Importing backup: {0}"
+msgstr "S'està important la còpia de seguretat: {0}"
+
+#: bottles/backend/managers/manager.py:1030
+#: src/backend/managers/manager.py:1030
+msgid "Fail to install components, tried 3 times."
+msgstr "No s'ha pogut instal·lar els components, s'ha intentat 3 vegades."
+
+#: bottles/backend/managers/manager.py:1041
+#: src/backend/managers/manager.py:1041
+msgid "Missing essential components. Installing…"
+msgstr "Falten components essencials. S'està instal·lant…"
+
+#: bottles/backend/managers/manager.py:1117
+#: src/backend/managers/manager.py:1117
+msgid "Failed to create bottle directory."
+msgstr "No s'ha pogut crear el directori d'ampolles."
+
+#: bottles/backend/managers/manager.py:1129
+#: src/backend/managers/manager.py:1129
+msgid "Failed to create placeholder directory/file."
+msgstr "No s'ha pogut crear el directori/fitxer de marcador de posició."
+
+#: bottles/backend/managers/manager.py:1134
+#: src/backend/managers/manager.py:1134
+msgid "Generating bottle configuration…"
+msgstr "S'està generant la configuració de l'ampolla…"
+
+#: bottles/backend/managers/manager.py:1157
+#: src/backend/managers/manager.py:1157
+msgid "Template found, applying…"
+msgstr "S'ha trobat una plantilla, s'està aplicant…"
+
+#. execute wineboot on the bottle path
+#: bottles/backend/managers/manager.py:1169
+#: src/backend/managers/manager.py:1169
+msgid "The Wine config is being updated…"
+msgstr "S'està actualitzant la configuració de Wine…"
+
+#: bottles/backend/managers/manager.py:1171
+#: src/backend/managers/manager.py:1171
+msgid "Wine config updated!"
+msgstr "Configuració de Wine actualitzada!"
+
+#: bottles/backend/managers/manager.py:1179
+#: src/backend/managers/manager.py:1179
+msgid "Running as Flatpak, sandboxing userdir…"
+msgstr "S'està executant com Flatpak, aïllant el directori d'usuari…"
+
+#: bottles/backend/managers/manager.py:1181
+#: src/backend/managers/manager.py:1181
+msgid "Sandboxing userdir…"
+msgstr "Aïllant el directori d'usuari…"
+
+#: bottles/backend/managers/manager.py:1211
+#: src/backend/managers/manager.py:1197
+msgid "Setting Windows version…"
+msgstr "S’està configurant la versió del Windows…"
+
+#: bottles/backend/managers/manager.py:1221
+#: src/backend/managers/manager.py:1207
+msgid "Apply CMD default settings…"
+msgstr "Aplica els paràmetres per defecte de CMD…"
+
+#: bottles/backend/managers/manager.py:1229
+#: src/backend/managers/manager.py:1215
+msgid "Optimizing environment…"
+msgstr "S'està optimitzant l'entorn…"
+
+#: bottles/backend/managers/manager.py:1240
+#: src/backend/managers/manager.py:1226
+#, python-brace-format
+msgid "Applying environment: {0}…"
+msgstr "Aplicant l'entorn: {0}…"
+
+#: bottles/backend/managers/manager.py:1250
+#: src/backend/managers/manager.py:1236
+msgid "(!) Using a custom environment recipe…"
+msgstr "(!) Utilitzant una recepta d'entorn personalitzada…"
+
+#: bottles/backend/managers/manager.py:1253
+#: src/backend/managers/manager.py:1239
+msgid "(!) Recipe not not found or not valid…"
+msgstr "(!) No s'ha trobat la recepta o no és vàlida…"
+
+#: bottles/backend/managers/manager.py:1270
+#: src/backend/managers/manager.py:1256
+msgid "Installing DXVK…"
+msgstr "S'està instal·lant DXVK…"
+
+#: bottles/backend/managers/manager.py:1278
+#: src/backend/managers/manager.py:1264
+msgid "Installing VKD3D…"
+msgstr "S'està instal·lant VKD3D…"
+
+#: bottles/backend/managers/manager.py:1286
+#: src/backend/managers/manager.py:1272
+msgid "Installing DXVK-NVAPI…"
+msgstr "S'està instal·lant DXVK-NVAPI…"
+
+#: bottles/backend/managers/manager.py:1295
+#: src/backend/managers/manager.py:1281
+#, python-format
+msgid "Installing dependency: %s …"
+msgstr "S'està instal·lant la dependència: %s …"
+
+#: bottles/backend/managers/manager.py:1311
+#: src/backend/managers/manager.py:1297
+msgid "Creating versioning state 0…"
+msgstr "S'està creant l'estat de versionat 0…"
+
+#: bottles/backend/managers/manager.py:1319
+#: src/backend/managers/manager.py:1305
+msgid "Finalizing…"
+msgstr "S'està finalitzant…"
+
+#: bottles/backend/managers/manager.py:1330
+#: src/backend/managers/manager.py:1316
+msgid "Caching template…"
+msgstr "S’està emmagatzemant la plantilla en memòria cau…"
+
+#: bottles/backend/managers/versioning.py:97
+#: src/backend/managers/versioning.py:97
+#, fuzzy
+msgid "Committing state …"
+msgstr "S'estan actualitzant els estats…"
+
+#: bottles/backend/managers/versioning.py:106
+#: src/backend/managers/versioning.py:106
+msgid "Nothing to commit"
+msgstr ""
+
+#: bottles/backend/managers/versioning.py:112
+#: src/backend/managers/versioning.py:112
+#, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "Nou estat [{0}] creat correctament!"
+
+#: src/backend/managers/versioning.py:140
+msgid "States list retrieved successfully!"
+msgstr "La llista d'estats s'ha recuperat correctament!"
+
+#: src/backend/managers/versioning.py:171
+#, python-brace-format
+msgid "State {0} restored successfully!"
+msgstr "L'estat {0} s'ha restaurat correctament!"
+
+#: src/backend/managers/versioning.py:176
+msgid "Restoring state {} …"
+msgstr "S'està restaurant l'estat {}…"
+
+#: src/backend/managers/versioning.py:185
+msgid "State not found"
+msgstr "Estat no trobat"
+
+#: bottles/backend/managers/versioning.py:191
+#: src/backend/managers/versioning.py:191
+msgid "State {} is already the active state"
+msgstr ""
+
+#: bottles/frontend/windows/crash.py:37 src/dialogs/crash.py:37
+msgid "Show report"
+msgstr "Mostra l'informe"
+
+#: bottles/frontend/windows/crash.py:88 src/dialogs/crash.py:88
+msgid ""
+"            This issue was reported 5 times and cannot be sent again.\n"
+"            Report your feedback in one of the below existing reports."
+msgstr ""
+"            Aquest problema s'ha informat 5 vegades i no es pot tornar a "
+"enviar.\n"
+"            Informeu els vostres comentaris en un dels informes existents a "
+"continuació."
+
+#: bottles/frontend/windows/dlloverrides.py:136 src/dialogs/dlloverrides.py:136
+msgid "No overrides found."
+msgstr "No s'han trobat substitucions."
+
+#: bottles/frontend/windows/drives.py:71 src/dialogs/drives.py:71
+msgid "Choose path"
+msgstr "Trieu el camí"
+
+#: bottles/frontend/windows/drives.py:73
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:234
+#: bottles/frontend/windows/launchoptions.py:258
+#: bottles/frontend/windows/vkbasalt.py:355
+#: bottles/frontend/ui/dialog-bottle-picker.ui:17
+#: bottles/frontend/ui/dialog-crash-report.ui:18
+#: bottles/frontend/ui/dialog-proton-alert.ui:17
+#: bottles/frontend/ui/dialog-rename.ui:17
+#: bottles/frontend/ui/dialog-run-args.ui:19 bottles/frontend/ui/new.ui:33
+#: bottles/frontend/views/bottle_details.py:202
+#: bottles/frontend/views/bottle_details.py:296
+#: bottles/frontend/views/bottle_details.py:335
+#: bottles/frontend/views/bottle_details.py:414
+#: bottles/frontend/views/bottle_preferences.py:276
+#: bottles/frontend/views/bottle_preferences.py:775
+#: bottles/frontend/views/bottle_programs.py:92
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146 bottles/frontend/views/list.py:120
+#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
+#: bottles/frontend/views/preferences.py:158 src/dialogs/drives.py:73
+#: src/dialogs/filechooser.py:63 src/dialogs/installer.py:66
+#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
+#: src/ui/dialog-bottle-picker.ui:17 src/ui/dialog-crash-report.ui:18
+#: src/ui/dialog-proton-alert.ui:17 src/ui/dialog-rename.ui:17
+#: src/ui/dialog-run-args.ui:19 src/ui/new.ui:33
+#: src/views/bottle_details.py:202 src/views/bottle_details.py:296
+#: src/views/bottle_details.py:335 src/views/bottle_details.py:414
+#: src/views/bottle_preferences.py:260 src/views/bottle_preferences.py:744
+#: src/views/bottle_programs.py:89 src/views/importer.py:117
+#: src/views/importer.py:146 src/views/list.py:120 src/views/new.py:144
+#: src/views/new.py:160 src/views/preferences.py:195
+msgid "Cancel"
+msgstr "Cancel·lar"
+
+#: bottles/frontend/windows/drives.py:73
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:234
+#: bottles/frontend/windows/launchoptions.py:258
+#: bottles/frontend/ui/dialog-bottle-picker.ui:22
+#: bottles/frontend/views/bottle_preferences.py:276
+#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
+#: bottles/frontend/views/preferences.py:158 src/dialogs/drives.py:73
+#: src/dialogs/installer.py:66 src/dialogs/launchoptions.py:234
+#: src/dialogs/launchoptions.py:258 src/ui/dialog-bottle-picker.ui:22
+#: src/views/bottle_preferences.py:260 src/views/new.py:144
+#: src/views/new.py:160 src/views/preferences.py:195
+msgid "Select"
+msgstr "Seleccioneu"
+
+#: bottles/frontend/windows/envvars.py:131 src/dialogs/envvars.py:131
+msgid "No environment variables defined."
+msgstr "No s'han definit variables d'entorn"
+
+#: src/dialogs/exclusionpatterns.py:108
+msgid "No exclusion patterns defined."
+msgstr "No s'han definit patrons d'exclusió."
+
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/ui/dialog-gamescope.ui:34
+#: bottles/frontend/ui/dialog-launch-options.ui:35
+#: bottles/frontend/ui/dialog-rename.ui:22
+#: bottles/frontend/ui/dialog-vkbasalt.ui:38 src/dialogs/filechooser.py:63
+#: src/ui/dialog-gamescope.ui:34 src/ui/dialog-launch-options.ui:35
+#: src/ui/dialog-rename.ui:22
+msgid "Save"
+msgstr "Desar"
+
+#: bottles/frontend/windows/generic.py:24 src/dialogs/generic.py:24
+msgid "An error has occurred."
+msgstr "S'ha produït un error."
+
+#: bottles/frontend/windows/generic.py:91
+#: bottles/frontend/windows/generic.py:137
+#: bottles/frontend/windows/generic.py:182 src/dialogs/generic.py:91
+#: src/dialogs/generic.py:137 src/dialogs/generic.py:182
+msgid "Copy to clipboard"
+msgstr "Copiar al portapapers"
+
+#: bottles/frontend/windows/installer.py:64 src/dialogs/installer.py:64
+msgid "Select Resource FIle"
+msgstr "Seleccioneu el fitxer de recursos"
+
+#: src/dialogs/installer.py:115
+msgid "Installing Windows dependencies…"
+msgstr "S'estan instal·lant dependències de Windows…"
+
+#: bottles/frontend/windows/installer.py:116 src/dialogs/installer.py:116
+msgid "Configuring the bottle…"
+msgstr ""
+
+#: bottles/frontend/windows/installer.py:117 src/dialogs/installer.py:117
+msgid "Processing installer steps…"
+msgstr ""
+
+#: src/dialogs/installer.py:118
+msgid "Installing the {}…"
+msgstr "S'està instal·lant el {}…"
+
+#: bottles/frontend/windows/installer.py:119 src/dialogs/installer.py:119
+msgid "Performing final checks…"
+msgstr ""
+
+#: src/dialogs/installer.py:123
+#, python-brace-format
+msgid "Installing {0}…"
+msgstr "S'està instal·lant {0}…"
+
+#: bottles/frontend/windows/installer.py:125 src/dialogs/installer.py:125
+#, python-brace-format
+msgid "{0} is now available in the programs view."
+msgstr ""
+
+#: bottles/frontend/windows/installer.py:171 src/dialogs/installer.py:171
+msgid "Installer failed with unknown error"
+msgstr "L'instal·lador ha fallat amb un error desconegut"
+
+#. endregion
+#: bottles/frontend/windows/launchoptions.py:56
+#: bottles/frontend/ui/dialog-launch-options.ui:59
+#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
+msgid "Choose a script which should be executed after run."
+msgstr "Trieu un script que s'hagi d'executar després de l'execució."
+
+#: bottles/frontend/windows/launchoptions.py:57
+#: bottles/frontend/ui/dialog-launch-options.ui:92
+#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
+msgid "Choose from where start the program."
+msgstr "Trieu des d'on començar el programa."
+
+#: bottles/frontend/windows/launchoptions.py:58 src/dialogs/launchoptions.py:58
+#, python-brace-format
+msgid "{0} is already disabled for this bottle."
+msgstr "{0} ja està desactivat per a aquesta ampolla."
+
+#: bottles/frontend/windows/launchoptions.py:59 src/dialogs/launchoptions.py:59
+msgid "This setting is different from the bottle's default."
+msgstr "Aquest paràmetre és diferent del valor per defecte de l’ampolla."
+
+#: bottles/frontend/windows/launchoptions.py:232
+#: src/dialogs/launchoptions.py:232
+msgid "Choose the script"
+msgstr "Trieu l'script"
+
+#: bottles/frontend/windows/launchoptions.py:256
+#: src/dialogs/launchoptions.py:256
+msgid "Choose the Working Directory"
+msgstr "Trieu el directori de treball"
+
+#: bottles/frontend/windows/vkbasalt.py:84
+#: bottles/frontend/ui/dialog-vkbasalt.ui:420
+#, fuzzy
+msgid "Choose a file."
+msgstr "Trieu un fitxer de receptes"
+
+#: bottles/frontend/windows/vkbasalt.py:306
+#, fuzzy
+msgid "File not Found"
+msgstr "No s’ha trobat cap estat"
+
+#: bottles/frontend/windows/vkbasalt.py:307
+msgid "The given file does not exist. Please choose an appropriate file."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:330
+msgid "Spaces in File Name"
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:331
+msgid ""
+"Color Lookup Table path must not contain any spaces. Please rename the file "
+"to remove all spaces."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:339
+msgid "Invalid Image Dimension"
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:340
+msgid "Height and width of the image must be equal."
+msgstr ""
+
+#: bottles/frontend/windows/vkbasalt.py:353
+#: bottles/frontend/views/importer.py:144 src/views/importer.py:144
+msgid "Choose a configuration file"
+msgstr "Trieu un fitxer de configuració"
+
+#: bottles/frontend/windows/vkbasalt.py:355
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146 src/views/importer.py:117
+#: src/views/importer.py:146
+msgid "Import"
+msgstr "Importar"
+
+#: bottles/frontend/main.py:105 src/main.py:105
+msgid "Show version"
+msgstr "Mostra la versió"
+
+#: bottles/frontend/main.py:113 src/main.py:113
+msgid "Executable path"
+msgstr "Camí executable"
+
+#: bottles/frontend/main.py:121 src/main.py:121
+msgid "lnk path"
+msgstr "camí lnk"
+
+#: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.ui:103
+#: bottles/frontend/ui/list-entry.ui:7 src/main.py:129
+#: src/ui/library-entry.ui:103 src/ui/list-entry.ui:7
+msgid "Bottle name"
+msgstr "Nom de l'ampolla"
+
+#: bottles/frontend/main.py:137 src/main.py:137
+msgid "Pass arguments"
+msgstr "Passar arguments"
+
+#: bottles/frontend/main.py:196 src/main.py:196
+msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
+msgstr "URI no vàlid (sintaxi: bottles:run/<bottle>/<program>)"
+
+#: bottles/frontend/main.py:237 src/main.py:237
+msgid "[Quit] request received."
+msgstr "S'ha rebut la sol·licitud [Surt]."
+
+#: bottles/frontend/main.py:246 src/main.py:246
+msgid "[Help] request received."
+msgstr "S'ha rebut la sol·licitud d'[Ajuda]."
+
+#: bottles/frontend/main.py:254 src/main.py:254
+msgid "[Refresh] request received."
+msgstr "S'ha rebut la sol·licitud [Actualització]."
+
+#: bottles/frontend/operation.py:50 src/operation.py:50
+msgid "Calculating…"
+msgstr "S'està calculant…"
+
+#: bottles/frontend/ui/about.ui:8 src/ui/about.ui:8
+msgid "© 2017-2022 - Bottles Developers"
+msgstr "© 2017-2022 - Desenvolupadors de Bottles"
+
+#: bottles/frontend/ui/about.ui:9 src/ui/about.ui:9
+msgid "Easily manage wineprefix using environments"
+msgstr "Gestioneu fàcilment wineprefix mitjançant entorns"
+
+#: bottles/frontend/ui/component-entry.ui:6 src/ui/component-entry.ui:6
+msgid "Component version"
+msgstr "Versió del component"
+
+#: bottles/frontend/ui/component-entry.ui:15
+#: bottles/frontend/ui/dependency-entry.ui:34
+#: bottles/frontend/ui/program-entry.ui:92 src/ui/component-entry.ui:15
+#: src/ui/dependency-entry.ui:34 src/ui/program-entry.ui:92
+msgid "Uninstall"
+msgstr "Desinstal·lar"
+
+#: bottles/frontend/ui/component-entry.ui:26
+#: bottles/frontend/ui/importer-entry.ui:15 src/ui/component-entry.ui:26
+#: src/ui/importer-entry.ui:15
+msgid "Browse files"
+msgstr "Exploreu els fitxers"
+
+#: bottles/frontend/ui/component-entry.ui:37 src/ui/component-entry.ui:37
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch. Press to try again."
+msgstr ""
+"La instal·lació ha fallat. Això pot ser degut a un error del repositori, una "
+"descàrrega parcial o una falta de coincidència de la suma de verificació. "
+"Premeu per tornar-ho a provar."
+
+#: bottles/frontend/ui/component-entry.ui:48 src/ui/component-entry.ui:48
+msgid "Download & Install"
+msgstr "Baixar i instal·lar"
+
+#: bottles/frontend/ui/component-entry.ui:61 src/ui/component-entry.ui:61
+msgid "0%"
+msgstr "0%"
+
+#: bottles/frontend/ui/dependency-entry.ui:18 src/ui/dependency-entry.ui:18
+msgid "Show Manifest"
+msgstr "Mostra el manifest"
+
+#: bottles/frontend/ui/dependency-entry.ui:23 src/ui/dependency-entry.ui:23
+msgid "License"
+msgstr "Llicencia"
+
+#: bottles/frontend/ui/dependency-entry.ui:28 src/ui/dependency-entry.ui:28
+msgid "Reinstall"
+msgstr "Reinstal·lar"
+
+#: bottles/frontend/ui/dependency-entry.ui:43
+#: bottles/frontend/ui/installer-entry.ui:32 src/ui/dependency-entry.ui:43
+#: src/ui/installer-entry.ui:32
+msgid "Report a Bug…"
+msgstr "Informa d'un error…"
+
+#: src/ui/dependency-entry.ui:50
+msgid "Dependency name"
+msgstr "Nom de la dependència"
+
+#: src/ui/dependency-entry.ui:52
+msgid "Dependency description"
+msgstr "Descripció de la dependència"
+
+#: src/ui/dependency-entry.ui:59
+msgid "Category"
+msgstr "Categoria"
+
+#: bottles/frontend/ui/dependency-entry.ui:73 src/ui/dependency-entry.ui:73
+msgid "Download & Install this dependency"
+msgstr "Baixar i instal·lar aquesta dependència"
+
+#: bottles/frontend/ui/dependency-entry.ui:89 src/ui/dependency-entry.ui:89
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+"S'ha produït un error d'instal·lació. Reinicieu Bottles per llegir l'informe "
+"d'error o executeu-lo mitjançant el terminal per llegir la sortida."
+
+#: bottles/frontend/ui/details-bottle.ui:18 src/ui/details-bottle.ui:18
+msgid "Troubleshooting"
+msgstr "Resolució de problemes"
+
+#: bottles/frontend/ui/details-bottle.ui:26 src/ui/details-bottle.ui:26
+msgid "Browse Files…"
+msgstr "Navega pels fitxers…"
+
+#: bottles/frontend/ui/details-bottle.ui:31 src/ui/details-bottle.ui:31
+msgid "Duplicate Bottle…"
+msgstr "Duplicar l'ampolla…"
+
+#: bottles/frontend/ui/details-bottle.ui:36 bottles/frontend/ui/importer.ui:86
+#: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr ""
+"Aquest és l'arxiu complet de la vostra ampolla, inclosos els fitxers "
+"personals."
+
+#: bottles/frontend/ui/details-bottle.ui:37 src/ui/details-bottle.ui:37
+msgid "Full Backup…"
+msgstr "Còpia de seguretat completa…"
+
+#: bottles/frontend/ui/details-bottle.ui:42 bottles/frontend/ui/importer.ui:80
+#: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Aquesta és només la configuració de l'ampolla, és perfecta si en voleu crear-"
+"ne una de nova però sense fitxers personals."
+
+#: bottles/frontend/ui/details-bottle.ui:43 src/ui/details-bottle.ui:43
+msgid "Export Configuration…"
+msgstr "Exportar la configuració…"
+
+#: bottles/frontend/ui/details-bottle.ui:51 src/ui/details-bottle.ui:51
+msgid "Delete Bottle…"
+msgstr "Suprimeix l'ampolla…"
+
+#: bottles/frontend/ui/details-bottle.ui:86 src/ui/details-bottle.ui:86
+msgid "Kill all Processes"
+msgstr "Mata tots els processos"
+
+#: bottles/frontend/ui/details-bottle.ui:91 src/ui/details-bottle.ui:91
+msgid "Simulate a Windows system shutdown."
+msgstr "Simula un tancament del sistema Windows."
+
+#: bottles/frontend/ui/details-bottle.ui:92 src/ui/details-bottle.ui:92
+msgid "Shutdown"
+msgstr "Tancar"
+
+#: bottles/frontend/ui/details-bottle.ui:97 src/ui/details-bottle.ui:97
+msgid "Simulate a Windows system reboot."
+msgstr "Simula un reinici del sistema Windows."
+
+#: bottles/frontend/ui/details-bottle.ui:98 src/ui/details-bottle.ui:98
+msgid "Reboot"
+msgstr "Reiniciar"
+
+#: bottles/frontend/ui/details-bottle.ui:121 src/ui/details-bottle.ui:121
+msgid "Run with Arguments…"
+msgstr "Corre amb arguments…"
+
+#: bottles/frontend/ui/details-bottle.ui:126 src/ui/details-bottle.ui:126
+msgid "Launch in Terminal…"
+msgstr "Llançament a la terminal…"
+
+#: bottles/frontend/ui/details-bottle.ui:157 src/ui/details-bottle.ui:157
+msgid "My bottle"
+msgstr "La meva ampolla"
+
+#: bottles/frontend/ui/details-bottle.ui:169 src/ui/details-bottle.ui:169
+msgid "Win64"
+msgstr "Win64"
+
+#: bottles/frontend/ui/details-bottle.ui:177
+#: bottles/frontend/ui/list-entry.ui:14 bottles/frontend/ui/new.ui:77
+#: src/ui/details-bottle.ui:177 src/ui/list-entry.ui:14 src/ui/new.ui:77
+msgid "Environment"
+msgstr "Entorn"
+
+#: bottles/frontend/ui/details-bottle.ui:185
+#: bottles/frontend/ui/details-preferences.ui:314
+#: bottles/frontend/ui/new.ui:129 src/ui/details-bottle.ui:185
+#: src/ui/details-preferences.ui:304 src/ui/new.ui:129
+msgid "Runner"
+msgstr "Corredor"
+
+#: bottles/frontend/ui/details-bottle.ui:193
+#: bottles/frontend/ui/list-entry.ui:23 src/ui/details-bottle.ui:193
+#: src/ui/list-entry.ui:23
+msgid "Versioning enabled for this bottle"
+msgstr "Versions activades per a aquesta ampolla"
+
+#: bottles/frontend/ui/details-bottle.ui:198
+#: bottles/frontend/ui/list-entry.ui:28 src/ui/details-bottle.ui:198
+#: src/ui/list-entry.ui:28
+msgid "Versioning is active in this bottle."
+msgstr "El versionat està actiu en aquesta ampolla."
+
+#: bottles/frontend/ui/details-bottle.ui:208
+#: bottles/frontend/ui/list-entry.ui:34 src/ui/details-bottle.ui:208
+#: src/ui/list-entry.ui:34
+msgid "0"
+msgstr "0"
+
+#: bottles/frontend/ui/details-bottle.ui:219 src/ui/details-bottle.ui:219
+msgid "Run Executable…"
+msgstr "Executar executable…"
+
+#: bottles/frontend/ui/details-bottle.ui:235 src/ui/details-bottle.ui:235
+msgid "Layers"
+msgstr "Capes"
+
+#: bottles/frontend/ui/details-bottle.ui:241
+#: bottles/frontend/views/details.py:166 src/ui/details-bottle.ui:241
+#: src/views/details.py:166
+msgid "Programs"
+msgstr "Programes"
+
+#: bottles/frontend/ui/details-bottle.ui:246 src/ui/details-bottle.ui:246
+msgid "Tools"
+msgstr "Eines"
+
+#: bottles/frontend/ui/details-bottle.ui:250 src/ui/details-bottle.ui:250
+msgid "Command Line"
+msgstr "Línia d'ordres"
+
+#: bottles/frontend/ui/details-bottle.ui:251 src/ui/details-bottle.ui:251
+msgid "Run commands inside the Bottle."
+msgstr "Executeu ordres dins de l'ampolla."
+
+#: bottles/frontend/ui/details-bottle.ui:262 src/ui/details-bottle.ui:262
+msgid "Registry Editor"
+msgstr "Editor del registre"
+
+#: bottles/frontend/ui/details-bottle.ui:263 src/ui/details-bottle.ui:263
+msgid "Edit the internal registry."
+msgstr "Editeu el registre intern."
+
+#: bottles/frontend/ui/details-bottle.ui:273 src/ui/details-bottle.ui:273
+msgid "Legacy Tools"
+msgstr "Eines heretades"
+
+#: bottles/frontend/ui/details-bottle.ui:277 src/ui/details-bottle.ui:277
+msgid "Explorer"
+msgstr "Explorador"
+
+#: bottles/frontend/ui/details-bottle.ui:278 src/ui/details-bottle.ui:278
+msgid "Browse internal files with the Wine explorer."
+msgstr "Exploreu el fitxers interns amb l'explorador de Wine."
+
+#: bottles/frontend/ui/details-bottle.ui:289
+#: bottles/frontend/views/details.py:178 src/ui/details-bottle.ui:289
+#: src/views/details.py:178
+msgid "Task Manager"
+msgstr "Gestor de Tasques"
+
+#: bottles/frontend/ui/details-bottle.ui:290 src/ui/details-bottle.ui:290
+msgid "Manage processes with the Wine task manager."
+msgstr "Gestioneu processos amb el gestor de tasques de Wine."
+
+#: bottles/frontend/ui/details-bottle.ui:301 src/ui/details-bottle.ui:301
+msgid "Debug"
+msgstr "Depurar"
+
+#: bottles/frontend/ui/details-bottle.ui:302 src/ui/details-bottle.ui:302
+msgid "Debug wine processes."
+msgstr "Depurar els processos de Wine."
+
+#: bottles/frontend/ui/details-bottle.ui:313 src/ui/details-bottle.ui:313
+msgid "Wine Configuration"
+msgstr "Configuració de Wine"
+
+#: bottles/frontend/ui/details-bottle.ui:314 src/ui/details-bottle.ui:314
+msgid "Adjust internal settings."
+msgstr "Ajusta els paràmetres interns."
+
+#: bottles/frontend/ui/details-bottle.ui:325 src/ui/details-bottle.ui:325
+msgid "Uninstaller"
+msgstr "Desinstal·lador"
+
+#: bottles/frontend/ui/details-bottle.ui:326 src/ui/details-bottle.ui:326
+msgid "Uninstall programs using Wine uninstaller."
+msgstr "Desinstal·leu programes amb el desinstal·lador de Wine."
+
+#: bottles/frontend/ui/details-bottle.ui:337 src/ui/details-bottle.ui:337
+msgid "Control Panel"
+msgstr "Tauler de control"
+
+#: bottles/frontend/ui/details-bottle.ui:338 src/ui/details-bottle.ui:338
+msgid "Access the internal Wine Control Panel."
+msgstr "Accediu al Tauler de control intern del Wine."
+
+#: bottles/frontend/ui/details-bottle.ui:357 src/ui/details-bottle.ui:357
+msgid "Use the Installers section or the \"Run executable\" button."
+msgstr "Utilitzeu la secció Instal·ladors o el botó \"Iniciar executable\"."
+
+#: bottles/frontend/ui/details-dependencies.ui:13
+#: src/ui/details-dependencies.ui:13
+msgid "Search for dependencies…"
+msgstr "Cercar dependències…"
+
+#: bottles/frontend/ui/details-dependencies.ui:22
+#: src/ui/details-dependencies.ui:22
+msgid ""
+"Dependencies are software, libraries and codecs that improve the "
+"compatibility of Windows software. Install from here to meet your program "
+"requirements."
+msgstr ""
+"Les dependències són programari, biblioteques i còdecs que milloren la "
+"compatibilitat del programari de Windows. Instal·leu des d'aquí per satisfer "
+"els requisits del vostre programa."
+
+#: bottles/frontend/ui/details-dependencies.ui:34
+#: bottles/frontend/ui/details-installers.ui:33
+#: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
+msgid ""
+"Files on this page are provided by third parties under a proprietary "
+"license. By installing them, you agree with their respective licensing terms."
+msgstr ""
+"Els fitxers d’aquesta pàgina són proporcionats per tercers sota una "
+"llicència de propietat. En instal·lar-los, n’esteu d’acord amb els termes de "
+"llicència."
+
+#: bottles/frontend/ui/details-dependencies.ui:62
+#: src/ui/details-dependencies.ui:62
+msgid "Report a problem or a missing dependency."
+msgstr "Informar d'un problema o d'una dependència que falta."
+
+#: bottles/frontend/ui/details-dependencies.ui:63
+#: src/ui/details-dependencies.ui:63
+msgid "Report missing dependency"
+msgstr "Informar d'una dependència que falta"
+
+#: src/ui/details-dependencies.ui:68
+msgid "Read documentation."
+msgstr "Llegir documentació."
+
+#: bottles/frontend/ui/details-dependencies.ui:69
+#: bottles/frontend/ui/details-installers.ui:71
+#: bottles/frontend/ui/details-programs.ui:45
+#: bottles/frontend/ui/details-versioning.ui:44
+#: bottles/frontend/ui/window.ui:38 src/ui/details-dependencies.ui:69
+#: src/ui/details-installers.ui:71 src/ui/details-programs.ui:45
+#: src/ui/details-versioning.ui:44 src/ui/window.ui:38
+msgid "Documentation"
+msgstr "Documentació"
+
+#: bottles/frontend/ui/details-dependencies.ui:80
+#: src/ui/details-dependencies.ui:80
+msgid "Install Selected"
+msgstr "Instal·lar seleccionats"
+
+#: bottles/frontend/ui/details-dependencies.ui:81
+#: src/ui/details-dependencies.ui:81
+msgid "We strongly advise against installing multiple dependencies at once."
+msgstr ""
+"Desaconsellem fermament la instal·lació de diverses dependències alhora."
+
+#: bottles/frontend/ui/details-dependencies.ui:88
+#: src/ui/details-dependencies.ui:88
+msgid "Select Dependencies"
+msgstr "Seleccionar dependències"
+
+#: bottles/frontend/ui/details-dependencies.ui:95
+#: bottles/frontend/ui/details-installers.ui:82
+#: bottles/frontend/ui/window.ui:86 src/ui/details-dependencies.ui:95
+#: src/ui/details-installers.ui:82 src/ui/window.ui:86
+msgid "Search"
+msgstr "Cercar"
+
+#: bottles/frontend/ui/details-installers.ui:13 src/ui/details-installers.ui:13
+msgid "Search for Programs…"
+msgstr "Cercar programes…"
+
+#: src/ui/details-installers.ui:22
+msgid ""
+"Use this section to install programs curated by our community, without "
+"having to proceed manually."
+msgstr ""
+"Utilitzeu aquesta secció per instal·lar programes seleccionats per la nostra "
+"comunitat, sense haver de procedir manualment."
+
+#: bottles/frontend/ui/details-installers.ui:48 src/ui/details-installers.ui:48
+msgid "No Installers Found"
+msgstr "No s'han trobat instal·ladors"
+
+#: bottles/frontend/ui/details-installers.ui:51 src/ui/details-installers.ui:51
+msgid ""
+"The repository is unreachable or no installer is compatible with this bottle."
+msgstr ""
+"El repositori no és accessible o cap instal·lador és compatible amb aquesta "
+"ampolla."
+
+#: src/ui/details-installers.ui:70 src/ui/details-programs.ui:44
+#: src/ui/details-versioning.ui:43
+msgid "Read documentation"
+msgstr "Llegir documentació"
+
+#: bottles/frontend/ui/details-preferences.ui:8 src/ui/details-preferences.ui:8
+msgid "Bottle Details"
+msgstr "Detalls de l'ampolla"
+
+#: bottles/frontend/ui/details-preferences.ui:11
+#: bottles/frontend/ui/dialog-duplicate.ui:58 bottles/frontend/ui/new.ui:70
+#: src/ui/details-preferences.ui:11 src/ui/dialog-duplicate.ui:58
+#: src/ui/new.ui:70
+msgid "Name"
+msgstr "Nom"
+
+#: bottles/frontend/ui/details-preferences.ui:19
+#: src/ui/details-preferences.ui:19
+msgid "Graphics"
+msgstr "Gràfics"
+
+#: bottles/frontend/ui/details-preferences.ui:23
+#: bottles/frontend/ui/preferences.ui:213 src/ui/details-preferences.ui:23
+#: src/ui/preferences.ui:213
+msgid "DXVK"
+msgstr "DXVK"
+
+#: bottles/frontend/ui/details-preferences.ui:24
+#: src/ui/details-preferences.ui:24
+msgid "Improves performance of DirectX 11 games and 3D applications."
+msgstr "Millora el rendiment dels jocs DirectX 11 i de les aplicacions 3D."
+
+#: bottles/frontend/ui/details-preferences.ui:27
+#: bottles/frontend/ui/details-preferences.ui:338
+#: src/ui/details-preferences.ui:27 src/ui/details-preferences.ui:328
+msgid "Updating DXVK, please wait…"
+msgstr "S'està actualitzant DXVK, espereu…"
+
+#: bottles/frontend/ui/details-preferences.ui:42
+#: bottles/frontend/ui/preferences.ui:218 src/ui/details-preferences.ui:42
+#: src/ui/preferences.ui:218
+msgid "VKD3D"
+msgstr "VKD3D"
+
+#: bottles/frontend/ui/details-preferences.ui:43
+#: src/ui/details-preferences.ui:43
+msgid "Improves performance of DirectX 12 games and 3D applications."
+msgstr "Millora el rendiment dels jocs DirectX 12 i les aplicacions 3D."
+
+#: bottles/frontend/ui/details-preferences.ui:46
+#: bottles/frontend/ui/details-preferences.ui:361
+#: src/ui/details-preferences.ui:46 src/ui/details-preferences.ui:351
+msgid "Updating VKD3D, please wait…"
+msgstr "S'està actualitzant VKD3D, espereu…"
+
+#: bottles/frontend/ui/details-preferences.ui:61
+#: src/ui/details-preferences.ui:61
+msgid "DLSS (DXVK-NVAPI)"
+msgstr "DLSS (DXVK-NVAPI)"
+
+#: bottles/frontend/ui/details-preferences.ui:62
+#: src/ui/details-preferences.ui:62
+msgid "Provide DLSS support if available and Nvidia's NVAPI."
+msgstr "Proporciona suport DLSS si està disponible i NVAPI de Nvidia."
+
+#: bottles/frontend/ui/details-preferences.ui:65
+#: bottles/frontend/ui/details-preferences.ui:112
+#: bottles/frontend/ui/details-preferences.ui:385
+#: bottles/frontend/ui/details-preferences.ui:407
+#: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
+#: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
+msgid "Updating DXVK-NVAPI, please wait…"
+msgstr "S'està actualitzant DXVK-NVAPI, espereu…"
+
+#: bottles/frontend/ui/details-preferences.ui:80
+#: src/ui/details-preferences.ui:80
+msgid "FSR"
+msgstr "FSR"
+
+#: bottles/frontend/ui/details-preferences.ui:81
+#: src/ui/details-preferences.ui:81
+msgid ""
+"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
+msgstr ""
+"FSR utilitza tecnologies d'escalat d'avantguarda d'avantguarda per ajudar-"
+"vos a augmentar els fotogrames per segon."
+
+#: bottles/frontend/ui/details-preferences.ui:88
+#: src/ui/details-preferences.ui:88
+msgid "Ultra Quality"
+msgstr "Qualitat Ultra"
+
+#: bottles/frontend/ui/details-preferences.ui:89
+#: src/ui/details-preferences.ui:89
+msgid "Quality"
+msgstr "Qualitat"
+
+#: bottles/frontend/ui/details-preferences.ui:90
+#: src/ui/details-preferences.ui:90
+msgid "Balanced"
+msgstr "Equilibrat"
+
+#: bottles/frontend/ui/details-preferences.ui:91
+#: src/ui/details-preferences.ui:91
+msgid "Performance"
+msgstr "Rendiment"
+
+#: bottles/frontend/ui/details-preferences.ui:108
+#: bottles/frontend/ui/preferences.ui:228 src/ui/details-preferences.ui:108
+#: src/ui/preferences.ui:228
+msgid "LatencyFleX"
+msgstr "LatencyFleX"
+
+#: bottles/frontend/ui/details-preferences.ui:109
+#: src/ui/details-preferences.ui:109
+msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
+msgstr ""
+"Una alternativa a NVIDIA Reflex. Pot ser detectat per alguns anti-trampes."
+
+#: bottles/frontend/ui/details-preferences.ui:128
+#: src/ui/details-preferences.ui:128
+msgid "Discrete GPU"
+msgstr "GPU dedicada"
+
+#: bottles/frontend/ui/details-preferences.ui:129
+#: src/ui/details-preferences.ui:129
+msgid "Improves performance at the cost of increased power usage."
+msgstr "Millora el rendiment a costa d'un augment de l'ús d'energia."
+
+#: bottles/frontend/ui/details-preferences.ui:140
+#: src/ui/details-preferences.ui:140
+msgid "vkBasalt"
+msgstr "vkBasalt"
+
+#: bottles/frontend/ui/details-preferences.ui:141
+#: src/ui/details-preferences.ui:141
+msgid ""
+"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
+"games."
+msgstr ""
+"vkBasalt és una capa de postprocessament Vulkan per millorar els gràfics "
+"visuals dels jocs."
+
+#: bottles/frontend/ui/details-preferences.ui:144
+#, fuzzy
+msgid "Manage vkBasalt settings"
+msgstr "Gestiona els paràmetres del Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:161
+#: src/ui/details-preferences.ui:151
+msgid "Display Settings"
+msgstr "Paràmetres de la pantalla"
+
+#: bottles/frontend/ui/details-preferences.ui:165
+#: bottles/frontend/ui/dialog-launch-options.ui:194
+#: src/ui/details-preferences.ui:155 src/ui/dialog-launch-options.ui:194
+msgid "Virtual Desktop"
+msgstr "Escriptori virtual"
+
+#: bottles/frontend/ui/details-preferences.ui:166
+#: src/ui/details-preferences.ui:156
+msgid "Use the Wine virtual desktop."
+msgstr "Utilitzeu l'escriptori virtual de Wine."
+
+#: bottles/frontend/ui/details-preferences.ui:204
+#: src/ui/details-preferences.ui:194
+msgid "Fullscreen Mouse Capture"
+msgstr "Captura del ratolí a pantalla completa"
+
+#: bottles/frontend/ui/details-preferences.ui:205
+#: src/ui/details-preferences.ui:195
+msgid "Let the program capture mouse input when fullscreen."
+msgstr ""
+"Permet que el programa capturi l'entrada del ratolí quan estigui a pantalla "
+"completa."
+
+#: bottles/frontend/ui/details-preferences.ui:216
+#: src/ui/details-preferences.ui:206
+msgid "Take Focus"
+msgstr "Prendre el focus"
+
+#: bottles/frontend/ui/details-preferences.ui:217
+#: src/ui/details-preferences.ui:207
+msgid "Activate it if the program does not retake focus on switch."
+msgstr "Activeu-lo si el programa no recupera el focus en canviar."
+
+#: bottles/frontend/ui/details-preferences.ui:228
+#: src/ui/details-preferences.ui:218
+msgid "Mouse Warp"
+msgstr "Centrar cursor del ratolí"
+
+#: bottles/frontend/ui/details-preferences.ui:229
+#: src/ui/details-preferences.ui:219
+msgid "Change this if you are running into mouse lag or desync."
+msgstr "Canvieu-ho si us trobeu amb un retard o dessincronització del ratolí."
+
+#: bottles/frontend/ui/details-preferences.ui:241
+#: src/ui/details-preferences.ui:231
+msgid "Screen Scaling"
+msgstr "Escalat de pantalla"
+
+#: bottles/frontend/ui/details-preferences.ui:242
+#: src/ui/details-preferences.ui:232
+msgid "Set custom DPI."
+msgstr "Defineix els PPP personalitzats."
+
+#: bottles/frontend/ui/details-preferences.ui:248
+#: src/ui/details-preferences.ui:238
+msgid "96"
+msgstr "96"
+
+#: bottles/frontend/ui/details-preferences.ui:249
+#: src/ui/details-preferences.ui:239
+msgid "120"
+msgstr "120"
+
+#: bottles/frontend/ui/details-preferences.ui:250
+#: src/ui/details-preferences.ui:240
+msgid "144"
+msgstr "144"
+
+#: bottles/frontend/ui/details-preferences.ui:251
+#: src/ui/details-preferences.ui:241
+msgid "168"
+msgstr "168"
+
+#: bottles/frontend/ui/details-preferences.ui:252
+#: src/ui/details-preferences.ui:242
+msgid "192"
+msgstr "192"
+
+#: bottles/frontend/ui/details-preferences.ui:253
+#: src/ui/details-preferences.ui:243
+msgid "216"
+msgstr "216"
+
+#: bottles/frontend/ui/details-preferences.ui:254
+#: src/ui/details-preferences.ui:244
+msgid "240"
+msgstr "240"
+
+#: bottles/frontend/ui/details-preferences.ui:255
+#: src/ui/details-preferences.ui:245
+msgid "288"
+msgstr "288"
+
+#: bottles/frontend/ui/details-preferences.ui:256
+#: src/ui/details-preferences.ui:246
+msgid "336"
+msgstr "336"
+
+#: bottles/frontend/ui/details-preferences.ui:257
+#: src/ui/details-preferences.ui:247
+msgid "384"
+msgstr "384"
+
+#: bottles/frontend/ui/details-preferences.ui:258
+#: src/ui/details-preferences.ui:248
+msgid "432"
+msgstr "432"
+
+#: bottles/frontend/ui/details-preferences.ui:259
+#: src/ui/details-preferences.ui:249
+msgid "480"
+msgstr "480"
+
+#: bottles/frontend/ui/details-preferences.ui:272
+#: src/ui/details-preferences.ui:262
+msgid "Renderer"
+msgstr "Renderitzador"
+
+#: bottles/frontend/ui/details-preferences.ui:273
+#: src/ui/details-preferences.ui:263
+msgid "Select what backend to use for wined3d."
+msgstr "Seleccioneu quin backend voleu utilitzar per a wined3d."
+
+#: bottles/frontend/ui/details-preferences.ui:279
+#: src/ui/details-preferences.ui:269
+msgid "gl (default)"
+msgstr "gl (per defecte)"
+
+#: bottles/frontend/ui/details-preferences.ui:280
+#: src/ui/details-preferences.ui:270
+msgid "gdi"
+msgstr "gdi"
+
+#: bottles/frontend/ui/details-preferences.ui:281
+#: src/ui/details-preferences.ui:271
+msgid "vulkan"
+msgstr "vulkan"
+
+#: bottles/frontend/ui/details-preferences.ui:296
+#: bottles/frontend/ui/details-preferences.ui:432
+#: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
+msgid "System"
+msgstr "Sistema"
+
+#: bottles/frontend/ui/details-preferences.ui:299
+#: src/ui/details-preferences.ui:289
+msgid "Manage Components Versions"
+msgstr "Administra les versions dels components"
+
+#: bottles/frontend/ui/details-preferences.ui:309
+#: src/ui/details-preferences.ui:299
+msgid "Components"
+msgstr "Components"
+
+#: bottles/frontend/ui/details-preferences.ui:317
+#: src/ui/details-preferences.ui:307
+msgid "Updating Runner and components, please wait…"
+msgstr "S'està actualitzant el corredor i els components, espereu…"
+
+#. TODO: replace with ComboRow
+#: bottles/frontend/ui/details-preferences.ui:334
+#: src/ui/details-preferences.ui:324
+msgid "DXVK Version"
+msgstr "Versió de DXVK"
+
+#: bottles/frontend/ui/details-preferences.ui:358
+#: src/ui/details-preferences.ui:348
+msgid "VKD3D Version"
+msgstr "Versió de VKD3D"
+
+#: bottles/frontend/ui/details-preferences.ui:382
+#: src/ui/details-preferences.ui:372
+msgid "DXVK NVAPI Version"
+msgstr "Versió de DXVK NVAPI"
+
+#: bottles/frontend/ui/details-preferences.ui:404
+#: src/ui/details-preferences.ui:394
+msgid "LatencyFleX Version"
+msgstr "Versió de LatencyFleX"
+
+#: bottles/frontend/ui/details-preferences.ui:426
+#: src/ui/details-preferences.ui:416
+msgid "Enable synchronization to increase performance of multicore processors."
+msgstr ""
+"Habilita la sincronització per augmentar el rendiment dels processadors "
+"multinucli."
+
+#: bottles/frontend/ui/details-preferences.ui:427
+#: src/ui/details-preferences.ui:417
+msgid "Synchronization"
+msgstr "Sincronització"
+
+#: bottles/frontend/ui/details-preferences.ui:438
+#: src/ui/details-preferences.ui:428
+msgid "Esync"
+msgstr "Esync"
+
+#: bottles/frontend/ui/details-preferences.ui:444
+#: src/ui/details-preferences.ui:434
+msgid "Fsync"
+msgstr "Fsync"
+
+#: bottles/frontend/ui/details-preferences.ui:450
+#: src/ui/details-preferences.ui:440
+msgid "Futex2"
+msgstr "Futex2"
+
+#: bottles/frontend/ui/details-preferences.ui:465
+#: src/ui/details-preferences.ui:455
+msgid "Windows Version"
+msgstr "Versió del Windows"
+
+#: bottles/frontend/ui/details-preferences.ui:468
+#: src/ui/details-preferences.ui:458
+msgid "Updating Windows version, please wait…"
+msgstr "S'està actualitzant la versió de Windows, espereu…"
+
+#: bottles/frontend/ui/details-preferences.ui:496
+#: src/ui/details-preferences.ui:486
+msgid "Language"
+msgstr "Idioma"
+
+#: bottles/frontend/ui/details-preferences.ui:497
+#: src/ui/details-preferences.ui:487
+msgid "Choose the language to use with programs."
+msgstr "Trieu l'idioma que voleu utilitzar amb els programes."
+
+#: bottles/frontend/ui/details-preferences.ui:507
+#: src/ui/details-preferences.ui:497
+msgid "false"
+msgstr "fals"
+
+#: bottles/frontend/ui/details-preferences.ui:508
+#: src/ui/details-preferences.ui:498
+msgid "Dedicated Sandbox"
+msgstr "Espai aïllat dedicat"
+
+#: bottles/frontend/ui/details-preferences.ui:509
+#: src/ui/details-preferences.ui:499
+msgid "Use a restricted/managed environment for this bottle."
+msgstr "Utilitzeu un entorn restringit/gestionat per a aquesta ampolla."
+
+#: bottles/frontend/ui/details-preferences.ui:512
+#: src/ui/details-preferences.ui:502
+msgid "Manage Sandbox permissions"
+msgstr "Administra els permisos d'espai aïllat"
+
+#: bottles/frontend/ui/details-preferences.ui:530
+#: src/ui/details-preferences.ui:520
+msgid "Bottles Runtime"
+msgstr "Entorn d’execució del Bottles"
+
+#: bottles/frontend/ui/details-preferences.ui:531
+#: src/ui/details-preferences.ui:521
+msgid ""
+"Provides a bundle of extra libraries for more compatibility,disable if you "
+"run into issues."
+msgstr ""
+"Proporciona un paquet de biblioteques addicionals per a més compatibilitat, "
+"desactiveu-lo si teniu problemes."
+
+#: bottles/frontend/ui/details-preferences.ui:542
+#: src/ui/details-preferences.ui:532
+msgid "Steam Runtime"
+msgstr "Entorn d’execució de l’Steam"
+
+#: bottles/frontend/ui/details-preferences.ui:543
+#: src/ui/details-preferences.ui:533
+msgid "The same as the Bottles one but provided by Steam."
+msgstr "El mateix que el de Bottles però proporcionat per Steam."
+
+#: bottles/frontend/ui/details-preferences.ui:554
+#: src/ui/details-preferences.ui:544
+msgid "GameMode"
+msgstr "GameMode"
+
+#: bottles/frontend/ui/details-preferences.ui:555
+#: src/ui/details-preferences.ui:545
+msgid "Optimise gaming performance on demand."
+msgstr "Optimitzar el rendiment dels jocs sota demanda."
+
+#: bottles/frontend/ui/details-preferences.ui:566
+#: src/ui/details-preferences.ui:556
+msgid "Gamescope"
+msgstr "Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:567
+#: src/ui/details-preferences.ui:557
+msgid "Use the Gamescope micro-compositor."
+msgstr "Utilitzar el microcompositor Gamescope."
+
+#: bottles/frontend/ui/details-preferences.ui:570
+#: src/ui/details-preferences.ui:560
+msgid "Manage Gamescope settings"
+msgstr "Gestiona els paràmetres del Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:588
+msgid "Vmtouch"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:589
+msgid "Preload game files into RAM"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.ui:592
+#, fuzzy
+msgid "Manage vmtouch settings"
+msgstr "Gestiona els paràmetres del Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:610
+#: bottles/frontend/ui/dialog-launch-options.ui:91
+#: src/ui/details-preferences.ui:578 src/ui/dialog-launch-options.ui:91
+msgid "Working Directory"
+msgstr "Directori de treball"
+
+#: bottles/frontend/ui/details-preferences.ui:611
+#: src/ui/details-preferences.ui:579
+msgid "Defaults to the bottle path."
+msgstr "El valor per defecte és el del camí de l’ampolla."
+
+#: bottles/frontend/ui/details-preferences.ui:614
+#: bottles/frontend/ui/dialog-launch-options.ui:65
+#: bottles/frontend/ui/dialog-launch-options.ui:98
+#: bottles/frontend/ui/preferences.ui:159 src/ui/details-preferences.ui:582
+#: src/ui/dialog-launch-options.ui:65 src/ui/dialog-launch-options.ui:98
+#: src/ui/preferences.ui:159
+msgid "Reset to default"
+msgstr "Restableix els valors predeterminats"
+
+#: bottles/frontend/ui/details-preferences.ui:624
+#: bottles/frontend/ui/dialog-launch-options.ui:109
+#: bottles/frontend/ui/new.ui:163 bottles/frontend/ui/new.ui:180
+#: bottles/frontend/ui/preferences.ui:170 src/ui/details-preferences.ui:592
+#: src/ui/dialog-launch-options.ui:109 src/ui/new.ui:163 src/ui/new.ui:180
+#: src/ui/preferences.ui:170
+msgid "Choose a directory"
+msgstr "Trieu un directori"
+
+#: bottles/frontend/ui/details-preferences.ui:637
+#: bottles/frontend/ui/dialog-dll-overrides.ui:9
+#: bottles/frontend/ui/dialog-dll-overrides.ui:15
+#: src/ui/details-preferences.ui:605 src/ui/dialog-dll-overrides.ui:9
+#: src/ui/dialog-dll-overrides.ui:15
+msgid "DLL Overrides"
+msgstr "Substitució de DLL"
+
+#: bottles/frontend/ui/details-preferences.ui:648
+#: bottles/frontend/ui/dialog-env-vars.ui:16 src/ui/details-preferences.ui:616
+#: src/ui/dialog-env-vars.ui:16
+msgid "Environment Variables"
+msgstr "Variables d'entorn"
+
+#: bottles/frontend/ui/details-preferences.ui:659
+#: src/ui/details-preferences.ui:627
+msgid "Manage Drives"
+msgstr "Gestionar unitats"
+
+#: bottles/frontend/ui/details-preferences.ui:671
+#: src/ui/details-preferences.ui:639
+msgid "Audio"
+msgstr "Àudio"
+
+#: bottles/frontend/ui/details-preferences.ui:675
+#: bottles/frontend/ui/dialog-launch-options.ui:183
+#: src/ui/details-preferences.ui:643 src/ui/dialog-launch-options.ui:183
+msgid "Reduce Latency"
+msgstr "Reduir la latència"
+
+#: src/ui/details-preferences.ui:644
+msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
+msgstr ""
+"Estableix la latència de PulseAudio a 60 ms, augmentant la qualitat del so."
+
+#: bottles/frontend/ui/details-preferences.ui:688
+#: bottles/frontend/views/details.py:170 src/ui/details-preferences.ui:656
+#: src/views/details.py:170
+msgid "Versioning"
+msgstr "Versionat"
+
+#: src/ui/details-preferences.ui:660
+msgid "Use Compression for States"
+msgstr "Utilitzeu la compressió per als estats"
+
+#: src/ui/details-preferences.ui:661
+msgid ""
+"This will reduce the space used by the states but slow down their creation."
+msgstr ""
+"Això reduirà l'espai utilitzat pels estats però alentirà la seva creació."
+
+#: src/ui/details-preferences.ui:672
+msgid "Automatic Versioning"
+msgstr "Versionat automàtic"
+
+#: src/ui/details-preferences.ui:673
+msgid ""
+"Bottles will create a state before running any dependencies or installers."
+msgstr ""
+"Bottles crearà un estat abans d'executar qualsevol dependència o "
+"instal·lador."
+
+#: src/ui/details-preferences.ui:684
+msgid "Use Exclusion Patterns"
+msgstr "Utilitzar patrons d'exclusió"
+
+#: bottles/frontend/ui/details-preferences.ui:717
+#: src/ui/details-preferences.ui:685
+msgid "Use custom patterns to exclude some paths from versioning."
+msgstr ""
+
+#: src/ui/details-preferences.ui:688
+msgid "Manage Patterns"
+msgstr "Gestionar patrons"
+
+#: bottles/frontend/ui/details-preferences.ui:739
+#: src/ui/details-preferences.ui:707
+msgid "Development and Debugging"
+msgstr "Desenvolupament i depuració"
+
+#: bottles/frontend/ui/details-preferences.ui:743
+#: src/ui/details-preferences.ui:711
+msgid "MangoHud"
+msgstr "MangoHud"
+
+#: bottles/frontend/ui/details-preferences.ui:744
+#: src/ui/details-preferences.ui:712
+msgid ""
+"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
+"and more."
+msgstr ""
+"Una superposició Vulkan i OpenGL per controlar FPS, temperatures, càrrega de "
+"CPU/GPU i molt més."
+
+#: bottles/frontend/ui/details-preferences.ui:755
+#: src/ui/details-preferences.ui:723
+msgid "OBS Vulkan Capture"
+msgstr "Captura de Vulkan de l'OBS"
+
+#: bottles/frontend/ui/details-preferences.ui:756
+#: src/ui/details-preferences.ui:724
+msgid "Toggle OBS game capture for all programs."
+msgstr "Commuta la captura de jocs de OBS per a tots els programes."
+
+#: bottles/frontend/ui/details-preferences.ui:767
+#: src/ui/details-preferences.ui:735
+msgid "Wine 'fixme' Logs"
+msgstr "Registres de 'fixme' de Wine"
+
+#: bottles/frontend/ui/details-preferences.ui:768
+#: src/ui/details-preferences.ui:736
+msgid "Log code paths that are unimplemented in Wine."
+msgstr "Registra els camins de codi que no estan implementats a Wine."
+
+#: bottles/frontend/ui/details-programs.ui:9 src/ui/details-programs.ui:9
+msgid "No Programs found"
+msgstr "No s'han trobat programes"
+
+#: bottles/frontend/ui/details-programs.ui:10 src/ui/details-programs.ui:10
+msgid ""
+"Install programs from the installers section or by running the installer "
+"executable, you can also manually add executables with the \"+\" button."
+msgstr ""
+"Instal·leu programes des de la secció d'instal·ladors o executant "
+"l'executable de l'instal·lador, també podeu afegir executables manualment "
+"amb el botó \"+\"."
+
+#: bottles/frontend/ui/details-programs.ui:31 src/ui/details-programs.ui:31
+msgid "Toggle Hidden"
+msgstr "Commuta l'ocultació"
+
+#: src/ui/details-programs.ui:36
+msgid "Search for new programs"
+msgstr "Cerca de nous programes"
+
+#: bottles/frontend/ui/details-programs.ui:55 src/ui/details-programs.ui:55
+msgid "Add a custom executable path"
+msgstr "Afegir un camí executable personalitzat"
+
+#: bottles/frontend/ui/details-taskmanager.ui:18
+#: src/ui/details-taskmanager.ui:18
+msgid "Refresh"
+msgstr "Actualitza"
+
+#: bottles/frontend/ui/details-taskmanager.ui:24
+#: src/ui/details-taskmanager.ui:24
+msgid "Stop process"
+msgstr "Atura el procés"
+
+#: bottles/frontend/ui/details-versioning.ui:25 src/ui/details-versioning.ui:25
+msgid "No States Found"
+msgstr "No s’ha trobat cap estat"
+
+#: bottles/frontend/ui/details-versioning.ui:26 src/ui/details-versioning.ui:26
+msgid "Create first state to start using versioning."
+msgstr "Creeu el primer estat per començar a utilitzar versions."
+
+#: bottles/frontend/ui/details-versioning.ui:63 src/ui/details-versioning.ui:63
+msgid "A short comment"
+msgstr "Un breu comentari"
+
+#: bottles/frontend/ui/details-versioning.ui:68 src/ui/details-versioning.ui:68
+msgid "Save the bottle state."
+msgstr "Deseu l'estat de l'ampolla."
+
+#: bottles/frontend/ui/details-versioning.ui:88 src/ui/details-versioning.ui:88
+msgid "Create new state"
+msgstr "Crea un estat nou"
+
+#: bottles/frontend/ui/details.ui:74 src/ui/details.ui:74
+msgid "Operations"
+msgstr "Operacions"
+
+#: src/ui/dialog-bottle-picker.ui:6
+msgid "Select Bottle"
+msgstr "Seleccioneu ampolla"
+
+#: src/ui/dialog-bottle-picker.ui:42
+msgid "Create New Bottle"
+msgstr "Crea una ampolla nova"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:10
+#: src/ui/dialog-crash-report.ui:10
+msgid "Bottles crash report"
+msgstr "Informe de tancament inesperat de Bottles"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:23
+#: src/ui/dialog-crash-report.ui:23
+msgid "Send report"
+msgstr "Envia l’informe"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:43
+#: src/ui/dialog-crash-report.ui:43
+msgid ""
+"Bottles crashed last time. Please fill out a report attaching the following "
+"traceback to help us identify the problem preventing it from happening again."
+msgstr ""
+"El Bottles s’ha tancat inesperadament. Empleneu un informe, adjuntant la "
+"traça següent per a ajudar-nos a identificar el problema i evitar que passi "
+"una altra vegada."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:75
+#: src/ui/dialog-crash-report.ui:75
+msgid ""
+"We found one or more similar (or identical) reports. Please make sure to "
+"check carefully that it has not already been reported before submitting a "
+"new one. Each report requires effort on the part of the developers to "
+"diagnose, please respect their work and make sure you don't post duplicates."
+msgstr ""
+"Hem trobat un o més informes semblants (o idèntics). Assegureu-vos de "
+"comprovar acuradament que encara no s'ha informat abans d'enviar-ne un de "
+"nou. Cada informe requereix un esforç per part dels desenvolupadors per "
+"diagnosticar, si us plau, respecteu el seu treball i assegureu-vos que no "
+"publiqueu duplicats."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:96
+#: src/ui/dialog-crash-report.ui:96
+msgid "I still want to report."
+msgstr "Tot i així vull informar."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:102
+#: src/ui/dialog-crash-report.ui:102
+msgid "Advanced options"
+msgstr "Opcions avançades"
+
+#: bottles/frontend/ui/dialog-deps-check.ui:15 src/ui/dialog-deps-check.ui:15
+msgid "Incomplete package"
+msgstr ""
+
+#: src/ui/dialog-deps-check.ui:16
+msgid ""
+"This version of Bottles does not seem to provide all the necessary core "
+"dependencies, please contact the package maintainer or use an official "
+"version.\n"
+"                        "
+msgstr ""
+"Aquesta versió de Bottles no sembla proporcionar totes les dependències "
+"bàsiques necessàries, poseu-vos en contacte amb el mantenidor del paquet o "
+"utilitzeu una versió oficial.\n"
+"                        "
+
+#: src/ui/dialog-deps-check.ui:21
+msgid "Quit"
+msgstr "Sortir"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:14
+#: src/ui/dialog-dll-overrides.ui:14
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)."
+msgstr ""
+"Les biblioteques d'enllaços dinàmics es poden especificar perquè siguin "
+"integrades (proporcionades pel Wine) o natives (proporcionades pel programa)."
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:18
+#: src/ui/dialog-dll-overrides.ui:18
+msgid "New Override"
+msgstr "Nova substitució"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:26
+#: src/ui/dialog-dll-overrides.ui:26
+msgid "Overrides"
+msgstr "Substitucions"
+
+#: bottles/frontend/ui/dialog-drives.ui:9 src/ui/dialog-drives.ui:9
+msgid "Drives"
+msgstr "Unitats"
+
+#: bottles/frontend/ui/dialog-drives.ui:31 src/ui/dialog-drives.ui:31
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:…).\n"
+"                                "
+msgstr ""
+"Aquests són els camins del vostre sistema amfitrió que el corredor mapeja i "
+"reconeix com a dispositius (p. ex., C: D:...).\n"
+"                                "
+
+#: bottles/frontend/ui/dialog-drives.ui:35 src/ui/dialog-drives.ui:35
+msgid "Letter"
+msgstr "Lletra"
+
+#: bottles/frontend/ui/dialog-drives.ui:59 src/ui/dialog-drives.ui:59
+msgid "Existing Drives"
+msgstr "Unitats existents"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:18 src/ui/dialog-duplicate.ui:18
+msgid "Duplicate Bottle"
+msgstr "Duplica l’ampolla"
+
+#: src/ui/dialog-duplicate.ui:23 src/ui/dialog-gamescope.ui:17
+#: src/ui/dialog-launch-options.ui:17 src/ui/dialog-upgrade-versioning.ui:23
+msgid "_Cancel"
+msgstr "_Cancel·lar"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:41 src/ui/dialog-duplicate.ui:41
+msgid "Duplicate"
+msgstr "Duplicat"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:55 src/ui/dialog-duplicate.ui:55
+msgid "Enter a name for the duplicate of the Bottle."
+msgstr "Introduïu un nom per al duplicat de l'ampolla."
+
+#: bottles/frontend/ui/dialog-duplicate.ui:78 src/ui/dialog-duplicate.ui:78
+msgid "Duplicating…"
+msgstr "S’està duplicant…"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:87
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
+#: bottles/frontend/ui/new.ui:216 src/ui/dialog-duplicate.ui:87
+#: src/ui/dialog-upgrade-versioning.ui:121 src/ui/new.ui:216
+msgid "Take a break, it may take a while."
+msgstr "Feu una pausa, pot trigar una estona."
+
+#: bottles/frontend/ui/dialog-duplicate.ui:108 src/ui/dialog-duplicate.ui:108
+msgid "Bottle Duplicated"
+msgstr "Ampolla duplicada"
+
+#: bottles/frontend/ui/dialog-env-vars.ui:35 src/ui/dialog-env-vars.ui:35
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
+"Les variables d'entorn són valors amb nom dinàmic que poden afectar la "
+"manera com es comportaran els processos en execució a l'ampolla."
+
+#: bottles/frontend/ui/dialog-env-vars.ui:38 src/ui/dialog-env-vars.ui:38
+msgid "Variable Name"
+msgstr "Nom de la variable"
+
+#: bottles/frontend/ui/dialog-env-vars.ui:46 src/ui/dialog-env-vars.ui:46
+msgid "Existing Variables"
+msgstr "Variables existents"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
+#: src/ui/dialog-exclusion-patterns.ui:16
+msgid "Exclusion Patterns"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
+#: src/ui/dialog-exclusion-patterns.ui:35
+msgid ""
+"Define patterns that will be used to prevent some directories to being "
+"versioned."
+msgstr ""
+
+#: src/ui/dialog-exclusion-patterns.ui:38
+msgid "Pattern"
+msgstr "Patró"
+
+#: src/ui/dialog-exclusion-patterns.ui:46
+msgid "Existing Patterns"
+msgstr "Patrons existents"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:8 src/ui/dialog-gamescope.ui:8
+msgid "Gamescope Settings"
+msgstr "Paràmetres del Gamescope"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:46 src/ui/dialog-gamescope.ui:46
+msgid ""
+"Configure how Gamescope should manage the window for the games you will run."
+msgstr ""
+"Configureu com Gamescope hauria de gestionar la finestra per als jocs que "
+"executareu."
+
+#: src/ui/dialog-gamescope.ui:51
+msgid "Game Resolution"
+msgstr "Resolució del joc"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:52 src/ui/dialog-gamescope.ui:52
+msgid "Uses the resolution of the video game as a reference."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.ui:55
+#: bottles/frontend/ui/dialog-gamescope.ui:71 src/ui/dialog-gamescope.ui:55
+#: src/ui/dialog-gamescope.ui:71
+msgid "Width (e.g. 1280)"
+msgstr "Amplada (p. ex. 1280)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:60
+#: bottles/frontend/ui/dialog-gamescope.ui:76 src/ui/dialog-gamescope.ui:60
+#: src/ui/dialog-gamescope.ui:76
+msgid "Height (e.g. 720)"
+msgstr "Alçada (p. ex. 720)"
+
+#: src/ui/dialog-gamescope.ui:67
+msgid "Gamescope Resolution"
+msgstr "Resolució del gamescope"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:68 src/ui/dialog-gamescope.ui:68
+msgid ""
+"Upscales the resolution when using a resolution higher than the game "
+"resolution."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.ui:83 src/ui/dialog-gamescope.ui:83
+msgid "Miscellaneous"
+msgstr ""
+
+#: src/ui/dialog-gamescope.ui:86
+msgid "Frame Rate Limit (e.g. 60)"
+msgstr "Límit de velocitat de fotogrames (p. ex. 60)"
+
+#: src/ui/dialog-gamescope.ui:91
+msgid "Frame Rate Limit (When Unfocused)"
+msgstr "Límit de velocitat de fotogrames (quan es desenfoca)"
+
+#: src/ui/dialog-gamescope.ui:96
+msgid "Use Integer Scaling"
+msgstr "Utilitza l'escalat d'enters"
+
+#: src/ui/dialog-gamescope.ui:107
+msgid "Window Type"
+msgstr "Tipus de finestra"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:112 src/ui/dialog-gamescope.ui:112
+msgid "Borderless"
+msgstr "Sense vores"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:119 src/ui/dialog-gamescope.ui:119
+msgid "Fullscreen"
+msgstr "Pantalla completa"
+
+#: bottles/frontend/ui/dialog-journal.ui:12 src/ui/dialog-journal.ui:12
+msgid "All messages"
+msgstr "Tots els missatges"
+
+#: bottles/frontend/ui/dialog-journal.ui:17 src/ui/dialog-journal.ui:17
+msgid "Critical"
+msgstr "Crític"
+
+#: bottles/frontend/ui/dialog-journal.ui:22 src/ui/dialog-journal.ui:22
+msgid "Errors"
+msgstr "Errors"
+
+#: bottles/frontend/ui/dialog-journal.ui:27 src/ui/dialog-journal.ui:27
+msgid "Warnings"
+msgstr "Advertències"
+
+#: bottles/frontend/ui/dialog-journal.ui:32 src/ui/dialog-journal.ui:32
+msgid "Info"
+msgstr "Informació"
+
+#: bottles/frontend/ui/dialog-journal.ui:49 src/ui/dialog-journal.ui:49
+msgid "Journal browser"
+msgstr "Navegador del diari"
+
+#: bottles/frontend/ui/dialog-journal.ui:56 src/ui/dialog-journal.ui:56
+msgid "Journal Browser"
+msgstr "Navegador del diari"
+
+#: bottles/frontend/ui/dialog-journal.ui:62 src/ui/dialog-journal.ui:62
+msgid ""
+"Change logging level.\n"
+"                                        "
+msgstr ""
+"Canviar el nivell de registre.\n"
+"                                        "
+
+#: bottles/frontend/ui/dialog-journal.ui:67 src/ui/dialog-journal.ui:67
+msgid "All"
+msgstr "Tots"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:8
+#: src/ui/dialog-launch-options.ui:8
+msgid "Launch Options"
+msgstr "Opcions de llançament"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:47
+#: src/ui/dialog-launch-options.ui:47
+msgid "Those arguments will be passed at launch."
+msgstr "Aquests arguments es passaran al llançament."
+
+#: bottles/frontend/ui/dialog-launch-options.ui:48
+#: src/ui/dialog-launch-options.ui:48
+msgid "Custom Arguments"
+msgstr "Arguments personalitzats"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:51
+#: src/ui/dialog-launch-options.ui:51
+msgid "Command Arguments"
+msgstr "Arguments d’ordres"
+
+#: src/ui/dialog-launch-options.ui:52
+#, python-format
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "p. ex.: VAR=valor %ordre% -exemple1 -exemple2 -exemple3=hola"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:58
+#: src/ui/dialog-launch-options.ui:58
+msgid "Post-run Script"
+msgstr "Script post-execució"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:76
+#: src/ui/dialog-launch-options.ui:76
+msgid "Choose a script"
+msgstr "Trieu un script"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:125
+#: src/ui/dialog-launch-options.ui:125
+msgid "These settings will override the default settings for this executable."
+msgstr ""
+"Aquests paràmetres substituiran la configuració per defecte d’aquest "
+"executable."
+
+#: bottles/frontend/ui/dialog-launch-options.ui:126
+#: src/ui/dialog-launch-options.ui:126
+msgid "Preferences Overrides"
+msgstr "Substitució de les preferències"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:129
+#: src/ui/dialog-launch-options.ui:129
+msgid "Reset to Bottle's Defaults"
+msgstr "Restableix als valors per defecte de l'ampolla"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:6 src/ui/dialog-proton-alert.ui:6
+msgid "Proton Disclaimer"
+msgstr ""
+
+#: src/ui/dialog-proton-alert.ui:22
+msgid "Use Proton"
+msgstr "Utilitza Proton"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:37
+#: src/ui/dialog-proton-alert.ui:37
+msgid ""
+"Beware, using Proton-based runners in non-Steam bottles can cause problems "
+"and prevent them from behaving correctly.\n"
+"\n"
+"We recommend using Wine-GE rather, a version of Proton meant to run outside "
+"of Steam.\n"
+"\n"
+"Proceeding will automatically enable the Steam runtime (if present in the "
+"system and detected by Bottles) in order to allow it to access the necessary "
+"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
+"the runner's provider, is not responsible for any problems and we ask that "
+"you do not report to them."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:50
+#: src/ui/dialog-proton-alert.ui:50
+msgid "I got it."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-rename.ui:9 src/ui/dialog-rename.ui:9
+msgid "Rename"
+msgstr "Canvia el nom"
+
+#: bottles/frontend/ui/dialog-rename.ui:34 src/ui/dialog-rename.ui:34
+msgid "Choose a new name for the selected program."
+msgstr "Trieu un nom nou per al programa seleccionat."
+
+#: bottles/frontend/ui/dialog-rename.ui:37 src/ui/dialog-rename.ui:37
+msgid "New Name"
+msgstr "Nom nou"
+
+#: bottles/frontend/ui/dialog-run-args.ui:14 src/ui/dialog-run-args.ui:14
+msgid "Run With Arguments"
+msgstr "Executa amb arguments"
+
+#: bottles/frontend/ui/dialog-run-args.ui:35
+#: bottles/frontend/views/bottle_details.py:202
+#: bottles/frontend/views/list.py:120 src/ui/dialog-run-args.ui:35
+#: src/views/bottle_details.py:202 src/views/list.py:120
+msgid "Run"
+msgstr "Executar"
+
+#: bottles/frontend/ui/dialog-run-args.ui:47 src/ui/dialog-run-args.ui:47
+msgid "Write below the arguments to be passed to the executable."
+msgstr "Escriviu a sota dels arguments que s'han de passar a l'executable."
+
+#: bottles/frontend/ui/dialog-run-args.ui:50 src/ui/dialog-run-args.ui:50
+msgid "e.g.: -opengl -SkipBuildPatchPrereq"
+msgstr "p. ex.: -opengl -SkipBuildPatchPrereq"
+
+#: src/ui/dialog-sandbox.ui:9
+msgid "Sandbox Settings"
+msgstr "Configuració de l'espai aïllat"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:23 src/ui/dialog-sandbox.ui:23
+msgid "Share Network"
+msgstr ""
+
+#: src/ui/dialog-sandbox.ui:34
+msgid "Share Sound"
+msgstr "Comparteix el so"
+
+#: src/ui/dialog-upgrade-versioning.ui:18
+msgid "Upgrade Needed"
+msgstr "Actualització necessària"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:41
+#: bottles/frontend/ui/onboard.ui:88 src/ui/dialog-upgrade-versioning.ui:41
+#: src/ui/onboard.ui:88
+msgid "Continue"
+msgstr "Continua"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:49
+#: src/ui/dialog-upgrade-versioning.ui:49
+msgid "Launch upgrade"
+msgstr ""
+
+#: src/ui/dialog-upgrade-versioning.ui:69
+msgid "New Versioning System"
+msgstr "Nou sistema de versionat"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:72
+#: src/ui/dialog-upgrade-versioning.ui:72
+msgid "The new bottle versioning system has landed."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:86
+#: src/ui/dialog-upgrade-versioning.ui:86
+msgid ""
+"Bottles has a whole new Versioning System which is not backwards "
+"compatible. \n"
+"\n"
+"To continue using versioning we need to re-initialize the bottle repository. "
+"This will not delete data from your bottle but will delete all existing "
+"states and create a new one. \n"
+"\n"
+"If you need to go back to a previous state before continuing, close this "
+"window and restore the state, then reopen the bottle to show this window "
+"again. \n"
+"\n"
+"The old system will be discontinued in one of the next releases."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
+#: src/ui/dialog-upgrade-versioning.ui:112
+msgid "Re-initializing repository…"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
+#: src/ui/dialog-upgrade-versioning.ui:144
+msgid "Done! Please restart Bottles."
+msgstr ""
+
+#. vkBasalt is a Vulkan post processing layer for Linux
+#: bottles/frontend/ui/dialog-vkbasalt.ui:11
+#, fuzzy
+msgid "vkBasalt Settings"
+msgstr "Paràmetres de la pantalla"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:50
+#, fuzzy
+msgid "Default"
+msgstr "gl (per defecte)"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:54
+#, fuzzy
+msgid "Default Settings"
+msgstr "Paràmetres de la pantalla"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:66
+msgid "Effects are applied according to the list order."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:67
+msgid "Effects"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:71
+msgid "Contrast Adaptive Sharpening"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:74
+#: bottles/frontend/ui/dialog-vkbasalt.ui:110
+msgid "Sharpness"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:78
+#: bottles/frontend/ui/dialog-vkbasalt.ui:114
+#: bottles/frontend/ui/dialog-vkbasalt.ui:143
+#: bottles/frontend/ui/dialog-vkbasalt.ui:178
+#: bottles/frontend/ui/dialog-vkbasalt.ui:207
+#: bottles/frontend/ui/dialog-vkbasalt.ui:236
+#: bottles/frontend/ui/dialog-vkbasalt.ui:271
+#: bottles/frontend/ui/dialog-vkbasalt.ui:307
+#: bottles/frontend/ui/dialog-vkbasalt.ui:336
+#: bottles/frontend/ui/dialog-vkbasalt.ui:364
+#: bottles/frontend/ui/dialog-vkbasalt.ui:392
+#: bottles/frontend/ui/dialog-vkbasalt.ui:424
+#, fuzzy
+msgid "Show Information"
+msgstr "Informació de l'ampolla"
+
+#. Luma is not translatable
+#: bottles/frontend/ui/dialog-vkbasalt.ui:107
+msgid "Denoised Luma Sharpening"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:139
+msgid "Denoise"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:171
+msgid "Fast Approximate Anti-Aliasing"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:174
+#, fuzzy
+msgid "Subpixel Quality"
+msgstr "Qualitat Ultra"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:203
+msgid "Quality Edge Threshold"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:232
+msgid "Quality Edge Threshold Minimum"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:264
+msgid "Subpixel Morphological Anti-Aliasing"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:267
+msgid "Edge Detection"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:283
+msgid "Luma"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:290
+msgid "Color"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:303
+msgid "Threshold"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:332
+msgid "Max Search Steps"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:360
+msgid "Max Search Steps Diagonal"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:388
+msgid "Max Corner Rounding"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:419
+msgid "Color Lookup Table"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:437
+#, fuzzy
+msgid "Reset to Default"
+msgstr "Restableix els valors predeterminats"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:448
+#, fuzzy
+msgid "Select a File"
+msgstr "Suprimeix l'ampolla…"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:482
+msgid ""
+"CAS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper, whereas values lower than 0 make the frame softer than native."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:500
+msgid ""
+"DLS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:518
+msgid ""
+"DLS denoise decreases the noise of a frame. Higher values make the frame "
+"softer."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:536
+msgid ""
+"FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
+"values make the frame softer."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:554
+msgid ""
+"FXAA edge threshold is the minimum amount of contrast required to apply the "
+"FXAA algorithm. Higher values make the frame have more contrast."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:572
+msgid ""
+"FXAA quality edge threshold minimum is the minimum value of dark pixels that "
+"are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
+"below the specified value and can lead to a performance increase."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:590
+msgid ""
+"Luma detects edges from a monochrome perspective, whereas Color detects "
+"edges based on colors. Luma is more performant than Color."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:608
+msgid ""
+"SMAA threshold specifies the sensitivity of edge detection. Lower values "
+"detect more edges at the expense of performance."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:626
+msgid ""
+"SMAA max search steps specifies how many horizontal and vertical search "
+"steps are performed when searching for edges."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:644
+msgid ""
+"SMAA max diagonal search steps specifies how many diagonal search steps are "
+"performed when searching for edges."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:662
+msgid "SMAA corner rounding specifies the strength of rounding edge corners."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:680
+msgid ""
+"CLUT transforms a range of colors into another range of colors using a .CUBE "
+"file, or a .png file where the height is equal to the width."
+msgstr ""
+
+#: bottles/frontend/ui/dll-override-entry.ui:10 src/ui/dll-override-entry.ui:10
+msgid "Builtin (Wine)"
+msgstr "Incorporat (Wine)"
+
+#: bottles/frontend/ui/dll-override-entry.ui:11 src/ui/dll-override-entry.ui:11
+msgid "Native (Windows)"
+msgstr "Natiu (Windows)"
+
+#: bottles/frontend/ui/dll-override-entry.ui:12 src/ui/dll-override-entry.ui:12
+msgid "Builtin, then Native"
+msgstr "Incorporat, després natiu"
+
+#: bottles/frontend/ui/dll-override-entry.ui:13 src/ui/dll-override-entry.ui:13
+msgid "Native, then Builtin"
+msgstr "Natiu, després Incorporat"
+
+#: bottles/frontend/ui/dll-override-entry.ui:14 src/ui/dll-override-entry.ui:14
+msgid "Disabled"
+msgstr "Inhabilitat"
+
+#: bottles/frontend/ui/dll-override-entry.ui:22
+#: bottles/frontend/ui/drive-entry.ui:14 src/ui/dll-override-entry.ui:22
+#: src/ui/drive-entry.ui:14
+msgid "Remove"
+msgstr "Suprimir"
+
+#: bottles/frontend/ui/drive-entry.ui:7 src/ui/drive-entry.ui:7
+msgid "/point/to/path"
+msgstr "/punt/al/camí"
+
+#: bottles/frontend/ui/drive-entry.ui:24 src/ui/drive-entry.ui:24
+msgid "Choose a Directory"
+msgstr "Trieu un directori"
+
+#: bottles/frontend/ui/env-var-entry.ui:6
+#: bottles/frontend/ui/exclusion-pattern-entry.ui:6 src/ui/env-var-entry.ui:6
+#: src/ui/exclusion-pattern-entry.ui:6
+msgid "Value"
+msgstr "Valor"
+
+#. Wineprefix is a prefix for the wine program
+#: bottles/frontend/ui/importer-entry.ui:22 src/ui/importer-entry.ui:22
+msgid "Wineprefix name"
+msgstr ""
+
+#: src/ui/importer-entry.ui:29
+msgid "Manager"
+msgstr "Gestor"
+
+#: bottles/frontend/ui/importer-entry.ui:39 src/ui/importer-entry.ui:39
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Aquest prefix de Wine ja s'havia imporatat al Bottles."
+
+#: bottles/frontend/ui/importer.ui:24 src/ui/importer.ui:24
+msgid "Import Bottles backup"
+msgstr "Importar copia de seguretat de Bottles"
+
+#: bottles/frontend/ui/importer.ui:31 src/ui/importer.ui:31
+msgid "Search again for prefixes"
+msgstr "Torna a cercar prefixos"
+
+#: bottles/frontend/ui/importer.ui:45 src/ui/importer.ui:45
+msgid "No Prefixes Found"
+msgstr "No s'ha trobat cap prefix"
+
+#: bottles/frontend/ui/importer.ui:46 src/ui/importer.ui:46
+msgid ""
+"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
+"Use the icon on the top to import a bottle from a backup"
+msgstr ""
+"No s'ha trobat cap prefix de Lutris, PlayOnLinux, etc.\n"
+"Utilitzeu la icona de la part superior per importar una ampolla des d'una "
+"còpia de seguretat"
+
+#: bottles/frontend/ui/importer.ui:81 src/ui/importer.ui:81
+msgid "Configuration"
+msgstr "Configuració"
+
+#: bottles/frontend/ui/importer.ui:87 src/ui/importer.ui:87
+msgid "Full Archive"
+msgstr "Arxiu complet"
+
+#: bottles/frontend/ui/installer-entry.ui:18 src/ui/installer-entry.ui:18
+msgid "Show Manifest…"
+msgstr "Mostra el manifest…"
+
+#: bottles/frontend/ui/installer-entry.ui:23 src/ui/installer-entry.ui:23
+msgid "Read Review…"
+msgstr "Llegeir la ressenya…"
+
+#: src/ui/installer-entry.ui:40
+msgid "Installer name"
+msgstr "Nom de l'instal·lador"
+
+#: src/ui/installer-entry.ui:41
+msgid "Installer description"
+msgstr "Descripció de l'instal·lador"
+
+#: bottles/frontend/ui/installer-entry.ui:48 src/ui/installer-entry.ui:48
+msgid "Unknown"
+msgstr ""
+
+#: bottles/frontend/ui/installer-entry.ui:57 src/ui/installer-entry.ui:57
+msgid "Install this program"
+msgstr "Instal·la aquest programa"
+
+#: bottles/frontend/ui/library-entry.ui:17 src/ui/library-entry.ui:17
+msgid "Remove from Library"
+msgstr "Suprimeix de la biblioteca"
+
+#: src/ui/library-entry.ui:94
+msgid "Item name"
+msgstr "Nom de l'element"
+
+#: bottles/frontend/ui/library-entry.ui:115
+#: bottles/frontend/ui/program-entry.ui:105 src/ui/library-entry.ui:115
+#: src/ui/program-entry.ui:105
+msgid "Launch with Steam"
+msgstr "Llançar amb Steam"
+
+#: bottles/frontend/ui/library.ui:14 bottles/frontend/ui/preferences.ui:259
+#: bottles/frontend/windows/main_window.py:175 src/ui/library.ui:14
+#: src/ui/preferences.ui:259 src/window.py:171
+msgid "Library"
+msgstr "Biblioteca"
+
+#: bottles/frontend/ui/library.ui:15 src/ui/library.ui:15
+msgid "Add items here from your bottle's program list"
+msgstr "Afegiu aquí elements de la llista de programes de a vostra ampolla"
+
+#: bottles/frontend/ui/list-entry.ui:46 src/ui/list-entry.ui:46
+msgid "This bottle looks damaged."
+msgstr "Aquesta ampolla sembla malmesa."
+
+#: bottles/frontend/ui/list-entry.ui:60 src/ui/list-entry.ui:60
+msgid "Execute in this bottle"
+msgstr "Executa en aquesta ampolla"
+
+#: bottles/frontend/ui/list-entry.ui:75 src/ui/list-entry.ui:75
+msgid "Run Here"
+msgstr "Executa aquí"
+
+#: bottles/frontend/ui/list-entry.ui:84 src/ui/list-entry.ui:84
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+"Aquesta ampolla sembla malmesa, falta el fitxer de configuració. Es pot "
+"intentar resoldre-ho creant una nova configuració."
+
+#: bottles/frontend/ui/list-entry.ui:96 src/ui/list-entry.ui:96
+msgid "Run .exe/.msi in this bottle"
+msgstr "Executa .exe/.msi en aquesta ampolla"
+
+#: bottles/frontend/ui/list.ui:17 src/ui/list.ui:17
+msgid "Search your bottles…"
+msgstr "Cerca les vostres ampolles…"
+
+#: bottles/frontend/ui/list.ui:38 src/ui/list.ui:38
+msgid "Steam Proton"
+msgstr "Steam Proton"
+
+#: bottles/frontend/ui/list.ui:54 bottles/frontend/ui/window.ui:56
+#: bottles/frontend/ui/window.ui:73 bottles/frontend/windows/main_window.py:169
+#: data/com.usebottles.bottles.appdata.xml.in:6
+#: data/com.usebottles.bottles.desktop.in:3 src/ui/list.ui:54
+#: src/ui/window.ui:56 src/ui/window.ui:73 src/window.py:165
 msgid "Bottles"
 msgstr "Bottles"
 
-#: data/com.usebottles.bottles.desktop.in:4
-msgid "Easily manage wineprefix"
-msgstr "Gestioneu prefixos de Wine fàcilment"
+#: bottles/frontend/ui/list.ui:55 src/ui/list.ui:55
+msgid "Start off by creating a Bottle."
+msgstr "Comenceu creant una ampolla."
 
-#: data/com.usebottles.bottles.desktop.in:13
-msgid "wine;windows;"
-msgstr "wine;windows;"
+#: bottles/frontend/ui/list.ui:62 src/ui/list.ui:62
+msgid "Create a new Bottle"
+msgstr "Crea una ampolla nova"
+
+#: bottles/frontend/ui/list.ui:75 src/ui/list.ui:75
+msgid "No Results Found"
+msgstr "No s’ha trobat cap resultat"
+
+#: bottles/frontend/ui/list.ui:76 src/ui/list.ui:76
+msgid "Try a different search."
+msgstr "Proveu una cerca diferent."
+
+#: bottles/frontend/ui/loading.ui:16 src/ui/loading.ui:16
+msgid "Starting up…"
+msgstr "S'està iniciant…"
+
+#: bottles/frontend/ui/local-resource-entry.ui:6
+#: src/ui/local-resource-entry.ui:6
+msgid "This resource is missing."
+msgstr "Falta aquest recurs."
+
+#: bottles/frontend/ui/local-resource-entry.ui:10
+#: src/ui/local-resource-entry.ui:10
+msgid "Browse"
+msgstr "Navega"
+
+#: bottles/frontend/ui/new.ui:17 bottles/frontend/ui/new.ui:64 src/ui/new.ui:17
+#: src/ui/new.ui:64
+msgid "New Bottle"
+msgstr "Nova ampolla"
+
+#: bottles/frontend/ui/new.ui:38 src/ui/new.ui:38
+msgid "Create"
+msgstr "Crea"
+
+#: bottles/frontend/ui/new.ui:47 bottles/frontend/ui/new.ui:268
+#: bottles/frontend/windows/main_window.py:191 src/ui/new.ui:47
+#: src/ui/new.ui:268 src/window.py:187
+msgid "Close"
+msgstr "Tanca"
+
+#: bottles/frontend/ui/new.ui:67 src/ui/new.ui:67
+msgid "Bottle Information"
+msgstr "Informació de l'ampolla"
+
+#: bottles/frontend/ui/new.ui:84 src/ui/new.ui:84
+msgid "Gaming"
+msgstr "Jocs"
+
+#: bottles/frontend/ui/new.ui:85 src/ui/new.ui:85
+msgid "An environment improved for Windows games."
+msgstr "Un entorn millorat per als jocs de Windows."
+
+#: bottles/frontend/ui/new.ui:93 src/ui/new.ui:93
+msgid "Application"
+msgstr "Aplicació"
+
+#: bottles/frontend/ui/new.ui:94 src/ui/new.ui:94
+msgid "An environment improved for Windows applications."
+msgstr "Un entorn millorat per a les aplicacions de Windows."
+
+#: bottles/frontend/ui/new.ui:103 src/ui/new.ui:103
+msgid "Layered"
+msgstr "En capes"
+
+#: bottles/frontend/ui/new.ui:104 src/ui/new.ui:104
+msgid "A layered environment, where every app is a layer."
+msgstr "Un entorn en capes, on cada aplicació és una capa."
+
+#: bottles/frontend/ui/new.ui:112 src/ui/new.ui:112
+msgid "Custom"
+msgstr "Personalitzat"
+
+#: bottles/frontend/ui/new.ui:113 src/ui/new.ui:113
+msgid "A clear environment for your experiments."
+msgstr "Un entorn net per als vostres experiments."
+
+#: bottles/frontend/ui/new.ui:117 src/ui/new.ui:117
+msgid "Unlinked Home Directory"
+msgstr "Directori d'inici desenllaçat"
+
+#: bottles/frontend/ui/new.ui:118 src/ui/new.ui:118
+msgid "Do not link the userdir to the homedir"
+msgstr "No enllaçar el directori d'usuari amb el directori inicial"
+
+#: bottles/frontend/ui/new.ui:143 src/ui/new.ui:143
+msgid "Architecture"
+msgstr "Arquitectura"
+
+#: bottles/frontend/ui/new.ui:144 src/ui/new.ui:144
+msgid "We recommend using 32bit only if strictly necessary."
+msgstr "Recomanem utilitzar 32 bits només si és estrictament necessari."
+
+#: bottles/frontend/ui/new.ui:148 src/ui/new.ui:148
+msgid "64 bit"
+msgstr "64 bits"
+
+#: bottles/frontend/ui/new.ui:149 src/ui/new.ui:149
+msgid "32 bit"
+msgstr "32 bits"
+
+#: bottles/frontend/ui/new.ui:157 src/ui/new.ui:157
+msgid "Custom Recipe"
+msgstr "Recepta personalitzada"
+
+#: bottles/frontend/ui/new.ui:158 src/ui/new.ui:158
+msgid "Choose a custom recipe for the environment if you have one."
+msgstr "Trieu una recepta personalitzada per a l'entorn si en teniu una."
+
+#: bottles/frontend/ui/new.ui:174 src/ui/new.ui:174
+msgid "Custom Path"
+msgstr "Camí personalitzat"
+
+#: bottles/frontend/ui/new.ui:175 src/ui/new.ui:175
+msgid "Store this bottle in another place."
+msgstr "Emmagatzema aquesta ampolla en aquest lloc."
+
+#: src/ui/new.ui:215
+msgid "Creating a Bottle…"
+msgstr "Creant una ampolla…"
+
+#: bottles/frontend/ui/new.ui:262 src/ui/new.ui:262
+msgid "Bottle created"
+msgstr "S’ha creat l’ampolla"
+
+#: bottles/frontend/ui/onboard.ui:36 src/ui/onboard.ui:36
+msgid "Previous"
+msgstr "Anterior"
+
+#: bottles/frontend/ui/onboard.ui:62 src/ui/onboard.ui:62
+msgid "Welcome to Bottles"
+msgstr "Us donem la benvinguda al Bottles"
+
+#: bottles/frontend/ui/onboard.ui:63 src/ui/onboard.ui:63
+msgid ""
+"Run Windows Software on Linux.\n"
+"                                                "
+msgstr ""
+"Executeu programari de Windows a Linux.\n"
+"                                                "
+
+#: bottles/frontend/ui/onboard.ui:71 src/ui/onboard.ui:71
+msgid "Windows in Bottles"
+msgstr "El Windows al Bottles"
+
+#: bottles/frontend/ui/onboard.ui:72 src/ui/onboard.ui:72
+msgid ""
+"Bottles uses compatibility runners to provide isolated containerized Windows-"
+"like environments where programs run."
+msgstr ""
+"Bottles utilitza corredors de compatibilitat per proporcionar entorns "
+"aïllats en contenidors semblants a Windows on s'executen programes."
+
+#: bottles/frontend/ui/onboard.ui:79 src/ui/onboard.ui:79
+msgid "Almost Done"
+msgstr "Gairebé fet"
+
+#: bottles/frontend/ui/onboard.ui:80 src/ui/onboard.ui:80
+msgid "We need a few more minutes to set everything up…"
+msgstr "Necessitem uns minuts més per configurar-ho tot…"
+
+#: bottles/frontend/ui/onboard.ui:113 src/ui/onboard.ui:113
+msgid "All ready!"
+msgstr "Tot a punt!"
+
+#: bottles/frontend/ui/onboard.ui:122 src/ui/onboard.ui:122
+msgid "Please Finish the setup first"
+msgstr ""
+
+#: bottles/frontend/ui/onboard.ui:129 src/ui/onboard.ui:129
+msgid "Start using Bottles"
+msgstr "Començar a utilitzar Bottles"
+
+#: bottles/frontend/ui/onboard.ui:150 src/ui/onboard.ui:150
+msgid "Next"
+msgstr "Següent"
+
+#: bottles/frontend/ui/preferences.ui:6 bottles/frontend/ui/window.ui:24
+#: bottles/frontend/views/details.py:158 src/ui/preferences.ui:6
+#: src/ui/window.ui:24 src/views/details.py:158
+msgid "Preferences"
+msgstr "Preferències"
+
+#: bottles/frontend/ui/preferences.ui:13 bottles/frontend/ui/preferences.ui:46
+#: src/ui/preferences.ui:13 src/ui/preferences.ui:46
+msgid "General"
+msgstr "General"
+
+#: bottles/frontend/ui/preferences.ui:16 src/ui/preferences.ui:16
+msgid "Appearance"
+msgstr "Aspecte"
+
+#: src/ui/preferences.ui:19
+msgid "Dark Mode"
+msgstr "Mode fosc"
+
+#: bottles/frontend/ui/preferences.ui:20 src/ui/preferences.ui:20
+msgid "Whether Bottles should use the dark color scheme."
+msgstr ""
+
+#: bottles/frontend/ui/preferences.ui:32 src/ui/preferences.ui:32
+msgid "Show Update Date"
+msgstr "Mostra la data d'actualització"
+
+#: bottles/frontend/ui/preferences.ui:33 src/ui/preferences.ui:33
+msgid "Whether to show the update date in the bottle list."
+msgstr "Si s'ha de mostrar la data d'actualització a la llista d'ampolles."
+
+#: bottles/frontend/ui/preferences.ui:49
+#: data/com.usebottles.bottles.gschema.xml:46 src/ui/preferences.ui:49
+msgid "Notifications"
+msgstr "Notificacions"
+
+#: bottles/frontend/ui/preferences.ui:50 src/ui/preferences.ui:50
+msgid "Show notifications for downloads and installs."
+msgstr "Mostra les notificacions de baixades i instal·lacions."
+
+#: bottles/frontend/ui/preferences.ui:61 src/ui/preferences.ui:61
+msgid "Temp Files"
+msgstr "Fitxers temporals"
+
+#: bottles/frontend/ui/preferences.ui:62 src/ui/preferences.ui:62
+msgid "Clean temp files when Bottles launches?"
+msgstr "Voleu netejar els fitxers temporals quan s'iniciï Bottles?"
+
+#: bottles/frontend/ui/preferences.ui:73 src/ui/preferences.ui:73
+msgid "Close Bottles After Starting a Program"
+msgstr "Tancar Bottles després d'iniciar un programa"
+
+#: bottles/frontend/ui/preferences.ui:74 src/ui/preferences.ui:74
+msgid "Close Bottles after starting a program from the file manager."
+msgstr ""
+"Tancar Bottles després d'iniciar un programa des del gestor de fitxers."
+
+#: bottles/frontend/ui/preferences.ui:87 src/ui/preferences.ui:87
+msgid "Integrations"
+msgstr "Integracions"
+
+#: bottles/frontend/ui/preferences.ui:90 src/ui/preferences.ui:90
+msgid "Steam Proton Prefixes"
+msgstr "Prefixos de Steam Proton"
+
+#: bottles/frontend/ui/preferences.ui:91 src/ui/preferences.ui:91
+msgid "List and manage Steam Proton prefixes."
+msgstr "Llista i gestiona els prefixos de Steam Proton."
+
+#: src/ui/preferences.ui:95
+msgid "Read Documentation"
+msgstr "Llegir documentació"
+
+#: bottles/frontend/ui/preferences.ui:113 src/ui/preferences.ui:113
+msgid "List Steam Apps in Programs List"
+msgstr "Llista les aplicacions de Steam a la llista de programes"
+
+#: bottles/frontend/ui/preferences.ui:114 src/ui/preferences.ui:114
+msgid "Requires Steam for Windows installed in the bottle."
+msgstr "Requereix Steam per a Windows instal·lat a l'ampolla."
+
+#: bottles/frontend/ui/preferences.ui:125 src/ui/preferences.ui:125
+msgid "List Epic Games in Programs List"
+msgstr "Llista Epic Games a la llista de programes"
+
+#: bottles/frontend/ui/preferences.ui:126 src/ui/preferences.ui:126
+msgid "Requires Epic Games Store installed in the bottle."
+msgstr "Requereix Epic Games Store instal·lat a l'ampolla."
+
+#: src/ui/preferences.ui:137
+msgid "List Ubisoft Games in Programs List"
+msgstr "Llista els jocs d'Ubisoft a la llista de programes"
+
+#: src/ui/preferences.ui:138
+msgid "Requires Ubisoft Connect installed in the bottle."
+msgstr "Requereix Ubisoft Connect instal·lat a l'ampolla."
+
+#: bottles/frontend/ui/preferences.ui:151 src/ui/preferences.ui:151
+msgid "Advanced"
+msgstr "Avançat"
+
+#: bottles/frontend/ui/preferences.ui:154 src/ui/preferences.ui:154
+msgid "Custom Bottles Path (Requires Restart)"
+msgstr "Camí de les ampolles personalitzades (requereix reiniciar)"
+
+#: bottles/frontend/ui/preferences.ui:155
+#: bottles/frontend/views/preferences.py:151
+#: bottles/frontend/views/preferences.py:167 src/ui/preferences.ui:155
+#: src/views/preferences.py:188 src/views/preferences.py:204
+msgid ""
+"Choose where to store the new bottles (this will not move the existing ones)."
+msgstr ""
+"Trieu on emmagatzemar les ampolles noves (això no mourà les existents)."
+
+#: bottles/frontend/ui/preferences.ui:188 src/ui/preferences.ui:188
+msgid "Runners"
+msgstr "Corredors"
+
+#: bottles/frontend/ui/preferences.ui:193 src/ui/preferences.ui:193
+msgid "Pre-Release"
+msgstr "Pre-alliberament"
+
+#: bottles/frontend/ui/preferences.ui:194 src/ui/preferences.ui:194
+msgid "Display unstable versions of runners."
+msgstr "Mostra versions inestables dels corredors."
+
+#: bottles/frontend/ui/preferences.ui:210 src/ui/preferences.ui:210
+msgid "DLL Components"
+msgstr "Components DLL"
+
+#: bottles/frontend/ui/preferences.ui:223 src/ui/preferences.ui:223
+msgid "DXVK-NVAPI"
+msgstr "DXVK-NVAPI"
+
+#: bottles/frontend/ui/preferences.ui:236 src/ui/preferences.ui:236
+msgid "Core"
+msgstr "Nucli"
+
+#: bottles/frontend/ui/preferences.ui:240 src/ui/preferences.ui:240
+msgid "Runtime"
+msgstr "Entorn d’execució"
+
+#: bottles/frontend/ui/preferences.ui:245 src/ui/preferences.ui:245
+msgid "WineBridge"
+msgstr "WineBridge"
+
+#: bottles/frontend/ui/preferences.ui:253
+#: data/com.usebottles.bottles.gschema.xml:66 src/ui/preferences.ui:253
+msgid "Experiments"
+msgstr "Experiments"
+
+#: bottles/frontend/ui/preferences.ui:256 src/ui/preferences.ui:256
+msgid ""
+"These features are under heavy development and may be unstable, expect bugs "
+"and breakage."
+msgstr ""
+
+#: bottles/frontend/ui/preferences.ui:260 src/ui/preferences.ui:260
+msgid "In early development (requires restart)."
+msgstr "En desenvolupament inicial (requereix reiniciar)."
+
+#: bottles/frontend/ui/preferences.ui:271 src/ui/preferences.ui:271
+msgid "Sandbox per bottle"
+msgstr "Entorn aïllat per ampolla"
+
+#: bottles/frontend/ui/preferences.ui:272 src/ui/preferences.ui:272
+msgid "In early development."
+msgstr "En desenvolupament inicial."
+
+#: bottles/frontend/ui/program-entry.ui:21 src/ui/program-entry.ui:21
+msgid "Launch with terminal"
+msgstr "Inicia amb un terminal"
+
+#: bottles/frontend/ui/program-entry.ui:28 src/ui/program-entry.ui:28
+msgid "Browse path"
+msgstr "Explora el camí"
+
+#: bottles/frontend/ui/program-entry.ui:44 src/ui/program-entry.ui:44
+msgid "Change Launch Options…"
+msgstr "Canvia les opcions d’inici…"
+
+#: bottles/frontend/ui/program-entry.ui:49 src/ui/program-entry.ui:49
+msgid "Add to My Library"
+msgstr "Afegeix a La meva biblioteca"
+
+#: bottles/frontend/ui/program-entry.ui:54 src/ui/program-entry.ui:54
+msgid "Add Desktop Entry"
+msgstr "Afegeix una entrada d’escriptori"
+
+#: bottles/frontend/ui/program-entry.ui:59 src/ui/program-entry.ui:59
+msgid "Add to Steam"
+msgstr "Afegeix a l’Steam"
+
+#: bottles/frontend/ui/program-entry.ui:64 src/ui/program-entry.ui:64
+msgid "Rename…"
+msgstr "Canvia el nom…"
+
+#: bottles/frontend/ui/program-entry.ui:73 src/ui/program-entry.ui:73
+msgid "Hide Program"
+msgstr "Amaga el programa"
+
+#: bottles/frontend/ui/program-entry.ui:78 src/ui/program-entry.ui:78
+msgid "Show Program"
+msgstr "Mostra el programa"
+
+#: bottles/frontend/ui/program-entry.ui:83 src/ui/program-entry.ui:83
+msgid "Remove from List"
+msgstr "Treu de la llista"
+
+#: src/ui/program-entry.ui:99
+msgid "Program name"
+msgstr "Nom del programa"
+
+#. id as identification
+#: src/ui/state-entry.ui:7
+msgid "State id"
+msgstr "Id. de l'estat"
+
+#: src/ui/state-entry.ui:8
+msgid "State comment"
+msgstr "Comentari d'estat"
+
+#: bottles/frontend/ui/state-entry.ui:16 src/ui/state-entry.ui:16
+msgid "Restore this state"
+msgstr "Restaura aquest estat"
+
+#: bottles/frontend/ui/task-entry.ui:24 src/ui/task-entry.ui:24
+msgid "Delete message"
+msgstr "Suprimeix el missatge"
+
+#: bottles/frontend/ui/window.ui:19 src/ui/window.ui:19
+msgid "Import/Export…"
+msgstr "Importa/exporta…"
+
+#: bottles/frontend/ui/window.ui:33 src/ui/window.ui:33
+msgid "Support"
+msgstr "Assistència"
+
+#: bottles/frontend/ui/window.ui:43 src/ui/window.ui:43
+msgid "Forums"
+msgstr "Fòrums"
+
+#: bottles/frontend/ui/window.ui:48 src/ui/window.ui:48
+msgid "About Bottles"
+msgstr "Quant al Bottles"
+
+#: bottles/frontend/ui/window.ui:79 src/ui/window.ui:79
+msgid "Open menu"
+msgstr "Obre el menú"
+
+#: bottles/frontend/ui/window.ui:93 src/ui/window.ui:93
+msgid ""
+"You don't seem connected to the internet. Without it you will not be able to "
+"download essential components. Click this icon when you have reestablished "
+"the connection."
+msgstr ""
+"Sembla que no esteu connectat a Internet. Sense ell, no podreu descarregar "
+"components essencials. Feu clic a aquesta icona quan hàgiu restablit la "
+"connexió."
+
+#: bottles/frontend/ui/window.ui:99 src/ui/window.ui:99
+msgid "New bottle"
+msgstr "Ampolla nova"
+
+#: bottles/frontend/utils/connection.py:67 src/utils/connection.py:67
+msgid "You are offline, unable to download."
+msgstr "Esteu fora de línia, no es pot baixar."
+
+#: bottles/frontend/views/bottle_details.py:142 src/views/bottle_details.py:142
+#, python-format
+msgid "Updated: %s"
+msgstr "Actualitzat: %s"
+
+#: bottles/frontend/views/bottle_details.py:200
+#: bottles/frontend/views/list.py:118 src/views/bottle_details.py:200
+#: src/views/list.py:118
+msgid "Choose a Windows executable file"
+msgstr "Trieu un fitxer executable de Windows"
+
+#: bottles/frontend/views/bottle_details.py:209 src/views/bottle_details.py:209
+#, fuzzy
+msgid "Be Aware of Sandbox"
+msgstr "Tingueu en compte l'espai aïllat"
+
+#: bottles/frontend/views/bottle_details.py:210 src/views/bottle_details.py:210
+msgid ""
+"Bottles is running in a sandbox, a restricted permission environment needed "
+"to keep you safe. If the program won't run, consider moving inside the "
+"bottle (3 dots icon on the top), then launch from there."
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:212 src/views/bottle_details.py:212
+msgid "Ok"
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:267 src/views/bottle_details.py:267
+msgid "Select the location where to save the backup config"
+msgstr "Seleccioneu la ubicació on desar la configuració de còpia de seguretat"
+
+#: bottles/frontend/views/bottle_details.py:271 src/views/bottle_details.py:271
+msgid "Select the location where to save the backup archive"
+msgstr "Seleccioneu la ubicació on voleu desar l'arxiu de còpia de seguretat"
+
+#: bottles/frontend/views/bottle_details.py:276 src/views/bottle_details.py:276
+#, python-brace-format
+msgid "Backup created for '{0}'."
+msgstr "Còpia de seguretat creada per a '{0}'."
+
+#: bottles/frontend/views/bottle_details.py:278 src/views/bottle_details.py:278
+#, python-brace-format
+msgid "Backup failed for '{0}'."
+msgstr "La còpia de seguretat ha fallat per a \"{0}\"."
+
+#: bottles/frontend/views/bottle_details.py:296 src/views/bottle_details.py:296
+msgid "Export"
+msgstr "Exportar"
+
+#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
+#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
+#: src/views/bottle_preferences.py:745
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: bottles/frontend/views/bottle_details.py:333 src/views/bottle_details.py:333
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Esteu segur que voleu suprimir aquesta ampolla i tots els fitxers?"
+
+#: bottles/frontend/views/bottle_details.py:412 src/views/bottle_details.py:412
+msgid ""
+"Are you sure you want to terminate all processes?\n"
+"This can cause data loss."
+msgstr ""
+"Esteu segur que voleu finalitzar tots els processos?\n"
+"Això pot provocar la pèrdua de dades."
+
+#: bottles/frontend/views/bottle_preferences.py:218
+#: src/views/bottle_preferences.py:207
+msgid "This feature is not available on your system."
+msgstr "Aquesta funció no està disponible al vostre sistema."
+
+#: bottles/frontend/views/bottle_preferences.py:266
+#: bottles/frontend/views/bottle_preferences.py:283
+#: bottles/frontend/views/bottle_preferences.py:422
+#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
+#: src/views/bottle_preferences.py:405
+msgid "Default to the bottle path."
+msgstr "Per defecte, el camí de l'ampolla."
+
+#: bottles/frontend/views/bottle_preferences.py:274
+#: src/views/bottle_preferences.py:258
+msgid "Choose working directory for executables"
+msgstr "Trieu el directori de treball per als executables"
+
+#: bottles/frontend/views/bottle_preferences.py:772
+#: src/views/bottle_preferences.py:741
+msgid "Toggling Compression Require Re-Initialization"
+msgstr ""
+
+#: bottles/frontend/views/bottle_preferences.py:773
+#: src/views/bottle_preferences.py:742
+msgid ""
+"This will kepp all your files but will delete all states. Do you want to "
+"continue?"
+msgstr ""
+
+#: bottles/frontend/views/bottle_programs.py:86 src/views/bottle_programs.py:83
+#, python-brace-format
+msgid "'{0}' added."
+msgstr "\"{0}\" afegit."
+
+#: bottles/frontend/views/bottle_programs.py:90 src/views/bottle_programs.py:87
+msgid "Choose an executable path"
+msgstr "Trieu un camí executable"
+
+#: bottles/frontend/views/bottle_programs.py:92 src/views/bottle_programs.py:89
+msgid "Add"
+msgstr "Afegeix"
+
+#: bottles/frontend/views/bottle_versioning.py:88
+#: src/views/bottle_versioning.py:88
+msgid "Please migrate to the new Versioning system to create new states."
+msgstr ""
+
+#: bottles/frontend/views/details.py:154 src/views/details.py:154
+msgid "Details & Utilities"
+msgstr "Detalls i utilitats"
+
+#: bottles/frontend/views/details.py:162 src/views/details.py:162
+msgid "Dependencies"
+msgstr "Dependències"
+
+#: bottles/frontend/views/details.py:167 src/views/details.py:167
+msgid "Found in your bottle's Start menu."
+msgstr "Es troba al menú Inici de la vostra ampolla."
+
+#: bottles/frontend/views/details.py:174 src/views/details.py:174
+msgid "Installers"
+msgstr "Instal·ladors"
+
+#: src/views/details.py:377
+msgid "Operations in progress, please wait."
+msgstr "Operacions en curs, espereu."
+
+#: src/views/details.py:381
+msgid "Return to your bottles."
+msgstr "Torna a les vostres ampolles."
+
+#: bottles/frontend/views/importer.py:89 src/views/importer.py:89
+msgid "Backup imported successfully."
+msgstr "La còpia de seguretat s'ha importat correctament."
+
+#: bottles/frontend/views/importer.py:91 src/views/importer.py:91
+msgid "Import failed."
+msgstr "La importació ha fallat."
+
+#: bottles/frontend/views/importer.py:103
+#: bottles/frontend/views/importer.py:132 src/views/importer.py:103
+#: src/views/importer.py:132
+msgid "Importing backup…"
+msgstr "S'està important la còpia de seguretat…"
+
+#: bottles/frontend/views/importer.py:115 src/views/importer.py:115
+msgid "Choose a backup archive"
+msgstr "Trieu un arxiu de còpia de seguretat"
+
+#: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
+#: src/views/list.py:59 src/views/list.py:65
+msgid "N/A"
+msgstr "N/D"
+
+#: bottles/frontend/views/list.py:220 src/views/list.py:220
+msgid "Your Bottles"
+msgstr "Les vostres ampolles"
+
+#: bottles/frontend/views/loading.py:33 src/views/loading.py:33
+#, python-brace-format
+msgid "Downloading ~{0} of packages…"
+msgstr ""
+
+#: bottles/frontend/views/loading.py:34 src/views/loading.py:34
+#, python-brace-format
+msgid "Fetched {0} of {1} packages"
+msgstr ""
+
+#: bottles/frontend/views/new.py:133
+msgid "Name has special characters or already in use."
+msgstr ""
+
+#: bottles/frontend/views/new.py:150 src/views/new.py:142
+msgid "Choose a recipe file"
+msgstr "Trieu un fitxer de receptes"
+
+#: bottles/frontend/views/new.py:166 src/views/new.py:158
+msgid "Choose where to store the bottle"
+msgstr "Trieu on guardar l'ampolla"
+
+#: bottles/frontend/views/new.py:219 src/views/new.py:211
+msgid "There was an error creating the bottle."
+msgstr "S'ha produït un error en crear l'ampolla."
+
+#: bottles/frontend/views/new.py:227 src/views/new.py:219
+#, python-brace-format
+msgid "A bottle named “{0}” was created successfully"
+msgstr "S'ha creat correctament una ampolla anomenada \"{0}\""
+
+#: src/views/preferences.py:125
+msgid "Steam was not found or Bottles does not have enough permissions."
+msgstr "No s'ha trobat Steam o Bottles no té prou permisos."
+
+#: bottles/frontend/views/preferences.py:156 src/views/preferences.py:193
+msgid "Choose new bottles path"
+msgstr "Trieu el camí de les ampolles noves"
+
+#: bottles/frontend/views/preferences.py:199 src/views/preferences.py:236
+msgid "Based on Valve's Wine, includes staging and Proton patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:200 src/views/preferences.py:237
+msgid "Based on Wine upstream, includes staging and Proton patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:203 src/views/preferences.py:240
+msgid "Based on Wine upstream, includes staging patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:204 src/views/preferences.py:241
+msgid ""
+"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
+"Requires the Steam Runtime turned on."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:206 src/views/preferences.py:243
+msgid "Other"
+msgstr "Altres"
+
+#: bottles/frontend/widgets/component.py:70 src/widgets/component.py:70
+msgid "Upgrade"
+msgstr "Actualitza"
+
+#: bottles/frontend/widgets/component.py:145 src/widgets/component.py:145
+msgid "Installing…"
+msgstr "S'està instal·lant DXVK…"
+
+#: bottles/frontend/widgets/dependency.py:107
+#: bottles/frontend/widgets/installer.py:72 src/widgets/dependency.py:107
+#: src/widgets/installer.py:72
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "Manifest per a {0}"
+
+#: bottles/frontend/widgets/dependency.py:170 src/widgets/dependency.py:170
+#, python-brace-format
+msgid "'{0}' installed."
+msgstr "'{0}' instal·lat."
+
+#: src/widgets/dependency.py:184
+#, python-brace-format
+msgid "'{0}' failed to install."
+msgstr "'{0}' no s'ha pogut instal·lar."
+
+#: bottles/frontend/widgets/importer.py:66 src/widgets/importer.py:66
+#, python-brace-format
+msgid "'{0}' imported."
+msgstr "'{0}' importat."
+
+#: bottles/frontend/widgets/installer.py:81 src/widgets/installer.py:81
+#, python-brace-format
+msgid "Review for {0}"
+msgstr "Ressenya per a {0}"
+
+#: src/widgets/program.py:187
+#, python-brace-format
+msgid "Launching '{0}'…"
+msgstr "S'està iniciant '{0}'…"
+
+#: src/widgets/program.py:193
+#, python-brace-format
+msgid "Launching '{0}' with Steam…"
+msgstr "S'està llançant '{0}' amb Steam…"
+
+#: bottles/frontend/widgets/program.py:215 src/widgets/program.py:215
+#, python-brace-format
+msgid "'{0}' hidden."
+msgstr "'{0}' amagat."
+
+#: bottles/frontend/widgets/program.py:217 src/widgets/program.py:217
+#, python-brace-format
+msgid "'{0}' showed."
+msgstr "\"{0}\" mostrat."
+
+#: bottles/frontend/widgets/program.py:240 src/widgets/program.py:240
+#, python-brace-format
+msgid "'{0}' removed."
+msgstr "'{0}' eliminat."
+
+#: bottles/frontend/widgets/program.py:254 src/widgets/program.py:254
+#, python-brace-format
+msgid "'{0}' renamed to '{1}'."
+msgstr "'{0}' reanomenat a '{1}'."
+
+#: bottles/frontend/widgets/program.py:274 src/widgets/program.py:274
+#, python-brace-format
+msgid "Desktop Entry created for '{0}'"
+msgstr "Entrada d'escriptori creada per a '{0}'"
+
+#: bottles/frontend/widgets/program.py:290 src/widgets/program.py:290
+#, python-brace-format
+msgid "'{0}' added to your library"
+msgstr "S'ha afegit '{0}' a la vostra biblioteca"
+
+#: bottles/frontend/widgets/program.py:306 src/widgets/program.py:306
+#, python-brace-format
+msgid "'{0}' added to your Steam library"
+msgstr "S'ha afegit '{0}' a la vostra biblioteca de Steam"
+
+#: src/window.py:184
+msgid "Custom Bottles Path not Found"
+msgstr "No s'ha trobat el camí de les ampolles personalitzades"
+
+#: bottles/frontend/windows/main_window.py:189 src/window.py:185
+msgid ""
+"Falling back to default path. No bottles from the given path will be listed."
+msgstr ""
+
+#: bottles/frontend/windows/main_window.py:310 src/window.py:306
+msgid "Third-Party Libraries and Special Thanks"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -153,26 +3210,27 @@ msgstr "... i molt més que podeu trobar instal·lant Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
 msgid "News"
-msgstr ""
+msgstr "Notícies"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid ""
 "New versioning system which allow versioning the whole bottle (also "
 "configuration)"
 msgstr ""
+"Nou sistema de versions que permet versionar tota l'ampolla (també "
+"configuració)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Automatic versioning can now be toggled on and off"
-msgstr ""
+msgstr "Ara es pot activar i desactivar el control automàtic de versions"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "Exclude paths from versioning using patterns"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "Use compression for versioning states"
-msgstr "S'està creant l'estat de versionat 0…"
+msgstr "Utilitzeu la compressió per als estats de versions"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
@@ -183,57 +3241,62 @@ msgid ""
 "Improved YAML performance using libyaml (the python-yaml package must "
 "provide support for it)"
 msgstr ""
+"Rendiment YAML millorat mitjançant libyaml (el paquet python-yaml ha de "
+"proporcionar-hi suport)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
-#, fuzzy
 msgid "New About dialog"
-msgstr "Ampolla nova"
+msgstr "Nou diàleg Quant a"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "Covers support in Library mode (thanks to SteamGridDB)"
-msgstr ""
+msgstr "Cobreix el suport en mode Biblioteca (gràcies a SteamGridDB)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid "Removed DXVK HUD option, use the Environment Variables section instead"
-msgstr ""
+msgstr "S'ha eliminat l'opció DXVK HUD, utilitzeu la secció Variables d'entorn"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "bottles-cli shell option now provide command output"
-msgstr ""
+msgstr "L'opció bottles-cli shell ara proporciona una sortida de comanda"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
 msgid "The Health Check is now in the About´s Troubleshooting section"
 msgstr ""
+"El Health Check ja es troba a la secció Quant a la resolució de problemes"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
 msgid ""
 "Extended Core dependencies check, packagers are invited to double-check "
 "their packages"
 msgstr ""
+"Comprovació de dependències del nucli estès, els empaquetadors estan "
+"convidats a revisar els seus paquets"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "New default permission for the Flatpak package: xdg-download"
-msgstr ""
+msgstr "Nou permís per defecte per al paquet Flatpak: xdg-download"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Added credits for Third-Party Libraries in the Credits section"
 msgstr ""
+"S'han afegit crèdits per a biblioteques de tercers a la secció de crèdits"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
-msgstr ""
+msgstr "Millores menors en la interfície d'usuari"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
-msgstr ""
+msgstr "Correccions"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Fix for skipable onboard dialog"
-msgstr ""
+msgstr "S'ha solucionat el diàleg a bord que es pot ometre"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Fix for empty bottle name"
-msgstr ""
+msgstr "Correcció per al nom de l'ampolla buida"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
 msgid "Fix gstreamer libs for win32 bottles"
@@ -275,9 +3338,8 @@ msgid ""
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
-#, fuzzy
 msgid "Translations"
-msgstr "Operacions"
+msgstr "Traduccions"
 
 #: data/com.usebottles.bottles.appdata.xml.in:137
 msgid "Finnish translations thanks to Jiri Grönroos"
@@ -318,6 +3380,14 @@ msgstr ""
 #: data/com.usebottles.bottles.appdata.xml.in:146
 msgid "Croatian translations thanks to @milotype"
 msgstr ""
+
+#: data/com.usebottles.bottles.desktop.in:4
+msgid "Easily manage wineprefix"
+msgstr "Gestioneu prefixos de Wine fàcilment"
+
+#: data/com.usebottles.bottles.desktop.in:13
+msgid "wine;windows;"
+msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -364,9 +3434,8 @@ msgid "Ubisoft Connect listing"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Toggle ubisoft connect listing."
-msgstr "Commuta la llista d'aplicacions de Steam."
+msgstr "Commuta la llista d'ubisoft connect."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
@@ -383,10 +3452,6 @@ msgstr "Alçada de la finestra"
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Change the window height."
 msgstr "Canvia l'alçada de la finestra."
-
-#: data/com.usebottles.bottles.gschema.xml:46 src/ui/preferences.ui:49
-msgid "Notifications"
-msgstr "Notificacions"
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
@@ -415,10 +3480,6 @@ msgstr "Vista d'inici"
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
 msgstr "Trieu en quina visualització s'ha d'iniciar l'aplicació."
-
-#: data/com.usebottles.bottles.gschema.xml:66 src/ui/preferences.ui:253
-msgid "Experiments"
-msgstr "Experiments"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
@@ -467,2452 +3528,8 @@ msgid "Show sandbox warning"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:92
-#, fuzzy
 msgid "Toggle sandbox warning."
-msgstr "Commuta la llista d'aplicacions de Steam."
-
-#: src/main.py:105
-msgid "Show version"
-msgstr "Mostra la versió"
-
-#: src/main.py:113
-msgid "Executable path"
-msgstr "Camí executable"
-
-#: src/main.py:121
-msgid "lnk path"
-msgstr "camí lnk"
-
-#: src/main.py:129
-msgid "Bottle name"
-msgstr "Nom de l'ampolla"
-
-#: src/main.py:137
-msgid "Pass arguments"
-msgstr "Passar arguments"
-
-#: src/main.py:196
-msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "URI no vàlid (sintaxi: bottles:run/<bottle>/<program>)"
-
-#: src/main.py:237
-msgid "[Quit] request received."
-msgstr "S'ha rebut la sol·licitud [Surt]."
-
-#: src/main.py:246
-msgid "[Help] request received."
-msgstr "S'ha rebut la sol·licitud d'[Ajuda]."
-
-#: src/main.py:254
-msgid "[Refresh] request received."
-msgstr "S'ha rebut la sol·licitud [Actualització]."
-
-#: src/operation.py:50
-msgid "Calculating…"
-msgstr "S'està calculant…"
-
-#: src/window.py:171 src/ui/library.ui:14 src/ui/preferences.ui:259
-msgid "Library"
-msgstr "Biblioteca"
-
-#: src/window.py:184
-#, fuzzy
-msgid "Custom Bottles Path not Found"
-msgstr "Camí de les ampolles personalitzades (requereix reiniciar)"
-
-#: src/window.py:185
-msgid ""
-"Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
-
-#: src/window.py:187 src/ui/new.ui:47 src/ui/new.ui:268
-msgid "Close"
-msgstr "Tanca"
-
-#: src/window.py:306
-msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
-
-#: src/backend/managers/versioning.py:97
-#, fuzzy
-msgid "Committing state …"
-msgstr "S'estan actualitzant els estats…"
-
-#: src/backend/managers/versioning.py:106
-msgid "Nothing to commit"
-msgstr ""
-
-#: src/backend/managers/versioning.py:112
-#, python-brace-format
-msgid "New state [{0}] created successfully!"
-msgstr "Nou estat [{0}] creat correctament!"
-
-#: src/backend/managers/versioning.py:140
-#, fuzzy
-msgid "States list retrieved successfully!"
-msgstr "Nou estat [{0}] creat correctament!"
-
-#: src/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
-msgid "State {0} restored successfully!"
-msgstr "Nou estat [{0}] creat correctament!"
-
-#: src/backend/managers/versioning.py:176
-#, fuzzy
-msgid "Restoring state {} …"
-msgstr "S'estan actualitzant els estats…"
-
-#: src/backend/managers/versioning.py:185
-#, fuzzy
-msgid "State not found"
-msgstr "No s’ha trobat cap estat"
-
-#: src/backend/managers/versioning.py:191
-msgid "State {} is already the active state"
-msgstr ""
-
-#: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
-msgid "No path specified"
-msgstr "No s'ha especificat cap camí"
-
-#: src/backend/managers/backup.py:71
-#, python-brace-format
-msgid "Backup {0}"
-msgstr "Còpia de seguretat {0}"
-
-#: src/backend/managers/backup.py:124
-#, python-brace-format
-msgid "Importing backup: {0}"
-msgstr "S'està important la còpia de seguretat: {0}"
-
-#: src/backend/managers/manager.py:1030
-msgid "Fail to install components, tried 3 times."
-msgstr "No s'ha pogut instal·lar els components, s'ha intentat 3 vegades."
-
-#: src/backend/managers/manager.py:1041
-msgid "Missing essential components. Installing…"
-msgstr "Falten components essencials. S'està instal·lant…"
-
-#: src/backend/managers/manager.py:1117
-msgid "Failed to create bottle directory."
-msgstr "No s'ha pogut crear el directori d'ampolles."
-
-#: src/backend/managers/manager.py:1129
-msgid "Failed to create placeholder directory/file."
-msgstr "No s'ha pogut crear el directori/fitxer de marcador de posició."
-
-#: src/backend/managers/manager.py:1134
-msgid "Generating bottle configuration…"
-msgstr "S'està generant la configuració de l'ampolla…"
-
-#: src/backend/managers/manager.py:1157
-msgid "Template found, applying…"
-msgstr "S'ha trobat una plantilla, s'està aplicant…"
-
-#. execute wineboot on the bottle path
-#: src/backend/managers/manager.py:1169
-msgid "The Wine config is being updated…"
-msgstr "S'està actualitzant la configuració de Wine…"
-
-#: src/backend/managers/manager.py:1171
-msgid "Wine config updated!"
-msgstr "Configuració de Wine actualitzada!"
-
-#: src/backend/managers/manager.py:1179
-msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "S'està executant com Flatpak, aïllant el directori d'usuari…"
-
-#: src/backend/managers/manager.py:1181
-msgid "Sandboxing userdir…"
-msgstr "Aïllant el directori d'usuari…"
-
-#: src/backend/managers/manager.py:1197
-msgid "Setting Windows version…"
-msgstr "S’està configurant la versió del Windows…"
-
-#: src/backend/managers/manager.py:1207
-msgid "Apply CMD default settings…"
-msgstr "Aplica els paràmetres per defecte de CMD…"
-
-#: src/backend/managers/manager.py:1215
-msgid "Optimizing environment…"
-msgstr "S'està optimitzant l'entorn…"
-
-#: src/backend/managers/manager.py:1226
-#, python-brace-format
-msgid "Applying environment: {0}…"
-msgstr "Aplicant l'entorn: {0}…"
-
-#: src/backend/managers/manager.py:1236
-msgid "(!) Using a custom environment recipe…"
-msgstr "(!) Utilitzant una recepta d'entorn personalitzada…"
-
-#: src/backend/managers/manager.py:1239
-msgid "(!) Recipe not not found or not valid…"
-msgstr "(!) No s'ha trobat la recepta o no és vàlida…"
-
-#: src/backend/managers/manager.py:1256
-msgid "Installing DXVK…"
-msgstr "S'està instal·lant DXVK…"
-
-#: src/backend/managers/manager.py:1264
-msgid "Installing VKD3D…"
-msgstr "S'està instal·lant VKD3D…"
-
-#: src/backend/managers/manager.py:1272
-msgid "Installing DXVK-NVAPI…"
-msgstr "S'està instal·lant DXVK-NVAPI…"
-
-#: src/backend/managers/manager.py:1281
-#, python-format
-msgid "Installing dependency: %s …"
-msgstr "S'està instal·lant la dependència: %s …"
-
-#: src/backend/managers/manager.py:1297
-msgid "Creating versioning state 0…"
-msgstr "S'està creant l'estat de versionat 0…"
-
-#: src/backend/managers/manager.py:1305
-msgid "Finalizing…"
-msgstr "S'està finalitzant…"
-
-#: src/backend/managers/manager.py:1316
-msgid "Caching template…"
-msgstr "S’està emmagatzemant la plantilla en memòria cau…"
-
-#: src/dialogs/crash.py:37
-msgid "Show report"
-msgstr "Mostra l'informe"
-
-#: src/dialogs/crash.py:88
-msgid ""
-"            This issue was reported 5 times and cannot be sent again.\n"
-"            Report your feedback in one of the below existing reports."
-msgstr ""
-"            Aquest problema s'ha informat 5 vegades i no es pot tornar a "
-"enviar.\n"
-"            Informeu els vostres comentaris en un dels informes existents a "
-"continuació."
-
-#: src/dialogs/dlloverrides.py:136
-msgid "No overrides found."
-msgstr "No s'han trobat substitucions."
-
-#: src/dialogs/drives.py:71
-msgid "Choose path"
-msgstr "Trieu el camí"
-
-#: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
-#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
-#: src/dialogs/installer.py:66 src/views/bottle_details.py:202
-#: src/views/bottle_details.py:296 src/views/bottle_details.py:335
-#: src/views/bottle_details.py:414 src/views/bottle_preferences.py:260
-#: src/views/bottle_preferences.py:744 src/views/bottle_programs.py:89
-#: src/views/importer.py:117 src/views/importer.py:146 src/views/list.py:120
-#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-rename.ui:17
-#: src/ui/dialog-run-args.ui:19 src/ui/dialog-bottle-picker.ui:17
-#: src/ui/dialog-proton-alert.ui:17 src/ui/new.ui:33
-msgid "Cancel"
-msgstr "Cancel·lar"
-
-#: src/dialogs/drives.py:73 src/dialogs/launchoptions.py:234
-#: src/dialogs/launchoptions.py:258 src/dialogs/installer.py:66
-#: src/views/bottle_preferences.py:260 src/views/new.py:144
-#: src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-bottle-picker.ui:22
-msgid "Select"
-msgstr "Seleccioneu"
-
-#: src/dialogs/envvars.py:131
-msgid "No environment variables defined."
-msgstr "No s'han definit variables d'entorn"
-
-#: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:34
-#: src/ui/dialog-launch-options.ui:35 src/ui/dialog-rename.ui:22
-msgid "Save"
-msgstr "Desar"
-
-#: src/dialogs/generic.py:24
-msgid "An error has occurred."
-msgstr "S'ha produït un error."
-
-#: src/dialogs/generic.py:91 src/dialogs/generic.py:137
-#: src/dialogs/generic.py:182
-msgid "Copy to clipboard"
-msgstr "Copiar al portapapers"
-
-#. endregion
-#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
-msgid "Choose a script which should be executed after run."
-msgstr "Trieu un script que s'hagi d'executar després de l'execució."
-
-#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
-msgid "Choose from where start the program."
-msgstr "Trieu des d'on començar el programa."
-
-#: src/dialogs/launchoptions.py:58
-#, python-brace-format
-msgid "{0} is already disabled for this bottle."
-msgstr "{0} ja està desactivat per a aquesta ampolla."
-
-#: src/dialogs/launchoptions.py:59
-msgid "This setting is different from the bottle's default."
-msgstr "Aquest paràmetre és diferent del valor per defecte de l’ampolla."
-
-#: src/dialogs/launchoptions.py:232
-msgid "Choose the script"
-msgstr "Trieu l'script"
-
-#: src/dialogs/launchoptions.py:256
-msgid "Choose the Working Directory"
-msgstr "Trieu el directori de treball"
-
-#: src/dialogs/installer.py:64
-msgid "Select Resource FIle"
-msgstr "Seleccioneu el fitxer de recursos"
-
-#: src/dialogs/installer.py:115
-#, fuzzy
-msgid "Installing Windows dependencies…"
-msgstr "S'està instal·lant la dependència: %s …"
-
-#: src/dialogs/installer.py:116
-msgid "Configuring the bottle…"
-msgstr ""
-
-#: src/dialogs/installer.py:117
-msgid "Processing installer steps…"
-msgstr ""
-
-#: src/dialogs/installer.py:118
-#, fuzzy
-msgid "Installing the {}…"
-msgstr "S'està instal·lant DXVK…"
-
-#: src/dialogs/installer.py:119
-msgid "Performing final checks…"
-msgstr ""
-
-#: src/dialogs/installer.py:123
-#, fuzzy, python-brace-format
-msgid "Installing {0}…"
-msgstr "S'està instal·lant DXVK…"
-
-#: src/dialogs/installer.py:125
-#, python-brace-format
-msgid "{0} is now available in the programs view."
-msgstr ""
-
-#: src/dialogs/installer.py:171
-msgid "Installer failed with unknown error"
-msgstr "L'instal·lador ha fallat amb un error desconegut"
-
-#: src/dialogs/exclusionpatterns.py:108
-#, fuzzy
-msgid "No exclusion patterns defined."
-msgstr "No s'han definit variables d'entorn"
-
-#: src/views/bottle_details.py:142
-#, python-format
-msgid "Updated: %s"
-msgstr "Actualitzat: %s"
-
-#: src/views/bottle_details.py:200 src/views/list.py:118
-msgid "Choose a Windows executable file"
-msgstr "Trieu un fitxer executable de Windows"
-
-#: src/views/bottle_details.py:202 src/views/list.py:120
-#: src/ui/dialog-run-args.ui:35
-msgid "Run"
-msgstr "Executar"
-
-#: src/views/bottle_details.py:209
-#, fuzzy
-msgid "Be Aware of Sandbox"
-msgstr "Espai aïllat dedicat"
-
-#: src/views/bottle_details.py:210
-msgid ""
-"Bottles is running in a sandbox, a restricted permission environment needed "
-"to keep you safe. If the program won't run, consider moving inside the "
-"bottle (3 dots icon on the top), then launch from there."
-msgstr ""
-
-#: src/views/bottle_details.py:212
-msgid "Ok"
-msgstr ""
-
-#: src/views/bottle_details.py:267
-msgid "Select the location where to save the backup config"
-msgstr "Seleccioneu la ubicació on desar la configuració de còpia de seguretat"
-
-#: src/views/bottle_details.py:271
-msgid "Select the location where to save the backup archive"
-msgstr "Seleccioneu la ubicació on voleu desar l'arxiu de còpia de seguretat"
-
-#: src/views/bottle_details.py:276
-#, python-brace-format
-msgid "Backup created for '{0}'."
-msgstr "Còpia de seguretat creada per a '{0}'."
-
-#: src/views/bottle_details.py:278
-#, python-brace-format
-msgid "Backup failed for '{0}'."
-msgstr "La còpia de seguretat ha fallat per a \"{0}\"."
-
-#: src/views/bottle_details.py:296
-msgid "Export"
-msgstr "Exportar"
-
-#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
-#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
-#: src/views/bottle_preferences.py:745
-#, fuzzy
-msgid "Confirm"
-msgstr "Configuració"
-
-#: src/views/bottle_details.py:333
-msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Esteu segur que voleu suprimir aquesta ampolla i tots els fitxers?"
-
-#: src/views/bottle_details.py:412
-msgid ""
-"Are you sure you want to terminate all processes?\n"
-"This can cause data loss."
-msgstr ""
-"Esteu segur que voleu finalitzar tots els processos?\n"
-"Això pot provocar la pèrdua de dades."
-
-#: src/views/bottle_preferences.py:207
-msgid "This feature is not available on your system."
-msgstr "Aquesta funció no està disponible al vostre sistema."
-
-#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:405
-msgid "Default to the bottle path."
-msgstr "Per defecte, el camí de l'ampolla."
-
-#: src/views/bottle_preferences.py:258
-msgid "Choose working directory for executables"
-msgstr "Trieu el directori de treball per als executables"
-
-#: src/views/bottle_preferences.py:741
-msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
-
-#: src/views/bottle_preferences.py:742
-msgid ""
-"This will kepp all your files but will delete all states. Do you want to "
-"continue?"
-msgstr ""
-
-#: src/views/bottle_programs.py:83
-#, python-brace-format
-msgid "'{0}' added."
-msgstr "\"{0}\" afegit."
-
-#: src/views/bottle_programs.py:87
-msgid "Choose an executable path"
-msgstr "Trieu un camí executable"
-
-#: src/views/bottle_programs.py:89
-msgid "Add"
-msgstr "Afegeix"
-
-#: src/views/details.py:154
-msgid "Details & Utilities"
-msgstr "Detalls i utilitats"
-
-#: src/views/details.py:158 src/ui/preferences.ui:6 src/ui/window.ui:24
-msgid "Preferences"
-msgstr "Preferències"
-
-#: src/views/details.py:162
-msgid "Dependencies"
-msgstr "Dependències"
-
-#: src/views/details.py:166 src/ui/details-bottle.ui:241
-msgid "Programs"
-msgstr "Programes"
-
-#: src/views/details.py:167
-msgid "Found in your bottle's Start menu."
-msgstr "Es troba al menú Inici de la vostra ampolla."
-
-#: src/views/details.py:170 src/ui/details-preferences.ui:656
-msgid "Versioning"
-msgstr "Versionat"
-
-#: src/views/details.py:174
-msgid "Installers"
-msgstr "Instal·ladors"
-
-#: src/views/details.py:178 src/ui/details-bottle.ui:289
-msgid "Task Manager"
-msgstr "Gestor de Tasques"
-
-#: src/views/details.py:377
-#, fuzzy
-msgid "Operations in progress, please wait."
-msgstr "S'està actualitzant la versió de Windows, espereu…"
-
-#: src/views/details.py:381
-#, fuzzy
-msgid "Return to your bottles."
-msgstr "Cerca les vostres ampolles…"
-
-#: src/views/importer.py:89
-msgid "Backup imported successfully."
-msgstr "La còpia de seguretat s'ha importat correctament."
-
-#: src/views/importer.py:91
-msgid "Import failed."
-msgstr "La importació ha fallat."
-
-#: src/views/importer.py:103 src/views/importer.py:132
-msgid "Importing backup…"
-msgstr "S'està important la còpia de seguretat…"
-
-#: src/views/importer.py:115
-msgid "Choose a backup archive"
-msgstr "Trieu un arxiu de còpia de seguretat"
-
-#: src/views/importer.py:117 src/views/importer.py:146
-msgid "Import"
-msgstr "Importar"
-
-#: src/views/importer.py:144
-msgid "Choose a configuration file"
-msgstr "Trieu un fitxer de configuració"
-
-#: src/views/list.py:59 src/views/list.py:65
-msgid "N/A"
-msgstr "N/D"
-
-#: src/views/list.py:220
-msgid "Your Bottles"
-msgstr "Les vostres ampolles"
-
-#: src/views/new.py:142
-msgid "Choose a recipe file"
-msgstr "Trieu un fitxer de receptes"
-
-#: src/views/new.py:158
-msgid "Choose where to store the bottle"
-msgstr "Trieu on guardar l'ampolla"
-
-#: src/views/new.py:211
-msgid "There was an error creating the bottle."
-msgstr "S'ha produït un error en crear l'ampolla."
-
-#: src/views/new.py:219
-#, python-brace-format
-msgid "A bottle named “{0}” was created successfully"
-msgstr "S'ha creat correctament una ampolla anomenada \"{0}\""
-
-#: src/views/preferences.py:125
-#, fuzzy
-msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-"No s'ha trobat Steam o Bottles no té prou permisos. Visiteu https://docs."
-"usebottles.com/flatpak/cant-enable-steam-proton-manager"
-
-#: src/views/preferences.py:188 src/views/preferences.py:204
-#: src/ui/preferences.ui:155
-msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)."
-msgstr ""
-"Trieu on emmagatzemar les ampolles noves (això no mourà les existents)."
-
-#: src/views/preferences.py:193
-msgid "Choose new bottles path"
-msgstr "Trieu el camí de les ampolles noves"
-
-#: src/views/preferences.py:236
-msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:237
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:240
-msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
-
-#: src/views/preferences.py:241
-msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
-msgstr ""
-
-#: src/views/preferences.py:243
-msgid "Other"
-msgstr "Altres"
-
-#: src/views/bottle_versioning.py:88
-msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
-
-#: src/views/loading.py:33
-#, python-brace-format
-msgid "Downloading ~{0} of packages…"
-msgstr ""
-
-#: src/views/loading.py:34
-#, python-brace-format
-msgid "Fetched {0} of {1} packages"
-msgstr ""
-
-#: src/widgets/component.py:70
-msgid "Upgrade"
-msgstr "Actualitza"
-
-#: src/widgets/component.py:145
-msgid "Installing…"
-msgstr "S'està instal·lant DXVK…"
-
-#: src/widgets/dependency.py:107 src/widgets/installer.py:72
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "Manifest per a {0}"
-
-#: src/widgets/dependency.py:170
-#, python-brace-format
-msgid "'{0}' installed."
-msgstr "'{0}' instal·lat."
-
-#: src/widgets/dependency.py:184
-#, fuzzy, python-brace-format
-msgid "'{0}' failed to install."
-msgstr "'{0}' instal·lat."
-
-#: src/widgets/importer.py:66
-#, python-brace-format
-msgid "'{0}' imported."
-msgstr "'{0}' importat."
-
-#: src/widgets/installer.py:81
-#, python-brace-format
-msgid "Review for {0}"
-msgstr "Ressenya per a {0}"
-
-#: src/widgets/program.py:187
-#, fuzzy, python-brace-format
-msgid "Launching '{0}'…"
-msgstr "Llançament a la terminal…"
-
-#: src/widgets/program.py:193
-#, fuzzy, python-brace-format
-msgid "Launching '{0}' with Steam…"
-msgstr "Llançar amb Steam"
-
-#: src/widgets/program.py:215
-#, python-brace-format
-msgid "'{0}' hidden."
-msgstr "'{0}' amagat."
-
-#: src/widgets/program.py:217
-#, python-brace-format
-msgid "'{0}' showed."
-msgstr "\"{0}\" mostrat."
-
-#: src/widgets/program.py:240
-#, python-brace-format
-msgid "'{0}' removed."
-msgstr "'{0}' eliminat."
-
-#: src/widgets/program.py:254
-#, python-brace-format
-msgid "'{0}' renamed to '{1}'."
-msgstr "'{0}' reanomenat a '{1}'."
-
-#: src/widgets/program.py:274
-#, python-brace-format
-msgid "Desktop Entry created for '{0}'"
-msgstr "Entrada d'escriptori creada per a '{0}'"
-
-#: src/widgets/program.py:290
-#, python-brace-format
-msgid "'{0}' added to your library"
-msgstr "S'ha afegit '{0}' a la vostra biblioteca"
-
-#: src/widgets/program.py:306
-#, python-brace-format
-msgid "'{0}' added to your Steam library"
-msgstr "S'ha afegit '{0}' a la vostra biblioteca de Steam"
-
-#: src/utils/connection.py:67
-msgid "You are offline, unable to download."
-msgstr "Esteu fora de línia, no es pot baixar."
-
-#: src/ui/about.ui:8
-msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2022 - Desenvolupadors de Bottles"
-
-#: src/ui/about.ui:9
-msgid "Easily manage wineprefix using environments"
-msgstr "Gestioneu fàcilment wineprefix mitjançant entorns"
-
-#: src/ui/component-entry.ui:6
-msgid "Component version"
-msgstr "Versió del component"
-
-#: src/ui/component-entry.ui:15 src/ui/dependency-entry.ui:34
-#: src/ui/program-entry.ui:92
-msgid "Uninstall"
-msgstr "Desinstal·lar"
-
-#: src/ui/component-entry.ui:26 src/ui/importer-entry.ui:15
-msgid "Browse files"
-msgstr "Exploreu els fitxers"
-
-#: src/ui/component-entry.ui:37
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch. Press to try again."
-msgstr ""
-"La instal·lació ha fallat. Això pot ser degut a un error del repositori, una "
-"descàrrega parcial o una falta de coincidència de la suma de verificació. "
-"Premeu per tornar-ho a provar."
-
-#: src/ui/component-entry.ui:48
-msgid "Download & Install"
-msgstr "Baixar i instal·lar"
-
-#: src/ui/component-entry.ui:61
-msgid "0%"
-msgstr "0%"
-
-#: src/ui/dependency-entry.ui:18
-msgid "Show Manifest"
-msgstr "Mostra el manifest"
-
-#: src/ui/dependency-entry.ui:23
-msgid "License"
-msgstr "Llicencia"
-
-#: src/ui/dependency-entry.ui:28
-msgid "Reinstall"
-msgstr "Reinstal·lar"
-
-#: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
-msgid "Report a Bug…"
-msgstr "Informa d'un error…"
-
-#: src/ui/dependency-entry.ui:73
-msgid "Download & Install this dependency"
-msgstr "Baixar i instal·lar aquesta dependència"
-
-#: src/ui/dependency-entry.ui:89
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr ""
-"S'ha produït un error d'instal·lació. Reinicieu Bottles per llegir l'informe "
-"d'error o executeu-lo mitjançant el terminal per llegir la sortida."
-
-#: src/ui/details-bottle.ui:18
-msgid "Troubleshooting"
-msgstr "Resolució de problemes"
-
-#: src/ui/details-bottle.ui:26
-msgid "Browse Files…"
-msgstr "Navega pels fitxers…"
-
-#: src/ui/details-bottle.ui:31
-msgid "Duplicate Bottle…"
-msgstr "Duplicar l'ampolla…"
-
-#: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
-msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
-"Aquest és l'arxiu complet de la vostra ampolla, inclosos els fitxers "
-"personals."
-
-#: src/ui/details-bottle.ui:37
-msgid "Full Backup…"
-msgstr "Còpia de seguretat completa…"
-
-#: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
-msgstr ""
-"Aquesta és només la configuració de l'ampolla, és perfecta si en voleu crear-"
-"ne una de nova però sense fitxers personals."
-
-#: src/ui/details-bottle.ui:43
-msgid "Export Configuration…"
-msgstr "Exportar la configuració…"
-
-#: src/ui/details-bottle.ui:51
-msgid "Delete Bottle…"
-msgstr "Suprimeix l'ampolla…"
-
-#: src/ui/details-bottle.ui:86
-msgid "Kill all Processes"
-msgstr "Mata tots els processos"
-
-#: src/ui/details-bottle.ui:91
-msgid "Simulate a Windows system shutdown."
-msgstr "Simula un tancament del sistema Windows."
-
-#: src/ui/details-bottle.ui:92
-msgid "Shutdown"
-msgstr "Tancar"
-
-#: src/ui/details-bottle.ui:97
-msgid "Simulate a Windows system reboot."
-msgstr "Simula un reinici del sistema Windows."
-
-#: src/ui/details-bottle.ui:98
-msgid "Reboot"
-msgstr "Reiniciar"
-
-#: src/ui/details-bottle.ui:121
-msgid "Run with Arguments…"
-msgstr "Corre amb arguments…"
-
-#: src/ui/details-bottle.ui:126
-msgid "Launch in Terminal…"
-msgstr "Llançament a la terminal…"
-
-#: src/ui/details-bottle.ui:157
-msgid "My bottle"
-msgstr "La meva ampolla"
-
-#: src/ui/details-bottle.ui:169
-msgid "Win64"
-msgstr "Win64"
-
-#: src/ui/details-bottle.ui:177 src/ui/new.ui:77
-msgid "Environment"
-msgstr "Entorn"
-
-#: src/ui/details-bottle.ui:185 src/ui/details-preferences.ui:304
-#: src/ui/new.ui:129
-msgid "Runner"
-msgstr "Corredor"
-
-#: src/ui/details-bottle.ui:193 src/ui/list-entry.ui:23
-msgid "Versioning enabled for this bottle"
-msgstr "Versions activades per a aquesta ampolla"
-
-#: src/ui/details-bottle.ui:198 src/ui/list-entry.ui:28
-msgid "Versioning is active in this bottle."
-msgstr "El versionat està actiu en aquesta ampolla."
-
-#: src/ui/details-bottle.ui:208 src/ui/list-entry.ui:34
-msgid "0"
-msgstr "0"
-
-#: src/ui/details-bottle.ui:219
-msgid "Run Executable…"
-msgstr "Executar executable…"
-
-#: src/ui/details-bottle.ui:235
-msgid "Layers"
-msgstr "Capes"
-
-#: src/ui/details-bottle.ui:246
-msgid "Tools"
-msgstr "Eines"
-
-#: src/ui/details-bottle.ui:250
-msgid "Command Line"
-msgstr "Línia d'ordres"
-
-#: src/ui/details-bottle.ui:251
-msgid "Run commands inside the Bottle."
-msgstr "Executeu ordres dins de l'ampolla."
-
-#: src/ui/details-bottle.ui:262
-msgid "Registry Editor"
-msgstr "Editor del registre"
-
-#: src/ui/details-bottle.ui:263
-msgid "Edit the internal registry."
-msgstr "Editeu el registre intern."
-
-#: src/ui/details-bottle.ui:273
-msgid "Legacy Tools"
-msgstr "Eines heretades"
-
-#: src/ui/details-bottle.ui:277
-msgid "Explorer"
-msgstr "Explorador"
-
-#: src/ui/details-bottle.ui:278
-msgid "Browse internal files with the Wine explorer."
-msgstr "Exploreu el fitxers interns amb l'explorador de Wine."
-
-#: src/ui/details-bottle.ui:290
-msgid "Manage processes with the Wine task manager."
-msgstr "Gestioneu processos amb el gestor de tasques de Wine."
-
-#: src/ui/details-bottle.ui:301
-msgid "Debug"
-msgstr "Depurar"
-
-#: src/ui/details-bottle.ui:302
-msgid "Debug wine processes."
-msgstr "Depurar els processos de Wine."
-
-#: src/ui/details-bottle.ui:313
-msgid "Wine Configuration"
-msgstr "Configuració de Wine"
-
-#: src/ui/details-bottle.ui:314
-msgid "Adjust internal settings."
-msgstr "Ajusta els paràmetres interns."
-
-#: src/ui/details-bottle.ui:325
-msgid "Uninstaller"
-msgstr "Desinstal·lador"
-
-#: src/ui/details-bottle.ui:326
-msgid "Uninstall programs using Wine uninstaller."
-msgstr "Desinstal·leu programes amb el desinstal·lador de Wine."
-
-#: src/ui/details-bottle.ui:337
-msgid "Control Panel"
-msgstr "Tauler de control"
-
-#: src/ui/details-bottle.ui:338
-msgid "Access the internal Wine Control Panel."
-msgstr "Accediu al Tauler de control intern del Wine."
-
-#: src/ui/details-bottle.ui:357
-msgid "Use the Installers section or the \"Run executable\" button."
-msgstr "Utilitzeu la secció Instal·ladors o el botó \"Iniciar executable\"."
-
-#: src/ui/details-dependencies.ui:13
-msgid "Search for dependencies…"
-msgstr "Cercar dependències…"
-
-#: src/ui/details-dependencies.ui:22
-msgid ""
-"Dependencies are software, libraries and codecs that improve the "
-"compatibility of Windows software. Install from here to meet your program "
-"requirements."
-msgstr ""
-"Les dependències són programari, biblioteques i còdecs que milloren la "
-"compatibilitat del programari de Windows. Instal·leu des d'aquí per satisfer "
-"els requisits del vostre programa."
-
-#: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
-msgid ""
-"Files on this page are provided by third parties under a proprietary "
-"license. By installing them, you agree with their respective licensing terms."
-msgstr ""
-"Els fitxers d’aquesta pàgina són proporcionats per tercers sota una "
-"llicència de propietat. En instal·lar-los, n’esteu d’acord amb els termes de "
-"llicència."
-
-#: src/ui/details-dependencies.ui:62
-msgid "Report a problem or a missing dependency."
-msgstr "Informar d'un problema o d'una dependència que falta."
-
-#: src/ui/details-dependencies.ui:63
-msgid "Report missing dependency"
-msgstr "Informar d'una dependència que falta"
-
-#: src/ui/details-dependencies.ui:68
-#, fuzzy
-msgid "Read documentation."
-msgstr "Documentació"
-
-#: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:71
-#: src/ui/details-programs.ui:45 src/ui/details-versioning.ui:44
-#: src/ui/window.ui:38
-msgid "Documentation"
-msgstr "Documentació"
-
-#: src/ui/details-dependencies.ui:80
-msgid "Install Selected"
-msgstr "Instal·lar seleccionats"
-
-#: src/ui/details-dependencies.ui:81
-msgid "We strongly advise against installing multiple dependencies at once."
-msgstr ""
-"Desaconsellem fermament la instal·lació de diverses dependències alhora."
-
-#: src/ui/details-dependencies.ui:88
-msgid "Select Dependencies"
-msgstr "Seleccionar dependències"
-
-#: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:82
-#: src/ui/window.ui:86
-msgid "Search"
-msgstr "Cercar"
-
-#: src/ui/details-installers.ui:13
-msgid "Search for Programs…"
-msgstr "Cercar programes…"
-
-#: src/ui/details-installers.ui:48
-msgid "No Installers Found"
-msgstr "No s'han trobat instal·ladors"
-
-#: src/ui/details-installers.ui:51
-msgid ""
-"The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
-"El repositori no és accessible o cap instal·lador és compatible amb aquesta "
-"ampolla."
-
-#: src/ui/details-installers.ui:70 src/ui/details-programs.ui:44
-#: src/ui/details-versioning.ui:43
-#, fuzzy
-msgid "Read documentation"
-msgstr "Documentació"
-
-#: src/ui/details-preferences.ui:8
-msgid "Bottle Details"
-msgstr "Detalls de l'ampolla"
-
-#: src/ui/details-preferences.ui:11 src/ui/dialog-duplicate.ui:58
-#: src/ui/new.ui:70
-msgid "Name"
-msgstr "Nom"
-
-#: src/ui/details-preferences.ui:19
-msgid "Graphics"
-msgstr "Gràfics"
-
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:213
-msgid "DXVK"
-msgstr "DXVK"
-
-#: src/ui/details-preferences.ui:24
-msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr "Millora el rendiment dels jocs DirectX 11 i de les aplicacions 3D."
-
-#: src/ui/details-preferences.ui:27 src/ui/details-preferences.ui:328
-msgid "Updating DXVK, please wait…"
-msgstr "S'està actualitzant DXVK, espereu…"
-
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:218
-msgid "VKD3D"
-msgstr "VKD3D"
-
-#: src/ui/details-preferences.ui:43
-msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr "Millora el rendiment dels jocs DirectX 12 i les aplicacions 3D."
-
-#: src/ui/details-preferences.ui:46 src/ui/details-preferences.ui:351
-msgid "Updating VKD3D, please wait…"
-msgstr "S'està actualitzant VKD3D, espereu…"
-
-#: src/ui/details-preferences.ui:61
-msgid "DLSS (DXVK-NVAPI)"
-msgstr "DLSS (DXVK-NVAPI)"
-
-#: src/ui/details-preferences.ui:62
-msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "Proporciona suport DLSS si està disponible i NVAPI de Nvidia."
-
-#: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
-#: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
-msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "S'està actualitzant DXVK-NVAPI, espereu…"
-
-#: src/ui/details-preferences.ui:80
-msgid "FSR"
-msgstr "FSR"
-
-#: src/ui/details-preferences.ui:81
-msgid ""
-"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
-msgstr ""
-"FSR utilitza tecnologies d'escalat d'avantguarda d'avantguarda per ajudar-"
-"vos a augmentar els fotogrames per segon."
-
-#: src/ui/details-preferences.ui:88
-msgid "Ultra Quality"
-msgstr "Qualitat Ultra"
-
-#: src/ui/details-preferences.ui:89
-msgid "Quality"
-msgstr "Qualitat"
-
-#: src/ui/details-preferences.ui:90
-msgid "Balanced"
-msgstr "Equilibrat"
-
-#: src/ui/details-preferences.ui:91
-msgid "Performance"
-msgstr "Rendiment"
-
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:228
-msgid "LatencyFleX"
-msgstr "LatencyFleX"
-
-#: src/ui/details-preferences.ui:109
-msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
-msgstr ""
-"Una alternativa a NVIDIA Reflex. Pot ser detectat per alguns anti-trampes."
-
-#: src/ui/details-preferences.ui:128
-msgid "Discrete GPU"
-msgstr "GPU dedicada"
-
-#: src/ui/details-preferences.ui:129
-msgid "Improves performance at the cost of increased power usage."
-msgstr "Millora el rendiment a costa d'un augment de l'ús d'energia."
-
-#: src/ui/details-preferences.ui:140
-msgid "vkBasalt"
-msgstr "vkBasalt"
-
-#: src/ui/details-preferences.ui:141
-msgid ""
-"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
-"games."
-msgstr ""
-"vkBasalt és una capa de postprocessament Vulkan per millorar els gràfics "
-"visuals dels jocs."
-
-#: src/ui/details-preferences.ui:151
-msgid "Display Settings"
-msgstr "Paràmetres de la pantalla"
-
-#: src/ui/details-preferences.ui:155 src/ui/dialog-launch-options.ui:194
-msgid "Virtual Desktop"
-msgstr "Escriptori virtual"
-
-#: src/ui/details-preferences.ui:156
-msgid "Use the Wine virtual desktop."
-msgstr "Utilitzeu l'escriptori virtual de Wine."
-
-#: src/ui/details-preferences.ui:194
-msgid "Fullscreen Mouse Capture"
-msgstr "Captura del ratolí a pantalla completa"
-
-#: src/ui/details-preferences.ui:195
-msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
-"Permet que el programa capturi l'entrada del ratolí quan estigui a pantalla "
-"completa."
-
-#: src/ui/details-preferences.ui:206
-msgid "Take Focus"
-msgstr "Prendre el focus"
-
-#: src/ui/details-preferences.ui:207
-msgid "Activate it if the program does not retake focus on switch."
-msgstr "Activeu-lo si el programa no recupera el focus en canviar."
-
-#: src/ui/details-preferences.ui:218
-msgid "Mouse Warp"
-msgstr "Centrar cursor del ratolí"
-
-#: src/ui/details-preferences.ui:219
-msgid "Change this if you are running into mouse lag or desync."
-msgstr "Canvieu-ho si us trobeu amb un retard o dessincronització del ratolí."
-
-#: src/ui/details-preferences.ui:231
-msgid "Screen Scaling"
-msgstr "Escalat de pantalla"
-
-#: src/ui/details-preferences.ui:232
-msgid "Set custom DPI."
-msgstr "Defineix els PPP personalitzats."
-
-#: src/ui/details-preferences.ui:238
-msgid "96"
-msgstr "96"
-
-#: src/ui/details-preferences.ui:239
-msgid "120"
-msgstr "120"
-
-#: src/ui/details-preferences.ui:240
-msgid "144"
-msgstr "144"
-
-#: src/ui/details-preferences.ui:241
-msgid "168"
-msgstr "168"
-
-#: src/ui/details-preferences.ui:242
-msgid "192"
-msgstr "192"
-
-#: src/ui/details-preferences.ui:243
-msgid "216"
-msgstr "216"
-
-#: src/ui/details-preferences.ui:244
-msgid "240"
-msgstr "240"
-
-#: src/ui/details-preferences.ui:245
-msgid "288"
-msgstr "288"
-
-#: src/ui/details-preferences.ui:246
-msgid "336"
-msgstr "336"
-
-#: src/ui/details-preferences.ui:247
-msgid "384"
-msgstr "384"
-
-#: src/ui/details-preferences.ui:248
-msgid "432"
-msgstr "432"
-
-#: src/ui/details-preferences.ui:249
-msgid "480"
-msgstr "480"
-
-#: src/ui/details-preferences.ui:262
-msgid "Renderer"
-msgstr "Renderitzador"
-
-#: src/ui/details-preferences.ui:263
-msgid "Select what backend to use for wined3d."
-msgstr "Seleccioneu quin backend voleu utilitzar per a wined3d."
-
-#: src/ui/details-preferences.ui:269
-msgid "gl (default)"
-msgstr "gl (per defecte)"
-
-#: src/ui/details-preferences.ui:270
-msgid "gdi"
-msgstr "gdi"
-
-#: src/ui/details-preferences.ui:271
-msgid "vulkan"
-msgstr "vulkan"
-
-#: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
-msgid "System"
-msgstr "Sistema"
-
-#: src/ui/details-preferences.ui:289
-msgid "Manage Components Versions"
-msgstr "Administra les versions dels components"
-
-#: src/ui/details-preferences.ui:299
-msgid "Components"
-msgstr "Components"
-
-#: src/ui/details-preferences.ui:307
-msgid "Updating Runner and components, please wait…"
-msgstr "S'està actualitzant el corredor i els components, espereu…"
-
-#. TODO: replace with ComboRow
-#: src/ui/details-preferences.ui:324
-msgid "DXVK Version"
-msgstr "Versió de DXVK"
-
-#: src/ui/details-preferences.ui:348
-msgid "VKD3D Version"
-msgstr "Versió de VKD3D"
-
-#: src/ui/details-preferences.ui:372
-msgid "DXVK NVAPI Version"
-msgstr "Versió de DXVK NVAPI"
-
-#: src/ui/details-preferences.ui:394
-msgid "LatencyFleX Version"
-msgstr "Versió de LatencyFleX"
-
-#: src/ui/details-preferences.ui:416
-msgid "Enable synchronization to increase performance of multicore processors."
-msgstr ""
-"Habilita la sincronització per augmentar el rendiment dels processadors "
-"multinucli."
-
-#: src/ui/details-preferences.ui:417
-msgid "Synchronization"
-msgstr "Sincronització"
-
-#: src/ui/details-preferences.ui:428
-msgid "Esync"
-msgstr "Esync"
-
-#: src/ui/details-preferences.ui:434
-msgid "Fsync"
-msgstr "Fsync"
-
-#: src/ui/details-preferences.ui:440
-msgid "Futex2"
-msgstr "Futex2"
-
-#: src/ui/details-preferences.ui:455
-msgid "Windows Version"
-msgstr "Versió del Windows"
-
-#: src/ui/details-preferences.ui:458
-msgid "Updating Windows version, please wait…"
-msgstr "S'està actualitzant la versió de Windows, espereu…"
-
-#: src/ui/details-preferences.ui:486
-msgid "Language"
-msgstr "Idioma"
-
-#: src/ui/details-preferences.ui:487
-msgid "Choose the language to use with programs."
-msgstr "Trieu l'idioma que voleu utilitzar amb els programes."
-
-#: src/ui/details-preferences.ui:497
-msgid "false"
-msgstr "fals"
-
-#: src/ui/details-preferences.ui:498
-msgid "Dedicated Sandbox"
-msgstr "Espai aïllat dedicat"
-
-#: src/ui/details-preferences.ui:499
-msgid "Use a restricted/managed environment for this bottle."
-msgstr "Utilitzeu un entorn restringit/gestionat per a aquesta ampolla."
-
-#: src/ui/details-preferences.ui:502
-msgid "Manage Sandbox permissions"
-msgstr "Administra els permisos d'espai aïllat"
-
-#: src/ui/details-preferences.ui:520
-msgid "Bottles Runtime"
-msgstr "Entorn d’execució del Bottles"
-
-#: src/ui/details-preferences.ui:521
-msgid ""
-"Provides a bundle of extra libraries for more compatibility,disable if you "
-"run into issues."
-msgstr ""
-"Proporciona un paquet de biblioteques addicionals per a més compatibilitat, "
-"desactiveu-lo si teniu problemes."
-
-#: src/ui/details-preferences.ui:532
-msgid "Steam Runtime"
-msgstr "Entorn d’execució de l’Steam"
-
-#: src/ui/details-preferences.ui:533
-msgid "The same as the Bottles one but provided by Steam."
-msgstr "El mateix que el de Bottles però proporcionat per Steam."
-
-#: src/ui/details-preferences.ui:544
-msgid "GameMode"
-msgstr "GameMode"
-
-#: src/ui/details-preferences.ui:545
-msgid "Optimise gaming performance on demand."
-msgstr "Optimitzar el rendiment dels jocs sota demanda."
-
-#: src/ui/details-preferences.ui:556
-msgid "Gamescope"
-msgstr "Gamescope"
-
-#: src/ui/details-preferences.ui:557
-msgid "Use the Gamescope micro-compositor."
-msgstr "Utilitzar el microcompositor Gamescope."
-
-#: src/ui/details-preferences.ui:560
-msgid "Manage Gamescope settings"
-msgstr "Gestiona els paràmetres del Gamescope"
-
-#: src/ui/details-preferences.ui:578 src/ui/dialog-launch-options.ui:91
-msgid "Working Directory"
-msgstr "Directori de treball"
-
-#: src/ui/details-preferences.ui:579
-msgid "Defaults to the bottle path."
-msgstr "El valor per defecte és el del camí de l’ampolla."
-
-#: src/ui/details-preferences.ui:582 src/ui/dialog-launch-options.ui:65
-#: src/ui/dialog-launch-options.ui:98 src/ui/preferences.ui:159
-msgid "Reset to default"
-msgstr "Restableix els valors predeterminats"
-
-#: src/ui/details-preferences.ui:592 src/ui/dialog-launch-options.ui:109
-#: src/ui/new.ui:163 src/ui/new.ui:180 src/ui/preferences.ui:170
-msgid "Choose a directory"
-msgstr "Trieu un directori"
-
-#: src/ui/details-preferences.ui:605 src/ui/dialog-dll-overrides.ui:9
-#: src/ui/dialog-dll-overrides.ui:15
-msgid "DLL Overrides"
-msgstr "Substitució de DLL"
-
-#: src/ui/details-preferences.ui:616 src/ui/dialog-env-vars.ui:16
-msgid "Environment Variables"
-msgstr "Variables d'entorn"
-
-#: src/ui/details-preferences.ui:627
-msgid "Manage Drives"
-msgstr "Gestionar unitats"
-
-#: src/ui/details-preferences.ui:639
-msgid "Audio"
-msgstr "Àudio"
-
-#: src/ui/details-preferences.ui:643
-msgid "Reduce Latency"
-msgstr "Reduir la latència"
-
-#: src/ui/details-preferences.ui:644
-#, fuzzy
-msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
-msgstr ""
-"Estableix la latència de PulseAudio a 60 ms, augmentant la qualitat del so"
-
-#: src/ui/details-preferences.ui:660
-msgid "Use Compression for States"
-msgstr ""
-
-#: src/ui/details-preferences.ui:661
-msgid ""
-"This will reduce the space used by the states but slow down their creation."
-msgstr ""
-
-#: src/ui/details-preferences.ui:672
-#, fuzzy
-msgid "Automatic Versioning"
-msgstr "Versionat"
-
-#: src/ui/details-preferences.ui:673
-msgid ""
-"Bottles will create a state before running any dependencies or installers."
-msgstr ""
-
-#: src/ui/details-preferences.ui:684
-msgid "Use Exclusion Patterns"
-msgstr ""
-
-#: src/ui/details-preferences.ui:685
-msgid "Use custom patterns to exclude some paths from versioning."
-msgstr ""
-
-#: src/ui/details-preferences.ui:688
-#, fuzzy
-msgid "Manage Patterns"
-msgstr "Gestionar unitats"
-
-#: src/ui/details-preferences.ui:707
-msgid "Development and Debugging"
-msgstr "Desenvolupament i depuració"
-
-#: src/ui/details-preferences.ui:711
-msgid "MangoHud"
-msgstr "MangoHud"
-
-#: src/ui/details-preferences.ui:712
-msgid ""
-"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
-"and more."
-msgstr ""
-"Una superposició Vulkan i OpenGL per controlar FPS, temperatures, càrrega de "
-"CPU/GPU i molt més."
-
-#: src/ui/details-preferences.ui:723
-msgid "OBS Vulkan Capture"
-msgstr "Captura de Vulkan de l'OBS"
-
-#: src/ui/details-preferences.ui:724
-msgid "Toggle OBS game capture for all programs."
-msgstr "Commuta la captura de jocs de OBS per a tots els programes."
-
-#: src/ui/details-preferences.ui:735
-msgid "Wine 'fixme' Logs"
-msgstr "Registres de 'fixme' de Wine"
-
-#: src/ui/details-preferences.ui:736
-msgid "Log code paths that are unimplemented in Wine."
-msgstr "Registra els camins de codi que no estan implementats a Wine."
-
-#: src/ui/details-programs.ui:9
-msgid "No Programs found"
-msgstr "No s'han trobat programes"
-
-#: src/ui/details-programs.ui:10
-msgid ""
-"Install programs from the installers section or by running the installer "
-"executable, you can also manually add executables with the \"+\" button."
-msgstr ""
-"Instal·leu programes des de la secció d'instal·ladors o executant "
-"l'executable de l'instal·lador, també podeu afegir executables manualment "
-"amb el botó \"+\"."
-
-#: src/ui/details-programs.ui:31
-msgid "Toggle Hidden"
-msgstr "Commuta l'ocultació"
-
-#: src/ui/details-programs.ui:36
-#, fuzzy
-msgid "Search for new programs"
-msgstr "Cercar programes instal·lats"
-
-#: src/ui/details-programs.ui:55
-msgid "Add a custom executable path"
-msgstr "Afegir un camí executable personalitzat"
-
-#: src/ui/details-taskmanager.ui:18
-msgid "Refresh"
-msgstr "Actualitza"
-
-#: src/ui/details-taskmanager.ui:24
-msgid "Stop process"
-msgstr "Atura el procés"
-
-#: src/ui/details-versioning.ui:25
-msgid "No States Found"
-msgstr "No s’ha trobat cap estat"
-
-#: src/ui/details-versioning.ui:26
-msgid "Create first state to start using versioning."
-msgstr "Creeu el primer estat per començar a utilitzar versions."
-
-#: src/ui/details-versioning.ui:63
-msgid "A short comment"
-msgstr "Un breu comentari"
-
-#: src/ui/details-versioning.ui:68
-msgid "Save the bottle state."
-msgstr "Deseu l'estat de l'ampolla."
-
-#: src/ui/details-versioning.ui:88
-msgid "Create new state"
-msgstr "Crea un estat nou"
-
-#: src/ui/details.ui:74
-msgid "Operations"
-msgstr "Operacions"
-
-#: src/ui/dialog-crash-report.ui:10
-msgid "Bottles crash report"
-msgstr "Informe de tancament inesperat de Bottles"
-
-#: src/ui/dialog-crash-report.ui:23
-msgid "Send report"
-msgstr "Envia l’informe"
-
-#: src/ui/dialog-crash-report.ui:43
-msgid ""
-"Bottles crashed last time. Please fill out a report attaching the following "
-"traceback to help us identify the problem preventing it from happening again."
-msgstr ""
-"El Bottles s’ha tancat inesperadament. Empleneu un informe, adjuntant la "
-"traça següent per a ajudar-nos a identificar el problema i evitar que passi "
-"una altra vegada."
-
-#: src/ui/dialog-crash-report.ui:75
-msgid ""
-"We found one or more similar (or identical) reports. Please make sure to "
-"check carefully that it has not already been reported before submitting a "
-"new one. Each report requires effort on the part of the developers to "
-"diagnose, please respect their work and make sure you don't post duplicates."
-msgstr ""
-"Hem trobat un o més informes semblants (o idèntics). Assegureu-vos de "
-"comprovar acuradament que encara no s'ha informat abans d'enviar-ne un de "
-"nou. Cada informe requereix un esforç per part dels desenvolupadors per "
-"diagnosticar, si us plau, respecteu el seu treball i assegureu-vos que no "
-"publiqueu duplicats."
-
-#: src/ui/dialog-crash-report.ui:96
-msgid "I still want to report."
-msgstr "Tot i així vull informar."
-
-#: src/ui/dialog-crash-report.ui:102
-msgid "Advanced options"
-msgstr "Opcions avançades"
-
-#: src/ui/dialog-dll-overrides.ui:14
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)."
-msgstr ""
-"Les biblioteques d'enllaços dinàmics es poden especificar perquè siguin "
-"integrades (proporcionades pel Wine) o natives (proporcionades pel programa)."
-
-#: src/ui/dialog-dll-overrides.ui:18
-msgid "New Override"
-msgstr "Nova substitució"
-
-#: src/ui/dialog-dll-overrides.ui:26
-msgid "Overrides"
-msgstr "Substitucions"
-
-#: src/ui/dialog-drives.ui:9
-msgid "Drives"
-msgstr "Unitats"
-
-#: src/ui/dialog-drives.ui:31
-msgid ""
-"These are paths from your host system that are mapped and recognized as "
-"devices by the runner (e.g. C: D:…).\n"
-"                                "
-msgstr ""
-"Aquests són els camins del vostre sistema amfitrió que el corredor mapeja i "
-"reconeix com a dispositius (p. ex., C: D:...).\n"
-"                                "
-
-#: src/ui/dialog-drives.ui:35
-msgid "Letter"
-msgstr "Lletra"
-
-#: src/ui/dialog-drives.ui:59
-msgid "Existing Drives"
-msgstr "Unitats existents"
-
-#: src/ui/dialog-duplicate.ui:18
-msgid "Duplicate Bottle"
-msgstr "Duplica l’ampolla"
-
-#: src/ui/dialog-duplicate.ui:23 src/ui/dialog-gamescope.ui:17
-#: src/ui/dialog-launch-options.ui:17 src/ui/dialog-upgrade-versioning.ui:23
-#, fuzzy
-msgid "_Cancel"
-msgstr "Cancel·lar"
-
-#: src/ui/dialog-duplicate.ui:41
-msgid "Duplicate"
-msgstr "Duplicat"
-
-#: src/ui/dialog-duplicate.ui:55
-msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Introduïu un nom per al duplicat de l'ampolla."
-
-#: src/ui/dialog-duplicate.ui:78
-msgid "Duplicating…"
-msgstr "S’està duplicant…"
-
-#: src/ui/dialog-duplicate.ui:87 src/ui/dialog-upgrade-versioning.ui:121
-msgid "Take a break, it may take a while."
-msgstr "Feu una pausa, pot trigar una estona."
-
-#: src/ui/dialog-duplicate.ui:108
-msgid "Bottle Duplicated"
-msgstr "Ampolla duplicada"
-
-#: src/ui/dialog-env-vars.ui:35
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr ""
-"Les variables d'entorn són valors amb nom dinàmic que poden afectar la "
-"manera com es comportaran els processos en execució a l'ampolla."
-
-#: src/ui/dialog-env-vars.ui:38
-msgid "Variable Name"
-msgstr "Nom de la variable"
-
-#: src/ui/dialog-env-vars.ui:46
-msgid "Existing Variables"
-msgstr "Variables existents"
-
-#: src/ui/dialog-gamescope.ui:8
-msgid "Gamescope Settings"
-msgstr "Paràmetres del Gamescope"
-
-#: src/ui/dialog-gamescope.ui:46
-msgid ""
-"Configure how Gamescope should manage the window for the games you will run."
-msgstr ""
-"Configureu com Gamescope hauria de gestionar la finestra per als jocs que "
-"executareu."
-
-#: src/ui/dialog-gamescope.ui:51
-#, fuzzy
-msgid "Game Resolution"
-msgstr "Resolució del joc"
-
-#: src/ui/dialog-gamescope.ui:52
-msgid "Uses the resolution of the video game as a reference."
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:55 src/ui/dialog-gamescope.ui:71
-msgid "Width (e.g. 1280)"
-msgstr "Amplada (p. ex. 1280)"
-
-#: src/ui/dialog-gamescope.ui:60 src/ui/dialog-gamescope.ui:76
-msgid "Height (e.g. 720)"
-msgstr "Alçada (p. ex. 720)"
-
-#: src/ui/dialog-gamescope.ui:67
-#, fuzzy
-msgid "Gamescope Resolution"
-msgstr "Resolució del gamescope"
-
-#: src/ui/dialog-gamescope.ui:68
-msgid ""
-"Upscales the resolution when using a resolution higher than the game "
-"resolution."
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:83
-msgid "Miscellaneous"
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:86
-#, fuzzy
-msgid "Frame Rate Limit (e.g. 60)"
-msgstr "Límit de velocitat de fotogrames (p. ex. 60)"
-
-#: src/ui/dialog-gamescope.ui:91
-#, fuzzy
-msgid "Frame Rate Limit (When Unfocused)"
-msgstr "Límit de velocitat de fotogrames (quan es desenfoca)"
-
-#: src/ui/dialog-gamescope.ui:96
-#, fuzzy
-msgid "Use Integer Scaling"
-msgstr "Utilitza l'escalat d'enters"
-
-#: src/ui/dialog-gamescope.ui:107
-#, fuzzy
-msgid "Window Type"
-msgstr "Tipus de finestra"
-
-#: src/ui/dialog-gamescope.ui:112
-msgid "Borderless"
-msgstr "Sense vores"
-
-#: src/ui/dialog-gamescope.ui:119
-msgid "Fullscreen"
-msgstr "Pantalla completa"
-
-#: src/ui/dialog-journal.ui:12
-msgid "All messages"
-msgstr "Tots els missatges"
-
-#: src/ui/dialog-journal.ui:17
-msgid "Critical"
-msgstr "Crític"
-
-#: src/ui/dialog-journal.ui:22
-msgid "Errors"
-msgstr "Errors"
-
-#: src/ui/dialog-journal.ui:27
-msgid "Warnings"
-msgstr "Advertències"
-
-#: src/ui/dialog-journal.ui:32
-msgid "Info"
-msgstr "Informació"
-
-#: src/ui/dialog-journal.ui:49
-msgid "Journal browser"
-msgstr "Navegador del diari"
-
-#: src/ui/dialog-journal.ui:56
-msgid "Journal Browser"
-msgstr "Navegador del diari"
-
-#: src/ui/dialog-journal.ui:62
-msgid ""
-"Change logging level.\n"
-"                                        "
-msgstr ""
-"Canviar el nivell de registre.\n"
-"                                        "
-
-#: src/ui/dialog-journal.ui:67
-msgid "All"
-msgstr "Tots"
-
-#: src/ui/dialog-launch-options.ui:8
-msgid "Launch Options"
-msgstr "Opcions de llançament"
-
-#: src/ui/dialog-launch-options.ui:47
-msgid "Those arguments will be passed at launch."
-msgstr "Aquests arguments es passaran al llançament."
-
-#: src/ui/dialog-launch-options.ui:48
-msgid "Custom Arguments"
-msgstr "Arguments personalitzats"
-
-#: src/ui/dialog-launch-options.ui:51
-msgid "Command Arguments"
-msgstr "Arguments d’ordres"
-
-#: src/ui/dialog-launch-options.ui:52
-#, python-format
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "p. ex.: VAR=valor %ordre% -exemple1 -exemple2 -exemple3=hola"
-
-#: src/ui/dialog-launch-options.ui:58
-msgid "Post-run Script"
-msgstr "Script post-execució"
-
-#: src/ui/dialog-launch-options.ui:76
-msgid "Choose a script"
-msgstr "Trieu un script"
-
-#: src/ui/dialog-launch-options.ui:125
-msgid "These settings will override the default settings for this executable."
-msgstr ""
-"Aquests paràmetres substituiran la configuració per defecte d’aquest "
-"executable."
-
-#: src/ui/dialog-launch-options.ui:126
-msgid "Preferences Overrides"
-msgstr "Substitució de les preferències"
-
-#: src/ui/dialog-launch-options.ui:129
-msgid "Reset to Bottle's Defaults"
-msgstr "Restableix als valors per defecte de l'ampolla"
-
-#: src/ui/dialog-rename.ui:9
-msgid "Rename"
-msgstr "Canvia el nom"
-
-#: src/ui/dialog-rename.ui:34
-msgid "Choose a new name for the selected program."
-msgstr "Trieu un nom nou per al programa seleccionat."
-
-#: src/ui/dialog-rename.ui:37
-msgid "New Name"
-msgstr "Nom nou"
-
-#: src/ui/dialog-run-args.ui:14
-msgid "Run With Arguments"
-msgstr "Executa amb arguments"
-
-#: src/ui/dialog-run-args.ui:47
-msgid "Write below the arguments to be passed to the executable."
-msgstr "Escriviu a sota dels arguments que s'han de passar a l'executable."
-
-#: src/ui/dialog-run-args.ui:50
-msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "p. ex.: -opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-bottle-picker.ui:42
-#, fuzzy
-msgid "Create New Bottle"
-msgstr "Crea una ampolla nova"
-
-#: src/ui/dialog-exclusion-patterns.ui:16
-msgid "Exclusion Patterns"
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:35
-msgid ""
-"Define patterns that will be used to prevent some directories to being "
-"versioned."
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:38
-#, fuzzy
-msgid "Pattern"
-msgstr "Lletra"
-
-#: src/ui/dialog-exclusion-patterns.ui:46
-#, fuzzy
-msgid "Existing Patterns"
-msgstr "Unitats existents"
-
-#: src/ui/dialog-proton-alert.ui:22
-#, fuzzy
-msgid "Use Proton"
-msgstr "Steam Proton"
-
-#: src/ui/dialog-proton-alert.ui:37
-msgid ""
-"Beware, using Proton-based runners in non-Steam bottles can cause problems "
-"and prevent them from behaving correctly.\n"
-"\n"
-"We recommend using Wine-GE rather, a version of Proton meant to run outside "
-"of Steam.\n"
-"\n"
-"Proceeding will automatically enable the Steam runtime (if present in the "
-"system and detected by Bottles) in order to allow it to access the necessary "
-"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
-"the runner's provider, is not responsible for any problems and we ask that "
-"you do not report to them."
-msgstr ""
-
-#: src/ui/dialog-proton-alert.ui:50
-msgid "I got it."
-msgstr ""
-
-#: src/ui/dialog-sandbox.ui:9
-#, fuzzy
-msgid "Sandbox Settings"
-msgstr "Paràmetres del Gamescope"
-
-#: src/ui/dialog-sandbox.ui:23
-msgid "Share Network"
-msgstr ""
-
-#: src/ui/dialog-sandbox.ui:34
-#, fuzzy
-msgid "Share Sound"
-msgstr "No s’ha trobat cap estat"
-
-#: src/ui/dialog-upgrade-versioning.ui:18
-#, fuzzy
-msgid "Upgrade Needed"
-msgstr "Actualitza"
-
-#: src/ui/dialog-upgrade-versioning.ui:41 src/ui/onboard.ui:88
-msgid "Continue"
-msgstr "Continua"
-
-#: src/ui/dialog-upgrade-versioning.ui:49
-msgid "Launch upgrade"
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:69
-#, fuzzy
-msgid "New Versioning System"
-msgstr "Versionat"
-
-#: src/ui/dialog-upgrade-versioning.ui:72
-msgid "The new bottle versioning system has landed."
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:86
-msgid ""
-"Bottles has a whole new Versioning System which is not backwards "
-"compatible. \n"
-"\n"
-"To continue using versioning we need to re-initialize the bottle repository. "
-"This will not delete data from your bottle but will delete all existing "
-"states and create a new one. \n"
-"\n"
-"If you need to go back to a previous state before continuing, close this "
-"window and restore the state, then reopen the bottle to show this window "
-"again. \n"
-"\n"
-"The old system will be discontinued in one of the next releases."
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:112
-msgid "Re-initializing repository…"
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:144
-msgid "Done! Please restart Bottles."
-msgstr ""
-
-#: src/ui/exclusion-pattern-entry.ui:6 src/ui/env-var-entry.ui:6
-msgid "Value"
-msgstr "Valor"
-
-#: src/ui/local-resource-entry.ui:6
-msgid "This resource is missing."
-msgstr "Falta aquest recurs."
-
-#: src/ui/local-resource-entry.ui:10
-msgid "Browse"
-msgstr "Navega"
-
-#: src/ui/dll-override-entry.ui:10
-msgid "Builtin (Wine)"
-msgstr "Incorporat (Wine)"
-
-#: src/ui/dll-override-entry.ui:11
-msgid "Native (Windows)"
-msgstr "Natiu (Windows)"
-
-#: src/ui/dll-override-entry.ui:12
-msgid "Builtin, then Native"
-msgstr "Incorporat, després natiu"
-
-#: src/ui/dll-override-entry.ui:13
-msgid "Native, then Builtin"
-msgstr "Natiu, després Incorporat"
-
-#: src/ui/dll-override-entry.ui:14
-msgid "Disabled"
-msgstr "Inhabilitat"
-
-#: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
-msgid "Remove"
-msgstr "Suprimir"
-
-#: src/ui/drive-entry.ui:7
-msgid "/point/to/path"
-msgstr "/punt/al/camí"
-
-#: src/ui/drive-entry.ui:24
-msgid "Choose a Directory"
-msgstr "Trieu un directori"
-
-#: src/ui/importer-entry.ui:39
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Aquest prefix de Wine ja s'havia imporatat al Bottles."
-
-#: src/ui/importer.ui:24
-msgid "Import Bottles backup"
-msgstr "Importar copia de seguretat de Bottles"
-
-#: src/ui/importer.ui:31
-msgid "Search again for prefixes"
-msgstr "Torna a cercar prefixos"
-
-#: src/ui/importer.ui:45
-msgid "No Prefixes Found"
-msgstr "No s'ha trobat cap prefix"
-
-#: src/ui/importer.ui:46
-msgid ""
-"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
-"Use the icon on the top to import a bottle from a backup"
-msgstr ""
-"No s'ha trobat cap prefix de Lutris, PlayOnLinux, etc.\n"
-"Utilitzeu la icona de la part superior per importar una ampolla des d'una "
-"còpia de seguretat"
-
-#: src/ui/importer.ui:81
-msgid "Configuration"
-msgstr "Configuració"
-
-#: src/ui/importer.ui:87
-msgid "Full Archive"
-msgstr "Arxiu complet"
-
-#: src/ui/installer-entry.ui:18
-msgid "Show Manifest…"
-msgstr "Mostra el manifest…"
-
-#: src/ui/installer-entry.ui:23
-msgid "Read Review…"
-msgstr "Llegeir la ressenya…"
-
-#: src/ui/installer-entry.ui:57
-msgid "Install this program"
-msgstr "Instal·la aquest programa"
-
-#: src/ui/library-entry.ui:17
-msgid "Remove from Library"
-msgstr "Suprimeix de la biblioteca"
-
-#: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
-msgid "Launch with Steam"
-msgstr "Llançar amb Steam"
-
-#: src/ui/library.ui:15
-msgid "Add items here from your bottle's program list"
-msgstr "Afegiu aquí elements de la llista de programes de a vostra ampolla"
-
-#: src/ui/list-entry.ui:46
-msgid "This bottle looks damaged."
-msgstr "Aquesta ampolla sembla malmesa."
-
-#: src/ui/list-entry.ui:60
-msgid "Execute in this bottle"
-msgstr "Executa en aquesta ampolla"
-
-#: src/ui/list-entry.ui:75
-msgid "Run Here"
-msgstr "Executa aquí"
-
-#: src/ui/list-entry.ui:84
-msgid ""
-"This bottle looks damaged, the configuration file is missing. I can try to "
-"solve by creating a new configuration."
-msgstr ""
-"Aquesta ampolla sembla malmesa, falta el fitxer de configuració. Es pot "
-"intentar resoldre-ho creant una nova configuració."
-
-#: src/ui/list-entry.ui:96
-msgid "Run .exe/.msi in this bottle"
-msgstr "Executa .exe/.msi en aquesta ampolla"
-
-#: src/ui/list.ui:17
-msgid "Search your bottles…"
-msgstr "Cerca les vostres ampolles…"
-
-#: src/ui/list.ui:38
-msgid "Steam Proton"
-msgstr "Steam Proton"
-
-#: src/ui/list.ui:55
-msgid "Start off by creating a Bottle."
-msgstr "Comenceu creant una ampolla."
-
-#: src/ui/list.ui:62
-msgid "Create a new Bottle"
-msgstr "Crea una ampolla nova"
-
-#: src/ui/list.ui:75
-msgid "No Results Found"
-msgstr "No s’ha trobat cap resultat"
-
-#: src/ui/list.ui:76
-msgid "Try a different search."
-msgstr "Proveu una cerca diferent."
-
-#: src/ui/loading.ui:16
-msgid "Starting up…"
-msgstr "S'està iniciant…"
-
-#: src/ui/new.ui:17 src/ui/new.ui:64
-msgid "New Bottle"
-msgstr "Nova ampolla"
-
-#: src/ui/new.ui:38
-msgid "Create"
-msgstr "Crea"
-
-#: src/ui/new.ui:67
-msgid "Bottle Information"
-msgstr "Informació de l'ampolla"
-
-#: src/ui/new.ui:84
-msgid "Gaming"
-msgstr "Jocs"
-
-#: src/ui/new.ui:85
-msgid "An environment improved for Windows games."
-msgstr "Un entorn millorat per als jocs de Windows."
-
-#: src/ui/new.ui:93
-msgid "Application"
-msgstr "Aplicació"
-
-#: src/ui/new.ui:94
-msgid "An environment improved for Windows applications."
-msgstr "Un entorn millorat per a les aplicacions de Windows."
-
-#: src/ui/new.ui:103
-msgid "Layered"
-msgstr "En capes"
-
-#: src/ui/new.ui:104
-msgid "A layered environment, where every app is a layer."
-msgstr "Un entorn en capes, on cada aplicació és una capa."
-
-#: src/ui/new.ui:112
-msgid "Custom"
-msgstr "Personalitzat"
-
-#: src/ui/new.ui:113
-msgid "A clear environment for your experiments."
-msgstr "Un entorn net per als vostres experiments."
-
-#: src/ui/new.ui:117
-msgid "Unlinked Home Directory"
-msgstr "Directori d'inici desenllaçat"
-
-#: src/ui/new.ui:118
-msgid "Do not link the userdir to the homedir"
-msgstr "No enllaçar el directori d'usuari amb el directori inicial"
-
-#: src/ui/new.ui:143
-msgid "Architecture"
-msgstr "Arquitectura"
-
-#: src/ui/new.ui:144
-msgid "We recommend using 32bit only if strictly necessary."
-msgstr "Recomanem utilitzar 32 bits només si és estrictament necessari."
-
-#: src/ui/new.ui:148
-msgid "64 bit"
-msgstr "64 bits"
-
-#: src/ui/new.ui:149
-msgid "32 bit"
-msgstr "32 bits"
-
-#: src/ui/new.ui:157
-msgid "Custom Recipe"
-msgstr "Recepta personalitzada"
-
-#: src/ui/new.ui:158
-msgid "Choose a custom recipe for the environment if you have one."
-msgstr "Trieu una recepta personalitzada per a l'entorn si en teniu una."
-
-#: src/ui/new.ui:174
-msgid "Custom Path"
-msgstr "Camí personalitzat"
-
-#: src/ui/new.ui:175
-msgid "Store this bottle in another place."
-msgstr "Emmagatzema aquesta ampolla en aquest lloc."
-
-#: src/ui/new.ui:262
-msgid "Bottle created"
-msgstr "S’ha creat l’ampolla"
-
-#: src/ui/onboard.ui:36
-msgid "Previous"
-msgstr "Anterior"
-
-#: src/ui/onboard.ui:62
-msgid "Welcome to Bottles"
-msgstr "Us donem la benvinguda al Bottles"
-
-#: src/ui/onboard.ui:63
-msgid ""
-"Run Windows Software on Linux.\n"
-"                                                "
-msgstr ""
-"Executeu programari de Windows a Linux.\n"
-"                                                "
-
-#: src/ui/onboard.ui:71
-msgid "Windows in Bottles"
-msgstr "El Windows al Bottles"
-
-#: src/ui/onboard.ui:72
-msgid ""
-"Bottles uses compatibility runners to provide isolated containerized Windows-"
-"like environments where programs run."
-msgstr ""
-"Bottles utilitza corredors de compatibilitat per proporcionar entorns "
-"aïllats en contenidors semblants a Windows on s'executen programes."
-
-#: src/ui/onboard.ui:79
-msgid "Almost Done"
-msgstr "Gairebé fet"
-
-#: src/ui/onboard.ui:80
-msgid "We need a few more minutes to set everything up…"
-msgstr "Necessitem uns minuts més per configurar-ho tot…"
-
-#: src/ui/onboard.ui:113
-msgid "All ready!"
-msgstr "Tot a punt!"
-
-#: src/ui/onboard.ui:122
-msgid "Please Finish the setup first"
-msgstr ""
-
-#: src/ui/onboard.ui:129
-msgid "Start using Bottles"
-msgstr "Començar a utilitzar Bottles"
-
-#: src/ui/onboard.ui:150
-msgid "Next"
-msgstr "Següent"
-
-#: src/ui/preferences.ui:13 src/ui/preferences.ui:46
-msgid "General"
-msgstr "General"
-
-#: src/ui/preferences.ui:16
-msgid "Appearance"
-msgstr "Aspecte"
-
-#: src/ui/preferences.ui:19
-#, fuzzy
-msgid "Dark Mode"
-msgstr "Tema fosc"
-
-#: src/ui/preferences.ui:20
-msgid "Whether Bottles should use the dark color scheme."
-msgstr ""
-
-#: src/ui/preferences.ui:32
-msgid "Show Update Date"
-msgstr "Mostra la data d'actualització"
-
-#: src/ui/preferences.ui:33
-msgid "Whether to show the update date in the bottle list."
-msgstr "Si s'ha de mostrar la data d'actualització a la llista d'ampolles."
-
-#: src/ui/preferences.ui:50
-msgid "Show notifications for downloads and installs."
-msgstr "Mostra les notificacions de baixades i instal·lacions."
-
-#: src/ui/preferences.ui:61
-msgid "Temp Files"
-msgstr "Fitxers temporals"
-
-#: src/ui/preferences.ui:62
-msgid "Clean temp files when Bottles launches?"
-msgstr "Voleu netejar els fitxers temporals quan s'iniciï Bottles?"
-
-#: src/ui/preferences.ui:73
-msgid "Close Bottles After Starting a Program"
-msgstr "Tancar Bottles després d'iniciar un programa"
-
-#: src/ui/preferences.ui:74
-msgid "Close Bottles after starting a program from the file manager."
-msgstr ""
-"Tancar Bottles després d'iniciar un programa des del gestor de fitxers."
-
-#: src/ui/preferences.ui:87
-msgid "Integrations"
-msgstr "Integracions"
-
-#: src/ui/preferences.ui:90
-msgid "Steam Proton Prefixes"
-msgstr "Prefixos de Steam Proton"
-
-#: src/ui/preferences.ui:91
-msgid "List and manage Steam Proton prefixes."
-msgstr "Llista i gestiona els prefixos de Steam Proton."
-
-#: src/ui/preferences.ui:95
-#, fuzzy
-msgid "Read Documentation"
-msgstr "Documentació"
-
-#: src/ui/preferences.ui:113
-msgid "List Steam Apps in Programs List"
-msgstr "Llista les aplicacions de Steam a la llista de programes"
-
-#: src/ui/preferences.ui:114
-msgid "Requires Steam for Windows installed in the bottle."
-msgstr "Requereix Steam per a Windows instal·lat a l'ampolla."
-
-#: src/ui/preferences.ui:125
-msgid "List Epic Games in Programs List"
-msgstr "Llista Epic Games a la llista de programes"
-
-#: src/ui/preferences.ui:126
-msgid "Requires Epic Games Store installed in the bottle."
-msgstr "Requereix Epic Games Store instal·lat a l'ampolla."
-
-#: src/ui/preferences.ui:137
-#, fuzzy
-msgid "List Ubisoft Games in Programs List"
-msgstr "Llista Epic Games a la llista de programes"
-
-#: src/ui/preferences.ui:138
-#, fuzzy
-msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr "Requereix Epic Games Store instal·lat a l'ampolla."
-
-#: src/ui/preferences.ui:151
-msgid "Advanced"
-msgstr "Avançat"
-
-#: src/ui/preferences.ui:154
-msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Camí de les ampolles personalitzades (requereix reiniciar)"
-
-#: src/ui/preferences.ui:188
-msgid "Runners"
-msgstr "Corredors"
-
-#: src/ui/preferences.ui:193
-msgid "Pre-Release"
-msgstr "Pre-alliberament"
-
-#: src/ui/preferences.ui:194
-msgid "Display unstable versions of runners."
-msgstr "Mostra versions inestables dels corredors."
-
-#: src/ui/preferences.ui:210
-msgid "DLL Components"
-msgstr "Components DLL"
-
-#: src/ui/preferences.ui:223
-msgid "DXVK-NVAPI"
-msgstr "DXVK-NVAPI"
-
-#: src/ui/preferences.ui:236
-msgid "Core"
-msgstr "Nucli"
-
-#: src/ui/preferences.ui:240
-msgid "Runtime"
-msgstr "Entorn d’execució"
-
-#: src/ui/preferences.ui:245
-msgid "WineBridge"
-msgstr "WineBridge"
-
-#: src/ui/preferences.ui:256
-msgid ""
-"These features are under heavy development and may be unstable, expect bugs "
-"and breakage."
-msgstr ""
-
-#: src/ui/preferences.ui:260
-msgid "In early development (requires restart)."
-msgstr "En desenvolupament inicial (requereix reiniciar)."
-
-#: src/ui/preferences.ui:271
-msgid "Sandbox per bottle"
-msgstr "Entorn aïllat per ampolla"
-
-#: src/ui/preferences.ui:272
-msgid "In early development."
-msgstr "En desenvolupament inicial."
-
-#: src/ui/program-entry.ui:21
-msgid "Launch with terminal"
-msgstr "Inicia amb un terminal"
-
-#: src/ui/program-entry.ui:28
-msgid "Browse path"
-msgstr "Explora el camí"
-
-#: src/ui/program-entry.ui:44
-msgid "Change Launch Options…"
-msgstr "Canvia les opcions d’inici…"
-
-#: src/ui/program-entry.ui:49
-msgid "Add to My Library"
-msgstr "Afegeix a La meva biblioteca"
-
-#: src/ui/program-entry.ui:54
-msgid "Add Desktop Entry"
-msgstr "Afegeix una entrada d’escriptori"
-
-#: src/ui/program-entry.ui:59
-msgid "Add to Steam"
-msgstr "Afegeix a l’Steam"
-
-#: src/ui/program-entry.ui:64
-msgid "Rename…"
-msgstr "Canvia el nom…"
-
-#: src/ui/program-entry.ui:73
-msgid "Hide Program"
-msgstr "Amaga el programa"
-
-#: src/ui/program-entry.ui:78
-msgid "Show Program"
-msgstr "Mostra el programa"
-
-#: src/ui/program-entry.ui:83
-msgid "Remove from List"
-msgstr "Treu de la llista"
-
-#: src/ui/state-entry.ui:16
-msgid "Restore this state"
-msgstr "Restaura aquest estat"
-
-#: src/ui/task-entry.ui:24
-msgid "Delete message"
-msgstr "Suprimeix el missatge"
-
-#: src/ui/window.ui:19
-msgid "Import/Export…"
-msgstr "Importa/exporta…"
-
-#: src/ui/window.ui:33
-msgid "Support"
-msgstr "Assistència"
-
-#: src/ui/window.ui:43
-msgid "Forums"
-msgstr "Fòrums"
-
-#: src/ui/window.ui:48
-msgid "About Bottles"
-msgstr "Quant al Bottles"
-
-#: src/ui/window.ui:79
-msgid "Open menu"
-msgstr "Obre el menú"
-
-#: src/ui/window.ui:93
-msgid ""
-"You don't seem connected to the internet. Without it you will not be able to "
-"download essential components. Click this icon when you have reestablished "
-"the connection."
-msgstr ""
-"Sembla que no esteu connectat a Internet. Sense ell, no podreu descarregar "
-"components essencials. Feu clic a aquesta icona quan hàgiu restablit la "
-"connexió."
-
-#: src/ui/window.ui:99
-msgid "New bottle"
-msgstr "Ampolla nova"
+msgstr "Commuteu l'avís d'espai aïllat."
 
 #~ msgid "Loading…"
 #~ msgstr "S'està carregant…"

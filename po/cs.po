@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 12:08+0200\n"
-"PO-Revision-Date: 2022-07-04 17:16+0000\n"
+"POT-Creation-Date: 2022-08-07 23:12+0200\n"
+"PO-Revision-Date: 2022-08-08 20:40+0000\n"
 "Last-Translator: vikdevelop <super-vik1@protonmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
 ">\n"
@@ -17,21 +17,2876 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
+#: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
+msgid "No path specified"
+msgstr "Nebyla specifikovaná žádná cesta"
+
+#: bottles/backend/managers/backup.py:71
+#, python-brace-format
+msgid "Backup {0}"
+msgstr "Záloha {0}"
+
+#: bottles/backend/managers/backup.py:124
+#, python-brace-format
+msgid "Importing backup: {0}"
+msgstr "Importuji zálohu: {0}"
+
+#: bottles/backend/managers/manager.py:1030
+msgid "Fail to install components, tried 3 times."
+msgstr "Instalace komponent selhala, bylo vyzkoušeno 3krát."
+
+#: bottles/backend/managers/manager.py:1041
+msgid "Missing essential components. Installing…"
+msgstr "Chybí základní součásti. Instalace…"
+
+#: bottles/backend/managers/manager.py:1117
+msgid "Failed to create bottle directory."
+msgstr "Nepodařilo se vytvořit adresář láhve."
+
+#: bottles/backend/managers/manager.py:1129
+msgid "Failed to create placeholder directory/file."
+msgstr "Nastal problém s vytvořením zástupce adresáře/souboru."
+
+#: bottles/backend/managers/manager.py:1134
+msgid "Generating bottle configuration…"
+msgstr "Vytváření konfigurace láhve…"
+
+#: bottles/backend/managers/manager.py:1157
+msgid "Template found, applying…"
+msgstr "Šablona nalezena, probíhá aplikování…"
+
+#. execute wineboot on the bottle path
+#: bottles/backend/managers/manager.py:1169
+msgid "The Wine config is being updated…"
+msgstr "Konfigurace Wine se aktualizuje…"
+
+#: bottles/backend/managers/manager.py:1171
+msgid "Wine config updated!"
+msgstr "Konfigurace Wine byla aktualizována!"
+
+#: bottles/backend/managers/manager.py:1179
+msgid "Running as Flatpak, sandboxing userdir…"
+msgstr "Spuštění jako Flatpak, v uživatelském sandboxu…"
+
+#: bottles/backend/managers/manager.py:1181
+msgid "Sandboxing userdir…"
+msgstr "Sandboxuji uživatelskou složku…"
+
+#: bottles/backend/managers/manager.py:1211
+msgid "Setting Windows version…"
+msgstr "Nastavení verze Windows…"
+
+#: bottles/backend/managers/manager.py:1221
+msgid "Apply CMD default settings…"
+msgstr "Aplikuji výchozí nastavení CMD…"
+
+#: bottles/backend/managers/manager.py:1229
+msgid "Optimizing environment…"
+msgstr "Optimizace prostředí…"
+
+#: bottles/backend/managers/manager.py:1240
+#, python-brace-format
+msgid "Applying environment: {0}…"
+msgstr "Aplikuji prostředí: [{0}]…"
+
+#: bottles/backend/managers/manager.py:1250
+msgid "(!) Using a custom environment recipe…"
+msgstr "(!) Použit vlastní recept prostředí…"
+
+#: bottles/backend/managers/manager.py:1253
+msgid "(!) Recipe not not found or not valid…"
+msgstr "(!) Recept není možné najít, nebo je invalidní…"
+
+#: bottles/backend/managers/manager.py:1270
+msgid "Installing DXVK…"
+msgstr "Instalování DXVK …"
+
+#: bottles/backend/managers/manager.py:1278
+msgid "Installing VKD3D…"
+msgstr "Instalování VKD3D…"
+
+#: bottles/backend/managers/manager.py:1286
+msgid "Installing DXVK-NVAPI…"
+msgstr "Instalování DXVK-NVAPI …"
+
+#: bottles/backend/managers/manager.py:1295
+#, python-format
+msgid "Installing dependency: %s …"
+msgstr "Instalování {0} závislosti: %s …"
+
+#: bottles/backend/managers/manager.py:1311
+msgid "Creating versioning state 0…"
+msgstr "Vytváření verzovacího stavu 0 …"
+
+#: bottles/backend/managers/manager.py:1319
+msgid "Finalizing…"
+msgstr "Dokončuji…"
+
+#: bottles/backend/managers/manager.py:1330
+msgid "Caching template…"
+msgstr "Ukládaní šablony do mezipaměti…"
+
+#: bottles/backend/managers/versioning.py:97
+msgid "Committing state …"
+msgstr "Zavázání stavu …"
+
+#: bottles/backend/managers/versioning.py:106
+msgid "Nothing to commit"
+msgstr "Není čeho se zavázat"
+
+#: bottles/backend/managers/versioning.py:112
+#, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "Nový stav [{0}] byl úspěšně vytvořen!"
+
+#: bottles/backend/managers/versioning.py:140
+msgid "States list retrieved successfully!"
+msgstr "Seznam stavů úspěšně načten!"
+
+#: bottles/backend/managers/versioning.py:171
+#, python-brace-format
+msgid "State {0} restored successfully!"
+msgstr "Stav {0} byl úspěšně obnoven!"
+
+#: bottles/backend/managers/versioning.py:176
+msgid "Restoring state {} …"
+msgstr "Obnovování stavu {}…"
+
+#: bottles/backend/managers/versioning.py:185
+msgid "State not found"
+msgstr "Stav nebyl nalezen"
+
+#: bottles/backend/managers/versioning.py:191
+msgid "State {} is already the active state"
+msgstr "Stav {} je již aktivní stav"
+
+#: bottles/frontend/windows/crash.py:37
+msgid "Show report"
+msgstr "Zobrazit zprávu"
+
+#: bottles/frontend/windows/crash.py:88
+msgid ""
+"            This issue was reported 5 times and cannot be sent again.\n"
+"            Report your feedback in one of the below existing reports."
+msgstr ""
+"            Tento problém byl nahlášen 5krát a nemůže být poslán znovu.\n"
+"Nahlaste svoji odezvu v jednom z existujících nahlášení."
+
+#: bottles/frontend/windows/dlloverrides.py:136
+msgid "No overrides found."
+msgstr "Nebyly nalezeny žádné přepisy."
+
+#: bottles/frontend/windows/drives.py:71
+msgid "Choose path"
+msgstr "Vybrat umístění"
+
+#: bottles/frontend/windows/drives.py:73
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:234
+#: bottles/frontend/windows/launchoptions.py:258
+#: bottles/frontend/windows/vkbasalt.py:355
+#: bottles/frontend/ui/dialog-bottle-picker.ui:17
+#: bottles/frontend/ui/dialog-crash-report.ui:18
+#: bottles/frontend/ui/dialog-proton-alert.ui:17
+#: bottles/frontend/ui/dialog-rename.ui:17
+#: bottles/frontend/ui/dialog-run-args.ui:19 bottles/frontend/ui/new.ui:33
+#: bottles/frontend/views/bottle_details.py:202
+#: bottles/frontend/views/bottle_details.py:296
+#: bottles/frontend/views/bottle_details.py:335
+#: bottles/frontend/views/bottle_details.py:414
+#: bottles/frontend/views/bottle_preferences.py:276
+#: bottles/frontend/views/bottle_preferences.py:775
+#: bottles/frontend/views/bottle_programs.py:92
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146 bottles/frontend/views/list.py:120
+#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
+#: bottles/frontend/views/preferences.py:158
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: bottles/frontend/windows/drives.py:73
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:234
+#: bottles/frontend/windows/launchoptions.py:258
+#: bottles/frontend/ui/dialog-bottle-picker.ui:22
+#: bottles/frontend/views/bottle_preferences.py:276
+#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
+#: bottles/frontend/views/preferences.py:158
+msgid "Select"
+msgstr "Vybrat"
+
+#: bottles/frontend/windows/envvars.py:131
+msgid "No environment variables defined."
+msgstr "Nejsou definovány žádné proměnné prostředí."
+
+#: bottles/frontend/windows/exclusionpatterns.py:108
+msgid "No exclusion patterns defined."
+msgstr "Nejsou definovány žádné vzory vyloučení."
+
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/ui/dialog-gamescope.ui:34
+#: bottles/frontend/ui/dialog-launch-options.ui:35
+#: bottles/frontend/ui/dialog-rename.ui:22
+#: bottles/frontend/ui/dialog-vkbasalt.ui:38
+msgid "Save"
+msgstr "Uložit"
+
+#: bottles/frontend/windows/generic.py:24
+msgid "An error has occurred."
+msgstr "Došlo k chybě."
+
+#: bottles/frontend/windows/generic.py:91
+#: bottles/frontend/windows/generic.py:137
+#: bottles/frontend/windows/generic.py:182
+msgid "Copy to clipboard"
+msgstr "Zkopírovat do schránky"
+
+#: bottles/frontend/windows/installer.py:64
+msgid "Select Resource FIle"
+msgstr "Vyberte zdrojový soubor"
+
+#: bottles/frontend/windows/installer.py:115
+msgid "Installing Windows dependencies…"
+msgstr "Instalace závislostí Windows…"
+
+#: bottles/frontend/windows/installer.py:116
+msgid "Configuring the bottle…"
+msgstr "Konfigurace láhve…"
+
+#: bottles/frontend/windows/installer.py:117
+msgid "Processing installer steps…"
+msgstr "Zpracovávání kroků instalačního programu…"
+
+#: bottles/frontend/windows/installer.py:118
+msgid "Installing the {}…"
+msgstr "Instalace {}…"
+
+#: bottles/frontend/windows/installer.py:119
+msgid "Performing final checks…"
+msgstr "Provádění závěrečných kontrol…"
+
+#: bottles/frontend/windows/installer.py:123
+#, python-brace-format
+msgid "Installing {0}…"
+msgstr "Instalace {0}…"
+
+#: bottles/frontend/windows/installer.py:125
+#, python-brace-format
+msgid "{0} is now available in the programs view."
+msgstr "{0} je nyní k dispozici v zobrazení programů."
+
+#: bottles/frontend/windows/installer.py:171
+msgid "Installer failed with unknown error"
+msgstr "Instalátor selhal s neznámou chybou"
+
+#. endregion
+#: bottles/frontend/windows/launchoptions.py:56
+#: bottles/frontend/ui/dialog-launch-options.ui:59
+msgid "Choose a script which should be executed after run."
+msgstr "Vyberte který skript by měl být spuštěn po spuštění."
+
+#: bottles/frontend/windows/launchoptions.py:57
+#: bottles/frontend/ui/dialog-launch-options.ui:92
+msgid "Choose from where start the program."
+msgstr "Vyberte, odkud program spustit."
+
+#: bottles/frontend/windows/launchoptions.py:58
+#, python-brace-format
+msgid "{0} is already disabled for this bottle."
+msgstr "{0} je pro tuto láhev již zakázáno."
+
+#: bottles/frontend/windows/launchoptions.py:59
+msgid "This setting is different from the bottle's default."
+msgstr "Toto nastavení se liší od výchozího nastavení láhve."
+
+#: bottles/frontend/windows/launchoptions.py:232
+msgid "Choose the script"
+msgstr "Vyberte skript"
+
+#: bottles/frontend/windows/launchoptions.py:256
+msgid "Choose the Working Directory"
+msgstr "Vyberte pracovní adresář"
+
+#: bottles/frontend/windows/vkbasalt.py:84
+#: bottles/frontend/ui/dialog-vkbasalt.ui:420
+msgid "Choose a file."
+msgstr "Vyberte soubor."
+
+#: bottles/frontend/windows/vkbasalt.py:306
+msgid "File not Found"
+msgstr "Soubor nenalezen"
+
+#: bottles/frontend/windows/vkbasalt.py:307
+msgid "The given file does not exist. Please choose an appropriate file."
+msgstr "Daný soubor neexistuje. Vyberte prosím vhodný soubor."
+
+#: bottles/frontend/windows/vkbasalt.py:330
+msgid "Spaces in File Name"
+msgstr "Mezery v názvu souboru"
+
+#: bottles/frontend/windows/vkbasalt.py:331
+msgid ""
+"Color Lookup Table path must not contain any spaces. Please rename the file "
+"to remove all spaces."
+msgstr ""
+"Cesta k tabulce vyhledávání barev nesmí obsahovat žádné mezery. Přejmenujte "
+"soubor tak, abyste odstranili všechny mezery."
+
+#: bottles/frontend/windows/vkbasalt.py:339
+msgid "Invalid Image Dimension"
+msgstr "Nesprávný rozměr obrázku"
+
+#: bottles/frontend/windows/vkbasalt.py:340
+msgid "Height and width of the image must be equal."
+msgstr "Výška a šířka obrázku musí být stejná."
+
+#: bottles/frontend/windows/vkbasalt.py:353
+#: bottles/frontend/views/importer.py:144
+msgid "Choose a configuration file"
+msgstr "Vyberte konfigurační soubor"
+
+#: bottles/frontend/windows/vkbasalt.py:355
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146
+msgid "Import"
+msgstr "Importovat"
+
+#: bottles/frontend/main.py:105
+msgid "Show version"
+msgstr "Zobrazit verzi"
+
+#: bottles/frontend/main.py:113
+msgid "Executable path"
+msgstr "Cesta ke spustitelnému souboru"
+
+#: bottles/frontend/main.py:121
+msgid "lnk path"
+msgstr "lnk cesta"
+
+#: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.ui:103
+#: bottles/frontend/ui/list-entry.ui:7
+msgid "Bottle name"
+msgstr "Název láhve"
+
+#: bottles/frontend/main.py:137
+msgid "Pass arguments"
+msgstr "Předat argumenty"
+
+#: bottles/frontend/main.py:196
+msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
+msgstr "Neplatná URI (syntaxe: bottles:run/<bottle>/<program>)"
+
+#: bottles/frontend/main.py:237
+msgid "[Quit] request received."
+msgstr "[Quit] žádost přijata."
+
+#: bottles/frontend/main.py:246
+msgid "[Help] request received."
+msgstr "[Help] žádost přijata."
+
+#: bottles/frontend/main.py:254
+msgid "[Refresh] request received."
+msgstr "[Refresh] žádost přijata."
+
+#: bottles/frontend/operation.py:50
+msgid "Calculating…"
+msgstr "Počítání…"
+
+#: bottles/frontend/ui/about.ui:8
+msgid "© 2017-2022 - Bottles Developers"
+msgstr "© 2017-2022 - Vývojáři Láhví (Bottles)"
+
+#: bottles/frontend/ui/about.ui:9
+msgid "Easily manage wineprefix using environments"
+msgstr "Snadno spravujte wineprefix pomocí proměnných prostředí"
+
+#: bottles/frontend/ui/component-entry.ui:6
+msgid "Component version"
+msgstr "Verze komponenty"
+
+#: bottles/frontend/ui/component-entry.ui:15
+#: bottles/frontend/ui/dependency-entry.ui:34
+#: bottles/frontend/ui/program-entry.ui:92
+msgid "Uninstall"
+msgstr "Odinstalovat"
+
+#: bottles/frontend/ui/component-entry.ui:26
+#: bottles/frontend/ui/importer-entry.ui:15
+msgid "Browse files"
+msgstr "Procházet soubory"
+
+#: bottles/frontend/ui/component-entry.ui:37
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch. Press to try again."
+msgstr ""
+"Instalace selhala. Toto může být z důvodu chyby repozitáře, neshoda "
+"checksumu. Stiskněte pro vyzkoušení znovu."
+
+#: bottles/frontend/ui/component-entry.ui:48
+msgid "Download & Install"
+msgstr "Stáhnout a nainstalovat"
+
+#: bottles/frontend/ui/component-entry.ui:61
+msgid "0%"
+msgstr "0%"
+
+#: bottles/frontend/ui/dependency-entry.ui:18
+msgid "Show Manifest"
+msgstr "Zobrazit manifest"
+
+#: bottles/frontend/ui/dependency-entry.ui:23
+msgid "License"
+msgstr "Licence"
+
+#: bottles/frontend/ui/dependency-entry.ui:28
+msgid "Reinstall"
+msgstr "Přeinstalovat"
+
+#: bottles/frontend/ui/dependency-entry.ui:43
+#: bottles/frontend/ui/installer-entry.ui:32
+msgid "Report a Bug…"
+msgstr "Nahlásit problém…"
+
+#: bottles/frontend/ui/dependency-entry.ui:50
+msgid "Dependency name"
+msgstr "Název závislosti"
+
+#: bottles/frontend/ui/dependency-entry.ui:52
+msgid "Dependency description"
+msgstr "Popis závislosti"
+
+#: bottles/frontend/ui/dependency-entry.ui:59
+msgid "Category"
+msgstr "Kategorie"
+
+#: bottles/frontend/ui/dependency-entry.ui:73
+msgid "Download & Install this dependency"
+msgstr "Stáhnout a nainstalovat tuto závislost"
+
+#: bottles/frontend/ui/dependency-entry.ui:89
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+"Došlo k chybě při instalaci. Restartujte Bottles a přečtěte si hlášení o "
+"pádu nebo jej spusťte přes terminál a přečtěte si výstup."
+
+#: bottles/frontend/ui/details-bottle.ui:18
+msgid "Troubleshooting"
+msgstr "Řešení problémů"
+
+#: bottles/frontend/ui/details-bottle.ui:26
+msgid "Browse Files…"
+msgstr "Procházet soubory…"
+
+#: bottles/frontend/ui/details-bottle.ui:31
+msgid "Duplicate Bottle…"
+msgstr "Duplikovat láhev…"
+
+#: bottles/frontend/ui/details-bottle.ui:36 bottles/frontend/ui/importer.ui:86
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr "Toto je kompletní archiv vaší lahve, včetně osobních souborů."
+
+#: bottles/frontend/ui/details-bottle.ui:37
+msgid "Full Backup…"
+msgstr "Úplné zálohování…"
+
+#: bottles/frontend/ui/details-bottle.ui:42 bottles/frontend/ui/importer.ui:80
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Toto je pouze konfigurace láhve, je to perfektní, pokud chcete vytvořit "
+"novou, ale bez osobních souborů."
+
+#: bottles/frontend/ui/details-bottle.ui:43
+msgid "Export Configuration…"
+msgstr "Konfigurace exportu…"
+
+#: bottles/frontend/ui/details-bottle.ui:51
+msgid "Delete Bottle…"
+msgstr "Smazat láhev…"
+
+#: bottles/frontend/ui/details-bottle.ui:86
+msgid "Kill all Processes"
+msgstr "Ukončit všechny procesy"
+
+#: bottles/frontend/ui/details-bottle.ui:91
+msgid "Simulate a Windows system shutdown."
+msgstr "Simulovat systémové vypnutí Windows."
+
+#: bottles/frontend/ui/details-bottle.ui:92
+msgid "Shutdown"
+msgstr "Vypnout"
+
+#: bottles/frontend/ui/details-bottle.ui:97
+msgid "Simulate a Windows system reboot."
+msgstr "Simulovat systémový restart Windows."
+
+#: bottles/frontend/ui/details-bottle.ui:98
+msgid "Reboot"
+msgstr "Restartovat"
+
+#: bottles/frontend/ui/details-bottle.ui:121
+msgid "Run with Arguments…"
+msgstr "Spustit s argumenty…"
+
+#: bottles/frontend/ui/details-bottle.ui:126
+msgid "Launch in Terminal…"
+msgstr "Spustit v terminálu…"
+
+#: bottles/frontend/ui/details-bottle.ui:157
+msgid "My bottle"
+msgstr "Moje láhev"
+
+#: bottles/frontend/ui/details-bottle.ui:169
+msgid "Win64"
+msgstr "Windows x64"
+
+#: bottles/frontend/ui/details-bottle.ui:177
+#: bottles/frontend/ui/list-entry.ui:14 bottles/frontend/ui/new.ui:77
+msgid "Environment"
+msgstr "Prostředí"
+
+#: bottles/frontend/ui/details-bottle.ui:185
+#: bottles/frontend/ui/details-preferences.ui:314
+#: bottles/frontend/ui/new.ui:129
+msgid "Runner"
+msgstr "Runner"
+
+#: bottles/frontend/ui/details-bottle.ui:193
+#: bottles/frontend/ui/list-entry.ui:23
+msgid "Versioning enabled for this bottle"
+msgstr "U této lahve je povolena správa verzí"
+
+#: bottles/frontend/ui/details-bottle.ui:198
+#: bottles/frontend/ui/list-entry.ui:28
+msgid "Versioning is active in this bottle."
+msgstr "V této láhvi je aktivní správa verzí."
+
+#: bottles/frontend/ui/details-bottle.ui:208
+#: bottles/frontend/ui/list-entry.ui:34
+msgid "0"
+msgstr "0"
+
+#: bottles/frontend/ui/details-bottle.ui:219
+msgid "Run Executable…"
+msgstr "Spustit spustitelný soubor…"
+
+#: bottles/frontend/ui/details-bottle.ui:235
+msgid "Layers"
+msgstr "Vrstvy"
+
+#: bottles/frontend/ui/details-bottle.ui:241
+#: bottles/frontend/views/details.py:166
+msgid "Programs"
+msgstr "Programy"
+
+#: bottles/frontend/ui/details-bottle.ui:246
+msgid "Tools"
+msgstr "Nástroje"
+
+#: bottles/frontend/ui/details-bottle.ui:250
+msgid "Command Line"
+msgstr "Příkazový řádek"
+
+#: bottles/frontend/ui/details-bottle.ui:251
+msgid "Run commands inside the Bottle."
+msgstr "Spustit příkazy uvnitř láhve."
+
+#: bottles/frontend/ui/details-bottle.ui:262
+msgid "Registry Editor"
+msgstr "Editor Registru"
+
+#: bottles/frontend/ui/details-bottle.ui:263
+msgid "Edit the internal registry."
+msgstr "Upravit interní registr."
+
+#: bottles/frontend/ui/details-bottle.ui:273
+msgid "Legacy Tools"
+msgstr "Starší nástroje"
+
+#: bottles/frontend/ui/details-bottle.ui:277
+msgid "Explorer"
+msgstr "Prohlížeč"
+
+#: bottles/frontend/ui/details-bottle.ui:278
+msgid "Browse internal files with the Wine explorer."
+msgstr "Procházejte interní soubory pomocí Průzkumníka Wine."
+
+#: bottles/frontend/ui/details-bottle.ui:289
+#: bottles/frontend/views/details.py:178
+msgid "Task Manager"
+msgstr "Správce úloh"
+
+#: bottles/frontend/ui/details-bottle.ui:290
+msgid "Manage processes with the Wine task manager."
+msgstr "Spravovat procesy pomocí Wine Správce úloh."
+
+#: bottles/frontend/ui/details-bottle.ui:301
+msgid "Debug"
+msgstr "Ladit"
+
+#: bottles/frontend/ui/details-bottle.ui:302
+msgid "Debug wine processes."
+msgstr "Ladění Wine procesů."
+
+#: bottles/frontend/ui/details-bottle.ui:313
+msgid "Wine Configuration"
+msgstr "Konfigurace Wine"
+
+#: bottles/frontend/ui/details-bottle.ui:314
+msgid "Adjust internal settings."
+msgstr "Upravit vnitřní nastavení."
+
+#: bottles/frontend/ui/details-bottle.ui:325
+msgid "Uninstaller"
+msgstr "Odinstalovat"
+
+#: bottles/frontend/ui/details-bottle.ui:326
+msgid "Uninstall programs using Wine uninstaller."
+msgstr "Odinstalujte programy pomocí odinstalátoru Wine."
+
+#: bottles/frontend/ui/details-bottle.ui:337
+msgid "Control Panel"
+msgstr "Ovládací panel"
+
+#: bottles/frontend/ui/details-bottle.ui:338
+msgid "Access the internal Wine Control Panel."
+msgstr "Přístup k internímu ovládacímu panelu Wine."
+
+#: bottles/frontend/ui/details-bottle.ui:357
+msgid "Use the Installers section or the \"Run executable\" button."
+msgstr ""
+"Použijte sekci Instalátory nebo tlačítko \"Spustit spustitelný soubor\"."
+
+#: bottles/frontend/ui/details-dependencies.ui:13
+msgid "Search for dependencies…"
+msgstr "Hledat závislosti…"
+
+#: bottles/frontend/ui/details-dependencies.ui:22
+msgid ""
+"Dependencies are software, libraries and codecs that improve the "
+"compatibility of Windows software. Install from here to meet your program "
+"requirements."
+msgstr ""
+"Závislosti jsou software, knihovny a kodeky, které zlepšují kompatibilitu "
+"softwaru systému Windows. Instalujte odtud, abyste splnili požadavky "
+"programu."
+
+#: bottles/frontend/ui/details-dependencies.ui:34
+#: bottles/frontend/ui/details-installers.ui:33
+msgid ""
+"Files on this page are provided by third parties under a proprietary "
+"license. By installing them, you agree with their respective licensing terms."
+msgstr ""
+"Soubory na této stránce jsou poskytovány třetími stranami na základě "
+"proprietární licence. Jejich instalací vyjadřujete souhlas s podmínkami "
+"proprietární licence."
+
+#: bottles/frontend/ui/details-dependencies.ui:62
+msgid "Report a problem or a missing dependency."
+msgstr "Nahlásit chybějící závislost."
+
+#: bottles/frontend/ui/details-dependencies.ui:63
+msgid "Report missing dependency"
+msgstr "Nahlásit chybějící závislost"
+
+#: bottles/frontend/ui/details-dependencies.ui:68
+msgid "Read documentation."
+msgstr "Přečtěte si dokumentaci."
+
+#: bottles/frontend/ui/details-dependencies.ui:69
+#: bottles/frontend/ui/details-installers.ui:71
+#: bottles/frontend/ui/details-programs.ui:45
+#: bottles/frontend/ui/details-versioning.ui:44
+#: bottles/frontend/ui/window.ui:38
+msgid "Documentation"
+msgstr "Dokumentace"
+
+#: bottles/frontend/ui/details-dependencies.ui:80
+msgid "Install Selected"
+msgstr "Nainstalovat vybrané"
+
+#: bottles/frontend/ui/details-dependencies.ui:81
+msgid "We strongly advise against installing multiple dependencies at once."
+msgstr "Důrazně nedoporučujeme instalovat více závislostí najednou."
+
+#: bottles/frontend/ui/details-dependencies.ui:88
+msgid "Select Dependencies"
+msgstr "Vybrat závislosti"
+
+#: bottles/frontend/ui/details-dependencies.ui:95
+#: bottles/frontend/ui/details-installers.ui:82
+#: bottles/frontend/ui/window.ui:86
+msgid "Search"
+msgstr "Hledat"
+
+#: bottles/frontend/ui/details-installers.ui:13
+msgid "Search for Programs…"
+msgstr "Hledat programy…"
+
+#: bottles/frontend/ui/details-installers.ui:22
+msgid ""
+"Use this section to install programs curated by our community, without "
+"having to proceed manually."
+msgstr ""
+"V této sekci můžete instalovat programy doporučené naší komunitou, aniž "
+"byste museli postupovat ručně."
+
+#: bottles/frontend/ui/details-installers.ui:48
+msgid "No Installers Found"
+msgstr "Nebyly nalezeny žádné instalační programy"
+
+#: bottles/frontend/ui/details-installers.ui:51
+msgid ""
+"The repository is unreachable or no installer is compatible with this bottle."
+msgstr ""
+"Repozitář je nedostupný nebo s touto lahví není kompatibilní žádný "
+"instalátor."
+
+#: bottles/frontend/ui/details-installers.ui:70
+#: bottles/frontend/ui/details-programs.ui:44
+#: bottles/frontend/ui/details-versioning.ui:43
+msgid "Read documentation"
+msgstr "Číst dokumentaci"
+
+#: bottles/frontend/ui/details-preferences.ui:8
+msgid "Bottle Details"
+msgstr "Podrobnosti o láhvi"
+
+#: bottles/frontend/ui/details-preferences.ui:11
+#: bottles/frontend/ui/dialog-duplicate.ui:58 bottles/frontend/ui/new.ui:70
+msgid "Name"
+msgstr "Jméno"
+
+#: bottles/frontend/ui/details-preferences.ui:19
+msgid "Graphics"
+msgstr "Grafika"
+
+#: bottles/frontend/ui/details-preferences.ui:23
+#: bottles/frontend/ui/preferences.ui:213
+msgid "DXVK"
+msgstr "DXVK"
+
+#: bottles/frontend/ui/details-preferences.ui:24
+msgid "Improves performance of DirectX 11 games and 3D applications."
+msgstr "Zlepšuje výkon DirectX 11 her a 3D aplikací."
+
+#: bottles/frontend/ui/details-preferences.ui:27
+#: bottles/frontend/ui/details-preferences.ui:338
+msgid "Updating DXVK, please wait…"
+msgstr "Aktualizuji DXVK, prosím počkejte…"
+
+#: bottles/frontend/ui/details-preferences.ui:42
+#: bottles/frontend/ui/preferences.ui:218
+msgid "VKD3D"
+msgstr "VKD3D"
+
+#: bottles/frontend/ui/details-preferences.ui:43
+msgid "Improves performance of DirectX 12 games and 3D applications."
+msgstr "Zvyšuje výkon v DirectX 12 hrách a 3D aplikacích."
+
+#: bottles/frontend/ui/details-preferences.ui:46
+#: bottles/frontend/ui/details-preferences.ui:361
+msgid "Updating VKD3D, please wait…"
+msgstr "Aktualizuji VKD3D, prosím počkejte…"
+
+#: bottles/frontend/ui/details-preferences.ui:61
+msgid "DLSS (DXVK-NVAPI)"
+msgstr "DLSS (DXVK-NVAPI)"
+
+#: bottles/frontend/ui/details-preferences.ui:62
+msgid "Provide DLSS support if available and Nvidia's NVAPI."
+msgstr "Zajistěte podporu DLSS, pokud je k dispozici a NVAPI Nvidia."
+
+#: bottles/frontend/ui/details-preferences.ui:65
+#: bottles/frontend/ui/details-preferences.ui:112
+#: bottles/frontend/ui/details-preferences.ui:385
+#: bottles/frontend/ui/details-preferences.ui:407
+msgid "Updating DXVK-NVAPI, please wait…"
+msgstr "Aktualizuji DXVK-NVAPI, prosím počkejte…"
+
+#: bottles/frontend/ui/details-preferences.ui:80
+msgid "FSR"
+msgstr "FSR"
+
+#: bottles/frontend/ui/details-preferences.ui:81
+msgid ""
+"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
+msgstr ""
+"FSR využívá špičkové technologie up-scaling, které vám pomohou zvýšit "
+"snímkovou rychlost."
+
+#: bottles/frontend/ui/details-preferences.ui:88
+msgid "Ultra Quality"
+msgstr "Ultra kvalita"
+
+#: bottles/frontend/ui/details-preferences.ui:89
+msgid "Quality"
+msgstr "Kvalita"
+
+#: bottles/frontend/ui/details-preferences.ui:90
+msgid "Balanced"
+msgstr "Vyvážený"
+
+#: bottles/frontend/ui/details-preferences.ui:91
+msgid "Performance"
+msgstr "Výkon"
+
+#: bottles/frontend/ui/details-preferences.ui:108
+#: bottles/frontend/ui/preferences.ui:228
+msgid "LatencyFleX"
+msgstr "LatencyFleX"
+
+#: bottles/frontend/ui/details-preferences.ui:109
+msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
+msgstr ""
+"Alternativa k NVIDIA Reflex. Může být detekována některými anti-cheaty."
+
+#: bottles/frontend/ui/details-preferences.ui:128
+msgid "Discrete GPU"
+msgstr "Hybridní GPU"
+
+#: bottles/frontend/ui/details-preferences.ui:129
+msgid "Improves performance at the cost of increased power usage."
+msgstr "Zvyšuje výkon za cenu zvýšené spotřeby elektřiny."
+
+#: bottles/frontend/ui/details-preferences.ui:140
+msgid "vkBasalt"
+msgstr "vkBasalt"
+
+#: bottles/frontend/ui/details-preferences.ui:141
+msgid ""
+"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
+"games."
+msgstr ""
+"vkBasalt je vrstva následného zpracování Vulkanu pro vylepšení vizuální "
+"grafiky her."
+
+#: bottles/frontend/ui/details-preferences.ui:144
+msgid "Manage vkBasalt settings"
+msgstr "Spravujte nastavení vkBasalt"
+
+#: bottles/frontend/ui/details-preferences.ui:161
+msgid "Display Settings"
+msgstr "Nastavení zobrazení"
+
+#: bottles/frontend/ui/details-preferences.ui:165
+#: bottles/frontend/ui/dialog-launch-options.ui:194
+msgid "Virtual Desktop"
+msgstr "Virtuální plocha"
+
+#: bottles/frontend/ui/details-preferences.ui:166
+msgid "Use the Wine virtual desktop."
+msgstr "Použít Virtuální plochu Wine."
+
+#: bottles/frontend/ui/details-preferences.ui:204
+msgid "Fullscreen Mouse Capture"
+msgstr "Celoobrazovkové snímání myši"
+
+#: bottles/frontend/ui/details-preferences.ui:205
+msgid "Let the program capture mouse input when fullscreen."
+msgstr "Nechat program zachytávat vstup z myši když je v režimu fullscreen."
+
+#: bottles/frontend/ui/details-preferences.ui:216
+msgid "Take Focus"
+msgstr "Zaměřte se"
+
+#: bottles/frontend/ui/details-preferences.ui:217
+msgid "Activate it if the program does not retake focus on switch."
+msgstr "Aktivovat pokud se program při přepnutí nebude znovu reagovat."
+
+#: bottles/frontend/ui/details-preferences.ui:228
+msgid "Mouse Warp"
+msgstr "Osnova myši"
+
+#: bottles/frontend/ui/details-preferences.ui:229
+msgid "Change this if you are running into mouse lag or desync."
+msgstr ""
+"Pokud se potýkáte se zpožděním myši nebo desynchronizací, změňte tuto "
+"možnost."
+
+#: bottles/frontend/ui/details-preferences.ui:241
+msgid "Screen Scaling"
+msgstr "Škálování obrazovky"
+
+#: bottles/frontend/ui/details-preferences.ui:242
+msgid "Set custom DPI."
+msgstr "Nastavit vlastní DPI."
+
+#: bottles/frontend/ui/details-preferences.ui:248
+msgid "96"
+msgstr "96"
+
+#: bottles/frontend/ui/details-preferences.ui:249
+msgid "120"
+msgstr "120"
+
+#: bottles/frontend/ui/details-preferences.ui:250
+msgid "144"
+msgstr "144"
+
+#: bottles/frontend/ui/details-preferences.ui:251
+msgid "168"
+msgstr "168"
+
+#: bottles/frontend/ui/details-preferences.ui:252
+msgid "192"
+msgstr "192"
+
+#: bottles/frontend/ui/details-preferences.ui:253
+msgid "216"
+msgstr "216"
+
+#: bottles/frontend/ui/details-preferences.ui:254
+msgid "240"
+msgstr "240"
+
+#: bottles/frontend/ui/details-preferences.ui:255
+msgid "288"
+msgstr "288"
+
+#: bottles/frontend/ui/details-preferences.ui:256
+msgid "336"
+msgstr "336"
+
+#: bottles/frontend/ui/details-preferences.ui:257
+msgid "384"
+msgstr "384"
+
+#: bottles/frontend/ui/details-preferences.ui:258
+msgid "432"
+msgstr "432"
+
+#: bottles/frontend/ui/details-preferences.ui:259
+msgid "480"
+msgstr "480"
+
+#: bottles/frontend/ui/details-preferences.ui:272
+msgid "Renderer"
+msgstr "Vykreslovač"
+
+#: bottles/frontend/ui/details-preferences.ui:273
+msgid "Select what backend to use for wined3d."
+msgstr "Vyberte, jaký backend chcete použít pro wined3d."
+
+#: bottles/frontend/ui/details-preferences.ui:279
+msgid "gl (default)"
+msgstr "GL (výchozí)"
+
+#: bottles/frontend/ui/details-preferences.ui:280
+msgid "gdi"
+msgstr "GDI"
+
+#: bottles/frontend/ui/details-preferences.ui:281
+msgid "vulkan"
+msgstr "Vulkan"
+
+#: bottles/frontend/ui/details-preferences.ui:296
+#: bottles/frontend/ui/details-preferences.ui:432
+msgid "System"
+msgstr "Systém"
+
+#: bottles/frontend/ui/details-preferences.ui:299
+msgid "Manage Components Versions"
+msgstr "Správa verzí komponent"
+
+#: bottles/frontend/ui/details-preferences.ui:309
+msgid "Components"
+msgstr "Komponenty"
+
+#: bottles/frontend/ui/details-preferences.ui:317
+msgid "Updating Runner and components, please wait…"
+msgstr "Aktualizuji spouštěče a komponenty, prosím čekejte…"
+
+#. TODO: replace with ComboRow
+#: bottles/frontend/ui/details-preferences.ui:334
+msgid "DXVK Version"
+msgstr "Verze DXVK"
+
+#: bottles/frontend/ui/details-preferences.ui:358
+msgid "VKD3D Version"
+msgstr "Verze VKD3D"
+
+#: bottles/frontend/ui/details-preferences.ui:382
+msgid "DXVK NVAPI Version"
+msgstr "Verze DXVK NVAPI"
+
+#: bottles/frontend/ui/details-preferences.ui:404
+msgid "LatencyFleX Version"
+msgstr "Verze LatencyFlex"
+
+#: bottles/frontend/ui/details-preferences.ui:426
+msgid "Enable synchronization to increase performance of multicore processors."
+msgstr "Povolením synchronizace zvýšíte výkon vícejádrových procesorů."
+
+#: bottles/frontend/ui/details-preferences.ui:427
+msgid "Synchronization"
+msgstr "Synchronizace"
+
+#: bottles/frontend/ui/details-preferences.ui:438
+msgid "Esync"
+msgstr "Esync"
+
+#: bottles/frontend/ui/details-preferences.ui:444
+msgid "Fsync"
+msgstr "Fsync"
+
+#: bottles/frontend/ui/details-preferences.ui:450
+msgid "Futex2"
+msgstr "Futex2"
+
+#: bottles/frontend/ui/details-preferences.ui:465
+msgid "Windows Version"
+msgstr "Verze systému Windows"
+
+#: bottles/frontend/ui/details-preferences.ui:468
+msgid "Updating Windows version, please wait…"
+msgstr "Aktualizuji verzi Windows, prosím počkejte…"
+
+#: bottles/frontend/ui/details-preferences.ui:496
+msgid "Language"
+msgstr "Jazyk"
+
+#: bottles/frontend/ui/details-preferences.ui:497
+msgid "Choose the language to use with programs."
+msgstr "Zvolte jazyk, který chcete používat s programy."
+
+#: bottles/frontend/ui/details-preferences.ui:507
+msgid "false"
+msgstr "lež"
+
+#: bottles/frontend/ui/details-preferences.ui:508
+msgid "Dedicated Sandbox"
+msgstr "Vyhrazený sandbox"
+
+#: bottles/frontend/ui/details-preferences.ui:509
+msgid "Use a restricted/managed environment for this bottle."
+msgstr "Pro tuto láhev použijte omezené/řízené prostředí."
+
+#: bottles/frontend/ui/details-preferences.ui:512
+msgid "Manage Sandbox permissions"
+msgstr "Správa oprávnění Sandboxu"
+
+#: bottles/frontend/ui/details-preferences.ui:530
+msgid "Bottles Runtime"
+msgstr "Použít běhové prostředí láhví"
+
+#: bottles/frontend/ui/details-preferences.ui:531
+msgid ""
+"Provides a bundle of extra libraries for more compatibility,disable if you "
+"run into issues."
+msgstr ""
+"Poskytuje balík dalších knihoven pro větší kompatibilitu,vypněte, pokud "
+"narazíte na problémy."
+
+#: bottles/frontend/ui/details-preferences.ui:542
+msgid "Steam Runtime"
+msgstr "Použít běhové prostředí Steam"
+
+#: bottles/frontend/ui/details-preferences.ui:543
+msgid "The same as the Bottles one but provided by Steam."
+msgstr "Stejný jako v případě Bottles, ale poskytovaný službou Steam."
+
+#: bottles/frontend/ui/details-preferences.ui:554
+msgid "GameMode"
+msgstr "Použít GameMode (herní režim *cs_CZ)"
+
+#: bottles/frontend/ui/details-preferences.ui:555
+msgid "Optimise gaming performance on demand."
+msgstr "Optimalizovat herní výkon na vyžádání."
+
+#: bottles/frontend/ui/details-preferences.ui:566
+msgid "Gamescope"
+msgstr "Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:567
+msgid "Use the Gamescope micro-compositor."
+msgstr "Použít kompozitor Gamescope."
+
+#: bottles/frontend/ui/details-preferences.ui:570
+msgid "Manage Gamescope settings"
+msgstr "Spravovat nastavení Gamescope"
+
+#: bottles/frontend/ui/details-preferences.ui:588
+msgid "Vmtouch"
+msgstr "Vmtouch"
+
+#: bottles/frontend/ui/details-preferences.ui:589
+msgid "Preload game files into RAM"
+msgstr "Předem nahrát herní soubory do paměti RAM"
+
+#: bottles/frontend/ui/details-preferences.ui:592
+msgid "Manage vmtouch settings"
+msgstr "Spravujte nastavení vmtouch"
+
+#: bottles/frontend/ui/details-preferences.ui:610
+#: bottles/frontend/ui/dialog-launch-options.ui:91
+msgid "Working Directory"
+msgstr "Pracovní adresář"
+
+#: bottles/frontend/ui/details-preferences.ui:611
+msgid "Defaults to the bottle path."
+msgstr "Výchozí nastavení cesty láhve."
+
+#: bottles/frontend/ui/details-preferences.ui:614
+#: bottles/frontend/ui/dialog-launch-options.ui:65
+#: bottles/frontend/ui/dialog-launch-options.ui:98
+#: bottles/frontend/ui/preferences.ui:159
+msgid "Reset to default"
+msgstr "Resetovat do výchozího nastavení"
+
+#: bottles/frontend/ui/details-preferences.ui:624
+#: bottles/frontend/ui/dialog-launch-options.ui:109
+#: bottles/frontend/ui/new.ui:163 bottles/frontend/ui/new.ui:180
+#: bottles/frontend/ui/preferences.ui:170
+msgid "Choose a directory"
+msgstr "Výběr adresáře"
+
+#: bottles/frontend/ui/details-preferences.ui:637
+#: bottles/frontend/ui/dialog-dll-overrides.ui:9
+#: bottles/frontend/ui/dialog-dll-overrides.ui:15
+msgid "DLL Overrides"
+msgstr "Přepsání knihovny DLL"
+
+#: bottles/frontend/ui/details-preferences.ui:648
+#: bottles/frontend/ui/dialog-env-vars.ui:16
+msgid "Environment Variables"
+msgstr "Proměnné prostředí"
+
+#: bottles/frontend/ui/details-preferences.ui:659
+msgid "Manage Drives"
+msgstr "Spravovat úložiště"
+
+#: bottles/frontend/ui/details-preferences.ui:671
+msgid "Audio"
+msgstr "Audio"
+
+#: bottles/frontend/ui/details-preferences.ui:675
+#: bottles/frontend/ui/dialog-launch-options.ui:183
+msgid "Reduce Latency"
+msgstr "Sníží latenci"
+
+#: bottles/frontend/ui/details-preferences.ui:676
+msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
+msgstr "Nastavení latence PulseAudio na 60 ms, čímž se zvýší kvalita zvuku."
+
+#: bottles/frontend/ui/details-preferences.ui:688
+#: bottles/frontend/views/details.py:170
+msgid "Versioning"
+msgstr "Správa verzí"
+
+#: bottles/frontend/ui/details-preferences.ui:692
+msgid "Use Compression for States"
+msgstr "Použít kompresi pro stavy"
+
+#: bottles/frontend/ui/details-preferences.ui:693
+msgid ""
+"This will reduce the space used by the states but slow down their creation."
+msgstr ""
+"Tím se zmenší prostor, který stavy využívají, ale zpomalí se jejich "
+"vytváření."
+
+#: bottles/frontend/ui/details-preferences.ui:704
+msgid "Automatic Versioning"
+msgstr "Automatické verzování"
+
+#: bottles/frontend/ui/details-preferences.ui:705
+msgid ""
+"Bottles will create a state before running any dependencies or installers."
+msgstr ""
+"Bottles vytvoří stav před spuštěním jakýchkoli závislostí nebo instalátorů."
+
+#: bottles/frontend/ui/details-preferences.ui:716
+msgid "Use Exclusion Patterns"
+msgstr "Použít vzory vyloučení"
+
+#: bottles/frontend/ui/details-preferences.ui:717
+msgid "Use custom patterns to exclude some paths from versioning."
+msgstr "Použít vlastní vzory k vyloučení některých umíštění z verzování."
+
+#: bottles/frontend/ui/details-preferences.ui:720
+msgid "Manage Patterns"
+msgstr "Spravovat vzory"
+
+#: bottles/frontend/ui/details-preferences.ui:739
+msgid "Development and Debugging"
+msgstr "Vývoj a ladění"
+
+#: bottles/frontend/ui/details-preferences.ui:743
+msgid "MangoHud"
+msgstr "MangoHud"
+
+#: bottles/frontend/ui/details-preferences.ui:744
+msgid ""
+"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
+"and more."
+msgstr ""
+"Překrytí Vulkan a OpenGL pro sledování FPS, teplot, zatížení CPU/GPU a "
+"dalších parametrů."
+
+#: bottles/frontend/ui/details-preferences.ui:755
+msgid "OBS Vulkan Capture"
+msgstr "Zachycení OBS Vulkan"
+
+#: bottles/frontend/ui/details-preferences.ui:756
+msgid "Toggle OBS game capture for all programs."
+msgstr "Přepnout zachycení hry OBS pro všechny programy."
+
+#: bottles/frontend/ui/details-preferences.ui:767
+msgid "Wine 'fixme' Logs"
+msgstr "Wine-fixme protokoly"
+
+#: bottles/frontend/ui/details-preferences.ui:768
+msgid "Log code paths that are unimplemented in Wine."
+msgstr "Protokolujte cesty kódu, které nejsou ve Wine implementovány."
+
+#: bottles/frontend/ui/details-programs.ui:9
+msgid "No Programs found"
+msgstr "Nebyly nalezeny žádné programy"
+
+#: bottles/frontend/ui/details-programs.ui:10
+msgid ""
+"Install programs from the installers section or by running the installer "
+"executable, you can also manually add executables with the \"+\" button."
+msgstr ""
+"Programy můžete instalovat ze sekce instalátorů nebo spuštěním spustitelného "
+"souboru, spustitelné soubory můžete také přidat ručně pomocí tlačítka \"+\"."
+
+#: bottles/frontend/ui/details-programs.ui:31
+msgid "Toggle Hidden"
+msgstr "Přepnout skryté"
+
+#: bottles/frontend/ui/details-programs.ui:36
+msgid "Search for new programs"
+msgstr "Vyhledávání nových programů"
+
+#: bottles/frontend/ui/details-programs.ui:55
+msgid "Add a custom executable path"
+msgstr "Přidání vlastní cesty ke spustitelnému souboru"
+
+#: bottles/frontend/ui/details-taskmanager.ui:18
+msgid "Refresh"
+msgstr "Obnovit"
+
+#: bottles/frontend/ui/details-taskmanager.ui:24
+msgid "Stop process"
+msgstr "Zastavit proces"
+
+#: bottles/frontend/ui/details-versioning.ui:25
+msgid "No States Found"
+msgstr "Nebyly nalezeny žádné státy"
+
+#: bottles/frontend/ui/details-versioning.ui:26
+msgid "Create first state to start using versioning."
+msgstr "Vytvořit první stav a začít používat verzování."
+
+#: bottles/frontend/ui/details-versioning.ui:63
+msgid "A short comment"
+msgstr "Krátký komentář"
+
+#: bottles/frontend/ui/details-versioning.ui:68
+msgid "Save the bottle state."
+msgstr "Uložit stav láhve."
+
+#: bottles/frontend/ui/details-versioning.ui:88
+msgid "Create new state"
+msgstr "Vytvořit nový stav"
+
+#: bottles/frontend/ui/details.ui:74
+msgid "Operations"
+msgstr "Operace"
+
+#: bottles/frontend/ui/dialog-bottle-picker.ui:6
+msgid "Select Bottle"
+msgstr "Vybrat láhev"
+
+#: bottles/frontend/ui/dialog-bottle-picker.ui:42
+msgid "Create New Bottle"
+msgstr "Vytvořit novou láhev"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:10
+msgid "Bottles crash report"
+msgstr "Zpráva o havárii lahví"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:23
+msgid "Send report"
+msgstr "Poslat zprávu o chybě"
+
+#: bottles/frontend/ui/dialog-crash-report.ui:43
+msgid ""
+"Bottles crashed last time. Please fill out a report attaching the following "
+"traceback to help us identify the problem preventing it from happening again."
+msgstr ""
+"Láhve selhali minulé spuštění. Prosím vyplňte nahlášení a vložte následující "
+"log aby jste nám pomohli identifikovat problém a mohli jsme to vyřešit ať se "
+"to neopakuje."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:75
+msgid ""
+"We found one or more similar (or identical) reports. Please make sure to "
+"check carefully that it has not already been reported before submitting a "
+"new one. Each report requires effort on the part of the developers to "
+"diagnose, please respect their work and make sure you don't post duplicates."
+msgstr ""
+"Našli jsme jeden nebo více podobných (nebo identických) nahlášení. Prosím "
+"ujistěte se že tento problém zatím nebyl nahlášen. Každé nahlášení vyžaduje "
+"snahu vývojářů aby ho diagnostikovali, prosím respektujte jejich práci a "
+"ujistěte se že vaše nahlášení není duplikát."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:96
+msgid "I still want to report."
+msgstr "I přes to chci nahlásit."
+
+#: bottles/frontend/ui/dialog-crash-report.ui:102
+msgid "Advanced options"
+msgstr "Pokročilé možnosti"
+
+#: bottles/frontend/ui/dialog-deps-check.ui:15
+msgid "Incomplete package"
+msgstr "Neúplný balíček"
+
+#: bottles/frontend/ui/dialog-deps-check.ui:16
+msgid ""
+"This version of Bottles does not seem to provide all the necessary core "
+"dependencies, please contact the package maintainer or use an official "
+"version.\n"
+"                        "
+msgstr ""
+"Zdá se, že tato verze Láhví neobsahuje všechny potřebné závislosti jádra, "
+"obraťte se prosím na správce balíčku nebo použijte oficiální verzi.\n"
+"                        "
+
+#: bottles/frontend/ui/dialog-deps-check.ui:21
+msgid "Quit"
+msgstr "Ukončit"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:14
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)."
+msgstr ""
+"Knihovny dynamických odkazů lze zadat jako vestavěné (poskytované Wine) nebo "
+"nativní (poskytované programem)."
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:18
+msgid "New Override"
+msgstr "Nové přepsání"
+
+#: bottles/frontend/ui/dialog-dll-overrides.ui:26
+msgid "Overrides"
+msgstr "Přepsání"
+
+#: bottles/frontend/ui/dialog-drives.ui:9
+msgid "Drives"
+msgstr "Ovladače"
+
+#: bottles/frontend/ui/dialog-drives.ui:31
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:…).\n"
+"                                "
+msgstr ""
+"Jedná se o cesty z hostitelského systému, které jsou mapovány a rozpoznány "
+"jako zařízení v programu Runner (např. C: D:...).\n"
+"                                "
+
+#: bottles/frontend/ui/dialog-drives.ui:35
+msgid "Letter"
+msgstr "Dopis"
+
+#: bottles/frontend/ui/dialog-drives.ui:59
+msgid "Existing Drives"
+msgstr "Stávající disky"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:18
+msgid "Duplicate Bottle"
+msgstr "Duplikovat Láhev"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:23
+#: bottles/frontend/ui/dialog-gamescope.ui:17
+#: bottles/frontend/ui/dialog-launch-options.ui:17
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:23
+#: bottles/frontend/ui/dialog-vkbasalt.ui:31
+msgid "_Cancel"
+msgstr "_Zrušit"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:41
+msgid "Duplicate"
+msgstr "Duplikovat"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:55
+msgid "Enter a name for the duplicate of the Bottle."
+msgstr "Zadejte název duplikátu láhve."
+
+#: bottles/frontend/ui/dialog-duplicate.ui:78
+msgid "Duplicating…"
+msgstr "Duplikuji…"
+
+#: bottles/frontend/ui/dialog-duplicate.ui:87
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
+#: bottles/frontend/ui/new.ui:216
+msgid "Take a break, it may take a while."
+msgstr "Dejte si pauzu, může to chvíli trvat."
+
+#: bottles/frontend/ui/dialog-duplicate.ui:108
+msgid "Bottle Duplicated"
+msgstr "Láhev byla duplikována"
+
+#: bottles/frontend/ui/dialog-env-vars.ui:35
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
+"Proměnné prostředí jsou dynamické hodnoty které mohou ovlivnit způsob jakým "
+"procesy běží ve vaší láhvi."
+
+#: bottles/frontend/ui/dialog-env-vars.ui:38
+msgid "Variable Name"
+msgstr "Název proměnné"
+
+#: bottles/frontend/ui/dialog-env-vars.ui:46
+msgid "Existing Variables"
+msgstr "Stávající proměnné"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
+msgid "Exclusion Patterns"
+msgstr "Vzory vyloučení"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
+msgid ""
+"Define patterns that will be used to prevent some directories to being "
+"versioned."
+msgstr ""
+"Definujte vzory, které budou použity k zabránění verzování některých "
+"adresářů."
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
+msgid "Pattern"
+msgstr "Vzor"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.ui:46
+msgid "Existing Patterns"
+msgstr "Stávající vzory"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:8
+msgid "Gamescope Settings"
+msgstr "Nastavení programu Gamescope"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:46
+msgid ""
+"Configure how Gamescope should manage the window for the games you will run."
+msgstr "Nastavit jak by měl Gamescope spravovat okna vašich her."
+
+#: bottles/frontend/ui/dialog-gamescope.ui:51
+msgid "Game Resolution"
+msgstr "Rozlišení hry"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:52
+msgid "Uses the resolution of the video game as a reference."
+msgstr "Jako referenční hodnota se používá rozlišení videohry."
+
+#: bottles/frontend/ui/dialog-gamescope.ui:55
+#: bottles/frontend/ui/dialog-gamescope.ui:71
+msgid "Width (e.g. 1280)"
+msgstr "Šířka (např. 1280)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:60
+#: bottles/frontend/ui/dialog-gamescope.ui:76
+msgid "Height (e.g. 720)"
+msgstr "Výška (např. 720)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:67
+msgid "Gamescope Resolution"
+msgstr "Rozlišení Gamescope"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:68
+msgid ""
+"Upscales the resolution when using a resolution higher than the game "
+"resolution."
+msgstr "Zvyšuje rozlišení při použití rozlišení vyššího, než je rozlišení hry."
+
+#: bottles/frontend/ui/dialog-gamescope.ui:83
+msgid "Miscellaneous"
+msgstr "Různé"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:86
+msgid "Frame Rate Limit (e.g. 60)"
+msgstr "Limit snímkové frekvence (např. 60)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:91
+msgid "Frame Rate Limit (When Unfocused)"
+msgstr "Limit snímkové frekvence (při rozostření)"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:96
+msgid "Use Integer Scaling"
+msgstr "Použít celočíselného škálování"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:107
+msgid "Window Type"
+msgstr "Typ okna"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:112
+msgid "Borderless"
+msgstr "Bez ohraničení"
+
+#: bottles/frontend/ui/dialog-gamescope.ui:119
+msgid "Fullscreen"
+msgstr "Celá obrazovka"
+
+#: bottles/frontend/ui/dialog-journal.ui:12
+msgid "All messages"
+msgstr "Všechny zprávy"
+
+#: bottles/frontend/ui/dialog-journal.ui:17
+msgid "Critical"
+msgstr "Kritické"
+
+#: bottles/frontend/ui/dialog-journal.ui:22
+msgid "Errors"
+msgstr "Chyby"
+
+#: bottles/frontend/ui/dialog-journal.ui:27
+msgid "Warnings"
+msgstr "Varování"
+
+#: bottles/frontend/ui/dialog-journal.ui:32
+msgid "Info"
+msgstr "Informace"
+
+#: bottles/frontend/ui/dialog-journal.ui:49
+msgid "Journal browser"
+msgstr "Prohlížeč deníků"
+
+#: bottles/frontend/ui/dialog-journal.ui:56
+msgid "Journal Browser"
+msgstr "Prohlížeč deníku"
+
+#: bottles/frontend/ui/dialog-journal.ui:62
+msgid ""
+"Change logging level.\n"
+"                                        "
+msgstr ""
+"Změna úrovně protokolování.\n"
+"                                        "
+
+#: bottles/frontend/ui/dialog-journal.ui:67
+msgid "All"
+msgstr "Vše"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:8
+msgid "Launch Options"
+msgstr "Možnosti spuštění"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:47
+msgid "Those arguments will be passed at launch."
+msgstr "Tyto argumenty budou předány při spuštění."
+
+#: bottles/frontend/ui/dialog-launch-options.ui:48
+msgid "Custom Arguments"
+msgstr "Vlastní argumenty"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:51
+msgid "Command Arguments"
+msgstr "Argumenty příkazu"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:52
+#, c-format
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "např.: VAR=hodnota %cpříkaz% -epříklad1 -příklad2 -příklad3=ahoj"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:58
+msgid "Post-run Script"
+msgstr "Skript po spuštění"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:76
+msgid "Choose a script"
+msgstr "Vyberte skript"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:125
+msgid "These settings will override the default settings for this executable."
+msgstr "Tato nastavení přepíší výchozí nastavení tohoto spustitelného souboru."
+
+#: bottles/frontend/ui/dialog-launch-options.ui:126
+msgid "Preferences Overrides"
+msgstr "Přepisy předvoleb"
+
+#: bottles/frontend/ui/dialog-launch-options.ui:129
+msgid "Reset to Bottle's Defaults"
+msgstr "Resetovat Bottles do výchozího nastavení"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:6
+msgid "Proton Disclaimer"
+msgstr "Prohlášení Protonu"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:22
+msgid "Use Proton"
+msgstr "Použít Proton"
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:37
+msgid ""
+"Beware, using Proton-based runners in non-Steam bottles can cause problems "
+"and prevent them from behaving correctly.\n"
+"\n"
+"We recommend using Wine-GE rather, a version of Proton meant to run outside "
+"of Steam.\n"
+"\n"
+"Proceeding will automatically enable the Steam runtime (if present in the "
+"system and detected by Bottles) in order to allow it to access the necessary "
+"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
+"the runner's provider, is not responsible for any problems and we ask that "
+"you do not report to them."
+msgstr ""
+"Pozor, použití protonových běhových prostředí v jiných než Steam lahvích "
+"může způsobit problémy a zabránit jejich správnému chování.\n"
+"\n"
+"Doporučujeme používat raději Wine-GE, verzi Protonu určenou pro běh mimo "
+"službu Steam.\n"
+"\n"
+"Pokračování automaticky povolí běhové prostředí služby Steam (pokud je v "
+"systému přítomno a detekováno Bottles), aby mu umožnilo přístup k potřebným "
+"knihovnám a omezilo problémy s kompatibilitou. Uvědomte si, že "
+"GloriousEggroll, poskytovatel spouštěče, není zodpovědný za případné "
+"problémy a prosíme vás, abyste mu je neoznamovali."
+
+#: bottles/frontend/ui/dialog-proton-alert.ui:50
+msgid "I got it."
+msgstr "Mám to."
+
+#: bottles/frontend/ui/dialog-rename.ui:9
+msgid "Rename"
+msgstr "Přejmenovat"
+
+#: bottles/frontend/ui/dialog-rename.ui:34
+msgid "Choose a new name for the selected program."
+msgstr "Vyberte nový název pro vybraný program."
+
+#: bottles/frontend/ui/dialog-rename.ui:37
+msgid "New Name"
+msgstr "Nový název"
+
+#: bottles/frontend/ui/dialog-run-args.ui:14
+msgid "Run With Arguments"
+msgstr "Spustit s argumenty"
+
+#: bottles/frontend/ui/dialog-run-args.ui:35
+#: bottles/frontend/views/bottle_details.py:202
+#: bottles/frontend/views/list.py:120
+msgid "Run"
+msgstr "Spustit"
+
+#: bottles/frontend/ui/dialog-run-args.ui:47
+msgid "Write below the arguments to be passed to the executable."
+msgstr "Dolů napište argumenty které mají být předány spustitelnému souboru."
+
+#: bottles/frontend/ui/dialog-run-args.ui:50
+msgid "e.g.: -opengl -SkipBuildPatchPrereq"
+msgstr "např.: -opengl -SkipBuildPatchPrereq"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:9
+msgid "Sandbox Settings"
+msgstr "Nastavení Sandboxu"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:23
+msgid "Share Network"
+msgstr "Sdílet síť"
+
+#: bottles/frontend/ui/dialog-sandbox.ui:34
+msgid "Share Sound"
+msgstr "Sdílet zvuk"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:18
+msgid "Upgrade Needed"
+msgstr "Potřebný upgrade"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:41
+#: bottles/frontend/ui/onboard.ui:88
+msgid "Continue"
+msgstr "Pokračovat"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:49
+msgid "Launch upgrade"
+msgstr "Spustit upgrade"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:69
+msgid "New Versioning System"
+msgstr "Nový systém správy verzí"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:72
+msgid "The new bottle versioning system has landed."
+msgstr "Nový systém verzování lahví byl spuštěn."
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:86
+msgid ""
+"Bottles has a whole new Versioning System which is not backwards "
+"compatible. \n"
+"\n"
+"To continue using versioning we need to re-initialize the bottle repository. "
+"This will not delete data from your bottle but will delete all existing "
+"states and create a new one. \n"
+"\n"
+"If you need to go back to a previous state before continuing, close this "
+"window and restore the state, then reopen the bottle to show this window "
+"again. \n"
+"\n"
+"The old system will be discontinued in one of the next releases."
+msgstr ""
+"Bottles má zcela nový systém verzování, který není zpětně kompatibilní. \n"
+"\n"
+"Abychom mohli nadále používat verzování, musíme znovu inicializovat úložiště "
+"lahví. Tím nedojde ke smazání dat z lahve, ale ke smazání všech existujících "
+"stavů a vytvoření nových. \n"
+"\n"
+"Pokud se před pokračováním potřebujete vrátit k předchozímu stavu, zavřete "
+"toto okno a obnovte stav, poté láhev znovu otevřete, aby se toto okno opět "
+"zobrazilo. \n"
+"\n"
+"Starý systém bude ukončen v některé z příštích verzí."
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
+msgid "Re-initializing repository…"
+msgstr "Opětovná inicializace repositáře…"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
+msgid "Done! Please restart Bottles."
+msgstr "Hotovo! Restartujte prosím Bottles."
+
+#. vkBasalt is a Vulkan post processing layer for Linux
+#: bottles/frontend/ui/dialog-vkbasalt.ui:11
+msgid "vkBasalt Settings"
+msgstr "nastavení vkBasalt"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:50
+msgid "Default"
+msgstr "Výchozí"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:54
+msgid "Default Settings"
+msgstr "Výchozí nastavení"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:66
+msgid "Effects are applied according to the list order."
+msgstr "Efekty se použijí podle pořadí v seznamu."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:67
+msgid "Effects"
+msgstr "Efekty"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:71
+msgid "Contrast Adaptive Sharpening"
+msgstr "Adaptivní doostření kontrastu"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:74
+#: bottles/frontend/ui/dialog-vkbasalt.ui:110
+msgid "Sharpness"
+msgstr "Ostrost"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:78
+#: bottles/frontend/ui/dialog-vkbasalt.ui:114
+#: bottles/frontend/ui/dialog-vkbasalt.ui:143
+#: bottles/frontend/ui/dialog-vkbasalt.ui:178
+#: bottles/frontend/ui/dialog-vkbasalt.ui:207
+#: bottles/frontend/ui/dialog-vkbasalt.ui:236
+#: bottles/frontend/ui/dialog-vkbasalt.ui:271
+#: bottles/frontend/ui/dialog-vkbasalt.ui:307
+#: bottles/frontend/ui/dialog-vkbasalt.ui:336
+#: bottles/frontend/ui/dialog-vkbasalt.ui:364
+#: bottles/frontend/ui/dialog-vkbasalt.ui:392
+#: bottles/frontend/ui/dialog-vkbasalt.ui:424
+msgid "Show Information"
+msgstr "Zobrazit informace"
+
+#. Luma is not translatable
+#: bottles/frontend/ui/dialog-vkbasalt.ui:107
+msgid "Denoised Luma Sharpening"
+msgstr "Denoizované doostření Luma"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:139
+msgid "Denoise"
+msgstr "Odhlučnit"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:171
+msgid "Fast Approximate Anti-Aliasing"
+msgstr "Rychlý přibližný antialiasing"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:174
+msgid "Subpixel Quality"
+msgstr "Kvalita subpixelu"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:203
+msgid "Quality Edge Threshold"
+msgstr "Hranice kvality"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:232
+msgid "Quality Edge Threshold Minimum"
+msgstr "Hranice kvality Minimální"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:264
+msgid "Subpixel Morphological Anti-Aliasing"
+msgstr "Subpixelový morfologický antialiasing"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:267
+msgid "Edge Detection"
+msgstr "Detekce hrany"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:283
+msgid "Luma"
+msgstr "Luma"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:290
+msgid "Color"
+msgstr "Barva"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:303
+msgid "Threshold"
+msgstr "Prahová hodnota"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:332
+msgid "Max Search Steps"
+msgstr "Maximální počet kroků vyhledávání"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:360
+msgid "Max Search Steps Diagonal"
+msgstr "Maximální počet kroků vyhledávání na úhlopříčce"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:388
+msgid "Max Corner Rounding"
+msgstr "Maximální zaoblení rohů"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:419
+msgid "Color Lookup Table"
+msgstr "Tabulka vyhledávání barev"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:437
+msgid "Reset to Default"
+msgstr "Obnovit výchozí"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:448
+msgid "Select a File"
+msgstr "Vyberte soubor"
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:482
+msgid ""
+"CAS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper, whereas values lower than 0 make the frame softer than native."
+msgstr ""
+"CAS sharpness zvyšuje ostrost snímku. Při vyšších hodnotách je snímek "
+"ostřejší, zatímco při hodnotách nižších než 0 je snímek měkčí než přirozený."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:500
+msgid ""
+"DLS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper."
+msgstr ""
+"Ostrost DLS zvyšuje ostrost snímku. Při vyšších hodnotách je snímek ostřejší."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:518
+msgid ""
+"DLS denoise decreases the noise of a frame. Higher values make the frame "
+"softer."
+msgstr "Denoise DLS snižuje šum snímku. Při vyšších hodnotách je snímek měkčí."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:536
+msgid ""
+"FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
+"values make the frame softer."
+msgstr ""
+"Subpixelová kvalita FXAA snižuje aliasing na úrovni subpixelů. Při vyšších "
+"hodnotách je snímek měkčí."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:554
+msgid ""
+"FXAA edge threshold is the minimum amount of contrast required to apply the "
+"FXAA algorithm. Higher values make the frame have more contrast."
+msgstr ""
+"Prahová hodnota hran FXAA je minimální hodnota kontrastu potřebná k použití "
+"algoritmu FXAA. Při vyšších hodnotách je snímek kontrastnější."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:572
+msgid ""
+"FXAA quality edge threshold minimum is the minimum value of dark pixels that "
+"are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
+"below the specified value and can lead to a performance increase."
+msgstr ""
+"Minimum prahu kvality hran FXAA je minimální hodnota tmavých pixelů, které "
+"algoritmus FXAA ignoruje. Vyšší hodnoty způsobí, že FXAA bude ignorovat "
+"pixely pod zadanou hodnotou a může vést ke zvýšení výkonu."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:590
+msgid ""
+"Luma detects edges from a monochrome perspective, whereas Color detects "
+"edges based on colors. Luma is more performant than Color."
+msgstr ""
+"Funkce Luma detekuje hrany z monochromatického pohledu, zatímco funkce Color "
+"detekuje hrany na základě barev. Funkce Luma je výkonnější než funkce Color."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:608
+msgid ""
+"SMAA threshold specifies the sensitivity of edge detection. Lower values "
+"detect more edges at the expense of performance."
+msgstr ""
+"Práh SMAA určuje citlivost detekce hran. Nižší hodnoty detekují více hran na "
+"úkor výkonu."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:626
+msgid ""
+"SMAA max search steps specifies how many horizontal and vertical search "
+"steps are performed when searching for edges."
+msgstr ""
+"SMAA max search steps určuje, kolik horizontálních a vertikálních kroků "
+"hledání se provede při hledání hran."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:644
+msgid ""
+"SMAA max diagonal search steps specifies how many diagonal search steps are "
+"performed when searching for edges."
+msgstr ""
+"Maximálně diagonální kroky vyhledávání SMAA určuje, kolik diagonálních kroků "
+"vyhledávání se provádí při hledání hran."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:662
+msgid "SMAA corner rounding specifies the strength of rounding edge corners."
+msgstr "Zaoblení rohů SMAA určuje sílu zaoblení rohů hran."
+
+#: bottles/frontend/ui/dialog-vkbasalt.ui:680
+msgid ""
+"CLUT transforms a range of colors into another range of colors using a .CUBE "
+"file, or a .png file where the height is equal to the width."
+msgstr ""
+"CLUT transformuje rozsah barev na jiný rozsah barev pomocí souboru .CUBE "
+"nebo souboru .png, kde se výška rovná šířce."
+
+#: bottles/frontend/ui/dll-override-entry.ui:10
+msgid "Builtin (Wine)"
+msgstr "Vestavěné (Wine)"
+
+#: bottles/frontend/ui/dll-override-entry.ui:11
+msgid "Native (Windows)"
+msgstr "Nativní (Windows)"
+
+#: bottles/frontend/ui/dll-override-entry.ui:12
+msgid "Builtin, then Native"
+msgstr "Builtin, pak Native"
+
+#: bottles/frontend/ui/dll-override-entry.ui:13
+msgid "Native, then Builtin"
+msgstr "Nativní, pak vestavěný"
+
+#: bottles/frontend/ui/dll-override-entry.ui:14
+msgid "Disabled"
+msgstr "Zakázáno"
+
+#: bottles/frontend/ui/dll-override-entry.ui:22
+#: bottles/frontend/ui/drive-entry.ui:14
+msgid "Remove"
+msgstr "Odstranit"
+
+#: bottles/frontend/ui/drive-entry.ui:7
+msgid "/point/to/path"
+msgstr "/bod/k/cestě"
+
+#: bottles/frontend/ui/drive-entry.ui:24
+msgid "Choose a Directory"
+msgstr "Vyberte adresář"
+
+#: bottles/frontend/ui/env-var-entry.ui:6
+#: bottles/frontend/ui/exclusion-pattern-entry.ui:6
+msgid "Value"
+msgstr "Hodnota"
+
+#. Wineprefix is a prefix for the wine program
+#: bottles/frontend/ui/importer-entry.ui:22
+msgid "Wineprefix name"
+msgstr "Název prefixu Wine"
+
+#: bottles/frontend/ui/importer-entry.ui:29
+msgid "Manager"
+msgstr "Manažer"
+
+#: bottles/frontend/ui/importer-entry.ui:39
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Tento wineprefix byl již importován do lahví."
+
+#: bottles/frontend/ui/importer.ui:24
+msgid "Import Bottles backup"
+msgstr "Importovat zálohu láhve"
+
+#: bottles/frontend/ui/importer.ui:31
+msgid "Search again for prefixes"
+msgstr "Znovu vyhledejte předpony"
+
+#: bottles/frontend/ui/importer.ui:45
+msgid "No Prefixes Found"
+msgstr "Nebyly nalezeny žádné prefixy"
+
+#: bottles/frontend/ui/importer.ui:46
+msgid ""
+"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
+"Use the icon on the top to import a bottle from a backup"
+msgstr ""
+"Nebyly nalezeny žádné prefixy z Lutris, PlayOnLinux atd.\n"
+"Pro import lahve ze zálohy použijte ikonu nahoře"
+
+#: bottles/frontend/ui/importer.ui:81
+msgid "Configuration"
+msgstr "Konfigurace"
+
+#: bottles/frontend/ui/importer.ui:87
+msgid "Full Archive"
+msgstr "Úplný archiv"
+
+#: bottles/frontend/ui/installer-entry.ui:18
+msgid "Show Manifest…"
+msgstr "Zobrazit manifest…"
+
+#: bottles/frontend/ui/installer-entry.ui:23
+msgid "Read Review…"
+msgstr "Přečíst recenzi…"
+
+#: bottles/frontend/ui/installer-entry.ui:40
+msgid "Installer name"
+msgstr "Název instalátoru"
+
+#: bottles/frontend/ui/installer-entry.ui:41
+msgid "Installer description"
+msgstr "Popis instalátoru"
+
+#: bottles/frontend/ui/installer-entry.ui:48
+msgid "Unknown"
+msgstr "Neznámé"
+
+#: bottles/frontend/ui/installer-entry.ui:57
+msgid "Install this program"
+msgstr "Nainstalovat tento program"
+
+#: bottles/frontend/ui/library-entry.ui:17
+msgid "Remove from Library"
+msgstr "Odebrat z knihovny"
+
+#: bottles/frontend/ui/library-entry.ui:94
+msgid "Item name"
+msgstr "Název položky"
+
+#: bottles/frontend/ui/library-entry.ui:115
+#: bottles/frontend/ui/program-entry.ui:105
+msgid "Launch with Steam"
+msgstr "Spustit pomocí Steam"
+
+#: bottles/frontend/ui/library.ui:14 bottles/frontend/ui/preferences.ui:259
+#: bottles/frontend/windows/main_window.py:175
+msgid "Library"
+msgstr "Knihovna"
+
+#: bottles/frontend/ui/library.ui:15
+msgid "Add items here from your bottle's program list"
+msgstr "Přidejte sem položky ze seznamu programů vaší láhve"
+
+#: bottles/frontend/ui/list-entry.ui:46
+msgid "This bottle looks damaged."
+msgstr "Tato láhev vypadá poškozeně."
+
+#: bottles/frontend/ui/list-entry.ui:60
+msgid "Execute in this bottle"
+msgstr "Spustit v této láhvi"
+
+#: bottles/frontend/ui/list-entry.ui:75
+msgid "Run Here"
+msgstr "Spustit zde"
+
+#: bottles/frontend/ui/list-entry.ui:84
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+"Tato láhev vypadá poškozeně, konfigurační soubor chybí. Mohu zkusit vytvořit "
+"novou konfiguraci."
+
+#: bottles/frontend/ui/list-entry.ui:96
+msgid "Run .exe/.msi in this bottle"
+msgstr "Spustit .exe/.msi v této láhvi"
+
+#: bottles/frontend/ui/list.ui:17
+msgid "Search your bottles…"
+msgstr "Prohledávejte své lahve…"
+
+#: bottles/frontend/ui/list.ui:38
+msgid "Steam Proton"
+msgstr "Steam Proton"
+
+#: bottles/frontend/ui/list.ui:54 bottles/frontend/ui/window.ui:56
+#: bottles/frontend/ui/window.ui:73 bottles/frontend/windows/main_window.py:169
+#: data/com.usebottles.bottles.appdata.xml.in:6
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:165
-#: src/ui/list.ui:54 src/ui/window.ui:56 src/ui/window.ui:73
 msgid "Bottles"
 msgstr "Láhve"
 
-#: data/com.usebottles.bottles.desktop.in:4
-msgid "Easily manage wineprefix"
-msgstr "Snadně spravujte wine prefixy"
+#: bottles/frontend/ui/list.ui:55
+msgid "Start off by creating a Bottle."
+msgstr "Začněte vytvořením láhve."
 
-#: data/com.usebottles.bottles.desktop.in:13
-msgid "wine;windows;"
-msgstr "wine;windows;"
+#: bottles/frontend/ui/list.ui:62
+msgid "Create a new Bottle"
+msgstr "Vytvořit novou láhev"
+
+#: bottles/frontend/ui/list.ui:75
+msgid "No Results Found"
+msgstr "Nebyly nalezeny žádné výsledky"
+
+#: bottles/frontend/ui/list.ui:76
+msgid "Try a different search."
+msgstr "Zkuste jiné vyhledávání."
+
+#: bottles/frontend/ui/loading.ui:16
+msgid "Starting up…"
+msgstr "Spouštění…"
+
+#: bottles/frontend/ui/local-resource-entry.ui:6
+msgid "This resource is missing."
+msgstr "Tento prostředek chybí."
+
+#: bottles/frontend/ui/local-resource-entry.ui:10
+msgid "Browse"
+msgstr "Procházet"
+
+#: bottles/frontend/ui/new.ui:17 bottles/frontend/ui/new.ui:64
+msgid "New Bottle"
+msgstr "Nová láhev"
+
+#: bottles/frontend/ui/new.ui:38
+msgid "Create"
+msgstr "Vytvořit"
+
+#: bottles/frontend/ui/new.ui:47 bottles/frontend/ui/new.ui:268
+#: bottles/frontend/windows/main_window.py:191
+msgid "Close"
+msgstr "Zavřít"
+
+#: bottles/frontend/ui/new.ui:67
+msgid "Bottle Information"
+msgstr "Informace o láhvi"
+
+#: bottles/frontend/ui/new.ui:84
+msgid "Gaming"
+msgstr "Hry"
+
+#: bottles/frontend/ui/new.ui:85
+msgid "An environment improved for Windows games."
+msgstr "Prostředí dělané pro hry z Windows."
+
+#: bottles/frontend/ui/new.ui:93
+msgid "Application"
+msgstr "Aplikace"
+
+#: bottles/frontend/ui/new.ui:94
+msgid "An environment improved for Windows applications."
+msgstr "Prostředí vylepšené pro aplikace systému Windows."
+
+#: bottles/frontend/ui/new.ui:103
+msgid "Layered"
+msgstr "Vrstvené"
+
+#: bottles/frontend/ui/new.ui:104
+msgid "A layered environment, where every app is a layer."
+msgstr "Vrstvené prostředí, kde aplikace jsou vrstvené."
+
+#: bottles/frontend/ui/new.ui:112
+msgid "Custom"
+msgstr "Vlastní"
+
+#: bottles/frontend/ui/new.ui:113
+msgid "A clear environment for your experiments."
+msgstr "Přehledné prostředí pro vaše experimenty."
+
+#: bottles/frontend/ui/new.ui:117
+msgid "Unlinked Home Directory"
+msgstr "Nepropojený domovský adresář"
+
+#: bottles/frontend/ui/new.ui:118
+msgid "Do not link the userdir to the homedir"
+msgstr "Nelinkujte uživatelskou složku do domovské složky"
+
+#: bottles/frontend/ui/new.ui:143
+msgid "Architecture"
+msgstr "Architektura"
+
+#: bottles/frontend/ui/new.ui:144
+msgid "We recommend using 32bit only if strictly necessary."
+msgstr ""
+"Doporučujeme používat 32bitový systém pouze v případě, že je to nezbytně "
+"nutné."
+
+#: bottles/frontend/ui/new.ui:148
+msgid "64 bit"
+msgstr "64 bit"
+
+#: bottles/frontend/ui/new.ui:149
+msgid "32 bit"
+msgstr "32 bit"
+
+#: bottles/frontend/ui/new.ui:157
+msgid "Custom Recipe"
+msgstr "Vlastní recept"
+
+#: bottles/frontend/ui/new.ui:158
+msgid "Choose a custom recipe for the environment if you have one."
+msgstr "Zvolte vlastní recept na prostředí, pokud jej máte."
+
+#: bottles/frontend/ui/new.ui:174
+msgid "Custom Path"
+msgstr "Vlastní umíštění"
+
+#: bottles/frontend/ui/new.ui:175
+msgid "Store this bottle in another place."
+msgstr "Tuto láhev uložte na jiné místo."
+
+#: bottles/frontend/ui/new.ui:215
+msgid "Creating a Bottle…"
+msgstr "Vytváření láhve…"
+
+#: bottles/frontend/ui/new.ui:262
+msgid "Bottle created"
+msgstr "Láhev vytvořena"
+
+#: bottles/frontend/ui/onboard.ui:36
+msgid "Previous"
+msgstr "Předchozí"
+
+#: bottles/frontend/ui/onboard.ui:62
+msgid "Welcome to Bottles"
+msgstr "Vítejte v Láhvích"
+
+#: bottles/frontend/ui/onboard.ui:63
+msgid ""
+"Run Windows Software on Linux.\n"
+"                                                "
+msgstr ""
+"Spouštějte Windows software na Linuxu.\n"
+"                                                "
+
+#: bottles/frontend/ui/onboard.ui:71
+msgid "Windows in Bottles"
+msgstr "Okna v lahvích"
+
+#: bottles/frontend/ui/onboard.ui:72
+msgid ""
+"Bottles uses compatibility runners to provide isolated containerized Windows-"
+"like environments where programs run."
+msgstr ""
+"Bottles používá kompatibilní runnery, které poskytují izolovaná kontejnerová "
+"prostředí podobná systému Windows, v nichž se spouštějí programy."
+
+#: bottles/frontend/ui/onboard.ui:79
+msgid "Almost Done"
+msgstr "Téměř hotovo"
+
+#: bottles/frontend/ui/onboard.ui:80
+msgid "We need a few more minutes to set everything up…"
+msgstr "Potřebujeme ještě pár minut, abychom vše připravili…"
+
+#: bottles/frontend/ui/onboard.ui:113
+msgid "All ready!"
+msgstr "Vše je připraveno!"
+
+#: bottles/frontend/ui/onboard.ui:122
+msgid "Please Finish the setup first"
+msgstr "Nejprve dokončete nastavení"
+
+#: bottles/frontend/ui/onboard.ui:129
+msgid "Start using Bottles"
+msgstr "Začněte používat Láhve"
+
+#: bottles/frontend/ui/onboard.ui:150
+msgid "Next"
+msgstr "Další"
+
+#: bottles/frontend/ui/preferences.ui:6 bottles/frontend/ui/window.ui:24
+#: bottles/frontend/views/details.py:158
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: bottles/frontend/ui/preferences.ui:13 bottles/frontend/ui/preferences.ui:46
+msgid "General"
+msgstr "Obecné"
+
+#: bottles/frontend/ui/preferences.ui:16
+msgid "Appearance"
+msgstr "Vzhled"
+
+#: bottles/frontend/ui/preferences.ui:19
+msgid "Dark Mode"
+msgstr "Tmavý režim"
+
+#: bottles/frontend/ui/preferences.ui:20
+msgid "Whether Bottles should use the dark color scheme."
+msgstr "Zda by Bottles měly používat tmavé barevné schéma."
+
+#: bottles/frontend/ui/preferences.ui:32
+msgid "Show Update Date"
+msgstr "Zobrazit datum aktualizace"
+
+#: bottles/frontend/ui/preferences.ui:33
+msgid "Whether to show the update date in the bottle list."
+msgstr "Zda se má v seznamu lahví zobrazovat datum aktualizace."
+
+#: bottles/frontend/ui/preferences.ui:49
+#: data/com.usebottles.bottles.gschema.xml:46
+msgid "Notifications"
+msgstr "Upozornění"
+
+#: bottles/frontend/ui/preferences.ui:50
+msgid "Show notifications for downloads and installs."
+msgstr "Zobrazit oznámení o stažení a instalaci."
+
+#: bottles/frontend/ui/preferences.ui:61
+msgid "Temp Files"
+msgstr "Dočasné soubory"
+
+#: bottles/frontend/ui/preferences.ui:62
+msgid "Clean temp files when Bottles launches?"
+msgstr "Vyčistit dočasné soubory při spuštění láhví?"
+
+#: bottles/frontend/ui/preferences.ui:73
+msgid "Close Bottles After Starting a Program"
+msgstr "Po spuštění programu zavřít láhve"
+
+#: bottles/frontend/ui/preferences.ui:74
+msgid "Close Bottles after starting a program from the file manager."
+msgstr "Zavřít Láhve po spuštění programu ze správce souborů."
+
+#: bottles/frontend/ui/preferences.ui:87
+msgid "Integrations"
+msgstr "Integrace"
+
+#: bottles/frontend/ui/preferences.ui:90
+msgid "Steam Proton Prefixes"
+msgstr "Prefixy Steam Protonu"
+
+#: bottles/frontend/ui/preferences.ui:91
+msgid "List and manage Steam Proton prefixes."
+msgstr "Seznam a správa prefixů služby Steam Proton."
+
+#: bottles/frontend/ui/preferences.ui:95
+msgid "Read Documentation"
+msgstr "Přečtěte si dokumentaci"
+
+#: bottles/frontend/ui/preferences.ui:113
+msgid "List Steam Apps in Programs List"
+msgstr "Seznam Steam aplikací v seznamu programů"
+
+#: bottles/frontend/ui/preferences.ui:114
+msgid "Requires Steam for Windows installed in the bottle."
+msgstr "Vyžaduje Steam pro Windows nainstalovaný v Láhvi."
+
+#: bottles/frontend/ui/preferences.ui:125
+msgid "List Epic Games in Programs List"
+msgstr "Seznam Her Epic v seznamu programů"
+
+#: bottles/frontend/ui/preferences.ui:126
+msgid "Requires Epic Games Store installed in the bottle."
+msgstr "Vyžaduje obchod Epic Games Store nainstalovaný v lahvi."
+
+#: bottles/frontend/ui/preferences.ui:137
+msgid "List Ubisoft Games in Programs List"
+msgstr "Seznam her Ubisoft v Seznamu programů"
+
+#: bottles/frontend/ui/preferences.ui:138
+msgid "Requires Ubisoft Connect installed in the bottle."
+msgstr "Vyžaduje nainstalovanou aplikaci Ubisoft Connect v lahvi."
+
+#: bottles/frontend/ui/preferences.ui:151
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: bottles/frontend/ui/preferences.ui:154
+msgid "Custom Bottles Path (Requires Restart)"
+msgstr "Cesta k vlastním lahvím (vyžaduje restart)"
+
+#: bottles/frontend/ui/preferences.ui:155
+#: bottles/frontend/views/preferences.py:151
+#: bottles/frontend/views/preferences.py:167
+msgid ""
+"Choose where to store the new bottles (this will not move the existing ones)."
+msgstr "Zvolte místo uložení nových lahví (stávající lahve se nepřesunou)."
+
+#: bottles/frontend/ui/preferences.ui:188
+msgid "Runners"
+msgstr "Runnery"
+
+#: bottles/frontend/ui/preferences.ui:193
+msgid "Pre-Release"
+msgstr "Předběžné vydání"
+
+#: bottles/frontend/ui/preferences.ui:194
+msgid "Display unstable versions of runners."
+msgstr "Zobrazit nestabilní verze runnerů."
+
+#: bottles/frontend/ui/preferences.ui:210
+msgid "DLL Components"
+msgstr "Komponenty DDL"
+
+#: bottles/frontend/ui/preferences.ui:223
+msgid "DXVK-NVAPI"
+msgstr "DXVK-NVAPI"
+
+#: bottles/frontend/ui/preferences.ui:236
+msgid "Core"
+msgstr "Jádro"
+
+#: bottles/frontend/ui/preferences.ui:240
+msgid "Runtime"
+msgstr "runtime"
+
+#: bottles/frontend/ui/preferences.ui:245
+msgid "WineBridge"
+msgstr "Winebridge"
+
+#: bottles/frontend/ui/preferences.ui:253
+#: data/com.usebottles.bottles.gschema.xml:66
+msgid "Experiments"
+msgstr "Experimenty"
+
+#: bottles/frontend/ui/preferences.ui:256
+msgid ""
+"These features are under heavy development and may be unstable, expect bugs "
+"and breakage."
+msgstr ""
+"Tyto funkce jsou ve fázi intenzivního vývoje a mohou být nestabilní, "
+"očekávejte chyby a poruchy."
+
+#: bottles/frontend/ui/preferences.ui:260
+msgid "In early development (requires restart)."
+msgstr "V rané fázi vývoje (vyžaduje restart)."
+
+#: bottles/frontend/ui/preferences.ui:271
+msgid "Sandbox per bottle"
+msgstr "Sandbox pro Láhev"
+
+#: bottles/frontend/ui/preferences.ui:272
+msgid "In early development."
+msgstr "V raném stádiu vývoje."
+
+#: bottles/frontend/ui/program-entry.ui:21
+msgid "Launch with terminal"
+msgstr "Spustit pomocí terminálu"
+
+#: bottles/frontend/ui/program-entry.ui:28
+msgid "Browse path"
+msgstr "Procházet umístění"
+
+#: bottles/frontend/ui/program-entry.ui:44
+msgid "Change Launch Options…"
+msgstr "Změnit možnosti spuštění…"
+
+#: bottles/frontend/ui/program-entry.ui:49
+msgid "Add to My Library"
+msgstr "Přidat do mé knihovny"
+
+#: bottles/frontend/ui/program-entry.ui:54
+msgid "Add Desktop Entry"
+msgstr "Přidat položky na plochu"
+
+#: bottles/frontend/ui/program-entry.ui:59
+msgid "Add to Steam"
+msgstr "Přidat do Steamu"
+
+#: bottles/frontend/ui/program-entry.ui:64
+msgid "Rename…"
+msgstr "Přejmenovat…"
+
+#: bottles/frontend/ui/program-entry.ui:73
+msgid "Hide Program"
+msgstr "Skrýt program"
+
+#: bottles/frontend/ui/program-entry.ui:78
+msgid "Show Program"
+msgstr "Zobrazit program"
+
+#: bottles/frontend/ui/program-entry.ui:83
+msgid "Remove from List"
+msgstr "Odebrat ze seznamu"
+
+#: bottles/frontend/ui/program-entry.ui:99
+msgid "Program name"
+msgstr "Název programu"
+
+#. id as identification
+#: bottles/frontend/ui/state-entry.ui:7
+msgid "State id"
+msgstr "ID stavu"
+
+#: bottles/frontend/ui/state-entry.ui:8
+msgid "State comment"
+msgstr "Stavový komentář"
+
+#: bottles/frontend/ui/state-entry.ui:16
+msgid "Restore this state"
+msgstr "Obnovit tento stav"
+
+#: bottles/frontend/ui/task-entry.ui:24
+msgid "Delete message"
+msgstr "Odstranit zprávu"
+
+#: bottles/frontend/ui/window.ui:19
+msgid "Import/Export…"
+msgstr "Importovat/exportovat…"
+
+#: bottles/frontend/ui/window.ui:33
+msgid "Support"
+msgstr "Podpořit"
+
+#: bottles/frontend/ui/window.ui:43
+msgid "Forums"
+msgstr "Fórum"
+
+#: bottles/frontend/ui/window.ui:48
+msgid "About Bottles"
+msgstr "O Láhvích"
+
+#: bottles/frontend/ui/window.ui:79
+msgid "Open menu"
+msgstr "Otevřít menu"
+
+#: bottles/frontend/ui/window.ui:93
+msgid ""
+"You don't seem connected to the internet. Without it you will not be able to "
+"download essential components. Click this icon when you have reestablished "
+"the connection."
+msgstr ""
+"Zdá se, že nejste připojeni k internetu. Bez něj si nebudete moci stáhnout "
+"základní komponenty. Po obnovení připojení klikněte na tuto ikonu."
+
+#: bottles/frontend/ui/window.ui:99
+msgid "New bottle"
+msgstr "Nová láhev"
+
+#: bottles/frontend/utils/connection.py:67
+msgid "You are offline, unable to download."
+msgstr "Jste offline, nemohu stahovat."
+
+#: bottles/frontend/views/bottle_details.py:142
+#, python-format
+msgid "Updated: %s"
+msgstr "Aktualizován: %s"
+
+#: bottles/frontend/views/bottle_details.py:200
+#: bottles/frontend/views/list.py:118
+msgid "Choose a Windows executable file"
+msgstr "Vyberte spustitelný soubor Windows"
+
+#: bottles/frontend/views/bottle_details.py:209
+msgid "Be Aware of Sandbox"
+msgstr "Pozor na Sandbox"
+
+#: bottles/frontend/views/bottle_details.py:210
+msgid ""
+"Bottles is running in a sandbox, a restricted permission environment needed "
+"to keep you safe. If the program won't run, consider moving inside the "
+"bottle (3 dots icon on the top), then launch from there."
+msgstr ""
+"Bottles běží v sandboxu, což je prostředí s omezeným oprávněním, které "
+"zajišťuje vaši bezpečnost. Pokud se program nechce spustit, zvažte přesunutí "
+"dovnitř láhve (ikona 3 teček nahoře) a spusťte ji odtud."
+
+#: bottles/frontend/views/bottle_details.py:212
+msgid "Ok"
+msgstr "OK"
+
+#: bottles/frontend/views/bottle_details.py:267
+msgid "Select the location where to save the backup config"
+msgstr "Vyberte umístění, kam chcete uložit zálohu konfigurace"
+
+#: bottles/frontend/views/bottle_details.py:271
+msgid "Select the location where to save the backup archive"
+msgstr "Vyberte lokaci do které chcete uložit archiv se zálohou"
+
+#: bottles/frontend/views/bottle_details.py:276
+#, python-brace-format
+msgid "Backup created for '{0}'."
+msgstr "Záloha byla vytvořena pro '{0}'."
+
+#: bottles/frontend/views/bottle_details.py:278
+#, python-brace-format
+msgid "Backup failed for '{0}'."
+msgstr "Zálohování selhalo pro '{0}'."
+
+#: bottles/frontend/views/bottle_details.py:296
+msgid "Export"
+msgstr "Export"
+
+#: bottles/frontend/views/bottle_details.py:332
+#: bottles/frontend/views/bottle_details.py:336
+#: bottles/frontend/views/bottle_details.py:411
+#: bottles/frontend/views/bottle_details.py:415
+#: bottles/frontend/views/bottle_preferences.py:776
+msgid "Confirm"
+msgstr "Potvrdit"
+
+#: bottles/frontend/views/bottle_details.py:333
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Jste si jisti že chcete odstranit tuto láhev a všechny její soubory?"
+
+#: bottles/frontend/views/bottle_details.py:412
+msgid ""
+"Are you sure you want to terminate all processes?\n"
+"This can cause data loss."
+msgstr ""
+"Jste si jisti, že chcete ukončit všechny procesy?\n"
+"To může způsobit ztrátu dat."
+
+#: bottles/frontend/views/bottle_preferences.py:218
+msgid "This feature is not available on your system."
+msgstr "Tato funkce není ve vašem systému k dispozici."
+
+#: bottles/frontend/views/bottle_preferences.py:266
+#: bottles/frontend/views/bottle_preferences.py:283
+#: bottles/frontend/views/bottle_preferences.py:422
+msgid "Default to the bottle path."
+msgstr "Výchozí nastavení cesty láhve."
+
+#: bottles/frontend/views/bottle_preferences.py:274
+msgid "Choose working directory for executables"
+msgstr "Vyberte pracovní složku pro spustitelné soubory"
+
+#: bottles/frontend/views/bottle_preferences.py:772
+msgid "Toggling Compression Require Re-Initialization"
+msgstr "Přepínání komprese vyžaduje opětovnou inicializaci"
+
+#: bottles/frontend/views/bottle_preferences.py:773
+msgid ""
+"This will kepp all your files but will delete all states. Do you want to "
+"continue?"
+msgstr ""
+"Tím se zachovají všechny soubory, ale odstraní se všechny stavy. Chcete "
+"pokračovat?"
+
+#: bottles/frontend/views/bottle_programs.py:86
+#, python-brace-format
+msgid "'{0}' added."
+msgstr "'{0}' přidán."
+
+#: bottles/frontend/views/bottle_programs.py:90
+msgid "Choose an executable path"
+msgstr "Výběr cesty ke spustitelnému souboru"
+
+#: bottles/frontend/views/bottle_programs.py:92
+msgid "Add"
+msgstr "Přidat"
+
+#: bottles/frontend/views/bottle_versioning.py:88
+msgid "Please migrate to the new Versioning system to create new states."
+msgstr "Při vytváření nových stavů přejděte na nový systém verzování."
+
+#: bottles/frontend/views/details.py:154
+msgid "Details & Utilities"
+msgstr "Detaily a nástroje"
+
+#: bottles/frontend/views/details.py:162
+msgid "Dependencies"
+msgstr "Závislosti"
+
+#: bottles/frontend/views/details.py:167
+msgid "Found in your bottle's Start menu."
+msgstr "Nachází se v nabídce Start vaší láhve."
+
+#: bottles/frontend/views/details.py:174
+msgid "Installers"
+msgstr "Instalátory"
+
+#: bottles/frontend/views/details.py:377
+msgid "Operations in progress, please wait."
+msgstr "Probíhají operace, vyčkejte prosím."
+
+#: bottles/frontend/views/details.py:381
+msgid "Return to your bottles."
+msgstr "Vraťte se ke svým Lahvím."
+
+#: bottles/frontend/views/importer.py:89
+msgid "Backup imported successfully."
+msgstr "Záloha byla úspěšně importována."
+
+#: bottles/frontend/views/importer.py:91
+msgid "Import failed."
+msgstr "Import se nezdařil."
+
+#: bottles/frontend/views/importer.py:103
+#: bottles/frontend/views/importer.py:132
+msgid "Importing backup…"
+msgstr "Importování zálohy…"
+
+#: bottles/frontend/views/importer.py:115
+msgid "Choose a backup archive"
+msgstr "Vyberte záložní archiv"
+
+#: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
+msgid "N/A"
+msgstr "N/A"
+
+#: bottles/frontend/views/list.py:220
+msgid "Your Bottles"
+msgstr "Vaše láhve"
+
+#: bottles/frontend/views/loading.py:33
+#, python-brace-format
+msgid "Downloading ~{0} of packages…"
+msgstr "Stahování ~{0} balíčků…"
+
+#: bottles/frontend/views/loading.py:34
+#, python-brace-format
+msgid "Fetched {0} of {1} packages"
+msgstr "Načteno {0} z {1} balíčků"
+
+#: bottles/frontend/views/new.py:133
+msgid "Name has special characters or already in use."
+msgstr "Název obsahuje speciální znaky nebo je již používán."
+
+#: bottles/frontend/views/new.py:150
+msgid "Choose a recipe file"
+msgstr "Vybrat konfigurační soubor"
+
+#: bottles/frontend/views/new.py:166
+msgid "Choose where to store the bottle"
+msgstr "Zvolte místo uložení láhve"
+
+#: bottles/frontend/views/new.py:219
+msgid "There was an error creating the bottle."
+msgstr "Při vytváření láhve se vyskytla chyba."
+
+#: bottles/frontend/views/new.py:227
+#, python-brace-format
+msgid "A bottle named “{0}” was created successfully"
+msgstr "Láhev pojmenovaná “{0}” byla úspěšně vytvořena"
+
+#: bottles/frontend/views/preferences.py:119
+msgid "Steam was not found or Bottles does not have enough permissions."
+msgstr ""
+"Služba Steam nebyla nalezena nebo služba Bottles nemá dostatečná oprávnění."
+
+#: bottles/frontend/views/preferences.py:156
+msgid "Choose new bottles path"
+msgstr "Vyberte nové umístění k láhvi"
+
+#: bottles/frontend/views/preferences.py:199
+msgid "Based on Valve's Wine, includes staging and Proton patches."
+msgstr ""
+"Založeno na systému Wine od společnosti Valve, obsahuje etapové a protonové "
+"záplaty."
+
+#: bottles/frontend/views/preferences.py:200
+msgid "Based on Wine upstream, includes staging and Proton patches."
+msgstr "Založeno na upstreamu Wine, obsahuje záplaty pro staging a Proton."
+
+#: bottles/frontend/views/preferences.py:203
+msgid "Based on Wine upstream, includes staging patches."
+msgstr "Založeno na upstreamu Wine, obsahuje záplaty pro staging."
+
+#: bottles/frontend/views/preferences.py:204
+msgid ""
+"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
+"Requires the Steam Runtime turned on."
+msgstr ""
+"Založeno na Wine od společnosti Valve, obsahuje záplaty pro staging, Proton "
+"a specifické záplaty pro Steam. Vyžaduje zapnutý Steam Runtime."
+
+#: bottles/frontend/views/preferences.py:206
+msgid "Other"
+msgstr "Jiné"
+
+#: bottles/frontend/widgets/component.py:70
+msgid "Upgrade"
+msgstr "Povýšit"
+
+#: bottles/frontend/widgets/component.py:145
+msgid "Installing…"
+msgstr "Instalace…"
+
+#: bottles/frontend/widgets/dependency.py:107
+#: bottles/frontend/widgets/installer.py:72
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "Manifest pro {0}"
+
+#: bottles/frontend/widgets/dependency.py:170
+#, python-brace-format
+msgid "'{0}' installed."
+msgstr "'{0}' nainstalován."
+
+#: bottles/frontend/widgets/dependency.py:184
+#, python-brace-format
+msgid "'{0}' failed to install."
+msgstr "'{0}' se nepodařilo nainstalovat."
+
+#: bottles/frontend/widgets/importer.py:66
+#, python-brace-format
+msgid "'{0}' imported."
+msgstr "'{0}' importován."
+
+#: bottles/frontend/widgets/installer.py:81
+#, python-brace-format
+msgid "Review for {0}"
+msgstr "Manifest pro {0}"
+
+#: bottles/frontend/widgets/program.py:187
+#, python-brace-format
+msgid "Launching '{0}'…"
+msgstr "Spouštění „{0}“…"
+
+#: bottles/frontend/widgets/program.py:193
+#, python-brace-format
+msgid "Launching '{0}' with Steam…"
+msgstr "Spuštění '{0}' pomocí služby Steam…"
+
+#: bottles/frontend/widgets/program.py:215
+#, python-brace-format
+msgid "'{0}' hidden."
+msgstr "'{0}' byl skryt."
+
+#: bottles/frontend/widgets/program.py:217
+#, python-brace-format
+msgid "'{0}' showed."
+msgstr "'{0}' se objevil."
+
+#: bottles/frontend/widgets/program.py:240
+#, python-brace-format
+msgid "'{0}' removed."
+msgstr "'{0}' odstraněn."
+
+#: bottles/frontend/widgets/program.py:254
+#, python-brace-format
+msgid "'{0}' renamed to '{1}'."
+msgstr "'{0}' byl přejmenován na '{1}'."
+
+#: bottles/frontend/widgets/program.py:274
+#, python-brace-format
+msgid "Desktop Entry created for '{0}'"
+msgstr "Položka plochy byla vytvořena pro '{0}'"
+
+#: bottles/frontend/widgets/program.py:290
+#, python-brace-format
+msgid "'{0}' added to your library"
+msgstr "'{0}' přidán do vaší knihovny"
+
+#: bottles/frontend/widgets/program.py:306
+#, python-brace-format
+msgid "'{0}' added to your Steam library"
+msgstr "'{0}' přidáno do knihovny služby Steam"
+
+#: bottles/frontend/windows/main_window.py:188
+msgid "Custom Bottles Path not Found"
+msgstr "Vlastní cesta Láhve nebyla nalezena"
+
+#: bottles/frontend/windows/main_window.py:189
+msgid ""
+"Falling back to default path. No bottles from the given path will be listed."
+msgstr "Pád zpět na výchozí cestu. Žádné lahve z dané cesty nebudou uvedeny."
+
+#: bottles/frontend/windows/main_window.py:310
+msgid "Third-Party Libraries and Special Thanks"
+msgstr "Knihovny třetích stran a zvláštní poděkování"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -157,173 +3012,181 @@ msgid ""
 "New versioning system which allow versioning the whole bottle (also "
 "configuration)"
 msgstr ""
+"Nový systém verzování, který umožňuje verzovat celou láhev (také konfiguraci)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Automatic versioning can now be toggled on and off"
-msgstr ""
+msgstr "Automatické verzování lze nyní zapnout a vypnout"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "Exclude paths from versioning using patterns"
-msgstr ""
+msgstr "Vyloučení cest z verzování pomocí vzorů"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "Use compression for versioning states"
-msgstr "Vytváření verzovacího stavu 0 …"
+msgstr "Použití komprese pro stavy verzí"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
 msgstr ""
+"Zlepšení ukládání možností spuštění bez nutnosti vícenásobné aktualizace "
+"uživatelského rozhraní"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid ""
 "Improved YAML performance using libyaml (the python-yaml package must "
 "provide support for it)"
 msgstr ""
+"Vylepšený výkon YAML pomocí libyaml (balíček python-yaml musí poskytovat "
+"podporu)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
-#, fuzzy
 msgid "New About dialog"
-msgstr "Nová láhev"
+msgstr "Nový dialog O aplikaci"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "Covers support in Library mode (thanks to SteamGridDB)"
-msgstr ""
+msgstr "Podpora obálek v režimu knihovny (díky službě SteamGridDB)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid "Removed DXVK HUD option, use the Environment Variables section instead"
 msgstr ""
+"Odstraněna možnost DXVK HUD, místo toho používejte sekci Proměnné prostředí"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "bottles-cli shell option now provide command output"
-msgstr ""
+msgstr "možnost shellu bottles-cli nyní poskytuje výstup příkazů"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
 msgid "The Health Check is now in the About´s Troubleshooting section"
-msgstr ""
+msgstr "Kontrola stavu je nyní v sekci O odstraňování potíží"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
 msgid ""
 "Extended Core dependencies check, packagers are invited to double-check "
 "their packages"
 msgstr ""
+"Rozšířená kontrola závislostí jádra, tvůrci balíčků jsou vyzváni, aby své "
+"balíčky překontrolovali"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "New default permission for the Flatpak package: xdg-download"
-msgstr ""
+msgstr "Nové výchozí oprávnění pro balíček Flatpak: xdg-download"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Added credits for Third-Party Libraries in the Credits section"
-msgstr ""
+msgstr "Přidány kredity pro knihovny třetích stran v sekci Kredity"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
-msgstr ""
+msgstr "Drobná vylepšení uživatelského rozhraní"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
-msgstr ""
+msgstr "Opravy"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Fix for skipable onboard dialog"
-msgstr ""
+msgstr "Oprava dialogového onboard okna, které lze přeskočit"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Fix for empty bottle name"
-msgstr ""
+msgstr "Oprava názvu prázdné láhve"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
 msgid "Fix gstreamer libs for win32 bottles"
-msgstr ""
+msgstr "Oprava knihoven gstreameru pro lahve win32"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Fix for RemoteDisconnected error causing a crash"
-msgstr ""
+msgstr "Oprava chyby RemoteDisconnected způsobující pád systému"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
 msgid "Fix wrong Vaniglia listing"
-msgstr ""
+msgstr "Oprava chybného výpisu Vaniglia"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
 msgid "Fix templates being generated with symlinked paths causing loops"
 msgstr ""
+"Oprava generování šablon se symlinkovanými cestami způsobujícími smyčky"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 msgid ""
 "Fix configuration migration causing a crash when the user altered the "
 "configuration"
 msgstr ""
+"Oprava migrace konfigurace způsobující pád při změně konfigurace uživatelem"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
 msgid "Fix mscoree.dll not found"
-msgstr ""
+msgstr "Oprava mscoree.dll nebyla nalezena"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 msgid "Fix regression for the -b option of the legacy bottles cli"
-msgstr ""
+msgstr "Oprava regrese pro volbu -b staršího bottles cli"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
 msgid "Fix Steam Launch Options parser causing a crash"
-msgstr ""
+msgstr "Oprava parseru možností spuštění služby Steam způsobujícího pád služby"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
 msgid ""
 "Fix a regression in the Add to Steam button not adding the new entry in Steam"
 msgstr ""
+"Oprava chyby v tlačítku Přidat do služby Steam, které nepřidává novou "
+"položku do služby Steam"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "Translations"
 msgstr "Překlady"
 
 #: data/com.usebottles.bottles.appdata.xml.in:137
-#, fuzzy
 msgid "Finnish translations thanks to Jiri Grönroos"
-msgstr "Francouzský překlad díky @julroy67"
+msgstr "Za finské překlady díky Jiřímu Grönroosovi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:138
-#, fuzzy
 msgid "French translations thanks to @rjousse18, @julroy67"
-msgstr "Francouzský překlad díky @julroy67"
+msgstr "Francouzské překlady díky @rjousse18, @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:139
-#, fuzzy
 msgid "Indonesian translations thanks to @liimee"
-msgstr "Indonéské překlady díky @rezaalmanda"
+msgstr "Indonéské překlady díky @liimee"
 
 #: data/com.usebottles.bottles.appdata.xml.in:140
-#, fuzzy
 msgid "Russian translations thanks to @Knebergish, @lenemter, @Smoque"
-msgstr "Chorvatský překlad díky @milotype"
+msgstr "Ruské překlady díky @Knebergish, @lenemter, @Smoque"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
-#, fuzzy
 msgid "Thai translations thanks to @SashaPGT"
-msgstr "Chorvatský překlad díky @milotype"
+msgstr "Za thajské překlady díky @SashaPGT"
 
 #: data/com.usebottles.bottles.appdata.xml.in:142
-#, fuzzy
 msgid "Spanish translations thanks to Pablo Munoz Alabau, @oscfdezdz"
-msgstr "Španělské překlady díky @oscfdezdz"
+msgstr "Španělské překlady díky Pablo Munoz Alabau, @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:143
-#, fuzzy
 msgid "Italian translations thanks to @gdonisi"
-msgstr "Chorvatský překlad díky @milotype"
+msgstr "Italské překlady díky @gdonisi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @geraldohomero"
-msgstr "Portugalské překlady díky @hugok79"
+msgstr "Za portugalské (Brazílie) překlady díky @geraldohomero"
 
 #: data/com.usebottles.bottles.appdata.xml.in:145
-#, fuzzy
 msgid "German translations thanks to Patrick Ulbricht"
-msgstr "Německé překlady díky @thericosanto"
+msgstr "Za německý překlad díky Patricku Ulbrichtovi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:146
-#, fuzzy
 msgid "Croatian translations thanks to @milotype"
-msgstr "Chorvatský překlad díky @milotype"
+msgstr "Za chorvatské překlady díky @milotype"
+
+#: data/com.usebottles.bottles.desktop.in:4
+msgid "Easily manage wineprefix"
+msgstr "Snadně spravujte wine prefixy"
+
+#: data/com.usebottles.bottles.desktop.in:13
+msgid "wine;windows;"
+msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -367,12 +3230,11 @@ msgstr "Přepnout seznam her Epic."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "Výpis Ubisoft Connect"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Toggle ubisoft connect listing."
-msgstr "Přepnout výpis Steam aplikací."
+msgstr "Přepnout výpis ubisoft connect."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
@@ -389,10 +3251,6 @@ msgstr "Výška okna"
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Change the window height."
 msgstr "Změna výšky okna."
-
-#: data/com.usebottles.bottles.gschema.xml:46 src/ui/preferences.ui:49
-msgid "Notifications"
-msgstr "Upozornění"
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
@@ -421,10 +3279,6 @@ msgstr "Zobrazení po spuštění"
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
 msgstr "Zvolte které zobrazení by mělo být zobrazeno po spuštění aplikace."
-
-#: data/com.usebottles.bottles.gschema.xml:66 src/ui/preferences.ui:253
-msgid "Experiments"
-msgstr "Experimenty"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
@@ -468,2440 +3322,11 @@ msgstr "Zavření Láhví po spuštění spustitelného souboru ze správce soub
 
 #: data/com.usebottles.bottles.gschema.xml:91
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "Zobrazit upozornění sandboxu"
 
 #: data/com.usebottles.bottles.gschema.xml:92
-#, fuzzy
 msgid "Toggle sandbox warning."
-msgstr "Přepnout výpis Steam aplikací."
-
-#: src/main.py:105
-msgid "Show version"
-msgstr "Zobrazit verzi"
-
-#: src/main.py:113
-msgid "Executable path"
-msgstr "Cesta ke spustitelnému souboru"
-
-#: src/main.py:121
-msgid "lnk path"
-msgstr "lnk cesta"
-
-#: src/main.py:129
-msgid "Bottle name"
-msgstr "Název láhve"
-
-#: src/main.py:137
-msgid "Pass arguments"
-msgstr "Předat argumenty"
-
-#: src/main.py:196
-msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "Neplatná URI (syntaxe: bottles:run/<bottle>/<program>)"
-
-#: src/main.py:237
-msgid "[Quit] request received."
-msgstr "[Quit] žádost přijata."
-
-#: src/main.py:246
-msgid "[Help] request received."
-msgstr "[Help] žádost přijata."
-
-#: src/main.py:254
-msgid "[Refresh] request received."
-msgstr "[Refresh] žádost přijata."
-
-#: src/operation.py:50
-msgid "Calculating…"
-msgstr "Počítání…"
-
-#: src/window.py:171 src/ui/library.ui:14 src/ui/preferences.ui:259
-msgid "Library"
-msgstr "Knihovna"
-
-#: src/window.py:184
-#, fuzzy
-msgid "Custom Bottles Path not Found"
-msgstr "Cesta k vlastním lahvím (vyžaduje restart)"
-
-#: src/window.py:185
-msgid ""
-"Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
-
-#: src/window.py:187 src/ui/new.ui:47 src/ui/new.ui:268
-msgid "Close"
-msgstr "Zavřít"
-
-#: src/window.py:306
-msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
-
-#: src/backend/managers/versioning.py:97
-#, fuzzy
-msgid "Committing state …"
-msgstr "Aktualizování stavů …"
-
-#: src/backend/managers/versioning.py:106
-msgid "Nothing to commit"
-msgstr ""
-
-#: src/backend/managers/versioning.py:112
-#, python-brace-format
-msgid "New state [{0}] created successfully!"
-msgstr "Nový stav [{0}] byl úspěšně vytvořen!"
-
-#: src/backend/managers/versioning.py:140
-#, fuzzy
-msgid "States list retrieved successfully!"
-msgstr "Nový stav [{0}] byl úspěšně vytvořen!"
-
-#: src/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
-msgid "State {0} restored successfully!"
-msgstr "Nový stav [{0}] byl úspěšně vytvořen!"
-
-#: src/backend/managers/versioning.py:176
-#, fuzzy
-msgid "Restoring state {} …"
-msgstr "Obnovuji stav: [{0}]"
-
-#: src/backend/managers/versioning.py:185
-#, fuzzy
-msgid "State not found"
-msgstr "Nebyly nalezeny žádné státy"
-
-#: src/backend/managers/versioning.py:191
-msgid "State {} is already the active state"
-msgstr ""
-
-#: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
-msgid "No path specified"
-msgstr "Nebyla specifikovaná žádná cesta"
-
-#: src/backend/managers/backup.py:71
-#, python-brace-format
-msgid "Backup {0}"
-msgstr "Záloha {0}"
-
-#: src/backend/managers/backup.py:124
-#, python-brace-format
-msgid "Importing backup: {0}"
-msgstr "Importuji zálohu: {0}"
-
-#: src/backend/managers/manager.py:1030
-msgid "Fail to install components, tried 3 times."
-msgstr "Instalace komponent selhala, bylo vyzkoušeno 3krát."
-
-#: src/backend/managers/manager.py:1041
-msgid "Missing essential components. Installing…"
-msgstr "Chybí základní součásti. Instalace…"
-
-#: src/backend/managers/manager.py:1117
-msgid "Failed to create bottle directory."
-msgstr "Nepodařilo se vytvořit adresář láhve."
-
-#: src/backend/managers/manager.py:1129
-msgid "Failed to create placeholder directory/file."
-msgstr "Nastal problém s vytvořením zástupce adresáře/souboru."
-
-#: src/backend/managers/manager.py:1134
-msgid "Generating bottle configuration…"
-msgstr "Vytváření konfigurace láhve…"
-
-#: src/backend/managers/manager.py:1157
-msgid "Template found, applying…"
-msgstr "Šablona nalezena, probíhá aplikování…"
-
-#. execute wineboot on the bottle path
-#: src/backend/managers/manager.py:1169
-msgid "The Wine config is being updated…"
-msgstr "Konfigurace Wine se aktualizuje…"
-
-#: src/backend/managers/manager.py:1171
-msgid "Wine config updated!"
-msgstr "Konfigurace Wine byla aktualizována!"
-
-#: src/backend/managers/manager.py:1179
-msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Spuštění jako Flatpak, v uživatelském sandboxu…"
-
-#: src/backend/managers/manager.py:1181
-msgid "Sandboxing userdir…"
-msgstr "Sandboxuji uživatelskou složku…"
-
-#: src/backend/managers/manager.py:1197
-msgid "Setting Windows version…"
-msgstr "Nastavení verze Windows…"
-
-#: src/backend/managers/manager.py:1207
-msgid "Apply CMD default settings…"
-msgstr "Aplikuji výchozí nastavení CMD…"
-
-#: src/backend/managers/manager.py:1215
-msgid "Optimizing environment…"
-msgstr "Optimizace prostředí…"
-
-#: src/backend/managers/manager.py:1226
-#, python-brace-format
-msgid "Applying environment: {0}…"
-msgstr "Aplikuji prostředí: [{0}]…"
-
-#: src/backend/managers/manager.py:1236
-msgid "(!) Using a custom environment recipe…"
-msgstr "(!) Použit vlastní recept prostředí…"
-
-#: src/backend/managers/manager.py:1239
-msgid "(!) Recipe not not found or not valid…"
-msgstr "(!) Recept není možné najít, nebo je invalidní…"
-
-#: src/backend/managers/manager.py:1256
-msgid "Installing DXVK…"
-msgstr "Instalování DXVK …"
-
-#: src/backend/managers/manager.py:1264
-msgid "Installing VKD3D…"
-msgstr "Instalování VKD3D…"
-
-#: src/backend/managers/manager.py:1272
-msgid "Installing DXVK-NVAPI…"
-msgstr "Instalování DXVK-NVAPI …"
-
-#: src/backend/managers/manager.py:1281
-#, python-format
-msgid "Installing dependency: %s …"
-msgstr "Instalování {0} závislosti: %s …"
-
-#: src/backend/managers/manager.py:1297
-msgid "Creating versioning state 0…"
-msgstr "Vytváření verzovacího stavu 0 …"
-
-#: src/backend/managers/manager.py:1305
-msgid "Finalizing…"
-msgstr "Dokončuji…"
-
-#: src/backend/managers/manager.py:1316
-msgid "Caching template…"
-msgstr "Ukládaní šablony do mezipaměti…"
-
-#: src/dialogs/crash.py:37
-msgid "Show report"
-msgstr "Zobrazit zprávu"
-
-#: src/dialogs/crash.py:88
-msgid ""
-"            This issue was reported 5 times and cannot be sent again.\n"
-"            Report your feedback in one of the below existing reports."
-msgstr ""
-"            Tento problém byl nahlášen 5krát a nemůže být poslán znovu.\n"
-"Nahlaste svoji odezvu v jednom z existujících nahlášení."
-
-#: src/dialogs/dlloverrides.py:136
-msgid "No overrides found."
-msgstr "Nebyly nalezeny žádné přepisy."
-
-#: src/dialogs/drives.py:71
-msgid "Choose path"
-msgstr "Vybrat umístění"
-
-#: src/dialogs/drives.py:73 src/dialogs/filechooser.py:63
-#: src/dialogs/launchoptions.py:234 src/dialogs/launchoptions.py:258
-#: src/dialogs/installer.py:66 src/views/bottle_details.py:202
-#: src/views/bottle_details.py:296 src/views/bottle_details.py:335
-#: src/views/bottle_details.py:414 src/views/bottle_preferences.py:260
-#: src/views/bottle_preferences.py:744 src/views/bottle_programs.py:89
-#: src/views/importer.py:117 src/views/importer.py:146 src/views/list.py:120
-#: src/views/new.py:144 src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-crash-report.ui:18 src/ui/dialog-rename.ui:17
-#: src/ui/dialog-run-args.ui:19 src/ui/dialog-bottle-picker.ui:17
-#: src/ui/dialog-proton-alert.ui:17 src/ui/new.ui:33
-msgid "Cancel"
-msgstr "Zrušit"
-
-#: src/dialogs/drives.py:73 src/dialogs/launchoptions.py:234
-#: src/dialogs/launchoptions.py:258 src/dialogs/installer.py:66
-#: src/views/bottle_preferences.py:260 src/views/new.py:144
-#: src/views/new.py:160 src/views/preferences.py:195
-#: src/ui/dialog-bottle-picker.ui:22
-msgid "Select"
-msgstr "Vybrat"
-
-#: src/dialogs/envvars.py:131
-msgid "No environment variables defined."
-msgstr "Nejsou definovány žádné proměnné prostředí."
-
-#: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:34
-#: src/ui/dialog-launch-options.ui:35 src/ui/dialog-rename.ui:22
-msgid "Save"
-msgstr "Uložit"
-
-#: src/dialogs/generic.py:24
-msgid "An error has occurred."
-msgstr "Došlo k chybě."
-
-#: src/dialogs/generic.py:91 src/dialogs/generic.py:137
-#: src/dialogs/generic.py:182
-msgid "Copy to clipboard"
-msgstr "Zkopírovat do schránky"
-
-#. endregion
-#: src/dialogs/launchoptions.py:56 src/ui/dialog-launch-options.ui:59
-msgid "Choose a script which should be executed after run."
-msgstr "Vyberte který skript by měl být spuštěn po spuštění."
-
-#: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
-msgid "Choose from where start the program."
-msgstr "Vyberte, odkud program spustit."
-
-#: src/dialogs/launchoptions.py:58
-#, python-brace-format
-msgid "{0} is already disabled for this bottle."
-msgstr "{0} je pro tuto láhev již zakázáno."
-
-#: src/dialogs/launchoptions.py:59
-msgid "This setting is different from the bottle's default."
-msgstr "Toto nastavení se liší od výchozího nastavení láhve."
-
-#: src/dialogs/launchoptions.py:232
-msgid "Choose the script"
-msgstr "Vyberte skript"
-
-#: src/dialogs/launchoptions.py:256
-msgid "Choose the Working Directory"
-msgstr "Vyberte pracovní adresář"
-
-#: src/dialogs/installer.py:64
-msgid "Select Resource FIle"
-msgstr "Vyberte zdrojový soubor"
-
-#: src/dialogs/installer.py:115
-#, fuzzy
-msgid "Installing Windows dependencies…"
-msgstr "Instalování {0} závislosti: %s …"
-
-#: src/dialogs/installer.py:116
-#, fuzzy
-msgid "Configuring the bottle…"
-msgstr "Vytvářím láhev…"
-
-#: src/dialogs/installer.py:117
-msgid "Processing installer steps…"
-msgstr ""
-
-#: src/dialogs/installer.py:118
-#, fuzzy
-msgid "Installing the {}…"
-msgstr "Instalace…"
-
-#: src/dialogs/installer.py:119
-msgid "Performing final checks…"
-msgstr ""
-
-#: src/dialogs/installer.py:123
-#, fuzzy, python-brace-format
-msgid "Installing {0}…"
-msgstr "Instalace…"
-
-#: src/dialogs/installer.py:125
-#, python-brace-format
-msgid "{0} is now available in the programs view."
-msgstr ""
-
-#: src/dialogs/installer.py:171
-msgid "Installer failed with unknown error"
-msgstr "Instalátor selhal s neznámou chybou"
-
-#: src/dialogs/exclusionpatterns.py:108
-#, fuzzy
-msgid "No exclusion patterns defined."
-msgstr "Nejsou definovány žádné proměnné prostředí."
-
-#: src/views/bottle_details.py:142
-#, python-format
-msgid "Updated: %s"
-msgstr "Aktualizován: %s"
-
-#: src/views/bottle_details.py:200 src/views/list.py:118
-msgid "Choose a Windows executable file"
-msgstr "Vyberte spustitelný soubor Windows"
-
-#: src/views/bottle_details.py:202 src/views/list.py:120
-#: src/ui/dialog-run-args.ui:35
-msgid "Run"
-msgstr "Spustit"
-
-#: src/views/bottle_details.py:209
-#, fuzzy
-msgid "Be Aware of Sandbox"
-msgstr "Vyhrazený sandbox"
-
-#: src/views/bottle_details.py:210
-msgid ""
-"Bottles is running in a sandbox, a restricted permission environment needed "
-"to keep you safe. If the program won't run, consider moving inside the "
-"bottle (3 dots icon on the top), then launch from there."
-msgstr ""
-
-#: src/views/bottle_details.py:212
-msgid "Ok"
-msgstr ""
-
-#: src/views/bottle_details.py:267
-msgid "Select the location where to save the backup config"
-msgstr "Vyberte umístění, kam chcete uložit zálohu konfigurace"
-
-#: src/views/bottle_details.py:271
-msgid "Select the location where to save the backup archive"
-msgstr "Vyberte lokaci do které chcete uložit archiv se zálohou"
-
-#: src/views/bottle_details.py:276
-#, python-brace-format
-msgid "Backup created for '{0}'."
-msgstr "Záloha byla vytvořena pro '{0}'."
-
-#: src/views/bottle_details.py:278
-#, python-brace-format
-msgid "Backup failed for '{0}'."
-msgstr "Zálohování selhalo pro '{0}'."
-
-#: src/views/bottle_details.py:296
-msgid "Export"
-msgstr "Export"
-
-#: src/views/bottle_details.py:332 src/views/bottle_details.py:336
-#: src/views/bottle_details.py:411 src/views/bottle_details.py:415
-#: src/views/bottle_preferences.py:745
-msgid "Confirm"
-msgstr "Potvrdit"
-
-#: src/views/bottle_details.py:333
-msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "Jste si jisti že chcete odstranit tuto láhev a všechny její soubory?"
-
-#: src/views/bottle_details.py:412
-msgid ""
-"Are you sure you want to terminate all processes?\n"
-"This can cause data loss."
-msgstr ""
-"Jste si jisti, že chcete ukončit všechny procesy?\n"
-"To může způsobit ztrátu dat."
-
-#: src/views/bottle_preferences.py:207
-msgid "This feature is not available on your system."
-msgstr "Tato funkce není ve vašem systému k dispozici."
-
-#: src/views/bottle_preferences.py:250 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:405
-msgid "Default to the bottle path."
-msgstr "Výchozí nastavení cesty láhve."
-
-#: src/views/bottle_preferences.py:258
-msgid "Choose working directory for executables"
-msgstr "Vyberte pracovní složku pro spustitelné soubory"
-
-#: src/views/bottle_preferences.py:741
-msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
-
-#: src/views/bottle_preferences.py:742
-msgid ""
-"This will kepp all your files but will delete all states. Do you want to "
-"continue?"
-msgstr ""
-
-#: src/views/bottle_programs.py:83
-#, python-brace-format
-msgid "'{0}' added."
-msgstr "'{0}' přidán."
-
-#: src/views/bottle_programs.py:87
-msgid "Choose an executable path"
-msgstr "Výběr cesty ke spustitelnému souboru"
-
-#: src/views/bottle_programs.py:89
-msgid "Add"
-msgstr "Přidat"
-
-#: src/views/details.py:154
-msgid "Details & Utilities"
-msgstr "Detaily a nástroje"
-
-#: src/views/details.py:158 src/ui/preferences.ui:6 src/ui/window.ui:24
-msgid "Preferences"
-msgstr "Předvolby"
-
-#: src/views/details.py:162
-msgid "Dependencies"
-msgstr "Závislosti"
-
-#: src/views/details.py:166 src/ui/details-bottle.ui:241
-msgid "Programs"
-msgstr "Programy"
-
-#: src/views/details.py:167
-msgid "Found in your bottle's Start menu."
-msgstr "Nachází se v nabídce Start vaší láhve."
-
-#: src/views/details.py:170 src/ui/details-preferences.ui:656
-msgid "Versioning"
-msgstr "Správa verzí"
-
-#: src/views/details.py:174
-msgid "Installers"
-msgstr "Instalátory"
-
-#: src/views/details.py:178 src/ui/details-bottle.ui:289
-msgid "Task Manager"
-msgstr "Správce úloh"
-
-#: src/views/details.py:377
-#, fuzzy
-msgid "Operations in progress, please wait."
-msgstr "Aktualizuji verzi Windows, prosím počkejte…"
-
-#: src/views/details.py:381
-#, fuzzy
-msgid "Return to your bottles."
-msgstr "Prohledávejte své lahve…"
-
-#: src/views/importer.py:89
-msgid "Backup imported successfully."
-msgstr "Záloha byla úspěšně importována."
-
-#: src/views/importer.py:91
-msgid "Import failed."
-msgstr "Import se nezdařil."
-
-#: src/views/importer.py:103 src/views/importer.py:132
-msgid "Importing backup…"
-msgstr "Importování zálohy…"
-
-#: src/views/importer.py:115
-msgid "Choose a backup archive"
-msgstr "Vyberte záložní archiv"
-
-#: src/views/importer.py:117 src/views/importer.py:146
-msgid "Import"
-msgstr "Importovat"
-
-#: src/views/importer.py:144
-msgid "Choose a configuration file"
-msgstr "Vyberte konfigurační soubor"
-
-#: src/views/list.py:59 src/views/list.py:65
-msgid "N/A"
-msgstr "N/A"
-
-#: src/views/list.py:220
-msgid "Your Bottles"
-msgstr "Vaše láhve"
-
-#: src/views/new.py:142
-msgid "Choose a recipe file"
-msgstr "Vybrat konfigurační soubor"
-
-#: src/views/new.py:158
-msgid "Choose where to store the bottle"
-msgstr "Zvolte místo uložení láhve"
-
-#: src/views/new.py:211
-msgid "There was an error creating the bottle."
-msgstr "Při vytváření láhve se vyskytla chyba."
-
-#: src/views/new.py:219
-#, python-brace-format
-msgid "A bottle named “{0}” was created successfully"
-msgstr "Láhev pojmenovaná “{0}” byla úspěšně vytvořena"
-
-#: src/views/preferences.py:125
-#, fuzzy
-msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-"Aplikace Steam nebyla nalezena nebo program Bottles nemá dostatečná "
-"oprávnění.Navštivte stránku https://docs.usebottles.com/flatpak/cant-enable-"
-"steam-proton-manager"
-
-#: src/views/preferences.py:188 src/views/preferences.py:204
-#: src/ui/preferences.ui:155
-msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)."
-msgstr "Zvolte místo uložení nových lahví (stávající lahve se nepřesunou)."
-
-#: src/views/preferences.py:193
-msgid "Choose new bottles path"
-msgstr "Vyberte nové umístění k láhvi"
-
-#: src/views/preferences.py:236
-msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:237
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
-
-#: src/views/preferences.py:240
-msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
-
-#: src/views/preferences.py:241
-msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
-msgstr ""
-
-#: src/views/preferences.py:243
-msgid "Other"
-msgstr "Jiné"
-
-#: src/views/bottle_versioning.py:88
-msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
-
-#: src/views/loading.py:33
-#, python-brace-format
-msgid "Downloading ~{0} of packages…"
-msgstr ""
-
-#: src/views/loading.py:34
-#, python-brace-format
-msgid "Fetched {0} of {1} packages"
-msgstr ""
-
-#: src/widgets/component.py:70
-msgid "Upgrade"
-msgstr "Povýšit"
-
-#: src/widgets/component.py:145
-msgid "Installing…"
-msgstr "Instalace…"
-
-#: src/widgets/dependency.py:107 src/widgets/installer.py:72
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "Manifest pro {0}"
-
-#: src/widgets/dependency.py:170
-#, python-brace-format
-msgid "'{0}' installed."
-msgstr "'{0}' nainstalován."
-
-#: src/widgets/dependency.py:184
-#, fuzzy, python-brace-format
-msgid "'{0}' failed to install."
-msgstr "'{0}' nainstalován."
-
-#: src/widgets/importer.py:66
-#, python-brace-format
-msgid "'{0}' imported."
-msgstr "'{0}' importován."
-
-#: src/widgets/installer.py:81
-#, python-brace-format
-msgid "Review for {0}"
-msgstr "Manifest pro {0}"
-
-#: src/widgets/program.py:187
-#, fuzzy, python-brace-format
-msgid "Launching '{0}'…"
-msgstr "Spustit v terminálu…"
-
-#: src/widgets/program.py:193
-#, fuzzy, python-brace-format
-msgid "Launching '{0}' with Steam…"
-msgstr "Spustit pomocí Steam"
-
-#: src/widgets/program.py:215
-#, python-brace-format
-msgid "'{0}' hidden."
-msgstr "'{0}' byl skryt."
-
-#: src/widgets/program.py:217
-#, python-brace-format
-msgid "'{0}' showed."
-msgstr "'{0}' se objevil."
-
-#: src/widgets/program.py:240
-#, python-brace-format
-msgid "'{0}' removed."
-msgstr "'{0}' odstraněn."
-
-#: src/widgets/program.py:254
-#, python-brace-format
-msgid "'{0}' renamed to '{1}'."
-msgstr "'{0}' byl přejmenován na '{1}'."
-
-#: src/widgets/program.py:274
-#, python-brace-format
-msgid "Desktop Entry created for '{0}'"
-msgstr "Položka plochy byla vytvořena pro '{0}'"
-
-#: src/widgets/program.py:290
-#, python-brace-format
-msgid "'{0}' added to your library"
-msgstr "'{0}' přidán do vaší knihovny"
-
-#: src/widgets/program.py:306
-#, python-brace-format
-msgid "'{0}' added to your Steam library"
-msgstr "'{0}' přidáno do knihovny služby Steam"
-
-#: src/utils/connection.py:67
-msgid "You are offline, unable to download."
-msgstr "Jste offline, nemohu stahovat."
-
-#: src/ui/about.ui:8
-msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2022 - Vývojáři Láhví (Bottles)"
-
-#: src/ui/about.ui:9
-msgid "Easily manage wineprefix using environments"
-msgstr "Snadno spravujte wineprefix pomocí proměnných prostředí"
-
-#: src/ui/component-entry.ui:6
-msgid "Component version"
-msgstr "Verze komponenty"
-
-#: src/ui/component-entry.ui:15 src/ui/dependency-entry.ui:34
-#: src/ui/program-entry.ui:92
-msgid "Uninstall"
-msgstr "Odinstalovat"
-
-#: src/ui/component-entry.ui:26 src/ui/importer-entry.ui:15
-msgid "Browse files"
-msgstr "Procházet soubory"
-
-#: src/ui/component-entry.ui:37
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch. Press to try again."
-msgstr ""
-"Instalace selhala. Toto může být z důvodu chyby repozitáře, neshoda "
-"checksumu. Stiskněte pro vyzkoušení znovu."
-
-#: src/ui/component-entry.ui:48
-msgid "Download & Install"
-msgstr "Stáhnout a nainstalovat"
-
-#: src/ui/component-entry.ui:61
-msgid "0%"
-msgstr "0%"
-
-#: src/ui/dependency-entry.ui:18
-msgid "Show Manifest"
-msgstr "Zobrazit manifest"
-
-#: src/ui/dependency-entry.ui:23
-msgid "License"
-msgstr "Licence"
-
-#: src/ui/dependency-entry.ui:28
-msgid "Reinstall"
-msgstr "Přeinstalovat"
-
-#: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
-msgid "Report a Bug…"
-msgstr "Nahlásit problém…"
-
-#: src/ui/dependency-entry.ui:73
-msgid "Download & Install this dependency"
-msgstr "Stáhnout a nainstalovat tuto závislost"
-
-#: src/ui/dependency-entry.ui:89
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr ""
-"Došlo k chybě při instalaci. Restartujte Bottles a přečtěte si hlášení o "
-"pádu nebo jej spusťte přes terminál a přečtěte si výstup."
-
-#: src/ui/details-bottle.ui:18
-msgid "Troubleshooting"
-msgstr "Řešení problémů"
-
-#: src/ui/details-bottle.ui:26
-msgid "Browse Files…"
-msgstr "Procházet soubory…"
-
-#: src/ui/details-bottle.ui:31
-msgid "Duplicate Bottle…"
-msgstr "Duplikovat láhev…"
-
-#: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
-msgid "This is the complete archive of your bottle, including personal files."
-msgstr "Toto je kompletní archiv vaší lahve, včetně osobních souborů."
-
-#: src/ui/details-bottle.ui:37
-msgid "Full Backup…"
-msgstr "Úplné zálohování…"
-
-#: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
-msgstr ""
-"Toto je pouze konfigurace láhve, je to perfektní, pokud chcete vytvořit "
-"novou, ale bez osobních souborů."
-
-#: src/ui/details-bottle.ui:43
-msgid "Export Configuration…"
-msgstr "Konfigurace exportu…"
-
-#: src/ui/details-bottle.ui:51
-msgid "Delete Bottle…"
-msgstr "Smazat láhev…"
-
-#: src/ui/details-bottle.ui:86
-msgid "Kill all Processes"
-msgstr "Ukončit všechny procesy"
-
-#: src/ui/details-bottle.ui:91
-msgid "Simulate a Windows system shutdown."
-msgstr "Simulovat systémové vypnutí Windows."
-
-#: src/ui/details-bottle.ui:92
-msgid "Shutdown"
-msgstr "Vypnout"
-
-#: src/ui/details-bottle.ui:97
-msgid "Simulate a Windows system reboot."
-msgstr "Simulovat systémový restart Windows."
-
-#: src/ui/details-bottle.ui:98
-msgid "Reboot"
-msgstr "Restartovat"
-
-#: src/ui/details-bottle.ui:121
-msgid "Run with Arguments…"
-msgstr "Spustit s argumenty…"
-
-#: src/ui/details-bottle.ui:126
-msgid "Launch in Terminal…"
-msgstr "Spustit v terminálu…"
-
-#: src/ui/details-bottle.ui:157
-msgid "My bottle"
-msgstr "Moje láhev"
-
-#: src/ui/details-bottle.ui:169
-msgid "Win64"
-msgstr "Windows x64"
-
-#: src/ui/details-bottle.ui:177 src/ui/new.ui:77
-msgid "Environment"
-msgstr "Prostředí"
-
-#: src/ui/details-bottle.ui:185 src/ui/details-preferences.ui:304
-#: src/ui/new.ui:129
-msgid "Runner"
-msgstr "Runner"
-
-#: src/ui/details-bottle.ui:193 src/ui/list-entry.ui:23
-msgid "Versioning enabled for this bottle"
-msgstr "U této lahve je povolena správa verzí"
-
-#: src/ui/details-bottle.ui:198 src/ui/list-entry.ui:28
-msgid "Versioning is active in this bottle."
-msgstr "V této láhvi je aktivní správa verzí."
-
-#: src/ui/details-bottle.ui:208 src/ui/list-entry.ui:34
-msgid "0"
-msgstr "0"
-
-#: src/ui/details-bottle.ui:219
-msgid "Run Executable…"
-msgstr "Spustit spustitelný soubor…"
-
-#: src/ui/details-bottle.ui:235
-msgid "Layers"
-msgstr "Vrstvy"
-
-#: src/ui/details-bottle.ui:246
-msgid "Tools"
-msgstr "Nástroje"
-
-#: src/ui/details-bottle.ui:250
-msgid "Command Line"
-msgstr "Příkazový řádek"
-
-#: src/ui/details-bottle.ui:251
-msgid "Run commands inside the Bottle."
-msgstr "Spustit příkazy uvnitř láhve."
-
-#: src/ui/details-bottle.ui:262
-msgid "Registry Editor"
-msgstr "Editor Registru"
-
-#: src/ui/details-bottle.ui:263
-msgid "Edit the internal registry."
-msgstr "Upravit interní registr."
-
-#: src/ui/details-bottle.ui:273
-msgid "Legacy Tools"
-msgstr "Starší nástroje"
-
-#: src/ui/details-bottle.ui:277
-msgid "Explorer"
-msgstr "Prohlížeč"
-
-#: src/ui/details-bottle.ui:278
-msgid "Browse internal files with the Wine explorer."
-msgstr "Procházejte interní soubory pomocí Průzkumníka Wine."
-
-#: src/ui/details-bottle.ui:290
-msgid "Manage processes with the Wine task manager."
-msgstr "Spravovat procesy pomocí Wine Správce úloh."
-
-#: src/ui/details-bottle.ui:301
-msgid "Debug"
-msgstr "Ladit"
-
-#: src/ui/details-bottle.ui:302
-msgid "Debug wine processes."
-msgstr "Ladění Wine procesů."
-
-#: src/ui/details-bottle.ui:313
-msgid "Wine Configuration"
-msgstr "Konfigurace Wine"
-
-#: src/ui/details-bottle.ui:314
-msgid "Adjust internal settings."
-msgstr "Upravit vnitřní nastavení."
-
-#: src/ui/details-bottle.ui:325
-msgid "Uninstaller"
-msgstr "Odinstalovat"
-
-#: src/ui/details-bottle.ui:326
-msgid "Uninstall programs using Wine uninstaller."
-msgstr "Odinstalujte programy pomocí odinstalátoru Wine."
-
-#: src/ui/details-bottle.ui:337
-msgid "Control Panel"
-msgstr "Ovládací panel"
-
-#: src/ui/details-bottle.ui:338
-msgid "Access the internal Wine Control Panel."
-msgstr "Přístup k internímu ovládacímu panelu Wine."
-
-#: src/ui/details-bottle.ui:357
-msgid "Use the Installers section or the \"Run executable\" button."
-msgstr ""
-"Použijte sekci Instalátory nebo tlačítko \"Spustit spustitelný soubor\"."
-
-#: src/ui/details-dependencies.ui:13
-msgid "Search for dependencies…"
-msgstr "Hledat závislosti…"
-
-#: src/ui/details-dependencies.ui:22
-msgid ""
-"Dependencies are software, libraries and codecs that improve the "
-"compatibility of Windows software. Install from here to meet your program "
-"requirements."
-msgstr ""
-"Závislosti jsou software, knihovny a kodeky, které zlepšují kompatibilitu "
-"softwaru systému Windows. Instalujte odtud, abyste splnili požadavky "
-"programu."
-
-#: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
-msgid ""
-"Files on this page are provided by third parties under a proprietary "
-"license. By installing them, you agree with their respective licensing terms."
-msgstr ""
-"Soubory na této stránce jsou poskytovány třetími stranami na základě "
-"proprietární licence. Jejich instalací vyjadřujete souhlas s podmínkami "
-"proprietární licence."
-
-#: src/ui/details-dependencies.ui:62
-msgid "Report a problem or a missing dependency."
-msgstr "Nahlásit chybějící závislost."
-
-#: src/ui/details-dependencies.ui:63
-msgid "Report missing dependency"
-msgstr "Nahlásit chybějící závislost"
-
-#: src/ui/details-dependencies.ui:68
-#, fuzzy
-msgid "Read documentation."
-msgstr "Číst dokumentaci"
-
-#: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:71
-#: src/ui/details-programs.ui:45 src/ui/details-versioning.ui:44
-#: src/ui/window.ui:38
-msgid "Documentation"
-msgstr "Dokumentace"
-
-#: src/ui/details-dependencies.ui:80
-msgid "Install Selected"
-msgstr "Nainstalovat vybrané"
-
-#: src/ui/details-dependencies.ui:81
-msgid "We strongly advise against installing multiple dependencies at once."
-msgstr "Důrazně nedoporučujeme instalovat více závislostí najednou."
-
-#: src/ui/details-dependencies.ui:88
-msgid "Select Dependencies"
-msgstr "Vybrat závislosti"
-
-#: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:82
-#: src/ui/window.ui:86
-msgid "Search"
-msgstr "Hledat"
-
-#: src/ui/details-installers.ui:13
-msgid "Search for Programs…"
-msgstr "Hledat programy…"
-
-#: src/ui/details-installers.ui:48
-msgid "No Installers Found"
-msgstr "Nebyly nalezeny žádné instalační programy"
-
-#: src/ui/details-installers.ui:51
-msgid ""
-"The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
-"Repozitář je nedostupný nebo s touto lahví není kompatibilní žádný "
-"instalátor."
-
-#: src/ui/details-installers.ui:70 src/ui/details-programs.ui:44
-#: src/ui/details-versioning.ui:43
-msgid "Read documentation"
-msgstr "Číst dokumentaci"
-
-#: src/ui/details-preferences.ui:8
-msgid "Bottle Details"
-msgstr "Podrobnosti o láhvi"
-
-#: src/ui/details-preferences.ui:11 src/ui/dialog-duplicate.ui:58
-#: src/ui/new.ui:70
-msgid "Name"
-msgstr "Jméno"
-
-#: src/ui/details-preferences.ui:19
-msgid "Graphics"
-msgstr "Grafika"
-
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:213
-msgid "DXVK"
-msgstr "DXVK"
-
-#: src/ui/details-preferences.ui:24
-msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr "Zlepšuje výkon DirectX 11 her a 3D aplikací."
-
-#: src/ui/details-preferences.ui:27 src/ui/details-preferences.ui:328
-msgid "Updating DXVK, please wait…"
-msgstr "Aktualizuji DXVK, prosím počkejte…"
-
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:218
-msgid "VKD3D"
-msgstr "VKD3D"
-
-#: src/ui/details-preferences.ui:43
-msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr "Zvyšuje výkon v DirectX 12 hrách a 3D aplikacích."
-
-#: src/ui/details-preferences.ui:46 src/ui/details-preferences.ui:351
-msgid "Updating VKD3D, please wait…"
-msgstr "Aktualizuji VKD3D, prosím počkejte…"
-
-#: src/ui/details-preferences.ui:61
-msgid "DLSS (DXVK-NVAPI)"
-msgstr "DLSS (DXVK-NVAPI)"
-
-#: src/ui/details-preferences.ui:62
-msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "Zajistěte podporu DLSS, pokud je k dispozici a NVAPI Nvidia."
-
-#: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
-#: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
-msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "Aktualizuji DXVK-NVAPI, prosím počkejte…"
-
-#: src/ui/details-preferences.ui:80
-msgid "FSR"
-msgstr "FSR"
-
-#: src/ui/details-preferences.ui:81
-msgid ""
-"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
-msgstr ""
-"FSR využívá špičkové technologie up-scaling, které vám pomohou zvýšit "
-"snímkovou rychlost."
-
-#: src/ui/details-preferences.ui:88
-msgid "Ultra Quality"
-msgstr "Ultra kvalita"
-
-#: src/ui/details-preferences.ui:89
-msgid "Quality"
-msgstr "Kvalita"
-
-#: src/ui/details-preferences.ui:90
-msgid "Balanced"
-msgstr "Vyvážený"
-
-#: src/ui/details-preferences.ui:91
-msgid "Performance"
-msgstr "Výkon"
-
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:228
-msgid "LatencyFleX"
-msgstr "LatencyFleX"
-
-#: src/ui/details-preferences.ui:109
-msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
-msgstr ""
-"Alternativa k NVIDIA Reflex. Může být detekována některými anti-cheaty."
-
-#: src/ui/details-preferences.ui:128
-msgid "Discrete GPU"
-msgstr "Hybridní GPU"
-
-#: src/ui/details-preferences.ui:129
-msgid "Improves performance at the cost of increased power usage."
-msgstr "Zvyšuje výkon za cenu zvýšené spotřeby elektřiny."
-
-#: src/ui/details-preferences.ui:140
-msgid "vkBasalt"
-msgstr "vkBasalt"
-
-#: src/ui/details-preferences.ui:141
-msgid ""
-"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
-"games."
-msgstr ""
-"vkBasalt je vrstva následného zpracování Vulkanu pro vylepšení vizuální "
-"grafiky her."
-
-#: src/ui/details-preferences.ui:151
-msgid "Display Settings"
-msgstr "Nastavení zobrazení"
-
-#: src/ui/details-preferences.ui:155 src/ui/dialog-launch-options.ui:194
-msgid "Virtual Desktop"
-msgstr "Virtuální plocha"
-
-#: src/ui/details-preferences.ui:156
-msgid "Use the Wine virtual desktop."
-msgstr "Použít Virtuální plochu Wine."
-
-#: src/ui/details-preferences.ui:194
-msgid "Fullscreen Mouse Capture"
-msgstr "Celoobrazovkové snímání myši"
-
-#: src/ui/details-preferences.ui:195
-msgid "Let the program capture mouse input when fullscreen."
-msgstr "Nechat program zachytávat vstup z myši když je v režimu fullscreen."
-
-#: src/ui/details-preferences.ui:206
-msgid "Take Focus"
-msgstr "Zaměřte se"
-
-#: src/ui/details-preferences.ui:207
-msgid "Activate it if the program does not retake focus on switch."
-msgstr "Aktivovat pokud se program při přepnutí nebude znovu reagovat."
-
-#: src/ui/details-preferences.ui:218
-msgid "Mouse Warp"
-msgstr "Osnova myši"
-
-#: src/ui/details-preferences.ui:219
-msgid "Change this if you are running into mouse lag or desync."
-msgstr ""
-"Pokud se potýkáte se zpožděním myši nebo desynchronizací, změňte tuto "
-"možnost."
-
-#: src/ui/details-preferences.ui:231
-msgid "Screen Scaling"
-msgstr "Škálování obrazovky"
-
-#: src/ui/details-preferences.ui:232
-msgid "Set custom DPI."
-msgstr "Nastavit vlastní DPI."
-
-#: src/ui/details-preferences.ui:238
-msgid "96"
-msgstr "96"
-
-#: src/ui/details-preferences.ui:239
-msgid "120"
-msgstr "120"
-
-#: src/ui/details-preferences.ui:240
-msgid "144"
-msgstr "144"
-
-#: src/ui/details-preferences.ui:241
-msgid "168"
-msgstr "168"
-
-#: src/ui/details-preferences.ui:242
-msgid "192"
-msgstr "192"
-
-#: src/ui/details-preferences.ui:243
-msgid "216"
-msgstr "216"
-
-#: src/ui/details-preferences.ui:244
-msgid "240"
-msgstr "240"
-
-#: src/ui/details-preferences.ui:245
-msgid "288"
-msgstr "288"
-
-#: src/ui/details-preferences.ui:246
-msgid "336"
-msgstr "336"
-
-#: src/ui/details-preferences.ui:247
-msgid "384"
-msgstr "384"
-
-#: src/ui/details-preferences.ui:248
-msgid "432"
-msgstr "432"
-
-#: src/ui/details-preferences.ui:249
-msgid "480"
-msgstr "480"
-
-#: src/ui/details-preferences.ui:262
-msgid "Renderer"
-msgstr "Vykreslovač"
-
-#: src/ui/details-preferences.ui:263
-msgid "Select what backend to use for wined3d."
-msgstr "Vyberte, jaký backend chcete použít pro wined3d."
-
-#: src/ui/details-preferences.ui:269
-msgid "gl (default)"
-msgstr "GL (výchozí)"
-
-#: src/ui/details-preferences.ui:270
-msgid "gdi"
-msgstr "GDI"
-
-#: src/ui/details-preferences.ui:271
-msgid "vulkan"
-msgstr "Vulkan"
-
-#: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
-msgid "System"
-msgstr "Systém"
-
-#: src/ui/details-preferences.ui:289
-msgid "Manage Components Versions"
-msgstr "Správa verzí komponent"
-
-#: src/ui/details-preferences.ui:299
-msgid "Components"
-msgstr "Komponenty"
-
-#: src/ui/details-preferences.ui:307
-msgid "Updating Runner and components, please wait…"
-msgstr "Aktualizuji spouštěče a komponenty, prosím čekejte…"
-
-#. TODO: replace with ComboRow
-#: src/ui/details-preferences.ui:324
-msgid "DXVK Version"
-msgstr "Verze DXVK"
-
-#: src/ui/details-preferences.ui:348
-msgid "VKD3D Version"
-msgstr "Verze VKD3D"
-
-#: src/ui/details-preferences.ui:372
-msgid "DXVK NVAPI Version"
-msgstr "Verze DXVK NVAPI"
-
-#: src/ui/details-preferences.ui:394
-msgid "LatencyFleX Version"
-msgstr "Verze LatencyFlex"
-
-#: src/ui/details-preferences.ui:416
-msgid "Enable synchronization to increase performance of multicore processors."
-msgstr "Povolením synchronizace zvýšíte výkon vícejádrových procesorů."
-
-#: src/ui/details-preferences.ui:417
-msgid "Synchronization"
-msgstr "Synchronizace"
-
-#: src/ui/details-preferences.ui:428
-msgid "Esync"
-msgstr "Esync"
-
-#: src/ui/details-preferences.ui:434
-msgid "Fsync"
-msgstr "Fsync"
-
-#: src/ui/details-preferences.ui:440
-msgid "Futex2"
-msgstr "Futex2"
-
-#: src/ui/details-preferences.ui:455
-msgid "Windows Version"
-msgstr "Verze systému Windows"
-
-#: src/ui/details-preferences.ui:458
-msgid "Updating Windows version, please wait…"
-msgstr "Aktualizuji verzi Windows, prosím počkejte…"
-
-#: src/ui/details-preferences.ui:486
-msgid "Language"
-msgstr "Jazyk"
-
-#: src/ui/details-preferences.ui:487
-msgid "Choose the language to use with programs."
-msgstr "Zvolte jazyk, který chcete používat s programy."
-
-#: src/ui/details-preferences.ui:497
-msgid "false"
-msgstr "lež"
-
-#: src/ui/details-preferences.ui:498
-msgid "Dedicated Sandbox"
-msgstr "Vyhrazený sandbox"
-
-#: src/ui/details-preferences.ui:499
-msgid "Use a restricted/managed environment for this bottle."
-msgstr "Pro tuto láhev použijte omezené/řízené prostředí."
-
-#: src/ui/details-preferences.ui:502
-msgid "Manage Sandbox permissions"
-msgstr "Správa oprávnění Sandboxu"
-
-#: src/ui/details-preferences.ui:520
-msgid "Bottles Runtime"
-msgstr "Použít běhové prostředí láhví"
-
-#: src/ui/details-preferences.ui:521
-msgid ""
-"Provides a bundle of extra libraries for more compatibility,disable if you "
-"run into issues."
-msgstr ""
-"Poskytuje balík dalších knihoven pro větší kompatibilitu,vypněte, pokud "
-"narazíte na problémy."
-
-#: src/ui/details-preferences.ui:532
-msgid "Steam Runtime"
-msgstr "Použít běhové prostředí Steam"
-
-#: src/ui/details-preferences.ui:533
-msgid "The same as the Bottles one but provided by Steam."
-msgstr "Stejný jako v případě Bottles, ale poskytovaný službou Steam."
-
-#: src/ui/details-preferences.ui:544
-msgid "GameMode"
-msgstr "Použít GameMode (herní režim *cs_CZ)"
-
-#: src/ui/details-preferences.ui:545
-msgid "Optimise gaming performance on demand."
-msgstr "Optimalizovat herní výkon na vyžádání."
-
-#: src/ui/details-preferences.ui:556
-msgid "Gamescope"
-msgstr "Gamescope"
-
-#: src/ui/details-preferences.ui:557
-msgid "Use the Gamescope micro-compositor."
-msgstr "Použít kompozitor Gamescope."
-
-#: src/ui/details-preferences.ui:560
-msgid "Manage Gamescope settings"
-msgstr "Spravovat nastavení Gamescope"
-
-#: src/ui/details-preferences.ui:578 src/ui/dialog-launch-options.ui:91
-msgid "Working Directory"
-msgstr "Pracovní adresář"
-
-#: src/ui/details-preferences.ui:579
-msgid "Defaults to the bottle path."
-msgstr "Výchozí nastavení cesty láhve."
-
-#: src/ui/details-preferences.ui:582 src/ui/dialog-launch-options.ui:65
-#: src/ui/dialog-launch-options.ui:98 src/ui/preferences.ui:159
-msgid "Reset to default"
-msgstr "Resetovat do výchozího nastavení"
-
-#: src/ui/details-preferences.ui:592 src/ui/dialog-launch-options.ui:109
-#: src/ui/new.ui:163 src/ui/new.ui:180 src/ui/preferences.ui:170
-msgid "Choose a directory"
-msgstr "Výběr adresáře"
-
-#: src/ui/details-preferences.ui:605 src/ui/dialog-dll-overrides.ui:9
-#: src/ui/dialog-dll-overrides.ui:15
-msgid "DLL Overrides"
-msgstr "Přepsání knihovny DLL"
-
-#: src/ui/details-preferences.ui:616 src/ui/dialog-env-vars.ui:16
-msgid "Environment Variables"
-msgstr "Proměnné prostředí"
-
-#: src/ui/details-preferences.ui:627
-msgid "Manage Drives"
-msgstr "Spravovat úložiště"
-
-#: src/ui/details-preferences.ui:639
-msgid "Audio"
-msgstr "Audio"
-
-#: src/ui/details-preferences.ui:643
-msgid "Reduce Latency"
-msgstr "Sníží latenci"
-
-#: src/ui/details-preferences.ui:644
-#, fuzzy
-msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
-msgstr "Nastavte latenci PulseAudio na 60 ms, čímž zvýšíte kvalitu zvuku"
-
-#: src/ui/details-preferences.ui:660
-msgid "Use Compression for States"
-msgstr ""
-
-#: src/ui/details-preferences.ui:661
-msgid ""
-"This will reduce the space used by the states but slow down their creation."
-msgstr ""
-
-#: src/ui/details-preferences.ui:672
-#, fuzzy
-msgid "Automatic Versioning"
-msgstr "Správa verzí"
-
-#: src/ui/details-preferences.ui:673
-msgid ""
-"Bottles will create a state before running any dependencies or installers."
-msgstr ""
-
-#: src/ui/details-preferences.ui:684
-msgid "Use Exclusion Patterns"
-msgstr ""
-
-#: src/ui/details-preferences.ui:685
-msgid "Use custom patterns to exclude some paths from versioning."
-msgstr ""
-
-#: src/ui/details-preferences.ui:688
-#, fuzzy
-msgid "Manage Patterns"
-msgstr "Spravovat runnery"
-
-#: src/ui/details-preferences.ui:707
-msgid "Development and Debugging"
-msgstr "Vývoj a ladění"
-
-#: src/ui/details-preferences.ui:711
-msgid "MangoHud"
-msgstr "MangoHud"
-
-#: src/ui/details-preferences.ui:712
-msgid ""
-"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
-"and more."
-msgstr ""
-"Překrytí Vulkan a OpenGL pro sledování FPS, teplot, zatížení CPU/GPU a "
-"dalších parametrů."
-
-#: src/ui/details-preferences.ui:723
-msgid "OBS Vulkan Capture"
-msgstr "Zachycení OBS Vulkan"
-
-#: src/ui/details-preferences.ui:724
-msgid "Toggle OBS game capture for all programs."
-msgstr "Přepnout zachycení hry OBS pro všechny programy."
-
-#: src/ui/details-preferences.ui:735
-msgid "Wine 'fixme' Logs"
-msgstr "Wine-fixme protokoly"
-
-#: src/ui/details-preferences.ui:736
-msgid "Log code paths that are unimplemented in Wine."
-msgstr "Protokolujte cesty kódu, které nejsou ve Wine implementovány."
-
-#: src/ui/details-programs.ui:9
-msgid "No Programs found"
-msgstr "Nebyly nalezeny žádné programy"
-
-#: src/ui/details-programs.ui:10
-msgid ""
-"Install programs from the installers section or by running the installer "
-"executable, you can also manually add executables with the \"+\" button."
-msgstr ""
-"Programy můžete instalovat ze sekce instalátorů nebo spuštěním spustitelného "
-"souboru, spustitelné soubory můžete také přidat ručně pomocí tlačítka \"+\"."
-
-#: src/ui/details-programs.ui:31
-msgid "Toggle Hidden"
-msgstr "Přepnout skryté"
-
-#: src/ui/details-programs.ui:36
-#, fuzzy
-msgid "Search for new programs"
-msgstr "Hledat nainstalované programy"
-
-#: src/ui/details-programs.ui:55
-msgid "Add a custom executable path"
-msgstr "Přidání vlastní cesty ke spustitelnému souboru"
-
-#: src/ui/details-taskmanager.ui:18
-msgid "Refresh"
-msgstr "Obnovit"
-
-#: src/ui/details-taskmanager.ui:24
-msgid "Stop process"
-msgstr "Zastavit proces"
-
-#: src/ui/details-versioning.ui:25
-msgid "No States Found"
-msgstr "Nebyly nalezeny žádné státy"
-
-#: src/ui/details-versioning.ui:26
-msgid "Create first state to start using versioning."
-msgstr "Vytvořit první stav a začít používat verzování."
-
-#: src/ui/details-versioning.ui:63
-msgid "A short comment"
-msgstr "Krátký komentář"
-
-#: src/ui/details-versioning.ui:68
-msgid "Save the bottle state."
-msgstr "Uložit stav láhve."
-
-#: src/ui/details-versioning.ui:88
-msgid "Create new state"
-msgstr "Vytvořit nový stav"
-
-#: src/ui/details.ui:74
-msgid "Operations"
-msgstr "Operace"
-
-#: src/ui/dialog-crash-report.ui:10
-msgid "Bottles crash report"
-msgstr "Zpráva o havárii lahví"
-
-#: src/ui/dialog-crash-report.ui:23
-msgid "Send report"
-msgstr "Poslat zprávu o chybě"
-
-#: src/ui/dialog-crash-report.ui:43
-msgid ""
-"Bottles crashed last time. Please fill out a report attaching the following "
-"traceback to help us identify the problem preventing it from happening again."
-msgstr ""
-"Láhve selhali minulé spuštění. Prosím vyplňte nahlášení a vložte následující "
-"log aby jste nám pomohli identifikovat problém a mohli jsme to vyřešit ať se "
-"to neopakuje."
-
-#: src/ui/dialog-crash-report.ui:75
-msgid ""
-"We found one or more similar (or identical) reports. Please make sure to "
-"check carefully that it has not already been reported before submitting a "
-"new one. Each report requires effort on the part of the developers to "
-"diagnose, please respect their work and make sure you don't post duplicates."
-msgstr ""
-"Našli jsme jeden nebo více podobných (nebo identických) nahlášení. Prosím "
-"ujistěte se že tento problém zatím nebyl nahlášen. Každé nahlášení vyžaduje "
-"snahu vývojářů aby ho diagnostikovali, prosím respektujte jejich práci a "
-"ujistěte se že vaše nahlášení není duplikát."
-
-#: src/ui/dialog-crash-report.ui:96
-msgid "I still want to report."
-msgstr "I přes to chci nahlásit."
-
-#: src/ui/dialog-crash-report.ui:102
-msgid "Advanced options"
-msgstr "Pokročilé možnosti"
-
-#: src/ui/dialog-dll-overrides.ui:14
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)."
-msgstr ""
-"Knihovny dynamických odkazů lze zadat jako vestavěné (poskytované Wine) nebo "
-"nativní (poskytované programem)."
-
-#: src/ui/dialog-dll-overrides.ui:18
-msgid "New Override"
-msgstr "Nové přepsání"
-
-#: src/ui/dialog-dll-overrides.ui:26
-msgid "Overrides"
-msgstr "Přepsání"
-
-#: src/ui/dialog-drives.ui:9
-msgid "Drives"
-msgstr "Ovladače"
-
-#: src/ui/dialog-drives.ui:31
-msgid ""
-"These are paths from your host system that are mapped and recognized as "
-"devices by the runner (e.g. C: D:…).\n"
-"                                "
-msgstr ""
-"Jedná se o cesty z hostitelského systému, které jsou mapovány a rozpoznány "
-"jako zařízení v programu Runner (např. C: D:...).\n"
-"                                "
-
-#: src/ui/dialog-drives.ui:35
-msgid "Letter"
-msgstr "Dopis"
-
-#: src/ui/dialog-drives.ui:59
-msgid "Existing Drives"
-msgstr "Stávající disky"
-
-#: src/ui/dialog-duplicate.ui:18
-msgid "Duplicate Bottle"
-msgstr "Duplikovat Láhev"
-
-#: src/ui/dialog-duplicate.ui:23 src/ui/dialog-gamescope.ui:17
-#: src/ui/dialog-launch-options.ui:17 src/ui/dialog-upgrade-versioning.ui:23
-#, fuzzy
-msgid "_Cancel"
-msgstr "Zrušit"
-
-#: src/ui/dialog-duplicate.ui:41
-msgid "Duplicate"
-msgstr "Duplikovat"
-
-#: src/ui/dialog-duplicate.ui:55
-msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Zadejte název duplikátu láhve."
-
-#: src/ui/dialog-duplicate.ui:78
-msgid "Duplicating…"
-msgstr "Duplikuji…"
-
-#: src/ui/dialog-duplicate.ui:87 src/ui/dialog-upgrade-versioning.ui:121
-msgid "Take a break, it may take a while."
-msgstr "Dejte si pauzu, může to chvíli trvat."
-
-#: src/ui/dialog-duplicate.ui:108
-msgid "Bottle Duplicated"
-msgstr "Láhev byla duplikována"
-
-#: src/ui/dialog-env-vars.ui:35
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr ""
-"Proměnné prostředí jsou dynamické hodnoty které mohou ovlivnit způsob jakým "
-"procesy běží ve vaší láhvi."
-
-#: src/ui/dialog-env-vars.ui:38
-msgid "Variable Name"
-msgstr "Název proměnné"
-
-#: src/ui/dialog-env-vars.ui:46
-msgid "Existing Variables"
-msgstr "Stávající proměnné"
-
-#: src/ui/dialog-gamescope.ui:8
-msgid "Gamescope Settings"
-msgstr "Nastavení programu Gamescope"
-
-#: src/ui/dialog-gamescope.ui:46
-msgid ""
-"Configure how Gamescope should manage the window for the games you will run."
-msgstr "Nastavit jak by měl Gamescope spravovat okna vašich her."
-
-#: src/ui/dialog-gamescope.ui:51
-#, fuzzy
-msgid "Game Resolution"
-msgstr "Rozlišení hry"
-
-#: src/ui/dialog-gamescope.ui:52
-msgid "Uses the resolution of the video game as a reference."
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:55 src/ui/dialog-gamescope.ui:71
-msgid "Width (e.g. 1280)"
-msgstr "Šířka (např. 1280)"
-
-#: src/ui/dialog-gamescope.ui:60 src/ui/dialog-gamescope.ui:76
-msgid "Height (e.g. 720)"
-msgstr "Výška (např. 720)"
-
-#: src/ui/dialog-gamescope.ui:67
-#, fuzzy
-msgid "Gamescope Resolution"
-msgstr "Rozlišení Gamescope"
-
-#: src/ui/dialog-gamescope.ui:68
-msgid ""
-"Upscales the resolution when using a resolution higher than the game "
-"resolution."
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:83
-msgid "Miscellaneous"
-msgstr ""
-
-#: src/ui/dialog-gamescope.ui:86
-#, fuzzy
-msgid "Frame Rate Limit (e.g. 60)"
-msgstr "Omezení snímkové frekvence (např. 60)"
-
-#: src/ui/dialog-gamescope.ui:91
-#, fuzzy
-msgid "Frame Rate Limit (When Unfocused)"
-msgstr "Limit snímkové frekvence (když není zaostřeno)"
-
-#: src/ui/dialog-gamescope.ui:96
-#, fuzzy
-msgid "Use Integer Scaling"
-msgstr "Použít celočíselné škálování (integer scaling)"
-
-#: src/ui/dialog-gamescope.ui:107
-#, fuzzy
-msgid "Window Type"
-msgstr "Typ okna"
-
-#: src/ui/dialog-gamescope.ui:112
-msgid "Borderless"
-msgstr "Bez ohraničení"
-
-#: src/ui/dialog-gamescope.ui:119
-msgid "Fullscreen"
-msgstr "Celá obrazovka"
-
-#: src/ui/dialog-journal.ui:12
-msgid "All messages"
-msgstr "Všechny zprávy"
-
-#: src/ui/dialog-journal.ui:17
-msgid "Critical"
-msgstr "Kritické"
-
-#: src/ui/dialog-journal.ui:22
-msgid "Errors"
-msgstr "Chyby"
-
-#: src/ui/dialog-journal.ui:27
-msgid "Warnings"
-msgstr "Varování"
-
-#: src/ui/dialog-journal.ui:32
-msgid "Info"
-msgstr "Informace"
-
-#: src/ui/dialog-journal.ui:49
-msgid "Journal browser"
-msgstr "Prohlížeč deníků"
-
-#: src/ui/dialog-journal.ui:56
-msgid "Journal Browser"
-msgstr "Prohlížeč deníku"
-
-#: src/ui/dialog-journal.ui:62
-msgid ""
-"Change logging level.\n"
-"                                        "
-msgstr ""
-"Změna úrovně protokolování.\n"
-"                                        "
-
-#: src/ui/dialog-journal.ui:67
-msgid "All"
-msgstr "Vše"
-
-#: src/ui/dialog-launch-options.ui:8
-msgid "Launch Options"
-msgstr "Možnosti spuštění"
-
-#: src/ui/dialog-launch-options.ui:47
-msgid "Those arguments will be passed at launch."
-msgstr "Tyto argumenty budou předány při spuštění."
-
-#: src/ui/dialog-launch-options.ui:48
-msgid "Custom Arguments"
-msgstr "Vlastní argumenty"
-
-#: src/ui/dialog-launch-options.ui:51
-msgid "Command Arguments"
-msgstr "Argumenty příkazu"
-
-#: src/ui/dialog-launch-options.ui:52
-#, python-format
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "např.: VAR=hodnota %cpříkaz% -epříklad1 -příklad2 -příklad3=ahoj"
-
-#: src/ui/dialog-launch-options.ui:58
-msgid "Post-run Script"
-msgstr "Skript po spuštění"
-
-#: src/ui/dialog-launch-options.ui:76
-msgid "Choose a script"
-msgstr "Vyberte skript"
-
-#: src/ui/dialog-launch-options.ui:125
-msgid "These settings will override the default settings for this executable."
-msgstr "Tato nastavení přepíší výchozí nastavení tohoto spustitelného souboru."
-
-#: src/ui/dialog-launch-options.ui:126
-msgid "Preferences Overrides"
-msgstr "Přepisy předvoleb"
-
-#: src/ui/dialog-launch-options.ui:129
-msgid "Reset to Bottle's Defaults"
-msgstr "Resetovat Bottles do výchozího nastavení"
-
-#: src/ui/dialog-rename.ui:9
-msgid "Rename"
-msgstr "Přejmenovat"
-
-#: src/ui/dialog-rename.ui:34
-msgid "Choose a new name for the selected program."
-msgstr "Vyberte nový název pro vybraný program."
-
-#: src/ui/dialog-rename.ui:37
-msgid "New Name"
-msgstr "Nový název"
-
-#: src/ui/dialog-run-args.ui:14
-msgid "Run With Arguments"
-msgstr "Spustit s argumenty"
-
-#: src/ui/dialog-run-args.ui:47
-msgid "Write below the arguments to be passed to the executable."
-msgstr "Dolů napište argumenty které mají být předány spustitelnému souboru."
-
-#: src/ui/dialog-run-args.ui:50
-msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "např.: -opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-bottle-picker.ui:42
-#, fuzzy
-msgid "Create New Bottle"
-msgstr "Vytvořit novou láhev"
-
-#: src/ui/dialog-exclusion-patterns.ui:16
-msgid "Exclusion Patterns"
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:35
-msgid ""
-"Define patterns that will be used to prevent some directories to being "
-"versioned."
-msgstr ""
-
-#: src/ui/dialog-exclusion-patterns.ui:38
-#, fuzzy
-msgid "Pattern"
-msgstr "Dopis"
-
-#: src/ui/dialog-exclusion-patterns.ui:46
-#, fuzzy
-msgid "Existing Patterns"
-msgstr "Stávající disky"
-
-#: src/ui/dialog-proton-alert.ui:22
-#, fuzzy
-msgid "Use Proton"
-msgstr "Proton GE"
-
-#: src/ui/dialog-proton-alert.ui:37
-msgid ""
-"Beware, using Proton-based runners in non-Steam bottles can cause problems "
-"and prevent them from behaving correctly.\n"
-"\n"
-"We recommend using Wine-GE rather, a version of Proton meant to run outside "
-"of Steam.\n"
-"\n"
-"Proceeding will automatically enable the Steam runtime (if present in the "
-"system and detected by Bottles) in order to allow it to access the necessary "
-"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
-"the runner's provider, is not responsible for any problems and we ask that "
-"you do not report to them."
-msgstr ""
-
-#: src/ui/dialog-proton-alert.ui:50
-msgid "I got it."
-msgstr ""
-
-#: src/ui/dialog-sandbox.ui:9
-#, fuzzy
-msgid "Sandbox Settings"
-msgstr "Nastavení programu Gamescope"
-
-#: src/ui/dialog-sandbox.ui:23
-msgid "Share Network"
-msgstr ""
-
-#: src/ui/dialog-sandbox.ui:34
-#, fuzzy
-msgid "Share Sound"
-msgstr "Nebyly nalezeny žádné státy"
-
-#: src/ui/dialog-upgrade-versioning.ui:18
-#, fuzzy
-msgid "Upgrade Needed"
-msgstr "Povýšit"
-
-#: src/ui/dialog-upgrade-versioning.ui:41 src/ui/onboard.ui:88
-msgid "Continue"
-msgstr "Pokračovat"
-
-#: src/ui/dialog-upgrade-versioning.ui:49
-#, fuzzy
-msgid "Launch upgrade"
-msgstr "Potvrďte upgrade"
-
-#: src/ui/dialog-upgrade-versioning.ui:69
-#, fuzzy
-msgid "New Versioning System"
-msgstr "Správa verzí"
-
-#: src/ui/dialog-upgrade-versioning.ui:72
-msgid "The new bottle versioning system has landed."
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:86
-msgid ""
-"Bottles has a whole new Versioning System which is not backwards "
-"compatible. \n"
-"\n"
-"To continue using versioning we need to re-initialize the bottle repository. "
-"This will not delete data from your bottle but will delete all existing "
-"states and create a new one. \n"
-"\n"
-"If you need to go back to a previous state before continuing, close this "
-"window and restore the state, then reopen the bottle to show this window "
-"again. \n"
-"\n"
-"The old system will be discontinued in one of the next releases."
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:112
-msgid "Re-initializing repository…"
-msgstr ""
-
-#: src/ui/dialog-upgrade-versioning.ui:144
-msgid "Done! Please restart Bottles."
-msgstr ""
-
-#: src/ui/exclusion-pattern-entry.ui:6 src/ui/env-var-entry.ui:6
-msgid "Value"
-msgstr "Hodnota"
-
-#: src/ui/local-resource-entry.ui:6
-msgid "This resource is missing."
-msgstr "Tento prostředek chybí."
-
-#: src/ui/local-resource-entry.ui:10
-msgid "Browse"
-msgstr "Procházet"
-
-#: src/ui/dll-override-entry.ui:10
-msgid "Builtin (Wine)"
-msgstr "Vestavěné (Wine)"
-
-#: src/ui/dll-override-entry.ui:11
-msgid "Native (Windows)"
-msgstr "Nativní (Windows)"
-
-#: src/ui/dll-override-entry.ui:12
-msgid "Builtin, then Native"
-msgstr "Builtin, pak Native"
-
-#: src/ui/dll-override-entry.ui:13
-msgid "Native, then Builtin"
-msgstr "Nativní, pak vestavěný"
-
-#: src/ui/dll-override-entry.ui:14
-msgid "Disabled"
-msgstr "Zakázáno"
-
-#: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
-msgid "Remove"
-msgstr "Odstranit"
-
-#: src/ui/drive-entry.ui:7
-msgid "/point/to/path"
-msgstr "/bod/k/cestě"
-
-#: src/ui/drive-entry.ui:24
-msgid "Choose a Directory"
-msgstr "Vyberte adresář"
-
-#: src/ui/importer-entry.ui:39
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Tento wineprefix byl již importován do lahví."
-
-#: src/ui/importer.ui:24
-msgid "Import Bottles backup"
-msgstr "Importovat zálohu láhve"
-
-#: src/ui/importer.ui:31
-msgid "Search again for prefixes"
-msgstr "Znovu vyhledejte předpony"
-
-#: src/ui/importer.ui:45
-msgid "No Prefixes Found"
-msgstr "Nebyly nalezeny žádné prefixy"
-
-#: src/ui/importer.ui:46
-msgid ""
-"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
-"Use the icon on the top to import a bottle from a backup"
-msgstr ""
-"Nebyly nalezeny žádné prefixy z Lutris, PlayOnLinux atd.\n"
-"Pro import lahve ze zálohy použijte ikonu nahoře"
-
-#: src/ui/importer.ui:81
-msgid "Configuration"
-msgstr "Konfigurace"
-
-#: src/ui/importer.ui:87
-msgid "Full Archive"
-msgstr "Úplný archiv"
-
-#: src/ui/installer-entry.ui:18
-msgid "Show Manifest…"
-msgstr "Zobrazit manifest…"
-
-#: src/ui/installer-entry.ui:23
-msgid "Read Review…"
-msgstr "Přečíst recenzi…"
-
-#: src/ui/installer-entry.ui:57
-msgid "Install this program"
-msgstr "Nainstalovat tento program"
-
-#: src/ui/library-entry.ui:17
-msgid "Remove from Library"
-msgstr "Odebrat z knihovny"
-
-#: src/ui/library-entry.ui:115 src/ui/program-entry.ui:105
-msgid "Launch with Steam"
-msgstr "Spustit pomocí Steam"
-
-#: src/ui/library.ui:15
-msgid "Add items here from your bottle's program list"
-msgstr "Přidejte sem položky ze seznamu programů vaší láhve"
-
-#: src/ui/list-entry.ui:46
-msgid "This bottle looks damaged."
-msgstr "Tato láhev vypadá poškozeně."
-
-#: src/ui/list-entry.ui:60
-msgid "Execute in this bottle"
-msgstr "Spustit v této láhvi"
-
-#: src/ui/list-entry.ui:75
-msgid "Run Here"
-msgstr "Spustit zde"
-
-#: src/ui/list-entry.ui:84
-msgid ""
-"This bottle looks damaged, the configuration file is missing. I can try to "
-"solve by creating a new configuration."
-msgstr ""
-"Tato láhev vypadá poškozeně, konfigurační soubor chybí. Mohu zkusit vytvořit "
-"novou konfiguraci."
-
-#: src/ui/list-entry.ui:96
-msgid "Run .exe/.msi in this bottle"
-msgstr "Spustit .exe/.msi v této láhvi"
-
-#: src/ui/list.ui:17
-msgid "Search your bottles…"
-msgstr "Prohledávejte své lahve…"
-
-#: src/ui/list.ui:38
-msgid "Steam Proton"
-msgstr "Steam Proton"
-
-#: src/ui/list.ui:55
-msgid "Start off by creating a Bottle."
-msgstr "Začněte vytvořením láhve."
-
-#: src/ui/list.ui:62
-msgid "Create a new Bottle"
-msgstr "Vytvořit novou láhev"
-
-#: src/ui/list.ui:75
-msgid "No Results Found"
-msgstr "Nebyly nalezeny žádné výsledky"
-
-#: src/ui/list.ui:76
-msgid "Try a different search."
-msgstr "Zkuste jiné vyhledávání."
-
-#: src/ui/loading.ui:16
-msgid "Starting up…"
-msgstr "Spouštění…"
-
-#: src/ui/new.ui:17 src/ui/new.ui:64
-msgid "New Bottle"
-msgstr "Nová láhev"
-
-#: src/ui/new.ui:38
-msgid "Create"
-msgstr "Vytvořit"
-
-#: src/ui/new.ui:67
-msgid "Bottle Information"
-msgstr "Informace o láhvi"
-
-#: src/ui/new.ui:84
-msgid "Gaming"
-msgstr "Hry"
-
-#: src/ui/new.ui:85
-msgid "An environment improved for Windows games."
-msgstr "Prostředí dělané pro hry z Windows."
-
-#: src/ui/new.ui:93
-msgid "Application"
-msgstr "Aplikace"
-
-#: src/ui/new.ui:94
-msgid "An environment improved for Windows applications."
-msgstr "Prostředí vylepšené pro aplikace systému Windows."
-
-#: src/ui/new.ui:103
-msgid "Layered"
-msgstr "Vrstvené"
-
-#: src/ui/new.ui:104
-msgid "A layered environment, where every app is a layer."
-msgstr "Vrstvené prostředí, kde aplikace jsou vrstvené."
-
-#: src/ui/new.ui:112
-msgid "Custom"
-msgstr "Vlastní"
-
-#: src/ui/new.ui:113
-msgid "A clear environment for your experiments."
-msgstr "Přehledné prostředí pro vaše experimenty."
-
-#: src/ui/new.ui:117
-msgid "Unlinked Home Directory"
-msgstr "Nepropojený domovský adresář"
-
-#: src/ui/new.ui:118
-msgid "Do not link the userdir to the homedir"
-msgstr "Nelinkujte uživatelskou složku do domovské složky"
-
-#: src/ui/new.ui:143
-msgid "Architecture"
-msgstr "Architektura"
-
-#: src/ui/new.ui:144
-msgid "We recommend using 32bit only if strictly necessary."
-msgstr ""
-"Doporučujeme používat 32bitový systém pouze v případě, že je to nezbytně "
-"nutné."
-
-#: src/ui/new.ui:148
-msgid "64 bit"
-msgstr "64 bit"
-
-#: src/ui/new.ui:149
-msgid "32 bit"
-msgstr "32 bit"
-
-#: src/ui/new.ui:157
-msgid "Custom Recipe"
-msgstr "Vlastní recept"
-
-#: src/ui/new.ui:158
-msgid "Choose a custom recipe for the environment if you have one."
-msgstr "Zvolte vlastní recept na prostředí, pokud jej máte."
-
-#: src/ui/new.ui:174
-msgid "Custom Path"
-msgstr "Vlastní umíštění"
-
-#: src/ui/new.ui:175
-msgid "Store this bottle in another place."
-msgstr "Tuto láhev uložte na jiné místo."
-
-#: src/ui/new.ui:262
-msgid "Bottle created"
-msgstr "Láhev vytvořena"
-
-#: src/ui/onboard.ui:36
-msgid "Previous"
-msgstr "Předchozí"
-
-#: src/ui/onboard.ui:62
-msgid "Welcome to Bottles"
-msgstr "Vítejte v Láhvích"
-
-#: src/ui/onboard.ui:63
-msgid ""
-"Run Windows Software on Linux.\n"
-"                                                "
-msgstr ""
-"Spouštějte Windows software na Linuxu.\n"
-"                                                "
-
-#: src/ui/onboard.ui:71
-msgid "Windows in Bottles"
-msgstr "Okna v lahvích"
-
-#: src/ui/onboard.ui:72
-msgid ""
-"Bottles uses compatibility runners to provide isolated containerized Windows-"
-"like environments where programs run."
-msgstr ""
-"Bottles používá kompatibilní runnery, které poskytují izolovaná kontejnerová "
-"prostředí podobná systému Windows, v nichž se spouštějí programy."
-
-#: src/ui/onboard.ui:79
-msgid "Almost Done"
-msgstr "Téměř hotovo"
-
-#: src/ui/onboard.ui:80
-msgid "We need a few more minutes to set everything up…"
-msgstr "Potřebujeme ještě pár minut, abychom vše připravili…"
-
-#: src/ui/onboard.ui:113
-msgid "All ready!"
-msgstr "Vše je připraveno!"
-
-#: src/ui/onboard.ui:122
-msgid "Please Finish the setup first"
-msgstr ""
-
-#: src/ui/onboard.ui:129
-msgid "Start using Bottles"
-msgstr "Začněte používat Láhve"
-
-#: src/ui/onboard.ui:150
-msgid "Next"
-msgstr "Další"
-
-#: src/ui/preferences.ui:13 src/ui/preferences.ui:46
-msgid "General"
-msgstr "Obecné"
-
-#: src/ui/preferences.ui:16
-msgid "Appearance"
-msgstr "Vzhled"
-
-#: src/ui/preferences.ui:19
-msgid "Dark Mode"
-msgstr "Tmavý režim"
-
-#: src/ui/preferences.ui:20
-#, fuzzy
-msgid "Whether Bottles should use the dark color scheme."
-msgstr "Zda mají láhve používat temnou variantu motivu."
-
-#: src/ui/preferences.ui:32
-msgid "Show Update Date"
-msgstr "Zobrazit datum aktualizace"
-
-#: src/ui/preferences.ui:33
-msgid "Whether to show the update date in the bottle list."
-msgstr "Zda se má v seznamu lahví zobrazovat datum aktualizace."
-
-#: src/ui/preferences.ui:50
-msgid "Show notifications for downloads and installs."
-msgstr "Zobrazit oznámení o stažení a instalaci."
-
-#: src/ui/preferences.ui:61
-msgid "Temp Files"
-msgstr "Dočasné soubory"
-
-#: src/ui/preferences.ui:62
-msgid "Clean temp files when Bottles launches?"
-msgstr "Vyčistit dočasné soubory při spuštění láhví?"
-
-#: src/ui/preferences.ui:73
-msgid "Close Bottles After Starting a Program"
-msgstr "Po spuštění programu zavřít láhve"
-
-#: src/ui/preferences.ui:74
-msgid "Close Bottles after starting a program from the file manager."
-msgstr "Zavřít Láhve po spuštění programu ze správce souborů."
-
-#: src/ui/preferences.ui:87
-msgid "Integrations"
-msgstr "Integrace"
-
-#: src/ui/preferences.ui:90
-msgid "Steam Proton Prefixes"
-msgstr "Prefixy Steam Protonu"
-
-#: src/ui/preferences.ui:91
-msgid "List and manage Steam Proton prefixes."
-msgstr "Seznam a správa prefixů služby Steam Proton."
-
-#: src/ui/preferences.ui:95
-#, fuzzy
-msgid "Read Documentation"
-msgstr "Číst dokumentaci"
-
-#: src/ui/preferences.ui:113
-msgid "List Steam Apps in Programs List"
-msgstr "Seznam Steam aplikací v seznamu programů"
-
-#: src/ui/preferences.ui:114
-msgid "Requires Steam for Windows installed in the bottle."
-msgstr "Vyžaduje Steam pro Windows nainstalovaný v Láhvi."
-
-#: src/ui/preferences.ui:125
-msgid "List Epic Games in Programs List"
-msgstr "Seznam Her Epic v seznamu programů"
-
-#: src/ui/preferences.ui:126
-msgid "Requires Epic Games Store installed in the bottle."
-msgstr "Vyžaduje obchod Epic Games Store nainstalovaný v lahvi."
-
-#: src/ui/preferences.ui:137
-#, fuzzy
-msgid "List Ubisoft Games in Programs List"
-msgstr "Seznam Her Epic v seznamu programů"
-
-#: src/ui/preferences.ui:138
-#, fuzzy
-msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr "Vyžaduje obchod Epic Games Store nainstalovaný v lahvi."
-
-#: src/ui/preferences.ui:151
-msgid "Advanced"
-msgstr "Pokročilé"
-
-#: src/ui/preferences.ui:154
-msgid "Custom Bottles Path (Requires Restart)"
-msgstr "Cesta k vlastním lahvím (vyžaduje restart)"
-
-#: src/ui/preferences.ui:188
-msgid "Runners"
-msgstr "Runnery"
-
-#: src/ui/preferences.ui:193
-msgid "Pre-Release"
-msgstr "Předběžné vydání"
-
-#: src/ui/preferences.ui:194
-msgid "Display unstable versions of runners."
-msgstr "Zobrazit nestabilní verze runnerů."
-
-#: src/ui/preferences.ui:210
-msgid "DLL Components"
-msgstr "Komponenty DDL"
-
-#: src/ui/preferences.ui:223
-msgid "DXVK-NVAPI"
-msgstr "DXVK-NVAPI"
-
-#: src/ui/preferences.ui:236
-msgid "Core"
-msgstr "Jádro"
-
-#: src/ui/preferences.ui:240
-msgid "Runtime"
-msgstr "runtime"
-
-#: src/ui/preferences.ui:245
-msgid "WineBridge"
-msgstr "Winebridge"
-
-#: src/ui/preferences.ui:256
-msgid ""
-"These features are under heavy development and may be unstable, expect bugs "
-"and breakage."
-msgstr ""
-
-#: src/ui/preferences.ui:260
-msgid "In early development (requires restart)."
-msgstr "V rané fázi vývoje (vyžaduje restart)."
-
-#: src/ui/preferences.ui:271
-msgid "Sandbox per bottle"
-msgstr "Sandbox pro Láhev"
-
-#: src/ui/preferences.ui:272
-msgid "In early development."
-msgstr "V raném stádiu vývoje."
-
-#: src/ui/program-entry.ui:21
-msgid "Launch with terminal"
-msgstr "Spustit pomocí terminálu"
-
-#: src/ui/program-entry.ui:28
-msgid "Browse path"
-msgstr "Procházet umístění"
-
-#: src/ui/program-entry.ui:44
-msgid "Change Launch Options…"
-msgstr "Změnit možnosti spuštění…"
-
-#: src/ui/program-entry.ui:49
-msgid "Add to My Library"
-msgstr "Přidat do mé knihovny"
-
-#: src/ui/program-entry.ui:54
-msgid "Add Desktop Entry"
-msgstr "Přidat položky na plochu"
-
-#: src/ui/program-entry.ui:59
-msgid "Add to Steam"
-msgstr "Přidat do Steamu"
-
-#: src/ui/program-entry.ui:64
-msgid "Rename…"
-msgstr "Přejmenovat…"
-
-#: src/ui/program-entry.ui:73
-msgid "Hide Program"
-msgstr "Skrýt program"
-
-#: src/ui/program-entry.ui:78
-msgid "Show Program"
-msgstr "Zobrazit program"
-
-#: src/ui/program-entry.ui:83
-msgid "Remove from List"
-msgstr "Odebrat ze seznamu"
-
-#: src/ui/state-entry.ui:16
-msgid "Restore this state"
-msgstr "Obnovit tento stav"
-
-#: src/ui/task-entry.ui:24
-msgid "Delete message"
-msgstr "Odstranit zprávu"
-
-#: src/ui/window.ui:19
-msgid "Import/Export…"
-msgstr "Importovat/exportovat…"
-
-#: src/ui/window.ui:33
-msgid "Support"
-msgstr "Podpořit"
-
-#: src/ui/window.ui:43
-msgid "Forums"
-msgstr "Fórum"
-
-#: src/ui/window.ui:48
-msgid "About Bottles"
-msgstr "O Láhvích"
-
-#: src/ui/window.ui:79
-msgid "Open menu"
-msgstr "Otevřít menu"
-
-#: src/ui/window.ui:93
-msgid ""
-"You don't seem connected to the internet. Without it you will not be able to "
-"download essential components. Click this icon when you have reestablished "
-"the connection."
-msgstr ""
-"Zdá se, že nejste připojeni k internetu. Bez něj si nebudete moci stáhnout "
-"základní komponenty. Po obnovení připojení klikněte na tuto ikonu."
-
-#: src/ui/window.ui:99
-msgid "New bottle"
-msgstr "Nová láhev"
+msgstr "Přepnout upozornění sandboxu."
 
 #~ msgid "Loading…"
 #~ msgstr "Načítání…"
@@ -3038,9 +3463,6 @@ msgstr "Nová láhev"
 #~ msgid "Steam"
 #~ msgstr "Steam"
 
-#~ msgid "Quit"
-#~ msgstr "Ukončit"
-
 #~ msgid "Bottles versioning (experimental)"
 #~ msgstr "Správce verzí láhví (experimentální)"
 
@@ -3107,17 +3529,6 @@ msgstr "Nová láhev"
 #~ msgstr ""
 #~ "Zatímco soubory na této stránce byly ověřeny, mohou být pod proprietární "
 #~ "licencí."
-
-#~ msgid ""
-#~ "Use this section to install programs curated by our community, without "
-#~ "having to proceed manually. Consider the <a href=\"https://docs."
-#~ "usebottles.com/bottles/installers#compatibility-grades\">compatibility "
-#~ "grade</a> when choosing."
-#~ msgstr ""
-#~ "V této sekci můžete instalovat programy doporučené naší komunitou, aniž "
-#~ "byste museli postupovat ručně. Při výběru zohledněte <a href=\"https://"
-#~ "docs.usebottles.com/bottles/installers#compatibility-grades\">stupeň "
-#~ "kompatibility</a>."
 
 #~ msgid ""
 #~ "While the files on this page have been verified, they may be under a "
@@ -3552,9 +3963,6 @@ msgstr "Nová láhev"
 #~ msgid "Bottle"
 #~ msgstr "Láhev"
 
-#~ msgid "Special characters are not allowed!"
-#~ msgstr "Speciální znaky nejsou povoleny!"
-
 #~ msgid "No runners found, please install one."
 #~ msgstr "Nebyl nalezen žádný spouštěč, nainstalujte jej."
 
@@ -3884,9 +4292,6 @@ msgstr "Nová láhev"
 #~ msgid "Bottle: [{0}] successfully created!"
 #~ msgstr "Láhev: [{0}] byla úspěšně vytvořena!"
 
-#~ msgid "Deleting a bottle …"
-#~ msgstr "Odstraňuji láhev …"
-
 #~ msgid "Successfully deleted bottle in path: [{0}]"
 #~ msgstr "Láhev v cestě : [{0}] byla úspěšně odstraněna"
 
@@ -4004,3 +4409,17 @@ msgstr "Nová láhev"
 
 #~ msgid "Kill all wine processes"
 #~ msgstr "Ukončení všech procesů wine"
+
+#~ msgid ""
+#~ "Use this section to install programs curated by our community, without "
+#~ "having to proceed manually. Consider the <a href=\"https://docs."
+#~ "usebottles.com/bottles/installers#compatibility-grades\">compatibility "
+#~ "grade</a> when choosing."
+#~ msgstr ""
+#~ "V této sekci můžete instalovat programy doporučené naší komunitou, aniž "
+#~ "byste museli postupovat ručně. Při výběru zohledněte <a href=\"https://"
+#~ "docs.usebottles.com/bottles/installers#compatibility-grades\">stupeň "
+#~ "kompatibility</a>."
+
+#~ msgid "Deleting a bottle …"
+#~ msgstr "Odstraňuji láhev …"
