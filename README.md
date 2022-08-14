@@ -46,7 +46,7 @@ Please note that some pages of the documentation are still being written.
 
 ## 🗣 Help Bottles speak your language
 Read [here](https://github.com/bottlesdevs/Bottles/tree/master/po#readme) how to 
-translate Bottles to your language or how to help improve existing ones.
+translate Bottles in your language or how to help improve existing ones.
 
 ## 🦾 Features
 - Create bottles based on environments (a set of rules and dependencies)
@@ -81,9 +81,9 @@ install Bottles on your distribution.
 
 ### Notices for package maintainers
 We are happy to see packaged Bottles but we ask you to respect some small rules:
-- The package must be `bottles`. In other distributions it is possible to use suffixes (e.g. `bottles-git` on Arch Linux for the git based package) while on others the RDNN format is required (e.g. `com.usebottles.bottles` on elementary OS and Flathub repository). All other nomenclatures are discouraged.
+- The package must be `bottles`, in other distributions it is possible to use suffixes (e.g. `bottles-git` on Arch Linux for the git based package) while on others the RDNN format is required (e.g. `com.usebottles.bottles` on elementary OS and Flathub repository). All other nomenclatures are discouraged.
 - Do not package external files and do not make changes to the code, no hard script. Obviously with the exception of files essential for packaging.
-- Package version should follow the CalVer model (year.month.day) and the release cycle of the project. Bottles has 2 releases per month: one on 14th and one on 28th. When a hotfix is released, this will be appended to the release version (e.g. 2022.2.14-1). Bottles has a codename too which is not mandatory and currently only used by the Flatpak.
+- Package version should follow the CalVer model (year.month.day) and the release cycle of the project. Bottles has 2 released per month: one on 14th and one on 28th. When an hotfix came, this will be appended to the release (e.g. 2022.2.14-1). Bottles as a codename too which is not mandatory and currently only used by the Flatpak.
 
 ## Shortcuts
 | Shortcut |         Action          |

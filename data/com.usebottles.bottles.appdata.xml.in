@@ -96,57 +96,54 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.8.14-brescia" date="2022-08-14">
+        <release version="2022.7.28-brescia-2" date="2022-07-28">
           <description>
             <p>News</p>
             <ul>
-                <li>New vkBasalt settings, thanks to @TheEvilSkeleton</li>
-                <li>Support for vmtouch caching, thanks to @axtloss</li>
-                <li>New dark mode switch as fallback for distributions not supporting the freedesktop Dark Mode</li>
-                <li>Prevent programs from launching when clicking on the entry instead of the play button</li>
-                <li>Windows can now be closed by pressing Escape</li>
-                <li>The Library view now supports program settings overrides</li>
-                <li>"Add to Steam" and "Add Desktop Entry" now supports integrations (Epic, Ubisoft, etc.)</li>
-                <li>The bottles-cli "programs" option now list programs from integrations as well</li>
-                <li>Gamescope is now compatible with FSR</li>
+                <li>New versioning system which allow versioning the whole bottle (also configuration)</li>
+                <li>Automatic versioning can now be toggled on and off</li>
+                <li>Exclude paths from versioning using patterns</li>
+                <li>Use compression for versioning states</li>
+                <li>Improve Launch Options saving without update the UI multiple times</li>
+                <li>Improved YAML performance using libyaml (the python-yaml package must provide support for it)</li>
+                <li>New About dialog</li>
+                <li>Covers support in Library mode (thanks to SteamGridDB)</li>
+                <li>Removed DXVK HUD option, use the Environment Variables section instead</li>
+                <li>bottles-cli shell option now provide command output</li>
+                <li>The Health Check is now in the About´s Troubleshooting section</li>
+                <li>Extended Core dependencies check, packagers are invited to double-check their packages</li>
+                <li>New default permission for the Flatpak package: xdg-download</li>
+                <li>Added credits for Third-Party Libraries in the Credits section</li>
                 <li>Minor UI improvements</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fix missing translations, thanks to @A6GibKm</li>
-                <li>Fix a bug in "Add to Steam", was not supporting ~/.steam</li>
-                <li>Fix a regression on renaming programs, this was causing duplicated entries</li>
-                <li>Fix a bug in the internal-sandbox, wine symlinks were not unlinked if the username had special characters</li>
-                <li>Fix a bug in generating desktop entries for programs with spaces in their names</li>
-                <li>Fix a bug in the copy_dll dependency action, wildcards were not handled correctly, thanks to @siroccal</li>
-                <li>Fix a bug in loading gstreamer libraries, were not respecting the bottle architecture</li>
-                <li>Fix a regression in library mode, adding a new program was causing a loop when the bottle name and path mismatched</li>
+                <li>Fix for skipable onboard dialog</li>
+                <li>Fix for empty bottle name</li>
+                <li>Fix gstreamer libs for win32 bottles</li>
+                <li>Fix for RemoteDisconnected error causing a crash</li>
+                <li>Fix wrong Vaniglia listing</li>
+                <li>Fix templates being generated with symlinked paths causing loops</li>
+                <li>Fix configuration migration causing a crash when the user altered the configuration</li>
+                <li>Fix mscoree.dll not found</li>
+                <li>Fix regression for the -b option of the legacy bottles cli</li>
+                <li>Fix Steam Launch Options parser causing a crash</li>
+                <li>Fix a regression in the Add to Steam button not adding the new entry in Steam</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Estonian translations thanks to @tenseoverflow  </li>
-                <li>Italian translations thanks to @albanobattistella, Kryotek</li>
-                <li>Russian translations thanks to Corvurius, @Knebergish</li>
                 <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>Portuguese (Brazil) translations thanks to @davipatricio</li>
-                <li>Korean translations thanks to @qogusdn1017</li>
-                <li>Chinese (Simplified)) translations thanks to Eric</li>  
-                <li>Czech translations thanks to @vikdevelop</li>
-                <li>Polish translations thanks to @Mikutut</li>
-                <li>Catalan translations thanks to @rogervc</li>
-                <li>French translations thanks to @julroy67, Paul Forti</li>
-                <li>Dutch translations thanks to @flipflop97</li>
-                <li>Chinese (Traditional) translations thanks to @kisaragi-hiu</li>
-                <li>Arabic translations thanks to @vxvxvcc</li>
-                <li>German translations thanks to Michael Banditt</li>
-                <li>Spanish translations thanks to @oscfdezdz, Sergio Varela</li>
-                <li>Turkish translations thanks to @omerfaruk-cakmak</li>
-                <li>Hungarian translations thanks to @zoli111</li>
-                <li>Tamil translations thanks to @kbdharun</li>
-                <li>Croatian translations thanks to @milotype</li>
+                <li>French translations thanks to @rjousse18, @julroy67</li>
+                <li>Indonesian translations thanks to @liimee</li>
+                <li>Russian translations thanks to @Knebergish, @lenemter, @Smoque</li>
                 <li>Thai translations thanks to @SashaPGT</li>
+                <li>Spanish translations thanks to Pablo Munoz Alabau, @oscfdezdz</li>
+                <li>Italian translations thanks to @gdonisi</li>
+                <li>Portuguese (Brazil) translations thanks to @geraldohomero</li>
+                <li>German translations thanks to Patrick Ulbricht</li>
+                <li>Croatian translations thanks to @milotype</li>
             </ul>
           </description>
         </release>

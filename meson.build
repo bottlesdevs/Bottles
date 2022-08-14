@@ -1,6 +1,6 @@
 project(
 	'bottles',
-	version: '2022.8.14-brescia',
+	version: '2022.7.28-brescia-2',
 	meson_version: '>= 0.50.0',
 	default_options: [
 		'warning_level=2',
@@ -12,7 +12,7 @@ i18n = import('i18n')
 localedir = get_option('localedir')
 
 subdir('po')
-subdir('bottles')
+subdir('src')
 subdir('data')
 
 meson.add_install_script('build-aux/meson/postinstall.py')
