@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-06-08 22:17+0000\n"
-"Last-Translator: Nazmul Hossain <nazmulridoy399@gmail.com>\n"
+"PO-Revision-Date: 2022-08-17 10:09+0000\n"
+"Last-Translator: Zihad <zihad.ta@gmail.com>\n"
 "Language-Team: Bengali <https://hosted.weblate.org/projects/bottles/bottles/"
 "bn/>\n"
 "Language: bn\n"
@@ -17,16 +17,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "কোনও পাথ নির্দিষ্ট করা হয়নি"
 
 #: bottles/backend/managers/backup.py:71
 #, python-brace-format
 msgid "Backup {0}"
-msgstr ""
+msgstr "ব্যাকআপ {0}"
 
 #: bottles/backend/managers/backup.py:124
 #, python-brace-format
@@ -35,7 +35,7 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1030
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "ইনস্টল করতে ব্যর্থ হয়েছে, 3 বার চেষ্টা করা হয়েছে।"
 
 #: bottles/backend/managers/manager.py:1041
 msgid "Missing essential components. Installing…"
@@ -43,28 +43,28 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1117
 msgid "Failed to create bottle directory."
-msgstr ""
+msgstr "বোতল ডিরেক্টরি তৈরি করতে ব্যর্থ হয়েছে।"
 
 #: bottles/backend/managers/manager.py:1129
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "স্থানধারক ডিরেক্টরি/ফাইল তৈরি করতে ব্যর্থ হয়েছে।"
 
 #: bottles/backend/managers/manager.py:1134
 msgid "Generating bottle configuration…"
-msgstr ""
+msgstr "বোতল কনফিগারেশন তৈরি করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Template found, applying…"
-msgstr ""
+msgstr "টেমপ্লেট পাওয়া গেছে, প্রয়োগ করা হচ্ছে…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1169
 msgid "The Wine config is being updated…"
-msgstr ""
+msgstr "ওয়াইন কনফিগারেশন আপডেট করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1171
 msgid "Wine config updated!"
-msgstr ""
+msgstr "ওয়াইন কনফিগ আপডেট করা হয়েছে!"
 
 #: bottles/backend/managers/manager.py:1179
 msgid "Running as Flatpak, sandboxing userdir…"
@@ -76,15 +76,15 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1211
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "উইন্ডোজ সংস্করণ সেট করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1221
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "সিএমডি ডিফল্ট সেটিংস প্রয়োগ করুন…"
 
 #: bottles/backend/managers/manager.py:1229
 msgid "Optimizing environment…"
-msgstr ""
+msgstr "পরিবেশ অপ্টিমাইজ করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1240
 #, python-brace-format
@@ -101,45 +101,45 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1270
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "DXVK ইনস্টল করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1278
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "VKD3D ইনস্টল করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1286
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "DXVK-NVAPI ইনস্টল করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1295
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "ডিপেন্ডেন্সি ইনস্টল করা হচ্ছে: %s …"
 
 #: bottles/backend/managers/manager.py:1311
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "ভার্সনিং স্টেট 0 তৈরি করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1319
 msgid "Finalizing…"
-msgstr ""
+msgstr "চূড়ান্ত করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1330
 msgid "Caching template…"
-msgstr ""
+msgstr "ক্যাশিং টেমপ্লেট…"
 
 #: bottles/backend/managers/versioning.py:97
 msgid "Committing state …"
-msgstr ""
+msgstr "কমিটিং স্টেট…"
 
 #: bottles/backend/managers/versioning.py:106
 msgid "Nothing to commit"
-msgstr ""
+msgstr "কিছু কমিট করার মতো নেই"
 
 #: bottles/backend/managers/versioning.py:112
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "নতুন অবস্থা [{0}] সফলভাবে তৈরি করা হয়েছে!"
 
 #: bottles/backend/managers/versioning.py:140
 msgid "States list retrieved successfully!"
