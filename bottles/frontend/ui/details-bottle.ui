@@ -145,6 +145,17 @@
     </object>
     <template class="DetailsBottle" parent="AdwPreferencesPage">
         <child>
+          <object class="GtkOverlay" id="drop_overlay">
+            <property name="visible">False</property>
+            <child type="overlay">
+              <object class="AdwStatusPage">
+                <property name="icon-name">system-run-symbolic</property>
+                <property name="title">Drop files to execute them</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
             <object class="AdwPreferencesGroup">
                 <child>
                     <object class="GtkBox">

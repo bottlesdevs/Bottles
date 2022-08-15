@@ -88,10 +88,13 @@ class BottleView(Adw.PreferencesPage):
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
     pop_run = Gtk.Template.Child()
+    drop_overlay = Gtk.Template.Child()
     # endregion
 
     content = Gdk.ContentFormats.new_for_gtype(Gdk.FileList)
     target = Gtk.DropTarget(formats=content, actions=Gdk.DragAction.COPY)
+
+    style_provider = Gtk.CssProvider()
 
     def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
@@ -102,9 +105,9 @@ class BottleView(Adw.PreferencesPage):
         self.config = config
 
         self.target.connect('drop', self.on_drop)
-        self.window.add_controller(self.target)
-        #self.target.connect('enter', on_enter)
-        #self.target.connect('leave', on_leave)
+        self.add_controller(self.target)
+        self.target.connect('enter', self.on_enter)
+        self.target.connect('leave', self.on_leave)
 
         self.btn_execute.connect("clicked", self.run_executable)
         self.btn_run_args.connect("clicked", self.__run_executable_with_args)
@@ -128,6 +131,15 @@ class BottleView(Adw.PreferencesPage):
             "clicked",
             open_doc_url,
             "flatpak/black-screen-or-silent-crash"
+        )
+
+        gtk_context = self.drop_overlay.get_style_context()
+        Gtk.StyleContext.add_class(gtk_context, "dragndrop_overlay")
+        self.style_provider.load_from_data(b".dragndrop_overlay { background: rgba(41, 65, 94, 0.2)}")
+        Gtk.StyleContext.add_provider(
+            gtk_context,
+            self.style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_USER
         )
 
         if "FLATPAK_ID" in os.environ:
@@ -166,6 +178,13 @@ class BottleView(Adw.PreferencesPage):
         )
 
         self.__update_latest_executables()
+
+    def on_enter(self, drop_target, x, y):
+        self.drop_overlay.set_visible(True)
+        return Gdk.DragAction.COPY
+
+    def on_leave(self, drop_target):
+        self.drop_overlay.set_visible(False)
 
     def set_config(self, config):
         self.config = config
