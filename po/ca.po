@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-07-04 17:16+0000\n"
+"PO-Revision-Date: 2022-08-17 10:09+0000\n"
 "Last-Translator: Roger VC <rogervilarasau@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bottles/bottles/"
 "ca/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
@@ -156,12 +156,13 @@ msgstr "S’està emmagatzemant la plantilla en memòria cau…"
 #: src/backend/managers/versioning.py:97
 #, fuzzy
 msgid "Committing state …"
-msgstr "S'estan actualitzant els estats…"
+msgstr "Cometent estat…"
 
 #: bottles/backend/managers/versioning.py:106
 #: src/backend/managers/versioning.py:106
+#, fuzzy
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Res a cometre"
 
 #: bottles/backend/managers/versioning.py:112
 #: src/backend/managers/versioning.py:112
@@ -189,7 +190,7 @@ msgstr "Estat no trobat"
 #: bottles/backend/managers/versioning.py:191
 #: src/backend/managers/versioning.py:191
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "L'estat {} ja és l'estat actiu"
 
 #: bottles/frontend/windows/crash.py:37 src/dialogs/crash.py:37
 msgid "Show report"
@@ -303,11 +304,11 @@ msgstr "S'estan instal·lant dependències de Windows…"
 
 #: bottles/frontend/windows/installer.py:116 src/dialogs/installer.py:116
 msgid "Configuring the bottle…"
-msgstr ""
+msgstr "Configurant l'ampolla…"
 
 #: bottles/frontend/windows/installer.py:117 src/dialogs/installer.py:117
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "S'està processant els passos de l'instal·lador…"
 
 #: src/dialogs/installer.py:118
 msgid "Installing the {}…"
@@ -315,7 +316,7 @@ msgstr "S'està instal·lant el {}…"
 
 #: bottles/frontend/windows/installer.py:119 src/dialogs/installer.py:119
 msgid "Performing final checks…"
-msgstr ""
+msgstr "S'estan realitzant les comprovacions finals…"
 
 #: src/dialogs/installer.py:123
 #, python-brace-format
@@ -325,7 +326,7 @@ msgstr "S'està instal·lant {0}…"
 #: bottles/frontend/windows/installer.py:125 src/dialogs/installer.py:125
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr ""
+msgstr "{0} ja està disponible a la vista de programes."
 
 #: bottles/frontend/windows/installer.py:171 src/dialogs/installer.py:171
 msgid "Installer failed with unknown error"
@@ -365,36 +366,36 @@ msgstr "Trieu el directori de treball"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
-#, fuzzy
 msgid "Choose a file."
-msgstr "Trieu un fitxer de receptes"
+msgstr "Trieu un fitxer."
 
 #: bottles/frontend/windows/vkbasalt.py:306
-#, fuzzy
 msgid "File not Found"
-msgstr "No s’ha trobat cap estat"
+msgstr "Fitxer no trobat"
 
 #: bottles/frontend/windows/vkbasalt.py:307
 msgid "The given file does not exist. Please choose an appropriate file."
-msgstr ""
+msgstr "El fitxer indicat no existeix. Si us plau, trieu un fitxer adequat."
 
 #: bottles/frontend/windows/vkbasalt.py:330
 msgid "Spaces in File Name"
-msgstr ""
+msgstr "Espais al nom del fitxer"
 
 #: bottles/frontend/windows/vkbasalt.py:331
 msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
 msgstr ""
+"El camí de la taula de cerca de colors no ha de contenir espais. Canvieu el "
+"nom del fitxer per eliminar tots els espais."
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
-msgstr ""
+msgstr "La dimensió de la imatge no és vàlida"
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr ""
+msgstr "L'alçada i l'amplada de la imatge han de ser iguals."
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144 src/views/importer.py:144
@@ -974,9 +975,8 @@ msgstr ""
 "visuals dels jocs."
 
 #: bottles/frontend/ui/details-preferences.ui:144
-#, fuzzy
 msgid "Manage vkBasalt settings"
-msgstr "Gestiona els paràmetres del Gamescope"
+msgstr "Gestioneu la configuració de vkBasalt"
 
 #: bottles/frontend/ui/details-preferences.ui:161
 #: src/ui/details-preferences.ui:151
@@ -1281,16 +1281,15 @@ msgstr "Gestiona els paràmetres del Gamescope"
 
 #: bottles/frontend/ui/details-preferences.ui:588
 msgid "Vmtouch"
-msgstr ""
+msgstr "Vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:589
 msgid "Preload game files into RAM"
-msgstr ""
+msgstr "Carregueu prèviament els fitxers del joc a la memòria RAM"
 
 #: bottles/frontend/ui/details-preferences.ui:592
-#, fuzzy
 msgid "Manage vmtouch settings"
-msgstr "Gestiona els paràmetres del Gamescope"
+msgstr "Gestioneu la configuració de vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:610
 #: bottles/frontend/ui/dialog-launch-options.ui:91
@@ -1391,6 +1390,8 @@ msgstr "Utilitzar patrons d'exclusió"
 #: src/ui/details-preferences.ui:685
 msgid "Use custom patterns to exclude some paths from versioning."
 msgstr ""
+"Utilitzeu patrons personalitzats per excloure alguns camins del control de "
+"versions."
 
 #: src/ui/details-preferences.ui:688
 msgid "Manage Patterns"
@@ -1548,7 +1549,7 @@ msgstr "Opcions avançades"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:15 src/ui/dialog-deps-check.ui:15
 msgid "Incomplete package"
-msgstr ""
+msgstr "Paquet incomplet"
 
 #: src/ui/dialog-deps-check.ui:16
 msgid ""
@@ -1658,7 +1659,7 @@ msgstr "Variables existents"
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
 #: src/ui/dialog-exclusion-patterns.ui:16
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "Patrons d'exclusió"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
 #: src/ui/dialog-exclusion-patterns.ui:35
@@ -1666,6 +1667,8 @@ msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
+"Definiu patrons que s'utilitzaran per evitar que es versionin alguns "
+"directoris."
 
 #: src/ui/dialog-exclusion-patterns.ui:38
 msgid "Pattern"
@@ -1692,7 +1695,7 @@ msgstr "Resolució del joc"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:52 src/ui/dialog-gamescope.ui:52
 msgid "Uses the resolution of the video game as a reference."
-msgstr ""
+msgstr "Utilitza la resolució del videojoc com a referència."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:55
 #: bottles/frontend/ui/dialog-gamescope.ui:71 src/ui/dialog-gamescope.ui:55
@@ -1715,10 +1718,11 @@ msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution."
 msgstr ""
+"Augmenta la resolució quan s'utilitza una resolució superior a la del joc."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:83 src/ui/dialog-gamescope.ui:83
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Miscel·lani"
 
 #: src/ui/dialog-gamescope.ui:86
 msgid "Frame Rate Limit (e.g. 60)"
@@ -1837,8 +1841,9 @@ msgid "Reset to Bottle's Defaults"
 msgstr "Restableix als valors per defecte de l'ampolla"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:6 src/ui/dialog-proton-alert.ui:6
+#, fuzzy
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Avís legal de Proton"
 
 #: src/ui/dialog-proton-alert.ui:22
 msgid "Use Proton"
@@ -1859,11 +1864,23 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"Aneu amb compte, utilitzar corredors basats en Proton en ampolles que no "
+"siguin de Steam pot causar problemes i evitar que es comportin correctament."
+"\n"
+"\n"
+"Us recomanem que utilitzeu Wine-GE, una versió de Proton destinada a "
+"funcionar fora de Steam.\n"
+"\n"
+"Si seguiu, s'habilitarà automàticament el temps d'execució de Steam (si està "
+"present al sistema i detectat per Bottles) per tal de permetre-li accedir a "
+"les biblioteques necessàries i limitar els problemes de compatibilitat. "
+"Tingueu en compte que GloriousEggroll, el proveïdor del corredor, no es fa "
+"responsable de cap problema i us demanem que no els comuniqueu."
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:50
 #: src/ui/dialog-proton-alert.ui:50
 msgid "I got it."
-msgstr ""
+msgstr "Ho entenc."
 
 #: bottles/frontend/ui/dialog-rename.ui:9 src/ui/dialog-rename.ui:9
 msgid "Rename"
@@ -1902,7 +1919,7 @@ msgstr "Configuració de l'espai aïllat"
 
 #: bottles/frontend/ui/dialog-sandbox.ui:23 src/ui/dialog-sandbox.ui:23
 msgid "Share Network"
-msgstr ""
+msgstr "Comparteix la xarxa"
 
 #: src/ui/dialog-sandbox.ui:34
 msgid "Share Sound"
@@ -1921,7 +1938,7 @@ msgstr "Continua"
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:49
 #: src/ui/dialog-upgrade-versioning.ui:49
 msgid "Launch upgrade"
-msgstr ""
+msgstr "Inicieu l'actualització"
 
 #: src/ui/dialog-upgrade-versioning.ui:69
 msgid "New Versioning System"
@@ -1930,7 +1947,7 @@ msgstr "Nou sistema de versionat"
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:72
 #: src/ui/dialog-upgrade-versioning.ui:72
 msgid "The new bottle versioning system has landed."
-msgstr ""
+msgstr "El nou sistema de versions d'ampolles ha aterrat."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:86
 #: src/ui/dialog-upgrade-versioning.ui:86
@@ -1948,49 +1965,58 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"Bottles té un sistema de versionat completament nou que no és compatible amb "
+"versions anteriors. \n"
+"\n"
+"Per continuar utilitzant el versionat hem de tornar a inicialitzar el "
+"repositori d'ampolles. Això no suprimirà les dades de l'ampolla, sinó que "
+"suprimirà tots els estats existents i en crearà un de nou. \n"
+"\n"
+"Si heu de tornar a un estat anterior abans de continuar, tanqueu aquesta "
+"finestra i restaureu l'estat i torneu a obrir l'ampolla per tornar a mostrar "
+"aquesta finestra. \n"
+"\n"
+"El sistema antic es descatalogarà en una de les properes versions."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
 #: src/ui/dialog-upgrade-versioning.ui:112
 msgid "Re-initializing repository…"
-msgstr ""
+msgstr "S'està reiniciant el repositori…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
 #: src/ui/dialog-upgrade-versioning.ui:144
 msgid "Done! Please restart Bottles."
-msgstr ""
+msgstr "Fet! Si us plau, reinicieu Bottles."
 
 #. vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.ui:11
-#, fuzzy
 msgid "vkBasalt Settings"
-msgstr "Paràmetres de la pantalla"
+msgstr "Configuració de vkBasalt"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:50
-#, fuzzy
 msgid "Default"
-msgstr "gl (per defecte)"
+msgstr "Per defecte"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:54
-#, fuzzy
 msgid "Default Settings"
-msgstr "Paràmetres de la pantalla"
+msgstr "Configuració per defecte"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:66
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "Els efectes s'apliquen segons l'ordre de la llista."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:67
 msgid "Effects"
-msgstr ""
+msgstr "Efectes"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:71
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "Agudització adaptativa del contrast"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:74
 #: bottles/frontend/ui/dialog-vkbasalt.ui:110
 msgid "Sharpness"
-msgstr ""
+msgstr "Nitidesa"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:78
 #: bottles/frontend/ui/dialog-vkbasalt.ui:114
@@ -2004,111 +2030,123 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.ui:364
 #: bottles/frontend/ui/dialog-vkbasalt.ui:392
 #: bottles/frontend/ui/dialog-vkbasalt.ui:424
-#, fuzzy
 msgid "Show Information"
-msgstr "Informació de l'ampolla"
+msgstr "Mostra informació"
 
 #. Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.ui:107
+#, fuzzy
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "Agudització Luma amb eliminació de soroll"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:139
 msgid "Denoise"
-msgstr ""
+msgstr "Reduir el soroll"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:171
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "Antialiàsing ràpid aproximat"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:174
-#, fuzzy
 msgid "Subpixel Quality"
-msgstr "Qualitat Ultra"
+msgstr "Qualitat de subpíxel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:203
+#, fuzzy
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "Llindar de qualitat de les vores"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:232
+#, fuzzy
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "Llindar de qualitat mínim de les vores"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:264
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "Anti-aliasing morfològic de subpíxels"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:267
 msgid "Edge Detection"
-msgstr ""
+msgstr "Detecció de vores"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:283
 msgid "Luma"
-msgstr ""
+msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:303
 msgid "Threshold"
-msgstr ""
+msgstr "Llindar"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:332
 msgid "Max Search Steps"
-msgstr ""
+msgstr "Passos màxims de cerca"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:360
+#, fuzzy
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "Màxim Cerca Passos Diagonal"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:388
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "Arrodoniment màxim de cantonada"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:419
 msgid "Color Lookup Table"
-msgstr ""
+msgstr "Taula de cerca de colors"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:437
-#, fuzzy
 msgid "Reset to Default"
-msgstr "Restableix els valors predeterminats"
+msgstr "Restableix al valor per defecte"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:448
-#, fuzzy
 msgid "Select a File"
-msgstr "Suprimeix l'ampolla…"
+msgstr "Seleccioneu un fitxer"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:482
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"La nitidesa CAS augmenta la nitidesa d'un fotograma. Els valors més alts fan "
+"que el fotograma sigui més nítid, mentre que els valors inferiors a 0 fan "
+"que el fotograma sigui més suau que el natiu."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:500
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"La nitidesa DLS augmenta la nitidesa d'un fotograma. Els valors més alts fan "
+"que el fotograma sigui més nítid."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:518
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"DLS denoise redueix el soroll d'un fotograma. Els valors més alts fan que el "
+"fotograma sigui més suau."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:536
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"La qualitat del subpíxel FXAA disminueix l'àlies al nivell del subpíxel. Els "
+"valors més alts fan que el fotograma sigui més suau."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:554
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"El llindar de vora FXAA és la quantitat mínima de contrast necessària per "
+"aplicar l'algorisme FXAA. Els valors més alts fan que el fotograma tingui "
+"més contrast."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:572
 msgid ""
@@ -2116,24 +2154,34 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"El llindar mínim de vora de qualitat FXAA és el valor mínim dels píxels "
+"foscos que l'algorisme FXAA ignora. Els valors més alts fan que FXAA ignori "
+"els píxels per sota del valor especificat i pot conduir a un augment del "
+"rendiment."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:590
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"Luma detecta vores des d'una perspectiva monocroma, mentre que Color detecta "
+"vores basades en colors. Luma és més eficient que Color."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:608
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"El llindar SMAA especifica la sensibilitat de la detecció de vores. Els "
+"valors més baixos detecten més vores a costa del rendiment."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:626
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"Els passos de cerca màxims SMAA especifica quants passos de cerca "
+"horitzontals i verticals es realitzen en cercar vores."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:644
 msgid ""
@@ -2251,7 +2299,7 @@ msgstr "Descripció de l'instal·lador"
 
 #: bottles/frontend/ui/installer-entry.ui:48 src/ui/installer-entry.ui:48
 msgid "Unknown"
-msgstr ""
+msgstr "Desconegut"
 
 #: bottles/frontend/ui/installer-entry.ui:57 src/ui/installer-entry.ui:57
 msgid "Install this program"
@@ -2492,7 +2540,7 @@ msgstr "Tot a punt!"
 
 #: bottles/frontend/ui/onboard.ui:122 src/ui/onboard.ui:122
 msgid "Please Finish the setup first"
-msgstr ""
+msgstr "Si us plau, acabeu primer la configuració"
 
 #: bottles/frontend/ui/onboard.ui:129 src/ui/onboard.ui:129
 msgid "Start using Bottles"
@@ -2738,7 +2786,7 @@ msgstr "Importa/exporta…"
 
 #: bottles/frontend/ui/window.ui:33 src/ui/window.ui:33
 msgid "Support"
-msgstr "Assistència"
+msgstr "Doneu-nos suport"
 
 #: bottles/frontend/ui/window.ui:43 src/ui/window.ui:43
 msgid "Forums"
