@@ -522,8 +522,8 @@ class WineCommand:
         else:
             self.vmtouch_files = "'"+self.command.split(" ")[-1]+"'"
 
-        if self.config["Parameters"].get("vmtouch_cache_cwd"):
-            self.vmtouch_files = "'"+self.vmtouch_files+"' '"+self.cwd+"/'"
+        #if self.config["Parameters"].get("vmtouch_cache_cwd"):
+        #    self.vmtouch_files = "'"+self.vmtouch_files+"' '"+self.cwd+"/'" Commented out as fix for #1941
         self.command = vmtouch_available+" "+vmtouch_flags+" "+vmtouch_file_size+" "+self.vmtouch_files+" && "+self.command
 
     def vmtouch_free(self):
