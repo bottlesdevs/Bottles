@@ -589,6 +589,7 @@
                     <property name="subtitle" translatable="yes">Preload game files into RAM</property>
                     <child>
                       <object class="GtkButton" id="btn_manage_vmtouch">
+                        <property name="visible">False</property> <!--Hidden as a temporary fix for issue #1941-->
                         <property name="tooltip-text" translatable="yes">Manage vmtouch settings</property>
                         <property name="valign">center</property>
                         <property name="icon-name">applications-system-symbolic</property>

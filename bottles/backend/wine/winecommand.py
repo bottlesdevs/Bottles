@@ -582,7 +582,7 @@ class WineCommand:
         res = proc.communicate()[0]
         enc = detect_encoding(res)
 
-        if vmtouch_available and self.config["Parameters"].get("sandbox"):
+        if vmtouch_available and self.config["Parameters"].get("vmtouch"):
             self.vmtouch_free()
 
         if enc is not None:
