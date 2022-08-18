@@ -82,6 +82,9 @@ class WineExecutor:
 
     @classmethod
     def run_program(cls,config: dict, program: dict, terminal: bool=False):
+        if program is None:
+            logging.warning("The program entry is not well formatted.")
+            
         dxvk = config["Parameters"]["dxvk"]
         vkd3d = config["Parameters"]["vkd3d"]
         nvapi = config["Parameters"]["dxvk_nvapi"]
