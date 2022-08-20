@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-19 15:18+0000\n"
+"PO-Revision-Date: 2022-08-21 11:17+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -1765,26 +1765,25 @@ msgid "Default"
 msgstr "Standaard"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:54
-#, fuzzy
 msgid "Default Settings"
-msgstr "Scherminstellingen"
+msgstr "Standaardinstellingen"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:66
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "Effecten worden toegepast op basis van de lijstvolgorde."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:67
 msgid "Effects"
-msgstr ""
+msgstr "Effecten"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:71
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "Contrast-adaptieve-verscherping"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:74
 #: bottles/frontend/ui/dialog-vkbasalt.ui:110
 msgid "Sharpness"
-msgstr ""
+msgstr "Scherpheid"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:78
 #: bottles/frontend/ui/dialog-vkbasalt.ui:114
@@ -1798,81 +1797,77 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.ui:364
 #: bottles/frontend/ui/dialog-vkbasalt.ui:392
 #: bottles/frontend/ui/dialog-vkbasalt.ui:424
-#, fuzzy
 msgid "Show Information"
-msgstr "Bottle-informatie"
+msgstr "Informatie tonen"
 
 #. Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.ui:107
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "Ontruisde-Luma-verscherping"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:139
 msgid "Denoise"
-msgstr ""
+msgstr "Ontruisen"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:171
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "Snelle benaderende anti-aliasing"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:174
-#, fuzzy
 msgid "Subpixel Quality"
-msgstr "Beste kwaliteit"
+msgstr "Subpixel-kwaliteit"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:203
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "Kwaliteitsranddrempel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:232
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "Minimale kwaliteitsranddrempel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:264
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "Subpixel-morfologische anti-aliasing"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:267
 msgid "Edge Detection"
-msgstr ""
+msgstr "Randherkenning"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:283
 msgid "Luma"
-msgstr ""
+msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
-msgstr ""
+msgstr "Kleur"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:303
 msgid "Threshold"
-msgstr ""
+msgstr "Drempel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:332
 msgid "Max Search Steps"
-msgstr ""
+msgstr "Maximaal aantal zoekstappen"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:360
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "Maximaal aantal zoekstappen (diagonaal)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:388
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "Maximale randronding"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:419
 msgid "Color Lookup Table"
-msgstr ""
+msgstr "Kleurentabel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:437
-#, fuzzy
 msgid "Reset to Default"
 msgstr "Standaardwaarden herstellen"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:448
-#, fuzzy
 msgid "Select a File"
-msgstr "Bottle selecteren"
+msgstr "Bestand selecteren"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:482
 msgid ""
@@ -2639,13 +2634,14 @@ msgstr "Kies werkmap voor uitvoerbare bestanden"
 
 #: bottles/frontend/views/bottle_preferences.py:772
 msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
+msgstr "Compressie omschakelen vereist opnieuw initialiseren"
 
 #: bottles/frontend/views/bottle_preferences.py:773
 msgid ""
 "This will kepp all your files but will delete all states. Do you want to "
 "continue?"
 msgstr ""
+"Dit behoudt al uw bestanden maar verwijdert al uw staten. Wilt u doorgaan?"
 
 #: bottles/frontend/views/bottle_programs.py:86
 #, python-brace-format
@@ -2663,6 +2659,8 @@ msgstr "Toevoegen"
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
 msgstr ""
+"Schakel over naar het nieuwe versiebeheersysteem om nieuwe staten aan te "
+"maken."
 
 #: bottles/frontend/views/details.py:154
 msgid "Details & Utilities"
@@ -2724,9 +2722,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "{0} van {1} pakketten gedownload"
 
 #: bottles/frontend/views/new.py:133
-#, fuzzy
 msgid "Name has special characters or already in use."
-msgstr "Speciale tekens zijn niet toegestaan!"
+msgstr "Naam heeft speciale tekens of is al in gebruik."
 
 #: bottles/frontend/views/new.py:150
 msgid "Choose a recipe file"
@@ -3063,11 +3060,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
-msgstr ""
+msgstr "Kleine interfaceverbeteringen"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
-msgstr ""
+msgstr "Foutoplossingen"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Fix for skipable onboard dialog"
@@ -3125,49 +3122,40 @@ msgid "Finnish translations thanks to Jiri Grönroos"
 msgstr "Finse vertaling door Jiri Grönroos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:138
-#, fuzzy
 msgid "French translations thanks to @rjousse18, @julroy67"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Franse vertalingen door @rjousse18 en @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:139
-#, fuzzy
 msgid "Indonesian translations thanks to @liimee"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Indonesische vertalingen door @liimee"
 
 #: data/com.usebottles.bottles.appdata.xml.in:140
-#, fuzzy
 msgid "Russian translations thanks to @Knebergish, @lenemter, @Smoque"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Russische vertalingen door @Knebergish, @lenemter en @Smoque"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
-#, fuzzy
 msgid "Thai translations thanks to @SashaPGT"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Thaise vertalingen door @SashaPGT"
 
 #: data/com.usebottles.bottles.appdata.xml.in:142
-#, fuzzy
 msgid "Spanish translations thanks to Pablo Munoz Alabau, @oscfdezdz"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Spaanse vertalingen door Pablo Munoz Alabau en @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:143
-#, fuzzy
 msgid "Italian translations thanks to @gdonisi"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Italiaanse vertalingen door @gdonisi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @geraldohomero"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Portugese (Brazilië) vertalingen door @geraldohomero"
 
 #: data/com.usebottles.bottles.appdata.xml.in:145
-#, fuzzy
 msgid "German translations thanks to Patrick Ulbricht"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Duitse vertalingen door Patrick Ulbricht"
 
 #: data/com.usebottles.bottles.appdata.xml.in:146
-#, fuzzy
 msgid "Croatian translations thanks to @milotype"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Kroatische vertalingen door @milotype"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
