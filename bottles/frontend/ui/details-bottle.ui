@@ -270,12 +270,11 @@
                 </child>
                 <child>
                     <object class="AdwExpanderRow">
-                        <property name="title" translatable="yes">Legacy Tools</property>
+                        <property name="title" translatable="yes">Legacy Wine Tools</property>
                         <child>
                             <object class="AdwActionRow" id="row_explorer">
                                 <property name="activatable">true</property>
                                 <property name="title" translatable="yes">Explorer</property>
-                                <property name="subtitle" translatable="yes">Browse internal files with the Wine explorer.</property>
                                 <child>
                                     <object class="GtkImage">
                                         <property name="icon-name">external-link-symbolic</property>
@@ -287,7 +286,6 @@
                             <object class="AdwActionRow" id="row_taskmanager">
                                 <property name="activatable">true</property>
                                 <property name="title" translatable="yes">Task Manager</property>
-                                <property name="subtitle" translatable="yes">Manage processes with the Wine task manager.</property>
                                 <child>
                                     <object class="GtkImage">
                                         <property name="icon-name">external-link-symbolic</property>
@@ -298,8 +296,7 @@
                         <child>
                             <object class="AdwActionRow" id="row_debug">
                                 <property name="activatable">true</property>
-                                <property name="title" translatable="yes">Debug</property>
-                                <property name="subtitle" translatable="yes">Debug wine processes.</property>
+                                <property name="title" translatable="yes">Debugger</property>
                                 <child>
                                     <object class="GtkImage">
                                         <property name="icon-name">external-link-symbolic</property>
@@ -310,8 +307,7 @@
                         <child>
                             <object class="AdwActionRow" id="row_winecfg">
                                 <property name="activatable">true</property>
-                                <property name="title" translatable="yes">Wine Configuration</property>
-                                <property name="subtitle" translatable="yes">Adjust internal settings.</property>
+                                <property name="title" translatable="yes">Configuration</property>
                                 <child>
                                     <object class="GtkImage">
                                         <property name="icon-name">external-link-symbolic</property>
@@ -323,7 +319,6 @@
                             <object class="AdwActionRow" id="row_uninstaller">
                                 <property name="activatable">true</property>
                                 <property name="title" translatable="yes">Uninstaller</property>
-                                <property name="subtitle" translatable="yes">Uninstall programs using Wine uninstaller.</property>
                                 <child>
                                     <object class="GtkImage">
                                         <property name="icon-name">external-link-symbolic</property>
@@ -335,7 +330,6 @@
                             <object class="AdwActionRow" id="row_controlpanel">
                                 <property name="activatable">true</property>
                                 <property name="title" translatable="yes">Control Panel</property>
-                                <property name="subtitle" translatable="yes">Access the internal Wine Control Panel.</property>
                                 <child>
                                     <object class="GtkImage">
                                         <property name="icon-name">external-link-symbolic</property>
