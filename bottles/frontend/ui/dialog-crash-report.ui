@@ -7,20 +7,24 @@
         <property name="deletable">False</property>
         <property name="modal">True</property>
         <property name="default-width">550</property>
-        <property name="title" translatable="yes">Bottles crash report</property>
+        <property name="title" translatable="yes">Bottles Crash Report</property>
         <child>
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
                     <object class="AdwHeaderBar">
-                        <child type="start">
+                    <property name="show-start-title-buttons">False</property>
+                    <property name="show-end-title-buttons">False</property>
+                        <child>
                             <object class="GtkButton" id="btn_cancel">
-                                <property name="label" translatable="yes">Cancel</property>
+                                <property name="label" translatable="yes">_Cancel</property>
+                                <property name="use_underline">True</property>
+                                <property name="action_name">window.close</property>
                             </object>
                         </child>
                         <child type="end">
                             <object class="GtkButton" id="btn_send">
-                                <property name="label" translatable="yes">Send report</property>
+                                <property name="label" translatable="yes">Send Report</property>
                                 <property name="sensitive">False</property>
                                 <style>
                                     <class name="suggested-action"/>
