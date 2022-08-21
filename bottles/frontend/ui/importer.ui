@@ -21,7 +21,7 @@
                             <object class="GtkBox" id="box_actions">
                                 <child>
                                     <object class="GtkMenuButton" id="btn_import_backup">
-                                        <property name="tooltip-text" translatable="yes">Import Bottles backup</property>
+                                        <property name="tooltip-text" translatable="yes">Import a Bottle backup</property>
                                         <property name="popover">pop_backup</property>
                                         <property name="icon-name">document-send-symbolic</property>
                                     </object>
@@ -43,8 +43,8 @@
                                 <property name="vexpand">True</property>
                                 <property name="icon-name">document-save-symbolic</property>
                                 <property name="title" translatable="yes">No Prefixes Found</property>
-                                <property name="description" translatable="yes">No prefixes were found from Lutris, PlayOnLinux, etc.
-Use the icon on the top to import a bottle from a backup</property>
+                                <property name="description" translatable="yes">No external prefixes were found. Does Bottles have access to them?
+Use the icon on the top to import a bottle from a backup.</property>
                             </object>
                         </child>
                         <child>

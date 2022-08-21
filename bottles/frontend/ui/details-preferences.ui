@@ -21,7 +21,7 @@
                     <object class="AdwActionRow" id="row_dxvk">
                         <property name="activatable-widget">switch_dxvk</property>
                         <property name="title" translatable="yes">DXVK</property>
-                        <property name="subtitle" translatable="yes">Improves performance of DirectX 11 games and 3D applications.</property>
+                        <property name="subtitle" translatable="yes">Improves performance of DirectX 9/10/11 games and 3D applications by translating to Vulkan.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_dxvkbool">
                                 <property name="tooltip-text" translatable="yes">Updating DXVK, please wait…</property>
@@ -40,7 +40,7 @@
                     <object class="AdwActionRow" id="row_vkd3d">
                         <property name="activatable-widget">switch_vkd3d</property>
                         <property name="title" translatable="yes">VKD3D</property>
-                        <property name="subtitle" translatable="yes">Improves performance of DirectX 12 games and 3D applications.</property>
+                        <property name="subtitle" translatable="yes">Improves performance of DirectX 12 games and 3D applications by translating to Vulkan.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_vkd3dbool">
                                 <property name="tooltip-text" translatable="yes">Updating VKD3D, please wait…</property>
@@ -59,7 +59,7 @@
                     <object class="AdwActionRow" id="row_nvapi">
                         <property name="activatable-widget">switch_nvapi</property>
                         <property name="title" translatable="yes">DLSS (DXVK-NVAPI)</property>
-                        <property name="subtitle" translatable="yes">Provide DLSS support if available and Nvidia's NVAPI.</property>
+                        <property name="subtitle" translatable="yes">Provide DLSS and Nvidia NVAPI support if available.</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_nvapibool">
                                 <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
@@ -509,7 +509,7 @@
                         <property name="subtitle" translatable="yes">Use a restricted/managed environment for this bottle.</property>
                         <child>
                             <object class="GtkButton" id="btn_manage_sandbox">
-                                <property name="tooltip-text" translatable="yes">Manage Sandbox permissions</property>
+                                <property name="tooltip-text" translatable="yes">Manage the Sandbox Permissions</property>
                                 <property name="valign">center</property>
                                 <property name="icon-name">applications-system-symbolic</property>
                                 <style>
@@ -528,7 +528,7 @@
                     <object class="AdwActionRow" id="row_runtime">
                         <property name="activatable-widget">switch_runtime</property>
                         <property name="title" translatable="yes">Bottles Runtime</property>
-                        <property name="subtitle" translatable="yes">Provides a bundle of extra libraries for more compatibility,disable if you run into issues.</property>
+                        <property name="subtitle" translatable="yes">Provides a bundle of extra libraries for more compatibility, disable if you run into issues.</property>
                         <child>
                             <object class="GtkSwitch" id="switch_runtime">
                                 <property name="valign">center</property>
@@ -540,7 +540,7 @@
                     <object class="AdwActionRow" id="row_steam_runtime">
                         <property name="activatable-widget">switch_steam_runtime</property>
                         <property name="title" translatable="yes">Steam Runtime</property>
-                        <property name="subtitle" translatable="yes">The same as the Bottles one but provided by Steam.</property>
+                        <property name="subtitle" translatable="yes">The same as the Bottles runtime but provided by Steam.</property>
                         <child>
                             <object class="GtkSwitch" id="switch_steam_runtime">
                                 <property name="valign">center</property>
@@ -551,8 +551,8 @@
                 <child>
                     <object class="AdwActionRow">
                         <property name="activatable-widget">switch_gamemode</property>
-                        <property name="title" translatable="yes">GameMode</property>
-                        <property name="subtitle" translatable="yes">Optimise gaming performance on demand.</property>
+                        <property name="title" translatable="yes">Feral GameMode</property>
+                        <property name="subtitle" translatable="yes">Apply a set of optimizations to your device. Can improve game performance.</property>
                         <child>
                             <object class="GtkSwitch" id="switch_gamemode">
                                 <property name="valign">center</property>
@@ -586,7 +586,7 @@
                   <object class="AdwActionRow">
                     <property name="activatable-widget">switch_vmtouch</property>
                     <property name="title" translatable="yes">Vmtouch</property>
-                    <property name="subtitle" translatable="yes">Preload game files into RAM</property>
+                    <property name="subtitle" translatable="yes">Preload game files into RAM. The game will take longer to start.</property>
                     <child>
                       <object class="GtkButton" id="btn_manage_vmtouch">
                         <property name="visible">False</property> <!--Hidden as a temporary fix for issue #1941-->
@@ -753,8 +753,8 @@
                 <child>
                     <object class="AdwActionRow">
                         <property name="activatable-widget">switch_obsvkc</property>
-                        <property name="title" translatable="yes">OBS Vulkan Capture</property>
-                        <property name="subtitle" translatable="yes">Toggle OBS game capture for all programs.</property>
+                        <property name="title" translatable="yes">OBS Game Capture</property>
+                        <property name="subtitle" translatable="yes">Toggle OBS Game Capture for all Vulkan and OpenGL programs.</property>
                         <child>
                             <object class="GtkSwitch" id="switch_obsvkc">
                                 <property name="valign">center</property>
