@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-17 10:09+0000\n"
+"PO-Revision-Date: 2022-08-23 02:12+0000\n"
 "Last-Translator: Roger VC <rogervilarasau@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bottles/bottles/"
 "ca/>\n"
@@ -2242,7 +2242,7 @@ msgstr "Valor"
 #. Wineprefix is a prefix for the wine program
 #: bottles/frontend/ui/importer-entry.ui:22 src/ui/importer-entry.ui:22
 msgid "Wineprefix name"
-msgstr ""
+msgstr "Nom del prefix del Wine"
 
 #: src/ui/importer-entry.ui:29
 msgid "Manager"
@@ -2571,7 +2571,7 @@ msgstr "Mode fosc"
 
 #: bottles/frontend/ui/preferences.ui:20 src/ui/preferences.ui:20
 msgid "Whether Bottles should use the dark color scheme."
-msgstr ""
+msgstr "Si les ampolles han d'utilitzar l'esquema de color fosc."
 
 #: bottles/frontend/ui/preferences.ui:32 src/ui/preferences.ui:32
 msgid "Show Update Date"
@@ -2840,10 +2840,14 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
+"Bottles s'executa en un espai aillat, un entorn de permís restringit "
+"necessari per mantenir-te segur. Si el programa no s'executa, penseu a "
+"moure's dins de l'ampolla (icona de 3 punts a la part superior) i, a "
+"continuació, inicieu-lo des d'allà."
 
 #: bottles/frontend/views/bottle_details.py:212 src/views/bottle_details.py:212
 msgid "Ok"
-msgstr ""
+msgstr "D'acord"
 
 #: bottles/frontend/views/bottle_details.py:267 src/views/bottle_details.py:267
 msgid "Select the location where to save the backup config"
@@ -2906,7 +2910,7 @@ msgstr "Trieu el directori de treball per als executables"
 #: bottles/frontend/views/bottle_preferences.py:772
 #: src/views/bottle_preferences.py:741
 msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
+msgstr "La commutació de la compressió requereix la reinicialització"
 
 #: bottles/frontend/views/bottle_preferences.py:773
 #: src/views/bottle_preferences.py:742
@@ -2914,6 +2918,8 @@ msgid ""
 "This will kepp all your files but will delete all states. Do you want to "
 "continue?"
 msgstr ""
+"Això eliminarà tots els vostres fitxers, però suprimirà tots els estats. "
+"Voleu continuar?"
 
 #: bottles/frontend/views/bottle_programs.py:86 src/views/bottle_programs.py:83
 #, python-brace-format
@@ -2931,7 +2937,7 @@ msgstr "Afegeix"
 #: bottles/frontend/views/bottle_versioning.py:88
 #: src/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
+msgstr "Si us plau, migreu al nou sistema de versions per crear nous estats."
 
 #: bottles/frontend/views/details.py:154 src/views/details.py:154
 msgid "Details & Utilities"
@@ -2987,16 +2993,16 @@ msgstr "Les vostres ampolles"
 #: bottles/frontend/views/loading.py:33 src/views/loading.py:33
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
-msgstr ""
+msgstr "S'estan baixant ~{0} de paquets…"
 
 #: bottles/frontend/views/loading.py:34 src/views/loading.py:34
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
-msgstr ""
+msgstr "S'han obtingut {0} dels paquets {1}"
 
 #: bottles/frontend/views/new.py:133
 msgid "Name has special characters or already in use."
-msgstr ""
+msgstr "El nom té caràcters especials o ja està en ús."
 
 #: bottles/frontend/views/new.py:150 src/views/new.py:142
 msgid "Choose a recipe file"
@@ -3024,8 +3030,9 @@ msgid "Choose new bottles path"
 msgstr "Trieu el camí de les ampolles noves"
 
 #: bottles/frontend/views/preferences.py:199 src/views/preferences.py:236
+#, fuzzy
 msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
+msgstr "Basat en el Wine de Valve, inclou escenificacions i pegats de protons."
 
 #: bottles/frontend/views/preferences.py:200 src/views/preferences.py:237
 msgid "Based on Wine upstream, includes staging and Proton patches."
