@@ -55,7 +55,6 @@ class CrashReportDialog(Adw.Window):
     __gtype_name__ = 'CrashReportDialog'
 
     # region Widgets
-    btn_cancel = Gtk.Template.Child()
     btn_send = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
     label_notice = Gtk.Template.Child()
@@ -73,7 +72,6 @@ class CrashReportDialog(Adw.Window):
             log = "".join(log)
 
         # connect signals
-        self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_send.connect("clicked", self.__open_github, log)
         self.check_unlock_send.connect('toggled', self.__on_unlock_send)
 
@@ -160,9 +158,6 @@ class CrashReportDialog(Adw.Window):
 
         return similar_issues
 
-    def __close_window(self, widget=None):
-        self.destroy()
-
     '''Run executable with args'''
 
     def __open_github(self, widget, log):
@@ -211,4 +206,4 @@ class CrashReportDialog(Adw.Window):
             f"&body={template}"
         ]
         webbrowser.open("".join(issue_url))
-        self.__close_window()
+        self.close()
