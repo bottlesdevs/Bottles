@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-23 17:34+0000\n"
+"PO-Revision-Date: 2022-08-25 18:21+0000\n"
 "Last-Translator: c0m1c5an5 <m.kondratenko.ua@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bottles/"
 "bottles/uk/>\n"
@@ -130,9 +130,8 @@ msgid "Caching template…"
 msgstr "Кешування шаблону…"
 
 #: bottles/backend/managers/versioning.py:97
-#, fuzzy
 msgid "Committing state …"
-msgstr "Оновлення станів…"
+msgstr "Збереження стану…"
 
 #: bottles/backend/managers/versioning.py:106
 msgid "Nothing to commit"
@@ -144,24 +143,21 @@ msgid "New state [{0}] created successfully!"
 msgstr "Новий стан [{0}] успішно створено!"
 
 #: bottles/backend/managers/versioning.py:140
-#, fuzzy
 msgid "States list retrieved successfully!"
-msgstr "Новий стан [{0}] успішно створено!"
+msgstr "Список станів успішно оновлено!"
 
 #: bottles/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "Новий стан [{0}] успішно створено!"
+msgstr "Стан [{0}] успішно відновлено!"
 
 #: bottles/backend/managers/versioning.py:176
-#, fuzzy
 msgid "Restoring state {} …"
-msgstr "Оновлення станів…"
+msgstr "Відновлення стану {}…"
 
 #: bottles/backend/managers/versioning.py:185
-#, fuzzy
 msgid "State not found"
-msgstr "Збережених станів «пляшки» не знайдено"
+msgstr "Стан не знайдено"
 
 #: bottles/backend/managers/versioning.py:191
 msgid "State {} is already the active state"
@@ -225,14 +221,12 @@ msgid "Select"
 msgstr "Обрати"
 
 #: bottles/frontend/windows/envvars.py:131
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Немає збережених змінних середовища"
+msgstr "Змінні середовища не визначено."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
-#, fuzzy
 msgid "No exclusion patterns defined."
-msgstr "Немає збережених змінних середовища"
+msgstr "Шаблони виключення не визначені."
 
 #: bottles/frontend/windows/filechooser.py:63
 #: bottles/frontend/ui/dialog-gamescope.ui:34
@@ -257,9 +251,8 @@ msgid "Select Resource FIle"
 msgstr "Виберіть «Файл ресурсів»"
 
 #: bottles/frontend/windows/installer.py:115
-#, fuzzy
 msgid "Installing Windows dependencies…"
-msgstr "Встановлення залежності: %s …"
+msgstr "Встановлення залежностей Windows…"
 
 #: bottles/frontend/windows/installer.py:116
 msgid "Configuring the bottle…"
@@ -270,18 +263,17 @@ msgid "Processing installer steps…"
 msgstr "Обробка кроків інсталятора…"
 
 #: bottles/frontend/windows/installer.py:118
-#, fuzzy
 msgid "Installing the {}…"
-msgstr "Встановлення DXVK …"
+msgstr "Встановлення {} …"
 
 #: bottles/frontend/windows/installer.py:119
 msgid "Performing final checks…"
 msgstr "Виконання фінальних перевірок…"
 
 #: bottles/frontend/windows/installer.py:123
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing {0}…"
-msgstr "Встановлення DXVK …"
+msgstr "Встановлення {0}…"
 
 #: bottles/frontend/windows/installer.py:125
 #, python-brace-format
@@ -317,20 +309,17 @@ msgid "Choose the script"
 msgstr "Оберіть скрипт"
 
 #: bottles/frontend/windows/launchoptions.py:256
-#, fuzzy
 msgid "Choose the Working Directory"
-msgstr "Виберіть робочий каталог для виконуваних файлів"
+msgstr "Виберіть Робочий Каталог"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
-#, fuzzy
 msgid "Choose a file."
-msgstr "Оберіть скрипт"
+msgstr "Оберіть файл."
 
 #: bottles/frontend/windows/vkbasalt.py:306
-#, fuzzy
 msgid "File not Found"
-msgstr "Збережених станів «пляшки» не знайдено"
+msgstr "Файл не Знайдено"
 
 #: bottles/frontend/windows/vkbasalt.py:307
 msgid "The given file does not exist. Please choose an appropriate file."
@@ -405,9 +394,8 @@ msgid "[Refresh] request received."
 msgstr "[Оновити] запит отриманий."
 
 #: bottles/frontend/operation.py:50
-#, fuzzy
 msgid "Calculating…"
-msgstr "Підрахунок..."
+msgstr "Обчислення…"
 
 #: bottles/frontend/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
@@ -467,14 +455,12 @@ msgid "Report a Bug…"
 msgstr "Повідомити про Помилку…"
 
 #: bottles/frontend/ui/dependency-entry.ui:50
-#, fuzzy
 msgid "Dependency name"
-msgstr "Залежності"
+msgstr "Ім'я залежності"
 
 #: bottles/frontend/ui/dependency-entry.ui:52
-#, fuzzy
 msgid "Dependency description"
-msgstr "Залежності"
+msgstr "Опис залежності"
 
 #: bottles/frontend/ui/dependency-entry.ui:59
 msgid "Category"
@@ -498,9 +484,8 @@ msgid "Troubleshooting"
 msgstr "Вирішення проблем"
 
 #: bottles/frontend/ui/details-bottle.ui:26
-#, fuzzy
 msgid "Browse Files…"
-msgstr "Перегляд файлів"
+msgstr "Перегляд файлів…"
 
 #: bottles/frontend/ui/details-bottle.ui:31
 #, fuzzy
@@ -1324,11 +1309,11 @@ msgstr "Зберегти стан екземпляру bottle."
 
 #: bottles/frontend/ui/details-versioning.ui:88
 msgid "Create new state"
-msgstr ""
+msgstr "Створити новий стан"
 
 #: bottles/frontend/ui/details.ui:74
 msgid "Operations"
-msgstr ""
+msgstr "Операції"
 
 #: bottles/frontend/ui/dialog-bottle-picker.ui:6
 #, fuzzy
@@ -1342,17 +1327,20 @@ msgstr "Пляшки"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:10
 msgid "Bottles crash report"
-msgstr ""
+msgstr "Звіти про аварійне завершення Bottles"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:23
 msgid "Send report"
-msgstr ""
+msgstr "Надіслати звіт"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:43
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"Минулого разу Bottles вийшов з ладу. Будь ласка, заповніть звіт, що "
+"доповнюватиме наступну інформацію, щоб допомогти нам ідентифікувати помилки "
+"та запобігти їхньому повторенню."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:75
 msgid ""
@@ -1361,18 +1349,22 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Ми знайшли один або кілька схожих (або ідентичних) звітів. Будь ласка, "
+"уважно перевірте, чи Ви не створювали подібний звіт раніше. Кожен звіт "
+"потребує зусиль з боку розробників для діагностики, будь ласка, поважайте "
+"їхню роботу та переконайтеся, що ви не публікуєте дублікатів."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:96
 msgid "I still want to report."
-msgstr ""
+msgstr "Все одно надіслати."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:102
 msgid "Advanced options"
-msgstr ""
+msgstr "Розширені опції"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:15
 msgid "Incomplete package"
-msgstr ""
+msgstr "Неповний пакет"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:16
 msgid ""
@@ -1381,28 +1373,33 @@ msgid ""
 "version.\n"
 "                        "
 msgstr ""
+"Здається, ця версія Bottles не надає всіх необхідних основних залежностей, "
+"будь ласка, зв’яжіться з розробником або скористайтеся офіційною версією.\n"
+"                        "
 
 #: bottles/frontend/ui/dialog-deps-check.ui:21
 msgid "Quit"
-msgstr ""
+msgstr "Вихід"
 
 #: bottles/frontend/ui/dialog-dll-overrides.ui:14
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
+"Динамічні бібліотеки можуть бути вбудованими (надаються Wine) або рідними ("
+"надаються програмою)."
 
 #: bottles/frontend/ui/dialog-dll-overrides.ui:18
 msgid "New Override"
-msgstr ""
+msgstr "Нове Перевизначення"
 
 #: bottles/frontend/ui/dialog-dll-overrides.ui:26
 msgid "Overrides"
-msgstr ""
+msgstr "Перевизначення"
 
 #: bottles/frontend/ui/dialog-drives.ui:9
 msgid "Drives"
-msgstr ""
+msgstr "Диски"
 
 #: bottles/frontend/ui/dialog-drives.ui:31
 msgid ""
@@ -1416,11 +1413,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-drives.ui:35
 msgid "Letter"
-msgstr ""
+msgstr "Літера Диску"
 
 #: bottles/frontend/ui/dialog-drives.ui:59
 msgid "Existing Drives"
-msgstr ""
+msgstr "Наявні Диски"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:18
 #, fuzzy
@@ -1443,17 +1440,17 @@ msgstr "Резервне копіювання та імпорт пляшок"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:55
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr ""
+msgstr "Введіть ім'я для дублікату Bottle."
 
 #: bottles/frontend/ui/dialog-duplicate.ui:78
 msgid "Duplicating…"
-msgstr ""
+msgstr "Дуплікація…"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:87
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
 #: bottles/frontend/ui/new.ui:216
 msgid "Take a break, it may take a while."
-msgstr ""
+msgstr "Зробіть перерву, це може зайняти деякий час."
 
 #: bottles/frontend/ui/dialog-duplicate.ui:108
 #, fuzzy
@@ -1465,10 +1462,12 @@ msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Змінні середовища — це значення з динамічним іменем, які можуть впливати на "
+"поведінку процесів, запущених у bottle."
 
 #: bottles/frontend/ui/dialog-env-vars.ui:38
 msgid "Variable Name"
-msgstr ""
+msgstr "Ім'я Змінної"
 
 #: bottles/frontend/ui/dialog-env-vars.ui:46
 #, fuzzy
@@ -1477,7 +1476,7 @@ msgstr "Швидке додавання змінних середовища"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "Шаблони Виключення"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
 msgid ""
