@@ -7,6 +7,16 @@
         <property name="default-width">450</property>
         <property name="hide-on-close">True</property>
         <child>
+            <object class="GtkShortcutController">
+                <child>
+                    <object class="GtkShortcut" id="shortcut_escape">
+                        <property name="trigger">Escape</property>
+                        <property name="action">action(window.close)</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+        <child>
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
