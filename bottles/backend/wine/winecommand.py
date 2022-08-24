@@ -536,7 +536,7 @@ class WineCommand:
         )
         if not self.vmtouch_files:
             return
-            
+
         vmtouch_flags = "-e -v"
         command = vmtouch_available+" "+vmtouch_flags+" "+self.vmtouch_files
         subprocess.Popen(
@@ -575,14 +575,18 @@ class WineCommand:
             if self.terminal:
                 return TerminalUtils().execute(self.command, self.env, self.colors)
 
-            proc = subprocess.Popen(
-                self.command,
-                stdout=subprocess.PIPE,
-                shell=True,
-                env=self.env,
-                cwd=self.cwd
-            )
-            proc.wait()
+            try:
+                proc = subprocess.Popen(
+                    self.command,
+                    stdout=subprocess.PIPE,
+                    shell=True,
+                    env=self.env,
+                    cwd=self.cwd
+                )
+                proc.wait()
+            except FileNotFoundError:
+                return
+                
         res = proc.communicate()[0]
         enc = detect_encoding(res)
 
