@@ -515,7 +515,7 @@ class SteamManager:
     def add_shortcut(self, program_name: str, program_path: str):
         logging.info(f"Adding shortcut for {program_name}")
         cmd = "xdg-open"
-        args = "bottles:run/{0}/'{1}'"
+        args = "bottles:run/'{0}'/'{1}'"
 
         if self.userdata_path is None:
             logging.warning("Userdata path is not set")
