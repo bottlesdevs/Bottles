@@ -64,7 +64,7 @@ class LibraryEntry(Gtk.Box):
         else:
             name = entry['name']
 
-        self.label_name.set_text(_name)
+        self.label_name.set_text(name)
         self.label_bottle.set_text(entry['bottle']['name'])
 
         if entry.get('icon'):
