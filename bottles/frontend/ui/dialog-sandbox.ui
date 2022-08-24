@@ -8,6 +8,16 @@
         <property name="default-width">550</property>
         <property name="title" translatable="yes">Sandbox Settings</property>
         <child>
+            <object class="GtkShortcutController">
+                <child>
+                    <object class="GtkShortcut">
+                        <property name="trigger">Escape</property>
+                        <property name="action">action(window.close)</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+        <child>
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
