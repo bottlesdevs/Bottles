@@ -58,7 +58,13 @@ class LibraryEntry(Gtk.Box):
         self.config = self.__get_config()
         self.program = self.__get_program()
         self.set_size_request(240, 420)
-        self.label_name.set_text(entry['name'])
+
+        if len(entry['name']) >= 15:
+            name = entry['name'][:13] + "…"
+        else:
+            name = entry['name']
+
+        self.label_name.set_text(_name)
         self.label_bottle.set_text(entry['bottle']['name'])
 
         if entry.get('icon'):
