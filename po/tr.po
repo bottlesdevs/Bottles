@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-06-15 06:55+0000\n"
-"Last-Translator: Mücahit <mucahit@tutanota.com>\n"
+"PO-Revision-Date: 2022-08-25 18:21+0000\n"
+"Last-Translator: Dhizaes <dhizaes@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
@@ -161,7 +161,7 @@ msgstr "Durumlar güncelleniyor…"
 #: bottles/backend/managers/versioning.py:106
 #: src/backend/managers/versioning.py:106
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Güncellenecek bir şey bulunamadı"
 
 #: bottles/backend/managers/versioning.py:112
 #: src/backend/managers/versioning.py:112
@@ -183,9 +183,8 @@ msgstr "Yeni durum [{0}] başarıyla oluşturuldu!"
 
 #: bottles/backend/managers/versioning.py:176
 #: src/backend/managers/versioning.py:176
-#, fuzzy
 msgid "Restoring state {} …"
-msgstr "Şu duruma geri yükleniyor: [{0}]"
+msgstr "Durum geri yükleniyor {} …"
 
 #: bottles/backend/managers/versioning.py:185
 #: src/backend/managers/versioning.py:185
@@ -270,15 +269,13 @@ msgid "Select"
 msgstr "Seç"
 
 #: bottles/frontend/windows/envvars.py:131 src/dialogs/envvars.py:131
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Ortam değişkenleri tanımlanmadı"
+msgstr "Ortam değişkenleri tanımlanmadı."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
 #: src/dialogs/exclusionpatterns.py:108
-#, fuzzy
 msgid "No exclusion patterns defined."
-msgstr "Ortam değişkenleri tanımlanmadı"
+msgstr "Dışlanmış bir biçim tipi bulunamadı."
 
 #: bottles/frontend/windows/filechooser.py:63
 #: bottles/frontend/ui/dialog-gamescope.ui:34
@@ -329,9 +326,9 @@ msgid "Performing final checks…"
 msgstr ""
 
 #: bottles/frontend/windows/installer.py:123 src/dialogs/installer.py:123
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing {0}…"
-msgstr "DXVK kuruluyor…"
+msgstr "Kuruluyor {0}…"
 
 #: bottles/frontend/windows/installer.py:125 src/dialogs/installer.py:125
 #, python-brace-format
@@ -352,9 +349,8 @@ msgstr "Çalışmadan sonra aktif edilecek komutu seç."
 #: bottles/frontend/windows/launchoptions.py:57
 #: bottles/frontend/ui/dialog-launch-options.ui:92
 #: src/dialogs/launchoptions.py:57 src/ui/dialog-launch-options.ui:92
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "Bir Programı Başlattıktan Sonra Şişeler'i Kapat"
+msgstr "Programın nerede başlayacağını seç."
 
 #: bottles/frontend/windows/launchoptions.py:58 src/dialogs/launchoptions.py:58
 #, python-brace-format
@@ -378,9 +374,8 @@ msgstr "Çalışma Dizini"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
-#, fuzzy
 msgid "Choose a file."
-msgstr "Bir tanım dosyası seçin"
+msgstr "Dosya seç."
 
 #: bottles/frontend/windows/vkbasalt.py:306
 #, fuzzy
@@ -460,9 +455,8 @@ msgid "[Refresh] request received."
 msgstr "[Yenile] isteği alındı."
 
 #: bottles/frontend/operation.py:50 src/operation.py:50
-#, fuzzy
 msgid "Calculating…"
-msgstr "Hesaplanıyor..."
+msgstr "Hesaplanıyor…"
 
 #: bottles/frontend/ui/about.ui:8 src/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
@@ -782,9 +776,8 @@ msgstr "Eksik bağımlılığı bildir"
 
 #: bottles/frontend/ui/details-dependencies.ui:68
 #: src/ui/details-dependencies.ui:68
-#, fuzzy
 msgid "Read documentation."
-msgstr "Belgelendirmeyi oku"
+msgstr "Belgelendirmeyi oku."
 
 #: bottles/frontend/ui/details-dependencies.ui:69
 #: bottles/frontend/ui/details-installers.ui:71
@@ -1207,7 +1200,6 @@ msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.ui:465
 #: src/ui/details-preferences.ui:455
-#, fuzzy
 msgid "Windows Version"
 msgstr "Windows sürümü"
 
@@ -1219,12 +1211,12 @@ msgstr "Windows sürümü güncelleniyor, lütfen bekleyin…"
 #: bottles/frontend/ui/details-preferences.ui:496
 #: src/ui/details-preferences.ui:486
 msgid "Language"
-msgstr ""
+msgstr "Dil"
 
 #: bottles/frontend/ui/details-preferences.ui:497
 #: src/ui/details-preferences.ui:487
 msgid "Choose the language to use with programs."
-msgstr ""
+msgstr "Programlarla kullanılacak dili seçin."
 
 #: bottles/frontend/ui/details-preferences.ui:507
 #: src/ui/details-preferences.ui:497
@@ -1244,9 +1236,8 @@ msgstr "Bu Şişe için farklı bir çalıştırıcı ayarla."
 
 #: bottles/frontend/ui/details-preferences.ui:512
 #: src/ui/details-preferences.ui:502
-#, fuzzy
 msgid "Manage Sandbox permissions"
-msgstr "DXVK sürümlerini yönetin"
+msgstr "Sandbox izinlerini yönet"
 
 #: bottles/frontend/ui/details-preferences.ui:530
 #: src/ui/details-preferences.ui:520
@@ -1299,16 +1290,15 @@ msgstr "Gamescope ayarlarını yönet"
 
 #: bottles/frontend/ui/details-preferences.ui:588
 msgid "Vmtouch"
-msgstr ""
+msgstr "Vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:589
 msgid "Preload game files into RAM"
-msgstr ""
+msgstr "Oyun dosyalarını hafızaya önyükleyin"
 
 #: bottles/frontend/ui/details-preferences.ui:592
-#, fuzzy
 msgid "Manage vmtouch settings"
-msgstr "Gamescope ayarlarını yönet"
+msgstr "vmtouch ayarlarını yönet"
 
 #: bottles/frontend/ui/details-preferences.ui:610
 #: bottles/frontend/ui/dialog-launch-options.ui:91
@@ -1371,9 +1361,8 @@ msgstr "Gecikmeyi Azalt"
 
 #: bottles/frontend/ui/details-preferences.ui:676
 #: src/ui/details-preferences.ui:644
-#, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
-msgstr "PulseAudio gecikmesini 60 ms'ye ayarlarak ses kalitesini artırın"
+msgstr "PulseAudio gecikmesini 60 ms yaparak ses kalitesini arttırın."
 
 #: bottles/frontend/ui/details-preferences.ui:688
 #: bottles/frontend/views/details.py:170 src/ui/details-preferences.ui:656
@@ -1384,25 +1373,28 @@ msgstr "Sürüm oluşturma"
 #: bottles/frontend/ui/details-preferences.ui:692
 #: src/ui/details-preferences.ui:660
 msgid "Use Compression for States"
-msgstr ""
+msgstr "Durumlar için sıkıştırma kullan"
 
 #: bottles/frontend/ui/details-preferences.ui:693
 #: src/ui/details-preferences.ui:661
 msgid ""
 "This will reduce the space used by the states but slow down their creation."
 msgstr ""
+"Durumların kullandığı disk alanını azaltır fakat durum oluşturma süresini "
+"uzatır."
 
 #: bottles/frontend/ui/details-preferences.ui:704
 #: src/ui/details-preferences.ui:672
-#, fuzzy
 msgid "Automatic Versioning"
-msgstr "Sürüm oluşturma"
+msgstr "Otomatik sürüm oluşturma"
 
 #: bottles/frontend/ui/details-preferences.ui:705
 #: src/ui/details-preferences.ui:673
 msgid ""
 "Bottles will create a state before running any dependencies or installers."
 msgstr ""
+"Şişeler bir yükleyici veya kütüphane kurmadan önce yeni bir durum "
+"oluşturacak."
 
 #: bottles/frontend/ui/details-preferences.ui:716
 #: src/ui/details-preferences.ui:684
@@ -1416,9 +1408,8 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:720
 #: src/ui/details-preferences.ui:688
-#, fuzzy
 msgid "Manage Patterns"
-msgstr "Çalıştırıcıları yönet"
+msgstr "Çalıştırıcıları Yönet"
 
 #: bottles/frontend/ui/details-preferences.ui:739
 #: src/ui/details-preferences.ui:707
@@ -1464,23 +1455,20 @@ msgid "No Programs found"
 msgstr "Hiçbir program bulunamadı"
 
 #: bottles/frontend/ui/details-programs.ui:10 src/ui/details-programs.ui:10
-#, fuzzy
 msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button."
 msgstr ""
 "Kurucular bölümünden veya kurucu dosyasını çalıştırarak programları kurun, "
-"ayrıca \"+\" düğmesiyle çalıştırılabilir dosyaları elle ekleyebilirsiniz"
+"ayrıca \"+\" düğmesiyle çalıştırılabilir dosyaları elle ekleyebilirsiniz."
 
 #: bottles/frontend/ui/details-programs.ui:31 src/ui/details-programs.ui:31
-#, fuzzy
 msgid "Toggle Hidden"
-msgstr "Aramayı aç/kapat"
+msgstr "Görünürlüğü aç/kapat"
 
 #: bottles/frontend/ui/details-programs.ui:36 src/ui/details-programs.ui:36
-#, fuzzy
 msgid "Search for new programs"
-msgstr "Kurulu programları arayın"
+msgstr "Yeni programları arayın"
 
 #: bottles/frontend/ui/details-programs.ui:55 src/ui/details-programs.ui:55
 msgid "Add a custom executable path"
@@ -1497,18 +1485,16 @@ msgid "Stop process"
 msgstr "İşlemi durdur"
 
 #: bottles/frontend/ui/details-versioning.ui:25 src/ui/details-versioning.ui:25
-#, fuzzy
 msgid "No States Found"
-msgstr "Durum bulunamadı"
+msgstr "Durum Bulunamadı"
 
 #: bottles/frontend/ui/details-versioning.ui:26 src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
 msgstr "Sürüm oluşturmayı kullanmaya başlamak için ilk durumu oluşturun."
 
 #: bottles/frontend/ui/details-versioning.ui:63 src/ui/details-versioning.ui:63
-#, fuzzy
 msgid "A short comment"
-msgstr "Gerçekten kısa bir yorum"
+msgstr "Kısa bir yorum"
 
 #: bottles/frontend/ui/details-versioning.ui:68 src/ui/details-versioning.ui:68
 msgid "Save the bottle state."
@@ -1577,7 +1563,7 @@ msgstr "Gelişmiş seçenekler"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:15 src/ui/dialog-deps-check.ui:15
 msgid "Incomplete package"
-msgstr ""
+msgstr "Tamamlanmamış paket"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:16 src/ui/dialog-deps-check.ui:16
 msgid ""
@@ -1617,14 +1603,14 @@ msgid "Drives"
 msgstr "Sürücüler"
 
 #: bottles/frontend/ui/dialog-drives.ui:31 src/ui/dialog-drives.ui:31
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…).\n"
 "                                "
 msgstr ""
-"Bunlar, ana sisteminizden eşlenen ve çalıştırıcı tarafından aygıtlar "
-"(örneğin.C: D:..) olarak tanınan yollardır."
+"Bunlar, ana sisteminizden eşlenen ve çalıştırıcı tarafından aygıtlar (örneğin"
+".C: D:..) olarak tanınan yollardır.\n"
+"                                "
 
 #: bottles/frontend/ui/dialog-drives.ui:35 src/ui/dialog-drives.ui:35
 msgid "Letter"
@@ -1635,7 +1621,6 @@ msgid "Existing Drives"
 msgstr "Mevcut Sürücüler"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:18 src/ui/dialog-duplicate.ui:18
-#, fuzzy
 msgid "Duplicate Bottle"
 msgstr "Şişeyi kopyala"
 
@@ -1649,9 +1634,8 @@ msgid "Duplicate"
 msgstr "Kopyala"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:55 src/ui/dialog-duplicate.ui:55
-#, fuzzy
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Yeni şişe için bir ad yazın:"
+msgstr "Kopyalanan Şişe için bir isim girin."
 
 #: bottles/frontend/ui/dialog-duplicate.ui:78 src/ui/dialog-duplicate.ui:78
 msgid "Duplicating…"
@@ -1661,9 +1645,8 @@ msgstr "Kopyalanıyor…"
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
 #: bottles/frontend/ui/new.ui:216 src/ui/dialog-duplicate.ui:87
 #: src/ui/dialog-upgrade-versioning.ui:121 src/ui/new.ui:216
-#, fuzzy
 msgid "Take a break, it may take a while."
-msgstr "Biraz ara verin, bu biraz zaman alabilir"
+msgstr "Biraz ara verin, bu biraz zaman alabilir."
 
 #: bottles/frontend/ui/dialog-duplicate.ui:108 src/ui/dialog-duplicate.ui:108
 #, fuzzy
@@ -1680,7 +1663,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-env-vars.ui:38 src/ui/dialog-env-vars.ui:38
 msgid "Variable Name"
-msgstr ""
+msgstr "Değişken Adı"
 
 #: bottles/frontend/ui/dialog-env-vars.ui:46 src/ui/dialog-env-vars.ui:46
 #, fuzzy
@@ -1722,7 +1705,6 @@ msgstr ""
 "Gamescope'un oyunların pencere ayarlarını nasıl yönetmesi gerektiğini ayarla."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:51 src/ui/dialog-gamescope.ui:51
-#, fuzzy
 msgid "Game Resolution"
 msgstr "Oyun çözünürlüğü"
 
@@ -1763,7 +1745,6 @@ msgid "Frame Rate Limit (When Unfocused)"
 msgstr "Çizim sıklığı limiti (Odak dışındayken)"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:96 src/ui/dialog-gamescope.ui:96
-#, fuzzy
 msgid "Use Integer Scaling"
 msgstr "Tamsayı ölçeklemeyi kullan"
 
@@ -1824,9 +1805,8 @@ msgstr "Başlatma Seçenekleri"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:47
 #: src/ui/dialog-launch-options.ui:47
-#, fuzzy
 msgid "Those arguments will be passed at launch."
-msgstr "Bu argümanlar program başlangıcında aktarılır:"
+msgstr "Bu argümanlar program başlangıcında aktarılır."
 
 #: bottles/frontend/ui/dialog-launch-options.ui:48
 #: src/ui/dialog-launch-options.ui:48
@@ -1842,9 +1822,9 @@ msgstr "Argümanları ilet"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:52
 #: src/ui/dialog-launch-options.ui:52
-#, fuzzy, c-format
+#, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "örneğin: VAR=değer %komut% -örnek1 -örnek2 -örnek3=merhaba"
+msgstr "örnek: VAR=değer %komut% -örnek1 -örnek2 -örnek3=merhaba"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:58
 #: src/ui/dialog-launch-options.ui:58
@@ -1914,7 +1894,7 @@ msgstr ""
 
 #: src/ui/dialog-rename.ui:37
 msgid "New Name"
-msgstr "Yeni  Ad"
+msgstr "Yeni Ad"
 
 #: bottles/frontend/ui/dialog-run-args.ui:14 src/ui/dialog-run-args.ui:14
 msgid "Run With Arguments"
@@ -2120,9 +2100,8 @@ msgid "Reset to Default"
 msgstr "Varsayılana sıfırla"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:448
-#, fuzzy
 msgid "Select a File"
-msgstr "Bottle'ı Sil…"
+msgstr "Dosya Seç"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:482
 msgid ""
@@ -2278,14 +2257,12 @@ msgid "Full Archive"
 msgstr "Tam Arşiv"
 
 #: bottles/frontend/ui/installer-entry.ui:18 src/ui/installer-entry.ui:18
-#, fuzzy
 msgid "Show Manifest…"
-msgstr "Belirgin göster"
+msgstr "Bilgileri Göster…"
 
 #: bottles/frontend/ui/installer-entry.ui:23 src/ui/installer-entry.ui:23
-#, fuzzy
 msgid "Read Review…"
-msgstr "İncelemeyi oku"
+msgstr "İncelemeyi oku…"
 
 #: src/ui/installer-entry.ui:40
 msgid "Installer name"
@@ -2614,9 +2591,8 @@ msgid "Steam Proton Prefixes"
 msgstr "Steam Proton Prefix'leri"
 
 #: bottles/frontend/ui/preferences.ui:91 src/ui/preferences.ui:91
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Steam Proton Prefix'leri"
+msgstr "Steam Proton öntanımlamalarını listeleyin ve yönetin."
 
 #: src/ui/preferences.ui:95
 msgid "Read Documentation"
@@ -2960,9 +2936,8 @@ msgid "Installers"
 msgstr "Kurucular"
 
 #: bottles/frontend/views/details.py:377 src/views/details.py:377
-#, fuzzy
 msgid "Operations in progress, please wait."
-msgstr "Windows sürümü güncelleniyor, lütfen bekleyin…"
+msgstr "İşlem yapılıyor, lütfen bekleyin."
 
 #: bottles/frontend/views/details.py:381 src/views/details.py:381
 #, fuzzy
@@ -3005,9 +2980,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr ""
 
 #: bottles/frontend/views/new.py:133
-#, fuzzy
 msgid "Name has special characters or already in use."
-msgstr "Özel karakterler kullanmayınız!"
+msgstr "Bu isim özel karakterler içeriyor veya zaten kullanımda."
 
 #: bottles/frontend/views/new.py:150 src/views/new.py:142
 msgid "Choose a recipe file"
@@ -3283,9 +3257,8 @@ msgid "Exclude paths from versioning using patterns"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "Use compression for versioning states"
-msgstr "Sürüm oluşturma durumu 0 oluşturuluyor…"
+msgstr "Durum sürümlendirmesi için sıkıştırma kullan"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
@@ -3477,28 +3450,24 @@ msgid "Steam apps listing"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Listede güncelleme tarihini göster/gizle"
+msgstr "Steam uygulama listelerini aç/kapa."
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Epic Games Store .."
+msgstr "Epic Games listesi"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "Listede güncelleme tarihini göster/gizle"
+msgstr "Epic Games listelerini aç/kapa."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Toggle ubisoft connect listing."
-msgstr "Listede güncelleme tarihini göster/gizle"
+msgstr "Ubisoft Connect listelerini aç/kapa."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
@@ -3595,9 +3564,8 @@ msgid "Show sandbox warning"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:92
-#, fuzzy
 msgid "Toggle sandbox warning."
-msgstr "Listede güncelleme tarihini göster/gizle"
+msgstr "Sandbox uyarılarını aç/kapa."
 
 #, fuzzy
 #~ msgid "Loading…"
