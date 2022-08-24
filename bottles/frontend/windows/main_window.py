@@ -168,12 +168,11 @@ class MainWindow(Adw.ApplicationWindow):
                 name="page_list",
                 title=_("Bottles")
             ).set_icon_name("com.usebottles.bottles-symbolic")
-            if self.settings.get_boolean("experiments-library"):
-                self.stack_main.add_titled(
-                    child=self.page_library,
-                    name="page_library",
-                    title=_("Library")
-                ).set_icon_name("emote-love-symbolic")
+            self.stack_main.add_titled(
+                child=self.page_library,
+                name="page_library",
+                title=_("Library")
+            ).set_icon_name("emote-love-symbolic")
 
             self.page_list.search_bar.set_key_capture_widget(self)
             self.btn_search.bind_property('active', self.page_list.search_bar, 'search-mode-enabled',
