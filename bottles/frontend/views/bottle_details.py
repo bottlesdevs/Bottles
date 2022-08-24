@@ -160,6 +160,9 @@ class BottleView(Adw.PreferencesPage):
         # check for old versioning system enabled
         if config["Versioning"]:
             self.__upgrade_versioning()
+        
+        if config["Runner"] not in self.manager.runners_available:
+            self.__alert_missing_runner()
 
     def update_programs(self, widget=False, config=None):
         if config is None:
@@ -320,7 +323,6 @@ class BottleView(Adw.PreferencesPage):
         it will ask the manager to delete the bottle and will return
         to the bottles list.
         """
-
         def handle_response(_widget, response_id):
             if response_id == "ok":
                 RunAsync(self.manager.delete_bottle, config=self.config)
@@ -333,6 +335,24 @@ class BottleView(Adw.PreferencesPage):
             _("Are you sure you want to delete this Bottle and all files?")
         )
         dialog.add_response("cancel", _("Cancel"))
+        dialog.add_response("ok", _("Confirm"))
+        dialog.connect("response", handle_response)
+        dialog.present()
+
+    def __alert_missing_runner(self):
+        """
+        This function pop up a dialog which alert the user that the runner
+        specified in the bottle configuration is missing.
+        """
+        def handle_response(_widget, response_id):
+            _widget.destroy()
+
+        dialog = Adw.MessageDialog.new(
+            self.window,
+            _("Missing Runner"),
+            _("The runner requested by this bottle is missing, install it trought \
+the Bottles' preferences or choose a new one to run applications.")
+        )
         dialog.add_response("ok", _("Confirm"))
         dialog.connect("response", handle_response)
         dialog.present()
