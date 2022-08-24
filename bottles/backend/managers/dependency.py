@@ -539,6 +539,9 @@ class DependencyManager:
 
         if isinstance(dest, bool):
             return dest
+            
+        if not os.path.exists(dest):
+            os.makedirs(dest)
 
         try:
             if "*" in step.get('file_name'):
