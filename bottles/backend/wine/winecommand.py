@@ -101,6 +101,7 @@ class WineCommand:
         self.env = self.get_env(environment)
         self.communicate = communicate
         self.colors = colors
+        self.vmtouch_files = None
 
     def __get_cwd(self, cwd) -> str:
         config = self.config
@@ -533,6 +534,9 @@ class WineCommand:
             env=self.env,
             cwd=self.cwd,
         )
+        if not self.vmtouch_files:
+            return
+            
         vmtouch_flags = "-e -v"
         command = vmtouch_available+" "+vmtouch_flags+" "+self.vmtouch_files
         subprocess.Popen(
