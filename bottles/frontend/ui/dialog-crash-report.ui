@@ -4,7 +4,7 @@
     <requires lib="libadwaita" version="1.0"/>
     <template class="CrashReportDialog" parent="AdwWindow">
         <property name="resizable">False</property>
-        <property name="deletable">False</property>
+        <property name="deletable">True</property>
         <property name="modal">True</property>
         <property name="default-width">550</property>
         <property name="title" translatable="yes">Bottles Crash Report</property>
@@ -64,6 +64,7 @@
                         </child>
                         <child>
                             <object class="GtkBox" id="box_related">
+                                <property name="visible">False</property>
                                 <property name="spacing">10</property>
                                 <property name="orientation">vertical</property>
                                 <child>
@@ -87,10 +88,7 @@
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="GtkListBox" id="list_reports">
-                                        <style>
-                                            <class name="content"/>
-                                        </style>
+                                    <object class="AdwPreferencesGroup" id="list_reports">
                                     </object>
                                 </child>
                                 <child>
