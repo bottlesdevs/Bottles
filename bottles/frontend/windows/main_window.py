@@ -177,7 +177,17 @@ class MainWindow(Adw.ApplicationWindow):
             self.page_list.search_bar.set_key_capture_widget(self)
             self.btn_search.bind_property('active', self.page_list.search_bar, 'search-mode-enabled',
                                           GObject.BindingFlags.BIDIRECTIONAL)
-            self.stack_main.set_visible_child_name("page_list")
+
+            if self.stack_main.get_child_by_name(self.settings.get_string("startup-view")) is None:
+                self.stack_main.set_visible_child_name("page_list")
+
+            self.settings.bind(
+                "startup-view",
+                self.stack_main,
+                "visible-child-name",
+                Gio.SettingsBindFlags.DEFAULT
+            )
+
             self.lock_ui(False)
             self.headerbar.get_style_context().remove_class("flat")
 
