@@ -26,18 +26,14 @@ from gi.repository import Gtk, Adw
 from bottles.frontend.params import VERSION  # pyright: reportMissingImports=false
 
 
-class SimilarReportEntry(Gtk.Box):
+class SimilarReportEntry(Adw.ActionRow):
     def __init__(self, report: dict):
-        super().__init__(
-            orientation=Gtk.Orientation.HORIZONTAL,
-            spacing=6
-        )
+        super().__init__()
 
-        label_report = Gtk.Label.new(report["title"])
+        self.set_title(report["title"])
         btn_report = Gtk.Button(label=_("Show report"))
-
-        self.append(label_report)
-        self.append(btn_report)
+        btn_report.add_css_class("flat")
+        self.add_suffix(btn_report)
 
         btn_report.connect("clicked", self.__on_btn_report_clicked, report)
 
@@ -77,7 +73,6 @@ class CrashReportDialog(Adw.Window):
 
         self.label_output.set_text(log)
         __similar_reports = self.__get_similar_issues(log)
-
         if len(__similar_reports) >= 5:
             '''
             This issue was reported 5 times, preventing the user from
@@ -98,7 +93,7 @@ class CrashReportDialog(Adw.Window):
             '''
             i = 0
             for issue in __similar_reports:
-                self.list_reports.append(SimilarReportEntry(issue))
+                self.list_reports.add(SimilarReportEntry(issue))
                 i += 1
                 if i == 5:
                     break
@@ -153,7 +148,7 @@ class CrashReportDialog(Adw.Window):
 
             for d in data:
                 similarity = CrashReportDialog.__get_similarity(log, d)
-                if similarity >= 19:
+                if similarity >= 18:
                     similar_issues.append(d)
 
         return similar_issues
