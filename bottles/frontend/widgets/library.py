@@ -56,6 +56,10 @@ class LibraryEntry(Gtk.Box):
         self.uuid = uuid
         self.entry = entry
         self.config = self.__get_config()
+        if self.config is None:
+            self.__remove_entry()
+            return
+
         self.program = self.__get_program()
         self.set_size_request(240, 420)
 
@@ -154,7 +158,7 @@ class LibraryEntry(Gtk.Box):
             name=self.program["executable"]
         )
 
-    def __remove_entry(self, widget):
+    def __remove_entry(self, *args):
         self.library.remove_entry(self.uuid)
 
     def __calculate_button_color(self, path):
