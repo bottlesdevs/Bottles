@@ -2,8 +2,8 @@
 APP_NAME = "Bottles"
 APP_NAME_LOWER = APP_NAME.lower()
 APP_ID = "com.usebottles.bottles"
-VERSION = "2022.8.28-brescia-1"
-VERSION_NUM = "2022.8.28-brescia-1"
+VERSION = "2022.8.28-brescia-2"
+VERSION_NUM = "2022.8.28-brescia-2"
 BUILD_TYPE = "prod"
 
 # Internal settings not user editable
