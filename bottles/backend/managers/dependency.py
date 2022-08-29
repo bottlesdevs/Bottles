@@ -258,6 +258,12 @@ class DependencyManager:
                 step=step
             )
 
+        if step["action"] == "override_dll":
+            self.__step_override_dll(
+                config=config,
+                step=step
+            )
+
         if step["action"] == "set_register_key":
             self.__step_set_register_key(
                 config=config,
