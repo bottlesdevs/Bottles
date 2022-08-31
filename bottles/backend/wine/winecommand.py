@@ -66,7 +66,7 @@ class WineEnv:
 
         if self.has(key):
             values = self.__env[key] + sep + values
-        self.add(key, values)
+        self.add(key, values, True)
 
     def has(self, key):
         return key in self.__env
@@ -360,12 +360,10 @@ class WineCommand:
         if env.is_empty("WINEDLLOVERRIDES"):
             env.remove("WINEDLLOVERRIDES")
 
-        # Wine prefix
         if not return_steam_env:
+            # Wine prefix
             env.add("WINEPREFIX", bottle, override=True)
-
-        # Wine arch
-        if not return_steam_env:
+            # Wine arch
             env.add("WINEARCH", arch)
 
         return env.get()["envs"]
