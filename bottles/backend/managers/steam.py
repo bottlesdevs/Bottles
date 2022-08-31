@@ -269,7 +269,7 @@ class SteamManager:
                 logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping…")
                 continue
 
-            if _acf["AppState"]["name"] == "Proton Experimental":
+            if "Proton" in _acf["AppState"]["name"]:
                 # skip Proton default prefix
                 continue
 
