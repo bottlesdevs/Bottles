@@ -32,12 +32,12 @@ class WineExecutor:
             move_upd_fn: callable = None,
             post_script: str = None,
             monitoring: list = None,
-            override_dxvk: bool = False,
-            override_vkd3d: bool = False,
-            override_nvapi: bool = False,
-            override_fsr: bool = False,
-            override_pulse_latency: bool = False,
-            override_virt_desktop: bool = False
+            override_dxvk: bool = None,
+            override_vkd3d: bool = None,
+            override_nvapi: bool = None,
+            override_fsr: bool = None,
+            override_pulse_latency: bool = None,
+            override_virt_desktop: bool = None
     ):
         logging.info("Launching an executable…")
         self.config = config
@@ -63,16 +63,26 @@ class WineExecutor:
         self.use_virt_desktop = override_virt_desktop
 
         env_dll_overrides = []
-        if not override_dxvk and self.config["Parameters"]["dxvk"]:
-            env_dll_overrides.append("d3d9,d3d11,d3d10core,dxgi=b")
-        if not override_vkd3d and self.config["Parameters"]["vkd3d"]:
-            env_dll_overrides.append("d3d12=b")
-        if not override_nvapi and self.config["Parameters"]["dxvk_nvapi"]:
-            env_dll_overrides.append("nvapi,nvapi64=b")
-        if override_fsr:
+        if override_dxvk is not None \
+            and not override_dxvk \
+            and self.config["Parameters"]["dxvk"]:
+                env_dll_overrides.append("d3d9,d3d11,d3d10core,dxgi=b")
+
+        if override_vkd3d is not None \
+            and not override_vkd3d \
+            and self.config["Parameters"]["vkd3d"]:
+                env_dll_overrides.append("d3d12=b")
+
+        if override_nvapi is not None \
+            and not override_nvapi \
+            and self.config["Parameters"]["dxvk_nvapi"]:
+                env_dll_overrides.append("nvapi,nvapi64=b")
+
+        if override_fsr is not None and override_fsr:
             self.environment["WINE_FULLSCREEN_FSR"] = "1"
             self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(self.config['Parameters']['fsr_level'])
-        if override_pulse_latency:
+
+        if override_pulse_latency is not None and override_pulse_latency:
             self.environment["PULSE_LATENCY_MSEC"] = "60"
 
         if "WINEDLLOVERRIDES" in self.environment:
