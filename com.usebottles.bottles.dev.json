@@ -15,6 +15,7 @@
     "--socket=wayland",
     "--socket=pulseaudio",
     "--device=all",
+    "--filesystem=xdg-download",
     "--system-talk-name=org.freedesktop.UDisks2",
     "--talk-name=org.freedesktop.Notifications",
     "--env=LD_LIBRARY_PATH=/app/lib:/app/lib32",
@@ -80,7 +81,7 @@
   ],
   "modules": [
     {
-      "name": "PyYAML",
+      "name": "python-pillow",
       "buildsystem": "simple",
       "build-commands": [
         "python3 setup.py install --prefix=/app --root=/"
@@ -88,8 +89,37 @@
       "sources": [
         {
           "type": "archive",
+          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/9.2.0.tar.gz",
+          "sha256": "95836f00972dbf724bf1270178683a0ac4ea23c6c3a980858fc9f2f9456e32ef"
+        }
+      ]
+    },
+    {
+      "name": "PyYAML",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python3 setup.py --with-libyaml install --prefix=/app --root=/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
           "url": "https://github.com/yaml/pyyaml/archive/refs/tags/6.0.tar.gz",
           "sha256": "f33eaba25d8e0c1a959bbf00655198c287dfc5868f5b7b01e401eaa1796cc778"
+        }
+      ],
+      "modules": [
+        {
+          "name": "libyaml",
+          "config-opts": [
+            "--disable-static"
+          ],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://github.com/yaml/libyaml/releases/download/0.2.5/yaml-0.2.5.tar.gz",
+              "sha256": "c642ae9b75fee120b2d96c712538bd2cf283228d2337df2cf2988e3c02678ef4"
+            }
+          ]
         }
       ]
     },
@@ -224,7 +254,7 @@
       "buildsystem": "simple",
       "build-commands" : [
         "make",
-	"make install PREFIX=/app"
+        "make install PREFIX=/app"
       ],
       "sources": [
         {
@@ -537,7 +567,7 @@
         {
           "type": "git",
           "url": "https://github.com/mirkobrombin/FVS",
-          "tag": 0.1,
+          "tag": "0.1",
           "commit": "cecae479fff8d61ce9480fce067d6998bcb9d1d2",
           "x-checker-data": {
             "type": "json",
@@ -553,13 +583,13 @@
           "name": "orjson",
           "buildsystem": "simple",
           "build-commands": [
-            "python3 setup.py install --prefix=/app --root=/"
+            "pip3 install --prefix /app --no-deps orjson-*.whl"
           ],
           "sources": [
             {
               "type": "archive",
-              "url": "https://github.com/ijl/orjson/archive/refs/tags/3.7.8.tar.gz",
-              "sha256": "6ad913aa0490b6db67ebd6879cbef57f90a84c1fe611454aeaa99afa03dc8213"
+              "url": "https://files.pythonhosted.org/packages/d6/79/174c198de7beb2f5ce06c41ecafb1aafc0714bb61a051ad9dfbc2fed76e8/orjson-3.7.8-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+              "sha256": "7ef66e7c47e9531dfa3b3ffb791b548c84903570b0914b01acc5eeb56ff5bc33"
             }
           ]
         }
