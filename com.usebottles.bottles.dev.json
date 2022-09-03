@@ -252,16 +252,16 @@
     {
       "name": "vmtouch",
       "buildsystem": "simple",
-      "build-commands" : [
-        "make",
-        "make install PREFIX=/app"
-      ],
       "sources": [
         {
-	  "type": "git",
-	  "url": "https://github.com/hoytech/vmtouch",
-	  "commit": "8f6898e3c027f445962e223ca7a7b33d40395fc6"
-	}
+          "type": "git",
+          "url": "https://github.com/hoytech/vmtouch",
+          "commit": "8f6898e3c027f445962e223ca7a7b33d40395fc6"
+        }
+      ],
+      "build-commands": [
+        "make",
+        "make install PREFIX=/app"
       ]
     },
     {
@@ -567,8 +567,8 @@
         {
           "type": "git",
           "url": "https://github.com/mirkobrombin/FVS",
-          "tag": "0.1",
-          "commit": "cecae479fff8d61ce9480fce067d6998bcb9d1d2",
+          "tag": "0.3.4",
+          "commit": "4e76dc54028a88099c72ec3a925b5f059f442d05",
           "x-checker-data": {
             "type": "json",
             "url": "https://api.github.com/repos/mirkobrombin/FVS/releases/latest",
@@ -587,7 +587,7 @@
           ],
           "sources": [
             {
-              "type": "archive",
+              "type": "file",
               "url": "https://files.pythonhosted.org/packages/d6/79/174c198de7beb2f5ce06c41ecafb1aafc0714bb61a051ad9dfbc2fed76e8/orjson-3.7.8-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
               "sha256": "7ef66e7c47e9531dfa3b3ffb791b548c84903570b0914b01acc5eeb56ff5bc33"
             }
@@ -614,6 +614,9 @@
       "name": "bottles",
       "builddir": true,
       "buildsystem": "meson",
+      "config-opts": [
+        "-Ddevel=true"
+      ],
       "sources": [
         {
           "type": "dir",
