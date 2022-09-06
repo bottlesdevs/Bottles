@@ -39,7 +39,7 @@
 </div>
 
 ## 📚 Doküman
-Yeni bir sorun bildirimi açmadan önce daha önce ele alıp alınmadığını bizim [doküman](https://docs.usebottles.com)dan kontrol edin.
+Yeni bir sorun bildirimi açmadan önce daha önce ele alıp alınmadığını bizim [doküman](https://docs.usebottles.com)ımızdan kontrol edin.
 Lütfen belgelerin bazı sayfalarının hala yazılmakta olduğunu unutmayın.
 
 ## 🗣 Bottles'ın sizin dilinizi konuşmasına yardım edin
@@ -48,7 +48,7 @@ Nasıl yapılacağini [buradan](https://github.com/bottlesdevs/Bottles/tree/mast
 - Ortamlara dayalı şişeler oluşturun(kuralları ve bağımlılıkları ayarlayın)
 - Tüm denemeleriniz için özelleştirilebilir bir ortama erişim
 - Otomatik Yükleyiciler
-- Dosya yöneticinizdeki menüyü kullnarak tüm yürütülebilir dosyaları (.exe/.msi/.bat) çalıştırın 
+- Dosya yöneticinizdeki menüyü kullanarak tüm yürütülebilir dosyaları (.exe/.msi/.bat) çalıştırın 
 - Yürütülebilir dosyaların bağımsız değişkenleri için entegre yönetim ve depolama
 - Özel ortam değişkenleri desteği
 - Basitleştirilmiş DLL geçersiz kılmaları
@@ -64,7 +64,7 @@ Nasıl yapılacağini [buradan](https://github.com/bottlesdevs/Bottles/tree/mast
 - Bottles sürümleri arasında güncelleme yapılandırması
 - Eski sürümden ve diğer yöneticilerden şişeleri yedekle ve içe aktar (Lutris, POL,..)
 - Şişe versiyonlama
-- ... ve Bottles'ı kullnarak daha fazlasını keşfedebilirsiniz!
+- ... ve Bottles'ı kullanarak daha fazlasını keşfedebilirsiniz!
 
 ### 🚧 Yapım Aşamasında
 - Katmanlar (farklı katmanlardaki bağımlılıklar ve programlar) [#510](https://github.com/bottlesdevs/Bottles/issues/510)
@@ -75,7 +75,7 @@ Bottles resmi olarak [Flatpak](https://flathub.org/apps/details/com.usebottles.b
 Bottles'ı diğer dağıtımlarda nasıl kuracağınızı [burayı](https://docs.usebottles.com/getting-started/installation) okuyarak öğrenebilirsiniz
 ### Paket yapımcıları için bildirimler
 Bottles'ı paketleyeceğiniz görmekten mutluluk duyuyoruz ancak sizden bazı küçük kurallara saygı göstermenizi istiyoruz
-- Paket 'bottles' olmalıdır.Diğer dağıtımlarda son ekler kullanılabilir (ör. `bottles-git` git tabanlı paket için Arch Linux'ta) diğerlerinde ise RDNN formatı gereklidir (ör.elementary OS ve Flathub deposunda `com.usebottles.bottles`). Diğer tüm isimlendirmeler önerilmez.
+- Paket adı 'bottles' olmalıdır.Diğer dağıtımlarda son ekler kullanılabilir (ör. `bottles-git` git tabanlı paket için Arch Linux'ta) diğerlerinde ise RDNN formatı gereklidir (ör.elementary OS ve Flathub deposunda `com.usebottles.bottles`). Diğer tüm isimlendirmeler önerilmez.
 - Dış dosyaları paketlemeyin ve kodları değiştirmeyin, Açıkçası zor bir script yok paketleme için olan dosyalar hariç.
 - Paket versiyounları CalVer modelini (yıl.ay.gün) ve projenin yayın döngüsünü takip etmelidir. Bottle her ay 2 kere güncelleme sürümü yayınlar : ayın 14. günü ve 28. günü. Bir düzeltme yayımlandığında, bu sürüm sürüme eklenir (ör. 2022.2.14-1). Bottles'ın da zorunlu olmayan ve şu anda sadece Flatpak tarafından kullanılan bir kod adı var.
 
@@ -93,7 +93,7 @@ Bottles'ı paketleyeceğiniz görmekten mutluluk duyuyoruz ancak sizden bazı k�
 - [Eski sürümler kullanımdan kaldırılacak mı?](https://docs.usebottles.com/faq/updates-and-old-versions#older-versions-will-be-deprecated)
 - [Geriye dönük uyumlu mu?](https://docs.usebottles.com/faq/updates-and-old-versions#backward-compatibility)
 
-## Code of Conduct
+## Davranış Kuralları
 Bu proje [GNOME Davranış Kuralları](https://wiki.gnome.org/Foundation/CodeOfConduct) 'na uyar.
  Bottles'ı bütün alanlarda takip etmeniz beklenir, Bu deponun, projenin sosyal medyası, mesajlaşma sohbetleri ve forumları gibi. Bağnazlık ve tacize müsamaha gösterilmeyecektir.
 
