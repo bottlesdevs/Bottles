@@ -46,6 +46,7 @@ class TemplateManager:
         _uuid = str(uuid.uuid4())
         logging.info(f"Creating new template: {_uuid}")
         bottle = ManagerUtils.get_bottle_path(config)
+
         del config["Name"]
         del config["Path"]
         del config["Creation_Date"]
@@ -58,8 +59,10 @@ class TemplateManager:
             "*.yml"
             ".*"
         ]
-        _path = f"{Paths.templates}/{_uuid}"
+
+        _path = os.path.join(Paths.templates, _uuid)
         logging.info("Copying files …")
+
         with contextlib.suppress(FileNotFoundError):
             shutil.copytree(bottle, _path, symlinks=True, ignore=shutil.ignore_patterns(*ignored))
 
@@ -69,10 +72,11 @@ class TemplateManager:
             "created": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "config": config
         }
+
         with open(os.path.join(_path, "template.yml"), "w") as f:
             yaml.dump(template, f)
 
-        logging.info(f" New template {env} created", jn=True)
+        logging.info(f"New template {env} created", jn=True)
 
         if not TemplateManager.__validate_template(_uuid):
             logging.error("Template validation failed, will retry with next bottle.")
@@ -92,6 +96,12 @@ class TemplateManager:
         if path_size < 300000000:
             logging.error(f"Template {template_uuid} is too small!")
             result = False
+        
+        with open(os.path.join(template_path, "template.yml"), "r") as f:
+            template = yaml.load(f)
+            if template["uuid"] != template_uuid:
+                logging.error(f"Template {template_uuid} has invalid uuid!")
+                result = False
 
         return result
 
@@ -162,9 +172,15 @@ class TemplateManager:
 
     @staticmethod
     def unpack_template(template: dict, config: dict):
+        def copy_func(source: str, dest: str):
+            if os.path.islink(source):
+                # we don't want symlinks from templates
+                return
+            shutil.copy2(source, dest)
+
         logging.info(f"Unpacking template: {template['uuid']}")
         bottle = ManagerUtils.get_bottle_path(config)
         _path = os.path.join(Paths.templates, template['uuid'])
 
-        shutil.copytree(_path, bottle, symlinks=True, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.*'))
+        shutil.copytree(_path, bottle, symlinks=True, dirs_exist_ok=True, ignore=shutil.ignore_patterns('.*'), ignore_dangling_symlinks=True)
         logging.info("Template unpacked successfully!")

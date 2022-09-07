@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-08 20:40+0000\n"
+"PO-Revision-Date: 2022-08-11 07:53+0000\n"
 "Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -268,7 +268,7 @@ msgstr "Nincs környezeti változó megadva."
 #: bottles/frontend/windows/exclusionpatterns.py:108
 #: src/dialogs/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
-msgstr ""
+msgstr "Nincsenek kizáró minták meghatározva."
 
 #: bottles/frontend/windows/filechooser.py:63
 #: bottles/frontend/ui/dialog-gamescope.ui:34
@@ -372,25 +372,27 @@ msgstr "Nem található fájl"
 
 #: bottles/frontend/windows/vkbasalt.py:307
 msgid "The given file does not exist. Please choose an appropriate file."
-msgstr ""
+msgstr "Az adott fájl nem létezik. Kérjük, válasszon egy megfelelő fájlt."
 
 #: bottles/frontend/windows/vkbasalt.py:330
 msgid "Spaces in File Name"
-msgstr ""
+msgstr "Szóközök a fájlnévben"
 
 #: bottles/frontend/windows/vkbasalt.py:331
 msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
 msgstr ""
+"A színkereső táblázat útvonala nem tartalmazhat szóközöket. Kérjük, nevezze "
+"át a fájlt úgy, hogy minden szóközt eltávolítson."
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
-msgstr ""
+msgstr "Érvénytelen képméret"
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr ""
+msgstr "A magasságnak és a szélességnek egyenlőnek kell lennie."
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144 src/views/importer.py:144
@@ -858,7 +860,7 @@ msgstr "Javítja a DirectX 11 játékok és 3D alkalmazások teljesítményét."
 #: bottles/frontend/ui/details-preferences.ui:338
 #: src/ui/details-preferences.ui:27 src/ui/details-preferences.ui:328
 msgid "Updating DXVK, please wait…"
-msgstr "DXVK frissítése…"
+msgstr "DXVK frissítése, kérjük, várjon…"
 
 #: bottles/frontend/ui/details-preferences.ui:42
 #: bottles/frontend/ui/preferences.ui:218 src/ui/details-preferences.ui:42
@@ -875,7 +877,7 @@ msgstr "Javítja a DirectX 12 játékok és 3D alkalmazások teljesítményét."
 #: bottles/frontend/ui/details-preferences.ui:361
 #: src/ui/details-preferences.ui:46 src/ui/details-preferences.ui:351
 msgid "Updating VKD3D, please wait…"
-msgstr "VKD3D frissítése…"
+msgstr "VKD3D frissítése, kérjük, várjon…"
 
 #: bottles/frontend/ui/details-preferences.ui:61
 #: src/ui/details-preferences.ui:61
@@ -894,7 +896,7 @@ msgstr "Lehetővé teszi a DLSS támogatást és az Nvidia NVAPI-ját, ha elérh
 #: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
 #: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "DXVK-NVAPI frissítése…"
+msgstr "DXVK-NVAPI frissítése, kérjük, várjon…"
 
 #: bottles/frontend/ui/details-preferences.ui:80
 #: src/ui/details-preferences.ui:80
@@ -1131,7 +1133,7 @@ msgstr "Összetevők"
 #: bottles/frontend/ui/details-preferences.ui:317
 #: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
-msgstr "Futtató és összetevők frissítése…"
+msgstr "Futtató és összetevők frissítése, kérjük, várjon…"
 
 #. TODO: replace with ComboRow
 #: bottles/frontend/ui/details-preferences.ui:334
@@ -1189,7 +1191,7 @@ msgstr "Windows verzió"
 #: bottles/frontend/ui/details-preferences.ui:468
 #: src/ui/details-preferences.ui:458
 msgid "Updating Windows version, please wait…"
-msgstr "Windows verzió frissítése…"
+msgstr "Windows verzió frissítése, kérjük, várjon…"
 
 #: bottles/frontend/ui/details-preferences.ui:496
 #: src/ui/details-preferences.ui:486
@@ -1275,7 +1277,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:589
 msgid "Preload game files into RAM"
-msgstr ""
+msgstr "Játékfájlok előzetes betöltése a RAM-ba"
 
 #: bottles/frontend/ui/details-preferences.ui:592
 msgid "Manage vmtouch settings"
@@ -1375,12 +1377,13 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.ui:716
 #: src/ui/details-preferences.ui:684
 msgid "Use Exclusion Patterns"
-msgstr ""
+msgstr "Kizáró minták használata"
 
 #: bottles/frontend/ui/details-preferences.ui:717
 #: src/ui/details-preferences.ui:685
 msgid "Use custom patterns to exclude some paths from versioning."
 msgstr ""
+"Egyéni minták használatával kizárhat bizonyos útvonalakat a verziókezelésből."
 
 #: src/ui/details-preferences.ui:688
 msgid "Manage Patterns"
@@ -1521,11 +1524,11 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
-"Találtunk egy vagy több hasonló (vagy megegyező) jelentést. Győződjön meg, "
-"hogy leellenőrizte, hogy ez nem lett-e már jelentve, mielőtt újat küld be. "
-"Minden jelentés erőfeszítést igényel a fejlesztők részéről a hiba "
-"diagnosztizáláshoz, kérjük, tartsa tiszteletben a munkájukat, és ügyeljen "
-"arra, hogy ne tegyen közzé ismétlődő jelentéseket."
+"Találtunk egy vagy több hasonló (vagy megegyező) jelentést. Kérjük, "
+"győződjön meg, hogy leellenőrizte, hogy ez nem lett-e már jelentve, mielőtt "
+"újat küld be. Minden jelentés erőfeszítést igényel a fejlesztők részéről a "
+"hiba diagnosztizáláshoz, kérjük, tartsa tiszteletben a munkájukat, és "
+"ügyeljen arra, hogy ne tegyen közzé ismétlődő jelentéseket."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:96
 #: src/ui/dialog-crash-report.ui:96
@@ -1539,7 +1542,7 @@ msgstr "Haladó beállítások"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:15 src/ui/dialog-deps-check.ui:15
 msgid "Incomplete package"
-msgstr ""
+msgstr "Hiányos csomag"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:16 src/ui/dialog-deps-check.ui:16
 msgid ""
@@ -1548,6 +1551,10 @@ msgid ""
 "version.\n"
 "                        "
 msgstr ""
+"Úgy tűnik, hogy a Palackok ezen verziója nem biztosítja az összes szükséges "
+"alapvető függőséget, kérjük, lépjen kapcsolatba a csomag karbantartójával, "
+"vagy használjon hivatalos verziót.\n"
+"                        "
 
 #: bottles/frontend/ui/dialog-deps-check.ui:21 src/ui/dialog-deps-check.ui:21
 msgid "Quit"
@@ -1645,7 +1652,7 @@ msgstr "Létező változók"
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
 #: src/ui/dialog-exclusion-patterns.ui:16
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "Kizáró minták"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
 #: src/ui/dialog-exclusion-patterns.ui:35
@@ -1653,6 +1660,8 @@ msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
+"Határozza meg azokat a mintákat, amelyekkel megakadályozható, hogy egyes "
+"könyvtárak verziókezelése megtörténjen."
 
 #: src/ui/dialog-exclusion-patterns.ui:38
 msgid "Pattern"
@@ -1824,7 +1833,7 @@ msgstr "Visszaállítás a palack alapértelmezéseire"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:6 src/ui/dialog-proton-alert.ui:6
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Nyilatkozat a Protonról"
 
 #: src/ui/dialog-proton-alert.ui:22
 msgid "Use Proton"
@@ -1934,6 +1943,18 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"A Palackok egy teljesen új verziókezelési rendszerrel rendelkezik, amely nem "
+"kompatibilis visszafelé.\n"
+"\n"
+"A verziókezelés további használatához újra kell inicializálnunk a palack "
+"tárolóját. Ez nem törli az adatokat a palackból, de törli az összes meglévő "
+"állapotot, és létrehoz egy újat.\n"
+"\n"
+"Ha a folytatás előtt vissza kell térni egy korábbi állapothoz, zárja be ezt "
+"az ablakot és állítsa vissza az állapotot, majd nyissa meg újra a palackot, "
+"hogy ismét megjelenjen ez az ablak.\n"
+"\n"
+"A régi rendszer a következő kiadások egyikében megszűnik."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
 #: src/ui/dialog-upgrade-versioning.ui:112
@@ -1972,7 +1993,7 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.ui:74
 #: bottles/frontend/ui/dialog-vkbasalt.ui:110
 msgid "Sharpness"
-msgstr ""
+msgstr "Élesség"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:78
 #: bottles/frontend/ui/dialog-vkbasalt.ui:114
@@ -1996,7 +2017,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:139
 msgid "Denoise"
-msgstr ""
+msgstr "Zajcsökkentés"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:171
 msgid "Fast Approximate Anti-Aliasing"
@@ -2020,7 +2041,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:267
 msgid "Edge Detection"
-msgstr ""
+msgstr "Élkeresés"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:283
 msgid "Luma"
@@ -2028,11 +2049,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
-msgstr ""
+msgstr "Szín"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:303
 msgid "Threshold"
-msgstr ""
+msgstr "Küszöb"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:332
 msgid "Max Search Steps"
@@ -2048,7 +2069,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:419
 msgid "Color Lookup Table"
-msgstr ""
+msgstr "Színkereső táblázat"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:437
 msgid "Reset to Default"
@@ -2471,7 +2492,7 @@ msgstr "Minden kész!"
 
 #: bottles/frontend/ui/onboard.ui:122 src/ui/onboard.ui:122
 msgid "Please Finish the setup first"
-msgstr ""
+msgstr "Kérjük, először fejezze be a beállítást"
 
 #: bottles/frontend/ui/onboard.ui:129 src/ui/onboard.ui:129
 msgid "Start using Bottles"
@@ -2527,7 +2548,7 @@ msgstr "Ideiglenes fájlok"
 
 #: bottles/frontend/ui/preferences.ui:62 src/ui/preferences.ui:62
 msgid "Clean temp files when Bottles launches?"
-msgstr "Törölje az ideiglenes fájlokat, amikor a Palackok elindul?"
+msgstr "Törölje-e az ideiglenes fájlokat a Palackok indulásakor?"
 
 #: src/ui/preferences.ui:73
 msgid "Close Bottles After Starting a Program"
@@ -2535,7 +2556,7 @@ msgstr "Palackok bezárása egy program elindítása után"
 
 #: bottles/frontend/ui/preferences.ui:74 src/ui/preferences.ui:74
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "Zárja be a Palackokat, miután elindította a programot a fájlkezelőből."
+msgstr "Palackok bezárása, miután elindított egy programot a fájlkezelőből."
 
 #: src/ui/preferences.ui:87
 msgid "Integrations"
@@ -2637,6 +2658,8 @@ msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
 msgstr ""
+"Ezek a funkciók intenzív fejlesztés alatt állnak, és instabilak lehetnek, "
+"számítson hibákra."
 
 #: bottles/frontend/ui/preferences.ui:260 src/ui/preferences.ui:260
 msgid "In early development (requires restart)."
@@ -2892,7 +2915,7 @@ msgstr "Telepítők"
 
 #: bottles/frontend/views/details.py:377 src/views/details.py:377
 msgid "Operations in progress, please wait."
-msgstr ""
+msgstr "Műveletek folyamatban, kérjük, várjon."
 
 #: bottles/frontend/views/details.py:381 src/views/details.py:381
 msgid "Return to your bottles."
@@ -2933,7 +2956,7 @@ msgstr "{0} csomag letöltése…"
 #: bottles/frontend/views/loading.py:34 src/views/loading.py:34
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
-msgstr ""
+msgstr "{0} csomag letöltve ebből: {1}"
 
 #: bottles/frontend/views/new.py:133
 msgid "Name has special characters or already in use."
@@ -3198,7 +3221,7 @@ msgstr "Palackok verziókezelése"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
-msgstr "… és még sok más, amit megtalálhat a Palackok telepítésével!"
+msgstr "…és még sok más, amit a Palackok telepítésével találhat!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
 msgid "News"
@@ -3329,27 +3352,29 @@ msgstr "Fordítások"
 
 #: data/com.usebottles.bottles.appdata.xml.in:137
 msgid "Finnish translations thanks to Jiri Grönroos"
-msgstr ""
+msgstr "Finn fordítások Jiri Grönroos-nak köszönhetően"
 
 #: data/com.usebottles.bottles.appdata.xml.in:138
 msgid "French translations thanks to @rjousse18, @julroy67"
-msgstr ""
+msgstr "Francia fordítások @rjousse18-nak és @julroy67-nek köszönhetően"
 
 #: data/com.usebottles.bottles.appdata.xml.in:139
 msgid "Indonesian translations thanks to @liimee"
-msgstr ""
+msgstr "Indonéz fordítások @liimee-nek köszönhetően"
 
 #: data/com.usebottles.bottles.appdata.xml.in:140
 msgid "Russian translations thanks to @Knebergish, @lenemter, @Smoque"
 msgstr ""
+"Orosz fordítások @Knebergish-nek, @lenemter-nek és @Smoque-nak köszönhetően"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
 msgid "Thai translations thanks to @SashaPGT"
-msgstr ""
+msgstr "Thai fordítások @SashaPGT-nek köszönhetően"
 
 #: data/com.usebottles.bottles.appdata.xml.in:142
 msgid "Spanish translations thanks to Pablo Munoz Alabau, @oscfdezdz"
 msgstr ""
+"Spanyol fordítások Pablo Munoz Alabau-nak és @oscfdezdz-nek köszönhetően"
 
 #: data/com.usebottles.bottles.appdata.xml.in:143
 msgid "Italian translations thanks to @gdonisi"
@@ -3506,7 +3531,7 @@ msgstr "Palackok automatikus bezárása"
 #: data/com.usebottles.bottles.gschema.xml:87
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
-"Palackok bezárása, miután elindította a végrehajtható fájlt a fájlkezelőből."
+"Palackok bezárása, miután elindított egy végrehajtható fájlt a fájlkezelőből."
 
 #: data/com.usebottles.bottles.gschema.xml:91
 msgid "Show sandbox warning"

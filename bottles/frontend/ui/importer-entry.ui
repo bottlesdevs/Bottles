@@ -19,7 +19,7 @@
         </child>
     </object>
     <template class="ImporterEntry" parent="AdwActionRow">
-        <property name="title" comments="Wineprefix is a prefix for the wine program" translatable="yes">Wineprefix name</property>
+        <property name="title" comments="A Wine prefix is a separate environment (C:\ drive) for the Wine program" translatable="yes">Wine prefix name</property>
         <child>
             <object class="GtkBox">
                 <property name="spacing">6</property>
@@ -36,7 +36,7 @@
                 <child>
                     <object class="GtkImage" id="img_lock">
                         <property name="visible">False</property>
-                        <property name="tooltip-text" translatable="yes">This wineprefix was already imported in Bottles.</property>
+                        <property name="tooltip-text" translatable="yes">This Wine prefix was already imported in Bottles.</property>
                         <property name="valign">center</property>
                         <property name="icon-name">channel-secure-symbolic</property>
                         <style>

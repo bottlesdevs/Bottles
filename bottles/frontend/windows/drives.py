@@ -47,6 +47,10 @@ class DriveEntry(Adw.ActionRow):
         self.set_title(self.drive[0])
         self.set_subtitle(self.drive[1])
 
+        if "c" in self.drive[0].lower():
+            self.btn_remove.set_visible(False)
+            self.btn_path.set_visible(False)
+
         # connect signals
         self.btn_path.connect("clicked", self.__choose_path)
         self.btn_remove.connect("clicked", self.__remove)

@@ -66,7 +66,7 @@ class WineEnv:
 
         if self.has(key):
             values = self.__env[key] + sep + values
-        self.add(key, values)
+        self.add(key, values, True)
 
     def has(self, key):
         return key in self.__env
@@ -101,6 +101,7 @@ class WineCommand:
         self.env = self.get_env(environment)
         self.communicate = communicate
         self.colors = colors
+        self.vmtouch_files = None
 
     def __get_cwd(self, cwd) -> str:
         config = self.config
@@ -205,8 +206,6 @@ class WineCommand:
         # Get Runner libraries
         runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
         if arch == "win64":
-            if "FLATPAK_ID" in os.environ:
-                env.add("GST_PLUGIN_SYSTEM_PATH", "/usr/lib/x86_64-linux-gnu/gstreamer-1.0")
             runner_libs = [
                 "lib/wine/x86_64-unix",
                 "lib32/wine/x86_64-unix",
@@ -216,8 +215,6 @@ class WineCommand:
                 "lib64/wine/i386-unix"
             ]
         else:
-            if "FLATPAK_ID" in os.environ:
-                env.add("GST_PLUGIN_SYSTEM_PATH", "/usr/lib/i386-linux-gnu/gstreamer-1.0")
             runner_libs = [
                 "lib/wine/i386-unix",
                 "lib32/wine/i386-unix",
@@ -359,12 +356,10 @@ class WineCommand:
         if env.is_empty("WINEDLLOVERRIDES"):
             env.remove("WINEDLLOVERRIDES")
 
-        # Wine prefix
         if not return_steam_env:
+            # Wine prefix
             env.add("WINEPREFIX", bottle, override=True)
-
-        # Wine arch
-        if not return_steam_env:
+            # Wine arch
             env.add("WINEARCH", arch)
 
         return env.get()["envs"]
@@ -522,8 +517,8 @@ class WineCommand:
         else:
             self.vmtouch_files = "'"+self.command.split(" ")[-1]+"'"
 
-        if self.config["Parameters"].get("vmtouch_cache_cwd"):
-            self.vmtouch_files = "'"+self.vmtouch_files+"' '"+self.cwd+"/'"
+        #if self.config["Parameters"].get("vmtouch_cache_cwd"):
+        #    self.vmtouch_files = "'"+self.vmtouch_files+"' '"+self.cwd+"/'" Commented out as fix for #1941
         self.command = vmtouch_available+" "+vmtouch_flags+" "+vmtouch_file_size+" "+self.vmtouch_files+" && "+self.command
 
     def vmtouch_free(self):
@@ -533,6 +528,9 @@ class WineCommand:
             env=self.env,
             cwd=self.cwd,
         )
+        if not self.vmtouch_files:
+            return
+
         vmtouch_flags = "-e -v"
         command = vmtouch_available+" "+vmtouch_flags+" "+self.vmtouch_files
         subprocess.Popen(
@@ -571,18 +569,22 @@ class WineCommand:
             if self.terminal:
                 return TerminalUtils().execute(self.command, self.env, self.colors)
 
-            proc = subprocess.Popen(
-                self.command,
-                stdout=subprocess.PIPE,
-                shell=True,
-                env=self.env,
-                cwd=self.cwd
-            )
-            proc.wait()
+            try:
+                proc = subprocess.Popen(
+                    self.command,
+                    stdout=subprocess.PIPE,
+                    shell=True,
+                    env=self.env,
+                    cwd=self.cwd
+                )
+                proc.wait()
+            except FileNotFoundError:
+                return
+                
         res = proc.communicate()[0]
         enc = detect_encoding(res)
 
-        if vmtouch_available and self.config["Parameters"].get("sandbox"):
+        if vmtouch_available and self.config["Parameters"].get("vmtouch"):
             self.vmtouch_free()
 
         if enc is not None:

@@ -52,6 +52,7 @@ class NewView(Adw.Window):
     row_sandbox = Gtk.Template.Child()
     title = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
+    shortcut_escape = Gtk.Template.Child()
 
     # endregion
 
@@ -178,7 +179,8 @@ class NewView(Adw.Window):
         self.title.set_visible(False)
         self.headerbar.add_css_class("flat")
         self.stack_create.set_visible_child_name("page_creating")
-
+        self.shortcut_escape.set_action(None)
+        
         # avoid giant/empty window
         self.set_default_size(450, 430)
 

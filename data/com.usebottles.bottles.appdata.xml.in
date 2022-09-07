@@ -96,54 +96,42 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.8.14-brescia" date="2022-07-28">
+        <release version="2022.8.28-brescia-2" date="2022-08-28">
           <description>
             <p>News</p>
             <ul>
-                <li>New versioning system which allow versioning the whole bottle (also configuration)</li>
-                <li>Automatic versioning can now be toggled on and off</li>
-                <li>Exclude paths from versioning using patterns</li>
-                <li>Use compression for versioning states</li>
-                <li>Improve Launch Options saving without update the UI multiple times</li>
-                <li>Improved YAML performance using libyaml (the python-yaml package must provide support for it)</li>
-                <li>New About dialog</li>
-                <li>Covers support in Library mode (thanks to SteamGridDB)</li>
-                <li>Removed DXVK HUD option, use the Environment Variables section instead</li>
-                <li>bottles-cli shell option now provide command output</li>
-                <li>The Health Check is now in the About´s Troubleshooting section</li>
-                <li>Extended Core dependencies check, packagers are invited to double-check their packages</li>
-                <li>New default permission for the Flatpak package: xdg-download</li>
-                <li>Added credits for Third-Party Libraries in the Credits section</li>
-                <li>Minor UI improvements</li>
+                <li>Library mode is now a stable feature and enabled by default</li>
+                <li>Dependencies "copy_file" action now creates the path if not exists (see maintainers docs.)</li>
+                <li>Opening a bottle, a dialog is shown if the runner is not installed</li>
+                <li>The C: drive is now marked as persistend in the Drives section and cannot be edited by the user</li>
+                <li>All dialogs can now be closed pressing Escape</li>
+                <li>The dark mode switcher is now available only for system which doesn't support the standard</li>
+                <li>Simplification of "Legacy Tools" section, thanks to @Knebergish</li>
+                <li>Minor UI improvements, thanks to @TheEvilSkeleton, @orowith2os, @marhkb</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fix for skipable onboard dialog</li>
-                <li>Fix for empty bottle name</li>
-                <li>Fix gstreamer libs for win32 bottles</li>
-                <li>Fix for RemoteDisconnected error causing a crash</li>
-                <li>Fix wrong Vaniglia listing</li>
-                <li>Fix templates being generated with symlinked paths causing loops</li>
-                <li>Fix configuration migration causing a crash when the user altered the configuration</li>
-                <li>Fix mscoree.dll not found</li>
-                <li>Fix regression for the -b option of the legacy bottles cli</li>
-                <li>Fix Steam Launch Options parser causing a crash</li>
-                <li>Fix a regression in the Add to Steam button not adding the new entry in Steam</li>
+                <li>Fix a bug in the template system, was trying to unpack a partial one</li>
+                <li>Fix a bug in setting overrides for old-structured program entries</li>
+                <li>Fix a bug in vmtouch management</li>
+                <li>Fix a bug in the WineCommand interface which was causing a crash if the executable path is not accessible</li>
+                <li>Fix a bug in the Steam Manager, was generating wrong shortcuts when the program name has spaces in it</li>
+                <li>Fix long names in library mode</li>
+                <li>Fix a bug in bottle creation, sometimes it created a symlinks loop in the userdir</li>
+                <li>Fix a bug in the crash dialog, the similarity check was set too high resulting in no similar reports</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>French translations thanks to @rjousse18, @julroy67</li>
-                <li>Indonesian translations thanks to @liimee</li>
-                <li>Russian translations thanks to @Knebergish, @lenemter, @Smoque</li>
-                <li>Thai translations thanks to @SashaPGT</li>
-                <li>Spanish translations thanks to Pablo Munoz Alabau, @oscfdezdz</li>
-                <li>Italian translations thanks to @gdonisi</li>
-                <li>Portuguese (Brazil) translations thanks to @geraldohomero</li>
-                <li>German translations thanks to Patrick Ulbricht</li>
-                <li>Croatian translations thanks to @milotype</li>
+                <li>Italian translations thanks to @alfonso133</li>
+                <li>Bengali translations thanks to @zihadio</li>
+                <li>Catalan translations thanks to @rogervc</li>
+                <li>Tamil translations thanks to @kbdharun</li>
+                <li>Dutch translations thanks to @flipflop97</li>
+                <li>Spanish translations thanks to @ParadoxialN3</li>
+                <li>Ukranian translations thanks to @c0m1c5an5</li>
+                <li>Turkish translations thanks to @Dhizaes</li>
             </ul>
           </description>
         </release>
