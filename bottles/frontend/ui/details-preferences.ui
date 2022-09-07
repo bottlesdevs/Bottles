@@ -585,7 +585,7 @@
                 <child>
                   <object class="AdwActionRow">
                     <property name="activatable-widget">switch_vmtouch</property>
-                    <property name="title" translatable="yes">Vmtouch</property>
+                    <property name="title" translatable="yes">Cache</property>
                     <property name="subtitle" translatable="yes">Preload game files into RAM. The game will take longer to start.</property>
                     <child>
                       <object class="GtkButton" id="btn_manage_vmtouch">
@@ -685,24 +685,12 @@
         </child>
         <child>
             <object class="AdwPreferencesGroup">
-                <property name="title" translatable="yes">Versioning</property>
-                <child>
-                    <object class="AdwActionRow">
-                        <property name="activatable-widget">switch_versioning_compression</property>
-                        <property name="title" translatable="yes">Use Compression for States</property>
-                        <property name="subtitle" translatable="yes">This will reduce the space used by the states but slow down their creation.</property>
-                        <child>
-                            <object class="GtkSwitch" id="switch_versioning_compression">
-                                <property name="valign">center</property>
-                            </object>
-                        </child>
-                    </object>
-                </child>
+                <property name="title" translatable="yes">Snapshotting</property>
                 <child>
                     <object class="AdwActionRow">
                         <property name="activatable-widget">switch_auto_versioning</property>
-                        <property name="title" translatable="yes">Automatic Versioning</property>
-                        <property name="subtitle" translatable="yes">Bottles will create a state before running any dependencies or installers.</property>
+                        <property name="title" translatable="yes">Automatic Snapshots</property>
+                        <property name="subtitle" translatable="yes">Automatically create snapshots before installing software or changing settings.</property>
                         <child>
                             <object class="GtkSwitch" id="switch_auto_versioning">
                                 <property name="valign">center</property>
@@ -712,9 +700,21 @@
                 </child>
                 <child>
                     <object class="AdwActionRow">
+                        <property name="activatable-widget">switch_versioning_compression</property>
+                        <property name="title" translatable="yes">Compression for Snapshots</property>
+                        <property name="subtitle" translatable="yes">Compress snapshots to reduce space. This will reduce the space used by the states but slow down their creation.</property>
+                        <child>
+                            <object class="GtkSwitch" id="switch_versioning_compression">
+                                <property name="valign">center</property>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwActionRow">
                         <property name="activatable-widget">switch_versioning_patterns</property>
-                        <property name="title" translatable="yes">Use Exclusion Patterns</property>
-                        <property name="subtitle" translatable="yes">Use custom patterns to exclude some paths from versioning.</property>
+                        <property name="title" translatable="yes">Exclusion Patterns</property>
+                        <property name="subtitle" translatable="yes">Exclude paths in snapshots.</property>
                         <child>
                             <object class="GtkButton" id="btn_manage_versioning_patterns">
                                 <property name="tooltip-text" translatable="yes">Manage Patterns</property>
