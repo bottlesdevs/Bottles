@@ -45,6 +45,7 @@ from bottles.frontend.windows.vmtouch import VmtouchDialog
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
+from bottles.backend.utils.gpu import GPUUtils
 
 
 # noinspection PyUnusedLocal
@@ -119,6 +120,7 @@ class PreferencesView(Adw.PreferencesPage):
     spinner_dxvkbool = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
     spinner_vkd3dbool = Gtk.Template.Child()
+    row_nvapi_version = Gtk.Template.Child()
     spinner_nvapi = Gtk.Template.Child()
     spinner_nvapibool = Gtk.Template.Child()
     spinner_latencyflex = Gtk.Template.Child()
@@ -143,6 +145,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.queue = details.queue
 
         self.entry_name.add_controller(self.ev_controller)
+
+        gpu = GPUUtils().get_gpu()
 
         # region signals
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
@@ -198,7 +202,15 @@ class PreferencesView(Adw.PreferencesPage):
         self.entry_name.connect("apply", self.__save_name)
         # endregion
 
-        if RuntimeManager.get_runtimes("bottles"):
+        """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
+        with contextlib.suppress(KeyError):
+            vendor = gpu["vendors"]["nvidia"]["vendor"]
+            if vendor == "nvidia":
+                self.row_nvapi.set_visible(True)
+                self.row_nvapi_version.set_visible(True)
+
+        """Set Bottles Runtime row to visible when Bottles is not running inside Flatpak"""
+        if "FLATPAK_ID" not in os.environ and RuntimeManager.get_runtimes("bottles"):
             self.row_runtime.set_visible(True)
             self.switch_runtime.connect('state-set', self.__toggle_runtime)
 
@@ -1215,11 +1227,9 @@ class PreferencesView(Adw.PreferencesPage):
         for w in [
             self.row_discrete,
             self.row_runner,
-            self.row_runtime,
             self.row_steam_runtime,
             self.row_dxvk,
             self.row_vkd3d,
-            self.row_nvapi,
             self.row_latencyflex,
             self.row_sandbox,
             self.group_details,
