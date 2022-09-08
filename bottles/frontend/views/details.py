@@ -164,7 +164,7 @@ class DetailsView(Adw.Bin):
                 "description": _("Found in your bottle's Start menu.")
             },
             "versioning": {
-                "title": _("Versioning"),
+                "title": _("Snapshots"),
                 "description": "",
             },
             "installers": {
