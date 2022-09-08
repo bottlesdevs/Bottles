@@ -60,6 +60,7 @@
                         <property name="activatable-widget">switch_nvapi</property>
                         <property name="title" translatable="yes">Deep Learning Super Sampling</property>
                         <property name="subtitle" translatable="yes">Use Deep learning super sampling (DLSS) and NVAPI to increase performance at the expense of visuals using DXVK-NVAPI. Only works on newer NVIDIA GPUs.</property>
+                        <property name="visible">False</property>
                         <child>
                             <object class="GtkSpinner" id="spinner_nvapibool">
                                 <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
@@ -376,10 +377,11 @@
                             </object>
                         </child>
                         <child>
-                            <object class="AdwActionRow">
+                            <object class="AdwActionRow" id="row_nvapi_version">
                                 <!-- TODO: replace with ComboRow -->
                                 <property name="activatable-widget">combo_nvapi</property>
                                 <property name="title" translatable="yes">DXVK NVAPI Version</property>
+                                <property name="visible" translatable="yes">false</property>
                                 <child>
                                     <object class="GtkSpinner" id="spinner_nvapi">
                                         <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
@@ -529,6 +531,7 @@
                         <property name="activatable-widget">switch_runtime</property>
                         <property name="title" translatable="yes">Bottles Runtime</property>
                         <property name="subtitle" translatable="yes">Provides a bundle of extra libraries for more compatibility, disable if you run into issues.</property>
+                        <property name="visible">False</property>
                         <child>
                             <object class="GtkSwitch" id="switch_runtime">
                                 <property name="valign">center</property>
