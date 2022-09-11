@@ -36,7 +36,7 @@ template JournalDialog : .AdwWindow {
     orientation: vertical;
 
     .AdwHeaderBar {
-      title-widget:       .AdwWindowTitle {
+      title-widget: .AdwWindowTitle {
         title: _("Journal browser");
       }
 
@@ -50,7 +50,7 @@ template JournalDialog : .AdwWindow {
 
         MenuButton {
           focus-on-click: false;
-          tooltip-text: _("Change logging level.\n                                        ");
+          tooltip-text: _("Change logging level.");
           popover: pop_menu;
 
           Label label_filter {
