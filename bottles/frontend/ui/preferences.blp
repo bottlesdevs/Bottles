@@ -1,0 +1,230 @@
+using Gtk 4.0;
+
+template PreferencesWindow : .AdwPreferencesWindow {
+  title: _("Preferences");
+  modal: "True";
+  default-width: "750";
+  hide-on-close: "True";
+
+  .AdwPreferencesPage {
+    icon-name: "applications-system-symbolic";
+    title: _("General");
+
+    .AdwPreferencesGroup {
+      title: _("Appearance");
+
+      .AdwActionRow row_theme {
+        title: _("Dark Mode");
+        subtitle: _("Whether Bottles should use the dark color scheme.");
+        visible: "False";
+        activatable-widget: "switch_theme";
+
+        Switch switch_theme {
+          valign: center;
+        }
+      }
+
+      .AdwActionRow {
+        title: _("Show Update Date");
+        subtitle: _("Whether to show the update date in the bottle list.");
+        activatable-widget: "switch_update_date";
+
+        Switch switch_update_date {
+          valign: center;
+        }
+      }
+    }
+
+    .AdwPreferencesGroup {
+      title: _("General");
+
+      .AdwActionRow {
+        title: _("Notifications");
+        subtitle: _("Show notifications for downloads and installs.");
+        activatable-widget: "switch_notifications";
+
+        Switch switch_notifications {
+          valign: center;
+        }
+      }
+
+      .AdwActionRow {
+        title: _("Temp Files");
+        subtitle: _("Clean temp files when Bottles launches?");
+        activatable-widget: "switch_temp";
+
+        Switch switch_temp {
+          valign: center;
+        }
+      }
+
+      .AdwActionRow {
+        title: _("Close Bottles After Starting a Program");
+        subtitle: _("Close Bottles after starting a program from the file manager.");
+        activatable-widget: "switch_auto_close";
+
+        Switch switch_auto_close {
+          valign: center;
+        }
+      }
+    }
+
+    .AdwPreferencesGroup {
+      title: _("Integrations");
+
+      .AdwActionRow action_steam_proton {
+        title: _("Steam Proton Prefixes");
+        subtitle: _("List and manage Steam Proton prefixes.");
+        activatable-widget: "switch_steam";
+
+        Button btn_steam_proton_doc {
+          tooltip-text: _("Read Documentation");
+          valign: center;
+          visible: false;
+          icon-name: "help-browser-symbolic";
+
+          styles [
+            "flat",
+          ]
+        }
+
+        Switch switch_steam {
+          valign: center;
+        }
+      }
+
+      .AdwActionRow {
+        title: _("List Steam Apps in Programs List");
+        subtitle: _("Requires Steam for Windows installed in the bottle.");
+        activatable-widget: "switch_steam_programs";
+
+        Switch switch_steam_programs {
+          valign: center;
+        }
+      }
+
+      .AdwActionRow {
+        title: _("List Epic Games in Programs List");
+        subtitle: _("Requires Epic Games Store installed in the bottle.");
+        activatable-widget: "switch_epic_games";
+
+        Switch switch_epic_games {
+          valign: center;
+        }
+      }
+
+      .AdwActionRow {
+        title: _("List Ubisoft Games in Programs List");
+        subtitle: _("Requires Ubisoft Connect installed in the bottle.");
+        activatable-widget: "switch_ubisoft_connect";
+
+        Switch switch_ubisoft_connect {
+          valign: center;
+        }
+      }
+    }
+
+    .AdwPreferencesGroup {
+      title: _("Advanced");
+
+      .AdwActionRow action_bottles_path {
+        title: _("Custom Bottles Path (Requires Restart)");
+        subtitle: _("Choose where to store the new bottles (this will not move the existing ones).");
+        activatable-widget: "btn_bottles_path";
+
+        Button btn_bottles_path_reset {
+          tooltip-text: _("Reset to default");
+          valign: center;
+          visible: false;
+          icon-name: "edit-undo-symbolic";
+
+          styles [
+            "flat",
+          ]
+        }
+
+        Button btn_bottles_path {
+          tooltip-text: _("Choose a directory");
+          halign: center;
+          valign: center;
+          icon-name: "document-open-symbolic";
+
+          styles [
+            "flat",
+          ]
+        }
+      }
+    }
+  }
+
+  .AdwPreferencesPage {
+    icon-name: "system-run-symbolic";
+    title: _("Runners");
+
+    .AdwPreferencesGroup list_runners {
+      .AdwActionRow action_prerelease {
+        title: _("Pre-Release");
+        subtitle: _("Display unstable versions of runners.");
+        activatable-widget: "switch_release_candidate";
+
+        Switch switch_release_candidate {
+          valign: center;
+        }
+      }
+    }
+  }
+
+  .AdwPreferencesPage {
+    icon-name: "applications-games-symbolic";
+    title: _("DLL Components");
+
+    .AdwPreferencesGroup list_dxvk {
+      title: _("DXVK");
+    }
+
+    .AdwPreferencesGroup list_vkd3d {
+      title: _("VKD3D");
+    }
+
+    .AdwPreferencesGroup list_nvapi {
+      title: _("DXVK-NVAPI");
+    }
+
+    .AdwPreferencesGroup list_latencyflex {
+      title: _("LatencyFleX");
+    }
+  }
+
+  .AdwPreferencesPage pref_core {
+    icon-name: "application-x-addon-symbolic";
+    title: _("Core");
+    visible: "False";
+
+    .AdwPreferencesGroup list_runtimes {
+      title: _("Runtime");
+    }
+
+    .AdwPreferencesGroup list_winebridge {
+      title: _("WineBridge");
+    }
+  }
+
+  .AdwPreferencesPage {
+    icon-name: "applications-science-symbolic";
+    title: _("Experiments");
+
+    .AdwPreferencesGroup {
+      description: _("These features are under heavy development and may be unstable, expect bugs and breakage.");
+
+      .AdwActionRow {
+        title: _("Sandbox per bottle");
+        subtitle: _("In early development.");
+        activatable-widget: "switch_sandbox";
+
+        Switch switch_sandbox {
+          valign: center;
+        }
+      }
+    }
+  }
+}

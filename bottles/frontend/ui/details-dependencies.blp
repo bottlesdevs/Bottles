@@ -1,0 +1,90 @@
+using Gtk 4.0;
+
+template DetailsDependencies : .AdwBin {
+  Box {
+    orientation: vertical;
+
+    SearchBar search_bar {
+      SearchEntry entry_search {
+        placeholder-text: _("Search for dependencies…");
+      }
+    }
+
+    .AdwPreferencesPage {
+      .AdwPreferencesGroup {
+        description: _("Dependencies are software, libraries and codecs that improve the compatibility of Windows software. Install from here to meet your program requirements.");
+
+        ListBox list_dependencies {
+          selection-mode: none;
+
+          styles [
+            "boxed-list",
+          ]
+        }
+
+        Label {
+          visible: true;
+          label: _("Files on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.");
+          wrap: true;
+          margin-top: 12;
+
+          styles [
+            "dim-label",
+          ]
+        }
+      }
+    }
+  }
+}
+
+Popover pop_context {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    .GtkModelButton btn_report {
+      tooltip-text: _("Report a problem or a missing dependency.");
+      text: _("Report missing dependency");
+    }
+
+    .GtkModelButton btn_help {
+      tooltip-text: _("Read documentation.");
+      text: _("Documentation");
+    }
+  }
+}
+
+Box actions {
+  spacing: 6;
+
+  Button btn_install {
+    visible: false;
+    label: _("Install Selected");
+    tooltip-text: _("We strongly advise against installing multiple dependencies at once.");
+    hexpand: true;
+  }
+
+  ToggleButton btn_toggle_selection {
+    visible: true;
+    tooltip-text: _("Select Dependencies");
+    icon-name: "selection-mode-symbolic";
+  }
+
+  ToggleButton btn_search {
+    active: bind search_bar.search-mode-enabled no-sync-create bidirectional;
+    tooltip-text: _("Search");
+    icon-name: "system-search-symbolic";
+  }
+
+  MenuButton {
+    popover: pop_context;
+    icon-name: "view-more-symbolic";
+  }
+}

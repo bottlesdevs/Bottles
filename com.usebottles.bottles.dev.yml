@@ -243,6 +243,8 @@ modules:
         url: https://github.com/freedesktop/xdpyinfo/archive/refs/tags/xdpyinfo-1.3.2.tar.gz
         sha256: 4c6942cb55e965f1192c0e2efc78429e2f4281cc2bc185d6ea09d609f32c51de
 
+    
+
   # Libraries
   # ----------------------------------------------------------------------------
 
@@ -340,7 +342,14 @@ modules:
       - type: archive
         url: https://github.com/flatpak/libportal/archive/refs/tags/0.6.tar.gz
         sha256: 8ad326c4f53b7433645dc86d994fef0292bee8adda0fe67db9288ace19250a9c
-
+        
+  - name: blueprint-compiler
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/jwestman/blueprint-compiler
+        branch: main
+  
   # Bottles components
   # ----------------------------------------------------------------------------
   - name: EasyTerm

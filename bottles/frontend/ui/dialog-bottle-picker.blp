@@ -1,0 +1,45 @@
+using Gtk 4.0;
+
+template BottlePickerDialog : .AdwApplicationWindow {
+  title: _("Select Bottle");
+  default-width: "450";
+  default-height: "450";
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-end-title-buttons: "False";
+
+      [start]
+      Button btn_cancel {
+        label: _("Cancel");
+      }
+
+      [end]
+      Button btn_select {
+        label: _("Select");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    ScrolledWindow {
+      hexpand: true;
+      vexpand: true;
+
+      ListBox list_bottles {
+      }
+    }
+
+    Button btn_open {
+      label: _("Create New Bottle");
+      margin-top: 6;
+      margin-start: 6;
+      margin-bottom: 6;
+      margin-end: 6;
+    }
+  }
+}

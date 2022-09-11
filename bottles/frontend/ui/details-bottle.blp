@@ -1,0 +1,312 @@
+using Gtk 4.0;
+
+Popover pop_context {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+    orientation: vertical;
+
+    .GtkModelButton btn_flatpak_doc {
+      text: _("Troubleshooting");
+    }
+
+    Separator {
+    }
+
+    .GtkModelButton btn_browse {
+      text: _("Browse Files…");
+    }
+
+    .GtkModelButton btn_duplicate {
+      text: _("Duplicate Bottle…");
+    }
+
+    .GtkModelButton btn_backup_full {
+      tooltip-text: _("This is the complete archive of your bottle, including personal files.");
+      text: _("Full Backup…");
+    }
+
+    .GtkModelButton btn_backup_config {
+      tooltip-text: _("This is just the bottle configuration, it\'s perfect if you want to create a new one but without personal files.");
+      text: _("Export Configuration…");
+    }
+
+    Separator {
+    }
+
+    .GtkModelButton btn_delete {
+      text: _("Delete Bottle…");
+    }
+  }
+}
+
+Box actions {
+  spacing: 6;
+
+  MenuButton {
+    always-show-arrow: true;
+    popover: pop_power;
+    icon-name: "system-shutdown-symbolic";
+  }
+
+  MenuButton {
+    popover: pop_context;
+    icon-name: "view-more-symbolic";
+  }
+}
+
+Popover pop_power {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    .GtkModelButton btn_killall {
+      text: _("Kill all Processes");
+    }
+
+    .GtkModelButton btn_shutdown {
+      tooltip-text: _("Simulate a Windows system shutdown.");
+      text: _("Shutdown");
+    }
+
+    .GtkModelButton btn_reboot {
+      tooltip-text: _("Simulate a Windows system reboot.");
+      text: _("Reboot");
+    }
+  }
+}
+
+Popover pop_run {
+  Box {
+    orientation: vertical;
+    valign: center;
+    halign: center;
+    hexpand: true;
+    vexpand: true;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    .GtkModelButton btn_run_args {
+      valign: "center";
+      halign: "center";
+      margin-bottom: "5";
+      text: _("Run with Additional Arguments…");
+    }
+
+    CheckButton check_terminal {
+      label: _("Launch in a Terminal…");
+      halign: start;
+      margin-bottom: 5;
+      use-underline: true;
+    }
+
+    Separator extra_separator {
+      margin-bottom: 5;
+    }
+
+    Box box_history {
+      spacing: 5;
+      orientation: vertical;
+    }
+  }
+}
+
+.AdwActionRow row_no_programs {
+  Box {
+    hexpand: true;
+
+    Label {
+      label: _("Use the Installers section or the \"Run executable\" button.");
+      wrap: false;
+
+      styles [
+        "dim-label",
+      ]
+    }
+  }
+}
+
+template DetailsBottle : .AdwPreferencesPage {
+  .AdwPreferencesGroup {
+    Box {
+      Box {
+        orientation: vertical;
+
+        Label label_name {
+          halign: start;
+          label: _("My bottle");
+
+          styles [
+            "title-2",
+          ]
+        }
+
+        Box {
+          spacing: 6;
+
+          Label label_arch {
+            halign: start;
+            label: _("Win64");
+
+            styles [
+              "heading",
+            ]
+          }
+
+          Label label_environment {
+            label: _("Environment");
+
+            styles [
+              "heading",
+            ]
+          }
+
+          Label label_runner {
+            label: _("Runner");
+
+            styles [
+              "heading",
+            ]
+          }
+
+          Grid grid_versioning {
+            tooltip-text: _("Versioning enabled for this bottle");
+            halign: center;
+            valign: center;
+
+            Image img_versioning {
+              tooltip-text: _("Versioning is active for this bottle.");
+              halign: center;
+              valign: center;
+              icon-name: "view-wrapped-symbolic";
+            }
+
+            Label label_state {
+              halign: center;
+              valign: center;
+              label: _("0");
+            }
+          }
+        }
+      }
+
+      .AdwSplitButton btn_execute {
+        label: _("Run Executable…");
+        hexpand: "True";
+        halign: "end";
+        valign: "center";
+        popover: "pop_run";
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+  }
+
+  .AdwPreferencesGroup group_layers {
+    title: _("Layers");
+    visible: "False";
+  }
+
+  .AdwPreferencesGroup group_programs {
+    title: _("Programs");
+  }
+
+  .AdwPreferencesGroup group_utilities {
+    title: _("Tools");
+
+    .AdwActionRow row_cmd {
+      activatable: "true";
+      title: _("Command Line");
+      subtitle: _("Run commands inside the Bottle.");
+
+      Image {
+        icon-name: "external-link-symbolic";
+      }
+    }
+
+    .AdwActionRow row_regedit {
+      activatable: "true";
+      title: _("Registry Editor");
+      subtitle: _("Edit the internal registry.");
+
+      Image {
+        icon-name: "external-link-symbolic";
+      }
+    }
+
+    .AdwExpanderRow {
+      title: _("Legacy Wine Tools");
+
+      .AdwActionRow row_explorer {
+        activatable: "true";
+        title: _("Explorer");
+
+        Image {
+          icon-name: "external-link-symbolic";
+        }
+      }
+
+      .AdwActionRow row_taskmanager {
+        activatable: "true";
+        title: _("Task Manager");
+
+        Image {
+          icon-name: "external-link-symbolic";
+        }
+      }
+
+      .AdwActionRow row_debug {
+        activatable: "true";
+        title: _("Debugger");
+
+        Image {
+          icon-name: "external-link-symbolic";
+        }
+      }
+
+      .AdwActionRow row_winecfg {
+        activatable: "true";
+        title: _("Configuration");
+
+        Image {
+          icon-name: "external-link-symbolic";
+        }
+      }
+
+      .AdwActionRow row_uninstaller {
+        activatable: "true";
+        title: _("Uninstaller");
+
+        Image {
+          icon-name: "external-link-symbolic";
+        }
+      }
+
+      .AdwActionRow row_controlpanel {
+        activatable: "true";
+        title: _("Control Panel");
+
+        Image {
+          icon-name: "external-link-symbolic";
+        }
+      }
+    }
+  }
+}

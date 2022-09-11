@@ -1,0 +1,140 @@
+using Gtk 4.0;
+
+template UpgradeVersioningDialog : .AdwWindow {
+  modal: "True";
+  default-width: "500";
+  default-height: "400";
+  destroy-with-parent: "True";
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-end-title-buttons: "False";
+      title-widget: 
+      .AdwWindowTitle {
+        title: _("Upgrade Needed");
+      }
+
+      ;
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      ShortcutController {
+        scope: managed;
+
+        Shortcut {
+          trigger: "Escape";
+          action: "action(window.close)";
+        }
+      }
+
+      [end]
+      Button btn_proceed {
+        label: _("Continue");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+
+      [end]
+      Button btn_upgrade {
+        label: _("Launch upgrade");
+        visible: false;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Stack stack_switcher {
+      StackPage {
+        name: "page_status";
+        child: 
+        .AdwStatusPage status_page {
+          icon-name: "preferences-system-time-symbolic";
+          title: _("New Versioning System");
+          vexpand: "True";
+          hexpand: "True";
+          description: _("The new bottle versioning system has landed.");
+        }
+
+        ;
+      }
+
+      StackPage {
+        name: "page_info";
+        child: 
+        Label {
+          margin-top: 10;
+          margin-start: 10;
+          margin-end: 10;
+          wrap: true;
+          label: _("Bottles has a whole new Versioning System which is not backwards compatible. \n\nTo continue using versioning we need to re-initialize the bottle repository. This will not delete data from your bottle but will delete all existing states and create a new one. \n\nIf you need to go back to a previous state before continuing, close this window and restore the state, then reopen the bottle to show this window again. \n\nThe old system will be discontinued in one of the next releases.");
+        }
+
+        ;
+      }
+
+      StackPage {
+        name: "page_upgrading";
+        child: 
+        Box page_upgrading {
+          margin-top: 24;
+          margin-bottom: 24;
+          orientation: vertical;
+          vexpand: true;
+          hexpand: true;
+
+          Label {
+            halign: center;
+            margin-top: 12;
+            margin-bottom: 12;
+            label: _("Re-initializing repository…");
+
+            styles [
+              "title-1",
+            ]
+          }
+
+          Label {
+            margin-bottom: 6;
+            label: _("Take a break, it may take a while.");
+          }
+
+          ProgressBar progressbar {
+            width-request: 300;
+            halign: center;
+            margin-top: 24;
+            margin-bottom: 12;
+          }
+        }
+
+        ;
+      }
+
+      StackPage {
+        name: "page_finish";
+        child: 
+        .AdwStatusPage page_finish {
+          vexpand: "True";
+          hexpand: "True";
+          icon-name: "object-select-symbolic";
+          title: _("Done! Please restart Bottles.");
+        }
+
+        ;
+      }
+    }
+  }
+}

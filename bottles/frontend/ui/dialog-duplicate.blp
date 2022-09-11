@@ -1,0 +1,104 @@
+using Gtk 4.0;
+
+template DuplicateDialog : .AdwWindow {
+  modal: "True";
+  default-width: "400";
+  default-height: "400";
+  destroy-with-parent: "True";
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-end-title-buttons: "False";
+      title-widget: 
+      .AdwWindowTitle {
+        title: _("Duplicate Bottle");
+      }
+
+      ;
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      ShortcutController {
+        scope: managed;
+
+        Shortcut {
+          trigger: "Escape";
+          action: "action(window.close)";
+        }
+      }
+
+      [end]
+      Button btn_duplicate {
+        label: _("Duplicate");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    Stack stack_switcher {
+      .AdwPreferencesPage page_name {
+        .AdwPreferencesGroup {
+          description: _("Enter a name for the duplicate of the Bottle.");
+
+          .AdwEntryRow entry_name {
+            title: _("Name");
+          }
+        }
+      }
+
+      StackPage {
+        name: "page_duplicating";
+        child: 
+        Box page_duplicating {
+          margin-top: 24;
+          margin-bottom: 24;
+          orientation: vertical;
+
+          Label {
+            halign: center;
+            margin-top: 12;
+            margin-bottom: 12;
+            label: _("Duplicating…");
+
+            styles [
+              "title-1",
+            ]
+          }
+
+          Label {
+            margin-bottom: 6;
+            label: _("Take a break, it may take a while.");
+          }
+
+          ProgressBar progressbar {
+            width-request: 300;
+            halign: center;
+            margin-top: 24;
+            margin-bottom: 12;
+          }
+        }
+
+        ;
+      }
+
+      StackPage {
+        name: "page_duplicated";
+        child: 
+        .AdwStatusPage page_duplicated {
+          icon-name: "object-select-symbolic";
+          title: _("Bottle Duplicated");
+        }
+
+        ;
+      }
+    }
+  }
+}

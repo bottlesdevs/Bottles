@@ -1,0 +1,71 @@
+using Gtk 4.0;
+
+template BottleView : .AdwBin {
+  ScrolledWindow {
+    Box {
+      hexpand: true;
+      vexpand: true;
+      orientation: vertical;
+
+      SearchBar search_bar {
+        SearchEntry entry_search {
+          placeholder-text: _("Search your bottles…");
+        }
+      }
+
+      .AdwPreferencesPage pref_page {
+        .AdwPreferencesGroup group_bottles {
+          ListBox list_bottles {
+            selection-mode: none;
+
+            styles [
+              "boxed-list",
+            ]
+          }
+        }
+
+        .AdwPreferencesGroup group_steam {
+          title: _("Steam Proton");
+
+          ListBox list_steam {
+            selection-mode: none;
+
+            styles [
+              "boxed-list",
+            ]
+          }
+        }
+      }
+
+      .AdwStatusPage bottle_status {
+        icon-name: "com.usebottles.bottles-symbolic";
+        title: _("Bottles");
+        description: _("Start off by creating a Bottle.");
+        hexpand: "True";
+        vexpand: "True";
+        child: 
+        Button btn_create {
+          valign: center;
+          halign: center;
+          label: _("Create a new Bottle");
+
+          styles [
+            "suggested-action",
+            "pill",
+          ]
+        }
+
+        ;
+      }
+
+      .AdwStatusPage no_bottles_found {
+        visible: "False";
+        icon-name: "system-search-symbolic";
+        title: _("No Results Found");
+        description: _("Try a different search.");
+        hexpand: "True";
+        vexpand: "True";
+      }
+    }
+  }
+}

@@ -1,0 +1,644 @@
+using Gtk 4.0;
+
+template DetailsPreferences : .AdwPreferencesPage {
+  .AdwPreferencesGroup group_details {
+    title: _("Bottle Details");
+
+    .AdwEntryRow entry_name {
+      title: _("Name");
+      show-apply-button: "True";
+    }
+  }
+
+  .AdwPreferencesGroup {
+    title: _("Graphics");
+
+    .AdwActionRow row_dxvk {
+      activatable-widget: "switch_dxvk";
+      title: _("DXVK");
+      subtitle: _("Improves performance of DirectX 9/10/11 games and 3D applications by translating to Vulkan.");
+
+      Spinner spinner_dxvkbool {
+        tooltip-text: _("Updating DXVK, please wait…");
+        valign: center;
+        margin-end: 6;
+      }
+
+      Switch switch_dxvk {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow row_vkd3d {
+      activatable-widget: "switch_vkd3d";
+      title: _("VKD3D");
+      subtitle: _("Improves performance of DirectX 12 games and 3D applications by translating to Vulkan.");
+
+      Spinner spinner_vkd3dbool {
+        tooltip-text: _("Updating VKD3D, please wait…");
+        valign: center;
+        margin-end: 6;
+      }
+
+      Switch switch_vkd3d {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow row_nvapi {
+      activatable-widget: "switch_nvapi";
+      title: _("DLSS (DXVK-NVAPI)");
+      subtitle: _("Provide DLSS and NVIDIA NVAPI support if available.");
+      visible: "False";
+
+      Spinner spinner_nvapibool {
+        tooltip-text: _("Updating DXVK-NVAPI, please wait…");
+        valign: center;
+        margin-end: 6;
+      }
+
+      Switch switch_nvapi {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow {
+      activatable-widget: "switch_fsr";
+      title: _("FSR");
+      subtitle: _("FSR uses cutting-edge up-scaling technologies to help boost your framerate.");
+
+      Gtk.ComboBoxText combo_fsr {
+        items [
+          item5: _("Ultra Quality"),
+          item4: _("Quality"),
+          item3: _("Balanced"),
+          item2: _("Performance")
+        ]
+        valign: center;
+        active-id: "add";
+        styles [
+          "borderless",
+        ]
+      }
+
+      Switch switch_fsr {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow row_latencyflex {
+      activatable-widget: "switch_latencyflex";
+      title: _("LatencyFleX");
+      subtitle: _("An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats.");
+
+      Spinner spinner_latencyflexbool {
+        tooltip-text: _("Updating DXVK-NVAPI, please wait…");
+        halign: center;
+        valign: center;
+        margin-end: 6;
+      }
+
+      Switch switch_latencyflex {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow row_discrete {
+      activatable-widget: "switch_discrete";
+      title: _("Discrete GPU");
+      subtitle: _("Improves performance at the cost of increased power usage.");
+
+      Switch switch_discrete {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow row_vkbasalt {
+      activatable-widget: "switch_vkbasalt";
+      title: _("vkBasalt");
+      subtitle: _("vkBasalt is a Vulkan post processing layer to enhance the visual graphics of games.");
+
+      Button btn_manage_vkbasalt {
+        tooltip-text: _("Manage vkBasalt settings");
+        valign: center;
+        icon-name: "applications-system-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Switch switch_vkbasalt {
+        valign: center;
+      }
+    }
+
+    .AdwExpanderRow {
+      title: _("Display Settings");
+
+      .AdwActionRow {
+        activatable-widget: "switch_virt_desktop";
+        title: _("Virtual Desktop");
+        subtitle: _("Use the Wine virtual desktop.");
+
+        ComboBoxText combo_virt_res {
+          valign: center;
+          active-id: "add";
+          items [
+          temp: _("SKELLY PLS FIX"),
+          ]
+          styles [
+            "borderless",
+          ]
+        }
+
+        Switch switch_virt_desktop {
+          valign: center;
+        }
+      }
+
+      .AdwActionRow {
+        activatable-widget: "switch_mouse_capture";
+        title: _("Fullscreen Mouse Capture");
+        subtitle: _("Let the program capture mouse input when fullscreen.");
+
+        Switch switch_mouse_capture {
+          valign: center;
+        }
+      }
+
+      .AdwActionRow {
+        activatable-widget: "switch_take_focus";
+        title: _("Take Focus");
+        subtitle: _("Activate it if the program does not retake focus on switch.");
+
+        Switch switch_take_focus {
+          valign: center;
+        }
+      }
+
+      .AdwActionRow {
+        activatable-widget: "switch_take_focus";
+        title: _("Mouse Warp");
+        subtitle: _("Change this if you are running into mouse lag or desync.");
+
+        Switch switch_mouse_warp {
+          valign: center;
+        }
+      }
+
+      .AdwActionRow {
+        activatable-widget: "combo_dpi";
+        title: _("Screen Scaling");
+        subtitle: _("Set custom DPI.");
+
+        ComboBoxText combo_dpi {
+          valign: center;
+          active-id: "add";
+          items [
+          temp: _("SKELLY PLS FIX"),
+          ]
+          styles [
+            "borderless",
+          ]
+        }
+      }
+
+      .AdwActionRow {
+        activatable-widget: "combo_renderer";
+        title: _("Renderer");
+        subtitle: _("Select what backend to use for wined3d.");
+
+        ComboBoxText combo_renderer {
+          valign: center;
+          active-id: "add";
+          items [
+          gl: _("gl (default)"),
+          gdi: _("gdi"),
+          vulkan: _("vulkan"),
+          ]
+          styles [
+            "borderless",
+          ]
+        }
+      }
+    }
+  }
+
+  .AdwPreferencesGroup {
+    title: _("System");
+
+    [header-suffix]
+    Button btn_manage_components {
+      tooltip-text: _("Manage Components Versions");
+      valign: center;
+      icon-name: "applications-system-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+
+    .AdwExpanderRow exp_components {
+      title: _("Components");
+
+      .AdwActionRow row_runner {
+        activatable-widget: "combo_runner";
+        title: _("Runner");
+
+        Spinner spinner_runner {
+          tooltip-text: _("Updating Runner and components, please wait…");
+          valign: center;
+        }
+
+        ComboBoxText combo_runner {
+          valign: center;
+
+          styles [
+            "borderless",
+          ]
+        }
+      }
+
+      .AdwActionRow {
+        title: _("DXVK Version");
+        activatable-widget: "combo_dxvk";
+
+        Spinner spinner_dxvk {
+          tooltip-text: _("Updating DXVK, please wait…");
+          valign: center;
+          margin-end: 6;
+        }
+
+        ComboBoxText combo_dxvk {
+          valign: center;
+          active: 0;
+
+          styles [
+            "borderless",
+          ]
+        }
+      }
+
+      .AdwActionRow {
+        activatable-widget: "combo_vkd3d";
+        title: _("VKD3D Version");
+
+        Spinner spinner_vkd3d {
+          tooltip-text: _("Updating VKD3D, please wait…");
+          halign: center;
+          valign: center;
+          margin-end: 5;
+        }
+
+        ComboBoxText combo_vkd3d {
+          valign: center;
+          active: 0;
+
+          styles [
+            "borderless",
+          ]
+        }
+      }
+
+      .AdwActionRow row_nvapi_version {
+        activatable-widget: "combo_nvapi";
+        title: _("DXVK NVAPI Version");
+        visible: _("false");
+
+        Spinner spinner_nvapi {
+          tooltip-text: _("Updating DXVK-NVAPI, please wait…");
+          valign: center;
+        }
+
+        ComboBoxText combo_nvapi {
+          valign: center;
+          active: 0;
+
+          styles [
+            "borderless",
+          ]
+        }
+      }
+
+      .AdwActionRow {
+        activatable-widget: "combo_latencyflex";
+        title: _("LatencyFleX Version");
+
+        Spinner spinner_latencyflex {
+          tooltip-text: _("Updating DXVK-NVAPI, please wait…");
+          valign: center;
+        }
+
+        ComboBoxText combo_latencyflex {
+          valign: center;
+          active: 0;
+
+          styles [
+            "borderless",
+          ]
+        }
+      }
+    }
+
+    .AdwActionRow {
+      tooltip-text: _("Enable synchronization to increase performance of multicore processors.");
+      title: _("Synchronization");
+
+      Box box_sync {
+        ToggleButton toggle_sync {
+          label: _("System");
+          valign: center;
+        }
+
+        ToggleButton toggle_esync {
+          label: _("Esync");
+          valign: center;
+        }
+
+        ToggleButton toggle_fsync {
+          label: _("Fsync");
+          valign: center;
+        }
+
+        ToggleButton toggle_futex2 {
+          label: _("Futex2");
+          valign: center;
+        }
+
+        styles [
+          "linked",
+        ]
+      }
+    }
+
+    .AdwActionRow {
+      activatable-widget: "combo_windows";
+      title: _("Windows Version");
+
+      Spinner spinner_win {
+        tooltip-text: _("Updating Windows version, please wait…");
+        valign: center;
+        margin-end: 6;
+      }
+
+      ComboBoxText combo_windows {
+        valign: center;
+        margin-end: 6;
+        active: 0;
+
+        styles [
+          "borderless",
+        ]
+      }
+    }
+
+    .AdwComboRow combo_language {
+      title: _("Language");
+      subtitle: _("Choose the language to use with programs.");
+      model: 
+      StringList str_list_languages {
+      }
+
+      ;
+    }
+
+    .AdwActionRow row_sandbox {
+      activatable-widget: "switch_sandbox";
+      visible: _("false");
+      title: _("Dedicated Sandbox");
+      subtitle: _("Use a restricted/managed environment for this bottle.");
+
+      Button btn_manage_sandbox {
+        tooltip-text: _("Manage the Sandbox Permissions");
+        valign: center;
+        icon-name: "applications-system-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Switch switch_sandbox {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow row_runtime {
+      activatable-widget: "switch_runtime";
+      title: _("Bottles Runtime");
+      subtitle: _("Provides a bundle of extra libraries for more compatibility, disable if you run into issues.");
+      visible: "False";
+
+      Switch switch_runtime {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow row_steam_runtime {
+      activatable-widget: "switch_steam_runtime";
+      title: _("Steam Runtime");
+      subtitle: _("The same as the Bottles runtime but provided by Steam.");
+
+      Switch switch_steam_runtime {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow {
+      activatable-widget: "switch_gamemode";
+      title: _("Feral GameMode");
+      subtitle: _("Apply a set of optimizations to your device. Can improve game performance.");
+
+      Switch switch_gamemode {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow {
+      activatable-widget: "switch_gamescope";
+      title: _("Gamescope");
+      subtitle: _("Use the Gamescope micro-compositor.");
+
+      Button btn_manage_gamescope {
+        tooltip-text: _("Manage Gamescope settings");
+        valign: center;
+        icon-name: "applications-system-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Switch switch_gamescope {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow {
+      activatable-widget: "switch_vmtouch";
+      title: _("Vmtouch");
+      subtitle: _("Preload game files into RAM. The game will take longer to start.");
+
+      Button btn_manage_vmtouch {
+        visible: false;
+        tooltip-text: _("Manage vmtouch settings");
+        valign: center;
+        icon-name: "applications-system-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Switch switch_vmtouch {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow row_cwd {
+      activatable-widget: "btn_cwd";
+      title: _("Working Directory");
+      subtitle: _("Defaults to the bottle path.");
+
+      Button btn_cwd_reset {
+        tooltip-text: _("Reset to default");
+        valign: center;
+        icon-name: "edit-undo-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Button btn_cwd {
+        tooltip-text: _("Choose a directory");
+        valign: center;
+        icon-name: "document-open-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+    }
+
+    .AdwActionRow row_overrides {
+      activatable: "True";
+      title: _("DLL Overrides");
+
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
+
+    .AdwActionRow row_env_variables {
+      activatable: "True";
+      title: _("Environment Variables");
+
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
+
+    .AdwActionRow row_drives {
+      activatable: "True";
+      title: _("Manage Drives");
+
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
+  }
+
+  .AdwPreferencesGroup {
+    title: _("Audio");
+
+    .AdwActionRow {
+      activatable-widget: "switch_pulse_latency";
+      title: _("Reduce Latency");
+      subtitle: _("Set PulseAudio latency to 60 ms, increasing sound quality.");
+
+      Switch switch_pulse_latency {
+        valign: center;
+      }
+    }
+  }
+
+  .AdwPreferencesGroup {
+    title: _("Versioning");
+
+    .AdwActionRow {
+      activatable-widget: "switch_versioning_compression";
+      title: _("Use Compression for States");
+      subtitle: _("This will reduce the space used by the states but slow down their creation.");
+
+      Switch switch_versioning_compression {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow {
+      activatable-widget: "switch_auto_versioning";
+      title: _("Automatic Versioning");
+      subtitle: _("Bottles will create a state before running any dependencies or installers.");
+
+      Switch switch_auto_versioning {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow {
+      activatable-widget: "switch_versioning_patterns";
+      title: _("Use Exclusion Patterns");
+      subtitle: _("Use custom patterns to exclude some paths from versioning.");
+
+      Button btn_manage_versioning_patterns {
+        tooltip-text: _("Manage Patterns");
+        valign: center;
+        icon-name: "applications-system-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Switch switch_versioning_patterns {
+        valign: center;
+      }
+    }
+  }
+
+  .AdwPreferencesGroup {
+    title: _("Development and Debugging");
+
+    .AdwActionRow {
+      activatable-widget: "switch_mangohud";
+      title: _("MangoHud");
+      subtitle: _("A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more.");
+
+      Switch switch_mangohud {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow {
+      activatable-widget: "switch_obsvkc";
+      title: _("OBS Game Capture");
+      subtitle: _("Toggle OBS Game Capture for all Vulkan and OpenGL programs.");
+
+      Switch switch_obsvkc {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow {
+      activatable-widget: "switch_fixme";
+      title: _("Wine \'fixme\' Logs");
+      subtitle: _("Log code paths that are unimplemented in Wine.");
+
+      Switch switch_fixme {
+        valign: center;
+      }
+    }
+  }
+}

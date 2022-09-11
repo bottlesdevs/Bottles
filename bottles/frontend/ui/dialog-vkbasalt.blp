@@ -1,0 +1,642 @@
+using Gtk 4.0;
+
+template VkBasaltDialog : .AdwWindow {
+  default-width: "500";
+  default-height: "550";
+  modal: "True";
+
+  /* Translators: vkBasalt is a Vulkan post processing layer for Linux */
+
+  title: _("vkBasalt Settings");
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-start-title-buttons: "False";
+      show-end-title-buttons: "False";
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      [end]
+      Button btn_save {
+        label: _("Save");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    .AdwPreferencesPage {
+      .AdwPreferencesGroup {
+        title: _("Default");
+
+        .AdwActionRow {
+          activatable-widget: "switch_default";
+          title: _("Default Settings");
+
+          Switch switch_default {
+            valign: center;
+          }
+        }
+      }
+
+      .AdwPreferencesGroup {
+        description: _("Effects are applied according to the list order.");
+        title: _("Effects");
+
+        .AdwExpanderRow expander_cas {
+          show-enable-switch: "True";
+          title: _("Contrast Adaptive Sharpening");
+
+          .AdwActionRow {
+            title: _("Sharpness");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_cas_sharpness;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            SpinButton {
+              numeric: true;
+              valign: center;
+              digits: 2;
+              adjustment: 
+              Adjustment spin_cas_sharpness {
+                lower: -1.0;
+                step-increment: 0.1;
+                upper: 1.0;
+              }
+
+              ;
+            }
+          }
+        }
+
+        .AdwExpanderRow expander_dls {
+          show-enable-switch: "True";
+
+          /* Translators: Luma is not translatable */
+
+          title: _("Denoised Luma Sharpening");
+
+          .AdwActionRow {
+            title: _("Sharpness");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_dls_sharpness;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            SpinButton {
+              numeric: true;
+              valign: center;
+              digits: 2;
+              adjustment: 
+              Adjustment spin_dls_sharpness {
+                step-increment: 0.1;
+                upper: 1.0;
+              }
+
+              ;
+            }
+          }
+
+          .AdwActionRow {
+            title: _("Denoise");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_dls_denoise;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            SpinButton {
+              numeric: true;
+              valign: center;
+              digits: 2;
+              adjustment: 
+              Adjustment spin_dls_denoise {
+                step-increment: 0.1;
+                upper: 1.0;
+              }
+
+              ;
+            }
+          }
+        }
+
+        .AdwExpanderRow expander_fxaa {
+          show-enable-switch: "True";
+          title: _("Fast Approximate Anti-Aliasing");
+
+          .AdwActionRow {
+            title: _("Subpixel Quality");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_fxaa_subpixel_quality;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            SpinButton {
+              numeric: true;
+              valign: center;
+              digits: 2;
+              adjustment: 
+              Adjustment spin_fxaa_subpixel_quality {
+                step-increment: 0.1;
+                upper: 1.0;
+              }
+
+              ;
+            }
+          }
+
+          .AdwActionRow {
+            title: _("Quality Edge Threshold");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_fxaa_quality_edge_threshold;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            SpinButton {
+              numeric: true;
+              valign: center;
+              digits: 2;
+              adjustment: 
+              Adjustment spin_fxaa_quality_edge_threshold {
+                step-increment: 0.1;
+                upper: 1.0;
+              }
+
+              ;
+            }
+          }
+
+          .AdwActionRow {
+            title: _("Quality Edge Threshold Minimum");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_fxaa_quality_edge_threshold_min;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            SpinButton {
+              numeric: true;
+              valign: center;
+              digits: 2;
+              adjustment: 
+              Adjustment spin_fxaa_quality_edge_threshold_min {
+                step-increment: 0.01;
+                upper: 0.1;
+              }
+
+              ;
+            }
+          }
+        }
+
+        .AdwExpanderRow expander_smaa {
+          show-enable-switch: "True";
+          title: _("Subpixel Morphological Anti-Aliasing");
+
+          .AdwActionRow {
+            title: _("Edge Detection");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_edge_detection;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            Box {
+              ToggleButton toggle_luma {
+                label: _("Luma");
+                active: true;
+                valign: center;
+              }
+
+              ToggleButton toggle_color {
+                label: _("Color");
+                valign: center;
+              }
+
+              styles [
+                "linked",
+              ]
+            }
+          }
+
+          .AdwActionRow {
+            title: _("Threshold");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_smaa_threshold;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            SpinButton {
+              numeric: true;
+              valign: center;
+              digits: 2;
+              adjustment: 
+              Adjustment spin_smaa_threshold {
+                step-increment: 0.05;
+                upper: 0.5;
+              }
+
+              ;
+            }
+          }
+
+          .AdwActionRow {
+            title: _("Max Search Steps");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_smaa_max_search_steps;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            SpinButton {
+              numeric: true;
+              valign: center;
+              adjustment: 
+              Adjustment spin_smaa_max_search_steps {
+                step-increment: 10;
+                upper: 112;
+              }
+
+              ;
+            }
+          }
+
+          .AdwActionRow {
+            title: _("Max Search Steps Diagonal");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_smaa_max_search_steps_diagonal;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            SpinButton {
+              numeric: true;
+              valign: center;
+              adjustment: 
+              Adjustment spin_smaa_max_search_steps_diagonal {
+                step-increment: 2;
+                upper: 20;
+              }
+
+              ;
+            }
+          }
+
+          .AdwActionRow {
+            title: _("Max Corner Rounding");
+
+            MenuButton {
+              valign: center;
+              tooltip-text: _("Show Information");
+              icon-name: "info-symbolic";
+              popover: popover_smaa_corner_rounding;
+
+              styles [
+                "flat",
+              ]
+            }
+
+            SpinButton {
+              numeric: true;
+              valign: center;
+              adjustment: 
+              Adjustment spin_smaa_corner_rounding {
+                step-increment: 10;
+                upper: 100;
+              }
+
+              ;
+            }
+          }
+        }
+
+        .AdwActionRow action_clut {
+          activatable-widget: "btn_lut_file_path";
+          title: _("Color Lookup Table");
+          subtitle: _("Choose a file.");
+
+          MenuButton {
+            valign: center;
+            tooltip-text: _("Show Information");
+            icon-name: "info-symbolic";
+            popover: popover_clut;
+
+            styles [
+              "flat",
+            ]
+          }
+
+          Box {
+            spacing: 6;
+
+            Button btn_lut_reset {
+              tooltip-text: _("Reset to Default");
+              valign: center;
+              visible: false;
+              icon-name: "edit-undo-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+
+            Button btn_lut_file_path {
+              tooltip-text: _("Select a File");
+              valign: center;
+              icon-name: "paper-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+Popover popover_cas_sharpness {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    valign: center;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("CAS sharpness increases the sharpness of a frame. Higher values make the frame sharper, whereas values lower than 0 make the frame softer than native.");
+  }
+}
+
+Popover popover_dls_sharpness {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("DLS sharpness increases the sharpness of a frame. Higher values make the frame sharper.");
+  }
+}
+
+Popover popover_dls_denoise {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("DLS denoise decreases the noise of a frame. Higher values make the frame softer.");
+  }
+}
+
+Popover popover_fxaa_subpixel_quality {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("FXAA subpixel quality decreases aliasing at the subpixel level. Higher values make the frame softer.");
+  }
+}
+
+Popover popover_fxaa_quality_edge_threshold {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("FXAA edge threshold is the minimum amount of contrast required to apply the FXAA algorithm. Higher values make the frame have more contrast.");
+  }
+}
+
+Popover popover_fxaa_quality_edge_threshold_min {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 60;
+    label: _("FXAA quality edge threshold minimum is the minimum value of dark pixels that are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels below the specified value and can lead to a performance increase.");
+  }
+}
+
+Popover popover_edge_detection {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("Luma detects edges from a monochrome perspective, whereas Color detects edges based on colors. Luma is more performant than Color.");
+  }
+}
+
+Popover popover_smaa_threshold {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("SMAA threshold specifies the sensitivity of edge detection. Lower values detect more edges at the expense of performance.");
+  }
+}
+
+Popover popover_smaa_max_search_steps {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("SMAA max search steps specifies how many horizontal and vertical search steps are performed when searching for edges.");
+  }
+}
+
+Popover popover_smaa_max_search_steps_diagonal {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("SMAA max diagonal search steps specifies how many diagonal search steps are performed when searching for edges.");
+  }
+}
+
+Popover popover_smaa_corner_rounding {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("SMAA corner rounding specifies the strength of rounding edge corners.");
+  }
+}
+
+Popover popover_clut {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("CLUT transforms a range of colors into another range of colors using a .CUBE file, or a .png file where the height is equal to the width.");
+  }
+}

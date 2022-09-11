@@ -1,0 +1,128 @@
+using Gtk 4.0;
+
+Popover pop_actions {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    Box {
+      homogeneous: true;
+
+      Button btn_launch_terminal {
+        tooltip-text: _("Launch with terminal");
+        icon-name: "utilities-terminal-symbolic";
+        valign: center;
+      }
+
+      Button btn_browse {
+        tooltip-text: _("Browse path");
+        icon-name: "document-open-symbolic";
+        valign: center;
+      }
+
+      styles [
+        "linked",
+      ]
+    }
+
+    Separator {
+    }
+
+    .GtkModelButton btn_launch_options {
+      text: _("Change Launch Options…");
+    }
+
+    .GtkModelButton btn_add_library {
+      text: _("Add to My Library");
+    }
+
+    .GtkModelButton btn_add_entry {
+      text: _("Add Desktop Entry");
+    }
+
+    .GtkModelButton btn_add_steam {
+      text: _("Add to Steam");
+    }
+
+    .GtkModelButton btn_rename {
+      text: _("Rename…");
+    }
+
+    Separator {
+    }
+
+    .GtkModelButton btn_hide {
+      text: _("Hide Program");
+    }
+
+    .GtkModelButton btn_unhide {
+      text: _("Show Program");
+    }
+
+    .GtkModelButton btn_remove {
+      text: _("Remove from List");
+    }
+
+    Separator {
+    }
+
+    .GtkModelButton btn_uninstall {
+      text: _("Uninstall");
+    }
+  }
+}
+
+template ProgramEntry : .AdwActionRow {
+  title: _("Program name");
+
+  Box {
+    spacing: 6;
+
+    Button btn_launch_steam {
+      tooltip-text: _("Launch with Steam");
+      valign: center;
+      visible: false;
+      icon-name: "bottles-steam-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Button btn_run {
+      valign: center;
+      icon-name: "media-playback-start-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Button btn_stop {
+      valign: center;
+      visible: false;
+      icon-name: "media-playback-stop-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+
+    MenuButton btn_menu {
+      valign: center;
+      popover: pop_actions;
+      icon-name: "view-more-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+  }
+}

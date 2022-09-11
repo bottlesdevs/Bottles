@@ -1,0 +1,44 @@
+using Gtk 4.0;
+
+template SandboxDialog : .AdwWindow {
+  modal: "True";
+  deletable: "True";
+  default-width: "550";
+  title: _("Sandbox Settings");
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+    }
+
+    .AdwPreferencesPage {
+      .AdwPreferencesGroup {
+        .AdwActionRow {
+          title: _("Share Network");
+          activatable-widget: "switch_net";
+
+          Switch switch_net {
+            valign: center;
+          }
+        }
+
+        .AdwActionRow {
+          title: _("Share Sound");
+          activatable-widget: "switch_sound";
+
+          Switch switch_sound {
+            valign: center;
+          }
+        }
+      }
+    }
+  }
+}

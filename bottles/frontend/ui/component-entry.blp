@@ -1,0 +1,75 @@
+using Gtk 4.0;
+
+template ComponentEntry : .AdwActionRow {
+  title: _("Component version");
+
+  Spinner spinner {
+    visible: false;
+  }
+
+  Button btn_remove {
+    visible: false;
+    tooltip-text: _("Uninstall");
+    valign: center;
+    icon-name: "user-trash-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+
+  Button btn_browse {
+    visible: false;
+    tooltip-text: _("Browse files");
+    valign: center;
+    icon-name: "folder-open-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+
+  Button btn_err {
+    visible: false;
+    tooltip-text: _("The installation failed. This may be due to a repository error, partial download or checksum mismatch. Press to try again.");
+    valign: center;
+    icon-name: "emblem-important-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+
+  Button btn_download {
+    visible: false;
+    tooltip-text: _("Download & Install");
+    valign: center;
+    icon-name: "document-save-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+
+  Box box_download_status {
+    visible: false;
+
+    Label label_task_status {
+      label: _("0%");
+    }
+
+    Image {
+      icon-name: "document-save-symbolic";
+    }
+  }
+
+  Button btn_cancel {
+    visible: false;
+    valign: center;
+    icon-name: "edit-delete-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+}

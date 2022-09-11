@@ -1,0 +1,56 @@
+using Gtk 4.0;
+
+template DetailsPrograms : .AdwPreferencesPage {
+  .AdwStatusPage status_page {
+    icon-name: "preferences-desktop-apps-symbolic";
+    title: _("No Programs found");
+    description: _("Install programs from the installers section or by running the installer executable, you can also manually add executables with the \"+\" button.");
+  }
+
+  .AdwPreferencesGroup group_programs {
+  }
+}
+
+Popover pop_context {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    .GtkModelButton btn_toggle_removed {
+      text: _("Toggle Hidden");
+    }
+
+    .GtkModelButton btn_update {
+      text: _("Search for new programs");
+    }
+
+    Separator {
+    }
+
+    .GtkModelButton btn_help {
+      tooltip-text: _("Read documentation");
+      text: _("Documentation");
+    }
+  }
+}
+
+Box actions {
+  spacing: 6;
+
+  Button btn_add {
+    tooltip-text: _("Add a custom executable path");
+    icon-name: "list-add-symbolic";
+  }
+
+  MenuButton {
+    popover: pop_context;
+    icon-name: "view-more-symbolic";
+  }
+}
