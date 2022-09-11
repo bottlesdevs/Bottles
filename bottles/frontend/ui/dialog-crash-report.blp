@@ -1,0 +1,101 @@
+using Gtk 4.0;
+
+template CrashReportDialog : .AdwWindow {
+  resizable: "False";
+  deletable: "True";
+  modal: "True";
+  default-width: "550";
+  title: _("Bottles Crash Report");
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-start-title-buttons: "False";
+      show-end-title-buttons: "False";
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      [end]
+      Button btn_send {
+        label: _("Send Report");
+        sensitive: false;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    Box {
+      spacing: 10;
+      margin-top: 10;
+      margin-start: 10;
+      margin-bottom: 10;
+      margin-end: 10;
+      orientation: vertical;
+
+      Label {
+        halign: start;
+        label: _("Bottles crashed last time. Please fill out a report attaching the following traceback to help us identify the problem preventing it from happening again.");
+        wrap: true;
+      }
+
+      Label label_output {
+        hexpand: true;
+        wrap: true;
+        selectable: true;
+        max-width-chars: 78;
+        xalign: 0;
+
+        styles [
+          "monospace",
+          "terminal",
+          "card",
+        ]
+      }
+
+      Box box_related {
+        visible: false;
+        spacing: 10;
+        orientation: vertical;
+
+        Box {
+          Image {
+            icon-name: "dialog-warning";
+          }
+
+          Label label_notice {
+            halign: start;
+            label: _("We found one or more similar (or identical) reports. Please make sure to check carefully that it has not already been reported before submitting a new one. Each report requires effort on the part of the developers to diagnose, please respect their work and make sure you don\'t post duplicates.");
+            wrap: true;
+            max-width-chars: 78;
+          }
+
+          styles [
+            "custom_warning",
+          ]
+        }
+
+        .AdwPreferencesGroup list_reports {
+        }
+
+        Expander {
+          CheckButton check_unlock_send {
+            label: _("I still want to report.");
+            halign: start;
+          }
+
+          [label]
+          Label {
+            label: _("Advanced options");
+          }
+        }
+      }
+    }
+  }
+}

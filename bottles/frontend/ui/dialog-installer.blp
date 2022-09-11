@@ -1,0 +1,152 @@
+using Gtk 4.0;
+
+template InstallerDialog : .AdwWindow {
+  modal: "True";
+  deletable: "True";
+  default-width: "500";
+  default-height: "600";
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      title-widget: .AdwWindowTitle window_title {
+      }
+
+      ;
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Stack stack {
+      vexpand: true;
+
+      StackPage page_init {
+        name: "page_init";
+        child: 
+        Box {
+          orientation: vertical;
+          spacing: 10;
+          valign: center;
+          halign: fill;
+
+          Image img_icon {
+            halign: center;
+          }
+
+          .AdwStatusPage status_init {
+            description: _("Do you want to proceed with the installation?");
+            hexpand: "True";
+            vexpand: "True";
+
+            Button btn_install {
+              label: _("Start Installation");
+              halign: center;
+
+              styles [
+                "pill",
+                "suggested-action",
+              ]
+            }
+          }
+        }
+
+        ;
+      }
+
+      StackPage page_resources {
+        name: "page_resources";
+        child: 
+        .AdwPreferencesPage {
+          .AdwPreferencesGroup group_resources {
+            description: _("This installer requires some local resources which cannot be provided otherwise.");
+          }
+
+          Button btn_proceed {
+            label: _("Proceed");
+            sensitive: false;
+            visible: false;
+            halign: center;
+            valign: center;
+
+            styles [
+              "pill",
+              "suggested-action",
+            ]
+          }
+        }
+
+        ;
+      }
+
+      StackPage page_install {
+        name: "page_install";
+        child: 
+        Box {
+          margin-top: 10;
+          margin-start: 10;
+          margin-bottom: 10;
+          margin-end: 10;
+          orientation: vertical;
+          valign: center;
+          spacing: 5;
+
+          Image img_icon_install {
+            halign: center;
+            margin-bottom: 2;
+          }
+
+          .AdwStatusPage install_status_page {
+            title: "name";
+            description: _("It could take a while, take a break.");
+
+            ProgressBar progressbar {
+              width-request: 300;
+              halign: center;
+              margin-top: 10;
+              margin-bottom: 12;
+              show-text: true;
+            }
+          }
+        }
+
+        ;
+      }
+
+      StackPage page_installed {
+        name: "page_installed";
+        child: 
+        .AdwStatusPage status_installed {
+          icon-name: "selection-mode-symbolic";
+          title: _("Completed!");
+
+          Button btn_close {
+            label: _("Show Programs");
+            halign: center;
+
+            styles [
+              "pill",
+              "suggested-action",
+            ]
+          }
+        }
+
+        ;
+      }
+
+      StackPage page_error {
+        name: "page_error";
+        child: 
+        .AdwStatusPage status_error {
+          icon-name: "dialog-warning-symbolic";
+          title: _("Installation Failed!");
+          description: _("Something goes wrong.");
+        }
+
+        ;
+      }
+    }
+  }
+}

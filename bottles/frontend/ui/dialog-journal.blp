@@ -1,0 +1,82 @@
+using Gtk 4.0;
+
+Popover pop_menu {
+  Box {
+    orientation: vertical;
+    spacing: 3;
+
+    .GtkModelButton btn_all {
+      text: _("All messages");
+    }
+
+    .GtkModelButton btn_critical {
+      text: _("Critical");
+    }
+
+    .GtkModelButton btn_error {
+      text: _("Errors");
+    }
+
+    .GtkModelButton btn_warning {
+      text: _("Warnings");
+    }
+
+    .GtkModelButton btn_info {
+      text: _("Info");
+    }
+  }
+}
+
+template JournalDialog : .AdwWindow {
+  default-width: "800";
+  default-height: "600";
+  destroy-with-parent: "True";
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      title-widget: .AdwWindowTitle {
+        title: _("Journal browser");
+      }
+
+      ;
+
+      [title]
+      Box {
+        SearchEntry search_entry {
+          placeholder-text: _("Journal Browser");
+        }
+
+        MenuButton {
+          focus-on-click: false;
+          tooltip-text: _("Change logging level.");
+          popover: pop_menu;
+
+          Label label_filter {
+            label: _("All");
+          }
+        }
+
+        styles [
+          "linked",
+        ]
+      }
+    }
+
+    ScrolledWindow {
+      hexpand: true;
+      vexpand: true;
+
+      TreeView tree_view {
+        reorderable: true;
+        hexpand: true;
+        vexpand: true;
+
+        [internal-child selection]
+        TreeSelection {
+        }
+      }
+    }
+  }
+}

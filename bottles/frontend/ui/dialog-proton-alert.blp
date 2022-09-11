@@ -1,0 +1,46 @@
+using Gtk 4.0;
+
+template ProtonAlertDialog : .AdwWindow {
+  title: _("Proton Disclaimer");
+  default-width: "500";
+  default-height: "380";
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-end-title-buttons: "False";
+
+      [start]
+      Button btn_cancel {
+        label: _("Cancel");
+      }
+
+      [end]
+      Button btn_use {
+        label: _("Use Proton");
+        sensitive: false;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    Label {
+      margin-top: 10;
+      margin-start: 10;
+      margin-end: 10;
+      wrap: true;
+      label: _("Beware, using Proton-based runners in non-Steam bottles can cause problems and prevent them from behaving correctly.\n\nWe recommend using Wine-GE rather, a version of Proton meant to run outside of Steam.\n\nProceeding will automatically enable the Steam runtime (if present in the system and detected by Bottles) in order to allow it to access the necessary libraries and limit compatibility problems. Be aware that GloriousEggroll, the runner\'s provider, is not responsible for any problems and we ask that you do not report to them.");
+    }
+
+    CheckButton check_confirm {
+      margin-top: 10;
+      margin-bottom: 10;
+      margin-start: 10;
+      margin-end: 10;
+      label: _("I got it.");
+    }
+  }
+}

@@ -1,0 +1,108 @@
+using Gtk 4.0;
+
+template BottleViewEntry : .AdwActionRow {
+  activatable: "True";
+  title: _("Bottle name");
+
+  Box list_labels {
+    spacing: 1;
+
+    Label label_env {
+      valign: center;
+      label: _("Environment");
+
+      styles [
+        "tag",
+        "caption",
+      ]
+    }
+
+    Grid grid_versioning {
+      tooltip-text: _("Versioning enabled for this bottle");
+      valign: center;
+      visible: false;
+
+      Image img_versioning {
+        tooltip-text: _("Versioning is active in this bottle.");
+        icon-name: "view-wrapped-symbolic";
+      }
+
+      Label label_state {
+        label: _("0");
+      }
+
+      styles [
+        "tag",
+        "tag-grid",
+        "tag-versioning",
+      ]
+    }
+
+    Image icon_damaged {
+      tooltip-text: _("This bottle looks damaged.");
+      halign: center;
+      valign: center;
+      icon-name: "dialog-warning-symbolic";
+      visible: false;
+
+      styles [
+        "tag",
+      ]
+    }
+  }
+
+  Button btn_run_executable {
+    tooltip-text: _("Execute in this bottle");
+    halign: center;
+    valign: center;
+    visible: false;
+
+    Box {
+      spacing: 6;
+
+      Image {
+        margin-end: 6;
+        icon-name: "media-playback-start-symbolic";
+      }
+
+      Label {
+        label: _("Run Here");
+      }
+    }
+  }
+
+  Button btn_repair {
+    tooltip-text: _("This bottle looks damaged, the configuration file is missing. I can try to solve by creating a new configuration.");
+    halign: center;
+    valign: center;
+    visible: false;
+    icon-name: "mail-mark-junk-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+
+  Button btn_run {
+    tooltip-text: _("Run .exe/.msi in this bottle");
+    halign: center;
+    valign: center;
+    icon-name: "system-run-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+
+  Image details_image {
+    icon-name: "go-next-symbolic";
+
+    styles [
+      "dim-label",
+    ]
+  }
+
+  Spinner spinner {
+    visible: false;
+  }
+}

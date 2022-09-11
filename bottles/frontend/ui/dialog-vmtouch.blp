@@ -1,0 +1,54 @@
+using Gtk 4.0;
+
+template VmtouchDialog : .AdwWindow {
+  modal: "True";
+  default-width: "550";
+  title: _("Vmtouch Settings");
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-end-title-buttons: "False";
+
+      [start]
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      [end]
+      Button btn_save {
+        label: _("Save");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    .AdwPreferencesPage {
+      .AdwPreferencesGroup {
+        title: _("Files to cache");
+        description: _("Select which files should be cached alongside the main executable.");
+
+        .AdwActionRow {
+          title: _("Cache work directory");
+          activatable-widget: "switch_cache_cwd";
+
+          Switch switch_cache_cwd {
+            valign: center;
+          }
+        }
+      }
+    }
+  }
+}

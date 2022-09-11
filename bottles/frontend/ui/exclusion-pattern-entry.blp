@@ -1,0 +1,14 @@
+using Gtk 4.0;
+
+template ExclusionPatternEntry : .AdwActionRow {
+  title: _("Value");
+
+  Button btn_remove {
+    valign: center;
+    icon-name: "user-trash-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+}

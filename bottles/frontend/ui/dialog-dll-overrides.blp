@@ -1,0 +1,24 @@
+using Gtk 4.0;
+
+template DLLOverridesDialog : .AdwPreferencesWindow {
+  modal: "True";
+  default-width: "500";
+  search-enabled: "False";
+  title: _("DLL Overrides");
+
+  .AdwPreferencesPage {
+    .AdwPreferencesGroup {
+      description: _("Dynamic Link Libraries can be specified to be builtin (provided by Wine) or native (provided by the program).");
+      title: _("DLL Overrides");
+
+      .AdwEntryRow entry_row {
+        title: _("New Override");
+        show-apply-button: "True";
+      }
+    }
+
+    .AdwPreferencesGroup group_overrides {
+      title: _("Overrides");
+    }
+  }
+}

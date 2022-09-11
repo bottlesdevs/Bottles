@@ -1,0 +1,109 @@
+using Gtk 4.0;
+
+Popover pop_menu {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    .GtkModelButton btn_importer {
+      text: _("Import/Export…");
+    }
+
+    .GtkModelButton btn_preferences {
+      text: _("Preferences");
+    }
+
+    Separator {
+    }
+
+    .GtkModelButton btn_support {
+      text: _("Support");
+    }
+
+    .GtkModelButton btn_docs {
+      text: _("Documentation");
+    }
+
+    .GtkModelButton btn_forum {
+      text: _("Forums");
+    }
+
+    .GtkModelButton btn_about {
+      text: _("About Bottles");
+    }
+  }
+}
+
+template MainWindow : .AdwApplicationWindow {
+  title: _("Bottles");
+  default-width: "880";
+  default-height: "640";
+  icon-name: "com.usebottles.bottles";
+
+  .AdwToastOverlay toasts {
+    .AdwLeaflet main_leaf {
+      can-unfold: "False";
+      can-navigate-back: "False";
+
+      Box {
+        orientation: vertical;
+
+        HeaderBar headerbar {
+          title-widget: .AdwViewSwitcherTitle view_switcher {
+            title: _("Bottles");
+            stack: "stack_main";
+          }
+
+          ;
+
+          [end]
+          MenuButton btn_menu {
+            tooltip-text: _("Open menu");
+            popover: pop_menu;
+            icon-name: "open-menu-symbolic";
+          }
+
+          [end]
+          ToggleButton btn_search {
+            tooltip-text: _("Search");
+            icon-name: "system-search-symbolic";
+          }
+
+          [end]
+          Button btn_noconnection {
+            visible: false;
+            tooltip-text: _("You don\'t seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.");
+            icon-name: "network-error-symbolic";
+          }
+
+          [start]
+          Button btn_add {
+            tooltip-text: _("New bottle");
+            icon-name: "list-add-symbolic";
+          }
+
+          Box box_actions {
+          }
+
+          styles [
+            "titlebar",
+          ]
+        }
+
+        SearchBar searchbar {
+        }
+
+        .AdwViewStack stack_main {
+          vexpand: "True";
+        }
+      }
+    }
+  }
+}

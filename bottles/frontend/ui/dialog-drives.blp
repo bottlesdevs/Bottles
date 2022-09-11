@@ -1,0 +1,53 @@
+using Gtk 4.0;
+
+template DrivesDialog : .AdwWindow {
+  modal: "True";
+  default-width: "500";
+  default-height: "500";
+  title: _("Drives");
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+    }
+
+    .AdwPreferencesPage {
+      .AdwPreferencesGroup {
+        description: _("These are paths from your host system that are mapped and recognized as devices by the runner (e.g. C: D:…).");
+
+        .AdwComboRow combo_letter {
+          title: _("Letter");
+          model: 
+          StringList str_list_letters {
+          }
+
+          ;
+
+          Button btn_save {
+            valign: center;
+
+            Image {
+              icon-name: "object-select-symbolic";
+            }
+
+            styles [
+              "flat",
+            ]
+          }
+        }
+      }
+
+      .AdwPreferencesGroup list_drives {
+        title: _("Existing Drives");
+      }
+    }
+  }
+}
