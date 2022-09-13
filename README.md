@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg" width="64">
+  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg" width="64">
   <h1 align="center">Bottles</h1>
   <p align="center">Easily manage wineprefix using environments</p>
 </div>
@@ -10,10 +10,10 @@
   <a href="https://hosted.weblate.org/engage/bottles">
     <img src="https://hosted.weblate.org/widgets/bottles/-/bottles/svg-badge.svg" />
   </a>
-  <a href="https://www.codefactor.io/repository/github/bottlesdevs/bottles/overview/master">
-    <img src="https://www.codefactor.io/repository/github/bottlesdevs/bottles/badge/master" />
+  <a href="https://www.codefactor.io/repository/github/bottlesdevs/bottles/overview/main">
+    <img src="https://www.codefactor.io/repository/github/bottlesdevs/bottles/badge/main" />
   </a>
-  <a href="https://github.com/bottlesdevs/Bottles/blob/master/LICENSE">
+  <a href="https://github.com/bottlesdevs/Bottles/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg">
   </a>
   <a href="https://github.com/bottlesdevs/Bottles/actions">
@@ -35,7 +35,7 @@
 <br/>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot.png">
+  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/main/screenshot.png">
 </div>
 
 ## 📚 Documentation
@@ -45,8 +45,8 @@ in our [documentation](https://docs.usebottles.com).
 Please note that some pages of the documentation are still being written.
 
 ## 🗣 Help Bottles speak your language
-Read [here](https://github.com/bottlesdevs/Bottles/tree/master/po#readme) how to 
-translate Bottles to your language or how to help improve existing ones.
+Read [here](po#readme) how to translate Bottles to your language or how to help
+improve existing ones.
 
 ## 🦾 Features
 - Create bottles based on environments (a set of rules and dependencies)

@@ -1,7 +1,7 @@
 name: Build unstable packages
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   workflow_dispatch:
 jobs:
   build-packages:
