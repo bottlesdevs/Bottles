@@ -201,9 +201,10 @@ class PreferencesWindow(Adw.PreferencesWindow):
         exp_vaniglia = ComponentExpander("Vaniglia", _("Based on Wine upstream, includes staging patches."))
         exp_proton = ComponentExpander("GE Proton", _("Based on Valve's Wine, includes staging, Proton and "
                                                       "Steam-specific patches. Requires the Steam Runtime turned on."))
+        exp_kron4ek = ComponentExpander("Kron4ek", _ ("Based on Wine upstream, staging, TkG, and Proton."))
         exp_other = ComponentExpander(_("Other"))
 
-        count = {"soda": 0, "caffe": 0, "wine-ge": 0, "lutris": 0, "vaniglia": 0, "proton": 0, "other": 0}
+        count = {"soda": 0, "caffe": 0, "wine-ge": 0, "lutris": 0, "vaniglia": 0, "kron4ek": 0, "proton": 0, "other": 0}
 
         for runner in self.manager.supported_wine_runners.items():
             _runner_name = runner[0].lower()
@@ -227,6 +228,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
             elif _runner_name.startswith("vaniglia"):
                 exp_vaniglia.add_row(_entry)
                 count["vaniglia"] += 1
+            elif _runner_name.startswith("kron4ek"):
+                exp_kron4ek.add_row(_entry)
+                count["kron4ek"] += 1
             else:
                 exp_other.add_row(_entry)
                 count["other"] += 1
@@ -255,6 +259,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
         if count["vaniglia"] > 0:
             self.list_runners.add(exp_vaniglia)
             self.__registry.append(exp_vaniglia)
+        if count["kron4ek"] > 0:
+            self.list_runners.add(exp_kron4ek)
+            self.__registry.append(exp_kron4ek)
         if count["proton"] > 0:
             self.list_runners.add(exp_proton)
             self.__registry.append(exp_proton)

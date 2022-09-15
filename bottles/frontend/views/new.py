@@ -82,7 +82,7 @@ class NewView(Adw.Window):
         for runner in self.manager.runners_available:
             self.combo_runner.append(runner, runner)
 
-        rs, rc, rv, rl, ry = [], [], [], [], []
+        rs, rc, rv, rl, rk, ry = [], [], [], [], [], []
 
         for i in self.manager.runners_available:
             if i.startswith('soda'):
@@ -93,6 +93,8 @@ class NewView(Adw.Window):
                 rv.append(i)
             elif i.startswith('lutris'):
                 rl.append(i)
+            elif i.startswith('kron4ek'):
+                rk.append(i)
             elif i.startswith('sys-'):
                 ry.append(i)
 
@@ -104,6 +106,8 @@ class NewView(Adw.Window):
             self.runner = rv[0]
         elif len(rl) > 0:  # use the latest from lutris
             self.runner = rl[0]
+        elif len(rk) > 0:  # use the latest from kron4ek
+            self.runner = rk[0]
         elif len(ry) > 0:  # use the latest from system
             self.runner = ry[0]
         else:  # use any other runner available
