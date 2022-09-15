@@ -1,51 +1,48 @@
 using Gtk 4.0;
 
-Popover pop_menu {
-  styles [
-    "menu",
-  ]
-
-  Box {
-    orientation: vertical;
-    margin-top: 6;
-    margin-bottom: 6;
-    margin-start: 6;
-    margin-end: 6;
-
-    .GtkModelButton btn_importer {
-      text: _("Import/Export…");
+menu main_menu {
+  section {
+    item {
+      label: _("Import…");
+      action: "win.importer";
     }
-
-    .GtkModelButton btn_preferences {
-      text: _("Preferences");
+    item {
+      label: _("Forum");
+      action: "win.forum";
     }
-
-    Separator {
+    item {
+      label: _("Support Us");
+      action: "win.support";
     }
-
-    .GtkModelButton btn_support {
-      text: _("Support");
+  }
+  section {
+    item {
+      label: _("Preferences");
+      action: "win.preferences";
     }
-
-    .GtkModelButton btn_docs {
-      text: _("Documentation");
+    item {
+      label: _("Help");
+      action: "app.help";
     }
-
-    .GtkModelButton btn_forum {
-      text: _("Forums");
-    }
-
-    .GtkModelButton btn_about {
-      text: _("About Bottles");
+    item {
+      label: _("About Bottles");
+      action: "win.about";
     }
   }
 }
+
 
 template MainWindow : .AdwApplicationWindow {
   title: _("Bottles");
   default-width: "880";
   default-height: "640";
   icon-name: "com.usebottles.bottles";
+  ShortcutController {
+    Shortcut {
+      trigger: "<Ctrl>comma";
+      action: "action(win.preferences)";
+    }
+  }
 
   .AdwToastOverlay toasts {
     .AdwLeaflet main_leaf {
@@ -59,15 +56,19 @@ template MainWindow : .AdwApplicationWindow {
           title-widget:           .AdwViewSwitcherTitle view_switcher {
             title: _("Bottles");
             stack: "stack_main";
-          }
-
-          ;
-
+          };
           [end]
           MenuButton btn_menu {
             tooltip-text: _("Open menu");
-            popover: pop_menu;
+            menu-model: main_menu;
             icon-name: "open-menu-symbolic";
+            ShortcutController {
+              scope: managed;
+              Shortcut {
+                trigger: "F10";
+                action: "activate";
+              }
+            }
           }
 
           [end]
@@ -87,6 +88,13 @@ template MainWindow : .AdwApplicationWindow {
           Button btn_add {
             tooltip-text: _("New bottle");
             icon-name: "list-add-symbolic";
+            ShortcutController {
+              scope: managed;
+              Shortcut {
+                trigger: "<Ctrl>N";
+                action: "activate";
+              }
+            }
           }
 
           Box box_actions {

@@ -58,14 +58,8 @@ class MainWindow(Adw.ApplicationWindow):
     # region Widgets
     stack_main = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
-    btn_preferences = Gtk.Template.Child()
-    btn_about = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
     btn_search = Gtk.Template.Child()
-    btn_support = Gtk.Template.Child()
-    btn_docs = Gtk.Template.Child()
-    btn_forum = Gtk.Template.Child()
-    btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
@@ -106,17 +100,28 @@ class MainWindow(Adw.ApplicationWindow):
         ).set_visible(False)
         self.headerbar.add_css_class("flat")
 
+        action_entries = [
+            ("preferences", self.show_prefs_view, None),
+            ("importer", self.show_importer_view, None),
+            ("about", self.show_about_dialog, None),
+            ("support", self.open_url, FUNDING_URL),
+            ("forum", self.open_url, FORUMS_URL)
+        ]
+
+        for action, callback, data in action_entries:
+            simple_action = Gio.SimpleAction.new(action, None)
+            if data is not None:
+                simple_action.connect('activate', callback, data)
+            else:
+                simple_action.connect('activate', callback)
+            self.add_action(simple_action)
+
         # Signal connections
         self.btn_add.connect("clicked", self.show_add_view)
-        self.btn_about.connect("clicked", self.show_about_dialog)
-        self.btn_support.connect("clicked", self.open_url, FUNDING_URL)
-        self.btn_docs.connect("clicked", self.open_url, DOC_URL)
-        self.btn_forum.connect("clicked", self.open_url, FORUMS_URL)
-        self.btn_preferences.connect("clicked", self.show_prefs_view)
-        self.btn_importer.connect("clicked", self.show_importer_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.__on_start()
         logging.info("Bottles Started!", )
+
 
     def update_library(self):
         GLib.idle_add(self.page_library.update)
@@ -252,7 +257,7 @@ class MainWindow(Adw.ApplicationWindow):
     def show_list_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_list")
 
-    def show_importer_view(self, widget=False):
+    def show_importer_view(self, widget=False, data=None):
         self.main_leaf.set_visible_child(self.page_importer)
 
     def show_prefs_view(self, widget=False, view=0):
@@ -343,5 +348,5 @@ class MainWindow(Adw.ApplicationWindow):
 
 
     @staticmethod
-    def open_url(widget, url):
+    def open_url(self, data, url):
         webbrowser.open_new_tab(url)
