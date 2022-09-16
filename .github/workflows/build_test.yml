@@ -1,9 +1,9 @@
 name: Test meson build
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:	
-    branches: [ master ]
+    branches: [ main ]
   workflow_dispatch:
 jobs:
   build:
@@ -42,7 +42,9 @@ jobs:
             python-pip \
             cabextract \
             webkit2gtk \
-            xorg-xdpyinfo
+            xorg-xdpyinfo \
+            blueprint-compiler \
+            gobject-introspection
 
           pip install patool
        

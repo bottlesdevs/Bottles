@@ -1,0 +1,51 @@
+using Gtk 4.0;
+
+template RunArgsDialog : Window {
+  modal: true;
+  default-width: 550;
+  destroy-with-parent: true;
+
+  [titlebar]
+  HeaderBar {
+    show-title-buttons: false;
+    title-widget: 
+    .AdwWindowTitle {
+      title: _("Run With Arguments");
+    }
+
+    ;
+
+    [start]
+    Button btn_cancel {
+      label: _("Cancel");
+
+      ShortcutController {
+        scope: managed;
+
+        Shortcut {
+          trigger: "Escape";
+          action: "activate";
+        }
+      }
+    }
+
+    [end]
+    Button btn_run {
+      label: _("Run");
+
+      styles [
+        "suggested-action",
+      ]
+    }
+  }
+
+  .AdwPreferencesPage {
+    .AdwPreferencesGroup {
+      description: _("Write below the arguments to be passed to the executable.");
+
+      .AdwEntryRow entry_args {
+        title: _("e.g.: -opengl -SkipBuildPatchPrereq");
+      }
+    }
+  }
+}

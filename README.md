@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg" width="64">
+  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg" width="64">
   <h1 align="center">Bottles</h1>
   <p align="center">Easily manage wineprefix using environments</p>
 </div>
@@ -10,10 +10,10 @@
   <a href="https://hosted.weblate.org/engage/bottles">
     <img src="https://hosted.weblate.org/widgets/bottles/-/bottles/svg-badge.svg" />
   </a>
-  <a href="https://www.codefactor.io/repository/github/bottlesdevs/bottles/overview/master">
-    <img src="https://www.codefactor.io/repository/github/bottlesdevs/bottles/badge/master" />
+  <a href="https://www.codefactor.io/repository/github/bottlesdevs/bottles/overview/main">
+    <img src="https://www.codefactor.io/repository/github/bottlesdevs/bottles/badge/main" />
   </a>
-  <a href="https://github.com/bottlesdevs/Bottles/blob/master/LICENSE">
+  <a href="https://github.com/bottlesdevs/Bottles/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg">
   </a>
   <a href="https://github.com/bottlesdevs/Bottles/actions">
@@ -35,7 +35,7 @@
 <br/>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot.png">
+  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/main/screenshot.png">
 </div>
 
 ## 📚 Documentation
@@ -45,8 +45,8 @@ in our [documentation](https://docs.usebottles.com).
 Please note that some pages of the documentation are still being written.
 
 ## 🗣 Help Bottles speak your language
-Read [here](https://github.com/bottlesdevs/Bottles/tree/master/po#readme) how to 
-translate Bottles in your language or how to help improve existing ones.
+Read [here](po#readme) how to translate Bottles to your language or how to help
+improve existing ones.
 
 ## 🦾 Features
 - Create bottles based on environments (a set of rules and dependencies)
@@ -81,9 +81,9 @@ install Bottles on your distribution.
 
 ### Notices for package maintainers
 We are happy to see packaged Bottles but we ask you to respect some small rules:
-- The package must be `bottles`, in other distributions it is possible to use suffixes (e.g. `bottles-git` on Arch Linux for the git based package) while on others the RDNN format is required (e.g. `com.usebottles.bottles` on elementary OS and Flathub repository). All other nomenclatures are discouraged.
+- The package must be `bottles`. In other distributions it is possible to use suffixes (e.g. `bottles-git` on Arch Linux for the git based package) while on others the RDNN format is required (e.g. `com.usebottles.bottles` on elementary OS and Flathub repository). All other nomenclatures are discouraged.
 - Do not package external files and do not make changes to the code, no hard script. Obviously with the exception of files essential for packaging.
-- Package version should follow the CalVer model (year.month.day) and the release cycle of the project. Bottles has 2 released per month: one on 14th and one on 28th. When an hotfix came, this will be appended to the release (e.g. 2022.2.14-1). Bottles as a codename too which is not mandatory and currently only used by the Flatpak.
+- Package version should follow the CalVer model (year.month.day) and the release cycle of the project. Bottles has 2 releases per month: one on 14th and one on 28th. When a hotfix is released, this will be appended to the release version (e.g. 2022.2.14-1). Bottles has a codename too which is not mandatory and currently only used by the Flatpak.
 
 ## Shortcuts
 | Shortcut |         Action          |
@@ -105,4 +105,5 @@ This project follows the [GNOME Code of Conduct.](https://wiki.gnome.org/Foundat
 ## Sponsors
 <a href="https://www.jetbrains.com/?from=bottles"><img height="55" src="https://unifiedban.solutions/static/images/jetbrains-logos/jetbrains.png" /></a>&nbsp;&nbsp;&nbsp;
 <a href="https://www.gitbook.com/?ref=bottles"><img height="55" src="https://www.gitbook.com/cdn-cgi/image/height=55,fit=contain,dpr=1,format=auto/https%3A%2F%2F2775338190-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FNkEGS7hzeqa35sMXQZ4X%252Flogo%252FTO5E3RjWKeaJmYYWMGWV%252Fspaces_gitbook_avatar-rectangle.png%3Falt%3Dmedia%26token%3Da34e957e-f044-4bee-abee-23946d2e9cfb" /></a>&nbsp;&nbsp;&nbsp;
-<a href="https://www.linode.com/?from=bottles"><img height="48" src="https://usebottles.com/uploads/linode-brand.png" /></a>
+<a href="https://www.linode.com/?from=bottles"><img height="48" src="https://usebottles.com/uploads/linode-brand.png" /></a>&nbsp;&nbsp;&nbsp;
+<a href="https://appwrite.io?from=bottles"><img height="48" src="https://usebottles.com/uploads/built-with-appwrite.svg" /></a>

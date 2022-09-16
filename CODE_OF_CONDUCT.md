@@ -113,7 +113,7 @@ Additional language was incorporated and modified from the following Codes of Co
 
  * [Citizen Code of Conduct](http://citizencodeofconduct.org/) is licensed [Creative Commons Attribution Share-Alike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/).
  * [Code of Conduct template](https://github.com/sagesharp/code-of-conduct-template/) is licensed [Creative Commons Attribution Share-Alike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/) by [Otter Tech](https://otter.technology/code-of-conduct-training)
- * [Contributor Covenant version 1.4](https://www.contributor-covenant.org/version/1/4/code-of-conduct) (licensed [CC BY 4.0](https://github.com/ContributorCovenant/contributor_covenant/blob/master/LICENSE.md))
+ * [Contributor Covenant version 1.4](https://www.contributor-covenant.org/version/1/4/code-of-conduct) (licensed [CC BY 4.0](https://github.com/EthicalSource/contributor_covenant/blob/release/LICENSE.md))
  * [Data Carpentry Code of Conduct](https://docs.carpentries.org/topic_folders/policies/index_coc.html) is licensed [Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/)
  * [Django Project Code of Conduct](https://www.djangoproject.com/conduct/) is licensed under a [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/)
  * [Fedora Code of Conduct](http://fedoraproject.org/code-of-conduct)

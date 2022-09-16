@@ -1,0 +1,25 @@
+using Gtk 4.0;
+
+template TaskManagerView : ScrolledWindow {
+  TreeView treeview_processes {
+    enable-grid-lines: horizontal;
+
+    [internal-child selection]
+    TreeSelection {
+    }
+  }
+}
+
+Box actions {
+  spacing: 6;
+
+  Button btn_update {
+    tooltip-text: _("Refresh");
+    icon-name: "view-refresh-symbolic";
+  }
+
+  Button btn_kill {
+    tooltip-text: _("Stop process");
+    icon-name: "process-stop-symbolic";
+  }
+}

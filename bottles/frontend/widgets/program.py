@@ -99,9 +99,6 @@ class ProgramEntry(Adw.ActionRow):
         self.btn_hide.set_visible(not program.get("removed"))
         self.btn_unhide.set_visible(program.get("removed"))
 
-        if window.settings.get_boolean("experiments-library"):
-            self.btn_add_library.set_visible(True)
-
         if self.manager.steam_manager.is_steam_supported:
             self.btn_add_steam.set_visible(True)
 

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-11 07:53+0000\n"
+"PO-Revision-Date: 2022-09-10 07:36+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
@@ -119,7 +119,7 @@ msgstr "Instaliranje ovisnosti: %s …"
 
 #: bottles/backend/managers/manager.py:1311
 msgid "Creating versioning state 0…"
-msgstr "Stvaranje stanja 0 za upravljanje verzijama …"
+msgstr "Stvaranje verzioniranog stanja 0 …"
 
 #: bottles/backend/managers/manager.py:1319
 msgid "Finalizing…"
@@ -335,6 +335,8 @@ msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
 msgstr ""
+"Staza tablice pretraživanja boja ne smije sadržavati razmake. Preimenuj "
+"datoteku i ukloni sve razmake."
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
@@ -563,12 +565,12 @@ msgstr "Pokretač"
 #: bottles/frontend/ui/details-bottle.ui:193
 #: bottles/frontend/ui/list-entry.ui:23
 msgid "Versioning enabled for this bottle"
-msgstr "Upravljanje verzijama je aktivirano za ovu butelju"
+msgstr "Verzioniranje je aktivirano za ovu butelju"
 
 #: bottles/frontend/ui/details-bottle.ui:198
 #: bottles/frontend/ui/list-entry.ui:28
 msgid "Versioning is active in this bottle."
-msgstr "Upravljanje verzijama je aktivno u ovoj butelji."
+msgstr "Verzioniranje je aktivno u ovoj butelji."
 
 #: bottles/frontend/ui/details-bottle.ui:208
 #: bottles/frontend/ui/list-entry.ui:34
@@ -737,6 +739,8 @@ msgid ""
 "Use this section to install programs curated by our community, without "
 "having to proceed manually."
 msgstr ""
+"Koristi ovaj odjeljak za instaliranje programa koje je pripremila naša "
+"zajednica, bez potrebe za ručnim nastavljanjem."
 
 #: bottles/frontend/ui/details-installers.ui:48
 msgid "No Installers Found"
@@ -1180,7 +1184,7 @@ msgstr "Postavi PulseAudio kašnjenje na 60 ms. Povećava kvalitetu zvuka."
 #: bottles/frontend/ui/details-preferences.ui:688
 #: bottles/frontend/views/details.py:170
 msgid "Versioning"
-msgstr "Upravljanje verzijama"
+msgstr "Verzioniranje"
 
 #: bottles/frontend/ui/details-preferences.ui:692
 msgid "Use Compression for States"
@@ -1195,7 +1199,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:704
 msgid "Automatic Versioning"
-msgstr "Automatsko upravljanje verzijama"
+msgstr "Automatsko verzioniranje"
 
 #: bottles/frontend/ui/details-preferences.ui:705
 msgid ""
@@ -1211,8 +1215,7 @@ msgstr "Koristi uzorke isključivanja"
 #: bottles/frontend/ui/details-preferences.ui:717
 msgid "Use custom patterns to exclude some paths from versioning."
 msgstr ""
-"Koristi prilagođene uzorke za isključivanje nekih staza iz upravljanja "
-"verzijama."
+"Koristi prilagođene uzorke za isključivanje nekih staza iz verzioniranja."
 
 #: bottles/frontend/ui/details-preferences.ui:720
 msgid "Manage Patterns"
@@ -1363,6 +1366,9 @@ msgid ""
 "version.\n"
 "                        "
 msgstr ""
+"Čini se da ova Butelje verzija ne pruža sve potrebne osnovne ovisnosti. "
+"Obrati se održavatelju paketa ili koristi službenu verziju.\n"
+"                        "
 
 #: bottles/frontend/ui/dialog-deps-check.ui:21
 msgid "Quit"
@@ -1711,11 +1717,11 @@ msgstr "Pokreni nadogradnju"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:69
 msgid "New Versioning System"
-msgstr "Novi sustav za upravljanje verzijama"
+msgstr "Novi sustav verzioniranja"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:72
 msgid "The new bottle versioning system has landed."
-msgstr ""
+msgstr "Uveden je novi sustav verzioniranja butelja."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:86
 msgid ""
@@ -1732,6 +1738,18 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"Bottles ima potpuno novi sustav verzioniranja koji nije kompatibilan s "
+"prethodnim verzijama.\n"
+"\n"
+"Da bismo nastavili koristiti verzioniranje, moramo ponovo inicijalizirati "
+"repozitorij butelje. To neće izbrisati podatke iz tvoje butelje, ali će "
+"izbrisati sva postojeća stanja i stvoriti novo.\n"
+"\n"
+"Ako se moraš vratiti na jedno prethodno stanje prije nastavljanja, zatvori "
+"ovaj prozor i obnovi stanje, a zatim ponovo otvori butelju za ponovno "
+"prikazivanje ovog prozora.\n"
+"\n"
+"Stari sustav bit će ukinut u jednom od sljedećih izdanja."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
 msgid "Re-initializing repository…"
@@ -1872,6 +1890,8 @@ msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"DLS uklanjanje mrlja smanjuje mrlje u kadru. Više vrijednosti smanjuju "
+"oštrinu kadra."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:536
 msgid ""
@@ -1897,6 +1917,8 @@ msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"Svjetljivost otkriva rubove iz jednobojne perspektive, dok „Boja” otkriva "
+"rubove na temelju boja. Svjetljivost je uspješnija od „Boja”."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:608
 msgid ""
@@ -2258,7 +2280,7 @@ msgstr "Sve je spremno!"
 
 #: bottles/frontend/ui/onboard.ui:122
 msgid "Please Finish the setup first"
-msgstr ""
+msgstr "Najprije završi postavljanje"
 
 #: bottles/frontend/ui/onboard.ui:129
 msgid "Start using Bottles"
@@ -2422,6 +2444,8 @@ msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
 msgstr ""
+"Ove se značajke nalaze u intenzivnom razvoju i mogu biti nestabilne. Očekuj "
+"greške i prekide."
 
 #: bottles/frontend/ui/preferences.ui:260
 msgid "In early development (requires restart)."
@@ -2553,6 +2577,9 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
+"Bottles radi u sandboxu, okruženju s ograničenim dopuštenjima potrebnim za "
+"tvoju sigurnost. Ako se program ne pokreće, razmisli o pomicanju unutar "
+"butelje (ikona s 3 točke na vrhu), zatim ga pokreni od tamo."
 
 #: bottles/frontend/views/bottle_details.py:212
 msgid "Ok"
@@ -2616,13 +2643,15 @@ msgstr "Odaberi radnu mapu za izvršne datoteke"
 
 #: bottles/frontend/views/bottle_preferences.py:772
 msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
+msgstr "Mijenjanje kompresije zahtijeva ponovno inicijaliziranje"
 
 #: bottles/frontend/views/bottle_preferences.py:773
 msgid ""
 "This will kepp all your files but will delete all states. Do you want to "
 "continue?"
 msgstr ""
+"Ovo će sačuvati sve tvoje datoteke, ali će izbrisati sva stanja. Želiš li "
+"nastaviti?"
 
 #: bottles/frontend/views/bottle_programs.py:86
 #, python-brace-format
@@ -2639,7 +2668,7 @@ msgstr "Dodaj"
 
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
+msgstr "Prijeđi na novi sustav verzioniranja za stvaranje novih stanja."
 
 #: bottles/frontend/views/details.py:154
 msgid "Details & Utilities"
@@ -2838,6 +2867,8 @@ msgstr "Prilagođena staza za „Butelje” nije pronađena"
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
 msgstr ""
+"Vraćanje na standardnu stazu. Nijedna butelja sa zadane staze neće biti "
+"navedena."
 
 #: bottles/frontend/windows/main_window.py:310
 msgid "Third-Party Libraries and Special Thanks"
@@ -2955,7 +2986,7 @@ msgstr "Uvoz Wine mapa iz drugih upravljača"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning"
-msgstr "Upravljanje verzijama programa Butelje"
+msgstr "Verzioniranje programa Butelje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -2970,18 +3001,20 @@ msgid ""
 "New versioning system which allow versioning the whole bottle (also "
 "configuration)"
 msgstr ""
+"Novi sustav verzioniranja koji omogućuje verzioniranje cijele butelje ("
+"također konfiguraciju)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Automatic versioning can now be toggled on and off"
-msgstr ""
+msgstr "Automatsko verzioniranje se sada može uključiti i isključiti"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "Exclude paths from versioning using patterns"
-msgstr ""
+msgstr "Isključi staze iz verzioniranja pomoću uzoraka"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
 msgid "Use compression for versioning states"
-msgstr "Koristi komprimiranje za stanja verzija"
+msgstr "Koristi komprimiranje za stanja verzioniranja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
@@ -3231,7 +3264,7 @@ msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Uključi/Isključi eksperimentalne funkcije kao što su upravljanje verzijama i "
+"Uključi/Isključi eksperimentalne funkcije kao što su verzioniranje i "
 "instalacijski programi. Kandidat izdanja za pokretače."
 
 #: data/com.usebottles.bottles.gschema.xml:71

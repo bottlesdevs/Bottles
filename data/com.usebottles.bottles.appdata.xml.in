@@ -42,40 +42,40 @@
     </provides>
     <screenshots>
         <screenshot type="default">
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/screenshot.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/screenshot.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/1.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/1.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/2.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/2.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/3.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/3.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/4.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/4.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/5.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/5.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/6.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/6.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/7.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/7.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/8.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/8.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/9.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/9.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/10.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/10.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/11.png</image>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/11.png</image>
         </screenshot>
     </screenshots>
     <translation type="gettext">com.usebottles.bottles</translation>
@@ -86,7 +86,7 @@
     <url type="donation">https://usebottles.com/funding</url>
     <url type="translate">https://hosted.weblate.org/engage/bottles</url>
     <url type="vcs-browser">https://github.com/bottlesdevs/Bottles</url>
-    <url type="contribute">https://github.com/bottlesdevs/Bottles/blob/master/CONTRIBUTING.md</url>
+    <url type="contribute">https://github.com/bottlesdevs/Bottles/blob/main/CONTRIBUTING.md</url>
     <recommends>
       <control>pointing</control>
       <control>keyboard</control>
@@ -96,57 +96,42 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.8.14-brescia" date="2022-08-14">
+        <release version="2022.8.28-brescia-2" date="2022-08-28">
           <description>
             <p>News</p>
             <ul>
-                <li>New vkBasalt settings, thanks to @TheEvilSkeleton</li>
-                <li>Support for vmtouch caching, thanks to @axtloss</li>
-                <li>New dark mode switch as fallback for distributions not supporting the freedesktop Dark Mode</li>
-                <li>Prevent programs from launching when clicking on the entry instead of the play button</li>
-                <li>Windows can now be closed by pressing Escape</li>
-                <li>The Library view now supports program settings overrides</li>
-                <li>"Add to Steam" and "Add Desktop Entry" now supports integrations (Epic, Ubisoft, etc.)</li>
-                <li>The bottles-cli "programs" option now list programs from integrations as well</li>
-                <li>Gamescope is now compatible with FSR</li>
-                <li>Minor UI improvements</li>
+                <li>Library mode is now a stable feature and enabled by default</li>
+                <li>Dependencies "copy_file" action now creates the path if not exists (see maintainers docs.)</li>
+                <li>Opening a bottle, a dialog is shown if the runner is not installed</li>
+                <li>The C: drive is now marked as persistend in the Drives section and cannot be edited by the user</li>
+                <li>All dialogs can now be closed pressing Escape</li>
+                <li>The dark mode switcher is now available only for system which doesn't support the standard</li>
+                <li>Simplification of "Legacy Tools" section, thanks to @Knebergish</li>
+                <li>Minor UI improvements, thanks to @TheEvilSkeleton, @orowith2os, @marhkb</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fix missing translations, thanks to @A6GibKm</li>
-                <li>Fix a bug in "Add to Steam", was not supporting ~/.steam</li>
-                <li>Fix a regression on renaming programs, this was causing duplicated entries</li>
-                <li>Fix a bug in the internal-sandbox, wine symlinks were not unlinked if the username had special characters</li>
-                <li>Fix a bug in generating desktop entries for programs with spaces in their names</li>
-                <li>Fix a bug in the copy_dll dependency action, wildcards were not handled correctly, thanks to @siroccal</li>
-                <li>Fix a bug in loading gstreamer libraries, were not respecting the bottle architecture</li>
-                <li>Fix a regression in library mode, adding a new program was causing a loop when the bottle name and path mismatched</li>
+                <li>Fix a bug in the template system, was trying to unpack a partial one</li>
+                <li>Fix a bug in setting overrides for old-structured program entries</li>
+                <li>Fix a bug in vmtouch management</li>
+                <li>Fix a bug in the WineCommand interface which was causing a crash if the executable path is not accessible</li>
+                <li>Fix a bug in the Steam Manager, was generating wrong shortcuts when the program name has spaces in it</li>
+                <li>Fix long names in library mode</li>
+                <li>Fix a bug in bottle creation, sometimes it created a symlinks loop in the userdir</li>
+                <li>Fix a bug in the crash dialog, the similarity check was set too high resulting in no similar reports</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Estonian translations thanks to @tenseoverflow  </li>
-                <li>Italian translations thanks to @albanobattistella, Kryotek</li>
-                <li>Russian translations thanks to Corvurius, @Knebergish</li>
-                <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>Portuguese (Brazil) translations thanks to @davipatricio</li>
-                <li>Korean translations thanks to @qogusdn1017</li>
-                <li>Chinese (Simplified)) translations thanks to Eric</li>  
-                <li>Czech translations thanks to @vikdevelop</li>
-                <li>Polish translations thanks to @Mikutut</li>
+                <li>Italian translations thanks to @alfonso133</li>
+                <li>Bengali translations thanks to @zihadio</li>
                 <li>Catalan translations thanks to @rogervc</li>
-                <li>French translations thanks to @julroy67, Paul Forti</li>
-                <li>Dutch translations thanks to @flipflop97</li>
-                <li>Chinese (Traditional) translations thanks to @kisaragi-hiu</li>
-                <li>Arabic translations thanks to @vxvxvcc</li>
-                <li>German translations thanks to Michael Banditt</li>
-                <li>Spanish translations thanks to @oscfdezdz, Sergio Varela</li>
-                <li>Turkish translations thanks to @omerfaruk-cakmak</li>
-                <li>Hungarian translations thanks to @zoli111</li>
                 <li>Tamil translations thanks to @kbdharun</li>
-                <li>Croatian translations thanks to @milotype</li>
-                <li>Thai translations thanks to @SashaPGT</li>
+                <li>Dutch translations thanks to @flipflop97</li>
+                <li>Spanish translations thanks to @ParadoxialN3</li>
+                <li>Ukranian translations thanks to @c0m1c5an5</li>
+                <li>Turkish translations thanks to @Dhizaes</li>
             </ul>
           </description>
         </release>

@@ -20,6 +20,7 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
   - --env=LD_LIBRARY_PATH=/app/lib:/app/lib32
   - --env=PATH=/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/bin:/usr/lib/extensions/vulkan/OBSVkCapture/bin/
+  - --env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/app/lib32/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0
   - --require-version=1.1.2
 
 inherit-extensions:
@@ -242,6 +243,8 @@ modules:
         url: https://github.com/freedesktop/xdpyinfo/archive/refs/tags/xdpyinfo-1.3.2.tar.gz
         sha256: 4c6942cb55e965f1192c0e2efc78429e2f4281cc2bc185d6ea09d609f32c51de
 
+    
+
   # Libraries
   # ----------------------------------------------------------------------------
 
@@ -303,8 +306,8 @@ modules:
     sources:
     - type: git
       url: https://gitlab.gnome.org/GNOME/libadwaita.git
-      tag: 1.2.alpha
-      commit: 9150f4016a04064a00733b78391c8e6aad49bee8
+      tag: 1.2.rc
+      commit: a6a26cd9c35571a4e0ebacb2c6d763d44e59c045
     modules:
     - name: libsass
       buildsystem: meson
@@ -339,7 +342,14 @@ modules:
       - type: archive
         url: https://github.com/flatpak/libportal/archive/refs/tags/0.6.tar.gz
         sha256: 8ad326c4f53b7433645dc86d994fef0292bee8adda0fe67db9288ace19250a9c
-
+        
+  - name: blueprint-compiler
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/jwestman/blueprint-compiler
+        branch: main
+  
   # Bottles components
   # ----------------------------------------------------------------------------
   - name: EasyTerm

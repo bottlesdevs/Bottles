@@ -1204,34 +1204,38 @@ class Manager:
             if sandbox:
                 log_update(_("Sandboxing userdir…"))
                 
-            links = []
-            for user in os.listdir(f"{bottle_complete_path}/drive_c/users"):
-                _user_dir = os.path.join(f"{bottle_complete_path}/drive_c/users", user)
+            userdir = f"{bottle_complete_path}/drive_c/users"
+            if os.path.exists(userdir):
+                # userdir may not exists when unpacking a template, safely
+                # ignore as it will be created on first winebot.
+                links = []
+                for user in os.listdir(userdir):
+                    _user_dir = os.path.join(userdir, user)
 
-                if os.path.isdir(_user_dir):
-                    for _dir in os.listdir(_user_dir):
-                        _dir_path = os.path.join(_user_dir, _dir)
-                        if os.path.islink(_dir_path):
-                            links.append(_dir_path)
-                    
-                    _documents_dir = os.path.join(_user_dir, "Documents")
-                    if os.path.isdir(_documents_dir):
-                        for _dir in os.listdir(_documents_dir):
-                            _dir_path = os.path.join(_documents_dir, _dir)
+                    if os.path.isdir(_user_dir):
+                        for _dir in os.listdir(_user_dir):
+                            _dir_path = os.path.join(_user_dir, _dir)
                             if os.path.islink(_dir_path):
                                 links.append(_dir_path)
+                        
+                        _documents_dir = os.path.join(_user_dir, "Documents")
+                        if os.path.isdir(_documents_dir):
+                            for _dir in os.listdir(_documents_dir):
+                                _dir_path = os.path.join(_documents_dir, _dir)
+                                if os.path.islink(_dir_path):
+                                    links.append(_dir_path)
 
-                    _win_dir = os.path.join(_user_dir, "AppData", "Roaming", "Microsoft", "Windows")
-                    if os.path.isdir(_win_dir):
-                        for _dir in os.listdir(_win_dir):
-                            _dir_path = os.path.join(_win_dir, _dir)
-                            if os.path.islink(_dir_path):
-                                links.append(_dir_path)
-            
-            for link in links:
-                with contextlib.suppress(IOError, OSError):
-                    os.unlink(link)
-                    os.makedirs(link)
+                        _win_dir = os.path.join(_user_dir, "AppData", "Roaming", "Microsoft", "Windows")
+                        if os.path.isdir(_win_dir):
+                            for _dir in os.listdir(_win_dir):
+                                _dir_path = os.path.join(_win_dir, _dir)
+                                if os.path.islink(_dir_path):
+                                    links.append(_dir_path)
+                
+                for link in links:
+                    with contextlib.suppress(IOError, OSError):
+                        os.unlink(link)
+                        os.makedirs(link)
 
         # wait for registry files to be created
         FileUtils.wait_for_files(reg_files)

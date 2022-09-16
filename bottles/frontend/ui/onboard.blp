@@ -1,0 +1,150 @@
+using Gtk 4.0;
+
+template OnboardDialog : .AdwWindow {
+  resizable: "False";
+  deletable: "True";
+  modal: "True";
+  default-width: "550";
+  default-height: "550";
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      title-widget: .AdwCarouselIndicatorDots {
+        carousel: "carousel";
+        orientation: "horizontal";
+      }
+
+      ;
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Overlay {
+      [overlay]
+      Button btn_back {
+        margin-start: 12;
+        icon-name: "go-previous-symbolic";
+        halign: start;
+        valign: center;
+        visible: false;
+        tooltip-text: _("Previous");
+
+        styles [
+          "circular",
+        ]
+      }
+
+      .AdwCarousel carousel {
+        vexpand: "True";
+        hexpand: "True";
+        allow-scroll-wheel: "True";
+        allow-mouse-drag: "True";
+        allow-long-swipes: "True";
+
+        Box {
+          orientation: vertical;
+          vexpand: true;
+          hexpand: true;
+
+          Image img_welcome {
+            resource: "/com/usebottles/bottles/images/images/bottles-welcome.svg";
+            pixel-size: 320;
+          }
+
+          .AdwStatusPage page_welcome {
+            title: _("Welcome to Bottles");
+            description: _("Run Windows Software on Linux.");
+          }
+        }
+
+        .AdwStatusPage page_bottles {
+          title: _("Windows in Bottles");
+          description: _("Bottles uses compatibility runners to provide isolated containerized Windows-like environments where programs run.");
+          vexpand: "True";
+          hexpand: "True";
+        }
+
+        .AdwStatusPage page_download {
+          title: _("Almost Done");
+          description: _("We need a few more minutes to set everything up…");
+          vexpand: "True";
+          hexpand: "True";
+          child: 
+          Box {
+            orientation: vertical;
+
+            Button btn_install {
+              label: _("Continue");
+              use-underline: true;
+              halign: center;
+
+              styles [
+                "suggested-action",
+                "pill",
+              ]
+            }
+
+            ProgressBar progressbar {
+              width-request: 300;
+              halign: center;
+              visible: false;
+              margin-top: 24;
+              margin-bottom: 12;
+            }
+          }
+
+          ;
+        }
+
+        .AdwStatusPage page_finish {
+          icon-name: "selection-mode-symbolic";
+          title: _("All ready!");
+          vexpand: "True";
+          hexpand: "True";
+          valign: "center";
+          child: 
+          Box {
+            orientation: vertical;
+
+            Label label_skip {
+              label: _("Please Finish the setup first");
+              visible: true;
+              margin-bottom: 5;
+            }
+
+            Button btn_close {
+              label: _("Start using Bottles");
+              use-underline: true;
+              halign: center;
+
+              styles [
+                "suggested-action",
+                "pill",
+              ]
+            }
+          }
+
+          ;
+        }
+      }
+
+      [overlay]
+      Button btn_next {
+        margin-end: 12;
+        icon-name: "go-next-symbolic";
+        halign: end;
+        valign: center;
+        tooltip-text: _("Next");
+
+        styles [
+          "circular",
+          "suggested-action",
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+using Gtk 4.0;
+
+template DependenciesCheckDialog : .AdwWindow {
+  modal: "True";
+  deletable: "True";
+  resizable: "False";
+  default-width: "550";
+  default-height: "500";
+
+  .AdwClamp {
+    .AdwStatusPage {
+      icon-name: "dialog-warning-symbolic";
+      title: _("Incomplete package");
+      description: _("This version of Bottles does not seem to provide all the necessary core dependencies, please contact the package maintainer or use an official version.");
+
+      Button btn_quit {
+        halign: center;
+        label: _("Quit");
+
+        styles [
+          "pill",
+          "suggested-action",
+        ]
+      }
+    }
+  }
+}

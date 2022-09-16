@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-04 11:36+0000\n"
+"PO-Revision-Date: 2022-09-12 13:17+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
@@ -313,36 +313,36 @@ msgstr "Werkmap selecteren"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
-#, fuzzy
 msgid "Choose a file."
-msgstr "Kies een recept bestand"
+msgstr "Kies een bestand."
 
 #: bottles/frontend/windows/vkbasalt.py:306
-#, fuzzy
 msgid "File not Found"
-msgstr "Staat niet gevonden"
+msgstr "Bestand niet gevonden"
 
 #: bottles/frontend/windows/vkbasalt.py:307
 msgid "The given file does not exist. Please choose an appropriate file."
-msgstr ""
+msgstr "Het gegeven bestand bestaat niet. Kies een correct bestand."
 
 #: bottles/frontend/windows/vkbasalt.py:330
 msgid "Spaces in File Name"
-msgstr ""
+msgstr "Spaties in bestandsnaam"
 
 #: bottles/frontend/windows/vkbasalt.py:331
 msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
 msgstr ""
+"Pad van kleurentabel mag geen spaties bevatten. Hernoem het bestand zodat "
+"deze geen spaties bevat."
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
-msgstr ""
+msgstr "Ongeldige afbeeldingsresolutie"
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr ""
+msgstr "Hoogte en breedte van de afbeelding moeten overeenkomen."
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144
@@ -874,9 +874,8 @@ msgstr ""
 "games verbetert."
 
 #: bottles/frontend/ui/details-preferences.ui:144
-#, fuzzy
 msgid "Manage vkBasalt settings"
-msgstr "Gamescope-instellingen beheren"
+msgstr "vkBasalt-instellingen beheren"
 
 #: bottles/frontend/ui/details-preferences.ui:161
 msgid "Display Settings"
@@ -1123,16 +1122,15 @@ msgstr "Gamescope-instellingen beheren"
 
 #: bottles/frontend/ui/details-preferences.ui:588
 msgid "Vmtouch"
-msgstr ""
+msgstr "Vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:589
 msgid "Preload game files into RAM"
-msgstr ""
+msgstr "Spelbestanden vooraf in geheugen laden"
 
 #: bottles/frontend/ui/details-preferences.ui:592
-#, fuzzy
 msgid "Manage vmtouch settings"
-msgstr "Gamescope-instellingen beheren"
+msgstr "vmtouch-instellingen beheren"
 
 #: bottles/frontend/ui/details-preferences.ui:610
 #: bottles/frontend/ui/dialog-launch-options.ui:91
@@ -1663,6 +1661,18 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"Pas op, het gebruik van Proton-gebaseerde runners in niet-Steam-bottles kan "
+"problemen veroorzaken en verhinderen dat ze zich correct gedragen.\n"
+"\n"
+"Wij raden aan om eerder Wine-GE te gebruiken, een versie van Proton die "
+"bedoeld is om buiten Steam te draaien.\n"
+"\n"
+"Doorgaan zal automatisch de Steam-runtime inschakelen (indien aanwezig op "
+"het systeem en gedetecteerd door Bottles) om het toegang te geven tot de "
+"benodigde bibliotheken en compatibiliteitsproblemen te beperken. Wees ervan "
+"bewust dat GloriousEggroll, de provider van de runner, niet verantwoordelijk "
+"is voor eventuele problemen; we vragen u dan ook geen melding bij hen te "
+"doen."
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:50
 msgid "I got it."
@@ -1759,36 +1769,33 @@ msgstr "Klaar! Start Bottles opnieuw op."
 
 #. vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.ui:11
-#, fuzzy
 msgid "vkBasalt Settings"
-msgstr "Scherminstellingen"
+msgstr "vkBasalt-instellingen"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:50
-#, fuzzy
 msgid "Default"
-msgstr "gl (standaard)"
+msgstr "Standaard"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:54
-#, fuzzy
 msgid "Default Settings"
-msgstr "Scherminstellingen"
+msgstr "Standaardinstellingen"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:66
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "Effecten worden toegepast op basis van de lijstvolgorde."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:67
 msgid "Effects"
-msgstr ""
+msgstr "Effecten"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:71
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "Contrast-adaptieve-verscherping"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:74
 #: bottles/frontend/ui/dialog-vkbasalt.ui:110
 msgid "Sharpness"
-msgstr ""
+msgstr "Scherpheid"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:78
 #: bottles/frontend/ui/dialog-vkbasalt.ui:114
@@ -1802,111 +1809,118 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.ui:364
 #: bottles/frontend/ui/dialog-vkbasalt.ui:392
 #: bottles/frontend/ui/dialog-vkbasalt.ui:424
-#, fuzzy
 msgid "Show Information"
-msgstr "Bottle-informatie"
+msgstr "Informatie tonen"
 
 #. Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.ui:107
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "Ontruisde-Luma-verscherping"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:139
 msgid "Denoise"
-msgstr ""
+msgstr "Ontruisen"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:171
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "Snelle benaderende anti-aliasing"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:174
-#, fuzzy
 msgid "Subpixel Quality"
-msgstr "Beste kwaliteit"
+msgstr "Subpixel-kwaliteit"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:203
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "Kwaliteitsranddrempel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:232
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "Minimale kwaliteitsranddrempel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:264
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "Subpixel-morfologische anti-aliasing"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:267
 msgid "Edge Detection"
-msgstr ""
+msgstr "Randherkenning"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:283
 msgid "Luma"
-msgstr ""
+msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
-msgstr ""
+msgstr "Kleur"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:303
 msgid "Threshold"
-msgstr ""
+msgstr "Drempel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:332
 msgid "Max Search Steps"
-msgstr ""
+msgstr "Maximaal aantal zoekstappen"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:360
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "Maximaal aantal zoekstappen (diagonaal)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:388
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "Maximale randronding"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:419
 msgid "Color Lookup Table"
-msgstr ""
+msgstr "Kleurentabel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:437
-#, fuzzy
 msgid "Reset to Default"
 msgstr "Standaardwaarden herstellen"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:448
-#, fuzzy
 msgid "Select a File"
-msgstr "Bottle selecteren"
+msgstr "Bestand selecteren"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:482
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"CAS-verscherper verbetert de scherpte van frames. Hogere waarden maken "
+"frames scherper, terwijl waarden onder 0 ze zachter maken."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:500
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"DLS-verscherper verbetert de scherpte van frames. Hogere waarden maken "
+"frames scherper."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:518
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"DLS-ontruiser verlaagt de ruis in frames. Hogere waarden maken frames "
+"zachter."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:536
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"FXAA-subpixelkwaliteit vermindert hoekige randen op subpixelniveau. Hogere "
+"waarden maken het beeld zachter."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:554
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"FXAA-randdrempelwaarde is de minimaal vereiste contrastwaarde vereist om het "
+"FXAA-algoritme toe te passen. Hogere waarden zorgen voor beelden met meer "
+"contrast."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:572
 msgid ""
@@ -1920,6 +1934,8 @@ msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"Luma detecteert randen via grijstinten, en Kleur detecteert deze via "
+"kleuren. Luma is sneller dan Kleur."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:608
 msgid ""
@@ -2072,7 +2088,7 @@ msgstr "Bibliotheek"
 
 #: bottles/frontend/ui/library.ui:15
 msgid "Add items here from your bottle's program list"
-msgstr "Items hier toevoegen vanuit uw bottles-programmalijst"
+msgstr "Voeg items hier toe vanuit uw bottles-programmalijst"
 
 #: bottles/frontend/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
@@ -2147,7 +2163,7 @@ msgstr "Nieuwe bottle"
 
 #: bottles/frontend/ui/new.ui:38
 msgid "Create"
-msgstr "Maken"
+msgstr "Aanmaken"
 
 #: bottles/frontend/ui/new.ui:47 bottles/frontend/ui/new.ui:268
 #: bottles/frontend/windows/main_window.py:191
@@ -2306,7 +2322,7 @@ msgstr "Uiterlijk"
 
 #: bottles/frontend/ui/preferences.ui:19
 msgid "Dark Mode"
-msgstr "Donker thema"
+msgstr "Donkere modus"
 
 #: bottles/frontend/ui/preferences.ui:20
 msgid "Whether Bottles should use the dark color scheme."
@@ -2429,7 +2445,7 @@ msgstr "Kern"
 
 #: bottles/frontend/ui/preferences.ui:240
 msgid "Runtime"
-msgstr "Looptijd"
+msgstr "Runtime"
 
 #: bottles/frontend/ui/preferences.ui:245
 msgid "WineBridge"
@@ -2466,7 +2482,7 @@ msgstr "Starten met terminal"
 
 #: bottles/frontend/ui/program-entry.ui:28
 msgid "Browse path"
-msgstr "Blader door pad"
+msgstr "Door pad bladeren"
 
 #: bottles/frontend/ui/program-entry.ui:44
 msgid "Change Launch Options…"
@@ -2515,11 +2531,11 @@ msgstr "Staatopmerking"
 
 #: bottles/frontend/ui/state-entry.ui:16
 msgid "Restore this state"
-msgstr "Herstel deze staat"
+msgstr "Deze staat herstellen"
 
 #: bottles/frontend/ui/task-entry.ui:24
 msgid "Delete message"
-msgstr "Verwijder bericht"
+msgstr "Bericht verwijderen"
 
 #: bottles/frontend/ui/window.ui:19
 msgid "Import/Export…"
@@ -2539,7 +2555,7 @@ msgstr "Over Bottles"
 
 #: bottles/frontend/ui/window.ui:79
 msgid "Open menu"
-msgstr "Open menu"
+msgstr "Menu openen"
 
 #: bottles/frontend/ui/window.ui:93
 msgid ""
@@ -2547,9 +2563,9 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
-"Je lijkt niet verbonden te zijn met het internet. Zonder verbinding kan je "
-"geen essentiële onderdelen downloaden. Klik op dit icoon wanneer je weer "
-"verbinding hebt."
+"U lijkt niet verbonden te zijn met het internet. Zonder verbinding kunt u "
+"geen essentiële onderdelen downloaden. Klik op dit pictogram wanneer u weer "
+"verbinding heeft."
 
 #: bottles/frontend/ui/window.ui:99
 msgid "New bottle"
@@ -2596,12 +2612,12 @@ msgstr "Selecteer de locatie waar het back-up-archief moet worden opgeslagen"
 #: bottles/frontend/views/bottle_details.py:276
 #, python-brace-format
 msgid "Backup created for '{0}'."
-msgstr "Back-up gemaakt voor '{0}'."
+msgstr "Back-up gemaakt voor ‘{0}’."
 
 #: bottles/frontend/views/bottle_details.py:278
 #, python-brace-format
 msgid "Backup failed for '{0}'."
-msgstr "Back-up mislukt voor '{0}'."
+msgstr "Back-up mislukt voor ‘{0}’."
 
 #: bottles/frontend/views/bottle_details.py:296
 msgid "Export"
@@ -2613,7 +2629,7 @@ msgstr "Exporteren"
 #: bottles/frontend/views/bottle_details.py:415
 #: bottles/frontend/views/bottle_preferences.py:776
 msgid "Confirm"
-msgstr "Bevestig"
+msgstr "Bevestigen"
 
 #: bottles/frontend/views/bottle_details.py:333
 msgid "Are you sure you want to delete this Bottle and all files?"
@@ -2643,18 +2659,19 @@ msgstr "Kies werkmap voor uitvoerbare bestanden"
 
 #: bottles/frontend/views/bottle_preferences.py:772
 msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
+msgstr "Compressie omschakelen vereist opnieuw initialiseren"
 
 #: bottles/frontend/views/bottle_preferences.py:773
 msgid ""
 "This will kepp all your files but will delete all states. Do you want to "
 "continue?"
 msgstr ""
+"Dit behoudt al uw bestanden maar verwijdert al uw staten. Wilt u doorgaan?"
 
 #: bottles/frontend/views/bottle_programs.py:86
 #, python-brace-format
 msgid "'{0}' added."
-msgstr "'{0}' toegevoegd."
+msgstr "‘{0}’ toegevoegd."
 
 #: bottles/frontend/views/bottle_programs.py:90
 msgid "Choose an executable path"
@@ -2667,6 +2684,8 @@ msgstr "Toevoegen"
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
 msgstr ""
+"Schakel over naar het nieuwe versiebeheersysteem om nieuwe staten aan te "
+"maken."
 
 #: bottles/frontend/views/details.py:154
 msgid "Details & Utilities"
@@ -2711,11 +2730,11 @@ msgstr "Kies een backup archief"
 
 #: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
 msgid "N/A"
-msgstr "N.V.T"
+msgstr "n.v.t."
 
 #: bottles/frontend/views/list.py:220
 msgid "Your Bottles"
-msgstr "Jouw bottles"
+msgstr "Uw bottles"
 
 #: bottles/frontend/views/loading.py:33
 #, python-brace-format
@@ -2728,13 +2747,12 @@ msgid "Fetched {0} of {1} packages"
 msgstr "{0} van {1} pakketten gedownload"
 
 #: bottles/frontend/views/new.py:133
-#, fuzzy
 msgid "Name has special characters or already in use."
-msgstr "Speciale tekens zijn niet toegestaan!"
+msgstr "Naam heeft speciale tekens of is al in gebruik."
 
 #: bottles/frontend/views/new.py:150
 msgid "Choose a recipe file"
-msgstr "Kies een recept bestand"
+msgstr "Kies een receptbestand"
 
 #: bottles/frontend/views/new.py:166
 msgid "Choose where to store the bottle"
@@ -2747,7 +2765,7 @@ msgstr "Er is een fout opgetreden bij het maken van de bottle."
 #: bottles/frontend/views/new.py:227
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr "Een bottle met de naam \"{0}\" is succesvol aangemaakt"
+msgstr "Een bottle met de naam ‘{0}’ is succesvol aangemaakt"
 
 #: bottles/frontend/views/preferences.py:119
 msgid "Steam was not found or Bottles does not have enough permissions."
@@ -2755,29 +2773,31 @@ msgstr "Steam kon niet worden gevonden of Bottles heeft geen rechten hiervoor."
 
 #: bottles/frontend/views/preferences.py:156
 msgid "Choose new bottles path"
-msgstr "Kies nieuw bottles pad"
+msgstr "Kies nieuw bottles-pad"
 
 #: bottles/frontend/views/preferences.py:199
 msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
+msgstr "Gebaseerd op Valve's Wine, inclusief staging- en Proton-patches."
 
 #: bottles/frontend/views/preferences.py:200
 msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
+msgstr "Gebaseerd op upstream-Wine, inclusief staging- en Proton-patches."
 
 #: bottles/frontend/views/preferences.py:203
 msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
+msgstr "Gebaseerd op upstream-Wine, inclusief staging-patches."
 
 #: bottles/frontend/views/preferences.py:204
 msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
+"Gebaseerd op Valve's Wine, inclusief staging-, Proton- en Steam-specifieke "
+"patches. Vereist dat de Steam-runtime is ingeschakeld."
 
 #: bottles/frontend/views/preferences.py:206
 msgid "Other"
-msgstr "Ander"
+msgstr "Overig"
 
 #: bottles/frontend/widgets/component.py:70
 msgid "Upgrade"
@@ -2796,17 +2816,17 @@ msgstr "Manifest voor {0}"
 #: bottles/frontend/widgets/dependency.py:170
 #, python-brace-format
 msgid "'{0}' installed."
-msgstr "'{0}' geïnstalleerd."
+msgstr "‘{0}’ geïnstalleerd."
 
 #: bottles/frontend/widgets/dependency.py:184
 #, python-brace-format
 msgid "'{0}' failed to install."
-msgstr "Kon '{0}' niet installeren."
+msgstr "‘{0}’ installeren mislukt."
 
 #: bottles/frontend/widgets/importer.py:66
 #, python-brace-format
 msgid "'{0}' imported."
-msgstr "'{0}' geïmporteerd."
+msgstr "‘{0}’ geïmporteerd."
 
 #: bottles/frontend/widgets/installer.py:81
 #, python-brace-format
@@ -2816,47 +2836,47 @@ msgstr "Review voor {0}"
 #: bottles/frontend/widgets/program.py:187
 #, python-brace-format
 msgid "Launching '{0}'…"
-msgstr "'{0}' starten…"
+msgstr "‘{0}’ starten…"
 
 #: bottles/frontend/widgets/program.py:193
 #, python-brace-format
 msgid "Launching '{0}' with Steam…"
-msgstr "'{0}' starten met Steam…"
+msgstr "‘{0}’ starten met Steam…"
 
 #: bottles/frontend/widgets/program.py:215
 #, python-brace-format
 msgid "'{0}' hidden."
-msgstr "'{0}' verborgen."
+msgstr "‘{0}’ verborgen."
 
 #: bottles/frontend/widgets/program.py:217
 #, python-brace-format
 msgid "'{0}' showed."
-msgstr "'{0}' getoond."
+msgstr "‘{0}’ getoond."
 
 #: bottles/frontend/widgets/program.py:240
 #, python-brace-format
 msgid "'{0}' removed."
-msgstr "'{0}' verwijderd."
+msgstr "‘{0}’ verwijderd."
 
 #: bottles/frontend/widgets/program.py:254
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
-msgstr "'{0}' hernoemd naar '{1}'."
+msgstr "‘{0}’ hernoemd naar ‘{1}’."
 
 #: bottles/frontend/widgets/program.py:274
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr "App-icoon gemaakt voor '{0}'"
+msgstr "App-icoon gemaakt voor ‘{0}’"
 
 #: bottles/frontend/widgets/program.py:290
 #, python-brace-format
 msgid "'{0}' added to your library"
-msgstr "'{0}' toegevoegd aan uw bibliotheek"
+msgstr "‘{0}’ toegevoegd aan uw bibliotheek"
 
 #: bottles/frontend/widgets/program.py:306
 #, python-brace-format
 msgid "'{0}' added to your Steam library"
-msgstr "'{0}' toegevoegd aan uw Steam-bibliotheek"
+msgstr "‘{0}’ toegevoegd aan uw Steam-bibliotheek"
 
 #: bottles/frontend/windows/main_window.py:188
 msgid "Custom Bottles Path not Found"
@@ -3067,11 +3087,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
-msgstr ""
+msgstr "Kleine interfaceverbeteringen"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
-msgstr ""
+msgstr "Foutoplossingen"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Fix for skipable onboard dialog"
@@ -3129,49 +3149,40 @@ msgid "Finnish translations thanks to Jiri Grönroos"
 msgstr "Finse vertaling door Jiri Grönroos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:138
-#, fuzzy
 msgid "French translations thanks to @rjousse18, @julroy67"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Franse vertalingen door @rjousse18 en @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:139
-#, fuzzy
 msgid "Indonesian translations thanks to @liimee"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Indonesische vertalingen door @liimee"
 
 #: data/com.usebottles.bottles.appdata.xml.in:140
-#, fuzzy
 msgid "Russian translations thanks to @Knebergish, @lenemter, @Smoque"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Russische vertalingen door @Knebergish, @lenemter en @Smoque"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
-#, fuzzy
 msgid "Thai translations thanks to @SashaPGT"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Thaise vertalingen door @SashaPGT"
 
 #: data/com.usebottles.bottles.appdata.xml.in:142
-#, fuzzy
 msgid "Spanish translations thanks to Pablo Munoz Alabau, @oscfdezdz"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Spaanse vertalingen door Pablo Munoz Alabau en @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:143
-#, fuzzy
 msgid "Italian translations thanks to @gdonisi"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Italiaanse vertalingen door @gdonisi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @geraldohomero"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Portugese (Brazilië) vertalingen door @geraldohomero"
 
 #: data/com.usebottles.bottles.appdata.xml.in:145
-#, fuzzy
 msgid "German translations thanks to Patrick Ulbricht"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Duitse vertalingen door Patrick Ulbricht"
 
 #: data/com.usebottles.bottles.appdata.xml.in:146
-#, fuzzy
 msgid "Croatian translations thanks to @milotype"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Kroatische vertalingen door @milotype"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"

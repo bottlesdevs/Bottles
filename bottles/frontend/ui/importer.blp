@@ -1,0 +1,76 @@
+using Gtk 4.0;
+
+template ImporterView : .AdwBin {
+  Box {
+    orientation: vertical;
+
+    HeaderBar headerbar {
+      title-widget: .AdwWindowTitle window_title {
+      }
+
+      ;
+
+      [start]
+      Button btn_back {
+        icon-name: "go-previous-symbolic";
+      }
+
+      [end]
+      Box box_actions {
+        MenuButton btn_import_backup {
+          tooltip-text: _("Import a Bottle backup");
+          popover: pop_backup;
+          icon-name: "document-send-symbolic";
+        }
+
+        Button btn_find_prefixes {
+          tooltip-text: _("Search again for prefixes");
+          icon-name: "view-refresh-symbolic";
+        }
+      }
+    }
+
+    .AdwPreferencesPage {
+      .AdwStatusPage status_page {
+        vexpand: "True";
+        icon-name: "document-save-symbolic";
+        title: _("No Prefixes Found");
+        description: _("No external prefixes were found. Does Bottles have access to them?\nUse the icon on the top to import a bottle from a backup.");
+      }
+
+      .AdwPreferencesGroup group_prefixes {
+        visible: "False";
+
+        ListBox list_prefixes {
+          styles [
+            "boxed-list",
+          ]
+        }
+      }
+    }
+  }
+}
+
+Popover pop_backup {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    .GtkModelButton btn_import_config {
+      tooltip-text: _("This is just the bottle configuration, it\'s perfect if you want to create a new one but without personal files.");
+      text: _("Configuration");
+    }
+
+    .GtkModelButton btn_import_full {
+      tooltip-text: _("This is the complete archive of your bottle, including personal files.");
+      text: _("Full Archive");
+    }
+  }
+}

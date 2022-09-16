@@ -66,6 +66,7 @@ class SteamManager:
             paths = [
                 os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam"),
                 os.path.join(Path.home(), ".local/share/Steam"),
+                os.path.join(Path.home(), ".steam/debian-installation"),
                 os.path.join(Path.home(), ".steam"),
             ]
 
@@ -268,7 +269,7 @@ class SteamManager:
                 logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping…")
                 continue
 
-            if _acf["AppState"]["name"] == "Proton Experimental":
+            if "Proton" in _acf["AppState"]["name"]:
                 # skip Proton default prefix
                 continue
 
@@ -515,7 +516,7 @@ class SteamManager:
     def add_shortcut(self, program_name: str, program_path: str):
         logging.info(f"Adding shortcut for {program_name}")
         cmd = "xdg-open"
-        args = "bottles:run/{0}/'{1}'"
+        args = "bottles:run/'{0}'/'{1}'"
 
         if self.userdata_path is None:
             logging.warning("Userdata path is not set")

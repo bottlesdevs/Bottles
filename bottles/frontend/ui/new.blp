@@ -1,0 +1,267 @@
+using Gtk 4.0;
+
+template NewView : .AdwWindow {
+  modal: "True";
+  resizable: "False";
+  default-width: "450";
+  hide-on-close: "True";
+
+  ShortcutController {
+    Shortcut shortcut_escape {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    HeaderBar headerbar {
+      show-title-buttons: false;
+      title-widget: 
+      .AdwWindowTitle title {
+        title: _("New Bottle");
+
+        ShortcutController {
+          scope: managed;
+
+          Shortcut {
+            trigger: "Escape";
+            action: "activate";
+          }
+        }
+      }
+
+      ;
+
+      [start]
+      Button btn_cancel {
+        label: _("Cancel");
+      }
+
+      [end]
+      Button btn_create {
+        label: _("Create");
+        sensitive: false;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+
+      [end]
+      Button btn_close {
+        label: _("Close");
+        visible: false;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    Stack stack_create {
+      transition-type: crossfade;
+
+      StackPage page_create {
+        name: "page_create";
+        child: 
+        .AdwPreferencesPage {
+          title: _("New Bottle");
+
+          .AdwPreferencesGroup {
+            title: _("Bottle Information");
+
+            .AdwEntryRow entry_name {
+              title: _("Name");
+            }
+          }
+
+          .AdwPreferencesGroup {
+            title: _("Environment");
+
+            ListBox list_envs {
+              .AdwActionRow gaming {
+                selectable: "True";
+                activatable: "True";
+                title: _("Gaming");
+                subtitle: _("An environment improved for Windows games.");
+                icon-name: "input-gaming-symbolic";
+              }
+
+              .AdwActionRow application {
+                selectable: "True";
+                activatable: "True";
+                title: _("Application");
+                subtitle: _("An environment improved for Windows applications.");
+                icon-name: "applications-engineering-symbolic";
+              }
+
+              .AdwActionRow layered {
+                selectable: "True";
+                activatable: "True";
+                visible: "False";
+                title: _("Layered");
+                subtitle: _("A layered environment, where every app is a layer.");
+                icon-name: "emoji-symbols-symbolic";
+              }
+
+              .AdwExpanderRow custom {
+                selectable: "True";
+                activatable: "True";
+                title: _("Custom");
+                subtitle: _("A clear environment for your experiments.");
+                icon-name: "applications-science-symbolic";
+
+                .AdwActionRow row_sandbox {
+                  title: _("Unlinked Home Directory");
+                  subtitle: _("Do not link the userdir to the homedir");
+                  activatable-widget: "switch_sandbox";
+
+                  Switch switch_sandbox {
+                    valign: center;
+                  }
+                }
+
+                .AdwActionRow {
+                  title: _("Runner");
+                  activatable-widget: "combo_runner";
+
+                  ComboBoxText combo_runner {
+                    valign: center;
+
+                    styles [
+                      "borderless",
+                    ]
+                  }
+                }
+
+                .AdwComboRow combo_arch {
+                  title: _("Architecture");
+                  subtitle: _("We recommend using 32bit only if strictly necessary.");
+                  model: 
+                    StringList {
+                      strings [_("64 bit"), _("32 bit")]
+                    }
+                  ;
+                }
+
+                .AdwActionRow {
+                  title: _("Custom Recipe");
+                  subtitle: _("Choose a custom recipe for the environment if you have one.");
+                  activatable-widget: "btn_choose_env";
+
+                  Button btn_choose_env {
+                    valign: center;
+                    tooltip-text: _("Choose a directory");
+                    icon-name: "document-open-symbolic";
+
+                    styles [
+                      "flat",
+                    ]
+                  }
+                }
+
+                .AdwActionRow {
+                  title: _("Custom Path");
+                  subtitle: _("Store this bottle in another place.");
+                  activatable-widget: "btn_choose_path";
+
+                  Button btn_choose_path {
+                    valign: center;
+                    tooltip-text: _("Choose a directory");
+                    icon-name: "document-open-symbolic";
+
+                    styles [
+                      "flat",
+                    ]
+                  }
+                }
+              }
+
+              styles [
+                "boxed-list",
+              ]
+            }
+          }
+        }
+
+        ;
+      }
+
+      StackPage page_creating {
+        name: "page_creating";
+        child: 
+        WindowHandle {
+          Box {
+            orientation: vertical;
+            spacing: 12;
+
+            .AdwStatusPage {
+              valign: "center";
+              title: _("Creating a Bottle…");
+              description: _("Take a break, it may take a while.");
+            }
+
+            ScrolledWindow {
+              margin-start: 12;
+              margin-end: 12;
+              min-content-height: 200;
+              overflow: hidden;
+
+              Label label_output {
+                hexpand: true;
+                valign: fill;
+                wrap: true;
+                selectable: true;
+                xalign: 0;
+                yalign: 0;
+
+                styles [
+                  "monospace",
+                  "terminal",
+                ]
+              }
+
+              styles [
+                "card",
+              ]
+            }
+          }
+        }
+
+        ;
+      }
+
+      StackPage page_created {
+        name: "page_created";
+        child: 
+        WindowHandle {
+          Box {
+            orientation: vertical;
+            spacing: 12;
+
+            .AdwStatusPage created {
+              icon-name: "selection-mode-symbolic";
+              title: _("Bottle created");
+              valign: "center";
+            }
+
+            Button btn_close_pill {
+              label: _("Close");
+              valign: center;
+              halign: center;
+
+              styles [
+                "suggested-action",
+                "pill",
+              ]
+            }
+          }
+        }
+
+        ;
+      }
+    }
+  }
+}

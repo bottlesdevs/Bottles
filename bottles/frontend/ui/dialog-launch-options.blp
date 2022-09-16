@@ -1,0 +1,184 @@
+using Gtk 4.0;
+
+template LaunchOptionsDialog : .AdwWindow {
+  modal: "True";
+  default-width: "500";
+  title: _("Launch Options");
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-end-title-buttons: "False";
+
+      [start]
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      ShortcutController {
+        scope: managed;
+
+        Shortcut {
+          trigger: "Escape";
+          action: "action(window.close)";
+        }
+      }
+
+      [end]
+      Button btn_save {
+        label: _("Save");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    .AdwPreferencesPage {
+      .AdwPreferencesGroup {
+        description: _("Those arguments will be passed at launch.");
+        title: _("Custom Arguments");
+
+        .AdwEntryRow entry_arguments {
+          title: _("Command Arguments");
+          tooltip-text: _("e.g.: VAR=value %command% -example1 -example2 -example3=hello");
+        }
+
+        .AdwActionRow action_script {
+          activatable-widget: "btn_script";
+          title: _("Post-run Script");
+          subtitle: _("Choose a script which should be executed after run.");
+
+          Box {
+            spacing: 6;
+
+            Button btn_script_reset {
+              tooltip-text: _("Reset to default");
+              valign: center;
+              visible: false;
+              icon-name: "edit-undo-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+
+            Button btn_script {
+              tooltip-text: _("Choose a script");
+              valign: center;
+              icon-name: "document-open-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+          }
+        }
+
+        .AdwActionRow action_cwd {
+          activatable-widget: "btn_cwd";
+          title: _("Working Directory");
+          subtitle: _("Choose from where start the program.");
+
+          Box {
+            spacing: 6;
+
+            Button btn_cwd_reset {
+              tooltip-text: _("Reset to default");
+              valign: center;
+              visible: false;
+              icon-name: "edit-undo-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+
+            Button btn_cwd {
+              tooltip-text: _("Choose a directory");
+              valign: center;
+              icon-name: "document-open-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+          }
+        }
+      }
+
+      .AdwPreferencesGroup {
+        description: _("These settings will override the default settings for this executable.");
+        title: _("Preferences Overrides");
+
+        [header-suffix]
+        Button btn_reset_defaults {
+          tooltip-text: _("Reset to Bottle\'s Defaults");
+          valign: center;
+          icon-name: "edit-undo-symbolic";
+
+          styles [
+            "flat",
+          ]
+        }
+
+        .AdwActionRow action_dxvk {
+          title: "DXVK";
+          activatable-widget: "switch_dxvk";
+
+          Switch switch_dxvk {
+            valign: center;
+          }
+        }
+
+        .AdwActionRow action_vkd3d {
+          title: "VKD3D";
+          activatable-widget: "switch_vkd3d";
+
+          Switch switch_vkd3d {
+            valign: center;
+          }
+        }
+
+        .AdwActionRow action_nvapi {
+          title: "DLSS (DXVK-NVAPI)";
+          activatable-widget: "switch_nvapi";
+
+          Switch switch_nvapi {
+            valign: center;
+          }
+        }
+
+        .AdwActionRow action_fsr {
+          activatable-widget: "switch_fsr";
+          title: "FSR";
+
+          Switch switch_fsr {
+            valign: center;
+          }
+        }
+
+        .AdwActionRow action_pulse_latency {
+          title: _("Reduce Latency");
+          activatable-widget: "switch_pulse_latency";
+
+          Switch switch_pulse_latency {
+            valign: center;
+          }
+        }
+
+        .AdwActionRow action_virt_desktop {
+          title: _("Virtual Desktop");
+          activatable-widget: "switch_virt_desktop";
+
+          Switch switch_virt_desktop {
+            valign: center;
+          }
+        }
+      }
+    }
+  }
+}

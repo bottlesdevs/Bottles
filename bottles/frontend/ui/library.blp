@@ -1,0 +1,34 @@
+using Gtk 4.0;
+
+template LibraryView : .AdwBin {
+  Box {
+    orientation: vertical;
+
+    .AdwStatusPage status_page {
+      vexpand: "True";
+      hexpand: "True";
+      icon-name: "emote-love-symbolic";
+      title: _("Library");
+      description: _("Add items here from your bottle\'s program list");
+    }
+
+    ScrolledWindow scroll_window {
+      hexpand: true;
+      vexpand: true;
+
+      FlowBox main_flow {
+        row-spacing: 5;
+        column-spacing: 5;
+        halign: start;
+        valign: start;
+        margin-top: 5;
+        margin-start: 5;
+        margin-bottom: 5;
+        margin-end: 5;
+        homogeneous: true;
+        selection-mode: none;
+        activate-on-single-click: false;
+      }
+    }
+  }
+}

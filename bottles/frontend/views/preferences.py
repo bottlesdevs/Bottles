@@ -38,7 +38,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
     switch_steam = Gtk.Template.Child()
-    switch_library = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
@@ -88,7 +87,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.bind("temp", self.switch_temp, "active", Gio.SettingsBindFlags.DEFAULT)
         self.settings.bind("release-candidate", self.switch_release_candidate, "active", Gio.SettingsBindFlags.DEFAULT) #Connect RC signal to another func
         self.settings.bind("steam-proton-support", self.switch_steam, "active", Gio.SettingsBindFlags.DEFAULT)
-        self.settings.bind("experiments-library", self.switch_library, "active", Gio.SettingsBindFlags.DEFAULT)
         self.settings.bind("experiments-sandbox", self.switch_sandbox, "active", Gio.SettingsBindFlags.DEFAULT)
         self.settings.bind("auto-close-bottles", self.switch_auto_close, "active", Gio.SettingsBindFlags.DEFAULT)
         self.settings.bind("update-date", self.switch_update_date, "active", Gio.SettingsBindFlags.DEFAULT)

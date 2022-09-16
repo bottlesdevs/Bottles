@@ -1,0 +1,41 @@
+using Gtk 4.0;
+
+template ExclusionPatternsDialog : .AdwWindow {
+  modal: "True";
+  default-width: "500";
+  default-height: "500";
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      title-widget: .AdwWindowTitle {
+        title: _("Exclusion Patterns");
+      }
+
+      ;
+    }
+
+    .AdwPreferencesPage {
+      .AdwPreferencesGroup {
+        description: _("Define patterns that will be used to prevent some directories to being versioned.");
+
+        .AdwEntryRow entry_name {
+          title: _("Pattern");
+          show-apply-button: "True";
+        }
+      }
+
+      .AdwPreferencesGroup group_patterns {
+        title: _("Existing Patterns");
+      }
+    }
+  }
+}

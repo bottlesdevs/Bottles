@@ -1,0 +1,111 @@
+using Gtk 4.0;
+
+template Details : .AdwBin {
+  .AdwLeaflet leaflet {
+    can-navigate-back: "True";
+    hexpand: "true";
+
+    Box {
+      orientation: vertical;
+
+      .AdwHeaderBar sidebar_headerbar {
+        show-end-title-buttons: "False";
+        title-widget: 
+        .AdwWindowTitle sidebar_title {
+        }
+
+        ;
+
+        [start]
+        Button btn_back {
+          icon-name: "go-previous-symbolic";
+        }
+      }
+
+      ListBox list_pages {
+        vexpand: true;
+        width-request: 220;
+
+        styles [
+          "navigation-sidebar",
+        ]
+      }
+    }
+
+    .AdwLeafletPage {
+      navigatable: "False";
+      child: 
+      Separator panel_separator {
+        orientation: vertical;
+
+        styles [
+          "sidebar",
+        ]
+      }
+
+      ;
+    }
+
+    Box content {
+      orientation: vertical;
+
+      .AdwHeaderBar content_headerbar {
+        show-start-title-buttons: "False";
+        title-widget: 
+        .AdwWindowTitle content_title {
+        }
+
+        ;
+
+        [start]
+        Button btn_back_sidebar {
+          icon-name: "go-previous-symbolic";
+          visible: false;
+        }
+
+        [end]
+        Box box_actions {
+        }
+
+        [end]
+        MenuButton btn_operations {
+          visible: false;
+          tooltip-text: _("Operations");
+          popover: pop_tasks;
+
+          Spinner spinner_tasks {
+          }
+
+          styles [
+            "flat",
+          ]
+        }
+      }
+
+      Stack stack_bottle {
+        transition-type: crossfade;
+        hexpand: true;
+        vexpand: true;
+      }
+    }
+  }
+}
+
+Popover pop_tasks {
+  Box {
+    orientation: vertical;
+    spacing: 3;
+
+    Box {
+      orientation: vertical;
+
+      ListBox list_tasks {
+        selection-mode: none;
+
+        styles [
+          "content",
+        ]
+      }
+    }
+  }
+}
