@@ -135,7 +135,7 @@ class BottleView(Adw.PreferencesPage):
 
         gtk_context = self.drop_overlay.get_style_context()
         Gtk.StyleContext.add_class(gtk_context, "dragndrop_overlay")
-        self.style_provider.load_from_data(b".dragndrop_overlay { background: rgba(41, 65, 94, 0.2)}")
+        self.style_provider.load_from_data(b".dragndrop_overlay { background: rgba(41, 65, 94, 0.2);}")
         Gtk.StyleContext.add_provider(
             gtk_context,
             self.style_provider,
@@ -154,30 +154,28 @@ class BottleView(Adw.PreferencesPage):
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
         files: List[Gio.File] = value.get_files()
         args=""
-        # Loop through the files and print their names.
-        for file in files:
-            print(file.get_path())
         file=files[0]
-        print(file.get_path())
-        print(file.get_basename())
-        executor = WineExecutor(
-            self.config,
-            exec_path=file.get_path(),
-            args=args,
-            terminal=self.check_terminal.get_active(),
-        )
-        RunAsync(executor.run, self.do_update_programs)
-        self.manager.update_config(
-            config=self.config,
-            key="Latest_Executables",
-            value=_execs + [{
-                "name": file.get_basename().split("/")[-1],
-                "file": file.get_path(),
-                "args": args
-            }]
-        )
+        if ".exe" in file.get_basename().split("/")[-1] or ".msi" in file.get_basename().split("/")[-1]:
+            executor = WineExecutor(
+                self.config,
+                exec_path=file.get_path(),
+                args=args,
+                terminal=self.check_terminal.get_active(),
+            )
+            RunAsync(executor.run, self.do_update_programs)
+            self.manager.update_config(
+                config=self.config,
+                key="Latest_Executables",
+                value=_execs + [{
+                    "name": file.get_basename().split("/")[-1],
+                    "file": file.get_path(),
+                    "args": args
+                }]
+            )
 
-        self.__update_latest_executables()
+            self.__update_latest_executables()
+        else:
+            self.window.show_toast(_("File '{0}' does not seem to be an exe or msi file").format(file.get_basename().split("/")[-1]))
 
     def on_enter(self, drop_target, x, y):
         self.drop_overlay.set_visible(True)
