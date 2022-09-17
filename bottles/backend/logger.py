@@ -15,9 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 import re
 import logging
+from gi.repository import GLib
 from pathlib import Path
 from gettext import gettext as _
 
@@ -91,7 +91,7 @@ class Logger(logging.getLoggerClass()):
         Writes a crash.log file. It finds and replace the user's home directory
         with "USER" as a proposed standard for crash reports.
         """
-        xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
+        xdg_data_home = GLib.get_user_data_dir()
         log_path = f"{xdg_data_home}/bottles/crash.log"
 
         with open(log_path, "w") as crash_log:

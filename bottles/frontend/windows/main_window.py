@@ -266,7 +266,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.show_prefs_view(widget, view=2)
 
     def check_crash_log(self):
-        xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
+        xdg_data_home = GLib.get_user_data_dir()
         log_path = f"{xdg_data_home}/bottles/crash.log"
 
         with contextlib.suppress(FileNotFoundError):

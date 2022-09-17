@@ -20,6 +20,7 @@ from bottles.backend.utils import yaml
 import uuid
 import shutil
 import contextlib
+from gi.repository import GLib
 from pathlib import Path
 from datetime import datetime, timedelta
 
@@ -40,7 +41,7 @@ class JournalManager:
     contain only important Bottles events.
     """
 
-    _xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
+    _xdg_data_home = GLib.get_user_data_dir()
     _base = f"{_xdg_data_home}/bottles"
     path = f"{_base}/journal.yml"
 

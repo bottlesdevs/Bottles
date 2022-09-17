@@ -19,6 +19,7 @@ import os
 from bottles.backend.utils import yaml
 import contextlib
 from pathlib import Path
+from gi.repository import GLib
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.models.samples import Samples
@@ -34,7 +35,7 @@ class DataManager:
     """
 
     __data: dict = {}
-    __p_xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
+    __p_xdg_data_home = GLib.get_user_data_dir()
     __p_base = f"{__p_xdg_data_home}/bottles"
     __p_data = f"{__p_base}/data.yml"
 
