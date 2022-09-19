@@ -24,12 +24,12 @@ class GamescopeDialog(Adw.Window):
     __gtype_name__ = 'GamescopeDialog'
 
     # region Widgets
-    arg_w = Gtk.Template.Child()
-    arg_h = Gtk.Template.Child()
-    arg_W = Gtk.Template.Child()
-    arg_H = Gtk.Template.Child()
-    arg_fps = Gtk.Template.Child()
-    arg_fps_no_focus = Gtk.Template.Child()
+    spin_width = Gtk.Template.Child()
+    spin_height = Gtk.Template.Child()
+    spin_gamescope_width = Gtk.Template.Child()
+    spin_gamescope_height = Gtk.Template.Child()
+    spin_fps_limit = Gtk.Template.Child()
+    spin_fps_limit_no_focus = Gtk.Template.Child()
     switch_scaling = Gtk.Template.Child()
     toggle_borderless = Gtk.Template.Child()
     toggle_fullscreen = Gtk.Template.Child()
@@ -72,12 +72,12 @@ class GamescopeDialog(Adw.Window):
         self.toggle_fullscreen.handler_block_by_func(self.__change_wtype)
 
         parameters = config["Parameters"]
-        self.arg_w.set_text(str(parameters["gamescope_game_width"]))
-        self.arg_h.set_text(str(parameters["gamescope_game_height"]))
-        self.arg_W.set_text(str(parameters["gamescope_window_width"]))
-        self.arg_H.set_text(str(parameters["gamescope_window_height"]))
-        self.arg_fps.set_text(str(parameters["gamescope_fps"]))
-        self.arg_fps_no_focus.set_text(str(parameters["gamescope_fps_no_focus"]))
+        self.spin_width.set_value(parameters["gamescope_game_width"])
+        self.spin_height.set_value(parameters["gamescope_game_height"])
+        self.spin_gamescope_width.set_value(parameters["gamescope_window_width"])
+        self.spin_gamescope_height.set_value(parameters["gamescope_window_height"])
+        self.spin_fps_limit.set_value(parameters["gamescope_fps"])
+        self.spin_fps_limit_no_focus.set_value(parameters["gamescope_fps_no_focus"])
         self.switch_scaling.set_state(parameters["gamescope_scaling"])
         self.toggle_borderless.set_active(parameters["gamescope_borderless"])
         self.toggle_fullscreen.set_active(parameters["gamescope_fullscreen"])
@@ -86,12 +86,12 @@ class GamescopeDialog(Adw.Window):
         self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)
 
     def __idle_save(self, *_args):
-        settings = {"gamescope_game_width": int(self.arg_w.get_text()),
-                    "gamescope_game_height": int(self.arg_h.get_text()),
-                    "gamescope_window_width": int(self.arg_W.get_text()),
-                    "gamescope_window_height": int(self.arg_H.get_text()),
-                    "gamescope_fps": int(self.arg_fps.get_text()),
-                    "gamescope_fps_no_focus": int(self.arg_fps_no_focus.get_text()),
+        settings = {"gamescope_game_width": Gtk.Adjustment.get_value(self.spin_width),
+                    "gamescope_game_height": Gtk.Adjustment.get_value(self.spin_height),
+                    "gamescope_window_width": Gtk.Adjustment.get_value(self.spin_gamescope_width),
+                    "gamescope_window_height": Gtk.Adjustment.get_value(self.spin_gamescope_height),
+                    "gamescope_fps": Gtk.Adjustment.get_value(self.spin_fps_limit),
+                    "gamescope_fps_no_focus": Gtk.Adjustment.get_value(self.spin_fps_limit_no_focus),
                     "gamescope_scaling": self.switch_scaling.get_state(),
                     "gamescope_borderless": self.toggle_borderless.get_active(),
                     "gamescope_fullscreen": self.toggle_fullscreen.get_active()}
