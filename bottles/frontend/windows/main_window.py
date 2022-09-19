@@ -69,7 +69,8 @@ class MainWindow(Adw.ApplicationWindow):
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
-    view_switcher = Gtk.Template.Child()
+    view_switcher_title = Gtk.Template.Child()
+    view_switcher_bar = Gtk.Template.Child()
     main_leaf = Gtk.Template.Child()
     toasts = Gtk.Template.Child()
     # endregion
@@ -122,8 +123,8 @@ class MainWindow(Adw.ApplicationWindow):
         GLib.idle_add(self.page_library.update)
 
     def set_title(self, title, subtitle: str = ""):
-        self.view_switcher.set_title(title)
-        self.view_switcher.set_subtitle(subtitle)
+        self.view_switcher_title.set_title(title)
+        self.view_switcher_title.set_subtitle(subtitle)
 
     def check_for_connection(self, status):
         """
@@ -288,7 +289,7 @@ class MainWindow(Adw.ApplicationWindow):
         widgets = [
             self.btn_add,
             self.btn_menu,
-            self.view_switcher,
+            self.view_switcher_title,
             self.btn_search
         ]
         if self.btn_noconnection.get_visible():
