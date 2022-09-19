@@ -42,39 +42,111 @@ template GamescopeDialog : .AdwWindow {
 
       .AdwPreferencesGroup {
         title: _("Game Resolution");
-        description: _("Uses the resolution of the video game as a reference.");
+        description: _("Uses the resolution of the video game as a reference in pixels.");
 
-        .AdwEntryRow arg_w {
-          title: _("Width (e.g. 1280)");
+        .AdwActionRow {
+          title: _("Width");
+
+          SpinButton {
+            numeric: true;
+            valign: center;
+            adjustment:
+            Adjustment spin_width {
+              step-increment: 1;
+              upper: 7680;
+            }
+
+            ;
+          }
         }
 
-        .AdwEntryRow arg_h {
-          title: _("Height (e.g. 720)");
+        .AdwActionRow {
+          title: _("Height");
+
+          SpinButton {
+            numeric: true;
+            valign: center;
+            adjustment:
+            Adjustment spin_height {
+              step-increment: 1;
+              upper: 7680;
+            }
+
+            ;
+          }
         }
       }
 
       .AdwPreferencesGroup {
         title: _("Gamescope Resolution");
-        description: _("Upscales the resolution when using a resolution higher than the game resolution.");
+        description: _("Upscales the resolution when using a resolution higher than the game resolution in pixels.");
 
-        .AdwEntryRow arg_W {
-          title: _("Width (e.g. 1280)");
+        .AdwActionRow {
+          title: _("Width");
+
+          SpinButton {
+            numeric: true;
+            valign: center;
+            adjustment:
+            Adjustment spin_gamescope_width {
+              step-increment: 1;
+              upper: 7680;
+            }
+
+            ;
+          }
         }
 
-        .AdwEntryRow arg_H {
-          title: _("Height (e.g. 720)");
+        .AdwActionRow {
+          title: _("Height");
+
+          SpinButton {
+            numeric: true;
+            valign: center;
+            adjustment:
+            Adjustment spin_gamescope_height {
+              step-increment: 1;
+              upper: 7680;
+            }
+
+            ;
+          }
         }
       }
 
       .AdwPreferencesGroup {
         title: _("Miscellaneous");
 
-        .AdwEntryRow arg_fps {
-          title: _("Frame Rate Limit (e.g. 60)");
+        .AdwActionRow {
+          title: _("Frame Rate Limit");
+
+          SpinButton {
+            numeric: true;
+            valign: center;
+            adjustment:
+            Adjustment spin_fps_limit {
+              step-increment: 1;
+              upper: 244;
+            }
+
+            ;
+          }
         }
 
-        .AdwEntryRow arg_fps_no_focus {
-          title: _("Frame Rate Limit (When Unfocused)");
+        .AdwActionRow {
+          title: _("Frame Rate Limit When Unfocused");
+
+          SpinButton {
+            numeric: true;
+            valign: center;
+            adjustment:
+            Adjustment spin_fps_limit_no_focus {
+              step-increment: 1;
+              upper: 244;
+            }
+
+            ;
+          }
         }
 
         .AdwActionRow {
