@@ -133,94 +133,21 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwExpanderRow {
+    .AdwActionRow {
       title: _("Display Settings");
 
-      .AdwActionRow {
-        activatable-widget: "switch_virt_desktop";
-        title: _("Virtual Desktop");
-        subtitle: _("Use the Wine virtual desktop.");
-
-        ComboBoxText combo_virt_res {
-          valign: center;
-          active-id: "add";
-          items [
-          temp: _("SKELLY PLS FIX"),
-          ]
-          styles [
-            "borderless",
-          ]
-        }
-
-        Switch switch_virt_desktop {
-          valign: center;
-        }
+      Spinner spinner_display {
+        valign: center;
+        margin-end: 6;
       }
 
-      .AdwActionRow {
-        activatable-widget: "switch_mouse_capture";
-        title: _("Fullscreen Mouse Capture");
-        subtitle: _("Let the program capture mouse input when fullscreen.");
-
-        Switch switch_mouse_capture {
-          valign: center;
-        }
-      }
-
-      .AdwActionRow {
-        activatable-widget: "switch_take_focus";
-        title: _("Take Focus");
-        subtitle: _("Activate it if the program does not retake focus on switch.");
-
-        Switch switch_take_focus {
-          valign: center;
-        }
-      }
-
-      .AdwActionRow {
-        activatable-widget: "switch_take_focus";
-        title: _("Mouse Warp");
-        subtitle: _("Change this if you are running into mouse lag or desync.");
-
-        Switch switch_mouse_warp {
-          valign: center;
-        }
-      }
-
-      .AdwActionRow {
-        activatable-widget: "combo_dpi";
-        title: _("Screen Scaling");
-        subtitle: _("Set custom DPI.");
-
-        ComboBoxText combo_dpi {
-          valign: center;
-          active-id: "add";
-          items [
-          temp: _("SKELLY PLS FIX"),
-          ]
-          styles [
-            "borderless",
-          ]
-        }
-      }
-
-      .AdwActionRow {
-        activatable-widget: "combo_renderer";
-        title: _("Renderer");
-        subtitle: _("Select what backend to use for wined3d.");
-
-        ComboBoxText combo_renderer {
-          valign: center;
-          active-id: "add";
-          items [
-          gl: _("gl (default)"),
-          gdi: _("gdi"),
-          vulkan: _("vulkan"),
-          ]
-          styles [
-            "borderless",
-          ]
-        }
+      .GtkButton btn_manage_display {
+        tooltip-text: _("Manage Display settings");
+        valign: center;
+        icon-name: "applications-system-symbolic";
+        styles [
+          "flat",
+        ]
       }
     }
   }
@@ -397,7 +324,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     .AdwComboRow combo_language {
       title: _("Language");
       subtitle: _("Choose the language to use with programs.");
-      model: 
+      model:
       StringList str_list_languages {
       }
 

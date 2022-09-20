@@ -37,6 +37,7 @@ from bottles.frontend.windows.drives import DrivesDialog
 from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
 from bottles.frontend.windows.gamescope import GamescopeDialog
 from bottles.frontend.windows.vkbasalt import VkBasaltDialog
+from bottles.frontend.windows.display import DisplayDialog
 from bottles.frontend.windows.sandbox import SandboxDialog
 from bottles.frontend.windows.protonalert import ProtonAlertDialog
 from bottles.frontend.windows.exclusionpatterns import ExclusionPatternsDialog
@@ -57,6 +58,7 @@ class PreferencesView(Adw.PreferencesPage):
     btn_manage_components = Gtk.Template.Child()
     btn_manage_gamescope = Gtk.Template.Child()
     btn_manage_vkbasalt = Gtk.Template.Child()
+    btn_manage_display = Gtk.Template.Child()
     btn_manage_sandbox = Gtk.Template.Child()
     btn_manage_versioning_patterns = Gtk.Template.Child()
     btn_manage_vmtouch = Gtk.Template.Child()
@@ -88,14 +90,10 @@ class PreferencesView(Adw.PreferencesPage):
     switch_gamescope = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
-    switch_virt_desktop = Gtk.Template.Child()
     switch_pulse_latency = Gtk.Template.Child()
     switch_fixme = Gtk.Template.Child()
     switch_runtime = Gtk.Template.Child()
     switch_steam_runtime = Gtk.Template.Child()
-    switch_mouse_capture = Gtk.Template.Child()
-    switch_take_focus = Gtk.Template.Child()
-    switch_mouse_warp = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     switch_versioning_compression = Gtk.Template.Child()
     switch_auto_versioning = Gtk.Template.Child()
@@ -106,15 +104,12 @@ class PreferencesView(Adw.PreferencesPage):
     toggle_fsync = Gtk.Template.Child()
     toggle_futex2 = Gtk.Template.Child()
     combo_fsr = Gtk.Template.Child()
-    combo_virt_res = Gtk.Template.Child()
-    combo_dpi = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
     combo_vkd3d = Gtk.Template.Child()
     combo_nvapi = Gtk.Template.Child()
     combo_latencyflex = Gtk.Template.Child()
     combo_windows = Gtk.Template.Child()
-    combo_renderer = Gtk.Template.Child()
     combo_language = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
     spinner_dxvkbool = Gtk.Template.Child()
@@ -127,6 +122,7 @@ class PreferencesView(Adw.PreferencesPage):
     spinner_latencyflexbool = Gtk.Template.Child()
     spinner_runner = Gtk.Template.Child()
     spinner_win = Gtk.Template.Child()
+    spinner_display = Gtk.Template.Child()
     box_sync = Gtk.Template.Child()
     group_details = Gtk.Template.Child()
     exp_components = Gtk.Template.Child()
@@ -143,6 +139,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.manager = details.window.manager
         self.config = config
         self.queue = details.queue
+        self.details = details
 
         self.entry_name.add_controller(self.ev_controller)
 
@@ -155,6 +152,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_components.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_manage_vkbasalt.connect("clicked", self.__show_vkbasalt_settings)
+        self.btn_manage_display.connect("clicked", self.__show_display_settings)
         self.btn_manage_sandbox.connect("clicked", self.__show_sandbox_settings)
         self.btn_manage_versioning_patterns.connect("clicked", self.__show_exclusionpatterns_settings)
         self.btn_manage_vmtouch.connect("clicked", self.__show_vmtouch_settings)
@@ -176,27 +174,19 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_sandbox.connect('state-set', self.__toggle_sandbox)
         self.switch_fsr.connect('state-set', self.__toggle_fsr)
         self.switch_discrete.connect('state-set', self.__toggle_discrete_gpu)
-        self.switch_virt_desktop.connect('state-set', self.__toggle_virt_desktop)
         self.switch_pulse_latency.connect('state-set', self.__toggle_pulse_latency)
         self.switch_fixme.connect('state-set', self.__toggle_fixme)
-        self.switch_mouse_capture.connect('state-set', self.__toggle_x11_reg_key, "GrabFullscreen",
-                                          "fullscreen_capture")
-        self.switch_take_focus.connect('state-set', self.__toggle_x11_reg_key, "UseTakeFocus", "take_focus")
-        self.switch_mouse_warp.connect('state-set', self.__toggle_mouse_warp)
         self.switch_versioning_compression.connect('state-set', self.__toggle_versioning_compression)
         self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
         self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
         self.switch_vmtouch.connect('state-set', self.__toggle_vmtouch)
         self.combo_fsr.connect('changed', self.__set_fsr_level)
-        self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
-        self.combo_dpi.connect('changed', self.__set_custom_dpi)
         self.combo_runner.connect('changed', self.__set_runner)
         self.combo_dxvk.connect('changed', self.__set_dxvk)
         self.combo_vkd3d.connect('changed', self.__set_vkd3d)
         self.combo_nvapi.connect('changed', self.__set_nvapi)
         self.combo_latencyflex.connect('changed', self.__set_latencyflex)
         self.combo_windows.connect('changed', self.__set_windows)
-        self.combo_renderer.connect('changed', self.__set_renderer)
         self.combo_language.connect('notify::selected-item', self.__set_language)
         self.ev_controller.connect("key-released", self.__check_entry_name)
         self.entry_name.connect("apply", self.__save_name)
@@ -351,10 +341,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkd3d.handler_block_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
         self.switch_latencyflex.handler_block_by_func(self.__toggle_latencyflex)
-        self.switch_virt_desktop.handler_block_by_func(self.__toggle_virt_desktop)
-        self.switch_mouse_capture.handler_block_by_func(self.__toggle_x11_reg_key)
-        self.switch_take_focus.handler_block_by_func(self.__toggle_x11_reg_key)
-        self.switch_mouse_warp.handler_block_by_func(self.__toggle_mouse_warp)
         self.switch_vkbasalt.handler_block_by_func(self.__toggle_vkbasalt)
         self.switch_obsvkc.handler_block_by_func(self.__toggle_obsvkc)
         self.switch_gamemode.handler_block_by_func(self.__toggle_gamemode)
@@ -370,16 +356,13 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_runtime.handler_block_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
         self.combo_fsr.handler_block_by_func(self.__set_fsr_level)
-        self.combo_virt_res.handler_block_by_func(self.__set_virtual_desktop_res)
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_windows.handler_block_by_func(self.__set_windows)
-        self.combo_renderer.handler_block_by_func(self.__set_renderer)
         self.combo_language.handler_block_by_func(self.__set_language)
-        self.combo_dpi.handler_block_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_block_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_block_by_func(self.__set_esync)
         self.toggle_fsync.handler_block_by_func(self.__set_fsync)
@@ -410,19 +393,12 @@ class PreferencesView(Adw.PreferencesPage):
         self.toggle_futex2.set_active(parameters["sync"] == "futex2")
 
         self.switch_discrete.set_active(parameters["discrete_gpu"])
-        self.switch_virt_desktop.set_active(parameters["virtual_desktop"])
-        self.switch_mouse_capture.set_active(parameters["fullscreen_capture"])
-        self.switch_take_focus.set_active(parameters["take_focus"])
-        self.switch_mouse_warp.set_active(parameters["mouse_warp"])
         self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
-        self.combo_virt_res.set_active_id(parameters["virtual_desktop_res"])
         self.combo_fsr.set_active_id(str(parameters["fsr_level"]))
         self.combo_runner.set_active_id(self.config.get("Runner"))
         self.combo_dxvk.set_active_id(self.config.get("DXVK"))
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
         self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
-        self.combo_renderer.set_active_id(parameters["renderer"])
-        self.combo_dpi.set_active_id(str(parameters["custom_dpi"]))
 
         self.btn_cwd_reset.set_visible(self.config.get("WorkingDir"))
 
@@ -459,10 +435,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkd3d.handler_unblock_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
         self.switch_latencyflex.handler_unblock_by_func(self.__toggle_latencyflex)
-        self.switch_virt_desktop.handler_unblock_by_func(self.__toggle_virt_desktop)
-        self.switch_mouse_capture.handler_unblock_by_func(self.__toggle_x11_reg_key)
-        self.switch_take_focus.handler_unblock_by_func(self.__toggle_x11_reg_key)
-        self.switch_mouse_warp.handler_unblock_by_func(self.__toggle_mouse_warp)
         self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_vkbasalt)
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_obsvkc)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_gamemode)
@@ -478,16 +450,13 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_runtime.handler_unblock_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
         self.combo_fsr.handler_unblock_by_func(self.__set_fsr_level)
-        self.combo_virt_res.handler_unblock_by_func(self.__set_virtual_desktop_res)
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
-        self.combo_renderer.handler_unblock_by_func(self.__set_renderer)
         self.combo_language.handler_unblock_by_func(self.__set_language)
-        self.combo_dpi.handler_unblock_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_unblock_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_unblock_by_func(self.__set_esync)
         self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
@@ -507,6 +476,17 @@ class PreferencesView(Adw.PreferencesPage):
         new_window = VkBasaltDialog(
             parent_window=self.window,
             config=self.config
+        )
+        new_window.present()
+
+    def __show_display_settings(self, widget):
+        new_window = DisplayDialog(
+            parent_window=self.window,
+            config=self.config,
+            details=self.details,
+            queue=self.queue,
+            widget=widget,
+            spinner_display=self.spinner_display
         )
         new_window.present()
 
@@ -818,55 +798,6 @@ class PreferencesView(Adw.PreferencesPage):
             scope="Parameters"
         ).data["config"]
 
-    def __toggle_virt_desktop(self, widget, state):
-        """Toggle the virtual desktop option."""
-
-        def update(result, error=False):
-            self.config = self.manager.update_config(
-                config=self.config,
-                key="virtual_desktop",
-                value=state,
-                scope="Parameters"
-            ).data["config"]
-            widget.set_sensitive(True)
-            self.queue.end_task()
-
-        self.queue.add_task()
-        widget.set_sensitive(False)
-        rk = RegKeys(self.config)
-        resolution = self.combo_virt_res.get_active_id()
-        RunAsync(
-            task_func=rk.toggle_virtual_desktop,
-            callback=update,
-            state=state,
-            resolution=resolution
-        )
-
-    def __set_virtual_desktop_res(self, widget):
-        """Set the virtual desktop resolution."""
-
-        def update(result, error=False):
-            self.config = self.manager.update_config(
-                config=self.config,
-                key="virtual_desktop_res",
-                value=resolution,
-                scope="Parameters"
-            ).data["config"]
-            widget.set_sensitive(True)
-            self.queue.end_task()
-
-        self.queue.add_task()
-        widget.set_sensitive(False)
-        rk = RegKeys(self.config)
-        resolution = widget.get_active_id()
-        if self.switch_virt_desktop.get_active():
-            RunAsync(
-                task_func=rk.toggle_virtual_desktop,
-                callback=update,
-                state=True,
-                resolution=resolution
-            )
-
     def __set_fsr_level(self, widget):
         """Set the FSR level of sharpness (from 0 to 5, where 5 is the default)"""
         level = int(widget.get_active_id())
@@ -1037,30 +968,6 @@ class PreferencesView(Adw.PreferencesPage):
             version=win
         )
 
-    def __set_renderer(self, widget):
-        """Set the renderer to use for the bottle"""
-
-        def update(result, error=False):
-            self.config = self.manager.update_config(
-                config=self.config,
-                key="renderer",
-                value=renderer,
-                scope="Parameters"
-            ).data["config"]
-            widget.set_sensitive(True)
-            self.queue.end_task()
-
-        self.queue.add_task()
-        rk = RegKeys(self.config)
-        widget.set_sensitive(False)
-        renderer = widget.get_active_id()
-
-        RunAsync(
-            rk.set_renderer,
-            callback=update,
-            value=renderer
-        )
-
     def __set_language(self, *_args):
         """Set the language to use for the bottle"""
         index = self.combo_language.get_selected()
@@ -1088,81 +995,6 @@ class PreferencesView(Adw.PreferencesPage):
             value=state,
             scope="Parameters"
         ).data["config"]
-
-    def __toggle_x11_reg_key(self, widget, state, rkey, ckey):
-        """Update x11 registry keys"""
-
-        def update(result, error=False):
-            nonlocal widget
-            self.config = self.manager.update_config(
-                config=self.config,
-                key=ckey,
-                value=state,
-                scope="Parameters"
-            ).data["config"]
-            widget.set_sensitive(True)
-            self.queue.end_task()
-
-        self.queue.add_task()
-        reg = Reg(self.config)
-        widget.set_sensitive(False)
-        _rule = "Y" if state else "N"
-
-        RunAsync(
-            reg.add,
-            callback=update,
-            key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
-            value=rkey,
-            data=_rule
-        )
-
-    def __toggle_mouse_warp(self, widget, state):
-        """Set the mouse warp to use for the bottle"""
-
-        def update(result, error=False):
-            self.config = self.manager.update_config(
-                config=self.config,
-                key="mouse_warp",
-                value=state,
-                scope="Parameters"
-            ).data["config"]
-            widget.set_sensitive(True)
-            self.queue.end_task()
-
-        self.queue.add_task()
-        rk = RegKeys(self.config)
-        widget.set_sensitive(False)
-        value = 1 if state else 0
-
-        RunAsync(
-            rk.set_mouse_warp,
-            callback=update,
-            state=value
-        )
-
-    def __set_custom_dpi(self, widget):
-        """Set the custom dpi value"""
-
-        def update(result, error=False):
-            self.config = self.manager.update_config(
-                config=self.config,
-                key="custom_dpi",
-                value=dpi,
-                scope="Parameters"
-            ).data["config"]
-            widget.set_sensitive(True)
-            self.queue.end_task()
-
-        self.queue.add_task()
-        rk = RegKeys(self.config)
-        widget.set_sensitive(False)
-        dpi = int(widget.get_active_id())
-
-        RunAsync(
-            rk.set_dpi,
-            callback=update,
-            value=dpi
-        )
 
     def __show_dll_overrides_view(self, widget=False):
         """Show the DLL overrides view"""
