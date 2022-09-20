@@ -187,7 +187,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
         self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
         self.switch_vmtouch.connect('state-set', self.__toggle_vmtouch)
-        self.combo_fsr.connect('changed', self.__set_fsr_level)
+        self.combo_fsr.connect('notify::selected', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_dpi.connect('changed', self.__set_custom_dpi)
         self.combo_runner.connect('changed', self.__set_runner)
@@ -416,7 +416,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mouse_warp.set_active(parameters["mouse_warp"])
         self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virt_res.set_active_id(parameters["virtual_desktop_res"])
-        self.combo_fsr.set_active_id(str(parameters["fsr_level"]))
         self.combo_runner.set_active_id(self.config.get("Runner"))
         self.combo_dxvk.set_active_id(self.config.get("DXVK"))
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
@@ -867,9 +866,9 @@ class PreferencesView(Adw.PreferencesPage):
                 resolution=resolution
             )
 
-    def __set_fsr_level(self, widget):
-        """Set the FSR level of sharpness (from 0 to 5, where 5 is the default)"""
-        level = int(widget.get_active_id())
+    def __set_fsr_level(self, *_args):
+        """Set the FSR level of sharpness (from 0 to 3, where 3 is the default)"""
+        level = self.combo_fsr.get_selected()
         self.config = self.manager.update_config(
             config=self.config,
             key="fsr_level",

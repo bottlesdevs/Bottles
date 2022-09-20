@@ -62,24 +62,20 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow {
-      activatable-widget: "switch_fsr";
-      title: _("FSR");
+    .AdwComboRow combo_fsr {
+      title: "FSR";
       subtitle: _("FSR uses cutting-edge up-scaling technologies to help boost your framerate.");
-
-      Gtk.ComboBoxText combo_fsr {
-        items [
-          item5: _("Ultra Quality"),
-          item4: _("Quality"),
-          item3: _("Balanced"),
-          item2: _("Performance")
-        ]
-        valign: center;
-        active-id: "add";
-        styles [
-          "borderless",
+      model:
+      StringList {
+        strings [
+          _("Ultra Quality"),
+          _("Quality"),
+          _("Balanced"),
+          _("Performance"),
         ]
       }
+
+      ;
 
       Switch switch_fsr {
         valign: center;
