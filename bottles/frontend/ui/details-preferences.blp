@@ -6,7 +6,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwEntryRow entry_name {
       title: _("Name");
-      show-apply-button: "True";
+      show-apply-button: true;
     }
   }
 
@@ -49,7 +49,7 @@ template DetailsPreferences : .AdwPreferencesPage {
       activatable-widget: "switch_nvapi";
       title: _("DLSS (DXVK-NVAPI)");
       subtitle: _("Provide DLSS and NVIDIA NVAPI support if available.");
-      visible: "False";
+      visible: false;
 
       Spinner spinner_nvapibool {
         tooltip-text: _("Updating DXVK-NVAPI, please wait…");
@@ -232,7 +232,7 @@ template DetailsPreferences : .AdwPreferencesPage {
       .AdwActionRow row_nvapi_version {
         activatable-widget: "combo_nvapi";
         title: _("DXVK NVAPI Version");
-        visible: _("false");
+        visible: false;
 
         Spinner spinner_nvapi {
           tooltip-text: _("Updating DXVK-NVAPI, please wait…");
@@ -333,7 +333,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_sandbox {
       activatable-widget: "switch_sandbox";
-      visible: _("false");
+      visible: false;
       title: _("Dedicated Sandbox");
       subtitle: _("Use a restricted/managed environment for this bottle.");
 
@@ -356,7 +356,7 @@ template DetailsPreferences : .AdwPreferencesPage {
       activatable-widget: "switch_runtime";
       title: _("Bottles Runtime");
       subtitle: _("Provides a bundle of extra libraries for more compatibility, disable if you run into issues.");
-      visible: "False";
+      visible: false;
 
       Switch switch_runtime {
         valign: center;
@@ -451,7 +451,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     }
 
     .AdwActionRow row_overrides {
-      activatable: "True";
+      activatable: true;
       title: _("DLL Overrides");
 
       Image {
@@ -460,7 +460,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     }
 
     .AdwActionRow row_env_variables {
-      activatable: "True";
+      activatable: true;
       title: _("Environment Variables");
 
       Image {
@@ -469,7 +469,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     }
 
     .AdwActionRow row_drives {
-      activatable: "True";
+      activatable: true;
       title: _("Manage Drives");
 
       Image {

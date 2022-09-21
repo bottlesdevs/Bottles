@@ -49,8 +49,8 @@ template MainWindow : .AdwApplicationWindow {
 
   .AdwToastOverlay toasts {
     .AdwLeaflet main_leaf {
-      can-unfold: "False";
-      can-navigate-back: "False";
+      can-unfold: false;
+      can-navigate-back: false;
 
       Box {
         orientation: vertical;
@@ -101,7 +101,7 @@ template MainWindow : .AdwApplicationWindow {
         }
 
         .AdwViewStack stack_main {
-          vexpand: "True";
+          vexpand: true;
         }
 
 	.AdwViewSwitcherBar view_switcher_bar {
