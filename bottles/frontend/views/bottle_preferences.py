@@ -131,6 +131,7 @@ class PreferencesView(Adw.PreferencesPage):
     exp_components = Gtk.Template.Child()
     str_list_languages = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
+    str_list_dxvk = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -191,7 +192,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_dpi.connect('changed', self.__set_custom_dpi)
         self.combo_runner.connect('notify::selected', self.__set_runner)
-        self.combo_dxvk.connect('changed', self.__set_dxvk)
+        self.combo_dxvk.connect('notify::selected', self.__set_dxvk)
         self.combo_vkd3d.connect('changed', self.__set_vkd3d)
         self.combo_nvapi.connect('changed', self.__set_nvapi)
         self.combo_latencyflex.connect('changed', self.__set_latencyflex)
@@ -309,18 +310,18 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_language.handler_block_by_func(self.__set_language)
 
-        self.combo_dxvk.remove_all()
         self.combo_vkd3d.remove_all()
         self.combo_nvapi.remove_all()
         self.combo_latencyflex.remove_all()
         self.str_list_runner.splice(0, self.str_list_runner.get_n_items())
+        self.str_list_dxvk.splice(0, self.str_list_dxvk.get_n_items())
         self.str_list_languages.splice(0, self.str_list_languages.get_n_items())
 
         for runner in self.manager.runners_available:
             self.str_list_runner.append(runner)
 
         for dxvk in self.manager.dxvk_available:
-            self.combo_dxvk.append(dxvk, dxvk)
+            self.str_list_dxvk.append(dxvk)
 
         for vkd3d in self.manager.vkd3d_available:
             self.combo_vkd3d.append(vkd3d, vkd3d)
@@ -416,7 +417,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mouse_warp.set_active(parameters["mouse_warp"])
         self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virt_res.set_active_id(parameters["virtual_desktop_res"])
-        self.combo_dxvk.set_active_id(self.config.get("DXVK"))
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
         self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
         self.combo_renderer.set_active_id(parameters["renderer"])
@@ -446,6 +446,11 @@ class PreferencesView(Adw.PreferencesPage):
             self.combo_windows.append("win95", "Windows 95")
 
         self.combo_windows.set_active_id(self.config.get("Windows"))
+
+        for index, dxvk in enumerate(self.manager.dxvk_available):
+            if dxvk == self.config.get("DXVK"):
+                self.combo_dxvk.set_selected(index)
+                break
 
         for index, runner in enumerate(self.manager.runners_available):
             if runner == self.config.get("Runner"):
@@ -943,11 +948,11 @@ class PreferencesView(Adw.PreferencesPage):
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"])
         self.queue.end_task()
 
-    def __set_dxvk(self, widget):
+    def __set_dxvk(self, *_args):
         """Set the DXVK version to use for the bottle"""
         self.set_dxvk_status(pending=True)
         self.queue.add_task()
-        dxvk = widget.get_active_id()
+        dxvk = self.manager.dxvk_available[self.combo_dxvk.get_selected()]
         self.config = self.manager.update_config(
             config=self.config,
             key="DXVK",

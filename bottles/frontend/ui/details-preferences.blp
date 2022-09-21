@@ -254,24 +254,19 @@ template DetailsPreferences : .AdwPreferencesPage {
         ;
       }
 
-      .AdwActionRow {
+      .AdwComboRow combo_dxvk {
         title: _("DXVK Version");
-        activatable-widget: "combo_dxvk";
 
         Spinner spinner_dxvk {
           tooltip-text: _("Updating DXVK, please wait…");
           valign: center;
-          margin-end: 6;
         }
 
-        ComboBoxText combo_dxvk {
-          valign: center;
-          active: 0;
+        model:
+          StringList str_list_dxvk {
+          }
 
-          styles [
-            "borderless",
-          ]
-        }
+        ;
       }
 
       .AdwActionRow {
