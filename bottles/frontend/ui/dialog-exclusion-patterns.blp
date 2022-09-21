@@ -1,7 +1,7 @@
 using Gtk 4.0;
 
 template ExclusionPatternsDialog : .AdwWindow {
-  modal: "True";
+  modal: true;
   default-width: "500";
   default-height: "500";
 
@@ -29,7 +29,7 @@ template ExclusionPatternsDialog : .AdwWindow {
 
         .AdwEntryRow entry_name {
           title: _("Pattern");
-          show-apply-button: "True";
+          show-apply-button: true;
         }
       }
 

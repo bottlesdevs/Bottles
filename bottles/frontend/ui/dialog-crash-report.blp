@@ -2,8 +2,8 @@ using Gtk 4.0;
 
 template CrashReportDialog : .AdwWindow {
   resizable: "False";
-  deletable: "True";
-  modal: "True";
+  deletable: true;
+  modal: true;
   default-width: "550";
   title: _("Bottles Crash Report");
 

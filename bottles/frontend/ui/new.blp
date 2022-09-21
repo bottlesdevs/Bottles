@@ -1,10 +1,10 @@
 using Gtk 4.0;
 
 template NewView : .AdwWindow {
-  modal: "True";
-  resizable: "False";
+  modal: true;
+  resizable: false;
   default-width: "450";
-  hide-on-close: "True";
+  hide-on-close: true;
 
   ShortcutController {
     Shortcut shortcut_escape {
@@ -82,24 +82,24 @@ template NewView : .AdwWindow {
 
             ListBox list_envs {
               .AdwActionRow gaming {
-                selectable: "True";
-                activatable: "True";
+                selectable: true;
+                activatable: false;
                 title: _("Gaming");
                 subtitle: _("An environment improved for Windows games.");
                 icon-name: "input-gaming-symbolic";
               }
 
               .AdwActionRow application {
-                selectable: "True";
-                activatable: "True";
+                selectable: true;
+                activatable: true;
                 title: _("Application");
                 subtitle: _("An environment improved for Windows applications.");
                 icon-name: "applications-engineering-symbolic";
               }
 
               .AdwActionRow layered {
-                selectable: "True";
-                activatable: "True";
+                selectable: true;
+                activatable: true;
                 visible: "False";
                 title: _("Layered");
                 subtitle: _("A layered environment, where every app is a layer.");
@@ -107,8 +107,8 @@ template NewView : .AdwWindow {
               }
 
               .AdwExpanderRow custom {
-                selectable: "True";
-                activatable: "True";
+                selectable: true;
+                activatable: true;
                 title: _("Custom");
                 subtitle: _("A clear environment for your experiments.");
                 icon-name: "applications-science-symbolic";

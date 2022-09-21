@@ -2,9 +2,9 @@ using Gtk 4.0;
 
 template PreferencesWindow : .AdwPreferencesWindow {
   title: _("Preferences");
-  modal: "True";
+  modal: true;
   default-width: "750";
-  hide-on-close: "True";
+  hide-on-close: true;
 
   .AdwPreferencesPage {
     icon-name: "applications-system-symbolic";

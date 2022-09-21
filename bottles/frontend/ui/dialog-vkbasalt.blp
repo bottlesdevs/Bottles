@@ -3,7 +3,7 @@ using Gtk 4.0;
 template VkBasaltDialog : .AdwWindow {
   default-width: "500";
   default-height: "550";
-  modal: "True";
+  modal: true;
 
   /* Translators: vkBasalt is a Vulkan post processing layer for Linux */
 
@@ -58,7 +58,7 @@ template VkBasaltDialog : .AdwWindow {
         title: _("Effects");
 
         .AdwExpanderRow expander_cas {
-          show-enable-switch: "True";
+          show-enable-switch: true;
           title: _("Contrast Adaptive Sharpening");
 
           .AdwActionRow {
@@ -92,7 +92,7 @@ template VkBasaltDialog : .AdwWindow {
         }
 
         .AdwExpanderRow expander_dls {
-          show-enable-switch: "True";
+          show-enable-switch: true;
 
           /* Translators: Luma is not translatable */
 
@@ -156,7 +156,7 @@ template VkBasaltDialog : .AdwWindow {
         }
 
         .AdwExpanderRow expander_fxaa {
-          show-enable-switch: "True";
+          show-enable-switch: true;
           title: _("Fast Approximate Anti-Aliasing");
 
           .AdwActionRow {
@@ -245,7 +245,7 @@ template VkBasaltDialog : .AdwWindow {
         }
 
         .AdwExpanderRow expander_smaa {
-          show-enable-switch: "True";
+          show-enable-switch: true;
           title: _("Subpixel Morphological Anti-Aliasing");
 
           .AdwActionRow {

@@ -1,9 +1,9 @@
 using Gtk 4.0;
 
 template DLLOverridesDialog : .AdwPreferencesWindow {
-  modal: "True";
+  modal: true;
   default-width: "500";
-  search-enabled: "False";
+  search-enabled: "false;
   title: _("DLL Overrides");
 
   .AdwPreferencesPage {
@@ -13,7 +13,7 @@ template DLLOverridesDialog : .AdwPreferencesWindow {
 
       .AdwEntryRow entry_row {
         title: _("New Override");
-        show-apply-button: "True";
+        show-apply-button: true;
       }
     }
 

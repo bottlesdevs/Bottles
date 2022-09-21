@@ -1,9 +1,9 @@
 using Gtk 4.0;
 
 template OnboardDialog : .AdwWindow {
-  resizable: "False";
-  deletable: "True";
-  modal: "True";
+  resizable: false;
+  deletable: true;
+  modal: true;
   default-width: "550";
   default-height: "550";
 
@@ -39,11 +39,11 @@ template OnboardDialog : .AdwWindow {
       }
 
       .AdwCarousel carousel {
-        vexpand: "True";
-        hexpand: "True";
-        allow-scroll-wheel: "True";
-        allow-mouse-drag: "True";
-        allow-long-swipes: "True";
+        vexpand: true;
+        hexpand: true;
+        allow-scroll-wheel: true;
+        allow-mouse-drag: true;
+        allow-long-swipes: true;
 
         Box {
           orientation: vertical;
@@ -64,15 +64,15 @@ template OnboardDialog : .AdwWindow {
         .AdwStatusPage page_bottles {
           title: _("Windows in Bottles");
           description: _("Bottles uses compatibility runners to provide isolated containerized Windows-like environments where programs run.");
-          vexpand: "True";
-          hexpand: "True";
+          vexpand: true;
+          hexpand: true;
         }
 
         .AdwStatusPage page_download {
           title: _("Almost Done");
           description: _("We need a few more minutes to set everything up…");
-          vexpand: "True";
-          hexpand: "True";
+          vexpand: true;
+          hexpand: true;
           child: 
           Box {
             orientation: vertical;
@@ -103,8 +103,8 @@ template OnboardDialog : .AdwWindow {
         .AdwStatusPage page_finish {
           icon-name: "selection-mode-symbolic";
           title: _("All ready!");
-          vexpand: "True";
-          hexpand: "True";
+          vexpand: true;
+          hexpand: true;
           valign: "center";
           child: 
           Box {
