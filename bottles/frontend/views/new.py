@@ -110,7 +110,10 @@ class NewView(Adw.Window):
         else:  # use any other runner available
             self.runner = self.manager.runners_available[0]
 
-        self.combo_runner.set_active_id(self.runner)
+        for index, runner in enumerate(self.manager.runners_available):
+            if self.runner == runner:
+                self.combo_runner.set_selected(index)
+                break
         self.combo_arch.set_selected(0)
 
         # if running under Flatpak, hide row_sandbox
