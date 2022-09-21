@@ -119,7 +119,6 @@ class PreferencesView(Adw.PreferencesPage):
     spinner_dxvkbool = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
     spinner_vkd3dbool = Gtk.Template.Child()
-    row_nvapi_version = Gtk.Template.Child()
     spinner_nvapi = Gtk.Template.Child()
     spinner_nvapibool = Gtk.Template.Child()
     spinner_latencyflex = Gtk.Template.Child()
@@ -133,6 +132,7 @@ class PreferencesView(Adw.PreferencesPage):
     str_list_runner = Gtk.Template.Child()
     str_list_dxvk = Gtk.Template.Child()
     str_list_vkd3d = Gtk.Template.Child()
+    str_list_nvapi = Gtk.Template.Child()
     str_list_latencyflex = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
@@ -196,7 +196,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_runner.connect('notify::selected', self.__set_runner)
         self.combo_dxvk.connect('notify::selected', self.__set_dxvk)
         self.combo_vkd3d.connect('notify::selected', self.__set_vkd3d)
-        self.combo_nvapi.connect('changed', self.__set_nvapi)
+        self.combo_nvapi.connect('notify::selected', self.__set_nvapi)
         self.combo_latencyflex.connect('notify::selected', self.__set_latencyflex)
         self.combo_windows.connect('changed', self.__set_windows)
         self.combo_renderer.connect('changed', self.__set_renderer)
@@ -210,7 +210,7 @@ class PreferencesView(Adw.PreferencesPage):
             vendor = gpu["vendors"]["nvidia"]["vendor"]
             if vendor == "nvidia":
                 self.row_nvapi.set_visible(True)
-                self.row_nvapi_version.set_visible(True)
+                self.combo_nvapi.set_visible(True)
 
         """Set Bottles Runtime row to visible when Bottles is not running inside Flatpak"""
         if "FLATPAK_ID" not in os.environ and RuntimeManager.get_runtimes("bottles"):
@@ -312,10 +312,10 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_language.handler_block_by_func(self.__set_language)
 
-        self.combo_nvapi.remove_all()
         self.str_list_runner.splice(0, self.str_list_runner.get_n_items())
         self.str_list_dxvk.splice(0, self.str_list_dxvk.get_n_items())
         self.str_list_vkd3d.splice(0, self.str_list_vkd3d.get_n_items())
+        self.str_list_nvapi.splice(0, self.str_list_nvapi.get_n_items())
         self.str_list_latencyflex.splice(0, self.str_list_latencyflex.get_n_items())
         self.str_list_languages.splice(0, self.str_list_languages.get_n_items())
 
@@ -329,7 +329,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.str_list_vkd3d.append(vkd3d)
 
         for nvapi in self.manager.nvapi_available:
-            self.combo_nvapi.append(nvapi, nvapi)
+            self.str_list_nvapi.append(nvapi)
 
         for latencyflex in self.manager.latencyflex_available:
             self.str_list_latencyflex.append(latencyflex)
@@ -419,7 +419,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mouse_warp.set_active(parameters["mouse_warp"])
         self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virt_res.set_active_id(parameters["virtual_desktop_res"])
-        self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
         self.combo_renderer.set_active_id(parameters["renderer"])
         self.combo_dpi.set_active_id(str(parameters["custom_dpi"]))
 
@@ -461,6 +460,11 @@ class PreferencesView(Adw.PreferencesPage):
         for index, runner in enumerate(self.manager.runners_available):
             if runner == self.config.get("Runner"):
                 self.combo_runner.set_selected(index)
+                break
+
+        for index, nvapi in enumerate(self.manager.nvapi_available):
+            if nvapi == self.config.get("NVAPI"):
+                self.combo_nvapi.set_selected(index)
                 break
 
         for index, latencyflex in enumerate(self.manager.latencyflex_available):
@@ -995,11 +999,11 @@ class PreferencesView(Adw.PreferencesPage):
             component="vkd3d"
         )
 
-    def __set_nvapi(self, widget):
+    def __set_nvapi(self, *_args):
         """Set the NVAPI version to use for the bottle"""
         self.set_nvapi_status(pending=True)
         self.queue.add_task()
-        nvapi = widget.get_active_id()
+        nvapi = self.manager.nvapi_available[self.combo_nvapi.get_selected()]
         self.config = self.manager.update_config(
             config=self.config,
             key="NVAPI",

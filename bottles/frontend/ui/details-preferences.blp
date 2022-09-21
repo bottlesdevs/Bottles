@@ -284,8 +284,7 @@ template DetailsPreferences : .AdwPreferencesPage {
         ;
       }
 
-      .AdwActionRow row_nvapi_version {
-        activatable-widget: "combo_nvapi";
+      .AdwComboRow combo_nvapi {
         title: _("DXVK NVAPI Version");
         visible: _("false");
 
@@ -294,14 +293,11 @@ template DetailsPreferences : .AdwPreferencesPage {
           valign: center;
         }
 
-        ComboBoxText combo_nvapi {
-          valign: center;
-          active: 0;
+        model:
+          StringList str_list_nvapi {
+          }
 
-          styles [
-            "borderless",
-          ]
-        }
+        ;
       }
 
       .AdwComboRow combo_latencyflex {
