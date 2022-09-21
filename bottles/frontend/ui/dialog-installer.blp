@@ -1,8 +1,8 @@
 using Gtk 4.0;
 
 template InstallerDialog : .AdwWindow {
-  modal: "True";
-  deletable: "True";
+  modal: true;
+  deletable: true;
   default-width: "500";
   default-height: "600";
 
@@ -38,8 +38,8 @@ template InstallerDialog : .AdwWindow {
 
           .AdwStatusPage status_init {
             description: _("Do you want to proceed with the installation?");
-            hexpand: "True";
-            vexpand: "True";
+            hexpand: true;
+            vexpand: true;
 
             Button btn_install {
               label: _("Start Installation");
