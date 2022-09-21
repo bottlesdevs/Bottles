@@ -68,7 +68,6 @@ class PreferencesView(Adw.PreferencesPage):
     row_latencyflex = Gtk.Template.Child()
     row_discrete = Gtk.Template.Child()
     row_vkbasalt = Gtk.Template.Child()
-    row_runner = Gtk.Template.Child()
     row_runtime = Gtk.Template.Child()
     row_steam_runtime = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
@@ -131,6 +130,7 @@ class PreferencesView(Adw.PreferencesPage):
     group_details = Gtk.Template.Child()
     exp_components = Gtk.Template.Child()
     str_list_languages = Gtk.Template.Child()
+    str_list_runner = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -190,7 +190,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_fsr.connect('notify::selected', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_dpi.connect('changed', self.__set_custom_dpi)
-        self.combo_runner.connect('changed', self.__set_runner)
+        self.combo_runner.connect('notify::selected', self.__set_runner)
         self.combo_dxvk.connect('changed', self.__set_dxvk)
         self.combo_vkd3d.connect('changed', self.__set_vkd3d)
         self.combo_nvapi.connect('changed', self.__set_nvapi)
@@ -309,15 +309,15 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_language.handler_block_by_func(self.__set_language)
 
-        self.combo_runner.remove_all()
         self.combo_dxvk.remove_all()
         self.combo_vkd3d.remove_all()
         self.combo_nvapi.remove_all()
         self.combo_latencyflex.remove_all()
+        self.str_list_runner.splice(0, self.str_list_runner.get_n_items())
         self.str_list_languages.splice(0, self.str_list_languages.get_n_items())
 
         for runner in self.manager.runners_available:
-            self.combo_runner.append(runner, runner)
+            self.str_list_runner.append(runner)
 
         for dxvk in self.manager.dxvk_available:
             self.combo_dxvk.append(dxvk, dxvk)
@@ -416,7 +416,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mouse_warp.set_active(parameters["mouse_warp"])
         self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virt_res.set_active_id(parameters["virtual_desktop_res"])
-        self.combo_runner.set_active_id(self.config.get("Runner"))
         self.combo_dxvk.set_active_id(self.config.get("DXVK"))
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
         self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
@@ -447,6 +446,12 @@ class PreferencesView(Adw.PreferencesPage):
             self.combo_windows.append("win95", "Windows 95")
 
         self.combo_windows.set_active_id(self.config.get("Windows"))
+
+        for index, runner in enumerate(self.manager.runners_available):
+            if runner == self.config.get("Runner"):
+                self.combo_runner.set_selected(index)
+                break
+
         self.combo_language.set_selected(ManagerUtils.get_languages(
             from_locale=self.config.get("Language"),
             get_index=True
@@ -876,12 +881,12 @@ class PreferencesView(Adw.PreferencesPage):
             scope="Parameters"
         ).data["config"]
 
-    def __set_runner(self, widget):
+    def __set_runner(self, *_args):
         """Set the runner to use for the bottle"""
 
         def set_widgets_status(status=True):
             for w in [
-                widget,
+                self.combo_runner,
                 self.switch_dxvk,
                 self.switch_nvapi,
                 self.switch_vkd3d,
@@ -907,13 +912,12 @@ class PreferencesView(Adw.PreferencesPage):
             self.queue.end_task()
 
         set_widgets_status(False)
-        runner = widget.get_active_id()
+        runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
         def run_task(status=True):
             if not status:
                 update(Result(True))
                 self.combo_runner.handler_block_by_func(self.__set_runner)
-                self.combo_runner.set_active_id(self.config.get("Runner"))
                 self.combo_runner.handler_unblock_by_func(self.__set_runner)
                 return
 
@@ -1225,7 +1229,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         for w in [
             self.row_discrete,
-            self.row_runner,
             self.row_steam_runtime,
             self.row_dxvk,
             self.row_vkd3d,

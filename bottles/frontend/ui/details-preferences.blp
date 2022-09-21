@@ -239,8 +239,7 @@ template DetailsPreferences : .AdwPreferencesPage {
       title: _("Runner Components");
       subtitle: _("Manage components, such as the Wine runner used.");
 
-      .AdwActionRow row_runner {
-        activatable-widget: "combo_runner";
+      .AdwComboRow combo_runner {
         title: _("Runner");
 
         Spinner spinner_runner {
@@ -248,13 +247,11 @@ template DetailsPreferences : .AdwPreferencesPage {
           valign: center;
         }
 
-        ComboBoxText combo_runner {
-          valign: center;
+        model:
+          StringList str_list_runner {
+          }
 
-          styles [
-            "borderless",
-          ]
-        }
+        ;
       }
 
       .AdwActionRow {
