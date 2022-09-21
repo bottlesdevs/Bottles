@@ -114,6 +114,7 @@ class NewView(Adw.Window):
             if self.runner == runner:
                 self.combo_runner.set_selected(index)
                 break
+
         self.combo_arch.set_selected(0)
 
         # if running under Flatpak, hide row_sandbox
