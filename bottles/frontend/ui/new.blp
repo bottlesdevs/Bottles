@@ -123,17 +123,13 @@ template NewView : .AdwWindow {
                   }
                 }
 
-                .AdwActionRow {
+                .AdwComboRow combo_runner {
                   title: _("Runner");
-                  activatable-widget: "combo_runner";
+                  model:
+                    StringList str_list_runner {
+                    }
 
-                  ComboBoxText combo_runner {
-                    valign: center;
-
-                    styles [
-                      "borderless",
-                    ]
-                  }
+                  ;
                 }
 
                 .AdwComboRow combo_arch {

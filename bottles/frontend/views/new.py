@@ -53,6 +53,7 @@ class NewView(Adw.Window):
     title = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     shortcut_escape = Gtk.Template.Child()
+    str_list_runner = Gtk.Template.Child()
 
     # endregion
 
@@ -80,7 +81,7 @@ class NewView(Adw.Window):
 
         # populate combo_runner with runner versions from the manager
         for runner in self.manager.runners_available:
-            self.combo_runner.append(runner, runner)
+            self.str_list_runner.append(runner)
 
         rs, rc, rv, rl, ry = [], [], [], [], []
 
