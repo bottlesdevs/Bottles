@@ -269,25 +269,19 @@ template DetailsPreferences : .AdwPreferencesPage {
         ;
       }
 
-      .AdwActionRow {
-        activatable-widget: "combo_vkd3d";
+      .AdwComboRow combo_vkd3d {
         title: _("VKD3D Version");
 
         Spinner spinner_vkd3d {
           tooltip-text: _("Updating VKD3D, please wait…");
-          halign: center;
           valign: center;
-          margin-end: 5;
         }
 
-        ComboBoxText combo_vkd3d {
-          valign: center;
-          active: 0;
+        model:
+          StringList str_list_vkd3d {
+          }
 
-          styles [
-            "borderless",
-          ]
-        }
+        ;
       }
 
       .AdwActionRow row_nvapi_version {

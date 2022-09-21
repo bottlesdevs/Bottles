@@ -132,6 +132,7 @@ class PreferencesView(Adw.PreferencesPage):
     str_list_languages = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
     str_list_dxvk = Gtk.Template.Child()
+    str_list_vkd3d = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -193,7 +194,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_dpi.connect('changed', self.__set_custom_dpi)
         self.combo_runner.connect('notify::selected', self.__set_runner)
         self.combo_dxvk.connect('notify::selected', self.__set_dxvk)
-        self.combo_vkd3d.connect('changed', self.__set_vkd3d)
+        self.combo_vkd3d.connect('notify::selected', self.__set_vkd3d)
         self.combo_nvapi.connect('changed', self.__set_nvapi)
         self.combo_latencyflex.connect('changed', self.__set_latencyflex)
         self.combo_windows.connect('changed', self.__set_windows)
@@ -310,7 +311,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_language.handler_block_by_func(self.__set_language)
 
-        self.combo_vkd3d.remove_all()
         self.combo_nvapi.remove_all()
         self.combo_latencyflex.remove_all()
         self.str_list_runner.splice(0, self.str_list_runner.get_n_items())
@@ -324,7 +324,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.str_list_dxvk.append(dxvk)
 
         for vkd3d in self.manager.vkd3d_available:
-            self.combo_vkd3d.append(vkd3d, vkd3d)
+            self.str_list_vkd3d.append(vkd3d)
 
         for nvapi in self.manager.nvapi_available:
             self.combo_nvapi.append(nvapi, nvapi)
@@ -417,7 +417,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mouse_warp.set_active(parameters["mouse_warp"])
         self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virt_res.set_active_id(parameters["virtual_desktop_res"])
-        self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
         self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
         self.combo_renderer.set_active_id(parameters["renderer"])
         self.combo_dpi.set_active_id(str(parameters["custom_dpi"]))
@@ -450,6 +449,11 @@ class PreferencesView(Adw.PreferencesPage):
         for index, dxvk in enumerate(self.manager.dxvk_available):
             if dxvk == self.config.get("DXVK"):
                 self.combo_dxvk.set_selected(index)
+                break
+
+        for index, vkd3d in enumerate(self.manager.vkd3d_available):
+            if vkd3d == self.config.get("VKD3D"):
+                self.combo_vkd3d.set_selected(index)
                 break
 
         for index, runner in enumerate(self.manager.runners_available):
@@ -970,7 +974,7 @@ class PreferencesView(Adw.PreferencesPage):
         """Set the VKD3D version to use for the bottle"""
         self.set_vkd3d_status(pending=True)
         self.queue.add_task()
-        vkd3d = widget.get_active_id()
+        vkd3d = self.manager.vkd3d_available[self.combo_vkd3d.get_selected()]
         self.config = self.manager.update_config(
             config=self.config,
             key="VKD3D",
