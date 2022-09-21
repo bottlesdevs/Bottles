@@ -977,7 +977,7 @@ class PreferencesView(Adw.PreferencesPage):
             component="dxvk"
         )
 
-    def __set_vkd3d(self, widget):
+    def __set_vkd3d(self, *_args):
         """Set the VKD3D version to use for the bottle"""
         self.set_vkd3d_status(pending=True)
         self.queue.add_task()
@@ -1013,7 +1013,7 @@ class PreferencesView(Adw.PreferencesPage):
             component="nvapi"
         )
 
-    def __set_latencyflex(self, widget):
+    def __set_latencyflex(self, *_args):
         """Set the latency flex value"""
         latencyflex = self.manager.latencyflex_available[self.combo_latencyflex.get_selected()]
         self.queue.add_task()
