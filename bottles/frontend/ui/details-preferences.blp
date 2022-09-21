@@ -304,8 +304,7 @@ template DetailsPreferences : .AdwPreferencesPage {
         }
       }
 
-      .AdwActionRow {
-        activatable-widget: "combo_latencyflex";
+      .AdwComboRow combo_latencyflex {
         title: _("LatencyFleX Version");
 
         Spinner spinner_latencyflex {
@@ -313,14 +312,11 @@ template DetailsPreferences : .AdwPreferencesPage {
           valign: center;
         }
 
-        ComboBoxText combo_latencyflex {
-          valign: center;
-          active: 0;
+        model:
+          StringList str_list_latencyflex {
+          }
 
-          styles [
-            "borderless",
-          ]
-        }
+        ;
       }
     }
 

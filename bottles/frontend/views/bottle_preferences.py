@@ -133,6 +133,7 @@ class PreferencesView(Adw.PreferencesPage):
     str_list_runner = Gtk.Template.Child()
     str_list_dxvk = Gtk.Template.Child()
     str_list_vkd3d = Gtk.Template.Child()
+    str_list_latencyflex = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -196,7 +197,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_dxvk.connect('notify::selected', self.__set_dxvk)
         self.combo_vkd3d.connect('notify::selected', self.__set_vkd3d)
         self.combo_nvapi.connect('changed', self.__set_nvapi)
-        self.combo_latencyflex.connect('changed', self.__set_latencyflex)
+        self.combo_latencyflex.connect('notify::selected', self.__set_latencyflex)
         self.combo_windows.connect('changed', self.__set_windows)
         self.combo_renderer.connect('changed', self.__set_renderer)
         self.combo_language.connect('notify::selected-item', self.__set_language)
@@ -312,9 +313,10 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_language.handler_block_by_func(self.__set_language)
 
         self.combo_nvapi.remove_all()
-        self.combo_latencyflex.remove_all()
         self.str_list_runner.splice(0, self.str_list_runner.get_n_items())
         self.str_list_dxvk.splice(0, self.str_list_dxvk.get_n_items())
+        self.str_list_vkd3d.splice(0, self.str_list_vkd3d.get_n_items())
+        self.str_list_latencyflex.splice(0, self.str_list_latencyflex.get_n_items())
         self.str_list_languages.splice(0, self.str_list_languages.get_n_items())
 
         for runner in self.manager.runners_available:
@@ -330,7 +332,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.combo_nvapi.append(nvapi, nvapi)
 
         for latencyflex in self.manager.latencyflex_available:
-            self.combo_latencyflex.append(latencyflex, latencyflex)
+            self.str_list_latencyflex.append(latencyflex)
 
         for lang in ManagerUtils.get_languages():
             self.str_list_languages.append(lang)
@@ -459,6 +461,11 @@ class PreferencesView(Adw.PreferencesPage):
         for index, runner in enumerate(self.manager.runners_available):
             if runner == self.config.get("Runner"):
                 self.combo_runner.set_selected(index)
+                break
+
+        for index, latencyflex in enumerate(self.manager.latencyflex_available):
+            if latencyflex == self.config.get("LatencyFleX"):
+                self.combo_latencyflex.set_selected(index)
                 break
 
         self.combo_language.set_selected(ManagerUtils.get_languages(
@@ -1008,7 +1015,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_latencyflex(self, widget):
         """Set the latency flex value"""
-        latencyflex = widget.get_active_id()
+        latencyflex = self.manager.latencyflex_available[self.combo_latencyflex.get_selected()]
         self.queue.add_task()
         self.config = self.manager.update_config(
             config=self.config,
