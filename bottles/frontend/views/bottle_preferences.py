@@ -124,7 +124,7 @@ class PreferencesView(Adw.PreferencesPage):
     spinner_latencyflex = Gtk.Template.Child()
     spinner_latencyflexbool = Gtk.Template.Child()
     spinner_runner = Gtk.Template.Child()
-    spinner_win = Gtk.Template.Child()
+    spinner_windows = Gtk.Template.Child()
     box_sync = Gtk.Template.Child()
     group_details = Gtk.Template.Child()
     exp_components = Gtk.Template.Child()
@@ -134,6 +134,7 @@ class PreferencesView(Adw.PreferencesPage):
     str_list_vkd3d = Gtk.Template.Child()
     str_list_nvapi = Gtk.Template.Child()
     str_list_latencyflex = Gtk.Template.Child()
+    str_list_windows = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -198,7 +199,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_vkd3d.connect('notify::selected', self.__set_vkd3d)
         self.combo_nvapi.connect('notify::selected', self.__set_nvapi)
         self.combo_latencyflex.connect('notify::selected', self.__set_latencyflex)
-        self.combo_windows.connect('changed', self.__set_windows)
+        self.combo_windows.connect('notify::selected', self.__set_windows)
         self.combo_renderer.connect('changed', self.__set_renderer)
         self.combo_language.connect('notify::selected-item', self.__set_language)
         self.ev_controller.connect("key-released", self.__check_entry_name)
@@ -431,21 +432,17 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.row_cwd.set_subtitle(_("Default to the bottle path."))
 
-        self.combo_windows.remove_all()
-        self.combo_windows.append("win10", "Windows 10")
-        self.combo_windows.append("win81", "Windows 8.1")
-        self.combo_windows.append("win8", "Windows 8")
-        self.combo_windows.append("win7", "Windows 7")
-        self.combo_windows.append("vista", "Windows Vista")
-        self.combo_windows.append("win2008r2", "Windows 2008 R2")
-        self.combo_windows.append("win2008", "Windows 2008")
-        self.combo_windows.append("winxp", "Windows XP")
+        for win_version in win_versions:
+            try:
+                if win_versions[win_version]["Arch"] == "win32" and self.config.get("Arch") == "win32":
+                    self.str_list_windows.append(win_versions[win_version]["ProductName"].replace("Microsoft ", ""))
+            except KeyError:
+                self.str_list_windows.append(win_versions[win_version]["ProductName"].replace("Microsoft ", ""))
 
-        if self.config.get("Arch") == "win32":
-            self.combo_windows.append("win98", "Windows 98")
-            self.combo_windows.append("win95", "Windows 95")
-
-        self.combo_windows.set_active_id(self.config.get("Windows"))
+        for index, win_version in enumerate(win_versions):
+            if win_version == self.config.get("Windows"):
+                self.combo_windows.set_selected(index)
+                break
 
         for index, dxvk in enumerate(self.manager.dxvk_available):
             if dxvk == self.config.get("DXVK"):
@@ -1034,20 +1031,24 @@ class PreferencesView(Adw.PreferencesPage):
             component="latencyflex"
         )
 
-    def __set_windows(self, widget):
+    def __set_windows(self, *_args):
         """Set the Windows version to use for the bottle"""
-
+        # self.manager.dxvk_available[self.combo_dxvk.get_selected()]
         def update(result, error=False):
-            self.spinner_win.stop()
-            widget.set_sensitive(True)
+            self.spinner_windows.stop()
+            self.combo_windows.set_sensitive(True)
             self.queue.end_task()
 
         self.queue.add_task()
-        self.spinner_win.start()
-        widget.set_sensitive(False)
+        self.spinner_windows.start()
+        self.combo_windows.set_sensitive(False)
         rk = RegKeys(self.config)
 
-        win = widget.get_active_id()
+        for index, win_version in enumerate(win_versions):
+            if self.combo_windows.get_selected() == index:
+                win = win_version
+                break
+
         self.config = self.manager.update_config(
             config=self.config,
             key="Windows",

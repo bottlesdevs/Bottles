@@ -100,11 +100,13 @@ win_versions = {
     "win98": {
         "VersionNumber": "4.10.2222",
         "SubVersionNumber": " A ",
-        "ProductName": "Microsoft Windows 98"
+        "ProductName": "Microsoft Windows 98",
+        "Arch": "win32"
     },
     "win95": {
         "VersionNumber": "4.0.950",
         "SubVersionNumber": "",
-        "ProductName": "Microsoft Windows 95"
+        "ProductName": "Microsoft Windows 95",
+        "Arch": "win32"
     },
 }

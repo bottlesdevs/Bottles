@@ -347,25 +347,19 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow {
-      activatable-widget: "combo_windows";
+    .AdwComboRow combo_windows {
       title: _("Windows Version");
 
-      Spinner spinner_win {
+      Spinner spinner_windows {
         tooltip-text: _("Updating Windows version, please wait…");
         valign: center;
-        margin-end: 6;
       }
 
-      ComboBoxText combo_windows {
-        valign: center;
-        margin-end: 6;
-        active: 0;
+      model:
+        StringList str_list_windows {
+        }
 
-        styles [
-          "borderless",
-        ]
-      }
+      ;
     }
 
     .AdwComboRow combo_language {
