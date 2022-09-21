@@ -1,7 +1,7 @@
 using Gtk 4.0;
 
 template CrashReportDialog : .AdwWindow {
-  resizable: "False";
+  resizable: false;
   deletable: true;
   modal: true;
   default-width: "550";
@@ -11,8 +11,8 @@ template CrashReportDialog : .AdwWindow {
     orientation: vertical;
 
     .AdwHeaderBar {
-      show-start-title-buttons: "False";
-      show-end-title-buttons: "False";
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
 
       Button btn_cancel {
         label: _("_Cancel");

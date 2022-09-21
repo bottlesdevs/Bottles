@@ -16,7 +16,7 @@ template PreferencesWindow : .AdwPreferencesWindow {
       .AdwActionRow row_theme {
         title: _("Dark Mode");
         subtitle: _("Whether Bottles should use the dark color scheme.");
-        visible: "False";
+        visible: false;
         activatable-widget: "switch_theme";
 
         Switch switch_theme {
@@ -198,7 +198,7 @@ template PreferencesWindow : .AdwPreferencesWindow {
   .AdwPreferencesPage pref_core {
     icon-name: "application-x-addon-symbolic";
     title: _("Core");
-    visible: "False";
+    visible: false;
 
     .AdwPreferencesGroup list_runtimes {
       title: _("Runtime");
