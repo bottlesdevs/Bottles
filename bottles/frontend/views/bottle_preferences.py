@@ -309,6 +309,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.str_list_nvapi.splice(0, self.str_list_nvapi.get_n_items())
         self.str_list_latencyflex.splice(0, self.str_list_latencyflex.get_n_items())
         self.str_list_languages.splice(0, self.str_list_languages.get_n_items())
+        self.str_list_windows.splice(0, self.str_list_windows.get_n_items())
 
         for runner in self.manager.runners_available:
             self.str_list_runner.append(runner)
@@ -408,15 +409,26 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.row_cwd.set_subtitle(_("Default to the bottle path."))
 
-        for win_version in win_versions:
-            try:
-                if win_versions[win_version]["Arch"] == "win32" and self.config.get("Arch") == "win32":
-                    self.str_list_windows.append(win_versions[win_version]["ProductName"].replace("Microsoft ", ""))
-            except KeyError:
-                self.str_list_windows.append(win_versions[win_version]["ProductName"].replace("Microsoft ", ""))
+        self.windows_versions = {
+            "win10": "Windows 10",
+            "win81": "Windows 8.1",
+            "win8": "Windows 8",
+            "win7": "Windows 7",
+            "win2008r2": "Windows 2008 R2",
+            "win2008": "Windows 2008",
+            "vista": "Windows Vista",
+            "winxp": "Windows XP"
+        }
 
-        for index, win_version in enumerate(win_versions):
-            if win_version == self.config.get("Windows"):
+        if self.config.get("Arch") == "win32":
+            self.windows_versions["win98"] = "Windows 98"
+            self.windows_versions["win95"] = "Windows 95"
+
+        for windows_version in self.windows_versions:
+            self.str_list_windows.append(self.windows_versions[windows_version])
+
+        for index, windows_version in enumerate(self.windows_versions):
+            if windows_version == self.config.get("Windows"):
                 self.combo_windows.set_selected(index)
                 break
 
@@ -979,9 +991,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_windows.set_sensitive(False)
         rk = RegKeys(self.config)
 
-        for index, win_version in enumerate(win_versions):
+        for index, windows_version in enumerate(self.windows_versions):
             if self.combo_windows.get_selected() == index:
-                win = win_version
+                win = windows_version
                 break
 
         self.config = self.manager.update_config(
