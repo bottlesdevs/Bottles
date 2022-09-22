@@ -86,17 +86,6 @@ win_versions = {
         "CurrentMajorVersionNumber": "5",
         "ProductName": "Microsoft Windows XP"
     },
-    "winxp64": {
-        "CSDVersion": "Service Pack 2",
-        "CSDVersionHex": "200",
-        "CurrentBuild": "3790",
-        "CurrentBuildNumber": "3790",
-        "CurrentVersion": "5.2",
-        "CurrentMinorVersionNumber": "2",
-        "CurrentMajorVersionNumber": "5",
-        "ProductType": "WinNT",
-        "ProductName": "Microsoft Windows XP"
-    },
     "win98": {
         "VersionNumber": "4.10.2222",
         "SubVersionNumber": " A ",
