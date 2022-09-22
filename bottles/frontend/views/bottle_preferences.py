@@ -993,20 +993,18 @@ class PreferencesView(Adw.PreferencesPage):
 
         for index, windows_version in enumerate(self.windows_versions):
             if self.combo_windows.get_selected() == index:
-                win = windows_version
+                self.config = self.manager.update_config(
+                    config=self.config,
+                    key="Windows",
+                    value=windows_version
+                ).data["config"]
+
+                RunAsync(
+                    rk.set_windows,
+                    callback=update,
+                    version=windows_version
+                )
                 break
-
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="Windows",
-            value=win
-        ).data["config"]
-
-        RunAsync(
-            rk.set_windows,
-            callback=update,
-            version=win
-        )
 
     def __set_language(self, *_args):
         """Set the language to use for the bottle"""
