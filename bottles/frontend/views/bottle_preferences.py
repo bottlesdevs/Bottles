@@ -70,7 +70,6 @@ class PreferencesView(Adw.PreferencesPage):
     row_latencyflex = Gtk.Template.Child()
     row_discrete = Gtk.Template.Child()
     row_vkbasalt = Gtk.Template.Child()
-    row_runner = Gtk.Template.Child()
     row_runtime = Gtk.Template.Child()
     row_steam_runtime = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
@@ -115,18 +114,23 @@ class PreferencesView(Adw.PreferencesPage):
     spinner_dxvkbool = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
     spinner_vkd3dbool = Gtk.Template.Child()
-    row_nvapi_version = Gtk.Template.Child()
     spinner_nvapi = Gtk.Template.Child()
     spinner_nvapibool = Gtk.Template.Child()
     spinner_latencyflex = Gtk.Template.Child()
     spinner_latencyflexbool = Gtk.Template.Child()
     spinner_runner = Gtk.Template.Child()
-    spinner_win = Gtk.Template.Child()
+    spinner_windows = Gtk.Template.Child()
     spinner_display = Gtk.Template.Child()
     box_sync = Gtk.Template.Child()
     group_details = Gtk.Template.Child()
     exp_components = Gtk.Template.Child()
     str_list_languages = Gtk.Template.Child()
+    str_list_runner = Gtk.Template.Child()
+    str_list_dxvk = Gtk.Template.Child()
+    str_list_vkd3d = Gtk.Template.Child()
+    str_list_nvapi = Gtk.Template.Child()
+    str_list_latencyflex = Gtk.Template.Child()
+    str_list_windows = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -180,13 +184,13 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
         self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
         self.switch_vmtouch.connect('state-set', self.__toggle_vmtouch)
-        self.combo_fsr.connect('changed', self.__set_fsr_level)
-        self.combo_runner.connect('changed', self.__set_runner)
-        self.combo_dxvk.connect('changed', self.__set_dxvk)
-        self.combo_vkd3d.connect('changed', self.__set_vkd3d)
-        self.combo_nvapi.connect('changed', self.__set_nvapi)
-        self.combo_latencyflex.connect('changed', self.__set_latencyflex)
-        self.combo_windows.connect('changed', self.__set_windows)
+        self.combo_fsr.connect('notify::selected', self.__set_fsr_level)
+        self.combo_runner.connect('notify::selected', self.__set_runner)
+        self.combo_dxvk.connect('notify::selected', self.__set_dxvk)
+        self.combo_vkd3d.connect('notify::selected', self.__set_vkd3d)
+        self.combo_nvapi.connect('notify::selected', self.__set_nvapi)
+        self.combo_latencyflex.connect('notify::selected', self.__set_latencyflex)
+        self.combo_windows.connect('notify::selected', self.__set_windows)
         self.combo_language.connect('notify::selected-item', self.__set_language)
         self.ev_controller.connect("key-released", self.__check_entry_name)
         self.entry_name.connect("apply", self.__save_name)
@@ -197,7 +201,7 @@ class PreferencesView(Adw.PreferencesPage):
             vendor = gpu["vendors"]["nvidia"]["vendor"]
             if vendor == "nvidia":
                 self.row_nvapi.set_visible(True)
-                self.row_nvapi_version.set_visible(True)
+                self.combo_nvapi.set_visible(True)
 
         """Set Bottles Runtime row to visible when Bottles is not running inside Flatpak"""
         if "FLATPAK_ID" not in os.environ and RuntimeManager.get_runtimes("bottles"):
@@ -298,28 +302,70 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_language.handler_block_by_func(self.__set_language)
+        self.combo_windows.handler_block_by_func(self.__set_windows)
 
-        self.combo_runner.remove_all()
-        self.combo_dxvk.remove_all()
-        self.combo_vkd3d.remove_all()
-        self.combo_nvapi.remove_all()
-        self.combo_latencyflex.remove_all()
+        self.str_list_runner.splice(0, self.str_list_runner.get_n_items())
+        self.str_list_dxvk.splice(0, self.str_list_dxvk.get_n_items())
+        self.str_list_vkd3d.splice(0, self.str_list_vkd3d.get_n_items())
+        self.str_list_nvapi.splice(0, self.str_list_nvapi.get_n_items())
+        self.str_list_latencyflex.splice(0, self.str_list_latencyflex.get_n_items())
         self.str_list_languages.splice(0, self.str_list_languages.get_n_items())
+        self.str_list_windows.splice(0, self.str_list_windows.get_n_items())
 
-        for runner in self.manager.runners_available:
-            self.combo_runner.append(runner, runner)
+        # NOTE: this should not be here but it's the only way to handle windows
+        # versions in the current structure, we will fix this in the future
+        # with the new Bottles Backend.
+        # region Windows Versions
+        self.windows_versions = {
+            "win10": "Windows 10",
+            "win81": "Windows 8.1",
+            "win8": "Windows 8",
+            "win7": "Windows 7",
+            "win2008r2": "Windows 2008 R2",
+            "win2008": "Windows 2008",
+            # "vista": "Windows Vista", # TODO: implement this in the backend
+            "winxp": "Windows XP"
+        }
 
-        for dxvk in self.manager.dxvk_available:
-            self.combo_dxvk.append(dxvk, dxvk)
+        if self.config.get("Arch") == "win32":
+            self.windows_versions["win98"] = "Windows 98"
+            self.windows_versions["win95"] = "Windows 95"
 
-        for vkd3d in self.manager.vkd3d_available:
-            self.combo_vkd3d.append(vkd3d, vkd3d)
+        for index, windows_version in enumerate(self.windows_versions):
+            self.str_list_windows.append(self.windows_versions[windows_version])
+            if windows_version == self.config.get("Windows"):
+                self.combo_windows.set_selected(index)
+        # endregion
 
-        for nvapi in self.manager.nvapi_available:
-            self.combo_nvapi.append(nvapi, nvapi)
+        for index, dxvk in enumerate(self.manager.dxvk_available):
+            self.str_list_dxvk.append(dxvk)
+            if dxvk == self.config.get("DXVK"):
+                self.combo_dxvk.set_selected(index)
+                break
 
-        for latencyflex in self.manager.latencyflex_available:
-            self.combo_latencyflex.append(latencyflex, latencyflex)
+        for index, vkd3d in enumerate(self.manager.vkd3d_available):
+            self.str_list_vkd3d.append(vkd3d)
+            if vkd3d == self.config.get("VKD3D"):
+                self.combo_vkd3d.set_selected(index)
+                break
+
+        for index, runner in enumerate(self.manager.runners_available):
+            self.str_list_runner.append(runner)
+            if runner == self.config.get("Runner"):
+                self.combo_runner.set_selected(index)
+                break
+
+        for index, nvapi in enumerate(self.manager.nvapi_available):
+            self.str_list_nvapi.append(nvapi)
+            if nvapi == self.config.get("NVAPI"):
+                self.combo_nvapi.set_selected(index)
+                break
+
+        for index, latencyflex in enumerate(self.manager.latencyflex_available):
+            self.str_list_latencyflex.append(latencyflex)
+            if latencyflex == self.config.get("LatencyFleX"):
+                self.combo_latencyflex.set_selected(index)
+                break
 
         for lang in ManagerUtils.get_languages():
             self.str_list_languages.append(lang)
@@ -330,6 +376,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_language.handler_unblock_by_func(self.__set_language)
+        self.combo_windows.handler_unblock_by_func(self.__set_windows)
 
     def set_config(self, config):
         self.config = config
@@ -394,11 +441,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         self.switch_discrete.set_active(parameters["discrete_gpu"])
         self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
-        self.combo_fsr.set_active_id(str(parameters["fsr_level"]))
-        self.combo_runner.set_active_id(self.config.get("Runner"))
-        self.combo_dxvk.set_active_id(self.config.get("DXVK"))
-        self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
-        self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
 
         self.btn_cwd_reset.set_visible(self.config.get("WorkingDir"))
 
@@ -409,21 +451,6 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.row_cwd.set_subtitle(_("Default to the bottle path."))
 
-        self.combo_windows.remove_all()
-        self.combo_windows.append("win10", "Windows 10")
-        self.combo_windows.append("win81", "Windows 8.1")
-        self.combo_windows.append("win8", "Windows 8")
-        self.combo_windows.append("win7", "Windows 7")
-        self.combo_windows.append("vista", "Windows Vista")
-        self.combo_windows.append("win2008r2", "Windows 2008 R2")
-        self.combo_windows.append("win2008", "Windows 2008")
-        self.combo_windows.append("winxp", "Windows XP")
-
-        if self.config.get("Arch") == "win32":
-            self.combo_windows.append("win98", "Windows 98")
-            self.combo_windows.append("win95", "Windows 95")
-
-        self.combo_windows.set_active_id(self.config.get("Windows"))
         self.combo_language.set_selected(ManagerUtils.get_languages(
             from_locale=self.config.get("Language"),
             get_index=True
@@ -798,9 +825,9 @@ class PreferencesView(Adw.PreferencesPage):
             scope="Parameters"
         ).data["config"]
 
-    def __set_fsr_level(self, widget):
-        """Set the FSR level of sharpness (from 0 to 5, where 5 is the default)"""
-        level = int(widget.get_active_id())
+    def __set_fsr_level(self, *_args):
+        """Set the FSR level of sharpness (from 0 to 3, where 3 is the default)"""
+        level = self.combo_fsr.get_selected()
         self.config = self.manager.update_config(
             config=self.config,
             key="fsr_level",
@@ -808,12 +835,12 @@ class PreferencesView(Adw.PreferencesPage):
             scope="Parameters"
         ).data["config"]
 
-    def __set_runner(self, widget):
+    def __set_runner(self, *_args):
         """Set the runner to use for the bottle"""
 
         def set_widgets_status(status=True):
             for w in [
-                widget,
+                self.combo_runner,
                 self.switch_dxvk,
                 self.switch_nvapi,
                 self.switch_vkd3d,
@@ -824,8 +851,10 @@ class PreferencesView(Adw.PreferencesPage):
                 w.set_sensitive(status)
             if status:
                 self.spinner_runner.stop()
+                self.spinner_runner.set_visible(False)
             else:
                 self.spinner_runner.start()
+                self.spinner_runner.set_visible(True)
 
         def update(result, error=False):
             if result:
@@ -839,13 +868,12 @@ class PreferencesView(Adw.PreferencesPage):
             self.queue.end_task()
 
         set_widgets_status(False)
-        runner = widget.get_active_id()
+        runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
         def run_task(status=True):
             if not status:
                 update(Result(True))
                 self.combo_runner.handler_block_by_func(self.__set_runner)
-                self.combo_runner.set_active_id(self.config.get("Runner"))
                 self.combo_runner.handler_unblock_by_func(self.__set_runner)
                 return
 
@@ -871,11 +899,11 @@ class PreferencesView(Adw.PreferencesPage):
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"])
         self.queue.end_task()
 
-    def __set_dxvk(self, widget):
+    def __set_dxvk(self, *_args):
         """Set the DXVK version to use for the bottle"""
         self.set_dxvk_status(pending=True)
         self.queue.add_task()
-        dxvk = widget.get_active_id()
+        dxvk = self.manager.dxvk_available[self.combo_dxvk.get_selected()]
         self.config = self.manager.update_config(
             config=self.config,
             key="DXVK",
@@ -889,11 +917,11 @@ class PreferencesView(Adw.PreferencesPage):
             component="dxvk"
         )
 
-    def __set_vkd3d(self, widget):
+    def __set_vkd3d(self, *_args):
         """Set the VKD3D version to use for the bottle"""
         self.set_vkd3d_status(pending=True)
         self.queue.add_task()
-        vkd3d = widget.get_active_id()
+        vkd3d = self.manager.vkd3d_available[self.combo_vkd3d.get_selected()]
         self.config = self.manager.update_config(
             config=self.config,
             key="VKD3D",
@@ -907,11 +935,11 @@ class PreferencesView(Adw.PreferencesPage):
             component="vkd3d"
         )
 
-    def __set_nvapi(self, widget):
+    def __set_nvapi(self, *_args):
         """Set the NVAPI version to use for the bottle"""
         self.set_nvapi_status(pending=True)
         self.queue.add_task()
-        nvapi = widget.get_active_id()
+        nvapi = self.manager.nvapi_available[self.combo_nvapi.get_selected()]
         self.config = self.manager.update_config(
             config=self.config,
             key="NVAPI",
@@ -925,9 +953,9 @@ class PreferencesView(Adw.PreferencesPage):
             component="nvapi"
         )
 
-    def __set_latencyflex(self, widget):
+    def __set_latencyflex(self, *_args):
         """Set the latency flex value"""
-        latencyflex = widget.get_active_id()
+        latencyflex = self.manager.latencyflex_available[self.combo_latencyflex.get_selected()]
         self.queue.add_task()
         self.config = self.manager.update_config(
             config=self.config,
@@ -942,31 +970,35 @@ class PreferencesView(Adw.PreferencesPage):
             component="latencyflex"
         )
 
-    def __set_windows(self, widget):
+    def __set_windows(self, *_args):
         """Set the Windows version to use for the bottle"""
-
+        # self.manager.dxvk_available[self.combo_dxvk.get_selected()]
         def update(result, error=False):
-            self.spinner_win.stop()
-            widget.set_sensitive(True)
+            self.spinner_windows.stop()
+            self.spinner_windows.set_visible(False)
+            self.combo_windows.set_sensitive(True)
             self.queue.end_task()
 
         self.queue.add_task()
-        self.spinner_win.start()
-        widget.set_sensitive(False)
+        self.spinner_windows.start()
+        self.spinner_windows.set_visible(True)
+        self.combo_windows.set_sensitive(False)
         rk = RegKeys(self.config)
 
-        win = widget.get_active_id()
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="Windows",
-            value=win
-        ).data["config"]
+        for index, windows_version in enumerate(self.windows_versions):
+            if self.combo_windows.get_selected() == index:
+                self.config = self.manager.update_config(
+                    config=self.config,
+                    key="Windows",
+                    value=windows_version
+                ).data["config"]
 
-        RunAsync(
-            rk.set_windows,
-            callback=update,
-            version=win
-        )
+                RunAsync(
+                    rk.set_windows,
+                    callback=update,
+                    version=windows_version
+                )
+                break
 
     def __set_language(self, *_args):
         """Set the language to use for the bottle"""
@@ -1011,9 +1043,13 @@ class PreferencesView(Adw.PreferencesPage):
         if pending:
             self.spinner_dxvk.start()
             self.spinner_dxvkbool.start()
+            self.spinner_dxvk.set_visible(True)
+            self.spinner_dxvkbool.set_visible(True)
         else:
             self.spinner_dxvk.stop()
             self.spinner_dxvkbool.stop()
+            self.spinner_dxvk.set_visible(False)
+            self.spinner_dxvkbool.set_visible(False)
             self.queue.end_task()
 
     def set_vkd3d_status(self, status=None, error=None, pending=False):
@@ -1023,9 +1059,13 @@ class PreferencesView(Adw.PreferencesPage):
         if pending:
             self.spinner_vkd3d.start()
             self.spinner_vkd3dbool.start()
+            self.spinner_vkd3d.set_visible(True)
+            self.spinner_vkd3dbool.set_visible(True)
         else:
             self.spinner_vkd3d.stop()
             self.spinner_vkd3dbool.stop()
+            self.spinner_vkd3d.set_visible(False)
+            self.spinner_vkd3dbool.set_visible(False)
             self.queue.end_task()
 
     def set_nvapi_status(self, status=None, error=None, pending=False):
@@ -1035,9 +1075,13 @@ class PreferencesView(Adw.PreferencesPage):
         if pending:
             self.spinner_nvapi.start()
             self.spinner_nvapibool.start()
+            self.spinner_nvapi.set_visible(True)
+            self.spinner_nvapibool.set_visible(True)
         else:
             self.spinner_nvapi.stop()
             self.spinner_nvapibool.stop()
+            self.spinner_nvapi.set_visible(False)
+            self.spinner_nvapibool.set_visible(False)
             self.queue.end_task()
 
     def set_latencyflex_status(self, status=None, error=None, pending=False):
@@ -1047,9 +1091,13 @@ class PreferencesView(Adw.PreferencesPage):
         if pending:
             self.spinner_latencyflex.start()
             self.spinner_latencyflexbool.start()
+            self.spinner_latencyflex.set_visible(True)
+            self.spinner_latencyflexbool.set_visible(True)
         else:
             self.spinner_latencyflex.stop()
             self.spinner_latencyflexbool.stop()
+            self.spinner_latencyflex.set_visible(False)
+            self.spinner_latencyflexbool.set_visible(False)
             self.queue.end_task()
 
     def __set_steam_rules(self):
@@ -1058,7 +1106,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         for w in [
             self.row_discrete,
-            self.row_runner,
             self.row_steam_runtime,
             self.row_dxvk,
             self.row_vkd3d,

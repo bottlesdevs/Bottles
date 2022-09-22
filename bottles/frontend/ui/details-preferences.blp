@@ -62,24 +62,20 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow {
-      activatable-widget: "switch_fsr";
-      title: _("FSR");
+    .AdwComboRow combo_fsr {
+      title: "FSR";
       subtitle: _("FSR uses cutting-edge up-scaling technologies to help boost your framerate.");
-
-      Gtk.ComboBoxText combo_fsr {
-        items [
-          item5: _("Ultra Quality"),
-          item4: _("Quality"),
-          item3: _("Balanced"),
-          item2: _("Performance")
-        ]
-        valign: center;
-        active-id: "add";
-        styles [
-          "borderless",
+      model:
+      StringList {
+        strings [
+          _("Ultra Quality"),
+          _("Quality"),
+          _("Balanced"),
+          _("Performance"),
         ]
       }
+
+      ;
 
       Switch switch_fsr {
         valign: center;
@@ -134,6 +130,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     }
 
     .AdwActionRow {
+      activatable-widget: "btn_manage_display";
       title: _("Display Settings");
 
       Spinner spinner_display {
@@ -170,87 +167,72 @@ template DetailsPreferences : .AdwPreferencesPage {
       title: _("Runner Components");
       subtitle: _("Manage components, such as the Wine runner used.");
 
-      .AdwActionRow row_runner {
-        activatable-widget: "combo_runner";
+      .AdwComboRow combo_runner {
         title: _("Runner");
 
         Spinner spinner_runner {
           tooltip-text: _("Updating Runner and components, please wait…");
           valign: center;
+          visible: false;
         }
 
-        ComboBoxText combo_runner {
-          valign: center;
+        model:
+          StringList str_list_runner {
+          }
 
-          styles [
-            "borderless",
-          ]
-        }
+        ;
       }
 
-      .AdwActionRow {
+      .AdwComboRow combo_dxvk {
         title: _("DXVK Version");
-        activatable-widget: "combo_dxvk";
 
         Spinner spinner_dxvk {
           tooltip-text: _("Updating DXVK, please wait…");
           valign: center;
-          margin-end: 6;
+          visible: false;
         }
 
-        ComboBoxText combo_dxvk {
-          valign: center;
-          active: 0;
+        model:
+          StringList str_list_dxvk {
+          }
 
-          styles [
-            "borderless",
-          ]
-        }
+        ;
       }
 
-      .AdwActionRow {
-        activatable-widget: "combo_vkd3d";
+      .AdwComboRow combo_vkd3d {
         title: _("VKD3D Version");
 
         Spinner spinner_vkd3d {
           tooltip-text: _("Updating VKD3D, please wait…");
-          halign: center;
           valign: center;
-          margin-end: 5;
+          visible: false;
         }
 
-        ComboBoxText combo_vkd3d {
-          valign: center;
-          active: 0;
+        model:
+          StringList str_list_vkd3d {
+          }
 
-          styles [
-            "borderless",
-          ]
-        }
+        ;
       }
 
-      .AdwActionRow row_nvapi_version {
-        activatable-widget: "combo_nvapi";
+      .AdwComboRow combo_nvapi {
         title: _("DXVK NVAPI Version");
         visible: false;
 
         Spinner spinner_nvapi {
           tooltip-text: _("Updating DXVK-NVAPI, please wait…");
           valign: center;
+          visible: false;
         }
 
-        ComboBoxText combo_nvapi {
-          valign: center;
-          active: 0;
+        model:
+          StringList str_list_nvapi {
+          }
 
-          styles [
-            "borderless",
-          ]
-        }
+        ;
       }
 
-      .AdwActionRow {
-        activatable-widget: "combo_latencyflex";
+      .AdwComboRow combo_latencyflex {
         title: _("LatencyFleX Version");
 
         Spinner spinner_latencyflex {
@@ -258,14 +240,11 @@ template DetailsPreferences : .AdwPreferencesPage {
           valign: center;
         }
 
-        ComboBoxText combo_latencyflex {
-          valign: center;
-          active: 0;
+        model:
+          StringList str_list_latencyflex {
+          }
 
-          styles [
-            "borderless",
-          ]
-        }
+        ;
       }
     }
 
@@ -300,25 +279,20 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow {
-      activatable-widget: "combo_windows";
+    .AdwComboRow combo_windows {
       title: _("Windows Version");
 
-      Spinner spinner_win {
+      Spinner spinner_windows {
         tooltip-text: _("Updating Windows version, please wait…");
         valign: center;
-        margin-end: 6;
+        visible: false;
       }
 
-      ComboBoxText combo_windows {
-        valign: center;
-        margin-end: 6;
-        active: 0;
+      model:
+        StringList str_list_windows {
+        }
 
-        styles [
-          "borderless",
-        ]
-      }
+      ;
     }
 
     .AdwComboRow combo_language {
