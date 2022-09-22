@@ -845,8 +845,10 @@ class PreferencesView(Adw.PreferencesPage):
                 w.set_sensitive(status)
             if status:
                 self.spinner_runner.stop()
+                self.spinner_runner.set_visible(False)
             else:
                 self.spinner_runner.start()
+                self.spinner_runner.set_visible(True)
 
         def update(result, error=False):
             if result:
@@ -967,11 +969,13 @@ class PreferencesView(Adw.PreferencesPage):
         # self.manager.dxvk_available[self.combo_dxvk.get_selected()]
         def update(result, error=False):
             self.spinner_windows.stop()
+            self.spinner_windows.set_visible(False)
             self.combo_windows.set_sensitive(True)
             self.queue.end_task()
 
         self.queue.add_task()
         self.spinner_windows.start()
+        self.spinner_windows.set_visible(True)
         self.combo_windows.set_sensitive(False)
         rk = RegKeys(self.config)
 
@@ -1035,9 +1039,13 @@ class PreferencesView(Adw.PreferencesPage):
         if pending:
             self.spinner_dxvk.start()
             self.spinner_dxvkbool.start()
+            self.spinner_dxvk.set_visible(True)
+            self.spinner_dxvkbool.set_visible(True)
         else:
             self.spinner_dxvk.stop()
             self.spinner_dxvkbool.stop()
+            self.spinner_dxvk.set_visible(False)
+            self.spinner_dxvkbool.set_visible(False)
             self.queue.end_task()
 
     def set_vkd3d_status(self, status=None, error=None, pending=False):
@@ -1047,9 +1055,13 @@ class PreferencesView(Adw.PreferencesPage):
         if pending:
             self.spinner_vkd3d.start()
             self.spinner_vkd3dbool.start()
+            self.spinner_vkd3d.set_visible(True)
+            self.spinner_vkd3dbool.set_visible(True)
         else:
             self.spinner_vkd3d.stop()
             self.spinner_vkd3dbool.stop()
+            self.spinner_vkd3d.set_visible(False)
+            self.spinner_vkd3dbool.set_visible(False)
             self.queue.end_task()
 
     def set_nvapi_status(self, status=None, error=None, pending=False):
@@ -1059,9 +1071,13 @@ class PreferencesView(Adw.PreferencesPage):
         if pending:
             self.spinner_nvapi.start()
             self.spinner_nvapibool.start()
+            self.spinner_nvapi.set_visible(True)
+            self.spinner_nvapibool.set_visible(True)
         else:
             self.spinner_nvapi.stop()
             self.spinner_nvapibool.stop()
+            self.spinner_nvapi.set_visible(False)
+            self.spinner_nvapibool.set_visible(False)
             self.queue.end_task()
 
     def set_latencyflex_status(self, status=None, error=None, pending=False):
@@ -1071,9 +1087,13 @@ class PreferencesView(Adw.PreferencesPage):
         if pending:
             self.spinner_latencyflex.start()
             self.spinner_latencyflexbool.start()
+            self.spinner_latencyflex.set_visible(True)
+            self.spinner_latencyflexbool.set_visible(True)
         else:
             self.spinner_latencyflex.stop()
             self.spinner_latencyflexbool.stop()
+            self.spinner_latencyflex.set_visible(False)
+            self.spinner_latencyflexbool.set_visible(False)
             self.queue.end_task()
 
     def __set_steam_rules(self):
