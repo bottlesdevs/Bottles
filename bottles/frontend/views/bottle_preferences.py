@@ -409,6 +409,10 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.row_cwd.set_subtitle(_("Default to the bottle path."))
 
+        # NOTE: this should not be here but it's the only way to handle windows
+        # versions in the current structure, we will fix this in the future
+        # with the new Bottles Backend.
+        # region Windows Versions
         self.windows_versions = {
             "win10": "Windows 10",
             "win81": "Windows 8.1",
@@ -416,7 +420,7 @@ class PreferencesView(Adw.PreferencesPage):
             "win7": "Windows 7",
             "win2008r2": "Windows 2008 R2",
             "win2008": "Windows 2008",
-            "vista": "Windows Vista",
+            # "vista": "Windows Vista", # TODO: implement this in the backend
             "winxp": "Windows XP"
         }
 
@@ -424,13 +428,12 @@ class PreferencesView(Adw.PreferencesPage):
             self.windows_versions["win98"] = "Windows 98"
             self.windows_versions["win95"] = "Windows 95"
 
-        for windows_version in self.windows_versions:
-            self.str_list_windows.append(self.windows_versions[windows_version])
-
         for index, windows_version in enumerate(self.windows_versions):
+            self.str_list_windows.append(self.windows_versions[windows_version])
             if windows_version == self.config.get("Windows"):
                 self.combo_windows.set_selected(index)
                 break
+        # endregion
 
         for index, dxvk in enumerate(self.manager.dxvk_available):
             if dxvk == self.config.get("DXVK"):
