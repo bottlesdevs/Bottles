@@ -341,31 +341,26 @@ class PreferencesView(Adw.PreferencesPage):
             self.str_list_dxvk.append(dxvk)
             if dxvk == self.config.get("DXVK"):
                 self.combo_dxvk.set_selected(index)
-                break
 
         for index, vkd3d in enumerate(self.manager.vkd3d_available):
             self.str_list_vkd3d.append(vkd3d)
             if vkd3d == self.config.get("VKD3D"):
                 self.combo_vkd3d.set_selected(index)
-                break
 
         for index, runner in enumerate(self.manager.runners_available):
             self.str_list_runner.append(runner)
             if runner == self.config.get("Runner"):
                 self.combo_runner.set_selected(index)
-                break
 
         for index, nvapi in enumerate(self.manager.nvapi_available):
             self.str_list_nvapi.append(nvapi)
             if nvapi == self.config.get("NVAPI"):
                 self.combo_nvapi.set_selected(index)
-                break
 
         for index, latencyflex in enumerate(self.manager.latencyflex_available):
             self.str_list_latencyflex.append(latencyflex)
             if latencyflex == self.config.get("LatencyFleX"):
                 self.combo_latencyflex.set_selected(index)
-                break
 
         for lang in ManagerUtils.get_languages():
             self.str_list_languages.append(lang)
