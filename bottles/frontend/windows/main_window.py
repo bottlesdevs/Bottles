@@ -316,7 +316,8 @@ class MainWindow(Adw.ApplicationWindow):
         builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
         about_window = builder.get_object("about_window")
         about_window.set_debug_info(HealthChecker().get_results(plain=True))
-        about_window.add_credit_section(
+        about_window.add_link(_("Donate"), "https://usebottles.com/funding/")
+        about_window.add_acknowledgement_section(
             _("Third-Party Libraries and Special Thanks"),
             [
                 "DXVK https://github.com/doitsujin/dxvk",
@@ -337,6 +338,16 @@ class MainWindow(Adw.ApplicationWindow):
                 "libadwaita https://gitlab.gnome.org/GNOME/libadwaita",
                 "icoextract https://github.com/jlu5/icoextract",
                 "vmtouch https://github.com/hoytech/vmtouch"
+            ]
+        )
+        about_window.add_acknowledgement_section(
+            _("Sponsored and Funded by"),
+            [
+                "JetBrains https://www.jetbrains.com/?from=bottles",
+                "GitBook https://www.gitbook.com/?ref=bottles",
+                "Linode https://www.linode.com/?from=bottles",
+                "Appwrite https://appwrite.io/?from=bottles",
+                "Community ❤️ https://usebottles.com/funding/"
             ]
         )
         about_window.set_transient_for(self)
