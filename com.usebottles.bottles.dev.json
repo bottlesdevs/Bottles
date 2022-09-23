@@ -448,46 +448,6 @@
       ]
     },
     {
-      "name": "libadwaita",
-      "buildsystem": "meson",
-      "config-opts": [
-        "-Dexamples=false",
-        "-Dtests=false"
-      ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://gitlab.gnome.org/GNOME/libadwaita.git",
-          "tag": "1.2.rc",
-          "commit": "a6a26cd9c35571a4e0ebacb2c6d763d44e59c045"
-        }
-      ],
-      "modules": [
-        {
-          "name": "libsass",
-          "buildsystem": "meson",
-          "sources": [
-            {
-              "type": "git",
-              "url": "https://github.com/lazka/libsass.git",
-              "branch": "meson"
-            }
-          ]
-        },
-        {
-          "name": "sassc",
-          "buildsystem": "meson",
-          "sources": [
-            {
-              "type": "git",
-              "url": "https://github.com/lazka/sassc.git",
-              "branch": "meson"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "ImageMagick",
       "config-opts": [
         "--disable-static",
