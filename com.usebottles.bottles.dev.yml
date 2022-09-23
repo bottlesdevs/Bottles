@@ -2,8 +2,8 @@ id: com.usebottles.bottles
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 base: org.winehq.Wine
-base-version: stable-21.08
-runtime-version: "42"
+base-version: stable-22.08
+runtime-version: "43"
 command: bottles
 
 finish-args:
@@ -33,11 +33,11 @@ inherit-extensions:
 add-extensions:
   org.gnome.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
-    version: "42"
+    version: "43"
 
   org.gnome.Platform.Compat.i386.Debug:
     directory: lib/debug/lib/i386-linux-gnu
-    version: "42"
+    version: "43"
     no-autodownload: true
 
   com.valvesoftware.Steam.Utility:
@@ -205,15 +205,14 @@ modules:
       - -DVULKAN_HEADERS_INSTALL_DIR=/app
       - -DCMAKE_BUILD_TYPE=Release
     sources:
-      - type: archive
-        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.2.186.tar.gz
-        sha256: 8ba0e21e8de0b70d31985d251d11150efee71266875262798784e9d1ec9b717b
+      - type: git
+        url: https://github.com/KhronosGroup/Vulkan-Tools.git
+        tag: sdk-1.3.224.1
+        commit: 497f232680b046db34ba9e9da065e6303a125851
 
   - name: gamemode
     buildsystem: meson
     config-opts: &gamemode_opts
-      - -Dwith-systemd=false
-      - -Dwith-daemon=false
       - -Dwith-examples=false
       - -Dwith-util=false
       - -Dwith-sd-bus-provider=no-daemon
@@ -297,30 +296,6 @@ modules:
         url: https://github.com/ishitatsuyuki/LatencyFleX/releases/download/v0.1.0/latencyflex-v0.1.0.tar.xz
         sha256: 9862c7608b85ac6bff018d5926c4692490ff84ca3e649119b7fc53680e64dd1a
 
-  - name: libadwaita
-    buildsystem: meson
-    config-opts:
-    - -Dexamples=false
-    - -Dtests=false
-    sources:
-    - type: git
-      url: https://gitlab.gnome.org/GNOME/libadwaita.git
-      tag: 1.2.rc
-      commit: a6a26cd9c35571a4e0ebacb2c6d763d44e59c045
-    modules:
-    - name: libsass
-      buildsystem: meson
-      sources:
-      - type: git
-        url: https://github.com/lazka/libsass.git
-        branch: meson
-    - name: sassc
-      buildsystem: meson
-      sources:
-      - type: git
-        url: https://github.com/lazka/sassc.git
-        branch: meson
-
   - name: ImageMagick
     config-opts:
       - --disable-static
@@ -347,7 +322,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.gnome.org/jwestman/blueprint-compiler
-        branch: main
+        tag: 'v0.4.0'
+        commit: 75a6d95988736ec0471d22ceb07579c0cedac2ad
 
   # Bottles components
   # ----------------------------------------------------------------------------
@@ -399,8 +375,8 @@ modules:
           - pip3 install --prefix /app --no-deps orjson-*.whl
         sources:
           - type: file
-            url: https://files.pythonhosted.org/packages/d6/79/174c198de7beb2f5ce06c41ecafb1aafc0714bb61a051ad9dfbc2fed76e8/orjson-3.7.8-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-            sha256: 7ef66e7c47e9531dfa3b3ffb791b548c84903570b0914b01acc5eeb56ff5bc33
+            url: https://files.pythonhosted.org/packages/ea/a2/e6c94631bd5117c9cf9453bc90cfe44db17cec13046c7f2df10020705d16/orjson-3.8.0-cp310-cp310-manylinux_2_28_x86_64.whl
+            sha256: 6a23b40c98889e9abac084ce5a1fb251664b41da9f6bdb40a4729e2288ed2ed4
 
   - name: runtime
     buildsystem: simple
