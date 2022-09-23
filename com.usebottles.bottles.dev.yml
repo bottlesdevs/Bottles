@@ -213,8 +213,6 @@ modules:
   - name: gamemode
     buildsystem: meson
     config-opts: &gamemode_opts
-      - -Dwith-systemd=false
-      - -Dwith-daemon=false
       - -Dwith-examples=false
       - -Dwith-util=false
       - -Dwith-sd-bus-provider=no-daemon
