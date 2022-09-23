@@ -112,8 +112,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://github.com/psf/requests/archive/refs/tags/v2.28.1.tar.gz
-        sha256: e1385b9750f2cd4093762050dae0bdb8554577fd09e8a3ef88cace30a1f1eba5
+        url: https://github.com/psf/requests/archive/refs/tags/v2.28.0.tar.gz
+        sha256: 6b757ca284d8dc192794010c960b0cf405fcc7aed9ed2e04a8269dc41b1231ad
 
   - name: python-urllib3
     buildsystem: simple
@@ -121,8 +121,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://github.com/urllib3/urllib3/archive/refs/tags/1.26.12.tar.gz
-        sha256: c7356205ca6c14df2f35d1d9cf18cd8a1981185b7dca13e1c3af91a214037c9d
+        url: https://github.com/urllib3/urllib3/archive/refs/tags/1.26.9.tar.gz
+        sha256: 5860049db8811e7a26e5f228359522814dc8159e6ec4f352b1b596e0dee80503
 
   - name: python-chardet
     buildsystem: simple
@@ -139,8 +139,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://github.com/certifi/python-certifi/archive/refs/tags/2022.09.14.tar.gz
-        sha256: 72c8700fdbd84f2987ab87f462719b55ea6382a7546436c3c39e472637db5c86
+        url: https://github.com/certifi/python-certifi/archive/refs/tags/2021.10.08.tar.gz
+        sha256: 51c2cf76f7f2582d9c4eb5440bb311ef523ba0b319d0a973450ecebfb6802a3a
 
   - name: python-idna
     buildsystem: simple
@@ -157,8 +157,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://github.com/Python-Markdown/markdown/archive/refs/tags/3.4.1.tar.gz
-        sha256: 308fc5215137d4c1a534dac29a209fc37588e6b964e1f4baab9e75fd709edd4e
+        url: https://github.com/Python-Markdown/markdown/archive/refs/tags/3.3.7.tar.gz
+        sha256: a1b7a818ca2dc6b34b9ec0bb73e3f4325e4ee949a8390a91a4df48c311069f65
 
   - name: python-icoextract
     buildsystem: simple
@@ -166,8 +166,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://github.com/jlu5/icoextract/archive/refs/tags/0.1.4.tar.gz
-        sha256: 9d84a6191c02326bdf6f7689184540aba5b683b9c626ed832ff20c426f2d6746
+        url: https://github.com/jlu5/icoextract/archive/refs/tags/0.1.2.tar.gz
+        sha256: 3818ad889160b33d360da4083da0a32df8d1955fb77a64bfbac49edc15d5ad3b
 
   - name: patool
     buildsystem: simple
@@ -184,8 +184,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://github.com/erocarrera/pefile/releases/download/v2022.5.30/pefile-2022.5.30.tar.gz
-        sha256: 977d3cca4169317fac9737c46114a62d64333b286c788c74a40b764e7f41bbe9
+        url: https://github.com/erocarrera/pefile/releases/download/v2021.9.3/pefile-2021.9.3.tar.gz
+        sha256: 344a49e40a94e10849f0fe34dddc80f773a12b40675bf2f7be4b8be578bdd94a
 
   # Tools / Codecs
   # ----------------------------------------------------------------------------
@@ -219,8 +219,8 @@ modules:
       - -Dwith-sd-bus-provider=no-daemon
     sources: &gamemode_sources
       - type: archive
-        url: https://github.com/FeralInteractive/gamemode/releases/download/1.7/gamemode-1.7.tar.xz
-        sha256: c1860f76f1d4c0d6e3965e52de21c824f24791049946da728da50f0c63748389
+        url: https://github.com/FeralInteractive/gamemode/releases/download/1.6.1/gamemode-1.6.1.tar.xz
+        sha256: 10c2a3f142eae472f5a09e42616e38c666c05b25ca3e61e562a543bb3fda66c5
 
   - name: gamemode-32bit
     build-options:
@@ -297,6 +297,30 @@ modules:
         url: https://github.com/ishitatsuyuki/LatencyFleX/releases/download/v0.1.0/latencyflex-v0.1.0.tar.xz
         sha256: 9862c7608b85ac6bff018d5926c4692490ff84ca3e649119b7fc53680e64dd1a
 
+  - name: libadwaita
+    buildsystem: meson
+    config-opts:
+    - -Dexamples=false
+    - -Dtests=false
+    sources:
+    - type: git
+      url: https://gitlab.gnome.org/GNOME/libadwaita.git
+      tag: 1.2.rc
+      commit: a6a26cd9c35571a4e0ebacb2c6d763d44e59c045
+    modules:
+    - name: libsass
+      buildsystem: meson
+      sources:
+      - type: git
+        url: https://github.com/lazka/libsass.git
+        branch: meson
+    - name: sassc
+      buildsystem: meson
+      sources:
+      - type: git
+        url: https://github.com/lazka/sassc.git
+        branch: meson
+
   - name: ImageMagick
     config-opts:
       - --disable-static
@@ -305,8 +329,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/refs/tags/7.1.0-48.tar.gz
-        sha256: ffe0031855ab4a3f58793cbe60fcf2cf1e49ec64b4ae3345285bee40491926e0
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.0-37.tar.gz
+        sha256: a54888a1a46dbb808705a3e6c6b5ecb93ee30189a8ae6ea0f02300a0ab0d0996
 
   - name: libportal
     buildsystem: meson
@@ -376,8 +400,8 @@ modules:
           - pip3 install --prefix /app --no-deps orjson-*.whl
         sources:
           - type: file
-            url: https://files.pythonhosted.org/packages/58/60/a8f22a4081ede842347010cfbe13a4712a6ba0e3facde444c25014685b1e/orjson-3.8.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-            sha256: 2bdb1042970ca5f544a047d6c235a7eb4acdb69df75441dd1dfcbc406377ab37
+            url: https://files.pythonhosted.org/packages/d6/79/174c198de7beb2f5ce06c41ecafb1aafc0714bb61a051ad9dfbc2fed76e8/orjson-3.7.8-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+            sha256: 7ef66e7c47e9531dfa3b3ffb791b548c84903570b0914b01acc5eeb56ff5bc33
 
   - name: runtime
     buildsystem: simple
