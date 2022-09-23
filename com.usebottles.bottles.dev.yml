@@ -205,9 +205,10 @@ modules:
       - -DVULKAN_HEADERS_INSTALL_DIR=/app
       - -DCMAKE_BUILD_TYPE=Release
     sources:
-      - type: archive
-        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.3.229.tar.gz
-        sha256: 781a35864eb91eca24bddbaec3b47dba40f3d3e0a2ffbb3b13829ab363fa1c98
+      - type: git
+        url: https://github.com/KhronosGroup/Vulkan-Tools.git
+        tag: sdk-1.3.224.1
+        commit: 497f232680b046db34ba9e9da065e6303a125851
 
   - name: gamemode
     buildsystem: meson
