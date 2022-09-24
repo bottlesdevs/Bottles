@@ -139,7 +139,7 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
 
       .GtkButton btn_manage_display {
-        tooltip-text: _("Manage Display settings");
+        tooltip-text: _("Manage display settings");
         valign: center;
         icon-name: "applications-system-symbolic";
         styles [
@@ -329,7 +329,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     .AdwActionRow row_runtime {
       activatable-widget: "switch_runtime";
       title: _("Bottles Runtime");
-      subtitle: _("Provides a bundle of extra libraries for more compatibility, disable if you run into issues.");
+      subtitle: _("Provide a bundle of extra libraries for more compatibility. Disable if you run into issues.");
       visible: false;
 
       Switch switch_runtime {
@@ -340,7 +340,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     .AdwActionRow row_steam_runtime {
       activatable-widget: "switch_steam_runtime";
       title: _("Steam Runtime");
-      subtitle: _("The same as the Bottles runtime but provided by Steam.");
+      subtitle: _("Provide a bundle of extra libraries for more compatibility with Steam games. Disable if you run into issues.");
 
       Switch switch_steam_runtime {
         valign: center;
@@ -360,10 +360,10 @@ template DetailsPreferences : .AdwPreferencesPage {
     .AdwActionRow {
       activatable-widget: "switch_gamescope";
       title: _("Window Settings");
-      subtitle: _("Manage how Bottles should open windows or games using Gamescope.");
+      subtitle: _("Manage how games should be displayed on the screen using Gamescope.");
 
       Button btn_manage_gamescope {
-        tooltip-text: _("Manage Window Settings");
+        tooltip-text: _("Manage window settings");
         valign: center;
         icon-name: "applications-system-symbolic";
 
