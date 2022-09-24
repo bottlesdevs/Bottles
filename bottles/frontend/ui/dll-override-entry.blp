@@ -1,0 +1,26 @@
+using Gtk 4.0;
+
+template DLLEntry : .AdwComboRow {
+  title: "DLL Name";
+  model: 
+  StringList {
+    strings [
+    _("Builtin (Wine)"), 
+    _("Native (Windows)"), 
+    _("Builtin, then Native"), 
+    _("Native, then Builtin"), 
+    _("Disabled")
+    ]
+  }
+  ;
+
+  Button btn_remove {
+    valign: center;
+    icon-name: "user-trash-symbolic";
+    tooltip-text: _("Remove");
+
+    styles [
+      "flat",
+    ]
+  }
+}

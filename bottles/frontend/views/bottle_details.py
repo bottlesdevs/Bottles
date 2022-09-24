@@ -20,7 +20,7 @@ import re
 import webbrowser
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw, Gdk
 
 from bottles.frontend.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.frontend.utils.common import open_doc_url
@@ -88,8 +88,13 @@ class BottleView(Adw.PreferencesPage):
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
     pop_run = Gtk.Template.Child()
-
+    drop_overlay = Gtk.Template.Child()
     # endregion
+
+    content = Gdk.ContentFormats.new_for_gtype(Gdk.FileList)
+    target = Gtk.DropTarget(formats=content, actions=Gdk.DragAction.COPY)
+
+    style_provider = Gtk.CssProvider()
 
     def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
@@ -98,6 +103,11 @@ class BottleView(Adw.PreferencesPage):
         self.window = details.window
         self.manager = details.window.manager
         self.config = config
+
+        self.target.connect('drop', self.on_drop)
+        self.add_controller(self.target)
+        self.target.connect('enter', self.on_enter)
+        self.target.connect('leave', self.on_leave)
 
         self.btn_execute.connect("clicked", self.run_executable)
         self.btn_run_args.connect("clicked", self.__run_executable_with_args)
@@ -123,6 +133,15 @@ class BottleView(Adw.PreferencesPage):
             "flatpak/black-screen-or-silent-crash"
         )
 
+        gtk_context = self.drop_overlay.get_style_context()
+        Gtk.StyleContext.add_class(gtk_context, "dragndrop_overlay")
+        self.style_provider.load_from_data(b".dragndrop_overlay { background: rgba(41, 65, 94, 0.2);}")
+        Gtk.StyleContext.add_provider(
+            gtk_context,
+            self.style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_USER
+        )
+
         if "FLATPAK_ID" in os.environ:
             '''
             If Flatpak, show the btn_flatpak_doc widget to reach
@@ -131,6 +150,39 @@ class BottleView(Adw.PreferencesPage):
             self.btn_flatpak_doc.set_visible(True)
 
         self.__update_latest_executables()
+
+    def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
+        files: List[Gio.File] = value.get_files()
+        args=""
+        file=files[0]
+        if ".exe" in file.get_basename().split("/")[-1] or ".msi" in file.get_basename().split("/")[-1]:
+            executor = WineExecutor(
+                self.config,
+                exec_path=file.get_path(),
+                args=args,
+                terminal=self.check_terminal.get_active(),
+            )
+            RunAsync(executor.run, self.do_update_programs)
+            self.manager.update_config(
+                config=self.config,
+                key="Latest_Executables",
+                value=_execs + [{
+                    "name": file.get_basename().split("/")[-1],
+                    "file": file.get_path(),
+                    "args": args
+                }]
+            )
+
+            self.__update_latest_executables()
+        else:
+            self.window.show_toast(_("File '{0}' does not seem to be an exe or msi file").format(file.get_basename().split("/")[-1]))
+
+    def on_enter(self, drop_target, x, y):
+        self.drop_overlay.set_visible(True)
+        return Gdk.DragAction.COPY
+
+    def on_leave(self, drop_target):
+        self.drop_overlay.set_visible(False)
 
     def set_config(self, config):
         self.config = config
@@ -218,9 +270,10 @@ class BottleView(Adw.PreferencesPage):
         else:
             show_chooser()
 
+    def do_update_programs(result, error=False):
+        self.window.page_details.update_programs()
+
     def __execute(self, _dialog, response, file_dialog, args=""):
-        def do_update_programs(result, error=False):
-            self.window.page_details.update_programs()
 
         if response == -3:
             _execs = self.config.get("Latest_Executables", [])
@@ -233,7 +286,7 @@ class BottleView(Adw.PreferencesPage):
                 args=args,
                 terminal=self.check_terminal.get_active(),
             )
-            RunAsync(executor.run, do_update_programs)
+            RunAsync(executor.run, self.do_update_programs)
             self.manager.update_config(
                 config=self.config,
                 key="Latest_Executables",

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-09-07 21:01+0000\n"
+"PO-Revision-Date: 2022-09-10 07:36+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -129,13 +129,12 @@ msgid "Caching template…"
 msgstr "Asetetaan mallipohja välimuistiin…"
 
 #: bottles/backend/managers/versioning.py:97
-#, fuzzy
 msgid "Committing state …"
-msgstr "Päivitetään tilat…"
+msgstr "Kommitoidaan tilaa…"
 
 #: bottles/backend/managers/versioning.py:106
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Ei mitään kommitoitavaa"
 
 #: bottles/backend/managers/versioning.py:112
 #, python-brace-format
@@ -143,9 +142,8 @@ msgid "New state [{0}] created successfully!"
 msgstr "Uusi tila [{0}] luotu!"
 
 #: bottles/backend/managers/versioning.py:140
-#, fuzzy
 msgid "States list retrieved successfully!"
-msgstr "Uusi tila [{0}] luotu!"
+msgstr "Tilaluettelo noudettu onnistuneesti!"
 
 #: bottles/backend/managers/versioning.py:171
 #, python-brace-format
@@ -162,7 +160,7 @@ msgstr "Tilaa ei löytynyt"
 
 #: bottles/backend/managers/versioning.py:191
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "Tila {} on jo aktiivinen tila"
 
 #: bottles/frontend/windows/crash.py:37
 msgid "Show report"
@@ -1000,9 +998,8 @@ msgid "System"
 msgstr "Järjestelmä"
 
 #: bottles/frontend/ui/details-preferences.ui:299
-#, fuzzy
 msgid "Manage Components Versions"
-msgstr "Komponentin versio"
+msgstr "Hallitse komponenttien versioita"
 
 #: bottles/frontend/ui/details-preferences.ui:309
 msgid "Components"
@@ -1200,6 +1197,7 @@ msgstr "Käytä tilojen pakkausta"
 msgid ""
 "This will reduce the space used by the states but slow down their creation."
 msgstr ""
+"Tämä vähentää tilojen vaatimaa levytilaa, mutta hidastaa tilojen luomista."
 
 #: bottles/frontend/ui/details-preferences.ui:704
 msgid "Automatic Versioning"
@@ -1250,9 +1248,8 @@ msgid "Toggle OBS game capture for all programs."
 msgstr "Etsi asennettuja ohjelmia"
 
 #: bottles/frontend/ui/details-preferences.ui:767
-#, fuzzy
 msgid "Wine 'fixme' Logs"
-msgstr "Ota Winen fixme-lokit käyttöön"
+msgstr "Winen fixme-lokit"
 
 #: bottles/frontend/ui/details-preferences.ui:768
 msgid "Log code paths that are unimplemented in Wine."
@@ -1592,9 +1589,8 @@ msgid "Custom Arguments"
 msgstr "Mukautetut argumentit"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:51
-#, fuzzy
 msgid "Command Arguments"
-msgstr "Suorita argumenteilla"
+msgstr "Komennon argumentit"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:52
 #, fuzzy, c-format
@@ -1796,9 +1792,8 @@ msgid "Fast Approximate Anti-Aliasing"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:174
-#, fuzzy
 msgid "Subpixel Quality"
-msgstr "Ultralaatu"
+msgstr "Alipikselin laatu"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:203
 msgid "Quality Edge Threshold"
@@ -1822,7 +1817,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
-msgstr ""
+msgstr "Väri"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:303
 msgid "Threshold"
@@ -1845,7 +1840,6 @@ msgid "Color Lookup Table"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:437
-#, fuzzy
 msgid "Reset to Default"
 msgstr "Palauta oletusarvoon"
 
@@ -1965,7 +1959,7 @@ msgstr "Arvo"
 #. Wineprefix is a prefix for the wine program
 #: bottles/frontend/ui/importer-entry.ui:22
 msgid "Wineprefix name"
-msgstr ""
+msgstr "Wineprefixin nimi"
 
 #: bottles/frontend/ui/importer-entry.ui:29
 #, fuzzy
@@ -2158,7 +2152,7 @@ msgstr "Tasoitettu"
 
 #: bottles/frontend/ui/new.ui:104
 msgid "A layered environment, where every app is a layer."
-msgstr ""
+msgstr "Tasoihin pohjautuva ympäristö, missä jokainen sovellus on taso."
 
 #: bottles/frontend/ui/new.ui:112
 msgid "Custom"
@@ -2259,7 +2253,7 @@ msgstr "Kaikki valmista!"
 
 #: bottles/frontend/ui/onboard.ui:122
 msgid "Please Finish the setup first"
-msgstr ""
+msgstr "Suorita määritys ensin"
 
 #: bottles/frontend/ui/onboard.ui:129
 msgid "Start using Bottles"
@@ -2287,9 +2281,8 @@ msgid "Dark Mode"
 msgstr "Tumma tila"
 
 #: bottles/frontend/ui/preferences.ui:20
-#, fuzzy
 msgid "Whether Bottles should use the dark color scheme."
-msgstr "Tuleeko pullojen käyttää tumman yöteeman muunnosta."
+msgstr "Käyttääkö Pullot-sovellus tummaa väriteemaa."
 
 #: bottles/frontend/ui/preferences.ui:32
 msgid "Show Update Date"
@@ -2403,7 +2396,7 @@ msgstr "DXVK-NVAPI"
 
 #: bottles/frontend/ui/preferences.ui:236
 msgid "Core"
-msgstr ""
+msgstr "Ydin"
 
 #: bottles/frontend/ui/preferences.ui:240
 msgid "Runtime"

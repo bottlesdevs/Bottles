@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-01-21 20:56+0000\n"
-"Last-Translator: minitos1 <dimitrisroom20@gmail.com>\n"
+"PO-Revision-Date: 2022-09-10 07:36+0000\n"
+"Last-Translator: Fotios Kolytoumpas <fotis.kolytoumpas@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bottles/bottles/el/"
 ">\n"
 "Language: el\n"
@@ -17,116 +17,116 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "Δεν έχει καθοριστεί διαδρομή"
 
 #: bottles/backend/managers/backup.py:71
 #, python-brace-format
 msgid "Backup {0}"
-msgstr ""
+msgstr "Αντίγραφο ασφαλείας {0}"
 
 #: bottles/backend/managers/backup.py:124
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr ""
+msgstr "Εισαγωγή αντιγράφου ασφαλείας: {0}"
 
 #: bottles/backend/managers/manager.py:1030
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "Αποτυχία εγκατάστασης εξαρτημάτων, μετά από 3 προσπάθειες."
 
 #: bottles/backend/managers/manager.py:1041
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Έλλειψη βασικών συστατικών. Εγκατάσταση…"
 
 #: bottles/backend/managers/manager.py:1117
 msgid "Failed to create bottle directory."
-msgstr ""
+msgstr "Η δημιουργία του καταλόγου bottle απέτυχε."
 
 #: bottles/backend/managers/manager.py:1129
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Η δημιουργία καταλόγου/αρχείου κράτησης θέσης (placeholder) απέτυχε."
 
 #: bottles/backend/managers/manager.py:1134
 msgid "Generating bottle configuration…"
-msgstr ""
+msgstr "Δημιουργία ρυθμίσεων του bottle…"
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Template found, applying…"
-msgstr ""
+msgstr "Το πρότυπο βρέθηκε, εφαρμογή…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1169
 msgid "The Wine config is being updated…"
-msgstr ""
+msgstr "Οι ρυθμίσεις του Wine ενημερώνονται…"
 
 #: bottles/backend/managers/manager.py:1171
 msgid "Wine config updated!"
-msgstr ""
+msgstr "Οι ρυθμίσεις του Wine ενημερώθηκαν!"
 
 #: bottles/backend/managers/manager.py:1179
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr ""
+msgstr "Εκτέλεση ως Flatpack, διαχωρισμός του καταλόγου χρήστη…"
 
 #: bottles/backend/managers/manager.py:1181
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Διαχωρισμός του καταλόγου χρήστη…"
 
 #: bottles/backend/managers/manager.py:1211
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "Ορισμός έκδοσης Windows…"
 
 #: bottles/backend/managers/manager.py:1221
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Εφαρμογή προεπιλεγμένων ρυθμίσεων CMD…"
 
 #: bottles/backend/managers/manager.py:1229
 msgid "Optimizing environment…"
-msgstr ""
+msgstr "Βελτιστοποίηση περιβάλλοντος…"
 
 #: bottles/backend/managers/manager.py:1240
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "Εφαρμογή περιβάλλοντος: {0}…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Χρήση μιας προσαρμοσμένης συνταγής περιβάλλοντος…"
 
 #: bottles/backend/managers/manager.py:1253
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Η συνταγή δεν βρέθηκε ή δεν είναι έγκυρη…"
 
 #: bottles/backend/managers/manager.py:1270
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "Εγκατάσταση DXVK…"
 
 #: bottles/backend/managers/manager.py:1278
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "Εγκατάσταση VKD3D…"
 
 #: bottles/backend/managers/manager.py:1286
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "Εγκατάσταση DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1295
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "Εγκατάσταση εξάρτησης: %s…"
 
 #: bottles/backend/managers/manager.py:1311
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "Δημιουργία κατάστασης έκδοσης 0…"
 
 #: bottles/backend/managers/manager.py:1319
 msgid "Finalizing…"
-msgstr ""
+msgstr "Ολοκλήρωση…"
 
 #: bottles/backend/managers/manager.py:1330
 msgid "Caching template…"
-msgstr ""
+msgstr "Κρυφή αποθήκευση προτύπου…"
 
 #: bottles/backend/managers/versioning.py:97
 msgid "Committing state …"

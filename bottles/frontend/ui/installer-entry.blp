@@ -1,0 +1,75 @@
+using Gtk 4.0;
+
+Popover pop_actions {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    .GtkModelButton btn_manifest {
+      text: _("Show Manifest…");
+    }
+
+    .GtkModelButton btn_review {
+      text: _("Read Review…");
+    }
+
+    Separator {
+    }
+
+    .GtkModelButton btn_report {
+      text: _("Report a Bug…");
+    }
+  }
+}
+
+template InstallerEntry : .AdwActionRow {
+  activatable-widget: "btn_install";
+  title: _("Installer name");
+  subtitle: _("Installer description");
+
+  Box {
+    spacing: 6;
+
+    Label label_grade {
+      valign: center;
+      label: _("Unknown");
+
+      styles [
+        "tag",
+        "caption",
+      ]
+    }
+
+    Button btn_install {
+      tooltip-text: _("Install this program");
+      valign: center;
+      icon-name: "document-save-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Separator {
+      margin-top: 12;
+      margin-bottom: 12;
+    }
+
+    MenuButton {
+      valign: center;
+      popover: pop_actions;
+      icon-name: "view-more-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+  }
+}

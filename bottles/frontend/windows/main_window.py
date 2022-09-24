@@ -69,7 +69,8 @@ class MainWindow(Adw.ApplicationWindow):
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
-    view_switcher = Gtk.Template.Child()
+    view_switcher_title = Gtk.Template.Child()
+    view_switcher_bar = Gtk.Template.Child()
     main_leaf = Gtk.Template.Child()
     toasts = Gtk.Template.Child()
     # endregion
@@ -122,8 +123,8 @@ class MainWindow(Adw.ApplicationWindow):
         GLib.idle_add(self.page_library.update)
 
     def set_title(self, title, subtitle: str = ""):
-        self.view_switcher.set_title(title)
-        self.view_switcher.set_subtitle(subtitle)
+        self.view_switcher_title.set_title(title)
+        self.view_switcher_title.set_subtitle(subtitle)
 
     def check_for_connection(self, status):
         """
@@ -266,7 +267,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.show_prefs_view(widget, view=2)
 
     def check_crash_log(self):
-        xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
+        xdg_data_home = GLib.get_user_data_dir()
         log_path = f"{xdg_data_home}/bottles/crash.log"
 
         with contextlib.suppress(FileNotFoundError):
@@ -288,7 +289,7 @@ class MainWindow(Adw.ApplicationWindow):
         widgets = [
             self.btn_add,
             self.btn_menu,
-            self.view_switcher,
+            self.view_switcher_title,
             self.btn_search
         ]
         if self.btn_noconnection.get_visible():
@@ -315,7 +316,8 @@ class MainWindow(Adw.ApplicationWindow):
         builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
         about_window = builder.get_object("about_window")
         about_window.set_debug_info(HealthChecker().get_results(plain=True))
-        about_window.add_credit_section(
+        about_window.add_link(_("Donate"), "https://usebottles.com/funding/")
+        about_window.add_acknowledgement_section(
             _("Third-Party Libraries and Special Thanks"),
             [
                 "DXVK https://github.com/doitsujin/dxvk",
@@ -336,6 +338,16 @@ class MainWindow(Adw.ApplicationWindow):
                 "libadwaita https://gitlab.gnome.org/GNOME/libadwaita",
                 "icoextract https://github.com/jlu5/icoextract",
                 "vmtouch https://github.com/hoytech/vmtouch"
+            ]
+        )
+        about_window.add_acknowledgement_section(
+            _("Sponsored and Funded by"),
+            [
+                "JetBrains https://www.jetbrains.com/?from=bottles",
+                "GitBook https://www.gitbook.com/?ref=bottles",
+                "Linode https://www.linode.com/?from=bottles",
+                "Appwrite https://appwrite.io/?from=bottles",
+                "Community ❤️ https://usebottles.com/funding/"
             ]
         )
         about_window.set_transient_for(self)

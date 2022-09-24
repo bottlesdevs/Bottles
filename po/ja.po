@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-07-06 00:05+0000\n"
+"PO-Revision-Date: 2022-09-10 07:36+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
@@ -130,13 +130,12 @@ msgid "Caching template…"
 msgstr "テンプレートをキャッシュしています…"
 
 #: bottles/backend/managers/versioning.py:97
-#, fuzzy
 msgid "Committing state …"
-msgstr "状態を更新しています…"
+msgstr "状態をコミットしています…"
 
 #: bottles/backend/managers/versioning.py:106
 msgid "Nothing to commit"
-msgstr ""
+msgstr "コミットする項目なし"
 
 #: bottles/backend/managers/versioning.py:112
 #, python-brace-format
@@ -144,28 +143,25 @@ msgid "New state [{0}] created successfully!"
 msgstr "新しい状態 [{0}] を正常に作成しました！"
 
 #: bottles/backend/managers/versioning.py:140
-#, fuzzy
 msgid "States list retrieved successfully!"
-msgstr "新しい状態 [{0}] を正常に作成しました！"
+msgstr "状態一覧を正常に取得しました！"
 
 #: bottles/backend/managers/versioning.py:171
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "新しい状態 [{0}] を正常に作成しました！"
+msgstr "状態 {0} を正常に復元しました！"
 
 #: bottles/backend/managers/versioning.py:176
-#, fuzzy
 msgid "Restoring state {} …"
-msgstr "状態に復元：[{0}]"
+msgstr "状態 {} に復元しています…"
 
 #: bottles/backend/managers/versioning.py:185
-#, fuzzy
 msgid "State not found"
-msgstr "バックアップはありません"
+msgstr "状態が見つかりません"
 
 #: bottles/backend/managers/versioning.py:191
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "状態 {} はすでにアクティブです"
 
 #: bottles/frontend/windows/crash.py:37
 msgid "Show report"
@@ -228,9 +224,8 @@ msgid "No environment variables defined."
 msgstr "環境変数が未定義です。"
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
-#, fuzzy
 msgid "No exclusion patterns defined."
-msgstr "環境変数が未定義です。"
+msgstr "実行パターンが未定義です。"
 
 #: bottles/frontend/windows/filechooser.py:63
 #: bottles/frontend/ui/dialog-gamescope.ui:34
@@ -255,37 +250,34 @@ msgid "Select Resource FIle"
 msgstr "リソースファイルを選択"
 
 #: bottles/frontend/windows/installer.py:115
-#, fuzzy
 msgid "Installing Windows dependencies…"
-msgstr "依存関係をインストールしています: %s …"
+msgstr "Windows 依存関係をインストールしています…"
 
 #: bottles/frontend/windows/installer.py:116
-#, fuzzy
 msgid "Configuring the bottle…"
-msgstr "ボトルを作成しています…"
+msgstr "ボトルを設定しています…"
 
 #: bottles/frontend/windows/installer.py:117
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "インストーラーを実行しています…"
 
 #: bottles/frontend/windows/installer.py:118
-#, fuzzy
 msgid "Installing the {}…"
-msgstr "インストールしています…"
+msgstr "{} をインストールしています…"
 
 #: bottles/frontend/windows/installer.py:119
 msgid "Performing final checks…"
-msgstr ""
+msgstr "最終確認を行っています…"
 
 #: bottles/frontend/windows/installer.py:123
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing {0}…"
-msgstr "インストールしています…"
+msgstr "{0} をインストールしています…"
 
 #: bottles/frontend/windows/installer.py:125
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr ""
+msgstr "{0} がプログラム画面から利用可能になりました。"
 
 #: bottles/frontend/windows/installer.py:171
 msgid "Installer failed with unknown error"
@@ -299,9 +291,8 @@ msgstr "起動後に実行するスクリプトを選択してください。"
 
 #: bottles/frontend/windows/launchoptions.py:57
 #: bottles/frontend/ui/dialog-launch-options.ui:92
-#, fuzzy
 msgid "Choose from where start the program."
-msgstr "プログラム起動後にBottlesを閉じる"
+msgstr "プログラムの開始位置を選択します。"
 
 #: bottles/frontend/windows/launchoptions.py:58
 #, python-brace-format
@@ -322,22 +313,20 @@ msgstr "カレントディレクトリを選択"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
-#, fuzzy
 msgid "Choose a file."
-msgstr "レシピファイルを選択"
+msgstr "ファイルを選択してください。"
 
 #: bottles/frontend/windows/vkbasalt.py:306
-#, fuzzy
 msgid "File not Found"
-msgstr "バックアップはありません"
+msgstr "ファイルが見つかりません"
 
 #: bottles/frontend/windows/vkbasalt.py:307
 msgid "The given file does not exist. Please choose an appropriate file."
-msgstr ""
+msgstr "指定されたファイルは存在しません。適切なファイルを選択してください。"
 
 #: bottles/frontend/windows/vkbasalt.py:330
 msgid "Spaces in File Name"
-msgstr ""
+msgstr "ファイル名にスペースを含まないでください"
 
 #: bottles/frontend/windows/vkbasalt.py:331
 msgid ""
@@ -347,11 +336,11 @@ msgstr ""
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
-msgstr ""
+msgstr "画像解像度が不適切です"
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr ""
+msgstr "画像の高さと幅を一致させる必要があります。"
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144
@@ -463,18 +452,16 @@ msgid "Report a Bug…"
 msgstr "不具合報告…"
 
 #: bottles/frontend/ui/dependency-entry.ui:50
-#, fuzzy
 msgid "Dependency name"
-msgstr "依存関係"
+msgstr "依存関係の名前"
 
 #: bottles/frontend/ui/dependency-entry.ui:52
-#, fuzzy
 msgid "Dependency description"
-msgstr "依存関係"
+msgstr "依存関係の説明"
 
 #: bottles/frontend/ui/dependency-entry.ui:59
 msgid "Category"
-msgstr ""
+msgstr "カテゴリー"
 
 #: bottles/frontend/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -698,6 +685,9 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"このページ内のファイルは、サードパーティーがプロプライエタリライセンスの元で"
+"配布しているものになります。インストールすると、該当するライセンス条項に合意"
+"したものとみなされます。"
 
 #: bottles/frontend/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
@@ -708,9 +698,8 @@ msgid "Report missing dependency"
 msgstr "不足している依存関係を報告"
 
 #: bottles/frontend/ui/details-dependencies.ui:68
-#, fuzzy
 msgid "Read documentation."
-msgstr "ドキュメンテーションを読む"
+msgstr "ドキュメンテーションを読みます。"
 
 #: bottles/frontend/ui/details-dependencies.ui:69
 #: bottles/frontend/ui/details-installers.ui:71
@@ -746,7 +735,8 @@ msgstr "プログラムを検索…"
 msgid ""
 "Use this section to install programs curated by our community, without "
 "having to proceed manually."
-msgstr ""
+msgstr "このセクションを使うと、手動でインストールすることなく、コミュニティーが厳選"
+"したプログラムをインストールできます。"
 
 #: bottles/frontend/ui/details-installers.ui:48
 msgid "No Installers Found"
@@ -882,9 +872,8 @@ msgid ""
 msgstr "vkBasaltはVulkanの後処理レイヤーで、ゲームの画質を向上させます。"
 
 #: bottles/frontend/ui/details-preferences.ui:144
-#, fuzzy
 msgid "Manage vkBasalt settings"
-msgstr "Gamescope設定を管理"
+msgstr "vkBasalt 設定を管理"
 
 #: bottles/frontend/ui/details-preferences.ui:161
 msgid "Display Settings"

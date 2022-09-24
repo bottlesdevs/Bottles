@@ -18,7 +18,7 @@ Find out if someone has already has [already asked](https://github.com/bottlesde
 - Open a issue [here](https://github.com/bottlesdevs/Bottles/issues/new?assignees=mirkobrombin%2C+francescomasala&labels=&template=feature_request.md&title=%5BRequest%5D+), if possible,  attach an image that helps understand what you are talking about.
 
 ### Do you want to translate?
-Check [translate](https://github.com/bottlesdevs/Bottles/tree/master/po) page to help us translate Bottles in your language.
+Check [translate](po) page to help us translate Bottles in your language.
 
 #### Add language
 - Fork the repository
