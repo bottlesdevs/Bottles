@@ -330,7 +330,10 @@ class ManagerUtils:
             'sl_SI',
             'sv_SE',
             'tr_TR',
-            'zh_CN'
+            'zh_CN',
+            'ja_JP',
+            'zh_TW',
+            'ko_KR'
         ]
         names = [
             _('System'),
@@ -360,6 +363,9 @@ class ManagerUtils:
             _('Swedish'),
             _('Turkish'),
             _('Chinese'),
+            _('Japanese'),
+            _('Taiwanese'),
+            _('Korean')
         ]
 
         if from_name and from_locale:
