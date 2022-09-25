@@ -1,6 +1,7 @@
 import os
 import shutil
 import subprocess
+from glob import glob
 from typing import NewType
 
 from bottles.backend.utils.generic import detect_encoding  # pyright: reportMissingImports=false
@@ -224,6 +225,11 @@ class WineCommand:
             _path = os.path.join(runner_path, lib)
             if os.path.exists(_path):
                 ld.append(_path)
+        
+        # Note: Here we set GST_PLUGIN_SYSTEM_PATH if the runner provides gstreamer
+        for _gst in os.listdir(os.path.join(runner_path, "lib64")):
+            if _gst.startswith("gstreamer-") and os.path.isdir(os.path.join(runner_path, "lib64", _gst)):
+                env.add("GST_PLUGIN_SYSTEM_PATH", os.path.join(runner_path, "lib64", _gst))
 
         # DXVK environment variables
         if params["dxvk"] and not return_steam_env:
