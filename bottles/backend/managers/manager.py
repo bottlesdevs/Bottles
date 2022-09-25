@@ -827,11 +827,23 @@ class Manager:
             for c in os.listdir(_bottle):
                 c = str(c)
                 if c.endswith(".dxvk-cache"):
-                    shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "dxvk_state"))
+                    # NOTE: the following code tries to create the caching directories
+                    #       if one or more already exist, it will fail silently as there
+                    #       is no need to create them again.
+                    try:
+                        shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "dxvk_state"))
+                    except shutil.Error:
+                        pass
                 elif "vkd3d-proton.cache" in c:
-                    shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "vkd3d_shader"))
+                    try:
+                        shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "vkd3d_shader"))
+                    except shutil.Error:
+                        pass
                 elif c == "GLCache":
-                    shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "gl_shader"))
+                    try:
+                        shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "gl_shader"))
+                    except shutil.Error:
+                        pass
 
         for b in bottles:
             '''
