@@ -230,7 +230,6 @@ class WineCommand:
             env.add("WINE_LARGE_ADDRESS_AWARE", "1")
             env.add("DXVK_STATE_CACHE_PATH", os.path.join(bottle, "cache", "dxvk_state"))
             env.add("STAGING_SHARED_MEMORY", "1")
-            env.add("__GL_DXVK_OPTIMIZATIONS", "1")
             env.add("__GL_SHADER_DISK_CACHE", "1")
             env.add("__GL_SHADER_DISK_CACHE_SKIP_CLEANUP", "1")  # should not be needed anymore
             env.add("__GL_SHADER_DISK_CACHE_PATH", os.path.join(bottle, "cache", "gl_shader"))
