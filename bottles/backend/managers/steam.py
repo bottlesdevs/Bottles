@@ -266,6 +266,10 @@ class SteamManager:
             _creation_date = datetime.fromtimestamp(os.path.getctime(_path)) \
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
 
+            if _acf["AppState"].get("name") is None:
+                # WORKAROUND: for corrupted acf files, this is not at our fault
+                continue
+
             if _acf is None or not _acf.get("AppState"):
                 logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping…")
                 continue
