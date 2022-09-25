@@ -67,6 +67,7 @@ class SteamManager:
                 os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam"),
                 os.path.join(Path.home(), ".local/share/Steam"),
                 os.path.join(Path.home(), ".steam/debian-installation"),
+                os.path.join(Path.home(), ".steam/steam"),
                 os.path.join(Path.home(), ".steam"),
             ]
 
