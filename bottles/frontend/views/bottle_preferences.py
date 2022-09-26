@@ -252,6 +252,7 @@ class PreferencesView(Adw.PreferencesPage):
             key="Name",
             value=name
         )
+        self.window.page_list.update_bottles()
 
     def choose_cwd(self, widget, reset=False):
         """Change the default current working directory for the bottle"""

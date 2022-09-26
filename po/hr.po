@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-09-10 07:36+0000\n"
+"PO-Revision-Date: 2022-09-26 14:20+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
@@ -1655,6 +1655,17 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"Pazi! Korištenje Protonskih pokretača u ne Steamovim buteljama može "
+"prouzročiti probleme i spriječiti njihovo pravilno ponašanje.\n"
+"\n"
+"Preporučujemo da umjesto toga koristiš Wine-GE, Proton verziju koja je "
+"namijenjena za pokretanje izvan Steama.\n"
+"\n"
+"Postupak će automatski omogućiti vrijeme izvođenja Steama (ako je prisutan u "
+"sustavu i otkriven od programa Butelje) kako bi mu se omogućio pristup "
+"potrebnim bibliotekama i ograničili problemi s kompatibilnošću. Imaj na umu "
+"da GloriousEggroll, pružatelj pokretača, nije odgovoran za bilo koje "
+"probleme i molimo te da ih ne prijavljuješ."
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:50
 msgid "I got it."
@@ -1878,19 +1889,23 @@ msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"CAS oštrina povećava oštrinu kadrova. Veće vrijednosti povećavaju oštrinu, "
+"dok vrijednosti manje od 0 smanjuju oštrinu kadra."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:500
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"CAS oštrina povećava oštrinu kadrova. Veće vrijednosti povećavaju oštrinu "
+"kadra."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:518
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
-"DLS uklanjanje mrlja smanjuje mrlje u kadru. Više vrijednosti smanjuju "
+"DLS uklanjanje mrlja smanjuje mrlje u kadru. Veće vrijednosti smanjuju "
 "oštrinu kadra."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:536
@@ -1898,12 +1913,16 @@ msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"FXAA kvaliteta podpiksela smanjuje zaglađivanje rubova na razini podpiksela. "
+"Više vrijednosti smanjuju oštrinu kadra."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:554
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"FXAA prag rubova je minimalna količina kontrasta potrebna za primjenu FXAA "
+"algoritma. Veće vrijednosti povećavaju kontrast kadra."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:572
 msgid ""
@@ -1911,6 +1930,9 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"Minimalna FXAA kvaliteta praga rubova minimalna je vrijednost tamnih piksela "
+"koje FXAA algoritam zanemaruje. Korištenjem većih vrijednosti, FXAA će "
+"zanemariti piksele ispod navedene vrijednosti i može povećati performansu."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:590
 msgid ""
@@ -1925,28 +1947,36 @@ msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"SMAA prag određuje osjetljivost otkrivanja rubova. Manje vrijednosti "
+"otkrivaju više rubova nauštrb performanci."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:626
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"Maksimalni SMAA koraci pretraživanja određuju koliko se vodoravnih i "
+"okomitih koraka pretraživanja izvodi prilikom traženja rubova."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:644
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"Maksimalni SMAA koraci dijagonalno pretraživanja određuju koliko se "
+"vodoravnih i okomitih koraka pretraživanja izvodi prilikom traženja rubova."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:662
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
-msgstr ""
+msgstr "SMAA zaokruživanje kutova određuje jačinu zaobljenja rubnih kutova."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:680
 msgid ""
 "CLUT transforms a range of colors into another range of colors using a .CUBE "
 "file, or a .png file where the height is equal to the width."
 msgstr ""
+"CLUT transformira raspon boja u jedan drugi raspon boja pomoću .CUBE "
+"datoteke ili .png datoteke gdje je visina jednaka širini."
 
 #: bottles/frontend/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
@@ -1989,7 +2019,7 @@ msgstr "Vrijednost"
 #. Wineprefix is a prefix for the wine program
 #: bottles/frontend/ui/importer-entry.ui:22
 msgid "Wineprefix name"
-msgstr ""
+msgstr "Ime Wine mape"
 
 #: bottles/frontend/ui/importer-entry.ui:29
 msgid "Manager"
@@ -2722,12 +2752,12 @@ msgstr "Tvoje butelje"
 #: bottles/frontend/views/loading.py:33
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
-msgstr ""
+msgstr "Preuzimanje ~{0} paketa …"
 
 #: bottles/frontend/views/loading.py:34
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
-msgstr ""
+msgstr "Preuzeto {0} od {1} paketa"
 
 #: bottles/frontend/views/new.py:133
 msgid "Name has special characters or already in use."
@@ -2760,21 +2790,24 @@ msgstr "Odaberi novu stazu za butelje"
 
 #: bottles/frontend/views/preferences.py:199
 msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
+msgstr "Na temelju Valveovog Winea, uključuje međuspremanje i Proton zakrpe."
 
 #: bottles/frontend/views/preferences.py:200
 msgid "Based on Wine upstream, includes staging and Proton patches."
 msgstr ""
+"Na temelju Wineove glavne grane, uključuje međuspremanje i Proton zakrpe."
 
 #: bottles/frontend/views/preferences.py:203
 msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
+msgstr "Na temelju Wineove glavne grane, uključuje međuspremanje zakrpa."
 
 #: bottles/frontend/views/preferences.py:204
 msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
+"Na temelju Valveovog Winea, uključuje međuspremanje, Proton i Steam zakrpe. "
+"Vrijeme izvođenja Steama mora biti uključeno."
 
 #: bottles/frontend/views/preferences.py:206
 msgid "Other"
@@ -2872,7 +2905,7 @@ msgstr ""
 
 #: bottles/frontend/windows/main_window.py:310
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Strane biblioteke i posebne zahvale"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -3054,7 +3087,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "New default permission for the Flatpak package: xdg-download"
-msgstr ""
+msgstr "Nova zadana dozvola za Flatpak paket: xdg-download"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Added credits for Third-Party Libraries in the Credits section"
@@ -3062,11 +3095,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
-msgstr ""
+msgstr "Poboljšanja korisničkog sučelja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
-msgstr ""
+msgstr "Ispravci"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Fix for skipable onboard dialog"

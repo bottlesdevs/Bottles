@@ -161,6 +161,11 @@ class DependenciesView(Adw.Bin):
                 for dep in dependencies.items():
                     if dep[0] in self.config.get("Installed_Dependencies"):
                         continue  # Do not list already installed dependencies'
+
+                    if dep[1].get("Arch", "win64") != self.config.get("Arch"):
+                        # NOTE: avoid listing dependencies not supported by the bottle arch
+                        continue
+
                     GLib.idle_add(new_dependency, dep)
 
             if not selection and len(self.config.get("Installed_Dependencies")) > 0:

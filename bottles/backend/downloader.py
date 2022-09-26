@@ -93,10 +93,20 @@ class Downloader:
         speed_str = FileUtils.get_human_size(count * block_size / (time.time() - self.start_time))
         name = self.file.split("/")[-1]
         c_close, c_complete, c_incomplete = "\033[0m", "\033[92m", "\033[90m"
-        print(
-            f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) \
-{'━' * int(percent / 2)} ({done_str}/{total_str} - {speed_str})",
-            end=""
-        )
-        if percent == 100:
-            print(f"{c_close}\n")
+        try:
+            print(
+                f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) \
+    {'━' * int(percent / 2)} ({done_str}/{total_str} - {speed_str})",
+                end=""
+            )
+            if percent == 100:
+                print(f"{c_close}\n")
+        except UnicodeEncodeError:
+            # WORKAROUND for unsupported characters <https://github.com/bottlesdevs/Bottles/issues/2017>
+            print(
+                f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) \
+    {'━' * int(percent / 2)} ({done_str}/{total_str} - {speed_str})",
+                end=""
+            )
+            if percent == 100:
+                print(f"{c_close}\n")

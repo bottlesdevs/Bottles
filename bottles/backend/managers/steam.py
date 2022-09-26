@@ -67,6 +67,7 @@ class SteamManager:
                 os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam"),
                 os.path.join(Path.home(), ".local/share/Steam"),
                 os.path.join(Path.home(), ".steam/debian-installation"),
+                os.path.join(Path.home(), ".steam/steam"),
                 os.path.join(Path.home(), ".steam"),
             ]
 
@@ -264,6 +265,10 @@ class SteamManager:
             _runner = self.get_runner_path(_path)
             _creation_date = datetime.fromtimestamp(os.path.getctime(_path)) \
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
+
+            if not isinstance(_acf, dict):
+                # WORKAROUND: for corrupted acf files, this is not at our fault
+                continue
 
             if _acf is None or not _acf.get("AppState"):
                 logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping…")

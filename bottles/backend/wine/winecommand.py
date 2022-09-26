@@ -1,6 +1,7 @@
 import os
 import shutil
 import subprocess
+from glob import glob
 from typing import NewType
 
 from bottles.backend.utils.generic import detect_encoding  # pyright: reportMissingImports=false
@@ -214,23 +215,38 @@ class WineCommand:
                 "lib32/wine/i386-unix",
                 "lib64/wine/i386-unix"
             ]
+            gst_libs = [
+                "lib/gstreamer-1.0",
+                "lib32/gstreamer-1.0",
+                "lib64/gstreamer-1.0"
+            ]
         else:
             runner_libs = [
                 "lib/wine/i386-unix",
                 "lib32/wine/i386-unix",
                 "lib64/wine/i386-unix"
             ]
+            gst_libs = [
+                "lib/gstreamer-1.0",
+                "lib32/gstreamer-1.0",
+                "lib64/gstreamer-1.0"
+            ]
+            
         for lib in runner_libs:
             _path = os.path.join(runner_path, lib)
             if os.path.exists(_path):
                 ld.append(_path)
+
+        for lib in gst_libs:
+            _root = os.path.basename(os.path.join(runner_path, lib))
+            if os.path.exists(os.path.join(runner_path, lib)):
+                env.add("GST_PLUGIN_SYSTEM_PATH", _root)
 
         # DXVK environment variables
         if params["dxvk"] and not return_steam_env:
             env.add("WINE_LARGE_ADDRESS_AWARE", "1")
             env.add("DXVK_STATE_CACHE_PATH", os.path.join(bottle, "cache", "dxvk_state"))
             env.add("STAGING_SHARED_MEMORY", "1")
-            env.add("__GL_DXVK_OPTIMIZATIONS", "1")
             env.add("__GL_SHADER_DISK_CACHE", "1")
             env.add("__GL_SHADER_DISK_CACHE_SKIP_CLEANUP", "1")  # should not be needed anymore
             env.add("__GL_SHADER_DISK_CACHE_PATH", os.path.join(bottle, "cache", "gl_shader"))

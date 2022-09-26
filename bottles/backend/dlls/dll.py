@@ -53,7 +53,17 @@ class DLLComponent:
             for dll in self.dlls[path]:
                 _dll = os.path.join(_path, dll)
                 if not os.path.exists(_dll):
-                    del found[path][dll]
+                    try:
+                        del found[path][dll]
+                    except TypeError:
+                        # WORKAROUND: I'm not able to find what is causing this
+                        #          TypeError, I've tested with some different
+                        #          setups and I've never been able to reproduce
+                        #          it, so I'm just providing a workaround for
+                        #          not breaking the app. Thiw workaround removes
+                        #          the path from the list of found dlls as it
+                        #          seems to empty in some cases.
+                        del found[path]
 
         if len(found) == 0:
             return False
