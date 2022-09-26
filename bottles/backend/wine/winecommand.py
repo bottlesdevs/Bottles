@@ -435,14 +435,17 @@ class WineCommand:
                 else:
                     command = f"gamemode {command}"
 
-            if mangohud_available and params.get("mangohud"):
+            if mangohud_available and params.get("mangohud") and not params.get("gamescope"):
                 if not return_steam_cmd:
                     command = f"{mangohud_available} {command}"
                 else:
                     command = f"mangohud {command}"
 
             if gamescope_available and params.get("gamescope"):
-                command = f"{self.__get_gamescope_cmd(return_steam_cmd)}  -- {command}"
+                if mangohud_available and params.get("mangohud"):
+                    command = f"{self.__get_gamescope_cmd(return_steam_cmd)} -- {command}&; mangoapp"
+                else:
+                    command = f"{self.__get_gamescope_cmd(return_steam_cmd)}  -- {command}"
 
             if obs_vkc_available and params.get("obsvkc"):
                 command = f"{obs_vkc_available} {command}"
