@@ -266,7 +266,7 @@ class SteamManager:
             _creation_date = datetime.fromtimestamp(os.path.getctime(_path)) \
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
 
-            if _acf["AppState"].get("name") is None:
+            if not isinstance(_acf["AppState"], dict):
                 # WORKAROUND: for corrupted acf files, this is not at our fault
                 continue
 
