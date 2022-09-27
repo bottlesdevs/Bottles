@@ -152,6 +152,7 @@ class BottleView(Adw.PreferencesPage):
         self.__update_latest_executables()
 
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
+        self.drop_overlay.set_visible(False)
         files: List[Gio.File] = value.get_files()
         args=""
         file=files[0]
@@ -270,16 +271,17 @@ class BottleView(Adw.PreferencesPage):
         else:
             show_chooser()
 
-    def do_update_programs(result, error=False):
+    def do_update_programs(self, result, error=False):
         self.window.page_details.update_programs()
 
     def __execute(self, _dialog, response, file_dialog, args=""):
-
         if response == -3:
             _execs = self.config.get("Latest_Executables", [])
             _file = file_dialog.get_file()
+
             if not _file:
                 return  # workaround #1653
+
             executor = WineExecutor(
                 self.config,
                 exec_path=_file.get_path(),
