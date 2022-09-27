@@ -97,42 +97,52 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.9.28-brescia" date="2022-08-28">
+        <release version="2022.9.28" date="2022-09-28">
           <description>
             <p>News</p>
             <ul>
-                <li>Library mode is now a stable feature and enabled by default</li>
-                <li>Dependencies "copy_file" action now creates the path if not exists (see maintainers docs.)</li>
-                <li>Opening a bottle, a dialog is shown if the runner is not installed</li>
-                <li>The C: drive is now marked as persistend in the Drives section and cannot be edited by the user</li>
-                <li>All dialogs can now be closed pressing Escape</li>
-                <li>The dark mode switcher is now available only for system which doesn't support the standard</li>
-                <li>Simplification of "Legacy Tools" section, thanks to @Knebergish</li>
-                <li>Minor UI improvements, thanks to @TheEvilSkeleton, @orowith2os, @marhkb</li>
+                <li>Nvidia-specific settings are now hidden on other setups</li>
+                <li>Run executables by dropping them on the bottle</li>
+                <li>Move from XML to Bluprints for UI</li>
+                <li>Mobile improvements</li>
+                <li>The Gamescope dialog is now more polished and intuitive</li>
+                <li>Display settings has now a dedicated dialog</li>
+                <li>All selectors are ported to the libadwaita</li>
+                <li>Support for ja_JP,zh_TW,ko_KR languages</li>
+                <li>Dependencies with an incompatible architecture are now hidden</li>
+                <li>Support for the bundled gstreamer version if provided by the runner</li>
+                <li>Adding a new program will be immediately available, without having to update the whole list</li>
+                <li>Removed the ability to install multiple dependencies in one go</li>
+                <li>Improve wording for Components section (Thanks to @orowith2os)</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fix a bug in the template system, was trying to unpack a partial one</li>
-                <li>Fix a bug in setting overrides for old-structured program entries</li>
-                <li>Fix a bug in vmtouch management</li>
-                <li>Fix a bug in the WineCommand interface which was causing a crash if the executable path is not accessible</li>
-                <li>Fix a bug in the Steam Manager, was generating wrong shortcuts when the program name has spaces in it</li>
-                <li>Fix long names in library mode</li>
-                <li>Fix a bug in bottle creation, sometimes it created a symlinks loop in the userdir</li>
-                <li>Fix a bug in the crash dialog, the similarity check was set too high resulting in no similar reports</li>
+                <li>Fix DXVK off when starting a game via Run Executable</li>
+                <li>Fix a bug when extracting templates with a partial or missing userdir</li>
+                <li>Fix Steam installation not found when placed at .steam/debian-installation</li>
+                <li>Fix DLL OVerrides not being applied when an override with the same name is already present, now the new one will take priority</li>
+                <li>Fix Proton Runners being listed as prefixes</li>
+                <li>Fix GStreamer plugins not being loaded on Flatpak</li>
+                <li>Fix the bottles list not being updated when a bottle is renamed</li>
+                <li>Fix progressbar not being visible on some locales</li>
+                <li>Fix caching directories being re-initialized when them are already present</li>
+                <li>Fix Steam ACF files not being parsed correctly when corrupted, resulting in a crash</li>
+                <li>Fix Platinum and Silver grades was using the same color</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Italian translations thanks to @alfonso133</li>
-                <li>Bengali translations thanks to @zihadio</li>
-                <li>Catalan translations thanks to @rogervc</li>
-                <li>Tamil translations thanks to @kbdharun</li>
+                <li>Italian translations thanks to @LorenzoIanotto</li>
+                <li>Hindi translations thanks to Rowan Antkinson</li>
                 <li>Dutch translations thanks to @flipflop97</li>
-                <li>Spanish translations thanks to @ParadoxialN3</li>
-                <li>Ukranian translations thanks to @c0m1c5an5</li>
-                <li>Turkish translations thanks to @Dhizaes</li>
+                <li>Turkish translations thanks to @06ergin06</li>
+                <li>Finnish translations thanks to Jiri Grönroos</li>
+                <li>Portuguese (Brazil) translations thanks to saulo marcos</li>
+                <li>Japanese translations thanks to @ryonakano</li>
+                <li>Croatian translations thanks to @milotype</li>
+                <li>Greek translations thanks to @kolyfotis</li>
+                <li>Indonesian translations thanks to @laymoth</li>
             </ul>
           </description>
         </release>
