@@ -34,8 +34,6 @@ class DependenciesView(Adw.Bin):
     list_dependencies = Gtk.Template.Child()
     btn_report = Gtk.Template.Child()
     btn_help = Gtk.Template.Child()
-    btn_install = Gtk.Template.Child()
-    btn_toggle_selection = Gtk.Template.Child()
     entry_search = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
@@ -51,7 +49,6 @@ class DependenciesView(Adw.Bin):
         self.manager = details.window.manager
         self.config = config
         self.queue = details.queue
-        self.selected_dependencies = []
 
         self.ev_controller.connect("key-released", self.__search_dependencies)
 
@@ -60,31 +57,6 @@ class DependenciesView(Adw.Bin):
 
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
-        self.btn_toggle_selection.connect('toggled', self.__toggle_selection)
-        self.btn_install.connect('clicked', self.__install_dependencies)
-        self.list_dependencies.connect('row-selected', self.__select_dependency)
-
-    def __select_dependency(self, widget, row, data=None):
-        if row is not None:
-            self.selected_dependencies.append(row.dependency)
-
-    def __install_dependencies(self, widget):
-        def callback(result, error=False):
-            nonlocal self
-            self.selected_dependencies = []
-            self.update(config=self.config)
-            self.queue.end_task()
-
-        def process_queue():
-            nonlocal self
-            for d in self.selected_dependencies:
-                self.manager.dependency_manager.install(self.config, d)
-
-        self.queue.add_task()
-        self.btn_toggle_selection.set_active(False)
-        self.list_dependencies.set_sensitive(False)
-
-        RunAsync(process_queue, callback=callback)
 
     def __search_dependencies(self, *_args):
         """
@@ -93,26 +65,6 @@ class DependenciesView(Adw.Bin):
         """
         terms = self.entry_search.get_text()
         self.list_dependencies.set_filter_func(self.__filter_dependencies,  terms)
-
-    def __toggle_selection(self, widget):
-        """
-        This function toggle the selection of the dependencies
-        in the list.
-        """
-        widgets = [self.btn_help, self.btn_report, self.btn_install]
-        list_statues = {
-            True: Gtk.SelectionMode.MULTIPLE,
-            False: Gtk.SelectionMode.NONE
-        }
-        status = widget.get_active()
-        self.update(config=self.config, selection=status)
-        self.window.toggle_selection_mode(status)
-
-        for w in widgets:
-            _status = w.get_visible()
-            w.set_visible(not _status)
-
-        self.list_dependencies.set_selection_mode(list_statues[status])
 
     @staticmethod
     def __filter_dependencies(row, terms=None):
@@ -127,7 +79,7 @@ class DependenciesView(Adw.Bin):
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, widget=False, config=None, selection=False):
+    def update(self, widget=False, config=None):
         """
         This function update the dependencies list with the
         supported by the manager.
@@ -144,7 +96,6 @@ class DependenciesView(Adw.Bin):
                     window=self.window,
                     config=self.config,
                     dependency=dependency,
-                    selection=selection,
                     plain=plain
             )
             self.__registry.append(entry)
@@ -168,7 +119,7 @@ class DependenciesView(Adw.Bin):
 
                     GLib.idle_add(new_dependency, dep)
 
-            if not selection and len(self.config.get("Installed_Dependencies")) > 0:
+            if len(self.config.get("Installed_Dependencies")) > 0:
                 for dep in self.config.get("Installed_Dependencies"):
                     if dep in dependencies:
                         dep = (dep, dependencies[dep])

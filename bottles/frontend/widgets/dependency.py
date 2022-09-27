@@ -41,7 +41,7 @@ class DependencyEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, dependency, plain=False, selection=False, **kwargs):
+    def __init__(self, window, config, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -74,10 +74,6 @@ class DependencyEntry(Adw.ActionRow):
         self.btn_remove.connect("clicked", self.remove_dependency)
         self.btn_manifest.connect("clicked", self.open_manifest)
         self.btn_license.connect("clicked", self.open_license)
-
-        # hide action widgets on selection
-        if selection:
-            self.box_actions.set_visible(False)
 
         if dependency[0] in self.config.get("Installed_Dependencies"):
             '''
