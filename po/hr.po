@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-09-26 14:20+0000\n"
+"PO-Revision-Date: 2022-09-30 06:30+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -130,13 +130,12 @@ msgid "Caching template…"
 msgstr "Spremanje predloška u predmemoriju …"
 
 #: bottles/backend/managers/versioning.py:97
-#, fuzzy
 msgid "Committing state …"
-msgstr "Aktualiziranje stanja …"
+msgstr "Spremanje promjena stanja …"
 
 #: bottles/backend/managers/versioning.py:106
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Nema promjena"
 
 #: bottles/backend/managers/versioning.py:112
 #, python-brace-format
@@ -1100,7 +1099,7 @@ msgstr "Isto kao za Butelje, ali određuje ga Steam."
 
 #: bottles/frontend/ui/details-preferences.ui:554
 msgid "GameMode"
-msgstr "Modus igra"
+msgstr "Modus igranja"
 
 #: bottles/frontend/ui/details-preferences.ui:555
 msgid "Optimise gaming performance on demand."
@@ -3052,12 +3051,16 @@ msgstr "Koristi komprimiranje za stanja verzioniranja"
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
 msgstr ""
+"Poboljšaj spremanje opcija pokretanja bez višestrukog aktualiziranja "
+"korisničkog sučelja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid ""
 "Improved YAML performance using libyaml (the python-yaml package must "
 "provide support for it)"
 msgstr ""
+"Poboljšano YAML performasa pomoću libyamla (paket python-yaml mora pružiti "
+"podršku za to)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid "New About dialog"
@@ -3065,25 +3068,31 @@ msgstr "Novi dijalog za informacije"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "Covers support in Library mode (thanks to SteamGridDB)"
-msgstr ""
+msgstr "Pokriva podršku u modusu biblioteke (zahvaljujući SteamGridDB)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid "Removed DXVK HUD option, use the Environment Variables section instead"
 msgstr ""
+"Uklonjena je DXVK HUD opcija, umjesto nje koristi odjeljak „Varijable "
+"okruženja”"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "bottles-cli shell option now provide command output"
-msgstr ""
+msgstr "boca-cli opcija ljuske sada prikazuje rezultat naredbe"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
 msgid "The Health Check is now in the About´s Troubleshooting section"
 msgstr ""
+"Provjera stanja se sada nalazi u odjeljku „Ispravljanje grešaka” u stavci "
+"izbornika „O programu Butelje”"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
 msgid ""
 "Extended Core dependencies check, packagers are invited to double-check "
 "their packages"
 msgstr ""
+"Proširena provjera osnovnih ovisnosti, pakirače se poziva da još jednom "
+"provjere svoje pakete"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "New default permission for the Flatpak package: xdg-download"
@@ -3091,7 +3100,7 @@ msgstr "Nova zadana dozvola za Flatpak paket: xdg-download"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Added credits for Third-Party Libraries in the Credits section"
-msgstr ""
+msgstr "Dodane su zasluge za stane biblioteke u odjeljku zasluga"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
@@ -3103,50 +3112,59 @@ msgstr "Ispravci"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Fix for skipable onboard dialog"
-msgstr ""
+msgstr "Ispravak za preskočiv dijalog za prijavu"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Fix for empty bottle name"
-msgstr ""
+msgstr "Ispravak za prazno ime butelje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
 msgid "Fix gstreamer libs for win32 bottles"
-msgstr ""
+msgstr "Ispravljene gstreamer biblioteke za win32 butelje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Fix for RemoteDisconnected error causing a crash"
 msgstr ""
+"Ispravak za RemoteDisconnected grešku koja je prouzročila prekid programa"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
 msgid "Fix wrong Vaniglia listing"
-msgstr ""
+msgstr "Ispravljen netočan popis Vaniglia pokretača"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
 msgid "Fix templates being generated with symlinked paths causing loops"
 msgstr ""
+"Ispravak za generiranje predložaka sa simbolički povezanim stazama koje "
+"prouzročuju petlje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 msgid ""
 "Fix configuration migration causing a crash when the user altered the "
 "configuration"
 msgstr ""
+"Ispravljena migracija konfiguracije koja je prouzročila prekid programa kad "
+"je korisnik promijenio konfiguraciju"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
 msgid "Fix mscoree.dll not found"
-msgstr ""
+msgstr "Ispravak za „mscoree.dll nije pronađen”"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 msgid "Fix regression for the -b option of the legacy bottles cli"
-msgstr ""
+msgstr "Ispravljena regresija za opciju -b starog cli sučelja za butelje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
 msgid "Fix Steam Launch Options parser causing a crash"
 msgstr ""
+"Ispravljen analizator opcija pokretanja Steam-a koji prouzročuje prekid "
+"programa"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
 msgid ""
 "Fix a regression in the Add to Steam button not adding the new entry in Steam"
 msgstr ""
+"Ispravljena regresija u gumbu „Dodaj u Steam” koji ne dodaje novi unos u "
+"Steam"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "Translations"
