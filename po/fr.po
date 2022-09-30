@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-09-25 03:26+0000\n"
-"Last-Translator: rene-coty <irenee.thirion@e.email>\n"
+"PO-Revision-Date: 2022-09-30 06:30+0000\n"
+"Last-Translator: Joel Tony <joeltony72@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
 "Language: fr\n"
@@ -130,13 +130,12 @@ msgid "Caching template…"
 msgstr "Mise en cache du modèle…"
 
 #: bottles/backend/managers/versioning.py:97
-#, fuzzy
 msgid "Committing state …"
 msgstr "Mise à jour des états…"
 
 #: bottles/backend/managers/versioning.py:106
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Pas de travail à faire"
 
 #: bottles/backend/managers/versioning.py:112
 #, python-brace-format
@@ -227,9 +226,8 @@ msgid "No environment variables defined."
 msgstr "Aucune variable d’environnement définie."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
-#, fuzzy
 msgid "No exclusion patterns defined."
-msgstr "Aucune variable d’environnement définie."
+msgstr "Aucun modèle d'exclusion défini."
 
 #: bottles/frontend/windows/filechooser.py:63
 #: bottles/frontend/ui/dialog-gamescope.ui:34
@@ -1220,17 +1218,19 @@ msgstr ""
 "d’installation."
 
 #: bottles/frontend/ui/details-preferences.ui:716
+#, fuzzy
 msgid "Use Exclusion Patterns"
-msgstr ""
+msgstr "Utiliser des Modèles d’Exclusion"
 
 #: bottles/frontend/ui/details-preferences.ui:717
 msgid "Use custom patterns to exclude some paths from versioning."
 msgstr ""
+"Utiliser des modèles personnalisés pour exclure certains dossiers de la "
+"gestion de versions."
 
 #: bottles/frontend/ui/details-preferences.ui:720
-#, fuzzy
 msgid "Manage Patterns"
-msgstr "Gérer les exécuteurs"
+msgstr "Gérer les modèles"
 
 #: bottles/frontend/ui/details-preferences.ui:739
 msgid "Development and Debugging"
@@ -1480,14 +1480,17 @@ msgid "Existing Variables"
 msgstr "Variables existantes"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
+#, fuzzy
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "Modèles d’Exclusion"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
+"Définir des modèles qui seront utilisés pour empêcher certains dossiers d’"
+"être versionné."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
 #, fuzzy
@@ -1653,7 +1656,7 @@ msgstr "Réinitialiser aux valeurs par défaut de Bouteilles"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:6
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Clause de non-responsabilité Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:22
 msgid "Use Proton"
@@ -1949,11 +1952,16 @@ msgstr ""
 "contrastée."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:572
+#, fuzzy
 msgid ""
 "FXAA quality edge threshold minimum is the minimum value of dark pixels that "
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"Le seuil de qualité minimale du bord FXAA est le nombre minimum de pixels "
+"noirs ignorés par l’algorithme FXAA. Des valeurs élevées font ignorer par le "
+"FXAA les pixels en dessous de cette valeur et peuvent améliorer les "
+"performances."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:590
 msgid ""
@@ -1965,10 +1973,13 @@ msgstr ""
 "Color."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:608
+#, fuzzy
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"Le seuil SMAA définie la sensibilité de la détection de bord. Des valeurs "
+"basses améliorent la détection des bords au prix d’une baisse de performance."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:626
 msgid ""
