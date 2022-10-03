@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-09-30 06:30+0000\n"
+"PO-Revision-Date: 2022-10-03 09:21+0000\n"
 "Last-Translator: Georgi Georgiev <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/bg/>\n"
@@ -47,7 +47,7 @@ msgstr "Неуспешно създаване на директория за б�
 
 #: bottles/backend/managers/manager.py:1129
 msgid "Failed to create placeholder directory/file."
-msgstr "Неуспешно създаване на празна директория или файл."
+msgstr "Неуспешно създаване на временна директория или файл."
 
 #: bottles/backend/managers/manager.py:1134
 msgid "Generating bottle configuration…"
@@ -150,7 +150,7 @@ msgstr "Списъкът на състоянията е извлечен усп�
 #: bottles/backend/managers/versioning.py:171
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "Състоянието {0} е възстановено успешно!"
+msgstr "Състояние {0} е възстановено успешно!"
 
 #: bottles/backend/managers/versioning.py:176
 msgid "Restoring state {} …"
@@ -279,7 +279,7 @@ msgstr "Инсталиране на {0}…"
 #: bottles/frontend/windows/installer.py:125
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr "„{0}“ вече е налична в програмния изглед."
+msgstr "{0} вече е налична в програмния изглед."
 
 #: bottles/frontend/windows/installer.py:171
 msgid "Installer failed with unknown error"
@@ -307,11 +307,11 @@ msgstr "Тази настройка е различна от стандартн�
 
 #: bottles/frontend/windows/launchoptions.py:232
 msgid "Choose the script"
-msgstr "Изберете скрипта"
+msgstr "Избиране на скрипта"
 
 #: bottles/frontend/windows/launchoptions.py:256
 msgid "Choose the Working Directory"
-msgstr "Изберете работната директория"
+msgstr "Избиране на работната директория"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
@@ -335,8 +335,8 @@ msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
 msgstr ""
-"Местоположението на цветовата таблица не трябва да съдържа интервали. Моля, "
-"преименувайте файла."
+"Местоположението на таблицата на цветовете не трябва да съдържа интервали. "
+"Моля, преименувайте файла."
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
@@ -344,12 +344,12 @@ msgstr "Размерите на изображението са неправил
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr "Височината и ширината на изображението трябва да са равни."
+msgstr "Височината и широчината на изображението трябва да са равни."
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144
 msgid "Choose a configuration file"
-msgstr "Изберете конфигурационен файл"
+msgstr "Избиране на конфигурационен файл"
 
 #: bottles/frontend/windows/vkbasalt.py:355
 #: bottles/frontend/views/importer.py:117
@@ -419,7 +419,7 @@ msgstr "Премахване"
 #: bottles/frontend/ui/component-entry.ui:26
 #: bottles/frontend/ui/importer-entry.ui:15
 msgid "Browse files"
-msgstr "Разглеждане на файлове"
+msgstr "Разглеждане на файловете"
 
 #: bottles/frontend/ui/component-entry.ui:37
 msgid ""
@@ -469,7 +469,7 @@ msgstr "Категория"
 
 #: bottles/frontend/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
-msgstr "Изтегляне и инсталиране на тази зависимост"
+msgstr "Изтегляне и инсталиране на зависимостта"
 
 #: bottles/frontend/ui/dependency-entry.ui:89
 msgid ""
@@ -477,7 +477,7 @@ msgid ""
 "run it via terminal to read the output."
 msgstr ""
 "Възникна грешка по време на инсталацията. Рестартирайте „Bottles“, за да "
-"прочетете доклада за срива или го стартирайте чрез терминала."
+"прочетете доклада за срив или го стартирайте чрез терминала."
 
 #: bottles/frontend/ui/details-bottle.ui:18
 msgid "Troubleshooting"
@@ -485,7 +485,7 @@ msgstr "Отстраняване на неизправности"
 
 #: bottles/frontend/ui/details-bottle.ui:26
 msgid "Browse Files…"
-msgstr "Разглеждане на файлове…"
+msgstr "Разглеждане на файловете…"
 
 #: bottles/frontend/ui/details-bottle.ui:31
 msgid "Duplicate Bottle…"
@@ -493,7 +493,7 @@ msgstr "Удвояване на бутилката…"
 
 #: bottles/frontend/ui/details-bottle.ui:36 bottles/frontend/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr "Това е пълният архив на Вашата бутилка, включително личните файлове."
+msgstr "Това е пълният архив на бутилката, включително Вашите лични файлове."
 
 #: bottles/frontend/ui/details-bottle.ui:37
 msgid "Full Backup…"
@@ -547,7 +547,7 @@ msgstr "Моята бутилка"
 
 #: bottles/frontend/ui/details-bottle.ui:169
 msgid "Win64"
-msgstr "Win64"
+msgstr "64-бита"
 
 #: bottles/frontend/ui/details-bottle.ui:177
 #: bottles/frontend/ui/list-entry.ui:14 bottles/frontend/ui/new.ui:77
@@ -581,7 +581,7 @@ msgstr "Стартиране на изпълнимия файл…"
 
 #: bottles/frontend/ui/details-bottle.ui:235
 msgid "Layers"
-msgstr ""
+msgstr "Пластове"
 
 #: bottles/frontend/ui/details-bottle.ui:241
 #: bottles/frontend/views/details.py:166
@@ -598,7 +598,7 @@ msgstr "Команден ред"
 
 #: bottles/frontend/ui/details-bottle.ui:251
 msgid "Run commands inside the Bottle."
-msgstr "Изпълнявайте команди в бутилката."
+msgstr "Изпълнете команди в бутилката."
 
 #: bottles/frontend/ui/details-bottle.ui:262
 msgid "Registry Editor"
@@ -635,15 +635,15 @@ msgstr "Отстраняване на неизправности"
 
 #: bottles/frontend/ui/details-bottle.ui:302
 msgid "Debug wine processes."
-msgstr "Отстраняване на неизправности в процесите на „Wine“."
+msgstr "Отстранете неизправности в процесите на „Wine“."
 
 #: bottles/frontend/ui/details-bottle.ui:313
 msgid "Wine Configuration"
-msgstr "Конфигурация на „Wine“"
+msgstr "Конфигуриране на „Wine“"
 
 #: bottles/frontend/ui/details-bottle.ui:314
 msgid "Adjust internal settings."
-msgstr "Регулиране на вътрешните настройки."
+msgstr "Регулирайте вътрешните настройки."
 
 #: bottles/frontend/ui/details-bottle.ui:325
 msgid "Uninstaller"
@@ -651,7 +651,7 @@ msgstr "Премахваща програма"
 
 #: bottles/frontend/ui/details-bottle.ui:326
 msgid "Uninstall programs using Wine uninstaller."
-msgstr "Премахване на програми с премахващата програма на „Wine“."
+msgstr "Премахнете програми с премахващата програма на „Wine“."
 
 #: bottles/frontend/ui/details-bottle.ui:337
 msgid "Control Panel"
@@ -659,13 +659,12 @@ msgstr "Контролен панел"
 
 #: bottles/frontend/ui/details-bottle.ui:338
 msgid "Access the internal Wine Control Panel."
-msgstr "Достъп до вътрешния контролен панел на „Wine“."
+msgstr "Използвайте вътрешния контролен панел на „Wine“."
 
 #: bottles/frontend/ui/details-bottle.ui:357
 msgid "Use the Installers section or the \"Run executable\" button."
 msgstr ""
-"Използвайте раздела на инсталаторите или бутона „Стартиране на изпълним "
-"файл“."
+"Използвайте раздела „Инсталатори“ или бутона „Стартиране на изпълним файл“."
 
 #: bottles/frontend/ui/details-dependencies.ui:13
 msgid "Search for dependencies…"
@@ -693,7 +692,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
-msgstr "Докладване на проблем или липсваща зависимост."
+msgstr "Докладвайте проблем или липсваща зависимост."
 
 #: bottles/frontend/ui/details-dependencies.ui:63
 msgid "Report missing dependency"
@@ -731,7 +730,7 @@ msgstr "Търсене"
 
 #: bottles/frontend/ui/details-installers.ui:13
 msgid "Search for Programs…"
-msgstr "Търсене на програми…"
+msgstr "Търсене на програмите…"
 
 #: bottles/frontend/ui/details-installers.ui:22
 msgid ""
@@ -754,7 +753,7 @@ msgstr "Хранилището е недостъпно или няма съвм�
 #: bottles/frontend/ui/details-programs.ui:44
 #: bottles/frontend/ui/details-versioning.ui:43
 msgid "Read documentation"
-msgstr "Прочетете документацията"
+msgstr "Прочитане на документацията"
 
 #: bottles/frontend/ui/details-preferences.ui:8
 msgid "Bottle Details"
@@ -777,8 +776,8 @@ msgstr "DXVK"
 #: bottles/frontend/ui/details-preferences.ui:24
 msgid "Improves performance of DirectX 11 games and 3D applications."
 msgstr ""
-"Подобрява производителността на игрите с технологията „DirectX“ 11 и 3D "
-"програмите."
+"Подобрява производителността на игрите с технологията „DirectX“ 11 и "
+"триизмерните програми."
 
 #: bottles/frontend/ui/details-preferences.ui:27
 #: bottles/frontend/ui/details-preferences.ui:338
@@ -793,8 +792,8 @@ msgstr "VKD3D"
 #: bottles/frontend/ui/details-preferences.ui:43
 msgid "Improves performance of DirectX 12 games and 3D applications."
 msgstr ""
-"Подобрява производителността на игрите с технологията „DirectX“ 12 и 3D "
-"програмите."
+"Подобрява производителността на игрите с технологията „DirectX“ 12 и "
+"триизмерните програми."
 
 #: bottles/frontend/ui/details-preferences.ui:46
 #: bottles/frontend/ui/details-preferences.ui:361
@@ -823,7 +822,7 @@ msgstr "FSR"
 #: bottles/frontend/ui/details-preferences.ui:81
 msgid ""
 "FSR uses cutting-edge up-scaling technologies to help boost your framerate."
-msgstr ""
+msgstr "FSR използва най-новите технологии за да подобри честотата на кадрите."
 
 #: bottles/frontend/ui/details-preferences.ui:88
 msgid "Ultra Quality"
@@ -849,6 +848,8 @@ msgstr "LFX"
 #: bottles/frontend/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
 msgstr ""
+"Алтернатива на „Nvidia Reflex“. Може да бъде открит от някои системи против "
+"измами."
 
 #: bottles/frontend/ui/details-preferences.ui:128
 msgid "Discrete GPU"
@@ -857,7 +858,7 @@ msgstr "Дискретен графичен процесор"
 #: bottles/frontend/ui/details-preferences.ui:129
 msgid "Improves performance at the cost of increased power usage."
 msgstr ""
-"Подобрява производителността за сметка на повишена консумация на енергия."
+"Подобрява производителността за сметка на повишената консумация на енергия."
 
 #: bottles/frontend/ui/details-preferences.ui:140
 msgid "vkBasalt"
@@ -868,10 +869,12 @@ msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
+"„VK Базалт“ е пласт за последваща обработка на „Vulkan“ за подобряване на "
+"външния вид на игрите."
 
 #: bottles/frontend/ui/details-preferences.ui:144
 msgid "Manage vkBasalt settings"
-msgstr "Управление на настройките на VK Базалт"
+msgstr "Управление на настройките на „VK Базалт“"
 
 #: bottles/frontend/ui/details-preferences.ui:161
 msgid "Display Settings"
@@ -884,31 +887,31 @@ msgstr "Виртуален работен плот"
 
 #: bottles/frontend/ui/details-preferences.ui:166
 msgid "Use the Wine virtual desktop."
-msgstr "Използване на виртуалния работен плот на „Wine“."
+msgstr "Използвайте виртуалния работен плот на „Wine“."
 
 #: bottles/frontend/ui/details-preferences.ui:204
 msgid "Fullscreen Mouse Capture"
-msgstr ""
+msgstr "Прихващане на мишката"
 
 #: bottles/frontend/ui/details-preferences.ui:205
 msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
+msgstr "Прихванете мишката в режим „На цял екран“."
 
 #: bottles/frontend/ui/details-preferences.ui:216
 msgid "Take Focus"
-msgstr ""
+msgstr "Фокусиране"
 
 #: bottles/frontend/ui/details-preferences.ui:217
 msgid "Activate it if the program does not retake focus on switch."
-msgstr ""
+msgstr "Фокусирайте програмата при превключване."
 
 #: bottles/frontend/ui/details-preferences.ui:228
 msgid "Mouse Warp"
-msgstr ""
+msgstr "Позициониране на мишката"
 
 #: bottles/frontend/ui/details-preferences.ui:229
 msgid "Change this if you are running into mouse lag or desync."
-msgstr ""
+msgstr "Позиционирайте мишката при забавяне или загуба на синхронизация."
 
 #: bottles/frontend/ui/details-preferences.ui:241
 msgid "Screen Scaling"
@@ -916,7 +919,7 @@ msgstr "Мащабиране на екрана"
 
 #: bottles/frontend/ui/details-preferences.ui:242
 msgid "Set custom DPI."
-msgstr "Задаване на персонализирано DPI."
+msgstr "Задайте персонализирано DPI."
 
 #: bottles/frontend/ui/details-preferences.ui:248
 msgid "96"
@@ -972,7 +975,7 @@ msgstr "Визуализатор"
 
 #: bottles/frontend/ui/details-preferences.ui:273
 msgid "Select what backend to use for wined3d."
-msgstr "Изберете бекенда, който ще се използва от wined3d."
+msgstr "Изберете бекенда, който ще се използва от „WineD3D“."
 
 #: bottles/frontend/ui/details-preferences.ui:279
 msgid "gl (default)"
@@ -1002,7 +1005,7 @@ msgstr "Компоненти"
 #: bottles/frontend/ui/details-preferences.ui:317
 msgid "Updating Runner and components, please wait…"
 msgstr ""
-"Обновяване на стартиращата програма и нейните компоненти, моля изчакайте…"
+"Обновяване на стартиращата програма и нейните компоненти, моля, изчакайте…"
 
 #. TODO: replace with ComboRow
 #: bottles/frontend/ui/details-preferences.ui:334
@@ -1024,7 +1027,7 @@ msgstr "Версия на LFX"
 #: bottles/frontend/ui/details-preferences.ui:426
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
-"Включете синхрониацията за да увеличите производителността на многоядрените "
+"Включете синхронизацията за да увеличите производителността на многоядрените "
 "процесори."
 
 #: bottles/frontend/ui/details-preferences.ui:427
@@ -1061,7 +1064,7 @@ msgstr "Изберете езика, който ще се използва от 
 
 #: bottles/frontend/ui/details-preferences.ui:507
 msgid "false"
-msgstr ""
+msgstr "грешно"
 
 #: bottles/frontend/ui/details-preferences.ui:508
 msgid "Dedicated Sandbox"
@@ -1076,23 +1079,26 @@ msgid "Manage Sandbox permissions"
 msgstr "Управление на разрешенията за пясъчника"
 
 #: bottles/frontend/ui/details-preferences.ui:530
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "Наименование на бутилката"
+msgstr "Среда за изпълнение на „Bottles“"
 
 #: bottles/frontend/ui/details-preferences.ui:531
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
 msgstr ""
+"Предоставя допълнителни библиотеки за по-голяма съвместимост, но може да "
+"създаде потенциални проблеми."
 
 #: bottles/frontend/ui/details-preferences.ui:542
 msgid "Steam Runtime"
-msgstr ""
+msgstr "Среда за изпълнение на „Steam“"
 
 #: bottles/frontend/ui/details-preferences.ui:543
 msgid "The same as the Bottles one but provided by Steam."
 msgstr ""
+"Предоставя допълнителни библиотеки за по-голяма съвместимост, но може да "
+"създаде потенциални проблеми."
 
 #: bottles/frontend/ui/details-preferences.ui:554
 msgid "GameMode"
@@ -1100,15 +1106,15 @@ msgstr "Режим на игра"
 
 #: bottles/frontend/ui/details-preferences.ui:555
 msgid "Optimise gaming performance on demand."
-msgstr ""
+msgstr "Оптимизирайте производителността при необходимост."
 
 #: bottles/frontend/ui/details-preferences.ui:566
 msgid "Gamescope"
-msgstr "„Gamescope“"
+msgstr "Режим на „Gamescope“"
 
 #: bottles/frontend/ui/details-preferences.ui:567
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "Използвайте микрокомпозитора на „Gamescope“."
 
 #: bottles/frontend/ui/details-preferences.ui:570
 msgid "Manage Gamescope settings"
@@ -1120,11 +1126,11 @@ msgstr "VM Touch"
 
 #: bottles/frontend/ui/details-preferences.ui:589
 msgid "Preload game files into RAM"
-msgstr ""
+msgstr "Предварително зареждане на файловете в оперативната памет"
 
 #: bottles/frontend/ui/details-preferences.ui:592
 msgid "Manage vmtouch settings"
-msgstr "Управление на настройките на VM Touch"
+msgstr "Управление на настройките на „VM Touch“"
 
 #: bottles/frontend/ui/details-preferences.ui:610
 #: bottles/frontend/ui/dialog-launch-options.ui:91
@@ -1133,7 +1139,7 @@ msgstr "Работна директория"
 
 #: bottles/frontend/ui/details-preferences.ui:611
 msgid "Defaults to the bottle path."
-msgstr ""
+msgstr "По подразбиране е местоположението на бутилката."
 
 #: bottles/frontend/ui/details-preferences.ui:614
 #: bottles/frontend/ui/dialog-launch-options.ui:65
@@ -1147,7 +1153,7 @@ msgstr "Нулиране"
 #: bottles/frontend/ui/new.ui:163 bottles/frontend/ui/new.ui:180
 #: bottles/frontend/ui/preferences.ui:170
 msgid "Choose a directory"
-msgstr "Изберете директория"
+msgstr "Избиране на директория"
 
 #: bottles/frontend/ui/details-preferences.ui:637
 #: bottles/frontend/ui/dialog-dll-overrides.ui:9
@@ -1176,6 +1182,8 @@ msgstr "Намаляване на забавянето"
 #: bottles/frontend/ui/details-preferences.ui:676
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
 msgstr ""
+"Намалете забавянето на „PulseAudio“ на 60 мс, което ще повиши качеството на "
+"звука."
 
 #: bottles/frontend/ui/details-preferences.ui:688
 #: bottles/frontend/views/details.py:170
@@ -1209,6 +1217,8 @@ msgstr "Използване на моделите за изключване"
 #: bottles/frontend/ui/details-preferences.ui:717
 msgid "Use custom patterns to exclude some paths from versioning."
 msgstr ""
+"Използвайте персонализирани модели за изключване на местоположенията от "
+"системата за версии."
 
 #: bottles/frontend/ui/details-preferences.ui:720
 msgid "Manage Patterns"
@@ -1216,7 +1226,7 @@ msgstr "Управление на моделите"
 
 #: bottles/frontend/ui/details-preferences.ui:739
 msgid "Development and Debugging"
-msgstr ""
+msgstr "Разработка и отстраняване на неизправности"
 
 #: bottles/frontend/ui/details-preferences.ui:743
 msgid "MangoHud"
@@ -1227,22 +1237,23 @@ msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
+"Проследете ЧКС, температурата, централния и графичния процесор, и други."
 
 #: bottles/frontend/ui/details-preferences.ui:755
 msgid "OBS Vulkan Capture"
-msgstr ""
+msgstr "Прихващане от OBS „Vulkan“"
 
 #: bottles/frontend/ui/details-preferences.ui:756
 msgid "Toggle OBS game capture for all programs."
-msgstr ""
+msgstr "Превключете прихващането от OBS за всички програми."
 
 #: bottles/frontend/ui/details-preferences.ui:767
 msgid "Wine 'fixme' Logs"
-msgstr ""
+msgstr "Дневници „fixme“ на „Wine“"
 
 #: bottles/frontend/ui/details-preferences.ui:768
 msgid "Log code paths that are unimplemented in Wine."
-msgstr ""
+msgstr "Запишете функциите, които не са приложени във „Wine“."
 
 #: bottles/frontend/ui/details-programs.ui:9
 msgid "No Programs found"
@@ -1253,9 +1264,8 @@ msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button."
 msgstr ""
-"Инсталирайте програми от раздела на инсталаторите или като стартирате "
-"изпълнимия файл на инсталатора, може също да добавяте още изпълними файлове "
-"с бутона „+“."
+"Инсталирайте програми от раздела „Инсталатори“ или стартирайте изпълнимия "
+"файл на инсталатора, може да добавите още изпълними файлове с бутона „+“."
 
 #: bottles/frontend/ui/details-programs.ui:31
 msgid "Toggle Hidden"
@@ -1267,7 +1277,7 @@ msgstr "Търсене на нови програми"
 
 #: bottles/frontend/ui/details-programs.ui:55
 msgid "Add a custom executable path"
-msgstr "Добавете персонализираното местоположение на изпълнимия файл"
+msgstr "Добавяне на персонализирано местоположение на изпълнимия файл"
 
 #: bottles/frontend/ui/details-taskmanager.ui:18
 msgid "Refresh"
@@ -1291,7 +1301,7 @@ msgstr "Кратък коментар"
 
 #: bottles/frontend/ui/details-versioning.ui:68
 msgid "Save the bottle state."
-msgstr "Запази състоянието на бутилката."
+msgstr "Запазете състоянието на бутилката."
 
 #: bottles/frontend/ui/details-versioning.ui:88
 msgid "Create new state"
@@ -1310,9 +1320,8 @@ msgid "Create New Bottle"
 msgstr "Създаване на нова бутилка"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:10
-#, fuzzy
 msgid "Bottles crash report"
-msgstr "Бутилката е създадена"
+msgstr "Доклад за срив на „Bottles“"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:23
 msgid "Send report"
@@ -1323,6 +1332,8 @@ msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"„Bottles“ претърпя срив. Моля, попълнете доклада за срив и приложете "
+"следните данни за да открием проблема и да го поправим."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:75
 msgid ""
@@ -1331,6 +1342,10 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Намерихме един или повече подобни (или еднакви) доклади. Моля, преди да "
+"изпратите нов доклад, проверете внимателно дали той вече съществува. Всеки "
+"доклад изисква усилия от страна на разработчиците за диагностициране, моля, "
+"уважавайте тяхната работа и се уверете, че не публикувате дубликати."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:96
 msgid "I still want to report."
@@ -1351,6 +1366,9 @@ msgid ""
 "version.\n"
 "                        "
 msgstr ""
+"Тази версия на „Bottles“не предоставя всички необходими зависимости, моля, "
+"свържете се с отговорното лице или използвайте официалната версия.\n"
+"                        "
 
 #: bottles/frontend/ui/dialog-deps-check.ui:21
 msgid "Quit"
@@ -1383,7 +1401,7 @@ msgid ""
 "                                "
 msgstr ""
 "Тези местоположения от Вашата система са разпознати като устройства от "
-"стартиращата програма (например С:, D:...).\n"
+"стартиращата програма (например С:, D:…).\n"
 "                                "
 
 #: bottles/frontend/ui/dialog-drives.ui:35
@@ -1453,6 +1471,8 @@ msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
+"Дефинирайте моделите, които ще бъдат използвани за изключване на "
+"директориите от системата за версии."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
 msgid "Pattern"
@@ -1469,7 +1489,7 @@ msgstr "Настройки на „Gamescope“"
 #: bottles/frontend/ui/dialog-gamescope.ui:46
 msgid ""
 "Configure how Gamescope should manage the window for the games you will run."
-msgstr ""
+msgstr "Конфигурирайте управлението на прозорците за Вашите игри."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:51
 msgid "Game Resolution"
@@ -1477,12 +1497,12 @@ msgstr "Резолюция на играта"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:52
 msgid "Uses the resolution of the video game as a reference."
-msgstr ""
+msgstr "Използвайте резолюцията на играта."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:55
 #: bottles/frontend/ui/dialog-gamescope.ui:71
 msgid "Width (e.g. 1280)"
-msgstr "Ширина (например 1280)"
+msgstr "Широчина (например 1280)"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:60
 #: bottles/frontend/ui/dialog-gamescope.ui:76
@@ -1498,6 +1518,8 @@ msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution."
 msgstr ""
+"Увеличете резолюцията, когато използваната резолюция е по-голяма от тази на "
+"играта."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:83
 msgid "Miscellaneous"
@@ -1505,15 +1527,15 @@ msgstr "Разни"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:86
 msgid "Frame Rate Limit (e.g. 60)"
-msgstr ""
+msgstr "Ограничение на честотата на кадрите (например 60)"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:91
 msgid "Frame Rate Limit (When Unfocused)"
-msgstr ""
+msgstr "Ограничение на честотата на кадрите (във фонов режим)"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:96
 msgid "Use Integer Scaling"
-msgstr ""
+msgstr "Използване на целочислено мащабиране"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:107
 msgid "Window Type"
@@ -1521,7 +1543,7 @@ msgstr "Вид на прозореца"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:112
 msgid "Borderless"
-msgstr ""
+msgstr "Безрамков"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:119
 msgid "Fullscreen"
@@ -1549,21 +1571,23 @@ msgstr "Информация"
 
 #: bottles/frontend/ui/dialog-journal.ui:49
 msgid "Journal browser"
-msgstr ""
+msgstr "Търсачка"
 
 #: bottles/frontend/ui/dialog-journal.ui:56
 msgid "Journal Browser"
-msgstr ""
+msgstr "Търсачка"
 
 #: bottles/frontend/ui/dialog-journal.ui:62
 msgid ""
 "Change logging level.\n"
 "                                        "
 msgstr ""
+"Променете нивото на записване.\n"
+"                                        "
 
 #: bottles/frontend/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "Всичко"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:8
 msgid "Launch Options"
@@ -1588,7 +1612,7 @@ msgstr "например: VAR=стойност %command% -example1 -example2 -ex
 
 #: bottles/frontend/ui/dialog-launch-options.ui:58
 msgid "Post-run Script"
-msgstr ""
+msgstr "Скрипт за последващо изпълнение"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:76
 msgid "Choose a script"
@@ -1609,7 +1633,7 @@ msgstr "Нулиране на всичко"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:6
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Декларация за отказ от отговорност на „Proton“"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:22
 msgid "Use Proton"
@@ -1629,6 +1653,17 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"Използването на стартиращите програми, базирани на „Proton“ в бутилки, които "
+"не са част от „Steam“, може да създаде потенциални проблеми.\n"
+"\n"
+"Препоръчваме използването на „Wine-GE“, която е предназначена за работа "
+"извън „Steam“.\n"
+"\n"
+"Ако продължите, средата за изпълнение на „Steam“ ще се включи автоматично (в "
+"случай че е инсталирана и открита от „Bottles“), за да осигури необходимите "
+"библиотеки и да ограничи проблемите със съвместимостта. GloriousEggroll, "
+"притежателят на стартиращата програма, не носи отговорност за никакви "
+"проблеми и препоръчваме да не ги докладвате."
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:50
 msgid "I got it."
@@ -1640,7 +1675,7 @@ msgstr "Преименуване"
 
 #: bottles/frontend/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr "Изберете ново наименование за избраната програма."
+msgstr "Преименувайте избраната програма."
 
 #: bottles/frontend/ui/dialog-rename.ui:37
 msgid "New Name"
@@ -1687,7 +1722,7 @@ msgstr "Продължаване"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:49
 msgid "Launch upgrade"
-msgstr ""
+msgstr "Стартиране на надграждането"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:69
 msgid "New Versioning System"
@@ -1712,10 +1747,21 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"„Bottles“ вече има нова система за версии, която няма обратна съвместимост.\n"
+"\n"
+"За да продължите, трябва да инициализираме повторно хранилището на "
+"бутилката. Това действие ще запази данните на Вашата бутилка и ще създаде "
+"ново състояние, но ще изтрие всички съществуващи състояния.\n"
+"\n"
+"Ако имате нужда от определено състояние на бутилката, затворете този "
+"прозорец, възстановете състоянието и отворете бутилката за повторно "
+"показване на този прозорец.\n"
+"\n"
+"Старата система за версии ще бъде премахната в близко бъдеще."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
 msgid "Re-initializing repository…"
-msgstr ""
+msgstr "Повторно инициализиране на хранилището…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
 msgid "Done! Please restart Bottles."
@@ -1724,7 +1770,7 @@ msgstr "Готово! Моля, рестартирайте „Bottles“."
 #. vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.ui:11
 msgid "vkBasalt Settings"
-msgstr "Настройки на vkBasalt"
+msgstr "Настройки на „VK Базалт“"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:50
 msgid "Default"
@@ -1744,12 +1790,12 @@ msgstr "Ефекти"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:71
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "Адаптивно изостряне на контраста"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:74
 #: bottles/frontend/ui/dialog-vkbasalt.ui:110
 msgid "Sharpness"
-msgstr ""
+msgstr "Изостряне"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:78
 #: bottles/frontend/ui/dialog-vkbasalt.ui:114
@@ -1769,40 +1815,39 @@ msgstr "Показване на информацията"
 #. Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.ui:107
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "Обезшумено изостряне на яркостта"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:139
 msgid "Denoise"
-msgstr ""
+msgstr "Обезшумяване"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:171
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "Бързо приблизително изглаждане"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:174
-#, fuzzy
 msgid "Subpixel Quality"
-msgstr "Качество"
+msgstr "Качество на субпикселите"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:203
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "Праг на качеството на ръбовете"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:232
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "Минимален праг на качеството на ръбовете"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:264
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "Субпикселно морфологично изглаждане"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:267
 msgid "Edge Detection"
-msgstr ""
+msgstr "Откриване на ръбове"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:283
 msgid "Luma"
-msgstr ""
+msgstr "Яркост"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
@@ -1814,19 +1859,19 @@ msgstr "Праг"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:332
 msgid "Max Search Steps"
-msgstr ""
+msgstr "Максимални стъпки за търсене"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:360
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "Максимални диагонални стъпки за търсене"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:388
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "Максимално заобляне на ъглите"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:419
 msgid "Color Lookup Table"
-msgstr ""
+msgstr "Таблица на цветовете"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:437
 msgid "Reset to Default"
@@ -1841,30 +1886,41 @@ msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"Изострянето на АИК увеличава изострянето на кадъра. По-високите стойности го "
+"увеличават, докато по-ниските от 0 правят кадъра по-гладък от неговия "
+"оригинал."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:500
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"Изострянето на ОИЯ увеличава изострянето на кадъра. По-високите стойности го "
+"увеличават."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:518
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"Обезшумяването на ОИЯ намалява шума в кадъра. По-високите стойности го "
+"правят по-незабележим."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:536
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"Субпикселното качество на БПИ намалява ръбовете на ниво субпиксели. По-"
+"високите стойности ги изглаждат."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:554
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"Прагът на ръбовете на БПИ е най-ниският контраст за прилагане на алгоритъма "
+"на БПИ. По-високите стойности го увеличават."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:572
 msgid ""
@@ -1872,60 +1928,74 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"Минималният праг на качеството на ръбовете на БПИ е най-ниската стойност на "
+"тъмните пиксели, които не участват в алгоритъма на БПИ. По-високите "
+"стойности пренебрегват по-ниските и увеличават производителността."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:590
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"Яркостта открива ръбовете от монохромна перспектива, докато цветът ги "
+"открива според техните цветове, но процесът е по-бавен."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:608
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"Прагът на СМИ посочва чувствителността за откриване на ръбове. По-ниските "
+"стойности откриват повече ръбове за сметка на производителността."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:626
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"Максималните стъпки за търсене на СМИ посочват колко хоризонтални и "
+"вертикални стъпки за търсене са извършени при търсенето на ръбове."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:644
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"Максималните диагонални стъпки за търсене на СМИ посочват колко диагонални "
+"стъпки за търсене са извършени при търсенето на ръбове."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:662
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
 msgstr ""
+"Заоблянето на ъглите на СМИ посочва степента на заобляне на техните върхове."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:680
 msgid ""
 "CLUT transforms a range of colors into another range of colors using a .CUBE "
 "file, or a .png file where the height is equal to the width."
 msgstr ""
+"Таблицата на цветовете преобразува гамата от цветове с помощта на .CUBE или ."
+"png файл с еднаква височина и широчина."
 
 #: bottles/frontend/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
-msgstr ""
+msgstr "Вградени („Wine“)"
 
 #: bottles/frontend/ui/dll-override-entry.ui:11
 msgid "Native (Windows)"
-msgstr ""
+msgstr "Оригинални („Windows“)"
 
 #: bottles/frontend/ui/dll-override-entry.ui:12
 msgid "Builtin, then Native"
-msgstr ""
+msgstr "Вградени и оригинални"
 
 #: bottles/frontend/ui/dll-override-entry.ui:13
 msgid "Native, then Builtin"
-msgstr ""
+msgstr "Оригинални и вградени"
 
 #: bottles/frontend/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Изключено"
 
 #: bottles/frontend/ui/dll-override-entry.ui:22
 #: bottles/frontend/ui/drive-entry.ui:14
@@ -1934,11 +2004,11 @@ msgstr "Премахване"
 
 #: bottles/frontend/ui/drive-entry.ui:7
 msgid "/point/to/path"
-msgstr ""
+msgstr "/път/към/местоположението"
 
 #: bottles/frontend/ui/drive-entry.ui:24
 msgid "Choose a Directory"
-msgstr "Изберете директория"
+msgstr "Избиране на директория"
 
 #: bottles/frontend/ui/env-var-entry.ui:6
 #: bottles/frontend/ui/exclusion-pattern-entry.ui:6
@@ -1951,9 +2021,8 @@ msgid "Wineprefix name"
 msgstr "Наименование на папката на „Wine“"
 
 #: bottles/frontend/ui/importer-entry.ui:29
-#, fuzzy
 msgid "Manager"
-msgstr "Диспечер на задачите"
+msgstr "Диспечер"
 
 #: bottles/frontend/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -1961,11 +2030,11 @@ msgstr "Тази папка на „Wine“ вече съществува в „
 
 #: bottles/frontend/ui/importer.ui:24
 msgid "Import Bottles backup"
-msgstr ""
+msgstr "Импортиране на резервно копие"
 
 #: bottles/frontend/ui/importer.ui:31
 msgid "Search again for prefixes"
-msgstr ""
+msgstr "Повторно търсене на папки"
 
 #: bottles/frontend/ui/importer.ui:45
 msgid "No Prefixes Found"
@@ -1976,6 +2045,8 @@ msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
+"Няма намерени папки от „Lutris“, „PlayOnLinux“ и други.\n"
+"Използвайте иконата по-горе, за да импортирате бутилка от резервно копие"
 
 #: bottles/frontend/ui/importer.ui:81
 msgid "Configuration"
@@ -1991,7 +2062,7 @@ msgstr "Показване на манифеста…"
 
 #: bottles/frontend/ui/installer-entry.ui:23
 msgid "Read Review…"
-msgstr "Прочетете отзива…"
+msgstr "Прочитане на отзива…"
 
 #: bottles/frontend/ui/installer-entry.ui:40
 msgid "Installer name"
@@ -2029,7 +2100,7 @@ msgstr "Библиотека"
 
 #: bottles/frontend/ui/library.ui:15
 msgid "Add items here from your bottle's program list"
-msgstr "Добавете елементи тук от списъка с програми на бутилката"
+msgstr "Добавяне на елементи от списъка с програми на бутилката"
 
 #: bottles/frontend/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
@@ -2053,7 +2124,7 @@ msgstr ""
 
 #: bottles/frontend/ui/list-entry.ui:96
 msgid "Run .exe/.msi in this bottle"
-msgstr "Стартирайте .exe или .msi файлове в тази бутилка"
+msgstr "Стартиране на .exe или .msi файлове в тази бутилка"
 
 #: bottles/frontend/ui/list.ui:17
 msgid "Search your bottles…"
@@ -2121,7 +2192,7 @@ msgstr "Игри"
 
 #: bottles/frontend/ui/new.ui:85
 msgid "An environment improved for Windows games."
-msgstr ""
+msgstr "Това е специализирана среда за игри."
 
 #: bottles/frontend/ui/new.ui:93
 msgid "Application"
@@ -2129,15 +2200,15 @@ msgstr "Програми"
 
 #: bottles/frontend/ui/new.ui:94
 msgid "An environment improved for Windows applications."
-msgstr ""
+msgstr "Това е специализирана среда за програми."
 
 #: bottles/frontend/ui/new.ui:103
 msgid "Layered"
-msgstr ""
+msgstr "Многопластова"
 
 #: bottles/frontend/ui/new.ui:104
 msgid "A layered environment, where every app is a layer."
-msgstr ""
+msgstr "Това е специализирана среда, в която всяка програма е отделен пласт."
 
 #: bottles/frontend/ui/new.ui:112
 msgid "Custom"
@@ -2145,7 +2216,7 @@ msgstr "Персонализирана"
 
 #: bottles/frontend/ui/new.ui:113
 msgid "A clear environment for your experiments."
-msgstr "Чиста среда за Вашите експерименти."
+msgstr "Това е чиста среда за Вашите експерименти."
 
 #: bottles/frontend/ui/new.ui:117
 msgid "Unlinked Home Directory"
@@ -2209,16 +2280,20 @@ msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
+"Използвайте софтуера за „Windows“ на „Линукс“.\n"
+"                                                "
 
 #: bottles/frontend/ui/onboard.ui:71
 msgid "Windows in Bottles"
-msgstr "„Windows“ в „Bottles“"
+msgstr "„Windows“ в бутилки"
 
 #: bottles/frontend/ui/onboard.ui:72
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
+"„Bottles“ използва стартиращи програми за изолиране на програмите в среда, "
+"подобна на „Windows“."
 
 #: bottles/frontend/ui/onboard.ui:79
 msgid "Almost Done"
@@ -2263,15 +2338,15 @@ msgstr "Тъмен режим"
 
 #: bottles/frontend/ui/preferences.ui:20
 msgid "Whether Bottles should use the dark color scheme."
-msgstr ""
+msgstr "Използвайте тъмен режим."
 
 #: bottles/frontend/ui/preferences.ui:32
 msgid "Show Update Date"
-msgstr "Показване на датата на обновяване"
+msgstr "Дата на обновяване"
 
 #: bottles/frontend/ui/preferences.ui:33
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "Покажете датата на обновяване в списъка с бутилки."
 
 #: bottles/frontend/ui/preferences.ui:49
 #: data/com.usebottles.bottles.gschema.xml:46
@@ -2280,7 +2355,7 @@ msgstr "Известия"
 
 #: bottles/frontend/ui/preferences.ui:50
 msgid "Show notifications for downloads and installs."
-msgstr "Показване на известията за изтегляне и инсталиране."
+msgstr "Покажете известията за изтегляне и инсталиране."
 
 #: bottles/frontend/ui/preferences.ui:61
 msgid "Temp Files"
@@ -2288,7 +2363,7 @@ msgstr "Временни файлове"
 
 #: bottles/frontend/ui/preferences.ui:62
 msgid "Clean temp files when Bottles launches?"
-msgstr "Изчистване на временните файлове при стартиране на „Bottles“?"
+msgstr "Изчистете временните файлове при стартиране на „Bottles“?"
 
 #: bottles/frontend/ui/preferences.ui:73
 msgid "Close Bottles After Starting a Program"
@@ -2296,8 +2371,7 @@ msgstr "Затваряне на „Bottles“ след стартиране на
 
 #: bottles/frontend/ui/preferences.ui:74
 msgid "Close Bottles after starting a program from the file manager."
-msgstr ""
-"Затваряне на „Bottles“ след стартиране на програма от файловия мениджър."
+msgstr "Затворете „Bottles“ след стартиране на програма от файловия диспечер."
 
 #: bottles/frontend/ui/preferences.ui:87
 msgid "Integrations"
@@ -2309,11 +2383,11 @@ msgstr "Папки на „Steam Proton“"
 
 #: bottles/frontend/ui/preferences.ui:91
 msgid "List and manage Steam Proton prefixes."
-msgstr "Показване и управляване на папките на „Steam Proton“."
+msgstr "Покажете управлявайте папките на „Steam Proton“."
 
 #: bottles/frontend/ui/preferences.ui:95
 msgid "Read Documentation"
-msgstr "Прочетете документацията"
+msgstr "Прочитане на документацията"
 
 #: bottles/frontend/ui/preferences.ui:113
 msgid "List Steam Apps in Programs List"
@@ -2366,7 +2440,7 @@ msgstr "Предварителни версии"
 
 #: bottles/frontend/ui/preferences.ui:194
 msgid "Display unstable versions of runners."
-msgstr "Показване на нестабилните версии на стартиращите програми."
+msgstr "Покажете нестабилните версии на стартиращите програми."
 
 #: bottles/frontend/ui/preferences.ui:210
 msgid "DLL Components"
@@ -2378,15 +2452,15 @@ msgstr "DXVK с NVAPI"
 
 #: bottles/frontend/ui/preferences.ui:236
 msgid "Core"
-msgstr ""
+msgstr "Основни"
 
 #: bottles/frontend/ui/preferences.ui:240
 msgid "Runtime"
-msgstr ""
+msgstr "Среда за изпълнение"
 
 #: bottles/frontend/ui/preferences.ui:245
 msgid "WineBridge"
-msgstr ""
+msgstr "„Wine Bridge“"
 
 #: bottles/frontend/ui/preferences.ui:253
 #: data/com.usebottles.bottles.gschema.xml:66
@@ -2500,6 +2574,8 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
+"Изглежда нямате връзка с Интернет. Изтеглянето на основните компоненти не е "
+"възможно. Натиснете тази икона, когато възстановите връзката."
 
 #: bottles/frontend/ui/window.ui:99
 msgid "New bottle"
@@ -2507,7 +2583,7 @@ msgstr "Нова бутилка"
 
 #: bottles/frontend/utils/connection.py:67
 msgid "You are offline, unable to download."
-msgstr ""
+msgstr "Нямате връзка с Интернет, изтеглянето не е възможно."
 
 #: bottles/frontend/views/bottle_details.py:142
 #, python-format
@@ -2517,7 +2593,7 @@ msgstr "Обновяване: %s"
 #: bottles/frontend/views/bottle_details.py:200
 #: bottles/frontend/views/list.py:118
 msgid "Choose a Windows executable file"
-msgstr "Изберете изпълним файл на „Windows“"
+msgstr "Избиране на изпълним файл за „Windows“"
 
 #: bottles/frontend/views/bottle_details.py:209
 msgid "Be Aware of Sandbox"
@@ -2539,10 +2615,12 @@ msgstr "Добре"
 #: bottles/frontend/views/bottle_details.py:267
 msgid "Select the location where to save the backup config"
 msgstr ""
+"Избиране на местоположението за запазване на резервното копие на "
+"конфигурацията"
 
 #: bottles/frontend/views/bottle_details.py:271
 msgid "Select the location where to save the backup archive"
-msgstr ""
+msgstr "Избиране на местоположението за запазване на резервното копие на архива"
 
 #: bottles/frontend/views/bottle_details.py:276
 #, python-brace-format
@@ -2575,6 +2653,8 @@ msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
 msgstr ""
+"Искате ли да прекратите всички процеси?\n"
+"Незапазените данни ще бъдат изгубени."
 
 #: bottles/frontend/views/bottle_preferences.py:218
 msgid "This feature is not available on your system."
@@ -2584,15 +2664,15 @@ msgstr "Тази функция не е налична за Вашата сис�
 #: bottles/frontend/views/bottle_preferences.py:283
 #: bottles/frontend/views/bottle_preferences.py:422
 msgid "Default to the bottle path."
-msgstr ""
+msgstr "По подразбиране е местоположението на бутилката."
 
 #: bottles/frontend/views/bottle_preferences.py:274
 msgid "Choose working directory for executables"
-msgstr "Изберете работна директория за изпълнимите файлове"
+msgstr "Избиране на работна директория за изпълнимите файлове"
 
 #: bottles/frontend/views/bottle_preferences.py:772
 msgid "Toggling Compression Require Re-Initialization"
-msgstr ""
+msgstr "Превключването на компресията изисква повторна инициализация"
 
 #: bottles/frontend/views/bottle_preferences.py:773
 msgid ""
@@ -2609,7 +2689,7 @@ msgstr "Добавянето на „{0}“ е успешно."
 
 #: bottles/frontend/views/bottle_programs.py:90
 msgid "Choose an executable path"
-msgstr "Изберете местоположението на изпълнимия файл"
+msgstr "Избиране на местоположението на изпълнимия файл"
 
 #: bottles/frontend/views/bottle_programs.py:92
 msgid "Add"
@@ -2618,6 +2698,8 @@ msgstr "Добавяне"
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
 msgstr ""
+"Моля, преминете към новата система на версиите, за създаване на нови "
+"състояния."
 
 #: bottles/frontend/views/details.py:154
 msgid "Details & Utilities"
@@ -2629,7 +2711,7 @@ msgstr "Зависимости"
 
 #: bottles/frontend/views/details.py:167
 msgid "Found in your bottle's Start menu."
-msgstr ""
+msgstr "Намира се в менюто „Старт“ на бутилката."
 
 #: bottles/frontend/views/details.py:174
 msgid "Installers"
@@ -2641,7 +2723,7 @@ msgstr "Операциите са в процес на изпълнение, м�
 
 #: bottles/frontend/views/details.py:381
 msgid "Return to your bottles."
-msgstr "Връщане към Вашите бутилки."
+msgstr "Върнете се към Вашите бутилки."
 
 #: bottles/frontend/views/importer.py:89
 msgid "Backup imported successfully."
@@ -2658,7 +2740,7 @@ msgstr "Импортиране на резервното копие…"
 
 #: bottles/frontend/views/importer.py:115
 msgid "Choose a backup archive"
-msgstr ""
+msgstr "Избиране на резервното копие на архива"
 
 #: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
 msgid "N/A"
@@ -2688,7 +2770,7 @@ msgstr "Избиране на рецепта"
 
 #: bottles/frontend/views/new.py:166
 msgid "Choose where to store the bottle"
-msgstr "Изберете къде да съхраните бутилката"
+msgstr "Избиране на местоположение за съхранение на бутилката"
 
 #: bottles/frontend/views/new.py:219
 msgid "There was an error creating the bottle."
@@ -2705,25 +2787,28 @@ msgstr "„Steam“ не е намерен или „Bottles“ няма нуж�
 
 #: bottles/frontend/views/preferences.py:156
 msgid "Choose new bottles path"
-msgstr ""
+msgstr "Избиране на новото местоположение на бутилките"
 
 #: bottles/frontend/views/preferences.py:199
 msgid "Based on Valve's Wine, includes staging and Proton patches."
 msgstr ""
+"Използва „Wine“ от „Valve“, включва тестовите версии и кръпки от „Proton“."
 
 #: bottles/frontend/views/preferences.py:200
 msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
+msgstr "Използва „Wine“, включва тестовите версии и кръпки от „Proton“."
 
 #: bottles/frontend/views/preferences.py:203
 msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
+msgstr "Използва „Wine“, включва кръпки от тестовите версии."
 
 #: bottles/frontend/views/preferences.py:204
 msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
+"Използва „Wine“ от „Valve“, включва тестовите версии и кръпки от „Proton“ и "
+"„Steam“. Изисква включването на средата за изпълнение на „Steam“."
 
 #: bottles/frontend/views/preferences.py:206
 msgid "Other"
@@ -2741,7 +2826,7 @@ msgstr "Инсталиране…"
 #: bottles/frontend/widgets/installer.py:72
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr "Манифест на „{0}“"
+msgstr "Манифест на {0}"
 
 #: bottles/frontend/widgets/dependency.py:170
 #, python-brace-format
@@ -2806,7 +2891,7 @@ msgstr "Добавянето на „{0}“ към Вашата библиоте
 #: bottles/frontend/widgets/program.py:306
 #, python-brace-format
 msgid "'{0}' added to your Steam library"
-msgstr "Добавяне на „{0}“ към Вашата библиотека в „Steam“"
+msgstr "Добавянето на „{0}“ към Вашата библиотека в „Steam“ е успешно"
 
 #: bottles/frontend/windows/main_window.py:188
 msgid "Custom Bottles Path not Found"
@@ -2816,10 +2901,12 @@ msgstr "Персонализираното местоположение на „
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
 msgstr ""
+"Връщане на местоположението по подразбиране. Бутилките няма да бъдат "
+"показани."
 
 #: bottles/frontend/windows/main_window.py:310
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Библиотеки от трети страни и специални благодарности"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -2831,7 +2918,7 @@ msgstr "Мирко Бромбин"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Използвайте софтуер за „Windows“ на Линукс с „Bottles“!"
+msgstr "Използвайте софтуер за „Windows“ на „Линукс“ с „Bottles“!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -2843,11 +2930,17 @@ msgid ""
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
+"Нашата вградена система за инсталиране на зависимостите осигурява "
+"автоматична съвместимост на софтуера. Използвайте диспечера на изтеглянията, "
+"за да изтеглите официалните компоненти: стартиращата програма („Wine“ или "
+"„Proton“), DXVK, зависимостите и други."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
+"Системата за версии на бутилките осигурява сигурност за Вашите файлове и "
+"дава възможност да ги възстановите, ако е необходимо!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
@@ -2856,7 +2949,7 @@ msgstr "Възможности:"
 #: data/com.usebottles.bottles.appdata.xml.in:18
 msgid "Create bottles using preconfigured environments or create your own"
 msgstr ""
-"Създаване на бутилки чрез предварително конфигурирани среди или създаване на "
+"Създаване на бутилки с помощта на предварително конфигурирани среди или на "
 "своя собствена среда"
 
 #: data/com.usebottles.bottles.appdata.xml.in:19
@@ -2865,11 +2958,11 @@ msgid ""
 "of your file-manager"
 msgstr ""
 "Стартиране на изпълними файлове (.exe или .msi) във Вашите бутилки директно "
-"от контекстното меню на файловия мениджър"
+"от контекстното меню на файловия диспечер"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr "Автоматично откриване на програми инсталирани във Вашите бутилки"
+msgstr "Автоматично откриване на инсталираните програми във Вашите бутилки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
@@ -2877,7 +2970,7 @@ msgstr "Бързо добавяне на променливи на средат�
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from per-bottle preferences"
-msgstr "Замяна на DLL файловете, според предпочитанията на всяка бутилка"
+msgstr "Замяна на DLL файловете за всяка бутилка"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
@@ -2926,7 +3019,7 @@ msgstr "Архивиране и импортиране на бутилки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
 msgid "Import Wine prefixes from other managers"
-msgstr "Импортиране на папките на „Wine“ от други приложения"
+msgstr "Импортиране на папките на „Wine“ от други диспечери"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning"
@@ -2934,7 +3027,7 @@ msgstr "Система за версии на „Bottles“"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
-msgstr ""
+msgstr "… и много други!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
 msgid "News"
@@ -2945,6 +3038,8 @@ msgid ""
 "New versioning system which allow versioning the whole bottle (also "
 "configuration)"
 msgstr ""
+"Новата система за версии позволява запазването на цялата бутилка и нейната "
+"конфигурация"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Automatic versioning can now be toggled on and off"
@@ -2953,20 +3048,23 @@ msgstr "Автоматичната система за версии вече м�
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "Exclude paths from versioning using patterns"
 msgstr ""
+"Използват се шаблони за изключване на местоположенията от системата за версии"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
 msgid "Use compression for versioning states"
-msgstr "Използване на компресия за състоянията на системата за версии"
+msgstr "Използва се компресия за състоянията на системата за версии"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
-msgstr ""
+msgstr "Процесът на запазване на опциите за стартиране е подобрен"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid ""
 "Improved YAML performance using libyaml (the python-yaml package must "
 "provide support for it)"
 msgstr ""
+"Производителността на YAML е подобрена с помощта на libyaml (трябва да се "
+"поддържа от пакета python-yaml)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid "New About dialog"
@@ -2975,25 +3073,28 @@ msgstr "Нов диалогов прозорец „Относно“"
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "Covers support in Library mode (thanks to SteamGridDB)"
 msgstr ""
-"Осигурява поддръжка в режим „Библиотека“ (благодарение на „SteamGridDB“)"
+"Осигурена е поддръжка в режим „Библиотека“ (благодарение на „SteamGridDB“)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid "Removed DXVK HUD option, use the Environment Variables section instead"
-msgstr ""
+msgstr "DXVK HUD е премахнат, използвайте раздела „Променливи на средата“"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "bottles-cli shell option now provide command output"
-msgstr ""
+msgstr "bottles-cli вече показва резултати от въведените команди"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
 msgid "The Health Check is now in the About´s Troubleshooting section"
 msgstr ""
+"„Здравната проверка“ вече се намира в раздела „Отстраняване на неизправности“"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
 msgid ""
 "Extended Core dependencies check, packagers are invited to double-check "
 "their packages"
 msgstr ""
+"Проверката за основните зависимости е разширена, подканваме отговорните лица "
+"да проверят своите пакети"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "New default permission for the Flatpak package: xdg-download"
@@ -3002,10 +3103,11 @@ msgstr "Ново разрешение по подразбиране за пак�
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Added credits for Third-Party Libraries in the Credits section"
 msgstr ""
+"Добавени са заслугите за библиотеките от трети страни в раздел „Заслуги“"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
-msgstr ""
+msgstr "Потребителският интерфейс е подобрен"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
@@ -3013,50 +3115,54 @@ msgstr "Поправки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Fix for skipable onboard dialog"
-msgstr ""
+msgstr "Кръпка за диалоговия прозорец с възможност за пропускане"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Fix for empty bottle name"
-msgstr ""
+msgstr "Кръпка за празното наименование на бутилката"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
 msgid "Fix gstreamer libs for win32 bottles"
-msgstr ""
+msgstr "Кръпка за библиотеките на „GStreamer“ за 32-битовите бутилки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Fix for RemoteDisconnected error causing a crash"
-msgstr ""
+msgstr "Кръпка за грешката „RemoteDisconnected“, причиняваща срив"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
 msgid "Fix wrong Vaniglia listing"
-msgstr ""
+msgstr "Кръпка за грешния списък от „Vaniglia“"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
 msgid "Fix templates being generated with symlinked paths causing loops"
 msgstr ""
+"Кръпка за генерирането на шаблони със свързани местоположения, причиняващи "
+"цикличност"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 msgid ""
 "Fix configuration migration causing a crash when the user altered the "
 "configuration"
 msgstr ""
+"Кръпка за промяна на конфигурацията по време на нейната миграция, "
+"причиняваща срив"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
 msgid "Fix mscoree.dll not found"
-msgstr ""
+msgstr "Кръпка за липсващия файл mscoree.dll"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 msgid "Fix regression for the -b option of the legacy bottles cli"
-msgstr ""
+msgstr "Кръпка за аргумента -b от командния ред на „Bottles“"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
 msgid "Fix Steam Launch Options parser causing a crash"
-msgstr ""
+msgstr "Кръпка за аргументите на „Стартиране със „Steam““, причиняващи срив"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
 msgid ""
 "Fix a regression in the Add to Steam button not adding the new entry in Steam"
-msgstr ""
+msgstr "Кръпка за неработещия бутон „Добавяне към „Steam““"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "Translations"
@@ -3116,7 +3222,7 @@ msgstr "Миграция от „Flatpak“"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr "Превключване на диалога за миграция от „Flatpak“."
+msgstr "Превключете диалога за миграция от „Flatpak“."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
@@ -3132,7 +3238,7 @@ msgstr "Превключване на датата на обновяване в 
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr "Превключване на датата на обновяване в списъка с бутилки."
+msgstr "Превключете датата на обновяване в списъка с бутилки."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
@@ -3140,7 +3246,7 @@ msgstr "Списък от „Steam“"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
-msgstr "Превключване на списъка от „Steam“."
+msgstr "Превключете списъка от „Steam“."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
@@ -3148,7 +3254,7 @@ msgstr "Списък от „Epic Games“"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr "Превключване на списъка от „Epic Games“."
+msgstr "Превключете списъка от „Epic Games“."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
@@ -3156,15 +3262,15 @@ msgstr "Списък от „Ubisoft Connect“"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."
-msgstr "Превключване на списъка от „Ubisoft Connect“."
+msgstr "Превключете списъка от „Ubisoft Connect“."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
-msgstr "Ширина на прозореца"
+msgstr "Широчина на прозореца"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 msgid "Change the window width."
-msgstr "Промяна на ширината на прозореца."
+msgstr "Променете широчината на прозореца."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Window height"
@@ -3172,19 +3278,19 @@ msgstr "Височина на прозореца"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Change the window height."
-msgstr "Промяна на височината на прозореца."
+msgstr "Променете височината на прозореца."
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
-msgstr "Показване на известията."
+msgstr "Покажете известията."
 
 #: data/com.usebottles.bottles.gschema.xml:51
 msgid "Temp cleaning"
-msgstr "Почистване на временни файлове"
+msgstr "Почистване на временните файлове"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid "Clean the temp path when booting the system."
-msgstr "Почистване на временните файлове при стартиране на системата."
+msgstr "Почистете временните файлове при стартиране на системата."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Release Candidate"
@@ -3192,7 +3298,7 @@ msgstr "Тестова версия"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle release candidate for runners."
-msgstr "Превключване на тестовите версии на стартиращите програми."
+msgstr "Превключете тестовите версии на стартиращите програми."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
@@ -3207,7 +3313,7 @@ msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Превключване на експерименталните функции, като системата за версии, "
+"Превключете експерименталните функции, като системата за версии, "
 "инсталаторите и тестовите версии на стартиращите програми."
 
 #: data/com.usebottles.bottles.gschema.xml:71
@@ -3216,7 +3322,7 @@ msgstr "Поддръжка за „Steam Proton“"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Превключване на поддръжката за папките на „Steam Proton“."
+msgstr "Превключете поддръжката за папките на „Steam Proton“."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:sandbox"
@@ -3224,7 +3330,7 @@ msgstr "Експерименти: пясъчник"
 
 #: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Превключване на експерименталния режим Пясъчник в бутилка."
+msgstr "Превключете експерименталния режим „Пясъчник“."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Experiments:library"
@@ -3232,7 +3338,7 @@ msgstr "Експерименти: Библиотека"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Toggle experimental Library mode."
-msgstr "Превключване на експерименталния режим Библиотека."
+msgstr "Превключете експерименталния режим „Библиотека“."
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Automatically close Bottles"
@@ -3241,7 +3347,7 @@ msgstr "Автоматично затваряне на „Bottles“"
 #: data/com.usebottles.bottles.gschema.xml:87
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
-"Затваряне на „Bottles“ след стартиране на изпълним файл от файловия мениджър."
+"Затворете „Bottles“ след стартиране на изпълним файл от файловия диспечер."
 
 #: data/com.usebottles.bottles.gschema.xml:91
 msgid "Show sandbox warning"
@@ -3249,7 +3355,7 @@ msgstr "Показване на предупреждение за пясъчни
 
 #: data/com.usebottles.bottles.gschema.xml:92
 msgid "Toggle sandbox warning."
-msgstr "Превключване на предупреждението за пясъчника."
+msgstr "Превключете предупреждението за пясъчника."
 
 #, fuzzy
 #~ msgid "Loading…"
