@@ -126,32 +126,32 @@ template PreferencesWindow : .AdwPreferencesWindow {
 
     .AdwPreferencesGroup {
       title: _("Advanced");
-
       .AdwActionRow action_bottles_path {
-        title: _("Custom Bottles Path (Requires Restart)");
-        subtitle: _("Choose where to store the new bottles (this will not move the existing ones).");
-        activatable-widget: "btn_bottles_path";
-
-        Button btn_bottles_path_reset {
-          tooltip-text: _("Reset to default");
-          valign: center;
-          visible: false;
-          icon-name: "edit-undo-symbolic";
-
-          styles [
-            "flat",
-          ]
-        }
-
-        Button btn_bottles_path {
-          tooltip-text: _("Choose a directory");
-          halign: center;
-          valign: center;
-          icon-name: "document-open-symbolic";
-
-          styles [
-            "flat",
-          ]
+        title: _("Bottles Directory");
+        subtitle: _("Directory that contains the data of your Bottles.");
+        activatable: True;
+        .GtkBox {
+          spacing: 6;
+          Button btn_bottles_path_reset {
+            tooltip-text: _("Reset to default");
+            valign: center;
+            visible: false;
+            icon-name: "edit-undo-symbolic";
+            styles ["flat"]
+          }
+          .GtkImage {
+            icon-name: folder-symbolic;
+            styles ["dim-label"]
+          }
+          .GtkLabel label_bottles_path {
+            ellipsize: end;
+            label: _("(Default)");
+            styles ["dim-label"]
+          }
+          .GtkImage {
+            icon-name: go-next-symbolic;
+            styles ["dim-label"]
+          }
         }
       }
     }
