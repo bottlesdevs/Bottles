@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg" width="64">
   <h1 align="center">Bottles</h1>
-  <p align="center">Easily manage wineprefix using environments</p>
+  <p align="center">Easily run Windows Software using Bottles</p>
 </div>
 
 <br/>
