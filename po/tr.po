@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-09-30 06:30+0000\n"
-"Last-Translator: Zay <zayria@proton.me>\n"
+"PO-Revision-Date: 2022-10-10 18:08+0000\n"
+"Last-Translator: İbrahim Hakkı Ergin <ibrahimh.ergin@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
 "Language: tr\n"
@@ -192,7 +192,7 @@ msgstr "Durum bulunamadı"
 #: bottles/backend/managers/versioning.py:191
 #: src/backend/managers/versioning.py:191
 msgid "State {} is already the active state"
-msgstr "Durum {} zaten etkin durum"
+msgstr "Zaten etkin {}"
 
 #: bottles/frontend/windows/crash.py:37 src/dialogs/crash.py:37
 msgid "Show report"
@@ -327,7 +327,7 @@ msgstr "Kuruluyor {0}…"
 #: bottles/frontend/windows/installer.py:125 src/dialogs/installer.py:125
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr "{0} artık programlar görünümünde kullanılabilir."
+msgstr "{0} artık programlar görüntülenebilir."
 
 #: bottles/frontend/windows/installer.py:171 src/dialogs/installer.py:171
 msgid "Installer failed with unknown error"
@@ -1507,9 +1507,8 @@ msgstr "Yeni Şişe Oluştur"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:10
 #: src/ui/dialog-crash-report.ui:10
-#, fuzzy
 msgid "Bottles crash report"
-msgstr "Şişeler Çökme Raporu"
+msgstr "Bottles Çökme Raporu"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:23
 #: src/ui/dialog-crash-report.ui:23
@@ -1555,12 +1554,17 @@ msgid "Incomplete package"
 msgstr "Tamamlanmamış paket"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:16 src/ui/dialog-deps-check.ui:16
+#, fuzzy
 msgid ""
 "This version of Bottles does not seem to provide all the necessary core "
 "dependencies, please contact the package maintainer or use an official "
 "version.\n"
 "                        "
 msgstr ""
+"Bottles'ın bu sürümü gerekli tüm temel bağımlılıkları sağlamıyor gibi "
+"görünüyor, lütfen paket sahibiyle iletişime geçin veya resmi bir sürüm "
+"kullanın.\n"
+"                        "
 
 #: bottles/frontend/ui/dialog-deps-check.ui:21 src/ui/dialog-deps-check.ui:21
 msgid "Quit"
