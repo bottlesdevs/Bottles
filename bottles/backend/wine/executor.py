@@ -118,8 +118,8 @@ class WineExecutor:
         return cls(
             config=config,
             exec_path=program["path"],
-            args=program["arguments"],
-            cwd=program["folder"],
+            args=program.get("arguments", ""),
+            cwd=program.get("folder", None),
             post_script=program.get("script", None),
             terminal=terminal,
             override_dxvk=dxvk,

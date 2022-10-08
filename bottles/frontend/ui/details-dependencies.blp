@@ -64,19 +64,6 @@ Popover pop_context {
 Box actions {
   spacing: 6;
 
-  Button btn_install {
-    visible: false;
-    label: _("Install Selected");
-    tooltip-text: _("We strongly advise against installing multiple dependencies at once.");
-    hexpand: true;
-  }
-
-  ToggleButton btn_toggle_selection {
-    visible: true;
-    tooltip-text: _("Select Dependencies");
-    icon-name: "selection-mode-symbolic";
-  }
-
   ToggleButton btn_search {
     active: bind search_bar.search-mode-enabled no-sync-create bidirectional;
     tooltip-text: _("Search");

@@ -191,7 +191,7 @@ class NewView(Adw.Window):
 
         sandbox_state = self.switch_sandbox.get_state()
         if self.selected_env == "custom":
-            self.runner = self.combo_runner.get_active_id()
+            self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
         if self.combo_arch.get_selected() == 0:
             arch = "win64"
