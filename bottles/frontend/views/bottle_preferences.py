@@ -89,7 +89,6 @@ class PreferencesView(Adw.PreferencesPage):
     switch_gamescope = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
-    switch_pulse_latency = Gtk.Template.Child()
     switch_fixme = Gtk.Template.Child()
     switch_runtime = Gtk.Template.Child()
     switch_steam_runtime = Gtk.Template.Child()
@@ -178,7 +177,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_sandbox.connect('state-set', self.__toggle_sandbox)
         self.switch_fsr.connect('state-set', self.__toggle_fsr)
         self.switch_discrete.connect('state-set', self.__toggle_discrete_gpu)
-        self.switch_pulse_latency.connect('state-set', self.__toggle_pulse_latency)
         self.switch_fixme.connect('state-set', self.__toggle_fixme)
         self.switch_versioning_compression.connect('state-set', self.__toggle_versioning_compression)
         self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
@@ -356,7 +354,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_sandbox.handler_block_by_func(self.__toggle_sandbox)
         self.switch_discrete.handler_block_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
-        self.switch_pulse_latency.handler_block_by_func(self.__toggle_pulse_latency)
         self.switch_versioning_compression.handler_block_by_func(self.__toggle_versioning_compression)
         self.switch_auto_versioning.handler_block_by_func(self.__toggle_auto_versioning)
         self.switch_versioning_patterns.handler_block_by_func(self.__toggle_versioning_patterns)
@@ -401,7 +398,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.toggle_futex2.set_active(parameters["sync"] == "futex2")
 
         self.switch_discrete.set_active(parameters["discrete_gpu"])
-        self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
 
         self.btn_cwd_reset.set_visible(self.config.get("WorkingDir"))
 
@@ -480,7 +476,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_sandbox.handler_unblock_by_func(self.__toggle_sandbox)
         self.switch_discrete.handler_unblock_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_unblock_by_func(self.__toggle_fsr)
-        self.switch_pulse_latency.handler_unblock_by_func(self.__toggle_pulse_latency)
         self.switch_versioning_compression.handler_unblock_by_func(self.__toggle_versioning_compression)
         self.switch_auto_versioning.handler_unblock_by_func(self.__toggle_auto_versioning)
         self.switch_versioning_patterns.handler_unblock_by_func(self.__toggle_versioning_patterns)
@@ -1019,15 +1014,6 @@ class PreferencesView(Adw.PreferencesPage):
             config=self.config,
             key="Language",
             value=language[0],
-        ).data["config"]
-
-    def __toggle_pulse_latency(self, widget, state):
-        """Set the pulse latency to use for the bottle"""
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="pulseaudio_latency",
-            value=state,
-            scope="Parameters"
         ).data["config"]
 
     def __toggle_fixme(self, widget, state):

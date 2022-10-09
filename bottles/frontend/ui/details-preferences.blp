@@ -453,20 +453,6 @@ template DetailsPreferences : .AdwPreferencesPage {
   }
 
   .AdwPreferencesGroup {
-    title: _("Audio");
-
-    .AdwActionRow {
-      activatable-widget: "switch_pulse_latency";
-      title: _("Reduce Latency");
-      subtitle: _("Set PulseAudio latency to 60 ms, increasing sound quality.");
-
-      Switch switch_pulse_latency {
-        valign: center;
-      }
-    }
-  }
-
-  .AdwPreferencesGroup {
     title: _("Versioning");
 
     .AdwActionRow {

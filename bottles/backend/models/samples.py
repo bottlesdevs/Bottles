@@ -107,7 +107,8 @@ class Samples:
             "Runner": "wine",
             "Parameters": {
                 "dxvk": True,
-                "vkd3d": True
+                "vkd3d": True,
+                "pulseaudio_latency": True
             },
             "Installed_Dependencies": [
                 "arial32",

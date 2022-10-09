@@ -84,7 +84,6 @@ class BottleView(Adw.PreferencesPage):
     label_name = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
-    extra_separator
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
     pop_run = Gtk.Template.Child()
