@@ -36,7 +36,6 @@ class WineExecutor:
             override_vkd3d: bool = None,
             override_nvapi: bool = None,
             override_fsr: bool = None,
-            override_pulse_latency: bool = None,
             override_virt_desktop: bool = None
     ):
         logging.info("Launching an executable…")
@@ -82,9 +81,6 @@ class WineExecutor:
             self.environment["WINE_FULLSCREEN_FSR"] = "1"
             self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(self.config['Parameters']['fsr_level'])
 
-        if override_pulse_latency is not None and override_pulse_latency:
-            self.environment["PULSE_LATENCY_MSEC"] = "60"
-
         if "WINEDLLOVERRIDES" in self.environment:
             self.environment["WINEDLLOVERRIDES"] += "," + ",".join(env_dll_overrides)
         else:
@@ -99,7 +95,6 @@ class WineExecutor:
         vkd3d = config["Parameters"]["vkd3d"]
         nvapi = config["Parameters"]["dxvk_nvapi"]
         fsr = config["Parameters"]["fsr"]
-        pulse_latency = config["Parameters"]["pulseaudio_latency"]
         virt_desktop = config["Parameters"]["virtual_desktop"]
 
         if program.get("dxvk") != dxvk:
@@ -110,8 +105,6 @@ class WineExecutor:
             nvapi = program.get("dxvk_nvapi")
         if program.get("fsr") != fsr:
             fsr = program.get("fsr")
-        if program.get("pulseaudio_latency") != pulse_latency:
-            pulse_latency = program.get("pulseaudio_latency")
         if program.get("virtual_desktop") != virt_desktop:
             virt_desktop = program.get("virtual_desktop")
 
@@ -126,7 +119,6 @@ class WineExecutor:
             override_vkd3d=vkd3d,
             override_nvapi=nvapi,
             override_fsr=fsr,
-            override_pulse_latency=pulse_latency,
             override_virt_desktop=virt_desktop
         ).run()
 

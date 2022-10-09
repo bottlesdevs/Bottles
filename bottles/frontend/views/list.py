@@ -129,10 +129,7 @@ class BottleViewEntry(Adw.ActionRow):
 
     def disable(self):
         self.window.go_back()
-        self.handler_block_by_func(self.show_details)
-        self.spinner.start()
-        self.spinner.set_visible(True)
-        self.set_sensitive(False)
+        self.set_visible(False)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')

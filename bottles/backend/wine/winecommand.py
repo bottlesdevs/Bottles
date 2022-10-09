@@ -144,6 +144,10 @@ class WineCommand:
         else:
             bottle = ManagerUtils.get_bottle_path(config)
 
+        # Clean some env variables which can cause trouble
+        # ref: <https://github.com/bottlesdevs/Bottles/issues/2127>
+        env.remove("XDG_DATA_HOME")
+
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
         is_nvidia = DisplayUtils.check_nvidia_device()

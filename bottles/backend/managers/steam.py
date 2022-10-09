@@ -148,7 +148,11 @@ class SteamManager:
             return {}
 
         with open(self.localconfig_path, "r") as f:
-            data = SteamUtils.parse_acf(f.read())
+            content = f.read()
+            try:
+                data = SteamUtils.parse_acf(f.read())
+            except UnicodeDecodeError:
+                data = SteamUtils.parse_acf(content.encode('latin-1'))
 
         if data is None:
             logging.warning(f"Could not parse localconfig.vdf")
