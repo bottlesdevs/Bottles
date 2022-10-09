@@ -74,13 +74,13 @@ class ProgramsView(Adw.PreferencesPage):
                     "path": _file.get_path(),
                     "id": _uuid
                 }
-                self.manager.update_config(
+                self.config = self.manager.update_config(
                     config=self.config,
                     key=_uuid,
                     value=_program,
                     scope="External_Programs",
                     fallback=True
-                )
+                ).data["config"]
                 self.parent.update_programs(config=self.config, force_add=_program)
                 self.window.show_toast(_("'{0}' added.").format(_file_name[:-4]))
 
