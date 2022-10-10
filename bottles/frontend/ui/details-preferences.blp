@@ -15,7 +15,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_dxvk {
       activatable-widget: "switch_dxvk";
-      title: _("Direct3D 9/10/11 Compatibility");
+      title: _("Translate DirectX to Vulkan");
       subtitle: _("Translate from Direct3D 9, 10 and 11 to Vulkan using DXVK.");
 
       Spinner spinner_dxvkbool {
@@ -31,7 +31,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_vkd3d {
       activatable-widget: "switch_vkd3d";
-      title: _("Direct3D 12 Compatibility");
+      title: _("Translate DirectX 12 to Vulkan");
       subtitle: _("Translate from Direct3D 12 to Vulkan using VKD3D.");
 
       Spinner spinner_vkd3dbool {
@@ -48,7 +48,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     .AdwActionRow row_nvapi {
       activatable-widget: "switch_nvapi";
       title: _("Deep Learning Super Sampling");
-      subtitle: _("Use Deep learning super sampling (DLSS) and NVAPI to increase performance at the expense of visuals using DXVK-NVAPI. Only works on newer NVIDIA GPUs.");
+      subtitle: _("Increase performance at the expense of visuals using DXVK-NVAPI. Only works on newer NVIDIA GPUs.");
       visible: false;
 
       Spinner spinner_nvapibool {
@@ -64,7 +64,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwComboRow combo_fsr {
       title: "FidelityFX Super Resolution";
-      subtitle: _("Use FidelityFX super resolution (FSR) to increase performance at the expense of visuals. Only works on Vulkan.");
+      subtitle: _("Increase performance at the expense of visuals. Only works on Vulkan.");
       model:
       StringList {
         strings [
@@ -84,8 +84,8 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_latencyflex {
       activatable-widget: "switch_latencyflex";
-      title: _("Reduce Input Latency");
-      subtitle: _("Reduce input latency when the system is GPU bound using LatencyFleX. Can be detected by some anti-cheat software.");
+      title: _("Lower Input Lag");
+      subtitle: _("Increase responsiveness using LatencyFleX. Can be detected by some anti-cheat software.");
 
       Spinner spinner_latencyflexbool {
         tooltip-text: _("Updating LatencyFleX, please wait…");
@@ -111,8 +111,8 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_vkbasalt {
       activatable-widget: "switch_vkbasalt";
-      title: _("Vulkan Post-Processing Layer");
-      subtitle: _("Enhance sharpness, shaders and more using vkBasalt. Only works on Vulkan.");
+      title: _("Anti-Aliasing");
+      subtitle: _("Enhance sharpness using vkBasalt. Only works on Vulkan.");
 
       Button btn_manage_vkbasalt {
         tooltip-text: _("Manage Vulkan Post-Processing Layer Settings");
@@ -379,8 +379,8 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow {
       activatable-widget: "switch_vmtouch";
-      title: _("Cache");
-      subtitle: _("Preload game files into RAM to improve loading time when launching the game multiple times. The game will take longer to start for the first time.");
+      title: _("Preload Game Files");
+      subtitle: _("Improve loading time when launching the game multiple times. The game will take longer to start for the first time.");
 
       Button btn_manage_vmtouch {
         visible: false;
