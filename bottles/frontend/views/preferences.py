@@ -25,7 +25,6 @@ from bottles.frontend.windows.filechooser import FileChooser
 
 from bottles.backend.managers.data import DataManager
 
-
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class PreferencesWindow(Adw.PreferencesWindow):
     __gtype_name__ = 'PreferencesWindow'
@@ -54,8 +53,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
     action_prerelease = Gtk.Template.Child()
     action_bottles_path = Gtk.Template.Child()
     action_steam_proton = Gtk.Template.Child()
-    btn_bottles_path = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
+    label_bottles_path = Gtk.Template.Child()
     btn_steam_proton_doc = Gtk.Template.Child()
     pref_core = Gtk.Template.Child()
 
@@ -78,7 +77,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         bottles_path = self.data.get("custom_bottles_path")
         if bottles_path:
-            self.action_bottles_path.set_subtitle(bottles_path)
+            self.label_bottles_path.set_label(os.path.basename(bottles_path))
             self.btn_bottles_path_reset.set_visible(True)
 
         # bind widgets
@@ -107,7 +106,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.connect('changed::dark-theme', self.__toggle_night)
         self.settings.connect('changed::release-candidate', self.__toggle_rc)
         self.settings.connect('changed::update-date', self.__toggle_update_date)
-        self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
+        self.action_bottles_path.connect('activated', self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
         self.btn_steam_proton_doc.connect('clicked', self.__open_steam_proton_doc)
 
@@ -139,30 +138,43 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def __choose_bottles_path(self, widget):
         def set_path(_dialog, response, _file_dialog):
-            self.btn_bottles_path_reset.set_visible(True)
-            if response == Gtk.ResponseType.OK:
+            if response == Gtk.ResponseType.ACCEPT:
                 _file = _file_dialog.get_file()
                 self.data.set("custom_bottles_path", _file.get_path())
-                self.action_bottles_path.set_subtitle(_file.get_path())
+                self.label_bottles_path.set_label(os.path.basename(_file.get_path()))
+                self.btn_bottles_path_reset.set_visible(True)
+                dialog = Adw.MessageDialog.new(
+                    self.window,
+                    _("Directory Will be Updated on Next Launch"),
+                    _("Bottles has to be relaunched to change the data directory.")
+                )
+                dialog.add_response("ok", _("OK"))
+                dialog.present()
             else:
-                self.action_bottles_path.set_subtitle(
-                    _("Choose where to store the new bottles (this will not move the existing ones)."))
+                if self.data.get("custom_bottles_path") is not None:
+                    self.label_bottles_path.set_label(os.path.basename(self.data.get("custom_bottles_path")))
             _file_dialog.destroy()
 
         FileChooser(
             parent=self.window,
-            title=_("Choose new bottles path"),
+            title=_("Choose new Bottles path"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
             buttons=(_("Cancel"), _("Select")),
-            native=False,
-            callback=set_path
+            callback=set_path,
+            native=True
         )
 
     def __reset_bottles_path(self, widget):
         self.data.remove("custom_bottles_path")
         self.btn_bottles_path_reset.set_visible(False)
-        self.action_bottles_path.set_subtitle(
-            _("Choose where to store the new bottles (this will not move the existing ones)."))
+        self.label_bottles_path.set_label(_("(Default)"))
+        dialog = Adw.MessageDialog.new(
+            self.window,
+            _("Directory Will be Updated on Next Launch"),
+            _("Bottles has to be relaunched to change the data directory.")
+        )
+        dialog.add_response("ok", _("OK"))
+        dialog.present()
 
     def populate_runtimes_list(self):
         for runtime in self.manager.supported_runtimes.items():
