@@ -1,4 +1,5 @@
 import os
+import stat
 import shutil
 import subprocess
 from glob import glob
@@ -453,10 +454,28 @@ class WineCommand:
                     command = f"mangohud {command}"
 
             if gamescope_available and params.get("gamescope"):
+                gamescope_run = "/tmp/run.sh"
+
+                # Remove run.sh if it already exists
+                if os.path.exists(gamescope_run):
+                    os.remove(gamescope_run)
+
+                # Create run.sh in /tmp where Gamescope will execute it
+                file = [f"#/usr/bin/env sh\n"]
                 if mangohud_available and params.get("mangohud"):
-                    command = f"{self.__get_gamescope_cmd(return_steam_cmd)} -- {command}&; mangoapp"
+                    file.append(f"{command}&\nmangoapp")
                 else:
-                    command = f"{self.__get_gamescope_cmd(return_steam_cmd)}  -- {command}"
+                    file.append(command)
+
+                with open(gamescope_run, "w") as f:
+                    f.write("".join(file))
+
+                # Set new command
+                command = f"{self.__get_gamescope_cmd(return_steam_cmd)} {gamescope_run}"
+
+                # Set file as executable
+                st = os.stat(gamescope_run)
+                os.chmod(gamescope_run, st.st_mode | stat.S_IEXEC)
 
             if obs_vkc_available and params.get("obsvkc"):
                 command = f"{obs_vkc_available} {command}"
