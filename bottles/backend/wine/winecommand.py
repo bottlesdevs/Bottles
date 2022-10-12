@@ -461,7 +461,7 @@ class WineCommand:
             if gamescope_available and params.get("gamescope"):
                 gamescope_run = tempfile.NamedTemporaryFile(mode='w', suffix='.sh').name
 
-                # Create run.sh in /tmp where Gamescope will execute it
+                # Create temporary sh script in /tmp where Gamescope will execute it
                 file = [f"#/usr/bin/env sh\n"]
                 if mangohud_available and params.get("mangohud"):
                     file.append(f"{command}&\nmangoapp")
@@ -471,6 +471,7 @@ class WineCommand:
                 with open(gamescope_run, "w") as f:
                     f.write("".join(file))
 
+                # Update command
                 command = f"{self.__get_gamescope_cmd(return_steam_cmd)} {gamescope_run}"
 
                 # Set file as executable
