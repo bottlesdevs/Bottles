@@ -1,6 +1,7 @@
 import os
 import stat
 import shutil
+import tempfile
 import subprocess
 from glob import glob
 from typing import NewType
@@ -144,10 +145,6 @@ class WineCommand:
             bottle = config.get("Path")
         else:
             bottle = ManagerUtils.get_bottle_path(config)
-
-        # Clean some env variables which can cause trouble
-        # ref: <https://github.com/bottlesdevs/Bottles/issues/2127>
-        env.remove("XDG_DATA_HOME")
 
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
@@ -458,11 +455,7 @@ class WineCommand:
                     command = f"mangohud {command}"
 
             if gamescope_available and params.get("gamescope"):
-                gamescope_run = "/tmp/run.sh"
-
-                # Remove run.sh if it already exists
-                if os.path.exists(gamescope_run):
-                    os.remove(gamescope_run)
+                gamescope_run = tempfile.NamedTemporaryFile(mode='w', suffix='.sh').name
 
                 # Create run.sh in /tmp where Gamescope will execute it
                 file = [f"#/usr/bin/env sh\n"]
@@ -474,7 +467,6 @@ class WineCommand:
                 with open(gamescope_run, "w") as f:
                     f.write("".join(file))
 
-                # Set new command
                 command = f"{self.__get_gamescope_cmd(return_steam_cmd)} {gamescope_run}"
 
                 # Set file as executable
