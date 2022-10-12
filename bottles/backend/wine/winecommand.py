@@ -1,5 +1,7 @@
 import os
+import stat
 import shutil
+import tempfile
 import subprocess
 from glob import glob
 from typing import NewType
@@ -450,14 +452,31 @@ class WineCommand:
                 else:
                     command = f"gamemode {command}"
 
-            if mangohud_available and params.get("mangohud"):
+            if mangohud_available and params.get("mangohud") and not params.get("gamescope"):
                 if not return_steam_cmd:
                     command = f"{mangohud_available} {command}"
                 else:
                     command = f"mangohud {command}"
 
             if gamescope_available and params.get("gamescope"):
-                command = f"{self.__get_gamescope_cmd(return_steam_cmd)}  -- {command}"
+                gamescope_run = tempfile.NamedTemporaryFile(mode='w', suffix='.sh').name
+
+                # Create temporary sh script in /tmp where Gamescope will execute it
+                file = [f"#/usr/bin/env sh\n"]
+                if mangohud_available and params.get("mangohud"):
+                    file.append(f"{command}&\nmangoapp")
+                else:
+                    file.append(command)
+
+                with open(gamescope_run, "w") as f:
+                    f.write("".join(file))
+
+                # Update command
+                command = f"{self.__get_gamescope_cmd(return_steam_cmd)} {gamescope_run}"
+
+                # Set file as executable
+                st = os.stat(gamescope_run)
+                os.chmod(gamescope_run, st.st_mode | stat.S_IEXEC)
 
             if obs_vkc_available and params.get("obsvkc"):
                 command = f"{obs_vkc_available} {command}"
