@@ -16,6 +16,7 @@
 #
 
 import os
+import subprocess
 import webbrowser
 from gettext import gettext as _
 from gi.repository import Gtk, Adw, Gio
@@ -148,7 +149,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
                     _("Directory Will be Updated on Next Launch"),
                     _("Bottles has to be relaunched to change the data directory.")
                 )
-                dialog.add_response("ok", _("OK"))
+                dialog.add_response("dismiss", _("Dismiss"))
+                dialog.add_response("restart", _("Relaunch"))
+                dialog.connect("response", self.handle_restart)
                 dialog.present()
             else:
                 if self.data.get("custom_bottles_path") is not None:
@@ -164,6 +167,15 @@ class PreferencesWindow(Adw.PreferencesWindow):
             native=True
         )
 
+    def handle_restart(self, widget, response_id):
+        if response_id == "restart":
+            subprocess.Popen(
+                "sleep 1 && bottles & disown",
+                shell=True
+            )
+            self.window.proper_close()
+        widget.destroy()
+
     def __reset_bottles_path(self, widget):
         self.data.remove("custom_bottles_path")
         self.btn_bottles_path_reset.set_visible(False)
@@ -173,7 +185,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
             _("Directory Will be Updated on Next Launch"),
             _("Bottles has to be relaunched to change the data directory.")
         )
-        dialog.add_response("ok", _("OK"))
+        dialog.add_response("dismiss", _("Dismiss"))
+        dialog.add_response("restart", _("Relaunch"))
+        dialog.connect("response", self.handle_restart)
         dialog.present()
 
     def populate_runtimes_list(self):
@@ -273,3 +287,4 @@ class PreferencesWindow(Adw.PreferencesWindow):
         if count["other"] > 0:
             self.list_runners.add(exp_other)
             self.__registry.append(exp_other)
+
