@@ -15,8 +15,8 @@ template DetailsVersioning : .AdwPreferencesPage {
 
   .AdwStatusPage status_page {
     icon-name: "preferences-system-time-symbolic";
-    title: _("No States Found");
-    description: _("Create first state to start using versioning.");
+    title: _("No Snapshots Found");
+    description: _("Create your first snapshot to start saving states of your preferences.");
   }
 }
 
@@ -75,7 +75,7 @@ Box actions {
   spacing: 6;
 
   MenuButton btn_add {
-    tooltip-text: _("Create new state");
+    tooltip-text: _("Create new snapshot");
     popover: pop_state;
     icon-name: "list-add-symbolic";
   }
