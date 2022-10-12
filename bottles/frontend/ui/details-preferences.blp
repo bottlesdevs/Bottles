@@ -15,8 +15,8 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_dxvk {
       activatable-widget: "switch_dxvk";
-      title: _("DXVK");
-      subtitle: _("Improves performance of DirectX 9/10/11 games and 3D applications by translating to Vulkan.");
+      title: _("Direct3D 9/10/11 Compatibility");
+      subtitle: _("Translate from Direct3D 9, 10 and 11 to Vulkan using DXVK.");
 
       Spinner spinner_dxvkbool {
         tooltip-text: _("Updating DXVK, please wait…");
@@ -31,8 +31,8 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_vkd3d {
       activatable-widget: "switch_vkd3d";
-      title: _("VKD3D");
-      subtitle: _("Improves performance of DirectX 12 games and 3D applications by translating to Vulkan.");
+      title: _("Direct3D 12 Compatibility");
+      subtitle: _("Translate from Direct3D 12 to Vulkan using VKD3D.");
 
       Spinner spinner_vkd3dbool {
         tooltip-text: _("Updating VKD3D, please wait…");
@@ -47,8 +47,8 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_nvapi {
       activatable-widget: "switch_nvapi";
-      title: _("DLSS (DXVK-NVAPI)");
-      subtitle: _("Provide DLSS and NVIDIA NVAPI support if available.");
+      title: _("Deep Learning Super Sampling");
+      subtitle: _("Increase performance at the expense of visuals using DXVK-NVAPI. Only works on newer NVIDIA GPUs.");
       visible: false;
 
       Spinner spinner_nvapibool {
@@ -63,8 +63,8 @@ template DetailsPreferences : .AdwPreferencesPage {
     }
 
     .AdwComboRow combo_fsr {
-      title: "FSR";
-      subtitle: _("FSR uses cutting-edge up-scaling technologies to help boost your framerate.");
+      title: "FidelityFX Super Resolution";
+      subtitle: _("Increase performance at the expense of visuals. Only works on Vulkan.");
       model:
       StringList {
         strings [
@@ -84,11 +84,11 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_latencyflex {
       activatable-widget: "switch_latencyflex";
-      title: _("LatencyFleX");
-      subtitle: _("An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats.");
+      title: _("Lower Input Lag");
+      subtitle: _("Increase responsiveness using LatencyFleX. Can be detected by some anti-cheat software.");
 
       Spinner spinner_latencyflexbool {
-        tooltip-text: _("Updating DXVK-NVAPI, please wait…");
+        tooltip-text: _("Updating LatencyFleX, please wait…");
         halign: center;
         valign: center;
         margin-end: 6;
@@ -101,8 +101,8 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_discrete {
       activatable-widget: "switch_discrete";
-      title: _("Discrete GPU");
-      subtitle: _("Improves performance at the cost of increased power usage.");
+      title: _("Discrete Graphics");
+      subtitle: _("Use the discrete graphics card to increase performance at the expense of power consumption.");
 
       Switch switch_discrete {
         valign: center;
@@ -111,11 +111,11 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_vkbasalt {
       activatable-widget: "switch_vkbasalt";
-      title: _("vkBasalt");
-      subtitle: _("vkBasalt is a Vulkan post processing layer to enhance the visual graphics of games.");
+      title: _("Anti-Aliasing");
+      subtitle: _("Enhance sharpness using vkBasalt. Only works on Vulkan.");
 
       Button btn_manage_vkbasalt {
-        tooltip-text: _("Manage vkBasalt settings");
+        tooltip-text: _("Manage Vulkan Post-Processing Layer Settings");
         valign: center;
         icon-name: "applications-system-symbolic";
 
@@ -139,7 +139,7 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
 
       .GtkButton btn_manage_display {
-        tooltip-text: _("Manage Display settings");
+        tooltip-text: _("Manage display settings");
         valign: center;
         icon-name: "applications-system-symbolic";
         styles [
@@ -236,7 +236,7 @@ template DetailsPreferences : .AdwPreferencesPage {
         title: _("LatencyFleX Version");
 
         Spinner spinner_latencyflex {
-          tooltip-text: _("Updating DXVK-NVAPI, please wait…");
+          tooltip-text: _("Updating LatencyFleX, please wait…");
           valign: center;
         }
 
@@ -329,7 +329,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     .AdwActionRow row_runtime {
       activatable-widget: "switch_runtime";
       title: _("Bottles Runtime");
-      subtitle: _("Provides a bundle of extra libraries for more compatibility, disable if you run into issues.");
+      subtitle: _("Provide a bundle of extra libraries for more compatibility. Disable if you run into issues.");
       visible: false;
 
       Switch switch_runtime {
@@ -340,7 +340,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     .AdwActionRow row_steam_runtime {
       activatable-widget: "switch_steam_runtime";
       title: _("Steam Runtime");
-      subtitle: _("The same as the Bottles runtime but provided by Steam.");
+      subtitle: _("Provide a bundle of extra libraries for more compatibility with Steam games. Disable if you run into issues.");
 
       Switch switch_steam_runtime {
         valign: center;
@@ -359,8 +359,8 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow {
       activatable-widget: "switch_gamescope";
-      title: _("Gamescope");
-      subtitle: _("Use the Gamescope micro-compositor.");
+      title: "Gamescope";
+      subtitle: _("Manage how games should be displayed on the screen using Gamescope.");
 
       Button btn_manage_gamescope {
         tooltip-text: _("Manage Gamescope settings");
@@ -379,8 +379,8 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow {
       activatable-widget: "switch_vmtouch";
-      title: _("Vmtouch");
-      subtitle: _("Preload game files into RAM. The game will take longer to start.");
+      title: _("Preload Game Files");
+      subtitle: _("Improve loading time when launching the game multiple times. The game will take longer to start for the first time.");
 
       Button btn_manage_vmtouch {
         visible: false;
@@ -453,22 +453,12 @@ template DetailsPreferences : .AdwPreferencesPage {
   }
 
   .AdwPreferencesGroup {
-    title: _("Versioning");
-
-    .AdwActionRow {
-      activatable-widget: "switch_versioning_compression";
-      title: _("Use Compression for States");
-      subtitle: _("This will reduce the space used by the states but slow down their creation.");
-
-      Switch switch_versioning_compression {
-        valign: center;
-      }
-    }
+    title: _("Snapshotting");
 
     .AdwActionRow {
       activatable-widget: "switch_auto_versioning";
-      title: _("Automatic Versioning");
-      subtitle: _("Bottles will create a state before running any dependencies or installers.");
+      title: _("Automatic Snapshots");
+      subtitle: _("Automatically create snapshots before installing software or changing settings.");
 
       Switch switch_auto_versioning {
         valign: center;
@@ -476,9 +466,19 @@ template DetailsPreferences : .AdwPreferencesPage {
     }
 
     .AdwActionRow {
+      activatable-widget: "switch_versioning_compression";
+      title: _("Compression");
+      subtitle: _("Compress snapshots to reduce space. This will slow down creation of snapshots7.");
+
+      Switch switch_versioning_compression {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow {
       activatable-widget: "switch_versioning_patterns";
       title: _("Use Exclusion Patterns");
-      subtitle: _("Use custom patterns to exclude some paths from versioning.");
+      subtitle: _("Exclude paths in snapshots.");
 
       Button btn_manage_versioning_patterns {
         tooltip-text: _("Manage Patterns");
@@ -501,8 +501,8 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow {
       activatable-widget: "switch_mangohud";
-      title: _("MangoHud");
-      subtitle: _("A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more.");
+      title: _("Monitor Performance");
+      subtitle: _("Display monitoring information such as framerate, temperatures, CPU/GPU load and more on OpenGL and Vulkan using MangoHud.");
 
       Switch switch_mangohud {
         valign: center;
