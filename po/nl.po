@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-09-12 13:17+0000\n"
+"PO-Revision-Date: 2022-09-30 06:30+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
@@ -1758,6 +1758,18 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"Bottles heeft een geheel nieuw versiebeheersysteem dat niet compatibel is "
+"met vorige versies. \n"
+"\n"
+"Om versiebeheer te kunnen blijven gebruiken, moeten we de bottle-repository "
+"opnieuw initialiseren. Dit zal geen gegevens van uw bottles verwijderen, "
+"maar zal alle bestaande staten verwijderen en nieuwe aanmaken. \n"
+"\n"
+"Als u terug moet gaan naar een vorige staat voordat u verder gaat, sluit dan "
+"dit venster en herstel de staat, open dan de bottle om dit venster weer te "
+"tonen. \n"
+"\n"
+"Het oude systeem zal in een van de volgende versies worden opgeheven."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
 msgid "Re-initializing repository…"
@@ -1928,6 +1940,10 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"FXAA-kwaliteitsdrempelwaardeminimum is de minimumwaarde van donkere pixels "
+"die door het FXAA-algoritme worden genegeerd. Hogere waarden zorgen ervoor "
+"dat FXAA pixels onder de opgegeven waarde negeert wat kan leiden tot betere "
+"prestaties."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:590
 msgid ""
@@ -1942,28 +1958,38 @@ msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"SMAA-drempel bepaalt de gevoeligheid van de randdetectie. Lagere waarden "
+"detecteren meer randen ten koste van de prestaties."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:626
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"SMAA-maximum-zoekstappen geeft aan hoeveel horizontale en verticale "
+"zoekstappen worden uitgevoerd bij het zoeken naar randen."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:644
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"SMAA-maximum-diagonale-zoekstappen geeft aan hoeveel diagonale zoekstappen "
+"worden uitgevoerd bij het zoeken naar randen."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:662
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
 msgstr ""
+"SMAA-hoekafronding specificeert de sterkte van de afronding van randhoeken."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:680
 msgid ""
 "CLUT transforms a range of colors into another range of colors using a .CUBE "
 "file, or a .png file where the height is equal to the width."
 msgstr ""
+"CLUT transformeert een kleurengamma in een ander kleurengamma met behulp van "
+"een .CUBE-bestand, of een .png-bestand waarvan de hoogte gelijk is aan de "
+"breedte."
 
 #: bottles/frontend/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
@@ -2595,6 +2621,10 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
+"Bottles draait in een zandbak, een omgeving met beperkte rechten die nodig "
+"is om uw apparaat veilig te houden. Als het programma niet wil starten, kunt "
+"u overwegen om de bottle in te gaan (3 puntjes bovenaan) en van daaruit te "
+"starten."
 
 #: bottles/frontend/views/bottle_details.py:212
 msgid "Ok"
@@ -3037,7 +3067,7 @@ msgstr "Compressie gebruiken voor staten"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
-msgstr ""
+msgstr "Startopties opslaan verbeterd waarbij de interface niet steeds ververst"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid ""
@@ -3065,11 +3095,12 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "bottles-cli shell option now provide command output"
-msgstr ""
+msgstr "Shell-optie bottles-cli geeft nu opdrachtuitvoer weer"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
 msgid "The Health Check is now in the About´s Troubleshooting section"
 msgstr ""
+"De gezondheidscheck staat nu onder probleemoplossing in het over-venster"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
 msgid ""

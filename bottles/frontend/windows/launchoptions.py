@@ -42,13 +42,11 @@ class LaunchOptionsDialog(Adw.Window):
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
-    switch_pulse_latency = Gtk.Template.Child()
     switch_virt_desktop = Gtk.Template.Child()
     action_dxvk = Gtk.Template.Child()
     action_vkd3d = Gtk.Template.Child()
     action_nvapi = Gtk.Template.Child()
     action_fsr = Gtk.Template.Child()
-    action_pulse_latency = Gtk.Template.Child()
     action_cwd = Gtk.Template.Child()
     action_virt_desktop = Gtk.Template.Child()
     # endregion
@@ -105,12 +103,6 @@ class LaunchOptionsDialog(Adw.Window):
             config["Parameters"].get("fsr"),
             self.action_fsr
         )
-        self.switch_pulse_latency.connect(
-            "state-set",
-            self.__check_override,
-            config["Parameters"].get("pulseaudio_latency"),
-            self.action_pulse_latency
-        )
         self.switch_virt_desktop.connect(
             "state-set",
             self.__check_override,
@@ -131,7 +123,6 @@ class LaunchOptionsDialog(Adw.Window):
         vkd3d = config["Parameters"].get("vkd3d")
         nvapi = config["Parameters"].get("dxvk_nvapi")
         fsr = config["Parameters"].get("fsr")
-        pulse_latency = config["Parameters"].get("pulseaudio_latency")
         virt_desktop = config["Parameters"].get("virtual_desktop")
 
         if not dxvk:
@@ -152,8 +143,6 @@ class LaunchOptionsDialog(Adw.Window):
             self.action_nvapi.set_subtitle(self.__msg_override)
         if fsr != self.program["fsr"]:
             self.action_fsr.set_subtitle(self.__msg_override)
-        if pulse_latency != self.program["pulseaudio_latency"]:
-            self.action_pulse_latency.set_subtitle(self.__msg_override)
         if virt_desktop != self.program["virtual_desktop"]:
             self.action_virt_desktop.set_subtitle(self.__msg_override)
 
@@ -165,8 +154,6 @@ class LaunchOptionsDialog(Adw.Window):
             nvapi = self.program["dxvk_nvapi"]
         if "fsr" in self.program:
             fsr = self.program["fsr"]
-        if "pulseaudio_latency" in self.program:
-            pulse_latency = self.program["pulseaudio_latency"]
         if "virtual_desktop" in self.program:
             virt_desktop = self.program["virtual_desktop"]
 
@@ -174,7 +161,6 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_vkd3d.set_active(vkd3d)
         self.switch_nvapi.set_active(nvapi)
         self.switch_fsr.set_active(fsr)
-        self.switch_pulse_latency.set_active(pulse_latency)
         self.switch_virt_desktop.set_active(virt_desktop)
 
     def __check_override(self, widget, state, value, action):
@@ -191,14 +177,12 @@ class LaunchOptionsDialog(Adw.Window):
         vkd3d = self.switch_vkd3d.get_state()
         nvapi = self.switch_nvapi.get_state()
         fsr = self.switch_fsr.get_state()
-        pulse_latency = self.switch_pulse_latency.get_state()
         virt_desktop = self.switch_virt_desktop.get_state()
 
         self.program["dxvk"] = dxvk
         self.program["vkd3d"] = vkd3d
         self.program["dxvk_nvapi"] = nvapi
         self.program["fsr"] = fsr
-        self.program["pulseaudio_latency"] = pulse_latency
         self.program["virtual_desktop"] = virt_desktop
         self.program["arguments"] = self.entry_arguments.get_text()
 
@@ -272,5 +256,4 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_vkd3d.set_active(self.config["Parameters"]["vkd3d"])
         self.switch_nvapi.set_active(self.config["Parameters"]["dxvk_nvapi"])
         self.switch_fsr.set_active(self.config["Parameters"]["fsr"])
-        self.switch_pulse_latency.set_active(self.config["Parameters"]["pulseaudio_latency"])
         self.switch_virt_desktop.set_active(self.config["Parameters"]["virtual_desktop"])

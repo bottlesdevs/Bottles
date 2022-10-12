@@ -1441,12 +1441,13 @@ class Manager:
             path = ManagerUtils.get_bottle_path(config)
             shutil.rmtree(path, ignore_errors=True)
 
-            if config.get("Path") in self.local_bottles:
-                del self.local_bottles[config.get("Path")]
+            local_bottles_tmp = self.local_bottles.copy()
+            for b in local_bottles_tmp.values():
+                if b["Path"] == config["Path"]:
+                    del self.local_bottles[b["Name"]]
+                    break
 
             logging.info(f"Deleted the bottle in: {path}")
-            GLib.idle_add(self.window.page_list.update_bottles)
-
             return True
 
         logging.error("Empty path found. Disasters unavoidable.")

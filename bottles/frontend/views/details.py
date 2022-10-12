@@ -245,7 +245,7 @@ class DetailsView(Adw.Bin):
         if rebuild_pages:
             self.build_pages()
 
-    def update_programs(self, config=None):
+    def update_programs(self, config=None, force_add: dict = None):
         """
         This function update the programs lists. The list in the
         details' page is limited to 5 items.
@@ -253,11 +253,12 @@ class DetailsView(Adw.Bin):
         if config:
             self.config = config
 
-        GLib.idle_add(self.view_bottle.empty_list)
-        GLib.idle_add(self.view_programs.empty_list)
+        if not force_add:
+            GLib.idle_add(self.view_bottle.empty_list)
+            GLib.idle_add(self.view_programs.empty_list)
 
-        self.view_bottle.group_programs.set_sensitive(False)
-        self.view_programs.group_programs.set_sensitive(False)
+            self.view_bottle.group_programs.set_sensitive(False)
+            self.view_programs.group_programs.set_sensitive(False)
 
         def new_program(_program, check_boot=None, is_steam=False,
                         to_home=False, wineserver_status=False):
@@ -279,6 +280,14 @@ class DetailsView(Adw.Bin):
                 is_steam=is_steam,
                 check_boot=check_boot,
             ))
+
+        if force_add:
+            wineserver_status = WineServer(self.config).is_alive()
+            new_program(force_add, None, False, True, wineserver_status)
+            self.view_programs.status_page.set_visible(False)
+            self.view_programs.group_programs.set_visible(True)
+            self.view_programs.group_programs.set_sensitive(True)
+            return
 
         def callback(result, _error=False):
             row_no_programs = self.view_bottle.row_no_programs

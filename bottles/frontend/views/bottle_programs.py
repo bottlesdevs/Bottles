@@ -60,8 +60,7 @@ class ProgramsView(Adw.PreferencesPage):
         """
         This function popup the add program dialog to the user. It
         will also update the bottle configuration, appending the
-        path to the program picked by the user. It will also update
-        the programs list.
+        path to the program picked by the user.
         The file chooser path is set to the bottle path by default.
         """
         def set_path(_dialog, response, _file_dialog):
@@ -75,14 +74,14 @@ class ProgramsView(Adw.PreferencesPage):
                     "path": _file.get_path(),
                     "id": _uuid
                 }
-                self.manager.update_config(
+                self.config = self.manager.update_config(
                     config=self.config,
                     key=_uuid,
                     value=_program,
                     scope="External_Programs",
                     fallback=True
-                )
-                self.parent.update_programs(config=self.config)
+                ).data["config"]
+                self.parent.update_programs(config=self.config, force_add=_program)
                 self.window.show_toast(_("'{0}' added.").format(_file_name[:-4]))
 
         FileChooser(
