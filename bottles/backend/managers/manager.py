@@ -760,7 +760,7 @@ class Manager:
                 conf_file_yaml["Latest_Executables"] = []
 
             # Migrate old programs to [id] and [name]
-            # TODO: remove this migration after 2022.9.28
+            # TODO: remove this migration after 2022.10.14
             _temp = {}
             _changed = False
             for k, v in conf_file_yaml.get("External_Programs").items():

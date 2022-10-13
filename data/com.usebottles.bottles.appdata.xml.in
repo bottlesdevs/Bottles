@@ -97,52 +97,38 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.9.28" date="2022-09-28">
+        <release version="2022.10.14" date="2022-10-14">
           <description>
             <p>News</p>
             <ul>
-                <li>Nvidia-specific settings are now hidden on other setups</li>
-                <li>Run executables by dropping them on the bottle</li>
-                <li>Move from XML to Bluprints for UI</li>
-                <li>Mobile improvements</li>
-                <li>The Gamescope dialog is now more polished and intuitive</li>
-                <li>Display settings has now a dedicated dialog</li>
-                <li>All selectors are ported to the libadwaita</li>
-                <li>Support for ja_JP,zh_TW,ko_KR languages</li>
-                <li>Dependencies with an incompatible architecture are now hidden</li>
-                <li>Support for the bundled gstreamer version if provided by the runner</li>
-                <li>Adding a new program will be immediately available, without having to update the whole list</li>
-                <li>Removed the ability to install multiple dependencies in one go</li>
-                <li>Improve wording for Components section (Thanks to @orowith2os)</li>
+                <li>The PulseAudio Latency setting is now deprecated and enabled by default</li>
+                <li>Add portal support for setting custom Bottles path thanks to @fries1234</li>
+                <li>Preferences now uses Generic names for better understanding</li>
+                <li>Improved Gamescope support</li>
+                <li>General improvements</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fix DXVK off when starting a game via Run Executable</li>
-                <li>Fix a bug when extracting templates with a partial or missing userdir</li>
-                <li>Fix Steam installation not found when placed at .steam/debian-installation</li>
-                <li>Fix DLL OVerrides not being applied when an override with the same name is already present, now the new one will take priority</li>
-                <li>Fix Proton Runners being listed as prefixes</li>
-                <li>Fix GStreamer plugins not being loaded on Flatpak</li>
-                <li>Fix the bottles list not being updated when a bottle is renamed</li>
-                <li>Fix progressbar not being visible on some locales</li>
-                <li>Fix caching directories being re-initialized when them are already present</li>
-                <li>Fix Steam ACF files not being parsed correctly when corrupted, resulting in a crash</li>
-                <li>Fix Platinum and Silver grades was using the same color</li>
+                <li>Fix components mismatch on switching bottle</li>
+                <li>Fix unsafe access to the program"dict" keys</li>
+                <li>Fix unreachable newly-added programs</li>
+                <li>Fix for XDG_* vars being read by the runner even when not applicable</li>
+                <li>Fix charset error parsing acf files</li>
+                <li>Fix bottles list not being updated when removing a bottle</li>
+                <li>Fix empty secion in the Run Executable menu</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Italian translations thanks to @LorenzoIanotto</li>
-                <li>Hindi translations thanks to Rowan Antkinson</li>
+                <li>French translations thanks to Thibaut Colin, @jay-tau</li>
                 <li>Dutch translations thanks to @flipflop97</li>
-                <li>Turkish translations thanks to @06ergin06</li>
-                <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>Portuguese (Brazil) translations thanks to saulo marcos</li>
-                <li>Japanese translations thanks to @ryonakano</li>
+                <li>Turkish translations thanks to @Zayria</li>
                 <li>Croatian translations thanks to @milotype</li>
-                <li>Greek translations thanks to @kolyfotis</li>
-                <li>Indonesian translations thanks to @laymoth</li>
+                <li>Bulgarian translations thanks to @RacerBG</li>
+                <li>Russian translations thanks to @lenemter</li>
+                <li>Bengali translations thanks to Anubis</li>
+                <li>Catalan translations thanks to @rogervc</li>
             </ul>
           </description>
         </release>
