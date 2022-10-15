@@ -131,22 +131,14 @@ template DetailsPreferences : .AdwPreferencesPage {
 
     .AdwActionRow row_manage_display {
       title: _("Display Settings");
-
+      activatable: true;
       Spinner spinner_display {
         valign: center;
         margin-end: 6;
       }
-       Image Image details_image {
-    icon-name: "go-next-symbolic";
-
-    styles [
-      "dim-label",
-    ] {
-          icon-name: "go-next-symbolic";
-
-          styles [
-            "dim-label",
-          ]
+       Image Image  {
+        icon-name: "go-next-symbolic";
+        styles ["dim-label"]
       }
     }
   }
@@ -432,10 +424,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       Image {
         icon-name: "go-next-symbolic";
-        
-          styles [
-            "dim-label",
-          ]
+        styles ["dim-label"]
       }
     }
 
@@ -445,10 +434,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       Image {
         icon-name: "go-next-symbolic";
-        
-          styles [
-            "dim-label",
-          ]
+        styles ["dim-label"]
       }
     }
 
@@ -458,10 +444,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       Image {
         icon-name: "go-next-symbolic";
-        
-          styles [
-            "dim-label",
-          ]
+        styles ["dim-label"]
       }
     }
   }
