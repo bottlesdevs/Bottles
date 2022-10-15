@@ -213,7 +213,8 @@ class BottleView(Adw.PreferencesPage):
         if config["Versioning"]:
             self.__upgrade_versioning()
         
-        if config["Runner"] not in self.manager.runners_available:
+        if config["Runner"] not in self.manager.runners_available\
+            and not self.config.get("Environment") == "Steam":
             self.__alert_missing_runner()
 
     def update_programs(self, widget=False, config=None):
