@@ -129,22 +129,24 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow {
-      activatable-widget: "btn_manage_display";
+    .AdwActionRow row_manage_display {
       title: _("Display Settings");
 
       Spinner spinner_display {
         valign: center;
         margin-end: 6;
       }
+       Image Image details_image {
+    icon-name: "go-next-symbolic";
 
-      .GtkButton btn_manage_display {
-        tooltip-text: _("Manage display settings");
-        valign: center;
-        icon-name: "applications-system-symbolic";
-        styles [
-          "flat",
-        ]
+    styles [
+      "dim-label",
+    ] {
+          icon-name: "go-next-symbolic";
+
+          styles [
+            "dim-label",
+          ]
       }
     }
   }
@@ -430,6 +432,10 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       Image {
         icon-name: "go-next-symbolic";
+        
+          styles [
+            "dim-label",
+          ]
       }
     }
 
@@ -439,6 +445,10 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       Image {
         icon-name: "go-next-symbolic";
+        
+          styles [
+            "dim-label",
+          ]
       }
     }
 
@@ -448,6 +458,10 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       Image {
         icon-name: "go-next-symbolic";
+        
+          styles [
+            "dim-label",
+          ]
       }
     }
   }
