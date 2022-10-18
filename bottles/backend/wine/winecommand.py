@@ -472,7 +472,7 @@ class WineCommand:
                     f.write("".join(file))
 
                 # Update command
-                command = f"{self.__get_gamescope_cmd(return_steam_cmd)} {gamescope_run}"
+                command = f"{self.__get_gamescope_cmd(return_steam_cmd)} -- {gamescope_run}"
 
                 # Set file as executable
                 st = os.stat(gamescope_run)
