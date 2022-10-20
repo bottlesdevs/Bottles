@@ -89,38 +89,38 @@ Popover pop_power {
   }
 }
 
-Popover pop_run {
-  Box {
-    orientation: vertical;
-    valign: center;
-    halign: center;
-    hexpand: true;
-    vexpand: true;
-    margin-top: 6;
-    margin-bottom: 6;
-    margin-start: 6;
-    margin-end: 6;
+// Popover pop_run {
+//   Box {
+//     orientation: vertical;
+//     valign: center;
+//     halign: center;
+//     hexpand: true;
+//     vexpand: true;
+//     margin-top: 6;
+//     margin-bottom: 6;
+//     margin-start: 6;
+//     margin-end: 6;
 
-    .GtkModelButton btn_run_args {
-      valign: "center";
-      halign: "center";
-      margin-bottom: "5";
-      text: _("Run with Additional Arguments…");
-    }
+//     .GtkModelButton btn_run_args {
+//       valign: "center";
+//       halign: "center";
+//       margin-bottom: "5";
+//       text: _("Run with Additional Arguments…");
+//     }
 
-    CheckButton check_terminal {
-      label: _("Launch in a Terminal…");
-      halign: start;
-      margin-bottom: 5;
-      use-underline: true;
-    }
+//     CheckButton check_terminal {
+//       label: _("Launch in a Terminal…");
+//       halign: start;
+//       margin-bottom: 5;
+//       use-underline: true;
+//     }
 
-    Box box_history {
-      spacing: 5;
-      orientation: vertical;
-    }
-  }
-}
+//     Box box_history {
+//       spacing: 5;
+//       orientation: vertical;
+//     }
+//   }
+// }
 
 .AdwActionRow row_no_programs {
   Box {
@@ -152,11 +152,11 @@ template DetailsBottle : .AdwPreferencesPage {
         orientation: vertical;
 
         Label label_name {
-          halign: start;
+          halign: center;
           label: _("My bottle");
 
           styles [
-            "title-2",
+            "title-1",
           ]
         }
 
@@ -164,7 +164,7 @@ template DetailsBottle : .AdwPreferencesPage {
           spacing: 6;
 
           Label label_arch {
-            halign: start;
+            halign: center;
             label: _("Win64");
 
             styles [
@@ -209,15 +209,41 @@ template DetailsBottle : .AdwPreferencesPage {
         }
       }
 
-      .AdwSplitButton btn_execute {
+      // .AdwSplitButton btn_execute {
+      //   label: _("Run Executable…");
+      //   hexpand: true;
+      //   halign: "end";
+      //   valign: "center";
+      //   popover: "pop_run";
+
+      //   styles [
+      //     "suggested-action",
+      //   ]
+      // }
+    }
+  }
+
+  .AdwPreferencesGroup {
+    Box {
+      spacing: 6;
+
+      Button btn_execute {
+        valign: center;
+        halign: center;
         label: _("Run Executable…");
-        hexpand: true;
-        halign: "end";
-        valign: "center";
-        popover: "pop_run";
+        // icon-name: "play-symbolic";
 
         styles [
-          "suggested-action",
+          "pill",
+        ]
+      }
+
+      Button btn_execute_settings {
+        valign: center;
+        icon-name: "gear-symbolic";
+
+        styles [
+          "circular",
         ]
       }
     }
