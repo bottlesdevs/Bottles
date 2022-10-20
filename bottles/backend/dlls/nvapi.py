@@ -26,6 +26,10 @@ class NVAPIComponent(DLLComponent):
         ],
         "x64": [
             "nvapi64.dll"
+        ],
+        "/usr/lib64/nvidia/wine": [
+            "nvngx.dll"
+            "_nvngx.dll"
         ]
     }
 
