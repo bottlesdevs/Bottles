@@ -148,7 +148,6 @@ template DetailsBottle : .AdwPreferencesPage {
   }
   .AdwPreferencesGroup {
     Box {
-      Box {
         orientation: vertical;
 
         Label label_name {
@@ -162,9 +161,9 @@ template DetailsBottle : .AdwPreferencesPage {
 
         Box {
           spacing: 6;
+          halign: center;
 
           Label label_arch {
-            halign: center;
             label: _("Win64");
 
             styles [
@@ -207,7 +206,6 @@ template DetailsBottle : .AdwPreferencesPage {
             }
           }
         }
-      }
 
       // .AdwSplitButton btn_execute {
       //   label: _("Run Executable…");
@@ -226,12 +224,19 @@ template DetailsBottle : .AdwPreferencesPage {
   .AdwPreferencesGroup {
     Box {
       spacing: 6;
+      halign: center;
 
       Button btn_execute {
-        valign: center;
-        halign: center;
-        label: _("Run Executable…");
-        // icon-name: "play-symbolic";
+        Box {
+          spacing: 6;
+          Image {
+            icon-name: "media-playback-start-symbolic";
+          }
+
+          Label {
+            label: _("Run Executable…");
+          }
+        }
 
         styles [
           "pill",

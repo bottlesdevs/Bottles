@@ -33,7 +33,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.frontend.widgets.executable import ExecButton
 
 from bottles.frontend.windows.filechooser import FileChooser
-from bottles.frontend.windows.runargs import RunArgsDialog
+from bottles.frontend.windows.runargs import ExecuteSettingsDialog
 from bottles.frontend.windows.generic import MessageDialog
 from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
@@ -61,7 +61,7 @@ class BottleView(Adw.PreferencesPage):
     label_environment = Gtk.Template.Child()
     label_arch = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
-    btn_run_args = Gtk.Template.Child()
+    btn_execute_settings = Gtk.Template.Child()
     row_winecfg = Gtk.Template.Child()
     row_debug = Gtk.Template.Child()
     row_explorer = Gtk.Template.Child()
@@ -80,13 +80,11 @@ class BottleView(Adw.PreferencesPage):
     btn_delete = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
     box_history = Gtk.Template.Child()
-    check_terminal = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
-    pop_run = Gtk.Template.Child()
     drop_overlay = Gtk.Template.Child()
     # endregion
 
@@ -109,7 +107,7 @@ class BottleView(Adw.PreferencesPage):
         self.target.connect('leave', self.on_leave)
 
         self.btn_execute.connect("clicked", self.run_executable)
-        self.btn_run_args.connect("clicked", self.__run_executable_with_args)
+        self.btn_execute_settings.connect("clicked", self.__run_executable_settings)
         self.row_winecfg.connect("activated", self.run_winecfg)
         self.row_debug.connect("activated", self.run_debug)
         self.row_explorer.connect("activated", self.run_explorer)
@@ -235,12 +233,12 @@ class BottleView(Adw.PreferencesPage):
             self.group_programs.remove(r)
         self.__registry = []
 
-    def __run_executable_with_args(self, widget):
+    def __run_executable_settings(self, widget):
         """
         This function pop up the dialog to run an executable with
         custom arguments.
         """
-        new_window = RunArgsDialog(self)
+        new_window = ExecuteSettingsDialog(self)
         new_window.present()
 
     def run_executable(self, widget, args=False):

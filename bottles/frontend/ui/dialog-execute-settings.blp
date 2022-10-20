@@ -1,0 +1,63 @@
+using Gtk 4.0;
+
+template ExecuteSettingsDialog : .AdwWindow {
+  modal: true;
+  default-width: "550";
+  default-height: "200";
+  title: _("Execute Settings");
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-end-title-buttons: false;
+
+      [start]
+      Button {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      [end]
+      Button btn_save {
+        label: _("_Save");
+        use-underline: true;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    .AdwPreferencesPage {
+      .AdwPreferencesGroup {
+        title: _("Custom Arguments");
+        description: _("Leave it empty if no arguments are needed.");
+
+        .AdwEntryRow {
+          title: _("-opengl -SkipBuildPatchPrereq");
+        }
+      }
+
+      .AdwPreferencesGroup {
+        .AdwActionRow {
+          title: _("Launch in a Terminal");
+          activatable-widget: "switch_terminal";
+
+          Switch switch_terminal {
+            valign: center;
+          }
+        }
+      }
+    }
+  }
+
+}
