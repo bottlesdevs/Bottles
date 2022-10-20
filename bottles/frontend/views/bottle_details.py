@@ -33,7 +33,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.frontend.widgets.executable import ExecButton
 
 from bottles.frontend.windows.filechooser import FileChooser
-from bottles.frontend.windows.runargs import ExecuteSettingsDialog
+from bottles.frontend.windows.executesettings import ExecuteSettingsDialog
 from bottles.frontend.windows.generic import MessageDialog
 from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog

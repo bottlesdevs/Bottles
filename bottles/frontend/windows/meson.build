@@ -10,7 +10,7 @@ bottles_sources = [
   'generic.py',
   'launchoptions.py',
   'onboard.py',
-  'runargs.py',
+  'executesettings.py',
   'rename.py',
   'drives.py',
   'gamescope.py',

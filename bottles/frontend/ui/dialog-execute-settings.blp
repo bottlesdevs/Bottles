@@ -3,7 +3,6 @@ using Gtk 4.0;
 template ExecuteSettingsDialog : .AdwWindow {
   modal: true;
   default-width: "550";
-  default-height: "200";
   title: _("Execute Settings");
 
   ShortcutController {
@@ -27,8 +26,8 @@ template ExecuteSettingsDialog : .AdwWindow {
       }
 
       [end]
-      Button btn_save {
-        label: _("_Save");
+      Button btn_done {
+        label: _("_Done");
         use-underline: true;
 
         styles [
@@ -39,10 +38,14 @@ template ExecuteSettingsDialog : .AdwWindow {
 
     .AdwPreferencesPage {
       .AdwPreferencesGroup {
+        description: _("These settings are only applied in the current session. Once the application is restarted, all settings will be lost.");
+      }
+
+      .AdwPreferencesGroup {
         title: _("Custom Arguments");
         description: _("Leave it empty if no arguments are needed.");
 
-        .AdwEntryRow {
+        .AdwEntryRow entry_args {
           title: _("-opengl -SkipBuildPatchPrereq");
         }
       }
