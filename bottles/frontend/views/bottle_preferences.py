@@ -1115,4 +1115,3 @@ class PreferencesView(Adw.PreferencesPage):
             w.set_sensitive(status)
 
         self.row_sandbox.set_visible(self.window.settings.get_boolean("experiments-sandbox"))
-
