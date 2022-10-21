@@ -89,39 +89,6 @@ Popover pop_power {
   }
 }
 
-// Popover pop_run {
-//   Box {
-//     orientation: vertical;
-//     valign: center;
-//     halign: center;
-//     hexpand: true;
-//     vexpand: true;
-//     margin-top: 6;
-//     margin-bottom: 6;
-//     margin-start: 6;
-//     margin-end: 6;
-
-//     .GtkModelButton btn_run_args {
-//       valign: "center";
-//       halign: "center";
-//       margin-bottom: "5";
-//       text: _("Run with Additional Arguments…");
-//     }
-
-//     CheckButton check_terminal {
-//       label: _("Launch in a Terminal…");
-//       halign: start;
-//       margin-bottom: 5;
-//       use-underline: true;
-//     }
-
-//     Box box_history {
-//       spacing: 5;
-//       orientation: vertical;
-//     }
-//   }
-// }
-
 .AdwActionRow row_no_programs {
   Box {
     hexpand: true;
@@ -148,76 +115,64 @@ template DetailsBottle : .AdwPreferencesPage {
   }
   .AdwPreferencesGroup {
     Box {
-        orientation: vertical;
+      orientation: vertical;
 
-        Label label_name {
-          halign: center;
-          label: _("My bottle");
+      Label label_name {
+        halign: center;
+        label: _("My bottle");
+
+        styles [
+          "title-1",
+        ]
+      }
+
+      Box {
+        spacing: 6;
+        halign: center;
+
+        Label label_arch {
+          label: _("Win64");
 
           styles [
-            "title-1",
+            "heading",
           ]
         }
 
-        Box {
-          spacing: 6;
-          halign: center;
+        Label label_environment {
+          label: _("Environment");
 
-          Label label_arch {
-            label: _("Win64");
-
-            styles [
-              "heading",
-            ]
-          }
-
-          Label label_environment {
-            label: _("Environment");
-
-            styles [
-              "heading",
-            ]
-          }
-
-          Label label_runner {
-            label: _("Runner");
-
-            styles [
-              "heading",
-            ]
-          }
-
-          Grid grid_versioning {
-            tooltip-text: _("Versioning enabled for this bottle");
-            halign: center;
-            valign: center;
-
-            Image img_versioning {
-              tooltip-text: _("Versioning is active for this bottle.");
-              halign: center;
-              valign: center;
-              icon-name: "view-wrapped-symbolic";
-            }
-
-            Label label_state {
-              halign: center;
-              valign: center;
-              label: _("0");
-            }
-          }
+          styles [
+            "heading",
+          ]
         }
 
-      // .AdwSplitButton btn_execute {
-      //   label: _("Run Executable…");
-      //   hexpand: true;
-      //   halign: "end";
-      //   valign: "center";
-      //   popover: "pop_run";
+        Label label_runner {
+          label: _("Runner");
 
-      //   styles [
-      //     "suggested-action",
-      //   ]
-      // }
+          styles [
+            "heading",
+          ]
+        }
+
+        Grid grid_versioning {
+          tooltip-text: _("Versioning enabled for this bottle");
+          halign: center;
+          valign: center;
+
+          Image img_versioning {
+            tooltip-text: _("Versioning is active for this bottle.");
+            halign: center;
+            valign: center;
+            icon-name: "view-wrapped-symbolic";
+          }
+
+          Label label_state {
+            halign: center;
+            valign: center;
+            label: _("0");
+          }
+        }
+      }
     }
   }
 
@@ -245,7 +200,7 @@ template DetailsBottle : .AdwPreferencesPage {
 
       Button btn_execute_settings {
         valign: center;
-        icon-name: "gear-symbolic";
+        icon-name: "applications-system-symbolic";
 
         styles [
           "circular",

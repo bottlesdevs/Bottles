@@ -79,7 +79,6 @@ class BottleView(Adw.PreferencesPage):
     btn_duplicate = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
-    box_history = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
@@ -100,6 +99,7 @@ class BottleView(Adw.PreferencesPage):
         self.window = details.window
         self.manager = details.window.manager
         self.config = config
+        self.check_terminal = False
 
         self.target.connect('drop', self.on_drop)
         self.add_controller(self.target)
@@ -146,8 +146,6 @@ class BottleView(Adw.PreferencesPage):
             '''
             self.btn_flatpak_doc.set_visible(True)
 
-        self.__update_latest_executables()
-
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
         self.drop_overlay.set_visible(False)
         files: List[Gio.File] = value.get_files()
@@ -158,7 +156,7 @@ class BottleView(Adw.PreferencesPage):
                 self.config,
                 exec_path=file.get_path(),
                 args=args,
-                terminal=self.check_terminal.get_active(),
+                terminal=self.check_terminal,
             )
             RunAsync(executor.run, self.do_update_programs)
             self.manager.update_config(
@@ -171,7 +169,6 @@ class BottleView(Adw.PreferencesPage):
                 }]
             )
 
-            self.__update_latest_executables()
         else:
             self.window.show_toast(_("File '{0}' does not seem to be an exe or msi file").format(file.get_basename().split("/")[-1]))
 
@@ -284,7 +281,7 @@ class BottleView(Adw.PreferencesPage):
                 self.config,
                 exec_path=_file.get_path(),
                 args=args,
-                terminal=self.check_terminal.get_active(),
+                terminal=self.check_terminal,
             )
             RunAsync(executor.run, self.do_update_programs)
             self.manager.update_config(
@@ -296,23 +293,6 @@ class BottleView(Adw.PreferencesPage):
                     "args": args
                 }]
             )
-
-        self.__update_latest_executables()
-
-    def __update_latest_executables(self):
-        """
-        This function update the latest executables list.
-        """
-        while self.box_history.get_first_child() is not None:
-            self.box_history.remove(self.box_history.get_first_child())
-
-        _execs = self.config.get("Latest_Executables", [])[-5:]
-        for exe in _execs:
-            self.box_history.append(ExecButton(
-                parent=self,
-                data=exe,
-                config=self.config
-            ))
 
     def __backup(self, widget, backup_type):
         """

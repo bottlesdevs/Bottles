@@ -1,4 +1,4 @@
-# execute_settings.py
+# executesettings.py
 #
 # Copyright 2022 Bottles Developers
 #
@@ -15,11 +15,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-execute-settings.ui')
-class ExecuteSettingsDialog(Gtk.Window):
+class ExecuteSettingsDialog(Adw.Window):
     __gtype_name__ = 'ExecuteSettingsDialog'
 
     # region Widgets
@@ -41,5 +41,5 @@ class ExecuteSettingsDialog(Gtk.Window):
     def __done(self, widget):
         args = self.entry_args.get_text()
         self.parent.run_executable(False, args)
-        self.parent.check_terminal(self.switch_terminal.get_state())
+        self.parent.check_terminal = self.switch_terminal.get_state()
         self.close()
