@@ -80,6 +80,7 @@ class BottleView(Adw.PreferencesPage):
     btn_delete = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
+    dot_versioning = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
     actions = Gtk.Template.Child()
@@ -199,6 +200,7 @@ class BottleView(Adw.PreferencesPage):
         self.label_environment.set_text(_(self.config.get("Environment")))
 
         # set versioning
+        self.dot_versioning.set_visible(self.config.get("Versioning"))
         self.grid_versioning.set_visible(self.config.get("Versioning"))
         self.label_state.set_text(str(self.config.get("State")))
 
