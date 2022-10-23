@@ -38,6 +38,9 @@ class ExecuteSettingsDialog(Adw.Window):
         # connect signals
         self.btn_done.connect("clicked", self.__done)
 
+        # set the entry text to current session arguments
+        self.entry_args.set_text(self.parent.session_args)
+
     def __done(self, widget):
         args = self.entry_args.get_text()
         self.parent.session_args = args
