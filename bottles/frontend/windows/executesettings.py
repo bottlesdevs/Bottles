@@ -40,6 +40,7 @@ class ExecuteSettingsDialog(Adw.Window):
 
     def __done(self, widget):
         args = self.entry_args.get_text()
-        self.parent.run_executable(False, args)
+        self.parent.session_args = args
+        # self.parent.run_executable(False, args)
         self.parent.check_terminal = self.switch_terminal.get_state()
         self.close()

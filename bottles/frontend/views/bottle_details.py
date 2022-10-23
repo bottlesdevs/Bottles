@@ -100,6 +100,7 @@ class BottleView(Adw.PreferencesPage):
         self.window = details.window
         self.manager = details.window.manager
         self.config = config
+        self.session_args = ""
         self.check_terminal = False
 
         self.target.connect('drop', self.on_drop)
@@ -279,6 +280,7 @@ class BottleView(Adw.PreferencesPage):
             if not _file:
                 return  # workaround #1653
 
+            args = self.session_args
             executor = WineExecutor(
                 self.config,
                 exec_path=_file.get_path(),
