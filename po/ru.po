@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-10-03 09:21+0000\n"
-"Last-Translator: lenemter <lenemter@gmail.com>\n"
+"PO-Revision-Date: 2022-10-10 18:08+0000\n"
+"Last-Translator: Вадим Илларионов <gbimobou@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
 "Language: ru\n"
@@ -65,7 +65,7 @@ msgstr "Конфигурация Wine обновляется…"
 
 #: bottles/backend/managers/manager.py:1171
 msgid "Wine config updated!"
-msgstr "Конфигурация Wine обновлена!"
+msgstr "Конфигурация Wine обновлена"
 
 #: bottles/backend/managers/manager.py:1179
 msgid "Running as Flatpak, sandboxing userdir…"
@@ -335,8 +335,8 @@ msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
 msgstr ""
-"Путь к Color Lookup Table не может содержать пробелы. Пожалуйста, "
-"переименуйте файл так, чтобы путь к нему не содержал пробелы."
+"Путь к Color Lookup Table не может содержать пробелы. Переименуйте файл так, "
+"чтобы путь к нему не содержал таковых."
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
@@ -344,7 +344,7 @@ msgstr "Недопустимый размер картинки"
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr "Высота и ширина картинки должны быть одинаковыми."
+msgstr "Высота и ширина изображения должны совпадать."
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144
@@ -384,15 +384,15 @@ msgstr "Некорректный ресурс (синтаксис: bottles:run/<
 
 #: bottles/frontend/main.py:237
 msgid "[Quit] request received."
-msgstr "[Выход] запрос получен."
+msgstr "Получен запрос [Выход]"
 
 #: bottles/frontend/main.py:246
 msgid "[Help] request received."
-msgstr "[Помощь] запрос получен."
+msgstr "Получен запрос [Помощь]"
 
 #: bottles/frontend/main.py:254
 msgid "[Refresh] request received."
-msgstr "[Обновить] запрос получен."
+msgstr "Получен запрос [Обновить]"
 
 #: bottles/frontend/operation.py:50
 msgid "Calculating…"
@@ -913,7 +913,7 @@ msgstr "Масштабирование экрана"
 
 #: bottles/frontend/ui/details-preferences.ui:242
 msgid "Set custom DPI."
-msgstr "Выбор пользовательского числа точек на дюйм."
+msgstr "Выбор желательного числа точек на дюйм."
 
 #: bottles/frontend/ui/details-preferences.ui:248
 msgid "96"
@@ -1558,7 +1558,7 @@ msgstr "Предупреждения"
 
 #: bottles/frontend/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr "Информация"
+msgstr "Сведения"
 
 #: bottles/frontend/ui/dialog-journal.ui:49
 msgid "Journal browser"
@@ -1643,21 +1643,21 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
-"Остерегайтесь, использование пускачей на основе Proton в бутылках не для "
-"Steam может вызвать проблемы и помешать их правильной работе.\n"
+"Внимание! Использование пускачей на основе Proton в бутылках не для Steam "
+"может вызвать проблемы и помешать их правильной работе.\n"
 "\n"
-"Мы рекомендуем использовать Wine-GE, специальную версию Proton, "
+"Рекомендуем использовать Wine-GE — специальную версию Proton, "
 "предназначенную для работы вне Steam.\n"
 "\n"
 "Продолжение автоматически активирует среду выполнения Steam (если она "
 "присутствует в системе и обнаружена Bottles), чтобы разрешить ей доступ к "
 "необходимым библиотекам и уменьшить проблемы совместимости. Имейте в виду, "
-"что GloriousEggroll, поставщик пускача, не несет ответственности за какие-"
-"либо проблемы, и мы просим вас не сообщать ему о них."
+"что GloriousEggroll (поставщик пускача) не несет ответственности ни за какие "
+"проблемы, и просим не сообщать ему о них."
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:50
 msgid "I got it."
-msgstr "Я понял."
+msgstr "Всё ясно."
 
 #: bottles/frontend/ui/dialog-rename.ui:9
 msgid "Rename"
@@ -1737,18 +1737,18 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
-"В Bottles теперь используется совершенно новая система версионирования, "
-"которая не имеет обратной совместимости. \n"
+"В Bottles используется новая система версионирования без обратной "
+"совместимости. \n"
 "\n"
-"Для продолжения использования версионирования необходимо пересоздать "
-"репозиторий бутылки Это не удалит данные из вашей бутылки, но удалит все "
-"существующие состояния и создаст одно новое. \n"
+"Чтобы продолжить её использование, следует пересоздать репозиторий бутылки. "
+"Это не удалит данные из вашей бутылки, но удалит все существующие состояния "
+"и создаст одно новое. \n"
 "\n"
-"Если вам нужно вернуться на предыдущее состояние бутылки перед продолжением, "
-"то закройте это окно, восстановите это состояние и переоткройте бутылку, "
+"Если перед продолжением нужно вернуться к предыдущему состоянию бутылки — "
+"закройте данное окно, восстановите это состояние и переоткройте бутылку, "
 "чтобы вновь показать это окно. \n"
 "\n"
-"Поддержка старой системы версионирования будет прекращена в одном из "
+"Поддержка прежней системы версионирования будет прекращена в одном из "
 "следующих релизов."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
@@ -1757,7 +1757,7 @@ msgstr "Пересоздание репозитория…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
 msgid "Done! Please restart Bottles."
-msgstr "Готово! Пожалуйста, перезапустите Bottles."
+msgstr "Готово. Перезапустите Bottles."
 
 #. vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.ui:11
@@ -1774,7 +1774,7 @@ msgstr "Настройки по умолчанию"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:66
 msgid "Effects are applied according to the list order."
-msgstr "Эффекты применяются в соответствии с их порядком в списке."
+msgstr "Эффекты применяются в списочном порядке."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:67
 msgid "Effects"
@@ -1802,7 +1802,7 @@ msgstr "Резкость"
 #: bottles/frontend/ui/dialog-vkbasalt.ui:392
 #: bottles/frontend/ui/dialog-vkbasalt.ui:424
 msgid "Show Information"
-msgstr "Показать информацию"
+msgstr "Показать сведения"
 
 #. Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.ui:107
@@ -1887,7 +1887,7 @@ msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
-"DLS Резкость увеличивает резкость кадра. Более высокие значения делают кадр "
+"Резкость DLS увеличивает резкость кадра. Более высокие значения делают кадр "
 "более резким."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:518
@@ -1895,7 +1895,7 @@ msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
-"DLS Шумоподавление уменьшает уровень шума в кадре. Более высокие значения "
+"Шумоподавление DLS уменьшает уровень шума в кадре. Более высокие значения "
 "делают кадр более мягким."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:536
@@ -1930,44 +1930,44 @@ msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
-"Luma обнаруживает края с монохромной точки зрения, тогда как Цвет "
-"обнаруживает края на основе цветов. Luma более производителен, чем Цвет."
+"Luma в отличие от Цвета выявляет края в монохромном спектре, за счёт чего "
+"производительнее последнего."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:608
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
-"Порог SMAA определяет чувствительность обнаружения краёв. Меньшие значения "
-"обнаруживают больше краев в ущерб производительности."
+"Порог SMAA определяет чувствительность выявления краёв. Меньшие значения "
+"выявляют больше краёв в ущерб производительности."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:626
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
-"Максимальный шаг поиска SMAA определяет, сколько шагов горизонтального и "
-"вертикального поиска выполняется при поиске краев."
+"Максимальный шаг поиска SMAA определяет число шагов горизонтального и "
+"вертикального поиска при выявлении краёв."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:644
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
-"Максимальный диагональный шаг поиска SMAA определяет, сколько шагов поиска "
-"по диагонали выполняется при поиске краев."
+"Максимальный диагональный шаг поиска SMAA определяет число шагов поиска по "
+"диагонали при выявлении краёв."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:662
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
-msgstr "Скругление углов SMAA определяет величину скругления углов."
+msgstr "Величина скругления углов SMAA."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:680
 msgid ""
 "CLUT transforms a range of colors into another range of colors using a .CUBE "
 "file, or a .png file where the height is equal to the width."
 msgstr ""
-"CLUT преобразует один диапазон цветов в другой с помощью файла .CUBE или ."
-"png-файла, высота которого равна ширине."
+"CLUT преобразует один диапазон цветов в другой с помощью .CUBE или .png "
+"файла, высота которого равна ширине."
 
 #: bottles/frontend/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
@@ -2037,7 +2037,7 @@ msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
-"Не найдено префиксов для Lutris, PlayOnLinux, и т. д.\n"
+"Не найдено префиксов Lutris, PlayOnLinux и др.\n"
 "Используйте кнопку сверху для импорта бутылки из резервной копии"
 
 #: bottles/frontend/ui/importer.ui:81
@@ -2296,7 +2296,7 @@ msgstr "Нужно ещё несколько минут для завершен�
 
 #: bottles/frontend/ui/onboard.ui:113
 msgid "All ready!"
-msgstr "Всё готово!"
+msgstr "Всё готово."
 
 #: bottles/frontend/ui/onboard.ui:122
 msgid "Please Finish the setup first"
@@ -2354,7 +2354,7 @@ msgstr "Очищать временные файлы"
 
 #: bottles/frontend/ui/preferences.ui:62
 msgid "Clean temp files when Bottles launches?"
-msgstr "Очищать временные файлы при запуске Bottles?"
+msgstr "Очищать временные файлы при запуске Bottles"
 
 #: bottles/frontend/ui/preferences.ui:73
 msgid "Close Bottles After Starting a Program"
@@ -2461,8 +2461,8 @@ msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
 msgstr ""
-"Эти функции находятся в стадии интенсивной разработки и могут работать "
-"нестабильно, ожидайте ошибок и поломок."
+"Эти функции находятся в стадии интенсивной разработки и могут вести себя "
+"нестабильно, с ошибками и сбоями."
 
 #: bottles/frontend/ui/preferences.ui:260
 msgid "In early development (requires restart)."
@@ -2594,10 +2594,10 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
-"Bottles работает в «песочнице», среде с ограниченным доступом, необходимой "
+"Bottles работает в «песочнице» — среде с ограниченным доступом, необходимой "
 "для вашей безопасности. Если программа не запускается, попробуйте "
-"переместить её внутрь бутылки (значок с тремя точками сверху), а затем "
-"запустите ее оттуда."
+"переместить её внутрь бутылки (значок с тремя точками сверху) и запустить "
+"уже оттуда."
 
 #: bottles/frontend/views/bottle_details.py:212
 msgid "Ok"
@@ -2669,7 +2669,7 @@ msgid ""
 "continue?"
 msgstr ""
 "Это не затронет данные вашей бутылки, но удалит все сохранённые состояния. "
-"Вы хотите продолжить?"
+"Действительно продолжить?"
 
 #: bottles/frontend/views/bottle_programs.py:86
 #, python-brace-format
@@ -2687,12 +2687,11 @@ msgstr "Добавить"
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
 msgstr ""
-"Пожалуйста, перейдите на новую систему версионирования для создания новых "
-"состояний."
+"Для создания новых состояний перейдите на новую систему версионирования ."
 
 #: bottles/frontend/views/details.py:154
 msgid "Details & Utilities"
-msgstr "Подробности и утилиты"
+msgstr "Детали и инструменты"
 
 #: bottles/frontend/views/details.py:162
 msgid "Dependencies"
@@ -2708,7 +2707,7 @@ msgstr "Установщики"
 
 #: bottles/frontend/views/details.py:377
 msgid "Operations in progress, please wait."
-msgstr "Выполняются необходимые операции, пожалуйста, подождите."
+msgstr "Подождите, выполняются необходимые операции…"
 
 #: bottles/frontend/views/details.py:381
 msgid "Return to your bottles."
@@ -2889,8 +2888,8 @@ msgstr "Пользовательский путь к бутылкам не на�
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
 msgstr ""
-"Возврат к пути по умолчанию. Ни одна бутылка из указанного пути не будет "
-"показана."
+"Возврат к пути по умолчанию. По заданному пути ни одна бутылка показана не "
+"будет."
 
 #: bottles/frontend/windows/main_window.py:310
 msgid "Third-Party Libraries and Special Thanks"
@@ -3020,13 +3019,11 @@ msgstr "Новости"
 msgid ""
 "New versioning system which allow versioning the whole bottle (also "
 "configuration)"
-msgstr ""
-"Новая система версионирования, позволяющая версионировать всё содержимое "
-"бутылки"
+msgstr "Новая система версионирования всего содержимого бутылки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Automatic versioning can now be toggled on and off"
-msgstr "Автоматическое версионирование теперь можно включать и выключать"
+msgstr "Автоверсионирование можно включать и выключать"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "Exclude paths from versioning using patterns"
@@ -3041,29 +3038,28 @@ msgstr "Использование сжатия для состояний вер
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
 msgstr ""
-"Улучшенное сохранение Параметров Запуска без многократного обновления UI"
+"Улучшено сохранение параметров запуска без многократного обновления "
+"пользовательского интерфейса"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid ""
 "Improved YAML performance using libyaml (the python-yaml package must "
 "provide support for it)"
 msgstr ""
-"Улучшенная производительность обработки YAML-файлов с помощью библиотеки "
-"libyaml (её поддержку должен предоставлять пакет python-yaml)"
+"Улучшенная производительность обработки YAML-файлов через библиотеку "
+"libyaml, чья поддержка обеспечивается пакетом python-yaml"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid "New About dialog"
-msgstr "Новое оформление диалога \"О Bottles\""
+msgstr "Новое оформление диалога «О Bottles»"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "Covers support in Library mode (thanks to SteamGridDB)"
-msgstr "Поддержка обложек приложений в Библиотеке (благодаря SteamGridDB)"
+msgstr "Поддержка обложек приложений в Библиотеке благодаря SteamGridDB"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid "Removed DXVK HUD option, use the Environment Variables section instead"
-msgstr ""
-"Настройка DXVK HUD удалена, вместо неё теперь предлагается использовать "
-"Переменные Среды"
+msgstr "Настройка DXVK HUD удалена, теперь за неё — переменные среды"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "bottles-cli shell option now provide command output"
@@ -3072,8 +3068,8 @@ msgstr "Оболочка bottles-cli теперь показывает выво�
 #: data/com.usebottles.bottles.appdata.xml.in:113
 msgid "The Health Check is now in the About´s Troubleshooting section"
 msgstr ""
-"Функция Проверки Здоровья перемещена в секцию Устранения неполадок в диалоге "
-"\"О Bottles\""
+"Функция проверки работоспособности перемещена в секцию устранения неполадок "
+"в диалоге «О Bottles»"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
 msgid ""
@@ -3081,7 +3077,7 @@ msgid ""
 "their packages"
 msgstr ""
 "Расширенная проверка основных зависимостей, упаковщикам предлагается "
-"перепроверить их пакеты"
+"перепроверить свои пакеты"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "New default permission for the Flatpak package: xdg-download"
@@ -3089,11 +3085,11 @@ msgstr "Новое разрешение по умолчанию для Flatpak: 
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Added credits for Third-Party Libraries in the Credits section"
-msgstr "Добавлена секция с информацией о сторонних библиотках"
+msgstr "Добавлена секция сведений о сторонних библиотеках"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
-msgstr "Небольшие улучшения UI"
+msgstr "Небольшие улучшения пользовательского интерфейса"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
@@ -3109,11 +3105,11 @@ msgstr "Исправление пустого названия бутылки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
 msgid "Fix gstreamer libs for win32 bottles"
-msgstr "Исправление библиотек gstreamer для win32 бутылок"
+msgstr "Исправление библиотек gstreamer для бутылок на архитектуре win32"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Fix for RemoteDisconnected error causing a crash"
-msgstr "Исправление вылета при возникновении ошибки RemoteDisconnected"
+msgstr "Исправление сбоя при ошибке «удалённое отключение»"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
 msgid "Fix wrong Vaniglia listing"
@@ -3142,14 +3138,14 @@ msgstr "Исправление регрессии для опции -b в ста
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
 msgid "Fix Steam Launch Options parser causing a crash"
-msgstr "Исправление вылета при анализе Параметров Запуска Steam"
+msgstr "Исправление сбоя при анализе параметров запуска Steam"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
 msgid ""
 "Fix a regression in the Add to Steam button not adding the new entry in Steam"
 msgstr ""
-"Исправление регрессии, из-за которой кнопка \"Добавить в Steam\" не "
-"создавала новых записей в Steam"
+"Исправление регрессии, из-за которой кнопка «Добавить в Steam» не создавала "
+"в нём новых записей"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "Translations"
@@ -3157,43 +3153,43 @@ msgstr "Обновление переводов"
 
 #: data/com.usebottles.bottles.appdata.xml.in:137
 msgid "Finnish translations thanks to Jiri Grönroos"
-msgstr "Финский перевод благодаря Jiri Grönroos"
+msgstr "Финский перевод от Jiri Grönroos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:138
 msgid "French translations thanks to @rjousse18, @julroy67"
-msgstr "Французский перевод благодаря @rjousse18, @julroy67"
+msgstr "Французский перевод от @rjousse18 и @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:139
 msgid "Indonesian translations thanks to @liimee"
-msgstr "Индонезийский перевод благодаря @liimee"
+msgstr "Индонезийский перевод от @liimee"
 
 #: data/com.usebottles.bottles.appdata.xml.in:140
 msgid "Russian translations thanks to @Knebergish, @lenemter, @Smoque"
-msgstr "Русский перевод благодаря @Knebergish, @lenemter, @Smoque"
+msgstr "Русский перевод от @Knebergish, @lenemter и @Smoque"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
 msgid "Thai translations thanks to @SashaPGT"
-msgstr "Тайский перевод благодаря @SashaPGT"
+msgstr "Тайский перевод от @SashaPGT"
 
 #: data/com.usebottles.bottles.appdata.xml.in:142
 msgid "Spanish translations thanks to Pablo Munoz Alabau, @oscfdezdz"
-msgstr "Испанский перевод благодаря Pablo Munoz Alabau, @oscfdezdz"
+msgstr "Испанский перевод от Pablo Munoz Alabau и @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:143
 msgid "Italian translations thanks to @gdonisi"
-msgstr "Итальянский перевод благодаря @gdonisi"
+msgstr "Итальянский перевод от @gdonisi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
 msgid "Portuguese (Brazil) translations thanks to @geraldohomero"
-msgstr "Португальский (Бразилия) перевод благодаря @geraldohomero"
+msgstr "Португальский (Бразилия) перевод от @geraldohomero"
 
 #: data/com.usebottles.bottles.appdata.xml.in:145
 msgid "German translations thanks to Patrick Ulbricht"
-msgstr "Немецкий перевод благодаря Patrick Ulbricht"
+msgstr "Немецкий перевод от Patrick Ulbricht"
 
 #: data/com.usebottles.bottles.appdata.xml.in:146
 msgid "Croatian translations thanks to @milotype"
-msgstr "Хорватский перевод благодаря @milotype"
+msgstr "Хорватский перевод от @milotype"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
