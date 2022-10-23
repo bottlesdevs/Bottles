@@ -8,17 +8,21 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-10-24 21:35+0000\n"
+"Last-Translator: Itay Adler <itay@ravendb.net>\n"
+"Language-Team: Hebrew <https://hosted.weblate.org/projects/bottles/bottles/"
+"he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
+"n % 10 == 0) ? 2 : 3));\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "מיקום לא נבחר"
 
 #: bottles/backend/managers/backup.py:71
 #, python-brace-format
@@ -32,15 +36,15 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1030
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "נכשל להתקין תוספים, לאחר 3 נסיונות."
 
 #: bottles/backend/managers/manager.py:1041
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "תוספים בסיסיים חסרים, מתקין…"
 
 #: bottles/backend/managers/manager.py:1117
 msgid "Failed to create bottle directory."
-msgstr ""
+msgstr "יצירת תיקיית בקבוק נכשלה."
 
 #: bottles/backend/managers/manager.py:1129
 msgid "Failed to create placeholder directory/file."
@@ -48,7 +52,7 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1134
 msgid "Generating bottle configuration…"
-msgstr ""
+msgstr "מייצר הגדרות בקבוק…"
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Template found, applying…"
@@ -73,7 +77,7 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1211
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "מגדיר גרסת ווינדוס…"
 
 #: bottles/backend/managers/manager.py:1221
 msgid "Apply CMD default settings…"
