@@ -100,8 +100,8 @@ class BottleView(Adw.PreferencesPage):
         self.window = details.window
         self.manager = details.window.manager
         self.config = config
-        self.session_args = ""
-        self.check_terminal = False
+        self.config["Session_Args"] = ""
+        self.config["Check_Terminal"] = False
 
         self.target.connect('drop', self.on_drop)
         self.add_controller(self.target)
@@ -280,12 +280,12 @@ class BottleView(Adw.PreferencesPage):
             if not _file:
                 return  # workaround #1653
 
-            args = self.session_args
+            args = self.config.get("Session_Args")
             executor = WineExecutor(
                 self.config,
                 exec_path=_file.get_path(),
                 args=args,
-                terminal=self.check_terminal,
+                terminal=self.config.get("Check_Terminal"),
             )
             RunAsync(executor.run, self.do_update_programs)
             self.manager.update_config(

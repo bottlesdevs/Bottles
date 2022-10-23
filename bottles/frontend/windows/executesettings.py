@@ -39,11 +39,15 @@ class ExecuteSettingsDialog(Adw.Window):
         self.btn_done.connect("clicked", self.__done)
 
         # set the entry text to current session arguments
-        self.entry_args.set_text(self.parent.session_args)
+        if self.parent.config.get("Session_Args") != None:
+            self.entry_args.set_text(self.parent.config.get("Session_Args"))
+
+        if self.parent.config.get("Check_Terminal"):
+            self.switch_terminal.activate()
 
     def __done(self, widget):
         args = self.entry_args.get_text()
-        self.parent.session_args = args
+        self.parent.config["Session_Args"] = args
         # self.parent.run_executable(False, args)
-        self.parent.check_terminal = self.switch_terminal.get_state()
+        self.parent.config["Check_Terminal"] = self.switch_terminal.get_state()
         self.close()
