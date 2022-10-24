@@ -100,8 +100,6 @@ class BottleView(Adw.PreferencesPage):
         self.window = details.window
         self.manager = details.window.manager
         self.config = config
-        self.config["Session_Args"] = ""
-        self.config["Check_Terminal"] = False
 
         self.target.connect('drop', self.on_drop)
         self.add_controller(self.target)
