@@ -755,10 +755,6 @@ class Manager:
             if conf_file_yaml is None:
                 return
 
-            # Clear Latest_Executables on new session start
-            if conf_file_yaml.get("Latest_Executables"):
-                conf_file_yaml["Latest_Executables"] = []
-
             # Clear Run Executable parameters on new session start
             if conf_file_yaml.get("session_arguments"):
                 conf_file_yaml["session_arguments"] = ""

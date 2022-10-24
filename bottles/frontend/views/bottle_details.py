@@ -159,15 +159,6 @@ class BottleView(Adw.PreferencesPage):
                 terminal=self.check_terminal,
             )
             RunAsync(executor.run, self.do_update_programs)
-            self.manager.update_config(
-                config=self.config,
-                key="Latest_Executables",
-                value=_execs + [{
-                    "name": file.get_basename().split("/")[-1],
-                    "file": file.get_path(),
-                    "args": args
-                }]
-            )
 
         else:
             self.window.show_toast(_("File '{0}' does not seem to be an exe or msi file").format(file.get_basename().split("/")[-1]))
@@ -272,7 +263,6 @@ class BottleView(Adw.PreferencesPage):
 
     def __execute(self, _dialog, response, file_dialog, args=""):
         if response == -3:
-            _execs = self.config.get("Latest_Executables", [])
             _file = file_dialog.get_file()
 
             if not _file:
@@ -286,15 +276,6 @@ class BottleView(Adw.PreferencesPage):
                 terminal=self.config.get("Check_Terminal"),
             )
             RunAsync(executor.run, self.do_update_programs)
-            self.manager.update_config(
-                config=self.config,
-                key="Latest_Executables",
-                value=_execs + [{
-                    "name": _file.get_basename().split("/")[-1],
-                    "file": _file.get_path(),
-                    "args": args
-                }]
-            )
 
     def __backup(self, widget, backup_type):
         """
