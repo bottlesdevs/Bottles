@@ -308,6 +308,8 @@ class DetailsView(Adw.Bin):
             self.view_programs.group_programs.set_visible(not handled_p)
             self.view_programs.group_programs.set_sensitive(not handled_p)
 
+            self.view_bottle.group_programs.add(self.view_bottle.bottom_bar)
+
         def process_programs():
             time.sleep(.2)
             wineserver_status = WineServer(self.config).is_alive()

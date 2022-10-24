@@ -63,6 +63,9 @@ class BottleView(Adw.PreferencesPage):
     btn_execute = Gtk.Template.Child()
     btn_run_args = Gtk.Template.Child()
     row_winecfg = Gtk.Template.Child()
+    row_preferences = Gtk.Template.Child()
+    row_dependencies = Gtk.Template.Child()
+    row_installers = Gtk.Template.Child()
     row_debug = Gtk.Template.Child()
     row_explorer = Gtk.Template.Child()
     row_cmd = Gtk.Template.Child()
@@ -86,6 +89,7 @@ class BottleView(Adw.PreferencesPage):
     group_programs = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
+    bottom_bar = Gtk.Template.Child()
     pop_run = Gtk.Template.Child()
     drop_overlay = Gtk.Template.Child()
     # endregion

@@ -137,6 +137,38 @@ Popover pop_run {
   }
 }
 
+.AdwActionRow bottom_bar {
+  Box {          
+    .AdwActionRow add_program {
+      activatable: true;
+      Box {
+        spacing: 12;
+        Image {
+          icon-name: "list-add-symbolic";
+        }
+
+        Label {
+          label: _("Add Program…");
+        }
+      }
+    }
+    
+    .AdwActionRow add_shortcut {
+      activatable: true;
+      Box {
+        spacing: 12;
+        Image {
+          icon-name: "list-add-symbolic";
+        }
+
+        Label {
+          label: _("Add Shortcut…");
+        }
+      }
+    }
+  }
+}
+
 template DetailsBottle : .AdwPreferencesPage {
   Overlay drop_overlay {
     visible: false;
@@ -312,5 +344,39 @@ template DetailsBottle : .AdwPreferencesPage {
         }
       }
     }
+  }
+
+  .AdwPreferencesGroup group_options {
+    title: _("Options");
+      
+      .AdwActionRow row_preferences {
+        activatable: true;
+        title: _("Preferences");
+        subtitle: _("Some random text here.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+      
+      .AdwActionRow row_dependencies {
+        activatable: true;
+        title: _("Dependencies");
+        subtitle: _("Improve compatibility of Windows software.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+      
+      .AdwActionRow row_installers {
+        activatable: true;
+        title: _("Installers");
+        subtitle: _("Install community curated programs.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
   }
 }
