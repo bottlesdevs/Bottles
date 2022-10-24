@@ -39,8 +39,7 @@ class ExecuteSettingsDialog(Adw.Window):
         self.btn_done.connect("clicked", self.__done)
 
         # set the entry text to current session arguments
-        if self.parent.config.get("session_arguments") != None:
-            self.entry_args.set_text(self.parent.config.get("session_arguments"))
+        self.entry_args.set_text(self.parent.config.get("session_arguments"))
 
         if self.parent.config.get("run_in_terminal"):
             self.switch_terminal.activate()
