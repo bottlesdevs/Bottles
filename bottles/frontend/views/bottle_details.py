@@ -156,7 +156,7 @@ class BottleView(Adw.PreferencesPage):
                 self.config,
                 exec_path=file.get_path(),
                 args=args,
-                terminal=self.check_terminal,
+                terminal=self.config.get("run_in_terminal"),
             )
             RunAsync(executor.run, self.do_update_programs)
 
@@ -268,12 +268,12 @@ class BottleView(Adw.PreferencesPage):
             if not _file:
                 return  # workaround #1653
 
-            args = self.config.get("Session_Args")
+            args = self.config.get("session_arguments")
             executor = WineExecutor(
                 self.config,
                 exec_path=_file.get_path(),
                 args=args,
-                terminal=self.config.get("Check_Terminal"),
+                terminal=self.config.get("run_in_terminal"),
             )
             RunAsync(executor.run, self.do_update_programs)
 
