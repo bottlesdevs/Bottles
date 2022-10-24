@@ -55,18 +55,13 @@ class PreferencesView(Adw.PreferencesPage):
     __gtype_name__ = 'DetailsPreferences'
 
     # region Widgets
-    btn_manage_components = Gtk.Template.Child()
     btn_manage_gamescope = Gtk.Template.Child()
     btn_manage_vkbasalt = Gtk.Template.Child()
     btn_manage_sandbox = Gtk.Template.Child()
     btn_manage_versioning_patterns = Gtk.Template.Child()
     btn_manage_vmtouch = Gtk.Template.Child()
-    btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
-    row_dxvk = Gtk.Template.Child()
-    row_vkd3d = Gtk.Template.Child()
     row_nvapi = Gtk.Template.Child()
-    row_latencyflex = Gtk.Template.Child()
     row_discrete = Gtk.Template.Child()
     row_vkbasalt = Gtk.Template.Child()
     row_manage_display = Gtk.Template.Child()
@@ -77,19 +72,15 @@ class PreferencesView(Adw.PreferencesPage):
     row_overrides = Gtk.Template.Child()
     row_drives = Gtk.Template.Child()
     row_sandbox = Gtk.Template.Child()
+    row_sync = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
-    switch_dxvk = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
     switch_obsvkc = Gtk.Template.Child()
     switch_vkbasalt = Gtk.Template.Child()
-    switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
-    switch_latencyflex = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
-    switch_fsr = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
-    switch_fixme = Gtk.Template.Child()
     switch_runtime = Gtk.Template.Child()
     switch_steam_runtime = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
@@ -97,10 +88,6 @@ class PreferencesView(Adw.PreferencesPage):
     switch_auto_versioning = Gtk.Template.Child()
     switch_versioning_patterns = Gtk.Template.Child()
     switch_vmtouch = Gtk.Template.Child()
-    toggle_sync = Gtk.Template.Child()
-    toggle_esync = Gtk.Template.Child()
-    toggle_fsync = Gtk.Template.Child()
-    toggle_futex2 = Gtk.Template.Child()
     combo_fsr = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
@@ -110,19 +97,14 @@ class PreferencesView(Adw.PreferencesPage):
     combo_windows = Gtk.Template.Child()
     combo_language = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
-    spinner_dxvkbool = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
-    spinner_vkd3dbool = Gtk.Template.Child()
     spinner_nvapi = Gtk.Template.Child()
     spinner_nvapibool = Gtk.Template.Child()
     spinner_latencyflex = Gtk.Template.Child()
-    spinner_latencyflexbool = Gtk.Template.Child()
     spinner_runner = Gtk.Template.Child()
     spinner_windows = Gtk.Template.Child()
     spinner_display = Gtk.Template.Child()
-    box_sync = Gtk.Template.Child()
     group_details = Gtk.Template.Child()
-    exp_components = Gtk.Template.Child()
     str_list_languages = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
     str_list_dxvk = Gtk.Template.Child()
@@ -152,32 +134,23 @@ class PreferencesView(Adw.PreferencesPage):
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
         self.row_env_variables.connect("activated", self.__show_environment_variables)
         self.row_drives.connect("activated", self.__show_drives)
+        self.row_cwd.connect("activated", self.choose_cwd)
         self.row_manage_display.connect("activated", self.__show_display_settings)
-        self.btn_manage_components.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_manage_vkbasalt.connect("clicked", self.__show_vkbasalt_settings)
         self.btn_manage_sandbox.connect("clicked", self.__show_sandbox_settings)
         self.btn_manage_versioning_patterns.connect("clicked", self.__show_exclusionpatterns_settings)
         self.btn_manage_vmtouch.connect("clicked", self.__show_vmtouch_settings)
-        self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.choose_cwd, True)
-        self.toggle_sync.connect('toggled', self.__set_wine_sync)
-        self.toggle_esync.connect('toggled', self.__set_esync)
-        self.toggle_fsync.connect('toggled', self.__set_fsync)
-        self.toggle_futex2.connect('toggled', self.__set_futex2)
-        self.switch_dxvk.connect('state-set', self.__toggle_dxvk)
         self.switch_mangohud.connect('state-set', self.__toggle_mangohud)
         self.switch_obsvkc.connect('state-set', self.__toggle_obsvkc)
         self.switch_vkbasalt.connect('state-set', self.__toggle_vkbasalt)
-        self.switch_vkd3d.connect('state-set', self.__toggle_vkd3d)
         self.switch_nvapi.connect('state-set', self.__toggle_nvapi)
-        self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
+        #self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
         self.switch_gamemode.connect('state-set', self.__toggle_gamemode)
         self.switch_gamescope.connect('state-set', self.__toggle_gamescope)
         self.switch_sandbox.connect('state-set', self.__toggle_sandbox)
-        self.switch_fsr.connect('state-set', self.__toggle_fsr)
         self.switch_discrete.connect('state-set', self.__toggle_discrete_gpu)
-        self.switch_fixme.connect('state-set', self.__toggle_fixme)
         self.switch_versioning_compression.connect('state-set', self.__toggle_versioning_compression)
         self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
         self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
@@ -303,14 +276,20 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_language.handler_block_by_func(self.__set_language)
         self.combo_windows.handler_block_by_func(self.__set_windows)
 
-        self.str_list_runner.splice(0, self.str_list_runner.get_n_items())
-        self.str_list_dxvk.splice(0, self.str_list_dxvk.get_n_items())
-        self.str_list_vkd3d.splice(0, self.str_list_vkd3d.get_n_items())
-        self.str_list_nvapi.splice(0, self.str_list_nvapi.get_n_items())
-        self.str_list_latencyflex.splice(0, self.str_list_latencyflex.get_n_items())
-        self.str_list_languages.splice(0, self.str_list_languages.get_n_items())
-        self.str_list_windows.splice(0, self.str_list_windows.get_n_items())
+        for string_list in [
+            self.str_list_runner,
+            self.str_list_dxvk,
+            self.str_list_vkd3d,
+            self.str_list_nvapi,
+            self.str_list_latencyflex,
+            self.str_list_languages,
+            self.str_list_windows,
+        ]:
+            string_list.splice(0, string_list.get_n_items())
 
+        self.str_list_dxvk.append("Disabled")
+        self.str_list_vkd3d.append("Disabled")
+        self.str_list_latencyflex.append("Disabled")
         for index, dxvk in enumerate(self.manager.dxvk_available):
             self.str_list_dxvk.append(dxvk)
 
@@ -342,18 +321,14 @@ class PreferencesView(Adw.PreferencesPage):
         parameters = self.config.get("Parameters")
 
         # temporary lock functions connected to the widgets
-        self.switch_dxvk.handler_block_by_func(self.__toggle_dxvk)
         self.switch_mangohud.handler_block_by_func(self.__toggle_mangohud)
-        self.switch_vkd3d.handler_block_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
-        self.switch_latencyflex.handler_block_by_func(self.__toggle_latencyflex)
         self.switch_vkbasalt.handler_block_by_func(self.__toggle_vkbasalt)
         self.switch_obsvkc.handler_block_by_func(self.__toggle_obsvkc)
         self.switch_gamemode.handler_block_by_func(self.__toggle_gamemode)
         self.switch_gamescope.handler_block_by_func(self.__toggle_gamescope)
         self.switch_sandbox.handler_block_by_func(self.__toggle_sandbox)
         self.switch_discrete.handler_block_by_func(self.__toggle_discrete_gpu)
-        self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
         self.switch_versioning_compression.handler_block_by_func(self.__toggle_versioning_compression)
         self.switch_auto_versioning.handler_block_by_func(self.__toggle_auto_versioning)
         self.switch_versioning_patterns.handler_block_by_func(self.__toggle_versioning_patterns)
@@ -368,23 +343,14 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_windows.handler_block_by_func(self.__set_windows)
         self.combo_language.handler_block_by_func(self.__set_language)
-        self.toggle_sync.handler_block_by_func(self.__set_wine_sync)
-        self.toggle_esync.handler_block_by_func(self.__set_esync)
-        self.toggle_fsync.handler_block_by_func(self.__set_fsync)
-        self.toggle_futex2.handler_block_by_func(self.__set_futex2)
         self.ev_controller.handler_block_by_func(self.__check_entry_name)
-
-        self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_mangohud.set_active(parameters["mangohud"])
         self.switch_obsvkc.set_active(parameters["obsvkc"])
         self.switch_vkbasalt.set_active(parameters["vkbasalt"])
-        self.switch_vkd3d.set_active(parameters["vkd3d"])
         self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
-        self.switch_latencyflex.set_active(parameters["latencyflex"])
         self.switch_gamemode.set_active(parameters["gamemode"])
         self.switch_gamescope.set_active(parameters["gamescope"])
         self.switch_sandbox.set_active(parameters["sandbox"])
-        self.switch_fsr.set_active(parameters["fsr"])
         self.switch_versioning_compression.set_active(parameters["versioning_compression"])
         self.switch_auto_versioning.set_active(parameters["versioning_automatic"])
         self.switch_versioning_patterns.set_active(parameters["versioning_exclusion_patterns"])
@@ -392,10 +358,10 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_steam_runtime.set_active(parameters["use_steam_runtime"])
         self.switch_vmtouch.set_active(parameters["vmtouch"])
 
-        self.toggle_sync.set_active(parameters["sync"] == "wine")
-        self.toggle_esync.set_active(parameters["sync"] == "esync")
-        self.toggle_fsync.set_active(parameters["sync"] == "fsync")
-        self.toggle_futex2.set_active(parameters["sync"] == "futex2")
+        # self.toggle_sync.set_active(parameters["sync"] == "wine")
+        # self.toggle_esync.set_active(parameters["sync"] == "esync")
+        # self.toggle_fsync.set_active(parameters["sync"] == "fsync")
+        # self.toggle_futex2.set_active(parameters["sync"] == "futex2")
 
         self.switch_discrete.set_active(parameters["discrete_gpu"])
 
@@ -437,16 +403,20 @@ class PreferencesView(Adw.PreferencesPage):
             if windows_version == self.config.get("Windows"):
                 self.combo_windows.set_selected(index)
         # endregion
-
+        
+        parameters = self.config.get("Parameters")
         _dxvk = self.config.get("DXVK")
-        if _dxvk in self.manager.dxvk_available:
-            if _i_dxvk := self.manager.dxvk_available.index(_dxvk):
-                self.combo_dxvk.set_selected(_i_dxvk)
+        if parameters["dxvk"] == True:
+            if _dxvk in self.manager.dxvk_available:
+                if _i_dxvk := self.manager.dxvk_available.index(_dxvk):
+                    self.combo_dxvk.set_selected(_i_dxvk + 1)
+        else:
+            self.combo_dxvk.set_selected(0)
 
         _vkd3d = self.config.get("VKD3D")
         if _vkd3d in self.manager.vkd3d_available:
             if _i_vkd3d := self.manager.vkd3d_available.index(_vkd3d):
-                self.combo_vkd3d.set_selected(_i_vkd3d)
+                self.combo_vkd3d.set_selected(_i_vkd3d - 1)
 
         _nvapi = self.config.get("DXVK_NVAPI")
         if _nvapi in self.manager.nvapi_available:
@@ -464,18 +434,14 @@ class PreferencesView(Adw.PreferencesPage):
                 self.combo_runner.set_selected(_i_runner)
 
         # unlock functions connected to the widgets
-        self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)
         self.switch_mangohud.handler_unblock_by_func(self.__toggle_mangohud)
-        self.switch_vkd3d.handler_unblock_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
-        self.switch_latencyflex.handler_unblock_by_func(self.__toggle_latencyflex)
         self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_vkbasalt)
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_obsvkc)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_gamemode)
         self.switch_gamescope.handler_unblock_by_func(self.__toggle_gamescope)
         self.switch_sandbox.handler_unblock_by_func(self.__toggle_sandbox)
         self.switch_discrete.handler_unblock_by_func(self.__toggle_discrete_gpu)
-        self.switch_fsr.handler_unblock_by_func(self.__toggle_fsr)
         self.switch_versioning_compression.handler_unblock_by_func(self.__toggle_versioning_compression)
         self.switch_auto_versioning.handler_unblock_by_func(self.__toggle_auto_versioning)
         self.switch_versioning_patterns.handler_unblock_by_func(self.__toggle_versioning_patterns)
@@ -490,10 +456,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
         self.combo_language.handler_unblock_by_func(self.__set_language)
-        self.toggle_sync.handler_unblock_by_func(self.__set_wine_sync)
-        self.toggle_esync.handler_unblock_by_func(self.__set_esync)
-        self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
-        self.toggle_futex2.handler_unblock_by_func(self.__set_futex2)
         self.ev_controller.handler_unblock_by_func(self.__check_entry_name)
 
         self.__set_steam_rules()
@@ -568,10 +530,10 @@ class PreferencesView(Adw.PreferencesPage):
         def update(result, error=False):
             self.config = result.data["config"]
             toggles = [
-                ("wine", self.toggle_sync, self.__set_wine_sync),
-                ("esync", self.toggle_esync, self.__set_esync),
-                ("fsync", self.toggle_fsync, self.__set_fsync),
-                ("futex2", self.toggle_futex2, self.__set_futex2)
+                # ("wine", self.toggle_sync, self.__set_wine_sync),
+                # ("esync", self.toggle_esync, self.__set_esync),
+                # ("fsync", self.toggle_fsync, self.__set_fsync),
+                # ("futex2", self.toggle_futex2, self.__set_futex2)
             ]
             for sync_type, toggle, func in toggles:
                 toggle.handler_block_by_func(func)
@@ -606,26 +568,6 @@ class PreferencesView(Adw.PreferencesPage):
     def __set_futex2(self, widget):
         self.__set_sync_type("futex2")
 
-    def __toggle_dxvk(self, widget=False, state=False):
-        """Install/Uninstall DXVK from the bottle"""
-        self.queue.add_task()
-        self.set_dxvk_status(pending=True)
-
-        RunAsync(
-            task_func=self.manager.install_dll_component,
-            callback=self.set_dxvk_status,
-            config=self.config,
-            component="dxvk",
-            remove=not state
-        )
-
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="dxvk",
-            value=state,
-            scope="Parameters"
-        ).data["config"]
-
     def __toggle_mangohud(self, widget, state):
         """Toggle the Mangohud for current bottle"""
         self.config = self.manager.update_config(
@@ -653,26 +595,6 @@ class PreferencesView(Adw.PreferencesPage):
             scope="Parameters"
         ).data["config"]
 
-    def __toggle_vkd3d(self, widget=False, state=False):
-        """Install/Uninstall VKD3D from the bottle"""
-        self.queue.add_task()
-        self.set_vkd3d_status(pending=True)
-
-        RunAsync(
-            task_func=self.manager.install_dll_component,
-            callback=self.set_vkd3d_status,
-            config=self.config,
-            component="vkd3d",
-            remove=not state
-        )
-
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="vkd3d",
-            value=state,
-            scope="Parameters"
-        ).data["config"]
-
     def __toggle_nvapi(self, widget=False, state=False):
         """Install/Uninstall NVAPI from the bottle"""
         self.queue.add_task()
@@ -693,25 +615,6 @@ class PreferencesView(Adw.PreferencesPage):
             scope="Parameters"
         ).data["config"]
 
-    def __toggle_latencyflex(self, widget=False, state=False):
-        """Install/Uninstall LatencyFlex from the bottle"""
-        self.queue.add_task()
-        self.set_latencyflex_status(pending=True)
-
-        RunAsync(
-            task_func=self.manager.install_dll_component,
-            callback=self.set_latencyflex_status,
-            config=self.config,
-            component="latencyflex",
-            remove=not state
-        )
-
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="latencyflex",
-            value=state,
-            scope="Parameters"
-        ).data["config"]
 
     def __toggle_gamemode(self, widget=False, state=False):
         """Toggle the gamemode for current bottle"""
@@ -847,9 +750,7 @@ class PreferencesView(Adw.PreferencesPage):
         def set_widgets_status(status=True):
             for w in [
                 self.combo_runner,
-                self.switch_dxvk,
                 self.switch_nvapi,
-                self.switch_vkd3d,
                 self.combo_dxvk,
                 self.combo_nvapi,
                 self.combo_vkd3d
@@ -909,37 +810,91 @@ class PreferencesView(Adw.PreferencesPage):
         """Set the DXVK version to use for the bottle"""
         self.set_dxvk_status(pending=True)
         self.queue.add_task()
-        dxvk = self.manager.dxvk_available[self.combo_dxvk.get_selected()]
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="DXVK",
-            value=dxvk
-        ).data["config"]
 
-        RunAsync(
-            task_func=self.__dll_component_task_func,
-            callback=self.set_dxvk_status,
-            config=self.config,
-            component="dxvk"
-        )
+        if (self.combo_dxvk.get_selected()) == 0:
+            self.set_dxvk_status(pending=True)
+            self.queue.add_task()
+
+            RunAsync(
+                task_func=self.manager.install_dll_component,
+                callback=self.set_dxvk_status,
+                config=self.config,
+                component="dxvk",
+                remove=True
+            )
+
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="dxvk",
+                value=False,
+                scope="Parameters"
+            ).data["config"]
+        else: 
+            dxvk = self.manager.dxvk_available[self.combo_dxvk.get_selected() - 1]
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="DXVK",
+                value=dxvk
+            ).data["config"]
+
+            RunAsync(
+                task_func=self.__dll_component_task_func,
+                callback=self.set_dxvk_status,
+                config=self.config,
+                component="dxvk"
+            )
+
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="dxvk",
+                value=True,
+                scope="Parameters"
+            ).data["config"]
 
     def __set_vkd3d(self, *_args):
         """Set the VKD3D version to use for the bottle"""
         self.set_vkd3d_status(pending=True)
         self.queue.add_task()
-        vkd3d = self.manager.vkd3d_available[self.combo_vkd3d.get_selected()]
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="VKD3D",
-            value=vkd3d
-        ).data["config"]
+        if (self.combo_dxvk.get_selected()) == 0:
+            self.queue.add_task()
+            self.set_vkd3d_status(pending=True)
 
-        RunAsync(
-            task_func=self.__dll_component_task_func,
-            callback=self.set_vkd3d_status,
-            config=self.config,
-            component="vkd3d"
-        )
+            RunAsync(
+                task_func=self.manager.install_dll_component,
+                callback=self.set_vkd3d_status,
+                config=self.config,
+                component="vkd3d",
+                remove=True
+            )
+
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="vkd3d",
+                value=False,
+                scope="Parameters"
+            ).data["config"]
+
+        else:
+            vkd3d = self.manager.vkd3d_available[self.combo_vkd3d.get_selected() - 1]
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="VKD3D",
+                value=vkd3d
+            ).data["config"]
+
+            RunAsync(
+                task_func=self.__dll_component_task_func,
+                callback=self.set_vkd3d_status,
+                config=self.config,
+                component="vkd3d"
+            )
+
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="vkd3d",
+                value=True,
+                scope="Parameters"
+            ).data["config"]
 
     def __set_nvapi(self, *_args):
         """Set the NVAPI version to use for the bottle"""
@@ -963,18 +918,41 @@ class PreferencesView(Adw.PreferencesPage):
         """Set the latency flex value"""
         latencyflex = self.manager.latencyflex_available[self.combo_latencyflex.get_selected()]
         self.queue.add_task()
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="LatencyFleX",
-            value=latencyflex
-        ).data["config"]
-
-        RunAsync(
-            task_func=self.__dll_component_task_func,
+        if(self.combo_latencyflex.get_selected) == 0:
+            
+            RunAsync(
+            task_func=self.manager.install_dll_component,
             callback=self.set_latencyflex_status,
             config=self.config,
-            component="latencyflex"
-        )
+            component="latencyflex",
+            remove=True
+            )
+
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="latencyflex",
+                value=False,
+                scope="Parameters"
+            ).data["config"]
+        else:
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="LatencyFleX",
+                value=latencyflex
+            ).data["config"]
+
+            RunAsync(
+                task_func=self.__dll_component_task_func,
+                callback=self.set_latencyflex_status,
+                config=self.config,
+                component="latencyflex"
+            )
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="latencyflex",
+                value=True,
+                scope="Parameters"
+            ).data["config"]
 
     def __set_windows(self, *_args):
         """Set the Windows version to use for the bottle"""
@@ -1035,34 +1013,24 @@ class PreferencesView(Adw.PreferencesPage):
 
     def set_dxvk_status(self, status=None, error=None, pending=False):
         """Set the dxvk status"""
-        self.switch_dxvk.set_sensitive(not pending)
         self.combo_dxvk.set_sensitive(not pending)
         if pending:
             self.spinner_dxvk.start()
-            self.spinner_dxvkbool.start()
             self.spinner_dxvk.set_visible(True)
-            self.spinner_dxvkbool.set_visible(True)
         else:
             self.spinner_dxvk.stop()
-            self.spinner_dxvkbool.stop()
             self.spinner_dxvk.set_visible(False)
-            self.spinner_dxvkbool.set_visible(False)
             self.queue.end_task()
 
     def set_vkd3d_status(self, status=None, error=None, pending=False):
         """Set the vkd3d status"""
-        self.switch_vkd3d.set_sensitive(not pending)
         self.combo_vkd3d.set_sensitive(not pending)
         if pending:
             self.spinner_vkd3d.start()
-            self.spinner_vkd3dbool.start()
             self.spinner_vkd3d.set_visible(True)
-            self.spinner_vkd3dbool.set_visible(True)
         else:
             self.spinner_vkd3d.stop()
-            self.spinner_vkd3dbool.stop()
             self.spinner_vkd3d.set_visible(False)
-            self.spinner_vkd3dbool.set_visible(False)
             self.queue.end_task()
 
     def set_nvapi_status(self, status=None, error=None, pending=False):
@@ -1083,35 +1051,27 @@ class PreferencesView(Adw.PreferencesPage):
 
     def set_latencyflex_status(self, status=None, error=None, pending=False):
         """Set the latencyflex status"""
-        self.switch_latencyflex.set_sensitive(not pending)
         self.combo_latencyflex.set_sensitive(not pending)
         if pending:
             self.spinner_latencyflex.start()
-            self.spinner_latencyflexbool.start()
             self.spinner_latencyflex.set_visible(True)
-            self.spinner_latencyflexbool.set_visible(True)
         else:
             self.spinner_latencyflex.stop()
-            self.spinner_latencyflexbool.stop()
             self.spinner_latencyflex.set_visible(False)
-            self.spinner_latencyflexbool.set_visible(False)
             self.queue.end_task()
 
     def __set_steam_rules(self):
         """Set the Steam Environment specific rules"""
         status = False if self.config.get("Environment") == "Steam" else True
 
-        for w in [
-            self.row_discrete,
-            self.row_steam_runtime,
-            self.row_dxvk,
-            self.row_vkd3d,
-            self.row_latencyflex,
-            self.row_sandbox,
-            self.group_details,
-            self.exp_components
-        ]:
-            w.set_visible(status)
-            w.set_sensitive(status)
+        # for w in [
+        #     self.row_discrete,
+        #     self.row_steam_runtime,
+        #     self.row_dxvk,
+        #     self.row_sandbox,
+        #     self.group_details,
+        # ]:
+        #     w.set_visible(status)
+        #     w.set_sensitive(status)
 
-        self.row_sandbox.set_visible(self.window.settings.get_boolean("experiments-sandbox"))
+        # self.row_sandbox.set_visible(self.window.settings.get_boolean("experiments-sandbox"))

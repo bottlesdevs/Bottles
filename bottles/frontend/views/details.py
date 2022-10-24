@@ -152,7 +152,7 @@ class DetailsView(Adw.Bin):
                 "description": "",
             },
             "preferences": {
-                "title": _("Preferences"),
+                "title": _("Settings"),
                 "description": "",
             },
             "dependencies": {
