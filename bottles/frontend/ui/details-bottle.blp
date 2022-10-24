@@ -312,5 +312,39 @@ template DetailsBottle : .AdwPreferencesPage {
       }
     }
   }
+
+  .AdwPreferencesGroup group_options {
+    title: _("Options");
+      
+      .AdwActionRow row_preferences {
+        activatable: true;
+        title: _("Preferences");
+        subtitle: _("Some random text here.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+      
+      .AdwActionRow row_dependencies {
+        activatable: true;
+        title: _("Dependencies");
+        subtitle: _("Improve compatibility of Windows software.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+      
+      .AdwActionRow row_installers {
+        activatable: true;
+        title: _("Installers");
+        subtitle: _("Install community curated programs.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+  }
 }
   
