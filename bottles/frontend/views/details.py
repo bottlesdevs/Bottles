@@ -257,7 +257,6 @@ class DetailsView(Adw.Bin):
             GLib.idle_add(self.view_bottle.empty_list)
             GLib.idle_add(self.view_programs.empty_list)
 
-            self.view_bottle.group_programs.set_sensitive(False)
             self.view_programs.group_programs.set_sensitive(False)
 
         def new_program(_program, check_boot=None, is_steam=False,
@@ -302,7 +301,6 @@ class DetailsView(Adw.Bin):
                 row_no_programs.set_visible(False)
 
             self.view_bottle.row_no_programs.set_visible(handled_h)
-            self.view_bottle.group_programs.set_sensitive(not handled_h)
             self.view_programs.status_page.set_visible(handled_p)
             self.view_programs.group_programs.set_visible(not handled_p)
             self.view_programs.group_programs.set_sensitive(not handled_p)
