@@ -105,6 +105,7 @@ class BottleView(Adw.PreferencesPage):
         # common variables and references
         self.window = details.window
         self.manager = details.window.manager
+        self.stack_bottle = details.stack_bottle
         self.config = config
 
         self.target.connect('drop', self.on_drop)
@@ -114,6 +115,9 @@ class BottleView(Adw.PreferencesPage):
 
         self.btn_execute.connect("clicked", self.run_executable)
         self.btn_run_args.connect("clicked", self.__run_executable_with_args)
+        self.row_preferences.connect("activated", self.__change_page, "preferences")
+        self.row_dependencies.connect("activated", self.__change_page, "dependencies")
+        self.row_installers.connect("activated", self.__change_page, "installers")
         self.row_winecfg.connect("activated", self.run_winecfg)
         self.row_debug.connect("activated", self.run_debug)
         self.row_explorer.connect("activated", self.run_explorer)
@@ -153,6 +157,16 @@ class BottleView(Adw.PreferencesPage):
             self.btn_flatpak_doc.set_visible(True)
 
         self.__update_latest_executables()
+
+    def __change_page(self, _widget, page_name):
+        """
+        This function try to change the page based on user choice, if
+        the page is not available, it will show the "bottle" page.
+        """
+        try:
+            self.stack_bottle.set_visible_child_name(page_name)
+        except:  # pylint: disable=bare-except
+            pass
 
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
         self.drop_overlay.set_visible(False)
