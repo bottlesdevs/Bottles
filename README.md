@@ -99,8 +99,8 @@ We are happy to see packaged Bottles but we ask you to respect some small rules:
 - [Older versions will be deprecated?](https://docs.usebottles.com/faq/updates-and-old-versions#older-versions-will-be-deprecated)
 - [Backward compatibility?](https://docs.usebottles.com/faq/updates-and-old-versions#backward-compatibility)
 
-## Code of Conduct
-This project follows the [GNOME Code of Conduct.](https://wiki.gnome.org/Foundation/CodeOfConduct) You are expected to follow it in all Bottles spaces, such as this repository, project's social media, messenger chats and forums. Bigotry and harassment will not be tolerated.
+## Contributions
+Much appreciated.
 
 ## Sponsors
 <a href="https://www.jetbrains.com/?from=bottles"><img height="55" src="https://unifiedban.solutions/static/images/jetbrains-logos/jetbrains.png" /></a>&nbsp;&nbsp;&nbsp;
