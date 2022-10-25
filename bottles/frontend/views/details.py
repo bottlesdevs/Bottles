@@ -289,16 +289,10 @@ class DetailsView(Adw.Bin):
             return
 
         def callback(result, _error=False):
-            row_no_programs = self.view_bottle.row_no_programs
             handled = result.data.get("handled")
 
             handled_h = handled[0] == 0
             handled_p = handled[1] == 0
-
-            if handled_h:
-                row_no_programs.set_visible(True)
-            else:
-                row_no_programs.set_visible(False)
 
             self.view_bottle.row_no_programs.set_visible(handled_h)
             self.view_programs.status_page.set_visible(handled_p)
