@@ -122,53 +122,6 @@ Popover pop_run {
   }
 }
 
-.AdwActionRow row_no_programs {
-  Box {
-    hexpand: true;
-
-    Label {
-      label: _("Use the Installers section or the \"Run executable\" button.");
-      wrap: false;
-
-      styles [
-        "dim-label",
-      ]
-    }
-  }
-}
-
-.AdwActionRow bottom_bar {
-  Box {          
-    .AdwActionRow add_program {
-      activatable: true;
-      Box {
-        spacing: 12;
-        Image {
-          icon-name: "list-add-symbolic";
-        }
-
-        Label {
-          label: _("Add Program…");
-        }
-      }
-    }
-    
-    .AdwActionRow add_shortcut {
-      activatable: true;
-      Box {
-        spacing: 12;
-        Image {
-          icon-name: "list-add-symbolic";
-        }
-
-        Label {
-          label: _("Add Shortcut…");
-        }
-      }
-    }
-  }
-}
-
 template DetailsBottle : .AdwPreferencesPage {
   Overlay drop_overlay {
     visible: false;
@@ -262,6 +215,79 @@ template DetailsBottle : .AdwPreferencesPage {
 
   .AdwPreferencesGroup group_programs {
     title: _("Programs");
+
+    .AdwActionRow row_no_programs {
+      Box {
+        hexpand: true;
+
+        Label {
+          label: _("Use the Installers section or the \"Run executable\" button.");
+          wrap: false;
+
+          styles [
+            "dim-label",
+          ]
+        }
+      }
+    }
+    
+    .AdwPreferencesRow bottom_bar {
+      activatable: false;      
+      
+      Box {
+        height-request:45;
+        
+        Button add_shortcuts {
+          hexpand: true;
+          has-frame: false;
+          focusable: false;
+          Box {
+            halign: center;
+            Image {
+              icon-name: "list-add-symbolic";
+            }
+            
+            Separator {
+              styles [
+                "spacer"
+              ]
+            }
+            
+            Label {
+              label: _("Add Shortcuts...");
+            }
+          }
+        }
+        
+        Separator {
+        }
+        
+        Button add_programs {
+          hexpand: true;
+          has-frame: false;
+          Box {
+            halign: center;
+            Image {
+              icon-name: "list-add-symbolic";
+            }
+          
+            Separator {
+              styles [
+                "spacer"
+              ]
+            }
+
+            Label {
+              label: _("Add Programs...");
+            }
+          }
+        }
+        
+        styles [
+          "linked"
+        ]
+      }
+    }
   }
 
   .AdwPreferencesGroup group_utilities {

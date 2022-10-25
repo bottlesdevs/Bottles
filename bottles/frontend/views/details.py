@@ -297,10 +297,9 @@ class DetailsView(Adw.Bin):
             handled_p = handled[1] == 0
 
             if handled_h:
-                self.view_bottle.group_programs.add(row_no_programs)
+                row_no_programs.set_visible(True)
             else:
-                if row_no_programs.get_parent():
-                    row_no_programs.get_parent().remove(row_no_programs)
+                row_no_programs.set_visible(False)
 
             self.view_bottle.row_no_programs.set_visible(handled_h)
             self.view_bottle.group_programs.set_sensitive(not handled_h)
@@ -308,6 +307,7 @@ class DetailsView(Adw.Bin):
             self.view_programs.group_programs.set_visible(not handled_p)
             self.view_programs.group_programs.set_sensitive(not handled_p)
 
+            self.view_bottle.group_programs.remove(self.view_bottle.bottom_bar)
             self.view_bottle.group_programs.add(self.view_bottle.bottom_bar)
 
         def process_programs():
