@@ -77,7 +77,8 @@ class Samples:
         "DLL_Overrides": {},
         "External_Programs": {},
         "Uninstallers": {},
-        "Latest_Executables": [],
+        "session_arguments": "",
+        "run_in_terminal": False,
         "Language": "sys"
     }
 

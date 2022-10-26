@@ -89,39 +89,6 @@ Popover pop_power {
   }
 }
 
-Popover pop_run {
-  Box {
-    orientation: vertical;
-    valign: center;
-    halign: center;
-    hexpand: true;
-    vexpand: true;
-    margin-top: 6;
-    margin-bottom: 6;
-    margin-start: 6;
-    margin-end: 6;
-
-    .GtkModelButton btn_run_args {
-      valign: "center";
-      halign: "center";
-      margin-bottom: "5";
-      text: _("Run with Additional Arguments…");
-    }
-
-    CheckButton check_terminal {
-      label: _("Launch in a Terminal…");
-      halign: start;
-      margin-bottom: 5;
-      use-underline: true;
-    }
-
-    Box box_history {
-      spacing: 5;
-      orientation: vertical;
-    }
-  }
-}
-
 .AdwActionRow row_no_programs {
   Box {
     hexpand: true;
@@ -148,77 +115,149 @@ template DetailsBottle : .AdwPreferencesPage {
   }
   .AdwPreferencesGroup {
     Box {
-      Box {
-        orientation: vertical;
+      orientation: vertical;
 
-        Label label_name {
-          halign: start;
-          label: _("My bottle");
+      Label label_name {
+        halign: center;
+        label: _("My bottle");
+
+        styles [
+          "title-1",
+        ]
+      }
+
+      Box {
+        spacing: 6;
+        halign: center;
+
+        Label label_arch {
+          label: _("Win64");
 
           styles [
-            "title-2",
+            "heading",
           ]
         }
 
-        Box {
-          spacing: 6;
+        Label {
+          label: "·";
+        }
 
-          Label label_arch {
-            halign: start;
-            label: _("Win64");
+        Label label_environment {
+          label: _("Environment");
 
-            styles [
-              "heading",
-            ]
-          }
+          styles [
+            "heading",
+          ]
+        }
 
-          Label label_environment {
-            label: _("Environment");
+        Label {
+          label: "·";
+        }
 
-            styles [
-              "heading",
-            ]
-          }
+        Label label_runner {
+          label: _("Runner");
 
-          Label label_runner {
-            label: _("Runner");
+          styles [
+            "heading",
+          ]
+        }
 
-            styles [
-              "heading",
-            ]
-          }
+        Label dot_versioning {
+          label: "·";
+        }
 
-          Grid grid_versioning {
-            tooltip-text: _("Versioning enabled for this bottle");
+        Grid grid_versioning {
+          tooltip-text: _("Versioning enabled for this bottle");
+          halign: center;
+          valign: center;
+
+          Image img_versioning {
+            tooltip-text: _("Versioning is active for this bottle.");
             halign: center;
             valign: center;
+            icon-name: "view-wrapped-symbolic";
+          }
 
-            Image img_versioning {
-              tooltip-text: _("Versioning is active for this bottle.");
-              halign: center;
-              valign: center;
-              icon-name: "view-wrapped-symbolic";
-            }
-
-            Label label_state {
-              halign: center;
-              valign: center;
-              label: _("0");
-            }
+          Label label_state {
+            halign: center;
+            valign: center;
+            label: _("0");
           }
         }
       }
+    }
+  }
 
-      .AdwSplitButton btn_execute {
-        label: _("Run Executable…");
-        hexpand: true;
-        halign: "end";
-        valign: "center";
-        popover: "pop_run";
+  .AdwPreferencesGroup {
+    Box {
+      spacing: 6;
+      halign: center;
+
+      Button btn_execute {
+        Box {
+          spacing: 6;
+          Image {
+            icon-name: "media-playback-start-symbolic";
+          }
+
+          Label {
+            label: _("Run Executable…");
+          }
+        }
 
         styles [
+          "pill",
           "suggested-action",
         ]
+      }
+
+      Box {
+        Popover btn_exec_settings {
+          width-request: 300;
+          
+          Box {
+            orientation: vertical;
+            margin-top: 6;
+            margin-bottom: 6;
+            margin-start: 6;
+            margin-end: 6;
+            
+            Label {
+              halign: start;
+              margin-bottom: 12;
+              label: _("Launch Options");
+              
+              styles [
+                "heading"
+              ]
+            }
+
+            Entry exec_arguments {
+            }
+
+            Separator {
+              margin-top: 12;
+              margin-bottom: 12;
+            }
+            
+            CheckButton exec_terminal {
+              Label {
+                label: _("Run in Terminal");
+                margin-start: 6;
+              }
+            }
+          }
+        }
+      
+        MenuButton {
+          valign: center;
+          icon-name: "applications-system-symbolic";
+          popover: btn_exec_settings;
+          
+          styles [
+            "circular",
+          ]
+        }
       }
     }
   }
@@ -314,3 +353,4 @@ template DetailsBottle : .AdwPreferencesPage {
     }
   }
 }
+  
