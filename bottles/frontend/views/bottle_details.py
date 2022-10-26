@@ -108,7 +108,7 @@ class BottleView(Adw.PreferencesPage):
         self.target.connect('leave', self.on_leave)
 
         self.btn_execute.connect("clicked", self.run_executable)
-        self.btn_exec_settings.connect("closed", self.__run_executable_settings)
+        self.btn_exec_settings.connect("closed", self.__run_executable_with_args)
         self.row_winecfg.connect("activated", self.run_winecfg)
         self.row_debug.connect("activated", self.run_debug)
         self.row_explorer.connect("activated", self.run_explorer)
@@ -223,7 +223,7 @@ class BottleView(Adw.PreferencesPage):
             self.group_programs.remove(r)
         self.__registry = []
 
-    def __run_executable_settings(self, widget):
+    def __run_executable_with_args(self, widget):
         """
         This function saves updates the run arguments for the current session.
         """
