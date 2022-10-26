@@ -251,7 +251,10 @@ class BottleView(Adw.PreferencesPage):
 
     def add_program(self, widget):
         self.__registry.append(widget)
+        self.group_programs.remove(self.bottom_bar) # Remove the bottom_bar
         self.group_programs.add(widget)
+        self.group_programs.add(self.bottom_bar) # Add the bottom_bar back to the bottom
+
 
     def empty_list(self):
         """
