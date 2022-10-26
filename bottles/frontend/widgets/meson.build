@@ -7,7 +7,6 @@ bottles_sources = [
   'executable.py',
   'importer.py',
   'installer.py',
-  'page.py',
   'program.py',
   'state.py',
   'component.py',
