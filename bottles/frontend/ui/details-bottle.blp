@@ -211,13 +211,53 @@ template DetailsBottle : .AdwPreferencesPage {
         ]
       }
 
-      Button btn_execute_settings {
-        valign: center;
-        icon-name: "applications-system-symbolic";
+      Box {
+        Popover btn_exec_settings {
+          width-request: 300;
+          styles [
+            "menu"
+          ]
+          
+          Box {
+            orientation: vertical;
+            margin-top: 12;
+            margin-bottom: 12;
+            margin-start: 12;
+            margin-end: 12;
 
-        styles [
-          "circular",
-        ]
+            Label {
+              halign: start;
+              margin-bottom: 10;
+              label: _("Launch Options");
+              
+              styles [
+                "heading"
+              ]
+            }
+
+            Entry exec_arguments {
+              height-request: 45;
+            }
+
+            Separator {
+            }
+            
+            CheckButton exec_terminal {
+              label: _("Run in Terminal");
+              height-request: 45;
+            }
+          }
+        }
+      
+        MenuButton {
+          valign: center;
+          icon-name: "applications-system-symbolic";
+          popover: btn_exec_settings;
+          
+          styles [
+            "circular",
+          ]
+        }
       }
     }
   }

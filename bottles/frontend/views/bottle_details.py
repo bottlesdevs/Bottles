@@ -33,7 +33,6 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.frontend.widgets.executable import ExecButton
 
 from bottles.frontend.windows.filechooser import FileChooser
-from bottles.frontend.windows.executesettings import ExecuteSettingsDialog
 from bottles.frontend.windows.generic import MessageDialog
 from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
@@ -61,7 +60,8 @@ class BottleView(Adw.PreferencesPage):
     label_environment = Gtk.Template.Child()
     label_arch = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
-    btn_execute_settings = Gtk.Template.Child()
+    exec_arguments = Gtk.Template.Child()
+    exec_terminal = Gtk.Template.Child()
     row_winecfg = Gtk.Template.Child()
     row_debug = Gtk.Template.Child()
     row_explorer = Gtk.Template.Child()
@@ -107,7 +107,8 @@ class BottleView(Adw.PreferencesPage):
         self.target.connect('leave', self.on_leave)
 
         self.btn_execute.connect("clicked", self.run_executable)
-        self.btn_execute_settings.connect("clicked", self.__run_executable_settings)
+        self.exec_arguments.connect("changed", self.__run_executable_settings)
+        self.exec_terminal.connect("toggled", self.__run_executable_settings)
         self.row_winecfg.connect("activated", self.run_winecfg)
         self.row_debug.connect("activated", self.run_debug)
         self.row_explorer.connect("activated", self.run_explorer)
@@ -224,11 +225,11 @@ class BottleView(Adw.PreferencesPage):
 
     def __run_executable_settings(self, widget):
         """
-        This function pop up the dialog to run an executable with
-        custom arguments.
+        This function saves updates the run arguments for the current session.
         """
-        new_window = ExecuteSettingsDialog(self)
-        new_window.present()
+        args = self.exec_arguments.get_text()
+        self.config["session_arguments"] = args
+        self.config["run_in_terminal"] = self.exec_terminal.get_active()
 
     def run_executable(self, widget, args=False):
         """
