@@ -3,6 +3,7 @@ using Gtk 4.0;
 template Details : .AdwBin {
   .AdwLeaflet leaflet {
     can-navigate-back: true;
+    can-unfold: false;
     hexpand: true;
 
     Box {
@@ -22,13 +23,7 @@ template Details : .AdwBin {
         }
       }
 
-      ListBox list_pages {
-        vexpand: true;
-        width-request: 220;
-
-        styles [
-          "navigation-sidebar",
-        ]
+      Box default_view {
       }
     }
 
