@@ -214,17 +214,14 @@ template DetailsBottle : .AdwPreferencesPage {
       Box {
         Popover btn_exec_settings {
           width-request: 300;
-          styles [
-            "menu"
-          ]
           
           Box {
             orientation: vertical;
             margin-top: 12;
             margin-bottom: 12;
-            margin-start: 12;
-            margin-end: 12;
-
+            margin-start: 6;
+            margin-end: 6;
+            
             Label {
               halign: start;
               margin-bottom: 10;
@@ -240,11 +237,15 @@ template DetailsBottle : .AdwPreferencesPage {
             }
 
             Separator {
+              margin-top: 12;
+              margin-bottom: 12;
             }
             
             CheckButton exec_terminal {
-              label: _("Run in Terminal");
-              height-request: 45;
+              Label {
+                label: _("Run in Terminal");
+                margin-start: 6;
+              }
             }
           }
         }
