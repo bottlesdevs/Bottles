@@ -21,7 +21,6 @@ from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.frontend.utils.threading import RunAsync
-from bottles.frontend.widgets.page import PageRow
 
 from bottles.backend.managers.queue import QueueManager
 from bottles.backend.models.result import Result
@@ -50,7 +49,7 @@ class DetailsView(Adw.Bin):
 
     # region Widgets
     leaflet = Gtk.Template.Child()
-    list_pages = Gtk.Template.Child()
+    default_view = Gtk.Template.Child()
     stack_bottle = Gtk.Template.Child()
     sidebar_headerbar = Gtk.Template.Child()
     content_headerbar = Gtk.Template.Child()
@@ -91,7 +90,6 @@ class DetailsView(Adw.Bin):
         self.window.main_leaf.connect('notify::visible-child', self.unload_view)
 
         # region signals
-        self.list_pages.connect('row-selected', self.__change_page)
         self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
         self.btn_operations.connect('activate', self.__on_operations_toggled)
         self.btn_operations.connect('notify::visible', self.__spin_tasks_toggle)
@@ -147,10 +145,6 @@ class DetailsView(Adw.Bin):
         features are enabled).
         """
         self.__pages = {
-            "bottle": {
-                "title": _("Details & Utilities"),
-                "description": "",
-            },
             "preferences": {
                 "title": _("Preferences"),
                 "description": "",
@@ -185,13 +179,8 @@ class DetailsView(Adw.Bin):
             del self.__pages["programs"]
             del self.__pages["versioning"]
 
-        while self.list_pages.get_first_child():
-            self.list_pages.remove(self.list_pages.get_first_child())
+        self.default_view.append(self.view_bottle)
 
-        for page, data in self.__pages.items():
-            self.list_pages.append(PageRow(page, data))
-
-        self.stack_bottle.add_named(self.view_bottle, "bottle")
         self.stack_bottle.add_named(self.view_preferences, "preferences")
         self.stack_bottle.add_named(self.view_dependencies, "dependencies")
         self.stack_bottle.add_named(self.view_programs, "programs")
@@ -200,18 +189,6 @@ class DetailsView(Adw.Bin):
         self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
 
         self.set_actions(self.view_bottle.actions)
-        self.list_pages.select_row(self.list_pages.get_first_child())
-
-    def __change_page(self, _widget, row):
-        """
-        This function try to change the page based on user choice, if
-        the page is not available, it will show the "bottle" page.
-        """
-        try:
-            self.stack_bottle.set_visible_child_name(row.page_name)
-            self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
-        except:  # pylint: disable=bare-except
-            pass
 
     def set_actions(self, widget: Gtk.Widget = None):
         """

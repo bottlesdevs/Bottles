@@ -106,6 +106,7 @@ class BottleView(Adw.PreferencesPage):
         self.window = details.window
         self.manager = details.window.manager
         self.stack_bottle = details.stack_bottle
+        self.leaflet = details.leaflet
         self.config = config
 
         self.target.connect('drop', self.on_drop)
@@ -165,6 +166,7 @@ class BottleView(Adw.PreferencesPage):
         """
         try:
             self.stack_bottle.set_visible_child_name(page_name)
+            self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
         except:  # pylint: disable=bare-except
             pass
 
