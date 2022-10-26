@@ -53,6 +53,7 @@ class DetailsView(Adw.Bin):
     stack_bottle = Gtk.Template.Child()
     sidebar_headerbar = Gtk.Template.Child()
     content_headerbar = Gtk.Template.Child()
+    default_actions = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     content_title = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
@@ -88,6 +89,7 @@ class DetailsView(Adw.Bin):
         self.btn_back.connect("clicked", self.go_back)
         self.btn_back_sidebar.connect("clicked", self.go_back_sidebar)
         self.window.main_leaf.connect('notify::visible-child', self.unload_view)
+        self.default_actions.append(self.view_bottle.actions)
 
         # region signals
         self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
@@ -119,13 +121,8 @@ class DetailsView(Adw.Bin):
         self.window.toggle_selection_mode(False)
         page = self.stack_bottle.get_visible_child_name()
 
-        if page is None:
-            page = "bottle"
-
         self.set_title(self.__pages[page]['title'], self.__pages[page]['description'])
-        if page in ["bottle", None]:
-            self.set_actions(self.view_bottle.actions)
-        elif page == "programs":
+        if page == "programs":
             self.set_actions(self.view_programs.actions)
         elif page == "dependencies":
             self.set_actions(self.view_dependencies.actions)
