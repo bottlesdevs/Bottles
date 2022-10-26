@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-10-10 18:08+0000\n"
+"PO-Revision-Date: 2022-10-24 21:35+0000\n"
 "Last-Translator: Vitor Henrique <vitorhcl00@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
@@ -1132,11 +1132,11 @@ msgstr "Gerencie as configurações do Gamescope"
 
 #: bottles/frontend/ui/details-preferences.ui:588
 msgid "Vmtouch"
-msgstr ""
+msgstr "Vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:589
 msgid "Preload game files into RAM"
-msgstr ""
+msgstr "Pré-carregar arquivos do jogo na RAM"
 
 #: bottles/frontend/ui/details-preferences.ui:592
 #, fuzzy
@@ -1203,12 +1203,13 @@ msgstr "Controle de versão"
 
 #: bottles/frontend/ui/details-preferences.ui:692
 msgid "Use Compression for States"
-msgstr ""
+msgstr "Usar compactação para estados"
 
 #: bottles/frontend/ui/details-preferences.ui:693
 msgid ""
 "This will reduce the space used by the states but slow down their creation."
 msgstr ""
+"Isso reduzirá o espaço usado pelos estados, mas desacelerará sua criação."
 
 #: bottles/frontend/ui/details-preferences.ui:704
 #, fuzzy
@@ -1219,14 +1220,18 @@ msgstr "Controle de versão"
 msgid ""
 "Bottles will create a state before running any dependencies or installers."
 msgstr ""
+"O Bottles criará um estado antes de executar qualquer dependência ou "
+"instalador."
 
 #: bottles/frontend/ui/details-preferences.ui:716
 msgid "Use Exclusion Patterns"
-msgstr ""
+msgstr "Usar padrões de exclusão"
 
 #: bottles/frontend/ui/details-preferences.ui:717
 msgid "Use custom patterns to exclude some paths from versioning."
 msgstr ""
+"Use padrões personalizados para excluir alguns caminhos do controle de "
+"versão."
 
 #: bottles/frontend/ui/details-preferences.ui:720
 #, fuzzy
@@ -1373,7 +1378,7 @@ msgstr "Opções avançadas"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:15
 msgid "Incomplete package"
-msgstr ""
+msgstr "Pacote incompleto"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:16
 msgid ""
@@ -1382,6 +1387,10 @@ msgid ""
 "version.\n"
 "                        "
 msgstr ""
+"Esta versão do Bottles parece não fornecer todas as dependências essenciais "
+"necessárias, entre em contato com o mantenedor do pacote ou use uma versão "
+"oficial.\n"
+"                        "
 
 #: bottles/frontend/ui/dialog-deps-check.ui:21
 msgid "Quit"
@@ -1478,13 +1487,15 @@ msgstr "Variáveis Existentes"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "Padrões de exclusão"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
+"Defina padrões que serão usados para evitar que alguns diretórios sejam "
+"versionados."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
 #, fuzzy
@@ -1514,7 +1525,7 @@ msgstr "Resolução do jogo"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:52
 msgid "Uses the resolution of the video game as a reference."
-msgstr ""
+msgstr "Usa a resolução do vídeo do jogo como referência."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:55
 #: bottles/frontend/ui/dialog-gamescope.ui:71
@@ -1536,10 +1547,11 @@ msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution."
 msgstr ""
+"Aumenta a resolução ao usar uma resolução maior que a resolução do jogo."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:83
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Diversos"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:86
 #, fuzzy
