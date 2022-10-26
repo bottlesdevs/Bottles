@@ -325,7 +325,7 @@ template DetailsBottle : .AdwPreferencesPage {
         }
       }
 
-      .AdwActionRow row_taskmanager {
+      .AdwActionRow row_taskmanager_legacy {
         activatable: true;
         title: _("Task Manager");
 
@@ -399,6 +399,25 @@ template DetailsBottle : .AdwPreferencesPage {
         activatable: true;
         title: _("Installers");
         subtitle: _("Install community curated programs.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+
+      .AdwActionRow row_snapshots {
+        activatable: true;
+        title: _("Snapshots");
+        subtitle: _("Imagine windows restore points, but better.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+
+      .AdwActionRow row_taskmanager {
+        activatable: true;
+        title: _("Taskmanager");
 
         Image {
           icon-name: "go-next-symbolic";
