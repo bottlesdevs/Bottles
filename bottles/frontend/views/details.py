@@ -78,11 +78,11 @@ class DetailsView(Adw.Bin):
         self.config = config
         self.queue = QueueManager(add_fn=self.lock_back, end_fn=self.unlock_back)
 
+        self.view_programs = ProgramsView(self, config)
         self.view_bottle = BottleView(self, config)
         self.view_installers = InstallersView(self, config)
         self.view_dependencies = DependenciesView(self, config)
         self.view_preferences = PreferencesView(self, config)
-        self.view_programs = ProgramsView(self, config)
         self.view_versioning = VersioningView(self, config)
         self.view_taskmanager = TaskManagerView(self, config)
 
