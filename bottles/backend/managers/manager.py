@@ -755,9 +755,12 @@ class Manager:
             if conf_file_yaml is None:
                 return
 
-            # Clear Latest_Executables on new session start
-            if conf_file_yaml.get("Latest_Executables"):
-                conf_file_yaml["Latest_Executables"] = []
+            # Clear Run Executable parameters on new session start
+            if conf_file_yaml.get("session_arguments"):
+                conf_file_yaml["session_arguments"] = ""
+
+            if conf_file_yaml.get("run_in_terminal"):
+                conf_file_yaml["run_in_terminal"] = False
 
             # Migrate old programs to [id] and [name]
             # TODO: remove this migration after 2022.10.14.1

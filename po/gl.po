@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-03-15 18:53+0000\n"
-"Last-Translator: Fran Diéguez <fran.dieguez@mabishu.com>\n"
+"PO-Revision-Date: 2022-10-26 15:04+0000\n"
+"Last-Translator: Nicolás S. Gómez <nicogomfor@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/bottles/bottles/"
 "gl/>\n"
 "Language: gl\n"
@@ -17,25 +17,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "Non se especificou un camiño"
 
 #: bottles/backend/managers/backup.py:71
 #, python-brace-format
 msgid "Backup {0}"
-msgstr ""
+msgstr "Backup {0}"
 
 #: bottles/backend/managers/backup.py:124
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr ""
+msgstr "Importando backup: {0}"
 
 #: bottles/backend/managers/manager.py:1030
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "Fallou a instalación dos compoñentes; intentouse 3 veces."
 
 #: bottles/backend/managers/manager.py:1041
 msgid "Missing essential components. Installing…"
@@ -43,7 +43,7 @@ msgstr "Faltan compoñentes esenciales. Instalando…"
 
 #: bottles/backend/managers/manager.py:1117
 msgid "Failed to create bottle directory."
-msgstr ""
+msgstr "Non se puido crear a carpeta da botella."
 
 #: bottles/backend/managers/manager.py:1129
 msgid "Failed to create placeholder directory/file."
@@ -59,18 +59,17 @@ msgstr ""
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1169
-#, fuzzy
 msgid "The Wine config is being updated…"
 msgstr "A configuración de WINE está actualizándose…"
 
 #: bottles/backend/managers/manager.py:1171
-#, fuzzy
 msgid "Wine config updated!"
 msgstr "Configuración de Wine actualizada!"
 
 #: bottles/backend/managers/manager.py:1179
+#, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr ""
+msgstr "Executando como Flatpak, illando o directorio de usuario…"
 
 #: bottles/backend/managers/manager.py:1181
 msgid "Sandboxing userdir…"
@@ -78,7 +77,7 @@ msgstr "Illando cartafol do usuario…"
 
 #: bottles/backend/managers/manager.py:1211
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "Configurando a versión de Windows…"
 
 #: bottles/backend/managers/manager.py:1221
 msgid "Apply CMD default settings…"
@@ -91,32 +90,33 @@ msgstr "Optimizando o ambiente…"
 #: bottles/backend/managers/manager.py:1240
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "Aplicando o entorno: {0}…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Usando unha receita do entorno personalizada…"
 
 #: bottles/backend/managers/manager.py:1253
+#, fuzzy
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) A receita non se encontrou ou non é valida…"
 
 #: bottles/backend/managers/manager.py:1270
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "Instalando DXVK…"
 
 #: bottles/backend/managers/manager.py:1278
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "Instalando VKD3D…"
 
 #: bottles/backend/managers/manager.py:1286
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "Instalando DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1295
-#, fuzzy, python-format
+#, python-format
 msgid "Installing dependency: %s …"
-msgstr "Instalando a dependencia: {0}…"
+msgstr "Instalando dependencia: %s…"
 
 #: bottles/backend/managers/manager.py:1311
 msgid "Creating versioning state 0…"
@@ -124,7 +124,7 @@ msgstr "Creando o estado de versión 0…"
 
 #: bottles/backend/managers/manager.py:1319
 msgid "Finalizing…"
-msgstr ""
+msgstr "Finalizando…"
 
 #: bottles/backend/managers/manager.py:1330
 #, fuzzy

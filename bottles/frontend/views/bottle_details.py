@@ -33,7 +33,6 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.frontend.widgets.executable import ExecButton
 
 from bottles.frontend.windows.filechooser import FileChooser
-from bottles.frontend.windows.runargs import RunArgsDialog
 from bottles.frontend.windows.generic import MessageDialog
 from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
@@ -63,7 +62,9 @@ class BottleView(Adw.PreferencesPage):
     add_programs = Gtk.Template.Child()
     add_shortcuts = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
-    btn_run_args = Gtk.Template.Child()
+    btn_exec_settings = Gtk.Template.Child()
+    exec_arguments = Gtk.Template.Child()
+    exec_terminal = Gtk.Template.Child()
     row_winecfg = Gtk.Template.Child()
     row_preferences = Gtk.Template.Child()
     row_dependencies = Gtk.Template.Child()
@@ -87,15 +88,13 @@ class BottleView(Adw.PreferencesPage):
     btn_duplicate = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
-    box_history = Gtk.Template.Child()
-    check_terminal = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
+    dot_versioning = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
     bottom_bar = Gtk.Template.Child()
-    pop_run = Gtk.Template.Child()
     drop_overlay = Gtk.Template.Child()
     # endregion
 
@@ -122,7 +121,7 @@ class BottleView(Adw.PreferencesPage):
 
         self.add_programs.connect("clicked", self.programs.add)
         self.btn_execute.connect("clicked", self.run_executable)
-        self.btn_run_args.connect("clicked", self.__run_executable_with_args)
+        self.btn_exec_settings.connect("closed", self.__run_executable_with_args)
         self.row_preferences.connect("activated", self.__change_page, "preferences")
         self.row_dependencies.connect("activated", self.__change_page, "dependencies")
         self.row_installers.connect("activated", self.__change_page, "installers")
@@ -167,8 +166,6 @@ class BottleView(Adw.PreferencesPage):
             '''
             self.btn_flatpak_doc.set_visible(True)
 
-        self.__update_latest_executables()
-
     def __change_page(self, _widget, page_name):
         """
         This function try to change the page based on user choice, if
@@ -190,20 +187,10 @@ class BottleView(Adw.PreferencesPage):
                 self.config,
                 exec_path=file.get_path(),
                 args=args,
-                terminal=self.check_terminal.get_active(),
+                terminal=self.config.get("run_in_terminal"),
             )
             RunAsync(executor.run, self.do_update_programs)
-            self.manager.update_config(
-                config=self.config,
-                key="Latest_Executables",
-                value=_execs + [{
-                    "name": file.get_basename().split("/")[-1],
-                    "file": file.get_path(),
-                    "args": args
-                }]
-            )
 
-            self.__update_latest_executables()
         else:
             self.window.show_toast(_("File '{0}' does not seem to be an exe or msi file").format(file.get_basename().split("/")[-1]))
 
@@ -234,6 +221,7 @@ class BottleView(Adw.PreferencesPage):
         self.label_environment.set_text(_(self.config.get("Environment")))
 
         # set versioning
+        self.dot_versioning.set_visible(self.config.get("Versioning"))
         self.grid_versioning.set_visible(self.config.get("Versioning"))
         self.label_state.set_text(str(self.config.get("State")))
 
@@ -270,11 +258,11 @@ class BottleView(Adw.PreferencesPage):
 
     def __run_executable_with_args(self, widget):
         """
-        This function pop up the dialog to run an executable with
-        custom arguments.
+        This function saves updates the run arguments for the current session.
         """
-        new_window = RunArgsDialog(self)
-        new_window.present()
+        args = self.exec_arguments.get_text()
+        self.config["session_arguments"] = args
+        self.config["run_in_terminal"] = self.exec_terminal.get_active()
 
     def run_executable(self, widget, args=False):
         """
@@ -309,45 +297,19 @@ class BottleView(Adw.PreferencesPage):
 
     def __execute(self, _dialog, response, file_dialog, args=""):
         if response == -3:
-            _execs = self.config.get("Latest_Executables", [])
             _file = file_dialog.get_file()
 
             if not _file:
                 return  # workaround #1653
 
+            args = self.config.get("session_arguments")
             executor = WineExecutor(
                 self.config,
                 exec_path=_file.get_path(),
                 args=args,
-                terminal=self.check_terminal.get_active(),
+                terminal=self.config.get("run_in_terminal"),
             )
             RunAsync(executor.run, self.do_update_programs)
-            self.manager.update_config(
-                config=self.config,
-                key="Latest_Executables",
-                value=_execs + [{
-                    "name": _file.get_basename().split("/")[-1],
-                    "file": _file.get_path(),
-                    "args": args
-                }]
-            )
-
-        self.__update_latest_executables()
-
-    def __update_latest_executables(self):
-        """
-        This function update the latest executables list.
-        """
-        while self.box_history.get_first_child() is not None:
-            self.box_history.remove(self.box_history.get_first_child())
-
-        _execs = self.config.get("Latest_Executables", [])[-5:]
-        for exe in _execs:
-            self.box_history.append(ExecButton(
-                parent=self,
-                data=exe,
-                config=self.config
-            ))
 
     def __backup(self, widget, backup_type):
         """
