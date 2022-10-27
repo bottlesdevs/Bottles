@@ -273,11 +273,10 @@ template DetailsBottle : .AdwPreferencesPage {
     .AdwPreferencesRow bottom_bar {
       activatable: false;      
       focusable: false;
-      
+
       Box {
         Button add_shortcuts {
           hexpand: true;
-          has-frame: false;
           Box {
             halign: center;
             Image {
@@ -294,6 +293,10 @@ template DetailsBottle : .AdwPreferencesPage {
               label: _("Add Shortcuts...");
             }
           }
+
+          styles [
+            "flat"
+          ]
         }
         
         Separator {
@@ -301,7 +304,6 @@ template DetailsBottle : .AdwPreferencesPage {
         
         Button add_programs {
           hexpand: true;
-          has-frame: false;
           Box {
             halign: center;
             Image {
@@ -318,6 +320,10 @@ template DetailsBottle : .AdwPreferencesPage {
               label: _("Add Programs...");
             }
           }
+          
+          styles [
+            "flat"
+          ]
         }
         
         styles [
