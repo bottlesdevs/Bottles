@@ -59,7 +59,7 @@ class BottleView(Adw.PreferencesPage):
     label_state = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
     label_arch = Gtk.Template.Child()
-    add_programs = Gtk.Template.Child()
+    install_programs = Gtk.Template.Child()
     add_shortcuts = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
     btn_exec_settings = Gtk.Template.Child()
@@ -119,7 +119,8 @@ class BottleView(Adw.PreferencesPage):
         self.target.connect('enter', self.on_enter)
         self.target.connect('leave', self.on_leave)
 
-        self.add_programs.connect("clicked", self.programs.add)
+        self.add_shortcuts.connect("clicked", self.programs.add)
+        self.install_programs.connect("clicked", self.__change_page, "installers")
         self.btn_execute.connect("clicked", self.run_executable)
         self.btn_exec_settings.connect("closed", self.__run_executable_with_args)
         self.row_preferences.connect("activated", self.__change_page, "preferences")
