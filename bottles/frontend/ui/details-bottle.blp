@@ -274,8 +274,6 @@ template DetailsBottle : .AdwPreferencesPage {
       activatable: false;      
       
       Box {
-        height-request:45;
-        
         Button add_shortcuts {
           hexpand: true;
           has-frame: false;
@@ -326,6 +324,10 @@ template DetailsBottle : .AdwPreferencesPage {
           "linked"
         ]
       }
+      
+      styles [
+        "bottom-bar"
+      ]
     }
   }
 
@@ -384,7 +386,7 @@ template DetailsBottle : .AdwPreferencesPage {
 
       .AdwActionRow row_taskmanager {
         activatable: true;
-        title: _("Task Manager");
+        title: _("Taskmanager");
 
         Image {
           icon-name: "go-next-symbolic";
