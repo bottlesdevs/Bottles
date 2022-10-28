@@ -340,9 +340,9 @@ class BottleView(Adw.PreferencesPage):
         This function toggle the show_hidden variable.
         """
         if self.show_hidden:
-            self.btn_toggle_removed.set_property('text', _("Show Hidden"))
+            self.btn_toggle_removed.set_property('text', _("Show Hidden Programs"))
         else:
-            self.btn_toggle_removed.set_property('text', _("Hide Hidden"))
+            self.btn_toggle_removed.set_property('text', _("Hide Hidden Programs"))
         self.show_hidden = not self.show_hidden
         self.update_programs(config=self.config)
 
