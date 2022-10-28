@@ -45,15 +45,24 @@ class InstallerEntry(Adw.ActionRow):
         self.config = config
         self.installer = installer
 
+        grade_descriptions = {
+            "Bronze": _("This application may work poorly. The installer was configured to provide the best possible experience, but expect glitches, instability and lack of working features."),
+            "Silver": _("This program works with noticeable glitches, but these glitches do not affect the application's functionality."),
+            "Gold": _("This program works with minor glitches."),
+            "Platinum": _("This program works perfectly."),
+        }
+
         name = installer[1].get("Name")
         description = installer[1].get("Description")
         grade = installer[1].get('Grade')
+        grade_description = grade_descriptions[grade]
 
         # populate widgets
         self.set_title(name)
         self.set_subtitle(description)
         self.label_grade.set_text(grade)
         self.label_grade.get_style_context().add_class(f"grade-{grade}")
+        self.set_tooltip_text(grade_description)
 
         # connect signals
         self.btn_install.connect("clicked", self.__execute_installer)
