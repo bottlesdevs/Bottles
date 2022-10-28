@@ -143,7 +143,7 @@ class BottleView(Adw.PreferencesPage):
         self.btn_shutdown.connect("clicked", self.wineboot, 2)
         self.btn_reboot.connect("clicked", self.wineboot, 1)
         self.btn_killall.connect("clicked", self.wineboot, 0)
-        self.btn_update.connect("clicked", self.update_programs)
+        self.btn_update.connect("clicked", self.__scan_programs)
         self.btn_toggle_removed.connect("clicked", self.__toggle_removed)
         self.btn_backup_config.connect("clicked", self.__backup, "config")
         self.btn_backup_full.connect("clicked", self.__backup, "full")
@@ -340,6 +340,9 @@ class BottleView(Adw.PreferencesPage):
         This function toggle the show_hidden variable.
         """
         self.show_hidden = not self.show_hidden
+        self.update_programs(config=self.config)
+
+    def __scan_programs(self, widget=False):
         self.update_programs(config=self.config)
 
     def empty_list(self):
