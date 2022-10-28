@@ -17,10 +17,12 @@
 
 import os
 import re
+import time
+import uuid
 import webbrowser
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Adw, Gdk
+from gi.repository import Gtk, Adw, Gdk, GLib
 
 from bottles.frontend.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.frontend.utils.common import open_doc_url
@@ -30,6 +32,7 @@ from bottles.backend.managers.backup import BackupManager
 from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 
+from bottles.frontend.widgets.program import ProgramEntry
 from bottles.frontend.widgets.executable import ExecButton
 
 from bottles.frontend.windows.filechooser import FileChooser
@@ -47,7 +50,7 @@ from bottles.backend.wine.control import Control
 from bottles.backend.wine.regedit import Regedit
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.executor import WineExecutor
-
+from bottles.backend.wine.wineserver import WineServer
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
 class BottleView(Adw.PreferencesPage):
@@ -59,15 +62,21 @@ class BottleView(Adw.PreferencesPage):
     label_state = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
     label_arch = Gtk.Template.Child()
+    install_programs = Gtk.Template.Child()
+    add_shortcuts = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
     btn_exec_settings = Gtk.Template.Child()
     exec_arguments = Gtk.Template.Child()
     exec_terminal = Gtk.Template.Child()
     row_winecfg = Gtk.Template.Child()
+    row_preferences = Gtk.Template.Child()
+    row_dependencies = Gtk.Template.Child()
+    row_snapshots = Gtk.Template.Child()
+    row_taskmanager = Gtk.Template.Child()
     row_debug = Gtk.Template.Child()
     row_explorer = Gtk.Template.Child()
     row_cmd = Gtk.Template.Child()
-    row_taskmanager = Gtk.Template.Child()
+    row_taskmanager_legacy = Gtk.Template.Child()
     row_controlpanel = Gtk.Template.Child()
     row_uninstaller = Gtk.Template.Child()
     row_regedit = Gtk.Template.Child()
@@ -75,6 +84,8 @@ class BottleView(Adw.PreferencesPage):
     btn_reboot = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_killall = Gtk.Template.Child()
+    btn_update = Gtk.Template.Child()
+    btn_toggle_removed = Gtk.Template.Child()
     btn_backup_config = Gtk.Template.Child()
     btn_backup_full = Gtk.Template.Child()
     btn_duplicate = Gtk.Template.Child()
@@ -86,6 +97,7 @@ class BottleView(Adw.PreferencesPage):
     group_programs = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
+    bottom_bar = Gtk.Template.Child()
     drop_overlay = Gtk.Template.Child()
     # endregion
 
@@ -100,20 +112,29 @@ class BottleView(Adw.PreferencesPage):
         # common variables and references
         self.window = details.window
         self.manager = details.window.manager
+        self.stack_bottle = details.stack_bottle
+        self.leaflet = details.leaflet
         self.config = config
+        self.show_hidden = False
 
         self.target.connect('drop', self.on_drop)
         self.add_controller(self.target)
         self.target.connect('enter', self.on_enter)
         self.target.connect('leave', self.on_leave)
 
+        self.add_shortcuts.connect("clicked", self.add)
+        self.install_programs.connect("clicked", self.__change_page, "installers")
         self.btn_execute.connect("clicked", self.run_executable)
         self.btn_exec_settings.connect("closed", self.__run_executable_with_args)
+        self.row_preferences.connect("activated", self.__change_page, "preferences")
+        self.row_dependencies.connect("activated", self.__change_page, "dependencies")
+        self.row_snapshots.connect("activated", self.__change_page, "versioning")
+        self.row_taskmanager.connect("activated", self.__change_page, "taskmanager")
         self.row_winecfg.connect("activated", self.run_winecfg)
         self.row_debug.connect("activated", self.run_debug)
         self.row_explorer.connect("activated", self.run_explorer)
         self.row_cmd.connect("activated", self.run_cmd)
-        self.row_taskmanager.connect("activated", self.run_taskmanager)
+        self.row_taskmanager_legacy.connect("activated", self.run_taskmanager)
         self.row_controlpanel.connect("activated", self.run_controlpanel)
         self.row_uninstaller.connect("activated", self.run_uninstaller)
         self.row_regedit.connect("activated", self.run_regedit)
@@ -122,6 +143,8 @@ class BottleView(Adw.PreferencesPage):
         self.btn_shutdown.connect("clicked", self.wineboot, 2)
         self.btn_reboot.connect("clicked", self.wineboot, 1)
         self.btn_killall.connect("clicked", self.wineboot, 0)
+        self.btn_update.connect("clicked", self.__scan_programs)
+        self.btn_toggle_removed.connect("clicked", self.__toggle_removed)
         self.btn_backup_config.connect("clicked", self.__backup, "config")
         self.btn_backup_full.connect("clicked", self.__backup, "full")
         self.btn_duplicate.connect("clicked", self.__duplicate)
@@ -147,6 +170,17 @@ class BottleView(Adw.PreferencesPage):
             '''
             self.btn_flatpak_doc.set_visible(True)
 
+    def __change_page(self, _widget, page_name):
+        """
+        This function try to change the page based on user choice, if
+        the page is not available, it will show the "bottle" page.
+        """
+        try:
+            self.stack_bottle.set_visible_child_name(page_name)
+            self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
+        except:  # pylint: disable=bare-except
+            pass
+
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
         self.drop_overlay.set_visible(False)
         files: List[Gio.File] = value.get_files()
@@ -159,7 +193,7 @@ class BottleView(Adw.PreferencesPage):
                 args=args,
                 terminal=self.config.get("run_in_terminal"),
             )
-            RunAsync(executor.run, self.do_update_programs)
+            RunAsync(executor.run, self.update_programs)
 
         else:
             self.window.show_toast(_("File '{0}' does not seem to be an exe or msi file").format(file.get_basename().split("/")[-1]))
@@ -205,15 +239,115 @@ class BottleView(Adw.PreferencesPage):
             and not self.config.get("Environment") == "Steam":
             self.__alert_missing_runner()
 
-    def update_programs(self, widget=False, config=None):
-        if config is None:
-            config = self.config
+        # update programs list
+        self.update_programs()
 
-        self.window.page_details.update_programs(config)
+    def add(self, widget=False):
+        """
+        This function popup the add program dialog to the user. It
+        will also update the bottle configuration, appending the
+        path to the program picked by the user.
+        The file chooser path is set to the bottle path by default.
+        """
+        def set_path(_dialog, response, _file_dialog):
+            if response == -3:
+                _file = _file_dialog.get_file()
+                _file_name = _file.get_path().split("/")[-1]
+                _uuid = str(uuid.uuid4())
+                _program = {
+                    "executable": _file_name,
+                    "name": _file_name[:-4],
+                    "path": _file.get_path(),
+                    "id": _uuid
+                }
+                self.config = self.manager.update_config(
+                    config=self.config,
+                    key=_uuid,
+                    value=_program,
+                    scope="External_Programs",
+                    fallback=True
+                ).data["config"]
+                self.update_programs(config=self.config, force_add=_program)
+                self.window.show_toast(_("'{0}' added.").format(_file_name[:-4]))
+
+        FileChooser(
+            parent=self.window,
+            title=_("Choose an executable path"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(_("Cancel"), _("Add")),
+            callback=set_path
+        )
+
+    def update_programs(self, config=None, force_add: dict = None):
+        """
+        This function update the programs lists.
+        """
+        if config:
+            self.config = config
+
+        if not force_add:
+            GLib.idle_add(self.empty_list)
+
+        def new_program(_program, check_boot=None, is_steam=False,
+                        wineserver_status=False):
+            if check_boot is None:
+                check_boot = wineserver_status
+
+            self.add_program(ProgramEntry(
+                self.window,
+                self.config,
+                _program,
+                is_steam=is_steam,
+                check_boot=check_boot,
+            ))
+
+        if force_add:
+            wineserver_status = WineServer(self.config).is_alive()
+            new_program(force_add, None, False, wineserver_status)
+            return
+
+        def process_programs():
+            time.sleep(.2)
+            wineserver_status = WineServer(self.config).is_alive()
+            programs = self.manager.get_programs(self.config)
+            handled = 0
+
+            if self.config.get("Environment") == "Steam":
+                GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True)
+                handled += 1
+
+            for program in programs:
+                if program.get("removed"):
+                    if self.show_hidden:
+                        GLib.idle_add(new_program, program, None, False, wineserver_status)
+                        handled += 1
+                    continue
+                GLib.idle_add(new_program, program, None, False, wineserver_status)
+                handled += 1
+
+            self.row_no_programs.set_visible(handled == 0)
+
+        process_programs()
 
     def add_program(self, widget):
         self.__registry.append(widget)
+        self.group_programs.remove(self.bottom_bar) # Remove the bottom_bar
         self.group_programs.add(widget)
+        self.group_programs.add(self.bottom_bar) # Add the bottom_bar back to the bottom
+
+    def __toggle_removed(self, widget=False):
+        """
+        This function toggle the show_hidden variable.
+        """
+        if self.show_hidden:
+            self.btn_toggle_removed.set_property('text', _("Show Hidden Programs"))
+        else:
+            self.btn_toggle_removed.set_property('text', _("Hide Hidden Programs"))
+        self.show_hidden = not self.show_hidden
+        self.update_programs(config=self.config)
+
+    def __scan_programs(self, widget=False):
+        self.update_programs(config=self.config)
 
     def empty_list(self):
         """
@@ -259,9 +393,6 @@ class BottleView(Adw.PreferencesPage):
         else:
             show_chooser()
 
-    def do_update_programs(self, result, error=False):
-        self.window.page_details.update_programs()
-
     def __execute(self, _dialog, response, file_dialog, args=""):
         if response == -3:
             _file = file_dialog.get_file()
@@ -276,7 +407,7 @@ class BottleView(Adw.PreferencesPage):
                 args=args,
                 terminal=self.config.get("run_in_terminal"),
             )
-            RunAsync(executor.run, self.do_update_programs)
+            RunAsync(executor.run, self.update_programs)
 
     def __backup(self, widget, backup_type):
         """

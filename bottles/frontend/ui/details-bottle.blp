@@ -40,6 +40,17 @@ Popover pop_context {
     Separator {
     }
 
+    .GtkModelButton btn_toggle_removed {
+      text: _("Show Hidden Programs");
+    }
+
+    .GtkModelButton btn_update {
+      text: _("Search for new programs");
+    }
+
+    Separator {
+    }
+
     .GtkModelButton btn_delete {
       text: _("Delete Bottle…");
     }
@@ -85,21 +96,6 @@ Popover pop_power {
     .GtkModelButton btn_reboot {
       tooltip-text: _("Simulate a Windows system reboot.");
       text: _("Reboot");
-    }
-  }
-}
-
-.AdwActionRow row_no_programs {
-  Box {
-    hexpand: true;
-
-    Label {
-      label: _("Use the Installers section or the \"Run executable\" button.");
-      wrap: false;
-
-      styles [
-        "dim-label",
-      ]
     }
   }
 }
@@ -269,6 +265,131 @@ template DetailsBottle : .AdwPreferencesPage {
 
   .AdwPreferencesGroup group_programs {
     title: _("Programs");
+
+    .AdwActionRow row_no_programs {
+      Box {
+        hexpand: true;
+
+        Label {
+          label: _("Use the Installers section or the \"Run executable\" button.");
+          wrap: false;
+
+          styles [
+            "dim-label",
+          ]
+        }
+      }
+    }
+    
+    .AdwPreferencesRow bottom_bar {
+      activatable: false;      
+      focusable: false;
+
+      Box {
+        Button add_shortcuts {
+          hexpand: true;
+          Box {
+            halign: center;
+            Image {
+              icon-name: "list-add-symbolic";
+            }
+            
+            Separator {
+              styles [
+                "spacer"
+              ]
+            }
+            
+            Label {
+              label: _("Add Shortcuts…");
+            }
+          }
+
+          styles [
+            "flat"
+          ]
+        }
+        
+        Separator {
+        }
+        
+        Button install_programs {
+          hexpand: true;
+          Box {
+            halign: center;
+            Image {
+              icon-name: "folder-download-symbolic";
+            }
+          
+            Separator {
+              styles [
+                "spacer"
+              ]
+            }
+
+            Label {
+              label: _("Install Programs…");
+            }
+          }
+          
+          styles [
+            "flat"
+          ]
+        }
+        
+        styles [
+          "linked"
+        ]
+      }
+      
+      styles [
+        "bottom-bar"
+      ]
+    }
+  }
+
+  .AdwPreferencesGroup group_options {
+    title: _("Options");
+      
+      .AdwActionRow row_preferences {
+        activatable: true;
+        title: _("Preferences");
+        subtitle: _("Configure bottle settings.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+      
+      .AdwActionRow row_dependencies {
+        activatable: true;
+        title: _("Dependencies");
+        subtitle: _("Install dependencies for programs.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+
+      .AdwActionRow row_snapshots {
+        activatable: true;
+        title: _("Snapshots");
+        subtitle: _("Create and manage bottle states.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+
+      .AdwActionRow row_taskmanager {
+        activatable: true;
+        title: _("Task Manager");
+        subtitle: _("Manage running programs.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
   }
 
   .AdwPreferencesGroup group_utilities {
@@ -306,7 +427,7 @@ template DetailsBottle : .AdwPreferencesPage {
         }
       }
 
-      .AdwActionRow row_taskmanager {
+      .AdwActionRow row_taskmanager_legacy {
         activatable: true;
         title: _("Task Manager");
 

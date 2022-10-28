@@ -3,6 +3,7 @@ using Gtk 4.0;
 template Details : .AdwBin {
   .AdwLeaflet leaflet {
     can-navigate-back: true;
+    can-unfold: false;
     hexpand: true;
 
     Box {
@@ -12,6 +13,7 @@ template Details : .AdwBin {
         show-end-title-buttons: false;
         title-widget: 
         .AdwWindowTitle sidebar_title {
+          title: _("Details");
         }
 
         ;
@@ -20,15 +22,13 @@ template Details : .AdwBin {
         Button btn_back {
           icon-name: "go-previous-symbolic";
         }
+        
+        [end]
+        Box default_actions {
+        }
       }
 
-      ListBox list_pages {
-        vexpand: true;
-        width-request: 220;
-
-        styles [
-          "navigation-sidebar",
-        ]
+      Box default_view {
       }
     }
 

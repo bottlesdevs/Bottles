@@ -65,7 +65,7 @@ class ProgramEntry(Adw.ActionRow):
 
         # common variables and references
         self.window = window
-        self.page_details = window.page_details
+        self.view_bottle = window.page_details.view_bottle
         self.manager = window.manager
         self.config = config
         self.program = program
@@ -197,7 +197,7 @@ class ProgramEntry(Adw.ActionRow):
         self.__reset_buttons(True)
 
     def update_programs(self, result=False, error=False):
-        GLib.idle_add(self.page_details.update_programs, config=self.config)
+        GLib.idle_add(self.view_bottle.update_programs, config=self.config)
 
     def uninstall_program(self, widget):
         uninstaller = Uninstaller(self.config)
