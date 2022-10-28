@@ -16,26 +16,18 @@
 #
 
 
-import time
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, Adw
-
-from bottles.frontend.utils.threading import RunAsync
+from gi.repository import Gtk, Adw
 
 from bottles.backend.managers.queue import QueueManager
 from bottles.backend.models.result import Result
-from bottles.backend.wine.wineserver import WineServer
 
 from bottles.frontend.views.bottle_details import BottleView
 from bottles.frontend.views.bottle_installers import InstallersView
 from bottles.frontend.views.bottle_dependencies import DependenciesView
 from bottles.frontend.views.bottle_preferences import PreferencesView
-from bottles.frontend.views.bottle_programs import ProgramsView
 from bottles.frontend.views.bottle_versioning import VersioningView
 from bottles.frontend.views.bottle_taskmanager import TaskManagerView
-
-from bottles.frontend.widgets.program import ProgramEntry
-
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class DetailsView(Adw.Bin):
@@ -78,7 +70,6 @@ class DetailsView(Adw.Bin):
         self.config = config
         self.queue = QueueManager(add_fn=self.lock_back, end_fn=self.unlock_back)
 
-        self.view_programs = ProgramsView(self, config)
         self.view_bottle = BottleView(self, config)
         self.view_installers = InstallersView(self, config)
         self.view_dependencies = DependenciesView(self, config)
@@ -122,9 +113,7 @@ class DetailsView(Adw.Bin):
         page = self.stack_bottle.get_visible_child_name()
 
         self.set_title(self.__pages[page]['title'], self.__pages[page]['description'])
-        if page == "programs":
-            self.set_actions(self.view_programs.actions)
-        elif page == "dependencies":
+        if page == "dependencies":
             self.set_actions(self.view_dependencies.actions)
         elif page == "versioning":
             self.set_actions(self.view_versioning.actions)
@@ -150,10 +139,6 @@ class DetailsView(Adw.Bin):
                 "title": _("Dependencies"),
                 "description": "",
             },
-            "programs": {
-                "title": _("Programs"),
-                "description": _("Found in your bottle's Start menu.")
-            },
             "versioning": {
                 "title": _("Snapshots"),
                 "description": "",
@@ -173,14 +158,12 @@ class DetailsView(Adw.Bin):
             del self.__pages["preferences"]
             del self.__pages["versioning"]
         elif self.config.get("Environment") == "Steam":
-            del self.__pages["programs"]
             del self.__pages["versioning"]
 
         self.default_view.append(self.view_bottle)
 
         self.stack_bottle.add_named(self.view_preferences, "preferences")
         self.stack_bottle.add_named(self.view_dependencies, "dependencies")
-        self.stack_bottle.add_named(self.view_programs, "programs")
         self.stack_bottle.add_named(self.view_versioning, "versioning")
         self.stack_bottle.add_named(self.view_installers, "installers")
         self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
@@ -210,93 +193,12 @@ class DetailsView(Adw.Bin):
         self.view_bottle.set_config(config=config)
         self.view_preferences.set_config(config=config)
         self.view_taskmanager.set_config(config=config)
-        self.view_programs.set_config(config=config)
         self.view_dependencies.update(config=config)
         self.view_installers.update(config=config)
         self.view_versioning.update(config=config)
-        self.update_programs()
 
         if rebuild_pages:
             self.build_pages()
-
-    def update_programs(self, config=None, force_add: dict = None):
-        """
-        This function update the programs lists. The list in the
-        details' page is limited to 5 items.
-        """
-        if config:
-            self.config = config
-
-        if not force_add:
-            GLib.idle_add(self.view_bottle.empty_list)
-            GLib.idle_add(self.view_programs.empty_list)
-
-            self.view_programs.group_programs.set_sensitive(False)
-
-        def new_program(_program, check_boot=None, is_steam=False,
-                        to_home=False, wineserver_status=False):
-            if check_boot is None:
-                check_boot = wineserver_status
-
-            if to_home:
-                self.view_bottle.add_program(ProgramEntry(
-                    self.window,
-                    self.config,
-                    _program,
-                    is_steam=is_steam,
-                    check_boot=check_boot,
-                ))
-            self.view_programs.add_program(ProgramEntry(
-                self.window,
-                self.config,
-                _program,
-                is_steam=is_steam,
-                check_boot=check_boot,
-            ))
-
-        if force_add:
-            wineserver_status = WineServer(self.config).is_alive()
-            new_program(force_add, None, False, True, wineserver_status)
-            self.view_programs.status_page.set_visible(False)
-            self.view_programs.group_programs.set_visible(True)
-            self.view_programs.group_programs.set_sensitive(True)
-            return
-
-        def callback(result, _error=False):
-            handled = result.data.get("handled")
-
-            handled_h = handled[0] == 0
-            handled_p = handled[1] == 0
-
-            self.view_bottle.row_no_programs.set_visible(handled_h)
-            self.view_programs.status_page.set_visible(handled_p)
-            self.view_programs.group_programs.set_visible(not handled_p)
-            self.view_programs.group_programs.set_sensitive(not handled_p)
-
-        def process_programs():
-            time.sleep(.2)
-            wineserver_status = WineServer(self.config).is_alive()
-            programs = self.manager.get_programs(self.config)
-            handled = [0, 0]  # home, programs
-
-            if self.config.get("Environment") == "Steam":
-                GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True, True)
-                handled[0] += 1
-                handled[1] += 1
-
-            for program in programs:
-                if program.get("removed"):
-                    if self.view_programs.show_removed:
-                        GLib.idle_add(new_program, program, None, False, False, wineserver_status)
-                        handled[1] += 1
-                    continue
-                GLib.idle_add(new_program, program, None, False, handled[0] < 5, wineserver_status)
-                handled[0] += 1
-                handled[1] += 1
-
-            return Result(True, data={"handled": handled})
-
-        RunAsync(process_programs, callback, )
 
     def __on_operations_toggled(self, widget):
         if not self.list_tasks.get_first_child():

@@ -40,6 +40,17 @@ Popover pop_context {
     Separator {
     }
 
+    .GtkModelButton btn_toggle_removed {
+      text: _("Toggle Hidden");
+    }
+
+    .GtkModelButton btn_update {
+      text: _("Search for new programs");
+    }
+
+    Separator {
+    }
+
     .GtkModelButton btn_delete {
       text: _("Delete Bottle…");
     }
@@ -354,16 +365,6 @@ template DetailsBottle : .AdwPreferencesPage {
         activatable: true;
         title: _("Dependencies");
         subtitle: _("Install dependencies for programs.");
-
-        Image {
-          icon-name: "go-next-symbolic";
-        }
-      }
-      
-      .AdwActionRow row_programs {
-        activatable: true;
-        title: _("Programs");
-        subtitle: _("Manage installed programs.");
 
         Image {
           icon-name: "go-next-symbolic";
