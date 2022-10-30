@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-08-05 09:31+0000\n"
-"Last-Translator: ALi Alanze <vxvxvc@outlook.com>\n"
+"PO-Revision-Date: 2022-10-30 19:05+0000\n"
+"Last-Translator: Ali Aljishi <ahj696@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bottles/bottles/"
 "ar/>\n"
 "Language: ar\n"
@@ -18,168 +18,170 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "لم يُحدد المسار"
 
 #: bottles/backend/managers/backup.py:71
 #, python-brace-format
 msgid "Backup {0}"
-msgstr ""
+msgstr "نسخ احتياطي {0}"
 
 #: bottles/backend/managers/backup.py:124
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr ""
+msgstr "استيراد النسخة الاحتياطية: {0}"
 
 #: bottles/backend/managers/manager.py:1030
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "فشل تثبيت المكوّنات ثلاث مرات."
 
 #: bottles/backend/managers/manager.py:1041
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "تُثبت بعض المكونات المفقودة…"
 
 #: bottles/backend/managers/manager.py:1117
 msgid "Failed to create bottle directory."
-msgstr ""
+msgstr "فشل تكوين دليل للقارورة."
 
 #: bottles/backend/managers/manager.py:1129
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "فشل تكوين دليل\\ملف مؤقت."
 
 #: bottles/backend/managers/manager.py:1134
 msgid "Generating bottle configuration…"
-msgstr ""
+msgstr "تكوين قارورة…"
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Template found, applying…"
-msgstr ""
+msgstr "تطبيق قالب موجود…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1169
 msgid "The Wine config is being updated…"
-msgstr ""
+msgstr "يُحدَّث ضبط Wine…"
 
 #: bottles/backend/managers/manager.py:1171
 msgid "Wine config updated!"
-msgstr ""
+msgstr "حُدث ضبط Wine!"
 
 #: bottles/backend/managers/manager.py:1179
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr ""
+msgstr "التشغيل كـ Flatpak، تُحدد آلية الوصول لدليل المستخدم…"
 
 #: bottles/backend/managers/manager.py:1181
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "تحديد آلية الوصول لدليل المستخدم…"
 
 #: bottles/backend/managers/manager.py:1211
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "تعيين نسخة Windows…"
 
 #: bottles/backend/managers/manager.py:1221
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "تعيين إعدادات CMD الافتراضية…"
 
 #: bottles/backend/managers/manager.py:1229
 msgid "Optimizing environment…"
-msgstr ""
+msgstr "أمثَلة البيئة…"
 
 #: bottles/backend/managers/manager.py:1240
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "تطبيق البيئة: {0}…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(1) استخدام وصفة مخصصة للبيئة…"
 
 #: bottles/backend/managers/manager.py:1253
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) لم يعثر على الوصفة أو الوصفة ليست صحيحة…"
 
 #: bottles/backend/managers/manager.py:1270
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "تثبيت DXVK…"
 
 #: bottles/backend/managers/manager.py:1278
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "تثبيت VKD3D…"
 
 #: bottles/backend/managers/manager.py:1286
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "تثبيت DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1295
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "تثبيت التبعيات: %s …"
 
 #: bottles/backend/managers/manager.py:1311
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "توليد حالة الأصدَرة 0…"
 
 #: bottles/backend/managers/manager.py:1319
 msgid "Finalizing…"
-msgstr ""
+msgstr "اختتام…"
 
 #: bottles/backend/managers/manager.py:1330
 msgid "Caching template…"
-msgstr ""
+msgstr "التخزين المؤقت للقالب…"
 
 #: bottles/backend/managers/versioning.py:97
 msgid "Committing state …"
-msgstr ""
+msgstr "إيداع الحالة…"
 
 #: bottles/backend/managers/versioning.py:106
 msgid "Nothing to commit"
-msgstr ""
+msgstr "لا شيء للإيداع"
 
 #: bottles/backend/managers/versioning.py:112
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "وُلّدت حالة [{0}] جديدة بنجاح!"
 
 #: bottles/backend/managers/versioning.py:140
 msgid "States list retrieved successfully!"
-msgstr ""
+msgstr "جُلبت قائمة الحالات بنجاح!"
 
 #: bottles/backend/managers/versioning.py:171
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr ""
+msgstr "أُعيدت الحالة {0} بنجاح!"
 
 #: bottles/backend/managers/versioning.py:176
 msgid "Restoring state {} …"
-msgstr ""
+msgstr "إعادة الحالة {} …"
 
 #: bottles/backend/managers/versioning.py:185
 msgid "State not found"
-msgstr ""
+msgstr "لم يُعثر على الحالة"
 
 #: bottles/backend/managers/versioning.py:191
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "الحالة {} هي بالفعل الحالة الفعّالة"
 
 #: bottles/frontend/windows/crash.py:37
 msgid "Show report"
-msgstr ""
+msgstr "أظهر التقرير"
 
 #: bottles/frontend/windows/crash.py:88
 msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            بُلّغ عن هذه المشكلة 5 مرات ولا يمكن التبليغ مجدداً.\n"
+"            أبلغ عن تجربتك في أحدى التقارير الموجودة أدناه."
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
-msgstr ""
+msgstr "لم يُعثر على أيّ تجاوزات."
 
 #: bottles/frontend/windows/drives.py:71
 msgid "Choose path"
-msgstr ""
+msgstr "اختر مساراً"
 
 #: bottles/frontend/windows/drives.py:73
 #: bottles/frontend/windows/filechooser.py:63
@@ -204,7 +206,7 @@ msgstr ""
 #: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
 #: bottles/frontend/views/preferences.py:158
 msgid "Cancel"
-msgstr ""
+msgstr "ألغِ"
 
 #: bottles/frontend/windows/drives.py:73
 #: bottles/frontend/windows/installer.py:66
@@ -215,17 +217,15 @@ msgstr ""
 #: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
 #: bottles/frontend/views/preferences.py:158
 msgid "Select"
-msgstr ""
+msgstr "اختر"
 
 #: bottles/frontend/windows/envvars.py:131
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "أضف متغيرات البيئة بسرعة"
+msgstr "لم تعرّف أيّ متغيرات بيئة."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
-#, fuzzy
 msgid "No exclusion patterns defined."
-msgstr "أضف متغيرات البيئة بسرعة"
+msgstr "لم تُعرّف أي أنماط استثناء."
 
 #: bottles/frontend/windows/filechooser.py:63
 #: bottles/frontend/ui/dialog-gamescope.ui:34
@@ -233,338 +233,347 @@ msgstr "أضف متغيرات البيئة بسرعة"
 #: bottles/frontend/ui/dialog-rename.ui:22
 #: bottles/frontend/ui/dialog-vkbasalt.ui:38
 msgid "Save"
-msgstr ""
+msgstr "احفظ"
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
-msgstr ""
+msgstr "حصل خطأ."
 
 #: bottles/frontend/windows/generic.py:91
 #: bottles/frontend/windows/generic.py:137
 #: bottles/frontend/windows/generic.py:182
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "انسخ للحافظة"
 
 #: bottles/frontend/windows/installer.py:64
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "اختر ملف المصدر"
 
 #: bottles/frontend/windows/installer.py:115
 msgid "Installing Windows dependencies…"
-msgstr ""
+msgstr "تثبيت تبعيّات Windows…"
 
 #: bottles/frontend/windows/installer.py:116
 msgid "Configuring the bottle…"
-msgstr ""
+msgstr "ضبط القارورة…"
 
 #: bottles/frontend/windows/installer.py:117
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "إجراء خطوات المُثبت…"
 
 #: bottles/frontend/windows/installer.py:118
 msgid "Installing the {}…"
-msgstr ""
+msgstr "تثبيت {}…"
 
 #: bottles/frontend/windows/installer.py:119
 msgid "Performing final checks…"
-msgstr ""
+msgstr "إجراء الفحوصات النهائية…"
 
 #: bottles/frontend/windows/installer.py:123
 #, python-brace-format
 msgid "Installing {0}…"
-msgstr ""
+msgstr "تثبيت {0}…"
 
 #: bottles/frontend/windows/installer.py:125
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr ""
+msgstr "{0} متوفر الآن في واجهة البرامج."
 
 #: bottles/frontend/windows/installer.py:171
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "فشل المثبت بخطأ مجهول"
 
 #. endregion
 #: bottles/frontend/windows/launchoptions.py:56
 #: bottles/frontend/ui/dialog-launch-options.ui:59
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "اختر النص البرمجي الذي سينفذ بعد التشغيل."
 
 #: bottles/frontend/windows/launchoptions.py:57
 #: bottles/frontend/ui/dialog-launch-options.ui:92
 msgid "Choose from where start the program."
-msgstr ""
+msgstr "اختر من أين سيبدأ البرنامج."
 
 #: bottles/frontend/windows/launchoptions.py:58
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr ""
+msgstr "{0} مطفأ بالفعل لهذه القارورة."
 
 #: bottles/frontend/windows/launchoptions.py:59
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "يختلف هذا الخيار عن الخيار الافتراضي لهذه القارورة."
 
 #: bottles/frontend/windows/launchoptions.py:232
 msgid "Choose the script"
-msgstr ""
+msgstr "اختر البرنامج النصي"
 
 #: bottles/frontend/windows/launchoptions.py:256
 msgid "Choose the Working Directory"
-msgstr ""
+msgstr "اختر دليل العمل"
 
 #: bottles/frontend/windows/vkbasalt.py:84
 #: bottles/frontend/ui/dialog-vkbasalt.ui:420
 msgid "Choose a file."
-msgstr ""
+msgstr "اختر ملفاً."
 
 #: bottles/frontend/windows/vkbasalt.py:306
 msgid "File not Found"
-msgstr ""
+msgstr "لم يُعثر على الملف"
 
 #: bottles/frontend/windows/vkbasalt.py:307
 msgid "The given file does not exist. Please choose an appropriate file."
-msgstr ""
+msgstr "الملف المحدد غير موجود. اختر ملفاً مناسباً."
 
 #: bottles/frontend/windows/vkbasalt.py:330
 msgid "Spaces in File Name"
-msgstr ""
+msgstr "المسافات في اسم الملف"
 
 #: bottles/frontend/windows/vkbasalt.py:331
 msgid ""
 "Color Lookup Table path must not contain any spaces. Please rename the file "
 "to remove all spaces."
 msgstr ""
+"يجب ألا يحتوي مسار جدول البحث عن الألوان على أي مسافات. أعد تسمية الملف "
+"لإزالة كافة المسافات."
 
 #: bottles/frontend/windows/vkbasalt.py:339
 msgid "Invalid Image Dimension"
-msgstr ""
+msgstr "أبعاد الصورة غير صالحة"
 
 #: bottles/frontend/windows/vkbasalt.py:340
 msgid "Height and width of the image must be equal."
-msgstr ""
+msgstr "يجب أن يكون ارتفاع الصورة وعرضها متساويين."
 
 #: bottles/frontend/windows/vkbasalt.py:353
 #: bottles/frontend/views/importer.py:144
 msgid "Choose a configuration file"
-msgstr ""
+msgstr "اختر ملف الإعدادات"
 
 #: bottles/frontend/windows/vkbasalt.py:355
 #: bottles/frontend/views/importer.py:117
 #: bottles/frontend/views/importer.py:146
 msgid "Import"
-msgstr ""
+msgstr "استورد"
 
 #: bottles/frontend/main.py:105
 msgid "Show version"
-msgstr ""
+msgstr "أظهر الإصدار"
 
 #: bottles/frontend/main.py:113
 msgid "Executable path"
-msgstr ""
+msgstr "مسار ملف التشغيل"
 
 #: bottles/frontend/main.py:121
 msgid "lnk path"
-msgstr ""
+msgstr "مسار Ink"
 
 #: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.ui:103
 #: bottles/frontend/ui/list-entry.ui:7
 msgid "Bottle name"
-msgstr ""
+msgstr "اسم القارورة"
 
 #: bottles/frontend/main.py:137
 msgid "Pass arguments"
-msgstr ""
+msgstr "معطيات الاجتياز"
 
 #: bottles/frontend/main.py:196
+#, fuzzy
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "الـ URI غير صحيح (الصياغة: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:237
 msgid "[Quit] request received."
-msgstr ""
+msgstr "استُلم طلب [إنهاء]."
 
 #: bottles/frontend/main.py:246
 msgid "[Help] request received."
-msgstr ""
+msgstr "استُلم طلب [مساعدة]."
 
 #: bottles/frontend/main.py:254
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "استلُم طلب [تحديث]."
 
 #: bottles/frontend/operation.py:50
 msgid "Calculating…"
-msgstr ""
+msgstr "جارٍ الحساب …"
 
 #: bottles/frontend/ui/about.ui:8
 msgid "© 2017-2022 - Bottles Developers"
-msgstr ""
+msgstr "© 2017-2022 - Bottles Developers"
 
 #: bottles/frontend/ui/about.ui:9
 msgid "Easily manage wineprefix using environments"
-msgstr ""
+msgstr "تحكم بسابقة Wine بكل سهولة باستخدام البيئات"
 
 #: bottles/frontend/ui/component-entry.ui:6
 msgid "Component version"
-msgstr ""
+msgstr "إصدار المكوّن"
 
 #: bottles/frontend/ui/component-entry.ui:15
 #: bottles/frontend/ui/dependency-entry.ui:34
 #: bottles/frontend/ui/program-entry.ui:92
 msgid "Uninstall"
-msgstr ""
+msgstr "ألغِ التثبيت"
 
 #: bottles/frontend/ui/component-entry.ui:26
 #: bottles/frontend/ui/importer-entry.ui:15
 msgid "Browse files"
-msgstr ""
+msgstr "تصفح الملفات"
 
 #: bottles/frontend/ui/component-entry.ui:37
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
+"فشل التثبيت. قد يكون هذا بسبب خطأ في المستودع أو تنزيل جزئي أو عدم تطابق في "
+"تدقيق المجموع. اضغط للمحاولة مرة أخرى."
 
 #: bottles/frontend/ui/component-entry.ui:48
 msgid "Download & Install"
-msgstr ""
+msgstr "حمّل وثبّت"
 
 #: bottles/frontend/ui/component-entry.ui:61
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.ui:18
 msgid "Show Manifest"
-msgstr ""
+msgstr "أظهر البيان"
 
 #: bottles/frontend/ui/dependency-entry.ui:23
 msgid "License"
-msgstr ""
+msgstr "الترخيص"
 
 #: bottles/frontend/ui/dependency-entry.ui:28
 msgid "Reinstall"
-msgstr ""
+msgstr "أعد التثبيت"
 
 #: bottles/frontend/ui/dependency-entry.ui:43
 #: bottles/frontend/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr ""
+msgstr "بلّغ عن خطأ…"
 
 #: bottles/frontend/ui/dependency-entry.ui:50
 msgid "Dependency name"
-msgstr ""
+msgstr "اسم التبعية"
 
 #: bottles/frontend/ui/dependency-entry.ui:52
 msgid "Dependency description"
-msgstr ""
+msgstr "وصف التبعية"
 
 #: bottles/frontend/ui/dependency-entry.ui:59
 msgid "Category"
-msgstr ""
+msgstr "الفئة"
 
 #: bottles/frontend/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "تنزيل هذه التبعية وتثبيتها"
 
 #: bottles/frontend/ui/dependency-entry.ui:89
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"حدث خطأ في التثبيت. أعد تشغيل بوتلز لقراءة تقرير الأعطال أو قم بتشغيله عبر "
+"الطرفية لقراءة المُخرج."
 
 #: bottles/frontend/ui/details-bottle.ui:18
 msgid "Troubleshooting"
-msgstr ""
+msgstr "استكشاف الاخطاء"
 
 #: bottles/frontend/ui/details-bottle.ui:26
 msgid "Browse Files…"
-msgstr ""
+msgstr "تصفح الملفات…"
 
 #: bottles/frontend/ui/details-bottle.ui:31
 msgid "Duplicate Bottle…"
-msgstr ""
+msgstr "قارورة مكررة…"
 
 #: bottles/frontend/ui/details-bottle.ui:36 bottles/frontend/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
+msgstr "هذا هو الأرشيف الكامل للقارورة، بما في ذلك الملفات الشخصية."
 
 #: bottles/frontend/ui/details-bottle.ui:37
 msgid "Full Backup…"
-msgstr ""
+msgstr "نسخ احتياطي كامل…"
 
 #: bottles/frontend/ui/details-bottle.ui:42 bottles/frontend/ui/importer.ui:80
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
+"هذا هو ضبط القارورة فقط، وهو مفيد إن أردت تكوين قارورة جديدة بدون ملفات "
+"شخصية."
 
 #: bottles/frontend/ui/details-bottle.ui:43
 msgid "Export Configuration…"
-msgstr ""
+msgstr "صدّر الضّبط…"
 
 #: bottles/frontend/ui/details-bottle.ui:51
 msgid "Delete Bottle…"
-msgstr ""
+msgstr "حذف القارورة…"
 
 #: bottles/frontend/ui/details-bottle.ui:86
 msgid "Kill all Processes"
-msgstr ""
+msgstr "أوقف كل العمليات"
 
 #: bottles/frontend/ui/details-bottle.ui:91
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "حاكِ إيقاف تشغيل نظام ويندوز."
 
 #: bottles/frontend/ui/details-bottle.ui:92
 msgid "Shutdown"
-msgstr ""
+msgstr "إيقاف التشغيل"
 
 #: bottles/frontend/ui/details-bottle.ui:97
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "حاكِ إعادة تشغيل نظام ويندوز."
 
 #: bottles/frontend/ui/details-bottle.ui:98
 msgid "Reboot"
-msgstr ""
+msgstr "أعد التشغيل"
 
 #: bottles/frontend/ui/details-bottle.ui:121
 msgid "Run with Arguments…"
-msgstr ""
+msgstr "شغّل مع المعطيات…"
 
 #: bottles/frontend/ui/details-bottle.ui:126
 msgid "Launch in Terminal…"
-msgstr ""
+msgstr "شغّل في الطرفية…"
 
 #: bottles/frontend/ui/details-bottle.ui:157
 msgid "My bottle"
-msgstr ""
+msgstr "قارورتي"
 
 #: bottles/frontend/ui/details-bottle.ui:169
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: bottles/frontend/ui/details-bottle.ui:177
 #: bottles/frontend/ui/list-entry.ui:14 bottles/frontend/ui/new.ui:77
 msgid "Environment"
-msgstr ""
+msgstr "البيئة"
 
 #: bottles/frontend/ui/details-bottle.ui:185
 #: bottles/frontend/ui/details-preferences.ui:314
 #: bottles/frontend/ui/new.ui:129
 msgid "Runner"
-msgstr ""
+msgstr "المشغل"
 
 #: bottles/frontend/ui/details-bottle.ui:193
 #: bottles/frontend/ui/list-entry.ui:23
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "مُكّن تعيين الإصدار لهذه القارورة"
 
 #: bottles/frontend/ui/details-bottle.ui:198
 #: bottles/frontend/ui/list-entry.ui:28
 msgid "Versioning is active in this bottle."
-msgstr ""
+msgstr "تعيين الإصدار نشط في هذه القارورة."
 
 #: bottles/frontend/ui/details-bottle.ui:208
 #: bottles/frontend/ui/list-entry.ui:34
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.ui:219
 msgid "Run Executable…"
@@ -614,7 +623,7 @@ msgstr ""
 #: bottles/frontend/ui/details-bottle.ui:289
 #: bottles/frontend/views/details.py:178
 msgid "Task Manager"
-msgstr ""
+msgstr "مدير المهام"
 
 #: bottles/frontend/ui/details-bottle.ui:290
 msgid "Manage processes with the Wine task manager."
@@ -638,7 +647,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.ui:325
 msgid "Uninstaller"
-msgstr ""
+msgstr "مُلغي التثبيت"
 
 #: bottles/frontend/ui/details-bottle.ui:326
 msgid "Uninstall programs using Wine uninstaller."
@@ -821,7 +830,7 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.ui:108
 #: bottles/frontend/ui/preferences.ui:228
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
@@ -944,7 +953,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:272
 msgid "Renderer"
-msgstr ""
+msgstr "المصيِّر"
 
 #: bottles/frontend/ui/details-preferences.ui:273
 msgid "Select what backend to use for wined3d."
@@ -956,11 +965,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:280
 msgid "gdi"
-msgstr ""
+msgstr "gdi"
 
 #: bottles/frontend/ui/details-preferences.ui:281
 msgid "vulkan"
-msgstr ""
+msgstr "vulkan"
 
 #: bottles/frontend/ui/details-preferences.ui:296
 #: bottles/frontend/ui/details-preferences.ui:432
@@ -1014,7 +1023,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:450
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.ui:465
 msgid "Windows Version"
@@ -1049,9 +1058,8 @@ msgid "Manage Sandbox permissions"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:530
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "قوارير"
+msgstr "وقت تشغيل بوتلز"
 
 #: bottles/frontend/ui/details-preferences.ui:531
 msgid ""
@@ -1061,7 +1069,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:542
 msgid "Steam Runtime"
-msgstr ""
+msgstr "زمن تشغيل Steam"
 
 #: bottles/frontend/ui/details-preferences.ui:543
 msgid "The same as the Bottles one but provided by Steam."
@@ -1077,7 +1085,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:566
 msgid "Gamescope"
-msgstr ""
+msgstr "Gamescope"
 
 #: bottles/frontend/ui/details-preferences.ui:567
 msgid "Use the Gamescope micro-compositor."
@@ -1192,7 +1200,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.ui:743
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
 #: bottles/frontend/ui/details-preferences.ui:744
 msgid ""
@@ -2337,7 +2345,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.ui:240
 msgid "Runtime"
-msgstr ""
+msgstr "زمن التشغيل"
 
 #: bottles/frontend/ui/preferences.ui:245
 msgid "WineBridge"
