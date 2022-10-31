@@ -196,7 +196,7 @@ class BottleView(Adw.PreferencesPage):
             RunAsync(executor.run, self.update_programs)
 
         else:
-            self.window.show_toast(_("File '{0}' does not seem to be an exe or msi file").format(file.get_basename().split("/")[-1]))
+            self.window.show_toast(_("File \"{0}\" does not seem to be an exe or msi file").format(file.get_basename().split("/")[-1]))
 
     def on_enter(self, drop_target, x, y):
         self.drop_overlay.set_visible(True)
@@ -268,7 +268,7 @@ class BottleView(Adw.PreferencesPage):
                     fallback=True
                 ).data["config"]
                 self.update_programs(config=self.config, force_add=_program)
-                self.window.show_toast(_("'{0}' added.").format(_file_name[:-4]))
+                self.window.show_toast(_("\"{0}\" added.").format(_file_name[:-4]))
 
         FileChooser(
             parent=self.window,
@@ -424,9 +424,9 @@ class BottleView(Adw.PreferencesPage):
 
         def finish(result, error=False):
             if result.status:
-                self.window.show_toast(_("Backup created for '{0}'.").format(self.config["Name"]))
+                self.window.show_toast(_("Backup created for \"{0}\".").format(self.config["Name"]))
             else:
-                self.window.show_toast(_("Backup failed for '{0}'.").format(self.config["Name"]))
+                self.window.show_toast(_("Backup failed for \"{0}\".").format(self.config["Name"]))
 
         def set_path(_dialog, response, _file_dialog):
             if response == -3:

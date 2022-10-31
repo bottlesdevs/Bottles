@@ -267,18 +267,7 @@ template DetailsBottle : .AdwPreferencesPage {
     title: _("Programs");
 
     .AdwActionRow row_no_programs {
-      Box {
-        hexpand: true;
-
-        Label {
-          label: _("Click \"Run Executable…\" to run an executable, \"Add Shortcuts…\" to add an executable to the Programs list, or \"Install Programs…\" to install programs curated by the community.");
-          wrap: false;
-
-          styles [
-            "dim-label",
-          ]
-        }
-      }
+      subtitle: _("Click \"Run Executable…\" to run an executable, \"Add Shortcuts…\" to add an executable to the Programs list, or \"Install Programs…\" to install programs curated by the community.");
     }
     
     .AdwPreferencesRow bottom_bar {

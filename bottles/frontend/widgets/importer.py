@@ -63,7 +63,7 @@ class ImporterEntry(Adw.ActionRow):
             self.img_lock.set_visible(result.status)
 
             if result.status:
-                self.window.show_toast(_("'{0}' imported.").format(self.prefix.get("Name")))
+                self.window.show_toast(_("\"{0}\" imported.").format(self.prefix.get("Name")))
 
             self.set_sensitive(True)
         self.set_sensitive(False)

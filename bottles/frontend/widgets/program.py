@@ -248,7 +248,7 @@ class ProgramEntry(Adw.ActionRow):
                 value=self.program,
                 scope="External_Programs"
             )
-            self.window.show_toast(_("\"{0}\" renamed to '{1}'.").format(self.program["name"], new_name))
+            self.window.show_toast(_("\"{0}\" renamed to \"{1}\".").format(self.program["name"], new_name))
             self.update_programs()
 
         dialog = RenameDialog(self.window, on_save=func, name=self.program["name"])
@@ -268,7 +268,7 @@ class ProgramEntry(Adw.ActionRow):
                 webbrowser.open("https://docs.usebottles.com/bottles/programs#flatpak")
                 return
 
-            self.window.show_toast(_("Desktop Entry created for '{0}'").format(self.program["name"]))
+            self.window.show_toast(_("Desktop Entry created for \"{0}\"").format(self.program["name"]))
 
         RunAsync(
             ManagerUtils.create_desktop_entry,
@@ -300,7 +300,7 @@ class ProgramEntry(Adw.ActionRow):
     def add_to_steam(self, widget):
         def update(result, error=False):
             if result.status:
-                self.window.show_toast(_("'{0}' added to your Steam library").format(self.program["name"]))
+                self.window.show_toast(_("\"{0}\" added to your Steam library").format(self.program["name"]))
         
         steam_manager = SteamManager(self.config)
         RunAsync(
