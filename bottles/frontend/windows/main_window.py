@@ -111,7 +111,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_add.connect("clicked", self.show_add_view)
         self.btn_about.connect("clicked", self.show_about_dialog)
         self.btn_support.connect("clicked", self.open_url, FUNDING_URL)
-        self.btn_docs.connect("clicked", self.open_url, DOC_URL)
+        self.btn_help.connect("clicked", self.open_url, DOC_URL)
         self.btn_forum.connect("clicked", self.open_url, FORUMS_URL)
         self.btn_preferences.connect("clicked", self.show_prefs_view)
         self.btn_importer.connect("clicked", self.show_importer_view)

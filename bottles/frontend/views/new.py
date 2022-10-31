@@ -231,7 +231,7 @@ class NewView(Adw.Window):
 
         self.new_bottle_config = result.data.get("config")
         self.created.set_description(
-            _("A bottle named “{0}” was created successfully").format(
+            _("\"{0}\" was created successfully.").format(
                 self.entry_name.get_text()
             )
         )
