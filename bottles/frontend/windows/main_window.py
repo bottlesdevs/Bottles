@@ -63,7 +63,7 @@ class MainWindow(Adw.ApplicationWindow):
     btn_menu = Gtk.Template.Child()
     btn_search = Gtk.Template.Child()
     btn_support = Gtk.Template.Child()
-    btn_docs = Gtk.Template.Child()
+    btn_help = Gtk.Template.Child()
     btn_forum = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
