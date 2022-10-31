@@ -8,6 +8,8 @@ template BottleView : .AdwBin {
       orientation: vertical;
 
       SearchBar search_bar {
+        visible: false;
+
         SearchEntry entry_search {
           placeholder-text: _("Search your bottles…");
         }
@@ -40,14 +42,14 @@ template BottleView : .AdwBin {
       .AdwStatusPage bottle_status {
         icon-name: "com.usebottles.bottles-symbolic";
         title: _("Bottles");
-        description: _("Start off by creating a Bottle.");
+        description: _("Click \"Create a new Bottle…\" to create a new Bottle.");
         hexpand: true;
         vexpand: true;
         child: 
         Button btn_create {
           valign: center;
           halign: center;
-          label: _("Create a new Bottle");
+          label: _("Create a new Bottle…");
 
           styles [
             "suggested-action",
