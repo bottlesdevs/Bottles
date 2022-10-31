@@ -163,7 +163,7 @@ class DependencyEntry(Adw.ActionRow):
                 self.window.page_details.view_versioning.update()
             uninstaller = result.data.get("uninstaller")
             removed = result.data.get("removed")
-            self.window.show_toast(_("\"{0}\" installed.").format(self.dependency[0]))
+            self.window.show_toast(_("\"{0}\" installed").format(self.dependency[0]))
             return self.set_installed(uninstaller, removed)
         self.set_err()
 
@@ -177,7 +177,7 @@ class DependencyEntry(Adw.ActionRow):
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
         self.get_parent().set_sensitive(True)
-        self.window.show_toast(_("\"{0}\" failed to install.").format(self.dependency[0]))
+        self.window.show_toast(_("\"{0}\" failed to install").format(self.dependency[0]))
 
     def set_installed(self, installer=True, removed=False):
         """

@@ -136,7 +136,7 @@ class NewView(Adw.Window):
     def __check_entry_name(self, *_args):
         result = GtkUtils.validate_entry(self.entry_name, extend=self.__check_already_in_use)
         if not result:
-            self.window.show_toast(_("Name has special characters or already in use."))
+            self.window.show_toast(_("Name has special characters or already in use"))
         self.btn_create.set_sensitive(result)
     
     def __check_already_in_use(self, name):

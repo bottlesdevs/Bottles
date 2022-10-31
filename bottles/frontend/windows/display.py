@@ -108,7 +108,7 @@ class DisplayDialog(Adw.Window):
             if self.queued == self.completed:
                 self.widget.set_sensitive(True)
                 self.spinner_display.stop()
-                self.window.show_toast(_("Display settings updated."))
+                self.window.show_toast(_("Display settings updated"))
             self.queue.end_task()
 
         if self.expander_virtual_desktop.get_enable_expansion() != self.parameters["virtual_desktop"]:

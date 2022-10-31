@@ -248,7 +248,7 @@ class ProgramEntry(Adw.ActionRow):
                 value=self.program,
                 scope="External_Programs"
             )
-            self.window.show_toast(_("\"{0}\" renamed to \"{1}\".").format(self.program["name"], new_name))
+            self.window.show_toast(_("\"{0}\" renamed to \"{1}\"").format(self.program["name"], new_name))
             self.update_programs()
 
         dialog = RenameDialog(self.window, on_save=func, name=self.program["name"])
