@@ -794,11 +794,12 @@ class PreferencesView(Adw.PreferencesPage):
         if self.manager.versioning_manager.is_initialized(self.config):
             dialog = Adw.MessageDialog.new(
                 self.window,
-                _("Toggling Compression Require Re-Initialization"),
-                _("This will kepp all your files but will delete all states. Do you want to continue?"),
+                _("Are you sure you want to delete all snapshots?"),
+                _("This will delete all snapshots, but keep your files."),
             )
-            dialog.add_response("cancel", _("Cancel"))
-            dialog.add_response("ok", _("Confirm"))
+            dialog.add_response("cancel", _("_Cancel"))
+            dialog.add_response("ok", _("_Delete"))
+            dialog.set_response_appearance("ok", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response", handle_response)
             dialog.present()
         else:

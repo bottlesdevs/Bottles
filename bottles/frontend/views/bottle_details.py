@@ -387,7 +387,7 @@ class BottleView(Adw.PreferencesPage):
                 _("Be Aware of Sandbox"),
                 _("Bottles is running in a sandbox, a restricted permission environment needed to keep you safe. If the program won't run, consider moving inside the bottle (3 dots icon on the top), then launch from there.")
             )
-            dialog.add_response("ok", _("Ok"))
+            dialog.add_response("ok", _("_Dismiss"))
             dialog.connect("response", show_chooser)
             dialog.present()
         else:
@@ -472,7 +472,7 @@ class BottleView(Adw.PreferencesPage):
         to the bottles list.
         """
         def handle_response(_widget, response_id):
-            if response_id == "delete":
+            if response_id == "ok":
                 RunAsync(self.manager.delete_bottle, config=self.config)
                 self.window.page_list.disable_bottle(self.config)
             _widget.destroy()
@@ -483,8 +483,8 @@ class BottleView(Adw.PreferencesPage):
             _("This will permanently delete all programs and settings associated with it.")
         )
         dialog.add_response("cancel", _("_Cancel"))
-        dialog.add_response("delete", _("_Delete"))
-        dialog.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
+        dialog.add_response("ok", _("_Delete"))
+        dialog.set_response_appearance("ok", Adw.ResponseAppearance.DESTRUCTIVE)
         dialog.connect("response", handle_response)
         dialog.present()
 
@@ -499,10 +499,10 @@ class BottleView(Adw.PreferencesPage):
         dialog = Adw.MessageDialog.new(
             self.window,
             _("Missing Runner"),
-            _("The runner requested by this bottle is missing, install it trought \
-the Bottles' preferences or choose a new one to run applications.")
+            _("The runner requested by this bottle is missing. Install it through \
+the Bottles preferences or choose a new one to run applications.")
         )
-        dialog.add_response("ok", _("Confirm"))
+        dialog.add_response("ok", _("_Dismiss"))
         dialog.connect("response", handle_response)
         dialog.present()
 
@@ -565,7 +565,7 @@ the Bottles' preferences or choose a new one to run applications.")
             widget.set_sensitive(True)
 
         def handle_response(_widget, response_id):
-            if response_id == "stop":
+            if response_id == "ok":
                 RunAsync(wineboot.send_status, reset, status)
             else:
                 reset()
@@ -581,8 +581,8 @@ the Bottles' preferences or choose a new one to run applications.")
                 _("This can cause data loss, corruption, and applications to malfunction.")
             )
             dialog.add_response("cancel", _("_Cancel"))
-            dialog.add_response("stop", _("Force _Stop"))
-            dialog.set_response_appearance("stop", Adw.ResponseAppearance.DESTRUCTIVE)
+            dialog.add_response("ok", _("Force _Stop"))
+            dialog.set_response_appearance("ok", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response", handle_response)
             dialog.present()
 

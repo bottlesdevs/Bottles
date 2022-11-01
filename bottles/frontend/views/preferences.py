@@ -146,11 +146,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 self.btn_bottles_path_reset.set_visible(True)
                 dialog = Adw.MessageDialog.new(
                     self.window,
-                    _("Directory Will be Updated on Next Launch"),
-                    _("Bottles has to be relaunched to change the data directory.")
+                    _("Relaunch Bottles?"),
+                    _("Bottles directory will be updated after it is relaunched.")
                 )
-                dialog.add_response("dismiss", _("Dismiss"))
-                dialog.add_response("restart", _("Relaunch"))
+                dialog.add_response("dismiss", _("_Cancel"))
+                dialog.add_response("restart", _("_Relaunch"))
+                dialog.set_response_appearance("restart", Adw.ResponseAppearance.SUGGESTED)
                 dialog.connect("response", self.handle_restart)
                 dialog.present()
             else:

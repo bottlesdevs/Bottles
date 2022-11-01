@@ -194,7 +194,7 @@ class MainWindow(Adw.ApplicationWindow):
                     _("Custom Bottles Path not Found"),
                     _("Falling back to default path. No bottles from the given path will be listed.")
                 )
-                dialog.add_response("cancel", _("Close"))
+                dialog.add_response("cancel", _("_Dismiss"))
                 dialog.present()
 
         def get_manager(window, repo_fn_update):
