@@ -15,8 +15,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'com.usebottles.bottles.appdata.xml.in',
-  output: 'com.usebottles.bottles.appdata.xml',
+  input: 'com.usebottles.bottles.metainfo.xml.in',
+  output: 'com.usebottles.bottles.metainfo.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'metainfo')
