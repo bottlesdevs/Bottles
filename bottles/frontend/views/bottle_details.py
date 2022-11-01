@@ -83,7 +83,7 @@ class BottleView(Adw.PreferencesPage):
     btn_shutdown = Gtk.Template.Child()
     btn_reboot = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
-    btn_killall = Gtk.Template.Child()
+    btn_forcestop = Gtk.Template.Child()
     btn_update = Gtk.Template.Child()
     btn_toggle_removed = Gtk.Template.Child()
     btn_backup_config = Gtk.Template.Child()
@@ -142,7 +142,7 @@ class BottleView(Adw.PreferencesPage):
         self.btn_delete.connect("clicked", self.__confirm_delete)
         self.btn_shutdown.connect("clicked", self.wineboot, 2)
         self.btn_reboot.connect("clicked", self.wineboot, 1)
-        self.btn_killall.connect("clicked", self.wineboot, 0)
+        self.btn_forcestop.connect("clicked", self.wineboot, 0)
         self.btn_update.connect("clicked", self.__scan_programs)
         self.btn_toggle_removed.connect("clicked", self.__toggle_removed)
         self.btn_backup_config.connect("clicked", self.__backup, "config")
@@ -472,18 +472,19 @@ class BottleView(Adw.PreferencesPage):
         to the bottles list.
         """
         def handle_response(_widget, response_id):
-            if response_id == "ok":
+            if response_id == "delete":
                 RunAsync(self.manager.delete_bottle, config=self.config)
                 self.window.page_list.disable_bottle(self.config)
             _widget.destroy()
 
         dialog = Adw.MessageDialog.new(
             self.window,
-            _("Confirm"),
-            _("Are you sure you want to delete this Bottle and all files?")
+            _(f"Are you sure you want to permanently delete \"{self.config['Name']}\"?"),
+            _("This will permanently delete all programs and settings associated with it.")
         )
-        dialog.add_response("cancel", _("Cancel"))
-        dialog.add_response("ok", _("Confirm"))
+        dialog.add_response("cancel", _("_Cancel"))
+        dialog.add_response("delete", _("_Delete"))
+        dialog.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
         dialog.connect("response", handle_response)
         dialog.present()
 
@@ -564,7 +565,7 @@ the Bottles' preferences or choose a new one to run applications.")
             widget.set_sensitive(True)
 
         def handle_response(_widget, response_id):
-            if response_id == "ok":
+            if response_id == "stop":
                 RunAsync(wineboot.send_status, reset, status)
             else:
                 reset()
@@ -576,11 +577,12 @@ the Bottles' preferences or choose a new one to run applications.")
         if status == 0:
             dialog = Adw.MessageDialog.new(
                 self.window,
-                _("Confirm"),
-                _("Are you sure you want to terminate all processes?\nThis can cause data loss.")
+                _("Are you sure you want to force stop all processes?"),
+                _("This can cause data loss, corruption, and applications to malfunction.")
             )
-            dialog.add_response("cancel", _("Cancel"))
-            dialog.add_response("ok", _("Confirm"))
+            dialog.add_response("cancel", _("_Cancel"))
+            dialog.add_response("stop", _("Force _Stop"))
+            dialog.set_response_appearance("stop", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response", handle_response)
             dialog.present()
 
