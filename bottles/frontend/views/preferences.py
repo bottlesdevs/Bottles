@@ -147,7 +147,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 dialog = Adw.MessageDialog.new(
                     self.window,
                     _("Relaunch Bottles?"),
-                    _("Bottles directory will be updated after it is relaunched.")
+                    _("Bottles will use this directory after it is relaunched.")
                 )
                 dialog.add_response("dismiss", _("_Cancel"))
                 dialog.add_response("restart", _("_Relaunch"))
