@@ -76,9 +76,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
         if "FLATPAK_ID" in os.environ:
             self.remove(self.pref_core)
 
-        self.current_bottle_path = self.data.get("custom_bottles_path")
-        if self.current_bottle_path:
-            self.label_bottles_path.set_label(os.path.basename(self.current_bottle_path))
+        self.current_bottles_path = self.data.get("custom_bottles_path")
+        if self.current_bottles_path:
+            self.label_bottles_path.set_label(os.path.basename(self.current_bottles_path))
             self.btn_bottles_path_reset.set_visible(True)
 
         # bind widgets
@@ -166,7 +166,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         widget.destroy()
 
     def prompt_restart(self):
-        if self.current_bottle_path != self.data.get("custom_bottles_path"):
+        if self.current_bottles_path != self.data.get("custom_bottles_path"):
             dialog = Adw.MessageDialog.new(
                 self.window,
                 _("Relaunch Bottles?"),
