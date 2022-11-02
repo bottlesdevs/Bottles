@@ -479,7 +479,7 @@ class BottleView(Adw.PreferencesPage):
 
         dialog = Adw.MessageDialog.new(
             self.window,
-            _(f"Are you sure you want to permanently delete \"{self.config['Name']}\"?"),
+            _("Are you sure you want to permanently delete \"{}\"?".format(self.config['Name'])),
             _("This will permanently delete all programs and settings associated with it.")
         )
         dialog.add_response("cancel", _("_Cancel"))
