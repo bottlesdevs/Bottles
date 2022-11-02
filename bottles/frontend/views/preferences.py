@@ -76,9 +76,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
         if "FLATPAK_ID" in os.environ:
             self.remove(self.pref_core)
 
-        bottles_path = self.data.get("custom_bottles_path")
-        if bottles_path:
-            self.label_bottles_path.set_label(os.path.basename(bottles_path))
+        self.current_bottle_path = self.data.get("custom_bottles_path")
+        if self.current_bottle_path:
+            self.label_bottles_path.set_label(os.path.basename(self.current_bottle_path))
             self.btn_bottles_path_reset.set_visible(True)
 
         # bind widgets
@@ -144,19 +144,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 self.data.set("custom_bottles_path", _file.get_path())
                 self.label_bottles_path.set_label(os.path.basename(_file.get_path()))
                 self.btn_bottles_path_reset.set_visible(True)
-                dialog = Adw.MessageDialog.new(
-                    self.window,
-                    _("Relaunch Bottles?"),
-                    _("Bottles will use this directory after it is relaunched.")
-                )
-                dialog.add_response("dismiss", _("_Cancel"))
-                dialog.add_response("restart", _("_Relaunch"))
-                dialog.set_response_appearance("restart", Adw.ResponseAppearance.SUGGESTED)
-                dialog.connect("response", self.handle_restart)
-                dialog.present()
-            else:
-                if self.data.get("custom_bottles_path") is not None:
-                    self.label_bottles_path.set_label(os.path.basename(self.data.get("custom_bottles_path")))
+                self.prompt_restart()
             _file_dialog.destroy()
 
         FileChooser(
@@ -177,19 +165,25 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.window.proper_close()
         widget.destroy()
 
+    def prompt_restart(self):
+        if self.current_bottle_path != self.data.get("custom_bottles_path"):
+            dialog = Adw.MessageDialog.new(
+                self.window,
+                _("Relaunch Bottles?"),
+                _("Bottles will need to be relaunched to use this directory.")
+            )
+            dialog.add_response("dismiss", _("_Cancel"))
+            dialog.add_response("restart", _("_Relaunch"))
+            dialog.set_response_appearance("restart", Adw.ResponseAppearance.SUGGESTED)
+            dialog.set_default_response("restart")
+            dialog.connect("response", self.handle_restart)
+            dialog.present()
+
     def __reset_bottles_path(self, widget):
         self.data.remove("custom_bottles_path")
         self.btn_bottles_path_reset.set_visible(False)
         self.label_bottles_path.set_label(_("(Default)"))
-        dialog = Adw.MessageDialog.new(
-            self.window,
-            _("Directory Will be Updated on Next Launch"),
-            _("Bottles has to be relaunched to change the data directory.")
-        )
-        dialog.add_response("dismiss", _("Dismiss"))
-        dialog.add_response("restart", _("Relaunch"))
-        dialog.connect("response", self.handle_restart)
-        dialog.present()
+        self.prompt_restart()
 
     def populate_runtimes_list(self):
         for runtime in self.manager.supported_runtimes.items():
