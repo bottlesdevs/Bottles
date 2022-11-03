@@ -393,13 +393,12 @@ template DetailsPreferences : .AdwPreferencesPage {
     }
 
     .AdwActionRow row_cwd {
-      activatable-widget: "btn_cwd";
       title: _("Working Directory");
-      subtitle: _("Defaults to the bottle path.");
 
       Button btn_cwd_reset {
         tooltip-text: _("Reset to default");
         valign: center;
+        visible: false;
         icon-name: "edit-undo-symbolic";
 
         styles [
@@ -408,13 +407,19 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
 
       Button btn_cwd {
-        tooltip-text: _("Choose a directory");
         valign: center;
-        icon-name: "document-open-symbolic";
 
-        styles [
-          "flat",
-        ]
+        Box {
+          spacing: 6;
+
+          Image {
+            icon-name: "document-open-symbolic";
+          }
+
+          Label label_cwd {
+            label: _("(Default)");
+          }
+        }
       }
     }
 
