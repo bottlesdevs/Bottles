@@ -170,12 +170,11 @@ class PreferencesWindow(Adw.PreferencesWindow):
             dialog = Adw.MessageDialog.new(
                 self.window,
                 _("Relaunch Bottles?"),
-                _("Bottles will need to be relaunched to use this directory.")
+                _("Bottles will need to be relaunched to use this directory.\n\nBe sure to close every program launched from Bottles before relaunching Bottles, as not doing so can cause data loss, corruption and programs to malfunction.")
             )
             dialog.add_response("dismiss", _("_Cancel"))
             dialog.add_response("restart", _("_Relaunch"))
-            dialog.set_response_appearance("restart", Adw.ResponseAppearance.SUGGESTED)
-            dialog.set_default_response("restart")
+            dialog.set_response_appearance("restart", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response", self.handle_restart)
             dialog.present()
 

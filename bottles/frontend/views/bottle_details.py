@@ -578,7 +578,7 @@ the Bottles preferences or choose a new one to run applications.")
             dialog = Adw.MessageDialog.new(
                 self.window,
                 _("Are you sure you want to force stop all processes?"),
-                _("This can cause data loss, corruption, and applications to malfunction.")
+                _("This can cause data loss, corruption, and programs to malfunction.")
             )
             dialog.add_response("cancel", _("_Cancel"))
             dialog.add_response("ok", _("Force _Stop"))
