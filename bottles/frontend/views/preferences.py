@@ -107,7 +107,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.connect('changed::dark-theme', self.__toggle_night)
         self.settings.connect('changed::release-candidate', self.__toggle_rc)
         self.settings.connect('changed::update-date', self.__toggle_update_date)
-        self.btn_bottles_path.connect('activated', self.__choose_bottles_path)
+        self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
         self.btn_steam_proton_doc.connect('clicked', self.__open_steam_proton_doc)
 

@@ -73,6 +73,7 @@ class PreferencesView(Adw.PreferencesPage):
     row_runtime = Gtk.Template.Child()
     row_steam_runtime = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
+    label_cwd = Gtk.Template.Child()
     row_env_variables = Gtk.Template.Child()
     row_overrides = Gtk.Template.Child()
     row_drives = Gtk.Template.Child()
@@ -143,8 +144,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = config
         self.queue = details.queue
         self.details = details
-
-        self.entry_name.add_controller(self.ev_controller)
 
         gpu = GPUUtils().get_gpu()
 
@@ -277,7 +276,7 @@ class PreferencesView(Adw.PreferencesPage):
             callback=set_path
         )
 
-    def reset_cwd(self):
+    def reset_cwd(self, widget):
         self.manager.update_config(config=self.config, key="WorkingDir", value="")
         self.label_cwd.set_label("(Default)")
         self.btn_cwd_reset.set_visible(False)
