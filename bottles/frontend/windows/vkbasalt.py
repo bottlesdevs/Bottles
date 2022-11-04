@@ -60,6 +60,7 @@ class VkBasaltDialog(Adw.Window):
 
     # Region Widgets
     switch_default = Gtk.Template.Child()
+    group_effects = Gtk.Template.Child()
     expander_cas = Gtk.Template.Child()
     expander_dls = Gtk.Template.Child()
     expander_fxaa = Gtk.Template.Child()
@@ -107,18 +108,7 @@ class VkBasaltDialog(Adw.Window):
         if os.path.isfile(conf):
             VkBasaltSettings = ParseConfig(conf)
 
-            self.subeffects = [
-                [VkBasaltSettings.cas_sharpness, self.spin_cas_sharpness],
-                [VkBasaltSettings.dls_sharpness, self.spin_dls_sharpness],
-                [VkBasaltSettings.dls_denoise, self.spin_dls_denoise],
-                [VkBasaltSettings.fxaa_subpixel_quality, self.spin_fxaa_subpixel_quality],
-                [VkBasaltSettings.fxaa_quality_edge_threshold, self.spin_fxaa_quality_edge_threshold],
-                [VkBasaltSettings.fxaa_quality_edge_threshold_min, self.spin_fxaa_quality_edge_threshold_min],
-                [VkBasaltSettings.smaa_threshold, self.spin_smaa_threshold],
-                [VkBasaltSettings.smaa_max_search_steps, self.spin_smaa_max_search_steps],
-                [VkBasaltSettings.smaa_max_search_steps_diagonal, self.spin_smaa_max_search_steps_diagonal],
-                [VkBasaltSettings.smaa_corner_rounding, self.spin_smaa_corner_rounding],
-            ]
+            subeffects = self.get_subeffects(VkBasaltSettings)
 
             # Check if effects are used
             if VkBasaltSettings.effects:
@@ -130,12 +120,9 @@ class VkBasaltDialog(Adw.Window):
                 self.effects_widgets(False)
 
             # Check if subeffects are used
-            for conf in self.subeffects:
+            for conf in subeffects:
                 if conf[0] != None:
                     conf[1].set_value(float(conf[0]))
-
-            # if VkBasaltSettings.cas_sharpness != None:
-            #     self.spin_cas_sharpness.set_value(float(VkBasaltSettings.cas_sharpness))
 
             if VkBasaltSettings.smaa_edge_detection != None:
                 if VkBasaltSettings.smaa_edge_detection == "color":
@@ -172,12 +159,7 @@ class VkBasaltDialog(Adw.Window):
             VkBasaltSettings.default = False
 
         # Checks filter settings
-        if True in [
-            self.expander_cas.get_enable_expansion(),
-            self.expander_dls.get_enable_expansion(),
-            self.expander_fxaa.get_enable_expansion(),
-            self.expander_smaa.get_enable_expansion(),
-        ]:
+        if self.check_effects_states():
             effects = []
             if self.expander_cas.get_enable_expansion() is True:
                 effects.append("cas")
@@ -215,22 +197,11 @@ class VkBasaltDialog(Adw.Window):
 
     # Enable and disable save button when necessary
     def __check_state(self, *args):
-        if True in [
-            self.expander_cas.get_enable_expansion(),
-            self.expander_dls.get_enable_expansion(),
-            self.expander_fxaa.get_enable_expansion(),
-            self.expander_smaa.get_enable_expansion(),
-        ]:
-            self.btn_save.set_sensitive(True)
-        else:
-            self.btn_save.set_sensitive(False)
+        self.btn_save.set_sensitive(self.check_effects_states())
 
     # Enable and disable other buttons depending on default button when necessary
     def __default(self, widget, state):
-        self.expander_cas.set_sensitive(not state)
-        self.expander_dls.set_sensitive(not state)
-        self.expander_fxaa.set_sensitive(not state)
-        self.expander_smaa.set_sensitive(not state)
+        self.group_effects.set_sensitive(not state)
         if state is False:
             if self.expander_cas.get_enable_expansion() is False \
                 and self.expander_dls.get_enable_expansion() is False\
@@ -259,3 +230,23 @@ class VkBasaltDialog(Adw.Window):
         for widget in self.effects.values():
             widget.set_enable_expansion(status)
 
+    def check_effects_states(self):
+        if True in [widget.get_enable_expansion() for widget in self.effects.values()]:
+            return True
+        else:
+            return False
+
+    def get_subeffects(self, VkBasaltSettings):
+        subeffects = [
+            [VkBasaltSettings.cas_sharpness, self.spin_cas_sharpness],
+            [VkBasaltSettings.dls_sharpness, self.spin_dls_sharpness],
+            [VkBasaltSettings.dls_denoise, self.spin_dls_denoise],
+            [VkBasaltSettings.fxaa_subpixel_quality, self.spin_fxaa_subpixel_quality],
+            [VkBasaltSettings.fxaa_quality_edge_threshold, self.spin_fxaa_quality_edge_threshold],
+            [VkBasaltSettings.fxaa_quality_edge_threshold_min, self.spin_fxaa_quality_edge_threshold_min],
+            [VkBasaltSettings.smaa_threshold, self.spin_smaa_threshold],
+            [VkBasaltSettings.smaa_max_search_steps, self.spin_smaa_max_search_steps],
+            [VkBasaltSettings.smaa_max_search_steps_diagonal, self.spin_smaa_max_search_steps_diagonal],
+            [VkBasaltSettings.smaa_corner_rounding, self.spin_smaa_corner_rounding],
+        ]
+        return subeffects
