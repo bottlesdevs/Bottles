@@ -107,6 +107,19 @@ class VkBasaltDialog(Adw.Window):
         if os.path.isfile(conf):
             VkBasaltSettings = ParseConfig(conf)
 
+            self.subeffects = [
+                [VkBasaltSettings.cas_sharpness, self.spin_cas_sharpness],
+                [VkBasaltSettings.dls_sharpness, self.spin_dls_sharpness],
+                [VkBasaltSettings.dls_denoise, self.spin_dls_denoise],
+                [VkBasaltSettings.fxaa_subpixel_quality, self.spin_fxaa_subpixel_quality],
+                [VkBasaltSettings.fxaa_quality_edge_threshold, self.spin_fxaa_quality_edge_threshold],
+                [VkBasaltSettings.fxaa_quality_edge_threshold_min, self.spin_fxaa_quality_edge_threshold_min],
+                [VkBasaltSettings.smaa_threshold, self.spin_smaa_threshold],
+                [VkBasaltSettings.smaa_max_search_steps, self.spin_smaa_max_search_steps],
+                [VkBasaltSettings.smaa_max_search_steps_diagonal, self.spin_smaa_max_search_steps_diagonal],
+                [VkBasaltSettings.smaa_corner_rounding, self.spin_smaa_corner_rounding],
+            ]
+
             # Check if effects are used
             if VkBasaltSettings.effects:
                 for effect, widget in self.effects.items():
@@ -117,26 +130,13 @@ class VkBasaltDialog(Adw.Window):
                 self.effects_widgets(False)
 
             # Check if subeffects are used
-            if VkBasaltSettings.cas_sharpness != None:
-                self.spin_cas_sharpness.set_value(float(VkBasaltSettings.cas_sharpness))
-            if VkBasaltSettings.dls_sharpness != None:
-                self.spin_dls_sharpness.set_value(float(VkBasaltSettings.dls_sharpness))
-            if VkBasaltSettings.dls_denoise != None:
-                self.spin_dls_denoise.set_value(float(VkBasaltSettings.dls_denoise))
-            if VkBasaltSettings.fxaa_subpixel_quality != None:
-                self.spin_fxaa_subpixel_quality.set_value(float(VkBasaltSettings.fxaa_subpixel_quality))
-            if VkBasaltSettings.fxaa_quality_edge_threshold != None:
-                self.spin_fxaa_quality_edge_threshold.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold))
-            if VkBasaltSettings.fxaa_quality_edge_threshold_min != None:
-                self.spin_fxaa_quality_edge_threshold_min.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold_min))
-            if VkBasaltSettings.smaa_threshold != None:
-                self.spin_smaa_threshold.set_value(float(VkBasaltSettings.smaa_threshold))
-            if VkBasaltSettings.smaa_max_search_steps != None:
-                self.spin_smaa_max_search_steps.set_value(float(VkBasaltSettings.smaa_max_search_steps))
-            if VkBasaltSettings.smaa_max_search_steps_diagonal != None:
-                self.spin_smaa_max_search_steps_diagonal.set_value(float(VkBasaltSettings.smaa_max_search_steps_diagonal))
-            if VkBasaltSettings.smaa_corner_rounding != None:
-                self.spin_smaa_corner_rounding.set_value(float(VkBasaltSettings.smaa_corner_rounding))
+            for conf in self.subeffects:
+                if conf[0] != None:
+                    conf[1].set_value(float(conf[0]))
+
+            # if VkBasaltSettings.cas_sharpness != None:
+            #     self.spin_cas_sharpness.set_value(float(VkBasaltSettings.cas_sharpness))
+
             if VkBasaltSettings.smaa_edge_detection != None:
                 if VkBasaltSettings.smaa_edge_detection == "color":
                     self.toggle_color.set_active(True)
