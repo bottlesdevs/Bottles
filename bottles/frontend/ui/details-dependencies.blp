@@ -12,24 +12,13 @@ template DetailsDependencies : .AdwBin {
 
     .AdwPreferencesPage {
       .AdwPreferencesGroup {
-        description: _("Dependencies are software, libraries and codecs that improve the compatibility of Windows software. Install from here to meet your program requirements.");
+        description: _("Dependencies are resources that improve compatibility of Windows software.\n\nFiles on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.");
 
         ListBox list_dependencies {
           selection-mode: none;
 
           styles [
             "boxed-list",
-          ]
-        }
-
-        Label {
-          visible: true;
-          label: _("Files on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.");
-          wrap: true;
-          margin-top: 12;
-
-          styles [
-            "dim-label",
           ]
         }
       }

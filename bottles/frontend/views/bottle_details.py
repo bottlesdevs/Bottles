@@ -83,7 +83,7 @@ class BottleView(Adw.PreferencesPage):
     btn_shutdown = Gtk.Template.Child()
     btn_reboot = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
-    btn_killall = Gtk.Template.Child()
+    btn_forcestop = Gtk.Template.Child()
     btn_update = Gtk.Template.Child()
     btn_toggle_removed = Gtk.Template.Child()
     btn_backup_config = Gtk.Template.Child()
@@ -142,7 +142,7 @@ class BottleView(Adw.PreferencesPage):
         self.btn_delete.connect("clicked", self.__confirm_delete)
         self.btn_shutdown.connect("clicked", self.wineboot, 2)
         self.btn_reboot.connect("clicked", self.wineboot, 1)
-        self.btn_killall.connect("clicked", self.wineboot, 0)
+        self.btn_forcestop.connect("clicked", self.wineboot, 0)
         self.btn_update.connect("clicked", self.__scan_programs)
         self.btn_toggle_removed.connect("clicked", self.__toggle_removed)
         self.btn_backup_config.connect("clicked", self.__backup, "config")
@@ -196,7 +196,7 @@ class BottleView(Adw.PreferencesPage):
             RunAsync(executor.run, self.update_programs)
 
         else:
-            self.window.show_toast(_("File '{0}' does not seem to be an exe or msi file").format(file.get_basename().split("/")[-1]))
+            self.window.show_toast(_("File \"{0}\" is not a .exe or .msi file").format(file.get_basename().split("/")[-1]))
 
     def on_enter(self, drop_target, x, y):
         self.drop_overlay.set_visible(True)
@@ -268,7 +268,7 @@ class BottleView(Adw.PreferencesPage):
                     fallback=True
                 ).data["config"]
                 self.update_programs(config=self.config, force_add=_program)
-                self.window.show_toast(_("'{0}' added.").format(_file_name[:-4]))
+                self.window.show_toast(_("\"{0}\" added").format(_file_name[:-4]))
 
         FileChooser(
             parent=self.window,
@@ -387,7 +387,7 @@ class BottleView(Adw.PreferencesPage):
                 _("Be Aware of Sandbox"),
                 _("Bottles is running in a sandbox, a restricted permission environment needed to keep you safe. If the program won't run, consider moving inside the bottle (3 dots icon on the top), then launch from there.")
             )
-            dialog.add_response("ok", _("Ok"))
+            dialog.add_response("ok", _("_Dismiss"))
             dialog.connect("response", show_chooser)
             dialog.present()
         else:
@@ -424,9 +424,9 @@ class BottleView(Adw.PreferencesPage):
 
         def finish(result, error=False):
             if result.status:
-                self.window.show_toast(_("Backup created for '{0}'.").format(self.config["Name"]))
+                self.window.show_toast(_("Backup created for \"{0}\"").format(self.config["Name"]))
             else:
-                self.window.show_toast(_("Backup failed for '{0}'.").format(self.config["Name"]))
+                self.window.show_toast(_("Backup failed for \"{0}\"").format(self.config["Name"]))
 
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
@@ -479,11 +479,12 @@ class BottleView(Adw.PreferencesPage):
 
         dialog = Adw.MessageDialog.new(
             self.window,
-            _("Confirm"),
-            _("Are you sure you want to delete this Bottle and all files?")
+            _("Are you sure you want to permanently delete \"{}\"?".format(self.config['Name'])),
+            _("This will permanently delete all programs and settings associated with it.")
         )
-        dialog.add_response("cancel", _("Cancel"))
-        dialog.add_response("ok", _("Confirm"))
+        dialog.add_response("cancel", _("_Cancel"))
+        dialog.add_response("ok", _("_Delete"))
+        dialog.set_response_appearance("ok", Adw.ResponseAppearance.DESTRUCTIVE)
         dialog.connect("response", handle_response)
         dialog.present()
 
@@ -498,10 +499,10 @@ class BottleView(Adw.PreferencesPage):
         dialog = Adw.MessageDialog.new(
             self.window,
             _("Missing Runner"),
-            _("The runner requested by this bottle is missing, install it trought \
-the Bottles' preferences or choose a new one to run applications.")
+            _("The runner requested by this bottle is missing. Install it through \
+the Bottles preferences or choose a new one to run applications.")
         )
-        dialog.add_response("ok", _("Confirm"))
+        dialog.add_response("ok", _("_Dismiss"))
         dialog.connect("response", handle_response)
         dialog.present()
 
@@ -576,11 +577,12 @@ the Bottles' preferences or choose a new one to run applications.")
         if status == 0:
             dialog = Adw.MessageDialog.new(
                 self.window,
-                _("Confirm"),
-                _("Are you sure you want to terminate all processes?\nThis can cause data loss.")
+                _("Are you sure you want to force stop all processes?"),
+                _("This can cause data loss, corruption, and programs to malfunction.")
             )
-            dialog.add_response("cancel", _("Cancel"))
-            dialog.add_response("ok", _("Confirm"))
+            dialog.add_response("cancel", _("_Cancel"))
+            dialog.add_response("ok", _("Force _Stop"))
+            dialog.set_response_appearance("ok", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response", handle_response)
             dialog.present()
 

@@ -13,26 +13,18 @@ Popover pop_menu {
     margin-end: 6;
 
     .GtkModelButton btn_importer {
-      text: _("Import/Export…");
+      text: _("Import…");
     }
+
+    Separator {}
 
     .GtkModelButton btn_preferences {
       text: _("Preferences");
     }
 
-    Separator {
-    }
-
-    .GtkModelButton btn_support {
-      text: _("Support");
-    }
-
-    .GtkModelButton btn_docs {
-      text: _("Documentation");
-    }
-
-    .GtkModelButton btn_forum {
-      text: _("Forums");
+    .GtkModelButton btn_help {
+      text: _("Help");
+      tooltip-text: "https://docs.usebottles.com";
     }
 
     .GtkModelButton btn_about {
@@ -65,7 +57,7 @@ template MainWindow : .AdwApplicationWindow {
 
           [end]
           MenuButton btn_menu {
-            tooltip-text: _("Open menu");
+            tooltip-text: _("Main Menu");
             popover: pop_menu;
             icon-name: "open-menu-symbolic";
           }

@@ -73,6 +73,7 @@ class PreferencesView(Adw.PreferencesPage):
     row_runtime = Gtk.Template.Child()
     row_steam_runtime = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
+    label_cwd = Gtk.Template.Child()
     row_env_variables = Gtk.Template.Child()
     row_overrides = Gtk.Template.Child()
     row_drives = Gtk.Template.Child()
@@ -144,8 +145,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.queue = details.queue
         self.details = details
 
-        self.entry_name.add_controller(self.ev_controller)
-
         gpu = GPUUtils().get_gpu()
 
         # region signals
@@ -160,7 +159,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_versioning_patterns.connect("clicked", self.__show_exclusionpatterns_settings)
         self.btn_manage_vmtouch.connect("clicked", self.__show_vmtouch_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
-        self.btn_cwd_reset.connect("clicked", self.choose_cwd, True)
+        self.btn_cwd_reset.connect("clicked", self.reset_cwd)
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
         self.toggle_esync.connect('toggled', self.__set_esync)
         self.toggle_fsync.connect('toggled', self.__set_fsync)
@@ -252,40 +251,34 @@ class PreferencesView(Adw.PreferencesPage):
         )
         self.window.page_list.update_bottles()
 
-    def choose_cwd(self, widget, reset=False):
-        """Change the default current working directory for the bottle"""
-
+    def choose_cwd(self, widget):
         def set_path(_dialog, response, _file_dialog):
-            if response == Gtk.ResponseType.OK:
+            if response == Gtk.ResponseType.ACCEPT:
                 _file = _file_dialog.get_file()
                 _path = _file.get_path()
-                if _path and _path != "":
-                    self.row_cwd.set_subtitle(_path)
-                    self.manager.update_config(
-                        config=self.config,
-                        key="WorkingDir",
-                        value=_path
-                    )
-                    self.btn_cwd_reset.set_visible(True)
-                else:
-                    self.row_cwd.set_subtitle(_("Default to the bottle path."))
-                    self.btn_cwd_reset.set_visible(False)
+                self.manager.update_config(
+                    config=self.config,
+                    key="WorkingDir",
+                    value=_path
+                )
+                self.label_cwd.set_label(os.path.basename(_path))
+                self.btn_cwd_reset.set_visible(True)
 
             _dialog.destroy()
 
-        if not reset:
-            FileChooser(
-                parent=self.window,
-                title=_("Choose working directory for executables"),
-                action=Gtk.FileChooserAction.SELECT_FOLDER,
-                buttons=(_("Cancel"), _("Select")),
-                path=ManagerUtils.get_bottle_path(self.config),
-                native=False,
-                callback=set_path
-            )
+        FileChooser(
+            parent=self.window,
+            title=_("Choose working directory for executables"),
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(_("Cancel"), _("Select")),
+            path=ManagerUtils.get_bottle_path(self.config),
+            native=True,
+            callback=set_path
+        )
 
+    def reset_cwd(self, widget):
         self.manager.update_config(config=self.config, key="WorkingDir", value="")
-        self.row_cwd.set_subtitle(_("Default to the bottle path."))
+        self.label_cwd.set_label("(Default)")
         self.btn_cwd_reset.set_visible(False)
 
     def update_combo_components(self):
@@ -403,10 +396,7 @@ class PreferencesView(Adw.PreferencesPage):
 
         self.entry_name.set_text(config["Name"])
 
-        if self.config.get("WorkingDir") != "":
-            self.row_cwd.set_subtitle(self.config.get("WorkingDir"))
-        else:
-            self.row_cwd.set_subtitle(_("Default to the bottle path."))
+        self.row_cwd.set_subtitle(_("Directory that contains the data of \"{}\".".format(config["Name"])))
 
         self.combo_language.set_selected(ManagerUtils.get_languages(
             from_locale=self.config.get("Language"),
@@ -794,11 +784,12 @@ class PreferencesView(Adw.PreferencesPage):
         if self.manager.versioning_manager.is_initialized(self.config):
             dialog = Adw.MessageDialog.new(
                 self.window,
-                _("Toggling Compression Require Re-Initialization"),
-                _("This will kepp all your files but will delete all states. Do you want to continue?"),
+                _("Are you sure you want to delete all snapshots?"),
+                _("This will delete all snapshots, but keep your files."),
             )
-            dialog.add_response("cancel", _("Cancel"))
-            dialog.add_response("ok", _("Confirm"))
+            dialog.add_response("cancel", _("_Cancel"))
+            dialog.add_response("ok", _("_Delete"))
+            dialog.set_response_appearance("ok", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response", handle_response)
             dialog.present()
         else:
