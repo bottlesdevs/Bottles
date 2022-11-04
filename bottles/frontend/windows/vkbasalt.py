@@ -202,14 +202,7 @@ class VkBasaltDialog(Adw.Window):
     # Enable and disable other buttons depending on default button when necessary
     def __default(self, widget, state):
         self.group_effects.set_sensitive(not state)
-        if state is False:
-            if self.expander_cas.get_enable_expansion() is False \
-                and self.expander_dls.get_enable_expansion() is False\
-                and self.expander_fxaa.get_enable_expansion() is False\
-                and self.expander_smaa.get_enable_expansion() is False:
-                self.btn_save.set_sensitive(False)
-        else:
-            self.btn_save.set_sensitive(True)
+        self.__check_state()
 
     # Change edge detection type
     def __change_edge_detection_type(self, widget, edge_detection_type):
