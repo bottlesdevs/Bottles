@@ -259,6 +259,7 @@ class Bottles(Adw.Application):
         This function registers the application actions.
         The actions are the application shortcuts (accellerators).
         """
+        self.set_accels_for_action("window.close", ["<Ctrl>W"])
         action_entries = [
             ("quit", self.__quit, ("app.quit", ["<Ctrl>Q"])),
             ("help", self.__help, ("app.help", ["F1"])),
