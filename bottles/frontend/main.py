@@ -219,6 +219,7 @@ class Bottles(Adw.Application):
         """
 
         # create the main window
+        Adw.Application.do_activate(self)
         win = self.props.active_window
         if not win:
             win = MainWindow(
