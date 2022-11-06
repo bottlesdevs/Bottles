@@ -14,6 +14,7 @@ Popover pop_context {
 
     .GtkModelButton btn_flatpak_doc {
       text: _("Troubleshooting");
+      tooltip-text: "https://docs.usebottles.com/flatpak/black-screen-or-silent-crash";
     }
 
     Separator {
@@ -40,6 +41,17 @@ Popover pop_context {
     Separator {
     }
 
+    .GtkModelButton btn_toggle_removed {
+      text: _("Show Hidden Programs");
+    }
+
+    .GtkModelButton btn_update {
+      text: _("Search for new programs");
+    }
+
+    Separator {
+    }
+
     .GtkModelButton btn_delete {
       text: _("Delete Bottle…");
     }
@@ -58,6 +70,7 @@ Box actions {
   MenuButton {
     popover: pop_context;
     icon-name: "view-more-symbolic";
+    tooltip-text: _("Secondary Menu");
   }
 }
 
@@ -73,8 +86,8 @@ Popover pop_power {
     margin-start: 6;
     margin-end: 6;
 
-    .GtkModelButton btn_killall {
-      text: _("Kill all Processes");
+    .GtkModelButton btn_forcestop {
+      text: _("Force Stop all Processes");
     }
 
     .GtkModelButton btn_shutdown {
@@ -85,54 +98,6 @@ Popover pop_power {
     .GtkModelButton btn_reboot {
       tooltip-text: _("Simulate a Windows system reboot.");
       text: _("Reboot");
-    }
-  }
-}
-
-Popover pop_run {
-  Box {
-    orientation: vertical;
-    valign: center;
-    halign: center;
-    hexpand: true;
-    vexpand: true;
-    margin-top: 6;
-    margin-bottom: 6;
-    margin-start: 6;
-    margin-end: 6;
-
-    .GtkModelButton btn_run_args {
-      valign: "center";
-      halign: "center";
-      margin-bottom: "5";
-      text: _("Run with Additional Arguments…");
-    }
-
-    CheckButton check_terminal {
-      label: _("Launch in a Terminal…");
-      halign: start;
-      margin-bottom: 5;
-      use-underline: true;
-    }
-
-    Box box_history {
-      spacing: 5;
-      orientation: vertical;
-    }
-  }
-}
-
-.AdwActionRow row_no_programs {
-  Box {
-    hexpand: true;
-
-    Label {
-      label: _("Use the Installers section or the \"Run executable\" button.");
-      wrap: false;
-
-      styles [
-        "dim-label",
-      ]
     }
   }
 }
@@ -148,77 +113,149 @@ template DetailsBottle : .AdwPreferencesPage {
   }
   .AdwPreferencesGroup {
     Box {
-      Box {
-        orientation: vertical;
+      orientation: vertical;
 
-        Label label_name {
-          halign: start;
-          label: _("My bottle");
+      Label label_name {
+        halign: center;
+        label: _("My bottle");
+
+        styles [
+          "title-1",
+        ]
+      }
+
+      Box {
+        spacing: 6;
+        halign: center;
+
+        Label label_arch {
+          label: _("Win64");
 
           styles [
-            "title-2",
+            "heading",
           ]
         }
 
-        Box {
-          spacing: 6;
+        Label {
+          label: "·";
+        }
 
-          Label label_arch {
-            halign: start;
-            label: _("Win64");
+        Label label_environment {
+          label: _("Environment");
 
-            styles [
-              "heading",
-            ]
-          }
+          styles [
+            "heading",
+          ]
+        }
 
-          Label label_environment {
-            label: _("Environment");
+        Label {
+          label: "·";
+        }
 
-            styles [
-              "heading",
-            ]
-          }
+        Label label_runner {
+          label: _("Runner");
 
-          Label label_runner {
-            label: _("Runner");
+          styles [
+            "heading",
+          ]
+        }
 
-            styles [
-              "heading",
-            ]
-          }
+        Label dot_versioning {
+          label: "·";
+        }
 
-          Grid grid_versioning {
-            tooltip-text: _("Versioning enabled for this bottle");
+        Grid grid_versioning {
+          tooltip-text: _("Versioning enabled for this bottle");
+          halign: center;
+          valign: center;
+
+          Image img_versioning {
+            tooltip-text: _("Versioning is active for this bottle.");
             halign: center;
             valign: center;
+            icon-name: "view-wrapped-symbolic";
+          }
 
-            Image img_versioning {
-              tooltip-text: _("Versioning is active for this bottle.");
-              halign: center;
-              valign: center;
-              icon-name: "view-wrapped-symbolic";
-            }
-
-            Label label_state {
-              halign: center;
-              valign: center;
-              label: _("0");
-            }
+          Label label_state {
+            halign: center;
+            valign: center;
+            label: _("0");
           }
         }
       }
+    }
+  }
 
-      .AdwSplitButton btn_execute {
-        label: _("Run Executable…");
-        hexpand: true;
-        halign: "end";
-        valign: "center";
-        popover: "pop_run";
+  .AdwPreferencesGroup {
+    Box {
+      spacing: 6;
+      halign: center;
+
+      Button btn_execute {
+        Box {
+          spacing: 6;
+          Image {
+            icon-name: "media-playback-start-symbolic";
+          }
+
+          Label {
+            label: _("Run Executable…");
+          }
+        }
 
         styles [
+          "pill",
           "suggested-action",
         ]
+      }
+
+      Box {
+        Popover btn_exec_settings {
+          width-request: 300;
+          
+          Box {
+            orientation: vertical;
+            margin-top: 6;
+            margin-bottom: 6;
+            margin-start: 6;
+            margin-end: 6;
+            
+            Label {
+              halign: start;
+              margin-bottom: 12;
+              label: _("Launch Options");
+              
+              styles [
+                "heading"
+              ]
+            }
+
+            Entry exec_arguments {
+            }
+
+            Separator {
+              margin-top: 12;
+              margin-bottom: 12;
+            }
+            
+            CheckButton exec_terminal {
+              Label {
+                label: _("Run in Terminal");
+                margin-start: 6;
+              }
+            }
+          }
+        }
+      
+        MenuButton {
+          valign: center;
+          icon-name: "applications-system-symbolic";
+          popover: btn_exec_settings;
+          
+          styles [
+            "circular",
+          ]
+        }
       }
     }
   }
@@ -230,6 +267,120 @@ template DetailsBottle : .AdwPreferencesPage {
 
   .AdwPreferencesGroup group_programs {
     title: _("Programs");
+
+    .AdwActionRow row_no_programs {
+      subtitle: _("Click \"Run Executable…\" to run an executable, \"Add Shortcuts…\" to add an executable to the Programs list, or \"Install Programs…\" to install programs curated by the community.");
+    }
+    
+    .AdwPreferencesRow bottom_bar {
+      activatable: false;      
+      focusable: false;
+
+      Box {
+        Button add_shortcuts {
+          hexpand: true;
+          Box {
+            halign: center;
+            Image {
+              icon-name: "list-add-symbolic";
+            }
+            
+            Separator {
+              styles [
+                "spacer"
+              ]
+            }
+            
+            Label {
+              label: _("Add Shortcuts…");
+            }
+          }
+
+          styles [
+            "flat"
+          ]
+        }
+        
+        Separator {
+        }
+        
+        Button install_programs {
+          hexpand: true;
+          Box {
+            halign: center;
+            Image {
+              icon-name: "folder-download-symbolic";
+            }
+          
+            Separator {
+              styles [
+                "spacer"
+              ]
+            }
+
+            Label {
+              label: _("Install Programs…");
+            }
+          }
+          
+          styles [
+            "flat"
+          ]
+        }
+        
+        styles [
+          "linked"
+        ]
+      }
+      
+      styles [
+        "bottom-bar"
+      ]
+    }
+  }
+
+  .AdwPreferencesGroup group_options {
+    title: _("Options");
+      
+      .AdwActionRow row_preferences {
+        activatable: true;
+        title: _("Preferences");
+        subtitle: _("Configure bottle settings.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+      
+      .AdwActionRow row_dependencies {
+        activatable: true;
+        title: _("Dependencies");
+        subtitle: _("Install dependencies for programs.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+
+      .AdwActionRow row_snapshots {
+        activatable: true;
+        title: _("Snapshots");
+        subtitle: _("Create and manage bottle states.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
+
+      .AdwActionRow row_taskmanager {
+        activatable: true;
+        title: _("Task Manager");
+        subtitle: _("Manage running programs.");
+
+        Image {
+          icon-name: "go-next-symbolic";
+        }
+      }
   }
 
   .AdwPreferencesGroup group_utilities {
@@ -267,7 +418,7 @@ template DetailsBottle : .AdwPreferencesPage {
         }
       }
 
-      .AdwActionRow row_taskmanager {
+      .AdwActionRow row_taskmanager_legacy {
         activatable: true;
         title: _("Task Manager");
 
@@ -314,3 +465,4 @@ template DetailsBottle : .AdwPreferencesPage {
     }
   }
 }
+  

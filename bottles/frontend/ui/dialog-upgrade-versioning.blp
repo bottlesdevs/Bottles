@@ -11,7 +11,7 @@ template UpgradeVersioningDialog : .AdwWindow {
 
     .AdwHeaderBar {
       show-end-title-buttons: false;
-      title-widget: 
+      title-widget:
       .AdwWindowTitle {
         title: _("Upgrade Needed");
       }
@@ -60,7 +60,7 @@ template UpgradeVersioningDialog : .AdwWindow {
     Stack stack_switcher {
       StackPage {
         name: "page_status";
-        child: 
+        child:
         .AdwStatusPage status_page {
           icon-name: "preferences-system-time-symbolic";
           title: _("New Versioning System");
@@ -74,13 +74,13 @@ template UpgradeVersioningDialog : .AdwWindow {
 
       StackPage {
         name: "page_info";
-        child: 
+        child:
         Label {
           margin-top: 10;
           margin-start: 10;
           margin-end: 10;
           wrap: true;
-          label: _("Bottles has a whole new Versioning System which is not backwards compatible. \n\nTo continue using versioning we need to re-initialize the bottle repository. This will not delete data from your bottle but will delete all existing states and create a new one. \n\nIf you need to go back to a previous state before continuing, close this window and restore the state, then reopen the bottle to show this window again. \n\nThe old system will be discontinued in one of the next releases.");
+          label: _("Bottles has a whole new Versioning System that is not backwards compatible.\n\nTo continue using versioning we need to re-initialize the bottle repository. This will not delete data from your bottle but will delete all existing snapshots and create a new one.\n\nIf you need to go back to a previous snapshot before continuing, close this window and restore the snapshot, then reopen the bottle to show this window again.\n\nThe old system will be discontinued in one of the next releases.");
         }
 
         ;
@@ -88,7 +88,7 @@ template UpgradeVersioningDialog : .AdwWindow {
 
       StackPage {
         name: "page_upgrading";
-        child: 
+        child:
         Box page_upgrading {
           margin-top: 24;
           margin-bottom: 24;
@@ -100,7 +100,7 @@ template UpgradeVersioningDialog : .AdwWindow {
             halign: center;
             margin-top: 12;
             margin-bottom: 12;
-            label: _("Re-initializing repository…");
+            label: _("Re-initializing Repository…");
 
             styles [
               "title-1",
@@ -109,7 +109,7 @@ template UpgradeVersioningDialog : .AdwWindow {
 
           Label {
             margin-bottom: 6;
-            label: _("Take a break, it may take a while.");
+            label: _("This could take a while.");
           }
 
           ProgressBar progressbar {
@@ -125,7 +125,7 @@ template UpgradeVersioningDialog : .AdwWindow {
 
       StackPage {
         name: "page_finish";
-        child: 
+        child:
         .AdwStatusPage page_finish {
           vexpand: true;
           hexpand: true;

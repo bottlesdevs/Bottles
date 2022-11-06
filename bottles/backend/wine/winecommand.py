@@ -462,7 +462,7 @@ class WineCommand:
                 gamescope_run = tempfile.NamedTemporaryFile(mode='w', suffix='.sh').name
 
                 # Create temporary sh script in /tmp where Gamescope will execute it
-                file = [f"#/usr/bin/env sh\n"]
+                file = [f"#!/usr/bin/env sh\n"]
                 if mangohud_available and params.get("mangohud"):
                     file.append(f"{command}&\nmangoapp")
                 else:

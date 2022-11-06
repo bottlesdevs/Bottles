@@ -52,7 +52,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     list_nvapi = Gtk.Template.Child()
     list_latencyflex = Gtk.Template.Child()
     action_prerelease = Gtk.Template.Child()
-    action_bottles_path = Gtk.Template.Child()
+    btn_bottles_path = Gtk.Template.Child()
     action_steam_proton = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
     label_bottles_path = Gtk.Template.Child()
@@ -76,9 +76,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
         if "FLATPAK_ID" in os.environ:
             self.remove(self.pref_core)
 
-        bottles_path = self.data.get("custom_bottles_path")
-        if bottles_path:
-            self.label_bottles_path.set_label(os.path.basename(bottles_path))
+        self.current_bottles_path = self.data.get("custom_bottles_path")
+        if self.current_bottles_path:
+            self.label_bottles_path.set_label(os.path.basename(self.current_bottles_path))
             self.btn_bottles_path_reset.set_visible(True)
 
         # bind widgets
@@ -107,7 +107,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.connect('changed::dark-theme', self.__toggle_night)
         self.settings.connect('changed::release-candidate', self.__toggle_rc)
         self.settings.connect('changed::update-date', self.__toggle_update_date)
-        self.action_bottles_path.connect('activated', self.__choose_bottles_path)
+        self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
         self.btn_steam_proton_doc.connect('clicked', self.__open_steam_proton_doc)
 
@@ -144,18 +144,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 self.data.set("custom_bottles_path", _file.get_path())
                 self.label_bottles_path.set_label(os.path.basename(_file.get_path()))
                 self.btn_bottles_path_reset.set_visible(True)
-                dialog = Adw.MessageDialog.new(
-                    self.window,
-                    _("Directory Will be Updated on Next Launch"),
-                    _("Bottles has to be relaunched to change the data directory.")
-                )
-                dialog.add_response("dismiss", _("Dismiss"))
-                dialog.add_response("restart", _("Relaunch"))
-                dialog.connect("response", self.handle_restart)
-                dialog.present()
-            else:
-                if self.data.get("custom_bottles_path") is not None:
-                    self.label_bottles_path.set_label(os.path.basename(self.data.get("custom_bottles_path")))
+                self.prompt_restart()
             _file_dialog.destroy()
 
         FileChooser(
@@ -176,19 +165,24 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.window.proper_close()
         widget.destroy()
 
+    def prompt_restart(self):
+        if self.current_bottles_path != self.data.get("custom_bottles_path"):
+            dialog = Adw.MessageDialog.new(
+                self.window,
+                _("Relaunch Bottles?"),
+                _("Bottles will need to be relaunched to use this directory.\n\nBe sure to close every program launched from Bottles before relaunching Bottles, as not doing so can cause data loss, corruption and programs to malfunction.")
+            )
+            dialog.add_response("dismiss", _("_Cancel"))
+            dialog.add_response("restart", _("_Relaunch"))
+            dialog.set_response_appearance("restart", Adw.ResponseAppearance.DESTRUCTIVE)
+            dialog.connect("response", self.handle_restart)
+            dialog.present()
+
     def __reset_bottles_path(self, widget):
         self.data.remove("custom_bottles_path")
         self.btn_bottles_path_reset.set_visible(False)
         self.label_bottles_path.set_label(_("(Default)"))
-        dialog = Adw.MessageDialog.new(
-            self.window,
-            _("Directory Will be Updated on Next Launch"),
-            _("Bottles has to be relaunched to change the data directory.")
-        )
-        dialog.add_response("dismiss", _("Dismiss"))
-        dialog.add_response("restart", _("Relaunch"))
-        dialog.connect("response", self.handle_restart)
-        dialog.present()
+        self.prompt_restart()
 
     def populate_runtimes_list(self):
         for runtime in self.manager.supported_runtimes.items():

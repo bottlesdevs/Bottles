@@ -86,9 +86,9 @@ class ImporterView(Adw.Bin):
 
     def __finish(self, result, error=False):
         if result.status:
-            self.window.show_toast(_("Backup imported successfully."))
+            self.window.show_toast(_("Backup imported successfully"))
         else:
-            self.window.show_toast(_("Import failed."))
+            self.window.show_toast(_("Import failed"))
 
     def __import_full_bck(self, *_args):
         """

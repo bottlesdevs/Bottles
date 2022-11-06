@@ -147,3 +147,21 @@ entry.heading_1 {
 .library-content-btn {
   color: #ffffff;
 }
+
+/* programs bottom bar */
+.bottom-bar > box > button > box {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.bottom-bar {
+  padding: 0px;
+}
+
+.bottom-bar > box > button:first-child {
+  border-radius: 0px 0 0 12px;
+}
+
+.bottom-bar > box > button:last-child {
+  border-radius: 0 0 12px 0;
+}

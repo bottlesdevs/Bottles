@@ -365,6 +365,7 @@ class CLI:
         _program = {
             "arguments": _launch_options if _launch_options else "",
             "executable": _executable,
+            "name": _name,
             "folder": _folder,
             "icon": "",
             "id": _uuid,
