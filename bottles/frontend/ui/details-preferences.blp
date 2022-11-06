@@ -25,7 +25,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       .AdwComboRow combo_dxvk {
         title: _("DXVK");
-
+        subtitle: _("Increase Direct3D compatibility by translating it to Vulkan.");
         Spinner spinner_dxvk {
           tooltip-text: _("Updating DXVK, please wait…");
           valign: center;
@@ -38,7 +38,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       .AdwComboRow combo_vkd3d {
         title: _("VKD3D");
-
+        subtitle: _("Increase Direct3D 12 compatibility by translating it to Vulkan.");
         Spinner spinner_vkd3d {
           tooltip-text: _("Updating VKD3D, please wait…");
           valign: center;
@@ -66,7 +66,7 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       .AdwComboRow combo_latencyflex {
         title: _("LatencyFleX");
-
+        subtitle: _("Increase responsiveness. Can be detected by some anti-cheat software.");
         Spinner spinner_latencyflex {
           tooltip-text: _("Updating LatencyFleX, please wait…");
           valign: center;
@@ -180,7 +180,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     title: _("Performance");
 
 
-    .AdwComboRow row_sync {
+    .AdwComboRow combo_sync {
       tooltip-text: _("Enable synchronization to increase performance of multicore processors.");
       title: _("Synchronization");
       model:
@@ -319,18 +319,20 @@ template DetailsPreferences : .AdwPreferencesPage {
             icon-name: "edit-undo-symbolic";
             styles ["flat"]
           }
-          .GtkImage {
-            icon-name: folder-symbolic;
-            styles ["dim-label"]
-          }
-          .GtkLabel label_bottles_path {
-            ellipsize: end;
-            label: _("(Default)");
-            styles ["dim-label"]
-          }
-          .GtkImage {
-            icon-name: go-next-symbolic;
-            styles ["dim-label"]
+          Button btn_bottles_path {
+            valign: center;
+
+            Box {
+              spacing: 6;
+
+              Image {
+                icon-name: "document-open-symbolic";
+              }
+
+              Label label_cwd {
+                label: _("(Default)");
+              }
+            }
           }
         }
     }

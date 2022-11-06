@@ -73,7 +73,6 @@ class PreferencesView(Adw.PreferencesPage):
     row_overrides = Gtk.Template.Child()
     row_drives = Gtk.Template.Child()
     row_sandbox = Gtk.Template.Child()
-    row_sync = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
     switch_obsvkc = Gtk.Template.Child()
@@ -97,6 +96,7 @@ class PreferencesView(Adw.PreferencesPage):
     combo_latencyflex = Gtk.Template.Child()
     combo_windows = Gtk.Template.Child()
     combo_language = Gtk.Template.Child()
+    combo_sync = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
     spinner_nvapi = Gtk.Template.Child()
@@ -162,6 +162,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.connect('notify::selected', self.__set_latencyflex)
         self.combo_windows.connect('notify::selected', self.__set_windows)
         self.combo_language.connect('notify::selected-item', self.__set_language)
+        self.combo_sync.connect('notify::selected', self.__set_sync_type)
         self.ev_controller.connect("key-released", self.__check_entry_name)
         self.entry_name.connect("apply", self.__save_name)
         # endregion
@@ -398,15 +399,18 @@ class PreferencesView(Adw.PreferencesPage):
         _dxvk = self.config.get("DXVK")
         if parameters["dxvk"] == True:
             if _dxvk in self.manager.dxvk_available:
-                if _i_dxvk := self.manager.dxvk_available.index(_dxvk):
-                    self.combo_dxvk.set_selected(_i_dxvk + 1)
+                if _i_dxvk := self.manager.dxvk_available.index(_dxvk) + 1:
+                    self.combo_dxvk.set_selected(_i_dxvk)
         else:
             self.combo_dxvk.set_selected(0)
 
         _vkd3d = self.config.get("VKD3D")
-        if _vkd3d in self.manager.vkd3d_available:
-            if _i_vkd3d := self.manager.vkd3d_available.index(_vkd3d):
-                self.combo_vkd3d.set_selected(_i_vkd3d - 1)
+        if parameters["vkd3d"] == True:
+            if _vkd3d in self.manager.vkd3d_available:
+                if _i_vkd3d := self.manager.vkd3d_available.index(_vkd3d) + 1:
+                    self.combo_vkd3d.set_selected(_i_vkd3d)
+        else:
+            self.combo_vkd3d.set_selected(0)
 
         _nvapi = self.config.get("DXVK_NVAPI")
         if _nvapi in self.manager.nvapi_available:
@@ -414,15 +418,29 @@ class PreferencesView(Adw.PreferencesPage):
                 self.combo_nvapi.set_selected(_i_nvapi)
 
         _latencyflex = self.config.get("LatencyFlex")
-        if _latencyflex in self.manager.latencyflex_available:
-            if _i_latencyflex := self.manager.latencyflex_available.index(_latencyflex):
-                self.combo_latencyflex.set_selected(_i_latencyflex)
+        if parameters["latencyflex"] == True:
+            if _latencyflex in self.manager.latencyflex_available:
+                if _i_latencyflex := self.manager.latencyflex_available.index(_latencyflex)  + 1:
+                    self.combo_latencyflex.set_selected(_i_latencyflex)
+        else:
+            self.combo_latencyflex.set_selected(0)
 
         _runner = self.config.get("Runner")
         if _runner in self.manager.runners_available:
             if _i_runner := self.manager.runners_available.index(_runner):
                 self.combo_runner.set_selected(_i_runner)
 
+        sync_types = [
+            "wine",
+            "esync",
+            "fsync",
+            "futex2",
+        ]
+        for sync in sync_types:
+            if sync == parameters["sync"]:
+                self.combo_sync.set_selected(sync_types.index(sync))
+
+        
         # unlock functions connected to the widgets
         self.switch_mangohud.handler_unblock_by_func(self.__toggle_mangohud)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
@@ -511,52 +529,29 @@ class PreferencesView(Adw.PreferencesPage):
         )
         new_window.present()
 
-    def __set_sync_type(self, sync):
+    def __set_sync_type(self, *_args):
         """
         Set the sync type (wine, esync, fsync, futext2)
-        Don't use this directly, use dedicated wrappers instead (e.g. __set_wine_sync)
         """
-
-        def update(result, error=False):
-            self.config = result.data["config"]
-            toggles = [
-                # ("wine", self.toggle_sync, self.__set_wine_sync),
-                # ("esync", self.toggle_esync, self.__set_esync),
-                # ("fsync", self.toggle_fsync, self.__set_fsync),
-                # ("futex2", self.toggle_futex2, self.__set_futex2)
-            ]
-            for sync_type, toggle, func in toggles:
-                toggle.handler_block_by_func(func)
-                if sync_type == sync:
-                    toggle.set_active(True)
-                else:
-                    toggle.set_active(False)
-                toggle.handler_unblock_by_func(func)
-            self.box_sync.set_sensitive(True)
-            self.queue.end_task()
-
+        sync_types = [
+            "wine",
+            "esync",
+            "fsync",
+            "futex2",
+        ]
         self.queue.add_task()
-        self.box_sync.set_sensitive(False)
+        self.combo_sync.set_sensitive(False)
         RunAsync(
             self.manager.update_config,
-            callback=update,
             config=self.config,
             key="sync",
-            value=sync,
+            value=sync_types[self.combo_sync.get_selected()],
             scope="Parameters"
         )
+        self.combo_sync.set_sensitive(True)
+        self.queue.end_task()
 
-    def __set_wine_sync(self, widget):
-        self.__set_sync_type("wine")
 
-    def __set_esync(self, widget):
-        self.__set_sync_type("esync")
-
-    def __set_fsync(self, widget):
-        self.__set_sync_type("fsync")
-
-    def __set_futex2(self, widget):
-        self.__set_sync_type("futex2")
 
     def __toggle_mangohud(self, widget, state):
         """Toggle the Mangohud for current bottle"""
@@ -629,15 +624,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = self.manager.update_config(
             config=self.config,
             key="sandbox",
-            value=state,
-            scope="Parameters"
-        ).data["config"]
-
-    def __toggle_fsr(self, widget, state):
-        """Toggle the FSR for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="fsr",
             value=state,
             scope="Parameters"
         ).data["config"]
@@ -728,12 +714,27 @@ class PreferencesView(Adw.PreferencesPage):
     def __set_fsr_level(self, *_args):
         """Set the FSR level of sharpness (from 0 to 3, where 3 is the default)"""
         level = self.combo_fsr.get_selected()
-        self.config = self.manager.update_config(
+        if level == 0:
+            self.config = self.manager.update_config(
             config=self.config,
-            key="fsr_level",
-            value=level,
+            key="fsr",
+            value=False,
             scope="Parameters"
-        ).data["config"]
+            ).data["config"]
+        else:
+            self.config = self.manager.update_config(
+            config=self.config,
+            key="fsr",
+            value=True,
+            scope="Parameters"
+            ).data["config"]
+
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="fsr_level",
+                value=level - 1,
+                scope="Parameters"
+            ).data["config"]
 
     def __set_runner(self, *_args):
         """Set the runner to use for the bottle"""
@@ -907,10 +908,8 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_latencyflex(self, *_args):
         """Set the latency flex value"""
-        latencyflex = self.manager.latencyflex_available[self.combo_latencyflex.get_selected()]
         self.queue.add_task()
         if(self.combo_latencyflex.get_selected) == 0:
-            
             RunAsync(
             task_func=self.manager.install_dll_component,
             callback=self.set_latencyflex_status,
@@ -926,6 +925,7 @@ class PreferencesView(Adw.PreferencesPage):
                 scope="Parameters"
             ).data["config"]
         else:
+            latencyflex = self.manager.latencyflex_available[self.combo_latencyflex.get_selected() - 1]
             self.config = self.manager.update_config(
                 config=self.config,
                 key="LatencyFleX",
@@ -983,15 +983,6 @@ class PreferencesView(Adw.PreferencesPage):
             config=self.config,
             key="Language",
             value=language[0],
-        ).data["config"]
-
-    def __toggle_fixme(self, widget, state):
-        """Set the Wine logging level to use for the bottle"""
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="fixme_logs",
-            value=state,
-            scope="Parameters"
         ).data["config"]
 
     def __show_dll_overrides_view(self, widget=False):
@@ -1055,14 +1046,14 @@ class PreferencesView(Adw.PreferencesPage):
         """Set the Steam Environment specific rules"""
         status = False if self.config.get("Environment") == "Steam" else True
 
-        # for w in [
-        #     self.row_discrete,
-        #     self.row_steam_runtime,
-        #     self.row_dxvk,
-        #     self.row_sandbox,
-        #     self.group_details,
-        # ]:
-        #     w.set_visible(status)
-        #     w.set_sensitive(status)
+        for w in [
+            self.row_discrete,
+            self.row_steam_runtime,
+            self.combo_dxvk,
+            self.row_sandbox,
+            self.group_details,
+        ]:
+            w.set_visible(status)
+            w.set_sensitive(status)
 
-        # self.row_sandbox.set_visible(self.window.settings.get_boolean("experiments-sandbox"))
+        self.row_sandbox.set_visible(self.window.settings.get_boolean("experiments-sandbox"))
