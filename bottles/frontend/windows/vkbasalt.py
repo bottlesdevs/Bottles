@@ -160,29 +160,7 @@ class VkBasaltDialog(Adw.Window):
 
         # Checks filter settings
         if self.check_effects_states():
-            effects = []
-            if self.expander_cas.get_enable_expansion() is True:
-                effects.append("cas")
-                VkBasaltSettings.cas_sharpness = Gtk.Adjustment.get_value(self.spin_cas_sharpness)
-            if self.expander_dls.get_enable_expansion() is True:
-                effects.append("dls")
-                VkBasaltSettings.dls_sharpness = Gtk.Adjustment.get_value(self.spin_dls_sharpness)
-                VkBasaltSettings.dls_denoise = Gtk.Adjustment.get_value(self.spin_dls_denoise)
-            if self.expander_fxaa.get_enable_expansion() is True:
-                effects.append("fxaa")
-                VkBasaltSettings.fxaa_subpixel_quality = Gtk.Adjustment.get_value(self.spin_fxaa_subpixel_quality)
-                VkBasaltSettings.fxaa_quality_edge_threshold = Gtk.Adjustment.get_value(self.spin_fxaa_quality_edge_threshold)
-                VkBasaltSettings.fxaa_quality_edge_threshold_min = Gtk.Adjustment.get_value(self.spin_fxaa_quality_edge_threshold_min)
-            if self.expander_smaa.get_enable_expansion() is True:
-                effects.append("smaa")
-                VkBasaltSettings.smaa_threshold = Gtk.Adjustment.get_value(self.spin_smaa_threshold)
-                VkBasaltSettings.smaa_edge_detection = self.smaa_edge_detection
-                VkBasaltSettings.smaa_corner_rounding = Gtk.Adjustment.get_value(self.spin_smaa_corner_rounding)
-                VkBasaltSettings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.spin_smaa_max_search_steps)
-                VkBasaltSettings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.spin_smaa_max_search_steps_diagonal)
-
-            VkBasaltSettings.effects = tuple(effects)
-
+            self.set_effects()
         else:
             VkBasaltSettings.effects = False
 
@@ -243,3 +221,23 @@ class VkBasaltDialog(Adw.Window):
             [VkBasaltSettings.smaa_corner_rounding, self.spin_smaa_corner_rounding],
         ]
         return subeffects
+
+    def set_effects(self):
+        effects = []
+        for effect, widget in self.effects.items():
+            if widget.get_enable_expansion() is True:
+                effects.append(effect)
+
+        VkBasaltSettings.effects = effects
+        VkBasaltSettings.cas_sharpness = self.spin_cas_sharpness.get_value()
+        VkBasaltSettings.dls_sharpness = self.spin_dls_sharpness.get_value()
+        VkBasaltSettings.dls_denoise = self.spin_dls_denoise.get_value()
+        VkBasaltSettings.fxaa_subpixel_quality = self.spin_fxaa_subpixel_quality.get_value()
+        VkBasaltSettings.fxaa_quality_edge_threshold = self.spin_fxaa_quality_edge_threshold.get_value()
+        VkBasaltSettings.fxaa_quality_edge_threshold_min = self.spin_fxaa_quality_edge_threshold_min.get_value()
+        VkBasaltSettings.smaa_threshold = self.spin_smaa_threshold.get_value()
+        VkBasaltSettings.smaa_edge_detection = self.smaa_edge_detection
+        VkBasaltSettings.smaa_corner_rounding = self.spin_smaa_corner_rounding.get_value()
+        VkBasaltSettings.smaa_max_search_steps = self.spin_smaa_max_search_steps.get_value()
+        VkBasaltSettings.smaa_max_search_steps_diagonal = self.spin_smaa_max_search_steps_diagonal.get_value()
+
