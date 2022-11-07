@@ -96,14 +96,6 @@ class VkBasaltDialog(Adw.Window):
             "smaa": self.expander_smaa,
         }
 
-        # Connect signals
-        for widget in self.effects.values():
-            widget.connect("notify::enable-expansion", self.__check_state)
-        self.btn_save.connect("clicked", self.__save)
-        self.switch_default.connect("state-set", self.__default)
-        self.toggle_luma.connect("toggled", self.__change_edge_detection_type, "luma")
-        self.toggle_color.connect("toggled", self.__change_edge_detection_type, "color")
-
         # Check if configuration file exists; parse the configuration file if it exists
         if os.path.isfile(conf):
             VkBasaltSettings = ParseConfig(conf)
@@ -135,9 +127,19 @@ class VkBasaltDialog(Adw.Window):
 
         # If configuration file doesn't exist, set everything to default
         else:
+            self.btn_save.set_sensitive(True)
             self.switch_default.set_state(True)
             self.smaa_edge_detection = "luma"
             self.effects_widgets(False)
+            self.group_effects.set_sensitive(False)
+
+        # Connect signals
+        for widget in self.effects.values():
+            widget.connect("notify::enable-expansion", self.__check_state)
+        self.btn_save.connect("clicked", self.__save)
+        self.switch_default.connect("state-set", self.__default)
+        self.toggle_luma.connect("toggled", self.__change_edge_detection_type, "luma")
+        self.toggle_color.connect("toggled", self.__change_edge_detection_type, "color")
 
     # Save file
     def __idle_save(self, *args):
@@ -180,7 +182,8 @@ class VkBasaltDialog(Adw.Window):
     # Enable and disable other buttons depending on default button when necessary
     def __default(self, widget, state):
         self.group_effects.set_sensitive(not state)
-        self.__check_state()
+        if self.check_effects_states() == False:
+            self.btn_save.set_sensitive(state)
 
     # Change edge detection type
     def __change_edge_detection_type(self, widget, edge_detection_type):
