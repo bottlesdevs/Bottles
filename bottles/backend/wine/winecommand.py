@@ -148,7 +148,7 @@ class WineCommand:
 
         # Clean some env variables which can cause trouble
         # ref: <https://github.com/bottlesdevs/Bottles/issues/2127>
-        env.remove("XDG_DATA_HOME")
+        # env.remove("XDG_DATA_HOME")
 
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
