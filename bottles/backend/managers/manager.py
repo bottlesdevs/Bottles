@@ -1442,7 +1442,7 @@ class Manager:
 
             logging.info(f"Removing the bottle…")
             path = ManagerUtils.get_bottle_path(config)
-            shutil.rmtree(path, ignore_errors=True)
+            subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
 
             local_bottles_tmp = self.local_bottles.copy()
             for b in local_bottles_tmp.values():
