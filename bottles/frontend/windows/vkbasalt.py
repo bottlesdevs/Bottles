@@ -27,9 +27,8 @@ clut (or lut): Color LookUp Table
 
 import os
 from gi.repository import Gtk, GLib, Adw, Gdk
-from bottles.backend.utils.vkbasalt import parse, ParseConfig
+from vkbasalt.lib import parse, ParseConfig
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.frontend.windows.filechooser import FileChooser  # pyright: reportMissingImports=false
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 
 logging = Logger()
@@ -60,6 +59,7 @@ class VkBasaltDialog(Adw.Window):
 
     # Region Widgets
     switch_default = Gtk.Template.Child()
+    group_effects = Gtk.Template.Child()
     expander_cas = Gtk.Template.Child()
     expander_dls = Gtk.Template.Child()
     expander_fxaa = Gtk.Template.Child()
@@ -76,12 +76,7 @@ class VkBasaltDialog(Adw.Window):
     spin_smaa_max_search_steps = Gtk.Template.Child()
     spin_smaa_max_search_steps_diagonal = Gtk.Template.Child()
     spin_smaa_corner_rounding = Gtk.Template.Child()
-    action_clut = Gtk.Template.Child()
-    btn_lut_file_path = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
-    btn_lut_reset = Gtk.Template.Child()
-
-    __default_lut_msg = _("Choose a file.")
 
     def __init__(self, parent_window, config, **kwargs):
         super().__init__(**kwargs)
@@ -93,70 +88,33 @@ class VkBasaltDialog(Adw.Window):
         self.config = config
         conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf") # Configuration file location
 
-        # Connect signals
-        self.expander_cas.connect("notify::enable-expansion", self.__check_state)
-        self.expander_dls.connect("notify::enable-expansion", self.__check_state)
-        self.expander_fxaa.connect("notify::enable-expansion", self.__check_state)
-        self.expander_smaa.connect("notify::enable-expansion", self.__check_state)
-        self.btn_save.connect("clicked", self.__save)
-        self.switch_default.connect("state-set", self.__default)
-        self.toggle_luma.connect("toggled", self.__change_edge_detection_type, "luma")
-        self.toggle_color.connect("toggled", self.__change_edge_detection_type, "color")
-        self.btn_lut_file_path.connect("clicked", self.__import_clut)
-        self.btn_lut_reset.connect("clicked", self.__reset_clut)
+        self.effects = {
+            "cas": self.expander_cas,
+            "dls": self.expander_dls,
+            "fxaa": self.expander_fxaa,
+            "smaa": self.expander_smaa,
+        }
 
         # Check if configuration file exists; parse the configuration file if it exists
         if os.path.isfile(conf):
             VkBasaltSettings = ParseConfig(conf)
 
+            subeffects = self.get_subeffects(VkBasaltSettings)
+
             # Check if effects are used
             if VkBasaltSettings.effects:
-                if "cas" not in VkBasaltSettings.effects:
-                    self.expander_cas.set_enable_expansion(False)
-                if "dls" not in VkBasaltSettings.effects:
-                    self.expander_dls.set_enable_expansion(False)
-                if "fxaa" not in VkBasaltSettings.effects:
-                    self.expander_fxaa.set_enable_expansion(False)
-                if "smaa" not in VkBasaltSettings.effects:
-                    self.expander_smaa.set_enable_expansion(False)
-            # Set main variables to False
+                for effect, widget in self.effects.items():
+                    if effect not in VkBasaltSettings.effects:
+                        widget.set_enable_expansion(False)
             else:
                 VkBasaltSettings.effects = False
-                self.expander_cas.set_enable_expansion(False)
-                self.expander_dls.set_enable_expansion(False)
-                self.expander_fxaa.set_enable_expansion(False)
-                self.expander_smaa.set_enable_expansion(False)
-
-            # Check if clut is unused
-            if VkBasaltSettings.lut_file_path is None:
-                self.btn_lut_file_path = False
-            # Set clut related settings
-            else:
-                self.action_clut.set_subtitle(VkBasaltSettings.lut_file_path)
-                self.btn_lut_file_path = VkBasaltSettings.lut_file_path
-                self.btn_lut_reset.show()
+                self.effects_widgets(False)
 
             # Check if subeffects are used
-            if VkBasaltSettings.cas_sharpness != None:
-                self.spin_cas_sharpness.set_value(float(VkBasaltSettings.cas_sharpness))
-            if VkBasaltSettings.dls_sharpness != None:
-                self.spin_dls_sharpness.set_value(float(VkBasaltSettings.dls_sharpness))
-            if VkBasaltSettings.dls_denoise != None:
-                self.spin_dls_denoise.set_value(float(VkBasaltSettings.dls_denoise))
-            if VkBasaltSettings.fxaa_subpixel_quality != None:
-                self.spin_fxaa_subpixel_quality.set_value(float(VkBasaltSettings.fxaa_subpixel_quality))
-            if VkBasaltSettings.fxaa_quality_edge_threshold != None:
-                self.spin_fxaa_quality_edge_threshold.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold))
-            if VkBasaltSettings.fxaa_quality_edge_threshold_min != None:
-                self.spin_fxaa_quality_edge_threshold_min.set_value(float(VkBasaltSettings.fxaa_quality_edge_threshold_min))
-            if VkBasaltSettings.smaa_threshold != None:
-                self.spin_smaa_threshold.set_value(float(VkBasaltSettings.smaa_threshold))
-            if VkBasaltSettings.smaa_max_search_steps != None:
-                self.spin_smaa_max_search_steps.set_value(float(VkBasaltSettings.smaa_max_search_steps))
-            if VkBasaltSettings.smaa_max_search_steps_diagonal != None:
-                self.spin_smaa_max_search_steps_diagonal.set_value(float(VkBasaltSettings.smaa_max_search_steps_diagonal))
-            if VkBasaltSettings.smaa_corner_rounding != None:
-                self.spin_smaa_corner_rounding.set_value(float(VkBasaltSettings.smaa_corner_rounding))
+            for conf in subeffects:
+                if conf[0] != None:
+                    conf[1].set_value(float(conf[0]))
+
             if VkBasaltSettings.smaa_edge_detection != None:
                 if VkBasaltSettings.smaa_edge_detection == "color":
                     self.toggle_color.set_active(True)
@@ -168,13 +126,19 @@ class VkBasaltDialog(Adw.Window):
 
         # If configuration file doesn't exist, set everything to default
         else:
+            self.btn_save.set_sensitive(True)
             self.switch_default.set_state(True)
             self.smaa_edge_detection = "luma"
-            self.expander_cas.set_enable_expansion(False)
-            self.expander_dls.set_enable_expansion(False)
-            self.expander_fxaa.set_enable_expansion(False)
-            self.expander_smaa.set_enable_expansion(False)
-            self.btn_lut_file_path = False
+            self.effects_widgets(False)
+            self.group_effects.set_sensitive(False)
+
+        # Connect signals
+        for widget in self.effects.values():
+            widget.connect("notify::enable-expansion", self.__check_state)
+        self.btn_save.connect("clicked", self.__save)
+        self.switch_default.connect("state-set", self.__default)
+        self.toggle_luma.connect("toggled", self.__change_edge_detection_type, "luma")
+        self.toggle_color.connect("toggled", self.__change_edge_detection_type, "color")
 
     # Save file
     def __idle_save(self, *args):
@@ -196,44 +160,15 @@ class VkBasaltDialog(Adw.Window):
             VkBasaltSettings.default = False
 
         # Checks filter settings
-        if True in [
-            self.expander_cas.get_enable_expansion(),
-            self.expander_dls.get_enable_expansion(),
-            self.expander_fxaa.get_enable_expansion(),
-            self.expander_smaa.get_enable_expansion(),
-        ]:
-            effects = []
-            if self.expander_cas.get_enable_expansion() is True:
-                effects.append("cas")
-                VkBasaltSettings.cas_sharpness = Gtk.Adjustment.get_value(self.spin_cas_sharpness)
-            if self.expander_dls.get_enable_expansion() is True:
-                effects.append("dls")
-                VkBasaltSettings.dls_sharpness = Gtk.Adjustment.get_value(self.spin_dls_sharpness)
-                VkBasaltSettings.dls_denoise = Gtk.Adjustment.get_value(self.spin_dls_denoise)
-            if self.expander_fxaa.get_enable_expansion() is True:
-                effects.append("fxaa")
-                VkBasaltSettings.fxaa_subpixel_quality = Gtk.Adjustment.get_value(self.spin_fxaa_subpixel_quality)
-                VkBasaltSettings.fxaa_quality_edge_threshold = Gtk.Adjustment.get_value(self.spin_fxaa_quality_edge_threshold)
-                VkBasaltSettings.fxaa_quality_edge_threshold_min = Gtk.Adjustment.get_value(self.spin_fxaa_quality_edge_threshold_min)
-            if self.expander_smaa.get_enable_expansion() is True:
-                effects.append("smaa")
-                VkBasaltSettings.smaa_threshold = Gtk.Adjustment.get_value(self.spin_smaa_threshold)
-                VkBasaltSettings.smaa_edge_detection = self.smaa_edge_detection
-                VkBasaltSettings.smaa_corner_rounding = Gtk.Adjustment.get_value(self.spin_smaa_corner_rounding)
-                VkBasaltSettings.smaa_max_search_steps = Gtk.Adjustment.get_value(self.spin_smaa_max_search_steps)
-                VkBasaltSettings.smaa_max_search_steps_diagonal = Gtk.Adjustment.get_value(self.spin_smaa_max_search_steps_diagonal)
-
-            VkBasaltSettings.effects = tuple(effects)
-
+        if self.check_effects_states():
+            self.set_effects()
         else:
             VkBasaltSettings.effects = False
 
-        # Check if clut is used
-        if self.btn_lut_file_path:
-            VkBasaltSettings.lut_file_path = self.btn_lut_file_path
-
+        # Set output location
         VkBasaltSettings.output = conf
 
+        # Save and close
         parse(VkBasaltSettings)
         self.close()
         return GLib.SOURCE_REMOVE
@@ -243,33 +178,13 @@ class VkBasaltDialog(Adw.Window):
 
     # Enable and disable save button when necessary
     def __check_state(self, *args):
-        if True in [
-            self.expander_cas.get_enable_expansion(),
-            self.expander_dls.get_enable_expansion(),
-            self.expander_fxaa.get_enable_expansion(),
-            self.expander_smaa.get_enable_expansion(),
-        ] or self.btn_lut_file_path is not False:
-            self.btn_save.set_sensitive(True)
-        else:
-            self.btn_save.set_sensitive(False)
+        self.btn_save.set_sensitive(self.check_effects_states())
 
     # Enable and disable other buttons depending on default button when necessary
     def __default(self, widget, state):
-        self.expander_cas.set_sensitive(not state)
-        self.expander_dls.set_sensitive(not state)
-        self.expander_fxaa.set_sensitive(not state)
-        self.expander_smaa.set_sensitive(not state)
-        self.action_clut.set_sensitive(not state)
-        if state is False:
-            if self.expander_cas.get_enable_expansion() is False \
-                and self.expander_dls.get_enable_expansion() is False\
-                and self.expander_fxaa.get_enable_expansion() is False\
-                and self.expander_smaa.get_enable_expansion() is False\
-                and self.btn_lut_file_path is False:
-
-                self.btn_save.set_sensitive(False)
-        else:
-            self.btn_save.set_sensitive(True)
+        self.group_effects.set_sensitive(not state)
+        if self.check_effects_states() == False:
+            self.btn_save.set_sensitive(state)
 
     # Change edge detection type
     def __change_edge_detection_type(self, widget, edge_detection_type):
@@ -286,81 +201,51 @@ class VkBasaltDialog(Adw.Window):
         self.toggle_luma.handler_unblock_by_func(self.__change_edge_detection_type)
         self.toggle_color.handler_unblock_by_func(self.__change_edge_detection_type)
 
-    # Import clut file
-    def __import_clut(self, *args):
-        def set_path(_dialog, response, _file_dialog):
-            # Check if file has been opened from the dialog
-            if response == -3:
+    # Set effects widgets states
+    def effects_widgets(self, status=True):
+        for widget in self.effects.values():
+            widget.set_enable_expansion(status)
 
-                def error_dialog(title, message):
-                    dialog = Adw.MessageDialog.new(self.window, title, message)
-                    dialog.add_response("cancel", "Close")
-                    dialog.present()
+    # Check effects widgets' states
+    def check_effects_states(self):
+        if True in [widget.get_enable_expansion() for widget in self.effects.values()]:
+            return True
+        else:
+            return False
 
-                # Check if file exists, spawn error dialog otherwise
-                try:
-                    self.btn_lut_file_path = _file_dialog.get_file().get_path()
-                except AttributeError:
-                    logging.error("The given file does not exist. Please choose an appropriate file.")
-                    error_dialog(
-                        _("File not Found"),
-                        _("The given file does not exist. Please choose an appropriate file.")
-                        )
-                    return
+    # Parse effects and subeffects' widgets
+    def get_subeffects(self, VkBasaltSettings):
+        subeffects = [
+            [VkBasaltSettings.cas_sharpness, self.spin_cas_sharpness],
+            [VkBasaltSettings.dls_sharpness, self.spin_dls_sharpness],
+            [VkBasaltSettings.dls_denoise, self.spin_dls_denoise],
+            [VkBasaltSettings.fxaa_subpixel_quality, self.spin_fxaa_subpixel_quality],
+            [VkBasaltSettings.fxaa_quality_edge_threshold, self.spin_fxaa_quality_edge_threshold],
+            [VkBasaltSettings.fxaa_quality_edge_threshold_min, self.spin_fxaa_quality_edge_threshold_min],
+            [VkBasaltSettings.smaa_threshold, self.spin_smaa_threshold],
+            [VkBasaltSettings.smaa_max_search_steps, self.spin_smaa_max_search_steps],
+            [VkBasaltSettings.smaa_max_search_steps_diagonal, self.spin_smaa_max_search_steps_diagonal],
+            [VkBasaltSettings.smaa_corner_rounding, self.spin_smaa_corner_rounding],
+        ]
+        return subeffects
 
-                # Check if file type is png
-                if self.btn_lut_file_path.split(".")[-1] == "png":
+    # Set effects and subeffects
+    def set_effects(self):
+        effects = []
+        for effect, widget in self.effects.items():
+            if widget.get_enable_expansion() is True:
+                effects.append(effect)
 
-                    texture = Gdk.Texture.new_from_filename(self.btn_lut_file_path)
+        VkBasaltSettings.effects = effects
+        VkBasaltSettings.cas_sharpness = self.spin_cas_sharpness.get_value()
+        VkBasaltSettings.dls_sharpness = self.spin_dls_sharpness.get_value()
+        VkBasaltSettings.dls_denoise = self.spin_dls_denoise.get_value()
+        VkBasaltSettings.fxaa_subpixel_quality = self.spin_fxaa_subpixel_quality.get_value()
+        VkBasaltSettings.fxaa_quality_edge_threshold = self.spin_fxaa_quality_edge_threshold.get_value()
+        VkBasaltSettings.fxaa_quality_edge_threshold_min = self.spin_fxaa_quality_edge_threshold_min.get_value()
+        VkBasaltSettings.smaa_threshold = self.spin_smaa_threshold.get_value()
+        VkBasaltSettings.smaa_edge_detection = self.smaa_edge_detection
+        VkBasaltSettings.smaa_corner_rounding = self.spin_smaa_corner_rounding.get_value()
+        VkBasaltSettings.smaa_max_search_steps = self.spin_smaa_max_search_steps.get_value()
+        VkBasaltSettings.smaa_max_search_steps_diagonal = self.spin_smaa_max_search_steps_diagonal.get_value()
 
-                    # Get width and height size
-                    width = texture.get_width()
-                    height = texture.get_height()
-
-                    def set_lut_file_path():
-                        if self.action_clut.get_subtitle():
-                            self.btn_lut_file_path = self.action_clut.get_subtitle()
-                        else:
-                            self.btn_lut_file_path = False
-
-                    # Check if there is a space in the path, spawn error dialog if so
-                    if " " in self.btn_lut_file_path:
-                        logging.error("Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
-                        error_dialog(
-                            _("Spaces in File Name"),
-                            _("Color Lookup Table path must not contain any spaces. Please rename the file to remove all spaces.")
-                            )
-                        set_lut_file_path()
-
-                    # Check if width and height are different, spawn error dialog if so
-                    elif width != height:
-                        logging.error("Height and width of the image must be equal.")
-                        error_dialog(
-                            _("Invalid Image Dimension"),
-                            _("Height and width of the image must be equal.")
-                            )
-                        set_lut_file_path()
-
-                    # Show file path and reset button
-                    else:
-                        self.action_clut.set_subtitle(self.btn_lut_file_path)
-                        self.btn_lut_reset.show()
-
-                    self.__check_state()
-
-        FileChooser(
-            parent=self.window,
-            title=_("Choose a configuration file"),
-            action=Gtk.FileChooserAction.OPEN,
-            buttons=(_("Cancel"), _("Import")),
-            filters=["png", "CUBE"],
-            callback=set_path
-        )
-
-    # Reset clut entry
-    def __reset_clut(self, *args):
-        self.btn_lut_file_path = False
-        VkBasaltSettings.lut_file_path = False
-        self.btn_lut_reset.hide()
-        self.action_clut.set_subtitle(self.__default_lut_msg)
-        self.__check_state()

@@ -2,7 +2,7 @@ using Gtk 4.0;
 
 template VkBasaltDialog : .AdwWindow {
   default-width: "500";
-  default-height: "550";
+  default-height: "500";
   modal: true;
 
   /* Translators: vkBasalt is a Vulkan post processing layer for Linux */
@@ -53,7 +53,7 @@ template VkBasaltDialog : .AdwWindow {
         }
       }
 
-      .AdwPreferencesGroup {
+      .AdwPreferencesGroup group_effects {
         description: _("Effects are applied according to the list order.");
         title: _("Effects");
 
@@ -389,48 +389,6 @@ template VkBasaltDialog : .AdwWindow {
             }
           }
         }
-
-        .AdwActionRow action_clut {
-          activatable-widget: "btn_lut_file_path";
-          title: _("Color Lookup Table");
-          subtitle: _("Choose a file.");
-
-          MenuButton {
-            valign: center;
-            tooltip-text: _("Show Information");
-            icon-name: "info-symbolic";
-            popover: popover_clut;
-
-            styles [
-              "flat",
-            ]
-          }
-
-          Box {
-            spacing: 6;
-
-            Button btn_lut_reset {
-              tooltip-text: _("Reset to Default");
-              valign: center;
-              visible: false;
-              icon-name: "edit-undo-symbolic";
-
-              styles [
-                "flat",
-              ]
-            }
-
-            Button btn_lut_file_path {
-              tooltip-text: _("Select a File");
-              valign: center;
-              icon-name: "paper-symbolic";
-
-              styles [
-                "flat",
-              ]
-            }
-          }
-        }
       }
     }
   }
@@ -621,22 +579,5 @@ Popover popover_smaa_corner_rounding {
     use-markup: true;
     max-width-chars: 40;
     label: _("SMAA corner rounding specifies the strength of rounding edge corners.");
-  }
-}
-
-Popover popover_clut {
-  Label {
-    margin-start: 6;
-    margin-end: 6;
-    margin-top: 6;
-    margin-bottom: 6;
-    xalign: 0;
-    wrap: true;
-    wrap-mode: word_char;
-    ellipsize: none;
-    lines: 4;
-    use-markup: true;
-    max-width-chars: 40;
-    label: _("CLUT transforms a range of colors into another range of colors using a .CUBE file, or a .png file where the height is equal to the width.");
   }
 }
