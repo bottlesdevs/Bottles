@@ -27,7 +27,7 @@ clut (or lut): Color LookUp Table
 
 import os
 from gi.repository import Gtk, GLib, Adw, Gdk
-from bottles.backend.utils.vkbasalt import parse, ParseConfig
+from vkbasalt.lib import parse, ParseConfig
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 
