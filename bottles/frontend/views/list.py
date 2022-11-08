@@ -182,7 +182,7 @@ class BottleView(Adw.Bin):
             return True
         return False
 
-    def idle_update_bottles(self):
+    def idle_update_bottles(self, show=False):
         self.__bottles = {}
         while self.list_bottles.get_first_child():
             self.list_bottles.remove(self.list_bottles.get_first_child())
@@ -216,14 +216,18 @@ class BottleView(Adw.Bin):
                 self.group_steam.set_visible(True)
                 self.group_bottles.set_title(_("Your Bottles"))
 
-        if self.arg_bottle is not None and self.arg_bottle in local_bottles.keys():
-            _config = local_bottles[self.arg_bottle]
+        if (self.arg_bottle is not None and self.arg_bottle in local_bottles.keys()) \
+                or (show is not None and show in local_bottles.keys()):
+            if self.arg_bottle:
+                _config = local_bottles[self.arg_bottle]
+            if show:
+                _config = local_bottles[show]
             self.window.page_details.view_preferences.update_combo_components()
             self.window.show_details_view(config=_config)
             self.arg_bottle = None
 
-    def update_bottles(self):
-        GLib.idle_add(self.idle_update_bottles)
+    def update_bottles(self, show=False):
+        GLib.idle_add(self.idle_update_bottles, show)
 
     def disable_bottle(self, config):
         self.__bottles[config["Path"]].disable()

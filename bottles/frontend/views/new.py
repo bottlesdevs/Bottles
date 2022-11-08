@@ -243,7 +243,7 @@ class NewView(Adw.Window):
         user bottles list. 
         '''
         self.manager.check_bottles()
-        self.window.page_list.update_bottles()
+        self.window.page_list.update_bottles(show=result.data.get("config").get("Path"))
 
     def __close_window(self, *_args):
         """
