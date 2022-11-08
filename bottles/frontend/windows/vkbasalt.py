@@ -29,7 +29,6 @@ import os
 from gi.repository import Gtk, GLib, Adw, Gdk
 from bottles.backend.utils.vkbasalt import parse, ParseConfig
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.frontend.windows.filechooser import FileChooser  # pyright: reportMissingImports=false
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 
 logging = Logger()
@@ -166,8 +165,10 @@ class VkBasaltDialog(Adw.Window):
         else:
             VkBasaltSettings.effects = False
 
+        # Set output location
         VkBasaltSettings.output = conf
 
+        # Save and close
         parse(VkBasaltSettings)
         self.close()
         return GLib.SOURCE_REMOVE
@@ -200,16 +201,19 @@ class VkBasaltDialog(Adw.Window):
         self.toggle_luma.handler_unblock_by_func(self.__change_edge_detection_type)
         self.toggle_color.handler_unblock_by_func(self.__change_edge_detection_type)
 
+    # Set effects widgets states
     def effects_widgets(self, status=True):
         for widget in self.effects.values():
             widget.set_enable_expansion(status)
 
+    # Check effects widgets' states
     def check_effects_states(self):
         if True in [widget.get_enable_expansion() for widget in self.effects.values()]:
             return True
         else:
             return False
 
+    # Parse effects and subeffects' widgets
     def get_subeffects(self, VkBasaltSettings):
         subeffects = [
             [VkBasaltSettings.cas_sharpness, self.spin_cas_sharpness],
@@ -225,6 +229,7 @@ class VkBasaltDialog(Adw.Window):
         ]
         return subeffects
 
+    # Set effects and subeffects
     def set_effects(self):
         effects = []
         for effect, widget in self.effects.items():
