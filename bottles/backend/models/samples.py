@@ -92,7 +92,7 @@ class Samples:
                 "sync": "esync",
                 "fsr": False,
                 "discrete_gpu": True,
-                "pulseaudio_latency": True
+                "pulseaudio_latency": False
             },
             "Installed_Dependencies": [
                 "d3dx9",
@@ -109,7 +109,7 @@ class Samples:
             "Parameters": {
                 "dxvk": True,
                 "vkd3d": True,
-                "pulseaudio_latency": True
+                "pulseaudio_latency": False
             },
             "Installed_Dependencies": [
                 "arial32",
