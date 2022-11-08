@@ -312,7 +312,7 @@ class MainWindow(Adw.ApplicationWindow):
         builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
         about_window = builder.get_object("about_window")
         about_window.set_debug_info(HealthChecker().get_results(plain=True))
-        about_window.add_link(_("Donate"), "https://usebottles.com/funding/")
+        about_window.add_link(_("Donate"), "https://usebottles.com/funding")
         about_window.add_acknowledgement_section(
             _("Third-Party Libraries and Special Thanks"),
             [
@@ -323,17 +323,19 @@ class MainWindow(Adw.ApplicationWindow):
                 "MangoHud https://github.com/flightlessmango/MangoHud",
                 "AMD FidelityFX™ Super Resolution https://www.amd.com/en/technologies/fidelityfx-super-resolution",
                 "vkBasalt https://github.com/DadSchoorse/vkBasalt",
+                "vkbasalt-cli https://gitlab.com/TheEvilSkeleton/vkbasalt-cli",
                 "GameMode https://github.com/FeralInteractive/gamemode",
                 "Gamescope https://github.com/Plagman/gamescope",
                 "OBS Vulkan/OpenGL capture https://github.com/nowrep/obs-vkcapture",
                 "Wine-TKG https://github.com/Frogging-Family/wine-tkg-git",
                 "Proton https://github.com/ValveSoftware/proton",
                 "Wine-GE https://github.com/GloriousEggroll/wine-ge-custom",
-                "Wine https://www.winehq.org/",
+                "Wine https://www.winehq.org",
                 "orjson https://github.com/ijl/orjson",
                 "libadwaita https://gitlab.gnome.org/GNOME/libadwaita",
                 "icoextract https://github.com/jlu5/icoextract",
-                "vmtouch https://github.com/hoytech/vmtouch"
+                "vmtouch https://github.com/hoytech/vmtouch",
+                "FVS https://github.com/mirkobrombin/FVS"
             ]
         )
         about_window.add_acknowledgement_section(
@@ -343,7 +345,7 @@ class MainWindow(Adw.ApplicationWindow):
                 "GitBook https://www.gitbook.com/?ref=bottles",
                 "Linode https://www.linode.com/?from=bottles",
                 "Appwrite https://appwrite.io/?from=bottles",
-                "Community ❤️ https://usebottles.com/funding/"
+                "Community ❤️ https://usebottles.com/funding"
             ]
         )
         about_window.set_transient_for(self)
