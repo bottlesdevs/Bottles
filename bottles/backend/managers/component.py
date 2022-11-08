@@ -16,6 +16,7 @@
 #
 
 import os
+import time
 import uuid
 import shutil
 import tarfile
@@ -50,6 +51,7 @@ class ComponentManager:
         self.__utils_conn = manager.utils_conn
         self.__window = manager.window
         self.__operation_manager = OperationManager(self.__window)
+        self.__queue = []
 
     @lru_cache
     def get_component(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
@@ -334,9 +336,17 @@ class ComponentManager:
         gets the manifest from the given component and then calls the
         download and extract functions.
         """
+        while len(self.__queue) > 0:
+            # wait for the queue to be empty to avoid
+            # hard resource usage
+            time.sleep(5)
+
+        _uuid = str(uuid.uuid4())
+        self.__add_to_queue(_uuid)
         manifest = self.get_component(component_name)
 
         if not manifest:
+            self.__remove_from_queue(_uuid)
             return Result(False)
 
         logging.info(f"Installing component: [{component_name}].")
@@ -355,6 +365,7 @@ class ComponentManager:
             If the download fails, execute the given func passing
             failed=True as a parameter.
             '''
+            self.__remove_from_queue(_uuid)
             return func(failed=True)
 
         archive = manifest["File"][0]["file_name"]
@@ -409,6 +420,7 @@ class ComponentManager:
         self.__manager.organize_components()
         logging.info(f"Component installed: {component_type} {component_name}", jn=True)
 
+        self.__remove_from_queue(_uuid)
         return Result(True)
 
     @staticmethod
@@ -486,3 +498,9 @@ class ComponentManager:
         logging.info(f"Component uninstalled: {component_type} {component_name}")
 
         return Result(True)
+
+    def __add_to_queue(self, _uuid: str):
+        self.__queue.append(_uuid)
+
+    def __remove_from_queue(self, _uuid: str):
+        self.__queue.remove(_uuid)
