@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-10-10 18:08+0000\n"
-"Last-Translator: İbrahim Hakkı Ergin <ibrahimh.ergin@gmail.com>\n"
+"PO-Revision-Date: 2022-11-11 17:50+0000\n"
+"Last-Translator: E-Akcaer <gurbetcii_@hotmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
@@ -1702,7 +1702,7 @@ msgstr "Oyun çözünürlüğü"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:52 src/ui/dialog-gamescope.ui:52
 msgid "Uses the resolution of the video game as a reference."
-msgstr ""
+msgstr "Vidyo oyununun çözünürlüğünü referans olarak kullanır."
 
 #: src/ui/dialog-gamescope.ui:55 src/ui/dialog-gamescope.ui:71
 msgid "Width (e.g. 1280)"
@@ -1721,10 +1721,12 @@ msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution."
 msgstr ""
+"Oyun çözünürlüğünden daha yüksek bir çözünürlük kullanıldığında çözünürlüğü "
+"artırır."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:83 src/ui/dialog-gamescope.ui:83
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Çeşitli"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:86 src/ui/dialog-gamescope.ui:86
 #, fuzzy
@@ -1758,7 +1760,7 @@ msgstr "Bütün mesajlar"
 
 #: bottles/frontend/ui/dialog-journal.ui:17 src/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr ""
+msgstr "Ciddi"
 
 #: src/ui/dialog-journal.ui:22
 msgid "Errors"
@@ -1834,6 +1836,7 @@ msgstr "Komutu seç"
 #: src/ui/dialog-launch-options.ui:125
 msgid "These settings will override the default settings for this executable."
 msgstr ""
+"Bu ayarlar, çalıştırılabilir dosyanın varsayılan ayarları üzerine yazılacak."
 
 #: bottles/frontend/ui/dialog-launch-options.ui:126
 #: src/ui/dialog-launch-options.ui:126
@@ -1849,7 +1852,7 @@ msgstr "Varsayılana sıfırla"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:6 src/ui/dialog-proton-alert.ui:6
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Proton Sorumluluk Reddi"
 
 #: src/ui/dialog-proton-alert.ui:22
 msgid "Use Proton"
@@ -1874,7 +1877,7 @@ msgstr ""
 #: bottles/frontend/ui/dialog-proton-alert.ui:50
 #: src/ui/dialog-proton-alert.ui:50
 msgid "I got it."
-msgstr ""
+msgstr "Anladım."
 
 #: bottles/frontend/ui/dialog-rename.ui:9 src/ui/dialog-rename.ui:9
 msgid "Rename"
@@ -1882,7 +1885,7 @@ msgstr "Yeniden adlandır"
 
 #: bottles/frontend/ui/dialog-rename.ui:34 src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "Seçilen program için yeni bir isim seçin."
 
 #: src/ui/dialog-rename.ui:37
 msgid "New Name"
@@ -1915,7 +1918,7 @@ msgstr "Gamescope Ayarları"
 
 #: bottles/frontend/ui/dialog-sandbox.ui:23 src/ui/dialog-sandbox.ui:23
 msgid "Share Network"
-msgstr ""
+msgstr "Ağı Paylaş"
 
 #: bottles/frontend/ui/dialog-sandbox.ui:34 src/ui/dialog-sandbox.ui:34
 #, fuzzy
@@ -1973,7 +1976,7 @@ msgstr "Kayıt defteri yeniden başlatılıyor…"
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
 #: src/ui/dialog-upgrade-versioning.ui:144
 msgid "Done! Please restart Bottles."
-msgstr ""
+msgstr "Tamamlandı! Lütfen Şişeler'i yeniden başlatın."
 
 #. vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.ui:11
@@ -1993,20 +1996,20 @@ msgstr "Görüntü Ayarları"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:66
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "Efektler, listedeki sırasına göre uygulanır."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:67
 msgid "Effects"
-msgstr ""
+msgstr "Efektler"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:71
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "Karşıtlık Uyarlamalı Keskinleştirme"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:74
 #: bottles/frontend/ui/dialog-vkbasalt.ui:110
 msgid "Sharpness"
-msgstr ""
+msgstr "Keskinlik"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:78
 #: bottles/frontend/ui/dialog-vkbasalt.ui:114
@@ -2027,15 +2030,15 @@ msgstr "Şişe Bilgileri"
 #. Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.ui:107
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "Gürültü Giderilmiş Luma Keskinleştirme"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:139
 msgid "Denoise"
-msgstr ""
+msgstr "Gürültü Giderme"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:171
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "Hızlı Yaklaşık Kenar Yumuşatma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:174
 #, fuzzy
@@ -2044,7 +2047,7 @@ msgstr "Çok Kaliteli"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:203
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "Kalite Kenar Eşiği"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:232
 msgid "Quality Edge Threshold Minimum"
@@ -2056,19 +2059,19 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:267
 msgid "Edge Detection"
-msgstr ""
+msgstr "Kenar Saptama"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:283
 msgid "Luma"
-msgstr ""
+msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
-msgstr ""
+msgstr "Renk"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:303
 msgid "Threshold"
-msgstr ""
+msgstr "Eşik"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:332
 msgid "Max Search Steps"
@@ -2186,7 +2189,7 @@ msgstr "Yerel sonra Yerleşik"
 
 #: bottles/frontend/ui/dll-override-entry.ui:14 src/ui/dll-override-entry.ui:14
 msgid "Disabled"
-msgstr ""
+msgstr "Devre Dışı"
 
 #: src/ui/dll-override-entry.ui:22 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -2292,7 +2295,7 @@ msgstr "Kütüphane"
 
 #: bottles/frontend/ui/library.ui:15 src/ui/library.ui:15
 msgid "Add items here from your bottle's program list"
-msgstr ""
+msgstr "Buraya, şişenizin program listesinden ögeler ekleyin"
 
 #: bottles/frontend/ui/list-entry.ui:46 src/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
@@ -2353,12 +2356,12 @@ msgstr ""
 
 #: bottles/frontend/ui/loading.ui:16 src/ui/loading.ui:16
 msgid "Starting up…"
-msgstr ""
+msgstr "Başlatılıyor…"
 
 #: bottles/frontend/ui/local-resource-entry.ui:6
 #: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
-msgstr ""
+msgstr "Bu kaynak eksik."
 
 #: src/ui/local-resource-entry.ui:10
 msgid "Browse"
@@ -2467,7 +2470,7 @@ msgstr "Şişe oluşturuldu"
 
 #: bottles/frontend/ui/onboard.ui:36 src/ui/onboard.ui:36
 msgid "Previous"
-msgstr ""
+msgstr "Önceki"
 
 #: bottles/frontend/ui/onboard.ui:62 src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
@@ -2497,7 +2500,7 @@ msgstr "Neredeyse Tamam"
 
 #: bottles/frontend/ui/onboard.ui:80 src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up…"
-msgstr ""
+msgstr "Her şeyi ayarlamak için birkaç dakikaya daha ihtiyacımız var…"
 
 #: src/ui/onboard.ui:113
 msgid "All ready!"
@@ -2505,7 +2508,7 @@ msgstr "Her şey hazır!"
 
 #: bottles/frontend/ui/onboard.ui:122 src/ui/onboard.ui:122
 msgid "Please Finish the setup first"
-msgstr ""
+msgstr "Lütfen önce kurulumu Bitirin"
 
 #: src/ui/onboard.ui:129
 msgid "Start using Bottles"
@@ -2964,7 +2967,7 @@ msgstr "Şişeleriniz"
 #: bottles/frontend/views/loading.py:33 src/views/loading.py:33
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
-msgstr ""
+msgstr "{0} paket indiriliyor…"
 
 #: bottles/frontend/views/loading.py:34 src/views/loading.py:34
 #, python-brace-format
@@ -2994,7 +2997,7 @@ msgstr "“{0}” adlı bir şişe başarıyla oluşturuldu"
 
 #: bottles/frontend/views/preferences.py:119 src/views/preferences.py:125
 msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
+msgstr "Steam bulunamadı veya Şişeler'in yeterli izni yok."
 
 #: bottles/frontend/views/preferences.py:156 src/views/preferences.py:193
 msgid "Choose new bottles path"
@@ -3113,7 +3116,7 @@ msgstr ""
 
 #: bottles/frontend/windows/main_window.py:310 src/window.py:306
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Üçüncü Parti Kitaplıklar ve Özel Teşekkürler"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -3299,11 +3302,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Minor UI improvements"
-msgstr ""
+msgstr "İkincil kullanıcı arayüzü geliştirmeleri"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
-msgstr ""
+msgstr "Onarımlar"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Fix for skipable onboard dialog"
