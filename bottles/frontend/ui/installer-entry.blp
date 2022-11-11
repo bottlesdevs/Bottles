@@ -30,21 +30,28 @@ Popover pop_actions {
 }
 
 template InstallerEntry : .AdwActionRow {
-  activatable-widget: "btn_install";
   title: _("Installer name");
   subtitle: _("Installer description");
 
-  Box {
-    spacing: 6;
-
-    Label label_grade {
+    Button {
       valign: center;
-      label: _("Unknown");
 
-      styles [
-        "tag",
-        "caption",
-      ]
+      Box {
+        spacing: 6;
+
+        Image {
+          icon-name: "dialog-information-symbolic";
+        }
+
+        Label label_grade {
+          label: _("Unknown");
+
+          styles [
+            "tag",
+            "caption",
+          ]
+        }
+      }
     }
 
     Button btn_install {
