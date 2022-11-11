@@ -306,35 +306,36 @@ template DetailsPreferences : .AdwPreferencesPage {
         valign: center;
       }
     }
+
     .AdwActionRow row_cwd {
-        title: _("Working Directory");
-        subtitle: _("Directory that contains the data of your Bottles.");
-        activatable: True;
-        .GtkBox {
+      title: _("Working Directory");
+      activatable-widget: btn_cwd;
+      Button btn_cwd_reset {
+        tooltip-text: _("Reset to Default");
+        valign: center;
+        visible: false;
+        icon-name: "edit-undo-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Button btn_cwd {
+        valign: center;
+
+        Box {
           spacing: 6;
-          Button btn_cwd_reset {
-            tooltip-text: _("Reset to default");
-            valign: center;
-            visible: false;
-            icon-name: "edit-undo-symbolic";
-            styles ["flat"]
+
+          Image {
+            icon-name: "document-open-symbolic";
           }
-          Button btn_bottles_path {
-            valign: center;
 
-            Box {
-              spacing: 6;
-
-              Image {
-                icon-name: "document-open-symbolic";
-              }
-
-              Label label_cwd {
-                label: _("(Default)");
-              }
-            }
+          Label label_cwd {
+            label: _("(Default)");
           }
         }
+      }
     }
 
     .AdwActionRow row_overrides {
