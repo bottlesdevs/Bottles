@@ -62,7 +62,7 @@ class DriveEntry(Adw.ActionRow):
         """
         def set_path(_dialog, response, _file_dialog):
             _file = _file_dialog.get_file()
-            if _file is None or response != Gtk.ResponseType.OK:
+            if _file is None or response != -3:
                 _dialog.destroy()
                 return
             path = _file.get_path()
@@ -72,11 +72,11 @@ class DriveEntry(Adw.ActionRow):
 
         FileChooser(
             parent=self.parent.window,
-            title=_("Choose path"),
+            title=_("Select Drive Path"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
             buttons=(_("Cancel"), _("Select")),
             callback=set_path,
-            native=False
+            native=True
         )
 
     def __remove(self, *_args):
