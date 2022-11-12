@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-10-26 15:04+0000\n"
-"Last-Translator: Tim <tymmesyde@gmail.com>\n"
+"PO-Revision-Date: 2022-11-13 01:06+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
@@ -161,7 +161,7 @@ msgstr "État non trouvé"
 
 #: bottles/backend/managers/versioning.py:191
 msgid "State {} is already the active state"
-msgstr "L'état {} est déjà celui actif"
+msgstr "L’état {} est déjà celui actif"
 
 #: bottles/frontend/windows/crash.py:37
 msgid "Show report"
@@ -227,7 +227,7 @@ msgstr "Aucune variable d’environnement définie."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
-msgstr "Aucun modèle d'exclusion défini."
+msgstr "Aucun motif d’exclusion défini."
 
 #: bottles/frontend/windows/filechooser.py:63
 #: bottles/frontend/ui/dialog-gamescope.ui:34
@@ -294,7 +294,7 @@ msgstr "Choisissez un script qui doit être exécuté après l’exécution."
 #: bottles/frontend/windows/launchoptions.py:57
 #: bottles/frontend/ui/dialog-launch-options.ui:92
 msgid "Choose from where start the program."
-msgstr "Choisir d'où démarrer le programme."
+msgstr "Choisir d’où démarrer le programme."
 
 #: bottles/frontend/windows/launchoptions.py:58
 #, python-brace-format
@@ -453,7 +453,7 @@ msgstr "Réinstaller"
 #: bottles/frontend/ui/dependency-entry.ui:43
 #: bottles/frontend/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr "Faire part d'un bogue…"
+msgstr "Signaler un bogue…"
 
 #: bottles/frontend/ui/dependency-entry.ui:50
 msgid "Dependency name"
@@ -622,7 +622,7 @@ msgstr "Explorateur"
 
 #: bottles/frontend/ui/details-bottle.ui:278
 msgid "Browse internal files with the Wine explorer."
-msgstr "Parcourir les fichiers internes avec l'explorateur Wine."
+msgstr "Parcourir les fichiers internes avec l’explorateur Wine."
 
 #: bottles/frontend/ui/details-bottle.ui:289
 #: bottles/frontend/views/details.py:178
@@ -755,8 +755,8 @@ msgstr "Aucun installateur trouvé"
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
-"Le répertoire est injoignable ou aucun installateur n'est compatible avec "
-"cette bouteille."
+"Le dépôt est injoignable ou aucun installateur n’est compatible avec cette "
+"bouteille."
 
 #: bottles/frontend/ui/details-installers.ui:70
 #: bottles/frontend/ui/details-programs.ui:44
@@ -1218,9 +1218,8 @@ msgstr ""
 "d’installation."
 
 #: bottles/frontend/ui/details-preferences.ui:716
-#, fuzzy
 msgid "Use Exclusion Patterns"
-msgstr "Utiliser des Modèles d’Exclusion"
+msgstr "Utiliser des motifs d’exclusion"
 
 #: bottles/frontend/ui/details-preferences.ui:717
 msgid "Use custom patterns to exclude some paths from versioning."
@@ -1456,7 +1455,7 @@ msgstr "Duplication en cours…"
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
 #: bottles/frontend/ui/new.ui:216
 msgid "Take a break, it may take a while."
-msgstr "Prenez une pause, cela peut prendre un peu de temps."
+msgstr "Prenez une pause, ceci peut prendre un peu de temps."
 
 #: bottles/frontend/ui/dialog-duplicate.ui:108
 msgid "Bottle Duplicated"
@@ -1480,9 +1479,8 @@ msgid "Existing Variables"
 msgstr "Variables existantes"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
-#, fuzzy
 msgid "Exclusion Patterns"
-msgstr "Modèles d’Exclusion"
+msgstr "Motifs d’exclusion"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
 msgid ""
@@ -1493,14 +1491,12 @@ msgstr ""
 "être versionné."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
-#, fuzzy
 msgid "Pattern"
-msgstr "Lettre"
+msgstr "Motif"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:46
-#, fuzzy
 msgid "Existing Patterns"
-msgstr "Disques existants"
+msgstr "Motifs existants"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:8
 msgid "Gamescope Settings"
@@ -1556,7 +1552,6 @@ msgid "Frame Rate Limit (When Unfocused)"
 msgstr "Limite de fréquence d’images (en l’absence de focus)"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:96
-#, fuzzy
 msgid "Use Integer Scaling"
 msgstr "Utiliser la mise à l’échelle des nombres entiers"
 
@@ -1631,7 +1626,7 @@ msgstr "Arguments de commande"
 #: bottles/frontend/ui/dialog-launch-options.ui:52
 #, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "p.ex. : VAR=valeur %commande% -exemple1 -exemple2 -exemple3=bonjour"
+msgstr "p.ex. : VAR=valeur %command% -exemple1 -exemple2 -exemple3=bonjour"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:58
 msgid "Post-run Script"
@@ -1687,7 +1682,7 @@ msgstr ""
 "activé (s’il est présent dans le système et détecté par Bouteilles) afin de "
 "lui permettre d’accéder aux bibliothèques nécessaires et de limiter les "
 "problèmes de compatibilité. Sachez que GloriousEggroll, le fournisseur de l’"
-"environnement d’exécution, n'est pas responsable des problèmes éventuels et "
+"environnement d’exécution, n’est pas responsable des problèmes éventuels et "
 "nous vous demandons de ne pas les signaler."
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:50
@@ -1862,11 +1857,11 @@ msgstr "Seuil de qualité de bordure"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:232
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "Seuil de qualité de bordure minimum"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:264
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "Anti-crénelage morphologique sous-pixel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:267
 msgid "Edge Detection"
@@ -1894,7 +1889,7 @@ msgstr "Nombre maximal de pas de recherche diagonale"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:388
 msgid "Max Corner Rounding"
-msgstr "Arrondissement maximal de bordure"
+msgstr "Arrondissement de bordure maximal"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:419
 msgid "Color Lookup Table"
@@ -1951,15 +1946,14 @@ msgstr ""
 "contrastée."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:572
-#, fuzzy
 msgid ""
 "FXAA quality edge threshold minimum is the minimum value of dark pixels that "
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
 "Le seuil de qualité minimale du bord FXAA est le nombre minimum de pixels "
-"noirs ignorés par l’algorithme FXAA. Des valeurs élevées font ignorer par le "
-"FXAA les pixels en dessous de cette valeur et peuvent améliorer les "
+"noirs ignorés par l’algorithme FXAA. Des valeurs élevées font que le FXAA "
+"ignore les pixels en dessous de cette valeur et peuvent améliorer les "
 "performances."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:590
@@ -1972,7 +1966,6 @@ msgstr ""
 "Color."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:608
-#, fuzzy
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
@@ -1985,22 +1978,31 @@ msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"Le nombre maximal d’étapes de recherche SMAA spécifie le nombre d’étapes de "
+"recherche horizontales et verticales lors de la recherche de bords."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:644
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"Le nombre maximal d’étapes de recherche SMAA spécifie le nombre d’étapes de "
+"recherche diagonales exécutées lors de la recherche de bords."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:662
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
 msgstr ""
+"L’arrondissement de bordure SMAA spécifie l’intensité de l’arrondissement "
+"des coins des bordures."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:680
 msgid ""
 "CLUT transforms a range of colors into another range of colors using a .CUBE "
 "file, or a .png file where the height is equal to the width."
 msgstr ""
+"CLUT transforme l’intervalle de couleurs en une intervalle de couleur "
+"différente en utilisant un fichier .CUBE, ou un fichier .png possédant une "
+"hauteur égale à sa largeur."
 
 #: bottles/frontend/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
@@ -2321,7 +2323,7 @@ msgid ""
 msgstr ""
 "Bouteilles utilise des exécuteurs de compatibilité pour fournir des "
 "environnements isolés de type conteneur Windows dans lesquels les programmes "
-"s'exécutent."
+"s’exécutent."
 
 #: bottles/frontend/ui/onboard.ui:79
 msgid "Almost Done"
@@ -2888,12 +2890,12 @@ msgstr "Avis pour {0}"
 #: bottles/frontend/widgets/program.py:187
 #, python-brace-format
 msgid "Launching '{0}'…"
-msgstr "Lancement de '{0}'…"
+msgstr "Lancement de « {0} »…"
 
 #: bottles/frontend/widgets/program.py:193
 #, python-brace-format
 msgid "Launching '{0}' with Steam…"
-msgstr "Lancement de '{0}' avec Steam…"
+msgstr "Lancement de « {0} » avec Steam…"
 
 #: bottles/frontend/widgets/program.py:215
 #, python-brace-format
@@ -2918,7 +2920,7 @@ msgstr "« {0} » renommé en « {1} »."
 #: bottles/frontend/widgets/program.py:274
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr "Entrée de bureau créée pour '{0}'"
+msgstr "Entrée de bureau créée pour « {0} »"
 
 #: bottles/frontend/widgets/program.py:290
 #, python-brace-format
@@ -3081,12 +3083,12 @@ msgstr ""
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Automatic versioning can now be toggled on and off"
 msgstr ""
-"Il est désormais possible d'activer ou de désactiver la gestion automatique "
+"Il est désormais possible d’activer ou de désactiver la gestion automatique "
 "de versions"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "Exclude paths from versioning using patterns"
-msgstr ""
+msgstr "Exclure les chemins de la gestion des versions à l’aide de motifs"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
 msgid "Use compression for versioning states"
