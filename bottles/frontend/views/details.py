@@ -132,7 +132,7 @@ class DetailsView(Adw.Bin):
         """
         self.__pages = {
             "preferences": {
-                "title": _("Preferences"),
+                "title": _("Settings"),
                 "description": "",
             },
             "dependencies": {
