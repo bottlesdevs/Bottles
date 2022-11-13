@@ -126,17 +126,6 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_embedded_gstreamer {
-      visible: false;
-      activatable-widget: "switch_embedded_gstreamer";
-      title: _("Embedded GStreamer");
-      subtitle: _("Use the embedded GStreamer if available in the runner.");
-
-      Switch switch_embedded_gstreamer {
-        valign: center;
-      }
-    }
-
     .AdwActionRow row_vkbasalt {
       activatable-widget: "switch_vkbasalt";
       title: _("Post-Processing Effects");
@@ -314,6 +303,17 @@ template DetailsPreferences : .AdwPreferencesPage {
       subtitle: _("Provide a bundle of extra libraries for more compatibility with Steam games. Disable if you run into issues.");
       visible: false;
       Switch switch_steam_runtime {
+        valign: center;
+      }
+    }
+
+    .AdwActionRow row_embedded_gstreamer {
+      visible: false;
+      activatable-widget: "switch_embedded_gstreamer";
+      title: _("Embedded GStreamer");
+      subtitle: _("Use the embedded GStreamer if available in the runner. Disable if you run into issues with videos not playing correctly.");
+
+      Switch switch_embedded_gstreamer {
         valign: center;
       }
     }
