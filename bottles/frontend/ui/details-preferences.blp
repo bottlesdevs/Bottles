@@ -126,6 +126,17 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
+    .AdwActionRow row_embedded_gstreamer {
+      visible: false;
+      activatable-widget: "switch_embedded_gstreamer";
+      title: _("Embedded GStreamer");
+      subtitle: _("Use the embedded GStreamer if available in the runner.");
+
+      Switch switch_embedded_gstreamer {
+        valign: center;
+      }
+    }
+
     .AdwActionRow row_vkbasalt {
       activatable-widget: "switch_vkbasalt";
       title: _("Post-Processing Effects");

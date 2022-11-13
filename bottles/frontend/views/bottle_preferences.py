@@ -64,6 +64,7 @@ class PreferencesView(Adw.PreferencesPage):
     btn_cwd = Gtk.Template.Child()
     row_nvapi = Gtk.Template.Child()
     row_discrete = Gtk.Template.Child()
+    row_embedded_gstreamer = Gtk.Template.Child()
     row_vkbasalt = Gtk.Template.Child()
     row_manage_display = Gtk.Template.Child()
     row_runtime = Gtk.Template.Child()
@@ -82,6 +83,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_gamemode = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
+    switch_embedded_gstreamer = Gtk.Template.Child()
     switch_runtime = Gtk.Template.Child()
     switch_steam_runtime = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
@@ -151,6 +153,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_gamescope.connect('state-set', self.__toggle_gamescope)
         self.switch_sandbox.connect('state-set', self.__toggle_sandbox)
         self.switch_discrete.connect('state-set', self.__toggle_discrete_gpu)
+        self.switch_embedded_gstreamer.connect('state-set', self.__toggle_embedded_gstreamer)
         self.switch_versioning_compression.connect('state-set', self.__toggle_versioning_compression)
         self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
         self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
@@ -324,6 +327,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_gamescope.handler_block_by_func(self.__toggle_gamescope)
         self.switch_sandbox.handler_block_by_func(self.__toggle_sandbox)
         self.switch_discrete.handler_block_by_func(self.__toggle_discrete_gpu)
+        self.switch_embedded_gstreamer.handler_block_by_func(self.__toggle_embedded_gstreamer)
         self.switch_versioning_compression.handler_block_by_func(self.__toggle_versioning_compression)
         self.switch_auto_versioning.handler_block_by_func(self.__toggle_auto_versioning)
         self.switch_versioning_patterns.handler_block_by_func(self.__toggle_versioning_patterns)
@@ -359,6 +363,8 @@ class PreferencesView(Adw.PreferencesPage):
         # self.toggle_futex2.set_active(parameters["sync"] == "futex2")
 
         self.switch_discrete.set_active(parameters["discrete_gpu"])
+
+        self.switch_embedded_gstreamer.set_active(parameters["embedded_gstreamer"])
 
         self.btn_cwd_reset.set_visible(self.config.get("WorkingDir"))
 
@@ -451,6 +457,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_gamescope.handler_unblock_by_func(self.__toggle_gamescope)
         self.switch_sandbox.handler_unblock_by_func(self.__toggle_sandbox)
         self.switch_discrete.handler_unblock_by_func(self.__toggle_discrete_gpu)
+        self.switch_embedded_gstreamer.handler_unblock_by_func(self.__toggle_embedded_gstreamer)
         self.switch_versioning_compression.handler_unblock_by_func(self.__toggle_versioning_compression)
         self.switch_auto_versioning.handler_unblock_by_func(self.__toggle_auto_versioning)
         self.switch_versioning_patterns.handler_unblock_by_func(self.__toggle_versioning_patterns)
@@ -652,6 +659,15 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = self.manager.update_config(
             config=self.config,
             key="discrete_gpu",
+            value=state,
+            scope="Parameters"
+        ).data["config"]
+
+    def __toggle_embedded_gstreamer(self, widget, state):
+        """Toggle the embedded GStreamer for current bottle"""
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="embedded_gstreamer",
             value=state,
             scope="Parameters"
         ).data["config"]
@@ -1049,6 +1065,7 @@ class PreferencesView(Adw.PreferencesPage):
 
         for w in [
             self.row_discrete,
+            self.row_embedded_gstreamer,
             self.row_steam_runtime,
             self.combo_dxvk,
             self.row_sandbox,

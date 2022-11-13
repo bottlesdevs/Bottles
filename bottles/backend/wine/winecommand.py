@@ -222,8 +222,6 @@ class WineCommand:
                 "lib64/wine/i386-unix"
             ]
             gst_libs = [
-                "lib/gstreamer-1.0",
-                "lib32/gstreamer-1.0",
                 "lib64/gstreamer-1.0"
             ]
         else:
@@ -234,8 +232,7 @@ class WineCommand:
             ]
             gst_libs = [
                 "lib/gstreamer-1.0",
-                "lib32/gstreamer-1.0",
-                "lib64/gstreamer-1.0"
+                "lib32/gstreamer-1.0"
             ]
             
         for lib in runner_libs:
@@ -243,10 +240,13 @@ class WineCommand:
             if os.path.exists(_path):
                 ld.append(_path)
 
-        for lib in gst_libs:
-            _root = os.path.basename(os.path.join(runner_path, lib))
-            if os.path.exists(os.path.join(runner_path, lib)):
-                env.add("GST_PLUGIN_SYSTEM_PATH", _root)
+        # Embedded GStreamer environment variables
+        if params["embedded_gstreamer"] and not return_steam_env:
+            gst_env_path = []
+            for lib in gst_libs:
+                if os.path.exists(os.path.join(runner_path, lib)):
+                    gst_env_path.append(os.path.join(runner_path, lib))
+            env.add("GST_PLUGIN_SYSTEM_PATH", ":".join(gst_env_path))
 
         # DXVK environment variables
         if params["dxvk"] and not return_steam_env:
