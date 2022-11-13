@@ -616,7 +616,6 @@ class WineCommand:
                     env=self.env,
                     cwd=self.cwd
                 )
-                proc.wait()
             except FileNotFoundError:
                 return
                 
