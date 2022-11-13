@@ -763,7 +763,7 @@ class Manager:
                 conf_file_yaml["run_in_terminal"] = False
 
             # Migrate old programs to [id] and [name]
-            # TODO: remove this migration after 2022.10.14.1
+            # TODO: remove this migration after 2022.11.14
             _temp = {}
             _changed = False
             for k, v in conf_file_yaml.get("External_Programs").items():

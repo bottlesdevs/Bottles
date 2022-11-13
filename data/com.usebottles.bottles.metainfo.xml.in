@@ -97,38 +97,33 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.10.14.1" date="2022-10-14">
+        <release version="2022.11.14" date="2022-11-14">
           <description>
-            <p>News</p>
             <ul>
                 <li>The PulseAudio Latency setting is now deprecated and enabled by default</li>
-                <li>Add portal support for setting custom Bottles path thanks to @fries1234</li>
-                <li>Preferences now uses Generic names for better understanding</li>
-                <li>Improved Gamescope support</li>
-                <li>General improvements</li>
-            </ul>
-
-            <p>Fixes</p>
-            <ul>
-                <li>Fix components mismatch on switching bottle</li>
-                <li>Fix unsafe access to the program"dict" keys</li>
-                <li>Fix unreachable newly-added programs</li>
-                <li>Fix for XDG_* vars being read by the runner even when not applicable</li>
-                <li>Fix charset error parsing acf files</li>
-                <li>Fix bottles list not being updated when removing a bottle</li>
-                <li>Fix empty secion in the Run Executable menu</li>
-            </ul>
-
-            <p>Translations</p>
-            <ul>
-                <li>French translations thanks to Thibaut Colin, @jay-tau</li>
-                <li>Dutch translations thanks to @flipflop97</li>
-                <li>Turkish translations thanks to @Zayria</li>
-                <li>Croatian translations thanks to @milotype</li>
-                <li>Bulgarian translations thanks to @RacerBG</li>
-                <li>Russian translations thanks to @lenemter</li>
-                <li>Bengali translations thanks to Anubis</li>
+                <li>Bottle details automatically show on bottle creation</li>
+                <li>Bottles now complies with GNOME Circle guidelines</li>
+                <li>Disable pulseaudio_latency by default.</li>
+                <li>Fixed a crash during startup due to uninstaller.</li>
+                <li>Implemented a queue for installing components.</li>
+                <li>Fixed bottle deletion not working sometimes.</li>
+                <li>Support for latest dxvk @Blisto91</li>
+                <li>Fix for DLSS</li>
+                <li>Added tooltips for program gades</li>
+                <li>Fix installer completion @jntesteves</li>
+                <li>Fix gamescope arguments @jntesteves</li>
+                <li>Added Ctrl + W shortcut for closing windows @A6GibKm</li>
+                <li>Fixed bottles unsetting XDG_DATA_HOME</li>
+                <li>French translations thanks to @julroy and @tymmsyde</li>
+                <li>Turkish translations thanks to @54linux-ea and @ruizlenato</li>
+                <li>Russian translations thanks to @lenemter and @Smoque</li>
                 <li>Catalan translations thanks to @rogervc</li>
+                <li>Arabic tran*slations thanks to @TheDarkEvil</li>
+                <li>Korean translations thanks to @MarongHappy</li>
+                <li>Protuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl</li>
+                <li>Galician translations thanks to @NicoSGF64</li>
+                <li>Hebrew translations thanks to @itayweb</li>
+                <li>Polish translations thanks to @Mikutut</li>
             </ul>
           </description>
         </release>
