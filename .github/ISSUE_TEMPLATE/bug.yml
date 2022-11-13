@@ -8,9 +8,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### Read here first
-        **Please don't fill issue for a Windows executable that doesn't work in Bottles (if not installed through our installers).** Our software is a Wine prefix manager. If a Windows application doesn't work, it could be a Wine problem or a misconfiguration of the wineprefix. Please visit [WineHQ](https://www.winehq.org) or [ProtonDB](https://www.protondb.com) for more information on the software you are trying to run.
-        !!! PLEASE DON'T OPEN ISSUES FOR PROGRAMS NOT RUNNING IN BOTTLES, USE THE programs REPOSITORY INSTEAD !!!
+        ⚠️ Do not open issues for Windows executables not working in Bottles, if not installed through our installers. Bottles is a Wine prefix manager. If a Windows application doesn't work, it could be a Wine problem or a misconfiguration of the Wine prefix. Please visit [WineHQ](https://www.winehq.org) and [ProtonDB](https://www.protondb.com) for more information on the software you are trying to run. For additional support, use the [Programs](https://github.com/bottlesdevs/programs) repository.
+        ⚠️ Do not open issues for bugs outside of [Bottles on Flathub](https://flathub.org/apps/details/com.usebottles.bottles), as we do not support packages from third-party packages. If you can reproduce the bug(s) using Bottles on Flathub, then we will provide support, otherwise we will close the issue.
         
   - type: textarea
     id: what-happened
@@ -46,8 +45,8 @@ body:
       description: How did you install Bottles?
       options:
         - Flatpak from Flathub
-        - From source
-        - Other, unofficial package
+        - Flatpak from Flathub Beta
+        - Flatpak from GitHub Artifacts
     validations:
       required: true
 
@@ -56,7 +55,7 @@ body:
     attributes:
       label: Distribution
       description: In which Linux distribution did you encounter the bug?
-      placeholder: Fedora 35, Arch linux, Ubuntu 21.10..
+      placeholder: Fedora 35, Arch Linux, Ubuntu 21.10..
     validations:
       required: true
 
