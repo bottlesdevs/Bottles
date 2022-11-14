@@ -248,7 +248,7 @@ class WineCommand:
             for lib in gst_libs:
                 if os.path.exists(os.path.join(runner_path, lib)):
                     gst_env_path.append(os.path.join(runner_path, lib))
-            env.add("GST_PLUGIN_SYSTEM_PATH", ":".join(gst_env_path))
+            env.add("GST_PLUGIN_SYSTEM_PATH", ":".join(gst_env_path), override=True)
 
         # DXVK environment variables
         if params["dxvk"] and not return_steam_env:
