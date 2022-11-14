@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-11-14 14:21+0000\n"
-"Last-Translator: abdalrzag eisa <bmjfdrh@gmail.com>\n"
+"PO-Revision-Date: 2022-11-14 16:34+0000\n"
+"Last-Translator: Ali Aljishi <ahj696@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bottles/bottles/"
 "ar/>\n"
 "Language: ar\n"
@@ -1003,7 +1003,6 @@ msgid "VKD3D Version"
 msgstr "إصدار VKD3D"
 
 #: bottles/frontend/ui/details-preferences.ui:382
-#, fuzzy
 msgid "DXVK NVAPI Version"
 msgstr "إصدار DXVK NVAPI"
 
@@ -1096,8 +1095,9 @@ msgid "Gamescope"
 msgstr "Gamescope"
 
 #: bottles/frontend/ui/details-preferences.ui:567
+#, fuzzy
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "استعمل مُرتِّب Gamescope"
 
 #: bottles/frontend/ui/details-preferences.ui:570
 msgid "Manage Gamescope settings"
@@ -1118,93 +1118,92 @@ msgstr "إدارة إعدادات vmtouch"
 #: bottles/frontend/ui/details-preferences.ui:610
 #: bottles/frontend/ui/dialog-launch-options.ui:91
 msgid "Working Directory"
-msgstr ""
+msgstr "دليل العمل الحالي"
 
 #: bottles/frontend/ui/details-preferences.ui:611
 msgid "Defaults to the bottle path."
-msgstr ""
+msgstr "الإعدادات الافتراضية لمسار القارورة."
 
 #: bottles/frontend/ui/details-preferences.ui:614
 #: bottles/frontend/ui/dialog-launch-options.ui:65
 #: bottles/frontend/ui/dialog-launch-options.ui:98
 #: bottles/frontend/ui/preferences.ui:159
 msgid "Reset to default"
-msgstr ""
+msgstr "عُد للإعدادات الافتراضية"
 
 #: bottles/frontend/ui/details-preferences.ui:624
 #: bottles/frontend/ui/dialog-launch-options.ui:109
 #: bottles/frontend/ui/new.ui:163 bottles/frontend/ui/new.ui:180
 #: bottles/frontend/ui/preferences.ui:170
 msgid "Choose a directory"
-msgstr ""
+msgstr "اختر دليلاً"
 
 #: bottles/frontend/ui/details-preferences.ui:637
 #: bottles/frontend/ui/dialog-dll-overrides.ui:9
 #: bottles/frontend/ui/dialog-dll-overrides.ui:15
 msgid "DLL Overrides"
-msgstr ""
+msgstr "تجاوزات ملفات DLL"
 
 #: bottles/frontend/ui/details-preferences.ui:648
 #: bottles/frontend/ui/dialog-env-vars.ui:16
 msgid "Environment Variables"
-msgstr ""
+msgstr "متغيرات البيئة"
 
 #: bottles/frontend/ui/details-preferences.ui:659
 msgid "Manage Drives"
-msgstr ""
+msgstr "إدارة محركات الأقراص"
 
 #: bottles/frontend/ui/details-preferences.ui:671
 msgid "Audio"
-msgstr ""
+msgstr "الصوت"
 
 #: bottles/frontend/ui/details-preferences.ui:675
 #: bottles/frontend/ui/dialog-launch-options.ui:183
 msgid "Reduce Latency"
-msgstr ""
+msgstr "تقليل زمن الاستجابة"
 
 #: bottles/frontend/ui/details-preferences.ui:676
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
-msgstr ""
+msgstr "عيّن زمن استجابة PulseAudio إلى 60 ملّي ثانية، هذا يرفع جودة الصوت."
 
 #: bottles/frontend/ui/details-preferences.ui:688
 #: bottles/frontend/views/details.py:170
 msgid "Versioning"
-msgstr ""
+msgstr "تعيين الإصدار"
 
 #: bottles/frontend/ui/details-preferences.ui:692
 msgid "Use Compression for States"
-msgstr ""
+msgstr "استعمل عملية الضَّغط للحالات"
 
 #: bottles/frontend/ui/details-preferences.ui:693
 msgid ""
 "This will reduce the space used by the states but slow down their creation."
-msgstr ""
+msgstr "سيؤدي هذا لتقليل المساحة التي تستعملها الحالات ولكنه سيبطئ إنشاءها."
 
 #: bottles/frontend/ui/details-preferences.ui:704
-#, fuzzy
 msgid "Automatic Versioning"
-msgstr "تعيين إصدارات القوارير (تجريبي)"
+msgstr "تعيين الإصدار بشكل تلقائي"
 
 #: bottles/frontend/ui/details-preferences.ui:705
 msgid ""
 "Bottles will create a state before running any dependencies or installers."
-msgstr ""
+msgstr "سينشئ بولتز الحالة قبل تشغيل أي تبعيات أو مثبتات."
 
 #: bottles/frontend/ui/details-preferences.ui:716
 msgid "Use Exclusion Patterns"
-msgstr ""
+msgstr "استخدم أنماط الاستبعاد"
 
 #: bottles/frontend/ui/details-preferences.ui:717
 msgid "Use custom patterns to exclude some paths from versioning."
-msgstr ""
+msgstr "استخدم أنماطاً مخصصةً لاستبعاد بعض المسارات من تعيين الإصدار."
 
 #: bottles/frontend/ui/details-preferences.ui:720
 msgid "Manage Patterns"
-msgstr ""
+msgstr "إدارة الأنماط"
 
 #: bottles/frontend/ui/details-preferences.ui:739
 msgid "Development and Debugging"
-msgstr ""
+msgstr "التطوير والتصحيح"
 
 #: bottles/frontend/ui/details-preferences.ui:743
 msgid "MangoHud"
@@ -1215,99 +1214,104 @@ msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
+"طبقة Vulkan و OpenGL تقوم بقياس معدل الإطارات والحرارات والحمل على المعالج "
+"ومعالج الرسوميات وغيرها."
 
 #: bottles/frontend/ui/details-preferences.ui:755
 msgid "OBS Vulkan Capture"
-msgstr ""
+msgstr "التقاط الشاشة باستخدام OBS Vulkan"
 
 #: bottles/frontend/ui/details-preferences.ui:756
 msgid "Toggle OBS game capture for all programs."
-msgstr ""
+msgstr "شغل OBS game capture لكل البرامج."
 
 #: bottles/frontend/ui/details-preferences.ui:767
 msgid "Wine 'fixme' Logs"
-msgstr ""
+msgstr "سجلات 'fixme' لـ Wine"
 
 #: bottles/frontend/ui/details-preferences.ui:768
 msgid "Log code paths that are unimplemented in Wine."
-msgstr ""
+msgstr "سجِّل مسارات التعليمات البرمجية التي لم تُنفذ في Wine."
 
 #: bottles/frontend/ui/details-programs.ui:9
 msgid "No Programs found"
-msgstr ""
+msgstr "لم يُعثر على برامج"
 
 #: bottles/frontend/ui/details-programs.ui:10
 msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button."
 msgstr ""
+"ثبت البرامج من قسم المثبتات أو عن طريق تشغيل ملف التنفيذ، يمكنك أيضاً أن "
+"تضيف ملفات التنفيذ يدويّا عن طريق زر \"+\"."
 
 #: bottles/frontend/ui/details-programs.ui:31
 msgid "Toggle Hidden"
-msgstr ""
+msgstr "أظهر/أخفِ"
 
 #: bottles/frontend/ui/details-programs.ui:36
 msgid "Search for new programs"
-msgstr ""
+msgstr "ابحث عن برامج جديدة"
 
 #: bottles/frontend/ui/details-programs.ui:55
 msgid "Add a custom executable path"
-msgstr ""
+msgstr "أضف مساراً مخصصا لملف التنفيذ"
 
 #: bottles/frontend/ui/details-taskmanager.ui:18
 msgid "Refresh"
-msgstr ""
+msgstr "حدّث"
 
 #: bottles/frontend/ui/details-taskmanager.ui:24
 msgid "Stop process"
-msgstr ""
+msgstr "أوقف العملية"
 
 #: bottles/frontend/ui/details-versioning.ui:25
 msgid "No States Found"
-msgstr ""
+msgstr "لم يُعثر على حالات"
 
 #: bottles/frontend/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "أنشئ أول حالة لتبدأ استعمال تعيين الإصدار."
 
 #: bottles/frontend/ui/details-versioning.ui:63
 msgid "A short comment"
-msgstr ""
+msgstr "تعليق قصير"
 
 #: bottles/frontend/ui/details-versioning.ui:68
 msgid "Save the bottle state."
-msgstr ""
+msgstr "احفظ حالة القارورة."
 
 #: bottles/frontend/ui/details-versioning.ui:88
 msgid "Create new state"
-msgstr ""
+msgstr "أنشئ حالة جديدة"
 
 #: bottles/frontend/ui/details.ui:74
 msgid "Operations"
-msgstr ""
+msgstr "العمليات"
 
 #: bottles/frontend/ui/dialog-bottle-picker.ui:6
-#, fuzzy
 msgid "Select Bottle"
-msgstr "قوارير"
+msgstr "اختر قارورة"
 
 #: bottles/frontend/ui/dialog-bottle-picker.ui:42
 msgid "Create New Bottle"
-msgstr ""
+msgstr "أنشئ قارورة جديدة"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:10
 msgid "Bottles crash report"
-msgstr ""
+msgstr "تقرير تعطل القارورة"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:23
 msgid "Send report"
-msgstr ""
+msgstr "أرسل التقرير"
 
 #: bottles/frontend/ui/dialog-crash-report.ui:43
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"تعطل بوتلز آخر مرة. فضلاً قم بتعبئة تقرير فيه التتبع التالي لتساعدنا في "
+"التعرف على المشكلة مما يمكننا من الحيال دون وقوعها مجدداً."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:75
 msgid ""
@@ -1316,18 +1320,21 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"عثرنا على تقارير مشابهة أو مطابقة، تأكد من أن التقرير لم يُرسل مسبقا قبل أن "
+"تقوم بإرساله، يتطلب تشخيص كل تقرير جهداً من المطورين، فضلاً احترم عملهم ولا "
+"ترسل ما يتكرر."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:96
 msgid "I still want to report."
-msgstr ""
+msgstr "لا أزال أريد التبليغ."
 
 #: bottles/frontend/ui/dialog-crash-report.ui:102
 msgid "Advanced options"
-msgstr ""
+msgstr "الخيارات المتقدمة"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:15
 msgid "Incomplete package"
-msgstr ""
+msgstr "حزمة غير مكتملة"
 
 #: bottles/frontend/ui/dialog-deps-check.ui:16
 msgid ""
@@ -1336,28 +1343,33 @@ msgid ""
 "version.\n"
 "                        "
 msgstr ""
+"لا يبدو أن هذا الإصدار من بوتلز يوفر كل التبعيات الأساسية، تواصل مع مشرف "
+"الحزمة أو استخدم إصداراً رسمياً.\n"
+"                        "
 
 #: bottles/frontend/ui/dialog-deps-check.ui:21
 msgid "Quit"
-msgstr ""
+msgstr "أنهِ"
 
 #: bottles/frontend/ui/dialog-dll-overrides.ui:14
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
+"يمكن أن تٌعين مكتبات الارتباط الديناميكي على أنها مُدمجة (أي أن Wine يوفرها) "
+"أو أصلية (أي أن البرنامج يوفرها)."
 
 #: bottles/frontend/ui/dialog-dll-overrides.ui:18
 msgid "New Override"
-msgstr ""
+msgstr "تجاوز جديد"
 
 #: bottles/frontend/ui/dialog-dll-overrides.ui:26
 msgid "Overrides"
-msgstr ""
+msgstr "التجاوزات"
 
 #: bottles/frontend/ui/dialog-drives.ui:9
 msgid "Drives"
-msgstr ""
+msgstr "محركات الأقراص"
 
 #: bottles/frontend/ui/dialog-drives.ui:31
 msgid ""
@@ -1365,18 +1377,21 @@ msgid ""
 "devices by the runner (e.g. C: D:…).\n"
 "                                "
 msgstr ""
+"هذه هي المسارات في نظامك التي تم التعرف عليها كأجهزة من قبل المُشغل (مثلاً "
+":C: D...)\n"
+"                                "
 
 #: bottles/frontend/ui/dialog-drives.ui:35
 msgid "Letter"
-msgstr ""
+msgstr "حرف"
 
 #: bottles/frontend/ui/dialog-drives.ui:59
 msgid "Existing Drives"
-msgstr ""
+msgstr "محركات الأقراص الموجودة"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:18
 msgid "Duplicate Bottle"
-msgstr ""
+msgstr "قارورة مكررة"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:23
 #: bottles/frontend/ui/dialog-gamescope.ui:17
@@ -1384,213 +1399,216 @@ msgstr ""
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:23
 #: bottles/frontend/ui/dialog-vkbasalt.ui:31
 msgid "_Cancel"
-msgstr ""
+msgstr "_ألغِ"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:41
 msgid "Duplicate"
-msgstr ""
+msgstr "انسخ"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:55
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr ""
+msgstr "أدخل اسماً للنسخة المكررة من القارورة."
 
 #: bottles/frontend/ui/dialog-duplicate.ui:78
 msgid "Duplicating…"
-msgstr ""
+msgstr "يتم النسخ…"
 
 #: bottles/frontend/ui/dialog-duplicate.ui:87
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
 #: bottles/frontend/ui/new.ui:216
 msgid "Take a break, it may take a while."
-msgstr ""
+msgstr "استرح قليلاً، قد يستغرق هذا وقتاً."
 
 #: bottles/frontend/ui/dialog-duplicate.ui:108
 msgid "Bottle Duplicated"
-msgstr ""
+msgstr "نُسخت القارورة"
 
 #: bottles/frontend/ui/dialog-env-vars.ui:35
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"متغيرات البيئة هي قيم مسماة تلقائياً تؤثر على طريقة عمل العمليات في قارورتك."
 
 #: bottles/frontend/ui/dialog-env-vars.ui:38
 msgid "Variable Name"
-msgstr ""
+msgstr "اسم المتغير"
 
 #: bottles/frontend/ui/dialog-env-vars.ui:46
 msgid "Existing Variables"
-msgstr ""
+msgstr "المتغيرات الموجودة"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "أنماط الاستبعاد"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
-msgstr ""
+msgstr "حدد الأنماط التي ستُستخدم لمنع تعيين الإصدار لبعض الدلائل."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
 msgid "Pattern"
-msgstr ""
+msgstr "نمط"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.ui:46
 msgid "Existing Patterns"
-msgstr ""
+msgstr "الأنماط الموجودة"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:8
 msgid "Gamescope Settings"
-msgstr ""
+msgstr "إعدادات Gamescope"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:46
 msgid ""
 "Configure how Gamescope should manage the window for the games you will run."
-msgstr ""
+msgstr "عيّن طريقة إدارة Gamescope لنوافذ الألعاب التي ستشغلها."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:51
 msgid "Game Resolution"
-msgstr ""
+msgstr "دقة اللعبة"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:52
 msgid "Uses the resolution of the video game as a reference."
-msgstr ""
+msgstr "يستخدم دقة اللعبة كمرجع."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:55
 #: bottles/frontend/ui/dialog-gamescope.ui:71
 msgid "Width (e.g. 1280)"
-msgstr ""
+msgstr "العرض (على سبيل المثال: 1280)"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:60
 #: bottles/frontend/ui/dialog-gamescope.ui:76
 msgid "Height (e.g. 720)"
-msgstr ""
+msgstr "الارتفاع (على سبيل المثال: 720)"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:67
 msgid "Gamescope Resolution"
-msgstr ""
+msgstr "دقة Gamescope"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:68
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution."
-msgstr ""
+msgstr "يرفع الدقة عند استخدام دقة أعلى من دقة اللعبة."
 
 #: bottles/frontend/ui/dialog-gamescope.ui:83
 msgid "Miscellaneous"
-msgstr ""
+msgstr "متنوعات"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:86
 msgid "Frame Rate Limit (e.g. 60)"
-msgstr ""
+msgstr "حد معدل الإطارات (على سبيل المثال: 60)"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:91
 msgid "Frame Rate Limit (When Unfocused)"
-msgstr ""
+msgstr "حد معدل الإطارات (عند عدم التركيز)"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:96
 msgid "Use Integer Scaling"
-msgstr ""
+msgstr "استخدم القياس بالأعداد الصحيحة"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:107
 msgid "Window Type"
-msgstr ""
+msgstr "نوع النافذة"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:112
 msgid "Borderless"
-msgstr ""
+msgstr "بلا إطار"
 
 #: bottles/frontend/ui/dialog-gamescope.ui:119
 msgid "Fullscreen"
-msgstr ""
+msgstr "ملء الشاشة"
 
 #: bottles/frontend/ui/dialog-journal.ui:12
 msgid "All messages"
-msgstr ""
+msgstr "جميع الرسائل"
 
 #: bottles/frontend/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr ""
+msgstr "حرِج"
 
 #: bottles/frontend/ui/dialog-journal.ui:22
 msgid "Errors"
-msgstr ""
+msgstr "الأخطاء"
 
 #: bottles/frontend/ui/dialog-journal.ui:27
 msgid "Warnings"
-msgstr ""
+msgstr "التحذيرات"
 
 #: bottles/frontend/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr ""
+msgstr "المعلومات"
 
 #: bottles/frontend/ui/dialog-journal.ui:49
 msgid "Journal browser"
-msgstr ""
+msgstr "متصفح السجل"
 
 #: bottles/frontend/ui/dialog-journal.ui:56
 msgid "Journal Browser"
-msgstr ""
+msgstr "متصفح السجل"
 
 #: bottles/frontend/ui/dialog-journal.ui:62
 msgid ""
 "Change logging level.\n"
 "                                        "
 msgstr ""
+"تغيير مستوى التسجيل.\n"
+"                                        "
 
 #: bottles/frontend/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "الكل"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:8
 msgid "Launch Options"
-msgstr ""
+msgstr "خيارات بدء التشغيل"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:47
 msgid "Those arguments will be passed at launch."
-msgstr ""
+msgstr "ستُعتمد هذه الحجج عند بدء التشغيل."
 
 #: bottles/frontend/ui/dialog-launch-options.ui:48
 msgid "Custom Arguments"
-msgstr ""
+msgstr "الحجج المخصصة"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:51
 msgid "Command Arguments"
-msgstr ""
+msgstr "حجج الأوامر"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:52
 #, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "مثلا: VAR=value %command% -example1 -example2 -example3=hello"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:58
 msgid "Post-run Script"
-msgstr ""
+msgstr "البرنامج النصي بعد التشغيل"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:76
 msgid "Choose a script"
-msgstr ""
+msgstr "اختر نصاً برمجياً"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:125
 msgid "These settings will override the default settings for this executable."
-msgstr ""
+msgstr "ستتجاوز هذه الإعداداتُ الإعداداتَ الافتراضية لملف التنفيذ هذا."
 
 #: bottles/frontend/ui/dialog-launch-options.ui:126
 msgid "Preferences Overrides"
-msgstr ""
+msgstr "تجاوز التفضيلات"
 
 #: bottles/frontend/ui/dialog-launch-options.ui:129
 msgid "Reset to Bottle's Defaults"
-msgstr ""
+msgstr "أعد تعيين إعدادات القارورة للإعدادات الافتراضية"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:6
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "نص إخلاء المسؤولية لـ Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:22
 msgid "Use Proton"
-msgstr ""
+msgstr "استخدم Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:37
 msgid ""
@@ -1606,73 +1624,82 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"احذر، يمكن أن يؤدي استخدام المشغلات المعتمدة على Proton في القوارير بدون "
+"Steam إلى مشاكل.\n"
+"\n"
+"نوصي باستخدام Wine-GE بدلا عنه، وهي نسخة من Proton هدفها العمل خارج Steam.\n"
+"\n"
+"ستؤدي المتابعة إلى تشغيل Steam (إن كان موجوداً على النظام ومتعرفاً عليه من "
+"قبل بوتلز) وذلك لإتاحة وصوله للمكتبات المطلوبة ولتقليل مشاكل التوافق، ضع في "
+"الحسبان أن مُوفر المُشغل GloriousEggroll ليس مسؤولاً عن أي مشكلة ونطلب منك "
+"أن لا تبلغ عنهم."
 
 #: bottles/frontend/ui/dialog-proton-alert.ui:50
 msgid "I got it."
-msgstr ""
+msgstr "فهمت."
 
 #: bottles/frontend/ui/dialog-rename.ui:9
 msgid "Rename"
-msgstr ""
+msgstr "أعد التسمية"
 
 #: bottles/frontend/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "اختر اسماً جديداً للبرنامج المحدد."
 
 #: bottles/frontend/ui/dialog-rename.ui:37
 msgid "New Name"
-msgstr ""
+msgstr "الاسم الجديد"
 
 #: bottles/frontend/ui/dialog-run-args.ui:14
 msgid "Run With Arguments"
-msgstr ""
+msgstr "شغّل مع المعطيات"
 
 #: bottles/frontend/ui/dialog-run-args.ui:35
 #: bottles/frontend/views/bottle_details.py:202
 #: bottles/frontend/views/list.py:120
 msgid "Run"
-msgstr ""
+msgstr "شغِّل"
 
 #: bottles/frontend/ui/dialog-run-args.ui:47
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "اكتب أدناه المعطيات التي ستُمرر لملف التنفيذ."
 
 #: bottles/frontend/ui/dialog-run-args.ui:50
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "على سبيل المثال: -opengl -SkipBuildPatchPrereq"
 
 #: bottles/frontend/ui/dialog-sandbox.ui:9
 msgid "Sandbox Settings"
-msgstr ""
+msgstr "إعدادات الملعب (Sandbox)"
 
 #: bottles/frontend/ui/dialog-sandbox.ui:23
 msgid "Share Network"
-msgstr ""
+msgstr "مشاركة الشبكة"
 
 #: bottles/frontend/ui/dialog-sandbox.ui:34
 msgid "Share Sound"
-msgstr ""
+msgstr "مشاركة الصوت"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:18
 msgid "Upgrade Needed"
-msgstr ""
+msgstr "الترقية مطلوبة"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:41
 #: bottles/frontend/ui/onboard.ui:88
 msgid "Continue"
-msgstr ""
+msgstr "استمر"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:49
 msgid "Launch upgrade"
-msgstr ""
+msgstr "ابدأ الترقية"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:69
 msgid "New Versioning System"
-msgstr ""
+msgstr "نظام تعيين الإصدار الجديد"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:72
 msgid "The new bottle versioning system has landed."
-msgstr ""
+msgstr "نزَل النظام الجديد لتعيين الإصدار للقوارير."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.ui:86
 msgid ""
