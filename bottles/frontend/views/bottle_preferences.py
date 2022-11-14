@@ -910,7 +910,7 @@ class PreferencesView(Adw.PreferencesPage):
     def __set_latencyflex(self, *_args):
         """Set the latency flex value"""
         self.queue.add_task()
-        if(self.combo_latencyflex.get_selected) == 0:
+        if self.combo_latencyflex.get_selected() == 0:
             RunAsync(
             task_func=self.manager.install_dll_component,
             callback=self.set_latencyflex_status,
