@@ -222,7 +222,9 @@ class WineCommand:
                 "lib64/wine/i386-unix"
             ]
             gst_libs = [
-                "lib64/gstreamer-1.0"
+                "lib64/gstreamer-1.0",
+                "lib/gstreamer-1.0",
+                "lib32/gstreamer-1.0"
             ]
         else:
             runner_libs = [
