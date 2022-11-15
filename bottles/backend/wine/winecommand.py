@@ -346,7 +346,7 @@ class WineCommand:
                     gpu_envs = discrete["envs"]
                     for p in gpu_envs:
                         env.add(p, gpu_envs[p])
-                    env.add("VK_ICD_FILENAMES", discrete["icd"])
+                    env.concat("VK_ICD_FILENAMES", discrete["icd"])
 
             # VK_ICD
             if not env.has("VK_ICD_FILENAMES"):
@@ -355,7 +355,7 @@ class WineCommand:
                     System support PRIME but user disabled the discrete GPU
                     setting (previus check skipped), so using the integrated one.
                     '''
-                    env.add("VK_ICD_FILENAMES", gpu["prime"]["integrated"]["icd"])
+                    env.concat("VK_ICD_FILENAMES", gpu["prime"]["integrated"]["icd"])
                 else:
                     '''
                     System doesn't support PRIME, so using the first result
@@ -363,7 +363,7 @@ class WineCommand:
                     '''
                     if "vendors" in gpu and len(gpu["vendors"]) > 0:
                         _first = list(gpu["vendors"].keys())[0]
-                        env.add("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
+                        env.concat("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
                     else:
                         logging.warning("No GPU vendor found, keep going without setting VK_ICD_FILENAMES…")
 
@@ -618,7 +618,6 @@ class WineCommand:
                     env=self.env,
                     cwd=self.cwd
                 )
-                proc.wait()
             except FileNotFoundError:
                 return
                 
