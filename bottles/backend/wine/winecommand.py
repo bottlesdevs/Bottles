@@ -67,7 +67,7 @@ class WineEnv:
             values = [values]
         values = sep.join(values)
 
-        if self.has(key):
+        if self.has(key) and self.__env[key]:
             values = self.__env[key] + sep + values
         self.add(key, values, True)
 
@@ -159,6 +159,8 @@ class WineCommand:
         if config.get("Environment_Variables"):
             for var in config.get("Environment_Variables").items():
                 env.add(var[0], var[1], override=True)
+                if (var[0] == "WINEDLLOVERRIDES") and var[1]:
+                    dll_overrides.extend(var[1].split(";"))
 
         # Environment variables from argument
         if environment:
