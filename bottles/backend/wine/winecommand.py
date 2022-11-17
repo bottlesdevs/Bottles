@@ -67,7 +67,7 @@ class WineEnv:
             values = [values]
         values = sep.join(values)
 
-        if self.has(key) and self.__env[key]:
+        if self.has(key):
             values = self.__env[key] + sep + values
         self.add(key, values, True)
 
