@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-11-17 18:47+0000\n"
+"PO-Revision-Date: 2022-11-19 13:47+0000\n"
 "Last-Translator: Ali Aljishi <ahj696@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bottles/bottles/"
 "ar/>\n"
@@ -378,7 +378,8 @@ msgstr "معطيات الاجتياز"
 
 #: bottles/frontend/main.py:196
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "URI غير صحيح (الصياغة: bottles:run/<bottle>/<program>)"
+msgstr ""
+"معرف الموارد الموحد (URI) غير صحيح (الصياغة: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:237
 msgid "[Quit] request received."
@@ -601,11 +602,11 @@ msgstr "شغل الأوامر داخل القارورة."
 
 #: bottles/frontend/ui/details-bottle.ui:262
 msgid "Registry Editor"
-msgstr "محرر السجل"
+msgstr "محرر سجل النظام"
 
 #: bottles/frontend/ui/details-bottle.ui:263
 msgid "Edit the internal registry."
-msgstr "تعديل محرر سجل النظام الداخلي."
+msgstr "تعديل سجل النظام الداخلي."
 
 #: bottles/frontend/ui/details-bottle.ui:273
 msgid "Legacy Tools"
@@ -613,7 +614,7 @@ msgstr "أدوات قديمة"
 
 #: bottles/frontend/ui/details-bottle.ui:277
 msgid "Explorer"
-msgstr "مستكشف"
+msgstr "المستكشف"
 
 #: bottles/frontend/ui/details-bottle.ui:278
 msgid "Browse internal files with the Wine explorer."
@@ -658,15 +659,15 @@ msgstr "لوحة التحكم"
 
 #: bottles/frontend/ui/details-bottle.ui:338
 msgid "Access the internal Wine Control Panel."
-msgstr "قم بالوصول إلى لوحة تحكم واين الداخلية."
+msgstr "قم بالوصول إلى لوحة التحكم الداخلية لواين."
 
 #: bottles/frontend/ui/details-bottle.ui:357
 msgid "Use the Installers section or the \"Run executable\" button."
-msgstr "استخدم قسم المثبتات أو الزر \"تشغيل قابل للتنفيذ\"."
+msgstr "استخدم قسم المثبتات أو زر \"تشغيل ملف تنفيذ\"."
 
 #: bottles/frontend/ui/details-dependencies.ui:13
 msgid "Search for dependencies…"
-msgstr "البحث عن التبعيات…"
+msgstr "ابحث عن التبعيات…"
 
 #: bottles/frontend/ui/details-dependencies.ui:22
 msgid ""
@@ -674,8 +675,8 @@ msgid ""
 "compatibility of Windows software. Install from here to meet your program "
 "requirements."
 msgstr ""
-"التبعيات هي البرامج والمكتبات وبرامج الترميز التي تعمل على تحسين توافق برامج "
-"Windows. قم بالتثبيت من هنا لتلبية متطلبات البرنامج."
+"التبعيات هي البرمجيات والمكتبات وبرامج الترميز التي تعمل على تحسين توافق "
+"برامج ويندوز. ثبّتها من هنا لتلبية متطلبات البرنامج."
 
 #: bottles/frontend/ui/details-dependencies.ui:34
 #: bottles/frontend/ui/details-installers.ui:33
@@ -683,8 +684,8 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"يتم توفير الملفات الموجودة في هذه الصفحة بواسطة جهات خارجية بموجب ترخيص خاص. "
-"بتثبيتها ، فإنك توافق على شروط الترخيص الخاصة بكل منها."
+"تُوفر الملفات الموجودة في هذه الصفحة بواسطة جهات خارجية بموجب ترخيص خاص. أنت "
+"توافق على شروط الترخيص الخاصة بكل منها عند تثبيتها."
 
 #: bottles/frontend/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
@@ -692,7 +693,7 @@ msgstr "أبلغ عن مشكلة أو تبعية مفقودة."
 
 #: bottles/frontend/ui/details-dependencies.ui:63
 msgid "Report missing dependency"
-msgstr "ابلغ عن التبعيات المفقودة"
+msgstr "أبلغ عن تبعية مفقودة"
 
 #: bottles/frontend/ui/details-dependencies.ui:68
 msgid "Read documentation."
@@ -704,7 +705,7 @@ msgstr "اقرأ دليل المستخدم."
 #: bottles/frontend/ui/details-versioning.ui:44
 #: bottles/frontend/ui/window.ui:38
 msgid "Documentation"
-msgstr "وثيقة"
+msgstr "التوثيق"
 
 #: bottles/frontend/ui/details-dependencies.ui:80
 msgid "Install Selected"
@@ -712,7 +713,7 @@ msgstr "تثبيت المحدد"
 
 #: bottles/frontend/ui/details-dependencies.ui:81
 msgid "We strongly advise against installing multiple dependencies at once."
-msgstr "ننصح بشدة بعدم تثبيت تبعيات متعددة في وقت واحد."
+msgstr "نوصي بشدة عدم تثبيت تبعيات متعددة في وقت واحد."
 
 #: bottles/frontend/ui/details-dependencies.ui:88
 msgid "Select Dependencies"
@@ -722,34 +723,34 @@ msgstr "حدد التبعيات"
 #: bottles/frontend/ui/details-installers.ui:82
 #: bottles/frontend/ui/window.ui:86
 msgid "Search"
-msgstr "بحث"
+msgstr "ابحث"
 
 #: bottles/frontend/ui/details-installers.ui:13
 msgid "Search for Programs…"
-msgstr "ابحث عن البرامج …"
+msgstr "ابحث عن البرامج…"
 
 #: bottles/frontend/ui/details-installers.ui:22
 msgid ""
 "Use this section to install programs curated by our community, without "
 "having to proceed manually."
 msgstr ""
-"استخدام هذا القسم لتركيب البرامج التي ترعاها مجتمعنا، دون الحاجة إلى المضي "
+"استخدم هذا القسم لتثبيت البرامج التي اختارها مجتمعنا دون الحاجة إلى التدخل "
 "يدويا."
 
 #: bottles/frontend/ui/details-installers.ui:48
 msgid "No Installers Found"
-msgstr "لم يتم العثور على المثبتات"
+msgstr "لم يُعثر على مثبتات"
 
 #: bottles/frontend/ui/details-installers.ui:51
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
-msgstr "المستودع لا يمكن الوصول إليه أو لا يوجد مثبت متوافق مع هذه القارورة."
+msgstr "لا يمكن الوصول إلى المستودع أو لا يوجد مثبت متوافق مع هذه القارورة."
 
 #: bottles/frontend/ui/details-installers.ui:70
 #: bottles/frontend/ui/details-programs.ui:44
 #: bottles/frontend/ui/details-versioning.ui:43
 msgid "Read documentation"
-msgstr "اقرأ الوثائق"
+msgstr "اقرأ التوثيق"
 
 #: bottles/frontend/ui/details-preferences.ui:8
 msgid "Bottle Details"
@@ -758,7 +759,7 @@ msgstr "تفاصيل القارورة"
 #: bottles/frontend/ui/details-preferences.ui:11
 #: bottles/frontend/ui/dialog-duplicate.ui:58 bottles/frontend/ui/new.ui:70
 msgid "Name"
-msgstr "اسم"
+msgstr "الاسم"
 
 #: bottles/frontend/ui/details-preferences.ui:19
 msgid "Graphics"
@@ -771,12 +772,12 @@ msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.ui:24
 msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr "يعمل على تحسين أداء ألعاب DirectX 11 والتطبيقات ثلاثية الأبعاد."
+msgstr "يُحسن أداء ألعاب DirectX 11 والتطبيقات ثلاثية الأبعاد."
 
 #: bottles/frontend/ui/details-preferences.ui:27
 #: bottles/frontend/ui/details-preferences.ui:338
 msgid "Updating DXVK, please wait…"
-msgstr "جاري تحديث DXVK ، يرجى الانتظار …"
+msgstr "جارٍ تحديث DXVK، يرجى الانتظار…"
 
 #: bottles/frontend/ui/details-preferences.ui:42
 #: bottles/frontend/ui/preferences.ui:218
@@ -785,12 +786,12 @@ msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.ui:43
 msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr "يعمل على تحسين أداء ألعاب DirectX 12 والتطبيقات ثلاثية الأبعاد."
+msgstr "يُحسن أداء ألعاب DirectX 12 والتطبيقات ثلاثية الأبعاد."
 
 #: bottles/frontend/ui/details-preferences.ui:46
 #: bottles/frontend/ui/details-preferences.ui:361
 msgid "Updating VKD3D, please wait…"
-msgstr "جارٍ تحديث VKD3D ، يرجى الانتظار …"
+msgstr "جارٍ تحديث VKD3D، يرجى الانتظار…"
 
 #: bottles/frontend/ui/details-preferences.ui:61
 msgid "DLSS (DXVK-NVAPI)"
@@ -798,14 +799,14 @@ msgstr "DLSS (DXVK-NVAPI)"
 
 #: bottles/frontend/ui/details-preferences.ui:62
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "قم بتوفير دعم DLSS إذا كان متاحًا و NVAPI من Nvidia."
+msgstr "يوفر دعم DLSS إذا كان متاحاً ودعم NVAPI من إنفيديا."
 
 #: bottles/frontend/ui/details-preferences.ui:65
 #: bottles/frontend/ui/details-preferences.ui:112
 #: bottles/frontend/ui/details-preferences.ui:385
 #: bottles/frontend/ui/details-preferences.ui:407
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "جاري تحديث DXVK-NVAPI ، برجاء الانتظار …"
+msgstr "جارٍ تحديث DXVK-NVAPI، يرجى الانتظار…"
 
 #: bottles/frontend/ui/details-preferences.ui:80
 msgid "FSR"
@@ -822,7 +823,7 @@ msgstr "جودة فائقة"
 
 #: bottles/frontend/ui/details-preferences.ui:89
 msgid "Quality"
-msgstr "جودة"
+msgstr "الجودة"
 
 #: bottles/frontend/ui/details-preferences.ui:90
 msgid "Balanced"
@@ -839,7 +840,7 @@ msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
-msgstr "بديل ل NVIDIA Reflex. يمكن اكتشافه من قبل بعض مكافحة الغش."
+msgstr "بديل ل NVIDIA Reflex. يمكن اكتشافه من قبل بعض برامج مكافحة الغش."
 
 #: bottles/frontend/ui/details-preferences.ui:128
 msgid "Discrete GPU"
@@ -851,13 +852,15 @@ msgstr "تحسين الأداء بتكلفة زيادة استخدام الطا�
 
 #: bottles/frontend/ui/details-preferences.ui:140
 msgid "vkBasalt"
-msgstr "vkbasalt"
+msgstr "vkBasalt"
 
 #: bottles/frontend/ui/details-preferences.ui:141
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
-msgstr "vkBasalt هي طبقة Vulkan بعد المعالجة لتحسين الرسومات المرئية للألعاب."
+msgstr ""
+"vkBasalt هي طبقة بعد معالجة من فولكان تُستخدم لتحسين الرسومات المرئية "
+"للألعاب."
 
 #: bottles/frontend/ui/details-preferences.ui:144
 msgid "Manage vkBasalt settings"
@@ -878,11 +881,11 @@ msgstr "استخدم سطح المكتب الافتراضي الخاص بواي�
 
 #: bottles/frontend/ui/details-preferences.ui:204
 msgid "Fullscreen Mouse Capture"
-msgstr "التقاط الماوس في وضع ملء الشاشة"
+msgstr "التقاط الفأرة في وضع ملء الشاشة"
 
 #: bottles/frontend/ui/details-preferences.ui:205
 msgid "Let the program capture mouse input when fullscreen."
-msgstr "دع البرنامج يلتقط مدخلات الماوس عند وضع ملء الشاشة."
+msgstr "دع البرنامج يلتقط مدخلات الفأرة عند وضع ملء الشاشة."
 
 #: bottles/frontend/ui/details-preferences.ui:216
 msgid "Take Focus"
@@ -890,15 +893,15 @@ msgstr "خذ التركيز"
 
 #: bottles/frontend/ui/details-preferences.ui:217
 msgid "Activate it if the program does not retake focus on switch."
-msgstr "قم بتنشيطه إذا لم يستعيد البرنامج التركيز على التبديل."
+msgstr "نشّطه إذا لم يستعد البرنامج التركيز بعد التبديل."
 
 #: bottles/frontend/ui/details-preferences.ui:228
 msgid "Mouse Warp"
-msgstr "اعوجاج الماوس"
+msgstr "الانتقال الآني للفأرة"
 
 #: bottles/frontend/ui/details-preferences.ui:229
 msgid "Change this if you are running into mouse lag or desync."
-msgstr "قم بتغيير هذا إذا كنت تواجه تأخر الماوس أو عدم التزامن."
+msgstr "غّير هذا إذا كنت تواجه تأخر الفأرة أو عدم التزامن."
 
 #: bottles/frontend/ui/details-preferences.ui:241
 msgid "Screen Scaling"
@@ -906,7 +909,7 @@ msgstr "تحجيم الشاشة"
 
 #: bottles/frontend/ui/details-preferences.ui:242
 msgid "Set custom DPI."
-msgstr "تعيين DPI مخصص."
+msgstr "تخصيص سرعة الفأرة."
 
 #: bottles/frontend/ui/details-preferences.ui:248
 msgid "96"
@@ -962,7 +965,7 @@ msgstr "المصيِّر"
 
 #: bottles/frontend/ui/details-preferences.ui:273
 msgid "Select what backend to use for wined3d."
-msgstr "حدد الواجهة الخلفية التي تريد استخدامها ل wined3d."
+msgstr "حدد الواجهة الخلفية التي تريد استخدامها لـ wined3d."
 
 #: bottles/frontend/ui/details-preferences.ui:279
 msgid "gl (default)"
@@ -979,19 +982,19 @@ msgstr "فولكان"
 #: bottles/frontend/ui/details-preferences.ui:296
 #: bottles/frontend/ui/details-preferences.ui:432
 msgid "System"
-msgstr "نظام"
+msgstr "النظام"
 
 #: bottles/frontend/ui/details-preferences.ui:299
 msgid "Manage Components Versions"
-msgstr "إدارة إصدارات المكونات"
+msgstr "أدِر إصدارات المكونات"
 
 #: bottles/frontend/ui/details-preferences.ui:309
 msgid "Components"
-msgstr "مكونات"
+msgstr "المكونات"
 
 #: bottles/frontend/ui/details-preferences.ui:317
 msgid "Updating Runner and components, please wait…"
-msgstr "جارٍ تحديث المشغل والمكونات ، يرجى الانتظار …"
+msgstr "جارٍ تحديث المشغل والمكونات، يرجى الانتظار …"
 
 #. TODO: replace with ComboRow
 #: bottles/frontend/ui/details-preferences.ui:334
@@ -1016,7 +1019,7 @@ msgstr "تمكين المزامنة لزيادة أداء المعالجات م�
 
 #: bottles/frontend/ui/details-preferences.ui:427
 msgid "Synchronization"
-msgstr "تزامن"
+msgstr "التزامن"
 
 #: bottles/frontend/ui/details-preferences.ui:438
 msgid "Esync"
@@ -1036,11 +1039,11 @@ msgstr "إصدار ويندوز"
 
 #: bottles/frontend/ui/details-preferences.ui:468
 msgid "Updating Windows version, please wait…"
-msgstr "جارٍ تحديث إصدار Windows ، الرجاء الانتظار …"
+msgstr "جارٍ تحديث إصدار ويندوز، الرجاء الانتظار…"
 
 #: bottles/frontend/ui/details-preferences.ui:496
 msgid "Language"
-msgstr "لغة"
+msgstr "اللغة"
 
 #: bottles/frontend/ui/details-preferences.ui:497
 msgid "Choose the language to use with programs."
@@ -1052,7 +1055,7 @@ msgstr "خاطئة"
 
 #: bottles/frontend/ui/details-preferences.ui:508
 msgid "Dedicated Sandbox"
-msgstr "عزل مخصص"
+msgstr "ساحة حماية مخصصة"
 
 #: bottles/frontend/ui/details-preferences.ui:509
 msgid "Use a restricted/managed environment for this bottle."
@@ -1060,7 +1063,7 @@ msgstr "استخدم بيئة مقيدة / مُدارة لهذه قارورة."
 
 #: bottles/frontend/ui/details-preferences.ui:512
 msgid "Manage Sandbox permissions"
-msgstr "إدارة أذونات Sandbox"
+msgstr "إدارة أذونات ساحة الحماية"
 
 #: bottles/frontend/ui/details-preferences.ui:530
 msgid "Bottles Runtime"
@@ -1071,8 +1074,7 @@ msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
 msgstr ""
-"يوفر مجموعة من المكتبات الإضافية لمزيد من التوافق ، قم بتعطيله إذا واجهت "
-"مشاكل."
+"يوفر مجموعة من المكتبات الإضافية لمزيد من التوافق، عطّله إذا واجهت مشاكل."
 
 #: bottles/frontend/ui/details-preferences.ui:542
 msgid "Steam Runtime"
@@ -1080,15 +1082,15 @@ msgstr "زمن تشغيل Steam"
 
 #: bottles/frontend/ui/details-preferences.ui:543
 msgid "The same as the Bottles one but provided by Steam."
-msgstr "نفس بوتلز ولكن مقدمة من ستيم."
+msgstr "نفس المقدمة من بوتلز ولكن مقدمة من ستيم."
 
 #: bottles/frontend/ui/details-preferences.ui:554
 msgid "GameMode"
-msgstr "نوع اللعبة"
+msgstr "GameMode"
 
 #: bottles/frontend/ui/details-preferences.ui:555
 msgid "Optimise gaming performance on demand."
-msgstr "تحسين أداء الألعاب عند الطلب."
+msgstr "حسّن أداء الألعاب عند الطلب."
 
 #: bottles/frontend/ui/details-preferences.ui:566
 msgid "Gamescope"
@@ -1108,7 +1110,7 @@ msgstr "Vmtouch"
 
 #: bottles/frontend/ui/details-preferences.ui:589
 msgid "Preload game files into RAM"
-msgstr "حمل ملفات اللعبة مسبقا في ذاكرة الوصول العشوائي"
+msgstr "حمل ملفات اللعبة في ذاكرة الوصول العشوائي مسبقاً"
 
 #: bottles/frontend/ui/details-preferences.ui:592
 msgid "Manage vmtouch settings"
