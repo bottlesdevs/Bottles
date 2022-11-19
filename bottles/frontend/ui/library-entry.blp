@@ -1,48 +1,20 @@
 using Gtk 4.0;
 
-Popover pop_context {
-  styles [
-    "menu",
-  ]
-
-  Box {
-    margin-top: 6;
-    margin-bottom: 6;
-    margin-start: 6;
-    margin-end: 6;
-    orientation: vertical;
-
-    .GtkModelButton btn_remove {
-      text: _("Remove from Library");
-    }
-  }
-}
-
 template LibraryEntry : Box {
   orientation: vertical;
   halign: start;
   valign: start;
   width-request: 128;
+  height-request: 348;
   overflow: hidden;
 
-  Overlay {
-    width-request: 256;
-    height-request: 384;
+  Overlay overlay {
+    width-request: 226;
+    height-request: 348;
+    vexpand: true;
+    hexpand: true;
 
     [overlay]
-    MenuButton btn_menu {
-      halign: start;
-      valign: start;
-      margin-top: 5;
-      margin-start: 5;
-      popover: pop_context;
-      icon-name: "view-more-symbolic";
-
-      styles [
-        "flat",
-      ]
-    }
-
     Box {
       orientation: vertical;
       hexpand: true;
@@ -52,6 +24,7 @@ template LibraryEntry : Box {
         visible: false;
         hexpand: true;
         vexpand: true;
+        content-fit: cover;
       }
 
       Label label_no_cover {
@@ -69,77 +42,113 @@ template LibraryEntry : Box {
     }
 
     [overlay]
-    Image img_icon {
-      icon-name: "applications-games-symbolic";
-      halign: end;
-      valign: end;
-      margin-bottom: 10;
-      margin-end: 10;
-    }
-  }
+    Revealer revealer_run {
+      reveal-child: false;
+      transition-type: crossfade;
+      valign: center;
 
-  Box {
-    spacing: 6;
-
-    Box {
-      orientation: vertical;
-      hexpand: true;
-
-      Label label_name {
-        halign: start;
-        label: _("Item name");
-
-        styles [
-          "title",
-        ]
-      }
-
-      Label label_bottle {
-        halign: start;
-        label: _("Bottle name");
-
-        styles [
-          "caption",
-        ]
-      }
-    }
-
-    [end]
-    Box {
-      Button btn_launch_steam {
-        tooltip-text: _("Launch with Steam");
+      Box {
         valign: center;
-        icon-name: "bottles-steam-symbolic";
-        visible: false;
-
-        styles [
-          "flat",
-        ]
-      }
-
-      Button btn_run {
-        valign: center;
-        icon-name: "media-playback-start-symbolic";
-
-        styles [
-          "flat",
-        ]
-      }
-
-      Button btn_stop {
-        visible: false;
         halign: center;
-        icon-name: "media-playback-stop-symbolic";
 
-        styles [
-          "flat",
-        ]
+        Button btn_run {
+          valign: center;
+          halign: center;
+          label: _("Launch");
+
+          styles [
+            "osd",
+            "pill",
+          ]
+        }
+
+        [overlay]
+        Button btn_launch_steam {
+          valign: center;
+          halign: center;
+          visible: false;
+          label: _("Launch with Steam");
+
+          styles [
+            "osd",
+            "pill",
+          ]
+        }
       }
     }
 
-    styles [
-      "library-entry-details",
-    ]
+    [overlay]
+    Revealer revealer_details {
+      reveal-child: false;
+      transition-type: crossfade;
+      valign: end;
+
+      Box {
+        spacing: 6;
+        halign: fill;
+        valign: end;
+        vexpand: true;
+        margin-bottom: 10;
+        margin-start: 10;
+        margin-end: 10;
+
+        styles [
+          "osd",
+          "toolbar",
+          "library-entry-details",
+        ]
+
+        Box {
+          orientation: vertical;
+          hexpand: true;
+          valign: center;
+
+          Label label_name {
+            halign: start;
+            label: _("Item name");
+
+            styles [
+              "title",
+            ]
+          }
+
+          Label label_bottle {
+            halign: start;
+            label: _("Bottle name");
+
+            styles [
+              "caption",
+            ]
+          }
+        }
+
+        [end]
+        Box {
+          Button btn_remove {
+            halign: center;
+            icon-name: "list-remove-symbolic";
+            tooltip-text: _("Remove");
+
+            styles [
+              "flat",
+              "circular",
+            ]
+          }
+
+          Button btn_stop {
+            visible: false;
+            halign: center;
+            icon-name: "media-playback-stop-symbolic";
+            tooltip-text: _("Stop");
+
+            styles [
+              "flat",
+              "circular",
+            ]
+          }
+        }
+      }
+    }
   }
 
   styles [
