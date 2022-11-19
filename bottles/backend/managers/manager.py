@@ -889,6 +889,16 @@ class Manager:
         wineserver = WineServer(_config)
         bottle_path = ManagerUtils.get_bottle_path(config)
 
+        # Fix pathing error, where space is converted to _ in file name, but not in the path that bottle uses
+        # Replace spaces in file path with _ to solve this issue:
+        bottle_path_tmp = ""
+        for character in bottle_path:
+            if character != " ":
+                bottle_path_tmp = bottle_path_tmp + character
+            else:
+                bottle_path_tmp = bottle_path_tmp + "_"
+        bottle_path = bottle_path_tmp 
+
         if key == "sync":
             '''
             Workaround <https://github.com/bottlesdevs/Bottles/issues/916>
