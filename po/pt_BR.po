@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-07 23:12+0200\n"
-"PO-Revision-Date: 2022-10-30 19:05+0000\n"
-"Last-Translator: Davi Patricio <davipatricio@pm.me>\n"
+"PO-Revision-Date: 2022-11-20 19:47+0000\n"
+"Last-Translator: Geraldo Homero <geraldohomero@protonmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
@@ -277,7 +277,7 @@ msgstr "Instalando {0}…"
 #: bottles/frontend/windows/installer.py:125
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr "{0} agora está disponível na visualização de programas."
+msgstr "{0} está disponível agora no visualizador de programas."
 
 #: bottles/frontend/windows/installer.py:171
 msgid "Installer failed with unknown error"
@@ -1794,12 +1794,12 @@ msgstr "Efeitos"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:71
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "Nitidez adaptável ao contraste"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:74
 #: bottles/frontend/ui/dialog-vkbasalt.ui:110
 msgid "Sharpness"
-msgstr ""
+msgstr "Nitidez"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:78
 #: bottles/frontend/ui/dialog-vkbasalt.ui:114
@@ -1813,9 +1813,8 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.ui:364
 #: bottles/frontend/ui/dialog-vkbasalt.ui:392
 #: bottles/frontend/ui/dialog-vkbasalt.ui:424
-#, fuzzy
 msgid "Show Information"
-msgstr "Informações da garrafa"
+msgstr "Mostrar informação"
 
 #. Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.ui:107
@@ -1824,16 +1823,15 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:139
 msgid "Denoise"
-msgstr ""
+msgstr "Diminuir ruído"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:171
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "Anti-Aliasing rápido aproximado"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:174
-#, fuzzy
 msgid "Subpixel Quality"
-msgstr "Qualidade Ultra"
+msgstr "Qualidade Subpixel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:203
 msgid "Quality Edge Threshold"
@@ -1857,15 +1855,15 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:290
 msgid "Color"
-msgstr ""
+msgstr "Cor"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:303
 msgid "Threshold"
-msgstr ""
+msgstr "Limite"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:332
 msgid "Max Search Steps"
-msgstr ""
+msgstr "Etapas de pesquisa máxima"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:360
 msgid "Max Search Steps Diagonal"
@@ -1880,38 +1878,45 @@ msgid "Color Lookup Table"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:437
-#, fuzzy
 msgid "Reset to Default"
 msgstr "Restaurar padrão"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:448
-#, fuzzy
 msgid "Select a File"
-msgstr "Excluir garrafa…"
+msgstr "Selecione um Arquivo"
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:482
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"CAS sharpness aumenta a nitidez de um quadro. Valores mais altos tornam o "
+"quadro mais nítido, enquanto valores menores que 0 tornam o quadro mais "
+"suave que nativo."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:500
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"DLS sharpness aumenta a nitidez de um frame. Valores altos tornam o frame "
+"mais nítido."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:518
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"DLS denoise diminuem o ruído de um frame. Valores baixos tornam o frame mais "
+"suave."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:536
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"FXAA subpixel quality diminui o aliasing ao nível do subpixel. Valores altos "
+"suavizam o frame."
 
 #: bottles/frontend/ui/dialog-vkbasalt.ui:554
 msgid ""
@@ -2703,14 +2708,12 @@ msgid "Installers"
 msgstr "Instaladores"
 
 #: bottles/frontend/views/details.py:377
-#, fuzzy
 msgid "Operations in progress, please wait."
-msgstr "Atualizando a versão do Windows, aguarde…"
+msgstr "Operação em andamento, aguarde."
 
 #: bottles/frontend/views/details.py:381
-#, fuzzy
 msgid "Return to your bottles."
-msgstr "Procure suas garrafas…"
+msgstr "Retorne à suas garrafa."
 
 #: bottles/frontend/views/importer.py:89
 msgid "Backup imported successfully."
@@ -2748,9 +2751,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr ""
 
 #: bottles/frontend/views/new.py:133
-#, fuzzy
 msgid "Name has special characters or already in use."
-msgstr "Caracteres especiais não são permitidos!"
+msgstr "O nome tem caracteres especiais ou já está em uso."
 
 #: bottles/frontend/views/new.py:150
 msgid "Choose a recipe file"
@@ -2770,11 +2772,8 @@ msgid "A bottle named “{0}” was created successfully"
 msgstr "Uma garrafa chamada “{0}” foi criada com êxito"
 
 #: bottles/frontend/views/preferences.py:119
-#, fuzzy
 msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-"Steam não foi encontrada ou Bottles não tem permissões suficientes.Visite "
-"https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
+msgstr "Steam não foi encontrada ou Bottles não tem permissões suficientes."
 
 #: bottles/frontend/views/preferences.py:156
 msgid "Choose new bottles path"
@@ -2822,9 +2821,9 @@ msgid "'{0}' installed."
 msgstr "'{0}' instalado."
 
 #: bottles/frontend/widgets/dependency.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' failed to install."
-msgstr "'{0}' instalado."
+msgstr "'{0}' falha ao instalar."
 
 #: bottles/frontend/widgets/importer.py:66
 #, python-brace-format
@@ -2837,14 +2836,14 @@ msgid "Review for {0}"
 msgstr "Análise de {0}"
 
 #: bottles/frontend/widgets/program.py:187
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching '{0}'…"
-msgstr "Iniciar no Terminal…"
+msgstr "Iniciando '{0}'…"
 
 #: bottles/frontend/widgets/program.py:193
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching '{0}' with Steam…"
-msgstr "Iniciar com Steam"
+msgstr "Iniciando '{0}' com Steam…"
 
 #: bottles/frontend/widgets/program.py:215
 #, python-brace-format
@@ -2882,9 +2881,8 @@ msgid "'{0}' added to your Steam library"
 msgstr "'{0}' adicionado à sua biblioteca Steam"
 
 #: bottles/frontend/windows/main_window.py:188
-#, fuzzy
 msgid "Custom Bottles Path not Found"
-msgstr "Caminho de Garrafas Personalizado (Requer Reinicialização)"
+msgstr "Caminho de Garrafas Personalizado não encontrado"
 
 #: bottles/frontend/windows/main_window.py:189
 msgid ""
@@ -3031,9 +3029,8 @@ msgid "Exclude paths from versioning using patterns"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "Use compression for versioning states"
-msgstr "Criando o estado de versão 0…"
+msgstr "Use compactação para o controle de versões"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Improve Launch Options saving without update the UI multiple times"
@@ -3081,9 +3078,8 @@ msgid "Added credits for Third-Party Libraries in the Credits section"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
-#, fuzzy
 msgid "Minor UI improvements"
-msgstr "Melhorias:"
+msgstr "Pequenas melhorias na UI"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Fixes"
