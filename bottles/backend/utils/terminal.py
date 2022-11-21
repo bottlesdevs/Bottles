@@ -75,7 +75,7 @@ class TerminalUtils:
 
         return False
 
-    def execute(self, command, env=None, colors="default"):
+    def execute(self, command, env=None, colors="default", cwd=None):
         if env is None:
             env = os.environ.copy()
 
@@ -103,7 +103,8 @@ class TerminalUtils:
             command,
             shell=True,
             env=env,
-            stdout=subprocess.PIPE
+            stdout=subprocess.PIPE,
+            cwd=cwd
         ).communicate()[0].decode("utf-8")
 
         return True

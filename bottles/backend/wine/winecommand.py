@@ -603,13 +603,13 @@ class WineCommand:
                 share_sound=permissions.get("share_sound", False),
             )
             if self.terminal:
-                return TerminalUtils().execute(sandbox.get_cmd(self.command), self.env, self.colors)
+                return TerminalUtils().execute(sandbox.get_cmd(self.command), self.env, self.colors, self.cwd)
 
             proc = sandbox.run(self.command)
 
         else:
             if self.terminal:
-                return TerminalUtils().execute(self.command, self.env, self.colors)
+                return TerminalUtils().execute(self.command, self.env, self.colors, self.cwd)
 
             try:
                 proc = subprocess.Popen(
