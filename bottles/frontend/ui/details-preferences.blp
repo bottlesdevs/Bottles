@@ -307,17 +307,6 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_embedded_gstreamer {
-      visible: false;
-      activatable-widget: "switch_embedded_gstreamer";
-      title: _("Embedded GStreamer");
-      subtitle: _("Use the embedded GStreamer if available in the runner. Disable if you run into issues with videos not playing correctly.");
-
-      Switch switch_embedded_gstreamer {
-        valign: center;
-      }
-    }
-
     .AdwActionRow row_cwd {
       title: _("Working Directory");
       activatable-widget: btn_cwd;

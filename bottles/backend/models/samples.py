@@ -46,7 +46,6 @@ class Samples:
             "custom_dpi": 96,
             "renderer": "gl",
             "discrete_gpu": False,
-            "embedded_gstreamer": True,
             "virtual_desktop": False,
             "virtual_desktop_res": "1280x720",
             "pulseaudio_latency": False,
