@@ -243,7 +243,7 @@ class WineCommand:
                 ld.append(_path)
 
         # Embedded GStreamer environment variables
-        if params["embedded_gstreamer"] and not return_steam_env:
+        if not env.has('BOTTLES_USE_SYSTEM_GSTREAMER') and not return_steam_env:  
             gst_env_path = []
             for lib in gst_libs:
                 if os.path.exists(os.path.join(runner_path, lib)):
