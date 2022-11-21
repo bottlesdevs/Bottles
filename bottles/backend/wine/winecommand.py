@@ -159,6 +159,8 @@ class WineCommand:
         if config.get("Environment_Variables"):
             for var in config.get("Environment_Variables").items():
                 env.add(var[0], var[1], override=True)
+                if (var[0] == "WINEDLLOVERRIDES") and var[1]:
+                    dll_overrides.extend(var[1].split(";"))
 
         # Environment variables from argument
         if environment:
@@ -183,7 +185,8 @@ class WineCommand:
 
         # Default DLL overrides
         if not return_steam_env:
-            dll_overrides.append("mshtml=d")
+            if all(not s.startswith("mshtml=") for s in dll_overrides):
+                dll_overrides.append("mshtml=d")
             dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
