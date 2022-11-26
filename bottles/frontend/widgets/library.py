@@ -52,6 +52,7 @@ class LibraryEntry(Gtk.Box):
     def __init__(self, library, uuid, entry, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.library = library
+        self.window = library.window
         self.manager = library.window.manager
         self.uuid = uuid
         self.entry = entry
@@ -163,6 +164,7 @@ class LibraryEntry(Gtk.Box):
         )
 
     def __remove_entry(self, *args):
+        self.window.show_toast(_("Removing \"{0}\"…").format(self.program["name"]))
         self.library.remove_entry(self.uuid)
 
     # def __calculate_button_color(self, path):
@@ -175,7 +177,7 @@ class LibraryEntry(Gtk.Box):
     #     self.library.add_css_entry(entry=self, color=button_color)
 
     def run_executable(self, widget, with_terminal=False):
-        print("here")
+        self.window.show_toast(_("Launching \"{0}\"…").format(self.program["name"]))
         RunAsync(
             WineExecutor.run_program, 
             callback=self.__reset_buttons, 
@@ -188,6 +190,7 @@ class LibraryEntry(Gtk.Box):
         self.manager.steam_manager.launch_app(self.config["CompatData"])
 
     def stop_process(self, widget):
+        self.window.show_toast(_("Stopping \"{0}\"…").format(self.program["name"]))
         winedbg = WineDbg(self.config)
         winedbg.kill_process(name=self.program["executable"])
         self.__reset_buttons(True)
