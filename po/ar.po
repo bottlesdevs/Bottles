@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-07 23:12+0200\n"
+"POT-Creation-Date: 2022-11-27 13:57+0100\n"
 "PO-Revision-Date: 2022-11-23 13:01+0000\n"
 "Last-Translator: abdalrzag eisa <bmjfdrh@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -34,98 +34,98 @@ msgstr "نسخ احتياطي {0}"
 msgid "Importing backup: {0}"
 msgstr "استيراد النسخة الاحتياطية: {0}"
 
-#: bottles/backend/managers/manager.py:1030
+#: bottles/backend/managers/manager.py:1079
 msgid "Fail to install components, tried 3 times."
 msgstr "فشل تثبيت المكوّنات ثلاث مرات."
 
-#: bottles/backend/managers/manager.py:1041
+#: bottles/backend/managers/manager.py:1090
 msgid "Missing essential components. Installing…"
 msgstr "تُثبت بعض المكونات المفقودة…"
 
-#: bottles/backend/managers/manager.py:1117
+#: bottles/backend/managers/manager.py:1166
 msgid "Failed to create bottle directory."
 msgstr "فشل تكوين دليل للقارورة."
 
-#: bottles/backend/managers/manager.py:1129
+#: bottles/backend/managers/manager.py:1178
 msgid "Failed to create placeholder directory/file."
 msgstr "فشل تكوين دليل\\ملف مؤقت."
 
-#: bottles/backend/managers/manager.py:1134
+#: bottles/backend/managers/manager.py:1183
 msgid "Generating bottle configuration…"
 msgstr "تكوين قارورة…"
 
-#: bottles/backend/managers/manager.py:1157
+#: bottles/backend/managers/manager.py:1206
 msgid "Template found, applying…"
 msgstr "تطبيق قالب موجود…"
 
 #. execute wineboot on the bottle path
-#: bottles/backend/managers/manager.py:1169
+#: bottles/backend/managers/manager.py:1218
 msgid "The Wine config is being updated…"
 msgstr "يتم تحديث تكوين واين…"
 
-#: bottles/backend/managers/manager.py:1171
+#: bottles/backend/managers/manager.py:1220
 msgid "Wine config updated!"
 msgstr "حُدث تكوين واين!"
 
-#: bottles/backend/managers/manager.py:1179
+#: bottles/backend/managers/manager.py:1228
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "التشغيل كـ Flatpak، تُحدد آلية الوصول لدليل المستخدم…"
 
-#: bottles/backend/managers/manager.py:1181
+#: bottles/backend/managers/manager.py:1230
 msgid "Sandboxing userdir…"
 msgstr "تحديد آلية الوصول لدليل المستخدم…"
 
-#: bottles/backend/managers/manager.py:1211
+#: bottles/backend/managers/manager.py:1271
 msgid "Setting Windows version…"
 msgstr "تعيين نسخة Windows…"
 
-#: bottles/backend/managers/manager.py:1221
+#: bottles/backend/managers/manager.py:1281
 msgid "Apply CMD default settings…"
 msgstr "تعيين إعدادات CMD الافتراضية…"
 
-#: bottles/backend/managers/manager.py:1229
+#: bottles/backend/managers/manager.py:1289
 msgid "Optimizing environment…"
 msgstr "أمثَلة البيئة…"
 
-#: bottles/backend/managers/manager.py:1240
+#: bottles/backend/managers/manager.py:1300
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "تطبيق البيئة: {0}…"
 
-#: bottles/backend/managers/manager.py:1250
+#: bottles/backend/managers/manager.py:1310
 msgid "(!) Using a custom environment recipe…"
 msgstr "(1) استخدام وصفة مخصصة للبيئة…"
 
-#: bottles/backend/managers/manager.py:1253
+#: bottles/backend/managers/manager.py:1313
 msgid "(!) Recipe not not found or not valid…"
 msgstr "(!) لم يعثر على الوصفة أو الوصفة ليست صحيحة…"
 
-#: bottles/backend/managers/manager.py:1270
+#: bottles/backend/managers/manager.py:1330
 msgid "Installing DXVK…"
 msgstr "تثبيت DXVK…"
 
-#: bottles/backend/managers/manager.py:1278
+#: bottles/backend/managers/manager.py:1338
 msgid "Installing VKD3D…"
 msgstr "تثبيت VKD3D…"
 
-#: bottles/backend/managers/manager.py:1286
+#: bottles/backend/managers/manager.py:1346
 msgid "Installing DXVK-NVAPI…"
 msgstr "تثبيت DXVK-NVAPI…"
 
-#: bottles/backend/managers/manager.py:1295
+#: bottles/backend/managers/manager.py:1355
 #, python-format
 msgid "Installing dependency: %s …"
 msgstr "تثبيت التبعيات: %s …"
 
-#: bottles/backend/managers/manager.py:1311
+#: bottles/backend/managers/manager.py:1371
 msgid "Creating versioning state 0…"
 msgstr "توليد حالة الأصدَرة 0…"
 
-#: bottles/backend/managers/manager.py:1319
+#: bottles/backend/managers/manager.py:1379
 msgid "Finalizing…"
 msgstr "اختتام…"
 
-#: bottles/backend/managers/manager.py:1330
+#: bottles/backend/managers/manager.py:1390
 msgid "Caching template…"
 msgstr "التخزين المؤقت للقالب…"
 
@@ -163,11 +163,2551 @@ msgstr "لم يُعثر على الحالة"
 msgid "State {} is already the active state"
 msgstr "الحالة {} هي بالفعل الحالة الفعّالة"
 
-#: bottles/frontend/windows/crash.py:37
+#: bottles/frontend/main.py:105
+msgid "Show version"
+msgstr "أظهر الإصدار"
+
+#: bottles/frontend/main.py:113
+msgid "Executable path"
+msgstr "مسار ملف التشغيل"
+
+#: bottles/frontend/main.py:121
+msgid "lnk path"
+msgstr "مسار Ink"
+
+#: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.blp:99
+#: bottles/frontend/ui/list-entry.blp:5
+msgid "Bottle name"
+msgstr "اسم القارورة"
+
+#: bottles/frontend/main.py:137
+msgid "Pass arguments"
+msgstr "معطيات الاجتياز"
+
+#: bottles/frontend/main.py:196
+msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
+msgstr ""
+"معرف الموارد الموحد (URI) غير صحيح (الصياغة: bottles:run/<bottle>/<program>)"
+
+#: bottles/frontend/main.py:238
+msgid "[Quit] request received."
+msgstr "استُلم طلب [إنهاء]."
+
+#: bottles/frontend/main.py:247
+msgid "[Help] request received."
+msgstr "استُلم طلب [مساعدة]."
+
+#: bottles/frontend/main.py:255
+msgid "[Refresh] request received."
+msgstr "استلُم طلب [تحديث]."
+
+#: bottles/frontend/operation.py:50
+msgid "Calculating…"
+msgstr "جارٍ الحساب …"
+
+#: bottles/frontend/ui/about.blp:7
+#, fuzzy
+msgid "Copyright © 2017 Bottles Developers"
+msgstr "© 2017-2022 - Bottles Developers"
+
+#: bottles/frontend/ui/about.blp:13
+#, fuzzy
+msgid "Bottles Developers"
+msgstr "© 2017-2022 - Bottles Developers"
+
+#: bottles/frontend/ui/component-entry.blp:4
+msgid "Component version"
+msgstr "إصدار المكوّن"
+
+#: bottles/frontend/ui/component-entry.blp:12
+#: bottles/frontend/ui/dependency-entry.blp:29
+#: bottles/frontend/ui/program-entry.blp:77
+msgid "Uninstall"
+msgstr "ألغِ التثبيت"
+
+#: bottles/frontend/ui/component-entry.blp:23
+#, fuzzy
+msgid "Browse Files"
+msgstr "تصفح الملفات"
+
+#: bottles/frontend/ui/component-entry.blp:34
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch. Press to try again."
+msgstr ""
+"فشل التثبيت. قد يكون هذا بسبب خطأ في المستودع أو تنزيل جزئي أو عدم تطابق في "
+"تدقيق المجموع. اضغط للمحاولة مرة أخرى."
+
+#: bottles/frontend/ui/component-entry.blp:45
+msgid "Download & Install"
+msgstr "حمّل وثبّت"
+
+#: bottles/frontend/ui/component-entry.blp:58
+msgid "0%"
+msgstr "0%"
+
+#: bottles/frontend/ui/dependency-entry.blp:16
+msgid "Show Manifest"
+msgstr "أظهر البيان"
+
+#: bottles/frontend/ui/dependency-entry.blp:20
+msgid "License"
+msgstr "الترخيص"
+
+#: bottles/frontend/ui/dependency-entry.blp:24
+msgid "Reinstall"
+msgstr "أعد التثبيت"
+
+#: bottles/frontend/ui/dependency-entry.blp:36
+#: bottles/frontend/ui/installer-entry.blp:27
+msgid "Report a Bug…"
+msgstr "بلّغ عن خطأ…"
+
+#: bottles/frontend/ui/dependency-entry.blp:42
+msgid "Dependency name"
+msgstr "اسم التبعية"
+
+#: bottles/frontend/ui/dependency-entry.blp:44
+msgid "Dependency description"
+msgstr "وصف التبعية"
+
+#: bottles/frontend/ui/dependency-entry.blp:51
+msgid "Category"
+msgstr "الفئة"
+
+#: bottles/frontend/ui/dependency-entry.blp:64
+#, fuzzy
+msgid "Download & Install this Dependency"
+msgstr "تنزيل هذه التبعية وتثبيتها"
+
+#: bottles/frontend/ui/dependency-entry.blp:79
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+"حدث خطأ في التثبيت. أعد تشغيل بوتلز لقراءة تقرير الأعطال أو قم بتشغيله عبر "
+"الطرفية لقراءة المُخرج."
+
+#: bottles/frontend/ui/dependency-entry.blp:93
+#, fuzzy
+msgid "Dependency Menu"
+msgstr "اسم التبعية"
+
+#: bottles/frontend/ui/details-bottle.blp:16
+msgid "Troubleshooting"
+msgstr "استكشاف الاخطاء"
+
+#: bottles/frontend/ui/details-bottle.blp:24
+msgid "Browse Files…"
+msgstr "تصفح الملفات…"
+
+#: bottles/frontend/ui/details-bottle.blp:28
+msgid "Duplicate Bottle…"
+msgstr "قارورة مكررة…"
+
+#: bottles/frontend/ui/details-bottle.blp:32
+#: bottles/frontend/ui/importer.blp:73
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr "هذا هو الأرشيف الكامل للقارورة، بما في ذلك الملفات الشخصية."
+
+#: bottles/frontend/ui/details-bottle.blp:33
+msgid "Full Backup…"
+msgstr "نسخ احتياطي كامل…"
+
+#: bottles/frontend/ui/details-bottle.blp:37
+#: bottles/frontend/ui/importer.blp:68
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"هذا هو ضبط القارورة فقط، وهو مفيد إن أردت تكوين قارورة جديدة بدون ملفات "
+"شخصية."
+
+#: bottles/frontend/ui/details-bottle.blp:38
+msgid "Export Configuration…"
+msgstr "صدّر الضّبط…"
+
+#: bottles/frontend/ui/details-bottle.blp:45
+#: bottles/frontend/views/bottle_details.py:343
+#, fuzzy
+msgid "Show Hidden Programs"
+msgstr "اعرض البرنامج"
+
+#: bottles/frontend/ui/details-bottle.blp:49
+msgid "Search for new programs"
+msgstr "ابحث عن برامج جديدة"
+
+#: bottles/frontend/ui/details-bottle.blp:56
+msgid "Delete Bottle…"
+msgstr "حذف القارورة…"
+
+#: bottles/frontend/ui/details-bottle.blp:73
+#: bottles/frontend/ui/details-dependencies.blp:65
+#: bottles/frontend/ui/details-installers.blp:68
+msgid "Secondary Menu"
+msgstr ""
+
+#: bottles/frontend/ui/details-bottle.blp:90
+#, fuzzy
+msgid "Force Stop all Processes"
+msgstr "أوقف كل العمليات"
+
+#: bottles/frontend/ui/details-bottle.blp:94
+msgid "Simulate a Windows system shutdown."
+msgstr "حاكِ إيقاف تشغيل نظام ويندوز."
+
+#: bottles/frontend/ui/details-bottle.blp:95
+msgid "Shutdown"
+msgstr "إيقاف التشغيل"
+
+#: bottles/frontend/ui/details-bottle.blp:99
+msgid "Simulate a Windows system reboot."
+msgstr "حاكِ إعادة تشغيل نظام ويندوز."
+
+#: bottles/frontend/ui/details-bottle.blp:100
+msgid "Reboot"
+msgstr "أعد التشغيل"
+
+#: bottles/frontend/ui/details-bottle.blp:111
+msgid "Drop files to execute them"
+msgstr ""
+
+#: bottles/frontend/ui/details-bottle.blp:120
+msgid "My bottle"
+msgstr "قارورتي"
+
+#: bottles/frontend/ui/details-bottle.blp:132
+msgid "Win64"
+msgstr "Win64"
+
+#: bottles/frontend/ui/details-bottle.blp:144
+#: bottles/frontend/ui/list-entry.blp:12 bottles/frontend/ui/new.blp:81
+msgid "Environment"
+msgstr "البيئة"
+
+#: bottles/frontend/ui/details-bottle.blp:156
+#: bottles/frontend/ui/details-preferences.blp:14
+#: bottles/frontend/ui/new.blp:127
+msgid "Runner"
+msgstr "المشغل"
+
+#: bottles/frontend/ui/details-bottle.blp:168
+#: bottles/frontend/ui/list-entry.blp:21
+msgid "Versioning enabled for this bottle"
+msgstr "مُكّن تعيين الإصدار لهذه القارورة"
+
+#: bottles/frontend/ui/details-bottle.blp:173
+#, fuzzy
+msgid "Versioning is active for this bottle."
+msgstr "تعيين الإصدار نشط في هذه القارورة."
+
+#: bottles/frontend/ui/details-bottle.blp:182
+#: bottles/frontend/ui/list-entry.blp:31
+msgid "0"
+msgstr "0"
+
+#: bottles/frontend/ui/details-bottle.blp:202
+msgid "Run Executable…"
+msgstr "شغل ملفاً تنفيذياً…"
+
+#: bottles/frontend/ui/details-bottle.blp:226
+#: bottles/frontend/ui/dialog-launch-options.blp:6
+msgid "Launch Options"
+msgstr "خيارات بدء التشغيل"
+
+#: bottles/frontend/ui/details-bottle.blp:243
+#, fuzzy
+msgid "Run in Terminal"
+msgstr "شغّل في الطرفية…"
+
+#: bottles/frontend/ui/details-bottle.blp:264
+msgid "Layers"
+msgstr "طبقات"
+
+#: bottles/frontend/ui/details-bottle.blp:269
+msgid "Programs"
+msgstr "البرامج"
+
+#: bottles/frontend/ui/details-bottle.blp:272
+msgid ""
+"Click \"Run Executable…\" to run an executable, \"Add Shortcuts…\" to add an "
+"executable to the Programs list, or \"Install Programs…\" to install "
+"programs curated by the community."
+msgstr ""
+
+#: bottles/frontend/ui/details-bottle.blp:295
+msgid "Add Shortcuts…"
+msgstr ""
+
+#: bottles/frontend/ui/details-bottle.blp:322
+#, fuzzy
+msgid "Install Programs…"
+msgstr "ثبت هذا البرنامج"
+
+#: bottles/frontend/ui/details-bottle.blp:343
+#, fuzzy
+msgid "Options"
+msgstr "العمليات"
+
+#: bottles/frontend/ui/details-bottle.blp:347
+#: bottles/frontend/views/details.py:135
+#, fuzzy
+msgid "Settings"
+msgstr "إعدادات العرض"
+
+#: bottles/frontend/ui/details-bottle.blp:348
+#, fuzzy
+msgid "Configure bottle settings."
+msgstr "ضبط القارورة…"
+
+#: bottles/frontend/ui/details-bottle.blp:357
+#: bottles/frontend/views/details.py:139
+msgid "Dependencies"
+msgstr "التبعيات"
+
+#: bottles/frontend/ui/details-bottle.blp:358
+#, fuzzy
+msgid "Install dependencies for programs."
+msgstr "ثبت هذا البرنامج"
+
+#: bottles/frontend/ui/details-bottle.blp:367
+#: bottles/frontend/ui/details-preferences.blp:373
+#: bottles/frontend/views/details.py:143
+msgid "Snapshots"
+msgstr ""
+
+#: bottles/frontend/ui/details-bottle.blp:368
+#, fuzzy
+msgid "Create and manage bottle states."
+msgstr "احفظ حالة القارورة."
+
+#: bottles/frontend/ui/details-bottle.blp:377
+#: bottles/frontend/ui/details-bottle.blp:423
+#: bottles/frontend/views/details.py:151
+msgid "Task Manager"
+msgstr "مدير المهام"
+
+#: bottles/frontend/ui/details-bottle.blp:378
+msgid "Manage running programs."
+msgstr ""
+
+#: bottles/frontend/ui/details-bottle.blp:387
+msgid "Tools"
+msgstr "الأدوات"
+
+#: bottles/frontend/ui/details-bottle.blp:391
+msgid "Command Line"
+msgstr "سطر الأوامر"
+
+#: bottles/frontend/ui/details-bottle.blp:392
+msgid "Run commands inside the Bottle."
+msgstr "شغل الأوامر داخل القارورة."
+
+#: bottles/frontend/ui/details-bottle.blp:401
+msgid "Registry Editor"
+msgstr "محرر سجل النظام"
+
+#: bottles/frontend/ui/details-bottle.blp:402
+msgid "Edit the internal registry."
+msgstr "تعديل سجل النظام الداخلي."
+
+#: bottles/frontend/ui/details-bottle.blp:410
+#, fuzzy
+msgid "Legacy Wine Tools"
+msgstr "أدوات قديمة"
+
+#: bottles/frontend/ui/details-bottle.blp:414
+msgid "Explorer"
+msgstr "المستكشف"
+
+#: bottles/frontend/ui/details-bottle.blp:432
+#, fuzzy
+msgid "Debugger"
+msgstr "تصحيح"
+
+#: bottles/frontend/ui/details-bottle.blp:441
+#: bottles/frontend/ui/importer.blp:69
+msgid "Configuration"
+msgstr "التكوين"
+
+#: bottles/frontend/ui/details-bottle.blp:450
+msgid "Uninstaller"
+msgstr "مُلغي التثبيت"
+
+#: bottles/frontend/ui/details-bottle.blp:459
+msgid "Control Panel"
+msgstr "لوحة التحكم"
+
+#: bottles/frontend/ui/details-dependencies.blp:9
+msgid "Search for dependencies…"
+msgstr "ابحث عن التبعيات…"
+
+#: bottles/frontend/ui/details-dependencies.blp:15
+#, fuzzy
+msgid ""
+"Dependencies are resources that improve compatibility of Windows software.\n"
+"\n"
+"Files on this page are provided by third parties under a proprietary "
+"license. By installing them, you agree with their respective licensing terms."
+msgstr ""
+"تُوفر الملفات الموجودة في هذه الصفحة بواسطة جهات خارجية بموجب ترخيص خاص. أنت "
+"توافق على شروط الترخيص الخاصة بكل منها عند تثبيتها."
+
+#: bottles/frontend/ui/details-dependencies.blp:42
+msgid "Report a problem or a missing dependency."
+msgstr "أبلغ عن مشكلة أو تبعية مفقودة."
+
+#: bottles/frontend/ui/details-dependencies.blp:43
+#, fuzzy
+msgid "Report Missing Dependency"
+msgstr "أبلغ عن تبعية مفقودة"
+
+#: bottles/frontend/ui/details-dependencies.blp:47
+#, fuzzy
+msgid "Read Documentation."
+msgstr "اقرأ التوثيق"
+
+#: bottles/frontend/ui/details-dependencies.blp:48
+#: bottles/frontend/ui/details-installers.blp:51
+#: bottles/frontend/ui/details-versioning.blp:37
+msgid "Documentation"
+msgstr "التوثيق"
+
+#: bottles/frontend/ui/details-dependencies.blp:58
+#: bottles/frontend/ui/details-installers.blp:61
+#: bottles/frontend/ui/window.blp:67
+msgid "Search"
+msgstr "ابحث"
+
+#: bottles/frontend/ui/details-installers.blp:9
+msgid "Search for Programs…"
+msgstr "ابحث عن البرامج…"
+
+#: bottles/frontend/ui/details-installers.blp:15
+#, fuzzy
+msgid ""
+"Install programs curated by our community, without having to proceed "
+"manually.\n"
+"\n"
+"Files on this page are provided by third parties under a proprietary "
+"license. By installing them, you agree with their respective licensing terms."
+msgstr ""
+"تُوفر الملفات الموجودة في هذه الصفحة بواسطة جهات خارجية بموجب ترخيص خاص. أنت "
+"توافق على شروط الترخيص الخاصة بكل منها عند تثبيتها."
+
+#: bottles/frontend/ui/details-installers.blp:29
+msgid "No Installers Found"
+msgstr "لم يُعثر على مثبتات"
+
+#: bottles/frontend/ui/details-installers.blp:32
+msgid ""
+"The repository is unreachable or no installer is compatible with this bottle."
+msgstr "لا يمكن الوصول إلى المستودع أو لا يوجد مثبت متوافق مع هذه القارورة."
+
+#: bottles/frontend/ui/details-installers.blp:50
+#: bottles/frontend/ui/details-versioning.blp:36
+#: bottles/frontend/ui/preferences.blp:81
+msgid "Read Documentation"
+msgstr "اقرأ التوثيق"
+
+#: bottles/frontend/ui/details-preferences.blp:6
+#: bottles/frontend/ui/dialog-duplicate.blp:52 bottles/frontend/ui/new.blp:76
+msgid "Name"
+msgstr "الاسم"
+
+#: bottles/frontend/ui/details-preferences.blp:11
+msgid "Components"
+msgstr "المكونات"
+
+#: bottles/frontend/ui/details-preferences.blp:15
+msgid "The version of the Wine compatibility layer."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:17
+msgid "Updating Runner and components, please wait…"
+msgstr "جارٍ تحديث المشغل والمكونات، يرجى الانتظار …"
+
+#: bottles/frontend/ui/details-preferences.blp:27
+#: bottles/frontend/ui/preferences.blp:187
+msgid "DXVK"
+msgstr "DXVK"
+
+#: bottles/frontend/ui/details-preferences.blp:28
+msgid "Improve Direct3D 9/10/11 compatibility by translating it to Vulkan."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:30
+msgid "Updating DXVK, please wait…"
+msgstr "جارٍ تحديث DXVK، يرجى الانتظار…"
+
+#: bottles/frontend/ui/details-preferences.blp:40
+#: bottles/frontend/ui/preferences.blp:191
+msgid "VKD3D"
+msgstr "VKD3D"
+
+#: bottles/frontend/ui/details-preferences.blp:41
+msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:43
+msgid "Updating VKD3D, please wait…"
+msgstr "جارٍ تحديث VKD3D، يرجى الانتظار…"
+
+#: bottles/frontend/ui/details-preferences.blp:54
+#, fuzzy
+msgid "DXVK NVAPI"
+msgstr "DXVK-NVAPI"
+
+#: bottles/frontend/ui/details-preferences.blp:58
+#: bottles/frontend/ui/details-preferences.blp:93
+msgid "Updating DXVK-NVAPI, please wait…"
+msgstr "جارٍ تحديث DXVK-NVAPI، يرجى الانتظار…"
+
+#: bottles/frontend/ui/details-preferences.blp:68
+#: bottles/frontend/ui/preferences.blp:199
+msgid "LatencyFleX"
+msgstr "LatencyFleX"
+
+#: bottles/frontend/ui/details-preferences.blp:69
+#, fuzzy
+msgid "Increase responsiveness. Can be detected by some anti-cheat software."
+msgstr "بديل ل NVIDIA Reflex. يمكن اكتشافه من قبل بعض برامج مكافحة الغش."
+
+#: bottles/frontend/ui/details-preferences.blp:71
+#, fuzzy
+msgid "Updating LatencyFleX, please wait…"
+msgstr "جارٍ تحديث DXVK، يرجى الانتظار…"
+
+#: bottles/frontend/ui/details-preferences.blp:84
+#, fuzzy
+msgid "Display"
+msgstr "إعدادات العرض"
+
+#: bottles/frontend/ui/details-preferences.blp:88
+msgid "Deep Learning Super Sampling"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:89
+msgid ""
+"Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
+"on newer NVIDIA GPUs."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:105
+#, fuzzy
+msgid "Increase performance at the expense of visuals. Only works on Vulkan."
+msgstr "تحسين الأداء بتكلفة زيادة استخدام الطاقة."
+
+#: bottles/frontend/ui/details-preferences.blp:109
+#: bottles/frontend/ui/dll-override-entry.blp:12
+msgid "Disabled"
+msgstr "معطل"
+
+#: bottles/frontend/ui/details-preferences.blp:110
+msgid "Ultra Quality"
+msgstr "جودة فائقة"
+
+#: bottles/frontend/ui/details-preferences.blp:111
+msgid "Quality"
+msgstr "الجودة"
+
+#: bottles/frontend/ui/details-preferences.blp:112
+msgid "Balanced"
+msgstr "متزن"
+
+#: bottles/frontend/ui/details-preferences.blp:113
+#: bottles/frontend/ui/details-preferences.blp:180
+msgid "Performance"
+msgstr "الأداء"
+
+#: bottles/frontend/ui/details-preferences.blp:121
+#, fuzzy
+msgid "Discrete Graphics"
+msgstr "وحدة معالجة الرسومات المنفصلة"
+
+#: bottles/frontend/ui/details-preferences.blp:122
+msgid ""
+"Use the discrete graphics card to increase performance at the expense of "
+"power consumption."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:131
+msgid "Post-Processing Effects"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:132
+msgid ""
+"Add various post-processing effects using vkBasalt. Only works on Vulkan."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:134
+#, fuzzy
+msgid "Manage Post-Processing Layer settings"
+msgstr "إدارة إعدادات vmtouch"
+
+#: bottles/frontend/ui/details-preferences.blp:150
+msgid "Manage how games should be displayed on the screen using Gamescope."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:153
+msgid "Manage Gamescope settings"
+msgstr "إدارة إعدادات Gamescope"
+
+#: bottles/frontend/ui/details-preferences.blp:167
+#, fuzzy
+msgid "Advanced Display Settings"
+msgstr "إعدادات العرض"
+
+#: bottles/frontend/ui/details-preferences.blp:184
+msgid "Enable synchronization to increase performance of multicore processors."
+msgstr "تمكين المزامنة لزيادة أداء المعالجات متعددة النواة."
+
+#: bottles/frontend/ui/details-preferences.blp:185
+msgid "Synchronization"
+msgstr "التزامن"
+
+#: bottles/frontend/ui/details-preferences.blp:189
+msgid "System"
+msgstr "النظام"
+
+#: bottles/frontend/ui/details-preferences.blp:190
+msgid "Esync"
+msgstr "Esync"
+
+#: bottles/frontend/ui/details-preferences.blp:191
+msgid "Fsync"
+msgstr "Fsync"
+
+#: bottles/frontend/ui/details-preferences.blp:192
+msgid "Futex2"
+msgstr "Futex2"
+
+#: bottles/frontend/ui/details-preferences.blp:198
+#, fuzzy
+msgid "Monitor Performance"
+msgstr "الأداء"
+
+#: bottles/frontend/ui/details-preferences.blp:199
+msgid ""
+"Display monitoring information such as framerate, temperatures, CPU/GPU load "
+"and more on OpenGL and Vulkan using MangoHud."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:207
+#, fuzzy
+msgid "Feral GameMode"
+msgstr "طور اللعبة"
+
+#: bottles/frontend/ui/details-preferences.blp:208
+msgid ""
+"Apply a set of optimizations to your device. Can improve game performance."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:217
+#, fuzzy
+msgid "Preload Game Files"
+msgstr "حمل ملفات اللعبة في ذاكرة الوصول العشوائي مسبقاً"
+
+#: bottles/frontend/ui/details-preferences.blp:218
+msgid ""
+"Improve loading time when launching the game multiple times. The game will "
+"take longer to start for the first time."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:222
+msgid "Manage vmtouch settings"
+msgstr "إدارة إعدادات vmtouch"
+
+#: bottles/frontend/ui/details-preferences.blp:237
+#, fuzzy
+msgid "OBS Game Capture"
+msgstr "التقاط الشاشة باستخدام OBS Vulkan"
+
+#: bottles/frontend/ui/details-preferences.blp:238
+#, fuzzy
+msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
+msgstr "شغل OBS game capture لكل البرامج."
+
+#: bottles/frontend/ui/details-preferences.blp:247
+msgid "Compatibility"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:250
+msgid "Windows Version"
+msgstr "إصدار ويندوز"
+
+#: bottles/frontend/ui/details-preferences.blp:253
+msgid "Updating Windows version, please wait…"
+msgstr "جارٍ تحديث إصدار ويندوز، الرجاء الانتظار…"
+
+#: bottles/frontend/ui/details-preferences.blp:262
+msgid "Language"
+msgstr "اللغة"
+
+#: bottles/frontend/ui/details-preferences.blp:263
+msgid "Choose the language to use with programs."
+msgstr "اختر اللغة التي تريد استخدامها مع البرامج."
+
+#: bottles/frontend/ui/details-preferences.blp:271
+msgid "Dedicated Sandbox"
+msgstr "ساحة حماية مخصصة"
+
+#: bottles/frontend/ui/details-preferences.blp:272
+msgid "Use a restricted/managed environment for this bottle."
+msgstr "استخدم بيئة مقيدة / مُدارة لهذه قارورة."
+
+#: bottles/frontend/ui/details-preferences.blp:275
+#, fuzzy
+msgid "Manage the Sandbox Permissions"
+msgstr "إدارة أذونات ساحة الحماية"
+
+#: bottles/frontend/ui/details-preferences.blp:291
+msgid "Bottles Runtime"
+msgstr "وقت تشغيل بوتلز"
+
+#: bottles/frontend/ui/details-preferences.blp:292
+#, fuzzy
+msgid ""
+"Provide a bundle of extra libraries for more compatibility. Disable if you "
+"run into issues."
+msgstr ""
+"يوفر مجموعة من المكتبات الإضافية لمزيد من التوافق، عطّله إذا واجهت مشاكل."
+
+#: bottles/frontend/ui/details-preferences.blp:302
+msgid "Steam Runtime"
+msgstr "زمن تشغيل Steam"
+
+#: bottles/frontend/ui/details-preferences.blp:303
+#, fuzzy
+msgid ""
+"Provide a bundle of extra libraries for more compatibility with Steam games. "
+"Disable if you run into issues."
+msgstr ""
+"يوفر مجموعة من المكتبات الإضافية لمزيد من التوافق، عطّله إذا واجهت مشاكل."
+
+#: bottles/frontend/ui/details-preferences.blp:311
+#: bottles/frontend/ui/dialog-launch-options.blp:83
+msgid "Working Directory"
+msgstr "دليل العمل الحالي"
+
+#: bottles/frontend/ui/details-preferences.blp:314
+#: bottles/frontend/ui/dialog-launch-options.blp:59
+#: bottles/frontend/ui/dialog-launch-options.blp:90
+#: bottles/frontend/ui/preferences.blp:136
+msgid "Reset to Default"
+msgstr "عُد للإعدادات الافتراضية"
+
+#: bottles/frontend/ui/details-preferences.blp:335
+#: bottles/frontend/ui/preferences.blp:157
+#: bottles/frontend/views/preferences.py:184
+#, fuzzy
+msgid "(Default)"
+msgstr "الافتراضي"
+
+#: bottles/frontend/ui/details-preferences.blp:343
+#: bottles/frontend/ui/dialog-dll-overrides.blp:7
+#: bottles/frontend/ui/dialog-dll-overrides.blp:12
+msgid "DLL Overrides"
+msgstr "تجاوزات ملفات DLL"
+
+#: bottles/frontend/ui/details-preferences.blp:353
+#: bottles/frontend/ui/dialog-env-vars.blp:20
+msgid "Environment Variables"
+msgstr "متغيرات البيئة"
+
+#: bottles/frontend/ui/details-preferences.blp:363
+msgid "Manage Drives"
+msgstr "إدارة محركات الأقراص"
+
+#: bottles/frontend/ui/details-preferences.blp:377
+#, fuzzy
+msgid "Automatic Snapshots"
+msgstr "تعيين الإصدار بشكل تلقائي"
+
+#: bottles/frontend/ui/details-preferences.blp:378
+msgid ""
+"Automatically create snapshots before installing software or changing "
+"settings."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:387
+#, fuzzy
+msgid "Compression"
+msgstr "إصدار المكوّن"
+
+#: bottles/frontend/ui/details-preferences.blp:388
+msgid ""
+"Compress snapshots to reduce space. This will slow down creation of "
+"snapshots."
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:397
+msgid "Use Exclusion Patterns"
+msgstr "استخدم أنماط الاستبعاد"
+
+#: bottles/frontend/ui/details-preferences.blp:398
+#, fuzzy
+msgid "Exclude paths in snapshots."
+msgstr "استبعد المسارات من تعيين الإصدار باستخدام الانماط"
+
+#: bottles/frontend/ui/details-preferences.blp:401
+msgid "Manage Patterns"
+msgstr "إدارة الأنماط"
+
+#: bottles/frontend/ui/details-taskmanager.blp:17
+msgid "Refresh"
+msgstr "حدّث"
+
+#: bottles/frontend/ui/details-taskmanager.blp:22
+msgid "Stop process"
+msgstr "أوقف العملية"
+
+#: bottles/frontend/ui/details-versioning.blp:18
+#, fuzzy
+msgid "No Snapshots Found"
+msgstr "لم يُعثر على حالات"
+
+#: bottles/frontend/ui/details-versioning.blp:19
+#, fuzzy
+msgid "Create your first snapshot to start saving states of your preferences."
+msgstr "أنشئ أول حالة لتبدأ استعمال تعيين الإصدار."
+
+#: bottles/frontend/ui/details-versioning.blp:54
+msgid "A short comment"
+msgstr "تعليق قصير"
+
+#: bottles/frontend/ui/details-versioning.blp:58
+msgid "Save the bottle state."
+msgstr "احفظ حالة القارورة."
+
+#: bottles/frontend/ui/details-versioning.blp:78
+#, fuzzy
+msgid "Create new Snapshot"
+msgstr "أنشئ حالة جديدة"
+
+#: bottles/frontend/ui/details.blp:16
+#, fuzzy
+msgid "Details"
+msgstr "تفاصيل القارورة"
+
+#: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
+#: bottles/frontend/ui/importer.blp:15
+msgid "Go Back"
+msgstr ""
+
+#: bottles/frontend/ui/details.blp:75
+msgid "Operations"
+msgstr "العمليات"
+
+#: bottles/frontend/ui/dialog-bottle-picker.blp:4
+msgid "Select Bottle"
+msgstr "اختر قارورة"
+
+#: bottles/frontend/ui/dialog-bottle-picker.blp:16
+#: bottles/frontend/ui/dialog-proton-alert.blp:16
+#: bottles/frontend/ui/dialog-rename.blp:15
+#: bottles/frontend/ui/dialog-run-args.blp:20 bottles/frontend/ui/new.blp:39
+#: bottles/frontend/views/bottle_details.py:277
+#: bottles/frontend/views/bottle_details.py:380
+#: bottles/frontend/views/bottle_details.py:447
+#: bottles/frontend/views/bottle_preferences.py:248
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146 bottles/frontend/views/list.py:120
+#: bottles/frontend/views/new.py:158 bottles/frontend/views/new.py:174
+#: bottles/frontend/views/preferences.py:154
+#: bottles/frontend/windows/drives.py:77
+#: bottles/frontend/windows/filechooser.py:63
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:218
+#: bottles/frontend/windows/launchoptions.py:242
+msgid "Cancel"
+msgstr "ألغِ"
+
+#: bottles/frontend/ui/dialog-bottle-picker.blp:21
+#: bottles/frontend/views/bottle_preferences.py:248
+#: bottles/frontend/views/new.py:158 bottles/frontend/views/new.py:174
+#: bottles/frontend/views/preferences.py:154
+#: bottles/frontend/windows/drives.py:77
+#: bottles/frontend/windows/installer.py:66
+#: bottles/frontend/windows/launchoptions.py:218
+#: bottles/frontend/windows/launchoptions.py:242
+msgid "Select"
+msgstr "اختر"
+
+#: bottles/frontend/ui/dialog-bottle-picker.blp:38
+msgid "Create New Bottle"
+msgstr "أنشئ قارورة جديدة"
+
+#: bottles/frontend/ui/dialog-crash-report.blp:8
+#, fuzzy
+msgid "Bottles Crash Report"
+msgstr "تقرير تعطل القارورة"
+
+#: bottles/frontend/ui/dialog-crash-report.blp:18
+#: bottles/frontend/ui/dialog-duplicate.blp:22
+#: bottles/frontend/ui/dialog-gamescope.blp:23
+#: bottles/frontend/ui/dialog-launch-options.blp:16
+#: bottles/frontend/ui/dialog-upgrade-versioning.blp:22
+#: bottles/frontend/ui/dialog-vkbasalt.blp:27
+#: bottles/frontend/views/bottle_details.py:485
+#: bottles/frontend/views/bottle_details.py:583
+#: bottles/frontend/views/bottle_preferences.py:680
+#: bottles/frontend/views/preferences.py:175
+msgid "_Cancel"
+msgstr "_ألغِ"
+
+#: bottles/frontend/ui/dialog-crash-report.blp:25
+#, fuzzy
+msgid "Send Report"
+msgstr "أرسل التقرير"
+
+#: bottles/frontend/ui/dialog-crash-report.blp:44
+msgid ""
+"Bottles crashed last time. Please fill out a report attaching the following "
+"traceback to help us identify the problem preventing it from happening again."
+msgstr ""
+"تعطل بوتلز آخر مرة. فضلاً قم بتعبئة تقرير فيه التتبع التالي لتساعدنا في "
+"التعرف على المشكلة مما يمكننا من الحيال دون وقوعها مجدداً."
+
+#: bottles/frontend/ui/dialog-crash-report.blp:74
+msgid ""
+"We found one or more similar (or identical) reports. Please make sure to "
+"check carefully that it has not already been reported before submitting a "
+"new one. Each report requires effort on the part of the developers to "
+"diagnose, please respect their work and make sure you don't post duplicates."
+msgstr ""
+"عثرنا على تقارير مشابهة أو مطابقة، تأكد من أن التقرير لم يُرسل مسبقا قبل أن "
+"تقوم بإرساله، يتطلب تشخيص كل تقرير جهداً من المطورين، فضلاً احترم عملهم ولا "
+"ترسل ما يتكرر."
+
+#: bottles/frontend/ui/dialog-crash-report.blp:89
+msgid "I still want to report."
+msgstr "لا أزال أريد التبليغ."
+
+#: bottles/frontend/ui/dialog-crash-report.blp:95
+msgid "Advanced options"
+msgstr "الخيارات المتقدمة"
+
+#: bottles/frontend/ui/dialog-deps-check.blp:13
+msgid "Incomplete package"
+msgstr "حزمة غير مكتملة"
+
+#: bottles/frontend/ui/dialog-deps-check.blp:14
+#, fuzzy
+msgid ""
+"This version of Bottles does not seem to provide all the necessary core "
+"dependencies, please contact the package maintainer or use an official "
+"version."
+msgstr ""
+"لا يبدو أن هذا الإصدار من بوتلز يوفر كل التبعيات الأساسية، تواصل مع مشرف "
+"الحزمة أو استخدم إصداراً رسمياً.\n"
+"                        "
+
+#: bottles/frontend/ui/dialog-deps-check.blp:18
+msgid "Quit"
+msgstr "أنهِ"
+
+#: bottles/frontend/ui/dialog-dll-overrides.blp:11
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)."
+msgstr ""
+"يمكن أن تٌعين مكتبات الارتباط الديناميكي على أنها مُدمجة (أي أن واين يوفرها) "
+"أو أصلية (أي أن البرنامج يوفرها)."
+
+#: bottles/frontend/ui/dialog-dll-overrides.blp:15
+msgid "New Override"
+msgstr "تجاوز جديد"
+
+#: bottles/frontend/ui/dialog-dll-overrides.blp:21
+msgid "Overrides"
+msgstr "التجاوزات"
+
+#: bottles/frontend/ui/dialog-drives.blp:7
+msgid "Drives"
+msgstr "محركات الأقراص"
+
+#: bottles/frontend/ui/dialog-drives.blp:24
+#, fuzzy
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:…)."
+msgstr ""
+"هذه هي المسارات في نظامك التي تم التعرف عليها كأجهزة من قبل المُشغل (مثلاً :C: "
+"D...)\n"
+"                                "
+
+#: bottles/frontend/ui/dialog-drives.blp:27
+msgid "Letter"
+msgstr "حرف"
+
+#: bottles/frontend/ui/dialog-drives.blp:49
+msgid "Existing Drives"
+msgstr "محركات الأقراص الموجودة"
+
+#: bottles/frontend/ui/dialog-duplicate.blp:16
+msgid "Duplicate Bottle"
+msgstr "قارورة مكررة"
+
+#: bottles/frontend/ui/dialog-duplicate.blp:38
+msgid "Duplicate"
+msgstr "انسخ"
+
+#: bottles/frontend/ui/dialog-duplicate.blp:49
+msgid "Enter a name for the duplicate of the Bottle."
+msgstr "أدخل اسماً للنسخة المكررة من القارورة."
+
+#: bottles/frontend/ui/dialog-duplicate.blp:69
+msgid "Duplicating…"
+msgstr "يتم النسخ…"
+
+#: bottles/frontend/ui/dialog-duplicate.blp:78
+#: bottles/frontend/ui/dialog-installer.blp:103
+#: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
+#: bottles/frontend/ui/new.blp:199
+msgid "This could take a while."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-duplicate.blp:97
+msgid "Bottle Duplicated"
+msgstr "نُسخت القارورة"
+
+#: bottles/frontend/ui/dialog-env-vars.blp:28
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
+"متغيرات البيئة هي قيم مسماة تلقائياً تؤثر على طريقة عمل العمليات في قارورتك."
+
+#: bottles/frontend/ui/dialog-env-vars.blp:31
+msgid "Variable Name"
+msgstr "اسم المتغير"
+
+#: bottles/frontend/ui/dialog-env-vars.blp:37
+msgid "Existing Variables"
+msgstr "المتغيرات الموجودة"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
+msgid "Exclusion Patterns"
+msgstr "أنماط الاستبعاد"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
+msgid ""
+"Define patterns that will be used to prevent some directories to being "
+"versioned."
+msgstr "حدد الأنماط التي ستُستخدم لمنع تعيين الإصدار لبعض الدلائل."
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
+msgid "Pattern"
+msgstr "نمط"
+
+#: bottles/frontend/ui/dialog-exclusion-patterns.blp:37
+msgid "Existing Patterns"
+msgstr "الأنماط الموجودة"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:6
+msgid "Gamescope Settings"
+msgstr "إعدادات Gamescope"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:30
+#: bottles/frontend/ui/dialog-launch-options.blp:32
+#: bottles/frontend/ui/dialog-rename.blp:20
+#: bottles/frontend/ui/dialog-vkbasalt.blp:34
+#: bottles/frontend/windows/filechooser.py:63
+msgid "Save"
+msgstr "احفظ"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:40
+msgid "Manage how games should be displayed."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.blp:44
+msgid "Game Resolution"
+msgstr "دقة اللعبة"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:45
+#, fuzzy
+msgid "Uses the resolution of the video game as a reference in pixels."
+msgstr "يستخدم دقة اللعبة كمرجع."
+
+#: bottles/frontend/ui/dialog-gamescope.blp:48
+#: bottles/frontend/ui/dialog-gamescope.blp:85
+msgid "Width"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.blp:64
+#: bottles/frontend/ui/dialog-gamescope.blp:101
+msgid "Height"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-gamescope.blp:81
+#, fuzzy
+msgid "Window Resolution"
+msgstr "إصدار ويندوز"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:82
+#, fuzzy
+msgid ""
+"Upscales the resolution when using a resolution higher than the game "
+"resolution in pixels."
+msgstr "يرفع الدقة عند استخدام دقة أعلى من دقة اللعبة."
+
+#: bottles/frontend/ui/dialog-gamescope.blp:118
+msgid "Miscellaneous"
+msgstr "متنوعات"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:121
+#, fuzzy
+msgid "Frame Rate Limit"
+msgstr "حد معدل الإطارات (على سبيل المثال: 60)"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:137
+#, fuzzy
+msgid "Frame Rate Limit When Unfocused"
+msgstr "حد معدل الإطارات (عند عدم التركيز)"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:153
+msgid "Use Integer Scaling"
+msgstr "استخدم القياس بالأعداد الصحيحة"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:162
+msgid "Window Type"
+msgstr "نوع النافذة"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:166
+msgid "Borderless"
+msgstr "بلا إطار"
+
+#: bottles/frontend/ui/dialog-gamescope.blp:172
+msgid "Fullscreen"
+msgstr "ملء الشاشة"
+
+#: bottles/frontend/ui/dialog-installer.blp:40
+msgid "Do you want to proceed with the installation?"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-installer.blp:45
+#, fuzzy
+msgid "Start Installation"
+msgstr "الترجمات"
+
+#: bottles/frontend/ui/dialog-installer.blp:64
+msgid ""
+"This installer requires some local resources which cannot be provided "
+"otherwise."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-installer.blp:68
+msgid "Proceed"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-installer.blp:123
+#, fuzzy
+msgid "Completed!"
+msgstr "المكونات"
+
+#: bottles/frontend/ui/dialog-installer.blp:126
+#, fuzzy
+msgid "Show Programs"
+msgstr "اعرض البرنامج"
+
+#: bottles/frontend/ui/dialog-installer.blp:144
+#, fuzzy
+msgid "Installation Failed!"
+msgstr "تثبيت المحدد"
+
+#: bottles/frontend/ui/dialog-installer.blp:145
+msgid "Something goes wrong."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-journal.blp:9
+msgid "All messages"
+msgstr "جميع الرسائل"
+
+#: bottles/frontend/ui/dialog-journal.blp:13
+msgid "Critical"
+msgstr "حرِج"
+
+#: bottles/frontend/ui/dialog-journal.blp:17
+msgid "Errors"
+msgstr "الأخطاء"
+
+#: bottles/frontend/ui/dialog-journal.blp:21
+msgid "Warnings"
+msgstr "التحذيرات"
+
+#: bottles/frontend/ui/dialog-journal.blp:25
+msgid "Info"
+msgstr "المعلومات"
+
+#: bottles/frontend/ui/dialog-journal.blp:40
+msgid "Journal browser"
+msgstr "متصفح السجل"
+
+#: bottles/frontend/ui/dialog-journal.blp:48
+msgid "Journal Browser"
+msgstr "متصفح السجل"
+
+#: bottles/frontend/ui/dialog-journal.blp:53
+msgid "Change Logging Level."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-journal.blp:57
+msgid "All"
+msgstr "الكل"
+
+#: bottles/frontend/ui/dialog-launch-options.blp:42
+msgid "Those arguments will be passed at launch."
+msgstr "ستُعتمد هذه الحجج عند بدء التشغيل."
+
+#: bottles/frontend/ui/dialog-launch-options.blp:43
+msgid "Custom Arguments"
+msgstr "الحجج المخصصة"
+
+#: bottles/frontend/ui/dialog-launch-options.blp:46
+msgid "Command Arguments"
+msgstr "حجج الأوامر"
+
+#: bottles/frontend/ui/dialog-launch-options.blp:47
+#, c-format
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "مثلا: VAR=value %command% -example1 -example2 -example3=hello"
+
+#: bottles/frontend/ui/dialog-launch-options.blp:52
+msgid "Post-run Script"
+msgstr "البرنامج النصي بعد التشغيل"
+
+#. endregion
+#: bottles/frontend/ui/dialog-launch-options.blp:53
+#: bottles/frontend/windows/launchoptions.py:54
+msgid "Choose a script which should be executed after run."
+msgstr "اختر النص البرمجي الذي سينفذ بعد التشغيل."
+
+#: bottles/frontend/ui/dialog-launch-options.blp:70
+#, fuzzy
+msgid "Choose a Script"
+msgstr "اختر نصاً برمجياً"
+
+#: bottles/frontend/ui/dialog-launch-options.blp:84
+#: bottles/frontend/windows/launchoptions.py:55
+msgid "Choose from where start the program."
+msgstr "اختر من أين سيبدأ البرنامج."
+
+#: bottles/frontend/ui/dialog-launch-options.blp:101
+#: bottles/frontend/ui/drive-entry.blp:22 bottles/frontend/ui/new.blp:152
+#: bottles/frontend/ui/new.blp:168
+msgid "Choose a Directory"
+msgstr "اختر دليلاً"
+
+#: bottles/frontend/ui/dialog-launch-options.blp:114
+msgid "These settings will override the default settings for this executable."
+msgstr "ستتجاوز هذه الإعداداتُ الإعداداتَ الافتراضية لملف التنفيذ هذا."
+
+#: bottles/frontend/ui/dialog-launch-options.blp:115
+msgid "Preferences Overrides"
+msgstr "تجاوز التفضيلات"
+
+#: bottles/frontend/ui/dialog-launch-options.blp:119
+msgid "Reset to Bottle's Defaults"
+msgstr "أعد تعيين إعدادات القارورة للإعدادات الافتراضية"
+
+#: bottles/frontend/ui/dialog-launch-options.blp:165
+msgid "Virtual Desktop"
+msgstr "سطح المكتب الافتراضي"
+
+#: bottles/frontend/ui/dialog-proton-alert.blp:4
+msgid "Proton Disclaimer"
+msgstr "نص إخلاء المسؤولية لبروتون"
+
+#: bottles/frontend/ui/dialog-proton-alert.blp:21
+msgid "Use Proton"
+msgstr "استخدم بروتون"
+
+#: bottles/frontend/ui/dialog-proton-alert.blp:35
+msgid ""
+"Beware, using Proton-based runners in non-Steam bottles can cause problems "
+"and prevent them from behaving correctly.\n"
+"\n"
+"We recommend using Wine-GE rather, a version of Proton meant to run outside "
+"of Steam.\n"
+"\n"
+"Proceeding will automatically enable the Steam runtime (if present in the "
+"system and detected by Bottles) in order to allow it to access the necessary "
+"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
+"the runner's provider, is not responsible for any problems and we ask that "
+"you do not report to them."
+msgstr ""
+"احذر، يمكن أن يؤدي استخدام المشغلات المعتمدة على بروتون في القوارير بدون "
+"ستيم إلى مشاكل.\n"
+"\n"
+"نوصي باستخدام واين GE بدلا عنه، وهي نسخة من بروتون هدفها العمل خارج ستيم.\n"
+"\n"
+"ستؤدي المتابعة إلى تشغيل ستيم (إن كان موجوداً على النظام ومتعرفاً عليه من قبل "
+"بوتلز) وذلك لإتاحة وصوله للمكتبات المطلوبة ولتقليل مشاكل التوافق، ضع في "
+"الحسبان أن مُوفر المُشغل GloriousEggroll ليس مسؤولاً عن أي مشكلة ونطلب منك أن "
+"لا تبلغ عنهم."
+
+#: bottles/frontend/ui/dialog-proton-alert.blp:43
+msgid "I got it."
+msgstr "فهمت."
+
+#: bottles/frontend/ui/dialog-rename.blp:7
+msgid "Rename"
+msgstr "أعد التسمية"
+
+#: bottles/frontend/ui/dialog-rename.blp:30
+msgid "Choose a new name for the selected program."
+msgstr "اختر اسماً جديداً للبرنامج المحدد."
+
+#: bottles/frontend/ui/dialog-rename.blp:33
+msgid "New Name"
+msgstr "الاسم الجديد"
+
+#: bottles/frontend/ui/dialog-run-args.blp:13
+msgid "Run With Arguments"
+msgstr "شغّل مع المعطيات"
+
+#: bottles/frontend/ui/dialog-run-args.blp:34
+#: bottles/frontend/views/bottle_details.py:380
+#: bottles/frontend/views/list.py:120
+msgid "Run"
+msgstr "شغِّل"
+
+#: bottles/frontend/ui/dialog-run-args.blp:44
+msgid "Write below the arguments to be passed to the executable."
+msgstr "اكتب أدناه المعطيات التي ستُمرر لملف التنفيذ."
+
+#: bottles/frontend/ui/dialog-run-args.blp:47
+msgid "e.g.: -opengl -SkipBuildPatchPrereq"
+msgstr "على سبيل المثال: -opengl -SkipBuildPatchPrereq"
+
+#: bottles/frontend/ui/dialog-sandbox.blp:7
+msgid "Sandbox Settings"
+msgstr "إعدادات الملعب (Sandbox)"
+
+#: bottles/frontend/ui/dialog-sandbox.blp:25
+msgid "Share Network"
+msgstr "مشاركة الشبكة"
+
+#: bottles/frontend/ui/dialog-sandbox.blp:34
+msgid "Share Sound"
+msgstr "مشاركة الصوت"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.blp:16
+msgid "Upgrade Needed"
+msgstr "الترقية مطلوبة"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.blp:38
+#: bottles/frontend/ui/onboard.blp:81
+msgid "Continue"
+msgstr "استمر"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.blp:47
+msgid "Launch upgrade"
+msgstr "ابدأ الترقية"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
+msgid "New Versioning System"
+msgstr "نظام تعيين الإصدار الجديد"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
+msgid "The new bottle versioning system has landed."
+msgstr "نزَل النظام الجديد لتعيين الإصدار للقوارير."
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.blp:83
+#, fuzzy
+msgid ""
+"Bottles has a whole new Versioning System that is not backwards compatible.\n"
+"\n"
+"To continue using versioning we need to re-initialize the bottle repository. "
+"This will not delete data from your bottle but will delete all existing "
+"snapshots and create a new one.\n"
+"\n"
+"If you need to go back to a previous snapshot before continuing, close this "
+"window and restore the snapshot, then reopen the bottle to show this window "
+"again.\n"
+"\n"
+"The old system will be discontinued in one of the next releases."
+msgstr ""
+"أصبح لدى بوتلز نظام جديد لتعيين الإصدارات لا يدعم النسخ القديمة.\n"
+"\n"
+"لاستكمال استخدام نظام تعيين الإصدار، علينا أن نقوم بإعادة تهيئة مستودع "
+"القارورة، لن يحذف هذا بياناتك من القارورة، ولكنه سيحذف كل الحالات الموجودة "
+"وإنشاء حالة جديدة.\n"
+"\n"
+"إن احتجت إلى العودة لحالة سابقة قبل المتابعة، أغلق هذه النافذة واستعد "
+"الحالة، ثم أعد فتح القارورة لإظهار هذه الرسالة مرة أخرى.\n"
+"\n"
+"سيتوقف دعم النظام القديم في أحد الإصدارات القادمة."
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
+#, fuzzy
+msgid "Re-initializing Repository…"
+msgstr "إعادة تهيئة المستودع…"
+
+#: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
+msgid "Done! Please restart Bottles."
+msgstr "تم! فضلاً أعد تشغيل بوتلز."
+
+#. Translators: vkBasalt is a Vulkan post processing layer for Linux
+#: bottles/frontend/ui/dialog-vkbasalt.blp:10
+msgid "Post-Processing Effects Settings"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:44
+msgid "Default"
+msgstr "الافتراضي"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:48
+msgid "Default Settings"
+msgstr "الإعدادات الافتراضية"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:57
+msgid "Effects are applied according to the list order."
+msgstr "يتم تطبيق التأثيرات وفقاً لترتيب القائمة."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:58
+msgid "Effects"
+msgstr "التأثيرات"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:62
+msgid "Contrast Adaptive Sharpening"
+msgstr "رفع جودة الصورة المتكيف مع التباين"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:65
+#: bottles/frontend/ui/dialog-vkbasalt.blp:102
+msgid "Sharpness"
+msgstr "الحِدة"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:69
+#: bottles/frontend/ui/dialog-vkbasalt.blp:106
+#: bottles/frontend/ui/dialog-vkbasalt.blp:134
+#: bottles/frontend/ui/dialog-vkbasalt.blp:167
+#: bottles/frontend/ui/dialog-vkbasalt.blp:195
+#: bottles/frontend/ui/dialog-vkbasalt.blp:223
+#: bottles/frontend/ui/dialog-vkbasalt.blp:256
+#: bottles/frontend/ui/dialog-vkbasalt.blp:288
+#: bottles/frontend/ui/dialog-vkbasalt.blp:316
+#: bottles/frontend/ui/dialog-vkbasalt.blp:343
+#: bottles/frontend/ui/dialog-vkbasalt.blp:370
+msgid "Show Information"
+msgstr "أظهر المعلومات"
+
+#. Translators: Luma is not translatable
+#: bottles/frontend/ui/dialog-vkbasalt.blp:99
+msgid "Denoised Luma Sharpening"
+msgstr "تحسين دقة Denoised Luma"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:130
+msgid "Denoise"
+msgstr "تقليل التشويش"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:160
+msgid "Fast Approximate Anti-Aliasing"
+msgstr "تنعيم صورة سريع وتقريبي"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:163
+msgid "Subpixel Quality"
+msgstr "جودة أجزاء البِكْسِل"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:191
+msgid "Quality Edge Threshold"
+msgstr "عتبة جودة الحواف"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:219
+msgid "Quality Edge Threshold Minimum"
+msgstr "أقل عتبة لجودة الحواف"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:249
+msgid "Subpixel Morphological Anti-Aliasing"
+msgstr "SMAA"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:252
+msgid "Edge Detection"
+msgstr "كشف الحواف"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:267
+msgid "Luma"
+msgstr "لوما"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:273
+msgid "Color"
+msgstr "اللون"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:284
+msgid "Threshold"
+msgstr "عتبة"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:312
+msgid "Max Search Steps"
+msgstr "الحد الأقصى لخطوات البحث"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:339
+msgid "Max Search Steps Diagonal"
+msgstr "أقصى حد لخطوات البحث القُطْري"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:366
+msgid "Max Corner Rounding"
+msgstr "أقصى تقويس للزوايا"
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:411
+msgid ""
+"CAS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper, whereas values lower than 0 make the frame softer than native."
+msgstr ""
+"تزيد تقنية CAS من حِدة الإطار، كلما زادت القيمة صار الإطار أحدّ، بينما لو كانت "
+"أقل من 0 صار الإطار أنعم من الأصلي."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:428
+msgid ""
+"DLS sharpness increases the sharpness of a frame. Higher values make the "
+"frame sharper."
+msgstr "كلما زادت قيم DLS sharpness زادت حِدة الإطار."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:445
+msgid ""
+"DLS denoise decreases the noise of a frame. Higher values make the frame "
+"softer."
+msgstr "يقلل DLS denoise من تشويش الإطار، لكما زادت القيم صار الإطار أنعم."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:462
+msgid ""
+"FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
+"values make the frame softer."
+msgstr ""
+"تقلل جودة أجزاء البكسل FXAA من التنعيم على مستوى أجزاء البكسل، كلما زادت "
+"القيمة صار الإطار أنعم."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:479
+msgid ""
+"FXAA edge threshold is the minimum amount of contrast required to apply the "
+"FXAA algorithm. Higher values make the frame have more contrast."
+msgstr ""
+"عتبة الحواف لـ FXAA هي أقل قيمة مطلوبة للتباين لتطبيقة خوارزمية FXAA. كلما "
+"زادت القيمة صار تباين الإطار أكثر."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:496
+msgid ""
+"FXAA quality edge threshold minimum is the minimum value of dark pixels that "
+"are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
+"below the specified value and can lead to a performance increase."
+msgstr ""
+"عتبة جودة الحواف لـ FXAA هي القيمة الدنيا لعدد البكسلات الداكنة التي "
+"تتجاهلها خوازرمية FXAA. تتجاهل خوارزمية FXAA البكسلات تحت القيمة المدخلة وقد "
+"تؤدي لتحسن الأداء."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:513
+msgid ""
+"Luma detects edges from a monochrome perspective, whereas Color detects "
+"edges based on colors. Luma is more performant than Color."
+msgstr ""
+"تكتشف \"لوما\" الحواف من منظور أحادي الألوان، بينما تكتشف \"كولر\" الحواف "
+"بناءً على الألوان. \"لوما\" أفضل أداءً من \"كولر\"."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:530
+msgid ""
+"SMAA threshold specifies the sensitivity of edge detection. Lower values "
+"detect more edges at the expense of performance."
+msgstr ""
+"تحدد عتبة SMAA حساسية اكتشاف الحواف. تقوم القيم الدنيا باكتشاف حواف أكثر على "
+"حساب الأداء."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:547
+msgid ""
+"SMAA max search steps specifies how many horizontal and vertical search "
+"steps are performed when searching for edges."
+msgstr ""
+"تحدد \"أقصى عدد خطوات بحث لـ SMAA\" عدد خطوات البحث الأفقي والرأسي المنفذة "
+"عند البحث عن الحواف."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:564
+msgid ""
+"SMAA max diagonal search steps specifies how many diagonal search steps are "
+"performed when searching for edges."
+msgstr ""
+"يحدد خيار \"أقصى عدد مرات البحث القُطري لـ SMAA\" كم خطوة بحث قُطري تنفذ حين "
+"البحث عن الحواف."
+
+#: bottles/frontend/ui/dialog-vkbasalt.blp:581
+msgid "SMAA corner rounding specifies the strength of rounding edge corners."
+msgstr "يحدد خيار تقويس الزوايا SMAA شدة مستوى تقويس زوايا الحواف."
+
+#: bottles/frontend/ui/dll-override-entry.blp:8
+msgid "Builtin (Wine)"
+msgstr "مدمج (واين)"
+
+#: bottles/frontend/ui/dll-override-entry.blp:9
+msgid "Native (Windows)"
+msgstr "أصلي (ويندوز)"
+
+#: bottles/frontend/ui/dll-override-entry.blp:10
+msgid "Builtin, then Native"
+msgstr "المدمج ثم الأصلي"
+
+#: bottles/frontend/ui/dll-override-entry.blp:11
+msgid "Native, then Builtin"
+msgstr "الأصلي ثم المدمج"
+
+#: bottles/frontend/ui/dll-override-entry.blp:20
+#: bottles/frontend/ui/drive-entry.blp:12
+msgid "Remove"
+msgstr "أزل"
+
+#: bottles/frontend/ui/drive-entry.blp:5
+msgid "/point/to/path"
+msgstr "/أشر/إلى/المسار"
+
+#: bottles/frontend/ui/env-var-entry.blp:4
+#: bottles/frontend/ui/exclusion-pattern-entry.blp:4
+msgid "Value"
+msgstr "القيمة"
+
+#: bottles/frontend/ui/importer-entry.blp:13
+msgid "Browse files"
+msgstr "تصفح الملفات"
+
+#. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
+#: bottles/frontend/ui/importer-entry.blp:21
+#, fuzzy
+msgid "Wine prefix name"
+msgstr "اسم سابقة واين"
+
+#: bottles/frontend/ui/importer-entry.blp:28
+msgid "Manager"
+msgstr "المدير"
+
+#: bottles/frontend/ui/importer-entry.blp:38
+#, fuzzy
+msgid "This Wine prefix was already imported in Bottles."
+msgstr "استُوردت سابقة واين هذه إلى بوتلز بالفعل."
+
+#: bottles/frontend/ui/importer.blp:22
+#, fuzzy
+msgid "Import a Bottle backup"
+msgstr "استيراد نسخة احتياطية لبوتلز"
+
+#: bottles/frontend/ui/importer.blp:28
+msgid "Search again for prefixes"
+msgstr "ابحث مجدداً عن سابقات"
+
+#: bottles/frontend/ui/importer.blp:38
+msgid "No Prefixes Found"
+msgstr "لم يُعثر على سابقات"
+
+#: bottles/frontend/ui/importer.blp:39
+#, fuzzy
+msgid ""
+"No external prefixes were found. Does Bottles have access to them?\n"
+"Use the icon on the top to import a bottle from a backup."
+msgstr ""
+"لم يعثر على سابقات من لوترس وPlayOnLinux وغيرها.\n"
+"استخدم الأيقونة أعلاه لاستيراد قارورة من نسخة احتياطية"
+
+#: bottles/frontend/ui/importer.blp:74
+msgid "Full Archive"
+msgstr "الأرشيف الكامل"
+
+#: bottles/frontend/ui/installer-entry.blp:16
+msgid "Show Manifest…"
+msgstr "أظهر البيان…"
+
+#: bottles/frontend/ui/installer-entry.blp:20
+msgid "Read Review…"
+msgstr "اقرأ المراجعة…"
+
+#: bottles/frontend/ui/installer-entry.blp:34
+msgid "Installer name"
+msgstr "اسم المثبت"
+
+#: bottles/frontend/ui/installer-entry.blp:35
+msgid "Installer description"
+msgstr "وصف المثبت"
+
+#: bottles/frontend/ui/installer-entry.blp:42
+msgid "Unknown"
+msgstr "مجهول"
+
+#: bottles/frontend/ui/installer-entry.blp:51
+#, fuzzy
+msgid "Install this Program"
+msgstr "ثبت هذا البرنامج"
+
+#: bottles/frontend/ui/installer-entry.blp:69
+#, fuzzy
+msgid "Program Menu"
+msgstr "اسم البرنامج"
+
+#: bottles/frontend/ui/library-entry.blp:16
+msgid "Remove from Library"
+msgstr "أزل من المكتبة"
+
+#: bottles/frontend/ui/library-entry.blp:63
+msgid "No Thumbnail"
+msgstr ""
+
+#: bottles/frontend/ui/library-entry.blp:90
+msgid "Item name"
+msgstr "اسم العنصر"
+
+#: bottles/frontend/ui/library-entry.blp:110
+#: bottles/frontend/ui/program-entry.blp:89
+msgid "Launch with Steam"
+msgstr "شغّل باستخدام Steam"
+
+#: bottles/frontend/ui/library.blp:11
+#: bottles/frontend/windows/main_window.py:171
+msgid "Library"
+msgstr "المكتبة"
+
+#: bottles/frontend/ui/library.blp:12
+msgid "Add items here from your bottle's program list"
+msgstr "أضف العناصر هنا من قائمة البرامج في قارورتك"
+
+#: bottles/frontend/ui/list-entry.blp:26
+msgid "Versioning is active in this bottle."
+msgstr "تعيين الإصدار نشط في هذه القارورة."
+
+#: bottles/frontend/ui/list-entry.blp:42
+msgid "This bottle looks damaged."
+msgstr "يبدو أن هذه القارورة متضررة."
+
+#: bottles/frontend/ui/list-entry.blp:55
+#, fuzzy
+msgid "Execute in this Bottle"
+msgstr "نفذ في هذه القارورة"
+
+#: bottles/frontend/ui/list-entry.blp:69
+msgid "Run Here"
+msgstr "شغّل هنا"
+
+#: bottles/frontend/ui/list-entry.blp:75
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+"يبدو أن هذه القارورة متضررة، ملف التكوين مفقود. يمكنني أن أحاول حل المشكلة "
+"بإنشاء تكوين جديد."
+
+#: bottles/frontend/ui/list-entry.blp:87
+msgid "Run .exe/.msi in this bottle"
+msgstr "شغل ملفات exe. وmsi. في هذه القارورة"
+
+#: bottles/frontend/ui/list.blp:12
+msgid "Search your bottles…"
+msgstr "ابحث في قاروراتك…"
+
+#: bottles/frontend/ui/list.blp:28
+msgid "Steam Proton"
+msgstr "بروتون لستيم"
+
+#: bottles/frontend/ui/list.blp:42 bottles/frontend/ui/window.blp:37
+#: bottles/frontend/ui/window.blp:52
+#: bottles/frontend/windows/main_window.py:166
+#: data/com.usebottles.bottles.desktop.in:3
+#: data/com.usebottles.bottles.metainfo.xml.in:7
+msgid "Bottles"
+msgstr "زجاجات"
+
+#: bottles/frontend/ui/list.blp:43
+msgid "Click \"Create a new Bottle…\" to create a new bottle."
+msgstr ""
+
+#: bottles/frontend/ui/list.blp:50
+#, fuzzy
+msgid "Create a new Bottle…"
+msgstr "أنشئ قارورة جديدة"
+
+#: bottles/frontend/ui/list.blp:64
+msgid "No Results Found"
+msgstr "لم يعثر على نتائج"
+
+#: bottles/frontend/ui/list.blp:65
+msgid "Try a different search."
+msgstr "جرب بحثاً مختلفاً."
+
+#: bottles/frontend/ui/loading.blp:13
+msgid "Starting up…"
+msgstr "بدء التشغيل…"
+
+#: bottles/frontend/ui/local-resource-entry.blp:4
+msgid "This resource is missing."
+msgstr "هذا المورد مفقود."
+
+#: bottles/frontend/ui/local-resource-entry.blp:8
+msgid "Browse"
+msgstr "تصفح"
+
+#: bottles/frontend/ui/new.blp:23 bottles/frontend/ui/new.blp:70
+#: bottles/frontend/ui/window.blp:80
+msgid "New Bottle"
+msgstr "قارورة جديدة"
+
+#: bottles/frontend/ui/new.blp:44
+msgid "Create"
+msgstr "أنشئ"
+
+#: bottles/frontend/ui/new.blp:54 bottles/frontend/ui/new.blp:247
+msgid "Close"
+msgstr "أغلق"
+
+#: bottles/frontend/ui/new.blp:73
+msgid "Bottle Information"
+msgstr "معلومات القارورة"
+
+#: bottles/frontend/ui/new.blp:87
+msgid "Gaming"
+msgstr "اللعب"
+
+#: bottles/frontend/ui/new.blp:88
+msgid "An environment improved for Windows games."
+msgstr "بيئة محسنة لألعاب ويندوز."
+
+#: bottles/frontend/ui/new.blp:95
+msgid "Application"
+msgstr "التطبيق"
+
+#: bottles/frontend/ui/new.blp:96
+msgid "An environment improved for Windows applications."
+msgstr "بيئة محسنة لتطبيقات ويندوز."
+
+#: bottles/frontend/ui/new.blp:104
+msgid "Layered"
+msgstr "ذو طبقات"
+
+#: bottles/frontend/ui/new.blp:105
+msgid "A layered environment, where every app is a layer."
+msgstr "بيئة ذات طبقات، حيث يشكل كل تطبيق طبقة."
+
+#: bottles/frontend/ui/new.blp:112
+msgid "Custom"
+msgstr "التخصيص"
+
+#: bottles/frontend/ui/new.blp:113
+msgid "A clear environment for your experiments."
+msgstr "بيئة واضحة لتجاربك."
+
+#: bottles/frontend/ui/new.blp:117
+msgid "Unlinked Home Directory"
+msgstr "الدليل الرئيسي غير المرتبط"
+
+#: bottles/frontend/ui/new.blp:118
+msgid "Do not link the userdir to the homedir"
+msgstr "لا تربط دليل المستخدم بالدليل الرئيس"
+
+#: bottles/frontend/ui/new.blp:136
+msgid "Architecture"
+msgstr "المعمارية"
+
+#: bottles/frontend/ui/new.blp:137
+msgid "We recommend using 32bit only if strictly necessary."
+msgstr "نوصي باستخدام 32 بت فقط إذا لزم الأمر."
+
+#: bottles/frontend/ui/new.blp:140
+msgid "64 bit"
+msgstr "64 بت"
+
+#: bottles/frontend/ui/new.blp:140
+msgid "32 bit"
+msgstr "32 بت"
+
+#: bottles/frontend/ui/new.blp:146
+msgid "Custom Recipe"
+msgstr "وصفة مخصصة"
+
+#: bottles/frontend/ui/new.blp:147
+msgid "Choose a custom recipe for the environment if you have one."
+msgstr "اختر وصفة مخصصة للبيئة إن كانت لديك واحدة."
+
+#: bottles/frontend/ui/new.blp:162
+msgid "Custom Path"
+msgstr "مسار مخصص"
+
+#: bottles/frontend/ui/new.blp:163
+msgid "Store this bottle in another place."
+msgstr "خزن هذه القارورة في مكان آخر."
+
+#: bottles/frontend/ui/new.blp:198
+msgid "Creating a Bottle…"
+msgstr "يتم إنشاء قارورة…"
+
+#: bottles/frontend/ui/new.blp:242
+#, fuzzy
+msgid "Bottle Created"
+msgstr "أُنشئت القارورة"
+
+#: bottles/frontend/ui/onboard.blp:34
+msgid "Previous"
+msgstr "السابق"
+
+#: bottles/frontend/ui/onboard.blp:59
+msgid "Welcome to Bottles"
+msgstr "مرحبا بك في بوتلز"
+
+#: bottles/frontend/ui/onboard.blp:60
+#, fuzzy
+msgid "Run Windows Software on Linux."
+msgstr "قم بتشغيل برامج ويندوز على لينكس باستخدام بوتلز!"
+
+#: bottles/frontend/ui/onboard.blp:65
+msgid "Windows in Bottles"
+msgstr "النوافذ في بوتلز"
+
+#: bottles/frontend/ui/onboard.blp:66
+msgid ""
+"Bottles uses compatibility runners to provide isolated containerized Windows-"
+"like environments where programs run."
+msgstr ""
+"يستعمل بوتلز مشغلات توافق لتوفير بيئات معزولة تشبه ويندوز لتشغيل البرامج."
+
+#: bottles/frontend/ui/onboard.blp:72
+msgid "Almost Done"
+msgstr "يكاد ينتهي"
+
+#: bottles/frontend/ui/onboard.blp:73
+msgid "We need a few more minutes to set everything up…"
+msgstr "نحتاج إلى بضع دقائق أخرى لإعداد كل شيء…"
+
+#: bottles/frontend/ui/onboard.blp:105
+#, fuzzy
+msgid "All Ready!"
+msgstr "كل شيء جاهز!"
+
+#: bottles/frontend/ui/onboard.blp:114
+msgid "Please Finish the setup first"
+msgstr "فضلاً أنهِ الإعداد أولاً"
+
+#: bottles/frontend/ui/onboard.blp:120
+msgid "Start using Bottles"
+msgstr "ابدأ باستخدام بوتلز"
+
+#: bottles/frontend/ui/onboard.blp:141
+msgid "Next"
+msgstr "التالي"
+
+#: bottles/frontend/ui/preferences.blp:4 bottles/frontend/ui/window.blp:22
+msgid "Preferences"
+msgstr "التفضيلات"
+
+#: bottles/frontend/ui/preferences.blp:11
+#: bottles/frontend/ui/preferences.blp:39
+msgid "General"
+msgstr "عام"
+
+#: bottles/frontend/ui/preferences.blp:14
+msgid "Appearance"
+msgstr "المظهر"
+
+#: bottles/frontend/ui/preferences.blp:17
+msgid "Dark Mode"
+msgstr "الوضع الداكن"
+
+#: bottles/frontend/ui/preferences.blp:18
+msgid "Whether Bottles should use the dark color scheme."
+msgstr "ما إذا كان يجب على بوتلز استخدام ألوان الوضع الداكن."
+
+#: bottles/frontend/ui/preferences.blp:28
+msgid "Show Update Date"
+msgstr "أظهر تاريخ التحديث"
+
+#: bottles/frontend/ui/preferences.blp:29
+msgid "Whether to show the update date in the bottle list."
+msgstr "ما إذا كان يجب عرض تاريخ التحديث في قائمة القارورات."
+
+#: bottles/frontend/ui/preferences.blp:42
+#: data/com.usebottles.bottles.gschema.xml:46
+msgid "Notifications"
+msgstr "الإشعارات"
+
+#: bottles/frontend/ui/preferences.blp:43
+msgid "Show notifications for downloads and installs."
+msgstr "أظهر الإشعارات للتنزيلات والتثبيتات."
+
+#: bottles/frontend/ui/preferences.blp:52
+msgid "Temp Files"
+msgstr "الملفات المؤقتة"
+
+#: bottles/frontend/ui/preferences.blp:53
+msgid "Clean temp files when Bottles launches?"
+msgstr "حذف الملفات المؤقتة عند بدء بوتلز؟"
+
+#: bottles/frontend/ui/preferences.blp:62
+msgid "Close Bottles After Starting a Program"
+msgstr "أغلق بوتلز بعد تشغيل برنامج"
+
+#: bottles/frontend/ui/preferences.blp:63
+msgid "Close Bottles after starting a program from the file manager."
+msgstr "أغلق بوتلز بعد بدء تشغيل برنامج من مدير الملفات."
+
+#: bottles/frontend/ui/preferences.blp:73
+msgid "Integrations"
+msgstr "التكاملات"
+
+#: bottles/frontend/ui/preferences.blp:76
+msgid "Steam Proton Prefixes"
+msgstr "سابقات بروتون لستيم"
+
+#: bottles/frontend/ui/preferences.blp:77
+msgid "List and manage Steam Proton prefixes."
+msgstr "اسرد وأدر سابقات بروتون لستيم."
+
+#: bottles/frontend/ui/preferences.blp:97
+msgid "List Steam Apps in Programs List"
+msgstr "اسرد تطبيقات Steam في قائمة البرامج"
+
+#: bottles/frontend/ui/preferences.blp:98
+msgid "Requires Steam for Windows installed in the bottle."
+msgstr "يتطلب أن يكون ستيم للويندوز مثبتاً في القارورة."
+
+#: bottles/frontend/ui/preferences.blp:107
+msgid "List Epic Games in Programs List"
+msgstr "اسرد تطبيقات Epic Games في قائمة البرامج"
+
+#: bottles/frontend/ui/preferences.blp:108
+msgid "Requires Epic Games Store installed in the bottle."
+msgstr "يتطلب أن يكون متجر Epic Games مثبتاً في القارورة."
+
+#: bottles/frontend/ui/preferences.blp:117
+msgid "List Ubisoft Games in Programs List"
+msgstr "اسرد ألعاب يوبي سوفت في قائمة البرامج"
+
+#: bottles/frontend/ui/preferences.blp:118
+msgid "Requires Ubisoft Connect installed in the bottle."
+msgstr "يتطلب Ubisoft Connect مثبتا في القارورة."
+
+#: bottles/frontend/ui/preferences.blp:128
+msgid "Advanced"
+msgstr "متقدم"
+
+#: bottles/frontend/ui/preferences.blp:131
+#, fuzzy
+msgid "Bottles Directory"
+msgstr "اختر دليلاً"
+
+#: bottles/frontend/ui/preferences.blp:132
+msgid "Directory that contains the data of your Bottles."
+msgstr ""
+
+#: bottles/frontend/ui/preferences.blp:167
+msgid "Runners"
+msgstr "المشغلات"
+
+#: bottles/frontend/ui/preferences.blp:171
+msgid "Pre-Release"
+msgstr "الإصدار التجريبي"
+
+#: bottles/frontend/ui/preferences.blp:172
+msgid "Display unstable versions of runners."
+msgstr "أظهر النسخ غير المستقرة من المشغلات."
+
+#: bottles/frontend/ui/preferences.blp:184
+msgid "DLL Components"
+msgstr "مكونات DLL"
+
+#: bottles/frontend/ui/preferences.blp:195
+msgid "DXVK-NVAPI"
+msgstr "DXVK-NVAPI"
+
+#: bottles/frontend/ui/preferences.blp:205
+msgid "Core"
+msgstr "النواة"
+
+#: bottles/frontend/ui/preferences.blp:209
+msgid "Runtime"
+msgstr "زمن التشغيل"
+
+#: bottles/frontend/ui/preferences.blp:213
+msgid "WineBridge"
+msgstr "جسر Wine"
+
+#: bottles/frontend/ui/preferences.blp:219
+#: data/com.usebottles.bottles.gschema.xml:66
+msgid "Experiments"
+msgstr "التجارب"
+
+#: bottles/frontend/ui/preferences.blp:222
+msgid ""
+"These features are under heavy development and may be unstable, expect bugs "
+"and breakage."
+msgstr ""
+"هذه الميزات قيد التطوير المكثف وقد تكون غير مستقرة ، توقع حدوث أخطاء وأعطال."
+
+#: bottles/frontend/ui/preferences.blp:225
+msgid "Sandbox per bottle"
+msgstr "ساحة التجارب لكل قارورة"
+
+#: bottles/frontend/ui/preferences.blp:226
+msgid "In early development."
+msgstr "في مرحلة مبكرة من التطوير."
+
+#: bottles/frontend/ui/program-entry.blp:19
+#, fuzzy
+msgid "Launch with Terminal"
+msgstr "شغّل مع الطرفية"
+
+#: bottles/frontend/ui/program-entry.blp:25
+#, fuzzy
+msgid "Browse Path"
+msgstr "تصفح المسار"
+
+#: bottles/frontend/ui/program-entry.blp:39
+msgid "Change Launch Options…"
+msgstr "تغيير خيارات التشغيل…"
+
+#: bottles/frontend/ui/program-entry.blp:43
+#, fuzzy
+msgid "Add to Library"
+msgstr "أضف إلى مكتبتي"
+
+#: bottles/frontend/ui/program-entry.blp:47
+msgid "Add Desktop Entry"
+msgstr "إضافة أيقونة لسطح المكتب"
+
+#: bottles/frontend/ui/program-entry.blp:51
+msgid "Add to Steam"
+msgstr "أضف إلى Steam"
+
+#: bottles/frontend/ui/program-entry.blp:55
+msgid "Rename…"
+msgstr "أعد التسمية…"
+
+#: bottles/frontend/ui/program-entry.blp:62
+msgid "Hide Program"
+msgstr "أخفِ البرنامج"
+
+#: bottles/frontend/ui/program-entry.blp:66
+msgid "Show Program"
+msgstr "اعرض البرنامج"
+
+#: bottles/frontend/ui/program-entry.blp:70
+msgid "Remove from List"
+msgstr "أزل من القائمة"
+
+#: bottles/frontend/ui/program-entry.blp:83
+msgid "Program name"
+msgstr "اسم البرنامج"
+
+#. Translators: id as identification
+#: bottles/frontend/ui/state-entry.blp:8
+msgid "State id"
+msgstr "مُعرف الحالة"
+
+#: bottles/frontend/ui/state-entry.blp:9
+msgid "State comment"
+msgstr "تعليق الحالة"
+
+#: bottles/frontend/ui/state-entry.blp:16
+#, fuzzy
+msgid "Restore this Snapshot"
+msgstr "استعادة هذه الحالة"
+
+#: bottles/frontend/ui/task-entry.blp:19
+msgid "Delete message"
+msgstr "حذف الرسالة"
+
+#: bottles/frontend/ui/window.blp:16
+#, fuzzy
+msgid "Import…"
+msgstr "استورد"
+
+#: bottles/frontend/ui/window.blp:26
+msgid "Help"
+msgstr ""
+
+#: bottles/frontend/ui/window.blp:31
+msgid "About Bottles"
+msgstr "حول بوتلز"
+
+#: bottles/frontend/ui/window.blp:60
+msgid "Main Menu"
+msgstr ""
+
+#: bottles/frontend/ui/window.blp:74
+msgid ""
+"You don't seem connected to the internet. Without it you will not be able to "
+"download essential components. Click this icon when you have reestablished "
+"the connection."
+msgstr ""
+"لا يبدو أنك متصل بالإنترنت، لا يمكنك بدونه تحميل المكونات الأساسية. اضغط هذه "
+"الأيقونة عندما تعيد الاتصال."
+
+#: bottles/frontend/utils/connection.py:67
+msgid "You are offline, unable to download."
+msgstr "أنت غير متصل بالإنترنت، لا يمكن التنزيل."
+
+#: bottles/frontend/views/bottle_details.py:199
+#, python-brace-format
+msgid "File \"{0}\" is not a .exe or .msi file"
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:215
+#, python-format
+msgid "Updated: %s"
+msgstr "محدث: %s"
+
+#: bottles/frontend/views/bottle_details.py:271
+#, fuzzy, python-brace-format
+msgid "\"{0}\" added"
+msgstr "أُضيف {0}."
+
+#: bottles/frontend/views/bottle_details.py:275
+msgid "Choose an executable path"
+msgstr "اختر مسار ملف تنفيذي"
+
+#: bottles/frontend/views/bottle_details.py:277
+msgid "Add"
+msgstr "أضف"
+
+#: bottles/frontend/views/bottle_details.py:345
+#, fuzzy
+msgid "Hide Hidden Programs"
+msgstr "أخفِ البرنامج"
+
+#: bottles/frontend/views/bottle_details.py:378
+#: bottles/frontend/views/list.py:118
+msgid "Choose a Windows executable file"
+msgstr "اختر ملفاً تنفيذياً يعمل في ويندوز"
+
+#: bottles/frontend/views/bottle_details.py:387
+msgid "Be Aware of Sandbox"
+msgstr "كن على دراية ب Sandbox"
+
+#: bottles/frontend/views/bottle_details.py:388
+msgid ""
+"Bottles is running in a sandbox, a restricted permission environment needed "
+"to keep you safe. If the program won't run, consider moving inside the "
+"bottle (3 dots icon on the top), then launch from there."
+msgstr ""
+"يعمل بوتلز في بيئة معزولة وذات أذونات محدودة لحمايتك. إذا لم يعمل البرنامج، "
+"فكر في الانتقال لداخل القارورة (النقاط الثلاث أعلاه)، ثم شغل من هناك."
+
+#: bottles/frontend/views/bottle_details.py:390
+#: bottles/frontend/views/bottle_details.py:505
+#: bottles/frontend/windows/main_window.py:197
+msgid "_Dismiss"
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:418
+msgid "Select the location where to save the backup config"
+msgstr "اختر موقع حفظ تكوين النسخ الاحتياطي"
+
+#: bottles/frontend/views/bottle_details.py:422
+msgid "Select the location where to save the backup archive"
+msgstr "اختر موقع حفظ أرشيف النسخ الاحتياطي"
+
+#: bottles/frontend/views/bottle_details.py:427
+#, fuzzy, python-brace-format
+msgid "Backup created for \"{0}\""
+msgstr "أنشئت نسخة احتياطية لـ {0}."
+
+#: bottles/frontend/views/bottle_details.py:429
+#, fuzzy, python-brace-format
+msgid "Backup failed for \"{0}\""
+msgstr "فشل النسخ الاحتياطي لـ {0}."
+
+#: bottles/frontend/views/bottle_details.py:447
+msgid "Export"
+msgstr "صدّر"
+
+#: bottles/frontend/views/bottle_details.py:482
+#, fuzzy
+msgid "Are you sure you want to permanently delete \"{}\"?"
+msgstr "هل أنت متأكد من أنك تريد حذف هذه القارورة وجميع ملفاتها؟"
+
+#: bottles/frontend/views/bottle_details.py:483
+msgid ""
+"This will permanently delete all programs and settings associated with it."
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:486
+#: bottles/frontend/views/bottle_preferences.py:681
+msgid "_Delete"
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:501
+#, fuzzy
+msgid "Missing Runner"
+msgstr "المشغل"
+
+#: bottles/frontend/views/bottle_details.py:502
+msgid ""
+"The runner requested by this bottle is missing. Install it through the "
+"Bottles preferences or choose a new one to run applications."
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:580
+#, fuzzy
+msgid "Are you sure you want to force stop all processes?"
+msgstr "هل أنت متأكد من أنك تريد حذف هذه القارورة وجميع ملفاتها؟"
+
+#: bottles/frontend/views/bottle_details.py:581
+msgid "This can cause data loss, corruption, and programs to malfunction."
+msgstr ""
+
+#: bottles/frontend/views/bottle_details.py:584
+msgid "Force _Stop"
+msgstr ""
+
+#: bottles/frontend/views/bottle_preferences.py:196
+msgid "This feature is not available on your system."
+msgstr "لا تتوفر هذه الميزة لنظامك."
+
+#: bottles/frontend/views/bottle_preferences.py:246
+msgid "Choose working directory for executables"
+msgstr "اختر دليل العمل للملفات التنفيذية"
+
+#: bottles/frontend/views/bottle_preferences.py:367
+msgid "Directory that contains the data of \"{}\"."
+msgstr ""
+
+#: bottles/frontend/views/bottle_preferences.py:677
+#, fuzzy
+msgid "Are you sure you want to delete all snapshots?"
+msgstr "هل أنت متأكد من أنك تريد حذف هذه القارورة وجميع ملفاتها؟"
+
+#: bottles/frontend/views/bottle_preferences.py:678
+msgid "This will delete all snapshots, but keep your files."
+msgstr ""
+
+#: bottles/frontend/views/bottle_versioning.py:88
+msgid "Please migrate to the new Versioning system to create new states."
+msgstr "فضلاً انتقل لنظام تعيين الإصدار الجديد لتنشئ حالات جديدة."
+
+#: bottles/frontend/views/details.py:147
+msgid "Installers"
+msgstr "المثبتات"
+
+#: bottles/frontend/views/details.py:227
+msgid "Operations in progress, please wait."
+msgstr "العمليات قيد التنفيذ، يرجى الانتظار."
+
+#: bottles/frontend/views/details.py:231
+msgid "Return to your bottles."
+msgstr "عد لقاروراتك."
+
+#: bottles/frontend/views/importer.py:89
+#, fuzzy
+msgid "Backup imported successfully"
+msgstr "استورد النسخ الاحتياطي بنجاح."
+
+#: bottles/frontend/views/importer.py:91
+#, fuzzy
+msgid "Import failed"
+msgstr "فشل الاستيراد."
+
+#: bottles/frontend/views/importer.py:103
+#: bottles/frontend/views/importer.py:132
+msgid "Importing backup…"
+msgstr "جارٍ استيراد النسخة الاحتياطية…"
+
+#: bottles/frontend/views/importer.py:115
+msgid "Choose a backup archive"
+msgstr "اختر ارشيفاً للنسخ الاحتياطي"
+
+#: bottles/frontend/views/importer.py:117
+#: bottles/frontend/views/importer.py:146
+msgid "Import"
+msgstr "استورد"
+
+#: bottles/frontend/views/importer.py:144
+msgid "Choose a configuration file"
+msgstr "اختر ملف الإعدادات"
+
+#: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
+msgid "N/A"
+msgstr "غير متاح"
+
+#: bottles/frontend/views/list.py:217
+msgid "Your Bottles"
+msgstr "قواريرك"
+
+#: bottles/frontend/views/loading.py:33
+#, python-brace-format
+msgid "Downloading ~{0} of packages…"
+msgstr "تحميل ~{0} من الحزم…"
+
+#: bottles/frontend/views/loading.py:34
+#, python-brace-format
+msgid "Fetched {0} of {1} packages"
+msgstr "جُلب {0} من أصل {1} حزمة"
+
+#: bottles/frontend/views/new.py:139
+#, fuzzy
+msgid "Name has special characters or already in use"
+msgstr "يحتوي الاسم على رموز خاصة أو الاسم مستخدم بالفعل."
+
+#: bottles/frontend/views/new.py:156
+msgid "Choose a recipe file"
+msgstr "اختر ملف وصفة"
+
+#: bottles/frontend/views/new.py:172
+msgid "Choose where to store the bottle"
+msgstr "اختر مكان تخزين القارورة"
+
+#: bottles/frontend/views/new.py:226
+msgid "There was an error creating the bottle."
+msgstr "حصل خطأ أثناء إنشاء القارورة."
+
+#: bottles/frontend/views/new.py:234
+#, fuzzy, python-brace-format
+msgid "\"{0}\" was created successfully."
+msgstr "وُلّدت حالة [{0}] جديدة بنجاح!"
+
+#: bottles/frontend/views/preferences.py:117
+msgid "Steam was not found or Bottles does not have enough permissions."
+msgstr "لم يُعثر على ستيم أو ليس لدى بوتلز الأذونات الكافية."
+
+#: bottles/frontend/views/preferences.py:152
+#, fuzzy
+msgid "Choose new Bottles path"
+msgstr "اختر مساراً جديداً لبوتلز"
+
+#: bottles/frontend/views/preferences.py:172
+#, fuzzy
+msgid "Relaunch Bottles?"
+msgstr "اختر قارورة"
+
+#: bottles/frontend/views/preferences.py:173
+msgid ""
+"Bottles will need to be relaunched to use this directory.\n"
+"\n"
+"Be sure to close every program launched from Bottles before relaunching "
+"Bottles, as not doing so can cause data loss, corruption and programs to "
+"malfunction."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:176
+msgid "_Relaunch"
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:217
+msgid "Based on Valve's Wine, includes staging and Proton patches."
+msgstr "مبني على واين الخاص بفالف، يتضمن التدريج وتصليحات بروتون."
+
+#: bottles/frontend/views/preferences.py:218
+msgid "Based on Wine upstream, includes staging and Proton patches."
+msgstr "مبني على واين الأصلي ويتضمن تصحيحات التدريج."
+
+#: bottles/frontend/views/preferences.py:221
+msgid "Based on Wine upstream, includes staging patches."
+msgstr "مبني على واين الأصلي ويتضمن تصحيحات التدريج."
+
+#: bottles/frontend/views/preferences.py:222
+msgid ""
+"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
+"Requires the Steam Runtime turned on."
+msgstr ""
+"مبني على واين الخاص بفالف، يتضمن التدريج تصليحات بروتون وستيم. يتطلب عمل "
+"تشغيل ستيم."
+
+#: bottles/frontend/views/preferences.py:224
+msgid "Other"
+msgstr "أخرى"
+
+#: bottles/frontend/widgets/component.py:70
+msgid "Upgrade"
+msgstr "رقِّ"
+
+#: bottles/frontend/widgets/component.py:145
+msgid "Installing…"
+msgstr "جارٍ التثبيت …"
+
+#: bottles/frontend/widgets/dependency.py:103
+#: bottles/frontend/widgets/installer.py:81
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "البيان لـ {0}"
+
+#: bottles/frontend/widgets/dependency.py:166
+#, fuzzy, python-brace-format
+msgid "\"{0}\" installed"
+msgstr "ثُبت {0}."
+
+#: bottles/frontend/widgets/dependency.py:180
+#, fuzzy, python-brace-format
+msgid "\"{0}\" failed to install"
+msgstr "فشل تثبيت '{0}'."
+
+#: bottles/frontend/widgets/importer.py:66
+#, fuzzy, python-brace-format
+msgid "\"{0}\" imported"
+msgstr "استُوردَ {0}."
+
+#: bottles/frontend/widgets/installer.py:49
+msgid ""
+"This application may work poorly. The installer was configured to provide "
+"the best possible experience, but expect glitches, instability and lack of "
+"working features."
+msgstr ""
+
+#: bottles/frontend/widgets/installer.py:50
+msgid ""
+"This program works with noticeable glitches, but these glitches do not "
+"affect the application's functionality."
+msgstr ""
+
+#: bottles/frontend/widgets/installer.py:51
+msgid "This program works with minor glitches."
+msgstr ""
+
+#: bottles/frontend/widgets/installer.py:52
+msgid "This program works perfectly."
+msgstr ""
+
+#: bottles/frontend/widgets/installer.py:90
+#, python-brace-format
+msgid "Review for {0}"
+msgstr "المراجعة لـ {0}"
+
+#: bottles/frontend/widgets/program.py:184
+#, fuzzy, python-brace-format
+msgid "Launching \"{0}\"…"
+msgstr "جارٍ بدء تشغيل \"{0}\"…"
+
+#: bottles/frontend/widgets/program.py:190
+#, fuzzy, python-brace-format
+msgid "Launching \"{0}\" with Steam…"
+msgstr "جارٍ إطلاق \"{0}\" باستخدام Steam…"
+
+#: bottles/frontend/widgets/program.py:212
+#, fuzzy, python-brace-format
+msgid "\"{0}\" hidden"
+msgstr "أُخفي {0}."
+
+#: bottles/frontend/widgets/program.py:214
+#, fuzzy, python-brace-format
+msgid "\"{0}\" showed"
+msgstr "عُرض {0}."
+
+#: bottles/frontend/widgets/program.py:237
+#, fuzzy, python-brace-format
+msgid "\"{0}\" removed"
+msgstr "أُزيل {0}."
+
+#: bottles/frontend/widgets/program.py:251
+#, fuzzy, python-brace-format
+msgid "\"{0}\" renamed to \"{1}\""
+msgstr "أعيدت تسمية {0} إلى {1}."
+
+#: bottles/frontend/widgets/program.py:271
+#, fuzzy, python-brace-format
+msgid "Desktop Entry created for \"{0}\""
+msgstr "أنشئت مدخلة سطح مكتب لـ {0}"
+
+#: bottles/frontend/widgets/program.py:287
+#, fuzzy, python-brace-format
+msgid "\"{0}\" added to your library"
+msgstr "أضيف {0} إلى مكتبتك"
+
+#: bottles/frontend/widgets/program.py:303
+#, fuzzy, python-brace-format
+msgid "\"{0}\" added to your Steam library"
+msgstr "أضيف {0} لمكتبك في Steam"
+
+#: bottles/frontend/windows/crash.py:34
 msgid "Show report"
 msgstr "أظهر التقرير"
 
-#: bottles/frontend/windows/crash.py:88
+#: bottles/frontend/windows/crash.py:81
 msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
@@ -175,49 +2715,24 @@ msgstr ""
 "            بُلّغ عن هذه المشكلة 5 مرات ولا يمكن التبليغ مجدداً.\n"
 "            أبلغ عن تجربتك في أحدى التقارير الموجودة أدناه."
 
+#: bottles/frontend/windows/display.py:99
+#, fuzzy
+msgid "Updating display settings, please wait…"
+msgstr "جارٍ تحديث إصدار ويندوز، الرجاء الانتظار…"
+
+#: bottles/frontend/windows/display.py:111
+#, fuzzy
+msgid "Display settings updated"
+msgstr "إعدادات العرض"
+
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
 msgstr "لم يُعثر على أيّ تجاوزات."
 
-#: bottles/frontend/windows/drives.py:71
-msgid "Choose path"
-msgstr "اختر مساراً"
-
-#: bottles/frontend/windows/drives.py:73
-#: bottles/frontend/windows/filechooser.py:63
-#: bottles/frontend/windows/installer.py:66
-#: bottles/frontend/windows/launchoptions.py:234
-#: bottles/frontend/windows/launchoptions.py:258
-#: bottles/frontend/windows/vkbasalt.py:355
-#: bottles/frontend/ui/dialog-bottle-picker.ui:17
-#: bottles/frontend/ui/dialog-crash-report.ui:18
-#: bottles/frontend/ui/dialog-proton-alert.ui:17
-#: bottles/frontend/ui/dialog-rename.ui:17
-#: bottles/frontend/ui/dialog-run-args.ui:19 bottles/frontend/ui/new.ui:33
-#: bottles/frontend/views/bottle_details.py:202
-#: bottles/frontend/views/bottle_details.py:296
-#: bottles/frontend/views/bottle_details.py:335
-#: bottles/frontend/views/bottle_details.py:414
-#: bottles/frontend/views/bottle_preferences.py:276
-#: bottles/frontend/views/bottle_preferences.py:775
-#: bottles/frontend/views/bottle_programs.py:92
-#: bottles/frontend/views/importer.py:117
-#: bottles/frontend/views/importer.py:146 bottles/frontend/views/list.py:120
-#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
-#: bottles/frontend/views/preferences.py:158
-msgid "Cancel"
-msgstr "ألغِ"
-
-#: bottles/frontend/windows/drives.py:73
-#: bottles/frontend/windows/installer.py:66
-#: bottles/frontend/windows/launchoptions.py:234
-#: bottles/frontend/windows/launchoptions.py:258
-#: bottles/frontend/ui/dialog-bottle-picker.ui:22
-#: bottles/frontend/views/bottle_preferences.py:276
-#: bottles/frontend/views/new.py:152 bottles/frontend/views/new.py:168
-#: bottles/frontend/views/preferences.py:158
-msgid "Select"
-msgstr "اختر"
+#: bottles/frontend/windows/drives.py:75
+#, fuzzy
+msgid "Select Drive Path"
+msgstr "اختر ملفاً"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
@@ -226,14 +2741,6 @@ msgstr "لم تعرّف أيّ متغيرات بيئة."
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
 msgstr "لم تُعرّف أي أنماط استثناء."
-
-#: bottles/frontend/windows/filechooser.py:63
-#: bottles/frontend/ui/dialog-gamescope.ui:34
-#: bottles/frontend/ui/dialog-launch-options.ui:35
-#: bottles/frontend/ui/dialog-rename.ui:22
-#: bottles/frontend/ui/dialog-vkbasalt.ui:38
-msgid "Save"
-msgstr "احفظ"
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -283,2866 +2790,49 @@ msgstr "{0} متوفر الآن في واجهة البرامج."
 msgid "Installer failed with unknown error"
 msgstr "فشل المثبت بخطأ مجهول"
 
-#. endregion
 #: bottles/frontend/windows/launchoptions.py:56
-#: bottles/frontend/ui/dialog-launch-options.ui:59
-msgid "Choose a script which should be executed after run."
-msgstr "اختر النص البرمجي الذي سينفذ بعد التشغيل."
-
-#: bottles/frontend/windows/launchoptions.py:57
-#: bottles/frontend/ui/dialog-launch-options.ui:92
-msgid "Choose from where start the program."
-msgstr "اختر من أين سيبدأ البرنامج."
-
-#: bottles/frontend/windows/launchoptions.py:58
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
 msgstr "{0} مطفأ بالفعل لهذه القارورة."
 
-#: bottles/frontend/windows/launchoptions.py:59
+#: bottles/frontend/windows/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
 msgstr "يختلف هذا الخيار عن الخيار الافتراضي لهذه القارورة."
 
-#: bottles/frontend/windows/launchoptions.py:232
+#: bottles/frontend/windows/launchoptions.py:216
 msgid "Choose the script"
 msgstr "اختر البرنامج النصي"
 
-#: bottles/frontend/windows/launchoptions.py:256
+#: bottles/frontend/windows/launchoptions.py:240
 msgid "Choose the Working Directory"
 msgstr "اختر دليل العمل"
 
-#: bottles/frontend/windows/vkbasalt.py:84
-#: bottles/frontend/ui/dialog-vkbasalt.ui:420
-msgid "Choose a file."
-msgstr "اختر ملفاً."
-
-#: bottles/frontend/windows/vkbasalt.py:306
-msgid "File not Found"
-msgstr "لم يُعثر على الملف"
-
-#: bottles/frontend/windows/vkbasalt.py:307
-msgid "The given file does not exist. Please choose an appropriate file."
-msgstr "الملف المحدد غير موجود. اختر ملفاً مناسباً."
-
-#: bottles/frontend/windows/vkbasalt.py:330
-msgid "Spaces in File Name"
-msgstr "المسافات في اسم الملف"
-
-#: bottles/frontend/windows/vkbasalt.py:331
-msgid ""
-"Color Lookup Table path must not contain any spaces. Please rename the file "
-"to remove all spaces."
-msgstr ""
-"يجب ألا يحتوي مسار جدول البحث عن الألوان على أي مسافات. أعد تسمية الملف "
-"لإزالة كافة المسافات."
-
-#: bottles/frontend/windows/vkbasalt.py:339
-msgid "Invalid Image Dimension"
-msgstr "أبعاد الصورة غير صالحة"
-
-#: bottles/frontend/windows/vkbasalt.py:340
-msgid "Height and width of the image must be equal."
-msgstr "يجب أن يكون ارتفاع الصورة وعرضها متساويين."
-
-#: bottles/frontend/windows/vkbasalt.py:353
-#: bottles/frontend/views/importer.py:144
-msgid "Choose a configuration file"
-msgstr "اختر ملف الإعدادات"
-
-#: bottles/frontend/windows/vkbasalt.py:355
-#: bottles/frontend/views/importer.py:117
-#: bottles/frontend/views/importer.py:146
-msgid "Import"
-msgstr "استورد"
-
-#: bottles/frontend/main.py:105
-msgid "Show version"
-msgstr "أظهر الإصدار"
-
-#: bottles/frontend/main.py:113
-msgid "Executable path"
-msgstr "مسار ملف التشغيل"
-
-#: bottles/frontend/main.py:121
-msgid "lnk path"
-msgstr "مسار Ink"
-
-#: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.ui:103
-#: bottles/frontend/ui/list-entry.ui:7
-msgid "Bottle name"
-msgstr "اسم القارورة"
-
-#: bottles/frontend/main.py:137
-msgid "Pass arguments"
-msgstr "معطيات الاجتياز"
-
-#: bottles/frontend/main.py:196
-msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
-"معرف الموارد الموحد (URI) غير صحيح (الصياغة: bottles:run/<bottle>/<program>)"
-
-#: bottles/frontend/main.py:237
-msgid "[Quit] request received."
-msgstr "استُلم طلب [إنهاء]."
-
-#: bottles/frontend/main.py:246
-msgid "[Help] request received."
-msgstr "استُلم طلب [مساعدة]."
-
-#: bottles/frontend/main.py:254
-msgid "[Refresh] request received."
-msgstr "استلُم طلب [تحديث]."
-
-#: bottles/frontend/operation.py:50
-msgid "Calculating…"
-msgstr "جارٍ الحساب …"
-
-#: bottles/frontend/ui/about.ui:8
-msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2022 - Bottles Developers"
-
-#: bottles/frontend/ui/about.ui:9
-msgid "Easily manage wineprefix using environments"
-msgstr "تحكم بسابقة واين بكل سهولة باستخدام البيئات"
-
-#: bottles/frontend/ui/component-entry.ui:6
-msgid "Component version"
-msgstr "إصدار المكوّن"
-
-#: bottles/frontend/ui/component-entry.ui:15
-#: bottles/frontend/ui/dependency-entry.ui:34
-#: bottles/frontend/ui/program-entry.ui:92
-msgid "Uninstall"
-msgstr "ألغِ التثبيت"
-
-#: bottles/frontend/ui/component-entry.ui:26
-#: bottles/frontend/ui/importer-entry.ui:15
-msgid "Browse files"
-msgstr "تصفح الملفات"
-
-#: bottles/frontend/ui/component-entry.ui:37
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch. Press to try again."
-msgstr ""
-"فشل التثبيت. قد يكون هذا بسبب خطأ في المستودع أو تنزيل جزئي أو عدم تطابق في "
-"تدقيق المجموع. اضغط للمحاولة مرة أخرى."
-
-#: bottles/frontend/ui/component-entry.ui:48
-msgid "Download & Install"
-msgstr "حمّل وثبّت"
-
-#: bottles/frontend/ui/component-entry.ui:61
-msgid "0%"
-msgstr "0%"
-
-#: bottles/frontend/ui/dependency-entry.ui:18
-msgid "Show Manifest"
-msgstr "أظهر البيان"
-
-#: bottles/frontend/ui/dependency-entry.ui:23
-msgid "License"
-msgstr "الترخيص"
-
-#: bottles/frontend/ui/dependency-entry.ui:28
-msgid "Reinstall"
-msgstr "أعد التثبيت"
-
-#: bottles/frontend/ui/dependency-entry.ui:43
-#: bottles/frontend/ui/installer-entry.ui:32
-msgid "Report a Bug…"
-msgstr "بلّغ عن خطأ…"
-
-#: bottles/frontend/ui/dependency-entry.ui:50
-msgid "Dependency name"
-msgstr "اسم التبعية"
-
-#: bottles/frontend/ui/dependency-entry.ui:52
-msgid "Dependency description"
-msgstr "وصف التبعية"
-
-#: bottles/frontend/ui/dependency-entry.ui:59
-msgid "Category"
-msgstr "الفئة"
-
-#: bottles/frontend/ui/dependency-entry.ui:73
-msgid "Download & Install this dependency"
-msgstr "تنزيل هذه التبعية وتثبيتها"
-
-#: bottles/frontend/ui/dependency-entry.ui:89
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr ""
-"حدث خطأ في التثبيت. أعد تشغيل بوتلز لقراءة تقرير الأعطال أو قم بتشغيله عبر "
-"الطرفية لقراءة المُخرج."
-
-#: bottles/frontend/ui/details-bottle.ui:18
-msgid "Troubleshooting"
-msgstr "استكشاف الاخطاء"
-
-#: bottles/frontend/ui/details-bottle.ui:26
-msgid "Browse Files…"
-msgstr "تصفح الملفات…"
-
-#: bottles/frontend/ui/details-bottle.ui:31
-msgid "Duplicate Bottle…"
-msgstr "قارورة مكررة…"
-
-#: bottles/frontend/ui/details-bottle.ui:36 bottles/frontend/ui/importer.ui:86
-msgid "This is the complete archive of your bottle, including personal files."
-msgstr "هذا هو الأرشيف الكامل للقارورة، بما في ذلك الملفات الشخصية."
-
-#: bottles/frontend/ui/details-bottle.ui:37
-msgid "Full Backup…"
-msgstr "نسخ احتياطي كامل…"
-
-#: bottles/frontend/ui/details-bottle.ui:42 bottles/frontend/ui/importer.ui:80
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
-msgstr ""
-"هذا هو ضبط القارورة فقط، وهو مفيد إن أردت تكوين قارورة جديدة بدون ملفات "
-"شخصية."
-
-#: bottles/frontend/ui/details-bottle.ui:43
-msgid "Export Configuration…"
-msgstr "صدّر الضّبط…"
-
-#: bottles/frontend/ui/details-bottle.ui:51
-msgid "Delete Bottle…"
-msgstr "حذف القارورة…"
-
-#: bottles/frontend/ui/details-bottle.ui:86
-msgid "Kill all Processes"
-msgstr "أوقف كل العمليات"
-
-#: bottles/frontend/ui/details-bottle.ui:91
-msgid "Simulate a Windows system shutdown."
-msgstr "حاكِ إيقاف تشغيل نظام ويندوز."
-
-#: bottles/frontend/ui/details-bottle.ui:92
-msgid "Shutdown"
-msgstr "إيقاف التشغيل"
-
-#: bottles/frontend/ui/details-bottle.ui:97
-msgid "Simulate a Windows system reboot."
-msgstr "حاكِ إعادة تشغيل نظام ويندوز."
-
-#: bottles/frontend/ui/details-bottle.ui:98
-msgid "Reboot"
-msgstr "أعد التشغيل"
-
-#: bottles/frontend/ui/details-bottle.ui:121
-msgid "Run with Arguments…"
-msgstr "شغّل مع المعطيات…"
-
-#: bottles/frontend/ui/details-bottle.ui:126
-msgid "Launch in Terminal…"
-msgstr "شغّل في الطرفية…"
-
-#: bottles/frontend/ui/details-bottle.ui:157
-msgid "My bottle"
-msgstr "قارورتي"
-
-#: bottles/frontend/ui/details-bottle.ui:169
-msgid "Win64"
-msgstr "Win64"
-
-#: bottles/frontend/ui/details-bottle.ui:177
-#: bottles/frontend/ui/list-entry.ui:14 bottles/frontend/ui/new.ui:77
-msgid "Environment"
-msgstr "البيئة"
-
-#: bottles/frontend/ui/details-bottle.ui:185
-#: bottles/frontend/ui/details-preferences.ui:314
-#: bottles/frontend/ui/new.ui:129
-msgid "Runner"
-msgstr "المشغل"
-
-#: bottles/frontend/ui/details-bottle.ui:193
-#: bottles/frontend/ui/list-entry.ui:23
-msgid "Versioning enabled for this bottle"
-msgstr "مُكّن تعيين الإصدار لهذه القارورة"
-
-#: bottles/frontend/ui/details-bottle.ui:198
-#: bottles/frontend/ui/list-entry.ui:28
-msgid "Versioning is active in this bottle."
-msgstr "تعيين الإصدار نشط في هذه القارورة."
-
-#: bottles/frontend/ui/details-bottle.ui:208
-#: bottles/frontend/ui/list-entry.ui:34
-msgid "0"
-msgstr "0"
-
-#: bottles/frontend/ui/details-bottle.ui:219
-msgid "Run Executable…"
-msgstr "شغل ملفاً تنفيذياً…"
-
-#: bottles/frontend/ui/details-bottle.ui:235
-msgid "Layers"
-msgstr "طبقات"
-
-#: bottles/frontend/ui/details-bottle.ui:241
-#: bottles/frontend/views/details.py:166
-msgid "Programs"
-msgstr "البرامج"
-
-#: bottles/frontend/ui/details-bottle.ui:246
-msgid "Tools"
-msgstr "الأدوات"
-
-#: bottles/frontend/ui/details-bottle.ui:250
-msgid "Command Line"
-msgstr "سطر الأوامر"
-
-#: bottles/frontend/ui/details-bottle.ui:251
-msgid "Run commands inside the Bottle."
-msgstr "شغل الأوامر داخل القارورة."
-
-#: bottles/frontend/ui/details-bottle.ui:262
-msgid "Registry Editor"
-msgstr "محرر سجل النظام"
-
-#: bottles/frontend/ui/details-bottle.ui:263
-msgid "Edit the internal registry."
-msgstr "تعديل سجل النظام الداخلي."
-
-#: bottles/frontend/ui/details-bottle.ui:273
-msgid "Legacy Tools"
-msgstr "أدوات قديمة"
-
-#: bottles/frontend/ui/details-bottle.ui:277
-msgid "Explorer"
-msgstr "المستكشف"
-
-#: bottles/frontend/ui/details-bottle.ui:278
-msgid "Browse internal files with the Wine explorer."
-msgstr "تصفح الملفات الداخلية باستخدام مدير ملفات واين."
-
-#: bottles/frontend/ui/details-bottle.ui:289
-#: bottles/frontend/views/details.py:178
-msgid "Task Manager"
-msgstr "مدير المهام"
-
-#: bottles/frontend/ui/details-bottle.ui:290
-msgid "Manage processes with the Wine task manager."
-msgstr "أدِر العمليات مع مدير مهام واين."
-
-#: bottles/frontend/ui/details-bottle.ui:301
-msgid "Debug"
-msgstr "تصحيح"
-
-#: bottles/frontend/ui/details-bottle.ui:302
-msgid "Debug wine processes."
-msgstr "تصحيح عمليات واين."
-
-#: bottles/frontend/ui/details-bottle.ui:313
-msgid "Wine Configuration"
-msgstr "تكوين واين"
-
-#: bottles/frontend/ui/details-bottle.ui:314
-msgid "Adjust internal settings."
-msgstr "اضبط الإعدادات الداخلية."
-
-#: bottles/frontend/ui/details-bottle.ui:325
-msgid "Uninstaller"
-msgstr "مُلغي التثبيت"
-
-#: bottles/frontend/ui/details-bottle.ui:326
-msgid "Uninstall programs using Wine uninstaller."
-msgstr "ألغِ تثبيت البرامج باستخدام أداة إلغاء التثبيت من واين."
-
-#: bottles/frontend/ui/details-bottle.ui:337
-msgid "Control Panel"
-msgstr "لوحة التحكم"
-
-#: bottles/frontend/ui/details-bottle.ui:338
-msgid "Access the internal Wine Control Panel."
-msgstr "قم بالوصول إلى لوحة التحكم الداخلية لواين."
-
-#: bottles/frontend/ui/details-bottle.ui:357
-msgid "Use the Installers section or the \"Run executable\" button."
-msgstr "استخدم قسم المثبتات أو زر \"تشغيل ملف تنفيذ\"."
-
-#: bottles/frontend/ui/details-dependencies.ui:13
-msgid "Search for dependencies…"
-msgstr "ابحث عن التبعيات…"
-
-#: bottles/frontend/ui/details-dependencies.ui:22
-msgid ""
-"Dependencies are software, libraries and codecs that improve the "
-"compatibility of Windows software. Install from here to meet your program "
-"requirements."
-msgstr ""
-"التبعيات هي البرمجيات والمكتبات وبرامج الترميز التي تعمل على تحسين توافق "
-"برامج ويندوز. ثبّتها من هنا لتلبية متطلبات البرنامج."
-
-#: bottles/frontend/ui/details-dependencies.ui:34
-#: bottles/frontend/ui/details-installers.ui:33
-msgid ""
-"Files on this page are provided by third parties under a proprietary "
-"license. By installing them, you agree with their respective licensing terms."
-msgstr ""
-"تُوفر الملفات الموجودة في هذه الصفحة بواسطة جهات خارجية بموجب ترخيص خاص. أنت "
-"توافق على شروط الترخيص الخاصة بكل منها عند تثبيتها."
-
-#: bottles/frontend/ui/details-dependencies.ui:62
-msgid "Report a problem or a missing dependency."
-msgstr "أبلغ عن مشكلة أو تبعية مفقودة."
-
-#: bottles/frontend/ui/details-dependencies.ui:63
-msgid "Report missing dependency"
-msgstr "أبلغ عن تبعية مفقودة"
-
-#: bottles/frontend/ui/details-dependencies.ui:68
-msgid "Read documentation."
-msgstr "اقرأ دليل المستخدم."
-
-#: bottles/frontend/ui/details-dependencies.ui:69
-#: bottles/frontend/ui/details-installers.ui:71
-#: bottles/frontend/ui/details-programs.ui:45
-#: bottles/frontend/ui/details-versioning.ui:44
-#: bottles/frontend/ui/window.ui:38
-msgid "Documentation"
-msgstr "التوثيق"
-
-#: bottles/frontend/ui/details-dependencies.ui:80
-msgid "Install Selected"
-msgstr "تثبيت المحدد"
-
-#: bottles/frontend/ui/details-dependencies.ui:81
-msgid "We strongly advise against installing multiple dependencies at once."
-msgstr "نوصي بشدة عدم تثبيت تبعيات متعددة في وقت واحد."
-
-#: bottles/frontend/ui/details-dependencies.ui:88
-msgid "Select Dependencies"
-msgstr "حدد التبعيات"
-
-#: bottles/frontend/ui/details-dependencies.ui:95
-#: bottles/frontend/ui/details-installers.ui:82
-#: bottles/frontend/ui/window.ui:86
-msgid "Search"
-msgstr "ابحث"
-
-#: bottles/frontend/ui/details-installers.ui:13
-msgid "Search for Programs…"
-msgstr "ابحث عن البرامج…"
-
-#: bottles/frontend/ui/details-installers.ui:22
-msgid ""
-"Use this section to install programs curated by our community, without "
-"having to proceed manually."
-msgstr ""
-"استخدم هذا القسم لتثبيت البرامج التي اختارها مجتمعنا دون الحاجة إلى التدخل "
-"يدويا."
-
-#: bottles/frontend/ui/details-installers.ui:48
-msgid "No Installers Found"
-msgstr "لم يُعثر على مثبتات"
-
-#: bottles/frontend/ui/details-installers.ui:51
-msgid ""
-"The repository is unreachable or no installer is compatible with this bottle."
-msgstr "لا يمكن الوصول إلى المستودع أو لا يوجد مثبت متوافق مع هذه القارورة."
-
-#: bottles/frontend/ui/details-installers.ui:70
-#: bottles/frontend/ui/details-programs.ui:44
-#: bottles/frontend/ui/details-versioning.ui:43
-msgid "Read documentation"
-msgstr "اقرأ التوثيق"
-
-#: bottles/frontend/ui/details-preferences.ui:8
-msgid "Bottle Details"
-msgstr "تفاصيل القارورة"
-
-#: bottles/frontend/ui/details-preferences.ui:11
-#: bottles/frontend/ui/dialog-duplicate.ui:58 bottles/frontend/ui/new.ui:70
-msgid "Name"
-msgstr "الاسم"
-
-#: bottles/frontend/ui/details-preferences.ui:19
-msgid "Graphics"
-msgstr "الرسومات"
-
-#: bottles/frontend/ui/details-preferences.ui:23
-#: bottles/frontend/ui/preferences.ui:213
-msgid "DXVK"
-msgstr "DXVK"
-
-#: bottles/frontend/ui/details-preferences.ui:24
-msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr "يُحسن أداء ألعاب DirectX 11 والتطبيقات ثلاثية الأبعاد."
-
-#: bottles/frontend/ui/details-preferences.ui:27
-#: bottles/frontend/ui/details-preferences.ui:338
-msgid "Updating DXVK, please wait…"
-msgstr "جارٍ تحديث DXVK، يرجى الانتظار…"
-
-#: bottles/frontend/ui/details-preferences.ui:42
-#: bottles/frontend/ui/preferences.ui:218
-msgid "VKD3D"
-msgstr "VKD3D"
-
-#: bottles/frontend/ui/details-preferences.ui:43
-msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr "يُحسن أداء ألعاب DirectX 12 والتطبيقات ثلاثية الأبعاد."
-
-#: bottles/frontend/ui/details-preferences.ui:46
-#: bottles/frontend/ui/details-preferences.ui:361
-msgid "Updating VKD3D, please wait…"
-msgstr "جارٍ تحديث VKD3D، يرجى الانتظار…"
-
-#: bottles/frontend/ui/details-preferences.ui:61
-msgid "DLSS (DXVK-NVAPI)"
-msgstr "DLSS (DXVK-NVAPI)"
-
-#: bottles/frontend/ui/details-preferences.ui:62
-msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "يوفر دعم DLSS إذا كان متاحاً ودعم NVAPI من إنفيديا."
-
-#: bottles/frontend/ui/details-preferences.ui:65
-#: bottles/frontend/ui/details-preferences.ui:112
-#: bottles/frontend/ui/details-preferences.ui:385
-#: bottles/frontend/ui/details-preferences.ui:407
-msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "جارٍ تحديث DXVK-NVAPI، يرجى الانتظار…"
-
-#: bottles/frontend/ui/details-preferences.ui:80
-msgid "FSR"
-msgstr "FSR"
-
-#: bottles/frontend/ui/details-preferences.ui:81
-msgid ""
-"FSR uses cutting-edge up-scaling technologies to help boost your framerate."
-msgstr "يستخدم FSR أحدث التقنيات المتطورة للمساعدة في زيادة معدل الإطارات لديك."
-
-#: bottles/frontend/ui/details-preferences.ui:88
-msgid "Ultra Quality"
-msgstr "جودة فائقة"
-
-#: bottles/frontend/ui/details-preferences.ui:89
-msgid "Quality"
-msgstr "الجودة"
-
-#: bottles/frontend/ui/details-preferences.ui:90
-msgid "Balanced"
-msgstr "متزن"
-
-#: bottles/frontend/ui/details-preferences.ui:91
-msgid "Performance"
-msgstr "الأداء"
-
-#: bottles/frontend/ui/details-preferences.ui:108
-#: bottles/frontend/ui/preferences.ui:228
-msgid "LatencyFleX"
-msgstr "LatencyFleX"
-
-#: bottles/frontend/ui/details-preferences.ui:109
-msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
-msgstr "بديل ل NVIDIA Reflex. يمكن اكتشافه من قبل بعض برامج مكافحة الغش."
-
-#: bottles/frontend/ui/details-preferences.ui:128
-msgid "Discrete GPU"
-msgstr "وحدة معالجة الرسومات المنفصلة"
-
-#: bottles/frontend/ui/details-preferences.ui:129
-msgid "Improves performance at the cost of increased power usage."
-msgstr "تحسين الأداء بتكلفة زيادة استخدام الطاقة."
-
-#: bottles/frontend/ui/details-preferences.ui:140
-msgid "vkBasalt"
-msgstr "vkBasalt"
-
-#: bottles/frontend/ui/details-preferences.ui:141
-msgid ""
-"vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
-"games."
-msgstr ""
-"vkBasalt هي طبقة بعد معالجة من فولكان تُستخدم لتحسين الرسومات المرئية "
-"للألعاب."
-
-#: bottles/frontend/ui/details-preferences.ui:144
-msgid "Manage vkBasalt settings"
-msgstr "إدارة إعدادات vkBasalt"
-
-#: bottles/frontend/ui/details-preferences.ui:161
-msgid "Display Settings"
-msgstr "إعدادات العرض"
-
-#: bottles/frontend/ui/details-preferences.ui:165
-#: bottles/frontend/ui/dialog-launch-options.ui:194
-msgid "Virtual Desktop"
-msgstr "سطح المكتب الافتراضي"
-
-#: bottles/frontend/ui/details-preferences.ui:166
-msgid "Use the Wine virtual desktop."
-msgstr "استخدم سطح المكتب الافتراضي الخاص بواين."
-
-#: bottles/frontend/ui/details-preferences.ui:204
-msgid "Fullscreen Mouse Capture"
-msgstr "التقاط الفأرة في وضع ملء الشاشة"
-
-#: bottles/frontend/ui/details-preferences.ui:205
-msgid "Let the program capture mouse input when fullscreen."
-msgstr "دع البرنامج يلتقط مدخلات الفأرة عند وضع ملء الشاشة."
-
-#: bottles/frontend/ui/details-preferences.ui:216
-msgid "Take Focus"
-msgstr "خذ التركيز"
-
-#: bottles/frontend/ui/details-preferences.ui:217
-msgid "Activate it if the program does not retake focus on switch."
-msgstr "نشّطه إذا لم يستعد البرنامج التركيز بعد التبديل."
-
-#: bottles/frontend/ui/details-preferences.ui:228
-msgid "Mouse Warp"
-msgstr "الانتقال الآني للفأرة"
-
-#: bottles/frontend/ui/details-preferences.ui:229
-msgid "Change this if you are running into mouse lag or desync."
-msgstr "غّير هذا إذا كنت تواجه تأخر الفأرة أو عدم التزامن."
-
-#: bottles/frontend/ui/details-preferences.ui:241
-msgid "Screen Scaling"
-msgstr "تحجيم الشاشة"
-
-#: bottles/frontend/ui/details-preferences.ui:242
-msgid "Set custom DPI."
-msgstr "تخصيص سرعة الفأرة."
-
-#: bottles/frontend/ui/details-preferences.ui:248
-msgid "96"
-msgstr "96"
-
-#: bottles/frontend/ui/details-preferences.ui:249
-msgid "120"
-msgstr "120"
-
-#: bottles/frontend/ui/details-preferences.ui:250
-msgid "144"
-msgstr "144"
-
-#: bottles/frontend/ui/details-preferences.ui:251
-msgid "168"
-msgstr "168"
-
-#: bottles/frontend/ui/details-preferences.ui:252
-msgid "192"
-msgstr "192"
-
-#: bottles/frontend/ui/details-preferences.ui:253
-msgid "216"
-msgstr "216"
-
-#: bottles/frontend/ui/details-preferences.ui:254
-msgid "240"
-msgstr "240"
-
-#: bottles/frontend/ui/details-preferences.ui:255
-msgid "288"
-msgstr "288"
-
-#: bottles/frontend/ui/details-preferences.ui:256
-msgid "336"
-msgstr "336"
-
-#: bottles/frontend/ui/details-preferences.ui:257
-msgid "384"
-msgstr "384"
-
-#: bottles/frontend/ui/details-preferences.ui:258
-msgid "432"
-msgstr "432"
-
-#: bottles/frontend/ui/details-preferences.ui:259
-msgid "480"
-msgstr "480"
-
-#: bottles/frontend/ui/details-preferences.ui:272
-msgid "Renderer"
-msgstr "المصيِّر"
-
-#: bottles/frontend/ui/details-preferences.ui:273
-msgid "Select what backend to use for wined3d."
-msgstr "حدد الواجهة الخلفية التي تريد استخدامها لـ wined3d."
-
-#: bottles/frontend/ui/details-preferences.ui:279
-msgid "gl (default)"
-msgstr "gl (افتراضي)"
-
-#: bottles/frontend/ui/details-preferences.ui:280
-msgid "gdi"
-msgstr "gdi"
-
-#: bottles/frontend/ui/details-preferences.ui:281
-msgid "vulkan"
-msgstr "فولكان"
-
-#: bottles/frontend/ui/details-preferences.ui:296
-#: bottles/frontend/ui/details-preferences.ui:432
-msgid "System"
-msgstr "النظام"
-
-#: bottles/frontend/ui/details-preferences.ui:299
-msgid "Manage Components Versions"
-msgstr "أدِر إصدارات المكونات"
-
-#: bottles/frontend/ui/details-preferences.ui:309
-msgid "Components"
-msgstr "المكونات"
-
-#: bottles/frontend/ui/details-preferences.ui:317
-msgid "Updating Runner and components, please wait…"
-msgstr "جارٍ تحديث المشغل والمكونات، يرجى الانتظار …"
-
-#. TODO: replace with ComboRow
-#: bottles/frontend/ui/details-preferences.ui:334
-msgid "DXVK Version"
-msgstr "إصدار DXVK"
-
-#: bottles/frontend/ui/details-preferences.ui:358
-msgid "VKD3D Version"
-msgstr "إصدار VKD3D"
-
-#: bottles/frontend/ui/details-preferences.ui:382
-msgid "DXVK NVAPI Version"
-msgstr "إصدار DXVK NVAPI"
-
-#: bottles/frontend/ui/details-preferences.ui:404
-msgid "LatencyFleX Version"
-msgstr "إصدار LatencyFleX"
-
-#: bottles/frontend/ui/details-preferences.ui:426
-msgid "Enable synchronization to increase performance of multicore processors."
-msgstr "تمكين المزامنة لزيادة أداء المعالجات متعددة النواة."
-
-#: bottles/frontend/ui/details-preferences.ui:427
-msgid "Synchronization"
-msgstr "التزامن"
-
-#: bottles/frontend/ui/details-preferences.ui:438
-msgid "Esync"
-msgstr "Esync"
-
-#: bottles/frontend/ui/details-preferences.ui:444
-msgid "Fsync"
-msgstr "Fsync"
-
-#: bottles/frontend/ui/details-preferences.ui:450
-msgid "Futex2"
-msgstr "Futex2"
-
-#: bottles/frontend/ui/details-preferences.ui:465
-msgid "Windows Version"
-msgstr "إصدار ويندوز"
-
-#: bottles/frontend/ui/details-preferences.ui:468
-msgid "Updating Windows version, please wait…"
-msgstr "جارٍ تحديث إصدار ويندوز، الرجاء الانتظار…"
-
-#: bottles/frontend/ui/details-preferences.ui:496
-msgid "Language"
-msgstr "اللغة"
-
-#: bottles/frontend/ui/details-preferences.ui:497
-msgid "Choose the language to use with programs."
-msgstr "اختر اللغة التي تريد استخدامها مع البرامج."
-
-#: bottles/frontend/ui/details-preferences.ui:507
-msgid "false"
-msgstr "خاطئة"
-
-#: bottles/frontend/ui/details-preferences.ui:508
-msgid "Dedicated Sandbox"
-msgstr "ساحة حماية مخصصة"
-
-#: bottles/frontend/ui/details-preferences.ui:509
-msgid "Use a restricted/managed environment for this bottle."
-msgstr "استخدم بيئة مقيدة / مُدارة لهذه قارورة."
-
-#: bottles/frontend/ui/details-preferences.ui:512
-msgid "Manage Sandbox permissions"
-msgstr "إدارة أذونات ساحة الحماية"
-
-#: bottles/frontend/ui/details-preferences.ui:530
-msgid "Bottles Runtime"
-msgstr "وقت تشغيل بوتلز"
-
-#: bottles/frontend/ui/details-preferences.ui:531
-msgid ""
-"Provides a bundle of extra libraries for more compatibility,disable if you "
-"run into issues."
-msgstr ""
-"يوفر مجموعة من المكتبات الإضافية لمزيد من التوافق، عطّله إذا واجهت مشاكل."
-
-#: bottles/frontend/ui/details-preferences.ui:542
-msgid "Steam Runtime"
-msgstr "زمن تشغيل Steam"
-
-#: bottles/frontend/ui/details-preferences.ui:543
-msgid "The same as the Bottles one but provided by Steam."
-msgstr "نفس المقدمة من بوتلز ولكن مقدمة من ستيم."
-
-#: bottles/frontend/ui/details-preferences.ui:554
-msgid "GameMode"
-msgstr "طور اللعبة"
-
-#: bottles/frontend/ui/details-preferences.ui:555
-msgid "Optimise gaming performance on demand."
-msgstr "حسّن أداء الألعاب عند الطلب."
-
-#: bottles/frontend/ui/details-preferences.ui:566
-msgid "Gamescope"
-msgstr "نطاق اللعبة"
-
-#: bottles/frontend/ui/details-preferences.ui:567
-msgid "Use the Gamescope micro-compositor."
-msgstr "استعمل مُرتِّب Gamescope."
-
-#: bottles/frontend/ui/details-preferences.ui:570
-msgid "Manage Gamescope settings"
-msgstr "إدارة إعدادات Gamescope"
-
-#: bottles/frontend/ui/details-preferences.ui:588
-msgid "Vmtouch"
-msgstr "Vmtouch"
-
-#: bottles/frontend/ui/details-preferences.ui:589
-msgid "Preload game files into RAM"
-msgstr "حمل ملفات اللعبة في ذاكرة الوصول العشوائي مسبقاً"
-
-#: bottles/frontend/ui/details-preferences.ui:592
-msgid "Manage vmtouch settings"
-msgstr "إدارة إعدادات vmtouch"
-
-#: bottles/frontend/ui/details-preferences.ui:610
-#: bottles/frontend/ui/dialog-launch-options.ui:91
-msgid "Working Directory"
-msgstr "دليل العمل الحالي"
-
-#: bottles/frontend/ui/details-preferences.ui:611
-msgid "Defaults to the bottle path."
-msgstr "الإعدادات الافتراضية لمسار القارورة."
-
-#: bottles/frontend/ui/details-preferences.ui:614
-#: bottles/frontend/ui/dialog-launch-options.ui:65
-#: bottles/frontend/ui/dialog-launch-options.ui:98
-#: bottles/frontend/ui/preferences.ui:159
-msgid "Reset to default"
-msgstr "عُد للإعدادات الافتراضية"
-
-#: bottles/frontend/ui/details-preferences.ui:624
-#: bottles/frontend/ui/dialog-launch-options.ui:109
-#: bottles/frontend/ui/new.ui:163 bottles/frontend/ui/new.ui:180
-#: bottles/frontend/ui/preferences.ui:170
-msgid "Choose a directory"
-msgstr "اختر دليلاً"
-
-#: bottles/frontend/ui/details-preferences.ui:637
-#: bottles/frontend/ui/dialog-dll-overrides.ui:9
-#: bottles/frontend/ui/dialog-dll-overrides.ui:15
-msgid "DLL Overrides"
-msgstr "تجاوزات ملفات DLL"
-
-#: bottles/frontend/ui/details-preferences.ui:648
-#: bottles/frontend/ui/dialog-env-vars.ui:16
-msgid "Environment Variables"
-msgstr "متغيرات البيئة"
-
-#: bottles/frontend/ui/details-preferences.ui:659
-msgid "Manage Drives"
-msgstr "إدارة محركات الأقراص"
-
-#: bottles/frontend/ui/details-preferences.ui:671
-msgid "Audio"
-msgstr "الصوت"
-
-#: bottles/frontend/ui/details-preferences.ui:675
-#: bottles/frontend/ui/dialog-launch-options.ui:183
-msgid "Reduce Latency"
-msgstr "تقليل زمن الاستجابة"
-
-#: bottles/frontend/ui/details-preferences.ui:676
-msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
-msgstr "عيّن زمن استجابة PulseAudio إلى 60 ملّي ثانية، هذا يرفع جودة الصوت."
-
-#: bottles/frontend/ui/details-preferences.ui:688
-#: bottles/frontend/views/details.py:170
-msgid "Versioning"
-msgstr "تعيين الإصدار"
-
-#: bottles/frontend/ui/details-preferences.ui:692
-msgid "Use Compression for States"
-msgstr "استعمل عملية الضَّغط للحالات"
-
-#: bottles/frontend/ui/details-preferences.ui:693
-msgid ""
-"This will reduce the space used by the states but slow down their creation."
-msgstr "سيؤدي هذا لتقليل المساحة التي تستعملها الحالات ولكنه سيبطئ إنشاءها."
-
-#: bottles/frontend/ui/details-preferences.ui:704
-msgid "Automatic Versioning"
-msgstr "تعيين الإصدار بشكل تلقائي"
-
-#: bottles/frontend/ui/details-preferences.ui:705
-msgid ""
-"Bottles will create a state before running any dependencies or installers."
-msgstr "سينشئ بولتز الحالة قبل تشغيل أي تبعيات أو مثبتات."
-
-#: bottles/frontend/ui/details-preferences.ui:716
-msgid "Use Exclusion Patterns"
-msgstr "استخدم أنماط الاستبعاد"
-
-#: bottles/frontend/ui/details-preferences.ui:717
-msgid "Use custom patterns to exclude some paths from versioning."
-msgstr "استخدم أنماطاً مخصصةً لاستبعاد بعض المسارات من تعيين الإصدار."
-
-#: bottles/frontend/ui/details-preferences.ui:720
-msgid "Manage Patterns"
-msgstr "إدارة الأنماط"
-
-#: bottles/frontend/ui/details-preferences.ui:739
-msgid "Development and Debugging"
-msgstr "التطوير والتصحيح"
-
-#: bottles/frontend/ui/details-preferences.ui:743
-msgid "MangoHud"
-msgstr "MangoHud"
-
-#: bottles/frontend/ui/details-preferences.ui:744
-msgid ""
-"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
-"and more."
-msgstr ""
-"طبقة Vulkan و OpenGL تقوم بقياس معدل الإطارات والحرارات والحمل على المعالج "
-"ومعالج الرسوميات وغيرها."
-
-#: bottles/frontend/ui/details-preferences.ui:755
-msgid "OBS Vulkan Capture"
-msgstr "التقاط الشاشة باستخدام OBS Vulkan"
-
-#: bottles/frontend/ui/details-preferences.ui:756
-msgid "Toggle OBS game capture for all programs."
-msgstr "شغل OBS game capture لكل البرامج."
-
-#: bottles/frontend/ui/details-preferences.ui:767
-msgid "Wine 'fixme' Logs"
-msgstr "سجلات 'fixme' لواين"
-
-#: bottles/frontend/ui/details-preferences.ui:768
-msgid "Log code paths that are unimplemented in Wine."
-msgstr "سجِّل مسارات التعليمات البرمجية التي لم تُنفذ في واين."
-
-#: bottles/frontend/ui/details-programs.ui:9
-msgid "No Programs found"
-msgstr "لم يُعثر على برامج"
-
-#: bottles/frontend/ui/details-programs.ui:10
-msgid ""
-"Install programs from the installers section or by running the installer "
-"executable, you can also manually add executables with the \"+\" button."
-msgstr ""
-"ثبت البرامج من قسم المثبتات أو عن طريق تشغيل ملف التنفيذ، يمكنك أيضاً أن "
-"تضيف ملفات التنفيذ يدويّا عن طريق زر \"+\"."
-
-#: bottles/frontend/ui/details-programs.ui:31
-msgid "Toggle Hidden"
-msgstr "أظهر/أخفِ"
-
-#: bottles/frontend/ui/details-programs.ui:36
-msgid "Search for new programs"
-msgstr "ابحث عن برامج جديدة"
-
-#: bottles/frontend/ui/details-programs.ui:55
-msgid "Add a custom executable path"
-msgstr "أضف مساراً مخصصا لملف التنفيذ"
-
-#: bottles/frontend/ui/details-taskmanager.ui:18
-msgid "Refresh"
-msgstr "حدّث"
-
-#: bottles/frontend/ui/details-taskmanager.ui:24
-msgid "Stop process"
-msgstr "أوقف العملية"
-
-#: bottles/frontend/ui/details-versioning.ui:25
-msgid "No States Found"
-msgstr "لم يُعثر على حالات"
-
-#: bottles/frontend/ui/details-versioning.ui:26
-msgid "Create first state to start using versioning."
-msgstr "أنشئ أول حالة لتبدأ استعمال تعيين الإصدار."
-
-#: bottles/frontend/ui/details-versioning.ui:63
-msgid "A short comment"
-msgstr "تعليق قصير"
-
-#: bottles/frontend/ui/details-versioning.ui:68
-msgid "Save the bottle state."
-msgstr "احفظ حالة القارورة."
-
-#: bottles/frontend/ui/details-versioning.ui:88
-msgid "Create new state"
-msgstr "أنشئ حالة جديدة"
-
-#: bottles/frontend/ui/details.ui:74
-msgid "Operations"
-msgstr "العمليات"
-
-#: bottles/frontend/ui/dialog-bottle-picker.ui:6
-msgid "Select Bottle"
-msgstr "اختر قارورة"
-
-#: bottles/frontend/ui/dialog-bottle-picker.ui:42
-msgid "Create New Bottle"
-msgstr "أنشئ قارورة جديدة"
-
-#: bottles/frontend/ui/dialog-crash-report.ui:10
-msgid "Bottles crash report"
-msgstr "تقرير تعطل القارورة"
-
-#: bottles/frontend/ui/dialog-crash-report.ui:23
-msgid "Send report"
-msgstr "أرسل التقرير"
-
-#: bottles/frontend/ui/dialog-crash-report.ui:43
-msgid ""
-"Bottles crashed last time. Please fill out a report attaching the following "
-"traceback to help us identify the problem preventing it from happening again."
-msgstr ""
-"تعطل بوتلز آخر مرة. فضلاً قم بتعبئة تقرير فيه التتبع التالي لتساعدنا في "
-"التعرف على المشكلة مما يمكننا من الحيال دون وقوعها مجدداً."
-
-#: bottles/frontend/ui/dialog-crash-report.ui:75
-msgid ""
-"We found one or more similar (or identical) reports. Please make sure to "
-"check carefully that it has not already been reported before submitting a "
-"new one. Each report requires effort on the part of the developers to "
-"diagnose, please respect their work and make sure you don't post duplicates."
-msgstr ""
-"عثرنا على تقارير مشابهة أو مطابقة، تأكد من أن التقرير لم يُرسل مسبقا قبل أن "
-"تقوم بإرساله، يتطلب تشخيص كل تقرير جهداً من المطورين، فضلاً احترم عملهم ولا "
-"ترسل ما يتكرر."
-
-#: bottles/frontend/ui/dialog-crash-report.ui:96
-msgid "I still want to report."
-msgstr "لا أزال أريد التبليغ."
-
-#: bottles/frontend/ui/dialog-crash-report.ui:102
-msgid "Advanced options"
-msgstr "الخيارات المتقدمة"
-
-#: bottles/frontend/ui/dialog-deps-check.ui:15
-msgid "Incomplete package"
-msgstr "حزمة غير مكتملة"
-
-#: bottles/frontend/ui/dialog-deps-check.ui:16
-msgid ""
-"This version of Bottles does not seem to provide all the necessary core "
-"dependencies, please contact the package maintainer or use an official "
-"version.\n"
-"                        "
-msgstr ""
-"لا يبدو أن هذا الإصدار من بوتلز يوفر كل التبعيات الأساسية، تواصل مع مشرف "
-"الحزمة أو استخدم إصداراً رسمياً.\n"
-"                        "
-
-#: bottles/frontend/ui/dialog-deps-check.ui:21
-msgid "Quit"
-msgstr "أنهِ"
-
-#: bottles/frontend/ui/dialog-dll-overrides.ui:14
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)."
-msgstr ""
-"يمكن أن تٌعين مكتبات الارتباط الديناميكي على أنها مُدمجة (أي أن واين يوفرها) "
-"أو أصلية (أي أن البرنامج يوفرها)."
-
-#: bottles/frontend/ui/dialog-dll-overrides.ui:18
-msgid "New Override"
-msgstr "تجاوز جديد"
-
-#: bottles/frontend/ui/dialog-dll-overrides.ui:26
-msgid "Overrides"
-msgstr "التجاوزات"
-
-#: bottles/frontend/ui/dialog-drives.ui:9
-msgid "Drives"
-msgstr "محركات الأقراص"
-
-#: bottles/frontend/ui/dialog-drives.ui:31
-msgid ""
-"These are paths from your host system that are mapped and recognized as "
-"devices by the runner (e.g. C: D:…).\n"
-"                                "
-msgstr ""
-"هذه هي المسارات في نظامك التي تم التعرف عليها كأجهزة من قبل المُشغل (مثلاً "
-":C: D...)\n"
-"                                "
-
-#: bottles/frontend/ui/dialog-drives.ui:35
-msgid "Letter"
-msgstr "حرف"
-
-#: bottles/frontend/ui/dialog-drives.ui:59
-msgid "Existing Drives"
-msgstr "محركات الأقراص الموجودة"
-
-#: bottles/frontend/ui/dialog-duplicate.ui:18
-msgid "Duplicate Bottle"
-msgstr "قارورة مكررة"
-
-#: bottles/frontend/ui/dialog-duplicate.ui:23
-#: bottles/frontend/ui/dialog-gamescope.ui:17
-#: bottles/frontend/ui/dialog-launch-options.ui:17
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:23
-#: bottles/frontend/ui/dialog-vkbasalt.ui:31
-msgid "_Cancel"
-msgstr "_ألغِ"
-
-#: bottles/frontend/ui/dialog-duplicate.ui:41
-msgid "Duplicate"
-msgstr "انسخ"
-
-#: bottles/frontend/ui/dialog-duplicate.ui:55
-msgid "Enter a name for the duplicate of the Bottle."
-msgstr "أدخل اسماً للنسخة المكررة من القارورة."
-
-#: bottles/frontend/ui/dialog-duplicate.ui:78
-msgid "Duplicating…"
-msgstr "يتم النسخ…"
-
-#: bottles/frontend/ui/dialog-duplicate.ui:87
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:121
-#: bottles/frontend/ui/new.ui:216
-msgid "Take a break, it may take a while."
-msgstr "استرح قليلاً، قد يستغرق هذا وقتاً."
-
-#: bottles/frontend/ui/dialog-duplicate.ui:108
-msgid "Bottle Duplicated"
-msgstr "نُسخت القارورة"
-
-#: bottles/frontend/ui/dialog-env-vars.ui:35
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr ""
-"متغيرات البيئة هي قيم مسماة تلقائياً تؤثر على طريقة عمل العمليات في قارورتك."
-
-#: bottles/frontend/ui/dialog-env-vars.ui:38
-msgid "Variable Name"
-msgstr "اسم المتغير"
-
-#: bottles/frontend/ui/dialog-env-vars.ui:46
-msgid "Existing Variables"
-msgstr "المتغيرات الموجودة"
-
-#: bottles/frontend/ui/dialog-exclusion-patterns.ui:16
-msgid "Exclusion Patterns"
-msgstr "أنماط الاستبعاد"
-
-#: bottles/frontend/ui/dialog-exclusion-patterns.ui:35
-msgid ""
-"Define patterns that will be used to prevent some directories to being "
-"versioned."
-msgstr "حدد الأنماط التي ستُستخدم لمنع تعيين الإصدار لبعض الدلائل."
-
-#: bottles/frontend/ui/dialog-exclusion-patterns.ui:38
-msgid "Pattern"
-msgstr "نمط"
-
-#: bottles/frontend/ui/dialog-exclusion-patterns.ui:46
-msgid "Existing Patterns"
-msgstr "الأنماط الموجودة"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:8
-msgid "Gamescope Settings"
-msgstr "إعدادات Gamescope"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:46
-msgid ""
-"Configure how Gamescope should manage the window for the games you will run."
-msgstr "عيّن طريقة إدارة Gamescope لنوافذ الألعاب التي ستشغلها."
-
-#: bottles/frontend/ui/dialog-gamescope.ui:51
-msgid "Game Resolution"
-msgstr "دقة اللعبة"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:52
-msgid "Uses the resolution of the video game as a reference."
-msgstr "يستخدم دقة اللعبة كمرجع."
-
-#: bottles/frontend/ui/dialog-gamescope.ui:55
-#: bottles/frontend/ui/dialog-gamescope.ui:71
-msgid "Width (e.g. 1280)"
-msgstr "العرض (على سبيل المثال: 1280)"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:60
-#: bottles/frontend/ui/dialog-gamescope.ui:76
-msgid "Height (e.g. 720)"
-msgstr "الارتفاع (على سبيل المثال: 720)"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:67
-msgid "Gamescope Resolution"
-msgstr "دقة Gamescope"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:68
-msgid ""
-"Upscales the resolution when using a resolution higher than the game "
-"resolution."
-msgstr "يرفع الدقة عند استخدام دقة أعلى من دقة اللعبة."
-
-#: bottles/frontend/ui/dialog-gamescope.ui:83
-msgid "Miscellaneous"
-msgstr "متنوعات"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:86
-msgid "Frame Rate Limit (e.g. 60)"
-msgstr "حد معدل الإطارات (على سبيل المثال: 60)"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:91
-msgid "Frame Rate Limit (When Unfocused)"
-msgstr "حد معدل الإطارات (عند عدم التركيز)"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:96
-msgid "Use Integer Scaling"
-msgstr "استخدم القياس بالأعداد الصحيحة"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:107
-msgid "Window Type"
-msgstr "نوع النافذة"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:112
-msgid "Borderless"
-msgstr "بلا إطار"
-
-#: bottles/frontend/ui/dialog-gamescope.ui:119
-msgid "Fullscreen"
-msgstr "ملء الشاشة"
-
-#: bottles/frontend/ui/dialog-journal.ui:12
-msgid "All messages"
-msgstr "جميع الرسائل"
-
-#: bottles/frontend/ui/dialog-journal.ui:17
-msgid "Critical"
-msgstr "حرِج"
-
-#: bottles/frontend/ui/dialog-journal.ui:22
-msgid "Errors"
-msgstr "الأخطاء"
-
-#: bottles/frontend/ui/dialog-journal.ui:27
-msgid "Warnings"
-msgstr "التحذيرات"
-
-#: bottles/frontend/ui/dialog-journal.ui:32
-msgid "Info"
-msgstr "المعلومات"
-
-#: bottles/frontend/ui/dialog-journal.ui:49
-msgid "Journal browser"
-msgstr "متصفح السجل"
-
-#: bottles/frontend/ui/dialog-journal.ui:56
-msgid "Journal Browser"
-msgstr "متصفح السجل"
-
-#: bottles/frontend/ui/dialog-journal.ui:62
-msgid ""
-"Change logging level.\n"
-"                                        "
-msgstr ""
-"تغيير مستوى التسجيل.\n"
-"                                        "
-
-#: bottles/frontend/ui/dialog-journal.ui:67
-msgid "All"
-msgstr "الكل"
-
-#: bottles/frontend/ui/dialog-launch-options.ui:8
-msgid "Launch Options"
-msgstr "خيارات بدء التشغيل"
-
-#: bottles/frontend/ui/dialog-launch-options.ui:47
-msgid "Those arguments will be passed at launch."
-msgstr "ستُعتمد هذه الحجج عند بدء التشغيل."
-
-#: bottles/frontend/ui/dialog-launch-options.ui:48
-msgid "Custom Arguments"
-msgstr "الحجج المخصصة"
-
-#: bottles/frontend/ui/dialog-launch-options.ui:51
-msgid "Command Arguments"
-msgstr "حجج الأوامر"
-
-#: bottles/frontend/ui/dialog-launch-options.ui:52
-#, c-format
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "مثلا: VAR=value %command% -example1 -example2 -example3=hello"
-
-#: bottles/frontend/ui/dialog-launch-options.ui:58
-msgid "Post-run Script"
-msgstr "البرنامج النصي بعد التشغيل"
-
-#: bottles/frontend/ui/dialog-launch-options.ui:76
-msgid "Choose a script"
-msgstr "اختر نصاً برمجياً"
-
-#: bottles/frontend/ui/dialog-launch-options.ui:125
-msgid "These settings will override the default settings for this executable."
-msgstr "ستتجاوز هذه الإعداداتُ الإعداداتَ الافتراضية لملف التنفيذ هذا."
-
-#: bottles/frontend/ui/dialog-launch-options.ui:126
-msgid "Preferences Overrides"
-msgstr "تجاوز التفضيلات"
-
-#: bottles/frontend/ui/dialog-launch-options.ui:129
-msgid "Reset to Bottle's Defaults"
-msgstr "أعد تعيين إعدادات القارورة للإعدادات الافتراضية"
-
-#: bottles/frontend/ui/dialog-proton-alert.ui:6
-msgid "Proton Disclaimer"
-msgstr "نص إخلاء المسؤولية لبروتون"
-
-#: bottles/frontend/ui/dialog-proton-alert.ui:22
-msgid "Use Proton"
-msgstr "استخدم بروتون"
-
-#: bottles/frontend/ui/dialog-proton-alert.ui:37
-msgid ""
-"Beware, using Proton-based runners in non-Steam bottles can cause problems "
-"and prevent them from behaving correctly.\n"
-"\n"
-"We recommend using Wine-GE rather, a version of Proton meant to run outside "
-"of Steam.\n"
-"\n"
-"Proceeding will automatically enable the Steam runtime (if present in the "
-"system and detected by Bottles) in order to allow it to access the necessary "
-"libraries and limit compatibility problems. Be aware that GloriousEggroll, "
-"the runner's provider, is not responsible for any problems and we ask that "
-"you do not report to them."
-msgstr ""
-"احذر، يمكن أن يؤدي استخدام المشغلات المعتمدة على بروتون في القوارير بدون "
-"ستيم إلى مشاكل.\n"
-"\n"
-"نوصي باستخدام واين GE بدلا عنه، وهي نسخة من بروتون هدفها العمل خارج ستيم.\n"
-"\n"
-"ستؤدي المتابعة إلى تشغيل ستيم (إن كان موجوداً على النظام ومتعرفاً عليه من "
-"قبل بوتلز) وذلك لإتاحة وصوله للمكتبات المطلوبة ولتقليل مشاكل التوافق، ضع في "
-"الحسبان أن مُوفر المُشغل GloriousEggroll ليس مسؤولاً عن أي مشكلة ونطلب منك "
-"أن لا تبلغ عنهم."
-
-#: bottles/frontend/ui/dialog-proton-alert.ui:50
-msgid "I got it."
-msgstr "فهمت."
-
-#: bottles/frontend/ui/dialog-rename.ui:9
-msgid "Rename"
-msgstr "أعد التسمية"
-
-#: bottles/frontend/ui/dialog-rename.ui:34
-msgid "Choose a new name for the selected program."
-msgstr "اختر اسماً جديداً للبرنامج المحدد."
-
-#: bottles/frontend/ui/dialog-rename.ui:37
-msgid "New Name"
-msgstr "الاسم الجديد"
-
-#: bottles/frontend/ui/dialog-run-args.ui:14
-msgid "Run With Arguments"
-msgstr "شغّل مع المعطيات"
-
-#: bottles/frontend/ui/dialog-run-args.ui:35
-#: bottles/frontend/views/bottle_details.py:202
-#: bottles/frontend/views/list.py:120
-msgid "Run"
-msgstr "شغِّل"
-
-#: bottles/frontend/ui/dialog-run-args.ui:47
-msgid "Write below the arguments to be passed to the executable."
-msgstr "اكتب أدناه المعطيات التي ستُمرر لملف التنفيذ."
-
-#: bottles/frontend/ui/dialog-run-args.ui:50
-msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "على سبيل المثال: -opengl -SkipBuildPatchPrereq"
-
-#: bottles/frontend/ui/dialog-sandbox.ui:9
-msgid "Sandbox Settings"
-msgstr "إعدادات الملعب (Sandbox)"
-
-#: bottles/frontend/ui/dialog-sandbox.ui:23
-msgid "Share Network"
-msgstr "مشاركة الشبكة"
-
-#: bottles/frontend/ui/dialog-sandbox.ui:34
-msgid "Share Sound"
-msgstr "مشاركة الصوت"
-
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:18
-msgid "Upgrade Needed"
-msgstr "الترقية مطلوبة"
-
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:41
-#: bottles/frontend/ui/onboard.ui:88
-msgid "Continue"
-msgstr "استمر"
-
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:49
-msgid "Launch upgrade"
-msgstr "ابدأ الترقية"
-
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:69
-msgid "New Versioning System"
-msgstr "نظام تعيين الإصدار الجديد"
-
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:72
-msgid "The new bottle versioning system has landed."
-msgstr "نزَل النظام الجديد لتعيين الإصدار للقوارير."
-
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:86
-msgid ""
-"Bottles has a whole new Versioning System which is not backwards "
-"compatible. \n"
-"\n"
-"To continue using versioning we need to re-initialize the bottle repository. "
-"This will not delete data from your bottle but will delete all existing "
-"states and create a new one. \n"
-"\n"
-"If you need to go back to a previous state before continuing, close this "
-"window and restore the state, then reopen the bottle to show this window "
-"again. \n"
-"\n"
-"The old system will be discontinued in one of the next releases."
-msgstr ""
-"أصبح لدى بوتلز نظام جديد لتعيين الإصدارات لا يدعم النسخ القديمة.\n"
-"\n"
-"لاستكمال استخدام نظام تعيين الإصدار، علينا أن نقوم بإعادة تهيئة مستودع "
-"القارورة، لن يحذف هذا بياناتك من القارورة، ولكنه سيحذف كل الحالات الموجودة "
-"وإنشاء حالة جديدة.\n"
-"\n"
-"إن احتجت إلى العودة لحالة سابقة قبل المتابعة، أغلق هذه النافذة واستعد الحالة،"
-" ثم أعد فتح القارورة لإظهار هذه الرسالة مرة أخرى.\n"
-"\n"
-"سيتوقف دعم النظام القديم في أحد الإصدارات القادمة."
-
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:112
-msgid "Re-initializing repository…"
-msgstr "إعادة تهيئة المستودع…"
-
-#: bottles/frontend/ui/dialog-upgrade-versioning.ui:144
-msgid "Done! Please restart Bottles."
-msgstr "تم! فضلاً أعد تشغيل بوتلز."
-
-#. vkBasalt is a Vulkan post processing layer for Linux
-#: bottles/frontend/ui/dialog-vkbasalt.ui:11
-msgid "vkBasalt Settings"
-msgstr "إعدادات vkBasalt"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:50
-msgid "Default"
-msgstr "الافتراضي"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:54
-msgid "Default Settings"
-msgstr "الإعدادات الافتراضية"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:66
-msgid "Effects are applied according to the list order."
-msgstr "يتم تطبيق التأثيرات وفقاً لترتيب القائمة."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:67
-msgid "Effects"
-msgstr "التأثيرات"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:71
-msgid "Contrast Adaptive Sharpening"
-msgstr "رفع جودة الصورة المتكيف مع التباين"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:74
-#: bottles/frontend/ui/dialog-vkbasalt.ui:110
-msgid "Sharpness"
-msgstr "الحِدة"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:78
-#: bottles/frontend/ui/dialog-vkbasalt.ui:114
-#: bottles/frontend/ui/dialog-vkbasalt.ui:143
-#: bottles/frontend/ui/dialog-vkbasalt.ui:178
-#: bottles/frontend/ui/dialog-vkbasalt.ui:207
-#: bottles/frontend/ui/dialog-vkbasalt.ui:236
-#: bottles/frontend/ui/dialog-vkbasalt.ui:271
-#: bottles/frontend/ui/dialog-vkbasalt.ui:307
-#: bottles/frontend/ui/dialog-vkbasalt.ui:336
-#: bottles/frontend/ui/dialog-vkbasalt.ui:364
-#: bottles/frontend/ui/dialog-vkbasalt.ui:392
-#: bottles/frontend/ui/dialog-vkbasalt.ui:424
-msgid "Show Information"
-msgstr "أظهر المعلومات"
-
-#. Luma is not translatable
-#: bottles/frontend/ui/dialog-vkbasalt.ui:107
-msgid "Denoised Luma Sharpening"
-msgstr "تحسين دقة Denoised Luma"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:139
-msgid "Denoise"
-msgstr "تقليل التشويش"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:171
-msgid "Fast Approximate Anti-Aliasing"
-msgstr "تنعيم صورة سريع وتقريبي"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:174
-msgid "Subpixel Quality"
-msgstr "جودة أجزاء البِكْسِل"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:203
-msgid "Quality Edge Threshold"
-msgstr "عتبة جودة الحواف"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:232
-msgid "Quality Edge Threshold Minimum"
-msgstr "أقل عتبة لجودة الحواف"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:264
-msgid "Subpixel Morphological Anti-Aliasing"
-msgstr "SMAA"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:267
-msgid "Edge Detection"
-msgstr "كشف الحواف"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:283
-msgid "Luma"
-msgstr "لوما"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:290
-msgid "Color"
-msgstr "اللون"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:303
-msgid "Threshold"
-msgstr "عتبة"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:332
-msgid "Max Search Steps"
-msgstr "الحد الأقصى لخطوات البحث"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:360
-msgid "Max Search Steps Diagonal"
-msgstr "أقصى حد لخطوات البحث القُطْري"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:388
-msgid "Max Corner Rounding"
-msgstr "أقصى تقويس للزوايا"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:419
-msgid "Color Lookup Table"
-msgstr "جدول البحث عن الألوان"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:437
-msgid "Reset to Default"
-msgstr "عُد للإعدادات الافتراضية"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:448
-msgid "Select a File"
-msgstr "اختر ملفاً"
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:482
-msgid ""
-"CAS sharpness increases the sharpness of a frame. Higher values make the "
-"frame sharper, whereas values lower than 0 make the frame softer than native."
-msgstr ""
-"تزيد تقنية CAS من حِدة الإطار، كلما زادت القيمة صار الإطار أحدّ، بينما لو "
-"كانت أقل من 0 صار الإطار أنعم من الأصلي."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:500
-msgid ""
-"DLS sharpness increases the sharpness of a frame. Higher values make the "
-"frame sharper."
-msgstr "كلما زادت قيم DLS sharpness زادت حِدة الإطار."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:518
-msgid ""
-"DLS denoise decreases the noise of a frame. Higher values make the frame "
-"softer."
-msgstr "يقلل DLS denoise من تشويش الإطار، لكما زادت القيم صار الإطار أنعم."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:536
-msgid ""
-"FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
-"values make the frame softer."
-msgstr ""
-"تقلل جودة أجزاء البكسل FXAA من التنعيم على مستوى أجزاء البكسل، كلما زادت "
-"القيمة صار الإطار أنعم."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:554
-msgid ""
-"FXAA edge threshold is the minimum amount of contrast required to apply the "
-"FXAA algorithm. Higher values make the frame have more contrast."
-msgstr ""
-"عتبة الحواف لـ FXAA هي أقل قيمة مطلوبة للتباين لتطبيقة خوارزمية FXAA. كلما "
-"زادت القيمة صار تباين الإطار أكثر."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:572
-msgid ""
-"FXAA quality edge threshold minimum is the minimum value of dark pixels that "
-"are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
-"below the specified value and can lead to a performance increase."
-msgstr ""
-"عتبة جودة الحواف لـ FXAA هي القيمة الدنيا لعدد البكسلات الداكنة التي "
-"تتجاهلها خوازرمية FXAA. تتجاهل خوارزمية FXAA البكسلات تحت القيمة المدخلة وقد "
-"تؤدي لتحسن الأداء."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:590
-msgid ""
-"Luma detects edges from a monochrome perspective, whereas Color detects "
-"edges based on colors. Luma is more performant than Color."
-msgstr ""
-"تكتشف \"لوما\" الحواف من منظور أحادي الألوان، بينما تكتشف \"كولر\" الحواف "
-"بناءً على الألوان. \"لوما\" أفضل أداءً من \"كولر\"."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:608
-msgid ""
-"SMAA threshold specifies the sensitivity of edge detection. Lower values "
-"detect more edges at the expense of performance."
-msgstr ""
-"تحدد عتبة SMAA حساسية اكتشاف الحواف. تقوم القيم الدنيا باكتشاف حواف أكثر على "
-"حساب الأداء."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:626
-msgid ""
-"SMAA max search steps specifies how many horizontal and vertical search "
-"steps are performed when searching for edges."
-msgstr ""
-"تحدد \"أقصى عدد خطوات بحث لـ SMAA\" عدد خطوات البحث الأفقي والرأسي المنفذة "
-"عند البحث عن الحواف."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:644
-msgid ""
-"SMAA max diagonal search steps specifies how many diagonal search steps are "
-"performed when searching for edges."
-msgstr ""
-"يحدد خيار \"أقصى عدد مرات البحث القُطري لـ SMAA\" كم خطوة بحث قُطري تنفذ حين "
-"البحث عن الحواف."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:662
-msgid "SMAA corner rounding specifies the strength of rounding edge corners."
-msgstr "يحدد خيار تقويس الزوايا SMAA شدة مستوى تقويس زوايا الحواف."
-
-#: bottles/frontend/ui/dialog-vkbasalt.ui:680
-msgid ""
-"CLUT transforms a range of colors into another range of colors using a .CUBE "
-"file, or a .png file where the height is equal to the width."
-msgstr ""
-"يقوم جدول البحث عن الألوان بتحويل نطاق ألوان إلى نطاق آخر باستخدام ملف CUBE. "
-"أو ملف png. حيث الطول يساوي العرض."
-
-#: bottles/frontend/ui/dll-override-entry.ui:10
-msgid "Builtin (Wine)"
-msgstr "مدمج (واين)"
-
-#: bottles/frontend/ui/dll-override-entry.ui:11
-msgid "Native (Windows)"
-msgstr "أصلي (ويندوز)"
-
-#: bottles/frontend/ui/dll-override-entry.ui:12
-msgid "Builtin, then Native"
-msgstr "المدمج ثم الأصلي"
-
-#: bottles/frontend/ui/dll-override-entry.ui:13
-msgid "Native, then Builtin"
-msgstr "الأصلي ثم المدمج"
-
-#: bottles/frontend/ui/dll-override-entry.ui:14
-msgid "Disabled"
-msgstr "معطل"
-
-#: bottles/frontend/ui/dll-override-entry.ui:22
-#: bottles/frontend/ui/drive-entry.ui:14
-msgid "Remove"
-msgstr "أزل"
-
-#: bottles/frontend/ui/drive-entry.ui:7
-msgid "/point/to/path"
-msgstr "/أشر/إلى/المسار"
-
-#: bottles/frontend/ui/drive-entry.ui:24
-msgid "Choose a Directory"
-msgstr "اختر دليلاً"
-
-#: bottles/frontend/ui/env-var-entry.ui:6
-#: bottles/frontend/ui/exclusion-pattern-entry.ui:6
-msgid "Value"
-msgstr "القيمة"
-
-#. Wineprefix is a prefix for the wine program
-#: bottles/frontend/ui/importer-entry.ui:22
-msgid "Wineprefix name"
-msgstr "اسم سابقة واين"
-
-#: bottles/frontend/ui/importer-entry.ui:29
-msgid "Manager"
-msgstr "المدير"
-
-#: bottles/frontend/ui/importer-entry.ui:39
-msgid "This wineprefix was already imported in Bottles."
-msgstr "استُوردت سابقة واين هذه إلى بوتلز بالفعل."
-
-#: bottles/frontend/ui/importer.ui:24
-msgid "Import Bottles backup"
-msgstr "استيراد نسخة احتياطية لبوتلز"
-
-#: bottles/frontend/ui/importer.ui:31
-msgid "Search again for prefixes"
-msgstr "ابحث مجدداً عن سابقات"
-
-#: bottles/frontend/ui/importer.ui:45
-msgid "No Prefixes Found"
-msgstr "لم يُعثر على سابقات"
-
-#: bottles/frontend/ui/importer.ui:46
-msgid ""
-"No prefixes were found from Lutris, PlayOnLinux, etc.\n"
-"Use the icon on the top to import a bottle from a backup"
-msgstr ""
-"لم يعثر على سابقات من لوترس وPlayOnLinux وغيرها.\n"
-"استخدم الأيقونة أعلاه لاستيراد قارورة من نسخة احتياطية"
-
-#: bottles/frontend/ui/importer.ui:81
-msgid "Configuration"
-msgstr "التكوين"
-
-#: bottles/frontend/ui/importer.ui:87
-msgid "Full Archive"
-msgstr "الأرشيف الكامل"
-
-#: bottles/frontend/ui/installer-entry.ui:18
-msgid "Show Manifest…"
-msgstr "أظهر البيان…"
-
-#: bottles/frontend/ui/installer-entry.ui:23
-msgid "Read Review…"
-msgstr "اقرأ المراجعة…"
-
-#: bottles/frontend/ui/installer-entry.ui:40
-msgid "Installer name"
-msgstr "اسم المثبت"
-
-#: bottles/frontend/ui/installer-entry.ui:41
-msgid "Installer description"
-msgstr "وصف المثبت"
-
-#: bottles/frontend/ui/installer-entry.ui:48
-msgid "Unknown"
-msgstr "مجهول"
-
-#: bottles/frontend/ui/installer-entry.ui:57
-msgid "Install this program"
-msgstr "ثبت هذا البرنامج"
-
-#: bottles/frontend/ui/library-entry.ui:17
-msgid "Remove from Library"
-msgstr "أزل من المكتبة"
-
-#: bottles/frontend/ui/library-entry.ui:94
-msgid "Item name"
-msgstr "اسم العنصر"
-
-#: bottles/frontend/ui/library-entry.ui:115
-#: bottles/frontend/ui/program-entry.ui:105
-msgid "Launch with Steam"
-msgstr "شغّل باستخدام Steam"
-
-#: bottles/frontend/ui/library.ui:14 bottles/frontend/ui/preferences.ui:259
-#: bottles/frontend/windows/main_window.py:175
-msgid "Library"
-msgstr "المكتبة"
-
-#: bottles/frontend/ui/library.ui:15
-msgid "Add items here from your bottle's program list"
-msgstr "أضف العناصر هنا من قائمة البرامج في قارورتك"
-
-#: bottles/frontend/ui/list-entry.ui:46
-msgid "This bottle looks damaged."
-msgstr "يبدو أن هذه القارورة متضررة."
-
-#: bottles/frontend/ui/list-entry.ui:60
-msgid "Execute in this bottle"
-msgstr "نفذ في هذه القارورة"
-
-#: bottles/frontend/ui/list-entry.ui:75
-msgid "Run Here"
-msgstr "شغّل هنا"
-
-#: bottles/frontend/ui/list-entry.ui:84
-msgid ""
-"This bottle looks damaged, the configuration file is missing. I can try to "
-"solve by creating a new configuration."
-msgstr ""
-"يبدو أن هذه القارورة متضررة، ملف التكوين مفقود. يمكنني أن أحاول حل المشكلة "
-"بإنشاء تكوين جديد."
-
-#: bottles/frontend/ui/list-entry.ui:96
-msgid "Run .exe/.msi in this bottle"
-msgstr "شغل ملفات exe. وmsi. في هذه القارورة"
-
-#: bottles/frontend/ui/list.ui:17
-msgid "Search your bottles…"
-msgstr "ابحث في قاروراتك…"
-
-#: bottles/frontend/ui/list.ui:38
-msgid "Steam Proton"
-msgstr "بروتون لستيم"
-
-#: bottles/frontend/ui/list.ui:54 bottles/frontend/ui/window.ui:56
-#: bottles/frontend/ui/window.ui:73 bottles/frontend/windows/main_window.py:169
-#: data/com.usebottles.bottles.appdata.xml.in:6
-#: data/com.usebottles.bottles.desktop.in:3
-msgid "Bottles"
-msgstr "زجاجات"
-
-#: bottles/frontend/ui/list.ui:55
-msgid "Start off by creating a Bottle."
-msgstr "ابدأ بإنشاء قارورة."
-
-#: bottles/frontend/ui/list.ui:62
-msgid "Create a new Bottle"
-msgstr "أنشئ قارورة جديدة"
-
-#: bottles/frontend/ui/list.ui:75
-msgid "No Results Found"
-msgstr "لم يعثر على نتائج"
-
-#: bottles/frontend/ui/list.ui:76
-msgid "Try a different search."
-msgstr "جرب بحثاً مختلفاً."
-
-#: bottles/frontend/ui/loading.ui:16
-msgid "Starting up…"
-msgstr "بدء التشغيل…"
-
-#: bottles/frontend/ui/local-resource-entry.ui:6
-msgid "This resource is missing."
-msgstr "هذا المورد مفقود."
-
-#: bottles/frontend/ui/local-resource-entry.ui:10
-msgid "Browse"
-msgstr "تصفح"
-
-#: bottles/frontend/ui/new.ui:17 bottles/frontend/ui/new.ui:64
-msgid "New Bottle"
-msgstr "قارورة جديدة"
-
-#: bottles/frontend/ui/new.ui:38
-msgid "Create"
-msgstr "أنشئ"
-
-#: bottles/frontend/ui/new.ui:47 bottles/frontend/ui/new.ui:268
-#: bottles/frontend/windows/main_window.py:191
-msgid "Close"
-msgstr "أغلق"
-
-#: bottles/frontend/ui/new.ui:67
-msgid "Bottle Information"
-msgstr "معلومات القارورة"
-
-#: bottles/frontend/ui/new.ui:84
-msgid "Gaming"
-msgstr "اللعب"
-
-#: bottles/frontend/ui/new.ui:85
-msgid "An environment improved for Windows games."
-msgstr "بيئة محسنة لألعاب ويندوز."
-
-#: bottles/frontend/ui/new.ui:93
-msgid "Application"
-msgstr "التطبيق"
-
-#: bottles/frontend/ui/new.ui:94
-msgid "An environment improved for Windows applications."
-msgstr "بيئة محسنة لتطبيقات ويندوز."
-
-#: bottles/frontend/ui/new.ui:103
-msgid "Layered"
-msgstr "ذو طبقات"
-
-#: bottles/frontend/ui/new.ui:104
-msgid "A layered environment, where every app is a layer."
-msgstr "بيئة ذات طبقات، حيث يشكل كل تطبيق طبقة."
-
-#: bottles/frontend/ui/new.ui:112
-msgid "Custom"
-msgstr "التخصيص"
-
-#: bottles/frontend/ui/new.ui:113
-msgid "A clear environment for your experiments."
-msgstr "بيئة واضحة لتجاربك."
-
-#: bottles/frontend/ui/new.ui:117
-msgid "Unlinked Home Directory"
-msgstr "الدليل الرئيسي غير المرتبط"
-
-#: bottles/frontend/ui/new.ui:118
-msgid "Do not link the userdir to the homedir"
-msgstr "لا تربط دليل المستخدم بالدليل الرئيس"
-
-#: bottles/frontend/ui/new.ui:143
-msgid "Architecture"
-msgstr "المعمارية"
-
-#: bottles/frontend/ui/new.ui:144
-msgid "We recommend using 32bit only if strictly necessary."
-msgstr "نوصي باستخدام 32 بت فقط إذا لزم الأمر."
-
-#: bottles/frontend/ui/new.ui:148
-msgid "64 bit"
-msgstr "64 بت"
-
-#: bottles/frontend/ui/new.ui:149
-msgid "32 bit"
-msgstr "32 بت"
-
-#: bottles/frontend/ui/new.ui:157
-msgid "Custom Recipe"
-msgstr "وصفة مخصصة"
-
-#: bottles/frontend/ui/new.ui:158
-msgid "Choose a custom recipe for the environment if you have one."
-msgstr "اختر وصفة مخصصة للبيئة إن كانت لديك واحدة."
-
-#: bottles/frontend/ui/new.ui:174
-msgid "Custom Path"
-msgstr "مسار مخصص"
-
-#: bottles/frontend/ui/new.ui:175
-msgid "Store this bottle in another place."
-msgstr "خزن هذه القارورة في مكان آخر."
-
-#: bottles/frontend/ui/new.ui:215
-msgid "Creating a Bottle…"
-msgstr "يتم إنشاء قارورة…"
-
-#: bottles/frontend/ui/new.ui:262
-msgid "Bottle created"
-msgstr "أُنشئت القارورة"
-
-#: bottles/frontend/ui/onboard.ui:36
-msgid "Previous"
-msgstr "السابق"
-
-#: bottles/frontend/ui/onboard.ui:62
-msgid "Welcome to Bottles"
-msgstr "مرحبا بك في بوتلز"
-
-#: bottles/frontend/ui/onboard.ui:63
-msgid ""
-"Run Windows Software on Linux.\n"
-"                                                "
-msgstr ""
-"شغل برمجيات ويندوز على لينكس.\n"
-"                                                "
-
-#: bottles/frontend/ui/onboard.ui:71
-msgid "Windows in Bottles"
-msgstr "النوافذ في بوتلز"
-
-#: bottles/frontend/ui/onboard.ui:72
-msgid ""
-"Bottles uses compatibility runners to provide isolated containerized Windows-"
-"like environments where programs run."
-msgstr ""
-"يستعمل بوتلز مشغلات توافق لتوفير بيئات معزولة تشبه ويندوز لتشغيل البرامج."
-
-#: bottles/frontend/ui/onboard.ui:79
-msgid "Almost Done"
-msgstr "يكاد ينتهي"
-
-#: bottles/frontend/ui/onboard.ui:80
-msgid "We need a few more minutes to set everything up…"
-msgstr "نحتاج إلى بضع دقائق أخرى لإعداد كل شيء…"
-
-#: bottles/frontend/ui/onboard.ui:113
-msgid "All ready!"
-msgstr "كل شيء جاهز!"
-
-#: bottles/frontend/ui/onboard.ui:122
-msgid "Please Finish the setup first"
-msgstr "فضلاً أنهِ الإعداد أولاً"
-
-#: bottles/frontend/ui/onboard.ui:129
-msgid "Start using Bottles"
-msgstr "ابدأ باستخدام بوتلز"
-
-#: bottles/frontend/ui/onboard.ui:150
-msgid "Next"
-msgstr "التالي"
-
-#: bottles/frontend/ui/preferences.ui:6 bottles/frontend/ui/window.ui:24
-#: bottles/frontend/views/details.py:158
-msgid "Preferences"
-msgstr "التفضيلات"
-
-#: bottles/frontend/ui/preferences.ui:13 bottles/frontend/ui/preferences.ui:46
-msgid "General"
-msgstr "عام"
-
-#: bottles/frontend/ui/preferences.ui:16
-msgid "Appearance"
-msgstr "المظهر"
-
-#: bottles/frontend/ui/preferences.ui:19
-msgid "Dark Mode"
-msgstr "الوضع الداكن"
-
-#: bottles/frontend/ui/preferences.ui:20
-msgid "Whether Bottles should use the dark color scheme."
-msgstr "ما إذا كان يجب على بوتلز استخدام ألوان الوضع الداكن."
-
-#: bottles/frontend/ui/preferences.ui:32
-msgid "Show Update Date"
-msgstr "أظهر تاريخ التحديث"
-
-#: bottles/frontend/ui/preferences.ui:33
-msgid "Whether to show the update date in the bottle list."
-msgstr "ما إذا كان يجب عرض تاريخ التحديث في قائمة القارورات."
-
-#: bottles/frontend/ui/preferences.ui:49
-#: data/com.usebottles.bottles.gschema.xml:46
-msgid "Notifications"
-msgstr "الإشعارات"
-
-#: bottles/frontend/ui/preferences.ui:50
-msgid "Show notifications for downloads and installs."
-msgstr "أظهر الإشعارات للتنزيلات والتثبيتات."
-
-#: bottles/frontend/ui/preferences.ui:61
-msgid "Temp Files"
-msgstr "الملفات المؤقتة"
-
-#: bottles/frontend/ui/preferences.ui:62
-msgid "Clean temp files when Bottles launches?"
-msgstr "حذف الملفات المؤقتة عند بدء بوتلز؟"
-
-#: bottles/frontend/ui/preferences.ui:73
-msgid "Close Bottles After Starting a Program"
-msgstr "أغلق بوتلز بعد تشغيل برنامج"
-
-#: bottles/frontend/ui/preferences.ui:74
-msgid "Close Bottles after starting a program from the file manager."
-msgstr "أغلق بوتلز بعد بدء تشغيل برنامج من مدير الملفات."
-
-#: bottles/frontend/ui/preferences.ui:87
-msgid "Integrations"
-msgstr "التكاملات"
-
-#: bottles/frontend/ui/preferences.ui:90
-msgid "Steam Proton Prefixes"
-msgstr "سابقات بروتون لستيم"
-
-#: bottles/frontend/ui/preferences.ui:91
-msgid "List and manage Steam Proton prefixes."
-msgstr "اسرد وأدر سابقات بروتون لستيم."
-
-#: bottles/frontend/ui/preferences.ui:95
-msgid "Read Documentation"
-msgstr "اقرأ التوثيق"
-
-#: bottles/frontend/ui/preferences.ui:113
-msgid "List Steam Apps in Programs List"
-msgstr "اسرد تطبيقات Steam في قائمة البرامج"
-
-#: bottles/frontend/ui/preferences.ui:114
-msgid "Requires Steam for Windows installed in the bottle."
-msgstr "يتطلب أن يكون ستيم للويندوز مثبتاً في القارورة."
-
-#: bottles/frontend/ui/preferences.ui:125
-msgid "List Epic Games in Programs List"
-msgstr "اسرد تطبيقات Epic Games في قائمة البرامج"
-
-#: bottles/frontend/ui/preferences.ui:126
-msgid "Requires Epic Games Store installed in the bottle."
-msgstr "يتطلب أن يكون متجر Epic Games مثبتاً في القارورة."
-
-#: bottles/frontend/ui/preferences.ui:137
-msgid "List Ubisoft Games in Programs List"
-msgstr "اسرد ألعاب يوبي سوفت في قائمة البرامج"
-
-#: bottles/frontend/ui/preferences.ui:138
-msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr "يتطلب Ubisoft Connect مثبتا في القارورة."
-
-#: bottles/frontend/ui/preferences.ui:151
-msgid "Advanced"
-msgstr "متقدم"
-
-#: bottles/frontend/ui/preferences.ui:154
-msgid "Custom Bottles Path (Requires Restart)"
-msgstr "مسار بوتلز مخصص (يتطلب إعادة التشغيل)"
-
-#: bottles/frontend/ui/preferences.ui:155
-#: bottles/frontend/views/preferences.py:151
-#: bottles/frontend/views/preferences.py:167
-msgid ""
-"Choose where to store the new bottles (this will not move the existing ones)."
-msgstr ""
-"اختر أين يجب تخزين القارورات الجديدة (لن يغير هذا مكان القارورات الموجودة "
-"مسبقاً)."
-
-#: bottles/frontend/ui/preferences.ui:188
-msgid "Runners"
-msgstr "المشغلات"
-
-#: bottles/frontend/ui/preferences.ui:193
-msgid "Pre-Release"
-msgstr "الإصدار التجريبي"
-
-#: bottles/frontend/ui/preferences.ui:194
-msgid "Display unstable versions of runners."
-msgstr "أظهر النسخ غير المستقرة من المشغلات."
-
-#: bottles/frontend/ui/preferences.ui:210
-msgid "DLL Components"
-msgstr "مكونات DLL"
-
-#: bottles/frontend/ui/preferences.ui:223
-msgid "DXVK-NVAPI"
-msgstr "DXVK-NVAPI"
-
-#: bottles/frontend/ui/preferences.ui:236
-msgid "Core"
-msgstr "النواة"
-
-#: bottles/frontend/ui/preferences.ui:240
-msgid "Runtime"
-msgstr "زمن التشغيل"
-
-#: bottles/frontend/ui/preferences.ui:245
-msgid "WineBridge"
-msgstr "جسر Wine"
-
-#: bottles/frontend/ui/preferences.ui:253
-#: data/com.usebottles.bottles.gschema.xml:66
-msgid "Experiments"
-msgstr "التجارب"
-
-#: bottles/frontend/ui/preferences.ui:256
-msgid ""
-"These features are under heavy development and may be unstable, expect bugs "
-"and breakage."
-msgstr ""
-"هذه الميزات قيد التطوير المكثف وقد تكون غير مستقرة ، توقع حدوث أخطاء وأعطال."
-
-#: bottles/frontend/ui/preferences.ui:260
-msgid "In early development (requires restart)."
-msgstr "في مرحلة مبكرة من التطوير (يتطلب إعادة التشغيل)."
-
-#: bottles/frontend/ui/preferences.ui:271
-msgid "Sandbox per bottle"
-msgstr "ساحة التجارب لكل قارورة"
-
-#: bottles/frontend/ui/preferences.ui:272
-msgid "In early development."
-msgstr "في مرحلة مبكرة من التطوير."
-
-#: bottles/frontend/ui/program-entry.ui:21
-msgid "Launch with terminal"
-msgstr "شغّل مع الطرفية"
-
-#: bottles/frontend/ui/program-entry.ui:28
-msgid "Browse path"
-msgstr "تصفح المسار"
-
-#: bottles/frontend/ui/program-entry.ui:44
-msgid "Change Launch Options…"
-msgstr "تغيير خيارات التشغيل…"
-
-#: bottles/frontend/ui/program-entry.ui:49
-msgid "Add to My Library"
-msgstr "أضف إلى مكتبتي"
-
-#: bottles/frontend/ui/program-entry.ui:54
-msgid "Add Desktop Entry"
-msgstr "إضافة أيقونة لسطح المكتب"
-
-#: bottles/frontend/ui/program-entry.ui:59
-msgid "Add to Steam"
-msgstr "أضف إلى Steam"
-
-#: bottles/frontend/ui/program-entry.ui:64
-msgid "Rename…"
-msgstr "أعد التسمية…"
-
-#: bottles/frontend/ui/program-entry.ui:73
-msgid "Hide Program"
-msgstr "أخفِ البرنامج"
-
-#: bottles/frontend/ui/program-entry.ui:78
-msgid "Show Program"
-msgstr "اعرض البرنامج"
-
-#: bottles/frontend/ui/program-entry.ui:83
-msgid "Remove from List"
-msgstr "أزل من القائمة"
-
-#: bottles/frontend/ui/program-entry.ui:99
-msgid "Program name"
-msgstr "اسم البرنامج"
-
-#. id as identification
-#: bottles/frontend/ui/state-entry.ui:7
-msgid "State id"
-msgstr "مُعرف الحالة"
-
-#: bottles/frontend/ui/state-entry.ui:8
-msgid "State comment"
-msgstr "تعليق الحالة"
-
-#: bottles/frontend/ui/state-entry.ui:16
-msgid "Restore this state"
-msgstr "استعادة هذه الحالة"
-
-#: bottles/frontend/ui/task-entry.ui:24
-msgid "Delete message"
-msgstr "حذف الرسالة"
-
-#: bottles/frontend/ui/window.ui:19
-msgid "Import/Export…"
-msgstr "استيراد/تصدير…"
-
-#: bottles/frontend/ui/window.ui:33
-msgid "Support"
-msgstr "الدعم"
-
-#: bottles/frontend/ui/window.ui:43
-msgid "Forums"
-msgstr "المنتدى"
-
-#: bottles/frontend/ui/window.ui:48
-msgid "About Bottles"
-msgstr "حول بوتلز"
-
-#: bottles/frontend/ui/window.ui:79
-msgid "Open menu"
-msgstr "افتح القائمة"
-
-#: bottles/frontend/ui/window.ui:93
-msgid ""
-"You don't seem connected to the internet. Without it you will not be able to "
-"download essential components. Click this icon when you have reestablished "
-"the connection."
-msgstr ""
-"لا يبدو أنك متصل بالإنترنت، لا يمكنك بدونه تحميل المكونات الأساسية. اضغط هذه "
-"الأيقونة عندما تعيد الاتصال."
-
-#: bottles/frontend/ui/window.ui:99
-msgid "New bottle"
-msgstr "قارورة جديدة"
-
-#: bottles/frontend/utils/connection.py:67
-msgid "You are offline, unable to download."
-msgstr "أنت غير متصل بالإنترنت، لا يمكن التنزيل."
-
-#: bottles/frontend/views/bottle_details.py:142
-#, python-format
-msgid "Updated: %s"
-msgstr "محدث: %s"
-
-#: bottles/frontend/views/bottle_details.py:200
-#: bottles/frontend/views/list.py:118
-msgid "Choose a Windows executable file"
-msgstr "اختر ملفاً تنفيذياً يعمل في ويندوز"
-
-#: bottles/frontend/views/bottle_details.py:209
-msgid "Be Aware of Sandbox"
-msgstr "كن على دراية ب Sandbox"
-
-#: bottles/frontend/views/bottle_details.py:210
-msgid ""
-"Bottles is running in a sandbox, a restricted permission environment needed "
-"to keep you safe. If the program won't run, consider moving inside the "
-"bottle (3 dots icon on the top), then launch from there."
-msgstr ""
-"يعمل بوتلز في بيئة معزولة وذات أذونات محدودة لحمايتك. إذا لم يعمل البرنامج، "
-"فكر في الانتقال لداخل القارورة (النقاط الثلاث أعلاه)، ثم شغل من هناك."
-
-#: bottles/frontend/views/bottle_details.py:212
-msgid "Ok"
-msgstr "حسناً"
-
-#: bottles/frontend/views/bottle_details.py:267
-msgid "Select the location where to save the backup config"
-msgstr "اختر موقع حفظ تكوين النسخ الاحتياطي"
-
-#: bottles/frontend/views/bottle_details.py:271
-msgid "Select the location where to save the backup archive"
-msgstr "اختر موقع حفظ أرشيف النسخ الاحتياطي"
-
-#: bottles/frontend/views/bottle_details.py:276
-#, python-brace-format
-msgid "Backup created for '{0}'."
-msgstr "أنشئت نسخة احتياطية لـ {0}."
-
-#: bottles/frontend/views/bottle_details.py:278
-#, python-brace-format
-msgid "Backup failed for '{0}'."
-msgstr "فشل النسخ الاحتياطي لـ {0}."
-
-#: bottles/frontend/views/bottle_details.py:296
-msgid "Export"
-msgstr "صدّر"
-
-#: bottles/frontend/views/bottle_details.py:332
-#: bottles/frontend/views/bottle_details.py:336
-#: bottles/frontend/views/bottle_details.py:411
-#: bottles/frontend/views/bottle_details.py:415
-#: bottles/frontend/views/bottle_preferences.py:776
-msgid "Confirm"
-msgstr "أكِّد"
-
-#: bottles/frontend/views/bottle_details.py:333
-msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr "هل أنت متأكد من أنك تريد حذف هذه القارورة وجميع ملفاتها؟"
-
-#: bottles/frontend/views/bottle_details.py:412
-msgid ""
-"Are you sure you want to terminate all processes?\n"
-"This can cause data loss."
-msgstr ""
-"هل أنت متأكد من أنك تريد إنهاء كل العمليات؟\n"
-"قد يسبب هذا فقدان البيانات."
-
-#: bottles/frontend/views/bottle_preferences.py:218
-msgid "This feature is not available on your system."
-msgstr "لا تتوفر هذه الميزة لنظامك."
-
-#: bottles/frontend/views/bottle_preferences.py:266
-#: bottles/frontend/views/bottle_preferences.py:283
-#: bottles/frontend/views/bottle_preferences.py:422
-msgid "Default to the bottle path."
-msgstr "تعيين المسار الافتراضي كمسار القارورة."
-
-#: bottles/frontend/views/bottle_preferences.py:274
-msgid "Choose working directory for executables"
-msgstr "اختر دليل العمل للملفات التنفيذية"
-
-#: bottles/frontend/views/bottle_preferences.py:772
-msgid "Toggling Compression Require Re-Initialization"
-msgstr "تبديل الضغط يتطلب أعادة البدء"
-
-#: bottles/frontend/views/bottle_preferences.py:773
-msgid ""
-"This will kepp all your files but will delete all states. Do you want to "
-"continue?"
-msgstr "سيقوم هذا بإبقاء كل ملفاتك ولكنه سيحذف كل حالاتك، هل تريد الاستمرار؟"
-
-#: bottles/frontend/views/bottle_programs.py:86
-#, python-brace-format
-msgid "'{0}' added."
-msgstr "أُضيف {0}."
-
-#: bottles/frontend/views/bottle_programs.py:90
-msgid "Choose an executable path"
-msgstr "اختر مسار ملف تنفيذي"
-
-#: bottles/frontend/views/bottle_programs.py:92
-msgid "Add"
-msgstr "أضف"
-
-#: bottles/frontend/views/bottle_versioning.py:88
-msgid "Please migrate to the new Versioning system to create new states."
-msgstr "فضلاً انتقل لنظام تعيين الإصدار الجديد لتنشئ حالات جديدة."
-
-#: bottles/frontend/views/details.py:154
-msgid "Details & Utilities"
-msgstr "التفاصيل والمرافق"
-
-#: bottles/frontend/views/details.py:162
-msgid "Dependencies"
-msgstr "التبعيات"
-
-#: bottles/frontend/views/details.py:167
-msgid "Found in your bottle's Start menu."
-msgstr "عُثر عليه في قائمة ابدأ للقارورة."
-
-#: bottles/frontend/views/details.py:174
-msgid "Installers"
-msgstr "المثبتات"
-
-#: bottles/frontend/views/details.py:377
-msgid "Operations in progress, please wait."
-msgstr "العمليات قيد التنفيذ، يرجى الانتظار."
-
-#: bottles/frontend/views/details.py:381
-msgid "Return to your bottles."
-msgstr "عد لقاروراتك."
-
-#: bottles/frontend/views/importer.py:89
-msgid "Backup imported successfully."
-msgstr "استورد النسخ الاحتياطي بنجاح."
-
-#: bottles/frontend/views/importer.py:91
-msgid "Import failed."
-msgstr "فشل الاستيراد."
-
-#: bottles/frontend/views/importer.py:103
-#: bottles/frontend/views/importer.py:132
-msgid "Importing backup…"
-msgstr "جارٍ استيراد النسخة الاحتياطية…"
-
-#: bottles/frontend/views/importer.py:115
-msgid "Choose a backup archive"
-msgstr "اختر ارشيفاً للنسخ الاحتياطي"
-
-#: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
-msgid "N/A"
-msgstr "غير متاح"
-
-#: bottles/frontend/views/list.py:220
-msgid "Your Bottles"
-msgstr "قواريرك"
-
-#: bottles/frontend/views/loading.py:33
-#, python-brace-format
-msgid "Downloading ~{0} of packages…"
-msgstr "تحميل ~{0} من الحزم…"
-
-#: bottles/frontend/views/loading.py:34
-#, python-brace-format
-msgid "Fetched {0} of {1} packages"
-msgstr "جُلب {0} من أصل {1} حزمة"
-
-#: bottles/frontend/views/new.py:133
-msgid "Name has special characters or already in use."
-msgstr "يحتوي الاسم على رموز خاصة أو الاسم مستخدم بالفعل."
-
-#: bottles/frontend/views/new.py:150
-msgid "Choose a recipe file"
-msgstr "اختر ملف وصفة"
-
-#: bottles/frontend/views/new.py:166
-msgid "Choose where to store the bottle"
-msgstr "اختر مكان تخزين القارورة"
-
-#: bottles/frontend/views/new.py:219
-msgid "There was an error creating the bottle."
-msgstr "حصل خطأ أثناء إنشاء القارورة."
-
-#: bottles/frontend/views/new.py:227
-#, python-brace-format
-msgid "A bottle named “{0}” was created successfully"
-msgstr "أنشئت قارورة باسم {0} بنجاح"
-
-#: bottles/frontend/views/preferences.py:119
-msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr "لم يُعثر على ستيم أو ليس لدى بوتلز الأذونات الكافية."
-
-#: bottles/frontend/views/preferences.py:156
-msgid "Choose new bottles path"
-msgstr "اختر مساراً جديداً لبوتلز"
-
-#: bottles/frontend/views/preferences.py:199
-msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr "مبني على واين الخاص بفالف، يتضمن التدريج وتصليحات بروتون."
-
-#: bottles/frontend/views/preferences.py:200
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr "مبني على واين الأصلي ويتضمن تصحيحات التدريج."
-
-#: bottles/frontend/views/preferences.py:203
-msgid "Based on Wine upstream, includes staging patches."
-msgstr "مبني على واين الأصلي ويتضمن تصحيحات التدريج."
-
-#: bottles/frontend/views/preferences.py:204
-msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
-msgstr ""
-"مبني على واين الخاص بفالف، يتضمن التدريج تصليحات بروتون وستيم. يتطلب عمل "
-"تشغيل ستيم."
-
-#: bottles/frontend/views/preferences.py:206
-msgid "Other"
-msgstr "أخرى"
-
-#: bottles/frontend/widgets/component.py:70
-msgid "Upgrade"
-msgstr "رقِّ"
-
-#: bottles/frontend/widgets/component.py:145
-msgid "Installing…"
-msgstr "جارٍ التثبيت …"
-
-#: bottles/frontend/widgets/dependency.py:107
-#: bottles/frontend/widgets/installer.py:72
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "البيان لـ {0}"
-
-#: bottles/frontend/widgets/dependency.py:170
-#, python-brace-format
-msgid "'{0}' installed."
-msgstr "ثُبت {0}."
-
-#: bottles/frontend/widgets/dependency.py:184
-#, python-brace-format
-msgid "'{0}' failed to install."
-msgstr "فشل تثبيت '{0}'."
-
-#: bottles/frontend/widgets/importer.py:66
-#, python-brace-format
-msgid "'{0}' imported."
-msgstr "استُوردَ {0}."
-
-#: bottles/frontend/widgets/installer.py:81
-#, python-brace-format
-msgid "Review for {0}"
-msgstr "المراجعة لـ {0}"
-
-#: bottles/frontend/widgets/program.py:187
-#, python-brace-format
-msgid "Launching '{0}'…"
-msgstr "جارٍ بدء تشغيل \"{0}\"…"
-
-#: bottles/frontend/widgets/program.py:193
-#, python-brace-format
-msgid "Launching '{0}' with Steam…"
-msgstr "جارٍ إطلاق \"{0}\" باستخدام Steam…"
-
-#: bottles/frontend/widgets/program.py:215
-#, python-brace-format
-msgid "'{0}' hidden."
-msgstr "أُخفي {0}."
-
-#: bottles/frontend/widgets/program.py:217
-#, python-brace-format
-msgid "'{0}' showed."
-msgstr "عُرض {0}."
-
-#: bottles/frontend/widgets/program.py:240
-#, python-brace-format
-msgid "'{0}' removed."
-msgstr "أُزيل {0}."
-
-#: bottles/frontend/widgets/program.py:254
-#, python-brace-format
-msgid "'{0}' renamed to '{1}'."
-msgstr "أعيدت تسمية {0} إلى {1}."
-
-#: bottles/frontend/widgets/program.py:274
-#, python-brace-format
-msgid "Desktop Entry created for '{0}'"
-msgstr "أنشئت مدخلة سطح مكتب لـ {0}"
-
-#: bottles/frontend/widgets/program.py:290
-#, python-brace-format
-msgid "'{0}' added to your library"
-msgstr "أضيف {0} إلى مكتبتك"
-
-#: bottles/frontend/widgets/program.py:306
-#, python-brace-format
-msgid "'{0}' added to your Steam library"
-msgstr "أضيف {0} لمكتبك في Steam"
-
-#: bottles/frontend/windows/main_window.py:188
+#: bottles/frontend/windows/main_window.py:194
 msgid "Custom Bottles Path not Found"
 msgstr "لم يعثر على المسار المخصص لبوتلز"
 
-#: bottles/frontend/windows/main_window.py:189
+#: bottles/frontend/windows/main_window.py:195
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
 msgstr "العودة للمسار الافتراضي، لن تُسرد أي قارورة من المسار المحدد."
 
-#: bottles/frontend/windows/main_window.py:310
+#: bottles/frontend/windows/main_window.py:315
+msgid "Donate"
+msgstr ""
+
+#: bottles/frontend/windows/main_window.py:317
 msgid "Third-Party Libraries and Special Thanks"
 msgstr "المكتبات التابعة لأطراف ثالثة وشكر خاص"
 
-#: data/com.usebottles.bottles.appdata.xml.in:7
-msgid "Run Windows software"
-msgstr "قم بتشغيل برنامج Windows"
-
-#: data/com.usebottles.bottles.appdata.xml.in:8
-msgid "Mirko Brombin"
-msgstr "ميركو برومبين"
-
-#: data/com.usebottles.bottles.appdata.xml.in:10
-msgid "Run Windows software on Linux with Bottles!"
-msgstr "قم بتشغيل برامج ويندوز على لينكس باستخدام بوتلز!"
-
-#: data/com.usebottles.bottles.appdata.xml.in:11
-msgid "Bottle software and enjoy at your leisure!"
-msgstr "غلّف البرمجيات واستمتع براحتك!"
-
-#: data/com.usebottles.bottles.appdata.xml.in:12
-msgid ""
-"Our built-in dependency installation system grants automatic software "
-"compatibility access. Use the download manager to download the official "
-"components: the runner (Wine, Proton), DXVK, dependencies, etc."
+#: bottles/frontend/windows/main_window.py:342
+msgid "Sponsored and Funded by"
 msgstr ""
-"يمنح نظامنا المدمج لتثبيت التبعيات وصولاً تلقائياً لتوافق البرمجيات. استعمل "
-"مدير التنزيلات لتحميل المكونات الرسمية: المشغل (واين، بروتون) وDXVK، "
-"والتبعيات، إلخ."
-
-#: data/com.usebottles.bottles.appdata.xml.in:15
-msgid ""
-"Bottle versioning keeps your work safe now and lets you restore it later!"
-msgstr "حافظ إصدار القارورة على عملك آمنًا ويتيح لك استعادته لاحقًا!"
-
-#: data/com.usebottles.bottles.appdata.xml.in:16
-msgid "Features:"
-msgstr "المميزات:"
-
-#: data/com.usebottles.bottles.appdata.xml.in:18
-msgid "Create bottles using preconfigured environments or create your own"
-msgstr ""
-"قم بإنشاء قوارير باستخدام بيئات مسبقة التكوين أو قم بإنشاء بيئة قارورتك "
-"الخاصة بك"
-
-#: data/com.usebottles.bottles.appdata.xml.in:19
-msgid ""
-"Run executables (.exe/.msi) in your bottles, directly from the context menu "
-"of your file-manager"
-msgstr ""
-"قم بتشغيل الملفات التنفيذية (exe / .msi.) في القوارير الخاصة بك ، مباشرة من "
-"القائمة الخاصة بمدير الملفات"
-
-#: data/com.usebottles.bottles.appdata.xml.in:20
-msgid "Automated detection of applications installed in your bottles"
-msgstr "الكشف الآلي عن التطبيقات المثبتة في قواريرك"
-
-#: data/com.usebottles.bottles.appdata.xml.in:21
-msgid "Add environment variables quickly"
-msgstr "أضف متغيرات البيئة بسرعة"
-
-#: data/com.usebottles.bottles.appdata.xml.in:22
-msgid "Override DLLs directly from per-bottle preferences"
-msgstr "تجاوز ملفات DLL مباشرة من الأعدادات كل زجاجة"
-
-#: data/com.usebottles.bottles.appdata.xml.in:23
-msgid "On-the-fly runner change for any Bottle"
-msgstr "تغيير المشغل فوراً لأي قارورة"
-
-#: data/com.usebottles.bottles.appdata.xml.in:24
-msgid ""
-"Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
-"compiler, offload … and much more.)"
-msgstr ""
-"تحسينات عدة لأداء الألعاب (esync، fsync، DXVK، الذاكرة الوسيطة، مُصرّف "
-"الظلال، الإفراغ... والكثير غير ذلك.)"
-
-#: data/com.usebottles.bottles.appdata.xml.in:25
-msgid "Automatic installation and management of Wine and Proton runners"
-msgstr "التثبيت والإدارة التلقائية لمشغلات واين وبروتون"
-
-#: data/com.usebottles.bottles.appdata.xml.in:26
-msgid "Automatic bottle repair in case of breakage"
-msgstr "إصلاح القارورة تلقائيًا في حالة الخلل"
-
-#: data/com.usebottles.bottles.appdata.xml.in:27
-msgid "Integrated dependency-installer based on a community-driven repository"
-msgstr "مثبت تبعيات متكامل يستند إلى مستودع يقوده المجتمع"
-
-#: data/com.usebottles.bottles.appdata.xml.in:28
-msgid "Integrated Task manager for Wine processes"
-msgstr "مدير مهام متكامل لواين"
-
-#: data/com.usebottles.bottles.appdata.xml.in:29
-msgid "Access to ProtonDB and WineHQ for support"
-msgstr "الوصول إلى ProtonDB و WineHQ للحصول على الدعم"
-
-#: data/com.usebottles.bottles.appdata.xml.in:30
-msgid "System for bringing your configuration to new versions of Bottles"
-msgstr "نظام لجلب تكويناتك إلى الإصدارات الجديدة من بوتلز"
-
-#: data/com.usebottles.bottles.appdata.xml.in:31
-msgid "Back up and import bottles"
-msgstr "النسخ الاحتياطي والاستيراد للقوارير"
-
-#: data/com.usebottles.bottles.appdata.xml.in:32
-msgid "Import Wine prefixes from other managers"
-msgstr "استيراد سابقات واين من برامج أخرى"
-
-#: data/com.usebottles.bottles.appdata.xml.in:33
-msgid "Bottles versioning"
-msgstr "تعيين إصدارات القوارير"
-
-#: data/com.usebottles.bottles.appdata.xml.in:34
-msgid "... and much more that you can find by installing Bottles!"
-msgstr "... وأكثر من ذلك بكثير يمكنك العثور عليه عن طريق تثبيت بوتلز!"
-
-#: data/com.usebottles.bottles.appdata.xml.in:101
-msgid "News"
-msgstr "الأخبار"
-
-#: data/com.usebottles.bottles.appdata.xml.in:103
-msgid ""
-"New versioning system which allow versioning the whole bottle (also "
-"configuration)"
-msgstr "نظام تعيين مستوىً جديد يمكّن من تعيين إصدار كل القارورة (والتكوين كذلك)"
-
-#: data/com.usebottles.bottles.appdata.xml.in:104
-msgid "Automatic versioning can now be toggled on and off"
-msgstr "يمكن الآن تبديل تعيين الإصدار الآلي وإيقاف تشغيله"
-
-#: data/com.usebottles.bottles.appdata.xml.in:105
-msgid "Exclude paths from versioning using patterns"
-msgstr "استبعد المسارات من تعيين الإصدار باستخدام الانماط"
-
-#: data/com.usebottles.bottles.appdata.xml.in:106
-msgid "Use compression for versioning states"
-msgstr "استخدم الضغط لحالات تعيين الإصدار"
-
-#: data/com.usebottles.bottles.appdata.xml.in:107
-msgid "Improve Launch Options saving without update the UI multiple times"
-msgstr "حسّن حفظ خيارات التشغيل دون تحديث واجهة المستخدم عدة مرات"
-
-#: data/com.usebottles.bottles.appdata.xml.in:108
-msgid ""
-"Improved YAML performance using libyaml (the python-yaml package must "
-"provide support for it)"
-msgstr "حُسن أداء YAML باستخدام libyaml (يجب أن تدعم هذا حزمة python-yaml)"
-
-#: data/com.usebottles.bottles.appdata.xml.in:109
-msgid "New About dialog"
-msgstr "تصميم جديد لمربع حوار \"جديد حول\""
-
-#: data/com.usebottles.bottles.appdata.xml.in:110
-msgid "Covers support in Library mode (thanks to SteamGridDB)"
-msgstr "يغطي الدعم في وضع المكتبة (شكراً لـ SteamGridDB)"
-
-#: data/com.usebottles.bottles.appdata.xml.in:111
-msgid "Removed DXVK HUD option, use the Environment Variables section instead"
-msgstr ""
-"أزيل خيار عرض المعلومات بمستوى الرأس لـ DXVK، استعمل قسم متغيرات البيئة بدلا "
-"منه"
-
-#: data/com.usebottles.bottles.appdata.xml.in:112
-msgid "bottles-cli shell option now provide command output"
-msgstr "يتيح خيار bottles-cli للطرفية مخرجات الأوامر الآن"
-
-#: data/com.usebottles.bottles.appdata.xml.in:113
-msgid "The Health Check is now in the About´s Troubleshooting section"
-msgstr "يتواجد خيار التحقق من الصحة في قسم استكشاف الأخطاء في \"حول\""
-
-#: data/com.usebottles.bottles.appdata.xml.in:114
-msgid ""
-"Extended Core dependencies check, packagers are invited to double-check "
-"their packages"
-msgstr "فحص تبعيات موسع، ندعو المسؤوليين عن الحزم للتحقق من حزمهم مرة أخرى"
-
-#: data/com.usebottles.bottles.appdata.xml.in:115
-msgid "New default permission for the Flatpak package: xdg-download"
-msgstr "إذن افتراضي جديد لحزمة الفلاتباك: xdg-download"
-
-#: data/com.usebottles.bottles.appdata.xml.in:116
-msgid "Added credits for Third-Party Libraries in the Credits section"
-msgstr "أضيفت اعتمادات مكتبات الطرف الثالث في قسم الاعتمادات"
-
-#: data/com.usebottles.bottles.appdata.xml.in:117
-msgid "Minor UI improvements"
-msgstr "تحسينات طفيفة على واجهة المستخدم"
-
-#: data/com.usebottles.bottles.appdata.xml.in:120
-msgid "Fixes"
-msgstr "الإصلاحات"
-
-#: data/com.usebottles.bottles.appdata.xml.in:122
-msgid "Fix for skipable onboard dialog"
-msgstr "إصلاح للحوارات التي لا يمكن تخطيها"
-
-#: data/com.usebottles.bottles.appdata.xml.in:123
-msgid "Fix for empty bottle name"
-msgstr "إصلاح لاسم قارورة فارغ"
-
-#: data/com.usebottles.bottles.appdata.xml.in:124
-msgid "Fix gstreamer libs for win32 bottles"
-msgstr "إصلاح مكتبات gstreamer لقوارير win32"
-
-#: data/com.usebottles.bottles.appdata.xml.in:125
-msgid "Fix for RemoteDisconnected error causing a crash"
-msgstr "إصلاح خطأ RemoteDisconnected المسبب لحدوث عطل"
-
-#: data/com.usebottles.bottles.appdata.xml.in:126
-msgid "Fix wrong Vaniglia listing"
-msgstr "أصلح أخطاء قائمة Vangilia"
-
-#: data/com.usebottles.bottles.appdata.xml.in:127
-msgid "Fix templates being generated with symlinked paths causing loops"
-msgstr "أصلحت مشكلة تكوين القوالب بمسارات موصولة بالنظام مما يسبب حلقات"
-
-#: data/com.usebottles.bottles.appdata.xml.in:128
-msgid ""
-"Fix configuration migration causing a crash when the user altered the "
-"configuration"
-msgstr "إصلاح تسبب ترحيل التكوين حدوث عطل عند تعديل المستخدم للتكوين"
-
-#: data/com.usebottles.bottles.appdata.xml.in:129
-msgid "Fix mscoree.dll not found"
-msgstr "أصلح \"لم يُعثر على mscoree.dll\""
-
-#: data/com.usebottles.bottles.appdata.xml.in:130
-msgid "Fix regression for the -b option of the legacy bottles cli"
-msgstr "إصلاح الانحدار لخيار b- في واجهة سطر الأوامر القديمة لبوتلز"
-
-#: data/com.usebottles.bottles.appdata.xml.in:131
-msgid "Fix Steam Launch Options parser causing a crash"
-msgstr "أصلح تسبب محلل خيارات ستيم في حدوث عطل"
-
-#: data/com.usebottles.bottles.appdata.xml.in:132
-msgid ""
-"Fix a regression in the Add to Steam button not adding the new entry in Steam"
-msgstr ""
-"إصلاح انحدار في زر \"أضف إلى ستيم\" حيث لا يؤدي إلى إضافة مدخلة جديدة في ستيم"
-
-#: data/com.usebottles.bottles.appdata.xml.in:135
-msgid "Translations"
-msgstr "الترجمات"
-
-#: data/com.usebottles.bottles.appdata.xml.in:137
-msgid "Finnish translations thanks to Jiri Grönroos"
-msgstr "الترجمة الفنلندية بفضل Jiri Grönroos"
-
-#: data/com.usebottles.bottles.appdata.xml.in:138
-msgid "French translations thanks to @rjousse18, @julroy67"
-msgstr "الترجمة الفرنسية بفضل rjousse18@ و julroy67@"
-
-#: data/com.usebottles.bottles.appdata.xml.in:139
-msgid "Indonesian translations thanks to @liimee"
-msgstr "الترجمة الإندونيسية بفضل liimee@"
-
-#: data/com.usebottles.bottles.appdata.xml.in:140
-msgid "Russian translations thanks to @Knebergish, @lenemter, @Smoque"
-msgstr "الترجمة الروسية بفضل Knebergish@ وlenemter@ وSmoque@"
-
-#: data/com.usebottles.bottles.appdata.xml.in:141
-msgid "Thai translations thanks to @SashaPGT"
-msgstr "الترجمة التايلندية بفضل SashaPGT@"
-
-#: data/com.usebottles.bottles.appdata.xml.in:142
-msgid "Spanish translations thanks to Pablo Munoz Alabau, @oscfdezdz"
-msgstr "الترجمة الإسبانية بفضل Pablo Munoz Alabau وoscfdezdz@"
-
-#: data/com.usebottles.bottles.appdata.xml.in:143
-msgid "Italian translations thanks to @gdonisi"
-msgstr "الترجمة الإيطالية بفضل gdonisi@"
-
-#: data/com.usebottles.bottles.appdata.xml.in:144
-msgid "Portuguese (Brazil) translations thanks to @geraldohomero"
-msgstr "الترجمة البرتغالية (البرازيل) بفضل geraldohomero@"
-
-#: data/com.usebottles.bottles.appdata.xml.in:145
-msgid "German translations thanks to Patrick Ulbricht"
-msgstr "الترجمة الألمانية بفضل Patrick Ulbricht"
-
-#: data/com.usebottles.bottles.appdata.xml.in:146
-msgid "Croatian translations thanks to @milotype"
-msgstr "الترجمة الكرواتية بفضل milotype@"
 
 #: data/com.usebottles.bottles.desktop.in:4
-msgid "Easily manage wineprefix"
-msgstr "إدارة سابقات واين بسهولة"
+#: data/com.usebottles.bottles.metainfo.xml.in:8
+#, fuzzy
+msgid "Run Windows Software"
+msgstr "قم بتشغيل برنامج Windows"
 
 #: data/com.usebottles.bottles.desktop.in:13
 msgid "wine;windows;"
@@ -3245,8 +2935,7 @@ msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"بدّل المزايا التجريبية كأنظمة تعيين الإصدار والمثبتات. النسخ المرشحة "
-"للمشغلات."
+"بدّل المزايا التجريبية كأنظمة تعيين الإصدار والمثبتات. النسخ المرشحة للمشغلات."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
@@ -3265,25 +2954,765 @@ msgid "Toggle experimental Sandbox per bottle."
 msgstr "بدل ساحة الحماية التجريبية لكل قارورة."
 
 #: data/com.usebottles.bottles.gschema.xml:81
-msgid "Experiments:library"
-msgstr "التجارب:المكتبة"
-
-#: data/com.usebottles.bottles.gschema.xml:82
-msgid "Toggle experimental Library mode."
-msgstr "تبديل وضع المكتبة التجريبية."
-
-#: data/com.usebottles.bottles.gschema.xml:86
 msgid "Automatically close Bottles"
 msgstr "أغلق بوتلز تلقائياً"
 
-#: data/com.usebottles.bottles.gschema.xml:87
+#: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr "أغلق بوتلز بعد بدء تشغيل ملف تنفيذ من مدير الملفات."
 
-#: data/com.usebottles.bottles.gschema.xml:91
+#: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
 msgstr "إظهار تحذير وضع الحماية"
 
-#: data/com.usebottles.bottles.gschema.xml:92
+#: data/com.usebottles.bottles.gschema.xml:87
 msgid "Toggle sandbox warning."
 msgstr "بدّل تحذير وضع الحماية."
+
+#: data/com.usebottles.bottles.metainfo.xml.in:11
+msgid "Run Windows software on Linux with Bottles!"
+msgstr "قم بتشغيل برامج ويندوز على لينكس باستخدام بوتلز!"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:12
+msgid "Bottle software and enjoy at your leisure!"
+msgstr "غلّف البرمجيات واستمتع براحتك!"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:13
+msgid ""
+"Our built-in dependency installation system grants automatic software "
+"compatibility access. Use the download manager to download the official "
+"components: the runner (Wine, Proton), DXVK, dependencies, etc."
+msgstr ""
+"يمنح نظامنا المدمج لتثبيت التبعيات وصولاً تلقائياً لتوافق البرمجيات. استعمل "
+"مدير التنزيلات لتحميل المكونات الرسمية: المشغل (واين، بروتون) وDXVK، "
+"والتبعيات، إلخ."
+
+#: data/com.usebottles.bottles.metainfo.xml.in:16
+msgid ""
+"Bottle versioning keeps your work safe now and lets you restore it later!"
+msgstr "حافظ إصدار القارورة على عملك آمنًا ويتيح لك استعادته لاحقًا!"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:17
+msgid "Features:"
+msgstr "المميزات:"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:19
+msgid "Create bottles using preconfigured environments or create your own"
+msgstr ""
+"قم بإنشاء قوارير باستخدام بيئات مسبقة التكوين أو قم بإنشاء بيئة قارورتك "
+"الخاصة بك"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:20
+msgid ""
+"Run executables (.exe/.msi) in your bottles, directly from the context menu "
+"of your file-manager"
+msgstr ""
+"قم بتشغيل الملفات التنفيذية (exe / .msi.) في القوارير الخاصة بك ، مباشرة من "
+"القائمة الخاصة بمدير الملفات"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:21
+msgid "Automated detection of applications installed in your bottles"
+msgstr "الكشف الآلي عن التطبيقات المثبتة في قواريرك"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:22
+msgid "Add environment variables quickly"
+msgstr "أضف متغيرات البيئة بسرعة"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:23
+msgid "Override DLLs directly from per-bottle preferences"
+msgstr "تجاوز ملفات DLL مباشرة من الأعدادات كل زجاجة"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:24
+msgid "On-the-fly runner change for any Bottle"
+msgstr "تغيير المشغل فوراً لأي قارورة"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:25
+msgid ""
+"Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
+"compiler, offload … and much more.)"
+msgstr ""
+"تحسينات عدة لأداء الألعاب (esync، fsync، DXVK، الذاكرة الوسيطة، مُصرّف الظلال، "
+"الإفراغ... والكثير غير ذلك.)"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:26
+msgid "Automatic installation and management of Wine and Proton runners"
+msgstr "التثبيت والإدارة التلقائية لمشغلات واين وبروتون"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:27
+msgid "Automatic bottle repair in case of breakage"
+msgstr "إصلاح القارورة تلقائيًا في حالة الخلل"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:28
+msgid "Integrated dependency-installer based on a community-driven repository"
+msgstr "مثبت تبعيات متكامل يستند إلى مستودع يقوده المجتمع"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:29
+msgid "Integrated Task manager for Wine processes"
+msgstr "مدير مهام متكامل لواين"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:30
+msgid "Access to ProtonDB and WineHQ for support"
+msgstr "الوصول إلى ProtonDB و WineHQ للحصول على الدعم"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:31
+msgid "System for bringing your configuration to new versions of Bottles"
+msgstr "نظام لجلب تكويناتك إلى الإصدارات الجديدة من بوتلز"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:32
+msgid "Back up and import bottles"
+msgstr "النسخ الاحتياطي والاستيراد للقوارير"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:33
+msgid "Import Wine prefixes from other managers"
+msgstr "استيراد سابقات واين من برامج أخرى"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:34
+msgid "Bottles versioning"
+msgstr "تعيين إصدارات القوارير"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:35
+msgid "... and much more that you can find by installing Bottles!"
+msgstr "... وأكثر من ذلك بكثير يمكنك العثور عليه عن طريق تثبيت بوتلز!"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:85
+msgid "The PulseAudio Latency setting is now deprecated and enabled by default"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:86
+msgid "Bottle details automatically show on bottle creation"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:87
+msgid "Bottles now complies with GNOME Circle guidelines"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:88
+msgid "Disable pulseaudio_latency by default."
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:89
+msgid "Fixed a crash during startup due to uninstaller."
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:90
+msgid "Implemented a queue for installing components."
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:91
+msgid "Fixed bottle deletion not working sometimes."
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:92
+msgid "Support for latest dxvk @Blisto91"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:93
+msgid "Fix for DLSS"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:94
+msgid "Added tooltips for program gades"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:95
+#, fuzzy
+msgid "Fix installer completion @jntesteves"
+msgstr "فشل تثبيت المكوّنات ثلاث مرات."
+
+#: data/com.usebottles.bottles.metainfo.xml.in:96
+msgid "Fix gamescope arguments @jntesteves"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:97
+msgid "Added Ctrl + W shortcut for closing windows @A6GibKm"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:98
+msgid "Fixed bottles unsetting XDG_DATA_HOME"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:99
+#, fuzzy
+msgid "French translations thanks to @julroy and @tymmsyde"
+msgstr "الترجمة الفرنسية بفضل rjousse18@ و julroy67@"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:100
+#, fuzzy
+msgid "Turkish translations thanks to @54linux-ea and @ruizlenato"
+msgstr "الترجمة الفرنسية بفضل rjousse18@ و julroy67@"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:101
+#, fuzzy
+msgid "Russian translations thanks to @lenemter and @Smoque"
+msgstr "الترجمة الروسية بفضل Knebergish@ وlenemter@ وSmoque@"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:102
+#, fuzzy
+msgid "Catalan translations thanks to @rogervc"
+msgstr "الترجمة الكرواتية بفضل milotype@"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:103
+#, fuzzy
+msgid "Arabic tran*slations thanks to @TheDarkEvil"
+msgstr "الترجمة التايلندية بفضل SashaPGT@"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:104
+#, fuzzy
+msgid "Korean translations thanks to @MarongHappy"
+msgstr "الترجمة الكرواتية بفضل milotype@"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:105
+#, fuzzy
+msgid ""
+"Protuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
+msgstr "الترجمة البرتغالية (البرازيل) بفضل geraldohomero@"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:106
+#, fuzzy
+msgid "Galician translations thanks to @NicoSGF64"
+msgstr "الترجمة الإيطالية بفضل gdonisi@"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:107
+#, fuzzy
+msgid "Hebrew translations thanks to @itayweb"
+msgstr "الترجمة الكرواتية بفضل milotype@"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:108
+#, fuzzy
+msgid "Polish translations thanks to @Mikutut"
+msgstr "الترجمة الكرواتية بفضل milotype@"
+
+#~ msgid "Choose path"
+#~ msgstr "اختر مساراً"
+
+#~ msgid "Choose a file."
+#~ msgstr "اختر ملفاً."
+
+#~ msgid "File not Found"
+#~ msgstr "لم يُعثر على الملف"
+
+#~ msgid "The given file does not exist. Please choose an appropriate file."
+#~ msgstr "الملف المحدد غير موجود. اختر ملفاً مناسباً."
+
+#~ msgid "Spaces in File Name"
+#~ msgstr "المسافات في اسم الملف"
+
+#~ msgid ""
+#~ "Color Lookup Table path must not contain any spaces. Please rename the "
+#~ "file to remove all spaces."
+#~ msgstr ""
+#~ "يجب ألا يحتوي مسار جدول البحث عن الألوان على أي مسافات. أعد تسمية الملف "
+#~ "لإزالة كافة المسافات."
+
+#~ msgid "Invalid Image Dimension"
+#~ msgstr "أبعاد الصورة غير صالحة"
+
+#~ msgid "Height and width of the image must be equal."
+#~ msgstr "يجب أن يكون ارتفاع الصورة وعرضها متساويين."
+
+#~ msgid "Easily manage wineprefix using environments"
+#~ msgstr "تحكم بسابقة واين بكل سهولة باستخدام البيئات"
+
+#~ msgid "Run with Arguments…"
+#~ msgstr "شغّل مع المعطيات…"
+
+#~ msgid "Browse internal files with the Wine explorer."
+#~ msgstr "تصفح الملفات الداخلية باستخدام مدير ملفات واين."
+
+#~ msgid "Manage processes with the Wine task manager."
+#~ msgstr "أدِر العمليات مع مدير مهام واين."
+
+#~ msgid "Debug wine processes."
+#~ msgstr "تصحيح عمليات واين."
+
+#~ msgid "Wine Configuration"
+#~ msgstr "تكوين واين"
+
+#~ msgid "Adjust internal settings."
+#~ msgstr "اضبط الإعدادات الداخلية."
+
+#~ msgid "Uninstall programs using Wine uninstaller."
+#~ msgstr "ألغِ تثبيت البرامج باستخدام أداة إلغاء التثبيت من واين."
+
+#~ msgid "Access the internal Wine Control Panel."
+#~ msgstr "قم بالوصول إلى لوحة التحكم الداخلية لواين."
+
+#~ msgid "Use the Installers section or the \"Run executable\" button."
+#~ msgstr "استخدم قسم المثبتات أو زر \"تشغيل ملف تنفيذ\"."
+
+#~ msgid ""
+#~ "Dependencies are software, libraries and codecs that improve the "
+#~ "compatibility of Windows software. Install from here to meet your program "
+#~ "requirements."
+#~ msgstr ""
+#~ "التبعيات هي البرمجيات والمكتبات وبرامج الترميز التي تعمل على تحسين توافق "
+#~ "برامج ويندوز. ثبّتها من هنا لتلبية متطلبات البرنامج."
+
+#~ msgid "Read documentation."
+#~ msgstr "اقرأ دليل المستخدم."
+
+#~ msgid "We strongly advise against installing multiple dependencies at once."
+#~ msgstr "نوصي بشدة عدم تثبيت تبعيات متعددة في وقت واحد."
+
+#~ msgid "Select Dependencies"
+#~ msgstr "حدد التبعيات"
+
+#~ msgid ""
+#~ "Use this section to install programs curated by our community, without "
+#~ "having to proceed manually."
+#~ msgstr ""
+#~ "استخدم هذا القسم لتثبيت البرامج التي اختارها مجتمعنا دون الحاجة إلى "
+#~ "التدخل يدويا."
+
+#~ msgid "Read documentation"
+#~ msgstr "اقرأ التوثيق"
+
+#~ msgid "Graphics"
+#~ msgstr "الرسومات"
+
+#~ msgid "Improves performance of DirectX 11 games and 3D applications."
+#~ msgstr "يُحسن أداء ألعاب DirectX 11 والتطبيقات ثلاثية الأبعاد."
+
+#~ msgid "Improves performance of DirectX 12 games and 3D applications."
+#~ msgstr "يُحسن أداء ألعاب DirectX 12 والتطبيقات ثلاثية الأبعاد."
+
+#~ msgid "DLSS (DXVK-NVAPI)"
+#~ msgstr "DLSS (DXVK-NVAPI)"
+
+#~ msgid "Provide DLSS support if available and Nvidia's NVAPI."
+#~ msgstr "يوفر دعم DLSS إذا كان متاحاً ودعم NVAPI من إنفيديا."
+
+#~ msgid "FSR"
+#~ msgstr "FSR"
+
+#~ msgid ""
+#~ "FSR uses cutting-edge up-scaling technologies to help boost your "
+#~ "framerate."
+#~ msgstr ""
+#~ "يستخدم FSR أحدث التقنيات المتطورة للمساعدة في زيادة معدل الإطارات لديك."
+
+#~ msgid "vkBasalt"
+#~ msgstr "vkBasalt"
+
+#~ msgid ""
+#~ "vkBasalt is a Vulkan post processing layer to enhance the visual graphics "
+#~ "of games."
+#~ msgstr ""
+#~ "vkBasalt هي طبقة بعد معالجة من فولكان تُستخدم لتحسين الرسومات المرئية "
+#~ "للألعاب."
+
+#~ msgid "Manage vkBasalt settings"
+#~ msgstr "إدارة إعدادات vkBasalt"
+
+#~ msgid "Use the Wine virtual desktop."
+#~ msgstr "استخدم سطح المكتب الافتراضي الخاص بواين."
+
+#~ msgid "Fullscreen Mouse Capture"
+#~ msgstr "التقاط الفأرة في وضع ملء الشاشة"
+
+#~ msgid "Let the program capture mouse input when fullscreen."
+#~ msgstr "دع البرنامج يلتقط مدخلات الفأرة عند وضع ملء الشاشة."
+
+#~ msgid "Take Focus"
+#~ msgstr "خذ التركيز"
+
+#~ msgid "Activate it if the program does not retake focus on switch."
+#~ msgstr "نشّطه إذا لم يستعد البرنامج التركيز بعد التبديل."
+
+#~ msgid "Mouse Warp"
+#~ msgstr "الانتقال الآني للفأرة"
+
+#~ msgid "Change this if you are running into mouse lag or desync."
+#~ msgstr "غّير هذا إذا كنت تواجه تأخر الفأرة أو عدم التزامن."
+
+#~ msgid "Screen Scaling"
+#~ msgstr "تحجيم الشاشة"
+
+#~ msgid "Set custom DPI."
+#~ msgstr "تخصيص سرعة الفأرة."
+
+#~ msgid "96"
+#~ msgstr "96"
+
+#~ msgid "120"
+#~ msgstr "120"
+
+#~ msgid "144"
+#~ msgstr "144"
+
+#~ msgid "168"
+#~ msgstr "168"
+
+#~ msgid "192"
+#~ msgstr "192"
+
+#~ msgid "216"
+#~ msgstr "216"
+
+#~ msgid "240"
+#~ msgstr "240"
+
+#~ msgid "288"
+#~ msgstr "288"
+
+#~ msgid "336"
+#~ msgstr "336"
+
+#~ msgid "384"
+#~ msgstr "384"
+
+#~ msgid "432"
+#~ msgstr "432"
+
+#~ msgid "480"
+#~ msgstr "480"
+
+#~ msgid "Renderer"
+#~ msgstr "المصيِّر"
+
+#~ msgid "Select what backend to use for wined3d."
+#~ msgstr "حدد الواجهة الخلفية التي تريد استخدامها لـ wined3d."
+
+#~ msgid "gl (default)"
+#~ msgstr "gl (افتراضي)"
+
+#~ msgid "gdi"
+#~ msgstr "gdi"
+
+#~ msgid "vulkan"
+#~ msgstr "فولكان"
+
+#~ msgid "Manage Components Versions"
+#~ msgstr "أدِر إصدارات المكونات"
+
+#~ msgid "DXVK Version"
+#~ msgstr "إصدار DXVK"
+
+#~ msgid "VKD3D Version"
+#~ msgstr "إصدار VKD3D"
+
+#~ msgid "DXVK NVAPI Version"
+#~ msgstr "إصدار DXVK NVAPI"
+
+#~ msgid "LatencyFleX Version"
+#~ msgstr "إصدار LatencyFleX"
+
+#~ msgid "false"
+#~ msgstr "خاطئة"
+
+#~ msgid "The same as the Bottles one but provided by Steam."
+#~ msgstr "نفس المقدمة من بوتلز ولكن مقدمة من ستيم."
+
+#~ msgid "Optimise gaming performance on demand."
+#~ msgstr "حسّن أداء الألعاب عند الطلب."
+
+#~ msgid "Gamescope"
+#~ msgstr "نطاق اللعبة"
+
+#~ msgid "Use the Gamescope micro-compositor."
+#~ msgstr "استعمل مُرتِّب Gamescope."
+
+#~ msgid "Vmtouch"
+#~ msgstr "Vmtouch"
+
+#~ msgid "Defaults to the bottle path."
+#~ msgstr "الإعدادات الافتراضية لمسار القارورة."
+
+#~ msgid "Reset to default"
+#~ msgstr "عُد للإعدادات الافتراضية"
+
+#~ msgid "Choose a directory"
+#~ msgstr "اختر دليلاً"
+
+#~ msgid "Audio"
+#~ msgstr "الصوت"
+
+#~ msgid "Reduce Latency"
+#~ msgstr "تقليل زمن الاستجابة"
+
+#~ msgid "Set PulseAudio latency to 60 ms, increasing sound quality."
+#~ msgstr "عيّن زمن استجابة PulseAudio إلى 60 ملّي ثانية، هذا يرفع جودة الصوت."
+
+#~ msgid "Versioning"
+#~ msgstr "تعيين الإصدار"
+
+#~ msgid "Use Compression for States"
+#~ msgstr "استعمل عملية الضَّغط للحالات"
+
+#~ msgid ""
+#~ "This will reduce the space used by the states but slow down their "
+#~ "creation."
+#~ msgstr "سيؤدي هذا لتقليل المساحة التي تستعملها الحالات ولكنه سيبطئ إنشاءها."
+
+#~ msgid ""
+#~ "Bottles will create a state before running any dependencies or installers."
+#~ msgstr "سينشئ بولتز الحالة قبل تشغيل أي تبعيات أو مثبتات."
+
+#~ msgid "Use custom patterns to exclude some paths from versioning."
+#~ msgstr "استخدم أنماطاً مخصصةً لاستبعاد بعض المسارات من تعيين الإصدار."
+
+#~ msgid "Development and Debugging"
+#~ msgstr "التطوير والتصحيح"
+
+#~ msgid "MangoHud"
+#~ msgstr "MangoHud"
+
+#~ msgid ""
+#~ "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU "
+#~ "load and more."
+#~ msgstr ""
+#~ "طبقة Vulkan و OpenGL تقوم بقياس معدل الإطارات والحرارات والحمل على "
+#~ "المعالج ومعالج الرسوميات وغيرها."
+
+#~ msgid "Wine 'fixme' Logs"
+#~ msgstr "سجلات 'fixme' لواين"
+
+#~ msgid "Log code paths that are unimplemented in Wine."
+#~ msgstr "سجِّل مسارات التعليمات البرمجية التي لم تُنفذ في واين."
+
+#~ msgid "No Programs found"
+#~ msgstr "لم يُعثر على برامج"
+
+#~ msgid ""
+#~ "Install programs from the installers section or by running the installer "
+#~ "executable, you can also manually add executables with the \"+\" button."
+#~ msgstr ""
+#~ "ثبت البرامج من قسم المثبتات أو عن طريق تشغيل ملف التنفيذ، يمكنك أيضاً أن "
+#~ "تضيف ملفات التنفيذ يدويّا عن طريق زر \"+\"."
+
+#~ msgid "Toggle Hidden"
+#~ msgstr "أظهر/أخفِ"
+
+#~ msgid "Add a custom executable path"
+#~ msgstr "أضف مساراً مخصصا لملف التنفيذ"
+
+#~ msgid "Take a break, it may take a while."
+#~ msgstr "استرح قليلاً، قد يستغرق هذا وقتاً."
+
+#~ msgid ""
+#~ "Configure how Gamescope should manage the window for the games you will "
+#~ "run."
+#~ msgstr "عيّن طريقة إدارة Gamescope لنوافذ الألعاب التي ستشغلها."
+
+#~ msgid "Width (e.g. 1280)"
+#~ msgstr "العرض (على سبيل المثال: 1280)"
+
+#~ msgid "Height (e.g. 720)"
+#~ msgstr "الارتفاع (على سبيل المثال: 720)"
+
+#~ msgid "Gamescope Resolution"
+#~ msgstr "دقة Gamescope"
+
+#~ msgid ""
+#~ "Change logging level.\n"
+#~ "                                        "
+#~ msgstr ""
+#~ "تغيير مستوى التسجيل.\n"
+#~ "                                        "
+
+#~ msgid "vkBasalt Settings"
+#~ msgstr "إعدادات vkBasalt"
+
+#~ msgid "Color Lookup Table"
+#~ msgstr "جدول البحث عن الألوان"
+
+#~ msgid ""
+#~ "CLUT transforms a range of colors into another range of colors using a ."
+#~ "CUBE file, or a .png file where the height is equal to the width."
+#~ msgstr ""
+#~ "يقوم جدول البحث عن الألوان بتحويل نطاق ألوان إلى نطاق آخر باستخدام ملف "
+#~ "CUBE. أو ملف png. حيث الطول يساوي العرض."
+
+#~ msgid "Start off by creating a Bottle."
+#~ msgstr "ابدأ بإنشاء قارورة."
+
+#~ msgid ""
+#~ "Run Windows Software on Linux.\n"
+#~ "                                                "
+#~ msgstr ""
+#~ "شغل برمجيات ويندوز على لينكس.\n"
+#~ "                                                "
+
+#~ msgid "Custom Bottles Path (Requires Restart)"
+#~ msgstr "مسار بوتلز مخصص (يتطلب إعادة التشغيل)"
+
+#~ msgid ""
+#~ "Choose where to store the new bottles (this will not move the existing "
+#~ "ones)."
+#~ msgstr ""
+#~ "اختر أين يجب تخزين القارورات الجديدة (لن يغير هذا مكان القارورات الموجودة "
+#~ "مسبقاً)."
+
+#~ msgid "In early development (requires restart)."
+#~ msgstr "في مرحلة مبكرة من التطوير (يتطلب إعادة التشغيل)."
+
+#~ msgid "Import/Export…"
+#~ msgstr "استيراد/تصدير…"
+
+#~ msgid "Support"
+#~ msgstr "الدعم"
+
+#~ msgid "Forums"
+#~ msgstr "المنتدى"
+
+#~ msgid "Open menu"
+#~ msgstr "افتح القائمة"
+
+#~ msgid "New bottle"
+#~ msgstr "قارورة جديدة"
+
+#~ msgid "Ok"
+#~ msgstr "حسناً"
+
+#~ msgid "Confirm"
+#~ msgstr "أكِّد"
+
+#~ msgid ""
+#~ "Are you sure you want to terminate all processes?\n"
+#~ "This can cause data loss."
+#~ msgstr ""
+#~ "هل أنت متأكد من أنك تريد إنهاء كل العمليات؟\n"
+#~ "قد يسبب هذا فقدان البيانات."
+
+#~ msgid "Default to the bottle path."
+#~ msgstr "تعيين المسار الافتراضي كمسار القارورة."
+
+#~ msgid "Toggling Compression Require Re-Initialization"
+#~ msgstr "تبديل الضغط يتطلب أعادة البدء"
+
+#~ msgid ""
+#~ "This will kepp all your files but will delete all states. Do you want to "
+#~ "continue?"
+#~ msgstr ""
+#~ "سيقوم هذا بإبقاء كل ملفاتك ولكنه سيحذف كل حالاتك، هل تريد الاستمرار؟"
+
+#~ msgid "Details & Utilities"
+#~ msgstr "التفاصيل والمرافق"
+
+#~ msgid "Found in your bottle's Start menu."
+#~ msgstr "عُثر عليه في قائمة ابدأ للقارورة."
+
+#, python-brace-format
+#~ msgid "A bottle named “{0}” was created successfully"
+#~ msgstr "أنشئت قارورة باسم {0} بنجاح"
+
+#~ msgid "Mirko Brombin"
+#~ msgstr "ميركو برومبين"
+
+#~ msgid "News"
+#~ msgstr "الأخبار"
+
+#~ msgid ""
+#~ "New versioning system which allow versioning the whole bottle (also "
+#~ "configuration)"
+#~ msgstr ""
+#~ "نظام تعيين مستوىً جديد يمكّن من تعيين إصدار كل القارورة (والتكوين كذلك)"
+
+#~ msgid "Automatic versioning can now be toggled on and off"
+#~ msgstr "يمكن الآن تبديل تعيين الإصدار الآلي وإيقاف تشغيله"
+
+#~ msgid "Use compression for versioning states"
+#~ msgstr "استخدم الضغط لحالات تعيين الإصدار"
+
+#~ msgid "Improve Launch Options saving without update the UI multiple times"
+#~ msgstr "حسّن حفظ خيارات التشغيل دون تحديث واجهة المستخدم عدة مرات"
+
+#~ msgid ""
+#~ "Improved YAML performance using libyaml (the python-yaml package must "
+#~ "provide support for it)"
+#~ msgstr "حُسن أداء YAML باستخدام libyaml (يجب أن تدعم هذا حزمة python-yaml)"
+
+#~ msgid "New About dialog"
+#~ msgstr "تصميم جديد لمربع حوار \"جديد حول\""
+
+#~ msgid "Covers support in Library mode (thanks to SteamGridDB)"
+#~ msgstr "يغطي الدعم في وضع المكتبة (شكراً لـ SteamGridDB)"
+
+#~ msgid ""
+#~ "Removed DXVK HUD option, use the Environment Variables section instead"
+#~ msgstr ""
+#~ "أزيل خيار عرض المعلومات بمستوى الرأس لـ DXVK، استعمل قسم متغيرات البيئة "
+#~ "بدلا منه"
+
+#~ msgid "bottles-cli shell option now provide command output"
+#~ msgstr "يتيح خيار bottles-cli للطرفية مخرجات الأوامر الآن"
+
+#~ msgid "The Health Check is now in the About´s Troubleshooting section"
+#~ msgstr "يتواجد خيار التحقق من الصحة في قسم استكشاف الأخطاء في \"حول\""
+
+#~ msgid ""
+#~ "Extended Core dependencies check, packagers are invited to double-check "
+#~ "their packages"
+#~ msgstr "فحص تبعيات موسع، ندعو المسؤوليين عن الحزم للتحقق من حزمهم مرة أخرى"
+
+#~ msgid "New default permission for the Flatpak package: xdg-download"
+#~ msgstr "إذن افتراضي جديد لحزمة الفلاتباك: xdg-download"
+
+#~ msgid "Added credits for Third-Party Libraries in the Credits section"
+#~ msgstr "أضيفت اعتمادات مكتبات الطرف الثالث في قسم الاعتمادات"
+
+#~ msgid "Minor UI improvements"
+#~ msgstr "تحسينات طفيفة على واجهة المستخدم"
+
+#~ msgid "Fixes"
+#~ msgstr "الإصلاحات"
+
+#~ msgid "Fix for skipable onboard dialog"
+#~ msgstr "إصلاح للحوارات التي لا يمكن تخطيها"
+
+#~ msgid "Fix for empty bottle name"
+#~ msgstr "إصلاح لاسم قارورة فارغ"
+
+#~ msgid "Fix gstreamer libs for win32 bottles"
+#~ msgstr "إصلاح مكتبات gstreamer لقوارير win32"
+
+#~ msgid "Fix for RemoteDisconnected error causing a crash"
+#~ msgstr "إصلاح خطأ RemoteDisconnected المسبب لحدوث عطل"
+
+#~ msgid "Fix wrong Vaniglia listing"
+#~ msgstr "أصلح أخطاء قائمة Vangilia"
+
+#~ msgid "Fix templates being generated with symlinked paths causing loops"
+#~ msgstr "أصلحت مشكلة تكوين القوالب بمسارات موصولة بالنظام مما يسبب حلقات"
+
+#~ msgid ""
+#~ "Fix configuration migration causing a crash when the user altered the "
+#~ "configuration"
+#~ msgstr "إصلاح تسبب ترحيل التكوين حدوث عطل عند تعديل المستخدم للتكوين"
+
+#~ msgid "Fix mscoree.dll not found"
+#~ msgstr "أصلح \"لم يُعثر على mscoree.dll\""
+
+#~ msgid "Fix regression for the -b option of the legacy bottles cli"
+#~ msgstr "إصلاح الانحدار لخيار b- في واجهة سطر الأوامر القديمة لبوتلز"
+
+#~ msgid "Fix Steam Launch Options parser causing a crash"
+#~ msgstr "أصلح تسبب محلل خيارات ستيم في حدوث عطل"
+
+#~ msgid ""
+#~ "Fix a regression in the Add to Steam button not adding the new entry in "
+#~ "Steam"
+#~ msgstr ""
+#~ "إصلاح انحدار في زر \"أضف إلى ستيم\" حيث لا يؤدي إلى إضافة مدخلة جديدة في "
+#~ "ستيم"
+
+#~ msgid "Finnish translations thanks to Jiri Grönroos"
+#~ msgstr "الترجمة الفنلندية بفضل Jiri Grönroos"
+
+#~ msgid "Indonesian translations thanks to @liimee"
+#~ msgstr "الترجمة الإندونيسية بفضل liimee@"
+
+#~ msgid "Spanish translations thanks to Pablo Munoz Alabau, @oscfdezdz"
+#~ msgstr "الترجمة الإسبانية بفضل Pablo Munoz Alabau وoscfdezdz@"
+
+#~ msgid "German translations thanks to Patrick Ulbricht"
+#~ msgstr "الترجمة الألمانية بفضل Patrick Ulbricht"
+
+#~ msgid "Easily manage wineprefix"
+#~ msgstr "إدارة سابقات واين بسهولة"
+
+#~ msgid "Experiments:library"
+#~ msgstr "التجارب:المكتبة"
+
+#~ msgid "Toggle experimental Library mode."
+#~ msgstr "تبديل وضع المكتبة التجريبية."
