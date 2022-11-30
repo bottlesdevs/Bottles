@@ -33,17 +33,17 @@ logging = Logger()
 class RepositoryManager:
     __repositories = {
         "components": {
-            "url": "https://repo.usebottles.com/components/",
+            "url": "https://proxy.usebottles.com/repo/components/",
             "index": "",
             "cls": ComponentRepo
         },
         "dependencies": {
-            "url": "https://repo.usebottles.com/dependencies/",
+            "url": "https://proxy.usebottles.com/repo/dependencies/",
             "index": "",
             "cls": DependencyRepo
         },
         "installers": {
-            "url": "https://repo.usebottles.com/programs/",
+            "url": "https://proxy.usebottles.com/repo/programs/",
             "index": "",
             "cls": InstallerRepo
         }
