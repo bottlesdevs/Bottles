@@ -136,6 +136,8 @@ class CLI:
         run_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
         run_parser.add_argument("-e", "--executable", help="Path to the executable")
         run_parser.add_argument("-p", "--program", help="Program to run")
+        run_parser.add_argument("--args-replace", action='store_false', dest='keep_args',
+            help="Replace current program arguments, instead of append")
         run_parser.add_argument("args", nargs="*", action="extend", help="Arguments to pass to the executable")
 
         standalone_parser = subparsers.add_parser("standalone", help="Generate a standalone script to launch commands "
@@ -535,6 +537,7 @@ class CLI:
         self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
         _bottle = self.args.bottle
         _program = self.args.program
+        _keep = self.args.keep_args
         _args = " ".join(self.args.args)
         _executable = self.args.executable
         _cwd = None
@@ -566,7 +569,8 @@ class CLI:
 
             program = [p for p in programs if p["name"] == _program][0]
             _executable = program.get("path", "")
-            _args = program.get("arguments", "")
+            if _keep:
+                _args = program.get("arguments", "") + " " + _args
             _cwd = program.get("folder", "")
             _script = program.get("script", None)
 
