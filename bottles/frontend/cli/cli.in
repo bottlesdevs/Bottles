@@ -135,8 +135,8 @@ class CLI:
         run_parser = subparsers.add_parser("run", help="Run a program")
         run_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
         run_parser.add_argument("-e", "--executable", help="Path to the executable")
-        run_parser.add_argument("-a", "--args", help="Arguments to pass to the executable")
         run_parser.add_argument("-p", "--program", help="Program to run")
+        run_parser.add_argument("args", nargs="*", action="extend", help="Arguments to pass to the executable")
 
         standalone_parser = subparsers.add_parser("standalone", help="Generate a standalone script to launch commands "
                                                                      "without passing trough Bottles")
@@ -535,7 +535,7 @@ class CLI:
         self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
         _bottle = self.args.bottle
         _program = self.args.program
-        _args = "" if self.args.args is None else self.args.args
+        _args = " ".join(self.args.args)
         _executable = self.args.executable
         _cwd = None
         _script = None
