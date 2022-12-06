@@ -213,6 +213,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.__valid_name = GtkUtils.validate_entry(self.entry_name)
 
     def __save_name(self, *_args):
+        self.__check_entry_name()
         if not self.__valid_name:
             self.entry_name.set_text(self.config.get("Name"))
             self.__valid_name = True
