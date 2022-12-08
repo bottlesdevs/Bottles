@@ -98,11 +98,15 @@ win_versions = {
         "ProductName": "Microsoft Windows XP"
     },
     "win98": {
+        "CSDVersion": "",
+        "CSDVersionHex": "00000000",
         "VersionNumber": "4.10.2222",
         "SubVersionNumber": " A ",
         "ProductName": "Microsoft Windows 98"
     },
     "win95": {
+        "CSDVersion": "",
+        "CSDVersionHex": "00000000",
         "VersionNumber": "4.0.950",
         "SubVersionNumber": "",
         "ProductName": "Microsoft Windows 95"
