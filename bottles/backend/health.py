@@ -263,9 +263,9 @@ class HealthChecker:
             with open('/proc/meminfo') as file:
                 for line in file:
                     if 'MemTotal' in line:
-                        self.ram["MemTotal"] = self.file_utils.get_human_size(float(line.split()[1])*1024.0)
+                        self.ram["MemTotal"] = self.file_utils.get_human_size_legacy(float(line.split()[1])*1024.0)
                     if 'MemAvailable' in line:
-                        self.ram["MemAvailable"] = self.file_utils.get_human_size(float(line.split()[1])*1024.0)
+                        self.ram["MemAvailable"] = self.file_utils.get_human_size_legacy(float(line.split()[1])*1024.0)
 
     def get_results(self, plain: bool = False):
         results = {

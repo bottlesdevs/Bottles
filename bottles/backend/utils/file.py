@@ -58,6 +58,16 @@ class FileUtils:
         """Returns a human readable size from a given float size"""
         return GLib.format_size(size)
 
+    @staticmethod
+    def get_human_size_legacy(size: float) -> str:
+        """Returns a human readable size from a given float size"""
+        for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
+            if abs(size) < 1024.0:
+                return "%3.1f%s%s" % (size, unit, 'B')
+            size /= 1024.0
+
+        return "%.1f%s%s" % (size, 'Yi', 'B')
+
     def get_path_size(self, path: str, human: bool = True) -> Union[str, float]:
         """
         Returns the size of a given path. If human is True, returns as a
