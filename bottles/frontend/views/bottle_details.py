@@ -241,7 +241,7 @@ class BottleView(Adw.PreferencesPage):
 
         # update programs list
         self.update_programs()
-
+    
     def add(self, widget=False):
         """
         This function popup the add program dialog to the user. It

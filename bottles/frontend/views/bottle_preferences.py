@@ -743,12 +743,15 @@ class PreferencesView(Adw.PreferencesPage):
 
         def update(result, error=False):
             if result:
+                self.details.update_runner_label(runner)
+                
                 if "config" in result.data.keys():
                     self.config = result.data["config"]
                 if self.config["Parameters"].get("use_steam_runtime"):
                     self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
                     self.switch_steam_runtime.set_active(True)
                     self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
+
             set_widgets_status(True)
             self.queue.end_task()
 

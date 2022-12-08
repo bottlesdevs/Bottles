@@ -229,3 +229,6 @@ class DetailsView(Adw.Bin):
     def unlock_back(self):
         self.btn_back.set_sensitive(True)
         self.btn_back.set_tooltip_text(_("Return to your bottles."))
+
+    def update_runner_label(self, runner: str):
+        self.view_bottle.label_runner.set_text(runner)
