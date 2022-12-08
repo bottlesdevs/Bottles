@@ -287,6 +287,17 @@ class RegKeys:
             data=value
         )
 
+    def set_decorated(self, state: bool):
+        """
+        Set the decorated setting for a bottle.
+        """
+        value = "Y" if state else "N"
+        self.reg.add(
+            key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
+            value="Decorated",
+            data=value
+        )
+
     def set_mouse_warp(self, state: int, executable: str = ""):
         """
         Set the mouse warp setting for a bottle or a specific executable.

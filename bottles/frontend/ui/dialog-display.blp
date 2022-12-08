@@ -108,6 +108,16 @@ template DisplayDialog : .AdwWindow {
         }
 
         Adw.ActionRow {
+          activatable-widget: switch_decorated;
+          title: _("Window Manager Decorations");
+          subtitle: _("Enable to use the window manager's decorations.");
+
+          Switch switch_decorated {
+            valign: center;
+          }
+        }
+
+        Adw.ActionRow {
           title: _("Screen Scaling");
           subtitle: _("Set custom DPI.");
 

@@ -51,6 +51,7 @@ class Samples:
             "fullscreen_capture": False,
             "take_focus": False,
             "mouse_warp": True,
+            "decorated": True,
             "fixme_logs": False,
             "use_runtime": False,
             "use_eac_runtime": True,

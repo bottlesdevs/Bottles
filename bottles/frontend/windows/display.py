@@ -40,6 +40,7 @@ class DisplayDialog(Adw.Window):
     switch_mouse_capture = Gtk.Template.Child()
     switch_take_focus = Gtk.Template.Child()
     switch_mouse_warp = Gtk.Template.Child()
+    switch_decorated = Gtk.Template.Child()
     spin_dpi = Gtk.Template.Child()
     combo_renderer = Gtk.Template.Child()
 
@@ -62,25 +63,26 @@ class DisplayDialog(Adw.Window):
         self.__update(config)
 
     def __update(self, config):
-      self.parameters = config["Parameters"]
+        self.parameters = config["Parameters"]
 
-      self.expander_virtual_desktop.set_enable_expansion(self.parameters["virtual_desktop"])
-      self.switch_mouse_capture.set_state(self.parameters["fullscreen_capture"])
-      self.switch_take_focus.set_state(self.parameters["take_focus"])
-      self.switch_mouse_warp.set_state(self.parameters["mouse_warp"])
-      self.spin_dpi.set_value(self.parameters["custom_dpi"])
+        self.expander_virtual_desktop.set_enable_expansion(self.parameters["virtual_desktop"])
+        self.switch_mouse_capture.set_state(self.parameters["fullscreen_capture"])
+        self.switch_take_focus.set_state(self.parameters["take_focus"])
+        self.switch_mouse_warp.set_state(self.parameters["mouse_warp"])
+        self.switch_decorated.set_state(self.parameters["decorated"])
+        self.spin_dpi.set_value(self.parameters["custom_dpi"])
 
-      """Set resolution"""
-      virtual_desktop_res = self.parameters["virtual_desktop_res"]
-      resolution = virtual_desktop_res.split("x")
-      self.spin_width.set_value(float(resolution[0]))
-      self.spin_height.set_value(float(resolution[1]))
+        """Set resolution"""
+        virtual_desktop_res = self.parameters["virtual_desktop_res"]
+        resolution = virtual_desktop_res.split("x")
+        self.spin_width.set_value(float(resolution[0]))
+        self.spin_height.set_value(float(resolution[1]))
 
-      """Set renderer"""
-      for index, renderer in enumerate(renderers):
-          if self.parameters["renderer"] == renderer:
-              self.combo_renderer.set_selected(index)
-              break
+        """Set renderer"""
+        for index, renderer in enumerate(renderers):
+            if self.parameters["renderer"] == renderer:
+                self.combo_renderer.set_selected(index)
+                break
 
     # Save file
     def __idle_save(self, *args):
@@ -213,6 +215,7 @@ class DisplayDialog(Adw.Window):
                 callback=update,
                 value=renderer
             )
+            
 
         def toggle_x11_reg_key(state, rkey, ckey):
             """Update x11 registry keys"""
@@ -242,6 +245,8 @@ class DisplayDialog(Adw.Window):
             toggle_x11_reg_key(self.switch_mouse_capture.get_state(),"GrabFullscreen", "fullscreen_capture")
         if self.switch_take_focus.get_state() != self.parameters["take_focus"]:
             toggle_x11_reg_key(self.switch_take_focus.get_state(),"UseTakeFocus", "take_focus")
+        if self.switch_decorated.get_state() != self.parameters["decorated"]:
+            toggle_x11_reg_key(self.switch_decorated.get_state(),"Decorated", "decorated")
 
         """Close window"""
         self.close()
