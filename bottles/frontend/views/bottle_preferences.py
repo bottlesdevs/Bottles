@@ -1050,7 +1050,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         for w in [
             self.row_discrete,
-            self.row_steam_runtime,
             self.combo_dxvk,
             self.row_sandbox,
             self.group_details,
