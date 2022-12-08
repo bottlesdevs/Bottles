@@ -65,6 +65,10 @@ class LibraryManager:
         """
         Adds a new entry to the library.yml file.
         """
+        if self.__already_in_library(data):
+            logging.warning(f'Entry already in library, nothing to add: {data}')
+            return
+
         _uuid = str(uuid.uuid4())
         logging.info(f'Adding new entry to library: {_uuid}')
 
@@ -73,6 +77,15 @@ class LibraryManager:
 
         self.__library[_uuid] = data
         self.save_library()
+    
+    def __already_in_library(self, data: dict):
+        """
+        Checks if the entry UUID is already in the library.yml file.
+        """
+        for k, v in self.__library.items():
+            if v['id'] == data['id']:
+                return True
+        return False
 
     def remove_from_library(self, _uuid: str):
         """

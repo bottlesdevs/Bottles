@@ -214,17 +214,20 @@ class ProgramEntry(Adw.ActionRow):
             msg = _("\"{0}\" showed").format(self.program["name"])
 
         self.program["removed"] = status
-        self.config = self.manager.update_config(
-            config=self.config,
-            key=self.program["id"],
-            value=self.program,
-            scope="External_Programs"
-        ).data["config"]
+        self.save_program()
         self.btn_hide.set_visible(not status)
         self.btn_unhide.set_visible(status)
         self.window.show_toast(msg)
         if update:
             self.update_programs()
+    
+    def save_program(self):
+        return self.manager.update_config(
+            config=self.config,
+            key=self.program["id"],
+            value=self.program,
+            scope="External_Programs"
+        ).data["config"]
 
     def remove_program(self, widget=None):
         self.config = self.manager.update_config(
@@ -287,6 +290,7 @@ class ProgramEntry(Adw.ActionRow):
             self.window.show_toast(_("\"{0}\" added to your library").format(self.program["name"]))
 
         def add_to_library():
+            self.save_program() # we need to store it in the bottle configuration to keep the reference
             library_manager = LibraryManager()
             library_manager.add_to_library({
                 "bottle": {"name": self.config["Name"], "path": self.config["Path"]},
