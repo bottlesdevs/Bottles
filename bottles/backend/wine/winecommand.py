@@ -94,7 +94,7 @@ class WineCommand:
             minimal: bool = False,  # avoid gamemode/gamescope usage
             post_script: str = None
     ):
-        self.config = config
+        self.config = self.__get_config(config)
         self.minimal = minimal
         self.arguments = arguments
         self.cwd = self.__get_cwd(cwd)
@@ -105,6 +105,16 @@ class WineCommand:
         self.communicate = communicate
         self.colors = colors
         self.vmtouch_files = None
+    
+    def __get_config(self, config: dict) -> dict:
+        if hasattr(config, "data"):
+            return config.data["config"]
+
+        if isinstance(config, dict):
+            return config
+
+        logging.error("Invalid config type: %s" % type(config))
+        return {}
 
     def __get_cwd(self, cwd) -> str:
         config = self.config
