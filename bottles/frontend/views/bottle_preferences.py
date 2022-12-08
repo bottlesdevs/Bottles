@@ -89,7 +89,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_auto_versioning = Gtk.Template.Child()
     switch_versioning_patterns = Gtk.Template.Child()
     switch_vmtouch = Gtk.Template.Child()
-    combo_fsr = Gtk.Template.Child()
+    switch_fsr = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
     combo_vkd3d = Gtk.Template.Child()
@@ -155,7 +155,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
         self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
         self.switch_vmtouch.connect('state-set', self.__toggle_vmtouch)
-        self.combo_fsr.connect('notify::selected', self.__set_fsr_level)
+        self.switch_fsr.connect('state-set', self.__toggle_fsr)
         self.combo_runner.connect('notify::selected', self.__set_runner)
         self.combo_dxvk.connect('notify::selected', self.__set_dxvk)
         self.combo_vkd3d.connect('notify::selected', self.__set_vkd3d)
@@ -331,7 +331,7 @@ class PreferencesView(Adw.PreferencesPage):
         with contextlib.suppress(TypeError):
             self.switch_runtime.handler_block_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
-        self.combo_fsr.handler_block_by_func(self.__set_fsr_level)
+        self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
@@ -344,6 +344,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_obsvkc.set_active(parameters["obsvkc"])
         self.switch_vkbasalt.set_active(parameters["vkbasalt"])
         self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
+        self.switch_fsr.set_active(parameters["fsr"])
         self.switch_gamemode.set_active(parameters["gamemode"])
         self.switch_gamescope.set_active(parameters["gamescope"])
         self.switch_sandbox.set_active(parameters["sandbox"])
@@ -372,10 +373,10 @@ class PreferencesView(Adw.PreferencesPage):
             get_index=True
         ))
 
+        # region Windows Versions
         # NOTE: this should not be here but it's the only way to handle windows
         # versions in the current structure, we will fix this in the future
         # with the new Bottles Backend.
-        # region Windows Versions
         self.windows_versions = {
             "win10": "Windows 10",
             "win81": "Windows 8.1",
@@ -398,6 +399,7 @@ class PreferencesView(Adw.PreferencesPage):
         # endregion
         
         parameters = self.config.get("Parameters")
+        
         _dxvk = self.config.get("DXVK")
         if parameters["dxvk"] == True:
             if _dxvk in self.manager.dxvk_available:
@@ -458,7 +460,6 @@ class PreferencesView(Adw.PreferencesPage):
         with contextlib.suppress(TypeError):
             self.switch_runtime.handler_unblock_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
-        self.combo_fsr.handler_unblock_by_func(self.__set_fsr_level)
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
@@ -602,6 +603,14 @@ class PreferencesView(Adw.PreferencesPage):
             scope="Parameters"
         ).data["config"]
 
+    def __toggle_fsr(self, widget=False, state=False):
+        """Toggle the fsr for current bottle"""
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="fsr",
+            value=state,
+            scope="Parameters"
+        ).data["config"]
 
     def __toggle_gamemode(self, widget=False, state=False):
         """Toggle the gamemode for current bottle"""
@@ -712,31 +721,6 @@ class PreferencesView(Adw.PreferencesPage):
             value=state,
             scope="Parameters"
         ).data["config"]
-
-    def __set_fsr_level(self, *_args):
-        """Set the FSR level of sharpness (from 0 to 3, where 3 is the default)"""
-        level = self.combo_fsr.get_selected()
-        if level == 0:
-            self.config = self.manager.update_config(
-            config=self.config,
-            key="fsr",
-            value=False,
-            scope="Parameters"
-            ).data["config"]
-        else:
-            self.config = self.manager.update_config(
-            config=self.config,
-            key="fsr",
-            value=True,
-            scope="Parameters"
-            ).data["config"]
-
-            self.config = self.manager.update_config(
-                config=self.config,
-                key="fsr_level",
-                value=level - 1,
-                scope="Parameters"
-            ).data["config"]
 
     def __set_runner(self, *_args):
         """Set the runner to use for the bottle"""
