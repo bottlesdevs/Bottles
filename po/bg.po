@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-27 13:57+0100\n"
-"PO-Revision-Date: 2022-10-03 09:21+0000\n"
+"PO-Revision-Date: 2022-12-12 14:51+0000\n"
 "Last-Translator: Georgi Georgiev <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/bg/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
@@ -206,14 +206,12 @@ msgid "Calculating…"
 msgstr "Изчисляване…"
 
 #: bottles/frontend/ui/about.blp:7
-#, fuzzy
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "© 2017-2022 – Разработчиците на „Bottles“"
+msgstr "© 2017 – Разработчиците на „Bottles“"
 
 #: bottles/frontend/ui/about.blp:13
-#, fuzzy
 msgid "Bottles Developers"
-msgstr "© 2017-2022 – Разработчиците на „Bottles“"
+msgstr "Разработчиците на „Bottles“"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -226,7 +224,6 @@ msgid "Uninstall"
 msgstr "Премахване"
 
 #: bottles/frontend/ui/component-entry.blp:23
-#, fuzzy
 msgid "Browse Files"
 msgstr "Разглеждане на файловете"
 
@@ -277,7 +274,6 @@ msgid "Category"
 msgstr "Категория"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
-#, fuzzy
 msgid "Download & Install this Dependency"
 msgstr "Изтегляне и инсталиране на зависимостта"
 
@@ -328,9 +324,8 @@ msgstr "Експортиране на конфигурацията…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:343
-#, fuzzy
 msgid "Show Hidden Programs"
-msgstr "Показване на програмата"
+msgstr "Показване на скритите програми"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
@@ -347,9 +342,8 @@ msgid "Secondary Menu"
 msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:90
-#, fuzzy
 msgid "Force Stop all Processes"
-msgstr "Прекратяване на всички процеси"
+msgstr "Принудително прекратяване на всички процеси"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
@@ -396,9 +390,8 @@ msgid "Versioning enabled for this bottle"
 msgstr "Системата за версии е включена за тази бутилка"
 
 #: bottles/frontend/ui/details-bottle.blp:173
-#, fuzzy
 msgid "Versioning is active for this bottle."
-msgstr "Системата за версии е активна в тази бутилка."
+msgstr "Системата за версии е активна за тази бутилка."
 
 #: bottles/frontend/ui/details-bottle.blp:182
 #: bottles/frontend/ui/list-entry.blp:31
@@ -415,9 +408,8 @@ msgid "Launch Options"
 msgstr "Опции за стартиране"
 
 #: bottles/frontend/ui/details-bottle.blp:243
-#, fuzzy
 msgid "Run in Terminal"
-msgstr "Стартиране в терминала…"
+msgstr "Стартиране в терминала"
 
 #: bottles/frontend/ui/details-bottle.blp:264
 msgid "Layers"
@@ -439,25 +431,21 @@ msgid "Add Shortcuts…"
 msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:322
-#, fuzzy
 msgid "Install Programs…"
-msgstr "Инсталиране на тази програма"
+msgstr "Инсталиране на програми…"
 
 #: bottles/frontend/ui/details-bottle.blp:343
-#, fuzzy
 msgid "Options"
-msgstr "Операции"
+msgstr "Опции"
 
 #: bottles/frontend/ui/details-bottle.blp:347
 #: bottles/frontend/views/details.py:135
-#, fuzzy
 msgid "Settings"
-msgstr "Настройки на екрана"
+msgstr "Настройки"
 
 #: bottles/frontend/ui/details-bottle.blp:348
-#, fuzzy
 msgid "Configure bottle settings."
-msgstr "Конфигуриране на бутилката…"
+msgstr "Конфигуриране на бутилката."
 
 #: bottles/frontend/ui/details-bottle.blp:357
 #: bottles/frontend/views/details.py:139
@@ -465,9 +453,8 @@ msgid "Dependencies"
 msgstr "Зависимости"
 
 #: bottles/frontend/ui/details-bottle.blp:358
-#, fuzzy
 msgid "Install dependencies for programs."
-msgstr "Инсталиране на тази програма"
+msgstr "Инсталиране на зависимости за програмите."
 
 #: bottles/frontend/ui/details-bottle.blp:367
 #: bottles/frontend/ui/details-preferences.blp:373
@@ -558,14 +545,12 @@ msgid "Report a problem or a missing dependency."
 msgstr "Докладвайте проблем или липсваща зависимост."
 
 #: bottles/frontend/ui/details-dependencies.blp:43
-#, fuzzy
 msgid "Report Missing Dependency"
 msgstr "Докладване на липсваща зависимост"
 
 #: bottles/frontend/ui/details-dependencies.blp:47
-#, fuzzy
 msgid "Read Documentation."
-msgstr "Прочитане на документацията"
+msgstr "Прочитане на документацията."
 
 #: bottles/frontend/ui/details-dependencies.blp:48
 #: bottles/frontend/ui/details-installers.blp:51
@@ -656,7 +641,6 @@ msgid "Updating VKD3D, please wait…"
 msgstr "Обновяване на VKD3D, моля, изчакайте…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
-#, fuzzy
 msgid "DXVK NVAPI"
 msgstr "DXVK с NVAPI"
 
@@ -678,9 +662,8 @@ msgstr ""
 "измами."
 
 #: bottles/frontend/ui/details-preferences.blp:71
-#, fuzzy
 msgid "Updating LatencyFleX, please wait…"
-msgstr "Обновяване на DXVK, моля, изчакайте…"
+msgstr "Обновяване на LFX, моля, изчакайте…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 #, fuzzy
@@ -864,7 +847,6 @@ msgid "Use a restricted/managed environment for this bottle."
 msgstr "Използвайте изолирана среда за тази бутилка."
 
 #: bottles/frontend/ui/details-preferences.blp:275
-#, fuzzy
 msgid "Manage the Sandbox Permissions"
 msgstr "Управление на разрешенията за пясъчника"
 
@@ -909,9 +891,8 @@ msgstr "Нулиране"
 #: bottles/frontend/ui/details-preferences.blp:335
 #: bottles/frontend/ui/preferences.blp:157
 #: bottles/frontend/views/preferences.py:184
-#, fuzzy
 msgid "(Default)"
-msgstr "По подразбиране"
+msgstr "(По подразбиране)"
 
 #: bottles/frontend/ui/details-preferences.blp:343
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
@@ -996,13 +977,11 @@ msgid "Create new Snapshot"
 msgstr "Създаване на ново състояние"
 
 #: bottles/frontend/ui/details.blp:16
-#, fuzzy
 msgid "Details"
-msgstr "Подробности за бутилката"
+msgstr "Подробности"
 
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
-#, fuzzy
 msgid "Go Back"
 msgstr "Назад"
 
@@ -1050,7 +1029,6 @@ msgid "Create New Bottle"
 msgstr "Създаване на нова бутилка"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:8
-#, fuzzy
 msgid "Bottles Crash Report"
 msgstr "Доклад за срив на „Bottles“"
 
@@ -1068,7 +1046,6 @@ msgid "_Cancel"
 msgstr "_Отказ"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
-#, fuzzy
 msgid "Send Report"
 msgstr "Изпращане на доклада"
 
@@ -1105,15 +1082,13 @@ msgid "Incomplete package"
 msgstr "Непълен пакет"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
-#, fuzzy
 msgid ""
 "This version of Bottles does not seem to provide all the necessary core "
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
 "Тази версия на „Bottles“не предоставя всички необходими зависимости, моля, "
-"свържете се с отговорното лице или използвайте официалната версия.\n"
-"                        "
+"свържете се с отговорното лице или използвайте официалната версия."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
@@ -1140,14 +1115,12 @@ msgid "Drives"
 msgstr "Дялове"
 
 #: bottles/frontend/ui/dialog-drives.blp:24
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
 "Тези местоположения от Вашата система са разпознати като устройства от "
-"стартиращата програма (например С:, D:…).\n"
-"                                "
+"стартиращата програма (например С: и D:…)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1274,14 +1247,12 @@ msgid "Miscellaneous"
 msgstr "Разни"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
-#, fuzzy
 msgid "Frame Rate Limit"
-msgstr "Ограничение на честотата на кадрите (например 60)"
+msgstr "Ограничение на честотата на кадрите"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
-#, fuzzy
 msgid "Frame Rate Limit When Unfocused"
-msgstr "Ограничение на честотата на кадрите (във фонов режим)"
+msgstr "Ограничение на честотата на кадрите във фонов режим"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
 msgid "Use Integer Scaling"
@@ -1325,9 +1296,8 @@ msgid "Completed!"
 msgstr "Компоненти"
 
 #: bottles/frontend/ui/dialog-installer.blp:126
-#, fuzzy
 msgid "Show Programs"
-msgstr "Показване на програмата"
+msgstr "Показване на програмите"
 
 #: bottles/frontend/ui/dialog-installer.blp:144
 #, fuzzy
@@ -1402,7 +1372,6 @@ msgid "Choose a script which should be executed after run."
 msgstr "Изберете скрипт, който трябва да бъде изпълнен след стартирането."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
-#, fuzzy
 msgid "Choose a Script"
 msgstr "Избиране на скрипт"
 
@@ -1563,7 +1532,6 @@ msgstr ""
 "Старата система за версии ще бъде премахната в близко бъдеще."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
-#, fuzzy
 msgid "Re-initializing Repository…"
 msgstr "Повторно инициализиране на хранилището…"
 
@@ -1796,7 +1764,6 @@ msgstr "Разглеждане на файловете"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
 msgid "Wine prefix name"
 msgstr "Наименование на папката на „Wine“"
 
@@ -1805,9 +1772,8 @@ msgid "Manager"
 msgstr "Диспечер"
 
 #: bottles/frontend/ui/importer-entry.blp:38
-#, fuzzy
 msgid "This Wine prefix was already imported in Bottles."
-msgstr "Тази папка на „Wine“ вече съществува в „Bottles“."
+msgstr "Тази папка на „Wine“ вече е импортирана в „Bottles“."
 
 #: bottles/frontend/ui/importer.blp:22
 #, fuzzy
@@ -1856,7 +1822,6 @@ msgid "Unknown"
 msgstr "Неизвестно"
 
 #: bottles/frontend/ui/installer-entry.blp:51
-#, fuzzy
 msgid "Install this Program"
 msgstr "Инсталиране на тази програма"
 
@@ -1900,7 +1865,6 @@ msgid "This bottle looks damaged."
 msgstr "Тази бутилка изглежда повредена."
 
 #: bottles/frontend/ui/list-entry.blp:55
-#, fuzzy
 msgid "Execute in this Bottle"
 msgstr "Изпълняване в тази бутилка"
 
@@ -1941,9 +1905,8 @@ msgid "Click \"Create a new Bottle…\" to create a new bottle."
 msgstr ""
 
 #: bottles/frontend/ui/list.blp:50
-#, fuzzy
 msgid "Create a new Bottle…"
-msgstr "Създаване на нова бутилка"
+msgstr "Създаване на нова бутилка…"
 
 #: bottles/frontend/ui/list.blp:64
 msgid "No Results Found"
@@ -2060,7 +2023,6 @@ msgid "Creating a Bottle…"
 msgstr "Създаване на бутилка…"
 
 #: bottles/frontend/ui/new.blp:242
-#, fuzzy
 msgid "Bottle Created"
 msgstr "Бутилката е създадена"
 
@@ -2073,9 +2035,8 @@ msgid "Welcome to Bottles"
 msgstr "Добре дошли в „Bottles“"
 
 #: bottles/frontend/ui/onboard.blp:60
-#, fuzzy
 msgid "Run Windows Software on Linux."
-msgstr "Използвайте софтуер за „Windows“ на „Линукс“ с „Bottles“!"
+msgstr "Използвайте софтуер за „Windows“ на „Линукс“."
 
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
@@ -2098,7 +2059,6 @@ msgid "We need a few more minutes to set everything up…"
 msgstr "Трябват само още няколко минути…"
 
 #: bottles/frontend/ui/onboard.blp:105
-#, fuzzy
 msgid "All Ready!"
 msgstr "Всичко е готово!"
 
@@ -2271,12 +2231,10 @@ msgid "In early development."
 msgstr "В процес на разработка."
 
 #: bottles/frontend/ui/program-entry.blp:19
-#, fuzzy
 msgid "Launch with Terminal"
 msgstr "Стартиране с терминала"
 
 #: bottles/frontend/ui/program-entry.blp:25
-#, fuzzy
 msgid "Browse Path"
 msgstr "Разглеждане на местоположението"
 
@@ -2285,9 +2243,8 @@ msgid "Change Launch Options…"
 msgstr "Промяна на опциите за стартиране…"
 
 #: bottles/frontend/ui/program-entry.blp:43
-#, fuzzy
 msgid "Add to Library"
-msgstr "Добавяне към моята библиотека"
+msgstr "Добавяне към библиотеката"
 
 #: bottles/frontend/ui/program-entry.blp:47
 msgid "Add Desktop Entry"
@@ -2336,13 +2293,12 @@ msgid "Delete message"
 msgstr "Изтриване на съобщението"
 
 #: bottles/frontend/ui/window.blp:16
-#, fuzzy
 msgid "Import…"
-msgstr "Импортиране"
+msgstr "Импортиране…"
 
 #: bottles/frontend/ui/window.blp:26
 msgid "Help"
-msgstr ""
+msgstr "Помощ"
 
 #: bottles/frontend/ui/window.blp:31
 msgid "About Bottles"
@@ -2376,9 +2332,9 @@ msgid "Updated: %s"
 msgstr "Обновяване: %s"
 
 #: bottles/frontend/views/bottle_details.py:271
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added"
-msgstr "Добавянето на „{0}“ е успешно."
+msgstr "„{0}“ е добавена"
 
 #: bottles/frontend/views/bottle_details.py:275
 msgid "Choose an executable path"
@@ -2389,9 +2345,8 @@ msgid "Add"
 msgstr "Добавяне"
 
 #: bottles/frontend/views/bottle_details.py:345
-#, fuzzy
 msgid "Hide Hidden Programs"
-msgstr "Скриване на програмата"
+msgstr "Скриване на скритите програми"
 
 #: bottles/frontend/views/bottle_details.py:378
 #: bottles/frontend/views/list.py:118
@@ -2429,14 +2384,14 @@ msgstr ""
 "Избиране на местоположението за запазване на резервното копие на архива"
 
 #: bottles/frontend/views/bottle_details.py:427
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup created for \"{0}\""
-msgstr "Резервното копие на „{0}“ е създадено."
+msgstr "Създадено е резервно копие на „{0}“"
 
 #: bottles/frontend/views/bottle_details.py:429
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr "Резервното копие на „{0}“ е неуспешно."
+msgstr "Неуспешно създаване на резервно копие на „{0}“"
 
 #: bottles/frontend/views/bottle_details.py:447
 msgid "Export"
@@ -2458,9 +2413,8 @@ msgid "_Delete"
 msgstr ""
 
 #: bottles/frontend/views/bottle_details.py:501
-#, fuzzy
 msgid "Missing Runner"
-msgstr "Стартираща програма"
+msgstr "Липсваща стартираща програма"
 
 #: bottles/frontend/views/bottle_details.py:502
 msgid ""
@@ -2521,14 +2475,12 @@ msgid "Return to your bottles."
 msgstr "Върнете се към Вашите бутилки."
 
 #: bottles/frontend/views/importer.py:89
-#, fuzzy
 msgid "Backup imported successfully"
-msgstr "Резервното копие е импортирано успешно."
+msgstr "Резервното копие е импортирано успешно"
 
 #: bottles/frontend/views/importer.py:91
-#, fuzzy
 msgid "Import failed"
-msgstr "Импортирането е неуспешно."
+msgstr "Импортирането е неуспешно"
 
 #: bottles/frontend/views/importer.py:103
 #: bottles/frontend/views/importer.py:132
@@ -2567,9 +2519,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Извлечени са {0} от {1} пакета"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "Name has special characters or already in use"
-msgstr "Наименованието съдържа специални знаци или вече се използва."
+msgstr "Наименованието съдържа специални знаци или вече се използва"
 
 #: bottles/frontend/views/new.py:156
 msgid "Choose a recipe file"
@@ -2584,16 +2535,15 @@ msgid "There was an error creating the bottle."
 msgstr "Възникна грешка при създаването на бутилката."
 
 #: bottles/frontend/views/new.py:234
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr "Новото състояние {0} е създадено успешно!"
+msgstr "„{0}“ е създадена успешно."
 
 #: bottles/frontend/views/preferences.py:117
 msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "„Steam“ не е намерен или „Bottles“ няма нужните разрешения."
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose new Bottles path"
 msgstr "Избиране на новото местоположение на бутилките"
 
@@ -2655,19 +2605,19 @@ msgid "Manifest for {0}"
 msgstr "Манифест на {0}"
 
 #: bottles/frontend/widgets/dependency.py:166
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" installed"
-msgstr "Инсталирането на „{0}“ е успешно."
+msgstr "„{0}“ е инсталирана"
 
 #: bottles/frontend/widgets/dependency.py:180
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "Инсталирането на „{0}“ е неуспешно."
+msgstr "Инсталирането на „{0}“ е неуспешно"
 
 #: bottles/frontend/widgets/importer.py:66
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" imported"
-msgstr "Импортирането на „{0}“ е успешно."
+msgstr "„{0}“ е импортирана"
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
@@ -2696,49 +2646,49 @@ msgid "Review for {0}"
 msgstr "Отзив за {0}"
 
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\"…"
 msgstr "Стартиране на „{0}“…"
 
 #: bottles/frontend/widgets/program.py:190
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
 msgstr "Стартиране на „{0}“ със „Steam“…"
 
 #: bottles/frontend/widgets/program.py:212
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr "Скриването на „{0}“ е успешно."
+msgstr "„{0}“ е скрита"
 
 #: bottles/frontend/widgets/program.py:214
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" showed"
-msgstr "Показването на „{0}“ е успешно."
+msgstr "„{0}“ е показана"
 
 #: bottles/frontend/widgets/program.py:237
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" removed"
-msgstr "Премахването на „{0}“ е успешно."
+msgstr "„{0}“ е премахната"
 
 #: bottles/frontend/widgets/program.py:251
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr "„{0}“ вече е „{1}“."
+msgstr "„{0}“ е преименувана на „{1}“"
 
 #: bottles/frontend/widgets/program.py:271
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
 msgstr "Създаден е пряк път на работния плот за „{0}“"
 
 #: bottles/frontend/widgets/program.py:287
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your library"
-msgstr "Добавянето на „{0}“ към Вашата библиотека е успешно"
+msgstr "„{0}“ е добавена към Вашата библиотека"
 
 #: bottles/frontend/widgets/program.py:303
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your Steam library"
-msgstr "Добавянето на „{0}“ към Вашата библиотека в „Steam“ е успешно"
+msgstr "„{0}“ е добавена към Вашата библиотека в „Steam“"
 
 #: bottles/frontend/windows/crash.py:34
 msgid "Show report"
@@ -2870,7 +2820,6 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
-#, fuzzy
 msgid "Run Windows Software"
 msgstr "Използвайте софтуер за „Windows“"
 
@@ -3182,55 +3131,45 @@ msgid "Fixed bottles unsetting XDG_DATA_HOME"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:99
-#, fuzzy
 msgid "French translations thanks to @julroy and @tymmsyde"
-msgstr "Френски език, благодарение на @rjousse18 и @julroy67"
+msgstr "Френски език, благодарение на @julroy и @tymmsyde"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:100
-#, fuzzy
 msgid "Turkish translations thanks to @54linux-ea and @ruizlenato"
-msgstr "Френски език, благодарение на @rjousse18 и @julroy67"
+msgstr "Турски език, благодарение на@54linux-ea и @ruizlenato"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Russian translations thanks to @lenemter and @Smoque"
-msgstr "Руски език, благодарение на @Knebergish, @lenemter и @Smoque"
+msgstr "Руски език, благодарение на @lenemter и @Smoque"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:102
-#, fuzzy
 msgid "Catalan translations thanks to @rogervc"
-msgstr "Хърватски език, благодарение на @milotype"
+msgstr "Каталонски език, благодарение на @rogervc"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic tran*slations thanks to @TheDarkEvil"
-msgstr "Тайски език, благодарение на @SashaPGT"
+msgstr "Арабски език, благодарение на @TheDarkEvil"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:104
-#, fuzzy
 msgid "Korean translations thanks to @MarongHappy"
-msgstr "Хърватски език, благодарение на @milotype"
+msgstr "Корейски език, благодарение на @MarongHappy"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Protuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
-msgstr "Португалски език (Бразилия), благодарение на @geraldohomero"
+msgstr "Португалски език, благодарение на @davipatricio, @SantosSi и @vitorhcl"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Galician translations thanks to @NicoSGF64"
-msgstr "Италиански език, благодарение на @gdonisi"
+msgstr "Галисийски език, благодарение на @NicoSGF64"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:107
-#, fuzzy
 msgid "Hebrew translations thanks to @itayweb"
-msgstr "Хърватски език, благодарение на @milotype"
+msgstr "Еврейски език, благодарение на @itayweb"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:108
-#, fuzzy
 msgid "Polish translations thanks to @Mikutut"
-msgstr "Хърватски език, благодарение на @milotype"
+msgstr "Полски език, благодарение на @Mikutut"
 
 #~ msgid "Choose path"
 #~ msgstr "Избиране на местоположение"
