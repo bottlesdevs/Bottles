@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-27 13:57+0100\n"
-"PO-Revision-Date: 2022-08-08 20:40+0000\n"
-"Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
+"PO-Revision-Date: 2022-12-12 14:51+0000\n"
+"Last-Translator: Eric <hamburger1024@duck.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
 msgid "No path specified"
@@ -204,14 +204,12 @@ msgid "Calculating…"
 msgstr "计算中…"
 
 #: bottles/frontend/ui/about.blp:7
-#, fuzzy
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "© 2017-2022 - Bottles 开发者"
+msgstr "版权所有 © 2017 Bottles 开发者"
 
 #: bottles/frontend/ui/about.blp:13
-#, fuzzy
 msgid "Bottles Developers"
-msgstr "© 2017-2022 - Bottles 开发者"
+msgstr "Bottles 开发者"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -224,7 +222,6 @@ msgid "Uninstall"
 msgstr "卸载"
 
 #: bottles/frontend/ui/component-entry.blp:23
-#, fuzzy
 msgid "Browse Files"
 msgstr "浏览文件"
 
@@ -273,7 +270,6 @@ msgid "Category"
 msgstr "类别"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
-#, fuzzy
 msgid "Download & Install this Dependency"
 msgstr "下载并安装该依赖"
 
@@ -285,9 +281,8 @@ msgstr ""
 "发生了一个安装错误。重新启动 Bottles 读取崩溃报告或通过终端运行它来读取输出。"
 
 #: bottles/frontend/ui/dependency-entry.blp:93
-#, fuzzy
 msgid "Dependency Menu"
-msgstr "依赖项名称"
+msgstr "依赖项菜单"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
@@ -323,9 +318,8 @@ msgstr "导出配置…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:343
-#, fuzzy
 msgid "Show Hidden Programs"
-msgstr "显示/隐藏隐藏的程序"
+msgstr "显示隐藏的程序"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
@@ -339,12 +333,11 @@ msgstr "删除 Bottle…"
 #: bottles/frontend/ui/details-dependencies.blp:65
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "第二菜单"
 
 #: bottles/frontend/ui/details-bottle.blp:90
-#, fuzzy
 msgid "Force Stop all Processes"
-msgstr "杀死所有进程"
+msgstr "强制停止所有进程"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
@@ -364,7 +357,7 @@ msgstr "重启"
 
 #: bottles/frontend/ui/details-bottle.blp:111
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "把文件放到这里执行它们"
 
 #: bottles/frontend/ui/details-bottle.blp:120
 msgid "My bottle"
@@ -391,7 +384,6 @@ msgid "Versioning enabled for this bottle"
 msgstr "该 bottle 已启用版本控制"
 
 #: bottles/frontend/ui/details-bottle.blp:173
-#, fuzzy
 msgid "Versioning is active for this bottle."
 msgstr "该 bottle 已激活版本控制。"
 
@@ -410,9 +402,8 @@ msgid "Launch Options"
 msgstr "启动选项"
 
 #: bottles/frontend/ui/details-bottle.blp:243
-#, fuzzy
 msgid "Run in Terminal"
-msgstr "在终端启动…"
+msgstr "在终端运行"
 
 #: bottles/frontend/ui/details-bottle.blp:264
 msgid "Layers"
@@ -428,31 +419,29 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"单击 \"运行可执行文件…\" 运行一个可执行文件, \"添加快捷方式…\" "
+"将可执行文件添加到程序列表，或者单击 \"安装程序…\" 安装社区精选的程序。"
 
 #: bottles/frontend/ui/details-bottle.blp:295
 msgid "Add Shortcuts…"
-msgstr ""
+msgstr "添加快捷方式…"
 
 #: bottles/frontend/ui/details-bottle.blp:322
-#, fuzzy
 msgid "Install Programs…"
-msgstr "安装此程序"
+msgstr "安装程序…"
 
 #: bottles/frontend/ui/details-bottle.blp:343
-#, fuzzy
 msgid "Options"
-msgstr "操作"
+msgstr "选项"
 
 #: bottles/frontend/ui/details-bottle.blp:347
 #: bottles/frontend/views/details.py:135
-#, fuzzy
 msgid "Settings"
-msgstr "显示设置"
+msgstr "设置"
 
 #: bottles/frontend/ui/details-bottle.blp:348
-#, fuzzy
 msgid "Configure bottle settings."
-msgstr "正在配置 bottle…"
+msgstr "配置 bottle 设置。"
 
 #: bottles/frontend/ui/details-bottle.blp:357
 #: bottles/frontend/views/details.py:139
@@ -460,20 +449,18 @@ msgid "Dependencies"
 msgstr "依赖"
 
 #: bottles/frontend/ui/details-bottle.blp:358
-#, fuzzy
 msgid "Install dependencies for programs."
-msgstr "安装此程序"
+msgstr "安装程序依赖项。"
 
 #: bottles/frontend/ui/details-bottle.blp:367
 #: bottles/frontend/ui/details-preferences.blp:373
 #: bottles/frontend/views/details.py:143
 msgid "Snapshots"
-msgstr ""
+msgstr "快照"
 
 #: bottles/frontend/ui/details-bottle.blp:368
-#, fuzzy
 msgid "Create and manage bottle states."
-msgstr "保存 bottle 状态。"
+msgstr "创建并管理 bottle 状态。"
 
 #: bottles/frontend/ui/details-bottle.blp:377
 #: bottles/frontend/ui/details-bottle.blp:423
@@ -483,7 +470,7 @@ msgstr "任务管理器"
 
 #: bottles/frontend/ui/details-bottle.blp:378
 msgid "Manage running programs."
-msgstr ""
+msgstr "管理运行中的程序。"
 
 #: bottles/frontend/ui/details-bottle.blp:387
 msgid "Tools"
@@ -506,18 +493,16 @@ msgid "Edit the internal registry."
 msgstr "编辑内部注册表。"
 
 #: bottles/frontend/ui/details-bottle.blp:410
-#, fuzzy
 msgid "Legacy Wine Tools"
-msgstr "老式工具"
+msgstr "老式 Wine 工具"
 
 #: bottles/frontend/ui/details-bottle.blp:414
 msgid "Explorer"
 msgstr "资源管理器"
 
 #: bottles/frontend/ui/details-bottle.blp:432
-#, fuzzy
 msgid "Debugger"
-msgstr "调试"
+msgstr "调试器"
 
 #: bottles/frontend/ui/details-bottle.blp:441
 #: bottles/frontend/ui/importer.blp:69
@@ -537,29 +522,28 @@ msgid "Search for dependencies…"
 msgstr "选择依赖项…"
 
 #: bottles/frontend/ui/details-dependencies.blp:15
-#, fuzzy
 msgid ""
 "Dependencies are resources that improve compatibility of Windows software.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"此页面上的文件由第三方在专有许可证下提供。安装它们即表示您同意它们各自的许可"
-"条款。"
+"依赖项是改进 Windows 软件兼容性的资源文件。\n"
+"\n"
+"此页面上的文件由第三方在专有产权许可证下提供。安装它们，即表示你同意各自的许"
+"可条款。"
 
 #: bottles/frontend/ui/details-dependencies.blp:42
 msgid "Report a problem or a missing dependency."
 msgstr "报告问题或丢失的依赖项。"
 
 #: bottles/frontend/ui/details-dependencies.blp:43
-#, fuzzy
 msgid "Report Missing Dependency"
-msgstr "报告丢失的依赖项"
+msgstr "报告缺少的依赖项"
 
 #: bottles/frontend/ui/details-dependencies.blp:47
-#, fuzzy
 msgid "Read Documentation."
-msgstr "阅读文档"
+msgstr "阅读文档。"
 
 #: bottles/frontend/ui/details-dependencies.blp:48
 #: bottles/frontend/ui/details-installers.blp:51
@@ -578,7 +562,6 @@ msgid "Search for Programs…"
 msgstr "搜索程序…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community, without having to proceed "
 "manually.\n"
@@ -586,8 +569,10 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"此页面上的文件由第三方在专有许可证下提供。安装它们即表示您同意它们各自的许可"
-"条款。"
+"安装由我们的社区精选的程序，无需手动进行。\n"
+"\n"
+"此页面上的文件由第三方在专有产权许可证下提供。安装它们，即表示你同意各自的许"
+"可条款。"
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
@@ -615,7 +600,7 @@ msgstr "组件"
 
 #: bottles/frontend/ui/details-preferences.blp:15
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "Wine 兼容层版本。"
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
@@ -628,7 +613,7 @@ msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 9/10/11 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "通过将它翻译为 Vulkan 改进 Direct3D 9/10/11 兼容性。"
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
@@ -641,14 +626,13 @@ msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "通过将它翻译为 Vulkan 改进 Direct3D 12 兼容性。"
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
 msgstr "正在更新 VKD3D，请稍等…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
-#, fuzzy
 msgid "DXVK NVAPI"
 msgstr "DXVK-NVAPI"
 
@@ -663,34 +647,30 @@ msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
-#, fuzzy
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
-msgstr "NVIDIA Reflex 的替代。某些反作弊程序可以检测到它。"
+msgstr "提高响应度。某些反作弊程序可以检测到它。"
 
 #: bottles/frontend/ui/details-preferences.blp:71
-#, fuzzy
 msgid "Updating LatencyFleX, please wait…"
-msgstr "正在更新 DXVK，请稍等…"
+msgstr "正在更新 LatencyFleX，请稍等…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
-#, fuzzy
 msgid "Display"
-msgstr "显示设置"
+msgstr "显示"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr ""
+msgstr "深度学习超级抽样"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
-msgstr ""
+msgstr "使用 DXVK-NVAPI 以牺牲视觉效果为代价提高性能。仅适用于较新的 NVIDIA GPUs。"
 
 #: bottles/frontend/ui/details-preferences.blp:105
-#, fuzzy
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "以增加功耗为代价提升性能。"
+msgstr "以视效为代价提升性能。仅对 Vulkan 有效。"
 
 #: bottles/frontend/ui/details-preferences.blp:109
 #: bottles/frontend/ui/dll-override-entry.blp:12
@@ -715,7 +695,6 @@ msgid "Performance"
 msgstr "性能"
 
 #: bottles/frontend/ui/details-preferences.blp:121
-#, fuzzy
 msgid "Discrete Graphics"
 msgstr "独立显卡"
 
@@ -723,34 +702,32 @@ msgstr "独立显卡"
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
-msgstr ""
+msgstr "使用独立显卡以提升能耗为代价提高性能。"
 
 #: bottles/frontend/ui/details-preferences.blp:131
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "后期处理效果"
 
 #: bottles/frontend/ui/details-preferences.blp:132
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
-msgstr ""
+msgstr "使用 vkBasalt 添加各种后期处理效果。只对 Vulkan 有效。"
 
 #: bottles/frontend/ui/details-preferences.blp:134
-#, fuzzy
 msgid "Manage Post-Processing Layer settings"
-msgstr "管理 vmtouch 设置"
+msgstr "管理后期处理层设置"
 
 #: bottles/frontend/ui/details-preferences.blp:150
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "用 Gamescope 管理游戏在屏幕上的显示方式。"
 
 #: bottles/frontend/ui/details-preferences.blp:153
 msgid "Manage Gamescope settings"
 msgstr "管理 Gamescope 设置"
 
 #: bottles/frontend/ui/details-preferences.blp:167
-#, fuzzy
 msgid "Advanced Display Settings"
-msgstr "显示设置"
+msgstr "高级显示设置"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Enable synchronization to increase performance of multicore processors."
@@ -777,55 +754,50 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.blp:198
-#, fuzzy
 msgid "Monitor Performance"
-msgstr "性能"
+msgstr "监视性能"
 
 #: bottles/frontend/ui/details-preferences.blp:199
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
-msgstr ""
+msgstr "使用 MangoHud 显示帧率，温度，CPU/GPU 负载和更多关于 OpenGL 和 Vulkan "
+"的监控信息."
 
 #: bottles/frontend/ui/details-preferences.blp:207
-#, fuzzy
 msgid "Feral GameMode"
-msgstr "游戏模式"
+msgstr "Feral 游戏模式"
 
 #: bottles/frontend/ui/details-preferences.blp:208
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
-msgstr ""
+msgstr "对设备应用一组优化。可以提高游戏性能。"
 
 #: bottles/frontend/ui/details-preferences.blp:217
-#, fuzzy
 msgid "Preload Game Files"
-msgstr "将游戏文件预加载进内存"
+msgstr "预加载游戏文件"
 
 #: bottles/frontend/ui/details-preferences.blp:218
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
-msgstr ""
+msgstr "提高多次启动游戏时的加载时间。游戏第一次启动会花更长的时间。"
 
 #: bottles/frontend/ui/details-preferences.blp:222
 msgid "Manage vmtouch settings"
 msgstr "管理 vmtouch 设置"
 
 #: bottles/frontend/ui/details-preferences.blp:237
-#, fuzzy
 msgid "OBS Game Capture"
-msgstr "OBS Vulkan 录制"
+msgstr "OBS 游戏录屏"
 
 #: bottles/frontend/ui/details-preferences.blp:238
-#, fuzzy
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr "开/关所有程序的 OBS 游戏录制。"
+msgstr "打开/关闭所有 Vulkan 和 OpenGL 程序的 OBS 游戏录制。"
 
 #: bottles/frontend/ui/details-preferences.blp:247
-#, fuzzy
 msgid "Compatibility"
-msgstr "兼容性等级"
+msgstr "兼容性"
 
 #: bottles/frontend/ui/details-preferences.blp:250
 msgid "Windows Version"
@@ -852,7 +824,6 @@ msgid "Use a restricted/managed environment for this bottle."
 msgstr "对此 bottle 使用受限/受管理环境。"
 
 #: bottles/frontend/ui/details-preferences.blp:275
-#, fuzzy
 msgid "Manage the Sandbox Permissions"
 msgstr "管理沙盒权限"
 
@@ -861,7 +832,6 @@ msgid "Bottles Runtime"
 msgstr "Bottles 运行时（Runtime）"
 
 #: bottles/frontend/ui/details-preferences.blp:292
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable if you "
 "run into issues."
@@ -872,11 +842,10 @@ msgid "Steam Runtime"
 msgstr "Steam 运行时（Runtime）"
 
 #: bottles/frontend/ui/details-preferences.blp:303
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable if you run into issues."
-msgstr "提供额外库以提高兼容性，如遇到问题则禁用。"
+msgstr "提供额外库以提高 Steam 游戏的兼容性，如遇到问题则禁用。"
 
 #: bottles/frontend/ui/details-preferences.blp:311
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -893,9 +862,8 @@ msgstr "重置为默认"
 #: bottles/frontend/ui/details-preferences.blp:335
 #: bottles/frontend/ui/preferences.blp:157
 #: bottles/frontend/views/preferences.py:184
-#, fuzzy
 msgid "(Default)"
-msgstr "默认"
+msgstr "(默认)"
 
 #: bottles/frontend/ui/details-preferences.blp:343
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
@@ -913,35 +881,32 @@ msgid "Manage Drives"
 msgstr "管理驱动"
 
 #: bottles/frontend/ui/details-preferences.blp:377
-#, fuzzy
 msgid "Automatic Snapshots"
-msgstr "自动版本控制"
+msgstr "自动快照"
 
 #: bottles/frontend/ui/details-preferences.blp:378
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
-msgstr ""
+msgstr "安装软件或修改设置前自动创建快照。"
 
 #: bottles/frontend/ui/details-preferences.blp:387
-#, fuzzy
 msgid "Compression"
-msgstr "组件版本"
+msgstr "压缩"
 
 #: bottles/frontend/ui/details-preferences.blp:388
 msgid ""
 "Compress snapshots to reduce space. This will slow down creation of "
 "snapshots."
-msgstr ""
+msgstr "压缩快照，减少快照空间。这会降低创建快照的速度。"
 
 #: bottles/frontend/ui/details-preferences.blp:397
 msgid "Use Exclusion Patterns"
 msgstr "使用排除模式"
 
 #: bottles/frontend/ui/details-preferences.blp:398
-#, fuzzy
 msgid "Exclude paths in snapshots."
-msgstr "使用模式将路径排除于版本控制之外"
+msgstr "在快照中排除路径。"
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Manage Patterns"
@@ -956,14 +921,12 @@ msgid "Stop process"
 msgstr "停止进程"
 
 #: bottles/frontend/ui/details-versioning.blp:18
-#, fuzzy
 msgid "No Snapshots Found"
-msgstr "未找到状态"
+msgstr "未找到快照"
 
 #: bottles/frontend/ui/details-versioning.blp:19
-#, fuzzy
 msgid "Create your first snapshot to start saving states of your preferences."
-msgstr "创建第一个状态以开始使用版本控制。"
+msgstr "创建第一个快照来开始保存选项状态。"
 
 #: bottles/frontend/ui/details-versioning.blp:54
 msgid "A short comment"
@@ -974,18 +937,15 @@ msgid "Save the bottle state."
 msgstr "保存 bottle 状态。"
 
 #: bottles/frontend/ui/details-versioning.blp:78
-#, fuzzy
 msgid "Create new Snapshot"
-msgstr "创建新状态"
+msgstr "创建新快照"
 
 #: bottles/frontend/ui/details.blp:16
-#, fuzzy
 msgid "Details"
-msgstr "Bottle 详情"
+msgstr "详情"
 
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
-#, fuzzy
 msgid "Go Back"
 msgstr "返回"
 
@@ -1033,7 +993,6 @@ msgid "Create New Bottle"
 msgstr "新建 Bottle"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:8
-#, fuzzy
 msgid "Bottles Crash Report"
 msgstr "Bottles 崩溃报告"
 
@@ -1051,7 +1010,6 @@ msgid "_Cancel"
 msgstr "取消(_C)"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
-#, fuzzy
 msgid "Send Report"
 msgstr "发送报告"
 
@@ -1087,15 +1045,12 @@ msgid "Incomplete package"
 msgstr "不完整的包"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
-#, fuzzy
 msgid ""
 "This version of Bottles does not seem to provide all the necessary core "
 "dependencies, please contact the package maintainer or use an official "
 "version."
-msgstr ""
-"此版本的 Bottles 似乎没有提供所有必要的核心依赖项，请联系包维护人员或使用官方"
-"版本。\n"
-"                        "
+msgstr "此版本的 Bottles "
+"似乎没有提供所有必要的核心依赖项，请联系包维护人员或使用官方版本。"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
@@ -1120,13 +1075,10 @@ msgid "Drives"
 msgstr "驱动器"
 
 #: bottles/frontend/ui/dialog-drives.blp:24
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
-msgstr ""
-"这些是来自你主机系统的路径，由运行器映射并识别为设备（如 C: D:…)。\n"
-"                                "
+msgstr "这些是来自你主机系统的路径，由运行器映射并识别为设备（如 C: D:…)。"
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1157,7 +1109,7 @@ msgstr "正在复制…"
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/ui/new.blp:199
 msgid "This could take a while."
-msgstr ""
+msgstr "这可能需要一会儿。"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
@@ -1209,16 +1161,15 @@ msgstr "保存"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "管理游戏显示方式。"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
 msgstr "游戏分辨率"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
-#, fuzzy
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr "使用视频游戏的分辨率作为参考。"
+msgstr "使用视频游戏的分辨率作为像素参考。"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
@@ -1231,12 +1182,10 @@ msgid "Height"
 msgstr "高度"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
-#, fuzzy
 msgid "Window Resolution"
-msgstr "Windows 版本"
+msgstr "Windows 分辨率"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:82
-#, fuzzy
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
@@ -1247,12 +1196,10 @@ msgid "Miscellaneous"
 msgstr "杂项"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
-#, fuzzy
 msgid "Frame Rate Limit"
-msgstr "帧率限制（如，60）"
+msgstr "帧率限制"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
-#, fuzzy
 msgid "Frame Rate Limit When Unfocused"
 msgstr "帧率限制（失去焦点时）"
 
@@ -1274,12 +1221,11 @@ msgstr "全屏"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr ""
+msgstr "你想继续安装吗？"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
-#, fuzzy
 msgid "Start Installation"
-msgstr "翻译"
+msgstr "开始安装"
 
 #: bottles/frontend/ui/dialog-installer.blp:64
 msgid ""
@@ -1292,23 +1238,20 @@ msgid "Proceed"
 msgstr "继续"
 
 #: bottles/frontend/ui/dialog-installer.blp:123
-#, fuzzy
 msgid "Completed!"
-msgstr "组件"
+msgstr "完毕！"
 
 #: bottles/frontend/ui/dialog-installer.blp:126
-#, fuzzy
 msgid "Show Programs"
 msgstr "显示程序"
 
 #: bottles/frontend/ui/dialog-installer.blp:144
-#, fuzzy
 msgid "Installation Failed!"
-msgstr "依赖安装失败。"
+msgstr "安装失败！"
 
 #: bottles/frontend/ui/dialog-installer.blp:145
 msgid "Something goes wrong."
-msgstr ""
+msgstr "出错了。"
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1340,7 +1283,7 @@ msgstr "日志浏览器"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr ""
+msgstr "更改记录等级。"
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
@@ -1374,7 +1317,6 @@ msgid "Choose a script which should be executed after run."
 msgstr "选择应该在运行后执行的脚本。"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
-#, fuzzy
 msgid "Choose a Script"
 msgstr "选择脚本"
 
@@ -1504,7 +1446,6 @@ msgid "The new bottle versioning system has landed."
 msgstr "新的 bottle 版本控制系统已经登陆。"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:83
-#, fuzzy
 msgid ""
 "Bottles has a whole new Versioning System that is not backwards compatible.\n"
 "\n"
@@ -1520,18 +1461,17 @@ msgid ""
 msgstr ""
 "Bottles 有一个不向后兼容的全新版本控制系统。\n"
 "\n"
-"要继续使用版本控制，我们需要重新初始化 bottle 存储库。 这不会从您的 bottle 中"
-"删除数据，但会删除所有现有状态并创建一个新状态。\n"
+"要继续使用版本控制，我们需要重新初始化 bottle 存储库。 这不会从您的 bottle "
+"中删除数据，但会删除所有现有快照并创建一个新快照。\n"
 "\n"
-"如果您需要在继续之前返回之前的状态，请关闭此窗口并恢复状态，然后重新打开 "
+"如果您需要在继续之前返回之前的状态，请关闭此窗口并恢复快照，然后重新打开 "
 "bottle 以再次显示此窗口。\n"
 "\n"
-"旧系统将在后续版本中的一个版本停止使用。"
+"旧系统将在后续的一个版本中停止使用。"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
-#, fuzzy
 msgid "Re-initializing Repository…"
-msgstr "重新初始化存储库…"
+msgstr "重新初始化存储库中…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
@@ -1540,7 +1480,7 @@ msgstr "完毕！ 请重新启动 bottles。"
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
 msgid "Post-Processing Effects Settings"
-msgstr ""
+msgstr "后期处理效果设置"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
@@ -1744,21 +1684,18 @@ msgstr "浏览文件"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
 msgid "Wine prefix name"
-msgstr "Wineprefix 名称"
+msgstr "Wine 前缀名"
 
 #: bottles/frontend/ui/importer-entry.blp:28
 msgid "Manager"
 msgstr "管理器"
 
 #: bottles/frontend/ui/importer-entry.blp:38
-#, fuzzy
 msgid "This Wine prefix was already imported in Bottles."
-msgstr "该 wineprefix 已导入 Bottles 中。"
+msgstr "该 Wine 前缀已导入 Bottles 中。"
 
 #: bottles/frontend/ui/importer.blp:22
-#, fuzzy
 msgid "Import a Bottle backup"
 msgstr "导入 Bottles 备份"
 
@@ -1771,13 +1708,12 @@ msgid "No Prefixes Found"
 msgstr "未找到前缀"
 
 #: bottles/frontend/ui/importer.blp:39
-#, fuzzy
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"从 Lutris、PlayOnLinux 等处未找到前缀。\n"
-"使用顶部的图标从备份中导入 bottle"
+"未找到外部前缀。Bottles 有权访问它们吗？\n"
+"使用顶部的图标从备份中导入 bottle。"
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
@@ -1804,14 +1740,12 @@ msgid "Unknown"
 msgstr "未知"
 
 #: bottles/frontend/ui/installer-entry.blp:51
-#, fuzzy
 msgid "Install this Program"
 msgstr "安装此程序"
 
 #: bottles/frontend/ui/installer-entry.blp:69
-#, fuzzy
 msgid "Program Menu"
-msgstr "程序名称"
+msgstr "程序菜单"
 
 #: bottles/frontend/ui/library-entry.blp:16
 msgid "Remove from Library"
@@ -1819,7 +1753,7 @@ msgstr "从库中删除"
 
 #: bottles/frontend/ui/library-entry.blp:63
 msgid "No Thumbnail"
-msgstr ""
+msgstr "无缩略图"
 
 #: bottles/frontend/ui/library-entry.blp:90
 msgid "Item name"
@@ -1848,9 +1782,8 @@ msgid "This bottle looks damaged."
 msgstr "该 bottle 看起来已损坏。"
 
 #: bottles/frontend/ui/list-entry.blp:55
-#, fuzzy
 msgid "Execute in this Bottle"
-msgstr "在该 bottle 中执行"
+msgstr "在这个 bottle 中执行"
 
 #: bottles/frontend/ui/list-entry.blp:69
 msgid "Run Here"
@@ -1884,12 +1817,11 @@ msgstr "Bottles"
 
 #: bottles/frontend/ui/list.blp:43
 msgid "Click \"Create a new Bottle…\" to create a new bottle."
-msgstr ""
+msgstr "单击 \"新建一个 Bottle…\" 新建一个 Bottle。"
 
 #: bottles/frontend/ui/list.blp:50
-#, fuzzy
 msgid "Create a new Bottle…"
-msgstr "新建一个 Bottle"
+msgstr "新建一个 Bottle…"
 
 #: bottles/frontend/ui/list.blp:64
 msgid "No Results Found"
@@ -2005,7 +1937,6 @@ msgid "Creating a Bottle…"
 msgstr "正在创建 Bottle…"
 
 #: bottles/frontend/ui/new.blp:242
-#, fuzzy
 msgid "Bottle Created"
 msgstr "Bottle 已创建"
 
@@ -2018,9 +1949,8 @@ msgid "Welcome to Bottles"
 msgstr "欢迎使用 Bottles"
 
 #: bottles/frontend/ui/onboard.blp:60
-#, fuzzy
 msgid "Run Windows Software on Linux."
-msgstr "使用 Bottles 在 Linux 上运行 Windows 软件！"
+msgstr "在 Linux 上运行 Windows 软件。"
 
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
@@ -2041,7 +1971,6 @@ msgid "We need a few more minutes to set everything up…"
 msgstr "我们还需要几分钟来设置一切…"
 
 #: bottles/frontend/ui/onboard.blp:105
-#, fuzzy
 msgid "All Ready!"
 msgstr "大功告成！"
 
@@ -2152,13 +2081,12 @@ msgid "Advanced"
 msgstr "高级"
 
 #: bottles/frontend/ui/preferences.blp:131
-#, fuzzy
 msgid "Bottles Directory"
-msgstr "选择一个目录"
+msgstr "Bottles 目录"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr ""
+msgstr "包含你的 Bottle 的数据的目录。"
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
@@ -2212,12 +2140,10 @@ msgid "In early development."
 msgstr "早期开发中。"
 
 #: bottles/frontend/ui/program-entry.blp:19
-#, fuzzy
 msgid "Launch with Terminal"
 msgstr "用终端启动"
 
 #: bottles/frontend/ui/program-entry.blp:25
-#, fuzzy
 msgid "Browse Path"
 msgstr "浏览路径"
 
@@ -2226,7 +2152,6 @@ msgid "Change Launch Options…"
 msgstr "更改启动选项…"
 
 #: bottles/frontend/ui/program-entry.blp:43
-#, fuzzy
 msgid "Add to Library"
 msgstr "添加到我的库"
 
@@ -2268,22 +2193,20 @@ msgid "State comment"
 msgstr "状态注释"
 
 #: bottles/frontend/ui/state-entry.blp:16
-#, fuzzy
 msgid "Restore this Snapshot"
-msgstr "恢复该状态"
+msgstr "恢复该快照"
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
 msgstr "删除消息"
 
 #: bottles/frontend/ui/window.blp:16
-#, fuzzy
 msgid "Import…"
-msgstr "导入"
+msgstr "导入…"
 
 #: bottles/frontend/ui/window.blp:26
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: bottles/frontend/ui/window.blp:31
 msgid "About Bottles"
@@ -2291,7 +2214,7 @@ msgstr "关于 Bottles"
 
 #: bottles/frontend/ui/window.blp:60
 msgid "Main Menu"
-msgstr ""
+msgstr "主菜单"
 
 #: bottles/frontend/ui/window.blp:74
 msgid ""
@@ -2309,7 +2232,7 @@ msgstr "您已离线，无法下载。"
 #: bottles/frontend/views/bottle_details.py:199
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
-msgstr ""
+msgstr "文件 \"{0}\" 非 .exe 或 .msi 文件"
 
 #: bottles/frontend/views/bottle_details.py:215
 #, python-format
@@ -2317,9 +2240,9 @@ msgid "Updated: %s"
 msgstr "已更新：%s"
 
 #: bottles/frontend/views/bottle_details.py:271
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added"
-msgstr "'{0}' 已添加。"
+msgstr "'{0}' 已添加"
 
 #: bottles/frontend/views/bottle_details.py:275
 msgid "Choose an executable path"
@@ -2330,9 +2253,8 @@ msgid "Add"
 msgstr "添加"
 
 #: bottles/frontend/views/bottle_details.py:345
-#, fuzzy
 msgid "Hide Hidden Programs"
-msgstr "显示/隐藏隐藏的程序"
+msgstr "隐藏已隐藏的程序"
 
 #: bottles/frontend/views/bottle_details.py:378
 #: bottles/frontend/views/list.py:118
@@ -2356,7 +2278,7 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:505
 #: bottles/frontend/windows/main_window.py:197
 msgid "_Dismiss"
-msgstr ""
+msgstr "不理会 (_D)"
 
 #: bottles/frontend/views/bottle_details.py:418
 msgid "Select the location where to save the backup config"
@@ -2367,57 +2289,55 @@ msgid "Select the location where to save the backup archive"
 msgstr "选择要保存备份归档的位置"
 
 #: bottles/frontend/views/bottle_details.py:427
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup created for \"{0}\""
-msgstr "已创建 '{0}' 的备份。"
+msgstr "已创建 '{0}' 的备份"
 
 #: bottles/frontend/views/bottle_details.py:429
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr "备份 '{0}' 失败。"
+msgstr "备份 '{0}' 失败"
 
 #: bottles/frontend/views/bottle_details.py:447
 msgid "Export"
 msgstr "导出"
 
 #: bottles/frontend/views/bottle_details.py:482
-#, fuzzy
 msgid "Are you sure you want to permanently delete \"{}\"?"
-msgstr "您确定想要删除该 Bottle 和所有文件吗？"
+msgstr "您确定要永久删除 \"{}\" 吗？"
 
 #: bottles/frontend/views/bottle_details.py:483
 msgid ""
 "This will permanently delete all programs and settings associated with it."
-msgstr ""
+msgstr "这会永久删除与它关联的所有程序和设置。"
 
 #: bottles/frontend/views/bottle_details.py:486
 #: bottles/frontend/views/bottle_preferences.py:681
 msgid "_Delete"
-msgstr ""
+msgstr "删除(_D)"
 
 #: bottles/frontend/views/bottle_details.py:501
-#, fuzzy
 msgid "Missing Runner"
-msgstr "Wine 运行器"
+msgstr "缺少运行器"
 
 #: bottles/frontend/views/bottle_details.py:502
 msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
-msgstr ""
+msgstr "缺少这个 bottle 请求的运行器。通过 Bottles 选项安装它或选择一个新的 Bottle "
+"来运行程序。"
 
 #: bottles/frontend/views/bottle_details.py:580
-#, fuzzy
 msgid "Are you sure you want to force stop all processes?"
-msgstr "您确定想要删除该 Bottle 和所有文件吗？"
+msgstr "您确定要强制停止所有进程吗？"
 
 #: bottles/frontend/views/bottle_details.py:581
 msgid "This can cause data loss, corruption, and programs to malfunction."
-msgstr ""
+msgstr "这可能导致数据丢失、损坏和程序故障。"
 
 #: bottles/frontend/views/bottle_details.py:584
 msgid "Force _Stop"
-msgstr ""
+msgstr "强制停止(_S)"
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "This feature is not available on your system."
@@ -2429,16 +2349,15 @@ msgstr "选择可执行文件的工作目录"
 
 #: bottles/frontend/views/bottle_preferences.py:367
 msgid "Directory that contains the data of \"{}\"."
-msgstr ""
+msgstr "包含 \"{}\" 数据的目录。"
 
 #: bottles/frontend/views/bottle_preferences.py:677
-#, fuzzy
 msgid "Are you sure you want to delete all snapshots?"
-msgstr "您确定想要删除该 Bottle 和所有文件吗？"
+msgstr "您确定要删除所有快照吗？"
 
 #: bottles/frontend/views/bottle_preferences.py:678
 msgid "This will delete all snapshots, but keep your files."
-msgstr ""
+msgstr "这将删除所有的快照，但保留你的文件。"
 
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2457,14 +2376,12 @@ msgid "Return to your bottles."
 msgstr "返回你的 bottles。"
 
 #: bottles/frontend/views/importer.py:89
-#, fuzzy
 msgid "Backup imported successfully"
-msgstr "备份导入成功。"
+msgstr "备份导入成功"
 
 #: bottles/frontend/views/importer.py:91
-#, fuzzy
 msgid "Import failed"
-msgstr "导入失败。"
+msgstr "导入失败"
 
 #: bottles/frontend/views/importer.py:103
 #: bottles/frontend/views/importer.py:132
@@ -2503,9 +2420,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "已获取 {1} 个软件包中的 {0} 个"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "Name has special characters or already in use"
-msgstr "名称有特殊字符或已在使用。"
+msgstr "名称有特殊字符或已在使用"
 
 #: bottles/frontend/views/new.py:156
 msgid "Choose a recipe file"
@@ -2520,23 +2436,21 @@ msgid "There was an error creating the bottle."
 msgstr "创建该 bottle 时遇到一个问题。"
 
 #: bottles/frontend/views/new.py:234
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr "成功创建了新状态 [{0}]！"
+msgstr "成功创建了 \"{0}\"。"
 
 #: bottles/frontend/views/preferences.py:117
 msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "未找到 Steam 或 Bottles 没有足够的权限。"
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose new Bottles path"
 msgstr "选择新的 Bottles 路径"
 
 #: bottles/frontend/views/preferences.py:172
-#, fuzzy
 msgid "Relaunch Bottles?"
-msgstr "选择 Bottle"
+msgstr "重启 Bottles ?"
 
 #: bottles/frontend/views/preferences.py:173
 msgid ""
@@ -2546,10 +2460,14 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
+"需要重新启动 Bottles 才能使用这个目录。\n"
+"\n"
+"请确保在重新启动 Bottles 前关闭从该 Bottles "
+"启动的每个程序，因为不这样做会导致数据丢失、损坏和程序故障。"
 
 #: bottles/frontend/views/preferences.py:176
 msgid "_Relaunch"
-msgstr ""
+msgstr "重启(_R)"
 
 #: bottles/frontend/views/preferences.py:217
 msgid "Based on Valve's Wine, includes staging and Proton patches."
@@ -2590,40 +2508,41 @@ msgid "Manifest for {0}"
 msgstr "{0} 的清单"
 
 #: bottles/frontend/widgets/dependency.py:166
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" installed"
-msgstr "{0} 已安装。"
+msgstr "\"{0}\" 已安装"
 
 #: bottles/frontend/widgets/dependency.py:180
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "'{0}' 安装失败。"
+msgstr "'{0}' 安装失败"
 
 #: bottles/frontend/widgets/importer.py:66
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" imported"
-msgstr "'{0}' 已导入。"
+msgstr "'{0}' 已导入"
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
 "This application may work poorly. The installer was configured to provide "
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
-msgstr ""
+msgstr "这个程序可能无法良好运作。安装程序被配置为提供最好的体验，但仍可能出现故障，"
+"不稳定和缺少可以正常工作的功能。"
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
-msgstr ""
+msgstr "这个程序有明显的故障，但这些故障不会影响程序的功能。"
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
-msgstr ""
+msgstr "这个程序有小故障。"
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
-msgstr ""
+msgstr "这个程序完美运行。"
 
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
@@ -2631,47 +2550,47 @@ msgid "Review for {0}"
 msgstr "{0} 的评论"
 
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\"…"
 msgstr "正在启动 '{0}'…"
 
 #: bottles/frontend/widgets/program.py:190
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
 msgstr "正在使用 Steam 启动“{0}”…"
 
 #: bottles/frontend/widgets/program.py:212
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr "'{0}' 已隐藏。"
+msgstr "'{0}' 已隐藏"
 
 #: bottles/frontend/widgets/program.py:214
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" showed"
-msgstr "'{0}' 已显示。"
+msgstr "'{0}' 已显示"
 
 #: bottles/frontend/widgets/program.py:237
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" removed"
-msgstr "'{0}' 已移除。"
+msgstr "'{0}' 已移除"
 
 #: bottles/frontend/widgets/program.py:251
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr "'{0}' 已重命名为 '{1}'。"
+msgstr "'{0}' 已重命名为 '{1}'"
 
 #: bottles/frontend/widgets/program.py:271
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
 msgstr "已为 '{0}' 创建桌面条目"
 
 #: bottles/frontend/widgets/program.py:287
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your library"
-msgstr "'{0}' 已添加到我的库"
+msgstr "'{0}' 已添加到你的库"
 
 #: bottles/frontend/widgets/program.py:303
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your Steam library"
 msgstr "'{0}' 已添加至你的 Steam 库"
 
@@ -2688,23 +2607,20 @@ msgstr ""
 "            在以下现有的报告中报告反馈。"
 
 #: bottles/frontend/windows/display.py:99
-#, fuzzy
 msgid "Updating display settings, please wait…"
-msgstr "正在更新 Windows 版本，请稍等…"
+msgstr "正在更新显示设置，请稍等…"
 
 #: bottles/frontend/windows/display.py:111
-#, fuzzy
 msgid "Display settings updated"
-msgstr "显示设置"
+msgstr "显示设置已更新"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
 msgstr "未找到覆盖。"
 
 #: bottles/frontend/windows/drives.py:75
-#, fuzzy
 msgid "Select Drive Path"
-msgstr "选择文件"
+msgstr "选择驱动器路径"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
@@ -2790,7 +2706,7 @@ msgstr "退回到默认路径。 不会列出来自给定路径的 bottles。"
 
 #: bottles/frontend/windows/main_window.py:315
 msgid "Donate"
-msgstr ""
+msgstr "捐赠"
 
 #: bottles/frontend/windows/main_window.py:317
 msgid "Third-Party Libraries and Special Thanks"
@@ -2798,11 +2714,10 @@ msgstr "第三方库和特别感谢"
 
 #: bottles/frontend/windows/main_window.py:342
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "资金提供方和捐赠人"
 
 #: data/com.usebottles.bottles.desktop.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
-#, fuzzy
 msgid "Run Windows Software"
 msgstr "运行 Windows 软件"
 
@@ -3043,113 +2958,100 @@ msgstr "……和更多您可以通过安装 Bottles 来发现的功能！"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:85
 msgid "The PulseAudio Latency setting is now deprecated and enabled by default"
-msgstr ""
+msgstr "PulseAudio Latency 设置现在已弃用，默认情况下启用"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:86
 msgid "Bottle details automatically show on bottle creation"
-msgstr ""
+msgstr "新建 bottle 时自动显示 Bottle 详情"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:87
 msgid "Bottles now complies with GNOME Circle guidelines"
-msgstr ""
+msgstr "Bottles 现在遵照 GNOME Circle 指南"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:88
 msgid "Disable pulseaudio_latency by default."
-msgstr ""
+msgstr "默认禁用 pulseaudio_latency。"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Fixed a crash during startup due to uninstaller."
-msgstr ""
+msgstr "修正了启动时由于卸载程序导致的崩溃。"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:90
 msgid "Implemented a queue for installing components."
-msgstr ""
+msgstr "实现了安装组件的队列。"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:91
-#, fuzzy
 msgid "Fixed bottle deletion not working sometimes."
-msgstr "修正了检测破损 bootle 的一个错误"
+msgstr "修复了有时无法删除 bottle 的错误。"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:92
-#, fuzzy
 msgid "Support for latest dxvk @Blisto91"
-msgstr "支持 .lnk 文件"
+msgstr "支持最新的 dxvk @Blisto91"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:93
 msgid "Fix for DLSS"
-msgstr ""
+msgstr "DLSS 的修复"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Added tooltips for program gades"
-msgstr ""
+msgstr "增加了程序等级的提示信息"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
-#, fuzzy
 msgid "Fix installer completion @jntesteves"
-msgstr "安装组件失败，已经尝试三次。"
+msgstr "修复安装程序完毕 @jntesteves"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fix gamescope arguments @jntesteves"
-msgstr ""
+msgstr "修复 gamescope 参数 @jntesteves"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:97
 msgid "Added Ctrl + W shortcut for closing windows @A6GibKm"
-msgstr ""
+msgstr "新增关闭窗口的 Ctrl + W 快捷方式 @A6GibKm"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:98
 msgid "Fixed bottles unsetting XDG_DATA_HOME"
-msgstr ""
+msgstr "修复了还原 XDG_DATA_HOME 选项的 Bottles"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:99
-#, fuzzy
 msgid "French translations thanks to @julroy and @tymmsyde"
-msgstr "感谢 @rjousse18、@julroy67 的法语翻译"
+msgstr "感谢 @julroy 和 @tymmsyde 的法语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:100
-#, fuzzy
 msgid "Turkish translations thanks to @54linux-ea and @ruizlenato"
-msgstr "感谢 @rjousse18、@julroy67 的法语翻译"
+msgstr "感谢 @54linux-ea 和 @ruizlenato 的土耳其语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Russian translations thanks to @lenemter and @Smoque"
-msgstr "感谢 @Knebergish、@lenemter、@Smoque 的俄语翻译"
+msgstr "感谢 @lenemter 和 @Smoque 的俄语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:102
-#, fuzzy
 msgid "Catalan translations thanks to @rogervc"
-msgstr "感谢 @milotype 的克罗地亚语翻译"
+msgstr "感谢 @@rogervc 的加泰罗尼亚语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic tran*slations thanks to @TheDarkEvil"
-msgstr "感谢 @SashaPGT 的泰语翻译"
+msgstr "感谢 @TheDarkEvil 的阿拉伯语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:104
-#, fuzzy
 msgid "Korean translations thanks to @MarongHappy"
-msgstr "感谢 @MartinIIOT 翻译斯洛伐克语"
+msgstr "感谢 @MarongHappy 的韩语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Protuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
-msgstr "感谢 @laralem、@SantosSI、Pão com omlet 和 @hugok79 的葡萄牙语翻译"
+msgstr "感谢 @davipatricio、@SantosSi 和 @vitorhcl 的葡萄牙语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Galician translations thanks to @NicoSGF64"
-msgstr "感谢 @gdonisi 的意大利语翻译"
+msgstr "感谢 @@NicoSGF64 的加利西亚语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:107
-#, fuzzy
 msgid "Hebrew translations thanks to @itayweb"
-msgstr "感谢 @milotype 的克罗地亚语翻译"
+msgstr "感谢 @itayweb 的希伯来语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:108
-#, fuzzy
 msgid "Polish translations thanks to @Mikutut"
-msgstr "感谢 Krzysztof Marcinek 的波兰语翻译"
+msgstr "感谢 @Mikutut 的波兰语翻译"
 
 #~ msgid "Choose path"
 #~ msgstr "选择路径"
