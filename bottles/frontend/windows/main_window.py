@@ -293,7 +293,14 @@ class MainWindow(Adw.ApplicationWindow):
         for w in widgets:
             w.set_visible(not status)
 
-    def show_toast(self, message, timeout=3, action_label=None, action_callback=None, dismissed_callback=None) -> Adw.Toast:
+    def show_toast(self,
+                   message,
+                   timeout=3,
+                   action_label=None,
+                   action_callback=None,
+                   dismissed_callback=None
+                   ) -> Adw.Toast:
+
         toast = Adw.Toast.new(message)
         toast.props.timeout = timeout
 
