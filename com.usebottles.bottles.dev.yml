@@ -19,7 +19,6 @@ finish-args:
   - --system-talk-name=org.freedesktop.UDisks2
   - --env=LD_LIBRARY_PATH=/app/lib:/app/lib32
   - --env=PATH=/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/bin:/usr/lib/extensions/vulkan/OBSVkCapture/bin/
-  - --env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/app/lib32/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0
   - --require-version=1.1.2
 
 inherit-extensions:
@@ -245,21 +244,6 @@ modules:
   # Libraries
   # ----------------------------------------------------------------------------
 
-  - name: mesa-glu
-    config-opts: &mesa_glu_opts
-      - --disable-static
-    sources: &mesa_glu_sources
-      - type: archive
-        url: https://mesa.freedesktop.org/archive/glu/glu-9.0.2.tar.xz
-        sha256: 6e7280ff585c6a1d9dfcdf2fca489251634b3377bfc33c29e4002466a38d02d4
-
-  - name: mesa-glu-32bit
-    build-options:
-      arch:
-        x86_64: *compat_i386_opts
-    config-opts: *mesa_glu_opts
-    sources: *mesa_glu_sources
-
   - name: rpcsvc-proto
     buildsystem: autotools
     sources:
@@ -394,8 +378,8 @@ modules:
       - cp -a * /app/etc/runtime/
     sources:
       - type: archive
-        url: https://github.com/bottlesdevs/runtime/releases/download/0.5/runtime.tar.gz
-        sha256: 00f7e57f0b54057343cfe49de52690c7b3024771478fc75cfe55c2154e13834f
+        url: https://github.com/bottlesdevs/runtime/releases/download/0.6/runtime.tar.gz
+        sha256: f2b47012cde0a7e9c65ca4d793d19a2f9d3fe68b76dd457839e62ec34f214528
 
   - name: bottles
     builddir: true
