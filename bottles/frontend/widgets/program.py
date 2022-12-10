@@ -191,6 +191,7 @@ class ProgramEntry(Adw.ActionRow):
         self.pop_actions.popdown()  # workaround #1640
 
     def stop_process(self, widget):
+        self.window.show_toast(_("Stopping \"{0}\"…").format(self.program["name"]))
         winedbg = WineDbg(self.config)
         widget.set_sensitive(False)
         winedbg.kill_process(self.executable)

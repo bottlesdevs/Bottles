@@ -56,10 +56,25 @@ class LibraryView(Adw.Bin):
             entry = LibraryEntry(self, u, e)
             self.main_flow.append(entry)
 
-    def remove_entry(self, uuid):
+    def remove_entry(self,  entry):
+        def undo_callback(*args):
+            entry.show()
+
+        def dismissed_callback(*args):
+            self.__delete_entry(entry)
+
+        entry.hide()
+        self.window.show_toast(
+            message=_("\"{0}\" removed from the library.").format(entry.name),
+            timeout=5,
+            action_label=_("Undo"),
+            action_callback=undo_callback,
+            dismissed_callback=dismissed_callback
+        )
+
+    def __delete_entry(self, entry):
         library_manager = LibraryManager()
-        library_manager.remove_from_library(uuid)
-        self.update()
+        library_manager.remove_from_library(entry.uuid)
 
     def add_css_entry(self, entry, color):
         gtk_context = self.get_style_context()

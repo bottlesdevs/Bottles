@@ -18,7 +18,6 @@
 import logging
 import os
 import math
-from PIL import Image
 from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Adw
@@ -44,15 +43,18 @@ class LibraryEntry(Gtk.Box):
     label_bottle = Gtk.Template.Child()
     label_no_cover = Gtk.Template.Child()
     img_cover = Gtk.Template.Child()
-    img_icon = Gtk.Template.Child()
-    btn_menu = Gtk.Template.Child()
+    revealer_run = Gtk.Template.Child()
+    revealer_details = Gtk.Template.Child()
+    overlay = Gtk.Template.Child()
 
     # endregion
 
     def __init__(self, library, uuid, entry, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.library = library
+        self.window = library.window
         self.manager = library.window.manager
+        self.name = entry['name']
         self.uuid = uuid
         self.entry = entry
         self.config = self.__get_config()
@@ -61,7 +63,6 @@ class LibraryEntry(Gtk.Box):
             return
 
         self.program = self.__get_program()
-        self.set_size_request(240, 420)
 
         if len(entry['name']) >= 15:
             name = entry['name'][:13] + "…"
@@ -71,48 +72,21 @@ class LibraryEntry(Gtk.Box):
         self.label_name.set_text(name)
         self.label_bottle.set_text(entry['bottle']['name'])
 
-        if entry.get('icon'):
-            use_default = False
-            if os.path.exists(entry['icon']):
-                try:
-                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(entry['icon'], 24, 24)
-                    self.img_icon.set_from_pixbuf(pixbuf)
-                except GLib.GError:
-                    use_default = True
-            if entry['icon'] == "com.usebottles.bottles-program" or use_default:
-                self.img_icon.set_from_icon_name("com.usebottles.bottles-program")
-            self.img_icon.set_pixel_size(24)
-            self.img_icon.set_visible(True)
-
         if entry.get('thumbnail'):
             path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
-            #texture = Gdk.Texture.new_from_filename(path)
             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 240, 360)
             self.img_cover.set_pixbuf(pixbuf)
-            #self.img_cover.set_paintable(texture)
             self.img_cover.set_visible(True)
             self.label_no_cover.set_visible(False)
-            self.__calculate_button_color(path=path)
 
+        motion_ctrl = Gtk.EventControllerMotion.new()
+        motion_ctrl.connect("enter", self.__on_motion_enter)
+        motion_ctrl.connect("leave", self.__on_motion_leave)
+        self.overlay.add_controller(motion_ctrl)
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_stop.connect("clicked", self.stop_process)
         self.btn_remove.connect("clicked", self.__remove_entry)
-
-        '''
-        if is_steam:
-            self.set_subtitle(_("This is a Steam application"))
-            for w in [
-                self.btn_run,
-                self.btn_stop,
-                self.btn_menu,
-                self.sep
-            ]:
-                w.set_visible(False)
-                w.set_sensitive(False)
-            self.btn_launch_steam.set_visible(True)
-            self.btn_launch_steam.set_sensitive(True)
-        '''
 
     def __get_config(self):
         bottles = self.manager.local_bottles
@@ -135,8 +109,9 @@ class LibraryEntry(Gtk.Box):
             status = result
             if not isinstance(result, bool):
                 status = result.status
-        self.btn_run.set_visible(status)
+        self.btn_remove.set_visible(status)
         self.btn_stop.set_visible(not status)
+        self.btn_run.set_visible(status)
 
     def __is_alive(self):
         winedbg = WineDbg(self.config)
@@ -159,18 +134,10 @@ class LibraryEntry(Gtk.Box):
         )
 
     def __remove_entry(self, *args):
-        self.library.remove_entry(self.uuid)
-
-    def __calculate_button_color(self, path):
-        image = Image.open(path)
-        image = image.crop((0, 0, 47, 58))
-        image.thumbnail((150, 150))
-        palette = image.convert('P', palette=Image.ADAPTIVE, colors=1).getpalette()
-        rgb = (255-palette[0], 255-palette[1], 255-palette[2])
-        button_color = math.floor(0.299*rgb[0])+math.floor(0.587*rgb[1])+math.floor(0.144*rgb[2])
-        self.library.add_css_entry(entry=self, color=button_color)
+        self.library.remove_entry(self)
 
     def run_executable(self, widget, with_terminal=False):
+        self.window.show_toast(_("Launching \"{0}\"…").format(self.program["name"]))
         RunAsync(
             WineExecutor.run_program, 
             callback=self.__reset_buttons, 
@@ -183,6 +150,23 @@ class LibraryEntry(Gtk.Box):
         self.manager.steam_manager.launch_app(self.config["CompatData"])
 
     def stop_process(self, widget):
+        self.window.show_toast(_("Stopping \"{0}\"…").format(self.program["name"]))
         winedbg = WineDbg(self.config)
         winedbg.kill_process(name=self.program["executable"])
         self.__reset_buttons(True)
+
+    def __on_motion_enter(self, *args):
+        self.revealer_run.set_reveal_child(True)
+        self.revealer_details.set_reveal_child(True)
+
+    def __on_motion_leave(self, *args):
+        self.revealer_run.set_reveal_child(False)
+        self.revealer_details.set_reveal_child(False)
+
+    # hide() and show() are essentialy workarounds to avoid keeping
+    # the empty space of the hidden entry in the GtkFlowBox
+    def hide(self):
+        self.get_parent().set_visible(False)
+
+    def show(self):
+        self.get_parent().set_visible(True)
