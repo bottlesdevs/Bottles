@@ -164,8 +164,7 @@ class LibraryEntry(Gtk.Box):
         )
 
     def __remove_entry(self, *args):
-        self.window.show_toast(_("\"{0}\" removed from the library.").format(self.program["name"]))
-        self.library.remove_entry(self.uuid)
+        self.library.remove_entry(self.program["name"], self.uuid)
 
     # def __calculate_button_color(self, path):
     #     image = Image.open(path)

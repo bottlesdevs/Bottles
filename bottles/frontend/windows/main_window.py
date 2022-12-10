@@ -293,9 +293,17 @@ class MainWindow(Adw.ApplicationWindow):
         for w in widgets:
             w.set_visible(not status)
 
-    def show_toast(self, message, timeout=3):
+    def show_toast(self, message, timeout=3, action_label=None, action_callback=None, expire_callback=None) -> Adw.Toast:
         toast = Adw.Toast.new(message)
         toast.props.timeout = timeout
+
+        if action_label and action_callback:
+            toast.set_button_label(action_label)
+            toast.connect("button-clicked", action_callback)
+
+        if expire_callback:
+            toast.connect("dismissed", expire_callback)
+
         self.toasts.add_toast(toast)
 
     def check_core_deps(self):
