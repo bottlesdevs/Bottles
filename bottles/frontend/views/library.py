@@ -34,7 +34,6 @@ class LibraryView(Adw.Bin):
     main_flow = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     style_provider = Gtk.CssProvider()
-    __deletion_queue = []
     # endregion
 
     def __init__(self, window, **kwargs):
@@ -44,7 +43,6 @@ class LibraryView(Adw.Bin):
         self.update()
 
     def update(self):
-        self.__deletion_queue = []
         library_manager = LibraryManager()
         entries = library_manager.get_library()
 
@@ -58,30 +56,25 @@ class LibraryView(Adw.Bin):
             entry = LibraryEntry(self, u, e)
             self.main_flow.append(entry)
 
-    def remove_entry(self, name, uuid):
-        self.__add_to_deletion_queue(uuid)
-        toast = self.window.show_toast(
-            message=_("\"{0}\" removed from the library.").format(name),
+    def remove_entry(self,  entry):
+        def undo_callback(*args):
+            entry.show()
+
+        def dismissed_callback(*args):
+            self.__delete_entry(entry)
+
+        entry.hide()
+        self.window.show_toast(
+            message=_("\"{0}\" removed from the library.").format(entry.name),
             timeout=5,
             action_label=_("Undo"),
-            action_callback=lambda: self.__remove_from_deletion_queue(uuid),
-            expired_callback=lambda: self.__has_in_deletion_queue(uuid) and self.__delete_entry(uuid)
+            action_callback=undo_callback,
+            dismissed_callback=dismissed_callback
         )
-        self.update()
 
-    def __delete_entry(self, uuid):
+    def __delete_entry(self, entry):
         library_manager = LibraryManager()
-        library_manager.remove_from_library(uuid)
-        self.update()
-
-    def __add_to_deletion_queue(self, uuid, *args):
-        self.__deletion_queue.append(uuid)
-
-    def __remove_from_deletion_queue(self, uuid, *args):
-        self.__deletion_queue.remove(uuid)
-
-    def __has_in_deletion_queue(self, uuid, *args):
-        return uuid in self.__deletion_queue
+        library_manager.remove_from_library(entry.uuid)
 
     def add_css_entry(self, entry, color):
         gtk_context = self.get_style_context()
