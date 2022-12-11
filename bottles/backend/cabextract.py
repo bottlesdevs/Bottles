@@ -111,10 +111,7 @@ class CabExtract:
                     f"-q {self.path}"
                 ]
                 command = " ".join(command)
-                subprocess.Popen(
-                    command,
-                    shell=True
-                ).communicate()
+                subprocess.Popen(command,  shell=True).communicate()
 
             logging.info(f"Cabinet {self.name} extracted successfully")
             return True

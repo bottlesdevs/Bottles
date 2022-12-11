@@ -70,6 +70,7 @@ class HealthChecker:
             "MemAvailable": "n/a"
         }
         self.get_ram_data()
+        
         if not "FLATPAK_ID" in os.environ:
             self.cabextract = self.check_cabextract()
             self.p7zip = self.check_p7zip()
