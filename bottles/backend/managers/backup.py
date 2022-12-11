@@ -33,8 +33,6 @@ from bottles.frontend.operation import OperationManager
 
 logging = Logger()
 
-RunnerName = NewType('RunnerName', str)
-
 
 class BackupManager:
 
