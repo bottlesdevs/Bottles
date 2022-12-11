@@ -216,7 +216,7 @@ class ComponentManager:
                     task_id=task_id
                 ).download()
 
-                if not res:
+                if not res.status:
                     GLib.idle_add(self.__operation_manager.remove_task, task_id)
                     return False
 
@@ -351,8 +351,8 @@ class ComponentManager:
 
         logging.info(f"Installing component: [{component_name}].")
         file = manifest["File"][0]
-        # Download component
-        download = self.download(
+
+        res = self.download(
             download_url=file["url"],
             file=file["file_name"],
             rename=file["rename"],
@@ -360,7 +360,7 @@ class ComponentManager:
             func=func
         )
 
-        if not download and func:
+        if not res and func:
             '''
             If the download fails, execute the given func passing
             failed=True as a parameter.
