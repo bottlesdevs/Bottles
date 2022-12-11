@@ -65,14 +65,7 @@ class Runner:
                 )
 
         # kill wineserver after update
-        wineboot.kill()
-
-        # force kill if still running
-        if wineserver.is_alive():
-            wineserver.force_kill()
-
-        # wait for wineserver to go away
-        wineserver.wait()
+        wineboot.kill(force_if_stalled=True)
 
         # update bottle config
         up_config = manager.update_config(
