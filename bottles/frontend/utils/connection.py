@@ -16,6 +16,7 @@
 #
 
 import os
+import subprocess
 import urllib.request
 from datetime import datetime
 from gettext import gettext as _
@@ -48,7 +49,15 @@ class ConnectionUtils:
             return False
 
         try:
-            urllib.request.urlopen('https://repo.usebottles.com/components/index.yml', timeout=5)
+            res = subprocess.run(
+                ['curl', '-Is', 'https://repo.usebottles.com'],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+
+            if res.returncode != 0:
+                raise Exception("Connection status: online …")
+
             if self.window is not None:
                 self.window.toggle_btn_noconnection(False)
 
@@ -56,7 +65,7 @@ class ConnectionUtils:
             self.status = True
 
             return True
-        except urllib.error.URLError:
+        except Exception as e:
             logging.warning("Connection status: offline …")
             if self.window is not None:
                 self.window.toggle_btn_noconnection(True)
