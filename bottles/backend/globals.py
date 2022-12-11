@@ -28,10 +28,6 @@ from bottles.backend.managers.data import DataManager
 logging = Logger()
 
 
-class API:
-    notifications = "https://raw.githubusercontent.com/bottlesdevs/data/main/notifications.yml"
-
-
 # xdg data path
 xdg_data_home = GLib.get_user_data_dir()
 
