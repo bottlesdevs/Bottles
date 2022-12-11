@@ -251,6 +251,7 @@ class InstallerManager:
                 logging.error(value, )
                 return False
 
+        logging.info(f"Executing installer script…")
         subprocess.Popen(
             f"bash -c '{script}'",
             shell=True,
@@ -258,7 +259,6 @@ class InstallerManager:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         ).communicate()
-        logging.info(f"Executing installer script…")
         logging.info(f"Finished executing installer script.")
 
     @staticmethod
@@ -272,6 +272,7 @@ class InstallerManager:
         if conf_path.startswith("userdir/"):
             current_user = os.getenv("USER")
             conf_path = conf_path.replace("userdir/", f"drive_c/users/{current_user}/")
+
         conf_path = f"{bottle}/{conf_path}"
         _conf = ConfigManager(config_file=conf_path, config_type=conf_type)
 
@@ -341,8 +342,10 @@ class InstallerManager:
         exe_msi_steps = [s for s in steps
                          if s.get("action", "") in ["install_exe", "install_msi"]
                          and s.get("url", "") == "local"]
+
         if len(exe_msi_steps) == 0:
             return []
+
         files = [s.get("file_name", "") for s in exe_msi_steps]
         return files
 
@@ -411,6 +414,7 @@ class InstallerManager:
         if executable['path'].startswith("userdir/"):
             _userdir = WineUtils.get_user_dir(bottle)
             executable['path'] = executable['path'].replace("userdir/", f"/users/{_userdir}/")
+
         _path = f'C:\\{executable["path"]}'.replace("/", "\\")
         _uuid = str(uuid.uuid4())
         _program = {
@@ -430,6 +434,7 @@ class InstallerManager:
 
         duplicates = [k for k, v in config["External_Programs"].items() if v["path"] == _path]
         ext = config["External_Programs"]
+        
         if duplicates:
             for d in duplicates:
                 del ext[d]
