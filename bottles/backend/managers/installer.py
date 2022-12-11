@@ -37,7 +37,6 @@ from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
-from bottles.backend.layers import LayersStore, Layer
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.wine import WineUtils
@@ -58,7 +57,6 @@ class InstallerManager:
         self.__repo = manager.repository_manager.get_repo("installers", offline)
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
-        self.__layer = None
         self.__local_resources = {}
 
     @lru_cache
@@ -137,7 +135,6 @@ class InstallerManager:
         wineboot = WineBoot(_config)
 
         for dep in dependencies:
-            layer = None
             if is_final:
                 step_fn()
 
@@ -145,21 +142,7 @@ class InstallerManager:
                 continue
 
             _dep = [dep, self.__manager.supported_dependencies.get(dep)]
-
-            if config.get("Environment") == "Layered":
-                if LayersStore.get_layer_by_name(dep):
-                    continue
-                logging.info(f"Installing {dep} in a new layer.")
-                layer = Layer().new(dep, self.__manager.get_latest_runner())
-                layer.mount_bottle(config)
-                _config = layer.runtime_conf
-                wineboot.init()
-
             res = self.__manager.dependency_manager.install(_config, _dep)
-
-            if config.get("Environment") == "Layered" and layer:
-                layer.sweep()
-                layer.save()
 
             if not res.status:
                 return False
@@ -299,73 +282,23 @@ class InstallerManager:
 
     def __set_parameters(self, config, parameters: dict):
         _config = config
-        _components_layers = []
         wineboot = WineBoot(_config)
 
         if "dxvk" in parameters:
             if parameters["dxvk"] != config["Parameters"]["dxvk"]:
-                # region LAYER_COMP_INSTALL
-                if config["Environment"] == "Layered":
-                    if LayersStore.get_layer_by_name("dxvk"):
-                        return
-                    logging.info(f"Installing DXVK in a new layer.")
-                    layer = Layer().new("dxvk", self.__manager.get_latest_runner())
-                    layer.mount_bottle(config)
-                    _components_layers.append(layer)
-                    _config = layer.runtime_conf
-                    wineboot.init()
-                # endregion
                 self.__manager.install_dll_component(_config, "dxvk", remove=not parameters["dxvk"])
 
         if "vkd3d" in parameters:
             if parameters["vkd3d"] != config["Parameters"]["vkd3d"]:
-                # region LAYER_COMP_INSTALL
-                if config["Environment"] == "Layered":
-                    if LayersStore.get_layer_by_name("vkd3d"):
-                        return
-                    logging.info(f"Installing VKD3D in a new layer.")
-                    layer = Layer().new("vkd3d", self.__manager.get_latest_runner())
-                    layer.mount_bottle(config)
-                    _components_layers.append(layer)
-                    _config = layer.runtime_conf
-                    wineboot.init()
-                # endregion
                 self.__manager.install_dll_component(_config, "vkd3d", remove=not parameters["vkd3d"])
 
         if "dxvk_nvapi" in parameters:
             if parameters["dxvk_nvapi"] != config["Parameters"]["dxvk_nvapi"]:
-                # region LAYER_COMP_INSTALL
-                if config["Environment"] == "Layered":
-                    if LayersStore.get_layer_by_name("dxvk_nvapi"):
-                        return
-                    logging.info(f"Installing DXVK NVAPI in a new layer.")
-                    layer = Layer().new("dxvk_nvapi", self.__manager.get_latest_runner())
-                    layer.mount_bottle(config)
-                    _components_layers.append(layer)
-                    _config = layer.runtime_conf
-                    wineboot.init()
-                # endregion
                 self.__manager.install_dll_component(_config, "nvapi", remove=not parameters["dxvk_nvapi"])
 
         if "latencyflex" in parameters:
             if parameters["latencyflex"] != config["Parameters"]["latencyflex"]:
-                # region LAYER_COMP_INSTALL
-                if config["Environment"] == "Layered":
-                    if LayersStore.get_layer_by_name("latencyflex"):
-                        return
-                    logging.info(f"Installing LatencyFlex in a new layer.")
-                    layer = Layer().new("latencyflex", self.__manager.get_latest_runner())
-                    layer.mount_bottle(config)
-                    _components_layers.append(layer)
-                    _config = layer.runtime_conf
-                    wineboot.init()
-                # endregion
                 self.__manager.install_dll_component(_config, "latencyflex", remove=not parameters["latencyflex"])
-
-        # sweep and save layers
-        for c in _components_layers:
-            c.sweep()
-            c.save()
 
         # avoid sync type change if not set to "wine"
         if parameters.get("sync") and config["Parameters"]["sync"] != "wine":
@@ -415,12 +348,6 @@ class InstallerManager:
 
     def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True,
                 local_resources: dict = None):
-        if config.get("Environment") == "Layered":
-            self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
-            self.__layer.mount_bottle(config)
-            wineboot = WineBoot(self.__layer.runtime_conf)
-            wineboot.init()
-
         manifest = self.get_installer(installer[0])
         _config = config
 
@@ -460,26 +387,17 @@ class InstallerManager:
             logging.info("Updating bottle parameters")
             if is_final:
                 step_fn()
-            if self.__layer:
-                self.__set_parameters(self.__layer.runtime_conf, parameters)
-            else:
-                self.__set_parameters(_config, parameters)
+                
+            self.__set_parameters(_config, parameters)
 
         # execute steps
         if steps:
             logging.info("Executing installer steps")
             if is_final:
                 step_fn()
-            if self.__layer:
-                for d in dependencies:
-                    self.__layer.mount(name=d)
-                wineboot = WineBoot(self.__layer.runtime_conf)
-                wineboot.update()
-                if not self.__perform_steps(self.__layer.runtime_conf, steps):
-                    return Result(False, data={"message": "Installation failed, please check the logs."})
-            else:
-                if not self.__perform_steps(_config, steps):
-                    return Result(False, data={"message": "Installer is not well configured."})
+                
+            if not self.__perform_steps(_config, steps):
+                return Result(False, data={"message": "Installer is not well configured."})
 
         # execute checks
         if checks:
@@ -490,79 +408,52 @@ class InstallerManager:
                     return Result(False, data={"message": "Checks failed, the program is not installed."})
 
         # register executable
-        if not self.__layer:
-            if executable['path'].startswith("userdir/"):
-                _userdir = WineUtils.get_user_dir(bottle)
-                executable['path'] = executable['path'].replace("userdir/", f"/users/{_userdir}/")
-            _path = f'C:\\{executable["path"]}'.replace("/", "\\")
-            _uuid = str(uuid.uuid4())
-            _program = {
-                "executable": executable["file"],
-                "arguments": executable.get("arguments", ""),
-                "name": executable["name"],
-                "path": _path,
-                "id": _uuid
-            }
+        if executable['path'].startswith("userdir/"):
+            _userdir = WineUtils.get_user_dir(bottle)
+            executable['path'] = executable['path'].replace("userdir/", f"/users/{_userdir}/")
+        _path = f'C:\\{executable["path"]}'.replace("/", "\\")
+        _uuid = str(uuid.uuid4())
+        _program = {
+            "executable": executable["file"],
+            "arguments": executable.get("arguments", ""),
+            "name": executable["name"],
+            "path": _path,
+            "id": _uuid
+        }
 
-            if "dxvk" in executable:
-                _program["dxvk"] = executable["dxvk"]
-            if "vkd3d" in executable:
-                _program["vkd3d"] = executable["vkd3d"]
-            if "dxvk_nvapi" in executable:
-                _program["dxvk_nvapi"] = executable["dxvk_nvapi"]
+        if "dxvk" in executable:
+            _program["dxvk"] = executable["dxvk"]
+        if "vkd3d" in executable:
+            _program["vkd3d"] = executable["vkd3d"]
+        if "dxvk_nvapi" in executable:
+            _program["dxvk_nvapi"] = executable["dxvk_nvapi"]
 
-            duplicates = [k for k, v in config["External_Programs"].items() if v["path"] == _path]
-            ext = config["External_Programs"]
-            if duplicates:
-                for d in duplicates:
-                    del ext[d]
-                ext[_uuid] = _program
-                self.__manager.update_config(
-                    config=config,
-                    key="External_Programs",
-                    value=ext
-                )
-            else:
-                self.__manager.update_config(
-                    config=config,
-                    key=_uuid,
-                    value=_program,
-                    scope="External_Programs"
-                )
+        duplicates = [k for k, v in config["External_Programs"].items() if v["path"] == _path]
+        ext = config["External_Programs"]
+        if duplicates:
+            for d in duplicates:
+                del ext[d]
+            ext[_uuid] = _program
+            self.__manager.update_config(
+                config=config,
+                key="External_Programs",
+                value=ext
+            )
+        else:
+            self.__manager.update_config(
+                config=config,
+                key=_uuid,
+                value=_program,
+                scope="External_Programs"
+            )
 
-            # create Desktop entry
-            bottles_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
-            icon_path = os.path.join(bottles_icons_path, executable.get('icon'))
-            ManagerUtils.create_desktop_entry(_config, _program, False, icon_path)
+        # create Desktop entry
+        bottles_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
+        icon_path = os.path.join(bottles_icons_path, executable.get('icon'))
+        ManagerUtils.create_desktop_entry(_config, _program, False, icon_path)
 
         if is_final:
             step_fn()
-
-        if self.__layer:
-            # sweep and save
-            self.__layer.sweep()
-            self.__layer.save()
-            _path = f'C:\\{executable["path"]}'.replace("/", "\\")
-
-            # register layer
-            _layer_launcher = {
-                "uuid": self.__layer.get_uuid(),
-                "name": manifest["Name"],
-                "icon": "com.usebottles.bottles-program",
-                "exec_path": _path,
-                "exec_name": executable["file"],
-                "exec_args": executable.get("arguments", ""),
-                "exec_env": {},
-                "exec_cwd": executable["path"],
-                "parameters": parameters,
-                "mounts": dependencies,
-            }
-            self.__manager.update_config(
-                config=config,
-                key=self.__layer.get_uuid(),
-                value=_layer_launcher,
-                scope="Layers"
-            )
 
         logging.info(f"Program installed: {manifest['Name']} in {config['Name']}.", jn=True)
         return Result(True)

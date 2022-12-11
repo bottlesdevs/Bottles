@@ -153,11 +153,7 @@ class DetailsView(Adw.Bin):
             }
         }
 
-        if self.config.get("Environment") == "Layered":
-            del self.__pages["dependencies"]
-            del self.__pages["preferences"]
-            del self.__pages["versioning"]
-        elif self.config.get("Environment") == "Steam":
+        if self.config.get("Environment") == "Steam":
             del self.__pages["versioning"]
 
         self.default_view.append(self.view_bottle)

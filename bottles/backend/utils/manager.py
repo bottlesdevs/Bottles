@@ -79,10 +79,6 @@ class ManagerUtils:
         Gtk.show_uri(window, path, Gdk.CURRENT_TIME)
 
     @staticmethod
-    def get_layer_path(layer: str) -> str:
-        return f"{Paths.layers}/{layer}"
-
-    @staticmethod
     def get_bottle_path(config: dict) -> str:
         if config.get("Environment") == "Steam":
             return os.path.join(Paths.steam, config.get("CompatData"))

@@ -102,6 +102,7 @@ class Logger(logging.getLoggerClass()):
 
                 crash_log.write(d)
 
+        # we write the same to the journal for convenience
         JournalManager.write(
             severity=JournalSeverity.CRASH,
             message="A crash has been detected."

@@ -231,7 +231,6 @@ class HealthChecker:
     @staticmethod
     def get_bottles_envs():
         look = [
-            "LAYERS",
             "TESTING_REPOS",
             "LOCAL_INSTALLERS",
             "LOCAL_COMPONENTS",

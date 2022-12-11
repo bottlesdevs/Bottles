@@ -119,11 +119,7 @@ class Samples:
                 # "dotnet40",
                 # "dotnet48"
             ]
-        },
-        "layered": {
-            "Runner": "wine",
-            "Layers": {}
-        },
+        }
     }
 
     bottles_to_steam_relations = {

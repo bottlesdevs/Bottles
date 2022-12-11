@@ -52,7 +52,6 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.decorators import cache
 from bottles.backend.managers.importer import ImportManager
-from bottles.backend.layers import Layer, LayersStore
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
@@ -239,10 +238,6 @@ class Manager:
             if not os.path.isdir(Paths.steam):
                 logging.info("Steam path doesn't exist, creating now.")
                 os.makedirs(Paths.steam, exist_ok=True)
-
-        if not os.path.isdir(Paths.layers):
-            logging.info("Layers path doesn't exist, creating now.")
-            os.makedirs(Paths.layers, exist_ok=True)
 
         if not os.path.isdir(Paths.dxvk):
             logging.info("Dxvk path doesn't exist, creating now.")
@@ -538,39 +533,6 @@ class Manager:
             return sort_by_version(component["available"])
         except ValueError:
             return sorted(component["available"], reverse=True)
-
-    @staticmethod
-    def launch_layer_program(config, layer):
-        """Mount a layer and launch the program on it."""
-        logging.info(f"Preparing {len(layer['mounts'])} layer(s)…")
-        layer_conf = LayersStore.get_layer_by_uuid(layer['uuid'])
-        if not layer_conf:
-            logging.error("Layer not found.")
-            return False
-        program_layer = Layer().init(layer_conf)
-        program_layer.mount_bottle(config)
-        mounts = []
-
-        for mount in layer['mounts']:
-            _layer = LayersStore.get_layer_by_name(mount)
-            if not _layer:
-                logging.error(f"Layer {mount} not found.")
-                return False
-            mounts.append(_layer["UUID"])
-
-        for mount in mounts:
-            logging.info("Mounting layers…")
-            program_layer.mount(_uuid=mount)
-
-        logging.info("Launching program…")
-        runtime_conf = program_layer.runtime_conf
-        wineboot = WineBoot(runtime_conf)
-        wineboot.update()
-        Runner.run_layer_executable(runtime_conf, layer)
-
-        logging.info("Program exited, unmounting layers…")
-        program_layer.sweep()
-        program_layer.save()
 
     def get_programs(self, config: dict) -> list:
         """
@@ -1300,7 +1262,7 @@ class Manager:
         log_update(_("Applying environment: {0}…").format(environment))
         env = None
 
-        if environment.lower() not in ["custom", "layered"]:
+        if environment.lower() not in ["custom"]:
             env = Samples.environments[environment.lower()]
         elif custom_environment:
             try:
@@ -1356,10 +1318,6 @@ class Manager:
                     self.dependency_manager.install(config, [dep, _dep])
                     template_updated = True
 
-        # create Layers key if Layered
-        if environment == "Layered":
-            config["Layers"] = {}
-
         # save bottle config
         with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
@@ -1385,7 +1343,7 @@ class Manager:
         wineboot.update()
 
         # caching template
-        if (not template and environment != "layered") or template_updated:
+        if not template or template_updated:
             logging.info("Caching template…")
             log_update(_("Caching template…"))
             TemplateManager.new(environment, config)

@@ -508,12 +508,8 @@ the Bottles preferences or choose a new one to run applications.")
 
     def __update_by_env(self):
         widgets = [self.row_uninstaller, self.row_regedit]
-        if self.config.get("Environment") == "Layered":
-            for widget in widgets:
-                widget.set_visible(False)
-        else:
-            for widget in widgets:
-                widget.set_visible(True)
+        for widget in widgets:
+            widget.set_visible(True)
 
     '''
     The following functions are used like wrappers for the

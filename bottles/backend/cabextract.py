@@ -81,7 +81,7 @@ class CabExtract:
                 for file in self.files:
                     '''
                     if file already exists as a symlink, remove it
-                    preventing broken symlinks when using layers
+                    preventing broken symlinks
                     '''
                     if os.path.exists(os.path.join(self.destination, file)):
                         if os.path.islink(os.path.join(self.destination, file)):
