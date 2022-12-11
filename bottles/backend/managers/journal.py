@@ -97,6 +97,7 @@ class JournalManager:
         """Save the journal to the journal file."""
         if journal is None:
             journal = JournalManager.__get_journal()
+
         with contextlib.suppress(IOError, OSError):
             with open(JournalManager.path, "w") as f:
                 yaml.dump(journal, f)
@@ -120,8 +121,10 @@ class JournalManager:
             period = "today"
 
         _journal = JournalManager.__filter_by_date(journal, period)
+
         if plain:
             _journal = yaml.dump(_journal, sort_keys=False, indent=4)
+
         return _journal
 
     @staticmethod
@@ -148,8 +151,10 @@ class JournalManager:
 
         for event_id, event in journal.items():
             timestamp = datetime.strptime(event["timestamp"], "%Y-%m-%d %H:%M:%S").date()
+            
             if start <= timestamp <= end:
                 _journal[event_id] = event
+
         return _journal
 
     @staticmethod
