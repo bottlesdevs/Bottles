@@ -41,8 +41,14 @@ class WineBoot(WineProgram):
     def force(self):
         return self.send_status(-1)
 
-    def kill(self):
-        return self.send_status(0)
+    def kill(self, force_if_stalled: bool = False):
+        self.send_status(0)
+        
+        if force_if_stalled:
+            wineserver = WineServer(self.config)
+            if wineserver.is_alive():
+                wineserver.force_kill()
+                wineserver.wait()
 
     def restart(self):
         return self.send_status(1)
