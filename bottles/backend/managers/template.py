@@ -84,13 +84,21 @@ class TemplateManager:
 
     @staticmethod
     def __validate_template(template_uuid: str):
-        # TODO: just a workaround, need to be improved
         result = True
         template_path = os.path.join(Paths.templates, template_uuid)
+        essentials = [
+            "drive_c/ProgramData",
+            "drive_c/windows",
+        ]
 
         if not os.path.exists(template_path):
             logging.error(f"Template {template_uuid} not found!")
             result = False
+
+        for essential in essentials:
+            if not os.path.exists(os.path.join(template_path, essential)):
+                logging.error(f"Template {template_uuid} is missing essential path: {essential}")
+                result = False
 
         path_size = sum(file.stat().st_size for file in Path(template_path).rglob('*'))
         if path_size < 300000000:
