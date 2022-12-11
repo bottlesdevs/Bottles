@@ -85,6 +85,7 @@ class LibraryManager:
         for k, v in self.__library.items():
             if v['id'] == data['id']:
                 return True
+
         return False
 
     def remove_from_library(self, _uuid: str):
@@ -104,6 +105,7 @@ class LibraryManager:
         """
         with open(self.library_path, 'w') as library_file:
             yaml.dump(self.__library, library_file)
+            
         logging.info(f'Library saved')
 
     def get_library(self):
