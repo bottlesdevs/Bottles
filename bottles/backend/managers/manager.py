@@ -279,14 +279,6 @@ class Manager:
         self.supported_nvapi = catalog["nvapi"]
         self.supported_latencyflex = catalog["latencyflex"]
 
-        # handle winebridge updates
-        '''
-        TODO: retiring winebridge support for now
-        if len(self.winebridge_available) == 0 \
-                or self.winebridge_available[0] != next(iter(self.supported_winebridge)):
-            self.check_winebridge(install_latest=True, update=True)
-        '''
-
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
         catalog = self.dependency_manager.fetch_catalog()
@@ -685,7 +677,6 @@ class Manager:
         """
         Check for local bottles and update the local_bottles list.
         Will also mark the broken ones if the configuration file is missing
-        TODO: move to bottle.py (Bottle manager)
         """
         bottles = os.listdir(Paths.bottles)
 
@@ -723,37 +714,6 @@ class Manager:
 
             if conf_file_yaml.get("run_in_terminal"):
                 conf_file_yaml["run_in_terminal"] = False
-
-            # Migrate old programs to [id] and [name]
-            # TODO: remove this migration after 2022.11.14
-            _temp = {}
-            _changed = False
-            for k, v in conf_file_yaml.get("External_Programs").items():
-                _uuid = str(uuid.uuid4())
-                _k = k
-                _v = v
-                if isinstance(v, str):
-                    continue
-                try:
-                    uuid.UUID(k)
-                except (ValueError, TypeError):
-                    _k = _uuid
-                    _changed = True
-                if "id" not in v:
-                    _v["id"] = _uuid
-                    _changed = True
-                if "name" not in v:
-                    _v["name"] = _v["executable"].split(".")[0]
-                    _changed = True
-                _temp[_k] = _v
-
-            if _changed:
-                self.update_config(
-                    config=conf_file_yaml,
-                    key="External_Programs",
-                    value=_temp
-                )
-            conf_file_yaml["External_Programs"] = _temp
 
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
             for key in miss_keys:
@@ -1024,7 +984,7 @@ class Manager:
     ):
         """
         Create a new bottle from the given arguments.
-        TODO: move to bottle.py (Bottle manager)
+        TODO: will be replaced by the BottleBuilder class.
         """
         def log_update(message):
             if fn_logger:
@@ -1385,7 +1345,7 @@ class Manager:
     def delete_bottle(self, config: dict) -> bool:
         """
         Perform wineserver shutdown and delete the bottle.
-        TODO: move to bottle.py (Bottle manager)
+        TODO: will be replaced by the BottlesManager class.
         """
         logging.info("Stopping bottle…")
         wineboot = WineBoot(config)
@@ -1429,7 +1389,7 @@ class Manager:
         This function tries to repair a broken bottle, creating a
         new bottle configuration with the latest runner. Each fixed
         bottle will use the Custom environment.
-        TODO: move to bottle.py (Bottle manager)
+        TODO: will be replaced by the BottlesManager class.
         """
         logging.info(f"Trying to repair the bottle: [{config['Name']}]…")
 

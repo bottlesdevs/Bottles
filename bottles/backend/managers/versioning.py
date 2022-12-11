@@ -42,9 +42,6 @@ logging = Logger()
 
 # noinspection PyTypeChecker
 class VersioningManager:
-    # TODO: avoid instancing this class from the main manager when the old 
-    #       versioning system will be deprecated
-    
     def __init__(self, window, manager):
         self.window = window
         self.manager = manager

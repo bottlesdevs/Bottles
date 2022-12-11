@@ -47,8 +47,6 @@ class WinRegister:
     def __parse_dict(path: str):
         """
         Parse the registry file and return a dictionary.
-        TODO: this use regex, tests seems to be ok but should
-              be the first method to be checked if problems occur.
         """
         _dict = {}
         exclude = []  # append here the keys to exclude, not safe
