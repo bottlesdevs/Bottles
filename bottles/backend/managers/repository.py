@@ -63,10 +63,13 @@ class RepositoryManager:
 
     def __check_locals(self):
         _locals = {}
+
         if "LOCAL_COMPONENTS" in os.environ:
             _locals["components"] = os.environ["LOCAL_COMPONENTS"]
+
         if "LOCAL_DEPENDENCIES" in os.environ:
             _locals["dependencies"] = os.environ["LOCAL_DEPENDENCIES"]
+
         if "LOCAL_INSTALLERS" in os.environ:
             _locals["installers"] = os.environ["LOCAL_INSTALLERS"]
 
@@ -76,7 +79,9 @@ class RepositoryManager:
         for repo in self.__repositories:
             if repo not in _locals:
                 continue
+
             _path = _locals[repo]
+            
             if os.path.exists(_path):
                 self.__repositories[repo]["url"] = f"file://{_path}/"
                 logging.info(f"Using local {repo} repository at {_path}")
