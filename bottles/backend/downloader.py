@@ -21,6 +21,7 @@ from gi.repository import GLib
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.utils.file import FileUtils
+from bottles.backend.models.result import Result
 
 logging = Logger()
 
@@ -39,12 +40,12 @@ class Downloader:
         self.func = func
         self.task_id = task_id
 
-    def download(self):
+    def download(self) -> Result:
         """Start the download."""
         try:
             with open(self.file, "wb") as file:
                 self.start_time = time.time()
-                headers = {"User-Agent": "curl/7.79.1"}
+                headers = {"User-Agent": "curl/7.79.1"}  # we fake the user-agent to avoid 403 errors on some servers
                 response = requests.get(self.url, stream=True, headers=headers)
                 total_size = int(response.headers.get("content-length", 0))
                 block_size = 1024
@@ -78,12 +79,12 @@ class Downloader:
                         self.__progress(1, 1, 1)
         except requests.exceptions.SSLError:
             logging.error("Download failed due to a SSL error. Your system may have a wrong date/time or wrong certificates.")
-            return False
+            return Result(False, message="Download failed due to a SSL error.")
         except (requests.exceptions.RequestException, OSError):
             logging.error("Download failed! Check your internet connection.")
-            return False
+            return Result(False, message="Download failed! Check your internet connection.")
 
-        return True
+        return Result(True)
 
     def __progress(self, count, block_size, total_size):
         """Update the progress bar."""
