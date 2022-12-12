@@ -56,7 +56,7 @@ class ConnectionUtils:
             )
 
             if res.returncode != 0:
-                raise Exception("Connection status: online …")
+                raise Exception("Connection status: offline …")
 
             if self.window is not None:
                 self.window.toggle_btn_noconnection(False)
