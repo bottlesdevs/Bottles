@@ -1,7 +1,7 @@
 import os
 from typing import NewType, Union
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.globals import Paths
 from bottles.backend.wine.winecommand import WineCommand
 

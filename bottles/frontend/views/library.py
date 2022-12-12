@@ -21,7 +21,7 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk, GLib, Adw
 
-from bottles.backend.managers.library import LibraryManager  # pyright: reportMissingImports=false
+from bottles.backend.managers.library import LibraryManager
 from bottles.frontend.widgets.library import LibraryEntry
 
 

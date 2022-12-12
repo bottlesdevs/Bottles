@@ -19,7 +19,7 @@ import os
 import webbrowser
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.frontend.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.frontend.utils.threading import RunAsync
 
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
 from bottles.frontend.windows.rename import RenameDialog
@@ -60,7 +60,7 @@ class ProgramEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, program, is_layer=False, is_steam=False, check_boot=True, **kwargs):
+    def __init__(self, window, config, program, is_steam=False, check_boot=True, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -69,13 +69,10 @@ class ProgramEntry(Adw.ActionRow):
         self.manager = window.manager
         self.config = config
         self.program = program
-        self.is_layer = is_layer
 
         self.set_title(self.program["name"])
 
-        if is_layer:
-            self.executable = program["exec_name"]
-        elif is_steam:
+        if is_steam:
             self.set_subtitle("Steam")
             for w in [
                 self.btn_run,
@@ -167,13 +164,6 @@ class ProgramEntry(Adw.ActionRow):
         )
 
     def run_executable(self, widget, with_terminal=False):
-        if self.is_layer:
-            RunAsync(
-                self.manager.launch_layer_program,
-                callback=self.__reset_buttons,
-                config=self.config,
-                layer=self.program
-            )
         self.pop_actions.popdown()  # workaround #1640
 
         def _run():

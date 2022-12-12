@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk, Adw
 
-from bottles.backend.managers.journal import JournalManager, JournalSeverity  # pyright: reportMissingImports=false
+from bottles.backend.managers.journal import JournalManager, JournalSeverity
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-journal.ui')

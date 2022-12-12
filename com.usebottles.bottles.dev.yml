@@ -317,6 +317,15 @@ modules:
         url: https://gitlab.com/TheEvilSkeleton/vkbasalt-cli
         tag: v3.0
         commit: 68d37866d7e732923fb628b81dcb0a808e9ccfe6
+  
+  - name: PycURL
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: git
+        url: https://github.com/pycurl/pycurl.git
+        tag: REL_7_45_1
 
   # Bottles components
   # ----------------------------------------------------------------------------

@@ -18,7 +18,7 @@
 import os
 import subprocess
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 
 logging = Logger()
 

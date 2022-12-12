@@ -31,7 +31,7 @@ from gettext import gettext as _
 from typing import Union, NewType, Any, List
 from gi.repository import GLib
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
@@ -52,7 +52,6 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.decorators import cache
 from bottles.backend.managers.importer import ImportManager
-from bottles.backend.layers import Layer, LayersStore
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
@@ -240,10 +239,6 @@ class Manager:
                 logging.info("Steam path doesn't exist, creating now.")
                 os.makedirs(Paths.steam, exist_ok=True)
 
-        if not os.path.isdir(Paths.layers):
-            logging.info("Layers path doesn't exist, creating now.")
-            os.makedirs(Paths.layers, exist_ok=True)
-
         if not os.path.isdir(Paths.dxvk):
             logging.info("Dxvk path doesn't exist, creating now.")
             os.makedirs(Paths.dxvk, exist_ok=True)
@@ -283,14 +278,6 @@ class Manager:
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
         self.supported_latencyflex = catalog["latencyflex"]
-
-        # handle winebridge updates
-        '''
-        TODO: retiring winebridge support for now
-        if len(self.winebridge_available) == 0 \
-                or self.winebridge_available[0] != next(iter(self.supported_winebridge)):
-            self.check_winebridge(install_latest=True, update=True)
-        '''
 
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
@@ -539,39 +526,6 @@ class Manager:
         except ValueError:
             return sorted(component["available"], reverse=True)
 
-    @staticmethod
-    def launch_layer_program(config, layer):
-        """Mount a layer and launch the program on it."""
-        logging.info(f"Preparing {len(layer['mounts'])} layer(s)…")
-        layer_conf = LayersStore.get_layer_by_uuid(layer['uuid'])
-        if not layer_conf:
-            logging.error("Layer not found.")
-            return False
-        program_layer = Layer().init(layer_conf)
-        program_layer.mount_bottle(config)
-        mounts = []
-
-        for mount in layer['mounts']:
-            _layer = LayersStore.get_layer_by_name(mount)
-            if not _layer:
-                logging.error(f"Layer {mount} not found.")
-                return False
-            mounts.append(_layer["UUID"])
-
-        for mount in mounts:
-            logging.info("Mounting layers…")
-            program_layer.mount(_uuid=mount)
-
-        logging.info("Launching program…")
-        runtime_conf = program_layer.runtime_conf
-        wineboot = WineBoot(runtime_conf)
-        wineboot.update()
-        Runner.run_layer_executable(runtime_conf, layer)
-
-        logging.info("Program exited, unmounting layers…")
-        program_layer.sweep()
-        program_layer.save()
-
     def get_programs(self, config: dict) -> list:
         """
         Get the list of programs (both from the drive and the user defined
@@ -723,7 +677,6 @@ class Manager:
         """
         Check for local bottles and update the local_bottles list.
         Will also mark the broken ones if the configuration file is missing
-        TODO: move to bottle.py (Bottle manager)
         """
         bottles = os.listdir(Paths.bottles)
 
@@ -761,37 +714,6 @@ class Manager:
 
             if conf_file_yaml.get("run_in_terminal"):
                 conf_file_yaml["run_in_terminal"] = False
-
-            # Migrate old programs to [id] and [name]
-            # TODO: remove this migration after 2022.11.14
-            _temp = {}
-            _changed = False
-            for k, v in conf_file_yaml.get("External_Programs").items():
-                _uuid = str(uuid.uuid4())
-                _k = k
-                _v = v
-                if isinstance(v, str):
-                    continue
-                try:
-                    uuid.UUID(k)
-                except (ValueError, TypeError):
-                    _k = _uuid
-                    _changed = True
-                if "id" not in v:
-                    _v["id"] = _uuid
-                    _changed = True
-                if "name" not in v:
-                    _v["name"] = _v["executable"].split(".")[0]
-                    _changed = True
-                _temp[_k] = _v
-
-            if _changed:
-                self.update_config(
-                    config=conf_file_yaml,
-                    key="External_Programs",
-                    value=_temp
-                )
-            conf_file_yaml["External_Programs"] = _temp
 
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
             for key in miss_keys:
@@ -1062,7 +984,7 @@ class Manager:
     ):
         """
         Create a new bottle from the given arguments.
-        TODO: move to bottle.py (Bottle manager)
+        TODO: will be replaced by the BottleBuilder class.
         """
         def log_update(message):
             if fn_logger:
@@ -1300,7 +1222,7 @@ class Manager:
         log_update(_("Applying environment: {0}…").format(environment))
         env = None
 
-        if environment.lower() not in ["custom", "layered"]:
+        if environment.lower() not in ["custom"]:
             env = Samples.environments[environment.lower()]
         elif custom_environment:
             try:
@@ -1356,10 +1278,6 @@ class Manager:
                     self.dependency_manager.install(config, [dep, _dep])
                     template_updated = True
 
-        # create Layers key if Layered
-        if environment == "Layered":
-            config["Layers"] = {}
-
         # save bottle config
         with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
@@ -1385,7 +1303,7 @@ class Manager:
         wineboot.update()
 
         # caching template
-        if (not template and environment != "layered") or template_updated:
+        if not template or template_updated:
             logging.info("Caching template…")
             log_update(_("Caching template…"))
             TemplateManager.new(environment, config)
@@ -1427,7 +1345,7 @@ class Manager:
     def delete_bottle(self, config: dict) -> bool:
         """
         Perform wineserver shutdown and delete the bottle.
-        TODO: move to bottle.py (Bottle manager)
+        TODO: will be replaced by the BottlesManager class.
         """
         logging.info("Stopping bottle…")
         wineboot = WineBoot(config)
@@ -1471,7 +1389,7 @@ class Manager:
         This function tries to repair a broken bottle, creating a
         new bottle configuration with the latest runner. Each fixed
         bottle will use the Custom environment.
-        TODO: move to bottle.py (Bottle manager)
+        TODO: will be replaced by the BottlesManager class.
         """
         logging.info(f"Trying to repair the bottle: [{config['Name']}]…")
 

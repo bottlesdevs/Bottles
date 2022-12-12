@@ -21,7 +21,7 @@ from gi.repository import GLib
 from pathlib import Path
 from gettext import gettext as _
 
-from bottles.backend.managers.journal import JournalManager, JournalSeverity  # pyright: reportMissingImports=false
+from bottles.backend.managers.journal import JournalManager, JournalSeverity
 
 # Set default logging level
 logging.basicConfig(level=logging.DEBUG)
@@ -102,6 +102,7 @@ class Logger(logging.getLoggerClass()):
 
                 crash_log.write(d)
 
+        # we write the same to the journal for convenience
         JournalManager.write(
             severity=JournalSeverity.CRASH,
             message="A crash has been detected."

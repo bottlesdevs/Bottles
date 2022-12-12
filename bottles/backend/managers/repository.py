@@ -16,12 +16,12 @@
 #
 
 import os
-import urllib.request
+import pycurl
 import http
 from typing import Union, NewType
 from gi.repository import GLib
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.installer import InstallerRepo
@@ -63,10 +63,13 @@ class RepositoryManager:
 
     def __check_locals(self):
         _locals = {}
+
         if "LOCAL_COMPONENTS" in os.environ:
             _locals["components"] = os.environ["LOCAL_COMPONENTS"]
+
         if "LOCAL_DEPENDENCIES" in os.environ:
             _locals["dependencies"] = os.environ["LOCAL_DEPENDENCIES"]
+
         if "LOCAL_INSTALLERS" in os.environ:
             _locals["installers"] = os.environ["LOCAL_INSTALLERS"]
 
@@ -76,7 +79,9 @@ class RepositoryManager:
         for repo in self.__repositories:
             if repo not in _locals:
                 continue
+
             _path = _locals[repo]
+            
             if os.path.exists(_path):
                 self.__repositories[repo]["url"] = f"file://{_path}/"
                 logging.info(f"Using local {repo} repository at {_path}")
@@ -90,17 +95,27 @@ class RepositoryManager:
             __index = os.path.join(data["url"], f"{VERSION_NUM}.yml")
             __fallback = os.path.join(data["url"], "index.yml")
 
-            try:
-                with urllib.request.urlopen(__index) as _:
-                    data["index"] = __index
+            c = pycurl.Curl()
+            c.setopt(c.URL, __index)
+            c.setopt(c.NOBODY, True)
+            c.setopt(c.FOLLOWLOCATION, True)
+            c.setopt(c.TIMEOUT, 5)
+            c.perform()
+
+            if c.getinfo(c.RESPONSE_CODE) == 200:
+                data["index"] = __index
+                if self.repo_fn_update is not None:
+                    GLib.idle_add(self.repo_fn_update, total)
+            else:
+                c.setopt(c.URL, __fallback)
+                c.perform()
+
+                if c.getinfo(c.RESPONSE_CODE) == 200:
+                    data["index"] = __fallback
                     if self.repo_fn_update is not None:
                         GLib.idle_add(self.repo_fn_update, total)
-            except (urllib.error.HTTPError, urllib.error.URLError):
-                try:
-                    with urllib.request.urlopen(__fallback) as _:
-                        data["index"] = __fallback
-                        if self.repo_fn_update is not None:
-                            GLib.idle_add(self.repo_fn_update, total)
-                except (urllib.error.HTTPError, urllib.error.URLError, http.client.RemoteDisconnected):
+                else:
                     logging.error(f"Could not get index for {repo} repository")
                     continue
+
+            c.close()

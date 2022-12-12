@@ -24,7 +24,7 @@ from typing import NewType
 from gettext import gettext as _
 from gi.repository import GLib
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.result import Result
 from bottles.backend.globals import Paths
@@ -32,8 +32,6 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.frontend.operation import OperationManager
 
 logging = Logger()
-
-RunnerName = NewType('RunnerName', str)
 
 
 class BackupManager:

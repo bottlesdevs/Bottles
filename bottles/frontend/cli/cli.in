@@ -39,7 +39,7 @@ sys.path.insert(1, pkgdatadir)
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-from bottles.frontend.params import *  # pyright: reportMissingImports=false
+from bottles.frontend.params import *
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager

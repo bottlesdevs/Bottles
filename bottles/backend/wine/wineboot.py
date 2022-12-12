@@ -1,7 +1,7 @@
 import subprocess
 from typing import NewType
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.wineserver import WineServer
 
@@ -41,8 +41,14 @@ class WineBoot(WineProgram):
     def force(self):
         return self.send_status(-1)
 
-    def kill(self):
-        return self.send_status(0)
+    def kill(self, force_if_stalled: bool = False):
+        self.send_status(0)
+        
+        if force_if_stalled:
+            wineserver = WineServer(self.config)
+            if wineserver.is_alive():
+                wineserver.force_kill()
+                wineserver.wait()
 
     def restart(self):
         return self.send_status(1)

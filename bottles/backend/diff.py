@@ -3,11 +3,14 @@ import hashlib
 
 
 class Diff:
+    '''
+    This class is no more used by the application, it's just a
+    reference for future implementations.
+    '''
     __ignored = [
         "dosdevices",
         "users",
         "bottle.yml",
-        "layer.yml",
         "storage"
     ]
 

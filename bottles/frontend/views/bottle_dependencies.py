@@ -20,7 +20,7 @@ import time
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.frontend.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.widgets.dependency import DependencyEntry
 

@@ -23,7 +23,7 @@ import urllib.request
 from urllib.parse import quote
 from gi.repository import Gtk, Adw
 
-from bottles.frontend.params import VERSION  # pyright: reportMissingImports=false
+from bottles.frontend.params import VERSION
 
 
 class SimilarReportEntry(Adw.ActionRow):

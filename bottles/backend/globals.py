@@ -21,15 +21,11 @@ from gi.repository import GLib
 from pathlib import Path
 from functools import lru_cache
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.managers.data import DataManager
 
 logging = Logger()
-
-
-class API:
-    notifications = "https://raw.githubusercontent.com/bottlesdevs/data/main/notifications.yml"
 
 
 # xdg data path
@@ -45,7 +41,7 @@ def get_apps_dir():
         _dir = f"{Path.home()}/.local/share/applications"
     return _dir
 
-def VkBasaltPath():
+def is_vkbasalt_available():
     vkbasalt_paths = [
             "/usr/lib/extensions/vulkan/vkBasalt/etc/vkBasalt",
             "/usr/local",
@@ -76,7 +72,6 @@ class Paths:
     runners = f"{base}/runners"
     bottles = f"{base}/bottles"
     steam = f"{base}/steam"
-    layers = f"{base}/layers"
     dxvk = f"{base}/dxvk"
     vkd3d = f"{base}/vkd3d"
     nvapi = f"{base}/nvapi"
@@ -105,7 +100,7 @@ class TrdyPaths:
 # Check if some tools are available
 gamemode_available = shutil.which("gamemoderun") or False
 gamescope_available = shutil.which("gamescope") or False
-vkbasalt_available = VkBasaltPath()
+vkbasalt_available = is_vkbasalt_available()
 mangohud_available = shutil.which("mangohud") or False
 obs_vkc_available = shutil.which("obs-vkcapture") or False
 vmtouch_available = shutil.which("vmtouch") or False

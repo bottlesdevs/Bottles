@@ -17,7 +17,7 @@
 
 import subprocess
 
-from bottles.backend.utils.vulkan import VulkanUtils  # pyright: reportMissingImports=false
+from bottles.backend.utils.vulkan import VulkanUtils
 from bottles.backend.logger import Logger
 
 logging = Logger()

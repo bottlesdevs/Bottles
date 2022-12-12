@@ -16,11 +16,12 @@
 #
 
 import os
-import urllib.request
+import subprocess
+import pycurl
 from datetime import datetime
 from gettext import gettext as _
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 
 logging = Logger()
 
@@ -48,7 +49,15 @@ class ConnectionUtils:
             return False
 
         try:
-            urllib.request.urlopen('https://repo.usebottles.com/components/index.yml', timeout=5)
+            c = pycurl.Curl()
+            c.setopt(c.URL, 'https://repo.usebottles.com')
+            c.setopt(c.FOLLOWLOCATION, True)
+            c.setopt(c.NOBODY, True)
+            c.perform()
+            
+            if c.getinfo(pycurl.HTTP_CODE) != 200:
+                raise Exception("Connection status: offline …")
+
             if self.window is not None:
                 self.window.toggle_btn_noconnection(False)
 
@@ -56,7 +65,7 @@ class ConnectionUtils:
             self.status = True
 
             return True
-        except urllib.error.URLError:
+        except Exception as e:
             logging.warning("Connection status: offline …")
             if self.window is not None:
                 self.window.toggle_btn_noconnection(True)

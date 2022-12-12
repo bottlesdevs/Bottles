@@ -28,7 +28,7 @@ from functools import lru_cache
 from typing import Union, NewType
 from datetime import datetime
 
-from bottles.backend.models.samples import Samples  # pyright: reportMissingImports=false
+from bottles.backend.models.samples import Samples
 from bottles.backend.models.result import Result
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.globals import Paths
@@ -498,25 +498,6 @@ class SteamManager:
         logging.info(f"Launching AppID {prefix} with Steam")
         uri = f"steam://rungameid/{prefix}"
         Gtk.show_uri(window, uri, Gdk.CURRENT_TIME)
-
-    def get_runners(self) -> dict:
-        """
-        TODO: not used, here for reference or later use
-              Bottles get Proton runner from config_info file
-        """
-        if self.steamapps_path is None:
-            return {}
-
-        proton_paths = glob(f"{self.steamapps_path}/common/Proton -*")
-        runners = {}
-
-        for proton_path in proton_paths:
-            _name = os.path.basename(proton_path)
-            runners[_name] = {
-                "path": proton_path
-            }
-
-        return runners
 
     def add_shortcut(self, program_name: str, program_path: str):
         logging.info(f"Adding shortcut for {program_name}")

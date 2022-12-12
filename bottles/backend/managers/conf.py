@@ -10,8 +10,10 @@ class ConfigManager(object):
         self.config_file = config_file
         self.config_string = config_string
         self.config_type = config_type
+
         if self.config_file is not None:
             self.checks()
+
         self.config_dict = self.read()
 
         if self.config_file is not None and self.config_string is not None:
@@ -22,6 +24,7 @@ class ConfigManager(object):
         if not os.path.exists(self.config_file):
             base_path = os.path.dirname(self.config_file)
             os.makedirs(base_path, exist_ok=True)
+
             with open(self.config_file, 'w') as f:
                 f.write('')
 
@@ -74,10 +77,13 @@ class ConfigManager(object):
     def write_ini(self):
         """Writes the configuration to an INI file"""
         config = ConfigParser()
+
         for section in self.config_dict:
             config.add_section(section)
+            
             for key, value in self.config_dict[section].items():
                 config.set(section, key, value)
+
         with open(self.config_file, 'w') as f:
             config.write(f)
 
@@ -111,14 +117,17 @@ class ConfigManager(object):
                         self.config_dict[section][key] = value
             else:
                 self.config_dict[section] = changes[section]
+
         self.write_dict()
 
     def del_key(self, key_struct: dict):
         """Deletes a key from the configuration"""
         key = self.config_dict
+
         for i, k in enumerate(key_struct):
             if i == len(key_struct) - 1:
                 del key[k]
                 continue
             key = key[k]
+
         self.write_dict()

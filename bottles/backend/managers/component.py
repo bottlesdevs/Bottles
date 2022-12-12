@@ -20,14 +20,14 @@ import time
 import uuid
 import shutil
 import tarfile
-import requests
+import pycurl
 import contextlib
 from functools import lru_cache
 from gi.repository import GLib
 from typing import Union
 
 try:
-    from bottles.frontend.operation import OperationManager  # pyright: reportMissingImports=false
+    from bottles.frontend.operation import OperationManager
 except (RuntimeError, GLib.GError):
     from bottles.frontend.cli.operation_cli import OperationManager
 
@@ -189,15 +189,17 @@ class ComponentManager:
             skipped for large files (e.g. runners).
             '''
             try:
-                requests.packages.urllib3.disable_warnings()
-                headers = {"User-Agent": "curl/7.79.1"}
-                response = requests.head(
-                    download_url,
-                    allow_redirects=True,
-                    headers=headers
-                )
-                download_url = response.url
-                req_code = response.status_code
+                c = pycurl.Curl()
+                c.setopt(c.URL, download_url)
+                c.setopt(c.FOLLOWLOCATION, True)
+                c.setopt(c.HTTPHEADER, ["User-Agent: curl/7.79.1"])
+                c.setopt(c.NOBODY, True)
+                c.perform()
+
+                req_code = c.getinfo(c.RESPONSE_CODE)
+                download_url = c.getinfo(c.EFFECTIVE_URL)
+                
+                c.close()
             except requests.exceptions.RequestException:
                 logging.exception(f"Failed to download [{download_url}]")
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
@@ -216,7 +218,7 @@ class ComponentManager:
                     task_id=task_id
                 ).download()
 
-                if not res:
+                if not res.status:
                     GLib.idle_add(self.__operation_manager.remove_task, task_id)
                     return False
 
@@ -290,15 +292,13 @@ class ComponentManager:
             '''
             tar = tarfile.open(f"{Paths.temp}/{archive}")
             root_dir = tar.getnames()[0]
+
             if component == "nvapi":
-                '''
-                TODO: this check should be done on archive root, so other
-                components can benefit from it.
-                '''
                 xtr_path = os.path.join(path, name)
                 tar.extractall(xtr_path)
             else:
                 tar.extractall(path)
+                
             tar.close()
         except (tarfile.TarError, IOError, EOFError):
             with contextlib.suppress(FileNotFoundError):
@@ -351,8 +351,8 @@ class ComponentManager:
 
         logging.info(f"Installing component: [{component_name}].")
         file = manifest["File"][0]
-        # Download component
-        download = self.download(
+
+        res = self.download(
             download_url=file["url"],
             file=file["file_name"],
             rename=file["rename"],
@@ -360,7 +360,7 @@ class ComponentManager:
             func=func
         )
 
-        if not download and func:
+        if not res and func:
             '''
             If the download fails, execute the given func passing
             failed=True as a parameter.

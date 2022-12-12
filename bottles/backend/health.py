@@ -22,7 +22,7 @@ import platform
 import contextlib
 import subprocess
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.generic import is_glibc_min_available
@@ -70,6 +70,7 @@ class HealthChecker:
             "MemAvailable": "n/a"
         }
         self.get_ram_data()
+        
         if not "FLATPAK_ID" in os.environ:
             self.cabextract = self.check_cabextract()
             self.p7zip = self.check_p7zip()
@@ -231,7 +232,6 @@ class HealthChecker:
     @staticmethod
     def get_bottles_envs():
         look = [
-            "LAYERS",
             "TESTING_REPOS",
             "LOCAL_INSTALLERS",
             "LOCAL_COMPONENTS",
@@ -269,6 +269,7 @@ class HealthChecker:
 
     def get_results(self, plain: bool = False):
         results = {
+            "Official Package": "FLATPAK_ID" in os.environ,
             "Version": VERSION,
             "Display": {
                 "X.org": self.x11,

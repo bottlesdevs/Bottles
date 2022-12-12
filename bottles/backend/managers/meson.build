@@ -11,7 +11,6 @@ bottles_sources = [
   'manager.py',
   'versioning.py',
   'data.py',
-  'notifications.py',
   'runtime.py',
   'importer.py',
   'conf.py',

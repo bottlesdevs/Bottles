@@ -18,7 +18,7 @@
 import re
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.frontend.utils.gtk import GtkUtils  # pyright: reportMissingImports=false
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/env-var-entry.ui')

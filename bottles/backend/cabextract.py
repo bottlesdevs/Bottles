@@ -21,7 +21,7 @@ import shutil
 import subprocess
 from gettext import gettext as _
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 
 logging = Logger()
 
@@ -61,15 +61,6 @@ class CabExtract:
             logging.error(f"Cab file {self.path} not found")
             return False
 
-        if not self.cabextract_bin:
-            logging.critical("cabextract utility not found, please install to use "
-                             "dependencies which need this feature")
-            logging.write_log(
-                "cabextract utility not found, please install to use "
-                "dependencies which need this feature"
-            )
-            return False
-
         return True
 
     def __extract(self) -> bool:
@@ -81,7 +72,7 @@ class CabExtract:
                 for file in self.files:
                     '''
                     if file already exists as a symlink, remove it
-                    preventing broken symlinks when using layers
+                    preventing broken symlinks
                     '''
                     if os.path.exists(os.path.join(self.destination, file)):
                         if os.path.islink(os.path.join(self.destination, file)):
@@ -111,10 +102,7 @@ class CabExtract:
                     f"-q {self.path}"
                 ]
                 command = " ".join(command)
-                subprocess.Popen(
-                    command,
-                    shell=True
-                ).communicate()
+                subprocess.Popen(command,  shell=True).communicate()
 
             logging.info(f"Cabinet {self.name} extracted successfully")
             return True

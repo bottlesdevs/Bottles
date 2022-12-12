@@ -25,7 +25,7 @@ from typing import NewType, Union
 from datetime import datetime
 from gi.repository import Gdk, Gio, GLib, Gtk
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.globals import Paths, user_apps_dir
 from bottles.backend.utils.imagemagick import ImageMagickUtils
 from bottles.backend.utils.generic import get_mime
@@ -77,10 +77,6 @@ class ManagerUtils:
         window = app.get_active_window()
         path = f"file://{path}"
         Gtk.show_uri(window, path, Gdk.CURRENT_TIME)
-
-    @staticmethod
-    def get_layer_path(layer: str) -> str:
-        return f"{Paths.layers}/{layer}"
 
     @staticmethod
     def get_bottle_path(config: dict) -> str:

@@ -1,7 +1,7 @@
 from typing import NewType
 from datetime import datetime
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 
 logging = Logger()

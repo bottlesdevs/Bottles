@@ -1,8 +1,5 @@
 class Samples:
-    data = {
-        "notifications": []
-    }
-
+    data = {}
     config = {
         "Name": "",
         "Arch": "win64",
@@ -81,7 +78,6 @@ class Samples:
         "run_in_terminal": False,
         "Language": "sys"
     }
-
     environments = {
         "gaming": {
             "Runner": "wine",
@@ -119,13 +115,8 @@ class Samples:
                 # "dotnet40",
                 # "dotnet48"
             ]
-        },
-        "layered": {
-            "Runner": "wine",
-            "Layers": {}
-        },
+        }
     }
-
     bottles_to_steam_relations = {
         "MANGOHUD": ("mangohud", True),
         "OBS_VKCAPTURE": ("obsvkc", True),

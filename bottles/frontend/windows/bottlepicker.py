@@ -18,7 +18,7 @@
 import subprocess
 from gi.repository import Gio, Gtk, Adw
 
-from bottles.frontend.params import *  # pyright: reportMissingImports=false
+from bottles.frontend.params import *
 from bottles.frontend.utils.connection import ConnectionUtils
 from bottles.backend.managers.manager import Manager
 

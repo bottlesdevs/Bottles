@@ -28,7 +28,7 @@ from fvs.repo import FVSRepo
 from fvs.exceptions import FVSNothingToCommit, FVSEmptyCommitMessage, FVSStateNotFound, FVSNothingToRestore, FVSStateZeroNotDeletable
 
 try:
-    from bottles.frontend.operation import OperationManager  # pyright: reportMissingImports=false
+    from bottles.frontend.operation import OperationManager
 except (RuntimeError, GLib.GError):
     from bottles.frontend.cli.operation_cli import OperationManager
 
@@ -42,9 +42,6 @@ logging = Logger()
 
 # noinspection PyTypeChecker
 class VersioningManager:
-    # TODO: avoid instancing this class from the main manager when the old 
-    #       versioning system will be deprecated
-    
     def __init__(self, window, manager):
         self.window = window
         self.manager = manager

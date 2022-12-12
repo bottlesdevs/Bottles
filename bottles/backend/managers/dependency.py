@@ -25,7 +25,7 @@ from typing import Union, NewType
 from gi.repository import GLib
 
 try:
-    from bottles.frontend.operation import OperationManager  # pyright: reportMissingImports=false
+    from bottles.frontend.operation import OperationManager
 except (RuntimeError, GLib.GError):
     from bottles.frontend.cli.operation_cli import OperationManager
 

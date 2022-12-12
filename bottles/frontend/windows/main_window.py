@@ -23,7 +23,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, GLib, Gio, Adw, GObject
 from pathlib import Path
 
-from bottles.frontend.params import *  # pyright: reportMissingImports=false
+from bottles.frontend.params import *
 from bottles.frontend.const import *
 from bottles.backend.logger import Logger
 from bottles.frontend.utils.threading import RunAsync

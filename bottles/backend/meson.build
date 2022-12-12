@@ -12,7 +12,6 @@ bottles_sources = [
   '__init__.py',
   'globals.py',
   'runner.py',
-  'layers.py',
   'diff.py',
   'health.py',
   'downloader.py',

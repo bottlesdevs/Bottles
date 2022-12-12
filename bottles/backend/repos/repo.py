@@ -16,10 +16,11 @@
 #
 
 from bottles.backend.utils import yaml
-import urllib.request
+import pycurl
+from io import BytesIO
 from http.client import RemoteDisconnected
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 
 logging = Logger()
 
@@ -36,21 +37,40 @@ class Repo:
             return {}
 
         try:
-            with urllib.request.urlopen(index) as url:
-                index = yaml.load(url.read())
-                logging.info(f"Catalog {self.name} loaded")
-                return index
-        except (urllib.error.HTTPError, urllib.error.URLError, yaml.YAMLError):
+            buffer = BytesIO()
+
+            c = pycurl.Curl()
+            c.setopt(c.URL, index)
+            c.setopt(c.FOLLOWLOCATION, True)
+            c.setopt(c.WRITEDATA, buffer)
+            c.perform()
+            c.close()
+
+            index = yaml.load(buffer.getvalue())
+            logging.info(f"Catalog {self.name} loaded")
+
+            return index
+        except (pycurl.error, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} repository index.")
             return {}
 
     def get_manifest(self, url: str, plain: bool = False):
         try:
-            with urllib.request.urlopen(url) as u:
-                res = u.read()
-                if plain:
-                    return res.decode("utf-8")
-                return yaml.load(res)
-        except (urllib.error.HTTPError, urllib.error.URLError, RemoteDisconnected, yaml.YAMLError):
+            buffer = BytesIO()
+
+            c = pycurl.Curl()
+            c.setopt(c.URL, url)
+            c.setopt(c.FOLLOWLOCATION, True)
+            c.setopt(c.WRITEDATA, buffer)
+            c.perform()
+            c.close()
+            
+            res = buffer.getvalue()
+
+            if plain:
+                return res.decode("utf-8")
+
+            return yaml.load(res)
+        except (pycurl.error, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} manifest.")
-            return
+            return {}
