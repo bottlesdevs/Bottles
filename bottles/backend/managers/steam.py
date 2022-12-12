@@ -28,7 +28,7 @@ from functools import lru_cache
 from typing import Union, NewType
 from datetime import datetime
 
-from bottles.backend.models.samples import Samples  # pyright: reportMissingImports=false
+from bottles.backend.models.samples import Samples
 from bottles.backend.models.result import Result
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.globals import Paths

@@ -18,7 +18,7 @@
 import urllib.request
 from gi.repository import Gtk, GLib, Gio, GdkPixbuf, Adw
 
-from bottles.frontend.windows.filechooser import FileChooser  # pyright: reportMissingImports=false
+from bottles.frontend.windows.filechooser import FileChooser
 from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.wine.drives import Drives
 

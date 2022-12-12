@@ -22,7 +22,7 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Adw
 
-from bottles.frontend.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.thumbnail import ThumbnailManager
 from bottles.backend.runner import Runner

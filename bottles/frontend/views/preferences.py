@@ -21,7 +21,7 @@ import webbrowser
 from gettext import gettext as _
 from gi.repository import Gtk, Adw, Gio
 
-from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander  # pyright: reportMissingImports=false
+from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 from bottles.frontend.windows.filechooser import FileChooser
 
 from bottles.backend.managers.data import DataManager

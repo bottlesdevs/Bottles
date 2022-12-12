@@ -20,7 +20,7 @@ import uuid
 import requests
 from functools import lru_cache
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()

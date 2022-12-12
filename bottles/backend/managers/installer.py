@@ -27,7 +27,7 @@ from datetime import datetime
 from gi.repository import GLib
 
 try:
-    from bottles.frontend.operation import OperationManager  # pyright: reportMissingImports=false
+    from bottles.frontend.operation import OperationManager
     from bottles.frontend.windows.generic import MessageDialog
 except (RuntimeError, GLib.GError):
     from bottles.frontend.cli.operation_cli import OperationManager

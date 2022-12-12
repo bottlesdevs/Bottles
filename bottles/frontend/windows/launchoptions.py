@@ -18,7 +18,7 @@
 import os
 from gi.repository import Gtk, GLib, GObject, Adw
 
-from bottles.frontend.windows.filechooser import FileChooser  # pyright: reportMissingImports=false
+from bottles.frontend.windows.filechooser import FileChooser
 from bottles.backend.utils.manager import ManagerUtils
 
 

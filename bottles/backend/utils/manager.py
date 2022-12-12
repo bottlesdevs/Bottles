@@ -25,7 +25,7 @@ from typing import NewType, Union
 from datetime import datetime
 from gi.repository import Gdk, Gio, GLib, Gtk
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.globals import Paths, user_apps_dir
 from bottles.backend.utils.imagemagick import ImageMagickUtils
 from bottles.backend.utils.generic import get_mime

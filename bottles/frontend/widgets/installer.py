@@ -19,7 +19,7 @@ from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 import webbrowser
 
-from bottles.frontend.windows.generic import SourceDialog  # pyright: reportMissingImports=false
+from bottles.frontend.windows.generic import SourceDialog
 from bottles.frontend.windows.installer import InstallerDialog
 
 

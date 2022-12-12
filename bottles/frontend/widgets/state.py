@@ -19,7 +19,7 @@ from datetime import datetime
 from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
-from bottles.frontend.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.windows.generic import SourceDialog
 
 

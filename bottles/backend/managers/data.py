@@ -21,7 +21,7 @@ import contextlib
 from pathlib import Path
 from gi.repository import GLib
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.models.samples import Samples
 
 logging = Logger()

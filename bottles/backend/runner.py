@@ -18,7 +18,7 @@
 import os
 from typing import NewType
 
-from bottles.frontend.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.logger import Logger
 from bottles.backend.globals import gamemode_available, gamescope_available, mangohud_available, \
     obs_vkc_available, vkbasalt_available, vmtouch_available

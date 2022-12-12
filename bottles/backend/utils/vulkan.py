@@ -20,7 +20,7 @@ from glob import glob
 import shutil
 import subprocess
 
-from bottles.backend.utils.display import DisplayUtils  # pyright: reportMissingImports=false
+from bottles.backend.utils.display import DisplayUtils
 
 
 class VulkanUtils:

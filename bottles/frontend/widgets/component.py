@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk, GLib, GObject, Adw
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.frontend.utils.threading import RunAsync
 

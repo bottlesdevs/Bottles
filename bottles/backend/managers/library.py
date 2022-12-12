@@ -20,7 +20,7 @@ import uuid
 from bottles.backend.utils import yaml
 from pathlib import Path
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.globals import Paths
 from bottles.backend.managers.steamgriddb import SteamGridDBManager
 

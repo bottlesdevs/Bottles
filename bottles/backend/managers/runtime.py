@@ -19,7 +19,7 @@ import os
 from pathlib import Path
 from functools import lru_cache
 
-from bottles.backend.globals import Paths  # pyright: reportMissingImports=false
+from bottles.backend.globals import Paths
 
 
 class RuntimeManager:

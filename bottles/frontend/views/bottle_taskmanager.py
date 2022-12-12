@@ -18,7 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from bottles.frontend.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.runner import Runner
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.winebridge import WineBridge

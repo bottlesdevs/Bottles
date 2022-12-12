@@ -21,7 +21,7 @@ import shutil
 import subprocess
 from gettext import gettext as _
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 
 logging = Logger()
 

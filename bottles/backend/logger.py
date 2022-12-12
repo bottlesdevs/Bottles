@@ -21,7 +21,7 @@ from gi.repository import GLib
 from pathlib import Path
 from gettext import gettext as _
 
-from bottles.backend.managers.journal import JournalManager, JournalSeverity  # pyright: reportMissingImports=false
+from bottles.backend.managers.journal import JournalManager, JournalSeverity
 
 # Set default logging level
 logging.basicConfig(level=logging.DEBUG)

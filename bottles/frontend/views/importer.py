@@ -18,7 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
-from bottles.frontend.windows.filechooser import FileChooser  # pyright: reportMissingImports=false
+from bottles.frontend.windows.filechooser import FileChooser
 
 from bottles.backend.managers.backup import BackupManager
 from bottles.frontend.utils.threading import RunAsync

@@ -21,7 +21,7 @@ import http
 from typing import Union, NewType
 from gi.repository import GLib
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.installer import InstallerRepo

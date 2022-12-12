@@ -23,7 +23,7 @@ import contextlib
 from datetime import datetime
 from pathlib import Path
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.globals import Paths
 from bottles.backend.models.samples import Samples

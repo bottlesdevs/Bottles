@@ -21,7 +21,7 @@ import urllib.request
 from datetime import datetime
 from gettext import gettext as _
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 
 logging = Logger()
 

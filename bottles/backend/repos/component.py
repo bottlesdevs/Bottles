@@ -16,7 +16,7 @@
 #
 
 from typing import Union
-from bottles.backend.repos.repo import Repo  # pyright: reportMissingImports=false
+from bottles.backend.repos.repo import Repo
 
 
 class ComponentRepo(Repo):

@@ -19,7 +19,7 @@ from bottles.backend.utils import yaml
 import urllib.request
 from http.client import RemoteDisconnected
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 
 logging = Logger()
 
