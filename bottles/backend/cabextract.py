@@ -61,15 +61,6 @@ class CabExtract:
             logging.error(f"Cab file {self.path} not found")
             return False
 
-        if not self.cabextract_bin:
-            logging.critical("cabextract utility not found, please install to use "
-                             "dependencies which need this feature")
-            logging.write_log(
-                "cabextract utility not found, please install to use "
-                "dependencies which need this feature"
-            )
-            return False
-
         return True
 
     def __extract(self) -> bool:
