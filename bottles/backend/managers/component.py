@@ -20,7 +20,7 @@ import time
 import uuid
 import shutil
 import tarfile
-import requests
+import pycurl
 import contextlib
 from functools import lru_cache
 from gi.repository import GLib
@@ -189,15 +189,17 @@ class ComponentManager:
             skipped for large files (e.g. runners).
             '''
             try:
-                requests.packages.urllib3.disable_warnings()
-                headers = {"User-Agent": "curl/7.79.1"}
-                response = requests.head(
-                    download_url,
-                    allow_redirects=True,
-                    headers=headers
-                )
-                download_url = response.url
-                req_code = response.status_code
+                c = pycurl.Curl()
+                c.setopt(c.URL, download_url)
+                c.setopt(c.FOLLOWLOCATION, True)
+                c.setopt(c.HTTPHEADER, ["User-Agent: curl/7.79.1"])
+                c.setopt(c.NOBODY, True)
+                c.perform()
+
+                req_code = c.getinfo(c.RESPONSE_CODE)
+                download_url = c.getinfo(c.EFFECTIVE_URL)
+                
+                c.close()
             except requests.exceptions.RequestException:
                 logging.exception(f"Failed to download [{download_url}]")
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)

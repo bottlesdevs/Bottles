@@ -17,7 +17,7 @@
 
 import os
 import subprocess
-import urllib.request
+import pycurl
 from datetime import datetime
 from gettext import gettext as _
 
@@ -49,13 +49,13 @@ class ConnectionUtils:
             return False
 
         try:
-            res = subprocess.run(
-                ['curl', '-Is', 'https://repo.usebottles.com'],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
-            )
-
-            if res.returncode != 0:
+            c = pycurl.Curl()
+            c.setopt(c.URL, 'https://repo.usebottles.com')
+            c.setopt(c.FOLLOWLOCATION, True)
+            c.setopt(c.NOBODY, True)
+            c.perform()
+            
+            if c.getinfo(pycurl.HTTP_CODE) != 200:
                 raise Exception("Connection status: offline …")
 
             if self.window is not None:

@@ -20,7 +20,7 @@ import subprocess
 import uuid
 
 import markdown
-import urllib.request
+import pycurl
 from typing import Union, NewType
 from functools import lru_cache
 from datetime import datetime
@@ -107,11 +107,17 @@ class InstallerManager:
         icon_url = self.__repo.get_icon(manifest.get("Name"))
         bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
+        
         if icon_url is not None:
             if not os.path.exists(bottle_icons_path):
                 os.makedirs(bottle_icons_path)
+
             if not os.path.isfile(icon_path):
-                urllib.request.urlretrieve(icon_url, icon_path)
+                c = pycurl.Curl()
+                c.setopt(c.URL, icon_url)
+                c.setopt(c.WRITEDATA, open(icon_path, "wb"))
+                c.perform()
+                c.close()
 
     def __process_local_resources(self, exe_msi_steps, installer):
         files = self.has_local_resources(installer)

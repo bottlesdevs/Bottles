@@ -16,7 +16,7 @@
 #
 
 import os
-import urllib.request
+import pycurl
 import http
 from typing import Union, NewType
 from gi.repository import GLib
@@ -95,17 +95,27 @@ class RepositoryManager:
             __index = os.path.join(data["url"], f"{VERSION_NUM}.yml")
             __fallback = os.path.join(data["url"], "index.yml")
 
-            try:
-                with urllib.request.urlopen(__index) as _:
-                    data["index"] = __index
+            c = pycurl.Curl()
+            c.setopt(c.URL, __index)
+            c.setopt(c.NOBODY, True)
+            c.setopt(c.FOLLOWLOCATION, True)
+            c.setopt(c.TIMEOUT, 5)
+            c.perform()
+
+            if c.getinfo(c.RESPONSE_CODE) == 200:
+                data["index"] = __index
+                if self.repo_fn_update is not None:
+                    GLib.idle_add(self.repo_fn_update, total)
+            else:
+                c.setopt(c.URL, __fallback)
+                c.perform()
+
+                if c.getinfo(c.RESPONSE_CODE) == 200:
+                    data["index"] = __fallback
                     if self.repo_fn_update is not None:
                         GLib.idle_add(self.repo_fn_update, total)
-            except (urllib.error.HTTPError, urllib.error.URLError):
-                try:
-                    with urllib.request.urlopen(__fallback) as _:
-                        data["index"] = __fallback
-                        if self.repo_fn_update is not None:
-                            GLib.idle_add(self.repo_fn_update, total)
-                except (urllib.error.HTTPError, urllib.error.URLError, http.client.RemoteDisconnected):
+                else:
                     logging.error(f"Could not get index for {repo} repository")
                     continue
+
+            c.close()
