@@ -24,6 +24,7 @@ import sys
 import uuid
 import json
 import signal
+import shlex
 import argparse
 import warnings
 
@@ -538,7 +539,7 @@ class CLI:
         _bottle = self.args.bottle
         _program = self.args.program
         _keep = self.args.keep_args
-        _args = " ".join(self.args.args)
+        _args = self.args.args
         _executable = self.args.executable
         _cwd = None
         _script = None
@@ -570,7 +571,9 @@ class CLI:
             program = [p for p in programs if p["name"] == _program][0]
             _executable = program.get("path", "")
             if _keep:
-                _args = program.get("arguments", "") + " " + _args
+                default_args = program.get("arguments", "")
+                if "".__ne__(default_args):
+                    _args.insert(0, default_args)
             _cwd = program.get("folder", "")
             _script = program.get("script", None)
 
@@ -587,10 +590,12 @@ class CLI:
             if program.get("virtual_desktop") != _virt_desktop:
                 _virt_desktop = program.get("virtual_desktop")
 
+        _args_string = shlex.join(_args)
+
         WineExecutor(
             bottle,
             exec_path=_executable,
-            args=_args,
+            args=_args_string,
             cwd=_cwd,
             post_script=_script,
             override_dxvk=_dxvk,
