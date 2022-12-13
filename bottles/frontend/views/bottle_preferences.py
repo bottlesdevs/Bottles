@@ -193,19 +193,50 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         self.switch_vmtouch.set_sensitive(vmtouch_available)
-        _not_available = _("This feature is not available on your system.")
+        _not_available = _("This feature is unavailable on your system.")
+        _flatpak_not_available = _("{} To add this feature, please run flatpak install").format(_not_available)
+        _flatpak_pkg_name = {
+            "gamescope": "com.valvesoftware.Steam.Utility.gamescope",
+            "vkbasalt": "org.freedesktop.Platform.VulkanLayer.vkBasalt//22.08",
+            "mangohud": "org.freedesktop.Platform.VulkanLayer.MangoHud//22.08",
+            "obsvkc": "com.obsproject.Studio.Plugin.OBSVkCapture"
+        }
+
         if not gamemode_available:
             self.switch_gamemode.set_tooltip_text(_not_available)
+
         if not gamescope_available:
-            self.switch_gamescope.set_tooltip_text(_not_available)
-            self.btn_manage_gamescope.set_tooltip_text(_not_available)
+            if "FLATPAK_ID" in os.environ:
+                _gamescope_not_available = f"{_flatpak_not_available} {_flatpak_pkg_name['gamescope']}"
+                self.switch_gamescope.set_tooltip_text(_gamescope_not_available)
+                self.btn_manage_gamescope.set_tooltip_text(_gamescope_not_available)
+            else:
+                self.switch_gamescope.set_tooltip_text(_not_available)
+                self.btn_manage_gamescope.set_tooltip_text(_not_available)
+
         if not vkbasalt_available:
-            self.switch_vkbasalt.set_tooltip_text(_not_available)
-            self.btn_manage_vkbasalt.set_tooltip_text(_not_available)         
+            if "FLATPAK_ID" in os.environ:
+                _vkbasalt_not_available = f"{_flatpak_not_available} {_flatpak_pkg_name['vkbasalt']}"
+                self.switch_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
+                self.btn_manage_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
+            else:
+                self.switch_vkbasalt.set_tooltip_text(_not_available)
+                self.btn_manage_vkbasalt.set_tooltip_text(_not_available)
+
         if not mangohud_available:
-            self.switch_mangohud.set_tooltip_text(_not_available)
+            if "FLATPAK_ID" in os.environ:
+                _mangohud_not_available = f"{_flatpak_not_available} {_flatpak_pkg_name['mangohud']}"
+                self.switch_mangohud.set_tooltip_text(_mangohud_not_available)
+            else:
+                self.switch_mangohud.set_tooltip_text(_not_available)
+
         if not obs_vkc_available:
-            self.switch_obsvkc.set_tooltip_text(_not_available)
+            if "FLATPAK_ID" in os.environ:
+                _obsvkc_not_available = f"{_flatpak_not_available} {_flatpak_pkg_name['obsvkc']}"
+                self.switch_obsvkc.set_tooltip_text(_obsvkc_not_available)
+            else:
+                self.switch_obsvkc.set_tooltip_text(_not_available)
+
         if not vmtouch_available:
             self.switch_vmtouch.set_tooltip_text(_not_available)
 
