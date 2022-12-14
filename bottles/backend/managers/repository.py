@@ -99,8 +99,12 @@ class RepositoryManager:
             c.setopt(c.URL, __index)
             c.setopt(c.NOBODY, True)
             c.setopt(c.FOLLOWLOCATION, True)
-            c.setopt(c.TIMEOUT, 5)
-            c.perform()
+            c.setopt(c.TIMEOUT, 10)
+            try:
+                c.perform()
+            except pycurl.error as e:
+                logging.error(f"Could not get index for {repo} repository: {e}")
+                continue
 
             if c.getinfo(c.RESPONSE_CODE) == 200:
                 data["index"] = __index
