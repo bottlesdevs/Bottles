@@ -239,7 +239,7 @@ class ManagerUtils:
             with open(desktop_file, "w") as f:
                 f.write(f"[Desktop Entry]\n")
                 f.write(f"Name={program.get('name')}\n")
-                f.write(f"Exec={cmd_cli} run -p {shlex.quote(program.get('name'))} -b '{config.get('Name')} -- %u'\n")
+                f.write(f"Exec={cmd_cli} run -p {shlex.quote(program.get('name'))} -b '{config.get('Name')}' -- %u\n")
                 f.write(f"Type=Application\n")
                 f.write(f"Terminal=false\n")
                 f.write(f"Categories=Application;\n")

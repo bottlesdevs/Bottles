@@ -313,7 +313,7 @@ class CLI:
         bottle = mng.local_bottles[_bottle]
 
         if _tool == "cmd":
-            Cmd(bottle).launch()
+            CMD(bottle).launch()
         elif _tool == "winecfg":
             WineCfg(bottle).launch()
         elif _tool == "uninstaller":
