@@ -545,6 +545,8 @@ class WineCommand:
                 gamescope_cmd.append("-b")
             if params["gamescope_scaling"]:
                 gamescope_cmd.append("-n")
+            if params["gamescope_vrr"]:
+                gamescope_cmd.append("--adaptive-sync")
             if params["fsr"]:
                 gamescope_cmd.append("-U")
             if params["gamescope_fps"] > 0:

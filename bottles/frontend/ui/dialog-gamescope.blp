@@ -149,6 +149,16 @@ template GamescopeDialog : .AdwWindow {
           }
         }
 
+        .AdwActionRow row_vrr {
+          title: _("Use Variable Refresh Rate");
+          activatable-widget: "switch_vrr";
+          visible: false;
+
+          Switch switch_vrr {
+            valign: center;
+          }
+        }
+
         .AdwActionRow {
           title: _("Use Integer Scaling");
           activatable-widget: "switch_scaling";

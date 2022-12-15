@@ -17,7 +17,13 @@
 
 import re
 from gi.repository import Gtk, GLib, Adw
+from os import environ
 
+
+vrr_supported_wayland = [
+                        "sway",
+                        "plasma",
+                        ]
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-gamescope.ui')
 class GamescopeDialog(Adw.Window):
@@ -30,6 +36,8 @@ class GamescopeDialog(Adw.Window):
     spin_gamescope_height = Gtk.Template.Child()
     spin_fps_limit = Gtk.Template.Child()
     spin_fps_limit_no_focus = Gtk.Template.Child()
+    row_vrr = Gtk.Template.Child()
+    switch_vrr = Gtk.Template.Child()
     switch_scaling = Gtk.Template.Child()
     toggle_borderless = Gtk.Template.Child()
     toggle_fullscreen = Gtk.Template.Child()
@@ -53,6 +61,10 @@ class GamescopeDialog(Adw.Window):
         self.toggle_fullscreen.connect("toggled", self.__change_wtype, "f")
 
         self.__update(config)
+
+        # Enable VRR row if DE/WM is supported in vrr_supported_wayland
+        if environ.get("DESKTOP_SESSION") in vrr_supported_wayland and environ.get("XDG_DESKTOP_TYPE") == "wayland":
+            self.row_vrr.set_visible(True)
 
     def __change_wtype(self, widget, wtype):
         self.toggle_borderless.handler_block_by_func(self.__change_wtype)
@@ -79,6 +91,7 @@ class GamescopeDialog(Adw.Window):
         self.spin_fps_limit.set_value(parameters["gamescope_fps"])
         self.spin_fps_limit_no_focus.set_value(parameters["gamescope_fps_no_focus"])
         self.switch_scaling.set_state(parameters["gamescope_scaling"])
+        self.switch_vrr.set_active(parameters["gamescope_vrr"])
         self.toggle_borderless.set_active(parameters["gamescope_borderless"])
         self.toggle_fullscreen.set_active(parameters["gamescope_fullscreen"])
 
@@ -93,6 +106,7 @@ class GamescopeDialog(Adw.Window):
                     "gamescope_fps": Gtk.Adjustment.get_value(self.spin_fps_limit),
                     "gamescope_fps_no_focus": Gtk.Adjustment.get_value(self.spin_fps_limit_no_focus),
                     "gamescope_scaling": self.switch_scaling.get_state(),
+                    "gamescope_vrr": self.switch_vrr.get_active(),
                     "gamescope_borderless": self.toggle_borderless.get_active(),
                     "gamescope_fullscreen": self.toggle_fullscreen.get_active()}
 
