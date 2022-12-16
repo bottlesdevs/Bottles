@@ -9,6 +9,7 @@ command: bottles
 finish-args:
   - --allow=devel
   - --allow=multiarch
+  - --allow=per-app-dev-shm
   - --share=network
   - --share=ipc
   - --socket=x11
