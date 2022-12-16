@@ -58,8 +58,8 @@ class LibraryEntry(Gtk.Box):
         self.uuid = uuid
         self.entry = entry
         self.config = self.__get_config()
+        
         if self.config is None:
-            self.__remove_entry()
             return
 
         self.program = self.__get_program()

@@ -1351,7 +1351,7 @@ class Manager:
         wineboot = WineBoot(config)
         wineserver = WineServer(config)
 
-        wineboot.kill()
+        wineboot.kill(True)
         wineserver.wait()
 
         if config.get("Path"):

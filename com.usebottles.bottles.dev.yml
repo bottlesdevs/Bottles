@@ -9,6 +9,7 @@ command: bottles
 finish-args:
   - --allow=devel
   - --allow=multiarch
+  - --allow=per-app-dev-shm
   - --share=network
   - --share=ipc
   - --socket=x11
@@ -104,6 +105,15 @@ modules:
         - type: archive
           url: https://github.com/yaml/libyaml/releases/download/0.2.5/yaml-0.2.5.tar.gz
           sha256: c642ae9b75fee120b2d96c712538bd2cf283228d2337df2cf2988e3c02678ef4
+  
+  - name: PycURL
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: git
+        url: https://github.com/pycurl/pycurl.git
+        tag: REL_7_45_1
 
   - name: python-requests
     buildsystem: simple
@@ -317,15 +327,6 @@ modules:
         url: https://gitlab.com/TheEvilSkeleton/vkbasalt-cli
         tag: v3.0
         commit: 68d37866d7e732923fb628b81dcb0a808e9ccfe6
-  
-  - name: PycURL
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: git
-        url: https://github.com/pycurl/pycurl.git
-        tag: REL_7_45_1
 
   # Bottles components
   # ----------------------------------------------------------------------------
