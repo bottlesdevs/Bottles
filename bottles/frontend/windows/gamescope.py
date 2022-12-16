@@ -72,26 +72,26 @@ class GamescopeDialog(Adw.Window):
         self.toggle_fullscreen.handler_block_by_func(self.__change_wtype)
 
         parameters = config["Parameters"]
-        self.spin_width.set_value(parameters["gamescope_game_width"])
-        self.spin_height.set_value(parameters["gamescope_game_height"])
-        self.spin_gamescope_width.set_value(parameters["gamescope_window_width"])
-        self.spin_gamescope_height.set_value(parameters["gamescope_window_height"])
-        self.spin_fps_limit.set_value(parameters["gamescope_fps"])
-        self.spin_fps_limit_no_focus.set_value(parameters["gamescope_fps_no_focus"])
-        self.switch_scaling.set_state(parameters["gamescope_scaling"])
-        self.toggle_borderless.set_active(parameters["gamescope_borderless"])
-        self.toggle_fullscreen.set_active(parameters["gamescope_fullscreen"])
+        self.spin_width.set_value(parameters.get("gamescope_game_width"))
+        self.spin_height.set_value(parameters.get("gamescope_game_height"))
+        self.spin_gamescope_width.set_value(parameters.get("gamescope_window_width"))
+        self.spin_gamescope_height.set_value(parameters.get("gamescope_window_height"))
+        self.spin_fps_limit.set_value(parameters.get("gamescope_fps"))
+        self.spin_fps_limit_no_focus.set_value(parameters.get("gamescope_fps_no_focus"))
+        self.switch_scaling.set_state(parameters.get("gamescope_scaling"))
+        self.toggle_borderless.set_active(parameters.get("gamescope_borderless"))
+        self.toggle_fullscreen.set_active(parameters.get("gamescope_fullscreen"))
 
         self.toggle_borderless.handler_unblock_by_func(self.__change_wtype)
         self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)
 
     def __idle_save(self, *_args):
-        settings = {"gamescope_game_width": Gtk.Adjustment.get_value(self.spin_width),
-                    "gamescope_game_height": Gtk.Adjustment.get_value(self.spin_height),
-                    "gamescope_window_width": Gtk.Adjustment.get_value(self.spin_gamescope_width),
-                    "gamescope_window_height": Gtk.Adjustment.get_value(self.spin_gamescope_height),
-                    "gamescope_fps": Gtk.Adjustment.get_value(self.spin_fps_limit),
-                    "gamescope_fps_no_focus": Gtk.Adjustment.get_value(self.spin_fps_limit_no_focus),
+        settings = {"gamescope_game_width": self.spin_width.get_value(),
+                    "gamescope_game_height": self.spin_height.get_value(),
+                    "gamescope_window_width": self.spin_gamescope_width.get_value(),
+                    "gamescope_window_height": self.spin_gamescope_height.get_value(),
+                    "gamescope_fps": self.spin_fps_limit.get_value(),
+                    "gamescope_fps_no_focus": self.spin_fps_limit_no_focus.get_value(),
                     "gamescope_scaling": self.switch_scaling.get_state(),
                     "gamescope_borderless": self.toggle_borderless.get_active(),
                     "gamescope_fullscreen": self.toggle_fullscreen.get_active()}
