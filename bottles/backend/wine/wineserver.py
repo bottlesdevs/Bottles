@@ -17,7 +17,6 @@ class WineServer(WineProgram):
     program = "Wine Server"
     command = "wineserver"
 
-    @cache(seconds=5)
     def is_alive(self):
         config = self.config
 
