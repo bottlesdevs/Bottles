@@ -716,7 +716,7 @@ class PreferencesView(Adw.PreferencesPage):
             dialog = Adw.MessageDialog.new(
                 self.window,
                 _("Are you sure you want to delete all snapshots?"),
-                _("This will delete all snapshots, but keep your files."),
+                _("This will delete all snapshots but keep your files."),
             )
             dialog.add_response("cancel", _("_Cancel"))
             dialog.add_response("ok", _("_Delete"))
