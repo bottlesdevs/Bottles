@@ -487,6 +487,10 @@ class WineCommand:
 
                 # Update command
                 command = f"{self.__get_gamescope_cmd(return_steam_cmd)} -- {gamescope_run}"
+                logging.info(f"Running Gamescope command: '{command}'")
+                logging.info(f"{gamescope_run} contains:")
+                with open(gamescope_run, "r") as f:
+                    logging.info(f"\n{f.read()}\n")
 
                 # Set file as executable
                 st = os.stat(gamescope_run)
