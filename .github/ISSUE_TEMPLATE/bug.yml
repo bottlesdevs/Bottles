@@ -100,27 +100,6 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: display-protocol
-    attributes:
-      label: Display Protocol
-      description: What display protocol is your system using? You can determine the display protocol used by the system by running `echo $XDG_SESSION_TYPE` in the terminal.
-      multiple: true
-      options:
-        - X11
-        - Wayland
-
-  - type: dropdown
-    id: display-backend-bottles
-    attributes:
-      label: Display Backend used by Bottles
-      description: What display backend is Bottles using? You can install the `xeyes` package from your distribution repositories. Once installed, run `xeyes` in the terminal and move your cursor around inside the Bottles window. If the eye follows your cursor, it means Bottles is running on the X11 backend, otherwise it is running on the Wayland backend.
-      multiple: true
-      options:
-        - X11
-        - Wayland
-        - I don't know
-
   - type: textarea
     id: additional-context
     attributes:
