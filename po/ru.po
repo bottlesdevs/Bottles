@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-12 14:51+0000\n"
-"Last-Translator: Aaron Grella <krutalevex@mail.ru>\n"
+"PO-Revision-Date: 2022-12-20 21:22+0000\n"
+"Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
@@ -838,7 +838,6 @@ msgid "Bottles Runtime"
 msgstr "Среда выполнения Bottles"
 
 #: bottles/frontend/ui/details-preferences.blp:288
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
@@ -851,7 +850,6 @@ msgid "Steam Runtime"
 msgstr "Среда выполнения Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:299
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
@@ -909,7 +907,6 @@ msgid "Compression"
 msgstr "Сжатие"
 
 #: bottles/frontend/ui/details-preferences.blp:384
-#, fuzzy
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
@@ -1282,9 +1279,8 @@ msgid "Installation Failed!"
 msgstr "Установка не удалась!"
 
 #: bottles/frontend/ui/dialog-installer.blp:145
-#, fuzzy
 msgid "Something went wrong."
-msgstr "Что-то идёт не так."
+msgstr "Что-то пошло не так."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1812,9 +1808,8 @@ msgid "No Thumbnail"
 msgstr "Нет миниатюры"
 
 #: bottles/frontend/ui/library-entry.blp:57
-#, fuzzy
 msgid "Launch"
-msgstr "_Перезапустить"
+msgstr "Запустить"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1831,7 +1826,7 @@ msgstr "Удалить из библиотеки"
 
 #: bottles/frontend/ui/library-entry.blp:142
 msgid "Stop"
-msgstr ""
+msgstr "Остановить"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:171
@@ -2412,13 +2407,12 @@ msgid "Force _Stop"
 msgstr "Принудительно остановить"
 
 #: bottles/frontend/views/bottle_preferences.py:196
-#, fuzzy
 msgid "This feature is unavailable on your system."
-msgstr "В данной системе функция недоступна."
+msgstr "Эта функция недоступна на вашей системе."
 
 #: bottles/frontend/views/bottle_preferences.py:197
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} Чтобы добавить эту функцию, пожалуйста, выполните flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:278
 msgid "Choose working directory for executables"
@@ -2433,7 +2427,6 @@ msgid "Are you sure you want to delete all snapshots?"
 msgstr "Вы уверены, что хотите удалить все снимки?"
 
 #: bottles/frontend/views/bottle_preferences.py:719
-#, fuzzy
 msgid "This will delete all snapshots but keep your files."
 msgstr "Это удалит все снимки, но сохранит ваши файлы."
 
@@ -2499,9 +2492,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Получено {0} из {1} пакетов"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "The name has special characters or is already in use."
-msgstr "Название уже используется или содержит специальные символы"
+msgstr "Название содержит специальные символы или уже используется."
 
 #: bottles/frontend/views/new.py:156
 msgid "Choose a recipe file"
@@ -2525,7 +2517,6 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "Steam не найден или у Bottles недостаточно разрешений."
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose a new Bottles path"
 msgstr "Задайте новый путь к бутылкам"
 
@@ -2643,9 +2634,9 @@ msgstr "Запуск «{0}»…"
 
 #: bottles/frontend/widgets/library.py:153
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "Запуск «{0}»…"
+msgstr "Остановка «{0}»…"
 
 #: bottles/frontend/widgets/program.py:180
 #, python-brace-format
@@ -3098,7 +3089,6 @@ msgid "Fix for DLSS"
 msgstr "Исправление для DLSS"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Added tooltips for program grades"
 msgstr "Добавлены всплывающие подсказки для оценок программ"
 
@@ -3135,7 +3125,6 @@ msgid "Catalan translations thanks to @rogervc"
 msgstr "Каталонский перевод от @rogervc"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic translations thanks to @TheDarkEvil"
 msgstr "Арабский перевод от @TheDarkEvil"
 
@@ -3144,7 +3133,6 @@ msgid "Korean translations thanks to @MarongHappy"
 msgstr "Корейский перевод от @MarongHappy"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
 msgstr "Португальский перевод от @davipatricio, @SantosSi и @vitorhcl"
