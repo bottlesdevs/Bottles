@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-12 14:51+0000\n"
+"PO-Revision-Date: 2022-12-20 21:22+0000\n"
 "Last-Translator: Eric <hamburger1024@duck.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
@@ -812,22 +812,20 @@ msgid "Bottles Runtime"
 msgstr "Bottles 运行时（Runtime）"
 
 #: bottles/frontend/ui/details-preferences.blp:288
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
-msgstr "提供额外库以提高兼容性，如遇到问题则禁用。"
+msgstr "提供一组额外库以提高兼容性，如遇到问题则禁用。"
 
 #: bottles/frontend/ui/details-preferences.blp:298
 msgid "Steam Runtime"
 msgstr "Steam 运行时（Runtime）"
 
 #: bottles/frontend/ui/details-preferences.blp:299
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
-msgstr "提供额外库以提高 Steam 游戏的兼容性，如遇到问题则禁用。"
+msgstr "提供一组额外库以提高 Steam 游戏的兼容性，如遇到问题则禁用。"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -877,11 +875,10 @@ msgid "Compression"
 msgstr "压缩"
 
 #: bottles/frontend/ui/details-preferences.blp:384
-#, fuzzy
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
-msgstr "压缩快照，减少快照空间。这会降低创建快照的速度。"
+msgstr "压缩快照，减少快照占用的空间。这会降低创建快照的速度。"
 
 #: bottles/frontend/ui/details-preferences.blp:393
 msgid "Use Exclusion Patterns"
@@ -1234,7 +1231,6 @@ msgid "Installation Failed!"
 msgstr "安装失败！"
 
 #: bottles/frontend/ui/dialog-installer.blp:145
-#, fuzzy
 msgid "Something went wrong."
 msgstr "出错了。"
 
@@ -1741,9 +1737,8 @@ msgid "No Thumbnail"
 msgstr "无缩略图"
 
 #: bottles/frontend/ui/library-entry.blp:57
-#, fuzzy
 msgid "Launch"
-msgstr "重启(_R)"
+msgstr "启动"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1760,7 +1755,7 @@ msgstr "从库中删除"
 
 #: bottles/frontend/ui/library-entry.blp:142
 msgid "Stop"
-msgstr ""
+msgstr "停止"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:171
@@ -2331,13 +2326,12 @@ msgid "Force _Stop"
 msgstr "强制停止(_S)"
 
 #: bottles/frontend/views/bottle_preferences.py:196
-#, fuzzy
 msgid "This feature is unavailable on your system."
-msgstr "该功能在您的系统上不可用。"
+msgstr "该功能在你的系统上不可用。"
 
 #: bottles/frontend/views/bottle_preferences.py:197
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} 要添加此功能，请运行 flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:278
 msgid "Choose working directory for executables"
@@ -2352,7 +2346,6 @@ msgid "Are you sure you want to delete all snapshots?"
 msgstr "您确定要删除所有快照吗？"
 
 #: bottles/frontend/views/bottle_preferences.py:719
-#, fuzzy
 msgid "This will delete all snapshots but keep your files."
 msgstr "这将删除所有的快照，但保留你的文件。"
 
@@ -2417,9 +2410,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "已获取 {1} 个软件包中的 {0} 个"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "The name has special characters or is already in use."
-msgstr "名称有特殊字符或已在使用"
+msgstr "名称有特殊字符或已在使用。"
 
 #: bottles/frontend/views/new.py:156
 msgid "Choose a recipe file"
@@ -2443,7 +2435,6 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "未找到 Steam 或 Bottles 没有足够的权限。"
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose a new Bottles path"
 msgstr "选择新的 Bottles 路径"
 
@@ -2557,9 +2548,9 @@ msgstr "正在启动 '{0}'…"
 
 #: bottles/frontend/widgets/library.py:153
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "正在启动 '{0}'…"
+msgstr "正在停止'{0}'…"
 
 #: bottles/frontend/widgets/program.py:180
 #, python-brace-format
@@ -3000,7 +2991,6 @@ msgid "Fix for DLSS"
 msgstr "DLSS 的修复"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Added tooltips for program grades"
 msgstr "增加了程序等级的提示信息"
 
@@ -3037,7 +3027,6 @@ msgid "Catalan translations thanks to @rogervc"
 msgstr "感谢 @@rogervc 的加泰罗尼亚语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic translations thanks to @TheDarkEvil"
 msgstr "感谢 @TheDarkEvil 的阿拉伯语翻译"
 
@@ -3046,7 +3035,6 @@ msgid "Korean translations thanks to @MarongHappy"
 msgstr "感谢 @MarongHappy 的韩语翻译"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
 msgstr "感谢 @davipatricio、@SantosSi 和 @vitorhcl 的葡萄牙语翻译"
