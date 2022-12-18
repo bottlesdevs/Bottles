@@ -490,7 +490,7 @@ class WineCommand:
                 logging.info(f"Running Gamescope command: '{command}'")
                 logging.info(f"{gamescope_run} contains:")
                 with open(gamescope_run, "r") as f:
-                    logging.info(f"\n{f.read()}")
+                    logging.info(f"\n\n{f.read()}")
 
                 # Set file as executable
                 st = os.stat(gamescope_run)
