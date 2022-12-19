@@ -21,6 +21,7 @@ from io import BytesIO
 from http.client import RemoteDisconnected
 
 from bottles.backend.logger import Logger
+from bottles.frontend.utils.threading import RunAsync
 
 logging = Logger()
 
@@ -28,9 +29,14 @@ logging = Logger()
 class Repo:
     name: str = ""
 
-    def __init__(self, url: str, index: str, offline: bool = False):
+    def __init__(self, url: str, index: str, offline: bool = False, callback = None):
         self.url = url
-        self.catalog = self.__get_catalog(index, offline)
+        self.catalog = None
+
+        def set_catalog(result, error=None):
+            self.catalog = result
+            if callback: callback()
+        RunAsync(self.__get_catalog, callback=set_catalog, index=index, offline=offline)
 
     def __get_catalog(self, index: str, offline: bool = False):
         if index in ["", None] or offline:

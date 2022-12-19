@@ -41,7 +41,7 @@ class RunAsync(threading.Thread):
             faulthandler.enable()
 
         self.source_id = None
-        assert threading.current_thread() is threading.main_thread()
+        #assert threading.current_thread() is threading.main_thread()
 
         super(RunAsync, self).__init__(
             target=self.__target, args=args, kwargs=kwargs)

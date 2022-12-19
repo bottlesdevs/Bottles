@@ -116,13 +116,27 @@ class Manager:
         self.versioning_manager = VersioningManager(window, self)
         times["VersioningManager"] = time.time()
 
-        self.component_manager = ComponentManager(self, _offline)
+        def component_fetch_done():
+            self.organize_components()
+            times["organize_components"] = time.time()
+            self.__clear_temp()
+            times["clear_temp"] = time.time()
+
+        def installer_fetch_done():
+            self.organize_installers()
+            times["organize_installers"] = time.time()
+        
+        def dependency_fetch_done():
+            self.organize_dependencies()
+            times["organize_dependencies"] = time.time()
+
+        self.component_manager = ComponentManager(self, _offline, component_fetch_done)
         times["ComponentManager"] = time.time()
 
-        self.installer_manager = InstallerManager(self, _offline)
+        self.installer_manager = InstallerManager(self, _offline, installer_fetch_done)
         times["InstallerManager"] = time.time()
 
-        self.dependency_manager = DependencyManager(self, _offline)
+        self.dependency_manager = DependencyManager(self, _offline, dependency_fetch_done)
         times["DependencyManager"] = time.time()
 
         self.import_manager = ImportManager(self)
@@ -177,17 +191,17 @@ class Manager:
         self.check_runners(install_latest)
         times["check_runners"] = time.time()
 
-        if first_run:
-            self.organize_components()
-            times["organize_components"] = time.time()
-            self.__clear_temp()
-            times["clear_temp"] = time.time()
+        # if first_run:
+        #     self.organize_components()
+        #     times["organize_components"] = time.time()
+        #     self.__clear_temp()
+        #     times["clear_temp"] = time.time()
 
-        self.organize_dependencies()
-        times["organize_dependencies"] = time.time()
+        # self.organize_dependencies()
+        # times["organize_dependencies"] = time.time()
 
-        self.organize_installers()
-        times["organize_installers"] = time.time()
+        # self.organize_installers()
+        # times["organize_installers"] = time.time()
 
         self.check_bottles()
         times["check_bottles"] = time.time()
