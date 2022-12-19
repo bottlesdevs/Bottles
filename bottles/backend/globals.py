@@ -109,3 +109,13 @@ x_display = DisplayUtils.get_x_display()
 
 # Check if ~/.local/share/applications exists
 user_apps_dir = os.path.exists(Paths.applications)
+
+# This is a list of everything that is fetched asynchronously.
+# It is global as it can be used everywhere in Bottles to update UI accordingly
+fetched = []
+
+def done_fetching(s: str):
+    return lambda result, error: fetched.append(s)
+
+def get_fetched():
+    return fetched

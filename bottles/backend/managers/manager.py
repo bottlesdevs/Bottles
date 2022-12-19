@@ -35,7 +35,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.globals import Paths
+from bottles.backend.globals import Paths, done_fetching
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.versioning import VersioningManager
@@ -118,19 +118,15 @@ class Manager:
         times["VersioningManager"] = time.time()
 
         def component_fetch_done():
-            RunAsync(self.organize_components)
-            #times["organize_components"] = time.time()
+            RunAsync(self.organize_components, callback=done_fetching("components"))
             RunAsync(self.__clear_temp)
-            #times["clear_temp"] = time.time()
-
+            
         def installer_fetch_done():
-            RunAsync(self.organize_installers)
-            #times["organize_installers"] = time.time()
+            RunAsync(self.organize_installers, callback=done_fetching("installers"))
         
         def dependency_fetch_done():
-            RunAsync(self.organize_dependencies)
-            #times["organize_dependencies"] = time.time()
-
+            RunAsync(self.organize_dependencies, callback=done_fetching("dependencies"))
+            
         self.component_manager = ComponentManager(self, _offline, component_fetch_done)
         times["ComponentManager"] = time.time()
 
@@ -192,17 +188,12 @@ class Manager:
         self.check_runners(install_latest)
         times["check_runners"] = time.time()
 
-        # if first_run:
-        #     self.organize_components()
-        #     times["organize_components"] = time.time()
-        #     self.__clear_temp()
-        #     times["clear_temp"] = time.time()
+        if not first_run:
+            self.organize_dependencies()
+            times["organize_dependencies"] = time.time()
 
-        # self.organize_dependencies()
-        # times["organize_dependencies"] = time.time()
-
-        # self.organize_installers()
-        # times["organize_installers"] = time.time()
+            self.organize_installers()
+            times["organize_installers"] = time.time()
 
         self.check_bottles()
         times["check_bottles"] = time.time()
