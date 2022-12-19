@@ -653,19 +653,16 @@ class DependencyManager:
         reg = Reg(config)
         replaces = step.get("replace")
 
-        if len(replaces) == 1:
+        if not isinstance(replaces, list):
+            logging.warning("Invalid replace_font, 'replace' field should be list.")
+            return False
+
+        for r in replaces:
             reg.add(
                 key="HKEY_CURRENT_USER\\Software\\Wine\\Fonts\\Replacements",
-                value=step.get("font"),
-                data=step.get("replace")
+                value=r,
+                data=step.get("font")
             )
-        else:
-            for r in replaces:
-                reg.add(
-                    key="HKEY_CURRENT_USER\\Software\\Wine\\Fonts\\Replacements",
-                    value=step.get("font"),
-                    data=r
-                )
         return True
 
     @staticmethod

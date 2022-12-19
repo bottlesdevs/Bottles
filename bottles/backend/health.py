@@ -37,6 +37,7 @@ class HealthChecker:
     x11_port: str = ""
     wayland: bool = False
     xwayland: bool = False
+    desktop: str = ""
     gpus: dict = {}
     cabextract: bool = False
     p7zip: bool = False
@@ -51,8 +52,6 @@ class HealthChecker:
     glibc_min: str = ""
     kernel: str = ""
     kernel_version: str = ""
-    distro: str = ""
-    distro_version: str = ""
     bottles_envs: dict = {}
 
     def __init__(self):
@@ -60,6 +59,7 @@ class HealthChecker:
         self.x11 = self.check_x11()
         self.wayland = self.check_wayland()
         self.xwayland = self.check_xwayland()
+        self.desktop = self.check_desktop()
         self.gpus = self.check_gpus()
         self.glibc_min = is_glibc_min_available()
         self.bottles_envs = self.get_bottles_envs()
@@ -70,7 +70,7 @@ class HealthChecker:
             "MemAvailable": "n/a"
         }
         self.get_ram_data()
-        
+
         if not "FLATPAK_ID" in os.environ:
             self.cabextract = self.check_cabextract()
             self.p7zip = self.check_p7zip()
@@ -114,6 +114,9 @@ class HealthChecker:
         if self.x11 and self.wayland:
             return True
         return False
+
+    def check_desktop(self):
+        return os.environ.get("DESKTOP_SESSION")
 
     @staticmethod
     def check_cabextract():
@@ -191,45 +194,6 @@ class HealthChecker:
             return False
 
     @staticmethod
-    def __get_distro():
-        with contextlib.suppress(AttributeError):
-            _platform = platform.freedesktop_os_release()
-            return {
-                "name": _platform.get("NAME", "Unknown"),
-                "version": _platform.get("VERSION_ID", "Unknown")
-            }
-
-        if shutil.which("lsb_release"):
-            _proc = subprocess.Popen(
-                "lsb_release -a",
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                shell=True
-            ).communicate()[0].decode("utf-8").lower()
-            _lines = _proc.split("\n")
-            _name = _lines[0].split(":")[1].strip()
-            _version = _lines[1].split(":")[1].strip()
-            return {
-                "name": _name,
-                "version": _version
-            }
-
-        if os.path.exists("/etc/os-release"):
-            with open("/etc/os-release", "r") as _file:
-                _lines = _file.readlines()
-                _name = _lines[0].split("=")[1].strip()
-                _version = _lines[1].split("=")[1].strip()
-                return {
-                    "name": _name,
-                    "version": _version
-                }
-
-        return {
-            "name": "Unknown",
-            "version": "Unknown"
-        }
-
-    @staticmethod
     def get_bottles_envs():
         look = [
             "TESTING_REPOS",
@@ -245,11 +209,8 @@ class HealthChecker:
                 }
 
     def check_system_info(self):
-        distro = self.__get_distro()
         self.kernel = os.uname().sysname
         self.kernel_version = os.uname().release
-        self.distro = distro["name"]
-        self.distro_version = distro["version"]
 
     def get_disk_data(self):
         disk_data = self.file_utils.get_disk_size(False)
@@ -271,6 +232,7 @@ class HealthChecker:
         results = {
             "Official Package": "FLATPAK_ID" in os.environ,
             "Version": VERSION,
+            "DE/WM": self.desktop,
             "Display": {
                 "X.org": self.x11,
                 "X.org (port)": self.x11_port,
@@ -280,10 +242,6 @@ class HealthChecker:
             "Kernel": {
                 "Type": self.kernel,
                 "Version": self.kernel_version
-            },
-            "Distro": {
-                "Name": self.distro,
-                "Version": self.distro_version
             },
             "Disk": self.disk,
             "RAM": self.ram,

@@ -292,13 +292,7 @@ class ComponentManager:
             '''
             tar = tarfile.open(f"{Paths.temp}/{archive}")
             root_dir = tar.getnames()[0]
-
-            if component == "nvapi":
-                xtr_path = os.path.join(path, name)
-                tar.extractall(xtr_path)
-            else:
-                tar.extractall(path)
-                
+            tar.extractall(path)
             tar.close()
         except (tarfile.TarError, IOError, EOFError):
             with contextlib.suppress(FileNotFoundError):
