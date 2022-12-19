@@ -62,6 +62,7 @@ from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.winepath import WinePath
+from bottles.frontend.utils.threading import RunAsync
 
 logging = Logger()
 
@@ -117,18 +118,18 @@ class Manager:
         times["VersioningManager"] = time.time()
 
         def component_fetch_done():
-            self.organize_components()
-            times["organize_components"] = time.time()
-            self.__clear_temp()
-            times["clear_temp"] = time.time()
+            RunAsync(self.organize_components)
+            #times["organize_components"] = time.time()
+            RunAsync(self.__clear_temp)
+            #times["clear_temp"] = time.time()
 
         def installer_fetch_done():
-            self.organize_installers()
-            times["organize_installers"] = time.time()
+            RunAsync(self.organize_installers)
+            #times["organize_installers"] = time.time()
         
         def dependency_fetch_done():
-            self.organize_dependencies()
-            times["organize_dependencies"] = time.time()
+            RunAsync(self.organize_dependencies)
+            #times["organize_dependencies"] = time.time()
 
         self.component_manager = ComponentManager(self, _offline, component_fetch_done)
         times["ComponentManager"] = time.time()
