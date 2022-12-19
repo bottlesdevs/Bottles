@@ -177,6 +177,14 @@ template PreferencesWindow : .AdwPreferencesWindow {
         }
       }
     }
+
+    .AdwStatusPage runners_status_page {
+      icon-name: "system-software-install-symbolic";
+      title: _("Runners are getting fetched...");
+      vexpand: true;
+      hexpand: true;
+      description: _("You seem to have a slow connection, and the runners are getting fetched right now. Hold tight!");
+    }
   }
 
   .AdwPreferencesPage {

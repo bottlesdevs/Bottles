@@ -20,11 +20,17 @@ import subprocess
 import webbrowser
 from gettext import gettext as _
 from gi.repository import Gtk, Adw, Gio
+from gi.repository import GLib
 
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 from bottles.frontend.windows.filechooser import FileChooser
+from bottles.frontend.utils.threading import RunAsync
 
+from bottles.backend.logger import Logger
 from bottles.backend.managers.data import DataManager
+from bottles.backend.globals import wait_for_fetch
+
+logging = Logger()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class PreferencesWindow(Adw.PreferencesWindow):
@@ -47,6 +53,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     list_winebridge = Gtk.Template.Child()
     list_runtimes = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
+    runners_status_page = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
     list_nvapi = Gtk.Template.Child()
@@ -97,11 +104,19 @@ class PreferencesWindow(Adw.PreferencesWindow):
         # populate components lists
         self.populate_runtimes_list()
         self.populate_winebridge_list()
-        self.populate_runners_list()
-        self.populate_dxvk_list()
-        self.populate_vkd3d_list()
-        self.populate_nvapi_list()
-        self.populate_latencyflex_list()
+
+        self.list_runners.set_visible(False)
+        self.runners_status_page.set_visible(True)
+
+        def simpleFunc():
+            wait_for_fetch("components")
+            GLib.idle_add(self.populate_runners_list)
+            GLib.idle_add(self.populate_dxvk_list)
+            GLib.idle_add(self.populate_vkd3d_list)
+            GLib.idle_add(self.populate_nvapi_list)
+            GLib.idle_add(self.populate_latencyflex_list)
+
+        RunAsync(simpleFunc)
 
         # connect signals
         self.settings.connect('changed::dark-theme', self.__toggle_night)
@@ -282,3 +297,5 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.list_runners.add(exp_other)
             self.__registry.append(exp_other)
 
+        self.list_runners.set_visible(True)
+        self.runners_status_page.set_visible(False)

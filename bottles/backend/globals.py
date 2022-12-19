@@ -17,6 +17,7 @@
 
 import os
 import shutil
+import time
 from gi.repository import GLib
 from pathlib import Path
 from functools import lru_cache
@@ -119,3 +120,8 @@ def done_fetching(s: str):
 
 def get_fetched():
     return fetched
+
+# This is a BLOCKING function that will wait until the object is fetched
+def wait_for_fetch(s: str):
+    while not s in fetched:
+        time.sleep(1)

@@ -41,7 +41,7 @@ class RunAsync(threading.Thread):
             faulthandler.enable()
 
         self.source_id = None
-        #assert threading.current_thread() is threading.main_thread()
+        logging.warning(f"RunAsync: {threading.current_thread() is threading.main_thread()}, func: {task_func}")
 
         super(RunAsync, self).__init__(
             target=self.__target, args=args, kwargs=kwargs)
