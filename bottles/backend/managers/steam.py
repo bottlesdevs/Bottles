@@ -90,7 +90,7 @@ class SteamManager:
         if not os.path.isfile(acf_path):
             return
 
-        with open(acf_path, "r") as f:
+        with open(acf_path, "r", errors='replace') as f:
             data = SteamUtils.parse_acf(f.read())
 
         return data
@@ -117,7 +117,7 @@ class SteamManager:
             logging.warning("Could not find the libraryfolders.vdf file")
             return
 
-        with open(library_folders_path, "r") as f:
+        with open(library_folders_path, "r", errors='replace') as f:
             _library_folders = SteamUtils.parse_acf(f.read())
 
         if _library_folders is None or not _library_folders.get("libraryfolders"):
@@ -529,7 +529,7 @@ class SteamManager:
             _existing = {}
 
             if os.path.exists(os.path.join(c, "shortcuts.vdf")):
-                with open(os.path.join(c, "shortcuts.vdf"), "rb") as f:
+                with open(os.path.join(c, "shortcuts.vdf"), "rb", errors='replace') as f:
                     try:
                         _existing = vdf.binary_loads(f.read()).get("shortcuts", {})
                     except:
