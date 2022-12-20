@@ -17,6 +17,7 @@
 
 import os
 import shutil
+import time
 from gi.repository import GLib
 from pathlib import Path
 from functools import lru_cache
@@ -109,3 +110,19 @@ x_display = DisplayUtils.get_x_display()
 
 # Check if ~/.local/share/applications exists
 user_apps_dir = os.path.exists(Paths.applications)
+
+# This is a list of everything that is fetched asynchronously.
+# It is global as it can be used everywhere in Bottles to update UI accordingly
+fetched = []
+
+def done_fetching(s: str):
+    return lambda result, error: fetched.append(s)
+
+def get_fetched():
+    return fetched
+
+# This is a BLOCKING function that will wait until the object is fetched
+# It should only be called in a function that is launched with RunAsync
+def wait_for_fetch(s: str):
+    while not s in fetched:
+        time.sleep(1)

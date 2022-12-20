@@ -35,7 +35,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.globals import Paths
+from bottles.backend.globals import Paths, done_fetching
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.versioning import VersioningManager
@@ -62,6 +62,8 @@ from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.winepath import WinePath
+
+from bottles.frontend.utils.threading import RunAsync
 
 logging = Logger()
 
@@ -116,14 +118,21 @@ class Manager:
         self.versioning_manager = VersioningManager(window, self)
         times["VersioningManager"] = time.time()
 
-        self.component_manager = ComponentManager(self, _offline)
-        times["ComponentManager"] = time.time()
+        def component_fetch_done():
+            RunAsync(self.organize_components, callback=done_fetching("components"))
+            RunAsync(self.__clear_temp)
+            
+        def installer_fetch_done():
+            RunAsync(self.organize_installers, callback=done_fetching("installers"))
+        
+        def dependency_fetch_done():
+            RunAsync(self.organize_dependencies, callback=done_fetching("dependencies"))
+            
+        self.component_manager = ComponentManager(self, _offline, component_fetch_done)
 
-        self.installer_manager = InstallerManager(self, _offline)
-        times["InstallerManager"] = time.time()
+        self.installer_manager = InstallerManager(self, _offline, installer_fetch_done)
 
-        self.dependency_manager = DependencyManager(self, _offline)
-        times["DependencyManager"] = time.time()
+        self.dependency_manager = DependencyManager(self, _offline, dependency_fetch_done)
 
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
@@ -177,17 +186,10 @@ class Manager:
         self.check_runners(install_latest)
         times["check_runners"] = time.time()
 
-        if first_run:
-            self.organize_components()
-            times["organize_components"] = time.time()
-            self.__clear_temp()
-            times["clear_temp"] = time.time()
-
-        self.organize_dependencies()
-        times["organize_dependencies"] = time.time()
-
-        self.organize_installers()
-        times["organize_installers"] = time.time()
+        if not first_run:
+            # Those can be run async as they do not do UI update
+            RunAsync(self.organize_dependencies)
+            RunAsync(self.organize_installers)
 
         self.check_bottles()
         times["check_bottles"] = time.time()
