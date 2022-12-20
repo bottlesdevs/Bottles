@@ -121,7 +121,6 @@ class ComponentManager:
             catalog[category][component[0]] = component[1]
             if component[0] in components_available[category]:
                 catalog[category][component[0]]["Installed"] = True
-                logging.info(f"Set installed to {catalog[category][component[0]]}")
             else:
                 catalog[category][component[0]].pop("Installed", None)
 
