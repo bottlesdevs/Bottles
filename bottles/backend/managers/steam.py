@@ -146,6 +146,7 @@ class SteamManager:
     def __get_local_config(self) -> dict:
         if self.localconfig_path is None:
             return {}
+
         with open(self.localconfig_path, "r", errors='replace') as f:
             data = SteamUtils.parse_acf(f.read())
 
