@@ -18,6 +18,7 @@
 import re
 from gi.repository import Gtk, GLib, Adw
 from os import environ
+from bottles.backend.health import HealthChecker
 
 
 vrr_supported_wayland = [
@@ -62,8 +63,8 @@ class GamescopeDialog(Adw.Window):
 
         self.__update(config)
 
-        # Enable VRR row if DE/WM is supported in vrr_supported_wayland
-        if environ.get("DESKTOP_SESSION") in vrr_supported_wayland and environ.get("XDG_DESKTOP_TYPE") == "wayland":
+        # Set VRR row to visible if the DE/WM is supported in vrr_supported_wayland
+        if environ.get("DESKTOP_SESSION") in vrr_supported_wayland and HealthChecker.check_wayland():
             self.row_vrr.set_visible(True)
 
     def __change_wtype(self, widget, wtype):
