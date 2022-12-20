@@ -307,7 +307,6 @@ class BottleView(Adw.PreferencesPage):
             return
 
         def process_programs():
-            time.sleep(.2)
             wineserver_status = WineServer(self.config).is_alive()
             programs = self.manager.get_programs(self.config)
             handled = 0

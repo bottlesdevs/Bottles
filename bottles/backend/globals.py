@@ -122,6 +122,7 @@ def get_fetched():
     return fetched
 
 # This is a BLOCKING function that will wait until the object is fetched
+# It should only be called in a function that is launched with RunAsync
 def wait_for_fetch(s: str):
     while not s in fetched:
         time.sleep(1)

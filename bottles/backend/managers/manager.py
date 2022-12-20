@@ -189,11 +189,9 @@ class Manager:
         times["check_runners"] = time.time()
 
         if not first_run:
-            self.organize_dependencies()
-            times["organize_dependencies"] = time.time()
-
-            self.organize_installers()
-            times["organize_installers"] = time.time()
+            # Those can be run async as they do not do UI update
+            RunAsync(self.organize_dependencies)
+            RunAsync(self.organize_installers)
 
         self.check_bottles()
         times["check_bottles"] = time.time()

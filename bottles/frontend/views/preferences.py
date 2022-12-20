@@ -108,7 +108,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.list_runners.set_visible(False)
         self.runners_status_page.set_visible(True)
 
-        def simpleFunc():
+        def ui_update():
             wait_for_fetch("components")
             GLib.idle_add(self.populate_runners_list)
             GLib.idle_add(self.populate_dxvk_list)
@@ -116,7 +116,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
             GLib.idle_add(self.populate_nvapi_list)
             GLib.idle_add(self.populate_latencyflex_list)
 
-        RunAsync(simpleFunc)
+        # This avoid freezing when opening the preferences window, while making sure to wait for the components to be fetched
+        RunAsync(ui_update)
 
         # connect signals
         self.settings.connect('changed::dark-theme', self.__toggle_night)
