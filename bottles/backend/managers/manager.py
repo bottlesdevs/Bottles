@@ -370,7 +370,7 @@ class Manager:
         tmp_runners = [x for x in self.runners_available if not x.startswith('sys-')]
 
         if len(tmp_runners) == 0 and install_latest:
-            logging.warning("No managed runners found.")
+            logging.warning("No runners found.")
 
             if self.utils_conn.check_connection():
                 # if connected, install the latest runner from repository
