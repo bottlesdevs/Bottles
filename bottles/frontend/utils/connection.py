@@ -50,7 +50,7 @@ class ConnectionUtils:
 
         try:
             c = pycurl.Curl()
-            c.setopt(c.URL, 'https://repo.usebottles.com')
+            c.setopt(c.URL, 'https://ping.usebottles.com')
             c.setopt(c.FOLLOWLOCATION, True)
             c.setopt(c.NOBODY, True)
             c.perform()

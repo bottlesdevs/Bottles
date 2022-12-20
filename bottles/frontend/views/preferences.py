@@ -149,7 +149,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         FileChooser(
             parent=self.window,
-            title=_("Choose new Bottles path"),
+            title=_("Choose a new Bottles path"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
             buttons=(_("Cancel"), _("Select")),
             callback=set_path,
