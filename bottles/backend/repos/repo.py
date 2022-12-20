@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import time
 from bottles.backend.utils import yaml
 import pycurl
 from io import BytesIO
@@ -43,7 +42,7 @@ class Repo:
     def __get_catalog(self, index: str, offline: bool = False):
         if index in ["", None] or offline:
             return {}
-        time.sleep(3)
+
         try:
             buffer = BytesIO()
 
