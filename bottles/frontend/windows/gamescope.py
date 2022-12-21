@@ -57,7 +57,7 @@ class GamescopeDialog(Adw.Window):
 
         self.__update(config)
 
-        # Set VRR row to visible if the DE/WM is supported in vrr_supported_wayland
+        # Set VRR row to visible if the compositor supports VRR
         if vrr_available:
             self.row_vrr.set_visible(True)
 
