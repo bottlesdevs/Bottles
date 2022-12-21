@@ -54,7 +54,7 @@ def is_vkbasalt_available():
             return True
     return False
 
-def check_vrr_wayland_available():
+def check_vrr_available():
     """ Check if compositor supports VRR """
     vrr_wayland_support = [
                             "sway",
@@ -117,7 +117,7 @@ vkbasalt_available = is_vkbasalt_available()
 mangohud_available = shutil.which("mangohud") or False
 obs_vkc_available = shutil.which("obs-vkcapture") or False
 vmtouch_available = shutil.which("vmtouch") or False
-vrr_available = check_vrr_wayland_available()
+vrr_available = check_vrr_available()
 
 x_display = DisplayUtils.get_x_display()
 
