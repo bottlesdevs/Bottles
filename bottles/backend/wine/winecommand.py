@@ -14,7 +14,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
-    obs_vkc_available, vkbasalt_available, vmtouch_available
+    obs_vkc_available, vkbasalt_available, vmtouch_available, vrr_available
 from bottles.backend.logger import Logger
 from bottles.frontend.utils.threading import RunAsync
 
@@ -549,7 +549,7 @@ class WineCommand:
                 gamescope_cmd.append("-b")
             if params["gamescope_scaling"]:
                 gamescope_cmd.append("-n")
-            if params["gamescope_vrr"]:
+            if params["gamescope_vrr"] and vrr_available:
                 gamescope_cmd.append("--adaptive-sync")
             if params["fsr"]:
                 gamescope_cmd.append("-U")

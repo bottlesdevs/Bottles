@@ -20,10 +20,12 @@ import shutil
 from gi.repository import GLib
 from pathlib import Path
 from functools import lru_cache
+from os import environ
 
 from bottles.backend.logger import Logger
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.managers.data import DataManager
+from bottles.backend.health import HealthChecker
 
 logging = Logger()
 
@@ -50,6 +52,17 @@ def is_vkbasalt_available():
     for path in vkbasalt_paths:
         if os.path.exists(path):
             return True
+    return False
+
+def check_vrr_wayland_available():
+    """ Check if compositor supports VRR """
+    vrr_wayland_support = [
+                            "sway",
+                            "plasma",
+                          ]
+
+    if (environ.get("DESKTOP_SESSION") in vrr_wayland_support and HealthChecker.check_wayland()) or DisplayUtils.display_server_type() == "x11":
+        return True
     return False
 
 @lru_cache
@@ -104,6 +117,7 @@ vkbasalt_available = is_vkbasalt_available()
 mangohud_available = shutil.which("mangohud") or False
 obs_vkc_available = shutil.which("obs-vkcapture") or False
 vmtouch_available = shutil.which("vmtouch") or False
+vrr_available = check_vrr_wayland_available()
 
 x_display = DisplayUtils.get_x_display()
 
