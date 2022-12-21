@@ -200,7 +200,7 @@ class ComponentManager:
                 download_url = c.getinfo(c.EFFECTIVE_URL)
                 
                 c.close()
-            except requests.exceptions.RequestException:
+            except pycurl.error:
                 logging.exception(f"Failed to download [{download_url}]")
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
