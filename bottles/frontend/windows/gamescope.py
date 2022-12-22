@@ -64,10 +64,10 @@ class GamescopeDialog(Adw.Window):
 
             if DisplayUtils.display_server_type() == "wayland":
                 warning = _("This feature depends on the version of the compositor.")
-                learn_more = _("Learn more")
+                learn_more = _("Learn more about variable refresh rate")
                 link = f"<a href=\"LINK\">{learn_more}</a>"
-                message = f"{warning} {link}"
-                self.row_vrr.set_description(message)
+                message = f"{self.row_vrr.get_subtitle()} {warning} {link}"
+                self.row_vrr.set_subtitle(message)
 
     def __change_wtype(self, widget, wtype):
         self.toggle_borderless.handler_block_by_func(self.__change_wtype)
