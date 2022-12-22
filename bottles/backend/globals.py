@@ -25,7 +25,6 @@ from os import environ
 from bottles.backend.logger import Logger
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.managers.data import DataManager
-from bottles.backend.health import HealthChecker
 
 logging = Logger()
 
@@ -61,9 +60,11 @@ def check_vrr_available():
                             "plasma",
                           ]
 
-    if (environ.get("DESKTOP_SESSION") in vrr_wayland_support and HealthChecker.check_wayland()) or DisplayUtils.display_server_type() == "x11":
-        return True
-    return False
+    desktop = environ.get("DESKTOP_SESSION")
+    check_wayland_session = True if DisplayUtils.display_server_type() == "wayland" else False
+    check_x11_session = True if DisplayUtils.display_server_type() == "x11" else False
+
+    return True if (desktop in vrr_wayland_support and check_wayland_session) or check_x11_session else False
 
 @lru_cache
 class Paths:

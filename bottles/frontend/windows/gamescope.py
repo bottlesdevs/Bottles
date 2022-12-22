@@ -58,8 +58,7 @@ class GamescopeDialog(Adw.Window):
         self.__update(config)
 
         # Set VRR row to visible if the compositor supports VRR
-        if vrr_available:
-            self.row_vrr.set_visible(True)
+        self.row_vrr.set_visible(True) if vrr_available else None
 
     def __change_wtype(self, widget, wtype):
         self.toggle_borderless.handler_block_by_func(self.__change_wtype)
