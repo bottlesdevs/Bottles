@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-12 14:51+0000\n"
+"PO-Revision-Date: 2022-12-20 21:22+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
@@ -931,12 +931,11 @@ msgid "Bottles Runtime"
 msgstr "Bottles-runtime"
 
 #: bottles/frontend/ui/details-preferences.blp:288
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
-"Biedt een bundel extra bibliotheken voor meer compatibiliteit aan, schakel "
+"Biedt een bundel extra bibliotheken aan voor meer compatibiliteit. Schakel "
 "uit als u tegen problemen aanloopt."
 
 #: bottles/frontend/ui/details-preferences.blp:298
@@ -945,13 +944,12 @@ msgid "Steam Runtime"
 msgstr "Steam-runtime"
 
 #: bottles/frontend/ui/details-preferences.blp:299
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
-"Biedt een bundel extra bibliotheken voor meer compatibiliteit aan, schakel "
-"uit als u tegen problemen aanloopt."
+"Biedt een bundel extra bibliotheken aan voor meer compatibiliteit met Steam-"
+"games. Schakel uit als u tegen problemen aanloopt."
 
 #: bottles/frontend/ui/details-preferences.blp:307
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -1015,6 +1013,8 @@ msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
+"Comprimeert momentopnamen om ruimtegebruik te verminderen. Dit zal de "
+"aanmaak van momentopnamen vertragen."
 
 #: bottles/frontend/ui/details-preferences.blp:393
 #: bottles/frontend/ui/details-preferences.blp:397
@@ -1389,9 +1389,8 @@ msgid "Installation Failed!"
 msgstr "Installatie mislukt!"
 
 #: bottles/frontend/ui/dialog-installer.blp:145
-#, fuzzy
 msgid "Something went wrong."
-msgstr "Er gaat iets fout."
+msgstr "Er is iets fout gegaan."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1929,9 +1928,8 @@ msgid "No Thumbnail"
 msgstr "Geen miniatuur"
 
 #: bottles/frontend/ui/library-entry.blp:57
-#, fuzzy
 msgid "Launch"
-msgstr "_Herstarten"
+msgstr "Starten"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1951,7 +1949,7 @@ msgstr "Uit bibliotheek verwijderen"
 
 #: bottles/frontend/ui/library-entry.blp:142
 msgid "Stop"
-msgstr ""
+msgstr "Stoppen"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:171
@@ -2542,13 +2540,12 @@ msgid "Force _Stop"
 msgstr "Geforceerd _stoppen"
 
 #: bottles/frontend/views/bottle_preferences.py:196
-#, fuzzy
 msgid "This feature is unavailable on your system."
 msgstr "Deze functie is niet beschikbaar op uw systeem."
 
 #: bottles/frontend/views/bottle_preferences.py:197
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} Om deze functie toe te voegen voert u ‘flatpak install’ uit"
 
 #: bottles/frontend/views/bottle_preferences.py:278
 #: bottles/frontend/views/bottle_preferences.py:246
@@ -2565,7 +2562,7 @@ msgstr "Weet u zeker dat u alle momentopnamen wilt verwijderen?"
 
 #: bottles/frontend/views/bottle_preferences.py:719
 msgid "This will delete all snapshots but keep your files."
-msgstr ""
+msgstr "Dit zal alle momentopnamen verwijderen maar uw bestanden behouden."
 
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2630,9 +2627,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "{0} van {1} pakketten gedownload"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "The name has special characters or is already in use."
-msgstr "Naam bevat speciale tekens of is al in gebruik"
+msgstr "De naam bevat speciale tekens of is al in gebruik."
 
 #: bottles/frontend/views/new.py:156
 msgid "Choose a recipe file"
@@ -2656,7 +2652,6 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "Steam kon niet worden gevonden of Bottles heeft geen rechten hiervoor."
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose a new Bottles path"
 msgstr "Nieuw bottles-pad selecteren"
 
@@ -2775,9 +2770,9 @@ msgstr "‘{0}’ starten…"
 
 #: bottles/frontend/widgets/library.py:153
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "‘{0}’ starten…"
+msgstr "‘{0}’ stoppen…"
 
 #: bottles/frontend/widgets/program.py:180
 #: bottles/frontend/widgets/program.py:190
@@ -3246,7 +3241,7 @@ msgstr "Probleemoplossing voor DLSS"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Added tooltips for program grades"
-msgstr ""
+msgstr "Tooltips toegevoegd voor programmacijfers"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fix installer completion @jntesteves"
@@ -3281,19 +3276,17 @@ msgid "Catalan translations thanks to @rogervc"
 msgstr "Catalaanse vertaling door @rogervc"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic translations thanks to @TheDarkEvil"
-msgstr "Thaise vertalingen door @SashaPGT"
+msgstr "Arabische vertaling door @TheDarkEvil"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:104
 msgid "Korean translations thanks to @MarongHappy"
 msgstr "Koreaanse vertaling door @MarongHappy"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
-msgstr "Portugese vertalingen dankzij Pão com omlet"
+msgstr "Portugese vertaling door @davipatricio, @SantosSi en @vitorhcl"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Galician translations thanks to @NicoSGF64"

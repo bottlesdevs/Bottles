@@ -900,7 +900,7 @@ class Manager:
                 key=lambda x: x.split("-")[-1]
             )[-1]
 
-        if config["NVAPI"] not in self.dxvk_available:
+        if config["NVAPI"] not in self.nvapi_available:
             '''
             If the NVAPI is not in the list of available NVAPIs, set it to
             highest version.

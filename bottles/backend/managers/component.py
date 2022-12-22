@@ -347,12 +347,12 @@ class ComponentManager:
             func=func
         )
 
-        if not res and func:
+        if not res:
             '''
             If the download fails, execute the given func passing
             failed=True as a parameter.
             '''
-            return func(failed=True)
+            return Result(func(failed=True) if func else False)
 
         archive = manifest["File"][0]["file_name"]
 
