@@ -18,6 +18,7 @@
 import re
 from gi.repository import Gtk, GLib, Adw
 from bottles.backend.globals import Paths, vrr_available
+from bottles.backend.utils.display import DisplayUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-gamescope.ui')
@@ -58,7 +59,15 @@ class GamescopeDialog(Adw.Window):
         self.__update(config)
 
         # Set VRR row to visible if the compositor supports VRR
-        self.row_vrr.set_visible(True) if vrr_available else None
+        if vrr_available:
+            self.row_vrr.set_visible(True)
+
+            if DisplayUtils.display_server_type() == "wayland":
+                warning = _("This feature depends on the version of the compositor.")
+                learn_more = _("Learn more")
+                link = f"<a href=\"LINK\">{learn_more}</a>"
+                message = f"{warning} {link}"
+                self.row_vrr.set_description(message)
 
     def __change_wtype(self, widget, wtype):
         self.toggle_borderless.handler_block_by_func(self.__change_wtype)
