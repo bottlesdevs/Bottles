@@ -41,7 +41,7 @@ if compile_schemas.found()
 endif
 
 install_data(
-    join_paths('icons/hicolor/scalable/apps/com.usebottles.bottles.svg'),
+    join_paths('icons/hicolor/scalable/apps', APP_ICON),
     install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/scalable/apps')
 )
 

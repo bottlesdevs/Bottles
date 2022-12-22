@@ -15,5 +15,5 @@ jobs:
     - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
       with:
         bundle: bottles.flatpak
-        manifest-path: com.usebottles.bottles.dev.yml
+        manifest-path: build-aux/com.usebottles.bottles.yml
         cache-key: flatpak-builder-${{ github.sha }}
