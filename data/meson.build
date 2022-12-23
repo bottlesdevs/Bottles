@@ -1,5 +1,14 @@
-desktop_file = i18n.merge_file(
-  input: 'com.usebottles.bottles.desktop.in',
+conf = configuration_data()
+conf.set('APP_NAME', APP_NAME)
+conf.set('APP_ICON', APP_ICON)
+
+desktop_file = configure_file(
+        input:  'com.usebottles.bottles.desktop.in',
+       output:  'com.usebottles.bottles.desktop.i18n.in',
+    configuration: conf)
+
+desktop = i18n.merge_file(
+  input: desktop_file,
   output: 'com.usebottles.bottles.desktop',
   type: 'desktop',
   po_dir: '../po',
@@ -10,7 +19,7 @@ desktop_file = i18n.merge_file(
 desktop_utils = find_program('desktop-file-validate', required: false)
 if desktop_utils.found()
   test('Validate desktop file', desktop_utils,
-    args: [desktop_file]
+    args: [desktop]
   )
 endif
 
