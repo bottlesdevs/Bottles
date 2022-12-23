@@ -3,8 +3,8 @@ conf.set('APP_NAME', APP_NAME)
 conf.set('APP_ICON', APP_ICON)
 
 desktop_file = configure_file(
-        input:  'com.usebottles.bottles.desktop.in',
-       output:  'com.usebottles.bottles.desktop.i18n.in',
+        input:  'com.usebottles.bottles.desktop.in.in',
+       output:  'com.usebottles.bottles.desktop.in',
     configuration: conf)
 
 desktop = i18n.merge_file(
