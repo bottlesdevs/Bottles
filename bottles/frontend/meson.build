@@ -23,7 +23,7 @@ configure_file(
   install_dir: get_option('bindir')
 )
 
-param_file = configure_file(
+params_file = configure_file(
         input:  'params.py.in',
        output:  'params.py',
     configuration: conf)
@@ -33,7 +33,7 @@ bottles_sources = [
   'main.py',
   'const.py',
   'operation.py',
-  param_file,
+  params_file,
 ]
 
 if get_option('devel')
