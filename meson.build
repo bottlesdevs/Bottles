@@ -11,7 +11,7 @@ project(
 
 APP_NAME = 'Bottles'
 APP_ID = 'com.usebottles.bottles'
-APP_VERSION = meson.version()
+APP_VERSION = meson.project_version()
 devel = get_option('devel')
 
 if devel == true
