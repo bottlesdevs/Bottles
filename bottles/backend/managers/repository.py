@@ -123,4 +123,3 @@ class RepositoryManager:
                     continue
 
             c.close()
-
