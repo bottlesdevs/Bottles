@@ -374,7 +374,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.set_active(parameters["mangohud"])
         self.switch_obsvkc.set_active(parameters["obsvkc"])
         self.switch_vkbasalt.set_active(parameters["vkbasalt"])
-        self.combo_fsr.set_selected(parameters["fsr_level"] + 1)
         self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
         self.switch_gamemode.set_active(parameters["gamemode"])
         self.switch_gamescope.set_active(parameters["gamescope"])
@@ -385,6 +384,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_runtime.set_active(parameters["use_runtime"])
         self.switch_steam_runtime.set_active(parameters["use_steam_runtime"])
         self.switch_vmtouch.set_active(parameters["vmtouch"])
+        self.combo_fsr.set_selected(parameters["fsr_level"] + 1 if parameters["fsr"] != False else 0)
 
         # self.toggle_sync.set_active(parameters["sync"] == "wine")
         # self.toggle_esync.set_active(parameters["sync"] == "esync")
@@ -746,7 +746,7 @@ class PreferencesView(Adw.PreferencesPage):
         ).data["config"]
 
     def __set_fsr_level(self, *_args):
-        """Set the FSR level of sharpness (from 0 to 3, where 3 is the default)"""
+        """Set the FSR level of sharpness"""
         def set_config(key, value):
             self.config = self.manager.update_config(
             config=self.config,
@@ -756,8 +756,8 @@ class PreferencesView(Adw.PreferencesPage):
             ).data["config"]
 
         level = self.combo_fsr.get_selected()
+        set_config("fsr_level", level - 1) if level != 0 else None
         set_config("fsr", bool(level))
-        set_config("fsr_level", level - 1)
 
     def __set_runner(self, *_args):
         """Set the runner to use for the bottle"""
