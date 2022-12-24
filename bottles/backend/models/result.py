@@ -39,3 +39,6 @@ class Result:
         self.status = status
         self.data = data
         self.message = message
+
+    def set_status(self, v: bool):
+        self.status = v

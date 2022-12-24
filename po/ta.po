@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-12 14:51+0000\n"
+"PO-Revision-Date: 2022-12-20 21:22+0000\n"
 "Last-Translator: K.B.Dharun Krishna <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/bottles/bottles/ta/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
@@ -926,13 +926,12 @@ msgid "Bottles Runtime"
 msgstr "பாட்டில்கள் இயங்கும் நேரம்"
 
 #: bottles/frontend/ui/details-preferences.blp:288
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
-"மேலும் இணக்கத்தன்மைக்கு கூடுதல் நூலகங்களின் தொகுப்பை வழங்குகிறது, நீங்கள் சிக்கல்களைச் "
-"சந்தித்தால் முடக்கவும்."
+"மேலும் இணக்கத்தன்மைக்கு கூடுதல் நூலகங்களின் தொகுப்பை வழங்குகிறது, நீங்கள் "
+"சிக்கல்களைச் சந்தித்தால் முடக்கவும்."
 
 #: bottles/frontend/ui/details-preferences.blp:298
 #: bottles/frontend/ui/details-preferences.blp:302
@@ -940,13 +939,12 @@ msgid "Steam Runtime"
 msgstr "ஸ்டீம் இயக்க நேரம்"
 
 #: bottles/frontend/ui/details-preferences.blp:299
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
-"மேலும் இணக்கத்தன்மைக்கு கூடுதல் நூலகங்களின் தொகுப்பை வழங்குகிறது, நீங்கள் சிக்கல்களைச் "
-"சந்தித்தால் முடக்கவும்."
+"மேலும் இணக்கத்தன்மைக்கு கூடுதல் நூலகங்களின் தொகுப்பை வழங்குகிறது, நீங்கள் "
+"சிக்கல்களைச் சந்தித்தால் முடக்கவும்."
 
 #: bottles/frontend/ui/details-preferences.blp:307
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -1007,6 +1005,8 @@ msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
+"இடத்தைக் குறைக்க ஸ்னாப்ஷாட்களை சுருக்கவும். இது ஸ்னாப்ஷாட்களை உருவாக்குவதை "
+"மெதுவாக்கும்."
 
 #: bottles/frontend/ui/details-preferences.blp:393
 #: bottles/frontend/ui/details-preferences.blp:397
@@ -1379,7 +1379,7 @@ msgstr "நிறுவல் தோல்வி அடைந்தது!"
 
 #: bottles/frontend/ui/dialog-installer.blp:145
 msgid "Something went wrong."
-msgstr ""
+msgstr "ஏதோ தவறு நடந்தது."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1909,9 +1909,8 @@ msgid "No Thumbnail"
 msgstr "சிறுபடம் இல்லை"
 
 #: bottles/frontend/ui/library-entry.blp:57
-#, fuzzy
 msgid "Launch"
-msgstr "விருப்பங்களைத் திறக்கவும்"
+msgstr "துவக்கவும்"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1931,7 +1930,7 @@ msgstr "நூலகத்திலிருந்து அகற்று"
 
 #: bottles/frontend/ui/library-entry.blp:142
 msgid "Stop"
-msgstr ""
+msgstr "நிறுத்து"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:171
@@ -2512,13 +2511,12 @@ msgid "Force _Stop"
 msgstr "கட்டாயப்படுத்தி _நிறுத்து"
 
 #: bottles/frontend/views/bottle_preferences.py:196
-#, fuzzy
 msgid "This feature is unavailable on your system."
 msgstr "இந்த அம்சம் உங்கள் கணினியில் இல்லை."
 
 #: bottles/frontend/views/bottle_preferences.py:197
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} இந்த அம்சத்தைச் சேர்க்க, தயவுசெய்து பிளாட்பேக் நிறுவலை இயக்கவும்"
 
 #: bottles/frontend/views/bottle_preferences.py:278
 #: bottles/frontend/views/bottle_preferences.py:246
@@ -2536,6 +2534,8 @@ msgstr "எல்லா ஸ்னாப்ஷாட்களையும் ந�
 #: bottles/frontend/views/bottle_preferences.py:719
 msgid "This will delete all snapshots but keep your files."
 msgstr ""
+"இது அனைத்து ஸ்னாப்ஷாட்களையும் நீக்கும், ஆனால் உங்கள் கோப்புகளை "
+"வைத்திருக்கும்."
 
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2598,9 +2598,9 @@ msgid "Fetched {0} of {1} packages"
 msgstr "{1} தொகுப்புகளில் {0} எடுக்கப்பட்டது"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "The name has special characters or is already in use."
-msgstr "பெயரில் சிறப்பு எழுத்துகள் உள்ளன அல்லது ஏற்கனவே பயன்பாட்டில் உள்ளன."
+msgstr ""
+"பெயருக்கு சிறப்பு எழுத்துக்கள் உள்ளன அல்லது ஏற்கனவே பயன்பாட்டில் உள்ளது."
 
 #: bottles/frontend/views/new.py:156
 msgid "Choose a recipe file"
@@ -2624,7 +2624,6 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "ஸ்டீம் கண்டுபிடிக்கப்படவில்லை அல்லது பாட்டில்களுக்கு போதுமான அனுமதிகள் இல்லை."
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose a new Bottles path"
 msgstr "புதிய பாட்டில் பாதையைத் தேர்வு செய்யவும்"
 
@@ -2741,7 +2740,7 @@ msgstr "\"{0}\" தொடங்கப்படுகிறது…"
 
 #: bottles/frontend/widgets/library.py:153
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
 msgstr "'{0}' தொடங்கப்படுகிறது…"
 
@@ -3197,7 +3196,7 @@ msgstr "DLSS க்கு சரிசெய்தல்"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Added tooltips for program grades"
-msgstr ""
+msgstr "நிரல் தரங்களுக்கான உதவிக்குறிப்பு சேர்க்கப்பட்டது"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fix installer completion @jntesteves"
@@ -3232,19 +3231,19 @@ msgid "Catalan translations thanks to @rogervc"
 msgstr "கேட்டலான் மொழிபெயர்ப்பு @rogervc க்கு நன்றி"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic translations thanks to @TheDarkEvil"
-msgstr "தாய் மொழிபெயர்ப்பு நன்றி @SashaPGT"
+msgstr "அரபு மொழிபெயர்ப்புகள் @TheDarkEvil க்கு நன்றி"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:104
 msgid "Korean translations thanks to @MarongHappy"
 msgstr "கொரிய மொழிபெயர்ப்புகள் @MarongHappy க்கு நன்றி"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
-msgstr "போர்ச்சுகீஸ் (பிரேசில்) மொழிபெயர்ப்புகள் @geraldohomero க்கு நன்றி"
+msgstr ""
+"போர்த்துகீசிய மொழிபெயர்ப்புகள் @davipatricio, @SantosSi மற்றும் @vitorhcl "
+"ஆகியோருக்கு நன்றி"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Galician translations thanks to @NicoSGF64"
