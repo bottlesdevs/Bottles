@@ -374,8 +374,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.set_active(parameters["mangohud"])
         self.switch_obsvkc.set_active(parameters["obsvkc"])
         self.switch_vkbasalt.set_active(parameters["vkbasalt"])
+        self.combo_fsr.set_selected(parameters["fsr_level"] + 1)
         self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
-        self.switch_fsr.set_active(parameters["fsr"])
         self.switch_gamemode.set_active(parameters["gamemode"])
         self.switch_gamescope.set_active(parameters["gamescope"])
         self.switch_sandbox.set_active(parameters["sandbox"])
@@ -635,15 +635,6 @@ class PreferencesView(Adw.PreferencesPage):
             scope="Parameters"
         ).data["config"]
 
-    def __toggle_fsr(self, widget=False, state=False):
-        """Toggle the fsr for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="fsr",
-            value=state,
-            scope="Parameters"
-        ).data["config"]
-
     def __toggle_gamemode(self, widget=False, state=False):
         """Toggle the gamemode for current bottle"""
         self.config = self.manager.update_config(
@@ -766,7 +757,7 @@ class PreferencesView(Adw.PreferencesPage):
 
         level = self.combo_fsr.get_selected()
         set_config("fsr", bool(level))
-        set_config("fsr_level", level)
+        set_config("fsr_level", level - 1)
 
     def __set_runner(self, *_args):
         """Set the runner to use for the bottle"""
