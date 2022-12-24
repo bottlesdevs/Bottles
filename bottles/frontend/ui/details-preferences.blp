@@ -100,15 +100,21 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_fsr {
-      activatable-widget: "switch_fsr";
+    .AdwComboRow combo_fsr {
       title: "FidelityFX Super Resolution";
       subtitle: _("Increase performance at the expense of visuals. Only works on Vulkan.");
-      visible: true;
-
-      Switch switch_fsr {
-        valign: center;
+      model:
+      StringList {
+        strings [
+          _("Disabled"),
+          _("Ultra Quality"),
+          _("Quality"),
+          _("Balanced"),
+          _("Performance"),
+        ]
       }
+
+      ;
     }
 
     .AdwActionRow row_discrete {

@@ -89,7 +89,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_auto_versioning = Gtk.Template.Child()
     switch_versioning_patterns = Gtk.Template.Child()
     switch_vmtouch = Gtk.Template.Child()
-    switch_fsr = Gtk.Template.Child()
+    combo_fsr = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
     combo_vkd3d = Gtk.Template.Child()
@@ -155,7 +155,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
         self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
         self.switch_vmtouch.connect('state-set', self.__toggle_vmtouch)
-        self.switch_fsr.connect('state-set', self.__toggle_fsr)
+        self.combo_fsr.connect('notify::selected', self.__set_fsr_level)
         self.combo_runner.connect('notify::selected', self.__set_runner)
         self.combo_dxvk.connect('notify::selected', self.__set_dxvk)
         self.combo_vkd3d.connect('notify::selected', self.__set_vkd3d)
@@ -362,7 +362,7 @@ class PreferencesView(Adw.PreferencesPage):
         with contextlib.suppress(TypeError):
             self.switch_runtime.handler_block_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
-        self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
+        self.combo_fsr.handler_block_by_func(self.__set_fsr_level)
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
@@ -491,6 +491,7 @@ class PreferencesView(Adw.PreferencesPage):
         with contextlib.suppress(TypeError):
             self.switch_runtime.handler_unblock_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
+        self.combo_fsr.handler_unblock_by_func(self.__set_fsr_level)
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
@@ -752,6 +753,20 @@ class PreferencesView(Adw.PreferencesPage):
             value=state,
             scope="Parameters"
         ).data["config"]
+
+    def __set_fsr_level(self, *_args):
+        """Set the FSR level of sharpness (from 0 to 3, where 3 is the default)"""
+        def set_config(key, value):
+            self.config = self.manager.update_config(
+            config=self.config,
+            key=key,
+            value=value,
+            scope="Parameters"
+            ).data["config"]
+
+        level = self.combo_fsr.get_selected()
+        set_config("fsr", bool(level))
+        set_config("fsr_level", level)
 
     def __set_runner(self, *_args):
         """Set the runner to use for the bottle"""
