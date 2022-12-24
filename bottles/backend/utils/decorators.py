@@ -16,7 +16,9 @@
 #
 
 from functools import lru_cache, wraps
+from threading import Lock as PyLock
 from time import monotonic_ns
+from typing import Callable, Dict
 
 
 def cache(_func=None, *, seconds: int = 600, maxsize: int = 128, typed: bool = False):
@@ -52,3 +54,25 @@ def cache(_func=None, *, seconds: int = 600, maxsize: int = 128, typed: bool = F
         return wrapper_cache
     else:
         return wrapper_cache(_func)
+
+
+class Lock:
+    LOCKS: Dict[str, PyLock] = {}
+
+    @staticmethod
+    def get_mutex_lock(name: str) -> PyLock:
+        Lock.LOCKS.setdefault(name, PyLock())
+        return Lock.LOCKS[name]
+
+    @staticmethod
+    def mutex(name: str):
+        Lock.LOCKS.setdefault(name, PyLock())
+
+        def func_wrapper(func: Callable):
+            def wrapper(*args, **kwargs):
+                Lock.LOCKS[name].acquire()
+                rv = func(*args, **kwargs)
+                Lock.LOCKS[name].release()
+                return rv
+            return wrapper
+        return func_wrapper

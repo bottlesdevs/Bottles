@@ -22,7 +22,7 @@ import sys
 import signal
 import gettext
 
-VERSION = "@VERSION@"
+APP_VERSION = "@APP_VERSION@"
 pkgdatadir = "@pkgdatadir@"
 localedir = "@localedir@"
 # noinspection DuplicatedCode
@@ -41,4 +41,4 @@ if __name__ == '__main__':
     resource._register()
 
     from bottles.frontend import main
-    sys.exit(main.main(VERSION))
+    sys.exit(main.main(APP_VERSION))
