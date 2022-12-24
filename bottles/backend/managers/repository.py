@@ -25,7 +25,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.installer import InstallerRepo
-from bottles.frontend.params import VERSION_NUM
+from bottles.frontend.params import APP_VERSION
 
 logging = Logger()
 
@@ -92,7 +92,7 @@ class RepositoryManager:
         total = len(self.__repositories)
 
         for repo, data in self.__repositories.items():
-            __index = os.path.join(data["url"], f"{VERSION_NUM}.yml")
+            __index = os.path.join(data["url"], f"{APP_VERSION}.yml")
             __fallback = os.path.join(data["url"], "index.yml")
 
             for url in (__index, __fallback):
