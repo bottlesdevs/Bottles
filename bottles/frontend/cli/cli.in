@@ -31,7 +31,7 @@ warnings.filterwarnings("ignore")  # suppress GTK warnings
 gi.require_version('Gtk', '4.0')
 from gi.repository import Gtk, Gio
 
-VERSION = "@VERSION@"
+APP_VERSION = "@APP_VERSION@"
 pkgdatadir = "@pkgdatadir@"
 # noinspection DuplicatedCode
 gresource_path = f"{pkgdatadir}/bottles.gresource"
@@ -71,7 +71,7 @@ class CLI:
         # self.__clear()
 
         self.parser = argparse.ArgumentParser(description="Bottles is a tool to manage your bottles")
-        self.parser.add_argument("-v", "--version", action="version", version=f"Bottles {VERSION}")
+        self.parser.add_argument("-v", "--version", action="version", version=f"Bottles {APP_VERSION}")
         self.parser.add_argument("-j", "--json", action="store_true", help="Outputs in JSON format")
 
         subparsers = self.parser.add_subparsers(dest='command', help='sub-command help')

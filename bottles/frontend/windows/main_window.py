@@ -331,6 +331,9 @@ class MainWindow(Adw.ApplicationWindow):
         about_window = builder.get_object("about_window")
         about_window.set_debug_info(HealthChecker().get_results(plain=True))
         about_window.add_link(_("Donate"), "https://usebottles.com/funding")
+        about_window.set_version(APP_VERSION)
+        about_window.set_application_name(APP_NAME)
+        about_window.set_application_icon(APP_ICON)
         about_window.add_acknowledgement_section(
             _("Third-Party Libraries and Special Thanks"),
             [
