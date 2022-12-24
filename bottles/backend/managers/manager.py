@@ -64,6 +64,8 @@ from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.winepath import WinePath
 from bottles.frontend.utils.threading import RunAsync
 
+from bottles.frontend.utils.threading import RunAsync
+
 logging = Logger()
 
 
@@ -128,13 +130,10 @@ class Manager:
             RunAsync(self.organize_dependencies, callback=done_fetching("dependencies"))
             
         self.component_manager = ComponentManager(self, _offline, component_fetch_done)
-        times["ComponentManager"] = time.time()
 
         self.installer_manager = InstallerManager(self, _offline, installer_fetch_done)
-        times["InstallerManager"] = time.time()
 
         self.dependency_manager = DependencyManager(self, _offline, dependency_fetch_done)
-        times["DependencyManager"] = time.time()
 
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
