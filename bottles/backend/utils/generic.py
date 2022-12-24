@@ -15,10 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import re
-import sys
 import contextlib
+import random
+import re
+import string
 import subprocess
+import sys
 
 
 def validate_url(url: str):
@@ -118,3 +120,7 @@ def get_mime(path: str):
         if res:
             return res.decode('utf-8').split(':')[1].strip()
     return None
+
+
+def random_string(length: int):
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))

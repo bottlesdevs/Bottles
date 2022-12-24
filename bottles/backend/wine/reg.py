@@ -1,29 +1,75 @@
+import codecs
+import dataclasses
 import os
 import uuid
-from typing import NewType
+from datetime import datetime
+from itertools import groupby
+from typing import List, Dict
 
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
-from bottles.backend.wine.wineprogram import WineProgram
-from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.utils.generic import random_string
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.wine.wineprogram import WineProgram
 
 logging = Logger()
+
+
+@dataclasses.dataclass
+class RegItem:
+    key: str
+    value: str
+    value_type: str
+    data: str
 
 
 class Reg(WineProgram):
     program = "Wine Registry CLI"
     command = "reg"
 
-    def add(self, key: str, value: str, data: str, key_type: str = False):
+    def bulk_add(self, regs: List[RegItem]):
+        config = self.config
+        logging.info(f"Importing {len(regs)} Key(s) to {config['Name']} registry")
+        winedbg = WineDbg(config)
+
+        mapping: Dict[str, List[RegItem]] = {k: list(v) for k, v in groupby(regs, lambda x: x.key)}
+        reg_file_header = "Windows Registry Editor Version 5.00\n\n"
+        reg_key_header = "[%s]\n"
+        reg_item_fmt = '"%s"="%s:%s"\n'
+        reg_item_def_fmt = '"%s"="%s"\n'  # default is REG_SZ(string)
+
+        file_content = reg_file_header
+        for key, items in mapping.items():
+            file_content += reg_key_header % key
+            for item in items:
+                if item.value_type:
+                    file_content += reg_item_fmt % (item.value, item.value_type, item.data)
+                else:
+                    file_content += reg_item_def_fmt % (item.value, item.data)
+            file_content += "\n"
+
+        tmp_reg_filepath = os.path.join(Paths.temp, f"bulk_{int(datetime.now().timestamp())}_{random_string(8)}.reg")
+        with open(tmp_reg_filepath, 'wb') as f:
+            f.write(codecs.BOM_UTF16_LE)
+            f.write(file_content.encode('utf-16le'))
+
+        # avoid conflicts when executing async
+        winedbg.wait_for_process("reg.exe")
+
+        res = self.launch(("import", tmp_reg_filepath), communicate=True, minimal=True, action_name="add")
+        logging.info(res, )
+
+    def add(self, key: str, value: str, data: str, value_type: str = False):
         config = self.config
         logging.info(f"Adding Key: [{key}] with Value: [{value}] and "
                      f"Data: [{data}] in {config['Name']} registry")
         winedbg = WineDbg(config)
         args = "add '%s' /v '%s' /d '%s' /f" % (key, value, data)
 
-        if key_type:
+        if value_type:
             args = "add '%s' /v '%s' /t %s /d '%s' /f" % (
-                key, value, key_type, data
+                key, value, value_type, data
             )
 
         # avoid conflicts when executing async
