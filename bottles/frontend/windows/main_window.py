@@ -197,14 +197,14 @@ class MainWindow(Adw.ApplicationWindow):
                 dialog.add_response("cancel", _("_Dismiss"))
                 dialog.present()
 
-        def get_manager(window, repo_fn_update):
+        def get_manager(window):
+            repo_fn_update = self.page_loading.add_fetched if self.utils_conn.check_connection() else None
             mng = Manager(window=window, repo_fn_update=repo_fn_update)
             return mng
 
         self.check_core_deps()
         self.show_loading_view()
-        repo_fn_update = self.page_loading.add_fetched if self.utils_conn.check_connection() else None
-        RunAsync(get_manager, callback=set_manager, window=self, repo_fn_update=repo_fn_update)
+        RunAsync(get_manager, callback=set_manager, window=self)
 
         self.check_crash_log()
 
