@@ -82,7 +82,7 @@ class RepositoryManager:
                 continue
 
             _path = _locals[repo]
-            
+
             if os.path.exists(_path):
                 self.__repositories[repo]["url"] = f"file://{_path}/"
                 logging.info(f"Using local {repo} repository at {_path}")

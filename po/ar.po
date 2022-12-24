@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-12 14:51+0000\n"
+"PO-Revision-Date: 2022-12-20 21:22+0000\n"
 "Last-Translator: Ali Aljishi <ahj696@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bottles/bottles/"
 "ar/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
@@ -823,25 +823,22 @@ msgid "Bottles Runtime"
 msgstr "وقت تشغيل بوتلز"
 
 #: bottles/frontend/ui/details-preferences.blp:288
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
-msgstr ""
-"يوفر مجموعة من المكتبات الإضافية لمزيد من التوافق، عطّله إذا واجهت مشاكل."
+msgstr "يوفر حزمة من المكتبات الإضافية لمزيد من التوافق، عطّله إذا واجهت مشاكل."
 
 #: bottles/frontend/ui/details-preferences.blp:298
 msgid "Steam Runtime"
 msgstr "زمن تشغيل Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:299
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
-"يوفر مجموعة من المكتبات الإضافية لمزيد من التوافق لألعاب ستيم، عطّله إذا "
-"واجهت مشاكل."
+"يوفر حزمة من المكتبات الإضافية لمزيد من التوافق لألعاب ستيم، عطّله إذا واجهت "
+"مشاكل."
 
 #: bottles/frontend/ui/details-preferences.blp:307
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -891,7 +888,6 @@ msgid "Compression"
 msgstr "الضغط"
 
 #: bottles/frontend/ui/details-preferences.blp:384
-#, fuzzy
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
@@ -1253,7 +1249,6 @@ msgid "Installation Failed!"
 msgstr "فشل التثبيت!"
 
 #: bottles/frontend/ui/dialog-installer.blp:145
-#, fuzzy
 msgid "Something went wrong."
 msgstr "حدث خطأ ما."
 
@@ -1774,9 +1769,8 @@ msgid "No Thumbnail"
 msgstr "لا توجد صورة مصغرة"
 
 #: bottles/frontend/ui/library-entry.blp:57
-#, fuzzy
 msgid "Launch"
-msgstr "_أعد التشغيل"
+msgstr "شغّل"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1793,7 +1787,7 @@ msgstr "أزل من المكتبة"
 
 #: bottles/frontend/ui/library-entry.blp:142
 msgid "Stop"
-msgstr ""
+msgstr "أوقِف"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:171
@@ -1846,7 +1840,7 @@ msgstr "بروتون لستيم"
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.metainfo.xml.in:7
 msgid "Bottles"
-msgstr "زجاجات"
+msgstr "القوارير"
 
 #: bottles/frontend/ui/list.blp:43
 msgid "Click \"Create a new Bottle…\" to create a new bottle."
@@ -2259,7 +2253,7 @@ msgstr "أنت غير متصل بالإنترنت، لا يمكن التنزيل
 #: bottles/frontend/views/bottle_details.py:199
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
-msgstr "الملف \"{0}\" ليس ملف exe. أو msi."
+msgstr "الملف \"{0}\" ليس ملفَّ exe. أو msi."
 
 #: bottles/frontend/views/bottle_details.py:215
 #, python-format
@@ -2368,13 +2362,12 @@ msgid "Force _Stop"
 msgstr "افرض _التوقف"
 
 #: bottles/frontend/views/bottle_preferences.py:196
-#, fuzzy
 msgid "This feature is unavailable on your system."
 msgstr "لا تتوفر هذه الميزة لنظامك."
 
 #: bottles/frontend/views/bottle_preferences.py:197
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} شغِّل flatpak install لإضافة هذه الميزة"
 
 #: bottles/frontend/views/bottle_preferences.py:278
 msgid "Choose working directory for executables"
@@ -2389,7 +2382,6 @@ msgid "Are you sure you want to delete all snapshots?"
 msgstr "هل أنت متأكد من أنك تريد حذف كل اللقطات؟"
 
 #: bottles/frontend/views/bottle_preferences.py:719
-#, fuzzy
 msgid "This will delete all snapshots but keep your files."
 msgstr "سيحذف هذا كل اللقطات مع الإبقاء على ملفاتك."
 
@@ -2454,9 +2446,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "جُلب {0} من أصل {1} حزمة"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "The name has special characters or is already in use."
-msgstr "يحتوي الاسم على رموز خاصة أو الاسم مستخدم بالفعل"
+msgstr "يحتوي الاسم على رموز خاصة أو هو مُستخدم بالفعل."
 
 #: bottles/frontend/views/new.py:156
 msgid "Choose a recipe file"
@@ -2480,7 +2471,6 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "لم يُعثر على ستيم أو ليس لدى بوتلز الأذونات الكافية."
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose a new Bottles path"
 msgstr "اختر مسارًا جديدًا لبوتلز"
 
@@ -2594,9 +2584,9 @@ msgstr "جارٍ بدء تشغيل \"{0}\"…"
 
 #: bottles/frontend/widgets/library.py:153
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "جارٍ بدء تشغيل \"{0}\"…"
+msgstr "جارٍ إيقاف \"{0}\"…"
 
 #: bottles/frontend/widgets/program.py:180
 #, python-brace-format
@@ -3042,9 +3032,8 @@ msgid "Fix for DLSS"
 msgstr "إصلاح DLSS"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Added tooltips for program grades"
-msgstr "أُضيفت تلميحات للبرامج"
+msgstr "أُضيفت تلميحات لدرجات البرامج"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fix installer completion @jntesteves"
@@ -3079,7 +3068,6 @@ msgid "Catalan translations thanks to @rogervc"
 msgstr "الترجمة الكتالونية بفضل rogervc@"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic translations thanks to @TheDarkEvil"
 msgstr "الترجمة العربية بفضل Ali-x98@"
 
@@ -3088,7 +3076,6 @@ msgid "Korean translations thanks to @MarongHappy"
 msgstr "الترجمة الكورية بفضل MarongHappy@"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
 msgstr "الترجمة البرتغالية بفضل davipatricio@ وSantosSi@ وvitorhcl@"

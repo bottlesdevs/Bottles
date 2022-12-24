@@ -107,7 +107,7 @@ class InstallerManager:
         icon_url = self.__repo.get_icon(manifest.get("Name"))
         bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
-        
+
         if icon_url is not None:
             if not os.path.exists(bottle_icons_path):
                 os.makedirs(bottle_icons_path)
@@ -162,6 +162,10 @@ class InstallerManager:
 
         if checks.get("files"):
             for f in checks.get("files"):
+                if f.startswith("userdir/"):
+                    current_user = os.getenv("USER")
+                    f = f.replace("userdir/", f"users/{current_user}/")
+
                 _f = os.path.join(bottle_path, "drive_c", f)
                 if not os.path.exists(_f):
                     logging.error(f"During checks, file {_f} was not found, assuming it is not installed. Aborting.")
@@ -396,7 +400,7 @@ class InstallerManager:
             logging.info("Updating bottle parameters")
             if is_final:
                 step_fn()
-                
+
             self.__set_parameters(_config, parameters)
 
         # execute steps
@@ -404,7 +408,7 @@ class InstallerManager:
             logging.info("Executing installer steps")
             if is_final:
                 step_fn()
-                
+
             if not self.__perform_steps(_config, steps):
                 return Result(False, data={"message": "Installer is not well configured."})
 
@@ -440,7 +444,7 @@ class InstallerManager:
 
         duplicates = [k for k, v in config["External_Programs"].items() if v["path"] == _path]
         ext = config["External_Programs"]
-        
+
         if duplicates:
             for d in duplicates:
                 del ext[d]
