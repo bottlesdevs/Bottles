@@ -26,6 +26,7 @@ from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.installer import InstallerRepo
 from bottles.frontend.params import VERSION_NUM
+from bottles.frontend.utils.threading import RunAsync
 
 logging = Logger()
 
@@ -91,35 +92,37 @@ class RepositoryManager:
     def __get_index(self):
         total = len(self.__repositories)
 
+        threads = []
+
         for repo, data in self.__repositories.items():
-            __index = os.path.join(data["url"], f"{VERSION_NUM}.yml")
-            __fallback = os.path.join(data["url"], "index.yml")
+            def query(repo, data):
+                __index = os.path.join(data["url"], f"{VERSION_NUM}.yml")
+                __fallback = os.path.join(data["url"], "index.yml")
 
-            c = pycurl.Curl()
-            c.setopt(c.URL, __index)
-            c.setopt(c.NOBODY, True)
-            c.setopt(c.FOLLOWLOCATION, True)
-            c.setopt(c.TIMEOUT, 10)
-            try:
-                c.perform()
-            except pycurl.error as e:
-                logging.error(f"Could not get index for {repo} repository: {e}")
-                continue
+                for url in (__index, __fallback):
+                    c = pycurl.Curl()
+                    c.setopt(c.URL, url)
+                    c.setopt(c.NOBODY, True)
+                    c.setopt(c.FOLLOWLOCATION, True)
+                    c.setopt(c.TIMEOUT, 10)
 
-            if c.getinfo(c.RESPONSE_CODE) == 200:
-                data["index"] = __index
-                if self.repo_fn_update is not None:
-                    GLib.idle_add(self.repo_fn_update, total)
-            else:
-                c.setopt(c.URL, __fallback)
-                c.perform()
+                    try:
+                        c.perform()
+                    except pycurl.error as e:
+                        if url is not __index:
+                            logging.error(f"Could not get index for {repo} repository: {e}")
+                        continue
 
-                if c.getinfo(c.RESPONSE_CODE) == 200:
-                    data["index"] = __fallback
-                    if self.repo_fn_update is not None:
-                        GLib.idle_add(self.repo_fn_update, total)
-                else:
-                    logging.error(f"Could not get index for {repo} repository")
-                    continue
+                    if url.startswith("file://") or c.getinfo(c.RESPONSE_CODE) == 200:
+                        data["index"] = url
+                        if self.repo_fn_update is not None:
+                            GLib.idle_add(self.repo_fn_update, total)
+                        break
 
-            c.close()
+                    c.close()
+
+            thread = RunAsync(query, repo=repo, data=data)
+            threads.append(thread)
+
+        for t in threads:
+            t.join()
