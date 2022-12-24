@@ -39,7 +39,7 @@ class Samples:
             "gamescope_fullscreen": True,
             "sync": "wine",
             "fsr": False,
-            "fsr_level": 2,
+            "fsr_level": 0,
             "custom_dpi": 96,
             "renderer": "gl",
             "discrete_gpu": False,
