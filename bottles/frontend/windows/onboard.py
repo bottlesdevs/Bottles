@@ -19,6 +19,7 @@ import time
 
 from gi.repository import Gtk, Adw
 
+from bottles.backend.models.result import Result
 from bottles.frontend.utils.threading import RunAsync
 
 
@@ -111,10 +112,15 @@ class OnboardDialog(Adw.Window):
         quit()
 
     def __install_runner(self, widget):
-        def set_completed(result, error=False):
-            self.label_skip.set_visible(False)
-            self.btn_close.set_sensitive(True)
-            self.__next_page()
+        def set_completed(result: Result, error=False):
+            if result.status:
+                self.label_skip.set_visible(False)
+                self.btn_close.set_sensitive(True)
+                self.__next_page()
+            else:
+                self.__installing = False
+                self.btn_install.set_visible(True)
+                self.progressbar.set_visible(False)
 
         self.__installing = True
         self.btn_back.set_visible(False)
