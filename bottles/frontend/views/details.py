@@ -115,6 +115,7 @@ class DetailsView(Adw.Bin):
         self.set_title(self.__pages[page]['title'], self.__pages[page]['description'])
         if page == "dependencies":
             self.set_actions(self.view_dependencies.actions)
+            self.view_dependencies.update(config=self.config)
         elif page == "versioning":
             self.set_actions(self.view_versioning.actions)
         elif page == "installers":
@@ -189,7 +190,6 @@ class DetailsView(Adw.Bin):
         self.view_bottle.set_config(config=config)
         self.view_preferences.set_config(config=config)
         self.view_taskmanager.set_config(config=config)
-        self.view_dependencies.update(config=config)
         self.view_installers.update(config=config)
         self.view_versioning.update(config=config)
 

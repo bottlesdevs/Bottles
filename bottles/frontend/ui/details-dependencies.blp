@@ -14,6 +14,14 @@ template DetailsDependencies : .AdwBin {
       .AdwPreferencesGroup {
         description: _("Dependencies are resources that improve compatibility of Windows software.\n\nFiles on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.");
 
+        .AdwStatusPage dependencies_status_page {
+          icon-name: "system-software-install-symbolic";
+          title: _("Dependencies are loading...");
+          vexpand: true;
+          hexpand: true;
+          description: _("Dependencies are loading, hang tight!");
+        }
+
         ListBox list_dependencies {
           selection-mode: none;
 
