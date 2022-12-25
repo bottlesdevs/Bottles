@@ -96,7 +96,7 @@ class RepositoryManager:
 
         for repo, data in self.__repositories.items():
             def query(repo, data):
-                __index = os.path.join(data["url"], f"{VERSION_NUM}.yml")
+                __index = os.path.join(data["url"], f"{APP_VERSION}.yml")
                 __fallback = os.path.join(data["url"], "index.yml")
 
                 for url in (__index, __fallback):
