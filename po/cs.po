@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-12 14:51+0000\n"
+"PO-Revision-Date: 2022-12-20 21:22+0000\n"
 "Last-Translator: vikdevelop <super-vik1@protonmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
@@ -835,20 +835,18 @@ msgid "Bottles Runtime"
 msgstr "Použít běhové prostředí láhví"
 
 #: bottles/frontend/ui/details-preferences.blp:288
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
-"Poskytnout balík dalších knihoven pro větší kompatibilitu. Pokud narazíte na "
-"problémy, vypněte je."
+"Poskytněte balíček dalších knihoven pro větší kompatibilitu. Pokud narazíte "
+"na problémy, vypněte jej."
 
 #: bottles/frontend/ui/details-preferences.blp:298
 msgid "Steam Runtime"
 msgstr "Použít běhové prostředí Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:299
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
@@ -905,7 +903,6 @@ msgid "Compression"
 msgstr "Komprese"
 
 #: bottles/frontend/ui/details-preferences.blp:384
-#, fuzzy
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
@@ -1277,9 +1274,8 @@ msgid "Installation Failed!"
 msgstr "Instalace se nezdařila!"
 
 #: bottles/frontend/ui/dialog-installer.blp:145
-#, fuzzy
 msgid "Something went wrong."
-msgstr "Něco je špatné."
+msgstr "Něco se pokazilo."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1802,9 +1798,8 @@ msgid "No Thumbnail"
 msgstr "Žádná miniatura"
 
 #: bottles/frontend/ui/library-entry.blp:57
-#, fuzzy
 msgid "Launch"
-msgstr "_Opětovně spustit"
+msgstr "Spustit"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1821,7 +1816,7 @@ msgstr "Odebrat z knihovny"
 
 #: bottles/frontend/ui/library-entry.blp:142
 msgid "Stop"
-msgstr ""
+msgstr "Zastavit"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:171
@@ -2402,13 +2397,12 @@ msgid "Force _Stop"
 msgstr "Vynucené zastavení"
 
 #: bottles/frontend/views/bottle_preferences.py:196
-#, fuzzy
 msgid "This feature is unavailable on your system."
-msgstr "Tato funkce není ve vašem systému k dispozici."
+msgstr "Váš systém nedisponuje touto funkcí."
 
 #: bottles/frontend/views/bottle_preferences.py:197
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} pro přidání této funkce, spusťte flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:278
 msgid "Choose working directory for executables"
@@ -2423,9 +2417,8 @@ msgid "Are you sure you want to delete all snapshots?"
 msgstr "Opravdu chcete odstranit všechny snímky?"
 
 #: bottles/frontend/views/bottle_preferences.py:719
-#, fuzzy
 msgid "This will delete all snapshots but keep your files."
-msgstr "Tím se odstraní všechny snímky, ale soubory zůstanou zachovány."
+msgstr "Tím se odstraní všechny snímky ale soubory budou zachovány."
 
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2488,9 +2481,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Načteno {0} z {1} balíčků"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "The name has special characters or is already in use."
-msgstr "Název obsahuje speciální znaky nebo je již používán"
+msgstr "Název obsahuje speciální znaky nebo již existuje."
 
 #: bottles/frontend/views/new.py:156
 msgid "Choose a recipe file"
@@ -2515,9 +2507,8 @@ msgstr ""
 "Služba Steam nebyla nalezena nebo služba Bottles nemá dostatečná oprávnění."
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose a new Bottles path"
-msgstr "Výběr nové cesty k lahvím"
+msgstr "Vybrat novou cestu láhve"
 
 #: bottles/frontend/views/preferences.py:172
 msgid "Relaunch Bottles?"
@@ -2635,9 +2626,9 @@ msgstr "Spouštím \"{0}\"…"
 
 #: bottles/frontend/widgets/library.py:153
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "Spouštím \"{0}\"…"
+msgstr "Zastavuji \"{0}\"…"
 
 #: bottles/frontend/widgets/program.py:180
 #, python-brace-format
@@ -3088,9 +3079,8 @@ msgid "Fix for DLSS"
 msgstr "Oprava DLSS"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Added tooltips for program grades"
-msgstr "Přidány popisky nástrojů pro program gades"
+msgstr "Přidány popisky nástrojů pro program grades"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fix installer completion @jntesteves"
@@ -3125,7 +3115,6 @@ msgid "Catalan translations thanks to @rogervc"
 msgstr "Za chorvatské překlady díky @rogervc"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic translations thanks to @TheDarkEvil"
 msgstr "Za arabské překlady díky @TheDarkEvil"
 
@@ -3134,7 +3123,6 @@ msgid "Korean translations thanks to @MarongHappy"
 msgstr "za korejské překlady díky @MarongHappy"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
 msgstr "Za portugalské překlady díky @davipatricio, @SantosSi a @vitorhcl"

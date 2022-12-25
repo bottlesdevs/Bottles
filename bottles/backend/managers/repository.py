@@ -25,7 +25,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.installer import InstallerRepo
-from bottles.frontend.params import VERSION_NUM
+from bottles.frontend.params import APP_VERSION
 
 logging = Logger()
 
@@ -81,7 +81,7 @@ class RepositoryManager:
                 continue
 
             _path = _locals[repo]
-            
+
             if os.path.exists(_path):
                 self.__repositories[repo]["url"] = f"file://{_path}/"
                 logging.info(f"Using local {repo} repository at {_path}")
@@ -92,34 +92,30 @@ class RepositoryManager:
         total = len(self.__repositories)
 
         for repo, data in self.__repositories.items():
-            __index = os.path.join(data["url"], f"{VERSION_NUM}.yml")
+            __index = os.path.join(data["url"], f"{APP_VERSION}.yml")
             __fallback = os.path.join(data["url"], "index.yml")
 
-            c = pycurl.Curl()
-            c.setopt(c.URL, __index)
-            c.setopt(c.NOBODY, True)
-            c.setopt(c.FOLLOWLOCATION, True)
-            c.setopt(c.TIMEOUT, 10)
-            try:
-                c.perform()
-            except pycurl.error as e:
-                logging.error(f"Could not get index for {repo} repository: {e}")
-                continue
+            for url in (__index, __fallback):
+                c = pycurl.Curl()
+                c.setopt(c.URL, url)
+                c.setopt(c.NOBODY, True)
+                c.setopt(c.FOLLOWLOCATION, True)
+                c.setopt(c.TIMEOUT, 10)
 
-            if c.getinfo(c.RESPONSE_CODE) == 200:
-                data["index"] = __index
-                if self.repo_fn_update is not None:
-                    GLib.idle_add(self.repo_fn_update, total)
-            else:
-                c.setopt(c.URL, __fallback)
-                c.perform()
-
-                if c.getinfo(c.RESPONSE_CODE) == 200:
-                    data["index"] = __fallback
-                    if self.repo_fn_update is not None:
-                        GLib.idle_add(self.repo_fn_update, total)
-                else:
-                    logging.error(f"Could not get index for {repo} repository")
+                try:
+                    c.perform()
+                except pycurl.error as e:
+                    if url is not __index:
+                        logging.error(f"Could not get index for {repo} repository: {e}")
                     continue
 
-            c.close()
+                if url.startswith("file://") or c.getinfo(c.RESPONSE_CODE) == 200:
+                    data["index"] = url
+                    if self.repo_fn_update is not None:
+                        GLib.idle_add(self.repo_fn_update, total)
+                    break
+
+                c.close()
+            else:
+                logging.error(f"Could not get index for {repo} repository")
+                continue

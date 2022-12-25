@@ -1,5 +1,14 @@
-desktop_file = i18n.merge_file(
-  input: 'com.usebottles.bottles.desktop.in',
+conf = configuration_data()
+conf.set('APP_NAME', APP_NAME)
+conf.set('APP_ICON', APP_ICON)
+
+desktop_file = configure_file(
+        input:  'com.usebottles.bottles.desktop.in.in',
+       output:  'com.usebottles.bottles.desktop.in',
+    configuration: conf)
+
+desktop = i18n.merge_file(
+  input: desktop_file,
   output: 'com.usebottles.bottles.desktop',
   type: 'desktop',
   po_dir: '../po',
@@ -10,7 +19,7 @@ desktop_file = i18n.merge_file(
 desktop_utils = find_program('desktop-file-validate', required: false)
 if desktop_utils.found()
   test('Validate desktop file', desktop_utils,
-    args: [desktop_file]
+    args: [desktop]
   )
 endif
 
@@ -41,7 +50,7 @@ if compile_schemas.found()
 endif
 
 install_data(
-    join_paths('icons/hicolor/scalable/apps/com.usebottles.bottles.svg'),
+    join_paths('icons/hicolor/scalable/apps', APP_ICON),
     install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/scalable/apps')
 )
 
