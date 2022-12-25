@@ -40,18 +40,12 @@ template FsrDialog : .AdwWindow {
     .AdwPreferencesPage {
 
       .AdwPreferencesGroup {
-        .AdwComboRow combo_sharpening_strength {
-          title: "Sharpening Strength";
+        .AdwComboRow combo_upscaling_resolution_mode {
+          title: "Upscaling Resolution Mode";
           model:
-          StringList {
+          StringList str_list_upscaling_resolution_mode {
             strings [
               _("Disabled"),
-              _("Ultra Quality"),
-              _("Quality"),
-              _("Balanced"),
-              _("Performance"),
-              _("Ultra Performance"),
-              _("Maximum Performance"),
             ]
           }
 
@@ -59,11 +53,19 @@ template FsrDialog : .AdwWindow {
         }
 
         .AdwActionRow {
-          activatable-widget: "switch_upscaling_mode";
           title: _("Sharpening Strength");
 
-          Switch switch_upscaling_mode {
+          SpinButton {
+            numeric: true;
             valign: center;
+            digits: 2;
+            adjustment:
+            Adjustment spin_sharpening_strength {
+              step-increment: 1;
+              upper: 5;
+            }
+
+            ;
           }
         }
       }

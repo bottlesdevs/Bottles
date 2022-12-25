@@ -29,8 +29,9 @@ class FsrDialog(Adw.Window):
 
     # Region Widgets
     btn_save = Gtk.Template.Child()
-    combo_sharpening_strength = Gtk.Template.Child()
-    switch_upscaling_mode = Gtk.Template.Child()
+    combo_upscaling_resolution_mode = Gtk.Template.Child()
+    str_list_upscaling_resolution_mode = Gtk.Template.Child()
+    spin_sharpening_strength = Gtk.Template.Child()
 
     def __init__(self, parent_window, config, **kwargs):
         super().__init__(**kwargs)
@@ -40,6 +41,30 @@ class FsrDialog(Adw.Window):
         self.window = parent_window
         self.manager = parent_window.manager
         self.config = config
+        self.upscaling_resolution_mode = [
+          _("Ultra Quality"),
+          _("Quality"),
+          _("Balanced"),
+          _("Performance"),
+        ]
+
+
+
+        # Connect signals
+        self.btn_save.connect("clicked", self.__save)
+
+        self.__update(config)
+
+    def __update(self, config):
+        parameters = config["Parameters"]
+
+
+        self.str_list_upscaling_resolution_mode.append(mode for mode in self.upscaling_resolution_mode)
+        # self.combo_upscaling_resolution_mode.set_selected(parameters.get("fsr_upscaling_resolution_mode"))
+        self.spin_sharpening_strength.set_value(parameters.get("fsr_sharpening_strength"))
+
+    def __save(self, config):
+        return None
 
 #         self.effects = {
 #             "cas": self.expander_cas,
