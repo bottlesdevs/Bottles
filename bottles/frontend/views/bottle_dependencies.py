@@ -39,7 +39,8 @@ class DependenciesView(Adw.Bin):
     actions = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
-    dependencies_status_page = Gtk.Template.Child()
+    spinner_loading = Gtk.Template.Child()
+    stack = Gtk.Template.Child()
 
     # endregion
 
@@ -90,8 +91,8 @@ class DependenciesView(Adw.Bin):
             config = {}
         self.config = config
 
-        self.list_dependencies.set_visible(False)
-        self.dependencies_status_page.set_visible(True)
+        self.stack.set_visible_child_name("page_loading") 
+        self.spinner_loading.start()
 
         def new_dependency(dependency, plain=False):
             entry = DependencyEntry(
@@ -104,8 +105,7 @@ class DependenciesView(Adw.Bin):
             self.list_dependencies.append(entry)
 
         def callback(result, error=False):
-            self.list_dependencies.set_visible(True)
-            self.dependencies_status_page.set_visible(False)
+            self.stack.set_visible_child_name("page_deps")
 
         def process_dependencies():
             time.sleep(.3)  # workaround for freezing bug on bottle load
