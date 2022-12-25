@@ -2,7 +2,6 @@ using Gtk 4.0;
 
 template FsrDialog : .AdwWindow {
   default-width: "500";
-  default-height: "500";
   modal: true;
 
   title: _("FidelityFX Super Resolution Settings");
@@ -43,11 +42,7 @@ template FsrDialog : .AdwWindow {
         .AdwComboRow combo_upscaling_resolution_mode {
           title: "Upscaling Resolution Mode";
           model:
-          StringList str_list_upscaling_resolution_mode {
-            strings [
-              _("Disabled"),
-            ]
-          }
+          StringList str_list_upscaling_resolution_mode {}
 
           ;
         }
@@ -58,7 +53,6 @@ template FsrDialog : .AdwWindow {
           SpinButton {
             numeric: true;
             valign: center;
-            digits: 2;
             adjustment:
             Adjustment spin_sharpening_strength {
               step-increment: 1;
