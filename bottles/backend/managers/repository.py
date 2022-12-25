@@ -120,6 +120,8 @@ class RepositoryManager:
                         break
 
                     c.close()
+                else:
+                    logging.error(f"Could not get index for {repo} repository")
 
             thread = RunAsync(query, repo=repo, data=data)
             threads.append(thread)
