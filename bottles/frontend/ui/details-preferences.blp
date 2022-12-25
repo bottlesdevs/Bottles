@@ -100,24 +100,43 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwComboRow combo_fsr {
-      title: "FidelityFX Super Resolution";
+    .AdwActionRow {
+      activatable-widget: "switch_fsr";
+      title: _("FidelityFX Super Resolution");
       subtitle: _("Increase performance at the expense of visuals. Only works on Vulkan.");
-      model:
-      StringList {
-        strings [
-          _("Disabled"),
-          _("Ultra Quality"),
-          _("Quality"),
-          _("Balanced"),
-          _("Performance"),
-          _("Ultra Performance"),
-          _("Maximum Performance"),
+      Button btn_manage_fsr {
+        tooltip-text: _("Manage FidelityFX Super Resolution settings");
+        valign: center;
+        icon-name: "applications-system-symbolic";
+
+        styles [
+          "flat",
         ]
       }
 
-      ;
+      Switch switch_fsr {
+        valign: center;
+      }
     }
+
+    // .AdwComboRow combo_fsr {
+    //   title: "FidelityFX Super Resolution";
+    //   subtitle: _("Increase performance at the expense of visuals. Only works on Vulkan.");
+    //   model:
+    //   StringList {
+    //     strings [
+    //       _("Disabled"),
+    //       _("Ultra Quality"),
+    //       _("Quality"),
+    //       _("Balanced"),
+    //       _("Performance"),
+    //       _("Ultra Performance"),
+    //       _("Maximum Performance"),
+    //     ]
+    //   }
+
+    //   ;
+    // }
 
     .AdwActionRow row_discrete {
       visible: false;

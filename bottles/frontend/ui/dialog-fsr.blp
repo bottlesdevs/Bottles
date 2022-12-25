@@ -1,0 +1,72 @@
+using Gtk 4.0;
+
+template FsrDialog : .AdwWindow {
+  default-width: "500";
+  default-height: "500";
+  modal: true;
+
+  title: _("FidelityFX Super Resolution Settings");
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      [end]
+      Button btn_save {
+        label: _("Save");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    .AdwPreferencesPage {
+
+      .AdwPreferencesGroup {
+        .AdwComboRow combo_sharpening_strength {
+          title: "Sharpening Strength";
+          model:
+          StringList {
+            strings [
+              _("Disabled"),
+              _("Ultra Quality"),
+              _("Quality"),
+              _("Balanced"),
+              _("Performance"),
+              _("Ultra Performance"),
+              _("Maximum Performance"),
+            ]
+          }
+
+          ;
+        }
+
+        .AdwActionRow {
+          activatable-widget: "switch_upscaling_mode";
+          title: _("Sharpening Strength");
+
+          Switch switch_upscaling_mode {
+            valign: center;
+          }
+        }
+      }
+    }
+  }
+}
