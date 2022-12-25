@@ -84,7 +84,7 @@ class Samples:
             "Parameters": {
                 "dxvk": True,
                 # "nvapi": True,
-                "vkd3d": False,
+                "vkd3d": True,
                 "sync": "esync",
                 "fsr": False,
                 "discrete_gpu": True,
