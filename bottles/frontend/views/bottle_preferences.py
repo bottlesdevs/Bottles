@@ -524,7 +524,7 @@ class PreferencesView(Adw.PreferencesPage):
             parent_window=self.window,
             config=self.config
         )
-        new_window.present())
+        new_window.present()
 
     def __show_display_settings(self, widget):
         new_window = DisplayDialog(
@@ -631,7 +631,7 @@ class PreferencesView(Adw.PreferencesPage):
             key="fsr",
             value=state,
             scope="Parameters"
-        ).data["config"])
+        ).data["config"]
 
     def __toggle_nvapi(self, widget=False, state=False):
         """Install/Uninstall NVAPI from the bottle"""
