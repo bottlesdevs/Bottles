@@ -23,6 +23,7 @@ from gi.repository import Gtk, GLib, Adw
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.widgets.dependency import DependencyEntry
+from bottles.backend.globals import wait_for_fetch
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-dependencies.ui')
@@ -38,6 +39,7 @@ class DependenciesView(Adw.Bin):
     actions = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
+    dependencies_status_page = Gtk.Template.Child()
 
     # endregion
 
@@ -87,9 +89,9 @@ class DependenciesView(Adw.Bin):
         if config is None:
             config = {}
         self.config = config
-        dependencies = self.manager.supported_dependencies
 
-        self.list_dependencies.set_sensitive(False)
+        self.list_dependencies.set_visible(False)
+        self.dependencies_status_page.set_visible(True)
 
         def new_dependency(dependency, plain=False):
             entry = DependencyEntry(
@@ -102,10 +104,14 @@ class DependenciesView(Adw.Bin):
             self.list_dependencies.append(entry)
 
         def callback(result, error=False):
-            self.list_dependencies.set_sensitive(True)
+            self.list_dependencies.set_visible(True)
+            self.dependencies_status_page.set_visible(False)
 
         def process_dependencies():
-            time.sleep(.6)  # workaround for freezing bug on bottle load
+            time.sleep(.3)  # workaround for freezing bug on bottle load
+            wait_for_fetch("dependencies")
+            dependencies = self.manager.supported_dependencies
+
             GLib.idle_add(self.empty_list)
 
             if len(dependencies.keys()) > 0:
