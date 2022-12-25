@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-09-10 07:36+0000\n"
+"PO-Revision-Date: 2022-12-20 21:22+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
@@ -576,16 +576,18 @@ msgid "Search for dependencies…"
 msgstr "Etsi riippuvuuksia…"
 
 #: bottles/frontend/ui/details-dependencies.blp:15
-#, fuzzy
 msgid ""
 "Dependencies are resources that improve compatibility of Windows software.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Tällä sivulla olevat tiedostot ovat kolmansien osapuolten tarjoamia ja ne "
-"ovat omistusoikeudellisia. Jos asennat tiedostoja, hyväksyt niiden "
-"lisensointiehdot."
+"Riippuvuudet ovat resursseja, jotka parantavat Windows-ohjelmiston "
+"yhteensopivuutta.\n"
+"\n"
+"Tällä sivulla olevat tiedostot ovat kolmansien osapuolien tarjoamia ja ne "
+"ovat omisteellisen lisenssin alaisia. Asentamalla hyväksyt niiden "
+"lisenssiehdot."
 
 #: bottles/frontend/ui/details-dependencies.blp:42
 msgid "Report a problem or a missing dependency."
@@ -616,7 +618,6 @@ msgid "Search for Programs…"
 msgstr "Etsi ohjelmia…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community, without having to proceed "
 "manually.\n"
@@ -624,9 +625,12 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Tällä sivulla olevat tiedostot ovat kolmansien osapuolten tarjoamia ja ne "
-"ovat omistusoikeudellisia. Jos asennat tiedostoja, hyväksyt niiden "
-"lisensointiehdot."
+"Asenna yhteisön kuratoimia ohjelmia ilman, että joudut itse tekemään mitään "
+"manuaalisesti.\n"
+"\n"
+"Tällä sivulla olevat tiedostot ovat kolmansien osapuolien tarjoamia ja ne "
+"ovat omisteellisen lisenssin alaisia. Asentamalla hyväksyt niiden "
+"lisenssiehdot."
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
@@ -752,6 +756,8 @@ msgstr "Jälkikäsittelyn tehosteet"
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
+"Lisää useita jälkikäsittelytehosteita käyttämällä vkBasaltia. Toimii vain "
+"Vulkanilla."
 
 #: bottles/frontend/ui/details-preferences.blp:134
 msgid "Manage Post-Processing Layer settings"
@@ -828,6 +834,7 @@ msgstr "Feralin GameMode"
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
+"Toteuta joukko optimointeja laitteellesi. Voi parantaa pelien suorituskykyä."
 
 #: bottles/frontend/ui/details-preferences.blp:217
 msgid "Preload Game Files"
@@ -978,6 +985,8 @@ msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
+"Pakkaa tilannevedokset tilan säästämiseksi. Tämä hidastaa tilannevedosten "
+"luomista."
 
 #: bottles/frontend/ui/details-preferences.blp:397
 msgid "Use Exclusion Patterns"
@@ -1284,14 +1293,12 @@ msgid "Miscellaneous"
 msgstr "Sekalaiset"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
-#, fuzzy
 msgid "Frame Rate Limit"
-msgstr "Kuvan päivitysnopeuden raja (esim. 60)"
+msgstr "Kuvan päivitysnopeuden raja"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
-#, fuzzy
 msgid "Frame Rate Limit When Unfocused"
-msgstr "Kuvan päivitysnopeuden raja (kun ei kohdistusta)"
+msgstr "Kuvan päivitysnopeuden raja, kun ei kohdistettuna"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
 msgid "Use Integer Scaling"
@@ -1342,7 +1349,7 @@ msgstr "Asennus epäonnistui!"
 
 #: bottles/frontend/ui/dialog-installer.blp:145
 msgid "Something went wrong."
-msgstr ""
+msgstr "Jokin meni pieleen."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1547,7 +1554,6 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
-#, fuzzy
 msgid "Re-initializing Repository…"
 msgstr "Alustetaan uudelleen tietovarastoa…"
 
@@ -1762,9 +1768,8 @@ msgstr "Selaa tiedostoja"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
 msgid "Wine prefix name"
-msgstr "Wineprefixin nimi"
+msgstr "Wine-etuliitteen nimi"
 
 #: bottles/frontend/ui/importer-entry.blp:28
 #, fuzzy
@@ -1772,9 +1777,8 @@ msgid "Manager"
 msgstr "Tehtävienhallinta"
 
 #: bottles/frontend/ui/importer-entry.blp:38
-#, fuzzy
 msgid "This Wine prefix was already imported in Bottles."
-msgstr "Tämä wine-etuliite tuotiin jo Pullot-sovellukseen."
+msgstr "Tämä Wine-etuliite tuotiin jo Pullot-sovellukseen."
 
 #: bottles/frontend/ui/importer.blp:22
 msgid "Import a Bottle backup"
@@ -1833,12 +1837,11 @@ msgstr "Ohjelmat-valikko"
 #: bottles/frontend/ui/library-entry.blp:36
 #: bottles/frontend/ui/library-entry.blp:63
 msgid "No Thumbnail"
-msgstr ""
+msgstr "Ei pienoiskuvaa"
 
 #: bottles/frontend/ui/library-entry.blp:57
-#, fuzzy
 msgid "Launch"
-msgstr "Käynnistysvalinnat"
+msgstr "Käynnistä"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1858,7 +1861,7 @@ msgstr "Poista kirjastosta"
 
 #: bottles/frontend/ui/library-entry.blp:142
 msgid "Stop"
-msgstr ""
+msgstr "Pysäytä"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:171
@@ -2175,13 +2178,12 @@ msgid "Advanced"
 msgstr "Lisäasetukset"
 
 #: bottles/frontend/ui/preferences.blp:131
-#, fuzzy
 msgid "Bottles Directory"
-msgstr "Valitse kansio"
+msgstr "Pullojen kansio"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr ""
+msgstr "Kansi, joka sisältää pullojesi datan."
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
@@ -2237,12 +2239,10 @@ msgid "In early development."
 msgstr "Aikaisessa kehityksessä."
 
 #: bottles/frontend/ui/program-entry.blp:19
-#, fuzzy
 msgid "Launch with Terminal"
-msgstr "Käynnistä päätteessä"
+msgstr "Käynnistä päätteellä"
 
 #: bottles/frontend/ui/program-entry.blp:25
-#, fuzzy
 msgid "Browse Path"
 msgstr "Selaa polkua"
 
@@ -2440,7 +2440,6 @@ msgid "Force _Stop"
 msgstr "Pakota _lopetus"
 
 #: bottles/frontend/views/bottle_preferences.py:196
-#, fuzzy
 msgid "This feature is unavailable on your system."
 msgstr "Tämä ominaisuus ei ole käytettävissä järjestelmässäsi."
 
@@ -2456,7 +2455,7 @@ msgstr "Valitse työskentelyhakemisto suoritettaville tiedostoille"
 #: bottles/frontend/views/bottle_preferences.py:400
 #: bottles/frontend/views/bottle_preferences.py:367
 msgid "Directory that contains the data of \"{}\"."
-msgstr ""
+msgstr "Kohteen \"{}\" datan sisältävä kansio."
 
 #: bottles/frontend/views/bottle_preferences.py:677
 msgid "Are you sure you want to delete all snapshots?"
@@ -2527,9 +2526,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Noudettu {0}/{1} pakettia"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "The name has special characters or is already in use."
-msgstr "Nimessä on erikoismerkkejä tai se on jo käytössä."
+msgstr "Nimessä on erikoismerkkejä tai nimi on jo käytössä."
 
 #: bottles/frontend/views/new.py:156
 msgid "Choose a recipe file"
@@ -2554,7 +2552,6 @@ msgstr ""
 "Steamia ei löytynyt tai Pullot-sovelluksella ei ole riittävästi oikeuksia."
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose a new Bottles path"
 msgstr "Valitse uusi pullojen polku"
 
