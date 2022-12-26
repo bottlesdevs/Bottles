@@ -35,7 +35,7 @@ class ImportManager:
         self.manager = manager
 
     @staticmethod
-    def search_wineprefixes() -> list:
+    def search_wineprefixes() -> Result[list]:
         """Look and return all 3rd party available wine prefixes"""
         importer_wineprefixes = []
 
@@ -87,7 +87,7 @@ class ImportManager:
             }
         )
 
-    def import_wineprefix(self, wineprefix: dict) -> bool:
+    def import_wineprefix(self, wineprefix: dict) -> Result[bool]:
         """Import wineprefix from external manager and convert in a bottle"""
         logging.info(f"Importing wineprefix {wineprefix['Name']} as bottle…")
 
