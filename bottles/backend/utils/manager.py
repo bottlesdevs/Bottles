@@ -30,6 +30,8 @@ from bottles.backend.globals import Paths, user_apps_dir
 from bottles.backend.utils.imagemagick import ImageMagickUtils
 from bottles.backend.utils.generic import get_mime
 
+from gettext import gettext as _
+
 logging = Logger()
 
 
