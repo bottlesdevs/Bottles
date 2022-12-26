@@ -21,11 +21,12 @@ import contextlib
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
+from bottles.backend.globals import gamemode_available, gamescope_available, vkbasalt_available, mangohud_available, \
+    obs_vkc_available, vmtouch_available
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 
-from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, \
-    obs_vkc_available, vkbasalt_available, vmtouch_available
+from bottles.backend.runner import Runner
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.utils.manager import ManagerUtils
 
