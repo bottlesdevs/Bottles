@@ -192,6 +192,7 @@ def parse(fp, mapper=dict, merge_duplicate_keys=True, escaped=True):
             break
 
     if len(stack) != 1:
+        lineno = line = -1
         raise SyntaxError("vdf.parse: unclosed parenthasis or quotes (EOF)",
                           (getattr(fp, 'name', '<%s>' % fp.__class__.__name__), lineno, 0, line))
 
