@@ -19,8 +19,11 @@ import os
 import subprocess
 import webbrowser
 from gettext import gettext as _
-from gi.repository import Gtk, Adw, Gio
+from gi.repository import Gtk, Adw, Gio, GLib
 
+from bottles.backend.globals import wait_for_fetch
+
+from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 from bottles.frontend.windows.filechooser import FileChooser
 
@@ -32,6 +35,11 @@ class PreferencesWindow(Adw.PreferencesWindow):
     __registry = []
 
     # region Widgets
+    installers_stack = Gtk.Template.Child()
+    installers_spinner = Gtk.Template.Child()
+    dlls_stack = Gtk.Template.Child()
+    dlls_spinner = Gtk.Template.Child()
+
     row_theme = Gtk.Template.Child()
     switch_theme = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
@@ -94,14 +102,27 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.bind("epic-games", self.switch_epic_games, "active", Gio.SettingsBindFlags.DEFAULT)
         self.settings.bind("ubisoft-connect", self.switch_ubisoft_connect, "active", Gio.SettingsBindFlags.DEFAULT)
 
+        # setup loading screens
+        self.installers_stack.set_visible_child_name("installers_loading")
+        self.installers_spinner.start()
+        self.dlls_stack.set_visible_child_name("dlls_loading")
+        self.dlls_spinner.start()
+
         # populate components lists
         self.populate_runtimes_list()
         self.populate_winebridge_list()
-        self.populate_runners_list()
-        self.populate_dxvk_list()
-        self.populate_vkd3d_list()
-        self.populate_nvapi_list()
-        self.populate_latencyflex_list()
+
+        def ui_update():
+            wait_for_fetch("components")
+            GLib.idle_add(self.populate_runners_list)
+            GLib.idle_add(self.populate_dxvk_list)
+            GLib.idle_add(self.populate_vkd3d_list)
+            GLib.idle_add(self.populate_nvapi_list)
+            GLib.idle_add(self.populate_latencyflex_list)
+
+            GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
+
+        RunAsync(ui_update)
 
         # connect signals
         self.settings.connect('changed::dark-theme', self.__toggle_night)
@@ -282,3 +303,4 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.list_runners.add(exp_other)
             self.__registry.append(exp_other)
 
+        self.installers_stack.set_visible_child_name("installers_list")
