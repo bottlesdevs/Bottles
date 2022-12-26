@@ -55,6 +55,8 @@ class ConfigManager(object):
                 res = yaml.load(self.config_string)
             else:
                 raise ValueError('Invalid configuration type')
+        else:
+            res = None
 
         if res in [None, ""]:
             res = {}
