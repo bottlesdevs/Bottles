@@ -57,7 +57,6 @@ class ComponentManager:
     def get_component(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
         return self.__repo.get(name, plain)
 
-    @lru_cache
     def fetch_catalog(self) -> dict:
         """
         Fetch all components from the Bottles repository, mark the installed
@@ -110,6 +109,8 @@ class ComponentManager:
                 catalog[sub_category][component[0]] = component[1]
                 if component[0] in components_available[sub_category]:
                     catalog[sub_category][component[0]]["Installed"] = True
+                else:
+                    catalog[sub_category][component[0]].pop("Installed", None)
 
                 continue
 
@@ -120,6 +121,8 @@ class ComponentManager:
             catalog[category][component[0]] = component[1]
             if component[0] in components_available[category]:
                 catalog[category][component[0]]["Installed"] = True
+            else:
+                catalog[category][component[0]].pop("Installed", None)
 
         return catalog
 
@@ -480,6 +483,34 @@ class ComponentManager:
             logging.error(f"Failed to uninstall component: {component_name}, {e}")
             return Result(False, data={"message": "Failed to uninstall component."})
 
+        '''
+        Ask the manager to re-organize its components.
+        Note: I know that this is not the most efficient way to do this,
+        please give feedback if you know a better way to avoid this.
+        '''
+        if component_type in ["runtime", "winebridge"]:
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(os.path.join(Paths.temp, archive))
+
+        if component_type in ["runner", "runner:proton"]:
+            self.__manager.check_runners()
+
+        elif component_type == "dxvk":
+            self.__manager.check_dxvk()
+
+        elif component_type == "vkd3d":
+            self.__manager.check_vkd3d()
+
+        elif component_type == "nvapi":
+            self.__manager.check_nvapi()
+
+        elif component_type == "runtime":
+            self.__manager.check_runtimes()
+
+        elif component_type == "winebridge":
+            self.__manager.check_winebridge()
+
+        self.__manager.organize_components()
         logging.info(f"Component uninstalled: {component_type} {component_name}")
 
         return Result(True)
