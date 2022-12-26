@@ -16,6 +16,7 @@
 #
 
 from gi.repository import Gtk, GLib, GObject, Adw
+from gettext import gettext as _
 
 from bottles.backend.logger import Logger
 from bottles.backend.utils.manager import ManagerUtils

@@ -16,6 +16,7 @@
 #
 
 from gi.repository import Gtk, Adw
+from gettext import gettext as _
 
 from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.utils.manager import ManagerUtils
