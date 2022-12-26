@@ -14,9 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+from typing import TypeVar, Generic
+
+T = TypeVar('T')
 
 
-class Result:
+class Result(Generic[T]):
     """
     The Result object is the standard return object for every
     method in the backend. It is importanto to use this object
