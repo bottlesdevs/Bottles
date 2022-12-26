@@ -345,7 +345,9 @@ class WineCommand:
         # FSR
         if params["fsr"]:
             env.add("WINE_FULLSCREEN_FSR", "1")
-            env.add("WINE_FULLSCREEN_FSR_STRENGTH", str(params["fsr_level"]))
+            env.add("WINE_FULLSCREEN_FSR_STRENGTH", str(params["fsr_sharpening_strength"]))
+            if params["fsr_upscaling_resolution_mode"]:
+                env.add("WINE_FULLSCREEN_FSR_MODE", str(params["fsr_upscaling_resolution_mode"]))
 
         # PulseAudio latency
         if params["pulseaudio_latency"]:
