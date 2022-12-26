@@ -198,15 +198,18 @@ class SteamManager:
 
             return proton_name, proton_path
 
-    def list_apps_ids(self) -> list:
+    def list_apps_ids(self) -> dict:
         """List all apps in Steam"""
         apps = self.localconfig.get("UserLocalConfigStore", {}) \
             .get("Software", {}) \
             .get("Valve", {}) \
             .get("Steam", {})
-        apps = apps.get("apps") if apps.get("apps") else apps.get("Apps")
-        if apps is None:
-            return []
+        if "apps" in apps:
+            apps = apps.get("apps")
+        elif "Apps" in apps:
+            apps = apps.get("Apps")
+        else:
+            apps = {}
         return apps
 
     def get_installed_apps_as_programs(self) -> list:
