@@ -17,11 +17,12 @@
 
 
 from gettext import gettext as _
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw, GLib
 
 from bottles.backend.managers.queue import QueueManager
 from bottles.backend.models.result import Result
 
+from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.views.bottle_details import BottleView
 from bottles.frontend.views.bottle_installers import InstallersView
 from bottles.frontend.views.bottle_dependencies import DependenciesView
@@ -89,7 +90,7 @@ class DetailsView(Adw.Bin):
         self.leaflet.connect('notify::folded', self.__on_leaflet_folded)
         # endregion
 
-        # self.build_pages()
+        RunAsync(self.build_pages)
 
     def set_title(self, title, subtitle: str = ""):
         """
@@ -157,15 +158,18 @@ class DetailsView(Adw.Bin):
         if self.config.get("Environment") == "Steam":
             del self.__pages["versioning"]
 
-        self.default_view.append(self.view_bottle)
+        def ui_update():
+            self.default_view.append(self.view_bottle)
 
-        self.stack_bottle.add_named(self.view_preferences, "preferences")
-        self.stack_bottle.add_named(self.view_dependencies, "dependencies")
-        self.stack_bottle.add_named(self.view_versioning, "versioning")
-        self.stack_bottle.add_named(self.view_installers, "installers")
-        self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
+            self.stack_bottle.add_named(self.view_preferences, "preferences")
+            self.stack_bottle.add_named(self.view_dependencies, "dependencies")
+            self.stack_bottle.add_named(self.view_versioning, "versioning")
+            self.stack_bottle.add_named(self.view_installers, "installers")
+            self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
 
-        self.set_actions(self.view_bottle.actions)
+            self.set_actions(self.view_bottle.actions)
+
+        GLib.idle_add(ui_update)
 
     def set_actions(self, widget: Gtk.Widget = None):
         """
