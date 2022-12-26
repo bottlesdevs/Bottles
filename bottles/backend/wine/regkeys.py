@@ -261,7 +261,7 @@ class RegKeys:
         self.reg.add(
             key="HKEY_CURRENT_USER\\Control Panel\\Desktop",
             value="LogPixels",
-            data=value,
+            data=str(value),
             key_type="REG_DWORD"
         )
 
