@@ -16,7 +16,6 @@
 #
 
 import os
-import time
 import uuid
 import shutil
 import tarfile
@@ -25,6 +24,8 @@ import contextlib
 from functools import lru_cache
 from gi.repository import GLib
 from typing import Union
+
+from bottles.backend.utils.decorators import Lock
 
 try:
     from bottles.frontend.operation import OperationManager
@@ -45,19 +46,17 @@ logging = Logger()
 # noinspection PyTypeChecker
 class ComponentManager:
 
-    def __init__(self, manager, offline: bool = False):
+    def __init__(self, manager, offline: bool = False, callback = None):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("components", offline)
+        self.__repo = manager.repository_manager.get_repo("components", offline, callback)
         self.__utils_conn = manager.utils_conn
         self.__window = manager.window
         self.__operation_manager = OperationManager(self.__window)
-        self.__queue = []
 
     @lru_cache
     def get_component(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
         return self.__repo.get(name, plain)
 
-    @lru_cache
     def fetch_catalog(self) -> dict:
         """
         Fetch all components from the Bottles repository, mark the installed
@@ -110,6 +109,8 @@ class ComponentManager:
                 catalog[sub_category][component[0]] = component[1]
                 if component[0] in components_available[sub_category]:
                     catalog[sub_category][component[0]]["Installed"] = True
+                else:
+                    catalog[sub_category][component[0]].pop("Installed", None)
 
                 continue
 
@@ -120,6 +121,8 @@ class ComponentManager:
             catalog[category][component[0]] = component[1]
             if component[0] in components_available[category]:
                 catalog[category][component[0]]["Installed"] = True
+            else:
+                catalog[category][component[0]].pop("Installed", None)
 
         return catalog
 
@@ -319,6 +322,7 @@ class ComponentManager:
                 return False
         return True
 
+    @Lock.mutex("ComponentManager.install")  # avoid high resource usage
     def install(
             self,
             component_type: str,
@@ -330,17 +334,9 @@ class ComponentManager:
         gets the manifest from the given component and then calls the
         download and extract functions.
         """
-        while len(self.__queue) > 0:
-            # wait for the queue to be empty to avoid
-            # hard resource usage
-            time.sleep(5)
-
-        _uuid = str(uuid.uuid4())
-        self.__add_to_queue(_uuid)
         manifest = self.get_component(component_name)
 
         if not manifest:
-            self.__remove_from_queue(_uuid)
             return Result(False)
 
         logging.info(f"Installing component: [{component_name}].")
@@ -359,7 +355,6 @@ class ComponentManager:
             If the download fails, execute the given func passing
             failed=True as a parameter.
             '''
-            self.__remove_from_queue(_uuid)
             return Result(func(failed=True) if func else False)
 
         archive = manifest["File"][0]["file_name"]
@@ -414,7 +409,6 @@ class ComponentManager:
         self.__manager.organize_components()
         logging.info(f"Component installed: {component_type} {component_name}", jn=True)
 
-        self.__remove_from_queue(_uuid)
         return Result(True)
 
     @staticmethod
@@ -489,12 +483,34 @@ class ComponentManager:
             logging.error(f"Failed to uninstall component: {component_name}, {e}")
             return Result(False, data={"message": "Failed to uninstall component."})
 
+        '''
+        Ask the manager to re-organize its components.
+        Note: I know that this is not the most efficient way to do this,
+        please give feedback if you know a better way to avoid this.
+        '''
+        if component_type in ["runtime", "winebridge"]:
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(os.path.join(Paths.temp, archive))
+
+        if component_type in ["runner", "runner:proton"]:
+            self.__manager.check_runners()
+
+        elif component_type == "dxvk":
+            self.__manager.check_dxvk()
+
+        elif component_type == "vkd3d":
+            self.__manager.check_vkd3d()
+
+        elif component_type == "nvapi":
+            self.__manager.check_nvapi()
+
+        elif component_type == "runtime":
+            self.__manager.check_runtimes()
+
+        elif component_type == "winebridge":
+            self.__manager.check_winebridge()
+
+        self.__manager.organize_components()
         logging.info(f"Component uninstalled: {component_type} {component_name}")
 
         return Result(True)
-
-    def __add_to_queue(self, _uuid: str):
-        self.__queue.append(_uuid)
-
-    def __remove_from_queue(self, _uuid: str):
-        self.__queue.remove(_uuid)

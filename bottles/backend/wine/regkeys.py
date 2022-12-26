@@ -251,7 +251,7 @@ class RegKeys:
             key="HKEY_CURRENT_USER\\Software\\Wine\\Direct3D",
             value="renderer",
             data=value,
-            key_type="REG_SZ"
+            value_type="REG_SZ"
         )
 
     def set_dpi(self, value: int):
@@ -262,7 +262,7 @@ class RegKeys:
             key="HKEY_CURRENT_USER\\Control Panel\\Desktop",
             value="LogPixels",
             data=str(value),
-            key_type="REG_DWORD"
+            value_type="REG_DWORD"
         )
 
     def set_grab_fullscreen(self, state: bool):

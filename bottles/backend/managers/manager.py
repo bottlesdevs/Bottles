@@ -35,7 +35,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.globals import Paths
+from bottles.backend.globals import Paths, done_fetching
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.versioning import VersioningManager
@@ -62,6 +62,8 @@ from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.winepath import WinePath
+
+from bottles.frontend.utils.threading import RunAsync
 
 logging = Logger()
 
@@ -116,14 +118,21 @@ class Manager:
         self.versioning_manager = VersioningManager(window, self)
         times["VersioningManager"] = time.time()
 
-        self.component_manager = ComponentManager(self, _offline)
-        times["ComponentManager"] = time.time()
+        def component_fetch_done():
+            RunAsync(self.organize_components, callback=done_fetching("components"))
+            RunAsync(self.__clear_temp)
+            
+        def installer_fetch_done():
+            RunAsync(self.organize_installers, callback=done_fetching("installers"))
+        
+        def dependency_fetch_done():
+            RunAsync(self.organize_dependencies, callback=done_fetching("dependencies"))
+            
+        self.component_manager = ComponentManager(self, _offline, component_fetch_done)
 
-        self.installer_manager = InstallerManager(self, _offline)
-        times["InstallerManager"] = time.time()
+        self.installer_manager = InstallerManager(self, _offline, installer_fetch_done)
 
-        self.dependency_manager = DependencyManager(self, _offline)
-        times["DependencyManager"] = time.time()
+        self.dependency_manager = DependencyManager(self, _offline, dependency_fetch_done)
 
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
@@ -132,7 +141,7 @@ class Manager:
         times["SteamManager"] = time.time()
 
         if not is_cli:
-            times.update(self.checks(install_latest=False, first_run=True))
+            times.update(self.checks(install_latest=False, first_run=True).data)
         else:
             logging.set_silent()
 
@@ -149,50 +158,44 @@ class Manager:
                 last = t
             logging.info(times_str)
 
-    def checks(self, install_latest=False, first_run=False):
+    def checks(self, install_latest=False, first_run=False) -> Result:
         logging.info("Performing Bottles checks…")
-        times = {}
+
+        rv = Result(status=True, data={})
 
         self.check_app_dirs()
-        times["check_app_dirs"] = time.time()
+        rv.data["check_app_dirs"] = time.time()
 
-        self.check_dxvk(install_latest)
-        times["check_dxvk"] = time.time()
+        self.check_dxvk(install_latest) or rv.set_status(False)
+        rv.data["check_dxvk"] = time.time()
 
-        self.check_vkd3d(install_latest)
-        times["check_vkd3d"] = time.time()
+        self.check_vkd3d(install_latest) or rv.set_status(False)
+        rv.data["check_vkd3d"] = time.time()
 
-        self.check_nvapi(install_latest)
-        times["check_nvapi"] = time.time()
+        self.check_nvapi(install_latest) or rv.set_status(False)
+        rv.data["check_nvapi"] = time.time()
 
-        self.check_latencyflex(install_latest)
-        times["check_latencyflex"] = time.time()
+        self.check_latencyflex(install_latest) or rv.set_status(False)
+        rv.data["check_latencyflex"] = time.time()
 
-        self.check_runtimes(install_latest)
-        times["check_runtimes"] = time.time()
+        self.check_runtimes(install_latest) or rv.set_status(False)
+        rv.data["check_runtimes"] = time.time()
 
-        self.check_winebridge(install_latest)
-        times["check_winebridge"] = time.time()
+        self.check_winebridge(install_latest) or rv.set_status(False)
+        rv.data["check_winebridge"] = time.time()
 
-        self.check_runners(install_latest)
-        times["check_runners"] = time.time()
+        self.check_runners(install_latest) or rv.set_status(False)
+        rv.data["check_runners"] = time.time()
 
-        if first_run:
-            self.organize_components()
-            times["organize_components"] = time.time()
-            self.__clear_temp()
-            times["clear_temp"] = time.time()
-
-        self.organize_dependencies()
-        times["organize_dependencies"] = time.time()
-
-        self.organize_installers()
-        times["organize_installers"] = time.time()
+        if not first_run:
+            # Those can be run async as they do not do UI update
+            RunAsync(self.organize_dependencies)
+            RunAsync(self.organize_installers)
 
         self.check_bottles()
-        times["check_bottles"] = time.time()
+        rv.data["check_bottles"] = time.time()
 
-        return times
+        return rv
 
     def __clear_temp(self, force: bool = False):
         """Clears the temp directory if user setting allows it. Use the force
@@ -370,7 +373,7 @@ class Manager:
         tmp_runners = [x for x in self.runners_available if not x.startswith('sys-')]
 
         if len(tmp_runners) == 0 and install_latest:
-            logging.warning("No runners found.")
+            logging.warning("No managed runners found.")
 
             if self.utils_conn.check_connection():
                 # if connected, install the latest runner from repository
@@ -421,6 +424,8 @@ class Manager:
                 if version:
                     version = f"runtime-{version}"
                     self.runtimes_available = [version]
+                    return True
+        return False
 
     def check_winebridge(self, install_latest: bool = True, update: bool = False) -> bool:
         self.winebridge_available = []
@@ -444,26 +449,32 @@ class Manager:
                 version = f.read().strip()
                 if version:
                     self.winebridge_available = [f"winebridge-{version}"]
+                    return True
+        return False
 
-    def check_dxvk(self, install_latest: bool = True):
+    def check_dxvk(self, install_latest: bool = True) -> bool:
         res = self.__check_component("dxvk", install_latest)
         if res:
             self.dxvk_available = res
+        return res is not False
 
-    def check_vkd3d(self, install_latest: bool = True):
+    def check_vkd3d(self, install_latest: bool = True) -> bool:
         res = self.__check_component("vkd3d", install_latest)
         if res:
             self.vkd3d_available = res
+        return res is not False
 
-    def check_nvapi(self, install_latest: bool = True):
+    def check_nvapi(self, install_latest: bool = True) -> bool:
         res = self.__check_component("nvapi", install_latest)
         if res:
             self.nvapi_available = res
+        return res is not False
 
-    def check_latencyflex(self, install_latest: bool = True):
+    def check_latencyflex(self, install_latest: bool = True) -> bool:
         res = self.__check_component("latencyflex", install_latest)
         if res:
             self.latencyflex_available = res
+        return res is not False
 
     def __check_component(self, component_type: str, install_latest: bool = True) -> Union[bool, list]:
         components = {

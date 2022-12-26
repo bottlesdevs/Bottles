@@ -27,7 +27,7 @@ from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.file import FileUtils
-from bottles.frontend.params import VERSION
+from bottles.frontend.params import APP_VERSION
 
 logging = Logger()
 
@@ -231,7 +231,7 @@ class HealthChecker:
     def get_results(self, plain: bool = False):
         results = {
             "Official Package": "FLATPAK_ID" in os.environ,
-            "Version": VERSION,
+            "Version": APP_VERSION,
             "DE/WM": self.desktop,
             "Display": {
                 "X.org": self.x11,

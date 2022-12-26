@@ -41,7 +41,7 @@ class RunAsync(threading.Thread):
             faulthandler.enable()
 
         self.source_id = None
-        assert threading.current_thread() is threading.main_thread()
+        logging.debug(f"Running async job [{task_func}] (from main thread: {threading.current_thread() is threading.main_thread()}).")
 
         super(RunAsync, self).__init__(
             target=self.__target, args=args, kwargs=kwargs)
@@ -56,8 +56,6 @@ class RunAsync(threading.Thread):
     def __target(self, *args, **kwargs):
         result = None
         error = None
-
-        logging.debug(f"Running async job [{self.task_func}].")
 
         try:
             result = self.task_func(*args, **kwargs)

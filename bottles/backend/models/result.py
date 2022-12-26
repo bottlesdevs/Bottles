@@ -42,3 +42,6 @@ class Result(Generic[T]):
         self.status = status
         self.data = data
         self.message = message
+
+    def set_status(self, v: bool):
+        self.status = v

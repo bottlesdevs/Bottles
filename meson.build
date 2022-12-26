@@ -5,8 +5,26 @@ project(
 	default_options: [
 		'warning_level=2',
 	],
-  	license: 'GPL-3.0-or-later'
+	license: 'GPL-3.0-only'
 )
+
+
+APP_NAME = 'Bottles'
+APP_ID = 'com.usebottles.bottles'
+APP_VERSION = meson.project_version()
+devel = get_option('devel')
+
+if devel == true
+	APP_VERSION += '-' + run_command(
+		'git', 'rev-parse', '--short', 'HEAD'
+	).stdout().strip()
+	APP_NAME += ' (Development)'
+	APP_ID += '.' + 'Devel'
+endif
+
+APP_ICON = APP_ID + '.' + 'svg'
+
+
 
 gnome = import('gnome')
 i18n = import('i18n')

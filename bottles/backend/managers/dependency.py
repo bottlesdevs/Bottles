@@ -38,7 +38,7 @@ from bottles.backend.globals import Paths
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg
-from bottles.backend.wine.reg import Reg
+from bottles.backend.wine.reg import Reg, RegItem
 from bottles.backend.wine.regsvr32 import Regsvr32
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.executor import WineExecutor
@@ -48,9 +48,9 @@ logging = Logger()
 
 class DependencyManager:
 
-    def __init__(self, manager, offline: bool = False):
+    def __init__(self, manager, offline: bool = False, callback = None):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("dependencies", offline)
+        self.__repo = manager.repository_manager.get_repo("dependencies", offline, callback)
         self.__window = manager.window
         self.__utils_conn = manager.utils_conn
         self.__operation_manager = OperationManager(self.__window)
@@ -632,7 +632,7 @@ class DependencyManager:
             key=step.get("key"),
             value=step.get("value"),
             data=step.get("data"),
-            key_type=step.get("type")
+            value_type=step.get("type")
         )
         return True
 
@@ -651,18 +651,23 @@ class DependencyManager:
     def __step_replace_font(config: dict, step: dict):
         """Register a font replacement in the registry."""
         reg = Reg(config)
+        target_font = step.get("font")
         replaces = step.get("replace")
 
         if not isinstance(replaces, list):
             logging.warning("Invalid replace_font, 'replace' field should be list.")
             return False
 
-        for r in replaces:
-            reg.add(
+        regs = [
+            RegItem(
                 key="HKEY_CURRENT_USER\\Software\\Wine\\Fonts\\Replacements",
                 value=r,
-                data=step.get("font")
+                value_type="",
+                data=target_font
             )
+            for r in replaces
+        ]
+        reg.bulk_add(regs)
         return True
 
     @staticmethod

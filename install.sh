@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 BUILD_DIR="build/"
 if [ -d "$BUILD_DIR" ]; then
 	rm -r build
