@@ -38,8 +38,9 @@ class DLLComponent:
         self.base_path = self.get_base_path(version)
         self.check()
 
+    @staticmethod
     @abstractmethod
-    def get_base_path(self, version: str):
+    def get_base_path(version: str):
         pass
 
     def check(self):
