@@ -23,10 +23,6 @@ from http.client import RemoteDisconnected
 from bottles.backend.logger import Logger
 from bottles.frontend.utils.threading import RunAsync
 
-from bottles.frontend.utils.threading import RunAsync
-
-from bottles.frontend.utils.threading import RunAsync
-
 logging = Logger()
 
 
