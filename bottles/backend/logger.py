@@ -51,6 +51,7 @@ class Logger(logging.getLoggerClass()):
         return "\033[%dm%s\033[0m" % (color_id, message)
 
     def __init__(self, formatter=None):
+        super().__init__(name="")
         if formatter is None:
             formatter = self.__format_log
         formatter = logging.Formatter(**formatter)
