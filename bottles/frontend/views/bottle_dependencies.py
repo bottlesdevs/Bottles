@@ -61,6 +61,9 @@ class DependenciesView(Adw.Bin):
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
 
+        if self.manager.utils_conn.status == False:
+            self.stack.set_visible_child_name("page_offline") 
+
         self.spinner_loading.start()
 
     def __search_dependencies(self, *_args):
@@ -92,6 +95,10 @@ class DependenciesView(Adw.Bin):
         if config is None:
             config = {}
         self.config = config
+
+        # Not sure if it's the best place to make this check
+        if self.manager.utils_conn.status == False:
+            return
 
         self.stack.set_visible_child_name("page_loading") 
 

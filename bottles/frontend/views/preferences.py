@@ -108,19 +108,24 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.dlls_stack.set_visible_child_name("dlls_loading")
         self.dlls_spinner.start()
 
+        if self.manager.utils_conn.status == False:
+            self.installers_stack.set_visible_child_name("installers_offline")
+            self.dlls_stack.set_visible_child_name("dlls_offline")
+
         # populate components lists
         self.populate_runtimes_list()
         self.populate_winebridge_list()
 
         def ui_update():
-            wait_for_fetch("components")
-            GLib.idle_add(self.populate_runners_list)
-            GLib.idle_add(self.populate_dxvk_list)
-            GLib.idle_add(self.populate_vkd3d_list)
-            GLib.idle_add(self.populate_nvapi_list)
-            GLib.idle_add(self.populate_latencyflex_list)
+            if self.manager.utils_conn.status == True:
+                wait_for_fetch("components")
+                GLib.idle_add(self.populate_runners_list)
+                GLib.idle_add(self.populate_dxvk_list)
+                GLib.idle_add(self.populate_vkd3d_list)
+                GLib.idle_add(self.populate_nvapi_list)
+                GLib.idle_add(self.populate_latencyflex_list)
 
-            GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
+                GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
 
         RunAsync(ui_update)
 

@@ -14,6 +14,19 @@ template DetailsDependencies : .AdwBin {
       transition-type: crossfade;
 
       StackPage {
+        name: "page_offline";
+
+        child:
+        .AdwStatusPage {
+          icon-name: "network-error-symbolic";
+          title: _("You're offline :(");
+          vexpand: true;
+          hexpand: true;
+          description: _("Bottles is running in offline mode, so dependencies are not available.");
+        };
+      }
+
+      StackPage {
         name: "page_loading";
         child:
         .AdwStatusPage {

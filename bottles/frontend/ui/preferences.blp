@@ -170,6 +170,19 @@ template PreferencesWindow : .AdwPreferencesWindow {
       transition-type: crossfade;
 
       StackPage {
+        name: "installers_offline";
+
+        child:
+        .AdwStatusPage {
+          icon-name: "network-error-symbolic";
+          title: _("You're offline :(");
+          vexpand: true;
+          hexpand: true;
+          description: _("Bottles is running in offline mode, so runners are not available.");
+        };
+      }
+
+      StackPage {
         name: "installers_loading";
 
         child:
@@ -212,6 +225,19 @@ template PreferencesWindow : .AdwPreferencesWindow {
 
     Stack dlls_stack {
       transition-type: crossfade;
+
+      StackPage {
+        name: "dlls_offline";
+
+        child:
+        .AdwStatusPage {
+          icon-name: "network-error-symbolic";
+          title: _("You're offline :(");
+          vexpand: true;
+          hexpand: true;
+          description: _("Bottles is running in offline mode, so DLLs are not available.");
+        };
+      }
 
       StackPage {
         name: "dlls_loading";
