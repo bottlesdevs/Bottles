@@ -159,7 +159,8 @@ class DetailsView(Adw.Bin):
             del self.__pages["versioning"]
 
         def ui_update():
-            self.default_view.append(self.view_bottle)
+            if self.view_bottle.get_parent() is None:
+                self.default_view.append(self.view_bottle)
 
             self.stack_bottle.add_named(self.view_preferences, "preferences")
             self.stack_bottle.add_named(self.view_dependencies, "dependencies")
@@ -167,7 +168,8 @@ class DetailsView(Adw.Bin):
             self.stack_bottle.add_named(self.view_installers, "installers")
             self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
 
-            self.set_actions(self.view_bottle.actions)
+            if self.view_bottle.actions.get_parent() is None:
+                self.set_actions(self.view_bottle.actions)
 
         GLib.idle_add(ui_update)
 
