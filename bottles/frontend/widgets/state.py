@@ -46,9 +46,8 @@ class StateEntry(Adw.ActionRow):
         if config.get("Versioning"):
             self.state_name = "#{} - {}".format(
                 state[0], 
-                datetime.strptime(
-                    state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f")
-                ).strftime("%d %B %Y, %H:%M")
+                datetime.strptime(state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f").strftime("%d %B %Y, %H:%M")
+            )
                 
             self.set_subtitle(self.state[1]["Comment"])
             if state[0] == config.get("State"):
