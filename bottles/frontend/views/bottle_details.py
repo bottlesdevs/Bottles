@@ -22,7 +22,9 @@ import uuid
 import webbrowser
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Adw, Gdk, GLib
+from typing import List
+
+from gi.repository import Gtk, Gio, Adw, Gdk, GLib
 
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
