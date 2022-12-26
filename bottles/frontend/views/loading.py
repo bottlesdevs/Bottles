@@ -16,6 +16,7 @@
 #
 
 from gi.repository import Gtk, Adw
+from gettext import gettext as _
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/loading.ui')
