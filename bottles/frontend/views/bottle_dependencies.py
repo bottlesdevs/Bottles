@@ -61,6 +61,8 @@ class DependenciesView(Adw.Bin):
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
 
+        self.spinner_loading.start()
+
     def __search_dependencies(self, *_args):
         """
         This function search in the list of dependencies the
@@ -92,7 +94,6 @@ class DependenciesView(Adw.Bin):
         self.config = config
 
         self.stack.set_visible_child_name("page_loading") 
-        self.spinner_loading.start()
 
         def new_dependency(dependency, plain=False):
             entry = DependencyEntry(
