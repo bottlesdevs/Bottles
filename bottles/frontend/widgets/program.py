@@ -17,8 +17,12 @@
 
 import os
 import webbrowser
+from gettext import gettext as _
+from typing import Union
+
 from gi.repository import Gtk, GLib, Adw
 
+from bottles.backend.models.result import Result
 from bottles.frontend.utils.threading import RunAsync
 
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
@@ -132,12 +136,15 @@ class ProgramEntry(Adw.ActionRow):
         dialog.present()
         dialog.connect("options-saved", update)
 
-    def __reset_buttons(self, result=False, error=False):
+    def __reset_buttons(self, result: Union[bool, Result] = False, error=False):
         status = False
-        if result:
+        if isinstance(result, Result):
+            status = result.status
+        elif isinstance(result, bool):
             status = result
-            if not isinstance(result, bool):
-                status = result.status
+        else:
+            raise NotImplementedError("Invalid data type, expect bool or Result, but it was %s" % type(result))
+
         self.btn_run.set_visible(status)
         self.btn_stop.set_visible(not status)
         self.btn_run.set_sensitive(status)
