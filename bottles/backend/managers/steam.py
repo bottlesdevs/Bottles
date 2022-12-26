@@ -17,6 +17,8 @@
 
 import os
 import uuid
+
+from bottles.backend.models.vdict import VDFDict
 from bottles.backend.utils import yaml
 import shlex
 import shutil
@@ -147,11 +149,11 @@ class SteamManager:
         if self.localconfig_path is None:
             return {}
 
-        with open(self.localconfig_path, "r") as f:
+        with open(self.localconfig_path, "br") as f:
             try:
-                data = SteamUtils.parse_acf(f.read())
+                data = SteamUtils.parse_acf(f.read().decode('utf-8'))
             except UnicodeDecodeError:
-                data = SteamUtils.parse_acf(f.read().encode('latin-1'))
+                data = SteamUtils.parse_acf(f.read().decode('latin-1'))
 
         if data is None:
             logging.warning(f"Could not parse localconfig.vdf")
@@ -168,7 +170,7 @@ class SteamManager:
             shutil.copy(self.localconfig_path, f"{self.localconfig_path}.bck.{now}")
 
         with open(self.localconfig_path, "w") as f:
-            SteamUtils.to_vdf(new_data, f)
+            SteamUtils.to_vdf(VDFDict(new_data), f)
 
         logging.info(f"Steam config saved")
 
@@ -476,7 +478,7 @@ class SteamManager:
         if isinstance(args, dict) or args == "{}":
             args = ""
 
-        winecmd = WineCommand(config, "%command%", args)
+        winecmd = WineCommand(config, "%command%", arguments=args)
         command = winecmd.get_cmd("%command%", return_steam_cmd=True)
         env_vars = winecmd.get_env(launch_options["env_vars"], return_steam_env=True)
 
