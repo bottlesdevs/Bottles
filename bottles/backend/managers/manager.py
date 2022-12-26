@@ -1289,7 +1289,7 @@ class Manager:
             log_update(_("Creating versioning state 0…"))
             self.versioning_manager.create_state(
                 config=config,
-                comment="First boot"
+                message="First boot"
             )
 
         # set status created and UI usability
