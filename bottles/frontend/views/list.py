@@ -182,7 +182,7 @@ class BottleView(Adw.Bin):
             return True
         return False
 
-    def idle_update_bottles(self, show=False):
+    def idle_update_bottles(self, show=None):
         self.__bottles = {}
         while self.list_bottles.get_first_child():
             self.list_bottles.remove(self.list_bottles.get_first_child())
@@ -220,8 +220,11 @@ class BottleView(Adw.Bin):
                 or (show is not None and show in local_bottles.keys()):
             if self.arg_bottle:
                 _config = local_bottles[self.arg_bottle]
-            if show:
+            elif show:
                 _config = local_bottles[show]
+            else:
+                raise NotImplementedError("both 'arg_bottle' and 'show' is invalid")
+
             self.window.page_details.view_preferences.update_combo_components()
             self.window.show_details_view(config=_config)
             self.arg_bottle = None
