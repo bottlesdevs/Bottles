@@ -38,6 +38,7 @@ class SteamGridDBManager:
         if res.status_code == 200:
             return SteamGridDBManager.__save_grid(res.json(), config)
 
+    @staticmethod
     def __save_grid(url: str, config: dict):
         grids_path = os.path.join(ManagerUtils.get_bottle_path(config), 'grids')
         if not os.path.exists(grids_path):
