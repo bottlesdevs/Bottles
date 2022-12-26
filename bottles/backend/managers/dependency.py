@@ -204,12 +204,12 @@ class DependencyManager:
             self,
             config: dict,
             step: dict
-    ) -> bool:
+    ) -> Result:
         """
         This method execute a step in the bottle (e.g. changing the Windows
         version, installing fonts, etc.)
         ---
-        Returns True if the dependency cannot be uninstalled.
+        Returns Result[True] if the dependency CANNOT be uninstalled.
         """
         uninstaller = True
 
