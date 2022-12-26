@@ -35,7 +35,7 @@ class RunAsync(threading.Thread):
     It takes a function, a callback and a list of arguments as input.
     """
 
-    def __init__(self, task_func, callback=None, *args, **kwargs):
+    def __init__(self, task_func, callback=None, daemon=True, *args, **kwargs):
         if "DEBUG_MODE" in os.environ:
             import faulthandler
             faulthandler.enable()
@@ -49,7 +49,7 @@ class RunAsync(threading.Thread):
         self.task_func = task_func
 
         self.callback = callback if callback else lambda r, e: None
-        self.daemon = kwargs.pop("daemon", True)
+        self.daemon = daemon
 
         self.start()
 
