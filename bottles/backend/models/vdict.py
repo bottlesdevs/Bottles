@@ -57,6 +57,7 @@ class VDFDict(dict):
 
         When the ``key`` is ``str``, instead of tuple, set will create a duplicate and get will look up ``(0, key)``
         """
+        super().__init__()
         self.__omap = []
         self.__kcount = Counter()
 
