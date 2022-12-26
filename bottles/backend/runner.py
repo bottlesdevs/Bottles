@@ -16,20 +16,14 @@
 #
 
 import os
-from typing import NewType
 
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.managers.manager import Manager
 from bottles.backend.logger import Logger
-from bottles.backend.globals import gamemode_available, gamescope_available, mangohud_available, \
-    obs_vkc_available, vkbasalt_available, vmtouch_available
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.wine.catalogs import win_versions
-from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.wineserver import WineServer
-from bottles.backend.wine.reg import Reg
 
 logging = Logger()
 
@@ -39,11 +33,11 @@ class Runner:
     This class handle everything related to the runner (e.g. Wine, Proton).
     It should not contain any manager logic (e.g. catalogs, checks, etc.) or
     any bottle related stuff (e.g. config handling, etc.), also DXVK, VKD3D,
-    NVAPI handling should not performed from here.
+    NVAPI handling should not be performed from here.
     """
 
     @staticmethod
-    def runner_update(config: dict, manager: object, runner: str):
+    def runner_update(config: dict, manager: Manager, runner: str):
         """
         This method should be executed after changing the runner
         for a bottle. It does a prefix update and re-initialize the
