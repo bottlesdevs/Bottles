@@ -193,7 +193,9 @@ class BottleView(Adw.PreferencesPage):
                 args=args,
                 terminal=self.config.get("run_in_terminal"),
             )
-            RunAsync(executor.run, self.update_programs)
+            def callback(a,b):
+                self.update_programs()
+            RunAsync(executor.run, callback)
 
         else:
             self.window.show_toast(_("File \"{0}\" is not a .exe or .msi file").format(file.get_basename().split("/")[-1]))
@@ -407,7 +409,10 @@ class BottleView(Adw.PreferencesPage):
                 args=args,
                 terminal=self.config.get("run_in_terminal"),
             )
-            RunAsync(executor.run, self.update_programs)
+
+            def callback(a,b):
+                self.update_programs()
+            RunAsync(executor.run, callback)
 
     def __backup(self, widget, backup_type):
         """
