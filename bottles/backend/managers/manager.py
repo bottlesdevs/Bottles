@@ -260,57 +260,54 @@ class Manager:
             logging.info("LatencyFlex path doesn't exist, creating now.")
             os.makedirs(Paths.latencyflex, exist_ok=True)
 
+    @RunAsync.run_async
     def organize_components(self):
         """Get components catalog and organizes into supported_ lists."""
-        def _run():
-            RepoStatus.repo_start_operation("components.organizing")
-            RepoStatus.repo_wait_operation("components.fetching")
-            catalog = self.component_manager.fetch_catalog()
-            if len(catalog) == 0:
-                RepoStatus.repo_done_operation("components.organizing")
-                logging.info("No components found.")
-                return
-
-            self.supported_wine_runners = catalog["wine"]
-            self.supported_proton_runners = catalog["proton"]
-            self.supported_runtimes = catalog["runtimes"]
-            self.supported_winebridge = catalog["winebridge"]
-            self.supported_dxvk = catalog["dxvk"]
-            self.supported_vkd3d = catalog["vkd3d"]
-            self.supported_nvapi = catalog["nvapi"]
-            self.supported_latencyflex = catalog["latencyflex"]
+        RepoStatus.repo_start_operation("components.organizing")
+        RepoStatus.repo_wait_operation("components.fetching")
+        catalog = self.component_manager.fetch_catalog()
+        if len(catalog) == 0:
             RepoStatus.repo_done_operation("components.organizing")
-        RunAsync(_run)
+            logging.info("No components found.")
+            return
 
+        self.supported_wine_runners = catalog["wine"]
+        self.supported_proton_runners = catalog["proton"]
+        self.supported_runtimes = catalog["runtimes"]
+        self.supported_winebridge = catalog["winebridge"]
+        self.supported_dxvk = catalog["dxvk"]
+        self.supported_vkd3d = catalog["vkd3d"]
+        self.supported_nvapi = catalog["nvapi"]
+        self.supported_latencyflex = catalog["latencyflex"]
+        RepoStatus.repo_done_operation("components.organizing")
+
+    @RunAsync.run_async
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
-        def _run():
-            RepoStatus.repo_start_operation("dependencies.organizing")
-            RepoStatus.repo_wait_operation("dependencies.fetching")
-            catalog = self.dependency_manager.fetch_catalog()
-            if len(catalog) == 0:
-                RepoStatus.repo_done_operation("dependencies.organizing")
-                logging.info("No dependencies found!")
-                return
-
-            self.supported_dependencies = catalog
+        RepoStatus.repo_start_operation("dependencies.organizing")
+        RepoStatus.repo_wait_operation("dependencies.fetching")
+        catalog = self.dependency_manager.fetch_catalog()
+        if len(catalog) == 0:
             RepoStatus.repo_done_operation("dependencies.organizing")
-        RunAsync(_run)
+            logging.info("No dependencies found!")
+            return
 
+        self.supported_dependencies = catalog
+        RepoStatus.repo_done_operation("dependencies.organizing")
+
+    @RunAsync.run_async
     def organize_installers(self):
         """Organizes installers into supported_installers."""
-        def _run():
-            RepoStatus.repo_start_operation("installers.organizing")
-            RepoStatus.repo_wait_operation("installers.fetching")
-            catalog = self.installer_manager.fetch_catalog()
-            if len(catalog) == 0:
-                RepoStatus.repo_done_operation("installers.organizing")
-                logging.info("No installers found!")
-                return
-
-            self.supported_installers = catalog
+        RepoStatus.repo_start_operation("installers.organizing")
+        RepoStatus.repo_wait_operation("installers.fetching")
+        catalog = self.installer_manager.fetch_catalog()
+        if len(catalog) == 0:
             RepoStatus.repo_done_operation("installers.organizing")
-        RunAsync(_run)
+            logging.info("No installers found!")
+            return
+
+        self.supported_installers = catalog
+        RepoStatus.repo_done_operation("installers.organizing")
 
     def remove_dependency(self, config: dict, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""
