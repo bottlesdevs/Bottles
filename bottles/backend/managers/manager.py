@@ -35,7 +35,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.globals import Paths, done_fetching
+from bottles.backend.globals import Paths
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.versioning import VersioningManager
@@ -46,6 +46,7 @@ from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
+from bottles.backend.repos.repo import RepoStatus
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
@@ -119,14 +120,14 @@ class Manager:
         times["VersioningManager"] = time.time()
 
         def component_fetch_done():
-            RunAsync(self.organize_components, callback=done_fetching("components"))
+            RunAsync(self.organize_components)
             RunAsync(self.__clear_temp)
             
         def installer_fetch_done():
-            RunAsync(self.organize_installers, callback=done_fetching("installers"))
+            RunAsync(self.organize_installers)
         
         def dependency_fetch_done():
-            RunAsync(self.organize_dependencies, callback=done_fetching("dependencies"))
+            RunAsync(self.organize_dependencies)
             
         self.component_manager = ComponentManager(self, _offline, component_fetch_done)
 
@@ -281,6 +282,7 @@ class Manager:
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
         self.supported_latencyflex = catalog["latencyflex"]
+        RepoStatus.repo_fetch_done("components.fetching")
 
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
@@ -290,6 +292,7 @@ class Manager:
             return
 
         self.supported_dependencies = catalog
+        RepoStatus.repo_fetch_done("dependencies.fetching")
 
     def organize_installers(self):
         """Organizes installers into supported_installers."""
@@ -299,6 +302,7 @@ class Manager:
             return
 
         self.supported_installers = catalog
+        RepoStatus.repo_fetch_done("installers.fetching")
 
     def remove_dependency(self, config: dict, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""

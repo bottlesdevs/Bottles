@@ -19,6 +19,8 @@ from bottles.backend.utils import yaml
 import pycurl
 from io import BytesIO
 from http.client import RemoteDisconnected
+from threading import Lock as PyLock
+from typing import Dict
 
 from bottles.backend.logger import Logger
 
@@ -40,6 +42,7 @@ class Repo:
         RunAsync(self.__get_catalog, callback=set_catalog, index=index, offline=offline)
 
     def __get_catalog(self, index: str, offline: bool = False):
+        RepoStatus.repo_start_fetching(self.name + ".fetching")
         if index in ["", None] or offline:
             return {}
 
@@ -81,3 +84,26 @@ class Repo:
         except (pycurl.error, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} manifest.")
             return {}
+
+class RepoStatus:
+    LOCKS: Dict[str, PyLock] = {}
+
+    @staticmethod
+    def repo_start_fetching(name: str):
+        lock = RepoStatus.LOCKS.setdefault(name, PyLock())
+        lock.acquire()
+        logging.info(f"Start fetching {name}")
+
+    @staticmethod
+    def repo_fetch_done(name: str):
+        lock = RepoStatus.LOCKS.setdefault(name, PyLock())
+        if lock.locked():
+            lock.release()
+        logging.info(f"Done fetching {name}")
+
+    def repo_wait_done(name: str):
+        lock = RepoStatus.LOCKS.setdefault(name, PyLock())
+        logging.info(f"Wait fetching {name}")
+        lock.acquire()
+        lock.release()
+        logging.info(f"Done wait fetching {name}")

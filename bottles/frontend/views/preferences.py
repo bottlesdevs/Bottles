@@ -21,7 +21,7 @@ import webbrowser
 from gettext import gettext as _
 from gi.repository import Gtk, Adw, Gio, GLib
 
-from bottles.backend.globals import wait_for_fetch
+from bottles.backend.repos.repo import RepoStatus
 
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
@@ -118,7 +118,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         def ui_update():
             if self.manager.utils_conn.status == True:
-                wait_for_fetch("components")
+                RepoStatus.repo_wait_done("components.fetching")
                 GLib.idle_add(self.populate_runners_list)
                 GLib.idle_add(self.populate_dxvk_list)
                 GLib.idle_add(self.populate_vkd3d_list)
