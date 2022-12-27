@@ -118,22 +118,12 @@ class Manager:
 
         self.versioning_manager = VersioningManager(window, self)
         times["VersioningManager"] = time.time()
-
-        def component_fetch_done():
-            RunAsync(self.organize_components)
-            RunAsync(self.__clear_temp)
             
-        def installer_fetch_done():
-            RunAsync(self.organize_installers)
-        
-        def dependency_fetch_done():
-            RunAsync(self.organize_dependencies)
-            
-        self.component_manager = ComponentManager(self, _offline, component_fetch_done)
+        self.component_manager = ComponentManager(self, _offline)
 
-        self.installer_manager = InstallerManager(self, _offline, installer_fetch_done)
+        self.installer_manager = InstallerManager(self, _offline)
 
-        self.dependency_manager = DependencyManager(self, _offline, dependency_fetch_done)
+        self.dependency_manager = DependencyManager(self, _offline)
 
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
@@ -188,10 +178,13 @@ class Manager:
         self.check_runners(install_latest) or rv.set_status(False)
         rv.data["check_runners"] = time.time()
 
-        if not first_run:
-            # Those can be run async as they do not do UI update
-            RunAsync(self.organize_dependencies)
-            RunAsync(self.organize_installers)
+        if first_run:
+            self.organize_components()
+            self.__clear_temp()
+
+        self.organize_dependencies()
+
+        self.organize_installers()
 
         self.check_bottles()
         rv.data["check_bottles"] = time.time()
@@ -269,40 +262,52 @@ class Manager:
 
     def organize_components(self):
         """Get components catalog and organizes into supported_ lists."""
-        catalog = self.component_manager.fetch_catalog()
-        if len(catalog) == 0:
-            logging.info("No components found.")
-            return
+        def _run():
+            RepoStatus.repo_wait_operation("components.fetching")
+            RepoStatus.repo_start_operation("components.organizing")
+            catalog = self.component_manager.fetch_catalog()
+            if len(catalog) == 0:
+                logging.info("No components found.")
+                return
 
-        self.supported_wine_runners = catalog["wine"]
-        self.supported_proton_runners = catalog["proton"]
-        self.supported_runtimes = catalog["runtimes"]
-        self.supported_winebridge = catalog["winebridge"]
-        self.supported_dxvk = catalog["dxvk"]
-        self.supported_vkd3d = catalog["vkd3d"]
-        self.supported_nvapi = catalog["nvapi"]
-        self.supported_latencyflex = catalog["latencyflex"]
-        RepoStatus.repo_fetch_done("components.fetching")
+            self.supported_wine_runners = catalog["wine"]
+            self.supported_proton_runners = catalog["proton"]
+            self.supported_runtimes = catalog["runtimes"]
+            self.supported_winebridge = catalog["winebridge"]
+            self.supported_dxvk = catalog["dxvk"]
+            self.supported_vkd3d = catalog["vkd3d"]
+            self.supported_nvapi = catalog["nvapi"]
+            self.supported_latencyflex = catalog["latencyflex"]
+            RepoStatus.repo_done_operation("components.organizing")
+        RunAsync(_run)
 
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
-        catalog = self.dependency_manager.fetch_catalog()
-        if len(catalog) == 0:
-            logging.info("No dependencies found!")
-            return
+        def _run():
+            RepoStatus.repo_wait_operation("dependencies.fetching")
+            RepoStatus.repo_start_operation("dependencies.organizing")
+            catalog = self.dependency_manager.fetch_catalog()
+            if len(catalog) == 0:
+                logging.info("No dependencies found!")
+                return
 
-        self.supported_dependencies = catalog
-        RepoStatus.repo_fetch_done("dependencies.fetching")
+            self.supported_dependencies = catalog
+            RepoStatus.repo_done_operation("dependencies.organizing")
+        RunAsync(_run)
 
     def organize_installers(self):
         """Organizes installers into supported_installers."""
-        catalog = self.installer_manager.fetch_catalog()
-        if len(catalog) == 0:
-            logging.info("No installers found!")
-            return
+        def _run():
+            RepoStatus.repo_wait_operation("installers.fetching")
+            RepoStatus.repo_start_operation("installers.organizing")
+            catalog = self.installer_manager.fetch_catalog()
+            if len(catalog) == 0:
+                logging.info("No installers found!")
+                return
 
-        self.supported_installers = catalog
-        RepoStatus.repo_fetch_done("installers.fetching")
+            self.supported_installers = catalog
+            RepoStatus.repo_done_operation("installers.organizing")
+        RunAsync(_run)
 
     def remove_dependency(self, config: dict, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""

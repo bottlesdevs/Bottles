@@ -38,11 +38,13 @@ class Repo:
 
         def set_catalog(result, error=None):
             self.catalog = result
+            RepoStatus.repo_done_operation(self.name + ".fetching")
             if callback: callback()
         RunAsync(self.__get_catalog, callback=set_catalog, index=index, offline=offline)
 
     def __get_catalog(self, index: str, offline: bool = False):
-        RepoStatus.repo_start_fetching(self.name + ".fetching")
+        RepoStatus.repo_start_operation(self.name + ".fetching")
+
         if index in ["", None] or offline:
             return {}
 
@@ -89,21 +91,21 @@ class RepoStatus:
     LOCKS: Dict[str, PyLock] = {}
 
     @staticmethod
-    def repo_start_fetching(name: str):
+    def repo_start_operation(name: str):
         lock = RepoStatus.LOCKS.setdefault(name, PyLock())
         lock.acquire()
-        logging.info(f"Start fetching {name}")
+        logging.debug(f"Start operation {name}")
 
     @staticmethod
-    def repo_fetch_done(name: str):
+    def repo_done_operation(name: str):
         lock = RepoStatus.LOCKS.setdefault(name, PyLock())
         if lock.locked():
             lock.release()
-        logging.info(f"Done fetching {name}")
+        logging.debug(f"Done operation {name}")
 
-    def repo_wait_done(name: str):
+    def repo_wait_operation(name: str):
         lock = RepoStatus.LOCKS.setdefault(name, PyLock())
-        logging.info(f"Wait fetching {name}")
+        logging.debug(f"Wait operation {name}")
         lock.acquire()
         lock.release()
-        logging.info(f"Done wait fetching {name}")
+        logging.debug(f"Done wait operation {name}")
