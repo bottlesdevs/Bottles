@@ -263,10 +263,11 @@ class Manager:
     def organize_components(self):
         """Get components catalog and organizes into supported_ lists."""
         def _run():
-            RepoStatus.repo_wait_operation("components.fetching")
             RepoStatus.repo_start_operation("components.organizing")
+            RepoStatus.repo_wait_operation("components.fetching")
             catalog = self.component_manager.fetch_catalog()
             if len(catalog) == 0:
+                RepoStatus.repo_done_operation("components.organizing")
                 logging.info("No components found.")
                 return
 
@@ -284,10 +285,11 @@ class Manager:
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
         def _run():
-            RepoStatus.repo_wait_operation("dependencies.fetching")
             RepoStatus.repo_start_operation("dependencies.organizing")
+            RepoStatus.repo_wait_operation("dependencies.fetching")
             catalog = self.dependency_manager.fetch_catalog()
             if len(catalog) == 0:
+                RepoStatus.repo_done_operation("dependencies.organizing")
                 logging.info("No dependencies found!")
                 return
 
@@ -298,10 +300,11 @@ class Manager:
     def organize_installers(self):
         """Organizes installers into supported_installers."""
         def _run():
-            RepoStatus.repo_wait_operation("installers.fetching")
             RepoStatus.repo_start_operation("installers.organizing")
+            RepoStatus.repo_wait_operation("installers.fetching")
             catalog = self.installer_manager.fetch_catalog()
             if len(catalog) == 0:
+                RepoStatus.repo_done_operation("installers.organizing")
                 logging.info("No installers found!")
                 return
 
