@@ -48,6 +48,7 @@ from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.lnk import LnkUtils
+from bottles.backend.utils.locale import available_locales, sys_locale
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.decorators import cache
@@ -840,6 +841,15 @@ class Manager:
             '''
             wineboot.kill()
             wineserver.wait()
+
+        if key == "Language":
+            # XIM won't work with misconfigured locale, give user some hint.
+            installed_locales = available_locales()
+            host_locale = sys_locale()
+            if value != 'sys' and value not in installed_locales:
+                logging.warning(f"Target locale '{value}' is not existed in your system, which may cause problem.")
+            if value == 'sys' and host_locale[0] in ["C", "POSIX"]:
+                logging.warning(f"Your current locale is '{host_locale}', which may cause problem")
 
         if scope != "":
             if remove:
