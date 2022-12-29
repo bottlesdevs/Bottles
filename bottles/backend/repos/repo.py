@@ -15,13 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from bottles.backend.utils import yaml
-import pycurl
 from io import BytesIO
-from http.client import RemoteDisconnected
+
+import pycurl
 
 from bottles.backend.logger import Logger
-
+from bottles.backend.utils import yaml
 from bottles.frontend.utils.threading import RunAsync
 
 logging = Logger()

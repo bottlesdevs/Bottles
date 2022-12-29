@@ -26,14 +26,11 @@ __version__ = "3.4"
 __author__ = "Rossen Georgiev"
 
 import re
-import sys
 import struct
 from binascii import crc32
+from collections.abc import Mapping
 from io import BytesIO
 from io import StringIO as unicodeIO
-from collections.abc import Mapping
-
-from bottles.backend.models.vdict import VDFDict
 
 string_type = str
 int_type = int

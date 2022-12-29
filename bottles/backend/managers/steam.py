@@ -15,30 +15,29 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import contextlib
 import os
-import uuid
-
-from bottles.backend.models.config import BottleConfig
-from bottles.backend.models.vdict import VDFDict
-from bottles.backend.utils import yaml
 import shlex
 import shutil
-import contextlib
-from gi.repository import Gtk, Gdk
+import uuid
+from datetime import datetime
+from functools import lru_cache
 from glob import glob
 from pathlib import Path
-from functools import lru_cache
-from typing import Union, NewType, Dict
-from datetime import datetime
+from typing import Union, Dict
 
-from bottles.backend.models.samples import Samples
-from bottles.backend.models.result import Result
-from bottles.backend.wine.winecommand import WineCommand
+from gi.repository import Gtk, Gdk
+
 from bottles.backend.globals import Paths
-from bottles.backend.utils.steam import SteamUtils
-from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils import vdf
 from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.result import Result
+from bottles.backend.models.samples import Samples
+from bottles.backend.models.vdict import VDFDict
+from bottles.backend.utils import vdf
+from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.steam import SteamUtils
+from bottles.backend.wine.winecommand import WineCommand
 
 logging = Logger()
 

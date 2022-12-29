@@ -1,5 +1,4 @@
 import os
-from typing import NewType
 
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram

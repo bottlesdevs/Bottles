@@ -1,7 +1,3 @@
-import os
-import uuid
-from typing import NewType
-
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 

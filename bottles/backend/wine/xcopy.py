@@ -1,4 +1,3 @@
-from typing import NewType
 from datetime import datetime
 
 from bottles.backend.logger import Logger

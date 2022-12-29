@@ -1,21 +1,20 @@
 import os
-import stat
 import shutil
-import tempfile
+import stat
 import subprocess
-from typing import Optional
+import tempfile
 
-from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils.generic import detect_encoding
-from bottles.backend.managers.runtime import RuntimeManager
-from bottles.backend.managers.sandbox import SandboxManager
-from bottles.backend.utils.terminal import TerminalUtils
-from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils.display import DisplayUtils
-from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
     obs_vkc_available, vmtouch_available
 from bottles.backend.logger import Logger
+from bottles.backend.managers.runtime import RuntimeManager
+from bottles.backend.managers.sandbox import SandboxManager
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.utils.display import DisplayUtils
+from bottles.backend.utils.generic import detect_encoding
+from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.terminal import TerminalUtils
 
 logging = Logger()
 

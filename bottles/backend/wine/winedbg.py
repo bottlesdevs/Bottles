@@ -1,13 +1,12 @@
 import re
-import time
 import subprocess
-from typing import NewType
+import time
 
 from bottles.backend.logger import Logger
+from bottles.backend.utils.decorators import cache
+from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.wineserver import WineServer
-from bottles.backend.wine.wineboot import WineBoot
-from bottles.backend.utils.decorators import cache
 
 logging = Logger()
 

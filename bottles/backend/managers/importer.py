@@ -16,15 +16,13 @@
 #
 
 import os
-
-from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils import yaml
 import subprocess
-from glob import glob
 from datetime import datetime
+from glob import glob
 
-from bottles.backend.logger import Logger
 from bottles.backend.globals import TrdyPaths, Paths
+from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 
 logging = Logger()

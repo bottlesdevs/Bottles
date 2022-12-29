@@ -14,23 +14,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import shlex
 import shutil
-import gi
-import os
-import locale
-import icoextract
-from glob import glob
-from typing import NewType, Union
 from datetime import datetime
-from gi.repository import Gdk, Gio, GLib, Gtk
 from gettext import gettext as _
+from glob import glob
+from typing import Union
 
-from bottles.backend.logger import Logger
+import icoextract
+from gi.repository import Gdk, Gio, GLib, Gtk
+
 from bottles.backend.globals import Paths, user_apps_dir
+from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils.imagemagick import ImageMagickUtils
 from bottles.backend.utils.generic import get_mime
+from bottles.backend.utils.imagemagick import ImageMagickUtils
 
 logging = Logger()
 

@@ -16,16 +16,15 @@
 #
 
 import os
+
 import pycurl
-import http
-from typing import Union, NewType
+from bottles.frontend.params import APP_VERSION
 from gi.repository import GLib
 
 from bottles.backend.logger import Logger
-from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.component import ComponentRepo
+from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.installer import InstallerRepo
-from bottles.frontend.params import APP_VERSION
 from bottles.frontend.utils.threading import RunAsync
 
 logging = Logger()

@@ -16,11 +16,9 @@
 #
 
 import os
-from glob import glob
 import shutil
 import subprocess
-
-from bottles.backend.utils.display import DisplayUtils
+from glob import glob
 
 
 class VulkanUtils:

@@ -19,7 +19,6 @@ import os
 import shlex
 import shutil
 import subprocess
-from gettext import gettext as _
 
 from bottles.backend.logger import Logger
 

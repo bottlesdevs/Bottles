@@ -15,57 +15,51 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import contextlib
+import fnmatch
 import os
-import hashlib
-import subprocess
 import random
+import shutil
+import subprocess
 import time
 import uuid
-
-from bottles.backend.models.config import BottleConfig
-from bottles.backend.models.samples import Samples
-from bottles.backend.utils import yaml
-import shutil
-import fnmatch
-import contextlib
-from glob import glob
 from datetime import datetime
 from gettext import gettext as _
-from typing import Union, NewType, Any, List, Any
+from glob import glob
+from typing import Union, Any
+
 from gi.repository import GLib
 
+from bottles.backend.dlls.dxvk import DXVKComponent
+from bottles.backend.dlls.latencyflex import LatencyFleXComponent
+from bottles.backend.dlls.nvapi import NVAPIComponent
+from bottles.backend.dlls.vkd3d import VKD3DComponent
+from bottles.backend.globals import Paths, done_fetching
 from bottles.backend.logger import Logger
-from bottles.backend.runner import Runner
+from bottles.backend.managers.component import ComponentManager
+from bottles.backend.managers.dependency import DependencyManager
+from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
+from bottles.backend.managers.importer import ImportManager
+from bottles.backend.managers.installer import InstallerManager
+from bottles.backend.managers.repository import RepositoryManager
+from bottles.backend.managers.steam import SteamManager
+from bottles.backend.managers.template import TemplateManager
+from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
+from bottles.backend.managers.versioning import VersioningManager
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.globals import Paths, done_fetching
-from bottles.backend.managers.journal import JournalManager, JournalSeverity
-from bottles.backend.managers.template import TemplateManager
-from bottles.backend.managers.versioning import VersioningManager
-from bottles.backend.managers.repository import RepositoryManager
-from bottles.backend.managers.component import ComponentManager
-from bottles.backend.managers.installer import InstallerManager
-from bottles.backend.managers.dependency import DependencyManager
-from bottles.backend.managers.steam import SteamManager
-from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
-from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
+from bottles.backend.utils import yaml
 from bottles.backend.utils.file import FileUtils
+from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils.generic import sort_by_version
-from bottles.backend.utils.decorators import cache
-from bottles.backend.managers.importer import ImportManager
-from bottles.backend.dlls.dxvk import DXVKComponent
-from bottles.backend.dlls.vkd3d import VKD3DComponent
-from bottles.backend.dlls.nvapi import NVAPIComponent
-from bottles.backend.dlls.latencyflex import LatencyFleXComponent
-from bottles.backend.wine.uninstaller import Uninstaller
-from bottles.backend.wine.wineboot import WineBoot
-from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
+from bottles.backend.wine.uninstaller import Uninstaller
+from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.winepath import WinePath
-
+from bottles.backend.wine.wineserver import WineServer
 from bottles.frontend.utils.threading import RunAsync
 
 logging = Logger()
@@ -124,13 +118,13 @@ class Manager:
         def component_fetch_done():
             RunAsync(self.organize_components, callback=done_fetching("components"))
             RunAsync(self.__clear_temp)
-            
+
         def installer_fetch_done():
             RunAsync(self.organize_installers, callback=done_fetching("installers"))
-        
+
         def dependency_fetch_done():
             RunAsync(self.organize_dependencies, callback=done_fetching("dependencies"))
-            
+
         self.component_manager = ComponentManager(self, _offline, component_fetch_done)
 
         self.installer_manager = InstallerManager(self, _offline, installer_fetch_done)
@@ -660,7 +654,7 @@ class Manager:
                         "auto_discovered": True
                     })
                     found.append(executable_name)
-                    
+
             win_steam_manager = SteamManager(config, is_windows=True)
 
             if self.window.settings.get_boolean("steam-programs") \
@@ -991,6 +985,7 @@ class Manager:
         Create a new bottle from the given arguments.
         TODO: will be replaced by the BottleBuilder class.
         """
+
         def log_update(message):
             if fn_logger:
                 GLib.idle_add(fn_logger, message)
@@ -1155,7 +1150,7 @@ class Manager:
                 log_update(_("Running as Flatpak, sandboxing userdir…"))
             if sandbox:
                 log_update(_("Sandboxing userdir…"))
-                
+
             userdir = f"{bottle_complete_path}/drive_c/users"
             if os.path.exists(userdir):
                 # userdir may not exists when unpacking a template, safely
@@ -1169,7 +1164,7 @@ class Manager:
                             _dir_path = os.path.join(_user_dir, _dir)
                             if os.path.islink(_dir_path):
                                 links.append(_dir_path)
-                        
+
                         _documents_dir = os.path.join(_user_dir, "Documents")
                         if os.path.isdir(_documents_dir):
                             for _dir in os.listdir(_documents_dir):
@@ -1183,7 +1178,7 @@ class Manager:
                                 _dir_path = os.path.join(_win_dir, _dir)
                                 if os.path.islink(_dir_path):
                                     links.append(_dir_path)
-                
+
                 for link in links:
                     with contextlib.suppress(IOError, OSError):
                         os.unlink(link)
