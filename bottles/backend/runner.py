@@ -16,14 +16,17 @@
 #
 
 import os
+from typing import TYPE_CHECKING
 
-from bottles.backend.managers.manager import Manager
-from bottles.backend.models.config import BottleConfig
 from bottles.backend.logger import Logger
 from bottles.backend.managers.runtime import RuntimeManager
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.wineboot import WineBoot
+
+if TYPE_CHECKING:
+    from bottles.backend.managers.manager import Manager
 
 logging = Logger()
 
@@ -37,7 +40,7 @@ class Runner:
     """
 
     @staticmethod
-    def runner_update(config: BottleConfig, manager: Manager, runner: str) -> Result:
+    def runner_update(config: BottleConfig, manager: 'Manager', runner: str) -> Result:
         """
         This method should be executed after changing the runner
         for a bottle. It does a prefix update and re-initialize the
@@ -46,7 +49,7 @@ class Runner:
         """
         logging.info(f"Doing runner update for bottle: {config.Name}")
         wineboot = WineBoot(config)
-        
+
         if not runner.startswith("sys-"):
             runner_path = ManagerUtils.get_runner_path(runner)
 
