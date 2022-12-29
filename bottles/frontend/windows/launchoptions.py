@@ -20,6 +20,7 @@ from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.frontend.windows.filechooser import FileChooser
 from bottles.backend.utils.manager import ManagerUtils
+from gettext import gettext as _
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
@@ -82,31 +83,31 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_dxvk.connect(
             "state-set",
             self.__check_override,
-            config["Parameters"].get("dxvk"),
+            config.Parameters.dxvk,
             self.action_dxvk
         )
         self.switch_vkd3d.connect(
             "state-set",
             self.__check_override,
-            config["Parameters"].get("vkd3d"),
+            config.Parameters.vkd3d,
             self.action_vkd3d
         )
         self.switch_nvapi.connect(
             "state-set",
             self.__check_override,
-            config["Parameters"].get("dxvk_nvapi"),
+            config.Parameters.dxvk_nvapi,
             self.action_nvapi
         )
         self.switch_fsr.connect(
             "state-set",
             self.__check_override,
-            config["Parameters"].get("fsr"),
+            config.Parameters.fsr,
             self.action_fsr
         )
         self.switch_virt_desktop.connect(
             "state-set",
             self.__check_override,
-            config["Parameters"].get("virtual_desktop"),
+            config.Parameters.virtual_desktop,
             self.action_virt_desktop
         )
 
@@ -119,11 +120,11 @@ class LaunchOptionsDialog(Adw.Window):
             self.btn_cwd_reset.set_visible(True)
 
         # set overrides status
-        dxvk = config["Parameters"].get("dxvk")
-        vkd3d = config["Parameters"].get("vkd3d")
-        nvapi = config["Parameters"].get("dxvk_nvapi")
-        fsr = config["Parameters"].get("fsr")
-        virt_desktop = config["Parameters"].get("virtual_desktop")
+        dxvk = config.Parameters.dxvk
+        vkd3d = config.Parameters.vkd3d
+        nvapi = config.Parameters.dxvk_nvapi
+        fsr = config.Parameters.fsr
+        virt_desktop = config.Parameters.virtual_desktop
 
         if not dxvk:
             self.action_dxvk.set_subtitle(self.__msg_disabled.format("DXVK"))
@@ -252,8 +253,8 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_cwd_reset.set_visible(False)
 
     def __reset_defaults(self, *_args):
-        self.switch_dxvk.set_active(self.config["Parameters"]["dxvk"])
-        self.switch_vkd3d.set_active(self.config["Parameters"]["vkd3d"])
-        self.switch_nvapi.set_active(self.config["Parameters"]["dxvk_nvapi"])
-        self.switch_fsr.set_active(self.config["Parameters"]["fsr"])
-        self.switch_virt_desktop.set_active(self.config["Parameters"]["virtual_desktop"])
+        self.switch_dxvk.set_active(self.config.Parameters.dxvk)
+        self.switch_vkd3d.set_active(self.config.Parameters.vkd3d)
+        self.switch_nvapi.set_active(self.config.Parameters.dxvk_nvapi)
+        self.switch_fsr.set_active(self.config.Parameters.fsr)
+        self.switch_virt_desktop.set_active(self.config.Parameters.virtual_desktop)

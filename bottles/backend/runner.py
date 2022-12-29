@@ -16,20 +16,14 @@
 #
 
 import os
-from typing import NewType
 
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.managers.manager import Manager
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.logger import Logger
-from bottles.backend.globals import gamemode_available, gamescope_available, mangohud_available, \
-    obs_vkc_available, vkbasalt_available, vmtouch_available
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.wine.catalogs import win_versions
-from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.wineboot import WineBoot
-from bottles.backend.wine.wineserver import WineServer
-from bottles.backend.wine.reg import Reg
 
 logging = Logger()
 
@@ -43,16 +37,15 @@ class Runner:
     """
 
     @staticmethod
-    def runner_update(config: dict, manager: object, runner: str):
+    def runner_update(config: BottleConfig, manager: Manager, runner: str) -> Result:
         """
         This method should be executed after changing the runner
         for a bottle. It does a prefix update and re-initialize the
         active DLLComponents (dxvk, dxvk-nvapi, vkd3d…) to re-create
         the overrides and fix broken registry keys.
         """
-        logging.info(f"Doing runner update for bottle: {config['Name']}")
+        logging.info(f"Doing runner update for bottle: {config.Name}")
         wineboot = WineBoot(config)
-        wineserver = WineServer(config)
         
         if not runner.startswith("sys-"):
             runner_path = ManagerUtils.get_runner_path(runner)
@@ -78,11 +71,11 @@ class Runner:
         wineboot.update()
 
         # re-initialize DLLComponents
-        if config["Parameters"]["dxvk"]:
+        if config.Parameters.dxvk:
             manager.install_dll_component(config, "dxvk", overrides_only=True)
-        if config["Parameters"]["dxvk_nvapi"]:
+        if config.Parameters.dxvk_nvapi:
             manager.install_dll_component(config, "nvapi", overrides_only=True)
-        if config["Parameters"]["vkd3d"]:
+        if config.Parameters.vkd3d:
             manager.install_dll_component(config, "vkd3d", overrides_only=True)
 
         """

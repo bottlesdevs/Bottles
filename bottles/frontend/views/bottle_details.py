@@ -22,7 +22,9 @@ import uuid
 import webbrowser
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Adw, Gdk, GLib
+from typing import List
+
+from gi.repository import Gtk, Gio, Adw, Gdk, GLib
 
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
@@ -51,6 +53,7 @@ from bottles.backend.wine.regedit import Regedit
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.wineserver import WineServer
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
 class BottleView(Adw.PreferencesPage):
@@ -191,7 +194,7 @@ class BottleView(Adw.PreferencesPage):
                 self.config,
                 exec_path=file.get_path(),
                 args=args,
-                terminal=self.config.get("run_in_terminal"),
+                terminal=self.config.run_in_terminal,
             )
             RunAsync(executor.run, self.update_programs)
 
@@ -210,33 +213,33 @@ class BottleView(Adw.PreferencesPage):
         self.__update_by_env()
 
         # set update_date
-        update_date = datetime.strptime(self.config.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
+        update_date = datetime.strptime(self.config.Update_Date, "%Y-%m-%d %H:%M:%S.%f")
         update_date = update_date.strftime("%b %d %Y %H:%M:%S")
         self.label_name.set_tooltip_text(_("Updated: %s" % update_date))
 
         # set arch
-        self.label_arch.set_text(self.config.get("Arch", "n/a").capitalize())
+        self.label_arch.set_text((self.config.Arch or "n/a").capitalize())
 
         # set name and runner
-        self.label_name.set_text(self.config.get("Name"))
-        self.label_runner.set_text(self.config.get("Runner"))
+        self.label_name.set_text(self.config.Name)
+        self.label_runner.set_text(self.config.Runner)
 
         # set environment
-        self.label_environment.set_text(_(self.config.get("Environment")))
+        self.label_environment.set_text(_(self.config.Environment))
 
         # set versioning
-        self.dot_versioning.set_visible(self.config.get("Versioning"))
-        self.grid_versioning.set_visible(self.config.get("Versioning"))
-        self.label_state.set_text(str(self.config.get("State")))
+        self.dot_versioning.set_visible(self.config.Versioning)
+        self.grid_versioning.set_visible(self.config.Versioning)
+        self.label_state.set_text(str(self.config.State))
 
         self.__set_steam_rules()
 
         # check for old versioning system enabled
-        if config["Versioning"]:
+        if config.Versioning:
             self.__upgrade_versioning()
         
-        if config["Runner"] not in self.manager.runners_available\
-            and not self.config.get("Environment") == "Steam":
+        if config.Runner not in self.manager.runners_available\
+            and not self.config.Environment == "Steam":
             self.__alert_missing_runner()
 
         # update programs list
@@ -312,8 +315,8 @@ class BottleView(Adw.PreferencesPage):
             programs = self.manager.get_programs(self.config)
             handled = 0
 
-            if self.config.get("Environment") == "Steam":
-                GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True)
+            if self.config.Environment == "Steam":
+                GLib.idle_add(new_program, {"name": self.config.Name}, None, True)
                 handled += 1
 
             for program in programs:
@@ -362,8 +365,8 @@ class BottleView(Adw.PreferencesPage):
         This function saves updates the run arguments for the current session.
         """
         args = self.exec_arguments.get_text()
-        self.config["session_arguments"] = args
-        self.config["run_in_terminal"] = self.exec_terminal.get_active()
+        self.config.session_arguments = args
+        self.config.run_in_terminal = self.exec_terminal.get_active()
 
     def run_executable(self, widget, args=False):
         """
@@ -400,12 +403,12 @@ class BottleView(Adw.PreferencesPage):
             if not _file:
                 return  # workaround #1653
 
-            args = self.config.get("session_arguments")
+            args = self.config.session_arguments
             executor = WineExecutor(
                 self.config,
                 exec_path=_file.get_path(),
                 args=args,
-                terminal=self.config.get("run_in_terminal"),
+                terminal=self.config.run_in_terminal,
             )
             RunAsync(executor.run, self.update_programs)
 
@@ -416,17 +419,17 @@ class BottleView(Adw.PreferencesPage):
         Use the backup_type param to export config or full.
         """
         title = _("Select the location where to save the backup config")
-        hint = f"backup_{self.config.get('Path')}.yml"
+        hint = f"backup_{self.config.Path}.yml"
 
         if backup_type == "full":
             title = _("Select the location where to save the backup archive")
-            hint = f"backup_{self.config.get('Path')}.tar.gz"
+            hint = f"backup_{self.config.Path}.tar.gz"
 
         def finish(result, error=False):
             if result.status:
-                self.window.show_toast(_("Backup created for \"{0}\"").format(self.config["Name"]))
+                self.window.show_toast(_("Backup created for \"{0}\"").format(self.config.Name))
             else:
-                self.window.show_toast(_("Backup failed for \"{0}\"").format(self.config["Name"]))
+                self.window.show_toast(_("Backup failed for \"{0}\"").format(self.config.Name))
 
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
@@ -583,7 +586,7 @@ the Bottles preferences or choose a new one to run applications.")
             dialog.present()
 
     def __set_steam_rules(self):
-        status = False if self.config.get("Environment") == "Steam" else True
+        status = False if self.config.Environment == "Steam" else True
 
         for w in [self.btn_delete, self.btn_backup_full, self.btn_duplicate]:
             w.set_visible(status)

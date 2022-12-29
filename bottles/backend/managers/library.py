@@ -17,8 +17,9 @@
 
 import os
 import uuid
+
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import yaml
-from pathlib import Path
 
 from bottles.backend.logger import Logger
 from bottles.backend.globals import Paths
@@ -61,7 +62,7 @@ class LibraryManager:
 
         self.save_library()
 
-    def add_to_library(self, data: dict, config: dict):
+    def add_to_library(self, data: dict, config: BottleConfig):
         """
         Adds a new entry to the library.yml file.
         """

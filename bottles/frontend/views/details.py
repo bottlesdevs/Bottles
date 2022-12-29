@@ -20,6 +20,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
 from bottles.backend.managers.queue import QueueManager
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 
 from bottles.frontend.views.bottle_details import BottleView
@@ -153,7 +154,7 @@ class DetailsView(Adw.Bin):
             }
         }
 
-        if self.config.get("Environment") == "Steam":
+        if self.config.Environment == "Steam":
             del self.__pages["versioning"]
 
         self.default_view.append(self.view_bottle)
@@ -176,7 +177,7 @@ class DetailsView(Adw.Bin):
         if widget:
             self.box_actions.append(widget)
 
-    def set_config(self, config, rebuild_pages=True):
+    def set_config(self, config: BottleConfig, rebuild_pages=True):
         """
         This function update widgets according to the bottle
         configuration. It also temporarily disable the functions

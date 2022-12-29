@@ -21,6 +21,9 @@ import subprocess
 import random
 import time
 import uuid
+
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.samples import Samples
 from bottles.backend.utils import yaml
 import shutil
 import fnmatch
@@ -28,7 +31,7 @@ import contextlib
 from glob import glob
 from datetime import datetime
 from gettext import gettext as _
-from typing import Union, NewType, Any, List
+from typing import Union, NewType, Any, List, Any
 from gi.repository import GLib
 
 from bottles.backend.logger import Logger
@@ -263,7 +266,7 @@ class Manager:
             os.makedirs(Paths.temp, exist_ok=True)
 
         if not os.path.isdir(Paths.latencyflex):
-            logging.info("LatencyFlex path doesn't exist, creating now.")
+            logging.info("LatencyFleX path doesn't exist, creating now.")
             os.makedirs(Paths.latencyflex, exist_ok=True)
 
     def organize_components(self):
@@ -300,11 +303,11 @@ class Manager:
 
         self.supported_installers = catalog
 
-    def remove_dependency(self, config: dict, dependency: list):
+    def remove_dependency(self, config: BottleConfig, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""
         dependency = dependency[0]
-        logging.info(f"Removing {dependency} dependency from {config['Name']}")
-        uninstallers = config.get("Uninstallers", [])
+        logging.info(f"Removing {dependency} dependency from {config.Name}")
+        uninstallers = config.Uninstallers
 
         # run dependency uninstaller if available
         if dependency in uninstallers:
@@ -312,13 +315,13 @@ class Manager:
             Uninstaller(config).from_name(uninstaller)
 
         # remove dependency from bottle configuration
-        if dependency in config["Installed_Dependencies"]:
-            config["Installed_Dependencies"].remove(dependency)
+        if dependency in config.Installed_Dependencies:
+            config.Installed_Dependencies.remove(dependency)
 
         self.update_config(
             config,
             key="Installed_Dependencies",
-            value=config["Installed_Dependencies"]
+            value=config.Installed_Dependencies
         )
         return Result(
             status=True,
@@ -537,7 +540,7 @@ class Manager:
         except ValueError:
             return sorted(component["available"], reverse=True)
 
-    def get_programs(self, config: dict) -> list:
+    def get_programs(self, config: BottleConfig) -> list:
         """
         Get the list of programs (both from the drive and the user defined
         in the bottle configuration file).
@@ -580,14 +583,13 @@ class Manager:
             "*user_manual*"
         ]
         found = []
-        ext_programs = config.get("External_Programs")
+        ext_programs = config.External_Programs
 
         '''
         Process External_Programs
         '''
-        for program in ext_programs:
-            _program = ext_programs[program]
-            found.append(_program["executable"] )
+        for _, _program in ext_programs.items():
+            found.append(_program["executable"])
             if winepath.is_windows(_program["path"]):
                 program_folder = ManagerUtils.get_exe_parent_dir(config, _program["path"])
             else:
@@ -600,12 +602,12 @@ class Manager:
                 "folder": _program.get("folder", program_folder),
                 "icon": "com.usebottles.bottles-program",
                 "script": _program.get("script"),
-                "dxvk": _program.get("dxvk", config["Parameters"]["dxvk"]),
-                "vkd3d": _program.get("vkd3d", config["Parameters"]["vkd3d"]),
-                "dxvk_nvapi": _program.get("dxvk_nvapi", config["Parameters"]["dxvk_nvapi"]),
-                "fsr": _program.get("fsr", config["Parameters"]["fsr"]),
-                "pulseaudio_latency": _program.get("pulseaudio_latency", config["Parameters"]["pulseaudio_latency"]),
-                "virtual_desktop": _program.get("virtual_desktop", config["Parameters"]["virtual_desktop"]),
+                "dxvk": _program.get("dxvk", config.Parameters.dxvk),
+                "vkd3d": _program.get("vkd3d", config.Parameters.vkd3d),
+                "dxvk_nvapi": _program.get("dxvk_nvapi", config.Parameters.dxvk_nvapi),
+                "fsr": _program.get("fsr", config.Parameters.fsr),
+                "pulseaudio_latency": _program.get("pulseaudio_latency", config.Parameters.pulseaudio_latency),
+                "virtual_desktop": _program.get("virtual_desktop", config.Parameters.virtual_desktop),
                 "removed": _program.get("removed"),
                 "id": _program.get("id")
             })
@@ -649,12 +651,12 @@ class Manager:
                         "icon": "com.usebottles.bottles-program",
                         "id": str(uuid.uuid4()),
                         "script": "",
-                        "dxvk": config["Parameters"]["dxvk"],
-                        "vkd3d": config["Parameters"]["vkd3d"],
-                        "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                        "fsr": config["Parameters"]["fsr"],
-                        "pulseaudio_latency": config["Parameters"]["pulseaudio_latency"],
-                        "virtual_desktop": config["Parameters"]["virtual_desktop"],
+                        "dxvk": config.Parameters.dxvk,
+                        "vkd3d": config.Parameters.vkd3d,
+                        "dxvk_nvapi": config.Parameters.dxvk_nvapi,
+                        "fsr": config.Parameters.fsr,
+                        "pulseaudio_latency": config.Parameters.pulseaudio_latency,
+                        "virtual_desktop": config.Parameters.virtual_desktop,
                         "auto_discovered": True
                     })
                     found.append(executable_name)
@@ -719,23 +721,26 @@ class Manager:
             if conf_file_yaml is None:
                 return
 
+            config = BottleConfig._fill_with(conf_file_yaml)
+
             # Clear Run Executable parameters on new session start
-            if conf_file_yaml.get("session_arguments"):
-                conf_file_yaml["session_arguments"] = ""
+            if config.session_arguments:
+                config.session_arguments = ""
 
-            if conf_file_yaml.get("run_in_terminal"):
-                conf_file_yaml["run_in_terminal"] = False
+            if config.run_in_terminal:
+                config.run_in_terminal = False
 
-            miss_keys = Samples.config.keys() - conf_file_yaml.keys()
+            sample = BottleConfig()
+            miss_keys = sample.keys() - config.keys()
             for key in miss_keys:
                 logging.warning(f"Key {key} is missing for bottle {_name}, updating…")
                 self.update_config(
-                    config=conf_file_yaml,
+                    config=config,
                     key=key,
-                    value=Samples.config[key]
+                    value=sample[key]
                 )
 
-            miss_params_keys = Samples.config["Parameters"].keys() - conf_file_yaml["Parameters"].keys()
+            miss_params_keys = sample.Parameters.keys() - config.Parameters.keys()
 
             for key in miss_params_keys:
                 '''
@@ -744,12 +749,12 @@ class Manager:
                 '''
                 logging.warning(f"Parameters key {key} is missing for bottle {_name}, updating…")
                 self.update_config(
-                    config=conf_file_yaml,
+                    config=config,
                     key=key,
-                    value=Samples.config["Parameters"][key],
+                    value=sample.Parameters[key],
                     scope="Parameters"
                 )
-            self.local_bottles[conf_file_yaml['Name']] = conf_file_yaml
+            self.local_bottles[config.Name] = config
 
             for p in [
                 os.path.join(_bottle, "cache", "dxvk_state"),
@@ -800,7 +805,7 @@ class Manager:
     # Update parameters in bottle config
     def update_config(
             self,
-            config: dict,
+            config: BottleConfig,
             key: str,
             value: Any,
             scope: str = "",
@@ -814,7 +819,7 @@ class Manager:
         is set to True.
         TODO: move to bottle.py (Bottle manager)
         """
-        _name = config.get('Name')
+        _name = config.Name
         logging.info(f"Setting Key {key}={value} for bottle {_name}…")
 
         _config = config
@@ -830,7 +835,7 @@ class Manager:
                 bottle_path_tmp = bottle_path_tmp + character
             else:
                 bottle_path_tmp = bottle_path_tmp + "_"
-        bottle_path = bottle_path_tmp 
+        bottle_path = bottle_path_tmp
 
         if key == "sync":
             '''
@@ -841,7 +846,7 @@ class Manager:
             wineboot.kill()
             wineserver.wait()
 
-        if scope != "":
+        if scope:
             if remove:
                 del config[scope][key]
             elif config[scope].get(key) and fallback:
@@ -856,22 +861,21 @@ class Manager:
             else:
                 config[key] = value
 
-        with open(os.path.join(bottle_path, "bottle.yml"), "w") as conf_file:
-            yaml.dump(config, conf_file, indent=4)
-            conf_file.close()
+        config.dump(os.path.join(bottle_path, "bottle.yml"))
 
-        config["Update_Date"] = str(datetime.now())
+        config.Update_Date = str(datetime.now())
 
-        if config.get("Environment") == "Steam":
+        if config.Environment == "Steam":
             config = self.steam_manager.update_bottle(config)
 
         return Result(status=True, data={"config": config})
 
-    def create_bottle_from_config(self, config: dict) -> bool:
-        """Create a bottle from a config dict."""
-        logging.info(f"Creating new {config['Name']} bottle from config…")
+    def create_bottle_from_config(self, config: BottleConfig) -> bool:
+        """Create a bottle from a config object."""
+        logging.info(f"Creating new {config.Name} bottle from config…")
 
-        for key in Samples.config.keys():
+        sample = BottleConfig()
+        for key in sample.keys():
             '''
             If the key is not in the configuration sample, set it to the
             default value.
@@ -880,49 +884,49 @@ class Manager:
                 self.update_config(
                     config=config,
                     key=key,
-                    value=Samples.config[key]
+                    value=sample[key]
                 )
 
-        if config["Runner"] not in self.runners_available:
+        if config.Runner not in self.runners_available:
             '''
             If the runner is not in the list of available runners, set it
             to latest Soda. If there is no Soda, set it to the
             first one.
             '''
-            config["Runner"] = self.get_latest_runner("wine")
+            config.Runner = self.get_latest_runner("wine")
 
-        if config["DXVK"] not in self.dxvk_available:
+        if config.DXVK not in self.dxvk_available:
             '''
             If the DXVK is not in the list of available DXVKs, set it to
             highest version.
             '''
-            config["DXVK"] = sorted(
+            config.DXVK = sorted(
                 [dxvk for dxvk in self.dxvk_available],
                 key=lambda x: x.split("-")[-1]
             )[-1]
 
-        if config["VKD3D"] not in self.vkd3d_available:
+        if config.VKD3D not in self.vkd3d_available:
             '''
             If the VKD3D is not in the list of available VKD3Ds, set it to
             highest version.
             '''
-            config["VKD3D"] = sorted(
+            config.VKD3D = sorted(
                 [vkd3d for vkd3d in self.vkd3d_available],
                 key=lambda x: x.split("-")[-1]
             )[-1]
 
-        if config["NVAPI"] not in self.nvapi_available:
+        if config.NVAPI not in self.nvapi_available:
             '''
             If the NVAPI is not in the list of available NVAPIs, set it to
             highest version.
             '''
-            config["NVAPI"] = sorted(
+            config.NVAPI = sorted(
                 [nvapi for nvapi in self.nvapi_available],
                 key=lambda x: x.split("-")[-1]
             )[-1]
 
         # create the bottle path
-        bottle_path = os.path.join(Paths.bottles, config['Name'])
+        bottle_path = os.path.join(Paths.bottles, config.Name)
 
         if not os.path.exists(bottle_path):
             '''
@@ -933,39 +937,35 @@ class Manager:
         else:
             rnd = random.randint(100, 200)
             bottle_path = f"{bottle_path}__{rnd}"
-            config["Name"] = f"{config['Name']}__{rnd}"
-            config["Path"] = f"{config['Path']}__{rnd}"
+            config.Name = f"{config.Name}__{rnd}"
+            config.Path = f"{config.Path}__{rnd}"
             os.makedirs(bottle_path)
 
         # write the bottle config file
-        try:
-            with open(os.path.join(bottle_path, "bottle.yml"), "w") as conf_file:
-                yaml.dump(config, conf_file, indent=4)
-                conf_file.close()
-        except (OSError, IOError, yaml.YAMLError, FileNotFoundError, PermissionError) as e:
-            logging.error(f"Error writing config file {e}")
+        saved = config.dump(os.path.join(bottle_path, "bottle.yml"))
+        if not saved.status:
             return False
 
-        if config["Parameters"]["dxvk"]:
+        if config.Parameters.dxvk:
             '''
             If DXVK is enabled, execute the installation script.
             '''
             self.install_dll_component(config, "dxvk")
 
-        if config["Parameters"]["dxvk_nvapi"]:
+        if config.Parameters.dxvk_nvapi:
             '''
             If NVAPI is enabled, execute the substitution of DLLs.
             '''
             self.install_dll_component(config, "nvapi")
 
-        if config["Parameters"]["vkd3d"]:
+        if config.Parameters.vkd3d:
             '''
             If the VKD3D parameter is set to True, install it
             in the new bottle.
             '''
             self.install_dll_component(config, "vkd3d")
 
-        for dependency in config["Installed_Dependencies"]:
+        for dependency in config.Installed_Dependencies:
             '''
             Install each declared dependency in the new bottle.
             '''
@@ -973,7 +973,7 @@ class Manager:
                 dep = [dependency, self.supported_dependencies[dependency]]
                 self.dependency_manager.install(config, dep)
 
-        logging.info(f"New bottle from config created: {config['Path']}")
+        logging.info(f"New bottle from config created: {config.Path}")
         self.update_bottles(silent=True)
         return True
 
@@ -1114,23 +1114,23 @@ class Manager:
         # generate bottle configuration
         logging.info("Generating bottle configuration…")
         log_update(_("Generating bottle configuration…"))
-        config = Samples.config
-        config["Name"] = bottle_name
-        config["Arch"] = arch
-        config["Runner"] = runner_name
-        config["DXVK"] = dxvk_name
-        config["VKD3D"] = vkd3d_name
-        config["NVAPI"] = nvapi_name
-        config["LatencyFleX"] = latencyflex_name
-        config["Path"] = bottle_name_path
-        if path != "":
-            config["Path"] = bottle_complete_path
-        config["Custom_Path"] = bottle_custom_path
-        config["Environment"] = environment.capitalize()
-        config["Creation_Date"] = str(datetime.now())
-        config["Update_Date"] = str(datetime.now())
+        config = BottleConfig()
+        config.Name = bottle_name
+        config.Arch = arch
+        config.Runner = runner_name
+        config.DXVK = dxvk_name
+        config.VKD3D = vkd3d_name
+        config.NVAPI = nvapi_name
+        config.LatencyFleX = latencyflex_name
+        config.Path = bottle_name_path
+        if path:
+            config.Path = bottle_complete_path
+        config.Custom_Path = bottle_custom_path
+        config.Environment = environment.capitalize()
+        config.Creation_Date = str(datetime.now())
+        config.Update_Date = str(datetime.now())
         if versioning:
-            config["Versioning"] = True
+            config.Versioning = True
 
         # get template
         template = TemplateManager.get_env_template(environment)
@@ -1138,8 +1138,8 @@ class Manager:
         if template:
             log_update(_("Template found, applying…"))
             TemplateManager.unpack_template(template, config)
-            config["Installed_Dependencies"] = template["config"]["Installed_Dependencies"]
-            config["Uninstallers"] = template["config"]["Uninstallers"]
+            config.Installed_Dependencies = template["config"]["Installed_Dependencies"]
+            config.Uninstallers = template["config"]["Uninstallers"]
 
         # initialize wineprefix
         reg = Reg(config)
@@ -1204,7 +1204,7 @@ class Manager:
             log_update(_("Setting Windows version…"))
             if "soda" not in runner_name.lower() \
                     and "caffe" not in runner_name.lower():  # Caffe/Soda came with win10 by default
-                rk.set_windows(config["Windows"])
+                rk.set_windows(config.Windows)
                 wineboot.update()
 
             FileUtils.wait_for_files(reg_files)
@@ -1252,11 +1252,11 @@ class Manager:
             while wineserver.is_alive():
                 time.sleep(1)
 
-            for prm in config["Parameters"]:
+            for prm in config.Parameters:
                 if prm in env.get("Parameters", {}):
-                    config["Parameters"][prm] = env["Parameters"][prm]
+                    config.Parameters[prm] = env["Parameters"][prm]
 
-            if (not template and config["Parameters"]["dxvk"]) \
+            if (not template and config.Parameters.dxvk) \
                     or (template and template["config"]["DXVK"] != dxvk):
                 # perform dxvk installation if configured
                 logging.info("Installing DXVK…")
@@ -1264,7 +1264,7 @@ class Manager:
                 self.install_dll_component(config, "dxvk", version=dxvk_name)
                 template_updated = True
 
-            if not template and config["Parameters"]["vkd3d"] \
+            if not template and config.Parameters.vkd3d \
                     or (template and template["config"]["VKD3D"] != vkd3d):
                 # perform vkd3d installation if configured
                 logging.info("Installing VKD3D…")
@@ -1272,7 +1272,7 @@ class Manager:
                 self.install_dll_component(config, "vkd3d", version=vkd3d_name)
                 template_updated = True
 
-            if not template and config["Parameters"]["dxvk_nvapi"] \
+            if not template and config.Parameters.dxvk_nvapi \
                     or (template and template["config"]["NVAPI"] != nvapi):
                 # perform nvapi installation if configured
                 logging.info("Installing DXVK-NVAPI…")
@@ -1290,9 +1290,7 @@ class Manager:
                     template_updated = True
 
         # save bottle config
-        with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
-            yaml.dump(config, conf_file, indent=4)
-            conf_file.close()
+        config.dump(f"{bottle_complete_path}/bottle.yml")
 
         if versioning:
             # create first state if versioning enabled
@@ -1300,7 +1298,7 @@ class Manager:
             log_update(_("Creating versioning state 0…"))
             self.versioning_manager.create_state(
                 config=config,
-                comment="First boot"
+                message="First boot"
             )
 
         # set status created and UI usability
@@ -1353,7 +1351,7 @@ class Manager:
         except IndexError:
             return []
 
-    def delete_bottle(self, config: dict) -> bool:
+    def delete_bottle(self, config: BottleConfig) -> bool:
         """
         Perform wineserver shutdown and delete the bottle.
         TODO: will be replaced by the BottlesManager class.
@@ -1365,63 +1363,59 @@ class Manager:
         wineboot.kill(True)
         wineserver.wait()
 
-        if config.get("Path"):
-            logging.info(f"Removing applications installed with the bottle…")
-            for inst in glob(f"{Paths.applications}/{config.get('Name')}--*"):
-                os.remove(inst)
+        if not config.Path:
+            logging.error("Empty path found. Disasters unavoidable.")
+            return False
 
-            if config.get("Custom_Path"):
-                logging.info(f"Removing placeholder…")
-                with contextlib.suppress(FileNotFoundError):
-                    os.remove(os.path.join(
-                        Paths.bottles,
-                        os.path.basename(config.get("Path")),
-                        "placeholder.yml"
-                    ))
+        logging.info(f"Removing applications installed with the bottle…")
+        for inst in glob(f"{Paths.applications}/{config.Name}--*"):
+            os.remove(inst)
 
-            logging.info(f"Removing the bottle…")
-            path = ManagerUtils.get_bottle_path(config)
-            subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
+        if config.Custom_Path:
+            logging.info(f"Removing placeholder…")
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(os.path.join(
+                    Paths.bottles,
+                    os.path.basename(config.Path),
+                    "placeholder.yml"
+                ))
 
-            local_bottles_tmp = self.local_bottles.copy()
-            for b in local_bottles_tmp.values():
-                if b["Path"] == config["Path"]:
-                    del self.local_bottles[b["Name"]]
-                    break
+        logging.info(f"Removing the bottle…")
+        path = ManagerUtils.get_bottle_path(config)
+        subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
 
-            logging.info(f"Deleted the bottle in: {path}")
-            return True
+        local_bottles_tmp = self.local_bottles.copy()
+        for b in local_bottles_tmp.values():
+            if b.Path == config.Path:
+                del self.local_bottles[b.Name]
+                break
 
-        logging.error("Empty path found. Disasters unavoidable.")
-        return False
+        logging.info(f"Deleted the bottle in: {path}")
+        return True
 
-    def repair_bottle(self, config: dict) -> bool:
+    def repair_bottle(self, config: BottleConfig) -> bool:
         """
         This function tries to repair a broken bottle, creating a
         new bottle configuration with the latest runner. Each fixed
         bottle will use the Custom environment.
         TODO: will be replaced by the BottlesManager class.
         """
-        logging.info(f"Trying to repair the bottle: [{config['Name']}]…")
+        logging.info(f"Trying to repair the bottle: [{config.Name}]…")
 
         wineboot = WineBoot(config)
-        bottle_path = f"{Paths.bottles}/{config['Name']}"
+        bottle_path = f"{Paths.bottles}/{config.Name}"
 
         # create new config with path as name and Custom environment
-        new_config = Samples.config
-        new_config["Name"] = config.get("Name")
-        new_config["Runner"] = self.get_latest_runner()
-        new_config["Path"] = config.get("Name")
-        new_config["Environment"] = "Custom"
-        new_config["Creation_Date"] = str(datetime.now())
-        new_config["Update_Date"] = str(datetime.now())
+        new_config = BottleConfig()
+        new_config.Name = config.Name
+        new_config.Runner = self.get_latest_runner()
+        new_config.Path = config.Name
+        new_config.Environment = "Custom"
+        new_config.Creation_Date = str(datetime.now())
+        new_config.Update_Date = str(datetime.now())
 
-        try:
-            with open(os.path.join(bottle_path, "bottle.yml"), "w") as conf_file:
-                yaml.dump(new_config, conf_file, indent=4)
-                conf_file.close()
-        except (OSError, IOError, yaml.YAMLError) as e:
-            logging.error(f"Failed to repair bottle: {e}")
+        saved = new_config.dump(os.path.join(bottle_path, "bottle.yml"))
+        if not saved.status:
             return False
 
         # Execute wineboot in bottle to generate missing files
@@ -1433,7 +1427,7 @@ class Manager:
 
     def install_dll_component(
             self,
-            config: dict,
+            config: BottleConfig,
             component: str,
             remove: bool = False,
             version: str = False,
@@ -1444,26 +1438,16 @@ class Manager:
             exclude = []
 
         if component == "dxvk":
-            _version = config.get("DXVK")
-            _version = version if version else _version
-            if not _version:
-                _version = self.dxvk_available[0]
+            _version = version or config.DXVK or self.dxvk_available[0]
             manager = DXVKComponent(_version)
         elif component == "vkd3d":
-            _version = config.get("VKD3D")
-            _version = version if version else _version
-            if not _version:
-                _version = self.vkd3d_available[0]
+            _version = version or config.VKD3D or self.vkd3d_available[0]
             manager = VKD3DComponent(_version)
         elif component == "nvapi":
-            _version = config.get("NVAPI")
-            _version = version if version else _version
-            if not _version:
-                _version = self.nvapi_available[0]
+            _version = version or config.NVAPI or self.nvapi_available[0]
             manager = NVAPIComponent(_version)
         elif component == "latencyflex":
-            _version = config.get("LatencyFleX")
-            _version = version if version else _version
+            _version = version or config.LatencyFleX
             if not _version:
                 if len(self.latencyflex_available) == 0:
                     self.check_latencyflex(install_latest=True)

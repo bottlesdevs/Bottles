@@ -20,10 +20,14 @@ import time
 import contextlib
 import webbrowser
 from gettext import gettext as _
+from typing import Optional
+
 from gi.repository import Gtk, GLib, Gio, Adw, GObject
 from pathlib import Path
 
 from bottles.frontend.params import *
+
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.const import *
 from bottles.backend.logger import Logger
 from bottles.frontend.utils.threading import RunAsync
@@ -227,9 +231,9 @@ class MainWindow(Adw.ApplicationWindow):
     def go_back(self, *_args):
         self.main_leaf.navigate(direction=Adw.NavigationDirection.BACK)
 
-    def show_details_view(self, widget=False, config=dict):
+    def show_details_view(self, widget=False, config: Optional[BottleConfig] = None):
         self.main_leaf.set_visible_child(self.page_details)
-        self.page_details.set_config(config)
+        self.page_details.set_config(config or BottleConfig())
 
     def show_loading_view(self, widget=False):
         self.lock_ui()

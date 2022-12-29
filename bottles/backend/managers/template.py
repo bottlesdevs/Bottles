@@ -16,6 +16,8 @@
 #
 
 import os
+
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import yaml
 import uuid
 import shutil
@@ -34,7 +36,7 @@ logging = Logger()
 class TemplateManager:
 
     @staticmethod
-    def new(env: str, config: dict):
+    def new(env: str, config: BottleConfig):
         env = env.lower()
         templates = TemplateManager.get_templates()
 
@@ -47,10 +49,11 @@ class TemplateManager:
         logging.info(f"Creating new template: {_uuid}")
         bottle = ManagerUtils.get_bottle_path(config)
 
-        del config["Name"]
-        del config["Path"]
-        del config["Creation_Date"]
-        del config["Update_Date"]
+        # TODO: [Review] IDE doesn't like this
+        delattr(config, "Name")
+        delattr(config, "Path")
+        delattr(config, "Creation_Date")
+        delattr(config, "Update_Date")
 
         ignored = [
             "dosdevices",
@@ -179,7 +182,7 @@ class TemplateManager:
         return None
 
     @staticmethod
-    def unpack_template(template: dict, config: dict):
+    def unpack_template(template: dict, config: BottleConfig):
         def copy_func(source: str, dest: str):
             if os.path.islink(source):
                 # we don't want symlinks from templates

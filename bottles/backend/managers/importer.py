@@ -16,6 +16,8 @@
 #
 
 import os
+
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import yaml
 import subprocess
 from glob import glob
@@ -23,7 +25,6 @@ from datetime import datetime
 
 from bottles.backend.logger import Logger
 from bottles.backend.globals import TrdyPaths, Paths
-from bottles.backend.models.samples import Samples
 from bottles.backend.models.result import Result
 
 logging = Logger()
@@ -35,7 +36,7 @@ class ImportManager:
         self.manager = manager
 
     @staticmethod
-    def search_wineprefixes() -> list:
+    def search_wineprefixes() -> Result:
         """Look and return all 3rd party available wine prefixes"""
         importer_wineprefixes = []
 
@@ -87,7 +88,7 @@ class ImportManager:
             }
         )
 
-    def import_wineprefix(self, wineprefix: dict) -> bool:
+    def import_wineprefix(self, wineprefix: dict) -> Result:
         """Import wineprefix from external manager and convert in a bottle"""
         logging.info(f"Importing wineprefix {wineprefix['Name']} as bottle…")
 
@@ -110,18 +111,18 @@ class ImportManager:
         subprocess.Popen(command, shell=True).communicate()
 
         # create bottle config
-        new_config = Samples.config
-        new_config["Name"] = wineprefix["Name"]
-        new_config["Runner"] = self.manager.get_latest_runner()
-        new_config["Path"] = bottle_path
-        new_config["Environment"] = "Custom"
-        new_config["Creation_Date"] = str(datetime.now())
-        new_config["Update_Date"] = str(datetime.now())
+        new_config = BottleConfig()
+        new_config.Name = wineprefix["Name"]
+        new_config.Runner = self.manager.get_latest_runner()
+        new_config.Path = bottle_path
+        new_config.Environment = "Custom"
+        new_config.Creation_Date = str(datetime.now())
+        new_config.Update_Date = str(datetime.now())
 
         # save config
-        with open(os.path.join(bottle_complete_path, "bottle.yml"), "w") as conf_file:
-            yaml.dump(new_config, conf_file, indent=4)
-            conf_file.close()
+        saved = new_config.dump(os.path.join(bottle_complete_path, "bottle.yml"))
+        if not saved.status:
+            return Result(False)
 
         # update bottles view
         self.manager.update_bottles(silent=True)

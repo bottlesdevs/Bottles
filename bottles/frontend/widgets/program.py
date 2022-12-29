@@ -17,8 +17,11 @@
 
 import os
 import webbrowser
+from typing import Union
+
 from gi.repository import Gtk, GLib, Adw
 
+from bottles.backend.models.result import Result
 from bottles.frontend.utils.threading import RunAsync
 
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
@@ -100,9 +103,8 @@ class ProgramEntry(Adw.ActionRow):
             self.btn_add_steam.set_visible(True)
 
         external_programs = []
-        for p in self.config.get("External_Programs"):
-            _p = self.config["External_Programs"][p]["name"]
-            external_programs.append(_p)
+        for v in self.config.External_Programs.values():
+            external_programs.append(v["name"])
 
         '''Signal connections'''
         self.btn_run.connect("clicked", self.run_executable)
@@ -132,12 +134,17 @@ class ProgramEntry(Adw.ActionRow):
         dialog.present()
         dialog.connect("options-saved", update)
 
-    def __reset_buttons(self, result=False, error=False):
+    def __reset_buttons(self, result: Union[bool, Result] = False, error=False):
         status = False
-        if result:
+        if isinstance(result, Result):
+            status = result.status
+        elif isinstance(result, bool):
             status = result
             if not isinstance(result, bool):
                 status = result.status
+        else:
+            raise NotImplementedError("Invalid data type, expect bool or Result, but it was %s" % type(result))
+
         self.btn_run.set_visible(status)
         self.btn_stop.set_visible(not status)
         self.btn_run.set_sensitive(status)
@@ -176,7 +183,7 @@ class ProgramEntry(Adw.ActionRow):
         self.__reset_buttons()
 
     def run_steam(self, widget):
-        self.manager.steam_manager.launch_app(self.config["CompatData"], self.window)
+        self.manager.steam_manager.launch_app(self.config.CompatData, self.window)
         self.window.show_toast(_("Launching \"{0}\" with Steam…").format(self.program["name"]))
         self.pop_actions.popdown()  # workaround #1640
 
@@ -284,7 +291,7 @@ class ProgramEntry(Adw.ActionRow):
             self.save_program() # we need to store it in the bottle configuration to keep the reference
             library_manager = LibraryManager()
             library_manager.add_to_library({
-                "bottle": {"name": self.config["Name"], "path": self.config["Path"]},
+                "bottle": {"name": self.config.Name, "path": self.config.Path},
                 "name": self.program["name"],
                 "id": str(self.program["id"]),
                 "icon": ManagerUtils.extract_icon(self.config, self.program["name"], self.program["path"]),

@@ -4,6 +4,7 @@ import uuid
 from typing import NewType, Union
 
 from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winecommand import WineCommand
@@ -22,7 +23,7 @@ class WineExecutor:
 
     def __init__(
             self,
-            config: dict,
+            config: BottleConfig,
             exec_path: str,
             args: str = "",
             terminal: bool = False,
@@ -64,17 +65,17 @@ class WineExecutor:
         env_dll_overrides = []
         if override_dxvk is not None \
             and not override_dxvk \
-            and self.config["Parameters"]["dxvk"]:
+            and self.config.Parameters.dxvk:
                 env_dll_overrides.append("d3d9,d3d11,d3d10core,dxgi=b")
 
         if override_vkd3d is not None \
             and not override_vkd3d \
-            and self.config["Parameters"]["vkd3d"]:
+            and self.config.Parameters.vkd3d:
                 env_dll_overrides.append("d3d12=b")
 
         if override_nvapi is not None \
             and not override_nvapi \
-            and self.config["Parameters"]["dxvk_nvapi"]:
+            and self.config.Parameters.dxvk_nvapi:
                 env_dll_overrides.append("nvapi,nvapi64=b")
 
         if override_fsr is not None and override_fsr:
@@ -86,15 +87,15 @@ class WineExecutor:
             self.environment["WINEDLLOVERRIDES"] = ",".join(env_dll_overrides)
 
     @classmethod
-    def run_program(cls,config: dict, program: dict, terminal: bool=False):
+    def run_program(cls, config: BottleConfig, program: dict, terminal: bool=False):
         if program is None:
             logging.warning("The program entry is not well formatted.")
             
-        dxvk = config["Parameters"]["dxvk"]
-        vkd3d = config["Parameters"]["vkd3d"]
-        nvapi = config["Parameters"]["dxvk_nvapi"]
-        fsr = config["Parameters"]["fsr"]
-        virt_desktop = config["Parameters"]["virtual_desktop"]
+        dxvk = config.Parameters.dxvk
+        vkd3d = config.Parameters.vkd3d
+        nvapi = config.Parameters.dxvk_nvapi
+        fsr = config.Parameters.fsr
+        virt_desktop = config.Parameters.virtual_desktop
 
         if program.get("dxvk") != dxvk:
             dxvk = program.get("dxvk")
@@ -319,7 +320,7 @@ class WineExecutor:
         )
 
     def __launch_with_explorer(self):
-        w, h = self.config["Parameters"]["virtual_desktop_res"].split("x")
+        w, h = self.config.Parameters.virtual_desktop_res.split("x")
         start = Explorer(self.config)
         res = start.launch_desktop(
             desktop=str(uuid.uuid4()),

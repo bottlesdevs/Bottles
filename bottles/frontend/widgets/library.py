@@ -147,7 +147,7 @@ class LibraryEntry(Gtk.Box):
         self.__reset_buttons()
 
     def run_steam(self, widget):
-        self.manager.steam_manager.launch_app(self.config["CompatData"])
+        self.manager.steam_manager.launch_app(self.config.CompatData)
 
     def stop_process(self, widget):
         self.window.show_toast(_("Stopping \"{0}\"…").format(self.program["name"]))

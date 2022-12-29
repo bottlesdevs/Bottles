@@ -15,11 +15,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 import time
-from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.widgets.dependency import DependencyEntry
@@ -41,7 +40,7 @@ class DependenciesView(Adw.Bin):
 
     # endregion
 
-    def __init__(self, details, config, **kwargs):
+    def __init__(self, details, config: BottleConfig, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -79,7 +78,7 @@ class DependenciesView(Adw.Bin):
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, widget=False, config=None):
+    def update(self, widget=False, config: BottleConfig = None):
         """
         This function update the dependencies list with the
         supported by the manager.
@@ -110,17 +109,17 @@ class DependenciesView(Adw.Bin):
 
             if len(dependencies.keys()) > 0:
                 for dep in dependencies.items():
-                    if dep[0] in self.config.get("Installed_Dependencies"):
+                    if dep[0] in self.config.Installed_Dependencies:
                         continue  # Do not list already installed dependencies'
 
-                    if dep[1].get("Arch", "win64") != self.config.get("Arch"):
+                    if dep[1].get("Arch", "win64") != self.config.Arch:
                         # NOTE: avoid listing dependencies not supported by the bottle arch
                         continue
 
                     GLib.idle_add(new_dependency, dep)
 
-            if len(self.config.get("Installed_Dependencies")) > 0:
-                for dep in self.config.get("Installed_Dependencies"):
+            if len(self.config.Installed_Dependencies) > 0:
+                for dep in self.config.Installed_Dependencies:
                     if dep in dependencies:
                         dep = (dep, dependencies[dep])
                         GLib.idle_add(new_dependency, dep, plain=True)

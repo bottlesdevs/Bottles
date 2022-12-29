@@ -1,9 +1,9 @@
 import yaml as _yaml
+
 try:
-    from yaml import CLoader as Loader, CDumper as Dumper
-    _c = True
+    from yaml import CSafeLoader as SafeLoader, CSafeDumper as SafeDumper
 except ImportError:
-    _c = False
+    from yaml import SafeLoader, SafeDumper
 
 
 def dump(data, stream=None, **kwargs):
@@ -14,21 +14,17 @@ def dump(data, stream=None, **kwargs):
           the CDumper class instead of the default Dumper, to achieve best 
           performance.
     """
-    if _c:
-        return _yaml.dump(data, stream, Dumper=Dumper, **kwargs)
-    return _yaml.dump(data, stream, **kwargs)
+    return _yaml.dump(data, stream, Dumper=SafeDumper, **kwargs)
 
 
-def load(stream, Loader=Loader):
+def load(stream, Loader=SafeLoader):
     """
     Load a YAML stream.
     Note: This function is a replacement for PyYAML's safe_load() function, 
           using the CLoader class instead of the default Loader, to achieve 
           best performance.
     """
-    if _c:
-        return _yaml.load(stream, Loader=Loader)
-    return _yaml.safe_load(stream)
+    return _yaml.load(stream, Loader=Loader)
 
 
 YAMLError = _yaml.YAMLError

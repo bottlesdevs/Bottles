@@ -20,6 +20,7 @@ import contextlib
 from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.windows.generic import SourceDialog
 
@@ -41,7 +42,7 @@ class DependencyEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, dependency, plain=False, **kwargs):
+    def __init__(self, window, config: BottleConfig, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -75,7 +76,7 @@ class DependencyEntry(Adw.ActionRow):
         self.btn_manifest.connect("clicked", self.open_manifest)
         self.btn_license.connect("clicked", self.open_license)
 
-        if dependency[0] in self.config.get("Installed_Dependencies"):
+        if dependency[0] in self.config.Installed_Dependencies:
             '''
             If the dependency is installed, hide the btn_install
             button and show the btn_remove button
@@ -84,12 +85,12 @@ class DependencyEntry(Adw.ActionRow):
             self.btn_remove.set_visible(True)
             self.btn_reinstall.set_visible(True)
 
-        if dependency[0] in self.config.get("Uninstallers").keys():
+        if dependency[0] in self.config.Uninstallers.keys():
             '''
             If the dependency has no uninstaller, disable the
             btn_remove button
             '''
-            uninstaller = self.config["Uninstallers"][dependency[0]]
+            uninstaller = self.config.Uninstallers[dependency[0]]
             if uninstaller in [False, "NO_UNINSTALLER"]:
                 self.btn_remove.set_sensitive(False)
 
@@ -159,7 +160,7 @@ class DependencyEntry(Adw.ActionRow):
         """
         self.queue.end_task()
         if result is not None and result.status:
-            if self.config["Parameters"]["versioning_automatic"]:
+            if self.config.Parameters.versioning_automatic:
                 self.window.page_details.view_versioning.update()
             uninstaller = result.data.get("uninstaller")
             removed = result.data.get("removed")

@@ -16,6 +16,8 @@
 #
 
 import os
+
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import yaml
 import uuid
 import tarfile
@@ -37,7 +39,7 @@ logging = Logger()
 class BackupManager:
 
     @staticmethod
-    def export_backup(window, config: dict, scope: str, path: str) -> Result:
+    def export_backup(window, config: BottleConfig, scope: str, path: str) -> Result:
         """
         Exports a bottle backup to the specified path.
         Use the scope parameter to specify the backup type: config, full.
@@ -51,22 +53,15 @@ class BackupManager:
         BackupManager.operation_manager = OperationManager(window)
         task_id = str(uuid.uuid4())
 
-        logging.info(f"New {scope} backup for [{config['Name']}] in [{path}]")
+        logging.info(f"New {scope} backup for [{config.Name}] in [{path}]")
 
         if scope == "config":
-            try:
-                with open(path, "w") as config_backup:
-                    yaml.dump(config, config_backup, indent=4)
-                    config_backup.close()
-                backup_created = True
-            except (FileNotFoundError, PermissionError, yaml.YAMLError):
-                backup_created = False
-
+            backup_created = config.dump(path).status
         else:
             GLib.idle_add(
                 BackupManager.operation_manager.new_task,
                 task_id,
-                _("Backup {0}").format(config.get("Name")),
+                _("Backup {0}").format(config.Name),
                 False
             )
             bottle_path = ManagerUtils.get_bottle_path(config)
@@ -78,7 +73,7 @@ class BackupManager:
                     tar.add(folder, filter=BackupManager.exclude_filter)
                 backup_created = True
             except (FileNotFoundError, PermissionError, tarfile.TarError, ValueError):
-                logging.error(f"Error creating backup for [{config['Name']}]")
+                logging.error(f"Error creating backup for [{config.Name}]")
                 backup_created = False
 
             GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
@@ -136,7 +131,7 @@ class BackupManager:
             try:
                 with open(path, "r") as config_backup:
                     config = yaml.load(config_backup)
-                    config_backup.close()
+                config = BottleConfig._fill_with(config)
 
                 if manager.create_bottle_from_config(config):
                     import_status = True
@@ -169,8 +164,7 @@ class BackupManager:
                                 raise Exception("Attempted Path Traversal in Tar File")
                     
                         tar.extractall(path, members, numeric_owner=numeric_owner) 
-                        
-                    
+
                     safe_extract(tar, Paths.bottles)
                 import_status = True
             except (FileNotFoundError, PermissionError, tarfile.TarError):
@@ -189,7 +183,7 @@ class BackupManager:
     @staticmethod
     def duplicate_bottle(config, name) -> Result:
         """Duplicates the bottle with the specified new name."""
-        logging.info(f"Duplicating bottle: {config.get('Name')} to {name}")
+        logging.info(f"Duplicating bottle: {config.Name} to {name}")
 
         path = name.replace(" ", "_")
         source = ManagerUtils.get_bottle_path(config)

@@ -1,12 +1,9 @@
 import os
-from sys import stdout
 import time
 import subprocess
-from typing import NewType
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.proc import ProcUtils
-from bottles.backend.utils.decorators import cache
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.logger import Logger
 
@@ -21,7 +18,7 @@ class WineServer(WineProgram):
         config = self.config
 
         # TODO: workaround, there is something who make calls without runner
-        if not config.get("Runner"):
+        if not config.Runner:
             return False
 
         # Perform native check before wasting time using wine
@@ -31,11 +28,11 @@ class WineServer(WineProgram):
 
         # Check using wine
         bottle = ManagerUtils.get_bottle_path(config)
-        runner = ManagerUtils.get_runner_path(config.get("Runner"))
+        runner = ManagerUtils.get_runner_path(config.Runner)
 
-        if config.get("Environment", "Custom") == "Steam":
-            bottle = config.get("Path")
-            runner = config.get("RunnerPath")
+        if config.Environment == "Steam":
+            bottle = config.Path
+            runner = config.RunnerPath
 
         env = os.environ.copy()
         env["WINEPREFIX"] = bottle
@@ -57,7 +54,7 @@ class WineServer(WineProgram):
     def wait(self):
         config = self.config
         bottle = ManagerUtils.get_bottle_path(config)
-        runner = ManagerUtils.get_runner_path(config.get("Runner"))
+        runner = ManagerUtils.get_runner_path(config.Runner)
 
         env = os.environ.copy()
         env["WINEPREFIX"] = bottle

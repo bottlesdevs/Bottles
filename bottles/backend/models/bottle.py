@@ -1,5 +1,6 @@
 from datetime import datetime
-from typing import NewType
+
+from bottles.backend.models.config import BottleConfig
 
 
 class Bottle:
@@ -46,34 +47,34 @@ class Bottle:
     external_programs: dict = {}
     uninstallers: dict = {}
 
-    def __init__(self, conf: dict):
-        self.name = conf.get('Name', self.name)
-        self.arch = conf.get('Arch', self.arch)
-        self.path = conf.get('Path', self.path)
-        self.working_dir = conf.get('WorkingDir', self.working_dir)
-        self.custom_path = conf.get('Custom_Path', self.custom_path)
-        self.environment = conf.get('Environment', self.environment)
-        self.dxvk_version = conf.get('DXVK', self.dxvk_version)
-        self.vkd3d_version = conf.get('VKD3D', self.vkd3d_version)
-        self.runner_version = conf.get('Runner', self.runner_version)
-        self.versioning = conf.get('Versioning', self.versioning)
-        self.state = conf.get('State', self.state)
-        self.dxvk = conf.get('dxvk', self.dxvk)
-        self.dxvk_nvapi = conf.get('dxvk_nvapi', self.dxvk_nvapi)
-        self.vkd3d = conf.get('vkd3d', self.vkd3d)
-        self.gamemode = conf.get('gamemode', self.gamemode)
-        self.sync = conf.get('sync', self.sync)
-        self.fsr = conf.get('fsr', self.fsr)
-        self.fsr_level = conf.get('fsr_level', self.fsr_level)
+    def __init__(self, conf: BottleConfig):
+        self.name = conf.Name
+        self.arch = conf.Arch
+        self.path = conf.Path
+        self.working_dir = conf.WorkingDir
+        self.custom_path = conf.Custom_Path
+        self.environment = conf.Environment
+        self.dxvk_version = conf.DXVK
+        self.vkd3d_version = conf.VKD3D
+        self.runner_version = conf.Runner
+        self.versioning = conf.Versioning
+        self.state = conf.State
+        self.dxvk = conf.DXVK
+        self.dxvk_nvapi = conf.NVAPI
+        self.vkd3d = conf.VKD3D
+        self.gamemode = conf.Parameters.gamemode
+        self.sync = conf.Parameters.sync
+        self.fsr = conf.Parameters.fsr
+        self.fsr_level = 5
         # self.aco_compiler = conf.get('aco_compiler', self.aco_compiler)
-        self.discrete_gpu = conf.get('discrete_gpu', self.discrete_gpu)
-        self.virtual_desktop = conf.get('virtual_desktop', self.virtual_desktop)
-        self.virtual_desktop_res = conf.get('virtual_desktop_res', self.virtual_desktop_res)
-        self.pulseaudio_latency = conf.get('pulseaudio_latency', self.pulseaudio_latency)
-        self.fixme_logs = conf.get('fixme_logs', self.fixme_logs)
-        self.environment_variables = conf.get('environment_variables', self.environment_variables)
-        self.installed_dependencies = conf.get('Installed_Dependencies', self.installed_dependencies)
-        self.dll_overrides = conf.get('DLL_Overrides', self.dll_overrides)
-        self.programs = conf.get('Programs', self.programs)
-        self.external_programs = conf.get('External_Programs', self.external_programs)
-        self.uninstallers = conf.get('Uninstallers', self.uninstallers)
+        self.discrete_gpu = conf.Parameters.discrete_gpu
+        self.virtual_desktop = conf.Parameters.virtual_desktop
+        self.virtual_desktop_res = conf.Parameters.virtual_desktop_res
+        self.pulseaudio_latency = conf.Parameters.pulseaudio_latency
+        self.fixme_logs = conf.Parameters.fixme_logs
+        self.environment_variables = conf.Environment_Variables
+        self.installed_dependencies = conf.Installed_Dependencies
+        self.dll_overrides = conf.DLL_Overrides
+        self.programs = {}
+        self.external_programs = conf.External_Programs
+        self.uninstallers = conf.Uninstallers
