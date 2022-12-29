@@ -42,7 +42,7 @@ class FsrDialog(Adw.Window):
         self.manager = parent_window.manager
         self.config = config
         self.upscaling_resolution_mode = {
-          False: _("Disabled"),
+          "none": _("None"),
           "ultra": _("Ultra Quality"),
           "quality": _("Quality"),
           "balanced": _("Balanced"),

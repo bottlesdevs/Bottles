@@ -40,7 +40,7 @@ class Samples:
             "sync": "wine",
             "fsr": False,
             "fsr_sharpening_strength": 2,
-            "fsr_upscaling_resolution_mode": False,
+            "fsr_upscaling_resolution_mode": "none",
             "custom_dpi": 96,
             "renderer": "gl",
             "discrete_gpu": False,
@@ -127,7 +127,8 @@ class Samples:
         "WINEFSYNC": ("sync", "fsync"),
         "WINEFSYNC_FUTEX2": ("sync", "futex2"),
         "WINE_FULLSCREEN_FSR": ("fsr", True),
-        "WINE_FULLSCREEN_FSR_STRENGTH": ("fsr_level", None),
+        "WINE_FULLSCREEN_FSR_STRENGTH": ("fsr_sharpening_strength", 2),
+        "WINE_FULLSCREEN_FSR_MODE": ("fsr_upscaling_resolution_mode", "none")
         "DRI_PRIME": ("discrete_gpu", True),
         "__NV_PRIME_RENDER_OFFLOAD": ("discrete_gpu", True),
         "PULSE_LATENCY_MSEC": ("pulseaudio_latency", True),
