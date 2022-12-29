@@ -16,20 +16,19 @@
 #
 
 import os
-
-from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils import yaml
-import uuid
-import tarfile
 import shutil
-from typing import NewType
+import tarfile
+import uuid
 from gettext import gettext as _
+
 from gi.repository import GLib
 
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.globals import Paths
+from bottles.backend.utils import yaml
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.frontend.operation import OperationManager
 
@@ -128,14 +127,10 @@ class BackupManager:
             if backup_name.endswith(".yml"):
                 backup_name = backup_name[:-4]
 
-            try:
-                with open(path, "r") as config_backup:
-                    config = yaml.load(config_backup)
-                config = BottleConfig._fill_with(config)
-
-                if manager.create_bottle_from_config(config):
-                    import_status = True
-            except (FileNotFoundError, PermissionError, yaml.YAMLError):
+            config_load = BottleConfig.load(path)
+            if config_load.status and manager.create_bottle_from_config(config_load.data):
+                import_status = True
+            else:
                 import_status = False
         else:
             if backup_name.endswith(".tar.gz"):
