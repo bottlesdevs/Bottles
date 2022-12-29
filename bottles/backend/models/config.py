@@ -1,4 +1,5 @@
 import logging
+import os
 from dataclasses import dataclass, field, replace, asdict
 from io import IOBase
 from typing import List, Dict, Union, Optional
@@ -158,9 +159,13 @@ class BottleConfig(DictCompatMixIn):
         :mode: when param 'file' is filepath, use this mode to open file, otherwise ignored.
                default is 'r'
         """
-        f = file if isinstance(file, IOBase) else open(file, mode=mode)
-
+        f= None
         try:
+            if not os.path.exists(file):
+                raise FileNotFoundError("Config file not exists")
+
+            f = file if isinstance(file, IOBase) else open(file, mode=mode)
+
             data = yaml.load(f)
             if not isinstance(data, dict):
                 raise TypeError("Config data should be dict type, but it was %s" % type(data))
@@ -174,7 +179,7 @@ class BottleConfig(DictCompatMixIn):
             logging.exception(e)
             return Result(False, message=str(e))
         finally:
-            f.close()
+            if f: f.close()
 
     @classmethod
     def _fill_with(cls, data: dict) -> Result[Optional['BottleConfig']]:

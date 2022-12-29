@@ -710,18 +710,12 @@ class Manager:
                     except (yaml.YAMLError, ValueError):
                         return
 
-            try:
-                if not os.path.exists(_config):
-                    raise AttributeError
-                with open(_config, "r") as f:
-                    conf_file_yaml = yaml.load(f)
-            except (FileNotFoundError, AttributeError, yaml.YAMLError):
+            config_load = BottleConfig.load(_config)
+
+            if not config_load.status:
                 return
 
-            if conf_file_yaml is None:
-                return
-
-            config = BottleConfig._fill_with(conf_file_yaml)
+            config = config_load.data
 
             # Clear Run Executable parameters on new session start
             if config.session_arguments:
