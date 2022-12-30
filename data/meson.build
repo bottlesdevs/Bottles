@@ -73,3 +73,10 @@ install_data(
     join_paths('icons/symbolic/scalable/apps/bottles-steam-symbolic.svg'),
     install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/symbolic/apps')
 )
+
+mimedir = join_paths(get_option('prefix'), get_option('datadir'), 'mime/packages')
+mime_sources = [
+    'mime/com.usebottles.bottles.exe.xml',
+]
+
+install_data(mime_sources, install_dir: mimedir)
