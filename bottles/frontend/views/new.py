@@ -20,6 +20,7 @@ import re
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.windows.filechooser import FileChooser
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
@@ -65,7 +66,7 @@ class NewView(Adw.Window):
         self.manager = window.manager
         self.selected_env = "gaming"
         self.env_recipe_path = None
-        self.new_bottle_config = {}
+        self.new_bottle_config = BottleConfig()
         self.custom_path = ""
         self.runner = None
 

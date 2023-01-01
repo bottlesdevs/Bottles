@@ -206,7 +206,7 @@ class WineExecutor:
             data={"output": res}
         )
 
-    def run(self):
+    def run(self) -> Result:
         if self.exec_type in ["exe", "msi"]:
             return self.__launch_with_bridge()
         if self.exec_type == "batch":

@@ -22,10 +22,11 @@ import uuid
 import webbrowser
 from datetime import datetime
 from gettext import gettext as _
-from typing import List
+from typing import List, Optional
 
 from gi.repository import Gtk, Gio, Adw, Gdk, GLib
 
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 
@@ -187,8 +188,8 @@ class BottleView(Adw.PreferencesPage):
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
         self.drop_overlay.set_visible(False)
         files: List[Gio.File] = value.get_files()
-        args=""
-        file=files[0]
+        args = ""
+        file = files[0]
         if ".exe" in file.get_basename().split("/")[-1] or ".msi" in file.get_basename().split("/")[-1]:
             executor = WineExecutor(
                 self.config,
@@ -208,7 +209,7 @@ class BottleView(Adw.PreferencesPage):
     def on_leave(self, drop_target):
         self.drop_overlay.set_visible(False)
 
-    def set_config(self, config):
+    def set_config(self, config: BottleConfig):
         self.config = config
         self.__update_by_env()
 
@@ -281,11 +282,13 @@ class BottleView(Adw.PreferencesPage):
             callback=set_path
         )
 
-    def update_programs(self, config=None, force_add: dict = None):
+    def update_programs(self, config: Optional[BottleConfig] = None, force_add: dict = None):
         """
         This function update the programs lists.
         """
         if config:
+            if not isinstance(config, BottleConfig):
+                raise TypeError("config param need BottleConfig type, but it was %s" % type(config))
             self.config = config
 
         if not force_add:

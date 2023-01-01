@@ -16,6 +16,8 @@
 #
 
 import time
+from typing import Optional
+
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.models.config import BottleConfig
@@ -78,13 +80,13 @@ class DependenciesView(Adw.Bin):
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, widget=False, config: BottleConfig = None):
+    def update(self, widget=False, config: Optional[BottleConfig] = None):
         """
         This function update the dependencies list with the
         supported by the manager.
         """
         if config is None:
-            config = {}
+            config = BottleConfig()
         self.config = config
         dependencies = self.manager.supported_dependencies
 

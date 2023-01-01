@@ -799,7 +799,7 @@ class Manager:
             scope: str = "",
             remove: bool = False,
             fallback: bool = False
-    ) -> Union[Result, dict]:
+    ) -> Result:
         """
         Update parameters in bottle config. Use the scope argument to
         update the parameters in the specified scope (e.g. Parameters).
@@ -810,7 +810,7 @@ class Manager:
         _name = config.Name
         logging.info(f"Setting Key {key}={value} for bottle {_name}…")
 
-        _config = config
+        _config = config.copy()
         wineboot = WineBoot(_config)
         wineserver = WineServer(_config)
         bottle_path = ManagerUtils.get_bottle_path(config)

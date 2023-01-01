@@ -19,6 +19,7 @@ import time
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 
 from bottles.frontend.utils.threading import RunAsync
@@ -89,7 +90,7 @@ class InstallersView(Adw.Bin):
         supported by the manager.
         """
         if config is None:
-            config = {}
+            config = BottleConfig()
         self.config = config
         installers = self.manager.supported_installers.items()
 

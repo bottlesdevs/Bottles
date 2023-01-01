@@ -17,6 +17,8 @@
 
 
 from gettext import gettext as _
+from typing import Optional
+
 from gi.repository import Gtk, Adw
 
 from bottles.backend.managers.queue import QueueManager
@@ -29,6 +31,7 @@ from bottles.frontend.views.bottle_dependencies import DependenciesView
 from bottles.frontend.views.bottle_preferences import PreferencesView
 from bottles.frontend.views.bottle_versioning import VersioningView
 from bottles.frontend.views.bottle_taskmanager import TaskManagerView
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class DetailsView(Adw.Bin):
@@ -58,12 +61,12 @@ class DetailsView(Adw.Bin):
 
     # endregion
 
-    def __init__(self, window, config=None, **kwargs):
+    def __init__(self, window, config: Optional[BottleConfig] = None, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
         if config is None:
-            config = {}
+            config = BottleConfig()
 
         self.window = window
         self.manager = window.manager
