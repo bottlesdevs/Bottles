@@ -16,8 +16,11 @@
 #
 
 import os
-from typing import Union
+import uuid
+import json
+from typing import Union, NewType
 
+from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 

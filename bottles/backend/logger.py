@@ -15,10 +15,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import logging
 import re
-
+import logging
 from gi.repository import GLib
+from pathlib import Path
+from gettext import gettext as _
 
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 

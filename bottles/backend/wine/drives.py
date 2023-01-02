@@ -1,4 +1,5 @@
 import os
+from typing import NewType
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig

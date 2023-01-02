@@ -1,19 +1,20 @@
 import os
 import shlex
 import uuid
-from typing import Union
+from typing import NewType, Union
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.cmd import CMD
-from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.msiexec import MsiExec
 from bottles.backend.wine.start import Start
-from bottles.backend.wine.winecommand import WineCommand
-from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.winepath import WinePath
+from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.wine.winebridge import WineBridge
 
 logging = Logger()
 

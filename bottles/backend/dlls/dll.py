@@ -17,6 +17,7 @@
 
 import os
 import shutil
+from typing import NewType
 from abc import abstractmethod
 
 from bottles.backend.logger import Logger
@@ -24,6 +25,7 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.reg import Reg
+from bottles.backend.wine.wineboot import WineBoot
 
 logging = Logger()
 

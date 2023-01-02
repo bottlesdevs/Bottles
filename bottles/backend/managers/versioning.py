@@ -16,18 +16,18 @@
 #
 
 import os
-import shutil
-import uuid
-from datetime import datetime
-from gettext import gettext as _
-from glob import glob
-
-from fvs.exceptions import FVSNothingToCommit, FVSStateNotFound, FVSNothingToRestore, FVSStateZeroNotDeletable
-from fvs.repo import FVSRepo
-from gi.repository import GLib
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import yaml
+import uuid
+import shutil
+from glob import glob
+from typing import NewType
+from datetime import datetime
+from gettext import gettext as _
+from gi.repository import GLib
+from fvs.repo import FVSRepo
+from fvs.exceptions import FVSNothingToCommit, FVSEmptyCommitMessage, FVSStateNotFound, FVSNothingToRestore, FVSStateZeroNotDeletable
 
 try:
     from bottles.frontend.operation import OperationManager

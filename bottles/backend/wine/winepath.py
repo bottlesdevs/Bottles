@@ -1,9 +1,10 @@
 import re
+from typing import NewType
 from functools import lru_cache
 
 from bottles.backend.logger import Logger
-from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.wineprogram import WineProgram
+from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
 
