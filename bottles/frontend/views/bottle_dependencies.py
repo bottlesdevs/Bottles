@@ -21,6 +21,7 @@ from typing import Optional
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.models.config import BottleConfig
+from bottles.backend.repos.repo import RepoStatus
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.widgets.dependency import DependencyEntry
@@ -39,6 +40,8 @@ class DependenciesView(Adw.Bin):
     actions = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
+    spinner_loading = Gtk.Template.Child()
+    stack = Gtk.Template.Child()
 
     # endregion
 
@@ -58,6 +61,11 @@ class DependenciesView(Adw.Bin):
 
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
+
+        if self.manager.utils_conn.status == False:
+            self.stack.set_visible_child_name("page_offline") 
+
+        self.spinner_loading.start()
 
     def __search_dependencies(self, *_args):
         """
@@ -88,9 +96,12 @@ class DependenciesView(Adw.Bin):
         if config is None:
             config = BottleConfig()
         self.config = config
-        dependencies = self.manager.supported_dependencies
 
-        self.list_dependencies.set_sensitive(False)
+        # Not sure if it's the best place to make this check
+        if self.manager.utils_conn.status == False:
+            return
+
+        self.stack.set_visible_child_name("page_loading") 
 
         def new_dependency(dependency, plain=False):
             entry = DependencyEntry(
@@ -103,10 +114,14 @@ class DependenciesView(Adw.Bin):
             self.list_dependencies.append(entry)
 
         def callback(result, error=False):
-            self.list_dependencies.set_sensitive(True)
+            self.stack.set_visible_child_name("page_deps")
 
         def process_dependencies():
-            time.sleep(.6)  # workaround for freezing bug on bottle load
+            time.sleep(.3)  # workaround for freezing bug on bottle load
+            RepoStatus.repo_wait_operation("dependencies.fetching")
+            RepoStatus.repo_wait_operation("dependencies.organizing")
+            dependencies = self.manager.supported_dependencies
+
             GLib.idle_add(self.empty_list)
 
             if len(dependencies.keys()) > 0:

@@ -71,3 +71,10 @@ class RunAsync(threading.Thread):
             logging.write_log([str(exception), traceback_info])
         self.source_id = GLib.idle_add(self.callback, result, error)
         return self.source_id
+
+    def run_async(func):
+        def inner(*args, **kwargs):
+            # Here we add None in the arguments so that callback=None,
+            # but we still pass all the required argument to the function called
+            RunAsync(func, *((None,)+args), **kwargs)
+        return inner

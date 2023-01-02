@@ -166,15 +166,55 @@ template PreferencesWindow : .AdwPreferencesWindow {
     icon-name: "system-run-symbolic";
     title: _("Runners");
 
-    .AdwPreferencesGroup list_runners {
-      .AdwActionRow action_prerelease {
-        title: _("Pre-Release");
-        subtitle: _("Display unstable versions of runners.");
-        activatable-widget: "switch_release_candidate";
+    Stack installers_stack {
+      transition-type: crossfade;
 
-        Switch switch_release_candidate {
-          valign: center;
-        }
+      StackPage {
+        name: "installers_offline";
+
+        child:
+        .AdwStatusPage {
+          icon-name: "network-error-symbolic";
+          title: _("You're offline :(");
+          vexpand: true;
+          hexpand: true;
+          description: _("Bottles is running in offline mode, so runners are not available.");
+        };
+      }
+
+      StackPage {
+        name: "installers_loading";
+
+        child:
+        .AdwStatusPage {
+          vexpand: true;
+          hexpand: true;
+
+          Spinner installers_spinner {
+            valign: center;
+          }
+        };
+      }
+
+      StackPage {
+        name: "installers_list";
+
+        child:
+        .AdwPreferencesPage {
+          .AdwPreferencesGroup list_runners {
+            vexpand: true;
+            hexpand: true;
+            .AdwActionRow action_prerelease {
+              title: _("Pre-Release");
+              subtitle: _("Display unstable versions of runners.");
+              activatable-widget: "switch_release_candidate";
+
+              Switch switch_release_candidate {
+                valign: center;
+              }
+            }
+          }
+        };
       }
     }
   }
@@ -183,20 +223,58 @@ template PreferencesWindow : .AdwPreferencesWindow {
     icon-name: "applications-games-symbolic";
     title: _("DLL Components");
 
-    .AdwPreferencesGroup list_dxvk {
-      title: _("DXVK");
-    }
+    Stack dlls_stack {
+      transition-type: crossfade;
 
-    .AdwPreferencesGroup list_vkd3d {
-      title: _("VKD3D");
-    }
+      StackPage {
+        name: "dlls_offline";
 
-    .AdwPreferencesGroup list_nvapi {
-      title: _("DXVK-NVAPI");
-    }
+        child:
+        .AdwStatusPage {
+          icon-name: "network-error-symbolic";
+          title: _("You're offline :(");
+          vexpand: true;
+          hexpand: true;
+          description: _("Bottles is running in offline mode, so DLLs are not available.");
+        };
+      }
 
-    .AdwPreferencesGroup list_latencyflex {
-      title: _("LatencyFleX");
+      StackPage {
+        name: "dlls_loading";
+
+        child:
+        .AdwStatusPage {
+          vexpand: true;
+          hexpand: true;
+
+          Spinner dlls_spinner {
+            valign: center;
+          }
+        };
+      }
+
+      StackPage {
+        name: "dlls_list";
+
+        child:
+        .AdwPreferencesPage {
+          .AdwPreferencesGroup list_dxvk {
+            title: _("DXVK");
+          }
+
+          .AdwPreferencesGroup list_vkd3d {
+            title: _("VKD3D");
+          }
+
+          .AdwPreferencesGroup list_nvapi {
+            title: _("DXVK-NVAPI");
+          }
+
+          .AdwPreferencesGroup list_latencyflex {
+            title: _("LatencyFleX");
+          }
+        };
+      }
     }
   }
 
