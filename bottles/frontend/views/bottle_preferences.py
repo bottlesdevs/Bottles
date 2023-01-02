@@ -453,12 +453,12 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.combo_vkd3d.set_selected(0)
 
-        _nvapi = self.config.NVAPI  # TODO: [Review] key name changed
+        _nvapi = self.config.NVAPI
         if _nvapi in self.manager.nvapi_available:
             if _i_nvapi := self.manager.nvapi_available.index(_nvapi):
                 self.combo_nvapi.set_selected(_i_nvapi)
 
-        _latencyflex = self.config.LatencyFleX  # TODO: [Review] key name changed
+        _latencyflex = self.config.LatencyFleX
         if parameters.latencyflex:
             if _latencyflex in self.manager.latencyflex_available:
                 if _i_latencyflex := self.manager.latencyflex_available.index(_latencyflex)  + 1:

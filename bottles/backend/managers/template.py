@@ -49,7 +49,6 @@ class TemplateManager:
         logging.info(f"Creating new template: {_uuid}")
         bottle = ManagerUtils.get_bottle_path(config)
 
-        # TODO: [Review] IDE doesn't like this
         delattr(config, "Name")
         delattr(config, "Path")
         delattr(config, "Creation_Date")

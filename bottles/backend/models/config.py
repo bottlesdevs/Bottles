@@ -189,8 +189,6 @@ class BottleConfig(DictCompatMixIn):
         try:
             data = data.copy()
 
-            # TODO: [Review] config file sanitizing and fixing
-
             params = BottleParams(**data.pop("Parameters", {}))
             sandbox_param = BottleSandboxParams(**data.pop("Sandbox", {}))
 
