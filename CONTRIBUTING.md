@@ -1,34 +1,22 @@
 # Contributing to Bottles
-First off, thanks for taking the time to contribute :heart: !
+First off, thanks for taking the time to contribute :heart:!
 
-### Did you find a bug?
-Make sure the bug has not been reported [here](https://github.com/bottlesdevs/Bottles/issues) yet
-If not, please report it [here](https://github.com/bottlesdevs/Bottles/issues/new/choose).
+## Found a Problem?
+Before reporting a problem, be it a bug, design or others, we assume you have made sure that:
+1. the [Bottles wiki](https://github.com/bottlesdevs/Bottles/wiki) does not cover your problem
+1. the problem has not been reported in the [issue tracker](https://github.com/bottlesdevs/Bottles/issues)
+1. the problem is reproducible with [Bottles from Flathub](https://flathub.org/apps/details/com.usebottles.bottles)
 
-### Did you have problems?
-Check the [Wiki](https://github.com/bottlesdevs/Bottles/wiki), inside there some of frequently asked questions and guides.
-Can not find the solution?
-Find out if someone has already has [already asked](https://github.com/bottlesdevs/Bottles/issues) for it, if not, open a new issue [here](https://github.com/bottlesdevs/Bottles/issues/new/choose).
+If all apply, then please consider opening a [new issue](https://github.com/bottlesdevs/Bottles/issues/new/choose).
 
-### Did you write a patch that fixes a bug?
-- Open a new GitHub pull request with the patch
-- Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable
+## Want to Submit Code?
+You can submit code by [forking](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) this project, editing the desired code and finally submitting a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
-### Do you have a tip for the user interface?
-- Open a issue [here](https://github.com/bottlesdevs/Bottles/issues/new?assignees=mirkobrombin%2C+francescomasala&labels=&template=feature_request.md&title=%5BRequest%5D+), if possible,  attach an image that helps understand what you are talking about.
+### Having Trouble Understanding the Source Code?
+If you want to inquire to understand the code base, you can contact us via [Discord](https://discord.com/invite/wF4JAdYrTR). We'd love to help you out!
 
-### Do you want to translate?
-Check [translate](po) page to help us translate Bottles in your language.
+## Want to Translate Bottles?
+You can help Bottles speak your language by translating on [Weblate](https://hosted.weblate.org/projects/bottles).
 
-#### Add language
-- Fork the repository
-- Under `po\` directory, copy `bottles.po` with correct name for your language and modify it as in `it.po` (Italian Translation, use it as an example)
-- Open a new GitHub pull request
-
-### Do you have questions about the source code?
-Open a new issue [here](https://github.com/bottlesdevs/Bottles/issues/new), otherwise add a comment directly in the code from GitLab.
-
-Thanks! 
-
-Mirko B.
-
+## Want to Donate or Sponsor Bottles?
+You can financially support Bottles through [donations and sponsorships](https://usebottles.com/funding).
