@@ -776,7 +776,7 @@ class PreferencesView(Adw.PreferencesPage):
             ).data["config"]
 
         level = self.combo_fsr.get_selected()
-        set_config("fsr_level", level - 1) if level != 0 else None
+        set_config("fsr_sharpening_strength", level - 1) if level != 0 else None
         set_config("fsr", bool(level))
 
     def __set_runner(self, *_args):

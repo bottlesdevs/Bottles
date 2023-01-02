@@ -172,6 +172,12 @@ class BottleConfig(DictCompatMixIn):
             if not isinstance(data, dict):
                 raise TypeError("Config data should be dict type, but it was %s" % type(data))
 
+            # migrate old fsr_level key to fsr_sharpening_strength
+            # TODO: remove after some time
+            if data.get("Parameters").get("fsr_level"):
+                data["Parameters"]["fsr_sharpening_strength"] = data["Parameters"]
+                del data["Parameters"]["fsr_level"]
+
             filled = cls._fill_with(data)
             if not filled.status:
                 raise ValueError("Invalid Config data (%s)" % filled.message)
