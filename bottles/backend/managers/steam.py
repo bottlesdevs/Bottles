@@ -335,7 +335,12 @@ class SteamManager:
             .get("Software", {}) \
             .get("Valve", {}) \
             .get("Steam", {})
-        apps = apps.get("apps") if apps.get("apps") else apps.get("Apps")
+        if "apps" in apps:
+            apps = apps.get("apps")
+        elif "Apps" in apps:
+            apps = apps.get("Apps")
+        else:
+            apps = {}
 
         if len(apps) == 0 or prefix not in apps:
             logging.warning(_fail_msg)
