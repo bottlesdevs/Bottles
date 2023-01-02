@@ -40,7 +40,7 @@ class Samples:
             "sync": "wine",
             "fsr": False,
             "fsr_sharpening_strength": 2,
-            "fsr_upscaling_resolution_mode": "none",
+            "fsr_quality_mode": "none",
             "custom_dpi": 96,
             "renderer": "gl",
             "discrete_gpu": False,

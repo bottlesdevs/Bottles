@@ -29,8 +29,8 @@ class FsrDialog(Adw.Window):
 
     # Region Widgets
     btn_save = Gtk.Template.Child()
-    combo_upscaling_resolution_mode = Gtk.Template.Child()
-    str_list_upscaling_resolution_mode = Gtk.Template.Child()
+    combo_quality_mode = Gtk.Template.Child()
+    str_list_quality_mode = Gtk.Template.Child()
     spin_sharpening_strength = Gtk.Template.Child()
 
     def __init__(self, parent_window, config, **kwargs):
@@ -41,7 +41,7 @@ class FsrDialog(Adw.Window):
         self.window = parent_window
         self.manager = parent_window.manager
         self.config = config
-        self.upscaling_resolution_mode = {
+        self.quality_mode = {
           "none": _("None"),
           "ultra": _("Ultra Quality"),
           "quality": _("Quality"),
@@ -58,18 +58,18 @@ class FsrDialog(Adw.Window):
         parameters = config["Parameters"]
 
         # Populate entries
-        for mode in self.upscaling_resolution_mode.values():
-            self.str_list_upscaling_resolution_mode.append(mode)
+        for mode in self.quality_mode.values():
+            self.str_list_quality_mode.append(mode)
 
         # Select right entry
-        if parameters.get("fsr_upscaling_resolution_mode"):
-            self.combo_upscaling_resolution_mode.set_selected(list(self.upscaling_resolution_mode.keys()).index(parameters.get("fsr_upscaling_resolution_mode")))
+        if parameters.get("fsr_quality_mode"):
+            self.combo_quality_mode.set_selected(list(self.quality_mode.keys()).index(parameters.get("fsr_quality_mode")))
 
         self.spin_sharpening_strength.set_value(parameters.get("fsr_sharpening_strength"))
 
     def __idle_save(self, *_args):
-        print(list(self.upscaling_resolution_mode.keys())[self.combo_upscaling_resolution_mode.get_selected()])
-        settings = {"fsr_upscaling_resolution_mode": list(self.upscaling_resolution_mode.keys())[self.combo_upscaling_resolution_mode.get_selected()],
+        print(list(self.quality_mode.keys())[self.combo_quality_mode.get_selected()])
+        settings = {"fsr_quality_mode": list(self.quality_mode.keys())[self.combo_quality_mode.get_selected()],
                     "fsr_sharpening_strength": int(self.spin_sharpening_strength.get_value())}
 
         for setting in settings.keys():
