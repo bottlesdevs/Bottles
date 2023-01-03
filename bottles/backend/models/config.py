@@ -1,3 +1,4 @@
+import inspect
 import logging
 import os
 from dataclasses import dataclass, field, replace, asdict
@@ -101,9 +102,9 @@ class BottleParams(DictCompatMixIn):
 @dataclass
 class BottleConfig(DictCompatMixIn):
     Name: str = ""
-    Arch: str = "win64"  # Enum: "win64", "win32"
+    Arch: str = "win64"  # Enum, Use bottles.backend.models.enum.Arch
     Windows: str = "win10"
-    Runner: str = ""  # runner name, "sys-*"
+    Runner: str = ""  # runner name, "sys-*", or any installed runner name
     WorkingDir: str = ""
     DXVK: str = ""
     NVAPI: str = ""
@@ -157,6 +158,7 @@ class BottleConfig(DictCompatMixIn):
     def load(cls, file: Union[str, IO], mode='r') -> Result[Optional['BottleConfig']]:
         """
         Load config from file
+
         :file: filepath str or IO-like object.
         :mode: when param 'file' is filepath, use this mode to open file, otherwise ignored.
                default is 'r'
@@ -171,12 +173,6 @@ class BottleConfig(DictCompatMixIn):
             data = yaml.load(f)
             if not isinstance(data, dict):
                 raise TypeError("Config data should be dict type, but it was %s" % type(data))
-
-            # migrate old fsr_level key to fsr_sharpening_strength
-            # TODO: remove after some time
-            if data.get("Parameters").get("fsr_level"):
-                data["Parameters"]["fsr_sharpening_strength"] = data["Parameters"]
-                del data["Parameters"]["fsr_level"]
 
             filled = cls._fill_with(data)
             if not filled.status:
@@ -194,6 +190,7 @@ class BottleConfig(DictCompatMixIn):
         """fill with dict"""
         try:
             data = data.copy()
+            data = cls._fix(data)
 
             params = BottleParams(**data.pop("Parameters", {}))
             sandbox_param = BottleSandboxParams(**data.pop("Sandbox", {}))
@@ -206,3 +203,37 @@ class BottleConfig(DictCompatMixIn):
         except Exception as e:
             logging.exception(e)
             return Result(False, message=repr(e))
+
+    @classmethod
+    def _fix(cls, data: dict) -> dict:
+        """fix config data and return"""
+        data = data.copy()
+
+        # ensure Parameters field
+        if "Parameters" not in data:
+            data["Parameters"] = {}
+        if "Sandbox" not in data:
+            data["Sandbox"] = {}
+
+        # migrate old fsr_level key to fsr_sharpening_strength
+        # TODO: remove after some time
+        if "fsr_level" in data["Parameters"]:
+            logging.warning("Migrating config key 'fsr_level' to 'fsr_sharpening_strength'")
+            data["Parameters"]["fsr_sharpening_strength"] = data["Parameters"].pop("fsr_level")
+
+        # migrate typo fields
+        if "DXVK_NVAPI" in data:
+            logging.warning("Migrating config key 'DXVK_NVAPI' to 'NVAPI'")
+            data["NVAPI"] = data.pop("DXVK_NVAPI")
+        if "LatencyFlex" in data:
+            logging.warning("Migrating config key 'LatencyFlex' to 'LatencyFleX'")
+            data["LatencyFleX"] = data.pop("LatencyFlex")
+
+        # cleanup unexpected fields
+        expected_fields = inspect.signature(cls).parameters.keys()
+        data = {
+            k: v for k, v in data.items()
+            if k in expected_fields
+        }
+
+        return data
