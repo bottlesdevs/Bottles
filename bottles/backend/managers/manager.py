@@ -31,7 +31,7 @@ import contextlib
 from glob import glob
 from datetime import datetime
 from gettext import gettext as _
-from typing import Union, NewType, Any, List, Any
+from typing import Union, Any, Dict
 from gi.repository import GLib
 
 from bottles.backend.logger import Logger
@@ -92,7 +92,7 @@ class Manager:
     vkd3d_available = []
     nvapi_available = []
     latencyflex_available = []
-    local_bottles = {}
+    local_bottles: Dict[str, BottleConfig] = {}
     supported_runtimes = {}
     supported_winebridge = {}
     supported_wine_runners = {}

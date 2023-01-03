@@ -20,6 +20,7 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.windows.filechooser import FileChooser
 
 from bottles.frontend.utils.threading import RunAsync
@@ -46,13 +47,13 @@ class BottleViewEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, window, config: BottleConfig, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
         self.window = window
         self.manager = window.manager
-        self.config = config[1]
+        self.config = config
         self.label_env_context = self.label_env.get_style_context()
 
         '''Format update date'''
@@ -191,20 +192,19 @@ class BottleView(Adw.Bin):
             self.list_steam.remove(self.list_steam.get_first_child())
 
         local_bottles = self.window.manager.local_bottles
-        bottles = local_bottles.items()
 
-        if len(bottles) == 0:
+        if len(local_bottles) == 0:
             self.pref_page.set_visible(False)
             self.bottle_status.set_visible(True)
         else:
             self.pref_page.set_visible(True)
             self.bottle_status.set_visible(False)
 
-        for bottle in bottles:
-            _entry = BottleViewEntry(self.window, bottle)
-            self.__bottles[bottle[1]["Path"]] = _entry
+        for name, config in local_bottles.items():
+            _entry = BottleViewEntry(self.window, config)
+            self.__bottles[config.Path] = _entry
 
-            if bottle[1].get("Environment") != "Steam":
+            if config.Environment != "Steam":
                 self.list_bottles.append(_entry)
             else:
                 self.list_steam.append(_entry)
