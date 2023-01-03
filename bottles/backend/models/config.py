@@ -1,7 +1,7 @@
 import inspect
 import logging
 import os
-from dataclasses import dataclass, field, replace, asdict
+from dataclasses import dataclass, field, replace, asdict, is_dataclass
 from io import IOBase
 from typing import List, Dict, Union, Optional
 
@@ -227,10 +227,28 @@ class BottleConfig(DictCompatMixIn):
             data["LatencyFleX"] = data.pop("LatencyFlex")
 
         # cleanup unexpected fields
-        expected_fields = inspect.signature(cls).parameters.keys()
-        data = {
-            k: v for k, v in data.items()
-            if k in expected_fields
-        }
+        data = cls._filter(data)
 
         return data
+
+    @classmethod
+    def _filter(cls, data: dict, clazz: object = None) -> dict:
+        """filter unexpected dict fields recursively for dataclasses and return"""
+        if not isinstance(data, dict):
+            return {}
+        if not clazz:
+            clazz = cls
+
+        new_data = {}
+        expected_fields = inspect.signature(clazz).parameters
+
+        for k, v in data.items():
+            if k in expected_fields:
+                field_type = expected_fields[k].annotation
+                if is_dataclass(field_type):
+                    v = cls._filter(v, field_type)
+                new_data[k] = v
+            else:
+                logging.warning("Skipping unexpected config '%s' in %s" % (k, clazz.__name__))
+
+        return new_data
