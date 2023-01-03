@@ -159,7 +159,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
         self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
         self.switch_vmtouch.connect('state-set', self.__toggle_vmtouch)
-        # self.combo_fsr.connect('notify::selected', self.__set_fsr_level)
         self.combo_runner.connect('notify::selected', self.__set_runner)
         self.combo_dxvk.connect('notify::selected', self.__set_dxvk)
         self.combo_vkd3d.connect('notify::selected', self.__set_vkd3d)
@@ -389,7 +388,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_runtime.set_active(parameters["use_runtime"])
         self.switch_steam_runtime.set_active(parameters["use_steam_runtime"])
         self.switch_vmtouch.set_active(parameters["vmtouch"])
-        # self.combo_fsr.set_selected(parameters["fsr_level"] + 1 if parameters["fsr"] != False else 0)
 
         # self.toggle_sync.set_active(parameters["sync"] == "wine")
         # self.toggle_esync.set_active(parameters["sync"] == "esync")
@@ -765,20 +763,6 @@ class PreferencesView(Adw.PreferencesPage):
             value=state,
             scope="Parameters"
         ).data["config"]
-
-    def __set_fsr_level(self, *_args):
-        """Set the FSR level of sharpness"""
-        def set_config(key, value):
-            self.config = self.manager.update_config(
-            config=self.config,
-            key=key,
-            value=value,
-            scope="Parameters"
-            ).data["config"]
-
-        level = self.combo_fsr.get_selected()
-        set_config("fsr_level", level - 1) if level != 0 else None
-        set_config("fsr", bool(level))
 
     def __set_runner(self, *_args):
         """Set the runner to use for the bottle"""

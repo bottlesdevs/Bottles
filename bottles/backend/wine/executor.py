@@ -79,7 +79,7 @@ class WineExecutor:
 
         if override_fsr is not None and override_fsr:
             self.environment["WINE_FULLSCREEN_FSR"] = "1"
-            self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(self.config['Parameters']['fsr_level'])
+            self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(self.config['Parameters']['fsr_sharpening_strength'])
 
         if "WINEDLLOVERRIDES" in self.environment:
             self.environment["WINEDLLOVERRIDES"] += "," + ",".join(env_dll_overrides)
