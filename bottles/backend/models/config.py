@@ -74,8 +74,8 @@ class BottleParams(DictCompatMixIn):
     gamescope_fullscreen: bool = True
     sync: str = "wine"
     fsr: bool = False
-    fsr_sharpening_strength: int = 2,
-    fsr_quality_mode: str = "none",
+    fsr_sharpening_strength: int = 2
+    fsr_quality_mode: str = "none"
     custom_dpi: int = 96
     renderer: str = "gl"
     discrete_gpu: bool = False
