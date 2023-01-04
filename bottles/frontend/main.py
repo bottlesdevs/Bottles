@@ -84,6 +84,14 @@ class Bottles(Adw.Application):
             flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
             register_session=True
         )
+        self.__create_action('quit', self.__quit, ['<primary>q'])
+        self.__create_action('quit', self.__quit, ['<primary>w']))
+        # self.__create_action('about', self.__about_action)
+        # self.__create_action('open', self.__import, ['<primary>i'])
+        # self.__create_action('preferences', self.__preferences)
+        self.__create_action('help', self.__help, ['F1'])
+        # self.__create_action('open', self.__import, ['<primary>i'])
+
         self.win = None
         self.__register_arguments()
 
@@ -255,25 +263,21 @@ class Bottles(Adw.Application):
         logging.info(_("[Refresh] request received."), )
         self.win.manager.update_bottles()
 
-    def __register_actions(self):
-        """
-        This function registers the application actions.
-        The actions are the application shortcuts (accellerators).
-        """
-        self.set_accels_for_action("window.close", ["<Ctrl>W"])
-        action_entries = [
-            ("quit", self.__quit, ("app.quit", ["<Ctrl>Q"])),
-            ("help", self.__help, ("app.help", ["F1"])),
-            ("refresh", self.__refresh, ("app.refresh", ["<Ctrl>R"]))
-        ]
+    def __create_action(self, name, callback, shortcuts=None, param=None):
+        """Add an application action.
 
-        for action, callback, accel in action_entries:
-            simple_action = Gio.SimpleAction.new(action, None)
-            simple_action.connect('activate', callback)
-            self.add_action(simple_action)
-            if accel is not None:
-                self.set_accels_for_action(*accel)
-
+        Args:
+            name: the name of the action
+            callback: the function to be called when the action is
+              activated
+            shortcuts: an optional list of accelerators
+            param: an optional list of parameters for the action
+        """
+        action = Gio.SimpleAction.new(name, param)
+        action.connect("activate", callback)
+        self.add_action(action)
+        if shortcuts:
+            self.set_accels_for_action(f"app.{name}", shortcuts))
 
 GObject.threads_init()
 
