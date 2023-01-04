@@ -20,6 +20,8 @@ template MainWindow : .AdwApplicationWindow {
             stack: "stack_main";
           }
 
+          ;
+
           [end]
           MenuButton {
             icon-name: "open-menu-symbolic";
@@ -27,10 +29,10 @@ template MainWindow : .AdwApplicationWindow {
             tooltip-text: "Main Menu";
           }
 
-          ;
         }
 
-        SearchBar searchbar {}
+        SearchBar searchbar {
+        }
 
         .AdwViewStack stack_main {
           vexpand: true;
