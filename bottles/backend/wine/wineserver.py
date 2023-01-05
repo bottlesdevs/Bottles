@@ -9,6 +9,7 @@ from bottles.backend.utils.proc import ProcUtils
 from bottles.backend.utils.decorators import cache
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.logger import Logger
+from bottles.backend.models.result import Result
 
 logging = Logger()
 
@@ -20,7 +21,11 @@ class WineServer(WineProgram):
     def is_alive(self):
         config = self.config
 
-        # TODO: workaround, there is something who make calls without runner
+        # If the caller is passing a Result object, get the config from it
+        if isinstance(config, Result):
+            config = Result.data.get("config", {})
+        
+        # If the config has no Runner, skip the execution
         if not config.get("Runner"):
             return False
 
