@@ -1,0 +1,68 @@
+using Gtk 4.0;
+
+template FsrDialog : .AdwWindow {
+  default-width: "500";
+  modal: true;
+
+  title: _("FidelityFX Super Resolution Settings");
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      [end]
+      Button btn_save {
+        label: _("Save");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    .AdwPreferencesPage {
+
+      .AdwPreferencesGroup {
+        .AdwComboRow combo_quality_mode {
+          title: "Quality Mode";
+          model:
+          StringList str_list_quality_mode {}
+
+          ;
+        }
+
+        .AdwActionRow {
+          title: _("Sharpening Strength");
+
+          SpinButton {
+            numeric: true;
+            valign: center;
+            adjustment:
+            Adjustment spin_sharpening_strength {
+              step-increment: 1;
+              upper: 5;
+            }
+
+            ;
+          }
+        }
+      }
+    }
+  }
+}

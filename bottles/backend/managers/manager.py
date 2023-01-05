@@ -35,7 +35,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.globals import Paths, done_fetching
+from bottles.backend.globals import Paths
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.versioning import VersioningManager
@@ -46,6 +46,7 @@ from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
+from bottles.backend.repos.repo import RepoStatus
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
@@ -117,22 +118,12 @@ class Manager:
 
         self.versioning_manager = VersioningManager(window, self)
         times["VersioningManager"] = time.time()
-
-        def component_fetch_done():
-            RunAsync(self.organize_components, callback=done_fetching("components"))
-            RunAsync(self.__clear_temp)
             
-        def installer_fetch_done():
-            RunAsync(self.organize_installers, callback=done_fetching("installers"))
-        
-        def dependency_fetch_done():
-            RunAsync(self.organize_dependencies, callback=done_fetching("dependencies"))
-            
-        self.component_manager = ComponentManager(self, _offline, component_fetch_done)
+        self.component_manager = ComponentManager(self, _offline)
 
-        self.installer_manager = InstallerManager(self, _offline, installer_fetch_done)
+        self.installer_manager = InstallerManager(self, _offline)
 
-        self.dependency_manager = DependencyManager(self, _offline, dependency_fetch_done)
+        self.dependency_manager = DependencyManager(self, _offline)
 
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
@@ -187,10 +178,13 @@ class Manager:
         self.check_runners(install_latest) or rv.set_status(False)
         rv.data["check_runners"] = time.time()
 
-        if not first_run:
-            # Those can be run async as they do not do UI update
-            RunAsync(self.organize_dependencies)
-            RunAsync(self.organize_installers)
+        if first_run:
+            self.organize_components()
+            self.__clear_temp()
+
+        self.organize_dependencies()
+
+        self.organize_installers()
 
         self.check_bottles()
         rv.data["check_bottles"] = time.time()
@@ -266,10 +260,14 @@ class Manager:
             logging.info("LatencyFlex path doesn't exist, creating now.")
             os.makedirs(Paths.latencyflex, exist_ok=True)
 
+    @RunAsync.run_async
     def organize_components(self):
         """Get components catalog and organizes into supported_ lists."""
+        RepoStatus.repo_start_operation("components.organizing")
+        RepoStatus.repo_wait_operation("components.fetching")
         catalog = self.component_manager.fetch_catalog()
         if len(catalog) == 0:
+            RepoStatus.repo_done_operation("components.organizing")
             logging.info("No components found.")
             return
 
@@ -281,24 +279,35 @@ class Manager:
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
         self.supported_latencyflex = catalog["latencyflex"]
+        RepoStatus.repo_done_operation("components.organizing")
 
+    @RunAsync.run_async
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
+        RepoStatus.repo_start_operation("dependencies.organizing")
+        RepoStatus.repo_wait_operation("dependencies.fetching")
         catalog = self.dependency_manager.fetch_catalog()
         if len(catalog) == 0:
+            RepoStatus.repo_done_operation("dependencies.organizing")
             logging.info("No dependencies found!")
             return
 
         self.supported_dependencies = catalog
+        RepoStatus.repo_done_operation("dependencies.organizing")
 
+    @RunAsync.run_async
     def organize_installers(self):
         """Organizes installers into supported_installers."""
+        RepoStatus.repo_start_operation("installers.organizing")
+        RepoStatus.repo_wait_operation("installers.fetching")
         catalog = self.installer_manager.fetch_catalog()
         if len(catalog) == 0:
+            RepoStatus.repo_done_operation("installers.organizing")
             logging.info("No installers found!")
             return
 
         self.supported_installers = catalog
+        RepoStatus.repo_done_operation("installers.organizing")
 
     def remove_dependency(self, config: dict, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""

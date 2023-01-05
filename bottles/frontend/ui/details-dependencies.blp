@@ -10,17 +10,51 @@ template DetailsDependencies : .AdwBin {
       }
     }
 
-    .AdwPreferencesPage {
-      .AdwPreferencesGroup {
-        description: _("Dependencies are resources that improve compatibility of Windows software.\n\nFiles on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.");
+    Stack stack {
+      transition-type: crossfade;
 
-        ListBox list_dependencies {
-          selection-mode: none;
+      StackPage {
+        name: "page_offline";
 
-          styles [
-            "boxed-list",
-          ]
-        }
+        child:
+        .AdwStatusPage {
+          icon-name: "network-error-symbolic";
+          title: _("You're offline :(");
+          vexpand: true;
+          hexpand: true;
+          description: _("Bottles is running in offline mode, so dependencies are not available.");
+        };
+      }
+
+      StackPage {
+        name: "page_loading";
+        child:
+        .AdwStatusPage {
+          vexpand: true;
+          hexpand: true;
+
+          Spinner spinner_loading {
+            valign: center;
+          }
+        };
+      }
+
+      StackPage {
+        name: "page_deps";
+        child:
+        .AdwPreferencesPage {
+          .AdwPreferencesGroup {
+            description: _("Dependencies are resources that improve compatibility of Windows software.\n\nFiles on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.");
+
+            ListBox list_dependencies {
+              selection-mode: none;
+
+              styles [
+                "boxed-list",
+              ]
+            }
+          }
+        };
       }
     }
   }

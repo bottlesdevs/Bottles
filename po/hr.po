@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-09-30 06:30+0000\n"
+"PO-Revision-Date: 2022-12-31 19:49+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
@@ -570,13 +570,14 @@ msgid "Search for dependencies…"
 msgstr "Traži ovisnosti …"
 
 #: bottles/frontend/ui/details-dependencies.blp:15
-#, fuzzy
 msgid ""
 "Dependencies are resources that improve compatibility of Windows software.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Ovisnosti su resursi koji poboljšavaju kompatibilnost Windows softvera.\n"
+"\n"
 "Datoteke na ovoj stranici pružaju treće strane pod vlasničkom licencom. "
 "Instalacijom tih datoteka slažeš se s njihovim uvjetima licenciranja."
 
@@ -609,7 +610,6 @@ msgid "Search for Programs…"
 msgstr "Traži programe …"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community, without having to proceed "
 "manually.\n"
@@ -617,6 +617,9 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Instaliraj programe koje je pripremila naša zajednica, bez potrebe za ručnin "
+"nastavljanjem.\n"
+"\n"
 "Datoteke na ovoj stranici pružaju treće strane pod vlasničkom licencom. "
 "Instalacijom tih datoteka slažeš se s njihovim uvjetima licenciranja."
 
@@ -1003,9 +1006,8 @@ msgstr "Koristi uzorke isključivanja"
 
 #: bottles/frontend/ui/details-preferences.blp:394
 #: bottles/frontend/ui/details-preferences.blp:398
-#, fuzzy
 msgid "Exclude paths in snapshots."
-msgstr "Isključi staze iz verzioniranja pomoću uzoraka"
+msgstr "Isključi staze u snimkama ekrana."
 
 #: bottles/frontend/ui/details-preferences.blp:397
 #: bottles/frontend/ui/details-preferences.blp:401
@@ -1158,15 +1160,13 @@ msgid "Incomplete package"
 msgstr "Nepotpun paket"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
-#, fuzzy
 msgid ""
 "This version of Bottles does not seem to provide all the necessary core "
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
 "Čini se da ova Butelje verzija ne pruža sve potrebne osnovne ovisnosti. "
-"Obrati se održavatelju paketa ili koristi službenu verziju.\n"
-"                        "
+"Obrati se održavatelju paketa ili koristi službenu verziju."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
@@ -1193,14 +1193,12 @@ msgid "Drives"
 msgstr "Pogoni"
 
 #: bottles/frontend/ui/dialog-drives.blp:24
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
 "Ovo su staze tvog sustava za hosting koje su mapirane i koje pokretač "
-"prepoznaje kao uređaje (npr. C: D: …).\n"
-"                                "
+"prepoznaje kao uređaje (npr. C: D: …)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1354,12 +1352,11 @@ msgstr "Cjeloekranski prikaz"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr ""
+msgstr "Želiš li nastaviti s instalacijom?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
-#, fuzzy
 msgid "Start Installation"
-msgstr "Prijevodi"
+msgstr "Pokreni instalaciju"
 
 #: bottles/frontend/ui/dialog-installer.blp:64
 msgid ""
@@ -1371,26 +1368,23 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
-msgstr ""
+msgstr "Nastavi"
 
 #: bottles/frontend/ui/dialog-installer.blp:123
-#, fuzzy
 msgid "Completed!"
-msgstr "Komponente"
+msgstr "Dovršeno!"
 
 #: bottles/frontend/ui/dialog-installer.blp:126
-#, fuzzy
 msgid "Show Programs"
-msgstr "Pokaži program"
+msgstr "Pokaži programe"
 
 #: bottles/frontend/ui/dialog-installer.blp:144
-#, fuzzy
 msgid "Installation Failed!"
-msgstr "Instalacija ovisnih komponenata nije uspjela."
+msgstr "Instalacija nije uspjela!"
 
 #: bottles/frontend/ui/dialog-installer.blp:145
 msgid "Something went wrong."
-msgstr ""
+msgstr "Dogodila se greška."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1855,7 +1849,6 @@ msgstr "Pregledaj datoteke"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
 msgid "Wine prefix name"
 msgstr "Ime Wine mape"
 
@@ -1864,14 +1857,12 @@ msgid "Manager"
 msgstr "Upravljač"
 
 #: bottles/frontend/ui/importer-entry.blp:38
-#, fuzzy
 msgid "This Wine prefix was already imported in Bottles."
-msgstr "Ova je Wine mapa već uvezena u Butelje."
+msgstr "Ova je Wine mapa već uvezena u „Butelje”."
 
 #: bottles/frontend/ui/importer.blp:22
-#, fuzzy
 msgid "Import a Bottle backup"
-msgstr "Uvezi sigurnosnu kopiju programa Butelje"
+msgstr "Uvezi sigurnosnu kopiju butelje"
 
 #: bottles/frontend/ui/importer.blp:28
 msgid "Search again for prefixes"
@@ -1882,13 +1873,12 @@ msgid "No Prefixes Found"
 msgstr "Nije pronađena nijedna mapa"
 
 #: bottles/frontend/ui/importer.blp:39
-#, fuzzy
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"Nije pronađena nijedna mapa od Lutrisa, PlayOnLinuxa, itd.\n"
-"Koristi gornju ikonu za uvoz butelje iz sigurnosne kopije"
+"Nije pronađena nijedna mapa. Ima li „Butelje” pristup njima?\n"
+"Koristi gornju ikonu za uvoz butelje iz sigurnosne kopije."
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
@@ -2013,9 +2003,8 @@ msgid "Click \"Create a new Bottle…\" to create a new bottle."
 msgstr ""
 
 #: bottles/frontend/ui/list.blp:50
-#, fuzzy
 msgid "Create a new Bottle…"
-msgstr "Stvori novu butelju"
+msgstr "Stvori novu butelju …"
 
 #: bottles/frontend/ui/list.blp:64
 msgid "No Results Found"
@@ -2125,7 +2114,6 @@ msgid "Creating a Bottle…"
 msgstr "Stvaranje butelje …"
 
 #: bottles/frontend/ui/new.blp:233 bottles/frontend/ui/new.blp:242
-#, fuzzy
 msgid "Bottle Created"
 msgstr "Butelja je stvorena"
 
@@ -2138,9 +2126,8 @@ msgid "Welcome to Bottles"
 msgstr "Dobro došao, dobro došla u Butelje"
 
 #: bottles/frontend/ui/onboard.blp:60
-#, fuzzy
 msgid "Run Windows Software on Linux."
-msgstr "Pokreći Windows softver na Linuxu pomoću programa Butelje!"
+msgstr "Pokreći Windows softver na Linuxu."
 
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
@@ -2393,22 +2380,20 @@ msgid "State comment"
 msgstr "Komentar za stanje"
 
 #: bottles/frontend/ui/state-entry.blp:16
-#, fuzzy
 msgid "Restore this Snapshot"
-msgstr "Obnovi ovo stanje"
+msgstr "Obnovi ovu snimku ekrana"
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
 msgstr "Izbriši poruku"
 
 #: bottles/frontend/ui/window.blp:16
-#, fuzzy
 msgid "Import…"
-msgstr "Uvoz"
+msgstr "Uvoz …"
 
 #: bottles/frontend/ui/window.blp:26
 msgid "Help"
-msgstr ""
+msgstr "Pomoć"
 
 #: bottles/frontend/ui/window.blp:31
 msgid "About Bottles"
@@ -2416,7 +2401,7 @@ msgstr "O programu Butelje"
 
 #: bottles/frontend/ui/window.blp:60
 msgid "Main Menu"
-msgstr ""
+msgstr "Glavni izbornik"
 
 #: bottles/frontend/ui/window.blp:74
 msgid ""
@@ -2435,7 +2420,7 @@ msgstr "Računalo nije povezano. Preuzimanje nije moguće."
 #: bottles/frontend/views/bottle_details.py:199
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
-msgstr ""
+msgstr "Datoteka „{0}” nije .exe ili .msi datoteka"
 
 #: bottles/frontend/views/bottle_details.py:215
 #, python-format
@@ -2443,9 +2428,9 @@ msgid "Updated: %s"
 msgstr "Aktualizirano: %s"
 
 #: bottles/frontend/views/bottle_details.py:271
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added"
-msgstr "„{0}” dodan."
+msgstr "„{0}” dodan"
 
 #: bottles/frontend/views/bottle_details.py:275
 msgid "Choose an executable path"
@@ -2456,9 +2441,8 @@ msgid "Add"
 msgstr "Dodaj"
 
 #: bottles/frontend/views/bottle_details.py:345
-#, fuzzy
 msgid "Hide Hidden Programs"
-msgstr "Prikaži/sakrij uklonjene programe"
+msgstr "Sakrij skrivene programe"
 
 #: bottles/frontend/views/bottle_details.py:378
 #: bottles/frontend/views/list.py:118
@@ -2483,7 +2467,7 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:505
 #: bottles/frontend/windows/main_window.py:197
 msgid "_Dismiss"
-msgstr ""
+msgstr "_Odbaci"
 
 #: bottles/frontend/views/bottle_details.py:418
 msgid "Select the location where to save the backup config"
@@ -2494,34 +2478,33 @@ msgid "Select the location where to save the backup archive"
 msgstr "Odaberi mjesto za spremanje arhive sigurnosne kopije"
 
 #: bottles/frontend/views/bottle_details.py:427
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup created for \"{0}\""
-msgstr "Stvorena je sigurnosna kopija za „{0}”."
+msgstr "Sigurnosna kopija spremljena za „{0}”"
 
 #: bottles/frontend/views/bottle_details.py:429
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr "Neuspjelo spremanje sigurnosne kopije za „{0}”."
+msgstr "Neuspjelo spremanje sigurnosne kopije za „{0}”"
 
 #: bottles/frontend/views/bottle_details.py:447
 msgid "Export"
 msgstr "Izvoz"
 
 #: bottles/frontend/views/bottle_details.py:482
-#, fuzzy
 msgid "Are you sure you want to permanently delete \"{}\"?"
-msgstr "Stvarno želiš izbrisati ovu butelju i sve datoteke?"
+msgstr "Stvarno želiš zauvijek izbrisati „{}”?"
 
 #: bottles/frontend/views/bottle_details.py:483
 msgid ""
 "This will permanently delete all programs and settings associated with it."
-msgstr ""
+msgstr "Ovo će zauvijek izbrisati sve programe i s njima povezane postavke."
 
 #: bottles/frontend/views/bottle_details.py:486
 #: bottles/frontend/views/bottle_preferences.py:722
 #: bottles/frontend/views/bottle_preferences.py:681
 msgid "_Delete"
-msgstr ""
+msgstr "_Izbriši"
 
 #: bottles/frontend/views/bottle_details.py:501
 #, fuzzy
@@ -2596,14 +2579,12 @@ msgid "Return to your bottles."
 msgstr "Vrati se na tvoje butelje."
 
 #: bottles/frontend/views/importer.py:89
-#, fuzzy
 msgid "Backup imported successfully"
-msgstr "Sigurnosna kopija je uspješno uvezena."
+msgstr "Sigurnosna kopija je uspješno uvezena"
 
 #: bottles/frontend/views/importer.py:91
-#, fuzzy
 msgid "Import failed"
-msgstr "Uvoz neuspio."
+msgstr "Uvoz neuspio"
 
 #: bottles/frontend/views/importer.py:103
 #: bottles/frontend/views/importer.py:132
@@ -2642,9 +2623,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Preuzeto {0} od {1} paketa"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "The name has special characters or is already in use."
-msgstr "Ime ima posebne znakove ili se već koristi."
+msgstr "Ime sadrži posebne znakove ili se već koristi."
 
 #: bottles/frontend/views/new.py:156
 msgid "Choose a recipe file"
@@ -2659,23 +2639,21 @@ msgid "There was an error creating the bottle."
 msgstr "Došlo je do greške prilikom stvaranja butelje."
 
 #: bottles/frontend/views/new.py:234
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr "Uspješno je stvoreno novo stanje [{0}]!"
+msgstr "„{0}” je uspješno stvoreno."
 
 #: bottles/frontend/views/preferences.py:117
 msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "Steam nije pronađen ili Butelje nema potrebne dozvole."
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose a new Bottles path"
-msgstr "Odaberi novu stazu za butelje"
+msgstr "Odaberi novu stazu za Butelje"
 
 #: bottles/frontend/views/preferences.py:172
-#, fuzzy
 msgid "Relaunch Bottles?"
-msgstr "Odaberi butelju"
+msgstr "Ponovo pokrenuti „Butelje”?"
 
 #: bottles/frontend/views/preferences.py:173
 msgid ""
@@ -2688,7 +2666,7 @@ msgstr ""
 
 #: bottles/frontend/views/preferences.py:176
 msgid "_Relaunch"
-msgstr ""
+msgstr "_Pokreni ponovo"
 
 #: bottles/frontend/views/preferences.py:217
 msgid "Based on Valve's Wine, includes staging and Proton patches."
@@ -2730,19 +2708,19 @@ msgid "Manifest for {0}"
 msgstr "Manifest za {0}"
 
 #: bottles/frontend/widgets/dependency.py:166
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" installed"
-msgstr "{0} instaliran."
+msgstr "„{0}” instalirano"
 
 #: bottles/frontend/widgets/dependency.py:180
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "„{0}” nije instaliran."
+msgstr "„{0}” nije instalirano"
 
 #: bottles/frontend/widgets/importer.py:66
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" imported"
-msgstr "„{0}” uvezen."
+msgstr "„{0}” uvezen"
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
@@ -2791,27 +2769,27 @@ msgstr "Pokreće se „{0}” sa Steamom …"
 
 #: bottles/frontend/widgets/program.py:203
 #: bottles/frontend/widgets/program.py:212
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr "„{0}” skriven."
+msgstr "„{0}” skriven"
 
 #: bottles/frontend/widgets/program.py:205
 #: bottles/frontend/widgets/program.py:214
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" showed"
-msgstr "„{0}” pokazan."
+msgstr "„{0}” pokazan"
 
 #: bottles/frontend/widgets/program.py:231
 #: bottles/frontend/widgets/program.py:237
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" removed"
-msgstr "„{0}” uklonjen."
+msgstr "„{0}” uklonjen"
 
 #: bottles/frontend/widgets/program.py:245
 #: bottles/frontend/widgets/program.py:251
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr "„{0}” preimenovan u „{1}”."
+msgstr "„{0}” preimenovan u „{1}”"
 
 #: bottles/frontend/widgets/program.py:265
 #: bottles/frontend/widgets/program.py:271
@@ -3242,9 +3220,8 @@ msgid "Implemented a queue for installing components."
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:91
-#, fuzzy
 msgid "Fixed bottle deletion not working sometimes."
-msgstr "Ispravljena je greška u otkrivanju pokvarenih butelja"
+msgstr "Ispravljena je greška brisanja butelja, što ponekad nije radilo."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:92
 #, fuzzy
@@ -3260,9 +3237,8 @@ msgid "Added tooltips for program grades"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
-#, fuzzy
 msgid "Fix installer completion @jntesteves"
-msgstr "Neuspjelo instaliranje komponenata. Izvedena su tri pokušaja."
+msgstr "Ispravljeno instaliranje intalacije @jntesteves"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fix gamescope arguments @jntesteves"
@@ -3389,9 +3365,8 @@ msgid "This will delete all snapshots, but keep your files."
 msgstr ""
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "Name has special characters or already in use"
-msgstr "Ime ima posebne znakove ili se već koristi."
+msgstr "Ime sadrži posebne znakove ili se već koristi"
 
 #: bottles/frontend/views/preferences.py:152
 #, fuzzy
