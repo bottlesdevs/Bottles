@@ -878,9 +878,10 @@ class PreferencesView(Adw.PreferencesPage):
         """Set the VKD3D version to use for the bottle"""
         self.set_vkd3d_status(pending=True)
         self.queue.add_task()
+
         if (self.combo_dxvk.get_selected()) == 0:
-            self.queue.add_task()
             self.set_vkd3d_status(pending=True)
+            self.queue.add_task()
 
             RunAsync(
                 task_func=self.manager.install_dll_component,
@@ -896,7 +897,6 @@ class PreferencesView(Adw.PreferencesPage):
                 value=False,
                 scope="Parameters"
             ).data["config"]
-
         else:
             vkd3d = self.manager.vkd3d_available[self.combo_vkd3d.get_selected() - 1]
             self.config = self.manager.update_config(
