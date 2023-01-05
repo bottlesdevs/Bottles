@@ -85,7 +85,7 @@ class Bottles(Adw.Application):
             register_session=True
         )
         self.__create_action('quit', self.__quit, ['<primary>q'])
-        self.__create_action('quit', self.__quit, ['<primary>w']))
+        self.__create_action('quit', self.__quit, ['<primary>w'])
         # self.__create_action('about', self.__about_action)
         # self.__create_action('open', self.__import, ['<primary>i'])
         # self.__create_action('preferences', self.__preferences)
