@@ -108,7 +108,8 @@ class WineCommand:
     
     def __get_config(self, config: dict) -> dict:
         if hasattr(config, "data"):
-            return config.data["config"]
+            if cnf := config.data.get("config"):
+                return cnf
 
         if isinstance(config, dict):
             return config
