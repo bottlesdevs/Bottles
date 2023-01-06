@@ -37,8 +37,9 @@ template MainWindow : .AdwApplicationWindow {
           [end]
           MenuButton {
             icon-name: "open-menu-symbolic";
-            menu-model: main_menu;
+            menu-model: primary_menu;
             tooltip-text: "Main Menu";
+            primary: true;
           }
 
           [end]
@@ -72,7 +73,7 @@ template MainWindow : .AdwApplicationWindow {
   }
 }
 
-menu main_menu {
+menu primary_menu {
   section {
     item {
       label: _("Import…");
