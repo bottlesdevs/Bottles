@@ -2,6 +2,7 @@ import os
 import time
 import subprocess
 
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.proc import ProcUtils
 from bottles.backend.wine.wineprogram import WineProgram
@@ -20,7 +21,7 @@ class WineServer(WineProgram):
 
         # If the caller is passing a Result object, get the config from it
         if isinstance(config, Result):
-            config = Result.data.get("config", {})
+            config = config.data.get("config", BottleConfig())
 
         # If the config has no Runner, skip the execution
         if not config.Runner:
