@@ -18,6 +18,8 @@ class WineProgram:
     internal_path: str = ""
 
     def __init__(self, config: BottleConfig, silent=False):
+        if not isinstance(config, BottleConfig):
+            raise TypeError("config should be BottleConfig type, but it was %s" % type(config))
         self.config = config
         self.silent = silent
 
