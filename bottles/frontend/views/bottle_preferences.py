@@ -451,10 +451,11 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.combo_vkd3d.set_selected(0)
 
-        _nvapi = self.config.get("DXVK_NVAPI")
-        if _nvapi in self.manager.nvapi_available:
-            if _i_nvapi := self.manager.nvapi_available.index(_nvapi):
-                self.combo_nvapi.set_selected(_i_nvapi)
+        _nvapi = self.config.get("NVAPI")
+        if parameters["dxvk_nvapi"] == True:
+            if _nvapi in self.manager.nvapi_available:
+                if _i_nvapi := self.manager.nvapi_available.index(_nvapi) + 1:
+                    self.combo_nvapi.set_selected(_i_nvapi)
 
         _latencyflex = self.config.get("LatencyFlex")
         if parameters["latencyflex"] == True:
@@ -939,7 +940,7 @@ class PreferencesView(Adw.PreferencesPage):
 
             self.config = self.manager.update_config(
                 config=self.config,
-                key="NVAPI",
+                key="dxvk_nvapi",
                 value=False,
                 scope="Parameters"
             ).data["config"]
@@ -957,6 +958,13 @@ class PreferencesView(Adw.PreferencesPage):
                 config=self.config,
                 component="nvapi"
             )
+
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="dxvk_nvapi",
+                value=True,
+                scope="Parameters"
+            ).data["config"]
 
     def __set_latencyflex(self, *_args):
         """Set the latency flex value"""
