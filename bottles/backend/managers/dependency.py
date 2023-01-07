@@ -501,10 +501,14 @@ class DependencyManager:
 
             os.makedirs(archive_path)
             try:
-                patoolib.extract_archive(
-                    os.path.join(Paths.temp, file),
-                    outdir=archive_path
-                )
+                ext_path = patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
+                ext_file = ext_path + '/' + os.path.basename(ext_path)
+                if os.path.exists(archive_path):
+                    if os.path.isfile(ext_file):
+                        patoolib.extract_archive(
+                        ext_file,
+                        outdir=ext_path + '/'
+                        )
             except:
                 return False
             return True
@@ -552,6 +556,9 @@ class DependencyManager:
         try:
             if "*" in step.get('file_name'):
                 files = glob(f"{path}/{step.get('file_name')}")
+                if not files:
+                    logging.info(f"File/s not found in {path}")
+                    return False
                 for fg in files:
                     _name = fg.split("/")[-1]
                     _path = os.path.join(path, _name)
