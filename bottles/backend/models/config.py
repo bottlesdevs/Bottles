@@ -29,6 +29,9 @@ class DictCompatMixIn:
     def to_dict(self) -> dict:
         return asdict(self)
 
+    def __iter__(self):
+        return iter(self.__dict__)
+
     def __getitem__(self, item):
         return getattr(self, item)
 
