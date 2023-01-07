@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-12 14:51+0000\n"
-"Last-Translator: Yourredyknowwhoitisss <dirt@stu.khas.edu.tr>\n"
+"PO-Revision-Date: 2022-12-28 22:40+0000\n"
+"Last-Translator: İbrahim Hakkı Ergin <ibrahimh.ergin@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
@@ -203,10 +203,12 @@ msgstr "[Yenile] isteği alındı."
 msgid "Calculating…"
 msgstr "Hesaplanıyor…"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:7
 msgid "Copyright © 2017 Bottles Developers"
 msgstr "© 2017-2022 - Bottles Geliştiricileri"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:13
 msgid "Bottles Developers"
 msgstr "Bottles Geliştiricileri"
@@ -222,7 +224,6 @@ msgid "Uninstall"
 msgstr "Kaldır"
 
 #: bottles/frontend/ui/component-entry.blp:23
-#, fuzzy
 msgid "Browse Files"
 msgstr "Dosyalara göz atın"
 
@@ -473,7 +474,7 @@ msgstr "Görev yöneticisi"
 
 #: bottles/frontend/ui/details-bottle.blp:373
 msgid "Manage running programs."
-msgstr ""
+msgstr "Çalışan programları yönetin."
 
 #: bottles/frontend/ui/details-bottle.blp:382
 msgid "Tools"
@@ -496,18 +497,16 @@ msgid "Edit the internal registry."
 msgstr "Dahili kayıt defterini düzenleyin."
 
 #: bottles/frontend/ui/details-bottle.blp:405
-#, fuzzy
 msgid "Legacy Wine Tools"
-msgstr "Eski Araçlar"
+msgstr "Eski Wine Araçları"
 
 #: bottles/frontend/ui/details-bottle.blp:409
 msgid "Explorer"
 msgstr "Gezgin"
 
 #: bottles/frontend/ui/details-bottle.blp:427
-#, fuzzy
 msgid "Debugger"
-msgstr "Hata ayıklama"
+msgstr "Hata ayıklayıcı"
 
 #: bottles/frontend/ui/details-bottle.blp:436
 #: bottles/frontend/ui/importer.blp:69
@@ -542,14 +541,12 @@ msgid "Report a problem or a missing dependency."
 msgstr "Sorun veya eksik bağımlılık bildir."
 
 #: bottles/frontend/ui/details-dependencies.blp:43
-#, fuzzy
 msgid "Report Missing Dependency"
 msgstr "Eksik bağımlılığı bildir"
 
 #: bottles/frontend/ui/details-dependencies.blp:47
-#, fuzzy
 msgid "Read Documentation."
-msgstr "Belgelendirmeyi Oku"
+msgstr "Belgeleri Okuyun."
 
 #: bottles/frontend/ui/details-dependencies.blp:48
 #: bottles/frontend/ui/details-installers.blp:51
@@ -836,6 +833,7 @@ msgstr "Bu Şişe için farklı bir çalıştırıcı ayarla."
 msgid "Manage the Sandbox Permissions"
 msgstr "Sandbox izinlerini yönet"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:287
 msgid "Bottles Runtime"
 msgstr "Şişeler Çalışma Zamanı"
@@ -1016,6 +1014,7 @@ msgstr "Seç"
 msgid "Create New Bottle"
 msgstr "Yeni Şişe Oluştur"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 #, fuzzy
 msgid "Bottles Crash Report"
@@ -1886,11 +1885,10 @@ msgstr "Şişelerinizi arayın…"
 msgid "Steam Proton"
 msgstr "Steam Proton"
 
-#: bottles/frontend/ui/list.blp:42 bottles/frontend/ui/window.blp:37
+# Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
+#: bottles/frontend/ui/list.blp:42
 #: bottles/frontend/ui/window.blp:52
 #: bottles/frontend/windows/main_window.py:166
-#: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.metainfo.xml.in:7
 msgid "Bottles"
 msgstr "Şişeler"
 
@@ -2020,6 +2018,7 @@ msgstr "Şişe oluşturuldu"
 msgid "Previous"
 msgstr "Önceki"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
 msgstr "Şişelere Hoş Geldiniz"
@@ -2029,6 +2028,7 @@ msgstr "Şişelere Hoş Geldiniz"
 msgid "Run Windows Software on Linux."
 msgstr "Şişeler ile Windows yazılımlarını Linux'ta çalıştırın!"
 
+# Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
 msgstr "Şişelerde Windows"
@@ -2056,6 +2056,7 @@ msgstr "Her şey hazır!"
 msgid "Please Finish the setup first"
 msgstr "Lütfen önce kurulumu Bitirin"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:120
 msgid "Start using Bottles"
 msgstr "Şişeler'i kullanmaya başlayın"
@@ -2300,6 +2301,7 @@ msgstr "İçe aktar"
 msgid "Help"
 msgstr ""
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:31
 msgid "About Bottles"
 msgstr "Şişeler Hakkında"
