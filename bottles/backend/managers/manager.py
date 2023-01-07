@@ -814,7 +814,7 @@ class Manager:
             scope: str = "",
             remove: bool = False,
             fallback: bool = False
-    ) -> Result:
+    ) -> Result[dict]:
         """
         Update parameters in bottle config. Use the scope argument to
         update the parameters in the specified scope (e.g. Parameters).
@@ -995,7 +995,7 @@ class Manager:
             fn_logger: callable = None,
             arch: str = "win64",
             custom_environment: str = None
-    ):
+    ) -> Result[dict]:
         """
         Create a new bottle from the given arguments.
         TODO: will be replaced by the BottleBuilder class.

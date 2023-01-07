@@ -40,7 +40,7 @@ class Runner:
     """
 
     @staticmethod
-    def runner_update(config: BottleConfig, manager: 'Manager', runner: str) -> Result:
+    def runner_update(config: BottleConfig, manager: 'Manager', runner: str) -> Result[dict]:
         """
         This method should be executed after changing the runner
         for a bottle. It does a prefix update and re-initialize the
