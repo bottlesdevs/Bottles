@@ -31,7 +31,6 @@ from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.backend.models.result import Result
 
-from bottles.frontend.windows.filechooser import FileChooser
 from bottles.frontend.windows.envvars import EnvVarsDialog
 from bottles.frontend.windows.drives import DrivesDialog
 from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
