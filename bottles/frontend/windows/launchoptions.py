@@ -201,7 +201,7 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __choose_script(self, *_args):
         def set_path(_dialog, response, _file_dialog):
-            if response not Gtk.ResponseType.ACCEPT:
+            if response != Gtk.ResponseType.ACCEPT:
                 self.action_script.set_subtitle(self.__default_script_msg)
                 return
 
@@ -211,9 +211,9 @@ class LaunchOptionsDialog(Adw.Window):
             self.btn_script_reset.set_visible(True)
 
         dialog = Gtk.FileChooserNative.new(
-            title=_("Select a script")
+            title=_("Select a script"),
+            parent=self.window,
             action=Gtk.FileChooserAction.OPEN
-            parent=self.window
         )
 
         dialog.set_modal(True)
@@ -227,7 +227,7 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __choose_cwd(self, *_args):
         def set_path(_dialog, response, _file_dialog):
-            if response not Gtk.ResponseType.ACCEPT:
+            if response != Gtk.ResponseType.ACCEPT:
                 self.action_cwd.set_subtitle(self.__default_cwd_msg)
                 return
 
@@ -237,9 +237,9 @@ class LaunchOptionsDialog(Adw.Window):
             self.btn_cwd_reset.set_visible(True)
 
         dialog = Gtk.FileChooserNative.new(
-            title=_("Select the Working Directory")
+            title=_("Select the Working Directory"),
+            parent=self.window,
             action=Gtk.FileChooserAction.SELECT_FOLDER
-            parent=self.window
         )
 
         dialog.set_modal(True)
