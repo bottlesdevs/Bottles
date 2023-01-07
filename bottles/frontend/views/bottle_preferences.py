@@ -319,7 +319,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         self.str_list_dxvk.append("Disabled")
         self.str_list_vkd3d.append("Disabled")
-        self.str_list_nvapi.append("Disabled")
         self.str_list_latencyflex.append("Disabled")
         for index, dxvk in enumerate(self.manager.dxvk_available):
             self.str_list_dxvk.append(dxvk)
@@ -452,10 +451,9 @@ class PreferencesView(Adw.PreferencesPage):
             self.combo_vkd3d.set_selected(0)
 
         _nvapi = self.config.get("NVAPI")
-        if parameters["dxvk_nvapi"] == True:
-            if _nvapi in self.manager.nvapi_available:
-                if _i_nvapi := self.manager.nvapi_available.index(_nvapi) + 1:
-                    self.combo_nvapi.set_selected(_i_nvapi)
+        if _nvapi in self.manager.nvapi_available:
+            if _i_nvapi := self.manager.nvapi_available.index(_nvapi):
+                self.combo_nvapi.set_selected(_i_nvapi)
 
         _latencyflex = self.config.get("LatencyFlex")
         if parameters["latencyflex"] == True:
@@ -926,45 +924,28 @@ class PreferencesView(Adw.PreferencesPage):
         self.set_nvapi_status(pending=True)
         self.queue.add_task()
 
-        if (self.combo_nvapi.get_selected()) == 0:
-            self.set_nvapi_status(pending=True)
-            self.queue.add_task()
+        self.switch_nvapi.set_active(True)
 
-            RunAsync(
-                task_func=self.manager.install_dll_component,
-                callback=self.set_nvapi_status,
-                config=self.config,
-                component="nvapi",
-                remove=True
-            )
+        nvapi = self.manager.nvapi_available[self.combo_nvapi.get_selected()]
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="NVAPI",
+            value=nvapi
+        ).data["config"]
 
-            self.config = self.manager.update_config(
-                config=self.config,
-                key="dxvk_nvapi",
-                value=False,
-                scope="Parameters"
-            ).data["config"]
-        else:
-            nvapi = self.manager.nvapi_available[self.combo_nvapi.get_selected() - 1]
-            self.config = self.manager.update_config(
-                config=self.config,
-                key="NVAPI",
-                value=nvapi
-            ).data["config"]
+        RunAsync(
+            task_func=self.__dll_component_task_func,
+            callback=self.set_nvapi_status,
+            config=self.config,
+            component="nvapi"
+        )
 
-            RunAsync(
-                task_func=self.__dll_component_task_func,
-                callback=self.set_nvapi_status,
-                config=self.config,
-                component="nvapi"
-            )
-
-            self.config = self.manager.update_config(
-                config=self.config,
-                key="dxvk_nvapi",
-                value=True,
-                scope="Parameters"
-            ).data["config"]
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="dxvk_nvapi",
+            value=True,
+            scope="Parameters"
+        ).data["config"]
 
     def __set_latencyflex(self, *_args):
         """Set the latency flex value"""
