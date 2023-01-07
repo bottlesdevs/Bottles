@@ -18,7 +18,6 @@
 import urllib.request
 from gi.repository import Gtk, GLib, Gio, GdkPixbuf, Adw
 
-from bottles.frontend.windows.filechooser import FileChooser
 from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.wine.drives import Drives
 
@@ -49,24 +48,23 @@ class LocalResourceEntry(Adw.ActionRow):
         Open the file chooser dialog and set the path to the
         selected file
         """
-        def set_path(_dialog, response, _file_dialog):
-            _file = _file_dialog.get_file()
-            if _file is None or response != -3:
-                _dialog.destroy()
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
                 return
-            path = _file.get_path()
+
+            path = dialog.get_file().get_path()
             self.parent.add_resource(self.resource, path)
             self.set_subtitle(path)
-            _dialog.destroy()
 
-        FileChooser(
-            parent=self.parent.window,
-            title=_("Select Resource FIle"),
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Resource File"),
             action=Gtk.FileChooserAction.OPEN,
-            buttons=(_("Cancel"), _("Select")),
-            callback=set_path
+            parent=self.window,
         )
 
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-installer.ui')
 class InstallerDialog(Adw.Window):
