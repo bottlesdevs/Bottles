@@ -108,7 +108,8 @@ class WineCommand:
     
     def __get_config(self, config: dict) -> dict:
         if hasattr(config, "data"):
-            return config.data["config"]
+            if cnf := config.data.get("config"):
+                return cnf
 
         if isinstance(config, dict):
             return config
@@ -200,8 +201,10 @@ class WineCommand:
             dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
-        if (params.get("use_runtime") or params.get("use_eac_runtime") or params.get("use_be_runtime")) \
-                and not self.terminal and not return_steam_env:
+        if (params.get("use_runtime") \
+            or params.get("use_eac_runtime") \
+            or params.get("use_be_runtime")) \
+            and not self.terminal and not return_steam_env:
             _rb = RuntimeManager.get_runtime_env("bottles")
             if _rb:
                 _eac = RuntimeManager.get_eac()
@@ -261,7 +264,8 @@ class WineCommand:
             for lib in gst_libs:
                 if os.path.exists(os.path.join(runner_path, lib)):
                     gst_env_path.append(os.path.join(runner_path, lib))
-            env.add("GST_PLUGIN_SYSTEM_PATH", ":".join(gst_env_path), override=True)
+            if len(gst_env_path) > 0:
+                env.add("GST_PLUGIN_SYSTEM_PATH", ":".join(gst_env_path), override=True)
 
         # DXVK environment variables
         if params["dxvk"] and not return_steam_env:
@@ -345,6 +349,9 @@ class WineCommand:
         # FSR
         if params["fsr"]:
             env.add("WINE_FULLSCREEN_FSR", "1")
+            env.add("WINE_FULLSCREEN_FSR_STRENGTH", str(params["fsr_sharpening_strength"]))
+            if params["fsr_quality_mode"]:
+                env.add("WINE_FULLSCREEN_FSR_MODE", str(params["fsr_quality_mode"]))
 
         # PulseAudio latency
         if params["pulseaudio_latency"]:
@@ -551,6 +558,9 @@ class WineCommand:
                 gamescope_cmd.append("-n")
             if params["fsr"]:
                 gamescope_cmd.append("-U")
+                # Upscaling sharpness is from 0 to 20. There are 5 FSR upscaling levels,
+                # so multiply by 4 to reach 20
+                gamescope_cmd.append(f"--fsr-sharpness {params['fsr_sharpening_strength'] * 4}")
             if params["gamescope_fps"] > 0:
                 gamescope_cmd.append(f"-r {params['gamescope_fps']}")
             if params["gamescope_fps_no_focus"] > 0:
@@ -601,7 +611,9 @@ class WineCommand:
         if None in [self.runner, self.env]:
             return
 
-        if vmtouch_available and self.config["Parameters"].get("vmtouch"):
+        if vmtouch_available \
+            and self.config["Parameters"].get("vmtouch") \
+            and not self.terminal:
             self.vmtouch_preload()
 
         if self.config["Parameters"].get("sandbox"):
@@ -640,7 +652,9 @@ class WineCommand:
         res = proc.communicate()[0]
         enc = detect_encoding(res)
 
-        if vmtouch_available and self.config["Parameters"].get("vmtouch"):
+        if vmtouch_available \
+            and self.config["Parameters"].get("vmtouch") \
+            and not self.terminal:
             self.vmtouch_free()
 
         if enc is not None:

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-12 14:51+0000\n"
+"PO-Revision-Date: 2022-12-31 19:49+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
@@ -238,10 +238,12 @@ msgstr "[Refresh] requête reçue."
 msgid "Calculating…"
 msgstr "Calcul en cours…"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:7
 msgid "Copyright © 2017 Bottles Developers"
 msgstr "Copyright © 2017 — Développeurs de Bouteilles"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:13
 msgid "Bottles Developers"
 msgstr "Développeurs de Bouteilles"
@@ -936,13 +938,13 @@ msgstr "Définir un environnement restreint/géré pour cette Bouteille."
 msgid "Manage the Sandbox Permissions"
 msgstr "Gérer les autorisations du bac à sable"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:287
 #: bottles/frontend/ui/details-preferences.blp:291
 msgid "Bottles Runtime"
 msgstr "Environnement d’exécution Bouteilles"
 
 #: bottles/frontend/ui/details-preferences.blp:288
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
@@ -956,7 +958,6 @@ msgid "Steam Runtime"
 msgstr "Environnement d’exécution Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:299
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
@@ -1024,7 +1025,6 @@ msgid "Compression"
 msgstr "Compression"
 
 #: bottles/frontend/ui/details-preferences.blp:384
-#, fuzzy
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
@@ -1131,6 +1131,7 @@ msgstr "Sélectionner"
 msgid "Create New Bottle"
 msgstr "Créer une nouvelle bouteille"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
 msgstr "Rapport de crash de Bouteilles"
@@ -1316,7 +1317,7 @@ msgstr "Enregistrer"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr "Gérer l’affichage des jeux."
+msgstr "Gérer la façon dont les jeux doivent être affichés."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
@@ -1410,7 +1411,7 @@ msgstr "Installation échouée !"
 
 #: bottles/frontend/ui/dialog-installer.blp:145
 msgid "Something went wrong."
-msgstr ""
+msgstr "Quelque chose s’est mal passé."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1949,9 +1950,8 @@ msgid "No Thumbnail"
 msgstr "Aucune vignette"
 
 #: bottles/frontend/ui/library-entry.blp:57
-#, fuzzy
 msgid "Launch"
-msgstr "Paramètres de lancement"
+msgstr "Lancer"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1971,7 +1971,7 @@ msgstr "Retirer de la bibliothèque"
 
 #: bottles/frontend/ui/library-entry.blp:142
 msgid "Stop"
-msgstr ""
+msgstr "Arrêter"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:171
@@ -2018,11 +2018,10 @@ msgstr "Recherchez vos bouteilles…"
 msgid "Steam Proton"
 msgstr "Steam Proton"
 
-#: bottles/frontend/ui/list.blp:42 bottles/frontend/ui/window.blp:37
+# Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
+#: bottles/frontend/ui/list.blp:42
 #: bottles/frontend/ui/window.blp:52
 #: bottles/frontend/windows/main_window.py:166
-#: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.metainfo.xml.in:7
 msgid "Bottles"
 msgstr "Bouteilles"
 
@@ -2152,6 +2151,7 @@ msgstr "Bouteille créée"
 msgid "Previous"
 msgstr "Précédent"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
 msgstr "Bienvenue dans Bouteilles"
@@ -2160,6 +2160,7 @@ msgstr "Bienvenue dans Bouteilles"
 msgid "Run Windows Software on Linux."
 msgstr "Exécutez des logiciels pour Windows sous Linux."
 
+# Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
 msgstr "Windows dans Bouteilles"
@@ -2190,6 +2191,7 @@ msgstr "Tout est prêt !"
 msgid "Please Finish the setup first"
 msgstr "Merci de terminer la configuration d’abord"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:120
 msgid "Start using Bottles"
 msgstr "Commencer à utiliser Bouteilles"
@@ -2427,6 +2429,7 @@ msgstr "Importer…"
 msgid "Help"
 msgstr "Aide"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:31
 msgid "About Bottles"
 msgstr "À propos de Bouteilles"
@@ -2571,7 +2574,6 @@ msgid "Force _Stop"
 msgstr "_Forcer l’arrêt"
 
 #: bottles/frontend/views/bottle_preferences.py:196
-#, fuzzy
 msgid "This feature is unavailable on your system."
 msgstr "Cette fonctionnalité n’est pas disponible sur votre système."
 

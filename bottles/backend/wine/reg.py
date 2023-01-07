@@ -57,7 +57,7 @@ class Reg(WineProgram):
         # avoid conflicts when executing async
         winedbg.wait_for_process("reg.exe")
 
-        res = self.launch(("import", tmp_reg_filepath), communicate=True, minimal=True, action_name="add")
+        res = self.launch(("import", tmp_reg_filepath), communicate=True, minimal=True, action_name="bulk_add")
         logging.info(res, )
 
     def add(self, key: str, value: str, data: str, value_type: str = False):

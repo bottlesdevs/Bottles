@@ -31,7 +31,8 @@ class Bottle:
     gamemode: bool = False
     sync: str = "wine"
     fsr: bool = False
-    fsr_level: int = 5
+    fsr_quality_mode: str = "none"
+    fsr_sharpening_strength: int = 2
     discrete_gpu: bool = False
     virtual_desktop: bool = False
     virtual_desktop_res: str = "1280x720"
@@ -64,7 +65,8 @@ class Bottle:
         self.gamemode = conf.get('gamemode', self.gamemode)
         self.sync = conf.get('sync', self.sync)
         self.fsr = conf.get('fsr', self.fsr)
-        self.fsr_level = conf.get('fsr_level', self.fsr_level)
+        self.fsr_quality_mode = conf.get('fsr_quality_mode', self.fsr_quality_mode)
+        self.fsr_sharpening_strength = conf.get('fsr_sharpening_strength', self.fsr_sharpening_strength)
         # self.aco_compiler = conf.get('aco_compiler', self.aco_compiler)
         self.discrete_gpu = conf.get('discrete_gpu', self.discrete_gpu)
         self.virtual_desktop = conf.get('virtual_desktop', self.virtual_desktop)

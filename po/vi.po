@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-07-08 01:20+0000\n"
-"Last-Translator: CuCai2413 <matbao221@gmail.com>\n"
+"PO-Revision-Date: 2022-12-28 22:40+0000\n"
+"Last-Translator: rezarria <votanamcb@outlook.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bottles/"
 "bottles/vi/>\n"
 "Language: vi\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
-msgstr ""
+msgstr "Không có đường dẫn cụ thể"
 
 #: bottles/backend/managers/backup.py:69
 #, python-brace-format
@@ -43,33 +43,32 @@ msgstr "Thiếu các thành phần thiết yếu. Đang cài đặt …"
 
 #: bottles/backend/managers/manager.py:1088
 msgid "Failed to create bottle directory."
-msgstr ""
+msgstr "Không thể tạo thư mục chai bottle."
 
 #: bottles/backend/managers/manager.py:1100
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Không thể tạo thư mục/tệp giữ chỗ."
 
 #: bottles/backend/managers/manager.py:1105
 msgid "Generating bottle configuration…"
-msgstr "Đang tạo cấu hình chai…"
+msgstr "Đang tạo cấu hình bottle…"
 
 #: bottles/backend/managers/manager.py:1128
 msgid "Template found, applying…"
-msgstr ""
+msgstr "Đã tìm thấy mẫu, đang áp dụng…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1140
-#, fuzzy
 msgid "The Wine config is being updated…"
-msgstr "Cấu hình WINE đang được cập nhật …"
+msgstr "Cấu hình Wine đang được cập nhật …"
 
 #: bottles/backend/managers/manager.py:1142
 msgid "Wine config updated!"
-msgstr "Cấu hình WINE đã cập nhật!"
+msgstr "Cấu hình Wine đã cập nhật!"
 
 #: bottles/backend/managers/manager.py:1150
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Chạy dưới dạng Flatpak, Sandboxing của thư mục người dùng…"
+msgstr "Chạy qua Flatpak, Sandboxing thư mục người dùng…"
 
 #: bottles/backend/managers/manager.py:1152
 msgid "Sandboxing userdir…"
@@ -77,7 +76,7 @@ msgstr "Sandboxing thư mục người dùng…"
 
 #: bottles/backend/managers/manager.py:1193
 msgid "Setting Windows version…"
-msgstr "Đặt phiên bản Windows …"
+msgstr "Đang đặt phiên bản Windows …"
 
 #: bottles/backend/managers/manager.py:1203
 msgid "Apply CMD default settings…"
@@ -94,50 +93,48 @@ msgstr "Áp dụng môi trường: {0}…"
 
 #: bottles/backend/managers/manager.py:1232
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Sử dụng công thức môi trường tùy chỉnh…"
 
 #: bottles/backend/managers/manager.py:1235
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Công thức không tìm thấy hoặc không hợp lệ…"
 
 #: bottles/backend/managers/manager.py:1252
 msgid "Installing DXVK…"
-msgstr "Cài đặt DXVK…"
+msgstr "Đang cài đặt DXVK…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Installing VKD3D…"
-msgstr "Cài đặt VKD3D…"
+msgstr "Đang cài đặt VKD3D…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Installing DXVK-NVAPI…"
-msgstr "Cài đặt DXVK-NVAPI…"
+msgstr "Đang cài đặt DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1277
-#, fuzzy, python-format
+#, python-format
 msgid "Installing dependency: %s …"
-msgstr "Cài đặt phụ thuộc: {0}…"
+msgstr "Đang cài đặt phụ thuộc: %s…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "Creating versioning state 0…"
-msgstr "Tạo trạng thái phiên bản 0…"
+msgstr "Đang tạo trạng thái phiên bản 0…"
 
 #: bottles/backend/managers/manager.py:1297
 msgid "Finalizing…"
-msgstr "Hoàn tất…"
+msgstr "Đang hoàn tất…"
 
 #: bottles/backend/managers/manager.py:1308
-#, fuzzy
 msgid "Caching template…"
-msgstr "Tạo chai …"
+msgstr "Đang caching bản mẫu …"
 
 #: bottles/backend/managers/versioning.py:94
-#, fuzzy
 msgid "Committing state …"
-msgstr "Cập nhật trạng thái…"
+msgstr "Đang cập nhật trạng thái…"
 
 #: bottles/backend/managers/versioning.py:103
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Không có gì để cập nhật"
 
 #: bottles/backend/managers/versioning.py:109
 #, python-brace-format
@@ -145,28 +142,25 @@ msgid "New state [{0}] created successfully!"
 msgstr "Trạng thái mới [{0}] đã được tạo thành công!"
 
 #: bottles/backend/managers/versioning.py:137
-#, fuzzy
 msgid "States list retrieved successfully!"
-msgstr "Trạng thái mới [{0}] đã được tạo thành công!"
+msgstr "Đã truy xuất thành công danh sách trạng thái!"
 
 #: bottles/backend/managers/versioning.py:168
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "Trạng thái mới [{0}] đã được tạo thành công!"
+msgstr "Trạng thái {0} đã được khôi phục thành công!"
 
 #: bottles/backend/managers/versioning.py:173
-#, fuzzy
 msgid "Restoring state {} …"
-msgstr "Cập nhật trạng thái…"
+msgstr "Đang khôi phục trạng thái…"
 
 #: bottles/backend/managers/versioning.py:182
-#, fuzzy
 msgid "State not found"
-msgstr "Không tìm thấy trạng thái nào"
+msgstr "Không tìm thấy trạng thái"
 
 #: bottles/backend/managers/versioning.py:188
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "Trạng thái {} đã được kích hoạt"
 
 #: bottles/frontend/main.py:105
 msgid "Show version"
@@ -209,15 +203,15 @@ msgstr "[Làm mới] yêu cầu đã nhận."
 msgid "Calculating…"
 msgstr "Tính toán…"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:7
-#, fuzzy
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "© 2017-2022 - Nhà phát triển Chai"
+msgstr "Copyright © 2017 Bottles Developers"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:13
-#, fuzzy
 msgid "Bottles Developers"
-msgstr "© 2017-2022 - Nhà phát triển Chai"
+msgstr "Nhà phát triển Bottles"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -230,20 +224,16 @@ msgid "Uninstall"
 msgstr "Gỡ cài đặt"
 
 #: bottles/frontend/ui/component-entry.blp:23
-#, fuzzy
 msgid "Browse Files"
-msgstr "Duyệt các tập tin"
+msgstr "Duyệt tập tin"
 
 #: bottles/frontend/ui/component-entry.blp:34
-#, fuzzy
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"Việc cài đặt thất bại. Điều này có thể là do lỗi kho lưu trữ, tải về chỉ một "
-"phần hoặc kiểm tra không khớp.\n"
-"\n"
-"Nhấn để thử lại."
+"Việc cài đặt thất bại. Điều này có thể là do lỗi kho lưu trữ, tải về bị phân "
+"mảnh hoặc checksum không khớp. Nhấn để thử lại."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -254,9 +244,8 @@ msgid "0%"
 msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
-#, fuzzy
 msgid "Show Manifest"
-msgstr "Xem bản kê khai"
+msgstr "Xem Manifest"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
@@ -269,64 +258,57 @@ msgstr "Cài đặt lại"
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Báo cáo lỗi…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
-#, fuzzy
 msgid "Dependency name"
-msgstr "Phụ thuộc"
+msgstr "Tên gói phụ thuộc"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
-#, fuzzy
 msgid "Dependency description"
-msgstr "Phụ thuộc"
+msgstr "Mô tả gói phụ thuộc"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr ""
+msgstr "Thể loại"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
-#, fuzzy
 msgid "Download & Install this Dependency"
-msgstr "Tải xuống và Cài đặt phụ thuộc này"
+msgstr "Tải xuống và Cài đặt gói phụ thuộc này"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"Xảy ra lỗi cài đặt. Khởi động lại các Chai để đọc Báo cáo sự cố hoặc chạy nó "
-"qua thiết bị đầu cuối để đọc đầu ra."
+"Xảy ra lỗi cài đặt. Khởi động lại các Bottles để đọc Báo cáo sự cố hoặc chạy "
+"nó qua thiết bị đầu cuối để đọc đầu ra."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
-#, fuzzy
 msgid "Dependency Menu"
-msgstr "Phụ thuộc"
+msgstr "Danh mục gói phụ thuộc"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Xử lý sự cố"
 
 #: bottles/frontend/ui/details-bottle.blp:24
-#, fuzzy
 msgid "Browse Files…"
-msgstr "Duyệt các tập tin"
+msgstr "Duyệt tập tin…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
-#, fuzzy
 msgid "Duplicate Bottle…"
-msgstr "Nhân bản một bottle"
+msgstr "Nhân bản Bottle…"
 
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr ""
-"Đây là kho lưu trữ đầy đủ của chai của bạn, bao gồm cả các tệp cá nhân."
+"Đây là kho lưu trữ đầy đủ của bottle của bạn, bao gồm cả các tệp cá nhân."
 
 #: bottles/frontend/ui/details-bottle.blp:33
-#, fuzzy
 msgid "Full Backup…"
-msgstr "Lưu trữ đầy đủ"
+msgstr "Sao lưu đầy đủ…"
 
 #: bottles/frontend/ui/details-bottle.blp:37
 #: bottles/frontend/ui/importer.blp:68
@@ -334,44 +316,39 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
-"Đây chỉ là cấu hình chai, nó hoàn hảo nếu bạn muốn tạo một cái mới nhưng "
+"Đây chỉ là cấu hình bottle, nó hoàn hảo nếu bạn muốn tạo một cái mới nhưng "
 "không có tệp cá nhân."
 
 #: bottles/frontend/ui/details-bottle.blp:38
-#, fuzzy
 msgid "Export Configuration…"
-msgstr "Cấu hình"
+msgstr "Xuất Cấu hình…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:343
-#, fuzzy
 msgid "Show Hidden Programs"
-msgstr "Chương trình"
+msgstr "Hiện Chương Trình Ẩn"
 
 #: bottles/frontend/ui/details-bottle.blp:49
-#, fuzzy
 msgid "Search for new programs"
-msgstr "Tìm kiếm các chương trình đã cài đặt"
+msgstr "Tìm kiếm các chương trình mới"
 
 #: bottles/frontend/ui/details-bottle.blp:56
-#, fuzzy
 msgid "Delete Bottle…"
-msgstr "Nhân bản một bottle"
+msgstr "Nhân bản Bottle…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:65
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "Danh mục cấp hai"
 
 #: bottles/frontend/ui/details-bottle.blp:90
-#, fuzzy
 msgid "Force Stop all Processes"
-msgstr "Đóng tất cả tiến trình của WINE"
+msgstr "Cưỡng ép đóng tất cả tiến trình của Wine"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr "Giả lập một lần tắt hệ thống Windows."
+msgstr "Giả lập một lệnh tắt cấp hệ thống."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
@@ -379,7 +356,7 @@ msgstr "Tắt nguồn"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr "Giả lập một lần khởi động lại hệ thống Windows."
+msgstr "Giả lập một lệnh khởi động lại cấp hệ thống."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
@@ -387,16 +364,15 @@ msgstr "Khởi động lại"
 
 #: bottles/frontend/ui/details-bottle.blp:111
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "Thả các tệp để thực thi"
 
 #: bottles/frontend/ui/details-bottle.blp:120
-#, fuzzy
 msgid "My bottle"
-msgstr "Chai mới"
+msgstr "Bottle của tôi"
 
 #: bottles/frontend/ui/details-bottle.blp:132
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: bottles/frontend/ui/details-bottle.blp:144
 #: bottles/frontend/ui/list-entry.blp:12 bottles/frontend/ui/new.blp:81
@@ -412,12 +388,12 @@ msgstr "Trình thực thi"
 #: bottles/frontend/ui/details-bottle.blp:168
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr "Phiên bản đã bật cho chai này"
+msgstr "Phiên bản đã kích hoạt cho bottle này"
 
 #: bottles/frontend/ui/details-bottle.blp:173
 #, fuzzy
 msgid "Versioning is active for this bottle."
-msgstr "Phiên bản đang hoạt động trong chai này."
+msgstr "Phiên bản đã hoạt động cho bottle này."
 
 #: bottles/frontend/ui/details-bottle.blp:182
 #: bottles/frontend/ui/list-entry.blp:31
@@ -425,18 +401,15 @@ msgid "0"
 msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:202
-#, fuzzy
 msgid "Run Executable…"
-msgstr "Thực thi chương trình"
+msgstr "Thực thi chương trình…"
 
 #: bottles/frontend/ui/details-bottle.blp:226
 #: bottles/frontend/ui/dialog-launch-options.blp:6
-#, fuzzy
 msgid "Launch Options"
-msgstr "Thay đổi Tùy chọn Khởi chạy"
+msgstr "Tùy chọn Khởi chạy"
 
 #: bottles/frontend/ui/details-bottle.blp:243
-#, fuzzy
 msgid "Run in Terminal"
 msgstr "Mở trong Terminal"
 
@@ -450,93 +423,87 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Nhấp vào \"Thực thi chương trình…\" để chạy tệp thực thi, \"Thêm lối tắt...\""
+" để thêm tệp thực thi vào danh sách Chương trình hoặc \"Cài đặt chương trình…"
+"\" để cài đặt các chương trình do cộng đồng quản lý."
 
 #: bottles/frontend/ui/details-bottle.blp:290
 msgid "Add Shortcuts…"
-msgstr ""
+msgstr "Thêm lối tắt…"
 
 #: bottles/frontend/ui/details-bottle.blp:317
-#, fuzzy
 msgid "Install Programs…"
-msgstr "Cài đặt DXVK…"
+msgstr "Cài đặt chương trình…"
 
 #: bottles/frontend/ui/details-bottle.blp:338
-#, fuzzy
 msgid "Options"
-msgstr "Hoạt động"
+msgstr "Cài đặt"
 
 #: bottles/frontend/ui/details-bottle.blp:342
 #: bottles/frontend/views/details.py:135
-#, fuzzy
 msgid "Settings"
-msgstr "Quản lý thiết đặt Gamescope"
+msgstr "Cài đặt"
 
 #: bottles/frontend/ui/details-bottle.blp:343
-#, fuzzy
 msgid "Configure bottle settings."
-msgstr "Tạo chai …"
+msgstr "Cấu hình cài đặt bottle."
 
 #: bottles/frontend/ui/details-bottle.blp:352
 #: bottles/frontend/views/details.py:139
 msgid "Dependencies"
-msgstr "Phụ thuộc"
+msgstr "Gói phụ thuộc"
 
 #: bottles/frontend/ui/details-bottle.blp:353
-#, fuzzy
 msgid "Install dependencies for programs."
-msgstr "Cài đặt phụ thuộc: {0}…"
+msgstr "Cài đặt gói phụ thuộc cho chương trình."
 
 #: bottles/frontend/ui/details-bottle.blp:362
 #: bottles/frontend/ui/details-preferences.blp:369
 #: bottles/frontend/views/details.py:143
 msgid "Snapshots"
-msgstr ""
+msgstr "Snapshots"
 
 #: bottles/frontend/ui/details-bottle.blp:363
-#, fuzzy
 msgid "Create and manage bottle states."
-msgstr "Lưu trạng thái chai."
+msgstr "Tạo và quản lý trạng thái bottle."
 
 #: bottles/frontend/ui/details-bottle.blp:372
 #: bottles/frontend/ui/details-bottle.blp:418
 #: bottles/frontend/views/details.py:151
-#, fuzzy
 msgid "Task Manager"
-msgstr "Quản lý tác vụ"
+msgstr "Trình quản lý tác vụ"
 
 #: bottles/frontend/ui/details-bottle.blp:373
 msgid "Manage running programs."
-msgstr ""
+msgstr "Quản lý các chương trình đang chạy."
 
 #: bottles/frontend/ui/details-bottle.blp:382
 msgid "Tools"
-msgstr ""
+msgstr "Công cụ"
 
 #: bottles/frontend/ui/details-bottle.blp:386
 msgid "Command Line"
-msgstr ""
+msgstr "Cửa sổ lệnh"
 
 #: bottles/frontend/ui/details-bottle.blp:387
-#, fuzzy
 msgid "Run commands inside the Bottle."
-msgstr "Chạy .exe / .msi trong bottle này"
+msgstr "Chạy lệnh trong bottle này"
 
 #: bottles/frontend/ui/details-bottle.blp:396
-#, fuzzy
 msgid "Registry Editor"
 msgstr "Trình chỉnh sửa Registry"
 
 #: bottles/frontend/ui/details-bottle.blp:397
 msgid "Edit the internal registry."
-msgstr ""
+msgstr "Chỉnh sửa registry nội bộ."
 
 #: bottles/frontend/ui/details-bottle.blp:405
 msgid "Legacy Wine Tools"
-msgstr ""
+msgstr "Công cụ của Wine"
 
 #: bottles/frontend/ui/details-bottle.blp:409
 msgid "Explorer"
-msgstr ""
+msgstr "Explorer"
 
 #: bottles/frontend/ui/details-bottle.blp:427
 #, fuzzy
@@ -559,9 +526,8 @@ msgid "Control Panel"
 msgstr "Control panel"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
-#, fuzzy
 msgid "Search for dependencies…"
-msgstr "Chọn các gói phụ thuộc"
+msgstr "Tìm kiếm các gói phụ thuộc…"
 
 #: bottles/frontend/ui/details-dependencies.blp:15
 msgid ""
@@ -862,6 +828,7 @@ msgstr ""
 msgid "Manage the Sandbox Permissions"
 msgstr "Quản lý các phiên bản DXVK"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:287
 msgid "Bottles Runtime"
 msgstr "Bottles Runtime"
@@ -1049,6 +1016,7 @@ msgstr "Chọn"
 msgid "Create New Bottle"
 msgstr "Tạo một Chai mới"
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 #, fuzzy
 msgid "Bottles Crash Report"
@@ -1919,11 +1887,10 @@ msgstr "Chọn một tên cho bottle của bạn"
 msgid "Steam Proton"
 msgstr "ProtonDB"
 
-#: bottles/frontend/ui/list.blp:42 bottles/frontend/ui/window.blp:37
+# Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
+#: bottles/frontend/ui/list.blp:42
 #: bottles/frontend/ui/window.blp:52
 #: bottles/frontend/windows/main_window.py:166
-#: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.metainfo.xml.in:7
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -2061,6 +2028,7 @@ msgstr "Đã tạo Chai"
 msgid "Previous"
 msgstr ""
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
 msgstr "Chào mừng bạn đến với Chai"
@@ -2070,6 +2038,7 @@ msgstr "Chào mừng bạn đến với Chai"
 msgid "Run Windows Software on Linux."
 msgstr "Chạy phần mềm Windows trên Linux với Bottles!"
 
+# Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 #, fuzzy
 msgid "Windows in Bottles"
@@ -2097,6 +2066,7 @@ msgstr ""
 msgid "Please Finish the setup first"
 msgstr ""
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:120
 #, fuzzy
 msgid "Start using Bottles"
@@ -2356,6 +2326,7 @@ msgstr "Trình Nhập"
 msgid "Help"
 msgstr ""
 
+# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:31
 msgid "About Bottles"
 msgstr "Về Chai"
