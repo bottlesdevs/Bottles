@@ -17,6 +17,7 @@
 
 import os
 import shutil
+from glob import glob
 from typing import NewType
 from abc import abstractmethod
 
@@ -44,6 +45,15 @@ class DLLComponent:
 
     def check(self):
         found = self.dlls.copy()
+
+        # Workaround to expand paths that contains "*" (nvapi for example)
+        for path in self.dlls:
+            if "*" in path:
+                orig_path = path
+                for globbed_path in glob(path):
+                    found |= {globbed_path: found[orig_path]}
+                del found[orig_path]
+        self.dlls = found
 
         for path in self.dlls:
             _path = os.path.join(self.base_path, path)

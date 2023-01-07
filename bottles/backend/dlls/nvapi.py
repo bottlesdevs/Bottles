@@ -15,6 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
+
 from bottles.backend.dlls.dll import DLLComponent
 from bottles.backend.utils.manager import ManagerUtils
 
@@ -26,12 +28,23 @@ class NVAPIComponent(DLLComponent):
         ],
         "x64": [
             "nvapi64.dll"
-        ],
-        "/usr/lib64/nvidia/wine": [
-            "nvngx.dll",
-            "_nvngx.dll"
         ]
     }
+
+    if "FLATPAK_ID" in os.environ:
+        dlls |= {
+            "/usr/lib/x86_64-linux-gnu/GL/nvidia-*/extra/nvidia/wine": [
+                "nvngx.dll",
+                "_nvngx.dll"
+            ]
+        }
+    else:
+        dlls |= {
+            "/usr/lib64/nvidia/wine": [
+                "nvngx.dll",
+                "_nvngx.dll"
+            ]
+        }
 
     @staticmethod
     def get_base_path(version: str):
