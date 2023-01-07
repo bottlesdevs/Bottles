@@ -72,7 +72,7 @@ class TemplateManager:
             "uuid": _uuid,
             "env": env,
             "created": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "config": config
+            "config": config.to_dict()
         }
 
         with open(os.path.join(_path, "template.yml"), "w") as f:
