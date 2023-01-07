@@ -17,6 +17,7 @@ bottles_sources = [
   'display.py',
   'generic_cli.py',
   'journal.py',
+  'filechooser.py',
   'bottlepicker.py',
   'protonalert.py',
   'sandbox.py',
