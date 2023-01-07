@@ -97,7 +97,7 @@ class ImporterView(Adw.Bin):
         as Bottles export bottles in this format. Once selected, it will
         be imported.
         """
-        def set_path(_dialog, response, file=None):
+        def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
@@ -107,7 +107,7 @@ class ImporterView(Adw.Bin):
                 callback=self.__finish,
                 window=self.window,
                 scope="full",
-                path=file.get_path().get_file(),
+                path=dialog.get_path().get_file(),
                 manager=self.manager
             )
 
@@ -134,7 +134,7 @@ class ImporterView(Adw.Bin):
         which are the Bottles' configuration file. Once selected, it will
         be imported.
         """
-        def set_path(_dialog, response, file=None):
+        def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
@@ -144,7 +144,7 @@ class ImporterView(Adw.Bin):
                 callback=self.__finish,
                 window=self.window,
                 scope="config",
-                path=file.get_file().get_path(),
+                path=dialog.get_file().get_path(),
                 manager=self.manager
             )
 

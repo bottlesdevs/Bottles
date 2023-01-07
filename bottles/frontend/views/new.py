@@ -146,35 +146,41 @@ class NewView(Adw.Window):
         return name in self.manager.local_bottles
 
     def choose_env_recipe(self, *_args):
-        def set_path(_dialog, response, _file_dialog):
-            if response == -3:
-                _file = _file_dialog.get_file()
-                self.env_recipe_path = _file.get_path()
+        def set_path(_dialog, response):
+            if response == Gtk.ResponseType.ACCEPT:
+                self.env_recipe_path = dialog.get_file().get_path()
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose a recipe file"),
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select a Recipe"),
             action=Gtk.FileChooserAction.OPEN,
-            buttons=(_("Cancel"), _("Select")),
-            filters=["yml"],
-            callback=set_path
+            parent=self.window,
         )
+
+        filter = Gtk.FileFilter()
+        filter.set_name("yaml")
+        # TODO: Create yaml media type https://www.ietf.org/archive/id/draft-ietf-httpapi-yaml-mediatypes-00.html#name-media-type-application-yaml
+        filter.add_pattern("*.yml")
+        filter.add_pattern("*.yaml")
+
+        dialog.set_modal(True)
+        dialog.add_filter(filter)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def choose_path(self, *_args):
-        def set_path(_dialog, response, _file_dialog):
-            if response == Gtk.ResponseType.OK:
-                _file = _file_dialog.get_file()
-                self.custom_path = _file.get_path()
-            _file_dialog.destroy()
+        def set_path(_dialog, response):
+            if response == Gtk.ResponseType.ACCEPT:
+                self.custom_path = dialog.get_file().get_path()
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose where to store the bottle"),
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Bottle Directory"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(_("Cancel"), _("Select")),
-            native=False,
-            callback=set_path
+            parent=self.window
         )
+
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def create_bottle(self, *_args):
         # set widgets states
