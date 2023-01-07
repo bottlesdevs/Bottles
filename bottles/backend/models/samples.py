@@ -85,7 +85,7 @@ class Samples:
             "Runner": "wine",
             "Parameters": {
                 "dxvk": True,
-                # "nvapi": True,
+                "dxvk_nvapi": True,
                 "vkd3d": True,
                 "sync": "esync",
                 "fsr": False,
