@@ -144,7 +144,7 @@ class ImporterView(Adw.Bin):
                 callback=self.__finish,
                 window=self.window,
                 scope="config",
-                path=file.get_path().get_file(),
+                path=file.get_file().get_path(),
                 manager=self.manager
             )
 
