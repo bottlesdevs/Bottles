@@ -118,7 +118,7 @@ class ImporterView(Adw.Bin):
         )
 
         filter = Gtk.FileFilter()
-        filter.set_name("tar.gz")
+        filter.set_name("GNU Gzip Archive")
         filter.add_mime_type("application/gzip")
         dialog.add_filter(filter)
 
