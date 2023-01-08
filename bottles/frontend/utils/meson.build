@@ -7,6 +7,7 @@ bottles_sources = [
   'gtk.py',
   'threading.py',
   'common.py',
+  'filters.py',
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)
