@@ -22,6 +22,7 @@ from gi.repository import Gtk, Adw
 
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.utils.filters import add_yaml_filters
 
 from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
@@ -155,14 +156,8 @@ class NewView(Adw.Window):
             parent=self.window,
         )
 
-        filter = Gtk.FileFilter()
-        filter.set_name("yaml")
-        # TODO: Create yaml media type https://www.ietf.org/archive/id/draft-ietf-httpapi-yaml-mediatypes-00.html#name-media-type-application-yaml
-        filter.add_pattern("*.yml")
-        filter.add_pattern("*.yaml")
-
+        add_yaml_filters(dialog)
         dialog.set_modal(True)
-        dialog.add_filter(filter)
         dialog.connect("response", set_path)
         dialog.show()
 

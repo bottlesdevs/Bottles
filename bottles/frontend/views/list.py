@@ -23,7 +23,7 @@ from gi.repository import Gtk, GLib, Adw
 from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
-
+from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class BottleViewEntry(Adw.ActionRow):
@@ -120,17 +120,8 @@ class BottleViewEntry(Adw.ActionRow):
             accept_label=_("Run")
         )
 
-        filter = Gtk.FileFilter()
-        filter.set_name(_("Supported Files"))
-        filter.add_pattern("*.exe")
-        filter.add_mime_type("application/x-msi")
-
-        all_filter = Gtk.FileFilter()
-        all_filter.set_name(_("All Files"))
-        all_filter.add_pattern("*")
-
-        dialog.add_filter(filter)
-        dialog.add_filter(all_filter)
+        add_executable_filters(dialog)
+        add_all_filters(dialog)
         dialog.set_modal(True)
         dialog.connect("response", set_path)
         dialog.show()

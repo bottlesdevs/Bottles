@@ -21,6 +21,7 @@ from gi.repository import Gtk, Adw
 from bottles.backend.managers.backup import BackupManager
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.widgets.importer import ImporterEntry
+from bottles.frontend.utils.filters import add_yaml_filters
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer.ui')
@@ -153,14 +154,8 @@ class ImporterView(Adw.Bin):
             accept_label=_("Import")
         )
 
-        filter = Gtk.FileFilter()
-        filter.set_name("yaml")
-        # TODO: Create yaml media type https://www.ietf.org/archive/id/draft-ietf-httpapi-yaml-mediatypes-00.html#name-media-type-application-yaml
-        filter.add_pattern("*.yml")
-        filter.add_pattern("*.yaml")
-
+        add_yaml_filters(dialog)
         dialog.set_modal(True)
-        dialog.add_filter(filter)
         dialog.connect("response", set_path)
         dialog.show()
 

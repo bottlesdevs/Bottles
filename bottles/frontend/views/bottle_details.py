@@ -38,6 +38,7 @@ from bottles.frontend.widgets.executable import ExecButton
 from bottles.frontend.windows.generic import MessageDialog
 from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
+from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
 
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winecfg import WineCfg
@@ -281,12 +282,7 @@ class BottleView(Adw.PreferencesPage):
             accept_label=_("Add")
         )
 
-        filter = Gtk.FileFilter()
-        filter.set_name(_("Supported Files"))
-        filter.add_pattern("*.exe")
-        filter.add_mime_type("application/x-msi")
-
-        dialog.add_filter(filter)
+        add_executable_filters(dialog)
         dialog.set_modal(True)
         dialog.connect("response", set_path)
         dialog.show()
@@ -408,17 +404,8 @@ class BottleView(Adw.PreferencesPage):
                 accept_label=_("Run")
             )
 
-            filter = Gtk.FileFilter()
-            filter.set_name(_("Supported Files"))
-            filter.add_pattern("*.exe")
-            filter.add_mime_type("application/x-msi")
-
-            all_filter = Gtk.FileFilter()
-            all_filter.set_name(_("All Files"))
-            all_filter.add_pattern("*")
-
-            dialog.add_filter(filter)
-            dialog.add_filter(all_filter)
+            add_executable_filters(dialog)
+            add_all_filters(dialog)
             dialog.set_modal(True)
             dialog.connect("response", execute)
             dialog.show()
