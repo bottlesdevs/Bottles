@@ -405,7 +405,7 @@ class BottleView(Adw.PreferencesPage):
                 title=_("Select Executable"),
                 action=Gtk.FileChooserAction.OPEN,
                 parent=self.window,
-                accept_label=_("Add")
+                accept_label=_("Run")
             )
 
             filter = Gtk.FileFilter()
