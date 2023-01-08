@@ -431,7 +431,8 @@ class DependencyManager:
 
             if not CabExtract().run(
                     f"{path}/{step.get('file_name')}",
-                    file_path
+                    file_path,
+                    destination=dest
             ):
                 return False
 

@@ -108,7 +108,8 @@ class WineCommand:
     
     def __get_config(self, config: dict) -> dict:
         if hasattr(config, "data"):
-            return config.data["config"]
+            if cnf := config.data.get("config"):
+                return cnf
 
         if isinstance(config, dict):
             return config
@@ -200,8 +201,10 @@ class WineCommand:
             dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
-        if (params.get("use_runtime") or params.get("use_eac_runtime") or params.get("use_be_runtime")) \
-                and not self.terminal and not return_steam_env:
+        if (params.get("use_runtime") \
+            or params.get("use_eac_runtime") \
+            or params.get("use_be_runtime")) \
+            and not self.terminal and not return_steam_env:
             _rb = RuntimeManager.get_runtime_env("bottles")
             if _rb:
                 _eac = RuntimeManager.get_eac()
@@ -608,7 +611,9 @@ class WineCommand:
         if None in [self.runner, self.env]:
             return
 
-        if vmtouch_available and self.config["Parameters"].get("vmtouch"):
+        if vmtouch_available \
+            and self.config["Parameters"].get("vmtouch") \
+            and not self.terminal:
             self.vmtouch_preload()
 
         if self.config["Parameters"].get("sandbox"):
@@ -647,7 +652,9 @@ class WineCommand:
         res = proc.communicate()[0]
         enc = detect_encoding(res)
 
-        if vmtouch_available and self.config["Parameters"].get("vmtouch"):
+        if vmtouch_available \
+            and self.config["Parameters"].get("vmtouch") \
+            and not self.terminal:
             self.vmtouch_free()
 
         if enc is not None:
