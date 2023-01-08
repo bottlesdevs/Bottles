@@ -20,8 +20,6 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.frontend.windows.filechooser import FileChooser
-
 from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
@@ -107,19 +105,35 @@ class BottleViewEntry(Adw.ActionRow):
     '''Display file dialog for executable'''
 
     def run_executable(self, *_args):
-        def set_path(_dialog, response, _file_dialog):
-            if response == -3:
-                _file = _file_dialog.get_file()
-                _executor = WineExecutor(self.config, exec_path=_file.get_path())
-                RunAsync(_executor.run)
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose a Windows executable file"),
-            action=Gtk.FileChooserAction.OPEN,
-            buttons=(_("Cancel"), _("Run")),
-            callback=set_path
-        )
+            path = dialog.get_file().get_path()
+            _executor = WineExecutor(self.config, exec_path=path)
+            RunAsync(_executor.run)
+
+            dialog = Gtk.FileChooserNative.new(
+                title=_("Select Executable"),
+                action=Gtk.FileChooserAction.OPEN,
+                parent=self.window,
+                accept_label=_("Run")
+            )
+
+            filter = Gtk.FileFilter()
+            filter.set_name(_("Supported Files"))
+            filter.add_pattern("*.exe")
+            filter.add_mime_type("application/x-msi")
+
+            all_filter = Gtk.FileFilter()
+            all_filter.set_name(_("All Files"))
+            all_filter.add_pattern("*")
+
+            dialog.add_filter(filter)
+            dialog.add_filter(all_filter)
+            dialog.set_modal(True)
+            dialog.connect("response", set_path)
+            dialog.show()
 
     def show_details(self, widget=None, config=None):
         if config is None:
