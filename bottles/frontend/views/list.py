@@ -113,27 +113,27 @@ class BottleViewEntry(Adw.ActionRow):
             _executor = WineExecutor(self.config, exec_path=path)
             RunAsync(_executor.run)
 
-            dialog = Gtk.FileChooserNative.new(
-                title=_("Select Executable"),
-                action=Gtk.FileChooserAction.OPEN,
-                parent=self.window,
-                accept_label=_("Run")
-            )
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Executable"),
+            action=Gtk.FileChooserAction.OPEN,
+            parent=self.window,
+            accept_label=_("Run")
+        )
 
-            filter = Gtk.FileFilter()
-            filter.set_name(_("Supported Files"))
-            filter.add_pattern("*.exe")
-            filter.add_mime_type("application/x-msi")
+        filter = Gtk.FileFilter()
+        filter.set_name(_("Supported Files"))
+        filter.add_pattern("*.exe")
+        filter.add_mime_type("application/x-msi")
 
-            all_filter = Gtk.FileFilter()
-            all_filter.set_name(_("All Files"))
-            all_filter.add_pattern("*")
+        all_filter = Gtk.FileFilter()
+        all_filter.set_name(_("All Files"))
+        all_filter.add_pattern("*")
 
-            dialog.add_filter(filter)
-            dialog.add_filter(all_filter)
-            dialog.set_modal(True)
-            dialog.connect("response", set_path)
-            dialog.show()
+        dialog.add_filter(filter)
+        dialog.add_filter(all_filter)
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def show_details(self, widget=None, config=None):
         if config is None:
