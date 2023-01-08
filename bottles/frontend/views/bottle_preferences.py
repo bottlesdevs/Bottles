@@ -285,7 +285,7 @@ class PreferencesView(Adw.PreferencesPage):
         dialog.connect("response", set_path)
         dialog.show()
 
-    def reset_cwd(self, widget):
+    def reset_cwd(self, *_args):
         self.manager.update_config(config=self.config, key="WorkingDir", value="")
         self.label_cwd.set_label("(Default)")
         self.btn_cwd_reset.set_visible(False)
