@@ -22,7 +22,7 @@ from gi.repository import Gtk, Adw
 
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
-from bottles.frontend.utils.filters import add_yaml_filters
+from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 
 from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
@@ -157,6 +157,7 @@ class NewView(Adw.Window):
         )
 
         add_yaml_filters(dialog)
+        add_all_filters(dialog)
         dialog.set_modal(True)
         dialog.connect("response", set_path)
         dialog.show()

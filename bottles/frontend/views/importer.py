@@ -21,7 +21,7 @@ from gi.repository import Gtk, Adw
 from bottles.backend.managers.backup import BackupManager
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.widgets.importer import ImporterEntry
-from bottles.frontend.utils.filters import add_yaml_filters
+from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer.ui')
@@ -120,9 +120,11 @@ class ImporterView(Adw.Bin):
         filter = Gtk.FileFilter()
         filter.set_name("tar.gz")
         filter.add_mime_type("application/gzip")
+        dialog.add_filter(filter)
+
+        add_all_filters(dialog)
 
         dialog.set_modal(True)
-        dialog.add_filter(filter)
         dialog.connect("response", set_path)
         dialog.show()
 
@@ -155,6 +157,7 @@ class ImporterView(Adw.Bin):
         )
 
         add_yaml_filters(dialog)
+        add_all_filters(dialog)
         dialog.set_modal(True)
         dialog.connect("response", set_path)
         dialog.show()
