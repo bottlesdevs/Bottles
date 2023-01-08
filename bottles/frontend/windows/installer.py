@@ -59,7 +59,7 @@ class LocalResourceEntry(Adw.ActionRow):
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Resource File"),
             action=Gtk.FileChooserAction.OPEN,
-            parent=self.window,
+            parent=self.parent,
         )
 
         dialog.set_modal(True)
