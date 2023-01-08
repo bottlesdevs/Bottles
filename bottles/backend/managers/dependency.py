@@ -557,7 +557,7 @@ class DependencyManager:
             if "*" in step.get('file_name'):
                 files = glob(f"{path}/{step.get('file_name')}")
                 if not files:
-                    logging.info(f"File/s not found in {path}")
+                    logging.info(f"File(s) not found in {path}")
                     return False
                 for fg in files:
                     _name = fg.split("/")[-1]
