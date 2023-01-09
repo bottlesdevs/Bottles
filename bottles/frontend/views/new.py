@@ -33,6 +33,12 @@ class NewView(Adw.Window):
     __gtype_name__ = 'NewView'
 
     # region Widgets
+    gaming = Gtk.Template.Child()
+    application = Gtk.Template.Child()
+    custom = Gtk.Template.Child()
+    check_gaming = Gtk.Template.Child()
+    check_application = Gtk.Template.Child()
+    check_custom = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     stack_create = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
@@ -53,6 +59,7 @@ class NewView(Adw.Window):
     headerbar = Gtk.Template.Child()
     shortcut_escape = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
+    group_custom = Gtk.Template.Child()
 
     # endregion
 
@@ -62,16 +69,15 @@ class NewView(Adw.Window):
         # common variables and references
         self.window = window
         self.manager = window.manager
-        self.selected_env = "gaming"
-        self.env_recipe_path = None
         self.new_bottle_config = {}
         self.custom_path = ""
         self.runner = None
 
         # connect signals
-        self.btn_cancel.connect("clicked", self.__close_window)
-        self.btn_close.connect("clicked", self.__close_window)
-        self.btn_close_pill.connect("clicked", self.__close_window)
+        self.check_custom.connect("toggled", self.__set_group)
+        self.btn_cancel.connect("clicked", self.do_close_request)
+        self.btn_close.connect("clicked", self.do_close_request)
+        self.btn_close_pill.connect("clicked", self.do_close_request)
         self.btn_create.connect("clicked", self.create_bottle)
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.btn_choose_path.connect("clicked", self.choose_path)
@@ -122,16 +128,11 @@ class NewView(Adw.Window):
         # focus on the entry_name
         self.entry_name.grab_focus()
 
-    def set_active_env(self, widget, row):
-        """
-        This function set the active environment on row selection.
-        """
-        self.selected_env = row.get_buildable_id()
+    def __set_group(self, widget):
+        self.group_custom.set_sensitive(self.check_custom.get_active())
 
     def __check_entry_name(self, *_args):
         result = GtkUtils.validate_entry(self.entry_name, extend=self.__check_already_in_use)
-        if not result:
-            self.window.show_toast(_("The name has special characters or is already in use."))
         self.btn_create.set_sensitive(result)
     
     def __check_already_in_use(self, name):
@@ -185,27 +186,23 @@ class NewView(Adw.Window):
         # avoid giant/empty window
         self.set_default_size(450, 430)
 
-        sandbox_state = self.switch_sandbox.get_state()
-        if self.selected_env == "custom":
-            self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
+        environment = self.__radio_get_active()
 
-        if self.combo_arch.get_selected() == 0:
-            arch = "win64"
-        else:
-            arch = "win32"
+        if environment == "custom":
+            self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
         RunAsync(
             task_func=self.manager.create_bottle,
             callback=self.finish,
             name=self.entry_name.get_text(),
             path=self.custom_path,
-            environment=self.selected_env,
+            environment=environment,
             runner=self.runner,
-            arch=arch,
+            arch="win32" if self.combo_arch.get_selected() else "win64",
             dxvk=self.manager.dxvk_available[0],
-            sandbox=sandbox_state,
+            sandbox=self.switch_sandbox.get_state(),
             fn_logger=self.update_output,
-            custom_environment=self.env_recipe_path
+            custom_environment=getattr(self, "env_recipe_path", None)
         )
 
     def update_output(self, text):
@@ -241,11 +238,22 @@ class NewView(Adw.Window):
         self.manager.check_bottles()
         self.window.page_list.update_bottles(show=result.data.get("config").get("Path"))
 
-    def __close_window(self, *_args):
-        """
-        This function check if an executable was passed to Bottles as
-        a command line argument. If so, it will be launched in the new
-        bottles and will close the bottle creation dialog. If there is
-        no arguments, it will simply close the dialog.
-        """
-        self.destroy()
+    def __radio_get_active(self):
+        # TODO: Remove this ugly zig zag and find a better way to set the environment
+        if self.check_gaming.get_active():
+            return "gaming"
+        elif self.check_application.get_active():
+            return "application"
+        else:
+            return "custom"
+
+    def do_close_request(self, *args):
+        if self.stack_create.get_visible_child_name() == "page_creating":
+            # TODO: Implement AdwMessageDialog to prompt the user if they are
+            # SURE they want to cancel creation. For now, the window will not
+            # react if the user attempts to close the window while a bottle
+            # is being created
+            return True
+        else:
+            self.close()
+            return False)

@@ -117,6 +117,8 @@ template NewView : .AdwWindow {
           }
 
           .AdwPreferencesGroup group_custom {
+            sensitive: false;
+
             .AdwActionRow row_sandbox {
               title: _("Unlink User Directory from Home Directory");
               activatable-widget: "switch_sandbox";
