@@ -196,80 +196,80 @@ template NewView : .AdwWindow {
         }
 
         ;
+      }
 
-        StackPage page_creating {
-          name: "page_creating";
-          child:
-          WindowHandle {
-            Box {
-              orientation: vertical;
-              spacing: 12;
+      StackPage page_creating {
+        name: "page_creating";
+        child:
+        WindowHandle {
+          Box {
+            orientation: vertical;
+            spacing: 12;
 
-              .AdwStatusPage {
-                valign: "center";
-                title: _("Creating a Bottle…");
-                description: _("This could take a while.");
-              }
+            .AdwStatusPage {
+              valign: "center";
+              title: _("Creating a Bottle…");
+              description: _("This could take a while.");
+            }
 
-              ScrolledWindow {
-                margin-start: 12;
-                margin-end: 12;
-                min-content-height: 200;
-                overflow: hidden;
+            ScrolledWindow {
+              margin-start: 12;
+              margin-end: 12;
+              min-content-height: 200;
+              overflow: hidden;
 
-                Label label_output {
-                  hexpand: true;
-                  valign: fill;
-                  wrap: true;
-                  selectable: true;
-                  xalign: 0;
-                  yalign: 0;
-
-                  styles [
-                    "monospace",
-                    "terminal",
-                  ]
-                }
+              Label label_output {
+                hexpand: true;
+                valign: fill;
+                wrap: true;
+                selectable: true;
+                xalign: 0;
+                yalign: 0;
 
                 styles [
-                  "card",
+                  "monospace",
+                  "terminal",
                 ]
               }
+
+              styles [
+                "card",
+              ]
             }
           }
-
-          ;
         }
 
-        StackPage page_created {
-          name: "page_created";
-          child:
-          WindowHandle {
-            Box {
-              orientation: vertical;
-              spacing: 12;
+        ;
+      }
 
-              .AdwStatusPage created {
-                icon-name: "selection-mode-symbolic";
-                title: _("Bottle Created");
-                valign: "center";
-              }
+      StackPage page_created {
+        name: "page_created";
+        child:
+        WindowHandle {
+          Box {
+            orientation: vertical;
+            spacing: 12;
 
-              Button btn_close_pill {
-                label: _("Close");
-                valign: center;
-                halign: center;
+            .AdwStatusPage created {
+              icon-name: "selection-mode-symbolic";
+              title: _("Bottle Created");
+              valign: "center";
+            }
 
-                styles [
-                  "suggested-action",
-                  "pill",
-                ]
-              }
+            Button btn_close_pill {
+              label: _("Close");
+              valign: center;
+              halign: center;
+
+              styles [
+                "suggested-action",
+                "pill",
+              ]
             }
           }
-
-          ;
         }
+
+        ;
       }
     }
   }
