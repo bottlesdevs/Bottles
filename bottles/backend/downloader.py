@@ -96,10 +96,11 @@ class Downloader:
         name = self.file.split("/")[-1]
         c_close, c_complete, c_incomplete = "\033[0m", "\033[92m", "\033[90m"
         divider = 2
-        full_text_size = len(f"\r{c_complete}{name} ({100}%) {'━' * int(100 / divider)} ({done_str}/{total_str} - 100MB/S)")
+        full_text_size = len(f"\r{c_complete}{name} (100%) {'━' * int(100 / divider)} ({total_str}/{total_str} - 100MB)")
         while os.get_terminal_size().columns < full_text_size:
             divider = divider + 1
-            full_text_size = len(f"\r{c_complete}{name} ({100}%) {'━' * int(100 / divider)} ({total_str}/{total_str} - 100MB/S)")
+            full_text_size = len(f"\r{c_complete}{name} (100%) {'━' * int(100 / divider)} ({total_str}/{total_str} - 100MB)")
+            if divider > 10: break
         try:
             print(
                 f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) {'━' * int(percent / divider)} ({done_str}/{total_str} - {speed_str})",
