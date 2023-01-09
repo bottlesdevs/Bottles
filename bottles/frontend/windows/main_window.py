@@ -160,7 +160,7 @@ class MainWindow(Adw.ApplicationWindow):
                 child=self.page_library,
                 name="page_library",
                 title=_("Library")
-            ).set_icon_name("emote-love-symbolic")
+            ).set_icon_name("library-symbolic")
 
             self.page_list.search_bar.set_key_capture_widget(self)
             self.btn_search.bind_property('active', self.page_list.search_bar, 'search-mode-enabled',
