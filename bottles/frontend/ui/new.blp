@@ -6,35 +6,31 @@ template NewView : .AdwWindow {
   default-width: "450";
   hide-on-close: true;
 
-  ShortcutController {
-    Shortcut shortcut_escape {
-      trigger: "Escape";
-      action: "action(window.close)";
-    }
-  }
+  // ShortcutController {
+  //   Shortcut shortcut_escape {
+  //     trigger: "Escape";
+  //     action: "action(window.close)";
+  //   }
+
+  //   Shortcut shortcut_enter {
+  //     trigger: "Enter";
+  //     action: "action(app.create)";
+  //   }
+  // }
 
   Box {
     orientation: vertical;
 
     HeaderBar headerbar {
       show-title-buttons: false;
-      title-widget: 
+      title-widget:
       .AdwWindowTitle title {
         title: _("New Bottle");
 
-        ShortcutController {
-          scope: managed;
-
-          Shortcut {
-            trigger: "Escape";
-            action: "activate";
-          }
-        }
       }
 
       ;
 
-      [start]
       Button btn_cancel {
         label: _("Cancel");
       }
@@ -65,7 +61,7 @@ template NewView : .AdwWindow {
 
       StackPage page_create {
         name: "page_create";
-        child: 
+        child:
         .AdwPreferencesPage {
           title: _("New Bottle");
 
@@ -80,174 +76,200 @@ template NewView : .AdwWindow {
           .AdwPreferencesGroup {
             title: _("Environment");
 
-            ListBox list_envs {
-              .AdwActionRow gaming {
-                selectable: true;
-                activatable: true;
-                title: _("Gaming");
-                subtitle: _("An environment improved for Windows games.");
-                icon-name: "input-gaming-symbolic";
+            .AdwActionRow gaming {
+              activatable-widget: "check_gaming";
+              title: _("Gaming");
+              subtitle: _("An environment improved for Windows games.");
+              icon-name: "input-gaming-symbolic";
+
+              [prefix]
+              CheckButton check_gaming  {
+                valign: center;
+                active: true;
               }
+            }
 
-              .AdwActionRow application {
-                selectable: true;
-                activatable: true;
-                title: _("Application");
-                subtitle: _("An environment improved for Windows applications.");
-                icon-name: "applications-engineering-symbolic";
+            .AdwActionRow application {
+              activatable-widget: "check_application";
+              title: _("Application");
+              subtitle: _("An environment improved for Windows applications.");
+              icon-name: "applications-engineering-symbolic";
+
+              [prefix]
+              CheckButton check_application  {
+                valign: center;
+                group: check_gaming;
               }
+            }
 
-              .AdwExpanderRow custom {
-                selectable: true;
-                activatable: true;
-                title: _("Custom");
-                subtitle: _("A clear environment for your experiments.");
-                icon-name: "applications-science-symbolic";
+            .AdwActionRow custom {
+              activatable-widget: "check_custom";
+              title: _("Custom");
+              subtitle: _("A clear environment for your experiments.");
+              icon-name: "applications-science-symbolic";
 
-                .AdwActionRow row_sandbox {
-                  title: _("Unlinked Home Directory");
-                  subtitle: _("Do not link the userdir to the homedir");
-                  activatable-widget: "switch_sandbox";
+              [prefix]
+              CheckButton check_custom  {
+                valign: center;
+                group: check_gaming;
+              }
+            }
+          }
 
-                  Switch switch_sandbox {
-                    valign: center;
-                  }
+          .AdwPreferencesGroup group_custom {
+            .AdwActionRow row_sandbox {
+              title: _("Unlink User Directory from Home Directory");
+              activatable-widget: "switch_sandbox";
+
+              Switch switch_sandbox {
+                valign: center;
+              }
+            }
+
+            .AdwComboRow combo_runner {
+              title: _("Runner");
+              model:
+                StringList str_list_runner {
                 }
 
-                .AdwComboRow combo_runner {
-                  title: _("Runner");
-                  model:
-                    StringList str_list_runner {
-                    }
+              ;
+            }
 
-                  ;
+            .AdwComboRow combo_arch {
+              title: _("Architecture");
+              subtitle: _("We recommend using 32-bit only if strictly necessary.");
+              model:
+                StringList {
+                  strings [
+                    _("64-bit"),
+                    _("32-bit"),
+                  ]
                 }
 
-                .AdwComboRow combo_arch {
-                  title: _("Architecture");
-                  subtitle: _("We recommend using 32bit only if strictly necessary.");
-                  model: 
-                    StringList {
-                      strings [_("64 bit"), _("32 bit")]
-                    }
-                  ;
-                }
+              ;
+            }
 
-                .AdwActionRow {
-                  title: _("Custom Recipe");
-                  subtitle: _("Choose a custom recipe for the environment if you have one.");
-                  activatable-widget: "btn_choose_env";
+            .AdwActionRow {
+              title: _("Custom Recipe");
+              subtitle: _("Choose a custom recipe for the environment if you have one.");
+              activatable-widget: "btn_choose_env";
 
-                  Button btn_choose_env {
-                    valign: center;
-                    tooltip-text: _("Choose a Directory");
+              Button btn_choose_env {
+                valign: center;
+
+                Box {
+                  spacing: 6;
+
+                  Image {
                     icon-name: "document-open-symbolic";
-
-                    styles [
-                      "flat",
-                    ]
                   }
-                }
 
-                .AdwActionRow {
-                  title: _("Custom Path");
-                  subtitle: _("Store this bottle in another place.");
-                  activatable-widget: "btn_choose_path";
-
-                  Button btn_choose_path {
-                    valign: center;
-                    tooltip-text: _("Choose a Directory");
-                    icon-name: "document-open-symbolic";
-
-                    styles [
-                      "flat",
-                    ]
+                  Label label_choose_env {
+                    label: _("(Default)");
                   }
                 }
               }
+            }
 
-              styles [
-                "boxed-list",
-              ]
+            .AdwActionRow {
+              title: _("Custom Path");
+              subtitle: _("Store this bottle in another place.");
+              activatable-widget: "btn_choose_path";
+
+              Button btn_choose_path {
+                valign: center;
+
+                Box {
+                  spacing: 6;
+
+                  Image {
+                    icon-name: "document-open-symbolic";
+                  }
+
+                  Label label_choose_path {
+                    label: _("(Default)");
+                  }
+                }
+              }
             }
           }
         }
 
         ;
-      }
 
-      StackPage page_creating {
-        name: "page_creating";
-        child: 
-        WindowHandle {
-          Box {
-            orientation: vertical;
-            spacing: 12;
+        StackPage page_creating {
+          name: "page_creating";
+          child:
+          WindowHandle {
+            Box {
+              orientation: vertical;
+              spacing: 12;
 
-            .AdwStatusPage {
-              valign: "center";
-              title: _("Creating a Bottle…");
-              description: _("This could take a while.");
-            }
+              .AdwStatusPage {
+                valign: "center";
+                title: _("Creating a Bottle…");
+                description: _("This could take a while.");
+              }
 
-            ScrolledWindow {
-              margin-start: 12;
-              margin-end: 12;
-              min-content-height: 200;
-              overflow: hidden;
+              ScrolledWindow {
+                margin-start: 12;
+                margin-end: 12;
+                min-content-height: 200;
+                overflow: hidden;
 
-              Label label_output {
-                hexpand: true;
-                valign: fill;
-                wrap: true;
-                selectable: true;
-                xalign: 0;
-                yalign: 0;
+                Label label_output {
+                  hexpand: true;
+                  valign: fill;
+                  wrap: true;
+                  selectable: true;
+                  xalign: 0;
+                  yalign: 0;
+
+                  styles [
+                    "monospace",
+                    "terminal",
+                  ]
+                }
 
                 styles [
-                  "monospace",
-                  "terminal",
+                  "card",
                 ]
               }
-
-              styles [
-                "card",
-              ]
             }
           }
+
+          ;
         }
 
-        ;
-      }
+        StackPage page_created {
+          name: "page_created";
+          child:
+          WindowHandle {
+            Box {
+              orientation: vertical;
+              spacing: 12;
 
-      StackPage page_created {
-        name: "page_created";
-        child: 
-        WindowHandle {
-          Box {
-            orientation: vertical;
-            spacing: 12;
+              .AdwStatusPage created {
+                icon-name: "selection-mode-symbolic";
+                title: _("Bottle Created");
+                valign: "center";
+              }
 
-            .AdwStatusPage created {
-              icon-name: "selection-mode-symbolic";
-              title: _("Bottle Created");
-              valign: "center";
-            }
+              Button btn_close_pill {
+                label: _("Close");
+                valign: center;
+                halign: center;
 
-            Button btn_close_pill {
-              label: _("Close");
-              valign: center;
-              halign: center;
-
-              styles [
-                "suggested-action",
-                "pill",
-              ]
+                styles [
+                  "suggested-action",
+                  "pill",
+                ]
+              }
             }
           }
-        }
 
-        ;
+          ;
+        }
       }
     }
   }
