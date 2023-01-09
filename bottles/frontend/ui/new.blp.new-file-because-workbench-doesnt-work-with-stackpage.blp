@@ -1,0 +1,196 @@
+using Gtk 4.0;
+
+template NewView : .AdwWindow {
+  modal: true;
+  resizable: false;
+  default-width: "450";
+  hide-on-close: true;
+
+  // ShortcutController {
+  //   Shortcut shortcut_escape {
+  //     trigger: "Escape";
+  //     action: "action(window.close)";
+  //   }
+
+  //   Shortcut shortcut_enter {
+  //     trigger: "Enter";
+  //     action: "action(app.create)";
+  //   }
+  // }
+
+  Box {
+    orientation: vertical;
+
+    HeaderBar headerbar {
+      show-title-buttons: false;
+      title-widget:
+      .AdwWindowTitle title {
+        title: _("New Bottle");
+
+      }
+
+      ;
+
+      Button btn_cancel {
+        label: _("Cancel");
+      }
+
+      [end]
+      Button btn_create {
+        label: _("Create");
+        sensitive: false;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+
+      [end]
+      Button btn_close {
+        label: _("Close");
+        visible: false;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    Stack stack_create {
+      transition-type: crossfade;
+
+        .AdwPreferencesPage {
+          title: _("New Bottle");
+
+          .AdwPreferencesGroup {
+            title: _("Bottle Information");
+
+            .AdwEntryRow entry_name {
+              title: _("Name");
+            }
+          }
+
+          .AdwPreferencesGroup {
+            title: _("Environment");
+
+            .AdwActionRow gaming {
+              activatable-widget: "check_gaming";
+              title: _("Gaming");
+              subtitle: _("An environment improved for Windows games.");
+              icon-name: "input-gaming-symbolic";
+
+              [prefix]
+              CheckButton check_gaming  {
+                valign: center;
+                active: true;
+              }
+            }
+
+            .AdwActionRow application {
+              activatable-widget: "check_application";
+              title: _("Application");
+              subtitle: _("An environment improved for Windows applications.");
+              icon-name: "applications-engineering-symbolic";
+
+              [prefix]
+              CheckButton check_application  {
+                valign: center;
+                group: check_gaming;
+              }
+            }
+
+            .AdwActionRow custom {
+              activatable-widget: "check_custom";
+              title: _("Custom");
+              subtitle: _("A clear environment for your experiments.");
+              icon-name: "applications-science-symbolic";
+
+              [prefix]
+              CheckButton check_custom  {
+                valign: center;
+                group: check_gaming;
+              }
+            }
+          }
+
+          .AdwPreferencesGroup group_custom {
+            .AdwActionRow row_sandbox {
+              title: _("Unlink User Directory from Home Directory");
+              activatable-widget: "switch_sandbox";
+
+              Switch switch_sandbox {
+                valign: center;
+              }
+            }
+
+            .AdwComboRow combo_runner {
+              title: _("Runner");
+              model:
+                StringList str_list_runner {
+                }
+
+              ;
+            }
+
+            .AdwComboRow combo_arch {
+              title: _("Architecture");
+              subtitle: _("We recommend using 32-bit only if strictly necessary.");
+              model:
+                StringList {
+                  strings [
+                    _("64-bit"),
+                    _("32-bit"),
+                  ]
+                }
+
+              ;
+            }
+
+            .AdwActionRow {
+              title: _("Custom Recipe");
+              subtitle: _("Choose a custom recipe for the environment if you have one.");
+              activatable-widget: "btn_choose_env";
+
+              Button btn_choose_env {
+                valign: center;
+
+                Box {
+                  spacing: 6;
+
+                  Image {
+                    icon-name: "document-open-symbolic";
+                  }
+
+                  Label label_choose_env {
+                    label: _("(Default)");
+                  }
+                }
+              }
+            }
+
+            .AdwActionRow {
+              title: _("Custom Path");
+              subtitle: _("Store this bottle in another place.");
+              activatable-widget: "btn_choose_path";
+
+              Button btn_choose_path {
+                valign: center;
+
+                Box {
+                  spacing: 6;
+
+                  Image {
+                    icon-name: "document-open-symbolic";
+                  }
+
+                  Label label_choose_path {
+                    label: _("(Default)");
+                  }
+                }
+              }
+            }
+          }
+        }
+    }
+  }
+}

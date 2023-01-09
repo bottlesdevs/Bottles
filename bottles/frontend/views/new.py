@@ -41,7 +41,6 @@ class NewView(Adw.Window):
     btn_close_pill = Gtk.Template.Child()
     btn_choose_env = Gtk.Template.Child()
     btn_choose_path = Gtk.Template.Child()
-    list_envs = Gtk.Template.Child()
     page_create = Gtk.Template.Child()
     page_creating = Gtk.Template.Child()
     created = Gtk.Template.Child()
@@ -76,7 +75,6 @@ class NewView(Adw.Window):
         self.btn_create.connect("clicked", self.create_bottle)
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.btn_choose_path.connect("clicked", self.choose_path)
-        self.list_envs.connect('row-selected', self.set_active_env)
         self.entry_name.connect('changed', self.__check_entry_name)
 
         # populate combo_runner with runner versions from the manager
@@ -123,9 +121,6 @@ class NewView(Adw.Window):
 
         # focus on the entry_name
         self.entry_name.grab_focus()
-
-        # select first row
-        self.list_envs.select_row(self.list_envs.get_first_child())
 
     def set_active_env(self, widget, row):
         """
