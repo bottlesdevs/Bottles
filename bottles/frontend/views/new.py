@@ -195,7 +195,7 @@ class NewView(Adw.Window):
             task_func=self.manager.create_bottle,
             callback=self.finish,
             name=self.entry_name.get_text(),
-            path=getattr(self, "custom_path", None),
+            path=getattr(self, "custom_path", ""),
             environment=environment,
             runner=getattr(self, "runner", None),
             arch="win32" if self.combo_arch.get_selected() else "win64",
