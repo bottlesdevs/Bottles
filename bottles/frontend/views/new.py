@@ -73,7 +73,7 @@ class NewView(Adw.Window):
         self.custom_path = ""
         self.runner = None
 
-        self.__create_action('create', self.create_bottle, ['Enter'])
+        # self.__create_action('create', self.create_bottle, ['Return'])
 
         # connect signals
         self.check_custom.connect("toggled", self.__set_group)
