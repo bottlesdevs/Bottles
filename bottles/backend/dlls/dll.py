@@ -136,7 +136,7 @@ class DLLComponent:
             if path in ["x32", "x86"]:
                 return "system32"
         if config["Arch"] == "win64":
-            if path in ["x64"] or any(arch in path for arch in ("x86_64", "lib64")):
+            if path in ["x64"] or any(arch in path for arch in ("x86_64", "lib64", "lib/")):
                 return "system32"
             if path in ["x32", "x86"]:
                 return "syswow64"

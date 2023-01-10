@@ -790,6 +790,9 @@ class Manager:
                     except shutil.Error:
                         pass
 
+            if conf_file_yaml["Parameters"]["dxvk_nvapi"]:
+                NVAPIComponent.check_bottle_nvngx(_bottle, conf_file_yaml)
+
         for b in bottles:
             '''
             For each bottle add the path name to the `local_bottles` variable
