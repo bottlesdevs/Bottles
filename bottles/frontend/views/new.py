@@ -274,4 +274,4 @@ class NewView(Adw.Window):
             return True
         else:
             self.close()
-            return False)
+            return False
