@@ -18,7 +18,7 @@
 import os
 import re
 from gettext import gettext as _
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw #, Pango
 
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
@@ -46,7 +46,9 @@ class NewView(Adw.Window):
     btn_close = Gtk.Template.Child()
     btn_close_pill = Gtk.Template.Child()
     btn_choose_env = Gtk.Template.Child()
+    label_choose_env = Gtk.Template.Child()
     btn_choose_path = Gtk.Template.Child()
+    label_choose_path = Gtk.Template.Child()
     page_create = Gtk.Template.Child()
     page_creating = Gtk.Template.Child()
     created = Gtk.Template.Child()
@@ -70,10 +72,6 @@ class NewView(Adw.Window):
         self.window = window
         self.manager = window.manager
         self.new_bottle_config = {}
-        self.custom_path = ""
-        self.runner = None
-
-        # self.__create_action('create', self.create_bottle, ['Return'])
 
         # connect signals
         self.check_custom.connect("toggled", self.__set_group)
@@ -116,11 +114,7 @@ class NewView(Adw.Window):
         else:  # use any other runner available
             self.runner = self.manager.runners_available[0]
 
-        for index, runner in enumerate(self.manager.runners_available):
-            if self.runner == runner:
-                self.combo_runner.set_selected(index)
-                break
-
+        self.combo_runner.set_selected(self.manager.runners_available.index(self.runner))
         self.combo_arch.set_selected(0)
 
         # if running under Flatpak, hide row_sandbox
@@ -147,9 +141,11 @@ class NewView(Adw.Window):
         def set_path(_dialog, response):
             if response == Gtk.ResponseType.ACCEPT:
                 self.env_recipe_path = dialog.get_file().get_path()
+                self.label_choose_env.set_label(dialog.get_file().get_basename())
+                # self.label_choose_env.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
 
         dialog = Gtk.FileChooserNative.new(
-            title=_("Select a Recipe"),
+            title=_("Select a Configuration File"),
             action=Gtk.FileChooserAction.OPEN,
             parent=self.window,
         )
@@ -164,6 +160,8 @@ class NewView(Adw.Window):
         def set_path(_dialog, response):
             if response == Gtk.ResponseType.ACCEPT:
                 self.custom_path = dialog.get_file().get_path()
+                self.label_choose_path.set_label(dialog.get_file().get_basename())
+                # self.label_choose_path.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
 
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Bottle Directory"),
@@ -197,9 +195,9 @@ class NewView(Adw.Window):
             task_func=self.manager.create_bottle,
             callback=self.finish,
             name=self.entry_name.get_text(),
-            path=self.custom_path,
+            path=getattr(self, "custom_path", None),
             environment=environment,
-            runner=self.runner,
+            runner=getattr(self, "runner", None),
             arch="win32" if self.combo_arch.get_selected() else "win64",
             dxvk=self.manager.dxvk_available[0],
             sandbox=self.switch_sandbox.get_state(),
@@ -248,22 +246,6 @@ class NewView(Adw.Window):
             return "application"
         else:
             return "custom"
-
-    def __create_action(self, name, callback, shortcuts=None, param=None):
-        """Add an application action.
-
-        Args:
-            name: the name of the action
-            callback: the function to be called when the action is
-              activated
-            shortcuts: an optional list of accelerators
-            param: an optional list of parameters for the action
-        """
-        action = Gio.SimpleAction.new(name, param)
-        action.connect("activate", callback)
-        self.add_action(action)
-        if shortcuts:
-            self.set_accels_for_action(f"app.{name}", shortcuts)
 
     def do_close_request(self, *args):
         if self.stack_create.get_visible_child_name() == "page_creating":
