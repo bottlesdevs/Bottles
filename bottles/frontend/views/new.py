@@ -73,6 +73,8 @@ class NewView(Adw.Window):
         self.custom_path = ""
         self.runner = None
 
+        self.__create_action('create', self.create_bottle, ['Enter'])
+
         # connect signals
         self.check_custom.connect("toggled", self.__set_group)
         self.btn_cancel.connect("clicked", self.do_close_request)
@@ -246,6 +248,22 @@ class NewView(Adw.Window):
             return "application"
         else:
             return "custom"
+
+    def __create_action(self, name, callback, shortcuts=None, param=None):
+        """Add an application action.
+
+        Args:
+            name: the name of the action
+            callback: the function to be called when the action is
+              activated
+            shortcuts: an optional list of accelerators
+            param: an optional list of parameters for the action
+        """
+        action = Gio.SimpleAction.new(name, param)
+        action.connect("activate", callback)
+        self.add_action(action)
+        if shortcuts:
+            self.set_accels_for_action(f"app.{name}", shortcuts)
 
     def do_close_request(self, *args):
         if self.stack_create.get_visible_child_name() == "page_creating":

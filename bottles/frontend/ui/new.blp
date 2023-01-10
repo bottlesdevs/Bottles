@@ -6,17 +6,17 @@ template NewView : .AdwWindow {
   default-width: "450";
   hide-on-close: true;
 
-  // ShortcutController {
-  //   Shortcut shortcut_escape {
-  //     trigger: "Escape";
-  //     action: "action(window.close)";
-  //   }
+  ShortcutController {
+    Shortcut shortcut_escape {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
 
-  //   Shortcut shortcut_enter {
-  //     trigger: "Enter";
-  //     action: "action(app.create)";
-  //   }
-  // }
+    Shortcut shortcut_enter {
+      trigger: "Enter";
+      action: "app.create";
+    }
+  }
 
   Box {
     orientation: vertical;
