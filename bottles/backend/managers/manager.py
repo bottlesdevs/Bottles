@@ -1289,7 +1289,7 @@ class Manager:
                 # perform nvapi installation if configured
                 logging.info("Installing DXVK-NVAPI…")
                 log_update(_("Installing DXVK-NVAPI…"))
-                self.install_dll_component(config, "dxvk_nvapi", version=nvapi_name)
+                self.install_dll_component(config, "nvapi", version=nvapi_name)
                 template_updated = True
 
             for dep in env.get("Installed_Dependencies", []):
