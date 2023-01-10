@@ -34,7 +34,6 @@ from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.backend.models.result import Result
 
-from bottles.frontend.windows.filechooser import FileChooser
 from bottles.frontend.windows.envvars import EnvVarsDialog
 from bottles.frontend.windows.drives import DrivesDialog
 from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
@@ -263,31 +262,31 @@ class PreferencesView(Adw.PreferencesPage):
         self.window.page_list.update_bottles()
 
     def choose_cwd(self, widget):
-        def set_path(_dialog, response, _file_dialog):
-            if response == Gtk.ResponseType.ACCEPT:
-                _file = _file_dialog.get_file()
-                _path = _file.get_path()
-                self.manager.update_config(
-                    config=self.config,
-                    key="WorkingDir",
-                    value=_path
-                )
-                self.label_cwd.set_label(os.path.basename(_path))
-                self.btn_cwd_reset.set_visible(True)
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
 
-            _dialog.destroy()
+            path = dialog.get_file().get_path()
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose working directory for executables"),
+            self.manager.update_config(
+                config=self.config,
+                key="WorkingDir",
+                value=dialog.get_file().get_path()
+            )
+            self.label_cwd.set_label(os.path.basename(path))
+            self.btn_cwd_reset.set_visible(True)
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Working Directory"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(_("Cancel"), _("Select")),
-            path=ManagerUtils.get_bottle_path(self.config),
-            native=True,
-            callback=set_path
+            parent=self.window
         )
 
-    def reset_cwd(self, widget):
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
+
+    def reset_cwd(self, *_args):
         self.manager.update_config(config=self.config, key="WorkingDir", value="")
         self.label_cwd.set_label("(Default)")
         self.btn_cwd_reset.set_visible(False)

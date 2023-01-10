@@ -18,7 +18,6 @@
 import os
 from gi.repository import Gtk, GLib, GObject, Adw
 
-from bottles.frontend.windows.filechooser import FileChooser
 from bottles.backend.utils.manager import ManagerUtils
 from gettext import gettext as _
 
@@ -203,22 +202,24 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __choose_script(self, *_args):
         def set_path(_dialog, response, _file_dialog):
-            if response == -3:
-                _file = _file_dialog.get_file()
-                self.program["script"] = _file.get_path()
-                self.action_script.set_subtitle(_file.get_path())
-                self.btn_script_reset.set_visible(True)
+            if response != Gtk.ResponseType.ACCEPT:
+                self.action_script.set_subtitle(self.__default_script_msg)
                 return
 
-            self.action_script.set_subtitle(self.__default_script_msg)
+            _file = _file_dialog.get_file()
+            self.program["script"] = _file.get_path()
+            self.action_script.set_subtitle(_file.get_path())
+            self.btn_script_reset.set_visible(True)
 
-        FileChooser(
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select a script"),
             parent=self.window,
-            title=_("Choose the script"),
-            action=Gtk.FileChooserAction.OPEN,
-            buttons=(_("Cancel"), _("Select")),
-            callback=set_path
+            action=Gtk.FileChooserAction.OPEN
         )
+
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def __reset_script(self, *_args):
         self.program["script"] = ""
@@ -227,22 +228,24 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __choose_cwd(self, *_args):
         def set_path(_dialog, response, _file_dialog):
-            if response == -3:
-                _file = _file_dialog.get_file()
-                self.program["folder"] = _file.get_path()
-                self.action_cwd.set_subtitle(_file.get_path())
-                self.btn_cwd_reset.set_visible(True)
+            if response != Gtk.ResponseType.ACCEPT:
+                self.action_cwd.set_subtitle(self.__default_cwd_msg)
                 return
 
-            self.action_cwd.set_subtitle(self.__default_cwd_msg)
+            _file = _file_dialog.get_file()
+            self.program["folder"] = _file.get_path()
+            self.action_cwd.set_subtitle(_file.get_path())
+            self.btn_cwd_reset.set_visible(True)
 
-        FileChooser(
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select the Working Directory"),
             parent=self.window,
-            title=_("Choose the Working Directory"),
-            action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(_("Cancel"), _("Select")),
-            callback=set_path
+            action=Gtk.FileChooserAction.SELECT_FOLDER
         )
+
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def __reset_cwd(self, *_args):
         """

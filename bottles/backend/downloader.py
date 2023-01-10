@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 import time
 import requests
 from gi.repository import GLib
@@ -94,10 +95,15 @@ class Downloader:
         speed_str = FileUtils.get_human_size(count * block_size / (time.time() - self.start_time))
         name = self.file.split("/")[-1]
         c_close, c_complete, c_incomplete = "\033[0m", "\033[92m", "\033[90m"
+        divider = 2
+        full_text_size = len(f"\r{c_complete}{name} (100%) {'━' * int(100 / divider)} ({total_str}/{total_str} - 100MB)")
+        while os.get_terminal_size().columns < full_text_size:
+            divider = divider + 1
+            full_text_size = len(f"\r{c_complete}{name} (100%) {'━' * int(100 / divider)} ({total_str}/{total_str} - 100MB)")
+            if divider > 10: break
         try:
             print(
-                f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) \
-    {'━' * int(percent / 2)} ({done_str}/{total_str} - {speed_str})",
+                f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) {'━' * int(percent / divider)} ({done_str}/{total_str} - {speed_str})",
                 end=""
             )
             if percent == 100:

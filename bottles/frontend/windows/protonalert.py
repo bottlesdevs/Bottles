@@ -17,8 +17,6 @@
 
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.frontend.windows.filechooser import FileChooser
-
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-proton-alert.ui')
 class ProtonAlertDialog(Adw.Window):
