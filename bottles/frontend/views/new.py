@@ -49,11 +49,12 @@ class NewView(Adw.Window):
     label_choose_env = Gtk.Template.Child()
     btn_choose_path = Gtk.Template.Child()
     label_choose_path = Gtk.Template.Child()
-    page_create = Gtk.Template.Child()
-    page_creating = Gtk.Template.Child()
+    page_statuses = Gtk.Template.Child()
+    status_statuses = Gtk.Template.Child()
     created = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
+    scrolled_output = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
     row_sandbox = Gtk.Template.Child()
@@ -176,11 +177,12 @@ class NewView(Adw.Window):
         # set widgets states
         self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
-        self.page_create.set_visible(False)
         self.set_title("")
         self.headerbar.add_css_class("flat")
-        self.stack_create.set_visible_child_name("page_creating")
         self.shortcut_escape.set_action(None)
+        self.stack_create.set_visible_child_name("page_statuses")
+        self.status_statuses.set_title(_("Creating Bottle…"))
+        self.status_statuses.set_description(_("This could take a while."))
         
         # avoid giant/empty window
         self.set_default_size(450, 430)
@@ -222,13 +224,16 @@ class NewView(Adw.Window):
             return
 
         self.new_bottle_config = result.data.get("config")
-        self.created.set_description(
+        self.status_statuses.set_title(_("Bottle Created"))
+        self.scrolled_output.set_visible(False)
+        self.btn_close.set_visible(True)
+        self.status_statuses.set_icon("selection-mode-symbolic")
+        self.status_statuses.set_description(
             _("\"{0}\" was created successfully.").format(
                 self.entry_name.get_text()
             )
         )
         self.btn_cancel.set_visible(False)
-        self.stack_create.set_visible_child_name("page_created")
 
         '''
         Ask the manager to check for new bottles, then update the

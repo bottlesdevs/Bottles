@@ -36,23 +36,12 @@ template NewView : .AdwWindow {
           "suggested-action",
         ]
       }
-
-      [end]
-      Button btn_close {
-        label: _("C_lose");
-        use-underline: true;
-        visible: false;
-
-        styles [
-          "suggested-action",
-        ]
-      }
     }
 
     Stack stack_create {
       transition-type: crossfade;
 
-      StackPage page_create {
+      StackPage {
         name: "page_create";
         child:
         .AdwPreferencesPage {
@@ -195,21 +184,62 @@ template NewView : .AdwWindow {
         ;
       }
 
-      StackPage page_creating {
-        name: "page_creating";
-        child:
-        WindowHandle {
-          Box {
-            orientation: vertical;
-            spacing: 12;
+      // StackPage page_creating {
+      //   name: "page_creating";
+      //   child:
+      //   WindowHandle {
+      //     Box {
+      //       orientation: vertical;
+      //       spacing: 12;
 
-            .AdwStatusPage {
-              valign: "center";
-              title: _("Creating a Bottle…");
-              description: _("This could take a while.");
+      //       .AdwStatusPage {
+      //         valign: "center";
+      //         title: _("Creating a Bottle…");
+      //         description: _("This could take a while.");
+      //       }
+
+      //       ScrolledWindow {
+      //         margin-start: 12;
+      //         margin-end: 12;
+      //         min-content-height: 200;
+      //         overflow: hidden;
+
+      //         Label label_output {
+      //           hexpand: true;
+      //           valign: fill;
+      //           wrap: true;
+      //           selectable: true;
+      //           xalign: 0;
+      //           yalign: 0;
+
+      //           styles [
+      //             "monospace",
+      //             "terminal",
+      //           ]
+      //         }
+
+      //         styles [
+      //           "card",
+      //         ]
+      //       }
+      //     }
+      //   }
+
+      //   ;
+      // }
+
+      StackPage {
+        name: "page_statuses";
+
+        Box {
+          orientation: vertical;
+          spacing: 12;
+
+            .AdwStatusPage status_statuses {
+              title: "Status";
             }
 
-            ScrolledWindow {
+            ScrolledWindow scrolled_output {
               margin-start: 12;
               margin-end: 12;
               min-content-height: 200;
@@ -233,41 +263,50 @@ template NewView : .AdwWindow {
                 "card",
               ]
             }
+
+          Button btn_close {
+            valign: center;
+            halign: center;
+            label: _("_Close");
+            use-underline: true;
+            visible: false;
+
+            styles [
+              "pill",
+            ]
           }
         }
-
-        ;
       }
 
-      StackPage page_created {
-        name: "page_created";
-        child:
-        WindowHandle {
-          Box {
-            orientation: vertical;
-            spacing: 12;
+      // StackPage page_created {
+      //   name: "page_created";
+      //   child:
+      //   WindowHandle {
+      //     Box {
+      //       orientation: vertical;
+      //       spacing: 12;
 
-            .AdwStatusPage created {
-              icon-name: "selection-mode-symbolic";
-              title: _("Bottle Created");
-              valign: "center";
-            }
+      //       .AdwStatusPage created {
+      //         icon-name: "selection-mode-symbolic";
+      //         title: _("Bottle Created");
+      //         valign: "center";
+      //       }
 
-            Button btn_close_pill {
-              label: _("Close");
-              valign: center;
-              halign: center;
+      //       Button btn_close_pill {
+      //         label: _("Close");
+      //         valign: center;
+      //         halign: center;
 
-              styles [
-                "suggested-action",
-                "pill",
-              ]
-            }
-          }
-        }
+      //         styles [
+      //           "suggested-action",
+      //           "pill",
+      //         ]
+      //       }
+      //     }
+      //   }
 
-        ;
-      }
+      //   ;
+      // }
     }
   }
 }
