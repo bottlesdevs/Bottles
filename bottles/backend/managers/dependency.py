@@ -613,10 +613,11 @@ class DependencyManager:
             dlls = glob(os.path.join(path, step.get("dll")))
 
             bundle = {"HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides": []}
-            
+            import ntpath
             for dll in dlls:
+                dll_name = os.path.splitext(os.path.basename(dll))[0]
                 bundle["HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides"].append({
-                    "value": dll,
+                    "value": dll_name,
                     "data": step.get("type")
                 })
 
