@@ -183,9 +183,6 @@ class NewView(Adw.Window):
         self.stack_create.set_visible_child_name("page_statuses")
         self.status_statuses.set_title(_("Creating Bottle…"))
         self.status_statuses.set_description(_("This could take a while."))
-        
-        # avoid giant/empty window
-        self.set_default_size(450, 430)
 
         environment = self.__radio_get_active()
 

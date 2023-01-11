@@ -3,7 +3,8 @@ using Gtk 4.0;
 template NewView : .AdwWindow {
   modal: true;
   resizable: false;
-  default-width: "450";
+  default-width: "650";
+  default-width: "650";
   hide-on-close: true;
   title: _("New Bottle");
 
@@ -231,50 +232,52 @@ template NewView : .AdwWindow {
       StackPage {
         name: "page_statuses";
         child:
-        Box {
-          orientation: vertical;
-          spacing: 12;
+        .AdwStatusPage status_statuses {
+          title: "Status";
+          child:
+          Box {
+            orientation: vertical;
+            spacing: 36;
 
-            .AdwStatusPage status_statuses {
-              title: "Status";
-            }
+              ScrolledWindow scrolled_output {
+                margin-start: 12;
+                margin-end: 12;
+                min-content-height: 200;
+                overflow: hidden;
 
-            ScrolledWindow scrolled_output {
-              margin-start: 12;
-              margin-end: 12;
-              min-content-height: 200;
-              overflow: hidden;
+                Label label_output {
+                  hexpand: true;
+                  valign: fill;
+                  wrap: true;
+                  selectable: true;
+                  xalign: 0;
+                  yalign: 0;
 
-              Label label_output {
-                hexpand: true;
-                valign: fill;
-                wrap: true;
-                selectable: true;
-                xalign: 0;
-                yalign: 0;
+                  styles [
+                    "monospace",
+                    "terminal",
+                  ]
+                }
 
                 styles [
-                  "monospace",
-                  "terminal",
+                  "card",
                 ]
               }
 
+            Button btn_close {
+              valign: center;
+              halign: center;
+              label: _("_Close");
+              use-underline: true;
+              visible: false;
+
               styles [
-                "card",
+                "pill",
               ]
             }
-
-          Button btn_close {
-            valign: center;
-            halign: center;
-            label: _("_Close");
-            use-underline: true;
-            visible: false;
-
-            styles [
-              "pill",
-            ]
           }
+
+          ;
         }
 
         ;
