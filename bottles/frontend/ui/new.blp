@@ -5,6 +5,7 @@ template NewView : .AdwWindow {
   resizable: false;
   default-width: "450";
   hide-on-close: true;
+  title: _("New Bottle");
 
   ShortcutController {
     Shortcut shortcut_escape {
@@ -12,33 +13,22 @@ template NewView : .AdwWindow {
       action: "action(window.close)";
     }
 
-    Shortcut shortcut_enter {
-      trigger: "Return";
-      action: "app.create";
-    }
-  }
-
   Box {
     orientation: vertical;
 
-    HeaderBar headerbar {
-      show-title-buttons: false;
-      title-widget:
-      .AdwWindowTitle title {
-        title: _("New Bottle");
-
-      }
-
-      ;
+    .AdwHeaderBar headerbar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
 
       Button btn_cancel {
-        label: _("Cancel");
+        label: _("_Cancel");
+        use-underline: true;
       }
 
       [end]
       Button btn_create {
-        label: _("Create");
-        sensitive: false;
+        label: _("C_reate");
+        use-underline: true;
 
         styles [
           "suggested-action",
@@ -47,7 +37,8 @@ template NewView : .AdwWindow {
 
       [end]
       Button btn_close {
-        label: _("Close");
+        label: _("C_lose");
+        use-underline: true;
         visible: false;
 
         styles [
@@ -78,9 +69,9 @@ template NewView : .AdwWindow {
 
             .AdwActionRow gaming {
               activatable-widget: "check_gaming";
-              title: _("Gaming");
-              subtitle: _("An environment improved for Windows games.");
+              title: _("_Gaming");
               icon-name: "input-gaming-symbolic";
+              use-underline: true;
 
               [prefix]
               CheckButton check_gaming  {
@@ -91,9 +82,9 @@ template NewView : .AdwWindow {
 
             .AdwActionRow application {
               activatable-widget: "check_application";
-              title: _("Application");
-              subtitle: _("An environment improved for Windows applications.");
+              title: _("_Application");
               icon-name: "applications-engineering-symbolic";
+              use-underline: true;
 
               [prefix]
               CheckButton check_application  {
@@ -104,9 +95,9 @@ template NewView : .AdwWindow {
 
             .AdwActionRow custom {
               activatable-widget: "check_custom";
-              title: _("Custom");
-              subtitle: _("A clear environment for your experiments.");
+              title: _("C_ustom");
               icon-name: "applications-science-symbolic";
+              use-underline: true;
 
               [prefix]
               CheckButton check_custom  {
@@ -120,6 +111,7 @@ template NewView : .AdwWindow {
             sensitive: false;
 
             .AdwActionRow row_sandbox {
+              // TODO: Find better name and description
               title: _("Unlink User Directory from Home Directory");
               activatable-widget: "switch_sandbox";
 
@@ -130,16 +122,15 @@ template NewView : .AdwWindow {
 
             .AdwComboRow combo_runner {
               title: _("Runner");
-              model:
-                StringList str_list_runner {
-                }
+              subtitle: _("The version of the Wine compatibility layer.");
+              model: StringList str_list_runner {}
 
               ;
             }
 
             .AdwComboRow combo_arch {
               title: _("Architecture");
-              subtitle: _("We recommend using 32-bit only if strictly necessary.");
+              subtitle: _("32-bit should only be used if strictly necessary.");
               model:
                 StringList {
                   strings [
@@ -152,7 +143,9 @@ template NewView : .AdwWindow {
             }
 
             .AdwActionRow {
-              title: _("Custom Configuration File");
+              // TODO: Implement reset
+              title: _("Configuration");
+              subtitle: _("Import a custom configuration.");
               activatable-widget: "btn_choose_env";
 
               Button btn_choose_env {
@@ -173,8 +166,9 @@ template NewView : .AdwWindow {
             }
 
             .AdwActionRow {
-              title: _("Custom Path");
-              subtitle: _("Store this bottle in another place.");
+              // TODO: Implement reset
+              title: _("Bottle Directory");
+              subtitle: _("Directory that will contain the data of this bottle.");
               activatable-widget: "btn_choose_path";
 
               Button btn_choose_path {

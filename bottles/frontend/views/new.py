@@ -253,6 +253,9 @@ class NewView(Adw.Window):
             # SURE they want to cancel creation. For now, the window will not
             # react if the user attempts to close the window while a bottle
             # is being created
+
+            # FIXME: If creation fails, user cannot close the window as the
+            # stack page stays in page_creating
             return True
         else:
             self.close()
