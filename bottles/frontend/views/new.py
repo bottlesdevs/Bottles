@@ -33,9 +33,6 @@ class NewView(Adw.Window):
     __gtype_name__ = 'NewView'
 
     # region Widgets
-    gaming = Gtk.Template.Child()
-    application = Gtk.Template.Child()
-    custom = Gtk.Template.Child()
     check_gaming = Gtk.Template.Child()
     check_application = Gtk.Template.Child()
     check_custom = Gtk.Template.Child()
@@ -79,9 +76,8 @@ class NewView(Adw.Window):
         self.btn_choose_path.connect("clicked", self.choose_path)
         self.entry_name.connect('changed', self.__check_entry_name)
 
-        # populate combo_runner with runner versions from the manager
-        for runner in self.manager.runners_available:
-            self.str_list_runner.append(runner)
+        # Populate combo_runner with runner versions from the manager
+        self.str_list_runner.splice(0, 0, self.manager.runners_available)
 
         rs, rc, rv, rl, ry = [], [], [], [], []
 
@@ -113,9 +109,8 @@ class NewView(Adw.Window):
         self.combo_runner.set_selected(self.manager.runners_available.index(self.runner))
         self.combo_arch.set_selected(0)
 
-        # if running under Flatpak, hide row_sandbox
-        if "FLATPAK_ID" in os.environ:
-            self.row_sandbox.set_visible(False)
+        # Hide row_sandbox if under Flatpak
+        self.row_sandbox.set_visible(not os.environ.get("FLATPAK_ID"))
 
         # focus on the entry_name
         self.entry_name.grab_focus()
