@@ -3,8 +3,8 @@ using Gtk 4.0;
 template NewView : .AdwWindow {
   modal: true;
   resizable: false;
-  default-width: "650";
-  default-height: "650";
+  default-width: "600";
+  default-height: "500";
   hide-on-close: true;
   title: _("New Bottle");
 
@@ -240,9 +240,8 @@ template NewView : .AdwWindow {
             spacing: 36;
 
               ScrolledWindow scrolled_output {
-                margin-start: 12;
-                margin-end: 12;
-                min-content-height: 200;
+                margin-start: 50;
+                margin-end: 50;
                 overflow: hidden;
 
                 Label label_output {

@@ -18,7 +18,7 @@
 import os
 import re
 from gettext import gettext as _
-from gi.repository import Gtk, Adw #, Pango
+from gi.repository import Gtk, Adw, Pango
 
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
@@ -44,14 +44,11 @@ class NewView(Adw.Window):
     btn_create = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
-    btn_close_pill = Gtk.Template.Child()
     btn_choose_env = Gtk.Template.Child()
     label_choose_env = Gtk.Template.Child()
     btn_choose_path = Gtk.Template.Child()
     label_choose_path = Gtk.Template.Child()
-    page_statuses = Gtk.Template.Child()
     status_statuses = Gtk.Template.Child()
-    created = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
     scrolled_output = Gtk.Template.Child()
@@ -77,7 +74,6 @@ class NewView(Adw.Window):
         self.check_custom.connect("toggled", self.__set_group)
         self.btn_cancel.connect("clicked", self.do_close_request)
         self.btn_close.connect("clicked", self.do_close_request)
-        self.btn_close_pill.connect("clicked", self.do_close_request)
         self.btn_create.connect("clicked", self.create_bottle)
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.btn_choose_path.connect("clicked", self.choose_path)
@@ -142,7 +138,7 @@ class NewView(Adw.Window):
             if response == Gtk.ResponseType.ACCEPT:
                 self.env_recipe_path = dialog.get_file().get_path()
                 self.label_choose_env.set_label(dialog.get_file().get_basename())
-                # self.label_choose_env.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+                self.label_choose_env.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
 
         dialog = Gtk.FileChooserNative.new(
             title=_("Select a Configuration File"),
@@ -161,7 +157,7 @@ class NewView(Adw.Window):
             if response == Gtk.ResponseType.ACCEPT:
                 self.custom_path = dialog.get_file().get_path()
                 self.label_choose_path.set_label(dialog.get_file().get_basename())
-                # self.label_choose_path.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+                self.label_choose_path.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
 
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Bottle Directory"),
@@ -213,24 +209,26 @@ class NewView(Adw.Window):
         self.label_output.set_text(text)
 
     def finish(self, result, error=None):
+        self.status_statuses.set_description(None)
+
         if not result or not result.status or error:
-            self.update_output(_("There was an error creating the bottle."))
             self.btn_cancel.set_visible(False)
             self.btn_close.set_visible(True)
-            self.headerbar.remove_css_class("flat")
+            self.status_statuses.set_title(_("Unable to Create Bottle"))
+            self.btn_close.get_style_context().add_class("destructive-action")
             return
 
         self.new_bottle_config = result.data.get("config")
-        self.status_statuses.set_title(_("Bottle Created"))
         self.scrolled_output.set_visible(False)
         self.btn_close.set_visible(True)
-        self.status_statuses.set_icon("selection-mode-symbolic")
+        self.btn_close.get_style_context().add_class("suggested-action")
+        self.status_statuses.set_icon_name("selection-mode-symbolic")
+        self.status_statuses.set_title(_("Bottle Created"))
         self.status_statuses.set_description(
             _("\"{0}\" was created successfully.").format(
                 self.entry_name.get_text()
             )
         )
-        self.btn_cancel.set_visible(False)
 
         '''
         Ask the manager to check for new bottles, then update the
