@@ -17,7 +17,6 @@
 
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.frontend.windows.filechooser import FileChooser
 from bottles.backend.wine.drives import Drives
 
 
@@ -60,24 +59,23 @@ class DriveEntry(Adw.ActionRow):
         Open the file chooser dialog and set the path to the
         selected file
         """
-        def set_path(_dialog, response, _file_dialog):
-            _file = _file_dialog.get_file()
-            if _file is None or response != -3:
-                _dialog.destroy()
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
                 return
-            path = _file.get_path()
+
+            path = dialog.get_file().get_path()
             Drives(self.config).new_drive(self.drive[0], path)
             self.set_subtitle(path)
-            _dialog.destroy()
 
-        FileChooser(
-            parent=self.parent.window,
+        dialog = Gtk.FileChooserNative.new(
             title=_("Select Drive Path"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(_("Cancel"), _("Select")),
-            callback=set_path,
-            native=True
+            parent=self.parent.window
         )
+
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def __remove(self, *_args):
         """

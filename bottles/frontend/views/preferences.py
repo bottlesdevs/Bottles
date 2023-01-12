@@ -25,7 +25,6 @@ from bottles.backend.repos.repo import RepoStatus
 
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
-from bottles.frontend.windows.filechooser import FileChooser
 
 from bottles.backend.managers.data import DataManager
 
@@ -165,23 +164,26 @@ class PreferencesWindow(Adw.PreferencesWindow):
         webbrowser.open("https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager")
 
     def __choose_bottles_path(self, widget):
-        def set_path(_dialog, response, _file_dialog):
-            if response == Gtk.ResponseType.ACCEPT:
-                _file = _file_dialog.get_file()
-                self.data.set("custom_bottles_path", _file.get_path())
-                self.label_bottles_path.set_label(os.path.basename(_file.get_path()))
-                self.btn_bottles_path_reset.set_visible(True)
-                self.prompt_restart()
-            _file_dialog.destroy()
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose a new Bottles path"),
+            path = dialog.get_file().get_path()
+
+            self.data.set("custom_bottles_path", path)
+            self.label_bottles_path.set_label(os.path.basename(path))
+            self.btn_bottles_path_reset.set_visible(True)
+            self.prompt_restart()
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Bottles Path"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(_("Cancel"), _("Select")),
-            callback=set_path,
-            native=True
+            parent=self.window
         )
+
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def handle_restart(self, widget, response_id):
         if response_id == "restart":
