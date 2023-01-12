@@ -171,6 +171,7 @@ class NewView(Adw.Window):
 
     def create_bottle(self, *_args):
         # set widgets states
+        self.is_closable = False
         self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
         self.set_title("")
@@ -210,6 +211,7 @@ class NewView(Adw.Window):
 
     def finish(self, result, error=None):
         self.status_statuses.set_description(None)
+        self.is_closable = True
 
         if not result or not result.status or error:
             self.btn_cancel.set_visible(False)
@@ -247,7 +249,7 @@ class NewView(Adw.Window):
             return "custom"
 
     def do_close_request(self, *args):
-        if self.stack_create.get_visible_child_name() == "page_creating":
+        if getattr(self, "is_closable", True) == False:
             # TODO: Implement AdwMessageDialog to prompt the user if they are
             # SURE they want to cancel creation. For now, the window will not
             # react if the user attempts to close the window while a bottle
