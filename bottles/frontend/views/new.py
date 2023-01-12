@@ -115,20 +115,24 @@ class NewView(Adw.Window):
         # focus on the entry_name
         self.entry_name.grab_focus()
 
-    def __set_group(self, widget):
+    def __set_group(self, widget: Gtk.CheckButton) -> None:
+        """ Checks the state of check_custom and updates group_custom accordingly. """
         self.group_custom.set_sensitive(self.check_custom.get_active())
 
-    def __check_entry_name(self, *_args):
+    def __check_entry_name(self, *_args) -> None:
+        """ Validates the entry of entry_name. """
         result = GtkUtils.validate_entry(self.entry_name, extend=self.__check_already_in_use)
         self.btn_create.set_sensitive(result)
     
-    def __check_already_in_use(self, name):
-        """
-        This function checks if the name is already in use.
-        """
+    def __check_already_in_use(self, name) -> bool:
+        """ Checks if the name is already in use. """
         return name in self.manager.local_bottles
 
-    def choose_env_recipe(self, *_args):
+    def choose_env_recipe(self, *_args) -> None:
+        """
+        Opens a file chooser dialog to select the configuration file
+        in yaml format.
+        """
         def set_path(_dialog, response):
             if response == Gtk.ResponseType.ACCEPT:
                 self.env_recipe_path = dialog.get_file().get_path()
@@ -147,7 +151,8 @@ class NewView(Adw.Window):
         dialog.connect("response", set_path)
         dialog.show()
 
-    def choose_path(self, *_args):
+    def choose_path(self, *_args) -> None:
+        """ Opens a file chooser dialog to select the directory. """
         def set_path(_dialog, response):
             if response == Gtk.ResponseType.ACCEPT:
                 self.custom_path = dialog.get_file().get_path()
@@ -164,7 +169,8 @@ class NewView(Adw.Window):
         dialog.connect("response", set_path)
         dialog.show()
 
-    def create_bottle(self, *_args):
+    def create_bottle(self, *_args) -> None:
+        """ Starts creating the bottle. """
         # set widgets states
         self.is_closable = False
         self.btn_cancel.set_visible(False)
@@ -195,19 +201,21 @@ class NewView(Adw.Window):
             custom_environment=getattr(self, "env_recipe_path", None)
         )
 
-    def update_output(self, text):
+    def update_output(self, text: str) -> None:
         """
-        This function update the label_output with the given text.
-        It will be concatenated with the previous one.
+        Updates label_output with the given text by concatenating
+        with the previous text.
         """
         current_text = self.label_output.get_text()
         text = f"{current_text}{text}\n"
         self.label_output.set_text(text)
 
-    def finish(self, result, error=None):
+    def finish(self, result, error=None) -> None:
+        """ Updates widgets based on whether it succeeded or failed. """
         self.status_statuses.set_description(None)
         self.is_closable = True
 
+        # Show error if bottle unsuccessfully builds
         if not result or not result.status or error:
             self.btn_cancel.set_visible(False)
             self.btn_close.set_visible(True)
@@ -215,6 +223,7 @@ class NewView(Adw.Window):
             self.btn_close.get_style_context().add_class("destructive-action")
             return
 
+        # Show success
         self.new_bottle_config = result.data.get("config")
         self.scrolled_output.set_visible(False)
         self.btn_close.set_visible(True)
@@ -227,14 +236,13 @@ class NewView(Adw.Window):
             )
         )
 
-        '''
-        Ask the manager to check for new bottles, then update the
-        user bottles list. 
-        '''
+        # Ask the manager to check for new bottles,
+        # then update the user bottles' list.
         self.manager.check_bottles()
         self.window.page_list.update_bottles(show=result.data.get("config").get("Path"))
 
-    def __radio_get_active(self):
+    def __radio_get_active(self) -> str:
+        """ Sets active environment based on user selection. """
         # TODO: Remove this ugly zig zag and find a better way to set the environment
         if self.check_gaming.get_active():
             return "gaming"
@@ -244,14 +252,12 @@ class NewView(Adw.Window):
             return "custom"
 
     def do_close_request(self, *args):
+        """ Close window if a new bottle is not being created """
         if getattr(self, "is_closable", True) == False:
             # TODO: Implement AdwMessageDialog to prompt the user if they are
             # SURE they want to cancel creation. For now, the window will not
             # react if the user attempts to close the window while a bottle
             # is being created
-
-            # FIXME: If creation fails, user cannot close the window as the
-            # stack page stays in page_creating
             return True
         else:
             self.close()
