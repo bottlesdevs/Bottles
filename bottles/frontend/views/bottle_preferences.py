@@ -826,7 +826,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"], remove=True)
         # Install new version
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"])
-        self.queue.end_task()
 
     def __set_dxvk(self, *_args):
         """Set the DXVK version to use for the bottle"""
@@ -835,7 +834,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         if (self.combo_dxvk.get_selected()) == 0:
             self.set_dxvk_status(pending=True)
-            self.queue.add_task()
 
             RunAsync(
                 task_func=self.manager.install_dll_component,
@@ -880,7 +878,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         if (self.combo_dxvk.get_selected()) == 0:
             self.set_vkd3d_status(pending=True)
-            self.queue.add_task()
 
             RunAsync(
                 task_func=self.manager.install_dll_component,
