@@ -230,6 +230,8 @@ class WineCommand:
         runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
         if arch == "win64":
             runner_libs = [
+                "lib",
+                "lib64",
                 "lib/wine/x86_64-unix",
                 "lib32/wine/x86_64-unix",
                 "lib64/wine/x86_64-unix",
@@ -244,6 +246,7 @@ class WineCommand:
             ]
         else:
             runner_libs = [
+                "lib",
                 "lib/wine/i386-unix",
                 "lib32/wine/i386-unix",
                 "lib64/wine/i386-unix"
