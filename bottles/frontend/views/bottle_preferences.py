@@ -878,7 +878,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.set_vkd3d_status(pending=True)
         self.queue.add_task()
 
-        if (self.combo_dxvk.get_selected()) == 0:
+        if (self.combo_vkd3d.get_selected()) == 0:
             self.set_vkd3d_status(pending=True)
             self.queue.add_task()
 
