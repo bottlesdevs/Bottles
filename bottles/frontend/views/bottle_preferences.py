@@ -48,6 +48,10 @@ from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.utils.gpu import GPUUtils
 
+from bottles.backend.logger import Logger
+
+logging = Logger()
+
 
 # noinspection PyUnusedLocal
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-preferences.ui')
@@ -835,6 +839,10 @@ class PreferencesView(Adw.PreferencesPage):
         if (self.combo_dxvk.get_selected()) == 0:
             self.set_dxvk_status(pending=True)
 
+            if self.combo_vkd3d.get_selected() != 0:
+                logging.info("VKD3D is enabled, disabling")
+                self.combo_vkd3d.set_selected(0)
+
             RunAsync(
                 task_func=self.manager.install_dll_component,
                 callback=self.set_dxvk_status,
@@ -894,6 +902,10 @@ class PreferencesView(Adw.PreferencesPage):
                 scope="Parameters"
             ).data["config"]
         else:
+            if self.combo_dxvk.get_selected() == 0:
+                logging.info("DXVK is disabled, reenabling")
+                self.combo_dxvk.set_selected(1)
+
             vkd3d = self.manager.vkd3d_available[self.combo_vkd3d.get_selected() - 1]
             self.config = self.manager.update_config(
                 config=self.config,
