@@ -148,3 +148,8 @@ class GPUUtils:
                 result["prime"]["discrete"] = gpus[_discrete]
 
         return result
+
+    @staticmethod
+    def is_gpu(vendor: str) -> bool:
+        gpu = GPUUtils().get_gpu()
+        return vendor == gpu.get("vendors", {}).get(vendor, {}).get("vendor", {})

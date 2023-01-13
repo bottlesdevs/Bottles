@@ -129,8 +129,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.queue = details.queue
         self.details = details
 
-        gpu = GPUUtils().get_gpu()
-
         # region signals
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
         self.row_env_variables.connect("activated", self.__show_environment_variables)
@@ -171,11 +169,9 @@ class PreferencesView(Adw.PreferencesPage):
         # endregion
 
         """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
-        with contextlib.suppress(KeyError):
-            vendor = gpu["vendors"]["nvidia"]["vendor"]
-            if vendor == "nvidia":
-                self.row_nvapi.set_visible(True)
-                self.combo_nvapi.set_visible(True)
+        is_nvidia_gpu = GPUUtils.is_gpu("nvidia")
+        self.row_nvapi.set_visible(is_nvidia_gpu)
+        self.combo_nvapi.set_visible(is_nvidia_gpu)
 
         """Set Bottles Runtime row to visible when Bottles is not running inside Flatpak"""
         if "FLATPAK_ID" not in os.environ and RuntimeManager.get_runtimes("bottles"):
