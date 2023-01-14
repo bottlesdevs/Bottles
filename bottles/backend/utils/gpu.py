@@ -17,6 +17,7 @@
 
 import subprocess
 
+from bottles.backend.utils.nvidia import get_nvidia_dll_path
 from bottles.backend.utils.vulkan import VulkanUtils
 from bottles.backend.logger import Logger
 
@@ -94,7 +95,8 @@ class GPUUtils:
                     "__GLX_VENDOR_LIBRARY_NAME": "nvidia",
                     "__VK_LAYER_NV_optimus": "NVIDIA_only"
                 },
-                "icd": self.vk.get_vk_icd("nvidia", as_string=True)
+                "icd": self.vk.get_vk_icd("nvidia", as_string=True),
+                "nvngx_path": get_nvidia_dll_path()
             },
             "amd": {
                 "vendor": "amd",
@@ -146,3 +148,8 @@ class GPUUtils:
                 result["prime"]["discrete"] = gpus[_discrete]
 
         return result
+
+    @staticmethod
+    def is_gpu(vendor: str) -> bool:
+        gpu = GPUUtils().get_gpu()
+        return vendor == gpu.get("vendors", {}).get(vendor, {}).get("vendor", {})

@@ -314,10 +314,6 @@ class WineCommand:
             env.add("DXVK_NVAPIHACK", "0")
             env.add("DXVK_ENABLE_NVAPI", "1")
 
-            # Prevent wine from hiding the Nvidia GPU with DXVK-Nvapi enabled
-            if is_nvidia:
-                env.add("WINE_HIDE_NVIDIA_GPU", "1")
-
         # Esync environment variable
         if params["sync"] == "esync":
             env.add("WINEESYNC", "1")

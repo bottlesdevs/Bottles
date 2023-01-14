@@ -133,8 +133,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.queue = details.queue
         self.details = details
 
-        gpu = GPUUtils().get_gpu()
-
         # region signals
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
         self.row_env_variables.connect("activated", self.__show_environment_variables)
@@ -175,11 +173,9 @@ class PreferencesView(Adw.PreferencesPage):
         # endregion
 
         """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
-        with contextlib.suppress(KeyError):
-            vendor = gpu["vendors"]["nvidia"]["vendor"]
-            if vendor == "nvidia":
-                self.row_nvapi.set_visible(True)
-                self.combo_nvapi.set_visible(True)
+        is_nvidia_gpu = GPUUtils.is_gpu("nvidia")
+        self.row_nvapi.set_visible(is_nvidia_gpu)
+        self.combo_nvapi.set_visible(is_nvidia_gpu)
 
         """Set Bottles Runtime row to visible when Bottles is not running inside Flatpak"""
         if "FLATPAK_ID" not in os.environ and RuntimeManager.get_runtimes("bottles"):
@@ -453,7 +449,7 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.combo_vkd3d.set_selected(0)
 
-        _nvapi = self.config.get("DXVK_NVAPI")
+        _nvapi = self.config.get("NVAPI")
         if _nvapi in self.manager.nvapi_available:
             if _i_nvapi := self.manager.nvapi_available.index(_nvapi):
                 self.combo_nvapi.set_selected(_i_nvapi)
@@ -931,6 +927,9 @@ class PreferencesView(Adw.PreferencesPage):
         """Set the NVAPI version to use for the bottle"""
         self.set_nvapi_status(pending=True)
         self.queue.add_task()
+
+        self.switch_nvapi.set_active(True)
+
         nvapi = self.manager.nvapi_available[self.combo_nvapi.get_selected()]
         self.config = self.manager.update_config(
             config=self.config,
@@ -944,6 +943,13 @@ class PreferencesView(Adw.PreferencesPage):
             config=self.config,
             component="nvapi"
         )
+
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="dxvk_nvapi",
+            value=True,
+            scope="Parameters"
+        ).data["config"]
 
     def __set_latencyflex(self, *_args):
         """Set the latency flex value"""

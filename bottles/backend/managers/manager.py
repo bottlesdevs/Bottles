@@ -790,6 +790,9 @@ class Manager:
                     except shutil.Error:
                         pass
 
+            if conf_file_yaml["Parameters"]["dxvk_nvapi"]:
+                NVAPIComponent.check_bottle_nvngx(_bottle, conf_file_yaml)
+
         for b in bottles:
             '''
             For each bottle add the path name to the `local_bottles` variable
@@ -1286,7 +1289,7 @@ class Manager:
                 # perform nvapi installation if configured
                 logging.info("Installing DXVK-NVAPI…")
                 log_update(_("Installing DXVK-NVAPI…"))
-                self.install_dll_component(config, "dxvk_nvapi", version=nvapi_name)
+                self.install_dll_component(config, "nvapi", version=nvapi_name)
                 template_updated = True
 
             for dep in env.get("Installed_Dependencies", []):
