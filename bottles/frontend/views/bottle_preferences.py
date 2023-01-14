@@ -27,6 +27,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, \
     obs_vkc_available, vkbasalt_available, vmtouch_available
 from bottles.backend.managers.runtime import RuntimeManager
+from bottles.backend.managers.library import LibraryManager
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.backend.models.result import Result
@@ -252,13 +253,29 @@ class PreferencesView(Adw.PreferencesPage):
             self.__valid_name = True
             return
 
-        name = self.entry_name.get_text()
+        new_name = self.entry_name.get_text()
+        old_name = self.config.get("Name")
+
+        library_manager = LibraryManager()
+        entries = library_manager.get_library()
+
+        for uuid, entry in entries.items():
+            bottle = entry.get("bottle")
+            if bottle.get("name") == old_name:
+                logging.info(f"Updating library entry for {entry.get('name')}")
+                entries[uuid]["bottle"]["name"] = new_name
+
+        library_manager.__library = entries
+        library_manager.save_library()
+
         self.manager.update_config(
             config=self.config,
             key="Name",
-            value=name
+            value=new_name
         )
-        self.window.page_list.update_bottles()
+
+        self.manager.update_bottles(silent=True) # Updates backend bottles list and UI
+        self.window.page_library.update()
 
     def choose_cwd(self, widget):
         def set_path(_dialog, response):
