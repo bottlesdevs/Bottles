@@ -103,6 +103,7 @@ class MainWindow(Adw.ApplicationWindow):
         # Signal connections
         self.btn_add.connect("clicked", self.show_add_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
+        self.stack_main.connect("notify::visible-child", self.__on_page_changed)
         self.__on_start()
         logging.info("Bottles Started!", )
 
@@ -276,7 +277,6 @@ class MainWindow(Adw.ApplicationWindow):
         widgets = [
             self.btn_add,
             self.view_switcher_title,
-            self.btn_search
         ]
         if self.btn_noconnection.get_visible():
             widgets.append(self.btn_noconnection)
@@ -310,6 +310,10 @@ class MainWindow(Adw.ApplicationWindow):
         if "FLATPAK_ID" not in os.environ and not HealthChecker().has_core_deps():
             self.disable_onboard = True
             DependenciesCheckDialog(self).present()
+
+    def __on_page_changed(self, stack, *args):
+        is_bottles_list = stack.get_visible_child_name() == "page_list"
+        self.btn_search.set_visible(is_bottles_list)
 
     @staticmethod
     def proper_close():
