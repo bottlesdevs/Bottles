@@ -320,9 +320,9 @@ class PreferencesView(Adw.PreferencesPage):
         ]:
             string_list.splice(0, string_list.get_n_items())
 
-        self.str_list_dxvk.append("Disabled")
-        self.str_list_vkd3d.append("Disabled")
-        self.str_list_latencyflex.append("Disabled")
+        self.str_list_dxvk.append(_("Disabled"))
+        self.str_list_vkd3d.append(_("Disabled"))
+        self.str_list_latencyflex.append(_("Disabled"))
 
         self.str_list_dxvk.splice(self.str_list_dxvk.get_n_items(), 0, self.manager.dxvk_available)
         self.str_list_vkd3d.splice(self.str_list_vkd3d.get_n_items(), 0, self.manager.vkd3d_available)
@@ -419,10 +419,8 @@ class PreferencesView(Adw.PreferencesPage):
             self.windows_versions["win98"] = "Windows 98"
             self.windows_versions["win95"] = "Windows 95"
 
-        for index, windows_version in enumerate(self.windows_versions):
-            self.str_list_windows.append(self.windows_versions[windows_version])
-            if windows_version == self.config.get("Windows"):
-                self.combo_windows.set_selected(index)
+        self.str_list_windows.splice(self.str_list_windows.get_n_items(), 0, list(self.windows_versions.values()))
+        self.combo_windows.set_selected(list(self.windows_versions).index(self.config.get("Windows")))
         # endregion
         
         parameters = self.config.get("Parameters")
