@@ -3,6 +3,7 @@
 
 import os
 from ctypes import CDLL, POINTER, Structure, addressof, c_char_p, c_int, c_void_p, cast
+import subprocess
 
 from bottles.backend.logger import Logger
 
@@ -88,10 +89,21 @@ def get_nvidia_dll_path():
     See https://gitlab.steamos.cloud/steamrt/steam-runtime-tools/-/issues/71 for
     background on the chosen method of DLL discovery.
     """
+    _proc = subprocess.Popen(
+        f"lspci | grep -iP 'nvidia'",
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        shell=True
+    )
+    stdout, stderr = _proc.communicate()
+    if len(stdout) == 0:
+        return None
+
     libglx_path = get_nvidia_glx_path()
     if not libglx_path:
         logging.warning("Unable to locate libGLX_nvidia")
-        return
+        return None
     nvidia_wine_dir = os.path.join(os.path.dirname(libglx_path), "nvidia/wine")
     if os.path.exists(os.path.join(nvidia_wine_dir, "nvngx.dll")):
         return nvidia_wine_dir
+    return None
