@@ -6,7 +6,6 @@ from ctypes import CDLL, POINTER, Structure, addressof, c_char_p, c_int, c_void_
 import subprocess
 
 from bottles.backend.logger import Logger
-from bottles.backend.utils.gpu import GPUUtils, GPUVendors
 
 logging = Logger()
 
@@ -90,6 +89,7 @@ def get_nvidia_dll_path():
     See https://gitlab.steamos.cloud/steamrt/steam-runtime-tools/-/issues/71 for
     background on the chosen method of DLL discovery.
     """
+    from bottles.backend.utils.gpu import GPUUtils, GPUVendors
     if not GPUUtils.is_gpu(GPUVendors.NVIDIA): return None
 
     libglx_path = get_nvidia_glx_path()
