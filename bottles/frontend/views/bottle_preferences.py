@@ -499,7 +499,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __show_gamescope_settings(self, widget):
         new_window = GamescopeDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
@@ -531,21 +531,21 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __show_exclusionpatterns_settings(self, widget):
         new_window = ExclusionPatternsDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
 
     def __show_sandbox_settings(self, widget):
         new_window = SandboxDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
 
     def __show_drives(self, widget):
         new_window = DrivesDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
@@ -553,14 +553,14 @@ class PreferencesView(Adw.PreferencesPage):
     def __show_environment_variables(self, widget=False):
         """Show the environment variables dialog"""
         new_window = EnvVarsDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
 
     def __show_vmtouch_settings(self, widget):
         new_window = VmtouchDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
@@ -1015,7 +1015,7 @@ class PreferencesView(Adw.PreferencesPage):
     def __show_dll_overrides_view(self, widget=False):
         """Show the DLL overrides view"""
         new_window = DLLOverridesDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()

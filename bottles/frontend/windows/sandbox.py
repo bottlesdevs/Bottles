@@ -29,12 +29,12 @@ class SandboxDialog(Adw.Window):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, parent_window, config, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(window)
+        self.set_transient_for(parent_window)
 
         # common variables and references
-        self.window = window
+        self.parent_window = parent_window
         self.manager = window.manager
         self.config = config
         self.__update(config)
