@@ -323,23 +323,13 @@ class PreferencesView(Adw.PreferencesPage):
         self.str_list_dxvk.append("Disabled")
         self.str_list_vkd3d.append("Disabled")
         self.str_list_latencyflex.append("Disabled")
-        for index, dxvk in enumerate(self.manager.dxvk_available):
-            self.str_list_dxvk.append(dxvk)
 
-        for index, vkd3d in enumerate(self.manager.vkd3d_available):
-            self.str_list_vkd3d.append(vkd3d)
-
-        for index, runner in enumerate(self.manager.runners_available):
-            self.str_list_runner.append(runner)
-
-        for index, nvapi in enumerate(self.manager.nvapi_available):
-            self.str_list_nvapi.append(nvapi)
-
-        for index, latencyflex in enumerate(self.manager.latencyflex_available):
-            self.str_list_latencyflex.append(latencyflex)
-
-        for lang in ManagerUtils.get_languages():
-            self.str_list_languages.append(lang)
+        self.str_list_dxvk.splice(self.str_list_dxvk.get_n_items(), 0, self.manager.dxvk_available)
+        self.str_list_vkd3d.splice(self.str_list_vkd3d.get_n_items(), 0, self.manager.vkd3d_available)
+        self.str_list_runner.splice(self.str_list_runner.get_n_items(), 0, self.manager.runners_available)
+        self.str_list_nvapi.splice(self.str_list_nvapi.get_n_items(), 0, self.manager.nvapi_available)
+        self.str_list_latencyflex.splice(self.str_list_latencyflex.get_n_items(), 0, self.manager.latencyflex_available)
+        self.str_list_languages.splice(self.str_list_languages.get_n_items(), 0, ManagerUtils.get_languages())
 
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
