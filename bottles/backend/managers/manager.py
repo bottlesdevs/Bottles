@@ -29,7 +29,7 @@ from glob import glob
 from datetime import datetime
 from gettext import gettext as _
 from typing import Union, NewType, Any, List
-from gi.repository import GLib
+from gi.repository import GLib, Adw, Gtk
 import pathvalidate
 
 from bottles.backend.logger import Logger
@@ -723,10 +723,11 @@ class Manager:
 
             try:
                 if not os.path.exists(_config):
-                    raise AttributeError
+                    raise AttributeError(f"Bottle hasn't been found! Searched path: {_config}")
                 with open(_config, "r") as f:
                     conf_file_yaml = yaml.load(f)
-            except (FileNotFoundError, AttributeError, yaml.YAMLError):
+            except (FileNotFoundError, AttributeError, yaml.YAMLError) as e:
+                logging.error(f"{e}")
                 return
 
             if conf_file_yaml is None:
