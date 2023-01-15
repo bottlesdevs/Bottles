@@ -44,6 +44,7 @@ from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.steam import SteamManager
+from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.repos.repo import RepoStatus
@@ -1391,6 +1392,13 @@ class Manager:
             logging.info(f"Removing applications installed with the bottle…")
             for inst in glob(f"{Paths.applications}/{config.get('Name')}--*"):
                 os.remove(inst)
+
+            logging.info(f"Removing library entries associated with this bottle…")
+            library_manager = LibraryManager()
+            entries = library_manager.get_library().copy()
+            for uuid, entry in entries.items():
+                if entry.get('bottle').get('name') == config.get('Name'):
+                    library_manager.remove_from_library(uuid)
 
             if config.get("Custom_Path"):
                 logging.info(f"Removing placeholder…")
