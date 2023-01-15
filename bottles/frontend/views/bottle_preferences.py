@@ -120,7 +120,6 @@ class PreferencesView(Adw.PreferencesPage):
     str_list_nvapi = Gtk.Template.Child()
     str_list_latencyflex = Gtk.Template.Child()
     str_list_windows = Gtk.Template.Child()
-    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -169,7 +168,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_windows.connect('notify::selected', self.__set_windows)
         self.combo_language.connect('notify::selected-item', self.__set_language)
         self.combo_sync.connect('notify::selected', self.__set_sync_type)
-        self.ev_controller.connect("key-released", self.__check_entry_name)
         self.entry_name.connect("apply", self.__save_name)
         # endregion
 
@@ -243,16 +241,7 @@ class PreferencesView(Adw.PreferencesPage):
         if not vmtouch_available:
             self.switch_vmtouch.set_tooltip_text(_not_available)
 
-    def __check_entry_name(self, *_args):
-        self.__valid_name = GtkUtils.validate_entry(self.entry_name)
-
     def __save_name(self, *_args):
-        self.__check_entry_name()
-        if not self.__valid_name:
-            self.entry_name.set_text(self.config.get("Name"))
-            self.__valid_name = True
-            return
-
         new_name = self.entry_name.get_text()
         old_name = self.config.get("Name")
 
@@ -276,6 +265,7 @@ class PreferencesView(Adw.PreferencesPage):
 
         self.manager.update_bottles(silent=True) # Updates backend bottles list and UI
         self.window.page_library.update()
+        self.details.view_bottle.label_name.set_text(self.config.get("Name"))
 
     def choose_cwd(self, widget):
         def set_path(_dialog, response):
@@ -389,7 +379,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_windows.handler_block_by_func(self.__set_windows)
         self.combo_language.handler_block_by_func(self.__set_language)
-        self.ev_controller.handler_block_by_func(self.__check_entry_name)
         self.switch_mangohud.set_active(parameters["mangohud"])
         self.switch_obsvkc.set_active(parameters["obsvkc"])
         self.switch_vkbasalt.set_active(parameters["vkbasalt"])
@@ -518,7 +507,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
         self.combo_language.handler_unblock_by_func(self.__set_language)
-        self.ev_controller.handler_unblock_by_func(self.__check_entry_name)
 
         self.__set_steam_rules()
 
