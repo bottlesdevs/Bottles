@@ -700,6 +700,9 @@ class Manager:
         """
         bottles = os.listdir(Paths.bottles)
 
+        # Empty local bottles
+        self.local_bottles = {}
+
         def process_bottle(bottle):
             _name = bottle
             _bottle = os.path.join(Paths.bottles, bottle)
