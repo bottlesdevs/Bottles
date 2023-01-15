@@ -47,7 +47,7 @@ from bottles.frontend.windows.vmtouch import VmtouchDialog
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
-from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.gpu import GPUUtils, GPUVendors
 
 from bottles.backend.logger import Logger
 
@@ -174,7 +174,7 @@ class PreferencesView(Adw.PreferencesPage):
         # endregion
 
         """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
-        is_nvidia_gpu = GPUUtils.is_gpu("nvidia")
+        is_nvidia_gpu = GPUUtils.is_gpu(GPUVendors.NVIDIA)
         self.row_nvapi.set_visible(is_nvidia_gpu)
         self.combo_nvapi.set_visible(is_nvidia_gpu)
 
