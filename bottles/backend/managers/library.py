@@ -77,7 +77,15 @@ class LibraryManager:
 
         self.__library[_uuid] = data
         self.save_library()
-    
+
+    def download_thumbnail(self, uuid: str, config: dict):
+        if self.__library.get(uuid):
+            data = self.__library.get(uuid)
+            self.__library[uuid]['thumbnail'] = SteamGridDBManager.get_game_grid(data['name'], config)
+            self.save_library()
+            return
+        logging.warning(f'Entry not found in library, can\'t download thumbnail: {_uuid}')
+
     def __already_in_library(self, data: dict):
         """
         Checks if the entry UUID is already in the library.yml file.

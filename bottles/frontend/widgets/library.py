@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import logging
 import os
 import math
 from datetime import datetime
@@ -25,9 +24,13 @@ from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Adw
 from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.thumbnail import ThumbnailManager
+from bottles.backend.managers.steamgriddb import SteamGridDBManager
 from bottles.backend.runner import Runner
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.executor import WineExecutor
+from bottles.backend.logger import Logger
+
+logging = Logger()
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/library-entry.ui')
@@ -59,8 +62,11 @@ class LibraryEntry(Gtk.Box):
         self.entry = entry
         self.config = self.__get_config()
         
+        # This happens when a Library entry is an "orphan" (no bottles associated)
         if self.config is None:
-            return
+            library_manager = LibraryManager()
+            library_manager.remove_from_library(self.uuid)
+            raise Exception
 
         self.program = self.__get_program()
 
@@ -74,6 +80,15 @@ class LibraryEntry(Gtk.Box):
 
         if entry.get('thumbnail'):
             path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
+
+            if path is None:
+                # redownloading *should* never fail as it was successfully downloaded before
+                logging.info("Redownloading grid image...")
+                library_manager = LibraryManager()
+                library_manager.download_thumbnail(self.uuid, self.config)
+                entry = library_manager.get_library().get(uuid)
+                path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
+
             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 240, 360)
             self.img_cover.set_pixbuf(pixbuf)
             self.img_cover.set_visible(True)
