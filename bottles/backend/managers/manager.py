@@ -743,22 +743,23 @@ class Manager:
             # if not, change the config to reflect the folder name
             # if the folder name is "illegal" accross all platforms, rename the folder
             sain_name = pathvalidate.sanitize_filepath(_name, platform='universal') # "universal" platform works for all filesystem/OSes
-            if conf_file_yaml["Path"] != _name or sain_name != _name:
-                logging.warning("Illegal bottle folder or mismatch between config \"Path\" and folder name")
-                if sain_name != _name:
-                    # This hopefully doesn't happen, but it's managed
-                    logging.warning(f"Broken path in bottle {_name}, fixing...")
-                    shutil.move(_bottle, os.path.join(Paths.bottles, sain_name))
-                    # Restart the process bottle function. Normally, can't be recursive!
-                    process_bottle(sain_name)
-                    return
+            if conf_file_yaml["Custom_Path"] == False: # There shouldn't be problems with this
+                if conf_file_yaml["Path"] != _name or sain_name != _name:
+                    logging.warning("Illegal bottle folder or mismatch between config \"Path\" and folder name")
+                    if sain_name != _name:
+                        # This hopefully doesn't happen, but it's managed
+                        logging.warning(f"Broken path in bottle {_name}, fixing...")
+                        shutil.move(_bottle, os.path.join(Paths.bottles, sain_name))
+                        # Restart the process bottle function. Normally, can't be recursive!
+                        process_bottle(sain_name)
+                        return
 
-                conf_file_yaml["Path"] = sain_name
-                self.update_config(
-                    config=conf_file_yaml,
-                    key="Path",
-                    value=sain_name
-                )
+                    conf_file_yaml["Path"] = sain_name
+                    self.update_config(
+                        config=conf_file_yaml,
+                        key="Path",
+                        value=sain_name
+                    )
 
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
             for key in miss_keys:
