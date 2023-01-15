@@ -20,6 +20,7 @@ from bottles.backend.utils import yaml
 import uuid
 import tarfile
 import shutil
+import pathvalidate
 from typing import NewType
 from gettext import gettext as _
 from gi.repository import GLib
@@ -191,7 +192,7 @@ class BackupManager:
         """Duplicates the bottle with the specified new name."""
         logging.info(f"Duplicating bottle: {config.get('Name')} to {name}")
 
-        path = name.replace(" ", "_")
+        path = pathvalidate.sanitize_filename(name, platform="universal")
         source = ManagerUtils.get_bottle_path(config)
         dest = os.path.join(Paths.bottles, path)
 
