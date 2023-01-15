@@ -30,6 +30,7 @@ from datetime import datetime
 from gettext import gettext as _
 from typing import Union, NewType, Any, List
 from gi.repository import GLib
+import pathvalidate
 
 from bottles.backend.logger import Logger
 from bottles.backend.runner import Runner
@@ -738,6 +739,27 @@ class Manager:
             if conf_file_yaml.get("run_in_terminal"):
                 conf_file_yaml["run_in_terminal"] = False
 
+            # Check if the path in the bottle config corresponds to the folder name
+            # if not, change the config to reflect the folder name
+            # if the folder name is "illegal" accross all platforms, rename the folder
+            sain_name = pathvalidate.sanitize_filepath(_name, platform='universal') # "universal" platform works for all filesystem/OSes
+            if conf_file_yaml["Path"] != _name or sain_name != _name:
+                logging.warning("Illegal bottle folder or mismatch between config \"Path\" and folder name")
+                if sain_name != _name:
+                    # This hopefully doesn't happen, but it's managed
+                    logging.warning(f"Broken path in bottle {_name}, fixing...")
+                    shutil.move(_bottle, os.path.join(Paths.bottles, sain_name))
+                    # Restart the process bottle function. Normally, can't be recursive!
+                    process_bottle(sain_name)
+                    return
+
+                conf_file_yaml["Path"] = sain_name
+                self.update_config(
+                    config=conf_file_yaml,
+                    key="Path",
+                    value=sain_name
+                )
+
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
             for key in miss_keys:
                 logging.warning(f"Key {key} is missing for bottle {_name}, updating…")
@@ -836,16 +858,6 @@ class Manager:
         wineboot = WineBoot(_config)
         wineserver = WineServer(_config)
         bottle_path = ManagerUtils.get_bottle_path(config)
-
-        # Fix pathing error, where space is converted to _ in file name, but not in the path that bottle uses
-        # Replace spaces in file path with _ to solve this issue:
-        bottle_path_tmp = ""
-        for character in bottle_path:
-            if character != " ":
-                bottle_path_tmp = bottle_path_tmp + character
-            else:
-                bottle_path_tmp = bottle_path_tmp + "_"
-        bottle_path = bottle_path_tmp 
 
         if key == "sync":
             '''
