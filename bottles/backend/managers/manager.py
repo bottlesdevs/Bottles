@@ -1092,6 +1092,7 @@ class Manager:
         # define bottle parameters
         bottle_name = name
         bottle_name_path = bottle_name.replace(" ", "-")
+        bottle_name_path = pathvalidate.sanitize_filename(bottle_name_path, platform="universal")
 
         # get bottle path
         if path == "":

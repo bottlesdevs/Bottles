@@ -168,7 +168,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_windows.connect('notify::selected', self.__set_windows)
         self.combo_language.connect('notify::selected-item', self.__set_language)
         self.combo_sync.connect('notify::selected', self.__set_sync_type)
-        self.entry_name.connect("apply", self.__save_name)
+        self.entry_name.connect('changed', self.__check_entry_name)
+        self.entry_name.connect('apply', self.__save_name)
         # endregion
 
         """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
@@ -241,7 +242,23 @@ class PreferencesView(Adw.PreferencesPage):
         if not vmtouch_available:
             self.switch_vmtouch.set_tooltip_text(_not_available)
 
+    def __check_entry_name(self, *_args):
+        if self.entry_name.get_text() != self.config.get("Name"):
+            is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
+            if is_duplicate:
+                self.window.show_toast(_("This bottle name is already in use."))
+                self.__valid_name = False
+                self.entry_name.add_css_class("error")
+                return
+        self.__valid_name = True
+        self.entry_name.remove_css_class("error")
+
     def __save_name(self, *_args):
+        if not self.__valid_name:
+            self.entry_name.set_text(self.config.get("Name"))
+            self.__valid_name = True
+            return
+
         new_name = self.entry_name.get_text()
         old_name = self.config.get("Name")
 
