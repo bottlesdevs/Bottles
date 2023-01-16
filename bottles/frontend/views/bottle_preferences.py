@@ -781,11 +781,11 @@ class PreferencesView(Adw.PreferencesPage):
                 self.spinner_runner.start()
                 self.spinner_runner.set_visible(True)
 
-        def update(result, error=False):
-            if result:
+        def update(result: Result[dict], error=False):
+            if isinstance(result, Result) and isinstance(result.data, dict):  # expecting Result[dict].data["config"]
                 self.details.update_runner_label(runner)
-                
-                if "config" in result.data.keys():
+
+                if "config" in result.data:
                     self.config = result.data["config"]
                 if self.config.Parameters.use_steam_runtime:
                     self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
