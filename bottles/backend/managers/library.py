@@ -79,12 +79,20 @@ class LibraryManager:
         self.save_library()
 
     def download_thumbnail(self, uuid: str, config: dict):
-        if self.__library.get(uuid):
-            data = self.__library.get(uuid)
-            self.__library[uuid]['thumbnail'] = SteamGridDBManager.get_game_grid(data['name'], config)
-            self.save_library()
-            return
-        logging.warning(f'Entry not found in library, can\'t download thumbnail: {_uuid}')
+        if not self.__library.get(uuid):
+            logging.warning(f'Entry not found in library, can\'t download thumbnail: {_uuid}')
+            return False
+
+        data = self.__library.get(uuid)
+        value = SteamGridDBManager.get_game_grid(data['name'], config)
+
+        if not value:
+            return False
+
+        self.__library[uuid]['thumbnail'] = value
+        self.save_library()
+        return True
+
 
     def __already_in_library(self, data: dict):
         """

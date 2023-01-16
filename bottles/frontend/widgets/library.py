@@ -84,14 +84,16 @@ class LibraryEntry(Gtk.Box):
                 # redownloading *should* never fail as it was successfully downloaded before
                 logging.info("Redownloading grid image...")
                 library_manager = LibraryManager()
-                library_manager.download_thumbnail(self.uuid, self.config)
-                entry = library_manager.get_library().get(uuid)
-                path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
+                result = library_manager.download_thumbnail(self.uuid, self.config)
+                if result:
+                    entry = library_manager.get_library().get(uuid)
+                    path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
 
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 240, 360)
-            self.img_cover.set_pixbuf(pixbuf)
-            self.img_cover.set_visible(True)
-            self.label_no_cover.set_visible(False)
+            if path is not None:
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 240, 360)
+                self.img_cover.set_pixbuf(pixbuf)
+                self.img_cover.set_visible(True)
+                self.label_no_cover.set_visible(False)
 
         motion_ctrl = Gtk.EventControllerMotion.new()
         motion_ctrl.connect("enter", self.__on_motion_enter)
