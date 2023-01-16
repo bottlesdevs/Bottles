@@ -29,7 +29,7 @@ from glob import glob
 from datetime import datetime
 from gettext import gettext as _
 from typing import Union, NewType, Any, List
-from gi.repository import GLib, Adw, Gtk
+from gi.repository import GLib
 import pathvalidate
 
 from bottles.backend.logger import Logger
