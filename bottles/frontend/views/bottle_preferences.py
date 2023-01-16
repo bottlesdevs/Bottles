@@ -30,6 +30,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 
 from bottles.backend.runner import Runner
 from bottles.backend.managers.runtime import RuntimeManager
+from bottles.backend.managers.library import LibraryManager
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.backend.models.result import Result
@@ -47,7 +48,11 @@ from bottles.frontend.windows.exclusionpatterns import ExclusionPatternsDialog
 from bottles.frontend.windows.vmtouch import VmtouchDialog
 
 from bottles.backend.wine.regkeys import RegKeys
-from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.gpu import GPUUtils, GPUVendors
+
+from bottles.backend.logger import Logger
+
+logging = Logger()
 
 
 # noinspection PyUnusedLocal
@@ -130,8 +135,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.queue = details.queue
         self.details = details
 
-        gpu = GPUUtils().get_gpu()
-
         # region signals
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
         self.row_env_variables.connect("activated", self.__show_environment_variables)
@@ -172,11 +175,9 @@ class PreferencesView(Adw.PreferencesPage):
         # endregion
 
         """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
-        with contextlib.suppress(KeyError):
-            vendor = gpu["vendors"]["nvidia"]["vendor"]
-            if vendor == "nvidia":
-                self.row_nvapi.set_visible(True)
-                self.combo_nvapi.set_visible(True)
+        is_nvidia_gpu = GPUUtils.is_gpu(GPUVendors.NVIDIA)
+        self.row_nvapi.set_visible(is_nvidia_gpu)
+        self.combo_nvapi.set_visible(is_nvidia_gpu)
 
         """Set Bottles Runtime row to visible when Bottles is not running inside Flatpak"""
         if "FLATPAK_ID" not in os.environ and RuntimeManager.get_runtimes("bottles"):
@@ -253,13 +254,29 @@ class PreferencesView(Adw.PreferencesPage):
             self.__valid_name = True
             return
 
-        name = self.entry_name.get_text()
+        new_name = self.entry_name.get_text()
+        old_name = self.config.Name
+
+        library_manager = LibraryManager()
+        entries = library_manager.get_library()
+
+        for uuid, entry in entries.items():
+            bottle = entry.get("bottle")
+            if bottle.get("name") == old_name:
+                logging.info(f"Updating library entry for {entry.get('name')}")
+                entries[uuid]["bottle"]["name"] = new_name
+
+        library_manager.__library = entries
+        library_manager.save_library()
+
         self.manager.update_config(
             config=self.config,
             key="Name",
-            value=name
+            value=new_name
         )
-        self.window.page_list.update_bottles()
+
+        self.manager.update_bottles(silent=True) # Updates backend bottles list and UI
+        self.window.page_library.update()
 
     def choose_cwd(self, widget):
         def set_path(_dialog, response):
@@ -825,7 +842,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"], remove=True)
         # Install new version
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"])
-        self.queue.end_task()
 
     def __set_dxvk(self, *_args):
         """Set the DXVK version to use for the bottle"""
@@ -834,7 +850,10 @@ class PreferencesView(Adw.PreferencesPage):
 
         if (self.combo_dxvk.get_selected()) == 0:
             self.set_dxvk_status(pending=True)
-            self.queue.add_task()
+
+            if self.combo_vkd3d.get_selected() != 0:
+                logging.info("VKD3D is enabled, disabling")
+                self.combo_vkd3d.set_selected(0)
 
             RunAsync(
                 task_func=self.manager.install_dll_component,
@@ -877,9 +896,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.set_vkd3d_status(pending=True)
         self.queue.add_task()
 
-        if (self.combo_dxvk.get_selected()) == 0:
+        if (self.combo_vkd3d.get_selected()) == 0:
             self.set_vkd3d_status(pending=True)
-            self.queue.add_task()
 
             RunAsync(
                 task_func=self.manager.install_dll_component,
@@ -896,6 +914,10 @@ class PreferencesView(Adw.PreferencesPage):
                 scope="Parameters"
             ).data["config"]
         else:
+            if self.combo_dxvk.get_selected() == 0:
+                logging.info("DXVK is disabled, reenabling")
+                self.combo_dxvk.set_selected(1)
+
             vkd3d = self.manager.vkd3d_available[self.combo_vkd3d.get_selected() - 1]
             self.config = self.manager.update_config(
                 config=self.config,
@@ -921,6 +943,9 @@ class PreferencesView(Adw.PreferencesPage):
         """Set the NVAPI version to use for the bottle"""
         self.set_nvapi_status(pending=True)
         self.queue.add_task()
+
+        self.switch_nvapi.set_active(True)
+
         nvapi = self.manager.nvapi_available[self.combo_nvapi.get_selected()]
         self.config = self.manager.update_config(
             config=self.config,
@@ -934,6 +959,13 @@ class PreferencesView(Adw.PreferencesPage):
             config=self.config,
             component="nvapi"
         )
+
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="dxvk_nvapi",
+            value=True,
+            scope="Parameters"
+        ).data["config"]
 
     def __set_latencyflex(self, *_args):
         """Set the latency flex value"""

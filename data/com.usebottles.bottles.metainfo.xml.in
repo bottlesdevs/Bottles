@@ -79,33 +79,32 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.12.14.1" date="2022-11-14">
+        <release version="50.1" date="2023-01-15">
           <description>
             <ul>
-                <li>The PulseAudio Latency setting is now deprecated and enabled by default</li>
-                <li>Bottle details automatically show on bottle creation</li>
-                <li>Bottles now complies with GNOME Circle guidelines</li>
-                <li>Disable pulseaudio_latency by default.</li>
-                <li>Fixed a crash during startup due to uninstaller.</li>
-                <li>Implemented a queue for installing components.</li>
-                <li>Fixed bottle deletion not working sometimes.</li>
-                <li>Support for latest dxvk @Blisto91</li>
-                <li>Fix for DLSS</li>
-                <li>Added tooltips for program grades</li>
-                <li>Fix installer completion @jntesteves</li>
-                <li>Fix gamescope arguments @jntesteves</li>
-                <li>Added Ctrl + W shortcut for closing windows @A6GibKm</li>
-                <li>Fixed bottles unsetting XDG_DATA_HOME</li>
-                <li>French translations thanks to @julroy and @tymmsyde</li>
-                <li>Turkish translations thanks to @54linux-ea and @ruizlenato</li>
-                <li>Russian translations thanks to @lenemter and @Smoque</li>
-                <li>Catalan translations thanks to @rogervc</li>
-                <li>Arabic translations thanks to @TheDarkEvil</li>
-                <li>Korean translations thanks to @MarongHappy</li>
-                <li>Portuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl</li>
-                <li>Galician translations thanks to @NicoSGF64</li>
-                <li>Hebrew translations thanks to @itayweb</li>
-                <li>Polish translations thanks to @Mikutut</li>
+                <li>Correct version date</li>
+                <li>Hide NVIDIA-related critical errors on non NVIDIA systems</li>
+            </ul>
+          </description>
+        </release>
+        <release version="50.0" date="2023-01-14">
+          <description>
+            <ul>
+                <li>Gamescope improvements and fixes</li>
+                <li>Dependency installation is faster and more stable</li>
+                <li>The health check has more information for faster debugging</li>
+                <li>NVAPI has a lot of fixes and is more stable, should now work properly</li>
+                <li>Fix crash when downloading a component</li>
+                <li>Backend code improvement by avoiding spin-lock</li>
+                <li>More variables for installer scripting</li>
+                <li>Fix onboard dialog showing "All ready" while it was in fact not ready</li>
+                <li>Improvement to build system</li>
+                <li>Enabling VKD3D by default when creating bottles for gaming</li>
+                <li>Fix crashes when reading Steam files with bad encodings</li>
+                <li>Fix components not updated correctly in the UI after installation/uninstallation</li>
+                <li>More FSR fixes</li>
+                <li>Fix the issue when a program closes after it was launched from "Run executable"</li>
+                <li>and many, many, many more!</li>
             </ul>
           </description>
         </release>

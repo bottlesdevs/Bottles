@@ -614,12 +614,16 @@ class DependencyManager:
             path = step["url"].replace("temp/", f"{Paths.temp}/")
             dlls = glob(os.path.join(path, step.get("dll")))
 
+            bundle = {"HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides": []}
+            import ntpath
             for dll in dlls:
-                reg.add(
-                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
-                    value=dll,
-                    data=step.get("type")
-                )
+                dll_name = os.path.splitext(os.path.basename(dll))[0]
+                bundle["HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides"].append({
+                    "value": dll_name,
+                    "data": step.get("type")
+                })
+
+            reg.import_bundle(bundle)
             return True
 
         if step.get("bundle"):

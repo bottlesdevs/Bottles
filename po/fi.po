@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-20 21:22+0000\n"
+"PO-Revision-Date: 2023-01-12 10:52+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -1145,6 +1145,9 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
+"Tämä versio Pullot-sovelluksesta ei vaikuta sisältävän kaikkia tarvittavia "
+"ydinriippuvuuksia. Ota yhteys paketin ylläpitäjään tai käytä virallista "
+"versiota."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
@@ -1580,7 +1583,7 @@ msgstr "Oletusasetukset"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "Tehosteet toteutaan listausjärjestyksessä."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
 msgid "Effects"
@@ -2452,7 +2455,7 @@ msgstr "Tämä ominaisuus ei ole käytettävissä järjestelmässäsi."
 
 #: bottles/frontend/views/bottle_preferences.py:197
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} Lisää tämä ominaisuus suorittamalla flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:278
 #: bottles/frontend/views/bottle_preferences.py:246
@@ -2470,7 +2473,7 @@ msgstr "Haluatko varmasti poistaa kaikki tilannevedokset?"
 
 #: bottles/frontend/views/bottle_preferences.py:719
 msgid "This will delete all snapshots but keep your files."
-msgstr ""
+msgstr "Tämä poistaa kaikki tilannevedokset, mutta säilyttää tiedostot."
 
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2624,9 +2627,9 @@ msgid "\"{0}\" installed"
 msgstr "\"{0}\" asennettu"
 
 #: bottles/frontend/widgets/dependency.py:180
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "Kohteen '{0}' asennus epäonnistui."
+msgstr "Kohteen \"{0}\" asennus epäonnistui"
 
 #: bottles/frontend/widgets/importer.py:66
 #, python-brace-format
@@ -2666,9 +2669,9 @@ msgstr "Käynnistetään \"{0}\"…"
 
 #: bottles/frontend/widgets/library.py:153
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "Käynnistetään '{0}'…"
+msgstr "Pysäytetään \"{0}\"…"
 
 #: bottles/frontend/widgets/program.py:190
 #, python-brace-format
@@ -2697,9 +2700,9 @@ msgstr "\"{0}\" nimetty muotoon \"{1}\""
 
 #: bottles/frontend/widgets/program.py:265
 #: bottles/frontend/widgets/program.py:271
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
-msgstr "Luotu kohde työpöydälle '{0}'"
+msgstr "Luotu työpöytätietue \"{0}\""
 
 #: bottles/frontend/widgets/program.py:287
 #, python-brace-format
@@ -2872,16 +2875,15 @@ msgstr "Näytä tai piilota pulloluettelossa päivityspäivä."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Steam-sovellusten luettelointi"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Gamescopen asetukset"
+msgstr "Epic Games -luettelointi"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
@@ -2889,7 +2891,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "Ubisoft Connect -luettelointi"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-31 19:49+0000\n"
+"PO-Revision-Date: 2023-01-14 13:51+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
@@ -2580,6 +2580,8 @@ msgstr "Cette fonctionnalité n’est pas disponible sur votre système."
 #: bottles/frontend/views/bottle_preferences.py:197
 msgid "{} To add this feature, please run flatpak install"
 msgstr ""
+"{} Pour ajouter cette fonctionnalité, veuillez exécuter l’installation de "
+"flatpak"
 
 #: bottles/frontend/views/bottle_preferences.py:278
 #: bottles/frontend/views/bottle_preferences.py:246
@@ -2596,7 +2598,7 @@ msgstr "Êtes-vous sûr de vouloir supprimer tous les états ?"
 
 #: bottles/frontend/views/bottle_preferences.py:719
 msgid "This will delete all snapshots but keep your files."
-msgstr ""
+msgstr "Cela supprimera tous les instantanés mais conservera vos fichiers."
 
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2661,7 +2663,6 @@ msgid "Fetched {0} of {1} packages"
 msgstr "{0} de {1} paquets récupéré(s)"
 
 #: bottles/frontend/views/new.py:139
-#, fuzzy
 msgid "The name has special characters or is already in use."
 msgstr "Le nom a des caractères spéciaux ou est déjà utilisé."
 
@@ -2687,9 +2688,8 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "Steam n’a pas été trouvé ou Bouteilles n’a pas assez de permissions."
 
 #: bottles/frontend/views/preferences.py:152
-#, fuzzy
 msgid "Choose a new Bottles path"
-msgstr "Choisissez le chemin des nouvelles bouteilles"
+msgstr "Choisissez un nouveau chemin pour Bouteilles"
 
 #: bottles/frontend/views/preferences.py:172
 msgid "Relaunch Bottles?"
@@ -2806,7 +2806,7 @@ msgstr "Lancement de « {0} »…"
 
 #: bottles/frontend/widgets/library.py:153
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
 msgstr "Lancement de « {0} »…"
 
@@ -3281,7 +3281,7 @@ msgstr "Correction pour le DLSS"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Added tooltips for program grades"
-msgstr ""
+msgstr "Ajout d’infobulles pour les notes des programmes"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fix installer completion @jntesteves"
@@ -3316,21 +3316,17 @@ msgid "Catalan translations thanks to @rogervc"
 msgstr "Traductions en catalan grâce à @rogervc"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic translations thanks to @TheDarkEvil"
-msgstr "Traductions en thaïlandais grâce à @SashaPGT"
+msgstr "Traductions en arabe grâce à @TheDarkEvil"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:104
 msgid "Korean translations thanks to @MarongHappy"
 msgstr "Traductions en coréen grâce à @MarongHappy"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
-msgstr ""
-"Traductions en portugais grâce à @laralem, @SantosSI, Pão com omlet et "
-"@hugok79"
+msgstr "Traductions en portugais grâce à @davipatricio, @SantosSi and @vitorhcl"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Galician translations thanks to @NicoSGF64"

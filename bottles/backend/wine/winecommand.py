@@ -229,6 +229,8 @@ class WineCommand:
         runner_path = ManagerUtils.get_runner_path(config.Runner)
         if arch == "win64":
             runner_libs = [
+                "lib",
+                "lib64",
                 "lib/wine/x86_64-unix",
                 "lib32/wine/x86_64-unix",
                 "lib64/wine/x86_64-unix",
@@ -243,6 +245,7 @@ class WineCommand:
             ]
         else:
             runner_libs = [
+                "lib",
                 "lib/wine/i386-unix",
                 "lib32/wine/i386-unix",
                 "lib64/wine/i386-unix"
@@ -312,10 +315,6 @@ class WineCommand:
             #       DLSS works. I don't have a GPU compatible with this tech, so I'll trust them
             env.add("DXVK_NVAPIHACK", "0")
             env.add("DXVK_ENABLE_NVAPI", "1")
-
-            # Prevent wine from hiding the Nvidia GPU with DXVK-Nvapi enabled
-            if is_nvidia:
-                env.add("WINE_HIDE_NVIDIA_GPU", "1")
 
         # Esync environment variable
         if params.sync == "esync":
