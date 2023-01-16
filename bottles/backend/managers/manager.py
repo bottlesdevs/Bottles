@@ -792,8 +792,8 @@ class Manager:
                     except shutil.Error:
                         pass
 
-            if conf_file_yaml["Parameters"]["dxvk_nvapi"]:
-                NVAPIComponent.check_bottle_nvngx(_bottle, conf_file_yaml)
+            if config.Parameters.dxvk_nvapi:
+                NVAPIComponent.check_bottle_nvngx(_bottle, config)
 
         for b in bottles:
             '''
