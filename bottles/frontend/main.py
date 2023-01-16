@@ -298,7 +298,8 @@ class Bottles(Adw.Application):
                 "libadwaita https://gitlab.gnome.org/GNOME/libadwaita",
                 "icoextract https://github.com/jlu5/icoextract",
                 "vmtouch https://github.com/hoytech/vmtouch",
-                "FVS https://github.com/mirkobrombin/FVS"
+                "FVS https://github.com/mirkobrombin/FVS",
+                "pathvalidate https://github.com/thombashi/pathvalidate"
             ]
         )
         about_window.add_acknowledgement_section(
