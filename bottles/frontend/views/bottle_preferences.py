@@ -270,6 +270,7 @@ class PreferencesView(Adw.PreferencesPage):
             if bottle.get("name") == old_name:
                 logging.info(f"Updating library entry for {entry.get('name')}")
                 entries[uuid]["bottle"]["name"] = new_name
+                break
 
         library_manager.__library = entries
         library_manager.save_library()
