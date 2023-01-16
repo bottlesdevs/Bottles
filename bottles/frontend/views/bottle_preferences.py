@@ -27,6 +27,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, \
     obs_vkc_available, vkbasalt_available, vmtouch_available
 from bottles.backend.managers.runtime import RuntimeManager
+from bottles.backend.managers.library import LibraryManager
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.backend.models.result import Result
@@ -46,7 +47,7 @@ from bottles.frontend.windows.vmtouch import VmtouchDialog
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
-from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.gpu import GPUUtils, GPUVendors
 
 from bottles.backend.logger import Logger
 
@@ -119,7 +120,6 @@ class PreferencesView(Adw.PreferencesPage):
     str_list_nvapi = Gtk.Template.Child()
     str_list_latencyflex = Gtk.Template.Child()
     str_list_windows = Gtk.Template.Child()
-    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -132,8 +132,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = config
         self.queue = details.queue
         self.details = details
-
-        gpu = GPUUtils().get_gpu()
 
         # region signals
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
@@ -170,16 +168,14 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_windows.connect("notify::selected", self.__set_windows)
         self.combo_language.connect('notify::selected-item', self.__set_language)
         self.combo_sync.connect("notify::selected", self.__set_sync_type)
-        self.ev_controller.connect("key-released", self.__check_entry_name)
+        self.entry_name.connect('changed', self.__check_entry_name)
         self.entry_name.connect("apply", self.__save_name)
         # endregion
 
         """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
-        with contextlib.suppress(KeyError):
-            vendor = gpu["vendors"]["nvidia"]["vendor"]
-            if vendor == "nvidia":
-                self.row_nvapi.set_visible(True)
-                self.combo_nvapi.set_visible(True)
+        is_nvidia_gpu = GPUUtils.is_gpu(GPUVendors.NVIDIA)
+        self.row_nvapi.set_visible(is_nvidia_gpu)
+        self.combo_nvapi.set_visible(is_nvidia_gpu)
 
         """Set Bottles Runtime row to visible when Bottles is not running inside Flatpak"""
         if "FLATPAK_ID" not in os.environ and RuntimeManager.get_runtimes("bottles"):
@@ -247,22 +243,47 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_vmtouch.set_tooltip_text(_not_available)
 
     def __check_entry_name(self, *_args):
-        self.__valid_name = GtkUtils.validate_entry(self.entry_name)
+        if self.entry_name.get_text() != self.config.get("Name"):
+            is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
+            if is_duplicate:
+                self.window.show_toast(_("This bottle name is already in use."))
+                self.__valid_name = False
+                self.entry_name.add_css_class("error")
+                return
+        self.__valid_name = True
+        self.entry_name.remove_css_class("error")
 
     def __save_name(self, *_args):
-        self.__check_entry_name()
         if not self.__valid_name:
             self.entry_name.set_text(self.config.get("Name"))
             self.__valid_name = True
             return
 
-        name = self.entry_name.get_text()
+        new_name = self.entry_name.get_text()
+        old_name = self.config.get("Name")
+
+        library_manager = LibraryManager()
+        entries = library_manager.get_library()
+
+        for uuid, entry in entries.items():
+            bottle = entry.get("bottle")
+            if bottle.get("name") == old_name:
+                logging.info(f"Updating library entry for {entry.get('name')}")
+                entries[uuid]["bottle"]["name"] = new_name
+                break
+
+        library_manager.__library = entries
+        library_manager.save_library()
+
         self.manager.update_config(
             config=self.config,
             key="Name",
-            value=name
+            value=new_name
         )
-        self.window.page_list.update_bottles()
+
+        self.manager.update_bottles(silent=True) # Updates backend bottles list and UI
+        self.window.page_library.update()
+        self.details.view_bottle.label_name.set_text(self.config.get("Name"))
 
     def choose_cwd(self, widget):
         def set_path(_dialog, response):
@@ -366,7 +387,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_windows.handler_block_by_func(self.__set_windows)
         self.combo_language.handler_block_by_func(self.__set_language)
-        self.ev_controller.handler_block_by_func(self.__check_entry_name)
         self.switch_mangohud.set_active(parameters["mangohud"])
         self.switch_obsvkc.set_active(parameters["obsvkc"])
         self.switch_vkbasalt.set_active(parameters["vkbasalt"])
@@ -441,7 +461,7 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.combo_vkd3d.set_selected(0)
 
-        _nvapi = self.config.get("DXVK_NVAPI")
+        _nvapi = self.config.get("NVAPI")
         if _nvapi in self.manager.nvapi_available:
             if _i_nvapi := self.manager.nvapi_available.index(_nvapi):
                 self.combo_nvapi.set_selected(_i_nvapi)
@@ -493,7 +513,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
         self.combo_language.handler_unblock_by_func(self.__set_language)
-        self.ev_controller.handler_unblock_by_func(self.__check_entry_name)
 
         self.__set_steam_rules()
 
@@ -919,6 +938,9 @@ class PreferencesView(Adw.PreferencesPage):
         """Set the NVAPI version to use for the bottle"""
         self.set_nvapi_status(pending=True)
         self.queue.add_task()
+
+        self.switch_nvapi.set_active(True)
+
         nvapi = self.manager.nvapi_available[self.combo_nvapi.get_selected()]
         self.config = self.manager.update_config(
             config=self.config,
@@ -932,6 +954,13 @@ class PreferencesView(Adw.PreferencesPage):
             config=self.config,
             component="nvapi"
         )
+
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="dxvk_nvapi",
+            value=True,
+            scope="Parameters"
+        ).data["config"]
 
     def __set_latencyflex(self, *_args):
         """Set the latency flex value"""

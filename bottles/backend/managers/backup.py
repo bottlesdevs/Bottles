@@ -20,6 +20,7 @@ from bottles.backend.utils import yaml
 import uuid
 import tarfile
 import shutil
+import pathvalidate
 from typing import NewType
 from gettext import gettext as _
 from gi.repository import GLib
@@ -191,7 +192,7 @@ class BackupManager:
         """Duplicates the bottle with the specified new name."""
         logging.info(f"Duplicating bottle: {config.get('Name')} to {name}")
 
-        path = name.replace(" ", "_")
+        path = pathvalidate.sanitize_filename(name, platform="universal")
         source = ManagerUtils.get_bottle_path(config)
         dest = os.path.join(Paths.bottles, path)
 
@@ -222,7 +223,7 @@ class BackupManager:
             with open(dest_config, "r") as config_file:
                 config = yaml.load(config_file)
                 config["Name"] = name
-                config["Path"] = name
+                config["Path"] = path
 
             with open(dest_config, "w") as config_file:
                 yaml.dump(config, config_file, indent=4)
@@ -231,7 +232,8 @@ class BackupManager:
                 src=source_drive,
                 dst=dest_drive,
                 ignore=shutil.ignore_patterns(".*"),
-                symlinks=False
+                symlinks=True,
+                ignore_dangling_symlinks=True
             )
         except (FileNotFoundError, PermissionError, OSError):
             logging.error(f"Failed duplicate bottle: {name}")
