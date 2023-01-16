@@ -134,16 +134,14 @@ class NewView(Adw.Window):
         self.selected_env = row.get_buildable_id()
 
     def __check_entry_name(self, *_args):
-        result = GtkUtils.validate_entry(self.entry_name, extend=self.__check_already_in_use)
-        if not result:
-            self.window.show_toast(_("The name has special characters or is already in use."))
-        self.btn_create.set_sensitive(result)
-    
-    def __check_already_in_use(self, name):
-        """
-        This function checks if the name is already in use.
-        """
-        return name in self.manager.local_bottles
+        is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
+        if is_duplicate:
+            self.window.show_toast(_("This bottle name is already in use."))
+            self.entry_name.add_css_class("error")
+            self.btn_create.set_sensitive(False)
+        else:
+            self.entry_name.remove_css_class("error")
+            self.btn_create.set_sensitive(True)
 
     def choose_env_recipe(self, *_args):
         def set_path(_dialog, response):
