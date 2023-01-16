@@ -589,7 +589,7 @@ the Bottles preferences or choose a new one to run applications.")
 
         def handle_response(_widget, response_id):
             if response_id == "ok":
-                RunAsync(wineboot.send_status, reset, status)
+                RunAsync(wineboot.send_status, callback=reset, status=status)
             else:
                 reset()
             _widget.destroy()
