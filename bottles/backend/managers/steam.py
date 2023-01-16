@@ -17,24 +17,24 @@
 
 import os
 import uuid
-from bottles.backend.utils import yaml
 import shlex
 import shutil
 import contextlib
-from gi.repository import Gtk, Gdk
 from glob import glob
 from pathlib import Path
 from functools import lru_cache
-from typing import Union, NewType
+from typing import Union
 from datetime import datetime
 
+from gi.repository import Gtk, Gdk
+
+from bottles.backend.globals import Paths
 from bottles.backend.models.samples import Samples
 from bottles.backend.models.result import Result
-from bottles.backend.wine.winecommand import WineCommand
-from bottles.backend.globals import Paths
-from bottles.backend.utils.steam import SteamUtils
+from bottles.backend.utils import vdf, yaml
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils import vdf
+from bottles.backend.utils.steam import SteamUtils
+from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.logger import Logger
 
 logging = Logger()
