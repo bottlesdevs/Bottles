@@ -49,7 +49,7 @@ template NewView : .AdwWindow {
           title: _("New Bottle");
 
           .AdwPreferencesGroup {
-            title: _("Bottle Information");
+            title: _("Information");
 
             .AdwEntryRow entry_name {
               title: _("Name");
@@ -58,6 +58,7 @@ template NewView : .AdwWindow {
 
           .AdwPreferencesGroup {
             title: _("Environment");
+            // description: _("A state that is determined by a collection of software tailored for a specific use case.");
 
             .AdwActionRow {
               activatable-widget: "check_gaming";
