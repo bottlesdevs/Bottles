@@ -24,7 +24,6 @@ from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Adw
 from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.thumbnail import ThumbnailManager
-from bottles.backend.managers.steamgriddb import SteamGridDBManager
 from bottles.backend.runner import Runner
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.executor import WineExecutor
