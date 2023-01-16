@@ -25,8 +25,8 @@ body:
       description: Steps to reproduce the behavior
       placeholder: |
         1. Go to '...'
-        2. Click on '....'
-        3. Scroll down to '....'
+        2. Click on '...'
+        3. Scroll down to '...'
         4. See error
     validations:
       required: true
@@ -60,8 +60,8 @@ body:
   - type: textarea
     id: health-check
     attributes:
-      label: Troubleshooting Logs
-      description: Copy-paste the box inside the Troubleshooting section. To do so, press the hamburger menu (`☰`) at the top right. Then press "About Bottles". Select "Troubleshooting", then "Debugging Information". Lastly, copy text and paste here.
+      label: Debugging Information
+      description: In Bottles, press the hamburger menu (`☰`) at the top right. Then press "About Bottles". Select "Troubleshooting", then "Debugging Information". Lastly, copy text and paste here.
       render: shell
       placeholder: |
         Display:
@@ -99,6 +99,34 @@ body:
         Bottles_envs: null
     validations:
       required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Troubleshooting Logs
+      description: If applicable, run `flatpak run com.usebottles.bottles`, reproduce the issue and paste the logs here.
+      render: shell
+      placeholder: |
+        [Errno 2] No such file or directory: '/home/USER/.var/app/com.usebottles.bottles/data/bottles/bottles/Opera-GX__185/bottle.yml'  File "/app/share/bottles/bottles/frontend/utils/threading.py", line 61, in __target
+            result = self.task_func(*args, **kwargs)
+
+          File "/app/share/bottles/bottles/frontend/windows/main_window.py", line 194, in get_manager
+            mng = Manager(window=window, repo_fn_update=repo_fn_update)
+
+          File "/app/share/bottles/bottles/backend/managers/manager.py", line 135, in __init__
+            times.update(self.checks(install_latest=False, first_run=True).data)
+
+          File "/app/share/bottles/bottles/backend/managers/manager.py", line 189, in checks
+            self.check_bottles()
+
+          File "/app/share/bottles/bottles/backend/managers/manager.py", line 804, in check_bottles
+            process_bottle(b)
+
+          File "/app/share/bottles/bottles/backend/managers/manager.py", line 758, in process_bottle
+            self.update_config(
+
+          File "/app/share/bottles/bottles/backend/managers/manager.py", line 874, in update_config
+            with open(os.path.join(bottle_path, "bottle.yml"), "w") as conf_file
 
   - type: textarea
     id: additional-context
