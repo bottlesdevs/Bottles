@@ -1,6 +1,4 @@
 on:
-  push:
-    branches: [main]
   pull_request:
 name: Pylint checker
 jobs:
@@ -8,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - run: git fetch main
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
@@ -18,4 +17,5 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint $(git diff --name-only main)
+        diff=$(git diff --name-only main)
+        pylint $diff
