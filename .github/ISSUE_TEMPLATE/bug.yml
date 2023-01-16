@@ -40,7 +40,10 @@ body:
     id: package
     attributes:
       label: Package
-      description: How did you install Bottles?
+      description: |
+        How did you install Bottles?
+
+        If you use Bottles from your distribution package manager, please install [Bottles from Flathub](https://flathub.org/apps/details/com.usebottles.bottles) and try to reproduce the bug there. You might/will not get help if you don't run Bottles from Flathub.
       options:
         - Flatpak from Flathub
         - Flatpak from Flathub Beta
