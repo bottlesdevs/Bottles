@@ -168,7 +168,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_windows.connect("notify::selected", self.__set_windows)
         self.combo_language.connect('notify::selected-item', self.__set_language)
         self.combo_sync.connect("notify::selected", self.__set_sync_type)
-        self.entry_name.connect('changed', self.__check_entry_name)
+        self.entry_name.connect("changed", self.__check_entry_name)
         self.entry_name.connect("apply", self.__save_name)
         # endregion
 
