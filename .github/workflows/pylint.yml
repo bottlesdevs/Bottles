@@ -23,9 +23,9 @@ jobs:
         diff=$(git diff --name-only origin/main | grep "\.py$")
         res=$(pylint $diff || true)
         echo $res
-        echo "PYLINT_RES<<EOF" >> $GITHUB_OUTPUT
-        echo "$PYLINT_RES" >> $GITHUB_OUTPUT
-        echo "EOF" >> $GITHUB_OUTPUT
+        echo "PYLINT_RES<<EOF" >> $GITHUB_ENV
+        echo "$PYLINT_RES" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v2
       with:
@@ -33,6 +33,8 @@ jobs:
           Pylint ran here: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           <details><summary>Pylint Result</summary>
           <p>
-          ${{ steps.pylint-result.outputs.PYLINT_RES }}
+          ```
+          ${{ env.PYLINT_RES }}
+          ```
           </p>
           </details>
