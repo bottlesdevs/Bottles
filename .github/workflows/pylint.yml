@@ -20,11 +20,10 @@ jobs:
       id: pylint-result
       continue-on-error: true
       run: |
-        diff=$(git diff --name-only origin/main)
-        res=$(pylint $diff 2>&1)
+        diff=$(git diff --name-only origin/main | grep "\.py$")
+        res=$(pylint $diff || true)
         echo $res
         echo "PYLINT_RES=$res" >> $GITHUB_OUTPUT
-        echo "TEST=$res" >> $GITHUB_OUTPUT
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v2
       with:
@@ -33,6 +32,5 @@ jobs:
           <details><summary>Pylint Result</summary>
           <p>
           ${{ steps.pylint-result.outputs.PYLINT_RES }}
-          ${{ steps.pylint-result.outputs.TEST }}
           </p>
           </details>
