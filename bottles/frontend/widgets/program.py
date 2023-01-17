@@ -97,7 +97,7 @@ class ProgramEntry(Adw.ActionRow):
             self.btn_add_steam.set_visible(True)
 
         library_manager = LibraryManager()
-        for uuid, entry in library_manager.get_library().items():
+        for _uuid, entry in library_manager.get_library().items():
             if entry.get("id") == program.get("id"):
                 self.btn_add_library.set_visible(False)
 
@@ -125,8 +125,8 @@ class ProgramEntry(Adw.ActionRow):
         if not program.get("removed") and not is_steam and check_boot:
             self.__is_alive()
 
-    def show_launch_options_view(self, widget=False):
-        def update(widget, config):
+    def show_launch_options_view(self, _widget=False):
+        def update(_widget, config):
             self.config = config
             self.update_programs()
 
@@ -134,7 +134,7 @@ class ProgramEntry(Adw.ActionRow):
         dialog.present()
         dialog.connect("options-saved", update)
 
-    def __reset_buttons(self, result=False, error=False):
+    def __reset_buttons(self, result=False, _error=False):
         status = False
         if result:
             status = result
@@ -148,7 +148,7 @@ class ProgramEntry(Adw.ActionRow):
     def __is_alive(self):
         winedbg = WineDbg(self.config)
 
-        def set_watcher(result=False, error=False):
+        def set_watcher(_result=False, _error=False):
             nonlocal winedbg
             self.__reset_buttons()
 
@@ -165,7 +165,7 @@ class ProgramEntry(Adw.ActionRow):
             name=self.executable
         )
 
-    def run_executable(self, widget, with_terminal=False):
+    def run_executable(self, _widget, with_terminal=False):
         self.pop_actions.popdown()  # workaround #1640
 
         def _run():
@@ -177,7 +177,7 @@ class ProgramEntry(Adw.ActionRow):
         RunAsync(_run, callback=self.__reset_buttons)
         self.__reset_buttons()
 
-    def run_steam(self, widget):
+    def run_steam(self, _widget):
         self.manager.steam_manager.launch_app(self.config["CompatData"], self.window)
         self.window.show_toast(_("Launching \"{0}\" with Steam…").format(self.program["name"]))
         self.pop_actions.popdown()  # workaround #1640
@@ -189,10 +189,10 @@ class ProgramEntry(Adw.ActionRow):
         winedbg.kill_process(self.executable)
         self.__reset_buttons(True)
 
-    def update_programs(self, result=False, error=False):
+    def update_programs(self, _result=False, _error=False):
         GLib.idle_add(self.view_bottle.update_programs, config=self.config)
 
-    def uninstall_program(self, widget):
+    def uninstall_program(self, _widget):
         uninstaller = Uninstaller(self.config)
         RunAsync(
             task_func=uninstaller.from_name,
@@ -200,7 +200,7 @@ class ProgramEntry(Adw.ActionRow):
             name=self.program["name"]
         )
 
-    def hide_program(self, widget=None, update=True):
+    def hide_program(self, _widget=None, update=True):
         status = not self.program.get("removed")
         msg = _("\"{0}\" hidden").format(self.program["name"])
         if not status:
@@ -222,7 +222,7 @@ class ProgramEntry(Adw.ActionRow):
             scope="External_Programs"
         ).data["config"]
 
-    def remove_program(self, widget=None):
+    def remove_program(self, _widget=None):
         self.config = self.manager.update_config(
             config=self.config,
             key=self.program["id"],
@@ -233,7 +233,7 @@ class ProgramEntry(Adw.ActionRow):
         self.window.show_toast(_("\"{0}\" removed").format(self.program["name"]))
         self.update_programs()
 
-    def rename_program(self, widget):
+    def rename_program(self, _widget):
         def func(new_name):
             if new_name == self.program["name"]:
                 return
@@ -250,7 +250,7 @@ class ProgramEntry(Adw.ActionRow):
         dialog = RenameDialog(self.window, on_save=func, name=self.program["name"])
         dialog.present()
 
-    def browse_program_folder(self, widget):
+    def browse_program_folder(self, _widget):
         ManagerUtils.open_filemanager(
             config=self.config,
             path_type="custom",
@@ -258,8 +258,8 @@ class ProgramEntry(Adw.ActionRow):
         )
         self.pop_actions.popdown()  # workaround #1640
 
-    def add_entry(self, widget):
-        def update(result, error=False):
+    def add_entry(self, _widget):
+        def update(_result, _error=False):
             if not result:
                 webbrowser.open("https://docs.usebottles.com/bottles/programs#flatpak")
                 return
@@ -277,8 +277,8 @@ class ProgramEntry(Adw.ActionRow):
             }
         )
 
-    def add_to_library(self, widget):
-        def update(result, error=False):
+    def add_to_library(self, _widget):
+        def update(_result, _error=False):
             self.window.update_library()
             self.window.show_toast(_("\"{0}\" added to your library").format(self.program["name"]))
 
@@ -294,11 +294,11 @@ class ProgramEntry(Adw.ActionRow):
 
         RunAsync(add_to_library, update)
 
-    def add_to_steam(self, widget):
-        def update(result, error=False):
+    def add_to_steam(self, _widget):
+        def update(_result, _error=False):
             if result.status:
                 self.window.show_toast(_("\"{0}\" added to your Steam library").format(self.program["name"]))
-        
+
         steam_manager = SteamManager(self.config)
         RunAsync(
             steam_manager.add_shortcut,
