@@ -27,9 +27,7 @@ def add_executable_filters(dialog):
 def add_yaml_filters(dialog):
     filter = Gtk.FileFilter()
     filter.set_name("YAML")
-    # TODO: Create yaml media type https://www.ietf.org/archive/id/draft-ietf-httpapi-yaml-mediatypes-00.html#name-media-type-application-yaml
-    filter.add_pattern("*.yml")
-    filter.add_pattern("*.yaml")
+    filter.add_mime_type("application/x-yaml")
 
     dialog.add_filter(filter)
 
