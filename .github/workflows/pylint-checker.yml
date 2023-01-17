@@ -1,11 +1,9 @@
 on:
   pull_request:
-name: Pylint checker test
+name: Pylint - checker
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     steps:
     - uses: actions/checkout@v3
       with:
@@ -23,17 +21,11 @@ jobs:
       continue-on-error: true
       run: |
         diff=$(git diff --name-only origin/main | grep "\.py$")
-        res=$((pylint $diff || true) 2>&1 | tr "*" "-" | grep -v "Instance of 'Child' has no '.*' member")
-        echo $res
-        echo "PYLINT_RES<<EOF" >> $GITHUB_ENV
-        echo "$res" >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
-    - name: Comment PR
-      uses: thollander/actions-comment-pull-request@v2
+        mkdir -p output
+        (pylint $diff || true) 2>&1 | tr "*" "-" | grep -v "Instance of 'Child' has no '.*' member" > output/pylint-result
+        cat output/pylint-result
+        echo ${{ github.event.number }} > output/pr-number
+    - uses: actions/upload-artifact@v2
       with:
-        comment_tag: pylint-result-comment
-        message: |
-          Pylint ran here: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          <details><summary>Pylint Result</summary>
-          <pre><code>${{ env.PYLINT_RES }}</code></pre>
-          </details>
+        name: pylint-result
+        path: output/
