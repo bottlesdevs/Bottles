@@ -20,7 +20,7 @@ jobs:
       id: pylint-result
       continue-on-error: true
       run: |
-        diff=$(git diff --name-only main)
+        diff=$(git diff --name-only origin/main)
         res=$(pylint $diff)
         echo $res
         echo "PYLINT_RES=$res" >> $GITHUB_OUTPUT
