@@ -21,16 +21,18 @@ jobs:
       continue-on-error: true
       run: |
         diff=$(git diff --name-only origin/main)
-        res=$(pylint $diff)
+        res=$(pylint $diff 2>&1)
         echo $res
         echo "PYLINT_RES=$res" >> $GITHUB_OUTPUT
+        echo "TEST=$res" >> $GITHUB_OUTPUT
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v2
       with:
         message: |
-          Pylint ran here: https://github.com/bottlesdevs/Bottles/actions/runs/${{ github.run_id }}/jobs/${{ github.job }}
+          Pylint ran here: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           <details><summary>Pylint Result</summary>
           <p>
           ${{ steps.pylint-result.outputs.PYLINT_RES }}
+          ${{ steps.pylint-result.outputs.TEST }}
           </p>
           </details>
