@@ -54,13 +54,3 @@ jobs:
             </details>
               '
             });
-      # - name: Comment PR
-      #   uses: thollander/actions-comment-pull-request@v2
-      #   with:
-      #     comment_tag: pylint-result-comment
-      #     pr_number: 
-      #     message: |
-      #       Pylint ran here: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      #       <details><summary>Pylint Result</summary>
-      #       <pre><code>${{ env.PYLINT_RES }}</code></pre>
-      #       </details>
