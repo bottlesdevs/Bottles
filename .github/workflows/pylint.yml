@@ -29,12 +29,9 @@ jobs:
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v2
       with:
+        comment_tag: pylint-result-comment
         message: |
           Pylint ran here: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           <details><summary>Pylint Result</summary>
-          <p>
-          ```
-          ${{ env.PYLINT_RES }}
-          ```
-          </p>
+          <pre><code>${{ env.PYLINT_RES }}</code></pre>
           </details>
