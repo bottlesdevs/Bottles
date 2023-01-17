@@ -408,35 +408,26 @@ confidence=HIGH,
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
-disable=all
+disable=line-too-long,
+      missing-module-docstring,
+      missing-class-docstring,
+      missing-function-docstring,
+      too-many-instance-attributes,
+      f-string-without-interpolation,
+      logging-fstring-interpolation,
+      logging-not-lazy,
+      consider-using-f-string,
+      too-many-locals,
+      too-many-branches,
+      too-many-statements,
+      too-many-return-statements,
+      no-member
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once). See also the "--disable" option for examples.
-enable=unused-import,
-      trailing-whitespace,
-      missing-final-newline,
-      bad-indentation,
-      trailing-newlines,
-      superfluous-parens,
-      bad-whitespace,
-      mixed-indentation,
-      wrong-import-order,
-      ungrouped-imports,
-      wrong-import-position,
-      useless-import-alias,
-      import-outside-toplevel,
-      cyclic-import,
-      wildcard-import,
-      reimported,
-      import-self,
-      redefined-variable-type,
-      bad-super-call,
-      singleton-comparison,
-      misplaced-comparison-constant,
-      return-in-init,
-      function-redefined
+enable=inconsistent-quotes
 
 
 [METHOD_ARGS]
@@ -540,7 +531,7 @@ spelling-store-unknown-words=no
 
 # This flag controls whether inconsistent-quotes generates a warning when the
 # character used as a quote delimiter is used inconsistently within a module.
-check-quote-consistency=no
+check-quote-consistency=yes
 
 # This flag controls whether the implicit-str-concat should generate a warning
 # on implicit string concatenation in sequences defined over several lines.

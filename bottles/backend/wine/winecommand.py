@@ -127,16 +127,16 @@ class WineCommand:
             bottle = ManagerUtils.get_bottle_path(config)
 
         if not cwd:
-            '''
+            """
             If no cwd is given, use the WorkingDir from the
             bottle configuration.
-            '''
+            """
             cwd = config.get("WorkingDir")
         if cwd == "" or not os.path.exists(cwd):
-            '''
+            """
             If the WorkingDir is empty, use the bottle path as
             working directory.
-            '''
+            """
             cwd = bottle
 
         return cwd
@@ -653,7 +653,7 @@ class WineCommand:
         enc = detect_encoding(res)
 
         if vmtouch_available \
-            and self.config["Parameters"].get("vmtouch") \
+            and self.config['Parameters'].get("vmtouch") \
             and not self.terminal:
             self.vmtouch_free()
 
