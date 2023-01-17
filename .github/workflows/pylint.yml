@@ -16,6 +16,20 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
     - name: Analysing the code with pylint
+      id: pylint-result
+      continue-on-error: true
       run: |
         diff=$(git diff --name-only main)
-        pylint $diff
+        res=$(pylint $diff)
+        echo $res
+        echo "PYLINT_RES=$res" >> $GITHUB_OUTPUT
+    - name: Comment PR
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        message: |
+          Pylint ran here: https://github.com/bottlesdevs/Bottles/actions/runs/${{ github.run_id }}/jobs/${{ github.job }}
+          <details><summary>Pylint Result</summary>
+          <p>
+          ${{ steps.pylint-result.outputs.PYLINT_RES }}
+          </p>
+          </details>
