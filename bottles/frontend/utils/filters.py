@@ -19,8 +19,7 @@ from gi.repository import Gtk
 def add_executable_filters(dialog):
     filter = Gtk.FileFilter()
     filter.set_name(_("Supported Executables"))
-    # TODO: Add exe media type https://www.iana.org/assignments/media-types/application/vnd.microsoft.portable-executable
-    filter.add_pattern("*.exe")
+    filter.add_mime_type("application/x-dosexec")
     filter.add_mime_type("application/x-msi")
 
     dialog.add_filter(filter)
