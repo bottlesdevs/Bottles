@@ -250,19 +250,19 @@ class ProgramEntry(Adw.ActionRow):
                 entries = library_manager.get_library()
 
                 for uuid, entry in entries.items():
-                    if entry.get('id') == self.program["id"]:
-                        entries[uuid]['name'] = new_name
+                    if entry.get("id") == self.program["id"]:
+                        entries[uuid]["name"] = new_name
                         library_manager.download_thumbnail(uuid, self.config)
                         break
 
                 library_manager.__library = entries
                 library_manager.save_library()
-            
-            def ui_update(result, error):
+
+            def ui_update(_result, _error):
                 self.window.page_library.update()
                 self.window.show_toast(_("\"{0}\" renamed to \"{1}\"").format(self.program["name"], new_name))
                 self.update_programs()
-            
+
             RunAsync(async_work, callback=ui_update)
 
         dialog = RenameDialog(self.window, on_save=func, name=self.program["name"])
@@ -277,7 +277,7 @@ class ProgramEntry(Adw.ActionRow):
         self.pop_actions.popdown()  # workaround #1640
 
     def add_entry(self, _widget):
-        def update(_result, _error=False):
+        def update(result, _error=False):
             if not result:
                 webbrowser.open("https://docs.usebottles.com/bottles/programs#flatpak")
                 return
@@ -313,7 +313,7 @@ class ProgramEntry(Adw.ActionRow):
         RunAsync(add_to_library, update)
 
     def add_to_steam(self, _widget):
-        def update(_result, _error=False):
+        def update(result, _error=False):
             if result.status:
                 self.window.show_toast(_("\"{0}\" added to your Steam library").format(self.program["name"]))
 
