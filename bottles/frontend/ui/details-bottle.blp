@@ -102,6 +102,43 @@ Popover pop_power {
   }
 }
 
+Popover popover_exec_settings {
+  width-request: 300;
+  
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+    
+    Label {
+      halign: start;
+      margin-bottom: 12;
+      label: _("Launch Options");
+      
+      styles [
+        "heading"
+      ]
+    }
+
+    Entry exec_arguments {
+    }
+
+    Separator {
+      margin-top: 12;
+      margin-bottom: 12;
+    }
+    
+    CheckButton exec_terminal {
+      Label {
+        label: _("Run in Terminal");
+        margin-start: 6;
+      }
+    }
+  }
+}
+
 template DetailsBottle : .AdwPreferencesPage {
   Overlay drop_overlay {
     visible: false;
@@ -210,47 +247,10 @@ template DetailsBottle : .AdwPreferencesPage {
       }
 
       Box {
-        Popover btn_exec_settings {
-          width-request: 300;
-          
-          Box {
-            orientation: vertical;
-            margin-top: 6;
-            margin-bottom: 6;
-            margin-start: 6;
-            margin-end: 6;
-            
-            Label {
-              halign: start;
-              margin-bottom: 12;
-              label: _("Launch Options");
-              
-              styles [
-                "heading"
-              ]
-            }
-
-            Entry exec_arguments {
-            }
-
-            Separator {
-              margin-top: 12;
-              margin-bottom: 12;
-            }
-            
-            CheckButton exec_terminal {
-              Label {
-                label: _("Run in Terminal");
-                margin-start: 6;
-              }
-            }
-          }
-        }
-      
-        MenuButton {
+        MenuButton btn_exec_settings {
           valign: center;
           icon-name: "applications-system-symbolic";
-          popover: btn_exec_settings;
+          popover: popover_exec_settings;
           
           styles [
             "circular",
@@ -460,4 +460,3 @@ template DetailsBottle : .AdwPreferencesPage {
     }
   }
 }
-  
