@@ -76,7 +76,7 @@ install_data(
 
 mimedir = join_paths(get_option('prefix'), get_option('datadir'), 'mime/packages')
 mime_sources = [
-    'mime/com.usebottles.bottles.xml',
+    'mime/com.usebottles.bottles.exe.xml',
 ]
 
 install_data(mime_sources, install_dir: mimedir)
