@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 import webbrowser
 from gi.repository import Gtk, GLib, Adw
 
@@ -23,9 +22,7 @@ from bottles.frontend.utils.threading import RunAsync
 
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
 from bottles.frontend.windows.rename import RenameDialog
-from bottles.frontend.windows.generic import MessageDialog
 
-from bottles.backend.globals import user_apps_dir
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.steam import SteamManager
 
@@ -36,9 +33,9 @@ from bottles.backend.wine.uninstaller import Uninstaller
 
 
 # noinspection PyUnusedLocal
-@Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/program-entry.ui")
 class ProgramEntry(Adw.ActionRow):
-    __gtype_name__ = 'ProgramEntry'
+    __gtype_name__ = "ProgramEntry"
 
     # region Widgets
     btn_menu = Gtk.Template.Child()
@@ -109,7 +106,7 @@ class ProgramEntry(Adw.ActionRow):
             _p = self.config["External_Programs"][p]["name"]
             external_programs.append(_p)
 
-        '''Signal connections'''
+        """Signal connections"""
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_launch_terminal.connect("clicked", self.run_executable, True)
@@ -216,7 +213,7 @@ class ProgramEntry(Adw.ActionRow):
         self.window.show_toast(msg)
         if update:
             self.update_programs()
-    
+
     def save_program(self):
         return self.manager.update_config(
             config=self.config,
