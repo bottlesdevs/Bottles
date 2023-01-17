@@ -17,11 +17,20 @@
 
 import subprocess
 
+from enum import Enum
+from functools import lru_cache
+
+from bottles.backend.utils.nvidia import get_nvidia_dll_path
 from bottles.backend.utils.vulkan import VulkanUtils
 from bottles.backend.logger import Logger
 
 logging = Logger()
 
+
+class GPUVendors(Enum):
+    AMD = "amd"
+    NVIDIA = "nvidia"
+    INTEL = "intel"
 
 # noinspection PyTypeChecker
 class GPUUtils:
@@ -94,7 +103,8 @@ class GPUUtils:
                     "__GLX_VENDOR_LIBRARY_NAME": "nvidia",
                     "__VK_LAYER_NV_optimus": "NVIDIA_only"
                 },
-                "icd": self.vk.get_vk_icd("nvidia", as_string=True)
+                "icd": self.vk.get_vk_icd("nvidia", as_string=True),
+                "nvngx_path": get_nvidia_dll_path()
             },
             "amd": {
                 "vendor": "amd",
@@ -146,3 +156,15 @@ class GPUUtils:
                 result["prime"]["discrete"] = gpus[_discrete]
 
         return result
+
+    @staticmethod
+    @lru_cache
+    def is_gpu(vendor: GPUVendors) -> bool:
+        _proc = subprocess.Popen(
+            f"lspci | grep -iP '{vendor.value}'",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True
+        )
+        stdout, stderr = _proc.communicate()
+        return len(stdout) > 0

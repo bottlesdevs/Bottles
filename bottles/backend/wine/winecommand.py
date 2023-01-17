@@ -108,7 +108,8 @@ class WineCommand:
     
     def __get_config(self, config: dict) -> dict:
         if hasattr(config, "data"):
-            return config.data["config"]
+            if cnf := config.data.get("config"):
+                return cnf
 
         if isinstance(config, dict):
             return config
@@ -200,8 +201,10 @@ class WineCommand:
             dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
-        if (params.get("use_runtime") or params.get("use_eac_runtime") or params.get("use_be_runtime")) \
-                and not self.terminal and not return_steam_env:
+        if (params.get("use_runtime") \
+            or params.get("use_eac_runtime") \
+            or params.get("use_be_runtime")) \
+            and not self.terminal and not return_steam_env:
             _rb = RuntimeManager.get_runtime_env("bottles")
             if _rb:
                 _eac = RuntimeManager.get_eac()
@@ -227,6 +230,8 @@ class WineCommand:
         runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
         if arch == "win64":
             runner_libs = [
+                "lib",
+                "lib64",
                 "lib/wine/x86_64-unix",
                 "lib32/wine/x86_64-unix",
                 "lib64/wine/x86_64-unix",
@@ -241,6 +246,7 @@ class WineCommand:
             ]
         else:
             runner_libs = [
+                "lib",
                 "lib/wine/i386-unix",
                 "lib32/wine/i386-unix",
                 "lib64/wine/i386-unix"
@@ -310,10 +316,6 @@ class WineCommand:
             #       DLSS works. I don't have a GPU compatible with this tech, so I'll trust them
             env.add("DXVK_NVAPIHACK", "0")
             env.add("DXVK_ENABLE_NVAPI", "1")
-
-            # Prevent wine from hiding the Nvidia GPU with DXVK-Nvapi enabled
-            if is_nvidia:
-                env.add("WINE_HIDE_NVIDIA_GPU", "1")
 
         # Esync environment variable
         if params["sync"] == "esync":
@@ -608,7 +610,9 @@ class WineCommand:
         if None in [self.runner, self.env]:
             return
 
-        if vmtouch_available and self.config["Parameters"].get("vmtouch"):
+        if vmtouch_available \
+            and self.config["Parameters"].get("vmtouch") \
+            and not self.terminal:
             self.vmtouch_preload()
 
         if self.config["Parameters"].get("sandbox"):
@@ -647,7 +651,9 @@ class WineCommand:
         res = proc.communicate()[0]
         enc = detect_encoding(res)
 
-        if vmtouch_available and self.config["Parameters"].get("vmtouch"):
+        if vmtouch_available \
+            and self.config["Parameters"].get("vmtouch") \
+            and not self.terminal:
             self.vmtouch_free()
 
         if enc is not None:

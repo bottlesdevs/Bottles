@@ -1,0 +1,31 @@
+on:
+  pull_request:
+name: Pylint - checker
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint
+    - name: Analysing the code with pylint
+      id: pylint-result
+      continue-on-error: true
+      run: |
+        diff=$(git diff --name-only origin/main | grep "\.py$")
+        mkdir -p output
+        (pylint $diff || true) 2>&1 | tr "*" "-" | grep -v "Instance of 'Child' has no '.*' member" > output/pylint-result
+        cat output/pylint-result
+        echo ${{ github.event.number }} > output/pr-number
+    - uses: actions/upload-artifact@v2
+      with:
+        name: pylint-result
+        path: output/

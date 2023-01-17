@@ -242,8 +242,26 @@ class ProgramEntry(Adw.ActionRow):
                 value=self.program,
                 scope="External_Programs"
             )
-            self.window.show_toast(_("\"{0}\" renamed to \"{1}\"").format(self.program["name"], new_name))
-            self.update_programs()
+
+            def async_work():
+                library_manager = LibraryManager()
+                entries = library_manager.get_library()
+
+                for uuid, entry in entries.items():
+                    if entry.get('id') == self.program["id"]:
+                        entries[uuid]['name'] = new_name
+                        library_manager.download_thumbnail(uuid, self.config)
+                        break
+
+                library_manager.__library = entries
+                library_manager.save_library()
+            
+            def ui_update(result, error):
+                self.window.page_library.update()
+                self.window.show_toast(_("\"{0}\" renamed to \"{1}\"").format(self.program["name"], new_name))
+                self.update_programs()
+            
+            RunAsync(async_work, callback=ui_update)
 
         dialog = RenameDialog(self.window, on_save=func, name=self.program["name"])
         dialog.present()

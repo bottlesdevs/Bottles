@@ -35,10 +35,10 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.frontend.widgets.program import ProgramEntry
 from bottles.frontend.widgets.executable import ExecButton
 
-from bottles.frontend.windows.filechooser import FileChooser
 from bottles.frontend.windows.generic import MessageDialog
 from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
+from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
 
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winecfg import WineCfg
@@ -193,7 +193,9 @@ class BottleView(Adw.PreferencesPage):
                 args=args,
                 terminal=self.config.get("run_in_terminal"),
             )
-            RunAsync(executor.run, self.update_programs)
+            def callback(a,b):
+                self.update_programs()
+            RunAsync(executor.run, callback)
 
         else:
             self.window.show_toast(_("File \"{0}\" is not a .exe or .msi file").format(file.get_basename().split("/")[-1]))
@@ -249,36 +251,43 @@ class BottleView(Adw.PreferencesPage):
         path to the program picked by the user.
         The file chooser path is set to the bottle path by default.
         """
-        def set_path(_dialog, response, _file_dialog):
-            if response == -3:
-                _file = _file_dialog.get_file()
-                _file_name = _file.get_path().split("/")[-1]
-                _uuid = str(uuid.uuid4())
-                _program = {
-                    "executable": _file_name,
-                    "name": _file_name[:-4],
-                    "path": _file.get_path(),
-                    "id": _uuid
-                }
-                self.config = self.manager.update_config(
-                    config=self.config,
-                    key=_uuid,
-                    value=_program,
-                    scope="External_Programs",
-                    fallback=True
-                ).data["config"]
-                self.update_programs(config=self.config, force_add=_program)
-                self.window.show_toast(_("\"{0}\" added").format(_file_name[:-4]))
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose an executable path"),
+            path = dialog.get_file().get_path()
+            basename = dialog.get_file().get_basename()
+
+            _uuid = str(uuid.uuid4())
+            _program = {
+                "executable": basename,
+                "name": basename[:-4],
+                "path": path,
+                "id": _uuid
+            }
+            self.config = self.manager.update_config(
+                config=self.config,
+                key=_uuid,
+                value=_program,
+                scope="External_Programs",
+                fallback=True
+            ).data["config"]
+            self.update_programs(config=self.config, force_add=_program)
+            self.window.show_toast(_("\"{0}\" added").format(basename[:-4]))
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Executable"),
             action=Gtk.FileChooserAction.OPEN,
-            buttons=(_("Cancel"), _("Add")),
-            callback=set_path
+            parent=self.window,
+            accept_label=_("Add")
         )
 
-    def update_programs(self, config=None, force_add: dict = None):
+        add_executable_filters(dialog)
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
+
+    def update_programs(self, config: dict = None, force_add: dict = None):
         """
         This function update the programs lists.
         """
@@ -372,13 +381,34 @@ class BottleView(Adw.PreferencesPage):
         """
         def show_chooser(*_args):
             self.window.settings.set_boolean("show-sandbox-warning", False)
-            FileChooser(
-                parent=self.window,
-                title=_("Choose a Windows executable file"),
+
+            def execute(_dialog, response):
+                if response != Gtk.ResponseType.ACCEPT:
+                    return
+
+                executor = WineExecutor(
+                    self.config,
+                    exec_path=dialog.get_file().get_path(),
+                    args=self.config.get("session_arguments"),
+                    terminal=self.config.get("run_in_terminal"),
+                )
+
+                def callback(a,b):
+                    self.update_programs()
+                RunAsync(executor.run, callback)
+
+            dialog = Gtk.FileChooserNative.new(
+                title=_("Select Executable"),
                 action=Gtk.FileChooserAction.OPEN,
-                buttons=(_("Cancel"), _("Run")),
-                callback=self.__execute
+                parent=self.window,
+                accept_label=_("Run")
             )
+
+            add_executable_filters(dialog)
+            add_all_filters(dialog)
+            dialog.set_modal(True)
+            dialog.connect("response", execute)
+            dialog.show()
 
         if "FLATPAK_ID" in os.environ and self.window.settings.get_boolean("show-sandbox-warning"):
             dialog = Adw.MessageDialog.new(
@@ -392,34 +422,20 @@ class BottleView(Adw.PreferencesPage):
         else:
             show_chooser()
 
-    def __execute(self, _dialog, response, file_dialog, args=""):
-        if response == -3:
-            _file = file_dialog.get_file()
-
-            if not _file:
-                return  # workaround #1653
-
-            args = self.config.get("session_arguments")
-            executor = WineExecutor(
-                self.config,
-                exec_path=_file.get_path(),
-                args=args,
-                terminal=self.config.get("run_in_terminal"),
-            )
-            RunAsync(executor.run, self.update_programs)
-
     def __backup(self, widget, backup_type):
         """
         This function pop up the file chooser where the user
         can select the path where to export the bottle backup.
         Use the backup_type param to export config or full.
         """
-        title = _("Select the location where to save the backup config")
-        hint = f"backup_{self.config.get('Path')}.yml"
-
-        if backup_type == "full":
+        if backup_type == "config":
+            title = _("Select the location where to save the backup config")
+            hint = f"backup_{self.config.get('Path')}.yml"
+            accept_label = _("Export")
+        else:
             title = _("Select the location where to save the backup archive")
             hint = f"backup_{self.config.get('Path')}.tar.gz"
+            accept_label = _("Backup")
 
         def finish(result, error=False):
             if result.status:
@@ -427,26 +443,32 @@ class BottleView(Adw.PreferencesPage):
             else:
                 self.window.show_toast(_("Backup failed for \"{0}\"").format(self.config["Name"]))
 
-        def set_path(_dialog, response, _file_dialog):
-            if response == -3:
-                _file = _file_dialog.get_file()
-                RunAsync(
-                    task_func=BackupManager.export_backup,
-                    callback=finish,
-                    window=self.window,
-                    config=self.config,
-                    scope=backup_type,
-                    path=_file.get_path()
-                )
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
 
-        FileChooser(
-            parent=self.window,
+            path = dialog.get_file().get_path()
+
+            RunAsync(
+                task_func=BackupManager.export_backup,
+                callback=finish,
+                window=self.window,
+                config=self.config,
+                scope=backup_type,
+                path=path
+            )
+
+        dialog = Gtk.FileChooserNative.new(
             title=title,
             action=Gtk.FileChooserAction.SAVE,
-            buttons=(_("Cancel"), _("Export")),
-            hint=hint,
-            callback=set_path
+            parent=self.window,
+            accept_label=accept_label
         )
+
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.set_current_name(hint)
+        dialog.show()
 
     def __duplicate(self, widget):
         """

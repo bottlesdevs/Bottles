@@ -1,40 +1,7 @@
 using Gtk 4.0;
 
-Popover pop_menu {
-  styles [
-    "menu",
-  ]
-
-  Box {
-    orientation: vertical;
-    margin-top: 6;
-    margin-bottom: 6;
-    margin-start: 6;
-    margin-end: 6;
-
-    .GtkModelButton btn_importer {
-      text: _("Import…");
-    }
-
-    Separator {}
-
-    .GtkModelButton btn_preferences {
-      text: _("Preferences");
-    }
-
-    .GtkModelButton btn_help {
-      text: _("Help");
-      tooltip-text: "https://docs.usebottles.com";
-    }
-
-    .GtkModelButton btn_about {
-      text: _("About Bottles");
-    }
-  }
-}
-
 template MainWindow : .AdwApplicationWindow {
-  title: _("Bottles");
+  title: "Bottles";
   default-width: "880";
   default-height: "640";
   icon-name: "com.usebottles.bottles";
@@ -49,33 +16,12 @@ template MainWindow : .AdwApplicationWindow {
 
         HeaderBar headerbar {
           title-widget: .AdwViewSwitcherTitle view_switcher_title {
-            title: _("Bottles");
+            title: "Bottles";
             stack: "stack_main";
           }
 
           ;
 
-          [end]
-          MenuButton btn_menu {
-            tooltip-text: _("Main Menu");
-            popover: pop_menu;
-            icon-name: "open-menu-symbolic";
-          }
-
-          [end]
-          ToggleButton btn_search {
-            tooltip-text: _("Search");
-            icon-name: "system-search-symbolic";
-          }
-
-          [end]
-          Button btn_noconnection {
-            visible: false;
-            tooltip-text: _("You don\'t seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.");
-            icon-name: "network-error-symbolic";
-          }
-
-          [start]
           Button btn_add {
             tooltip-text: _("New Bottle");
             icon-name: "list-add-symbolic";
@@ -87,6 +33,29 @@ template MainWindow : .AdwApplicationWindow {
           styles [
             "titlebar",
           ]
+
+          [end]
+          MenuButton {
+            icon-name: "open-menu-symbolic";
+            menu-model: primary_menu;
+            tooltip-text: "Main Menu";
+            primary: true;
+          }
+
+          [end]
+          ToggleButton btn_search {
+            tooltip-text: _("Search");
+            icon-name: "system-search-symbolic";
+            visible: false;
+          }
+
+          [end]
+          Button btn_noconnection {
+            visible: false;
+            tooltip-text: _("You don\'t seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.");
+            icon-name: "network-error-symbolic";
+          }
+
         }
 
         SearchBar searchbar {
@@ -96,11 +65,37 @@ template MainWindow : .AdwApplicationWindow {
           vexpand: true;
         }
 
-	.AdwViewSwitcherBar view_switcher_bar {
-	  stack: "stack_main";
-	  reveal: bind view_switcher_title.title-visible;
-	}
+	      .AdwViewSwitcherBar view_switcher_bar {
+	        stack: "stack_main";
+	        reveal: bind view_switcher_title.title-visible;
+	      }
       }
+    }
+  }
+}
+
+menu primary_menu {
+  section {
+    item {
+      label: _("Import…");
+      action: "app.import";
+    }
+  }
+
+  section {
+    item {
+      label: _("Preferences");
+      action: "app.preferences";
+    }
+
+    item {
+      label: _("Help");
+      action: "app.help";
+    }
+
+    item {
+      label: _("About Bottles");
+      action: "app.about";
     }
   }
 }

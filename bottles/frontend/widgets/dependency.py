@@ -20,6 +20,7 @@ import contextlib
 from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
+from bottles.backend.models.result import Result
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.windows.generic import SourceDialog
 
@@ -152,18 +153,22 @@ class DependencyEntry(Adw.ActionRow):
             dependency=self.dependency,
         )
 
-    def set_install_status(self, result, error=None):
+    def set_install_status(self, result: Result, error=None):
         """
         This function set the dependency as installed
-        if the installation is successful
+        if the installation is successful, or uninstalled
+        if the uninstallation is successful.
         """
         self.queue.end_task()
         if result is not None and result.status:
             if self.config["Parameters"]["versioning_automatic"]:
                 self.window.page_details.view_versioning.update()
             uninstaller = result.data.get("uninstaller")
-            removed = result.data.get("removed")
-            self.window.show_toast(_("\"{0}\" installed").format(self.dependency[0]))
+            removed = result.data.get("removed") or False
+            if removed:
+                self.window.show_toast(_("\"{0}\" uninstalled").format(self.dependency[0]))
+            else:
+                self.window.show_toast(_("\"{0}\" installed").format(self.dependency[0]))
             return self.set_installed(uninstaller, removed)
         self.set_err()
 

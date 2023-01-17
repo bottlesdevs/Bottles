@@ -18,11 +18,10 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
-from bottles.frontend.windows.filechooser import FileChooser
-
 from bottles.backend.managers.backup import BackupManager
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.widgets.importer import ImporterEntry
+from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer.ui')
@@ -92,61 +91,75 @@ class ImporterView(Adw.Bin):
 
     def __import_full_bck(self, *_args):
         """
-        This function show a dialog to the user, from which it can choose an
+        This function shows a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It supports only .tar.gz files
         as Bottles export bottles in this format. Once selected, it will
         be imported.
         """
-        def set_path(_dialog, response, _file_dialog):
-            if response == -3:
-                _file = _file_dialog.get_file()
-                self.window.show_toast(_("Importing backup…"))
-                RunAsync(
-                    task_func=BackupManager.import_backup,
-                    callback=self.__finish,
-                    window=self.window,
-                    scope="full",
-                    path=_file.get_path(),
-                    manager=self.manager
-                )
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose a backup archive"),
+            self.window.show_toast(_("Importing backup…"))
+            RunAsync(
+                task_func=BackupManager.import_backup,
+                callback=self.__finish,
+                window=self.window,
+                scope="full",
+                path=dialog.get_path().get_file(),
+                manager=self.manager
+            )
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select a Backup Archive"),
             action=Gtk.FileChooserAction.OPEN,
-            buttons=(_("Cancel"), _("Import")),
-            filters=["tar.gz"],
-            callback=set_path
+            parent=self.window,
+            accept_label=_("Import")
         )
+
+        filter = Gtk.FileFilter()
+        filter.set_name("GNU Gzip Archive")
+        filter.add_mime_type("application/gzip")
+
+        dialog.add_filter(filter)
+        add_all_filters(dialog)
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def __import_config_bck(self, *_args):
         """
-        This function show a dialog to the user, from which it can choose an
+        This function shows a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It supports only .yml files
         which are the Bottles' configuration file. Once selected, it will
         be imported.
         """
-        def set_path(_dialog, response, _file_dialog):
-            if response == -3:
-                _file = _file_dialog.get_file()
-                self.window.show_toast(_("Importing backup…"))
-                RunAsync(
-                    task_func=BackupManager.import_backup,
-                    callback=self.__finish,
-                    window=self.window,
-                    scope="config",
-                    path=_file.get_path(),
-                    manager=self.manager
-                )
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose a configuration file"),
+            self.window.show_toast(_("Importing backup…"))
+            RunAsync(
+                task_func=BackupManager.import_backup,
+                callback=self.__finish,
+                window=self.window,
+                scope="config",
+                path=dialog.get_file().get_path(),
+                manager=self.manager
+            )
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select a Configuration File"),
             action=Gtk.FileChooserAction.OPEN,
-            buttons=(_("Cancel"), _("Import")),
-            filters=["yml"],
-            callback=set_path
+            parent=self.window,
+            accept_label=_("Import")
         )
+
+        add_yaml_filters(dialog)
+        add_all_filters(dialog)
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def go_back(self, *_args):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)

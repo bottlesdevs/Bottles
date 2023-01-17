@@ -58,12 +58,7 @@ class MainWindow(Adw.ApplicationWindow):
     # region Widgets
     stack_main = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
-    btn_preferences = Gtk.Template.Child()
-    btn_about = Gtk.Template.Child()
-    btn_menu = Gtk.Template.Child()
     btn_search = Gtk.Template.Child()
-    btn_help = Gtk.Template.Child()
-    btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
@@ -107,11 +102,8 @@ class MainWindow(Adw.ApplicationWindow):
 
         # Signal connections
         self.btn_add.connect("clicked", self.show_add_view)
-        self.btn_about.connect("clicked", self.show_about_dialog)
-        self.btn_help.connect("clicked", self.open_url, DOC_URL)
-        self.btn_preferences.connect("clicked", self.show_prefs_view)
-        self.btn_importer.connect("clicked", self.show_importer_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
+        self.stack_main.connect("notify::visible-child", self.__on_page_changed)
         self.__on_start()
         logging.info("Bottles Started!", )
 
@@ -169,7 +161,7 @@ class MainWindow(Adw.ApplicationWindow):
                 child=self.page_library,
                 name="page_library",
                 title=_("Library")
-            ).set_icon_name("emote-love-symbolic")
+            ).set_icon_name("library-symbolic")
 
             self.page_list.search_bar.set_key_capture_widget(self)
             self.btn_search.bind_property('active', self.page_list.search_bar, 'search-mode-enabled',
@@ -284,9 +276,7 @@ class MainWindow(Adw.ApplicationWindow):
     def lock_ui(self, status: bool = True):
         widgets = [
             self.btn_add,
-            self.btn_menu,
             self.view_switcher_title,
-            self.btn_search
         ]
         if self.btn_noconnection.get_visible():
             widgets.append(self.btn_noconnection)
@@ -321,57 +311,14 @@ class MainWindow(Adw.ApplicationWindow):
             self.disable_onboard = True
             DependenciesCheckDialog(self).present()
 
+    def __on_page_changed(self, stack, *args):
+        is_bottles_list = stack.get_visible_child_name() == "page_list"
+        self.btn_search.set_visible(is_bottles_list)
+
     @staticmethod
     def proper_close():
         """Properly close Bottles"""
         quit()
-
-    def show_about_dialog(self, *_args):
-        builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
-        about_window = builder.get_object("about_window")
-        about_window.set_debug_info(HealthChecker().get_results(plain=True))
-        about_window.add_link(_("Donate"), "https://usebottles.com/funding")
-        about_window.set_version(APP_VERSION)
-        about_window.set_application_name(APP_NAME)
-        about_window.set_application_icon(APP_ICON)
-        about_window.add_acknowledgement_section(
-            _("Third-Party Libraries and Special Thanks"),
-            [
-                "DXVK https://github.com/doitsujin/dxvk",
-                "VKD3D https://github.com/HansKristian-Work/vkd3d-proton",
-                "DXVK-NVAPI https://github.com/jp7677/dxvk-nvapi",
-                "LatencyFleX https://github.com/ishitatsuyuki/LatencyFleX",
-                "MangoHud https://github.com/flightlessmango/MangoHud",
-                "AMD FidelityFX™ Super Resolution https://www.amd.com/en/technologies/fidelityfx-super-resolution",
-                "vkBasalt https://github.com/DadSchoorse/vkBasalt",
-                "vkbasalt-cli https://gitlab.com/TheEvilSkeleton/vkbasalt-cli",
-                "GameMode https://github.com/FeralInteractive/gamemode",
-                "Gamescope https://github.com/Plagman/gamescope",
-                "OBS Vulkan/OpenGL capture https://github.com/nowrep/obs-vkcapture",
-                "Wine-TKG https://github.com/Frogging-Family/wine-tkg-git",
-                "Proton https://github.com/ValveSoftware/proton",
-                "Wine-GE https://github.com/GloriousEggroll/wine-ge-custom",
-                "Wine https://www.winehq.org",
-                "orjson https://github.com/ijl/orjson",
-                "libadwaita https://gitlab.gnome.org/GNOME/libadwaita",
-                "icoextract https://github.com/jlu5/icoextract",
-                "vmtouch https://github.com/hoytech/vmtouch",
-                "FVS https://github.com/mirkobrombin/FVS"
-            ]
-        )
-        about_window.add_acknowledgement_section(
-            _("Sponsored and Funded by"),
-            [
-                "JetBrains https://www.jetbrains.com/?from=bottles",
-                "GitBook https://www.gitbook.com/?ref=bottles",
-                "Linode https://www.linode.com/?from=bottles",
-                "Appwrite https://appwrite.io/?from=bottles",
-                "Community ❤️ https://usebottles.com/funding"
-            ]
-        )
-        about_window.set_transient_for(self)
-        about_window.present()
-
 
     @staticmethod
     def open_url(widget, url):
