@@ -19,7 +19,7 @@ from gi.repository import Gtk
 def add_executable_filters(dialog):
     filter = Gtk.FileFilter()
     filter.set_name(_("Supported Executables"))
-    filter.add_mime_type("application/x-dosexec")
+    filter.add_mime_type("application/x-ms-dos-executable")
     filter.add_mime_type("application/x-msi")
 
     dialog.add_filter(filter)
