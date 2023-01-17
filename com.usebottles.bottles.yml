@@ -197,6 +197,15 @@ modules:
         url: https://github.com/erocarrera/pefile/releases/download/v2021.9.3/pefile-2021.9.3.tar.gz
         sha256: 344a49e40a94e10849f0fe34dddc80f773a12b40675bf2f7be4b8be578bdd94a
 
+  - name: python-pathvalidate
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/thombashi/pathvalidate/archive/refs/tags/v2.5.2.zip
+        sha256: 823b72c567147468b5823958a3625c72867455c13b8e367397ee467decccaea4
+
   # Tools / Codecs
   # ----------------------------------------------------------------------------
   - name: vmtouch

@@ -33,6 +33,7 @@ from datetime import datetime
 from gettext import gettext as _
 from typing import Union, Any, Dict
 from gi.repository import GLib
+import pathvalidate
 
 from bottles.backend.logger import Logger
 from bottles.backend.runner import Runner
@@ -47,6 +48,7 @@ from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.steam import SteamManager
+from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.repos.repo import RepoStatus
@@ -736,6 +738,28 @@ class Manager:
             if config.run_in_terminal:
                 config.run_in_terminal = False
 
+            # Check if the path in the bottle config corresponds to the folder name
+            # if not, change the config to reflect the folder name
+            # if the folder name is "illegal" accross all platforms, rename the folder
+            sane_name = pathvalidate.sanitize_filepath(_name, platform='universal')  # "universal" platform works for all filesystem/OSes
+            if config.Custom_Path is False:  # There shouldn't be problems with this
+                if config.Path != _name or sane_name != _name:
+                    logging.warning("Illegal bottle folder or mismatch between config \"Path\" and folder name")
+                    if sane_name != _name:
+                        # This hopefully doesn't happen, but it's managed
+                        logging.warning(f"Broken path in bottle {_name}, fixing...")
+                        shutil.move(_bottle, os.path.join(Paths.bottles, sane_name))
+                        # Restart the process bottle function. Normally, can't be recursive!
+                        process_bottle(sane_name)
+                        return
+
+                    config.Path = sane_name
+                    self.update_config(
+                        config=config,
+                        key="Path",
+                        value=sane_name
+                    )
+
             sample = BottleConfig()
             miss_keys = sample.keys() - config.keys()
             for key in miss_keys:
@@ -835,16 +859,6 @@ class Manager:
         wineboot = WineBoot(_config)
         wineserver = WineServer(_config)
         bottle_path = ManagerUtils.get_bottle_path(config)
-
-        # Fix pathing error, where space is converted to _ in file name, but not in the path that bottle uses
-        # Replace spaces in file path with _ to solve this issue:
-        bottle_path_tmp = ""
-        for character in bottle_path:
-            if character != " ":
-                bottle_path_tmp = bottle_path_tmp + character
-            else:
-                bottle_path_tmp = bottle_path_tmp + "_"
-        bottle_path = bottle_path_tmp
 
         if key == "sync":
             '''
@@ -1074,6 +1088,7 @@ class Manager:
         # define bottle parameters
         bottle_name = name
         bottle_name_path = bottle_name.replace(" ", "-")
+        bottle_name_path = pathvalidate.sanitize_filename(bottle_name_path, platform="universal")
 
         # get bottle path
         if path == "":
@@ -1386,6 +1401,13 @@ class Manager:
         logging.info(f"Removing applications installed with the bottle…")
         for inst in glob(f"{Paths.applications}/{config.Name}--*"):
             os.remove(inst)
+
+        logging.info(f"Removing library entries associated with this bottle…")
+        library_manager = LibraryManager()
+        entries = library_manager.get_library().copy()
+        for uuid, entry in entries.items():
+            if entry.get('bottle').get('name') == config.Name:
+                library_manager.remove_from_library(uuid)
 
         if config.Custom_Path:
             logging.info(f"Removing placeholder…")
