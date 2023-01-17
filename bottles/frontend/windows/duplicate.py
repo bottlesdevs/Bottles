@@ -34,7 +34,6 @@ class DuplicateDialog(Adw.Window):
     btn_duplicate = Gtk.Template.Child()
     stack_switcher = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
-    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -46,15 +45,19 @@ class DuplicateDialog(Adw.Window):
         self.parent = parent
         self.config = parent.config
 
-        self.ev_controller.connect("key-released", self.__check_entry_name)
-        self.entry_name.add_controller(self.ev_controller)
+        self.entry_name.connect("changed", self.__check_entry_name)
 
         # connect signals
         self.btn_duplicate.connect("clicked", self.__duplicate_bottle)
 
     def __check_entry_name(self, *_args):
-        result = GtkUtils.validate_entry(self.entry_name)
-        self.btn_duplicate.set_sensitive(result)
+        is_duplicate = self.entry_name.get_text() in self.parent.manager.local_bottles
+        if is_duplicate:
+            self.entry_name.add_css_class("error")
+            self.btn_duplicate.set_sensitive(False)
+        else:
+            self.entry_name.remove_css_class("error")
+            self.btn_duplicate.set_sensitive(True)
 
     def __duplicate_bottle(self, widget):
         """
