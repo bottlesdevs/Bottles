@@ -99,6 +99,11 @@ class ProgramEntry(Adw.ActionRow):
         if self.manager.steam_manager.is_steam_supported:
             self.btn_add_steam.set_visible(True)
 
+        library_manager = LibraryManager()
+        for uuid, entry in library_manager.get_library().items():
+            if entry.get("id") == program.get("id"):
+                self.btn_add_library.set_visible(False)
+
         external_programs = []
         for p in self.config.get("External_Programs"):
             _p = self.config["External_Programs"][p]["name"]
