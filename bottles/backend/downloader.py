@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
+import shutil
 import time
 import requests
 from gi.repository import GLib
@@ -97,7 +97,7 @@ class Downloader:
         c_close, c_complete, c_incomplete = "\033[0m", "\033[92m", "\033[90m"
         divider = 2
         full_text_size = len(f"\r{c_complete}{name} (100%) {'━' * int(100 / divider)} ({total_str}/{total_str} - 100MB)")
-        while os.get_terminal_size().columns < full_text_size:
+        while shutil.get_terminal_size().columns < full_text_size:
             divider = divider + 1
             full_text_size = len(f"\r{c_complete}{name} (100%) {'━' * int(100 / divider)} ({total_str}/{total_str} - 100MB)")
             if divider > 10: break
