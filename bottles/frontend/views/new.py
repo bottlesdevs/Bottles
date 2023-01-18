@@ -119,15 +119,22 @@ class NewView(Adw.Window):
         """ Checks the state of check_custom and updates group_custom accordingly. """
         self.group_custom.set_sensitive(self.check_custom.get_active())
 
-    def __check_entry_name(self, *_args) -> None:
-        """ Validates the entry of entry_name. """
-        result = GtkUtils.validate_entry(self.entry_name, extend=self.__check_already_in_use)
-        self.btn_create.set_sensitive(result)
-    
-    def __check_already_in_use(self, name) -> bool:
-        """ Checks if the name is already in use. """
-        return name in self.manager.local_bottles
+    def set_active_env(self, widget, row):
+        """
+        This function set the active environment on row selection.
+        """
+        self.selected_env = row.get_buildable_id()
 
+    def __check_entry_name(self, *_args):
+        is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
+        if is_duplicate:
+            self.window.show_toast(_("This bottle name is already in use."))
+            self.entry_name.add_css_class("error")
+            self.btn_create.set_sensitive(False)
+        else:
+            self.entry_name.remove_css_class("error")
+            self.btn_create.set_sensitive(True)
+    
     def choose_env_recipe(self, *_args) -> None:
         """
         Opens a file chooser dialog to select the configuration file
