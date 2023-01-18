@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2023-01-12 10:52+0000\n"
+"PO-Revision-Date: 2023-01-19 06:44+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -731,12 +731,15 @@ msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"Paranna suorituskykyä visuaalisen laadun kustannuksella käyttäen DXVK-NVAPI:"
+"a. Toimii vain suhteellisen uusilla NVIDIA:n näytönohjaimilla."
 
 #: bottles/frontend/ui/details-preferences.blp:106
 #: bottles/frontend/ui/details-preferences.blp:105
-#, fuzzy
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "Parantaa suorituskykyä lisääntyneen virrankulutuksen kustannuksella."
+msgstr ""
+"Paranna suorituskykyä visuaalisen laadun kustannuksella. Toimii vain "
+"Vulkanilla."
 
 #: bottles/frontend/ui/details-preferences.blp:121
 msgid "Discrete Graphics"
@@ -748,6 +751,8 @@ msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Käytä erillistä näytönohjainta suorituskyvyn parantamiseksi. Virrankulutus "
+"kasvaa tämän myötä."
 
 #: bottles/frontend/ui/details-preferences.blp:131
 msgid "Post-Processing Effects"
@@ -768,7 +773,7 @@ msgstr "Hallitse jälkikäsittelyn tasoasetuksia"
 #: bottles/frontend/ui/details-preferences.blp:146
 #: bottles/frontend/ui/details-preferences.blp:150
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "Hallitse miten pelit tulee esittää näytöllä Gamescopea käyttäen."
 
 #: bottles/frontend/ui/details-preferences.blp:149
 #: bottles/frontend/ui/details-preferences.blp:153
@@ -826,6 +831,9 @@ msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
+"Näytä tarkkailutietoja kuten kuvan päivitystaajuus, lämpötilat, suorittimen "
+"ja näytönohjaimen rasitus sekä paljon muuta OpenGL:llä ja Vulkanilla "
+"käyttäen MangoHudia."
 
 #: bottles/frontend/ui/details-preferences.blp:207
 msgid "Feral GameMode"
@@ -848,6 +856,8 @@ msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Paranna latausaikoja, kun peli käynnistetään useita kertoja. Pelin "
+"käynnistys kestää tavallista kauemmin ensimmäisellä käynnistyskerralla."
 
 #: bottles/frontend/ui/details-preferences.blp:218
 #: bottles/frontend/ui/details-preferences.blp:222
@@ -1753,7 +1763,7 @@ msgstr "Natiivi, sitten sisäänrakennettu"
 #: bottles/frontend/ui/dll-override-entry.blp:12
 #: bottles/frontend/ui/details-preferences.blp:109
 msgid "Disabled"
-msgstr "Poistettu käytöstä"
+msgstr "Pois käytöstä"
 
 #: bottles/frontend/ui/dll-override-entry.blp:20
 #: bottles/frontend/ui/drive-entry.blp:12
@@ -2192,7 +2202,7 @@ msgstr "Pullojen kansio"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr "Kansi, joka sisältää pullojesi datan."
+msgstr "Kansio, joka sisältää pullojesi datan."
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
