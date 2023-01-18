@@ -31,7 +31,7 @@ import contextlib
 from glob import glob
 from datetime import datetime
 from gettext import gettext as _
-from typing import Union, Any, Dict
+from typing import Union, Any, Dict, List
 from gi.repository import GLib
 import pathvalidate
 
@@ -551,7 +551,7 @@ class Manager:
         except ValueError:
             return sorted(component["available"], reverse=True)
 
-    def get_programs(self, config: BottleConfig) -> list:
+    def get_programs(self, config: BottleConfig) -> List[dict]:
         """
         Get the list of programs (both from the drive and the user defined
         in the bottle configuration file).
