@@ -1,9 +1,14 @@
 import yaml as _yaml
 
+from bottles.backend.models.config import BottleConfig
+
 try:
     from yaml import CSafeLoader as SafeLoader, CSafeDumper as SafeDumper
 except ImportError:
     from yaml import SafeLoader, SafeDumper
+
+YAMLError = _yaml.YAMLError
+SafeDumper.add_representer(BottleConfig, BottleConfig.yaml_serialize_handler)
 
 
 def dump(data, stream=None, **kwargs):
@@ -25,6 +30,3 @@ def load(stream, Loader=SafeLoader):
           best performance.
     """
     return _yaml.load(stream, Loader=Loader)
-
-
-YAMLError = _yaml.YAMLError
