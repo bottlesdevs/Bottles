@@ -3,7 +3,7 @@ import logging
 import os
 from dataclasses import dataclass, field, replace, asdict, is_dataclass
 from io import IOBase
-from typing import List, Dict, Union, Optional
+from typing import List, Dict, Union, Optional, ItemsView, Container
 
 from typing.io import IO
 
@@ -29,16 +29,23 @@ class DictCompatMixIn:
     def to_dict(self) -> dict:
         return asdict(self)
 
+    def items(self) -> ItemsView[str, Container]:
+        return self.to_dict().items()
+
     def __iter__(self):
+        """handle `for x in obj` syntax"""
         return iter(self.__dict__)
 
     def __getitem__(self, item):
+        """handle `obj[x]` syntax"""
         return getattr(self, item)
 
     def __delitem__(self, key):
+        """handle `del obj[x]` syntax"""
         return delattr(self, key)
 
     def __setitem__(self, key, value):
+        """handle `obj[x] = y` syntax"""
         return setattr(self, key, value)
 
 
