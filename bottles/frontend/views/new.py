@@ -259,12 +259,11 @@ class NewView(Adw.Window):
 
     def do_close_request(self, *args):
         """ Close window if a new bottle is not being created """
-        if self.is_closable == False:
+        if self.is_closable is False:
             # TODO: Implement AdwMessageDialog to prompt the user if they are
             # SURE they want to cancel creation. For now, the window will not
             # react if the user attempts to close the window while a bottle
             # is being created
             return True
-        else:
-            self.close()
-            return False
+        self.close()
+        return False
