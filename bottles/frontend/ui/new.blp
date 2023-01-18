@@ -61,7 +61,7 @@ template NewView : .AdwWindow {
             .AdwComboRow combo_environment {
               title: _("Environment");
               model:
-              StringList {
+              StringList str_list_environment {
                 strings [
                   _("Application"),
                   _("Gaming"),
@@ -74,6 +74,7 @@ template NewView : .AdwWindow {
           }
 
           .AdwPreferencesGroup group_custom {
+            title: _("Custom");
             sensitive: false;
 
             .AdwActionRow row_sandbox {

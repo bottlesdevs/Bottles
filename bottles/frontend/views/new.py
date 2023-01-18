@@ -66,7 +66,7 @@ class NewView(Adw.Window):
         self.runner = None
 
         # connect signals
-        self.combo_environment.connect("toggled", self.__set_group)
+        self.combo_environment.connect("notify::selected", self.__set_group)
         self.btn_cancel.connect("clicked", self.do_close_request)
         self.btn_close.connect("clicked", self.do_close_request)
         self.btn_create.connect("clicked", self.create_bottle)
@@ -113,9 +113,9 @@ class NewView(Adw.Window):
         # focus on the entry_name
         self.entry_name.grab_focus()
 
-    def __set_group(self, _widget) -> None:
-        """ Checks the state of check_custom and updates group_custom accordingly. """
-        self.group_custom.set_sensitive(self.check_custom.get_active())
+    def __set_group(self, *_args) -> None:
+        """ Checks the state of combo_environment and updates group_custom accordingly. """
+        self.group_custom.set_sensitive(self.combo_environment.get_selected() == 2)
 
     def set_active_env(self, _widget, row):
         """
@@ -186,7 +186,10 @@ class NewView(Adw.Window):
         self.status_statuses.set_title(_("Creating Bottle…"))
         self.status_statuses.set_description(_("This could take a while."))
 
-        if environment == "custom":
+        if self.combo_environment.get_selected_item() == "Gaming":
+            print("Works maybe???")
+
+        if self.combo_environment.get_selected() == 2:
             self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
         RunAsync(
