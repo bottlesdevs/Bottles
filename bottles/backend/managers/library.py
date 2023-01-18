@@ -79,7 +79,7 @@ class LibraryManager:
         self.__library[_uuid] = data
         self.save_library()
 
-    def download_thumbnail(self, _uuid: str, config: dict):
+    def download_thumbnail(self, _uuid: str, config: BottleConfig):
         if not self.__library.get(_uuid):
             logging.warning(f'Entry not found in library, can\'t download thumbnail: {_uuid}')
             return False
