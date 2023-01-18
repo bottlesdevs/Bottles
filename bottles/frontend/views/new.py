@@ -16,21 +16,16 @@
 #
 
 import os
-import re
 from gettext import gettext as _
 from gi.repository import Gtk, Adw, Pango
 
 from bottles.frontend.utils.threading import RunAsync
-from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 
-from bottles.backend.runner import Runner
-from bottles.backend.wine.executor import WineExecutor
 
-
-@Gtk.Template(resource_path='/com/usebottles/bottles/new.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/new.ui")
 class NewView(Adw.Window):
-    __gtype_name__ = 'NewView'
+    __gtype_name__ = "NewView"
 
     # region Widgets
     check_gaming = Gtk.Template.Child()
@@ -66,6 +61,11 @@ class NewView(Adw.Window):
         self.window = window
         self.manager = window.manager
         self.new_bottle_config = {}
+        self.selected_env = None
+        self.env_recipe_path = None
+        self.custom_path = ""
+        self.is_closable = True
+        self.runner = None
 
         # connect signals
         self.check_custom.connect("toggled", self.__set_group)
@@ -74,7 +74,7 @@ class NewView(Adw.Window):
         self.btn_create.connect("clicked", self.create_bottle)
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.btn_choose_path.connect("clicked", self.choose_path)
-        self.entry_name.connect('changed', self.__check_entry_name)
+        self.entry_name.connect("changed", self.__check_entry_name)
 
         # Populate combo_runner with runner versions from the manager
         self.str_list_runner.splice(0, 0, self.manager.runners_available)
@@ -82,15 +82,15 @@ class NewView(Adw.Window):
         rs, rc, rv, rl, ry = [], [], [], [], []
 
         for i in self.manager.runners_available:
-            if i.startswith('soda'):
+            if i.startswith("soda"):
                 rs.append(i)
-            elif i.startswith('caffe'):
+            elif i.startswith("caffe"):
                 rc.append(i)
-            elif i.startswith('vaniglia'):
+            elif i.startswith("vaniglia"):
                 rv.append(i)
-            elif i.startswith('lutris'):
+            elif i.startswith("lutris"):
                 rl.append(i)
-            elif i.startswith('sys-'):
+            elif i.startswith("sys-"):
                 ry.append(i)
 
         if len(rs) > 0:  # use the latest from Soda
@@ -115,11 +115,11 @@ class NewView(Adw.Window):
         # focus on the entry_name
         self.entry_name.grab_focus()
 
-    def __set_group(self, widget: Gtk.CheckButton) -> None:
+    def __set_group(self, _widget: Gtk.CheckButton) -> None:
         """ Checks the state of check_custom and updates group_custom accordingly. """
         self.group_custom.set_sensitive(self.check_custom.get_active())
 
-    def set_active_env(self, widget, row):
+    def set_active_env(self, _widget, row):
         """
         This function set the active environment on row selection.
         """
@@ -134,7 +134,7 @@ class NewView(Adw.Window):
         else:
             self.entry_name.remove_css_class("error")
             self.btn_create.set_sensitive(True)
-    
+
     def choose_env_recipe(self, *_args) -> None:
         """
         Opens a file chooser dialog to select the configuration file
@@ -198,14 +198,14 @@ class NewView(Adw.Window):
             task_func=self.manager.create_bottle,
             callback=self.finish,
             name=self.entry_name.get_text(),
-            path=getattr(self, "custom_path", ""),
+            path=self.custom_path,
             environment=environment,
-            runner=getattr(self, "runner", None),
+            runner=self.runner,
             arch="win32" if self.combo_arch.get_selected() else "win64",
             dxvk=self.manager.dxvk_available[0],
             sandbox=self.switch_sandbox.get_state(),
             fn_logger=self.update_output,
-            custom_environment=getattr(self, "env_recipe_path", None)
+            custom_environment=self.env_recipe_path
         )
 
     def update_output(self, text: str) -> None:
@@ -253,14 +253,13 @@ class NewView(Adw.Window):
         # TODO: Remove this ugly zig zag and find a better way to set the environment
         if self.check_gaming.get_active():
             return "gaming"
-        elif self.check_application.get_active():
+        if self.check_application.get_active():
             return "application"
-        else:
-            return "custom"
+        return "custom"
 
     def do_close_request(self, *args):
         """ Close window if a new bottle is not being created """
-        if getattr(self, "is_closable", True) == False:
+        if self.is_closable == False:
             # TODO: Implement AdwMessageDialog to prompt the user if they are
             # SURE they want to cancel creation. For now, the window will not
             # react if the user attempts to close the window while a bottle
