@@ -1309,14 +1309,7 @@ class Manager:
                     continue
                 if dep in self.supported_dependencies:
                     _dep = self.supported_dependencies[dep]
-                    try:
-                        log_update(_("Installing dependency: %s …") % _dep.get("Description", "n/a"))
-                    except TypeError:
-                        # NOTE: this is a workaround for a wontfix bug that keep
-                        # appearing. See: https://github.com/bottlesdevs/Bottles/issues/2387
-                        # I have no idea why this happens, but it's not a big deal.
-                        # Help is appreciated.
-                        log_update(_("Installing a dependency …"))
+                    log_update(_("Installing dependency: %s …") % _dep.get("Description", "n/a"))
                     self.dependency_manager.install(config, [dep, _dep])
                     template_updated = True
 
