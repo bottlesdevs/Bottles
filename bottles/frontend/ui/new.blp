@@ -57,46 +57,19 @@ template NewView : .AdwWindow {
           }
 
           .AdwPreferencesGroup {
-            title: _("Environment");
             // description: _("A state that is determined by a collection of software tailored for a specific use case.");
-
-            .AdwActionRow {
-              activatable-widget: "check_gaming";
-              title: _("_Gaming");
-              icon-name: "input-gaming-symbolic";
-              use-underline: true;
-
-              [prefix]
-              CheckButton check_gaming  {
-                valign: center;
-                active: true;
+            .AdwComboRow combo_environment {
+              title: _("Environment");
+              model:
+              StringList {
+                strings [
+                  _("Application"),
+                  _("Gaming"),
+                  _("Custom"),
+                ]
               }
-            }
 
-            .AdwActionRow {
-              activatable-widget: "check_application";
-              title: _("_Application");
-              icon-name: "applications-engineering-symbolic";
-              use-underline: true;
-
-              [prefix]
-              CheckButton check_application  {
-                valign: center;
-                group: check_gaming;
-              }
-            }
-
-            .AdwActionRow {
-              activatable-widget: "check_custom";
-              title: _("C_ustom");
-              icon-name: "applications-science-symbolic";
-              use-underline: true;
-
-              [prefix]
-              CheckButton check_custom  {
-                valign: center;
-                group: check_gaming;
-              }
+              ;
             }
           }
 

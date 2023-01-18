@@ -28,9 +28,7 @@ class NewView(Adw.Window):
     __gtype_name__ = "NewView"
 
     # region Widgets
-    check_gaming = Gtk.Template.Child()
-    check_application = Gtk.Template.Child()
-    check_custom = Gtk.Template.Child()
+    combo_environment = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     stack_create = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
@@ -68,7 +66,7 @@ class NewView(Adw.Window):
         self.runner = None
 
         # connect signals
-        self.check_custom.connect("toggled", self.__set_group)
+        self.combo_environment.connect("toggled", self.__set_group)
         self.btn_cancel.connect("clicked", self.do_close_request)
         self.btn_close.connect("clicked", self.do_close_request)
         self.btn_create.connect("clicked", self.create_bottle)
@@ -115,7 +113,7 @@ class NewView(Adw.Window):
         # focus on the entry_name
         self.entry_name.grab_focus()
 
-    def __set_group(self, _widget: Gtk.CheckButton) -> None:
+    def __set_group(self, _widget) -> None:
         """ Checks the state of check_custom and updates group_custom accordingly. """
         self.group_custom.set_sensitive(self.check_custom.get_active())
 
@@ -127,8 +125,7 @@ class NewView(Adw.Window):
 
     def __check_entry_name(self, *_args):
         is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
-        if is_duplicate:
-            self.window.show_toast(_("This bottle name is already in use."))
+        if is_duplicate or self.entry_name.get_text() == "":
             self.entry_name.add_css_class("error")
             self.btn_create.set_sensitive(False)
         else:
@@ -189,8 +186,6 @@ class NewView(Adw.Window):
         self.status_statuses.set_title(_("Creating Bottle…"))
         self.status_statuses.set_description(_("This could take a while."))
 
-        environment = self.__radio_get_active()
-
         if environment == "custom":
             self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
@@ -247,15 +242,6 @@ class NewView(Adw.Window):
         # then update the user bottles' list.
         self.manager.check_bottles()
         self.window.page_list.update_bottles(show=result.data.get("config").get("Path"))
-
-    def __radio_get_active(self) -> str:
-        """ Sets active environment based on user selection. """
-        # TODO: Remove this ugly zig zag and find a better way to set the environment
-        if self.check_gaming.get_active():
-            return "gaming"
-        if self.check_application.get_active():
-            return "application"
-        return "custom"
 
     def do_close_request(self, *args):
         """ Close window if a new bottle is not being created """
