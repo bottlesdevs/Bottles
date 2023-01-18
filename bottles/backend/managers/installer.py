@@ -289,30 +289,30 @@ class InstallerManager:
 
         _conf.merge_dict(upd_keys)
 
-    def __set_parameters(self, config: BottleConfig, parameters: BottleParams):
+    def __set_parameters(self, config: BottleConfig, new_params: dict):
         _config = config
 
-        if "dxvk" in parameters:
-            if parameters.dxvk != config.Parameters.dxvk:
-                self.__manager.install_dll_component(_config, "dxvk", remove=not parameters.dxvk)
+        if "dxvk" in new_params and isinstance(new_params["dxvk"], bool):
+            if new_params["dxvk"] != config.Parameters.dxvk:
+                self.__manager.install_dll_component(_config, "dxvk", remove=not new_params["dxvk"])
 
-        if "vkd3d" in parameters:
-            if parameters.vkd3d != config.Parameters.vkd3d:
-                self.__manager.install_dll_component(_config, "vkd3d", remove=not parameters.vkd3d)
+        if "vkd3d" in new_params and isinstance(new_params["vkd3d"], bool):
+            if new_params["vkd3d"] != config.Parameters.vkd3d:
+                self.__manager.install_dll_component(_config, "vkd3d", remove=not new_params["vkd3d"])
 
-        if "dxvk_nvapi" in parameters:
-            if parameters.dxvk_nvapi != config.Parameters.dxvk_nvapi:
-                self.__manager.install_dll_component(_config, "nvapi", remove=not parameters.dxvk_nvapi)
+        if "dxvk_nvapi" in new_params and isinstance(new_params["dxvk_nvapi"], bool):
+            if new_params["dxvk_nvapi"] != config.Parameters.dxvk_nvapi:
+                self.__manager.install_dll_component(_config, "nvapi", remove=not new_params["dxvk_nvapi"])
 
-        if "latencyflex" in parameters:
-            if parameters.latencyflex != config.Parameters.latencyflex:
-                self.__manager.install_dll_component(_config, "latencyflex", remove=not parameters.latencyflex)
+        if "latencyflex" in new_params and isinstance(new_params["latencyflex"], bool):
+            if new_params["latencyflex"] != config.Parameters.latencyflex:
+                self.__manager.install_dll_component(_config, "latencyflex", remove=not new_params["latencyflex"])
 
         # avoid sync type change if not set to "wine"
-        if parameters.sync and config.Parameters.sync != "wine":
-            delattr(parameters, "sync")
+        if "sync" in new_params and config.Parameters.sync != "wine":
+            del new_params["sync"]
 
-        for k, v in dataclasses.asdict(parameters).items():
+        for k, v in new_params.items():
             self.__manager.update_config(
                 config=config,
                 key=k,
