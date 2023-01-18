@@ -19,8 +19,7 @@ from gi.repository import Gtk
 def add_executable_filters(dialog):
     filter = Gtk.FileFilter()
     filter.set_name(_("Supported Executables"))
-    # TODO: Add exe media type https://www.iana.org/assignments/media-types/application/vnd.microsoft.portable-executable
-    filter.add_pattern("*.exe")
+    filter.add_mime_type("application/x-ms-dos-executable")
     filter.add_mime_type("application/x-msi")
 
     dialog.add_filter(filter)
@@ -28,9 +27,7 @@ def add_executable_filters(dialog):
 def add_yaml_filters(dialog):
     filter = Gtk.FileFilter()
     filter.set_name("YAML")
-    # TODO: Create yaml media type https://www.ietf.org/archive/id/draft-ietf-httpapi-yaml-mediatypes-00.html#name-media-type-application-yaml
-    filter.add_pattern("*.yml")
-    filter.add_pattern("*.yaml")
+    filter.add_mime_type("application/x-yaml")
 
     dialog.add_filter(filter)
 
