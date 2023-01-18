@@ -310,6 +310,7 @@ class ProgramEntry(Adw.ActionRow):
                 "icon": ManagerUtils.extract_icon(self.config, self.program["name"], self.program["path"]),
             }, self.config)
 
+        self.btn_add_library.set_visible(False)
         RunAsync(add_to_library, update)
 
     def add_to_steam(self, _widget):
