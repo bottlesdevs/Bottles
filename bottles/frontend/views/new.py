@@ -29,14 +29,17 @@ class NewView(Adw.Window):
 
     # region Widgets
     combo_environment = Gtk.Template.Child()
+    str_list_environment = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     stack_create = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
     btn_choose_env = Gtk.Template.Child()
+    btn_choose_env_reset = Gtk.Template.Child()
     label_choose_env = Gtk.Template.Child()
     btn_choose_path = Gtk.Template.Child()
+    btn_choose_path_reset = Gtk.Template.Child()
     label_choose_path = Gtk.Template.Child()
     status_statuses = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
@@ -65,17 +68,26 @@ class NewView(Adw.Window):
         self.is_closable = True
         self.runner = None
 
+        self.environments = {
+            "application": _("Application"),
+            "gaming": _("Gaming"),
+            "custom": _("Custom")
+        }
+
         # connect signals
         self.combo_environment.connect("notify::selected", self.__set_group)
         self.btn_cancel.connect("clicked", self.do_close_request)
         self.btn_close.connect("clicked", self.do_close_request)
         self.btn_create.connect("clicked", self.create_bottle)
-        self.btn_choose_env.connect("clicked", self.choose_env_recipe)
-        self.btn_choose_path.connect("clicked", self.choose_path)
+        self.btn_choose_env.connect("clicked", self.__choose_env_recipe)
+        self.btn_choose_env_reset.connect("clicked", self.__reset_env_recipe)
+        self.btn_choose_path.connect("clicked", self.__choose_path)
+        self.btn_choose_path_reset.connect("clicked", self.__reset_path)
         self.entry_name.connect("changed", self.__check_entry_name)
 
         # Populate combo_runner with runner versions from the manager
         self.str_list_runner.splice(0, 0, self.manager.runners_available)
+        self.str_list_environment.splice(0, 0, list(self.environments.values()))
 
         rs, rc, rv, rl, ry = [], [], [], [], []
 
@@ -115,7 +127,7 @@ class NewView(Adw.Window):
 
     def __set_group(self, *_args) -> None:
         """ Checks the state of combo_environment and updates group_custom accordingly. """
-        self.group_custom.set_sensitive(self.combo_environment.get_selected() == 2)
+        self.group_custom.set_sensitive(self.__get_environment() == "custom")
 
     def set_active_env(self, _widget, row):
         """
@@ -132,13 +144,14 @@ class NewView(Adw.Window):
             self.entry_name.remove_css_class("error")
             self.btn_create.set_sensitive(True)
 
-    def choose_env_recipe(self, *_args) -> None:
+    def __choose_env_recipe(self, *_args) -> None:
         """
         Opens a file chooser dialog to select the configuration file
         in yaml format.
         """
         def set_path(_dialog, response):
             if response == Gtk.ResponseType.ACCEPT:
+                self.btn_choose_env_reset.set_visible(True)
                 self.env_recipe_path = dialog.get_file().get_path()
                 self.label_choose_env.set_label(dialog.get_file().get_basename())
                 self.label_choose_env.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
@@ -155,10 +168,11 @@ class NewView(Adw.Window):
         dialog.connect("response", set_path)
         dialog.show()
 
-    def choose_path(self, *_args) -> None:
+    def __choose_path(self, *_args) -> None:
         """ Opens a file chooser dialog to select the directory. """
         def set_path(_dialog, response):
             if response == Gtk.ResponseType.ACCEPT:
+                self.btn_choose_path_reset.set_visible(True)
                 self.custom_path = dialog.get_file().get_path()
                 self.label_choose_path.set_label(dialog.get_file().get_basename())
                 self.label_choose_path.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
@@ -186,10 +200,7 @@ class NewView(Adw.Window):
         self.status_statuses.set_title(_("Creating Bottle…"))
         self.status_statuses.set_description(_("This could take a while."))
 
-        if self.combo_environment.get_selected_item() == "Gaming":
-            print("Works maybe???")
-
-        if self.combo_environment.get_selected() == 2:
+        if self.__get_environment() == "custom":
             self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
         RunAsync(
@@ -197,7 +208,7 @@ class NewView(Adw.Window):
             callback=self.finish,
             name=self.entry_name.get_text(),
             path=self.custom_path,
-            environment=environment,
+            environment=self.__get_environment(),
             runner=self.runner,
             arch="win32" if self.combo_arch.get_selected() else "win64",
             dxvk=self.manager.dxvk_available[0],
@@ -245,6 +256,20 @@ class NewView(Adw.Window):
         # then update the user bottles' list.
         self.manager.check_bottles()
         self.window.page_list.update_bottles(show=result.data.get("config").get("Path"))
+
+    def __get_environment(self):
+        """ Gets currently selected environment. """
+        return list(self.environments.keys())[self.combo_environment.get_selected()]
+
+    def __reset_env_recipe(self, _widget):
+        self.btn_choose_env_reset.set_visible(False)
+        self.env_recipe_path = None
+        self.label_choose_env.set_label(_("(Default)"))
+
+    def __reset_path(self, _widget):
+        self.btn_choose_path_reset.set_visible(False)
+        label_choose_path = ""
+        self.label_choose_path.set_label(_("(Default)"))
 
     def do_close_request(self, *args):
         """ Close window if a new bottle is not being created """

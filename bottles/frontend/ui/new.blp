@@ -57,17 +57,12 @@ template NewView : .AdwWindow {
           }
 
           .AdwPreferencesGroup {
-            // description: _("A state that is determined by a collection of software tailored for a specific use case.");
             .AdwComboRow combo_environment {
               title: _("Environment");
+              // TODO: Improve this sentence
+              subtitle: _("A state that is determined by a collection of software tailored for a specific use case.");
               model:
-              StringList str_list_environment {
-                strings [
-                  _("Application"),
-                  _("Gaming"),
-                  _("Custom"),
-                ]
-              }
+              StringList str_list_environment {}
 
               ;
             }
@@ -110,10 +105,20 @@ template NewView : .AdwWindow {
             }
 
             .AdwActionRow {
-              // TODO: Implement reset
               title: _("Configuration");
               subtitle: _("Import a custom configuration.");
               activatable-widget: "btn_choose_env";
+
+              Button btn_choose_env_reset {
+                tooltip-text: _("Reset to Default");
+                valign: center;
+                visible: false;
+                icon-name: "edit-undo-symbolic";
+
+                styles [
+                  "flat",
+                ]
+              }
 
               Button btn_choose_env {
                 valign: center;
@@ -133,10 +138,20 @@ template NewView : .AdwWindow {
             }
 
             .AdwActionRow {
-              // TODO: Implement reset
               title: _("Bottle Directory");
               subtitle: _("Directory that will contain the data of this bottle.");
               activatable-widget: "btn_choose_path";
+
+              Button btn_choose_path_reset {
+                tooltip-text: _("Reset to Default");
+                valign: center;
+                visible: false;
+                icon-name: "edit-undo-symbolic";
+
+                styles [
+                  "flat",
+                ]
+              }
 
               Button btn_choose_path {
                 valign: center;
