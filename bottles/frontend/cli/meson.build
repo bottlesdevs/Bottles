@@ -13,5 +13,6 @@ configure_file(
   output: 'bottles-cli',
   configuration: conf,
   install: true,
-  install_dir: get_option('bindir')
+  install_dir: get_option('bindir'),
+  install_mode: ['rwxr-xr-x']
 )
