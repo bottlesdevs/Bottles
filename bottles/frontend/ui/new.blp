@@ -55,14 +55,45 @@ template NewView : .AdwWindow {
           }
 
           .AdwPreferencesGroup {
-            .AdwComboRow combo_environment {
-              title: _("Environment");
-              // TODO: Improve this sentence
-              // subtitle: _("A state that is determined by a collection of software tailored for a specific use case.");
-              model:
-              StringList str_list_environment {}
+            title: _("Environment");
 
-              ;
+            .AdwActionRow application {
+              activatable-widget: "check_application";
+              title: _("_Application");
+              icon-name: "applications-engineering-symbolic";
+              use-underline: true;
+
+              [prefix]
+              CheckButton check_application {
+                valign: center;
+                active: true;
+              }
+            }
+
+            .AdwActionRow gaming {
+              activatable-widget: "check_gaming";
+              title: _("_Gaming");
+              icon-name: "input-gaming-symbolic";
+              use-underline: true;
+
+              [prefix]
+              CheckButton check_gaming {
+                valign: center;
+                group: check_application;
+              }
+            }
+
+            .AdwActionRow custom {
+              activatable-widget: "check_custom";
+              title: _("C_ustom");
+              icon-name: "applications-science-symbolic";
+              use-underline: true;
+
+              [prefix]
+              CheckButton check_custom {
+                valign: center;
+                group: check_application;
+              }
             }
           }
 

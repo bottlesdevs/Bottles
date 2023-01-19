@@ -28,8 +28,12 @@ class NewView(Adw.Window):
     __gtype_name__ = "NewView"
 
     # region Widgets
-    combo_environment = Gtk.Template.Child()
-    str_list_environment = Gtk.Template.Child()
+    application = Gtk.Template.Child()
+    gaming = Gtk.Template.Child()
+    custom = Gtk.Template.Child()
+    check_application = Gtk.Template.Child()
+    check_gaming = Gtk.Template.Child()
+    check_custom = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     stack_create = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
@@ -69,14 +73,8 @@ class NewView(Adw.Window):
         self.runner = None
         self.default_string = _("(Default)")
 
-        self.environments = {
-            "application": _("Application"),
-            "gaming": _("Gaming"),
-            "custom": _("Custom")
-        }
-
         # connect signals
-        self.combo_environment.connect("notify::selected", self.__set_group)
+        self.check_custom.connect("toggled", self.__set_group)
         self.btn_cancel.connect("clicked", self.do_close_request)
         self.btn_close.connect("clicked", self.do_close_request)
         self.btn_create.connect("clicked", self.create_bottle)
@@ -90,7 +88,6 @@ class NewView(Adw.Window):
         self.label_choose_env.set_label(self.default_string)
         self.label_choose_path.set_label(self.default_string)
         self.str_list_runner.splice(0, 0, self.manager.runners_available)
-        self.str_list_environment.splice(0, 0, list(self.environments.values()))
 
         rs, rc, rv, rl, ry = [], [], [], [], []
 
@@ -130,7 +127,7 @@ class NewView(Adw.Window):
 
     def __set_group(self, *_args) -> None:
         """ Checks the state of combo_environment and updates group_custom accordingly. """
-        self.group_custom.set_sensitive(self.__get_environment() == "custom")
+        self.group_custom.set_sensitive(self.check_custom.get_active())
 
     def set_active_env(self, _widget, row):
         """
@@ -203,7 +200,7 @@ class NewView(Adw.Window):
         self.status_statuses.set_title(_("Creating Bottle…"))
         self.status_statuses.set_description(_("This could take a while."))
 
-        if self.__get_environment() == "custom":
+        if self.check_custom.get_active():
             self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
         RunAsync(
@@ -211,7 +208,7 @@ class NewView(Adw.Window):
             callback=self.finish,
             name=self.entry_name.get_text(),
             path=self.custom_path,
-            environment=self.__get_environment(),
+            environment=environment,
             runner=self.runner,
             arch="win32" if self.combo_arch.get_selected() else "win64",
             dxvk=self.manager.dxvk_available[0],
@@ -260,9 +257,13 @@ class NewView(Adw.Window):
         self.manager.check_bottles()
         self.window.page_list.update_bottles(show=result.data.get("config").get("Path"))
 
-    def __get_environment(self):
-        """ Gets currently selected environment. """
-        return list(self.environments.keys())[self.combo_environment.get_selected()]
+    def __radio_get_active(self):
+        # TODO: Remove this ugly zig zag and find a better way to set the environment
+        if self.check_application.get_active():
+            return "application"
+        if self.check_gaming.get_active():
+            return "gaming"
+        return "custom"
 
     def __reset_env_recipe(self, _widget):
         self.btn_choose_env_reset.set_visible(False)
