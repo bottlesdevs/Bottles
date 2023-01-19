@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 import webbrowser
 from typing import Union
 
@@ -26,9 +25,7 @@ from bottles.frontend.utils.threading import RunAsync
 
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
 from bottles.frontend.windows.rename import RenameDialog
-from bottles.frontend.windows.generic import MessageDialog
 
-from bottles.backend.globals import user_apps_dir
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.steam import SteamManager
 
@@ -39,9 +36,9 @@ from bottles.backend.wine.uninstaller import Uninstaller
 
 
 # noinspection PyUnusedLocal
-@Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/program-entry.ui")
 class ProgramEntry(Adw.ActionRow):
-    __gtype_name__ = 'ProgramEntry'
+    __gtype_name__ = "ProgramEntry"
 
     # region Widgets
     btn_menu = Gtk.Template.Child()
@@ -102,11 +99,16 @@ class ProgramEntry(Adw.ActionRow):
         if self.manager.steam_manager.is_steam_supported:
             self.btn_add_steam.set_visible(True)
 
+        library_manager = LibraryManager()
+        for _uuid, entry in library_manager.get_library().items():
+            if entry.get("id") == program.get("id"):
+                self.btn_add_library.set_visible(False)
+
         external_programs = []
         for v in self.config.External_Programs.values():
             external_programs.append(v["name"])
 
-        '''Signal connections'''
+        """Signal connections"""
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_launch_terminal.connect("clicked", self.run_executable, True)
@@ -125,8 +127,8 @@ class ProgramEntry(Adw.ActionRow):
         if not program.get("removed") and not is_steam and check_boot:
             self.__is_alive()
 
-    def show_launch_options_view(self, widget=False):
-        def update(widget, config):
+    def show_launch_options_view(self, _widget=False):
+        def update(_widget, config):
             self.config = config
             self.update_programs()
 
@@ -134,7 +136,7 @@ class ProgramEntry(Adw.ActionRow):
         dialog.present()
         dialog.connect("options-saved", update)
 
-    def __reset_buttons(self, result: Union[bool, Result] = False, error=False):
+    def __reset_buttons(self, result: Union[bool, Result] = False, _error=False):
         status = False
         if isinstance(result, Result):
             status = result.status
@@ -153,7 +155,7 @@ class ProgramEntry(Adw.ActionRow):
     def __is_alive(self):
         winedbg = WineDbg(self.config)
 
-        def set_watcher(result=False, error=False):
+        def set_watcher(_result=False, _error=False):
             nonlocal winedbg
             self.__reset_buttons()
 
@@ -170,7 +172,7 @@ class ProgramEntry(Adw.ActionRow):
             name=self.executable
         )
 
-    def run_executable(self, widget, with_terminal=False):
+    def run_executable(self, _widget, with_terminal=False):
         self.pop_actions.popdown()  # workaround #1640
 
         def _run():
@@ -182,7 +184,7 @@ class ProgramEntry(Adw.ActionRow):
         RunAsync(_run, callback=self.__reset_buttons)
         self.__reset_buttons()
 
-    def run_steam(self, widget):
+    def run_steam(self, _widget):
         self.manager.steam_manager.launch_app(self.config.CompatData, self.window)
         self.window.show_toast(_("Launching \"{0}\" with Steam…").format(self.program["name"]))
         self.pop_actions.popdown()  # workaround #1640
@@ -194,10 +196,10 @@ class ProgramEntry(Adw.ActionRow):
         winedbg.kill_process(self.executable)
         self.__reset_buttons(True)
 
-    def update_programs(self, result=False, error=False):
+    def update_programs(self, _result=False, _error=False):
         GLib.idle_add(self.view_bottle.update_programs, config=self.config)
 
-    def uninstall_program(self, widget):
+    def uninstall_program(self, _widget):
         uninstaller = Uninstaller(self.config)
         RunAsync(
             task_func=uninstaller.from_name,
@@ -205,7 +207,7 @@ class ProgramEntry(Adw.ActionRow):
             name=self.program["name"]
         )
 
-    def hide_program(self, widget=None, update=True):
+    def hide_program(self, _widget=None, update=True):
         status = not self.program.get("removed")
         msg = _("\"{0}\" hidden").format(self.program["name"])
         if not status:
@@ -218,7 +220,7 @@ class ProgramEntry(Adw.ActionRow):
         self.window.show_toast(msg)
         if update:
             self.update_programs()
-    
+
     def save_program(self):
         return self.manager.update_config(
             config=self.config,
@@ -227,7 +229,7 @@ class ProgramEntry(Adw.ActionRow):
             scope="External_Programs"
         ).data["config"]
 
-    def remove_program(self, widget=None):
+    def remove_program(self, _widget=None):
         self.config = self.manager.update_config(
             config=self.config,
             key=self.program["id"],
@@ -238,7 +240,7 @@ class ProgramEntry(Adw.ActionRow):
         self.window.show_toast(_("\"{0}\" removed").format(self.program["name"]))
         self.update_programs()
 
-    def rename_program(self, widget):
+    def rename_program(self, _widget):
         def func(new_name):
             if new_name == self.program["name"]:
                 return
@@ -255,25 +257,25 @@ class ProgramEntry(Adw.ActionRow):
                 entries = library_manager.get_library()
 
                 for uuid, entry in entries.items():
-                    if entry.get('id') == self.program["id"]:
-                        entries[uuid]['name'] = new_name
+                    if entry.get("id") == self.program["id"]:
+                        entries[uuid]["name"] = new_name
                         library_manager.download_thumbnail(uuid, self.config)
                         break
 
                 library_manager.__library = entries
                 library_manager.save_library()
-            
-            def ui_update(result, error):
+
+            def ui_update(_result, _error):
                 self.window.page_library.update()
                 self.window.show_toast(_("\"{0}\" renamed to \"{1}\"").format(self.program["name"], new_name))
                 self.update_programs()
-            
+
             RunAsync(async_work, callback=ui_update)
 
         dialog = RenameDialog(self.window, on_save=func, name=self.program["name"])
         dialog.present()
 
-    def browse_program_folder(self, widget):
+    def browse_program_folder(self, _widget):
         ManagerUtils.open_filemanager(
             config=self.config,
             path_type="custom",
@@ -281,8 +283,8 @@ class ProgramEntry(Adw.ActionRow):
         )
         self.pop_actions.popdown()  # workaround #1640
 
-    def add_entry(self, widget):
-        def update(result, error=False):
+    def add_entry(self, _widget):
+        def update(result, _error=False):
             if not result:
                 webbrowser.open("https://docs.usebottles.com/bottles/programs#flatpak")
                 return
@@ -300,8 +302,8 @@ class ProgramEntry(Adw.ActionRow):
             }
         )
 
-    def add_to_library(self, widget):
-        def update(result, error=False):
+    def add_to_library(self, _widget):
+        def update(_result, _error=False):
             self.window.update_library()
             self.window.show_toast(_("\"{0}\" added to your library").format(self.program["name"]))
 
@@ -315,13 +317,14 @@ class ProgramEntry(Adw.ActionRow):
                 "icon": ManagerUtils.extract_icon(self.config, self.program["name"], self.program["path"]),
             }, self.config)
 
+        self.btn_add_library.set_visible(False)
         RunAsync(add_to_library, update)
 
-    def add_to_steam(self, widget):
-        def update(result, error=False):
+    def add_to_steam(self, _widget):
+        def update(result, _error=False):
             if result.status:
                 self.window.show_toast(_("\"{0}\" added to your Steam library").format(self.program["name"]))
-        
+
         steam_manager = SteamManager(self.config)
         RunAsync(
             steam_manager.add_shortcut,
