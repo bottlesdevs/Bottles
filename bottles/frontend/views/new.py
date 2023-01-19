@@ -268,10 +268,10 @@ class NewView(Adw.Window):
 
     def __reset_path(self, _widget):
         self.btn_choose_path_reset.set_visible(False)
-        label_choose_path = ""
+        self.label_choose_path = ""
         self.label_choose_path.set_label(_("(Default)"))
 
-    def do_close_request(self, *args):
+    def do_close_request(self, *_args):
         """ Close window if a new bottle is not being created """
         if self.is_closable is False:
             # TODO: Implement AdwMessageDialog to prompt the user if they are
