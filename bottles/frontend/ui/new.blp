@@ -6,7 +6,7 @@ template NewView : .AdwWindow {
   default-width: "600";
   default-height: "500";
   hide-on-close: true;
-  title: _("New Bottle");
+  title: _("Create New Bottle");
 
   ShortcutController {
     Shortcut shortcut_escape {
@@ -46,13 +46,11 @@ template NewView : .AdwWindow {
         name: "page_create";
         child:
         .AdwPreferencesPage {
-          title: _("New Bottle");
+          title: _("Create New Bottle");
 
           .AdwPreferencesGroup {
-            title: _("Information");
-
             .AdwEntryRow entry_name {
-              title: _("Name");
+              title: _("Bottle Name");
             }
           }
 
@@ -60,7 +58,7 @@ template NewView : .AdwWindow {
             .AdwComboRow combo_environment {
               title: _("Environment");
               // TODO: Improve this sentence
-              subtitle: _("A state that is determined by a collection of software tailored for a specific use case.");
+              // subtitle: _("A state that is determined by a collection of software tailored for a specific use case.");
               model:
               StringList str_list_environment {}
 
