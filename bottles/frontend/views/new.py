@@ -67,6 +67,7 @@ class NewView(Adw.Window):
         self.custom_path = ""
         self.is_closable = True
         self.runner = None
+        self.default_string = _("(Default)")
 
         self.environments = {
             "application": _("Application"),
@@ -85,7 +86,9 @@ class NewView(Adw.Window):
         self.btn_choose_path_reset.connect("clicked", self.__reset_path)
         self.entry_name.connect("changed", self.__check_entry_name)
 
-        # Populate combo_runner with runner versions from the manager
+        # Populate widgets
+        self.label_choose_env.set_label(self.default_string)
+        self.label_choose_path.set_label(self.default_string)
         self.str_list_runner.splice(0, 0, self.manager.runners_available)
         self.str_list_environment.splice(0, 0, list(self.environments.values()))
 
@@ -264,12 +267,12 @@ class NewView(Adw.Window):
     def __reset_env_recipe(self, _widget):
         self.btn_choose_env_reset.set_visible(False)
         self.env_recipe_path = None
-        self.label_choose_env.set_label(_("(Default)"))
+        self.label_choose_env.set_label(self.default_string)
 
     def __reset_path(self, _widget):
         self.btn_choose_path_reset.set_visible(False)
-        self.label_choose_path = ""
-        self.label_choose_path.set_label(_("(Default)"))
+        self.custom_path = ""
+        self.label_choose_path.set_label(self.default_string)
 
     def do_close_request(self, *_args):
         """ Close window if a new bottle is not being created """
