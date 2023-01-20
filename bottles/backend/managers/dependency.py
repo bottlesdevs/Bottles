@@ -504,15 +504,25 @@ class DependencyManager:
 
             os.makedirs(archive_path)
             try:
-                ext_path = patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
+                ext_path = patoolib.extract_archive(
+                    os.path.join(Paths.temp,
+                    file),
+                    outdir=archive_path
+                    )
                 ext_file = ext_path + '/' + os.path.basename(ext_path)
+                file_ext =  os.path.splitext(ext_file)[1]
                 if os.path.exists(archive_path):
-                    if os.path.isfile(ext_file):
-                        patoolib.extract_archive(
-                        ext_file,
-                        outdir=ext_path + '/'
-                        )
+                    if os.path.isfile(ext_file) and file_ext == ".tar":
+                        try:
+                            patoolib.extract_archive(
+                            ext_file,
+                            outdir=ext_path + '/'
+                            )
+                        except:
+                            logging.info(f"Error extracting {ext_file}.")
+                            return False
             except:
+                logging.info(f"Error extracting {file}.")
                 return False
             return True
 
