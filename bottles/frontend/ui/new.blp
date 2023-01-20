@@ -123,12 +123,7 @@ template NewView : .AdwWindow {
               title: _("Architecture");
               subtitle: _("32-bit should only be used if strictly necessary.");
               model:
-                StringList {
-                  strings [
-                    _("64-bit"),
-                    _("32-bit"),
-                  ]
-                }
+                StringList str_list_arch {}
 
               ;
             }

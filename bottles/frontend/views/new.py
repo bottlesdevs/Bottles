@@ -51,6 +51,7 @@ class NewView(Adw.Window):
     scrolled_output = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
+    str_list_arch = Gtk.Template.Child()
     row_sandbox = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     shortcut_escape = Gtk.Template.Child()
@@ -73,6 +74,11 @@ class NewView(Adw.Window):
         self.runner = None
         self.default_string = _("(Default)")
 
+        self.arch = {
+            "win64": "64-bit",
+            "win32": "32-bit"
+        }
+
         # connect signals
         self.check_custom.connect("toggled", self.__set_group)
         self.btn_cancel.connect("clicked", self.do_close_request)
@@ -87,37 +93,8 @@ class NewView(Adw.Window):
         # Populate widgets
         self.label_choose_env.set_label(self.default_string)
         self.label_choose_path.set_label(self.default_string)
-        self.str_list_runner.splice(0, 0, self.manager.runners_available)
-
-        rs, rc, rv, rl, ry = [], [], [], [], []
-
-        for i in self.manager.runners_available:
-            if i.startswith("soda"):
-                rs.append(i)
-            elif i.startswith("caffe"):
-                rc.append(i)
-            elif i.startswith("vaniglia"):
-                rv.append(i)
-            elif i.startswith("lutris"):
-                rl.append(i)
-            elif i.startswith("sys-"):
-                ry.append(i)
-
-        if len(rs) > 0:  # use the latest from Soda
-            self.runner = rs[0]
-        elif len(rc) > 0:  # use the latest from caffe
-            self.runner = rc[0]
-        elif len(rv) > 0:  # use the latest from vaniglia
-            self.runner = rv[0]
-        elif len(rl) > 0:  # use the latest from lutris
-            self.runner = rl[0]
-        elif len(ry) > 0:  # use the latest from system
-            self.runner = ry[0]
-        else:  # use any other runner available
-            self.runner = self.manager.runners_available[0]
-
-        self.combo_runner.set_selected(self.manager.runners_available.index(self.runner))
-        self.combo_arch.set_selected(0)
+        self.str_list_runner.splice(0, 0, self.__get_runners())
+        self.str_list_arch.splice(0, 0, list(self.arch.values()))
 
         # Hide row_sandbox if under Flatpak
         self.row_sandbox.set_visible(not os.environ.get("FLATPAK_ID"))
@@ -208,9 +185,9 @@ class NewView(Adw.Window):
             callback=self.finish,
             name=self.entry_name.get_text(),
             path=self.custom_path,
-            environment=environment,
+            environment=self.__radio_get_active(),
             runner=self.runner,
-            arch="win32" if self.combo_arch.get_selected() else "win64",
+            arch=list(self.arch)[self.combo_arch.get_selected()],
             dxvk=self.manager.dxvk_available[0],
             sandbox=self.switch_sandbox.get_state(),
             fn_logger=self.update_output,
@@ -259,6 +236,7 @@ class NewView(Adw.Window):
 
     def __radio_get_active(self):
         # TODO: Remove this ugly zig zag and find a better way to set the environment
+        # https://docs.gtk.org/gtk4/class.CheckButton.html#grouping
         if self.check_application.get_active():
             return "application"
         if self.check_gaming.get_active():
@@ -274,6 +252,23 @@ class NewView(Adw.Window):
         self.btn_choose_path_reset.set_visible(False)
         self.custom_path = ""
         self.label_choose_path.set_label(self.default_string)
+
+    def __get_runners(self):
+        runners = {
+            "soda": [],
+            "caffe": [],
+            "vaniglia": [],
+            "lutris": [],
+            "sys-": []
+        }
+
+        for i in self.manager.runners_available:
+            for r in runners:
+                if i.startswith(r):
+                    runners[r].append(i)
+                    break
+
+        return [x for l in list(runners.values()) for x in l]
 
     def do_close_request(self, *_args):
         """ Close window if a new bottle is not being created """
