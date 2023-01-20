@@ -505,7 +505,7 @@ class DependencyManager:
                 ext_path = patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
                 ext_file = ext_path + '/' + os.path.basename(ext_path)
                 if os.path.exists(archive_path):
-                    if os.path.isfile(ext_file):
+                    if os.path.isfile(ext_file) and ext_file.endswith(".tar"):
                         patoolib.extract_archive(
                         ext_file,
                         outdir=ext_path + '/'
