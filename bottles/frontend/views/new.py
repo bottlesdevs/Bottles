@@ -93,7 +93,7 @@ class NewView(Adw.Window):
         # Populate widgets
         self.label_choose_env.set_label(self.default_string)
         self.label_choose_path.set_label(self.default_string)
-        self.str_list_runner.splice(0, 0, self.__get_runners())
+        self.str_list_runner.splice(0, 0, self.manager.runners_available)
         self.str_list_arch.splice(0, 0, list(self.arch.values()))
 
         # Hide row_sandbox if under Flatpak
@@ -252,23 +252,6 @@ class NewView(Adw.Window):
         self.btn_choose_path_reset.set_visible(False)
         self.custom_path = ""
         self.label_choose_path.set_label(self.default_string)
-
-    def __get_runners(self):
-        runners = {
-            "soda": [],
-            "caffe": [],
-            "vaniglia": [],
-            "lutris": [],
-            "sys-": []
-        }
-
-        for i in self.manager.runners_available:
-            for r in runners:
-                if i.startswith(r):
-                    runners[r].append(i)
-                    break
-
-        return [x for l in list(runners.values()) for x in l]
 
     def do_close_request(self, *_args):
         """ Close window if a new bottle is not being created """
