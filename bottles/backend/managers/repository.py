@@ -55,7 +55,7 @@ class RepositoryManager:
         self.__check_locals()
         self.__get_index()
 
-    def get_repo(self, name: str, offline: bool = False, callback = None):
+    def get_repo(self, name: str, offline: bool = False, callback=None):
         if name in self.__repositories:
             repo = self.__repositories[name]
             return repo["cls"](repo["url"], repo["index"], offline=offline, callback=callback)

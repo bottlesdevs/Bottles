@@ -130,7 +130,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
         This function populate the list of overrides
         with the existing overrides from the bottle configuration
         """
-        overrides = self.config.get("DLL_Overrides").items()
+        overrides = self.config.DLL_Overrides.items()
 
         if len(overrides) == 0:
             self.group_overrides.set_description(_("No overrides found."))

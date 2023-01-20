@@ -9,9 +9,10 @@ bottles_sources = [
 install_data(bottles_sources, install_dir: clidir)
 
 configure_file(
-  input: 'cli.in',
+  input: 'cli.py',
   output: 'bottles-cli',
   configuration: conf,
   install: true,
-  install_dir: get_option('bindir')
+  install_dir: get_option('bindir'),
+  install_mode: ['rwxr-xr-x']
 )

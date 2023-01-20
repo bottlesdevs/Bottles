@@ -55,10 +55,10 @@ class ConfigManager(object):
                 res = yaml.load(self.config_string)
             else:
                 raise ValueError('Invalid configuration type')
+        else:
+            res = None
 
-        if res in [None, ""]:
-            res = {}
-        return res
+        return res or {}
 
     def get_dict(self):
         """Returns the configuration as a dictionary"""

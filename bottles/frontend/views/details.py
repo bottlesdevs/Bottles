@@ -17,9 +17,12 @@
 
 
 from gettext import gettext as _
+from typing import Optional
+
 from gi.repository import Gtk, Adw, GLib
 
 from bottles.backend.managers.queue import QueueManager
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 
 from bottles.frontend.utils.threading import RunAsync
@@ -29,6 +32,7 @@ from bottles.frontend.views.bottle_dependencies import DependenciesView
 from bottles.frontend.views.bottle_preferences import PreferencesView
 from bottles.frontend.views.bottle_versioning import VersioningView
 from bottles.frontend.views.bottle_taskmanager import TaskManagerView
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class DetailsView(Adw.Bin):
@@ -58,12 +62,12 @@ class DetailsView(Adw.Bin):
 
     # endregion
 
-    def __init__(self, window, config=None, **kwargs):
+    def __init__(self, window, config: Optional[BottleConfig] = None, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
         if config is None:
-            config = {}
+            config = BottleConfig()
 
         self.window = window
         self.manager = window.manager
@@ -155,7 +159,7 @@ class DetailsView(Adw.Bin):
             }
         }
 
-        if self.config.get("Environment") == "Steam":
+        if self.config.Environment == "Steam":
             del self.__pages["versioning"]
 
         def ui_update():
@@ -183,7 +187,7 @@ class DetailsView(Adw.Bin):
         if widget:
             self.box_actions.append(widget)
 
-    def set_config(self, config, rebuild_pages=True):
+    def set_config(self, config: BottleConfig, rebuild_pages=True):
         """
         This function update widgets according to the bottle
         configuration. It also temporarily disable the functions

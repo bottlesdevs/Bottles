@@ -21,6 +21,7 @@ import requests
 from functools import lru_cache
 
 from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
@@ -29,7 +30,7 @@ logging = Logger()
 class SteamGridDBManager:
     
     @staticmethod
-    def get_game_grid(name: str, config: dict):
+    def get_game_grid(name: str, config: BottleConfig):
         try:
             res = requests.get(f"https://steamgrid.usebottles.com/api/search/{name}")
         except:
@@ -38,7 +39,8 @@ class SteamGridDBManager:
         if res.status_code == 200:
             return SteamGridDBManager.__save_grid(res.json(), config)
 
-    def __save_grid(url: str, config: dict):
+    @staticmethod
+    def __save_grid(url: str, config: BottleConfig):
         grids_path = os.path.join(ManagerUtils.get_bottle_path(config), 'grids')
         if not os.path.exists(grids_path):
             os.makedirs(grids_path)
@@ -51,7 +53,7 @@ class SteamGridDBManager:
             r = requests.get(url)
             with open(path, 'wb') as f:
                 f.write(r.content)
-        except Exception as e:
+        except Exception:
             return
 
         return f"grid:{filename}"

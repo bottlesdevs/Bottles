@@ -21,13 +21,14 @@ import json
 from typing import Union, NewType
 
 from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 
 
 class OriginManager:
 
     @staticmethod
-    def find_manifests_path(config: dict) -> Union[str, None]:
+    def find_manifests_path(config: BottleConfig) -> Union[str, None]:
         """
         Finds the Origin manifests path.
         """
@@ -43,14 +44,14 @@ class OriginManager:
         return None
 
     @staticmethod
-    def is_origin_supported(config: dict) -> bool:
+    def is_origin_supported(config: BottleConfig) -> bool:
         """
         Checks if Origin is supported.
         """
         return OriginManager.find_manifests_path(config) is not None
 
     @staticmethod
-    def get_installed_games(config: dict) -> list:
+    def get_installed_games(config: BottleConfig) -> list:
         """
         Gets the games.
         """

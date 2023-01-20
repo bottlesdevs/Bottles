@@ -18,16 +18,16 @@
 import os
 import uuid
 import json
-from typing import Union, NewType
+from typing import Union
 
-from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 
 
 class EpicGamesStoreManager:
 
     @staticmethod
-    def find_dat_path(config: dict) -> Union[str, None]:
+    def find_dat_path(config: BottleConfig) -> Union[str, None]:
         """
         Finds the Epic Games dat file path.
         """
@@ -43,14 +43,14 @@ class EpicGamesStoreManager:
         return None
 
     @staticmethod
-    def is_epic_supported(config: dict) -> bool:
+    def is_epic_supported(config: BottleConfig) -> bool:
         """
         Checks if Epic Games is supported.
         """
         return EpicGamesStoreManager.find_dat_path(config) is not None
 
     @staticmethod
-    def get_installed_games(config: dict) -> list:
+    def get_installed_games(config: BottleConfig) -> list:
         """
         Gets the games.
         """
@@ -78,12 +78,12 @@ class EpicGamesStoreManager:
                     "path": _path,
                     "folder": _folder,
                     "icon": "com.usebottles.bottles-program",
-                    "dxvk": config["Parameters"]["dxvk"],
-                    "vkd3d": config["Parameters"]["vkd3d"],
-                    "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                    "fsr": config["Parameters"]["fsr"],
-                    "virtual_desktop": config["Parameters"]["virtual_desktop"],
-                    "pulseaudio_latency": config["Parameters"]["pulseaudio_latency"],
+                    "dxvk": config.Parameters.dxvk,
+                    "vkd3d": config.Parameters.vkd3d,
+                    "dxvk_nvapi": config.Parameters.dxvk_nvapi,
+                    "fsr": config.Parameters.fsr,
+                    "virtual_desktop": config.Parameters.virtual_desktop,
+                    "pulseaudio_latency": config.Parameters.pulseaudio_latency,
                     "id": str(uuid.uuid4()),
                 })
         return games

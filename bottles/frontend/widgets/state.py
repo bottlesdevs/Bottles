@@ -43,15 +43,14 @@ class StateEntry(Adw.ActionRow):
         self.queue = parent.window.page_details.queue
         self.state = state
 
-        if config.get("Versioning"):
+        if config.Versioning:
             self.state_name = "#{} - {}".format(
                 state[0], 
-                datetime.strptime(
-                    state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f")
-                ).strftime("%d %B %Y, %H:%M")
-                
+                datetime.strptime(state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f").strftime("%d %B %Y, %H:%M")
+            )
+
             self.set_subtitle(self.state[1]["Comment"])
-            if state[0] == config.get("State"):
+            if state[0] == config.State:
                 self.add_css_class("current-state")
         else:
             self.state_name = "{} - {}".format(state[0], datetime.fromtimestamp(state[1]["timestamp"]).strftime("%d %B %Y, %H:%M"))
@@ -85,7 +84,7 @@ class StateEntry(Adw.ActionRow):
         """
         Set completed status to the widget.
         """
-        if not self.config["Versioning"] and result.message:
+        if not self.config.Versioning and result.message:
             self.window.show_toast(result.message)
         self.spinner.stop()
         self.spinner.hide()
@@ -93,5 +92,5 @@ class StateEntry(Adw.ActionRow):
         self.parent.set_sensitive(True)
         self.queue.end_task()
         self.manager.update_bottles()
-        config = self.manager.local_bottles[self.config["Path"]]
+        config = self.manager.local_bottles[self.config.Path]
         self.window.page_details.set_config(config)

@@ -19,15 +19,17 @@ import subprocess
 from gi.repository import Gio, Gtk, Adw
 
 from bottles.frontend.params import *
+
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.utils.connection import ConnectionUtils
 from bottles.backend.managers.manager import Manager
 
 
 class BottleEntry(Adw.ActionRow):
-    def __init__(self, config):
+    def __init__(self, config: BottleConfig):
         super().__init__()
-        self.bottle = config[1]['Path']
-        self.set_title(config[1]['Name'])
+        self.bottle = config.Path
+        self.set_title(config.Name)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-bottle-picker.ui')
@@ -53,8 +55,8 @@ class BottlePickerDialog(Adw.ApplicationWindow):
         mng.check_bottles()
         bottles = mng.local_bottles
 
-        for b in bottles.items():
-            self.list_bottles.append(BottleEntry(b))
+        for _, config in bottles.items():
+            self.list_bottles.append(BottleEntry(config))
 
         self.list_bottles.select_row(self.list_bottles.get_first_child())
         self.btn_cancel.connect('clicked', self.__close)

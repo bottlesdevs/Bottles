@@ -20,6 +20,8 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
+from bottles.backend.models.config import BottleConfig
+
 from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
@@ -44,26 +46,26 @@ class BottleViewEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, window, config: BottleConfig, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
         self.window = window
         self.manager = window.manager
-        self.config = config[1]
+        self.config = config
         self.label_env_context = self.label_env.get_style_context()
 
         '''Format update date'''
         update_date = _("N/A")
-        if self.config.get("Update_Date"):
+        if self.config.Update_Date:
             try:
-                update_date = datetime.strptime(self.config.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
+                update_date = datetime.strptime(self.config.Update_Date, "%Y-%m-%d %H:%M:%S.%f")
                 update_date = update_date.strftime("%d %B, %Y %H:%M:%S")
             except ValueError:
                 update_date = _("N/A")
 
         '''Check runner type by name'''
-        if self.config.get("Runner").startswith("lutris"):
+        if self.config.Runner.startswith("lutris"):
             self.runner_type = "wine"
         else:
             self.runner_type = "proton"
@@ -75,14 +77,14 @@ class BottleViewEntry(Adw.ActionRow):
         self.btn_run_executable.connect("clicked", self.run_executable)
 
         # populate widgets
-        self.grid_versioning.set_visible(self.config.get("Versioning"))
-        self.label_state.set_text(str(self.config.get("State")))
-        self.set_title(self.config.get("Name"))
+        self.grid_versioning.set_visible(self.config.Versioning)
+        self.label_state.set_text(str(self.config.State))
+        self.set_title(self.config.Name)
         if self.window.settings.get_boolean("update-date"):
             self.set_subtitle(update_date)
-        self.label_env.set_text(_(self.config.get("Environment")))
+        self.label_env.set_text(_(self.config.Environment))
         self.label_env_context.add_class(
-            "tag-%s" % self.config.get("Environment").lower())
+            "tag-%s" % self.config.Environment.lower())
 
         '''If config is broken'''
         if self.config.get("Broken"):
@@ -196,20 +198,19 @@ class BottleView(Adw.Bin):
             self.list_steam.remove(self.list_steam.get_first_child())
 
         local_bottles = self.window.manager.local_bottles
-        bottles = local_bottles.items()
 
-        if len(bottles) == 0:
+        if len(local_bottles) == 0:
             self.pref_page.set_visible(False)
             self.bottle_status.set_visible(True)
         else:
             self.pref_page.set_visible(True)
             self.bottle_status.set_visible(False)
 
-        for bottle in bottles:
-            _entry = BottleViewEntry(self.window, bottle)
-            self.__bottles[bottle[1]["Path"]] = _entry
+        for name, config in local_bottles.items():
+            _entry = BottleViewEntry(self.window, config)
+            self.__bottles[config.Path] = _entry
 
-            if bottle[1].get("Environment") != "Steam":
+            if config.Environment != "Steam":
                 self.list_bottles.append(_entry)
             else:
                 self.list_steam.append(_entry)
@@ -223,10 +224,14 @@ class BottleView(Adw.Bin):
 
         if (self.arg_bottle is not None and self.arg_bottle in local_bottles.keys()) \
                 or (show is not None and show in local_bottles.keys()):
+            _config = None
             if self.arg_bottle:
                 _config = local_bottles[self.arg_bottle]
             if show:
                 _config = local_bottles[show]
+            if not _config:
+                raise NotImplementedError("neither 'arg_bottle' nor 'show' are set")
+
             self.window.page_details.view_preferences.update_combo_components()
             self.window.show_details_view(config=_config)
             self.arg_bottle = None
@@ -235,4 +240,4 @@ class BottleView(Adw.Bin):
         GLib.idle_add(self.idle_update_bottles, show)
 
     def disable_bottle(self, config):
-        self.__bottles[config["Path"]].disable()
+        self.__bottles[config.Path].disable()

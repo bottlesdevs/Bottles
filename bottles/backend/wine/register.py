@@ -112,7 +112,7 @@ class WinRegister:
         self.diff = diff
         return diff
 
-    def __get_diff(self, register: object):
+    def __get_diff(self, register: 'WinRegister'):
         """Return the difference between the current register and the given one."""
         diff = {}
         other_reg = register.reg_dict

@@ -48,7 +48,7 @@ class ExclusionPatternEntry(Adw.ActionRow):
         Remove the env var from the bottle configuration and
         destroy the widget
         """
-        patterns = self.config["Versioning_Exclusion_Patterns"]
+        patterns = self.config.Versioning_Exclusion_Patterns
         if self.pattern in patterns:
             patterns.remove(self.pattern)
 
@@ -92,7 +92,7 @@ class ExclusionPatternsDialog(Adw.Window):
         self.manager.update_config(
             config=self.config,
             key="Versioning_Exclusion_Patterns",
-            value=self.config["Versioning_Exclusion_Patterns"] + [pattern]
+            value=self.config.Versioning_Exclusion_Patterns + [pattern]
         )
         _entry = ExclusionPatternEntry(self, pattern)
         GLib.idle_add(self.group_patterns.add, _entry)
@@ -103,7 +103,7 @@ class ExclusionPatternsDialog(Adw.Window):
         This function populate the list of exclusion patterns
         with the existing ones from the bottle configuration
         """
-        patterns = self.config.get("Versioning_Exclusion_Patterns")
+        patterns = self.config.Versioning_Exclusion_Patterns
         if len(patterns) == 0:
             self.group_patterns.set_description(_("No exclusion patterns defined."))
             return

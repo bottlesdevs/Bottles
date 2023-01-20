@@ -19,12 +19,14 @@ import hashlib
 import os
 
 from bottles.backend.dlls.dll import DLLComponent
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.logger import Logger
 
 from bottles.backend.utils.nvidia import get_nvidia_dll_path
 
 logging = Logger()
+
 
 class NVAPIComponent(DLLComponent):
     dlls = {
@@ -45,7 +47,7 @@ class NVAPIComponent(DLLComponent):
         return ManagerUtils.get_nvapi_path(version)
 
     @staticmethod
-    def check_bottle_nvngx(bottle_path: str, bottle_config: dict):
+    def check_bottle_nvngx(bottle_path: str, bottle_config: BottleConfig):
         """Checks for the presence of the DLLs provided by the Nvidia driver, and if they're up to date."""
         def md5sum(file):
             hash_md5 = hashlib.md5()
@@ -63,19 +65,19 @@ class NVAPIComponent(DLLComponent):
 
         # Reinstall nvngx if not present (acts as migration for this new patch)
         if not os.path.exists(os.path.join(nvngx_path_bottle, "nvngx.dll")):
-            NVAPIComponent(bottle_config['NVAPI']).install(bottle_config)
+            NVAPIComponent(bottle_config.NVAPI).install(bottle_config)
             return
 
         if not os.path.exists(os.path.join(nvngx_path_bottle, "_nvngx.dll")):
-            NVAPIComponent(bottle_config['NVAPI']).install(bottle_config)
+            NVAPIComponent(bottle_config.NVAPI).install(bottle_config)
             return
 
         # If the system dll is different than the one in the bottle, reinstall them
         # Nvidia driver updates can change this DLL, so this should be checked at each startup
         if md5sum(os.path.join(nvngx_path_bottle, "nvngx.dll")) != md5sum(os.path.join(get_nvidia_dll_path(), "nvngx.dll")):
-            NVAPIComponent(bottle_config['NVAPI']).install(bottle_config)
+            NVAPIComponent(bottle_config.NVAPI).install(bottle_config)
             return
         
         if md5sum(os.path.join(nvngx_path_bottle, "_nvngx.dll")) != md5sum(os.path.join(get_nvidia_dll_path(), "_nvngx.dll")):
-            NVAPIComponent(bottle_config['NVAPI']).install(bottle_config)
+            NVAPIComponent(bottle_config.NVAPI).install(bottle_config)
             return
