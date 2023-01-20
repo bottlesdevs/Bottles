@@ -33,6 +33,20 @@ body:
       label: How to reproduce it
     validations:
       required: true
+  - type: textarea
+    id: ping_result
+    attributes:
+      label: output of `ping proxy.usebottles.com`
+      render: log
+    validations:
+      required: true
+  - type: textarea
+    id: dig_result
+    attributes:
+      label: output of `dig proxy.usebottles.com`
+      render: log
+    validations:
+      required: true
   - type: input
     id: isp
     attributes:
