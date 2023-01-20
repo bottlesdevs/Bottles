@@ -41,25 +41,31 @@ body:
   - type: textarea
     id: ping_result
     attributes:
-      label: output of `ping proxy.usebottles.com`
+      label: Ping proxy.usebottles.com
+      description: Please run `ping proxy.usebottles.com` in a terminal and send us the output.
       render: log
     validations:
       required: true
+
   - type: textarea
     id: dig_result
     attributes:
-      label: output of `dig proxy.usebottles.com`
+      label: Dig proxy.usebottles.com
+      description: Please run `dig proxy.usebottles.com` in a terminal and send us the output.
       render: log
     validations:
       required: true
+
   - type: input
     id: isp
     attributes:
-      label: Your Internet Service Provider(ISP) name
+      label: Your Internet Service Provider (ISP) name
+
   - type: input
     id: area
     attributes:
       label: Your Country/Area
+
   - type: textarea
     id: others
     attributes:
