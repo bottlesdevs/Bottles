@@ -58,6 +58,7 @@ class NewView(Adw.Window):
     shortcut_escape = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
     group_custom = Gtk.Template.Child()
+    menu_duplicate = Gtk.Template.Child()
 
     # endregion
 
@@ -67,12 +68,8 @@ class NewView(Adw.Window):
         # common variables and references
         self.window = window
         self.manager = window.manager
-        # self.new_bottle_config = {}
-        # self.selected_env = None
-        # self.env_recipe_path = None
-        self.selected_env = "gaming"
-        self.env_recipe_path = None
         self.new_bottle_config = BottleConfig()
+        self.env_recipe_path = None
         self.custom_path = ""
         self.is_closable = True
         self.runner = None
@@ -110,20 +107,16 @@ class NewView(Adw.Window):
         """ Checks the state of combo_environment and updates group_custom accordingly. """
         self.group_custom.set_sensitive(self.check_custom.get_active())
 
-    def set_active_env(self, _widget, row):
-        """
-        This function set the active environment on row selection.
-        """
-        self.selected_env = row.get_buildable_id()
-
     def __check_entry_name(self, *_args):
         is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
-        if is_duplicate or self.entry_name.get_text() == "":
+        is_invalid = is_duplicate or self.entry_name.get_text() == ""
+        self.btn_create.set_sensitive(not is_invalid)
+        self.menu_duplicate.set_visible(is_duplicate)
+
+        if is_invalid:
             self.entry_name.add_css_class("error")
-            self.btn_create.set_sensitive(False)
         else:
             self.entry_name.remove_css_class("error")
-            self.btn_create.set_sensitive(True)
 
     def __choose_env_recipe(self, *_args) -> None:
         """

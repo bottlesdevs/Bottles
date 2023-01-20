@@ -51,6 +51,19 @@ template NewView : .AdwWindow {
           .AdwPreferencesGroup {
             .AdwEntryRow entry_name {
               title: _("Bottle Name");
+
+              [suffix]
+              MenuButton menu_duplicate {
+                valign: center;
+                tooltip-text: _("Show Information");
+                icon-name: "warning-symbolic";
+                popover: popover_duplicate;
+                visible: false;
+
+              styles [
+                "flat",
+              ]
+              }
             }
           }
 
@@ -249,5 +262,22 @@ template NewView : .AdwWindow {
         ;
       }
     }
+  }
+}
+
+Popover popover_duplicate {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("This name is unavailable, please try another.");
   }
 }
