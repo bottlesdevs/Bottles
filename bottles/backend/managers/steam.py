@@ -529,7 +529,7 @@ class SteamManager:
             _existing = {}
 
             if os.path.exists(os.path.join(c, "shortcuts.vdf")):
-                with open(os.path.join(c, "shortcuts.vdf"), "rb", errors='replace') as f:
+                with open(os.path.join(c, "shortcuts.vdf"), "rb") as f:
                     try:
                         _existing = vdf.binary_loads(f.read()).get("shortcuts", {})
                     except:
