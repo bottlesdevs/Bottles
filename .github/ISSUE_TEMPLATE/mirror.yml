@@ -1,0 +1,72 @@
+name: Network issue report
+description: Report Network/Mirror issue to sysadmin
+labels: ["Network Issue"]
+body:
+  - type: markdown
+    id: introduction
+    attributes:
+      value: |
+        📝 Please use this template while reporting a Network/Mirror issue and provide as much info as possible.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      options:
+        - label: |
+            I am sure that this problem has NEVER been discussed in [other issues](https://github.com/bottlesdevs/Bottles/issues).
+          required: true
+
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: What you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: how_to_reproduce
+    attributes:
+      label: How to reproduce it
+    validations:
+      required: true
+
+  - type: textarea
+    id: ping_result
+    attributes:
+      label: Ping proxy.usebottles.com
+      description: Please run `ping proxy.usebottles.com` in a terminal and send us the output.
+      render: log
+    validations:
+      required: true
+
+  - type: textarea
+    id: dig_result
+    attributes:
+      label: Dig proxy.usebottles.com
+      description: Please run `dig proxy.usebottles.com` in a terminal and send us the output.
+      render: log
+    validations:
+      required: true
+
+  - type: input
+    id: isp
+    attributes:
+      label: Your Internet Service Provider (ISP) name
+
+  - type: input
+    id: area
+    attributes:
+      label: Your Country/Area
+
+  - type: textarea
+    id: others
+    attributes:
+      label: Anything else we need to know

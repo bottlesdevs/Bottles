@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import contextlib
 import logging
 import re
 from datetime import datetime
@@ -53,8 +54,10 @@ class LibraryView(Adw.Bin):
         self.scroll_window.set_visible(not len(entries) == 0)
 
         for u, e in entries.items():
-            entry = LibraryEntry(self, u, e)
-            self.main_flow.append(entry)
+            # We suppress exceptions so that it doesn't continue if the init fails
+            with contextlib.suppress(Exception):
+                entry = LibraryEntry(self, u, e)
+                self.main_flow.append(entry)
 
     def remove_entry(self,  entry):
         def undo_callback(*args):

@@ -37,9 +37,9 @@ class LibraryManager:
     __library: dict = {}
 
     def __init__(self):
-        self.load_library()
+        self.load_library(silent=True)
 
-    def load_library(self):
+    def load_library(self, silent=False):
         """
         Loads data from the library.yml file.
         """
@@ -59,7 +59,7 @@ class LibraryManager:
             if "id" not in v:
                 del self.__library[k]
 
-        self.save_library()
+        self.save_library(silent=silent)
 
     def add_to_library(self, data: dict, config: dict):
         """
@@ -77,7 +77,23 @@ class LibraryManager:
 
         self.__library[_uuid] = data
         self.save_library()
-    
+
+    def download_thumbnail(self, uuid: str, config: dict):
+        if not self.__library.get(uuid):
+            logging.warning(f'Entry not found in library, can\'t download thumbnail: {_uuid}')
+            return False
+
+        data = self.__library.get(uuid)
+        value = SteamGridDBManager.get_game_grid(data['name'], config)
+
+        if not value:
+            return False
+
+        self.__library[uuid]['thumbnail'] = value
+        self.save_library()
+        return True
+
+
     def __already_in_library(self, data: dict):
         """
         Checks if the entry UUID is already in the library.yml file.
@@ -99,14 +115,15 @@ class LibraryManager:
             return
         logging.warning(f'Entry not found in library, nothing to remove: {_uuid}')
 
-    def save_library(self):
+    def save_library(self, silent=False):
         """
         Saves the library.yml file.
         """
         with open(self.library_path, 'w') as library_file:
             yaml.dump(self.__library, library_file)
             
-        logging.info(f'Library saved')
+        if not silent:
+            logging.info(f'Library saved')
 
     def get_library(self):
         """
