@@ -488,10 +488,6 @@ class ComponentManager:
         Note: I know that this is not the most efficient way to do this,
         please give feedback if you know a better way to avoid this.
         '''
-        if component_type in ["runtime", "winebridge"]:
-            with contextlib.suppress(FileNotFoundError):
-                os.remove(os.path.join(Paths.temp, archive))
-
         if component_type in ["runner", "runner:proton"]:
             self.__manager.check_runners()
 

@@ -43,7 +43,7 @@ from bottles.frontend.params import *
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
-from bottles.backend.models.samples import Samples
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.control import Control
 from bottles.backend.wine.executor import WineExecutor
@@ -231,7 +231,7 @@ class CLI:
 
         if c_filter and c_filter.startswith("environment:"):
             environment = c_filter.split(":")[1].lower()
-            bottles = [b[0] for b in bottles.items() if b[1].get("Environment", "Custom").lower() == environment]
+            bottles = [name for name, bottle in bottles.items() if bottle.Environment.lower() == environment]
 
         if self.args.json:
             sys.stdout.write(json.dumps(bottles))
@@ -424,7 +424,7 @@ class CLI:
         mng = Manager(self, is_cli=True)
         mng.check_bottles()
 
-        valid_parameters = Samples.config.get("Parameters").keys()
+        valid_parameters = BottleConfig().Parameters.keys()
 
         if _bottle not in mng.local_bottles:
             sys.stderr.write(f"Bottle {_bottle} not found\n")

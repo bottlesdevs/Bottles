@@ -71,16 +71,16 @@ class GamescopeDialog(Adw.Window):
         self.toggle_borderless.handler_block_by_func(self.__change_wtype)
         self.toggle_fullscreen.handler_block_by_func(self.__change_wtype)
 
-        parameters = config["Parameters"]
-        self.spin_width.set_value(parameters.get("gamescope_game_width"))
-        self.spin_height.set_value(parameters.get("gamescope_game_height"))
-        self.spin_gamescope_width.set_value(parameters.get("gamescope_window_width"))
-        self.spin_gamescope_height.set_value(parameters.get("gamescope_window_height"))
-        self.spin_fps_limit.set_value(parameters.get("gamescope_fps"))
-        self.spin_fps_limit_no_focus.set_value(parameters.get("gamescope_fps_no_focus"))
-        self.switch_scaling.set_state(parameters.get("gamescope_scaling"))
-        self.toggle_borderless.set_active(parameters.get("gamescope_borderless"))
-        self.toggle_fullscreen.set_active(parameters.get("gamescope_fullscreen"))
+        parameters = config.Parameters
+        self.spin_width.set_value(parameters.gamescope_game_width)
+        self.spin_height.set_value(parameters.gamescope_game_height)
+        self.spin_gamescope_width.set_value(parameters.gamescope_window_width)
+        self.spin_gamescope_height.set_value(parameters.gamescope_window_height)
+        self.spin_fps_limit.set_value(parameters.gamescope_fps)
+        self.spin_fps_limit_no_focus.set_value(parameters.gamescope_fps_no_focus)
+        self.switch_scaling.set_state(parameters.gamescope_scaling)
+        self.toggle_borderless.set_active(parameters.gamescope_borderless)
+        self.toggle_fullscreen.set_active(parameters.gamescope_fullscreen)
 
         self.toggle_borderless.handler_unblock_by_func(self.__change_wtype)
         self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)

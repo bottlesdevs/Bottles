@@ -19,6 +19,7 @@ import time
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 
 from bottles.frontend.utils.threading import RunAsync
@@ -89,7 +90,7 @@ class InstallersView(Adw.Bin):
         supported by the manager.
         """
         if config is None:
-            config = {}
+            config = BottleConfig()
         self.config = config
         installers = self.manager.supported_installers.items()
 
@@ -122,7 +123,7 @@ class InstallersView(Adw.Bin):
             for installer in installers:
                 if len(installer) != 2:
                     continue
-                if installer[1].get("Arch", "win64") != self.config["Arch"]:
+                if installer[1].get("Arch", "win64") != self.config.Arch:
                     continue
                 GLib.idle_add(new_installer, installer)
                 i += 1

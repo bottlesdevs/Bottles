@@ -21,13 +21,14 @@ import json
 from typing import Union, NewType
 
 from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 
 
 class UbisoftConnectManager:
 
     @staticmethod
-    def find_conf_path(config: dict) -> Union[str, None]:
+    def find_conf_path(config: BottleConfig) -> Union[str, None]:
         """
         Finds the Ubisoft Connect configurations file path.
         """
@@ -43,7 +44,7 @@ class UbisoftConnectManager:
         return None
 
     @staticmethod
-    def is_uconnect_supported(config: dict) -> bool:
+    def is_uconnect_supported(config: BottleConfig) -> bool:
         """
         Checks if Ubisoft Connect is supported.
         """
@@ -51,7 +52,7 @@ class UbisoftConnectManager:
 
     # noinspection PyTypeChecker
     @staticmethod
-    def get_installed_games(config: dict) -> list:
+    def get_installed_games(config: BottleConfig) -> list:
         """
         Gets the games.
         """
@@ -121,12 +122,12 @@ class UbisoftConnectManager:
                     "path": _path,
                     "folder": _folder,
                     "icon": "com.usebottles.bottles-program",
-                    "dxvk": config["Parameters"]["dxvk"],
-                    "vkd3d": config["Parameters"]["vkd3d"],
-                    "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                    "fsr": config["Parameters"]["fsr"],
-                    "virtual_desktop": config["Parameters"]["virtual_desktop"],
-                    "pulseaudio_latency": config["Parameters"]["pulseaudio_latency"],
+                    "dxvk": config.Parameters.dxvk,
+                    "vkd3d": config.Parameters.vkd3d,
+                    "dxvk_nvapi": config.Parameters.dxvk_nvapi,
+                    "fsr": config.Parameters.fsr,
+                    "virtual_desktop": config.Parameters.virtual_desktop,
+                    "pulseaudio_latency": config.Parameters.pulseaudio_latency,
                     "id": str(uuid.uuid4()),
                 })
         return games
