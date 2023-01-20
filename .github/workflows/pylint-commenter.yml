@@ -1,0 +1,54 @@
+name: Pylint - comment on the pull request
+
+# read-write repo token
+# access to secrets
+on:
+  workflow_run:
+    workflows: ["Pylint - checker"]
+    types:
+      - completed
+
+jobs:
+  pylint-comment:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: 'Download artifact'
+        uses: actions/github-script@v3.1.0
+        with:
+          script: |
+            var artifacts = await github.actions.listWorkflowRunArtifacts({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               run_id: ${{github.event.workflow_run.id }},
+            });
+            var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
+              return artifact.name == "pylint-result"
+            })[0];
+            var download = await github.actions.downloadArtifact({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               artifact_id: matchArtifact.id,
+               archive_format: 'zip',
+            });
+            var fs = require('fs');
+            fs.writeFileSync('${{github.workspace}}/pylint-result.zip', Buffer.from(download.data));
+      - name: Fetch results
+        run: |
+          unzip pylint-result.zip
+          echo "PYLINT_RES<<EOF" >> $GITHUB_ENV
+          cat pylint-result >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+          echo "PR_NUMBER=$(cat pr-number)" >> $GITHUB_ENV
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          comment_tag: pylint-result-comment
+          pr_number: ${{ env.PR_NUMBER }}
+          message: |
+            <details><summary>Pylint result on modfied files:</summary>
+            <pre><code>${{ env.PYLINT_RES }}</code></pre>
+            </details>

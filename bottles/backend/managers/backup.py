@@ -16,18 +16,21 @@
 #
 
 import os
-from bottles.backend.utils import yaml
-import uuid
-import tarfile
 import shutil
+import tarfile
+import uuid
+import pathvalidate
 from typing import NewType
 from gettext import gettext as _
+
 from gi.repository import GLib
 
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.globals import Paths
+from bottles.backend.utils import yaml
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.frontend.operation import OperationManager
 
@@ -37,7 +40,7 @@ logging = Logger()
 class BackupManager:
 
     @staticmethod
-    def export_backup(window, config: dict, scope: str, path: str) -> Result:
+    def export_backup(window, config: BottleConfig, scope: str, path: str) -> Result:
         """
         Exports a bottle backup to the specified path.
         Use the scope parameter to specify the backup type: config, full.
@@ -51,22 +54,15 @@ class BackupManager:
         BackupManager.operation_manager = OperationManager(window)
         task_id = str(uuid.uuid4())
 
-        logging.info(f"New {scope} backup for [{config['Name']}] in [{path}]")
+        logging.info(f"New {scope} backup for [{config.Name}] in [{path}]")
 
         if scope == "config":
-            try:
-                with open(path, "w") as config_backup:
-                    yaml.dump(config, config_backup, indent=4)
-                    config_backup.close()
-                backup_created = True
-            except (FileNotFoundError, PermissionError, yaml.YAMLError):
-                backup_created = False
-
+            backup_created = config.dump(path).status
         else:
             GLib.idle_add(
                 BackupManager.operation_manager.new_task,
                 task_id,
-                _("Backup {0}").format(config.get("Name")),
+                _("Backup {0}").format(config.Name),
                 False
             )
             bottle_path = ManagerUtils.get_bottle_path(config)
@@ -78,7 +74,7 @@ class BackupManager:
                     tar.add(folder, filter=BackupManager.exclude_filter)
                 backup_created = True
             except (FileNotFoundError, PermissionError, tarfile.TarError, ValueError):
-                logging.error(f"Error creating backup for [{config['Name']}]")
+                logging.error(f"Error creating backup for [{config.Name}]")
                 backup_created = False
 
             GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
@@ -133,14 +129,10 @@ class BackupManager:
             if backup_name.endswith(".yml"):
                 backup_name = backup_name[:-4]
 
-            try:
-                with open(path, "r") as config_backup:
-                    config = yaml.load(config_backup)
-                    config_backup.close()
-
-                if manager.create_bottle_from_config(config):
-                    import_status = True
-            except (FileNotFoundError, PermissionError, yaml.YAMLError):
+            config_load = BottleConfig.load(path)
+            if config_load.status and manager.create_bottle_from_config(config_load.data):
+                import_status = True
+            else:
                 import_status = False
         else:
             if backup_name.endswith(".tar.gz"):
@@ -169,8 +161,7 @@ class BackupManager:
                                 raise Exception("Attempted Path Traversal in Tar File")
                     
                         tar.extractall(path, members, numeric_owner=numeric_owner) 
-                        
-                    
+
                     safe_extract(tar, Paths.bottles)
                 import_status = True
             except (FileNotFoundError, PermissionError, tarfile.TarError):
@@ -189,9 +180,9 @@ class BackupManager:
     @staticmethod
     def duplicate_bottle(config, name) -> Result:
         """Duplicates the bottle with the specified new name."""
-        logging.info(f"Duplicating bottle: {config.get('Name')} to {name}")
+        logging.info(f"Duplicating bottle: {config.Name} to {name}")
 
-        path = name.replace(" ", "_")
+        path = pathvalidate.sanitize_filename(name, platform="universal")
         source = ManagerUtils.get_bottle_path(config)
         dest = os.path.join(Paths.bottles, path)
 
@@ -222,7 +213,7 @@ class BackupManager:
             with open(dest_config, "r") as config_file:
                 config = yaml.load(config_file)
                 config["Name"] = name
-                config["Path"] = name
+                config["Path"] = path
 
             with open(dest_config, "w") as config_file:
                 yaml.dump(config, config_file, indent=4)
@@ -231,7 +222,8 @@ class BackupManager:
                 src=source_drive,
                 dst=dest_drive,
                 ignore=shutil.ignore_patterns(".*"),
-                symlinks=False
+                symlinks=True,
+                ignore_dangling_symlinks=True
             )
         except (FileNotFoundError, PermissionError, OSError):
             logging.error(f"Failed duplicate bottle: {name}")

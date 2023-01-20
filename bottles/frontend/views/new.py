@@ -20,9 +20,10 @@ import re
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
-from bottles.frontend.windows.filechooser import FileChooser
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 
 from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
@@ -65,7 +66,7 @@ class NewView(Adw.Window):
         self.manager = window.manager
         self.selected_env = "gaming"
         self.env_recipe_path = None
-        self.new_bottle_config = {}
+        self.new_bottle_config = BottleConfig()
         self.custom_path = ""
         self.runner = None
 
@@ -134,47 +135,46 @@ class NewView(Adw.Window):
         self.selected_env = row.get_buildable_id()
 
     def __check_entry_name(self, *_args):
-        result = GtkUtils.validate_entry(self.entry_name, extend=self.__check_already_in_use)
-        if not result:
-            self.window.show_toast(_("The name has special characters or is already in use."))
-        self.btn_create.set_sensitive(result)
-    
-    def __check_already_in_use(self, name):
-        """
-        This function checks if the name is already in use.
-        """
-        return name in self.manager.local_bottles
+        is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
+        if is_duplicate:
+            self.window.show_toast(_("This bottle name is already in use."))
+            self.entry_name.add_css_class("error")
+            self.btn_create.set_sensitive(False)
+        else:
+            self.entry_name.remove_css_class("error")
+            self.btn_create.set_sensitive(True)
 
     def choose_env_recipe(self, *_args):
-        def set_path(_dialog, response, _file_dialog):
-            if response == -3:
-                _file = _file_dialog.get_file()
-                self.env_recipe_path = _file.get_path()
+        def set_path(_dialog, response):
+            if response == Gtk.ResponseType.ACCEPT:
+                self.env_recipe_path = dialog.get_file().get_path()
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose a recipe file"),
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select a Recipe"),
             action=Gtk.FileChooserAction.OPEN,
-            buttons=(_("Cancel"), _("Select")),
-            filters=["yml"],
-            callback=set_path
+            parent=self.window,
         )
+
+        add_yaml_filters(dialog)
+        add_all_filters(dialog)
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def choose_path(self, *_args):
-        def set_path(_dialog, response, _file_dialog):
-            if response == Gtk.ResponseType.OK:
-                _file = _file_dialog.get_file()
-                self.custom_path = _file.get_path()
-            _file_dialog.destroy()
+        def set_path(_dialog, response):
+            if response == Gtk.ResponseType.ACCEPT:
+                self.custom_path = dialog.get_file().get_path()
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose where to store the bottle"),
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Bottle Directory"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(_("Cancel"), _("Select")),
-            native=False,
-            callback=set_path
+            parent=self.window
         )
+
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def create_bottle(self, *_args):
         # set widgets states

@@ -17,10 +17,13 @@
 
 import os
 import shutil
+from glob import glob
 from typing import NewType
 from abc import abstractmethod
 
 from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.enum import Arch
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.wineboot import WineBoot
@@ -38,8 +41,9 @@ class DLLComponent:
         self.base_path = self.get_base_path(version)
         self.check()
 
+    @staticmethod
     @abstractmethod
-    def get_base_path(self, version: str):
+    def get_base_path(version: str):
         pass
 
     def check(self):
@@ -71,7 +75,7 @@ class DLLComponent:
         self.dlls = found
         return True
 
-    def install(self, config: dict, overrides_only: bool = False, exclude=None):
+    def install(self, config: BottleConfig, overrides_only: bool = False, exclude=None):
         dll_in = []
         bundle = {"HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides": []}
         reg = Reg(config)
@@ -97,7 +101,7 @@ class DLLComponent:
 
         reg.import_bundle(bundle)
 
-    def uninstall(self, config: dict, exclude=None):
+    def uninstall(self, config: BottleConfig, exclude=None):
         reg = Reg(config)
         dll_in = []
         bundle = {"HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides": []}
@@ -121,18 +125,18 @@ class DLLComponent:
         reg.import_bundle(bundle)
 
     @staticmethod
-    def __get_sys_path(config, path: str):
-        if config["Arch"] == "win32":
+    def __get_sys_path(config: BottleConfig, path: str):
+        if config.Arch == Arch.WIN32:
             if path in ["x32", "x86"]:
                 return "system32"
-        if config["Arch"] == "win64":
-            if path in ["x64"] or any(arch in path for arch in ("x86_64", "lib64")):
+        if config.Arch == Arch.WIN64:
+            if path in ["x64"] or any(arch in path for arch in ("x86_64", "lib64", "lib/")):
                 return "system32"
             if path in ["x32", "x86"]:
                 return "syswow64"
         return None
 
-    def __install_dll(self, config, path: str, dll: str, remove: bool = False):
+    def __install_dll(self, config: BottleConfig, path: str, dll: str, remove: bool = False):
         dll_name = dll.split('/')[-1]
         bottle = ManagerUtils.get_bottle_path(config)
         bottle = os.path.join(bottle, "drive_c", "windows")

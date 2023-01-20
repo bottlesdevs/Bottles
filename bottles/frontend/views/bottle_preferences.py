@@ -21,17 +21,20 @@ import contextlib
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
+from bottles.backend.globals import gamemode_available, vkbasalt_available, mangohud_available, obs_vkc_available, \
+    vmtouch_available, gamescope_available
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.enum import Arch
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 
-from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, \
-    obs_vkc_available, vkbasalt_available, vmtouch_available
+from bottles.backend.runner import Runner
 from bottles.backend.managers.runtime import RuntimeManager
+from bottles.backend.managers.library import LibraryManager
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.backend.models.result import Result
 
-from bottles.frontend.windows.filechooser import FileChooser
 from bottles.frontend.windows.envvars import EnvVarsDialog
 from bottles.frontend.windows.drives import DrivesDialog
 from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
@@ -44,10 +47,12 @@ from bottles.frontend.windows.protonalert import ProtonAlertDialog
 from bottles.frontend.windows.exclusionpatterns import ExclusionPatternsDialog
 from bottles.frontend.windows.vmtouch import VmtouchDialog
 
-from bottles.backend.wine.catalogs import win_versions
-from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
-from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.gpu import GPUUtils, GPUVendors
+
+from bottles.backend.logger import Logger
+
+logging = Logger()
 
 
 # noinspection PyUnusedLocal
@@ -116,7 +121,6 @@ class PreferencesView(Adw.PreferencesPage):
     str_list_nvapi = Gtk.Template.Child()
     str_list_latencyflex = Gtk.Template.Child()
     str_list_windows = Gtk.Template.Child()
-    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -129,8 +133,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = config
         self.queue = details.queue
         self.details = details
-
-        gpu = GPUUtils().get_gpu()
 
         # region signals
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
@@ -167,16 +169,14 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_windows.connect('notify::selected', self.__set_windows)
         self.combo_language.connect('notify::selected-item', self.__set_language)
         self.combo_sync.connect('notify::selected', self.__set_sync_type)
-        self.ev_controller.connect("key-released", self.__check_entry_name)
-        self.entry_name.connect("apply", self.__save_name)
+        self.entry_name.connect('changed', self.__check_entry_name)
+        self.entry_name.connect('apply', self.__save_name)
         # endregion
 
         """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
-        with contextlib.suppress(KeyError):
-            vendor = gpu["vendors"]["nvidia"]["vendor"]
-            if vendor == "nvidia":
-                self.row_nvapi.set_visible(True)
-                self.combo_nvapi.set_visible(True)
+        is_nvidia_gpu = GPUUtils.is_gpu(GPUVendors.NVIDIA)
+        self.row_nvapi.set_visible(is_nvidia_gpu)
+        self.combo_nvapi.set_visible(is_nvidia_gpu)
 
         """Set Bottles Runtime row to visible when Bottles is not running inside Flatpak"""
         if "FLATPAK_ID" not in os.environ and RuntimeManager.get_runtimes("bottles"):
@@ -244,49 +244,74 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_vmtouch.set_tooltip_text(_not_available)
 
     def __check_entry_name(self, *_args):
-        self.__valid_name = GtkUtils.validate_entry(self.entry_name)
+        if self.entry_name.get_text() != self.config.Name:
+            is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
+            if is_duplicate:
+                self.window.show_toast(_("This bottle name is already in use."))
+                self.__valid_name = False
+                self.entry_name.add_css_class("error")
+                return
+        self.__valid_name = True
+        self.entry_name.remove_css_class("error")
 
     def __save_name(self, *_args):
-        self.__check_entry_name()
         if not self.__valid_name:
-            self.entry_name.set_text(self.config.get("Name"))
+            self.entry_name.set_text(self.config.Name)
             self.__valid_name = True
             return
 
-        name = self.entry_name.get_text()
+        new_name = self.entry_name.get_text()
+        old_name = self.config.Name
+
+        library_manager = LibraryManager()
+        entries = library_manager.get_library()
+
+        for uuid, entry in entries.items():
+            bottle = entry.get("bottle")
+            if bottle.get("name") == old_name:
+                logging.info(f"Updating library entry for {entry.get('name')}")
+                entries[uuid]["bottle"]["name"] = new_name
+                break
+
+        library_manager.__library = entries
+        library_manager.save_library()
+
         self.manager.update_config(
             config=self.config,
             key="Name",
-            value=name
+            value=new_name
         )
-        self.window.page_list.update_bottles()
+
+        self.manager.update_bottles(silent=True) # Updates backend bottles list and UI
+        self.window.page_library.update()
+        self.details.view_bottle.label_name.set_text(self.config.Name)
 
     def choose_cwd(self, widget):
-        def set_path(_dialog, response, _file_dialog):
-            if response == Gtk.ResponseType.ACCEPT:
-                _file = _file_dialog.get_file()
-                _path = _file.get_path()
-                self.manager.update_config(
-                    config=self.config,
-                    key="WorkingDir",
-                    value=_path
-                )
-                self.label_cwd.set_label(os.path.basename(_path))
-                self.btn_cwd_reset.set_visible(True)
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
 
-            _dialog.destroy()
+            path = dialog.get_file().get_path()
 
-        FileChooser(
-            parent=self.window,
-            title=_("Choose working directory for executables"),
+            self.manager.update_config(
+                config=self.config,
+                key="WorkingDir",
+                value=dialog.get_file().get_path()
+            )
+            self.label_cwd.set_label(os.path.basename(path))
+            self.btn_cwd_reset.set_visible(True)
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Working Directory"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(_("Cancel"), _("Select")),
-            path=ManagerUtils.get_bottle_path(self.config),
-            native=True,
-            callback=set_path
+            parent=self.window
         )
 
-    def reset_cwd(self, widget):
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
+
+    def reset_cwd(self, *_args):
         self.manager.update_config(config=self.config, key="WorkingDir", value="")
         self.label_cwd.set_label("(Default)")
         self.btn_cwd_reset.set_visible(False)
@@ -346,9 +371,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_language.handler_unblock_by_func(self.__set_language)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
 
-    def set_config(self, config):
+    def set_config(self, config: BottleConfig):
         self.config = config
-        parameters = self.config.get("Parameters")
+        parameters = self.config.Parameters
 
         # temporary lock functions connected to the widgets
         self.switch_mangohud.handler_block_by_func(self.__toggle_mangohud)
@@ -373,37 +398,36 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_windows.handler_block_by_func(self.__set_windows)
         self.combo_language.handler_block_by_func(self.__set_language)
-        self.ev_controller.handler_block_by_func(self.__check_entry_name)
-        self.switch_mangohud.set_active(parameters["mangohud"])
-        self.switch_obsvkc.set_active(parameters["obsvkc"])
-        self.switch_vkbasalt.set_active(parameters["vkbasalt"])
-        self.switch_fsr.set_active(parameters["fsr"])
-        self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
-        self.switch_gamemode.set_active(parameters["gamemode"])
-        self.switch_gamescope.set_active(parameters["gamescope"])
-        self.switch_sandbox.set_active(parameters["sandbox"])
-        self.switch_versioning_compression.set_active(parameters["versioning_compression"])
-        self.switch_auto_versioning.set_active(parameters["versioning_automatic"])
-        self.switch_versioning_patterns.set_active(parameters["versioning_exclusion_patterns"])
-        self.switch_runtime.set_active(parameters["use_runtime"])
-        self.switch_steam_runtime.set_active(parameters["use_steam_runtime"])
-        self.switch_vmtouch.set_active(parameters["vmtouch"])
+        self.switch_mangohud.set_active(parameters.mangohud)
+        self.switch_obsvkc.set_active(parameters.obsvkc)
+        self.switch_vkbasalt.set_active(parameters.vkbasalt)
+        self.switch_fsr.set_active(parameters.fsr)
+        self.switch_nvapi.set_active(parameters.dxvk_nvapi)
+        self.switch_gamemode.set_active(parameters.gamemode)
+        self.switch_gamescope.set_active(parameters.gamescope)
+        self.switch_sandbox.set_active(parameters.sandbox)
+        self.switch_versioning_compression.set_active(parameters.versioning_compression)
+        self.switch_auto_versioning.set_active(parameters.versioning_automatic)
+        self.switch_versioning_patterns.set_active(parameters.versioning_exclusion_patterns)
+        self.switch_runtime.set_active(parameters.use_runtime)
+        self.switch_steam_runtime.set_active(parameters.use_steam_runtime)
+        self.switch_vmtouch.set_active(parameters.vmtouch)
 
         # self.toggle_sync.set_active(parameters["sync"] == "wine")
         # self.toggle_esync.set_active(parameters["sync"] == "esync")
         # self.toggle_fsync.set_active(parameters["sync"] == "fsync")
         # self.toggle_futex2.set_active(parameters["sync"] == "futex2")
 
-        self.switch_discrete.set_active(parameters["discrete_gpu"])
+        self.switch_discrete.set_active(parameters.discrete_gpu)
 
-        self.btn_cwd_reset.set_visible(self.config.get("WorkingDir"))
+        self.btn_cwd_reset.set_visible(self.config.WorkingDir)
 
-        self.entry_name.set_text(config["Name"])
+        self.entry_name.set_text(config.Name)
 
-        self.row_cwd.set_subtitle(_("Directory that contains the data of \"{}\".".format(config["Name"])))
+        self.row_cwd.set_subtitle(_("Directory that contains the data of \"{}\".".format(config.Name)))
 
         self.combo_language.set_selected(ManagerUtils.get_languages(
-            from_locale=self.config.get("Language"),
+            from_locale=self.config.Language,
             get_index=True
         ))
 
@@ -422,48 +446,48 @@ class PreferencesView(Adw.PreferencesPage):
             "winxp": "Windows XP"
         }
 
-        if self.config.get("Arch") == "win32":
+        if self.config.Arch == Arch.WIN32:
             self.windows_versions["win98"] = "Windows 98"
             self.windows_versions["win95"] = "Windows 95"
 
         for index, windows_version in enumerate(self.windows_versions):
             self.str_list_windows.append(self.windows_versions[windows_version])
-            if windows_version == self.config.get("Windows"):
+            if windows_version == self.config.Windows:
                 self.combo_windows.set_selected(index)
         # endregion
         
-        parameters = self.config.get("Parameters")
+        parameters = self.config.Parameters
         
-        _dxvk = self.config.get("DXVK")
-        if parameters["dxvk"] == True:
+        _dxvk = self.config.DXVK
+        if parameters.dxvk:
             if _dxvk in self.manager.dxvk_available:
                 if _i_dxvk := self.manager.dxvk_available.index(_dxvk) + 1:
                     self.combo_dxvk.set_selected(_i_dxvk)
         else:
             self.combo_dxvk.set_selected(0)
 
-        _vkd3d = self.config.get("VKD3D")
-        if parameters["vkd3d"] == True:
+        _vkd3d = self.config.VKD3D
+        if parameters.vkd3d:
             if _vkd3d in self.manager.vkd3d_available:
                 if _i_vkd3d := self.manager.vkd3d_available.index(_vkd3d) + 1:
                     self.combo_vkd3d.set_selected(_i_vkd3d)
         else:
             self.combo_vkd3d.set_selected(0)
 
-        _nvapi = self.config.get("DXVK_NVAPI")
+        _nvapi = self.config.NVAPI
         if _nvapi in self.manager.nvapi_available:
             if _i_nvapi := self.manager.nvapi_available.index(_nvapi):
                 self.combo_nvapi.set_selected(_i_nvapi)
 
-        _latencyflex = self.config.get("LatencyFlex")
-        if parameters["latencyflex"] == True:
+        _latencyflex = self.config.LatencyFleX
+        if parameters.latencyflex:
             if _latencyflex in self.manager.latencyflex_available:
                 if _i_latencyflex := self.manager.latencyflex_available.index(_latencyflex)  + 1:
                     self.combo_latencyflex.set_selected(_i_latencyflex)
         else:
             self.combo_latencyflex.set_selected(0)
 
-        _runner = self.config.get("Runner")
+        _runner = self.config.Runner
         if _runner in self.manager.runners_available:
             if _i_runner := self.manager.runners_available.index(_runner):
                 self.combo_runner.set_selected(_i_runner)
@@ -475,7 +499,7 @@ class PreferencesView(Adw.PreferencesPage):
             "futex2",
         ]
         for sync in sync_types:
-            if sync == parameters["sync"]:
+            if sync == parameters.sync:
                 self.combo_sync.set_selected(sync_types.index(sync))
 
         
@@ -502,7 +526,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
         self.combo_language.handler_unblock_by_func(self.__set_language)
-        self.ev_controller.handler_unblock_by_func(self.__check_entry_name)
 
         self.__set_steam_rules()
 
@@ -595,8 +618,6 @@ class PreferencesView(Adw.PreferencesPage):
         )
         self.combo_sync.set_sensitive(True)
         self.queue.end_task()
-
-
 
     def __toggle_mangohud(self, widget, state):
         """Toggle the Mangohud for current bottle"""
@@ -783,13 +804,13 @@ class PreferencesView(Adw.PreferencesPage):
                 self.spinner_runner.start()
                 self.spinner_runner.set_visible(True)
 
-        def update(result, error=False):
-            if result:
+        def update(result: Result[dict], error=False):
+            if isinstance(result, Result) and isinstance(result.data, dict):  # expecting Result[dict].data["config"]
                 self.details.update_runner_label(runner)
-                
-                if "config" in result.data.keys():
+
+                if "config" in result.data:
                     self.config = result.data["config"]
-                if self.config["Parameters"].get("use_steam_runtime"):
+                if self.config.Parameters.use_steam_runtime:
                     self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
                     self.switch_steam_runtime.set_active(True)
                     self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
@@ -827,7 +848,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"], remove=True)
         # Install new version
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"])
-        self.queue.end_task()
 
     def __set_dxvk(self, *_args):
         """Set the DXVK version to use for the bottle"""
@@ -836,7 +856,10 @@ class PreferencesView(Adw.PreferencesPage):
 
         if (self.combo_dxvk.get_selected()) == 0:
             self.set_dxvk_status(pending=True)
-            self.queue.add_task()
+
+            if self.combo_vkd3d.get_selected() != 0:
+                logging.info("VKD3D is enabled, disabling")
+                self.combo_vkd3d.set_selected(0)
 
             RunAsync(
                 task_func=self.manager.install_dll_component,
@@ -879,9 +902,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.set_vkd3d_status(pending=True)
         self.queue.add_task()
 
-        if (self.combo_dxvk.get_selected()) == 0:
+        if (self.combo_vkd3d.get_selected()) == 0:
             self.set_vkd3d_status(pending=True)
-            self.queue.add_task()
 
             RunAsync(
                 task_func=self.manager.install_dll_component,
@@ -898,6 +920,10 @@ class PreferencesView(Adw.PreferencesPage):
                 scope="Parameters"
             ).data["config"]
         else:
+            if self.combo_dxvk.get_selected() == 0:
+                logging.info("DXVK is disabled, reenabling")
+                self.combo_dxvk.set_selected(1)
+
             vkd3d = self.manager.vkd3d_available[self.combo_vkd3d.get_selected() - 1]
             self.config = self.manager.update_config(
                 config=self.config,
@@ -923,6 +949,9 @@ class PreferencesView(Adw.PreferencesPage):
         """Set the NVAPI version to use for the bottle"""
         self.set_nvapi_status(pending=True)
         self.queue.add_task()
+
+        self.switch_nvapi.set_active(True)
+
         nvapi = self.manager.nvapi_available[self.combo_nvapi.get_selected()]
         self.config = self.manager.update_config(
             config=self.config,
@@ -936,6 +965,13 @@ class PreferencesView(Adw.PreferencesPage):
             config=self.config,
             component="nvapi"
         )
+
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="dxvk_nvapi",
+            value=True,
+            scope="Parameters"
+        ).data["config"]
 
     def __set_latencyflex(self, *_args):
         """Set the latency flex value"""
@@ -1075,7 +1111,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_steam_rules(self):
         """Set the Steam Environment specific rules"""
-        status = False if self.config.get("Environment") == "Steam" else True
+        status = False if self.config.Environment == "Steam" else True
 
         for w in [
             self.row_discrete,

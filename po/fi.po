@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-20 21:22+0000\n"
+"PO-Revision-Date: 2023-01-20 07:50+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.15.1\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
@@ -553,9 +553,8 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:427
 #: bottles/frontend/ui/details-bottle.blp:432
-#, fuzzy
 msgid "Debugger"
-msgstr "Virheenkorjaus"
+msgstr "Virheenjäljitys"
 
 #: bottles/frontend/ui/details-bottle.blp:436
 #: bottles/frontend/ui/importer.blp:69
@@ -731,12 +730,15 @@ msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"Paranna suorituskykyä visuaalisen laadun kustannuksella käyttäen DXVK-NVAPI:"
+"a. Toimii vain suhteellisen uusilla NVIDIA:n näytönohjaimilla."
 
 #: bottles/frontend/ui/details-preferences.blp:106
 #: bottles/frontend/ui/details-preferences.blp:105
-#, fuzzy
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "Parantaa suorituskykyä lisääntyneen virrankulutuksen kustannuksella."
+msgstr ""
+"Paranna suorituskykyä visuaalisen laadun kustannuksella. Toimii vain "
+"Vulkanilla."
 
 #: bottles/frontend/ui/details-preferences.blp:121
 msgid "Discrete Graphics"
@@ -748,6 +750,8 @@ msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Käytä erillistä näytönohjainta suorituskyvyn parantamiseksi. Virrankulutus "
+"kasvaa tämän myötä."
 
 #: bottles/frontend/ui/details-preferences.blp:131
 msgid "Post-Processing Effects"
@@ -768,7 +772,7 @@ msgstr "Hallitse jälkikäsittelyn tasoasetuksia"
 #: bottles/frontend/ui/details-preferences.blp:146
 #: bottles/frontend/ui/details-preferences.blp:150
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "Hallitse miten pelit tulee esittää näytöllä Gamescopea käyttäen."
 
 #: bottles/frontend/ui/details-preferences.blp:149
 #: bottles/frontend/ui/details-preferences.blp:153
@@ -826,10 +830,13 @@ msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
+"Näytä tarkkailutietoja kuten kuvan päivitystaajuus, lämpötilat, suorittimen "
+"ja näytönohjaimen rasitus sekä paljon muuta OpenGL:llä ja Vulkanilla "
+"käyttäen MangoHudia."
 
 #: bottles/frontend/ui/details-preferences.blp:207
 msgid "Feral GameMode"
-msgstr "Feralin GameMode"
+msgstr "Feral GameMode"
 
 #: bottles/frontend/ui/details-preferences.blp:204
 #: bottles/frontend/ui/details-preferences.blp:208
@@ -848,6 +855,8 @@ msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Paranna latausaikoja, kun peli käynnistetään useita kertoja. Pelin "
+"käynnistys kestää tavallista kauemmin ensimmäisellä käynnistyskerralla."
 
 #: bottles/frontend/ui/details-preferences.blp:218
 #: bottles/frontend/ui/details-preferences.blp:222
@@ -856,15 +865,15 @@ msgstr "Hallitse vmtouchin asetuksia"
 
 #: bottles/frontend/ui/details-preferences.blp:233
 #: bottles/frontend/ui/details-preferences.blp:237
-#, fuzzy
 msgid "OBS Game Capture"
-msgstr "OBS:n Vulkan-kaappaus"
+msgstr "OBS:n pelikaappaus"
 
 #: bottles/frontend/ui/details-preferences.blp:234
 #: bottles/frontend/ui/details-preferences.blp:238
-#, fuzzy
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr "Etsi asennettuja ohjelmia"
+msgstr ""
+"Käytä tai poista käytöstä OBS:n pelikaappausta kaikille Vulkan- ja OpenGL-"
+"ohjelmille."
 
 #: bottles/frontend/ui/details-preferences.blp:247
 msgid "Compatibility"
@@ -1001,9 +1010,8 @@ msgstr "Sulje pois polkuja tilannevedoksista."
 
 #: bottles/frontend/ui/details-preferences.blp:397
 #: bottles/frontend/ui/details-preferences.blp:401
-#, fuzzy
 msgid "Manage Patterns"
-msgstr "Hallitse ajajia"
+msgstr "Hallitse kaavoja"
 
 #: bottles/frontend/ui/details-taskmanager.blp:17
 msgid "Refresh"
@@ -1145,6 +1153,9 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
+"Tämä versio Pullot-sovelluksesta ei vaikuta sisältävän kaikkia tarvittavia "
+"ydinriippuvuuksia. Ota yhteys paketin ylläpitäjään tai käytä virallista "
+"versiota."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
@@ -1175,6 +1186,8 @@ msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
+"Nämä ovat polkuja isäntäjärjestelmästä, jotka on yhdistetty ja tunnistettu "
+"ajajan toimesta (esim. C: ja D:)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1229,23 +1242,23 @@ msgstr "Olemassa olevat muuttujat"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "Ohituskaavat"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
+"Määritä kaavat, joiden perusteella estetään haluamiesi hakemistojen "
+"versiointi."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
-#, fuzzy
 msgid "Pattern"
-msgstr "Kirjain"
+msgstr "Kaava"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:37
-#, fuzzy
 msgid "Existing Patterns"
-msgstr "Olemassa olevat asemat"
+msgstr "Olemassa olevat kaavat"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
@@ -1261,7 +1274,7 @@ msgstr "Tallenna"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "Hallitse miten pelit tulee näyttää."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
@@ -1580,7 +1593,7 @@ msgstr "Oletusasetukset"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "Tehosteet toteutaan listausjärjestyksessä."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
 msgid "Effects"
@@ -1750,7 +1763,7 @@ msgstr "Natiivi, sitten sisäänrakennettu"
 #: bottles/frontend/ui/dll-override-entry.blp:12
 #: bottles/frontend/ui/details-preferences.blp:109
 msgid "Disabled"
-msgstr "Poistettu käytöstä"
+msgstr "Pois käytöstä"
 
 #: bottles/frontend/ui/dll-override-entry.blp:20
 #: bottles/frontend/ui/drive-entry.blp:12
@@ -1995,7 +2008,7 @@ msgstr ""
 
 #: bottles/frontend/ui/new.blp:109 bottles/frontend/ui/new.blp:118
 msgid "Do not link the userdir to the homedir"
-msgstr ""
+msgstr "Älä linkitä käyttäjähakemistoa kotihakemistoon"
 
 #: bottles/frontend/ui/new.blp:127 bottles/frontend/ui/new.blp:136
 msgid "Architecture"
@@ -2189,7 +2202,7 @@ msgstr "Pullojen kansio"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr "Kansi, joka sisältää pullojesi datan."
+msgstr "Kansio, joka sisältää pullojesi datan."
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
@@ -2431,6 +2444,8 @@ msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
+"Tämän pullon pyytämä ajaja puuttuu. Asenna se Pullot-sovelluksen asetusten "
+"kautta tai valitse uusi ajaja sovellusten suorittamiseksi."
 
 #: bottles/frontend/views/bottle_details.py:580
 msgid "Are you sure you want to force stop all processes?"
@@ -2452,7 +2467,7 @@ msgstr "Tämä ominaisuus ei ole käytettävissä järjestelmässäsi."
 
 #: bottles/frontend/views/bottle_preferences.py:197
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} Lisää tämä ominaisuus suorittamalla flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:278
 #: bottles/frontend/views/bottle_preferences.py:246
@@ -2470,7 +2485,7 @@ msgstr "Haluatko varmasti poistaa kaikki tilannevedokset?"
 
 #: bottles/frontend/views/bottle_preferences.py:719
 msgid "This will delete all snapshots but keep your files."
-msgstr ""
+msgstr "Tämä poistaa kaikki tilannevedokset, mutta säilyttää tiedostot."
 
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2624,9 +2639,9 @@ msgid "\"{0}\" installed"
 msgstr "\"{0}\" asennettu"
 
 #: bottles/frontend/widgets/dependency.py:180
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "Kohteen '{0}' asennus epäonnistui."
+msgstr "Kohteen \"{0}\" asennus epäonnistui"
 
 #: bottles/frontend/widgets/importer.py:66
 #, python-brace-format
@@ -2639,16 +2654,22 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
+"Tämä sovellus saattaa toimia heikonlaisesti. Asentaja määritettiin "
+"tarjoamaan paras mahdollinen kokemus, mutta varaudu häiriöihin, epävakauteen "
+"ja puuttuviin toiminnallisuuksiin."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
 msgstr ""
+"Tämä ohjelma toimii huomattavin häiriöin, mutta häiriöt eivät vaikuta "
+"toiminnallisuuteen."
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
 msgstr ""
+"Tämä ohjelma toimii, mutta pieniä häiriöitä on mahdollisesti havaittavissa."
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
@@ -2666,9 +2687,9 @@ msgstr "Käynnistetään \"{0}\"…"
 
 #: bottles/frontend/widgets/library.py:153
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "Käynnistetään '{0}'…"
+msgstr "Pysäytetään \"{0}\"…"
 
 #: bottles/frontend/widgets/program.py:190
 #, python-brace-format
@@ -2697,9 +2718,9 @@ msgstr "\"{0}\" nimetty muotoon \"{1}\""
 
 #: bottles/frontend/widgets/program.py:265
 #: bottles/frontend/widgets/program.py:271
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
-msgstr "Luotu kohde työpöydälle '{0}'"
+msgstr "Luotu työpöytätietue \"{0}\""
 
 #: bottles/frontend/widgets/program.py:287
 #, python-brace-format
@@ -2745,9 +2766,8 @@ msgid "No environment variables defined."
 msgstr "Ympäristömuuttujia ei ole määritetty."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
-#, fuzzy
 msgid "No exclusion patterns defined."
-msgstr "Ympäristömuuttujia ei ole määritetty."
+msgstr "Ohituskaavoja ei ole määritetty."
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -2872,16 +2892,15 @@ msgstr "Näytä tai piilota pulloluettelossa päivityspäivä."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Steam-sovellusten luettelointi"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "Gamescopen asetukset"
+msgstr "Epic Games -luettelointi"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
@@ -2889,7 +2908,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "Ubisoft Connect -luettelointi"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."

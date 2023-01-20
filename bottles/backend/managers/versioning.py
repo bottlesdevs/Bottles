@@ -16,6 +16,8 @@
 #
 
 import os
+
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import yaml
 import uuid
 import shutil
@@ -48,21 +50,21 @@ class VersioningManager:
         self.__operation_manager = OperationManager(self.window)
     
     @staticmethod
-    def __get_patterns(config: dict):
+    def __get_patterns(config: BottleConfig):
         patterns = [
             "*dosdevices*",
             "*cache*"
         ]
-        if config["Parameters"]["versioning_exclusion_patterns"]:
-            patterns += config["Versioning_Exclusion_Patterns"]
+        if config.Parameters.versioning_exclusion_patterns:
+            patterns += config.Versioning_Exclusion_Patterns
         return patterns
     
     @staticmethod
-    def is_initialized(config: dict):
+    def is_initialized(config: BottleConfig):
         try:
             repo = FVSRepo(
                 repo_path=ManagerUtils.get_bottle_path(config),
-                use_compression=config["Parameters"]["versioning_compression"],
+                use_compression=config.Parameters.versioning_compression,
                 no_init=True
             )
         except FileNotFoundError:
@@ -70,23 +72,23 @@ class VersioningManager:
         return not repo.has_no_states
     
     @staticmethod
-    def re_initialize(config: dict):
+    def re_initialize(config: BottleConfig):
         fvs_path = os.path.join(ManagerUtils.get_bottle_path(config), ".fvs")
         if os.path.exists(fvs_path):
             shutil.rmtree(fvs_path)
     
-    def update_system(self, config: dict):
+    def update_system(self, config: BottleConfig):
         states_path = os.path.join(ManagerUtils.get_bottle_path(config), "states")
         if os.path.exists(states_path):
             shutil.rmtree(states_path)
         return self.manager.update_config(config, "Versioning", False)
 
-    def create_state(self, config: dict, message: str = "No message"):
+    def create_state(self, config: BottleConfig, message: str = "No message"):
         task_id = str(uuid.uuid4())
         patterns = self.__get_patterns(config)
         repo = FVSRepo(
             repo_path=ManagerUtils.get_bottle_path(config),
-            use_compression=config["Parameters"]["versioning_compression"]
+            use_compression=config.Parameters.versioning_compression
         )
         GLib.idle_add(
             self.__operation_manager.new_task,
@@ -112,25 +114,24 @@ class VersioningManager:
                 "states": repo.states
             }
         )
-    
 
-    def list_states(self, config: dict) -> Result:
+    def list_states(self, config: BottleConfig) -> Result:
         """
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.
         """
-        if not config.get("Versioning"):
+        if not config.Versioning:
             try:
                 repo = FVSRepo(
                     repo_path=ManagerUtils.get_bottle_path(config),
-                    use_compression=config["Parameters"]["versioning_compression"]
+                    use_compression=config.Parameters.versioning_compression
                 )
             except FVSStateNotFound:
                 logging.warning("The FVS repository may be corrupted, trying to re-initialize it")
                 self.re_initialize(config)
                 repo = FVSRepo(
                     repo_path=ManagerUtils.get_bottle_path(config),
-                    use_compression=config["Parameters"]["versioning_compression"]
+                    use_compression=config.Parameters.versioning_compression
                 )
             return Result(
                 status=True,
@@ -149,19 +150,19 @@ class VersioningManager:
             states_file_yaml = yaml.load(states_file)
             states_file.close()
             states = states_file_yaml.get("States")
-            logging.info(f"Found [{len(states)}] states for bottle: [{config['Name']}]")
+            logging.info(f"Found [{len(states)}] states for bottle: [{config.Name}]")
         except (FileNotFoundError, yaml.YAMLError):
-            logging.info(f"No states found for bottle: [{config['Name']}]")
+            logging.info(f"No states found for bottle: [{config.Name}]")
 
         return states
 
-    def set_state(self, config: dict, state_id: int, after=False) -> Result:
-        if not config.get("Versioning"):
+    def set_state(self, config: BottleConfig, state_id: int, after=False) -> Result:
+        if not config.Versioning:
             task_id = str(uuid.uuid4())
             patterns = self.__get_patterns(config)
             repo = FVSRepo(
                 repo_path=ManagerUtils.get_bottle_path(config),
-                use_compression=config["Parameters"]["versioning_compression"]
+                use_compression=config.Parameters.versioning_compression
             )
             res = Result(
                 status=True,
@@ -223,7 +224,7 @@ class VersioningManager:
             os.remove("%s/drive_c/%s" % (bottle_path, file["file"]))
 
         for file in add_files:
-            for i in search_sources:
+            for _ in search_sources:
                 source = "%s/states/%s/drive_c/%s" % (bottle_path, str(state_id), file["file"])
                 target = "%s/drive_c/%s" % (bottle_path, file["file"])
                 shutil.copy2(source, target)
@@ -258,7 +259,7 @@ class VersioningManager:
         return True
 
     @staticmethod
-    def get_state_files(config: dict, state_id: int, plain: bool = False) -> dict:
+    def get_state_files(config: BottleConfig, state_id: int, plain: bool = False) -> dict:
         """
         Return the files.yml content of the state. Use the plain argument
         to return the content as plain text.
@@ -273,7 +274,7 @@ class VersioningManager:
             return {}
 
     @staticmethod
-    def get_index(config: dict):
+    def get_index(config: BottleConfig):
         """List all files in a bottle and return as dict."""
         bottle_path = ManagerUtils.get_bottle_path(config)
         cur_index = {

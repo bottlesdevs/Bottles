@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
 import sys
 import signal
 import gettext
@@ -33,8 +32,6 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 gettext.install('bottles', localedir)
 
 if __name__ == '__main__':
-    import gi
-
     from gi.repository import Gio
     resource = Gio.Resource.load(gresource_path)
     # noinspection PyProtectedMember

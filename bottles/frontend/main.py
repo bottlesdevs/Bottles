@@ -35,6 +35,8 @@ from gi.repository import Gtk, Gio, Gdk, GLib, GObject, Adw
 from bottles.frontend.params import *
 from bottles.backend.logger import Logger
 from bottles.frontend.windows.main_window import MainWindow
+from bottles.frontend.views.preferences import PreferencesWindow
+from bottles.backend.health import HealthChecker
 
 logging = Logger()
 
@@ -84,7 +86,12 @@ class Bottles(Adw.Application):
             flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
             register_session=True
         )
-        self.win = None
+        self.__create_action('quit', self.__quit, ['<primary>q', '<primary>w'])
+        self.__create_action('about', self.__show_about_window)
+        self.__create_action('import', self.__show_importer_view, ['<primary>i'])
+        self.__create_action('preferences', self.__show_preferences, ['<primary>comma'])
+        self.__create_action('help', self.__help, ['F1'])
+
         self.__register_arguments()
 
     def __register_arguments(self):
@@ -211,7 +218,6 @@ class Bottles(Adw.Application):
         See: __register_actions()
         """
         Adw.Application.do_startup(self)
-        self.__register_actions()
 
     def do_activate(self):
         """
@@ -255,25 +261,75 @@ class Bottles(Adw.Application):
         logging.info(_("[Refresh] request received."), )
         self.win.manager.update_bottles()
 
-    def __register_actions(self):
-        """
-        This function registers the application actions.
-        The actions are the application shortcuts (accellerators).
-        """
-        self.set_accels_for_action("window.close", ["<Ctrl>W"])
-        action_entries = [
-            ("quit", self.__quit, ("app.quit", ["<Ctrl>Q"])),
-            ("help", self.__help, ("app.help", ["F1"])),
-            ("refresh", self.__refresh, ("app.refresh", ["<Ctrl>R"]))
-        ]
+    def __show_preferences(self, *args):
+        preferences_window = PreferencesWindow(self.win)
+        preferences_window.present()
 
-        for action, callback, accel in action_entries:
-            simple_action = Gio.SimpleAction.new(action, None)
-            simple_action.connect('activate', callback)
-            self.add_action(simple_action)
-            if accel is not None:
-                self.set_accels_for_action(*accel)
+    def __show_importer_view(self, widget=False, *args):
+        self.win.main_leaf.set_visible_child(self.win.page_importer)
 
+    def __show_about_window(self, *_args):
+        builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
+        about_window = builder.get_object("about_window")
+        about_window.set_debug_info(HealthChecker().get_results(plain=True))
+        about_window.add_link(_("Donate"), "https://usebottles.com/funding")
+        about_window.set_version(APP_VERSION)
+        about_window.set_application_name(APP_NAME)
+        about_window.set_application_icon(APP_ICON)
+        about_window.add_acknowledgement_section(
+            _("Third-Party Libraries and Special Thanks"),
+            [
+                "DXVK https://github.com/doitsujin/dxvk",
+                "VKD3D https://github.com/HansKristian-Work/vkd3d-proton",
+                "DXVK-NVAPI https://github.com/jp7677/dxvk-nvapi",
+                "LatencyFleX https://github.com/ishitatsuyuki/LatencyFleX",
+                "MangoHud https://github.com/flightlessmango/MangoHud",
+                "AMD FidelityFX™ Super Resolution https://www.amd.com/en/technologies/fidelityfx-super-resolution",
+                "vkBasalt https://github.com/DadSchoorse/vkBasalt",
+                "vkbasalt-cli https://gitlab.com/TheEvilSkeleton/vkbasalt-cli",
+                "GameMode https://github.com/FeralInteractive/gamemode",
+                "Gamescope https://github.com/Plagman/gamescope",
+                "OBS Vulkan/OpenGL capture https://github.com/nowrep/obs-vkcapture",
+                "Wine-TKG https://github.com/Frogging-Family/wine-tkg-git",
+                "Proton https://github.com/ValveSoftware/proton",
+                "Wine-GE https://github.com/GloriousEggroll/wine-ge-custom",
+                "Wine https://www.winehq.org",
+                "orjson https://github.com/ijl/orjson",
+                "libadwaita https://gitlab.gnome.org/GNOME/libadwaita",
+                "icoextract https://github.com/jlu5/icoextract",
+                "vmtouch https://github.com/hoytech/vmtouch",
+                "FVS https://github.com/mirkobrombin/FVS",
+                "pathvalidate https://github.com/thombashi/pathvalidate"
+            ]
+        )
+        about_window.add_acknowledgement_section(
+            _("Sponsored and Funded by"),
+            [
+                "JetBrains https://www.jetbrains.com/?from=bottles",
+                "GitBook https://www.gitbook.com/?ref=bottles",
+                "Linode https://www.linode.com/?from=bottles",
+                "Appwrite https://appwrite.io/?from=bottles",
+                "Community ❤️ https://usebottles.com/funding"
+            ]
+        )
+        about_window.set_transient_for(self.win)
+        about_window.present()
+
+    def __create_action(self, name, callback, shortcuts=None, param=None):
+        """Add an application action.
+
+        Args:
+            name: the name of the action
+            callback: the function to be called when the action is
+              activated
+            shortcuts: an optional list of accelerators
+            param: an optional list of parameters for the action
+        """
+        action = Gio.SimpleAction.new(name, param)
+        action.connect("activate", callback)
+        self.add_action(action)
+        if shortcuts:
+            self.set_accels_for_action(f"app.{name}", shortcuts)
 
 GObject.threads_init()
 
