@@ -15,11 +15,15 @@ jobs:
     - name: Install Ubuntu dependencies
       run: |
         sudo apt update
-        sudo apt install -y python3-gi python3-gi-cairo gir1.2-gtk-3.0
+        sudo apt install -y libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install wheel
         pip install pylint
+        pip install -r bottles/requirements.txt
+        pip install pycairo
+        pip install PyGObject
     - name: Analysing the code with pylint
       id: pylint-result
       continue-on-error: true
