@@ -55,17 +55,17 @@ class FsrDialog(Adw.Window):
         self.__update(config)
 
     def __update(self, config):
-        parameters = config["Parameters"]
+        parameters = config.Parameters
 
         # Populate entries
         for mode in self.quality_mode.values():
             self.str_list_quality_mode.append(mode)
 
         # Select right entry
-        if parameters.get("fsr_quality_mode"):
-            self.combo_quality_mode.set_selected(list(self.quality_mode.keys()).index(parameters.get("fsr_quality_mode")))
+        if parameters.fsr_quality_mode:
+            self.combo_quality_mode.set_selected(list(self.quality_mode.keys()).index(parameters.fsr_quality_mode))
 
-        self.spin_sharpening_strength.set_value(parameters.get("fsr_sharpening_strength"))
+        self.spin_sharpening_strength.set_value(parameters.fsr_sharpening_strength)
 
     def __idle_save(self, *_args):
         print(list(self.quality_mode.keys())[self.combo_quality_mode.get_selected()])

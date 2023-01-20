@@ -1,8 +1,9 @@
 import os
-from typing import NewType, Union
+from typing import Union
 
 from bottles.backend.logger import Logger
 from bottles.backend.globals import Paths
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.wine.winecommand import WineCommand
 
 logging = Logger()
@@ -11,12 +12,14 @@ logging = Logger()
 class WineProgram:
     program: str = "unknown"
     command: str = ""
-    config: dict = {}
+    config: BottleConfig
     colors: str = "default"
     is_internal: bool = False
     internal_path: str = ""
 
-    def __init__(self, config: dict, silent=False):
+    def __init__(self, config: BottleConfig, silent=False):
+        if not isinstance(config, BottleConfig):
+            raise TypeError("config should be BottleConfig type, but it was %s" % type(config))
         self.config = config
         self.silent = silent
 

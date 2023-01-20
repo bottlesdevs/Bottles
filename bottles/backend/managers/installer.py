@@ -14,17 +14,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-
+import dataclasses
 import os
 import subprocess
 import uuid
 
 import markdown
 import pycurl
-from typing import Union, NewType
+from typing import Union
 from functools import lru_cache
-from datetime import datetime
 from gi.repository import GLib
+
+from bottles.backend.models.config import BottleConfig, BottleParams
 
 try:
     from bottles.frontend.operation import OperationManager
@@ -34,14 +35,12 @@ except (RuntimeError, GLib.GError):
     from bottles.frontend.windows.generic_cli import MessageDialog
 
 from bottles.backend.managers.conf import ConfigManager
-from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.wine import WineUtils
 
-from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winecommand import WineCommand
 
@@ -52,7 +51,7 @@ logging = Logger()
 
 class InstallerManager:
 
-    def __init__(self, manager, offline: bool = False, callback = None):
+    def __init__(self, manager, offline: bool = False, callback=None):
         self.__manager = manager
         self.__repo = manager.repository_manager.get_repo("installers", offline, callback)
         self.__utils_conn = manager.utils_conn
@@ -96,7 +95,7 @@ class InstallerManager:
         return catalog
 
     def get_icon_url(self, installer):
-        '''Wrapper for the repo method.'''
+        """Wrapper for the repo method."""
         return self.__repo.get_icon(installer)
 
     def __download_icon(self, config, executable: dict, manifest):
@@ -131,20 +130,19 @@ class InstallerManager:
 
     def __install_dependencies(
             self,
-            config,
+            config: BottleConfig,
             dependencies: list,
             step_fn: callable,
             is_final: bool = False
     ):
         """Install a list of dependencies"""
         _config = config
-        wineboot = WineBoot(_config)
 
         for dep in dependencies:
             if is_final:
                 step_fn()
 
-            if dep in config.get("Installed_Dependencies"):
+            if dep in config.Installed_Dependencies:
                 continue
 
             _dep = [dep, self.__manager.supported_dependencies.get(dep)]
@@ -173,7 +171,7 @@ class InstallerManager:
 
         return True
 
-    def __perform_steps(self, config, steps: list):
+    def __perform_steps(self, config: BottleConfig, steps: list):
         """Perform a list of actions"""
         for st in steps:
             # Step type: run_script
@@ -224,7 +222,7 @@ class InstallerManager:
         return True
 
     @staticmethod
-    def __step_run_winecommand(config, step: dict):
+    def __step_run_winecommand(config: BottleConfig, step: dict):
         """Run a wine command"""
         commands = step.get("commands")
 
@@ -241,12 +239,12 @@ class InstallerManager:
             _winecommand.run()
 
     @staticmethod
-    def __step_run_script(config, step: dict):
+    def __step_run_script(config: BottleConfig, step: dict):
         placeholders = {
             "!bottle_path": ManagerUtils.get_bottle_path(config),
             "!bottle_drive": f"{ManagerUtils.get_bottle_path(config)}/drive_c",
-            "!bottle_name": config.get("Name"),
-            "!bottle_arch": config.get("Arch")
+            "!bottle_name": config.Name,
+            "!bottle_arch": config.Arch
         }
         preventions = {
             "bottle.yml": "Bottle configuration cannot be modified."
@@ -272,7 +270,7 @@ class InstallerManager:
         logging.info(f"Finished executing installer script.")
 
     @staticmethod
-    def __step_update_config(config, step: dict):
+    def __step_update_config(config: BottleConfig, step: dict):
         bottle = ManagerUtils.get_bottle_path(config)
         conf_path = step.get("path")
         conf_type = step.get("type")
@@ -291,35 +289,34 @@ class InstallerManager:
 
         _conf.merge_dict(upd_keys)
 
-    def __set_parameters(self, config, parameters: dict):
+    def __set_parameters(self, config: BottleConfig, new_params: dict):
         _config = config
-        wineboot = WineBoot(_config)
 
-        if "dxvk" in parameters:
-            if parameters["dxvk"] != config["Parameters"]["dxvk"]:
-                self.__manager.install_dll_component(_config, "dxvk", remove=not parameters["dxvk"])
+        if "dxvk" in new_params and isinstance(new_params["dxvk"], bool):
+            if new_params["dxvk"] != config.Parameters.dxvk:
+                self.__manager.install_dll_component(_config, "dxvk", remove=not new_params["dxvk"])
 
-        if "vkd3d" in parameters:
-            if parameters["vkd3d"] != config["Parameters"]["vkd3d"]:
-                self.__manager.install_dll_component(_config, "vkd3d", remove=not parameters["vkd3d"])
+        if "vkd3d" in new_params and isinstance(new_params["vkd3d"], bool):
+            if new_params["vkd3d"] != config.Parameters.vkd3d:
+                self.__manager.install_dll_component(_config, "vkd3d", remove=not new_params["vkd3d"])
 
-        if "dxvk_nvapi" in parameters:
-            if parameters["dxvk_nvapi"] != config["Parameters"]["dxvk_nvapi"]:
-                self.__manager.install_dll_component(_config, "nvapi", remove=not parameters["dxvk_nvapi"])
+        if "dxvk_nvapi" in new_params and isinstance(new_params["dxvk_nvapi"], bool):
+            if new_params["dxvk_nvapi"] != config.Parameters.dxvk_nvapi:
+                self.__manager.install_dll_component(_config, "nvapi", remove=not new_params["dxvk_nvapi"])
 
-        if "latencyflex" in parameters:
-            if parameters["latencyflex"] != config["Parameters"]["latencyflex"]:
-                self.__manager.install_dll_component(_config, "latencyflex", remove=not parameters["latencyflex"])
+        if "latencyflex" in new_params and isinstance(new_params["latencyflex"], bool):
+            if new_params["latencyflex"] != config.Parameters.latencyflex:
+                self.__manager.install_dll_component(_config, "latencyflex", remove=not new_params["latencyflex"])
 
         # avoid sync type change if not set to "wine"
-        if parameters.get("sync") and config["Parameters"]["sync"] != "wine":
-            del parameters["sync"]
+        if "sync" in new_params and config.Parameters.sync != "wine":
+            del new_params["sync"]
 
-        for param in parameters:
+        for k, v in new_params.items():
             self.__manager.update_config(
                 config=config,
-                key=param,
-                value=parameters[param],
+                key=k,
+                value=v,
                 scope="Parameters"
             )
 
@@ -359,7 +356,7 @@ class InstallerManager:
         files = [s.get("file_name", "") for s in exe_msi_steps]
         return files
 
-    def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True,
+    def install(self, config: BottleConfig, installer: dict, step_fn: callable, is_final: bool = True,
                 local_resources: dict = None):
         manifest = self.get_installer(installer[0])
         _config = config
@@ -442,8 +439,8 @@ class InstallerManager:
         if "dxvk_nvapi" in executable:
             _program["dxvk_nvapi"] = executable["dxvk_nvapi"]
 
-        duplicates = [k for k, v in config["External_Programs"].items() if v["path"] == _path]
-        ext = config["External_Programs"]
+        duplicates = [k for k, v in config.External_Programs.items() if v["path"] == _path]
+        ext = config.External_Programs
 
         if duplicates:
             for d in duplicates:
@@ -470,5 +467,5 @@ class InstallerManager:
         if is_final:
             step_fn()
 
-        logging.info(f"Program installed: {manifest['Name']} in {config['Name']}.", jn=True)
+        logging.info(f"Program installed: {manifest['Name']} in {config.Name}.", jn=True)
         return Result(True)

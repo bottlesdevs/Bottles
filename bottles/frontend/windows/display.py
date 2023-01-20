@@ -63,24 +63,24 @@ class DisplayDialog(Adw.Window):
         self.__update(config)
 
     def __update(self, config):
-        self.parameters = config["Parameters"]
+        self.parameters = config.Parameters
 
-        self.expander_virtual_desktop.set_enable_expansion(self.parameters["virtual_desktop"])
-        self.switch_mouse_capture.set_state(self.parameters["fullscreen_capture"])
-        self.switch_take_focus.set_state(self.parameters["take_focus"])
-        self.switch_mouse_warp.set_state(self.parameters["mouse_warp"])
-        self.switch_decorated.set_state(self.parameters["decorated"])
-        self.spin_dpi.set_value(self.parameters["custom_dpi"])
+        self.expander_virtual_desktop.set_enable_expansion(self.parameters.virtual_desktop)
+        self.switch_mouse_capture.set_state(self.parameters.fullscreen_capture)
+        self.switch_take_focus.set_state(self.parameters.take_focus)
+        self.switch_mouse_warp.set_state(self.parameters.mouse_warp)
+        self.switch_decorated.set_state(self.parameters.decorated)
+        self.spin_dpi.set_value(self.parameters.custom_dpi)
 
         """Set resolution"""
-        virtual_desktop_res = self.parameters["virtual_desktop_res"]
+        virtual_desktop_res = self.parameters.virtual_desktop_res
         resolution = virtual_desktop_res.split("x")
         self.spin_width.set_value(float(resolution[0]))
         self.spin_height.set_value(float(resolution[1]))
 
         """Set renderer"""
         for index, renderer in enumerate(renderers):
-            if self.parameters["renderer"] == renderer:
+            if self.parameters.renderer == renderer:
                 self.combo_renderer.set_selected(index)
                 break
 
@@ -113,7 +113,7 @@ class DisplayDialog(Adw.Window):
                 self.window.show_toast(_("Display settings updated"))
             self.queue.end_task()
 
-        if self.expander_virtual_desktop.get_enable_expansion() != self.parameters["virtual_desktop"]:
+        if self.expander_virtual_desktop.get_enable_expansion() != self.parameters.virtual_desktop:
             """Toggle virtual desktop"""
             def update(result, error=False):
                 self.config = self.manager.update_config(
@@ -133,7 +133,7 @@ class DisplayDialog(Adw.Window):
                 resolution=resolution
             )
 
-        if self.expander_virtual_desktop.get_enable_expansion() == True and resolution != self.parameters["virtual_desktop_res"]:
+        if self.expander_virtual_desktop.get_enable_expansion() == True and resolution != self.parameters.virtual_desktop_res:
             """Set virtual desktop resolution"""
             def update(result, error=False):
                 self.config = self.manager.update_config(
@@ -154,7 +154,7 @@ class DisplayDialog(Adw.Window):
                     resolution=resolution
                 )
 
-        if self.switch_mouse_warp.get_state() != self.parameters["mouse_warp"]:
+        if self.switch_mouse_warp.get_state() != self.parameters.mouse_warp:
             """Set mouse warp"""
             def update(result, error=False):
                 self.config = self.manager.update_config(
@@ -174,7 +174,7 @@ class DisplayDialog(Adw.Window):
                 state=self.switch_mouse_warp.get_state()
             )
 
-        if self.spin_dpi.get_value() != self.parameters["custom_dpi"]:
+        if self.spin_dpi.get_value() != self.parameters.custom_dpi:
             """Set DPI"""
             def update(result, error=False):
                 self.config = self.manager.update_config(
@@ -195,7 +195,7 @@ class DisplayDialog(Adw.Window):
                 value=dpi
             )
 
-        if renderers[self.combo_renderer.get_selected()] != self.parameters["renderer"]:
+        if renderers[self.combo_renderer.get_selected()] != self.parameters.renderer:
             """Set renderer"""
             def update(result, error=False):
                 self.config = self.manager.update_config(
@@ -241,11 +241,11 @@ class DisplayDialog(Adw.Window):
                 data=_rule
             )
 
-        if self.switch_mouse_capture.get_state() != self.parameters["fullscreen_capture"]:
+        if self.switch_mouse_capture.get_state() != self.parameters.fullscreen_capture:
             toggle_x11_reg_key(self.switch_mouse_capture.get_state(),"GrabFullscreen", "fullscreen_capture")
-        if self.switch_take_focus.get_state() != self.parameters["take_focus"]:
+        if self.switch_take_focus.get_state() != self.parameters.take_focus:
             toggle_x11_reg_key(self.switch_take_focus.get_state(),"UseTakeFocus", "take_focus")
-        if self.switch_decorated.get_state() != self.parameters["decorated"]:
+        if self.switch_decorated.get_state() != self.parameters.decorated:
             toggle_x11_reg_key(self.switch_decorated.get_state(),"Decorated", "decorated")
 
         """Close window"""

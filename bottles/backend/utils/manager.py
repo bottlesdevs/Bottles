@@ -24,9 +24,11 @@ from glob import glob
 from typing import NewType, Union
 from datetime import datetime
 from gi.repository import Gdk, Gio, GLib, Gtk
+from gettext import gettext as _
 
 from bottles.backend.logger import Logger
 from bottles.backend.globals import Paths, user_apps_dir
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.imagemagick import ImageMagickUtils
 from bottles.backend.utils.generic import get_mime
 
@@ -41,7 +43,7 @@ class ManagerUtils:
 
     @staticmethod
     def open_filemanager(
-            config: dict = dict,
+            config: BottleConfig = None,
             path_type: str = "bottle",
             component: str = "",
             custom_path: str = ""
@@ -49,10 +51,13 @@ class ManagerUtils:
         logging.info("Opening the file manager in the path …")
         path = ""
 
+        if path_type == "bottle" and config is None:
+            raise NotImplementedError("bottle type need a valid Config")
+
         if path_type == "bottle":
             bottle_path = ManagerUtils.get_bottle_path(config)
-            if config.get("Environment") == "Steam":
-                bottle_path = config.get("Path")
+            if config.Environment == "Steam":
+                bottle_path = config.Path
             path = f"{bottle_path}/drive_c"
         elif component != "":
             if path_type in ["runner", "runner:proton"]:
@@ -79,10 +84,10 @@ class ManagerUtils:
         Gtk.show_uri(window, path, Gdk.CURRENT_TIME)
 
     @staticmethod
-    def get_bottle_path(config: dict) -> str:
-        if config.get("Environment") == "Steam":
-            return os.path.join(Paths.steam, config.get("CompatData"))
-        return os.path.join(Paths.bottles, config.get("Path"))
+    def get_bottle_path(config: BottleConfig) -> str:
+        if config.Environment == "Steam":
+            return os.path.join(Paths.steam, config.CompatData)
+        return os.path.join(Paths.bottles, config.Path)
 
     @staticmethod
     def get_runner_path(runner: str) -> str:
@@ -117,7 +122,7 @@ class ManagerUtils:
     @staticmethod
     def move_file_to_bottle(
             file_path: str,
-            config: dict,
+            config: BottleConfig,
             fn_update: callable = None
     ) -> Union[str, bool]:
         logging.info(f"Adding file {file_path} to the bottle …")
@@ -161,7 +166,7 @@ class ManagerUtils:
         return os.path.dirname(executable_path)
 
     @staticmethod
-    def extract_icon(config: dict, program_name: str, program_path: str) -> str:
+    def extract_icon(config: BottleConfig, program_name: str, program_path: str) -> str:
         from bottles.backend.wine.winepath import WinePath
         winepath = WinePath(config)
         icon = "com.usebottles.bottles-program"
@@ -221,13 +226,13 @@ class ManagerUtils:
             file_name_template = "%s/%s--%s--%s.desktop"
             existing_files = glob(file_name_template % (
                 Paths.applications,
-                config.get('Name'),
+                config.Name,
                 program.get("name"),
                 "*"
             ))
             desktop_file = file_name_template % (
                 Paths.applications,
-                config.get('Name'),
+                config.Name,
                 program.get("name"),
                 datetime.now().timestamp()
             )

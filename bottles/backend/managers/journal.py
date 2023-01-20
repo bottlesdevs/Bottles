@@ -21,7 +21,6 @@ import uuid
 import shutil
 import contextlib
 from gi.repository import GLib
-from pathlib import Path
 from datetime import datetime, timedelta
 
 

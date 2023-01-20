@@ -16,8 +16,11 @@
 #
 
 from gettext import gettext as _
+from typing import Optional
+
 from gi.repository import Gtk
 
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.runner import Runner
 from bottles.backend.wine.winedbg import WineDbg
@@ -81,15 +84,15 @@ class TaskManagerView(Gtk.ScrolledWindow):
             return
         self.btn_kill.set_sensitive(True)
 
-    def update(self, widget=False, config=None):
+    def update(self, widget=False, config: Optional[BottleConfig] = None):
         """
         This function scan for new processed and update the
         liststore_processes with the new data
         """
         if config is None:
-            config = {}
+            config = BottleConfig()
         self.config = config
-        if not config.get("Runner"):
+        if not config.Runner:
             return
 
         self.liststore_processes.clear()

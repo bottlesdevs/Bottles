@@ -16,9 +16,9 @@
 #
 
 import os
-from functools import lru_cache
 
 from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
@@ -27,7 +27,7 @@ logging = Logger()
 class ThumbnailManager:
     
     @staticmethod
-    def get_path(config: dict, uri: str):
+    def get_path(config: BottleConfig, uri: str):
         if uri.startswith("grid:"):
             return ThumbnailManager.__load_grid(config, uri)
         # elif uri.startswith("epic:"):
@@ -38,7 +38,7 @@ class ThumbnailManager:
         return None
     
     @staticmethod
-    def __load_grid(config: dict, uri: str):
+    def __load_grid(config: BottleConfig, uri: str):
         bottle_path = ManagerUtils.get_bottle_path(config)
         file_name = uri[5:]
         path = os.path.join(bottle_path, 'grids', file_name)

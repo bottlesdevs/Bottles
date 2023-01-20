@@ -1,6 +1,8 @@
 from typing import NewType
 
 from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.enum import Arch
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.wineboot import WineBoot
@@ -10,7 +12,7 @@ logging = Logger()
 
 class RegKeys:
 
-    def __init__(self, config: dict):
+    def __init__(self, config: BottleConfig):
         self.config = config
         self.reg = Reg(self.config)
 
@@ -34,7 +36,7 @@ class RegKeys:
         if version not in win_versions:
             raise ValueError("Given version is not supported.")
 
-        if version == "winxp" and self.config.get("Arch") == "win64":
+        if version == "winxp" and self.config.Arch == Arch.WIN64:
             version = "winxp64"
 
         wineboot = WineBoot(self.config)
@@ -118,7 +120,7 @@ class RegKeys:
                 ]
             }
 
-        if self.config.get("Arch") == "win64":
+        if self.config.Arch == Arch.WIN64:
             bundle["HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion"] = [
                 {
                     "value": "CSDVersion",
@@ -174,7 +176,7 @@ class RegKeys:
         if version not in win_versions:
             raise ValueError("Given version is not supported.")
 
-        if version == "winxp" and self.config.get("Arch") == "win64":
+        if version == "winxp" and self.config.Arch == Arch.WIN64:
             version = "winxp64"
 
         self.reg.add(
@@ -261,7 +263,7 @@ class RegKeys:
         self.reg.add(
             key="HKEY_CURRENT_USER\\Control Panel\\Desktop",
             value="LogPixels",
-            data=value,
+            data=str(value),
             value_type="REG_DWORD"
         )
 

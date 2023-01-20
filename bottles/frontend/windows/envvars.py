@@ -126,7 +126,7 @@ class EnvVarsDialog(Adw.Window):
         This function populate the list of env vars
         with the existing ones from the bottle configuration
         """
-        envs = self.config.get("Environment_Variables").items()
+        envs = self.config.Environment_Variables.items()
         if len(envs) == 0:
             self.group_vars.set_description(_("No environment variables defined."))
             return

@@ -76,14 +76,14 @@ class VersioningView(Adw.PreferencesPage):
             config = self.config
         if states is None:
             states = self.versioning_manager.list_states(config)
-            if not config.get("Versioning"):
+            if not config.Versioning:
                 active = states.data.get('state_id')
                 states = states.data.get('states')
 
         self.config = config
         self.list_states.set_sensitive(False)
 
-        if self.config.get("Versioning"):
+        if self.config.Versioning:
             self.btn_add.set_sensitive(False)
             self.btn_add.set_tooltip_text(_("Please migrate to the new Versioning system to create new states."))
 
