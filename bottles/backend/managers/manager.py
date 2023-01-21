@@ -268,8 +268,8 @@ class Manager:
     @RunAsync.run_async
     def organize_components(self):
         """Get components catalog and organizes into supported_ lists."""
-        RepoStatus.repo_start_operation("components.organizing")
         RepoStatus.repo_wait_operation("components.fetching")
+        RepoStatus.repo_start_operation("components.organizing")
         catalog = self.component_manager.fetch_catalog()
         if len(catalog) == 0:
             RepoStatus.repo_done_operation("components.organizing")
@@ -289,8 +289,8 @@ class Manager:
     @RunAsync.run_async
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
-        RepoStatus.repo_start_operation("dependencies.organizing")
         RepoStatus.repo_wait_operation("dependencies.fetching")
+        RepoStatus.repo_start_operation("dependencies.organizing")
         catalog = self.dependency_manager.fetch_catalog()
         if len(catalog) == 0:
             RepoStatus.repo_done_operation("dependencies.organizing")
@@ -303,8 +303,8 @@ class Manager:
     @RunAsync.run_async
     def organize_installers(self):
         """Organizes installers into supported_installers."""
-        RepoStatus.repo_start_operation("installers.organizing")
         RepoStatus.repo_wait_operation("installers.fetching")
+        RepoStatus.repo_start_operation("installers.organizing")
         catalog = self.installer_manager.fetch_catalog()
         if len(catalog) == 0:
             RepoStatus.repo_done_operation("installers.organizing")

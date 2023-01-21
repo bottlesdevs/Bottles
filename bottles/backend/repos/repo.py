@@ -15,15 +15,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from bottles.backend.utils import yaml
-import pycurl
-from io import BytesIO
+import time
 from http.client import RemoteDisconnected
+from io import BytesIO
 from threading import Lock as PyLock
 from typing import Dict
 
-from bottles.backend.logger import Logger
+import pycurl
 
+from bottles.backend.utils import yaml
+from bottles.backend.logger import Logger
 from bottles.frontend.utils.threading import RunAsync
 
 logging = Logger()
@@ -36,10 +37,11 @@ class Repo:
         self.url = url
         self.catalog = None
 
-        def set_catalog(result, error=None):
+        def set_catalog(result, _error=None):
             self.catalog = result
             RepoStatus.repo_done_operation(self.name + ".fetching")
-            if callback: callback()
+            if callback:
+                callback()
         RunAsync(self.__get_catalog, callback=set_catalog, index=index, offline=offline)
 
     def __get_catalog(self, index: str, offline: bool = False):
@@ -76,7 +78,7 @@ class Repo:
             c.setopt(c.WRITEDATA, buffer)
             c.perform()
             c.close()
-            
+
             res = buffer.getvalue()
 
             if plain:
@@ -103,8 +105,13 @@ class RepoStatus:
             lock.release()
         logging.debug(f"Done operation {name}")
 
+    @staticmethod
     def repo_wait_operation(name: str):
-        lock = RepoStatus.LOCKS.setdefault(name, PyLock())
+        # If the Lock hasn't be started, we should wait until it has been
+        # It's ugly but I haven't found another way
+        while name not in RepoStatus.LOCKS:
+            time.sleep(0.3)
+        lock = RepoStatus.LOCKS.get(name)
         logging.debug(f"Wait operation {name}")
         lock.acquire()
         lock.release()

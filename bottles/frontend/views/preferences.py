@@ -117,7 +117,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         def ui_update():
             if self.manager.utils_conn.status == True:
-                RepoStatus.repo_wait_operation("components.fetching")
                 RepoStatus.repo_wait_operation("components.organizing")
                 GLib.idle_add(self.populate_runners_list)
                 GLib.idle_add(self.populate_dxvk_list)

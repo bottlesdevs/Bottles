@@ -118,7 +118,6 @@ class DependenciesView(Adw.Bin):
 
         def process_dependencies():
             time.sleep(.3)  # workaround for freezing bug on bottle load
-            RepoStatus.repo_wait_operation("dependencies.fetching")
             RepoStatus.repo_wait_operation("dependencies.organizing")
             dependencies = self.manager.supported_dependencies
 
