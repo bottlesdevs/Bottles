@@ -17,7 +17,7 @@
 
 import os
 from gettext import gettext as _
-from gi.repository import Gtk, Adw, Pango
+from gi.repository import Gtk, Adw, Pango, Gio
 
 from bottles.backend.models.config import BottleConfig
 from bottles.frontend.utils.threading import RunAsync
@@ -66,6 +66,7 @@ class NewView(Adw.Window):
         super().__init__(**kwargs)
         self.set_transient_for(window)
         # common variables and references
+        self.app = window.app
         self.window = window
         self.manager = window.manager
         self.new_bottle_config = BottleConfig()
@@ -202,29 +203,46 @@ class NewView(Adw.Window):
 
     def finish(self, result, error=None) -> None:
         """ Updates widgets based on whether it succeeded or failed. """
+
+        def send_notification(id: str) -> None:
+            """ Sends notification if out of focus. """
+            if not self.is_active():
+                self.app.send_notification(id, notification)
+
         self.status_statuses.set_description(None)
         self.is_closable = True
+        notification = Gio.Notification()
 
         # Show error if bottle unsuccessfully builds
         if not result or not result.status or error:
+            title = _("Unable to Create Bottle")
             self.btn_cancel.set_visible(False)
             self.btn_close.set_visible(True)
-            self.status_statuses.set_title(_("Unable to Create Bottle"))
+            notification.set_title(title)
+            notification.set_body(_("Bottle failed to create with one or more errors."))
+            self.status_statuses.set_title(title)
             self.btn_close.get_style_context().add_class("destructive-action")
+            send_notification("bottle-failed")
             return
 
         # Show success
+        title = _("Bottle Created")
+        description = _("\"{0}\" was created successfully.").format(
+                self.entry_name.get_text()
+            )
+
+        notification = Gio.Notification()
+        notification.set_title(title)
+        notification.set_body(description)
+
         self.new_bottle_config = result.data.get("config")
         self.scrolled_output.set_visible(False)
         self.btn_close.set_visible(True)
         self.btn_close.get_style_context().add_class("suggested-action")
         self.status_statuses.set_icon_name("selection-mode-symbolic")
-        self.status_statuses.set_title(_("Bottle Created"))
-        self.status_statuses.set_description(
-            _("\"{0}\" was created successfully.").format(
-                self.entry_name.get_text()
-            )
-        )
+        self.status_statuses.set_title(title)
+        self.status_statuses.set_description(description)
+        send_notification("bottle-created")
 
         # Ask the manager to check for new bottles,
         # then update the user bottles' list.
