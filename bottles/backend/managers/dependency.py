@@ -18,6 +18,7 @@
 import os
 import uuid
 import shutil
+import traceback
 from glob import glob
 from functools import lru_cache
 from typing import Union
@@ -492,32 +493,31 @@ class DependencyManager:
             checksum=step.get("file_checksum")
         )
 
-        if download:
-            if step.get("rename"):
-                file = step.get("rename")
-            else:
-                file = step.get("file_name")
+        if not download:
+            return False
 
-            archive_path = os.path.join(Paths.temp, os.path.splitext(file)[0])
+        if step.get("rename"):
+            file = step.get("rename")
+        else:
+            file = step.get("file_name")
 
-            if os.path.exists(archive_path):
-                shutil.rmtree(archive_path)
+        archive_path = os.path.join(Paths.temp, os.path.splitext(file)[0])
 
-            os.makedirs(archive_path)
-            try:
-                ext_path = patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
-                ext_file = ext_path + "/" + os.path.basename(ext_path)
-                if os.path.exists(archive_path):
-                    if os.path.isfile(ext_file) and ext_file.endswith(".tar"):
-                        patoolib.extract_archive(
-                        ext_file,
-                        outdir=ext_path + "/"
-                        )
-            except:
-                return False
-            return True
+        if os.path.exists(archive_path):
+            shutil.rmtree(archive_path)
 
-        return False
+        os.makedirs(archive_path)
+        try:
+            patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
+            if archive_path.endswith(".tar"):
+                tar_path = os.path.join(archive_path, os.path.basename(archive_path))
+                patoolib.extract_archive(tar_path, outdir=archive_path)
+        except Exception as e:
+            logging.error("Something wrong happened during extraction.")
+            logging.error(f"{e}")
+            logging.error(f"{traceback.format_exc()}")
+            return False
+        return True
 
     @staticmethod
     def __step_install_fonts(config: BottleConfig, step: dict):
