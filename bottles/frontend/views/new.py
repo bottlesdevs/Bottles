@@ -108,7 +108,7 @@ class NewView(Adw.Window):
         """ Checks the state of combo_environment and updates group_custom accordingly. """
         self.group_custom.set_sensitive(self.check_custom.get_active())
 
-    def __check_entry_name(self, *_args):
+    def __check_entry_name(self, *_args) -> None:
         is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
         is_invalid = is_duplicate or self.entry_name.get_text() == ""
         self.btn_create.set_sensitive(not is_invalid)
@@ -124,7 +124,7 @@ class NewView(Adw.Window):
         Opens a file chooser dialog to select the configuration file
         in yaml format.
         """
-        def set_path(_dialog, response):
+        def set_path(_dialog, response: Gtk.ResponseType):
             if response == Gtk.ResponseType.ACCEPT:
                 self.btn_choose_env_reset.set_visible(True)
                 self.env_recipe_path = dialog.get_file().get_path()
@@ -145,7 +145,7 @@ class NewView(Adw.Window):
 
     def __choose_path(self, *_args) -> None:
         """ Opens a file chooser dialog to select the directory. """
-        def set_path(_dialog, response):
+        def set_path(_dialog, response: Gtk.ResponseType) -> None:
             if response == Gtk.ResponseType.ACCEPT:
                 self.btn_choose_path_reset.set_visible(True)
                 self.custom_path = dialog.get_file().get_path()
@@ -204,10 +204,10 @@ class NewView(Adw.Window):
     def finish(self, result, error=None) -> None:
         """ Updates widgets based on whether it succeeded or failed. """
 
-        def send_notification(id: str) -> None:
+        def send_notification(notification_id: str) -> None:
             """ Sends notification if out of focus. """
             if not self.is_active():
-                self.app.send_notification(id, notification)
+                self.app.send_notification(notification_id, notification)
 
         self.status_statuses.set_description(None)
         self.is_closable = True
@@ -249,7 +249,7 @@ class NewView(Adw.Window):
         self.manager.check_bottles()
         self.window.page_list.update_bottles(show=result.data.get("config").get("Path"))
 
-    def __radio_get_active(self):
+    def __radio_get_active(self) -> str:
         # TODO: Remove this ugly zig zag and find a better way to set the environment
         # https://docs.gtk.org/gtk4/class.CheckButton.html#grouping
         if self.check_application.get_active():
@@ -258,17 +258,17 @@ class NewView(Adw.Window):
             return "gaming"
         return "custom"
 
-    def __reset_env_recipe(self, _widget):
+    def __reset_env_recipe(self, _widget: Gtk.Button) -> None:
         self.btn_choose_env_reset.set_visible(False)
         self.env_recipe_path = None
         self.label_choose_env.set_label(self.default_string)
 
-    def __reset_path(self, _widget):
+    def __reset_path(self, _widget: Gtk.Button) -> None:
         self.btn_choose_path_reset.set_visible(False)
         self.custom_path = ""
         self.label_choose_path.set_label(self.default_string)
 
-    def do_close_request(self, *_args):
+    def do_close_request(self, *_args) -> bool:
         """ Close window if a new bottle is not being created """
         if self.is_closable is False:
             # TODO: Implement AdwMessageDialog to prompt the user if they are
