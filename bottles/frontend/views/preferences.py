@@ -28,9 +28,9 @@ from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
 from bottles.backend.managers.data import DataManager
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/preferences.ui")
 class PreferencesWindow(Adw.PreferencesWindow):
-    __gtype_name__ = 'PreferencesWindow'
+    __gtype_name__ = "PreferencesWindow"
     __registry = []
 
     # region Widgets
@@ -107,7 +107,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.dlls_stack.set_visible_child_name("dlls_loading")
         self.dlls_spinner.start()
 
-        if self.manager.utils_conn.status == False:
+        if self.manager.utils_conn.status is False:
             self.installers_stack.set_visible_child_name("installers_offline")
             self.dlls_stack.set_visible_child_name("dlls_offline")
 
@@ -116,7 +116,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.populate_winebridge_list()
 
         def ui_update():
-            if self.manager.utils_conn.status == True:
+            if self.manager.utils_conn.status is True:
                 RepoStatus.repo_wait_operation("components.organizing")
                 GLib.idle_add(self.populate_runners_list)
                 GLib.idle_add(self.populate_dxvk_list)
@@ -129,40 +129,39 @@ class PreferencesWindow(Adw.PreferencesWindow):
         RunAsync(ui_update)
 
         # connect signals
-        self.settings.connect('changed::dark-theme', self.__toggle_night)
-        self.settings.connect('changed::release-candidate', self.__toggle_rc)
-        self.settings.connect('changed::update-date', self.__toggle_update_date)
-        self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
-        self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
-        self.btn_steam_proton_doc.connect('clicked', self.__open_steam_proton_doc)
+        self.settings.connect("changed::dark-theme", self.__toggle_night)
+        self.settings.connect("changed::release-candidate", self.__toggle_rc)
+        self.settings.connect("changed::update-date", self.__toggle_update_date)
+        self.btn_bottles_path.connect("clicked", self.__choose_bottles_path)
+        self.btn_bottles_path_reset.connect("clicked", self.__reset_bottles_path)
+        self.btn_steam_proton_doc.connect("clicked", self.__open_steam_proton_doc)
 
         if not self.manager.steam_manager.is_steam_supported:
             self.switch_steam.set_sensitive(False)
             self.action_steam_proton.set_tooltip_text(
                 _("Steam was not found or Bottles does not have enough permissions."))
             self.btn_steam_proton_doc.set_visible(True)
-        
 
         if not self.style_manager.get_system_supports_color_schemes():
             self.row_theme.set_visible(True)
 
-    def __toggle_night(self, widget, state):
+    def __toggle_night(self, _widget, _state):
         if self.settings.get_boolean("dark-theme"):
             Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK)
         else:
             Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
 
 
-    def __toggle_update_date(self, widget, state):
+    def __toggle_update_date(self, _widget, _state):
         self.window.page_list.update_bottles()
 
-    def __toggle_rc(self, widget, state):
+    def __toggle_rc(self, _widget, _state):
         self.populate_runners_list()
 
-    def __open_steam_proton_doc(self, widget):
+    def __open_steam_proton_doc(self, _widget):
         webbrowser.open("https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager")
 
-    def __choose_bottles_path(self, widget):
+    def __choose_bottles_path(self, _widget):
         def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 return
@@ -206,7 +205,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             dialog.connect("response", self.handle_restart)
             dialog.present()
 
-    def __reset_bottles_path(self, widget):
+    def __reset_bottles_path(self, _widget):
         self.data.remove("custom_bottles_path")
         self.btn_bottles_path_reset.set_visible(False)
         self.label_bottles_path.set_label(_("(Default)"))

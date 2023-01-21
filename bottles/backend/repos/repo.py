@@ -16,7 +16,6 @@
 #
 
 import time
-from http.client import RemoteDisconnected
 from io import BytesIO
 from threading import Lock as PyLock
 from typing import Dict

@@ -27,9 +27,9 @@ from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.widgets.dependency import DependencyEntry
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/details-dependencies.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/details-dependencies.ui")
 class DependenciesView(Adw.Bin):
-    __gtype_name__ = 'DetailsDependencies'
+    __gtype_name__ = "DetailsDependencies"
     __registry = []
 
     # region Widgets
@@ -62,8 +62,8 @@ class DependenciesView(Adw.Bin):
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
 
-        if self.manager.utils_conn.status == False:
-            self.stack.set_visible_child_name("page_offline") 
+        if self.manager.utils_conn.status is False:
+            self.stack.set_visible_child_name("page_offline")
 
         self.spinner_loading.start()
 
@@ -88,7 +88,7 @@ class DependenciesView(Adw.Bin):
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, widget=False, config: Optional[BottleConfig] = None):
+    def update(self, _widget=False, config: Optional[BottleConfig] = None):
         """
         This function update the dependencies list with the
         supported by the manager.
@@ -98,10 +98,10 @@ class DependenciesView(Adw.Bin):
         self.config = config
 
         # Not sure if it's the best place to make this check
-        if self.manager.utils_conn.status == False:
+        if self.manager.utils_conn.status is False:
             return
 
-        self.stack.set_visible_child_name("page_loading") 
+        self.stack.set_visible_child_name("page_loading")
 
         def new_dependency(dependency, plain=False):
             entry = DependencyEntry(
@@ -113,7 +113,7 @@ class DependenciesView(Adw.Bin):
             self.__registry.append(entry)
             self.list_dependencies.append(entry)
 
-        def callback(result, error=False):
+        def callback(_result, _error=False):
             self.stack.set_visible_child_name("page_deps")
 
         def process_dependencies():
@@ -126,7 +126,7 @@ class DependenciesView(Adw.Bin):
             if len(dependencies.keys()) > 0:
                 for dep in dependencies.items():
                     if dep[0] in self.config.Installed_Dependencies:
-                        continue  # Do not list already installed dependencies'
+                        continue  # Do not list already installed dependencies
 
                     if dep[1].get("Arch", "win64") != self.config.Arch:
                         # NOTE: avoid listing dependencies not supported by the bottle arch
