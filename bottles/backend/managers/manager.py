@@ -388,6 +388,7 @@ class Manager:
             "caffe": [],
             "vaniglia": [],
             "lutris": [],
+            "others": [],
             "sys-": []
         }
 
@@ -396,6 +397,8 @@ class Manager:
                 if i.startswith(r):
                     runners_order[r].append(i)
                     break
+            else:
+                runners_order["others"].append(i)
 
         self.runners_available = [x for l in list(runners_order.values()) for x in l]
 

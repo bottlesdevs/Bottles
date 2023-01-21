@@ -204,7 +204,7 @@ class NewView(Adw.Window):
     def finish(self, result, error=None) -> None:
         """ Updates widgets based on whether it succeeded or failed. """
 
-        def send_notification(notification_id: str) -> None:
+        def send_notification(notification_id: str, notification: Gio.Notification) -> None:
             """ Sends notification if out of focus. """
             if not self.is_active():
                 self.app.send_notification(notification_id, notification)
@@ -222,7 +222,7 @@ class NewView(Adw.Window):
             notification.set_body(_("Bottle failed to create with one or more errors."))
             self.status_statuses.set_title(title)
             self.btn_close.get_style_context().add_class("destructive-action")
-            send_notification("bottle-failed")
+            send_notification("bottle-failed", notification)
             return
 
         # Show success
@@ -231,7 +231,6 @@ class NewView(Adw.Window):
                 self.entry_name.get_text()
             )
 
-        notification = Gio.Notification()
         notification.set_title(title)
         notification.set_body(description)
 
@@ -242,7 +241,7 @@ class NewView(Adw.Window):
         self.status_statuses.set_icon_name("selection-mode-symbolic")
         self.status_statuses.set_title(title)
         self.status_statuses.set_description(description)
-        send_notification("bottle-created")
+        send_notification("bottle-created", notification)
 
         # Ask the manager to check for new bottles,
         # then update the user bottles' list.
