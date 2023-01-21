@@ -87,7 +87,7 @@ class Manager:
     """
 
     # component lists
-    runtimes_available = []
+    available_runtime = None
     winebridge_available = []
     runners_available = []
     dxvk_available = []
@@ -410,35 +410,35 @@ class Manager:
         self.runners_available = sorted(self.runners_available, reverse=True)
         return True
 
+    @RunAsync.run_async
     def check_runtimes(self, install_latest: bool = True) -> bool:
-        self.runtimes_available = []
+        RepoStatus.repo_wait_operation("components.fetching")
+        RepoStatus.repo_wait_operation("components.organizing")
         if "FLATPAK_ID" in os.environ:
-            self.runtimes_available = ["flatpak-managed"]
+            self.available_runtime = "flatpak-managed"
             return True
 
         runtimes = os.listdir(Paths.runtimes)
-
+        latest_version = next(iter(self.supported_runtimes))
         if len(runtimes) == 0:
-            if install_latest and self.utils_conn.check_connection():
-                logging.warning("No runtime found.")
-                try:
-                    version = next(iter(self.supported_runtimes))
-                    return self.component_manager.install("runtime", version)
-                except StopIteration:
-                    return False
-            return False
+            logging.warning("No runtime found.")
+            install_latest = True
+        else:
+            runtime = runtimes[0]  # runtimes cannot be more than one
+            manifest = os.path.join(Paths.runtimes, runtime, "manifest.yml")
+            if os.path.exists(manifest):
+                f = open(manifest, "r")
+                version = yaml.load(f).get("version")
+                version = f"runtime-{version}"
+                if version != latest_version:
+                    logging.info("Runtime Update Available.")
+                    install_latest = True
+                    
+        if install_latest and self.utils_conn.check_connection():
+            if self.component_manager.install("runtime", latest_version):
+                self.available_runtime = latest_version
+                return True
 
-        runtime = runtimes[0]  # runtimes cannot be more than one
-        manifest = os.path.join(Paths.runtimes, runtime, "manifest.yml")
-
-        if os.path.exists(manifest):
-            with open(manifest, "r") as f:
-                data = yaml.load(f)
-                version = data.get("version")
-                if version:
-                    version = f"runtime-{version}"
-                    self.runtimes_available = [version]
-                    return True
         return False
 
     def check_winebridge(self, install_latest: bool = True, update: bool = False) -> bool:
@@ -513,7 +513,7 @@ class Manager:
                 "path": Paths.latencyflex
             },
             "runtime": {
-                "available": self.runtimes_available,
+                "available": self.available_runtime,
                 "supported": self.supported_runtimes,
                 "path": Paths.runtimes
             }

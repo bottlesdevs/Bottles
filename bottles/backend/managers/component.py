@@ -76,7 +76,7 @@ class ComponentManager:
             "winebridge": {}
         }
         components_available = {
-            "runtimes": self.__manager.runtimes_available,
+            "runtimes": [self.__manager.available_runtime],
             "wine": self.__manager.runners_available,
             "proton": self.__manager.runners_available,
             "dxvk": self.__manager.dxvk_available,
