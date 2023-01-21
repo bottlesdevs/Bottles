@@ -115,8 +115,8 @@ template NewView : .AdwWindow {
             sensitive: false;
 
             .AdwActionRow row_sandbox {
-              // TODO: Find better name and description
-              title: _("Unlink User Directory from Home Directory");
+              title: _("Share User Directory");
+              subtitle: _("This makes the user directory discoverable in the bottle, at the risk of sharing personal information to Windows software. This option cannot be changed after the bottle has been created.");
               activatable-widget: "switch_sandbox";
 
               Switch switch_sandbox {

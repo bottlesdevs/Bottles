@@ -274,7 +274,7 @@ class NewView(Adw.Window):
             # TODO: Implement AdwMessageDialog to prompt the user if they are
             # SURE they want to cancel creation. For now, the window will not
             # react if the user attempts to close the window while a bottle
-            # is being created
+            # is being created in a feature update
             return True
         self.close()
         return False
