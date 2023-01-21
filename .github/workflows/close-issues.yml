@@ -1,0 +1,21 @@
+name: close-issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        with:
+          text: ${{ github.event.issue.body }}
+          regex: 'Version:.*202\d.\d\d.\d\d'
+      - if: ${{ steps.regex-match.outputs.match != '' }}
+        name: Close Issue
+        uses: peter-evans/close-issue@v2
+        with:
+          comment: |
+            It seems like you're using an old version of Bottles. Please upgrade to the version from Flathub [here](https://flathub.org/apps/details/com.usebottles.bottles), and try to reproduce the bug.
