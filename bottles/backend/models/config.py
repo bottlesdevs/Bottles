@@ -9,9 +9,6 @@ from typing.io import IO
 
 from bottles.backend.models.result import Result
 from bottles.backend.utils import yaml
-from bottles.backend.logger import Logger
-
-logging = Logger()
 
 # class name prefix "Bottle" is a workaround for:
 # https://github.com/python/cpython/issues/90104
