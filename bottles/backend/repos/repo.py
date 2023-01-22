@@ -17,7 +17,7 @@
 
 import time
 from io import BytesIO
-from threading import Lock as PyLock
+from threading import Event as PyEvent
 from typing import Dict
 
 import pycurl
@@ -89,29 +89,22 @@ class Repo:
             return {}
 
 class RepoStatus:
-    LOCKS: Dict[str, PyLock] = {}
+    EVENTS: Dict[str, PyEvent] = {}
 
     @staticmethod
     def repo_start_operation(name: str):
-        lock = RepoStatus.LOCKS.setdefault(name, PyLock())
-        lock.acquire()
+        event = RepoStatus.EVENTS.setdefault(name, PyEvent())
+        event.clear()
         logging.debug(f"Start operation {name}")
 
     @staticmethod
     def repo_done_operation(name: str):
-        lock = RepoStatus.LOCKS.setdefault(name, PyLock())
-        if lock.locked():
-            lock.release()
+        event = RepoStatus.EVENTS.setdefault(name, PyEvent())
+        event.set()
         logging.debug(f"Done operation {name}")
 
     @staticmethod
     def repo_wait_operation(name: str):
-        # If the Lock hasn't be started, we should wait until it has been
-        # It's ugly but I haven't found another way
-        while name not in RepoStatus.LOCKS:
-            time.sleep(0.3)
-        lock = RepoStatus.LOCKS.get(name)
-        logging.debug(f"Wait operation {name}")
-        lock.acquire()
-        lock.release()
+        event = RepoStatus.EVENTS.setdefault(name, PyEvent())
+        event.wait()
         logging.debug(f"Done wait operation {name}")
