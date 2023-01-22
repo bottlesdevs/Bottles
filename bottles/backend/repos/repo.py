@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import time
 from io import BytesIO
 from threading import Event as PyEvent
 from typing import Dict
