@@ -106,5 +106,6 @@ class RepoStatus:
     @staticmethod
     def repo_wait_operation(name: str):
         event = RepoStatus.EVENTS.setdefault(name, PyEvent())
+        # By default when an Event is created, it will be false, so it will block
         event.wait()
         logging.debug(f"Done wait operation {name}")
