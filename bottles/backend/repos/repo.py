@@ -44,8 +44,6 @@ class Repo:
         RunAsync(self.__get_catalog, callback=set_catalog, index=index, offline=offline)
 
     def __get_catalog(self, index: str, offline: bool = False):
-        RepoStatus.repo_start_operation(self.name + ".fetching")
-
         if index in ["", None] or offline:
             return {}
 
@@ -90,12 +88,6 @@ class Repo:
 
 class RepoStatus:
     EVENTS: Dict[str, PyEvent] = {}
-
-    @staticmethod
-    def repo_start_operation(name: str):
-        event = RepoStatus.EVENTS.setdefault(name, PyEvent())
-        event.clear()
-        logging.debug(f"Start operation {name}")
 
     @staticmethod
     def repo_done_operation(name: str):
