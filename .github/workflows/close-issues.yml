@@ -17,5 +17,6 @@ jobs:
         name: Close Issue
         uses: peter-evans/close-issue@v2
         with:
+          close-reason: not_planned
           comment: |
             It seems like you're using an old version of Bottles. Please upgrade to the version from Flathub [here](https://flathub.org/apps/details/com.usebottles.bottles), and try to reproduce the bug.
