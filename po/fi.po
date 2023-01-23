@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2023-01-23 08:22+0000\n"
+"PO-Revision-Date: 2023-01-24 20:47+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
@@ -1345,11 +1345,11 @@ msgid "Start Installation"
 msgstr "Aloita asennus"
 
 #: bottles/frontend/ui/dialog-installer.blp:64
-#, fuzzy
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
-msgstr "Tämä asentaja vaatii paikallisia resursseja: %s"
+msgstr ""
+"Tämä asentaja vaatii paikallisia resursseja, joita ei ole muuten saatavilla."
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
@@ -1460,7 +1460,6 @@ msgid "Preferences Overrides"
 msgstr "Asetukset"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:119
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
 msgstr "Palauta oletusarvoon"
 
