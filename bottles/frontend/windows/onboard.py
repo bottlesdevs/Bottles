@@ -26,7 +26,6 @@ from bottles.frontend.utils.threading import RunAsync
 @Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
 class OnboardDialog(Adw.Window):
     __gtype_name__ = 'OnboardDialog'
-    __installing = False
     __settings = Gtk.Settings.get_default()
 
     # region Widgets
@@ -34,22 +33,12 @@ class OnboardDialog(Adw.Window):
     btn_close = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     btn_next = Gtk.Template.Child()
+    btn_skip = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
-    page_welcome = Gtk.Template.Child()
-    page_bottles = Gtk.Template.Child()
-    page_download = Gtk.Template.Child()
-    page_finish = Gtk.Template.Child()
     img_welcome = Gtk.Template.Child()
-    label_skip = Gtk.Template.Child()
     # endregion
 
-    carousel_pages = [
-        "welcome",
-        "bottles",
-        "download",
-        "finish"
-    ]
     images = [
         "/com/usebottles/bottles/images/images/bottles-welcome.svg",
         "/com/usebottles/bottles/images/images/bottles-welcome-night.svg",
@@ -70,9 +59,8 @@ class OnboardDialog(Adw.Window):
         self.btn_back.connect("clicked", self.__previous_page)
         self.btn_next.connect("clicked", self.__next_page)
         self.btn_install.connect("clicked", self.__install_runner)
+        self.btn_skip.connect("clicked", self.__skip_tutorial)
         self.__settings.connect("notify::gtk-application-prefer-dark-theme", self.__theme_changed)
-
-        self.btn_close.set_sensitive(False)
 
         if self.__settings.get_property("gtk-application-prefer-dark-theme"):
             self.img_welcome.set_from_resource(self.images[1])
@@ -82,27 +70,21 @@ class OnboardDialog(Adw.Window):
     def __theme_changed(self, settings, key):
         self.img_welcome.set_from_resource(self.images[settings.get_property("gtk-application-prefer-dark-theme")])
 
-    def __get_page(self, index):
-        return self.carousel_pages[index]
-
-    def __page_changed(self, widget=False, index=0, *_args):
+    def __page_changed(self, *_args):
         """
         This function is called on first load and when the user require
         to change the page. It sets the widgets' status according to
         the step of the onboard progress.
         """
-        page = self.__get_page(index)
-
-        if page == "finish":
-            self.btn_back.set_visible(False)
-            self.btn_next.set_visible(False)
-        elif page == "download":
-            self.btn_back.set_visible(True)
-            self.btn_next.set_visible(False)
-            self.btn_install.set_visible(True)
-        elif page == "welcome":
+        if self.carousel.get_position() == 0:
             self.btn_back.set_visible(False)
             self.btn_next.set_visible(True)
+        elif self.carousel.get_position() == self.carousel.get_n_pages() - 2:
+            self.btn_back.set_visible(True)
+            self.btn_next.set_visible(False)
+        elif self.carousel.get_position() == self.carousel.get_n_pages() - 1:
+            self.btn_back.set_visible(False)
+            self.btn_next.set_visible(False)
         else:
             self.btn_back.set_visible(True)
             self.btn_next.set_visible(True)
@@ -111,25 +93,14 @@ class OnboardDialog(Adw.Window):
     def __quit(widget=False):
         quit()
 
-    def __install_runner(self, widget):
+    def __install_runner(self, _widget):
         def set_completed(result: Result, error=False):
-            if result.status:
-                self.label_skip.set_visible(False)
-                self.btn_close.set_sensitive(True)
-                self.__next_page()
-            else:
-                self.__installing = False
-                self.btn_install.set_visible(True)
-                self.progressbar.set_visible(False)
+            self.__next_page(_)
 
-        self.__installing = True
         self.btn_back.set_visible(False)
         self.btn_next.set_visible(False)
         self.btn_install.set_visible(False)
         self.progressbar.set_visible(True)
-        self.carousel.set_allow_long_swipes(False)
-        self.carousel.set_allow_mouse_drag(False)
-        self.carousel.set_allow_scroll_wheel(False)
         self.set_deletable(False)
 
         RunAsync(self.pulse)
@@ -140,13 +111,13 @@ class OnboardDialog(Adw.Window):
             first_run=True
         )
 
-    def __previous_page(self, widget=False):
-        index = int(self.carousel.get_position())
+    def __previous_page(self, _widget):
+        index = self.carousel.get_position()
         previous_page = self.carousel.get_nth_page(index - 1)
         self.carousel.scroll_to(previous_page, True)
 
-    def __next_page(self, widget=False):
-        index = int(self.carousel.get_position())
+    def __next_page(self, _widget):
+        index = self.carousel.get_position()
         next_page = self.carousel.get_nth_page(index + 1)
         self.carousel.scroll_to(next_page, True)
 
@@ -155,6 +126,9 @@ class OnboardDialog(Adw.Window):
         while True:
             time.sleep(.5)
             self.progressbar.pulse()
+
+    def __skip_tutorial(self, _widget):
+        self.carousel.scroll_to(self.carousel.get_nth_page(self.carousel.get_n_pages() - 2), True)
 
     def __close_window(self, widget):
         self.destroy()

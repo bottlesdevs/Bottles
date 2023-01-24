@@ -4,7 +4,7 @@ template OnboardDialog : .AdwWindow {
   resizable: false;
   deletable: true;
   modal: true;
-  default-width: "550";
+  default-width: "650";
   default-height: "550";
 
   Box {
@@ -42,8 +42,8 @@ template OnboardDialog : .AdwWindow {
         vexpand: true;
         hexpand: true;
         allow-scroll-wheel: true;
-        allow-mouse-drag: true;
-        allow-long-swipes: true;
+        allow-mouse-drag: false;
+        allow-long-swipes: false;
 
         Box {
           orientation: vertical;
@@ -55,24 +55,57 @@ template OnboardDialog : .AdwWindow {
             pixel-size: 320;
           }
 
-          .AdwStatusPage page_welcome {
+          .AdwStatusPage {
             title: _("Welcome to Bottles");
-            description: _("Run Windows Software on Linux.");
+            description: _("Run Windows software on Linux.");
           }
         }
 
-        .AdwStatusPage page_bottles {
-          title: _("Windows in Bottles");
-          description: _("Bottles uses compatibility runners to provide isolated containerized Windows-like environments where programs run.");
-          vexpand: true;
-          hexpand: true;
+        .AdwStatusPage {
+          title: _("Tutorial");
+          description: _("Before starting Bottles, let's go over some terms and usage paradigms, so you can use Bottles more efficiently.");
+          child:
+          Box {
+            orientation: vertical;
+
+            Button btn_skip {
+              label: _("_Skip Tutorial");
+              use-underline: true;
+              halign: center;
+
+              styles [
+                "destructive-action",
+                "pill",
+              ]
+            }
+          }
+
+          ;
         }
 
-        .AdwStatusPage page_download {
+        .AdwStatusPage {
+          title: _("What is a Compatibity Layer?");
+          description: _("Compatibility layers, or translation layers, are software that translate information from one platform to another. Compatibility layers allow us to run platform-specific software on another platform, for example, Windows-only software on Linux.");
+        }
+
+        .AdwStatusPage {
+          title: _("What is Wine?");
+          description: _("Wine is a compatibility layer that translates Windows-only resources into open and platform-independent alternatives that work on Linux. Under the hood, Bottles uses Wine to run Windows software.");
+        }
+
+        .AdwStatusPage {
+          title: _("What is a Runner?");
+          description: _("Runners are iterations of Wine curated by communities to address specific problems. Some runners are for games, some are for apps, some are for a specific app or game, and so on. Bottles uses \"Soda\" as a general purpose runner.");
+        }
+
+        .AdwStatusPage {
+          title: _("What is a \"Bottle\"?");
+          description: _("A bottle is a container that runs Windows software. This allows you to separate and organize the individual bottles according to your needs. For example, you could have one bottle for Windows apps and one bottle for Windows games. If an app or game needs additional tweaking, such as a different runner or setting, then you can create a bottle specifically for that app or game.");
+        }
+
+        .AdwStatusPage {
           title: _("Almost Done");
           description: _("We need a few more minutes to set everything up…");
-          vexpand: true;
-          hexpand: true;
           child: 
           Box {
             orientation: vertical;
@@ -100,21 +133,13 @@ template OnboardDialog : .AdwWindow {
           ;
         }
 
-        .AdwStatusPage page_finish {
+        .AdwStatusPage {
           icon-name: "selection-mode-symbolic";
-          title: _("All Ready!");
-          vexpand: true;
-          hexpand: true;
+          title: _("Setup Completed");
           valign: "center";
           child: 
           Box {
             orientation: vertical;
-
-            Label label_skip {
-              label: _("Please Finish the setup first");
-              visible: true;
-              margin-bottom: 5;
-            }
 
             Button btn_close {
               label: _("Start using Bottles");
