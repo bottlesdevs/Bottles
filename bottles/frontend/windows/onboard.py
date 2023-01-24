@@ -16,7 +16,7 @@
 #
 
 import time
-from sys import exit
+import sys
 
 from gi.repository import Gtk, Adw
 
@@ -92,7 +92,7 @@ class OnboardDialog(Adw.Window):
 
     @staticmethod
     def __quit(_widget):
-        exit()
+        sys.exit()
 
     def __install_runner(self, _widget):
         def set_completed(_result: Result, _error=False):
