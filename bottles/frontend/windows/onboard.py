@@ -16,6 +16,7 @@
 #
 
 import time
+from sys import exit
 
 from gi.repository import Gtk, Adw
 
@@ -23,9 +24,9 @@ from bottles.backend.models.result import Result
 from bottles.frontend.utils.threading import RunAsync
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/onboard.ui")
 class OnboardDialog(Adw.Window):
-    __gtype_name__ = 'OnboardDialog'
+    __gtype_name__ = "OnboardDialog"
     __settings = Gtk.Settings.get_default()
 
     # region Widgets
@@ -54,7 +55,7 @@ class OnboardDialog(Adw.Window):
 
         # connect signals
         self.connect("close-request", self.__quit)
-        self.carousel.connect('page-changed', self.__page_changed)
+        self.carousel.connect("page-changed", self.__page_changed)
         self.btn_close.connect("clicked", self.__close_window)
         self.btn_back.connect("clicked", self.__previous_page)
         self.btn_next.connect("clicked", self.__next_page)
@@ -67,7 +68,7 @@ class OnboardDialog(Adw.Window):
 
         self.__page_changed()
 
-    def __theme_changed(self, settings, key):
+    def __theme_changed(self, settings, _key):
         self.img_welcome.set_from_resource(self.images[settings.get_property("gtk-application-prefer-dark-theme")])
 
     def __page_changed(self, *_args):
@@ -90,12 +91,12 @@ class OnboardDialog(Adw.Window):
             self.btn_next.set_visible(True)
 
     @staticmethod
-    def __quit(widget=False):
-        quit()
+    def __quit(_widget):
+        exit()
 
     def __install_runner(self, _widget):
-        def set_completed(result: Result, error=False):
-            self.__next_page(_)
+        def set_completed(_result: Result, _error=False):
+            self.__next_page()
 
         self.btn_back.set_visible(False)
         self.btn_next.set_visible(False)
@@ -116,7 +117,7 @@ class OnboardDialog(Adw.Window):
         previous_page = self.carousel.get_nth_page(index - 1)
         self.carousel.scroll_to(previous_page, True)
 
-    def __next_page(self, _widget):
+    def __next_page(self, _widget=None):
         index = self.carousel.get_position()
         next_page = self.carousel.get_nth_page(index + 1)
         self.carousel.scroll_to(next_page, True)
@@ -130,5 +131,5 @@ class OnboardDialog(Adw.Window):
     def __skip_tutorial(self, _widget):
         self.carousel.scroll_to(self.carousel.get_nth_page(self.carousel.get_n_pages() - 2), True)
 
-    def __close_window(self, widget):
+    def __close_window(self, _widget):
         self.destroy()
