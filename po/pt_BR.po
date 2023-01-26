@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2023-01-22 18:27+0000\n"
-"Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
+"PO-Revision-Date: 2023-01-26 22:57+0000\n"
+"Last-Translator: Matheus Bastos <matheusmcy1@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.15.1\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
@@ -708,6 +708,8 @@ msgstr "Efeitos de pós-processamento"
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
+"Adicionar vários efeitos de pós-processamento usando vkBasalt. Funciona "
+"apenas no Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:130
 #, fuzzy
@@ -716,7 +718,7 @@ msgstr "Gerencie as configurações do subsistema do wine."
 
 #: bottles/frontend/ui/details-preferences.blp:146
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "Gerencia como os jogos devem ser exibidos na tela usando o Gamescope."
 
 #: bottles/frontend/ui/details-preferences.blp:149
 msgid "Manage Gamescope settings"
@@ -767,6 +769,8 @@ msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
+"Exibe informações de monitoramento, como taxa de quadros, temperaturas, "
+"carga de CPU/GPU e muito mais em OpenGL e Vulkan usando o MangoHud."
 
 #: bottles/frontend/ui/details-preferences.blp:203
 #, fuzzy
@@ -777,6 +781,8 @@ msgstr "GameMode"
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
+"Aplica um conjunto de otimizações ao seu dispositivo. Pode melhorar o "
+"desempenho do jogo."
 
 #: bottles/frontend/ui/details-preferences.blp:213
 #, fuzzy
@@ -788,6 +794,8 @@ msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Melhora o tempo de carregamento ao iniciar o jogo várias vezes. O jogo vai "
+"demorar mais para começar pela primeira vez."
 
 #: bottles/frontend/ui/details-preferences.blp:218
 msgid "Manage vmtouch settings"
@@ -908,6 +916,8 @@ msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
 msgstr ""
+"Cria snapshots automaticamente antes de instalar o software ou alterar as "
+"configurações."
 
 #: bottles/frontend/ui/details-preferences.blp:383
 #, fuzzy
@@ -919,6 +929,8 @@ msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
+"Comprime snapshots para reduzir o espaço. Isso tornará mais lento a criação "
+"de snapshots."
 
 #: bottles/frontend/ui/details-preferences.blp:393
 msgid "Use Exclusion Patterns"
@@ -926,7 +938,7 @@ msgstr "Usar padrões de exclusão"
 
 #: bottles/frontend/ui/details-preferences.blp:394
 msgid "Exclude paths in snapshots."
-msgstr ""
+msgstr "Exclui caminhos em snapshots."
 
 #: bottles/frontend/ui/details-preferences.blp:397
 msgid "Manage Patterns"
@@ -1146,7 +1158,7 @@ msgstr "Duplicando…"
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/ui/new.blp:190
 msgid "This could take a while."
-msgstr ""
+msgstr "Isso pode levar um tempo."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
@@ -1202,7 +1214,7 @@ msgstr "Salvar"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "Gerencia como os jogos devem ser exibidos."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
@@ -1268,7 +1280,7 @@ msgstr "Tela cheia"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr ""
+msgstr "Você quer prosseguir com a instalação?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
 #, fuzzy
@@ -1303,7 +1315,7 @@ msgstr "Falha na instalação de dependências."
 
 #: bottles/frontend/ui/dialog-installer.blp:145
 msgid "Something went wrong."
-msgstr ""
+msgstr "Algo deu errado."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1335,7 +1347,7 @@ msgstr "Navegador de diário"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr ""
+msgstr "Altera o nível dos logs."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
@@ -1543,7 +1555,7 @@ msgstr "Feito! Por favor, reinicie o Bottles."
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
 msgid "Post-Processing Effects Settings"
-msgstr ""
+msgstr "Configuração de Efeitos de Pós-Processamento"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
@@ -1587,7 +1599,7 @@ msgstr "Mostrar informação"
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "Denoised Luma Sharpening"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
@@ -1679,6 +1691,9 @@ msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"Limite de borda FXAA é a quantidade mínima de contraste necessária para "
+"aplicar o algoritmo FXAA. Valores mais altos fazem com que o quadro tenha "
+"mais contraste."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:496
 msgid ""
@@ -1686,6 +1701,10 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"Limite mínimo de qualidade da borda FXAA é o valor mínimo de pixels escuros "
+"que são ignorados pelo algoritmo FXAA. Valores mais altos fazem o FXAA "
+"ignorar pixels abaixo do valor especificado e podem levar a um aumento de "
+"desempenho."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
 msgid ""
