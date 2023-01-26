@@ -106,7 +106,7 @@ class ImporterView(Adw.Bin):
                 callback=self.__finish,
                 window=self.window,
                 scope="full",
-                path=dialog.get_path().get_file(),
+                path=dialog.get_file().get_path(),
                 manager=self.manager
             )
 
