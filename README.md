@@ -34,10 +34,7 @@
 
 <br/>
 
-<div align="center">
-  <img src="./screenshot-light.png#gh-dark-mode-only">
-  <img src="./screenshot-dark.png#gh-dark-mode-only">
-</div>
+![Bottles Dark](./screenshot-dark.png#gh-dark-mode-only)![Bottles Light](./screenshot-light.png#gh-light-mode-only)
 
 ## 📚 Documentation
 Before opening a new issue, check if the topic has already been covered 
