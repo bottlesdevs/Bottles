@@ -346,7 +346,7 @@ class Manager:
         winemenubuilder tool.
         """
         runners = glob(f"{Paths.runners}/*/")
-        self.runners_available = []
+        self.runners_available, runners_available = [], []
 
         # lock winemenubuilder.exe
         for runner in runners:
@@ -374,12 +374,33 @@ class Manager:
                 shell=True
             ).communicate()[0].decode("utf-8")
             version = "sys-" + version.split("\n")[0].split(" ")[0]
-            self.runners_available.append(version)
+            runners_available.append(version)
 
         # check bottles runners
         for runner in runners:
             _runner = os.path.basename(os.path.normpath(runner))
-            self.runners_available.append(_runner)
+            runners_available.append(_runner)
+
+        runners_available = sorted(runners_available, reverse=True)
+
+        runners_order = {
+            "soda": [],
+            "caffe": [],
+            "vaniglia": [],
+            "lutris": [],
+            "others": [],
+            "sys-": []
+        }
+
+        for i in runners_available:
+            for r in runners_order:
+                if i.startswith(r):
+                    runners_order[r].append(i)
+                    break
+            else:
+                runners_order["others"].append(i)
+
+        self.runners_available = [x for l in list(runners_order.values()) for x in l]
 
         if len(self.runners_available) > 0:
             logging.info("Runners found:\n - {0}".format("\n - ".join(self.runners_available)))
@@ -407,7 +428,6 @@ class Manager:
             else:
                 return False
 
-        self.runners_available = sorted(self.runners_available, reverse=True)
         return True
 
     def check_runtimes(self, install_latest: bool = True) -> bool:
