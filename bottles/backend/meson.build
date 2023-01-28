@@ -1,6 +1,12 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 backenddir = join_paths(pkgdatadir, 'bottles/backend')
 
+params_file = configure_file(
+    input:  'params.py',
+    output:  'params.py',
+    configuration: conf
+)
+
 subdir('wine')
 subdir('models')
 subdir('utils')
@@ -16,7 +22,8 @@ bottles_sources = [
   'health.py',
   'downloader.py',
   'logger.py',
-  'cabextract.py'
+  'cabextract.py',
+  params_file
 ]
 
 install_data(bottles_sources, install_dir: backenddir)
