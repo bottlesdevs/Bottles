@@ -35,7 +35,8 @@
 <br/>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/main/screenshot.png">
+  <img src="./screenshot-light.png#gh-dark-mode-only">
+  <img src="./screenshot-dark.png#gh-dark-mode-only">
 </div>
 
 ## 📚 Documentation
