@@ -60,7 +60,7 @@ class TaskManager:
 
     @classmethod
     def add_task(cls, task: Task) -> UUID:
-        """add a """
+        """register a running task to TaskManager"""
         uniq = uuid4()
         cls._TASKS[str(uniq)] = task
         return uniq
