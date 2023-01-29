@@ -15,14 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from gettext import gettext as _
 from typing import Optional
 
 from gi.repository import Gtk
 
 from bottles.backend.models.config import BottleConfig
-from bottles.frontend.utils.threading import RunAsync
-from bottles.backend.runner import Runner
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.winebridge import WineBridge
 

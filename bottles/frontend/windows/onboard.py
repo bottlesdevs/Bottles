@@ -20,7 +20,7 @@ import time
 from gi.repository import Gtk, Adw
 
 from bottles.backend.models.result import Result
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')

@@ -17,8 +17,7 @@
 
 from gi.repository import Gtk
 
-from bottles.frontend.utils.threading import RunAsync
-from bottles.backend.runner import Runner
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 
 

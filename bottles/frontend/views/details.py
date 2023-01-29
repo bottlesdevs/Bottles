@@ -23,9 +23,8 @@ from gi.repository import Gtk, Adw, GLib
 
 from bottles.backend.managers.queue import QueueManager
 from bottles.backend.models.config import BottleConfig
-from bottles.backend.models.result import Result
 
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.views.bottle_details import BottleView
 from bottles.frontend.views.bottle_installers import InstallersView
 from bottles.frontend.views.bottle_dependencies import DependenciesView

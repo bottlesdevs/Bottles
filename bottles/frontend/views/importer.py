@@ -19,7 +19,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
 from bottles.backend.managers.backup import BackupManager
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.widgets.importer import ImporterEntry
 from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 

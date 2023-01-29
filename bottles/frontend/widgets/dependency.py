@@ -17,12 +17,12 @@
 
 import webbrowser
 import contextlib
-from gi.repository import Gtk, GLib, Adw
+from gi.repository import Gtk, Adw
 from gettext import gettext as _
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.windows.generic import SourceDialog
 
 

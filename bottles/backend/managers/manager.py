@@ -16,14 +16,12 @@
 #
 
 import os
-import hashlib
 import subprocess
 import random
 import time
 import uuid
 
 from bottles.backend.models.config import BottleConfig
-from bottles.backend.models.samples import Samples
 from bottles.backend.utils import yaml
 import shutil
 import fnmatch
@@ -36,11 +34,9 @@ from gi.repository import GLib
 import pathvalidate
 
 from bottles.backend.logger import Logger
-from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
 from bottles.backend.globals import Paths
-from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.versioning import VersioningManager
 from bottles.backend.managers.repository import RepositoryManager
@@ -56,7 +52,6 @@ from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.generic import sort_by_version
-from bottles.backend.utils.decorators import cache
 from bottles.backend.managers.importer import ImportManager
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
@@ -69,7 +64,7 @@ from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.winepath import WinePath
 
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 
 logging = Logger()
 

@@ -18,8 +18,7 @@
 import urllib.request
 from gi.repository import Gtk, GLib, Gio, GdkPixbuf, Adw
 
-from bottles.frontend.utils.threading import RunAsync
-from bottles.backend.wine.drives import Drives
+from bottles.backend.utils.threading import RunAsync
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/local-resource-entry.ui')

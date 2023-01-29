@@ -18,13 +18,12 @@
 from bottles.backend.utils import yaml
 import pycurl
 from io import BytesIO
-from http.client import RemoteDisconnected
 from threading import Lock as PyLock
 from typing import Dict
 
 from bottles.backend.logger import Logger
 
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 
 logging = Logger()
 

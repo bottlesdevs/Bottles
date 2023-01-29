@@ -16,17 +16,16 @@
 #
 
 import os
+
 import pycurl
-import http
-from typing import Union, NewType
 from gi.repository import GLib
 
 from bottles.backend.logger import Logger
-from bottles.backend.repos.dependency import DependencyRepo
-from bottles.backend.repos.component import ComponentRepo
-from bottles.backend.repos.installer import InstallerRepo
 from bottles.backend.params import APP_VERSION
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.repos.component import ComponentRepo
+from bottles.backend.repos.dependency import DependencyRepo
+from bottles.backend.repos.installer import InstallerRepo
+from bottles.backend.utils.threading import RunAsync
 
 logging = Logger()
 
@@ -95,9 +94,9 @@ class RepositoryManager:
         threads = []
 
         for repo, data in self.__repositories.items():
-            def query(repo, data):
-                __index = os.path.join(data["url"], f"{APP_VERSION}.yml")
-                __fallback = os.path.join(data["url"], "index.yml")
+            def query(_repo, _data):
+                __index = os.path.join(_data["url"], f"{APP_VERSION}.yml")
+                __fallback = os.path.join(_data["url"], "index.yml")
 
                 for url in (__index, __fallback):
                     c = pycurl.Curl()
@@ -110,18 +109,18 @@ class RepositoryManager:
                         c.perform()
                     except pycurl.error as e:
                         if url is not __index:
-                            logging.error(f"Could not get index for {repo} repository: {e}")
+                            logging.error(f"Could not get index for {_repo} repository: {e}")
                         continue
 
                     if url.startswith("file://") or c.getinfo(c.RESPONSE_CODE) == 200:
-                        data["index"] = url
+                        _data["index"] = url
                         if self.repo_fn_update is not None:
                             GLib.idle_add(self.repo_fn_update, total)
                         break
 
                     c.close()
                 else:
-                    logging.error(f"Could not get index for {repo} repository")
+                    logging.error(f"Could not get index for {_repo} repository")
 
             thread = RunAsync(query, repo=repo, data=data)
             threads.append(thread)

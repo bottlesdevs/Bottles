@@ -21,7 +21,7 @@ from typing import Union
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.models.result import Result
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
 from bottles.frontend.windows.rename import RenameDialog

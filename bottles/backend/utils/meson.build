@@ -19,7 +19,8 @@ bottles_sources = [
   'imagemagick.py',
   'proc.py',
   'yaml.py',
-  'nvidia.py'
+  'nvidia.py',
+  'threading.py'
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)

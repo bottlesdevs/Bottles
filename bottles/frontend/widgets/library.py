@@ -15,16 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
-import math
-from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Adw
+from gi.repository import Gtk, GdkPixbuf
 
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.thumbnail import ThumbnailManager
-from bottles.backend.runner import Runner
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.logger import Logger

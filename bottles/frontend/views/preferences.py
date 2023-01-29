@@ -23,7 +23,7 @@ from gi.repository import Gtk, Adw, Gio, GLib
 
 from bottles.backend.repos.repo import RepoStatus
 
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
 from bottles.backend.managers.data import DataManager

@@ -22,7 +22,7 @@ from gi.repository import Gtk, GObject, Adw
 from bottles.backend.logger import Logger
 from bottles.backend.state import Status
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 
 logging = Logger()
 

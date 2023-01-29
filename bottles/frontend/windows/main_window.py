@@ -16,27 +16,24 @@
 #
 
 import os
-import time
 import contextlib
 import webbrowser
 from gettext import gettext as _
 from typing import Optional
 
 from gi.repository import Gtk, GLib, Gio, Adw, GObject
-from pathlib import Path
 
 from bottles.frontend.params import *
 
 from bottles.backend.models.config import BottleConfig
 from bottles.frontend.const import *
 from bottles.backend.logger import Logger
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.connection import ConnectionUtils
 
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
-from bottles.backend.wine.executor import WineExecutor
 
 from bottles.frontend.views.new import NewView
 from bottles.frontend.views.details import DetailsView
@@ -47,9 +44,7 @@ from bottles.frontend.views.importer import ImporterView
 from bottles.frontend.views.loading import LoadingView
 
 from bottles.frontend.windows.crash import CrashReportDialog
-from bottles.frontend.windows.generic import SourceDialog
 from bottles.frontend.windows.onboard import OnboardDialog
-from bottles.frontend.windows.journal import JournalDialog
 from bottles.frontend.windows.depscheck import DependenciesCheckDialog
 
 logging = Logger()

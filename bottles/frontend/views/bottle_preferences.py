@@ -25,8 +25,7 @@ from bottles.backend.globals import gamemode_available, vkbasalt_available, mang
     vmtouch_available, gamescope_available
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
-from bottles.frontend.utils.threading import RunAsync
-from bottles.frontend.utils.gtk import GtkUtils
+from bottles.backend.utils.threading import RunAsync
 
 from bottles.backend.runner import Runner
 from bottles.backend.managers.runtime import RuntimeManager

@@ -16,10 +16,7 @@
 #
 
 import os
-import re
-import time
 import uuid
-import webbrowser
 from datetime import datetime
 from gettext import gettext as _
 from typing import List, Optional
@@ -27,18 +24,15 @@ from typing import List, Optional
 from gi.repository import Gtk, Gio, Adw, Gdk, GLib
 
 from bottles.backend.models.config import BottleConfig
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 
-from bottles.backend.runner import Runner
 from bottles.backend.managers.backup import BackupManager
 from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.frontend.widgets.program import ProgramEntry
-from bottles.frontend.widgets.executable import ExecButton
 
-from bottles.frontend.windows.generic import MessageDialog
 from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
 from bottles.frontend.utils.filters import add_executable_filters, add_all_filters

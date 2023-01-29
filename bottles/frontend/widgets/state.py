@@ -16,11 +16,9 @@
 #
 
 from datetime import datetime
-from gi.repository import Gtk, GLib, Adw
-from gettext import gettext as _
+from gi.repository import Gtk, Adw
 
-from bottles.frontend.utils.threading import RunAsync
-from bottles.frontend.windows.generic import SourceDialog
+from bottles.backend.utils.threading import RunAsync
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
