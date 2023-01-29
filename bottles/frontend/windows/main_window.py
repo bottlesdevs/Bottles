@@ -38,7 +38,6 @@ from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import *
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.details import DetailsView
-from bottles.frontend.views.importer import ImporterView
 from bottles.frontend.views.library import LibraryView
 from bottles.frontend.views.list import BottleView
 from bottles.frontend.views.loading import LoadingView
@@ -176,14 +175,11 @@ class MainWindow(Adw.ApplicationWindow):
             # Pages
             self.page_details = DetailsView(self)
             self.page_list = BottleView(self, arg_bottle=self.arg_bottle)
-            self.page_importer = ImporterView(self)
             self.page_library = LibraryView(self)
 
             self.main_leaf.append(self.page_details)
-            self.main_leaf.append(self.page_importer)
 
             self.main_leaf.get_page(self.page_details).set_navigatable(False)
-            self.main_leaf.get_page(self.page_importer).set_navigatable(False)
 
             self.stack_main.add_titled(
                 child=self.page_list,
@@ -275,9 +271,6 @@ class MainWindow(Adw.ApplicationWindow):
 
     def show_list_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_list")
-
-    def show_importer_view(self, widget=False):
-        self.main_leaf.set_visible_child(self.page_importer)
 
     def show_prefs_view(self, widget=False, view=0):
         preferences_window = PreferencesWindow(self)

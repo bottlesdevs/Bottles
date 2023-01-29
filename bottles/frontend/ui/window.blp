@@ -76,8 +76,12 @@ template MainWindow : .AdwApplicationWindow {
 menu primary_menu {
   section {
     item {
-      label: _("Import…");
+      label: _("Import Configuration…");
       action: "app.import";
+    }
+    item {
+      label: _("Restore Backup…");
+      action: "app.restore";
     }
   }
 

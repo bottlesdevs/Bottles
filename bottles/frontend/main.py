@@ -38,6 +38,8 @@ from bottles.frontend.windows.main_window import MainWindow
 from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.backend.health import HealthChecker
 
+from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
+
 logging = Logger()
 
 # region Translations
@@ -88,7 +90,8 @@ class Bottles(Adw.Application):
         )
         self.__create_action('quit', self.__quit, ['<primary>q', '<primary>w'])
         self.__create_action('about', self.__show_about_window)
-        self.__create_action('import', self.__show_importer_view, ['<primary>i'])
+        self.__create_action('import', self.__import_conf, ['<primary>i'])
+        self.__create_action('restore', self.__restore_backup, ['<primary>r'])
         self.__create_action('preferences', self.__show_preferences, ['<primary>comma'])
         self.__create_action('help', self.__help, ['F1'])
 
@@ -351,6 +354,78 @@ class Bottles(Adw.Application):
         self.add_action(action)
         if shortcuts:
             self.set_accels_for_action(f"app.{name}", shortcuts)
+
+    def __import_conf(self, *_args):
+        """
+        This function shows a dialog to the user, from which it can choose an
+        archive backup to import into Bottles. It supports only .yml files
+        which are the Bottles' configuration file. Once selected, it will
+        be imported.
+        """
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
+
+            self.window.show_toast(_("Importing backup…"))
+            RunAsync(
+                task_func=BackupManager.import_backup,
+                callback=self.__finish,
+                window=self.window,
+                scope="config",
+                path=dialog.get_file().get_path(),
+                manager=self.manager
+            )
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Configuration"),
+            action=Gtk.FileChooserAction.OPEN,
+            parent=self.win,
+            accept_label=_("Import")
+        )
+
+        add_yaml_filters(dialog)
+        add_all_filters(dialog)
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
+
+    def __restore_backup(self, *_args):
+        """
+        This function shows a dialog to the user, from which it can choose an
+        archive backup to import into Bottles. It supports only .tar.gz files
+        as Bottles export bottles in this format. Once selected, it will
+        be imported.
+        """
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
+
+            self.window.show_toast(_("Importing backup…"))
+            RunAsync(
+                task_func=BackupManager.import_backup,
+                callback=self.__finish,
+                window=self.window,
+                scope="full",
+                path=dialog.get_file().get_path(),
+                manager=self.manager
+            )
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Backup Archive"),
+            action=Gtk.FileChooserAction.OPEN,
+            parent=self.win,
+            accept_label=_("Import")
+        )
+
+        filter = Gtk.FileFilter()
+        filter.set_name("GNU Gzip Archive")
+        filter.add_mime_type("application/gzip")
+
+        dialog.add_filter(filter)
+        add_all_filters(dialog)
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
 
 GObject.threads_init()
 
