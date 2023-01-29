@@ -458,7 +458,6 @@ class BottleView(Adw.PreferencesPage):
             RunAsync(
                 task_func=BackupManager.export_backup,
                 callback=finish,
-                window=self.window,
                 config=self.config,
                 scope=backup_type,
                 path=path
