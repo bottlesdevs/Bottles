@@ -16,9 +16,11 @@
 #
 
 from datetime import datetime
+
 from gi.repository import Gtk, Adw
 
 from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
@@ -43,7 +45,7 @@ class StateEntry(Adw.ActionRow):
 
         if config.Versioning:
             self.state_name = "#{} - {}".format(
-                state[0], 
+                state[0],
                 datetime.strptime(state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f").strftime("%d %B %Y, %H:%M")
             )
 
@@ -51,11 +53,12 @@ class StateEntry(Adw.ActionRow):
             if state[0] == config.State:
                 self.add_css_class("current-state")
         else:
-            self.state_name = "{} - {}".format(state[0], datetime.fromtimestamp(state[1]["timestamp"]).strftime("%d %B %Y, %H:%M"))
+            self.state_name = "{} - {}".format(state[0], datetime.fromtimestamp(state[1]["timestamp"]).strftime(
+                "%d %B %Y, %H:%M"))
             self.set_subtitle(state[1]["message"])
             if active:
                 self.add_css_class("current-state")
-            
+
         self.set_title(self.state_name)
         self.config = config
         self.versioning_manager = self.manager.versioning_manager
@@ -78,6 +81,7 @@ class StateEntry(Adw.ActionRow):
             state_id=self.state[0],
         )
 
+    @GtkUtils.run_in_main_loop
     def set_completed(self, result, error=False):
         """
         Set completed status to the widget.

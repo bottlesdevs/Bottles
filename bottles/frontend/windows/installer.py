@@ -16,9 +16,11 @@
 #
 
 import urllib.request
+
 from gi.repository import Gtk, GLib, Gio, GdkPixbuf, Adw
 
 from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/local-resource-entry.ui')
@@ -47,6 +49,7 @@ class LocalResourceEntry(Adw.ActionRow):
         Open the file chooser dialog and set the path to the
         selected file
         """
+
         def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 return
@@ -64,6 +67,7 @@ class LocalResourceEntry(Adw.ActionRow):
         dialog.set_modal(True)
         dialog.connect("response", set_path)
         dialog.show()
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-installer.ui')
 class InstallerDialog(Adw.Window):
@@ -101,7 +105,6 @@ class InstallerDialog(Adw.Window):
             self.style_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
-
 
         self.window = window
         self.manager = window.manager
@@ -162,6 +165,7 @@ class InstallerDialog(Adw.Window):
         self.set_deletable(False)
         self.stack.set_visible_child_name("page_install")
 
+        @GtkUtils.run_in_main_loop
         def set_status(result, error=False):
             if result.status:
                 return self.__installed()

@@ -15,14 +15,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import webbrowser
 import contextlib
-from gi.repository import Gtk, Adw
+import webbrowser
 from gettext import gettext as _
+
+from gi.repository import Gtk, Adw
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.windows.generic import SourceDialog
 
 
@@ -154,6 +156,7 @@ class DependencyEntry(Adw.ActionRow):
             dependency=self.dependency,
         )
 
+    @GtkUtils.run_in_main_loop
     def set_install_status(self, result: Result, error=None):
         """
         This function set the dependency as installed

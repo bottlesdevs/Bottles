@@ -16,10 +16,12 @@
 #
 
 import time
+
 from gi.repository import Gtk, Adw
 
-from bottles.backend.utils.threading import RunAsync
 from bottles.backend.managers.backup import BackupManager
+from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-duplicate.ui')
@@ -77,6 +79,7 @@ class DuplicateDialog(Adw.Window):
             name=name
         )
 
+    @GtkUtils.run_in_main_loop
     def finish(self, result, error=None):
         # TODO: handle result.status == False
         self.parent.manager.update_bottles()
@@ -87,4 +90,3 @@ class DuplicateDialog(Adw.Window):
         while True:
             time.sleep(.5)
             self.progressbar.pulse()
-

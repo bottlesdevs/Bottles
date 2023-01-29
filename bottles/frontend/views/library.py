@@ -16,13 +16,13 @@
 #
 
 import contextlib
-import logging
 import re
-from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk, GLib, Adw
+
+from gi.repository import Gtk, Adw
 
 from bottles.backend.managers.library import LibraryManager
+from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.library import LibraryEntry
 
 
@@ -35,6 +35,7 @@ class LibraryView(Adw.Bin):
     main_flow = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     style_provider = Gtk.CssProvider()
+
     # endregion
 
     def __init__(self, window, **kwargs):
@@ -59,10 +60,12 @@ class LibraryView(Adw.Bin):
                 entry = LibraryEntry(self, u, e)
                 self.main_flow.append(entry)
 
-    def remove_entry(self,  entry):
+    def remove_entry(self, entry):
+        @GtkUtils.run_in_main_loop
         def undo_callback(*args):
             entry.show()
 
+        @GtkUtils.run_in_main_loop
         def dismissed_callback(*args):
             self.__delete_entry(entry)
 
@@ -81,8 +84,14 @@ class LibraryView(Adw.Bin):
 
     def add_css_entry(self, entry, color):
         gtk_context = self.get_style_context()
-        Gtk.StyleContext.add_class(entry.btn_menu.get_style_context(), re.sub('[~!@$%^&*()+=,./\';:"?><\[\]\{}|`#]', '', entry.entry["name"]).replace(" ", "")+"_menu_button")
-        self.css = self.css+b"\n"+b"."+bytes(re.sub('[~!@$%^&*()+=,./\';:"?><\[\]\{}|`#]', '', entry.entry["name"]).replace(" ", ""), 'utf-8')+b"_menu_button { color: rgba("+bytes(str(color), 'utf-8')+b","+bytes(str(color), 'utf-8')+b","+bytes(str(color), 'utf-8')+b", 255); }"
+        Gtk.StyleContext.add_class(entry.btn_menu.get_style_context(),
+                                   re.sub('[~!@$%^&*()+=,./\';:"?><\[\]\{}|`#]', '', entry.entry["name"]).replace(" ",
+                                                                                                                  "") + "_menu_button")
+        self.css = self.css + b"\n" + b"." + bytes(
+            re.sub('[~!@$%^&*()+=,./\';:"?><\[\]\{}|`#]', '', entry.entry["name"]).replace(" ", ""),
+            'utf-8') + b"_menu_button { color: rgba(" + bytes(str(color), 'utf-8') + b"," + bytes(str(color),
+                                                                                                  'utf-8') + b"," + bytes(
+            str(color), 'utf-8') + b", 255); }"
         self.style_provider.load_from_data(self.css)
         Gtk.StyleContext.add_provider(
             entry.btn_menu.get_style_context(),

@@ -25,6 +25,7 @@ from bottles.backend.managers.queue import QueueManager
 from bottles.backend.models.config import BottleConfig
 
 from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.bottle_details import BottleView
 from bottles.frontend.views.bottle_installers import InstallersView
 from bottles.frontend.views.bottle_dependencies import DependenciesView
@@ -227,10 +228,12 @@ class DetailsView(Adw.Bin):
         while self.stack_bottle.get_first_child():
             self.stack_bottle.remove(self.stack_bottle.get_first_child())
 
+    @GtkUtils.run_in_main_loop
     def lock_back(self):
         self.btn_back.set_sensitive(False)
         self.btn_back.set_tooltip_text(_("Operations in progress, please wait."))
 
+    @GtkUtils.run_in_main_loop
     def unlock_back(self):
         self.btn_back.set_sensitive(True)
         self.btn_back.set_tooltip_text(_("Return to your bottles."))

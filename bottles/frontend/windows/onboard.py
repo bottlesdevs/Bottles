@@ -21,6 +21,7 @@ from gi.repository import Gtk, Adw
 
 from bottles.backend.models.result import Result
 from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
@@ -112,6 +113,7 @@ class OnboardDialog(Adw.Window):
         quit()
 
     def __install_runner(self, widget):
+        @GtkUtils.run_in_main_loop
         def set_completed(result: Result, error=False):
             if result.status:
                 self.label_skip.set_visible(False)

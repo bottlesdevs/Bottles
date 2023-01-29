@@ -1017,7 +1017,7 @@ class Manager:
         """
         def log_update(message):
             if fn_logger:
-                GLib.idle_add(fn_logger, message)
+                fn_logger(message)
 
         # check for essential components
         check_attempts = 0

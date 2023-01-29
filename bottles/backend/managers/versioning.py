@@ -225,17 +225,14 @@ class VersioningManager:
         self.manager.update_config(config, "State", state_id)
 
         # update states
-        GLib.idle_add(
-            self.window.page_details.view_versioning.update,
-            False, config
-        )
+        self.window.page_details.view_versioning.update(False, config)
 
         # update bottles
         self.manager.update_bottles()
 
         # execute caller function after all
         if after:
-            GLib.idle_add(after)
+            after()
 
         return True
 

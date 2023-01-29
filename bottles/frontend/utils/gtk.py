@@ -17,6 +17,8 @@
 
 import re
 
+from gi.repository import GLib
+
 
 class GtkUtils:
 
@@ -34,3 +36,10 @@ class GtkUtils:
 
         entry.remove_css_class("error")
         return True
+
+    @staticmethod
+    def run_in_main_loop(func):
+        def wrapper(*args):
+            GLib.idle_add(func, *args)
+
+        return wrapper

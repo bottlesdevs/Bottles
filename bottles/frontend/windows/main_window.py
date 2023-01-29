@@ -15,37 +15,34 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 import contextlib
+import os
 import webbrowser
 from gettext import gettext as _
 from typing import Optional
 
 from gi.repository import Gtk, GLib, Gio, Adw, GObject
 
-from bottles.frontend.params import *
-
-from bottles.backend.models.config import BottleConfig
-from bottles.frontend.const import *
-from bottles.backend.logger import Logger
-from bottles.backend.utils.threading import RunAsync
-from bottles.frontend.utils.connection import ConnectionUtils
-
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
+from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
-
-from bottles.frontend.views.new import NewView
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.const import *
+from bottles.frontend.params import *
+from bottles.frontend.utils.connection import ConnectionUtils
+from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.details import DetailsView
-from bottles.frontend.views.list import BottleView
-from bottles.frontend.views.library import LibraryView
-from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.views.importer import ImporterView
+from bottles.frontend.views.library import LibraryView
+from bottles.frontend.views.list import BottleView
 from bottles.frontend.views.loading import LoadingView
-
+from bottles.frontend.views.new import NewView
+from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.windows.crash import CrashReportDialog
-from bottles.frontend.windows.onboard import OnboardDialog
 from bottles.frontend.windows.depscheck import DependenciesCheckDialog
+from bottles.frontend.windows.onboard import OnboardDialog
 
 logging = Logger()
 
@@ -132,6 +129,7 @@ class MainWindow(Adw.ApplicationWindow):
         prompted with the onboard dialog.
         """
 
+        @GtkUtils.run_in_main_loop
         def set_manager(result, error=None):
             self.manager = result
 
@@ -295,9 +293,11 @@ class MainWindow(Adw.ApplicationWindow):
 
         if action_label and action_callback:
             toast.set_button_label(action_label)
+
             def wrapper_callback(*args):
                 action_callback(toast)
                 toast.handler_block_by_func(dismissed_callback)
+
             toast.connect("button-clicked", wrapper_callback)
 
         if dismissed_callback:

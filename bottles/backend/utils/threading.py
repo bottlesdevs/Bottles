@@ -39,7 +39,6 @@ class RunAsync(threading.Thread):
             import faulthandler
             faulthandler.enable()
 
-        self.source_id = None
         logging.debug(
             f"Running async job [{task_func}] "
             f"(from main thread: {threading.current_thread() is threading.main_thread()})."
@@ -70,8 +69,7 @@ class RunAsync(threading.Thread):
             traceback_info = '\n'.join(traceback.format_tb(trace))
 
             logging.write_log([str(exception), traceback_info])
-        self.source_id = GLib.idle_add(self.callback, result, error)
-        return self.source_id
+        self.callback(result, error)
 
     @staticmethod
     def run_async(func):

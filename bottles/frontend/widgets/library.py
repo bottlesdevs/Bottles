@@ -16,14 +16,16 @@
 #
 
 from gettext import gettext as _
+
 from gi.repository import Gtk, GdkPixbuf
 
-from bottles.backend.utils.threading import RunAsync
+from bottles.backend.logger import Logger
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.thumbnail import ThumbnailManager
-from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
-from bottles.backend.logger import Logger
+from bottles.backend.wine.winedbg import WineDbg
+from bottles.frontend.utils.gtk import GtkUtils
 
 logging = Logger()
 
@@ -56,7 +58,7 @@ class LibraryEntry(Gtk.Box):
         self.uuid = uuid
         self.entry = entry
         self.config = self.__get_config()
-        
+
         # This happens when a Library entry is an "orphan" (no bottles associated)
         if self.config is None:
             library_manager = LibraryManager()
@@ -115,6 +117,7 @@ class LibraryEntry(Gtk.Box):
             return None  # TODO: remove entry from library
         return programs[0]
 
+    @GtkUtils.run_in_main_loop
     def __reset_buttons(self, result=False, error=False):
         status = False
         if result:
@@ -128,6 +131,7 @@ class LibraryEntry(Gtk.Box):
     def __is_alive(self):
         winedbg = WineDbg(self.config)
 
+        @GtkUtils.run_in_main_loop
         def set_watcher(result=False, error=False):
             nonlocal winedbg
             self.__reset_buttons()
@@ -151,9 +155,9 @@ class LibraryEntry(Gtk.Box):
     def run_executable(self, widget, with_terminal=False):
         self.window.show_toast(_("Launching \"{0}\"…").format(self.program["name"]))
         RunAsync(
-            WineExecutor.run_program, 
-            callback=self.__reset_buttons, 
-            config=self.config, 
+            WineExecutor.run_program,
+            callback=self.__reset_buttons,
+            config=self.config,
             program=self.program
         )
         self.__reset_buttons()

@@ -23,6 +23,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.state import Status
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 
 logging = Logger()
 
@@ -79,6 +80,7 @@ class ComponentEntry(Adw.ActionRow):
         self.btn_browse.connect("clicked", self.run_browse)
 
     def download(self, widget):
+        @GtkUtils.run_in_main_loop
         def async_callback(result, error=False):
             if not result or result.status:
                 return self.set_installed()
@@ -98,6 +100,7 @@ class ComponentEntry(Adw.ActionRow):
         )
 
     def uninstall(self, widget):
+        @GtkUtils.run_in_main_loop
         def update(result, error=False):
             if result.status:
                 return self.set_uninstalled()

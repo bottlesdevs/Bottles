@@ -149,8 +149,8 @@ class ManagerUtils:
 
                         if fn_update:
                             if _size % 0.1 == 0:
-                                GLib.idle_add(fn_update, _size)
-                    GLib.idle_add(fn_update, 1)
+                                fn_update(_size)
+                    fn_update(1)
             return file_new_path
         except (OSError, IOError):
             logging.error(f"Could not copy file {file_path} to the bottle.")

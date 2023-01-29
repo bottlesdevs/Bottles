@@ -115,7 +115,7 @@ class RepositoryManager:
                     if url.startswith("file://") or c.getinfo(c.RESPONSE_CODE) == 200:
                         _data["index"] = url
                         if self.repo_fn_update is not None:
-                            GLib.idle_add(self.repo_fn_update, total)
+                            self.repo_fn_update(total)
                         break
 
                     c.close()
