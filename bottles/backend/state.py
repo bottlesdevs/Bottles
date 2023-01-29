@@ -20,13 +20,19 @@ class TaskStreamUpdateHandler(Protocol):
     def __call__(self, received_size: int = 0, total_size: int = 0, status: Status = None) -> None: ...
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(init=False)
 class Task:
     _task_id: Optional[UUID] = None  # should only be set by TaskManager
     title: str = "Task"
     _subtitle: str = ""
     hidden: bool = False  # hide from UI
     cancellable: bool = False
+
+    def __init__(self, title: str = "Task", subtitle: str = "", hidden: bool = False, cancellable: bool = False):
+        self.title = title
+        self.subtitle = subtitle
+        self.hidden = hidden
+        self.cancellable = cancellable
 
     @property
     def task_id(self) -> UUID:
