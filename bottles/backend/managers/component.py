@@ -25,7 +25,7 @@ from functools import lru_cache
 from gi.repository import GLib
 from typing import Union
 
-from bottles.backend.utils.decorators import Lock
+from bottles.backend.state import State, Locks
 
 try:
     from bottles.frontend.operation import OperationManager
@@ -201,7 +201,7 @@ class ComponentManager:
 
                 req_code = c.getinfo(c.RESPONSE_CODE)
                 download_url = c.getinfo(c.EFFECTIVE_URL)
-                
+
                 c.close()
             except pycurl.error:
                 logging.exception(f"Failed to download [{download_url}]")
@@ -322,7 +322,7 @@ class ComponentManager:
                 return False
         return True
 
-    @Lock.mutex("ComponentManager.install")  # avoid high resource usage
+    @State.lock(Locks.ComponentsInstall)  # avoid high resource usage
     def install(
             self,
             component_type: str,
