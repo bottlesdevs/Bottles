@@ -37,6 +37,8 @@ from bottles.backend.logger import Logger
 from bottles.frontend.windows.main_window import MainWindow
 from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.backend.health import HealthChecker
+from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.managers.backup import BackupManager
 
 from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 
@@ -236,6 +238,7 @@ class Bottles(Adw.Application):
                 arg_bottle=self.arg_bottle
             )
         self.win = win
+        self.manager = win.manager
         win.present()
 
     @staticmethod
@@ -366,11 +369,17 @@ class Bottles(Adw.Application):
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
-            self.window.show_toast(_("Importing backup…"))
+            def finish(result, error=False):
+                if result.status:
+                    self.win.show_toast(_("Configuration imported successfully"))
+                else:
+                    self.win.show_toast(_("Importing configuration failed"))
+
+            self.win.show_toast(_("Importing backup…"))
             RunAsync(
                 task_func=BackupManager.import_backup,
-                callback=self.__finish,
-                window=self.window,
+                callback=finish,
+                window=self.win,
                 scope="config",
                 path=dialog.get_file().get_path(),
                 manager=self.manager
@@ -400,11 +409,17 @@ class Bottles(Adw.Application):
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
-            self.window.show_toast(_("Importing backup…"))
+            def finish(result, error=False):
+                if result.status:
+                    self.win.show_toast(_("Backup restored successfully"))
+                else:
+                    self.win.show_toast(_("Restoring backup failed"))
+
+            self.win.show_toast(_("Importing backup…"))
             RunAsync(
                 task_func=BackupManager.import_backup,
-                callback=self.__finish,
-                window=self.window,
+                callback=self.finish,
+                window=self.win,
                 scope="full",
                 path=dialog.get_file().get_path(),
                 manager=self.manager
