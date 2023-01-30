@@ -77,6 +77,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.utils_conn = ConnectionUtils(self)
         self.manager = None
         self.arg_bottle = arg_bottle
+        self.app = kwargs.get("application")
 
         if BUILD_TYPE == "devel":
             self.add_css_class("devel")
