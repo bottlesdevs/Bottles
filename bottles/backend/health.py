@@ -69,27 +69,16 @@ class HealthChecker:
         }
         self.get_ram_data()
 
-        if "FLATPAK_ID" not in os.environ:
-            self.cabextract = self.check_cabextract()
-            self.p7zip = self.check_p7zip()
-            self.patool = self.check_patool()
-            self.icoextract = self.check_icoextract()
-            self.pefile = self.check_pefile()
-            self.orjson = self.check_orjson()
-            self.markdown = self.check_markdown()
-            self.xdpyinfo = self.check_xdpyinfo()
-            self.ImageMagick = self.check_ImageMagick()
-            self.FVS = self.check_FVS()
-        else:
-            self.cabextract = True
-            self.p7zip = True
-            self.patool = True
-            self.icoextract = True
-            self.pefile = True
-            self.orjson = True
-            self.markdown = True
-            self.ImageMagick = True
-            self.FVS = True
+        self.cabextract = self.check_cabextract()
+        self.p7zip = self.check_p7zip()
+        self.patool = self.check_patool()
+        self.icoextract = self.check_icoextract()
+        self.pefile = self.check_pefile()
+        self.orjson = self.check_orjson()
+        self.markdown = self.check_markdown()
+        self.xdpyinfo = self.check_xdpyinfo()
+        self.ImageMagick = self.check_ImageMagick()
+        self.FVS = self.check_FVS()
 
     @staticmethod
     def check_gpus():
@@ -104,38 +93,33 @@ class HealthChecker:
 
     @staticmethod
     def check_wayland():
-        if "WAYLAND_DISPLAY" in os.environ:
-            return True
-        return False
+        return "WAYLAND_DISPLAY" in os.environ
 
     def check_xwayland(self):
-        if self.x11 and self.wayland:
-            return True
-        return False
+        return self.x11 and self.wayland
 
     def check_desktop(self):
         return os.environ.get("DESKTOP_SESSION")
 
     @staticmethod
     def check_cabextract():
-        res = shutil.which("cabextract")
-        if res is None:
-            return False
-        return True
+        return bool(shutil.which("cabextract"))
 
     @staticmethod
     def check_p7zip():
-        res = shutil.which("7z")
-        if res is None:
-            return False
-        return True
+        return bool(shutil.which("7z"))
 
     @staticmethod
     def check_patool():
-        res = shutil.which("patool")
-        if res is None:
-            return False
-        return True
+        return bool(shutil.which("patool"))
+
+    @staticmethod
+    def check_xdpyinfo():
+        return bool(shutil.which("xdpyinfo"))
+
+    @staticmethod
+    def check_ImageMagick():
+        return bool(shutil.which("identify"))
 
     @staticmethod
     def check_icoextract():
@@ -168,20 +152,6 @@ class HealthChecker:
             return True
         except ModuleNotFoundError:
             return False
-
-    @staticmethod
-    def check_xdpyinfo():
-        res = shutil.which("xdpyinfo")
-        if res is None:
-            return False
-        return True
-
-    @staticmethod
-    def check_ImageMagick():
-        res = shutil.which("identify")
-        if res is None:
-            return False
-        return True
 
     @staticmethod
     def check_FVS():
