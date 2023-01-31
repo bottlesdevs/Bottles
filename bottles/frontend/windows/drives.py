@@ -91,7 +91,7 @@ class DriveEntry(Adw.ActionRow):
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-drives.ui')
 class DrivesDialog(Adw.Window):
     __gtype_name__ = 'DrivesDialog'
-    __alphabet = list(string.ascii_uppercase.replace("C", ""))
+    __alphabet = list(ascii_uppercase.replace("C", ""))
 
     # region Widgets
     combo_letter = Gtk.Template.Child()
