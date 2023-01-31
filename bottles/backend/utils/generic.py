@@ -20,7 +20,9 @@ import random
 import re
 import string
 import subprocess
-import sys
+from typing import Optional
+
+import chardet as chardet
 
 
 def validate_url(url: str):
@@ -38,54 +40,12 @@ def validate_url(url: str):
     return re.match(regex, url) is not None
 
 
-def detect_encoding(text: bytes):
+def detect_encoding(text: bytes) -> Optional[str]:
     """
     Detect the encoding of a text by its bytes. Return None if it
     can't be detected.
     """
-    encodings = [
-        "ascii",
-        "utf-8",
-        "utf-16",
-        "utf-32",
-        "latin-1",
-        "big5",
-        "gb2312",
-        "gb18030",
-        "euc_jp",
-        "euc_jis_2004",
-        "euc_jisx0213",
-        "shift_jis",
-        "shift_jis_2004",
-        "shift_jisx0213",
-        "iso2022_jp",
-        "iso2022_jp_1",
-        "iso2022_jp_2",
-        "iso2022_jp_2004",
-        "iso2022_jp_3",
-        "iso2022_jp_ext",
-        "iso2022_kr",
-        "utf_32_be",
-        "utf_32_le",
-        "utf_16_be",
-        "utf_16_le",
-        "utf_7",
-        "utf_8_sig",
-        "utf_16_be_sig",
-        "utf_16_le_sig",
-        "utf_32_be_sig",
-        "utf_32_le_sig"
-    ]
-
-    if sys.stdout is not None:
-        encodings.append(sys.stdout.encoding)
-
-    for encoding in encodings:
-        with contextlib.suppress(UnicodeDecodeError):
-            text.decode(encoding)
-            return encoding
-
-    return None
+    return chardet.detect(text).get('encoding')
 
 
 def is_glibc_min_available():

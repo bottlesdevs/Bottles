@@ -17,6 +17,9 @@
 
 import os
 import uuid
+
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.vdict import VDFDict
 from bottles.backend.utils import yaml
 import shlex
 import shutil
@@ -25,7 +28,7 @@ from gi.repository import Gtk, Gdk
 from glob import glob
 from pathlib import Path
 from functools import lru_cache
-from typing import Union, NewType
+from typing import Union, NewType, Dict
 from datetime import datetime
 
 from bottles.backend.models.samples import Samples
@@ -47,7 +50,7 @@ class SteamManager:
     localconfig = {}
     library_folders = []
 
-    def __init__(self, config: dict = None, is_windows: bool = False, check_only: bool = False):
+    def __init__(self, config: BottleConfig = None, is_windows: bool = False, check_only: bool = False):
         self.config = config
         self.is_windows = is_windows
         self.steam_path = self.__find_steam_path()
@@ -165,7 +168,7 @@ class SteamManager:
             shutil.copy(self.localconfig_path, f"{self.localconfig_path}.bck.{now}")
 
         with open(self.localconfig_path, "w") as f:
-            SteamUtils.to_vdf(new_data, f)
+            SteamUtils.to_vdf(VDFDict(new_data), f)
 
         logging.info(f"Steam config saved")
 
@@ -193,15 +196,18 @@ class SteamManager:
 
             return proton_name, proton_path
 
-    def list_apps_ids(self) -> list:
+    def list_apps_ids(self) -> dict:
         """List all apps in Steam"""
         apps = self.localconfig.get("UserLocalConfigStore", {}) \
             .get("Software", {}) \
             .get("Valve", {}) \
             .get("Steam", {})
-        apps = apps.get("apps") if apps.get("apps") else apps.get("Apps")
-        if apps is None:
-            return []
+        if "apps" in apps:
+            apps = apps.get("apps")
+        elif "Apps" in apps:
+            apps = apps.get("Apps")
+        else:
+            apps = {}
         return apps
 
     def get_installed_apps_as_programs(self) -> list:
@@ -230,18 +236,18 @@ class SteamManager:
                 "path": _path,
                 "folder": _folder,
                 "icon": "com.usebottles.bottles-program",
-                "dxvk": self.config["Parameters"]["dxvk"],
-                "vkd3d": self.config["Parameters"]["vkd3d"],
-                "dxvk_nvapi": self.config["Parameters"]["dxvk_nvapi"],
-                "fsr": self.config["Parameters"]["fsr"],
-                "virtual_desktop": self.config["Parameters"]["virtual_desktop"],
-                "pulseaudio_latency": self.config["Parameters"]["pulseaudio_latency"],
+                "dxvk": self.config.Parameters.dxvk,
+                "vkd3d": self.config.Parameters.vkd3d,
+                "dxvk_nvapi": self.config.Parameters.dxvk_nvapi,
+                "fsr": self.config.Parameters.fsr,
+                "virtual_desktop": self.config.Parameters.virtual_desktop,
+                "pulseaudio_latency": self.config.Parameters.pulseaudio_latency,
                 "id": str(uuid.uuid4()),
             })
 
         return apps
 
-    def list_prefixes(self) -> dict:
+    def list_prefixes(self) -> Dict[str, BottleConfig]:
         apps = self.list_apps_ids()
         prefixes = {}
 
@@ -282,24 +288,25 @@ class SteamManager:
                 logging.warning(f"A Steam prefix was found, but there is no Proton for it: {_dir_name}, skipping…")
                 continue
 
-            _conf = Samples.config.copy()
-            _conf["Name"] = _acf["AppState"]["name"]
-            _conf["Environment"] = "Steam"
-            _conf["CompatData"] = _dir_name
-            _conf["Path"] = os.path.join(_path, "pfx")
-            _conf["Runner"] = _runner[0]
-            _conf["RunnerPath"] = _runner[1]
-            _conf["WorkingDir"] = os.path.join(_conf["Path"], "drive_c")
-            _conf["Creation_Date"] = _creation_date
-            _conf["Update_Date"] = datetime.fromtimestamp(int(_acf["AppState"]["LastUpdated"])) \
-                .strftime("%Y-%m-%d %H:%M:%S.%f")
+            _conf = BottleConfig()
+            _conf.Name = _acf["AppState"]["name"]
+            _conf.Environment = "Steam"
+            _conf.CompatData = _dir_name
+            _conf.Path = os.path.join(_path, "pfx")
+            _conf.Runner = _runner[0]
+            _conf.RunnerPath = _runner[1]
+            _conf.WorkingDir = os.path.join(_conf["Path"], "drive_c")
+            _conf.Creation_Date = _creation_date
+            _conf.Update_Date = datetime.fromtimestamp(
+                int(_acf["AppState"]["LastUpdated"])
+            ).strftime("%Y-%m-%d %H:%M:%S.%f")
 
             # Launch options
-            _conf["Parameters"]["mangohud"] = "mangohud" in _launch_options["command"]
-            _conf["Parameters"]["gamemode"] = "gamemode" in _launch_options["command"]
-            _conf["Environment_Variables"] = _launch_options["env_vars"]
+            _conf.Parameters.mangohud = ("mangohud" in _launch_options["command"])
+            _conf.Parameters.gamemode = ("gamemode" in _launch_options["command"])
+            _conf.Environment_Variables = _launch_options["env_vars"]
             for p in _launch_options["env_params"]:
-                _conf["Parameters"][p] = _launch_options["env_params"][p]
+                _conf.Parameters[p] = _launch_options["env_params"][p]
 
             prefixes[_dir_name] = _conf
 
@@ -311,14 +318,12 @@ class SteamManager:
         with contextlib.suppress(FileNotFoundError):
             shutil.rmtree(Paths.steam)  # generate new configs at start
 
-        for prefix in prefixes.items():
-            _name, _conf = prefix
-            _bottle = os.path.join(Paths.steam, _conf["CompatData"])
+        for _, conf in prefixes.items():
+            _bottle = os.path.join(Paths.steam, conf.CompatData)
 
             os.makedirs(_bottle, exist_ok=True)
 
-            with open(os.path.join(_bottle, "bottle.yml"), "w") as f:
-                yaml.dump(_conf, f)
+            conf.dump(os.path.join(_bottle, "bottle.yml"))
 
     def get_app_config(self, prefix: str) -> dict:
         _fail_msg = f"Fail to get app config from Steam for: {prefix}"
@@ -331,7 +336,12 @@ class SteamManager:
             .get("Software", {}) \
             .get("Valve", {}) \
             .get("Steam", {})
-        apps = apps.get("apps") if apps.get("apps") else apps.get("Apps")
+        if "apps" in apps:
+            apps = apps.get("apps")
+        elif "Apps" in apps:
+            apps = apps.get("Apps")
+        else:
+            apps = {}
 
         if len(apps) == 0 or prefix not in apps:
             logging.warning(_fail_msg)
@@ -464,8 +474,8 @@ class SteamManager:
 
         self.save_local_config(self.localconfig)
 
-    def update_bottle(self, config: dict) -> dict:
-        pfx = config.get("CompatData")
+    def update_bottle(self, config: BottleConfig) -> BottleConfig:
+        pfx = config.CompatData
         launch_options = self.get_launch_options(pfx)
         _fail_msg = f"Fail to update bottle for: {pfx}"
 
@@ -473,7 +483,7 @@ class SteamManager:
         if isinstance(args, dict) or args == "{}":
             args = ""
 
-        winecmd = WineCommand(config, "%command%", args)
+        winecmd = WineCommand(config, "%command%", arguments=args)
         command = winecmd.get_cmd("%command%", return_steam_cmd=True)
         env_vars = winecmd.get_env(launch_options["env_vars"], return_steam_env=True)
 
@@ -512,7 +522,7 @@ class SteamManager:
             "StartDir": ManagerUtils.get_bottle_path(self.config),
             "icon": ManagerUtils.extract_icon(self.config, program_name, program_path),
             "ShortcutPath": "",
-            "LaunchOptions": args.format(self.config["Path"], program_name),
+            "LaunchOptions": args.format(self.config.Path, program_name),
             "IsHidden": 0,
             "AllowDesktopConfig": 1,
             "AllowOverlay": 1,

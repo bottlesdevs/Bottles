@@ -105,6 +105,7 @@ def parse(fp, mapper=dict, merge_duplicate_keys=True, escaped=True):
                              r'))?',
                              flags=re.I)
 
+    lineno = line = -1
     for lineno, line in enumerate(fp, 1):
         if lineno == 1:
             line = strip_bom(line)

@@ -6,6 +6,8 @@ bottles_sources = [
   'result.py',
   'samples.py',
   'vdict.py',
+  'config.py',
+  'enum.py',
 ]
 
 install_data(bottles_sources, install_dir: modelsdir)

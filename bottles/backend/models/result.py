@@ -14,9 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+from typing import TypeVar, Generic
+
+T = TypeVar('T')
 
 
-class Result:
+class Result(Generic[T]):
     """
     The Result object is the standard return object for every
     method in the backend. It is importanto to use this object
@@ -24,18 +27,15 @@ class Result:
     """
 
     status: bool = False
-    data: dict = {}
+    data: T = None
     message: str = ""
 
     def __init__(
-        self,
-        status: bool = False,
-        data: dict = None,
-        message: str = ""
+            self,
+            status: bool = False,
+            data: T = None,
+            message: str = ""
     ):
-        if data is None:
-            data = {}
-
         self.status = status
         self.data = data
         self.message = message

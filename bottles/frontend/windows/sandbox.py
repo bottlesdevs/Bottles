@@ -52,5 +52,5 @@ class SandboxDialog(Adw.Window):
         ).data["config"]
 
     def __update(self, config):
-        self.switch_net.set_active(config["Sandbox"]["share_net"])
-        self.switch_sound.set_active(config["Sandbox"]["share_sound"])
+        self.switch_net.set_active(config.Sandbox.share_net)
+        self.switch_sound.set_active(config.Sandbox.share_sound)

@@ -3,8 +3,10 @@ using Gtk 4.0;
 template NewView : .AdwWindow {
   modal: true;
   resizable: false;
-  default-width: "450";
+  default-width: "600";
+  default-height: "500";
   hide-on-close: true;
+  title: _("Create New Bottle");
 
   ShortcutController {
     Shortcut shortcut_escape {
@@ -16,43 +18,20 @@ template NewView : .AdwWindow {
   Box {
     orientation: vertical;
 
-    HeaderBar headerbar {
-      show-title-buttons: false;
-      title-widget: 
-      .AdwWindowTitle title {
-        title: _("New Bottle");
+    .AdwHeaderBar headerbar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
 
-        ShortcutController {
-          scope: managed;
-
-          Shortcut {
-            trigger: "Escape";
-            action: "activate";
-          }
-        }
-      }
-
-      ;
-
-      [start]
       Button btn_cancel {
-        label: _("Cancel");
+        label: _("_Cancel");
+        use-underline: true;
       }
 
       [end]
       Button btn_create {
-        label: _("Create");
+        label: _("C_reate");
+        use-underline: true;
         sensitive: false;
-
-        styles [
-          "suggested-action",
-        ]
-      }
-
-      [end]
-      Button btn_close {
-        label: _("Close");
-        visible: false;
 
         styles [
           "suggested-action",
@@ -63,156 +42,165 @@ template NewView : .AdwWindow {
     Stack stack_create {
       transition-type: crossfade;
 
-      StackPage page_create {
+      StackPage {
         name: "page_create";
-        child: 
+        child:
         .AdwPreferencesPage {
-          title: _("New Bottle");
+          title: _("Create New Bottle");
 
           .AdwPreferencesGroup {
-            title: _("Bottle Information");
-
             .AdwEntryRow entry_name {
-              title: _("Name");
+              title: _("Bottle Name");
+
+              [suffix]
+              MenuButton menu_duplicate {
+                valign: center;
+                tooltip-text: _("Show Information");
+                icon-name: "warning-symbolic";
+                popover: popover_duplicate;
+                visible: false;
+
+                styles [
+                  "flat",
+                ]
+              }
             }
           }
 
           .AdwPreferencesGroup {
             title: _("Environment");
 
-            ListBox list_envs {
-              .AdwActionRow gaming {
-                selectable: true;
-                activatable: true;
-                title: _("Gaming");
-                subtitle: _("An environment improved for Windows games.");
-                icon-name: "input-gaming-symbolic";
+            .AdwActionRow application {
+              activatable-widget: "check_application";
+              title: _("_Application");
+              icon-name: "applications-engineering-symbolic";
+              use-underline: true;
+
+              [prefix]
+              CheckButton check_application {
+                valign: center;
+                active: true;
               }
+            }
 
-              .AdwActionRow application {
-                selectable: true;
-                activatable: true;
-                title: _("Application");
-                subtitle: _("An environment improved for Windows applications.");
-                icon-name: "applications-engineering-symbolic";
+            .AdwActionRow gaming {
+              activatable-widget: "check_gaming";
+              title: _("_Gaming");
+              icon-name: "input-gaming-symbolic";
+              use-underline: true;
+
+              [prefix]
+              CheckButton check_gaming {
+                valign: center;
+                group: check_application;
               }
+            }
 
-              .AdwExpanderRow custom {
-                selectable: true;
-                activatable: true;
-                title: _("Custom");
-                subtitle: _("A clear environment for your experiments.");
-                icon-name: "applications-science-symbolic";
+            .AdwActionRow custom {
+              activatable-widget: "check_custom";
+              title: _("C_ustom");
+              icon-name: "applications-science-symbolic";
+              use-underline: true;
 
-                .AdwActionRow row_sandbox {
-                  title: _("Unlinked Home Directory");
-                  subtitle: _("Do not link the userdir to the homedir");
-                  activatable-widget: "switch_sandbox";
-
-                  Switch switch_sandbox {
-                    valign: center;
-                  }
-                }
-
-                .AdwComboRow combo_runner {
-                  title: _("Runner");
-                  model:
-                    StringList str_list_runner {
-                    }
-
-                  ;
-                }
-
-                .AdwComboRow combo_arch {
-                  title: _("Architecture");
-                  subtitle: _("We recommend using 32bit only if strictly necessary.");
-                  model: 
-                    StringList {
-                      strings [_("64 bit"), _("32 bit")]
-                    }
-                  ;
-                }
-
-                .AdwActionRow {
-                  title: _("Custom Recipe");
-                  subtitle: _("Choose a custom recipe for the environment if you have one.");
-                  activatable-widget: "btn_choose_env";
-
-                  Button btn_choose_env {
-                    valign: center;
-                    tooltip-text: _("Choose a Directory");
-                    icon-name: "document-open-symbolic";
-
-                    styles [
-                      "flat",
-                    ]
-                  }
-                }
-
-                .AdwActionRow {
-                  title: _("Custom Path");
-                  subtitle: _("Store this bottle in another place.");
-                  activatable-widget: "btn_choose_path";
-
-                  Button btn_choose_path {
-                    valign: center;
-                    tooltip-text: _("Choose a Directory");
-                    icon-name: "document-open-symbolic";
-
-                    styles [
-                      "flat",
-                    ]
-                  }
-                }
+              [prefix]
+              CheckButton check_custom {
+                valign: center;
+                group: check_application;
               }
-
-              styles [
-                "boxed-list",
-              ]
             }
           }
-        }
 
-        ;
-      }
+          .AdwPreferencesGroup group_custom {
+            title: _("Custom");
+            sensitive: false;
 
-      StackPage page_creating {
-        name: "page_creating";
-        child: 
-        WindowHandle {
-          Box {
-            orientation: vertical;
-            spacing: 12;
+            .AdwActionRow row_sandbox {
+              title: _("Share User Directory");
+              subtitle: _("This makes the user directory discoverable in the bottle, at the risk of sharing personal information to Windows software. This option cannot be changed after the bottle has been created.");
+              activatable-widget: "switch_sandbox";
 
-            .AdwStatusPage {
-              valign: "center";
-              title: _("Creating a Bottle…");
-              description: _("This could take a while.");
+              Switch switch_sandbox {
+                valign: center;
+              }
             }
 
-            ScrolledWindow {
-              margin-start: 12;
-              margin-end: 12;
-              min-content-height: 200;
-              overflow: hidden;
+            .AdwComboRow combo_runner {
+              title: _("Runner");
+              subtitle: _("The version of the Wine compatibility layer.");
+              model: StringList str_list_runner {}
 
-              Label label_output {
-                hexpand: true;
-                valign: fill;
-                wrap: true;
-                selectable: true;
-                xalign: 0;
-                yalign: 0;
+              ;
+            }
+
+            .AdwComboRow combo_arch {
+              title: _("Architecture");
+              subtitle: _("32-bit should only be used if strictly necessary.");
+              model:
+                StringList str_list_arch {}
+
+              ;
+            }
+
+            .AdwActionRow {
+              title: _("Configuration");
+              subtitle: _("Import a custom configuration.");
+              activatable-widget: "btn_choose_env";
+
+              Button btn_choose_env_reset {
+                tooltip-text: _("Reset to Default");
+                valign: center;
+                visible: false;
+                icon-name: "edit-undo-symbolic";
 
                 styles [
-                  "monospace",
-                  "terminal",
+                  "flat",
                 ]
               }
 
-              styles [
-                "card",
-              ]
+              Button btn_choose_env {
+                valign: center;
+
+                Box {
+                  spacing: 6;
+
+                  Image {
+                    icon-name: "document-open-symbolic";
+                  }
+
+                  Label label_choose_env {}
+                }
+              }
+            }
+
+            .AdwActionRow {
+              title: _("Bottle Directory");
+              subtitle: _("Directory that will contain the data of this bottle.");
+              activatable-widget: "btn_choose_path";
+
+              Button btn_choose_path_reset {
+                tooltip-text: _("Reset to Default");
+                valign: center;
+                visible: false;
+                icon-name: "edit-undo-symbolic";
+
+                styles [
+                  "flat",
+                ]
+              }
+
+              Button btn_choose_path {
+                valign: center;
+
+                Box {
+                  spacing: 6;
+
+                  Image {
+                    icon-name: "document-open-symbolic";
+                  }
+
+                  Label label_choose_path {}
+                }
+              }
             }
           }
         }
@@ -220,35 +208,76 @@ template NewView : .AdwWindow {
         ;
       }
 
-      StackPage page_created {
-        name: "page_created";
-        child: 
-        WindowHandle {
+      StackPage {
+        name: "page_statuses";
+        child:
+        .AdwStatusPage status_statuses {
+          title: "Status";
+          child:
           Box {
             orientation: vertical;
-            spacing: 12;
+            spacing: 36;
 
-            .AdwStatusPage created {
-              icon-name: "selection-mode-symbolic";
-              title: _("Bottle Created");
-              valign: "center";
-            }
+              ScrolledWindow scrolled_output {
+                margin-start: 50;
+                margin-end: 50;
+                min-content-height: 200;
+                overflow: hidden;
 
-            Button btn_close_pill {
-              label: _("Close");
+                Label label_output {
+                  hexpand: true;
+                  valign: fill;
+                  wrap: true;
+                  selectable: true;
+                  xalign: 0;
+                  yalign: 0;
+
+                  styles [
+                    "monospace",
+                    "terminal",
+                  ]
+                }
+
+                styles [
+                  "card",
+                ]
+              }
+
+            Button btn_close {
               valign: center;
               halign: center;
+              label: _("_Close");
+              use-underline: true;
+              visible: false;
 
               styles [
-                "suggested-action",
                 "pill",
               ]
             }
           }
+
+          ;
         }
 
         ;
       }
     }
+  }
+}
+
+Popover popover_duplicate {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("This name is unavailable, please try another.");
   }
 }

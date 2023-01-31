@@ -18,9 +18,7 @@
 import os
 from bottles.backend.utils import yaml
 import shutil
-import platform
 import contextlib
-import subprocess
 
 from bottles.backend.logger import Logger
 from bottles.backend.utils.display import DisplayUtils
@@ -71,7 +69,7 @@ class HealthChecker:
         }
         self.get_ram_data()
 
-        if not "FLATPAK_ID" in os.environ:
+        if "FLATPAK_ID" not in os.environ:
             self.cabextract = self.check_cabextract()
             self.p7zip = self.check_p7zip()
             self.patool = self.check_patool()
@@ -248,7 +246,7 @@ class HealthChecker:
             "Bottles_envs": self.bottles_envs
         }
 
-        if not "FLATPAK_ID" in os.environ:
+        if "FLATPAK_ID" not in os.environ:
             results["Tools and Libraries"] = {
                 "cabextract": self.cabextract,
                 "p7zip": self.p7zip,

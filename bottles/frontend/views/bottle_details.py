@@ -22,8 +22,11 @@ import uuid
 import webbrowser
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Adw, Gdk, GLib
+from typing import List, Optional
 
+from gi.repository import Gtk, Gio, Adw, Gdk, GLib
+
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 
@@ -52,6 +55,7 @@ from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.wineserver import WineServer
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
 class BottleView(Adw.PreferencesPage):
     __gtype_name__ = 'DetailsBottle'
@@ -65,7 +69,7 @@ class BottleView(Adw.PreferencesPage):
     install_programs = Gtk.Template.Child()
     add_shortcuts = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
-    btn_exec_settings = Gtk.Template.Child()
+    popover_exec_settings = Gtk.Template.Child()
     exec_arguments = Gtk.Template.Child()
     exec_terminal = Gtk.Template.Child()
     row_winecfg = Gtk.Template.Child()
@@ -125,7 +129,7 @@ class BottleView(Adw.PreferencesPage):
         self.add_shortcuts.connect("clicked", self.add)
         self.install_programs.connect("clicked", self.__change_page, "installers")
         self.btn_execute.connect("clicked", self.run_executable)
-        self.btn_exec_settings.connect("closed", self.__run_executable_with_args)
+        self.popover_exec_settings.connect("closed", self.__run_executable_with_args)
         self.row_preferences.connect("activated", self.__change_page, "preferences")
         self.row_dependencies.connect("activated", self.__change_page, "dependencies")
         self.row_snapshots.connect("activated", self.__change_page, "versioning")
@@ -184,14 +188,14 @@ class BottleView(Adw.PreferencesPage):
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
         self.drop_overlay.set_visible(False)
         files: List[Gio.File] = value.get_files()
-        args=""
-        file=files[0]
+        args = ""
+        file = files[0]
         if ".exe" in file.get_basename().split("/")[-1] or ".msi" in file.get_basename().split("/")[-1]:
             executor = WineExecutor(
                 self.config,
                 exec_path=file.get_path(),
                 args=args,
-                terminal=self.config.get("run_in_terminal"),
+                terminal=self.config.run_in_terminal,
             )
             def callback(a,b):
                 self.update_programs()
@@ -207,38 +211,38 @@ class BottleView(Adw.PreferencesPage):
     def on_leave(self, drop_target):
         self.drop_overlay.set_visible(False)
 
-    def set_config(self, config):
+    def set_config(self, config: BottleConfig):
         self.config = config
         self.__update_by_env()
 
         # set update_date
-        update_date = datetime.strptime(self.config.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
+        update_date = datetime.strptime(self.config.Update_Date, "%Y-%m-%d %H:%M:%S.%f")
         update_date = update_date.strftime("%b %d %Y %H:%M:%S")
         self.label_name.set_tooltip_text(_("Updated: %s" % update_date))
 
         # set arch
-        self.label_arch.set_text(self.config.get("Arch", "n/a").capitalize())
+        self.label_arch.set_text((self.config.Arch or "n/a").capitalize())
 
         # set name and runner
-        self.label_name.set_text(self.config.get("Name"))
-        self.label_runner.set_text(self.config.get("Runner"))
+        self.label_name.set_text(self.config.Name)
+        self.label_runner.set_text(self.config.Runner)
 
         # set environment
-        self.label_environment.set_text(_(self.config.get("Environment")))
+        self.label_environment.set_text(_(self.config.Environment))
 
         # set versioning
-        self.dot_versioning.set_visible(self.config.get("Versioning"))
-        self.grid_versioning.set_visible(self.config.get("Versioning"))
-        self.label_state.set_text(str(self.config.get("State")))
+        self.dot_versioning.set_visible(self.config.Versioning)
+        self.grid_versioning.set_visible(self.config.Versioning)
+        self.label_state.set_text(str(self.config.State))
 
         self.__set_steam_rules()
 
         # check for old versioning system enabled
-        if config["Versioning"]:
+        if config.Versioning:
             self.__upgrade_versioning()
         
-        if config["Runner"] not in self.manager.runners_available\
-            and not self.config.get("Environment") == "Steam":
+        if config.Runner not in self.manager.runners_available\
+            and not self.config.Environment == "Steam":
             self.__alert_missing_runner()
 
         # update programs list
@@ -287,11 +291,13 @@ class BottleView(Adw.PreferencesPage):
         dialog.connect("response", set_path)
         dialog.show()
 
-    def update_programs(self, config: dict = None, force_add: dict = None):
+    def update_programs(self, config: Optional[BottleConfig] = None, force_add: dict = None):
         """
         This function update the programs lists.
         """
         if config:
+            if not isinstance(config, BottleConfig):
+                raise TypeError("config param need BottleConfig type, but it was %s" % type(config))
             self.config = config
 
         if not force_add:
@@ -320,8 +326,8 @@ class BottleView(Adw.PreferencesPage):
             programs = self.manager.get_programs(self.config)
             handled = 0
 
-            if self.config.get("Environment") == "Steam":
-                GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True)
+            if self.config.Environment == "Steam":
+                GLib.idle_add(new_program, {"name": self.config.Name}, None, True)
                 handled += 1
 
             for program in programs:
@@ -370,8 +376,8 @@ class BottleView(Adw.PreferencesPage):
         This function saves updates the run arguments for the current session.
         """
         args = self.exec_arguments.get_text()
-        self.config["session_arguments"] = args
-        self.config["run_in_terminal"] = self.exec_terminal.get_active()
+        self.config.session_arguments = args
+        self.config.run_in_terminal = self.exec_terminal.get_active()
 
     def run_executable(self, widget, args=False):
         """
@@ -385,6 +391,8 @@ class BottleView(Adw.PreferencesPage):
             def execute(_dialog, response):
                 if response != Gtk.ResponseType.ACCEPT:
                     return
+
+                self.window.show_toast(_("Launching \"{0}\"…").format(dialog.get_file().get_basename()))
 
                 executor = WineExecutor(
                     self.config,
@@ -430,18 +438,18 @@ class BottleView(Adw.PreferencesPage):
         """
         if backup_type == "config":
             title = _("Select the location where to save the backup config")
-            hint = f"backup_{self.config.get('Path')}.yml"
+            hint = f"backup_{self.config.Path}.yml"
             accept_label = _("Export")
         else:
             title = _("Select the location where to save the backup archive")
-            hint = f"backup_{self.config.get('Path')}.tar.gz"
+            hint = f"backup_{self.config.Path}.tar.gz"
             accept_label = _("Backup")
 
         def finish(result, error=False):
             if result.status:
-                self.window.show_toast(_("Backup created for \"{0}\"").format(self.config["Name"]))
+                self.window.show_toast(_("Backup created for \"{0}\"").format(self.config.Name))
             else:
-                self.window.show_toast(_("Backup failed for \"{0}\"").format(self.config["Name"]))
+                self.window.show_toast(_("Backup failed for \"{0}\"").format(self.config.Name))
 
         def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
@@ -583,7 +591,7 @@ the Bottles preferences or choose a new one to run applications.")
 
         def handle_response(_widget, response_id):
             if response_id == "ok":
-                RunAsync(wineboot.send_status, reset, status)
+                RunAsync(wineboot.send_status, callback=reset, status=status)
             else:
                 reset()
             _widget.destroy()
@@ -604,7 +612,7 @@ the Bottles preferences or choose a new one to run applications.")
             dialog.present()
 
     def __set_steam_rules(self):
-        status = False if self.config.get("Environment") == "Steam" else True
+        status = False if self.config.Environment == "Steam" else True
 
         for w in [self.btn_delete, self.btn_backup_full, self.btn_duplicate]:
             w.set_visible(status)
