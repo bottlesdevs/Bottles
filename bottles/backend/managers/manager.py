@@ -53,6 +53,7 @@ from bottles.backend.models.samples import Samples
 from bottles.backend.repos.repo import RepoStatus
 from bottles.backend.state import State, Signals
 from bottles.backend.utils import yaml
+from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.lnk import LnkUtils
@@ -100,17 +101,16 @@ class Manager:
     supported_dependencies = {}
     supported_installers = {}
 
-    def __init__(self, window, is_cli=False, repo_fn_update=None, **kwargs):
+    def __init__(self, is_cli=False, repo_fn_update=None, **kwargs):
         super().__init__(**kwargs)
 
         times = {"start": time.time()}
 
         # common variables
-        self.window = window
-        self.settings = window.settings
-        self.utils_conn = window.utils_conn
+        self.settings = Global.settings
+        self.utils_conn = ConnectionUtils()
         self.is_cli = is_cli
-        _offline = not window.utils_conn.check_connection()
+        _offline = not self.utils_conn.check_connection()
 
         self.repository_manager = RepositoryManager(repo_fn_update)
         times["RepositoryManager"] = time.time()

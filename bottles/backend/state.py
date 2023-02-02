@@ -20,7 +20,9 @@ class Events(Enum):
 
 
 class Signals(Enum):
-    ManagerLocalBottlesLoaded = "manager.local_bottles.loaded"
+    ManagerLocalBottlesLoaded = "manager.local_bottles.loaded"  # no extra data
+    NetworkReady = "utils.ConnectionUtils.status"  # Result.status represents network is ready or not
+    Notification = ""  # Result[Notification]
 
 
 class Status(Enum):
@@ -35,6 +37,13 @@ class TaskStreamUpdateHandler(Protocol):
 
 class SignalHandler(Protocol):
     def __call__(self, data: Optional[Result] = None) -> None: ...
+
+
+@dataclasses.dataclass
+class Notification:
+    title: str = "Bottles"
+    text: str = "no message provided"
+    image: str = ""
 
 
 @dataclasses.dataclass(init=False)

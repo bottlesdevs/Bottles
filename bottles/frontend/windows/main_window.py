@@ -28,10 +28,11 @@ from bottles.backend.health import HealthChecker
 from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.result import Result
+from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.const import *
 from bottles.frontend.params import *
-from bottles.frontend.utils.connection import ConnectionUtils
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.details import DetailsView
 from bottles.frontend.views.importer import ImporterView
@@ -74,7 +75,7 @@ class MainWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs)
 
         self.disable_onboard = False
-        self.utils_conn = ConnectionUtils(self)
+        self.utils_conn = ConnectionUtils()
         self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
@@ -120,8 +121,9 @@ class MainWindow(Adw.ApplicationWindow):
         if self.utils_conn.check_connection():
             self.manager.checks(install_latest=False, first_run=True)
 
-    def toggle_btn_noconnection(self, status):
-        GLib.idle_add(self.btn_noconnection.set_visible, status)
+    def toggle_btn_noconnection(self, res: Result):
+        """TODO: call this when signal NetworkReady triggered"""
+        GLib.idle_add(self.btn_noconnection.set_visible, res.status)
 
     def __on_start(self):
         """
@@ -187,14 +189,14 @@ class MainWindow(Adw.ApplicationWindow):
                 dialog.add_response("cancel", _("_Dismiss"))
                 dialog.present()
 
-        def get_manager(window):
+        def get_manager():
             repo_fn_update = self.page_loading.add_fetched if self.utils_conn.check_connection() else None
-            mng = Manager(window=window, repo_fn_update=repo_fn_update)
+            mng = Manager(repo_fn_update=repo_fn_update)
             return mng
 
         self.check_core_deps()
         self.show_loading_view()
-        RunAsync(get_manager, callback=set_manager, window=self)
+        RunAsync(get_manager, callback=set_manager)
 
         self.check_crash_log()
 
@@ -205,6 +207,7 @@ class MainWindow(Adw.ApplicationWindow):
         user has enabled it in the settings. It is possible to ignore the
         user settings by passing the argument ignore_user=False.
         """
+        # TODO: should be called when Signal Notification triggered
         if ignore_user or self.settings.get_boolean("notifications"):
             notification = Gio.Notification.new(title)
             notification.set_body(text)

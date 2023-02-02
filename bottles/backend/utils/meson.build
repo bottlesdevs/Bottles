@@ -20,7 +20,8 @@ bottles_sources = [
   'proc.py',
   'yaml.py',
   'nvidia.py',
-  'threading.py'
+  'threading.py',
+  'connection.py'
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)

@@ -22,7 +22,7 @@ from gi.repository import Gtk, Adw
 from bottles.backend.globals import Global
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
-from bottles.frontend.utils.connection import ConnectionUtils
+from bottles.backend.utils.connection import ConnectionUtils
 
 
 class BottleEntry(Adw.ActionRow):
@@ -52,7 +52,7 @@ class BottlePickerDialog(Adw.ApplicationWindow):
     def __init__(self, arg_exe, **kwargs):
         super().__init__(**kwargs)
         self.arg_exe = arg_exe
-        mng = Manager(self, is_cli=True)
+        mng = Manager(is_cli=True)
         mng.check_bottles()
         bottles = mng.local_bottles
 
