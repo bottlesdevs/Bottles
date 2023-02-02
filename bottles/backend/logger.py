@@ -14,12 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-
-import re
 import logging
+import os
+import re
+
 from gi.repository import GLib
-from pathlib import Path
-from gettext import gettext as _
 
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 
@@ -55,7 +54,7 @@ class Logger(logging.getLoggerClass()):
             formatter = self.__format_log
         formatter = logging.Formatter(**formatter)
 
-        self.root.setLevel(logging.INFO)
+        self.root.setLevel(os.environ.get("LOG_LEVEL") or logging.INFO)
         self.root.handlers = []
 
         handler = logging.StreamHandler()
