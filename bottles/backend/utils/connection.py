@@ -48,7 +48,7 @@ class ConnectionUtils:
 
     @status.setter
     def status(self, value: bool):
-        if self._status is None:
+        if value is None:
             logging.error("Cannot set network status to None")
             return
         self._status = value
