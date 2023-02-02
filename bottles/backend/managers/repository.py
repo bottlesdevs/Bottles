@@ -18,13 +18,14 @@
 import os
 
 import pycurl
-from gi.repository import GLib
 
 from bottles.backend.logger import Logger
+from bottles.backend.models.result import Result
 from bottles.backend.params import APP_VERSION
 from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.installer import InstallerRepo
+from bottles.backend.state import State, Signals
 from bottles.backend.utils.threading import RunAsync
 
 logging = Logger()
@@ -49,8 +50,7 @@ class RepositoryManager:
         }
     }
 
-    def __init__(self, repo_fn_update=None):
-        self.repo_fn_update = repo_fn_update
+    def __init__(self):
         self.__check_locals()
         self.__get_index()
 
@@ -114,12 +114,12 @@ class RepositoryManager:
 
                     if url.startswith("file://") or c.getinfo(c.RESPONSE_CODE) == 200:
                         _data["index"] = url
-                        if self.repo_fn_update is not None:
-                            self.repo_fn_update(total)
+                        State.send_signal(Signals.RepositoryFetched, Result(True, data=total))
                         break
 
                     c.close()
                 else:
+                    State.send_signal(Signals.RepositoryFetched, Result(False, data=total))
                     logging.error(f"Could not get index for {_repo} repository")
 
             thread = RunAsync(query, repo=repo, data=data)

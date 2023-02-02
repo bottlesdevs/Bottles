@@ -29,6 +29,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
+from bottles.backend.state import State, Signals
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.const import *
@@ -190,8 +191,9 @@ class MainWindow(Adw.ApplicationWindow):
                 dialog.present()
 
         def get_manager():
-            repo_fn_update = self.page_loading.add_fetched if self.utils_conn.check_connection() else None
-            mng = Manager(repo_fn_update=repo_fn_update)
+            if self.utils_conn.check_connection():
+                State.connect_signal(Signals.RepositoryFetched, self.page_loading.add_fetched)
+            mng = Manager()
             return mng
 
         self.check_core_deps()

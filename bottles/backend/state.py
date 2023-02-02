@@ -20,9 +20,19 @@ class Events(Enum):
 
 
 class Signals(Enum):
-    ManagerLocalBottlesLoaded = "manager.local_bottles.loaded"  # no extra data
-    NetworkReady = "utils.ConnectionUtils.status"  # Result.status represents network is ready or not
-    Notification = ""  # Result[Notification]
+    """Signals backend support"""
+    # no extra data
+    ManagerLocalBottlesLoaded = "Manager.local_bottles.loaded"
+
+    # status: fetch success or not
+    # data(int): total repositories
+    RepositoryFetched = "RepositoryManager.repo_fetched"
+
+    # status: network is ready or not
+    NetworkReady = "utils.ConnectionUtils.status"
+
+    # data(Notification): data for frontend notification
+    Notification = "generic.notification"
 
 
 class Status(Enum):
