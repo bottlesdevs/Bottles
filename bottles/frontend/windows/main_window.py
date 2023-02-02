@@ -29,7 +29,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import State, Signals
+from bottles.backend.state import State, Signals, Notification
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.const import *
@@ -192,6 +192,8 @@ class MainWindow(Adw.ApplicationWindow):
         def get_manager():
             # handler for ConnectionUtils.check_connection()
             State.connect_signal(Signals.NetworkReady, self.toggle_btn_noconnection)
+            # handler for backend Notification request
+            State.connect_signal(Signals.Notification, self.backend_notification_syncing)
 
             if self.utils_conn.check_connection():
                 State.connect_signal(Signals.RepositoryFetched, self.page_loading.add_fetched)
@@ -204,14 +206,18 @@ class MainWindow(Adw.ApplicationWindow):
 
         self.check_crash_log()
 
-    def send_notification(self, title, text, image="", ignore_user=True):
+    def backend_notification_syncing(self, res: Result):
+        """handle backend notification request"""
+        notify: Notification = res.data
+        self.send_notification(title=notify.title, text=notify.text, image=notify.image)
+
+    def send_notification(self, title, text, image="", ignore_user=False):
         """
         This method is used to send a notification to the user using
         Gio.Notification. The notification is sent only if the
         user has enabled it in the settings. It is possible to ignore the
         user settings by passing the argument ignore_user=False.
         """
-        # TODO: should be called when Signal Notification triggered
         if ignore_user or self.settings.get_boolean("notifications"):
             notification = Gio.Notification.new(title)
             notification.set_body(text)
