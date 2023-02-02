@@ -122,7 +122,7 @@ class RepositoryManager:
                     State.send_signal(Signals.RepositoryFetched, Result(False, data=total))
                     logging.error(f"Could not get index for {_repo} repository")
 
-            thread = RunAsync(query, repo=repo, data=data)
+            thread = RunAsync(query, _repo=repo, _data=data)
             threads.append(thread)
 
         for t in threads:
