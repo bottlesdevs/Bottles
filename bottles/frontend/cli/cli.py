@@ -18,18 +18,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import gi
+import argparse
+import json
 import os
+import signal
 import sys
 import uuid
-import json
-import signal
-import argparse
 import warnings
+
+import gi
 
 warnings.filterwarnings("ignore")  # suppress GTK warnings
 gi.require_version('Gtk', '4.0')
-from gi.repository import Gtk, Gio
 
 APP_VERSION = "@APP_VERSION@"
 pkgdatadir = "@pkgdatadir@"
@@ -40,7 +40,7 @@ sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 from bottles.frontend.params import *
-from bottles.backend.globals import Paths
+from bottles.backend.globals import Paths, Global
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
@@ -63,9 +63,9 @@ from bottles.frontend.utils.connection import ConnectionUtils
 
 # noinspection DuplicatedCode
 class CLI:
-    default_settings = Gtk.Settings.get_default()
     utils_conn = ConnectionUtils()
-    settings = Gio.Settings.new(APP_ID)
+    default_settings = Global.default_settings
+    settings = Global.settings
 
     def __init__(self):
         # self.__clear()
@@ -137,7 +137,7 @@ class CLI:
         run_parser.add_argument("-e", "--executable", help="Path to the executable")
         run_parser.add_argument("-p", "--program", help="Program to run")
         run_parser.add_argument("--args-replace", action='store_false', dest='keep_args',
-            help="Replace current program arguments, instead of append")
+                                help="Replace current program arguments, instead of append")
         run_parser.add_argument("args", nargs="*", action="extend", help="Arguments to pass to the executable")
 
         standalone_parser = subparsers.add_parser("standalone", help="Generate a standalone script to launch commands "

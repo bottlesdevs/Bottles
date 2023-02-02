@@ -235,6 +235,7 @@ class BottleView(Adw.Bin):
             self.arg_bottle = None
 
     def update_bottles(self, show=False):
+        """TODO: should be called when signal ManagerLocalBottlesLoaded triggered"""
         GLib.idle_add(self.idle_update_bottles, show)
 
     def disable_bottle(self, config):

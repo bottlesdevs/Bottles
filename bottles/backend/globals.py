@@ -17,16 +17,23 @@
 
 import os
 import shutil
-import time
-from gi.repository import GLib
-from pathlib import Path
 from functools import lru_cache
+from pathlib import Path
+
+from gi.repository import GLib
+from gi.repository import Gtk, Gio
 
 from bottles.backend.logger import Logger
-from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.managers.data import DataManager
+from bottles.backend.params import APP_ID
+from bottles.backend.utils.display import DisplayUtils
 
 logging = Logger()
+
+
+class Global:
+    default_settings = Gtk.Settings.get_default()
+    settings = Gio.Settings.new(APP_ID)
 
 
 # xdg data path
@@ -42,16 +49,18 @@ def get_apps_dir():
         _dir = f"{Path.home()}/.local/share/applications"
     return _dir
 
+
 def is_vkbasalt_available():
     vkbasalt_paths = [
-            "/usr/lib/extensions/vulkan/vkBasalt/etc/vkBasalt",
-            "/usr/local",
-            "/usr/share/vkBasalt",
+        "/usr/lib/extensions/vulkan/vkBasalt/etc/vkBasalt",
+        "/usr/local",
+        "/usr/share/vkBasalt",
     ]
     for path in vkbasalt_paths:
         if os.path.exists(path):
             return True
     return False
+
 
 @lru_cache
 class Paths:

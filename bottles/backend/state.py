@@ -145,12 +145,12 @@ class SignalManager:
     _SIGNALS: Dict[Signals, List[SignalHandler]] = {}
 
     @classmethod
-    def connect(cls, signal: Signals, handler: SignalHandler) -> None:
+    def connect_signal(cls, signal: Signals, handler: SignalHandler) -> None:
         cls._SIGNALS.setdefault(signal, [])
         cls._SIGNALS[signal].append(handler)
 
     @classmethod
-    def send(cls, signal: Signals, data: Optional[Result] = None) -> None:
+    def send_signal(cls, signal: Signals, data: Optional[Result] = None) -> None:
         """
         Send signal
         should only be called by backend logic

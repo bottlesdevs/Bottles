@@ -23,7 +23,7 @@ from typing import Optional
 
 from gi.repository import Gtk, GLib, Gio, Adw, GObject
 
-from bottles.backend.globals import Paths
+from bottles.backend.globals import Paths, Global
 from bottles.backend.health import HealthChecker
 from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
@@ -66,8 +66,8 @@ class MainWindow(Adw.ApplicationWindow):
 
     # Common variables
     previous_page = ""
-    default_settings = Gtk.Settings.get_default()
-    settings = Gio.Settings.new(APP_ID)
+    default_settings = Global.default_settings
+    settings = Global.settings
     argument_executed = False
 
     def __init__(self, arg_bottle, **kwargs):

@@ -17,7 +17,6 @@
 
 import os
 import shutil
-import typing
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
