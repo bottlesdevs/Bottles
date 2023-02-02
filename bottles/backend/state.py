@@ -2,12 +2,25 @@ import dataclasses
 from enum import Enum
 from gettext import gettext as _
 from threading import Lock as PyLock, Event as PyEvent
-from typing import Dict, Callable, Optional, Union, Protocol
+from typing import Dict, Callable, Optional, Union, Protocol, List
 from uuid import UUID, uuid4
+
+from bottles.backend.logger import Logger
+from bottles.backend.models.result import Result
+
+logging = Logger()
 
 
 class Locks(Enum):
     ComponentsInstall = "components.install"
+
+
+class Events(Enum):
+    pass
+
+
+class Signals(Enum):
+    ManagerLocalBottlesLoaded = "manager.local_bottles.loaded"
 
 
 class Status(Enum):
@@ -18,6 +31,10 @@ class Status(Enum):
 
 class TaskStreamUpdateHandler(Protocol):
     def __call__(self, received_size: int = 0, total_size: int = 0, status: Status = None) -> None: ...
+
+
+class SignalHandler(Protocol):
+    def __call__(self, data: Optional[Result] = None) -> None: ...
 
 
 @dataclasses.dataclass(init=False)
@@ -71,7 +88,7 @@ class Task:
 
 
 class LockManager:
-    _LOCKS: Dict[str, PyLock] = {}  # {"lock_name": Lock}
+    _LOCKS: Dict[Locks, PyLock] = {}
 
     @classmethod
     def lock(cls, name: Locks):
@@ -91,11 +108,11 @@ class LockManager:
 
     @classmethod
     def get_lock(cls, name: Locks) -> PyLock:
-        return cls._LOCKS.setdefault(name.value, PyLock())
+        return cls._LOCKS.setdefault(name, PyLock())
 
 
 class EventManager:
-    _EVENTS: Dict[str, PyEvent] = {}  # {"event_name": Event}
+    _EVENTS: Dict[Events, PyEvent] = {}
 
 
 class TaskManager:
@@ -123,6 +140,28 @@ class TaskManager:
         # TODO: sync signal
 
 
-class State(LockManager, EventManager, TaskManager):
+class SignalManager:
+    """sync backend state to frontend via registered signal handlers"""
+    _SIGNALS: Dict[Signals, List[SignalHandler]] = {}
+
+    @classmethod
+    def connect(cls, signal: Signals, handler: SignalHandler) -> None:
+        cls._SIGNALS.setdefault(signal, [])
+        cls._SIGNALS[signal].append(handler)
+
+    @classmethod
+    def send(cls, signal: Signals, data: Optional[Result] = None) -> None:
+        """
+        Send signal
+        should only be called by backend logic
+        """
+        if signal not in cls._SIGNALS:
+            logging.debug(f"No handler registered for {signal}")
+            return
+        for fn in cls._SIGNALS[signal]:
+            fn(data)
+
+
+class State(LockManager, EventManager, TaskManager, SignalManager):
     """Unified State Management"""
     pass

@@ -74,11 +74,17 @@ class StateEntry(Adw.ActionRow):
         self.parent.set_sensitive(False)
         self.spinner.show()
         self.spinner.start()
+
+        def _after():
+            self.window.page_details.view_versioning.update(None, self.config)  # update states
+            self.manager.update_bottles()  # update bottles
+
         RunAsync(
             task_func=self.versioning_manager.set_state,
             callback=self.set_completed,
             config=self.config,
             state_id=self.state[0],
+            after=_after
         )
 
     @GtkUtils.run_in_main_loop

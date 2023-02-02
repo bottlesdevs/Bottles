@@ -17,13 +17,13 @@
 
 import os
 import shutil
+import typing
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
 
 from fvs.exceptions import FVSNothingToCommit, FVSStateNotFound, FVSNothingToRestore, FVSStateZeroNotDeletable
 from fvs.repo import FVSRepo
-from gi.repository import GLib
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -38,8 +38,7 @@ logging = Logger()
 
 # noinspection PyTypeChecker
 class VersioningManager:
-    def __init__(self, window, manager):
-        self.window = window
+    def __init__(self, manager):
         self.manager = manager
 
     @staticmethod
@@ -143,7 +142,7 @@ class VersioningManager:
 
         return states
 
-    def set_state(self, config: BottleConfig, state_id: int, after=False) -> Result:
+    def set_state(self, config: BottleConfig, state_id: int, after: callable = None) -> Result:
         if not config.Versioning:
             patterns = self.__get_patterns(config)
             repo = FVSRepo(
@@ -224,17 +223,11 @@ class VersioningManager:
         # update State in bottle config
         self.manager.update_config(config, "State", state_id)
 
-        # update states
-        self.window.page_details.view_versioning.update(False, config)
-
-        # update bottles
-        self.manager.update_bottles()
-
         # execute caller function after all
         if after:
             after()
 
-        return True
+        return Result(True)
 
     @staticmethod
     def get_state_files(config: BottleConfig, state_id: int, plain: bool = False) -> dict:

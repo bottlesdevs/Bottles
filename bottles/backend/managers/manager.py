@@ -116,7 +116,7 @@ class Manager:
         self.repository_manager = RepositoryManager(repo_fn_update)
         times["RepositoryManager"] = time.time()
 
-        self.versioning_manager = VersioningManager(window, self)
+        self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
             
         self.component_manager = ComponentManager(self, _offline)
@@ -904,7 +904,7 @@ class Manager:
         config.Update_Date = str(datetime.now())
 
         if config.Environment == "Steam":
-            config = self.steam_manager.update_bottle(config)
+            self.steam_manager.update_bottle(config)
 
         return Result(status=True, data={"config": config})
 

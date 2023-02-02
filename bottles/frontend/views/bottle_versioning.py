@@ -69,7 +69,7 @@ class VersioningView(Adw.PreferencesPage):
         self.__registry = []
 
     @GtkUtils.run_in_main_loop
-    def update(self, widget=False, config=None, states=None, active=0):
+    def update(self, widget=None, config=None, states=None, active=0):
         """
         This function update the states list with the
         ones from the bottle configuration.

@@ -23,6 +23,7 @@ bottles_sources = [
   'downloader.py',
   'logger.py',
   'cabextract.py',
+  'state.py',
   params_file
 ]
 
