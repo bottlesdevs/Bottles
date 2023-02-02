@@ -123,8 +123,7 @@ class MainWindow(Adw.ApplicationWindow):
             self.manager.checks(install_latest=False, first_run=True)
 
     def toggle_btn_noconnection(self, res: Result):
-        """TODO: call this when signal NetworkReady triggered"""
-        GLib.idle_add(self.btn_noconnection.set_visible, res.status)
+        GLib.idle_add(self.btn_noconnection.set_visible, not res.status)
 
     def __on_start(self):
         """
@@ -191,6 +190,9 @@ class MainWindow(Adw.ApplicationWindow):
                 dialog.present()
 
         def get_manager():
+            # handler for ConnectionUtils.check_connection()
+            State.connect_signal(Signals.NetworkReady, self.toggle_btn_noconnection)
+
             if self.utils_conn.check_connection():
                 State.connect_signal(Signals.RepositoryFetched, self.page_loading.add_fetched)
             mng = Manager()
