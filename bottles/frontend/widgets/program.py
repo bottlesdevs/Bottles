@@ -16,6 +16,7 @@
 #
 
 import webbrowser
+from gettext import gettext as _
 from typing import Union
 
 from gi.repository import Gtk, Adw
@@ -185,7 +186,7 @@ class ProgramEntry(Adw.ActionRow):
         self.__reset_buttons()
 
     def run_steam(self, _widget):
-        self.manager.steam_manager.launch_app(self.config.CompatData, self.window)
+        self.manager.steam_manager.launch_app(self.config.CompatData)
         self.window.show_toast(_("Launching \"{0}\" with Steam…").format(self.program["name"]))
         self.pop_actions.popdown()  # workaround #1640
 

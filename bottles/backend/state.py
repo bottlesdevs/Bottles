@@ -27,6 +27,7 @@ class Signals(Enum):
     NetworkStatusChanged = "ConnectionUtils.status_changed"  # status(bool): network ready or not
 
     GNotification = "G.send_notification"  # data(Notification): data for Gio notification
+    GShowUri = "G.show_uri"  # data(str): the URI
 
     # data(UUID): the UUID of task
     TaskAdded = "task.added"

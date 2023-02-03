@@ -21,7 +21,7 @@ import webbrowser
 from gettext import gettext as _
 from typing import Optional
 
-from gi.repository import Gtk, GLib, Gio, Adw, GObject
+from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk
 
 from bottles.backend.globals import Paths, Global
 from bottles.backend.health import HealthChecker
@@ -110,11 +110,28 @@ class MainWindow(Adw.ApplicationWindow):
         State.connect_signal(Signals.TaskAdded, self.task_syncer.task_added_handler)
         State.connect_signal(Signals.TaskRemoved, self.task_syncer.task_removed_handler)
         State.connect_signal(Signals.TaskUpdated, self.task_syncer.task_updated_handler)
-        State.connect_signal(Signals.NetworkStatusChanged, self.toggle_btn_noconnection)
-        State.connect_signal(Signals.GNotification, self.backend_notification_syncing)
+        State.connect_signal(Signals.NetworkStatusChanged, self.network_changed_handler)
+        State.connect_signal(Signals.GNotification, self.g_notification_handler)
+        State.connect_signal(Signals.GShowUri, self.g_show_uri_handler)
 
         self.__on_start()
         logging.info("Bottles Started!", )
+
+    # region Backend signal handlers
+    def network_changed_handler(self, res: Result):
+        GLib.idle_add(self.btn_noconnection.set_visible, not res.status)
+
+    def g_notification_handler(self, res: Result):
+        """handle backend notification request"""
+        notify: Notification = res.data
+        self.send_notification(title=notify.title, text=notify.text, image=notify.image)
+
+    def g_show_uri_handler(self, res: Result):
+        """handle backend show_uri request"""
+        uri: str = res.data
+        Gtk.show_uri(self, uri, Gdk.CURRENT_TIME)
+
+    # endregion
 
     def update_library(self):
         GLib.idle_add(self.page_library.update)
@@ -131,9 +148,6 @@ class MainWindow(Adw.ApplicationWindow):
         """
         if self.utils_conn.check_connection():
             self.manager.checks(install_latest=False, first_run=True)
-
-    def toggle_btn_noconnection(self, res: Result):
-        GLib.idle_add(self.btn_noconnection.set_visible, not res.status)
 
     def __on_start(self):
         """
@@ -210,11 +224,6 @@ class MainWindow(Adw.ApplicationWindow):
         RunAsync(get_manager, callback=set_manager)
 
         self.check_crash_log()
-
-    def backend_notification_syncing(self, res: Result):
-        """handle backend notification request"""
-        notify: Notification = res.data
-        self.send_notification(title=notify.title, text=notify.text, image=notify.image)
 
     def send_notification(self, title, text, image="", ignore_user=False):
         """
