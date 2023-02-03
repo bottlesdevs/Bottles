@@ -21,8 +21,6 @@ import threading
 import traceback
 from typing import Any
 
-from gi.repository import GLib
-
 from bottles.backend.logger import Logger
 
 logging = Logger()
