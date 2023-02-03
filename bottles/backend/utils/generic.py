@@ -45,6 +45,8 @@ def detect_encoding(text: bytes) -> Optional[str]:
     Detect the encoding of a text by its bytes. Return None if it
     can't be detected.
     """
+    if not text:  # when empty
+        return 'utf-8'
     return chardet.detect(text).get('encoding')
 
 
