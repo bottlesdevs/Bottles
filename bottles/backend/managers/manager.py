@@ -24,6 +24,7 @@ import subprocess
 import time
 import uuid
 from datetime import datetime
+from functools import cache
 from gettext import gettext as _
 from glob import glob
 from typing import Union, Any, Dict, List
@@ -69,6 +70,7 @@ from bottles.backend.wine.wineserver import WineServer
 logging = Logger()
 
 
+@cache  # singleton
 class Manager:
     """
     This is the core of Bottles, everything starts from here. There should
