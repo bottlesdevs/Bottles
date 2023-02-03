@@ -110,8 +110,8 @@ class MainWindow(Adw.ApplicationWindow):
         State.connect_signal(Signals.TaskAdded, self.task_syncer.task_added_handler)
         State.connect_signal(Signals.TaskRemoved, self.task_syncer.task_removed_handler)
         State.connect_signal(Signals.TaskUpdated, self.task_syncer.task_updated_handler)
-        State.connect_signal(Signals.NetworkReady, self.toggle_btn_noconnection)
-        State.connect_signal(Signals.Notification, self.backend_notification_syncing)
+        State.connect_signal(Signals.NetworkStatusChanged, self.toggle_btn_noconnection)
+        State.connect_signal(Signals.GNotification, self.backend_notification_syncing)
 
         self.__on_start()
         logging.info("Bottles Started!", )

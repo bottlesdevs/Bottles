@@ -21,18 +21,12 @@ class Events(Enum):
 
 class Signals(Enum):
     """Signals backend support"""
-    # no extra data
-    ManagerLocalBottlesLoaded = "Manager.local_bottles.loaded"
+    ManagerLocalBottlesLoaded = "Manager.local_bottles_loaded"  # no extra data
 
-    # status: fetch success or not
-    # data(int): total repositories
-    RepositoryFetched = "RepositoryManager.repo_fetched"
+    RepositoryFetched = "RepositoryManager.repo_fetched"  # status: fetch success or not, data(int): total repositories
+    NetworkStatusChanged = "ConnectionUtils.status_changed"  # status(bool): network ready or not
 
-    # status: network is ready or not
-    NetworkReady = "utils.ConnectionUtils.status"
-
-    # data(Notification): data for frontend notification
-    Notification = "generic.notification"
+    GNotification = "G.send_notification"  # data(Notification): data for Gio notification
 
     # data(UUID): the UUID of task
     TaskAdded = "task.added"
