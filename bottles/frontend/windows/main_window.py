@@ -33,6 +33,7 @@ from bottles.backend.state import State, Signals, Notification
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.const import *
+from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import *
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.details import DetailsView
@@ -103,6 +104,15 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_add.connect("clicked", self.show_add_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
+
+        # backend signal handlers
+        self.task_syncer = TaskSyncer(self)
+        State.connect_signal(Signals.TaskAdded, self.task_syncer.task_added_handler)
+        State.connect_signal(Signals.TaskRemoved, self.task_syncer.task_removed_handler)
+        State.connect_signal(Signals.TaskUpdated, self.task_syncer.task_updated_handler)
+        State.connect_signal(Signals.NetworkReady, self.toggle_btn_noconnection)
+        State.connect_signal(Signals.Notification, self.backend_notification_syncing)
+
         self.__on_start()
         logging.info("Bottles Started!", )
 
@@ -190,11 +200,6 @@ class MainWindow(Adw.ApplicationWindow):
                 dialog.present()
 
         def get_manager():
-            # handler for ConnectionUtils.check_connection()
-            State.connect_signal(Signals.NetworkReady, self.toggle_btn_noconnection)
-            # handler for backend Notification request
-            State.connect_signal(Signals.Notification, self.backend_notification_syncing)
-
             if self.utils_conn.check_connection():
                 State.connect_signal(Signals.RepositoryFetched, self.page_loading.add_fetched)
             mng = Manager()

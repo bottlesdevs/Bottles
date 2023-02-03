@@ -34,6 +34,11 @@ class Signals(Enum):
     # data(Notification): data for frontend notification
     Notification = "generic.notification"
 
+    # data(UUID): the UUID of task
+    TaskAdded = "task.added"
+    TaskRemoved = "task.removed"
+    TaskUpdated = "task.updated"
+
 
 class Status(Enum):
     RUNNING = "running"
@@ -87,7 +92,7 @@ class Task:
     @subtitle.setter
     def subtitle(self, value: str):
         self._subtitle = value
-        # TODO: sync signal
+        State.send_signal(Signals.TaskUpdated, Result(True, self.task_id))
 
     def stream_update(self, received_size: int = 0, total_size: int = 0, status: Status = None):
         """This is a default subtitle updating handler for streaming downloading progress"""
@@ -148,7 +153,7 @@ class TaskManager:
         uniq = uuid4()
         task.task_id = uniq
         cls._TASKS[uniq] = task
-        # TODO: sync signal
+        State.send_signal(Signals.TaskAdded, Result(True, task.task_id))
         return uniq
 
     @classmethod
@@ -156,7 +161,7 @@ class TaskManager:
         if isinstance(task, Task):
             task = task.task_id
         cls._TASKS.pop(task)
-        # TODO: sync signal
+        State.send_signal(Signals.TaskRemoved, Result(True, task))
 
 
 class SignalManager:
