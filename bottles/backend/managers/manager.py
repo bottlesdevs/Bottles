@@ -53,6 +53,8 @@ from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.repos.repo import RepoStatus
 from bottles.backend.utils.file import FileUtils
+from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.gpu import GPUVendors
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.generic import sort_by_version
@@ -1318,11 +1320,12 @@ class Manager:
 
             if not template and config.Parameters.dxvk_nvapi \
                     or (template and template["config"]["NVAPI"] != nvapi):
-                # perform nvapi installation if configured
-                logging.info("Installing DXVK-NVAPI…")
-                log_update(_("Installing DXVK-NVAPI…"))
-                self.install_dll_component(config, "nvapi", version=nvapi_name)
-                template_updated = True
+                if GPUUtils.is_gpu(GPUVendors.NVIDIA):
+                    # perform nvapi installation if configured
+                    logging.info("Installing DXVK-NVAPI…")
+                    log_update(_("Installing DXVK-NVAPI…"))
+                    self.install_dll_component(config, "nvapi", version=nvapi_name)
+                    template_updated = True
 
             for dep in env.get("Installed_Dependencies", []):
                 if template and dep in template["config"]["Installed_Dependencies"]:
