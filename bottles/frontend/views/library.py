@@ -82,22 +82,5 @@ class LibraryView(Adw.Bin):
         library_manager = LibraryManager()
         library_manager.remove_from_library(entry.uuid)
 
-    def add_css_entry(self, entry, color):
-        gtk_context = self.get_style_context()
-        Gtk.StyleContext.add_class(entry.btn_menu.get_style_context(),
-                                   re.sub('[~!@$%^&*()+=,./\';:"?><\[\]\{}|`#]', '', entry.entry["name"]).replace(" ",
-                                                                                                                  "") + "_menu_button")
-        self.css = self.css + b"\n" + b"." + bytes(
-            re.sub('[~!@$%^&*()+=,./\';:"?><\[\]\{}|`#]', '', entry.entry["name"]).replace(" ", ""),
-            'utf-8') + b"_menu_button { color: rgba(" + bytes(str(color), 'utf-8') + b"," + bytes(str(color),
-                                                                                                  'utf-8') + b"," + bytes(
-            str(color), 'utf-8') + b", 255); }"
-        self.style_provider.load_from_data(self.css)
-        Gtk.StyleContext.add_provider(
-            entry.btn_menu.get_style_context(),
-            self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_USER
-        )
-
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
