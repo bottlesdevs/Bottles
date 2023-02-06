@@ -39,8 +39,10 @@ sys.path.insert(1, pkgdatadir)
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-from bottles.frontend.params import *
-from bottles.backend.globals import Paths, Global
+from gi.repository import Gio
+
+from bottles.frontend.params import APP_ID
+from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
@@ -58,13 +60,11 @@ from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.runner import Runner
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils.connection import ConnectionUtils
 
 
 # noinspection DuplicatedCode
 class CLI:
-    utils_conn = ConnectionUtils()
-    settings = Global.settings
+    settings = Gio.Settings.new(APP_ID)
 
     def __init__(self):
         # self.__clear()
@@ -224,7 +224,7 @@ class CLI:
 
     # region LIST
     def list_bottles(self, c_filter=None):
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
         bottles = mng.local_bottles
 
@@ -242,7 +242,7 @@ class CLI:
                 sys.stdout.write(f"- {b}\n")
 
     def list_components(self, c_filter=None):
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_runners(False)
         mng.check_dxvk(False)
         mng.check_vkd3d(False)
@@ -275,7 +275,7 @@ class CLI:
 
     # region PROGRAMS
     def list_programs(self):
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
         _bottle = self.args.bottle
 
@@ -302,7 +302,7 @@ class CLI:
     def launch_tool(self):
         _bottle = self.args.bottle
         _tool = self.args.tool
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
 
         if _bottle not in mng.local_bottles:
@@ -340,7 +340,7 @@ class CLI:
         _executable = ""
         _folder = ""
         _uuid = str(uuid.uuid4())
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
 
         if _bottle not in mng.local_bottles:
@@ -388,7 +388,7 @@ class CLI:
         _value = self.args.value
         _data = self.args.data
         _key_type = self.args.key_type
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
 
         if _bottle not in mng.local_bottles:
@@ -420,7 +420,7 @@ class CLI:
         _vkd3d = self.args.vkd3d
         _nvapi = self.args.nvapi
         _latencyflex = self.args.latencyflex
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
 
         valid_parameters = BottleConfig().Parameters.keys()
@@ -514,7 +514,7 @@ class CLI:
         _vkd3d = self.args.vkd3d
         _nvapi = self.args.nvapi
         _latencyflex = self.args.latencyflex
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
 
         mng.create_bottle(
@@ -533,7 +533,6 @@ class CLI:
 
     # region RUN
     def run_program(self):
-        self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
         _bottle = self.args.bottle
         _program = self.args.program
         _keep = self.args.keep_args
@@ -541,7 +540,7 @@ class CLI:
         _executable = self.args.executable
         _cwd = None
         _script = None
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
 
         if _bottle not in mng.local_bottles:
@@ -603,10 +602,9 @@ class CLI:
 
     # region SHELL
     def run_shell(self):
-        self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
         _bottle = self.args.bottle
         _input = self.args.input
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
 
         if _bottle not in mng.local_bottles:
@@ -621,9 +619,8 @@ class CLI:
 
     # region STANDALONE
     def generate_standalone(self):
-        self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
         _bottle = self.args.bottle
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
 
         if _bottle not in mng.local_bottles:

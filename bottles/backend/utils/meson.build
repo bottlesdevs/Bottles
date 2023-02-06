@@ -21,7 +21,8 @@ bottles_sources = [
   'yaml.py',
   'nvidia.py',
   'threading.py',
-  'connection.py'
+  'connection.py',
+  'gsettings_stub.py'
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)

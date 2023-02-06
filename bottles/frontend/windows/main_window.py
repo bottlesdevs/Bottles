@@ -23,7 +23,7 @@ from typing import Optional
 
 from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk
 
-from bottles.backend.globals import Global, Paths
+from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.logger import Logger
 from bottles.backend.managers.data import UserDataKeys
@@ -70,7 +70,7 @@ class MainWindow(Adw.ApplicationWindow):
 
     # Common variables
     previous_page = ""
-    settings = Global.settings
+    settings = Gio.Settings.new(APP_ID)
     argument_executed = False
 
     def __init__(self, arg_bottle, **kwargs):
@@ -217,7 +217,7 @@ class MainWindow(Adw.ApplicationWindow):
         def get_manager():
             if self.utils_conn.check_connection():
                 State.connect_signal(Signals.RepositoryFetched, self.page_loading.add_fetched)
-            mng = Manager()
+            mng = Manager(g_settings=self.settings)
             return mng
 
         self.check_core_deps()

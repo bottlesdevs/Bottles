@@ -20,14 +20,6 @@ import shutil
 from functools import lru_cache
 from pathlib import Path
 
-from gi.repository import Gio
-
-from bottles.backend.params import APP_ID
-
-
-class Global:
-    settings = Gio.Settings.new(APP_ID)
-
 
 @lru_cache
 class Paths:

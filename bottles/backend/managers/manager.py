@@ -35,7 +35,7 @@ from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.latencyflex import LatencyFleXComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
-from bottles.backend.globals import Paths, Global
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.data import DataManager, UserDataKeys
@@ -58,6 +58,7 @@ from bottles.backend.utils import yaml
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import sort_by_version
+from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
@@ -104,16 +105,16 @@ class Manager:
     supported_dependencies = {}
     supported_installers = {}
 
-    def __init__(self, is_cli=False, **kwargs):
+    def __init__(self, g_settings: Any = None, is_cli: bool = False, **kwargs):
         super().__init__(**kwargs)
 
         times = {"start": time.time()}
 
         # common variables
-        self.settings = Global.settings
-        self.utils_conn = ConnectionUtils()
-        self.data_mgr = DataManager()
         self.is_cli = is_cli
+        self.settings = g_settings or GSettingsStub
+        self.utils_conn = ConnectionUtils(force_offline=self.is_cli)
+        self.data_mgr = DataManager()
         _offline = not self.utils_conn.check_connection()
 
         # validating user-defined Paths.bottles
@@ -139,7 +140,7 @@ class Manager:
         self.steam_manager = SteamManager()
         times["SteamManager"] = time.time()
 
-        if not is_cli:
+        if not self.is_cli:
             times.update(self.checks(install_latest=False, first_run=True).data)
         else:
             logging.set_silent()
@@ -414,7 +415,7 @@ class Manager:
             if self.utils_conn.check_connection():
                 # if connected, install the latest runner from repository
                 try:
-                    if not Global.settings.get_boolean("release-candidate"):
+                    if not self.settings.get_boolean("release-candidate"):
                         tmp_runners = []
                         for runner in self.supported_wine_runners.items():
                             if runner[1]["Channel"] not in ["rc", "unstable"]:
@@ -695,21 +696,21 @@ class Manager:
 
             win_steam_manager = SteamManager(config, is_windows=True)
 
-            if Global.settings.get_boolean("steam-programs") \
+            if self.settings.get_boolean("steam-programs") \
                     and win_steam_manager.is_steam_supported:
                 programs_names = [p.get("name", "") for p in installed_programs]
                 for app in win_steam_manager.get_installed_apps_as_programs():
                     if app["name"] not in programs_names:
                         installed_programs.append(app)
 
-            if Global.settings.get_boolean("epic-games") \
+            if self.settings.get_boolean("epic-games") \
                     and EpicGamesStoreManager.is_epic_supported(config):
                 programs_names = [p.get("name", "") for p in installed_programs]
                 for app in EpicGamesStoreManager.get_installed_games(config):
                     if app["name"] not in programs_names:
                         installed_programs.append(app)
 
-            if Global.settings.get_boolean("ubisoft-connect") \
+            if self.settings.get_boolean("ubisoft-connect") \
                     and UbisoftConnectManager.is_uconnect_supported(config):
                 programs_names = [p.get("name", "") for p in installed_programs]
                 for app in UbisoftConnectManager.get_installed_games(config):
@@ -762,8 +763,9 @@ class Manager:
             # Check if the path in the bottle config corresponds to the folder name
             # if not, change the config to reflect the folder name
             # if the folder name is "illegal" accross all platforms, rename the folder
-            sane_name = pathvalidate.sanitize_filepath(_name,
-                                                       platform='universal')  # "universal" platform works for all filesystem/OSes
+
+            # "universal" platform works for all filesystem/OSes
+            sane_name = pathvalidate.sanitize_filepath(_name, platform='universal')
             if config.Custom_Path is False:  # There shouldn't be problems with this
                 if config.Path != _name or sane_name != _name:
                     logging.warning("Illegal bottle folder or mismatch between config \"Path\" and folder name")
@@ -1421,9 +1423,9 @@ class Manager:
         logging.info(f"Removing library entries associated with this bottle…")
         library_manager = LibraryManager()
         entries = library_manager.get_library().copy()
-        for uuid, entry in entries.items():
+        for _uuid, entry in entries.items():
             if entry.get('bottle').get('name') == config.Name:
-                library_manager.remove_from_library(uuid)
+                library_manager.remove_from_library(_uuid)
 
         if config.Custom_Path:
             logging.info(f"Removing placeholder…")

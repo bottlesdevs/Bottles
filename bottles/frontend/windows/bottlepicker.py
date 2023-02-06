@@ -17,12 +17,11 @@
 
 import subprocess
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw, Gio
 
-from bottles.backend.globals import Global
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils.connection import ConnectionUtils
+from bottles.frontend.params import APP_ID
 
 
 class BottleEntry(Adw.ActionRow):
@@ -36,8 +35,7 @@ class BottleEntry(Adw.ActionRow):
 class BottlePickerDialog(Adw.ApplicationWindow):
     """This class should not be called from the application GUI, only from CLI."""
     __gtype_name__ = 'BottlePickerDialog'
-    utils_conn = ConnectionUtils(force_offline=True)
-    settings = Global.settings
+    settings = Gio.Settings.new(APP_ID)
     Adw.init()
 
     # region Widgets
@@ -51,7 +49,7 @@ class BottlePickerDialog(Adw.ApplicationWindow):
     def __init__(self, arg_exe, **kwargs):
         super().__init__(**kwargs)
         self.arg_exe = arg_exe
-        mng = Manager(is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
         bottles = mng.local_bottles
 
