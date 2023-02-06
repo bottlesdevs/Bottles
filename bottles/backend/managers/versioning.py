@@ -203,10 +203,9 @@ class VersioningManager:
             os.remove("%s/drive_c/%s" % (bottle_path, file["file"]))
 
         for file in add_files:
-            for i in search_sources:
-                source = "%s/states/%s/drive_c/%s" % (bottle_path, str(state_id), file["file"])
-                target = "%s/drive_c/%s" % (bottle_path, file["file"])
-                shutil.copy2(source, target)
+            source = "%s/states/%s/drive_c/%s" % (bottle_path, str(state_id), file["file"])
+            target = "%s/drive_c/%s" % (bottle_path, file["file"])
+            shutil.copy2(source, target)
 
         for file in edit_files:
             for i in search_sources:
