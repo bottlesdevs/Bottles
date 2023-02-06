@@ -53,8 +53,10 @@ class StateEntry(Adw.ActionRow):
             if state[0] == config.State:
                 self.add_css_class("current-state")
         else:
-            self.state_name = "{} - {}".format(state[0], datetime.fromtimestamp(state[1]["timestamp"]).strftime(
-                "%d %B %Y, %H:%M"))
+            self.state_name = "{} - {}".format(
+                state[0],
+                datetime.fromtimestamp(state[1]["timestamp"]).strftime("%d %B %Y, %H:%M")
+            )
             self.set_subtitle(state[1]["message"])
             if active:
                 self.add_css_class("current-state")
