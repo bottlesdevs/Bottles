@@ -20,49 +20,19 @@ import shutil
 from functools import lru_cache
 from pathlib import Path
 
-from gi.repository import GLib
-from gi.repository import Gtk, Gio
+from gi.repository import Gio
 
-from bottles.backend.logger import Logger
-from bottles.backend.managers.data import DataManager
 from bottles.backend.params import APP_ID
-from bottles.backend.utils.display import DisplayUtils
-
-logging = Logger()
 
 
 class Global:
     settings = Gio.Settings.new(APP_ID)
 
 
-# xdg data path
-xdg_data_home = GLib.get_user_data_dir()
-
-# check if bottles exists in xdg data path
-os.makedirs(f"{xdg_data_home}/bottles", exist_ok=True)
-
-
-def get_apps_dir():
-    _dir = f"{xdg_data_home}/applications/"
-    if "FLATPAK_ID" in os.environ:
-        _dir = f"{Path.home()}/.local/share/applications"
-    return _dir
-
-
-def is_vkbasalt_available():
-    vkbasalt_paths = [
-        "/usr/lib/extensions/vulkan/vkBasalt/etc/vkBasalt",
-        "/usr/local",
-        "/usr/share/vkBasalt",
-    ]
-    for path in vkbasalt_paths:
-        if os.path.exists(path):
-            return True
-    return False
-
-
 @lru_cache
 class Paths:
+    xdg_data_home = os.environ.get("XDG_DATA_HOME", os.path.join(Path.home(), ".local/share"))
+
     # Icon paths
     icons_user = f"{xdg_data_home}/icons"
 
@@ -70,10 +40,7 @@ class Paths:
     base = f"{xdg_data_home}/bottles"
 
     # User applications path
-    applications = get_apps_dir()
-
-    # Set errors status
-    custom_bottles_path_err = False
+    applications = f"{xdg_data_home}/applications/"
 
     temp = f"{base}/temp"
     runtimes = f"{base}/runtimes"
@@ -88,14 +55,17 @@ class Paths:
     templates = f"{base}/templates"
     library = f"{base}/library.yml"
 
-    data = DataManager()
-    if data.get("custom_bottles_path"):
-        if os.path.exists(data.get("custom_bottles_path")):
-            bottles = data.get("custom_bottles_path")
-        else:
-            logging.error(
-                f"Custom bottles path {data.get('custom_bottles_path')} does not exist! Falling back to default path.")
-            custom_bottles_path_err = True
+    @staticmethod
+    def is_vkbasalt_available():
+        vkbasalt_paths = [
+            "/usr/lib/extensions/vulkan/vkBasalt/etc/vkBasalt",
+            "/usr/local",
+            "/usr/share/vkBasalt",
+        ]
+        for path in vkbasalt_paths:
+            if os.path.exists(path):
+                return True
+        return False
 
 
 class TrdyPaths:
@@ -106,11 +76,13 @@ class TrdyPaths:
     bottlesv1 = f"{Path.home()}/.Bottles"
 
 
+# check if bottles exists in xdg data path
+os.makedirs(Paths.base, exist_ok=True)
+
 # Check if some tools are available
 gamemode_available = shutil.which("gamemoderun") or False
 gamescope_available = shutil.which("gamescope") or False
-vkbasalt_available = is_vkbasalt_available()
+vkbasalt_available = Paths.is_vkbasalt_available()
 mangohud_available = shutil.which("mangohud") or False
 obs_vkc_available = shutil.which("obs-vkcapture") or False
 vmtouch_available = shutil.which("vmtouch") or False
-

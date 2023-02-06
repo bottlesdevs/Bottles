@@ -23,9 +23,10 @@ from typing import Optional
 
 from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk
 
-from bottles.backend.globals import Paths, Global
+from bottles.backend.globals import Global, Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.logger import Logger
+from bottles.backend.managers.data import UserDataKeys
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
@@ -156,7 +157,7 @@ class MainWindow(Adw.ApplicationWindow):
         """
 
         @GtkUtils.run_in_main_loop
-        def set_manager(result, error=None):
+        def set_manager(result: Manager, error=None):
             self.manager = result
 
             tmp_runners = [x for x in self.manager.runners_available if not x.startswith('sys-')]
@@ -203,7 +204,8 @@ class MainWindow(Adw.ApplicationWindow):
             self.lock_ui(False)
             self.headerbar.get_style_context().remove_class("flat")
 
-            if Paths.custom_bottles_path_err:
+            user_defined_bottles_path = self.manager.data_mgr.get(UserDataKeys.CustomBottlesPath)
+            if user_defined_bottles_path and Paths.bottles != user_defined_bottles_path:
                 dialog = Adw.MessageDialog.new(
                     self,
                     _("Custom Bottles Path not Found"),

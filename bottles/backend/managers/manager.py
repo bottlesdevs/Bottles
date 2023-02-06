@@ -38,6 +38,7 @@ from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths, Global
 from bottles.backend.logger import Logger
 from bottles.backend.managers.component import ComponentManager
+from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.importer import ImportManager
@@ -111,24 +112,30 @@ class Manager:
         # common variables
         self.settings = Global.settings
         self.utils_conn = ConnectionUtils()
+        self.data_mgr = DataManager()
         self.is_cli = is_cli
         _offline = not self.utils_conn.check_connection()
 
+        # validating user-defined Paths.bottles
+        if user_bottles_path := self.data_mgr.get(UserDataKeys.CustomBottlesPath):
+            if os.path.exists(user_bottles_path):
+                Paths.bottles = user_bottles_path
+            else:
+                logging.error(
+                    f"Custom bottles path {user_bottles_path} does not exist! "
+                    f"Falling back to default path."
+                )
+
+        # sub-managers
         self.repository_manager = RepositoryManager()
         times["RepositoryManager"] = time.time()
-
         self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
-
         self.component_manager = ComponentManager(self, _offline)
-
         self.installer_manager = InstallerManager(self, _offline)
-
         self.dependency_manager = DependencyManager(self, _offline)
-
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
-
         self.steam_manager = SteamManager()
         times["SteamManager"] = time.time()
 

@@ -18,8 +18,7 @@ import logging
 import os
 import re
 
-from gi.repository import GLib
-
+from bottles.backend.globals import Paths
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 
 # Set default logging level
@@ -90,8 +89,7 @@ class Logger(logging.getLoggerClass()):
         Writes a crash.log file. It finds and replace the user's home directory
         with "USER" as a proposed standard for crash reports.
         """
-        xdg_data_home = GLib.get_user_data_dir()
-        log_path = f"{xdg_data_home}/bottles/crash.log"
+        log_path = f"{Paths.xdg_data_home}/bottles/crash.log"
 
         with open(log_path, "w") as crash_log:
             for d in data:
