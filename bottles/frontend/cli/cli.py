@@ -64,7 +64,6 @@ from bottles.backend.utils.connection import ConnectionUtils
 # noinspection DuplicatedCode
 class CLI:
     utils_conn = ConnectionUtils()
-    default_settings = Global.default_settings
     settings = Global.settings
 
     def __init__(self):

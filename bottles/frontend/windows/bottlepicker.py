@@ -37,7 +37,6 @@ class BottlePickerDialog(Adw.ApplicationWindow):
     """This class should not be called from the application GUI, only from CLI."""
     __gtype_name__ = 'BottlePickerDialog'
     utils_conn = ConnectionUtils(force_offline=True)
-    default_settings = Global.default_settings
     settings = Global.settings
     Adw.init()
 

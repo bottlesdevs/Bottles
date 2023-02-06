@@ -69,7 +69,6 @@ class MainWindow(Adw.ApplicationWindow):
 
     # Common variables
     previous_page = ""
-    default_settings = Global.default_settings
     settings = Global.settings
     argument_executed = False
 

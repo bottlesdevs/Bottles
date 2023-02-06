@@ -19,14 +19,14 @@ import os
 import subprocess
 import webbrowser
 from gettext import gettext as _
+
 from gi.repository import Gtk, Adw, Gio, GLib
 
+from bottles.backend.managers.data import DataManager
 from bottles.backend.repos.repo import RepoStatus
-
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
-from bottles.backend.managers.data import DataManager
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class PreferencesWindow(Adw.PreferencesWindow):
@@ -75,7 +75,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         # common variables and references
         self.window = window
         self.settings = window.settings
-        self.default_settings = window.default_settings
         self.manager = window.manager
         self.data = DataManager()
         self.style_manager = Adw.StyleManager.get_default()
@@ -142,7 +141,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.action_steam_proton.set_tooltip_text(
                 _("Steam was not found or Bottles does not have enough permissions."))
             self.btn_steam_proton_doc.set_visible(True)
-        
 
         if not self.style_manager.get_system_supports_color_schemes():
             self.row_theme.set_visible(True)
@@ -152,7 +150,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
             Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK)
         else:
             Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
-
 
     def __toggle_update_date(self, widget, state):
         self.window.page_list.update_bottles()

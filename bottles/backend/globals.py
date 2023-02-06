@@ -32,7 +32,6 @@ logging = Logger()
 
 
 class Global:
-    default_settings = Gtk.Settings.get_default()
     settings = Gio.Settings.new(APP_ID)
 
 
