@@ -24,7 +24,7 @@ from typing import Union
 
 import icoextract
 
-from bottles.backend.globals import Paths, user_apps_dir
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
@@ -204,7 +204,7 @@ class ManagerUtils:
     @staticmethod
     def create_desktop_entry(config, program: dict, skip_icon: bool = False, custom_icon: str = "",
                              use_xdp: bool = False) -> bool:
-        if not user_apps_dir and not use_xdp:
+        if not os.path.exists(Paths.applications) and not use_xdp:
             return False
 
         cmd_legacy = "bottles"

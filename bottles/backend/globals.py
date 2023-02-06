@@ -115,7 +115,3 @@ mangohud_available = shutil.which("mangohud") or False
 obs_vkc_available = shutil.which("obs-vkcapture") or False
 vmtouch_available = shutil.which("vmtouch") or False
 
-x_display = DisplayUtils.get_x_display()
-
-# Check if ~/.local/share/applications exists
-user_apps_dir = os.path.exists(Paths.applications)
