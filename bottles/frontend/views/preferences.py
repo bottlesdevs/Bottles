@@ -19,14 +19,14 @@ import os
 import subprocess
 import webbrowser
 from gettext import gettext as _
+
 from gi.repository import Gtk, Adw, Gio, GLib
 
+from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.repos.repo import RepoStatus
-
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
-from bottles.backend.managers.data import DataManager
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class PreferencesWindow(Adw.PreferencesWindow):
@@ -75,7 +75,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         # common variables and references
         self.window = window
         self.settings = window.settings
-        self.default_settings = window.default_settings
         self.manager = window.manager
         self.data = DataManager()
         self.style_manager = Adw.StyleManager.get_default()
@@ -83,7 +82,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         if "FLATPAK_ID" in os.environ:
             self.remove(self.pref_core)
 
-        self.current_bottles_path = self.data.get("custom_bottles_path")
+        self.current_bottles_path = self.data.get(UserDataKeys.CustomBottlesPath)
         if self.current_bottles_path:
             self.label_bottles_path.set_label(os.path.basename(self.current_bottles_path))
             self.btn_bottles_path_reset.set_visible(True)
@@ -92,7 +91,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.bind("dark-theme", self.switch_theme, "active", Gio.SettingsBindFlags.DEFAULT)
         self.settings.bind("notifications", self.switch_notifications, "active", Gio.SettingsBindFlags.DEFAULT)
         self.settings.bind("temp", self.switch_temp, "active", Gio.SettingsBindFlags.DEFAULT)
-        self.settings.bind("release-candidate", self.switch_release_candidate, "active", Gio.SettingsBindFlags.DEFAULT) #Connect RC signal to another func
+        # Connect RC signal to another func
+        self.settings.bind("release-candidate", self.switch_release_candidate, "active", Gio.SettingsBindFlags.DEFAULT)
         self.settings.bind("steam-proton-support", self.switch_steam, "active", Gio.SettingsBindFlags.DEFAULT)
         self.settings.bind("experiments-sandbox", self.switch_sandbox, "active", Gio.SettingsBindFlags.DEFAULT)
         self.settings.bind("auto-close-bottles", self.switch_auto_close, "active", Gio.SettingsBindFlags.DEFAULT)
@@ -107,7 +107,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.dlls_stack.set_visible_child_name("dlls_loading")
         self.dlls_spinner.start()
 
-        if self.manager.utils_conn.status == False:
+        if not self.manager.utils_conn.status:
             self.installers_stack.set_visible_child_name("installers_offline")
             self.dlls_stack.set_visible_child_name("dlls_offline")
 
@@ -116,7 +116,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.populate_winebridge_list()
 
         def ui_update():
-            if self.manager.utils_conn.status == True:
+            if self.manager.utils_conn.status:
                 RepoStatus.repo_wait_operation("components.fetching")
                 RepoStatus.repo_wait_operation("components.organizing")
                 GLib.idle_add(self.populate_runners_list)
@@ -142,7 +142,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.action_steam_proton.set_tooltip_text(
                 _("Steam was not found or Bottles does not have enough permissions."))
             self.btn_steam_proton_doc.set_visible(True)
-        
 
         if not self.style_manager.get_system_supports_color_schemes():
             self.row_theme.set_visible(True)
@@ -152,7 +151,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
             Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK)
         else:
             Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
-
 
     def __toggle_update_date(self, widget, state):
         self.window.page_list.update_bottles()
@@ -170,7 +168,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
             path = dialog.get_file().get_path()
 
-            self.data.set("custom_bottles_path", path)
+            self.data.set(UserDataKeys.CustomBottlesPath, path)
             self.label_bottles_path.set_label(os.path.basename(path))
             self.btn_bottles_path_reset.set_visible(True)
             self.prompt_restart()
@@ -195,7 +193,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         widget.destroy()
 
     def prompt_restart(self):
-        if self.current_bottles_path != self.data.get("custom_bottles_path"):
+        if self.current_bottles_path != self.data.get(UserDataKeys.CustomBottlesPath):
             dialog = Adw.MessageDialog.new(
                 self.window,
                 _("Relaunch Bottles?"),
@@ -208,7 +206,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             dialog.present()
 
     def __reset_bottles_path(self, widget):
-        self.data.remove("custom_bottles_path")
+        self.data.remove(UserDataKeys.CustomBottlesPath)
         self.btn_bottles_path_reset.set_visible(False)
         self.label_bottles_path.set_label(_("(Default)"))
         self.prompt_restart()

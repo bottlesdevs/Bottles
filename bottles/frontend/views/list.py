@@ -15,17 +15,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import logging
 from datetime import datetime
 from gettext import gettext as _
+
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.models.config import BottleConfig
-
-from bottles.frontend.utils.threading import RunAsync
-from bottles.backend.runner import Runner
+from bottles.backend.models.result import Result
+from bottles.backend.state import Signals, State
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class BottleViewEntry(Adw.ActionRow):
@@ -169,6 +170,9 @@ class BottleView(Adw.Bin):
         self.btn_create.connect("clicked", self.window.show_add_view)
         self.entry_search.connect('changed', self.__search_bottles)
 
+        # backend signals
+        State.connect_signal(Signals.ManagerLocalBottlesLoaded, self.backend_local_bottle_loaded)
+
         self.update_bottles()
 
     def __search_bottles(self, widget, event=None, data=None):
@@ -235,6 +239,9 @@ class BottleView(Adw.Bin):
             self.window.page_details.view_preferences.update_combo_components()
             self.window.show_details_view(config=_config)
             self.arg_bottle = None
+
+    def backend_local_bottle_loaded(self, _: Result):
+        self.update_bottles()
 
     def update_bottles(self, show=False):
         GLib.idle_add(self.idle_update_bottles, show)

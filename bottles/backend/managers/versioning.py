@@ -16,39 +16,30 @@
 #
 
 import os
-
-from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils import yaml
-import uuid
 import shutil
-from glob import glob
-from typing import NewType
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import GLib
+from glob import glob
+
+from fvs.exceptions import FVSNothingToCommit, FVSStateNotFound, FVSNothingToRestore, FVSStateZeroNotDeletable
 from fvs.repo import FVSRepo
-from fvs.exceptions import FVSNothingToCommit, FVSEmptyCommitMessage, FVSStateNotFound, FVSNothingToRestore, FVSStateZeroNotDeletable
 
-try:
-    from bottles.frontend.operation import OperationManager
-except (RuntimeError, GLib.GError):
-    from bottles.frontend.cli.operation_cli import OperationManager
-
-from bottles.backend.utils.file import FileUtils
-from bottles.backend.models.result import Result
-from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.result import Result
+from bottles.backend.state import State, Task
+from bottles.backend.utils import yaml
+from bottles.backend.utils.file import FileUtils
+from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
 
 
 # noinspection PyTypeChecker
 class VersioningManager:
-    def __init__(self, window, manager):
-        self.window = window
+    def __init__(self, manager):
         self.manager = manager
-        self.__operation_manager = OperationManager(self.window)
-    
+
     @staticmethod
     def __get_patterns(config: BottleConfig):
         patterns = [
@@ -58,7 +49,7 @@ class VersioningManager:
         if config.Parameters.versioning_exclusion_patterns:
             patterns += config.Versioning_Exclusion_Patterns
         return patterns
-    
+
     @staticmethod
     def is_initialized(config: BottleConfig):
         try:
@@ -70,13 +61,13 @@ class VersioningManager:
         except FileNotFoundError:
             return False
         return not repo.has_no_states
-    
+
     @staticmethod
     def re_initialize(config: BottleConfig):
         fvs_path = os.path.join(ManagerUtils.get_bottle_path(config), ".fvs")
         if os.path.exists(fvs_path):
             shutil.rmtree(fvs_path)
-    
+
     def update_system(self, config: BottleConfig):
         states_path = os.path.join(ManagerUtils.get_bottle_path(config), "states")
         if os.path.exists(states_path):
@@ -84,28 +75,22 @@ class VersioningManager:
         return self.manager.update_config(config, "Versioning", False)
 
     def create_state(self, config: BottleConfig, message: str = "No message"):
-        task_id = str(uuid.uuid4())
         patterns = self.__get_patterns(config)
         repo = FVSRepo(
             repo_path=ManagerUtils.get_bottle_path(config),
             use_compression=config.Parameters.versioning_compression
         )
-        GLib.idle_add(
-            self.__operation_manager.new_task,
-            task_id,
-            _("Committing state …"),
-            False
-        )
+        task_id = State.add_task(Task(title=_("Committing state …")))
         try:
             repo.commit(message, ignore=patterns)
         except FVSNothingToCommit:
-            GLib.idle_add(self.__operation_manager.remove_task, task_id)
+            State.remove_task(task_id)
             return Result(
                 status=False,
                 message=_("Nothing to commit")
             )
 
-        GLib.idle_add(self.__operation_manager.remove_task, task_id)
+        State.remove_task(task_id)
         return Result(
             status=True,
             message=_("New state [{0}] created successfully!").format(repo.active_state_id),
@@ -156,9 +141,8 @@ class VersioningManager:
 
         return states
 
-    def set_state(self, config: BottleConfig, state_id: int, after=False) -> Result:
+    def set_state(self, config: BottleConfig, state_id: int, after: callable = None) -> Result:
         if not config.Versioning:
-            task_id = str(uuid.uuid4())
             patterns = self.__get_patterns(config)
             repo = FVSRepo(
                 repo_path=ManagerUtils.get_bottle_path(config),
@@ -168,12 +152,7 @@ class VersioningManager:
                 status=True,
                 message=_("State {0} restored successfully!").format(state_id)
             )
-            GLib.idle_add(
-                self.__operation_manager.new_task,
-                task_id,
-                _("Restoring state {} …".format(state_id)),
-                False
-            )
+            task_id = State.add_task(Task(title=_("Restoring state {} …".format(state_id))))
             try:
                 repo.restore_state(state_id, ignore=patterns)
             except FVSStateNotFound:
@@ -188,7 +167,7 @@ class VersioningManager:
                     status=False,
                     message=_("State {} is already the active state").format(state_id)
                 )
-            GLib.idle_add(self.__operation_manager.remove_task, task_id)
+            State.remove_task(task_id)
             return res
 
         bottle_path = ManagerUtils.get_bottle_path(config)
@@ -205,9 +184,9 @@ class VersioningManager:
         remove_files = []
         edit_files = []
         for file in bottle_index.get("Files"):
-            if file["file"] not in [file["file"] for file in state_index.get("Files")]:
+            if file["file"] not in [f["file"] for f in state_index.get("Files")]:
                 remove_files.append(file)
-            elif file["checksum"] not in [file["checksum"] for file in state_index.get("Files")]:
+            elif file["checksum"] not in [f["checksum"] for f in state_index.get("Files")]:
                 edit_files.append(file)
         logging.info(f"[{len(remove_files)}] files to remove.")
         logging.info(f"[{len(edit_files)}] files to replace.")
@@ -215,7 +194,7 @@ class VersioningManager:
         # check for new files
         add_files = []
         for file in state_index.get("Files"):
-            if file["file"] not in [file["file"] for file in bottle_index.get("Files")]:
+            if file["file"] not in [f["file"] for f in bottle_index.get("Files")]:
                 add_files.append(file)
         logging.info(f"[{len(add_files)}] files to add.")
 
@@ -224,10 +203,9 @@ class VersioningManager:
             os.remove("%s/drive_c/%s" % (bottle_path, file["file"]))
 
         for file in add_files:
-            for _ in search_sources:
-                source = "%s/states/%s/drive_c/%s" % (bottle_path, str(state_id), file["file"])
-                target = "%s/drive_c/%s" % (bottle_path, file["file"])
-                shutil.copy2(source, target)
+            source = "%s/states/%s/drive_c/%s" % (bottle_path, str(state_id), file["file"])
+            target = "%s/drive_c/%s" % (bottle_path, file["file"])
+            shutil.copy2(source, target)
 
         for file in edit_files:
             for i in search_sources:
@@ -243,20 +221,11 @@ class VersioningManager:
         # update State in bottle config
         self.manager.update_config(config, "State", state_id)
 
-        # update states
-        GLib.idle_add(
-            self.window.page_details.view_versioning.update,
-            False, config
-        )
-
-        # update bottles
-        self.manager.update_bottles()
-
         # execute caller function after all
         if after:
-            GLib.idle_add(after)
+            after()
 
-        return True
+        return Result(True)
 
     @staticmethod
     def get_state_files(config: BottleConfig, state_id: int, plain: bool = False) -> dict:

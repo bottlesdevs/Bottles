@@ -15,13 +15,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
-from bottles.backend.utils import yaml
-import uuid
-import shutil
 import contextlib
-from gi.repository import GLib
+import os
+import shutil
+import uuid
 from datetime import datetime, timedelta
+
+from bottles.backend.globals import Paths
+from bottles.backend.utils import yaml
 
 
 class JournalSeverity:
@@ -40,9 +41,7 @@ class JournalManager:
     contain only important Bottles events.
     """
 
-    _xdg_data_home = GLib.get_user_data_dir()
-    _base = f"{_xdg_data_home}/bottles"
-    path = f"{_base}/journal.yml"
+    path = f"{Paths.base}/journal.yml"
 
     @staticmethod
     def __get_journal() -> dict:
@@ -150,7 +149,7 @@ class JournalManager:
 
         for event_id, event in journal.items():
             timestamp = datetime.strptime(event["timestamp"], "%Y-%m-%d %H:%M:%S").date()
-            
+
             if start <= timestamp <= end:
                 _journal[event_id] = event
 

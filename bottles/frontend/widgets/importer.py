@@ -17,8 +17,9 @@
 
 from gi.repository import Gtk, Adw
 
-from bottles.frontend.utils.threading import RunAsync
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer-entry.ui')
@@ -58,6 +59,7 @@ class ImporterEntry(Adw.ActionRow):
         ManagerUtils.browse_wineprefix(self.prefix)
 
     def import_wineprefix(self, widget):
+        @GtkUtils.run_in_main_loop
         def set_imported(result, error=False):
             self.btn_import.set_visible(result.status)
             self.img_lock.set_visible(result.status)
@@ -66,6 +68,7 @@ class ImporterEntry(Adw.ActionRow):
                 self.window.show_toast(_("\"{0}\" imported").format(self.prefix.get("Name")))
 
             self.set_sensitive(True)
+
         self.set_sensitive(False)
 
         RunAsync(

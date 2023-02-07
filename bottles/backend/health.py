@@ -25,7 +25,7 @@ from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.file import FileUtils
-from bottles.frontend.params import APP_VERSION
+from bottles.backend.params import APP_VERSION
 
 logging = Logger()
 

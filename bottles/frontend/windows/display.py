@@ -15,18 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
-from gi.repository import Gtk, GLib, Adw, Gdk
-from bottles.frontend.utils.threading import RunAsync
+from gi.repository import Gtk, GLib, Adw
+
 from bottles.backend.logger import Logger
-from bottles.backend.managers.runtime import RuntimeManager
-from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
+from bottles.frontend.utils.gtk import GtkUtils
 
 logging = Logger()
 
 renderers = ["gl", "gdi", "vulkan"]
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-display.ui')
 class DisplayDialog(Adw.Window):
@@ -43,7 +43,6 @@ class DisplayDialog(Adw.Window):
     switch_decorated = Gtk.Template.Child()
     spin_dpi = Gtk.Template.Child()
     combo_renderer = Gtk.Template.Child()
-
 
     def __init__(self, parent_window, config, details, queue, widget, spinner_display, **kwargs):
         super().__init__(**kwargs)
@@ -115,6 +114,8 @@ class DisplayDialog(Adw.Window):
 
         if self.expander_virtual_desktop.get_enable_expansion() != self.parameters.virtual_desktop:
             """Toggle virtual desktop"""
+
+            @GtkUtils.run_in_main_loop
             def update(result, error=False):
                 self.config = self.manager.update_config(
                     config=self.config,
@@ -135,6 +136,8 @@ class DisplayDialog(Adw.Window):
 
         if self.expander_virtual_desktop.get_enable_expansion() == True and resolution != self.parameters.virtual_desktop_res:
             """Set virtual desktop resolution"""
+
+            @GtkUtils.run_in_main_loop
             def update(result, error=False):
                 self.config = self.manager.update_config(
                     config=self.config,
@@ -156,6 +159,8 @@ class DisplayDialog(Adw.Window):
 
         if self.switch_mouse_warp.get_state() != self.parameters.mouse_warp:
             """Set mouse warp"""
+
+            @GtkUtils.run_in_main_loop
             def update(result, error=False):
                 self.config = self.manager.update_config(
                     config=self.config,
@@ -176,6 +181,8 @@ class DisplayDialog(Adw.Window):
 
         if self.spin_dpi.get_value() != self.parameters.custom_dpi:
             """Set DPI"""
+
+            @GtkUtils.run_in_main_loop
             def update(result, error=False):
                 self.config = self.manager.update_config(
                     config=self.config,
@@ -197,6 +204,8 @@ class DisplayDialog(Adw.Window):
 
         if renderers[self.combo_renderer.get_selected()] != self.parameters.renderer:
             """Set renderer"""
+
+            @GtkUtils.run_in_main_loop
             def update(result, error=False):
                 self.config = self.manager.update_config(
                     config=self.config,
@@ -215,11 +224,11 @@ class DisplayDialog(Adw.Window):
                 callback=update,
                 value=renderer
             )
-            
 
         def toggle_x11_reg_key(state, rkey, ckey):
             """Update x11 registry keys"""
 
+            @GtkUtils.run_in_main_loop
             def update(result, error=False):
                 self.config = self.manager.update_config(
                     config=self.config,
@@ -242,11 +251,11 @@ class DisplayDialog(Adw.Window):
             )
 
         if self.switch_mouse_capture.get_state() != self.parameters.fullscreen_capture:
-            toggle_x11_reg_key(self.switch_mouse_capture.get_state(),"GrabFullscreen", "fullscreen_capture")
+            toggle_x11_reg_key(self.switch_mouse_capture.get_state(), "GrabFullscreen", "fullscreen_capture")
         if self.switch_take_focus.get_state() != self.parameters.take_focus:
-            toggle_x11_reg_key(self.switch_take_focus.get_state(),"UseTakeFocus", "take_focus")
+            toggle_x11_reg_key(self.switch_take_focus.get_state(), "UseTakeFocus", "take_focus")
         if self.switch_decorated.get_state() != self.parameters.decorated:
-            toggle_x11_reg_key(self.switch_decorated.get_state(),"Decorated", "decorated")
+            toggle_x11_reg_key(self.switch_decorated.get_state(), "Decorated", "decorated")
 
         """Close window"""
         self.close()

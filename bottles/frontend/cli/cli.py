@@ -18,18 +18,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import gi
+import argparse
+import json
 import os
+import signal
 import sys
 import uuid
-import json
-import signal
-import argparse
 import warnings
+
+import gi
 
 warnings.filterwarnings("ignore")  # suppress GTK warnings
 gi.require_version('Gtk', '4.0')
-from gi.repository import Gtk, Gio
 
 APP_VERSION = "@APP_VERSION@"
 pkgdatadir = "@pkgdatadir@"
@@ -39,7 +39,9 @@ sys.path.insert(1, pkgdatadir)
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-from bottles.frontend.params import *
+from gi.repository import Gio
+
+from bottles.frontend.params import APP_ID
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
@@ -58,13 +60,10 @@ from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.runner import Runner
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.frontend.utils.connection import ConnectionUtils
 
 
 # noinspection DuplicatedCode
 class CLI:
-    default_settings = Gtk.Settings.get_default()
-    utils_conn = ConnectionUtils()
     settings = Gio.Settings.new(APP_ID)
 
     def __init__(self):
@@ -137,7 +136,7 @@ class CLI:
         run_parser.add_argument("-e", "--executable", help="Path to the executable")
         run_parser.add_argument("-p", "--program", help="Program to run")
         run_parser.add_argument("--args-replace", action='store_false', dest='keep_args',
-            help="Replace current program arguments, instead of append")
+                                help="Replace current program arguments, instead of append")
         run_parser.add_argument("args", nargs="*", action="extend", help="Arguments to pass to the executable")
 
         standalone_parser = subparsers.add_parser("standalone", help="Generate a standalone script to launch commands "
@@ -225,7 +224,7 @@ class CLI:
 
     # region LIST
     def list_bottles(self, c_filter=None):
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
         bottles = mng.local_bottles
 
@@ -243,7 +242,7 @@ class CLI:
                 sys.stdout.write(f"- {b}\n")
 
     def list_components(self, c_filter=None):
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_runners(False)
         mng.check_dxvk(False)
         mng.check_vkd3d(False)
@@ -276,7 +275,7 @@ class CLI:
 
     # region PROGRAMS
     def list_programs(self):
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
         _bottle = self.args.bottle
 
@@ -303,7 +302,7 @@ class CLI:
     def launch_tool(self):
         _bottle = self.args.bottle
         _tool = self.args.tool
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
 
         if _bottle not in mng.local_bottles:
@@ -341,7 +340,7 @@ class CLI:
         _executable = ""
         _folder = ""
         _uuid = str(uuid.uuid4())
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
 
         if _bottle not in mng.local_bottles:
@@ -389,7 +388,7 @@ class CLI:
         _value = self.args.value
         _data = self.args.data
         _key_type = self.args.key_type
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
 
         if _bottle not in mng.local_bottles:
@@ -421,7 +420,7 @@ class CLI:
         _vkd3d = self.args.vkd3d
         _nvapi = self.args.nvapi
         _latencyflex = self.args.latencyflex
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_bottles()
 
         valid_parameters = BottleConfig().Parameters.keys()
@@ -515,7 +514,7 @@ class CLI:
         _vkd3d = self.args.vkd3d
         _nvapi = self.args.nvapi
         _latencyflex = self.args.latencyflex
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
 
         mng.create_bottle(
@@ -534,7 +533,6 @@ class CLI:
 
     # region RUN
     def run_program(self):
-        self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
         _bottle = self.args.bottle
         _program = self.args.program
         _keep = self.args.keep_args
@@ -542,7 +540,7 @@ class CLI:
         _executable = self.args.executable
         _cwd = None
         _script = None
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
 
         if _bottle not in mng.local_bottles:
@@ -604,10 +602,9 @@ class CLI:
 
     # region SHELL
     def run_shell(self):
-        self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
         _bottle = self.args.bottle
         _input = self.args.input
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
 
         if _bottle not in mng.local_bottles:
@@ -622,9 +619,8 @@ class CLI:
 
     # region STANDALONE
     def generate_standalone(self):
-        self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
         _bottle = self.args.bottle
-        mng = Manager(self, is_cli=True)
+        mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
 
         if _bottle not in mng.local_bottles:

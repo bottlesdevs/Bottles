@@ -16,12 +16,15 @@
 #
 
 import os
-import subprocess
-import pycurl
 from datetime import datetime
 from gettext import gettext as _
+from typing import Optional
+
+import pycurl
 
 from bottles.backend.logger import Logger
+from bottles.backend.models.result import Result
+from bottles.backend.state import State, Signals, Notification
 
 logging = Logger()
 
@@ -32,20 +35,30 @@ class ConnectionUtils:
     Bottle's website. If the connection is offline, the user will be
     notified and False will be returned, otherwise True.
     """
-    status = None
+    _status: Optional[bool] = None
     last_check = None
 
-    def __init__(self, window=None, force_offline=False, **kwargs):
+    def __init__(self, force_offline=False, **kwargs):
         super().__init__(**kwargs)
-        self.window = window
         self.force_offline = force_offline
 
-    def check_connection(self, show_notification=False):
+    @property
+    def status(self) -> Optional[bool]:
+        return self._status
+
+    @status.setter
+    def status(self, value: bool):
+        if value is None:
+            logging.error("Cannot set network status to None")
+            return
+        self._status = value
+        State.send_signal(Signals.NetworkStatusChanged, Result(status=self.status))
+
+    def check_connection(self, show_notification=False) -> bool:
+        """check network status, send result through signal NetworkReady and return"""
         if self.force_offline or "FORCE_OFFLINE" in os.environ:
             logging.info("Forcing offline mode")
             self.status = False
-            if self.window is not None:
-                self.window.toggle_btn_noconnection(True)
             return False
 
         try:
@@ -54,29 +67,21 @@ class ConnectionUtils:
             c.setopt(c.FOLLOWLOCATION, True)
             c.setopt(c.NOBODY, True)
             c.perform()
-            
+
             if c.getinfo(pycurl.HTTP_CODE) != 200:
                 raise Exception("Connection status: offline …")
 
-            if self.window is not None:
-                self.window.toggle_btn_noconnection(False)
-
             self.last_check = datetime.now()
             self.status = True
-
-            return True
-        except Exception as e:
+        except Exception:
             logging.warning("Connection status: offline …")
-            if self.window is not None:
-                self.window.toggle_btn_noconnection(True)
-
-            if show_notification and self.window is not None:
-                self.window.send_notification(
+            if show_notification:
+                State.send_signal(Signals.GNotification, Result(True, Notification(
                     title="Bottles",
                     text=_("You are offline, unable to download."),
                     image="network-wireless-disabled-symbolic"
-                )
+                )))
             self.last_check = datetime.now()
             self.status = False
-
-        return False
+        finally:
+            return self.status

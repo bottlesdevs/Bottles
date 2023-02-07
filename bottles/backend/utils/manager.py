@@ -14,23 +14,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import shlex
 import shutil
-import gi
-import os
-import locale
-import icoextract
-from glob import glob
-from typing import NewType, Union
 from datetime import datetime
-from gi.repository import Gdk, Gio, GLib, Gtk
 from gettext import gettext as _
+from glob import glob
+from typing import Union
 
+import icoextract
+
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
-from bottles.backend.globals import Paths, user_apps_dir
 from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils.imagemagick import ImageMagickUtils
+from bottles.backend.models.result import Result
+from bottles.backend.state import State, Signals
 from bottles.backend.utils.generic import get_mime
+from bottles.backend.utils.imagemagick import ImageMagickUtils
 
 logging = Logger()
 
@@ -78,10 +78,8 @@ class ManagerUtils:
         if path_type == "custom" and custom_path != "":
             path = custom_path
 
-        app = Gio.Application.get_default()
-        window = app.get_active_window()
         path = f"file://{path}"
-        Gtk.show_uri(window, path, Gdk.CURRENT_TIME)
+        State.send_signal(Signals.GShowUri, Result(data=path))
 
     @staticmethod
     def get_bottle_path(config: BottleConfig) -> str:
@@ -149,8 +147,8 @@ class ManagerUtils:
 
                         if fn_update:
                             if _size % 0.1 == 0:
-                                GLib.idle_add(fn_update, _size)
-                    GLib.idle_add(fn_update, 1)
+                                fn_update(_size)
+                    fn_update(1)
             return file_new_path
         except (OSError, IOError):
             logging.error(f"Could not copy file {file_path} to the bottle.")
@@ -206,7 +204,7 @@ class ManagerUtils:
     @staticmethod
     def create_desktop_entry(config, program: dict, skip_icon: bool = False, custom_icon: str = "",
                              use_xdp: bool = False) -> bool:
-        if not user_apps_dir and not use_xdp:
+        if not os.path.exists(Paths.applications) and not use_xdp:
             return False
 
         cmd_legacy = "bottles"

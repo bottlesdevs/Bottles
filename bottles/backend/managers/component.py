@@ -15,30 +15,23 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import contextlib
 import os
-import uuid
 import shutil
 import tarfile
-import pycurl
-import contextlib
 from functools import lru_cache
-from gi.repository import GLib
-from typing import Union
+from typing import Union, Optional
 
-from bottles.backend.utils.decorators import Lock
+import pycurl
 
-try:
-    from bottles.frontend.operation import OperationManager
-except (RuntimeError, GLib.GError):
-    from bottles.frontend.cli.operation_cli import OperationManager
-
+from bottles.backend.downloader import Downloader
+from bottles.backend.globals import Paths
+from bottles.backend.logger import Logger
+from bottles.backend.models.result import Result
+from bottles.backend.state import State, Locks, Task, TaskStreamUpdateHandler, Status
+from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils.file import FileUtils
-from bottles.backend.globals import Paths
-from bottles.backend.models.result import Result
-from bottles.backend.downloader import Downloader
-from bottles.backend.logger import Logger
 
 logging = Logger()
 
@@ -46,12 +39,10 @@ logging = Logger()
 # noinspection PyTypeChecker
 class ComponentManager:
 
-    def __init__(self, manager, offline: bool = False, callback = None):
+    def __init__(self, manager, offline: bool = False, callback=None):
         self.__manager = manager
         self.__repo = manager.repository_manager.get_repo("components", offline, callback)
         self.__utils_conn = manager.utils_conn
-        self.__window = manager.window
-        self.__operation_manager = OperationManager(self.__window)
 
     @lru_cache
     def get_component(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
@@ -132,46 +123,24 @@ class ComponentManager:
             file: str,
             rename: str = "",
             checksum: str = "",
-            func: callable = None
+            func: Optional[TaskStreamUpdateHandler] = None
     ) -> bool:
         """Download a component from the Bottles repository."""
 
         # Check for missing Bottles paths before download
         self.__manager.check_app_dirs()
 
-        '''
-        Add new entry to the download manager and set the update_func
-        to the task_entry update_status function by default.
-        '''
-        task_id = str(uuid.uuid4())
-        GLib.idle_add(
-            self.__operation_manager.new_task, task_id, file, False
-        )
-
-        _update_func = self.__operation_manager.update_task
+        # Register this file download task to TaskManager
+        task = Task(title=file)
+        task_id = State.add_task(task)
+        update_func = task.stream_update if not func else func
 
         if download_url.startswith("temp/"):
             '''
-            The caller is explicitly requesting a component from  
+            The caller is explicitly requesting a component from
             the /temp directory. Nothing should be downloaded.
             '''
             return True
-
-        if func:
-            '''
-            Set a function to be executing during the download. This 
-            can be used to check the download status or update progress bars.
-            '''
-            _update_func = func
-
-        def update_func(
-                task_id,
-                count=False,
-                block_size=False,
-                total_size=False,
-                completed=False
-        ):
-            GLib.idle_add(_update_func, task_id, count, block_size, total_size, completed)
 
         existing_file = rename if rename else file
         temp_dest = os.path.join(Paths.temp, file)
@@ -184,15 +153,14 @@ class ComponentManager:
             to completed.
             '''
             logging.warning(f"File [{existing_file}] already exists in temp, skipping.")
-            GLib.idle_add(update_func, task_id, False, False, False, True)
         else:
             '''
             As some urls can be redirect, we need to take care of this
             and make sure to use the final url. This check should be
             skipped for large files (e.g. runners).
             '''
+            c = pycurl.Curl()
             try:
-                c = pycurl.Curl()
                 c.setopt(c.URL, download_url)
                 c.setopt(c.FOLLOWLOCATION, True)
                 c.setopt(c.HTTPHEADER, ["User-Agent: curl/7.79.1"])
@@ -201,12 +169,12 @@ class ComponentManager:
 
                 req_code = c.getinfo(c.RESPONSE_CODE)
                 download_url = c.getinfo(c.EFFECTIVE_URL)
-                
-                c.close()
             except pycurl.error:
                 logging.exception(f"Failed to download [{download_url}]")
-                GLib.idle_add(self.__operation_manager.remove_task, task_id)
+                State.remove_task(task_id)
                 return False
+            finally:
+                c.close()
 
             if req_code == 200:
                 """
@@ -217,23 +185,22 @@ class ComponentManager:
                 res = Downloader(
                     url=download_url,
                     file=temp_dest,
-                    func=update_func,
-                    task_id=task_id
+                    update_func=update_func
                 ).download()
 
                 if not res.status:
-                    GLib.idle_add(self.__operation_manager.remove_task, task_id)
+                    State.remove_task(task_id)
                     return False
 
                 if not os.path.isfile(temp_dest):
                     """Fail if the file is not available in the /temp directory."""
-                    GLib.idle_add(self.__operation_manager.remove_task, task_id)
+                    State.remove_task(task_id)
                     return False
 
                 just_downloaded = True
             else:
                 logging.warning(f"Failed to download [{download_url}] with code: {req_code} != 200")
-                GLib.idle_add(self.__operation_manager.remove_task, task_id)
+                State.remove_task(task_id)
                 return False
 
         file_path = os.path.join(Paths.temp, existing_file)
@@ -248,7 +215,7 @@ class ComponentManager:
             Compare the checksum of the downloaded file with the one
             provided by the caller. If they don't match, remove the
             file from the /temp directory, remove the entry from the
-            download manager and return False.
+            task manager and return False.
             """
             checksum = checksum.lower()
             local_checksum = FileUtils().get_checksum(file_path)
@@ -258,10 +225,10 @@ class ComponentManager:
                 logging.error(f"Source cksum: [{checksum}] downloaded: [{local_checksum}]")
                 logging.error(f"Removing corrupted file [{file}].")
                 os.remove(file_path)
-                GLib.idle_add(self.__operation_manager.remove_task, task_id)
+                State.remove_task(task_id)
                 return False
 
-        GLib.idle_add(self.__operation_manager.remove_task, task_id)
+        State.remove_task(task_id)
         return True
 
     @staticmethod
@@ -322,12 +289,12 @@ class ComponentManager:
                 return False
         return True
 
-    @Lock.mutex("ComponentManager.install")  # avoid high resource usage
+    @State.lock(Locks.ComponentsInstall)  # avoid high resource usage
     def install(
             self,
             component_type: str,
             component_name: str,
-            func: callable = None,
+            func: Optional[TaskStreamUpdateHandler] = None,
     ):
         """
         This function is used to install a component. It automatically
@@ -355,7 +322,9 @@ class ComponentManager:
             If the download fails, execute the given func passing
             failed=True as a parameter.
             '''
-            return Result(func(failed=True) if func else False)
+            if func:
+                func(status=Status.FAILED)
+            return Result(False)
 
         archive = manifest["File"][0]["file_name"]
 

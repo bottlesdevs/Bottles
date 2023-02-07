@@ -15,11 +15,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from gi.repository import Gtk, GLib, GObject, Adw
+from gettext import gettext as _
+
+from gi.repository import Gtk, GObject, Adw
 
 from bottles.backend.logger import Logger
+from bottles.backend.state import Status
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 
 logging = Logger()
 
@@ -76,11 +80,12 @@ class ComponentEntry(Adw.ActionRow):
         self.btn_browse.connect("clicked", self.run_browse)
 
     def download(self, widget):
-        def update(result, error=False):
+        @GtkUtils.run_in_main_loop
+        def async_callback(result, error=False):
             if not result or result.status:
                 return self.set_installed()
 
-            return self.update_status(failed=True)
+            return self.update_progress(status=Status.FAILED)
 
         self.btn_download.set_visible(False)
         self.btn_cancel.set_visible(False)  # TODO: unimplemented
@@ -88,13 +93,14 @@ class ComponentEntry(Adw.ActionRow):
 
         RunAsync(
             task_func=self.component_manager.install,
-            callback=update,
+            callback=async_callback,
             component_type=self.component_type,
             component_name=self.name,
-            func=self.update_status
+            func=self.update_progress
         )
 
     def uninstall(self, widget):
+        @GtkUtils.run_in_main_loop
         def update(result, error=False):
             if result.status:
                 return self.set_uninstalled()
@@ -119,29 +125,18 @@ class ComponentEntry(Adw.ActionRow):
             component=self.name
         )
 
-    def update_status(
-            self,
-            task_id="",
-            count=False,
-            block_size=False,
-            total_size=False,
-            completed=False,
-            failed=False
-    ):
-        if failed:
-            logging.error(f"Task {task_id} failed")
+    def update_progress(self, received_size: int = 0, total_size: int = 0, status: Status = None):
+        if status == Status.FAILED:
+            logging.error(f"Component installation failed")
             self.set_err()
             return False
 
         self.box_download_status.set_visible(True)
 
-        if not completed:
-            percent = int(count * block_size * 100 / total_size)
-            self.label_task_status.set_text(f'{str(percent)}%')
-        else:
-            percent = 100
+        percent = int(received_size * 100 / total_size)
+        self.label_task_status.set_text(f'{percent}%')
 
-        if percent == 100:
+        if percent >= 100:
             self.label_task_status.set_text(_("Installing…"))
 
     def set_err(self, msg=None, retry=True):

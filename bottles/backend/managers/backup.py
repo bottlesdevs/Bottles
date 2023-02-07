@@ -18,21 +18,18 @@
 import os
 import shutil
 import tarfile
-import uuid
-import pathvalidate
-from typing import NewType
 from gettext import gettext as _
 
-from gi.repository import GLib
+import pathvalidate
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
+from bottles.backend.state import State, Task
 from bottles.backend.utils import yaml
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.frontend.operation import OperationManager
 
 logging = Logger()
 
@@ -40,7 +37,7 @@ logging = Logger()
 class BackupManager:
 
     @staticmethod
-    def export_backup(window, config: BottleConfig, scope: str, path: str) -> Result:
+    def export_backup(config: BottleConfig, scope: str, path: str) -> Result:
         """
         Exports a bottle backup to the specified path.
         Use the scope parameter to specify the backup type: config, full.
@@ -51,20 +48,12 @@ class BackupManager:
             logging.error(_("No path specified"))
             return Result(status=False)
 
-        BackupManager.operation_manager = OperationManager(window)
-        task_id = str(uuid.uuid4())
-
         logging.info(f"New {scope} backup for [{config.Name}] in [{path}]")
 
         if scope == "config":
             backup_created = config.dump(path).status
         else:
-            GLib.idle_add(
-                BackupManager.operation_manager.new_task,
-                task_id,
-                _("Backup {0}").format(config.Name),
-                False
-            )
+            task_id = State.add_task(Task(title=_("Backup {0}").format(config.Name)))
             bottle_path = ManagerUtils.get_bottle_path(config)
             try:
                 with tarfile.open(path, "w:gz") as tar:
@@ -76,8 +65,8 @@ class BackupManager:
             except (FileNotFoundError, PermissionError, tarfile.TarError, ValueError):
                 logging.error(f"Error creating backup for [{config.Name}]")
                 backup_created = False
-
-            GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
+            finally:
+                State.remove_task(task_id)
 
         if backup_created:
             logging.info(f"New backup saved in path: {path}.", jn=True)
@@ -102,22 +91,14 @@ class BackupManager:
         Config will make a new bottle reproducing the configuration, full will
         import the full bottle from a tar.gz file.
         """
-        if path in [None, ""]:
+        if not path:
             logging.error(_("No path specified"))
             return Result(status=False)
 
-        BackupManager.operation_manager = OperationManager(window)
-
-        task_id = str(uuid.uuid4())
         backup_name = os.path.basename(path)
         import_status = False
 
-        GLib.idle_add(
-            BackupManager.operation_manager.new_task,
-            task_id,
-            _("Importing backup: {0}").format(backup_name),
-            False
-        )
+        task_id = State.add_task(Task(title=_("Importing backup: {0}").format(backup_name)))
         logging.info(f"Importing backup: {backup_name}")
 
         if scope == "config":
@@ -145,29 +126,29 @@ class BackupManager:
             try:
                 with tarfile.open(path, "r:gz") as tar:
                     def is_within_directory(directory, target):
-                        
+
                         abs_directory = os.path.abspath(directory)
                         abs_target = os.path.abspath(target)
-                    
+
                         prefix = os.path.commonprefix([abs_directory, abs_target])
-                        
+
                         return prefix == abs_directory
-                    
+
                     def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
-                    
+
                         for member in tar.getmembers():
                             member_path = os.path.join(path, member.name)
                             if not is_within_directory(path, member_path):
                                 raise Exception("Attempted Path Traversal in Tar File")
-                    
-                        tar.extractall(path, members, numeric_owner=numeric_owner) 
+
+                        tar.extractall(path, members, numeric_owner=numeric_owner)
 
                     safe_extract(tar, Paths.bottles)
                 import_status = True
             except (FileNotFoundError, PermissionError, tarfile.TarError):
                 import_status = False
 
-        GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
+        State.remove_task(task_id)
 
         if import_status:
             window.manager.update_bottles()

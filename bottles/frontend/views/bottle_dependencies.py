@@ -22,8 +22,9 @@ from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.repos.repo import RepoStatus
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
+from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.dependency import DependencyEntry
 
 
@@ -63,7 +64,7 @@ class DependenciesView(Adw.Bin):
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
 
         if self.manager.utils_conn.status == False:
-            self.stack.set_visible_child_name("page_offline") 
+            self.stack.set_visible_child_name("page_offline")
 
         self.spinner_loading.start()
 
@@ -73,7 +74,7 @@ class DependenciesView(Adw.Bin):
         text written in the search entry.
         """
         terms = self.entry_search.get_text()
-        self.list_dependencies.set_filter_func(self.__filter_dependencies,  terms)
+        self.list_dependencies.set_filter_func(self.__filter_dependencies, terms)
 
     @staticmethod
     def __filter_dependencies(row, terms=None):
@@ -101,18 +102,19 @@ class DependenciesView(Adw.Bin):
         if self.manager.utils_conn.status == False:
             return
 
-        self.stack.set_visible_child_name("page_loading") 
+        self.stack.set_visible_child_name("page_loading")
 
         def new_dependency(dependency, plain=False):
             entry = DependencyEntry(
-                    window=self.window,
-                    config=self.config,
-                    dependency=dependency,
-                    plain=plain
+                window=self.window,
+                config=self.config,
+                dependency=dependency,
+                plain=plain
             )
             self.__registry.append(entry)
             self.list_dependencies.append(entry)
 
+        @GtkUtils.run_in_main_loop
         def callback(result, error=False):
             self.stack.set_visible_child_name("page_deps")
 
