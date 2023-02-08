@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-10-03 09:21+0000\n"
-"Last-Translator: Anubis <anubis6667@protonmail.com>\n"
+"PO-Revision-Date: 2023-02-08 16:14+0000\n"
+"Last-Translator: Abu Huraira <abuhuraira@tutamail.com>\n"
 "Language-Team: Bengali <https://hosted.weblate.org/projects/bottles/bottles/"
 "bn/>\n"
 "Language: bn\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
@@ -89,15 +89,15 @@ msgstr "পরিবেশ অপ্টিমাইজ করা হচ্ছে
 #: bottles/backend/managers/manager.py:1222
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "{0} পরিবেশ তৈরি করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1232
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) একটি স্বনির্বাচিত পরিবেশ রেসিপি ব্যবহার করা হচ্ছে…"
 
 #: bottles/backend/managers/manager.py:1235
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) রেসিপি পাওয়া যায়নি অথবা ত্রুটিহীন নয়…"
 
 #: bottles/backend/managers/manager.py:1252
 msgid "Installing DXVK…"
@@ -143,42 +143,41 @@ msgstr "নতুন অবস্থা [{0}] সফলভাবে তৈরি
 
 #: bottles/backend/managers/versioning.py:137
 msgid "States list retrieved successfully!"
-msgstr ""
+msgstr "সফলভাবে অবস্থা তালিকা আহরন করা গিয়েছে!"
 
 #: bottles/backend/managers/versioning.py:168
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr ""
+msgstr "{0} অবস্থা সফলভাবে পুনরুদ্ধার করা গিয়েছে!"
 
 #: bottles/backend/managers/versioning.py:173
 msgid "Restoring state {} …"
-msgstr ""
+msgstr "অবস্থা {} পুনরুদ্ধার করা হচ্ছে…"
 
 #: bottles/backend/managers/versioning.py:182
-#, fuzzy
 msgid "State not found"
-msgstr "আনইনস্টলার"
+msgstr "অবস্থা পাওয়া যায়নি"
 
 #: bottles/backend/managers/versioning.py:188
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "{} অবস্থাই বর্তমানের সচল অবস্থা"
 
 #: bottles/frontend/main.py:105
 msgid "Show version"
-msgstr ""
+msgstr "সংস্করণ দেখান"
 
 #: bottles/frontend/main.py:113
 msgid "Executable path"
-msgstr ""
+msgstr "প্রোগ্রাম এর ঠিকানা"
 
 #: bottles/frontend/main.py:121
 msgid "lnk path"
-msgstr ""
+msgstr "lnk ঠিকানা"
 
 #: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.blp:117
 #: bottles/frontend/ui/list-entry.blp:5
 msgid "Bottle name"
-msgstr ""
+msgstr "বোতলের নাম"
 
 #: bottles/frontend/main.py:137
 msgid "Pass arguments"
