@@ -16,7 +16,12 @@ class Locks(Enum):
 
 
 class Events(Enum):
-    pass
+    ComponentsFetching = "components.fetching"
+    DependenciesFetching = "dependencies.fetching"
+    InstallersFetching = "installers.fetching"
+    ComponentsOrganizing = "components.organizing"
+    DependenciesOrganizing = "dependencies.organizing"
+    InstallersOrganizing = "installers.organizing"
 
 
 class Signals(Enum):
@@ -131,8 +136,31 @@ class LockManager:
 
 
 class EventManager:
+    """
+    This class manages events, which are one-time events (can be reset) during the lifecycle of the app.
+    You can wait for the event to occur, or set it when the associated operations is finished.
+    """
     _EVENTS: Dict[Events, PyEvent] = {}
 
+    @classmethod
+    def wait(cls, event: Events):
+        _event = cls._EVENTS.setdefault(event, PyEvent())
+        # By default when an Event is created, it will be unset, so it will block
+        logging.debug(f"Waiting on operation {event}")
+        _event.wait()
+        logging.debug(f"Done wait operation {event}")
+
+    @classmethod
+    def done(cls, event: Events):
+        _event = cls._EVENTS.setdefault(event, PyEvent())
+        _event.set()
+        logging.debug(f"Done operation {event}")
+
+    @classmethod
+    def reset(cls, event: Events):
+        _event = cls._EVENTS.setdefault(event, PyEvent())
+        _event.clear()
+        logging.debug(f"Reset operation {event}")
 
 class TaskManager:
     """Long-running tasks are registered here, for tracking and display them on UI"""
