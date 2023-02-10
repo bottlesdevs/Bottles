@@ -139,6 +139,7 @@ class EventManager:
     """
     This class manages events, which are one-time events (can be reset) during the lifecycle of the app.
     You can wait for the event to occur, or set it when the associated operations is finished.
+    Wait for an event that has already been set, will immediately return.
     """
     _EVENTS: Dict[Events, PyEvent] = {}
 
