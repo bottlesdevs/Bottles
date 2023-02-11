@@ -81,15 +81,6 @@ cleanup-commands:
 modules:
   # Python modules
   # ----------------------------------------------------------------------------
-  - name: python-pillow
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/python-pillow/Pillow/archive/refs/tags/9.2.0.tar.gz
-        sha256: 95836f00972dbf724bf1270178683a0ac4ea23c6c3a980858fc9f2f9456e32ef
-
   - name: PyYAML
     buildsystem: simple
     build-commands:
