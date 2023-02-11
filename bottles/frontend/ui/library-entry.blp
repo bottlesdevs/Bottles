@@ -106,7 +106,8 @@ template LibraryEntry : Box {
           Label label_name {
             halign: start;
             label: _("Item name");
-
+            max-width-chars: 20;
+            ellipsize: middle;
             styles [
               "title",
             ]
@@ -115,7 +116,8 @@ template LibraryEntry : Box {
           Label label_bottle {
             halign: start;
             label: _("Bottle name");
-
+            max-width-chars: 20;
+            ellipsize: middle;
             styles [
               "caption",
             ]
@@ -130,8 +132,7 @@ template LibraryEntry : Box {
             tooltip-text: _("Remove from Library");
 
             styles [
-              "flat",
-              "circular",
+              "flat"
             ]
           }
 
@@ -142,8 +143,7 @@ template LibraryEntry : Box {
             tooltip-text: _("Stop");
 
             styles [
-              "flat",
-              "circular",
+              "flat"
             ]
           }
         }
