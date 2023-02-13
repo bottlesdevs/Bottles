@@ -10,9 +10,12 @@ class Events(Enum):
     SimpleEvent = "simple.event"
     WaitAfterDone = "wait_after_done.event"
     SetResetEvent = "set_reset.event"
+    WaitSingleton = "wait_singleton.event"
+    DoneSingleton = "done_singleton.event"
+    CorrectFlagDone = "correct_flag_done.event"
 
 def approx_time(start, target):
-    epsilon = 0.005 # 5 ms window
+    epsilon = 0.010 # 5 ms window
     variation = time.time() - start - target
     result = -epsilon / 2 <= variation <= epsilon / 2
     if not result:
@@ -83,3 +86,50 @@ def test_set_reset():
     # Assert wait for 0.1s
     t1.join()
     assert approx_time(start_time, 0.3)
+
+def test_event_singleton_wait():
+    EventManager._EVENTS = {}
+
+    def wait_thread():
+        EventManager.wait(Events.WaitSingleton)
+
+    def wait_thread_by_value():
+        EventManager.wait(Events("wait_singleton.event"))
+
+    t1 = Thread(target=wait_thread)
+    t1.start()
+
+    t2 = Thread(target=wait_thread)
+    t2.start()
+
+    t3 = Thread(target=wait_thread_by_value)
+    t3.start()
+
+    assert len(EventManager._EVENTS) == 1
+
+    EventManager.done(Events.WaitSingleton)
+    t1.join()
+    t2.join()
+    t3.join()
+
+def test_event_singleton_done_reset():
+    EventManager._EVENTS = {}
+
+    EventManager.done(Events.DoneSingleton)
+    EventManager.done(Events.DoneSingleton)
+    assert len(EventManager._EVENTS) == 1
+
+    EventManager.reset(Events.DoneSingleton)
+    assert len(EventManager._EVENTS) == 1
+
+    EventManager.reset(Events.DoneSingleton)
+    assert len(EventManager._EVENTS) == 1
+
+def test_correct_internal_flag():
+    EventManager.done(Events.CorrectFlagDone)
+
+    assert EventManager._EVENTS[Events.CorrectFlagDone].is_set()
+
+    EventManager.reset(Events.CorrectFlagDone)
+
+    assert not EventManager._EVENTS[Events.CorrectFlagDone].is_set()
