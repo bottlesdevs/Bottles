@@ -1438,11 +1438,7 @@ class Manager:
         path = ManagerUtils.get_bottle_path(config)
         subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
 
-        local_bottles_tmp = self.local_bottles.copy()
-        for b in local_bottles_tmp.values():
-            if b.Path == config.Path:
-                del self.local_bottles[b.Name]
-                break
+        self.update_bottles(silent=True)
 
         logging.info(f"Deleted the bottle in: {path}")
         return True
