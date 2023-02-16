@@ -18,10 +18,12 @@
 import os
 import uuid
 import shutil
-import patoolib
+import traceback
 from glob import glob
 from functools import lru_cache
 from typing import Union
+import patoolib
+
 from gi.repository import GLib
 
 from bottles.backend.models.config import BottleConfig
@@ -94,11 +96,11 @@ class DependencyManager:
         uninstaller = True
 
         if config.Parameters.versioning_automatic:
-            '''
+            """
             If the bottle has the versioning system enabled, we need
             to create a new version of the bottle, before installing
             the dependency.
-            '''
+            """
             self.__manager.versioning_manager.create_state(
                 config=config,
                 message=f"Before installing {dependency[0]}"
@@ -114,10 +116,10 @@ class DependencyManager:
         ), )
         manifest = self.get_dependency(dependency[0])
         if not manifest:
-            '''
+            """
             If the manifest is not found, return a Result
             object with the error.
-            '''
+            """
             GLib.idle_add(self.__operation_manager.remove_task, task_id)
             return Result(
                 status=False,
@@ -125,10 +127,10 @@ class DependencyManager:
             )
 
         if manifest.get("Dependencies"):
-            '''
+            """
             If the manifest has dependencies, we need to install them
             before installing the current one.
-            '''
+            """
             for _ext_dep in manifest.get("Dependencies"):
                 if _ext_dep in config.Installed_Dependencies:
                     continue
@@ -139,10 +141,10 @@ class DependencyManager:
                         return _res
 
         for step in manifest.get("Steps"):
-            '''
+            """
             Here we execute all steps in the manifest.
             Steps are the actions performed to install the dependency.
-            '''
+            """
             res = self.__perform_steps(config, step)
             if not res.status:
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
@@ -155,10 +157,10 @@ class DependencyManager:
 
         if dependency[0] not in config.Installed_Dependencies \
                 or reinstall:
-            '''
+            """
             If the dependency is not already listed in the installed
             dependencies list of the bottle, add it.
-            '''
+            """
             dependencies = [dependency[0]]
 
             if config.Installed_Dependencies:
@@ -172,11 +174,11 @@ class DependencyManager:
             )
 
         if manifest.get("Uninstaller"):
-            '''
+            """
             If the manifest has an uninstaller, add it to the
             uninstaller list in the bottle config.
             Set it to NO_UNINSTALLER if the dependency cannot be uninstalled.
-            '''
+            """
             uninstaller = manifest.get("Uninstaller")
 
         if dependency[0] not in config.Installed_Dependencies:
@@ -491,32 +493,31 @@ class DependencyManager:
             checksum=step.get("file_checksum")
         )
 
-        if download:
-            if step.get("rename"):
-                file = step.get("rename")
-            else:
-                file = step.get("file_name")
+        if not download:
+            return False
 
-            archive_path = os.path.join(Paths.temp, os.path.splitext(file)[0])
+        if step.get("rename"):
+            file = step.get("rename")
+        else:
+            file = step.get("file_name")
 
-            if os.path.exists(archive_path):
-                shutil.rmtree(archive_path)
+        archive_path = os.path.join(Paths.temp, os.path.splitext(file)[0])
 
-            os.makedirs(archive_path)
-            try:
-                ext_path = patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
-                ext_file = ext_path + '/' + os.path.basename(ext_path)
-                if os.path.exists(archive_path):
-                    if os.path.isfile(ext_file):
-                        patoolib.extract_archive(
-                        ext_file,
-                        outdir=ext_path + '/'
-                        )
-            except:
-                return False
-            return True
+        if os.path.exists(archive_path):
+            shutil.rmtree(archive_path)
 
-        return False
+        os.makedirs(archive_path)
+        try:
+            patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
+            if archive_path.endswith(".tar"):
+                tar_path = os.path.join(archive_path, os.path.basename(archive_path))
+                patoolib.extract_archive(tar_path, outdir=archive_path)
+        except Exception as e:
+            logging.error("Something wrong happened during extraction.")
+            logging.error(f"{e}")
+            logging.error(f"{traceback.format_exc()}")
+            return False
+        return True
 
     @staticmethod
     def __step_install_fonts(config: BottleConfig, step: dict):
@@ -525,7 +526,7 @@ class DependencyManager:
         path = path.replace("temp/", f"{Paths.temp}/")
         bottle_path = ManagerUtils.get_bottle_path(config)
 
-        for font in step.get('fonts'):
+        for font in step.get("fonts"):
             font_path = f"{bottle_path}/drive_c/windows/Fonts/"
             if not os.path.exists(font_path):
                 os.makedirs(font_path)
@@ -552,12 +553,12 @@ class DependencyManager:
 
         if isinstance(dest, bool):
             return dest
-            
+
         if not os.path.exists(dest):
             os.makedirs(dest)
 
         try:
-            if "*" in step.get('file_name'):
+            if "*" in step.get("file_name"):
                 files = glob(f"{path}/{step.get('file_name')}")
                 if not files:
                     logging.info(f"File(s) not found in {path}")
@@ -576,7 +577,7 @@ class DependencyManager:
                     except shutil.SameFileError:
                         logging.info(f"{_name} already exists at the same version, skipping.")
             else:
-                _name = step.get('file_name')
+                _name = step.get("file_name")
                 _dest = os.path.join(dest, _name)
                 logging.info(f"Copying {_name} to {_dest}")
 
@@ -600,7 +601,7 @@ class DependencyManager:
         """Register one or more dll and ActiveX control"""
         regsvr32 = Regsvr32(config)
 
-        for dll in step.get('dlls', []):
+        for dll in step.get("dlls", []):
             regsvr32.register(dll)
 
         return True
@@ -615,7 +616,7 @@ class DependencyManager:
             dlls = glob(os.path.join(path, step.get("dll")))
 
             bundle = {"HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides": []}
-            import ntpath
+
             for dll in dlls:
                 dll_name = os.path.splitext(os.path.basename(dll))[0]
                 bundle["HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides"].append({

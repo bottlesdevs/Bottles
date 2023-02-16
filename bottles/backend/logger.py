@@ -44,8 +44,8 @@ class Logger(logging.getLoggerClass()):
         'datefmt': '%H:%M:%S',
     }
 
-    def __color(self, level, message):
-        if message is not None and "\n" in message:
+    def __color(self, level, message: str):
+        if message and "\n" in message:
             message = message.replace("\n", "\n\t") + "\n"
         color_id = self.__color_map[level]
         return "\033[%dm%s\033[0m" % (color_id, message)

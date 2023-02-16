@@ -49,6 +49,10 @@ class DLLComponent:
     def check(self):
         found = self.dlls.copy()
 
+        if None in self.dlls:
+            logging.error(f"DLL(s) \"{self.dlls[None]}\" path haven't been found, ignoring...")
+            return
+
         for path in self.dlls:
             _path = os.path.join(self.base_path, path)
             if not os.path.exists(_path):
@@ -83,6 +87,10 @@ class DLLComponent:
         if exclude is None:
             exclude = []
 
+        if None in self.dlls:
+            logging.error(f"DLL(s) \"{self.dlls[None]}\" path haven't been found, ignoring...")
+            return
+
         for path in self.dlls:
             for dll in self.dlls[path]:
                 if dll not in exclude:
@@ -108,6 +116,10 @@ class DLLComponent:
 
         if exclude is None:
             exclude = []
+
+        if None in self.dlls:
+            logging.error(f"DLL(s) \"{self.dlls[None]}\" path haven't been found, ignoring...")
+            return
 
         for path in self.dlls:
             for dll in self.dlls[path]:
