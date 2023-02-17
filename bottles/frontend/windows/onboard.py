@@ -18,7 +18,7 @@
 import time
 import sys
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw, Gdk
 
 from bottles.backend.models.result import Result
 from bottles.frontend.utils.threading import RunAsync
@@ -30,14 +30,15 @@ class OnboardDialog(Adw.Window):
     __settings = Gtk.Settings.get_default()
 
     # region Widgets
-    carousel = Gtk.Template.Child()
-    btn_close = Gtk.Template.Child()
-    btn_back = Gtk.Template.Child()
-    btn_next = Gtk.Template.Child()
-    btn_skip = Gtk.Template.Child()
-    btn_install = Gtk.Template.Child()
-    progressbar = Gtk.Template.Child()
-    img_welcome = Gtk.Template.Child()
+    status_welcome = Gtk.Template.Child()
+    # carousel = Gtk.Template.Child()
+    # btn_close = Gtk.Template.Child()
+    # btn_back = Gtk.Template.Child()
+    # btn_next = Gtk.Template.Child()
+    # btn_skip = Gtk.Template.Child()
+    # btn_install = Gtk.Template.Child()
+    # progressbar = Gtk.Template.Child()
+    # img_welcome = Gtk.Template.Child()
     # endregion
 
     images = [
@@ -50,23 +51,29 @@ class OnboardDialog(Adw.Window):
         self.set_transient_for(window)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
+        # self.window = window
+        # self.manager = window.manager
 
         # connect signals
-        self.connect("close-request", self.__quit)
-        self.carousel.connect("page-changed", self.__page_changed)
-        self.btn_close.connect("clicked", self.__close_window)
-        self.btn_back.connect("clicked", self.__previous_page)
-        self.btn_next.connect("clicked", self.__next_page)
-        self.btn_install.connect("clicked", self.__install_runner)
-        self.btn_skip.connect("clicked", self.__skip_tutorial)
-        self.__settings.connect("notify::gtk-application-prefer-dark-theme", self.__theme_changed)
+        # self.connect("close-request", self.__quit)
+        # self.carousel.connect("page-changed", self.__page_changed)
+        # self.btn_close.connect("clicked", self.__close_window)
+        # self.btn_back.connect("clicked", self.__previous_page)
+        # self.btn_next.connect("clicked", self.__next_page)
+        # self.btn_install.connect("clicked", self.__install_runner)
+        # self.btn_skip.connect("clicked", self.__skip_tutorial)
+        # self.__settings.connect("notify::gtk-application-prefer-dark-theme", self.__theme_changed)
 
-        if self.__settings.get_property("gtk-application-prefer-dark-theme"):
-            self.img_welcome.set_from_resource(self.images[1])
+        # if self.__settings.get_property("gtk-application-prefer-dark-theme"):
+        #     self.img_welcome.set_from_resource(self.images[1])
 
-        self.__page_changed()
+        # self.__page_changed()
+
+
+        texture = Gdk.Texture.new_from_resource("/com/usebottles/bottles/images/images/bottles-welcome.svg")
+        self.status_welcome.set_paintable(texture)
+
+
 
     def __theme_changed(self, settings, _key):
         self.img_welcome.set_from_resource(self.images[settings.get_property("gtk-application-prefer-dark-theme")])
