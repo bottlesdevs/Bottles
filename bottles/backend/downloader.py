@@ -81,8 +81,8 @@ class Downloader:
                         GLib.idle_add(self.func, 1, 1, 1)
                         self.__progress(1, 1, 1)
         except requests.exceptions.SSLError:
-            logging.error(
-                "Download failed due to a SSL error. Your system may have a wrong date/time or wrong certificates.")
+            logging.error("Download failed due to a SSL error. "
+                          "Your system may have a wrong date/time or wrong certificates.")
             return Result(False, message="Download failed due to a SSL error.")
         except (requests.exceptions.RequestException, OSError):
             logging.error("Download failed! Check your internet connection.")
@@ -104,8 +104,9 @@ class Downloader:
                              f"({total_str}/{total_str} - 100MB)")
         while shutil.get_terminal_size().columns < full_text_size:
             divider = divider + 1
-            full_text_size = len(
-                f"\r{c_complete}{name} (100%) {'━' * int(100 / divider)} ({total_str}/{total_str} - 100MB)")
+            full_text_size = len(f"\r{c_complete}{name} (100%) "
+                                 f"{'━' * int(100 / divider)} "
+                                 f"({total_str}/{total_str} - 100MB)")
             if divider > 10:
                 break
 
