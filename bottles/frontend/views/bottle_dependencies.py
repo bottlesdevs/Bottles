@@ -129,7 +129,8 @@ class DependenciesView(Adw.Bin):
                     if dep[0] in self.config.Installed_Dependencies:
                         continue  # Do not list already installed dependencies'
 
-                    if dep[1].get("Arch", "win64") != self.config.Arch:
+                    dependency_arch = dep[1].get("Arch")
+                    if dependency_arch is not None and dependency_arch != self.config.get("Arch"):
                         # NOTE: avoid listing dependencies not supported by the bottle arch
                         continue
 
