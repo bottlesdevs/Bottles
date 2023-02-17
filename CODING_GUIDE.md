@@ -28,6 +28,14 @@ flatpak uninstall com.usebottles.bottles//master
 pytest .
 ```
 
+## Dependencies
+
+Regenerate PYPI dependency manifest when requirements.txt changed
+
+```bash
+python ./utils/flatpak-pip-generator.py -r requirements.txt -o com.usebottles.bottles.pypi-deps --yaml
+```
+
 ## I18n files
 
 ### `po/POTFILES`
