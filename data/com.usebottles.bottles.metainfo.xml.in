@@ -79,6 +79,22 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
+        <release version="51.0" date="2023-02-20">
+          <description>
+            <p>Major change: Redesign New Bottle</p>
+            <p>Quality of life improvements:</p>
+            <ul>
+              <li>Replace emote-love icon with library in library view</li>
+              <li>Add toast for "Run Executable"</li>
+            </ul>
+            <p>Bug fixes:</p>
+            <ul>
+              <li>Adding shortcut to Steam resulted an error</li>
+              <li>Importing backups failed</li>
+              <li>Steam Runtime automatically enabled when using wine-ge-custom</li>
+            </ul>
+          </description>
+        </release>
         <release version="50.2" date="2023-01-18">
           <description>
             <ul>
