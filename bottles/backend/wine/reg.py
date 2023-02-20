@@ -122,7 +122,8 @@ class Reg(WineProgram):
         winedbg.wait_for_process("reg.exe")
 
         res = self.launch(args, communicate=True, minimal=True, action_name="import_bundle")
-        logging.info(f"Import bundle result: '{res.decode('utf-8')}'")
+        # TODO: temp fix because res is sometimes a string, sometimes bytes...
+        # logging.info(f"Import bundle result: '{res.decode('utf-8')}'")
 
         # remove reg file
         os.remove(reg_file)
