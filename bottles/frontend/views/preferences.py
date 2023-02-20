@@ -23,7 +23,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw, Gio, GLib
 
 from bottles.backend.managers.data import DataManager, UserDataKeys
-from bottles.backend.repos.repo import RepoStatus
+from bottles.backend.state import EventManager, Events
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
@@ -117,8 +117,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         def ui_update():
             if self.manager.utils_conn.status:
-                RepoStatus.repo_wait_operation("components.fetching")
-                RepoStatus.repo_wait_operation("components.organizing")
+                EventManager.wait(Events.ComponentsOrganizing)
                 GLib.idle_add(self.populate_runners_list)
                 GLib.idle_add(self.populate_dxvk_list)
                 GLib.idle_add(self.populate_vkd3d_list)
