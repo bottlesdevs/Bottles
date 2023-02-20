@@ -58,6 +58,8 @@ from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.gsettings_stub import GSettingsStub
+from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.gpu import GPUVendors
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
@@ -348,17 +350,16 @@ class Manager:
 
         # lock winemenubuilder.exe
         for runner in runners:
-            winemenubuilder_paths = [
-                f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
-                f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
-                f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
-                f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
-            ]
-            for winemenubuilder in winemenubuilder_paths:
-                if winemenubuilder.startswith("Proton"):
-                    continue
-                if os.path.isfile(winemenubuilder):
-                    os.rename(winemenubuilder, f"{winemenubuilder}.lock")
+            if runner not in self.supported_proton_runners:
+                winemenubuilder_paths = [
+                    f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
+                    f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
+                    f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
+                    f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
+                ]
+                for winemenubuilder in winemenubuilder_paths:
+                    if os.path.isfile(winemenubuilder):
+                        os.rename(winemenubuilder, f"{winemenubuilder}.lock")
 
         # check system wine
         if shutil.which("wine") is not None:
@@ -1319,11 +1320,12 @@ class Manager:
 
             if not template and config.Parameters.dxvk_nvapi \
                     or (template and template["config"]["NVAPI"] != nvapi):
-                # perform nvapi installation if configured
-                logging.info("Installing DXVK-NVAPI…")
-                log_update(_("Installing DXVK-NVAPI…"))
-                self.install_dll_component(config, "nvapi", version=nvapi_name)
-                template_updated = True
+                if GPUUtils.is_gpu(GPUVendors.NVIDIA):
+                    # perform nvapi installation if configured
+                    logging.info("Installing DXVK-NVAPI…")
+                    log_update(_("Installing DXVK-NVAPI…"))
+                    self.install_dll_component(config, "nvapi", version=nvapi_name)
+                    template_updated = True
 
             for dep in env.get("Installed_Dependencies", []):
                 if template and dep in template["config"]["Installed_Dependencies"]:
@@ -1436,11 +1438,7 @@ class Manager:
         path = ManagerUtils.get_bottle_path(config)
         subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
 
-        local_bottles_tmp = self.local_bottles.copy()
-        for b in local_bottles_tmp.values():
-            if b.Path == config.Path:
-                del self.local_bottles[b.Name]
-                break
+        self.update_bottles(silent=True)
 
         logging.info(f"Deleted the bottle in: {path}")
         return True

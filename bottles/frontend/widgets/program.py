@@ -246,6 +246,7 @@ class ProgramEntry(Adw.ActionRow):
         def func(new_name):
             if new_name == self.program["name"]:
                 return
+            old_name = self.program["name"]
             self.program["name"] = new_name
             self.manager.update_config(
                 config=self.config,
@@ -270,7 +271,7 @@ class ProgramEntry(Adw.ActionRow):
             @GtkUtils.run_in_main_loop
             def ui_update(_result, _error):
                 self.window.page_library.update()
-                self.window.show_toast(_("\"{0}\" renamed to \"{1}\"").format(self.program["name"], new_name))
+                self.window.show_toast(_("\"{0}\" renamed to \"{1}\"").format(old_name, new_name))
                 self.update_programs()
 
             RunAsync(async_work, callback=ui_update)

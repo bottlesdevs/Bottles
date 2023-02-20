@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-28 22:40+0000\n"
+"PO-Revision-Date: 2023-02-01 03:59+0000\n"
 "Last-Translator: İbrahim Hakkı Ergin <ibrahimh.ergin@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
@@ -614,11 +614,9 @@ msgid "DXVK"
 msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
-#, fuzzy
 msgid "Improve Direct3D 9/10/11 compatibility by translating it to Vulkan."
 msgstr ""
-"Direct3D 12 desteğini etkinleştirerek ve Direct3D 9/10/11 performansını "
-"Vulkan çevirimi ile iyileştirin."
+"Direct3D 9/10/11 uyumluluğunu Vulkan'a çevirerek performansı geliştirin."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
@@ -631,14 +629,13 @@ msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Direct3D 12 uyumluluğunu Vulkan'a çevirerek geliştirin."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
 msgstr "VKD3D güncelleniyor, lütfen bekleyin…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
-#, fuzzy
 msgid "DXVK NVAPI"
 msgstr "DXVK-NVAPI"
 
@@ -656,48 +653,56 @@ msgstr "LatencyFleX"
 #, fuzzy
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
 msgstr ""
-"NVIDIA Reflex için bir alternatif. Bazı hile önleme programları tarafından "
-"tespit edilebilir."
+"Gecikmeyi Azaltın. Bazı hile önleme programları tarafından tespit edilebilir."
 
 #: bottles/frontend/ui/details-preferences.blp:71
-#, fuzzy
 msgid "Updating LatencyFleX, please wait…"
-msgstr "DXVK güncelleniyor, lütfen bekleyin…"
+msgstr "LatencyFleX güncelleniyor, lütfen bekleyin…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 #, fuzzy
 msgid "Display"
-msgstr "Görüntü Ayarları"
+msgstr "Ekran"
 
 #: bottles/frontend/ui/details-preferences.blp:88
+#, fuzzy
 msgid "Deep Learning Super Sampling"
-msgstr ""
+msgstr "Derin öğrenme mükemmel örnekleme"
 
 #: bottles/frontend/ui/details-preferences.blp:89
+#, fuzzy
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"DXVK-NVAPI kullanarak görselliği düşürme pahasına performansı artırın. "
+"Yalnızca yeni NVIDIA GPU'larda çalışır."
 
 #: bottles/frontend/ui/details-preferences.blp:106
 #, fuzzy
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "Artan güç kullanımı pahasına performansı iyileştirir."
+msgstr ""
+"Daha kötü görseller pahasına performansı iyileştirin. Sadece Vulkan'da "
+"çalışır."
 
 #: bottles/frontend/ui/details-preferences.blp:117
 #, fuzzy
 msgid "Discrete Graphics"
-msgstr "Ayrık Grafik Kart Kullan"
+msgstr "Ayrık Grafik Kartı"
 
 #: bottles/frontend/ui/details-preferences.blp:118
+#, fuzzy
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Daha yüksek güç tüketimi pahasına performansı artırmak için ayrık grafik "
+"kartını kullanın."
 
 #: bottles/frontend/ui/details-preferences.blp:127
+#, fuzzy
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "İleri işeleme efekti"
 
 #: bottles/frontend/ui/details-preferences.blp:128
 msgid ""

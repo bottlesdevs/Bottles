@@ -27,7 +27,6 @@ from pathlib import Path
 from typing import Union, Dict
 
 from bottles.backend.globals import Paths
-from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
@@ -37,6 +36,8 @@ from bottles.backend.utils import vdf
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.wine.winecommand import WineCommand
+
+from bottles.backend.logger import Logger
 
 logging = Logger()
 
@@ -75,6 +76,7 @@ class SteamManager:
         for path in paths:
             if os.path.isdir(path):
                 return path
+        return None
 
     def __get_scoped_path(self, scope: str = "steamapps"):
         """scopes: steamapps, userdata"""
@@ -84,14 +86,15 @@ class SteamManager:
         path = os.path.join(self.steam_path, scope)
         if os.path.isdir(path):
             return path
+        return None
 
     @staticmethod
     def get_acf_data(libraryfolder: str, app_id: str) -> Union[dict, None]:
         acf_path = os.path.join(libraryfolder, f"steamapps/appmanifest_{app_id}.acf")
         if not os.path.isfile(acf_path):
-            return
+            return None
 
-        with open(acf_path, "r", errors='replace') as f:
+        with open(acf_path, "r", errors="replace") as f:
             data = SteamUtils.parse_acf(f.read())
 
         return data
@@ -103,27 +106,27 @@ class SteamManager:
         confs = glob(os.path.join(self.userdata_path, "*/config/localconfig.vdf"))
         if len(confs) == 0:
             logging.warning("Could not find any localconfig.vdf file in Steam userdata")
-            return
+            return None
 
         return confs[0]
 
     def __get_library_folders(self) -> Union[list, None]:
         if not self.steamapps_path:
-            return
+            return None
 
         library_folders_path = os.path.join(self.steamapps_path, "libraryfolders.vdf")
         library_folders = []
 
         if not os.path.exists(library_folders_path):
             logging.warning("Could not find the libraryfolders.vdf file")
-            return
+            return None
 
-        with open(library_folders_path, "r", errors='replace') as f:
+        with open(library_folders_path, "r", errors="replace") as f:
             _library_folders = SteamUtils.parse_acf(f.read())
 
         if _library_folders is None or not _library_folders.get("libraryfolders"):
             logging.warning(f"Could not parse libraryfolders.vdf")
-            return
+            return None
 
         for _, folder in _library_folders["libraryfolders"].items():
             if not isinstance(folder, dict) \
@@ -138,17 +141,20 @@ class SteamManager:
     @lru_cache
     def get_appid_library_path(self, appid: str) -> Union[str, None]:
         if self.library_folders is None:
-            return
+            return None
 
+        # This will always be a list because of the check before
+        # pylint: disable=E1133
         for folder in self.library_folders:
             if appid in folder["apps"].keys():
                 return folder["path"]
+        return None
 
     def __get_local_config(self) -> dict:
         if self.localconfig_path is None:
             return {}
 
-        with open(self.localconfig_path, "r", errors='replace') as f:
+        with open(self.localconfig_path, "r", errors="replace") as f:
             data = SteamUtils.parse_acf(f.read())
 
         if data is None:
@@ -162,7 +168,7 @@ class SteamManager:
             return
 
         if os.path.isfile(self.localconfig_path):
-            now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+            now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             shutil.copy(self.localconfig_path, f"{self.localconfig_path}.bck.{now}")
 
         with open(self.localconfig_path, "w") as f:
@@ -537,7 +543,7 @@ class SteamManager:
             _existing = {}
 
             if os.path.exists(os.path.join(c, "shortcuts.vdf")):
-                with open(os.path.join(c, "shortcuts.vdf"), "rb", errors='replace') as f:
+                with open(os.path.join(c, "shortcuts.vdf"), "rb") as f:
                     try:
                         _existing = vdf.binary_loads(f.read()).get("shortcuts", {})
                     except:
