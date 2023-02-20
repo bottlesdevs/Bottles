@@ -352,17 +352,16 @@ class Manager:
 
         # lock winemenubuilder.exe
         for runner in runners:
-            winemenubuilder_paths = [
-                f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
-                f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
-                f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
-                f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
-            ]
-            for winemenubuilder in winemenubuilder_paths:
-                if winemenubuilder.startswith("Proton"):
-                    continue
-                if os.path.isfile(winemenubuilder):
-                    os.rename(winemenubuilder, f"{winemenubuilder}.lock")
+            if runner not in self.supported_proton_runners:
+                winemenubuilder_paths = [
+                    f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
+                    f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
+                    f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
+                    f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
+                ]
+                for winemenubuilder in winemenubuilder_paths:
+                    if os.path.isfile(winemenubuilder):
+                        os.rename(winemenubuilder, f"{winemenubuilder}.lock")
 
         # check system wine
         if shutil.which("wine") is not None:

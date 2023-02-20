@@ -16,13 +16,15 @@
 #
 
 import shutil
+import sys
 import time
+
 import requests
 from gi.repository import GLib
 
 from bottles.backend.logger import Logger
-from bottles.backend.utils.file import FileUtils
 from bottles.backend.models.result import Result
+from bottles.backend.utils.file import FileUtils
 
 logging = Logger()
 
@@ -79,7 +81,8 @@ class Downloader:
                         GLib.idle_add(self.func, 1, 1, 1)
                         self.__progress(1, 1, 1)
         except requests.exceptions.SSLError:
-            logging.error("Download failed due to a SSL error. Your system may have a wrong date/time or wrong certificates.")
+            logging.error("Download failed due to a SSL error. "
+                          "Your system may have a wrong date/time or wrong certificates.")
             return Result(False, message="Download failed due to a SSL error.")
         except (requests.exceptions.RequestException, OSError):
             logging.error("Download failed! Check your internet connection.")
@@ -96,24 +99,28 @@ class Downloader:
         name = self.file.split("/")[-1]
         c_close, c_complete, c_incomplete = "\033[0m", "\033[92m", "\033[90m"
         divider = 2
-        full_text_size = len(f"\r{c_complete}{name} (100%) {'━' * int(100 / divider)} ({total_str}/{total_str} - 100MB)")
+        full_text_size = len(f"\r{c_complete}{name} (100%) "
+                             f"{'━' * int(100 / divider)} "
+                             f"({total_str}/{total_str} - 100MB)")
         while shutil.get_terminal_size().columns < full_text_size:
             divider = divider + 1
-            full_text_size = len(f"\r{c_complete}{name} (100%) {'━' * int(100 / divider)} ({total_str}/{total_str} - 100MB)")
-            if divider > 10: break
-        try:
-            print(
-                f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) {'━' * int(percent / divider)} ({done_str}/{total_str} - {speed_str})",
-                end=""
-            )
-            if percent == 100:
-                print(f"{c_close}\n")
-        except UnicodeEncodeError:
-            # WORKAROUND for unsupported characters <https://github.com/bottlesdevs/Bottles/issues/2017>
-            print(
-                f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) \
-    {'━' * int(percent / 2)} ({done_str}/{total_str} - {speed_str})",
-                end=""
-            )
-            if percent == 100:
-                print(f"{c_close}\n")
+            full_text_size = len(f"\r{c_complete}{name} (100%) "
+                                 f"{'━' * int(100 / divider)} "
+                                 f"({total_str}/{total_str} - 100MB)")
+            if divider > 10:
+                break
+
+        text = f"\r{c_incomplete if percent < 100 else c_complete}{name} ({percent}%) " \
+               f"{'━' * int(percent / divider)} " \
+               f"({done_str}/{total_str} - {speed_str})"
+
+        if sys.stdout.encoding == "utf-8":
+            print(text, end="")
+        else:
+            # usually means user is using legacy encoding
+            # which cannot cover unicode codepoint,
+            # so we need replace '━' with '-'
+            print(text.replace("━", "-"), end="")
+
+        if percent == 100:
+            print(f"{c_close}\n")

@@ -269,6 +269,22 @@ class Bottles(Adw.Application):
         self.win.main_leaf.set_visible_child(self.win.page_importer)
 
     def __show_about_window(self, *_args):
+        release_notes = """
+            <p>Major change: Redesign New Bottle interface</p>
+            <p>Quality of life improvements:</p>
+            <ul>
+              <li>Replace emote-love icon with library in library page</li>
+              <li>Add toast for "Run Executable"</li>
+            </ul>
+            <p>Bug fixes:</p>
+            <ul>
+              <li>Adding shortcut to Steam resulted an error</li>
+              <li>Importing backups resulted an error</li>
+              <li>Steam Runtime automatically enabled when using wine-ge-custom</li>
+              <li>Various library related fixes, like empty covers, and crashes related to missing entries</li>
+              <li>Fix various issues related to text encoding</li>
+            </ul>
+        """
         builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
         about_window = builder.get_object("about_window")
         about_window.set_debug_info(HealthChecker().get_results(plain=True))
@@ -312,6 +328,7 @@ class Bottles(Adw.Application):
                 "Community ❤️ https://usebottles.com/funding"
             ]
         )
+        about_window.set_release_notes(release_notes)
         about_window.set_transient_for(self.win)
         about_window.present()
 
