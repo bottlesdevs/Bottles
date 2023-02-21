@@ -1,8 +1,11 @@
 """This should be a drop-in replacement for the json module built in CPython"""
+import json
 import json as _json
 from typing import Optional, IO, Any, Type
 
 from bottles.backend.models.config import DictCompatMixIn
+
+JSONDecodeError = json.JSONDecodeError
 
 
 class ExtJSONEncoder(_json.JSONEncoder):

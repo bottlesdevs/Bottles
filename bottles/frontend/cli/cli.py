@@ -18,14 +18,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import gi
+import argparse
 import os
+import signal
 import sys
 import uuid
-import json
-import signal
-import argparse
 import warnings
+
+import gi
+
+from bottles.backend.utils import json
 
 warnings.filterwarnings("ignore")  # suppress GTK warnings
 gi.require_version('Gtk', '4.0')
@@ -137,7 +139,7 @@ class CLI:
         run_parser.add_argument("-e", "--executable", help="Path to the executable")
         run_parser.add_argument("-p", "--program", help="Program to run")
         run_parser.add_argument("--args-replace", action='store_false', dest='keep_args',
-            help="Replace current program arguments, instead of append")
+                                help="Replace current program arguments, instead of append")
         run_parser.add_argument("args", nargs="*", action="extend", help="Arguments to pass to the executable")
 
         standalone_parser = subparsers.add_parser("standalone", help="Generate a standalone script to launch commands "
