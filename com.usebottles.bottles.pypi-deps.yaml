@@ -1,4 +1,4 @@
-# Generated with flatpak-pip-generator -r requirements.txt -o com.usebottles.bottles.pypi-deps --yaml
+# Generated with flatpak-pip-generator --runtime org.gnome.Sdk -r requirements.txt -o com.usebottles.bottles.pypi-deps --yaml
 build-commands: []
 buildsystem: simple
 modules:
@@ -45,11 +45,8 @@ modules:
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} "icoextract[thumbnailer]==0.1.2" --no-build-isolation
+        --prefix=${FLATPAK_DEST} "icoextract==0.1.2" --no-build-isolation
     sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/bc/07/830784e061fb94d67649f3e438ff63cfb902dec6d48ac75aeaaac7c7c30e/Pillow-9.4.0.tar.gz
-        sha256: a1c2d7780448eb93fbcc3789bf3916aa5720d942e37945f4056680317f1cd23e
       - type: file
         url: https://files.pythonhosted.org/packages/c4/c9/4dcdb3a3e325a441bbf293a4bce8a9b247f88d9c9671b4a360d52dac499c/icoextract-0.1.2.tar.gz
         sha256: 7695d0379ba672e075fc3a7c9d366a77a876840a18cd4bda7080a5314494580c
