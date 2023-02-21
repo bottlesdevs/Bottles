@@ -22,6 +22,10 @@ class DictCompatMixIn:
         dict_repr = data.to_dict()
         return dumper.represent_dict(dict_repr)
 
+    @staticmethod
+    def json_serialize_handler(data):
+        return data.to_dict()
+
     def keys(self):
         return self.__dict__.keys()
 
@@ -150,11 +154,11 @@ class BottleConfig(DictCompatMixIn):
         """
         Dump config to file
 
-        :file: filepath str or IO-like object.
-        :mode: when param 'file' is filepath, use this mode to open file, otherwise ignored.
+        :param file: filepath str or IO-like object.
+        :param mode: when param 'file' is filepath, use this mode to open file, otherwise ignored.
                default is 'w'
-        :encoding: file content encoding, default is None(Decide by Python IO)
-        :indent: file indent width, default is 4
+        :param encoding: file content encoding, default is None(Decide by Python IO)
+        :param indent: file indent width, default is 4
         """
         f = file if isinstance(file, IOBase) else open(file, mode=mode)
         try:
@@ -171,8 +175,8 @@ class BottleConfig(DictCompatMixIn):
         """
         Load config from file
 
-        :file: filepath str or IO-like object.
-        :mode: when param 'file' is filepath, use this mode to open file, otherwise ignored.
+        :param file: filepath str or IO-like object.
+        :param mode: when param 'file' is filepath, use this mode to open file, otherwise ignored.
                default is 'r'
         """
         f = None
