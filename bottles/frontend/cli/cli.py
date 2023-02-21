@@ -27,8 +27,6 @@ import warnings
 
 import gi
 
-from bottles.backend.utils import json
-
 warnings.filterwarnings("ignore")  # suppress GTK warnings
 gi.require_version('Gtk', '4.0')
 from gi.repository import Gtk, Gio
@@ -59,6 +57,7 @@ from bottles.backend.wine.winecfg import WineCfg
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.runner import Runner
+from bottles.backend.utils import json
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.frontend.utils.connection import ConnectionUtils
 
