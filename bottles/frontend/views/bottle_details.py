@@ -388,6 +388,8 @@ class BottleView(Adw.PreferencesPage):
                 if response != Gtk.ResponseType.ACCEPT:
                     return
 
+                self.window.show_toast(_("Launching \"{0}\"…").format(dialog.get_file().get_basename()))
+
                 executor = WineExecutor(
                     self.config,
                     exec_path=dialog.get_file().get_path(),

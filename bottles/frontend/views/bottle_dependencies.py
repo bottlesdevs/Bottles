@@ -21,7 +21,7 @@ from typing import Optional
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.models.config import BottleConfig
-from bottles.backend.repos.repo import RepoStatus
+from bottles.backend.state import EventManager, Events
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.utils.gtk import GtkUtils
@@ -120,8 +120,7 @@ class DependenciesView(Adw.Bin):
 
         def process_dependencies():
             time.sleep(.3)  # workaround for freezing bug on bottle load
-            RepoStatus.repo_wait_operation("dependencies.fetching")
-            RepoStatus.repo_wait_operation("dependencies.organizing")
+            EventManager.wait(Events.DependenciesOrganizing)
             dependencies = self.manager.supported_dependencies
 
             GLib.idle_add(self.empty_list)

@@ -154,7 +154,11 @@ template DetailsBottle : .AdwPreferencesPage {
 
       Label label_name {
         halign: center;
+        justify: center;
+        wrap: true;
+        max-width-chars: 30;
         label: _("My bottle");
+        wrap-mode: word_char;
 
         styles [
           "title-1",

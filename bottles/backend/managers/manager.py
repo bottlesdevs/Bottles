@@ -52,13 +52,14 @@ from bottles.backend.managers.versioning import VersioningManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.repos.repo import RepoStatus
-from bottles.backend.state import State, Signals
+from bottles.backend.state import State, Signals, Events, EventManager
 from bottles.backend.utils import yaml
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.gsettings_stub import GSettingsStub
+from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.gpu import GPUVendors
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
@@ -270,11 +271,10 @@ class Manager:
     @RunAsync.run_async
     def organize_components(self):
         """Get components catalog and organizes into supported_ lists."""
-        RepoStatus.repo_start_operation("components.organizing")
-        RepoStatus.repo_wait_operation("components.fetching")
+        EventManager.wait(Events.ComponentsFetching)
         catalog = self.component_manager.fetch_catalog()
         if len(catalog) == 0:
-            RepoStatus.repo_done_operation("components.organizing")
+            EventManager.done(Events.ComponentsOrganizing)
             logging.info("No components found.")
             return
 
@@ -286,35 +286,33 @@ class Manager:
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
         self.supported_latencyflex = catalog["latencyflex"]
-        RepoStatus.repo_done_operation("components.organizing")
+        EventManager.done(Events.ComponentsOrganizing)
 
     @RunAsync.run_async
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
-        RepoStatus.repo_start_operation("dependencies.organizing")
-        RepoStatus.repo_wait_operation("dependencies.fetching")
+        EventManager.wait(Events.DependenciesFetching)
         catalog = self.dependency_manager.fetch_catalog()
         if len(catalog) == 0:
-            RepoStatus.repo_done_operation("dependencies.organizing")
+            EventManager.done(Events.DependenciesOrganizing)
             logging.info("No dependencies found!")
             return
 
         self.supported_dependencies = catalog
-        RepoStatus.repo_done_operation("dependencies.organizing")
+        EventManager.done(Events.DependenciesOrganizing)
 
     @RunAsync.run_async
     def organize_installers(self):
         """Organizes installers into supported_installers."""
-        RepoStatus.repo_start_operation("installers.organizing")
-        RepoStatus.repo_wait_operation("installers.fetching")
+        EventManager.wait(Events.InstallersFetching)
         catalog = self.installer_manager.fetch_catalog()
         if len(catalog) == 0:
-            RepoStatus.repo_done_operation("installers.organizing")
+            EventManager.done(Events.InstallersOrganizing)
             logging.info("No installers found!")
             return
 
         self.supported_installers = catalog
-        RepoStatus.repo_done_operation("installers.organizing")
+        EventManager.done(Events.InstallersOrganizing)
 
     def remove_dependency(self, config: BottleConfig, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""
@@ -352,17 +350,16 @@ class Manager:
 
         # lock winemenubuilder.exe
         for runner in runners:
-            winemenubuilder_paths = [
-                f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
-                f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
-                f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
-                f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
-            ]
-            for winemenubuilder in winemenubuilder_paths:
-                if winemenubuilder.startswith("Proton"):
-                    continue
-                if os.path.isfile(winemenubuilder):
-                    os.rename(winemenubuilder, f"{winemenubuilder}.lock")
+            if runner not in self.supported_proton_runners:
+                winemenubuilder_paths = [
+                    f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
+                    f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
+                    f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
+                    f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
+                ]
+                for winemenubuilder in winemenubuilder_paths:
+                    if os.path.isfile(winemenubuilder):
+                        os.rename(winemenubuilder, f"{winemenubuilder}.lock")
 
         # check system wine
         if shutil.which("wine") is not None:
@@ -1323,11 +1320,12 @@ class Manager:
 
             if not template and config.Parameters.dxvk_nvapi \
                     or (template and template["config"]["NVAPI"] != nvapi):
-                # perform nvapi installation if configured
-                logging.info("Installing DXVK-NVAPI…")
-                log_update(_("Installing DXVK-NVAPI…"))
-                self.install_dll_component(config, "nvapi", version=nvapi_name)
-                template_updated = True
+                if GPUUtils.is_gpu(GPUVendors.NVIDIA):
+                    # perform nvapi installation if configured
+                    logging.info("Installing DXVK-NVAPI…")
+                    log_update(_("Installing DXVK-NVAPI…"))
+                    self.install_dll_component(config, "nvapi", version=nvapi_name)
+                    template_updated = True
 
             for dep in env.get("Installed_Dependencies", []):
                 if template and dep in template["config"]["Installed_Dependencies"]:
@@ -1440,11 +1438,7 @@ class Manager:
         path = ManagerUtils.get_bottle_path(config)
         subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
 
-        local_bottles_tmp = self.local_bottles.copy()
-        for b in local_bottles_tmp.values():
-            if b.Path == config.Path:
-                del self.local_bottles[b.Name]
-                break
+        self.update_bottles(silent=True)
 
         logging.info(f"Deleted the bottle in: {path}")
         return True
