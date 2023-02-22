@@ -61,3 +61,15 @@ meson setup /tmp/i18n-build
 meson compile -C /tmp/i18n-build/ bottles-pot
 meson compile -C /tmp/i18n-build/ bottles-update-po
 ```
+
+## Release
+
+Version number should ALWAYS include minor version
+
+- Use `50.0`, `50.1` instead of `50`, `50.1`
+
+To release, run release script to set up everything
+
+```bash
+./utils/release.sh
+```
