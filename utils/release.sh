@@ -28,7 +28,7 @@ EOT
 
 echo "Press Enter to edit ${FILE}"
 read -r
-vim +"$POS" $FILE
+${EDITOR:-vim} +"$POS" $FILE
 
 echo "- Adding commit"
 git add -A
