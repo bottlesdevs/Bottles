@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-# Copied from https://github.com/flatpak/flatpak-builder-tools/blob/67455d214028f1562edf4fa4bcef8ba9d2617d23/pip/flatpak-pip-generator
+# original:
+# https://github.com/flatpak/flatpak-builder-tools/blob/67455d214028f1562edf4fa4bcef8ba9d2617d23/pip/flatpak-pip-generator
+# but modified with:
+# - will use arch-dependent whl directly
+# - skipped duplicate package check against org.freedesktop.Sdk
 
 __license__ = 'MIT'
 
@@ -259,7 +263,7 @@ with tempfile.TemporaryDirectory(prefix=tempdir_prefix) as tempdir:
 
     fprint('Downloading arch independent packages')
     for filename in os.listdir(tempdir):
-        if not filename.endswith(('bz2', 'any.whl', 'gz', 'xz', 'zip')):
+        if not filename.endswith(('bz2', 'whl', 'gz', 'xz', 'zip')):  # modified 'any.whl' to 'whl'
             version = get_file_version(filename)
             name = get_package_name(filename)
             url = get_tar_package_url_pypi(name, version)
@@ -346,8 +350,8 @@ for package in packages:
         print('Append #egg=<pkgname> to the end of the requirement line to fix', file=sys.stderr)
         continue
     elif package.name.casefold() in system_packages:
-        print(f"{package.name} is in system_packages. Skipping.")
-        continue
+        # modified
+        print(f"{package.name} is in system_packages. Proceed anyway.")
 
     if len(package.extras) > 0:
         extras = '[' + ','.join(extra for extra in package.extras) + ']'
@@ -382,7 +386,7 @@ for package in packages:
             for filename in sorted(os.listdir(tempdir)):
                 dep_name = get_package_name(filename)
                 if dep_name.casefold() in system_packages:
-                    continue
+                    pass  # modified
                 dependencies.append(dep_name)
 
         except subprocess.CalledProcessError:
@@ -421,6 +425,9 @@ for package in packages:
         '"{}"'.format(name_for_pip)
     ]
     if package.name in opts.ignore_installed:
+        pip_command.append('--ignore-installed')
+    if package.name.casefold() in system_packages:  # modified
+        print(f'{package.name} is in system_packages, adding --ignore-installed')
         pip_command.append('--ignore-installed')
     if not opts.build_isolation:
         pip_command.append('--no-build-isolation')

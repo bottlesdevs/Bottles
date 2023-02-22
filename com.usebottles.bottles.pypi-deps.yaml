@@ -9,8 +9,8 @@ modules:
         --prefix=${FLATPAK_DEST} "PyYAML==6.0" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/36/2b/61d51a2c4f25ef062ae3f74576b01638bebad5e045f747ff12643df63844/PyYAML-6.0.tar.gz
-        sha256: 68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2
+        url: https://files.pythonhosted.org/packages/02/25/6ba9f6bb50a3d4fbe22c1a02554dc670682a07c8701d1716d19ddea2c940/PyYAML-6.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+        sha256: f84fbc98b019fef2ee9a1cb3ce93e3187a6df0b2538a651bfb890254ba9f90b5
   - name: python3-pycurl
     buildsystem: simple
     build-commands:
@@ -41,6 +41,15 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/fe/ca/466766e20b767ddb9b951202542310cba37ea5f2d792dae7589f1741af58/urllib3-1.26.14-py2.py3-none-any.whl
         sha256: 75edcdc2f7d85b137124a6c3c9fc3933cdeaa12ecb9a6a959f22797a0feca7e1
+  - name: python3-Markdown
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+        --prefix=${FLATPAK_DEST} "Markdown==3.3.7" --ignore-installed --no-build-isolation
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/f3/df/ca72f352e15b6f8ce32b74af029f1189abffb906f7c137501ffe69c98a65/Markdown-3.3.7-py3-none-any.whl
+        sha256: f5da449a6e1c989a4cea2631aa8ee67caa5a2ef855d551c88f9e309f4634c621
   - name: python3-icoextract
     buildsystem: simple
     build-commands:
@@ -81,6 +90,6 @@ modules:
         url: https://files.pythonhosted.org/packages/f7/2f/cc09899755f94b36e7f570b9f9ca19a5fdff536e2614fd3ac1c28bb777f6/FVS-0.3.4.tar.gz
         sha256: c987741f37706ea07d91ec498c145162676ca16b59b5c8c2351cf464954ce422
       - type: file
-        url: https://files.pythonhosted.org/packages/38/33/1d4c62ccbe395c0d28c66535f31b1b1e8e38e7e7cff85abf32ee426a91d8/orjson-3.8.6.tar.gz
-        sha256: 91ef8a554d33fbc5bb61c3972f3e8baa994f72c4967671e64e7dac1cc06f50e1
+        url: https://files.pythonhosted.org/packages/a4/a2/212b5c3dc4d0115e0f1cddad7ff480f710acc0223a70487ac739cdf44a5b/orjson-3.8.6-cp310-cp310-manylinux_2_28_x86_64.whl
+        sha256: 323065cf14fdd4096dbf93ea1634e7e030044af8c1000803bcdc132fbfd395f5
 name: com.usebottles.bottles.pypi-deps
