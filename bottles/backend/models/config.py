@@ -3,9 +3,7 @@ import logging
 import os
 from dataclasses import dataclass, field, replace, asdict, is_dataclass
 from io import IOBase
-from typing import List, Dict, Union, Optional, ItemsView, Container
-
-from typing.io import IO
+from typing import List, Dict, Union, Optional, ItemsView, Container, IO
 
 from bottles.backend.models.result import Result
 from bottles.backend.utils import yaml
