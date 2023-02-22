@@ -3,7 +3,7 @@
 # https://github.com/flatpak/flatpak-builder-tools/blob/67455d214028f1562edf4fa4bcef8ba9d2617d23/pip/flatpak-pip-generator
 # but modified with:
 # - will use arch-dependent whl directly
-# - skipped duplicate package bypass against org.freedesktop.Sdk
+# - will still install packages if they already exist in org.freedesktop.Sdk
 
 __license__ = 'MIT'
 
