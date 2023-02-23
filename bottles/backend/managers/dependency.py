@@ -509,7 +509,7 @@ class DependencyManager:
         os.makedirs(archive_path)
         try:
             patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
-            if archive_path.endswith(".tar"):
+            if archive_path.endswith(".tar") and os.path.isfile(archive_path):
                 tar_path = os.path.join(archive_path, os.path.basename(archive_path))
                 patoolib.extract_archive(tar_path, outdir=archive_path)
         except Exception as e:
