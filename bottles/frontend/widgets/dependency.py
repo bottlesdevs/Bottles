@@ -72,7 +72,7 @@ class DependencyEntry(Adw.ActionRow):
 
         # connect signals
         self.btn_install.connect("clicked", self.install_dependency)
-        self.btn_reinstall.connect("clicked", self.install_dependency, True)
+        self.btn_reinstall.connect("clicked", self.install_dependency)
         self.btn_remove.connect("clicked", self.remove_dependency)
         self.btn_manifest.connect("clicked", self.open_manifest)
         self.btn_license.connect("clicked", self.open_license)
@@ -119,7 +119,7 @@ class DependencyEntry(Adw.ActionRow):
         )
         webbrowser.open(manifest["License_url"])
 
-    def install_dependency(self, widget, reinstall=False):
+    def install_dependency(self, widget):
         """
         This function install the dependency in the bottle, it
         will also prevent user from installing other dependencies
@@ -138,7 +138,6 @@ class DependencyEntry(Adw.ActionRow):
             callback=self.set_install_status,
             config=self.config,
             dependency=self.dependency,
-            reinstall=reinstall
         )
 
     def remove_dependency(self, widget):

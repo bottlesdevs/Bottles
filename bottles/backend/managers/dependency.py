@@ -16,14 +16,14 @@
 #
 
 import os
-import uuid
 import shutil
 import traceback
-from glob import glob
+import uuid
 from functools import lru_cache
+from glob import glob
 from typing import Union
-import patoolib
 
+import patoolib
 from gi.repository import GLib
 
 from bottles.backend.models.config import BottleConfig
@@ -82,12 +82,7 @@ class DependencyManager:
         catalog = dict(sorted(catalog.items()))
         return catalog
 
-    def install(
-            self,
-            config: BottleConfig,
-            dependency: list,
-            reinstall: bool = False
-    ) -> Result:
+    def install(self, config: BottleConfig, dependency: list) -> Result:
         """
         Install a given dependency in a bottle. It will
         return True if the installation was successful.
@@ -155,8 +150,7 @@ class DependencyManager:
             if not res.data.get("uninstaller"):
                 uninstaller = False
 
-        if dependency[0] not in config.Installed_Dependencies \
-                or reinstall:
+        if dependency[0] not in config.Installed_Dependencies:
             """
             If the dependency is not already listed in the installed
             dependencies list of the bottle, add it.
