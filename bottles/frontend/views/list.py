@@ -86,6 +86,9 @@ class BottleViewEntry(Adw.ActionRow):
         self.label_env_context.add_class(
             "tag-%s" % self.config.Environment.lower())
 
+        # Set tooltip text
+        self.btn_run.set_tooltip_text(_(f"Run executable in \"{self.config.Name}\""))
+
         '''If config is broken'''
         if self.config.get("Broken"):
             for w in [self.btn_repair, self.icon_damaged]:
@@ -110,6 +113,11 @@ class BottleViewEntry(Adw.ActionRow):
         def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 return
+
+            self.window.show_toast(_("Launching \"{0}\" in \"{1}\"…").format(
+                    dialog.get_file().get_basename(),
+                    self.config.Name)
+                )
 
             path = dialog.get_file().get_path()
             _executor = WineExecutor(self.config, exec_path=path)
