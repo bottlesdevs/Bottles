@@ -330,6 +330,6 @@ class ProgramEntry(Adw.ActionRow):
         RunAsync(
             steam_manager.add_shortcut,
             update,
-            self.program["name"],
-            self.program["path"]
+            program_name=self.program["name"],
+            program_path=self.program["path"]
         )
