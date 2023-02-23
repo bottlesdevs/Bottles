@@ -75,5 +75,5 @@ class RunAsync(threading.Thread):
         def inner(*args, **kwargs):
             # Here we add None in the arguments so that callback=None,
             # but we still pass all the required argument to the function called
-            RunAsync(func, *((None, True,)+args), **kwargs)
+            RunAsync(func, *((None, )+args), **kwargs)
         return inner
