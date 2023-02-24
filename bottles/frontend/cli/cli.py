@@ -19,7 +19,6 @@
 
 
 import argparse
-import json
 import os
 import signal
 import sys
@@ -59,6 +58,7 @@ from bottles.backend.wine.winecfg import WineCfg
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.runner import Runner
+from bottles.backend.utils import json
 from bottles.backend.utils.manager import ManagerUtils
 
 

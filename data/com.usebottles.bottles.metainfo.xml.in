@@ -79,6 +79,51 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
+        <release version="51.5" date="2023-02-23">
+          <description>
+            <p>Update metadata information</p>
+          </description>
+        </release>
+        <release version="51.4" date="2023-02-23">
+          <description>
+            <p>Add more update information and correct release notes version</p>
+          </description>
+        </release>
+        <release version="51.3" date="2023-02-23">
+          <description>
+            <p>Fixed "Add to Steam" button</p>
+            <p>Fixed BottleConfig being not serializable</p>
+            <p>Fixed Patool double extraction failing</p>
+          </description>
+        </release>
+        <release version="51.2" date="2023-02-21">
+          <description>
+            <p>Correct version</p>
+          </description>
+        </release>
+        <release version="51.1" date="2023-02-20">
+          <description>
+            <p>Fix crash when creating a bottle</p>
+          </description>
+        </release>
+        <release version="51.0" date="2023-02-20">
+          <description>
+            <p>Major change: Redesign New Bottle interface</p>
+            <p>Quality of life improvements:</p>
+            <ul>
+              <li>Replace emote-love icon with library in library page</li>
+              <li>Add toast for "Run Executable"</li>
+            </ul>
+            <p>Bug fixes:</p>
+            <ul>
+              <li>Adding shortcut to Steam resulted an error</li>
+              <li>Importing backups resulted an error</li>
+              <li>Steam Runtime automatically enabled when using wine-ge-custom</li>
+              <li>Various library related fixes, like empty covers, and crashes related to missing entries</li>
+              <li>Fix various issues related to text encoding</li>
+            </ul>
+          </description>
+        </release>
         <release version="50.2" date="2023-01-18">
           <description>
             <ul>

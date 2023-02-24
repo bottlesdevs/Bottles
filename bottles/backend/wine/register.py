@@ -17,7 +17,8 @@
 
 import os
 import uuid
-import json
+
+from bottles.backend.utils import json
 
 
 class WinRegister:
