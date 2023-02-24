@@ -27,7 +27,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import State, Task
+from bottles.backend.state import TaskManager, Task
 from bottles.backend.utils import yaml
 from bottles.backend.utils.manager import ManagerUtils
 
@@ -53,7 +53,7 @@ class BackupManager:
         if scope == "config":
             backup_created = config.dump(path).status
         else:
-            task_id = State.add_task(Task(title=_("Backup {0}").format(config.Name)))
+            task_id = TaskManager.add(Task(title=_("Backup {0}").format(config.Name)))
             bottle_path = ManagerUtils.get_bottle_path(config)
             try:
                 with tarfile.open(path, "w:gz") as tar:
@@ -66,7 +66,7 @@ class BackupManager:
                 logging.error(f"Error creating backup for [{config.Name}]")
                 backup_created = False
             finally:
-                State.remove_task(task_id)
+                TaskManager.remove(task_id)
 
         if backup_created:
             logging.info(f"New backup saved in path: {path}.", jn=True)
@@ -98,7 +98,7 @@ class BackupManager:
         backup_name = os.path.basename(path)
         import_status = False
 
-        task_id = State.add_task(Task(title=_("Importing backup: {0}").format(backup_name)))
+        task_id = TaskManager.add(Task(title=_("Importing backup: {0}").format(backup_name)))
         logging.info(f"Importing backup: {backup_name}")
 
         if scope == "config":
@@ -148,7 +148,7 @@ class BackupManager:
             except (FileNotFoundError, PermissionError, tarfile.TarError):
                 import_status = False
 
-        State.remove_task(task_id)
+        TaskManager.remove(task_id)
 
         if import_status:
             window.manager.update_bottles()

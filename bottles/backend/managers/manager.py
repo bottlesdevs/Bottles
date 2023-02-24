@@ -52,7 +52,7 @@ from bottles.backend.managers.versioning import VersioningManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.state import State, Signals, Events, EventManager
+from bottles.backend.state import SignalManager, Signals, Events, EventManager
 from bottles.backend.utils import yaml
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
@@ -216,7 +216,7 @@ class Manager:
     def update_bottles(self, silent: bool = False):
         """Checks for new bottles and update the list view."""
         self.check_bottles(silent)
-        State.send_signal(Signals.ManagerLocalBottlesLoaded)
+        SignalManager.send(Signals.ManagerLocalBottlesLoaded)
 
     def check_app_dirs(self):
         """

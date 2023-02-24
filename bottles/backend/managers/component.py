@@ -28,7 +28,7 @@ from bottles.backend.downloader import Downloader
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.models.result import Result
-from bottles.backend.state import State, Locks, Task, TaskStreamUpdateHandler, Status
+from bottles.backend.state import Locks, Task, TaskStreamUpdateHandler, Status, TaskManager, LockManager
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.manager import ManagerUtils
@@ -132,7 +132,7 @@ class ComponentManager:
 
         # Register this file download task to TaskManager
         task = Task(title=file)
-        task_id = State.add_task(task)
+        task_id = TaskManager.add(task)
         update_func = task.stream_update if not func else func
 
         if download_url.startswith("temp/"):
@@ -171,7 +171,7 @@ class ComponentManager:
                 download_url = c.getinfo(c.EFFECTIVE_URL)
             except pycurl.error:
                 logging.exception(f"Failed to download [{download_url}]")
-                State.remove_task(task_id)
+                TaskManager.remove(task_id)
                 return False
             finally:
                 c.close()
@@ -189,18 +189,18 @@ class ComponentManager:
                 ).download()
 
                 if not res.status:
-                    State.remove_task(task_id)
+                    TaskManager.remove(task_id)
                     return False
 
                 if not os.path.isfile(temp_dest):
                     """Fail if the file is not available in the /temp directory."""
-                    State.remove_task(task_id)
+                    TaskManager.remove(task_id)
                     return False
 
                 just_downloaded = True
             else:
                 logging.warning(f"Failed to download [{download_url}] with code: {req_code} != 200")
-                State.remove_task(task_id)
+                TaskManager.remove(task_id)
                 return False
 
         file_path = os.path.join(Paths.temp, existing_file)
@@ -225,10 +225,10 @@ class ComponentManager:
                 logging.error(f"Source cksum: [{checksum}] downloaded: [{local_checksum}]")
                 logging.error(f"Removing corrupted file [{file}].")
                 os.remove(file_path)
-                State.remove_task(task_id)
+                TaskManager.remove(task_id)
                 return False
 
-        State.remove_task(task_id)
+        TaskManager.remove(task_id)
         return True
 
     @staticmethod
@@ -289,7 +289,7 @@ class ComponentManager:
                 return False
         return True
 
-    @State.lock(Locks.ComponentsInstall)  # avoid high resource usage
+    @LockManager.lock(Locks.ComponentsInstall)  # avoid high resource usage
     def install(
             self,
             component_type: str,

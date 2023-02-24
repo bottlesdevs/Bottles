@@ -31,7 +31,7 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
 from bottles.backend.models.vdict import VDFDict
-from bottles.backend.state import Signals, State
+from bottles.backend.state import Signals, SignalManager
 from bottles.backend.utils import vdf
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.steam import SteamUtils
@@ -508,7 +508,7 @@ class SteamManager:
     def launch_app(prefix: str):
         logging.info(f"Launching AppID {prefix} with Steam")
         uri = f"steam://rungameid/{prefix}"
-        State.send_signal(Signals.GShowUri, Result(data=uri))
+        SignalManager.send(Signals.GShowUri, Result(data=uri))
 
     def add_shortcut(self, program_name: str, program_path: str):
         logging.info(f"Adding shortcut for {program_name}")

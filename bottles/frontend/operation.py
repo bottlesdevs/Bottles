@@ -20,7 +20,7 @@ from uuid import UUID
 import gi
 
 from bottles.backend.models.result import Result
-from bottles.backend.state import State
+from bottles.backend.state import TaskManager
 
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Adw
@@ -71,7 +71,7 @@ class TaskSyncer:
     def task_added_handler(self, res: Result):
         """handler for Signals.TaskAdded"""
         task_id: UUID = res.data
-        task = State.get_task(task_id)
+        task = TaskManager.get(task_id)
         self._TASK_WIDGETS[task_id] = self._new_widget(task.title, task.cancellable)
         self._set_task_btn_visible(True)
 
@@ -81,7 +81,7 @@ class TaskSyncer:
         if task_id not in self._TASK_WIDGETS:
             return
 
-        self._TASK_WIDGETS[task_id].update(subtitle=State.get_task(task_id).subtitle)
+        self._TASK_WIDGETS[task_id].update(subtitle=TaskManager.get(task_id).subtitle)
 
     def task_removed_handler(self, res: Result):
         """handler for Signals.TaskRemoved"""
