@@ -270,11 +270,14 @@ class Bottles(Adw.Application):
 
     def __show_about_window(self, *_args):
         release_notes = """
-            <p>Major change: Redesign New Bottle interface</p>
+            <p>Redesign New Bottle interface</p>
             <p>Quality of life improvements:</p>
             <ul>
               <li>Replace emote-love icon with library in library page</li>
-              <li>Add toast for "Run Executable"</li>
+              <li>Display toast for "Run Executable"</li>
+              <li>Runners are sorted according through a priority list; from the highest to the lowest priority: Soda, Caffe, Vaniglia, Lutris, others</li>
+              <li>Bottles can now be named without any character restrictions</li>
+              <li>Notifications will be sent when a bottle has been created (will only happen when unfocused)</li>
             </ul>
             <p>Bug fixes:</p>
             <ul>
@@ -329,6 +332,7 @@ class Bottles(Adw.Application):
             ]
         )
         about_window.set_release_notes(release_notes)
+        about_window.set_release_notes_version("51.0")
         about_window.set_transient_for(self.win)
         about_window.present()
 
