@@ -16,6 +16,10 @@
 #
 
 import re
+from functools import wraps
+from inspect import signature
+
+from gi.repository import GLib
 
 
 class GtkUtils:
@@ -34,3 +38,16 @@ class GtkUtils:
 
         entry.remove_css_class("error")
         return True
+
+    @staticmethod
+    def run_in_main_loop(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            _tmp = []
+            if kwargs:
+                for _, param in list(signature(func).parameters.items())[len(args):]:
+                    _tmp.append(kwargs[param.name] if param.name in kwargs else param.default)
+                args = args + tuple(_tmp)
+            return GLib.idle_add(func, *args)
+
+        return wrapper

@@ -17,12 +17,13 @@
 
 import re
 from gettext import gettext as _
+
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.models.result import Result
-
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
+from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.state import StateEntry
 
 
@@ -67,7 +68,8 @@ class VersioningView(Adw.PreferencesPage):
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, widget=False, config=None, states=None, active=0):
+    @GtkUtils.run_in_main_loop
+    def update(self, widget=None, config=None, states=None, active=0):
         """
         This function update the states list with the
         ones from the bottle configuration.
@@ -140,6 +142,7 @@ class VersioningView(Adw.PreferencesPage):
         if not self.btn_save.get_sensitive():
             return
 
+        @GtkUtils.run_in_main_loop
         def update(result, error):
             self.window.show_toast(result.message)
             if result.status:

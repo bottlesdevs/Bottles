@@ -609,9 +609,7 @@ class WineCommand:
         if None in [self.runner, self.env]:
             return
 
-        if vmtouch_available \
-            and self.config.Parameters.vmtouch \
-            and not self.terminal:
+        if vmtouch_available and self.config.Parameters.vmtouch and not self.terminal:
             self.vmtouch_preload()
 
         if self.config.Parameters.sandbox:
@@ -650,9 +648,7 @@ class WineCommand:
         res = proc.communicate()[0]
         enc = detect_encoding(res)
 
-        if vmtouch_available \
-            and self.config.Parameters.vmtouch \
-            and not self.terminal:
+        if vmtouch_available and self.config.Parameters.vmtouch and not self.terminal:
             self.vmtouch_free()
 
         if enc is not None:

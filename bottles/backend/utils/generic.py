@@ -22,7 +22,7 @@ import string
 import subprocess
 from typing import Optional
 
-import chardet as chardet
+from charset_normalizer import from_bytes
 
 
 def validate_url(url: str):
@@ -45,7 +45,7 @@ def detect_encoding(text: bytes) -> Optional[str]:
     Detect the encoding of a text by its bytes. Return None if it
     can't be detected.
     """
-    return chardet.detect(text).get('encoding')
+    return from_bytes(text).best().encoding
 
 
 def is_glibc_min_available():

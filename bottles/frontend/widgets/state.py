@@ -16,11 +16,11 @@
 #
 
 from datetime import datetime
-from gi.repository import Gtk, GLib, Adw
-from gettext import gettext as _
 
-from bottles.frontend.utils.threading import RunAsync
-from bottles.frontend.windows.generic import SourceDialog
+from gi.repository import Gtk, Adw
+
+from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
@@ -45,7 +45,7 @@ class StateEntry(Adw.ActionRow):
 
         if config.Versioning:
             self.state_name = "#{} - {}".format(
-                state[0], 
+                state[0],
                 datetime.strptime(state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f").strftime("%d %B %Y, %H:%M")
             )
 
@@ -53,11 +53,14 @@ class StateEntry(Adw.ActionRow):
             if state[0] == config.State:
                 self.add_css_class("current-state")
         else:
-            self.state_name = "{} - {}".format(state[0], datetime.fromtimestamp(state[1]["timestamp"]).strftime("%d %B %Y, %H:%M"))
+            self.state_name = "{} - {}".format(
+                state[0],
+                datetime.fromtimestamp(state[1]["timestamp"]).strftime("%d %B %Y, %H:%M")
+            )
             self.set_subtitle(state[1]["message"])
             if active:
                 self.add_css_class("current-state")
-            
+
         self.set_title(self.state_name)
         self.config = config
         self.versioning_manager = self.manager.versioning_manager
@@ -73,13 +76,20 @@ class StateEntry(Adw.ActionRow):
         self.parent.set_sensitive(False)
         self.spinner.show()
         self.spinner.start()
+
+        def _after():
+            self.window.page_details.view_versioning.update(None, self.config)  # update states
+            self.manager.update_bottles()  # update bottles
+
         RunAsync(
             task_func=self.versioning_manager.set_state,
             callback=self.set_completed,
             config=self.config,
             state_id=self.state[0],
+            after=_after
         )
 
+    @GtkUtils.run_in_main_loop
     def set_completed(self, result, error=False):
         """
         Set completed status to the widget.

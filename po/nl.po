@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2022-12-28 22:40+0000\n"
+"PO-Revision-Date: 2023-02-07 21:57+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
@@ -33,12 +33,12 @@ msgstr "Back-up {0}"
 #: bottles/backend/managers/backup.py:124
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr "Importeer vanuit een back-up: {0}"
+msgstr "Back-up importeren: {0}"
 
 #: bottles/backend/managers/manager.py:1001
 #: bottles/backend/managers/manager.py:1079
 msgid "Fail to install components, tried 3 times."
-msgstr "Lukt niet om onderdelen te installeren, 3 keer geprobeerd."
+msgstr "Onderdelen installeren mislukt, 3 keer geprobeerd."
 
 #: bottles/backend/managers/manager.py:1012
 #: bottles/backend/managers/manager.py:1090
@@ -48,12 +48,12 @@ msgstr "Ontbrekende essentiële onderdelen. Installeren…"
 #: bottles/backend/managers/manager.py:1088
 #: bottles/backend/managers/manager.py:1166
 msgid "Failed to create bottle directory."
-msgstr "Kan de bottles map niet maken."
+msgstr "Kon de bottle-map niet aanmaken"
 
 #: bottles/backend/managers/manager.py:1100
 #: bottles/backend/managers/manager.py:1178
 msgid "Failed to create placeholder directory/file."
-msgstr "Kan geen tijdelijke aanduiding voor map/bestand maken."
+msgstr "Placeholder-map/-bestand aanmaken mislukt"
 
 #: bottles/backend/managers/manager.py:1105
 #: bottles/backend/managers/manager.py:1183
@@ -211,7 +211,7 @@ msgstr "lnk-pad"
 #: bottles/frontend/ui/list-entry.blp:5
 #: bottles/frontend/ui/library-entry.blp:99
 msgid "Bottle name"
-msgstr "Naam van de bottle"
+msgstr "Bottle-naam"
 
 #: bottles/frontend/main.py:137
 msgid "Pass arguments"
@@ -223,15 +223,15 @@ msgstr "Ongeldige URI (syntax: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:238
 msgid "[Quit] request received."
-msgstr "[Stoppen] verzoek ontvangen."
+msgstr "[Quit]-verzoek ontvangen"
 
 #: bottles/frontend/main.py:247
 msgid "[Help] request received."
-msgstr "[Hulp] verzoek ontvangen."
+msgstr "[Help]-verzoek ontvangen"
 
 #: bottles/frontend/main.py:255
 msgid "[Refresh] request received."
-msgstr "[Verversen] verzoek ontvangen."
+msgstr "[Refresh]-verzoek ontvangen"
 
 #: bottles/frontend/operation.py:50
 msgid "Calculating…"
@@ -249,7 +249,7 @@ msgstr "Bottles-ontwikkelaars"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr "Component versie"
+msgstr "Onderdeelversie"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29

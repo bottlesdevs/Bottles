@@ -15,65 +15,65 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import contextlib
+import fnmatch
 import os
-import hashlib
-import subprocess
 import random
+import shutil
+import subprocess
 import time
 import uuid
-
-from bottles.backend.models.config import BottleConfig
-from bottles.backend.models.samples import Samples
-from bottles.backend.utils import yaml
-import shutil
-import fnmatch
-import contextlib
-from glob import glob
 from datetime import datetime
+from functools import cache
 from gettext import gettext as _
+from glob import glob
 from typing import Union, Any, Dict, List
-from gi.repository import GLib
+
 import pathvalidate
 
+from bottles.backend.dlls.dxvk import DXVKComponent
+from bottles.backend.dlls.latencyflex import LatencyFleXComponent
+from bottles.backend.dlls.nvapi import NVAPIComponent
+from bottles.backend.dlls.vkd3d import VKD3DComponent
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
-from bottles.backend.runner import Runner
+from bottles.backend.managers.component import ComponentManager
+from bottles.backend.managers.data import DataManager, UserDataKeys
+from bottles.backend.managers.dependency import DependencyManager
+from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
+from bottles.backend.managers.importer import ImportManager
+from bottles.backend.managers.installer import InstallerManager
+from bottles.backend.managers.library import LibraryManager
+from bottles.backend.managers.repository import RepositoryManager
+from bottles.backend.managers.steam import SteamManager
+from bottles.backend.managers.template import TemplateManager
+from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
+from bottles.backend.managers.versioning import VersioningManager
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.globals import Paths
-from bottles.backend.managers.journal import JournalManager, JournalSeverity
-from bottles.backend.managers.template import TemplateManager
-from bottles.backend.managers.versioning import VersioningManager
-from bottles.backend.managers.repository import RepositoryManager
-from bottles.backend.managers.component import ComponentManager
-from bottles.backend.managers.installer import InstallerManager
-from bottles.backend.managers.dependency import DependencyManager
-from bottles.backend.managers.steam import SteamManager
-from bottles.backend.managers.library import LibraryManager
-from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
-from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
-from bottles.backend.repos.repo import RepoStatus
+from bottles.backend.state import SignalManager, Signals, Events, EventManager
+from bottles.backend.utils import yaml
+from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
+from bottles.backend.utils.generic import sort_by_version
+from bottles.backend.utils.gsettings_stub import GSettingsStub
+from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.gpu import GPUVendors
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils.generic import sort_by_version
-from bottles.backend.utils.decorators import cache
-from bottles.backend.managers.importer import ImportManager
-from bottles.backend.dlls.dxvk import DXVKComponent
-from bottles.backend.dlls.vkd3d import VKD3DComponent
-from bottles.backend.dlls.nvapi import NVAPIComponent
-from bottles.backend.dlls.latencyflex import LatencyFleXComponent
-from bottles.backend.wine.uninstaller import Uninstaller
-from bottles.backend.wine.wineboot import WineBoot
-from bottles.backend.wine.wineserver import WineServer
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
+from bottles.backend.wine.uninstaller import Uninstaller
+from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.winepath import WinePath
-
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.wine.wineserver import WineServer
 
 logging = Logger()
 
 
+@cache  # singleton
 class Manager:
     """
     This is the core of Bottles, everything starts from here. There should
@@ -106,37 +106,42 @@ class Manager:
     supported_dependencies = {}
     supported_installers = {}
 
-    def __init__(self, window, is_cli=False, repo_fn_update=None, **kwargs):
+    def __init__(self, g_settings: Any = None, is_cli: bool = False, **kwargs):
         super().__init__(**kwargs)
 
         times = {"start": time.time()}
 
         # common variables
-        self.window = window
-        self.settings = window.settings
-        self.utils_conn = window.utils_conn
         self.is_cli = is_cli
-        _offline = not window.utils_conn.check_connection()
+        self.settings = g_settings or GSettingsStub
+        self.utils_conn = ConnectionUtils(force_offline=self.is_cli)
+        self.data_mgr = DataManager()
+        _offline = not self.utils_conn.check_connection()
 
-        self.repository_manager = RepositoryManager(repo_fn_update)
+        # validating user-defined Paths.bottles
+        if user_bottles_path := self.data_mgr.get(UserDataKeys.CustomBottlesPath):
+            if os.path.exists(user_bottles_path):
+                Paths.bottles = user_bottles_path
+            else:
+                logging.error(
+                    f"Custom bottles path {user_bottles_path} does not exist! "
+                    f"Falling back to default path."
+                )
+
+        # sub-managers
+        self.repository_manager = RepositoryManager()
         times["RepositoryManager"] = time.time()
-
-        self.versioning_manager = VersioningManager(window, self)
+        self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
-            
         self.component_manager = ComponentManager(self, _offline)
-
         self.installer_manager = InstallerManager(self, _offline)
-
         self.dependency_manager = DependencyManager(self, _offline)
-
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
-
         self.steam_manager = SteamManager()
         times["SteamManager"] = time.time()
 
-        if not is_cli:
+        if not self.is_cli:
             times.update(self.checks(install_latest=False, first_run=True).data)
         else:
             logging.set_silent()
@@ -209,11 +214,9 @@ class Manager:
                 self.check_app_dirs()
 
     def update_bottles(self, silent: bool = False):
-        """Checks for new bottles and update the list view.
-        TODO: list view should not be updated by the backend"""
+        """Checks for new bottles and update the list view."""
         self.check_bottles(silent)
-        with contextlib.suppress(AttributeError):
-            self.window.page_list.update_bottles()
+        SignalManager.send(Signals.ManagerLocalBottlesLoaded)
 
     def check_app_dirs(self):
         """
@@ -268,11 +271,10 @@ class Manager:
     @RunAsync.run_async
     def organize_components(self):
         """Get components catalog and organizes into supported_ lists."""
-        RepoStatus.repo_start_operation("components.organizing")
-        RepoStatus.repo_wait_operation("components.fetching")
+        EventManager.wait(Events.ComponentsFetching)
         catalog = self.component_manager.fetch_catalog()
         if len(catalog) == 0:
-            RepoStatus.repo_done_operation("components.organizing")
+            EventManager.done(Events.ComponentsOrganizing)
             logging.info("No components found.")
             return
 
@@ -284,35 +286,33 @@ class Manager:
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
         self.supported_latencyflex = catalog["latencyflex"]
-        RepoStatus.repo_done_operation("components.organizing")
+        EventManager.done(Events.ComponentsOrganizing)
 
     @RunAsync.run_async
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
-        RepoStatus.repo_start_operation("dependencies.organizing")
-        RepoStatus.repo_wait_operation("dependencies.fetching")
+        EventManager.wait(Events.DependenciesFetching)
         catalog = self.dependency_manager.fetch_catalog()
         if len(catalog) == 0:
-            RepoStatus.repo_done_operation("dependencies.organizing")
+            EventManager.done(Events.DependenciesOrganizing)
             logging.info("No dependencies found!")
             return
 
         self.supported_dependencies = catalog
-        RepoStatus.repo_done_operation("dependencies.organizing")
+        EventManager.done(Events.DependenciesOrganizing)
 
     @RunAsync.run_async
     def organize_installers(self):
         """Organizes installers into supported_installers."""
-        RepoStatus.repo_start_operation("installers.organizing")
-        RepoStatus.repo_wait_operation("installers.fetching")
+        EventManager.wait(Events.InstallersFetching)
         catalog = self.installer_manager.fetch_catalog()
         if len(catalog) == 0:
-            RepoStatus.repo_done_operation("installers.organizing")
+            EventManager.done(Events.InstallersOrganizing)
             logging.info("No installers found!")
             return
 
         self.supported_installers = catalog
-        RepoStatus.repo_done_operation("installers.organizing")
+        EventManager.done(Events.InstallersOrganizing)
 
     def remove_dependency(self, config: BottleConfig, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""
@@ -350,17 +350,16 @@ class Manager:
 
         # lock winemenubuilder.exe
         for runner in runners:
-            winemenubuilder_paths = [
-                f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
-                f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
-                f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
-                f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
-            ]
-            for winemenubuilder in winemenubuilder_paths:
-                if winemenubuilder.startswith("Proton"):
-                    continue
-                if os.path.isfile(winemenubuilder):
-                    os.rename(winemenubuilder, f"{winemenubuilder}.lock")
+            if runner not in self.supported_proton_runners:
+                winemenubuilder_paths = [
+                    f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
+                    f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
+                    f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
+                    f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
+                ]
+                for winemenubuilder in winemenubuilder_paths:
+                    if os.path.isfile(winemenubuilder):
+                        os.rename(winemenubuilder, f"{winemenubuilder}.lock")
 
         # check system wine
         if shutil.which("wine") is not None:
@@ -413,7 +412,7 @@ class Manager:
             if self.utils_conn.check_connection():
                 # if connected, install the latest runner from repository
                 try:
-                    if not self.window.settings.get_boolean("release-candidate"):
+                    if not self.settings.get_boolean("release-candidate"):
                         tmp_runners = []
                         for runner in self.supported_wine_runners.items():
                             if runner[1]["Channel"] not in ["rc", "unstable"]:
@@ -691,24 +690,24 @@ class Manager:
                         "auto_discovered": True
                     })
                     found.append(executable_name)
-                    
+
             win_steam_manager = SteamManager(config, is_windows=True)
 
-            if self.window.settings.get_boolean("steam-programs") \
+            if self.settings.get_boolean("steam-programs") \
                     and win_steam_manager.is_steam_supported:
                 programs_names = [p.get("name", "") for p in installed_programs]
                 for app in win_steam_manager.get_installed_apps_as_programs():
                     if app["name"] not in programs_names:
                         installed_programs.append(app)
 
-            if self.window.settings.get_boolean("epic-games") \
+            if self.settings.get_boolean("epic-games") \
                     and EpicGamesStoreManager.is_epic_supported(config):
                 programs_names = [p.get("name", "") for p in installed_programs]
                 for app in EpicGamesStoreManager.get_installed_games(config):
                     if app["name"] not in programs_names:
                         installed_programs.append(app)
 
-            if self.window.settings.get_boolean("ubisoft-connect") \
+            if self.settings.get_boolean("ubisoft-connect") \
                     and UbisoftConnectManager.is_uconnect_supported(config):
                 programs_names = [p.get("name", "") for p in installed_programs]
                 for app in UbisoftConnectManager.get_installed_games(config):
@@ -761,7 +760,9 @@ class Manager:
             # Check if the path in the bottle config corresponds to the folder name
             # if not, change the config to reflect the folder name
             # if the folder name is "illegal" accross all platforms, rename the folder
-            sane_name = pathvalidate.sanitize_filepath(_name, platform='universal')  # "universal" platform works for all filesystem/OSes
+
+            # "universal" platform works for all filesystem/OSes
+            sane_name = pathvalidate.sanitize_filepath(_name, platform='universal')
             if config.Custom_Path is False:  # There shouldn't be problems with this
                 if config.Path != _name or sane_name != _name:
                     logging.warning("Illegal bottle folder or mismatch between config \"Path\" and folder name")
@@ -909,7 +910,7 @@ class Manager:
         config.Update_Date = str(datetime.now())
 
         if config.Environment == "Steam":
-            config = self.steam_manager.update_bottle(config)
+            self.steam_manager.update_bottle(config)
 
         return Result(status=True, data={"config": config})
 
@@ -1040,9 +1041,10 @@ class Manager:
         Create a new bottle from the given arguments.
         TODO: will be replaced by the BottleBuilder class.
         """
+
         def log_update(message):
             if fn_logger:
-                GLib.idle_add(fn_logger, message)
+                fn_logger(message)
 
         # check for essential components
         check_attempts = 0
@@ -1205,7 +1207,7 @@ class Manager:
                 log_update(_("Running as Flatpak, sandboxing userdir…"))
             if sandbox:
                 log_update(_("Sandboxing userdir…"))
-                
+
             userdir = f"{bottle_complete_path}/drive_c/users"
             if os.path.exists(userdir):
                 # userdir may not exists when unpacking a template, safely
@@ -1219,7 +1221,7 @@ class Manager:
                             _dir_path = os.path.join(_user_dir, _dir)
                             if os.path.islink(_dir_path):
                                 links.append(_dir_path)
-                        
+
                         _documents_dir = os.path.join(_user_dir, "Documents")
                         if os.path.isdir(_documents_dir):
                             for _dir in os.listdir(_documents_dir):
@@ -1233,7 +1235,7 @@ class Manager:
                                 _dir_path = os.path.join(_win_dir, _dir)
                                 if os.path.islink(_dir_path):
                                     links.append(_dir_path)
-                
+
                 for link in links:
                     with contextlib.suppress(IOError, OSError):
                         os.unlink(link)
@@ -1318,11 +1320,12 @@ class Manager:
 
             if not template and config.Parameters.dxvk_nvapi \
                     or (template and template["config"]["NVAPI"] != nvapi):
-                # perform nvapi installation if configured
-                logging.info("Installing DXVK-NVAPI…")
-                log_update(_("Installing DXVK-NVAPI…"))
-                self.install_dll_component(config, "nvapi", version=nvapi_name)
-                template_updated = True
+                if GPUUtils.is_gpu(GPUVendors.NVIDIA):
+                    # perform nvapi installation if configured
+                    logging.info("Installing DXVK-NVAPI…")
+                    log_update(_("Installing DXVK-NVAPI…"))
+                    self.install_dll_component(config, "nvapi", version=nvapi_name)
+                    template_updated = True
 
             for dep in env.get("Installed_Dependencies", []):
                 if template and dep in template["config"]["Installed_Dependencies"]:
@@ -1418,9 +1421,9 @@ class Manager:
         logging.info(f"Removing library entries associated with this bottle…")
         library_manager = LibraryManager()
         entries = library_manager.get_library().copy()
-        for uuid, entry in entries.items():
+        for _uuid, entry in entries.items():
             if entry.get('bottle').get('name') == config.Name:
-                library_manager.remove_from_library(uuid)
+                library_manager.remove_from_library(_uuid)
 
         if config.Custom_Path:
             logging.info(f"Removing placeholder…")
@@ -1435,11 +1438,7 @@ class Manager:
         path = ManagerUtils.get_bottle_path(config)
         subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
 
-        local_bottles_tmp = self.local_bottles.copy()
-        for b in local_bottles_tmp.values():
-            if b.Path == config.Path:
-                del self.local_bottles[b.Name]
-                break
+        self.update_bottles(silent=True)
 
         logging.info(f"Deleted the bottle in: {path}")
         return True

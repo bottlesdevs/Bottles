@@ -15,42 +15,38 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import contextlib
 import os
 import re
-import contextlib
 from gettext import gettext as _
+
 from gi.repository import Gtk, Adw
 
 from bottles.backend.globals import gamemode_available, vkbasalt_available, mangohud_available, obs_vkc_available, \
     vmtouch_available, gamescope_available
+from bottles.backend.logger import Logger
+from bottles.backend.managers.library import LibraryManager
+from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
-from bottles.frontend.utils.threading import RunAsync
-from bottles.frontend.utils.gtk import GtkUtils
-
-from bottles.backend.runner import Runner
-from bottles.backend.managers.runtime import RuntimeManager
-from bottles.backend.managers.library import LibraryManager
-from bottles.backend.utils.manager import ManagerUtils
-
 from bottles.backend.models.result import Result
-
-from bottles.frontend.windows.envvars import EnvVarsDialog
-from bottles.frontend.windows.drives import DrivesDialog
-from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
-from bottles.frontend.windows.gamescope import GamescopeDialog
-from bottles.frontend.windows.vkbasalt import VkBasaltDialog
-from bottles.frontend.windows.fsr import FsrDialog
-from bottles.frontend.windows.display import DisplayDialog
-from bottles.frontend.windows.sandbox import SandboxDialog
-from bottles.frontend.windows.protonalert import ProtonAlertDialog
-from bottles.frontend.windows.exclusionpatterns import ExclusionPatternsDialog
-from bottles.frontend.windows.vmtouch import VmtouchDialog
-
-from bottles.backend.wine.regkeys import RegKeys
+from bottles.backend.runner import Runner
 from bottles.backend.utils.gpu import GPUUtils, GPUVendors
-
-from bottles.backend.logger import Logger
+from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.threading import RunAsync
+from bottles.backend.wine.regkeys import RegKeys
+from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.windows.display import DisplayDialog
+from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
+from bottles.frontend.windows.drives import DrivesDialog
+from bottles.frontend.windows.envvars import EnvVarsDialog
+from bottles.frontend.windows.exclusionpatterns import ExclusionPatternsDialog
+from bottles.frontend.windows.fsr import FsrDialog
+from bottles.frontend.windows.gamescope import GamescopeDialog
+from bottles.frontend.windows.protonalert import ProtonAlertDialog
+from bottles.frontend.windows.sandbox import SandboxDialog
+from bottles.frontend.windows.vkbasalt import VkBasaltDialog
+from bottles.frontend.windows.vmtouch import VmtouchDialog
 
 logging = Logger()
 
@@ -152,7 +148,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkbasalt.connect("state-set", self.__toggle_vkbasalt)
         self.switch_fsr.connect("state-set", self.__toggle_fsr)
         self.switch_nvapi.connect("state-set", self.__toggle_nvapi)
-        #self.switch_latencyflex.connect("state-set", self.__toggle_latencyflex)
+        # self.switch_latencyflex.connect("state-set", self.__toggle_latencyflex)
         self.switch_gamemode.connect("state-set", self.__toggle_gamemode)
         self.switch_gamescope.connect("state-set", self.__toggle_gamescope)
         self.switch_sandbox.connect("state-set", self.__toggle_sandbox)
@@ -282,7 +278,7 @@ class PreferencesView(Adw.PreferencesPage):
             value=new_name
         )
 
-        self.manager.update_bottles(silent=True) # Updates backend bottles list and UI
+        self.manager.update_bottles(silent=True)  # Updates backend bottles list and UI
         self.window.page_library.update()
         self.details.view_bottle.label_name.set_text(self.config.Name)
 
@@ -443,9 +439,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.str_list_windows.splice(self.str_list_windows.get_n_items(), 0, list(self.windows_versions.values()))
         self.combo_windows.set_selected(list(self.windows_versions).index(self.config.get("Windows")))
         # endregion
-        
+
         parameters = self.config.Parameters
-        
+
         _dxvk = self.config.DXVK
         if parameters.dxvk:
             if _dxvk in self.manager.dxvk_available:
@@ -470,7 +466,7 @@ class PreferencesView(Adw.PreferencesPage):
         _latencyflex = self.config.LatencyFleX
         if parameters.latencyflex:
             if _latencyflex in self.manager.latencyflex_available:
-                if _i_latencyflex := self.manager.latencyflex_available.index(_latencyflex)  + 1:
+                if _i_latencyflex := self.manager.latencyflex_available.index(_latencyflex) + 1:
                     self.combo_latencyflex.set_selected(_i_latencyflex)
         else:
             self.combo_latencyflex.set_selected(0)
@@ -490,7 +486,6 @@ class PreferencesView(Adw.PreferencesPage):
             if sync == parameters.sync:
                 self.combo_sync.set_selected(sync_types.index(sync))
 
-        
         # unlock functions connected to the widgets
         self.switch_mangohud.handler_unblock_by_func(self.__toggle_mangohud)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
@@ -719,6 +714,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_versioning_compression(self, widget, state):
         """Toggle the versioning compression for current bottle"""
+
         def update():
             self.config = self.manager.update_config(
                 config=self.config,
@@ -745,7 +741,7 @@ class PreferencesView(Adw.PreferencesPage):
             dialog.present()
         else:
             update()
-    
+
     def __toggle_auto_versioning(self, widget, state):
         """Toggle the auto versioning for current bottle"""
         self.config = self.manager.update_config(
@@ -754,7 +750,7 @@ class PreferencesView(Adw.PreferencesPage):
             value=state,
             scope="Parameters"
         ).data["config"]
-    
+
     def __toggle_versioning_patterns(self, widget, state):
         """Toggle the versioning patterns for current bottle"""
         self.config = self.manager.update_config(
@@ -792,6 +788,7 @@ class PreferencesView(Adw.PreferencesPage):
                 self.spinner_runner.start()
                 self.spinner_runner.set_visible(True)
 
+        @GtkUtils.run_in_main_loop
         def update(result: Result[dict], error=False):
             if isinstance(result, Result) and isinstance(result.data, dict):  # expecting Result[dict].data["config"]
                 self.details.update_runner_label(runner)
@@ -863,7 +860,7 @@ class PreferencesView(Adw.PreferencesPage):
                 value=False,
                 scope="Parameters"
             ).data["config"]
-        else: 
+        else:
             dxvk = self.manager.dxvk_available[self.combo_dxvk.get_selected() - 1]
             self.config = self.manager.update_config(
                 config=self.config,
@@ -966,11 +963,11 @@ class PreferencesView(Adw.PreferencesPage):
         self.queue.add_task()
         if self.combo_latencyflex.get_selected() == 0:
             RunAsync(
-            task_func=self.manager.install_dll_component,
-            callback=self.set_latencyflex_status,
-            config=self.config,
-            component="latencyflex",
-            remove=True
+                task_func=self.manager.install_dll_component,
+                callback=self.set_latencyflex_status,
+                config=self.config,
+                component="latencyflex",
+                remove=True
             )
 
             self.config = self.manager.update_config(
@@ -1002,7 +999,9 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_windows(self, *_args):
         """Set the Windows version to use for the bottle"""
+
         # self.manager.dxvk_available[self.combo_dxvk.get_selected()]
+        @GtkUtils.run_in_main_loop
         def update(result, error=False):
             self.spinner_windows.stop()
             self.spinner_windows.set_visible(False)
@@ -1048,6 +1047,7 @@ class PreferencesView(Adw.PreferencesPage):
         )
         new_window.present()
 
+    @GtkUtils.run_in_main_loop
     def set_dxvk_status(self, status=None, error=None, pending=False):
         """Set the dxvk status"""
         self.combo_dxvk.set_sensitive(not pending)
@@ -1059,6 +1059,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.spinner_dxvk.set_visible(False)
             self.queue.end_task()
 
+    @GtkUtils.run_in_main_loop
     def set_vkd3d_status(self, status=None, error=None, pending=False):
         """Set the vkd3d status"""
         self.combo_vkd3d.set_sensitive(not pending)
@@ -1070,6 +1071,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.spinner_vkd3d.set_visible(False)
             self.queue.end_task()
 
+    @GtkUtils.run_in_main_loop
     def set_nvapi_status(self, status=None, error=None, pending=False):
         """Set the nvapi status"""
         self.switch_nvapi.set_sensitive(not pending)
@@ -1086,6 +1088,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.spinner_nvapibool.set_visible(False)
             self.queue.end_task()
 
+    @GtkUtils.run_in_main_loop
     def set_latencyflex_status(self, status=None, error=None, pending=False):
         """Set the latencyflex status"""
         self.combo_latencyflex.set_sensitive(not pending)

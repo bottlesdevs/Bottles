@@ -15,15 +15,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
-from bottles.backend.utils import yaml
 import contextlib
-from gi.repository import GLib
+import os
 
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.models.samples import Samples
+from bottles.backend.utils import yaml
 
 logging = Logger()
+
+
+class UserDataKeys:
+    CustomBottlesPath = "custom_bottles_path"
 
 
 class DataManager:
@@ -34,9 +38,7 @@ class DataManager:
     """
 
     __data: dict = {}
-    __p_xdg_data_home = GLib.get_user_data_dir()
-    __p_base = f"{__p_xdg_data_home}/bottles"
-    __p_data = f"{__p_base}/data.yml"
+    __p_data = f"{Paths.base}/data.yml"
 
     def __init__(self):
         self.__get_data()
@@ -55,8 +57,8 @@ class DataManager:
             self.__create_data_file()
 
     def __create_data_file(self):
-        if not os.path.exists(self.__p_base):
-            os.makedirs(self.__p_base)
+        if not os.path.exists(Paths.base):
+            os.makedirs(Paths.base)
         with open(self.__p_data, 'w') as s:
             yaml.dump(Samples.data, s)
         self.__get_data()
