@@ -17,10 +17,8 @@
 
 import os
 import uuid
-import json
-from typing import Union, NewType
+from typing import Union
 
-from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 
@@ -64,8 +62,8 @@ class UbisoftConnectManager:
         reg_key = "register: HKEY_LOCAL_MACHINE\\SOFTWARE\\Ubisoft\\Launcher\\Installs\\"
         conf_path = UbisoftConnectManager.find_conf_path(config)
         games_path = os.path.join(
-                ManagerUtils.get_bottle_path(config),
-                "drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/games")
+            ManagerUtils.get_bottle_path(config),
+            "drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/games")
 
         if conf_path is None:
             return []

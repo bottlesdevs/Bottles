@@ -3,9 +3,7 @@ utilsdir = join_paths(pkgdatadir, 'bottles/frontend/utils')
 
 bottles_sources = [
   '__init__.py',
-  'connection.py',
   'gtk.py',
-  'threading.py',
   'common.py',
   'filters.py',
 ]

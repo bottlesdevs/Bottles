@@ -20,10 +20,10 @@ import sys
 import time
 
 import requests
-from gi.repository import GLib
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.result import Result
+from bottles.backend.state import TaskStreamUpdateHandler
 from bottles.backend.utils.file import FileUtils
 
 logging = Logger()
@@ -36,12 +36,11 @@ class Downloader:
     bars using the func parameter.
     """
 
-    def __init__(self, url: str, file: str, func: callable = None, task_id: int = None):
+    def __init__(self, url: str, file: str, update_func: TaskStreamUpdateHandler = None):
         self.start_time = None
         self.url = url
         self.file = file
-        self.func = func
-        self.task_id = task_id
+        self.update_func = update_func
 
     def download(self) -> Result:
         """Start the download."""
@@ -51,35 +50,21 @@ class Downloader:
                 headers = {"User-Agent": "curl/7.79.1"}  # we fake the user-agent to avoid 403 errors on some servers
                 response = requests.get(self.url, stream=True, headers=headers)
                 total_size = int(response.headers.get("content-length", 0))
-                block_size = 1024
-                count = 0
+                received_size = 0
 
                 if total_size != 0:
-                    for data in response.iter_content(block_size):
+                    for data in response.iter_content(1024 * 1024):  # 1MB buffer
+                        received_size += len(data)
                         file.write(data)
-                        count += 1
-                        if self.func is not None:
-                            if self.task_id:
-                                GLib.idle_add(
-                                    self.func,
-                                    self.task_id,
-                                    count,
-                                    block_size,
-                                    total_size
-                                )
-                            else:
-                                GLib.idle_add(
-                                    self.func,
-                                    count,
-                                    block_size,
-                                    total_size
-                                )
-                            self.__progress(count, block_size, total_size)
+                        if not self.update_func:
+                            continue
+                        self.update_func(received_size, total_size)
+                        self.__progress(received_size, total_size)
                 else:
                     file.write(response.content)
-                    if self.func is not None:
-                        GLib.idle_add(self.func, 1, 1, 1)
-                        self.__progress(1, 1, 1)
+                    if self.update_func:
+                        self.update_func(1, 1)
+                        self.__progress(1, 1)
         except requests.exceptions.SSLError:
             logging.error("Download failed due to a SSL error. "
                           "Your system may have a wrong date/time or wrong certificates.")
@@ -90,12 +75,12 @@ class Downloader:
 
         return Result(True)
 
-    def __progress(self, count, block_size, total_size):
+    def __progress(self, received_size, total_size):
         """Update the progress bar."""
-        percent = int(count * block_size * 100 / total_size)
-        done_str = FileUtils.get_human_size(count * block_size)
+        percent = int(received_size * 100 / total_size)
+        done_str = FileUtils.get_human_size(received_size)
         total_str = FileUtils.get_human_size(total_size)
-        speed_str = FileUtils.get_human_size(count * block_size / (time.time() - self.start_time))
+        speed_str = FileUtils.get_human_size(received_size / (time.time() - self.start_time))
         name = self.file.split("/")[-1]
         c_close, c_complete, c_incomplete = "\033[0m", "\033[92m", "\033[90m"
         divider = 2

@@ -14,37 +14,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-import dataclasses
 import os
 import subprocess
 import uuid
+from functools import lru_cache
+from typing import Union
 
 import markdown
 import pycurl
-from typing import Union
-from functools import lru_cache
-from gi.repository import GLib
 
-from bottles.backend.models.config import BottleConfig, BottleParams
-
-try:
-    from bottles.frontend.operation import OperationManager
-    from bottles.frontend.windows.generic import MessageDialog
-except (RuntimeError, GLib.GError):
-    from bottles.frontend.cli.operation_cli import OperationManager
-    from bottles.frontend.windows.generic_cli import MessageDialog
-
-from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
-
+from bottles.backend.managers.conf import ConfigManager
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.wine import WineUtils
-
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winecommand import WineCommand
-
-from bottles.backend.models.result import Result
 
 logging = Logger()
 

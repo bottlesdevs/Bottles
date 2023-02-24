@@ -1,7 +1,7 @@
 import os
-import json
-from bottles.backend.utils import yaml
 from configparser import ConfigParser
+
+from bottles.backend.utils import yaml, json
 
 
 class ConfigManager(object):
@@ -39,7 +39,7 @@ class ConfigManager(object):
             elif self.config_type == 'json':
                 with open(self.config_file, 'r') as f:
                     res = json.load(f)
-            elif self.config_type == 'yaml' or self.config_type == 'yml' :
+            elif self.config_type == 'yaml' or self.config_type == 'yml':
                 with open(self.config_file, 'r') as f:
                     res = yaml.load(f)
             else:
@@ -80,14 +80,14 @@ class ConfigManager(object):
 
         for section in self.config_dict:
             config.add_section(section)
-            
+
             for key, value in self.config_dict[section].items():
                 config.set(section, key, value)
 
         with open(self.config_file, 'w') as f:
             config.write(f)
 
-    def write_dict(self, config_file: str=None):
+    def write_dict(self, config_file: str = None):
         if self.config_file is None and config_file is None:
             raise ValueError('No config path specified')
         elif self.config_file is None and config_file is not None:

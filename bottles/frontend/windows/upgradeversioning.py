@@ -15,13 +15,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import re
 import time
 from gi.repository import Gtk, Adw
 
-from bottles.frontend.utils.threading import RunAsync
-from bottles.frontend.utils.gtk import GtkUtils
-from bottles.backend.managers.backup import BackupManager
+from bottles.backend.utils.threading import RunAsync
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-upgrade-versioning.ui')

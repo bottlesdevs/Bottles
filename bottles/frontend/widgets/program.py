@@ -16,23 +16,22 @@
 #
 
 import webbrowser
+from gettext import gettext as _
 from typing import Union
 
-from gi.repository import Gtk, GLib, Adw
-
-from bottles.backend.models.result import Result
-from bottles.frontend.utils.threading import RunAsync
-
-from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
-from bottles.frontend.windows.rename import RenameDialog
+from gi.repository import Gtk, Adw
 
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.steam import SteamManager
-
+from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.uninstaller import Uninstaller
+from bottles.backend.wine.winedbg import WineDbg
+from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
+from bottles.frontend.windows.rename import RenameDialog
 
 
 # noinspection PyUnusedLocal
@@ -136,6 +135,7 @@ class ProgramEntry(Adw.ActionRow):
         dialog.present()
         dialog.connect("options-saved", update)
 
+    @GtkUtils.run_in_main_loop
     def __reset_buttons(self, result: Union[bool, Result] = False, _error=False):
         status = False
         if isinstance(result, Result):
@@ -155,6 +155,7 @@ class ProgramEntry(Adw.ActionRow):
     def __is_alive(self):
         winedbg = WineDbg(self.config)
 
+        @GtkUtils.run_in_main_loop
         def set_watcher(_result=False, _error=False):
             nonlocal winedbg
             self.__reset_buttons()
@@ -185,7 +186,7 @@ class ProgramEntry(Adw.ActionRow):
         self.__reset_buttons()
 
     def run_steam(self, _widget):
-        self.manager.steam_manager.launch_app(self.config.CompatData, self.window)
+        self.manager.steam_manager.launch_app(self.config.CompatData)
         self.window.show_toast(_("Launching \"{0}\" with Steam…").format(self.program["name"]))
         self.pop_actions.popdown()  # workaround #1640
 
@@ -196,8 +197,9 @@ class ProgramEntry(Adw.ActionRow):
         winedbg.kill_process(self.executable)
         self.__reset_buttons(True)
 
+    @GtkUtils.run_in_main_loop
     def update_programs(self, _result=False, _error=False):
-        GLib.idle_add(self.view_bottle.update_programs, config=self.config)
+        self.view_bottle.update_programs(config=self.config)
 
     def uninstall_program(self, _widget):
         uninstaller = Uninstaller(self.config)
@@ -266,6 +268,7 @@ class ProgramEntry(Adw.ActionRow):
                 library_manager.__library = entries
                 library_manager.save_library()
 
+            @GtkUtils.run_in_main_loop
             def ui_update(_result, _error):
                 self.window.page_library.update()
                 self.window.show_toast(_("\"{0}\" renamed to \"{1}\"").format(old_name, new_name))
@@ -285,6 +288,7 @@ class ProgramEntry(Adw.ActionRow):
         self.pop_actions.popdown()  # workaround #1640
 
     def add_entry(self, _widget):
+        @GtkUtils.run_in_main_loop
         def update(result, _error=False):
             if not result:
                 webbrowser.open("https://docs.usebottles.com/bottles/programs#flatpak")
@@ -309,7 +313,7 @@ class ProgramEntry(Adw.ActionRow):
             self.window.show_toast(_("\"{0}\" added to your library").format(self.program["name"]))
 
         def add_to_library():
-            self.save_program() # we need to store it in the bottle configuration to keep the reference
+            self.save_program()  # we need to store it in the bottle configuration to keep the reference
             library_manager = LibraryManager()
             library_manager.add_to_library({
                 "bottle": {"name": self.config.Name, "path": self.config.Path},
@@ -330,6 +334,6 @@ class ProgramEntry(Adw.ActionRow):
         RunAsync(
             steam_manager.add_shortcut,
             update,
-            self.program["name"],
-            self.program["path"]
+            program_name=self.program["name"],
+            program_path=self.program["path"]
         )

@@ -15,29 +15,28 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import contextlib
 import os
-import uuid
 import shlex
 import shutil
-import contextlib
+import uuid
+from datetime import datetime
+from functools import lru_cache
 from glob import glob
 from pathlib import Path
-from functools import lru_cache
 from typing import Union, Dict
-from datetime import datetime
-
-from gi.repository import Gtk, Gdk
 
 from bottles.backend.globals import Paths
 from bottles.backend.models.config import BottleConfig
-from bottles.backend.models.samples import Samples
 from bottles.backend.models.result import Result
+from bottles.backend.models.samples import Samples
 from bottles.backend.models.vdict import VDFDict
-from bottles.backend.utils import yaml
-from bottles.backend.utils.steam import SteamUtils
-from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.state import Signals, SignalManager
 from bottles.backend.utils import vdf
+from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.wine.winecommand import WineCommand
+
 from bottles.backend.logger import Logger
 
 logging = Logger()
@@ -506,10 +505,10 @@ class SteamManager:
         return config
 
     @staticmethod
-    def launch_app(prefix: str, window: Gtk.Window):
+    def launch_app(prefix: str):
         logging.info(f"Launching AppID {prefix} with Steam")
         uri = f"steam://rungameid/{prefix}"
-        Gtk.show_uri(window, uri, Gdk.CURRENT_TIME)
+        SignalManager.send(Signals.GShowUri, Result(data=uri))
 
     def add_shortcut(self, program_name: str, program_path: str):
         logging.info(f"Adding shortcut for {program_name}")
