@@ -24,7 +24,7 @@ import pycurl
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.result import Result
-from bottles.backend.state import State, Signals, Notification
+from bottles.backend.state import SignalManager, Signals, Notification
 
 logging = Logger()
 
@@ -52,7 +52,7 @@ class ConnectionUtils:
             logging.error("Cannot set network status to None")
             return
         self._status = value
-        State.send_signal(Signals.NetworkStatusChanged, Result(status=self.status))
+        SignalManager.send(Signals.NetworkStatusChanged, Result(status=self.status))
 
     def check_connection(self, show_notification=False) -> bool:
         """check network status, send result through signal NetworkReady and return"""
@@ -76,7 +76,7 @@ class ConnectionUtils:
         except Exception:
             logging.warning("Connection status: offline …")
             if show_notification:
-                State.send_signal(Signals.GNotification, Result(True, Notification(
+                SignalManager.send(Signals.GNotification, Result(True, Notification(
                     title="Bottles",
                     text=_("You are offline, unable to download."),
                     image="network-wireless-disabled-symbolic"

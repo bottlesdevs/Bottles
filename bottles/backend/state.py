@@ -92,13 +92,13 @@ class Task:
     @subtitle.setter
     def subtitle(self, value: str):
         self._subtitle = value
-        State.send_signal(Signals.TaskUpdated, Result(True, self.task_id))
+        SignalManager.send(Signals.TaskUpdated, Result(True, self.task_id))
 
     def stream_update(self, received_size: int = 0, total_size: int = 0, status: Status = None):
         """This is a default subtitle updating handler for streaming downloading progress"""
         match status:
             case Status.DONE, Status.FAILED:
-                TaskManager.remove_task(self)
+                TaskManager.remove(self)
                 return
             case _:
                 pass
@@ -117,7 +117,7 @@ class LockManager:
     @classmethod
     def lock(cls, name: Locks):
         """decorator, used for mutex locking the decorated function"""
-        lock = cls.get_lock(name)
+        lock = cls.get(name)
 
         def func_wrapper(func: Callable):
             def wrapper(*args, **kwargs):
@@ -131,7 +131,7 @@ class LockManager:
         return func_wrapper
 
     @classmethod
-    def get_lock(cls, name: Locks) -> PyLock:
+    def get(cls, name: Locks) -> PyLock:
         return cls._LOCKS.setdefault(name, PyLock())
 
 
@@ -146,7 +146,7 @@ class EventManager:
     @classmethod
     def wait(cls, event: Events):
         _event = cls._EVENTS.setdefault(event, PyEvent())
-        # By default when an Event is created, it will be unset, so it will block
+        # By default, when an Event is created, it will be unset, so it will block
         logging.debug(f"Waiting on operation {event}")
         _event.wait()
         logging.debug(f"Done wait operation {event}")
@@ -163,29 +163,30 @@ class EventManager:
         _event.clear()
         logging.debug(f"Reset operation {event}")
 
+
 class TaskManager:
     """Long-running tasks are registered here, for tracking and display them on UI"""
     _TASKS: Dict[UUID, Task] = {}  # {UUID4: Task}
 
     @classmethod
-    def get_task(cls, task_id: UUID) -> Optional[Task]:
+    def get(cls, task_id: UUID) -> Optional[Task]:
         return cls._TASKS.get(task_id)
 
     @classmethod
-    def add_task(cls, task: Task) -> UUID:
+    def add(cls, task: Task) -> UUID:
         """register a running task to TaskManager"""
         uniq = uuid4()
         task.task_id = uniq
         cls._TASKS[uniq] = task
-        State.send_signal(Signals.TaskAdded, Result(True, task.task_id))
+        SignalManager.send(Signals.TaskAdded, Result(True, task.task_id))
         return uniq
 
     @classmethod
-    def remove_task(cls, task: Union[UUID, Task]):
+    def remove(cls, task: Union[UUID, Task]):
         if isinstance(task, Task):
             task = task.task_id
         cls._TASKS.pop(task)
-        State.send_signal(Signals.TaskRemoved, Result(True, task))
+        SignalManager.send(Signals.TaskRemoved, Result(True, task))
 
 
 class SignalManager:
@@ -193,12 +194,12 @@ class SignalManager:
     _SIGNALS: Dict[Signals, List[SignalHandler]] = {}
 
     @classmethod
-    def connect_signal(cls, signal: Signals, handler: SignalHandler) -> None:
+    def connect(cls, signal: Signals, handler: SignalHandler) -> None:
         cls._SIGNALS.setdefault(signal, [])
         cls._SIGNALS[signal].append(handler)
 
     @classmethod
-    def send_signal(cls, signal: Signals, data: Optional[Result] = None) -> None:
+    def send(cls, signal: Signals, data: Optional[Result] = None) -> None:
         """
         Send signal
         should only be called by backend logic
@@ -208,8 +209,3 @@ class SignalManager:
             return
         for fn in cls._SIGNALS[signal]:
             fn(data)
-
-
-class State(LockManager, EventManager, TaskManager, SignalManager):
-    """Unified State Management"""
-    pass

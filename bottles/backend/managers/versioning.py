@@ -27,7 +27,7 @@ from fvs.repo import FVSRepo
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import State, Task
+from bottles.backend.state import TaskManager, Task
 from bottles.backend.utils import yaml
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.manager import ManagerUtils
@@ -80,17 +80,17 @@ class VersioningManager:
             repo_path=ManagerUtils.get_bottle_path(config),
             use_compression=config.Parameters.versioning_compression
         )
-        task_id = State.add_task(Task(title=_("Committing state …")))
+        task_id = TaskManager.add(Task(title=_("Committing state …")))
         try:
             repo.commit(message, ignore=patterns)
         except FVSNothingToCommit:
-            State.remove_task(task_id)
+            TaskManager.remove(task_id)
             return Result(
                 status=False,
                 message=_("Nothing to commit")
             )
 
-        State.remove_task(task_id)
+        TaskManager.remove(task_id)
         return Result(
             status=True,
             message=_("New state [{0}] created successfully!").format(repo.active_state_id),
@@ -152,7 +152,7 @@ class VersioningManager:
                 status=True,
                 message=_("State {0} restored successfully!").format(state_id)
             )
-            task_id = State.add_task(Task(title=_("Restoring state {} …".format(state_id))))
+            task_id = TaskManager.add(Task(title=_("Restoring state {} …".format(state_id))))
             try:
                 repo.restore_state(state_id, ignore=patterns)
             except FVSStateNotFound:
@@ -167,7 +167,7 @@ class VersioningManager:
                     status=False,
                     message=_("State {} is already the active state").format(state_id)
                 )
-            State.remove_task(task_id)
+            TaskManager.remove(task_id)
             return res
 
         bottle_path = ManagerUtils.get_bottle_path(config)

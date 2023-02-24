@@ -22,7 +22,7 @@ from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import Signals, State
+from bottles.backend.state import Signals, SignalManager
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
@@ -171,7 +171,7 @@ class BottleView(Adw.Bin):
         self.entry_search.connect('changed', self.__search_bottles)
 
         # backend signals
-        State.connect_signal(Signals.ManagerLocalBottlesLoaded, self.backend_local_bottle_loaded)
+        SignalManager.connect(Signals.ManagerLocalBottlesLoaded, self.backend_local_bottle_loaded)
 
         self.update_bottles()
 

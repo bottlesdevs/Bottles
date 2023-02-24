@@ -28,7 +28,7 @@ from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import State, Signals
+from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.generic import get_mime
 from bottles.backend.utils.imagemagick import ImageMagickUtils
 
@@ -79,7 +79,7 @@ class ManagerUtils:
             path = custom_path
 
         path = f"file://{path}"
-        State.send_signal(Signals.GShowUri, Result(data=path))
+        SignalManager.send(Signals.GShowUri, Result(data=path))
 
     @staticmethod
     def get_bottle_path(config: BottleConfig) -> str:

@@ -30,7 +30,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.models.result import Result
-from bottles.backend.state import State, Task
+from bottles.backend.state import TaskManager, Task
 from bottles.backend.utils.generic import validate_url
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.executor import WineExecutor
@@ -96,7 +96,7 @@ class DependencyManager:
                 message=f"Before installing {dependency[0]}"
             )
 
-        task_id = State.add_task(Task(title=dependency[0]))
+        task_id = TaskManager.add(Task(title=dependency[0]))
 
         logging.info("Installing dependency [%s] in bottle [%s]." % (
             dependency[0],
@@ -108,7 +108,7 @@ class DependencyManager:
             If the manifest is not found, return a Result
             object with the error.
             """
-            State.remove_task(task_id)
+            TaskManager.remove(task_id)
             return Result(
                 status=False,
                 message=f"Cannot find manifest for {dependency[0]}."
@@ -135,7 +135,7 @@ class DependencyManager:
             """
             res = self.__perform_steps(config, step)
             if not res.status:
-                State.remove_task(task_id)
+                TaskManager.remove(task_id)
                 return Result(
                     status=False,
                     message=f"One or more steps failed for {dependency[0]}."
@@ -178,7 +178,7 @@ class DependencyManager:
             )
 
         # Remove entry from task manager
-        State.remove_task(task_id)
+        TaskManager.remove(task_id)
 
         # Hide installation button and show remove button
         logging.info(f"Dependency installed: {dependency[0]} in {config.Name}", jn=True)

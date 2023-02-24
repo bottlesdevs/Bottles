@@ -30,7 +30,7 @@ from bottles.backend.managers.data import UserDataKeys
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import State, Signals, Notification
+from bottles.backend.state import SignalManager, Signals, Notification
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.const import *
@@ -107,12 +107,12 @@ class MainWindow(Adw.ApplicationWindow):
 
         # backend signal handlers
         self.task_syncer = TaskSyncer(self)
-        State.connect_signal(Signals.TaskAdded, self.task_syncer.task_added_handler)
-        State.connect_signal(Signals.TaskRemoved, self.task_syncer.task_removed_handler)
-        State.connect_signal(Signals.TaskUpdated, self.task_syncer.task_updated_handler)
-        State.connect_signal(Signals.NetworkStatusChanged, self.network_changed_handler)
-        State.connect_signal(Signals.GNotification, self.g_notification_handler)
-        State.connect_signal(Signals.GShowUri, self.g_show_uri_handler)
+        SignalManager.connect(Signals.TaskAdded, self.task_syncer.task_added_handler)
+        SignalManager.connect(Signals.TaskRemoved, self.task_syncer.task_removed_handler)
+        SignalManager.connect(Signals.TaskUpdated, self.task_syncer.task_updated_handler)
+        SignalManager.connect(Signals.NetworkStatusChanged, self.network_changed_handler)
+        SignalManager.connect(Signals.GNotification, self.g_notification_handler)
+        SignalManager.connect(Signals.GShowUri, self.g_show_uri_handler)
 
         self.__on_start()
         logging.info("Bottles Started!", )
@@ -216,7 +216,7 @@ class MainWindow(Adw.ApplicationWindow):
 
         def get_manager():
             if self.utils_conn.check_connection():
-                State.connect_signal(Signals.RepositoryFetched, self.page_loading.add_fetched)
+                SignalManager.connect(Signals.RepositoryFetched, self.page_loading.add_fetched)
             mng = Manager(g_settings=self.settings)
             return mng
 

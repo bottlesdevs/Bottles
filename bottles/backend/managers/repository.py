@@ -25,7 +25,7 @@ from bottles.backend.params import APP_VERSION
 from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.installer import InstallerRepo
-from bottles.backend.state import State, Signals
+from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.threading import RunAsync
 
 logging = Logger()
@@ -114,12 +114,12 @@ class RepositoryManager:
 
                     if url.startswith("file://") or c.getinfo(c.RESPONSE_CODE) == 200:
                         _data["index"] = url
-                        State.send_signal(Signals.RepositoryFetched, Result(True, data=total))
+                        SignalManager.send(Signals.RepositoryFetched, Result(True, data=total))
                         break
 
                     c.close()
                 else:
-                    State.send_signal(Signals.RepositoryFetched, Result(False, data=total))
+                    SignalManager.send(Signals.RepositoryFetched, Result(False, data=total))
                     logging.error(f"Could not get index for {_repo} repository")
 
             thread = RunAsync(query, _repo=repo, _data=data)
