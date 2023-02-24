@@ -73,12 +73,7 @@ class DependencyManager:
         catalog = dict(sorted(catalog.items()))
         return catalog
 
-    def install(
-            self,
-            config: BottleConfig,
-            dependency: list,
-            reinstall: bool = False
-    ) -> Result:
+    def install(self, config: BottleConfig, dependency: list) -> Result:
         """
         Install a given dependency in a bottle. It will
         return True if the installation was successful.
@@ -143,8 +138,7 @@ class DependencyManager:
             if not res.data.get("uninstaller"):
                 uninstaller = False
 
-        if dependency[0] not in config.Installed_Dependencies \
-                or reinstall:
+        if dependency[0] not in config.Installed_Dependencies:
             """
             If the dependency is not already listed in the installed
             dependencies list of the bottle, add it.
@@ -497,7 +491,7 @@ class DependencyManager:
         os.makedirs(archive_path)
         try:
             patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
-            if archive_path.endswith(".tar"):
+            if archive_path.endswith(".tar") and os.path.isfile(os.path.join(archive_path, os.path.basename(archive_path))):
                 tar_path = os.path.join(archive_path, os.path.basename(archive_path))
                 patoolib.extract_archive(tar_path, outdir=archive_path)
         except Exception as e:
