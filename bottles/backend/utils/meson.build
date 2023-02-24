@@ -20,6 +20,9 @@ bottles_sources = [
   'proc.py',
   'yaml.py',
   'nvidia.py',
+  'threading.py',
+  'connection.py',
+  'gsettings_stub.py',
   'json.py'
 ]
 

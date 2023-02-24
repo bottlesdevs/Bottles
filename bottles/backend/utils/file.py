@@ -15,14 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
-import time
-import shutil
 import hashlib
-
-from gi.repository import GLib
-from typing import Union
+import os
+import shutil
+import time
 from pathlib import Path
+from typing import Union
 
 
 class FileUtils:
@@ -56,7 +54,11 @@ class FileUtils:
     @staticmethod
     def get_human_size(size: float) -> str:
         """Returns a human readable size from a given float size"""
-        return GLib.format_size(size)
+        for unit in ["", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
+            if abs(size) < 1024.0:
+                return f"{size:3.1f}{unit}B"
+            size /= 1024.0
+        return f"{size:.1f}YiB"
 
     @staticmethod
     def get_human_size_legacy(size: float) -> str:

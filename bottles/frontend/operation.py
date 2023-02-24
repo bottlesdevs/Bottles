@@ -14,9 +14,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+from typing import Dict
+from uuid import UUID
 
 import gi
-from gettext import gettext as _
+
+from bottles.backend.models.result import Result
+from bottles.backend.state import TaskManager
 
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Adw
@@ -31,11 +35,10 @@ class TaskEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, op_manager, title, cancellable=True, **kwargs):
+    def __init__(self, window, title, cancellable=True, **kwargs):
         super().__init__(**kwargs)
 
-        self.op_manager = op_manager
-        self.window = op_manager.window
+        self.window = window
 
         if len(title) > 30:
             title = f"{title[:20]}…"
@@ -45,70 +48,49 @@ class TaskEntry(Adw.ActionRow):
         if not cancellable:
             self.btn_cancel.hide()
 
-    def update_status(self, count=False, block_size=False, total_size=False, completed=False):
-        if total_size == 0:
-            self.set_subtitle(_("Calculating…"))
-            return
-
-        if not completed:
-            percent = int(count * block_size * 100 / total_size)
-            self.set_subtitle(f'{str(percent)}%')
-        else:
-            percent = 100
-
-        if percent == 100:
-            self.op_manager.remove_task(self)
-
-    def remove(self):
-        self.window.page_details.list_tasks.remove(self)
+    def update(self, subtitle: str):
+        self.set_subtitle(subtitle)
 
 
-class OperationManager:
-    __tasks = {}
+class TaskSyncer:
+    """Keep task list updated with backend TaskManager"""
+    _TASK_WIDGETS: Dict[UUID, TaskEntry] = {}
 
-    def __init__(self, window, **kwargs):
-        super().__init__(**kwargs)
-
-        # Common variables
+    def __init__(self, window):
         self.window = window
 
-    def __new_widget(self, title, cancellable=True):
-        task_entry = TaskEntry(self, title, cancellable)
+    def _new_widget(self, title, cancellable=True) -> TaskEntry:
+        """create TaskEntry widget & add to task list"""
+        task_entry = TaskEntry(self.window, title, cancellable)
         self.window.page_details.list_tasks.append(task_entry)
         return task_entry
 
-    def new_task(self, task_id, title, cancellable=True):
-        self.__tasks[task_id] = self.__new_widget(title, cancellable)
-        self.window.page_details.btn_operations.set_visible(True)
+    def _set_task_btn_visible(self, visible: bool):
+        self.window.page_details.btn_operations.set_visible(visible)
 
-    def update_task(self, task_id, count=False, block_size=False, total_size=False, completed=False):
-        if self.get_task(task_id):
-            self.__tasks[task_id].update_status(
-                count, block_size, total_size, completed
-            )
+    def task_added_handler(self, res: Result):
+        """handler for Signals.TaskAdded"""
+        task_id: UUID = res.data
+        task = TaskManager.get(task_id)
+        self._TASK_WIDGETS[task_id] = self._new_widget(task.title, task.cancellable)
+        self._set_task_btn_visible(True)
 
-    def remove_task(self, task_id):
-        if self.get_task(task_id):
-            self.__tasks[task_id].remove()
-            del self.__tasks[task_id]
+    def task_updated_handler(self, res: Result):
+        """handler for Signals.TaskUpdated"""
+        task_id: UUID = res.data
+        if task_id not in self._TASK_WIDGETS:
+            return
 
-        if self.get_task_count() == 0:
-            self.window.page_details.btn_operations.set_visible(False)
+        self._TASK_WIDGETS[task_id].update(subtitle=TaskManager.get(task_id).subtitle)
 
-    def remove_all_tasks(self):
-        for task in self.__tasks:
-            self.__tasks[task].remove()
-        self.__tasks = {}
-        self.window.page_details.btn_operations.set_visible(False)
+    def task_removed_handler(self, res: Result):
+        """handler for Signals.TaskRemoved"""
+        task_id: UUID = res.data
+        if task_id not in self._TASK_WIDGETS:
+            return
 
-    def get_tasks(self):
-        return self.__tasks
+        self.window.page_details.list_tasks.remove(self._TASK_WIDGETS[task_id])
+        del self._TASK_WIDGETS[task_id]
 
-    def get_task(self, task_id):
-        return self.__tasks.get(task_id)
-
-    def get_task_count(self):
-        return len(self.__tasks)
-
-    def get_task_ids(self):
-        return list(self.__tasks.keys())
+        if len(self._TASK_WIDGETS) == 0:
+            self._set_task_btn_visible(False)
