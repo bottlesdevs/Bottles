@@ -37,7 +37,7 @@ from bottles.backend.logger import Logger
 from bottles.frontend.windows.main_window import MainWindow
 from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.backend.health import HealthChecker
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.managers.backup import BackupManager
 
 from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
