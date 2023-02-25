@@ -15,7 +15,6 @@ jobs:
     - name: Install Ubuntu dependencies
       run: |
         sudo apt update
-        sudo apt install -y libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
         sudo apt install -y libcurl4-openssl-dev libssl-dev
     - name: Install dependencies
       run: |
@@ -23,9 +22,6 @@ jobs:
         pip install wheel
         pip install -r requirements.txt
         pip install -r requirements.dev.txt
-        pip install pycairo
-        pip install PyGObject
     - name: Test with pytest
       run: |
-        pip install pytest
-        pytest bottles
+        python -m pytest bottles
