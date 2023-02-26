@@ -1,19 +1,20 @@
 using Gtk 4.0;
+using Adw 1;
 
-template OnboardDialog : .AdwWindow {
+template OnboardDialog : Adw.Window {
   resizable: false;
   deletable: true;
   modal: true;
-  default-width: "650";
-  default-height: "550";
+  default-width: 650;
+  default-height: 550;
 
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {
-      title-widget: .AdwCarouselIndicatorDots {
-        carousel: "carousel";
-        orientation: "horizontal";
+    Adw.HeaderBar {
+      title-widget: Adw.CarouselIndicatorDots {
+        carousel: carousel;
+        orientation: horizontal;
       }
 
       ;
@@ -38,7 +39,7 @@ template OnboardDialog : .AdwWindow {
         ]
       }
 
-      .AdwCarousel carousel {
+      Adw.Carousel carousel {
         vexpand: true;
         hexpand: true;
         allow-scroll-wheel: true;
@@ -49,61 +50,63 @@ template OnboardDialog : .AdwWindow {
           orientation: vertical;
           vexpand: true;
           hexpand: true;
+          valign: center;
 
           Image img_welcome {
             resource: "/com/usebottles/bottles/images/images/bottles-welcome.svg";
-            pixel-size: 320;
+            pixel-size: 200;
           }
 
-          .AdwStatusPage {
+          Adw.StatusPage {
             title: _("Welcome to Bottles");
-            description: _("Run Windows software on Linux.");
+            description: _("Learn more about the key features in Bottles.");
+          }
+
+          Button btn_skip {
+            label: _("_Skip Tutorial");
+            use-underline: true;
+            halign: center;
+
+            styles [
+              "destructive-action",
+              "pill",
+            ]
           }
         }
 
-        .AdwStatusPage {
-          title: _("Tutorial");
-          description: _("Before starting Bottles, let's go over some terms and usage paradigms, so you can use Bottles more efficiently.");
-          child:
-          Box {
-            orientation: vertical;
-
-            Button btn_skip {
-              label: _("_Skip Tutorial");
-              use-underline: true;
-              halign: center;
-
-              styles [
-                "destructive-action",
-                "pill",
-              ]
-            }
-          }
-
-          ;
-        }
-
-        .AdwStatusPage {
+        Adw.StatusPage {
           title: _("What is a Compatibity Layer?");
-          description: _("Compatibility layers, or translation layers, are software that translate information from one platform to another. Compatibility layers allow us to run platform-specific software on another platform, for example, Windows-only software on Linux.");
+          description: _("Compatibility layers, or translation layers, are software that translate information from one platform to another. They allow us to run platform-specific software on another platform, for example, Windows-only software on Linux.");
         }
 
-        .AdwStatusPage {
-          title: _("What is Wine?");
-          description: _("Wine is a compatibility layer that translates Windows-only resources into open and platform-independent alternatives that work on Linux. Under the hood, Bottles uses Wine to run Windows software.");
+        Box {
+          orientation: vertical;
+          vexpand: true;
+          hexpand: true;
+          valign: center;
+
+          // Image {
+          //   resource: "/com/usebottles/bottles/images/images/WINE-logo.svg";
+          //   pixel-size: 200;
+          // }
+
+          Adw.StatusPage {
+            title: _("What is Wine?");
+            description: _("Wine is a compatibility layer that translates Windows-only resources into open and platform-independent alternatives that work on Linux. Under the hood, Bottles uses Wine to run Windows software.");
+          }
         }
 
-        .AdwStatusPage {
+        Adw.StatusPage {
           title: _("What is a Runner?");
           description: _("Runners are iterations of Wine curated by communities to address specific problems. Some runners are for games, some are for apps, some are for a specific app or game, and so on. Bottles uses \"Soda\" as a general purpose runner.");
         }
 
-        .AdwStatusPage {
+        Adw.StatusPage {
           title: _("What is a \"Bottle\"?");
-          description: _("A bottle is a container that runs Windows software. This allows you to separate and organize the individual bottles according to your needs. For example, you could have one bottle for Windows apps and one bottle for Windows games. If an app or game needs additional tweaking, such as a different runner or setting, then you can create a bottle specifically for that app or game.");
+          description: _("A bottle is a container that runs Windows software. This allows you to separate and organize the individual bottles according to your needs. For example, you could have one bottle for Windows apps and one bottle for Windows games. If an app or game needs additional tweaking, such as a different runner or setting, then you can create a bottle specifically for it.");
         }
 
-        .AdwStatusPage {
+        Adw.StatusPage {
           title: _("Almost Done");
           description: _("We need a few more minutes to set everything up…");
           child: 
@@ -133,10 +136,10 @@ template OnboardDialog : .AdwWindow {
           ;
         }
 
-        .AdwStatusPage {
+        Adw.StatusPage {
           icon-name: "selection-mode-symbolic";
           title: _("Setup Completed");
-          valign: "center";
+          valign: center;
           child: 
           Box {
             orientation: vertical;
