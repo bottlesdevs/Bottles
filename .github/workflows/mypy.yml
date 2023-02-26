@@ -2,7 +2,7 @@ on:
   pull_request:
 name: Mypy
 jobs:
-  pylint-checker:
+  mypy-checker:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -27,7 +27,6 @@ jobs:
         pip install PyGObject
         yes | mypy --install-types
     - name: Run mypy analysis
-      id: pylint-result
       run: |
         mypy --version
         mypy bottles
