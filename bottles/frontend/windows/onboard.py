@@ -21,7 +21,8 @@ import sys
 from gi.repository import Gtk, Adw, Gdk
 
 from bottles.backend.models.result import Result
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/onboard.ui")

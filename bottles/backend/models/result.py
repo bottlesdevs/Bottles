@@ -22,7 +22,7 @@ T = TypeVar('T')
 class Result(Generic[T]):
     """
     The Result object is the standard return object for every
-    method in the backend. It is importanto to use this object
+    method in the backend. It is important to use this object
     to keep the code clean and consistent.
     """
 

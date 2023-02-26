@@ -64,7 +64,10 @@ body:
     id: health-check
     attributes:
       label: Debugging Information
-      description: In Bottles, press the hamburger menu (`☰`) at the top right. Then press "About Bottles". Select "Troubleshooting", then "Debugging Information". Lastly, copy text and paste here.
+      description: |
+        In Bottles, press the hamburger menu (`☰`) at the top right. Then press "About Bottles". Select "Troubleshooting", then "Debugging Information". Lastly, copy text and paste here.
+
+        If you are unable to run Bottles, then you can retrieve information by running `flatpak run --command=bottles-cli com.usebottles.bottles info health-check` in the terminal.
       render: shell
       placeholder: |
         Display:

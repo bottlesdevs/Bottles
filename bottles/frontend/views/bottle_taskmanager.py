@@ -15,16 +15,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from gettext import gettext as _
 from typing import Optional
 
 from gi.repository import Gtk
 
 from bottles.backend.models.config import BottleConfig
-from bottles.frontend.utils.threading import RunAsync
-from bottles.backend.runner import Runner
-from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.winebridge import WineBridge
+from bottles.backend.wine.winedbg import WineDbg
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-taskmanager.ui')
@@ -114,6 +113,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
                 ])
 
     def sensitive_update(self, widget):
+        @GtkUtils.run_in_main_loop
         def reset(result, error):
             self.btn_update.set_sensitive(True)
 
@@ -137,6 +137,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
         pid = model[treeiter][0]
         self.btn_kill.set_sensitive(False)
 
+        @GtkUtils.run_in_main_loop
         def reset(result, error):
             self.liststore_processes.remove(treeiter)
 

@@ -201,18 +201,18 @@ class LaunchOptionsDialog(Adw.Window):
         GLib.idle_add(self.__idle_save)
 
     def __choose_script(self, *_args):
-        def set_path(_dialog, response, _file_dialog):
+        def set_path(dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 self.action_script.set_subtitle(self.__default_script_msg)
                 return
 
-            _file = _file_dialog.get_file()
-            self.program["script"] = _file.get_path()
-            self.action_script.set_subtitle(_file.get_path())
+            file_path = dialog.get_file().get_path()
+            self.program["script"] = file_path
+            self.action_script.set_subtitle(file_path)
             self.btn_script_reset.set_visible(True)
 
         dialog = Gtk.FileChooserNative.new(
-            title=_("Select a script"),
+            title=_("Select Script"),
             parent=self.window,
             action=Gtk.FileChooserAction.OPEN
         )
@@ -227,18 +227,18 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_script_reset.set_visible(False)
 
     def __choose_cwd(self, *_args):
-        def set_path(_dialog, response, _file_dialog):
+        def set_path(dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 self.action_cwd.set_subtitle(self.__default_cwd_msg)
                 return
 
-            _file = _file_dialog.get_file()
-            self.program["folder"] = _file.get_path()
-            self.action_cwd.set_subtitle(_file.get_path())
+            directory_path = dialog.get_file().get_path()
+            self.program["folder"] = directory_path
+            self.action_cwd.set_subtitle(directory_path)
             self.btn_cwd_reset.set_visible(True)
 
         dialog = Gtk.FileChooserNative.new(
-            title=_("Select the Working Directory"),
+            title=_("Select Working Directory"),
             parent=self.window,
             action=Gtk.FileChooserAction.SELECT_FOLDER
         )

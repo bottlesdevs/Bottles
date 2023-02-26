@@ -16,9 +16,6 @@
 #
 
 
-from gi.repository import GLib
-
-
 class QueueManager:
     __queue = 0
 
@@ -29,9 +26,9 @@ class QueueManager:
     def add_task(self):
         self.__queue += 1
         if self.__add_fn and self.__queue == 1:
-            GLib.idle_add(self.__add_fn)
+            self.__add_fn()
 
     def end_task(self):
         self.__queue -= 1
         if self.__queue <= 0:
-            GLib.idle_add(self.__end_fn)
+            self.__end_fn()

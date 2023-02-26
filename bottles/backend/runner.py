@@ -89,7 +89,7 @@ class Runner:
         the host system. There are some exceptions, like the Soda and Wine-GE runners,
         which are built to work without the Steam Runtime.
         """
-        if "proton" in runner.lower() and RuntimeManager.get_runtimes("steam"):
+        if runner in manager.supported_proton_runners and RuntimeManager.get_runtimes("steam"):
             manager.update_config(config, "use_steam_runtime", True, "Parameters")
 
         return Result(

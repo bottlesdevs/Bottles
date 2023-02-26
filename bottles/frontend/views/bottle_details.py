@@ -16,44 +16,35 @@
 #
 
 import os
-import re
-import time
 import uuid
-import webbrowser
 from datetime import datetime
 from gettext import gettext as _
 from typing import List, Optional
 
 from gi.repository import Gtk, Gio, Adw, Gdk, GLib
 
-from bottles.backend.models.config import BottleConfig
-from bottles.frontend.utils.threading import RunAsync
-from bottles.frontend.utils.common import open_doc_url
-
-from bottles.backend.runner import Runner
 from bottles.backend.managers.backup import BackupManager
-from bottles.backend.utils.terminal import TerminalUtils
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
-
-from bottles.frontend.widgets.program import ProgramEntry
-from bottles.frontend.widgets.executable import ExecButton
-
-from bottles.frontend.windows.generic import MessageDialog
-from bottles.frontend.windows.duplicate import DuplicateDialog
-from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
-from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
-
+from bottles.backend.utils.terminal import TerminalUtils
+from bottles.backend.utils.threading import RunAsync
+from bottles.backend.wine.cmd import CMD
+from bottles.backend.wine.control import Control
+from bottles.backend.wine.executor import WineExecutor
+from bottles.backend.wine.explorer import Explorer
+from bottles.backend.wine.regedit import Regedit
+from bottles.backend.wine.taskmgr import Taskmgr
 from bottles.backend.wine.uninstaller import Uninstaller
+from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.winecfg import WineCfg
 from bottles.backend.wine.winedbg import WineDbg
-from bottles.backend.wine.wineboot import WineBoot
-from bottles.backend.wine.cmd import CMD
-from bottles.backend.wine.taskmgr import Taskmgr
-from bottles.backend.wine.control import Control
-from bottles.backend.wine.regedit import Regedit
-from bottles.backend.wine.explorer import Explorer
-from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.wineserver import WineServer
+from bottles.frontend.utils.common import open_doc_url
+from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
+from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.widgets.program import ProgramEntry
+from bottles.frontend.windows.duplicate import DuplicateDialog
+from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
@@ -197,12 +188,15 @@ class BottleView(Adw.PreferencesPage):
                 args=args,
                 terminal=self.config.run_in_terminal,
             )
-            def callback(a,b):
+
+            def callback(a, b):
                 self.update_programs()
+
             RunAsync(executor.run, callback)
 
         else:
-            self.window.show_toast(_("File \"{0}\" is not a .exe or .msi file").format(file.get_basename().split("/")[-1]))
+            self.window.show_toast(
+                _("File \"{0}\" is not a .exe or .msi file").format(file.get_basename().split("/")[-1]))
 
     def on_enter(self, drop_target, x, y):
         self.drop_overlay.set_visible(True)
@@ -240,14 +234,14 @@ class BottleView(Adw.PreferencesPage):
         # check for old versioning system enabled
         if config.Versioning:
             self.__upgrade_versioning()
-        
-        if config.Runner not in self.manager.runners_available\
-            and not self.config.Environment == "Steam":
+
+        if config.Runner not in self.manager.runners_available \
+                and not self.config.Environment == "Steam":
             self.__alert_missing_runner()
 
         # update programs list
         self.update_programs()
-    
+
     def add(self, widget=False):
         """
         This function popup the add program dialog to the user. It
@@ -255,6 +249,7 @@ class BottleView(Adw.PreferencesPage):
         path to the program picked by the user.
         The file chooser path is set to the bottle path by default.
         """
+
         def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 return
@@ -345,9 +340,9 @@ class BottleView(Adw.PreferencesPage):
 
     def add_program(self, widget):
         self.__registry.append(widget)
-        self.group_programs.remove(self.bottom_bar) # Remove the bottom_bar
+        self.group_programs.remove(self.bottom_bar)  # Remove the bottom_bar
         self.group_programs.add(widget)
-        self.group_programs.add(self.bottom_bar) # Add the bottom_bar back to the bottom
+        self.group_programs.add(self.bottom_bar)  # Add the bottom_bar back to the bottom
 
     def __toggle_removed(self, widget=False):
         """
@@ -385,12 +380,15 @@ class BottleView(Adw.PreferencesPage):
         The file will be executed by the runner after the
         user confirmation.
         """
+
         def show_chooser(*_args):
             self.window.settings.set_boolean("show-sandbox-warning", False)
 
             def execute(_dialog, response):
                 if response != Gtk.ResponseType.ACCEPT:
                     return
+
+                self.window.show_toast(_("Launching \"{0}\"…").format(dialog.get_file().get_basename()))
 
                 executor = WineExecutor(
                     self.config,
@@ -399,8 +397,9 @@ class BottleView(Adw.PreferencesPage):
                     terminal=self.config.get("run_in_terminal"),
                 )
 
-                def callback(a,b):
+                def callback(a, b):
                     self.update_programs()
+
                 RunAsync(executor.run, callback)
 
             dialog = Gtk.FileChooserNative.new(
@@ -443,6 +442,7 @@ class BottleView(Adw.PreferencesPage):
             hint = f"backup_{self.config.Path}.tar.gz"
             accept_label = _("Backup")
 
+        @GtkUtils.run_in_main_loop
         def finish(result, error=False):
             if result.status:
                 self.window.show_toast(_("Backup created for \"{0}\"").format(self.config.Name))
@@ -458,7 +458,6 @@ class BottleView(Adw.PreferencesPage):
             RunAsync(
                 task_func=BackupManager.export_backup,
                 callback=finish,
-                window=self.window,
                 config=self.config,
                 scope=backup_type,
                 path=path
@@ -498,6 +497,7 @@ class BottleView(Adw.PreferencesPage):
         it will ask the manager to delete the bottle and will return
         to the bottles list.
         """
+
         def handle_response(_widget, response_id):
             if response_id == "ok":
                 RunAsync(self.manager.delete_bottle, config=self.config)
@@ -520,6 +520,7 @@ class BottleView(Adw.PreferencesPage):
         This function pop up a dialog which alert the user that the runner
         specified in the bottle configuration is missing.
         """
+
         def handle_response(_widget, response_id):
             _widget.destroy()
 
@@ -584,6 +585,7 @@ the Bottles preferences or choose a new one to run applications.")
         RunAsync(program.launch)
 
     def wineboot(self, widget, status):
+        @GtkUtils.run_in_main_loop
         def reset(result=None, error=False):
             widget.set_sensitive(True)
 

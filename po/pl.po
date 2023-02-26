@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2023-01-19 06:44+0000\n"
-"Last-Translator: kittyra <jdp0e8mm@anonaddy.me>\n"
+"PO-Revision-Date: 2023-01-30 20:53+0000\n"
+"Last-Translator: Mikołaj Nowak <menmikimen@users.noreply.hosted.weblate.org>"
+"\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bottles/bottles/"
 "pl/>\n"
 "Language: pl\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
@@ -838,7 +839,6 @@ msgid "Use a restricted/managed environment for this bottle."
 msgstr "Użyj ograniczonego/zarządzanego środowiska dla tej butelki."
 
 #: bottles/frontend/ui/details-preferences.blp:271
-#, fuzzy
 msgid "Manage the Sandbox Permissions"
 msgstr "Zarządzaj uprawnieniami w Sandboksie"
 
@@ -1279,7 +1279,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
-msgstr ""
+msgstr "Kontynuuj"
 
 #: bottles/frontend/ui/dialog-installer.blp:123
 msgid "Completed!"
@@ -1327,7 +1327,7 @@ msgstr "Przeglądarka dziennika"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr ""
+msgstr "Zmień poziom logowania."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
@@ -2385,9 +2385,9 @@ msgid "Backup created for \"{0}\""
 msgstr "Kopia zapasowa dla '{0}' została utworzona"
 
 #: bottles/frontend/views/bottle_details.py:429
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr "Nie udało się utworzyć kopii zapasowej dla '{0}'."
+msgstr "Nie udało się utworzyć kopii zapasowej dla '{0}'"
 
 #: bottles/frontend/views/bottle_details.py:447
 msgid "Export"
@@ -2406,7 +2406,7 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:486
 #: bottles/frontend/views/bottle_preferences.py:722
 msgid "_Delete"
-msgstr ""
+msgstr "_Usuń"
 
 #: bottles/frontend/views/bottle_details.py:501
 msgid "Missing Runner"
@@ -2433,7 +2433,7 @@ msgstr ""
 
 #: bottles/frontend/views/bottle_details.py:580
 msgid "Force _Stop"
-msgstr ""
+msgstr "Wymuś _Zatrzymanie"
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "This feature is unavailable on your system."
@@ -2616,19 +2616,19 @@ msgid "Manifest for {0}"
 msgstr "Manifest dla {0}"
 
 #: bottles/frontend/widgets/dependency.py:166
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" installed"
-msgstr "Zainstalowano '{0}'."
+msgstr "Zainstalowano \"{0}\""
 
 #: bottles/frontend/widgets/dependency.py:180
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "Nie udało się zainstalować '{0}'."
+msgstr "Nie udało się zainstalować \"{0}\""
 
 #: bottles/frontend/widgets/importer.py:66
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" imported"
-msgstr "Zaimportowano '{0}'."
+msgstr "Zaimportowano \"{0}\""
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
@@ -2679,19 +2679,19 @@ msgid "Launching \"{0}\" with Steam…"
 msgstr "Uruchamianie '{0}' za pomocą Steama…"
 
 #: bottles/frontend/widgets/program.py:203
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr "Ukryto '{0}'."
+msgstr "Ukryto \"{0}\""
 
 #: bottles/frontend/widgets/program.py:205
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" showed"
-msgstr "Pokazano '{0}'."
+msgstr "Pokazano \"{0}\""
 
 #: bottles/frontend/widgets/program.py:231
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" removed"
-msgstr "Usunięto '{0}'."
+msgstr "Usunięto \"{0}\""
 
 #: bottles/frontend/widgets/program.py:245
 #, fuzzy, python-brace-format
@@ -3173,9 +3173,8 @@ msgid "Russian translations thanks to @lenemter and @Smoque"
 msgstr "Tłumaczenia na język rosyjski dzięki @Knebergish, @lenemter i @Smoque"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:102
-#, fuzzy
 msgid "Catalan translations thanks to @rogervc"
-msgstr "Tłumaczenia na język chorwacki dzięki @milotype"
+msgstr "Tłumaczenia na język kataloński dzięki @rogervc"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
 #, fuzzy

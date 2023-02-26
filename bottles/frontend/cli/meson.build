@@ -3,7 +3,6 @@ clidir = join_paths(pkgdatadir, 'bottles/frontend/cli')
 
 bottles_sources = [
   '__init__.py',
-  'operation_cli.py',
 ]
 
 install_data(bottles_sources, install_dir: clidir)

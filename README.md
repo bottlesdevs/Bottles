@@ -34,9 +34,7 @@
 
 <br/>
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/main/screenshot.png">
-</div>
+![Bottles Dark](docs/screenshot-dark.png#gh-dark-mode-only)![Bottles Light](docs/screenshot-light.png#gh-light-mode-only)
 
 ## 📚 Documentation
 Before opening a new issue, check if the topic has already been covered 
