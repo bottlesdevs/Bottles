@@ -91,7 +91,7 @@ class JournalManager:
         JournalManager.__save_journal(journal)
 
     @staticmethod
-    def __save_journal(journal: dict = None):
+    def __save_journal(journal: dict | None = None):
         """Save the journal to the journal file."""
         if journal is None:
             journal = JournalManager.__get_journal()

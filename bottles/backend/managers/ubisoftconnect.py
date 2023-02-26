@@ -56,9 +56,9 @@ class UbisoftConnectManager:
         """
         found = {}
         games = []
-        key = None
-        appid = None
-        thumb = None
+        key: str | None = None
+        appid: str | None = None
+        thumb: str | None = None
         reg_key = "register: HKEY_LOCAL_MACHINE\\SOFTWARE\\Ubisoft\\Launcher\\Installs\\"
         conf_path = UbisoftConnectManager.find_conf_path(config)
         games_path = os.path.join(

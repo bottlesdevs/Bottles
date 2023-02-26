@@ -25,11 +25,11 @@ class SandboxManager:
 
     def __init__(
             self,
-            envs: dict = None,
-            chdir: str = None,
+            envs: dict | None = None,
+            chdir: str | None = None,
             clear_env: bool = False,
-            share_paths_ro: list = None,
-            share_paths_rw: list = None,
+            share_paths_ro: list | None = None,
+            share_paths_rw: list | None = None,
             share_net: bool = False,
             share_user: bool = False,
             share_host_ro: bool = True,

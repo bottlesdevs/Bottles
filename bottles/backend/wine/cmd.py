@@ -15,8 +15,8 @@ class CMD(WineProgram):
             batch: str,
             terminal: bool = True,
             args: str = "",
-            environment: dict = None,
-            cwd: str = None
+            environment: dict | None = None,
+            cwd: str | None = None
     ):
         args = f"/c {batch} {args}"
 

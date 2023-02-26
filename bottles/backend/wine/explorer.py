@@ -15,10 +15,10 @@ class Explorer(WineProgram):
             desktop: str = "shell",
             width: int = 0,
             height: int = 0,
-            program: str = None,
-            args: str = None,
-            environment: dict = None,
-            cwd: str = None
+            program: str | None = None,
+            args: str | None = None,
+            environment: dict | None = None,
+            cwd: str | None = None
     ):
         _args = f"/desktop={desktop}"
 

@@ -16,8 +16,8 @@ class Start(WineProgram):
             file: str,
             terminal: bool = True,
             args: str = "",
-            environment: dict = None,
-            cwd: str = None
+            environment: dict | None = None,
+            cwd: str | None = None
     ):
         winepath = WinePath(self.config)
 

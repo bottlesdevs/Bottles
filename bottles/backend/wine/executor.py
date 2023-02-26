@@ -27,17 +27,17 @@ class WineExecutor:
             exec_path: str,
             args: str = "",
             terminal: bool = False,
-            cwd: str = None,
-            environment: dict = None,
+            cwd: str | None = None,
+            environment: dict | None = None,
             move_file: bool = False,
             move_upd_fn: callable = None,
-            post_script: str = None,
-            monitoring: list = None,
-            override_dxvk: bool = None,
-            override_vkd3d: bool = None,
-            override_nvapi: bool = None,
-            override_fsr: bool = None,
-            override_virt_desktop: bool = None
+            post_script: str | None = None,
+            monitoring: list | None = None,
+            override_dxvk: bool | None = None,
+            override_vkd3d: bool | None = None,
+            override_nvapi: bool | None = None,
+            override_fsr: bool | None = None,
+            override_virt_desktop: bool | None = None
     ):
         logging.info("Launching an executable…")
         self.config = config

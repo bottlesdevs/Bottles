@@ -344,7 +344,7 @@ class InstallerManager:
         return files
 
     def install(self, config: BottleConfig, installer: dict, step_fn: callable, is_final: bool = True,
-                local_resources: dict = None):
+                local_resources: dict | None = None):
         manifest = self.get_installer(installer[0])
         _config = config
 

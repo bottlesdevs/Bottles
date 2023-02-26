@@ -42,7 +42,7 @@ class CabExtract:
     def __init__(self):
         self.cabextract_bin = shutil.which("cabextract")
 
-    def run(self, path: str, name: str = "", files: list = None, destination: str = ""):
+    def run(self, path: str, name: str = "", files: list | None = None, destination: str = ""):
         if files is None:
             files = []
 

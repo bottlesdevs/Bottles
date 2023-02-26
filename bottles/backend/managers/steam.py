@@ -49,7 +49,7 @@ class SteamManager:
     localconfig = {}
     library_folders = []
 
-    def __init__(self, config: BottleConfig = None, is_windows: bool = False, check_only: bool = False):
+    def __init__(self, config: BottleConfig | None = None, is_windows: bool = False, check_only: bool = False):
         self.config = config
         self.is_windows = is_windows
         self.steam_path = self.__find_steam_path()
@@ -353,7 +353,7 @@ class SteamManager:
 
         return apps[prefix]
 
-    def get_launch_options(self, prefix: str, app_conf: dict = None) -> {}:
+    def get_launch_options(self, prefix: str, app_conf: dict | None = None) -> {}:
         if app_conf is None:
             app_conf = self.get_app_config(prefix)
 
@@ -380,18 +380,18 @@ class SteamManager:
             args = launch_options
 
         try:
-            prefix = shlex.split(prefix.strip())
+            prefix_list = shlex.split(prefix.strip())
         except ValueError:
-            prefix = prefix.split(shlex.quote(prefix.strip()))
+            prefix_list = prefix.split(shlex.quote(prefix.strip()))
 
-        for p in prefix.copy():
+        for p in prefix_list.copy():
             if "=" in p:
                 k, v = p.split("=", 1)
                 v = shlex.quote(v) if " " in v else v
                 env_vars[k] = v
-                prefix.remove(p)
+                prefix_list.remove(p)
 
-        command = " ".join(prefix)
+        command = " ".join(prefix_list)
         res = {
             "command": command,
             "args": args,

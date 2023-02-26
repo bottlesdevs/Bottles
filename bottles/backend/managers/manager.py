@@ -1035,7 +1035,7 @@ class Manager:
             sandbox: bool = False,
             fn_logger: callable = None,
             arch: str = "win64",
-            custom_environment: str = None
+            custom_environment: str | None = None
     ) -> Result[dict]:
         """
         Create a new bottle from the given arguments.

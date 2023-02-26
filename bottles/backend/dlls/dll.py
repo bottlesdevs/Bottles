@@ -32,9 +32,9 @@ logging = Logger()
 
 
 class DLLComponent:
-    base_path: str = None
+    base_path: str | None = None
     dlls: dict = {}
-    version: str = None
+    version: str | None = None
 
     def __init__(self, version: str):
         self.version = version

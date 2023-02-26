@@ -36,7 +36,7 @@ class Downloader:
     bars using the func parameter.
     """
 
-    def __init__(self, url: str, file: str, update_func: TaskStreamUpdateHandler = None):
+    def __init__(self, url: str, file: str, update_func: TaskStreamUpdateHandler | None = None):
         self.start_time = None
         self.url = url
         self.file = file

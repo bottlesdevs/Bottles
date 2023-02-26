@@ -125,7 +125,7 @@ class ComponentEntry(Adw.ActionRow):
             component=self.name
         )
 
-    def update_progress(self, received_size: int = 0, total_size: int = 0, status: Status = None):
+    def update_progress(self, received_size: int = 0, total_size: int = 0, status: Status | None = None):
         if status == Status.FAILED:
             logging.error(f"Component installation failed")
             self.set_err()
