@@ -72,7 +72,7 @@ class WineDbg(WineProgram):
 
         return processes
 
-    def wait_for_process(self, name: str, timeout: int = .5):
+    def wait_for_process(self, name: str, timeout: float = .5):
         """Wait for a process to exit."""
         if not self.__wineserver_status():
             return True

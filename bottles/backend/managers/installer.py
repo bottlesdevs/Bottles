@@ -145,8 +145,8 @@ class InstallerManager:
         """Perform a list of checks"""
         bottle_path = ManagerUtils.get_bottle_path(config)
 
-        if checks.get("files"):
-            for f in checks.get("files"):
+        if files := checks.get("files"):
+            for f in files:
                 if f.startswith("userdir/"):
                     current_user = os.getenv("USER")
                     f = f.replace("userdir/", f"users/{current_user}/")

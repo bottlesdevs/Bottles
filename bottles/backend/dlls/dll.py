@@ -32,9 +32,9 @@ logging = Logger()
 
 
 class DLLComponent:
-    base_path: Optional[str] = None
+    base_path: str
     dlls: dict = {}
-    version: Optional[str] = None
+    version: str
 
     def __init__(self, version: str):
         self.version = version
@@ -43,10 +43,10 @@ class DLLComponent:
 
     @staticmethod
     @abstractmethod
-    def get_base_path(version: str):
+    def get_base_path(version: str) -> str:
         pass
 
-    def check(self):
+    def check(self) -> bool:
         found = self.dlls.copy()
 
         if None in self.dlls:

@@ -4,7 +4,7 @@ import os
 import uuid
 from datetime import datetime
 from itertools import groupby
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
@@ -60,14 +60,14 @@ class Reg(WineProgram):
         res = self.launch(("import", tmp_reg_filepath), communicate=True, minimal=True, action_name="bulk_add")
         logging.info(res, )
 
-    def add(self, key: str, value: str, data: str, value_type: str = False):
+    def add(self, key: str, value: str, data: str, value_type: Optional[str] = None):
         config = self.config
         logging.info(f"Adding Key: [{key}] with Value: [{value}] and "
                      f"Data: [{data}] in {config.Name} registry")
         winedbg = WineDbg(config)
         args = "add '%s' /v '%s' /d '%s' /f" % (key, value, data)
 
-        if value_type:
+        if value_type is not None:
             args = "add '%s' /v '%s' /t %s /d '%s' /f" % (
                 key, value, value_type, data
             )

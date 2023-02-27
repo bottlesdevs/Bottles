@@ -45,7 +45,9 @@ def detect_encoding(text: bytes) -> Optional[str]:
     Detect the encoding of a text by its bytes. Return None if it
     can't be detected.
     """
-    return from_bytes(text).best().encoding
+    if best_encoding := from_bytes(text).best():
+        return best_encoding.encoding
+    return None
 
 
 def is_glibc_min_available():
