@@ -169,7 +169,7 @@ class BottleConfig(DictCompatMixIn):
             f.close()
 
     @classmethod
-    def load(cls, file: Union[str, IO], mode='r') -> Result[Optional['BottleConfig']]:
+    def load(cls, file: Union[str, IO], mode='r') -> Result['BottleConfig']:
         """
         Load config from file
 
@@ -200,7 +200,7 @@ class BottleConfig(DictCompatMixIn):
             if f: f.close()
 
     @classmethod
-    def _fill_with(cls, data: dict) -> Result[Optional['BottleConfig']]:
+    def _fill_with(cls, data: dict) -> Result['BottleConfig']:
         """fill with dict"""
         try:
             data = data.copy()

@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-from typing import TypeVar, Generic
+from typing import TypeVar, Generic, Optional
 
 T = TypeVar('T')
 
@@ -27,15 +27,10 @@ class Result(Generic[T]):
     """
 
     status: bool = False
-    data: T = None
+    data: Optional[T] = None
     message: str = ""
 
-    def __init__(
-            self,
-            status: bool = False,
-            data: T = None,
-            message: str = ""
-    ):
+    def __init__(self, status: bool = False, data: Optional[T] = None, message: str = ""):
         self.status = status
         self.data = data
         self.message = message

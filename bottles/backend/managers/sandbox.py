@@ -134,5 +134,5 @@ class SandboxManager:
 
         return " ".join(_cmd)
 
-    def run(self, cmd: str):
+    def run(self, cmd: str) -> subprocess.Popen[bytes]:
         return subprocess.Popen(self.get_cmd(cmd), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
