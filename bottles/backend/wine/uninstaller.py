@@ -27,14 +27,14 @@ class Uninstaller(WineProgram):
         return self.launch(args=args, action_name="from_uuid")
 
     def from_name(self, name: str):
-        uuid = self.get_uuid(name)
-        if uuid is None:
+        res = self.get_uuid(name)
+        if not res.status or not res.data:
             '''
             No UUID found, at this point it is safe to assume that the
             program is not installed
             ref: <https://github.com/bottlesdevs/Bottles/issues/2237>
             '''
             return
-        uuid = uuid.strip()
+        uuid = res.data.strip()
         for _uuid in uuid.splitlines():
             self.from_uuid(_uuid)

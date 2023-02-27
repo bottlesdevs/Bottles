@@ -34,15 +34,11 @@ class WineDbg(WineProgram):
             communicate=True,
             action_name="get_processes"
         )
-        if res in [None, ""]:
+        if not res.status or not res.data:
             return processes
 
-        res = res.split("\n")
-
-        # remove the first line from the output (the header)
-        del res[0]
-
-        for w in res:
+        lines = res.data.split("\n")
+        for w in lines[1:]:  # remove the first line from the output (the header)
             w = re.sub("\\s{2,}", " ", w)[1:].replace("'", "")
 
             if "\\_" in w:
@@ -107,15 +103,15 @@ class WineDbg(WineProgram):
                 communicate=True,
                 action_name="kill_process"
             )
-            if "error 5" in res and name:
-                res = subprocess.Popen(
+            if res.data and "error 5" in res.data and name:
+                subprocess.Popen(
                     f"kill $(pgrep {name[:15]})",
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
                     shell=True
                 )
-                return res
-            return wineboot.kill()
+                return
+            wineboot.kill()
 
         if name:
             processes = self.get_processes()

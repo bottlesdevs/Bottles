@@ -39,19 +39,12 @@ class Net(WineProgram):
         services = []
         res = self.start()
 
-        if len(res) == 0:
+        if not res.status or not res.data:
             return services
 
-        res = res.strip().splitlines()
-        i = 0
-
-        for r in res:
-            if i == 0:
-                i += 1
-                continue
-
+        lines = res.data.strip().splitlines()
+        for r in lines[1:]:
             r = r[4:]
             services.append(r)
-            i += 1
 
         return services

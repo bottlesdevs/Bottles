@@ -1,21 +1,22 @@
 import os
-import stat
 import shutil
-import tempfile
+import stat
 import subprocess
+import tempfile
 from typing import Optional
 
-from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils.generic import detect_encoding
-from bottles.backend.managers.runtime import RuntimeManager
-from bottles.backend.managers.sandbox import SandboxManager
-from bottles.backend.utils.terminal import TerminalUtils
-from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils.display import DisplayUtils
-from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
     obs_vkc_available, vmtouch_available
 from bottles.backend.logger import Logger
+from bottles.backend.managers.runtime import RuntimeManager
+from bottles.backend.managers.sandbox import SandboxManager
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.result import Result
+from bottles.backend.utils.display import DisplayUtils
+from bottles.backend.utils.generic import detect_encoding
+from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.terminal import TerminalUtils
 
 logging = Logger()
 
@@ -200,10 +201,8 @@ class WineCommand:
             dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
-        if (params.use_runtime
-            or params.use_eac_runtime
-            or params.use_be_runtime) \
-            and not self.terminal and not return_steam_env:
+        if (params.use_runtime or params.use_eac_runtime or params.use_be_runtime) \
+                and not self.terminal and not return_steam_env:
             _rb = RuntimeManager.get_runtime_env("bottles")
             if _rb:
                 _eac = RuntimeManager.get_eac()
@@ -254,14 +253,14 @@ class WineCommand:
                 "lib/gstreamer-1.0",
                 "lib32/gstreamer-1.0"
             ]
-            
+
         for lib in runner_libs:
             _path = os.path.join(runner_path, lib)
             if os.path.exists(_path):
                 ld.append(_path)
 
         # Embedded GStreamer environment variables
-        if not env.has('BOTTLES_USE_SYSTEM_GSTREAMER') and not return_steam_env:  
+        if not env.has('BOTTLES_USE_SYSTEM_GSTREAMER') and not return_steam_env:
             gst_env_path = []
             for lib in gst_libs:
                 if os.path.exists(os.path.join(runner_path, lib)):
@@ -453,7 +452,13 @@ class WineCommand:
 
         return runner
 
-    def get_cmd(self, command, post_script: str = None, return_steam_cmd: bool = False, return_clean_cmd: bool = False) -> str:
+    def get_cmd(
+            self,
+            command,
+            post_script: str = None,
+            return_steam_cmd: bool = False,
+            return_clean_cmd: bool = False
+    ) -> str:
         config = self.config
         params = config.Parameters
         runner = self.runner
@@ -578,13 +583,14 @@ class WineCommand:
         vmtouch_flags = "-t -v -l -d"
         vmtouch_file_size = " -m 1024M"
         if self.command.find("C:\\") > 0:
-            self.vmtouch_files = "'"+(self.cwd+"/"+(self.command.split(" ")[-1].split('\\')[-1])).replace('\'', "")+"'"
+            s = (self.cwd + "/" + (self.command.split(" ")[-1].split('\\')[-1])).replace('\'', "")
         else:
-            self.vmtouch_files = "'"+self.command.split(" ")[-1]+"'"
+            s = self.command.split(" ")[-1]
+        self.vmtouch_files = f"'{s}'"
 
         # if self.config.Parameters.vmtouch_cache_cwd:
         #    self.vmtouch_files = "'"+self.vmtouch_files+"' '"+self.cwd+"/'" Commented out as fix for #1941
-        self.command = vmtouch_available+" "+vmtouch_flags+" "+vmtouch_file_size+" "+self.vmtouch_files+" && "+self.command
+        self.command = f"{vmtouch_available} {vmtouch_flags} {vmtouch_file_size} {self.vmtouch_files} && {self.command}"
 
     def vmtouch_free(self):
         subprocess.Popen(
@@ -597,7 +603,7 @@ class WineCommand:
             return
 
         vmtouch_flags = "-e -v"
-        command = vmtouch_available+" "+vmtouch_flags+" "+self.vmtouch_files
+        command = f"{vmtouch_available} {vmtouch_flags} {self.vmtouch_files}"
         subprocess.Popen(
             command,
             shell=True,
@@ -605,35 +611,50 @@ class WineCommand:
             cwd=self.cwd,
         )
 
-    def run(self):
+    def run(self) -> Result[Optional[str]]:
+        """
+        Run command with pre-configured parameters
+
+        :return: `status` is True if command executed successfully,
+                 `data` may be available even if `status` is False.
+        """
         if None in [self.runner, self.env]:
-            return
+            return Result(False, message="runner or env is not ready, Wine command terminated.")
 
         if vmtouch_available and self.config.Parameters.vmtouch and not self.terminal:
             self.vmtouch_preload()
 
-        if self.config.Parameters.sandbox:
-            permissions = self.config.Sandbox
-            sandbox = SandboxManager(
-                envs=self.env,
-                chdir=self.cwd,
-                share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
-                share_paths_ro=[
-                    Paths.runners,
-                    Paths.temp
-                ],
-                share_net=permissions.share_net,
-                share_sound=permissions.share_sound,
-            )
-            if self.terminal:
-                return TerminalUtils().execute(sandbox.get_cmd(self.command), self.env, self.colors, self.cwd)
+        # prepare sandbox manager
+        sandbox: Optional[SandboxManager] = SandboxManager(
+            envs=self.env,
+            chdir=self.cwd,
+            share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
+            share_paths_ro=[
+                Paths.runners,
+                Paths.temp
+            ],
+            share_net=self.config.Sandbox.share_net,
+            share_sound=self.config.Sandbox.share_sound,
+        ) if self.config.Parameters.sandbox else None
 
+        # run command in external terminal if terminal is True
+        if self.terminal:
+            if sandbox:
+                return Result(
+                    status=TerminalUtils().execute(sandbox.get_cmd(self.command), self.env, self.colors, self.cwd)
+                )
+            else:
+                return Result(
+                    status=TerminalUtils().execute(self.command, self.env, self.colors, self.cwd)
+                )
+
+        # prepare proc if we are going to execute command internally
+        # proc should always be `Popen[bytes]` to make sure
+        # stdout_data's type is `bytes`
+        proc: subprocess.Popen[bytes]
+        if sandbox:
             proc = sandbox.run(self.command)
-
         else:
-            if self.terminal:
-                return TerminalUtils().execute(self.command, self.env, self.colors, self.cwd)
-
             try:
                 proc = subprocess.Popen(
                     self.command,
@@ -643,35 +664,31 @@ class WineCommand:
                     cwd=self.cwd
                 )
             except FileNotFoundError:
-                return
-                
-        res = proc.communicate()[0]
-        enc = detect_encoding(res)
+                return Result(False, message="File not found")
 
-        if vmtouch_available and self.config.Parameters.vmtouch and not self.terminal:
+        stdout_data, _ = proc.communicate()
+
+        if vmtouch_available and self.config.Parameters.vmtouch:
+            # don't call vmtouch_free while running via external terminal
             self.vmtouch_free()
 
-        if enc is not None:
-            res = res.decode(enc)
+        codec = detect_encoding(stdout_data)
 
-        if self.communicate:
-            return res
+        rv: str
+        if codec:
+            rv = stdout_data.decode(codec)
+        else:
+            logging.warning("Unable to decode command output")
+            rv = str(stdout_data)[2:-1]  # trim b''
 
-        try:
-            '''
-            Read the output to catch the wine ShellExecuteEx exception, so we can 
-            raise it as a python exception and handle it in other parts of the code.
-            '''
-            if "ShellExecuteEx" in res:
-                raise ValueError("ShellExecuteEx")
-        except ValueError:
-            '''
-            Try running the command without some args which can cause the exception.
-            '''
-            res = subprocess.Popen(self.command, shell=True, env=self.env)
-            if self.communicate:
-                return res.communicate()
-            return res
+        # "ShellExecuteEx" exception may occur while executing command,
+        # previously we rerun the command without `cwd` and `stdout=PIPE`
+        # to fix it, which is removed since it may lead to unexpected behavior
+        if "ShellExecuteEx" in rv:
+            logging.warning("ShellExecuteEx exception seems occurred.")
+            return Result(False, data=rv, message="ShellExecuteEx exception seems occurred.")
+
+        return Result(True, data=rv)
 
     @staticmethod
     def __set_dxvk_nvapi_conf(bottle: str):

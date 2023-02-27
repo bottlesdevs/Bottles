@@ -15,7 +15,7 @@ class Icinfo(WineProgram):
 
     def get_dict(self):
         res = self.launch(communicate=True, action_name="get_dict")
-        if res is None or len(res) == 0:
+        if not res.status or not res.data:
             return {}
 
         res = [r.strip() for r in res.split('\n')[1:]]
