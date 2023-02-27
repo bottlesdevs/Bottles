@@ -20,7 +20,7 @@ import shutil
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
-from typing import Union
+from typing import Union, Optional
 
 import icoextract
 
@@ -43,7 +43,7 @@ class ManagerUtils:
 
     @staticmethod
     def open_filemanager(
-            config: BottleConfig | None = None,
+            config: Optional[BottleConfig] = None,
             path_type: str = "bottle",
             component: str = "",
             custom_path: str = ""

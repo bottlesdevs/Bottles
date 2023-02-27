@@ -16,6 +16,7 @@
 #
 
 from gettext import gettext as _
+from typing import Optional
 
 from gi.repository import Gtk, GObject, Adw
 
@@ -125,7 +126,7 @@ class ComponentEntry(Adw.ActionRow):
             component=self.name
         )
 
-    def update_progress(self, received_size: int = 0, total_size: int = 0, status: Status | None = None):
+    def update_progress(self, received_size: int = 0, total_size: int = 0, status: Optional[Status] = None):
         if status == Status.FAILED:
             logging.error(f"Component installation failed")
             self.set_err()

@@ -24,7 +24,7 @@ from datetime import datetime
 from functools import lru_cache
 from glob import glob
 from pathlib import Path
-from typing import Union, Dict
+from typing import Union, Dict, Optional
 
 from bottles.backend.globals import Paths
 from bottles.backend.models.config import BottleConfig
@@ -49,7 +49,7 @@ class SteamManager:
     localconfig = {}
     library_folders = []
 
-    def __init__(self, config: BottleConfig | None = None, is_windows: bool = False, check_only: bool = False):
+    def __init__(self, config: Optional[BottleConfig] = None, is_windows: bool = False, check_only: bool = False):
         self.config = config
         self.is_windows = is_windows
         self.steam_path = self.__find_steam_path()
@@ -353,7 +353,7 @@ class SteamManager:
 
         return apps[prefix]
 
-    def get_launch_options(self, prefix: str, app_conf: dict | None = None) -> {}:
+    def get_launch_options(self, prefix: str, app_conf: Optional[dict] = None) -> {}:
         if app_conf is None:
             app_conf = self.get_app_config(prefix)
 

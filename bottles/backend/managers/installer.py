@@ -18,7 +18,7 @@ import os
 import subprocess
 import uuid
 from functools import lru_cache
-from typing import Union
+from typing import Union, Optional
 
 import markdown
 import pycurl
@@ -344,7 +344,7 @@ class InstallerManager:
         return files
 
     def install(self, config: BottleConfig, installer: dict, step_fn: callable, is_final: bool = True,
-                local_resources: dict | None = None):
+                local_resources: Optional[dict] = None):
         manifest = self.get_installer(installer[0])
         _config = config
 

@@ -1,4 +1,4 @@
-from typing import NewType
+from typing import NewType, Optional
 
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
@@ -16,8 +16,8 @@ class Start(WineProgram):
             file: str,
             terminal: bool = True,
             args: str = "",
-            environment: dict | None = None,
-            cwd: str | None = None
+            environment: Optional[dict] = None,
+            cwd: Optional[str] = None
     ):
         winepath = WinePath(self.config)
 

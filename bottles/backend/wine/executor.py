@@ -1,7 +1,7 @@
 import os
 import shlex
 import uuid
-from typing import NewType, Union
+from typing import NewType, Union, Optional
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -27,17 +27,17 @@ class WineExecutor:
             exec_path: str,
             args: str = "",
             terminal: bool = False,
-            cwd: str | None = None,
-            environment: dict | None = None,
+            cwd: Optional[str] = None,
+            environment: Optional[dict] = None,
             move_file: bool = False,
             move_upd_fn: callable = None,
-            post_script: str | None = None,
-            monitoring: list | None = None,
-            override_dxvk: bool | None = None,
-            override_vkd3d: bool | None = None,
-            override_nvapi: bool | None = None,
-            override_fsr: bool | None = None,
-            override_virt_desktop: bool | None = None
+            post_script: Optional[str] = None,
+            monitoring: Optional[list] = None,
+            override_dxvk: Optional[bool] = None,
+            override_vkd3d: Optional[bool] = None,
+            override_nvapi: Optional[bool] = None,
+            override_fsr: Optional[bool] = None,
+            override_virt_desktop: Optional[bool] = None
     ):
         logging.info("Launching an executable…")
         self.config = config

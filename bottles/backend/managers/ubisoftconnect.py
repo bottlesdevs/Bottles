@@ -17,7 +17,7 @@
 
 import os
 import uuid
-from typing import Union
+from typing import Union, Optional
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
@@ -56,9 +56,9 @@ class UbisoftConnectManager:
         """
         found = {}
         games = []
-        key: str | None = None
-        appid: str | None = None
-        thumb: str | None = None
+        key: Optional[str] = None
+        appid: Optional[str] = None
+        thumb: Optional[str] = None
         reg_key = "register: HKEY_LOCAL_MACHINE\\SOFTWARE\\Ubisoft\\Launcher\\Installs\\"
         conf_path = UbisoftConnectManager.find_conf_path(config)
         games_path = os.path.join(

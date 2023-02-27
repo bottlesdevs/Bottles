@@ -18,7 +18,7 @@
 import os
 import shutil
 from glob import glob
-from typing import NewType
+from typing import NewType, Optional
 from abc import abstractmethod
 
 from bottles.backend.logger import Logger
@@ -32,9 +32,9 @@ logging = Logger()
 
 
 class DLLComponent:
-    base_path: str | None = None
+    base_path: Optional[str] = None
     dlls: dict = {}
-    version: str | None = None
+    version: Optional[str] = None
 
     def __init__(self, version: str):
         self.version = version
