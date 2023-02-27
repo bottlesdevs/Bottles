@@ -135,7 +135,7 @@ class InstallerManager:
             _dep = [dep, self.__manager.supported_dependencies.get(dep)]
             res = self.__manager.dependency_manager.install(_config, _dep)
 
-            if not res.status:
+            if not res.ok:
                 return False
 
         return True

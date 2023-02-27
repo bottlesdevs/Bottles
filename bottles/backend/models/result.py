@@ -42,3 +42,15 @@ class Result(Generic[T]):
 
     def set_status(self, v: bool):
         self.status = v
+
+    @property
+    def ok(self):
+        return self.status
+
+    @property
+    def has_data(self):
+        return bool(self.data)
+
+    @property
+    def ready(self):
+        return self.ok and self.has_data

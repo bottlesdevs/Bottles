@@ -444,7 +444,7 @@ class BottleView(Adw.PreferencesPage):
 
         @GtkUtils.run_in_main_loop
         def finish(result, error=False):
-            if result.status:
+            if result.ok:
                 self.window.show_toast(_("Backup created for \"{0}\"").format(self.config.Name))
             else:
                 self.window.show_toast(_("Backup failed for \"{0}\"").format(self.config.Name))

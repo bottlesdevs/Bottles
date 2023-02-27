@@ -167,7 +167,7 @@ class InstallerDialog(Adw.Window):
 
         @GtkUtils.run_in_main_loop
         def set_status(result, error=False):
-            if result.status:
+            if result.ok:
                 return self.__installed()
             _err = result.data.get("message", _("Installer failed with unknown error"))
             self.__error(_err)

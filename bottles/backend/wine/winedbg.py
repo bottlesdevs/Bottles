@@ -34,7 +34,7 @@ class WineDbg(WineProgram):
             communicate=True,
             action_name="get_processes"
         )
-        if not res.status or not res.data:
+        if not res.ready:
             return processes
 
         lines = res.data.split("\n")
@@ -103,7 +103,7 @@ class WineDbg(WineProgram):
                 communicate=True,
                 action_name="kill_process"
             )
-            if res.data and "error 5" in res.data and name:
+            if res.has_data and "error 5" in res.data and name:
                 subprocess.Popen(
                     f"kill $(pgrep {name[:15]})",
                     stdout=subprocess.PIPE,

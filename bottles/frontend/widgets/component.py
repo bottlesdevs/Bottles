@@ -102,7 +102,7 @@ class ComponentEntry(Adw.ActionRow):
     def uninstall(self, widget):
         @GtkUtils.run_in_main_loop
         def update(result, error=False):
-            if result.status:
+            if result.ok:
                 return self.set_uninstalled()
 
             return self.set_err(result.data.get("message"), retry=False)

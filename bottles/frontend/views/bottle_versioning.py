@@ -145,7 +145,7 @@ class VersioningView(Adw.PreferencesPage):
         @GtkUtils.run_in_main_loop
         def update(result, error):
             self.window.show_toast(result.message)
-            if result.status:
+            if result.ok:
                 self.update(states=result.data.get('states'), active=result.data.get('state_id'))
 
         message = self.entry_state_message.get_text()

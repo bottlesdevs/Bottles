@@ -39,7 +39,7 @@ class Net(WineProgram):
         services = []
         res = self.start()
 
-        if not res.status or not res.data:
+        if not res.ready:
             return services
 
         lines = res.data.strip().splitlines()

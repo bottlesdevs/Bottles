@@ -35,7 +35,7 @@ class WineBridge(WineProgram):
             communicate=True,
             action_name="get_procs"
         )
-        if not res.status or not res.data:
+        if not res.ready:
             return processes
 
         lines = res.data.split("\n")

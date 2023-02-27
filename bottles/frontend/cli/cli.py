@@ -614,7 +614,7 @@ class CLI:
         bottle = mng.local_bottles[_bottle]
         winecommand = WineCommand(config=bottle, command=_input, communicate=True)
         res = winecommand.run()
-        if not res.status:
+        if not res.ok:
             sys.stdout.write(res.message)
         sys.stdout.write(res.data)
 
