@@ -151,7 +151,8 @@ class BottleView(Adw.PreferencesPage):
 
         gtk_context = self.drop_overlay.get_style_context()
         Gtk.StyleContext.add_class(gtk_context, "dragndrop_overlay")
-        self.style_provider.load_from_data(b".dragndrop_overlay { background: rgba(41, 65, 94, 0.2);}")
+        style_data = ".dragndrop_overlay { background: rgba(41, 65, 94, 0.2);}"
+        self.style_provider.load_from_data(style_data, len(style_data))
         Gtk.StyleContext.add_provider(
             gtk_context,
             self.style_provider,
