@@ -241,6 +241,16 @@ template DetailsPreferences : .AdwPreferencesPage {
       title: _("OBS Game Capture");
       subtitle: _("Toggle OBS Game Capture for all Vulkan and OpenGL programs.");
 
+      MenuButton menu_button_obsvkc {
+        valign: center;
+        icon-name: "warning-symbolic";
+        popover: popover_cas_sharpness;
+
+        styles [
+          "flat",
+        ]
+      }
+
       Switch switch_obsvkc {
         valign: center;
       }
@@ -413,6 +423,67 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       Switch switch_versioning_patterns {
         valign: center;
+      }
+    }
+  }
+}
+
+Popover popover_cas_sharpness {
+  Box {
+    orientation: vertical;
+
+    Label {
+      margin-start: 6;
+      margin-end: 6;
+      margin-top: 6;
+      margin-bottom: 6;
+      valign: center;
+      xalign: 0;
+      wrap: true;
+      wrap-mode: word_char;
+      ellipsize: none;
+      lines: 4;
+      use-markup: true;
+      max-width-chars: 40;
+      label: _("This feature is unavailable on your system. To add it, please run:");
+    }
+
+    [overlay]
+    Box {
+      styles [
+        "card",
+        "frame",
+        "linked",
+        "view",
+      ]
+
+      hexpand: true;
+      valign: start;
+      spacing: 12;
+      margin-top: 6;
+      margin-end: 6;
+      margin-start: 6;
+      overflow: hidden;
+
+      Label {
+        styles [
+          "monospace",
+        ]
+
+        label: "flatpak install com.obsproject.Studio.Plugin.OBSVkCapture";
+        selectable: true;
+        margin-start: 9;
+        hexpand: true;
+        xalign: 0;
+      }
+
+      Button {
+        styles [
+          "flat",
+        ]
+
+        icon-name: "edit-copy-symbolic";
+        tooltip-text: _("Copy to Clipboard");
       }
     }
   }

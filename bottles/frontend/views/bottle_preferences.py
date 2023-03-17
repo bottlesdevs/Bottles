@@ -80,6 +80,7 @@ class PreferencesView(Adw.PreferencesPage):
     entry_name = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
     switch_obsvkc = Gtk.Template.Child()
+    menu_button_obsvkc = Gtk.Template.Child()
     switch_vkbasalt = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
@@ -191,6 +192,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_vkbasalt.set_sensitive(vkbasalt_available)
         self.switch_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
+        self.menu_button_obsvkc.set_visible(not obs_vkc_available)
         self.switch_vmtouch.set_sensitive(vmtouch_available)
         _not_available = _("This feature is unavailable on your system.")
         _flatpak_not_available = _("{} To add this feature, please run flatpak install").format(_not_available)
@@ -238,6 +240,9 @@ class PreferencesView(Adw.PreferencesPage):
 
         if not vmtouch_available:
             self.switch_vmtouch.set_tooltip_text(_not_available)
+
+    def __create_popover(self, widget, string):
+        ...
 
     def __check_entry_name(self, *_args):
         if self.entry_name.get_text() != self.config.Name:
