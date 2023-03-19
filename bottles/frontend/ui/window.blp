@@ -1,10 +1,11 @@
 using Gtk 4.0;
 
 template MainWindow : .AdwApplicationWindow {
+
   title: "Bottles";
-  default-width: "880";
-  default-height: "640";
   icon-name: "com.usebottles.bottles";
+
+  close-request => on_close_request();
 
   .AdwToastOverlay toasts {
     .AdwLeaflet main_leaf {
