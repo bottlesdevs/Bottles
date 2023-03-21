@@ -52,7 +52,7 @@ class ProgramEntry(Adw.ActionRow):
     btn_rename = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_add_steam = Gtk.Template.Child()
-    btn_add_entry = Gtk.Template.Child()
+    btn_add_to_apps = Gtk.Template.Child()
     btn_add_library = Gtk.Template.Child()
     btn_launch_terminal = Gtk.Template.Child()
     pop_actions = Gtk.Template.Child()
@@ -118,7 +118,7 @@ class ProgramEntry(Adw.ActionRow):
         self.btn_unhide.connect("clicked", self.hide_program)
         self.btn_rename.connect("clicked", self.rename_program)
         self.btn_browse.connect("clicked", self.browse_program_folder)
-        self.btn_add_entry.connect("clicked", self.add_entry)
+        self.btn_add_to_apps.connect("clicked", self.add_to_apps)
         self.btn_add_library.connect("clicked", self.add_to_library)
         self.btn_add_steam.connect("clicked", self.add_to_steam)
         self.btn_remove.connect("clicked", self.remove_program)
@@ -287,14 +287,14 @@ class ProgramEntry(Adw.ActionRow):
         )
         self.pop_actions.popdown()  # workaround #1640
 
-    def add_entry(self, _widget):
+    def add_to_apps(self, _widget):
         @GtkUtils.run_in_main_loop
         def update(result, _error=False):
             if not result:
-                webbrowser.open("https://docs.usebottles.com/bottles/programs#flatpak")
+                self.window.show_toast(_("Failed to add \"{0}\" in App Grid").format(self.program["name"]))
                 return
 
-            self.window.show_toast(_("Desktop Entry created for \"{0}\"").format(self.program["name"]))
+            self.window.show_toast(_("\"{0}\" added in App Grid").format(self.program["name"]))
 
         RunAsync(
             ManagerUtils.create_desktop_entry,
