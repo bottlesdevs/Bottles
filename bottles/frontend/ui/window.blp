@@ -1,10 +1,8 @@
 using Gtk 4.0;
 
 template MainWindow : .AdwApplicationWindow {
-
   title: "Bottles";
   icon-name: "com.usebottles.bottles";
-
   close-request => on_close_request();
 
   .AdwToastOverlay toasts {
