@@ -22,9 +22,6 @@ if devel == true
 	APP_ID += '.' + 'Devel'
 endif
 
-APP_ICON = APP_ID + '.' + 'svg'
-
-
 
 gnome = import('gnome')
 i18n = import('i18n')
