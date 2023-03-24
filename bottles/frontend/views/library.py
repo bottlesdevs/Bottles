@@ -19,7 +19,7 @@ import contextlib
 import re
 from gettext import gettext as _
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw, GObject
 
 from bottles.backend.managers.library import LibraryManager
 from bottles.frontend.utils.gtk import GtkUtils
@@ -35,6 +35,8 @@ class LibraryView(Adw.Bin):
     main_flow = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     style_provider = Gtk.CssProvider()
+
+    items_per_line = GObject.property(type=int, default=0)
 
     # endregion
 
@@ -59,6 +61,7 @@ class LibraryView(Adw.Bin):
             with contextlib.suppress(Exception):
                 entry = LibraryEntry(self, u, e)
                 self.main_flow.append(entry)
+                self.items_per_line += 1 
 
     def remove_entry(self, entry):
         @GtkUtils.run_in_main_loop

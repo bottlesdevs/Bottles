@@ -17,10 +17,11 @@ template LibraryView : .AdwBin {
       vexpand: true;
 
       FlowBox main_flow {
+        max-children-per-line: bind LibraryView.items_per_line;
         row-spacing: 5;
         column-spacing: 5;
         halign: center;
-        valign: center;
+        valign: start;
         margin-top: 5;
         margin-start: 5;
         margin-bottom: 5;
