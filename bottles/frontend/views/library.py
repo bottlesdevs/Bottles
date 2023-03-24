@@ -55,12 +55,13 @@ class LibraryView(Adw.Bin):
         self.status_page.set_visible(len(entries) == 0)
         self.scroll_window.set_visible(not len(entries) == 0)
 
+        self.items_per_line = len(entries) 
+
         for u, e in entries.items():
             # We suppress exceptions so that it doesn't continue if the init fails
             with contextlib.suppress(Exception):
                 entry = LibraryEntry(self, u, e)
                 self.main_flow.append(entry)
-                self.items_per_line += 1 
 
     def remove_entry(self, entry):
         @GtkUtils.run_in_main_loop
