@@ -35,10 +35,9 @@ class LibraryView(Adw.Bin):
     main_flow = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     style_provider = Gtk.CssProvider()
+    # endregion
 
     items_per_line = GObject.property(type=int, default=0)
-
-    # endregion
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
