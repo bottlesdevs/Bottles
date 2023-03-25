@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2023-03-25 21:08+0000\n"
+"PO-Revision-Date: 2023-03-25 21:39+0000\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -69,12 +69,12 @@ msgstr "Mallipohja löytyi, toteutetaan…"
 #: bottles/backend/managers/manager.py:1140
 #: bottles/backend/managers/manager.py:1218
 msgid "The Wine config is being updated…"
-msgstr "Winen kokoonpanoa päivitetään…"
+msgstr "Wine kokoonpanoa päivitetään…"
 
 #: bottles/backend/managers/manager.py:1142
 #: bottles/backend/managers/manager.py:1220
 msgid "Wine config updated!"
-msgstr "Winen kokoonpano päivitetty!"
+msgstr "Wine kokoonpano päivitetty!"
 
 #: bottles/backend/managers/manager.py:1150
 #: bottles/backend/managers/manager.py:1228
@@ -722,7 +722,7 @@ msgstr "Näyttö"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr ""
+msgstr "Opaskirja Super Sampling"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
@@ -928,9 +928,8 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:298
 #: bottles/frontend/ui/details-preferences.blp:302
-#, fuzzy
 msgid "Steam Runtime"
-msgstr "Pullon nimi"
+msgstr "Steam Runtime"
 
 #: bottles/frontend/ui/details-preferences.blp:299
 msgid ""
@@ -1400,11 +1399,11 @@ msgstr "Info"
 
 #: bottles/frontend/ui/dialog-journal.blp:40
 msgid "Journal browser"
-msgstr ""
+msgstr "Journal selain"
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
-msgstr ""
+msgstr "Journal selain"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
@@ -1588,6 +1587,16 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"Bottles omaa uuden versiojärjestelmän, joka ei ole taaksepäin yhteensopiva.\n"
+"\n"
+"Jotta voimme jatkaa versioiden käyttöä, meidän on tehtävä pullovarasto "
+"uudelleen. Tämä ei poista sinun pullojen tietoja, vaan poistaa kaikki "
+"olemassa olevat tilannekuvat ja luo uudet.\n"
+"\n"
+"Jos haluat palata edelliseen tilannekuvaan ennen jatkamista, sulje tämä "
+"ikkuna ja palauta levykuva, avaa pullo ja tämän ikkuna näytetään uudelleen.\n"
+"\n"
+"Vanha järjestelmä lopetetaan jossakin seuraavassa julkaisussa."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
@@ -1644,7 +1653,7 @@ msgstr "Näytä tiedot"
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "Vaimennettu Luma terävyys"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
