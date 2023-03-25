@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2023-01-24 20:47+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"PO-Revision-Date: 2023-03-25 21:08+0000\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
 "Language: fi\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 #: bottles/backend/managers/backup.py:50 bottles/backend/managers/backup.py:112
@@ -53,7 +53,7 @@ msgstr "Pullokansion luominen epäonnistui."
 #: bottles/backend/managers/manager.py:1100
 #: bottles/backend/managers/manager.py:1178
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Paikkamerkin kansion/tiedoston luominen epäonnistui."
 
 #: bottles/backend/managers/manager.py:1105
 #: bottles/backend/managers/manager.py:1183
@@ -205,7 +205,7 @@ msgstr "Suoritustiedoston polku"
 
 #: bottles/frontend/main.py:121
 msgid "lnk path"
-msgstr ""
+msgstr "lnk polku"
 
 #: bottles/frontend/main.py:129 bottles/frontend/ui/library-entry.blp:117
 #: bottles/frontend/ui/list-entry.blp:5
@@ -214,13 +214,12 @@ msgid "Bottle name"
 msgstr "Pullon nimi"
 
 #: bottles/frontend/main.py:137
-#, fuzzy
 msgid "Pass arguments"
 msgstr "Suorita argumenteilla"
 
 #: bottles/frontend/main.py:196
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Virheellinen URI (syntax: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:238
 msgid "[Quit] request received."
@@ -916,7 +915,6 @@ msgstr "Hallitse hiekkalaatikon oikeuksia"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:287
 #: bottles/frontend/ui/details-preferences.blp:291
-#, fuzzy
 msgid "Bottles Runtime"
 msgstr "Pullon nimi"
 
@@ -925,6 +923,8 @@ msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
+"Lisää parempaa yhteensopivuutta tarjoamalla ylimääräisiä kirjastoja. Poista "
+"käytöstä, jos kohtaat ongelmia."
 
 #: bottles/frontend/ui/details-preferences.blp:298
 #: bottles/frontend/ui/details-preferences.blp:302
@@ -937,6 +937,8 @@ msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
+"Lisää parempaa yhteensopivuutta Steam-pelien kanssa tarjoamalla ylimääräisiä "
+"kirjastoja. Poista käytöstä, jos kohtaat ongelmia."
 
 #: bottles/frontend/ui/details-preferences.blp:307
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -1137,6 +1139,10 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Löytyi yksi tai useampi sama (tai samanlainen) raportti. Tarkista "
+"huolellisesti, ettei sitä ole jo raportoitu ennen uuden lähettämistä. "
+"Jokainen raportti vaatii kehittäjiltä ponnisteluja diagnoosin tekemiseksi, "
+"kunnioita heidän työtään ja varmista, ettet julkaise samoja."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:89
 msgid "I still want to report."
@@ -1284,7 +1290,6 @@ msgid "Game Resolution"
 msgstr "Pelin resoluutio"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
-#, fuzzy
 msgid "Uses the resolution of the video game as a reference in pixels."
 msgstr "Käyttää pelin resoluutiota viitteenä."
 
@@ -1307,6 +1312,8 @@ msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
+"Suurentaa resoluutiota, kun käytetään pelin resoluutiota suurempaa "
+"resoluutiota."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
@@ -1420,9 +1427,9 @@ msgid "Command Arguments"
 msgstr "Komennon argumentit"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:47
-#, fuzzy, c-format
+#, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "esim .: -esimerkki1 -esimerkki2 -esimerkki3=hei"
+msgstr "esimerkiksi: VAR=value %command% -example1 -example2 -example3=hello"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:52
 msgid "Post-run Script"
@@ -1455,9 +1462,8 @@ msgid "These settings will override the default settings for this executable."
 msgstr "Tämä asetus ohittaa tämän suoritustiedoston oletusasetukset."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:115
-#, fuzzy
 msgid "Preferences Overrides"
-msgstr "Asetukset"
+msgstr "Asetusten ohitukset"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:119
 msgid "Reset to Bottle's Defaults"
@@ -1489,6 +1495,17 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"Huomaa, että Proton-pohjaisten käynnistimien käyttäminen muissa ei-Steam "
+"pulloissa voi aiheuttaa ongelmia ja estää toimimasta niitä oikein.\n"
+"\n"
+"Suosittelemme käyttämään Protonin versiota Wine-GE, joka on tarkoitettu "
+"toimimaan Steamin ulkopuolella.\n"
+"\n"
+"Protonin jatkaminen ottaa automaattisesti käyttöön Steam-runtimen (jos se on "
+"järjestelmässä ja Bottles havaitsee sen), se käyttää tarvittavia kirjastoja "
+"ja rajoittaa ongelmia yhteensopivuuteen. Huomaa, että GloriousEggroll "
+"käynnistimen kehittäjä ei ole vastuussa ongelmista ja pyydämme, ettet tee "
+"heille vikailmoitusta."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1603,12 +1620,12 @@ msgstr "Tehosteet"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:62
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "Kontrastin mukautuva terävyys"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:65
 #: bottles/frontend/ui/dialog-vkbasalt.blp:102
 msgid "Sharpness"
-msgstr ""
+msgstr "Terävyys"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:69
 #: bottles/frontend/ui/dialog-vkbasalt.blp:106
@@ -1631,11 +1648,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
-msgstr ""
+msgstr "Rakeisuus"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:160
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "Nopea likimääräinen anti-aliasointi"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:163
 msgid "Subpixel Quality"
@@ -1643,23 +1660,23 @@ msgstr "Alipikselin laatu"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:191
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "Laatukynnys"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:219
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "Laatukynnys minimissä"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:249
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "Alipikselin morfologinen anti-aliasointi"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:252
 msgid "Edge Detection"
-msgstr ""
+msgstr "Reunan tunnistus"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:267
 msgid "Luma"
-msgstr ""
+msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:273
 msgid "Color"
@@ -1667,49 +1684,60 @@ msgstr "Väri"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:284
 msgid "Threshold"
-msgstr ""
+msgstr "Kynnysarvo"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:312
 msgid "Max Search Steps"
-msgstr ""
+msgstr "Max hakuvaiheet"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:339
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "Max hakuvaiheet diagonaalinen"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:366
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "Max kulman pyöristys"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:411
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"CAS-terävyys lisää kehyksen terävyyttä. Suuremmat arvot tekevät kehyksestä "
+"terävämmän, kun taas alle 0:n arvot tekevät kehyksestä pehmeämmän kuin "
+"natiivi."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:428
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"DLS-terävyys lisää kehyksen terävyyttä. Suuremmat tekevät kehyksestä "
+"terävämmän."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:445
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"DLS-denoise vähentää kehyksen kohinaa. Suuremmat arvot tekevät kehyksestä "
+"pehmeämmän."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:462
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"FXAA-alipikselin laatu heikentää aliasointia alipikselitasolla. Suuremmat "
+"arvot tekevät kehyksestä pehmeämmän."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:479
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"FXAA-reunakynnys on minimikontrastin määrä, joka tarvitaan FXAA-algoritmin "
+"soveltamiseen. Suuremmat arvot tekevät kehykseen enemmän kontrastia."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:496
 msgid ""
@@ -1717,34 +1745,46 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"FXAA-laadun reunakynnyksen minimiraja on tummien pikselien vähimmäisarvo, "
+"jotka FXAA-algoritmi jättää huomiotta. Suuremmat arvot saavat FXAA:n "
+"ohittamaan määritetyn arvon alapuolella olevat pikselit ja voi lisätä "
+"suorituskykyä."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"Luma havaitsee reunat yksivärisestä näkökulmasta, kun taas väri havaitsee "
+"reunat värien perusteella. Luma on tehokkaampi kuin väri."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:530
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"SMAA-kynnys määrittää reunan havaitsemisen herkkyyden. Pienemmät arvot "
+"havaitsevat enemmän reunoja suorituskyvyn kustannuksella."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:547
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"SMAA max hakuvaiheet määrittävät, kuinka monta vaaka- ja pystysuuntaista "
+"hakuvaihetta suoritetaan reunojen etsinnässä."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:564
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"SMAA max diagonaaliset hakuvaiheet määrittävät, kuinka monta "
+"viistosuuntaista hakuvaihetta suoritetaan reunojen etsinnässä."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:581
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
-msgstr ""
+msgstr "SMAA-kulman pyöristys määrittää reunan kulmien voimakkuuden."
 
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
@@ -1774,7 +1814,7 @@ msgstr "Poista"
 
 #: bottles/frontend/ui/drive-entry.blp:5
 msgid "/point/to/path"
-msgstr ""
+msgstr "/piste/kohteeseen/polku"
 
 #: bottles/frontend/ui/env-var-entry.blp:4
 #: bottles/frontend/ui/exclusion-pattern-entry.blp:4
@@ -1791,9 +1831,8 @@ msgid "Wine prefix name"
 msgstr "Wine-etuliitteen nimi"
 
 #: bottles/frontend/ui/importer-entry.blp:28
-#, fuzzy
 msgid "Manager"
-msgstr "Tehtävienhallinta"
+msgstr "Hallinta"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
@@ -1812,14 +1851,12 @@ msgid "No Prefixes Found"
 msgstr "Etuliitteitä ei löytynyt"
 
 #: bottles/frontend/ui/importer.blp:39
-#, fuzzy
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"Etuliitteitä ei löytynyt Lutriksesta, PlayOnLinuxista jne.\n"
-"                                    Napsauta yllä olevaa kuvaketta "
-"tuodaksesi pullon varmuuskopiosta"
+"Ulkoisia etuliitteitä ei löytynyt. Onko Bottlesilla pääsy niihin?\n"
+"Tuo pullo varmuuskopiosta yläreunassa olevan kuvakkeen avulla."
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
@@ -2006,7 +2043,7 @@ msgstr "Tyhjä ympäristö kokeiluillesi."
 
 #: bottles/frontend/ui/new.blp:108 bottles/frontend/ui/new.blp:117
 msgid "Unlinked Home Directory"
-msgstr ""
+msgstr "Linkittämätön kotihakemisto"
 
 #: bottles/frontend/ui/new.blp:109 bottles/frontend/ui/new.blp:118
 msgid "Do not link the userdir to the homedir"
@@ -2232,11 +2269,11 @@ msgstr "Ydin"
 
 #: bottles/frontend/ui/preferences.blp:209
 msgid "Runtime"
-msgstr ""
+msgstr "Runtime"
 
 #: bottles/frontend/ui/preferences.blp:213
 msgid "WineBridge"
-msgstr ""
+msgstr "WineBridge"
 
 #: bottles/frontend/ui/preferences.blp:219
 #: data/com.usebottles.bottles.gschema.xml:66
@@ -2394,6 +2431,9 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
+"Bottles toimii hiekkalaatikossa, joka on rajoitettu lupaympäristö, jota "
+"tarvitaan pitämään sinut turvassa. Jos ohjelma ei toimi, siirry pulloon (3 "
+"pistettä ikoni ylhäällä) ja käynnistä se sieltä."
 
 #: bottles/frontend/views/bottle_details.py:390
 #: bottles/frontend/views/bottle_details.py:505
@@ -2491,7 +2531,7 @@ msgstr "Tämä poistaa kaikki tilannevedokset, mutta säilyttää tiedostot."
 
 #: bottles/frontend/views/bottle_versioning.py:88
 msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
+msgstr "Luo uudet tilat siirtymällä uuteen versiojärjestelmään."
 
 #: bottles/frontend/views/details.py:147
 msgid "Installers"
@@ -2533,7 +2573,7 @@ msgstr "Valitse kokoonpanotiedosto"
 
 #: bottles/frontend/views/list.py:59 bottles/frontend/views/list.py:65
 msgid "N/A"
-msgstr ""
+msgstr "Ei käytössä"
 
 #: bottles/frontend/views/list.py:217
 msgid "Your Bottles"
@@ -2591,6 +2631,11 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
+"Bottles täytyy käynnistää uudelleen tämän hakemiston käyttämiseksi.\n"
+"\n"
+"Varmista, että suljet kaikki ohjelmat, jotka Bottles on käynnistänyt ennen "
+"käynnistämistä, koska se ei voi aiheuttaa tietojen menetyksen ja ohjelmien "
+"toimintahäiriön."
 
 #: bottles/frontend/views/preferences.py:176
 msgid "_Relaunch"
@@ -2678,9 +2723,9 @@ msgid "This program works perfectly."
 msgstr "Tämä ohjelma toimii täydellisesti."
 
 #: bottles/frontend/widgets/installer.py:90
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Review for {0}"
-msgstr "Manifest for {0}"
+msgstr "Arvio kohteelle {0}"
 
 #: bottles/frontend/widgets/program.py:184
 #, python-brace-format
@@ -2837,14 +2882,13 @@ msgid "Choose the Working Directory"
 msgstr "Valitse työskentelyhakemisto"
 
 #: bottles/frontend/windows/main_window.py:194
-#, fuzzy
 msgid "Custom Bottles Path not Found"
-msgstr "Aikaisessa kehityksessä (vaatii uudelleenkäynnistyksen)."
+msgstr "Mukautettua Bottles polkua ei löydy"
 
 #: bottles/frontend/windows/main_window.py:195
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
+msgstr "Palaa oletuspolkuun. Annetun polun bottles pulloja ei listata."
 
 #: bottles/frontend/windows/main_window.py:315
 msgid "Donate"
@@ -2874,7 +2918,7 @@ msgstr "Flatpak-migraatio"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr ""
+msgstr "Vaihda Flatpak siirtoikkunaan."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
@@ -2886,7 +2930,7 @@ msgstr "Pakota tumman teeman käyttö."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "Vaihda päivityspäivä listaan"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
@@ -2898,7 +2942,7 @@ msgstr "Steam-sovellusten luettelointi"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
-msgstr ""
+msgstr "Vaihda Steam-sovellusten listaan."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
@@ -2906,7 +2950,7 @@ msgstr "Epic Games -luettelointi"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr ""
+msgstr "Vaihda epic games listaan."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
@@ -2914,7 +2958,7 @@ msgstr "Ubisoft Connect -luettelointi"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."
-msgstr ""
+msgstr "Vaihda ubisoft yhteys listaan."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
@@ -2949,9 +2993,8 @@ msgid "Release Candidate"
 msgstr "Julkaisuehdokas"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle release candidate for runners."
-msgstr "Muuta julkaisuehdokas ajajia varten"
+msgstr "Vaihda julkaisuehdokas käynnistimelle."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
@@ -2962,32 +3005,28 @@ msgid "Choose which view the application should be started in."
 msgstr "Valitse, mikä näkymä ladataan sovelluksen käynnistyksen yhteydessä."
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Vaihda kokeelliset ominaisuudet, kuten versiointi ja asennusohjelmat-"
-"julkaisuehdokas ajajia varten"
+"Vaihda kokeelliset ominaisuudet, kuten versiointi ja asennusohjelmat. "
+"Vapauta julkaisuehdokas käynnistimelle."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
 msgstr "Steam Proton -tuki"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Vaihda kokeellinen versiointiominaisuus"
+msgstr "Vaihda Steam Proton etuliite päälle."
 
 #: data/com.usebottles.bottles.gschema.xml:76
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "Kokeilut"
+msgstr "Testiominaisuudet:sandbox"
 
 #: data/com.usebottles.bottles.gschema.xml:77
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Vaihda kokeelliset asennusohjelmat -ominaisuus"
+msgstr "Vaihda kokeellinen hiekkalaatikko per pullo."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
@@ -2999,11 +3038,11 @@ msgstr "Sulje Pullot, kun suoritustiedosto käynnistetään tiedostonhallinnasta
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "Näytä varoitus hiekkalaatikosta"
 
 #: data/com.usebottles.bottles.gschema.xml:87
 msgid "Toggle sandbox warning."
-msgstr ""
+msgstr "Ota varoitus hiekkalaatikosta käyttöön."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid "Run Windows software on Linux with Bottles!"
@@ -3114,111 +3153,101 @@ msgstr "... ja paljon muuta, mitä löydät asentamalla Pullot!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:85
 msgid "The PulseAudio Latency setting is now deprecated and enabled by default"
-msgstr ""
+msgstr "PulseAudio viiveasetukset ovat nyt vanhentuneet ja oletuksena käytössä"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:86
 msgid "Bottle details automatically show on bottle creation"
-msgstr ""
+msgstr "Bottle tiedot näkyvät automaattisesti pulloa luotaessa"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:87
 msgid "Bottles now complies with GNOME Circle guidelines"
-msgstr ""
+msgstr "Bottles ovat nyt GNOME Circle vaatimusten mukaisia"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:88
 msgid "Disable pulseaudio_latency by default."
-msgstr ""
+msgstr "Poista pulseaudio_latency käytöstä oletuksena."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Fixed a crash during startup due to uninstaller."
-msgstr ""
+msgstr "Korjattu asennuksen poisto-ohjelman aiheuttama kaatuminen."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:90
 msgid "Implemented a queue for installing components."
-msgstr ""
+msgstr "Komponenttien jono asennusta varten otettu käyttöön."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:91
 msgid "Fixed bottle deletion not working sometimes."
-msgstr ""
+msgstr "Korjattu ongelma jossa pullon poisto ei toimi ajoittain."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:92
 msgid "Support for latest dxvk @Blisto91"
-msgstr ""
+msgstr "Tuki uusimmalle dxvk @Blisto91"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:93
 msgid "Fix for DLSS"
-msgstr ""
+msgstr "DLSS:n korjaus"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Added tooltips for program grades"
-msgstr ""
+msgstr "Lisätty työkaluvihjeitä ohjelmaluokille"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
-#, fuzzy
 msgid "Fix installer completion @jntesteves"
-msgstr "Komponenttien asentaminen epäonnistui, yritettiin kolme kertaa."
+msgstr "Korjattu asennusohjelman valmistuminen @jntesteves"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fix gamescope arguments @jntesteves"
-msgstr ""
+msgstr "Korjattu gamescope-argumentit @jntesteves"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:97
 msgid "Added Ctrl + W shortcut for closing windows @A6GibKm"
-msgstr ""
+msgstr "Lisätty Ctrl + W pikanäppäin ikkunoiden sulkemiseen @A6GibKm"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:98
 msgid "Fixed bottles unsetting XDG_DATA_HOME"
-msgstr ""
+msgstr "Korjattu bottles XDG_DATA_HOME asetuksen poistaminen"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:99
-#, fuzzy
 msgid "French translations thanks to @julroy and @tymmsyde"
-msgstr "Ranskan käännökset kiitos @julroy67"
+msgstr "Ranskankielinen käännös, kiitos @julroy sekä @tymmsyde"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:100
-#, fuzzy
 msgid "Turkish translations thanks to @54linux-ea and @ruizlenato"
-msgstr "Ranskan käännökset kiitos @julroy67"
+msgstr "Turkinkielinen käännös, kiitos @54linux-ea sekä @ruizlenato"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Russian translations thanks to @lenemter and @Smoque"
-msgstr "Saksan käännökset kiitos @thericosanto"
+msgstr "Saksankielinen käännös, kiitos @lenemter sekä @Smoque"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:102
-#, fuzzy
 msgid "Catalan translations thanks to @rogervc"
-msgstr "Saksan käännökset kiitos @thericosanto"
+msgstr "Catalankielinen käännös, kiitos @rogervc"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic translations thanks to @TheDarkEvil"
-msgstr "Saksan käännökset kiitos @thericosanto"
+msgstr "Arabiankielinen käännös, kiitos @TheDarkEvil"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:104
-#, fuzzy
 msgid "Korean translations thanks to @MarongHappy"
-msgstr "Slovakian käännökset @MartinIIOT ansiosta"
+msgstr "Koreankielinen käännös, kiitos @MarongHappy"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
-msgstr "Portugalin käännökset kiitos @SantosSi"
+msgstr ""
+"Portugalinkielinen käännös, kiitos @davipatricio, @SantosSi sekä @vitorhcl"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Galician translations thanks to @NicoSGF64"
-msgstr "Saksan käännökset kiitos @thericosanto"
+msgstr "Galiciankielinen käännös, kiitos @NicoSGF64"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:107
-#, fuzzy
 msgid "Hebrew translations thanks to @itayweb"
-msgstr "Saksan käännökset kiitos @thericosanto"
+msgstr "Hebreankielinen käännös, kiitos @itayweb"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:108
-#, fuzzy
 msgid "Polish translations thanks to @Mikutut"
-msgstr "Saksan käännökset kiitos @thericosanto"
+msgstr "Puolankielinen käännös, kiitos @Mikutut"
 
 #: bottles/frontend/ui/details-bottle.blp:264
 msgid "Layers"
@@ -3249,12 +3278,16 @@ msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable if you "
 "run into issues."
 msgstr ""
+"Lisää parempaa yhteensopivuutta tarjoamalla ylimääräisiä kirjastoja. Poista "
+"käytöstä, jos kohtaat ongelmia."
 
 #: bottles/frontend/ui/details-preferences.blp:303
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable if you run into issues."
 msgstr ""
+"Lisää parempaa yhteensopivuutta Steam-pelien kanssa tarjoamalla ylimääräisiä "
+"kirjastoja. Poista käytöstä, jos kohtaat ongelmia."
 
 #: bottles/frontend/ui/details-preferences.blp:388
 msgid ""
@@ -3266,7 +3299,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:145
 msgid "Something goes wrong."
-msgstr ""
+msgstr "Jokin meni pieleen."
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "This feature is not available on your system."
@@ -3286,18 +3319,17 @@ msgstr "Valitse uusi pullojen polku"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Added tooltips for program gades"
-msgstr ""
+msgstr "Lisätty työkaluvihjeet ohjelmaluokille"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:103
-#, fuzzy
 msgid "Arabic tran*slations thanks to @TheDarkEvil"
-msgstr "Saksan käännökset kiitos @thericosanto"
+msgstr "Arbiankielinen käännös, kiitos @TheDarkEvil"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:105
-#, fuzzy
 msgid ""
 "Protuguese translations thanks to @davipatricio, @SantosSi and @vitorhcl"
-msgstr "Portugalin käännökset kiitos @SantosSi"
+msgstr ""
+"Portugalinkielinen käännös, kiitos @davipatricio, @SantosSi sekä @vitorhcl"
 
 #~ msgid "Choose path"
 #~ msgstr "Valitse polku"
