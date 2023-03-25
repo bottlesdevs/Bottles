@@ -55,7 +55,7 @@ class LibraryView(Adw.Bin):
         self.status_page.set_visible(len(entries) == 0)
         self.scroll_window.set_visible(not len(entries) == 0)
 
-        self.items_per_line = len(entries) 
+        self.items_per_line = len(entries)
 
         for u, e in entries.items():
             # We suppress exceptions so that it doesn't continue if the init fails
@@ -66,6 +66,7 @@ class LibraryView(Adw.Bin):
     def remove_entry(self, entry):
         @GtkUtils.run_in_main_loop
         def undo_callback(*args):
+            self.items_per_line += 1
             entry.show()
 
         @GtkUtils.run_in_main_loop
@@ -73,6 +74,7 @@ class LibraryView(Adw.Bin):
             self.__delete_entry(entry)
 
         entry.hide()
+        self.items_per_line -= 1
         self.window.show_toast(
             message=_("\"{0}\" removed from the library.").format(entry.name),
             timeout=5,
