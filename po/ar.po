@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-17 07:36+0530\n"
-"PO-Revision-Date: 2023-03-20 06:40+0000\n"
+"PO-Revision-Date: 2023-03-30 10:37+0000\n"
 "Last-Translator: Ali Aljishi <ahj696@hotmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bottles/bottles/"
 "ar/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:110
 msgid "No path specified"
@@ -213,7 +213,7 @@ msgstr "Copyright © 2017 Bottles Developers"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:13
 msgid "Bottles Developers"
-msgstr "مُطوِّروا بوتلز"
+msgstr "مُطوِّروا «قوارير»"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -283,8 +283,8 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"حدث خطأ في التثبيت. أعد تشغيل بوتلز لقراءة تقرير الأعطال أو قم بتشغيله عبر "
-"الطرفية لقراءة المُخرج."
+"حدث خطأ في التثبيت. أعد تشغيل «قوارير» لقراءة تقرير الأعطال أو شغِّله "
+"باستخدام الطرفية لقراءة المُخرَج."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -721,7 +721,7 @@ msgstr "الأداء"
 
 #: bottles/frontend/ui/details-preferences.blp:180
 msgid "Enable synchronization to increase performance of multicore processors."
-msgstr "تمكين المزامنة لزيادة أداء المعالجات متعددة النواة."
+msgstr "مكِّن المزامنة لزيادة أداء المعالجات متعددة الأنوية."
 
 #: bottles/frontend/ui/details-preferences.blp:181
 msgid "Synchronization"
@@ -778,7 +778,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:218
 msgid "Manage vmtouch settings"
-msgstr "إدارة إعدادات vmtouch"
+msgstr "أدر إعدادات vmtouch"
 
 #: bottles/frontend/ui/details-preferences.blp:233
 msgid "OBS Game Capture"
@@ -806,7 +806,7 @@ msgstr "اللغة"
 
 #: bottles/frontend/ui/details-preferences.blp:259
 msgid "Choose the language to use with programs."
-msgstr "اختر اللغة التي تريد استخدامها مع البرامج."
+msgstr "اختر اللغة التي تريد استخدامها في البرامج."
 
 #: bottles/frontend/ui/details-preferences.blp:267
 msgid "Dedicated Sandbox"
@@ -814,7 +814,7 @@ msgstr "ساحة حماية مخصصة"
 
 #: bottles/frontend/ui/details-preferences.blp:268
 msgid "Use a restricted/managed environment for this bottle."
-msgstr "استخدم بيئة مقيدة / مُدارة لهذه قارورة."
+msgstr "استخدم بيئةً مقيَّدةً \\ مُدارة لهذه القارورة."
 
 #: bottles/frontend/ui/details-preferences.blp:271
 msgid "Manage the Sandbox Permissions"
@@ -823,7 +823,7 @@ msgstr "أدِر أذونات ساحة الحماية"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:287
 msgid "Bottles Runtime"
-msgstr "وقت تشغيل بوتلز"
+msgstr "وقت تشغيل «قوارير»"
 
 #: bottles/frontend/ui/details-preferences.blp:288
 msgid ""
@@ -1015,8 +1015,8 @@ msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
-"تعطل بوتلز آخر مرة. فضلاً قم بتعبئة تقرير فيه التتبع التالي لتساعدنا في "
-"التعرف على المشكلة مما يمكننا من الحيال دون وقوعها مجدداً."
+"تعطل «قوارير» آخر مرة. عبِّئ تقريرًا فيه التتبع التالي لتساعدنا في التعرف "
+"على المشكلة مما يمكننا من الحيال دون وقوعها مجدداً."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
 msgid ""
@@ -1047,7 +1047,7 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
-"لا يبدو أن هذا الإصدار من بوتلز يوفر كل التبعيات الأساسية، تواصل مع مشرف "
+"لا يبدو أن هذا الإصدار من «قوارير» يوفر كل التبعيات الأساسية، تواصل مع مشرف "
 "الحزمة أو استخدم إصدارًا رسميًا."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
@@ -1348,7 +1348,7 @@ msgstr "أعد تعيين إعدادات القارورة للإعدادات ا�
 
 #: bottles/frontend/ui/dialog-launch-options.blp:165
 msgid "Virtual Desktop"
-msgstr "سطح المكتب الافتراضي"
+msgstr "سطح مكتب افتراضي"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
 msgid "Proton Disclaimer"
@@ -1377,10 +1377,10 @@ msgstr ""
 "\n"
 "نوصي باستخدام واين GE بدلا عنه، وهي نسخة من بروتون هدفها العمل خارج ستيم.\n"
 "\n"
-"ستؤدي المتابعة إلى تشغيل ستيم (إن كان موجوداً على النظام ومتعرفاً عليه من قبل "
-"بوتلز) وذلك لإتاحة وصوله للمكتبات المطلوبة ولتقليل مشاكل التوافق، ضع في "
-"الحسبان أن مُوفر المُشغل GloriousEggroll ليس مسؤولاً عن أي مشكلة ونطلب منك أن "
-"لا تبلغ عنهم."
+"ستؤدي المتابعة إلى تشغيل ستيم (إن كان موجوداً على النظام ومتعرفاً عليه من "
+"قبل «قوارير») وذلك لإتاحة وصوله للمكتبات المطلوبة ولتقليل مشاكل التوافق، ضع "
+"في الحسبان أن مُوفر المُشغل GloriousEggroll ليس مسؤولاً عن أي مشكلة ونطلب "
+"منك أن لا تبلغ عنهم."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1463,14 +1463,14 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
-"أصبح لدى بوتلز نظام جديد لتعيين الإصدارات لا يدعم النسخ القديمة.\n"
+"أصبح لدى «قوارير» نظام جديد لتعيين الإصدارات لا يدعم النسخ القديمة.\n"
 "\n"
 "لاستكمال استخدام نظام تعيين الإصدار، علينا أن نقوم بإعادة تهيئة مستودع "
 "القارورة، لن يحذف هذا بياناتك من القارورة، ولكنه سيحذف كل اللقطات الموجودة "
 "وسيُنشئ لقطة جديدة.\n"
 "\n"
-"إن احتجت إلى العودة للقطة سابقة قبل المتابعة، أغلق هذه النافذة واستعد "
-"اللقطة، ثم أعد فتح القارورة لإظهار هذه الرسالة مرة أخرى.\n"
+"إن احتجت إلى العودة للقطة سابقة قبل المتابعة، أغلق هذه النافذة واستعد اللقطة،"
+" ثم أعد فتح القارورة لإظهار هذه الرسالة مرة أخرى.\n"
 "\n"
 "سيتوقف دعم النظام القديم في أحد الإصدارات القادمة."
 
@@ -1480,7 +1480,7 @@ msgstr "إعادة تهيئة المستودع…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
-msgstr "تم! فضلاً أعد تشغيل بوتلز."
+msgstr "تم! فضلاً أعد تشغيل «قوارير»."
 
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
@@ -1714,7 +1714,7 @@ msgstr "المدير"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
-msgstr "استُوردت سابقة واين هذه إلى بوتلز بالفعل."
+msgstr "استُوردت سابقة واين هذه إلى «قوارير» بالفعل."
 
 #: bottles/frontend/ui/importer.blp:22
 msgid "Import a Bottle backup"
@@ -1733,7 +1733,7 @@ msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"لم يُعثر على سابقات خارجيّة. هل لدى بوتلز صلاحية للوصول لهم؟\n"
+"لم يُعثر على سابقات خارجيّة. هل لدى «قوارير» صلاحية للوصول لهم؟\n"
 "استخدم الأيقونة أعلاه لاستيراد قارورة من نسخة احتياطية."
 
 #: bottles/frontend/ui/importer.blp:74
@@ -1969,7 +1969,7 @@ msgstr "السابق"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
-msgstr "مرحبا بك في بوتلز"
+msgstr "مرحبا بك في «قوارير»"
 
 #: bottles/frontend/ui/onboard.blp:60
 msgid "Run Windows Software on Linux."
@@ -1978,14 +1978,14 @@ msgstr "شغِّل برامج ويندوز على لينكس."
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
-msgstr "النوافذ في بوتلز"
+msgstr "النوافذ في «قوارير»"
 
 #: bottles/frontend/ui/onboard.blp:66
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
-"يستعمل بوتلز مشغلات توافق لتوفير بيئات معزولة تشبه ويندوز لتشغيل البرامج."
+"يستعمل «قوارير» مشغلات توافق لتوفير بيئات معزولة تشبه ويندوز لتشغيل البرامج."
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
@@ -2006,7 +2006,7 @@ msgstr "فضلاً أنهِ الإعداد أولاً"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:120
 msgid "Start using Bottles"
-msgstr "ابدأ باستخدام بوتلز"
+msgstr "ابدأ باستخدام «قوارير»"
 
 #: bottles/frontend/ui/onboard.blp:141
 msgid "Next"
@@ -2031,7 +2031,7 @@ msgstr "الوضع الداكن"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
-msgstr "ما إذا كان يجب على بوتلز استخدام ألوان الوضع الداكن."
+msgstr "ما إذا كان يجب على «قوارير» استخدام ألوان الوضع الداكن."
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
@@ -2056,15 +2056,15 @@ msgstr "الملفات المؤقتة"
 
 #: bottles/frontend/ui/preferences.blp:53
 msgid "Clean temp files when Bottles launches?"
-msgstr "حذف الملفات المؤقتة عند بدء بوتلز؟"
+msgstr "حذف الملفات المؤقتة عند بدء «قوارير»؟"
 
 #: bottles/frontend/ui/preferences.blp:62
 msgid "Close Bottles After Starting a Program"
-msgstr "أغلق بوتلز بعد تشغيل برنامج"
+msgstr "أغلق «قوارير» بعد تشغيل برنامج"
 
 #: bottles/frontend/ui/preferences.blp:63
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "أغلق بوتلز بعد بدء تشغيل برنامج من مدير الملفات."
+msgstr "أغلق «قوارير» بعد بدء تشغيل برنامج من مدير الملفات."
 
 #: bottles/frontend/ui/preferences.blp:73
 msgid "Integrations"
@@ -2108,7 +2108,7 @@ msgstr "متقدم"
 
 #: bottles/frontend/ui/preferences.blp:131
 msgid "Bottles Directory"
-msgstr "دليل بوتلز"
+msgstr "دليل «قوارير»"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
@@ -2238,7 +2238,7 @@ msgstr "المساعدة"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:31
 msgid "About Bottles"
-msgstr "حول بوتلز"
+msgstr "حول «قوارير»"
 
 #: bottles/frontend/ui/window.blp:60
 msgid "Main Menu"
@@ -2299,8 +2299,9 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
-"يعمل بوتلز في بيئة معزولة وذات أذونات محدودة لحمايتك. إذا لم يعمل البرنامج، "
-"فكر في الانتقال لداخل القارورة (النقاط الثلاث أعلاه)، ثم شغل من هناك."
+"يعمل «قوارير» في بيئة معزولة وذات أذونات محدودة لحمايتك. إذا لم يعمل "
+"البرنامج، فكر في الانتقال لداخل القارورة (النقاط الثلاث أعلاه)، ثم شغل من "
+"هناك."
 
 #: bottles/frontend/views/bottle_details.py:390
 #: bottles/frontend/views/bottle_details.py:505
@@ -2475,15 +2476,15 @@ msgstr "أُنشئ \"{0}\" بنجاح."
 
 #: bottles/frontend/views/preferences.py:117
 msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr "لم يُعثر على ستيم أو ليس لدى بوتلز الأذونات الكافية."
+msgstr "لم يُعثر على ستيم أو ليس لدى «قوارير» الأذونات الكافية."
 
 #: bottles/frontend/views/preferences.py:152
 msgid "Choose a new Bottles path"
-msgstr "اختر مسارًا جديدًا لبوتلز"
+msgstr "اختر مسارًا جديدًا ل«قوارير»"
 
 #: bottles/frontend/views/preferences.py:172
 msgid "Relaunch Bottles?"
-msgstr "أعِد تشغيل بوتلز؟"
+msgstr "أعِد تشغيل «قوارير»؟"
 
 #: bottles/frontend/views/preferences.py:173
 msgid ""
@@ -2493,10 +2494,10 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
-"تتحتَّم على بوتلز إعادة التشغيل ليستخدم هذا الدليل.\n"
+"تتحتَّم على «قوارير» إعادة التشغيل ليستخدم هذا الدليل.\n"
 "\n"
-"تأكد من إغلاق كل برنامج شُغِّل عن طريق بوتلز قبل إعادة تشغيله، حيث أن عدم فعل "
-"هذا قد يؤدي لفقدان البيانات والتلف وتعطل البرامج."
+"تأكد من إغلاق كل برنامج شُغِّل عن طريق «قوارير» قبل إعادة تشغيله، حيث أن عدم "
+"فعل هذا قد يؤدي لفقدان البيانات والتلف وتعطل البرامج."
 
 #: bottles/frontend/views/preferences.py:176
 msgid "_Relaunch"
@@ -2738,7 +2739,7 @@ msgstr "اختر دليل العمل"
 
 #: bottles/frontend/windows/main_window.py:194
 msgid "Custom Bottles Path not Found"
-msgstr "لم يعثر على المسار المخصص لبوتلز"
+msgstr "لم يعثر على المسار المخصص ل«قوارير»"
 
 #: bottles/frontend/windows/main_window.py:195
 msgid ""
@@ -2768,7 +2769,7 @@ msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
-msgstr "هجرة Flatpak"
+msgstr "ترحيل فلاتباك"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
@@ -2776,15 +2777,15 @@ msgstr "بدّل مربع حوار \"الترحيل إلى Flatpak\"."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr "المظهر الداكن"
+msgstr "السمة الداكنة"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr "فرض استخدام المظهر الداكن."
+msgstr "افرض استخدام السمة الداكنة."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr "تبديل تاريخ التحديث في القائمة"
+msgstr "بدِّل تاريخ التحديث في القائمة"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
@@ -2883,11 +2884,11 @@ msgstr "بدل ساحة الحماية التجريبية لكل قارورة."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
-msgstr "أغلق بوتلز تلقائياً"
+msgstr "أغلق «قوارير» تلقائياً"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
-msgstr "أغلق بوتلز بعد بدء تشغيل ملف تنفيذ من مدير الملفات."
+msgstr "أغلق «قوارير» بعد بدء تشغيل ملف تنفيذ من مدير الملفات."
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
@@ -2899,7 +2900,7 @@ msgstr "بدّل تحذير وضع الحماية."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "قم بتشغيل برامج ويندوز على لينكس باستخدام بوتلز!"
+msgstr "شغِّل برامج ويندوز في لينكس باستخدام «قوارير»!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:12
 msgid "Bottle software and enjoy at your leisure!"
@@ -2926,9 +2927,7 @@ msgstr "المميزات:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:19
 msgid "Create bottles using preconfigured environments or create your own"
-msgstr ""
-"قم بإنشاء قوارير باستخدام بيئات مسبقة التكوين أو قم بإنشاء بيئة قارورتك "
-"الخاصة بك"
+msgstr "أنشئ قوارير باستخدام بيئات مسبقة التكوين أو أنشئ بيئةً لك"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:20
 msgid ""
@@ -2984,7 +2983,7 @@ msgstr "الوصول إلى ProtonDB و WineHQ للحصول على الدعم"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:31
 msgid "System for bringing your configuration to new versions of Bottles"
-msgstr "نظام لجلب تكويناتك إلى الإصدارات الجديدة من بوتلز"
+msgstr "نظام لجلب تكويناتك إلى الإصدارات الجديدة من «قوارير»"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:32
 msgid "Back up and import bottles"
@@ -3000,7 +2999,7 @@ msgstr "تعيين إصدارات القوارير"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:35
 msgid "... and much more that you can find by installing Bottles!"
-msgstr "... وأكثر من ذلك بكثير يمكنك العثور عليه عن طريق تثبيت بوتلز!"
+msgstr "... وأكثر من ذلك بكثير يمكنك العثور عليه عن طريق تثبيت «قوارير»!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:85
 msgid "The PulseAudio Latency setting is now deprecated and enabled by default"
@@ -3012,7 +3011,7 @@ msgstr "تظهر تفاصيل القارورة تلقائيًا عند إنشا�
 
 #: data/com.usebottles.bottles.metainfo.xml.in:87
 msgid "Bottles now complies with GNOME Circle guidelines"
-msgstr "يمتثل بوتلز الآن لإرشادات دائرة جنوم"
+msgstr "يمتثل «قوارير» الآن لإرشادات دائرة جنوم"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:88
 msgid "Disable pulseaudio_latency by default."
