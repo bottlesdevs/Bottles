@@ -66,7 +66,12 @@ def detect_encoding(text: bytes, locale_hint: str = None) -> Optional[str]:
                         return locale_encodings[loc]
             case _:
                 pass
-    return chardet.detect(text).get('encoding')
+    result = chardet.detect(text)
+    encoding = result['encoding']
+    confidence = result['confidence']
+    if confidence < 0.5:
+        return None
+    return encoding
 
 
 def is_glibc_min_available():
