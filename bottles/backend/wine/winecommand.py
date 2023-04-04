@@ -672,13 +672,19 @@ class WineCommand:
             # don't call vmtouch_free while running via external terminal
             self.vmtouch_free()
 
+        # Consider changing the locale to C.UTF-8 when
+        # executing commands, to ensure consistent output and
+        # enable callers to make use of the returned value,
+        # also without requiring the encoding detection dance
         codec = detect_encoding(stdout_data)
-
         rv: str
-        if codec:
+        try:
             rv = stdout_data.decode(codec)
-        else:
-            logging.warning("Unable to decode command output")
+        except (UnicodeDecodeError, LookupError, TypeError):
+            # UnicodeDecodeError: codec mismatch
+            # LookupError: unknown codec name
+            # TypeError: codec is None
+            logging.warning(f"stdout decoding failed")
             rv = str(stdout_data)[2:-1]  # trim b''
 
         # "ShellExecuteEx" exception may occur while executing command,
