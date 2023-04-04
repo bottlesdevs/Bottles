@@ -94,11 +94,11 @@ class WineCommand:
             minimal: bool = False,  # avoid gamemode/gamescope usage
             post_script: str = None
     ):
-        self.config = self.__get_config(config)
+        self.config = self._get_config(config)
         self.minimal = minimal
         self.arguments = arguments
-        self.cwd = self.__get_cwd(cwd)
-        self.runner = self.__get_runner()
+        self.cwd = self._get_cwd(cwd)
+        self.runner = self._get_runner()
         self.command = self.get_cmd(command, post_script)
         self.terminal = terminal
         self.env = self.get_env(environment)
@@ -106,10 +106,9 @@ class WineCommand:
         self.colors = colors
         self.vmtouch_files = None
 
-    def __get_config(self, config: BottleConfig) -> BottleConfig:
-        if "config" in config.data:
-            if cnf := config.data.get("config"):
-                return cnf
+    def _get_config(self, config: BottleConfig) -> BottleConfig:
+        if cnf := config.data.get("config"):
+            return cnf
 
         if not isinstance(config, BottleConfig):
             logging.error("Invalid config type: %s" % type(config))
@@ -117,7 +116,7 @@ class WineCommand:
 
         return config
 
-    def __get_cwd(self, cwd) -> str:
+    def _get_cwd(self, cwd) -> str:
         config = self.config
 
         if config.Environment == "Steam":
@@ -404,7 +403,7 @@ class WineCommand:
 
         return env.get()["envs"]
 
-    def __get_runner(self) -> str:
+    def _get_runner(self) -> str:
         config = self.config
         runner = config.Runner
         arch = config.Arch
@@ -496,7 +495,7 @@ class WineCommand:
                     f.write("".join(file))
 
                 # Update command
-                command = f"{self.__get_gamescope_cmd(return_steam_cmd)} -- {gamescope_run}"
+                command = f"{self._get_gamescope_cmd(return_steam_cmd)} -- {gamescope_run}"
                 logging.info(f"Running Gamescope command: '{command}'")
                 logging.info(f"{gamescope_run} contains:")
                 with open(gamescope_run, "r") as f:
@@ -544,7 +543,7 @@ class WineCommand:
 
         return command
 
-    def __get_gamescope_cmd(self, return_steam_cmd: bool = False) -> str:
+    def _get_gamescope_cmd(self, return_steam_cmd: bool = False) -> str:
         config = self.config
         params = config.Parameters
         gamescope_cmd = []
@@ -579,7 +578,7 @@ class WineCommand:
 
         return " ".join(gamescope_cmd)
 
-    def vmtouch_preload(self):
+    def _vmtouch_preload(self):
         vmtouch_flags = "-t -v -l -d"
         vmtouch_file_size = " -m 1024M"
         if self.command.find("C:\\") > 0:
@@ -592,7 +591,7 @@ class WineCommand:
         #    self.vmtouch_files = "'"+self.vmtouch_files+"' '"+self.cwd+"/'" Commented out as fix for #1941
         self.command = f"{vmtouch_available} {vmtouch_flags} {vmtouch_file_size} {self.vmtouch_files} && {self.command}"
 
-    def vmtouch_free(self):
+    def _vmtouch_free(self):
         subprocess.Popen(
             "kill $(pidof vmtouch)",
             shell=True,
@@ -611,6 +610,19 @@ class WineCommand:
             cwd=self.cwd,
         )
 
+    def _get_sandbox_manager(self) -> SandboxManager:
+        return SandboxManager(
+            envs=self.env,
+            chdir=self.cwd,
+            share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
+            share_paths_ro=[
+                Paths.runners,
+                Paths.temp
+            ],
+            share_net=self.config.Sandbox.share_net,
+            share_sound=self.config.Sandbox.share_sound,
+        )
+
     def run(self) -> Result[Optional[str]]:
         """
         Run command with pre-configured parameters
@@ -622,20 +634,9 @@ class WineCommand:
             return Result(False, message="runner or env is not ready, Wine command terminated.")
 
         if vmtouch_available and self.config.Parameters.vmtouch and not self.terminal:
-            self.vmtouch_preload()
+            self._vmtouch_preload()
 
-        # prepare sandbox manager
-        sandbox: Optional[SandboxManager] = SandboxManager(
-            envs=self.env,
-            chdir=self.cwd,
-            share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
-            share_paths_ro=[
-                Paths.runners,
-                Paths.temp
-            ],
-            share_net=self.config.Sandbox.share_net,
-            share_sound=self.config.Sandbox.share_sound,
-        ) if self.config.Parameters.sandbox else None
+        sandbox = self._get_sandbox_manager() if self.config.Parameters.sandbox else None
 
         # run command in external terminal if terminal is True
         if self.terminal:
@@ -670,7 +671,7 @@ class WineCommand:
 
         if vmtouch_available and self.config.Parameters.vmtouch:
             # don't call vmtouch_free while running via external terminal
-            self.vmtouch_free()
+            self._vmtouch_free()
 
         # Consider changing the locale to C.UTF-8 when
         # executing commands, to ensure consistent output and
@@ -704,7 +705,7 @@ class WineCommand:
         """
         dxvk_conf = f"{bottle}/dxvk.conf"
         if not os.path.exists(dxvk_conf):
-            # create dxvk.conf if doesn't exist
+            # create dxvk.conf if it doesn't exist
             with open(dxvk_conf, "w") as f:
                 f.write("dxgi.nvapiHack = False")
         else:
