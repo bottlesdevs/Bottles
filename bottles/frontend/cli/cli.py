@@ -793,7 +793,6 @@ class CLI:
             program.get("dxvk")
             program.get("vkd3d")
             program.get("dxvk_nvapi")
-            program.get("fsr")
             program.get("gamescope")
             program.get("virtual_desktop")
 

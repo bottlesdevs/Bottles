@@ -57,7 +57,6 @@ class WineExecutor:
         program_dxvk: Optional[bool] = None,
         program_vkd3d: Optional[bool] = None,
         program_nvapi: Optional[bool] = None,
-        program_fsr: Optional[bool] = None,
         program_gamescope: Optional[bool] = None,
         program_virt_desktop: Optional[bool] = None,
         program_winebridge: Optional[bool] = None,
@@ -116,16 +115,6 @@ class WineExecutor:
                 override_nvapi = NVAPIComponent.get_override_keys() + "=b"
                 env_dll_overrides.append(override_nvapi)
 
-        if program_fsr is not None and program_fsr != self.config.Parameters.fsr:
-            self.environment["WINE_FULLSCREEN_FSR"] = "1" if program_fsr else "0"
-            self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(
-                self.config.Parameters.fsr_sharpening_strength
-            )
-            if self.config.Parameters.fsr_quality_mode:
-                self.environment["WINE_FULLSCREEN_FSR_MODE"] = str(
-                    self.config.Parameters.fsr_quality_mode
-                )
-
         if (
             program_gamescope is not None
             and program_gamescope != self.config.Parameters.gamescope
@@ -167,7 +156,6 @@ class WineExecutor:
             program_dxvk=program.get("dxvk"),
             program_vkd3d=program.get("vkd3d"),
             program_nvapi=program.get("dxvk_nvapi"),
-            program_fsr=program.get("fsr"),
             program_gamescope=program.get("gamescope"),
             program_virt_desktop=program.get("virtual_desktop"),
             program_winebridge=program.get("winebridge"),
