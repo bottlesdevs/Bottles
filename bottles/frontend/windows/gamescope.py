@@ -27,6 +27,8 @@ class GamescopeDialog(Adw.Window):
     spin_height = Gtk.Template.Child()
     spin_gamescope_width = Gtk.Template.Child()
     spin_gamescope_height = Gtk.Template.Child()
+    switch_fsr = Gtk.Template.Child()
+    spin_sharpening_strength = Gtk.Template.Child()
     spin_fps_limit = Gtk.Template.Child()
     spin_fps_limit_no_focus = Gtk.Template.Child()
     switch_scaling = Gtk.Template.Child()
@@ -75,6 +77,8 @@ class GamescopeDialog(Adw.Window):
         self.spin_height.set_value(parameters.gamescope_game_height)
         self.spin_gamescope_width.set_value(parameters.gamescope_window_width)
         self.spin_gamescope_height.set_value(parameters.gamescope_window_height)
+        self.switch_fsr.set_state(parameters.fsr)
+        self.spin_sharpening_strength.set_value(parameters.fsr_sharpening_strength)
         self.spin_fps_limit.set_value(parameters.gamescope_fps)
         self.spin_fps_limit_no_focus.set_value(parameters.gamescope_fps_no_focus)
         self.switch_scaling.set_active(parameters.gamescope_scaling)
@@ -90,6 +94,8 @@ class GamescopeDialog(Adw.Window):
             "gamescope_game_height": self.spin_height.get_value(),
             "gamescope_window_width": self.spin_gamescope_width.get_value(),
             "gamescope_window_height": self.spin_gamescope_height.get_value(),
+            "fsr": self.switch_fsr.get_state(),
+            "fsr_sharpening_strength": int(self.spin_sharpening_strength.get_value()),
             "gamescope_fps": self.spin_fps_limit.get_value(),
             "gamescope_fps_no_focus": self.spin_fps_limit_no_focus.get_value(),
             "gamescope_scaling": self.switch_scaling.get_active(),
