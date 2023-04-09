@@ -40,12 +40,10 @@ class LaunchOptionsDialog(Adw.Window):
     switch_dxvk = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
-    switch_fsr = Gtk.Template.Child()
     switch_virt_desktop = Gtk.Template.Child()
     action_dxvk = Gtk.Template.Child()
     action_vkd3d = Gtk.Template.Child()
     action_nvapi = Gtk.Template.Child()
-    action_fsr = Gtk.Template.Child()
     action_cwd = Gtk.Template.Child()
     action_virt_desktop = Gtk.Template.Child()
     # endregion
@@ -96,12 +94,6 @@ class LaunchOptionsDialog(Adw.Window):
             config.Parameters.dxvk_nvapi,
             self.action_nvapi
         )
-        self.switch_fsr.connect(
-            "state-set",
-            self.__check_override,
-            config.Parameters.fsr,
-            self.action_fsr
-        )
         self.switch_virt_desktop.connect(
             "state-set",
             self.__check_override,
@@ -121,7 +113,6 @@ class LaunchOptionsDialog(Adw.Window):
         dxvk = config.Parameters.dxvk
         vkd3d = config.Parameters.vkd3d
         nvapi = config.Parameters.dxvk_nvapi
-        fsr = config.Parameters.fsr
         virt_desktop = config.Parameters.virtual_desktop
 
         if not dxvk:
@@ -140,8 +131,6 @@ class LaunchOptionsDialog(Adw.Window):
             self.action_vkd3d.set_subtitle(self.__msg_override)
         if nvapi != self.program.get("dxvk_nvapi"):
             self.action_nvapi.set_subtitle(self.__msg_override)
-        if fsr != self.program.get("fsr"):
-            self.action_fsr.set_subtitle(self.__msg_override)
         if virt_desktop != self.program.get("virtual_desktop"):
             self.action_virt_desktop.set_subtitle(self.__msg_override)
 
@@ -151,15 +140,12 @@ class LaunchOptionsDialog(Adw.Window):
             vkd3d = self.program["vkd3d"]
         if "dxvk_nvapi" in self.program:
             nvapi = self.program["dxvk_nvapi"]
-        if "fsr" in self.program:
-            fsr = self.program["fsr"]
         if "virtual_desktop" in self.program:
             virt_desktop = self.program["virtual_desktop"]
 
         self.switch_dxvk.set_active(dxvk)
         self.switch_vkd3d.set_active(vkd3d)
         self.switch_nvapi.set_active(nvapi)
-        self.switch_fsr.set_active(fsr)
         self.switch_virt_desktop.set_active(virt_desktop)
 
     def __check_override(self, widget, state, value, action):
@@ -175,13 +161,11 @@ class LaunchOptionsDialog(Adw.Window):
         dxvk = self.switch_dxvk.get_state()
         vkd3d = self.switch_vkd3d.get_state()
         nvapi = self.switch_nvapi.get_state()
-        fsr = self.switch_fsr.get_state()
         virt_desktop = self.switch_virt_desktop.get_state()
 
         self.program["dxvk"] = dxvk
         self.program["vkd3d"] = vkd3d
         self.program["dxvk_nvapi"] = nvapi
-        self.program["fsr"] = fsr
         self.program["virtual_desktop"] = virt_desktop
         self.program["arguments"] = self.entry_arguments.get_text()
 
@@ -258,5 +242,4 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_dxvk.set_active(self.config.Parameters.dxvk)
         self.switch_vkd3d.set_active(self.config.Parameters.vkd3d)
         self.switch_nvapi.set_active(self.config.Parameters.dxvk_nvapi)
-        self.switch_fsr.set_active(self.config.Parameters.fsr)
         self.switch_virt_desktop.set_active(self.config.Parameters.virtual_desktop)

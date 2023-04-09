@@ -35,7 +35,6 @@ class WineExecutor:
             override_dxvk: Optional[bool] = None,
             override_vkd3d: Optional[bool] = None,
             override_nvapi: Optional[bool] = None,
-            override_fsr: Optional[bool] = None,
             override_virt_desktop: Optional[bool] = None
     ):
         logging.info("Launching an executable…")
@@ -77,10 +76,6 @@ class WineExecutor:
                 and self.config.Parameters.dxvk_nvapi:
             env_dll_overrides.append("nvapi,nvapi64=n")
 
-        if override_fsr is not None and override_fsr:
-            self.environment["WINE_FULLSCREEN_FSR"] = "1"
-            self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(self.config.Parameters.fsr_sharpening_strength)
-
         if "WINEDLLOVERRIDES" in self.environment:
             self.environment["WINEDLLOVERRIDES"] += "," + ",".join(env_dll_overrides)
         else:
@@ -94,7 +89,6 @@ class WineExecutor:
         dxvk = config.Parameters.dxvk
         vkd3d = config.Parameters.vkd3d
         nvapi = config.Parameters.dxvk_nvapi
-        fsr = config.Parameters.fsr
         virt_desktop = config.Parameters.virtual_desktop
 
         if program.get("dxvk") != dxvk:
@@ -103,8 +97,6 @@ class WineExecutor:
             vkd3d = program.get("vkd3d")
         if program.get("dxvk_nvapi") != nvapi:
             nvapi = program.get("dxvk_nvapi")
-        if program.get("fsr") != fsr:
-            fsr = program.get("fsr")
         if program.get("virtual_desktop") != virt_desktop:
             virt_desktop = program.get("virtual_desktop")
 
@@ -118,7 +110,6 @@ class WineExecutor:
             override_dxvk=dxvk,
             override_vkd3d=vkd3d,
             override_nvapi=nvapi,
-            override_fsr=fsr,
             override_virt_desktop=virt_desktop
         ).run()
 

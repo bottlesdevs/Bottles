@@ -41,7 +41,6 @@ from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
 from bottles.frontend.windows.drives import DrivesDialog
 from bottles.frontend.windows.envvars import EnvVarsDialog
 from bottles.frontend.windows.exclusionpatterns import ExclusionPatternsDialog
-from bottles.frontend.windows.fsr import FsrDialog
 from bottles.frontend.windows.gamescope import GamescopeDialog
 from bottles.frontend.windows.protonalert import ProtonAlertDialog
 from bottles.frontend.windows.sandbox import SandboxDialog
@@ -59,7 +58,6 @@ class PreferencesView(Adw.PreferencesPage):
     # region Widgets
     btn_manage_gamescope = Gtk.Template.Child()
     btn_manage_vkbasalt = Gtk.Template.Child()
-    btn_manage_fsr = Gtk.Template.Child()
     btn_manage_sandbox = Gtk.Template.Child()
     btn_manage_versioning_patterns = Gtk.Template.Child()
     btn_manage_vmtouch = Gtk.Template.Child()
@@ -81,7 +79,6 @@ class PreferencesView(Adw.PreferencesPage):
     switch_mangohud = Gtk.Template.Child()
     switch_obsvkc = Gtk.Template.Child()
     switch_vkbasalt = Gtk.Template.Child()
-    switch_fsr = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
@@ -137,7 +134,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.row_manage_display.connect("activated", self.__show_display_settings)
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_manage_vkbasalt.connect("clicked", self.__show_vkbasalt_settings)
-        self.btn_manage_fsr.connect("clicked", self.__show_fsr_settings)
         self.btn_manage_sandbox.connect("clicked", self.__show_sandbox_settings)
         self.btn_manage_versioning_patterns.connect("clicked", self.__show_exclusionpatterns_settings)
         self.btn_manage_vmtouch.connect("clicked", self.__show_vmtouch_settings)
@@ -146,7 +142,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.connect('state-set', self.__toggle_mangohud)
         self.switch_obsvkc.connect('state-set', self.__toggle_obsvkc)
         self.switch_vkbasalt.connect('state-set', self.__toggle_vkbasalt)
-        self.switch_fsr.connect('state-set', self.__toggle_fsr)
         self.switch_nvapi.connect('state-set', self.__toggle_nvapi)
         # self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
         self.switch_gamemode.connect('state-set', self.__toggle_gamemode)
@@ -375,7 +370,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.handler_block_by_func(self.__toggle_mangohud)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
         self.switch_vkbasalt.handler_block_by_func(self.__toggle_vkbasalt)
-        self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
         self.switch_obsvkc.handler_block_by_func(self.__toggle_obsvkc)
         self.switch_gamemode.handler_block_by_func(self.__toggle_gamemode)
         self.switch_gamescope.handler_block_by_func(self.__toggle_gamescope)
@@ -397,7 +391,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.set_active(parameters.mangohud)
         self.switch_obsvkc.set_active(parameters.obsvkc)
         self.switch_vkbasalt.set_active(parameters.vkbasalt)
-        self.switch_fsr.set_active(parameters.fsr)
         self.switch_nvapi.set_active(parameters.dxvk_nvapi)
         self.switch_gamemode.set_active(parameters.gamemode)
         self.switch_gamescope.set_active(parameters.gamescope)
@@ -500,7 +493,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.handler_unblock_by_func(self.__toggle_mangohud)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
         self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_vkbasalt)
-        self.switch_fsr.handler_unblock_by_func(self.__toggle_fsr)
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_obsvkc)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_gamemode)
         self.switch_gamescope.handler_unblock_by_func(self.__toggle_gamescope)
@@ -531,13 +523,6 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __show_vkbasalt_settings(self, widget):
         new_window = VkBasaltDialog(
-            parent_window=self.window,
-            config=self.config
-        )
-        new_window.present()
-
-    def __show_fsr_settings(self, widget):
-        new_window = FsrDialog(
             parent_window=self.window,
             config=self.config
         )
@@ -634,15 +619,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = self.manager.update_config(
             config=self.config,
             key="vkbasalt",
-            value=state,
-            scope="Parameters"
-        ).data["config"]
-
-    def __toggle_fsr(self, widget, state):
-        """Toggle the FSR for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="fsr",
             value=state,
             scope="Parameters"
         ).data["config"]

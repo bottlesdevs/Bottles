@@ -340,13 +340,6 @@ class WineCommand:
         # if params["aco_compiler"]:
         #     env.add("ACO_COMPILER", "aco")
 
-        # FSR
-        if params.fsr:
-            env.add("WINE_FULLSCREEN_FSR", "1")
-            env.add("WINE_FULLSCREEN_FSR_STRENGTH", str(params.fsr_sharpening_strength))
-            if params.fsr_quality_mode:
-                env.add("WINE_FULLSCREEN_FSR_MODE", str(params.fsr_quality_mode))
-
         # PulseAudio latency
         if params.pulseaudio_latency:
             env.add("PULSE_LATENCY_MSEC", "60")
@@ -556,10 +549,8 @@ class WineCommand:
             if params.gamescope_scaling:
                 gamescope_cmd.append("-n")
             if params.fsr:
-                gamescope_cmd.append("-U")
-                # Upscaling sharpness is from 0 to 20. There are 5 FSR upscaling levels,
-                # so multiply by 4 to reach 20
-                gamescope_cmd.append(f"--fsr-sharpness {params.fsr_sharpening_strength * 4}")
+                gamescope_cmd.append("-F fsr")
+                gamescope_cmd.append(f"--fsr-sharpness {params.fsr_sharpening_strength}")
             if params.gamescope_fps > 0:
                 gamescope_cmd.append(f"-r {params.gamescope_fps}")
             if params.gamescope_fps_no_focus > 0:
