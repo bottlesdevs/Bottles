@@ -1,164 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-    <metadata_license>CC0-1.0</metadata_license>
-    <project_license>GPL-3.0-only</project_license>
-    <id>com.usebottles.bottles</id>
-    <launchable type="desktop-id">com.usebottles.bottles.desktop</launchable>
-    <name>Bottles</name>
-    <summary>Run Windows Software</summary>
-    <developer_name translatable="no">Mirko Brombin</developer_name>
-    <description>
-        <p>Run Windows software on Linux with Bottles!</p>
-        <p>Bottle software and enjoy at your leisure!</p>
-        <p>Our built-in dependency installation system grants automatic software
-            compatibility access. Use the download manager to download the official components:
-            the runner (Wine, Proton), DXVK, dependencies, etc.</p>
-        <p>Bottle versioning keeps your work safe now and lets you restore it later!</p>
-        <p>Features:</p>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <id>com.usebottles.bottles</id>
+  <launchable type="desktop-id">com.usebottles.bottles.desktop</launchable>
+  <name>Bottles</name>
+  <summary>Run Windows Software</summary>
+  <developer_name translatable="no">Bottles Contributors</developer_name>
+  <description>
+    <p>Bottles lets you run Windows software on Linux, such as applications and games. It introduces a workflow that helps you organize by categorizing each software to your liking. Bottles provides several tools and integrations to help you manage and optimize your applications.</p>
+    <p>Features:</p>
+    <ul>
+      <li>Use pre-configured environments as a base</li>
+      <li>Change runners for any bottle</li>
+      <li>Various optimizations and options for gaming</li>
+      <li>Repair in case a software or bottle is broken</li>
+      <li>Install various known dependencies</li>
+      <li>Integrated task manager to manage and monitor processes</li>
+      <li>Backup and restore</li>
+    </ul>
+  </description>
+  <provides>
+    <mediatype>application/x-ms-dos-executable</mediatype>
+    <mediatype>application/x-msi</mediatype>
+    <mediatype>application/x-ms-shortcut</mediatype>
+    <mediatype>application/x-wine-extension-msp</mediatype>
+  </provides>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/screenshot.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/1.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/2.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/3.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/4.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/5.png</image>
+    </screenshot>
+  </screenshots>
+  <translation type="gettext">com.usebottles.bottles</translation>
+  <content_rating type="oars-1.1"/>
+  <url type="homepage">https://usebottles.com</url>
+  <url type="bugtracker">https://github.com/bottlesdevs/Bottles/issues</url>
+  <url type="help">https://docs.usebottles.com</url>
+  <url type="donation">https://usebottles.com/funding</url>
+  <url type="translate">https://hosted.weblate.org/engage/bottles</url>
+  <url type="vcs-browser">https://github.com/bottlesdevs/Bottles</url>
+  <url type="contribute">https://github.com/bottlesdevs/Bottles/blob/main/CONTRIBUTING.md</url>
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </recommends>
+  <requires>
+    <display_length compare="ge">768</display_length>
+  </requires>
+  <releases>
+    <release version="51.5" date="2023-02-23">
+      <description>
+        <p>Update metadata information</p>
+      </description>
+    </release>
+    <release version="51.4" date="2023-02-23">
+      <description>
+        <p>Add more update information and correct release notes version</p>
+      </description>
+    </release>
+    <release version="51.3" date="2023-02-23">
+      <description>
+        <p>Fixed "Add to Steam" button</p>
+        <p>Fixed BottleConfig being not serializable</p>
+        <p>Fixed Patool double extraction failing</p>
+      </description>
+    </release>
+    <release version="51.2" date="2023-02-21">
+      <description>
+        <p>Correct version</p>
+      </description>
+    </release>
+    <release version="51.1" date="2023-02-20">
+      <description>
+        <p>Fix crash when creating a bottle</p>
+      </description>
+    </release>
+    <release version="51.0" date="2023-02-20">
+      <description>
+        <p>Major change: Redesign New Bottle interface</p>
+        <p>Quality of life improvements:</p>
         <ul>
-          <li>Create bottles using preconfigured environments or create your own</li>
-          <li>Run executables (.exe/.msi) in your bottles, directly from the context menu of your file-manager</li>
-          <li>Automated detection of applications installed in your bottles</li>
-          <li>Add environment variables quickly</li>
-          <li>Override DLLs directly from per-bottle preferences</li>
-          <li>On-the-fly runner change for any Bottle</li>
-          <li>Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader compiler, offload … and much more.)</li>
-          <li>Automatic installation and management of Wine and Proton runners</li>
-          <li>Automatic bottle repair in case of breakage</li>
-          <li>Integrated dependency-installer based on a community-driven repository</li>
-          <li>Integrated Task manager for Wine processes</li>
-          <li>Access to ProtonDB and WineHQ for support</li>
-          <li>System for bringing your configuration to new versions of Bottles</li>
-          <li>Back up and import bottles</li>
-          <li>Import Wine prefixes from other managers</li>
-          <li>Bottles versioning</li>
-          <li>... and much more that you can find by installing Bottles!</li>
+          <li>Replace emote-love icon with library in library page</li>
+          <li>Add toast for "Run Executable"</li>
         </ul>
-    </description>
-    <provides>
-        <mediatype>application/x-ms-dos-executable</mediatype>
-        <mediatype>application/x-msi</mediatype>
-        <mediatype>application/x-ms-shortcut</mediatype>
-        <mediatype>application/x-wine-extension-msp</mediatype>
-    </provides>
-    <screenshots>
-        <screenshot type="default">
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/screenshot.png</image>
-        </screenshot>
-        <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/1.png</image>
-        </screenshot>
-        <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/2.png</image>
-        </screenshot>
-        <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/3.png</image>
-        </screenshot>
-        <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/4.png</image>
-        </screenshot>
-        <screenshot>
-            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/5.png</image>
-        </screenshot>
-    </screenshots>
-    <translation type="gettext">com.usebottles.bottles</translation>
-    <content_rating type="oars-1.1"/>
-    <url type="homepage">https://usebottles.com</url>
-    <url type="bugtracker">https://github.com/bottlesdevs/Bottles/issues</url>
-    <url type="help">https://docs.usebottles.com</url>
-    <url type="donation">https://usebottles.com/funding</url>
-    <url type="translate">https://hosted.weblate.org/engage/bottles</url>
-    <url type="vcs-browser">https://github.com/bottlesdevs/Bottles</url>
-    <url type="contribute">https://github.com/bottlesdevs/Bottles/blob/main/CONTRIBUTING.md</url>
-    <recommends>
-      <control>pointing</control>
-      <control>keyboard</control>
-      <control>touch</control>
-    </recommends>
-    <requires>
-      <display_length compare="ge">768</display_length>
-    </requires>
-    <releases>
-        <release version="51.5" date="2023-02-23">
-          <description>
-            <p>Update metadata information</p>
-          </description>
-        </release>
-        <release version="51.4" date="2023-02-23">
-          <description>
-            <p>Add more update information and correct release notes version</p>
-          </description>
-        </release>
-        <release version="51.3" date="2023-02-23">
-          <description>
-            <p>Fixed "Add to Steam" button</p>
-            <p>Fixed BottleConfig being not serializable</p>
-            <p>Fixed Patool double extraction failing</p>
-          </description>
-        </release>
-        <release version="51.2" date="2023-02-21">
-          <description>
-            <p>Correct version</p>
-          </description>
-        </release>
-        <release version="51.1" date="2023-02-20">
-          <description>
-            <p>Fix crash when creating a bottle</p>
-          </description>
-        </release>
-        <release version="51.0" date="2023-02-20">
-          <description>
-            <p>Major change: Redesign New Bottle interface</p>
-            <p>Quality of life improvements:</p>
-            <ul>
-              <li>Replace emote-love icon with library in library page</li>
-              <li>Add toast for "Run Executable"</li>
-            </ul>
-            <p>Bug fixes:</p>
-            <ul>
-              <li>Adding shortcut to Steam resulted an error</li>
-              <li>Importing backups resulted an error</li>
-              <li>Steam Runtime automatically enabled when using wine-ge-custom</li>
-              <li>Various library related fixes, like empty covers, and crashes related to missing entries</li>
-              <li>Fix various issues related to text encoding</li>
-            </ul>
-          </description>
-        </release>
-        <release version="50.2" date="2023-01-18">
-          <description>
-            <ul>
-                <li>Fix error when downloading if Bottles isn't run from terminal</li>
-            </ul>
-          </description>
-        </release>
-        <release version="50.1" date="2023-01-15">
-          <description>
-            <ul>
-                <li>Correct version date</li>
-                <li>Hide NVIDIA-related critical errors on non NVIDIA systems</li>
-            </ul>
-          </description>
-        </release>
-        <release version="50.0" date="2023-01-14">
-          <description>
-            <ul>
-                <li>Gamescope improvements and fixes</li>
-                <li>Dependency installation is faster and more stable</li>
-                <li>The health check has more information for faster debugging</li>
-                <li>NVAPI has a lot of fixes and is more stable, should now work properly</li>
-                <li>Fix crash when downloading a component</li>
-                <li>Backend code improvement by avoiding spin-lock</li>
-                <li>More variables for installer scripting</li>
-                <li>Fix onboard dialog showing "All ready" while it was in fact not ready</li>
-                <li>Improvement to build system</li>
-                <li>Enabling VKD3D by default when creating bottles for gaming</li>
-                <li>Fix crashes when reading Steam files with bad encodings</li>
-                <li>Fix components not updated correctly in the UI after installation/uninstallation</li>
-                <li>More FSR fixes</li>
-                <li>Fix the issue when a program closes after it was launched from "Run executable"</li>
-                <li>and many, many, many more!</li>
-            </ul>
-          </description>
-        </release>
-    </releases>
+        <p>Bug fixes:</p>
+        <ul>
+          <li>Adding shortcut to Steam resulted an error</li>
+          <li>Importing backups resulted an error</li>
+          <li>Steam Runtime automatically enabled when using wine-ge-custom</li>
+          <li>Various library related fixes, like empty covers, and crashes related to missing entries</li>
+          <li>Fix various issues related to text encoding</li>
+        </ul>
+      </description>
+    </release>
+    <release version="50.2" date="2023-01-18">
+      <description>
+        <ul>
+          <li>Fix error when downloading if Bottles isn't run from terminal</li>
+        </ul>
+      </description>
+    </release>
+    <release version="50.1" date="2023-01-15">
+      <description>
+        <ul>
+          <li>Correct version date</li>
+          <li>Hide NVIDIA-related critical errors on non NVIDIA systems</li>
+        </ul>
+      </description>
+    </release>
+    <release version="50.0" date="2023-01-14">
+      <description>
+        <ul>
+          <li>Gamescope improvements and fixes</li>
+          <li>Dependency installation is faster and more stable</li>
+          <li>The health check has more information for faster debugging</li>
+          <li>NVAPI has a lot of fixes and is more stable, should now work properly</li>
+          <li>Fix crash when downloading a component</li>
+          <li>Backend code improvement by avoiding spin-lock</li>
+          <li>More variables for installer scripting</li>
+          <li>Fix onboard dialog showing "All ready" while it was in fact not ready</li>
+          <li>Improvement to build system</li>
+          <li>Enabling VKD3D by default when creating bottles for gaming</li>
+          <li>Fix crashes when reading Steam files with bad encodings</li>
+          <li>Fix components not updated correctly in the UI after installation/uninstallation</li>
+          <li>More FSR fixes</li>
+          <li>Fix the issue when a program closes after it was launched from "Run executable"</li>
+          <li>and many, many, many more!</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
 </component>
