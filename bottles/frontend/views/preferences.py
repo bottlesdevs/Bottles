@@ -115,18 +115,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.populate_runtimes_list()
         self.populate_winebridge_list()
 
-        def ui_update():
-            if self.manager.utils_conn.status:
-                EventManager.wait(Events.ComponentsOrganizing)
-                GLib.idle_add(self.populate_runners_list)
-                GLib.idle_add(self.populate_dxvk_list)
-                GLib.idle_add(self.populate_vkd3d_list)
-                GLib.idle_add(self.populate_nvapi_list)
-                GLib.idle_add(self.populate_latencyflex_list)
-
-                GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
-
-        RunAsync(ui_update)
+        RunAsync(self.ui_update)
 
         # connect signals
         self.settings.connect('changed::dark-theme', self.__toggle_night)
@@ -145,6 +134,25 @@ class PreferencesWindow(Adw.PreferencesWindow):
         if not self.style_manager.get_system_supports_color_schemes():
             self.row_theme.set_visible(True)
 
+    def empty_list(self):
+        for w in self.__registry:
+            parent = w.get_parent()
+            if parent:
+                parent.remove(w)
+        self.__registry = []
+
+    def ui_update(self):
+        if self.manager.utils_conn.status:
+            EventManager.wait(Events.ComponentsOrganizing)
+            GLib.idle_add(self.empty_list)
+            GLib.idle_add(self.populate_runners_list)
+            GLib.idle_add(self.populate_dxvk_list)
+            GLib.idle_add(self.populate_vkd3d_list)
+            GLib.idle_add(self.populate_nvapi_list)
+            GLib.idle_add(self.populate_latencyflex_list)
+
+            GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
+
     def __toggle_night(self, widget, state):
         if self.settings.get_boolean("dark-theme"):
             Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK)
@@ -155,7 +163,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.window.page_list.update_bottles()
 
     def __toggle_rc(self, widget, state):
-        self.populate_runners_list()
+        self.ui_update()
 
     def __open_steam_proton_doc(self, widget):
         webbrowser.open("https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager")
@@ -210,6 +218,10 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.label_bottles_path.set_label(_("(Default)"))
         self.prompt_restart()
 
+    def __check_release_candidate(self, component):
+        return (not self.window.settings.get_boolean("release-candidate")
+                    and component[1]["Channel"] in ["rc", "unstable"])
+
     def populate_runtimes_list(self):
         for runtime in self.manager.supported_runtimes.items():
             self.list_runtimes.add(ComponentEntry(self.window, runtime, "runtime", is_upgradable=True))
@@ -220,26 +232,37 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def populate_dxvk_list(self):
         for dxvk in self.manager.supported_dxvk.items():
-            self.list_dxvk.add(ComponentEntry(self.window, dxvk, "dxvk"))
+            if self.__check_release_candidate(dxvk):
+                continue
+            _entry = ComponentEntry(self.window, dxvk, "dxvk")
+            self.list_dxvk.add(_entry)
+            self.__registry.append(_entry)    
 
     def populate_vkd3d_list(self):
         for vkd3d in self.manager.supported_vkd3d.items():
-            self.list_vkd3d.add(ComponentEntry(self.window, vkd3d, "vkd3d"))
+            if self.__check_release_candidate(vkd3d):
+                continue
+            _entry = ComponentEntry(self.window, vkd3d, "vkd3d")
+            self.list_vkd3d.add(_entry)
+            self.__registry.append(_entry)    
 
     def populate_nvapi_list(self):
         for nvapi in self.manager.supported_nvapi.items():
-            self.list_nvapi.add(ComponentEntry(self.window, nvapi, "nvapi"))
+            if self.__check_release_candidate(nvapi):
+                continue
+            _entry = ComponentEntry(self.window, nvapi, "nvapi")
+            self.list_nvapi.add(_entry)
+            self.__registry.append(_entry)    
 
     def populate_latencyflex_list(self):
         for latencyflex in self.manager.supported_latencyflex.items():
-            self.list_latencyflex.add(ComponentEntry(self.window, latencyflex, "latencyflex"))
+            if self.__check_release_candidate(latencyflex):
+                continue
+            _entry = ComponentEntry(self.window, latencyflex, "latencyflex")
+            self.list_latencyflex.add(_entry)
+            self.__registry.append(_entry)    
 
     def populate_runners_list(self):
-        for w in self.__registry:
-            parent = w.get_parent()
-            if parent:
-                parent.remove(w)
-
         exp_soda = ComponentExpander("Soda", _("Based on Valve's Wine, includes staging and Proton patches."))
         exp_caffe = ComponentExpander("Caffe", _("Based on Wine upstream, includes staging and Proton patches."))
         exp_wine_ge = ComponentExpander("GE Wine")
@@ -253,8 +276,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         for runner in self.manager.supported_wine_runners.items():
             _runner_name = runner[0].lower()
-            if (not self.window.settings.get_boolean("release-candidate")
-                    and runner[1]["Channel"] in ["rc", "unstable"]):
+            if self.__check_release_candidate(runner):
                 continue
 
             _entry = ComponentEntry(self.window, runner, "runner")
@@ -278,8 +300,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 count["other"] += 1
 
         for runner in self.manager.supported_proton_runners.items():
-            if (not self.window.settings.get_boolean("release-candidate")
-                    and runner[1]["Channel"] in ["rc", "unstable"]):
+            if self.__check_release_candidate(runner):
                 continue
 
             _entry = ComponentEntry(self.window, runner, "runner:proton")
