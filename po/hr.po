@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-01-12 10:52+0000\n"
+"PO-Revision-Date: 2023-04-21 17:51+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -1904,9 +1904,8 @@ msgid "Bottles"
 msgstr "Butelje"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "Stvori novu butelju"
+msgstr "Stvori novu butelju …"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
@@ -1980,9 +1979,8 @@ msgstr ""
 "Preporučujemo koristiti 32-bitnu verziju samo ako je izričito potrebno."
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Izvezi konfiguraciju …"
+msgstr "Izvezi prilagođenu konfiguraciju."
 
 #: bottles/frontend/ui/new.blp:176
 #, fuzzy
@@ -2495,7 +2493,6 @@ msgid "Importing backup…"
 msgstr "Uvoz sigurnosne kopije …"
 
 #: bottles/frontend/views/importer.py:119
-#, fuzzy
 msgid "Select a Backup Archive"
 msgstr "Odaberi arhivu sigurnosne kopije"
 
@@ -2505,7 +2502,6 @@ msgid "Import"
 msgstr "Uvoz"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
-#, fuzzy
 msgid "Select a Configuration File"
 msgstr "Odaberi konfiguracijsku datoteku"
 
@@ -2520,9 +2516,9 @@ msgid "Run executable in \"{self.config.Name}\""
 msgstr ""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Pokreće se „{0}” …"
+msgstr "Pokreće se „{0}” u „{1}” …"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -3122,9 +3118,8 @@ msgid "Correct version"
 msgstr "Verzija komponente"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "Došlo je do greške prilikom stvaranja butelje."
+msgstr "Ispravljena greška prilikom stvaranja butelje"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
@@ -3145,9 +3140,8 @@ msgid "Add toast for \"Run Executable\""
 msgstr "Dodaj prilagođenu stazu izvršnih datoteka"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
-#, fuzzy
 msgid "Bug fixes:"
-msgstr "Ispravci grešaka"
+msgstr "Ispravci grešaka:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
