@@ -45,7 +45,6 @@ class Samples:
         "ENABLE_VKBASALT": ("vkbasalt", True),
         "WINEESYNC": ("sync", "esync"),
         "WINEFSYNC": ("sync", "fsync"),
-        "WINEFSYNC_FUTEX2": ("sync", "futex2"),
         "WINE_FULLSCREEN_FSR": ("fsr", True),
         "WINE_FULLSCREEN_FSR_STRENGTH": ("fsr_sharpening_strength", 2),
         "WINE_FULLSCREEN_FSR_MODE": ("fsr_quality_mode", "none"),
