@@ -526,7 +526,7 @@ class SteamManager:
             "StartDir": ManagerUtils.get_bottle_path(self.config),
             "icon": ManagerUtils.extract_icon(self.config, program_name, program_path),
             "ShortcutPath": "",
-            "LaunchOptions": args.format(self.config.Path, program_name),
+            "LaunchOptions": args.format(self.config.Name, program_name),
             "IsHidden": 0,
             "AllowDesktopConfig": 1,
             "AllowOverlay": 1,
