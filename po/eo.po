@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-25 18:40+0200\n"
+"POT-Creation-Date: 2023-04-25 19:15+0200\n"
 "PO-Revision-Date: 2023-01-19 06:44+0000\n"
 "Last-Translator: StoneMoe <lakechan96@gmail.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/bottles/"
@@ -173,6 +173,139 @@ msgstr "Boteloj troviĝis: %s"
 msgid "State {} is already the active state"
 msgstr ""
 
+#: bottles/backend/state.py:107
+#, fuzzy
+msgid "Calculating…"
+msgstr "Elŝutante…"
+
+#: bottles/backend/utils/connection.py:81
+msgid "You are offline, unable to download."
+msgstr "Vi ne estas konektita al Interreto, kaj tial ne kapablas elŝuti."
+
+#: bottles/backend/utils/manager.py:338
+#: bottles/frontend/ui/details-preferences.blp:193
+msgid "System"
+msgstr "Sistemo"
+
+#: bottles/backend/utils/manager.py:339
+msgid "Bulgarian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:340
+msgid "Czech"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:341
+#, fuzzy
+msgid "Danish"
+msgstr "Fini"
+
+#: bottles/backend/utils/manager.py:342
+msgid "German"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:343
+msgid "Greek"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:344
+msgid "English"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:345
+#, fuzzy
+msgid "Spanish"
+msgstr "Fini"
+
+#: bottles/backend/utils/manager.py:346
+msgid "Estonian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:347
+#, fuzzy
+msgid "Finnish"
+msgstr "Fini"
+
+#: bottles/backend/utils/manager.py:348
+msgid "French"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:349
+msgid "Croatian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:350
+msgid "Hungarian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:351
+msgid "Italian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:352
+msgid "Lithuanian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:353
+msgid "Latvian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:354
+msgid "Dutch"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:355
+msgid "Norwegian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:356
+msgid "Polish"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:357
+msgid "Portuguese"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:358
+msgid "Romanian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:359
+msgid "Russian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:360
+msgid "Slovak"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:361
+msgid "Slovenian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:362
+msgid "Swedish"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:363
+msgid "Turkish"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:364
+msgid "Chinese"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:365
+msgid "Japanese"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:366
+msgid "Taiwanese"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:367
+msgid "Korean"
+msgstr ""
+
 #: bottles/frontend/main.py:112
 msgid "Show version"
 msgstr "Montri version"
@@ -319,6 +452,22 @@ msgstr ""
 msgid "Dependency Menu"
 msgstr "Dependaĵoj"
 
+#: bottles/frontend/ui/details.blp:16
+#, fuzzy
+msgid "Details"
+msgstr "Detaloj pri botelo"
+
+#: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
+#: bottles/frontend/ui/importer.blp:15
+#, fuzzy
+msgid "Go Back"
+msgstr "Reen"
+
+#: bottles/frontend/ui/details.blp:75
+#, fuzzy
+msgid "Operations"
+msgstr "Tradukoj"
+
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
 msgstr ""
@@ -374,7 +523,7 @@ msgid "Delete Bottle…"
 msgstr "Krei botelon"
 
 #: bottles/frontend/ui/details-bottle.blp:73
-#: bottles/frontend/ui/details-dependencies.blp:107
+#: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
 msgstr ""
@@ -611,27 +760,7 @@ msgstr "Legi dokumentaron"
 msgid "Documentation"
 msgstr "Dokumentaro"
 
-#: bottles/frontend/ui/details-dependencies.blp:85
-#, fuzzy
-msgid "Show all dependencies."
-msgstr "Dependaĵoj"
-
-#: bottles/frontend/ui/details-dependencies.blp:86
-#, fuzzy
-msgid "Show All Dependencies"
-msgstr "Dependaĵoj"
-
-#: bottles/frontend/ui/details-dependencies.blp:89
-#, fuzzy
-msgid "Show allowed dependencies."
-msgstr "Dependaĵoj"
-
-#: bottles/frontend/ui/details-dependencies.blp:90
-#, fuzzy
-msgid "Show Allowed Dependencies"
-msgstr "Dependaĵoj"
-
-#: bottles/frontend/ui/details-dependencies.blp:100
+#: bottles/frontend/ui/details-dependencies.blp:92
 #: bottles/frontend/ui/details-installers.blp:61
 #: bottles/frontend/ui/window.blp:46
 msgid "Search"
@@ -805,6 +934,7 @@ msgid "Advanced Display Settings"
 msgstr "Agordi internaĵojn."
 
 #: bottles/frontend/ui/details-preferences.blp:184
+#: bottles/frontend/windows/fsr.py:49
 msgid "Performance"
 msgstr "Rendimento"
 
@@ -816,10 +946,6 @@ msgstr "Sinkronigo pliigas rendimenton por plurkernaj procesoroj."
 #: bottles/frontend/ui/details-preferences.blp:189
 msgid "Synchronization"
 msgstr "Sinkronigo"
-
-#: bottles/frontend/ui/details-preferences.blp:193
-msgid "System"
-msgstr "Sistemo"
 
 #: bottles/frontend/ui/details-preferences.blp:194
 msgid "Esync"
@@ -1036,22 +1162,6 @@ msgstr "Konservi la staton de la botelo."
 msgid "Create new Snapshot"
 msgstr "Krei novan staton"
 
-#: bottles/frontend/ui/details.blp:16
-#, fuzzy
-msgid "Details"
-msgstr "Detaloj pri botelo"
-
-#: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
-#: bottles/frontend/ui/importer.blp:15
-#, fuzzy
-msgid "Go Back"
-msgstr "Reen"
-
-#: bottles/frontend/ui/details.blp:75
-#, fuzzy
-msgid "Operations"
-msgstr "Tradukoj"
-
 #: bottles/frontend/ui/dialog-bottle-picker.blp:4
 #, fuzzy
 msgid "Select Bottle"
@@ -1082,11 +1192,14 @@ msgid "Bottles Crash Report"
 msgstr "Ekfunkcias botelo!"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
+#: bottles/frontend/ui/dialog-display.blp:25
 #: bottles/frontend/ui/dialog-duplicate.blp:22
+#: bottles/frontend/ui/dialog-fsr.blp:24
 #: bottles/frontend/ui/dialog-gamescope.blp:23
 #: bottles/frontend/ui/dialog-launch-options.blp:16
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:22
-#: bottles/frontend/ui/dialog-vkbasalt.blp:27 bottles/frontend/ui/new.blp:26
+#: bottles/frontend/ui/dialog-vkbasalt.blp:27
+#: bottles/frontend/ui/dialog-vmtouch.blp:23 bottles/frontend/ui/new.blp:26
 #: bottles/frontend/views/bottle_details.py:504
 #: bottles/frontend/views/bottle_details.py:600
 #: bottles/frontend/views/bottle_preferences.py:746
@@ -1136,6 +1249,100 @@ msgstr ""
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
 msgstr "Forlasi"
+
+#: bottles/frontend/ui/dialog-display.blp:8
+#, fuzzy
+msgid "Display Settings"
+msgstr "Agordi internaĵojn."
+
+#: bottles/frontend/ui/dialog-display.blp:32
+#: bottles/frontend/ui/dialog-fsr.blp:31
+#: bottles/frontend/ui/dialog-gamescope.blp:30
+#: bottles/frontend/ui/dialog-launch-options.blp:32
+#: bottles/frontend/ui/dialog-rename.blp:20
+#: bottles/frontend/ui/dialog-vkbasalt.blp:34
+#: bottles/frontend/ui/dialog-vmtouch.blp:30
+msgid "Save"
+msgstr "Konservi"
+
+#: bottles/frontend/ui/dialog-display.blp:44
+#: bottles/frontend/ui/dialog-launch-options.blp:165
+#, fuzzy
+msgid "Virtual Desktop"
+msgstr "Uzi virtualan labortablon"
+
+#: bottles/frontend/ui/dialog-display.blp:45
+msgid ""
+"Create a virtual environment to place windows inside. Recommended when the "
+"application doesn't work as intended."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:48
+#: bottles/frontend/ui/dialog-gamescope.blp:48
+#: bottles/frontend/ui/dialog-gamescope.blp:85
+msgid "Width"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:64
+#: bottles/frontend/ui/dialog-gamescope.blp:64
+#: bottles/frontend/ui/dialog-gamescope.blp:101
+msgid "Height"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:82
+msgid "Fullscreen Mouse Capture"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:83
+msgid "Let the program capture mouse input when fullscreen."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:92
+msgid "Take Focus"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:93
+msgid "Activate it if the program does not retake focus on switch."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:102
+msgid "Mouse Warp"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:103
+msgid "Change this if you are running into mouse lag or desync."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:112
+#, fuzzy
+msgid "Window Manager Decorations"
+msgstr "Montri version"
+
+#: bottles/frontend/ui/dialog-display.blp:113
+msgid "Enable to use the window manager's decorations."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:121
+#, fuzzy
+msgid "Screen Scaling"
+msgstr "Ŝalti administradon de versioj"
+
+#: bottles/frontend/ui/dialog-display.blp:122
+#, fuzzy
+msgid "Set custom DPI."
+msgstr "Uzi Gamemode"
+
+#: bottles/frontend/ui/dialog-display.blp:138
+msgid "Renderer"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:139
+msgid "Select what backend to use for wined3d."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:143
+msgid "GL (Default)"
+msgstr ""
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:11
 #, fuzzy
@@ -1241,16 +1448,17 @@ msgstr ""
 msgid "Existing Patterns"
 msgstr "Ekzistantaj superregoj"
 
+#: bottles/frontend/ui/dialog-fsr.blp:7
+msgid "FidelityFX Super Resolution Settings"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-fsr.blp:51
+msgid "Sharpening Strength"
+msgstr ""
+
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
 msgstr ""
-
-#: bottles/frontend/ui/dialog-gamescope.blp:30
-#: bottles/frontend/ui/dialog-launch-options.blp:32
-#: bottles/frontend/ui/dialog-rename.blp:20
-#: bottles/frontend/ui/dialog-vkbasalt.blp:34
-msgid "Save"
-msgstr "Konservi"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
@@ -1262,16 +1470,6 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr ""
-
-#: bottles/frontend/ui/dialog-gamescope.blp:48
-#: bottles/frontend/ui/dialog-gamescope.blp:85
-msgid "Width"
-msgstr ""
-
-#: bottles/frontend/ui/dialog-gamescope.blp:64
-#: bottles/frontend/ui/dialog-gamescope.blp:101
-msgid "Height"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
@@ -1451,11 +1649,6 @@ msgstr "Preferencoj"
 #, fuzzy
 msgid "Reset to Bottle's Defaults"
 msgstr "Detaloj pri botelo"
-
-#: bottles/frontend/ui/dialog-launch-options.blp:165
-#, fuzzy
-msgid "Virtual Desktop"
-msgstr "Uzi virtualan labortablon"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
 msgid "Proton Disclaimer"
@@ -1747,6 +1940,24 @@ msgstr ""
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
 msgstr ""
 
+#: bottles/frontend/ui/dialog-vmtouch.blp:6
+#, fuzzy
+msgid "Vmtouch Settings"
+msgstr "Agordi internaĵojn."
+
+#: bottles/frontend/ui/dialog-vmtouch.blp:40
+msgid "Files to cache"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vmtouch.blp:41
+msgid "Select which files should be cached alongside the main executable."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vmtouch.blp:44
+#, fuzzy
+msgid "Cache work directory"
+msgstr "Elektu medion"
+
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
 msgstr "Integrita (Wine)"
@@ -1783,26 +1994,6 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-#: bottles/frontend/ui/importer-entry.blp:13
-msgid "Browse files"
-msgstr "Foliumi dosierojn"
-
-#. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
-#: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
-msgid "Wine prefix name"
-msgstr "Protokoli riparendaĵon de Wine"
-
-#: bottles/frontend/ui/importer-entry.blp:28
-#, fuzzy
-msgid "Manager"
-msgstr "Administrilo de Taskoj"
-
-#: bottles/frontend/ui/importer-entry.blp:38
-#, fuzzy
-msgid "This Wine prefix was already imported in Bottles."
-msgstr "Ĉi tiu Wine-prefikso jam estis enportita en botelojn."
-
 #: bottles/frontend/ui/importer.blp:22
 #, fuzzy
 msgid "Import a Bottle backup"
@@ -1827,6 +2018,26 @@ msgstr ""
 #, fuzzy
 msgid "Full Archive"
 msgstr "Plena arkivo"
+
+#: bottles/frontend/ui/importer-entry.blp:13
+msgid "Browse files"
+msgstr "Foliumi dosierojn"
+
+#. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
+#: bottles/frontend/ui/importer-entry.blp:21
+#, fuzzy
+msgid "Wine prefix name"
+msgstr "Protokoli riparendaĵon de Wine"
+
+#: bottles/frontend/ui/importer-entry.blp:28
+#, fuzzy
+msgid "Manager"
+msgstr "Administrilo de Taskoj"
+
+#: bottles/frontend/ui/importer-entry.blp:38
+#, fuzzy
+msgid "This Wine prefix was already imported in Bottles."
+msgstr "Ĉi tiu Wine-prefikso jam estis enportita en botelojn."
 
 #: bottles/frontend/ui/installer-entry.blp:16
 #, fuzzy
@@ -1862,6 +2073,16 @@ msgstr "Instalitaj programoj"
 msgid "Program Menu"
 msgstr "Programoj"
 
+#: bottles/frontend/ui/library.blp:11
+#: bottles/frontend/windows/main_window.py:196
+#, fuzzy
+msgid "Library"
+msgstr "Malhela Reĝimo"
+
+#: bottles/frontend/ui/library.blp:12
+msgid "Add items here from your bottle's program list"
+msgstr ""
+
 #: bottles/frontend/ui/library-entry.blp:33
 msgid "No Thumbnail"
 msgstr ""
@@ -1889,41 +2110,6 @@ msgstr "Forigi el Programo-dosierujo"
 #: bottles/frontend/ui/library-entry.blp:140
 msgid "Stop"
 msgstr ""
-
-#: bottles/frontend/ui/library.blp:11
-#: bottles/frontend/windows/main_window.py:196
-#, fuzzy
-msgid "Library"
-msgstr "Malhela Reĝimo"
-
-#: bottles/frontend/ui/library.blp:12
-msgid "Add items here from your bottle's program list"
-msgstr ""
-
-#: bottles/frontend/ui/list-entry.blp:26
-msgid "Versioning is active in this bottle."
-msgstr "Administrado de versioj estas aktiva por ĉi tiu botelo."
-
-#: bottles/frontend/ui/list-entry.blp:42
-msgid "This bottle looks damaged."
-msgstr "Ĉi tia botelo aspektas difektita."
-
-#: bottles/frontend/ui/list-entry.blp:55
-#, fuzzy
-msgid "Execute in this Bottle"
-msgstr "Ruli en ĉi tiu botelo"
-
-#: bottles/frontend/ui/list-entry.blp:69
-msgid "Run Here"
-msgstr "Ruli ĉi tie"
-
-#: bottles/frontend/ui/list-entry.blp:75
-msgid ""
-"This bottle looks damaged, the configuration file is missing. I can try to "
-"solve by creating a new configuration."
-msgstr ""
-"Tiu botelo aspektas difektita; mankas ĝia agorda dosiero. Mi povas provi "
-"ripari ĝin per kreo de nova agorda dosiero."
 
 #: bottles/frontend/ui/list.blp:12
 #, fuzzy
@@ -1954,6 +2140,31 @@ msgstr "Boteloj troviĝis: %s"
 #: bottles/frontend/ui/list.blp:64
 msgid "Try a different search."
 msgstr ""
+
+#: bottles/frontend/ui/list-entry.blp:26
+msgid "Versioning is active in this bottle."
+msgstr "Administrado de versioj estas aktiva por ĉi tiu botelo."
+
+#: bottles/frontend/ui/list-entry.blp:42
+msgid "This bottle looks damaged."
+msgstr "Ĉi tia botelo aspektas difektita."
+
+#: bottles/frontend/ui/list-entry.blp:55
+#, fuzzy
+msgid "Execute in this Bottle"
+msgstr "Ruli en ĉi tiu botelo"
+
+#: bottles/frontend/ui/list-entry.blp:69
+msgid "Run Here"
+msgstr "Ruli ĉi tie"
+
+#: bottles/frontend/ui/list-entry.blp:75
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+"Tiu botelo aspektas difektita; mankas ĝia agorda dosiero. Mi povas provi "
+"ripari ĝin per kreo de nova agorda dosiero."
 
 #: bottles/frontend/ui/loading.blp:13
 msgid "Starting up…"
@@ -2369,6 +2580,16 @@ msgstr ""
 msgid "About Bottles"
 msgstr "Pri Boteloj"
 
+#: bottles/frontend/utils/filters.py:21
+#, fuzzy
+msgid "Supported Executables"
+msgstr "Krei botelon"
+
+#: bottles/frontend/utils/filters.py:36
+#, fuzzy
+msgid "All Files"
+msgstr "Provizoraj dosieroj"
+
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
@@ -2573,6 +2794,15 @@ msgstr "Enportilo"
 msgid "Select a Configuration File"
 msgstr "Agordoj"
 
+#: bottles/frontend/views/library.py:79
+#, fuzzy, python-brace-format
+msgid "\"{0}\" removed from the library."
+msgstr "Forigi el Programo-dosierujo"
+
+#: bottles/frontend/views/library.py:81
+msgid "Undo"
+msgstr ""
+
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
 msgstr "Ne aplikebla"
@@ -2691,23 +2921,27 @@ msgstr ""
 msgid "Installing…"
 msgstr "Instalante DXVK…"
 
-#: bottles/frontend/widgets/dependency.py:107
+#: bottles/frontend/widgets/dependency.py:75
+msgid "This dependency is not compatible with this bottle architecture."
+msgstr ""
+
+#: bottles/frontend/widgets/dependency.py:114
 #: bottles/frontend/widgets/installer.py:81
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifesto de {0}"
 
-#: bottles/frontend/widgets/dependency.py:172
+#: bottles/frontend/widgets/dependency.py:179
 #, fuzzy, python-brace-format
 msgid "\"{0}\" uninstalled"
 msgstr "Malinstalilo"
 
-#: bottles/frontend/widgets/dependency.py:174
+#: bottles/frontend/widgets/dependency.py:181
 #, fuzzy, python-brace-format
 msgid "\"{0}\" installed"
 msgstr "Malinstalilo"
 
-#: bottles/frontend/widgets/dependency.py:188
+#: bottles/frontend/widgets/dependency.py:195
 #, fuzzy, python-brace-format
 msgid "\"{0}\" failed to install"
 msgstr "[{0}] dosieroj aldonotaj."
@@ -2828,6 +3062,23 @@ msgstr "Mediaj variabloj"
 #, fuzzy
 msgid "No exclusion patterns defined."
 msgstr "Mediaj variabloj"
+
+#: bottles/frontend/windows/fsr.py:45
+msgid "None"
+msgstr ""
+
+#: bottles/frontend/windows/fsr.py:46
+msgid "Ultra Quality"
+msgstr "Bonega kvalito"
+
+#: bottles/frontend/windows/fsr.py:47
+msgid "Quality"
+msgstr "Kvalito"
+
+#: bottles/frontend/windows/fsr.py:48
+#, fuzzy
+msgid "Balanced"
+msgstr "Altnivelaj opcioj"
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -3256,6 +3507,22 @@ msgid "and many, many, many more!"
 msgstr ""
 
 #, fuzzy
+#~ msgid "Show all dependencies."
+#~ msgstr "Dependaĵoj"
+
+#, fuzzy
+#~ msgid "Show All Dependencies"
+#~ msgstr "Dependaĵoj"
+
+#, fuzzy
+#~ msgid "Show allowed dependencies."
+#~ msgstr "Dependaĵoj"
+
+#, fuzzy
+#~ msgid "Show Allowed Dependencies"
+#~ msgstr "Dependaĵoj"
+
+#, fuzzy
 #~ msgid "Run Windows software on Linux with Bottles!"
 #~ msgstr "Ruli Vindozajn programonj sur Linukso per Boteloj 🍷!"
 
@@ -3330,10 +3597,6 @@ msgstr ""
 #~ msgid "... and much more that you can find by installing Bottles!"
 #~ msgstr "… kaj multe pli, kiujn vi malkovros instalinte Botelojn!"
 
-#, fuzzy
-#~ msgid "Calculating…"
-#~ msgstr "Elŝutante…"
-
 #~ msgid "Run .exe/.msi in this bottle"
 #~ msgstr "Ruli .exe/.msi en ĉi tiu botelo"
 
@@ -3372,9 +3635,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Custom Path"
 #~ msgstr "Propra"
-
-#~ msgid "You are offline, unable to download."
-#~ msgstr "Vi ne estas konektita al Interreto, kaj tial ne kapablas elŝuti."
 
 #~ msgid "Choose an executable path"
 #~ msgstr "Elektu dosierindikon de ruleblaĵo"
@@ -3446,12 +3706,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Layers"
 #~ msgstr "Tavoloj"
-
-#~ msgid "Ultra Quality"
-#~ msgstr "Bonega kvalito"
-
-#~ msgid "Quality"
-#~ msgstr "Kvalito"
 
 #, fuzzy
 #~ msgid "Layered"
@@ -3537,14 +3791,6 @@ msgstr ""
 #~ msgstr "Uzi la virtualan labortablon de Wine."
 
 #, fuzzy
-#~ msgid "Screen Scaling"
-#~ msgstr "Ŝalti administradon de versioj"
-
-#, fuzzy
-#~ msgid "Set custom DPI."
-#~ msgstr "Uzi Gamemode"
-
-#, fuzzy
 #~ msgid "Manage Components Versions"
 #~ msgstr "Montri version"
 
@@ -3566,10 +3812,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Defaults to the bottle path."
 #~ msgstr "Konservi la staton de la botelo."
-
-#, fuzzy
-#~ msgid "Choose a directory"
-#~ msgstr "Elektu medion"
 
 #~ msgid "Audio"
 #~ msgstr "Sono"
@@ -3931,9 +4173,6 @@ msgstr ""
 
 #~ msgid "You are now ready to create your first bottles."
 #~ msgstr "Vi nun pretas ekkrei viajn botelojn."
-
-#~ msgid "Finish"
-#~ msgstr "Fini"
 
 #~ msgid "Whether the above list should display unstable versions."
 #~ msgstr "Ĉu la ĉi-supra listo montru nestabilajn versiojn."

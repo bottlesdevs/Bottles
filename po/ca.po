@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-25 18:40+0200\n"
+"POT-Creation-Date: 2023-04-25 19:15+0200\n"
 "PO-Revision-Date: 2022-12-28 22:40+0000\n"
 "Last-Translator: Roger VC <rogervilarasau@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -164,6 +164,135 @@ msgstr "Estat no trobat"
 msgid "State {} is already the active state"
 msgstr "L'estat {} ja és l'estat actiu"
 
+#: bottles/backend/state.py:107
+msgid "Calculating…"
+msgstr "S'està calculant…"
+
+#: bottles/backend/utils/connection.py:81
+msgid "You are offline, unable to download."
+msgstr "Esteu fora de línia, no es pot baixar."
+
+#: bottles/backend/utils/manager.py:338
+#: bottles/frontend/ui/details-preferences.blp:193
+msgid "System"
+msgstr "Sistema"
+
+#: bottles/backend/utils/manager.py:339
+msgid "Bulgarian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:340
+msgid "Czech"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:341
+msgid "Danish"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:342
+msgid "German"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:343
+msgid "Greek"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:344
+msgid "English"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:345
+msgid "Spanish"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:346
+msgid "Estonian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:347
+msgid "Finnish"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:348
+msgid "French"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:349
+msgid "Croatian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:350
+msgid "Hungarian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:351
+msgid "Italian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:352
+msgid "Lithuanian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:353
+msgid "Latvian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:354
+msgid "Dutch"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:355
+msgid "Norwegian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:356
+msgid "Polish"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:357
+msgid "Portuguese"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:358
+msgid "Romanian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:359
+msgid "Russian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:360
+msgid "Slovak"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:361
+msgid "Slovenian"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:362
+msgid "Swedish"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:363
+msgid "Turkish"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:364
+msgid "Chinese"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:365
+msgid "Japanese"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:366
+msgid "Taiwanese"
+msgstr ""
+
+#: bottles/backend/utils/manager.py:367
+msgid "Korean"
+msgstr ""
+
 #: bottles/frontend/main.py:112
 msgid "Show version"
 msgstr "Mostra la versió"
@@ -303,6 +432,20 @@ msgstr ""
 msgid "Dependency Menu"
 msgstr "Menú de dependències"
 
+#: bottles/frontend/ui/details.blp:16
+#, fuzzy
+msgid "Details"
+msgstr "Detalls de l'ampolla"
+
+#: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
+#: bottles/frontend/ui/importer.blp:15
+msgid "Go Back"
+msgstr ""
+
+#: bottles/frontend/ui/details.blp:75
+msgid "Operations"
+msgstr "Operacions"
+
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
 msgstr "Resolució de problemes"
@@ -353,7 +496,7 @@ msgid "Delete Bottle…"
 msgstr "Suprimeix l'ampolla…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
-#: bottles/frontend/ui/details-dependencies.blp:107
+#: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
 msgstr "Menú Secundari"
@@ -584,27 +727,7 @@ msgstr "Llegir documentació"
 msgid "Documentation"
 msgstr "Documentació"
 
-#: bottles/frontend/ui/details-dependencies.blp:85
-#, fuzzy
-msgid "Show all dependencies."
-msgstr "Seleccionar dependències"
-
-#: bottles/frontend/ui/details-dependencies.blp:86
-#, fuzzy
-msgid "Show All Dependencies"
-msgstr "Seleccionar dependències"
-
-#: bottles/frontend/ui/details-dependencies.blp:89
-#, fuzzy
-msgid "Show allowed dependencies."
-msgstr "Seleccionar dependències"
-
-#: bottles/frontend/ui/details-dependencies.blp:90
-#, fuzzy
-msgid "Show Allowed Dependencies"
-msgstr "Seleccionar dependències"
-
-#: bottles/frontend/ui/details-dependencies.blp:100
+#: bottles/frontend/ui/details-dependencies.blp:92
 #: bottles/frontend/ui/details-installers.blp:61
 #: bottles/frontend/ui/window.blp:46
 msgid "Search"
@@ -780,6 +903,7 @@ msgid "Advanced Display Settings"
 msgstr "Paràmetres de la pantalla"
 
 #: bottles/frontend/ui/details-preferences.blp:184
+#: bottles/frontend/windows/fsr.py:49
 msgid "Performance"
 msgstr "Rendiment"
 
@@ -792,10 +916,6 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.blp:189
 msgid "Synchronization"
 msgstr "Sincronització"
-
-#: bottles/frontend/ui/details-preferences.blp:193
-msgid "System"
-msgstr "Sistema"
 
 #: bottles/frontend/ui/details-preferences.blp:194
 msgid "Esync"
@@ -1012,20 +1132,6 @@ msgstr "Deseu l'estat de l'ampolla."
 msgid "Create new Snapshot"
 msgstr "Crea un estat nou"
 
-#: bottles/frontend/ui/details.blp:16
-#, fuzzy
-msgid "Details"
-msgstr "Detalls de l'ampolla"
-
-#: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
-#: bottles/frontend/ui/importer.blp:15
-msgid "Go Back"
-msgstr ""
-
-#: bottles/frontend/ui/details.blp:75
-msgid "Operations"
-msgstr "Operacions"
-
 #: bottles/frontend/ui/dialog-bottle-picker.blp:4
 msgid "Select Bottle"
 msgstr "Seleccioneu ampolla"
@@ -1054,11 +1160,14 @@ msgid "Bottles Crash Report"
 msgstr "Informe de tancament inesperat de Bottles"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
+#: bottles/frontend/ui/dialog-display.blp:25
 #: bottles/frontend/ui/dialog-duplicate.blp:22
+#: bottles/frontend/ui/dialog-fsr.blp:24
 #: bottles/frontend/ui/dialog-gamescope.blp:23
 #: bottles/frontend/ui/dialog-launch-options.blp:16
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:22
-#: bottles/frontend/ui/dialog-vkbasalt.blp:27 bottles/frontend/ui/new.blp:26
+#: bottles/frontend/ui/dialog-vkbasalt.blp:27
+#: bottles/frontend/ui/dialog-vmtouch.blp:23 bottles/frontend/ui/new.blp:26
 #: bottles/frontend/views/bottle_details.py:504
 #: bottles/frontend/views/bottle_details.py:600
 #: bottles/frontend/views/bottle_preferences.py:746
@@ -1120,6 +1229,100 @@ msgstr ""
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
 msgstr "Sortir"
+
+#: bottles/frontend/ui/dialog-display.blp:8
+#, fuzzy
+msgid "Display Settings"
+msgstr "Paràmetres de la pantalla"
+
+#: bottles/frontend/ui/dialog-display.blp:32
+#: bottles/frontend/ui/dialog-fsr.blp:31
+#: bottles/frontend/ui/dialog-gamescope.blp:30
+#: bottles/frontend/ui/dialog-launch-options.blp:32
+#: bottles/frontend/ui/dialog-rename.blp:20
+#: bottles/frontend/ui/dialog-vkbasalt.blp:34
+#: bottles/frontend/ui/dialog-vmtouch.blp:30
+msgid "Save"
+msgstr "Desar"
+
+#: bottles/frontend/ui/dialog-display.blp:44
+#: bottles/frontend/ui/dialog-launch-options.blp:165
+msgid "Virtual Desktop"
+msgstr "Escriptori virtual"
+
+#: bottles/frontend/ui/dialog-display.blp:45
+msgid ""
+"Create a virtual environment to place windows inside. Recommended when the "
+"application doesn't work as intended."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:48
+#: bottles/frontend/ui/dialog-gamescope.blp:48
+#: bottles/frontend/ui/dialog-gamescope.blp:85
+msgid "Width"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:64
+#: bottles/frontend/ui/dialog-gamescope.blp:64
+#: bottles/frontend/ui/dialog-gamescope.blp:101
+msgid "Height"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:82
+msgid "Fullscreen Mouse Capture"
+msgstr "Captura del ratolí a pantalla completa"
+
+#: bottles/frontend/ui/dialog-display.blp:83
+msgid "Let the program capture mouse input when fullscreen."
+msgstr ""
+"Permet que el programa capturi l'entrada del ratolí quan estigui a pantalla "
+"completa."
+
+#: bottles/frontend/ui/dialog-display.blp:92
+msgid "Take Focus"
+msgstr "Prendre el focus"
+
+#: bottles/frontend/ui/dialog-display.blp:93
+msgid "Activate it if the program does not retake focus on switch."
+msgstr "Activeu-lo si el programa no recupera el focus en canviar."
+
+#: bottles/frontend/ui/dialog-display.blp:102
+msgid "Mouse Warp"
+msgstr "Centrar cursor del ratolí"
+
+#: bottles/frontend/ui/dialog-display.blp:103
+msgid "Change this if you are running into mouse lag or desync."
+msgstr "Canvieu-ho si us trobeu amb un retard o dessincronització del ratolí."
+
+#: bottles/frontend/ui/dialog-display.blp:112
+#, fuzzy
+msgid "Window Manager Decorations"
+msgstr "Versió del Windows"
+
+#: bottles/frontend/ui/dialog-display.blp:113
+msgid "Enable to use the window manager's decorations."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-display.blp:121
+msgid "Screen Scaling"
+msgstr "Escalat de pantalla"
+
+#: bottles/frontend/ui/dialog-display.blp:122
+msgid "Set custom DPI."
+msgstr "Defineix els PPP personalitzats."
+
+#: bottles/frontend/ui/dialog-display.blp:138
+msgid "Renderer"
+msgstr "Renderitzador"
+
+#: bottles/frontend/ui/dialog-display.blp:139
+msgid "Select what backend to use for wined3d."
+msgstr "Seleccioneu quin backend voleu utilitzar per a wined3d."
+
+#: bottles/frontend/ui/dialog-display.blp:143
+#, fuzzy
+msgid "GL (Default)"
+msgstr "Per defecte"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:11
 msgid ""
@@ -1222,16 +1425,17 @@ msgstr "Patró"
 msgid "Existing Patterns"
 msgstr "Patrons existents"
 
+#: bottles/frontend/ui/dialog-fsr.blp:7
+msgid "FidelityFX Super Resolution Settings"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-fsr.blp:51
+msgid "Sharpening Strength"
+msgstr ""
+
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
 msgstr "Paràmetres del Gamescope"
-
-#: bottles/frontend/ui/dialog-gamescope.blp:30
-#: bottles/frontend/ui/dialog-launch-options.blp:32
-#: bottles/frontend/ui/dialog-rename.blp:20
-#: bottles/frontend/ui/dialog-vkbasalt.blp:34
-msgid "Save"
-msgstr "Desar"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
@@ -1245,16 +1449,6 @@ msgstr "Resolució del joc"
 #, fuzzy
 msgid "Uses the resolution of the video game as a reference in pixels."
 msgstr "Utilitza la resolució del videojoc com a referència."
-
-#: bottles/frontend/ui/dialog-gamescope.blp:48
-#: bottles/frontend/ui/dialog-gamescope.blp:85
-msgid "Width"
-msgstr ""
-
-#: bottles/frontend/ui/dialog-gamescope.blp:64
-#: bottles/frontend/ui/dialog-gamescope.blp:101
-msgid "Height"
-msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
 #, fuzzy
@@ -1431,10 +1625,6 @@ msgstr "Substitució de les preferències"
 #: bottles/frontend/ui/dialog-launch-options.blp:119
 msgid "Reset to Bottle's Defaults"
 msgstr "Restableix als valors per defecte de l'ampolla"
-
-#: bottles/frontend/ui/dialog-launch-options.blp:165
-msgid "Virtual Desktop"
-msgstr "Escriptori virtual"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
 msgid "Proton Disclaimer"
@@ -1769,6 +1959,24 @@ msgstr ""
 "L'arrodoniment de cantonada SMAA especifica la força d'arrodoniment de les "
 "cantonades."
 
+#: bottles/frontend/ui/dialog-vmtouch.blp:6
+#, fuzzy
+msgid "Vmtouch Settings"
+msgstr "Gestioneu la configuració de vmtouch"
+
+#: bottles/frontend/ui/dialog-vmtouch.blp:40
+msgid "Files to cache"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vmtouch.blp:41
+msgid "Select which files should be cached alongside the main executable."
+msgstr ""
+
+#: bottles/frontend/ui/dialog-vmtouch.blp:44
+#, fuzzy
+msgid "Cache work directory"
+msgstr "Trieu un directori"
+
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
 msgstr "Incorporat (Wine)"
@@ -1803,25 +2011,6 @@ msgstr "/punt/al/camí"
 msgid "Value"
 msgstr "Valor"
 
-#: bottles/frontend/ui/importer-entry.blp:13
-msgid "Browse files"
-msgstr "Exploreu els fitxers"
-
-#. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
-#: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
-msgid "Wine prefix name"
-msgstr "Nom del prefix del Wine"
-
-#: bottles/frontend/ui/importer-entry.blp:28
-msgid "Manager"
-msgstr "Gestor"
-
-#: bottles/frontend/ui/importer-entry.blp:38
-#, fuzzy
-msgid "This Wine prefix was already imported in Bottles."
-msgstr "Aquest prefix de Wine ja s'havia imporatat al Bottles."
-
 #: bottles/frontend/ui/importer.blp:22
 #, fuzzy
 msgid "Import a Bottle backup"
@@ -1848,6 +2037,25 @@ msgstr ""
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
 msgstr "Arxiu complet"
+
+#: bottles/frontend/ui/importer-entry.blp:13
+msgid "Browse files"
+msgstr "Exploreu els fitxers"
+
+#. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
+#: bottles/frontend/ui/importer-entry.blp:21
+#, fuzzy
+msgid "Wine prefix name"
+msgstr "Nom del prefix del Wine"
+
+#: bottles/frontend/ui/importer-entry.blp:28
+msgid "Manager"
+msgstr "Gestor"
+
+#: bottles/frontend/ui/importer-entry.blp:38
+#, fuzzy
+msgid "This Wine prefix was already imported in Bottles."
+msgstr "Aquest prefix de Wine ja s'havia imporatat al Bottles."
 
 #: bottles/frontend/ui/installer-entry.blp:16
 msgid "Show Manifest…"
@@ -1879,6 +2087,15 @@ msgstr "Instal·la aquest programa"
 msgid "Program Menu"
 msgstr "Nom del programa"
 
+#: bottles/frontend/ui/library.blp:11
+#: bottles/frontend/windows/main_window.py:196
+msgid "Library"
+msgstr "Biblioteca"
+
+#: bottles/frontend/ui/library.blp:12
+msgid "Add items here from your bottle's program list"
+msgstr "Afegiu aquí elements de la llista de programes de a vostra ampolla"
+
 #: bottles/frontend/ui/library-entry.blp:33
 msgid "No Thumbnail"
 msgstr ""
@@ -1904,40 +2121,6 @@ msgstr "Suprimeix de la biblioteca"
 #: bottles/frontend/ui/library-entry.blp:140
 msgid "Stop"
 msgstr ""
-
-#: bottles/frontend/ui/library.blp:11
-#: bottles/frontend/windows/main_window.py:196
-msgid "Library"
-msgstr "Biblioteca"
-
-#: bottles/frontend/ui/library.blp:12
-msgid "Add items here from your bottle's program list"
-msgstr "Afegiu aquí elements de la llista de programes de a vostra ampolla"
-
-#: bottles/frontend/ui/list-entry.blp:26
-msgid "Versioning is active in this bottle."
-msgstr "El versionat està actiu en aquesta ampolla."
-
-#: bottles/frontend/ui/list-entry.blp:42
-msgid "This bottle looks damaged."
-msgstr "Aquesta ampolla sembla malmesa."
-
-#: bottles/frontend/ui/list-entry.blp:55
-#, fuzzy
-msgid "Execute in this Bottle"
-msgstr "Executa en aquesta ampolla"
-
-#: bottles/frontend/ui/list-entry.blp:69
-msgid "Run Here"
-msgstr "Executa aquí"
-
-#: bottles/frontend/ui/list-entry.blp:75
-msgid ""
-"This bottle looks damaged, the configuration file is missing. I can try to "
-"solve by creating a new configuration."
-msgstr ""
-"Aquesta ampolla sembla malmesa, falta el fitxer de configuració. Es pot "
-"intentar resoldre-ho creant una nova configuració."
 
 #: bottles/frontend/ui/list.blp:12
 msgid "Search your bottles…"
@@ -1965,6 +2148,31 @@ msgstr "No s’ha trobat cap resultat"
 #: bottles/frontend/ui/list.blp:64
 msgid "Try a different search."
 msgstr "Proveu una cerca diferent."
+
+#: bottles/frontend/ui/list-entry.blp:26
+msgid "Versioning is active in this bottle."
+msgstr "El versionat està actiu en aquesta ampolla."
+
+#: bottles/frontend/ui/list-entry.blp:42
+msgid "This bottle looks damaged."
+msgstr "Aquesta ampolla sembla malmesa."
+
+#: bottles/frontend/ui/list-entry.blp:55
+#, fuzzy
+msgid "Execute in this Bottle"
+msgstr "Executa en aquesta ampolla"
+
+#: bottles/frontend/ui/list-entry.blp:69
+msgid "Run Here"
+msgstr "Executa aquí"
+
+#: bottles/frontend/ui/list-entry.blp:75
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+"Aquesta ampolla sembla malmesa, falta el fitxer de configuració. Es pot "
+"intentar resoldre-ho creant una nova configuració."
 
 #: bottles/frontend/ui/loading.blp:13
 msgid "Starting up…"
@@ -2363,6 +2571,16 @@ msgstr ""
 msgid "About Bottles"
 msgstr "Quant al Bottles"
 
+#: bottles/frontend/utils/filters.py:21
+#, fuzzy
+msgid "Supported Executables"
+msgstr "Seleccioneu ampolla"
+
+#: bottles/frontend/utils/filters.py:36
+#, fuzzy
+msgid "All Files"
+msgstr "Fitxers temporals"
+
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
@@ -2568,6 +2786,15 @@ msgstr "Importar"
 msgid "Select a Configuration File"
 msgstr "Trieu un fitxer de configuració"
 
+#: bottles/frontend/views/library.py:79
+#, fuzzy, python-brace-format
+msgid "\"{0}\" removed from the library."
+msgstr "Suprimeix de la biblioteca"
+
+#: bottles/frontend/views/library.py:81
+msgid "Undo"
+msgstr ""
+
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
 msgstr "N/D"
@@ -2685,23 +2912,27 @@ msgstr "Actualitza"
 msgid "Installing…"
 msgstr "S'està instal·lant DXVK…"
 
-#: bottles/frontend/widgets/dependency.py:107
+#: bottles/frontend/widgets/dependency.py:75
+msgid "This dependency is not compatible with this bottle architecture."
+msgstr ""
+
+#: bottles/frontend/widgets/dependency.py:114
 #: bottles/frontend/widgets/installer.py:81
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest per a {0}"
 
-#: bottles/frontend/widgets/dependency.py:172
+#: bottles/frontend/widgets/dependency.py:179
 #, fuzzy, python-brace-format
 msgid "\"{0}\" uninstalled"
 msgstr "{0} instal·lat."
 
-#: bottles/frontend/widgets/dependency.py:174
+#: bottles/frontend/widgets/dependency.py:181
 #, fuzzy, python-brace-format
 msgid "\"{0}\" installed"
 msgstr "{0} instal·lat."
 
-#: bottles/frontend/widgets/dependency.py:188
+#: bottles/frontend/widgets/dependency.py:195
 #, fuzzy, python-brace-format
 msgid "\"{0}\" failed to install"
 msgstr "'{0}' no s'ha pogut instal·lar."
@@ -2823,6 +3054,22 @@ msgstr "No s'han definit variables d'entorn"
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
 msgstr "No s'han definit patrons d'exclusió."
+
+#: bottles/frontend/windows/fsr.py:45
+msgid "None"
+msgstr ""
+
+#: bottles/frontend/windows/fsr.py:46
+msgid "Ultra Quality"
+msgstr "Qualitat Ultra"
+
+#: bottles/frontend/windows/fsr.py:47
+msgid "Quality"
+msgstr "Qualitat"
+
+#: bottles/frontend/windows/fsr.py:48
+msgid "Balanced"
+msgstr "Equilibrat"
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -3241,6 +3488,22 @@ msgstr ""
 msgid "and many, many, many more!"
 msgstr ""
 
+#, fuzzy
+#~ msgid "Show all dependencies."
+#~ msgstr "Seleccionar dependències"
+
+#, fuzzy
+#~ msgid "Show All Dependencies"
+#~ msgstr "Seleccionar dependències"
+
+#, fuzzy
+#~ msgid "Show allowed dependencies."
+#~ msgstr "Seleccionar dependències"
+
+#, fuzzy
+#~ msgid "Show Allowed Dependencies"
+#~ msgstr "Seleccionar dependències"
+
 #~ msgid "Futex2"
 #~ msgstr "Futex2"
 
@@ -3323,9 +3586,6 @@ msgstr ""
 #~ msgid "... and much more that you can find by installing Bottles!"
 #~ msgstr "... i molt més que podeu trobar instal·lant Bottles!"
 
-#~ msgid "Calculating…"
-#~ msgstr "S'està calculant…"
-
 #~ msgid "Run .exe/.msi in this bottle"
 #~ msgstr "Executa .exe/.msi en aquesta ampolla"
 
@@ -3372,9 +3632,6 @@ msgstr ""
 #~ msgid "Store this bottle in another place."
 #~ msgstr "Emmagatzema aquesta ampolla en aquest lloc."
 
-#~ msgid "You are offline, unable to download."
-#~ msgstr "Esteu fora de línia, no es pot baixar."
-
 #~ msgid "Choose an executable path"
 #~ msgstr "Trieu un camí executable"
 
@@ -3406,15 +3663,6 @@ msgstr ""
 
 #~ msgid "Layers"
 #~ msgstr "Capes"
-
-#~ msgid "Ultra Quality"
-#~ msgstr "Qualitat Ultra"
-
-#~ msgid "Quality"
-#~ msgstr "Qualitat"
-
-#~ msgid "Balanced"
-#~ msgstr "Equilibrat"
 
 #~ msgid "Layered"
 #~ msgstr "En capes"
@@ -3547,33 +3795,6 @@ msgstr ""
 #~ msgid "Use the Wine virtual desktop."
 #~ msgstr "Utilitzeu l'escriptori virtual de Wine."
 
-#~ msgid "Fullscreen Mouse Capture"
-#~ msgstr "Captura del ratolí a pantalla completa"
-
-#~ msgid "Let the program capture mouse input when fullscreen."
-#~ msgstr ""
-#~ "Permet que el programa capturi l'entrada del ratolí quan estigui a "
-#~ "pantalla completa."
-
-#~ msgid "Take Focus"
-#~ msgstr "Prendre el focus"
-
-#~ msgid "Activate it if the program does not retake focus on switch."
-#~ msgstr "Activeu-lo si el programa no recupera el focus en canviar."
-
-#~ msgid "Mouse Warp"
-#~ msgstr "Centrar cursor del ratolí"
-
-#~ msgid "Change this if you are running into mouse lag or desync."
-#~ msgstr ""
-#~ "Canvieu-ho si us trobeu amb un retard o dessincronització del ratolí."
-
-#~ msgid "Screen Scaling"
-#~ msgstr "Escalat de pantalla"
-
-#~ msgid "Set custom DPI."
-#~ msgstr "Defineix els PPP personalitzats."
-
 #~ msgid "96"
 #~ msgstr "96"
 
@@ -3609,12 +3830,6 @@ msgstr ""
 
 #~ msgid "480"
 #~ msgstr "480"
-
-#~ msgid "Renderer"
-#~ msgstr "Renderitzador"
-
-#~ msgid "Select what backend to use for wined3d."
-#~ msgstr "Seleccioneu quin backend voleu utilitzar per a wined3d."
 
 #~ msgid "gl (default)"
 #~ msgstr "gl (per defecte)"
@@ -3663,9 +3878,6 @@ msgstr ""
 
 #~ msgid "Reset to default"
 #~ msgstr "Restableix els valors predeterminats"
-
-#~ msgid "Choose a directory"
-#~ msgstr "Trieu un directori"
 
 #~ msgid "Audio"
 #~ msgstr "Àudio"
