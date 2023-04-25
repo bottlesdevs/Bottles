@@ -3,7 +3,7 @@ sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 base: org.winehq.Wine
 base-version: stable-22.08
-runtime-version: "43"
+runtime-version: "44"
 command: bottles
 
 finish-args:
@@ -133,9 +133,10 @@ modules:
   - name: xdpyinfo
     buildsystem: autotools
     sources:
-      - type: archive
-        url: https://github.com/freedesktop/xdpyinfo/archive/refs/tags/xdpyinfo-1.3.2.tar.gz
-        sha256: 4c6942cb55e965f1192c0e2efc78429e2f4281cc2bc185d6ea09d609f32c51de
+      - type: git
+        url: https://gitlab.freedesktop.org/xorg/app/xdpyinfo.git
+        tag: "xdpyinfo-1.3.3"
+        commit: 61bc4b764030bdc9a731ee74c7c56bf2b2a4bddf
 
 
   # Libraries

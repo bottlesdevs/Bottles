@@ -16,16 +16,13 @@
 #
 
 from io import BytesIO
-from threading import Lock as PyLock
-from typing import Dict
 
 import pycurl
 
 from bottles.backend.logger import Logger
+from bottles.backend.state import EventManager, Events
 from bottles.backend.utils import yaml
 from bottles.backend.utils.threading import RunAsync
-from bottles.frontend.utils.gtk import GtkUtils
-from bottles.backend.state import EventManager, Events
 
 logging = Logger()
 
@@ -33,15 +30,13 @@ logging = Logger()
 class Repo:
     name: str = ""
 
-    def __init__(self, url: str, index: str, offline: bool = False, callback=None):
+    def __init__(self, url: str, index: str, offline: bool = False):
         self.url = url
         self.catalog = None
 
-        @GtkUtils.run_in_main_loop
         def set_catalog(result, error=None):
             self.catalog = result
             EventManager.done(Events(self.name + ".fetching"))
-            if callback: callback()
 
         RunAsync(self.__get_catalog, callback=set_catalog, index=index, offline=offline)
 

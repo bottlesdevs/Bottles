@@ -324,10 +324,6 @@ class WineCommand:
         if params.sync == "fsync":
             env.add("WINEFSYNC", "1")
 
-        # Futex2 environment variable
-        if params.sync == "futex2":
-            env.add("WINEFSYNC_FUTEX2", "1")
-
         # Wine debug level
         if not return_steam_env:
             debug_level = "fixme-all"

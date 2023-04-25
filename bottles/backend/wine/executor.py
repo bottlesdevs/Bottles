@@ -71,7 +71,7 @@ class WineExecutor:
         if override_vkd3d is not None \
             and not override_vkd3d \
             and self.config.Parameters.vkd3d:
-                env_dll_overrides.append("d3d12=b")
+                env_dll_overrides.append("d3d12=b;d3d12core=b,n")
 
         if override_nvapi is not None \
             and not override_nvapi \
