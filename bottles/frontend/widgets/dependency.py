@@ -67,6 +67,13 @@ class DependencyEntry(Adw.ActionRow):
             self.btn_reinstall.set_visible(True)
             return
 
+        if self.config.Arch not in dependency[1].get("Arch", "win64_win32"):
+            self.btn_install.set_visible(False)
+            self.btn_remove.set_visible(False)
+            self.btn_reinstall.set_visible(False)
+            self.btn_err.set_visible(True)
+            self.btn_err.set_tooltip_text(_("This dependency is not compatible with this bottle architecture."))
+
         # populate widgets
         self.set_title(dependency[0])
         self.set_subtitle(dependency[1].get("Description"))

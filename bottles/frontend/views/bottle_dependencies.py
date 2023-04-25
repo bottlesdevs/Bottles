@@ -63,8 +63,8 @@ class DependenciesView(Adw.Bin):
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
 
-        if self.manager.utils_conn.status == False:
-            self.stack.set_visible_child_name("page_offline")
+        if not self.manager.utils_conn.status:
+            self.stack.set_visible_child_name("page_offline") 
 
         self.spinner_loading.start()
 
@@ -128,12 +128,7 @@ class DependenciesView(Adw.Bin):
             if len(dependencies.keys()) > 0:
                 for dep in dependencies.items():
                     if dep[0] in self.config.Installed_Dependencies:
-                        continue  # Do not list already installed dependencies'
-
-                    dependency_arch = dep[1].get("Arch")
-                    if dependency_arch is not None and dependency_arch != self.config.get("Arch"):
-                        # NOTE: avoid listing dependencies not supported by the bottle arch
-                        continue
+                        continue  # Do not list already installed dependencies
 
                     GLib.idle_add(new_dependency, dep)
 
