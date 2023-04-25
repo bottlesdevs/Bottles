@@ -122,12 +122,15 @@ class DependencyManager:
                     _res = self.install(config, [_ext_dep, _dep])
                     if not _res.status:
                         return _res
-
         for step in manifest.get("Steps"):
             """
             Here we execute all steps in the manifest.
             Steps are the actions performed to install the dependency.
             """
+            arch = step.get("for", "win64_win32")
+            if config.Arch not in arch:
+                continue
+
             res = self.__perform_steps(config, step)
             if not res.status:
                 TaskManager.remove(task_id)

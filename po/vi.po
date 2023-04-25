@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-27 13:50+0530\n"
+"POT-Creation-Date: 2023-04-25 18:40+0200\n"
 "PO-Revision-Date: 2022-12-28 22:40+0000\n"
 "Last-Translator: rezarria <votanamcb@outlook.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bottles/"
@@ -28,103 +28,103 @@ msgstr "Không có đường dẫn cụ thể"
 msgid "Backup {0}"
 msgstr "Sao lưu {0}"
 
-#: bottles/backend/managers/backup.py:101
+#: bottles/backend/managers/backup.py:103
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Nhập bản sao lưu: {0}"
 
-#: bottles/backend/managers/manager.py:1057
+#: bottles/backend/managers/manager.py:1053
 msgid "Fail to install components, tried 3 times."
 msgstr "Không cài đặt được các thành phần, đã thử 3 lần."
 
-#: bottles/backend/managers/manager.py:1068
+#: bottles/backend/managers/manager.py:1064
 msgid "Missing essential components. Installing…"
 msgstr "Thiếu các thành phần thiết yếu. Đang cài đặt …"
 
-#: bottles/backend/managers/manager.py:1145
+#: bottles/backend/managers/manager.py:1141
 msgid "Failed to create bottle directory."
 msgstr "Không thể tạo thư mục chai bottle."
 
-#: bottles/backend/managers/manager.py:1157
+#: bottles/backend/managers/manager.py:1153
 msgid "Failed to create placeholder directory/file."
 msgstr "Không thể tạo thư mục/tệp giữ chỗ."
 
-#: bottles/backend/managers/manager.py:1162
+#: bottles/backend/managers/manager.py:1158
 msgid "Generating bottle configuration…"
 msgstr "Đang tạo cấu hình bottle…"
 
-#: bottles/backend/managers/manager.py:1185
+#: bottles/backend/managers/manager.py:1181
 msgid "Template found, applying…"
 msgstr "Đã tìm thấy mẫu, đang áp dụng…"
 
 #. execute wineboot on the bottle path
-#: bottles/backend/managers/manager.py:1197
+#: bottles/backend/managers/manager.py:1193
 msgid "The Wine config is being updated…"
 msgstr "Cấu hình Wine đang được cập nhật …"
 
-#: bottles/backend/managers/manager.py:1199
+#: bottles/backend/managers/manager.py:1195
 msgid "Wine config updated!"
 msgstr "Cấu hình Wine đã cập nhật!"
 
-#: bottles/backend/managers/manager.py:1207
+#: bottles/backend/managers/manager.py:1203
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "Chạy qua Flatpak, Sandboxing thư mục người dùng…"
 
-#: bottles/backend/managers/manager.py:1209
+#: bottles/backend/managers/manager.py:1205
 msgid "Sandboxing userdir…"
 msgstr "Sandboxing thư mục người dùng…"
 
-#: bottles/backend/managers/manager.py:1250
+#: bottles/backend/managers/manager.py:1246
 msgid "Setting Windows version…"
 msgstr "Đang đặt phiên bản Windows …"
 
-#: bottles/backend/managers/manager.py:1260
+#: bottles/backend/managers/manager.py:1256
 msgid "Apply CMD default settings…"
 msgstr "Áp dụng cài đặt mặc định CMD…"
 
-#: bottles/backend/managers/manager.py:1268
+#: bottles/backend/managers/manager.py:1264
 msgid "Optimizing environment…"
 msgstr "Tối ưu hóa môi trường…"
 
-#: bottles/backend/managers/manager.py:1279
+#: bottles/backend/managers/manager.py:1275
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Áp dụng môi trường: {0}…"
 
-#: bottles/backend/managers/manager.py:1289
+#: bottles/backend/managers/manager.py:1285
 msgid "(!) Using a custom environment recipe…"
 msgstr "(!) Sử dụng công thức môi trường tùy chỉnh…"
 
-#: bottles/backend/managers/manager.py:1292
+#: bottles/backend/managers/manager.py:1288
 msgid "(!) Recipe not not found or not valid…"
 msgstr "(!) Công thức không tìm thấy hoặc không hợp lệ…"
 
-#: bottles/backend/managers/manager.py:1309
+#: bottles/backend/managers/manager.py:1305
 msgid "Installing DXVK…"
 msgstr "Đang cài đặt DXVK…"
 
-#: bottles/backend/managers/manager.py:1317
+#: bottles/backend/managers/manager.py:1313
 msgid "Installing VKD3D…"
 msgstr "Đang cài đặt VKD3D…"
 
-#: bottles/backend/managers/manager.py:1326
+#: bottles/backend/managers/manager.py:1322
 msgid "Installing DXVK-NVAPI…"
 msgstr "Đang cài đặt DXVK-NVAPI…"
 
-#: bottles/backend/managers/manager.py:1335
+#: bottles/backend/managers/manager.py:1331
 #, python-format
 msgid "Installing dependency: %s …"
 msgstr "Đang cài đặt phụ thuộc: %s…"
 
-#: bottles/backend/managers/manager.py:1345
+#: bottles/backend/managers/manager.py:1341
 msgid "Creating versioning state 0…"
 msgstr "Đang tạo trạng thái phiên bản 0…"
 
-#: bottles/backend/managers/manager.py:1353
+#: bottles/backend/managers/manager.py:1349
 msgid "Finalizing…"
 msgstr "Đang hoàn tất…"
 
-#: bottles/backend/managers/manager.py:1364
+#: bottles/backend/managers/manager.py:1360
 msgid "Caching template…"
 msgstr "Đang caching bản mẫu …"
 
@@ -174,7 +174,7 @@ msgstr "Đường dẫn thực thi"
 msgid "lnk path"
 msgstr "đường dẫn"
 
-#: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
+#: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:115
 #: bottles/frontend/ui/list-entry.blp:5
 msgid "Bottle name"
 msgstr "Tên chai"
@@ -349,7 +349,7 @@ msgid "Delete Bottle…"
 msgstr "Nhân bản Bottle…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
-#: bottles/frontend/ui/details-dependencies.blp:99
+#: bottles/frontend/ui/details-dependencies.blp:107
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
 msgstr "Danh mục cấp hai"
@@ -470,7 +470,7 @@ msgid "Install dependencies for programs."
 msgstr "Cài đặt gói phụ thuộc cho chương trình."
 
 #: bottles/frontend/ui/details-bottle.blp:370
-#: bottles/frontend/ui/details-preferences.blp:377
+#: bottles/frontend/ui/details-preferences.blp:376
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
 msgstr "Snapshots"
@@ -542,8 +542,8 @@ msgid "Search for dependencies…"
 msgstr "Tìm kiếm các gói phụ thuộc…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
-#: bottles/frontend/ui/preferences.blp:178
-#: bottles/frontend/ui/preferences.blp:235
+#: bottles/frontend/ui/preferences.blp:179
+#: bottles/frontend/ui/preferences.blp:236
 msgid "You're offline :("
 msgstr ""
 
@@ -579,7 +579,27 @@ msgstr "Đọc tài liệu"
 msgid "Documentation"
 msgstr "Tài liệu"
 
-#: bottles/frontend/ui/details-dependencies.blp:92
+#: bottles/frontend/ui/details-dependencies.blp:85
+#, fuzzy
+msgid "Show all dependencies."
+msgstr "Chọn các gói phụ thuộc"
+
+#: bottles/frontend/ui/details-dependencies.blp:86
+#, fuzzy
+msgid "Show All Dependencies"
+msgstr "Chọn các gói phụ thuộc"
+
+#: bottles/frontend/ui/details-dependencies.blp:89
+#, fuzzy
+msgid "Show allowed dependencies."
+msgstr "Chọn các gói phụ thuộc"
+
+#: bottles/frontend/ui/details-dependencies.blp:90
+#, fuzzy
+msgid "Show Allowed Dependencies"
+msgstr "Chọn các gói phụ thuộc"
+
+#: bottles/frontend/ui/details-dependencies.blp:100
 #: bottles/frontend/ui/details-installers.blp:61
 #: bottles/frontend/ui/window.blp:46
 msgid "Search"
@@ -610,7 +630,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
-#: bottles/frontend/ui/preferences.blp:81
+#: bottles/frontend/ui/preferences.blp:82
 #, fuzzy
 msgid "Read Documentation"
 msgstr "Đọc tài liệu"
@@ -635,7 +655,7 @@ msgid "Updating Runner and components, please wait…"
 msgstr "Đang cập nhật Trình thực thi và các thành phần, vui lòng đợi…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
-#: bottles/frontend/ui/preferences.blp:262
+#: bottles/frontend/ui/preferences.blp:263
 msgid "DXVK"
 msgstr "DXVK"
 
@@ -648,7 +668,7 @@ msgid "Updating DXVK, please wait…"
 msgstr "Đang cập nhật DXVK, vui lòng đợi…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
-#: bottles/frontend/ui/preferences.blp:266
+#: bottles/frontend/ui/preferences.blp:267
 msgid "VKD3D"
 msgstr "VKD3D"
 
@@ -671,7 +691,7 @@ msgid "Updating DXVK-NVAPI, please wait…"
 msgstr "Đang cập nhật DXVK-NVAPI, vui lòng đợi…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
-#: bottles/frontend/ui/preferences.blp:274
+#: bottles/frontend/ui/preferences.blp:275
 msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
@@ -775,95 +795,91 @@ msgstr "Esync"
 msgid "Fsync"
 msgstr "Fsync"
 
-#: bottles/frontend/ui/details-preferences.blp:196
-msgid "Futex2"
-msgstr "Futex2"
-
-#: bottles/frontend/ui/details-preferences.blp:202
+#: bottles/frontend/ui/details-preferences.blp:201
 #, fuzzy
 msgid "Monitor Performance"
 msgstr "Hiệu suất"
 
-#: bottles/frontend/ui/details-preferences.blp:203
+#: bottles/frontend/ui/details-preferences.blp:202
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:211
+#: bottles/frontend/ui/details-preferences.blp:210
 #, fuzzy
 msgid "Feral GameMode"
 msgstr "Sử dụng GameMode"
 
-#: bottles/frontend/ui/details-preferences.blp:212
+#: bottles/frontend/ui/details-preferences.blp:211
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:221
+#: bottles/frontend/ui/details-preferences.blp:220
 msgid "Preload Game Files"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:222
+#: bottles/frontend/ui/details-preferences.blp:221
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:226
+#: bottles/frontend/ui/details-preferences.blp:225
 #, fuzzy
 msgid "Manage vmtouch settings"
 msgstr "Quản lý thiết đặt Gamescope"
 
-#: bottles/frontend/ui/details-preferences.blp:241
+#: bottles/frontend/ui/details-preferences.blp:240
 msgid "OBS Game Capture"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:242
+#: bottles/frontend/ui/details-preferences.blp:241
 #, fuzzy
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
 msgstr "Tìm kiếm các chương trình đã cài đặt"
 
-#: bottles/frontend/ui/details-preferences.blp:251
+#: bottles/frontend/ui/details-preferences.blp:250
 msgid "Compatibility"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:254
+#: bottles/frontend/ui/details-preferences.blp:253
 #, fuzzy
 msgid "Windows Version"
 msgstr "Phiên bản Windows"
 
-#: bottles/frontend/ui/details-preferences.blp:257
+#: bottles/frontend/ui/details-preferences.blp:256
 msgid "Updating Windows version, please wait…"
 msgstr "Đang cập nhật phiên bản Windows, vui lòng đợi…"
 
-#: bottles/frontend/ui/details-preferences.blp:266
+#: bottles/frontend/ui/details-preferences.blp:265
 msgid "Language"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:267
+#: bottles/frontend/ui/details-preferences.blp:266
 msgid "Choose the language to use with programs."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:275
+#: bottles/frontend/ui/details-preferences.blp:274
 msgid "Dedicated Sandbox"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:276
+#: bottles/frontend/ui/details-preferences.blp:275
 msgid "Use a restricted/managed environment for this bottle."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:279
+#: bottles/frontend/ui/details-preferences.blp:278
 #, fuzzy
 msgid "Manage the Sandbox Permissions"
 msgstr "Quản lý các phiên bản DXVK"
 
 # Translators: Bottles is a proper noun referring to the app
-#: bottles/frontend/ui/details-preferences.blp:295
+#: bottles/frontend/ui/details-preferences.blp:294
 msgid "Bottles Runtime"
 msgstr "Bottles Runtime"
 
-#: bottles/frontend/ui/details-preferences.blp:296
+#: bottles/frontend/ui/details-preferences.blp:295
 #, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
@@ -872,11 +888,11 @@ msgstr ""
 "Cung cấp một gói thư viện bổ sung để tương thích hơn,\n"
 "vô hiệu hóa nếu bạn gặp sự cố."
 
-#: bottles/frontend/ui/details-preferences.blp:306
+#: bottles/frontend/ui/details-preferences.blp:305
 msgid "Steam Runtime"
 msgstr "Steam Runtime"
 
-#: bottles/frontend/ui/details-preferences.blp:307
+#: bottles/frontend/ui/details-preferences.blp:306
 #, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
@@ -885,76 +901,76 @@ msgstr ""
 "Cung cấp một gói thư viện bổ sung để tương thích hơn,\n"
 "vô hiệu hóa nếu bạn gặp sự cố."
 
-#: bottles/frontend/ui/details-preferences.blp:315
+#: bottles/frontend/ui/details-preferences.blp:314
 #: bottles/frontend/ui/dialog-launch-options.blp:83
 #, fuzzy
 msgid "Working Directory"
 msgstr "Thư mục làm việc"
 
-#: bottles/frontend/ui/details-preferences.blp:318
+#: bottles/frontend/ui/details-preferences.blp:317
 #: bottles/frontend/ui/dialog-launch-options.blp:59
 #: bottles/frontend/ui/dialog-launch-options.blp:90
 #: bottles/frontend/ui/new.blp:150 bottles/frontend/ui/new.blp:181
-#: bottles/frontend/ui/preferences.blp:136
+#: bottles/frontend/ui/preferences.blp:137
 #, fuzzy
 msgid "Reset to Default"
 msgstr "Chi tiết Chai"
 
-#: bottles/frontend/ui/details-preferences.blp:339
-#: bottles/frontend/ui/preferences.blp:157 bottles/frontend/views/new.py:78
+#: bottles/frontend/ui/details-preferences.blp:338
+#: bottles/frontend/ui/preferences.blp:158 bottles/frontend/views/new.py:78
 #: bottles/frontend/views/preferences.py:210
 msgid "(Default)"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:347
+#: bottles/frontend/ui/details-preferences.blp:346
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
 #: bottles/frontend/ui/dialog-dll-overrides.blp:12
 #, fuzzy
 msgid "DLL Overrides"
 msgstr "DLL ghi đè"
 
-#: bottles/frontend/ui/details-preferences.blp:357
+#: bottles/frontend/ui/details-preferences.blp:356
 #: bottles/frontend/ui/dialog-env-vars.blp:20
 #, fuzzy
 msgid "Environment Variables"
 msgstr "Biến môi trường"
 
-#: bottles/frontend/ui/details-preferences.blp:367
+#: bottles/frontend/ui/details-preferences.blp:366
 #, fuzzy
 msgid "Manage Drives"
 msgstr "Tình quản lý thực thi"
 
-#: bottles/frontend/ui/details-preferences.blp:381
+#: bottles/frontend/ui/details-preferences.blp:380
 #, fuzzy
 msgid "Automatic Snapshots"
 msgstr "Trình phiên bản"
 
-#: bottles/frontend/ui/details-preferences.blp:382
+#: bottles/frontend/ui/details-preferences.blp:381
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:391
+#: bottles/frontend/ui/details-preferences.blp:390
 #, fuzzy
 msgid "Compression"
 msgstr "Thành phần phiên bản"
 
-#: bottles/frontend/ui/details-preferences.blp:392
+#: bottles/frontend/ui/details-preferences.blp:391
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:401
+#: bottles/frontend/ui/details-preferences.blp:400
 msgid "Use Exclusion Patterns"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:402
+#: bottles/frontend/ui/details-preferences.blp:401
 msgid "Exclude paths in snapshots."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:405
+#: bottles/frontend/ui/details-preferences.blp:404
 #, fuzzy
 msgid "Manage Patterns"
 msgstr "Tình quản lý thực thi"
@@ -1043,7 +1059,7 @@ msgstr "Báo cáo Sự cố của Chai"
 #: bottles/frontend/ui/dialog-vkbasalt.blp:27 bottles/frontend/ui/new.blp:26
 #: bottles/frontend/views/bottle_details.py:504
 #: bottles/frontend/views/bottle_details.py:600
-#: bottles/frontend/views/bottle_preferences.py:749
+#: bottles/frontend/views/bottle_preferences.py:746
 #: bottles/frontend/views/preferences.py:201
 #, fuzzy
 msgid "_Cancel"
@@ -1822,31 +1838,31 @@ msgstr ""
 msgid "Program Menu"
 msgstr "Chương trình"
 
-#: bottles/frontend/ui/library-entry.blp:36
+#: bottles/frontend/ui/library-entry.blp:33
 msgid "No Thumbnail"
 msgstr ""
 
-#: bottles/frontend/ui/library-entry.blp:57
+#: bottles/frontend/ui/library-entry.blp:54
 #, fuzzy
 msgid "Launch"
 msgstr "Thay đổi Tùy chọn Khởi chạy"
 
-#: bottles/frontend/ui/library-entry.blp:70
+#: bottles/frontend/ui/library-entry.blp:67
 #: bottles/frontend/ui/program-entry.blp:89
 msgid "Launch with Steam"
 msgstr ""
 
-#: bottles/frontend/ui/library-entry.blp:108
+#: bottles/frontend/ui/library-entry.blp:105
 #, fuzzy
 msgid "Item name"
 msgstr "Tên chai"
 
-#: bottles/frontend/ui/library-entry.blp:132
+#: bottles/frontend/ui/library-entry.blp:129
 #, fuzzy
 msgid "Remove from Library"
 msgstr "Xóa các chương trình"
 
-#: bottles/frontend/ui/library-entry.blp:143
+#: bottles/frontend/ui/library-entry.blp:140
 msgid "Stop"
 msgstr ""
 
@@ -2053,178 +2069,178 @@ msgstr "Bắt đầu bằng cách tạo một Chai."
 msgid "Next"
 msgstr "Kế tiếp"
 
-#: bottles/frontend/ui/preferences.blp:4 bottles/frontend/ui/window.blp:86
+#: bottles/frontend/ui/preferences.blp:5 bottles/frontend/ui/window.blp:86
 msgid "Preferences"
 msgstr "Tùy chọn"
 
-#: bottles/frontend/ui/preferences.blp:11
-#: bottles/frontend/ui/preferences.blp:39
+#: bottles/frontend/ui/preferences.blp:12
+#: bottles/frontend/ui/preferences.blp:40
 msgid "General"
 msgstr "Tổng quan"
 
-#: bottles/frontend/ui/preferences.blp:14
+#: bottles/frontend/ui/preferences.blp:15
 #, fuzzy
 msgid "Appearance"
 msgstr "Vẻ bề ngoài"
 
-#: bottles/frontend/ui/preferences.blp:17
+#: bottles/frontend/ui/preferences.blp:18
 #, fuzzy
 msgid "Dark Mode"
 msgstr "Chế độ tối"
 
-#: bottles/frontend/ui/preferences.blp:18
+#: bottles/frontend/ui/preferences.blp:19
 #, fuzzy
 msgid "Whether Bottles should use the dark color scheme."
 msgstr "Cho dù đó là chai phải sử dụng Chủ đề tối."
 
-#: bottles/frontend/ui/preferences.blp:28
+#: bottles/frontend/ui/preferences.blp:29
 #, fuzzy
 msgid "Show Update Date"
 msgstr "Hiển thị ngày cập nhật"
 
-#: bottles/frontend/ui/preferences.blp:29
+#: bottles/frontend/ui/preferences.blp:30
 msgid "Whether to show the update date in the bottle list."
 msgstr "Có hiển thị ngày cập nhật trong danh sách chai."
 
-#: bottles/frontend/ui/preferences.blp:42
+#: bottles/frontend/ui/preferences.blp:43
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Notifications"
 msgstr "Thông báo"
 
-#: bottles/frontend/ui/preferences.blp:43
+#: bottles/frontend/ui/preferences.blp:44
 msgid "Show notifications for downloads and installs."
 msgstr "Hiển thị thông báo để tải xuống và cài đặt."
 
-#: bottles/frontend/ui/preferences.blp:52
+#: bottles/frontend/ui/preferences.blp:53
 #, fuzzy
 msgid "Temp Files"
 msgstr "Tệp tạm thời"
 
-#: bottles/frontend/ui/preferences.blp:53
+#: bottles/frontend/ui/preferences.blp:54
 msgid "Clean temp files when Bottles launches?"
 msgstr "Làm sạch các tập tin tạm thời khi khởi chạy Chai?"
 
-#: bottles/frontend/ui/preferences.blp:62
+#: bottles/frontend/ui/preferences.blp:63
 #, fuzzy
 msgid "Close Bottles After Starting a Program"
 msgstr "Đóng Chai sau khi khởi động một chương trình"
 
-#: bottles/frontend/ui/preferences.blp:63
+#: bottles/frontend/ui/preferences.blp:64
 #, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
 msgstr "Đóng Chai sau khi bắt đầu một chương trình từ Trình quản lý tệp"
 
-#: bottles/frontend/ui/preferences.blp:73
+#: bottles/frontend/ui/preferences.blp:74
 #, fuzzy
 msgid "Integrations"
 msgstr "Hoạt động"
 
-#: bottles/frontend/ui/preferences.blp:76
+#: bottles/frontend/ui/preferences.blp:77
 msgid "Steam Proton Prefixes"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:77
+#: bottles/frontend/ui/preferences.blp:78
 #, fuzzy
 msgid "List and manage Steam Proton prefixes."
 msgstr "Kích hoạt / Hủy kích hoạt các tính năng thử nghiệm của Steam Proton."
 
-#: bottles/frontend/ui/preferences.blp:97
+#: bottles/frontend/ui/preferences.blp:98
 msgid "List Steam Apps in Programs List"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:98
+#: bottles/frontend/ui/preferences.blp:99
 msgid "Requires Steam for Windows installed in the bottle."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:107
+#: bottles/frontend/ui/preferences.blp:108
 msgid "List Epic Games in Programs List"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:108
+#: bottles/frontend/ui/preferences.blp:109
 msgid "Requires Epic Games Store installed in the bottle."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:117
+#: bottles/frontend/ui/preferences.blp:118
 msgid "List Ubisoft Games in Programs List"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:118
+#: bottles/frontend/ui/preferences.blp:119
 #, fuzzy
 msgid "Requires Ubisoft Connect installed in the bottle."
 msgstr "Phiên bản đang hoạt động trong chai này."
 
-#: bottles/frontend/ui/preferences.blp:128
+#: bottles/frontend/ui/preferences.blp:129
 #, fuzzy
 msgid "Advanced"
 msgstr "Tùy chọn nâng cao"
 
-#: bottles/frontend/ui/preferences.blp:131
+#: bottles/frontend/ui/preferences.blp:132
 #, fuzzy
 msgid "Bottles Directory"
 msgstr "Chọn một thư mục"
 
-#: bottles/frontend/ui/preferences.blp:132
+#: bottles/frontend/ui/preferences.blp:133
 msgid "Directory that contains the data of your Bottles."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:167
+#: bottles/frontend/ui/preferences.blp:168
 msgid "Runners"
 msgstr "Trình thực thi"
 
-#: bottles/frontend/ui/preferences.blp:181
+#: bottles/frontend/ui/preferences.blp:182
 msgid "Bottles is running in offline mode, so runners are not available."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:208
+#: bottles/frontend/ui/preferences.blp:209
 #, fuzzy
 msgid "Pre-Release"
 msgstr "Phiên bản trước khi phát hành"
 
-#: bottles/frontend/ui/preferences.blp:209
+#: bottles/frontend/ui/preferences.blp:210
 msgid "Display unstable versions of runners."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:224
+#: bottles/frontend/ui/preferences.blp:225
 #, fuzzy
 msgid "DLL Components"
 msgstr "Thành phần phiên bản"
 
-#: bottles/frontend/ui/preferences.blp:238
+#: bottles/frontend/ui/preferences.blp:239
 msgid "Bottles is running in offline mode, so DLLs are not available."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:270
+#: bottles/frontend/ui/preferences.blp:271
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: bottles/frontend/ui/preferences.blp:283
+#: bottles/frontend/ui/preferences.blp:284
 msgid "Core"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:287
+#: bottles/frontend/ui/preferences.blp:288
 msgid "Runtime"
 msgstr "Runtime"
 
-#: bottles/frontend/ui/preferences.blp:291
+#: bottles/frontend/ui/preferences.blp:292
 msgid "WineBridge"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:297
+#: bottles/frontend/ui/preferences.blp:298
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Experiments"
 msgstr "Thử nghiệm"
 
-#: bottles/frontend/ui/preferences.blp:300
+#: bottles/frontend/ui/preferences.blp:301
 msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:303
+#: bottles/frontend/ui/preferences.blp:304
 msgid "Sandbox per bottle"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:304
+#: bottles/frontend/ui/preferences.blp:305
 msgid "In early development."
 msgstr ""
 
@@ -2423,7 +2439,7 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/views/bottle_details.py:505
-#: bottles/frontend/views/bottle_preferences.py:750
+#: bottles/frontend/views/bottle_preferences.py:747
 msgid "_Delete"
 msgstr ""
 
@@ -2470,16 +2486,16 @@ msgstr ""
 msgid "Select Working Directory"
 msgstr "Thư mục làm việc"
 
-#: bottles/frontend/views/bottle_preferences.py:423
+#: bottles/frontend/views/bottle_preferences.py:422
 msgid "Directory that contains the data of \"{}\"."
 msgstr ""
 
-#: bottles/frontend/views/bottle_preferences.py:746
+#: bottles/frontend/views/bottle_preferences.py:743
 #, fuzzy
 msgid "Are you sure you want to delete all snapshots?"
 msgstr "Bạn có chắc chắn muốn xóa Bottle này và tất cả các tệp?"
 
-#: bottles/frontend/views/bottle_preferences.py:747
+#: bottles/frontend/views/bottle_preferences.py:744
 msgid "This will delete all snapshots but keep your files."
 msgstr ""
 
@@ -2512,23 +2528,23 @@ msgid "Import failed"
 msgstr "Trình Nhập"
 
 #: bottles/frontend/views/importer.py:108
-#: bottles/frontend/views/importer.py:147
+#: bottles/frontend/views/importer.py:145
 #, fuzzy
 msgid "Importing backup…"
 msgstr "Nhập bản sao lưu: {0}"
 
-#: bottles/frontend/views/importer.py:119
+#: bottles/frontend/views/importer.py:117
 #, fuzzy
 msgid "Select a Backup Archive"
 msgstr "Chọn một kho lưu trữ sao lưu"
 
-#: bottles/frontend/views/importer.py:122
-#: bottles/frontend/views/importer.py:161
+#: bottles/frontend/views/importer.py:120
+#: bottles/frontend/views/importer.py:157
 #, fuzzy
 msgid "Import"
 msgstr "Trình Nhập"
 
-#: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
+#: bottles/frontend/views/importer.py:154 bottles/frontend/views/new.py:136
 #, fuzzy
 msgid "Select a Configuration File"
 msgstr "Chọn một tệp cấu hình"
@@ -3017,262 +3033,278 @@ msgid "Toggle sandbox warning."
 msgstr "Kích hoạt / Vô hiệu hóa danh sách app từ Steam"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
-msgid "Run Windows software on Linux with Bottles!"
-msgstr "Chạy phần mềm Windows trên Linux với Bottles!"
+msgid ""
+"Bottles lets you run Windows software on Linux, such as applications and "
+"games. It introduces a workflow that helps you organize by categorizing each "
+"software to your liking. Bottles provides several tools and integrations to "
+"help you manage and optimize your applications."
+msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:12
-msgid "Bottle software and enjoy at your leisure!"
-msgstr "Mở Bottle và tận hưởng lúc rảnh rỗi!"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:13
-msgid ""
-"Our built-in dependency installation system grants automatic software "
-"compatibility access. Use the download manager to download the official "
-"components: the runner (Wine, Proton), DXVK, dependencies, etc."
-msgstr ""
-"Hệ thống cài đặt phụ thuộc tích hợp cấp quyền truy cập tương thích phần mềm "
-"tự động. Sử dụng trình quản lý tải xuống để tải xuống các thành phần chính "
-"thức như: chạy phần mềm (Wine, Proton), DXVK, các phụ thuộc, v.v."
-
-#: data/com.usebottles.bottles.metainfo.xml.in:16
-msgid ""
-"Bottle versioning keeps your work safe now and lets you restore it later!"
-msgstr ""
-"Phiên bản các bottle giữ cho công việc của bạn an toàn và cho phép bạn khôi "
-"phục nó!"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:17
 msgid "Features:"
 msgstr "Các tính năng:"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:19
-msgid "Create bottles using preconfigured environments or create your own"
+#: data/com.usebottles.bottles.metainfo.xml.in:14
+msgid "Use pre-configured environments as a base"
 msgstr ""
-"Tạo chai bằng cách sử dụng môi trường được cấu hình sẵn hoặc tạo môi trường "
-"của riêng bạn"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:20
-msgid ""
-"Run executables (.exe/.msi) in your bottles, directly from the context menu "
-"of your file-manager"
-msgstr ""
-"Chạy phần mềm (.exe / .msi) trong bottle của bạn, trực tiếp từ menu ngữ cảnh "
-"của trình quản lý tệp"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:21
-msgid "Automated detection of applications installed in your bottles"
-msgstr "Phát hiện tự động các ứng dụng được cài đặt trong bottle của bạn"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:22
-msgid "Add environment variables quickly"
-msgstr "Thêm biến môi trường một cách nhanh chóng"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:23
-msgid "Override DLLs directly from per-bottle preferences"
-msgstr "Ghi đè DLL trực tiếp từ tùy chọn mỗi chai"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:24
-msgid "On-the-fly runner change for any Bottle"
+#: data/com.usebottles.bottles.metainfo.xml.in:15
+#, fuzzy
+msgid "Change runners for any bottle"
 msgstr "Thay đổi bản thực thi khi nhanh chóng cho bất kỳ chai nào"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:25
-msgid ""
-"Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
-"compiler, offload … and much more.)"
+#: data/com.usebottles.bottles.metainfo.xml.in:16
+msgid "Various optimizations and options for gaming"
 msgstr ""
-"Nhiều tối ưu hóa khác nhau để có hiệu suất chơi tốt hơn (esync, fsync, dxvk, "
-"bộ nhớ cache, trình biên dịch shaders, giảm tải ... và nhiều hơn nữa.)"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:26
-msgid "Automatic installation and management of Wine and Proton runners"
-msgstr "Tự động lắp đặt và quản lý Wine và Proton"
+#: data/com.usebottles.bottles.metainfo.xml.in:17
+msgid "Repair in case a software or bottle is broken"
+msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:27
-msgid "Automatic bottle repair in case of breakage"
-msgstr "Sửa Bottle tự động trong trường hợp bị vỡ"
+#: data/com.usebottles.bottles.metainfo.xml.in:18
+#, fuzzy
+msgid "Install various known dependencies"
+msgstr "Cài đặt phụ thuộc: {0}…"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:28
-msgid "Integrated dependency-installer based on a community-driven repository"
-msgstr "Trình cài đặt phụ thuộc tích hợp dựa trên kho lưu trữ cộng đồng"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:29
-msgid "Integrated Task manager for Wine processes"
+#: data/com.usebottles.bottles.metainfo.xml.in:19
+#, fuzzy
+msgid "Integrated task manager to manage and monitor processes"
 msgstr "Trình quản lý tác vụ tích hợp Wine"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:30
-msgid "Access to ProtonDB and WineHQ for support"
-msgstr "Truy cập vào ProtonDB và WineHQ để được hỗ trợ"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:31
-msgid "System for bringing your configuration to new versions of Bottles"
-msgstr "Hệ thống chuyển cấu hình của bạn thành các phiên bản mới hơn của Chai"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:32
-msgid "Back up and import bottles"
+#: data/com.usebottles.bottles.metainfo.xml.in:20
+#, fuzzy
+msgid "Backup and restore"
 msgstr "Sao lưu và nhập Chai"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:33
-msgid "Import Wine prefixes from other managers"
-msgstr "Nhập các tiền tố Wine từ các trình quản lý khác"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:34
-msgid "Bottles versioning"
-msgstr "Lập phiên bản Bottles"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:35
-msgid "... and much more that you can find by installing Bottles!"
-msgstr "... và bạn có thể tìm thấy nhiều hơn nữa bằng cách cài đặt Chai!"
-
-#: data/com.usebottles.bottles.metainfo.xml.in:84
+#: data/com.usebottles.bottles.metainfo.xml.in:69
 msgid "Update metadata information"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:89
+#: data/com.usebottles.bottles.metainfo.xml.in:74
 msgid "Add more update information and correct release notes version"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:94
+#: data/com.usebottles.bottles.metainfo.xml.in:79
 msgid "Fixed \"Add to Steam\" button"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:95
+#: data/com.usebottles.bottles.metainfo.xml.in:80
 msgid "Fixed BottleConfig being not serializable"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:96
+#: data/com.usebottles.bottles.metainfo.xml.in:81
 msgid "Fixed Patool double extraction failing"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:101
+#: data/com.usebottles.bottles.metainfo.xml.in:86
 #, fuzzy
 msgid "Correct version"
 msgstr "Thành phần phiên bản"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:106
+#: data/com.usebottles.bottles.metainfo.xml.in:91
 #, fuzzy
 msgid "Fix crash when creating a bottle"
 msgstr "Đã xảy ra lỗi khi tạo chai."
 
-#: data/com.usebottles.bottles.metainfo.xml.in:111
+#: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Major change: Redesign New Bottle interface"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:112
+#: data/com.usebottles.bottles.metainfo.xml.in:97
 msgid "Quality of life improvements:"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:114
+#: data/com.usebottles.bottles.metainfo.xml.in:99
 msgid "Replace emote-love icon with library in library page"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:115
+#: data/com.usebottles.bottles.metainfo.xml.in:100
 #, fuzzy
 msgid "Add toast for \"Run Executable\""
 msgstr "Thêm một đường dẫn thực thi tùy chỉnh"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:117
+#: data/com.usebottles.bottles.metainfo.xml.in:102
 msgid "Bug fixes:"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:119
+#: data/com.usebottles.bottles.metainfo.xml.in:104
 msgid "Adding shortcut to Steam resulted an error"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:120
+#: data/com.usebottles.bottles.metainfo.xml.in:105
 #, fuzzy
 msgid "Importing backups resulted an error"
 msgstr "Nhập bản sao lưu: {0}"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:121
+#: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:122
+#: data/com.usebottles.bottles.metainfo.xml.in:107
 msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:123
+#: data/com.usebottles.bottles.metainfo.xml.in:108
 msgid "Fix various issues related to text encoding"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:130
+#: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:137
+#: data/com.usebottles.bottles.metainfo.xml.in:122
 #, fuzzy
 msgid "Correct version date"
 msgstr "Ngày tạo"
 
-#: data/com.usebottles.bottles.metainfo.xml.in:138
+#: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:145
+#: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Gamescope improvements and fixes"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:146
+#: data/com.usebottles.bottles.metainfo.xml.in:131
 msgid "Dependency installation is faster and more stable"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:147
+#: data/com.usebottles.bottles.metainfo.xml.in:132
 msgid "The health check has more information for faster debugging"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:148
+#: data/com.usebottles.bottles.metainfo.xml.in:133
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:149
+#: data/com.usebottles.bottles.metainfo.xml.in:134
 msgid "Fix crash when downloading a component"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:150
+#: data/com.usebottles.bottles.metainfo.xml.in:135
 msgid "Backend code improvement by avoiding spin-lock"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:151
+#: data/com.usebottles.bottles.metainfo.xml.in:136
 msgid "More variables for installer scripting"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:152
+#: data/com.usebottles.bottles.metainfo.xml.in:137
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:153
+#: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Improvement to build system"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:154
+#: data/com.usebottles.bottles.metainfo.xml.in:139
 msgid "Enabling VKD3D by default when creating bottles for gaming"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:155
+#: data/com.usebottles.bottles.metainfo.xml.in:140
 msgid "Fix crashes when reading Steam files with bad encodings"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:156
+#: data/com.usebottles.bottles.metainfo.xml.in:141
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:157
+#: data/com.usebottles.bottles.metainfo.xml.in:142
 msgid "More FSR fixes"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:158
+#: data/com.usebottles.bottles.metainfo.xml.in:143
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:159
+#: data/com.usebottles.bottles.metainfo.xml.in:144
 msgid "and many, many, many more!"
 msgstr ""
+
+#~ msgid "Futex2"
+#~ msgstr "Futex2"
+
+#~ msgid "Run Windows software on Linux with Bottles!"
+#~ msgstr "Chạy phần mềm Windows trên Linux với Bottles!"
+
+#~ msgid "Bottle software and enjoy at your leisure!"
+#~ msgstr "Mở Bottle và tận hưởng lúc rảnh rỗi!"
+
+#~ msgid ""
+#~ "Our built-in dependency installation system grants automatic software "
+#~ "compatibility access. Use the download manager to download the official "
+#~ "components: the runner (Wine, Proton), DXVK, dependencies, etc."
+#~ msgstr ""
+#~ "Hệ thống cài đặt phụ thuộc tích hợp cấp quyền truy cập tương thích phần "
+#~ "mềm tự động. Sử dụng trình quản lý tải xuống để tải xuống các thành phần "
+#~ "chính thức như: chạy phần mềm (Wine, Proton), DXVK, các phụ thuộc, v.v."
+
+#~ msgid ""
+#~ "Bottle versioning keeps your work safe now and lets you restore it later!"
+#~ msgstr ""
+#~ "Phiên bản các bottle giữ cho công việc của bạn an toàn và cho phép bạn "
+#~ "khôi phục nó!"
+
+#~ msgid "Create bottles using preconfigured environments or create your own"
+#~ msgstr ""
+#~ "Tạo chai bằng cách sử dụng môi trường được cấu hình sẵn hoặc tạo môi "
+#~ "trường của riêng bạn"
+
+#~ msgid ""
+#~ "Run executables (.exe/.msi) in your bottles, directly from the context "
+#~ "menu of your file-manager"
+#~ msgstr ""
+#~ "Chạy phần mềm (.exe / .msi) trong bottle của bạn, trực tiếp từ menu ngữ "
+#~ "cảnh của trình quản lý tệp"
+
+#~ msgid "Automated detection of applications installed in your bottles"
+#~ msgstr "Phát hiện tự động các ứng dụng được cài đặt trong bottle của bạn"
+
+#~ msgid "Add environment variables quickly"
+#~ msgstr "Thêm biến môi trường một cách nhanh chóng"
+
+#~ msgid "Override DLLs directly from per-bottle preferences"
+#~ msgstr "Ghi đè DLL trực tiếp từ tùy chọn mỗi chai"
+
+#~ msgid ""
+#~ "Various gaming-performance optimizations (esync, fsync, DXVK, cache, "
+#~ "shader compiler, offload … and much more.)"
+#~ msgstr ""
+#~ "Nhiều tối ưu hóa khác nhau để có hiệu suất chơi tốt hơn (esync, fsync, "
+#~ "dxvk, bộ nhớ cache, trình biên dịch shaders, giảm tải ... và nhiều hơn "
+#~ "nữa.)"
+
+#~ msgid "Automatic installation and management of Wine and Proton runners"
+#~ msgstr "Tự động lắp đặt và quản lý Wine và Proton"
+
+#~ msgid "Automatic bottle repair in case of breakage"
+#~ msgstr "Sửa Bottle tự động trong trường hợp bị vỡ"
+
+#~ msgid ""
+#~ "Integrated dependency-installer based on a community-driven repository"
+#~ msgstr "Trình cài đặt phụ thuộc tích hợp dựa trên kho lưu trữ cộng đồng"
+
+#~ msgid "Access to ProtonDB and WineHQ for support"
+#~ msgstr "Truy cập vào ProtonDB và WineHQ để được hỗ trợ"
+
+#~ msgid "System for bringing your configuration to new versions of Bottles"
+#~ msgstr ""
+#~ "Hệ thống chuyển cấu hình của bạn thành các phiên bản mới hơn của Chai"
+
+#~ msgid "Import Wine prefixes from other managers"
+#~ msgstr "Nhập các tiền tố Wine từ các trình quản lý khác"
+
+#~ msgid "Bottles versioning"
+#~ msgstr "Lập phiên bản Bottles"
+
+#~ msgid "... and much more that you can find by installing Bottles!"
+#~ msgstr "... và bạn có thể tìm thấy nhiều hơn nữa bằng cách cài đặt Chai!"
 
 #~ msgid "Calculating…"
 #~ msgstr "Tính toán…"
@@ -3417,10 +3449,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Chúng tôi đặc biệt khuyên bạn không nên cài đặt nhiều gói phụ thuộc cùng "
 #~ "một lúc."
-
-#, fuzzy
-#~ msgid "Select Dependencies"
-#~ msgstr "Chọn các gói phụ thuộc"
 
 #~ msgid "Read documentation"
 #~ msgstr "Đọc tài liệu"

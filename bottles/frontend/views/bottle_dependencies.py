@@ -14,7 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-
 import time
 from typing import Optional
 
@@ -36,6 +35,8 @@ class DependenciesView(Adw.Bin):
     # region Widgets
     list_dependencies = Gtk.Template.Child()
     btn_report = Gtk.Template.Child()
+    btn_show_all = Gtk.Template.Child()
+    btn_show_allowed = Gtk.Template.Child()
     btn_help = Gtk.Template.Child()
     entry_search = Gtk.Template.Child()
     actions = Gtk.Template.Child()
@@ -54,6 +55,7 @@ class DependenciesView(Adw.Bin):
         self.manager = details.window.manager
         self.config = config
         self.queue = details.queue
+        self.show_all = False
 
         self.ev_controller.connect("key-released", self.__search_dependencies)
 
@@ -62,11 +64,28 @@ class DependenciesView(Adw.Bin):
 
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
+        self.btn_show_all.connect("clicked", self.__show_all_dependencies)
+        self.btn_show_allowed.connect("clicked", self.__show_allowed_dependencies)
 
-        if self.manager.utils_conn.status == False:
-            self.stack.set_visible_child_name("page_offline")
+        self.btn_show_all.set_visible(not self.show_all)
+        self.btn_show_allowed.set_visible(self.show_all)
+
+        if not self.manager.utils_conn.status:
+            self.stack.set_visible_child_name("page_offline") 
 
         self.spinner_loading.start()
+
+    def __show_all_dependencies(self, widget):
+        self.show_all = True
+        self.update(False, self.config)
+        self.btn_show_allowed.set_visible(self.show_all)
+        self.btn_show_all.set_visible(not self.show_all)
+
+    def __show_allowed_dependencies(self, widget):
+        self.show_all = False
+        self.update(False, self.config)
+        self.btn_show_all.set_visible(not self.show_all)
+        self.btn_show_allowed.set_visible(self.show_all)
 
     def __search_dependencies(self, *_args):
         """
@@ -130,11 +149,9 @@ class DependenciesView(Adw.Bin):
                     if dep[0] in self.config.Installed_Dependencies:
                         continue  # Do not list already installed dependencies'
 
-                    dependency_arch = dep[1].get("Arch")
-                    if dependency_arch is not None and dependency_arch != self.config.get("Arch"):
+                    if self.config.Arch not in dep[1].get("Arch", "win64_win32") and not self.show_all:
                         # NOTE: avoid listing dependencies not supported by the bottle arch
                         continue
-
                     GLib.idle_add(new_dependency, dep)
 
             if len(self.config.Installed_Dependencies) > 0:
