@@ -27,9 +27,9 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.dependency import DependencyEntry
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/details-dependencies.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/details-dependencies.ui")
 class DependenciesView(Adw.Bin):
-    __gtype_name__ = 'DetailsDependencies'
+    __gtype_name__ = "DetailsDependencies"
     __registry = []
 
     # region Widgets
@@ -88,7 +88,7 @@ class DependenciesView(Adw.Bin):
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, widget=False, config: Optional[BottleConfig] = None):
+    def update(self, _widget=False, config: Optional[BottleConfig] = None):
         """
         This function update the dependencies list with the
         supported by the manager.
@@ -98,7 +98,7 @@ class DependenciesView(Adw.Bin):
         self.config = config
 
         # Not sure if it's the best place to make this check
-        if self.manager.utils_conn.status == False:
+        if not self.manager.utils_conn.status:
             return
 
         self.stack.set_visible_child_name("page_loading")
@@ -114,7 +114,7 @@ class DependenciesView(Adw.Bin):
             self.list_dependencies.append(entry)
 
         @GtkUtils.run_in_main_loop
-        def callback(result, error=False):
+        def callback(_result, _error=False):
             self.stack.set_visible_child_name("page_deps")
 
         def process_dependencies():
