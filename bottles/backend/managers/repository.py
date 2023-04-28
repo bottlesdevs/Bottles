@@ -16,17 +16,17 @@
 #
 
 import os
+
 import pycurl
-import http
-from typing import Union, NewType
-from gi.repository import GLib
 
 from bottles.backend.logger import Logger
-from bottles.backend.repos.dependency import DependencyRepo
+from bottles.backend.models.result import Result
+from bottles.backend.params import APP_VERSION
 from bottles.backend.repos.component import ComponentRepo
+from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.installer import InstallerRepo
-from bottles.frontend.params import APP_VERSION
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.state import SignalManager, Signals
+from bottles.backend.utils.threading import RunAsync
 
 logging = Logger()
 
@@ -50,15 +50,14 @@ class RepositoryManager:
         }
     }
 
-    def __init__(self, repo_fn_update=None):
-        self.repo_fn_update = repo_fn_update
+    def __init__(self):
         self.__check_locals()
         self.__get_index()
 
-    def get_repo(self, name: str, offline: bool = False, callback=None):
+    def get_repo(self, name: str, offline: bool = False):
         if name in self.__repositories:
             repo = self.__repositories[name]
-            return repo["cls"](repo["url"], repo["index"], offline=offline, callback=callback)
+            return repo["cls"](repo["url"], repo["index"], offline=offline)
 
         logging.error(f"Repository {name} not found")
 
@@ -95,9 +94,9 @@ class RepositoryManager:
         threads = []
 
         for repo, data in self.__repositories.items():
-            def query(repo, data):
-                __index = os.path.join(data["url"], f"{APP_VERSION}.yml")
-                __fallback = os.path.join(data["url"], "index.yml")
+            def query(_repo, _data):
+                __index = os.path.join(_data["url"], f"{APP_VERSION}.yml")
+                __fallback = os.path.join(_data["url"], "index.yml")
 
                 for url in (__index, __fallback):
                     c = pycurl.Curl()
@@ -110,20 +109,20 @@ class RepositoryManager:
                         c.perform()
                     except pycurl.error as e:
                         if url is not __index:
-                            logging.error(f"Could not get index for {repo} repository: {e}")
+                            logging.error(f"Could not get index for {_repo} repository: {e}")
                         continue
 
                     if url.startswith("file://") or c.getinfo(c.RESPONSE_CODE) == 200:
-                        data["index"] = url
-                        if self.repo_fn_update is not None:
-                            GLib.idle_add(self.repo_fn_update, total)
+                        _data["index"] = url
+                        SignalManager.send(Signals.RepositoryFetched, Result(True, data=total))
                         break
 
                     c.close()
                 else:
-                    logging.error(f"Could not get index for {repo} repository")
+                    SignalManager.send(Signals.RepositoryFetched, Result(False, data=total))
+                    logging.error(f"Could not get index for {_repo} repository")
 
-            thread = RunAsync(query, repo=repo, data=data)
+            thread = RunAsync(query, _repo=repo, _data=data)
             threads.append(thread)
 
         for t in threads:

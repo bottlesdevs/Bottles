@@ -16,12 +16,14 @@
 #
 
 from gettext import gettext as _
+
 from gi.repository import Gtk, Adw
 
 from bottles.backend.managers.backup import BackupManager
-from bottles.frontend.utils.threading import RunAsync
-from bottles.frontend.widgets.importer import ImporterEntry
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
+from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.widgets.importer import ImporterEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer.ui')
@@ -59,6 +61,7 @@ class ImporterView(Adw.Bin):
         manager to find all prefixes in the system and add them to the list
         """
 
+        @GtkUtils.run_in_main_loop
         def update(result, error=False):
             widget.set_sensitive(True)
             if result.status:
@@ -83,6 +86,7 @@ class ImporterView(Adw.Bin):
             callback=update
         )
 
+    @GtkUtils.run_in_main_loop
     def __finish(self, result, error=False):
         if result.status:
             self.window.show_toast(_("Backup imported successfully"))
@@ -96,6 +100,7 @@ class ImporterView(Adw.Bin):
         as Bottles export bottles in this format. Once selected, it will
         be imported.
         """
+
         def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 return
@@ -104,10 +109,8 @@ class ImporterView(Adw.Bin):
             RunAsync(
                 task_func=BackupManager.import_backup,
                 callback=self.__finish,
-                window=self.window,
                 scope="full",
                 path=dialog.get_file().get_path(),
-                manager=self.manager
             )
 
         dialog = Gtk.FileChooserNative.new(
@@ -134,6 +137,7 @@ class ImporterView(Adw.Bin):
         which are the Bottles' configuration file. Once selected, it will
         be imported.
         """
+
         def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 return
@@ -142,10 +146,8 @@ class ImporterView(Adw.Bin):
             RunAsync(
                 task_func=BackupManager.import_backup,
                 callback=self.__finish,
-                window=self.window,
                 scope="config",
                 path=dialog.get_file().get_path(),
-                manager=self.manager
             )
 
         dialog = Gtk.FileChooserNative.new(

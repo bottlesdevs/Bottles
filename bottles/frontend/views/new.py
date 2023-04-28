@@ -20,8 +20,9 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw, Pango, Gio
 
 from bottles.backend.models.config import BottleConfig
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/new.ui")
@@ -192,6 +193,7 @@ class NewView(Adw.Window):
             custom_environment=self.env_recipe_path
         )
 
+    @GtkUtils.run_in_main_loop
     def update_output(self, text: str) -> None:
         """
         Updates label_output with the given text by concatenating
@@ -201,6 +203,7 @@ class NewView(Adw.Window):
         text = f"{current_text}{text}\n"
         self.label_output.set_text(text)
 
+    @GtkUtils.run_in_main_loop
     def finish(self, result, error=None) -> None:
         """ Updates widgets based on whether it succeeded or failed. """
 

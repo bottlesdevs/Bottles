@@ -16,48 +16,39 @@
 #
 
 import os
-import uuid
 import shutil
 import traceback
-from glob import glob
 from functools import lru_cache
+from glob import glob
 from typing import Union
+
 import patoolib
 
-from gi.repository import GLib
-
-from bottles.backend.models.config import BottleConfig
-from bottles.backend.models.enum import Arch
-
-try:
-    from bottles.frontend.operation import OperationManager
-except (RuntimeError, GLib.GError):
-    from bottles.frontend.cli.operation_cli import OperationManager
-
-from bottles.backend.utils.generic import validate_url
-from bottles.backend.models.result import Result
-from bottles.backend.logger import Logger
 from bottles.backend.cabextract import CabExtract
 from bottles.backend.globals import Paths
+from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.enum import Arch
+from bottles.backend.models.result import Result
+from bottles.backend.state import TaskManager, Task
+from bottles.backend.utils.generic import validate_url
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.wine.executor import WineExecutor
+from bottles.backend.wine.reg import Reg, RegItem
+from bottles.backend.wine.regkeys import RegKeys
+from bottles.backend.wine.regsvr32 import Regsvr32
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg
-from bottles.backend.wine.reg import Reg, RegItem
-from bottles.backend.wine.regsvr32 import Regsvr32
-from bottles.backend.wine.regkeys import RegKeys
-from bottles.backend.wine.executor import WineExecutor
 
 logging = Logger()
 
 
 class DependencyManager:
 
-    def __init__(self, manager, offline: bool = False, callback=None):
+    def __init__(self, manager, offline: bool = False):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("dependencies", offline, callback)
-        self.__window = manager.window
+        self.__repo = manager.repository_manager.get_repo("dependencies", offline)
         self.__utils_conn = manager.utils_conn
-        self.__operation_manager = OperationManager(self.__window)
 
     @lru_cache
     def get_dependency(self, name: str, plain: bool = False) -> Union[str, dict]:
@@ -82,17 +73,11 @@ class DependencyManager:
         catalog = dict(sorted(catalog.items()))
         return catalog
 
-    def install(
-            self,
-            config: BottleConfig,
-            dependency: list,
-            reinstall: bool = False
-    ) -> Result:
+    def install(self, config: BottleConfig, dependency: list) -> Result:
         """
         Install a given dependency in a bottle. It will
         return True if the installation was successful.
         """
-        task_id = str(uuid.uuid4())
         uninstaller = True
 
         if config.Parameters.versioning_automatic:
@@ -106,9 +91,7 @@ class DependencyManager:
                 message=f"Before installing {dependency[0]}"
             )
 
-        GLib.idle_add(
-            self.__operation_manager.new_task, task_id, dependency[0], False
-        )
+        task_id = TaskManager.add(Task(title=dependency[0]))
 
         logging.info("Installing dependency [%s] in bottle [%s]." % (
             dependency[0],
@@ -120,7 +103,7 @@ class DependencyManager:
             If the manifest is not found, return a Result
             object with the error.
             """
-            GLib.idle_add(self.__operation_manager.remove_task, task_id)
+            TaskManager.remove(task_id)
             return Result(
                 status=False,
                 message=f"Cannot find manifest for {dependency[0]}."
@@ -147,7 +130,7 @@ class DependencyManager:
             """
             res = self.__perform_steps(config, step)
             if not res.status:
-                GLib.idle_add(self.__operation_manager.remove_task, task_id)
+                TaskManager.remove(task_id)
                 return Result(
                     status=False,
                     message=f"One or more steps failed for {dependency[0]}."
@@ -155,8 +138,7 @@ class DependencyManager:
             if not res.data.get("uninstaller"):
                 uninstaller = False
 
-        if dependency[0] not in config.Installed_Dependencies \
-                or reinstall:
+        if dependency[0] not in config.Installed_Dependencies:
             """
             If the dependency is not already listed in the installed
             dependencies list of the bottle, add it.
@@ -189,8 +171,8 @@ class DependencyManager:
                 "Uninstallers"
             )
 
-        # Remove entry from operation manager
-        GLib.idle_add(self.__operation_manager.remove_task, task_id)
+        # Remove entry from task manager
+        TaskManager.remove(task_id)
 
         # Hide installation button and show remove button
         logging.info(f"Dependency installed: {dependency[0]} in {config.Name}", jn=True)
@@ -509,7 +491,7 @@ class DependencyManager:
         os.makedirs(archive_path)
         try:
             patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
-            if archive_path.endswith(".tar"):
+            if archive_path.endswith(".tar") and os.path.isfile(os.path.join(archive_path, os.path.basename(archive_path))):
                 tar_path = os.path.join(archive_path, os.path.basename(archive_path))
                 patoolib.extract_archive(tar_path, outdir=archive_path)
         except Exception as e:

@@ -16,13 +16,12 @@
 #
 
 import time
-from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.widgets.installer import InstallerEntry
 

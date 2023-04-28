@@ -16,13 +16,13 @@
 #
 
 import contextlib
-import logging
 import re
-from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk, GLib, Adw
+
+from gi.repository import Gtk, Adw, GObject
 
 from bottles.backend.managers.library import LibraryManager
+from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.library import LibraryEntry
 
 
@@ -36,6 +36,8 @@ class LibraryView(Adw.Bin):
     status_page = Gtk.Template.Child()
     style_provider = Gtk.CssProvider()
     # endregion
+
+    items_per_line = GObject.property(type=int, default=0)
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -53,20 +55,26 @@ class LibraryView(Adw.Bin):
         self.status_page.set_visible(len(entries) == 0)
         self.scroll_window.set_visible(not len(entries) == 0)
 
+        self.items_per_line = len(entries)
+
         for u, e in entries.items():
             # We suppress exceptions so that it doesn't continue if the init fails
             with contextlib.suppress(Exception):
                 entry = LibraryEntry(self, u, e)
                 self.main_flow.append(entry)
 
-    def remove_entry(self,  entry):
+    def remove_entry(self, entry):
+        @GtkUtils.run_in_main_loop
         def undo_callback(*args):
+            self.items_per_line += 1
             entry.show()
 
+        @GtkUtils.run_in_main_loop
         def dismissed_callback(*args):
             self.__delete_entry(entry)
 
         entry.hide()
+        self.items_per_line -= 1
         self.window.show_toast(
             message=_("\"{0}\" removed from the library.").format(entry.name),
             timeout=5,
@@ -78,17 +86,6 @@ class LibraryView(Adw.Bin):
     def __delete_entry(self, entry):
         library_manager = LibraryManager()
         library_manager.remove_from_library(entry.uuid)
-
-    def add_css_entry(self, entry, color):
-        gtk_context = self.get_style_context()
-        Gtk.StyleContext.add_class(entry.btn_menu.get_style_context(), re.sub('[~!@$%^&*()+=,./\';:"?><\[\]\{}|`#]', '', entry.entry["name"]).replace(" ", "")+"_menu_button")
-        self.css = self.css+b"\n"+b"."+bytes(re.sub('[~!@$%^&*()+=,./\';:"?><\[\]\{}|`#]', '', entry.entry["name"]).replace(" ", ""), 'utf-8')+b"_menu_button { color: rgba("+bytes(str(color), 'utf-8')+b","+bytes(str(color), 'utf-8')+b","+bytes(str(color), 'utf-8')+b", 255); }"
-        self.style_provider.load_from_data(self.css)
-        Gtk.StyleContext.add_provider(
-            entry.btn_menu.get_style_context(),
-            self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_USER
-        )
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)

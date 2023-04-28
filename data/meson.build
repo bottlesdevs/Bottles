@@ -1,6 +1,6 @@
 conf = configuration_data()
+conf.set('APP_ID', APP_ID)
 conf.set('APP_NAME', APP_NAME)
-conf.set('APP_ICON', APP_ICON)
 
 desktop_file = configure_file(
         input:  'com.usebottles.bottles.desktop.in.in',
@@ -50,7 +50,7 @@ if compile_schemas.found()
 endif
 
 install_data(
-    join_paths('icons/hicolor/scalable/apps', APP_ICON),
+    join_paths('icons/hicolor/scalable/apps', APP_ID + '.' + 'svg'),
     install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/scalable/apps')
 )
 

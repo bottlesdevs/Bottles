@@ -9,7 +9,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Set up Python 3.10
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: "3.10"
     - name: Install Ubuntu dependencies
@@ -22,7 +22,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install wheel
         pip install pylint
-        pip install -r bottles/requirements.txt
+        pip install -r requirements.txt
         pip install pycairo
         pip install PyGObject
     - name: Analysing the code with pylint
@@ -33,7 +33,7 @@ jobs:
         python3 utils/pylint-parser.py > output/pylint-result
         cat output/pylint-result
         echo ${{ github.event.number }} > output/pr-number
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: pylint-result
         path: output/

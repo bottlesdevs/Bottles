@@ -1,6 +1,6 @@
 project(
 	'bottles',
-	version: '50.2',
+	version: '51.5',
 	meson_version: '>= 0.59.0',
 	default_options: [
 		'warning_level=2',
@@ -21,9 +21,6 @@ if devel == true
 	APP_NAME += ' (Development)'
 	APP_ID += '.' + 'Devel'
 endif
-
-APP_ICON = APP_ID + '.' + 'svg'
-
 
 
 gnome = import('gnome')

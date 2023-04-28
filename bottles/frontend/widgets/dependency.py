@@ -15,14 +15,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import webbrowser
 import contextlib
-from gi.repository import Gtk, GLib, Adw
+import webbrowser
 from gettext import gettext as _
+
+from gi.repository import Gtk, Adw
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.windows.generic import SourceDialog
 
 
@@ -72,7 +74,7 @@ class DependencyEntry(Adw.ActionRow):
 
         # connect signals
         self.btn_install.connect("clicked", self.install_dependency)
-        self.btn_reinstall.connect("clicked", self.install_dependency, True)
+        self.btn_reinstall.connect("clicked", self.install_dependency)
         self.btn_remove.connect("clicked", self.remove_dependency)
         self.btn_manifest.connect("clicked", self.open_manifest)
         self.btn_license.connect("clicked", self.open_license)
@@ -119,7 +121,7 @@ class DependencyEntry(Adw.ActionRow):
         )
         webbrowser.open(manifest["License_url"])
 
-    def install_dependency(self, widget, reinstall=False):
+    def install_dependency(self, widget):
         """
         This function install the dependency in the bottle, it
         will also prevent user from installing other dependencies
@@ -138,7 +140,6 @@ class DependencyEntry(Adw.ActionRow):
             callback=self.set_install_status,
             config=self.config,
             dependency=self.dependency,
-            reinstall=reinstall
         )
 
     def remove_dependency(self, widget):
@@ -154,6 +155,7 @@ class DependencyEntry(Adw.ActionRow):
             dependency=self.dependency,
         )
 
+    @GtkUtils.run_in_main_loop
     def set_install_status(self, result: Result, error=None):
         """
         This function set the dependency as installed

@@ -15,42 +15,38 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
-import time
 import contextlib
+import os
 import webbrowser
 from gettext import gettext as _
 from typing import Optional
 
-from gi.repository import Gtk, GLib, Gio, Adw, GObject
-from pathlib import Path
-
-from bottles.frontend.params import *
-
-from bottles.backend.models.config import BottleConfig
-from bottles.frontend.const import *
-from bottles.backend.logger import Logger
-from bottles.frontend.utils.threading import RunAsync
-from bottles.frontend.utils.connection import ConnectionUtils
+from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk
 
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
+from bottles.backend.logger import Logger
+from bottles.backend.managers.data import UserDataKeys
 from bottles.backend.managers.manager import Manager
-from bottles.backend.wine.executor import WineExecutor
-
-from bottles.frontend.views.new import NewView
+from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.result import Result
+from bottles.backend.state import SignalManager, Signals, Notification
+from bottles.backend.utils.connection import ConnectionUtils
+from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.const import *
+from bottles.frontend.operation import TaskSyncer
+from bottles.frontend.params import *
+from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.details import DetailsView
-from bottles.frontend.views.list import BottleView
-from bottles.frontend.views.library import LibraryView
-from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.views.importer import ImporterView
+from bottles.frontend.views.library import LibraryView
+from bottles.frontend.views.list import BottleView
 from bottles.frontend.views.loading import LoadingView
-
+from bottles.frontend.views.new import NewView
+from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.windows.crash import CrashReportDialog
-from bottles.frontend.windows.generic import SourceDialog
-from bottles.frontend.windows.onboard import OnboardDialog
-from bottles.frontend.windows.journal import JournalDialog
 from bottles.frontend.windows.depscheck import DependenciesCheckDialog
+from bottles.frontend.windows.onboard import OnboardDialog
 
 logging = Logger()
 
@@ -74,15 +70,18 @@ class MainWindow(Adw.ApplicationWindow):
 
     # Common variables
     previous_page = ""
-    default_settings = Gtk.Settings.get_default()
     settings = Gio.Settings.new(APP_ID)
     argument_executed = False
 
     def __init__(self, arg_bottle, **kwargs):
-        super().__init__(**kwargs)
+
+        width = self.settings.get_int("window-width")
+        height = self.settings.get_int("window-height")
+
+        super().__init__(**kwargs, default_width=width, default_height=height)
 
         self.disable_onboard = False
-        self.utils_conn = ConnectionUtils(self)
+        self.utils_conn = ConnectionUtils()
         self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
@@ -109,8 +108,39 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_add.connect("clicked", self.show_add_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
+
+        # backend signal handlers
+        self.task_syncer = TaskSyncer(self)
+        SignalManager.connect(Signals.TaskAdded, self.task_syncer.task_added_handler)
+        SignalManager.connect(Signals.TaskRemoved, self.task_syncer.task_removed_handler)
+        SignalManager.connect(Signals.TaskUpdated, self.task_syncer.task_updated_handler)
+        SignalManager.connect(Signals.NetworkStatusChanged, self.network_changed_handler)
+        SignalManager.connect(Signals.GNotification, self.g_notification_handler)
+        SignalManager.connect(Signals.GShowUri, self.g_show_uri_handler)
+
         self.__on_start()
         logging.info("Bottles Started!", )
+
+    @Gtk.Template.Callback()
+    def on_close_request(self, *args):
+        self.settings.set_int("window-width", self.get_width())
+        self.settings.set_int("window-height", self.get_height())
+
+    # region Backend signal handlers
+    def network_changed_handler(self, res: Result):
+        GLib.idle_add(self.btn_noconnection.set_visible, not res.status)
+
+    def g_notification_handler(self, res: Result):
+        """handle backend notification request"""
+        notify: Notification = res.data
+        self.send_notification(title=notify.title, text=notify.text, image=notify.image)
+
+    def g_show_uri_handler(self, res: Result):
+        """handle backend show_uri request"""
+        uri: str = res.data
+        Gtk.show_uri(self, uri, Gdk.CURRENT_TIME)
+
+    # endregion
 
     def update_library(self):
         GLib.idle_add(self.page_library.update)
@@ -128,9 +158,6 @@ class MainWindow(Adw.ApplicationWindow):
         if self.utils_conn.check_connection():
             self.manager.checks(install_latest=False, first_run=True)
 
-    def toggle_btn_noconnection(self, status):
-        GLib.idle_add(self.btn_noconnection.set_visible, status)
-
     def __on_start(self):
         """
         This method is called before the window is shown. This check if there
@@ -138,7 +165,8 @@ class MainWindow(Adw.ApplicationWindow):
         prompted with the onboard dialog.
         """
 
-        def set_manager(result, error=None):
+        @GtkUtils.run_in_main_loop
+        def set_manager(result: Manager, error=None):
             self.manager = result
 
             tmp_runners = [x for x in self.manager.runners_available if not x.startswith('sys-')]
@@ -185,7 +213,8 @@ class MainWindow(Adw.ApplicationWindow):
             self.lock_ui(False)
             self.headerbar.get_style_context().remove_class("flat")
 
-            if Paths.custom_bottles_path_err:
+            user_defined_bottles_path = self.manager.data_mgr.get(UserDataKeys.CustomBottlesPath)
+            if user_defined_bottles_path and Paths.bottles != user_defined_bottles_path:
                 dialog = Adw.MessageDialog.new(
                     self,
                     _("Custom Bottles Path not Found"),
@@ -194,18 +223,19 @@ class MainWindow(Adw.ApplicationWindow):
                 dialog.add_response("cancel", _("_Dismiss"))
                 dialog.present()
 
-        def get_manager(window):
-            repo_fn_update = self.page_loading.add_fetched if self.utils_conn.check_connection() else None
-            mng = Manager(window=window, repo_fn_update=repo_fn_update)
+        def get_manager():
+            if self.utils_conn.check_connection():
+                SignalManager.connect(Signals.RepositoryFetched, self.page_loading.add_fetched)
+            mng = Manager(g_settings=self.settings)
             return mng
 
         self.check_core_deps()
         self.show_loading_view()
-        RunAsync(get_manager, callback=set_manager, window=self)
+        RunAsync(get_manager, callback=set_manager)
 
         self.check_crash_log()
 
-    def send_notification(self, title, text, image="", ignore_user=True):
+    def send_notification(self, title, text, image="", ignore_user=False):
         """
         This method is used to send a notification to the user using
         Gio.Notification. The notification is sent only if the
@@ -301,9 +331,11 @@ class MainWindow(Adw.ApplicationWindow):
 
         if action_label and action_callback:
             toast.set_button_label(action_label)
+
             def wrapper_callback(*args):
                 action_callback(toast)
                 toast.handler_block_by_func(dismissed_callback)
+
             toast.connect("button-clicked", wrapper_callback)
 
         if dismissed_callback:

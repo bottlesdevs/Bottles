@@ -3,7 +3,7 @@ sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 base: org.winehq.Wine
 base-version: stable-22.08
-runtime-version: "43"
+runtime-version: "44"
 command: bottles
 
 finish-args:
@@ -79,123 +79,9 @@ cleanup-commands:
   - mkdir -p /app/utils
 
 modules:
-  # Python modules
+  # PYPI modules
   # ----------------------------------------------------------------------------
-  - name: PyYAML
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py --with-libyaml install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/yaml/pyyaml/archive/refs/tags/6.0.tar.gz
-        sha256: f33eaba25d8e0c1a959bbf00655198c287dfc5868f5b7b01e401eaa1796cc778
-    modules:
-    - name: libyaml
-      config-opts:
-        - --disable-static
-      sources:
-        - type: archive
-          url: https://github.com/yaml/libyaml/releases/download/0.2.5/yaml-0.2.5.tar.gz
-          sha256: c642ae9b75fee120b2d96c712538bd2cf283228d2337df2cf2988e3c02678ef4
-
-  - name: PycURL
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: git
-        url: https://github.com/pycurl/pycurl.git
-        tag: REL_7_45_1
-
-  - name: python-requests
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/psf/requests/archive/refs/tags/v2.28.0.tar.gz
-        sha256: 6b757ca284d8dc192794010c960b0cf405fcc7aed9ed2e04a8269dc41b1231ad
-
-  - name: python-urllib3
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/urllib3/urllib3/archive/refs/tags/1.26.9.tar.gz
-        sha256: 5860049db8811e7a26e5f228359522814dc8159e6ec4f352b1b596e0dee80503
-
-  - name: python-chardet
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/chardet/chardet/archive/4.0.0.tar.gz
-        sha256: 67bbe3eb02691d38831ddf2719c40fe09381bc17f15321946f6cd71dc274e530
-
-  - name: python-certifi
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/certifi/python-certifi/archive/refs/tags/2021.10.08.tar.gz
-        sha256: 51c2cf76f7f2582d9c4eb5440bb311ef523ba0b319d0a973450ecebfb6802a3a
-
-  - name: python-idna
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/kjd/idna/archive/refs/tags/v3.3.tar.gz
-        sha256: 34b145ffe35b7872e9a3e0abc3a3a8330db90a0fd58db978725fd05c5c7d9f88
-
-  - name: python-markdown
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/Python-Markdown/markdown/archive/refs/tags/3.3.7.tar.gz
-        sha256: a1b7a818ca2dc6b34b9ec0bb73e3f4325e4ee949a8390a91a4df48c311069f65
-
-  - name: python-icoextract
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/jlu5/icoextract/archive/refs/tags/0.1.2.tar.gz
-        sha256: 3818ad889160b33d360da4083da0a32df8d1955fb77a64bfbac49edc15d5ad3b
-
-  - name: patool
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/wummel/patool/archive/refs/tags/upstream/1.12.tar.gz
-        sha256: 582fd4b87c263325958c1550400504799018c88bc3444f249bba304ae1747f1f
-
-  - name: python-pefile
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/erocarrera/pefile/releases/download/v2021.9.3/pefile-2021.9.3.tar.gz
-        sha256: 344a49e40a94e10849f0fe34dddc80f773a12b40675bf2f7be4b8be578bdd94a
-
-  - name: python-pathvalidate
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/thombashi/pathvalidate/archive/refs/tags/v2.5.2.zip
-        sha256: 823b72c567147468b5823958a3625c72867455c13b8e367397ee467decccaea4
+  - com.usebottles.bottles.pypi-deps.yaml
 
   # Tools / Codecs
   # ----------------------------------------------------------------------------
@@ -247,9 +133,10 @@ modules:
   - name: xdpyinfo
     buildsystem: autotools
     sources:
-      - type: archive
-        url: https://github.com/freedesktop/xdpyinfo/archive/refs/tags/xdpyinfo-1.3.2.tar.gz
-        sha256: 4c6942cb55e965f1192c0e2efc78429e2f4281cc2bc185d6ea09d609f32c51de
+      - type: git
+        url: https://gitlab.freedesktop.org/xorg/app/xdpyinfo.git
+        tag: "xdpyinfo-1.3.3"
+        commit: 61bc4b764030bdc9a731ee74c7c56bf2b2a4bddf
 
 
   # Libraries

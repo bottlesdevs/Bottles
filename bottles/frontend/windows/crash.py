@@ -15,15 +15,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
-import json
 import contextlib
-import webbrowser
 import urllib.request
-from urllib.parse import quote
+import webbrowser
+from gettext import gettext as _
+
 from gi.repository import Gtk, Adw
 
-from bottles.frontend.params import APP_VERSION
+from bottles.backend.utils import json
 
 
 class SimilarReportEntry(Adw.ActionRow):
@@ -135,7 +134,7 @@ class CrashReportDialog(Adw.Window):
     @staticmethod
     def __get_similar_issues(log):
         """
-        This function will get the similar reports from the github
+        This function will get the similar reports from the GitHub
         api and return them as a list. It will return an empty list
         if there are no similar reports.
         """

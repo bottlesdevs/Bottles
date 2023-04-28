@@ -15,16 +15,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from bottles.backend.utils import yaml
-import pycurl
 from io import BytesIO
-from http.client import RemoteDisconnected
-from threading import Lock as PyLock
-from typing import Dict
+
+import pycurl
 
 from bottles.backend.logger import Logger
-
-from bottles.frontend.utils.threading import RunAsync
+from bottles.backend.state import EventManager, Events
+from bottles.backend.utils import yaml
+from bottles.backend.utils.threading import RunAsync
 
 logging = Logger()
 
@@ -32,19 +30,17 @@ logging = Logger()
 class Repo:
     name: str = ""
 
-    def __init__(self, url: str, index: str, offline: bool = False, callback = None):
+    def __init__(self, url: str, index: str, offline: bool = False):
         self.url = url
         self.catalog = None
 
         def set_catalog(result, error=None):
             self.catalog = result
-            RepoStatus.repo_done_operation(self.name + ".fetching")
-            if callback: callback()
+            EventManager.done(Events(self.name + ".fetching"))
+
         RunAsync(self.__get_catalog, callback=set_catalog, index=index, offline=offline)
 
     def __get_catalog(self, index: str, offline: bool = False):
-        RepoStatus.repo_start_operation(self.name + ".fetching")
-
         if index in ["", None] or offline:
             return {}
 
@@ -76,7 +72,7 @@ class Repo:
             c.setopt(c.WRITEDATA, buffer)
             c.perform()
             c.close()
-            
+
             res = buffer.getvalue()
 
             if plain:
@@ -86,26 +82,3 @@ class Repo:
         except (pycurl.error, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} manifest.")
             return {}
-
-class RepoStatus:
-    LOCKS: Dict[str, PyLock] = {}
-
-    @staticmethod
-    def repo_start_operation(name: str):
-        lock = RepoStatus.LOCKS.setdefault(name, PyLock())
-        lock.acquire()
-        logging.debug(f"Start operation {name}")
-
-    @staticmethod
-    def repo_done_operation(name: str):
-        lock = RepoStatus.LOCKS.setdefault(name, PyLock())
-        if lock.locked():
-            lock.release()
-        logging.debug(f"Done operation {name}")
-
-    def repo_wait_operation(name: str):
-        lock = RepoStatus.LOCKS.setdefault(name, PyLock())
-        logging.debug(f"Wait operation {name}")
-        lock.acquire()
-        lock.release()
-        logging.debug(f"Done wait operation {name}")

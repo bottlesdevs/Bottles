@@ -14,13 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-
-import re
 import logging
-from gi.repository import GLib
-from pathlib import Path
-from gettext import gettext as _
+import os
+import re
 
+from bottles.backend.globals import Paths
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 
 # Set default logging level
@@ -55,7 +53,7 @@ class Logger(logging.getLoggerClass()):
             formatter = self.__format_log
         formatter = logging.Formatter(**formatter)
 
-        self.root.setLevel(logging.INFO)
+        self.root.setLevel(os.environ.get("LOG_LEVEL") or logging.INFO)
         self.root.handlers = []
 
         handler = logging.StreamHandler()
@@ -91,8 +89,7 @@ class Logger(logging.getLoggerClass()):
         Writes a crash.log file. It finds and replace the user's home directory
         with "USER" as a proposed standard for crash reports.
         """
-        xdg_data_home = GLib.get_user_data_dir()
-        log_path = f"{xdg_data_home}/bottles/crash.log"
+        log_path = f"{Paths.xdg_data_home}/bottles/crash.log"
 
         with open(log_path, "w") as crash_log:
             for d in data:

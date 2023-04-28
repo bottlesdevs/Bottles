@@ -19,10 +19,7 @@ import os
 import sys
 import threading
 import traceback
-
-from gettext import gettext as _
-
-from gi.repository import GLib
+from typing import Any
 
 from bottles.backend.logger import Logger
 
@@ -35,16 +32,17 @@ class RunAsync(threading.Thread):
     It takes a function, a callback and a list of arguments as input.
     """
 
-    def __init__(self, task_func, callback=None, daemon=True, *args, **kwargs):
+    def __init__(self, task_func, callback=None, daemon=True, *args: Any, **kwargs: Any):
         if "DEBUG_MODE" in os.environ:
             import faulthandler
             faulthandler.enable()
 
-        self.source_id = None
-        logging.debug(f"Running async job [{task_func}] (from main thread: {threading.current_thread() is threading.main_thread()}).")
+        logging.debug(
+            f"Running async job [{task_func}] "
+            f"(from main thread: {threading.current_thread() is threading.main_thread()})."
+        )
 
-        super(RunAsync, self).__init__(
-            target=self.__target, args=args, kwargs=kwargs)
+        super(RunAsync, self).__init__(target=self.__target, args=args, kwargs=kwargs)
 
         self.task_func = task_func
 
@@ -60,8 +58,8 @@ class RunAsync(threading.Thread):
         try:
             result = self.task_func(*args, **kwargs)
         except Exception as exception:
-            logging.error("Error while running async job: "
-                          f"{self.task_func}\nException: {exception}")
+            logging.error(f"Error while running async job: {self.task_func}\n"
+                          f"Exception: {exception}")
 
             error = exception
             _ex_type, _ex_value, trace = sys.exc_info()
@@ -69,12 +67,13 @@ class RunAsync(threading.Thread):
             traceback_info = '\n'.join(traceback.format_tb(trace))
 
             logging.write_log([str(exception), traceback_info])
-        self.source_id = GLib.idle_add(self.callback, result, error)
-        return self.source_id
+        self.callback(result, error)
 
+    @staticmethod
     def run_async(func):
         def inner(*args, **kwargs):
             # Here we add None in the arguments so that callback=None,
             # but we still pass all the required argument to the function called
-            RunAsync(func, *((None, True,)+args), **kwargs)
+            RunAsync(func, *((None, True,) + args), **kwargs)
+
         return inner
