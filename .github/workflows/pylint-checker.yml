@@ -20,15 +20,13 @@ jobs:
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install wheel
-        pip install pylint
         pip install -r requirements.txt
-        pip install pycairo
-        pip install PyGObject
+        pip install -r requirements.dev.txt
     - name: Analysing the code with pylint
       id: pylint-result
       continue-on-error: true
       run: |
+        pylint --version
         mkdir -p output
         python3 utils/pylint-parser.py > output/pylint-result
         cat output/pylint-result
