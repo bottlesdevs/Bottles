@@ -1,5 +1,5 @@
 import os
-from typing import Union
+from typing import Union, Optional
 
 from bottles.backend.logger import Logger
 from bottles.backend.globals import Paths
@@ -23,7 +23,7 @@ class WineProgram:
         self.config = config
         self.silent = silent
 
-    def get_command(self, args: str = None):
+    def get_command(self, args: Optional[str] = None):
         command = self.command
 
         if self.is_internal:
@@ -36,12 +36,12 @@ class WineProgram:
 
     def launch(
             self,
-            args: Union[tuple, str] = None,
+            args: Union[tuple, str] | None = None,
             terminal: bool = False,
             minimal: bool = True,
             communicate: bool = False,
-            environment: dict = None,
-            cwd: str = None,
+            environment: Optional[dict] = None,
+            cwd: Optional[str] = None,
             action_name: str = "launch"
     ):
         if environment is None:
@@ -71,8 +71,8 @@ class WineProgram:
         ).run()
         return res
 
-    def launch_terminal(self, args: str = None):
+    def launch_terminal(self, args: Optional[str] = None):
         self.launch(args=args, terminal=True, action_name="launch_terminal")
 
-    def launch_minimal(self, args: str = None):
+    def launch_minimal(self, args: Optional[str] = None):
         self.launch(args=args, minimal=True, action_name="launch_minimal")

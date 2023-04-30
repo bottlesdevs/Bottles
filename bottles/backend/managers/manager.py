@@ -26,7 +26,7 @@ import uuid
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
-from typing import Union, Any, Dict, List
+from typing import Union, Any, Dict, List, Optional
 
 import pathvalidate
 
@@ -1031,7 +1031,7 @@ class Manager(metaclass=Singleton):
             sandbox: bool = False,
             fn_logger: callable = None,
             arch: str = "win64",
-            custom_environment: str = None
+            custom_environment: Optional[str] = None
     ) -> Result[dict]:
         """
         Create a new bottle from the given arguments.

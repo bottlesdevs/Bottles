@@ -18,7 +18,7 @@
 import os
 import shutil
 from glob import glob
-from typing import NewType
+from typing import NewType, Optional
 from abc import abstractmethod
 from copy import deepcopy
 
@@ -33,7 +33,7 @@ logging = Logger()
 
 
 class DLLComponent:
-    base_path: str = None
+    base_path: str
     dlls: dict = {}
     checked_dlls: dict = {}
     version: str = None
@@ -45,10 +45,10 @@ class DLLComponent:
 
     @staticmethod
     @abstractmethod
-    def get_base_path(version: str):
+    def get_base_path(version: str) -> str:
         pass
 
-    def check(self):
+    def check(self) -> bool:
         found = deepcopy(self.dlls)
 
         if None in self.dlls:

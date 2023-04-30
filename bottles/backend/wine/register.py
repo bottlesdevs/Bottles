@@ -17,6 +17,7 @@
 
 import os
 import uuid
+from typing import Optional
 
 from bottles.backend.utils import json
 
@@ -102,7 +103,7 @@ class WinRegister:
 
         return _dict
 
-    def compare(self, path: str = None, register: object = None):
+    def compare(self, path: Optional[str] = None, register: object = None):
         """Compare the current register with the given path or register."""
         if path is not None:
             register = WinRegister().new(path)
@@ -136,7 +137,7 @@ class WinRegister:
 
         return diff
 
-    def update(self, diff: dict = None):
+    def update(self, diff: Optional[dict] = None):
         """Update the current register with the given diff."""
         if diff is None:
             diff = self.diff  # use last diff
