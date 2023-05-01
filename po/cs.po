@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-02-16 08:04+0000\n"
-"Last-Translator: Matyas-Cerny <matyas.c.404@gmail.com>\n"
+"PO-Revision-Date: 2023-04-21 17:51+0000\n"
+"Last-Translator: vikdevelop <super-vik1@protonmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
 ">\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -223,7 +223,7 @@ msgstr "Vývojáři lahví"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "vikdevelop https://github.com/vikdevelop"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -541,11 +541,12 @@ msgstr "Hledat závislosti…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Jste offline :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr ""
+"Bottles jsou spuštěny v offline režimu, takže závislosti nejsou k dispozici."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -589,18 +590,16 @@ msgid "Search for Programs…"
 msgstr "Hledat programy…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Instalujte programy vytvořené naší komunitou, aniž byste museli postupovat "
-"ručně.\n"
+"Nainstalujte programy vytvořené naší komunitou.\n"
 "\n"
-"Soubory na této stránce jsou poskytovány třetími stranami pod vlastnickou "
-"licencí. Jejich instalací souhlasíte s jejich licenčními podmínkami."
+"Soubory na této stránce jsou poskytovány třetími stranami pod proprietární "
+"licencí. Instalací položky, souhlasíte s těmito licenčními podmínkami."
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
@@ -705,7 +704,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "Dokonalé rozlišení FidelityFX"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
@@ -714,7 +713,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "Spravovat nastavení Dokonalého rozlišení FidelityFX"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
@@ -1243,9 +1242,8 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr "Limit snímkové frekvence (při rozostření)"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "Použít celočíselného škálování"
+msgstr "Celočíselné škálování"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1883,9 +1881,8 @@ msgid "Bottles"
 msgstr "Láhve"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "Vytvořit novou láhev"
+msgstr "Vytvořit novou láhev…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
@@ -1908,38 +1905,32 @@ msgid "Browse"
 msgstr "Procházet"
 
 #: bottles/frontend/ui/new.blp:32
-#, fuzzy
 msgid "C_reate"
-msgstr "Vytvořit"
+msgstr "_Vytvořit"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
 msgstr "Název láhve"
 
 #: bottles/frontend/ui/new.blp:75
-#, fuzzy
 msgid "_Application"
-msgstr "Aplikace"
+msgstr "_Aplikace"
 
 #: bottles/frontend/ui/new.blp:88
-#, fuzzy
 msgid "_Gaming"
-msgstr "Hry"
+msgstr "_Hraní"
 
 #: bottles/frontend/ui/new.blp:101
-#, fuzzy
 msgid "C_ustom"
-msgstr "Vlastní"
+msgstr "_Vlastní"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
 msgstr "Vlastní"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "Vyberte adresář"
+msgstr "Sdílet uživatelský adresář"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1947,42 +1938,38 @@ msgid ""
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
 msgstr ""
+"Udělá uživatelský adresář zjistitelný v Láhvi, což představuje riziko "
+"spočívající ve sdílení osobních informací se softwarem Windows. Tuto položku "
+"není možné po vytvoření láhve změnit."
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
 msgstr "Architektura"
 
 #: bottles/frontend/ui/new.blp:137
-#, fuzzy
 msgid "32-bit should only be used if strictly necessary."
 msgstr ""
-"Doporučujeme používat 32bitový systém pouze v případě, že je to nezbytně "
-"nutné."
+"32 bitová architektura by se měla používat jen nevyhnutelných případech."
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Konfigurace exportu…"
+msgstr "Importovat vlastní konfiguraci."
 
 #: bottles/frontend/ui/new.blp:176
-#, fuzzy
 msgid "Bottle Directory"
-msgstr "Adresář lahví"
+msgstr "Adresář láhve"
 
 #: bottles/frontend/ui/new.blp:177
-#, fuzzy
 msgid "Directory that will contain the data of this bottle."
-msgstr "Adresář, který obsahuje data vašich lahví."
+msgstr "Adresář, který bude obsahovat data této láhve."
 
 #: bottles/frontend/ui/new.blp:249
-#, fuzzy
 msgid "_Close"
-msgstr "Zavřít"
+msgstr "_Zavřít"
 
 #: bottles/frontend/ui/new.blp:281
-#, fuzzy
 msgid "This name is unavailable, please try another."
-msgstr "Váš systém nedisponuje touto funkcí."
+msgstr "Tohle jméno je nedostupné, použijte prosím jiné."
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
@@ -2144,6 +2131,8 @@ msgstr "Runnery"
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
 msgstr ""
+"Bottles je spuštěný v offline režimu, takže běhové komponenty nejsou k "
+"dispozici."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2159,7 +2148,7 @@ msgstr "Komponenty DDL"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr ""
+msgstr "Bottles je spuštěný v offline režimu, takže DDL není k dispozici."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2303,9 +2292,8 @@ msgstr "\"{0}\" přidáno"
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "Vybrat láhev"
+msgstr "Vybrat spustitelné (soubory)"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2355,9 +2343,8 @@ msgid "Select the location where to save the backup archive"
 msgstr "Vyberte lokaci do které chcete uložit archiv se zálohou"
 
 #: bottles/frontend/views/bottle_details.py:435
-#, fuzzy
 msgid "Backup"
-msgstr "Záloha {0}"
+msgstr "Záloha"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
@@ -2416,15 +2403,13 @@ msgid "{} To add this feature, please run flatpak install"
 msgstr "{} pro přidání této funkce, spusťte flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
-#, fuzzy
 msgid "This bottle name is already in use."
-msgstr "Název obsahuje speciální znaky nebo již existuje."
+msgstr "Tohle jméno láhve je již používáno."
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "Pracovní adresář"
+msgstr "Vybrat pracovní adresář"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
@@ -2468,9 +2453,8 @@ msgid "Importing backup…"
 msgstr "Importování zálohy…"
 
 #: bottles/frontend/views/importer.py:119
-#, fuzzy
 msgid "Select a Backup Archive"
-msgstr "Vyberte záložní archiv"
+msgstr "Vybrat archiv se zálohou"
 
 #: bottles/frontend/views/importer.py:122
 #: bottles/frontend/views/importer.py:161
@@ -2478,9 +2462,8 @@ msgid "Import"
 msgstr "Importovat"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
-#, fuzzy
 msgid "Select a Configuration File"
-msgstr "Vyberte konfigurační soubor"
+msgstr "Vybrat konfigurační soubor"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
@@ -2490,12 +2473,12 @@ msgstr "N/A"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "Spustit spustitelný soubor v \"{self.config.Name}\""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Spouštím \"{0}\"…"
+msgstr "Spouštím \"{0}\" v \"{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2512,23 +2495,20 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Načteno {0} z {1} balíčků"
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "Adresář lahví"
+msgstr "Vybrat adresář láhví"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
 msgstr "Vytváření láhve…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "Vytvořit novou láhev"
+msgstr "Vytvoření láhve se nezdařilo"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "Vzhledem k této i dalším chybám se vytvoření láhve nezdařilo."
 
 #. Show success
 #: bottles/frontend/views/new.py:232
@@ -2546,9 +2526,8 @@ msgstr ""
 "Služba Steam nebyla nalezena nebo služba Bottles nemá dostatečná oprávnění."
 
 #: bottles/frontend/views/preferences.py:176
-#, fuzzy
 msgid "Select Bottles Path"
-msgstr "Vybrat láhev"
+msgstr "Vybrat cestu k láhvi"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
@@ -2613,9 +2592,9 @@ msgid "Manifest for {0}"
 msgstr "Manifest pro {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "\"{0}\" nainstalováno"
+msgstr "\"{0}\" odinstalováno"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
@@ -2756,9 +2735,8 @@ msgid "Copy to clipboard"
 msgstr "Zkopírovat do schránky"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
-msgstr "Vyberte zdrojový soubor"
+msgstr "Vybrat zdrojový soubor"
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
@@ -2804,9 +2782,8 @@ msgid "This setting is different from the bottle's default."
 msgstr "Toto nastavení se liší od výchozího nastavení láhve."
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "Zvolte cestu k jednotce"
+msgstr "Vybrat skript"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
@@ -2819,7 +2796,7 @@ msgstr "Pád zpět na výchozí cestu. Žádné lahve z dané cesty nebudou uved
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
@@ -3071,11 +3048,12 @@ msgstr ".. a mnohem více můžete zjistit tak že si nainstalujete Láhve!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
-msgstr ""
+msgstr "Aktualizovány metadata informace"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
 msgstr ""
+"Přidáno více informací k aktualizacím a poznámek k vydání ke správné verzi"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 #, fuzzy
