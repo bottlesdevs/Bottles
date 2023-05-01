@@ -413,6 +413,7 @@ class Manager(metaclass=Singleton):
                         for runner in self.supported_wine_runners.items():
                             if runner[1]["Channel"] not in ["rc", "unstable"]:
                                 tmp_runners.append(runner)
+                                break
                         runner_name = next(iter(tmp_runners))[0]
                     else:
                         tmp_runners = self.supported_wine_runners
@@ -553,7 +554,16 @@ class Manager(metaclass=Singleton):
             if self.utils_conn.check_connection():
                 # if connected, install the latest component from repository
                 try:
-                    component_version = next(iter(component["supported"]))
+                    if not self.settings.get_boolean("release-candidate"):
+                        tmp_components = []
+                        for cpnt in component["supported"].items():
+                            if cpnt[1]["Channel"] not in ["rc", "unstable"]:
+                                tmp_components.append(cpnt)
+                                break
+                        component_version = next(iter(tmp_components))[0]
+                    else:
+                        tmp_components = component["supported"]
+                        component_version = next(iter(tmp_components))
                     self.component_manager.install(component_type, component_version)
                     component["available"] = [component_version]
                 except StopIteration:
