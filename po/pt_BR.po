@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-02-19 13:41+0000\n"
-"Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
+"PO-Revision-Date: 2023-05-06 20:51+0000\n"
+"Last-Translator: Kazevic <Kazevic@pm.me>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -35,15 +35,15 @@ msgstr "Importando cópia de segurança: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
-msgstr "Falha ao instalar componentes, tentei 3 vezes."
+msgstr "Falha ao instalar componentes, 3 tentativas."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
-msgstr "Componentes essenciais em falta. Instalando…"
+msgstr "Componentes essenciais faltando. Instalando…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
-msgstr "Falha ao criar diretório para bottle."
+msgstr "Falha ao criar o diretório da garrafa."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
@@ -68,11 +68,11 @@ msgstr "Configuração do Wine atualizada!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Executando como flatpak, criando pastas em sandbox…"
+msgstr "Executando como Flatpak, isolando o diretório do usuário…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
-msgstr "A fazer \"sandboxing\" do diretório de usuário…"
+msgstr "Isolando o diretório do usuário…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
@@ -109,7 +109,7 @@ msgstr "Instalando VKD3D…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Installing DXVK-NVAPI…"
-msgstr "Instalando DXVK-NVAPI …"
+msgstr "Instalando DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1335
 #, python-format
@@ -130,7 +130,7 @@ msgstr "Criando cache do modelo…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
-msgstr "Atualizando estados …"
+msgstr "Confirmando o estado…"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
@@ -160,7 +160,7 @@ msgstr "Estado não encontrado"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr "Estado {} já está ativo"
+msgstr "O estado {} já é o estado ativo"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
@@ -168,11 +168,11 @@ msgstr "Exibir versão"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
-msgstr "Caminho executável"
+msgstr "Caminho do executável"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr "Caminho lnk"
+msgstr "Caminho do .lnk"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
@@ -181,11 +181,11 @@ msgstr "Nome da garrafa"
 
 #: bottles/frontend/main.py:144
 msgid "Pass arguments"
-msgstr "Adicionar parâmetros"
+msgstr "Passar argumentos"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "URI invalida (sintaxe: bottles:run/<garrafa>/<programa>)"
+msgstr "URI inválida (sintaxe: bottles:run/<garrafa>/<programa>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
@@ -205,16 +205,16 @@ msgstr "Doar"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr "Bibliotecas de terceiros e agradecimentos especiais"
+msgstr "Bibliotecas de Terceiros e Agradecimentos Especiais"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr "Patrocinado e financiado por"
+msgstr "Patrocinado e Financiado por"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "© 2017-2023 - Bottles Developers"
+msgstr "Copyright © 2017 Desenvolvedores do Bottles"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
@@ -223,11 +223,11 @@ msgstr "Desenvolvedores do Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "Kazevic https://github.com/Kazevic"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr "Versão Componente"
+msgstr "Versão do componente"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
@@ -237,20 +237,20 @@ msgstr "Desinstalar"
 
 #: bottles/frontend/ui/component-entry.blp:23
 msgid "Browse Files"
-msgstr "Procurar arquivos"
+msgstr "Buscar Arquivos"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"A instalação falhou. Isso pode ser devido a um erro de repositório, download "
-"parcial ou incompatibilidade de soma de verificação. Pressione para tentar "
-"novamente."
+"A instalação falhou. Isto pode ser devido a um erro de repositório, "
+"transferência parcial ou incompatibilidade de soma de verificação. Pressione "
+"para tentar de novo."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
-msgstr "Descarregar e instalar"
+msgstr "Baixar e Instalar"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
@@ -258,11 +258,11 @@ msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
-msgstr "Mostrar manifesto"
+msgstr "Exibir Manifesto"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
-msgstr "Licensa"
+msgstr "Licença"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
@@ -271,7 +271,7 @@ msgstr "Reinstalar"
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr "Reportar um erro…"
+msgstr "Reportar um Erro…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
@@ -287,19 +287,19 @@ msgstr "Categoria"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr "Baixe e instale esta dependência"
+msgstr "Baixar e Instalar esta Dependência"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"Ocorreu um erro de instalação. Reinicie o Bottles para ler o relatório de "
-"erros ou execute-o via terminal para ler a saída."
+"Ocorreu um erro de instalação. Reinicie o Bottles para ler o Relatório de "
+"Erro ou execute-o via terminal para ler a saída."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr "Menu Dependência"
+msgstr "Menu de Dependências"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
@@ -307,20 +307,20 @@ msgstr "Solução de problemas"
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
-msgstr "Procurar arquivos…"
+msgstr "Buscar Arquivos…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
-msgstr "Duplicar garrafa…"
+msgstr "Duplicar Garrafa…"
 
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr "Esse é o arquivo completo da sua garrafa, incluindo arquivos pessoais."
+msgstr "Este é o arquivo completo da sua garrafa, incluindo arquivos pessoais."
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
-msgstr "Backup completo…"
+msgstr "Cópia de segurança Completa…"
 
 #: bottles/frontend/ui/details-bottle.blp:37
 #: bottles/frontend/ui/importer.blp:68
@@ -328,25 +328,25 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
-"Essa é apenas a configuração da garrafa, é perfeita se você deseja criar uma "
-"nova mas sem arquivos pessoais."
+"Esta é só a configuração da garrafa, perfeita se você quiser criar uma nova, "
+"mas sem arquivos pessoais."
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr "Exportar configuração…"
+msgstr "Exportar Configuração…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
 msgid "Show Hidden Programs"
-msgstr "Mostrar programas ocultos"
+msgstr "Exibir Programas Ocultos"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
-msgstr "Procurar novos programas"
+msgstr "Buscar novos programas"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
-msgstr "Excluir garrafa…"
+msgstr "Excluir Garrafa…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
@@ -356,11 +356,11 @@ msgstr "Menu Secundário"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr "Forçar parada de todos os processos"
+msgstr "Forçar Parada de todos os Processos"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr "Simular um desligamento do sistema Windows."
+msgstr "Simule um desligamento do sistema Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
@@ -368,7 +368,7 @@ msgstr "Desligar"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr "Simular uma reinicialização do sistema Windows."
+msgstr "Simule uma reinicialização do sistema Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
@@ -377,7 +377,7 @@ msgstr "Reiniciar"
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr "Opções de lançamento"
+msgstr "Opções de Lançamento"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
@@ -434,9 +434,9 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
-"Clique em \"Executar executável...\" para executar um executável, "
-"\"Adicionar atalhos…\" para adicionar um executável à lista de programas ou "
-"\"Instalar programas…\" para instalar programas selecionados pela comunidade."
+"Clique em “Executar executável…” para executar um executável, “Adicionar "
+"atalhos…” para adicionar um executável à lista de programas ou “Instalar "
+"programas…” para instalar programas selecionados pela comunidade."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -466,13 +466,13 @@ msgstr "Dependências"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
-msgstr "Instalar dependências para programas."
+msgstr "Instale dependências para programas."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr "Capturas de tela"
+msgstr "Instantâneos"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
@@ -510,7 +510,7 @@ msgstr "Edite o registro interno."
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr "Ferramentas de Wine herdadas"
+msgstr "Ferramentas do Wine herdadas"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
@@ -535,17 +535,19 @@ msgstr "Painel de Controle"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr "Pesquisar dependências…"
+msgstr "Buscar dependências…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Você está offline :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr ""
+"O Bottles está sendo executado no modo offline, logo as dependências não "
+"estão disponíveis."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -554,7 +556,7 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Dependências são recursos que melhoram compatibilidade de programas "
+"Dependências são recursos que melhoram a compatibilidade de programas do "
 "Windows.\n"
 "\n"
 "Os arquivos nesta página são fornecidos por terceiros sob uma licença "
@@ -590,15 +592,13 @@ msgid "Search for Programs…"
 msgstr "Pesquisar programas…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Instale programas com curadoria de nossa comunidade, sem ter que proceder "
-"manualmente.\n"
+"Instale programas selecionados por nossa comunidade.\n"
 "\n"
 "Os arquivos desta página são fornecidos por terceiros sob uma licença "
 "proprietária. Ao instalá-los, você concorda com seus respectivos termos de "
@@ -633,7 +633,7 @@ msgstr "Componentes"
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr "A versão da camada de compatibilidade do Wine."
+msgstr "A versão da camada de compatibilidade Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
@@ -696,7 +696,7 @@ msgstr "Configurações da tela"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr "Super amostragem de aprendizado profundo"
+msgstr "Deep Learning Super Sampling"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
@@ -708,7 +708,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX Super Resolution"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
@@ -716,7 +716,7 @@ msgstr "Aumente o desempenho em detrimento do visual. Só funciona no Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "Gerenciar as configurações do FidelityFX Super Resolution"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
@@ -857,7 +857,7 @@ msgstr "Escolha o idioma para usar com programas."
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Dedicated Sandbox"
-msgstr "Sandbox dedicada"
+msgstr "Sandbox dedicado"
 
 #: bottles/frontend/ui/details-preferences.blp:276
 msgid "Use a restricted/managed environment for this bottle."
@@ -882,7 +882,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Tempo de execução da Steam"
+msgstr "Tempo de Execução da Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
@@ -928,14 +928,14 @@ msgstr "Gerenciar unidades"
 
 #: bottles/frontend/ui/details-preferences.blp:381
 msgid "Automatic Snapshots"
-msgstr "Snapshots automáticos"
+msgstr "Instantâneos Automáticos"
 
 #: bottles/frontend/ui/details-preferences.blp:382
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
 msgstr ""
-"Criar instantâneos automaticamente antes de instalar o programa ou mudar as "
+"Crie instantâneos automaticamente antes de instalar programas ou mudar as "
 "configurações."
 
 #: bottles/frontend/ui/details-preferences.blp:391
@@ -947,8 +947,8 @@ msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
-"Comprime snapshots para reduzir o espaço. Isso tornará mais lento a criação "
-"de snapshots."
+"Compactar instantâneos para reduzir o espaço. Isto retardará a criação de "
+"instantâneos."
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
@@ -956,7 +956,7 @@ msgstr "Usar padrões de exclusão"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr "Exclui caminhos em snapshots."
+msgstr "Excluir caminhos em instantâneos."
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
@@ -972,12 +972,12 @@ msgstr "Parar processo"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 msgid "No Snapshots Found"
-msgstr "Nenhum Snapshot Encontrado"
+msgstr "Nenhum Instantâneo Encontrado"
 
 #: bottles/frontend/ui/details-versioning.blp:19
 msgid "Create your first snapshot to start saving states of your preferences."
 msgstr ""
-"Crie seu primeiro snapshot para começar a salvar estados de suas "
+"Crie seu primeiro instantâneo para começar a salvar estados de suas "
 "preferências."
 
 #: bottles/frontend/ui/details-versioning.blp:54
@@ -990,7 +990,7 @@ msgstr "Salvar estado da garrafa."
 
 #: bottles/frontend/ui/details-versioning.blp:78
 msgid "Create new Snapshot"
-msgstr "Criar novo Snapshot"
+msgstr "Criar novo instantâneo"
 
 #: bottles/frontend/ui/details.blp:16
 msgid "Details"
@@ -1029,7 +1029,7 @@ msgstr "Criar nova garrafa"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr "Relatório de erros do Bottles"
+msgstr "Relatório de Erro do Bottles"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1053,9 +1053,9 @@ msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
-"O Bottles fechou inesperadamente da última vez. Por favor, preencha um "
-"relatório anexando o seguinte traceback para nos ajudar a identificar o "
-"problema, evitando que ele ocorra novamente."
+"O Bottles travou da última vez. Por favor, preencha um relatório anexando o "
+"seguinte traceback para nos ajudar a identificar o problema, evitando que "
+"ele ocorra de novo."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
 msgid ""
@@ -1101,8 +1101,8 @@ msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
-"Bibliotecas de links dinâmicos podem ser especificadas para serem integradas "
-"(fornecidas pelo Wine) ou nativas (fornecidas pelo programa)."
+"Bibliotecas de Ligações Dinâmicas podem ser especificadas para serem "
+"integradas (fornecidas pelo Wine) ou nativas (fornecidas pelo programa)."
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
@@ -1121,8 +1121,8 @@ msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
-"Estes são caminhos de seu sistema hospedeiro que são mapeados e reconhecidos "
-"como dispositivos pelo executor (por exemplo, C: D:...)."
+"Estes são caminhos de seu sistema hospedeiro mapeados e reconhecidos como "
+"dispositivos pelo executor (por exemplo, C: D:…)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1164,8 +1164,8 @@ msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
-"Variáveis de ambiente são valores nomeados dinamicamente que podem afetar a "
-"maneira como os processos em execução se comportarão na sua garrafa."
+"Variáveis de ambiente são valores nomeados dinamicamente que podem afetar "
+"como os processos em execução se comportarão na sua garrafa."
 
 #: bottles/frontend/ui/dialog-env-vars.blp:31
 msgid "Variable Name"
@@ -1253,9 +1253,8 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr "Limite da taxa de quadros quando não está em foco"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "Usar escala numérica"
+msgstr "Escalonamento Íntegro"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1295,7 +1294,7 @@ msgstr "Concluído!"
 
 #: bottles/frontend/ui/dialog-installer.blp:130
 msgid "Show Programs"
-msgstr "Mostrar programas"
+msgstr "Exibir Programas"
 
 #: bottles/frontend/ui/dialog-installer.blp:148
 msgid "Installation Failed!"
@@ -1380,7 +1379,7 @@ msgstr "Escolha de onde iniciar o programa."
 #: bottles/frontend/ui/dialog-launch-options.blp:101
 #: bottles/frontend/ui/drive-entry.blp:22
 msgid "Choose a Directory"
-msgstr "Escolher um diretório"
+msgstr "Escolha um Diretório"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:114
 msgid "These settings will override the default settings for this executable."
@@ -1428,9 +1427,9 @@ msgstr ""
 "Recomendamos usar o Wine-GE, uma versão do Proton destinada a executar fora "
 "da Steam.\n"
 "\n"
-"Proceder ativará automaticamente o tempo de execução do Steam (se presente "
+"Proceder ativará automaticamente o tempo de execução da Steam (se presente "
 "no sistema e detectado pelo Bottles) para permitir o acesso às bibliotecas "
-"precisas e limitar os problemas de compatibilidade. Esteja ciente de que "
+"necessárias e limitar os problemas de compatibilidade. Esteja ciente de que "
 "GloriousEggroll, o provedor do executor, não é responsável por quaisquer "
 "problemas e pedimos que você não o comunique."
 
@@ -1452,7 +1451,7 @@ msgstr "Novo nome"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 msgid "Run With Arguments"
-msgstr "Executar com argumentos"
+msgstr "Executar com Argumentos"
 
 #: bottles/frontend/ui/dialog-run-args.blp:34
 #: bottles/frontend/views/bottle_details.py:401
@@ -1470,7 +1469,7 @@ msgstr "por exemplo: -opengl -SkipBuildPatchPrereq"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
 msgid "Sandbox Settings"
-msgstr "Configurações da Sandbox"
+msgstr "Configurações do Sandbox"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
@@ -1515,16 +1514,16 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
-"Bottles tem um Sistema de Versionamento totalmente novo que não é compatível "
-"com versões anteriores.\n"
+"O Bottles tem um Sistema de Versionamento totalmente novo que não é "
+"compatível com versões anteriores.\n"
 "\n"
 "Para continuar usando o controle de versão, precisamos reinicializar o "
-"repositório da garrafa. Isso não excluirá os dados da sua garrafa, mas "
-"excluirá todos os snapshots existentes e criará um novo.\n"
+"repositório da garrafa. Isto não excluirá os dados da sua garrafa, mas "
+"excluirá todos os instantâneos existentes e criará um novo.\n"
 "\n"
 "Se você precisar voltar a um estado anterior antes de continuar, feche esta "
-"janela e restaure o estado, depois reabra a garrafa para mostrar esta janela "
-"novamente.\n"
+"janela e restaure o instantâneo, depois reabra a garrafa para exibir esta "
+"janela de novo.\n"
 "\n"
 "O sistema antigo será descontinuado em um dos próximos lançamentos."
 
@@ -1578,12 +1577,12 @@ msgstr "Nitidez"
 #: bottles/frontend/ui/dialog-vkbasalt.blp:343
 #: bottles/frontend/ui/dialog-vkbasalt.blp:370 bottles/frontend/ui/new.blp:58
 msgid "Show Information"
-msgstr "Mostrar informação"
+msgstr "Exibir Informação"
 
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
 msgid "Denoised Luma Sharpening"
-msgstr "Aguçamento de luma sem ruído"
+msgstr "Nitidez de Luma sem ruído"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
@@ -1599,11 +1598,11 @@ msgstr "Qualidade Subpixel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:191
 msgid "Quality Edge Threshold"
-msgstr "Limiar de qualidade de borda"
+msgstr "Limiar de Qualidade de Borda"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:219
 msgid "Quality Edge Threshold Minimum"
-msgstr "Limiar mínimo de qualidade de borda"
+msgstr "Limiar Mínimo de Qualidade de Borda"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:249
 msgid "Subpixel Morphological Anti-Aliasing"
@@ -1623,7 +1622,7 @@ msgstr "Cor"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:284
 msgid "Threshold"
-msgstr "Limite"
+msgstr "Limiar"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:312
 msgid "Max Search Steps"
@@ -1635,47 +1634,47 @@ msgstr "Etapas máximas de busca diagonal"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:366
 msgid "Max Corner Rounding"
-msgstr "Arredondamento máximo de cantos"
+msgstr "Arredondamento Máximo de Cantos"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:411
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
-"CAS sharpness aumenta a nitidez de um quadro. Valores mais altos tornam o "
+"A nitidez do CAS aumenta a nitidez de um quadro. Valores mais altos tornam o "
 "quadro mais nítido, enquanto valores menores que 0 tornam o quadro mais "
-"suave que nativo."
+"suave que o nativo."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:428
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
-"DLS sharpness aumenta a nitidez de um frame. Valores altos tornam o frame "
-"mais nítido."
+"A nitidez do DLS aumenta a nitidez de um quadro. Valores mais altos tornam o "
+"quadro mais nítido."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:445
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
-"DLS denoise diminuem o ruído de um frame. Valores baixos tornam o frame mais "
-"suave."
+"A redução de ruído do DLS reduz o ruído de um quadro. Valores mais altos "
+"tornam o quadro mais suave."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:462
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
-"FXAA subpixel quality diminui o aliasing ao nível do subpixel. Valores altos "
-"suavizam o frame."
+"A qualidade do subpixel do FXAA reduz o serrilhado no nível do subpixel. "
+"Valores mais altos tornam o quadro mais suave."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:479
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
-"Limite de borda FXAA é a quantidade mínima de contraste necessária para "
+"O limiar de borda do FXAA é a quantidade mínima de contraste necessária para "
 "aplicar o algoritmo FXAA. Valores mais altos fazem com que o quadro tenha "
 "mais contraste."
 
@@ -1685,9 +1684,9 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
-"Limite mínimo de qualidade da borda FXAA é o valor mínimo de pixels escuros "
-"que são ignorados pelo algoritmo FXAA. Valores mais altos fazem o FXAA "
-"ignorar pixels abaixo do valor especificado e podem levar a um aumento de "
+"O limiar mínimo de qualidade de borda do FXAA é o valor mínimo de píxeis "
+"escuros ignorados pelo algoritmo FXAA. Valores mais altos fazem o FXAA "
+"ignorar píxeis abaixo do valor especificado e podem levar a um aumento de "
 "desempenho."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
@@ -1797,7 +1796,8 @@ msgid ""
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
 "Nenhum prefixo externo foi encontrado. O Bottles tem acesso a eles?\n"
-"Use o ícone na parte superior para importar uma garrafa de um backup."
+"Use o ícone na parte superior para importar uma garrafa de uma cópia de "
+"segurança."
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
@@ -1805,7 +1805,7 @@ msgstr "Arquivo completo"
 
 #: bottles/frontend/ui/installer-entry.blp:16
 msgid "Show Manifest…"
-msgstr "Mostrar manifesto…"
+msgstr "Exibir Manifesto…"
 
 #: bottles/frontend/ui/installer-entry.blp:20
 msgid "Read Review…"
@@ -1886,8 +1886,8 @@ msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
-"Essa garrafa parece danificada, o arquivo de configuração não foi "
-"encontrado. Posso tentar resolver criando uma nova configuração."
+"Esta garrafa parece danificada, o arquivo de configuração está faltando. "
+"Posso tentar resolver criando uma nova configuração."
 
 #: bottles/frontend/ui/list.blp:12
 msgid "Search your bottles…"
@@ -1895,7 +1895,7 @@ msgstr "Procure suas garrafas…"
 
 #: bottles/frontend/ui/list.blp:28
 msgid "Steam Proton"
-msgstr "Steam Proton"
+msgstr "Proton da Steam"
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/list.blp:42 bottles/frontend/windows/main_window.py:191
@@ -1904,9 +1904,8 @@ msgid "Bottles"
 msgstr "Bottles"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "Criar nova garrafa"
+msgstr "Criar Nova Garrafa…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
@@ -1929,38 +1928,32 @@ msgid "Browse"
 msgstr "Navegar"
 
 #: bottles/frontend/ui/new.blp:32
-#, fuzzy
 msgid "C_reate"
-msgstr "Criar"
+msgstr "C_riar"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
-msgstr "Nome da garrafa"
+msgstr "Nome da Garrafa"
 
 #: bottles/frontend/ui/new.blp:75
-#, fuzzy
 msgid "_Application"
-msgstr "Aplicação"
+msgstr "_Aplicativo"
 
 #: bottles/frontend/ui/new.blp:88
-#, fuzzy
 msgid "_Gaming"
-msgstr "Jogos"
+msgstr "_Jogos"
 
 #: bottles/frontend/ui/new.blp:101
-#, fuzzy
 msgid "C_ustom"
-msgstr "Personalizado"
+msgstr "C_ustomizado"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
 msgstr "Personalizado"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "Escolher um diretório"
+msgstr "Compartilhar Diretório de Usuário"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1968,40 +1961,37 @@ msgid ""
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
 msgstr ""
+"Isto torna o diretório do usuário detectável na garrafa, com o risco de "
+"compartilhar informações pessoais com programas de Windows. Esta opção não "
+"pode ser mudada após criar a garrafa."
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
 msgstr "Arquitetura"
 
 #: bottles/frontend/ui/new.blp:137
-#, fuzzy
 msgid "32-bit should only be used if strictly necessary."
-msgstr "Recomendamos usar 32 bits apenas se estritamente necessário."
+msgstr "32 bits só deve ser usado se estritamente necessário."
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Exportar configuração…"
+msgstr "Importe uma configuração customizada."
 
 #: bottles/frontend/ui/new.blp:176
-#, fuzzy
 msgid "Bottle Directory"
-msgstr "Diretório do Bottles"
+msgstr "Diretório da Garrafa"
 
 #: bottles/frontend/ui/new.blp:177
-#, fuzzy
 msgid "Directory that will contain the data of this bottle."
-msgstr "Diretório que contém os dados de suas garrafas."
+msgstr "Diretório que contém os dados desta garrafa."
 
 #: bottles/frontend/ui/new.blp:249
-#, fuzzy
 msgid "_Close"
-msgstr "Fechar"
+msgstr "_Fechar"
 
 #: bottles/frontend/ui/new.blp:281
-#, fuzzy
 msgid "This name is unavailable, please try another."
-msgstr "Este recurso está indisponível em seu sistema."
+msgstr "Este nome está indisponível, tente outro."
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
@@ -2032,7 +2022,7 @@ msgstr ""
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
-msgstr "Quase pronto"
+msgstr "Quase Pronto"
 
 #: bottles/frontend/ui/onboard.blp:73
 msgid "We need a few more minutes to set everything up…"
@@ -2062,7 +2052,7 @@ msgstr "Preferências"
 #: bottles/frontend/ui/preferences.blp:11
 #: bottles/frontend/ui/preferences.blp:39
 msgid "General"
-msgstr "Em geral"
+msgstr "Geral"
 
 #: bottles/frontend/ui/preferences.blp:14
 msgid "Appearance"
@@ -2078,7 +2068,7 @@ msgstr "Se o Bottles deve usar o esquema de cor escuro."
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
-msgstr "Mostrar data de atualização"
+msgstr "Exibir Data de Atualização"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
@@ -2091,7 +2081,7 @@ msgstr "Notificações"
 
 #: bottles/frontend/ui/preferences.blp:43
 msgid "Show notifications for downloads and installs."
-msgstr "Mostrar notificações para downloads e instalações."
+msgstr "Exibir notificações para transferências e instalações."
 
 #: bottles/frontend/ui/preferences.blp:52
 msgid "Temp Files"
@@ -2099,16 +2089,15 @@ msgstr "Arquivos Temporários"
 
 #: bottles/frontend/ui/preferences.blp:53
 msgid "Clean temp files when Bottles launches?"
-msgstr "Limpar arquivos temporários quando o Bottles for aberto?"
+msgstr "Limpar arquivos temporários ao abrir o Bottles?"
 
 #: bottles/frontend/ui/preferences.blp:62
 msgid "Close Bottles After Starting a Program"
-msgstr "Fechar o Bottles Após Iniciar Um Programa"
+msgstr "Fechar o Bottles Após Iniciar um Programa"
 
 #: bottles/frontend/ui/preferences.blp:63
 msgid "Close Bottles after starting a program from the file manager."
-msgstr ""
-"Fechar o Bottles depois de iniciar um programa no gerenciador de arquivos."
+msgstr "Fechar o Bottles após iniciar um programa no gerenciador de arquivos."
 
 #: bottles/frontend/ui/preferences.blp:73
 msgid "Integrations"
@@ -2116,15 +2105,15 @@ msgstr "Integrações"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr "Prefixos do Steam Proton"
+msgstr "Prefixos do Proton da Steam"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
-msgstr "Liste e gerencie os prefixos do Steam Proton."
+msgstr "Liste e gerencie os prefixos do Proton da Steam."
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
-msgstr "Lista os Apps Steam na Lista de Programas"
+msgstr "Listar os Aplicativos da Steam na Lista de Programas"
 
 #: bottles/frontend/ui/preferences.blp:98
 msgid "Requires Steam for Windows installed in the bottle."
@@ -2132,7 +2121,7 @@ msgstr "Requer Steam para Windows instalado na garrafa."
 
 #: bottles/frontend/ui/preferences.blp:107
 msgid "List Epic Games in Programs List"
-msgstr "Lista Epic Games na Lista de Programas"
+msgstr "Listar Epic Games na Lista de Programas"
 
 #: bottles/frontend/ui/preferences.blp:108
 msgid "Requires Epic Games Store installed in the bottle."
@@ -2163,11 +2152,10 @@ msgid "Runners"
 msgstr "Executores"
 
 #: bottles/frontend/ui/preferences.blp:181
-#, fuzzy
 msgid "Bottles is running in offline mode, so runners are not available."
 msgstr ""
-"Prevenir Bottles de rodar executáveis quando o executor não estiver "
-"disponível"
+"O Bottles está sendo executado no modo offline, logo os executores não estão "
+"disponíveis."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2184,6 +2172,8 @@ msgstr "Componentes DLL"
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
 msgstr ""
+"O Bottles está sendo executado no modo offline, logo as DLLs não estão "
+"disponíveis."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2256,7 +2246,7 @@ msgstr "Ocultar programa"
 
 #: bottles/frontend/ui/program-entry.blp:66
 msgid "Show Program"
-msgstr "Mostrar programa"
+msgstr "Exibir Programa"
 
 #: bottles/frontend/ui/program-entry.blp:70
 msgid "Remove from List"
@@ -2277,7 +2267,7 @@ msgstr "Comentário do estado"
 
 #: bottles/frontend/ui/state-entry.blp:16
 msgid "Restore this Snapshot"
-msgstr "Restaurar este instantâneo"
+msgstr "Restaurar este Instantâneo"
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
@@ -2328,9 +2318,8 @@ msgstr "\"{0}\" adicionado"
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "Selecionar garrafa"
+msgstr "Selecionar Executável"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2338,7 +2327,7 @@ msgstr "Adicionar"
 
 #: bottles/frontend/views/bottle_details.py:346
 msgid "Hide Hidden Programs"
-msgstr "Ocultar programas ocultos"
+msgstr "Ocultar Programas Ocultos"
 
 #: bottles/frontend/views/bottle_details.py:383
 #: bottles/frontend/widgets/library.py:156
@@ -2349,7 +2338,7 @@ msgstr "Iniciando \"{0}\"…"
 
 #: bottles/frontend/views/bottle_details.py:413
 msgid "Be Aware of Sandbox"
-msgstr "Esteja atento ao sandbox"
+msgstr "Esteja Atento ao Sandbox"
 
 #: bottles/frontend/views/bottle_details.py:414
 msgid ""
@@ -2357,8 +2346,8 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
-"O Bottles está sendo executado numa sandbox, um ambiente de permissão "
-"restrita preciso para o manter seguro. Considere o mover para dentro da "
+"O Bottles está sendo executado em um sandbox, um ambiente de permissão "
+"restrita necessário para mantê-lo seguro. Considere movê-lo para dentro da "
 "garrafa (ícone de 3 pontos na parte superior) e iniciar a partir daí se o "
 "programa não for executado."
 
@@ -2370,7 +2359,7 @@ msgstr "_Dispensar"
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
-msgstr "Selecione o local onde salvar a configuração de backup"
+msgstr "Selecione o local onde salvar a configuração de cópia de segurança"
 
 #: bottles/frontend/views/bottle_details.py:431
 msgid "Export"
@@ -2378,22 +2367,21 @@ msgstr "Exportar"
 
 #: bottles/frontend/views/bottle_details.py:433
 msgid "Select the location where to save the backup archive"
-msgstr "Selecione o local onde salvar o arquivo de backup"
+msgstr "Selecione o local onde salvar o arquivo da cópia de segurança"
 
 #: bottles/frontend/views/bottle_details.py:435
-#, fuzzy
 msgid "Backup"
-msgstr "Cópia de segurança {0}"
+msgstr "Cópia de segurança"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
 msgid "Backup created for \"{0}\""
-msgstr "Backup criado para \"{0}\""
+msgstr "Cópia de segurança criada para \"{0}\""
 
 #: bottles/frontend/views/bottle_details.py:442
 #, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr "Backup falhou para \"{0}\""
+msgstr "Cópia de segurança falhou para \"{0}\""
 
 #: bottles/frontend/views/bottle_details.py:501
 msgid "Are you sure you want to permanently delete \"{}\"?"
@@ -2419,7 +2407,7 @@ msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
-"Falta o executor solicitado por esta garrafa. Instale-o através das "
+"O executor solicitado por esta garrafa está faltando. Instale-o através das "
 "preferências do Bottles ou escolha uma nova garrafa para executar "
 "aplicativos."
 
@@ -2445,15 +2433,13 @@ msgid "{} To add this feature, please run flatpak install"
 msgstr "{} Para adicionar este recurso, execute flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
-#, fuzzy
 msgid "This bottle name is already in use."
-msgstr "O nome tem caracteres especiais ou já está em uso."
+msgstr "Este nome de garrafa já está em uso."
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "Diretório de trabalho"
+msgstr "Selecione Diretório de Trabalho"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
@@ -2461,11 +2447,11 @@ msgstr "Diretório que contém os dados de \"{}\"."
 
 #: bottles/frontend/views/bottle_preferences.py:746
 msgid "Are you sure you want to delete all snapshots?"
-msgstr "Tem certeza de que quer excluir todo instantâneo?"
+msgstr "Tem certeza de que deseja excluir todos os instantâneos?"
 
 #: bottles/frontend/views/bottle_preferences.py:747
 msgid "This will delete all snapshots but keep your files."
-msgstr "Isso excluirá todo instantâneo, mas manterá seus arquivos."
+msgstr "Isto excluirá todos os instantâneos, mas manterá seus arquivos."
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2486,7 +2472,7 @@ msgstr "Retorne à suas garrafa."
 
 #: bottles/frontend/views/importer.py:92
 msgid "Backup imported successfully"
-msgstr "Backup importado com sucesso"
+msgstr "Cópia de segurança importada com sucesso"
 
 #: bottles/frontend/views/importer.py:94
 msgid "Import failed"
@@ -2495,12 +2481,11 @@ msgstr "Falha na importação"
 #: bottles/frontend/views/importer.py:108
 #: bottles/frontend/views/importer.py:147
 msgid "Importing backup…"
-msgstr "Importando backup…"
+msgstr "Importando cópia de segurança…"
 
 #: bottles/frontend/views/importer.py:119
-#, fuzzy
 msgid "Select a Backup Archive"
-msgstr "Escolha um arquivo de backup"
+msgstr "Selecione um Arquivo de Cópia de Segurança"
 
 #: bottles/frontend/views/importer.py:122
 #: bottles/frontend/views/importer.py:161
@@ -2508,9 +2493,8 @@ msgid "Import"
 msgstr "Importar"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
-#, fuzzy
 msgid "Select a Configuration File"
-msgstr "Escolha um arquivo de configuração"
+msgstr "Selecione um Arquivo de Configuração"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
@@ -2520,12 +2504,12 @@ msgstr "N/D"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "Executar executável em \"{self.config.Name}\""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Iniciando \"{0}\"…"
+msgstr "Iniciando \"{0}\" em \"{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2542,23 +2526,20 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Obteve {0} de {1} pacotes"
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "Diretório do Bottles"
+msgstr "Selecione o Diretório da Garrafa"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
-msgstr "Criando uma garrafa…"
+msgstr "Criando Garrafa…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "Criar nova garrafa"
+msgstr "Incapaz de Criar Garrafa"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "Falha na criação da garrafa com um ou mais erros."
 
 #. Show success
 #: bottles/frontend/views/new.py:232
@@ -2575,9 +2556,8 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "Steam não foi encontrada ou Bottles não tem permissões suficientes."
 
 #: bottles/frontend/views/preferences.py:176
-#, fuzzy
 msgid "Select Bottles Path"
-msgstr "Selecionar garrafa"
+msgstr "Selecione o Caminho das Garrafas"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
@@ -2619,7 +2599,7 @@ msgid ""
 "Requires the Steam Runtime turned on."
 msgstr ""
 "Baseado no Wine da Valve, inclui patches do staging, do Proton e específicos "
-"da Steam. Requer o tempo de execução da Steam ativado."
+"da Steam. Requer o Tempo de Execução da Steam ativado."
 
 #: bottles/frontend/views/preferences.py:250
 msgid "Other"
@@ -2640,9 +2620,9 @@ msgid "Manifest for {0}"
 msgstr "Manifesto de {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "\"{0}\" instalado"
+msgstr "\"{0}\" desinstalado"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
@@ -2667,7 +2647,7 @@ msgid ""
 msgstr ""
 "Este aplicativo pode funcionar mal. O instalador foi configurado para "
 "fornecer a melhor experiência possível, mas espere falhas, instabilidade e "
-"falta de recursos de trabalho."
+"falta de recursos funcionais."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
@@ -2709,7 +2689,7 @@ msgstr "\"{0}\" oculto"
 #: bottles/frontend/widgets/program.py:216
 #, python-brace-format
 msgid "\"{0}\" showed"
-msgstr "\"{0}\" mostrado(s)"
+msgstr "\"{0}\" exibido(s)"
 
 #: bottles/frontend/widgets/program.py:242
 #, python-brace-format
@@ -2745,9 +2725,9 @@ msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
-"            Esse problema foi reportado 5 vezes e não pode ser enviado "
-"novamente.\n"
-"            Faça seus comentários em um dos relatórios existentes abaixo."
+"            Este problema foi reportado 5 vezes e não pode ser enviado de "
+"novo.\n"
+"            Faça os seus comentários em um dos relatórios existentes abaixo."
 
 #: bottles/frontend/windows/display.py:102
 msgid "Updating display settings, please wait…"
@@ -2763,7 +2743,7 @@ msgstr "Nenhuma substituição encontrada."
 
 #: bottles/frontend/windows/drives.py:71
 msgid "Select Drive Path"
-msgstr "Escolha o caminho da unidade"
+msgstr "Selecione o Caminho da Unidade"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
@@ -2784,9 +2764,8 @@ msgid "Copy to clipboard"
 msgstr "Copiar para área de transferência"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
-msgstr "Selecionar arquivo de recurso"
+msgstr "Selecionar Arquivo de Recurso"
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
@@ -2832,9 +2811,8 @@ msgid "This setting is different from the bottle's default."
 msgstr "Esta configuração é diferente do padrão da garrafa."
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "Escolha o caminho da unidade"
+msgstr "Selecione um Script"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
@@ -2848,7 +2826,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
@@ -2889,7 +2867,7 @@ msgstr "Listagem de aplicativos da Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
-msgstr "Alternar a listagem de aplicativos da Steam."
+msgstr "Alterne a listagem de aplicativos da Steam."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
@@ -2925,7 +2903,7 @@ msgstr "Alterar a altura da janela."
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
-msgstr "Mostrar as notificações."
+msgstr "Exibir as notificações."
 
 #: data/com.usebottles.bottles.gschema.xml:51
 msgid "Temp cleaning"
@@ -2933,7 +2911,7 @@ msgstr "Limpeza de temporários"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid "Clean the temp path when booting the system."
-msgstr "Limpe a pasta de arquivos temporários ao inicializar o sistema."
+msgstr "Limpe o caminho temporário ao iniciar o sistema."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Release Candidate"
@@ -2962,11 +2940,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
-msgstr "Suporte ao Steam Proton"
+msgstr "Suporte ao Proton da Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Alternar suporte a prefixos Steam Proton."
+msgstr "Alterne o suporte a prefixos do Proton da Steam."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:sandbox"
@@ -2974,7 +2952,7 @@ msgstr "Experimentos:sandbox"
 
 #: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Alternar modo experimental de biblioteca por garrafa."
+msgstr "Alternar modo experimental de sandbox por garrafa."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
@@ -2998,7 +2976,7 @@ msgstr "Execute programas do Windows no Linux com o Bottles!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:12
 msgid "Bottle software and enjoy at your leisure!"
-msgstr "Bottle programas e se divirta à vontade!"
+msgstr "Engarrafe programas e se divirta à vontade!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:13
 msgid ""
@@ -3057,11 +3035,11 @@ msgid ""
 "compiler, offload … and much more.)"
 msgstr ""
 "Várias otimizações para melhor desempenho de jogos (esync, fsync, DXVK, "
-"cache, compilador de shaders… e muito mais.)"
+"cache, descarregamento… e muito mais.)"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:26
 msgid "Automatic installation and management of Wine and Proton runners"
-msgstr "Instalação automática e gerenciamento de executores Wine e Proton"
+msgstr "Instalação e gerenciamento automáticos de executores Wine e Proton"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:27
 msgid "Automatic bottle repair in case of breakage"
@@ -3087,11 +3065,11 @@ msgstr "Sistema para trazer suas configurações para novas versões do Bottles"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:32
 msgid "Back up and import bottles"
-msgstr "Faça backup e importe garrafas"
+msgstr "Faça uma cópia de segurança e importe garrafas"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:33
 msgid "Import Wine prefixes from other managers"
-msgstr "Importe prefixos do Wine de outros gerenciadores"
+msgstr "Importar prefixos do Wine de outros gerenciadores"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:34
 msgid "Bottles versioning"
@@ -3099,164 +3077,168 @@ msgstr "Versionamento de garrafas"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:35
 msgid "... and much more that you can find by installing Bottles!"
-msgstr "... e muito mais que você pode encontrar instalando o Bottles!"
+msgstr "… e muito mais que você pode encontrar instalando o Bottles!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
-#, fuzzy
 msgid "Update metadata information"
-msgstr "Corrigir informações de appdata"
+msgstr "Atualizar informações de metadados"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
 msgstr ""
+"Adicionadas mais informações de atualização e corrigida a versão das notas "
+"de versão"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Fixed \"Add to Steam\" button"
-msgstr "Adicionar à Steam"
+msgstr "Corrigido o botão “Adicionar à Steam”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr ""
+msgstr "Corrigido o BottleConfig sendo não serializável"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "Corrigida uma falha na extração dupla do Patool"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "Versão Componente"
+msgstr "Versão correta"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "Houve um erro ao criar a garrafa."
+msgstr "Corrigido um erro ao criar uma garrafa"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "Grande mudança: Redesenho da Interface de Nova Garrafa"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
-#, fuzzy
 msgid "Quality of life improvements:"
-msgstr "Pequenas melhorias na UI"
+msgstr "Melhorias na qualidade de vida:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "Substituição do ícone emote-love por biblioteca na página da biblioteca"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
-#, fuzzy
 msgid "Add toast for \"Run Executable\""
-msgstr "Adicionar um caminho executável personalizado"
+msgstr "Adicionar notificação do sistema para “Executar Executável”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
-#, fuzzy
 msgid "Bug fixes:"
-msgstr "Correções de bugs"
+msgstr "Correções de bugs:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "Adicionar o atalho à Steam causou um erro"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
-#, fuzzy
 msgid "Importing backups resulted an error"
-msgstr "Importar backup ou de outros gerenciadores"
+msgstr "Importar cópias de segurança causou um erro"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"Tempo de Execução da Steam automaticamente ativado ao usar o wine-ge-custom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"Várias correções relacionadas à biblioteca, como capas vazias e erros "
+"relacionados a entradas ausentes"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "Corrigidos vários problemas relacionados à codificação de texto"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
-msgstr ""
+msgstr "Corrigido o erro ao baixar se o Bottles não for executado no terminal"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "Data de criação"
+msgstr "Data correta da versão"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
+msgstr "Ocultar erros críticos relacionados à NVIDIA em sistemas não NVIDIA"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "Melhorias e correções do Gamescope"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "A instalação de dependências é mais rápida e mais estável"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
 msgstr ""
+"A verificação de integridade tem mais informações para uma depuração mais "
+"rápida"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
 msgstr ""
+"O NVAPI tem várias correções e está mais estável, e agora deve funcionar "
+"corretamente"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
-#, fuzzy
 msgid "Fix crash when downloading a component"
-msgstr "Preferências de download"
+msgstr "Corrigido um erro ao baixar um componente"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "Melhora do código de back-end ao evitar o spin-lock"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "Mais variáveis para o script do instalador"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"Corrigida a caixa de diálogo integrada que exibia “Tudo pronto” quando, na "
+"verdade, não estava pronto"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
-#, fuzzy
 msgid "Improvement to build system"
-msgstr "Melhorias:"
+msgstr "Melhoria do sistema de builds"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "Ativação do VKD3D por padrão ao criar garrafas para jogos"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
-msgstr ""
+msgstr "Corrigidos erros ao ler arquivos da Steam com má codificação"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"Corrigidos componentes não atualizados corretamente na interface do usuário "
+"após a instalação/desinstalação"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "Mais correções de FSR"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"Corrigido o problema quando um programa fecha após ser iniciado a partir de “"
+"Executar executável”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "e muito, muito, muito mais!"
 
 #~ msgid "Calculating…"
 #~ msgstr "Calculando…"
