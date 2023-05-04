@@ -24,23 +24,26 @@ modules:
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} "requests==2.28.0" --no-build-isolation
+        --prefix=${FLATPAK_DEST} "requests[use_chardet_on_py3]==2.28.1" --no-build-isolation
     sources:
       - type: file
         url: https://files.pythonhosted.org/packages/71/4c/3db2b8021bd6f2f0ceb0e088d6b2d49147671f25832fb17970e9b583d742/certifi-2022.12.7-py3-none-any.whl
         sha256: 4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18
       - type: file
-        url: https://files.pythonhosted.org/packages/06/b3/24afc8868eba069a7f03650ac750a778862dc34941a4bebeb58706715726/charset_normalizer-2.0.12-py3-none-any.whl
-        sha256: 6881edbebdb17b39b4eaaa821b438bf6eddffb4468cf344f09f89def34a8b1df
+        url: https://files.pythonhosted.org/packages/74/8f/8fc49109009e8d2169d94d72e6b1f4cd45c13d147ba7d6170fb41f22b08f/chardet-5.1.0-py3-none-any.whl
+        sha256: 362777fb014af596ad31334fde1e8c327dfdb076e1960d1694662d46a6917ab9
+      - type: file
+        url: https://files.pythonhosted.org/packages/db/51/a507c856293ab05cdc1db77ff4bc1268ddd39f29e7dc4919aa497f0adbec/charset_normalizer-2.1.1-py3-none-any.whl
+        sha256: 83e9a75d1911279afd89352c68b45348559d1fc0506b054b346651b5e7fee29f
       - type: file
         url: https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl
         sha256: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
       - type: file
-        url: https://files.pythonhosted.org/packages/41/5b/2209eba8133fc081d3ffff02e1f6376e3117e52bb16f674721a83e67e68e/requests-2.28.0-py3-none-any.whl
-        sha256: bc7861137fbce630f17b03d3ad02ad0bf978c844f3536d0edda6499dafce2b6f
+        url: https://files.pythonhosted.org/packages/ca/91/6d9b8ccacd0412c08820f72cebaa4f0c0441b5cda699c90f618b6f8a1b42/requests-2.28.1-py3-none-any.whl
+        sha256: 8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349
       - type: file
-        url: https://files.pythonhosted.org/packages/fe/ca/466766e20b767ddb9b951202542310cba37ea5f2d792dae7589f1741af58/urllib3-1.26.14-py2.py3-none-any.whl
-        sha256: 75edcdc2f7d85b137124a6c3c9fc3933cdeaa12ecb9a6a959f22797a0feca7e1
+        url: https://files.pythonhosted.org/packages/7b/f5/890a0baca17a61c1f92f72b81d3c31523c99bec609e60c292ea55b387ae8/urllib3-1.26.15-py2.py3-none-any.whl
+        sha256: aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42
   - name: python3-Markdown
     buildsystem: simple
     build-commands:
@@ -90,6 +93,6 @@ modules:
         url: https://files.pythonhosted.org/packages/f7/2f/cc09899755f94b36e7f570b9f9ca19a5fdff536e2614fd3ac1c28bb777f6/FVS-0.3.4.tar.gz
         sha256: c987741f37706ea07d91ec498c145162676ca16b59b5c8c2351cf464954ce422
       - type: file
-        url: https://files.pythonhosted.org/packages/a4/a2/212b5c3dc4d0115e0f1cddad7ff480f710acc0223a70487ac739cdf44a5b/orjson-3.8.6-cp310-cp310-manylinux_2_28_x86_64.whl
-        sha256: 323065cf14fdd4096dbf93ea1634e7e030044af8c1000803bcdc132fbfd395f5
+        url: https://files.pythonhosted.org/packages/1a/29/977982fcbce6fbcf0da925133561e28c82a6e9f32bfe0b66645a96d0654d/orjson-3.8.9-cp310-cp310-manylinux_2_28_x86_64.whl
+        sha256: c02ece4f36a160c83efe74adfba5f189c7c7702361f02b809ab73744923ee139
 name: com.usebottles.bottles.pypi-deps

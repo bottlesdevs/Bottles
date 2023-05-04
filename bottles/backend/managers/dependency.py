@@ -129,7 +129,7 @@ class DependencyManager:
             Steps are the actions performed to install the dependency.
             """
             res = self.__perform_steps(config, step)
-            if not res.status:
+            if not res.ok:
                 TaskManager.remove(task_id)
                 return Result(
                     status=False,

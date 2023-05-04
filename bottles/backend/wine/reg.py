@@ -29,6 +29,7 @@ class Reg(WineProgram):
     command = "reg"
 
     def bulk_add(self, regs: List[RegItem]):
+        """Import multiple registries at once, with v5.00 reg file"""
         config = self.config
         logging.info(f"Importing {len(regs)} Key(s) to {config.Name} registry")
         winedbg = WineDbg(config)
@@ -58,7 +59,7 @@ class Reg(WineProgram):
         winedbg.wait_for_process("reg.exe")
 
         res = self.launch(("import", tmp_reg_filepath), communicate=True, minimal=True, action_name="bulk_add")
-        logging.info(res, )
+        logging.info(res.data)
 
     def add(self, key: str, value: str, data: str, value_type: Optional[str] = None):
         config = self.config
@@ -76,7 +77,7 @@ class Reg(WineProgram):
         winedbg.wait_for_process("reg.exe")
 
         res = self.launch(args, communicate=True, minimal=True, action_name="add")
-        logging.info(res, )
+        logging.info(res.data)
 
     def remove(self, key: str, value: str):
         """Remove a key from the registry"""
@@ -90,7 +91,7 @@ class Reg(WineProgram):
         winedbg.wait_for_process("reg.exe")
 
         res = self.launch(args, communicate=True, minimal=True, action_name="remove")
-        logging.info(res, )
+        logging.info(res.data)
 
     def import_bundle(self, bundle: dict):
         """Import a bundle of keys into the registry"""
@@ -122,8 +123,7 @@ class Reg(WineProgram):
         winedbg.wait_for_process("reg.exe")
 
         res = self.launch(args, communicate=True, minimal=True, action_name="import_bundle")
-        # TODO: temp fix because res is sometimes a string, sometimes bytes...
-        # logging.info(f"Import bundle result: '{res.decode('utf-8')}'")
+        logging.info(f"Import bundle result: '{res.data}'")
 
         # remove reg file
         os.remove(reg_file)

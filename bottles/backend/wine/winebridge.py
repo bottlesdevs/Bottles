@@ -35,12 +35,12 @@ class WineBridge(WineProgram):
             communicate=True,
             action_name="get_procs"
         )
-        if res in [None, ""]:
+        if not res.ready:
             return processes
 
-        res = res.split("\n")
-        for r in res:
-            if r in [None, "", "\r"]:
+        lines = res.data.split("\n")
+        for r in lines:
+            if r in ["", "\r"]:
                 continue
 
             r = r.split("|")

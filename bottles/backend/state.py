@@ -97,7 +97,7 @@ class Task:
     def stream_update(self, received_size: int = 0, total_size: int = 0, status: Optional[Status] = None):
         """This is a default subtitle updating handler for streaming downloading progress"""
         match status:
-            case Status.DONE, Status.FAILED:
+            case Status.DONE | Status.FAILED:
                 TaskManager.remove(self)
                 return
             case _:
