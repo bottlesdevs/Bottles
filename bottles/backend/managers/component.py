@@ -39,9 +39,9 @@ logging = Logger()
 # noinspection PyTypeChecker
 class ComponentManager:
 
-    def __init__(self, manager, offline: bool = False, callback=None):
+    def __init__(self, manager, offline: bool = False):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("components", offline, callback)
+        self.__repo = manager.repository_manager.get_repo("components", offline)
         self.__utils_conn = manager.utils_conn
 
     @lru_cache

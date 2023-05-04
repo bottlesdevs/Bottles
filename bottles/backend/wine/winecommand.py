@@ -89,10 +89,10 @@ class WineCommand:
             arguments: str = False,
             environment: dict = False,
             communicate: bool = False,
-            cwd: str = None,
+            cwd: Optional[str] = None,
             colors: str = "default",
             minimal: bool = False,  # avoid gamemode/gamescope usage
-            post_script: str = None
+            post_script: Optional[str] = None
     ):
         self.config = self._get_config(config)
         self.minimal = minimal
@@ -139,7 +139,7 @@ class WineCommand:
 
         return cwd
 
-    def get_env(self, environment: dict = None, return_steam_env: bool = False, return_clean_env: bool = False) -> dict:
+    def get_env(self, environment: Optional[dict] = None, return_steam_env: bool = False, return_clean_env: bool = False) -> dict:
         env = WineEnv(clean=return_steam_env or return_clean_env)
         config = self.config
         arch = config.Arch
@@ -322,10 +322,6 @@ class WineCommand:
         if params.sync == "fsync":
             env.add("WINEFSYNC", "1")
 
-        # Futex2 environment variable
-        if params.sync == "futex2":
-            env.add("WINEFSYNC_FUTEX2", "1")
-
         # Wine debug level
         if not return_steam_env:
             debug_level = "fixme-all"
@@ -454,7 +450,7 @@ class WineCommand:
     def get_cmd(
             self,
             command,
-            post_script: str = None,
+            post_script: Optional[str] = None,
             return_steam_cmd: bool = False,
             return_clean_cmd: bool = False
     ) -> str:

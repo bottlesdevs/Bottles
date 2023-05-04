@@ -33,7 +33,9 @@ class RegKeys:
         raises: ValueError
             If the given version is invalid.
         """
-        if version not in win_versions:
+
+        win_version = win_versions.get(version)
+        if win_version is None:
             raise ValueError("Given version is not supported.")
 
         if version == "winxp" and self.config.Arch == Arch.WIN64:
@@ -65,39 +67,39 @@ class RegKeys:
                 "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": [
                     {
                         "value": "CSDVersion",
-                        "data": win_versions.get(version)["CSDVersion"]
+                        "data": win_version["CSDVersion"]
                     },
                     {
                         "value": "CurrentBuild",
-                        "data": win_versions.get(version)["CurrentBuild"]
+                        "data": win_version["CurrentBuild"]
                     },
                     {
                         "value": "CurrentBuildNumber",
-                        "data": win_versions.get(version)["CurrentBuildNumber"]
+                        "data": win_version["CurrentBuildNumber"]
                     },
                     {
                         "value": "CurrentVersion",
-                        "data": win_versions.get(version)["CurrentVersion"]
+                        "data": win_version["CurrentVersion"]
                     },
                     {
                         "value": "ProductName",
-                        "data": win_versions.get(version)["ProductName"]
+                        "data": win_version["ProductName"]
                     },
                     {
                         "value": "CurrentMinorVersionNumber",
-                        "data": win_versions.get(version)["CurrentMinorVersionNumber"],
+                        "data": win_version["CurrentMinorVersionNumber"],
                         "key_type": "dword"
                     },
                     {
                         "value": "CurrentMajorVersionNumber",
-                        "data": win_versions.get(version)["CurrentMajorVersionNumber"],
+                        "data": win_version["CurrentMajorVersionNumber"],
                         "key_type": "dword"
                     },
                 ],
                 "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows": [
                     {
                         "value": "CSDVersion",
-                        "data": win_versions.get(version)["CSDVersionHex"],
+                        "data": win_version["CSDVersionHex"],
                         "key_type": "dword"
                     }
                 ]
@@ -107,15 +109,15 @@ class RegKeys:
                 "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": [
                     {
                         "value": "ProductName",
-                        "data": win_versions.get(version)["ProductName"]
+                        "data": win_version["ProductName"]
                     },
                     {
                         "value": "SubVersionNumber",
-                        "data": win_versions.get(version)["SubVersionNumber"]
+                        "data": win_version["SubVersionNumber"]
                     },
                     {
                         "value": "VersionNumber",
-                        "data": win_versions.get(version)["VersionNumber"]
+                        "data": win_version["VersionNumber"]
                     }
                 ]
             }
@@ -124,42 +126,42 @@ class RegKeys:
             bundle["HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion"] = [
                 {
                     "value": "CSDVersion",
-                    "data": win_versions.get(version)["CSDVersion"]
+                    "data": win_version["CSDVersion"]
                 },
                 {
                     "value": "CurrentBuild",
-                    "data": win_versions.get(version)["CurrentBuild"]
+                    "data": win_version["CurrentBuild"]
                 },
                 {
                     "value": "CurrentBuildNumber",
-                    "data": win_versions.get(version)["CurrentBuildNumber"]
+                    "data": win_version["CurrentBuildNumber"]
                 },
                 {
                     "value": "CurrentVersion",
-                    "data": win_versions.get(version)["CurrentVersion"]
+                    "data": win_version["CurrentVersion"]
                 },
                 {
                     "value": "ProductName",
-                    "data": win_versions.get(version)["ProductName"]
+                    "data": win_version["ProductName"]
                 },
                 {
                     "value": "CurrentMinorVersionNumber",
-                    "data": win_versions.get(version)["CurrentMinorVersionNumber"],
+                    "data": win_version["CurrentMinorVersionNumber"],
                     "key_type": "dword"
                 },
                 {
                     "value": "CurrentMajorVersionNumber",
-                    "data": win_versions.get(version)["CurrentMajorVersionNumber"],
+                    "data": win_version["CurrentMajorVersionNumber"],
                     "key_type": "dword"
                 }
             ]
 
-        if "ProductType" in win_versions.get(version):
+        if "ProductType" in win_version:
             '''windows xp 32 doesn't have ProductOptions/ProductType key'''
             bundle["HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ProductOptions"] = [
                 {
                     "value": "ProductType",
-                    "data": win_versions.get(version)["ProductType"]
+                    "data": win_version["ProductType"]
                 }
             ]
 

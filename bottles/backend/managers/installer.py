@@ -18,7 +18,7 @@ import os
 import subprocess
 import uuid
 from functools import lru_cache
-from typing import Union
+from typing import Union, Optional
 
 import markdown
 import pycurl
@@ -38,9 +38,9 @@ logging = Logger()
 
 class InstallerManager:
 
-    def __init__(self, manager, offline: bool = False, callback=None):
+    def __init__(self, manager, offline: bool = False):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("installers", offline, callback)
+        self.__repo = manager.repository_manager.get_repo("installers", offline)
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
         self.__local_resources = {}
@@ -145,8 +145,8 @@ class InstallerManager:
         """Perform a list of checks"""
         bottle_path = ManagerUtils.get_bottle_path(config)
 
-        if checks.get("files"):
-            for f in checks.get("files"):
+        if files := checks.get("files"):
+            for f in files:
                 if f.startswith("userdir/"):
                     current_user = os.getenv("USER")
                     f = f.replace("userdir/", f"users/{current_user}/")
@@ -344,7 +344,7 @@ class InstallerManager:
         return files
 
     def install(self, config: BottleConfig, installer: dict, step_fn: callable, is_final: bool = True,
-                local_resources: dict = None):
+                local_resources: Optional[dict] = None):
         manifest = self.get_installer(installer[0])
         _config = config
 

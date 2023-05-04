@@ -1,12 +1,13 @@
 import os
 from configparser import ConfigParser
+from typing import Optional
 
 from bottles.backend.utils import yaml, json
 
 
 class ConfigManager(object):
 
-    def __init__(self, config_file: str = None, config_type: str = 'ini', config_string: str = None):
+    def __init__(self, config_file: Optional[str] = None, config_type: str = 'ini', config_string: Optional[str] = None):
         self.config_file = config_file
         self.config_string = config_string
         self.config_type = config_type
@@ -87,7 +88,7 @@ class ConfigManager(object):
         with open(self.config_file, 'w') as f:
             config.write(f)
 
-    def write_dict(self, config_file: str = None):
+    def write_dict(self, config_file: Optional[str] = None):
         if self.config_file is None and config_file is None:
             raise ValueError('No config path specified')
         elif self.config_file is None and config_file is not None:

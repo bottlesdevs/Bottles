@@ -84,7 +84,7 @@ class BackupManager:
         return tarinfo
 
     @staticmethod
-    def import_backup(window, scope: str, path: str, manager: Manager) -> Result:
+    def import_backup(scope: str, path: str) -> Result:
         """
         Imports a backup from the specified path.
         Use the scope parameter to specify the backup type: config, full.
@@ -94,6 +94,8 @@ class BackupManager:
         if not path:
             logging.error(_("No path specified"))
             return Result(status=False)
+
+        manager = Manager()
 
         backup_name = os.path.basename(path)
         import_status = False
@@ -134,14 +136,14 @@ class BackupManager:
 
                         return prefix == abs_directory
 
-                    def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+                    def safe_extract(_tar, _path=".", members=None, *, numeric_owner=False):
 
-                        for member in tar.getmembers():
-                            member_path = os.path.join(path, member.name)
-                            if not is_within_directory(path, member_path):
+                        for member in _tar.getmembers():
+                            member_path = os.path.join(_path, member.name)
+                            if not is_within_directory(_path, member_path):
                                 raise Exception("Attempted Path Traversal in Tar File")
 
-                        tar.extractall(path, members, numeric_owner=numeric_owner)
+                        _tar.extractall(_path, members, numeric_owner=numeric_owner)
 
                     safe_extract(tar, Paths.bottles)
                 import_status = True
@@ -151,7 +153,7 @@ class BackupManager:
         TaskManager.remove(task_id)
 
         if import_status:
-            window.manager.update_bottles()
+            manager.update_bottles()
             logging.info(f"Backup imported: {path}", jn=True)
             return Result(status=True)
 

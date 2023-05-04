@@ -1,7 +1,7 @@
 import os
 import shlex
 import uuid
-from typing import Union
+from typing import Union, Optional
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -26,17 +26,17 @@ class WineExecutor:
             exec_path: str,
             args: str = "",
             terminal: bool = False,
-            cwd: str = None,
-            environment: dict = None,
+            cwd: Optional[str] = None,
+            environment: Optional[dict] = None,
             move_file: bool = False,
             move_upd_fn: callable = None,
-            post_script: str = None,
-            monitoring: list = None,
-            override_dxvk: bool = None,
-            override_vkd3d: bool = None,
-            override_nvapi: bool = None,
-            override_fsr: bool = None,
-            override_virt_desktop: bool = None
+            post_script: Optional[str] = None,
+            monitoring: Optional[list] = None,
+            override_dxvk: Optional[bool] = None,
+            override_vkd3d: Optional[bool] = None,
+            override_nvapi: Optional[bool] = None,
+            override_fsr: Optional[bool] = None,
+            override_virt_desktop: Optional[bool] = None
     ):
         logging.info("Launching an executable…")
         self.config = config
@@ -70,7 +70,7 @@ class WineExecutor:
         if override_vkd3d is not None \
                 and not override_vkd3d \
                 and self.config.Parameters.vkd3d:
-            env_dll_overrides.append("d3d12=b")
+            env_dll_overrides.append("d3d12=b;d3d12core=b,n")
 
         if override_nvapi is not None \
                 and not override_nvapi \

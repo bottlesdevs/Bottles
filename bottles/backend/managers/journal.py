@@ -20,6 +20,7 @@ import os
 import shutil
 import uuid
 from datetime import datetime, timedelta
+from typing import Optional
 
 from bottles.backend.globals import Paths
 from bottles.backend.utils import yaml
@@ -91,7 +92,7 @@ class JournalManager:
         JournalManager.__save_journal(journal)
 
     @staticmethod
-    def __save_journal(journal: dict = None):
+    def __save_journal(journal: Optional[dict] = None):
         """Save the journal to the journal file."""
         if journal is None:
             journal = JournalManager.__get_journal()

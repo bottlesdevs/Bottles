@@ -109,10 +109,8 @@ class ImporterView(Adw.Bin):
             RunAsync(
                 task_func=BackupManager.import_backup,
                 callback=self.__finish,
-                window=self.window,
                 scope="full",
                 path=dialog.get_file().get_path(),
-                manager=self.manager
             )
 
         dialog = Gtk.FileChooserNative.new(
@@ -148,10 +146,8 @@ class ImporterView(Adw.Bin):
             RunAsync(
                 task_func=BackupManager.import_backup,
                 callback=self.__finish,
-                window=self.window,
                 scope="config",
                 path=dialog.get_file().get_path(),
-                manager=self.manager
             )
 
         dialog = Gtk.FileChooserNative.new(

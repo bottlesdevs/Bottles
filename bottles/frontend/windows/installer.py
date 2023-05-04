@@ -99,12 +99,6 @@ class InstallerDialog(Adw.Window):
     def __init__(self, window, config, installer, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
-        self.style_provider.load_from_data(b"progressbar { line-height: 2.0; }")
-        Gtk.StyleContext.add_provider(
-            self.progressbar.get_style_context(),
-            self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
 
         self.window = window
         self.manager = window.manager
