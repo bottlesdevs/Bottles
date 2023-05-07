@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-04-28 16:51+0000\n"
+"PO-Revision-Date: 2023-05-08 17:50+0000\n"
 "Last-Translator: \"K.B.Dharun Krishna\" <kbdharunkrishna@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/bottles/bottles/ta/"
 ">\n"
@@ -223,7 +223,7 @@ msgstr "பாட்டில்ஸ் டெவலப்பர்கள்"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr "K.B.Dharun Krishna <kbdharunkrishna@gmail.com>"
+msgstr "K.B.Dharun Krishna https://github.com/kbdharun"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -3096,103 +3096,119 @@ msgstr "பிழை திருத்தங்கள்:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "ஸ்டீமில் (Steam) குறுக்குவழியைச் சேர்ப்பதில் பிழை ஏற்பட்டது"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
-#, fuzzy
 msgid "Importing backups resulted an error"
-msgstr "காப்புப்பிரதியை இறக்குமதி செய்கிறது: {0}"
+msgstr "காப்புப்பிரதிகளை இறக்குமதி செய்வதில் பிழை ஏற்பட்டது"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"wine-ge-custom பயன்படுத்தும் போது ஸ்டீம் (Steam) இயக்க நேரம் தானாகவே "
+"இயக்கப்படும்"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"வெற்று அட்டைகள் மற்றும் விடுபட்ட உள்ளீடுகள் தொடர்பான செயலிழப்புகள் போன்ற "
+"பல்வேறு நூலகம் தொடர்பான திருத்தங்கள்"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "உரை குறியாக்கம் தொடர்பான பல்வேறு சிக்கல்கள் சரிசெய்யப்பட்டன"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
+"டெர்மினலில் இருந்து பாட்டில்கள் இயக்கப்படாவிட்டால் பதிவிறக்கும் போது பிழை சரி"
+" செய்யப்பட்டது"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "கூறு பதிப்பு"
+msgstr "சரியான பதிப்பு தேதி"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
+msgstr "NVIDIA அல்லாத கணினிகளில் NVIDIA தொடர்பான முக்கியமான பிழைகளை மறை"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "கேம்ஸ்கோப் மேம்பாடுகள் மற்றும் திருத்தங்கள்"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "சார்பு நிறுவல் வேகமானது மற்றும் நிலையானது"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
 msgstr ""
+"விரைவான பிழைத்திருத்தத்திற்கான கூடுதல் தகவல்கள் சுகாதாரச் சோதனையில் உள்ளன"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
 msgstr ""
+"NVAPI ஆனது நிறைய திருத்தங்களைக் கொண்டுள்ளது மற்றும் மிகவும் நிலையானது, "
+"இப்போது சரியாக வேலை செய்ய வேண்டும்"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "ஒரு கூறுகளைப் பதிவிறக்கும் போது நிலையான செயலிழப்பு சரி செய்யப்பட்டது"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "ஸ்பின்-லாக்கைத் தவிர்ப்பதன் மூலம் பின்தள குறியீடு மேம்பாடு"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "நிறுவி ஸ்கிரிப்டிங்கிற்கான கூடுதல் மாறிகள்"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"\"அனைத்தும் தயார்\" எனக் காட்டும் நிலையான உள் உரையாடல் உண்மையில் தயாராக இல்லை"
+" நிலையிலும் காட்டுவது செரிசெய்யப்பட்டது"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "கட்டமைப்பு மேம்படுத்துதல்"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
 msgstr ""
+"விளையாட்டிற்காக பாட்டில்களை உருவாக்கும் போது இயல்பாக VKD3D ஐ இயக்குகிறது"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
 msgstr ""
+"மோசமான குறியாக்கங்களைக் கொண்ட ஸ்டீம் (Steam) கோப்புகளைப் படிக்கும்போது "
+"செயலிழப்புகள் சரி செய்யப்பட்டன"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"நிறுவல்/நிறுவலுக்குப் பிறகு UI இல் சரியாகப் புதுப்பிக்கப்படாத கூறுகளைச் "
+"செரிசெய்யப்பட்டன"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "மேலும் FSR திருத்தங்கள்"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"\" இயக்கு செயல்படுத்தக்கூடியவை\" இலிருந்து தொடங்கப்பட்ட பிறகு ஒரு நிரல் "
+"மூடப்படும் போது சிக்கல் சரி செய்யப்பட்டது"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "மற்றும் பல, பல, பல!"
 
 #~ msgid "Calculating…"
 #~ msgstr "கணக்கீடு செய்கிறது…"
