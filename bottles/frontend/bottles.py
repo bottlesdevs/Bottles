@@ -18,7 +18,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-os.environ.pop('GTK_THEME')
 import sys
 import signal
 import gettext
@@ -30,6 +29,7 @@ localedir = "@localedir@"
 gresource_path = f"{pkgdatadir}/bottles.gresource"
 sys.path.insert(1, pkgdatadir)
 
+os.environ.pop('GTK_THEME')
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 gettext.install('bottles', localedir)
 
