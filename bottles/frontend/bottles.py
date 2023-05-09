@@ -29,7 +29,9 @@ localedir = "@localedir@"
 gresource_path = f"{pkgdatadir}/bottles.gresource"
 sys.path.insert(1, pkgdatadir)
 
-os.environ.pop('GTK_THEME')
+# Remove GTK_THEME variable to prevent breakages
+os.unsetenv("GTK_THEME")
+
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 gettext.install('bottles', localedir)
 
