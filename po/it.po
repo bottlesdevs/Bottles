@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-02-18 00:44+0000\n"
-"Last-Translator: Kryotek <weblate@kryotek.mozmail.com>\n"
+"PO-Revision-Date: 2023-05-11 07:52+0000\n"
+"Last-Translator: Iginio Massari <marko.ciucci@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -201,15 +201,15 @@ msgstr "[Ricarica] richiesta ricevuta."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Dona"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Librerie di terze parti e ringraziamenti speciali"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Sponsorizzato e finanziato da"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
@@ -543,11 +543,11 @@ msgstr "Cerca dipendenze…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Sei offline :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Bottles è in modalità offline, le dipendenze non sono disponibili."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -1413,6 +1413,7 @@ msgid "Use Proton"
 msgstr "Usa Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:35
+#, fuzzy
 msgid ""
 "Beware, using Proton-based runners in non-Steam bottles can cause problems "
 "and prevent them from behaving correctly.\n"
@@ -1426,9 +1427,8 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
-"Attenzione: utilizzare runner basati su Proton all'interno di bottiglie non-"
+"Attenzione: utilizzare runner basati su Proton all'interno di Bottles non-"
 "Steam può causare problemi e comportamenti errati.\n"
-"\n"
 "\n"
 "Si raccomanda invece di utilizzare Wine-GE, una versione di Proton pensata "
 "per essere eseguita al di fuori di Steam.\n"
@@ -2348,7 +2348,7 @@ msgstr "Mostra/nascondi i programmi rimossi"
 #: bottles/frontend/widgets/program.py:184
 #, fuzzy, python-brace-format
 msgid "Launching \"{0}\"…"
-msgstr "Avvia nel terminale…"
+msgstr "Avvio \"{0}\"…"
 
 #: bottles/frontend/views/bottle_details.py:413
 #, fuzzy
@@ -2526,9 +2526,9 @@ msgid "Run executable in \"{self.config.Name}\""
 msgstr ""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Avvia nel terminale…"
+msgstr "Avvio \"{0}\" in \"{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2688,14 +2688,14 @@ msgstr "Rapporto di {0}"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "Avvia nel terminale…"
+msgstr "Interrompo \"{0}\"…"
 
 #: bottles/frontend/widgets/program.py:190
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
-msgstr "Avvia con Steam"
+msgstr "Eseguo \"{0}\" con Steam"
 
 #: bottles/frontend/widgets/program.py:214
 #, fuzzy, python-brace-format
