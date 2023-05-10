@@ -128,6 +128,16 @@ template PreferencesWindow : Adw.PreferencesWindow {
     Adw.PreferencesGroup {
       title: _("Advanced");
 
+      Adw.ActionRow action_prerelease {
+        title: _("Pre-Release");
+        subtitle: _("Display unstable versions of runners and components.");
+        activatable-widget: switch_release_candidate;
+
+        Switch switch_release_candidate {
+          valign: center;
+        }
+      }
+
       Adw.ActionRow {
         title: _("Bottles Directory");
         subtitle: _("Directory that contains the data of your Bottles.");
@@ -205,15 +215,6 @@ template PreferencesWindow : Adw.PreferencesWindow {
           Adw.PreferencesGroup list_runners {
             vexpand: true;
             hexpand: true;
-            Adw.ActionRow action_prerelease {
-              title: _("Pre-Release");
-              subtitle: _("Display unstable versions of runners.");
-              activatable-widget: switch_release_candidate;
-
-              Switch switch_release_candidate {
-                valign: center;
-              }
-            }
           }
         };
       }

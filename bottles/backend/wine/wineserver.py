@@ -1,13 +1,11 @@
 import os
-import time
 import subprocess
+import time
 
-from bottles.backend.models.config import BottleConfig
+from bottles.backend.logger import Logger
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.proc import ProcUtils
 from bottles.backend.wine.wineprogram import WineProgram
-from bottles.backend.logger import Logger
-from bottles.backend.models.result import Result
 
 logging = Logger()
 
@@ -18,10 +16,6 @@ class WineServer(WineProgram):
 
     def is_alive(self):
         config = self.config
-
-        # If the caller is passing a Result object, get the config from it
-        if isinstance(config, Result):
-            config = config.data.get("config", BottleConfig())
 
         # If the config has no Runner, skip the execution
         if not config.Runner:

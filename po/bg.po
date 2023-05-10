@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-03-22 00:06+0000\n"
+"PO-Revision-Date: 2023-04-21 17:51+0000\n"
 "Last-Translator: Georgi Georgiev <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/bg/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -225,7 +225,7 @@ msgstr "Разработчиците на „Bottles“"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -542,11 +542,12 @@ msgstr "Търсене на зависимостите…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Вие сте офлайн :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr ""
+"„Bottles“ се изпълнява в офлайн режим, така че зависимостите не са налични."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -591,14 +592,13 @@ msgid "Search for Programs…"
 msgstr "Търсене на програмите…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Автоматично инсталиране на програми, подбрани от нашата общност.\n"
+"Инсталиране на програми, подбрани от нашата общност.\n"
 "\n"
 "Файловете на тази страница са предоставени от трети страни под лиценз за "
 "собственост. С тяхното инсталиране, Вие се съгласявате със съответните им "
@@ -707,7 +707,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FSR"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
@@ -716,7 +716,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "Управление на настройките на FSR"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
@@ -1250,9 +1250,8 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr "Ограничение на честотата на кадрите във фонов режим"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "Използване на целочислено мащабиране"
+msgstr "Целочислено мащабиране"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1896,9 +1895,8 @@ msgid "Bottles"
 msgstr "„Bottles“"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "Създаване на нова бутилка"
+msgstr "Създаване на нова бутилка…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
@@ -1921,38 +1919,32 @@ msgid "Browse"
 msgstr "Разглеждане"
 
 #: bottles/frontend/ui/new.blp:32
-#, fuzzy
 msgid "C_reate"
-msgstr "Създаване"
+msgstr "_Създаване"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
 msgstr "Наименование на бутилката"
 
 #: bottles/frontend/ui/new.blp:75
-#, fuzzy
 msgid "_Application"
-msgstr "Програми"
+msgstr "_Програми"
 
 #: bottles/frontend/ui/new.blp:88
-#, fuzzy
 msgid "_Gaming"
-msgstr "Игри"
+msgstr "_Игри"
 
 #: bottles/frontend/ui/new.blp:101
-#, fuzzy
 msgid "C_ustom"
-msgstr "Персонализирана"
+msgstr "П_ерсонализирана"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
 msgstr "Персонализирана"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "Избиране на директория"
+msgstr "Споделяне на потребителската директория"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1960,41 +1952,36 @@ msgid ""
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
 msgstr ""
+"Това прави потребителската директория откриваема в бутилката. Тази опция не "
+"може да бъде променена след създаването на бутилката."
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
 msgstr "Архитектура"
 
 #: bottles/frontend/ui/new.blp:137
-#, fuzzy
 msgid "32-bit should only be used if strictly necessary."
-msgstr ""
-"Препоръчваме използването на 32-битовата архитектура само ако е наложително."
+msgstr "Използвайте 32-битовата архитектура само ако е наложително."
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Експортиране на конфигурацията…"
+msgstr "Импортиране на персонализирана конфигурация."
 
 #: bottles/frontend/ui/new.blp:176
-#, fuzzy
 msgid "Bottle Directory"
-msgstr "Директория на бутилките"
+msgstr "Директория на бутилката"
 
 #: bottles/frontend/ui/new.blp:177
-#, fuzzy
 msgid "Directory that will contain the data of this bottle."
-msgstr "Директория с данните на Вашите бутилки."
+msgstr "Директория с данните на бутилката."
 
 #: bottles/frontend/ui/new.blp:249
-#, fuzzy
 msgid "_Close"
-msgstr "Затваряне"
+msgstr "_Затваряне"
 
 #: bottles/frontend/ui/new.blp:281
-#, fuzzy
 msgid "This name is unavailable, please try another."
-msgstr "Тази функция не е налична за Вашата система."
+msgstr "Това наименование не е налично."
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
@@ -2156,6 +2143,8 @@ msgstr "Стартиращи програми"
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
 msgstr ""
+"„Bottles“ се изпълнява в офлайн режим, така че стартиращите програми не са "
+"налични."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2172,6 +2161,7 @@ msgstr "Компоненти на DLL файловете"
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
 msgstr ""
+"„Bottles“ се изпълнява в офлайн режим, така че DLL файловете не са налични."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2315,9 +2305,8 @@ msgstr "„{0}“ е добавена"
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "Избиране на бутилка"
+msgstr "Избиране на изпълним файл"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2369,9 +2358,8 @@ msgstr ""
 "Избиране на местоположението за запазване на резервното копие на архива"
 
 #: bottles/frontend/views/bottle_details.py:435
-#, fuzzy
 msgid "Backup"
-msgstr "Резервно копие {0}"
+msgstr "Резервно копие"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
@@ -2430,15 +2418,13 @@ msgid "{} To add this feature, please run flatpak install"
 msgstr "{} За да добавите тази функция, моля стартирайте „flatpak install“"
 
 #: bottles/frontend/views/bottle_preferences.py:246
-#, fuzzy
 msgid "This bottle name is already in use."
-msgstr "Наименованието съдържа специални знаци или вече се използва."
+msgstr "Наименованието на бутилката вече се използва."
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "Работна директория"
+msgstr "Избиране на работна директория"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
@@ -2485,7 +2471,6 @@ msgid "Importing backup…"
 msgstr "Импортиране на резервното копие…"
 
 #: bottles/frontend/views/importer.py:119
-#, fuzzy
 msgid "Select a Backup Archive"
 msgstr "Избиране на резервното копие на архива"
 
@@ -2495,7 +2480,6 @@ msgid "Import"
 msgstr "Импортиране"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
-#, fuzzy
 msgid "Select a Configuration File"
 msgstr "Избиране на конфигурационен файл"
 
@@ -2507,12 +2491,12 @@ msgstr "Няма"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "Стартиране на изпълним файл в „{self.config.Name}“"
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Стартиране на „{0}“…"
+msgstr "Стартиране на „{0}“ в „{1}“…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2529,23 +2513,21 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Извлечени са {0} от {1} пакета"
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "Директория на бутилките"
+msgstr "Избиране на директория на бутилката"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
 msgstr "Създаване на бутилка…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "Създаване на нова бутилка"
+msgstr "Бутилката не е създадена"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
 msgstr ""
+"Създаването на бутилката е неуспешно и завърши с една или повече грешки."
 
 #. Show success
 #: bottles/frontend/views/new.py:232
@@ -2562,9 +2544,8 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "„Steam“ не е намерен или „Bottles“ няма нужните разрешения."
 
 #: bottles/frontend/views/preferences.py:176
-#, fuzzy
 msgid "Select Bottles Path"
-msgstr "Избиране на бутилка"
+msgstr "Избиране на местоположение на „Bottles“"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
@@ -2627,9 +2608,9 @@ msgid "Manifest for {0}"
 msgstr "Манифест на {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "„{0}“ е инсталирана"
+msgstr "„{0}“ е премахната"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
@@ -2771,7 +2752,6 @@ msgid "Copy to clipboard"
 msgstr "Копиране в клипборда"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
 msgstr "Избиране на файл с ресурси"
 
@@ -2819,9 +2799,8 @@ msgid "This setting is different from the bottle's default."
 msgstr "Тази настройка е различна от стандартната за бутилката."
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "Избиране на местоположение на дяла"
+msgstr "Избиране на скрипт"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
@@ -2836,7 +2815,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
@@ -3095,156 +3074,160 @@ msgstr "… и много други!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
-msgstr ""
+msgstr "Обновяване на информацията за метаданните"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
 msgstr ""
+"Добавяне на повече информация за обновяването и точна версия за бележките "
+"към изданието"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Fixed \"Add to Steam\" button"
-msgstr "Добавяне към „Steam“"
+msgstr "Поправка за бутона „Добавяне към „Steam““"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr ""
+msgstr "Поправка за сериализирането на конфигурацията на бутилката"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "Поправка за двойното разархивиране на „Patool“"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "Версия на компонента"
+msgstr "Точна версия"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "Възникна грешка при създаването на бутилката."
+msgstr "Поправка за срив при създаването на бутилка"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "Подобрения на интерфейса за нова бутилка"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
-#, fuzzy
 msgid "Quality of life improvements:"
-msgstr "Потребителският интерфейс е подобрен"
+msgstr "Подобрения:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "Промяна на иконата на библиотеката"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
-#, fuzzy
 msgid "Add toast for \"Run Executable\""
-msgstr "Добавяне на персонализирано местоположение на изпълнимия файл"
+msgstr "Добавяне на тост за „Стартиране на изпълнимия файл“"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
-msgstr ""
+msgstr "Поправки на неизправности:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "Грешка при добавяне на пряк път към „Steam“"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
-#, fuzzy
 msgid "Importing backups resulted an error"
-msgstr "Импортиране на резервно копие: {0}"
+msgstr "Грешка при импортиране на резервни копия"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"Автоматично включване на средата за изпълнение на „Steam“ при използване на "
+"„wine-ge-custom“"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
-msgstr ""
+msgstr "Различни поправки, свързани с библиотечните файлове, сривове и други"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "Поправки за проблеми, свързани с кодирането на текста"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
+"Поправка за грешка при изтегляне, ако „Bottles“ не е стартиран от терминала"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "Версия на компонента"
+msgstr "Точна дата на версията"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
+msgstr "Скриване на грешките, свързани с „NVIDIA“, ако не използвате „NVIDIA“"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "Подобрения и поправки за „Gamescope“"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "Инсталирането на зависимости е по-бързо и по-стабилно"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
 msgstr ""
+"Проверката на състоянието показва повече информация за по-бързо отстраняване "
+"на неизправности"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
-msgstr ""
+msgstr "NVAPI трябва да работи както трябва"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "Поправка за срив при изтеглянето на компонент"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "Подобрение на програмния код"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "Повече променливи за скриптовете на инсталатора"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
-msgstr ""
+msgstr "Поправка за диалога показващ „Всичко е готово“, когато още не е готово"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "Подобрение на системата за създаване"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "Включване на VKD3D по подразбиране при създаване на бутилки за игри"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
-msgstr ""
+msgstr "Поправка за сривове при четене на файлове от „Steam“ с неточно кодиране"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"Поправка за компонентите, които не се показват правилно след инсталация или "
+"премахване"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "Поправки за FSR"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"Поправка за проблема при затваряне на програма, която е стартирана от „"
+"Стартиране на изпълнимия файл“"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "и много, много, много други!"
 
 #~ msgid "Calculating…"
 #~ msgstr "Изчисляване…"

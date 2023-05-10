@@ -188,7 +188,7 @@ class ComponentManager:
                     update_func=update_func
                 ).download()
 
-                if not res.status:
+                if not res.ok:
                     TaskManager.remove(task_id)
                     return False
 
