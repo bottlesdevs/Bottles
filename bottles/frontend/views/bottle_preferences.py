@@ -95,6 +95,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_vmtouch = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
+    combo_d8vk = Gtk.Template.Child()
     combo_vkd3d = Gtk.Template.Child()
     combo_nvapi = Gtk.Template.Child()
     combo_latencyflex = Gtk.Template.Child()
@@ -102,6 +103,7 @@ class PreferencesView(Adw.PreferencesPage):
     combo_language = Gtk.Template.Child()
     combo_sync = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
+    spinner_d8vk = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
     spinner_nvapi = Gtk.Template.Child()
     spinner_nvapibool = Gtk.Template.Child()
@@ -113,6 +115,7 @@ class PreferencesView(Adw.PreferencesPage):
     str_list_languages = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
     str_list_dxvk = Gtk.Template.Child()
+    str_list_d8vk = Gtk.Template.Child()
     str_list_vkd3d = Gtk.Template.Child()
     str_list_nvapi = Gtk.Template.Child()
     str_list_latencyflex = Gtk.Template.Child()
@@ -159,6 +162,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vmtouch.connect('state-set', self.__toggle_vmtouch)
         self.combo_runner.connect('notify::selected', self.__set_runner)
         self.combo_dxvk.connect('notify::selected', self.__set_dxvk)
+        self.combo_d8vk.connect('notify::selected', self.__set_d8vk)
         self.combo_vkd3d.connect('notify::selected', self.__set_vkd3d)
         self.combo_nvapi.connect('notify::selected', self.__set_nvapi)
         self.combo_latencyflex.connect('notify::selected', self.__set_latencyflex)
@@ -321,6 +325,7 @@ class PreferencesView(Adw.PreferencesPage):
         """
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
+        self.combo_d8vk.handler_block_by_func(self.__set_d8vk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
@@ -330,6 +335,7 @@ class PreferencesView(Adw.PreferencesPage):
         for string_list in [
             self.str_list_runner,
             self.str_list_dxvk,
+            self.str_list_d8vk,
             self.str_list_vkd3d,
             self.str_list_nvapi,
             self.str_list_latencyflex,
@@ -339,10 +345,14 @@ class PreferencesView(Adw.PreferencesPage):
             string_list.splice(0, string_list.get_n_items())
 
         self.str_list_dxvk.append("Disabled")
+        self.str_list_d8vk.append("Disabled")
         self.str_list_vkd3d.append("Disabled")
         self.str_list_latencyflex.append("Disabled")
         for index, dxvk in enumerate(self.manager.dxvk_available):
             self.str_list_dxvk.append(dxvk)
+
+        for index, d8vk in enumerate(self.manager.d8vk_available):
+            self.str_list_d8vk.append(d8vk)
 
         for index, vkd3d in enumerate(self.manager.vkd3d_available):
             self.str_list_vkd3d.append(vkd3d)
@@ -361,6 +371,7 @@ class PreferencesView(Adw.PreferencesPage):
 
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
+        self.combo_d8vk.handler_unblock_by_func(self.__set_d8vk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
@@ -389,6 +400,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
+        self.combo_d8vk.handler_block_by_func(self.__set_d8vk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
@@ -461,6 +473,14 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.combo_dxvk.set_selected(0)
 
+        _d8vk = self.config.D8VK
+        if parameters.d8vk:
+            if _d8vk in self.manager.d8vk_available:
+                if _i_d8vk := self.manager.d8vk_available.index(_d8vk) + 1:
+                    self.combo_d8vk.set_selected(_i_d8vk)
+        else:
+            self.combo_d8vk.set_selected(0)
+
         _vkd3d = self.config.VKD3D
         if parameters.vkd3d:
             if _vkd3d in self.manager.vkd3d_available:
@@ -514,6 +534,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
+        self.combo_d8vk.handler_unblock_by_func(self.__set_d8vk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
@@ -786,6 +807,7 @@ class PreferencesView(Adw.PreferencesPage):
                 self.combo_runner,
                 self.switch_nvapi,
                 self.combo_dxvk,
+                self.combo_d8vk,
                 self.combo_nvapi,
                 self.combo_vkd3d
             ]:
@@ -887,6 +909,50 @@ class PreferencesView(Adw.PreferencesPage):
             self.config = self.manager.update_config(
                 config=self.config,
                 key="dxvk",
+                value=True,
+                scope="Parameters"
+            ).data["config"]
+
+    def __set_d8vk(self, *_args):
+        """Set the D8VK version to use for the bottle"""
+        self.set_d8vk_status(pending=True)
+        self.queue.add_task()
+
+        if (self.combo_d8vk.get_selected()) == 0:
+            self.set_d8vk_status(pending=True)
+
+            RunAsync(
+                task_func=self.manager.install_dll_component,
+                callback=self.set_d8vk_status,
+                config=self.config,
+                component="d8vk",
+                remove=True
+            )
+
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="d8vk",
+                value=False,
+                scope="Parameters"
+            ).data["config"]
+        else:
+            d8vk = self.manager.d8vk_available[self.combo_d8vk.get_selected() - 1]
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="D8VK",
+                value=d8vk
+            ).data["config"]
+
+            RunAsync(
+                task_func=self.__dll_component_task_func,
+                callback=self.set_d8vk_status,
+                config=self.config,
+                component="d8vk"
+            )
+
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="d8vk",
                 value=True,
                 scope="Parameters"
             ).data["config"]
@@ -1066,6 +1132,18 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.spinner_dxvk.stop()
             self.spinner_dxvk.set_visible(False)
+            self.queue.end_task()
+
+    @GtkUtils.run_in_main_loop
+    def set_d8vk_status(self, status=None, error=None, pending=False):
+        """Set the d8vk status"""
+        self.combo_d8vk.set_sensitive(not pending)
+        if pending:
+            self.spinner_d8vk.start()
+            self.spinner_d8vk.set_visible(True)
+        else:
+            self.spinner_d8vk.stop()
+            self.spinner_d8vk.set_visible(False)
             self.queue.end_task()
 
     @GtkUtils.run_in_main_loop

@@ -69,6 +69,7 @@ class BottleSandboxParams(DictCompatMixIn):
 @dataclass
 class BottleParams(DictCompatMixIn):
     dxvk: bool = False
+    d8vk: bool = False
     dxvk_nvapi: bool = False
     vkd3d: bool = False
     latencyflex: bool = False
@@ -121,6 +122,7 @@ class BottleConfig(DictCompatMixIn):
     Runner: str = ""  # runner name, "sys-*", or any installed runner name
     WorkingDir: str = ""
     DXVK: str = ""
+    D8VK: str = ""
     NVAPI: str = ""
     VKD3D: str = ""
     LatencyFleX: str = ""

@@ -121,6 +121,7 @@ class UbisoftConnectManager:
                     "folder": _folder,
                     "icon": "com.usebottles.bottles-program",
                     "dxvk": config.Parameters.dxvk,
+                    "dxvk": config.Parameters.d8vk,
                     "vkd3d": config.Parameters.vkd3d,
                     "dxvk_nvapi": config.Parameters.dxvk_nvapi,
                     "fsr": config.Parameters.fsr,

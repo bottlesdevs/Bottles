@@ -241,6 +241,7 @@ class SteamManager:
                 "folder": _folder,
                 "icon": "com.usebottles.bottles-program",
                 "dxvk": self.config.Parameters.dxvk,
+                "dxvk": self.config.Parameters.d8vk,
                 "vkd3d": self.config.Parameters.vkd3d,
                 "dxvk_nvapi": self.config.Parameters.dxvk_nvapi,
                 "fsr": self.config.Parameters.fsr,

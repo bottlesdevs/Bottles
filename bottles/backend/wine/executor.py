@@ -33,6 +33,7 @@ class WineExecutor:
             post_script: Optional[str] = None,
             monitoring: Optional[list] = None,
             override_dxvk: Optional[bool] = None,
+            override_d8vk: Optional[bool] = None,
             override_vkd3d: Optional[bool] = None,
             override_nvapi: Optional[bool] = None,
             override_fsr: Optional[bool] = None,
@@ -67,6 +68,11 @@ class WineExecutor:
                 and self.config.Parameters.dxvk:
             env_dll_overrides.append("d3d9,d3d11,d3d10core,dxgi=b")
 
+        if override_d8vk is not None \
+            and not override_d8vk \
+            and self.config.Parameters.d8vk:
+                env_dll_overrides.append("d3d8=b")
+
         if override_vkd3d is not None \
                 and not override_vkd3d \
                 and self.config.Parameters.vkd3d:
@@ -92,6 +98,7 @@ class WineExecutor:
             logging.warning("The program entry is not well formatted.")
 
         dxvk = config.Parameters.dxvk
+        d8vk = config.Parameters.d8vk
         vkd3d = config.Parameters.vkd3d
         nvapi = config.Parameters.dxvk_nvapi
         fsr = config.Parameters.fsr
@@ -99,6 +106,8 @@ class WineExecutor:
 
         if program.get("dxvk") != dxvk:
             dxvk = program.get("dxvk")
+        if program.get("d8vk") != d8vk:
+            d8vk = program.get("d8vk")
         if program.get("vkd3d") != vkd3d:
             vkd3d = program.get("vkd3d")
         if program.get("dxvk_nvapi") != nvapi:
@@ -116,6 +125,7 @@ class WineExecutor:
             post_script=program.get("script", None),
             terminal=terminal,
             override_dxvk=dxvk,
+            override_d8vk=d8vk,
             override_vkd3d=vkd3d,
             override_nvapi=nvapi,
             override_fsr=fsr,

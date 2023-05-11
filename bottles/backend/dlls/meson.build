@@ -5,6 +5,7 @@ bottles_sources = [
   '__init__.py',
   'dll.py',
   'dxvk.py',
+  'd8vk.py',
   'vkd3d.py',
   'nvapi.py',
   'latencyflex.py',

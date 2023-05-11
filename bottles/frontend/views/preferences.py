@@ -55,6 +55,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     list_runtimes = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
+    list_d8vk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
     list_nvapi = Gtk.Template.Child()
     list_latencyflex = Gtk.Template.Child()
@@ -147,6 +148,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             GLib.idle_add(self.empty_list)
             GLib.idle_add(self.populate_runners_list)
             GLib.idle_add(self.populate_dxvk_list)
+            GLib.idle_add(self.populate_d8vk_list)
             GLib.idle_add(self.populate_vkd3d_list)
             GLib.idle_add(self.populate_nvapi_list)
             GLib.idle_add(self.populate_latencyflex_list)
@@ -237,6 +239,10 @@ class PreferencesWindow(Adw.PreferencesWindow):
             _entry = ComponentEntry(self.window, dxvk, "dxvk")
             self.list_dxvk.add(_entry)
             self.__registry.append(_entry)    
+
+    def populate_d8vk_list(self):
+        for d8vk in self.manager.supported_d8vk.items():
+            self.list_d8vk.add(ComponentEntry(self.window, d8vk, "d8vk"))
 
     def populate_vkd3d_list(self):
         for vkd3d in self.manager.supported_vkd3d.items():

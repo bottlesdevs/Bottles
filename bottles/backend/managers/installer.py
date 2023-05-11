@@ -283,6 +283,10 @@ class InstallerManager:
             if new_params["dxvk"] != config.Parameters.dxvk:
                 self.__manager.install_dll_component(_config, "dxvk", remove=not new_params["dxvk"])
 
+        if "d8vk" in new_params and isinstance(new_params["d8vk"], bool):
+            if new_params["d8vk"] != config.Parameters.d8vk:
+                self.__manager.install_dll_component(_config, "d8vk", remove=not new_params["d8vk"])
+
         if "vkd3d" in new_params and isinstance(new_params["vkd3d"], bool):
             if new_params["vkd3d"] != config.Parameters.vkd3d:
                 self.__manager.install_dll_component(_config, "vkd3d", remove=not new_params["vkd3d"])
@@ -421,6 +425,8 @@ class InstallerManager:
 
         if "dxvk" in executable:
             _program["dxvk"] = executable["dxvk"]
+        if "d8vk" in executable:
+            _program["d8vk"] = executable["d8vk"]
         if "vkd3d" in executable:
             _program["vkd3d"] = executable["vkd3d"]
         if "dxvk_nvapi" in executable:

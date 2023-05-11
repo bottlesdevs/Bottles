@@ -76,6 +76,8 @@ class Runner:
         # re-initialize DLLComponents
         if config.Parameters.dxvk:
             manager.install_dll_component(config, "dxvk", overrides_only=True)
+        if config.Parameters.d8vk:
+            manager.install_dll_component(config, "d8vk", overrides_only=True)
         if config.Parameters.dxvk_nvapi:
             manager.install_dll_component(config, "nvapi", overrides_only=True)
         if config.Parameters.vkd3d:

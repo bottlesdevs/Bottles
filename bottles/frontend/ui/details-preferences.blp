@@ -36,6 +36,19 @@ template DetailsPreferences : .AdwPreferencesPage {
           StringList str_list_dxvk {};
       }
 
+      .AdwComboRow combo_d8vk {
+        title: _("D8VK");
+        subtitle: _("Improve Direct3D 8 compatibility and performance by translating it to Vulkan.");
+        Spinner spinner_d8vk {
+          tooltip-text: _("Updating D8VK, please wait…");
+          valign: center;
+          visible: false;
+        }
+
+        model:
+          StringList str_list_d8vk {};
+      }
+
       .AdwComboRow combo_vkd3d {
         title: _("VKD3D");
         subtitle: _("Improve Direct3D 12 compatibility by translating it to Vulkan.");

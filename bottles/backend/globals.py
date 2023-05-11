@@ -42,6 +42,7 @@ class Paths:
     bottles = f"{base}/bottles"
     steam = f"{base}/steam"
     dxvk = f"{base}/dxvk"
+    d8vk = f"{base}/d8vk"
     vkd3d = f"{base}/vkd3d"
     nvapi = f"{base}/nvapi"
     latencyflex = f"{base}/latencyflex"

@@ -39,11 +39,13 @@ class LaunchOptionsDialog(Adw.Window):
     btn_reset_defaults = Gtk.Template.Child()
     action_script = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
+    switch_d8vk = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
     switch_virt_desktop = Gtk.Template.Child()
     action_dxvk = Gtk.Template.Child()
+    action_d8vk = Gtk.Template.Child()
     action_vkd3d = Gtk.Template.Child()
     action_nvapi = Gtk.Template.Child()
     action_fsr = Gtk.Template.Child()
@@ -85,6 +87,12 @@ class LaunchOptionsDialog(Adw.Window):
             config.Parameters.dxvk,
             self.action_dxvk
         )
+        self.switch_d8vk.connect(
+            "state-set",
+            self.__check_override,
+            config.Parameters.d8vk,
+            self.action_d8vk
+        )
         self.switch_vkd3d.connect(
             "state-set",
             self.__check_override,
@@ -120,6 +128,7 @@ class LaunchOptionsDialog(Adw.Window):
 
         # set overrides status
         dxvk = config.Parameters.dxvk
+        d8vk = config.Parameters.d8vk
         vkd3d = config.Parameters.vkd3d
         nvapi = config.Parameters.dxvk_nvapi
         fsr = config.Parameters.fsr
@@ -128,6 +137,9 @@ class LaunchOptionsDialog(Adw.Window):
         if not dxvk:
             self.action_dxvk.set_subtitle(self.__msg_disabled.format("DXVK"))
             self.switch_dxvk.set_sensitive(False)
+        if not d8vk:
+            self.action_d8vk.set_subtitle(self.__msg_disabled.format("D8VK"))
+            self.switch_d8vk.set_sensitive(False)
         if not vkd3d:
             self.action_vkd3d.set_subtitle(self.__msg_disabled.format("VKD3D"))
             self.switch_vkd3d.set_sensitive(False)
@@ -137,6 +149,8 @@ class LaunchOptionsDialog(Adw.Window):
 
         if dxvk != self.program["dxvk"]:
             self.action_dxvk.set_subtitle(self.__msg_override)
+        if d8vk != self.program["d8vk"]:
+            self.action_d8vk.set_subtitle(self.__msg_override)
         if vkd3d != self.program["vkd3d"]:
             self.action_vkd3d.set_subtitle(self.__msg_override)
         if nvapi != self.program["dxvk_nvapi"]:
@@ -148,6 +162,8 @@ class LaunchOptionsDialog(Adw.Window):
 
         if "dxvk" in self.program:
             dxvk = self.program["dxvk"]
+        if "d8vk" in self.program:
+            d8vk = self.program["d8vk"]
         if "vkd3d" in self.program:
             vkd3d = self.program["vkd3d"]
         if "dxvk_nvapi" in self.program:
@@ -157,7 +173,8 @@ class LaunchOptionsDialog(Adw.Window):
         if "virtual_desktop" in self.program:
             virt_desktop = self.program["virtual_desktop"]
 
-        self.switch_dxvk.set_active(dxvk)
+        self.switch_d8vk.set_active(dxvk)
+        self.switch_dxvk.set_active(d8vk)
         self.switch_vkd3d.set_active(vkd3d)
         self.switch_nvapi.set_active(nvapi)
         self.switch_fsr.set_active(fsr)
@@ -174,12 +191,13 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __idle_save(self, *_args):
         dxvk = self.switch_dxvk.get_state()
+        d8vk = self.switch_d8vk.get_state()
         vkd3d = self.switch_vkd3d.get_state()
         nvapi = self.switch_nvapi.get_state()
         fsr = self.switch_fsr.get_state()
         virt_desktop = self.switch_virt_desktop.get_state()
 
-        self.program["dxvk"] = dxvk
+        self.program["d8vk"] = d8vk
         self.program["vkd3d"] = vkd3d
         self.program["dxvk_nvapi"] = nvapi
         self.program["fsr"] = fsr
@@ -257,6 +275,7 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __reset_defaults(self, *_args):
         self.switch_dxvk.set_active(self.config.Parameters.dxvk)
+        self.switch_d8vk.set_active(self.config.Parameters.d8vk)
         self.switch_vkd3d.set_active(self.config.Parameters.vkd3d)
         self.switch_nvapi.set_active(self.config.Parameters.dxvk_nvapi)
         self.switch_fsr.set_active(self.config.Parameters.fsr)

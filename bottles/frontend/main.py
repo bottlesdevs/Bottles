@@ -299,6 +299,7 @@ class Bottles(Adw.Application):
             _("Third-Party Libraries and Special Thanks"),
             [
                 "DXVK https://github.com/doitsujin/dxvk",
+                "D8VK https://github.com/AlpyneDreams/d8vk",
                 "VKD3D https://github.com/HansKristian-Work/vkd3d-proton",
                 "DXVK-NVAPI https://github.com/jp7677/dxvk-nvapi",
                 "LatencyFleX https://github.com/ishitatsuyuki/LatencyFleX",

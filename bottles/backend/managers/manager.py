@@ -31,6 +31,7 @@ from typing import Union, Any, Dict, List, Optional
 import pathvalidate
 
 from bottles.backend.dlls.dxvk import DXVKComponent
+from bottles.backend.dlls.d8vk import D8VKComponent
 from bottles.backend.dlls.latencyflex import LatencyFleXComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
@@ -87,6 +88,7 @@ class Manager(metaclass=Singleton):
     winebridge_available = []
     runners_available = []
     dxvk_available = []
+    d8vk_available = []
     vkd3d_available = []
     nvapi_available = []
     latencyflex_available = []
@@ -96,6 +98,7 @@ class Manager(metaclass=Singleton):
     supported_wine_runners = {}
     supported_proton_runners = {}
     supported_dxvk = {}
+    supported_d8vk = {}
     supported_vkd3d = {}
     supported_nvapi = {}
     supported_latencyflex = {}
@@ -165,6 +168,9 @@ class Manager(metaclass=Singleton):
 
         self.check_dxvk(install_latest) or rv.set_status(False)
         rv.data["check_dxvk"] = time.time()
+
+        self.check_d8vk(install_latest) or rv.set_status(False)
+        rv.data["check_d8vk"] = time.time()
 
         self.check_vkd3d(install_latest) or rv.set_status(False)
         rv.data["check_vkd3d"] = time.time()
@@ -244,6 +250,10 @@ class Manager(metaclass=Singleton):
             logging.info("Dxvk path doesn't exist, creating now.")
             os.makedirs(Paths.dxvk, exist_ok=True)
 
+        if not os.path.isdir(Paths.d8vk):
+            logging.info("D8vk path doesn't exist, creating now.")
+            os.makedirs(Paths.d8vk, exist_ok=True)
+
         if not os.path.isdir(Paths.vkd3d):
             logging.info("Vkd3d path doesn't exist, creating now.")
             os.makedirs(Paths.vkd3d, exist_ok=True)
@@ -279,6 +289,7 @@ class Manager(metaclass=Singleton):
         self.supported_runtimes = catalog["runtimes"]
         self.supported_winebridge = catalog["winebridge"]
         self.supported_dxvk = catalog["dxvk"]
+        self.supported_d8vk = catalog["d8vk"]
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
         self.supported_latencyflex = catalog["latencyflex"]
@@ -488,6 +499,12 @@ class Manager(metaclass=Singleton):
             self.dxvk_available = res
         return res is not False
 
+    def check_d8vk(self, install_latest: bool = True) -> bool:
+        res = self.__check_component("d8vk", install_latest)
+        if res:
+            self.d8vk_available = res
+        return res is not False
+
     def check_vkd3d(self, install_latest: bool = True) -> bool:
         res = self.__check_component("vkd3d", install_latest)
         if res:
@@ -512,6 +529,11 @@ class Manager(metaclass=Singleton):
                 "available": self.dxvk_available,
                 "supported": self.supported_dxvk,
                 "path": Paths.dxvk
+            },
+            "d8vk": {
+                "available": self.d8vk_available,
+                "supported": self.supported_d8vk,
+                "path": Paths.d8vk
             },
             "vkd3d": {
                 "available": self.vkd3d_available,
@@ -639,6 +661,7 @@ class Manager(metaclass=Singleton):
                 "icon": "com.usebottles.bottles-program",
                 "script": _program.get("script"),
                 "dxvk": _program.get("dxvk", config.Parameters.dxvk),
+                "d8vk": _program.get("d8vk", config.Parameters.d8vk),
                 "vkd3d": _program.get("vkd3d", config.Parameters.vkd3d),
                 "dxvk_nvapi": _program.get("dxvk_nvapi", config.Parameters.dxvk_nvapi),
                 "fsr": _program.get("fsr", config.Parameters.fsr),
@@ -688,6 +711,7 @@ class Manager(metaclass=Singleton):
                         "id": str(uuid.uuid4()),
                         "script": "",
                         "dxvk": config.Parameters.dxvk,
+                        "d8vk": config.Parameters.d8vk,
                         "vkd3d": config.Parameters.vkd3d,
                         "dxvk_nvapi": config.Parameters.dxvk_nvapi,
                         "fsr": config.Parameters.fsr,
@@ -955,6 +979,16 @@ class Manager(metaclass=Singleton):
                 key=lambda x: x.split("-")[-1]
             )[-1]
 
+        if config.D8VK not in self.d8vk_available:
+            '''
+            If the D8VK is not in the list of available D8VKs, set it to
+            highest version.
+            '''
+            config.D8VK = sorted(
+                [d8vk for d8vk in self.d8vk_available],
+                key=lambda x: x.split("-")[-1]
+            )[-1]
+
         if config.VKD3D not in self.vkd3d_available:
             '''
             If the VKD3D is not in the list of available VKD3Ds, set it to
@@ -1002,6 +1036,12 @@ class Manager(metaclass=Singleton):
             '''
             self.install_dll_component(config, "dxvk")
 
+        if config.Parameters.d8vk:
+            '''
+            If D8VK is enabled, execute the installation script.
+            '''
+            self.install_dll_component(config, "d8vk")
+
         if config.Parameters.dxvk_nvapi:
             '''
             If NVAPI is enabled, execute the substitution of DLLs.
@@ -1034,6 +1074,7 @@ class Manager(metaclass=Singleton):
             path: str = "",
             runner: str = False,
             dxvk: bool = False,
+            d8vk: bool = False,
             vkd3d: bool = False,
             nvapi: bool = False,
             latencyflex: bool = False,
@@ -1066,6 +1107,7 @@ class Manager(metaclass=Singleton):
             if 0 in [
                 len(self.runners_available),
                 len(self.dxvk_available),
+                len(self.d8vk_available),
                 len(self.vkd3d_available),
                 len(self.nvapi_available),
                 len(self.latencyflex_available)
@@ -1074,6 +1116,7 @@ class Manager(metaclass=Singleton):
                 log_update(_("Missing essential components. Installing…"))
                 self.check_runners()
                 self.check_dxvk()
+                self.check_d8vk()
                 self.check_vkd3d()
                 self.check_nvapi()
                 self.check_latencyflex()
@@ -1097,6 +1140,11 @@ class Manager(metaclass=Singleton):
             # if no dxvk is specified, use the first one from available
             dxvk = self.dxvk_available[0]
         dxvk_name = dxvk
+
+        if not d8vk:
+            # if no d8vk is specified, use the first one from available
+            d8vk = self.d8vk_available[0]
+        d8vk_name = d8vk
 
         if not vkd3d:
             # if no vkd3d is specified, use the first one from available
@@ -1171,6 +1219,7 @@ class Manager(metaclass=Singleton):
         config.Arch = arch
         config.Runner = runner_name
         config.DXVK = dxvk_name
+        config.D8VK = d8vk_name
         config.VKD3D = vkd3d_name
         config.NVAPI = nvapi_name
         config.LatencyFleX = latencyflex_name
@@ -1314,6 +1363,14 @@ class Manager(metaclass=Singleton):
                 logging.info("Installing DXVK…")
                 log_update(_("Installing DXVK…"))
                 self.install_dll_component(config, "dxvk", version=dxvk_name)
+                template_updated = True
+
+            if (not template and config.Parameters.d8vk) \
+                    or (template and template["config"]["D8VK"] != d8vk):
+                # perform d8vk installation if configured
+                logging.info("Installing D8VK…")
+                log_update(_("Installing D8VK…"))
+                self.install_dll_component(config, "d8vk", version=d8vk_name)
                 template_updated = True
 
             if not template and config.Parameters.vkd3d \
@@ -1496,6 +1553,9 @@ class Manager(metaclass=Singleton):
         if component == "dxvk":
             _version = version or config.DXVK or self.dxvk_available[0]
             manager = DXVKComponent(_version)
+        elif component == "d8vk":
+            _version = version or config.D8VK or self.d8vk_available[0]
+            manager = D8VKComponent(_version)
         elif component == "vkd3d":
             _version = version or config.VKD3D or self.vkd3d_available[0]
             manager = VKD3DComponent(_version)

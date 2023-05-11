@@ -61,6 +61,7 @@ class ComponentManager:
             "wine": {},
             "proton": {},
             "dxvk": {},
+            "d8vk": {},
             "vkd3d": {},
             "nvapi": {},
             "latencyflex": {},
@@ -71,6 +72,7 @@ class ComponentManager:
             "wine": self.__manager.runners_available,
             "proton": self.__manager.runners_available,
             "dxvk": self.__manager.dxvk_available,
+            "d8vk": self.__manager.d8vk_available,
             "vkd3d": self.__manager.vkd3d_available,
             "nvapi": self.__manager.nvapi_available,
             "latencyflex": self.__manager.latencyflex_available,
@@ -239,6 +241,10 @@ class ComponentManager:
             path = Paths.runners
         elif component == "dxvk":
             path = Paths.dxvk
+        elif component == "d8vk":
+            # D8VK doesn't have file tree file.tar.gz/d8vk-ver/x32... but file.tar.gz/x32...
+            path = os.path.join(Paths.d8vk, name)
+            os.mkdir(path)
         elif component == "vkd3d":
             path = Paths.vkd3d
         elif component == "nvapi":
@@ -252,6 +258,10 @@ class ComponentManager:
         else:
             logging.error(f"Unknown component [{component}].")
             return False
+        logging.info(f"path [{path}].")
+        logging.info(f"name [{name}].")
+        logging.info(f"component [{component}].")
+        logging.info(f"archive [{archive}].")
 
         try:
             '''
@@ -363,6 +373,9 @@ class ComponentManager:
         elif component_type == "dxvk":
             self.__manager.check_dxvk()
 
+        elif component_type == "d8vk":
+            self.__manager.check_d8vk()
+
         elif component_type == "vkd3d":
             self.__manager.check_vkd3d()
 
@@ -389,6 +402,8 @@ class ComponentManager:
             path = Paths.runners
         elif component_type == "dxvk":
             path = Paths.dxvk
+        elif component_type == "d8vk":
+            path = Paths.d8vk
         elif component_type == "vkd3d":
             path = Paths.vkd3d
         elif component_type == "nvapi":
@@ -410,6 +425,8 @@ class ComponentManager:
             return component_name in [b["Runner"] for _, b in bottles.items()]
         if component_type == "dxvk":
             return component_name in [b["DXVK"] for _, b in bottles.items()]
+        if component_type == "d8vk":
+            return component_name in [b["D8VK"] for _, b in bottles.items()]
         if component_type == "vkd3d":
             return component_name in [b["VKD3D"] for _, b in bottles.items()]
         if component_type == "nvapi":
@@ -429,6 +446,9 @@ class ComponentManager:
 
         elif component_type == "dxvk":
             path = ManagerUtils.get_dxvk_path(component_name)
+
+        elif component_type == "d8vk":
+            path = ManagerUtils.get_d8vk_path(component_name)
 
         elif component_type == "vkd3d":
             path = ManagerUtils.get_vkd3d_path(component_name)
@@ -462,6 +482,9 @@ class ComponentManager:
 
         elif component_type == "dxvk":
             self.__manager.check_dxvk()
+
+        elif component_type == "d8vk":
+            self.__manager.check_d8vk()
 
         elif component_type == "vkd3d":
             self.__manager.check_vkd3d()

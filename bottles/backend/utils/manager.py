@@ -64,6 +64,8 @@ class ManagerUtils:
                 path = ManagerUtils.get_runner_path(component)
             elif path_type == "dxvk":
                 path = ManagerUtils.get_dxvk_path(component)
+            elif path_type == "d8vk":
+                path = ManagerUtils.get_d8vk_path(component)
             elif path_type == "vkd3d":
                 path = ManagerUtils.get_vkd3d_path(component)
             elif path_type == "nvapi":
@@ -96,6 +98,10 @@ class ManagerUtils:
     @staticmethod
     def get_dxvk_path(dxvk: str) -> str:
         return f"{Paths.dxvk}/{dxvk}"
+
+    @staticmethod
+    def get_d8vk_path(d8vk: str) -> str:
+        return f"{Paths.d8vk}/{d8vk}"
 
     @staticmethod
     def get_vkd3d_path(vkd3d: str) -> str:
