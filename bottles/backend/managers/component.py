@@ -258,10 +258,6 @@ class ComponentManager:
         else:
             logging.error(f"Unknown component [{component}].")
             return False
-        logging.info(f"path [{path}].")
-        logging.info(f"name [{name}].")
-        logging.info(f"component [{component}].")
-        logging.info(f"archive [{archive}].")
 
         try:
             '''
