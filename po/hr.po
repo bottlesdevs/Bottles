@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-01 18:42+0000\n"
+"PO-Revision-Date: 2023-05-14 18:51+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -797,9 +797,8 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:221
-#, fuzzy
 msgid "Preload Game Files"
-msgstr "Predučitaj datoteke igre u RAM"
+msgstr "Predučitaj datoteke igre"
 
 #: bottles/frontend/ui/details-preferences.blp:222
 msgid ""
@@ -823,7 +822,7 @@ msgstr "Uključi/Isključi OBS snimanje igre za sve programe."
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
-msgstr ""
+msgstr "Kompatibilnost"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 msgid "Windows Version"
@@ -897,9 +896,8 @@ msgstr "Vrati na standardne vrijednosti"
 #: bottles/frontend/ui/details-preferences.blp:339
 #: bottles/frontend/ui/preferences.blp:157 bottles/frontend/views/new.py:78
 #: bottles/frontend/views/preferences.py:210
-#, fuzzy
 msgid "(Default)"
-msgstr "Standardno"
+msgstr "(Standardno)"
 
 #: bottles/frontend/ui/details-preferences.blp:347
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
@@ -928,15 +926,16 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:391
-#, fuzzy
 msgid "Compression"
-msgstr "Verzija komponente"
+msgstr "Komprimiranje"
 
 #: bottles/frontend/ui/details-preferences.blp:392
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
+"Komprimiraj snimke za smanjivanje potrebne memorije. To će usporiti "
+"stvaranje snimki."
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
@@ -959,9 +958,8 @@ msgid "Stop process"
 msgstr "Prekini proces"
 
 #: bottles/frontend/ui/details-versioning.blp:18
-#, fuzzy
 msgid "No Snapshots Found"
-msgstr "Nijedno stanje nije pronađeno"
+msgstr "Nijedna snimka nije pronađena"
 
 #: bottles/frontend/ui/details-versioning.blp:19
 #, fuzzy
@@ -977,20 +975,17 @@ msgid "Save the bottle state."
 msgstr "Spremi stanje butelje."
 
 #: bottles/frontend/ui/details-versioning.blp:78
-#, fuzzy
 msgid "Create new Snapshot"
-msgstr "Stvori novo stanje"
+msgstr "Stvori novu snimku"
 
 #: bottles/frontend/ui/details.blp:16
-#, fuzzy
 msgid "Details"
-msgstr "Detalji butelje"
+msgstr "Detalji"
 
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
-#, fuzzy
 msgid "Go Back"
-msgstr "Natrag"
+msgstr "Idi natrag"
 
 #: bottles/frontend/ui/details.blp:75
 msgid "Operations"
@@ -1019,7 +1014,6 @@ msgstr "Stvori novu butelju"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
-#, fuzzy
 msgid "Bottles Crash Report"
 msgstr "Izvještaj o prekidu programa Butelje"
 
@@ -1037,7 +1031,6 @@ msgid "_Cancel"
 msgstr "_Odustani"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
-#, fuzzy
 msgid "Send Report"
 msgstr "Pošalji izvještaj"
 
@@ -1144,7 +1137,7 @@ msgstr "Dupliciranje …"
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/views/new.py:177
 msgid "This could take a while."
-msgstr ""
+msgstr "Ovo bi moglo potrajati."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
@@ -1199,16 +1192,15 @@ msgstr "Spremi"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "Upravljaj načinom prikaza igara."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
 msgstr "Rezolucija igre"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
-#, fuzzy
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr "Koristi rezoluciju videoigre kao referencu."
+msgstr "Koristi rezoluciju u pikselima videoigre kao referencu."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
@@ -1221,32 +1213,28 @@ msgid "Height"
 msgstr "Visina"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
-#, fuzzy
 msgid "Window Resolution"
-msgstr "Windows verzija"
+msgstr "Rezolucija prozora"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:82
-#, fuzzy
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
 "Povećava rezoluciju kad se koristi rezolucija koja je veća od rezolucije "
-"igre."
+"igre u pikselima."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
 msgstr "Razno"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
-#, fuzzy
 msgid "Frame Rate Limit"
-msgstr "Ograničenje frekvencije (npr. 60)"
+msgstr "Ograničenje frekvencije"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
-#, fuzzy
 msgid "Frame Rate Limit When Unfocused"
-msgstr "Ograničenje frekvencije (kad prozor nije aktivan)"
+msgstr "Ograničenje frekvencije kad prozor nije aktivan"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
 #, fuzzy
