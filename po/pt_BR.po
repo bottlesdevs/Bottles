@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-06 20:51+0000\n"
-"Last-Translator: Kazevic <Kazevic@pm.me>\n"
+"PO-Revision-Date: 2023-05-14 18:51+0000\n"
+"Last-Translator: Leonardo Gurgel Maciel Ferreira <leo@gurgel.io>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -31,7 +31,7 @@ msgstr "Cópia de segurança {0}"
 #: bottles/backend/managers/backup.py:101
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr "Importando cópia de segurança: {0}"
+msgstr "Importando backup: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
@@ -320,7 +320,7 @@ msgstr "Este é o arquivo completo da sua garrafa, incluindo arquivos pessoais."
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
-msgstr "Cópia de segurança Completa…"
+msgstr "Backup Completo…"
 
 #: bottles/frontend/ui/details-bottle.blp:37
 #: bottles/frontend/ui/importer.blp:68
@@ -472,7 +472,7 @@ msgstr "Instale dependências para programas."
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr "Instantâneos"
+msgstr "Pontos de restauração"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
@@ -510,7 +510,7 @@ msgstr "Edite o registro interno."
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr "Ferramentas do Wine herdadas"
+msgstr "Ferramentas legado do Wine"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
@@ -870,7 +870,7 @@ msgstr "Gerenciar permissões do Sandbox"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr "Tempo de execução do Bottles"
+msgstr "Ambiente de execução do Bottles"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 msgid ""
@@ -882,7 +882,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Tempo de Execução da Steam"
+msgstr "Ambiente de Execução da Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
@@ -928,15 +928,15 @@ msgstr "Gerenciar unidades"
 
 #: bottles/frontend/ui/details-preferences.blp:381
 msgid "Automatic Snapshots"
-msgstr "Instantâneos Automáticos"
+msgstr "Pontos de Restauração Automáticos"
 
 #: bottles/frontend/ui/details-preferences.blp:382
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
 msgstr ""
-"Crie instantâneos automaticamente antes de instalar programas ou mudar as "
-"configurações."
+"Crie pontos de restauração automaticamente antes de instalar programas ou "
+"mudar as configurações."
 
 #: bottles/frontend/ui/details-preferences.blp:391
 msgid "Compression"
@@ -947,8 +947,8 @@ msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
-"Compactar instantâneos para reduzir o espaço. Isto retardará a criação de "
-"instantâneos."
+"Compactar pontos de restauração para reduzir o espaço. Isto tornará mais "
+"lenta a criação de pontos de restauração."
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
@@ -956,7 +956,7 @@ msgstr "Usar padrões de exclusão"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr "Excluir caminhos em instantâneos."
+msgstr "Ignorar caminhos em pontos de restauração."
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
@@ -972,12 +972,12 @@ msgstr "Parar processo"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 msgid "No Snapshots Found"
-msgstr "Nenhum Instantâneo Encontrado"
+msgstr "Nenhum Ponto de Restauração Encontrado"
 
 #: bottles/frontend/ui/details-versioning.blp:19
 msgid "Create your first snapshot to start saving states of your preferences."
 msgstr ""
-"Crie seu primeiro instantâneo para começar a salvar estados de suas "
+"Crie seu primeiro ponto de restauração para começar a salvar estados de suas "
 "preferências."
 
 #: bottles/frontend/ui/details-versioning.blp:54
@@ -990,7 +990,7 @@ msgstr "Salvar estado da garrafa."
 
 #: bottles/frontend/ui/details-versioning.blp:78
 msgid "Create new Snapshot"
-msgstr "Criar novo instantâneo"
+msgstr "Criar novo ponto de restauração"
 
 #: bottles/frontend/ui/details.blp:16
 msgid "Details"
@@ -1780,7 +1780,7 @@ msgstr "Este prefixo Wine já foi importado no Bottles."
 
 #: bottles/frontend/ui/importer.blp:22
 msgid "Import a Bottle backup"
-msgstr "Importar uma cópia de segurança do Bottles"
+msgstr "Importar um backup de garrafa"
 
 #: bottles/frontend/ui/importer.blp:28
 msgid "Search again for prefixes"
@@ -2185,7 +2185,7 @@ msgstr "Núcleo"
 
 #: bottles/frontend/ui/preferences.blp:287
 msgid "Runtime"
-msgstr "Tempo de execução"
+msgstr "Ambiente de execução"
 
 #: bottles/frontend/ui/preferences.blp:291
 msgid "WineBridge"
@@ -2267,7 +2267,7 @@ msgstr "Comentário do estado"
 
 #: bottles/frontend/ui/state-entry.blp:16
 msgid "Restore this Snapshot"
-msgstr "Restaurar este Instantâneo"
+msgstr "Voltar a este ponto de restauração"
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
@@ -2359,7 +2359,7 @@ msgstr "_Dispensar"
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
-msgstr "Selecione o local onde salvar a configuração de cópia de segurança"
+msgstr "Selecione o local onde salvar a configuração de backup"
 
 #: bottles/frontend/views/bottle_details.py:431
 msgid "Export"
@@ -2367,21 +2367,21 @@ msgstr "Exportar"
 
 #: bottles/frontend/views/bottle_details.py:433
 msgid "Select the location where to save the backup archive"
-msgstr "Selecione o local onde salvar o arquivo da cópia de segurança"
+msgstr "Selecione o local onde salvar o arquivo do backup"
 
 #: bottles/frontend/views/bottle_details.py:435
 msgid "Backup"
-msgstr "Cópia de segurança"
+msgstr "Backup"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
 msgid "Backup created for \"{0}\""
-msgstr "Cópia de segurança criada para \"{0}\""
+msgstr "Backup criado para \"{0}\""
 
 #: bottles/frontend/views/bottle_details.py:442
 #, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr "Cópia de segurança falhou para \"{0}\""
+msgstr "Backup falhou para \"{0}\""
 
 #: bottles/frontend/views/bottle_details.py:501
 msgid "Are you sure you want to permanently delete \"{}\"?"
@@ -2413,7 +2413,7 @@ msgstr ""
 
 #: bottles/frontend/views/bottle_details.py:597
 msgid "Are you sure you want to force stop all processes?"
-msgstr "Tem certeza de que quer forçar a parada de todo processo?"
+msgstr "Tem certeza de que quer forçar a parada de todos os processos?"
 
 #: bottles/frontend/views/bottle_details.py:598
 msgid "This can cause data loss, corruption, and programs to malfunction."
@@ -2447,11 +2447,12 @@ msgstr "Diretório que contém os dados de \"{}\"."
 
 #: bottles/frontend/views/bottle_preferences.py:746
 msgid "Are you sure you want to delete all snapshots?"
-msgstr "Tem certeza de que deseja excluir todos os instantâneos?"
+msgstr "Tem certeza de que deseja excluir todos os pontos de restauração?"
 
 #: bottles/frontend/views/bottle_preferences.py:747
 msgid "This will delete all snapshots but keep your files."
-msgstr "Isto excluirá todos os instantâneos, mas manterá seus arquivos."
+msgstr ""
+"Isto excluirá todos os pontos de restauração, mas manterá seus arquivos."
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2472,7 +2473,7 @@ msgstr "Retorne à suas garrafa."
 
 #: bottles/frontend/views/importer.py:92
 msgid "Backup imported successfully"
-msgstr "Cópia de segurança importada com sucesso"
+msgstr "Backup importado com sucesso"
 
 #: bottles/frontend/views/importer.py:94
 msgid "Import failed"
@@ -2481,11 +2482,11 @@ msgstr "Falha na importação"
 #: bottles/frontend/views/importer.py:108
 #: bottles/frontend/views/importer.py:147
 msgid "Importing backup…"
-msgstr "Importando cópia de segurança…"
+msgstr "Importando backup…"
 
 #: bottles/frontend/views/importer.py:119
 msgid "Select a Backup Archive"
-msgstr "Selecione um Arquivo de Cópia de Segurança"
+msgstr "Selecione um Arquivo de Backup"
 
 #: bottles/frontend/views/importer.py:122
 #: bottles/frontend/views/importer.py:161
@@ -2907,11 +2908,11 @@ msgstr "Exibir as notificações."
 
 #: data/com.usebottles.bottles.gschema.xml:51
 msgid "Temp cleaning"
-msgstr "Limpeza de temporários"
+msgstr "Limpeza de arquivos temporários"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid "Clean the temp path when booting the system."
-msgstr "Limpe o caminho temporário ao iniciar o sistema."
+msgstr "Limpe os arquivos temporários ao iniciar o sistema."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Release Candidate"
@@ -2993,7 +2994,7 @@ msgstr ""
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"O controle de versão do Bottle mantém seu trabalho seguro agora e permite "
+"O controle de versão de garrafa mantém seu trabalho seguro agora e permite "
 "que você o restaure mais tarde!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:17
@@ -3065,7 +3066,7 @@ msgstr "Sistema para trazer suas configurações para novas versões do Bottles"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:32
 msgid "Back up and import bottles"
-msgstr "Faça uma cópia de segurança e importe garrafas"
+msgstr "Faça backups e importe garrafas"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:33
 msgid "Import Wine prefixes from other managers"
@@ -3135,12 +3136,13 @@ msgstr "Adicionar o atalho à Steam causou um erro"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
-msgstr "Importar cópias de segurança causou um erro"
+msgstr "Importar backups causou um erro"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
-"Tempo de Execução da Steam automaticamente ativado ao usar o wine-ge-custom"
+"Ambiente de Execução da Steam automaticamente ativado ao usar o wine-ge-"
+"custom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
