@@ -19,7 +19,10 @@ class Samples:
                 "times32",
                 "courie32",
                 "d3dcompiler_43",
-                "d3dcompiler_47"
+                "d3dcompiler_47",
+                "mono",
+                "gecko",
+                "faudio",
             ]
         },
         "application": {
@@ -33,9 +36,10 @@ class Samples:
                 "arial32",
                 "times32",
                 "courie32",
-                # "mono",
-                # "dotnet40",
-                # "dotnet48"
+                "mono",
+                "gecko"
+              # "dotnet40",
+              # "dotnet48"
             ]
         }
     }
