@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-04-23 17:49+0000\n"
-"Last-Translator: Efe Yağız <efemertkara06@protonmail.com>\n"
+"PO-Revision-Date: 2023-05-17 21:50+0000\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
-msgstr "Herhangi bir dizin belirtilmedi"
+msgstr "Herhangi bir yol belirtilmedi"
 
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
@@ -35,7 +35,7 @@ msgstr "Yedekleme içe aktarılıyor: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
-msgstr "Bileşenler yüklenemedi, 3 defa denendi."
+msgstr "Bileşenler kurulamadı, 3 defa denendi."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
@@ -143,7 +143,7 @@ msgstr "Yeni durum [{0}] başarıyla oluşturuldu!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr "Yeni durum [{0}] başarıyla oluşturuldu!"
+msgstr "Durumlar listesi başarıyla alındı!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
@@ -160,7 +160,7 @@ msgstr "Durum bulunamadı"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr "Zaten etkin {}"
+msgstr "{} durumu zaten etkin"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
@@ -237,15 +237,15 @@ msgstr "Kaldır"
 
 #: bottles/frontend/ui/component-entry.blp:23
 msgid "Browse Files"
-msgstr "Dosyalara göz atın"
+msgstr "Dosyalara Göz At"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"Kurulum başarısız oldu. Buna depo hatası, kısmi indirme ya da checksum "
-"uyuşmaması neden olabilir. Lütfen tekrar deneyin."
+"Kurulum başarısız oldu. Buna depo hatası, kısmi indirme ya da sağlama "
+"toplamı uyuşmaması neden olabilir. Lütfen tekrar deneyin."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -253,7 +253,7 @@ msgstr "İndir ve Kur"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
-msgstr "% 0"
+msgstr "%%0"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
@@ -265,12 +265,12 @@ msgstr "Lisans"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
-msgstr "Yeniden yükle"
+msgstr "Yeniden Kur"
 
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr "Hata bildir…"
+msgstr "Hata Bildir…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
@@ -286,19 +286,19 @@ msgstr "Kategori"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr "Bu Gereksinimi İndir ve Kur"
+msgstr "Bu Bağımlılığı İndir ve Kur"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"Bir kurulum hatası oluştu. Çökme Raporunu okumak için Şişeler'i yeniden "
-"başlatın veya çıktıyı okumak için terminal aracılığıyla çalıştırın."
+"Kurulum hatası oluştu. Çökme Raporunu okumak için Şişeler'i yeniden başlatın "
+"veya çıktıyı okumak için uçbirim ile çalıştırın."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr "Gereksinim Adı"
+msgstr "Bağımlılık Menüsü"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
@@ -310,7 +310,7 @@ msgstr "Dosyalara Göz At…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
-msgstr "Şişe'yi Klonla…"
+msgstr "Şişeyi Klonla…"
 
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
@@ -345,7 +345,7 @@ msgstr "Yeni programları arayın"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
-msgstr "Şişe'yi Sil…"
+msgstr "Şişeyi Sil…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
@@ -371,7 +371,7 @@ msgstr "Bir Windows sistemi gibi yeniden başlat."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
-msgstr "Yeniden başlat"
+msgstr "Yeniden Başlat"
 
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
@@ -380,7 +380,7 @@ msgstr "Başlatma Seçenekleri"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
-msgstr "Terminalde Başlat"
+msgstr "Uçbirimde Başlat"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
@@ -434,9 +434,9 @@ msgid ""
 "programs curated by the community."
 msgstr ""
 "Bir yürütülebilir dosyayı çalıştırmak için \"Yürütülebilir Çalıştır...\", "
-"Programlar listesine bir yürütülebilir dosya eklemek için \"Kısayol Ekle..."
-"\" veya topluluk tarafından seçilen programları yüklemek için \"Program "
-"Yükle...\" seçeneğine tıklayın."
+"Programlar listesine bir yürütülebilir dosya eklemek için \"Kısayol Ekle...\""
+" veya topluluk tarafından seçilen programları kurmak için \"Program Kur...\" "
+"seçeneğine tıklayın."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -444,7 +444,7 @@ msgstr "Kısayol Ekle…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 msgid "Install Programs…"
-msgstr "Program Yükle…"
+msgstr "Programlar Kur…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
@@ -466,7 +466,7 @@ msgstr "Bağımlılıklar"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
-msgstr "Programların gereksinimlerini yükle."
+msgstr "Programların bağımlılıklarını kur."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
@@ -545,8 +545,7 @@ msgstr "Çevrimdışısınız :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
-"Bottles çevrimdışı modda çalışıyor, bu nedenle bağımlılıklar mevcut değil."
+msgstr "Şişeler çevrimdışı kipte çalıştığından, bağımlılıklar kullanılamaz."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -567,7 +566,7 @@ msgstr "Sorun veya eksik bağımlılık bildir."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
 msgid "Report Missing Dependency"
-msgstr "Eksik bağımlılığı bildir"
+msgstr "Eksik Bağımlılığı Bildir"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
 msgid "Read Documentation."
@@ -796,7 +795,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:211
 msgid "Feral GameMode"
-msgstr "Feral Oyun Modu"
+msgstr "Feral OyunKipi"
 
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
@@ -928,8 +927,8 @@ msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
 msgstr ""
-"Yazılım yüklemeden veya ayarları değiştirmeden önce otomatik olarak anlık "
-"görüntüler oluşturun."
+"Yazılım kurmadan veya ayarları değiştirmeden önce otomatik olarak anlık "
+"görüntüler oluştur."
 
 #: bottles/frontend/ui/details-preferences.blp:391
 msgid "Compression"
@@ -1046,9 +1045,9 @@ msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
-"Geçen sefer şişeler çöktü. Lütfen, tekrar olmasını engellemek amacıyla "
-"sorunu belirlememize yardımcı olması için aşağıdaki geri izlemeyi ekleyerek "
-"bir rapor oluşturun."
+"Geçen sefer şişeler çöktü. Lütfen, tekrar olmasını engellemek amacıyla, "
+"sorunu belirlememize yardımcı olmak için, aşağıdaki geri izlemeyi ekleyerek "
+"bir hata raporu oluşturun."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
 msgid ""
@@ -1081,7 +1080,7 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
-"Bottles'ın bu sürümü gerekli tüm çekirdek bağımlılıkları sağlamıyor gibi "
+"Şişeler'in bu sürümü gerekli tüm çekirdek bağımlılıkları sağlamıyor gibi "
 "görünüyor, lütfen paket yöneticisiyle iletişime geçin veya resmi bir sürüm "
 "kullanın."
 
@@ -1273,8 +1272,7 @@ msgstr "Kurulumu Başlat"
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
-msgstr ""
-"Bu yükleyici, başka türlü sağlanamayacak bazı yerel kaynaklar gerektirir."
+msgstr "Bu kurucu, başka türlü sağlanamayacak bazı yerel kaynaklar gerektirir."
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
@@ -1801,11 +1799,11 @@ msgstr "İncelemeyi oku…"
 
 #: bottles/frontend/ui/installer-entry.blp:34
 msgid "Installer name"
-msgstr "Yükleyici adı"
+msgstr "Kurucu adı"
 
 #: bottles/frontend/ui/installer-entry.blp:35
 msgid "Installer description"
-msgstr "Yükleyici açıklaması"
+msgstr "Kurucu açıklaması"
 
 #: bottles/frontend/ui/installer-entry.blp:42
 msgid "Unknown"
@@ -1813,7 +1811,7 @@ msgstr "Bilinmiyor"
 
 #: bottles/frontend/ui/installer-entry.blp:51
 msgid "Install this Program"
-msgstr "Bu programı kur"
+msgstr "Bu Brogramı Kur"
 
 #: bottles/frontend/ui/installer-entry.blp:69
 msgid "Program Menu"
@@ -1917,7 +1915,7 @@ msgstr "Göz at"
 
 #: bottles/frontend/ui/new.blp:32
 msgid "C_reate"
-msgstr "Oluştur"
+msgstr "_Oluştur"
 
 #: bottles/frontend/ui/new.blp:53
 msgid "Bottle Name"
@@ -1925,15 +1923,15 @@ msgstr "Şişe adı"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
-msgstr "Uygulama"
+msgstr "_Uygulama"
 
 #: bottles/frontend/ui/new.blp:88
 msgid "_Gaming"
-msgstr "Oyun"
+msgstr "_Oyun"
 
 #: bottles/frontend/ui/new.blp:101
 msgid "C_ustom"
-msgstr "Özel"
+msgstr "Ö_zel"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
@@ -1975,7 +1973,7 @@ msgstr "Bu şişenin verilerini içerecek klasör."
 
 #: bottles/frontend/ui/new.blp:249
 msgid "_Close"
-msgstr "Kapat"
+msgstr "_Kapat"
 
 #: bottles/frontend/ui/new.blp:281
 msgid "This name is unavailable, please try another."
@@ -2004,7 +2002,7 @@ msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
-"Bottles, programların çalıştığı izole edilmiş konteynerli Windows benzeri "
+"Şişeler, programların çalıştığı izole edilmiş konteynerli Windows benzeri "
 "ortamlar sağlamak için uyumluluk koşucularını kullanır."
 
 #: bottles/frontend/ui/onboard.blp:72
@@ -2047,7 +2045,7 @@ msgstr "Görünüm"
 
 #: bottles/frontend/ui/preferences.blp:17
 msgid "Dark Mode"
-msgstr "Karanlık Mod"
+msgstr "Koyu Kip"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
@@ -2104,7 +2102,7 @@ msgstr "Programlar Listesinde Steam Uygulamalarını Listele"
 
 #: bottles/frontend/ui/preferences.blp:98
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr "Steam'in Windows sürümünün şişede kurulu olması gerekir."
+msgstr "Steam'in Windows sürümünün şişede kurulu olmasını gerektirir."
 
 #: bottles/frontend/ui/preferences.blp:107
 msgid "List Epic Games in Programs List"
@@ -2120,7 +2118,7 @@ msgstr "Ubisoft Oyunlarını Programlar Listesinde Göster"
 
 #: bottles/frontend/ui/preferences.blp:118
 msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr "Şişede Ubisoft Connect'in yüklü olmasını gerektirir."
+msgstr "Şişede Ubisoft Connect'in kurulu olmasını gerektirir."
 
 #: bottles/frontend/ui/preferences.blp:128
 msgid "Advanced"
@@ -2140,8 +2138,7 @@ msgstr "Çalıştırıcı"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr ""
-"Bottles çevrimdışı modda çalışmaktadır, bu nedenle koşucular mevcut değildir."
+msgstr "Şişeler çevrimdışı kipte çalışıyor, bu nedenle koşucular kullanılamaz."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2157,8 +2154,7 @@ msgstr "DLL Bileşenleri"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr ""
-"Bottles çevrimdışı modda çalışmaktadır, bu nedenle DLL'ler kullanılamaz."
+msgstr "Bottles çevrimdışı kipte çalışıyor, bu nedenle DLL'ler kullanılamaz."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2391,7 +2387,7 @@ msgid ""
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
 "Bu şişe tarafından istenen çalıştırıcı eksik. Şişeler tercihleri "
-"aracılığıyla yükleyin veya uygulamaları çalıştırmak için yeni bir tane seçin."
+"aracılığıyla kurun veya uygulamaları çalıştırmak için yeni bir tane seçin."
 
 #: bottles/frontend/views/bottle_details.py:597
 msgid "Are you sure you want to force stop all processes?"
@@ -2615,7 +2611,7 @@ msgstr "\"{0}\" kurulu"
 #: bottles/frontend/widgets/dependency.py:188
 #, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "\"{0}\" yüklenemedi"
+msgstr "\"{0}\" kurulamadı"
 
 #: bottles/frontend/widgets/importer.py:68
 #, python-brace-format
@@ -2628,9 +2624,9 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
-"Bu uygulama kötü çalışabilir. Yükleyici mümkün olan en iyi deneyimi sağlamak "
-"için yapılandırılmıştır, ancak aksaklıklar, istikrarsızlık ve çalışma "
-"özelliklerinin eksikliğini bekleyin."
+"Bu uygulama beklendiğinden kötü çalışabilir. Kurucu mümkün olan en iyi "
+"deneyimi sağlamak için yapılandırılmıştır, ancak aksaklıklar, "
+"istikrarsızlıklar ve çalışma özelliklerinin eksikliği beklenebilir."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
@@ -2751,7 +2747,7 @@ msgstr "Kaynak Dosyasını Seçin"
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
-msgstr "Windows bağımlılıkları yükleniyor…"
+msgstr "Windows bağımlılıkları kuruluyor…"
 
 #: bottles/frontend/windows/installer.py:110
 msgid "Configuring the bottle…"
@@ -2759,7 +2755,7 @@ msgstr "Bottle yapılandırılıyor…"
 
 #: bottles/frontend/windows/installer.py:111
 msgid "Processing installer steps…"
-msgstr "Yükleyici adımları işleniyor…"
+msgstr "Kurucu adımları işleniyor…"
 
 #: bottles/frontend/windows/installer.py:112
 msgid "Installing the {}…"
@@ -3177,7 +3173,7 @@ msgstr "Spin-lock'tan kaçınarak arka uç kodunun iyileştirilmesi"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr "Yükleyici komut dosyası için daha fazla değişken"
+msgstr "Kurucu betiği oluşturma için daha fazla değişken"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
@@ -3202,8 +3198,8 @@ msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
-"Yükleme/kaldırma işleminden sonra kullanıcı arayüzünde doğru şekilde "
-"güncellenmeyen bileşenleri düzeltin"
+"Kurma/kaldırma işleminden sonra kullanıcı arayüzünde doğru şekilde "
+"güncellenmeyen bileşenler düzeltildi"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
