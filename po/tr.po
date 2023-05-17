@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-17 21:50+0000\n"
+"PO-Revision-Date: 2023-05-25 17:51+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
@@ -118,7 +118,7 @@ msgstr "Bağımlılık kuruluyor: %s …"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
-msgstr "Sürüm oluşturma durumu 0 oluşturuluyor…"
+msgstr "Sürümleme durumu 0 oluşturuluyor…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
@@ -214,12 +214,12 @@ msgstr "Sponsor ve Finanse Eden"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "© 2017-2022 - Bottles Geliştiricileri"
+msgstr "© 2017-2023 - Şişeler Geliştiricileri"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
 msgid "Bottles Developers"
-msgstr "Bottles Geliştiricileri"
+msgstr "Şişeler Geliştiricileri"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
@@ -310,7 +310,7 @@ msgstr "Dosyalara Göz At…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
-msgstr "Şişeyi Klonla…"
+msgstr "Şişeyi Çoğalt…"
 
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
@@ -408,11 +408,11 @@ msgstr "Çalıştırıcı"
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr "Sürüm oluşturma bu şişe için etkinleştirildi"
+msgstr "Sürümleme bu şişe için etkinleştirildi"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr "Sürümlendirme bu bottleda etkin."
+msgstr "Sürümleme bu şişede etkin."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
@@ -531,7 +531,7 @@ msgstr "Kaldırıcı"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
-msgstr "Denetim masası"
+msgstr "Denetim Masası"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
@@ -833,7 +833,7 @@ msgstr "Uyumluluk"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 msgid "Windows Version"
-msgstr "Windows sürümü"
+msgstr "Windows Sürümü"
 
 #: bottles/frontend/ui/details-preferences.blp:257
 msgid "Updating Windows version, please wait…"
@@ -1021,7 +1021,7 @@ msgstr "Yeni Şişe Oluştur"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr "Bottles Çökme Raporu"
+msgstr "Şişeler Çökme Raporu"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1038,7 +1038,7 @@ msgstr "_İptal"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
 msgid "Send Report"
-msgstr "Rapor gönder"
+msgstr "Rapor Gönder"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:44
 msgid ""
@@ -1126,15 +1126,15 @@ msgstr "Mevcut Sürücüler"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:16
 msgid "Duplicate Bottle"
-msgstr "Şişeyi kopyala"
+msgstr "Şişeyi Çoğalt"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:38
 msgid "Duplicate"
-msgstr "Kopyala"
+msgstr "Çoğalt"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:49
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Kopyalanan Şişe için bir isim girin."
+msgstr "Çoğaltılan Şişe için bir ad girin."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:69
 msgid "Duplicating…"
@@ -1149,7 +1149,7 @@ msgstr "Bu biraz zaman alabilir."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
-msgstr "Şişe kopyalandı"
+msgstr "Şişe Çoğaltıldı"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:28
 msgid ""
@@ -1410,7 +1410,7 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
-"Dikkat edin, Proton tabanlı koşucuları Steam dışı şişelerde kullanmak "
+"Dikkat edin, Proton tabanlı çalıştırıcıları Steam dışı şişelerde kullanmak "
 "sorunlara neden olabilir ve doğru şekilde davranmalarını engelleyebilir.\n"
 "\n"
 "Bunun yerine, Proton'un Steam dışında çalışması için tasarlanmış bir sürümü "
@@ -1419,8 +1419,8 @@ msgstr ""
 "Devam etmek, gerekli kütüphanelere erişmesine izin vermek ve uyumluluk "
 "sorunlarını sınırlamak için Steam çalışma zamanını (sistemde mevcutsa ve "
 "Şişeler tarafından algılanırsa) otomatik olarak etkinleştirecektir. "
-"Koşucunun sağlayıcısı olan GloriousEggroll'un herhangi bir sorundan sorumlu "
-"olmadığını ve onlara bildirmemenizi rica ettiğimizi unutmayın."
+"Çalıştırıcının sağlayıcısı olan GloriousEggroll'un herhangi bir sorundan "
+"sorumlu olmadığını ve onlara bildirmemenizi rica ettiğimizi unutmayın."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1483,11 +1483,11 @@ msgstr "Yükseltmeyi başlat"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
 msgid "New Versioning System"
-msgstr "Yeni Versiyonlama Sistemi"
+msgstr "Yeni Sürümleme Sistemi"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
 msgid "The new bottle versioning system has landed."
-msgstr "Yeni şişe versiyonlama sistemi geldi."
+msgstr "Yeni şişe sürümleme sistemi geldi."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:83
 msgid ""
@@ -1503,10 +1503,10 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
-"Bottles, geriye dönük uyumlu olmayan yepyeni bir Sürümlendirme Sistemine "
+"Şişeler, geriye dönük uyumlu olmayan yepyeni bir Sürümleme Sistemine "
 "sahiptir.\n"
 "\n"
-"Versiyonlamayı kullanmaya devam etmek için şişe deposunu yeniden başlatmamız "
+"Sürümlemeyi kullanmaya devam etmek için şişe deposunu yeniden başlatmamız "
 "gerekir. Bu, şişenizdeki verileri silmeyecek ancak mevcut tüm anlık "
 "görüntüleri silecek ve yeni bir tane oluşturacaktır.\n"
 "\n"
@@ -1755,7 +1755,7 @@ msgstr "Dosyalara göz atın"
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
 msgid "Wine prefix name"
-msgstr "Wine ön-ek adı"
+msgstr "Wine önek adı"
 
 #: bottles/frontend/ui/importer-entry.blp:28
 msgid "Manager"
@@ -1763,7 +1763,7 @@ msgstr "Yönetici"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
-msgstr "Bu Wine tanımı zaten Bottles'a aktarılmıştı."
+msgstr "Bu Wine öneki zaten Şişeler'e içe aktarılmış."
 
 #: bottles/frontend/ui/importer.blp:22
 msgid "Import a Bottle backup"
@@ -1771,11 +1771,11 @@ msgstr "Bir Şişe yedeğini içe aktar"
 
 #: bottles/frontend/ui/importer.blp:28
 msgid "Search again for prefixes"
-msgstr "Prefix için tekrar ara"
+msgstr "Önekler tekrar ara"
 
 #: bottles/frontend/ui/importer.blp:38
 msgid "No Prefixes Found"
-msgstr "Prefix bulunamadı"
+msgstr "Önek Bulunamadı"
 
 #: bottles/frontend/ui/importer.blp:39
 msgid ""
@@ -1853,7 +1853,7 @@ msgstr "Buraya, şişenizin program listesinden ögeler ekleyin"
 
 #: bottles/frontend/ui/list-entry.blp:26
 msgid "Versioning is active in this bottle."
-msgstr "Sürüm oluşturma bu şişede etkin."
+msgstr "Sürümleme bu şişede etkin."
 
 #: bottles/frontend/ui/list-entry.blp:42
 msgid "This bottle looks damaged."
@@ -1919,7 +1919,7 @@ msgstr "_Oluştur"
 
 #: bottles/frontend/ui/new.blp:53
 msgid "Bottle Name"
-msgstr "Şişe adı"
+msgstr "Şişe Adı"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
@@ -1965,11 +1965,11 @@ msgstr "Özel bir yapılandırmayı içe aktarın."
 
 #: bottles/frontend/ui/new.blp:176
 msgid "Bottle Directory"
-msgstr "Şişe Klasörü"
+msgstr "Şişe Dizini"
 
 #: bottles/frontend/ui/new.blp:177
 msgid "Directory that will contain the data of this bottle."
-msgstr "Bu şişenin verilerini içerecek klasör."
+msgstr "Bu şişenin verilerini içerecek dizin."
 
 #: bottles/frontend/ui/new.blp:249
 msgid "_Close"
@@ -2003,7 +2003,7 @@ msgid ""
 "like environments where programs run."
 msgstr ""
 "Şişeler, programların çalıştığı izole edilmiş konteynerli Windows benzeri "
-"ortamlar sağlamak için uyumluluk koşucularını kullanır."
+"ortamlar sağlamak için uyumluluk çalıştırıcıları kullanır."
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
@@ -2090,11 +2090,11 @@ msgstr "Entegrasyonlar"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr "Steam Proton Prefix'leri"
+msgstr "Steam Proton Önekleri"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
-msgstr "Steam Proton öntanımlamalarını listeleyin ve yönetin."
+msgstr "Steam Proton öneklerini listeleyin ve yönetin."
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
@@ -2126,7 +2126,7 @@ msgstr "Gelişmiş"
 
 #: bottles/frontend/ui/preferences.blp:131
 msgid "Bottles Directory"
-msgstr "Bottles Klasörü"
+msgstr "Şişeler Dizini"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
@@ -2138,7 +2138,8 @@ msgstr "Çalıştırıcı"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr "Şişeler çevrimdışı kipte çalışıyor, bu nedenle koşucular kullanılamaz."
+msgstr ""
+"Şişeler çevrimdışı kipte çalışıyor, bu nedenle çalıştırıcılar kullanılamaz."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2146,7 +2147,7 @@ msgstr "Ön Sürüm"
 
 #: bottles/frontend/ui/preferences.blp:209
 msgid "Display unstable versions of runners."
-msgstr "Koşucuların kararsız sürümlerini görüntüleyin."
+msgstr "Çalıştırıcıların kararsız sürümlerini görüntüle."
 
 #: bottles/frontend/ui/preferences.blp:224
 msgid "DLL Components"
@@ -2154,7 +2155,7 @@ msgstr "DLL Bileşenleri"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr "Bottles çevrimdışı kipte çalışıyor, bu nedenle DLL'ler kullanılamaz."
+msgstr "Şileler çevrimdışı kipte çalışıyor, bu nedenle DLL'ler kullanılamaz."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2269,7 +2270,7 @@ msgstr ""
 
 #: bottles/frontend/ui/window.blp:79
 msgid "Import…"
-msgstr "İçe aktar…"
+msgstr "İçe Aktar…"
 
 #: bottles/frontend/ui/window.blp:91
 msgid "Help"
@@ -2334,7 +2335,7 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:525
 #: bottles/frontend/windows/main_window.py:223
 msgid "_Dismiss"
-msgstr "_Çıkar"
+msgstr "_Kapat"
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
@@ -2379,7 +2380,7 @@ msgstr "_Sil"
 
 #: bottles/frontend/views/bottle_details.py:521
 msgid "Missing Runner"
-msgstr "Kayıp Koşucu"
+msgstr "Çalıştırıcı Kayıp"
 
 #: bottles/frontend/views/bottle_details.py:522
 msgid ""
@@ -2434,8 +2435,7 @@ msgstr "Bu, tüm anlık görüntüleri silecek ancak dosyalarınızı koruyacakt
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
-"Yeni durumlar oluşturmak için lütfen yeni Sürüm Oluşturma sistemine geçin."
+msgstr "Yeni durumlar oluşturmak için lütfen yeni Sürümleme sistemine geçin."
 
 #: bottles/frontend/views/details.py:153
 msgid "Installers"
@@ -2464,7 +2464,7 @@ msgstr "Yedek içe aktarılıyor…"
 
 #: bottles/frontend/views/importer.py:119
 msgid "Select a Backup Archive"
-msgstr "Bir yedekleme arşivi seçin"
+msgstr "Bir Yedekleme Arşivi Seçin"
 
 #: bottles/frontend/views/importer.py:122
 #: bottles/frontend/views/importer.py:161
@@ -2506,7 +2506,7 @@ msgstr "{1} paketin {0}'ı alındı"
 
 #: bottles/frontend/views/new.py:157
 msgid "Select Bottle Directory"
-msgstr "Bir Şişe Dizini Seçin"
+msgstr "Şişe Dizini Seçin"
 
 #: bottles/frontend/views/new.py:176
 msgid "Creating Bottle…"
@@ -2523,7 +2523,7 @@ msgstr "Şişe bir veya daha fazla hatayla oluşturulamadı."
 #. Show success
 #: bottles/frontend/views/new.py:232
 msgid "Bottle Created"
-msgstr "Şişe oluşturuldu"
+msgstr "Şişe Oluşturuldu"
 
 #: bottles/frontend/views/new.py:233
 #, python-brace-format
@@ -2550,9 +2550,9 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
-"Bu dizini kullanmak için Bottles'ın yeniden başlatılması gerekecektir.\n"
+"Bu dizini kullanmak için Şişeler'in yeniden başlatılması gerekecektir.\n"
 "\n"
-"Bottles'ı yeniden başlatmadan önce Bottles'tan başlatılan her programı "
+"Şişeler'i yeniden başlatmadan önce Şileler'den başlatılan tüm programları "
 "kapattığınızdan emin olun, çünkü bunu yapmamak veri kaybına, bozulmaya ve "
 "programların hatalı çalışmasına neden olabilir."
 
@@ -2913,8 +2913,8 @@ msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Sürüm oluşturma ve kurucular gibi deneysel özellikleri aç/kapat. "
-"Çalıştırıcılar için sürüm adayı."
+"Sürümleme ve kurucular gibi deneysel özellikleri aç/kapat. Çalıştırıcılar "
+"için sürüm adayı."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
@@ -2922,7 +2922,7 @@ msgstr "Steam Proton Desteği"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Steam Proton önekleri desteğini aç / kapat."
+msgstr "Steam Proton önekleri desteğini aç/kapat."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:sandbox"
@@ -2972,8 +2972,8 @@ msgstr ""
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"Şişe sürümü oluşturma, çalışmalarınızı güvende tutar ve daha sonra geri "
-"yüklemenize olanak tanır!"
+"Şişe sürümleme, çalışmalarınızı güvende tutar ve daha sonra geri yüklemenizi "
+"sağlar."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:17
 msgid "Features:"
@@ -3039,7 +3039,7 @@ msgstr "Destek için ProtonDB ve WineHQ'ya erişim"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:31
 msgid "System for bringing your configuration to new versions of Bottles"
-msgstr "Yapılandırmanızı Şişelerin yeni sürümlerine getirmek için sistem"
+msgstr "Yapılandırmanızı Şişeler'in yeni sürümlerine getirmek için sistem"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:32
 msgid "Back up and import bottles"
@@ -3047,11 +3047,11 @@ msgstr "Şişeleri yedekleyin ve içe aktarın"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:33
 msgid "Import Wine prefixes from other managers"
-msgstr "Wineprefix'leri diğer yöneticilerden içe aktarın"
+msgstr "Wine öneklerini diğer yöneticilerden içe aktar"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:34
 msgid "Bottles versioning"
-msgstr "Şişeler sürüm oluşturma"
+msgstr "Şişeler sürümleme"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:35
 msgid "... and much more that you can find by installing Bottles!"
@@ -3080,7 +3080,7 @@ msgstr "Patool çift çıkarma işleminin başarısız olması düzeltildi"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
 msgid "Correct version"
-msgstr "Doğru versiyon"
+msgstr "Doğru sürüm"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Fix crash when creating a bottle"
