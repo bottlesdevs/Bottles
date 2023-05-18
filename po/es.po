@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-02-18 00:44+0000\n"
-"Last-Translator: Luis Aaron <labr.01@hotmail.com>\n"
+"PO-Revision-Date: 2023-05-25 17:51+0000\n"
+"Last-Translator: Esteban Jaramillo <ejaramillos@unal.edu.co>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -201,7 +201,7 @@ msgstr "Se recibió la solicitud [Actualizar]."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Donar"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
@@ -544,11 +544,13 @@ msgstr "Buscar dependencias…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Estás sin conexión :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr ""
+"Bottles se está ejecutando en modo sin conexión, por lo que las dependencias "
+"no están disponibles."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -573,9 +575,8 @@ msgid "Report Missing Dependency"
 msgstr "Informar una dependencia faltante"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
-#, fuzzy
 msgid "Read Documentation."
-msgstr "Leer la documentación"
+msgstr "Leer la documentación."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
@@ -594,7 +595,6 @@ msgid "Search for Programs…"
 msgstr "Buscar programas…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
@@ -605,7 +605,7 @@ msgstr ""
 "manualmente.\n"
 "\n"
 "Los archivos de esta página los brindan terceros en virtud de una licencia "
-"privativa. Al instalarlos, usted acepta sus respectivos términos de licencia."
+"privativa. Al instalarlos, aceptas sus respectivos términos de licencia."
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
@@ -665,7 +665,7 @@ msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Mejorar la compatibilidad con Direct3D 12 traduciéndolo a Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
@@ -694,9 +694,8 @@ msgstr ""
 "trampas."
 
 #: bottles/frontend/ui/details-preferences.blp:71
-#, fuzzy
 msgid "Updating LatencyFleX, please wait…"
-msgstr "Actualizando DXVK, por favor espere…"
+msgstr "Actualizando LatencyFleX, por favor espere…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 #, fuzzy
@@ -715,7 +714,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX Super Resolution"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 #, fuzzy
@@ -727,15 +726,16 @@ msgid "Manage FidelityFX Super Resolution settings"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:125
-#, fuzzy
 msgid "Discrete Graphics"
-msgstr "Utilice una tarjeta gráfica discreta"
+msgstr "Tarjeta gráfica discreta"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Utilice la tarjeta gráfica discreta para aumentar el rendimiento a expensas "
+"del consumo de energía."
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
