@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-17 21:50+0000\n"
+"PO-Revision-Date: 2023-05-25 17:51+0000\n"
 "Last-Translator: Andrea Andre <andrea.tsg19@slmail.me>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ro/>\n"
@@ -69,7 +69,7 @@ msgstr "Configurația Wine e actualizată!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Se execută ca Flatpak, se creează dosarul într-un mediu izolat…"
+msgstr "Se pornește ca Flatpak, se creează dosarul într-un mediu izolat…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
@@ -94,36 +94,36 @@ msgstr "Se aplică mediul: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Se folosește o configurare personalizată a mediului…"
 
 #: bottles/backend/managers/manager.py:1292
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Configurarea nu a fost găsită sau nu este valabilă…"
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "Se instalează DXVK…"
 
 #: bottles/backend/managers/manager.py:1317
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "Se instalează VKD3D…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "Se instalează DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1335
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "Se instalează dependența: %s …"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "Se creează starea de versiune 0…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
-msgstr ""
+msgstr "Se termină…"
 
 #: bottles/backend/managers/manager.py:1364
 msgid "Caching template…"
@@ -131,37 +131,37 @@ msgstr "Se creează cache pentru model…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
-msgstr ""
+msgstr "Se confirmă starea …"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Nimic de confirmat"
 
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "Noua stare [{0}] a fost creată cu succes!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr ""
+msgstr "Lista stărilor a fost recuperată cu succes!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr ""
+msgstr "Starea {0} a fost recuperată cu succes!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr ""
+msgstr "Se reface starea {} …"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
-msgstr ""
+msgstr "Starea nu a fost găsită"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "Starea {} este deja starea activă"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
@@ -173,7 +173,7 @@ msgstr "Calea executabilului"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr ""
+msgstr "Calea lnk"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
@@ -182,7 +182,7 @@ msgstr "Numele sticlei"
 
 #: bottles/frontend/main.py:144
 msgid "Pass arguments"
-msgstr ""
+msgstr "Transmite argumente"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
@@ -190,27 +190,27 @@ msgstr "URI greșit (syntax: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr ""
+msgstr "S-a primit cererea [Închide]."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
-msgstr ""
+msgstr "S-a primit cererea [Ajutor]."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "S-a primit cererea [Actualizează]."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Donează"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Biblioteci terțe și mulțumiri speciale"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Sponsorizat și finanțat de"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
@@ -224,11 +224,11 @@ msgstr "Programatorii Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "merite_traducători"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr ""
+msgstr "Versiunea componentei"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
@@ -238,54 +238,57 @@ msgstr "Dezinstalează"
 
 #: bottles/frontend/ui/component-entry.blp:23
 msgid "Browse Files"
-msgstr ""
+msgstr "Caută fișiere"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
+"Instalarea nu a reușit. Acest lucru se poate datora unei erori de depozit, "
+"descărcării parțiale sau nepotrivirii sumei de control. Apasă pentru a "
+"încerca din nou."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
-msgstr ""
+msgstr "Descarcă și instalează"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
-msgstr ""
+msgstr "Arată manifestul"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
-msgstr ""
+msgstr "Licența"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
-msgstr ""
+msgstr "Reinstalează"
 
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Raportează o eroare…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
-msgstr ""
+msgstr "Numele dependenței"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
 msgid "Dependency description"
-msgstr ""
+msgstr "Descrierea dependenței"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr ""
+msgstr "Descarcă și instalează această dependență"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
@@ -297,15 +300,15 @@ msgstr ""
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr ""
+msgstr "Opțiuni Dependențe"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Depanare"
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
-msgstr ""
+msgstr "Caută fișiere…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
@@ -319,7 +322,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
-msgstr ""
+msgstr "Copie de rezervă completă…"
 
 #: bottles/frontend/ui/details-bottle.blp:37
 #: bottles/frontend/ui/importer.blp:68
@@ -332,16 +335,16 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr ""
+msgstr "Exportă configurarea…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
 msgid "Show Hidden Programs"
-msgstr ""
+msgstr "Arată programele ascunse"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
-msgstr ""
+msgstr "Caută programe noi"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
@@ -351,40 +354,40 @@ msgstr "Elimină sticla…"
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "Opțiuni secundare"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr ""
+msgstr "Oprește forțat toate procesele"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Simulează oprirea sistemului Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
-msgstr ""
+msgstr "Oprește"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Simulează repornirea sistemului Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
-msgstr ""
+msgstr "Repornește"
 
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr ""
+msgstr "Opțiuni de pornire"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
-msgstr ""
+msgstr "Pornește in Terminal"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "Trage aici fișierele de executat"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
@@ -392,40 +395,40 @@ msgstr "Sticla mea"
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: bottles/frontend/ui/details-bottle.blp:189
 #: bottles/frontend/ui/list-entry.blp:12 bottles/frontend/ui/new.blp:71
 msgid "Environment"
-msgstr ""
+msgstr "Mediu"
 
 #: bottles/frontend/ui/details-bottle.blp:201
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr ""
+msgstr "Executant"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr "Gestionarea versiunii e activată pentru această sticlă"
+msgstr "Gestionarea versiunilor e activată pentru această sticlă"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr "Gestionarea versiunii e activă pentru această sticlă."
+msgstr "Gestionarea versiunilor e activă pentru această sticlă."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
-msgstr ""
+msgstr "Pornește executabilul…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
-msgstr ""
+msgstr "Programe"
 
 #: bottles/frontend/ui/details-bottle.blp:275
 msgid ""
@@ -433,18 +436,21 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Clic pe „Pornește executabilul…” pentru a porni un executabil, „Adaugă "
+"scurtături…” ca să adaugi un executabil în lista programelor, sau „"
+"Instalează programe…” pentru a instala programe menținute de comunitate."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
-msgstr ""
+msgstr "Adaugă scurtături…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 msgid "Install Programs…"
-msgstr ""
+msgstr "Instalează programe…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
-msgstr ""
+msgstr "Opțiuni"
 
 #: bottles/frontend/ui/details-bottle.blp:350
 #: bottles/frontend/views/details.py:141
@@ -453,22 +459,22 @@ msgstr "Reglări"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr "Configurează parametrii sticlei."
+msgstr "Gestionează reglările sticlei."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr ""
+msgstr "Dependențe"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
-msgstr ""
+msgstr "Instalează dependențe pentru programe."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "Instantanee"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
@@ -478,19 +484,19 @@ msgstr "Creează și gestionează stările sticlei."
 #: bottles/frontend/ui/details-bottle.blp:426
 #: bottles/frontend/views/details.py:157
 msgid "Task Manager"
-msgstr ""
+msgstr "Gestionar de activități"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr ""
+msgstr "Gestionează programele pornite."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
-msgstr ""
+msgstr "Instrumente"
 
 #: bottles/frontend/ui/details-bottle.blp:394
 msgid "Command Line"
-msgstr ""
+msgstr "Linia de comandă"
 
 #: bottles/frontend/ui/details-bottle.blp:395
 msgid "Run commands inside the Bottle."
@@ -498,40 +504,40 @@ msgstr "Execută comenzi în interiorul sticlei."
 
 #: bottles/frontend/ui/details-bottle.blp:404
 msgid "Registry Editor"
-msgstr ""
+msgstr "Editor de registru"
 
 #: bottles/frontend/ui/details-bottle.blp:405
 msgid "Edit the internal registry."
-msgstr ""
+msgstr "Modifică registrul intern."
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr ""
+msgstr "Instrumente vechi pentru Wine"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
-msgstr ""
+msgstr "Explorator"
 
 #: bottles/frontend/ui/details-bottle.blp:435
 msgid "Debugger"
-msgstr ""
+msgstr "Depanator"
 
 #: bottles/frontend/ui/details-bottle.blp:444
 #: bottles/frontend/ui/importer.blp:69 bottles/frontend/ui/new.blp:145
 msgid "Configuration"
-msgstr ""
+msgstr "Configurare"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr ""
+msgstr "Dezinstalator"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
-msgstr ""
+msgstr "Panou de control"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr ""
+msgstr "Caută dependențe…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178
@@ -560,31 +566,31 @@ msgstr ""
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
-msgstr ""
+msgstr "Raportează o problemă sau o dependență lipsă."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
 msgid "Report Missing Dependency"
-msgstr ""
+msgstr "Raportează o dependență lipsă"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
 msgid "Read Documentation."
-msgstr ""
+msgstr "Citește documentația."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
 #: bottles/frontend/ui/details-versioning.blp:37
 msgid "Documentation"
-msgstr ""
+msgstr "Documentația"
 
 #: bottles/frontend/ui/details-dependencies.blp:92
 #: bottles/frontend/ui/details-installers.blp:61
 #: bottles/frontend/ui/window.blp:46
 msgid "Search"
-msgstr ""
+msgstr "Caută"
 
 #: bottles/frontend/ui/details-installers.blp:9
 msgid "Search for Programs…"
-msgstr ""
+msgstr "Caută programe…"
 
 #: bottles/frontend/ui/details-installers.blp:15
 msgid ""
@@ -593,134 +599,151 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Instalează programe alese de comunitatea noastră.\n"
+"\n"
+"Fișierele de pe această pagină sunt furnizate de terți sub o licență "
+"neliberă. Prin instalarea lor, ești de acord cu condițiile licenței "
+"respective."
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
-msgstr ""
+msgstr "Nu s-au găsit instalatori"
 
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
-"Depozitul e inaccesibil sau nici un program de instalare nu este compatibil "
+"Depozitul e inaccesibil sau niciun program de instalare nu este compatibil "
 "cu această sticlă."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
 #: bottles/frontend/ui/preferences.blp:81
 msgid "Read Documentation"
-msgstr ""
+msgstr "Citește documentația"
 
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52
 msgid "Name"
-msgstr ""
+msgstr "Nume"
 
 #: bottles/frontend/ui/details-preferences.blp:11
 msgid "Components"
-msgstr ""
+msgstr "Componente"
 
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "Versiunea stratului de compatibilitate Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Se actualizează executantul și componentele, așteaptă…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
 msgid "DXVK"
-msgstr ""
+msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 9/10/11 compatibility by translating it to Vulkan."
 msgstr ""
+"Îmbunătățește compatibilitatea Direct3D 9/10/11 prin traducerea acestuia în "
+"Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
-msgstr ""
+msgstr "Se actualizează DXVK, așteaptă…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:266
 msgid "VKD3D"
-msgstr ""
+msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
 msgstr ""
+"Îmbunătățește compatibilitatea Direct3D 12 prin traducerea acestuia în "
+"Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
-msgstr ""
+msgstr "Se actualizează VKD3D, așteaptă…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
-msgstr ""
+msgstr "DXVK NVAPI"
 
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr ""
+msgstr "Se actualizează DXVK-NVAPI, așteaptă…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
 msgstr ""
+"Mărește viteza de reacție. Poate fi detectat de unele programe antitrișare."
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
-msgstr ""
+msgstr "Se actualizează LatencyFleX, așteaptă…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
-msgstr ""
+msgstr "Afișare"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr ""
+msgstr "DLSS"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"Mărește performanța în detrimentul aspectului utilizând DXVK-NVAPI. "
+"Funcționează numai pe cele mai noi GPU NVIDIA."
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX super claritate"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
 msgstr ""
+"Mărește performanța în detrimentul aspectului. Funcționează numai pe Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr "Gestionează reglările FidelityFX Super Resolution"
+msgstr "Gestionează reglările FidelityFX super claritate"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
-msgstr ""
+msgstr "Grafică discretă"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Folosește placa grafică discretă pentru a mări performanța în detrimentul "
+"consumului de energie."
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "Efecte de postprocesare"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
+"Adaugă diverse efecte de post-procesare folosind vkBasalt. Funcționează "
+"numai pe Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:138
 msgid "Manage Post-Processing Layer settings"
@@ -729,6 +752,8 @@ msgstr "Gestionează reglările stratului de postprocesare"
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
 msgstr ""
+"Gestionează modul în care jocurile trebuie să fie afișate pe ecran cu "
+"ajutorul Gamescope."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
@@ -740,27 +765,29 @@ msgstr "Reglări avansate de afișare"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
-msgstr ""
+msgstr "Performanță"
 
 #: bottles/frontend/ui/details-preferences.blp:188
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
+"Activează sincronizarea pentru a crește performanța procesoarelor "
+"multinucleu."
 
 #: bottles/frontend/ui/details-preferences.blp:189
 msgid "Synchronization"
-msgstr ""
+msgstr "Sincronizare"
 
 #: bottles/frontend/ui/details-preferences.blp:193
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 #: bottles/frontend/ui/details-preferences.blp:194
 msgid "Esync"
-msgstr ""
+msgstr "Esync"
 
 #: bottles/frontend/ui/details-preferences.blp:195
 msgid "Fsync"
-msgstr ""
+msgstr "Fsync"
 
 #: bottles/frontend/ui/details-preferences.blp:196
 msgid "Futex2"
@@ -768,32 +795,39 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:202
 msgid "Monitor Performance"
-msgstr ""
+msgstr "Monitorizare performanțe"
 
 #: bottles/frontend/ui/details-preferences.blp:203
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
+"Arată informații de monitorizare, cum ar fi frecvența cadrelor, "
+"temperaturile, încărcarea CPU/GPU și multe altele pe OpenGL și Vulkan "
+"utilizând MangoHud."
 
 #: bottles/frontend/ui/details-preferences.blp:211
 msgid "Feral GameMode"
-msgstr ""
+msgstr "Feral GameMode"
 
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
+"Aplică un set de optimizări aparatului tău. Poate îmbunătăți performanța "
+"jocului."
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
-msgstr ""
+msgstr "Preîncarcă fișierele jocului"
 
 #: bottles/frontend/ui/details-preferences.blp:222
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Îmbunătățește timpul de încărcare dacă jocul e pornit de mai multe ori. "
+"Prima pornire a jocului va dura mai mult."
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
@@ -801,31 +835,32 @@ msgstr "Gestionează reglările vmtouch"
 
 #: bottles/frontend/ui/details-preferences.blp:241
 msgid "OBS Game Capture"
-msgstr ""
+msgstr "Captură de joc OBS"
 
 #: bottles/frontend/ui/details-preferences.blp:242
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
 msgstr ""
+"Act/Dez înregistrarea jocurilor OBS pentru toate programele Vulkan și OpenGL."
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
-msgstr ""
+msgstr "Compatibilitate"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 msgid "Windows Version"
-msgstr ""
+msgstr "Versiunea de Windows"
 
 #: bottles/frontend/ui/details-preferences.blp:257
 msgid "Updating Windows version, please wait…"
-msgstr ""
+msgstr "Se actualizează versiunea de Windows, așteaptă…"
 
 #: bottles/frontend/ui/details-preferences.blp:266
 msgid "Language"
-msgstr ""
+msgstr "Limba"
 
 #: bottles/frontend/ui/details-preferences.blp:267
 msgid "Choose the language to use with programs."
-msgstr ""
+msgstr "Alege limba pentru programe."
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Dedicated Sandbox"
@@ -849,16 +884,20 @@ msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
+"Furnizează alte biblioteci pentru o compatibilitate mai mare. Dezactivează "
+"în caz de probleme."
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr ""
+msgstr "Timp de executare Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
+"Furnizează alte biblioteci pentru o compatibilitate mai mare cu jocurile "
+"Steam. Dezactivează în caz de probleme."
 
 #: bottles/frontend/ui/details-preferences.blp:315
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -883,20 +922,20 @@ msgstr "(Prestabilit)"
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
 #: bottles/frontend/ui/dialog-dll-overrides.blp:12
 msgid "DLL Overrides"
-msgstr ""
+msgstr "Înlocuiri DLL"
 
 #: bottles/frontend/ui/details-preferences.blp:357
 #: bottles/frontend/ui/dialog-env-vars.blp:20
 msgid "Environment Variables"
-msgstr ""
+msgstr "Variabile de mediu"
 
 #: bottles/frontend/ui/details-preferences.blp:367
 msgid "Manage Drives"
-msgstr ""
+msgstr "Gestionare unități"
 
 #: bottles/frontend/ui/details-preferences.blp:381
 msgid "Automatic Snapshots"
-msgstr ""
+msgstr "Instantanee automate"
 
 #: bottles/frontend/ui/details-preferences.blp:382
 msgid ""
@@ -908,45 +947,49 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:391
 msgid "Compression"
-msgstr ""
+msgstr "Comprimare"
 
 #: bottles/frontend/ui/details-preferences.blp:392
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
+"Comprimă instantaneele pentru a reduce spațiul. Acest lucru va încetini "
+"crearea de instantanee."
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
-msgstr ""
+msgstr "Folosește modele de excludere"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr ""
+msgstr "Exclude căile din instantanee."
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
-msgstr ""
+msgstr "Gestionare modele"
 
 #: bottles/frontend/ui/details-taskmanager.blp:17
 msgid "Refresh"
-msgstr ""
+msgstr "Actualizare"
 
 #: bottles/frontend/ui/details-taskmanager.blp:22
 msgid "Stop process"
-msgstr ""
+msgstr "Oprește procesul"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 msgid "No Snapshots Found"
-msgstr ""
+msgstr "Nu s-au găsit instantanee"
 
 #: bottles/frontend/ui/details-versioning.blp:19
 msgid "Create your first snapshot to start saving states of your preferences."
 msgstr ""
+"Creează primul instantaneu pentru a începe să salvezi stările preferințelor "
+"tale."
 
 #: bottles/frontend/ui/details-versioning.blp:54
 msgid "A short comment"
-msgstr ""
+msgstr "Un scurt comentariu"
 
 #: bottles/frontend/ui/details-versioning.blp:58
 msgid "Save the bottle state."
@@ -963,11 +1006,11 @@ msgstr "Detalii"
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
 msgid "Go Back"
-msgstr ""
+msgstr "Înapoi"
 
 #: bottles/frontend/ui/details.blp:75
 msgid "Operations"
-msgstr ""
+msgstr "Operațiuni"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:4
 msgid "Select Bottle"
@@ -978,7 +1021,7 @@ msgstr "Alege sticla"
 #: bottles/frontend/ui/dialog-rename.blp:15
 #: bottles/frontend/ui/dialog-run-args.blp:20
 msgid "Cancel"
-msgstr ""
+msgstr "Renunță"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:21
 msgid "Select"
@@ -1006,11 +1049,11 @@ msgstr "Raport de erori Bottles"
 #: bottles/frontend/views/bottle_preferences.py:749
 #: bottles/frontend/views/preferences.py:201
 msgid "_Cancel"
-msgstr ""
+msgstr "_Renunță"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
 msgid "Send Report"
-msgstr ""
+msgstr "Trimite raportul"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:44
 msgid ""
@@ -1028,18 +1071,23 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Am găsit unul sau mai multe rapoarte similare (sau identice). Verifică cu "
+"atenție dacă nu a fost deja raportată eroarea înainte de a trimite unul nou. "
+"Fiecare raport necesită un efort din partea programatorilor pentru a "
+"diagnostica. Trebuie să le respecți munca și să te asiguri că nu publici "
+"duplicate."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:89
 msgid "I still want to report."
-msgstr ""
+msgstr "Vreau totuși să raportez."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:95
 msgid "Advanced options"
-msgstr ""
+msgstr "Opțiuni avansate"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:13
 msgid "Incomplete package"
-msgstr ""
+msgstr "Pachet incomplet"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
 msgid ""
@@ -1047,42 +1095,49 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
+"Această versiune de Bottles nu pare să furnizeze toate dependențele de bază "
+"necesare, contactează administratorul pachetului sau folosește o versiune "
+"oficială."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
-msgstr ""
+msgstr "Închide"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:11
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
+"Bibliotecile de legături dinamice (DLL) pot fi specificate ca integrate ("
+"furnizate de Wine) sau native (furnizate de program)."
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
-msgstr ""
+msgstr "Înlocuire nouă"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:21
 msgid "Overrides"
-msgstr ""
+msgstr "Înlocuiri"
 
 #: bottles/frontend/ui/dialog-drives.blp:7
 msgid "Drives"
-msgstr ""
+msgstr "Unități"
 
 #: bottles/frontend/ui/dialog-drives.blp:24
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
+"Acestea sunt căi din sistemul gazdă care sunt asociate și recunoscute ca "
+"dispozitive de către executant (de exemplu, C: D:…)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
-msgstr ""
+msgstr "Scrisoare"
 
 #: bottles/frontend/ui/dialog-drives.blp:49
 msgid "Existing Drives"
-msgstr ""
+msgstr "Unități existente"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:16
 msgid "Duplicate Bottle"
@@ -1090,7 +1145,7 @@ msgstr "Duplică sticla"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:38
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplică"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:49
 msgid "Enter a name for the duplicate of the Bottle."
@@ -1098,14 +1153,14 @@ msgstr "Introdu un nume pentru duplicatul sticlei."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:69
 msgid "Duplicating…"
-msgstr ""
+msgstr "Se duplică…"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:78
 #: bottles/frontend/ui/dialog-installer.blp:103
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/views/new.py:177
 msgid "This could take a while."
-msgstr ""
+msgstr "Poate dura ceva timp."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
@@ -1116,32 +1171,36 @@ msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Variabilele de mediu sunt valori cu nume dinamice care pot afecta modul în "
+"care procesele în curs de execuție se vor comporta în sticla ta."
 
 #: bottles/frontend/ui/dialog-env-vars.blp:31
 msgid "Variable Name"
-msgstr ""
+msgstr "Numele variabilei"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:37
 msgid "Existing Variables"
-msgstr ""
+msgstr "Variabile existente"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "Modele de excludere"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
+"Stabilește modelele care vor fi utilizate pentru a împiedica gestionarea "
+"versiunilor în anumite dosare."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
 msgid "Pattern"
-msgstr ""
+msgstr "Model"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:37
 msgid "Existing Patterns"
-msgstr ""
+msgstr "Modele existente"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
@@ -1156,71 +1215,73 @@ msgstr "Salvează"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "Gestionează modul în care trebuie afișate jocurile."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
-msgstr ""
+msgstr "Claritatea jocului"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr ""
+msgstr "Folosește claritatea jocului video ca referință în pixeli."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
 msgid "Width"
-msgstr ""
+msgstr "Lățime"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:64
 #: bottles/frontend/ui/dialog-gamescope.blp:101
 msgid "Height"
-msgstr ""
+msgstr "Înălțime"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
 msgid "Window Resolution"
-msgstr ""
+msgstr "Claritatea ferestrei"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:82
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
+"Mărește claritatea în pixeli când se utilizează o claritate mai mare decât "
+"cea a jocului."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Diverse"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
 msgid "Frame Rate Limit"
-msgstr ""
+msgstr "Limita frecvenței cadrelor"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
 msgid "Frame Rate Limit When Unfocused"
-msgstr ""
+msgstr "Limita frecvenței cadrelor dacă nu este focalizat"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
 msgid "Integer Scaling"
-msgstr ""
+msgstr "Redimensionare cu întregi"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
-msgstr ""
+msgstr "Tip de fereastră"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:166
 msgid "Borderless"
-msgstr ""
+msgstr "Fără margini"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:172
 msgid "Fullscreen"
-msgstr ""
+msgstr "Pe tot ecranul"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr ""
+msgstr "Vrei să continui cu instalarea?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
 msgid "Start Installation"
-msgstr ""
+msgstr "Începe instalarea"
 
 #: bottles/frontend/ui/dialog-installer.blp:64
 msgid ""
@@ -1232,95 +1293,95 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
-msgstr ""
+msgstr "Continuă"
 
 #: bottles/frontend/ui/dialog-installer.blp:127
 msgid "Completed!"
-msgstr ""
+msgstr "Terminată!"
 
 #: bottles/frontend/ui/dialog-installer.blp:130
 msgid "Show Programs"
-msgstr ""
+msgstr "Arată programe"
 
 #: bottles/frontend/ui/dialog-installer.blp:148
 msgid "Installation Failed!"
-msgstr ""
+msgstr "Instalarea nu a reușit!"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
-msgstr ""
+msgstr "Ceva n-a mers bine."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
-msgstr ""
+msgstr "Toate mesajele"
 
 #: bottles/frontend/ui/dialog-journal.blp:13
 msgid "Critical"
-msgstr ""
+msgstr "Importante"
 
 #: bottles/frontend/ui/dialog-journal.blp:17
 msgid "Errors"
-msgstr ""
+msgstr "Erori"
 
 #: bottles/frontend/ui/dialog-journal.blp:21
 msgid "Warnings"
-msgstr ""
+msgstr "Avertizări"
 
 #: bottles/frontend/ui/dialog-journal.blp:25
 msgid "Info"
-msgstr ""
+msgstr "Informații"
 
 #: bottles/frontend/ui/dialog-journal.blp:40
 msgid "Journal browser"
-msgstr ""
+msgstr "Jurnal"
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
-msgstr ""
+msgstr "Jurnal"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr ""
+msgstr "Modifică nivelul de înregistrare în jurnal."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
-msgstr ""
+msgstr "Toate"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:42
 msgid "Those arguments will be passed at launch."
-msgstr ""
+msgstr "Aceste argumente vor fi transmise la pornire."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:43
 msgid "Custom Arguments"
-msgstr ""
+msgstr "Argumente personalizate"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:46
 msgid "Command Arguments"
-msgstr ""
+msgstr "Argumente de comandă"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:47
 #, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "De exemplu: VAR=valoare %comandă% -examplu1 -exemplu2 -exemplu3=bună"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:52
 msgid "Post-run Script"
-msgstr ""
+msgstr "Script post-executare"
 
 #. endregion
 #: bottles/frontend/ui/dialog-launch-options.blp:53
 #: bottles/frontend/windows/launchoptions.py:54
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "Alege un script care trebuie executat după pornire."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
 msgid "Choose a Script"
-msgstr ""
+msgstr "Alege un Script"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:84
 #: bottles/frontend/windows/launchoptions.py:55
 msgid "Choose from where start the program."
-msgstr ""
+msgstr "Alege de unde pornești programul."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:101
 #: bottles/frontend/ui/drive-entry.blp:22
@@ -1334,7 +1395,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-launch-options.blp:115
 msgid "Preferences Overrides"
-msgstr ""
+msgstr "Înlocuirea preferințelor"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:119
 msgid "Reset to Bottle's Defaults"
@@ -1342,15 +1403,15 @@ msgstr "Restabilește valorile inițiale ale sticlei"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:165
 msgid "Virtual Desktop"
-msgstr ""
+msgstr "Ecran virtual"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Declinare Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:21
 msgid "Use Proton"
-msgstr ""
+msgstr "Folosește Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:35
 msgid ""
@@ -1366,40 +1427,51 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"Atenție, folosirea executanților bazați pe Proton în sticle non-Steam poate "
+"cauza probleme și împiedică comportamentul lor corect.\n"
+"\n"
+"Recomandăm folosirea Wine-GE, o versiune de Proton menită să funcționeze în "
+"afara Steam.\n"
+"\n"
+"Continuând va activa automat timpul de executare Steam (dacă este prezent în "
+"sistem și este detectat de Bottles) pentru a-i permite să acceseze "
+"bibliotecile necesare și să limiteze problemele de compatibilitate. Reține "
+"că GloriousEggroll, furnizorul executantului, nu este responsabil pentru "
+"nicio problemă și te rugăm să nu le raportezi."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
-msgstr ""
+msgstr "Am înțeles."
 
 #: bottles/frontend/ui/dialog-rename.blp:7
 msgid "Rename"
-msgstr ""
+msgstr "Redenumește"
 
 #: bottles/frontend/ui/dialog-rename.blp:30
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "Alege un nume nou pentru programul selecționat."
 
 #: bottles/frontend/ui/dialog-rename.blp:33
 msgid "New Name"
-msgstr ""
+msgstr "Nume nou"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 msgid "Run With Arguments"
-msgstr ""
+msgstr "Pornește cu argumente"
 
 #: bottles/frontend/ui/dialog-run-args.blp:34
 #: bottles/frontend/views/bottle_details.py:401
 #: bottles/frontend/views/list.py:131
 msgid "Run"
-msgstr ""
+msgstr "Pornește"
 
 #: bottles/frontend/ui/dialog-run-args.blp:44
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "Scrie mai jos argumentele care trebuie transmise executabilului."
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "exemplu: -opengl -SkipBuildPatchPrereq"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
 msgid "Sandbox Settings"
@@ -1407,32 +1479,32 @@ msgstr "Reglări Mediu izolat"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
-msgstr ""
+msgstr "Împărtășește rețeaua"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:34
 msgid "Share Sound"
-msgstr ""
+msgstr "Împărtășește sunetul"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:16
 msgid "Upgrade Needed"
-msgstr ""
+msgstr "Avansare necesară"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:38
 #: bottles/frontend/ui/onboard.blp:81
 msgid "Continue"
-msgstr ""
+msgstr "Continuă"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:47
 msgid "Launch upgrade"
-msgstr ""
+msgstr "Pornește avansarea"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
 msgid "New Versioning System"
-msgstr ""
+msgstr "Noul sistem de gestionare a versiunilor"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
 msgid "The new bottle versioning system has landed."
-msgstr ""
+msgstr "Noul sistem de gestionare a versiunilor sticlei a sosit."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:83
 msgid ""
@@ -1448,14 +1520,26 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"Bottles are un sistem nou de gestionare a versiunilor care nu este "
+"compatibil cu versiunile anterioare.\n"
+"\n"
+"Pentru a continua folosirea gestionării versiunilor, trebuie reinițializat "
+"depozitul de sticle. Acest lucru nu va șterge datele sticlei, dar va șterge "
+"toate instantaneele existente și va crea unul nou.\n"
+"\n"
+"Dacă ai nevoie să te întorci la un instantaneu anterior înainte de a "
+"continua, închide această fereastră și recuperează instantaneul, apoi "
+"redeschide sticla pentru a vedea din nou această fereastră.\n"
+"\n"
+"Vechiul sistem va fi eliminat într-una din următoarele versiuni."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
-msgstr ""
+msgstr "Se reinițializează depozitul…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
-msgstr ""
+msgstr "Gata! Repornește Bottles."
 
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
@@ -1472,20 +1556,20 @@ msgstr "Reglări prestabilite"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "Efectele se aplică în funcție de ordinea din listă."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
 msgid "Effects"
-msgstr ""
+msgstr "Efecte"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:62
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "Claritate adaptabilă a contrastului"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:65
 #: bottles/frontend/ui/dialog-vkbasalt.blp:102
 msgid "Sharpness"
-msgstr ""
+msgstr "Claritate"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:69
 #: bottles/frontend/ui/dialog-vkbasalt.blp:106
@@ -1499,94 +1583,106 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.blp:343
 #: bottles/frontend/ui/dialog-vkbasalt.blp:370 bottles/frontend/ui/new.blp:58
 msgid "Show Information"
-msgstr ""
+msgstr "Arată informații"
 
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "Claritate Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
-msgstr ""
+msgstr "Îmbunătățire"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:160
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "Antidistorsiune aproximativ rapid"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:163
 msgid "Subpixel Quality"
-msgstr ""
+msgstr "Calitate subpixel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:191
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "Limita de calitate a marginii"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:219
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "Limita minimă de calitate a marginii"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:249
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "Antidistorsiune morfologic subpixel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:252
 msgid "Edge Detection"
-msgstr ""
+msgstr "Detectarea marginii"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:267
 msgid "Luma"
-msgstr ""
+msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:273
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:284
 msgid "Threshold"
-msgstr ""
+msgstr "Limită"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:312
 msgid "Max Search Steps"
-msgstr ""
+msgstr "Pașii maximi de căutare"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:339
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "Pașii maximi de căutare pe diagonală"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:366
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "Rotunjirea maximă a colțului"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:411
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"Claritatea CAS crește claritatea unui cadru. Valorile mai mari fac cadrul "
+"mai clar, în timp ce valorile mai mici de 0 fac cadrul mai neclar decât cel "
+"nativ."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:428
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"Claritatea DLS mărește claritatea unui cadru. Valorile mai mari fac cadrul "
+"mai clar."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:445
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"Îmbunătățirea DLS reduce neclaritatea unui cadru. Valorile mai mari fac "
+"cadrul mai clar."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:462
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"Calitatea subpixelului FXAA reduce distorsiunea la nivel de subpixel. "
+"Valorile mai mari fac cadrul mai clar."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:479
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"Limita de margine FXAA este valoarea minimă de contrast necesară pentru a "
+"aplica algoritmul FXAA. Valorile mai mari fac ca imaginea să aibă mai mult "
+"contrast."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:496
 msgid ""
@@ -1594,199 +1690,218 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"Limita minimă de calitate a marginii FXAA este valoarea minimă a pixelilor "
+"întunecați care sunt ignorați de algoritmul FXAA. Valorile mai mari fac ca "
+"FXAA să ignore pixelii sub valoarea specificată și pot duce la o creștere a "
+"performanței."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"Luma detectează marginile dintr-o perspectivă monocromă, în timp ce Color "
+"detectează marginile pe baza culorilor. Luma este mai performant decât Color."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:530
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"Limita SMAA specifică sensibilitatea de detectare a marginii. Valorile mai "
+"mici detectează mai multe margini în detrimentul performanței."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:547
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"Pașii maximi de căutare SMAA specifică numărul de pași de căutare pe "
+"orizontală și verticală care se efectuează atunci când se caută margini."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:564
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"Pașii maximi de căutare pe diagonală SMAA specifică numărul de pași de "
+"căutare pe diagonală care se efectuează la căutarea marginilor."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:581
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
 msgstr ""
+"Rotunjirea colțurilor SMAA specifică puterea de rotunjire a colțurilor "
+"marginilor."
 
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
-msgstr ""
+msgstr "Integrate (Wine)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:9
 msgid "Native (Windows)"
-msgstr ""
+msgstr "Native (Windows)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:10
 msgid "Builtin, then Native"
-msgstr ""
+msgstr "Integrate, apoi native"
 
 #: bottles/frontend/ui/dll-override-entry.blp:11
 msgid "Native, then Builtin"
-msgstr ""
+msgstr "Native, apoi integrate"
 
 #: bottles/frontend/ui/dll-override-entry.blp:12
 msgid "Disabled"
-msgstr ""
+msgstr "Dezactivat"
 
 #: bottles/frontend/ui/dll-override-entry.blp:20
 #: bottles/frontend/ui/drive-entry.blp:12
 msgid "Remove"
-msgstr ""
+msgstr "Elimină"
 
 #: bottles/frontend/ui/drive-entry.blp:5
 msgid "/point/to/path"
-msgstr ""
+msgstr "/indică/calea"
 
 #: bottles/frontend/ui/env-var-entry.blp:4
 #: bottles/frontend/ui/exclusion-pattern-entry.blp:4
 msgid "Value"
-msgstr ""
+msgstr "Valoare"
 
 #: bottles/frontend/ui/importer-entry.blp:13
 msgid "Browse files"
-msgstr ""
+msgstr "Caută fișiere"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
 msgid "Wine prefix name"
-msgstr ""
+msgstr "Numele prefixului Wine"
 
 #: bottles/frontend/ui/importer-entry.blp:28
 msgid "Manager"
-msgstr ""
+msgstr "Gestionar"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
-msgstr ""
+msgstr "Acest prefix Wine a fost deja importat în Bottles."
 
 #: bottles/frontend/ui/importer.blp:22
 msgid "Import a Bottle backup"
-msgstr ""
+msgstr "Importă o copie de rezervă a sticlei"
 
 #: bottles/frontend/ui/importer.blp:28
 msgid "Search again for prefixes"
-msgstr ""
+msgstr "Caută din nou prefixe"
 
 #: bottles/frontend/ui/importer.blp:38
 msgid "No Prefixes Found"
-msgstr ""
+msgstr "Nu s-au găsit prefixe"
 
 #: bottles/frontend/ui/importer.blp:39
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
+"Nu au fost găsite prefixe externe. Are Bottles acces la ele?\n"
+"Folosește simbolul din partea de sus pentru a importa o sticlă dintr-o copie "
+"de rezervă."
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
-msgstr ""
+msgstr "Arhivă completă"
 
 #: bottles/frontend/ui/installer-entry.blp:16
 msgid "Show Manifest…"
-msgstr ""
+msgstr "Arată manifestul…"
 
 #: bottles/frontend/ui/installer-entry.blp:20
 msgid "Read Review…"
-msgstr ""
+msgstr "Citește recenzia…"
 
 #: bottles/frontend/ui/installer-entry.blp:34
 msgid "Installer name"
-msgstr ""
+msgstr "Numele instalatorului"
 
 #: bottles/frontend/ui/installer-entry.blp:35
 msgid "Installer description"
-msgstr ""
+msgstr "Descrierea instalatorului"
 
 #: bottles/frontend/ui/installer-entry.blp:42
 msgid "Unknown"
-msgstr ""
+msgstr "Necunoscut"
 
 #: bottles/frontend/ui/installer-entry.blp:51
 msgid "Install this Program"
-msgstr ""
+msgstr "Instalează acest program"
 
 #: bottles/frontend/ui/installer-entry.blp:69
 msgid "Program Menu"
-msgstr ""
+msgstr "Opțiunile programului"
 
 #: bottles/frontend/ui/library-entry.blp:36
 msgid "No Thumbnail"
-msgstr ""
+msgstr "Fără miniatură"
 
 #: bottles/frontend/ui/library-entry.blp:57
 msgid "Launch"
-msgstr ""
+msgstr "Pornește"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
 msgid "Launch with Steam"
-msgstr ""
+msgstr "Pornește cu Steam"
 
 #: bottles/frontend/ui/library-entry.blp:108
 msgid "Item name"
-msgstr ""
+msgstr "Numele elementului"
 
 #: bottles/frontend/ui/library-entry.blp:132
 msgid "Remove from Library"
-msgstr ""
+msgstr "Elimină din bibliotecă"
 
 #: bottles/frontend/ui/library-entry.blp:143
 msgid "Stop"
-msgstr ""
+msgstr "Oprește"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:196
 msgid "Library"
-msgstr ""
+msgstr "Bibliotecă"
 
 #: bottles/frontend/ui/library.blp:12
 msgid "Add items here from your bottle's program list"
-msgstr ""
+msgstr "Adaugă aici elemente din lista de programe a sticlei"
 
 #: bottles/frontend/ui/list-entry.blp:26
 msgid "Versioning is active in this bottle."
-msgstr ""
+msgstr "Gestionarea versiunilor e activă în această sticlă."
 
 #: bottles/frontend/ui/list-entry.blp:42
 msgid "This bottle looks damaged."
-msgstr ""
+msgstr "Această sticlă pare deteriorată."
 
 #: bottles/frontend/ui/list-entry.blp:55
 msgid "Execute in this Bottle"
-msgstr ""
+msgstr "Execută în această sticlă"
 
 #: bottles/frontend/ui/list-entry.blp:69
 msgid "Run Here"
-msgstr ""
+msgstr "Pornește aici"
 
 #: bottles/frontend/ui/list-entry.blp:75
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
+"Această sticlă pare deteriorată, lipsește fișierul de configurare. Pot "
+"încerca să rezolv prin crearea unei noi configurări."
 
 #: bottles/frontend/ui/list.blp:12
 msgid "Search your bottles…"
-msgstr ""
+msgstr "Caută sticle…"
 
 #: bottles/frontend/ui/list.blp:28
 msgid "Steam Proton"
-msgstr ""
+msgstr "Steam Proton"
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/list.blp:42 bottles/frontend/windows/main_window.py:191
@@ -1800,15 +1915,15 @@ msgstr "Creează o Sticlă nouă…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
-msgstr ""
+msgstr "Nu s-a găsit nimic"
 
 #: bottles/frontend/ui/list.blp:64
 msgid "Try a different search."
-msgstr ""
+msgstr "Caută altfel."
 
 #: bottles/frontend/ui/loading.blp:13
 msgid "Starting up…"
-msgstr ""
+msgstr "Se pornește…"
 
 #: bottles/frontend/ui/local-resource-entry.blp:4
 msgid "This resource is missing."
@@ -1816,11 +1931,11 @@ msgstr "Această resursă lipsește."
 
 #: bottles/frontend/ui/local-resource-entry.blp:8
 msgid "Browse"
-msgstr ""
+msgstr "Caută"
 
 #: bottles/frontend/ui/new.blp:32
 msgid "C_reate"
-msgstr ""
+msgstr "C_reează"
 
 #: bottles/frontend/ui/new.blp:53
 msgid "Bottle Name"
@@ -1828,23 +1943,23 @@ msgstr "Numele sticlei"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
-msgstr ""
+msgstr "_Aplicație"
 
 #: bottles/frontend/ui/new.blp:88
 msgid "_Gaming"
-msgstr ""
+msgstr "_Jocuri"
 
 #: bottles/frontend/ui/new.blp:101
 msgid "C_ustom"
-msgstr ""
+msgstr "_Personalizat"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
-msgstr ""
+msgstr "Personalizat"
 
 #: bottles/frontend/ui/new.blp:118
 msgid "Share User Directory"
-msgstr "Distribuie dosarul de utilizator"
+msgstr "Împărtășește dosarul de utilizator"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1858,15 +1973,15 @@ msgstr ""
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
-msgstr ""
+msgstr "Arhitectura"
 
 #: bottles/frontend/ui/new.blp:137
 msgid "32-bit should only be used if strictly necessary."
-msgstr ""
+msgstr "32 de biți ar trebui să fie utilizată numai dacă este strict necesar."
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
-msgstr ""
+msgstr "Importă o configurare personalizată."
 
 #: bottles/frontend/ui/new.blp:176
 msgid "Bottle Directory"
@@ -1878,15 +1993,15 @@ msgstr "Dosarul care va conține datele acestei sticle."
 
 #: bottles/frontend/ui/new.blp:249
 msgid "_Close"
-msgstr ""
+msgstr "În_chide"
 
 #: bottles/frontend/ui/new.blp:281
 msgid "This name is unavailable, please try another."
-msgstr ""
+msgstr "Acest nume nu este disponibil, încearcă altul."
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
-msgstr ""
+msgstr "Înapoi"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
@@ -1913,19 +2028,19 @@ msgstr ""
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
-msgstr ""
+msgstr "Aproape gata"
 
 #: bottles/frontend/ui/onboard.blp:73
 msgid "We need a few more minutes to set everything up…"
-msgstr ""
+msgstr "Este nevoie de câteva minute pentru a pregăti totul…"
 
 #: bottles/frontend/ui/onboard.blp:105
 msgid "All Ready!"
-msgstr ""
+msgstr "Totul este gata!"
 
 #: bottles/frontend/ui/onboard.blp:114
 msgid "Please Finish the setup first"
-msgstr ""
+msgstr "Termină mai întâi configurarea"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:120
@@ -1934,24 +2049,24 @@ msgstr "Începe să folosești Bottles"
 
 #: bottles/frontend/ui/onboard.blp:141
 msgid "Next"
-msgstr ""
+msgstr "Înainte"
 
 #: bottles/frontend/ui/preferences.blp:4 bottles/frontend/ui/window.blp:86
 msgid "Preferences"
-msgstr ""
+msgstr "Preferințe"
 
 #: bottles/frontend/ui/preferences.blp:11
 #: bottles/frontend/ui/preferences.blp:39
 msgid "General"
-msgstr ""
+msgstr "Generale"
 
 #: bottles/frontend/ui/preferences.blp:14
 msgid "Appearance"
-msgstr ""
+msgstr "Aspect"
 
 #: bottles/frontend/ui/preferences.blp:17
 msgid "Dark Mode"
-msgstr ""
+msgstr "Aspect întunecos"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
@@ -1959,24 +2074,24 @@ msgstr "Dacă Bottles să folosească schema de culori închise."
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
-msgstr ""
+msgstr "Arată data actualizării"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "Dacă să se afișeze data actualizării în lista sticlei."
 
 #: bottles/frontend/ui/preferences.blp:42
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Notifications"
-msgstr ""
+msgstr "Notificări"
 
 #: bottles/frontend/ui/preferences.blp:43
 msgid "Show notifications for downloads and installs."
-msgstr ""
+msgstr "Arată notificări pentru descărcări și instalări."
 
 #: bottles/frontend/ui/preferences.blp:52
 msgid "Temp Files"
-msgstr ""
+msgstr "Fișiere temporare"
 
 #: bottles/frontend/ui/preferences.blp:53
 msgid "Clean temp files when Bottles launches?"
@@ -1992,43 +2107,43 @@ msgstr "Închide Bottles după pornirea unui program din gestionarul de fișiere
 
 #: bottles/frontend/ui/preferences.blp:73
 msgid "Integrations"
-msgstr ""
+msgstr "Integrări"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr ""
+msgstr "Prefixe Steam Proton"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
-msgstr ""
+msgstr "Înșiruie și gestionează prefixele Steam Proton."
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Înșiruie aplicațiile Steam în lista de programe"
 
 #: bottles/frontend/ui/preferences.blp:98
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "Trebuie ca Steam pentru Windows să fie instalat în sticlă."
 
 #: bottles/frontend/ui/preferences.blp:107
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "Arată „Epic Games” în lista de programe"
 
 #: bottles/frontend/ui/preferences.blp:108
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "Trebuie ca magazinul „Epic Games” să fie instalat în sticlă."
 
 #: bottles/frontend/ui/preferences.blp:117
 msgid "List Ubisoft Games in Programs List"
-msgstr ""
+msgstr "Arată „Ubisoft Games” în lista de programe"
 
 #: bottles/frontend/ui/preferences.blp:118
 msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr ""
+msgstr "Trebuie ca Ubisoft Connect să fie instalat în sticlă."
 
 #: bottles/frontend/ui/preferences.blp:128
 msgid "Advanced"
-msgstr ""
+msgstr "Avansate"
 
 #: bottles/frontend/ui/preferences.blp:131
 msgid "Bottles Directory"
@@ -2040,7 +2155,7 @@ msgstr "Dosarul care conține datele sticlelor tale."
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
-msgstr ""
+msgstr "Executanți"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
@@ -2049,7 +2164,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
-msgstr ""
+msgstr "Pre-lansare"
 
 #: bottles/frontend/ui/preferences.blp:209
 msgid "Display unstable versions of runners."
@@ -2057,7 +2172,7 @@ msgstr "Arată versiunile instabile ale executanților."
 
 #: bottles/frontend/ui/preferences.blp:224
 msgid "DLL Components"
-msgstr ""
+msgstr "Componente DLL"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
@@ -2065,30 +2180,32 @@ msgstr "Bottles nu e conectat la internet, deci DLL nu sunt disponibile."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "DXVK-NVAPI"
 
 #: bottles/frontend/ui/preferences.blp:283
 msgid "Core"
-msgstr ""
+msgstr "Nucleu"
 
 #: bottles/frontend/ui/preferences.blp:287
 msgid "Runtime"
-msgstr ""
+msgstr "Timp de executare"
 
 #: bottles/frontend/ui/preferences.blp:291
 msgid "WineBridge"
-msgstr ""
+msgstr "WineBridge"
 
 #: bottles/frontend/ui/preferences.blp:297
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Experiments"
-msgstr ""
+msgstr "Experimente"
 
 #: bottles/frontend/ui/preferences.blp:300
 msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
 msgstr ""
+"Aceste caracteristici sunt în curs de dezvoltare intensă și pot fi instabile;"
+" pot să apară erori și defecțiuni."
 
 #: bottles/frontend/ui/preferences.blp:303
 msgid "Sandbox per bottle"
@@ -2096,72 +2213,72 @@ msgstr "Mediu izolat pentru sticlă"
 
 #: bottles/frontend/ui/preferences.blp:304
 msgid "In early development."
-msgstr ""
+msgstr "La început de dezvoltare."
 
 #: bottles/frontend/ui/program-entry.blp:19
 msgid "Launch with Terminal"
-msgstr ""
+msgstr "Pornește în Terminal"
 
 #: bottles/frontend/ui/program-entry.blp:25
 msgid "Browse Path"
-msgstr ""
+msgstr "Parcurge calea"
 
 #: bottles/frontend/ui/program-entry.blp:39
 msgid "Change Launch Options…"
-msgstr ""
+msgstr "Modifică opțiunile de pornire…"
 
 #: bottles/frontend/ui/program-entry.blp:43
 msgid "Add to Library"
-msgstr ""
+msgstr "Adaugă în bibliotecă"
 
 #: bottles/frontend/ui/program-entry.blp:47
 msgid "Add Desktop Entry"
-msgstr ""
+msgstr "Adaugă simbolul pe ecran"
 
 #: bottles/frontend/ui/program-entry.blp:51
 msgid "Add to Steam"
-msgstr ""
+msgstr "Adaugă la Steam"
 
 #: bottles/frontend/ui/program-entry.blp:55
 msgid "Rename…"
-msgstr ""
+msgstr "Redenumește…"
 
 #: bottles/frontend/ui/program-entry.blp:62
 msgid "Hide Program"
-msgstr ""
+msgstr "Ascunde programul"
 
 #: bottles/frontend/ui/program-entry.blp:66
 msgid "Show Program"
-msgstr ""
+msgstr "Arată programul"
 
 #: bottles/frontend/ui/program-entry.blp:70
 msgid "Remove from List"
-msgstr ""
+msgstr "Elimină din listă"
 
 #: bottles/frontend/ui/program-entry.blp:83
 msgid "Program name"
-msgstr ""
+msgstr "Numele programului"
 
 #. Translators: id as identification
 #: bottles/frontend/ui/state-entry.blp:8
 msgid "State id"
-msgstr ""
+msgstr "ID-ul stării"
 
 #: bottles/frontend/ui/state-entry.blp:9
 msgid "State comment"
-msgstr ""
+msgstr "Comentariul stării"
 
 #: bottles/frontend/ui/state-entry.blp:16
 msgid "Restore this Snapshot"
-msgstr ""
+msgstr "Recuperează acest instantaneu"
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
-msgstr ""
+msgstr "Șterge mesajul"
 
 #: bottles/frontend/ui/window.blp:40
 msgid "Main Menu"
-msgstr ""
+msgstr "Opțiuni principale"
 
 #: bottles/frontend/ui/window.blp:54
 msgid ""
@@ -2169,14 +2286,16 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
+"Nu pari conectat la internet. Fără conectare, nu vei putea descărca "
+"componente esențiale. Fă clic pe acest simbol dacă s-a restabilit conexiunea."
 
 #: bottles/frontend/ui/window.blp:79
 msgid "Import…"
-msgstr ""
+msgstr "Importă…"
 
 #: bottles/frontend/ui/window.blp:91
 msgid "Help"
-msgstr ""
+msgstr "Ajutor"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:96
@@ -2186,17 +2305,17 @@ msgstr "Despre Bottles"
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
-msgstr ""
+msgstr "Fișierul „{0}” nu este un fișier .exe sau .msi"
 
 #: bottles/frontend/views/bottle_details.py:207
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Actualizat: %s"
 
 #: bottles/frontend/views/bottle_details.py:267
 #, python-brace-format
 msgid "\"{0}\" added"
-msgstr ""
+msgstr "„{0}” adăugat"
 
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
@@ -2206,18 +2325,18 @@ msgstr "Alege executabilul"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
-msgstr ""
+msgstr "Adaugă"
 
 #: bottles/frontend/views/bottle_details.py:346
 msgid "Hide Hidden Programs"
-msgstr ""
+msgstr "Ascunde programele ascunse"
 
 #: bottles/frontend/views/bottle_details.py:383
 #: bottles/frontend/widgets/library.py:156
 #: bottles/frontend/widgets/program.py:184
 #, python-brace-format
 msgid "Launching \"{0}\"…"
-msgstr ""
+msgstr "Se pornește „{0}”…"
 
 #: bottles/frontend/views/bottle_details.py:413
 msgid "Be Aware of Sandbox"
@@ -2238,19 +2357,19 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:525
 #: bottles/frontend/windows/main_window.py:223
 msgid "_Dismiss"
-msgstr ""
+msgstr "_Ignoră"
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
-msgstr ""
+msgstr "Alege locul în care să salvezi configurarea copiei de rezervă"
 
 #: bottles/frontend/views/bottle_details.py:431
 msgid "Export"
-msgstr ""
+msgstr "Exportă"
 
 #: bottles/frontend/views/bottle_details.py:433
 msgid "Select the location where to save the backup archive"
-msgstr ""
+msgstr "Alege locul în care să salvezi arhiva copiei de rezervă"
 
 #: bottles/frontend/views/bottle_details.py:435
 msgid "Backup"
@@ -2259,16 +2378,16 @@ msgstr "Copie de rezervă"
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
 msgid "Backup created for \"{0}\""
-msgstr ""
+msgstr "Copie de rezervă creată pentru „{0}”"
 
 #: bottles/frontend/views/bottle_details.py:442
 #, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr ""
+msgstr "Copie de rezervă nereușită pentru „{0}”"
 
 #: bottles/frontend/views/bottle_details.py:501
 msgid "Are you sure you want to permanently delete \"{}\"?"
-msgstr ""
+msgstr "Sigur vrei să ștergi definitiv „{}”?"
 
 #: bottles/frontend/views/bottle_details.py:502
 msgid ""
@@ -2279,7 +2398,7 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:505
 #: bottles/frontend/views/bottle_preferences.py:750
 msgid "_Delete"
-msgstr ""
+msgstr "Șt_erge"
 
 #: bottles/frontend/views/bottle_details.py:521
 msgid "Missing Runner"
@@ -2295,27 +2414,29 @@ msgstr ""
 
 #: bottles/frontend/views/bottle_details.py:597
 msgid "Are you sure you want to force stop all processes?"
-msgstr ""
+msgstr "Sigur vrei să oprești forțat toate procesele?"
 
 #: bottles/frontend/views/bottle_details.py:598
 msgid "This can cause data loss, corruption, and programs to malfunction."
 msgstr ""
+"Acest lucru poate provoca pierderi de date, deteriorarea și funcționarea "
+"defectuoasă a programelor."
 
 #: bottles/frontend/views/bottle_details.py:601
 msgid "Force _Stop"
-msgstr ""
+msgstr "Forțează _oprirea"
 
 #: bottles/frontend/views/bottle_preferences.py:195
 msgid "This feature is unavailable on your system."
-msgstr ""
+msgstr "Această caracteristică nu e disponibilă pentru sistemul tău."
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} Pentru a adăuga această caracteristică, pornește instalarea flatpak"
 
 #: bottles/frontend/views/bottle_preferences.py:246
 msgid "This bottle name is already in use."
-msgstr ""
+msgstr "Acest nume de sticlă este deja utilizat."
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
@@ -2328,23 +2449,24 @@ msgstr "Dosarul care conține datele pentru \"{}\"."
 
 #: bottles/frontend/views/bottle_preferences.py:746
 msgid "Are you sure you want to delete all snapshots?"
-msgstr ""
+msgstr "Sigur vrei să ștergi toate instantaneele?"
 
 #: bottles/frontend/views/bottle_preferences.py:747
 msgid "This will delete all snapshots but keep your files."
-msgstr ""
+msgstr "Aceasta va șterge toate instantaneele, dar va păstra fișierele."
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
 msgstr ""
+"Treci la noul sistem de gestionare a versiunilor pentru a crea stări noi."
 
 #: bottles/frontend/views/details.py:153
 msgid "Installers"
-msgstr ""
+msgstr "Instalatori"
 
 #: bottles/frontend/views/details.py:234
 msgid "Operations in progress, please wait."
-msgstr ""
+msgstr "Operațiuni în curs, așteaptă."
 
 #: bottles/frontend/views/details.py:239
 msgid "Return to your bottles."
@@ -2352,20 +2474,20 @@ msgstr "Revino la sticlele tale."
 
 #: bottles/frontend/views/importer.py:92
 msgid "Backup imported successfully"
-msgstr ""
+msgstr "Copie de rezervă importată cu succes"
 
 #: bottles/frontend/views/importer.py:94
 msgid "Import failed"
-msgstr ""
+msgstr "Importare nereușită"
 
 #: bottles/frontend/views/importer.py:108
 #: bottles/frontend/views/importer.py:147
 msgid "Importing backup…"
-msgstr ""
+msgstr "Se importă copia de rezervă…"
 
 #: bottles/frontend/views/importer.py:119
 msgid "Select a Backup Archive"
-msgstr ""
+msgstr "Alege o arhivă a copiei de rezervă"
 
 #: bottles/frontend/views/importer.py:122
 #: bottles/frontend/views/importer.py:161
@@ -2374,22 +2496,22 @@ msgstr "Importă"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
 msgid "Select a Configuration File"
-msgstr ""
+msgstr "Alege un fișier de configurare"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
-msgstr ""
+msgstr "N/D"
 
 #. Set tooltip text
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "Pornește executabilul în „{self.config.Name}”"
 
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr ""
+msgstr "Se pornește „{0}” în „{1}”…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2398,12 +2520,12 @@ msgstr "Sticlele tale"
 #: bottles/frontend/views/loading.py:41
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
-msgstr ""
+msgstr "Se descarcă ~{0} de pachete…"
 
 #: bottles/frontend/views/loading.py:42
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
-msgstr ""
+msgstr "Descărcate {0} din {1} pachete"
 
 #: bottles/frontend/views/new.py:157
 msgid "Select Bottle Directory"
@@ -2419,7 +2541,7 @@ msgstr "Nu se poate crea sticla"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "Crearea sticlei a eșuat cu una sau mai multe erori."
 
 #. Show success
 #: bottles/frontend/views/new.py:232
@@ -2429,7 +2551,7 @@ msgstr "Sticlă creată"
 #: bottles/frontend/views/new.py:233
 #, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr ""
+msgstr "„{0}” a fost creat cu succes."
 
 #: bottles/frontend/views/preferences.py:142
 msgid "Steam was not found or Bottles does not have enough permissions."
@@ -2459,63 +2581,67 @@ msgstr ""
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
-msgstr ""
+msgstr "_Repornește"
 
 #: bottles/frontend/views/preferences.py:243
 msgid "Based on Valve's Wine, includes staging and Proton patches."
 msgstr ""
+"Bazat pe Wine de la Valve, include versiunea de testare și corecări Proton."
 
 #: bottles/frontend/views/preferences.py:244
 msgid "Based on Wine upstream, includes staging and Proton patches."
 msgstr ""
+"Bazat pe Wine de la sursă, include versiunea de testare și corecări Proton."
 
 #: bottles/frontend/views/preferences.py:247
 msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
+msgstr "Bazat pe Wine de la sursă, include corectări din versiunea de testare."
 
 #: bottles/frontend/views/preferences.py:248
 msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
+"Bazat pe Wine de la Valve, include modificări specifice Proton și Steam. "
+"Trebuie ca timpul de executare Steam să fie activat."
 
 #: bottles/frontend/views/preferences.py:250
 msgid "Other"
-msgstr ""
+msgstr "Altele"
 
 #: bottles/frontend/widgets/component.py:74
 msgid "Upgrade"
-msgstr ""
+msgstr "Avansează"
 
 #: bottles/frontend/widgets/component.py:140
 msgid "Installing…"
-msgstr ""
+msgstr "Se instalează…"
 
 #: bottles/frontend/widgets/dependency.py:107
 #: bottles/frontend/widgets/installer.py:81
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr ""
+msgstr "Manifest pentru {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
 #, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr ""
+msgstr "„{0}” dezinstalat"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
 msgid "\"{0}\" installed"
-msgstr ""
+msgstr "„{0}” instalat"
 
 #: bottles/frontend/widgets/dependency.py:188
 #, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr ""
+msgstr "„{0}” nu a putut fi instalat"
 
 #: bottles/frontend/widgets/importer.py:68
 #, python-brace-format
 msgid "\"{0}\" imported"
-msgstr ""
+msgstr "„{0}” importat"
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
@@ -2523,81 +2649,89 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
+"Această aplicație poate funcționa prost. Programul de instalare a fost "
+"configurat pentru a oferi cea mai bună experiență posibilă, dar pot să apară "
+"erori, instabilitate și să lipsească caracteristici de lucru."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
 msgstr ""
+"Acest program funcționează cu defecțiuni notabile, dar aceste defecțiuni nu "
+"afectează funcționarea aplicației."
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
-msgstr ""
+msgstr "Acest program funcționează cu mici defecțiuni."
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
-msgstr ""
+msgstr "Acest program funcționează perfect."
 
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
 msgid "Review for {0}"
-msgstr ""
+msgstr "Recenzie pentru {0}"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
 #, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr ""
+msgstr "Se oprește „{0}”…"
 
 #: bottles/frontend/widgets/program.py:190
 #, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
-msgstr ""
+msgstr "Se pornește „{0}” cu Steam…"
 
 #: bottles/frontend/widgets/program.py:214
 #, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr ""
+msgstr "„{0}” ascuns"
 
 #: bottles/frontend/widgets/program.py:216
 #, python-brace-format
 msgid "\"{0}\" showed"
-msgstr ""
+msgstr "„{0}” arătat"
 
 #: bottles/frontend/widgets/program.py:242
 #, python-brace-format
 msgid "\"{0}\" removed"
-msgstr ""
+msgstr "„{0}” eliminat"
 
 #: bottles/frontend/widgets/program.py:274
 #, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr ""
+msgstr "„{0}” redenumit „{1}”"
 
 #: bottles/frontend/widgets/program.py:297
 #, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
-msgstr ""
+msgstr "Simbol creat pe ecran pentru „{0}”"
 
 #: bottles/frontend/widgets/program.py:313
 #, python-brace-format
 msgid "\"{0}\" added to your library"
-msgstr ""
+msgstr "„{0}” adăugat în bibliotecă"
 
 #: bottles/frontend/widgets/program.py:331
 #, python-brace-format
 msgid "\"{0}\" added to your Steam library"
-msgstr ""
+msgstr "„{0}” adăugat în biblioteca ta Steam"
 
 #: bottles/frontend/windows/crash.py:33
 msgid "Show report"
-msgstr ""
+msgstr "Arată raportul"
 
 #: bottles/frontend/windows/crash.py:80
 msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            Această problemă a fost raportată de 5 ori și nu poate fi "
+"trimisă din nou.\n"
+"            Trimite raportul tău într-unul din cele existente mai jos."
 
 #: bottles/frontend/windows/display.py:102
 msgid "Updating display settings, please wait…"
@@ -2609,7 +2743,7 @@ msgstr "Reglări de afișare actualizate"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
-msgstr ""
+msgstr "Nu s-a găsit nicio înlocuire."
 
 #: bottles/frontend/windows/drives.py:71
 msgid "Select Drive Path"
@@ -2617,11 +2751,11 @@ msgstr "Alege calea unității"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
-msgstr ""
+msgstr "Nu s-a stabilit nicio variabilă de mediu."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
-msgstr ""
+msgstr "Nu există modele de excludere."
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -2631,7 +2765,7 @@ msgstr "A apărut o eroare."
 #: bottles/frontend/windows/generic.py:137
 #: bottles/frontend/windows/generic.py:182
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Copiază în memorie"
 
 #: bottles/frontend/windows/installer.py:62
 msgid "Select Resource File"
@@ -2639,15 +2773,15 @@ msgstr "Alege fișierul resursei"
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
-msgstr ""
+msgstr "Se instalează dependențele Windows…"
 
 #: bottles/frontend/windows/installer.py:110
 msgid "Configuring the bottle…"
-msgstr ""
+msgstr "Se configurează sticla…"
 
 #: bottles/frontend/windows/installer.py:111
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "Se procesează pașii de instalare…"
 
 #: bottles/frontend/windows/installer.py:112
 msgid "Installing the {}…"
@@ -2655,26 +2789,26 @@ msgstr "Se instalează {}…"
 
 #: bottles/frontend/windows/installer.py:113
 msgid "Performing final checks…"
-msgstr ""
+msgstr "Se efectuează verificările finale…"
 
 #: bottles/frontend/windows/installer.py:117
 #, python-brace-format
 msgid "Installing {0}…"
-msgstr ""
+msgstr "Se instalează {0}…"
 
 #: bottles/frontend/windows/installer.py:119
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr ""
+msgstr "{0} este acum disponibil în lista programelor."
 
 #: bottles/frontend/windows/installer.py:166
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "Instalarea a eșuat cu o eroare necunoscută"
 
 #: bottles/frontend/windows/launchoptions.py:56
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr ""
+msgstr "{0} este deja dezactivat pentru această sticlă."
 
 #: bottles/frontend/windows/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
@@ -2696,7 +2830,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
@@ -2709,23 +2843,23 @@ msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
-msgstr ""
+msgstr "Migrare la Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr ""
+msgstr "Act/Dez dialogul de migrare la Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr ""
+msgstr "Fond negru"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "Forțează utilizarea fondului negru."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "Arată/Ascunde data de actualizare în listă"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
@@ -2733,59 +2867,59 @@ msgstr "Arată/Ascunde data de actualizare din lista sticlelor."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Lista aplicațiilor Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
-msgstr ""
+msgstr "Act/Dez lista aplicațiilor Steam."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr ""
+msgstr "Lista „Epic Games”"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr ""
+msgstr "Act/Dez lista „Epic Games”."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "Lista „Ubisoft Connect”"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."
-msgstr ""
+msgstr "Act/Dez lista Ubisoft Connect."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
-msgstr ""
+msgstr "Lățimea ferestrei"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 msgid "Change the window width."
-msgstr ""
+msgstr "Modifică lățimea ferestrei."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Window height"
-msgstr ""
+msgstr "Înălțimea ferestrei"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Change the window height."
-msgstr ""
+msgstr "Modifică înălțimea ferestrei."
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
-msgstr ""
+msgstr "Arată notificări."
 
 #: data/com.usebottles.bottles.gschema.xml:51
 msgid "Temp cleaning"
-msgstr ""
+msgstr "Eliminarea fișierelor temporare"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid "Clean the temp path when booting the system."
-msgstr ""
+msgstr "Elimină fișierele temporare la pornirea sistemului."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Release Candidate"
-msgstr ""
+msgstr "Versiunea de testare"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle release candidate for runners."
@@ -2793,27 +2927,27 @@ msgstr "Act/Dez candidatul de lansare pentru executanți."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
-msgstr ""
+msgstr "Fereastra de pornire"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
-msgstr ""
+msgstr "Alege în ce fereastră trebuie pornită aplicația."
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Act/Dez caracteristicile experimentale, cum ar fi gestionarea versiunii și a "
-"programelor de instalare. Candidat de lansare pentru executanți."
+"Act/Dez caracteristicile experimentale, cum ar fi gestionarea versiunilor și "
+"a programelor de instalare. Candidat de lansare pentru executanți."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
-msgstr ""
+msgstr "Asistență Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
-msgstr ""
+msgstr "Act/Dez asistența pentru prefixele Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:sandbox"
@@ -2830,6 +2964,7 @@ msgstr "Închide automat Bottles"
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
+"Închide Bottles după ce ai pornit un executabil din gestionarul de fișiere."
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
@@ -2862,8 +2997,8 @@ msgstr ""
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"Sistemul de gestionare a versiunilor al programului Sticle îți menține munca "
-"în siguranță și îți permite să o restaurezi mai târziu."
+"Gestionarea versiunilor sticlei îți păstrează munca în siguranță și îți "
+"permite să o recuperezi mai târziu!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:17
 msgid "Features:"
@@ -2879,6 +3014,8 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
+"Pornește executabile (.exe/.msi) în sticle, direct din opțiunile "
+"gestionarului de fișiere"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:21
 msgid "Automated detection of applications installed in your bottles"
@@ -2894,7 +3031,7 @@ msgstr "Înlocuiește DLL-urile direct din preferințele sticlei"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:24
 msgid "On-the-fly runner change for any Bottle"
-msgstr "Schimbă din mers executantul pentru orice Sticlă"
+msgstr "Schimbă din mers executantul pentru orice sticlă"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:25
 msgid ""
@@ -2927,7 +3064,7 @@ msgstr "Acces la ProtonDB și WineHQ pentru asistență"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:31
 msgid "System for bringing your configuration to new versions of Bottles"
-msgstr ""
+msgstr "Sistem pentru aducerea configurării la noile versiuni ale sticlelor"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:32
 msgid "Back up and import bottles"
@@ -2935,11 +3072,11 @@ msgstr "Copiază și importă sticle"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:33
 msgid "Import Wine prefixes from other managers"
-msgstr ""
+msgstr "Importă prefixe Wine de la alți gestionari"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:34
 msgid "Bottles versioning"
-msgstr "Bottles: gestionarea versiunii"
+msgstr "Gestionarea versiunilor sticlelor"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:35
 msgid "... and much more that you can find by installing Bottles!"
@@ -2947,15 +3084,17 @@ msgstr "... și multe altele pe care le puteți găsi instalând Bottles!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
-msgstr ""
+msgstr "Actualizează informațiile metadatelor"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
 msgstr ""
+"Adaugă mai multe informații despre actualizare și corectează informațiile "
+"despre versiune"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Fixed \"Add to Steam\" button"
-msgstr ""
+msgstr "S-a remediat butonul „Adaugă la Steam”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
@@ -2963,11 +3102,11 @@ msgstr "Reparat BottleConfig fiind fără serializare"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "S-a rezolvat eșecul extracției duble Patool"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
 msgid "Correct version"
-msgstr ""
+msgstr "Versiunea corectă"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Fix crash when creating a bottle"
@@ -2979,41 +3118,46 @@ msgstr "Schimbare majoră: Reproiectarea interfeței pentru „Sticlă nouă”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Quality of life improvements:"
-msgstr ""
+msgstr "Îmbunătățirea calității vieții:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
 msgstr ""
+"Înlocuiește simbolul emote-dragoste cu biblioteca din pagina bibliotecii"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
-msgstr ""
+msgstr "Adaugă un aviz pentru „Pornește executabilul”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
-msgstr ""
+msgstr "Erori corectate:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "Adăugarea scurtăturii la Steam a dus la o eroare"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
-msgstr ""
+msgstr "A apărut o eroare la importarea copiilor de rezervă"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"Timpul de executare Steam este activat automat când se folosește wine-ge-"
+"custom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"Diverse remedieri legate de bibliotecă, cum ar fi coperți goale și blocări "
+"legate de intrările lipsă"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "Rezolvarea diferitelor probleme legate de codificarea textului"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
@@ -3022,11 +3166,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
 msgid "Correct version date"
-msgstr ""
+msgstr "Data versiunii corecte"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
+msgstr "Ascunde erorile critice legate de NVIDIA pe sisteme non-NVIDIA"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
@@ -3034,23 +3178,27 @@ msgstr "Îmbunătățiri și remedieri la Gamescope"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "Instalarea dependenței este mai rapidă și mai stabilă"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
 msgstr ""
+"Verificarea stării de sănătate are mai multe informații pentru o depanare "
+"mai rapidă"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
 msgstr ""
+"NVAPI are o mulțime de remedieri și este mai stabil, acum ar trebui să "
+"funcționeze corect"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "Remedierea blocării la descărcarea unei componente"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "Îmbunătățirea codului prin evitarea blocării rotației"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
@@ -3059,10 +3207,12 @@ msgstr "Mai multe variabile pentru scripturile de instalare"
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"Corectarea dialogului care afișează „Totul este gata” în timp ce, de fapt, "
+"nu era gata"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "Îmbunătățirea construirii sistemului"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
@@ -3070,27 +3220,31 @@ msgstr "Activarea VKD3D în mod prestabilit la crearea de sticle pentru jocuri"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
-msgstr ""
+msgstr "Corectarea blocărilor la citirea fișierelor Steam cu codificări greșite"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"Corectarea componentelor care nu se actualizează corect în UI după instalare/"
+"dezinstalare"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "Mai multe remedieri FSR"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"Rezolvată problema când un program se închide după ce a fost pornit din „"
+"Pornește executabilul”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "si multe, multe, multe altele!"
 
 #, fuzzy
 #~ msgid "Create a new Bottle…"
