@@ -17,7 +17,7 @@
 
 from gettext import gettext as _
 
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk
 
 from bottles.backend.logger import Logger
 from bottles.backend.managers.library import LibraryManager
@@ -89,8 +89,8 @@ class LibraryEntry(Gtk.Box):
                     path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
 
             if path is not None:
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 240, 360)
-                self.img_cover.set_pixbuf(pixbuf)
+                # Gtk.Picture.set_pixbuf deprecated in GTK 4.12
+                self.img_cover.set_filename(path)
                 self.img_cover.set_visible(True)
                 self.label_no_cover.set_visible(False)
 
