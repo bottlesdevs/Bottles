@@ -242,6 +242,7 @@ class Bottles(Adw.Application):
         It is used by the [Ctrl+Q] shortcut.
         """
         logging.info(_("[Quit] request received."), )
+        MainWindow.on_close_request()
         quit()
 
     @staticmethod
