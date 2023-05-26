@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-04-18 22:21+0000\n"
+"PO-Revision-Date: 2023-05-27 10:51+0000\n"
 "Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -412,9 +412,8 @@ msgid "Versioning enabled for this bottle"
 msgstr "A verziókezelés engedélyezve van ehhez a palackhoz"
 
 #: bottles/frontend/ui/details-bottle.blp:218
-#, fuzzy
 msgid "Versioning is active for this bottle."
-msgstr "A verziókezelés aktív ebben a palackban."
+msgstr "A verziókezelés aktív ehhez a palackhoz."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
@@ -435,10 +434,14 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Kattintson a \"Végrehajtható fájl futtatása…\" gombra végrehajtható fájl "
+"futtatásához, \"Parancsikonok hozzáadása…\" gombra egy végrehajtható fájl "
+"hozzáadásához a Programok listához, vagy a \"Programok telepítése…\" gombra "
+"a közösség által felügyelt programok telepítéséhez."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
-msgstr ""
+msgstr "Parancsikonok hozzáadása…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 msgid "Install Programs…"
@@ -555,7 +558,7 @@ msgstr ""
 "A függőségek olyan erőforrások, amelyek javítják a Windows szoftverek "
 "kompatibilitását.\n"
 "\n"
-"Ezen az oldalon található fájlokat harmadik felek biztosítják saját licence "
+"Ezen az oldalon található fájlokat harmadik felek biztosítják saját licenc "
 "alapján. Telepítésükkel elfogadja a vonatkozó licencfeltételeiket."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
@@ -706,7 +709,7 @@ msgstr "Javítja a teljesítményt a megjelenés árán. Csak Vulkannal működi
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "FidelityFX Super Resolution beállítások kezelése"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
@@ -717,16 +720,18 @@ msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Diszkrét videokártya használata a teljesítmény növelésére az "
+"energiafogyasztás árán."
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr "Utófeldolgozási effektek"
+msgstr "Utófeldolgozási hatások"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
-"Különböző utófeldolgozási effektek hozzáadása a vkBasalt segítségével. Csak "
+"Különböző utófeldolgozási hatások hozzáadása a vkBasalt segítségével. Csak "
 "Vulkanon működik."
 
 #: bottles/frontend/ui/details-preferences.blp:138
@@ -779,7 +784,7 @@ msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.blp:202
 msgid "Monitor Performance"
-msgstr "Monitorteljesítmény"
+msgstr "Teljesítmény monitorozása"
 
 #: bottles/frontend/ui/details-preferences.blp:203
 msgid ""
@@ -959,7 +964,7 @@ msgstr "Frissítés"
 
 #: bottles/frontend/ui/details-taskmanager.blp:22
 msgid "Stop process"
-msgstr "Folyamat leállítása"
+msgstr "Folyamat megszakítása"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 msgid "No Snapshots Found"
@@ -1208,7 +1213,7 @@ msgstr "Játék felbontása"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr ""
+msgstr "A videojáték felbontását használja referenciaként pixelben."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
@@ -1229,6 +1234,8 @@ msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
+"A felbontás felskálázása, ha a játék felbontásánál nagyobb felbontást "
+"használ pixelben."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
@@ -1415,13 +1422,13 @@ msgstr ""
 "problémákat okozhat, és megakadályozhatja, hogy megfelelően működjenek.\n"
 "\n"
 "Inkább a Wine-GE használatát javasoljuk, amely a Proton Steamen kívüli "
-"\"futtatásra szánt verziója.\n"
+"futtatásra szánt verziója.\n"
 "\n"
 "A folytatás automatikusan engedélyezi a Steam futtatókörnyezetet (ha van a "
-"rendszerben és a Bottles érzékeli), hogy az hozzáférhessen a szükséges "
+"rendszerben és a Palackok érzékeli), hogy az hozzáférhessen a szükséges "
 "könyvtárakhoz, és korlátozza a kompatibilitási problémákat. Vegye "
-"figyelembe, hogy a GloriousEggroll, a futtató szolgáltatója nem felelős "
-"semmilyen problémáért, és kérjük, hogy ezeket ne nekik jelentse."
+"figyelembe, hogy GloriousEggroll, a futtató szolgáltatója nem felelős "
+"semmilyen problémáért, és kérjük, hogy ezeket ne neki jelentse."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1540,7 +1547,7 @@ msgstr "Alapértelmezett beállítások"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "A hatások a lista sorrendje szerint vannak alkalmazva."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
 msgid "Effects"
@@ -1818,7 +1825,7 @@ msgstr "Eltávolítás a könyvtárból"
 
 #: bottles/frontend/ui/library-entry.blp:143
 msgid "Stop"
-msgstr "Leállítás"
+msgstr "Megszakítás"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:196
@@ -1925,6 +1932,9 @@ msgid ""
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
 msgstr ""
+"Ez a felhasználói könyvtárat felfedezhetővé teszi a palackban, kockáztatva a "
+"személyes adatok megosztását a Windows szoftverekkel. Ez a beállítás a "
+"palack létrehozása után nem módosítható."
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
@@ -1944,7 +1954,7 @@ msgstr "Palackok könyvtár"
 
 #: bottles/frontend/ui/new.blp:177
 msgid "Directory that will contain the data of this bottle."
-msgstr ""
+msgstr "Könyvtár, amely tartalmazza a palack adatait."
 
 #: bottles/frontend/ui/new.blp:249
 msgid "_Close"
@@ -2082,7 +2092,7 @@ msgstr "Igényli a Steam Windows verziójának palackba való telepítését."
 
 #: bottles/frontend/ui/preferences.blp:107
 msgid "List Epic Games in Programs List"
-msgstr "Epic Games alkalmazások listázása a programok listájában"
+msgstr "Epic Games játékok listázása a programok listájában"
 
 #: bottles/frontend/ui/preferences.blp:108
 msgid "Requires Epic Games Store installed in the bottle."
@@ -2090,7 +2100,7 @@ msgstr "Igényli az Epic Games palackba való telepítését."
 
 #: bottles/frontend/ui/preferences.blp:117
 msgid "List Ubisoft Games in Programs List"
-msgstr ""
+msgstr "Ubisoft játékok listázása a programok listájában"
 
 #: bottles/frontend/ui/preferences.blp:118
 msgid "Requires Ubisoft Connect installed in the bottle."
@@ -2113,11 +2123,8 @@ msgid "Runners"
 msgstr "Futtatók"
 
 #: bottles/frontend/ui/preferences.blp:181
-#, fuzzy
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr ""
-"Megakadályozza, hogy a palackok futtatható fájlokat futtassanak, ha a futó "
-"nem érhető el"
+msgstr "A Palackok offline üzemmódban fut, így a futtatók nem elérhetőek."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2133,7 +2140,7 @@ msgstr "DLL összetevők"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr ""
+msgstr "A Palackok offline üzemmódban fut, így a DLL-ek nem elérhetőek."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2279,7 +2286,7 @@ msgstr "{0} hozzáadva"
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
 msgid "Select Executable"
-msgstr "Futtatható fájl kiválasztása"
+msgstr "Végrehajtható fájl kiválasztása"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2372,9 +2379,8 @@ msgstr ""
 "keresztül, vagy válasszon egy újat az alkalmazások futtatásához."
 
 #: bottles/frontend/views/bottle_details.py:597
-#, fuzzy
 msgid "Are you sure you want to force stop all processes?"
-msgstr "Biztosan törölni szeretné ezt a palackot és az összes fájlját?"
+msgstr "Biztos erőltetetten meg szeretné szakítani az összes folyamatot?"
 
 #: bottles/frontend/views/bottle_details.py:598
 msgid "This can cause data loss, corruption, and programs to malfunction."
@@ -2383,7 +2389,7 @@ msgstr ""
 
 #: bottles/frontend/views/bottle_details.py:601
 msgid "Force _Stop"
-msgstr "Erőltetett _leállítás"
+msgstr "Erőltetett _megszakítás"
 
 #: bottles/frontend/views/bottle_preferences.py:195
 msgid "This feature is unavailable on your system."
@@ -2391,7 +2397,7 @@ msgstr "Ez a funkció nem érhető el a rendszerén."
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} A funkció hozzáadásához, kérjük, futtassa ezt: flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
 msgid "This bottle name is already in use."
@@ -2465,7 +2471,7 @@ msgstr "Nem alkalmazható"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "Végrehajtható fájl futtatása itt: \"{self.config.Name}\""
 
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
@@ -2500,7 +2506,7 @@ msgstr "Nem sikerült a palackot létrehozni"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "A palack létrehozása egy vagy több hibával sikertelen volt."
 
 #. Show success
 #: bottles/frontend/views/new.py:232
@@ -2545,21 +2551,24 @@ msgstr "Új_raindítás"
 
 #: bottles/frontend/views/preferences.py:243
 msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
+msgstr "A Valve Wine-ján alapul, tartalmazza a staging és a Proton patch-eket."
 
 #: bottles/frontend/views/preferences.py:244
 msgid "Based on Wine upstream, includes staging and Proton patches."
 msgstr ""
+"Az upstream Wine-on alapul, tartalmazza a staging és a Proton patch-eket."
 
 #: bottles/frontend/views/preferences.py:247
 msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
+msgstr "Az upstream Wine-on alapul, tartalmazza a staging patch-eket."
 
 #: bottles/frontend/views/preferences.py:248
 msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
+"A Valve Wine-ján alapul, tartalmazza a staging, a Proton, és a Steam-"
+"specifikus patch-eket. Igényli a bekapcsolt Steam-futtatókörnyezetet."
 
 #: bottles/frontend/views/preferences.py:250
 msgid "Other"
@@ -2605,6 +2614,9 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
+"Ez az alkalmazás rosszul működhet. A telepítő úgy lett beállítva, hogy a "
+"lehető legjobb élményt nyújtsa, de számítson hibákra, instabilitásra és a "
+"működő funkciók hiányára."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
@@ -2631,7 +2643,7 @@ msgstr "Vélemény ehhez: {0}"
 #: bottles/frontend/widgets/program.py:194
 #, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "\\\"{0}\\\" Leállítása…"
+msgstr "\"{0}\" megszakítása…"
 
 #: bottles/frontend/widgets/program.py:190
 #, python-brace-format
@@ -2833,7 +2845,7 @@ msgstr "Epic Games lista"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr "epic games lista ki-/bekapcsolása."
+msgstr "Epic Games lista ki-/bekapcsolása."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
@@ -3046,6 +3058,8 @@ msgstr "Metaadat-információ frissítése"
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
 msgstr ""
+"További frissítési információk hozzáadása és a kiadási megjegyzések helyes "
+"verziója"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Fixed \"Add to Steam\" button"
@@ -3053,11 +3067,11 @@ msgstr "\"Hozzáadás Steamhez\" gomb javítva"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr ""
+msgstr "Javítva, hogy a BottleConfig nem szerializálható"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "A Patool dupla extrakció hibája javítva"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
 #, fuzzy
@@ -3078,12 +3092,11 @@ msgstr "Az életminőség javítások:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "Szívecske ikon cseréje könyvtár ikonra a könyvtár oldalon"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
-#, fuzzy
 msgid "Add toast for \"Run Executable\""
-msgstr "Egyéni végrehajtható fájl útvonal hozzáadása"
+msgstr "Értesítés hozzáadása a \"Végrehajtható fájl futtatása\"-hoz"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
@@ -3091,7 +3104,7 @@ msgstr "Hibajavítások:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "A parancsikon hozzáadása a Steamhez hibát eredményezett"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
@@ -3100,12 +3113,16 @@ msgstr "A biztonsági mentés importálása hibát eredményezett"
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"A Steam-futtatókörnyezet automatikusan engedélyezve van a wine-ge-custom "
+"használatakor"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"Különféle könyvtárral kapcsolatos javítások, mint az üres borítók, és "
+"hiányzó elemekkal kapcsolatos összeomlások"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
@@ -3123,6 +3140,7 @@ msgstr "Létrehozás dátuma"
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
 msgstr ""
+"Az NVIDIA-val kapcsolatos kritikus hibák elrejtése nem NVIDIA rendszereken"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
@@ -3130,19 +3148,22 @@ msgstr "Gamescope javítások"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "A függőségek telepítése gyorsabb és stabilabb"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
 msgstr ""
+"Az állapotellenőrzés több információt tartalmaz a gyorsabb hibakereséshez"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
 msgstr ""
+"Az NVAPI sok javítást kapott és sokkal stabilabb, most már megfelelően kell "
+"működnie"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "Összetevő letöltésekor megjelenő összeomlás javítása"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
@@ -3150,11 +3171,14 @@ msgstr "Backend kód javítása a spin-lock elkerülésével"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "Több változó a telepítő szkripteléséhez"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
+#, fuzzy
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"Kezdő párbeszédpanel javítása amely \"Minden kész\"-t mutatott, miközben "
+"valójában nem állt készen"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
@@ -3163,16 +3187,20 @@ msgstr "Az építési rendszer javítása"
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
 msgstr ""
+"A VKD3D alapértelmezett engedélyezése játékhoz való palackok létrehozásakor"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
 msgstr ""
+"Összeomlások javítása rossz kódolással rendelkező Steam fájlok beolvasásakor"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"A telepítés/eltávolítás után nem megfelelően frissülő komponensek javítása a "
+"felhasználói felületen"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
@@ -3183,6 +3211,8 @@ msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"Hiba javítása, amikor egy program bezáródik miután a \"Végrehajtható fájl "
+"futtatása\"-ból lett elindítva"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
