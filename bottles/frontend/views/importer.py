@@ -64,7 +64,7 @@ class ImporterView(Adw.Bin):
         @GtkUtils.run_in_main_loop
         def update(result, error=False):
             widget.set_sensitive(True)
-            if result.status:
+            if result.ok:
                 wineprefixes = result.data.get("wineprefixes")
                 if len(wineprefixes) == 0:
                     return
@@ -88,7 +88,7 @@ class ImporterView(Adw.Bin):
 
     @GtkUtils.run_in_main_loop
     def __finish(self, result, error=False):
-        if result.status:
+        if result.ok:
             self.window.show_toast(_("Backup imported successfully"))
         else:
             self.window.show_toast(_("Import failed"))
@@ -109,10 +109,8 @@ class ImporterView(Adw.Bin):
             RunAsync(
                 task_func=BackupManager.import_backup,
                 callback=self.__finish,
-                window=self.window,
                 scope="full",
                 path=dialog.get_file().get_path(),
-                manager=self.manager
             )
 
         dialog = Gtk.FileChooserNative.new(
@@ -148,10 +146,8 @@ class ImporterView(Adw.Bin):
             RunAsync(
                 task_func=BackupManager.import_backup,
                 callback=self.__finish,
-                window=self.window,
                 scope="config",
                 path=dialog.get_file().get_path(),
-                manager=self.manager
             )
 
         dialog = Gtk.FileChooserNative.new(

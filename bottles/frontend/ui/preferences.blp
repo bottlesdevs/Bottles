@@ -1,33 +1,34 @@
 using Gtk 4.0;
+using Adw 1;
 
-template PreferencesWindow : .AdwPreferencesWindow {
+template PreferencesWindow : Adw.PreferencesWindow {
   title: _("Preferences");
   modal: true;
-  default-width: "750";
+  default-width: 750;
   hide-on-close: true;
 
-  .AdwPreferencesPage {
-    icon-name: "applications-system-symbolic";
+  Adw.PreferencesPage {
+    icon-name: "preferences-system-symbolic";
     title: _("General");
 
-    .AdwPreferencesGroup {
+    Adw.PreferencesGroup {
       title: _("Appearance");
 
-      .AdwActionRow row_theme {
+      Adw.ActionRow row_theme {
         title: _("Dark Mode");
         subtitle: _("Whether Bottles should use the dark color scheme.");
         visible: false;
-        activatable-widget: "switch_theme";
+        activatable-widget: switch_theme;
 
         Switch switch_theme {
           valign: center;
         }
       }
 
-      .AdwActionRow {
+      Adw.ActionRow {
         title: _("Show Update Date");
         subtitle: _("Whether to show the update date in the bottle list.");
-        activatable-widget: "switch_update_date";
+        activatable-widget: switch_update_date;
 
         Switch switch_update_date {
           valign: center;
@@ -35,33 +36,33 @@ template PreferencesWindow : .AdwPreferencesWindow {
       }
     }
 
-    .AdwPreferencesGroup {
+    Adw.PreferencesGroup {
       title: _("General");
 
-      .AdwActionRow {
+      Adw.ActionRow {
         title: _("Notifications");
         subtitle: _("Show notifications for downloads and installs.");
-        activatable-widget: "switch_notifications";
+        activatable-widget: switch_notifications;
 
         Switch switch_notifications {
           valign: center;
         }
       }
 
-      .AdwActionRow {
+      Adw.ActionRow {
         title: _("Temp Files");
         subtitle: _("Clean temp files when Bottles launches?");
-        activatable-widget: "switch_temp";
+        activatable-widget: switch_temp;
 
         Switch switch_temp {
           valign: center;
         }
       }
 
-      .AdwActionRow {
+      Adw.ActionRow {
         title: _("Close Bottles After Starting a Program");
         subtitle: _("Close Bottles after starting a program from the file manager.");
-        activatable-widget: "switch_auto_close";
+        activatable-widget: switch_auto_close;
 
         Switch switch_auto_close {
           valign: center;
@@ -69,13 +70,13 @@ template PreferencesWindow : .AdwPreferencesWindow {
       }
     }
 
-    .AdwPreferencesGroup {
+    Adw.PreferencesGroup {
       title: _("Integrations");
 
-      .AdwActionRow action_steam_proton {
+      Adw.ActionRow action_steam_proton {
         title: _("Steam Proton Prefixes");
         subtitle: _("List and manage Steam Proton prefixes.");
-        activatable-widget: "switch_steam";
+        activatable-widget: switch_steam;
 
         Button btn_steam_proton_doc {
           tooltip-text: _("Read Documentation");
@@ -93,30 +94,30 @@ template PreferencesWindow : .AdwPreferencesWindow {
         }
       }
 
-      .AdwActionRow {
+      Adw.ActionRow {
         title: _("List Steam Apps in Programs List");
         subtitle: _("Requires Steam for Windows installed in the bottle.");
-        activatable-widget: "switch_steam_programs";
+        activatable-widget: switch_steam_programs;
 
         Switch switch_steam_programs {
           valign: center;
         }
       }
 
-      .AdwActionRow {
+      Adw.ActionRow {
         title: _("List Epic Games in Programs List");
         subtitle: _("Requires Epic Games Store installed in the bottle.");
-        activatable-widget: "switch_epic_games";
+        activatable-widget: switch_epic_games;
 
         Switch switch_epic_games {
           valign: center;
         }
       }
 
-      .AdwActionRow {
+      Adw.ActionRow {
         title: _("List Ubisoft Games in Programs List");
         subtitle: _("Requires Ubisoft Connect installed in the bottle.");
-        activatable-widget: "switch_ubisoft_connect";
+        activatable-widget: switch_ubisoft_connect;
 
         Switch switch_ubisoft_connect {
           valign: center;
@@ -124,10 +125,20 @@ template PreferencesWindow : .AdwPreferencesWindow {
       }
     }
 
-    .AdwPreferencesGroup {
+    Adw.PreferencesGroup {
       title: _("Advanced");
 
-      .AdwActionRow {
+      Adw.ActionRow action_prerelease {
+        title: _("Pre-Release");
+        subtitle: _("Display unstable versions of runners and components.");
+        activatable-widget: switch_release_candidate;
+
+        Switch switch_release_candidate {
+          valign: center;
+        }
+      }
+
+      Adw.ActionRow {
         title: _("Bottles Directory");
         subtitle: _("Directory that contains the data of your Bottles.");
         activatable-widget: btn_bottles_path;
@@ -162,7 +173,7 @@ template PreferencesWindow : .AdwPreferencesWindow {
     }
   }
 
-  .AdwPreferencesPage {
+  Adw.PreferencesPage {
     icon-name: "system-run-symbolic";
     title: _("Runners");
 
@@ -173,7 +184,7 @@ template PreferencesWindow : .AdwPreferencesWindow {
         name: "installers_offline";
 
         child:
-        .AdwStatusPage {
+        Adw.StatusPage {
           icon-name: "network-error-symbolic";
           title: _("You're offline :(");
           vexpand: true;
@@ -186,7 +197,7 @@ template PreferencesWindow : .AdwPreferencesWindow {
         name: "installers_loading";
 
         child:
-        .AdwStatusPage {
+        Adw.StatusPage {
           vexpand: true;
           hexpand: true;
 
@@ -200,26 +211,17 @@ template PreferencesWindow : .AdwPreferencesWindow {
         name: "installers_list";
 
         child:
-        .AdwPreferencesPage {
-          .AdwPreferencesGroup list_runners {
+        Adw.PreferencesPage {
+          Adw.PreferencesGroup list_runners {
             vexpand: true;
             hexpand: true;
-            .AdwActionRow action_prerelease {
-              title: _("Pre-Release");
-              subtitle: _("Display unstable versions of runners.");
-              activatable-widget: "switch_release_candidate";
-
-              Switch switch_release_candidate {
-                valign: center;
-              }
-            }
           }
         };
       }
     }
   }
 
-  .AdwPreferencesPage {
+  Adw.PreferencesPage {
     icon-name: "applications-games-symbolic";
     title: _("DLL Components");
 
@@ -230,7 +232,7 @@ template PreferencesWindow : .AdwPreferencesWindow {
         name: "dlls_offline";
 
         child:
-        .AdwStatusPage {
+        Adw.StatusPage {
           icon-name: "network-error-symbolic";
           title: _("You're offline :(");
           vexpand: true;
@@ -243,7 +245,7 @@ template PreferencesWindow : .AdwPreferencesWindow {
         name: "dlls_loading";
 
         child:
-        .AdwStatusPage {
+        Adw.StatusPage {
           vexpand: true;
           hexpand: true;
 
@@ -257,20 +259,20 @@ template PreferencesWindow : .AdwPreferencesWindow {
         name: "dlls_list";
 
         child:
-        .AdwPreferencesPage {
-          .AdwPreferencesGroup list_dxvk {
+        Adw.PreferencesPage {
+          Adw.PreferencesGroup list_dxvk {
             title: _("DXVK");
           }
 
-          .AdwPreferencesGroup list_vkd3d {
+          Adw.PreferencesGroup list_vkd3d {
             title: _("VKD3D");
           }
 
-          .AdwPreferencesGroup list_nvapi {
+          Adw.PreferencesGroup list_nvapi {
             title: _("DXVK-NVAPI");
           }
 
-          .AdwPreferencesGroup list_latencyflex {
+          Adw.PreferencesGroup list_latencyflex {
             title: _("LatencyFleX");
           }
         };
@@ -278,31 +280,31 @@ template PreferencesWindow : .AdwPreferencesWindow {
     }
   }
 
-  .AdwPreferencesPage pref_core {
+  Adw.PreferencesPage pref_core {
     icon-name: "application-x-addon-symbolic";
     title: _("Core");
     visible: false;
 
-    .AdwPreferencesGroup list_runtimes {
+    Adw.PreferencesGroup list_runtimes {
       title: _("Runtime");
     }
 
-    .AdwPreferencesGroup list_winebridge {
+    Adw.PreferencesGroup list_winebridge {
       title: _("WineBridge");
     }
   }
 
-  .AdwPreferencesPage {
+  Adw.PreferencesPage {
     icon-name: "applications-science-symbolic";
     title: _("Experiments");
 
-    .AdwPreferencesGroup {
+    Adw.PreferencesGroup {
       description: _("These features are under heavy development and may be unstable, expect bugs and breakage.");
 
-      .AdwActionRow {
+      Adw.ActionRow {
         title: _("Sandbox per bottle");
         subtitle: _("In early development.");
-        activatable-widget: "switch_sandbox";
+        activatable-widget: switch_sandbox;
 
         Switch switch_sandbox {
           valign: center;

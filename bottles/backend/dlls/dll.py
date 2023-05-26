@@ -18,8 +18,9 @@
 import os
 import shutil
 from glob import glob
-from typing import NewType
+from typing import NewType, Optional
 from abc import abstractmethod
+from copy import deepcopy
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -32,8 +33,9 @@ logging = Logger()
 
 
 class DLLComponent:
-    base_path: str = None
+    base_path: str
     dlls: dict = {}
+    checked_dlls: dict = {}
     version: str = None
 
     def __init__(self, version: str):
@@ -43,11 +45,11 @@ class DLLComponent:
 
     @staticmethod
     @abstractmethod
-    def get_base_path(version: str):
+    def get_base_path(version: str) -> str:
         pass
 
-    def check(self):
-        found = self.dlls.copy()
+    def check(self) -> bool:
+        found = deepcopy(self.dlls)
 
         if None in self.dlls:
             logging.error(f"DLL(s) \"{self.dlls[None]}\" path haven't been found, ignoring...")
@@ -61,22 +63,12 @@ class DLLComponent:
             for dll in self.dlls[path]:
                 _dll = os.path.join(_path, dll)
                 if not os.path.exists(_dll):
-                    try:
-                        del found[path][dll]
-                    except TypeError:
-                        # WORKAROUND: I'm not able to find what is causing this
-                        #          TypeError, I've tested with some different
-                        #          setups and I've never been able to reproduce
-                        #          it, so I'm just providing a workaround for
-                        #          not breaking the app. Thiw workaround removes
-                        #          the path from the list of found dlls as it
-                        #          seems to empty in some cases.
-                        del found[path]
+                    found[path].remove(dll)
 
         if len(found) == 0:
             return False
 
-        self.dlls = found
+        self.checked_dlls = found
         return True
 
     def install(self, config: BottleConfig, overrides_only: bool = False, exclude=None):
@@ -87,12 +79,12 @@ class DLLComponent:
         if exclude is None:
             exclude = []
 
-        if None in self.dlls:
-            logging.error(f"DLL(s) \"{self.dlls[None]}\" path haven't been found, ignoring...")
+        if None in self.checked_dlls:
+            logging.error(f"DLL(s) \"{self.checked_dlls[None]}\" path haven't been found, ignoring...")
             return
 
-        for path in self.dlls:
-            for dll in self.dlls[path]:
+        for path in self.checked_dlls:
+            for dll in self.checked_dlls[path]:
                 if dll not in exclude:
                     dll_name = dll.split('/')[-1].split('.')[0]
                     if overrides_only:

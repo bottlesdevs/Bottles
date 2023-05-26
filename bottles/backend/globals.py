@@ -19,6 +19,7 @@ import os
 import shutil
 from functools import lru_cache
 from pathlib import Path
+from typing import Dict
 
 
 @lru_cache
@@ -78,3 +79,9 @@ vkbasalt_available = Paths.is_vkbasalt_available()
 mangohud_available = shutil.which("mangohud") or False
 obs_vkc_available = shutil.which("obs-vkcapture") or False
 vmtouch_available = shutil.which("vmtouch") or False
+
+# encoding detection correction, following windows defaults
+locale_encodings: Dict[str, str] = {
+    'ja_JP': 'cp932',
+    'zh_CN': 'gbk'
+}

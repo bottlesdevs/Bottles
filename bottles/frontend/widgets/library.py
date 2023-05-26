@@ -22,6 +22,7 @@ from gi.repository import Gtk, GdkPixbuf
 from bottles.backend.logger import Logger
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.thumbnail import ThumbnailManager
+from bottles.backend.models.result import Result
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winedbg import WineDbg
@@ -118,12 +119,16 @@ class LibraryEntry(Gtk.Box):
         return programs[0]
 
     @GtkUtils.run_in_main_loop
-    def __reset_buttons(self, result=False, error=False):
-        status = False
-        if result:
-            status = result
-            if not isinstance(result, bool):
+    def __reset_buttons(self, result: Result | bool = None, error=False):
+        match result:
+            case Result():
                 status = result.status
+            case bool():
+                status = result
+            case _:
+                logging.error(f"result should be Result or bool, but it was {type(result)}")
+                status = False
+
         self.btn_remove.set_visible(status)
         self.btn_stop.set_visible(not status)
         self.btn_run.set_visible(status)

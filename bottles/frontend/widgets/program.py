@@ -327,7 +327,7 @@ class ProgramEntry(Adw.ActionRow):
 
     def add_to_steam(self, _widget):
         def update(result, _error=False):
-            if result.status:
+            if result.ok:
                 self.window.show_toast(_("\"{0}\" added to your Steam library").format(self.program["name"]))
 
         steam_manager = SteamManager(self.config)

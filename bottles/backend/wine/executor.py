@@ -1,20 +1,19 @@
 import os
 import shlex
 import uuid
-from typing import NewType, Union
+from typing import Union, Optional
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.cmd import CMD
+from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.msiexec import MsiExec
 from bottles.backend.wine.start import Start
-from bottles.backend.wine.explorer import Explorer
-from bottles.backend.wine.winepath import WinePath
+from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.winedbg import WineDbg
-from bottles.backend.wine.winebridge import WineBridge
+from bottles.backend.wine.winepath import WinePath
 
 logging = Logger()
 
@@ -27,17 +26,17 @@ class WineExecutor:
             exec_path: str,
             args: str = "",
             terminal: bool = False,
-            cwd: str = None,
-            environment: dict = None,
+            cwd: Optional[str] = None,
+            environment: Optional[dict] = None,
             move_file: bool = False,
             move_upd_fn: callable = None,
-            post_script: str = None,
-            monitoring: list = None,
-            override_dxvk: bool = None,
-            override_vkd3d: bool = None,
-            override_nvapi: bool = None,
-            override_fsr: bool = None,
-            override_virt_desktop: bool = None
+            post_script: Optional[str] = None,
+            monitoring: Optional[list] = None,
+            override_dxvk: Optional[bool] = None,
+            override_vkd3d: Optional[bool] = None,
+            override_nvapi: Optional[bool] = None,
+            override_fsr: Optional[bool] = None,
+            override_virt_desktop: Optional[bool] = None
     ):
         logging.info("Launching an executable…")
         self.config = config
@@ -64,19 +63,19 @@ class WineExecutor:
 
         env_dll_overrides = []
         if override_dxvk is not None \
-            and not override_dxvk \
-            and self.config.Parameters.dxvk:
-                env_dll_overrides.append("d3d9,d3d11,d3d10core,dxgi=b")
+                and not override_dxvk \
+                and self.config.Parameters.dxvk:
+            env_dll_overrides.append("d3d9,d3d11,d3d10core,dxgi=b")
 
         if override_vkd3d is not None \
-            and not override_vkd3d \
-            and self.config.Parameters.vkd3d:
-                env_dll_overrides.append("d3d12=b")
+                and not override_vkd3d \
+                and self.config.Parameters.vkd3d:
+            env_dll_overrides.append("d3d12=b;d3d12core=b,n")
 
         if override_nvapi is not None \
-            and not override_nvapi \
-            and self.config.Parameters.dxvk_nvapi:
-                env_dll_overrides.append("nvapi,nvapi64=b")
+                and not override_nvapi \
+                and self.config.Parameters.dxvk_nvapi:
+            env_dll_overrides.append("nvapi,nvapi64=b")
 
         if override_fsr is not None and override_fsr:
             self.environment["WINE_FULLSCREEN_FSR"] = "1"
@@ -88,10 +87,10 @@ class WineExecutor:
             self.environment["WINEDLLOVERRIDES"] = ",".join(env_dll_overrides)
 
     @classmethod
-    def run_program(cls, config: BottleConfig, program: dict, terminal: bool=False):
+    def run_program(cls, config: BottleConfig, program: dict, terminal: bool = False):
         if program is None:
             logging.warning("The program entry is not well formatted.")
-            
+
         dxvk = config.Parameters.dxvk
         vkd3d = config.Parameters.vkd3d
         nvapi = config.Parameters.dxvk_nvapi
@@ -209,18 +208,20 @@ class WineExecutor:
         )
 
     def run(self) -> Result:
-        if self.exec_type in ["exe", "msi"]:
-            return self.__launch_with_bridge()
-        if self.exec_type == "batch":
-            return self.__launch_batch()
-        if self.exec_type in ["lnk", "unsupported"]:
-            return self.__launch_with_starter()
-        if self.exec_type == "dll":
-            return self.__launch_dll()
-        return Result(
-            status=False,
-            data={"message": "Unknown executable type."}
-        )
+        match self.exec_type:
+            case "exe" | "msi":
+                return self.__launch_with_bridge()
+            case "batch":
+                return self.__launch_batch()
+            case "lnk" | "unsupported":
+                return self.__launch_with_starter()
+            case "dll":
+                return self.__launch_dll()
+            case _:
+                return Result(
+                    status=False,
+                    data={"message": "Unknown executable type."}
+                )
 
     def __launch_with_bridge(self):
         # winebridge = WineBridge(self.config)
@@ -237,18 +238,20 @@ class WineExecutor:
             return self.__launch_with_explorer()
         if winepath.is_windows(self.exec_path):
             return self.__launch_with_starter()
-        if self.exec_type == "exe":
-            return self.__launch_exe()
-        if self.exec_type == "msi":
-            return self.__launch_msi()
-        if self.exec_type == "batch":
-            return self.__launch_batch()
 
-        logging.error(f'exec_type {self.exec_type} is not valid')
-        return Result(
-            status=False,
-            data={"message": "Unknown executable type."}
-        )
+        match self.exec_type:
+            case "exe":
+                return self.__launch_exe()
+            case "msi":
+                return self.__launch_msi()
+            case "batch":
+                return self.__launch_batch()
+            case _:
+                logging.error(f'exec_type {self.exec_type} is not valid')
+                return Result(
+                    status=False,
+                    data={"message": "Unknown executable type."}
+                )
 
     def __launch_exe(self):
         # winebridge = WineBridge(self.config)
@@ -278,7 +281,7 @@ class WineExecutor:
 
     def __launch_msi(self):
         msiexec = MsiExec(self.config)
-        res = msiexec.install(
+        msiexec.install(
             pkg_path=self.exec_path,
             args=self.args,
             terminal=self.terminal,
@@ -286,10 +289,7 @@ class WineExecutor:
             environment=self.environment
         )
         self.__set_monitors()
-        return Result(
-            status=True,
-            data={"output": res}
-        )
+        return Result(True)
 
     def __launch_batch(self):
         cmd = CMD(self.config)
@@ -334,8 +334,8 @@ class WineExecutor:
         )
         self.__set_monitors()
         return Result(
-            status=True,
-            data={"output": res}
+            status=res.status,
+            data={"output": res.data}
         )
 
     @staticmethod

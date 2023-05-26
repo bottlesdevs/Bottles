@@ -24,10 +24,9 @@ import subprocess
 import time
 import uuid
 from datetime import datetime
-from functools import cache
 from gettext import gettext as _
 from glob import glob
-from typing import Union, Any, Dict, List
+from typing import Union, Any, Dict, List, Optional
 
 import pathvalidate
 
@@ -57,11 +56,12 @@ from bottles.backend.utils import yaml
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import sort_by_version
-from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.gpu import GPUVendors
+from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.singleton import Singleton
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
@@ -73,17 +73,13 @@ from bottles.backend.wine.wineserver import WineServer
 logging = Logger()
 
 
-@cache  # singleton
-class Manager:
+class Manager(metaclass=Singleton):
     """
     This is the core of Bottles, everything starts from here. There should
     be only one instance of this class, as it checks for the existence of
     the bottles' directories and creates them if they don't exist. Also
     check for components, dependencies, and installers so this check should
     not be performed every time the manager is initialized.
-
-    NOTE: This class is under heavy-refactoring, so close your eyes
-          and enjoy °L°
     """
 
     # component lists
@@ -417,6 +413,7 @@ class Manager:
                         for runner in self.supported_wine_runners.items():
                             if runner[1]["Channel"] not in ["rc", "unstable"]:
                                 tmp_runners.append(runner)
+                                break
                         runner_name = next(iter(tmp_runners))[0]
                     else:
                         tmp_runners = self.supported_wine_runners
@@ -557,7 +554,16 @@ class Manager:
             if self.utils_conn.check_connection():
                 # if connected, install the latest component from repository
                 try:
-                    component_version = next(iter(component["supported"]))
+                    if not self.settings.get_boolean("release-candidate"):
+                        tmp_components = []
+                        for cpnt in component["supported"].items():
+                            if cpnt[1]["Channel"] not in ["rc", "unstable"]:
+                                tmp_components.append(cpnt)
+                                break
+                        component_version = next(iter(tmp_components))[0]
+                    else:
+                        tmp_components = component["supported"]
+                        component_version = next(iter(tmp_components))
                     self.component_manager.install(component_type, component_version)
                     component["available"] = [component_version]
                 except StopIteration:
@@ -1035,7 +1041,7 @@ class Manager:
             sandbox: bool = False,
             fn_logger: callable = None,
             arch: str = "win64",
-            custom_environment: str = None
+            custom_environment: Optional[str] = None
     ) -> Result[dict]:
         """
         Create a new bottle from the given arguments.
