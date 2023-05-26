@@ -75,6 +75,7 @@ class LibraryEntry(Gtk.Box):
 
         self.label_name.set_text(name)
         self.label_bottle.set_text(entry['bottle']['name'])
+        self.label_no_cover.set_label(self.name)
 
         if entry.get('thumbnail'):
             path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
