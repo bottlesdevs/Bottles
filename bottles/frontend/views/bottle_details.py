@@ -254,7 +254,8 @@ class BottleView(Adw.PreferencesPage):
                 "executable": basename,
                 "name": basename[:-4],
                 "path": path,
-                "id": _uuid
+                "id": _uuid,
+                "folder": ManagerUtils.get_exe_parent_dir(self.config, path)
             }
             self.config = self.manager.update_config(
                 config=self.config,
