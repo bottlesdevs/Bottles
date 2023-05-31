@@ -17,7 +17,7 @@
 
 from gettext import gettext as _
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 from bottles.backend.logger import Logger
 from bottles.backend.managers.library import LibraryManager
@@ -103,7 +103,8 @@ class LibraryEntry(Gtk.Box):
     @RunAsync.run_async
     def load_cover(self, path):
         # Gtk.Picture.set_pixbuf deprecated in GTK 4.12
-        self.img_cover.set_filename(path)
+        texture = Gdk.Texture.new_from_filename(path)
+        self.img_cover.set_paintable(texture)
         self.img_cover.set_visible(True)
         self.label_no_cover.set_visible(False)
 
