@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-25 17:51+0000\n"
-"Last-Translator: Esteban Jaramillo <ejaramillos@unal.edu.co>\n"
+"PO-Revision-Date: 2023-06-05 18:37+0000\n"
+"Last-Translator: Lucas Gruden <lucasgruden@duck.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -35,7 +35,7 @@ msgstr "Importando copia de respaldo: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
-msgstr "Error al instalarlos componentes, lo intenté 3 veces."
+msgstr "Error al instalar los componentes, se intentó 3 veces."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
@@ -467,13 +467,13 @@ msgstr "Dependencias"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
-msgstr "Instalar dependencias de los programas."
+msgstr "Instalar dependencias para los programas."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "Instantáneas (Snapshots)"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
@@ -714,7 +714,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr "FidelityFX Super Resolution"
+msgstr "FidelityFX Super Resolución"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 #, fuzzy
@@ -749,9 +749,8 @@ msgstr ""
 "Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:138
-#, fuzzy
 msgid "Manage Post-Processing Layer settings"
-msgstr "Gestionar la configuración del subsistema de Wine."
+msgstr "Gestionar Configuración de las Capas de Post-Procesado"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
@@ -976,7 +975,7 @@ msgstr "Usar patrones de exclusión"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr "Excluir rutas del control de versiones usando patrones"
+msgstr "Excluir rutas del control de versiones usando patrones."
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
@@ -1949,9 +1948,8 @@ msgid "Bottles"
 msgstr "Botellas"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "Crear botella nueva"
+msgstr "Crear Nueva Bottle…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
@@ -2024,9 +2022,8 @@ msgid "32-bit should only be used if strictly necessary."
 msgstr "Se recomienda usar 32 bits sólo si es estrictamente necesario."
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Exportar configuración…"
+msgstr "Importar configuración personalizada..."
 
 #: bottles/frontend/ui/new.blp:176
 #, fuzzy
@@ -2209,11 +2206,10 @@ msgid "Runners"
 msgstr "Ejecutores"
 
 #: bottles/frontend/ui/preferences.blp:181
-#, fuzzy
 msgid "Bottles is running in offline mode, so runners are not available."
 msgstr ""
-"Impedir que Botellas ejecute los ejecutables cuando el ejecutor no está "
-"disponible"
+"Bottles está corriendo en modo fuera de línea, por lo que los runners no "
+"están disponibles."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2371,9 +2367,9 @@ msgid "Updated: %s"
 msgstr "Actualización: %s"
 
 #: bottles/frontend/views/bottle_details.py:267
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added"
-msgstr "'{0}' añadido."
+msgstr "\"{0}\" añadido"
 
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
@@ -2543,14 +2539,12 @@ msgid "Return to your bottles."
 msgstr "Volver a sus botellas."
 
 #: bottles/frontend/views/importer.py:92
-#, fuzzy
 msgid "Backup imported successfully"
-msgstr "Respaldo importado correctamente."
+msgstr "Respaldo importado correctamente"
 
 #: bottles/frontend/views/importer.py:94
-#, fuzzy
 msgid "Import failed"
-msgstr "Importación fallida."
+msgstr "Importación fallida"
 
 #: bottles/frontend/views/importer.py:108
 #: bottles/frontend/views/importer.py:147
@@ -2583,9 +2577,9 @@ msgid "Run executable in \"{self.config.Name}\""
 msgstr ""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Iniciando '{0}'…"
+msgstr "Iniciando \"{0}\" en \"{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2701,24 +2695,24 @@ msgid "Manifest for {0}"
 msgstr "Manifiesto de {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "{0} instalado."
+msgstr "\"{0}\" desinstalado"
 
 #: bottles/frontend/widgets/dependency.py:174
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" installed"
-msgstr "{0} instalado."
+msgstr "\"{0}\" instalado"
 
 #: bottles/frontend/widgets/dependency.py:188
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "'{0}' ha fallado al instalarse."
+msgstr "\"{0}\" ha fallado al instalarse"
 
 #: bottles/frontend/widgets/importer.py:68
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" imported"
-msgstr "'{0}' importado."
+msgstr "\"{0}\" importado"
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
@@ -2758,24 +2752,24 @@ msgid "Launching \"{0}\" with Steam…"
 msgstr "Iniciando '{0}' con Steam…"
 
 #: bottles/frontend/widgets/program.py:214
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr "'{0}' ocultado."
+msgstr "\"{0}\" ocultado"
 
 #: bottles/frontend/widgets/program.py:216
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" showed"
-msgstr "'{0}' mostrado."
+msgstr "\"{0}\" mostrado"
 
 #: bottles/frontend/widgets/program.py:242
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" removed"
-msgstr "'{0}' eliminados."
+msgstr "\"{0}\" eliminados"
 
 #: bottles/frontend/widgets/program.py:274
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr "'{0}' renombrado a '{1}'."
+msgstr "\"{0}\" renombrado a \"{1}\""
 
 #: bottles/frontend/widgets/program.py:297
 #, fuzzy, python-brace-format
@@ -3190,18 +3184,16 @@ msgid "Correct version"
 msgstr "Versión del componente"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "Hubo un error al crear la botella."
+msgstr "Corregir error al crear la botella"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
-#, fuzzy
 msgid "Quality of life improvements:"
-msgstr "Mejoras menores en la interfaz de usuario"
+msgstr "Mejoras menores en la interfaz de usuario:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
@@ -3213,9 +3205,8 @@ msgid "Add toast for \"Run Executable\""
 msgstr "Añadir una ruta de ejecución personalizada"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
-#, fuzzy
 msgid "Bug fixes:"
-msgstr "Correcciones de defectos"
+msgstr "Corrección de bugs:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
