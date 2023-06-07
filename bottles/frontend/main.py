@@ -235,14 +235,13 @@ class Bottles(Adw.Application):
         self.win = win
         win.present()
 
-    @staticmethod
-    def __quit(action=None, param=None):
+    def __quit(self, *args):
         """
         This function close the application.
         It is used by the [Ctrl+Q] shortcut.
         """
         logging.info(_("[Quit] request received."), )
-        MainWindow.on_close_request()
+        self.win.on_close_request()
         quit()
 
     @staticmethod
