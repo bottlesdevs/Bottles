@@ -95,7 +95,7 @@ class LibraryEntry(Gtk.Box):
                 self.img_cover.set_paintable(texture)
                 self.img_cover.set_visible(True)
                 self.label_no_cover.set_visible(False)
-                
+
         motion_ctrl = Gtk.EventControllerMotion.new()
         motion_ctrl.connect("enter", self.__on_motion_enter)
         motion_ctrl.connect("leave", self.__on_motion_leave)
