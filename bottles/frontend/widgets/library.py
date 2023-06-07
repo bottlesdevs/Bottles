@@ -89,7 +89,12 @@ class LibraryEntry(Gtk.Box):
                     entry = library_manager.get_library().get(uuid)
                     path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
 
-            if path is not None: self.load_cover(path)
+            if path is not None: 
+                # Gtk.Picture.set_pixbuf deprecated in GTK 4.12
+                texture = Gdk.Texture.new_from_filename(path)
+                self.img_cover.set_paintable(texture)
+                self.img_cover.set_visible(True)
+                self.label_no_cover.set_visible(False)
                 
         motion_ctrl = Gtk.EventControllerMotion.new()
         motion_ctrl.connect("enter", self.__on_motion_enter)
@@ -99,14 +104,6 @@ class LibraryEntry(Gtk.Box):
         self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_stop.connect("clicked", self.stop_process)
         self.btn_remove.connect("clicked", self.__remove_entry)
-
-    @RunAsync.run_async
-    def load_cover(self, path):
-        # Gtk.Picture.set_pixbuf deprecated in GTK 4.12
-        texture = Gdk.Texture.new_from_filename(path)
-        self.img_cover.set_paintable(texture)
-        self.img_cover.set_visible(True)
-        self.label_no_cover.set_visible(False)
 
     def __get_config(self):
         bottles = self.manager.local_bottles
