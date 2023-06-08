@@ -75,8 +75,8 @@ class FileUtils:
         Returns the size of a given path. If human is True, returns as a
         human-readable size.
         """
-        path = Path(path)
-        size = sum(f.stat().st_size for f in path.glob('**/*') if f.is_file())
+        p = Path(path)
+        size = sum(f.stat().st_size for f in p.glob('**/*') if f.is_file())
 
         if human:
             return self.get_human_size(size)

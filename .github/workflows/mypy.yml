@@ -1,8 +1,10 @@
 on:
   pull_request:
-name: Pylint - checker
+    types: [opened, synchronize, reopened]
+name: Mypy
 jobs:
-  pylint-checker:
+  mypy-checker:
+    name: Checker
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -22,16 +24,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements.dev.txt
-    - name: Analysing the code with pylint
-      id: pylint-result
-      continue-on-error: true
+    - name: Run mypy analysis
       run: |
-        pylint --version
-        mkdir -p output
-        python3 utils/pylint-parser.py > output/pylint-result
-        cat output/pylint-result
-        echo ${{ github.event.number }} > output/pr-number
-    - uses: actions/upload-artifact@v3
-      with:
-        name: pylint-result
-        path: output/
+        mypy --version
+        mypy bottles
+  sonar:
+    name: Sonar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}

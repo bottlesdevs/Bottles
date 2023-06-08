@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-01-20 07:50+0000\n"
-"Last-Translator: StoneMoe <lakechan96@gmail.com>\n"
+"PO-Revision-Date: 2023-04-18 22:21+0000\n"
+"Last-Translator: Eric <hamburger2048@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15.1\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -223,7 +223,7 @@ msgstr "Bottles 开发者"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "翻译者致谢"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -535,11 +535,11 @@ msgstr "选择依赖项…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "你处于离线状态:("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Bottles 运行于离线模式，因此依赖项不可用。"
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -582,17 +582,16 @@ msgid "Search for Programs…"
 msgstr "搜索程序…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"安装由我们的社区精选的程序，无需手动进行。\n"
+"安装由我们的社区精选的程序。\n"
 "\n"
-"此页面上的文件由第三方在专有产权许可证下提供。安装它们，即表示你同意各自的许"
-"可条款。"
+"此页面上的文件由第三方在专有产权许可证下提供。安装它们，即表示你同意它们各自"
+"的许可条款。"
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
@@ -692,7 +691,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX 超级分辨率"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
@@ -700,7 +699,7 @@ msgstr "以视效为代价提升性能。仅对 Vulkan 有效。"
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "管理 FidelityFX 超级分辨率设置"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
@@ -1202,9 +1201,8 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr "帧率限制（失去焦点时）"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "使用整数缩放"
+msgstr "整数缩放"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1820,9 +1818,8 @@ msgid "Bottles"
 msgstr "Bottles"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "新建 Bottle"
+msgstr "新建 Bottle…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
@@ -1845,79 +1842,68 @@ msgid "Browse"
 msgstr "浏览"
 
 #: bottles/frontend/ui/new.blp:32
-#, fuzzy
 msgid "C_reate"
-msgstr "创建"
+msgstr "创建(_R)"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
 msgstr "Bottle 名称"
 
 #: bottles/frontend/ui/new.blp:75
-#, fuzzy
 msgid "_Application"
-msgstr "应用程序"
+msgstr "应用程序(_A)"
 
 #: bottles/frontend/ui/new.blp:88
-#, fuzzy
 msgid "_Gaming"
-msgstr "游戏"
+msgstr "游戏(_G)"
 
 #: bottles/frontend/ui/new.blp:101
-#, fuzzy
 msgid "C_ustom"
-msgstr "自定义"
+msgstr "自定义(_U)"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
 msgstr "自定义"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "选择一个目录"
+msgstr "分享用户目录"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
 "This makes the user directory discoverable in the bottle, at the risk of "
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
-msgstr ""
+msgstr "选中可让 bottle 中的用户目录变得可发现，风险是可能将私人信息分享给 Windows "
+"软件。在 bottle 创建后无法更改此选项。"
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
 msgstr "架构"
 
 #: bottles/frontend/ui/new.blp:137
-#, fuzzy
 msgid "32-bit should only be used if strictly necessary."
 msgstr "我们建议仅在绝对必要时使用 32 位。"
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "导出配置…"
+msgstr "导入自定义配置。"
 
 #: bottles/frontend/ui/new.blp:176
-#, fuzzy
 msgid "Bottle Directory"
-msgstr "Bottles 目录"
+msgstr "Bottle 目录"
 
 #: bottles/frontend/ui/new.blp:177
-#, fuzzy
 msgid "Directory that will contain the data of this bottle."
-msgstr "包含你的 Bottle 的数据的目录。"
+msgstr "将包含这个 Bottle 的数据的目录。"
 
 #: bottles/frontend/ui/new.blp:249
-#, fuzzy
 msgid "_Close"
-msgstr "关闭"
+msgstr "关闭(_C)"
 
 #: bottles/frontend/ui/new.blp:281
-#, fuzzy
 msgid "This name is unavailable, please try another."
-msgstr "该功能在你的系统上不可用。"
+msgstr "此名称不可用，请尝试另一个。"
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
@@ -2075,9 +2061,8 @@ msgid "Runners"
 msgstr "运行器"
 
 #: bottles/frontend/ui/preferences.blp:181
-#, fuzzy
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr "当运行器不可用时，防止 Bottles 运行可执行文件"
+msgstr "Bottles 运行于离线模式，因此运行器不可用。"
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2093,7 +2078,7 @@ msgstr "DLL 组件"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr ""
+msgstr "Bottles 运行于离线模式下，因此 DLL 不可用。"
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2235,9 +2220,8 @@ msgstr "'{0}' 已添加"
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "选择 Bottle"
+msgstr "选择可执行文件"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2286,9 +2270,8 @@ msgid "Select the location where to save the backup archive"
 msgstr "选择要保存备份归档的位置"
 
 #: bottles/frontend/views/bottle_details.py:435
-#, fuzzy
 msgid "Backup"
-msgstr "备份 {0}"
+msgstr "备份"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
@@ -2347,15 +2330,13 @@ msgid "{} To add this feature, please run flatpak install"
 msgstr "{} 要添加此功能，请运行 flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
-#, fuzzy
 msgid "This bottle name is already in use."
-msgstr "名称有特殊字符或已在使用。"
+msgstr "这个 Bottle 名称已被占用。"
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "工作目录"
+msgstr "选择工作目录"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
@@ -2399,7 +2380,6 @@ msgid "Importing backup…"
 msgstr "正在导入备份…"
 
 #: bottles/frontend/views/importer.py:119
-#, fuzzy
 msgid "Select a Backup Archive"
 msgstr "选择一个备份归档"
 
@@ -2409,7 +2389,6 @@ msgid "Import"
 msgstr "导入"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
-#, fuzzy
 msgid "Select a Configuration File"
 msgstr "选择一个配置文件"
 
@@ -2421,12 +2400,12 @@ msgstr "无"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "用 \"{self.config.Name}\" 配置运行可执行文件"
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "正在启动 '{0}'…"
+msgstr "正在启动 \"{0}\"，其位于 \"{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2443,23 +2422,20 @@ msgid "Fetched {0} of {1} packages"
 msgstr "已获取 {1} 个软件包中的 {0} 个"
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "Bottles 目录"
+msgstr "选择 Bottle 目录"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
 msgstr "正在创建 Bottle…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "新建 Bottle"
+msgstr "无法创建 Bottle"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "未能创建 Bottle，出现了一个或多个错误。"
 
 #. Show success
 #: bottles/frontend/views/new.py:232
@@ -2476,9 +2452,8 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "未找到 Steam 或 Bottles 没有足够的权限。"
 
 #: bottles/frontend/views/preferences.py:176
-#, fuzzy
 msgid "Select Bottles Path"
-msgstr "选择 Bottle"
+msgstr "选择 Bottle 路径"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
@@ -2540,9 +2515,9 @@ msgid "Manifest for {0}"
 msgstr "{0} 的清单"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "\"{0}\" 已安装"
+msgstr "\"{0}\" 已卸载"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
@@ -2680,7 +2655,6 @@ msgid "Copy to clipboard"
 msgstr "复制到剪贴板"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
 msgstr "选择资源文件"
 
@@ -2728,9 +2702,8 @@ msgid "This setting is different from the bottle's default."
 msgstr "此设置不同于 bottles 的默认值。"
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "选择驱动器路径"
+msgstr "选择脚本"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
@@ -2743,7 +2716,7 @@ msgstr "退回到默认路径。 不会列出来自给定路径的 bottles。"
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
@@ -2987,157 +2960,149 @@ msgstr "……和更多您可以通过安装 Bottles 来发现的功能！"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
-msgstr ""
+msgstr "更新元数据信息"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
-msgstr ""
+msgstr "添加更多更新信息并修正发行日志版本"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Fixed \"Add to Steam\" button"
-msgstr "加到 Steam"
+msgstr "修复了“添加到 Steam\"按钮"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr ""
+msgstr "修复了 BottleConfig 不可序列化的问题"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "修复了 Patool 双重提取失败"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "组件版本"
+msgstr "修正版本"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "创建该 bottle 时遇到一个问题。"
+msgstr "修复了创建 bottle 时的崩溃"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "重大变化：重新设计了”新建 Bottle“界面"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
-#, fuzzy
 msgid "Quality of life improvements:"
-msgstr "小幅 UI 改进"
+msgstr "质量改进："
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "在库页面中用 emoti-love 图标替换了库"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
-#, fuzzy
 msgid "Add toast for \"Run Executable\""
-msgstr "添加自定义可执行路径"
+msgstr "为”运行可执行文件“添加了 toast"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
-#, fuzzy
 msgid "Bug fixes:"
-msgstr "错误修复"
+msgstr "错误修复："
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "添加快捷方式到 Steam 导致了一个错误"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
-#, fuzzy
 msgid "Importing backups resulted an error"
-msgstr "正在导入备份：{0}"
+msgstr "导入备份导致一个错误"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
-msgstr ""
+msgstr "使用 wine-ge-custom 时自动启用 Steam Runtime"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
-msgstr ""
+msgstr "各种库相关的修复，比如空白封面，以及和缺失项相关的崩溃"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "修复了多个和文本编码相关的问题"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
-msgstr ""
+msgstr "修复了不是从终端运行 Bottles 时，下载出错的问题"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "创建日期"
+msgstr "修正版本日期"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
+msgstr "在非 NVIDIA 系统上隐藏 NVIDIA 相关的严重错误"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "Gamescope 改进和修复"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "更快更稳定地安装依赖项"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
-msgstr ""
+msgstr "健康检查有更多信息以便更快速的调试"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
-msgstr ""
+msgstr "修复许多 NVAPI 问题使其更加稳定，现在应该能正常工作"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "修复了下载组件时的崩溃"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "通过避免 spin-lock 改进后端代码"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "安装包脚本编写有了更多变量"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
-msgstr ""
+msgstr "修复了首次运行本程序时对话框显示”全部就绪“但实际尚未就绪的问题"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "改进构建系统"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "创建玩游戏的 bottles 时默认启用 VKD3D"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
-msgstr ""
+msgstr "修复了读取坏编码的 Steam 文件时的崩溃"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
-msgstr ""
+msgstr "修复了安装/卸载后用户界面中部件未正确更新的问题"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "更多的 FSR 修复"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
-msgstr ""
+msgstr "修复了从”运行可执行文件“启动一个程序后该程序自行关闭的问题"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "不再赘述其他！"
 
 #~ msgid "Calculating…"
 #~ msgstr "计算中…"

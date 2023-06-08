@@ -36,5 +36,5 @@ class DXVKComponent(DLLComponent):
     }
 
     @staticmethod
-    def get_base_path(version: str):
+    def get_base_path(version: str) -> str:
         return ManagerUtils.get_dxvk_path(version)
