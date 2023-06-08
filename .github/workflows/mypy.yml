@@ -1,6 +1,7 @@
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+
 name: Mypy
 jobs:
   mypy-checker:
