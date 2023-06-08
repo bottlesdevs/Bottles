@@ -1,8 +1,11 @@
 on:
-  pull_request:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
 name: Mypy
 jobs:
   mypy-checker:
+    name: Checker
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -26,3 +29,14 @@ jobs:
       run: |
         mypy --version
         mypy bottles
+  sonar:
+    name: Sonar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}

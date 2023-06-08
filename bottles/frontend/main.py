@@ -166,7 +166,7 @@ class Bottles(Adw.Application):
             self.arg_exe = commands.lookup_value("executable").get_string()
 
         if commands.contains("version"):
-            print(VERSION)
+            print(APP_VERSION)
             quit()
 
         if commands.contains("bottle"):
