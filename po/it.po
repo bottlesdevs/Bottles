@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-25 17:51+0000\n"
-"Last-Translator: Andrea Andre <andrea.tsg19@slmail.me>\n"
+"PO-Revision-Date: 2023-06-11 18:29+0000\n"
+"Last-Translator: Kryotek <weblate@kryotek.mozmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
 "Language: it\n"
@@ -591,15 +591,13 @@ msgid "Search for Programs…"
 msgstr "Cerca programmi…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Installa programmi curati dalla nostra community, senza dover procedere "
-"manualmente\n"
+"Installa programmi curati dalla nostra community.\n"
 "\n"
 "I programmi in questa pagina sono distribuiti da terzi con una licenza "
 "proprietaria. Installandoli, accetti i rispettivi termini di servizio."
@@ -707,7 +705,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX Super Resolution"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
@@ -717,7 +715,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "Gestisci le impostazioni di FidelityFX Super Resolution"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
@@ -743,9 +741,8 @@ msgstr ""
 "Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:138
-#, fuzzy
 msgid "Manage Post-Processing Layer settings"
-msgstr "Gestisci le impostazioni del sottosistema wine."
+msgstr "Gestisci le impostazioni del livello di Post-Processing"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
@@ -1218,9 +1215,8 @@ msgid "Game Resolution"
 msgstr "Risoluzione del gioco"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
-#, fuzzy
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr "Utilizza la risoluzione del videogioco come riferimento."
+msgstr "Utilizza la risoluzione del videogioco come riferimento in pixel."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
@@ -1237,13 +1233,12 @@ msgid "Window Resolution"
 msgstr "Risoluzione Finestra"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:82
-#, fuzzy
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
 "Aumenta la risoluzione quando si usa una risoluzione superiore a quella del "
-"gioco."
+"gioco in pixel."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
@@ -1258,9 +1253,8 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr "Limite frequenza fotogrammi (con finestra non attiva)"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "Utilizzare Integer Scaling"
+msgstr "Integer Scaling"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1339,8 +1333,9 @@ msgid "Journal Browser"
 msgstr "Registro"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
+#, fuzzy
 msgid "Change Logging Level."
-msgstr ""
+msgstr "Cambia il livello di logging."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
@@ -1414,7 +1409,6 @@ msgid "Use Proton"
 msgstr "Usa Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:35
-#, fuzzy
 msgid ""
 "Beware, using Proton-based runners in non-Steam bottles can cause problems "
 "and prevent them from behaving correctly.\n"
@@ -1441,7 +1435,6 @@ msgstr ""
 "problemi e chiediamo di non segnalarglieli."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
-#, fuzzy
 msgid "I got it."
 msgstr "Ho capito."
 
@@ -1548,7 +1541,7 @@ msgstr "Fatto! Per favore riavvia Bottles."
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
 msgid "Post-Processing Effects Settings"
-msgstr ""
+msgstr "Impostazioni effetti di Post-Processing"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
@@ -1563,7 +1556,6 @@ msgid "Effects are applied according to the list order."
 msgstr "Gli effetti vengono applicati in base all'ordine della lista."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
-#, fuzzy
 msgid "Effects"
 msgstr "Effetti"
 
@@ -1753,9 +1745,8 @@ msgstr "Sfoglia file"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
 msgid "Wine prefix name"
-msgstr "Log 'fixme' di Wine"
+msgstr "Nome del prefisso Wine"
 
 #: bottles/frontend/ui/importer-entry.blp:28
 #, fuzzy
@@ -1972,9 +1963,8 @@ msgid "32-bit should only be used if strictly necessary."
 msgstr "Si consiglia di utilizzare 32 bit solo se strettamente necessario."
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Esporta configurazione…"
+msgstr "Importa una configurazione personalizzata."
 
 #: bottles/frontend/ui/new.blp:176
 #, fuzzy
@@ -2296,13 +2286,12 @@ msgstr ""
 "nuovamente connesso."
 
 #: bottles/frontend/ui/window.blp:79
-#, fuzzy
 msgid "Import…"
-msgstr "Importa"
+msgstr "Importa…"
 
 #: bottles/frontend/ui/window.blp:91
 msgid "Help"
-msgstr ""
+msgstr "Aiuto"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:96
@@ -2453,7 +2442,7 @@ msgstr "Cartella di lavoro"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
-msgstr ""
+msgstr "Cartella che contiene i dati di \"{}\"."
 
 #: bottles/frontend/views/bottle_preferences.py:746
 #, fuzzy
@@ -2483,14 +2472,12 @@ msgid "Return to your bottles."
 msgstr "Cerca bottiglie…"
 
 #: bottles/frontend/views/importer.py:92
-#, fuzzy
 msgid "Backup imported successfully"
-msgstr "Il backup è stato importato con successo."
+msgstr "Il backup è stato importato con successo"
 
 #: bottles/frontend/views/importer.py:94
-#, fuzzy
 msgid "Import failed"
-msgstr "Importazione fallita."
+msgstr "Importazione fallita"
 
 #: bottles/frontend/views/importer.py:108
 #: bottles/frontend/views/importer.py:147
@@ -2743,14 +2730,12 @@ msgstr ""
 "            Segnala il tuo feedback in uno dei rapporti esistenti qui sotto."
 
 #: bottles/frontend/windows/display.py:102
-#, fuzzy
 msgid "Updating display settings, please wait…"
-msgstr "Aggiornamento della versione di Windows, attendere…"
+msgstr "Aggiornamento delle impostazioni di visualizzazione, attendere…"
 
 #: bottles/frontend/windows/display.py:114
-#, fuzzy
 msgid "Display settings updated"
-msgstr "Impostazioni di visualizzazione"
+msgstr "Impostazioni di visualizzazione aggiornate"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
