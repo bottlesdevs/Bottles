@@ -67,10 +67,10 @@ class DisplayDialog(Adw.Window):
         self.parameters = config.Parameters
 
         self.expander_virtual_desktop.set_enable_expansion(self.parameters.virtual_desktop)
-        self.switch_mouse_capture.set_state(self.parameters.fullscreen_capture)
-        self.switch_take_focus.set_state(self.parameters.take_focus)
-        self.switch_mouse_warp.set_state(self.parameters.mouse_warp)
-        self.switch_decorated.set_state(self.parameters.decorated)
+        self.switch_mouse_capture.set_active(self.parameters.fullscreen_capture)
+        self.switch_take_focus.set_active(self.parameters.take_focus)
+        self.switch_mouse_warp.set_active(self.parameters.mouse_warp)
+        self.switch_decorated.set_active(self.parameters.decorated)
         self.spin_dpi.set_value(self.parameters.custom_dpi)
 
         """Set resolution"""
@@ -159,7 +159,7 @@ class DisplayDialog(Adw.Window):
                     resolution=resolution
                 )
 
-        if self.switch_mouse_warp.get_state() != self.parameters.mouse_warp:
+        if self.switch_mouse_warp.get_active() != self.parameters.mouse_warp:
             """Set mouse warp"""
 
             @GtkUtils.run_in_main_loop
@@ -167,7 +167,7 @@ class DisplayDialog(Adw.Window):
                 self.config = self.manager.update_config(
                     config=self.config,
                     key="mouse_warp",
-                    value=self.switch_mouse_warp.get_state(),
+                    value=self.switch_mouse_warp.get_active(),
                     scope="Parameters"
                 ).data["config"]
                 complete_queue()
@@ -178,7 +178,7 @@ class DisplayDialog(Adw.Window):
             RunAsync(
                 rk.set_mouse_warp,
                 callback=update,
-                state=self.switch_mouse_warp.get_state()
+                state=self.switch_mouse_warp.get_active()
             )
 
         if self.spin_dpi.get_value() != self.parameters.custom_dpi:
@@ -252,12 +252,12 @@ class DisplayDialog(Adw.Window):
                 data=_rule
             )
 
-        if self.switch_mouse_capture.get_state() != self.parameters.fullscreen_capture:
-            toggle_x11_reg_key(self.switch_mouse_capture.get_state(), "GrabFullscreen", "fullscreen_capture")
-        if self.switch_take_focus.get_state() != self.parameters.take_focus:
-            toggle_x11_reg_key(self.switch_take_focus.get_state(), "UseTakeFocus", "take_focus")
-        if self.switch_decorated.get_state() != self.parameters.decorated:
-            toggle_x11_reg_key(self.switch_decorated.get_state(), "Decorated", "decorated")
+        if self.switch_mouse_capture.get_active() != self.parameters.fullscreen_capture:
+            toggle_x11_reg_key(self.switch_mouse_capture.get_active(), "GrabFullscreen", "fullscreen_capture")
+        if self.switch_take_focus.get_active() != self.parameters.take_focus:
+            toggle_x11_reg_key(self.switch_take_focus.get_active(), "UseTakeFocus", "take_focus")
+        if self.switch_decorated.get_active() != self.parameters.decorated:
+            toggle_x11_reg_key(self.switch_decorated.get_active(), "Decorated", "decorated")
 
         """Close window"""
         self.close()

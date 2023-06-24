@@ -27,8 +27,8 @@
   <hr />
 
   <a href="https://docs.usebottles.com">Documentation</a> ·
-  <a href="https://forums.usebottles.com">Forums</a> · 
-  <a href="https://t.me/usebottles">Telegram group</a> · 
+  <a href="https://forum.usebottles.com">Forums</a> · 
+  <a href="https://discord.gg/wF4JAdYrTR">Discord</a> · 
   <a href="https://usebottles.com/funding">Funding</a>
 </div>
 
