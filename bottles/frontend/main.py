@@ -92,6 +92,8 @@ class Bottles(Adw.Application):
         self.__create_action('preferences', self.__show_preferences, ['<primary>comma'])
         self.__create_action('help', self.__help, ['F1'])
         self.__create_action('new', self.__new_bottle, ['<primary>n'])
+        self.__create_action('switch_to_bottles_page', self.__show_bottles_view, ['<alt>1'])
+        self.__create_action('switch_to_library_page', self.__show_library_view, ['<alt>2'])
 
         self.__register_arguments()
 
@@ -339,6 +341,12 @@ class Bottles(Adw.Application):
         about_window.set_release_notes_version("51.0")
         about_window.set_transient_for(self.win)
         about_window.present()
+
+    def __show_library_view(self, *_args):
+        self.win.stack_main.set_visible_child_name("page_library")
+
+    def __show_bottles_view(self, *_args):
+        self.win.stack_main.set_visible_child_name("page_list")
 
     def __create_action(self, name, callback, shortcuts=None, param=None):
         """Add an application action.
