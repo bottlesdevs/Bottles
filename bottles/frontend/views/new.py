@@ -105,11 +105,14 @@ class NewView(Adw.Window):
         # focus on the entry_name
         self.entry_name.grab_focus()
 
+        # Create bottle when pressing enter
+        self.entry_name.connect("entry-activated", self.create_bottle)
+
     def __set_group(self, *_args) -> None:
         """ Checks the state of combo_environment and updates group_custom accordingly. """
         self.group_custom.set_sensitive(self.check_custom.get_active())
 
-    def __check_entry_name(self, *_args) -> None:
+    def __check_entry_name(self, *_args) -> bool:
         is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
         is_invalid = is_duplicate or self.entry_name.get_text() == ""
         self.btn_create.set_sensitive(not is_invalid)
@@ -117,8 +120,10 @@ class NewView(Adw.Window):
 
         if is_invalid:
             self.entry_name.add_css_class("error")
+            return False
         else:
             self.entry_name.remove_css_class("error")
+            return True
 
     def __choose_env_recipe(self, *_args) -> None:
         """
@@ -164,6 +169,9 @@ class NewView(Adw.Window):
         dialog.show()
 
     def create_bottle(self, *_args) -> None:
+        if not self.__check_entry_name():
+            return
+        
         """ Starts creating the bottle. """
         # set widgets states
         self.is_closable = False
