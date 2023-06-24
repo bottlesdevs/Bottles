@@ -94,6 +94,7 @@ class Bottles(Adw.Application):
         self.__create_action('new', self.__new_bottle, ['<primary>n'])
         self.__create_action('switch_to_bottles_page', self.__show_bottles_view, ['<alt>1'])
         self.__create_action('switch_to_library_page', self.__show_library_view, ['<alt>2'])
+        self.__create_action('go_back', self.__go_back, ['<alt>Left'])
 
         self.__register_arguments()
 
@@ -347,6 +348,9 @@ class Bottles(Adw.Application):
 
     def __show_bottles_view(self, *_args):
         self.win.stack_main.set_visible_child_name("page_list")
+
+    def __go_back(self, *_args):
+        self.win.main_leaf.navigate(Adw.NavigationDirection.BACK)
 
     def __create_action(self, name, callback, shortcuts=None, param=None):
         """Add an application action.
