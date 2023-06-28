@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-25 17:51+0000\n"
+"PO-Revision-Date: 2023-06-29 14:52+0000\n"
 "Last-Translator: Georgi Georgiev <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/bg/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 4.18.1\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -235,7 +235,7 @@ msgstr "Версия на компонента"
 #: bottles/frontend/ui/dependency-entry.blp:29
 #: bottles/frontend/ui/program-entry.blp:77
 msgid "Uninstall"
-msgstr "Премахване"
+msgstr "Деинсталиране"
 
 #: bottles/frontend/ui/component-entry.blp:23
 msgid "Browse Files"
@@ -297,7 +297,7 @@ msgid ""
 "run it via terminal to read the output."
 msgstr ""
 "Възникна грешка по време на инсталацията. Рестартирайте „Bottles“, за да "
-"прочетете доклада за срив или го стартирайте чрез терминала."
+"прочетете доклада за срив или го изпълнете чрез терминала."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -381,7 +381,7 @@ msgstr "Опции за стартиране"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
-msgstr "Стартиране в терминала"
+msgstr "Изпълняване в терминала"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
@@ -422,7 +422,7 @@ msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
-msgstr "Стартиране на изпълнимия файл…"
+msgstr "Изпълняване на изпълнимия файл…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
@@ -434,10 +434,10 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
-"Натиснете „Стартиране на изпълнимия файл…“, за да стартирате изпълнимия "
-"файл, „Добавяне на преки пътища…“, за да добавите изпълнимия файл към "
-"списъка с програмите или „Инсталиране на програми…“, за да инсталирате "
-"програмите, подбрани от общността."
+"Натиснете „Изпълняване на изпълнимия файл…“, за да го изпълните, „Добавяне "
+"на преки пътища…“, за да го добавите към списъка с програмите или „"
+"Инсталиране на програми…“, за да инсталирате програмите, подбрани от "
+"общността."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -528,7 +528,7 @@ msgstr "Конфигурация"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr "Премахваща програма"
+msgstr "Деинсталираща програма"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
@@ -1323,11 +1323,11 @@ msgstr "Информация"
 
 #: bottles/frontend/ui/dialog-journal.blp:40
 msgid "Journal browser"
-msgstr "Търсачка"
+msgstr "Търсачка на дневниците"
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
-msgstr "Търсачка"
+msgstr "Дневници"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
@@ -1447,13 +1447,13 @@ msgstr "Ново наименование"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 msgid "Run With Arguments"
-msgstr "Стартиране с аргументи"
+msgstr "Изпълняване с аргументи"
 
 #: bottles/frontend/ui/dialog-run-args.blp:34
 #: bottles/frontend/views/bottle_details.py:401
 #: bottles/frontend/views/list.py:131
 msgid "Run"
-msgstr "Стартиране"
+msgstr "Изпълняване"
 
 #: bottles/frontend/ui/dialog-run-args.blp:44
 msgid "Write below the arguments to be passed to the executable."
@@ -1985,7 +1985,7 @@ msgstr "Това наименование не е налично."
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
-msgstr "Назад"
+msgstr "Предишен"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
@@ -2032,7 +2032,7 @@ msgstr "Започнете използването на „Bottles“"
 
 #: bottles/frontend/ui/onboard.blp:141
 msgid "Next"
-msgstr "Напред"
+msgstr "Следващ"
 
 #: bottles/frontend/ui/preferences.blp:4 bottles/frontend/ui/window.blp:86
 msgid "Preferences"
@@ -2334,7 +2334,7 @@ msgid ""
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
 "„Bottles“ се изпълнява в пясъчник (изолирана среда). Ако програмата не се "
-"стартира, отворете бутилката (иконата с 3 точки) и опитайте отново."
+"изпълнява, отворете бутилката (иконата с 3 точки) и опитайте отново."
 
 #: bottles/frontend/views/bottle_details.py:416
 #: bottles/frontend/views/bottle_details.py:525
@@ -2415,7 +2415,7 @@ msgstr "Тази функция не е налична за Вашата сис�
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "{} To add this feature, please run flatpak install"
-msgstr "{} За да добавите тази функция, моля стартирайте „flatpak install“"
+msgstr "{} За да добавите тази функция, моля изпълнете „flatpak install“"
 
 #: bottles/frontend/views/bottle_preferences.py:246
 msgid "This bottle name is already in use."
@@ -2491,7 +2491,7 @@ msgstr "Няма"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr "Стартиране на изпълним файл в „{self.config.Name}“"
+msgstr "Изпълняване на изпълним файл в „{self.config.Name}“"
 
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
@@ -2610,7 +2610,7 @@ msgstr "Манифест на {0}"
 #: bottles/frontend/widgets/dependency.py:172
 #, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "„{0}“ е премахната"
+msgstr "„{0}“ е деинсталирана"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
@@ -3000,7 +3000,7 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Стартиране на изпълними файлове (.exe или .msi) във Вашите бутилки директно "
+"Изпълняване на изпълними файлове (.exe или .msi) във Вашите бутилки директно "
 "от контекстното меню на файловия диспечер"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:21
@@ -3116,7 +3116,7 @@ msgstr "Промяна на иконата на библиотеката"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
-msgstr "Добавяне на тост за „Стартиране на изпълнимия файл“"
+msgstr "Добавяне на тост за „Изпълняване на изпълнимия файл“"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
@@ -3149,7 +3149,7 @@ msgstr "Поправки за проблеми, свързани с кодира
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
-"Поправка за грешка при изтегляне, ако „Bottles“ не е стартиран от терминала"
+"Поправка за грешка при изтегляне, ако „Bottles“ не е изпълнен от терминала"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
 msgid "Correct version date"
@@ -3211,7 +3211,7 @@ msgid ""
 "uninstallation"
 msgstr ""
 "Поправка за компонентите, които не се показват правилно след инсталация или "
-"премахване"
+"деинсталация"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
@@ -3223,7 +3223,7 @@ msgid ""
 "executable\""
 msgstr ""
 "Поправка за проблема при затваряне на програма, която е стартирана от „"
-"Стартиране на изпълнимия файл“"
+"Изпълняване на изпълнимия файл“"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
