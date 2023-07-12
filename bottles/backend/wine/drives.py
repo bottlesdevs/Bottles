@@ -36,14 +36,16 @@ class Drives:
     def set_drive_path(self, letter: str, path: str):
         """Change a drives path in the bottle"""
         letter = f"{letter}:".lower()
+        drive_sym_path = os.path.join(self.dosdevices_path, letter)
         if not os.path.exists(self.dosdevices_path):
             os.makedirs(self.dosdevices_path)
-        try:
-            os.symlink(path, os.path.join(self.dosdevices_path, letter))
+        if not os.path.exists(drive_sym_path):
+            os.symlink(path, drive_sym_path)
             logging.info(f"New drive {letter} added to the bottle")
-        except FileExistsError:
-            os.remove(os.path.join(self.dosdevices_path, letter))
-            os.symlink(path, os.path.join(self.dosdevices_path, letter))
+        else:
+            os.remove(drive_sym_path)
+            os.symlink(path, drive_sym_path)
+            logging.info(f"Drive {letter} path changed to {path}")
 
     def remove_drive(self, letter: str):
         """Remove a drive from the bottle"""
