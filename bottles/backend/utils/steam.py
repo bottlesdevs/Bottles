@@ -15,19 +15,21 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import subprocess
+import os, subprocess
 from typing import Union, TextIO
 
+from bottles.backend.logger import Logger
 from bottles.backend.models.vdict import VDFDict
 from bottles.backend.utils import vdf
 
+logging = Logger()
 
 class SteamUtils:
 
     @staticmethod
     def parse_acf(data: str) -> VDFDict:
         """
-        Parses aN ACF file. Just a wrapper for vdf.loads.
+        Parses an ACF file. Just a wrapper for vdf.loads.
         """
         return vdf.loads(data)
 
@@ -44,3 +46,57 @@ class SteamUtils:
         Saves a VDF file. Just a wrapper for vdf.dumps.
         """
         vdf.dump(data, fp, pretty=True)
+
+    @staticmethod
+    def is_proton(path: str) -> bool:
+        """
+        Checks if a directory is a Proton directory.
+        """
+        toolmanifest = os.path.join(path, f"toolmanifest.vdf")
+        if not os.path.isfile(toolmanifest):
+            return False
+
+        f = open(toolmanifest, "r", errors="replace")
+        data = SteamUtils.parse_vdf(f.read())
+        compat_layer_name = data.get("manifest", {}) \
+            .get("compatmanager_layer_name", {})
+
+        return "proton" in compat_layer_name
+
+    @staticmethod
+    def get_associated_runtime(path: str) -> str:
+        """
+        Get the associated runtime of a Proton directory.
+        """
+        toolmanifest = os.path.join(path, f"toolmanifest.vdf")
+        if not os.path.isfile(toolmanifest):
+            logging.error(f"toolmanifest.vdf not found in Proton directory: {path}")
+            return None
+
+        runtime = "scout"
+        f = open(toolmanifest, "r", errors="replace")
+        data = SteamUtils.parse_vdf(f.read())
+        tool_appid = data.get("manifest", {}) \
+            .get("require_tool_appid", {})
+
+        if "1628350" in tool_appid:
+            runtime = "sniper"
+        elif "1391110" in tool_appid:
+            runtime = "soldier"
+
+        return runtime
+
+    @staticmethod
+    def get_dist_directory(path: str) -> str:
+        """
+        Get the sub-directory containing the wine libraries and binaries.
+        """
+        dist_directory = path
+        if os.path.isdir(os.path.join(path, f"dist")):
+            dist_directory = os.path.join(path, f"dist")
+        elif os.path.isdir(os.path.join(path, f"files")):
+            dist_directory = os.path.join(path, f"files")
+        else:
+            logging.warning(f"No /dist or /files sub-directory was found under this Proton directory: {path}")
+
+        return dist_directory
