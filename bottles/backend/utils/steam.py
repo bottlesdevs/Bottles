@@ -61,7 +61,10 @@ class SteamUtils:
         compat_layer_name = data.get("manifest", {}) \
             .get("compatmanager_layer_name", {})
 
-        return "proton" in compat_layer_name
+        commandline = data.get("manifest", {}) \
+            .get("commandline", {})
+
+        return "proton" in compat_layer_name or "proton" in commandline
 
     @staticmethod
     def get_associated_runtime(path: str) -> str:
