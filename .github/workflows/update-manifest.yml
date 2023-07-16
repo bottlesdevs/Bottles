@@ -1,0 +1,70 @@
+name: Update manifest
+
+on:
+  schedule:
+    # Check for update every day at 07:11
+    - cron:  '11 7 * * *'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+env:
+  PR_BRANCH: pr/ci-manifest/${{ github.ref_name }}
+
+jobs:
+  update-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: "bottles-repository"
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+
+      - run: pip install pur req2flatpak pyyaml
+
+      - name: Update requirements
+        working-directory: "bottles-repository"
+        shell: bash {0}
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          pur -r requirements.txt
+          pur -r requirements.dev.txt
+          req2flatpak --requirements-file requirements.txt --yaml --target-platforms 310-x86_64 -o com.usebottles.bottles.pypi-deps.yaml
+          git diff ${{ github.ref_name }} --exit-code requirements.txt requirements.dev.txt com.usebottles.bottles.pypi-deps.yaml
+          updated=$?
+          if [ $updated -ne 0 ]; then
+              git add requirements.txt requirements.dev.txt com.usebottles.bottles.pypi-deps.yaml
+              git commit -m "Update PyPI dependencies"
+          fi
+
+      - uses: docker://ghcr.io/flathub/flatpak-external-data-checker:latest
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+          EMAIL: github-actions[bot]@users.noreply.github.com
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: --update --require-important-update --commit-only --never-fork "bottles-repository/com.usebottles.bottles.yml"
+
+      - name: Create PR if necessary
+        working-directory: "bottles-repository"
+        shell: bash {0}
+        run: |
+          git checkout -B ${{ env.PR_BRANCH }}
+          git push -f --set-upstream origin ${{ env.PR_BRANCH }}
+          git diff ${{ github.ref_name }} --exit-code com.usebottles.bottles.yml
+          updated=$?
+          if [ $updated -ne 0 ]; then
+            gh pr create --title ":robot:: Update manifest (important)" --body ":wrench: One or more modules marked as 'important' have been updated." --head ${{ env.PR_BRANCH }} --base ${{ github.ref_name }}
+            exit 0
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
