@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-14 18:51+0000\n"
+"PO-Revision-Date: 2023-07-20 12:07+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -386,7 +386,7 @@ msgstr "Pokreni u terminalu"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "Za izvršavanje datoteka ispusti ih ovdje"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
@@ -435,6 +435,9 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Pritisni „Pokreni izvršnu datoteku …” za pokretanje izvršne datoteke, „Dodaj "
+"prečace …” za dodavanje izvršne datoteke u popis programa ili „Instaliraj "
+"programe …” za instaliranje programa koje ravija zajednica."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -539,11 +542,11 @@ msgstr "Traži ovisnosti …"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Nisi spojen/a na internet :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Bottles radi u izvanmrežnom modusu, stoga ovisnosti nisu dostupne."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -626,7 +629,7 @@ msgstr "Komponente"
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "Verzija Wine sloja kompatibilnosti."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
@@ -673,10 +676,8 @@ msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
-#, fuzzy
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
-msgstr ""
-"Alternativa za NVIDIA Refleks. Mogu ga otkriti neki „Anti-cheat” programi."
+msgstr "Povećaj brzinu reakcije. Mogu ga otkriti neki „Anti-cheat” programi."
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
@@ -698,16 +699,15 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX Super Resolution"
 
 #: bottles/frontend/ui/details-preferences.blp:106
-#, fuzzy
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "Poboljšava izvođenje, ali troši više energije."
+msgstr "Povećaj performansu na račun vizualnih prikaza. Radi samo na Vulkanu."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "Upravljaj FidelityFX Super Resolution postavkama"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 #, fuzzy
@@ -846,20 +846,18 @@ msgstr "Namjensko testno okruženje"
 
 #: bottles/frontend/ui/details-preferences.blp:276
 msgid "Use a restricted/managed environment for this bottle."
-msgstr "Koristi ograničeno/upravljano okruženje za ovu buelju."
+msgstr "Koristi ograničeno/upravljano okruženje za ovu butelju."
 
 #: bottles/frontend/ui/details-preferences.blp:279
-#, fuzzy
 msgid "Manage the Sandbox Permissions"
 msgstr "Upravljaj dozvolama testnog okruženja"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr "Vrijeme izvođenja programa Butelje"
+msgstr "Paket biblioteka programa Butelje"
 
 #: bottles/frontend/ui/details-preferences.blp:296
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
@@ -869,16 +867,15 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Vrijeme izvođenja Steama"
+msgstr "Paket biblioteka Steama"
 
 #: bottles/frontend/ui/details-preferences.blp:307
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
-"Pruža paket dodatnih biblioteka za bolju kompatibilnost. Deaktiviraj ako "
-"naiđeš na probleme."
+"Pruža paket dodatnih biblioteka za bolju kompatibilnost sa Steam igrama. "
+"Deaktiviraj ako naiđeš na probleme."
 
 #: bottles/frontend/ui/details-preferences.blp:315
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -1412,7 +1409,7 @@ msgstr ""
 "Preporučujemo da umjesto toga koristiš Wine-GE, Proton verziju koja je "
 "namijenjena za pokretanje izvan Steama.\n"
 "\n"
-"Postupak će automatski omogućiti vrijeme izvođenja Steama (ako je prisutan u "
+"Postupak će automatski aktivirati paket biblioteka Steama (ako je prisutan u "
 "sustavu i otkriven od programa Butelje) kako bi mu se omogućio pristup "
 "potrebnim bibliotekama i ograničili problemi s kompatibilnošću. Imaj na umu "
 "da GloriousEggroll, pružatelj pokretača, nije odgovoran za bilo koje "
@@ -2176,7 +2173,7 @@ msgstr "Core"
 
 #: bottles/frontend/ui/preferences.blp:287
 msgid "Runtime"
-msgstr "Vrijeme izvođenja"
+msgstr "Paket biblioteka"
 
 #: bottles/frontend/ui/preferences.blp:291
 msgid "WineBridge"
@@ -2593,7 +2590,7 @@ msgid ""
 "Requires the Steam Runtime turned on."
 msgstr ""
 "Na temelju Valveovog Winea, uključuje međuspremanje, Proton i Steam zakrpe. "
-"Vrijeme izvođenja Steama mora biti uključeno."
+"Paket biblioteka Steama mora biti uključen."
 
 #: bottles/frontend/views/preferences.py:250
 msgid "Other"
@@ -3111,9 +3108,8 @@ msgid "Major change: Redesign New Bottle interface"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
-#, fuzzy
 msgid "Quality of life improvements:"
-msgstr "Poboljšanja korisničkog sučelja"
+msgstr "Poboljšanja kvalitete života:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
@@ -3140,6 +3136,7 @@ msgstr "Uvoz sigurnosne kopije: {0}"
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"Paket biblioteka Steama se automatski aktivira kada se koristi wine-ge-custom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
