@@ -3,7 +3,7 @@ sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 base: org.winehq.Wine
 base-version: stable-22.08
-runtime-version: '44'
+runtime-version: &runtime-version '44'
 command: bottles
 
 finish-args:
@@ -34,11 +34,11 @@ inherit-extensions:
 add-extensions:
   org.gnome.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
-    version: '44'
+    version: *runtime-version
 
   org.gnome.Platform.Compat.i386.Debug:
     directory: lib/debug/lib/i386-linux-gnu
-    version: '44'
+    version: *runtime-version
     no-autodownload: true
 
   com.valvesoftware.Steam.Utility:
