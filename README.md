@@ -68,10 +68,10 @@ Since Bottles is primarily and officially distributed as a Flatpak, we only prov
 2. Run `flatpak run -d --filesystem=$PWD --command=bash com.usebottles.bottles//master` from the root of the repository, followed by `./utils/install.sh`. This will build Bottles and install it under the `build/` directory.
 3. Run `./build/bin/bottles` to launch Bottles
 
-Due to GNOME Builder limitations, Builder cannot build Bottles from the time being; see [GNOME/gnome-builder#2061](https://gitlab.gnome.org/GNOME/gnome-builder/-/issues/2061). This is the best workaround we can provide.
+Due to GNOME Builder limitations, Builder cannot build Bottles for the time being; see [GNOME/gnome-builder#2061](https://gitlab.gnome.org/GNOME/gnome-builder/-/issues/2061) for more context. This is the best workaround we can provide.
 
 ## Code of Conduct
-This project follows the [GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct). You are expected to follow it in all Bottles spaces, such as this repository, project's social media, messenger chats and forums. Bigotry and harassment will not be tolerated.
+This project follows the [GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct). You are expected to follow it in all Bottles spaces, such as this repository, the project's social media, messenger chats and forums. Bigotry and harassment will not be tolerated.
 
 ## Sponsors
 <a href="https://www.jetbrains.com/?from=bottles"><img height="55" src="https://unifiedban.solutions/static/images/jetbrains-logos/jetbrains.png" /></a>&nbsp;&nbsp;&nbsp;
