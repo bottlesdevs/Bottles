@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg" width="64">
   <h1 align="center">Bottles</h1>
-  <p align="center">Run Windows Software using Bottles</p>
+  <p align="center">Run Windows Software on Linux</p>
 </div>
 
 <br/>
