@@ -206,6 +206,9 @@ class CLI:
         elif self.args.command == "standalone":
             self.generate_standalone()
 
+        else:
+            self.parser.print_help()
+
     # region INFO
     def show_info(self):
         _type = self.args.type
