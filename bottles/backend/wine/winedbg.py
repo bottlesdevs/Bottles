@@ -1,7 +1,7 @@
 import re
 import time
 import subprocess
-from typing import NewType, Optional
+from typing import Optional
 
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram

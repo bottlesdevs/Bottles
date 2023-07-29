@@ -15,8 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import subprocess
-from typing import Union, TextIO
+from typing import TextIO
 
 from bottles.backend.models.vdict import VDFDict
 from bottles.backend.utils import vdf

@@ -3,7 +3,6 @@
 
 import os
 from ctypes import CDLL, POINTER, Structure, addressof, c_char_p, c_int, c_void_p, cast
-import subprocess
 
 from bottles.backend.logger import Logger
 
