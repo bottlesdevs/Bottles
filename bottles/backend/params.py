@@ -1,2 +1,2 @@
 APP_VERSION = "@APP_VERSION@"
-APP_ID = "com.usebottles.bottles"
+APP_ID = "@APP_ID@"

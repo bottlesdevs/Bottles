@@ -5,19 +5,19 @@
 #### Build & install
 
 ```bash
-flatpak-builder --install --user --force-clean ./.flatpak-builder/out com.usebottles.bottles.yml
+flatpak-builder --install --user --force-clean ./.flatpak-builder/out com.usebottles.bottles.Devel.yml
 ```
 
 #### Run
 
 ```bash
-flatpak run com.usebottles.bottles
+flatpak run com.usebottles.bottles.Devel
 ```
 
 #### Uninstall devel version
 
 ```bash
-flatpak uninstall com.usebottles.bottles//master
+flatpak uninstall com.usebottles.bottles.Devel//master
 ```
 
 ## Unit Test

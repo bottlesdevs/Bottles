@@ -1,4 +1,4 @@
-id: com.usebottles.bottles
+id: com.usebottles.bottles.Devel
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 base: org.winehq.Wine
@@ -63,6 +63,10 @@ x-compat-i386-opts: &compat_i386_opts
 sdk-extensions:
   - org.gnome.Sdk.Compat.i386
   - org.freedesktop.Sdk.Extension.toolchain-i386
+
+build-options:
+  build-args:
+    - --share=network
 
 cleanup:
   - /include
