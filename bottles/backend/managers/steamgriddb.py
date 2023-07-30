@@ -18,7 +18,6 @@
 import os
 import uuid
 import requests
-from functools import lru_cache
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
