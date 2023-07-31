@@ -193,22 +193,62 @@ class Bottles(Adw.Application):
         e.g. xdg-open bottles:run/<bottle>/<program>
         """
         uri = uri[0]
+        
+        import urllib.parse
+        uri = urllib.parse.unquote(uri)
         if os.path.exists(uri):
             from bottles.frontend.windows.bottlepicker import BottlePickerDialog
             dialog = BottlePickerDialog(application=self, arg_exe=uri)
             dialog.present()
             return 0
 
-        _wrong_uri_error = _("Invalid URI (syntax: bottles:run/<bottle>/<program>)")
-        if not len(uri) > 0 or not uri.startswith('bottles:run/') or len(uri.split('/')) != 3:
+        _wrong_uri_error = _("Invalid URI (syntax: bottles:run/<bottle>/<program>/<arguments?> or bottles:runExe/<bottle>//<executable>//<arguments?>)")
+        if not len(uri) > 0 or not (uri.startswith('bottles:run/') or uri.startswith('bottles:runExe/')) or len(uri.split('/')) < 3:
             print(_wrong_uri_error)
             return False
 
-        uri = uri.replace('bottles:run/', '')
-        bottle, program = uri.split('/')
+        if uri.startswith('bottles:run/'):
+            uri = uri.replace('bottles:run/', '')
+            if len(uri.split('/')) == 2:
+                bottle, program = uri.split('/')
 
-        import subprocess
-        subprocess.Popen(['bottles-cli', 'run', '-b', bottle, '-p', program])
+                import subprocess
+                subprocess.Popen(['bottles-cli', 'run', '-b', bottle, '-p', program])
+            else:
+                split = uri.split('/')
+                bottle, program, arguments = split[0], split[1], split[2:]
+
+                import subprocess
+                subprocess.Popen(['bottles-cli', 'run', '-b', bottle, '-p', program, '--', '/'.join(arguments)])
+        elif uri.startswith('bottles:runExe/'):
+            uri = uri.replace('bottles:runExe/', '')
+            if len(uri.split('//')) == 2:
+                bottle, exe = uri.split('//')
+                can_access_exe = True
+
+                from bottles.backend.managers.exepath import ExePathManager
+                exe_path_manager = ExePathManager()
+                mangled_path = exe_path_manager.get_mangled_path(exe)
+                
+                if not mangled_path or not os.path.exists(mangled_path):
+                    can_access_exe = False
+
+                if can_access_exe:
+                    import subprocess
+                    subprocess.Popen(['bottles-cli', 'run', '-b', bottle, '-e', mangled_path])
+                else:
+                    from bottles.frontend.windows.runfiledialog import RunFileDialog
+                    dialog = RunFileDialog(bottle, exe, application=self)
+                    dialog.present()
+                    dialog.hide()
+                    return 0
+                    
+            else:
+                split = uri.split('//')
+                bottle, exe, arguments = split[0], split[1], split[2:]
+
+                import subprocess
+                subprocess.Popen(['bottles-cli', 'run', '-b', bottle, '-e', exe, '--', '//'.join(arguments)])
 
     def do_startup(self):
         """

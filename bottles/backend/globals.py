@@ -47,6 +47,7 @@ class Paths:
     latencyflex = f"{base}/latencyflex"
     templates = f"{base}/templates"
     library = f"{base}/library.yml"
+    exe_paths = f"{base}/exe_paths.json"
 
     @staticmethod
     def is_vkbasalt_available():

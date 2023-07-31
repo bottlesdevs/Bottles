@@ -27,6 +27,7 @@ bottles_sources = [
   'upgradeversioning.py',
   'vmtouch.py',
   'main_window.py',
+  'runfiledialog.py',
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)
