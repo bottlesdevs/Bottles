@@ -15,9 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
-from gi.repository import Gtk, GLib, Adw, Gdk
-from bottles.backend.utils.manager import ManagerUtils
+from gi.repository import Gtk, GLib, Adw
 from bottles.backend.logger import Logger
 
 logging = Logger()

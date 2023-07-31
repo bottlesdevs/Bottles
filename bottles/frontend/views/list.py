@@ -60,8 +60,8 @@ class BottleViewEntry(Adw.ActionRow):
         update_date = _("N/A")
         if self.config.Update_Date:
             try:
-                update_date = datetime.strptime(self.config.Update_Date, "%Y-%m-%d %H:%M:%S.%f")
-                update_date = update_date.strftime("%d %B, %Y %H:%M:%S")
+                temp_date = datetime.strptime(self.config.Update_Date, "%Y-%m-%d %H:%M:%S.%f")
+                update_date = temp_date.strftime("%d %B, %Y %H:%M:%S")
             except ValueError:
                 update_date = _("N/A")
 

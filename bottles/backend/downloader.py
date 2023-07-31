@@ -18,6 +18,7 @@
 import shutil
 import sys
 import time
+from typing import Optional
 
 import requests
 
@@ -36,7 +37,7 @@ class Downloader:
     bars using the func parameter.
     """
 
-    def __init__(self, url: str, file: str, update_func: TaskStreamUpdateHandler = None):
+    def __init__(self, url: str, file: str, update_func: Optional[TaskStreamUpdateHandler] = None):
         self.start_time = None
         self.url = url
         self.file = file

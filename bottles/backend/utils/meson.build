@@ -23,7 +23,8 @@ bottles_sources = [
   'threading.py',
   'connection.py',
   'gsettings_stub.py',
-  'json.py'
+  'json.py',
+  'singleton.py'
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)

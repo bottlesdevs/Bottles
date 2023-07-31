@@ -20,7 +20,7 @@ import shutil
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
-from typing import Union
+from typing import Union, Optional
 
 import icoextract
 
@@ -43,7 +43,7 @@ class ManagerUtils:
 
     @staticmethod
     def open_filemanager(
-            config: BottleConfig = None,
+            config: Optional[BottleConfig] = None,
             path_type: str = "bottle",
             component: str = "",
             custom_path: str = ""
@@ -256,7 +256,6 @@ class ManagerUtils:
                 f.write(f"Exec={cmd_legacy} -b '{config.get('Name')}'\n")
 
             return True
-
         '''
         WIP: the following code is not working yet, it raises an error:
              GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod
@@ -291,6 +290,7 @@ class ManagerUtils:
             ).encode("utf-8")
         )
         '''
+        return False
 
     @staticmethod
     def browse_wineprefix(wineprefix: dict):

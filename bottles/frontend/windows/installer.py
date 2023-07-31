@@ -99,12 +99,6 @@ class InstallerDialog(Adw.Window):
     def __init__(self, window, config, installer, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
-        self.style_provider.load_from_data(b"progressbar { line-height: 2.0; }")
-        Gtk.StyleContext.add_provider(
-            self.progressbar.get_style_context(),
-            self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
 
         self.window = window
         self.manager = window.manager
@@ -167,7 +161,7 @@ class InstallerDialog(Adw.Window):
 
         @GtkUtils.run_in_main_loop
         def set_status(result, error=False):
-            if result.status:
+            if result.ok:
                 return self.__installed()
             _err = result.data.get("message", _("Installer failed with unknown error"))
             self.__error(_err)

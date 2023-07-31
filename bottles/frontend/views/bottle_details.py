@@ -149,14 +149,6 @@ class BottleView(Adw.PreferencesPage):
             "flatpak/black-screen-or-silent-crash"
         )
 
-        gtk_context = self.drop_overlay.get_style_context()
-        Gtk.StyleContext.add_class(gtk_context, "dragndrop_overlay")
-        self.style_provider.load_from_data(b".dragndrop_overlay { background: rgba(41, 65, 94, 0.2);}")
-        Gtk.StyleContext.add_provider(
-            gtk_context,
-            self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_USER
-        )
 
         if "FLATPAK_ID" in os.environ:
             '''
@@ -444,7 +436,7 @@ class BottleView(Adw.PreferencesPage):
 
         @GtkUtils.run_in_main_loop
         def finish(result, error=False):
-            if result.status:
+            if result.ok:
                 self.window.show_toast(_("Backup created for \"{0}\"").format(self.config.Name))
             else:
                 self.window.show_toast(_("Backup failed for \"{0}\"").format(self.config.Name))
