@@ -46,10 +46,10 @@ class VmtouchDialog(Adw.Window):
         self.__update(config)
 
     def __update(self, config):
-        self.switch_cache_cwd.set_state(config.Parameters.vmtouch_cache_cwd)
+        self.switch_cache_cwd.set_active(config.Parameters.vmtouch_cache_cwd)
 
     def __idle_save(self, *_args):
-        settings = {"vmtouch_cache_cwd": self.switch_cache_cwd.get_state()}
+        settings = {"vmtouch_cache_cwd": self.switch_cache_cwd.get_active()}
 
         for setting in settings.keys():
             self.manager.update_config(

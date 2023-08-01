@@ -17,8 +17,6 @@
 
 import os
 import shutil
-from glob import glob
-from typing import NewType, Optional
 from abc import abstractmethod
 from copy import deepcopy
 
@@ -27,7 +25,6 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.reg import Reg
-from bottles.backend.wine.wineboot import WineBoot
 
 logging = Logger()
 

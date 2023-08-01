@@ -285,7 +285,9 @@ class WineCommand:
         if params.latencyflex and not return_steam_env:
             _lf_path = ManagerUtils.get_latencyflex_path(config.LatencyFleX)
             _lf_icd = os.path.join(_lf_path, "layer/usr/share/vulkan/implicit_layer.d/latencyflex.json")
-            env.concat("VK_ICD_FILENAMES", _lf_icd)
+            env.add("LFX", "1")
+        else:
+            env.add("DISABLE_LFX", "1")
 
         # Mangohud environment variables
         if params.mangohud and not self.minimal and not (gamescope_available and params.gamescope):
