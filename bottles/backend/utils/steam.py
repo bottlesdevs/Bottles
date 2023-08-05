@@ -15,8 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import subprocess
-from typing import Union, TextIO
+import os
+from typing import TextIO
 
 from bottles.backend.models.vdict import VDFDict
 from bottles.backend.utils import vdf
@@ -44,3 +44,22 @@ class SteamUtils:
         Saves a VDF file. Just a wrapper for vdf.dumps.
         """
         vdf.dump(data, fp, pretty=True)
+
+    @staticmethod
+    def is_proton(path: str) -> bool:
+        """
+        Checks if a directory is a Proton directory.
+        """
+        toolmanifest = os.path.join(path, f"toolmanifest.vdf")
+        if not os.path.isfile(toolmanifest):
+            return False
+
+        f = open(toolmanifest, "r", errors="replace")
+        data = SteamUtils.parse_vdf(f.read())
+        compat_layer_name = data.get("manifest", {}) \
+            .get("compatmanager_layer_name", {})
+
+        commandline = data.get("manifest", {}) \
+            .get("commandline", {})
+
+        return "proton" in compat_layer_name or "proton" in commandline

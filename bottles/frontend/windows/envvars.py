@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import re
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.frontend.utils.gtk import GtkUtils

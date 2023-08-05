@@ -109,6 +109,7 @@ class BottleView(Adw.PreferencesPage):
         self.manager = details.window.manager
         self.stack_bottle = details.stack_bottle
         self.leaflet = details.leaflet
+        self.details = details
         self.config = config
         self.show_hidden = False
 
@@ -149,7 +150,6 @@ class BottleView(Adw.PreferencesPage):
             "flatpak/black-screen-or-silent-crash"
         )
 
-
         if "FLATPAK_ID" in os.environ:
             '''
             If Flatpak, show the btn_flatpak_doc widget to reach
@@ -162,6 +162,8 @@ class BottleView(Adw.PreferencesPage):
         This function try to change the page based on user choice, if
         the page is not available, it will show the "bottle" page.
         """
+        if page_name == "taskmanager":
+            self.details.view_taskmanager.update(config=self.config)
         try:
             self.stack_bottle.set_visible_child_name(page_name)
             self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
@@ -254,7 +256,8 @@ class BottleView(Adw.PreferencesPage):
                 "executable": basename,
                 "name": basename[:-4],
                 "path": path,
-                "id": _uuid
+                "id": _uuid,
+                "folder": ManagerUtils.get_exe_parent_dir(self.config, path)
             }
             self.config = self.manager.update_config(
                 config=self.config,
