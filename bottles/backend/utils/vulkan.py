@@ -20,8 +20,6 @@ from glob import glob
 import shutil
 import subprocess
 
-from bottles.backend.utils.display import DisplayUtils
-
 
 class VulkanUtils:
     __vk_icd_dirs = [

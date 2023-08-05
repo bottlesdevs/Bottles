@@ -17,6 +17,7 @@
 
 import os, subprocess
 from typing import Union, TextIO
+from typing import TextIO
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.vdict import VDFDict
