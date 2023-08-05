@@ -64,7 +64,7 @@ class DriveEntry(Adw.ActionRow):
                 return
 
             path = dialog.get_file().get_path()
-            Drives(self.config).new_drive(self.drive[0], path)
+            Drives(self.config).set_drive_path(self.drive[0], path)
             self.set_subtitle(path)
 
         dialog = Gtk.FileChooserNative.new(
