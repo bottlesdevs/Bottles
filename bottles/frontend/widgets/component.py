@@ -61,6 +61,7 @@ class ComponentEntry(Adw.ActionRow):
 
         # populate widgets
         self.set_title(self.name)
+        self.set_can_focus(False)
 
         if component[1].get("Installed"):
             self.btn_browse.set_visible(True)
@@ -156,12 +157,15 @@ class ComponentEntry(Adw.ActionRow):
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
         self.btn_cancel.set_visible(False)
+        if not self.manager.component_manager.is_in_use(self.component_type, self.name):
+            self.btn_remove.set_visible(True)
 
     def set_uninstalled(self):
         self.btn_browse.set_visible(False)
         self.btn_err.set_visible(False)
         self.btn_download.set_visible(True)
-
+        if self.name in self.manager.get_offline_components(self.component_type, self.name):
+            self.set_visible(False)
 
 class ComponentExpander(Adw.ExpanderRow):
 

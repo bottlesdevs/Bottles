@@ -18,7 +18,6 @@
 import os
 
 from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils import yaml
 import subprocess
 from glob import glob
 from datetime import datetime

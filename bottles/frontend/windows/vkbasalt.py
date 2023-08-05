@@ -26,7 +26,7 @@ clut (or lut): Color LookUp Table
 '''
 
 import os
-from gi.repository import Gtk, GLib, Adw, Gdk
+from gi.repository import Gtk, GLib, Adw
 from vkbasalt.lib import parse, ParseConfig
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.logger import Logger
@@ -127,7 +127,7 @@ class VkBasaltDialog(Adw.Window):
         # If configuration file doesn't exist, set everything to default
         else:
             self.btn_save.set_sensitive(True)
-            self.switch_default.set_state(True)
+            self.switch_default.set_active(True)
             self.smaa_edge_detection = "luma"
             self.effects_widgets(False)
             self.group_effects.set_sensitive(False)
@@ -146,7 +146,7 @@ class VkBasaltDialog(Adw.Window):
         conf = ManagerUtils.get_bottle_path(self.config)
 
         # Apply default settings and close the dialog if default setting is enabled
-        if self.switch_default.get_state() is True:
+        if self.switch_default.get_active() is True:
             VkBasaltSettings.default = True
             VkBasaltSettings.output = False
             conf = os.path.join(conf, "vkBasalt.conf")

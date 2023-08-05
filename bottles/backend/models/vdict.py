@@ -20,7 +20,6 @@
 #
 # Original source code: <https://github.com/ValvePython/vdf>
 
-import sys
 from collections import Counter
 import collections.abc as _c
 
