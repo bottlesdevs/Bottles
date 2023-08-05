@@ -88,29 +88,39 @@ class TaskManagerView(Gtk.ScrolledWindow):
         This function scan for new processed and update the
         liststore_processes with the new data
         """
-        if config is None:
-            config = BottleConfig()
-        self.config = config
-        if not config.Runner:
-            return
-
         self.liststore_processes.clear()
-        winebridge = WineBridge(config)
 
-        if winebridge.is_available():
-            processes = winebridge.get_procs()
-        else:
-            winedbg = WineDbg(config)
-            processes = winedbg.get_processes()
+        def fetch_processes(config: Optional[BottleConfig] = None):
+            if config is None:
+                config = BottleConfig()
+            self.config = config
+            if not config.Runner:
+                return
 
-        if len(processes) > 0:
-            for process in processes:
-                self.liststore_processes.append([
-                    process.get("pid"),
-                    process.get("name", "n/a"),
-                    process.get("threads", "0"),
-                    # process.get("parent", "0")
-                ])
+            winebridge = WineBridge(config)
+
+            if winebridge.is_available():
+                processes = winebridge.get_procs()
+            else:
+                winedbg = WineDbg(config)
+                processes = winedbg.get_processes()
+            return processes
+
+        def update_processes(processes: list, *_args):
+            if len(processes) > 0:
+                for process in processes:
+                    self.liststore_processes.append([
+                        process.get("pid"),
+                        process.get("name", "n/a"),
+                        process.get("threads", "0"),
+                        # process.get("parent", "0")
+                    ])
+
+        RunAsync(
+            task_func=fetch_processes,
+            callback=update_processes,
+            config=config
+        )
 
     def sensitive_update(self, widget):
         @GtkUtils.run_in_main_loop

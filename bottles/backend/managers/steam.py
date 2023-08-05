@@ -298,24 +298,25 @@ class SteamManager:
                 continue
 
             _conf = BottleConfig()
-            _conf.Name = _acf["AppState"]["name"]
+            _conf.Name = _acf["AppState"].get("name", "Unknown")
             _conf.Environment = "Steam"
             _conf.CompatData = _dir_name
             _conf.Path = os.path.join(_path, "pfx")
             _conf.Runner = os.path.basename(_runner_path)
             _conf.RunnerPath = _runner_path
-            _conf.WorkingDir = os.path.join(_conf["Path"], "drive_c")
+            _conf.WorkingDir = os.path.join(_conf.get("Path", ""), "drive_c")
             _conf.Creation_Date = _creation_date
             _conf.Update_Date = datetime.fromtimestamp(
-                int(_acf["AppState"]["LastUpdated"])
+                int(_acf["AppState"].get("LastUpdated", 0))
             ).strftime("%Y-%m-%d %H:%M:%S.%f")
 
             # Launch options
-            _conf.Parameters.mangohud = ("mangohud" in _launch_options["command"])
-            _conf.Parameters.gamemode = ("gamemode" in _launch_options["command"])
-            _conf.Environment_Variables = _launch_options["env_vars"]
-            for p in _launch_options["env_params"]:
-                _conf.Parameters[p] = _launch_options["env_params"][p]
+            _conf.Parameters.mangohud = ("mangohud" in _launch_options.get("command", ""))
+            _conf.Parameters.gamemode = ("gamemode" in _launch_options.get("command", ""))
+            _conf.Environment_Variables = _launch_options.get("env_vars", {})
+            for p in _launch_options.get("env_params", {}):
+                _conf.Parameters[p] = _launch_options["env_params"].get(p, "")
+
 
             prefixes[_dir_name] = _conf
 
