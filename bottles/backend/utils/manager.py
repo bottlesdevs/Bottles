@@ -206,6 +206,8 @@ class ManagerUtils:
                              use_xdp: bool = False) -> bool:
         if not os.path.exists(Paths.applications) and not use_xdp:
             return False
+        else:
+            os.makedirs(Paths.applications_bottles, exist_ok=True)
 
         cmd_legacy = "bottles"
         cmd_cli = "bottles-cli"
@@ -223,13 +225,13 @@ class ManagerUtils:
         if not use_xdp:
             file_name_template = "%s/%s--%s--%s.desktop"
             existing_files = glob(file_name_template % (
-                Paths.applications,
+                Paths.applications_bottles,
                 config.Name,
                 program.get("name"),
                 "*"
             ))
             desktop_file = file_name_template % (
-                Paths.applications,
+                Paths.applications_bottles,
                 config.Name,
                 program.get("name"),
                 datetime.now().timestamp()

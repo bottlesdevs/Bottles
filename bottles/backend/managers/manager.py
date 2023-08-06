@@ -1461,7 +1461,7 @@ class Manager(metaclass=Singleton):
             return False
 
         logging.info(f"Removing applications installed with the bottle…")
-        for inst in glob(f"{Paths.applications}/{config.Name}--*"):
+        for inst in glob(f"{Paths.applications}/{config.Name}--*") + glob(f"{Paths.applications_bottles}/{config.Name}--*"):
             os.remove(inst)
 
         logging.info(f"Removing library entries associated with this bottle…")

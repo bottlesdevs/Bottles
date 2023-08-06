@@ -33,7 +33,8 @@ class Paths:
     base = f"{xdg_data_home}/bottles"
 
     # User applications path
-    applications = f"{xdg_data_home}/applications/"
+    applications = f"{xdg_data_home}/applications"
+    applications_bottles = f"{applications}/bottles/"
 
     temp = f"{base}/temp"
     runtimes = f"{base}/runtimes"
