@@ -25,6 +25,7 @@ from gi.repository import Gtk, Adw, Gio, GLib
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.state import EventManager, Events
 from bottles.backend.utils.threading import RunAsync
+from bottles.backend.utils.generic import sort_by_version
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
 
@@ -222,6 +223,25 @@ class PreferencesWindow(Adw.PreferencesWindow):
         return (not self.window.settings.get_boolean("release-candidate")
                     and component[1]["Channel"] in ["rc", "unstable"])
 
+    def __populate_component_list(self, component_type, supported_components, list_component):
+        offline_components = self.manager.get_offline_components(component_type)
+        supported_component_items = list(supported_components.items())
+        i, j = 0, 0
+        while i <= len(supported_component_items):
+            while j < len(offline_components) and \
+                    (i == len(supported_component_items) or \
+                    sort_by_version([offline_components[j], supported_component_items[i][0]])[0] == offline_components[j]):
+                offline_entry = [ offline_components[j], { "Installed": True} ]
+                supported_component_items.insert(i, offline_entry)
+                j += 1
+            i += 1
+        for component in supported_component_items:
+            if self.__check_release_candidate(component):
+                continue
+            _entry = ComponentEntry(self.window, component, component_type)
+            list_component.add(_entry)
+            self.__registry.append(_entry)
+
     def populate_runtimes_list(self):
         for runtime in self.manager.supported_runtimes.items():
             self.list_runtimes.add(ComponentEntry(self.window, runtime, "runtime", is_upgradable=True))
@@ -231,102 +251,95 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.list_winebridge.add(ComponentEntry(self.window, bridge, "winebridge", is_upgradable=True))
 
     def populate_dxvk_list(self):
-        for dxvk in self.manager.supported_dxvk.items():
-            if self.__check_release_candidate(dxvk):
-                continue
-            _entry = ComponentEntry(self.window, dxvk, "dxvk")
-            self.list_dxvk.add(_entry)
-            self.__registry.append(_entry)    
+        self.__populate_component_list("dxvk", self.manager.supported_dxvk, self.list_dxvk)
 
     def populate_vkd3d_list(self):
-        for vkd3d in self.manager.supported_vkd3d.items():
-            if self.__check_release_candidate(vkd3d):
-                continue
-            _entry = ComponentEntry(self.window, vkd3d, "vkd3d")
-            self.list_vkd3d.add(_entry)
-            self.__registry.append(_entry)    
+        self.__populate_component_list("vkd3d", self.manager.supported_vkd3d, self.list_vkd3d)
 
     def populate_nvapi_list(self):
-        for nvapi in self.manager.supported_nvapi.items():
-            if self.__check_release_candidate(nvapi):
-                continue
-            _entry = ComponentEntry(self.window, nvapi, "nvapi")
-            self.list_nvapi.add(_entry)
-            self.__registry.append(_entry)    
+        self.__populate_component_list("nvapi", self.manager.supported_nvapi, self.list_nvapi)
 
     def populate_latencyflex_list(self):
-        for latencyflex in self.manager.supported_latencyflex.items():
-            if self.__check_release_candidate(latencyflex):
+        self.__populate_component_list("latencyflex", self.manager.supported_latencyflex, self.list_latencyflex)
+
+    def __populate_runners_helper(self, runner_type, supported_runners_dict, identifiable_runners_struct):
+        offline_runners_list = self.manager.get_offline_components(runner_type)
+        for offline_runner in offline_runners_list:
+            _runner_name = offline_runner.lower()
+            for identifiable_runner in identifiable_runners_struct:
+                if _runner_name.startswith(identifiable_runner["prefix"]):
+                    identifiable_runner["offline_runners"].append(offline_runner)
+                    break
+
+        for supported_runner in supported_runners_dict.items():
+            _runner_name = supported_runner[0].lower()
+            if self.__check_release_candidate(supported_runner):
                 continue
-            _entry = ComponentEntry(self.window, latencyflex, "latencyflex")
-            self.list_latencyflex.add(_entry)
-            self.__registry.append(_entry)    
+
+            _entry = ComponentEntry(self.window, supported_runner, runner_type)
+            for identifiable_runner in identifiable_runners_struct:
+                if _runner_name.startswith(identifiable_runner["prefix"]):
+                    while identifiable_runner["offline_runners"] and \
+                            sort_by_version([identifiable_runner["offline_runners"][0], supported_runner[0]])[0] == identifiable_runner["offline_runners"][0]:
+                        offline_runner = [ identifiable_runner["offline_runners"][0], { "Installed": True} ]
+                        _offline_entry = ComponentEntry(self.window, offline_runner, runner_type)
+                        identifiable_runner["expander"].add_row(_offline_entry)
+                        identifiable_runner["count"] += 1
+                        identifiable_runner["offline_runners"].pop(0)
+                    identifiable_runner["expander"].add_row(_entry)
+                    identifiable_runner["count"] += 1
+                    break
+
+        # Don't forget left over offline runners
+        for identifiable_runner in identifiable_runners_struct:
+            while identifiable_runner["offline_runners"]:
+                offline_runner = [ identifiable_runner["offline_runners"][0], { "Installed": True} ]
+                _offline_entry = ComponentEntry(self.window, offline_runner, runner_type)
+                identifiable_runner["expander"].add_row(_offline_entry)
+                identifiable_runner["count"] += 1
+                identifiable_runner["offline_runners"].pop(0)
 
     def populate_runners_list(self):
-        exp_soda = ComponentExpander("Soda", _("Based on Valve's Wine, includes staging and Proton patches."))
-        exp_caffe = ComponentExpander("Caffe", _("Based on Wine upstream, includes staging and Proton patches."))
-        exp_wine_ge = ComponentExpander("GE Wine")
+        exp_soda = ComponentExpander("Soda", _("Based on Valve's Wine, includes Staging and Proton patches."))
+        exp_caffe = ComponentExpander("Caffe", _("Based on Wine upstream, includes Staging and Proton patches."))
+        exp_wine_ge = ComponentExpander("Wine GE", _("Based on the most recent bleeding-edge Valve's Proton Experimental Wine, "
+                                                     "includes Staging and custom patches. "
+                                                     "This is meant to be used with non-steam games outside of Steam."))
+        exp_kron4ek = ComponentExpander("Kron4ek", _("Based on Wine upstream, Staging, Staging-TkG and Proton patchset optionally available."))
         exp_lutris = ComponentExpander("Lutris")
-        exp_vaniglia = ComponentExpander("Vaniglia", _("Based on Wine upstream, includes staging patches."))
-        exp_proton = ComponentExpander("GE Proton", _("Based on Valve's Wine, includes staging, Proton and "
-                                                      "Steam-specific patches. Requires the Steam Runtime turned on."))
-        exp_other = ComponentExpander(_("Other"))
+        exp_vaniglia = ComponentExpander("Vaniglia", _("Based on Wine upstream, includes Staging patches."))
+        exp_proton_ge = ComponentExpander("Proton GE", _("Based on most recent bleeding-edge Valve's Proton Experimental, "
+                                                      "includes Staging and custom patches. "
+                                                      "Requires the Steam Runtime turned on."))
+        exp_other_wine = ComponentExpander(_("Other Wine runners"))
+        exp_other_proton = ComponentExpander(_("Other Proton runners"))
 
-        count = {"soda": 0, "caffe": 0, "wine-ge": 0, "lutris": 0, "vaniglia": 0, "proton": 0, "other": 0}
+        identifiable_wine_runners = [
+            { "prefix": "soda", "count": 0, "expander": exp_soda, "offline_runners": [] },
+            { "prefix": "caffe", "count": 0, "expander": exp_caffe, "offline_runners": [] },
+            { "prefix": "vaniglia", "count": 0, "expander": exp_vaniglia, "offline_runners": [] },
+            { "prefix": "wine-ge", "count": 0, "expander": exp_wine_ge, "offline_runners": [] },
+            { "prefix": "kron4ek", "count": 0, "expander": exp_kron4ek, "offline_runners": [] },
+            { "prefix": "lutris", "count": 0, "expander": exp_lutris, "offline_runners": [] },
+        ]
+        identifiable_proton_runners = [
+            { "prefix": "ge-proton", "count": 0, "expander": exp_proton_ge, "offline_runners": [] }
+        ]
+        other_wine_runners = [
+            { "prefix": "", "count": 0, "expander": exp_other_wine, "offline_runners": [] },
+        ]
+        other_proton_runners = [
+            { "prefix": "", "count": 0, "expander": exp_other_proton, "offline_runners": [] },
+        ]
 
-        for runner in self.manager.supported_wine_runners.items():
-            _runner_name = runner[0].lower()
-            if self.__check_release_candidate(runner):
-                continue
+        self.__populate_runners_helper("runner", \
+            self.manager.supported_wine_runners, identifiable_wine_runners + other_wine_runners)
+        self.__populate_runners_helper("runner:proton", \
+            self.manager.supported_proton_runners, identifiable_proton_runners + other_proton_runners)
 
-            _entry = ComponentEntry(self.window, runner, "runner")
-            if _runner_name.startswith("soda"):
-                exp_soda.add_row(_entry)
-                count["soda"] += 1
-            elif _runner_name.startswith("caffe"):
-                exp_caffe.add_row(_entry)
-                count["caffe"] += 1
-            elif _runner_name.startswith("wine-ge"):
-                exp_wine_ge.add_row(_entry)
-                count["wine-ge"] += 1
-            elif _runner_name.startswith("lutris"):
-                exp_lutris.add_row(_entry)
-                count["lutris"] += 1
-            elif _runner_name.startswith("vaniglia"):
-                exp_vaniglia.add_row(_entry)
-                count["vaniglia"] += 1
-            else:
-                exp_other.add_row(_entry)
-                count["other"] += 1
-
-        for runner in self.manager.supported_proton_runners.items():
-            if self.__check_release_candidate(runner):
-                continue
-
-            _entry = ComponentEntry(self.window, runner, "runner:proton")
-            exp_proton.add_row(_entry)
-            count["proton"] += 1
-
-        if count["soda"] > 0:
-            self.list_runners.add(exp_soda)
-            self.__registry.append(exp_soda)
-        if count["caffe"] > 0:
-            self.list_runners.add(exp_caffe)
-            self.__registry.append(exp_caffe)
-        if count["wine-ge"] > 0:
-            self.list_runners.add(exp_wine_ge)
-            self.__registry.append(exp_wine_ge)
-        if count["lutris"] > 0:
-            self.list_runners.add(exp_lutris)
-            self.__registry.append(exp_lutris)
-        if count["vaniglia"] > 0:
-            self.list_runners.add(exp_vaniglia)
-            self.__registry.append(exp_vaniglia)
-        if count["proton"] > 0:
-            self.list_runners.add(exp_proton)
-            self.__registry.append(exp_proton)
-        if count["other"] > 0:
-            self.list_runners.add(exp_other)
-            self.__registry.append(exp_other)
+        for runner in identifiable_wine_runners + identifiable_proton_runners + other_wine_runners + other_proton_runners:
+            if runner["count"] > 0:
+                self.list_runners.add(runner["expander"])
+                self.__registry.append(runner["expander"])
 
         self.installers_stack.set_visible_child_name("installers_list")

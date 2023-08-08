@@ -16,9 +16,7 @@
 #
 
 from functools import lru_cache, wraps
-from threading import Lock as PyLock
 from time import monotonic_ns
-from typing import Callable, Dict
 
 
 def cache(_func=None, *, seconds: int = 600, maxsize: int = 128, typed: bool = False):

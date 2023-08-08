@@ -122,7 +122,7 @@ class SteamManager:
             return None
 
         with open(library_folders_path, "r", errors="replace") as f:
-            _library_folders = SteamUtils.parse_acf(f.read())
+            _library_folders = SteamUtils.parse_vdf(f.read())
 
         if _library_folders is None or not _library_folders.get("libraryfolders"):
             logging.warning(f"Could not parse libraryfolders.vdf")
@@ -155,7 +155,7 @@ class SteamManager:
             return {}
 
         with open(self.localconfig_path, "r", errors="replace") as f:
-            data = SteamUtils.parse_acf(f.read())
+            data = SteamUtils.parse_vdf(f.read())
 
         if data is None:
             logging.warning(f"Could not parse localconfig.vdf")
@@ -191,14 +191,18 @@ class SteamManager:
                 logging.error(f"{config_info} is not valid, cannot get Steam Proton path")
                 return None
 
-            proton_path = lines[2].strip()[:-5]
-            proton_name = os.path.basename(proton_path.rsplit("/", 1)[0])
+            proton_path = lines[1].strip().removesuffix("/share/fonts/")
 
-            if not os.path.isdir(proton_path):
+            if proton_path.endswith("/files"):
+                proton_path = proton_path.removesuffix("/files")
+            elif proton_path.endswith("/dist"):
+                proton_path = proton_path.removesuffix("/dist")
+
+            if not SteamUtils.is_proton(proton_path):
                 logging.error(f"{proton_path} is not a valid Steam Proton path")
                 return None
 
-            return proton_name, proton_path
+            return proton_path
 
     def list_apps_ids(self) -> dict:
         """List all apps in Steam"""
@@ -272,7 +276,7 @@ class SteamManager:
             _launch_options = self.get_launch_options(appid, appdata)
             _dir_name = os.path.basename(_path)
             _acf = self.get_acf_data(_library_path, _dir_name)
-            _runner = self.get_runner_path(_path)
+            _runner_path = self.get_runner_path(_path)
             _creation_date = datetime.fromtimestamp(os.path.getctime(_path)) \
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
 
@@ -284,33 +288,35 @@ class SteamManager:
                 logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping…")
                 continue
 
-            if "Proton" in _acf["AppState"]["name"]:
+            if SteamUtils.is_proton(os.path.join(_library_path, "steamapps/common", _acf["AppState"]["installdir"])):
                 # skip Proton default prefix
+                logging.warning(f"A Steam prefix was found, but it is a Proton one: {_dir_name}, skipping…")
                 continue
 
-            if _runner is None:
+            if _runner_path is None:
                 logging.warning(f"A Steam prefix was found, but there is no Proton for it: {_dir_name}, skipping…")
                 continue
 
             _conf = BottleConfig()
-            _conf.Name = _acf["AppState"]["name"]
+            _conf.Name = _acf["AppState"].get("name", "Unknown")
             _conf.Environment = "Steam"
             _conf.CompatData = _dir_name
             _conf.Path = os.path.join(_path, "pfx")
-            _conf.Runner = _runner[0]
-            _conf.RunnerPath = _runner[1]
-            _conf.WorkingDir = os.path.join(_conf["Path"], "drive_c")
+            _conf.Runner = os.path.basename(_runner_path)
+            _conf.RunnerPath = _runner_path
+            _conf.WorkingDir = os.path.join(_conf.get("Path", ""), "drive_c")
             _conf.Creation_Date = _creation_date
             _conf.Update_Date = datetime.fromtimestamp(
-                int(_acf["AppState"]["LastUpdated"])
+                int(_acf["AppState"].get("LastUpdated", 0))
             ).strftime("%Y-%m-%d %H:%M:%S.%f")
 
             # Launch options
-            _conf.Parameters.mangohud = ("mangohud" in _launch_options["command"])
-            _conf.Parameters.gamemode = ("gamemode" in _launch_options["command"])
-            _conf.Environment_Variables = _launch_options["env_vars"]
-            for p in _launch_options["env_params"]:
-                _conf.Parameters[p] = _launch_options["env_params"][p]
+            _conf.Parameters.mangohud = ("mangohud" in _launch_options.get("command", ""))
+            _conf.Parameters.gamemode = ("gamemode" in _launch_options.get("command", ""))
+            _conf.Environment_Variables = _launch_options.get("env_vars", {})
+            for p in _launch_options.get("env_params", {}):
+                _conf.Parameters[p] = _launch_options["env_params"].get(p, "")
+
 
             prefixes[_dir_name] = _conf
 

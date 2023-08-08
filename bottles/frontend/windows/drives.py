@@ -64,7 +64,7 @@ class DriveEntry(Adw.ActionRow):
                 return
 
             path = dialog.get_file().get_path()
-            Drives(self.config).new_drive(self.drive[0], path)
+            Drives(self.config).set_drive_path(self.drive[0], path)
             self.set_subtitle(path)
 
         dialog = Gtk.FileChooserNative.new(
@@ -83,8 +83,8 @@ class DriveEntry(Adw.ActionRow):
         destroy the widget
         """
         Drives(self.config).remove_drive(self.drive[0])
-        self.parent.str_list_letters.append(self.drive[0])
         self.parent.list_drives.remove(self)
+        self.parent.add_combo_letter(self.drive[0])
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-drives.ui')
@@ -151,3 +151,15 @@ class DrivesDialog(Adw.Window):
                 self.btn_save.set_sensitive(True)
 
         self.combo_letter.set_selected(0)
+
+    def add_combo_letter(self, letter):
+        list_copy = list(map(lambda item: item.get_string(), self.str_list_letters))
+
+        self.str_list_letters.splice(0, self.str_list_letters.get_n_items())
+
+        for item in self.__alphabet:
+            if item in list_copy or item == letter:
+                self.str_list_letters.append(item)
+
+        self.combo_letter.set_selected(0)
+    

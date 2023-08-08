@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.backend.utils.manager import ManagerUtils
@@ -26,7 +25,7 @@ from gettext import gettext as _
 class LaunchOptionsDialog(Adw.Window):
     __gtype_name__ = 'LaunchOptionsDialog'
     __gsignals__ = {
-        "options-saved": (GObject.SIGNAL_RUN_FIRST, None, (str,)),  # str would be dict here, it just raises errors
+        "options-saved": (GObject.SIGNAL_RUN_FIRST, None, (object,)),
     }
 
     # region Widgets
@@ -114,7 +113,7 @@ class LaunchOptionsDialog(Adw.Window):
             self.action_script.set_subtitle(program["script"])
             self.btn_script_reset.set_visible(True)
 
-        if program.get("folder", "") != ManagerUtils.get_exe_parent_dir(self.config, self.program["path"]):
+        if program.get("folder") not in ["", None, ManagerUtils.get_exe_parent_dir(self.config, self.program["path"])]:
             self.action_cwd.set_subtitle(program["folder"])
             self.btn_cwd_reset.set_visible(True)
 
@@ -135,15 +134,15 @@ class LaunchOptionsDialog(Adw.Window):
             self.action_nvapi.set_subtitle(self.__msg_disabled.format("DXVK-Nvapi"))
             self.switch_nvapi.set_sensitive(False)
 
-        if dxvk != self.program["dxvk"]:
+        if dxvk != self.program.get("dxvk"):
             self.action_dxvk.set_subtitle(self.__msg_override)
-        if vkd3d != self.program["vkd3d"]:
+        if vkd3d != self.program.get("vkd3d"):
             self.action_vkd3d.set_subtitle(self.__msg_override)
-        if nvapi != self.program["dxvk_nvapi"]:
+        if nvapi != self.program.get("dxvk_nvapi"):
             self.action_nvapi.set_subtitle(self.__msg_override)
-        if fsr != self.program["fsr"]:
+        if fsr != self.program.get("fsr"):
             self.action_fsr.set_subtitle(self.__msg_override)
-        if virt_desktop != self.program["virtual_desktop"]:
+        if virt_desktop != self.program.get("virtual_desktop"):
             self.action_virt_desktop.set_subtitle(self.__msg_override)
 
         if "dxvk" in self.program:
