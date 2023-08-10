@@ -92,7 +92,7 @@ def is_glibc_min_available():
 def sort_by_version(_list: list, extra_check: str = "async"):
     def natural_keys(text):
         result = [int(re.search(extra_check, text) is None)]
-        result.extend([int(c) for c in re.findall(r'\d+', text)])
+        result.extend([int(t) if t.isdigit() else t.lower() for t in re.split('(\d+)', text)])
         return result
 
     _list.sort(key=natural_keys, reverse=True)
