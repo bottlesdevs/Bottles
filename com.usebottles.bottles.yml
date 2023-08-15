@@ -295,7 +295,7 @@ modules:
           url: https://api.github.com/repos/bottlesdevs/runtime/releases/latest
           version-query: .tag_name
           url-query: '"https://github.com/bottlesdevs/runtime/releases/download/"
-            + $version + "/runtime.tar.gz"'
+            + $version + "/runtime-" + $version + ".tar.gz"'
 
   - name: bottles
     builddir: true
