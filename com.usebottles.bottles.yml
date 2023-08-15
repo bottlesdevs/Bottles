@@ -206,8 +206,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ImageMagick/ImageMagick
-        tag: 7.1.1-13
-        commit: d5974ce50c84bee43731270a899d7a4a9500cc17
+        tag: 7.1.1-15
+        commit: a0a5f3da4cd07919dd2d1bbae121e590b5f105e2
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+-[\d]+)$
@@ -231,8 +231,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.gnome.org/jwestman/blueprint-compiler
-        tag: v0.8.1
-        commit: aa7679618e864748f4f4d8f15283906e712752fe
+        tag: v0.10.0
+        commit: 2a39a16391122af2f3d812e478c1c1398c98b972
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -274,8 +274,8 @@ modules:
         sources:
           - type: git
             url: https://gitlab.gnome.org/GNOME/vte
-            tag: 0.72.2
-            commit: 854e56263454077ab009aaff67f1afe0dbd52878
+            tag: 0.73.93
+            commit: f13f4d6cd83ba01315ac62755d70736705c40c99
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
@@ -297,11 +297,6 @@ modules:
           url-query: '"https://github.com/bottlesdevs/runtime/releases/download/"
             + $version + "/runtime-" + $version + ".tar.gz"'
 
-  - name: bottles
-    builddir: true
-    buildsystem: meson
-    config-opts:
-      - -Ddevel=true
-    sources:
-      - type: dir
-        path: .
+  # Bottles source directory
+  # ----------------------------------------------------------------------------
+  - com.usebottles.bottles.src.yaml
