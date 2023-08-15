@@ -1,5 +1,4 @@
 import re
-from typing import NewType
 from functools import lru_cache
 
 from bottles.backend.logger import Logger

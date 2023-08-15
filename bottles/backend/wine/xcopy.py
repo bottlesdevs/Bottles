@@ -1,4 +1,4 @@
-from typing import NewType, Optional
+from typing import Optional
 from datetime import datetime
 
 from bottles.backend.logger import Logger

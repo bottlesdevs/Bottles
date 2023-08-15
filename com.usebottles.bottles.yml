@@ -41,6 +41,14 @@ add-extensions:
     version: *runtime-version
     no-autodownload: true
 
+  com.valvesoftware.Steam.CompatibilityTool:
+    subdirectories: true
+    directory: share/steam/compatibilitytools.d
+    version: stable
+    versions: stable;beta;test
+    no-autodownload: true
+    autodelete: false
+
   com.valvesoftware.Steam.Utility:
     subdirectories: true
     directory: utils
@@ -49,7 +57,7 @@ add-extensions:
     add-ld-path: lib
     merge-dirs: bin
     no-autodownload: true
-    autodelete: true
+    autodelete: false
 
 x-compat-i386-opts: &compat_i386_opts
   prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
@@ -77,6 +85,7 @@ cleanup:
 
 cleanup-commands:
   - mkdir -p /app/utils
+  - mkdir -p /app/share/steam/compatibilitytools.d
 
 modules:
   # PYPI modules

@@ -16,7 +16,6 @@
 #
 
 import contextlib
-import re
 from gettext import gettext as _
 
 from gi.repository import Gtk, Adw, GObject
