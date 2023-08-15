@@ -10,6 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
+        ref: ${{ github.event.pull_request.head.ref }}
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
         fetch-depth: 0
     - name: Set up Python 3.10
       uses: actions/setup-python@v4
@@ -35,6 +37,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - uses: sonarsource/sonarqube-scan-action@master
         env:
