@@ -195,7 +195,7 @@ class PreferencesView(Adw.PreferencesPage):
         _not_available = _("This feature is unavailable on your system.")
         _flatpak_not_available = _("{} To add this feature, please run flatpak install").format(_not_available)
         _flatpak_pkg_name = {
-            "gamescope": "com.valvesoftware.Steam.Utility.gamescope",
+            "gamescope": "org.freedesktop.Platform.VulkanLayer.gamescope",
             "vkbasalt": "org.freedesktop.Platform.VulkanLayer.vkBasalt//22.08",
             "mangohud": "org.freedesktop.Platform.VulkanLayer.MangoHud//22.08",
             "obsvkc": "com.obsproject.Studio.Plugin.OBSVkCapture"
