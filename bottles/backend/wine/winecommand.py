@@ -406,7 +406,7 @@ class WineCommand:
 
         return env.get()["envs"]
 
-    def _get_runner_info(self) -> (str, str):
+    def _get_runner_info(self) -> tuple[str, str]:
         config = self.config
         runner = ManagerUtils.get_runner_path(config.Runner)
         arch = config.Arch
@@ -416,7 +416,7 @@ class WineCommand:
             runner = config.RunnerPath
 
         if runner in [None, ""]:
-            return ""
+            return "", ""
 
         if SteamUtils.is_proton(runner):
             '''

@@ -288,7 +288,7 @@ class SteamManager:
                 logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping…")
                 continue
 
-            if SteamUtils.is_proton(os.path.join(_library_path, "steamapps/common", _acf["AppState"]["installdir"])):
+            if SteamUtils.is_proton(os.path.join(_library_path, "steamapps/common", _acf["AppState"].get("installdir", ""))):
                 # skip Proton default prefix
                 logging.warning(f"A Steam prefix was found, but it is a Proton one: {_dir_name}, skipping…")
                 continue
