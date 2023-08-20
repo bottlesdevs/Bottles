@@ -23,9 +23,6 @@ import os
 import signal
 import sys
 import uuid
-import warnings
-
-import gi
 
 APP_VERSION = "@APP_VERSION@"
 pkgdatadir = "@pkgdatadir@"
