@@ -27,9 +27,6 @@ import warnings
 
 import gi
 
-warnings.filterwarnings("ignore")  # suppress GTK warnings
-gi.require_version('Gtk', '4.0')
-
 APP_VERSION = "@APP_VERSION@"
 pkgdatadir = "@pkgdatadir@"
 # noinspection DuplicatedCode
