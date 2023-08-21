@@ -410,7 +410,7 @@ class WineCommand:
         config = self.config
         runner = ManagerUtils.get_runner_path(config.Runner)
         arch = config.Arch
-        runner_runtime = None
+        runner_runtime = ""
 
         if config.Environment == "Steam":
             runner = config.RunnerPath
