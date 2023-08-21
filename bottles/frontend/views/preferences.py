@@ -219,24 +219,25 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.label_bottles_path.set_label(_("(Default)"))
         self.prompt_restart()
 
-    def __check_release_candidate(self, component):
-        return (not self.window.settings.get_boolean("release-candidate")
-                    and component[1]["Channel"] in ["rc", "unstable"])
+    def __display_unstable_candidate(self, component = [ "", { "Channel": "unstable" } ]):
+        return (self.window.settings.get_boolean("release-candidate")
+                    or component[1]["Channel"] not in ["rc", "unstable"])
 
     def __populate_component_list(self, component_type, supported_components, list_component):
         offline_components = self.manager.get_offline_components(component_type)
         supported_component_items = list(supported_components.items())
-        i, j = 0, 0
-        while i <= len(supported_component_items):
-            while j < len(offline_components) and \
-                    (i == len(supported_component_items) or \
-                    sort_by_version([offline_components[j], supported_component_items[i][0]])[0] == offline_components[j]):
-                offline_entry = [ offline_components[j], { "Installed": True} ]
-                supported_component_items.insert(i, offline_entry)
-                j += 1
-            i += 1
+        if self.__display_unstable_candidate():
+            i, j = 0, 0
+            while i <= len(supported_component_items):
+                while j < len(offline_components) and \
+                        (i == len(supported_component_items) or \
+                        sort_by_version([offline_components[j], supported_component_items[i][0]])[0] == offline_components[j]):
+                    offline_entry = [ offline_components[j], { "Installed": True, "Channel": "unstable", "Category": component_type } ]
+                    supported_component_items.insert(i, offline_entry)
+                    j += 1
+                i += 1
         for component in supported_component_items:
-            if self.__check_release_candidate(component):
+            if not self.__display_unstable_candidate(component):
                 continue
             _entry = ComponentEntry(self.window, component, component_type)
             list_component.add(_entry)
@@ -264,28 +265,29 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def __populate_runners_helper(self, runner_type, supported_runners_dict, identifiable_runners_struct):
         offline_runners_list = self.manager.get_offline_components(runner_type)
-        for offline_runner in offline_runners_list:
-            _runner_name = offline_runner.lower()
-            for identifiable_runner in identifiable_runners_struct:
-                if _runner_name.startswith(identifiable_runner["prefix"]):
-                    identifiable_runner["offline_runners"].append(offline_runner)
-                    break
+        if self.__display_unstable_candidate():
+            for offline_runner_name in offline_runners_list:
+                offline_runner = [ offline_runner_name, { "Installed": True, "Channel": "unstable", "Category": "runners", "Sub-category": "wine" if runner_type == "runner" else "proton" } ]
+                _runner_name = offline_runner_name.lower()
+                for identifiable_runner in identifiable_runners_struct:
+                    if _runner_name.startswith(identifiable_runner["prefix"]):
+                        identifiable_runner["offline_runners"].append(offline_runner)
+                        break
 
         for supported_runner in supported_runners_dict.items():
             _runner_name = supported_runner[0].lower()
-            if self.__check_release_candidate(supported_runner):
+            if not self.__display_unstable_candidate(supported_runner):
                 continue
 
             _entry = ComponentEntry(self.window, supported_runner, runner_type)
             for identifiable_runner in identifiable_runners_struct:
                 if _runner_name.startswith(identifiable_runner["prefix"]):
                     while identifiable_runner["offline_runners"] and \
-                            sort_by_version([identifiable_runner["offline_runners"][0], supported_runner[0]])[0] == identifiable_runner["offline_runners"][0]:
-                        offline_runner = [ identifiable_runner["offline_runners"][0], { "Installed": True} ]
+                            sort_by_version([identifiable_runner["offline_runners"][0][0], supported_runner[0]])[0] == identifiable_runner["offline_runners"][0][0]:
+                        offline_runner = identifiable_runner["offline_runners"].pop(0)
                         _offline_entry = ComponentEntry(self.window, offline_runner, runner_type)
                         identifiable_runner["expander"].add_row(_offline_entry)
                         identifiable_runner["count"] += 1
-                        identifiable_runner["offline_runners"].pop(0)
                     identifiable_runner["expander"].add_row(_entry)
                     identifiable_runner["count"] += 1
                     break
@@ -293,11 +295,10 @@ class PreferencesWindow(Adw.PreferencesWindow):
         # Don't forget left over offline runners
         for identifiable_runner in identifiable_runners_struct:
             while identifiable_runner["offline_runners"]:
-                offline_runner = [ identifiable_runner["offline_runners"][0], { "Installed": True} ]
+                offline_runner = identifiable_runner["offline_runners"].pop(0)
                 _offline_entry = ComponentEntry(self.window, offline_runner, runner_type)
                 identifiable_runner["expander"].add_row(_offline_entry)
                 identifiable_runner["count"] += 1
-                identifiable_runner["offline_runners"].pop(0)
 
     def populate_runners_list(self):
         exp_soda = ComponentExpander("Soda", _("Based on Valve's Wine, includes Staging and Proton patches."))
