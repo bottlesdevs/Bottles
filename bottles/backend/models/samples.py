@@ -7,7 +7,7 @@ class Samples:
                 "dxvk": True,
                 # "nvapi": True,
                 "vkd3d": True,
-                "sync": "esync",
+                "sync": "fsync",
                 "fsr": False,
                 "discrete_gpu": True,
                 "pulseaudio_latency": False
