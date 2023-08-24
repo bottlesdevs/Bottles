@@ -707,7 +707,7 @@ class Manager(metaclass=Singleton):
             skip if the path contains the "Uninstall" word.
             '''
             executable_path = LnkUtils.get_data(program)
-            if executable_path is None:
+            if executable_path in [None, ""]:
                 continue
             executable_name = executable_path.split("\\")[-1]
             program_folder = ManagerUtils.get_exe_parent_dir(config, executable_path)
@@ -727,13 +727,12 @@ class Manager(metaclass=Singleton):
                 bottle,
                 executable_path.replace("C:\\", "drive_c\\").replace("\\", "/")
             )
-
             if os.path.exists(path_check):
                 if executable_name not in found:
                     installed_programs.append({
                         "executable": executable_name,
                         "arguments": "",
-                        "name": executable_name.split(".")[0],
+                        "name": executable_name.rsplit('.',1)[0],
                         "path": executable_path,
                         "folder": program_folder,
                         "icon": "com.usebottles.bottles-program",
