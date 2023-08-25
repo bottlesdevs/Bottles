@@ -1,0 +1,56 @@
+# Config prepared for version ruff 0.0.285, updated version will likely broke/fix/modify some rules
+
+select = ["A", "B", "E", "F", "I", "W", "PERF", "RUF"]
+ignore = [
+
+	# Valid ignores, that probably will be disabled forever
+	"F821", # Shows error Undefined name `_`, looks that bottles uses this for translations
+	"E712", # Comparison to `False` should be `cond is False` - is False is less clear for me than directly (not condition)
+	"RUF013", # PEP 484 prohibits implicit `Optional`
+
+	# Ignores to remove, list below should be removed one by one incrementally(at once commits would be too big and hard to verify)
+	"A001", # Variable `filter` is shadowing a Python builtin
+	"A003", # lass attribute `list` is shadowing a Python builtin
+	"B006", # Do not use mutable data structures for argument defaults
+	"B007", # Loop control variable `files` not used within loop body
+	"B008", # Do not perform function call `_` in argument defaults
+	"B012", # `return` inside `finally` blocks cause exceptions to be silenced
+	"B019", # Use of `functools.lru_cache` or `functools.cache` on methods can lead to memory leaks
+	"B904", # Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+	"E401", # Multiple imports on one line
+	"E402", # Module level import not at top of file - this probably can be fixed easily(probably)
+	"E501", # Line too long
+	"E701", # Multiple statements on one line (colon)
+	"E711", # Comparison to `None` should be `cond is not None` - this is more pythonic way
+	"E721", # Do not compare types, use `isinstance()`
+	"E722", # Do not use bare `except` - not sure about it, maybe always exceptions should be logged to screen?
+	"E741", # Ambiguous variable name: `l`
+	"F401", # Imported, but not used
+	"F402", # Import `_` from line shadowed by loop variable
+	"F403", # `from bottles.frontend.params import *` used; unable to detect undefined names - probably * should be forbidden due problem with F405 
+	"F405", # Related to F403, without it cannot reliable check if name is imported or not
+	"F541", # f-string without any placeholders
+	"F811", # Redefinition of unused  from line
+	"F841", # Local variable is assigned to but never used
+	"I001", # Import block is un-sorted or un-formatted
+	"PERF102", # When using only the values of a dict use the `values()` method
+	"PERF203", # `try`-`except` within a loop incurs performance overhead
+	"PERF401", # Use a list comprehension to create a transformed list
+	"PERF402", # Use `list` or `list.copy` to create a copy of a list
+	"RUF001", # String contains ambiguous `！` (FULLWIDTH EXCLAMATION MARK). Did you mean `!` (EXCLAMATION MARK)?
+	"RUF005", # Consider `[*flatpak_cmd, 'download', '--exists-action=i', '--dest', tempdir, '-r', requirements_file]` instead of concatenation
+	"RUF012",  # Mutable class attributes should be annotated with `typing.ClassVar`
+	"RUF015", # Prefer `next(...)` over single element slice
+	"W291", # Trailing whitespace
+	"W292", # No newline at end of file
+	"W293", # Blank line contains whitespace
+	"W605", # Invalid escape sequence: `\d`
+]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+target-version = "py310"
+
+line-length = 140
