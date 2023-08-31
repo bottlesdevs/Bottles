@@ -1066,7 +1066,7 @@ class Manager(metaclass=Singleton):
                 res = self.dependency_manager.install(config, dep)
                 if not res.ok:
                     logging.error(_("Failed to install dependency: %s") % dep.get("Description", "n/a"), jn=True)
-                    return Result(False)
+                    return False
         logging.info(f"New bottle from config created: {config.Path}")
         self.update_bottles(silent=True)
         return True
