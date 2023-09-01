@@ -506,7 +506,7 @@ class WineCommand:
                     Sniper is the default runtime used by Proton version >= 8.0
                     '''
                     _picked = _rs["sniper"]
-                if "soldier" in _rs.keys() and "soldier" in self.runner_runtime:
+                elif "soldier" in _rs.keys() and "soldier" in self.runner_runtime:
                     '''
                     Sniper is the default runtime used by Proton version >= 5.13 and < 8.0
                     '''
