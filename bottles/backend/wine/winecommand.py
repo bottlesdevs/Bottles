@@ -201,8 +201,6 @@ class WineCommand:
 
         # Default DLL overrides
         if not return_steam_env:
-            if all(not s.startswith("mshtml=") for s in dll_overrides):
-                dll_overrides.append("mshtml=d")
             dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
