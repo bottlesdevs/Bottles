@@ -201,8 +201,6 @@ class WineCommand:
 
         # Default DLL overrides
         if not return_steam_env:
-            if all(not s.startswith("mshtml=") for s in dll_overrides):
-                dll_overrides.append("mshtml=d")
             dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
@@ -282,15 +280,17 @@ class WineCommand:
             env.add("__GL_SHADER_DISK_CACHE_PATH", os.path.join(bottle, "cache", "gl_shader"))
             env.add("MESA_SHADER_CACHE_DIR", os.path.join(bottle, "cache", "mesa_shader"))
 
-        # VKD£D environment variables
+        # VKD3D environment variables
         if params.vkd3d and not return_steam_env:
             env.add("VKD3D_SHADER_CACHE_PATH", os.path.join(bottle, "cache", "vkd3d_shader"))
 
         # LatencyFleX environment variables
         if params.latencyflex and not return_steam_env:
             _lf_path = ManagerUtils.get_latencyflex_path(config.LatencyFleX)
-            _lf_icd = os.path.join(_lf_path, "layer/usr/share/vulkan/implicit_layer.d/latencyflex.json")
+            _lf_layer_path = os.path.join(_lf_path, "layer/usr/share/vulkan/implicit_layer.d")
+            env.concat("VK_ADD_LAYER_PATH", _lf_layer_path)
             env.add("LFX", "1")
+            ld.append(os.path.join(_lf_path, "layer/usr/lib/x86_64-linux-gnu"))
         else:
             env.add("DISABLE_LFX", "1")
 
@@ -335,11 +335,6 @@ class WineCommand:
             if params.fixme_logs:
                 debug_level = "+fixme-all"
             env.add("WINEDEBUG", debug_level)
-
-        # LatencyFleX
-        if params.latencyflex and params.dxvk_nvapi and not return_steam_env:
-            _lf_path = ManagerUtils.get_latencyflex_path(config.LatencyFleX)
-            ld.append(os.path.join(_lf_path, "wine/usr/lib/wine/x86_64-unix"))
 
         # Aco compiler
         # if params["aco_compiler"]:
@@ -511,7 +506,7 @@ class WineCommand:
                     Sniper is the default runtime used by Proton version >= 8.0
                     '''
                     _picked = _rs["sniper"]
-                if "soldier" in _rs.keys() and "soldier" in self.runner_runtime:
+                elif "soldier" in _rs.keys() and "soldier" in self.runner_runtime:
                     '''
                     Sniper is the default runtime used by Proton version >= 5.13 and < 8.0
                     '''

@@ -86,6 +86,7 @@ cleanup:
 cleanup-commands:
   - mkdir -p /app/utils
   - mkdir -p /app/share/steam/compatibilitytools.d
+  - mkdir -p /app/share/vulkan/implicit_layer.d/
 
 modules:
   # PYPI modules
@@ -177,25 +178,6 @@ modules:
 
   # Libraries
   # ----------------------------------------------------------------------------
-
-  - name: LatencyFleX
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/x86_64-linux-gnu/
-      - mkdir -p /app/share/vulkan/implicit_layer.d/
-      - cp layer/usr/lib/x86_64-linux-gnu/liblatencyflex_layer.so /app/lib/x86_64-linux-gnu/liblatencyflex_layer.so
-      - cp layer/usr/share/vulkan/implicit_layer.d/latencyflex.json /app/share/vulkan/implicit_layer.d/latencyflex.json
-    sources:
-      - type: archive
-        url: https://github.com/ishitatsuyuki/LatencyFleX/releases/download/v0.1.1/latencyflex-v0.1.1.tar.xz
-        sha256: c992ebd2f43c99ab4a84a6ffce692d9aae4cc2571536a5854ae2e79b6951e78a
-        x-checker-data:
-          type: json
-          is-important: true
-          url: https://api.github.com/repos/ishitatsuyuki/LatencyFleX/releases/latest
-          version-query: .tag_name
-          url-query: '"https://github.com/ishitatsuyuki/LatencyFleX/releases/download/"
-            + $version + "/latencyflex-" + $version + ".tar.xz"'
 
   - name: ImageMagick
     config-opts:
