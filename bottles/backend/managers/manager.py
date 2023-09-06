@@ -111,7 +111,7 @@ class Manager(metaclass=Singleton):
         # common variables
         self.is_cli = is_cli
         self.settings = g_settings or GSettingsStub
-        self.utils_conn = ConnectionUtils(force_offline=self.is_cli)
+        self.utils_conn = ConnectionUtils(force_offline=self.is_cli or self.settings.get_boolean("force-offline"))
         self.data_mgr = DataManager()
         _offline = True
         
