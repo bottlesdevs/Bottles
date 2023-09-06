@@ -15,6 +15,17 @@ template LoadingView : .AdwBin {
         vexpand: true;
       }
 
+      Button btn_go_offline {
+        valign: center;
+        halign: center;
+        label: _("Skip and go offline");
+
+        styles [
+          "destructive-action",
+          "pill",
+        ]
+      }
+
       Label label_fetched {
         styles [
           "dim-label",
