@@ -139,6 +139,16 @@ template PreferencesWindow : Adw.PreferencesWindow {
       }
 
       Adw.ActionRow {
+        title: _("Force Offline Mode");
+        subtitle: _("Force disable any network activity even with available network connection.");
+        activatable-widget: switch_force_offline;
+
+        Switch switch_force_offline {
+          valign: center;
+        }
+      }
+
+      Adw.ActionRow {
         title: _("Bottles Directory");
         subtitle: _("Directory that contains the data of your Bottles.");
         activatable-widget: btn_bottles_path;
