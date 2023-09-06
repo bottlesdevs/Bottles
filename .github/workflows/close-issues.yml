@@ -15,7 +15,7 @@ jobs:
           regex: '[Vv]ersion.*:.*202\d.\d\d?.\d\d?'
       - if: ${{ steps.regex-match.outputs.match != '' }}
         name: Close Issue
-        uses: peter-evans/close-issue@v2
+        uses: peter-evans/close-issue@v3
         with:
           close-reason: not_planned
           comment: |
