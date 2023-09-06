@@ -81,7 +81,7 @@ class MainWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs, default_width=width, default_height=height)
 
         self.disable_onboard = False
-        self.utils_conn = ConnectionUtils()
+        self.utils_conn = ConnectionUtils(force_offline=self.settings.get_boolean("force-offline"))
         self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
