@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-02-18 00:44+0000\n"
+"PO-Revision-Date: 2023-06-11 18:29+0000\n"
 "Last-Translator: Kryotek <weblate@kryotek.mozmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -201,15 +201,15 @@ msgstr "[Ricarica] richiesta ricevuta."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Dona"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Librerie di terze parti e ringraziamenti speciali"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Sponsorizzato e finanziato da"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
@@ -543,11 +543,11 @@ msgstr "Cerca dipendenze…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Sei offline :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Bottles è in modalità offline, le dipendenze non sono disponibili."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -591,15 +591,13 @@ msgid "Search for Programs…"
 msgstr "Cerca programmi…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Installa programmi curati dalla nostra community, senza dover procedere "
-"manualmente\n"
+"Installa programmi curati dalla nostra community.\n"
 "\n"
 "I programmi in questa pagina sono distribuiti da terzi con una licenza "
 "proprietaria. Installandoli, accetti i rispettivi termini di servizio."
@@ -682,7 +680,8 @@ msgstr "LatencyFleX"
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
 msgstr ""
-"Aumenta la velocità di risposta. Può essere rilevato da alcuni Anticheat."
+"Aumenta la velocità di risposta. Può essere rilevato da alcuni programmi "
+"anti-truffa."
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
@@ -706,7 +705,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX Super Resolution"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
@@ -716,7 +715,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "Gestisci le impostazioni di FidelityFX Super Resolution"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
@@ -742,9 +741,8 @@ msgstr ""
 "Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:138
-#, fuzzy
 msgid "Manage Post-Processing Layer settings"
-msgstr "Gestisci le impostazioni del sottosistema wine."
+msgstr "Gestisci le impostazioni del livello di Post-Processing"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
@@ -1217,9 +1215,8 @@ msgid "Game Resolution"
 msgstr "Risoluzione del gioco"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
-#, fuzzy
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr "Utilizza la risoluzione del videogioco come riferimento."
+msgstr "Utilizza la risoluzione del videogioco come riferimento in pixel."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
@@ -1236,13 +1233,12 @@ msgid "Window Resolution"
 msgstr "Risoluzione Finestra"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:82
-#, fuzzy
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
 "Aumenta la risoluzione quando si usa una risoluzione superiore a quella del "
-"gioco."
+"gioco in pixel."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
@@ -1257,9 +1253,8 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr "Limite frequenza fotogrammi (con finestra non attiva)"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "Utilizzare Integer Scaling"
+msgstr "Integer Scaling"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1338,8 +1333,9 @@ msgid "Journal Browser"
 msgstr "Registro"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
+#, fuzzy
 msgid "Change Logging Level."
-msgstr ""
+msgstr "Cambia il livello di logging."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
@@ -1426,9 +1422,8 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
-"Attenzione: utilizzare runner basati su Proton all'interno di bottiglie non-"
+"Attenzione: utilizzare runner basati su Proton all'interno di Bottles non-"
 "Steam può causare problemi e comportamenti errati.\n"
-"\n"
 "\n"
 "Si raccomanda invece di utilizzare Wine-GE, una versione di Proton pensata "
 "per essere eseguita al di fuori di Steam.\n"
@@ -1440,7 +1435,6 @@ msgstr ""
 "problemi e chiediamo di non segnalarglieli."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
-#, fuzzy
 msgid "I got it."
 msgstr "Ho capito."
 
@@ -1547,7 +1541,7 @@ msgstr "Fatto! Per favore riavvia Bottles."
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
 msgid "Post-Processing Effects Settings"
-msgstr ""
+msgstr "Impostazioni effetti di Post-Processing"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
@@ -1562,7 +1556,6 @@ msgid "Effects are applied according to the list order."
 msgstr "Gli effetti vengono applicati in base all'ordine della lista."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
-#, fuzzy
 msgid "Effects"
 msgstr "Effetti"
 
@@ -1752,9 +1745,8 @@ msgstr "Sfoglia file"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
 msgid "Wine prefix name"
-msgstr "Log 'fixme' di Wine"
+msgstr "Nome del prefisso Wine"
 
 #: bottles/frontend/ui/importer-entry.blp:28
 #, fuzzy
@@ -1971,9 +1963,8 @@ msgid "32-bit should only be used if strictly necessary."
 msgstr "Si consiglia di utilizzare 32 bit solo se strettamente necessario."
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Esporta configurazione…"
+msgstr "Importa una configurazione personalizzata."
 
 #: bottles/frontend/ui/new.blp:176
 #, fuzzy
@@ -2063,12 +2054,11 @@ msgstr "Aspetto"
 
 #: bottles/frontend/ui/preferences.blp:17
 msgid "Dark Mode"
-msgstr "Tema scuro"
+msgstr "Aspetto scuro"
 
 #: bottles/frontend/ui/preferences.blp:18
-#, fuzzy
 msgid "Whether Bottles should use the dark color scheme."
-msgstr "Se Bottles deve usare la variante del tema Notte."
+msgstr "Se Bottles deve usare lo schema di colori scuri."
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
@@ -2159,11 +2149,8 @@ msgid "Runners"
 msgstr "Runner"
 
 #: bottles/frontend/ui/preferences.blp:181
-#, fuzzy
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr ""
-"Previene Bottles dall'avviare eseguibili quando non ci sono runner "
-"disponibili"
+msgstr "Bottles è in modalità offline, quindi i runner non sono disponibili."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2299,13 +2286,12 @@ msgstr ""
 "nuovamente connesso."
 
 #: bottles/frontend/ui/window.blp:79
-#, fuzzy
 msgid "Import…"
-msgstr "Importa"
+msgstr "Importa…"
 
 #: bottles/frontend/ui/window.blp:91
 msgid "Help"
-msgstr ""
+msgstr "Aiuto"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:96
@@ -2348,7 +2334,7 @@ msgstr "Mostra/nascondi i programmi rimossi"
 #: bottles/frontend/widgets/program.py:184
 #, fuzzy, python-brace-format
 msgid "Launching \"{0}\"…"
-msgstr "Avvia nel terminale…"
+msgstr "Avvio \"{0}\"…"
 
 #: bottles/frontend/views/bottle_details.py:413
 #, fuzzy
@@ -2456,7 +2442,7 @@ msgstr "Cartella di lavoro"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
-msgstr ""
+msgstr "Cartella che contiene i dati di \"{}\"."
 
 #: bottles/frontend/views/bottle_preferences.py:746
 #, fuzzy
@@ -2486,14 +2472,12 @@ msgid "Return to your bottles."
 msgstr "Cerca bottiglie…"
 
 #: bottles/frontend/views/importer.py:92
-#, fuzzy
 msgid "Backup imported successfully"
-msgstr "Il backup è stato importato con successo."
+msgstr "Il backup è stato importato con successo"
 
 #: bottles/frontend/views/importer.py:94
-#, fuzzy
 msgid "Import failed"
-msgstr "Importazione fallita."
+msgstr "Importazione fallita"
 
 #: bottles/frontend/views/importer.py:108
 #: bottles/frontend/views/importer.py:147
@@ -2526,9 +2510,9 @@ msgid "Run executable in \"{self.config.Name}\""
 msgstr ""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Avvia nel terminale…"
+msgstr "Avvio \"{0}\" in \"{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2688,14 +2672,14 @@ msgstr "Rapporto di {0}"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "Avvia nel terminale…"
+msgstr "Interrompo \"{0}\"…"
 
 #: bottles/frontend/widgets/program.py:190
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
-msgstr "Avvia con Steam"
+msgstr "Eseguo \"{0}\" con Steam"
 
 #: bottles/frontend/widgets/program.py:214
 #, fuzzy, python-brace-format
@@ -2746,14 +2730,12 @@ msgstr ""
 "            Segnala il tuo feedback in uno dei rapporti esistenti qui sotto."
 
 #: bottles/frontend/windows/display.py:102
-#, fuzzy
 msgid "Updating display settings, please wait…"
-msgstr "Aggiornamento della versione di Windows, attendere…"
+msgstr "Aggiornamento delle impostazioni di visualizzazione, attendere…"
 
 #: bottles/frontend/windows/display.py:114
-#, fuzzy
 msgid "Display settings updated"
-msgstr "Impostazioni di visualizzazione"
+msgstr "Impostazioni di visualizzazione aggiornate"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
@@ -2869,11 +2851,11 @@ msgstr "Mostra il dialogo di migrazione a Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr "Tema scuro"
+msgstr "Sfondo scuro"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr "Forza l'uso del tema scuro."
+msgstr "Forza l'uso dello sfondo scuro."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"

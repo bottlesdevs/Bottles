@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-03 03:54+0000\n"
+"PO-Revision-Date: 2023-05-06 20:51+0000\n"
 "Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
@@ -547,7 +547,7 @@ msgstr "Вы офлайн:("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr "Bottles запущено в офлайн режиме, поэтому зависимости недоступны."
+msgstr "Bottles запущен в офлайн режиме, поэтому зависимости недоступны."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -2138,7 +2138,7 @@ msgstr "Пускатели"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr ""
+msgstr "Bottles запущен в офлайн режиме, поэтому пускатели недоступны."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2154,7 +2154,7 @@ msgstr "Компоненты DLL"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr "Bottles запущено в офлайн режиме, рохтому DLL недоступны."
+msgstr "Bottles запущен в офлайн режиме, поэтому DLL недоступны."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -3087,7 +3087,7 @@ msgstr "Исправлен вылет приложения при создани
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "Основное изменение: редизайн интерфейса создания новой бутылки"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Quality of life improvements:"
@@ -3095,7 +3095,7 @@ msgstr "Улучшения опыта использования:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "В библиотеке значок сердечка был заменён на значок библиотеки"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
@@ -3116,20 +3116,26 @@ msgstr "Импорт резервной копии вызывал ошибку"
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"Среда выполнения Steam теперь автоматически включена при испольщовании wine-"
+"ge-custom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"Различные исправления, связанные с библиотекой, такие как пустые обложки и "
+"сбои, связанные с отсутствующими записями"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "Исправление различных проблем с кодировкой текста"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
+"Исправлена ошибка при загрузке файлов, если Bottles не был запущен из "
+"терминала"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
 msgid "Correct version date"
@@ -3138,70 +3144,81 @@ msgstr "Испралена дата версии"
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
 msgstr ""
+"Скрыты критические ошибки, связанные с NVIDIA, в системах без карт от NVIDIA"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "Улучшения и исправления для Gamescope"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "Установка зависимостей стала более быстрой и стабильной"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
 msgstr ""
+"Проверка работоспособности теперь содержит больше информации для более "
+"быстрой отладки"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
 msgstr ""
+"NVAPI получил множество исправлений и стал более стабильным, теперь он "
+"должен работать правильно"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "Исправлен сбой при загрузке компонента"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "Улучшение внутреннего кода за счет исключения спин-блокировки"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "Дополнительные переменные для скриптов установщика"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"Исправлено диалог приветствия, показывающий «Всё готово», хотя на самом деле "
+"оно было не готово"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "Улучшения системы сборки"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "VKD3D теперь включён по умолчанию при создании бутылок для игр"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
-msgstr ""
+msgstr "Исправлены сбои при чтении файлов Steam с плохими кодировками"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"Исправлена проблема, из-за которой интерфейс компонентов не обновлялся после "
+"установки или удаления"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "Больше исправлений для FSR"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"Исправлена проблема, когда программа закрывалась после запуска через «"
+"Запустить исполняемый файл»"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "и многое, многое, многое другое!"
 
 #~ msgid "Calculating…"
 #~ msgstr "Вычисление…"

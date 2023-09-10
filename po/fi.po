@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-01-24 20:47+0000\n"
+"PO-Revision-Date: 2023-09-07 17:48+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -47,7 +47,7 @@ msgstr "Pullokansion luominen epäonnistui."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Paikkamerkin hakemiston/tiedoston luominen epäonnistui."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
@@ -172,7 +172,7 @@ msgstr "Suoritustiedoston polku"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr ""
+msgstr "lnk polku"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
@@ -224,7 +224,7 @@ msgstr "Bottles-kehittäjät"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "Jiri Grönroos"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -544,11 +544,12 @@ msgstr "Etsi riippuvuuksia…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Et ole yhteydessä internetiin"
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr ""
+"Pullot toimii yhteydettömässä tilassa, joten riippuvuuksia ei ole saatavilla."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -593,15 +594,13 @@ msgid "Search for Programs…"
 msgstr "Etsi ohjelmia…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Asenna yhteisön kuratoimia ohjelmia ilman, että joudut itse tekemään mitään "
-"manuaalisesti.\n"
+"Asenna yhteisön kuratoimia ohjelmia.\n"
 "\n"
 "Tällä sivulla olevat tiedostot ovat kolmansien osapuolien tarjoamia ja ne "
 "ovat omisteellisen lisenssin alaisia. Asentamalla hyväksyt niiden "
@@ -1852,9 +1851,8 @@ msgid "Bottles"
 msgstr "Pullot"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "Luo uusi pullo"
+msgstr "Luo uusi pullo…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
@@ -1877,38 +1875,32 @@ msgid "Browse"
 msgstr "Selaa"
 
 #: bottles/frontend/ui/new.blp:32
-#, fuzzy
 msgid "C_reate"
-msgstr "Luo"
+msgstr "_Luo"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
 msgstr "Pullon nimi"
 
 #: bottles/frontend/ui/new.blp:75
-#, fuzzy
 msgid "_Application"
-msgstr "Sovellus"
+msgstr "_Sovellus"
 
 #: bottles/frontend/ui/new.blp:88
-#, fuzzy
 msgid "_Gaming"
-msgstr "Pelaaminen"
+msgstr "_Pelaaminen"
 
 #: bottles/frontend/ui/new.blp:101
-#, fuzzy
 msgid "C_ustom"
-msgstr "Mukautettu"
+msgstr "_Mukautettu"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
 msgstr "Mukautettu"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "Valitse kansio"
+msgstr "Jaa käyttäjäkansio"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1922,34 +1914,28 @@ msgid "Architecture"
 msgstr "Arkkitehtuuri"
 
 #: bottles/frontend/ui/new.blp:137
-#, fuzzy
 msgid "32-bit should only be used if strictly necessary."
 msgstr "Käytä 32-bittistä vain jos se on tarpeellista."
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Vie kokoonpano…"
+msgstr "Tuo mukautettu kokoonpano."
 
 #: bottles/frontend/ui/new.blp:176
-#, fuzzy
 msgid "Bottle Directory"
-msgstr "Pullojen kansio"
+msgstr "Pullon kansio"
 
 #: bottles/frontend/ui/new.blp:177
-#, fuzzy
 msgid "Directory that will contain the data of this bottle."
-msgstr "Kansio, joka sisältää pullojesi datan."
+msgstr "Kansio, joka sisältää tämän pullon datan."
 
 #: bottles/frontend/ui/new.blp:249
-#, fuzzy
 msgid "_Close"
-msgstr "Sulje"
+msgstr "_Sulje"
 
 #: bottles/frontend/ui/new.blp:281
-#, fuzzy
 msgid "This name is unavailable, please try another."
-msgstr "Tämä ominaisuus ei ole käytettävissä järjestelmässäsi."
+msgstr "Tämä nimi ei ole käytettävissä, käytä toista nimeä."
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
@@ -2272,9 +2258,8 @@ msgstr "\"{0}\" lisätty"
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "Valitse pullo"
+msgstr "Valitse suoritustiedosto"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2384,15 +2369,13 @@ msgid "{} To add this feature, please run flatpak install"
 msgstr "{} Lisää tämä ominaisuus suorittamalla flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
-#, fuzzy
 msgid "This bottle name is already in use."
-msgstr "Nimessä on erikoismerkkejä tai nimi on jo käytössä."
+msgstr "Tämä pullon nimi on jo käytössä."
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "Työskentelyhakemisto"
+msgstr "Valitse työskentelyhakemisto"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
@@ -2436,9 +2419,8 @@ msgid "Importing backup…"
 msgstr "Tuodaan varmuuskopio…"
 
 #: bottles/frontend/views/importer.py:119
-#, fuzzy
 msgid "Select a Backup Archive"
-msgstr "Valitse varmuuskopiointiarkisto"
+msgstr "Valitse varmuuskopioarkisto"
 
 #: bottles/frontend/views/importer.py:122
 #: bottles/frontend/views/importer.py:161
@@ -2446,7 +2428,6 @@ msgid "Import"
 msgstr "Tuo"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
-#, fuzzy
 msgid "Select a Configuration File"
 msgstr "Valitse kokoonpanotiedosto"
 
@@ -2480,23 +2461,20 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Noudettu {0}/{1} pakettia"
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "Pullojen kansio"
+msgstr "Valitse pullon kansio"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
 msgstr "Luodaan pulloa…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "Luo uusi pullo"
+msgstr "Pullon luominen ei onnistunut"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "Pullon luominen epäonnistui yhden tai useamman virheen vuoksi."
 
 #. Show success
 #: bottles/frontend/views/new.py:232
@@ -2575,9 +2553,9 @@ msgid "Manifest for {0}"
 msgstr "Manifest for {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "\"{0}\" asennettu"
+msgstr "\"{0}\" on poistettu"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
@@ -2720,7 +2698,6 @@ msgid "Copy to clipboard"
 msgstr "Kopioi leikepöydälle"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
 msgstr "Valitse resurssitiedosto"
 
@@ -2768,9 +2745,8 @@ msgid "This setting is different from the bottle's default."
 msgstr "Tämä asetus eroaa pullon oletusasetuksesta."
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "Valitse aseman polku"
+msgstr "Valitse komentosarja"
 
 #: bottles/frontend/windows/main_window.py:220
 #, fuzzy
@@ -2926,7 +2902,7 @@ msgstr "Sulje Pullot, kun suoritustiedosto käynnistetään tiedostonhallinnasta
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "Näytä varoitus hiekkalaatikosta"
 
 #: data/com.usebottles.bottles.gschema.xml:87
 msgid "Toggle sandbox warning."
@@ -3089,9 +3065,8 @@ msgid "Add toast for \"Run Executable\""
 msgstr "Lisää omavalintainen suorituspolku"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
-#, fuzzy
 msgid "Bug fixes:"
-msgstr "Bugikorjaukset"
+msgstr "Bugikorjaukset:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
