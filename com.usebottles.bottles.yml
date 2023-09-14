@@ -3,7 +3,7 @@ sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 base: org.winehq.Wine
 base-version: stable-22.08
-runtime-version: "44"
+runtime-version: &runtime-version '44'
 command: bottles
 
 finish-args:
@@ -19,7 +19,7 @@ finish-args:
   - --filesystem=xdg-download
   - --system-talk-name=org.freedesktop.UDisks2
   - --env=LD_LIBRARY_PATH=/app/lib:/app/lib32
-  - --env=PATH=/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/bin:/usr/lib/extensions/vulkan/OBSVkCapture/bin/
+  - --env=PATH=/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/bin:/usr/lib/extensions/vulkan/OBSVkCapture/bin/:/usr/lib/extensions/vulkan/gamescope/bin/
   - --env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/app/lib32/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0
   - --require-version=1.1.2
 
@@ -34,12 +34,20 @@ inherit-extensions:
 add-extensions:
   org.gnome.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
-    version: "43"
+    version: *runtime-version
 
   org.gnome.Platform.Compat.i386.Debug:
     directory: lib/debug/lib/i386-linux-gnu
-    version: "43"
+    version: *runtime-version
     no-autodownload: true
+
+  com.valvesoftware.Steam.CompatibilityTool:
+    subdirectories: true
+    directory: share/steam/compatibilitytools.d
+    version: stable
+    versions: stable;beta;test
+    no-autodownload: true
+    autodelete: false
 
   com.valvesoftware.Steam.Utility:
     subdirectories: true
@@ -49,7 +57,7 @@ add-extensions:
     add-ld-path: lib
     merge-dirs: bin
     no-autodownload: true
-    autodelete: true
+    autodelete: false
 
 x-compat-i386-opts: &compat_i386_opts
   prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
@@ -72,11 +80,13 @@ cleanup:
   - /share/gtk-doc
   - /share/man
   - /share/pkgconfig
-  - "*.la"
-  - "*.a"
+  - '*.la'
+  - '*.a'
 
 cleanup-commands:
   - mkdir -p /app/utils
+  - mkdir -p /app/share/steam/compatibilitytools.d
+  - mkdir -p /app/share/vulkan/implicit_layer.d/
 
 modules:
   # PYPI modules
@@ -91,6 +101,11 @@ modules:
       - type: git
         url: https://github.com/hoytech/vmtouch
         commit: 8f6898e3c027f445962e223ca7a7b33d40395fc6
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/hoytech/vmtouch/commits
+          commit-query: first( .[].sha )
+          timestamp-query: first( .[].commit.committer.date )
     build-commands:
       - make
       - make install PREFIX=/app
@@ -103,8 +118,22 @@ modules:
     sources:
       - type: git
         url: https://github.com/KhronosGroup/Vulkan-Tools.git
-        tag: sdk-1.3.224.1
-        commit: 497f232680b046db34ba9e9da065e6303a125851
+        tag: sdk-1.3.250.1
+        commit: 695887a994ef9cc00a7aa3f9c00b31a56ea79534
+        x-checker-data:
+          type: git
+          tag-pattern: ^sdk-([\d.]+)$
+    modules:
+      - name: vulkan-tools
+        buildsystem: cmake-ninja
+        sources:
+          - type: git
+            url: https://github.com/KhronosGroup/Vulkan-Headers.git
+            tag: sdk-1.3.250.1
+            commit: 9e61870ecbd32514113b467e0a0c46f60ed222c7
+            x-checker-data:
+              type: git
+              tag-pattern: ^sdk-([\d.]+)$
 
   - name: gamemode
     buildsystem: meson
@@ -113,9 +142,14 @@ modules:
       - -Dwith-util=false
       - -Dwith-sd-bus-provider=no-daemon
     sources: &gamemode_sources
-      - type: archive
-        url: https://github.com/FeralInteractive/gamemode/releases/download/1.6.1/gamemode-1.6.1.tar.xz
-        sha256: 10c2a3f142eae472f5a09e42616e38c666c05b25ca3e61e562a543bb3fda66c5
+      - type: git
+        url: https://github.com/FeralInteractive/gamemode
+        tag: '1.7'
+        commit: 4dc99dff76218718763a6b07fc1900fa6d1dafd9
+        x-checker-data:
+          type: git
+          is-important: true
+          tag-pattern: ^([\d.]+)$
 
   - name: gamemode-32bit
     build-options:
@@ -130,52 +164,20 @@ modules:
     build-commands:
       - install -Dm755 data/gamemoderun -t /app/bin
     sources: *gamemode_sources
+
   - name: xdpyinfo
     buildsystem: autotools
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/xorg/app/xdpyinfo.git
-        tag: "xdpyinfo-1.3.3"
-        commit: 61bc4b764030bdc9a731ee74c7c56bf2b2a4bddf
-
+        tag: xdpyinfo-1.3.4
+        commit: ea4083ccb2a5ce4252acabeb2eb7bf49f7be25e0
+        x-checker-data:
+          type: git
+          tag-pattern: ^xdpyinfo-([\d.]+)$
 
   # Libraries
   # ----------------------------------------------------------------------------
-
-  - name: rpcsvc-proto
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://github.com/thkukuk/rpcsvc-proto/archive/v1.4.3.tar.gz
-        sha256: 6906e0f81bb016bd0216460fc879d3d9f2f6d743be7dfb0d8b32d140226d5ef8
-
-  - name: parse-yapp
-    buildsystem: simple
-    build-commands:
-      - perl Makefile.PL
-      - make install
-    build-options:
-      env:
-        PERL5LIB: /app/lib/perl5/
-        PERL_MM_OPT: INSTALL_BASE=/app
-    cleanup:
-      - "*"
-    sources:
-      - type: archive
-        url: https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-1.21.tar.gz
-        sha256: 3810e998308fba2e0f4f26043035032b027ce51ce5c8a52a8b8e340ca65f13e5
-
-  - name: LatencyFleX
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/x86_64-linux-gnu/
-      - mkdir -p /app/share/vulkan/implicit_layer.d/
-      - cp layer/usr/lib/x86_64-linux-gnu/liblatencyflex_layer.so /app/lib/x86_64-linux-gnu/liblatencyflex_layer.so
-      - cp layer/usr/share/vulkan/implicit_layer.d/latencyflex.json /app/share/vulkan/implicit_layer.d/latencyflex.json
-    sources:
-      - type: archive
-        url: https://github.com/ishitatsuyuki/LatencyFleX/releases/download/v0.1.0/latencyflex-v0.1.0.tar.xz
-        sha256: 9862c7608b85ac6bff018d5926c4692490ff84ca3e649119b7fc53680e64dd1a
 
   - name: ImageMagick
     config-opts:
@@ -184,9 +186,13 @@ modules:
       - --with-hdri
       - --with-pic
     sources:
-      - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.0-37.tar.gz
-        sha256: a54888a1a46dbb808705a3e6c6b5ecb93ee30189a8ae6ea0f02300a0ab0d0996
+      - type: git
+        url: https://github.com/ImageMagick/ImageMagick
+        tag: 7.1.1-15
+        commit: a0a5f3da4cd07919dd2d1bbae121e590b5f105e2
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+-[\d]+)$
 
   - name: libportal
     buildsystem: meson
@@ -194,17 +200,24 @@ modules:
       - -Ddocs=false
       - -Dbackends=gtk4
     sources:
-      - type: archive
-        url: https://github.com/flatpak/libportal/archive/refs/tags/0.6.tar.gz
-        sha256: 8ad326c4f53b7433645dc86d994fef0292bee8adda0fe67db9288ace19250a9c
+      - type: git
+        url: https://github.com/flatpak/libportal
+        tag: '0.6'
+        commit: 13df0b887a7eb7b0f9b14069561a41f62e813155
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
 
   - name: blueprint-compiler
     buildsystem: meson
     sources:
       - type: git
         url: https://gitlab.gnome.org/jwestman/blueprint-compiler
-        tag: 'v0.4.0'
-        commit: 75a6d95988736ec0471d22ceb07579c0cedac2ad
+        tag: v0.10.0
+        commit: 2a39a16391122af2f3d812e478c1c1398c98b972
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
   - name: vkbasalt-cli
     buildsystem: simple
@@ -213,8 +226,12 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/TheEvilSkeleton/vkbasalt-cli
-        tag: v3.0
-        commit: 68d37866d7e732923fb628b81dcb0a808e9ccfe6
+        tag: v3.1.1
+        commit: bba740f77357cfa3558f02f6b8decd8f5a8eaf4e
+        x-checker-data:
+          type: git
+          is-important: true
+          tag-pattern: ^v([\d.]+)$
 
   # Bottles components
   # ----------------------------------------------------------------------------
@@ -228,11 +245,8 @@ modules:
         tag: 0.2.0
         commit: 6fbeab0470df55aeab141a45763147440b2f0290
         x-checker-data:
-          type: json
-          url: https://api.github.com/repos/bottlesdevs/EasyTerm/releases/latest
-          tag-query: .tag_name
-          version-query: .tag_name
-          timestamp-query: .published_at
+          type: git
+          tag-pattern: ^([\d.]+)$
     modules:
       - name: vte
         buildsystem: meson
@@ -240,34 +254,13 @@ modules:
           - -Ddocs=false
           - -Dvapi=false
         sources:
-          - type: archive
-            url: https://gitlab.gnome.org/GNOME/vte/-/archive/0.66.2/vte-0.66.2.tar.gz
-            sha256: a486e389e3d16f903ed6f27d9513c2a44bff5945a12af4fcfe48ce00992c42ab
-
-  - name: FVS
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: git
-        url: https://github.com/mirkobrombin/FVS
-        tag: "0.3.4"
-        commit: 4e76dc54028a88099c72ec3a925b5f059f442d05
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/mirkobrombin/FVS/releases/latest
-          tag-query: .tag_name
-          version-query: .tag_name
-          timestamp-query: .published_at
-    modules:
-      - name: orjson
-        buildsystem: simple
-        build-commands:
-          - pip3 install --prefix /app --no-deps orjson-*.whl
-        sources:
-          - type: file
-            url: https://files.pythonhosted.org/packages/ea/a2/e6c94631bd5117c9cf9453bc90cfe44db17cec13046c7f2df10020705d16/orjson-3.8.0-cp310-cp310-manylinux_2_28_x86_64.whl
-            sha256: 6a23b40c98889e9abac084ce5a1fb251664b41da9f6bdb40a4729e2288ed2ed4
+          - type: git
+            url: https://gitlab.gnome.org/GNOME/vte
+            tag: 0.73.93
+            commit: f13f4d6cd83ba01315ac62755d70736705c40c99
+            x-checker-data:
+              type: git
+              tag-pattern: ^([\d.]+)$
 
   - name: runtime
     buildsystem: simple
@@ -276,14 +269,16 @@ modules:
       - cp -a * /app/etc/runtime/
     sources:
       - type: archive
-        url: https://github.com/bottlesdevs/runtime/releases/download/0.6/runtime.tar.gz
-        sha256: f2b47012cde0a7e9c65ca4d793d19a2f9d3fe68b76dd457839e62ec34f214528
+        url: https://github.com/bottlesdevs/runtime/releases/download/0.6.3/runtime-0.6.3.tar.gz
+        sha256: d7749b48927bd782e128e372a1d7085133fbe300eb9193134eb821f61bc5fad6
+        x-checker-data:
+          type: json
+          is-important: true
+          url: https://api.github.com/repos/bottlesdevs/runtime/releases/latest
+          version-query: .tag_name
+          url-query: '"https://github.com/bottlesdevs/runtime/releases/download/"
+            + $version + "/runtime-" + $version + ".tar.gz"'
 
-  - name: bottles
-    builddir: true
-    buildsystem: meson
-    config-opts:
-      - -Ddevel=true
-    sources:
-      - type: dir
-        path: .
+  # Bottles source directory
+  # ----------------------------------------------------------------------------
+  - com.usebottles.bottles.src.yaml

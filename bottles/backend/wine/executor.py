@@ -65,17 +65,17 @@ class WineExecutor:
         if override_dxvk is not None \
                 and not override_dxvk \
                 and self.config.Parameters.dxvk:
-            env_dll_overrides.append("d3d9,d3d11,d3d10core,dxgi=b")
+            env_dll_overrides.append("d3d9,d3d11,d3d10core,dxgi=n")
 
         if override_vkd3d is not None \
                 and not override_vkd3d \
                 and self.config.Parameters.vkd3d:
-            env_dll_overrides.append("d3d12=b;d3d12core=b,n")
+            env_dll_overrides.append("d3d12,d3d12core=n")
 
         if override_nvapi is not None \
                 and not override_nvapi \
                 and self.config.Parameters.dxvk_nvapi:
-            env_dll_overrides.append("nvapi,nvapi64=b")
+            env_dll_overrides.append("nvapi,nvapi64=n")
 
         if override_fsr is not None and override_fsr:
             self.environment["WINE_FULLSCREEN_FSR"] = "1"

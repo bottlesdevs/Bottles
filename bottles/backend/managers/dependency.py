@@ -51,7 +51,7 @@ class DependencyManager:
         self.__utils_conn = manager.utils_conn
 
     @lru_cache
-    def get_dependency(self, name: str, plain: bool = False) -> Union[str, dict]:
+    def get_dependency(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
         return self.__repo.get(name, plain)
 
     @lru_cache

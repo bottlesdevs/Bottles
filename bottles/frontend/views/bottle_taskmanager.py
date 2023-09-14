@@ -95,7 +95,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
                 config = BottleConfig()
             self.config = config
             if not config.Runner:
-                return
+                return []
 
             winebridge = WineBridge(config)
 

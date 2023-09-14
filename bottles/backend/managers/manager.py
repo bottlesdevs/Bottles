@@ -707,7 +707,7 @@ class Manager(metaclass=Singleton):
             skip if the path contains the "Uninstall" word.
             '''
             executable_path = LnkUtils.get_data(program)
-            if executable_path is None:
+            if executable_path in [None, ""]:
                 continue
             executable_name = executable_path.split("\\")[-1]
             program_folder = ManagerUtils.get_exe_parent_dir(config, executable_path)
@@ -727,13 +727,12 @@ class Manager(metaclass=Singleton):
                 bottle,
                 executable_path.replace("C:\\", "drive_c\\").replace("\\", "/")
             )
-
             if os.path.exists(path_check):
                 if executable_name not in found:
                     installed_programs.append({
                         "executable": executable_name,
                         "arguments": "",
-                        "name": executable_name.split(".")[0],
+                        "name": executable_name.rsplit('.',1)[0],
                         "path": executable_path,
                         "folder": program_folder,
                         "icon": "com.usebottles.bottles-program",
@@ -1064,8 +1063,10 @@ class Manager(metaclass=Singleton):
             '''
             if dependency in self.supported_dependencies.keys():
                 dep = [dependency, self.supported_dependencies[dependency]]
-                self.dependency_manager.install(config, dep)
-
+                res = self.dependency_manager.install(config, dep)
+                if not res.ok:
+                    logging.error(_("Failed to install dependency: %s") % dep.get("Description", "n/a"), jn=True)
+                    return False
         logging.info(f"New bottle from config created: {config.Path}")
         self.update_bottles(silent=True)
         return True
@@ -1315,7 +1316,7 @@ class Manager(metaclass=Singleton):
             # blacklisting processes
             logging.info("Optimizing environment…")
             log_update(_("Optimizing environment…"))
-            _blacklist_dll = ["winemenubuilder.exe", "mshtml"]  # avoid gecko, mono popups
+            _blacklist_dll = ["winemenubuilder.exe"]
             for _dll in _blacklist_dll:
                 reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
@@ -1382,7 +1383,11 @@ class Manager(metaclass=Singleton):
                 if dep in self.supported_dependencies:
                     _dep = self.supported_dependencies[dep]
                     log_update(_("Installing dependency: %s …") % _dep.get("Description", "n/a"))
-                    self.dependency_manager.install(config, [dep, _dep])
+                    res = self.dependency_manager.install(config, [dep, _dep])
+                    if not res.ok:
+                        logging.error(_("Failed to install dependency: %s") % _dep.get("Description", "n/a"), jn=True)
+                        log_update(_("Failed to install dependency: %s") % _dep.get("Description", "n/a"))
+                        return Result(False)
                     template_updated = True
 
         # save bottle config
