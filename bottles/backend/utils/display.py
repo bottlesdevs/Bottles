@@ -29,22 +29,6 @@ class DisplayUtils:
         return False
 
     @staticmethod
-    def check_nvidia_device():
-        """Check if there is an nvidia device connected"""
-        _query = "NVIDIA Corporation".lower()
-        _proc = subprocess.Popen(
-            "lspci | grep 'VGA'",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            shell=True
-        ).communicate()[0].decode("utf-8").lower()
-
-        if _query in _proc:
-            return True
-        return False
-
-    @staticmethod
     def display_server_type():
         """Return the display server type"""
         return os.environ.get("XDG_SESSION_TYPE", "x11").lower()
-

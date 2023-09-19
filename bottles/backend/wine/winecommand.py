@@ -168,7 +168,6 @@ class WineCommand:
 
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
-        is_nvidia = DisplayUtils.check_nvidia_device()
         ld = []
 
         # Bottle environment variables
@@ -415,7 +414,7 @@ class WineCommand:
 
         if SteamUtils.is_proton(runner):
             '''
-            If the runner is Proton, set the path to /dist or /files 
+            If the runner is Proton, set the path to /dist or /files
             based on check if files exists.
             Additionally, check for its corresponding runtime.
             '''

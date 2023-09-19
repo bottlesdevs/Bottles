@@ -19,6 +19,7 @@ import subprocess
 
 from enum import Enum
 from functools import lru_cache
+from typing import Dict, List
 
 from bottles.backend.utils.nvidia import get_nvidia_dll_path
 from bottles.backend.utils.vulkan import VulkanUtils
@@ -34,30 +35,61 @@ class GPUVendors(Enum):
 
 # noinspection PyTypeChecker
 class GPUUtils:
-    __vendors = {
-        "nvidia": "NVIDIA Corporation",
-        "amd": "Advanced Micro Devices, Inc.",
-        "intel": "Intel Corporation"
+    _vendor_names = {
+        GPUVendors.NVIDIA: "NVIDIA Corporation",
+        GPUVendors.AMD: "Advanced Micro Devices, Inc.",
+        GPUVendors.INTEL: "Intel Corporation"
     }
+    _gpu_classes = [
+        "3D controller",
+        "Display controller",
+        "VGA compatible controller",
+    ]
 
     def __init__(self):
         self.vk = VulkanUtils()
 
-    def list_all(self):
-        found = []
-        for _vendor in self.__vendors:
-            _proc = subprocess.Popen(
-                f"lspci | grep '{self.__vendors[_vendor]}'",
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                shell=True
-            )
-            stdout, stderr = _proc.communicate()
+    @staticmethod
+    def _get_devices() -> List[Dict[str, str]]:
+        """Parses the list of PCI devices returned by `lspci`"""
+        _proc = subprocess.Popen(
+            ["lspci", "-mmkv"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+        stdout, stderr = _proc.communicate()
 
-            if len(stdout) > 0:
-                found.append(_vendor)
+        device_list = []
+        device_output = {}
+        for line in filter(None, stdout.splitlines()):
+            if line.startswith("Slot:"):
+                if device_output:
+                    device_list.append(device_output)
+                    device_output = {}
 
-        return found
+            key, val = line.split(maxsplit=1)
+            key = key[:-1].lower()
+            device_output[key] = val
+
+        if device_output:
+            device_list.append(device_output)
+        return device_list
+
+    @staticmethod
+    @lru_cache
+    def get_gpu_devices() -> List[Dict[str, str]]:
+        """
+        Returns the list of GPU devices from `lspci`.
+        VFIO passthrough devices are excluded.
+        """
+        devices = GPUUtils._get_devices()
+
+        def predicate(dev: Dict[str, str]) -> bool:
+            return dev.get("class") in GPUUtils._gpu_classes \
+                and dev.get("driver") != "vfio-pci"
+
+        return list(filter(predicate, devices))
 
     @staticmethod
     def assume_discrete(vendors: list):
@@ -70,31 +102,14 @@ class GPUUtils:
         return {}
 
     @staticmethod
-    def is_nouveau():
-        _proc = subprocess.Popen(
-            "lsmod | grep nouveau",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            shell=True
-        )
-        stdout, stderr = _proc.communicate()
-        if len(stdout) > 0:
-            logging.warning("Nouveau driver detected, this may cause issues")
-            return True
+    def is_nouveau() -> bool:
+        for device in GPUUtils.get_gpu_devices():
+            if device.get("driver") == "nouveau":
+                logging.warning("Nouveau driver detected, this may cause issues")
+                return True
         return False
 
     def get_gpu(self):
-        checks = {
-            "nvidia": {
-                "query": "(VGA|3D).*NVIDIA"
-            },
-            "amd": {
-                "query": "(VGA|3D).*AMD/ATI"
-            },
-            "intel": {
-                "query": "(VGA|3D).*Intel"
-            }
-        }
         gpus = {
             "nvidia": {
                 "vendor": "nvidia",
@@ -134,18 +149,10 @@ class GPUUtils:
             gpus["nvidia"]["envs"] = {"DRI_PRIME": "1"}
             gpus["nvidia"]["icd"] = ""
 
-        for _check in checks:
-            _query = checks[_check]["query"]
-            _proc = subprocess.Popen(
-                f"lspci | grep -iP '{_query}'",
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                shell=True
-            )
-            stdout, stderr = _proc.communicate()
-            if len(stdout) > 0:
-                found.append(_check)
-                result["vendors"][_check] = gpus[_check]
+        for vendor in GPUVendors:
+            if GPUUtils.is_gpu(vendor):
+                found.append(vendor.value)
+                result["vendors"][vendor.value] = gpus[vendor.value]
 
         if len(found) >= 2:
             _discrete = self.assume_discrete(found)
@@ -158,13 +165,10 @@ class GPUUtils:
         return result
 
     @staticmethod
-    @lru_cache
     def is_gpu(vendor: GPUVendors) -> bool:
-        _proc = subprocess.Popen(
-            f"lspci | grep -iP '{vendor.value}'",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            shell=True
-        )
-        stdout, stderr = _proc.communicate()
-        return len(stdout) > 0
+        vendor_name = GPUUtils._vendor_names[vendor]
+
+        for device in GPUUtils.get_gpu_devices():
+            if vendor_name in device.get("vendor", ""):
+                return True
+        return False
