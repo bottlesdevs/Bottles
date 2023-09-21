@@ -81,7 +81,7 @@ class MainWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs, default_width=width, default_height=height)
 
         self.disable_onboard = False
-        self.utils_conn = ConnectionUtils()
+        self.utils_conn = ConnectionUtils(force_offline=self.settings.get_boolean("force-offline"))
         self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
@@ -226,7 +226,9 @@ class MainWindow(Adw.ApplicationWindow):
         def get_manager():
             if self.utils_conn.check_connection():
                 SignalManager.connect(Signals.RepositoryFetched, self.page_loading.add_fetched)
-            mng = Manager(g_settings=self.settings)
+            
+            # do not redo connection if aborted connection 
+            mng = Manager(g_settings=self.settings, check_connection=self.utils_conn.aborted_connections == 0) 
             return mng
 
         self.check_core_deps()
