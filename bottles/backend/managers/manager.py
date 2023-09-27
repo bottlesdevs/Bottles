@@ -62,6 +62,7 @@ from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.singleton import Singleton
+from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
@@ -102,7 +103,7 @@ class Manager(metaclass=Singleton):
     supported_dependencies = {}
     supported_installers = {}
 
-    def __init__(self, g_settings: Any = None, is_cli: bool = False, **kwargs):
+    def __init__(self, g_settings: Any = None, check_connection: bool = True, is_cli: bool = False, **kwargs):
         super().__init__(**kwargs)
 
         times = {"start": time.time()}
@@ -110,10 +111,13 @@ class Manager(metaclass=Singleton):
         # common variables
         self.is_cli = is_cli
         self.settings = g_settings or GSettingsStub
-        self.utils_conn = ConnectionUtils(force_offline=self.is_cli)
+        self.utils_conn = ConnectionUtils(force_offline=self.is_cli or self.settings.get_boolean("force-offline"))
         self.data_mgr = DataManager()
-        _offline = not self.utils_conn.check_connection()
-
+        _offline = True
+        
+        if check_connection:
+            _offline = not self.utils_conn.check_connection()
+        
         # validating user-defined Paths.bottles
         if user_bottles_path := self.data_mgr.get(UserDataKeys.CustomBottlesPath):
             if os.path.exists(user_bottles_path):
@@ -125,7 +129,11 @@ class Manager(metaclass=Singleton):
                 )
 
         # sub-managers
-        self.repository_manager = RepositoryManager()
+        self.repository_manager = RepositoryManager(get_index= not _offline)
+        if self.repository_manager.aborted_connections > 0:
+            self.utils_conn.status = False
+            _offline = True
+        
         times["RepositoryManager"] = time.time()
         self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
@@ -136,6 +144,7 @@ class Manager(metaclass=Singleton):
         times["ImportManager"] = time.time()
         self.steam_manager = SteamManager()
         times["SteamManager"] = time.time()
+
 
         if not self.is_cli:
             times.update(self.checks(install_latest=False, first_run=True).data)
@@ -346,7 +355,7 @@ class Manager(metaclass=Singleton):
 
         # lock winemenubuilder.exe
         for runner in runners:
-            if runner not in self.supported_proton_runners:
+            if not SteamUtils.is_proton(runner):
                 winemenubuilder_paths = [
                     f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
                     f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
@@ -376,7 +385,7 @@ class Manager(metaclass=Singleton):
             _runner = os.path.basename(os.path.normpath(runner))
             runners_available.append(_runner)
 
-        runners_available = sorted(runners_available, reverse=True)
+        runners_available = self.__sort_runners(runners_available, "")
 
         runners_order = {
             "soda": [],
@@ -505,6 +514,57 @@ class Manager(metaclass=Singleton):
         if res:
             self.latencyflex_available = res
         return res is not False
+
+    def get_offline_components(self, component_type: str, extra_name_check: str = "") -> list:
+        components = {
+            "dxvk": {
+                "available": self.dxvk_available,
+                "supported": self.supported_dxvk,
+            },
+            "vkd3d": {
+                "available": self.vkd3d_available,
+                "supported": self.supported_vkd3d,
+            },
+            "nvapi": {
+                "available": self.nvapi_available,
+                "supported": self.supported_nvapi,
+            },
+            "latencyflex": {
+                "available": self.latencyflex_available,
+                "supported": self.supported_latencyflex,
+            },
+            "runner": {
+                "available": self.runners_available,
+                "supported": self.supported_wine_runners,
+            },
+            "runner:proton": {
+                "available": self.runners_available,
+                "supported": self.supported_proton_runners,
+            }
+        }
+        if component_type not in components:
+            logging.warning(f"Unknown component type found: {component_type}")
+            raise ValueError("Component type not supported.")
+
+        component_list = components[component_type]
+        offline_components = list(set(component_list["available"]).difference(component_list["supported"].keys()))
+
+        if component_type == "runner":
+            offline_components = [ runner for runner in offline_components \
+                                    if not runner.startswith("sys-") and \
+                                    not SteamUtils.is_proton(ManagerUtils.get_runner_path(runner)) ]
+        elif component_type == "runner:proton":
+            offline_components = [ runner for runner in offline_components \
+                                    if SteamUtils.is_proton(ManagerUtils.get_runner_path(runner)) ]
+
+        if extra_name_check and extra_name_check not in component_list["available"] \
+                and extra_name_check not in component_list["supported"]:
+            offline_components.append(extra_name_check)
+
+        try:
+            return sort_by_version(offline_components)
+        except ValueError:
+            return sorted(offline_components, reverse=True)
 
     def __check_component(self, component_type: str, install_latest: bool = True) -> Union[bool, list]:
         components = {
@@ -655,7 +715,7 @@ class Manager(metaclass=Singleton):
             skip if the path contains the "Uninstall" word.
             '''
             executable_path = LnkUtils.get_data(program)
-            if executable_path is None:
+            if executable_path in [None, ""]:
                 continue
             executable_name = executable_path.split("\\")[-1]
             program_folder = ManagerUtils.get_exe_parent_dir(config, executable_path)
@@ -675,13 +735,12 @@ class Manager(metaclass=Singleton):
                 bottle,
                 executable_path.replace("C:\\", "drive_c\\").replace("\\", "/")
             )
-
             if os.path.exists(path_check):
                 if executable_name not in found:
                     installed_programs.append({
                         "executable": executable_name,
                         "arguments": "",
-                        "name": executable_name.split(".")[0],
+                        "name": executable_name.rsplit('.',1)[0],
                         "path": executable_path,
                         "folder": program_folder,
                         "icon": "com.usebottles.bottles-program",
@@ -943,37 +1002,28 @@ class Manager(metaclass=Singleton):
             to latest Soda. If there is no Soda, set it to the
             first one.
             '''
-            config.Runner = self.get_latest_runner("wine")
+            config.Runner = self.get_latest_runner()
 
         if config.DXVK not in self.dxvk_available:
             '''
             If the DXVK is not in the list of available DXVKs, set it to
-            highest version.
+            highest version which is the first in the list.
             '''
-            config.DXVK = sorted(
-                [dxvk for dxvk in self.dxvk_available],
-                key=lambda x: x.split("-")[-1]
-            )[-1]
+            config.DXVK = self.dxvk_available[0]
 
         if config.VKD3D not in self.vkd3d_available:
             '''
             If the VKD3D is not in the list of available VKD3Ds, set it to
-            highest version.
+            highest version which is the first in the list.
             '''
-            config.VKD3D = sorted(
-                [vkd3d for vkd3d in self.vkd3d_available],
-                key=lambda x: x.split("-")[-1]
-            )[-1]
+            config.VKD3D = self.vkd3d_available[0]
 
         if config.NVAPI not in self.nvapi_available:
             '''
             If the NVAPI is not in the list of available NVAPIs, set it to
-            highest version.
+            highest version which is the first in the list.
             '''
-            config.NVAPI = sorted(
-                [nvapi for nvapi in self.nvapi_available],
-                key=lambda x: x.split("-")[-1]
-            )[-1]
+            config.NVAPI = self.nvapi_available[0]
 
         # create the bottle path
         bottle_path = os.path.join(Paths.bottles, config.Name)
@@ -1021,8 +1071,10 @@ class Manager(metaclass=Singleton):
             '''
             if dependency in self.supported_dependencies.keys():
                 dep = [dependency, self.supported_dependencies[dependency]]
-                self.dependency_manager.install(config, dep)
-
+                res = self.dependency_manager.install(config, dep)
+                if not res.ok:
+                    logging.error(_("Failed to install dependency: %s") % dep.get("Description", "n/a"), jn=True)
+                    return False
         logging.info(f"New bottle from config created: {config.Path}")
         self.update_bottles(silent=True)
         return True
@@ -1272,7 +1324,7 @@ class Manager(metaclass=Singleton):
             # blacklisting processes
             logging.info("Optimizing environment…")
             log_update(_("Optimizing environment…"))
-            _blacklist_dll = ["winemenubuilder.exe", "mshtml"]  # avoid gecko, mono popups
+            _blacklist_dll = ["winemenubuilder.exe"]
             for _dll in _blacklist_dll:
                 reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
@@ -1339,7 +1391,11 @@ class Manager(metaclass=Singleton):
                 if dep in self.supported_dependencies:
                     _dep = self.supported_dependencies[dep]
                     log_update(_("Installing dependency: %s …") % _dep.get("Description", "n/a"))
-                    self.dependency_manager.install(config, [dep, _dep])
+                    res = self.dependency_manager.install(config, [dep, _dep])
+                    if not res.ok:
+                        logging.error(_("Failed to install dependency: %s") % _dep.get("Description", "n/a"), jn=True)
+                        log_update(_("Failed to install dependency: %s") % _dep.get("Description", "n/a"))
+                        return Result(False)
                     template_updated = True
 
         # save bottle config
@@ -1375,34 +1431,31 @@ class Manager(metaclass=Singleton):
             data={"config": config}
         )
 
-    def __sort_runners(self, prefix: str, fallback: bool = True) -> sorted:
+    @staticmethod
+    def __sort_runners(runner_list: list, prefix: str) -> sorted:
         """
         Return a sorted list of runners for a given prefix. Fallback to the
         first available if fallback argument is True.
         """
-        runners = sorted(
-            [
-                runner
-                for runner in self.runners_available
-                if runner.startswith(prefix)
-            ],
-            key=lambda x: x.split("-")[1],
-            reverse=True
-        )
+        runners = [ runner for runner in runner_list if runner.startswith(prefix) ]
 
-        if len(runners) > 0:
-            return runners[0]
-
-        return self.runners_available[0] if fallback else []
-
-    def get_latest_runner(self, runner_type: str = "wine") -> list:
-        """Return the latest available runner for a given type."""
         try:
-            if runner_type in ["", "wine"]:
-                return self.__sort_runners("soda")
-            return self.__sort_runners("proton")
-        except IndexError:
-            return []
+            runners = sort_by_version(runners, "")
+        except ValueError:
+            runners = sorted(
+                runners,
+                key=lambda x: x.split("-")[1],
+                reverse=True
+            )
+
+        return runners
+
+    def get_latest_runner(self, runner_prefix: str = "soda") -> list:
+        """Return the latest available runner for a given prefix."""
+        runners = self.__sort_runners(self.runners_available, runner_prefix)
+        if not runners:
+            runners = self.__sort_runners(self.runners_available, "")
+        return runners[0] if runners else []
 
     def delete_bottle(self, config: BottleConfig) -> bool:
         """

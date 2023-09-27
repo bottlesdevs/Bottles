@@ -41,6 +41,9 @@ class ConnectionUtils:
     def __init__(self, force_offline=False, **kwargs):
         super().__init__(**kwargs)
         self.force_offline = force_offline
+        self.do_check_connection = True
+        self.aborted_connections = 0
+        SignalManager.connect(Signals.ForceStopNetworking, self.stop_check)
 
     @property
     def status(self) -> Optional[bool]:
@@ -54,6 +57,17 @@ class ConnectionUtils:
         self._status = value
         SignalManager.send(Signals.NetworkStatusChanged, Result(status=self.status))
 
+    def __curl_progress(self, _download_t, _download_d, _upload_t, _upload_d):
+        if self.do_check_connection:
+            return pycurl.E_OK
+        else:
+            self.aborted_connections+=1
+            return pycurl.E_ABORTED_BY_CALLBACK
+
+    def stop_check(self, res: Result):
+        if res.status:
+            self.do_check_connection = False
+
     def check_connection(self, show_notification=False) -> bool:
         """check network status, send result through signal NetworkReady and return"""
         if self.force_offline or "FORCE_OFFLINE" in os.environ:
@@ -66,6 +80,8 @@ class ConnectionUtils:
             c.setopt(c.URL, 'https://ping.usebottles.com')
             c.setopt(c.FOLLOWLOCATION, True)
             c.setopt(c.NOBODY, True)
+            c.setopt(c.NOPROGRESS, False)
+            c.setopt(c.XFERINFOFUNCTION, self.__curl_progress) 
             c.perform()
 
             if c.getinfo(pycurl.HTTP_CODE) != 200:
@@ -84,4 +100,5 @@ class ConnectionUtils:
             self.last_check = datetime.now()
             self.status = False
         finally:
+            self.do_check_connection = True
             return self.status
