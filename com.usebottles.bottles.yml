@@ -118,8 +118,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/KhronosGroup/Vulkan-Tools.git
-        tag: sdk-1.3.250.1
-        commit: 695887a994ef9cc00a7aa3f9c00b31a56ea79534
+        tag: sdk-1.3.261.1
+        commit: a7da7027ca9fd0901639f02619c226da9c6036f1
         x-checker-data:
           type: git
           tag-pattern: ^sdk-([\d.]+)$
@@ -129,8 +129,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/KhronosGroup/Vulkan-Headers.git
-            tag: sdk-1.3.250.1
-            commit: 9e61870ecbd32514113b467e0a0c46f60ed222c7
+            tag: sdk-1.3.261.1
+            commit: 85c2334e92e215cce34e8e0ed8b2dce4700f4a50
             x-checker-data:
               type: git
               tag-pattern: ^sdk-([\d.]+)$
@@ -188,8 +188,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ImageMagick/ImageMagick
-        tag: 7.1.1-15
-        commit: a0a5f3da4cd07919dd2d1bbae121e590b5f105e2
+        tag: 7.1.1-18
+        commit: 44b2ac8c0326c895a1663071e129d01cc221bc79
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+-[\d]+)$
@@ -202,8 +202,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/flatpak/libportal
-        tag: '0.6'
-        commit: 13df0b887a7eb7b0f9b14069561a41f62e813155
+        tag: 0.7.1
+        commit: e9ed3a50cdde321eaf42361212480a66eb94a57a
         x-checker-data:
           type: git
           is-important: true
@@ -258,8 +258,8 @@ modules:
         sources:
           - type: git
             url: https://gitlab.gnome.org/GNOME/vte
-            tag: 0.73.93
-            commit: f13f4d6cd83ba01315ac62755d70736705c40c99
+            tag: 0.74.0
+            commit: 7fb5b2395c9e9c786c2277bc98d7e2661485fb10
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
