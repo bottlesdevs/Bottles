@@ -206,6 +206,7 @@ modules:
         commit: 13df0b887a7eb7b0f9b14069561a41f62e813155
         x-checker-data:
           type: git
+          is-important: true
           tag-pattern: ^([\d.]+)$
 
   - name: blueprint-compiler
@@ -246,6 +247,7 @@ modules:
         commit: 6fbeab0470df55aeab141a45763147440b2f0290
         x-checker-data:
           type: git
+          is-important: true
           tag-pattern: ^([\d.]+)$
     modules:
       - name: vte
