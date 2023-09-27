@@ -17,6 +17,7 @@ from bottles.backend.utils.generic import detect_encoding
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.terminal import TerminalUtils
+from bottles.backend.utils.steam import SteamUtils
 
 logging = Logger()
 
@@ -98,7 +99,7 @@ class WineCommand:
         self.minimal = minimal
         self.arguments = arguments
         self.cwd = self._get_cwd(cwd)
-        self.runner = self._get_runner()
+        self.runner, self.runner_runtime = self._get_runner_info()
         self.command = self.get_cmd(command, post_script)
         self.terminal = terminal
         self.env = self.get_env(environment)
@@ -151,10 +152,15 @@ class WineCommand:
         if environment is None:
             environment = {}
 
+        bottle = ManagerUtils.get_bottle_path(config)
+        runner_path = ManagerUtils.get_runner_path(config.Runner)
+
         if config.Environment == "Steam":
             bottle = config.Path
-        else:
-            bottle = ManagerUtils.get_bottle_path(config)
+            runner_path = config.RunnerPath
+
+        if SteamUtils.is_proton(runner_path):
+            runner_path = SteamUtils.get_dist_directory(runner_path)
 
         # Clean some env variables which can cause trouble
         # ref: <https://github.com/bottlesdevs/Bottles/issues/2127>
@@ -195,8 +201,6 @@ class WineCommand:
 
         # Default DLL overrides
         if not return_steam_env:
-            if all(not s.startswith("mshtml=") for s in dll_overrides):
-                dll_overrides.append("mshtml=d")
             dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
@@ -224,7 +228,6 @@ class WineCommand:
                 logging.warning("Bottles runtime was requested but not found")
 
         # Get Runner libraries
-        runner_path = ManagerUtils.get_runner_path(config.Runner)
         if arch == "win64":
             runner_libs = [
                 "lib",
@@ -277,15 +280,19 @@ class WineCommand:
             env.add("__GL_SHADER_DISK_CACHE_PATH", os.path.join(bottle, "cache", "gl_shader"))
             env.add("MESA_SHADER_CACHE_DIR", os.path.join(bottle, "cache", "mesa_shader"))
 
-        # VKD£D environment variables
+        # VKD3D environment variables
         if params.vkd3d and not return_steam_env:
             env.add("VKD3D_SHADER_CACHE_PATH", os.path.join(bottle, "cache", "vkd3d_shader"))
 
         # LatencyFleX environment variables
         if params.latencyflex and not return_steam_env:
             _lf_path = ManagerUtils.get_latencyflex_path(config.LatencyFleX)
-            _lf_icd = os.path.join(_lf_path, "layer/usr/share/vulkan/implicit_layer.d/latencyflex.json")
-            env.concat("VK_ICD_FILENAMES", _lf_icd)
+            _lf_layer_path = os.path.join(_lf_path, "layer/usr/share/vulkan/implicit_layer.d")
+            env.concat("VK_ADD_LAYER_PATH", _lf_layer_path)
+            env.add("LFX", "1")
+            ld.append(os.path.join(_lf_path, "layer/usr/lib/x86_64-linux-gnu"))
+        else:
+            env.add("DISABLE_LFX", "1")
 
         # Mangohud environment variables
         if params.mangohud and not self.minimal and not (gamescope_available and params.gamescope):
@@ -328,11 +335,6 @@ class WineCommand:
             if params.fixme_logs:
                 debug_level = "+fixme-all"
             env.add("WINEDEBUG", debug_level)
-
-        # LatencyFleX
-        if params.latencyflex and params.dxvk_nvapi and not return_steam_env:
-            _lf_path = ManagerUtils.get_latencyflex_path(config.LatencyFleX)
-            ld.append(os.path.join(_lf_path, "wine/usr/lib/wine/x86_64-unix"))
 
         # Aco compiler
         # if params["aco_compiler"]:
@@ -399,36 +401,26 @@ class WineCommand:
 
         return env.get()["envs"]
 
-    def _get_runner(self) -> str:
+    def _get_runner_info(self) -> tuple[str, str]:
         config = self.config
-        runner = config.Runner
+        runner = ManagerUtils.get_runner_path(config.Runner)
         arch = config.Arch
+        runner_runtime = ""
 
         if config.Environment == "Steam":
             runner = config.RunnerPath
 
         if runner in [None, ""]:
-            return ""
+            return "", ""
 
-        if "Proton" in runner \
-                and "lutris" not in runner \
-                and config.Environment != "Steam":
+        if SteamUtils.is_proton(runner):
             '''
-            If the runner is Proton, set the pat to /dist or /files 
+            If the runner is Proton, set the path to /dist or /files 
             based on check if files exists.
+            Additionally, check for its corresponding runtime.
             '''
-            _runner = f"{runner}/files"
-            if os.path.exists(f"{Paths.runners}/{runner}/dist"):
-                _runner = f"{runner}/dist"
-            runner = f"{Paths.runners}/{_runner}/bin/wine"
-
-        elif config.Environment == "Steam":
-            '''
-            If the environment is Steam, runner path is defined
-            in the bottle configuration and point to the right
-            main folder.
-            '''
-            runner = f"{runner}/bin/wine"
+            runner_runtime = SteamUtils.get_associated_runtime(runner)
+            runner = os.path.join(SteamUtils.get_dist_directory(runner), f"bin/wine")
 
         elif runner.startswith("sys-"):
             '''
@@ -438,14 +430,14 @@ class WineCommand:
             runner = shutil.which("wine")
 
         else:
-            runner = f"{Paths.runners}/{runner}/bin/wine"
+            runner = f"{runner}/bin/wine"
 
         if arch == "win64":
             runner = f"{runner}64"
 
         runner = runner.replace(" ", "\\ ")
 
-        return runner
+        return runner, runner_runtime
 
     def get_cmd(
             self,
@@ -509,13 +501,22 @@ class WineCommand:
             _picked = {}
 
             if _rs:
-                if "soldier" in _rs.keys() and "proton" in self.runner.lower():
-                    ''' 
-                    Soldier doesn't works with Soda/Caffe and maybe other Wine runners, but it
-                    works with Proton. So, if the runner is Proton, use the soldier runtime.
+                if "sniper" in _rs.keys() and "sniper" in self.runner_runtime:
+                    '''
+                    Sniper is the default runtime used by Proton version >= 8.0
+                    '''
+                    _picked = _rs["sniper"]
+                elif "soldier" in _rs.keys() and "soldier" in self.runner_runtime:
+                    '''
+                    Sniper is the default runtime used by Proton version >= 5.13 and < 8.0
                     '''
                     _picked = _rs["soldier"]
                 elif "scout" in _rs.keys():
+                    '''
+                    For Wine runners, we cannot make assumption about which runtime would suits
+                    them the best, as it would depend on their build environment.
+                    Sniper/Soldier are not backward-compatible, defaulting to Scout should maximize compatibility.
+                    '''
                     _picked = _rs["scout"]
             else:
                 logging.warning("Steam runtime was requested but not found")

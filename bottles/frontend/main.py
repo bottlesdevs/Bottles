@@ -21,7 +21,6 @@ import os
 import gettext
 import locale
 import webbrowser
-import subprocess
 from os import path
 
 gi.require_version('Gtk', '4.0')
@@ -30,7 +29,7 @@ gi.require_version('GtkSource', '5')
 #gi.require_version("Xdp", "1.0")
 #gi.require_version("XdpGtk4", "1.0")
 
-from gi.repository import Gtk, Gio, Gdk, GLib, GObject, Adw
+from gi.repository import Gtk, Gio, GLib, GObject, Adw
 
 from bottles.frontend.params import *
 from bottles.backend.logger import Logger
@@ -235,13 +234,13 @@ class Bottles(Adw.Application):
         self.win = win
         win.present()
 
-    @staticmethod
-    def __quit(action=None, param=None):
+    def __quit(self, *args):
         """
         This function close the application.
         It is used by the [Ctrl+Q] shortcut.
         """
         logging.info(_("[Quit] request received."), )
+        self.win.on_close_request()
         quit()
 
     @staticmethod
