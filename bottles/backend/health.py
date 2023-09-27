@@ -99,7 +99,7 @@ class HealthChecker:
         return self.x11 and self.wayland
 
     def check_desktop(self):
-        return os.environ.get("DESKTOP_SESSION")
+        return os.environ.get("XDG_CURRENT_DESKTOP")
 
     @staticmethod
     def check_cabextract():
