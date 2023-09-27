@@ -150,6 +150,10 @@ modules:
           type: git
           is-important: true
           tag-pattern: ^([\d.]+)$
+      # https://github.com/FeralInteractive/gamemode/commit/4934191b1928ef695c3e8af21e75781f8591745f
+      # Build workaround, please remove once gamemode > 1.7 is released!
+      - type: patch
+        path: gamemode.patch
 
   - name: gamemode-32bit
     build-options:
