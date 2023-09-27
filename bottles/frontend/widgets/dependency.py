@@ -149,12 +149,12 @@ class DependencyEntry(Adw.ActionRow):
             dependency=self.dependency,
         )
 
-    def remove_dependency(self, widget):
+    def remove_dependency(self, _widget):
         """
         This function remove the dependency from the bottle
         configuration
         """
-        widget.set_sensitive(False)
+        _widget.set_sensitive(False)
         RunAsync(
             task_func=self.manager.remove_dependency,
             callback=self.set_install_status,

@@ -64,7 +64,7 @@ class DependenciesView(Adw.Bin):
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
 
         if not self.manager.utils_conn.status:
-            self.stack.set_visible_child_name("page_offline") 
+            self.stack.set_visible_child_name("page_offline")
 
         self.spinner_loading.start()
 
