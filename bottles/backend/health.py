@@ -136,27 +136,23 @@ class HealthChecker:
 
     @staticmethod
     def check_icoextract():
-        return check_module(icoextract)
+        return check_module("icoextract")
 
     @staticmethod
     def check_pefile():
-        return check_module(pefile)
+        return check_module("pefile")
 
     @staticmethod
     def check_markdown():
-        return check_module(markdown)
+        return check_module("markdown")
 
     @staticmethod
     def check_orjson():
-        return check_module(orjson)
+        return check_module("orjson")
 
     @staticmethod
     def check_FVS():
-        try:
-            from fvs.repo import FVSRepo
-            return True
-        except ModuleNotFoundError:
-            return False
+        return check_module("fvs")
 
     @staticmethod
     def get_bottles_envs():
