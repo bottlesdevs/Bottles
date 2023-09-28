@@ -102,56 +102,53 @@ class HealthChecker:
         return os.environ.get("XDG_CURRENT_DESKTOP")
 
     @staticmethod
+    def check_executable(executable):
+        return bool(shutil.which(executable))
+
+    @staticmethod
     def check_cabextract():
-        return bool(shutil.which("cabextract"))
+        return check_executable("cabextract")
 
     @staticmethod
     def check_p7zip():
-        return bool(shutil.which("7z"))
+        return check_executable("7z")
 
     @staticmethod
     def check_patool():
-        return bool(shutil.which("patool"))
+        return check_executable("patool")
 
     @staticmethod
     def check_xdpyinfo():
-        return bool(shutil.which("xdpyinfo"))
+        return check_executable("xdpyinfo")
 
     @staticmethod
     def check_ImageMagick():
-        return bool(shutil.which("identify"))
+        return check_executable("identify")
+
+    @staticmethod
+    def check_module(module):
+        try:
+            __import__(module)
+        except ModuleNotFoundError:
+            return False
+        else:
+            return True
 
     @staticmethod
     def check_icoextract():
-        try:
-            import icoextract
-            return True
-        except ModuleNotFoundError:
-            return False
+        return check_module(icoextract)
 
     @staticmethod
     def check_pefile():
-        try:
-            import pefile
-            return True
-        except ModuleNotFoundError:
-            return False
+        return check_module(pefile)
 
     @staticmethod
     def check_markdown():
-        try:
-            import markdown
-            return True
-        except ModuleNotFoundError:
-            return False
+        return check_module(markdown)
 
     @staticmethod
     def check_orjson():
-        try:
-            import orjson
-            return True
-        except ModuleNotFoundError:
-            return False
+        return check_module(orjson)
 
     @staticmethod
     def check_FVS():
