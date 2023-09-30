@@ -102,6 +102,8 @@ class HealthChecker:
         return os.environ.get("XDG_CURRENT_DESKTOP")
 
     @staticmethod
+    # TODO: additional cleanup: don't have individual `check_*` methods, just one like this,
+    # and iterate over them for the results.
     def check_executable(executable):
         return bool(shutil.which(executable))
 
