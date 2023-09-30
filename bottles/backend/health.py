@@ -69,27 +69,16 @@ class HealthChecker:
         }
         self.get_ram_data()
 
-        if "FLATPAK_ID" not in os.environ:
-            self.cabextract = self.check_cabextract()
-            self.p7zip = self.check_p7zip()
-            self.patool = self.check_patool()
-            self.icoextract = self.check_icoextract()
-            self.pefile = self.check_pefile()
-            self.orjson = self.check_orjson()
-            self.markdown = self.check_markdown()
-            self.xdpyinfo = self.check_xdpyinfo()
-            self.ImageMagick = self.check_ImageMagick()
-            self.FVS = self.check_FVS()
-        else:
-            self.cabextract = True
-            self.p7zip = True
-            self.patool = True
-            self.icoextract = True
-            self.pefile = True
-            self.orjson = True
-            self.markdown = True
-            self.ImageMagick = True
-            self.FVS = True
+        self.cabextract = self.check_cabextract()
+        self.p7zip = self.check_p7zip()
+        self.patool = self.check_patool()
+        self.icoextract = self.check_icoextract()
+        self.pefile = self.check_pefile()
+        self.orjson = self.check_orjson()
+        self.markdown = self.check_markdown()
+        self.xdpyinfo = self.check_xdpyinfo()
+        self.ImageMagick = self.check_ImageMagick()
+        self.FVS = self.check_FVS()
 
     @staticmethod
     def check_gpus():
@@ -104,92 +93,68 @@ class HealthChecker:
 
     @staticmethod
     def check_wayland():
-        if "WAYLAND_DISPLAY" in os.environ:
-            return True
-        return False
+        return "WAYLAND_DISPLAY" in os.environ
 
     def check_xwayland(self):
-        if self.x11 and self.wayland:
-            return True
-        return False
+        return self.x11 and self.wayland
 
     def check_desktop(self):
-        return os.environ.get("DESKTOP_SESSION")
+        return os.environ.get("XDG_CURRENT_DESKTOP")
+
+    @staticmethod
+    # TODO: additional cleanup: don't have individual `check_*` methods, just one like this,
+    # and iterate over them for the results.
+    def check_executable(executable):
+        return bool(shutil.which(executable))
 
     @staticmethod
     def check_cabextract():
-        res = shutil.which("cabextract")
-        if res is None:
-            return False
-        return True
+        return check_executable("cabextract")
 
     @staticmethod
     def check_p7zip():
-        res = shutil.which("7z")
-        if res is None:
-            return False
-        return True
+        return check_executable("7z")
 
     @staticmethod
     def check_patool():
-        res = shutil.which("patool")
-        if res is None:
-            return False
-        return True
-
-    @staticmethod
-    def check_icoextract():
-        try:
-            import icoextract
-            return True
-        except ModuleNotFoundError:
-            return False
-
-    @staticmethod
-    def check_pefile():
-        try:
-            import pefile
-            return True
-        except ModuleNotFoundError:
-            return False
-
-    @staticmethod
-    def check_markdown():
-        try:
-            import markdown
-            return True
-        except ModuleNotFoundError:
-            return False
-
-    @staticmethod
-    def check_orjson():
-        try:
-            import orjson
-            return True
-        except ModuleNotFoundError:
-            return False
+        return check_executable("patool")
 
     @staticmethod
     def check_xdpyinfo():
-        res = shutil.which("xdpyinfo")
-        if res is None:
-            return False
-        return True
+        return check_executable("xdpyinfo")
 
     @staticmethod
     def check_ImageMagick():
-        res = shutil.which("identify")
-        if res is None:
+        return check_executable("identify")
+
+    @staticmethod
+    def check_module(module):
+        try:
+            __import__(module)
+        except ModuleNotFoundError:
             return False
-        return True
+        else:
+            return True
+
+    @staticmethod
+    def check_icoextract():
+        return check_module("icoextract")
+
+    @staticmethod
+    def check_pefile():
+        return check_module("pefile")
+
+    @staticmethod
+    def check_markdown():
+        return check_module("markdown")
+
+    @staticmethod
+    def check_orjson():
+        return check_module("orjson")
 
     @staticmethod
     def check_FVS():
-        try:
-            from fvs.repo import FVSRepo
-            return True
-        except ModuleNotFoundError:
-            return False
+        return check_module("fvs")
 
     @staticmethod
     def get_bottles_envs():

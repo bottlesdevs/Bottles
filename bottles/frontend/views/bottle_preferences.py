@@ -143,30 +143,30 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_vmtouch.connect("clicked", self.__show_vmtouch_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.reset_cwd, True)
-        self.switch_mangohud.connect('state-set', self.__toggle_mangohud)
-        self.switch_obsvkc.connect('state-set', self.__toggle_obsvkc)
-        self.switch_vkbasalt.connect('state-set', self.__toggle_vkbasalt)
-        self.switch_fsr.connect('state-set', self.__toggle_fsr)
-        self.switch_nvapi.connect('state-set', self.__toggle_nvapi)
-        # self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
-        self.switch_gamemode.connect('state-set', self.__toggle_gamemode)
-        self.switch_gamescope.connect('state-set', self.__toggle_gamescope)
-        self.switch_sandbox.connect('state-set', self.__toggle_sandbox)
-        self.switch_discrete.connect('state-set', self.__toggle_discrete_gpu)
-        self.switch_versioning_compression.connect('state-set', self.__toggle_versioning_compression)
-        self.switch_auto_versioning.connect('state-set', self.__toggle_auto_versioning)
-        self.switch_versioning_patterns.connect('state-set', self.__toggle_versioning_patterns)
-        self.switch_vmtouch.connect('state-set', self.__toggle_vmtouch)
-        self.combo_runner.connect('notify::selected', self.__set_runner)
-        self.combo_dxvk.connect('notify::selected', self.__set_dxvk)
-        self.combo_vkd3d.connect('notify::selected', self.__set_vkd3d)
-        self.combo_nvapi.connect('notify::selected', self.__set_nvapi)
-        self.combo_latencyflex.connect('notify::selected', self.__set_latencyflex)
-        self.combo_windows.connect('notify::selected', self.__set_windows)
+        self.switch_mangohud.connect("state-set", self.__toggle_mangohud)
+        self.switch_obsvkc.connect("state-set", self.__toggle_obsvkc)
+        self.switch_vkbasalt.connect("state-set", self.__toggle_vkbasalt)
+        self.switch_fsr.connect("state-set", self.__toggle_fsr)
+        self.switch_nvapi.connect("state-set", self.__toggle_nvapi)
+        # self.switch_latencyflex.connect("state-set", self.__toggle_latencyflex)
+        self.switch_gamemode.connect("state-set", self.__toggle_gamemode)
+        self.switch_gamescope.connect("state-set", self.__toggle_gamescope)
+        self.switch_sandbox.connect("state-set", self.__toggle_sandbox)
+        self.switch_discrete.connect("state-set", self.__toggle_discrete_gpu)
+        self.switch_versioning_compression.connect("state-set", self.__toggle_versioning_compression)
+        self.switch_auto_versioning.connect("state-set", self.__toggle_auto_versioning)
+        self.switch_versioning_patterns.connect("state-set", self.__toggle_versioning_patterns)
+        self.switch_vmtouch.connect("state-set", self.__toggle_vmtouch)
+        self.combo_runner.connect("notify::selected", self.__set_runner)
+        self.combo_dxvk.connect("notify::selected", self.__set_dxvk)
+        self.combo_vkd3d.connect("notify::selected", self.__set_vkd3d)
+        self.combo_nvapi.connect("notify::selected", self.__set_nvapi)
+        self.combo_latencyflex.connect("notify::selected", self.__set_latencyflex)
+        self.combo_windows.connect("notify::selected", self.__set_windows)
         self.combo_language.connect('notify::selected-item', self.__set_language)
-        self.combo_sync.connect('notify::selected', self.__set_sync_type)
-        self.entry_name.connect('changed', self.__check_entry_name)
-        self.entry_name.connect('apply', self.__save_name)
+        self.combo_sync.connect("notify::selected", self.__set_sync_type)
+        self.entry_name.connect("changed", self.__check_entry_name)
+        self.entry_name.connect("apply", self.__save_name)
         # endregion
 
         """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
@@ -177,11 +177,11 @@ class PreferencesView(Adw.PreferencesPage):
         """Set Bottles Runtime row to visible when Bottles is not running inside Flatpak"""
         if "FLATPAK_ID" not in os.environ and RuntimeManager.get_runtimes("bottles"):
             self.row_runtime.set_visible(True)
-            self.switch_runtime.connect('state-set', self.__toggle_runtime)
+            self.switch_runtime.connect("state-set", self.__toggle_runtime)
 
         if RuntimeManager.get_runtimes("steam"):
             self.row_steam_runtime.set_visible(True)
-            self.switch_steam_runtime.connect('state-set', self.__toggle_steam_runtime)
+            self.switch_steam_runtime.connect("state-set", self.__toggle_steam_runtime)
 
         '''Toggle some utilities according to its availability'''
         self.switch_gamemode.set_sensitive(gamemode_available)
@@ -338,26 +338,16 @@ class PreferencesView(Adw.PreferencesPage):
         ]:
             string_list.splice(0, string_list.get_n_items())
 
-        self.str_list_dxvk.append("Disabled")
-        self.str_list_vkd3d.append("Disabled")
-        self.str_list_latencyflex.append("Disabled")
-        for index, dxvk in enumerate(self.manager.dxvk_available):
-            self.str_list_dxvk.append(dxvk)
+        self.str_list_dxvk.append(_("Disabled"))
+        self.str_list_vkd3d.append(_("Disabled"))
+        self.str_list_latencyflex.append(_("Disabled"))
 
-        for index, vkd3d in enumerate(self.manager.vkd3d_available):
-            self.str_list_vkd3d.append(vkd3d)
-
-        for index, runner in enumerate(self.manager.runners_available):
-            self.str_list_runner.append(runner)
-
-        for index, nvapi in enumerate(self.manager.nvapi_available):
-            self.str_list_nvapi.append(nvapi)
-
-        for index, latencyflex in enumerate(self.manager.latencyflex_available):
-            self.str_list_latencyflex.append(latencyflex)
-
-        for lang in ManagerUtils.get_languages():
-            self.str_list_languages.append(lang)
+        self.str_list_dxvk.splice(self.str_list_dxvk.get_n_items(), 0, self.manager.dxvk_available)
+        self.str_list_vkd3d.splice(self.str_list_vkd3d.get_n_items(), 0, self.manager.vkd3d_available)
+        self.str_list_runner.splice(self.str_list_runner.get_n_items(), 0, self.manager.runners_available)
+        self.str_list_nvapi.splice(self.str_list_nvapi.get_n_items(), 0, self.manager.nvapi_available)
+        self.str_list_latencyflex.splice(self.str_list_latencyflex.get_n_items(), 0, self.manager.latencyflex_available)
+        self.str_list_languages.splice(self.str_list_languages.get_n_items(), 0, ManagerUtils.get_languages())
 
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
@@ -445,10 +435,8 @@ class PreferencesView(Adw.PreferencesPage):
             self.windows_versions["win98"] = "Windows 98"
             self.windows_versions["win95"] = "Windows 95"
 
-        for index, windows_version in enumerate(self.windows_versions):
-            self.str_list_windows.append(self.windows_versions[windows_version])
-            if windows_version == self.config.Windows:
-                self.combo_windows.set_selected(index)
+        self.str_list_windows.splice(self.str_list_windows.get_n_items(), 0, list(self.windows_versions.values()))
+        self.combo_windows.set_selected(list(self.windows_versions).index(self.config.get("Windows")))
         # endregion
 
         parameters = self.config.Parameters
@@ -524,7 +512,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __show_gamescope_settings(self, widget):
         new_window = GamescopeDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
@@ -556,21 +544,21 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __show_exclusionpatterns_settings(self, widget):
         new_window = ExclusionPatternsDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
 
     def __show_sandbox_settings(self, widget):
         new_window = SandboxDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
 
     def __show_drives(self, widget):
         new_window = DrivesDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
@@ -578,14 +566,14 @@ class PreferencesView(Adw.PreferencesPage):
     def __show_environment_variables(self, widget=False):
         """Show the environment variables dialog"""
         new_window = EnvVarsDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
 
     def __show_vmtouch_settings(self, widget):
         new_window = VmtouchDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
@@ -1051,7 +1039,7 @@ class PreferencesView(Adw.PreferencesPage):
     def __show_dll_overrides_view(self, widget=False):
         """Show the DLL overrides view"""
         new_window = DLLOverridesDialog(
-            window=self.window,
+            parent_window=self.window,
             config=self.config
         )
         new_window.present()
