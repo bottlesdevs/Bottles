@@ -27,12 +27,12 @@ class DLLEntry(Adw.ComboRow):
 
     # endregion
 
-    def __init__(self, parent_window, config, override, **kwargs):
+    def __init__(self, window, config, override, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.parent_window = parent_window
-        self.manager = parent_window.manager
+        self.window = window
+        self.manager = window.manager
         self.config = config
         self.override = override
         types = ("b", "n", "b,n", "n,b", "d")
@@ -87,13 +87,13 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
 
     # endregion
 
-    def __init__(self, parent_window, config, **kwargs):
+    def __init__(self, window, config, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(parent_window)
+        self.set_transient_for(window)
 
         # common variables and references
-        self.parent_window = parent_window
-        self.manager = parent_window.manager
+        self.window = window
+        self.manager = window.manager
         self.config = config
 
         self.__populate_overrides_list()
@@ -117,7 +117,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
                 scope="DLL_Overrides"
             )
             _entry = DLLEntry(
-                parent_window=self.parent_window,
+                window=self.window,
                 config=self.config,
                 override=[dll_name, "n,b"]
             )
@@ -139,7 +139,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
         self.group_overrides.set_description("")
         for override in overrides:
             _entry = DLLEntry(
-                parent_window=self.parent_window,
+                window=self.window,
                 config=self.config,
                 override=override
             )

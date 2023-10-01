@@ -18,7 +18,6 @@
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.wine.drives import Drives
-from string import ascii_uppercase
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/drive-entry.ui')
@@ -91,7 +90,10 @@ class DriveEntry(Adw.ActionRow):
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-drives.ui')
 class DrivesDialog(Adw.Window):
     __gtype_name__ = 'DrivesDialog'
-    __alphabet = list(ascii_uppercase.replace("C", ""))
+    __alphabet = ["A", "B", "D", "E", "F", "G", "H",
+                  "I", "J", "K", "L", "M", "N", "O",
+                  "P", "Q", "R", "S", "T", "U", "V",
+                  "W", "X", "Y", "Z"]
 
     # region Widgets
     combo_letter = Gtk.Template.Child()
@@ -101,12 +103,12 @@ class DrivesDialog(Adw.Window):
 
     # endregion
 
-    def __init__(self, parent_window, config, **kwargs):
+    def __init__(self, window, config, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(parent_window)
+        self.set_transient_for(window)
 
         # common variables and references
-        self.parent_window = parent_window
+        self.window = window
         self.manager = window.manager
         self.config = config
 
@@ -141,6 +143,7 @@ class DrivesDialog(Adw.Window):
 
     def __populate_combo_letter(self):
         drives = Drives(self.config).get_all()
+        self.str_list_letters.splice(0, self.str_list_letters.get_n_items())
 
         for letter in self.__alphabet:
             if letter not in drives:

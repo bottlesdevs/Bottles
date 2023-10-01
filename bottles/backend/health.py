@@ -69,16 +69,27 @@ class HealthChecker:
         }
         self.get_ram_data()
 
-        self.cabextract = self.check_cabextract()
-        self.p7zip = self.check_p7zip()
-        self.patool = self.check_patool()
-        self.icoextract = self.check_icoextract()
-        self.pefile = self.check_pefile()
-        self.orjson = self.check_orjson()
-        self.markdown = self.check_markdown()
-        self.xdpyinfo = self.check_xdpyinfo()
-        self.ImageMagick = self.check_ImageMagick()
-        self.FVS = self.check_FVS()
+        if "FLATPAK_ID" not in os.environ:
+            self.cabextract = self.check_cabextract()
+            self.p7zip = self.check_p7zip()
+            self.patool = self.check_patool()
+            self.icoextract = self.check_icoextract()
+            self.pefile = self.check_pefile()
+            self.orjson = self.check_orjson()
+            self.markdown = self.check_markdown()
+            self.xdpyinfo = self.check_xdpyinfo()
+            self.ImageMagick = self.check_ImageMagick()
+            self.FVS = self.check_FVS()
+        else:
+            self.cabextract = True
+            self.p7zip = True
+            self.patool = True
+            self.icoextract = True
+            self.pefile = True
+            self.orjson = True
+            self.markdown = True
+            self.ImageMagick = True
+            self.FVS = True
 
     @staticmethod
     def check_gpus():
@@ -93,68 +104,92 @@ class HealthChecker:
 
     @staticmethod
     def check_wayland():
-        return "WAYLAND_DISPLAY" in os.environ
+        if "WAYLAND_DISPLAY" in os.environ:
+            return True
+        return False
 
     def check_xwayland(self):
-        return self.x11 and self.wayland
+        if self.x11 and self.wayland:
+            return True
+        return False
 
     def check_desktop(self):
-        return os.environ.get("XDG_CURRENT_DESKTOP")
-
-    @staticmethod
-    # TODO: additional cleanup: don't have individual `check_*` methods, just one like this,
-    # and iterate over them for the results.
-    def check_executable(executable):
-        return bool(shutil.which(executable))
+        return os.environ.get("DESKTOP_SESSION")
 
     @staticmethod
     def check_cabextract():
-        return check_executable("cabextract")
+        res = shutil.which("cabextract")
+        if res is None:
+            return False
+        return True
 
     @staticmethod
     def check_p7zip():
-        return check_executable("7z")
+        res = shutil.which("7z")
+        if res is None:
+            return False
+        return True
 
     @staticmethod
     def check_patool():
-        return check_executable("patool")
-
-    @staticmethod
-    def check_xdpyinfo():
-        return check_executable("xdpyinfo")
-
-    @staticmethod
-    def check_ImageMagick():
-        return check_executable("identify")
-
-    @staticmethod
-    def check_module(module):
-        try:
-            __import__(module)
-        except ModuleNotFoundError:
+        res = shutil.which("patool")
+        if res is None:
             return False
-        else:
-            return True
+        return True
 
     @staticmethod
     def check_icoextract():
-        return check_module("icoextract")
+        try:
+            import icoextract
+            return True
+        except ModuleNotFoundError:
+            return False
 
     @staticmethod
     def check_pefile():
-        return check_module("pefile")
+        try:
+            import pefile
+            return True
+        except ModuleNotFoundError:
+            return False
 
     @staticmethod
     def check_markdown():
-        return check_module("markdown")
+        try:
+            import markdown
+            return True
+        except ModuleNotFoundError:
+            return False
 
     @staticmethod
     def check_orjson():
-        return check_module("orjson")
+        try:
+            import orjson
+            return True
+        except ModuleNotFoundError:
+            return False
+
+    @staticmethod
+    def check_xdpyinfo():
+        res = shutil.which("xdpyinfo")
+        if res is None:
+            return False
+        return True
+
+    @staticmethod
+    def check_ImageMagick():
+        res = shutil.which("identify")
+        if res is None:
+            return False
+        return True
 
     @staticmethod
     def check_FVS():
-        return check_module("fvs")
+        try:
+            from fvs.repo import FVSRepo
+            return True
+        except ModuleNotFoundError:
+            return False
 
     @staticmethod
     def get_bottles_envs():
