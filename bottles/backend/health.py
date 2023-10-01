@@ -109,23 +109,23 @@ class HealthChecker:
 
     @staticmethod
     def check_cabextract():
-        return check_executable("cabextract")
+        return self.check_executable("cabextract")
 
     @staticmethod
     def check_p7zip():
-        return check_executable("7z")
+        return self.check_executable("7z")
 
     @staticmethod
     def check_patool():
-        return check_executable("patool")
+        return self.check_executable("patool")
 
     @staticmethod
     def check_xdpyinfo():
-        return check_executable("xdpyinfo")
+        return self.check_executable("xdpyinfo")
 
     @staticmethod
     def check_ImageMagick():
-        return check_executable("identify")
+        return self.check_executable("identify")
 
     @staticmethod
     def check_module(module):
@@ -138,23 +138,23 @@ class HealthChecker:
 
     @staticmethod
     def check_icoextract():
-        return check_module("icoextract")
+        return self.check_module("icoextract")
 
     @staticmethod
     def check_pefile():
-        return check_module("pefile")
+        return self.check_module("pefile")
 
     @staticmethod
     def check_markdown():
-        return check_module("markdown")
+        return self.check_module("markdown")
 
     @staticmethod
     def check_orjson():
-        return check_module("orjson")
+        return self.check_module("orjson")
 
     @staticmethod
     def check_FVS():
-        return check_module("fvs")
+        return self.check_module("fvs")
 
     @staticmethod
     def get_bottles_envs():
