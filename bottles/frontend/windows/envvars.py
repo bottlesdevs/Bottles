@@ -80,13 +80,13 @@ class EnvVarsDialog(Adw.Window):
     group_vars = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, parent_window, config, **kwargs):
+    def __init__(self, window, config, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(parent_window)
+        self.set_transient_for(window)
 
         # common variables and references
-        self.parent_window = parent_window
-        self.manager = parent_window.manager
+        self.window = window
+        self.manager = window.manager
         self.config = config
 
         self.__populate_vars_list()

@@ -56,7 +56,8 @@ class FsrDialog(Adw.Window):
         parameters = config.Parameters
 
         # Populate entries
-        self.str_list_quality_mode.splice(0, 0, list(self.quality_mode.values()))
+        for mode in self.quality_mode.values():
+            self.str_list_quality_mode.append(mode)
 
         # Select right entry
         if parameters.fsr_quality_mode:
