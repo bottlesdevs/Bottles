@@ -194,11 +194,15 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vmtouch.set_sensitive(vmtouch_available)
         _not_available = _("This feature is unavailable on your system.")
         _flatpak_not_available = _("{} To add this feature, please run flatpak install").format(_not_available)
+        _gamescope_pkg_name = "org.freedesktop.Platform.VulkanLayer.gamescope"
+        _vkbasalt_pkg_name = "org.freedesktop.Platform.VulkanLayer.vkBasalt"
+        _mangohud_pkg_name = "org.freedesktop.Platform.VulkanLayer.MangoHud"
+        _obsvkc_pkg_name = "com.obsproject.Studio.Plugin.OBSVkCapture"
         _flatpak_pkg_name = {
-            "gamescope": f"org.freedesktop.Platform.VulkanLayer.gamescope//{base_version}" if base_version else "org.freedesktop.Platform.VulkanLayer.gamescope",
-            "vkbasalt": f"org.freedesktop.Platform.VulkanLayer.vkBasalt//{base_version}" if base_version else "org.freedesktop.Platform.VulkanLayer.vkBasalt",
-            "mangohud": f"org.freedesktop.Platform.VulkanLayer.MangoHud//{base_version}" if base_version else "org.freedesktop.Platform.VulkanLayer.MangoHud",
-            "obsvkc": "com.obsproject.Studio.Plugin.OBSVkCapture"
+            "gamescope": f"{_gamescope_pkg_name}//{base_version}" if base_version else _gamescope_pkg_name,
+            "vkbasalt": f"{_vkbasalt_pkg_name}//{base_version}" if base_version else _vkbasalt_pkg_name,
+            "mangohud": f"{_mangohud_pkg_name}//{base_version}" if base_version else _mangohud_pkg_name,
+            "obsvkc": _obsvkc_pkg_name
         }
 
         if not gamemode_available:
