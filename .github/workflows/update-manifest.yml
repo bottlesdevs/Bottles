@@ -44,7 +44,7 @@ jobs:
               git commit -m "Update PyPI dependencies"
           fi
 
-      - name: Update requirements
+      - name: Update arguments
         if: github.event_name == 'workflow_dispatch'
         run: |
           remove_important_update_only=$(sed 's/--require-important-update//g' <<< '${{ env.FEDC_ARGS }}')
