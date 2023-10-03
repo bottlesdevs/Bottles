@@ -23,7 +23,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
 from bottles.backend.globals import gamemode_available, vkbasalt_available, mangohud_available, obs_vkc_available, \
-    vmtouch_available, gamescope_available
+    vmtouch_available, gamescope_available, base_version
 from bottles.backend.logger import Logger
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.runtime import RuntimeManager
