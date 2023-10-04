@@ -36,5 +36,9 @@ class DXVKComponent(DLLComponent):
     }
 
     @staticmethod
+    def get_override_keys() -> str:
+        return "d3d9,d3d10core,d3d11,dxgi"
+
+    @staticmethod
     def get_base_path(version: str) -> str:
         return ManagerUtils.get_dxvk_path(version)

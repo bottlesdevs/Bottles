@@ -96,7 +96,7 @@ class EnvVarsDialog(Adw.Window):
         self.entry_name.connect("apply", self.__save_var)
 
     def __validate(self, *_args):
-        self.__valid_name = GtkUtils.validate_entry(self.entry_name)
+        self.__valid_name = GtkUtils.validate_entry(self.entry_name, lambda envvar : envvar.startswith("WINEDLLOVERRIDES"))
 
     def __save_var(self, *_args):
         """
@@ -111,7 +111,7 @@ class EnvVarsDialog(Adw.Window):
 
         env_name = self.entry_name.get_text()
         env_value = "value"
-        split_value = env_name.rsplit('=', 1)
+        split_value = env_name.split('=', 1)
         if len(split_value) == 2:
             env_name = split_value[0]
             env_value = split_value[1]

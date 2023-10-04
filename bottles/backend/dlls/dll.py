@@ -45,6 +45,11 @@ class DLLComponent:
     def get_base_path(version: str) -> str:
         pass
 
+    @staticmethod
+    @abstractmethod
+    def get_override_keys() -> str:
+        pass
+
     def check(self) -> bool:
         found = deepcopy(self.dlls)
 

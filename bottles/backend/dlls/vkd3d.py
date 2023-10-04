@@ -32,5 +32,9 @@ class VKD3DComponent(DLLComponent):
     }
 
     @staticmethod
+    def get_override_keys() -> str:
+        return "d3d12,d3d12core"
+
+    @staticmethod
     def get_base_path(version: str) -> str:
         return ManagerUtils.get_vkd3d_path(version)

@@ -691,19 +691,19 @@ class Manager(metaclass=Singleton):
             else:
                 program_folder = os.path.dirname(_program["path"])
             installed_programs.append({
-                "executable": _program["executable"],
-                "arguments": _program.get("arguments", ""),
-                "name": _program["name"],
-                "path": _program["path"],
+                "executable": _program.get("executable"),
+                "arguments": _program.get("arguments"),
+                "name": _program.get("name"),
+                "path": _program.get("path"),
                 "folder": _program.get("folder", program_folder),
                 "icon": "com.usebottles.bottles-program",
                 "script": _program.get("script"),
-                "dxvk": _program.get("dxvk", config.Parameters.dxvk),
-                "vkd3d": _program.get("vkd3d", config.Parameters.vkd3d),
-                "dxvk_nvapi": _program.get("dxvk_nvapi", config.Parameters.dxvk_nvapi),
-                "fsr": _program.get("fsr", config.Parameters.fsr),
-                "pulseaudio_latency": _program.get("pulseaudio_latency", config.Parameters.pulseaudio_latency),
-                "virtual_desktop": _program.get("virtual_desktop", config.Parameters.virtual_desktop),
+                "dxvk": _program.get("dxvk"),
+                "vkd3d": _program.get("vkd3d"),
+                "dxvk_nvapi": _program.get("dxvk_nvapi"),
+                "fsr": _program.get("fsr"),
+                "pulseaudio_latency": _program.get("pulseaudio_latency"),
+                "virtual_desktop": _program.get("virtual_desktop"),
                 "removed": _program.get("removed"),
                 "id": _program.get("id")
             })
@@ -745,13 +745,6 @@ class Manager(metaclass=Singleton):
                         "folder": program_folder,
                         "icon": "com.usebottles.bottles-program",
                         "id": str(uuid.uuid4()),
-                        "script": "",
-                        "dxvk": config.Parameters.dxvk,
-                        "vkd3d": config.Parameters.vkd3d,
-                        "dxvk_nvapi": config.Parameters.dxvk_nvapi,
-                        "fsr": config.Parameters.fsr,
-                        "pulseaudio_latency": config.Parameters.pulseaudio_latency,
-                        "virtual_desktop": config.Parameters.virtual_desktop,
                         "auto_discovered": True
                     })
                     found.append(executable_name)

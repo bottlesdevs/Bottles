@@ -52,8 +52,19 @@ class LaunchOptionsDialog(Adw.Window):
 
     __default_script_msg = _("Choose a script which should be executed after run.")
     __default_cwd_msg = _("Choose from where start the program.")
-    __msg_disabled = _("{0} is already disabled for this bottle.")
-    __msg_override = _("This setting is different from the bottle's default.")
+    __msg_disabled = _("{0} is disabled globally for this bottle.")
+    __msg_override = _("This setting overrides the bottle's global setting.")
+
+    def __set_disabled_switches(self):
+        if not self.global_dxvk:
+            self.action_dxvk.set_subtitle(self.__msg_disabled.format("DXVK"))
+            self.switch_dxvk.set_sensitive(False)
+        if not self.global_vkd3d:
+            self.action_vkd3d.set_subtitle(self.__msg_disabled.format("VKD3D"))
+            self.switch_vkd3d.set_sensitive(False)
+        if not self.global_nvapi:
+            self.action_nvapi.set_subtitle(self.__msg_disabled.format("DXVK-NVAPI"))
+            self.switch_nvapi.set_sensitive(False)
 
     def __init__(self, parent, config, program, **kwargs):
         super().__init__(**kwargs)
@@ -70,6 +81,14 @@ class LaunchOptionsDialog(Adw.Window):
         # set widget defaults
         self.entry_arguments.set_text(program.get("arguments", ""))
 
+        # keeps track of toggled switches
+        self.toggled = {}
+        self.toggled["dxvk"] = False
+        self.toggled["vkd3d"] = False
+        self.toggled["dxvk_nvapi"] = False
+        self.toggled["fsr"] = False
+        self.toggled["virtual_desktop"] = False
+
         # connect signals
         self.btn_save.connect("clicked", self.__save)
         self.btn_script.connect("clicked", self.__choose_script)
@@ -78,35 +97,65 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
         self.btn_reset_defaults.connect("clicked", self.__reset_defaults)
         self.entry_arguments.connect("activate", self.__save)
+
+        # set overrides status
+        self.global_dxvk  = program_dxvk = config.Parameters.dxvk
+        self.global_vkd3d = program_vkd3d = config.Parameters.vkd3d
+        self.global_nvapi = program_nvapi = config.Parameters.dxvk_nvapi
+        self.global_fsr = program_fsr = config.Parameters.fsr
+        self.global_virt_desktop = program_virt_desktop = config.Parameters.virtual_desktop
+
+        if self.program.get("dxvk") is not None:
+            program_dxvk = self.program.get("dxvk")
+            self.action_dxvk.set_subtitle(self.__msg_override)
+        if self.program.get("vkd3d") is not None:
+            program_vkd3d = self.program.get("vkd3d")
+            self.action_vkd3d.set_subtitle(self.__msg_override)
+        if self.program.get("dxvk_nvapi") is not None:
+            program_nvapi = self.program.get("dxvk_nvapi")
+            self.action_nvapi.set_subtitle(self.__msg_override)
+        if self.program.get("fsr") is not None:
+            program_fsr = self.program.get("fsr")
+            self.action_fsr.set_subtitle(self.__msg_override)
+        if self.program.get("virtual_desktop") is not None:
+            program_virt_desktop = self.program.get("virtual_desktop")
+            self.action_virt_desktop.set_subtitle(self.__msg_override)
+
+        self.switch_dxvk.set_active(program_dxvk)
+        self.switch_vkd3d.set_active(program_vkd3d)
+        self.switch_nvapi.set_active(program_nvapi)
+        self.switch_fsr.set_active(program_fsr)
+        self.switch_virt_desktop.set_active(program_virt_desktop)
+
         self.switch_dxvk.connect(
             "state-set",
             self.__check_override,
-            config.Parameters.dxvk,
-            self.action_dxvk
+            self.action_dxvk,
+            "dxvk"
         )
         self.switch_vkd3d.connect(
             "state-set",
             self.__check_override,
-            config.Parameters.vkd3d,
-            self.action_vkd3d
+            self.action_vkd3d,
+            "vkd3d"
         )
         self.switch_nvapi.connect(
             "state-set",
             self.__check_override,
-            config.Parameters.dxvk_nvapi,
-            self.action_nvapi
+            self.action_nvapi,
+            "dxvk_nvapi"
         )
         self.switch_fsr.connect(
             "state-set",
             self.__check_override,
-            config.Parameters.fsr,
-            self.action_fsr
+            self.action_fsr,
+            "fsr"
         )
         self.switch_virt_desktop.connect(
             "state-set",
             self.__check_override,
-            config.Parameters.virtual_desktop,
-            self.action_virt_desktop
+            self.action_virt_desktop,
+            "virtual_desktop"
         )
 
         if program.get("script") not in ["", None]:
@@ -117,72 +166,35 @@ class LaunchOptionsDialog(Adw.Window):
             self.action_cwd.set_subtitle(program["folder"])
             self.btn_cwd_reset.set_visible(True)
 
-        # set overrides status
-        dxvk = config.Parameters.dxvk
-        vkd3d = config.Parameters.vkd3d
-        nvapi = config.Parameters.dxvk_nvapi
-        fsr = config.Parameters.fsr
-        virt_desktop = config.Parameters.virtual_desktop
+        self.__set_disabled_switches()
 
-        if not dxvk:
-            self.action_dxvk.set_subtitle(self.__msg_disabled.format("DXVK"))
-            self.switch_dxvk.set_sensitive(False)
-        if not vkd3d:
-            self.action_vkd3d.set_subtitle(self.__msg_disabled.format("VKD3D"))
-            self.switch_vkd3d.set_sensitive(False)
-        if not nvapi:
-            self.action_nvapi.set_subtitle(self.__msg_disabled.format("DXVK-Nvapi"))
-            self.switch_nvapi.set_sensitive(False)
-
-        if dxvk != self.program.get("dxvk"):
-            self.action_dxvk.set_subtitle(self.__msg_override)
-        if vkd3d != self.program.get("vkd3d"):
-            self.action_vkd3d.set_subtitle(self.__msg_override)
-        if nvapi != self.program.get("dxvk_nvapi"):
-            self.action_nvapi.set_subtitle(self.__msg_override)
-        if fsr != self.program.get("fsr"):
-            self.action_fsr.set_subtitle(self.__msg_override)
-        if virt_desktop != self.program.get("virtual_desktop"):
-            self.action_virt_desktop.set_subtitle(self.__msg_override)
-
-        if "dxvk" in self.program:
-            dxvk = self.program["dxvk"]
-        if "vkd3d" in self.program:
-            vkd3d = self.program["vkd3d"]
-        if "dxvk_nvapi" in self.program:
-            nvapi = self.program["dxvk_nvapi"]
-        if "fsr" in self.program:
-            fsr = self.program["fsr"]
-        if "virtual_desktop" in self.program:
-            virt_desktop = self.program["virtual_desktop"]
-
-        self.switch_dxvk.set_active(dxvk)
-        self.switch_vkd3d.set_active(vkd3d)
-        self.switch_nvapi.set_active(nvapi)
-        self.switch_fsr.set_active(fsr)
-        self.switch_virt_desktop.set_active(virt_desktop)
-
-    def __check_override(self, widget, state, value, action):
-        if state != value:
-            action.set_subtitle(self.__msg_override)
-        else:
-            action.set_subtitle("")
+    def __check_override(self, widget, state, action, name):
+        self.toggled[name] = True
+        action.set_subtitle(self.__msg_override)
 
     def get_config(self):
         return self.config
 
-    def __idle_save(self, *_args):
-        dxvk = self.switch_dxvk.get_state()
-        vkd3d = self.switch_vkd3d.get_state()
-        nvapi = self.switch_nvapi.get_state()
-        fsr = self.switch_fsr.get_state()
-        virt_desktop = self.switch_virt_desktop.get_state()
+    def __set_override(self, name, program_value, global_value):
+        # Special reset value
+        if self.toggled[name] is None:
+            if name in self.program:
+                del self.program[name]
+        if self.toggled[name]:
+            self.program[name] = program_value
 
-        self.program["dxvk"] = dxvk
-        self.program["vkd3d"] = vkd3d
-        self.program["dxvk_nvapi"] = nvapi
-        self.program["fsr"] = fsr
-        self.program["virtual_desktop"] = virt_desktop
+    def __idle_save(self, *_args):
+        program_dxvk = self.switch_dxvk.get_state()
+        program_vkd3d = self.switch_vkd3d.get_state()
+        program_nvapi = self.switch_nvapi.get_state()
+        program_fsr = self.switch_fsr.get_state()
+        program_virt_desktop = self.switch_virt_desktop.get_state()
+
+        self.__set_override("dxvk", program_dxvk, self.global_dxvk)
+        self.__set_override("vkd3d", program_vkd3d, self.global_vkd3d)
+        self.__set_override("dxvk_nvapi", program_nvapi, self.global_nvapi)
+        self.__set_override("fsr", program_fsr, self.global_fsr)
+        self.__set_override("virtual_desktop", program_virt_desktop, self.global_virt_desktop)
         self.program["arguments"] = self.entry_arguments.get_text()
 
         self.config = self.manager.update_config(
@@ -255,8 +267,16 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_cwd_reset.set_visible(False)
 
     def __reset_defaults(self, *_args):
-        self.switch_dxvk.set_active(self.config.Parameters.dxvk)
-        self.switch_vkd3d.set_active(self.config.Parameters.vkd3d)
-        self.switch_nvapi.set_active(self.config.Parameters.dxvk_nvapi)
-        self.switch_fsr.set_active(self.config.Parameters.fsr)
-        self.switch_virt_desktop.set_active(self.config.Parameters.virtual_desktop)
+        self.switch_dxvk.set_active(self.global_dxvk)
+        self.switch_vkd3d.set_active(self.global_vkd3d)
+        self.switch_nvapi.set_active(self.global_nvapi)
+        self.switch_fsr.set_active(self.global_fsr)
+        self.switch_virt_desktop.set_active(self.global_virt_desktop)
+        self.action_dxvk.set_subtitle("")
+        self.action_vkd3d.set_subtitle("")
+        self.action_nvapi.set_subtitle("")
+        self.action_fsr.set_subtitle("")
+        self.action_virt_desktop.set_subtitle("")
+        self.__set_disabled_switches()
+        for name in self.toggled:
+            self.toggled[name] = None
