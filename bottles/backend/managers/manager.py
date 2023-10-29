@@ -1168,7 +1168,7 @@ class Manager(metaclass=Singleton):
 
         # define bottle parameters
         bottle_name = name
-        bottle_name_path = hashlib.md5(bottle_name.encode()).hexdigest()
+        bottle_name_path = hashlib.sha256(bottle_name.encode()).hexdigest()
         bottle_name_path = pathvalidate.sanitize_filename(bottle_name_path, platform="universal")
 
         # get bottle path
