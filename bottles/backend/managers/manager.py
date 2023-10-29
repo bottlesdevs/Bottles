@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import hashlib
 import contextlib
 import fnmatch
 import os
@@ -1025,8 +1026,8 @@ class Manager(metaclass=Singleton):
             '''
             config.NVAPI = self.nvapi_available[0]
 
-        # create the bottle path
-        bottle_path = os.path.join(Paths.bottles, config.Name)
+        # create the bottle path; use MD5 hash as path
+        bottle_path = os.path.join(Paths.bottles, hashlib.md5(config.Name.encode()).hexdigest())
 
         if not os.path.exists(bottle_path):
             '''
@@ -1167,7 +1168,8 @@ class Manager(metaclass=Singleton):
 
         # define bottle parameters
         bottle_name = name
-        bottle_name_path = bottle_name.replace(" ", "-")
+        # bottle_name_path = bottle_name.replace(" ", "-")
+        bottle_name_path = hashlib.md5(bottle_name.encode()).hexdigest()
         bottle_name_path = pathvalidate.sanitize_filename(bottle_name_path, platform="universal")
 
         # get bottle path
