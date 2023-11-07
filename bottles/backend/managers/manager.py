@@ -1026,7 +1026,6 @@ class Manager(metaclass=Singleton):
             '''
             config.NVAPI = self.nvapi_available[0]
 
-        # create the bottle path; use MD5 hash as path
         bottle_path = os.path.join(Paths.bottles, hashlib.sha256(config.Name.encode()).hexdigest())
 
         if not os.path.exists(bottle_path):
