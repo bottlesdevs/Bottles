@@ -104,7 +104,7 @@ class HealthChecker:
 
     @staticmethod
     def check_wayland():
-        if "WAYLAND_DISPLAY" in os.environ:
+        if "WAYLAND_DISPLAY" in os.environ or "WAYLAND_SOCKET" in os.environ:
             return True
         return False
 
