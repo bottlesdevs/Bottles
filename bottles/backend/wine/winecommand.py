@@ -311,8 +311,6 @@ class WineCommand:
 
         # DXVK-Nvapi environment variables
         if params.dxvk_nvapi and not return_steam_env:
-            conf = self.__set_dxvk_nvapi_conf(bottle)
-            env.add("DXVK_CONFIG_FILE", conf)
             # NOTE: users reported that DXVK_ENABLE_NVAPI and DXVK_NVAPIHACK must be set to make
             #       DLSS works. I don't have a GPU compatible with this tech, so I'll trust them
             env.add("DXVK_NVAPIHACK", "0")
@@ -696,26 +694,3 @@ class WineCommand:
 
         return Result(True, data=rv)
 
-    @staticmethod
-    def __set_dxvk_nvapi_conf(bottle: str):
-        """
-        TODO: This should be moved to a dedicated DXVKConf class when
-              we will provide a way to set the DXVK configuration.
-        """
-        dxvk_conf = f"{bottle}/dxvk.conf"
-        if not os.path.exists(dxvk_conf):
-            # create dxvk.conf if it doesn't exist
-            with open(dxvk_conf, "w") as f:
-                f.write("dxgi.nvapiHack = False")
-        else:
-            # check if dxvk.conf has the nvapiHack option, if not add it
-            with open(dxvk_conf, "r") as f:
-                lines = f.readlines()
-            with open(dxvk_conf, "w") as f:
-                for line in lines:
-                    if "dxgi.nvapiHack" in line:
-                        f.write("dxgi.nvapiHack = False\n")
-                    else:
-                        f.write(line)
-
-        return dxvk_conf
