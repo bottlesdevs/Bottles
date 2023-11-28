@@ -16,7 +16,7 @@ POS=$(grep -n "<releases>" ${FILE} | cut -f1 -d:)
 echo "- Adding stub release description to ${FILE}"
 sed -i -e "${POS}r /dev/stdin" ${FILE} <<EOT
         <release version="${NEW_VER}" date="$(date -Idate)">
-          <description>
+          <description translatable="no">
             <ul>
                <li>TODO: edit me</li>
                <li>TODO: edit me</li>
