@@ -206,6 +206,9 @@ class CLI:
         elif self.args.command == "standalone":
             self.generate_standalone()
 
+        else:
+            self.parser.print_help()
+
     # region INFO
     def show_info(self):
         _type = self.args.type
@@ -371,12 +374,12 @@ class CLI:
             "icon": "",
             "id": _uuid,
             "path": _path,
-            "dxvk": not _no_dxvk if _no_dxvk else bottle["Parameters"]["dxvk"],
-            "vkd3d": not _no_vkd3d if _no_vkd3d else bottle["Parameters"]["vkd3d"],
-            "dxvk_nvapi": not _no_dxvk_nvapi if _no_dxvk_nvapi else bottle["Parameters"]["dxvk_nvapi"],
+            "dxvk": not _no_dxvk if _no_dxvk else bottle.Parameters.dxvk,
+            "vkd3d": not _no_vkd3d if _no_vkd3d else bottle.Parameters.vkd3d,
+            "dxvk_nvapi": not _no_dxvk_nvapi if _no_dxvk_nvapi else bottle.Parameters.dxvk_nvapi,
         }
         mng.update_config(bottle, _uuid, _program, scope="External_Programs")
-        sys.stdout.write(f"'{_name}' added to '{bottle['Name']}'!")
+        sys.stdout.write(f"'{_name}' added to '{bottle.Name}'!")
 
     # endregion
 
@@ -549,12 +552,12 @@ class CLI:
 
         bottle = mng.local_bottles[_bottle]
         programs = mng.get_programs(bottle)
-        _dxvk = bottle["Parameters"]["dxvk"]
-        _vkd3d = bottle["Parameters"]["vkd3d"]
-        _nvapi = bottle["Parameters"]["dxvk_nvapi"]
-        _fsr = bottle["Parameters"]["fsr"]
-        _pulse = bottle["Parameters"]["pulseaudio_latency"]
-        _virt_desktop = bottle["Parameters"]["virtual_desktop"]
+        _dxvk = bottle.Parameters.dxvk
+        _vkd3d = bottle.Parameters.vkd3d
+        _nvapi = bottle.Parameters.dxvk_nvapi
+        _fsr = bottle.Parameters.fsr
+        _pulse = bottle.Parameters.pulseaudio_latency
+        _virt_desktop = bottle.Parameters.virtual_desktop
 
         if _program is not None:
             if _executable is not None:
@@ -613,7 +616,10 @@ class CLI:
 
         bottle = mng.local_bottles[_bottle]
         winecommand = WineCommand(config=bottle, command=_input, communicate=True)
-        sys.stdout.write(winecommand.run())
+        res = winecommand.run()
+        if not res.ok:
+            sys.stdout.write(res.message)
+        sys.stdout.write(res.data)
 
     # endregion
 

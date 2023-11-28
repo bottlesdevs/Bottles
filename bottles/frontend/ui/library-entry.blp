@@ -2,8 +2,6 @@ using Gtk 4.0;
 
 template LibraryEntry : Box {
   orientation: vertical;
-  halign: start;
-  valign: start;
   width-request: 128;
   height-request: 348;
   overflow: hidden;
@@ -28,12 +26,14 @@ template LibraryEntry : Box {
       }
 
       Label label_no_cover {
-        visible: false;
         halign: center;
         valign: center;
         hexpand: true;
         vexpand: true;
         label: _("No Thumbnail");
+
+        wrap: true;
+        wrap-mode: word_char;
 
         styles [
           "dim-label",

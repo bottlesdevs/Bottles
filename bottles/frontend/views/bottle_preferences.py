@@ -195,7 +195,7 @@ class PreferencesView(Adw.PreferencesPage):
         _not_available = _("This feature is unavailable on your system.")
         _flatpak_not_available = _("{} To add this feature, please run flatpak install").format(_not_available)
         _flatpak_pkg_name = {
-            "gamescope": "com.valvesoftware.Steam.Utility.gamescope",
+            "gamescope": "org.freedesktop.Platform.VulkanLayer.gamescope",
             "vkbasalt": "org.freedesktop.Platform.VulkanLayer.vkBasalt//22.08",
             "mangohud": "org.freedesktop.Platform.VulkanLayer.MangoHud//22.08",
             "obsvkc": "com.obsproject.Studio.Plugin.OBSVkCapture"
@@ -412,7 +412,6 @@ class PreferencesView(Adw.PreferencesPage):
         # self.toggle_sync.set_active(parameters["sync"] == "wine")
         # self.toggle_esync.set_active(parameters["sync"] == "esync")
         # self.toggle_fsync.set_active(parameters["sync"] == "fsync")
-        # self.toggle_futex2.set_active(parameters["sync"] == "futex2")
 
         self.switch_discrete.set_active(parameters.discrete_gpu)
 
@@ -492,7 +491,6 @@ class PreferencesView(Adw.PreferencesPage):
             "wine",
             "esync",
             "fsync",
-            "futex2",
         ]
         for sync in sync_types:
             if sync == parameters.sync:
@@ -594,13 +592,12 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_sync_type(self, *_args):
         """
-        Set the sync type (wine, esync, fsync, futext2)
+        Set the sync type (wine, esync, fsync)
         """
         sync_types = [
             "wine",
             "esync",
             "fsync",
-            "futex2",
         ]
         self.queue.add_task()
         self.combo_sync.set_sensitive(False)

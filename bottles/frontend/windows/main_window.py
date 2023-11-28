@@ -74,10 +74,14 @@ class MainWindow(Adw.ApplicationWindow):
     argument_executed = False
 
     def __init__(self, arg_bottle, **kwargs):
-        super().__init__(**kwargs)
+
+        width = self.settings.get_int("window-width")
+        height = self.settings.get_int("window-height")
+
+        super().__init__(**kwargs, default_width=width, default_height=height)
 
         self.disable_onboard = False
-        self.utils_conn = ConnectionUtils()
+        self.utils_conn = ConnectionUtils(force_offline=self.settings.get_boolean("force-offline"))
         self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
@@ -116,6 +120,11 @@ class MainWindow(Adw.ApplicationWindow):
 
         self.__on_start()
         logging.info("Bottles Started!", )
+
+    @Gtk.Template.Callback()
+    def on_close_request(self, *args):
+        self.settings.set_int("window-width", self.get_width())
+        self.settings.set_int("window-height", self.get_height())
 
     # region Backend signal handlers
     def network_changed_handler(self, res: Result):
@@ -217,7 +226,9 @@ class MainWindow(Adw.ApplicationWindow):
         def get_manager():
             if self.utils_conn.check_connection():
                 SignalManager.connect(Signals.RepositoryFetched, self.page_loading.add_fetched)
-            mng = Manager(g_settings=self.settings)
+            
+            # do not redo connection if aborted connection 
+            mng = Manager(g_settings=self.settings, check_connection=self.utils_conn.aborted_connections == 0) 
             return mng
 
         self.check_core_deps()

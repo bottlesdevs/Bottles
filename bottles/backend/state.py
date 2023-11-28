@@ -28,6 +28,7 @@ class Signals(Enum):
     """Signals backend support"""
     ManagerLocalBottlesLoaded = "Manager.local_bottles_loaded"  # no extra data
 
+    ForceStopNetworking = "LoadingView.stop_networking" # status(bool): Force Stop network operations
     RepositoryFetched = "RepositoryManager.repo_fetched"  # status: fetch success or not, data(int): total repositories
     NetworkStatusChanged = "ConnectionUtils.status_changed"  # status(bool): network ready or not
 
@@ -47,7 +48,7 @@ class Status(Enum):
 
 
 class TaskStreamUpdateHandler(Protocol):
-    def __call__(self, received_size: int = 0, total_size: int = 0, status: Status = None) -> None: ...
+    def __call__(self, received_size: int = 0, total_size: int = 0, status: Optional[Status] = None) -> None: ...
 
 
 class SignalHandler(Protocol):
@@ -94,10 +95,10 @@ class Task:
         self._subtitle = value
         SignalManager.send(Signals.TaskUpdated, Result(True, self.task_id))
 
-    def stream_update(self, received_size: int = 0, total_size: int = 0, status: Status = None):
+    def stream_update(self, received_size: int = 0, total_size: int = 0, status: Optional[Status] = None):
         """This is a default subtitle updating handler for streaming downloading progress"""
         match status:
-            case Status.DONE, Status.FAILED:
+            case Status.DONE | Status.FAILED:
                 TaskManager.remove(self)
                 return
             case _:

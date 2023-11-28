@@ -50,14 +50,19 @@ class RepositoryManager:
         }
     }
 
-    def __init__(self):
+    def __init__(self, get_index=True):
+        self.do_get_index = True
+        self.aborted_connections = 0
+        SignalManager.connect(Signals.ForceStopNetworking, self.__stop_index)
+        
         self.__check_locals()
-        self.__get_index()
+        if get_index:
+            self.__get_index()
 
-    def get_repo(self, name: str, offline: bool = False, callback=None):
+    def get_repo(self, name: str, offline: bool = False):
         if name in self.__repositories:
             repo = self.__repositories[name]
-            return repo["cls"](repo["url"], repo["index"], offline=offline, callback=callback)
+            return repo["cls"](repo["url"], repo["index"], offline=offline)
 
         logging.error(f"Repository {name} not found")
 
@@ -88,6 +93,18 @@ class RepositoryManager:
             else:
                 logging.error(f"Local {repo} path does not exist: {_path}")
 
+
+    def __curl_progress(self, _download_t, _download_d, _upload_t, _upload_d):
+        if self.do_get_index:
+            return pycurl.E_OK
+        else:
+            self.aborted_connections+=1
+            return pycurl.E_ABORTED_BY_CALLBACK
+    
+    def __stop_index(self, res: Result):
+        if res.status:
+            self.do_get_index = False
+        
     def __get_index(self):
         total = len(self.__repositories)
 
@@ -104,6 +121,8 @@ class RepositoryManager:
                     c.setopt(c.NOBODY, True)
                     c.setopt(c.FOLLOWLOCATION, True)
                     c.setopt(c.TIMEOUT, 10)
+                    c.setopt(c.NOPROGRESS, False)
+                    c.setopt(c.XFERINFOFUNCTION, self.__curl_progress) 
 
                     try:
                         c.perform()
@@ -127,3 +146,5 @@ class RepositoryManager:
 
         for t in threads:
             t.join()
+
+        self.do_get_index = True

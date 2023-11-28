@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-
+import codecs
 import contextlib
 import random
 import re
@@ -22,7 +22,9 @@ import string
 import subprocess
 from typing import Optional
 
-from charset_normalizer import from_bytes
+import chardet
+
+from bottles.backend.globals import locale_encodings
 
 
 def validate_url(url: str):
@@ -40,12 +42,36 @@ def validate_url(url: str):
     return re.match(regex, url) is not None
 
 
-def detect_encoding(text: bytes) -> Optional[str]:
+def detect_encoding(text: bytes, locale_hint: str = None) -> Optional[str]:
     """
     Detect the encoding of a text by its bytes. Return None if it
     can't be detected.
     """
-    return from_bytes(text).best().encoding
+    if not text:  # when empty
+        return 'utf-8'
+    if locale_hint:  # when hint available
+        hint = locale_hint.split('.')
+        match len(hint):
+            case 1:
+                loc = hint[0]
+                if loc in locale_encodings:  # Use Windows locale defaults
+                    return locale_encodings[loc]
+            case 2:
+                loc, encoding = hint
+                try:
+                    codecs.lookup(encoding)
+                    return encoding
+                except LookupError:  # Fallback to locale only
+                    if loc in locale_encodings:
+                        return locale_encodings[loc]
+            case _:
+                pass
+    result = chardet.detect(text)
+    encoding = result['encoding']
+    confidence = result['confidence']
+    if confidence < 0.5:
+        return None
+    return encoding
 
 
 def is_glibc_min_available():
@@ -66,7 +92,7 @@ def is_glibc_min_available():
 def sort_by_version(_list: list, extra_check: str = "async"):
     def natural_keys(text):
         result = [int(re.search(extra_check, text) is None)]
-        result.extend([int(c) for c in re.findall(r'\d+', text)])
+        result.extend([int(t) if t.isdigit() else t.lower() for t in re.split('(\d+)', text)])
         return result
 
     _list.sort(key=natural_keys, reverse=True)

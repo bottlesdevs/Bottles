@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import re
 from gi.repository import Gtk, GLib, Adw
 
 
@@ -78,7 +77,7 @@ class GamescopeDialog(Adw.Window):
         self.spin_gamescope_height.set_value(parameters.gamescope_window_height)
         self.spin_fps_limit.set_value(parameters.gamescope_fps)
         self.spin_fps_limit_no_focus.set_value(parameters.gamescope_fps_no_focus)
-        self.switch_scaling.set_state(parameters.gamescope_scaling)
+        self.switch_scaling.set_active(parameters.gamescope_scaling)
         self.toggle_borderless.set_active(parameters.gamescope_borderless)
         self.toggle_fullscreen.set_active(parameters.gamescope_fullscreen)
 
@@ -92,7 +91,7 @@ class GamescopeDialog(Adw.Window):
                     "gamescope_window_height": self.spin_gamescope_height.get_value(),
                     "gamescope_fps": self.spin_fps_limit.get_value(),
                     "gamescope_fps_no_focus": self.spin_fps_limit_no_focus.get_value(),
-                    "gamescope_scaling": self.switch_scaling.get_state(),
+                    "gamescope_scaling": self.switch_scaling.get_active(),
                     "gamescope_borderless": self.toggle_borderless.get_active(),
                     "gamescope_fullscreen": self.toggle_fullscreen.get_active()}
 

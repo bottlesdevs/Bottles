@@ -1,5 +1,4 @@
 import re
-from typing import NewType
 from functools import lru_cache
 
 from bottles.backend.logger import Logger
@@ -40,7 +39,7 @@ class WinePath(WineProgram):
             return self.__clean_path(path)
         args = f"--unix '{path}'"
         res = self.launch(args=args, communicate=True, action_name="--unix")
-        return self.__clean_path(res)
+        return self.__clean_path(res.data)
 
     @lru_cache
     def to_windows(self, path: str, native: bool = False):
@@ -63,16 +62,16 @@ class WinePath(WineProgram):
 
         args = f"--windows '{path}'"
         res = self.launch(args=args, communicate=True, action_name="--windows")
-        return self.__clean_path(res)
+        return self.__clean_path(res.data)
 
     @lru_cache
     def to_long(self, path: str):
         args = f"--long '{path}'"
         res = self.launch(args=args, communicate=True, action_name="--long")
-        return self.__clean_path(res)
+        return self.__clean_path(res.data)
 
     @lru_cache
     def to_short(self, path: str):
         args = f"--short '{path}'"
         res = self.launch(args=args, communicate=True, action_name="--short")
-        return self.__clean_path(res)
+        return self.__clean_path(res.data)

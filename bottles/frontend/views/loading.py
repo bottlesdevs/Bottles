@@ -20,6 +20,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
 from bottles.backend.models.result import Result
+from bottles.backend.state import SignalManager, Signals
 from bottles.frontend.utils.gtk import GtkUtils
 
 
@@ -31,8 +32,12 @@ class LoadingView(Adw.Bin):
     # region widgets
     label_fetched = Gtk.Template.Child()
     label_downloading = Gtk.Template.Child()
-
+    btn_go_offline = Gtk.Template.Child()
     # endregion
+    
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
+        self.btn_go_offline.connect("clicked", self.go_offline)
 
     @GtkUtils.run_in_main_loop
     def add_fetched(self, res: Result):
@@ -40,3 +45,6 @@ class LoadingView(Adw.Bin):
         self.__fetched += 1
         self.label_downloading.set_text(_("Downloading ~{0} of packages…").format("20kb"))
         self.label_fetched.set_text(_("Fetched {0} of {1} packages").format(self.__fetched, total))
+
+    def go_offline(self, _widget):
+        SignalManager.send(Signals.ForceStopNetworking, Result(status=True))

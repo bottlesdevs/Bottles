@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import re
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.frontend.utils.gtk import GtkUtils
@@ -111,13 +110,18 @@ class EnvVarsDialog(Adw.Window):
             return
 
         env_name = self.entry_name.get_text()
+        env_value = "value"
+        split_value = env_name.rsplit('=', 1)
+        if len(split_value) == 2:
+            env_name = split_value[0]
+            env_value = split_value[1]
         self.manager.update_config(
             config=self.config,
             key=env_name,
-            value="value",
+            value=env_value,
             scope="Environment_Variables"
         )
-        _entry = EnvVarEntry(parent=self, env=[env_name, "value"])
+        _entry = EnvVarEntry(parent=self, env=[env_name, env_value])
         GLib.idle_add(self.group_vars.add, _entry)
         self.entry_name.set_text("")
 

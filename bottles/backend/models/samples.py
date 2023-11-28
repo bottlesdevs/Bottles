@@ -7,7 +7,7 @@ class Samples:
                 "dxvk": True,
                 # "nvapi": True,
                 "vkd3d": True,
-                "sync": "esync",
+                "sync": "fsync",
                 "fsr": False,
                 "discrete_gpu": True,
                 "pulseaudio_latency": False
@@ -19,7 +19,10 @@ class Samples:
                 "times32",
                 "courie32",
                 "d3dcompiler_43",
-                "d3dcompiler_47"
+                "d3dcompiler_47",
+                "mono",
+                "gecko",
+                "faudio",
             ]
         },
         "application": {
@@ -33,9 +36,10 @@ class Samples:
                 "arial32",
                 "times32",
                 "courie32",
-                # "mono",
-                # "dotnet40",
-                # "dotnet48"
+                "mono",
+                "gecko"
+              # "dotnet40",
+              # "dotnet48"
             ]
         }
     }
@@ -45,7 +49,6 @@ class Samples:
         "ENABLE_VKBASALT": ("vkbasalt", True),
         "WINEESYNC": ("sync", "esync"),
         "WINEFSYNC": ("sync", "fsync"),
-        "WINEFSYNC_FUTEX2": ("sync", "futex2"),
         "WINE_FULLSCREEN_FSR": ("fsr", True),
         "WINE_FULLSCREEN_FSR_STRENGTH": ("fsr_sharpening_strength", 2),
         "WINE_FULLSCREEN_FSR_MODE": ("fsr_quality_mode", "none"),

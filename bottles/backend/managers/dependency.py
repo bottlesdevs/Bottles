@@ -45,13 +45,13 @@ logging = Logger()
 
 class DependencyManager:
 
-    def __init__(self, manager, offline: bool = False, callback=None):
+    def __init__(self, manager, offline: bool = False):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("dependencies", offline, callback)
+        self.__repo = manager.repository_manager.get_repo("dependencies", offline)
         self.__utils_conn = manager.utils_conn
 
     @lru_cache
-    def get_dependency(self, name: str, plain: bool = False) -> Union[str, dict]:
+    def get_dependency(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
         return self.__repo.get(name, plain)
 
     @lru_cache
@@ -129,7 +129,7 @@ class DependencyManager:
             Steps are the actions performed to install the dependency.
             """
             res = self.__perform_steps(config, step)
-            if not res.status:
+            if not res.ok:
                 TaskManager.remove(task_id)
                 return Result(
                     status=False,
@@ -403,6 +403,8 @@ class DependencyManager:
                         destination=dest
                 ):
                     return False
+            else:
+                return False
 
         elif step["url"].startswith("temp/"):
             path = step["url"]

@@ -146,6 +146,10 @@ template DetailsBottle : .AdwPreferencesPage {
     .AdwStatusPage {
       icon-name: system-run-symbolic;
       title: _("Drop files to execute them");
+
+      styles [
+        "dragndrop_overlay",
+      ]
     }
   }
   .AdwPreferencesGroup {
@@ -159,6 +163,7 @@ template DetailsBottle : .AdwPreferencesPage {
         max-width-chars: 30;
         label: _("My bottle");
         wrap-mode: word_char;
+      	use-markup: false;
 
         styles [
           "title-1",

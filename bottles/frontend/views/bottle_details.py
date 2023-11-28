@@ -109,6 +109,7 @@ class BottleView(Adw.PreferencesPage):
         self.manager = details.window.manager
         self.stack_bottle = details.stack_bottle
         self.leaflet = details.leaflet
+        self.details = details
         self.config = config
         self.show_hidden = False
 
@@ -149,15 +150,6 @@ class BottleView(Adw.PreferencesPage):
             "flatpak/black-screen-or-silent-crash"
         )
 
-        gtk_context = self.drop_overlay.get_style_context()
-        Gtk.StyleContext.add_class(gtk_context, "dragndrop_overlay")
-        self.style_provider.load_from_data(b".dragndrop_overlay { background: rgba(41, 65, 94, 0.2);}")
-        Gtk.StyleContext.add_provider(
-            gtk_context,
-            self.style_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_USER
-        )
-
         if "FLATPAK_ID" in os.environ:
             '''
             If Flatpak, show the btn_flatpak_doc widget to reach
@@ -170,6 +162,8 @@ class BottleView(Adw.PreferencesPage):
         This function try to change the page based on user choice, if
         the page is not available, it will show the "bottle" page.
         """
+        if page_name == "taskmanager":
+            self.details.view_taskmanager.update(config=self.config)
         try:
             self.stack_bottle.set_visible_child_name(page_name)
             self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
@@ -262,7 +256,8 @@ class BottleView(Adw.PreferencesPage):
                 "executable": basename,
                 "name": basename[:-4],
                 "path": path,
-                "id": _uuid
+                "id": _uuid,
+                "folder": ManagerUtils.get_exe_parent_dir(self.config, path)
             }
             self.config = self.manager.update_config(
                 config=self.config,
@@ -444,7 +439,7 @@ class BottleView(Adw.PreferencesPage):
 
         @GtkUtils.run_in_main_loop
         def finish(result, error=False):
-            if result.status:
+            if result.ok:
                 self.window.show_toast(_("Backup created for \"{0}\"").format(self.config.Name))
             else:
                 self.window.show_toast(_("Backup failed for \"{0}\"").format(self.config.Name))

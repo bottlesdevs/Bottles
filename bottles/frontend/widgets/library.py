@@ -17,11 +17,12 @@
 
 from gettext import gettext as _
 
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk, Gdk
 
 from bottles.backend.logger import Logger
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.thumbnail import ThumbnailManager
+from bottles.backend.models.result import Result
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winedbg import WineDbg
@@ -74,6 +75,7 @@ class LibraryEntry(Gtk.Box):
 
         self.label_name.set_text(name)
         self.label_bottle.set_text(entry['bottle']['name'])
+        self.label_no_cover.set_label(self.name)
 
         if entry.get('thumbnail'):
             path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
@@ -87,9 +89,10 @@ class LibraryEntry(Gtk.Box):
                     entry = library_manager.get_library().get(uuid)
                     path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
 
-            if path is not None:
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(path, 240, 360)
-                self.img_cover.set_pixbuf(pixbuf)
+            if path is not None: 
+                # Gtk.Picture.set_pixbuf deprecated in GTK 4.12
+                texture = Gdk.Texture.new_from_filename(path)
+                self.img_cover.set_paintable(texture)
                 self.img_cover.set_visible(True)
                 self.label_no_cover.set_visible(False)
 
@@ -118,12 +121,16 @@ class LibraryEntry(Gtk.Box):
         return programs[0]
 
     @GtkUtils.run_in_main_loop
-    def __reset_buttons(self, result=False, error=False):
-        status = False
-        if result:
-            status = result
-            if not isinstance(result, bool):
+    def __reset_buttons(self, result: Result | bool = None, error=False):
+        match result:
+            case Result():
                 status = result.status
+            case bool():
+                status = result
+            case _:
+                logging.error(f"result should be Result or bool, but it was {type(result)}")
+                status = False
+
         self.btn_remove.set_visible(status)
         self.btn_stop.set_visible(not status)
         self.btn_run.set_visible(status)

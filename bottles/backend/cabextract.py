@@ -19,7 +19,7 @@ import os
 import shlex
 import shutil
 import subprocess
-from gettext import gettext as _
+from typing import Optional
 
 from bottles.backend.logger import Logger
 
@@ -42,7 +42,7 @@ class CabExtract:
     def __init__(self):
         self.cabextract_bin = shutil.which("cabextract")
 
-    def run(self, path: str, name: str = "", files: list = None, destination: str = ""):
+    def run(self, path: str, name: str = "", files: Optional[list] = None, destination: str = ""):
         if files is None:
             files = []
 
@@ -96,12 +96,12 @@ class CabExtract:
                         if not os.path.exists(f"{self.destination}/{_file}"):
                             shutil.move(f"{self.destination}/{_dir}/{_file}", f"{self.destination}/{_file}")
             else:
-                command = [
+                command_list = [
                     self.cabextract_bin,
                     f"-d {self.destination}",
                     f"-q {self.path}"
                 ]
-                command = " ".join(command)
+                command = " ".join(command_list)
                 subprocess.Popen(command,  shell=True).communicate()
 
             logging.info(f"Cabinet {self.name} extracted successfully")

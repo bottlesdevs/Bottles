@@ -115,7 +115,7 @@ class OnboardDialog(Adw.Window):
     def __install_runner(self, widget):
         @GtkUtils.run_in_main_loop
         def set_completed(result: Result, error=False):
-            if result.status:
+            if result.ok:
                 self.label_skip.set_visible(False)
                 self.btn_close.set_sensitive(True)
                 self.__next_page()
