@@ -112,8 +112,8 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
         dll_name = self.entry_row.get_text()
         invalid_dlls = []
 
-        for ManagedComponent in DLLComponent.__subclasses__():
-            invalid_dlls += ManagedComponent.get_override_keys().split(",")
+        for managed_component in DLLComponent.__subclasses__():
+            invalid_dlls += managed_component.get_override_keys().split(",")
 
         is_invalid = dll_name in invalid_dlls
 

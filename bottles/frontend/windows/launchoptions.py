@@ -177,9 +177,8 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __set_override(self, name, program_value, global_value):
         # Special reset value
-        if self.toggled[name] is None:
-            if name in self.program:
-                del self.program[name]
+        if self.toggled[name] is None and name in self.program:
+            del self.program[name]
         if self.toggled[name]:
             self.program[name] = program_value
 

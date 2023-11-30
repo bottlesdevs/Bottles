@@ -142,7 +142,7 @@ class WineCommand:
 
         return cwd
 
-    def get_env(self, environment: dict = {}, return_steam_env: bool = False, return_clean_env: bool = False) -> dict:
+    def get_env(self, environment: Optional[dict] = None, return_steam_env: bool = False, return_clean_env: bool = False) -> dict:
         env = WineEnv(clean=return_steam_env or return_clean_env)
         config = self.config
         arch = config.Arch
@@ -150,6 +150,9 @@ class WineCommand:
 
         if None in [arch, params]:
             return env.get()["envs"]
+
+        if environment is None:
+            environment = {}
 
         bottle = ManagerUtils.get_bottle_path(config)
         runner_path = ManagerUtils.get_runner_path(config.Runner)
@@ -440,11 +443,14 @@ class WineCommand:
             post_script: Optional[str] = None,
             return_steam_cmd: bool = False,
             return_clean_cmd: bool = False,
-            environment: dict = {}
+            environment: Optional[dict] = None
     ) -> str:
         config = self.config
         params = config.Parameters
         runner = self.runner
+
+        if environment is None:
+            environment = {}
 
         if return_clean_cmd:
             return_steam_cmd = True

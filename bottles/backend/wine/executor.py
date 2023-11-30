@@ -84,12 +84,11 @@ class WineExecutor:
                 override_nvapi = NVAPIComponent.get_override_keys() + "=b"
                 env_dll_overrides.append(override_nvapi)
 
-        if program_fsr is not None:
-            if program_fsr != self.config.Parameters.fsr:
-                self.environment["WINE_FULLSCREEN_FSR"] = "1" if program_fsr else "0"
-                self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(self.config.Parameters.fsr_sharpening_strength)
-                if self.config.Parameters.fsr_quality_mode:
-                    self.environment["WINE_FULLSCREEN_FSR_MODE"] = str(self.config.Parameters.fsr_quality_mode)
+        if program_fsr is not None and program_fsr != self.config.Parameters.fsr:
+            self.environment["WINE_FULLSCREEN_FSR"] = "1" if program_fsr else "0"
+            self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(self.config.Parameters.fsr_sharpening_strength)
+            if self.config.Parameters.fsr_quality_mode:
+                self.environment["WINE_FULLSCREEN_FSR_MODE"] = str(self.config.Parameters.fsr_quality_mode)
 
         if env_dll_overrides:
             if "WINEDLLOVERRIDES" in self.environment:
