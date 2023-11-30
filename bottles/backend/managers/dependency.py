@@ -407,6 +407,8 @@ class DependencyManager:
                         destination=dest
                 ):
                     return False
+            else:
+                return False
 
         elif step["url"].startswith("temp/"):
             path = step["url"]
