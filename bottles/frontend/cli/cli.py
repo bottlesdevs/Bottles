@@ -597,7 +597,6 @@ class CLI:
             override_dxvk=_dxvk,
             override_vkd3d=_vkd3d,
             override_nvapi=_nvapi,
-            override_fsr=_fsr,
             override_virt_desktop=_virt_desktop
         ).run_cli()
 
