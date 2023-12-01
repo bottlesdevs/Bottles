@@ -23,7 +23,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
 from bottles.backend.globals import gamemode_available, vkbasalt_available, mangohud_available, obs_vkc_available, \
-    vmtouch_available, gamescope_available
+    vmtouch_available, gamescope_available, base_version
 from bottles.backend.logger import Logger
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.runtime import RuntimeManager
@@ -194,11 +194,15 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vmtouch.set_sensitive(vmtouch_available)
         _not_available = _("This feature is unavailable on your system.")
         _flatpak_not_available = _("{} To add this feature, please run flatpak install").format(_not_available)
+        _gamescope_pkg_name = "org.freedesktop.Platform.VulkanLayer.gamescope"
+        _vkbasalt_pkg_name = "org.freedesktop.Platform.VulkanLayer.vkBasalt"
+        _mangohud_pkg_name = "org.freedesktop.Platform.VulkanLayer.MangoHud"
+        _obsvkc_pkg_name = "com.obsproject.Studio.Plugin.OBSVkCapture"
         _flatpak_pkg_name = {
-            "gamescope": "org.freedesktop.Platform.VulkanLayer.gamescope",
-            "vkbasalt": "org.freedesktop.Platform.VulkanLayer.vkBasalt//22.08",
-            "mangohud": "org.freedesktop.Platform.VulkanLayer.MangoHud//22.08",
-            "obsvkc": "com.obsproject.Studio.Plugin.OBSVkCapture"
+            "gamescope": f"{_gamescope_pkg_name}//{base_version}" if base_version else _gamescope_pkg_name,
+            "vkbasalt": f"{_vkbasalt_pkg_name}//{base_version}" if base_version else _vkbasalt_pkg_name,
+            "mangohud": f"{_mangohud_pkg_name}//{base_version}" if base_version else _mangohud_pkg_name,
+            "obsvkc": _obsvkc_pkg_name
         }
 
         if not gamemode_available:
