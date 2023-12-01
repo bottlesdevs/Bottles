@@ -3,6 +3,9 @@ import shlex
 import uuid
 from typing import Union, Optional
 
+from bottles.backend.dlls.dxvk import DXVKComponent
+from bottles.backend.dlls.nvapi import NVAPIComponent
+from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
@@ -32,11 +35,11 @@ class WineExecutor:
             move_upd_fn: callable = None,
             post_script: Optional[str] = None,
             monitoring: Optional[list] = None,
-            override_dxvk: Optional[bool] = None,
-            override_vkd3d: Optional[bool] = None,
-            override_nvapi: Optional[bool] = None,
-            override_fsr: Optional[bool] = None,
-            override_virt_desktop: Optional[bool] = None
+            program_dxvk: Optional[bool] = None,
+            program_vkd3d: Optional[bool] = None,
+            program_nvapi: Optional[bool] = None,
+            program_fsr: Optional[bool] = None,
+            program_virt_desktop: Optional[bool] = None
     ):
         logging.info("Launching an executable…")
         self.config = config
@@ -59,67 +62,57 @@ class WineExecutor:
         self.environment = environment
         self.post_script = post_script
         self.monitoring = monitoring
-        self.use_virt_desktop = override_virt_desktop
+        self.use_virt_desktop = program_virt_desktop
 
         env_dll_overrides = []
-        if override_dxvk is not None \
-                and not override_dxvk \
-                and self.config.Parameters.dxvk:
-            env_dll_overrides.append("d3d9,d3d11,d3d10core,dxgi=n")
 
-        if override_vkd3d is not None \
-                and not override_vkd3d \
-                and self.config.Parameters.vkd3d:
-            env_dll_overrides.append("d3d12,d3d12core=n")
+        # None = use global DXVK value
+        if program_dxvk is not None:
+            # DXVK is globally activated, but disabled for the program
+            if not program_dxvk and self.config.Parameters.dxvk:
+                # Disable DXVK for the program
+                override_dxvk = DXVKComponent.get_override_keys() + "=b"
+                env_dll_overrides.append(override_dxvk)
 
-        if override_nvapi is not None \
-                and not override_nvapi \
-                and self.config.Parameters.dxvk_nvapi:
-            env_dll_overrides.append("nvapi,nvapi64=n")
+        if program_vkd3d is not None:
+            if not program_vkd3d and self.config.Parameters.vkd3d:
+                override_vkd3d = VKD3DComponent.get_override_keys() + "=b"
+                env_dll_overrides.append(override_vkd3d)
 
-        if override_fsr is not None and override_fsr:
-            self.environment["WINE_FULLSCREEN_FSR"] = "1"
+        if program_nvapi is not None:
+            if not program_nvapi and self.config.Parameters.dxvk_nvapi:
+                override_nvapi = NVAPIComponent.get_override_keys() + "=b"
+                env_dll_overrides.append(override_nvapi)
+
+        if program_fsr is not None and program_fsr != self.config.Parameters.fsr:
+            self.environment["WINE_FULLSCREEN_FSR"] = "1" if program_fsr else "0"
             self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(self.config.Parameters.fsr_sharpening_strength)
+            if self.config.Parameters.fsr_quality_mode:
+                self.environment["WINE_FULLSCREEN_FSR_MODE"] = str(self.config.Parameters.fsr_quality_mode)
 
-        if "WINEDLLOVERRIDES" in self.environment:
-            self.environment["WINEDLLOVERRIDES"] += "," + ",".join(env_dll_overrides)
-        else:
-            self.environment["WINEDLLOVERRIDES"] = ",".join(env_dll_overrides)
+        if env_dll_overrides:
+            if "WINEDLLOVERRIDES" in self.environment:
+                self.environment["WINEDLLOVERRIDES"] += ";" + ";".join(env_dll_overrides)
+            else:
+                self.environment["WINEDLLOVERRIDES"] = ";".join(env_dll_overrides)
 
     @classmethod
     def run_program(cls, config: BottleConfig, program: dict, terminal: bool = False):
         if program is None:
             logging.warning("The program entry is not well formatted.")
 
-        dxvk = config.Parameters.dxvk
-        vkd3d = config.Parameters.vkd3d
-        nvapi = config.Parameters.dxvk_nvapi
-        fsr = config.Parameters.fsr
-        virt_desktop = config.Parameters.virtual_desktop
-
-        if program.get("dxvk") != dxvk:
-            dxvk = program.get("dxvk")
-        if program.get("vkd3d") != vkd3d:
-            vkd3d = program.get("vkd3d")
-        if program.get("dxvk_nvapi") != nvapi:
-            nvapi = program.get("dxvk_nvapi")
-        if program.get("fsr") != fsr:
-            fsr = program.get("fsr")
-        if program.get("virtual_desktop") != virt_desktop:
-            virt_desktop = program.get("virtual_desktop")
-
         return cls(
             config=config,
-            exec_path=program["path"],
-            args=program.get("arguments", ""),
-            cwd=program.get("folder", None),
-            post_script=program.get("script", None),
+            exec_path=program.get("path"),
+            args=program.get("arguments"),
+            cwd=program.get("folder"),
+            post_script=program.get("script"),
             terminal=terminal,
-            override_dxvk=dxvk,
-            override_vkd3d=vkd3d,
-            override_nvapi=nvapi,
-            override_fsr=fsr,
-            override_virt_desktop=virt_desktop
+            program_dxvk=program.get("dxvk"),
+            program_vkd3d=program.get("vkd3d"),
+            program_nvapi=program.get("dxvk_nvapi"),
+            program_fsr=program.get("fsr"),
+            program_virt_desktop=program.get("virtual_desktop")
         ).run()
 
     def __get_cwd(self, cwd: str) -> Union[str, None]:

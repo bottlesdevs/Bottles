@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os, subprocess
+import os, subprocess, shlex
 from typing import Union, TextIO
 from typing import TextIO
 
@@ -104,3 +104,33 @@ class SteamUtils:
             logging.warning(f"No /dist or /files sub-directory was found under this Proton directory: {path}")
 
         return dist_directory
+
+    @staticmethod
+    def handle_launch_options(launch_options: str) -> tuple[str, str, str]:
+        """
+        Handle launch options. Supports the %command% pattern.
+        Return prefix, arguments, and environment variables.
+        """
+        env_vars = {}
+        prefix, args = "", ""
+        if "%command%" in launch_options:
+            _c = launch_options.split("%command%")
+            prefix = _c[0] if len(_c) > 0 else ""
+            args = _c[1] if len(_c) > 1 else ""
+        else:
+            args = launch_options
+
+        try:
+            prefix_list = shlex.split(prefix.strip())
+        except ValueError:
+            prefix_list = prefix.split(shlex.quote(prefix.strip()))
+
+        for p in prefix_list.copy():
+            if "=" in p:
+                k, v = p.split("=", 1)
+                v = shlex.quote(v) if " " in v else v
+                env_vars[k] = v
+                prefix_list.remove(p)
+
+        prefix = " ".join(prefix_list)
+        return prefix, args, env_vars

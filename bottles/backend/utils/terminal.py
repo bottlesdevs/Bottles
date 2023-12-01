@@ -17,6 +17,7 @@
 
 import os
 import subprocess
+import shlex
 
 from bottles.backend.logger import Logger
 
@@ -87,17 +88,20 @@ class TerminalUtils:
             colors = "default"
 
         colors = self.colors[colors]
+        command = shlex.quote(command)
 
         if self.terminal[0] == 'easyterm.py':
-            command = ' '.join(self.terminal) % (colors, f'bash -c "{command}"')
+            command = ' '.join(self.terminal) % (colors, shlex.quote(f'bash -c {command}'))
             if "ENABLE_BASH" in os.environ:
                 command = ' '.join(self.terminal) % (colors, f"bash")
         elif self.terminal[0] in ['kgx', 'xfce4-terminal']:
-            command = ' '.join(self.terminal) % "'sh -c %s'" % f'"{command}"'
+            command = ' '.join(self.terminal) % "'sh -c %s'" % f'{command}'
         elif self.terminal[0] in ['kitty', 'foot', 'konsole', 'gnome-terminal']:
-            command = ' '.join(self.terminal) % "sh -c %s" % f'"{command}"'
+            command = ' '.join(self.terminal) % "sh -c %s" % f'{command}'
         else:
-            command = ' '.join(self.terminal) % "bash -c %s" % f'"{command}"'
+            command = ' '.join(self.terminal) % "bash -c %s" % f'{command}'
+
+        logging.info(f"Command: {command}")
 
         subprocess.Popen(
             command,

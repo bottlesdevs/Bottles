@@ -43,6 +43,11 @@ class NVAPIComponent(DLLComponent):
     }
 
     @staticmethod
+    def get_override_keys() -> str:
+        # Bottles does not override (_)nvngx
+        return "nvapi,nvapi64"
+
+    @staticmethod
     def get_base_path(version: str) -> str:
         return ManagerUtils.get_nvapi_path(version)
 

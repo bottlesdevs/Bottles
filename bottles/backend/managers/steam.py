@@ -244,12 +244,6 @@ class SteamManager:
                 "path": _path,
                 "folder": _folder,
                 "icon": "com.usebottles.bottles-program",
-                "dxvk": self.config.Parameters.dxvk,
-                "vkd3d": self.config.Parameters.vkd3d,
-                "dxvk_nvapi": self.config.Parameters.dxvk_nvapi,
-                "fsr": self.config.Parameters.fsr,
-                "virtual_desktop": self.config.Parameters.virtual_desktop,
-                "pulseaudio_latency": self.config.Parameters.pulseaudio_latency,
                 "id": str(uuid.uuid4()),
             })
 
@@ -365,8 +359,6 @@ class SteamManager:
 
         launch_options = app_conf.get("LaunchOptions", "")
         _fail_msg = f"Fail to get launch options from Steam for: {prefix}"
-        prefix, args = "", ""
-        env_vars = {}
         res = {
             "command": "",
             "args": "",
@@ -378,26 +370,7 @@ class SteamManager:
             logging.debug(_fail_msg)
             return res
 
-        if "%command%" in launch_options:
-            _c = launch_options.split("%command%")
-            prefix = _c[0] if len(_c) > 0 else ""
-            args = _c[1] if len(_c) > 1 else ""
-        else:
-            args = launch_options
-
-        try:
-            prefix_list = shlex.split(prefix.strip())
-        except ValueError:
-            prefix_list = prefix.split(shlex.quote(prefix.strip()))
-
-        for p in prefix_list.copy():
-            if "=" in p:
-                k, v = p.split("=", 1)
-                v = shlex.quote(v) if " " in v else v
-                env_vars[k] = v
-                prefix_list.remove(p)
-
-        command = " ".join(prefix_list)
+        command, args, env_vars = SteamUtils.handle_launch_options(launch_options)
         res = {
             "command": command,
             "args": args,
