@@ -28,5 +28,9 @@ class LatencyFleXComponent(DLLComponent):
     }
 
     @staticmethod
+    def get_override_keys() -> str:
+        return "latencyflex_layer,latencyflex_wine"
+
+    @staticmethod
     def get_base_path(version: str) -> str:
         return ManagerUtils.get_latencyflex_path(version)

@@ -3,6 +3,7 @@ import shutil
 import stat
 import subprocess
 import tempfile
+import shlex
 from typing import Optional
 
 from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
@@ -88,21 +89,22 @@ class WineCommand:
             command: str,
             terminal: bool = False,
             arguments: str = False,
-            environment: dict = False,
+            environment: dict = {},
             communicate: bool = False,
             cwd: Optional[str] = None,
             colors: str = "default",
             minimal: bool = False,  # avoid gamemode/gamescope usage
             post_script: Optional[str] = None
     ):
+        _environment = environment.copy()
         self.config = self._get_config(config)
         self.minimal = minimal
         self.arguments = arguments
         self.cwd = self._get_cwd(cwd)
         self.runner, self.runner_runtime = self._get_runner_info()
-        self.command = self.get_cmd(command, post_script)
+        self.command = self.get_cmd(command, post_script, environment=_environment)
         self.terminal = terminal
-        self.env = self.get_env(environment)
+        self.env = self.get_env(_environment)
         self.communicate = communicate
         self.colors = colors
         self.vmtouch_files = None
@@ -175,8 +177,6 @@ class WineCommand:
         if config.Environment_Variables:
             for key, value in config.Environment_Variables.items():
                 env.add(key, value, override=True)
-                if (key == "WINEDLLOVERRIDES") and value:
-                    dll_overrides.extend(value.split(";"))
 
         # Environment variables from argument
         if environment:
@@ -314,8 +314,6 @@ class WineCommand:
 
         # DXVK-Nvapi environment variables
         if params.dxvk_nvapi and not return_steam_env:
-            conf = self.__set_dxvk_nvapi_conf(bottle)
-            env.add("DXVK_CONFIG_FILE", conf)
             # NOTE: users reported that DXVK_ENABLE_NVAPI and DXVK_NVAPIHACK must be set to make
             #       DLSS works. I don't have a GPU compatible with this tech, so I'll trust them
             env.add("DXVK_NVAPIHACK", "0")
@@ -444,11 +442,15 @@ class WineCommand:
             command,
             post_script: Optional[str] = None,
             return_steam_cmd: bool = False,
-            return_clean_cmd: bool = False
+            return_clean_cmd: bool = False,
+            environment: Optional[dict] = None
     ) -> str:
         config = self.config
         params = config.Parameters
         runner = self.runner
+
+        if environment is None:
+            environment = {}
 
         if return_clean_cmd:
             return_steam_cmd = True
@@ -528,12 +530,16 @@ class WineCommand:
                 logging.warning("Steam runtime was requested and found but there are no valid combinations")
 
         if self.arguments:
-            if "%command%" in self.arguments:
-                prefix = self.arguments.split("%command%")[0]
-                suffix = self.arguments.split("%command%")[1]
-                command = f"{prefix} {command} {suffix}"
-            else:
-                command = f"{command} {self.arguments}"
+            prefix, suffix, extracted_env = SteamUtils.handle_launch_options(self.arguments)
+            if prefix:
+                command = f"{prefix} {command}"
+            if suffix:
+                command = f"{command} {suffix}"
+            if extracted_env:
+                if extracted_env.get("WINEDLLOVERRIDES") and environment.get("WINEDLLOVERRIDES"):
+                    environment["WINEDLLOVERRIDES"] += ";" + extracted_env.get("WINEDLLOVERRIDES")
+                    del extracted_env["WINEDLLOVERRIDES"]
+                environment.update(extracted_env)
 
         if post_script is not None:
             command = f"{command} ; sh '{post_script}'"
@@ -582,7 +588,7 @@ class WineCommand:
             s = (self.cwd + "/" + (self.command.split(" ")[-1].split('\\')[-1])).replace('\'', "")
         else:
             s = self.command.split(" ")[-1]
-        self.vmtouch_files = f"'{s}'"
+        self.vmtouch_files = shlex.quote(s)
 
         # if self.config.Parameters.vmtouch_cache_cwd:
         #    self.vmtouch_files = "'"+self.vmtouch_files+"' '"+self.cwd+"/'" Commented out as fix for #1941
@@ -694,26 +700,3 @@ class WineCommand:
 
         return Result(True, data=rv)
 
-    @staticmethod
-    def __set_dxvk_nvapi_conf(bottle: str):
-        """
-        TODO: This should be moved to a dedicated DXVKConf class when
-              we will provide a way to set the DXVK configuration.
-        """
-        dxvk_conf = f"{bottle}/dxvk.conf"
-        if not os.path.exists(dxvk_conf):
-            # create dxvk.conf if it doesn't exist
-            with open(dxvk_conf, "w") as f:
-                f.write("dxgi.nvapiHack = False")
-        else:
-            # check if dxvk.conf has the nvapiHack option, if not add it
-            with open(dxvk_conf, "r") as f:
-                lines = f.readlines()
-            with open(dxvk_conf, "w") as f:
-                for line in lines:
-                    if "dxgi.nvapiHack" in line:
-                        f.write("dxgi.nvapiHack = False\n")
-                    else:
-                        f.write(line)
-
-        return dxvk_conf

@@ -103,7 +103,7 @@ class Manager(metaclass=Singleton):
     supported_dependencies = {}
     supported_installers = {}
 
-    def __init__(self, g_settings: Any = None, is_cli: bool = False, **kwargs):
+    def __init__(self, g_settings: Any = None, check_connection: bool = True, is_cli: bool = False, **kwargs):
         super().__init__(**kwargs)
 
         times = {"start": time.time()}
@@ -111,10 +111,13 @@ class Manager(metaclass=Singleton):
         # common variables
         self.is_cli = is_cli
         self.settings = g_settings or GSettingsStub
-        self.utils_conn = ConnectionUtils(force_offline=self.is_cli)
+        self.utils_conn = ConnectionUtils(force_offline=self.is_cli or self.settings.get_boolean("force-offline"))
         self.data_mgr = DataManager()
-        _offline = not self.utils_conn.check_connection()
-
+        _offline = True
+        
+        if check_connection:
+            _offline = not self.utils_conn.check_connection()
+        
         # validating user-defined Paths.bottles
         if user_bottles_path := self.data_mgr.get(UserDataKeys.CustomBottlesPath):
             if os.path.exists(user_bottles_path):
@@ -126,7 +129,11 @@ class Manager(metaclass=Singleton):
                 )
 
         # sub-managers
-        self.repository_manager = RepositoryManager()
+        self.repository_manager = RepositoryManager(get_index= not _offline)
+        if self.repository_manager.aborted_connections > 0:
+            self.utils_conn.status = False
+            _offline = True
+        
         times["RepositoryManager"] = time.time()
         self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
@@ -137,6 +144,7 @@ class Manager(metaclass=Singleton):
         times["ImportManager"] = time.time()
         self.steam_manager = SteamManager()
         times["SteamManager"] = time.time()
+
 
         if not self.is_cli:
             times.update(self.checks(install_latest=False, first_run=True).data)
@@ -683,19 +691,19 @@ class Manager(metaclass=Singleton):
             else:
                 program_folder = os.path.dirname(_program["path"])
             installed_programs.append({
-                "executable": _program["executable"],
-                "arguments": _program.get("arguments", ""),
-                "name": _program["name"],
-                "path": _program["path"],
+                "executable": _program.get("executable"),
+                "arguments": _program.get("arguments"),
+                "name": _program.get("name"),
+                "path": _program.get("path"),
                 "folder": _program.get("folder", program_folder),
                 "icon": "com.usebottles.bottles-program",
                 "script": _program.get("script"),
-                "dxvk": _program.get("dxvk", config.Parameters.dxvk),
-                "vkd3d": _program.get("vkd3d", config.Parameters.vkd3d),
-                "dxvk_nvapi": _program.get("dxvk_nvapi", config.Parameters.dxvk_nvapi),
-                "fsr": _program.get("fsr", config.Parameters.fsr),
-                "pulseaudio_latency": _program.get("pulseaudio_latency", config.Parameters.pulseaudio_latency),
-                "virtual_desktop": _program.get("virtual_desktop", config.Parameters.virtual_desktop),
+                "dxvk": _program.get("dxvk"),
+                "vkd3d": _program.get("vkd3d"),
+                "dxvk_nvapi": _program.get("dxvk_nvapi"),
+                "fsr": _program.get("fsr"),
+                "pulseaudio_latency": _program.get("pulseaudio_latency"),
+                "virtual_desktop": _program.get("virtual_desktop"),
                 "removed": _program.get("removed"),
                 "id": _program.get("id")
             })
@@ -737,13 +745,6 @@ class Manager(metaclass=Singleton):
                         "folder": program_folder,
                         "icon": "com.usebottles.bottles-program",
                         "id": str(uuid.uuid4()),
-                        "script": "",
-                        "dxvk": config.Parameters.dxvk,
-                        "vkd3d": config.Parameters.vkd3d,
-                        "dxvk_nvapi": config.Parameters.dxvk_nvapi,
-                        "fsr": config.Parameters.fsr,
-                        "pulseaudio_latency": config.Parameters.pulseaudio_latency,
-                        "virtual_desktop": config.Parameters.virtual_desktop,
                         "auto_discovered": True
                     })
                     found.append(executable_name)

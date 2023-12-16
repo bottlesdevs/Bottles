@@ -120,12 +120,6 @@ class UbisoftConnectManager:
                     "path": _path,
                     "folder": _folder,
                     "icon": "com.usebottles.bottles-program",
-                    "dxvk": config.Parameters.dxvk,
-                    "vkd3d": config.Parameters.vkd3d,
-                    "dxvk_nvapi": config.Parameters.dxvk_nvapi,
-                    "fsr": config.Parameters.fsr,
-                    "virtual_desktop": config.Parameters.virtual_desktop,
-                    "pulseaudio_latency": config.Parameters.pulseaudio_latency,
                     "id": str(uuid.uuid4()),
                 })
         return games

@@ -128,6 +128,10 @@ class DependencyManager:
             Here we execute all steps in the manifest.
             Steps are the actions performed to install the dependency.
             """
+            arch = step.get("for", "win64_win32")
+            if config.Arch not in arch:
+                continue
+
             res = self.__perform_steps(config, step)
             if not res.ok:
                 TaskManager.remove(task_id)
@@ -403,6 +407,8 @@ class DependencyManager:
                         destination=dest
                 ):
                     return False
+            else:
+                return False
 
         elif step["url"].startswith("temp/"):
             path = step["url"]
