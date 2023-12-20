@@ -277,6 +277,7 @@ class BottleView(Adw.PreferencesPage):
         )
 
         add_executable_filters(dialog)
+        add_all_filters(dialog)
         dialog.set_modal(True)
         dialog.connect("response", set_path)
         dialog.show()
