@@ -10,6 +10,7 @@ on:
 
 env:
   PR_BRANCH: pr/ci-manifest/${{ github.ref_name }}
+  FEDC_ARGS: --update --require-important-update --commit-only --never-fork "bottles-repository/com.usebottles.bottles.yml"
 
 jobs:
   update-manifest:
@@ -20,7 +21,7 @@ jobs:
           path: "bottles-repository"
           ref: ${{ github.ref_name }}
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
           cache: 'pip'
@@ -35,13 +36,19 @@ jobs:
           git config user.name "github-actions[bot]"
           pur -r requirements.txt
           pur -r requirements.dev.txt
-          req2flatpak --requirements-file requirements.txt --yaml --target-platforms 310-x86_64 -o com.usebottles.bottles.pypi-deps.yaml
+          req2flatpak --requirements-file requirements.txt --yaml --target-platforms 311-x86_64 -o com.usebottles.bottles.pypi-deps.yaml
           git diff ${{ github.ref_name }} --exit-code requirements.txt requirements.dev.txt com.usebottles.bottles.pypi-deps.yaml
           updated=$?
           if [ $updated -ne 0 ]; then
               git add requirements.txt requirements.dev.txt com.usebottles.bottles.pypi-deps.yaml
               git commit -m "Update PyPI dependencies"
           fi
+
+      - name: Update arguments
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          remove_important_update_only=$(sed 's/--require-important-update//g' <<< '${{ env.FEDC_ARGS }}')
+          echo "FEDC_ARGS=$remove_important_update_only" >> $GITHUB_ENV
 
       - uses: docker://ghcr.io/flathub/flatpak-external-data-checker:latest
         env:
@@ -52,7 +59,7 @@ jobs:
           EMAIL: github-actions[bot]@users.noreply.github.com
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: --update --require-important-update --commit-only --never-fork "bottles-repository/com.usebottles.bottles.yml"
+          args: ${{ env.FEDC_ARGS }}
 
       - name: Create PR if necessary
         working-directory: "bottles-repository"
