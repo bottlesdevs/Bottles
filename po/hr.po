@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-07-20 12:07+0000\n"
+"PO-Revision-Date: 2023-12-19 22:12+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.3\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -811,14 +811,12 @@ msgid "Manage vmtouch settings"
 msgstr "Upravljaj vmtouch postavkama"
 
 #: bottles/frontend/ui/details-preferences.blp:241
-#, fuzzy
 msgid "OBS Game Capture"
-msgstr "OBS Vulkan snimanje"
+msgstr "Snimanje OBS igre"
 
 #: bottles/frontend/ui/details-preferences.blp:242
-#, fuzzy
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr "Uključi/Isključi OBS snimanje igre za sve programe."
+msgstr "Uključi/Isključi snimanje OBS igre za sve Vulkan and OpenGL programe."
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
@@ -1350,7 +1348,6 @@ msgid "Choose a script which should be executed after run."
 msgstr "Odaberi skripta koji se treba izvršiti nakon pokretanja."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
-#, fuzzy
 msgid "Choose a Script"
 msgstr "Odaberi skripta"
 
@@ -1511,7 +1508,6 @@ msgstr ""
 "Stari sustav bit će ukinut u jednom od sljedećih izdanja."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
-#, fuzzy
 msgid "Re-initializing Repository…"
 msgstr "Ponovno inicijaliziranje repozitorija …"
 
@@ -1802,23 +1798,20 @@ msgid "Unknown"
 msgstr "Nepoznato"
 
 #: bottles/frontend/ui/installer-entry.blp:51
-#, fuzzy
 msgid "Install this Program"
 msgstr "Instaliraj ovaj program"
 
 #: bottles/frontend/ui/installer-entry.blp:69
-#, fuzzy
 msgid "Program Menu"
-msgstr "Ime programa"
+msgstr "Izbornik programa"
 
 #: bottles/frontend/ui/library-entry.blp:36
 msgid "No Thumbnail"
-msgstr ""
+msgstr "Bez minijature"
 
 #: bottles/frontend/ui/library-entry.blp:57
-#, fuzzy
 msgid "Launch"
-msgstr "Opcije pokretanja"
+msgstr "Pokreni"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1835,7 +1828,7 @@ msgstr "Ukloni iz biblioteke"
 
 #: bottles/frontend/ui/library-entry.blp:143
 msgid "Stop"
-msgstr ""
+msgstr "Prekini"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:196
@@ -1855,7 +1848,6 @@ msgid "This bottle looks damaged."
 msgstr "Čini se da je ova butelja oštećena."
 
 #: bottles/frontend/ui/list-entry.blp:55
-#, fuzzy
 msgid "Execute in this Bottle"
 msgstr "Izvrši u ovoj butelji"
 
@@ -1910,9 +1902,8 @@ msgid "Browse"
 msgstr "Pregledaj"
 
 #: bottles/frontend/ui/new.blp:32
-#, fuzzy
 msgid "C_reate"
-msgstr "Stvori"
+msgstr "Stvo_ri"
 
 #: bottles/frontend/ui/new.blp:53
 #, fuzzy
@@ -1920,28 +1911,24 @@ msgid "Bottle Name"
 msgstr "Ime butelje"
 
 #: bottles/frontend/ui/new.blp:75
-#, fuzzy
 msgid "_Application"
-msgstr "Program"
+msgstr "_Program"
 
 #: bottles/frontend/ui/new.blp:88
-#, fuzzy
 msgid "_Gaming"
-msgstr "Igre"
+msgstr "_Igre"
 
 #: bottles/frontend/ui/new.blp:101
-#, fuzzy
 msgid "C_ustom"
-msgstr "Prilagođeno"
+msgstr "Pri_lagođeno"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
 msgstr "Prilagođeno"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "Odaberi jednu mapu"
+msgstr "Dijeli korisničku mapu"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1974,14 +1961,12 @@ msgid "Directory that will contain the data of this bottle."
 msgstr ""
 
 #: bottles/frontend/ui/new.blp:249
-#, fuzzy
 msgid "_Close"
-msgstr "Zatvori"
+msgstr "_Zatvori"
 
 #: bottles/frontend/ui/new.blp:281
-#, fuzzy
 msgid "This name is unavailable, please try another."
-msgstr "Ova funkcija nije dostupna na tvom sustavu."
+msgstr "Ovo ime nije dostupno. Pokušaj jedno drugo ime."
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
