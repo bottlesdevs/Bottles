@@ -21,7 +21,7 @@ def add_executable_filters(dialog):
     filter.set_name(_("Supported Executables"))
     # TODO: Investigate why `filter.add_mime_type(...)` does not show filter in all distributions.
     # Intended MIME types are:
-    #   - `application-xms-dos-executable`
+    #   - `application/x-ms-dos-executable`
     #   - `application/x-msi`
     filter.add_pattern("*.exe")
     filter.add_pattern("*.msi")
