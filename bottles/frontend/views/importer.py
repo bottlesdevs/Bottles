@@ -122,7 +122,10 @@ class ImporterView(Adw.Bin):
 
         filter = Gtk.FileFilter()
         filter.set_name("GNU Gzip Archive")
-        filter.add_mime_type("application/gzip")
+        # TODO: Investigate why `filter.add_mime_type(...)` does not show filter in all distributions.
+        # Intended MIME types are:
+        #   - `application/gzip`
+        filter.add_pattern("*.gz")
 
         dialog.add_filter(filter)
         add_all_filters(dialog)
