@@ -570,7 +570,7 @@ class CLI:
 
             program = [p for p in programs if p["name"] == _program][0]
             _executable = program.get("path", "")
-            _program_args = program.get("arguments", "")
+            _program_args = program.get("arguments")
             if _keep and _program_args:
                 _args = _program_args + " " + _args
             _cwd = program.get("folder", "")

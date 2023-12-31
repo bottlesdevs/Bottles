@@ -79,7 +79,8 @@ class LaunchOptionsDialog(Adw.Window):
         self.set_transient_for(self.window)
 
         # set widget defaults
-        self.entry_arguments.set_text(program.get("arguments", ""))
+        if program.get("arguments") not in ["", None]:
+            self.entry_arguments.set_text(program.get("arguments"))
 
         # keeps track of toggled switches
         self.toggled = {}
