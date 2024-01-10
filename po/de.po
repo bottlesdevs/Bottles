@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-04-24 18:47+0000\n"
-"Last-Translator: manu <el.manu87@gmail.com>\n"
+"PO-Revision-Date: 2024-01-12 18:06+0000\n"
+"Last-Translator: SpaceEnergy <KiwiEnergy0@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -436,6 +436,10 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Klicken Sie auf \"Programmdatei ausführen...\", um eine Programmdatei "
+"auszuführen, auf \"Kurzbefehle hinzufügen...\", um eine Programmdatei der "
+"Programmliste hinzuzufügen oder \"Programme Installieren...\", um von der "
+"Community gepflegte Programme zu installieren."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -452,14 +456,12 @@ msgstr "Optionen"
 
 #: bottles/frontend/ui/details-bottle.blp:350
 #: bottles/frontend/views/details.py:141
-#, fuzzy
 msgid "Settings"
 msgstr "Einstellungen"
 
 #: bottles/frontend/ui/details-bottle.blp:351
-#, fuzzy
 msgid "Configure bottle settings."
-msgstr "Bottle-Einstellungen konfigurieren."
+msgstr "Bottle Einstellungen konfigurieren."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
@@ -479,9 +481,8 @@ msgid "Snapshots"
 msgstr "Schnappschüsse"
 
 #: bottles/frontend/ui/details-bottle.blp:371
-#, fuzzy
 msgid "Create and manage bottle states."
-msgstr "Speichere den Zustand der Bottle."
+msgstr "Erstellen und verwalte Bottle zustände."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
@@ -506,9 +507,8 @@ msgid "Run commands inside the Bottle."
 msgstr "Befehle in der Bottle ausführen."
 
 #: bottles/frontend/ui/details-bottle.blp:404
-#, fuzzy
 msgid "Registry Editor"
-msgstr "Registry-Editor"
+msgstr "Registrierungs-Editor"
 
 #: bottles/frontend/ui/details-bottle.blp:405
 #, fuzzy
@@ -549,11 +549,12 @@ msgstr "Abhängigkeiten suchen…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Sie sind offline :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr ""
+"Bottles läuft im Offlinemodus, daher sind keine Abhängigkeiten verfügbar."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -574,7 +575,6 @@ msgid "Report a problem or a missing dependency."
 msgstr "Ein Problem oder eine fehlende Abhängigkeit melden."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
-#, fuzzy
 msgid "Report Missing Dependency"
 msgstr "Fehlende Abhängigkeit melden"
 
@@ -691,16 +691,14 @@ msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
-#, fuzzy
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
 msgstr ""
-"Eine Alternative zu NVIDIA Reflex. Kann von einigen Anticheatprogrammen "
+"Erhöhung der Reaktionsfähigkeit. Kann von einigen Anti-Cheat-Software "
 "erkannt werden."
 
 #: bottles/frontend/ui/details-preferences.blp:71
-#, fuzzy
 msgid "Updating LatencyFleX, please wait…"
-msgstr "Aktualisiere DXVK, bitte warten…"
+msgstr "Aktualisiere LatencyFleX, bitte warten…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 #, fuzzy
@@ -731,7 +729,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "Verwalte die FidelityFX Super Resolution-Einstellungen"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
@@ -746,9 +744,8 @@ msgstr ""
 "Stromverbrauchs."
 
 #: bottles/frontend/ui/details-preferences.blp:135
-#, fuzzy
 msgid "Post-Processing Effects"
-msgstr "Nachträgliche Effekte"
+msgstr "Nachbearbeitungseffekte"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 #, fuzzy
@@ -766,6 +763,8 @@ msgstr "Konfiguration der nachträglichen Effekte"
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
 msgstr ""
+"Verwalte mit Gamescope, wie Spiele auf dem Bildschirm angezeigt werden "
+"sollen."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
@@ -823,11 +822,12 @@ msgstr "Feral GameMode"
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
+"Wende eine Reihe von Optimierungen auf deinem Gerät an. Kann die "
+"Spielleistung verbessern."
 
 #: bottles/frontend/ui/details-preferences.blp:221
-#, fuzzy
 msgid "Preload Game Files"
-msgstr "Vorladen von Spieldateien in den RAM"
+msgstr "Spiel-Dateien vorladen"
 
 #: bottles/frontend/ui/details-preferences.blp:222
 msgid ""
@@ -1175,7 +1175,7 @@ msgstr "Dupliziere…"
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/views/new.py:177
 msgid "This could take a while."
-msgstr ""
+msgstr "Das kann eine Weile dauern."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
@@ -1298,7 +1298,7 @@ msgstr "Vollbild"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr ""
+msgstr "Möchtest du mit der Installation fortfahren?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
 #, fuzzy
@@ -1333,7 +1333,7 @@ msgstr "Installation Fehlgeschlagen!"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
-msgstr ""
+msgstr "Etwas ist schief gelaufen."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1872,7 +1872,7 @@ msgstr "Programmname"
 
 #: bottles/frontend/ui/library-entry.blp:36
 msgid "No Thumbnail"
-msgstr ""
+msgstr "Kein Vorschaubild"
 
 #: bottles/frontend/ui/library-entry.blp:57
 #, fuzzy
@@ -1945,9 +1945,8 @@ msgid "Bottles"
 msgstr "Bottles"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "Neue Bottle erstellen"
+msgstr "Neue Bottle erstellen…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
@@ -2021,9 +2020,8 @@ msgstr ""
 "Wir empfehlen 32-bit nur dann zu nutzen, wenn es zwingend erforderlich ist."
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Konfiguration exportieren…"
+msgstr "Eine benutzerdefinierte Konfiguration importieren."
 
 #: bottles/frontend/ui/new.blp:176
 #, fuzzy
@@ -2193,24 +2191,20 @@ msgid "Advanced"
 msgstr "Erweitert"
 
 #: bottles/frontend/ui/preferences.blp:131
-#, fuzzy
 msgid "Bottles Directory"
-msgstr "Wähle ein Verzeichnis"
+msgstr "Bottles-Verzeichnis"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr ""
+msgstr "Verzeichnis, das die Daten Ihrer Bottles enthält."
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
 msgstr "Runner"
 
 #: bottles/frontend/ui/preferences.blp:181
-#, fuzzy
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr ""
-"Bottles daran hintern Ausführbare Dateien auszuführen, wenn der Runner nicht "
-"verfügbar ist"
+msgstr "Bottles läuft im Offline-Modus, so dass keine Runner verfügbar sind."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2579,9 +2573,9 @@ msgid "Run executable in \"{self.config.Name}\""
 msgstr ""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Starten von '{0}'…"
+msgstr "\"{0}\" wird in \"{1}\" gestartet…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -3191,18 +3185,16 @@ msgid "Correct version"
 msgstr "Komponentenversion"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "Beim Erstellen der Bottle trat ein Fehler auf."
+msgstr "Absturz beim Erstellen einer Bottle behoben"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
-#, fuzzy
 msgid "Quality of life improvements:"
-msgstr "Kleinere Verbesserungen der Benutzeroberfläche"
+msgstr "Verbesserung der Lebensqualität:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
@@ -3214,9 +3206,8 @@ msgid "Add toast for \"Run Executable\""
 msgstr "Benutzerdefinierten Pfad für eine ausführbare Datei hinzufügen"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
-#, fuzzy
 msgid "Bug fixes:"
-msgstr "Fehlerbehebungen"
+msgstr "Fehlerbehebungen:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
