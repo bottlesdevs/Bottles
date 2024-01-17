@@ -22,7 +22,6 @@ class Samples:
                 "d3dcompiler_47",
                 "mono",
                 "gecko",
-                "faudio",
             ]
         },
         "application": {
