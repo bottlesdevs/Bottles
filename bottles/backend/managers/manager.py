@@ -692,7 +692,7 @@ class Manager(metaclass=Singleton):
                 program_folder = os.path.dirname(_program["path"])
             installed_programs.append({
                 "executable": _program.get("executable"),
-                "arguments": _program.get("arguments"),
+                "arguments": _program.get("arguments", ""),
                 "name": _program.get("name"),
                 "path": _program.get("path"),
                 "folder": _program.get("folder", program_folder),
