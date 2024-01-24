@@ -35,7 +35,7 @@ sys.path.insert(1, pkgdatadir)
 os.unsetenv("GTK_THEME")
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
-gettext.install("bottles", localedir)
+gettext.install('@APP_ID@', localedir)
 
 if __name__ == "__main__":
     from gi.repository import Gio
