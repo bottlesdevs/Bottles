@@ -21,9 +21,9 @@ from gi.repository import Gtk, Adw
 from bottles.backend.utils.threading import RunAsync
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-upgrade-versioning.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-upgrade-versioning.ui")
 class UpgradeVersioningDialog(Adw.Window):
-    __gtype_name__ = 'UpgradeVersioningDialog'
+    __gtype_name__ = "UpgradeVersioningDialog"
 
     # region Widgets
     btn_cancel = Gtk.Template.Child()
@@ -58,8 +58,12 @@ class UpgradeVersioningDialog(Adw.Window):
         self.btn_cancel.set_label("Close")
 
         RunAsync(self.pulse)
-        RunAsync(self.parent.manager.versioning_manager.update_system, self.finish, self.config)
-    
+        RunAsync(
+            self.parent.manager.versioning_manager.update_system,
+            self.finish,
+            self.config,
+        )
+
     def __proceed(self, widget):
         self.stack_switcher.set_visible_child_name("page_info")
         self.btn_proceed.set_visible(False)
@@ -73,6 +77,5 @@ class UpgradeVersioningDialog(Adw.Window):
     def pulse(self):
         # This function update the progress bar every half second.
         while True:
-            time.sleep(.5)
+            time.sleep(0.5)
             self.progressbar.pulse()
-

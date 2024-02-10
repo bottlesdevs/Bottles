@@ -24,22 +24,22 @@ logging = Logger()
 class WineExecutor:
 
     def __init__(
-            self,
-            config: BottleConfig,
-            exec_path: str,
-            args: str = "",
-            terminal: bool = False,
-            cwd: Optional[str] = None,
-            environment: Optional[dict] = None,
-            move_file: bool = False,
-            move_upd_fn: callable = None,
-            post_script: Optional[str] = None,
-            monitoring: Optional[list] = None,
-            program_dxvk: Optional[bool] = None,
-            program_vkd3d: Optional[bool] = None,
-            program_nvapi: Optional[bool] = None,
-            program_fsr: Optional[bool] = None,
-            program_virt_desktop: Optional[bool] = None
+        self,
+        config: BottleConfig,
+        exec_path: str,
+        args: str = "",
+        terminal: bool = False,
+        cwd: Optional[str] = None,
+        environment: Optional[dict] = None,
+        move_file: bool = False,
+        move_upd_fn: callable = None,
+        post_script: Optional[str] = None,
+        monitoring: Optional[list] = None,
+        program_dxvk: Optional[bool] = None,
+        program_vkd3d: Optional[bool] = None,
+        program_nvapi: Optional[bool] = None,
+        program_fsr: Optional[bool] = None,
+        program_virt_desktop: Optional[bool] = None,
     ):
         logging.info("Launching an executable…")
         self.config = config
@@ -86,13 +86,19 @@ class WineExecutor:
 
         if program_fsr is not None and program_fsr != self.config.Parameters.fsr:
             self.environment["WINE_FULLSCREEN_FSR"] = "1" if program_fsr else "0"
-            self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(self.config.Parameters.fsr_sharpening_strength)
+            self.environment["WINE_FULLSCREEN_FSR_STRENGTH"] = str(
+                self.config.Parameters.fsr_sharpening_strength
+            )
             if self.config.Parameters.fsr_quality_mode:
-                self.environment["WINE_FULLSCREEN_FSR_MODE"] = str(self.config.Parameters.fsr_quality_mode)
+                self.environment["WINE_FULLSCREEN_FSR_MODE"] = str(
+                    self.config.Parameters.fsr_quality_mode
+                )
 
         if env_dll_overrides:
             if "WINEDLLOVERRIDES" in self.environment:
-                self.environment["WINEDLLOVERRIDES"] += ";" + ";".join(env_dll_overrides)
+                self.environment["WINEDLLOVERRIDES"] += ";" + ";".join(
+                    env_dll_overrides
+                )
             else:
                 self.environment["WINEDLLOVERRIDES"] = ";".join(env_dll_overrides)
 
@@ -112,7 +118,7 @@ class WineExecutor:
             program_vkd3d=program.get("vkd3d"),
             program_nvapi=program.get("dxvk_nvapi"),
             program_fsr=program.get("fsr"),
-            program_virt_desktop=program.get("virtual_desktop")
+            program_virt_desktop=program.get("virtual_desktop"),
         ).run()
 
     def __get_cwd(self, cwd: str) -> Union[str, None]:
@@ -143,14 +149,14 @@ class WineExecutor:
             _msg = f"Executable file path does not exist: {exec_path}"
             if "FLATPAK_ID" in os.environ:
                 _msg = f"Executable file path does not exist or is not accessible by the Flatpak: {exec_path}"
-            logging.error(_msg, )
+            logging.error(
+                _msg,
+            )
             return False
 
     def __move_file(self, exec_path, move_upd_fn):
         new_path = ManagerUtils.move_file_to_bottle(
-            file_path=exec_path,
-            config=self.config,
-            fn_update=move_upd_fn
+            file_path=exec_path, config=self.config, fn_update=move_upd_fn
         )
         if new_path:
             exec_path = new_path
@@ -193,12 +199,9 @@ class WineExecutor:
             terminal=self.terminal,
             args=self.args,
             environment=self.environment,
-            cwd=self.cwd
+            cwd=self.cwd,
         )
-        return Result(
-            status=True,
-            data={"output": res}
-        )
+        return Result(status=True, data={"output": res})
 
     def run(self) -> Result:
         match self.exec_type:
@@ -212,8 +215,7 @@ class WineExecutor:
                 return self.__launch_dll()
             case _:
                 return Result(
-                    status=False,
-                    data={"message": "Unknown executable type."}
+                    status=False, data={"message": "Unknown executable type."}
                 )
 
     def __launch_with_bridge(self):
@@ -240,10 +242,9 @@ class WineExecutor:
             case "batch":
                 return self.__launch_batch()
             case _:
-                logging.error(f'exec_type {self.exec_type} is not valid')
+                logging.error(f"exec_type {self.exec_type} is not valid")
                 return Result(
-                    status=False,
-                    data={"message": "Unknown executable type."}
+                    status=False, data={"message": "Unknown executable type."}
                 )
 
     def __launch_exe(self):
@@ -263,14 +264,11 @@ class WineExecutor:
             cwd=self.cwd,
             environment=self.environment,
             communicate=True,
-            post_script=self.post_script
+            post_script=self.post_script,
         )
         res = winecmd.run()
         self.__set_monitors()
-        return Result(
-            status=True,
-            data={"output": res}
-        )
+        return Result(status=True, data={"output": res})
 
     def __launch_msi(self):
         msiexec = MsiExec(self.config)
@@ -279,7 +277,7 @@ class WineExecutor:
             args=self.args,
             terminal=self.terminal,
             cwd=self.cwd,
-            environment=self.environment
+            environment=self.environment,
         )
         self.__set_monitors()
         return Result(True)
@@ -291,12 +289,9 @@ class WineExecutor:
             terminal=self.terminal,
             args=self.args,
             environment=self.environment,
-            cwd=self.cwd
+            cwd=self.cwd,
         )
-        return Result(
-            status=True,
-            data={"output": res}
-        )
+        return Result(status=True, data={"output": res})
 
     def __launch_with_starter(self):
         start = Start(self.config)
@@ -305,13 +300,10 @@ class WineExecutor:
             terminal=self.terminal,
             args=self.args,
             environment=self.environment,
-            cwd=self.cwd
+            cwd=self.cwd,
         )
         self.__set_monitors()
-        return Result(
-            status=True,
-            data={"output": res}
-        )
+        return Result(status=True, data={"output": res})
 
     def __launch_with_explorer(self):
         w, h = self.config.Parameters.virtual_desktop_res.split("x")
@@ -323,21 +315,15 @@ class WineExecutor:
             program=self.exec_path,
             args=self.args,
             environment=self.environment,
-            cwd=self.cwd
+            cwd=self.cwd,
         )
         self.__set_monitors()
-        return Result(
-            status=res.status,
-            data={"output": res.data}
-        )
+        return Result(status=res.status, data={"output": res.data})
 
     @staticmethod
     def __launch_dll():
         logging.warning("DLLs are not supported yet.")
-        return Result(
-            status=False,
-            data={"error": "DLLs are not supported yet."}
-        )
+        return Result(status=False, data={"error": "DLLs are not supported yet."})
 
     def __set_monitors(self):
         if not self.monitoring:

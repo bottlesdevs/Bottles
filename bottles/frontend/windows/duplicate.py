@@ -24,9 +24,9 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-duplicate.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-duplicate.ui")
 class DuplicateDialog(Adw.Window):
-    __gtype_name__ = 'DuplicateDialog'
+    __gtype_name__ = "DuplicateDialog"
 
     # region Widgets
     entry_name = Gtk.Template.Child()
@@ -76,7 +76,7 @@ class DuplicateDialog(Adw.Window):
             task_func=BackupManager.duplicate_bottle,
             callback=self.finish,
             config=self.config,
-            name=name
+            name=name,
         )
 
     @GtkUtils.run_in_main_loop
@@ -88,5 +88,5 @@ class DuplicateDialog(Adw.Window):
     def pulse(self):
         # This function update the progress bar every half second.
         while True:
-            time.sleep(.5)
+            time.sleep(0.5)
             self.progressbar.pulse()

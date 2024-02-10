@@ -31,10 +31,11 @@ class BottleEntry(Adw.ActionRow):
         self.set_title(config.Name)
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-bottle-picker.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-bottle-picker.ui")
 class BottlePickerDialog(Adw.ApplicationWindow):
     """This class should not be called from the application GUI, only from CLI."""
-    __gtype_name__ = 'BottlePickerDialog'
+
+    __gtype_name__ = "BottlePickerDialog"
     settings = Gio.Settings.new(APP_ID)
     Adw.init()
 
@@ -57,9 +58,9 @@ class BottlePickerDialog(Adw.ApplicationWindow):
             self.list_bottles.append(BottleEntry(config))
 
         self.list_bottles.select_row(self.list_bottles.get_first_child())
-        self.btn_cancel.connect('clicked', self.__close)
-        self.btn_select.connect('clicked', self.__select)
-        self.btn_open.connect('clicked', self.__open)
+        self.btn_cancel.connect("clicked", self.__close)
+        self.btn_select.connect("clicked", self.__select)
+        self.btn_open.connect("clicked", self.__open)
 
     @staticmethod
     def __close(*_args):
@@ -69,7 +70,9 @@ class BottlePickerDialog(Adw.ApplicationWindow):
         row = self.list_bottles.get_selected_row()
         if row:
             self.destroy()
-            subprocess.Popen(["bottles-cli", "run", "-b", row.bottle, "-e", self.arg_exe])
+            subprocess.Popen(
+                ["bottles-cli", "run", "-b", row.bottle, "-e", self.arg_exe]
+            )
 
     def __open(self, *_args):
         self.destroy()

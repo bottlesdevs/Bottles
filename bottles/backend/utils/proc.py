@@ -25,25 +25,29 @@ class Proc:
 
     def __get_data(self, data):
         try:
-            with open(os.path.join('/proc', str(self.pid), data), 'rb') as f:
-                return f.read().decode('utf-8')
+            with open(os.path.join("/proc", str(self.pid), data), "rb") as f:
+                return f.read().decode("utf-8")
         except (FileNotFoundError, PermissionError):
             return ""
 
     def get_cmdline(self):
-        return self.__get_data('cmdline')
+        return self.__get_data("cmdline")
 
     def get_env(self):
-        return self.__get_data('environ')
+        return self.__get_data("environ")
 
     def get_cwd(self):
-        return self.__get_data('cwd')
+        return self.__get_data("cwd")
 
     def get_name(self):
-        return self.__get_data('stat')
+        return self.__get_data("stat")
 
     def kill(self):
-        subprocess.Popen(['kill', str(self.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.Popen(
+            ["kill", str(self.pid)],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
 
 
 class ProcUtils:
@@ -51,7 +55,7 @@ class ProcUtils:
     @staticmethod
     def get_procs():
         procs = []
-        for pid in os.listdir('/proc'):
+        for pid in os.listdir("/proc"):
             if pid.isdigit():
                 procs.append(Proc(pid))
         return procs

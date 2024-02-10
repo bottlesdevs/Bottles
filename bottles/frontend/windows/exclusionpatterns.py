@@ -18,9 +18,9 @@
 from gi.repository import Gtk, GLib, Adw
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/exclusion-pattern-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/exclusion-pattern-entry.ui")
 class ExclusionPatternEntry(Adw.ActionRow):
-    __gtype_name__ = 'ExclusionPatternEntry'
+    __gtype_name__ = "ExclusionPatternEntry"
 
     # region Widgets
     btn_remove = Gtk.Template.Child()
@@ -50,16 +50,14 @@ class ExclusionPatternEntry(Adw.ActionRow):
             patterns.remove(self.pattern)
 
         self.manager.update_config(
-            config=self.config,
-            key="Versioning_Exclusion_Patterns",
-            value=patterns
+            config=self.config, key="Versioning_Exclusion_Patterns", value=patterns
         )
         self.parent.group_patterns.remove(self)
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-exclusion-patterns.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-exclusion-patterns.ui")
 class ExclusionPatternsDialog(Adw.Window):
-    __gtype_name__ = 'ExclusionPatternsDialog'
+    __gtype_name__ = "ExclusionPatternsDialog"
 
     # region Widgets
     entry_name = Gtk.Template.Child()
@@ -89,7 +87,7 @@ class ExclusionPatternsDialog(Adw.Window):
         self.manager.update_config(
             config=self.config,
             key="Versioning_Exclusion_Patterns",
-            value=self.config.Versioning_Exclusion_Patterns + [pattern]
+            value=self.config.Versioning_Exclusion_Patterns + [pattern],
         )
         _entry = ExclusionPatternEntry(self, pattern)
         GLib.idle_add(self.group_patterns.add, _entry)

@@ -33,13 +33,15 @@ sys.path.insert(1, pkgdatadir)
 os.unsetenv("GTK_THEME")
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
-gettext.install('bottles', localedir)
+gettext.install("bottles", localedir)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from gi.repository import Gio
+
     resource = Gio.Resource.load(gresource_path)
     # noinspection PyProtectedMember
     resource._register()
 
     from bottles.frontend import main
+
     sys.exit(main.main(APP_VERSION))

@@ -25,18 +25,18 @@ from typing import Optional
 class SandboxManager:
 
     def __init__(
-            self,
-            envs: Optional[dict] = None,
-            chdir: Optional[str] = None,
-            clear_env: bool = False,
-            share_paths_ro: Optional[list] = None,
-            share_paths_rw: Optional[list] = None,
-            share_net: bool = False,
-            share_user: bool = False,
-            share_host_ro: bool = True,
-            share_display: bool = True,
-            share_sound: bool = True,
-            share_gpu: bool = True,
+        self,
+        envs: Optional[dict] = None,
+        chdir: Optional[str] = None,
+        clear_env: bool = False,
+        share_paths_ro: Optional[list] = None,
+        share_paths_rw: Optional[list] = None,
+        share_net: bool = False,
+        share_user: bool = False,
+        share_host_ro: bool = True,
+        share_display: bool = True,
+        share_sound: bool = True,
+        share_gpu: bool = True,
     ):
         self.envs = envs
         self.chdir = chdir
@@ -68,13 +68,20 @@ class SandboxManager:
             _cmd.append("--clearenv")
 
         if self.share_paths_ro:
-            _cmd += [f"--ro-bind {shlex.quote(p)} {shlex.quote(p)}" for p in self.share_paths_ro]
+            _cmd += [
+                f"--ro-bind {shlex.quote(p)} {shlex.quote(p)}"
+                for p in self.share_paths_ro
+            ]
 
         if self.share_paths_rw:
-            _cmd += [f"--bind {shlex.quote(p)} {shlex.quote(p)}" for p in self.share_paths_ro]
+            _cmd += [
+                f"--bind {shlex.quote(p)} {shlex.quote(p)}" for p in self.share_paths_ro
+            ]
 
         if self.share_sound:
-            _cmd.append(f"--ro-bind /run/user/{self.__uid}/pulse /run/user/{self.__uid}/pulse")
+            _cmd.append(
+                f"--ro-bind /run/user/{self.__uid}/pulse /run/user/{self.__uid}/pulse"
+            )
 
         if self.share_gpu:
             pass  # not implemented yet
@@ -106,10 +113,15 @@ class SandboxManager:
             _cmd.append("--clear-env")
 
         if self.share_paths_ro:
-            _cmd += [f"--sandbox-expose-path-ro={shlex.quote(p)}" for p in self.share_paths_ro]
+            _cmd += [
+                f"--sandbox-expose-path-ro={shlex.quote(p)}"
+                for p in self.share_paths_ro
+            ]
 
         if self.share_paths_rw:
-            _cmd += [f"--sandbox-expose-path={shlex.quote(p)}" for p in self.share_paths_rw]
+            _cmd += [
+                f"--sandbox-expose-path={shlex.quote(p)}" for p in self.share_paths_rw
+            ]
 
         if not self.share_net:
             _cmd.append("--no-network")
@@ -136,4 +148,9 @@ class SandboxManager:
         return " ".join(_cmd)
 
     def run(self, cmd: str) -> subprocess.Popen[bytes]:
-        return subprocess.Popen(self.get_cmd(cmd), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return subprocess.Popen(
+            self.get_cmd(cmd),
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )

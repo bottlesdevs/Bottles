@@ -23,4 +23,3 @@ class Notepad(WineProgram):
         if printer_name:
             args = f"/pt {path} {printer_name}"
         return self.launch(args=args, communicate=True, action_name="print")
-

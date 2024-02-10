@@ -10,7 +10,7 @@ class Samples:
                 "sync": "fsync",
                 "fsr": False,
                 "discrete_gpu": True,
-                "pulseaudio_latency": False
+                "pulseaudio_latency": False,
             },
             "Installed_Dependencies": [
                 "d3dx9",
@@ -22,25 +22,21 @@ class Samples:
                 "d3dcompiler_47",
                 "mono",
                 "gecko",
-            ]
+            ],
         },
         "application": {
             "Runner": "wine",
-            "Parameters": {
-                "dxvk": True,
-                "vkd3d": True,
-                "pulseaudio_latency": False
-            },
+            "Parameters": {"dxvk": True, "vkd3d": True, "pulseaudio_latency": False},
             "Installed_Dependencies": [
                 "arial32",
                 "times32",
                 "courie32",
                 "mono",
-                "gecko"
-              # "dotnet40",
-              # "dotnet48"
-            ]
-        }
+                "gecko",
+                # "dotnet40",
+                # "dotnet48"
+            ],
+        },
     }
     bottles_to_steam_relations = {
         "MANGOHUD": ("mangohud", True),
@@ -55,5 +51,5 @@ class Samples:
         "__NV_PRIME_RENDER_OFFLOAD": ("discrete_gpu", True),
         "PULSE_LATENCY_MSEC": ("pulseaudio_latency", True),
         "PROTON_EAC_RUNTIME": ("use_eac_runtime", True),
-        "PROTON_BATTLEYE_RUNTIME": ("use_be_runtime", True)
+        "PROTON_BATTLEYE_RUNTIME": ("use_be_runtime", True),
     }

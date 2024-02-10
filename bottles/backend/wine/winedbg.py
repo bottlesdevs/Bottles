@@ -30,9 +30,7 @@ class WineDbg(WineProgram):
             return processes
 
         res = self.launch(
-            args='--command "info proc"',
-            communicate=True,
-            action_name="get_processes"
+            args='--command "info proc"', communicate=True, action_name="get_processes"
         )
         if not res.ready:
             return processes
@@ -62,13 +60,13 @@ class WineDbg(WineProgram):
                     "pid": w_pid,
                     "threads": w_threads,
                     "name": w_name,
-                    "parent": w_parent
+                    "parent": w_parent,
                 }
                 processes.append(w)
 
         return processes
 
-    def wait_for_process(self, name: str, timeout: float = .5):
+    def wait_for_process(self, name: str, timeout: float = 0.5):
         """Wait for a process to exit."""
         if not self.__wineserver_status():
             return True
@@ -91,24 +89,16 @@ class WineDbg(WineProgram):
             return
 
         if pid:
-            args = "\n".join([
-                "<< END_OF_INPUTS",
-                f"attach 0x{pid}",
-                "kill",
-                "quit",
-                "END_OF_INPUTS"
-            ])
-            res = self.launch(
-                args=args,
-                communicate=True,
-                action_name="kill_process"
+            args = "\n".join(
+                ["<< END_OF_INPUTS", f"attach 0x{pid}", "kill", "quit", "END_OF_INPUTS"]
             )
+            res = self.launch(args=args, communicate=True, action_name="kill_process")
             if res.has_data and "error 5" in res.data and name:
                 subprocess.Popen(
                     f"kill $(pgrep {name[:15]})",
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
-                    shell=True
+                    shell=True,
                 )
                 return
             wineboot.kill()

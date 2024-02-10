@@ -60,7 +60,9 @@ class DependenciesView(Adw.Bin):
         self.entry_search.add_controller(self.ev_controller)
         self.search_bar.set_key_capture_widget(self.window)
 
-        self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
+        self.btn_report.connect(
+            "clicked", open_doc_url, "contribute/missing-dependencies"
+        )
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
 
         if not self.manager.utils_conn.status:
@@ -109,7 +111,7 @@ class DependenciesView(Adw.Bin):
                 window=self.window,
                 config=self.config,
                 dependency=dependency,
-                plain=plain
+                plain=plain,
             )
             self.__registry.append(entry)
             self.list_dependencies.append(entry)
@@ -119,7 +121,7 @@ class DependenciesView(Adw.Bin):
             self.stack.set_visible_child_name("page_deps")
 
         def process_dependencies():
-            time.sleep(.3)  # workaround for freezing bug on bottle load
+            time.sleep(0.3)  # workaround for freezing bug on bottle load
             EventManager.wait(Events.DependenciesOrganizing)
             dependencies = self.manager.supported_dependencies
 

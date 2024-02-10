@@ -20,9 +20,9 @@ from gi.repository import Gtk, GLib, Adw
 from bottles.backend.wine.drives import Drives
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/drive-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/drive-entry.ui")
 class DriveEntry(Adw.ActionRow):
-    __gtype_name__ = 'DriveEntry'
+    __gtype_name__ = "DriveEntry"
 
     # region Widgets
     btn_remove = Gtk.Template.Child()
@@ -39,10 +39,10 @@ class DriveEntry(Adw.ActionRow):
         self.config = parent.config
         self.drive = drive
 
-        '''
+        """
         Set the env var name as ActionRow title and set the
         entry_value to its value
-        '''
+        """
         self.set_title(self.drive[0])
         self.set_subtitle(self.drive[1])
 
@@ -59,6 +59,7 @@ class DriveEntry(Adw.ActionRow):
         Open the file chooser dialog and set the path to the
         selected file
         """
+
         def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 return
@@ -70,7 +71,7 @@ class DriveEntry(Adw.ActionRow):
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Drive Path"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            parent=self.parent.window
+            parent=self.parent.window,
         )
 
         dialog.set_modal(True)
@@ -87,13 +88,36 @@ class DriveEntry(Adw.ActionRow):
         self.parent.add_combo_letter(self.drive[0])
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-drives.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-drives.ui")
 class DrivesDialog(Adw.Window):
-    __gtype_name__ = 'DrivesDialog'
-    __alphabet = ["A", "B", "D", "E", "F", "G", "H",
-                  "I", "J", "K", "L", "M", "N", "O",
-                  "P", "Q", "R", "S", "T", "U", "V",
-                  "W", "X", "Y", "Z"]
+    __gtype_name__ = "DrivesDialog"
+    __alphabet = [
+        "A",
+        "B",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+    ]
 
     # region Widgets
     combo_letter = Gtk.Template.Child()
@@ -162,4 +186,3 @@ class DrivesDialog(Adw.Window):
                 self.str_list_letters.append(item)
 
         self.combo_letter.set_selected(0)
-    

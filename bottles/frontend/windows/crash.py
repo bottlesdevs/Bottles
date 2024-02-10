@@ -45,9 +45,9 @@ class SimilarReportEntry(Adw.ActionRow):
         webbrowser.open(report["html_url"])
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-crash-report.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-crash-report.ui")
 class CrashReportDialog(Adw.Window):
-    __gtype_name__ = 'CrashReportDialog'
+    __gtype_name__ = "CrashReportDialog"
 
     # region Widgets
     btn_send = Gtk.Template.Child()
@@ -68,28 +68,30 @@ class CrashReportDialog(Adw.Window):
 
         # connect signals
         self.btn_send.connect("clicked", self.__open_github, log)
-        self.check_unlock_send.connect('toggled', self.__on_unlock_send)
+        self.check_unlock_send.connect("toggled", self.__on_unlock_send)
 
         self.label_output.set_text(log)
         __similar_reports = self.__get_similar_issues(log)
         if len(__similar_reports) >= 5:
-            '''
+            """
             This issue was reported 5 times, preventing the user from
             sending it again.
-            '''
-            prevent_text = _("""\
+            """
+            prevent_text = _(
+                """\
             This issue was reported 5 times and cannot be sent again.
-            Report your feedback in one of the below existing reports.""")
+            Report your feedback in one of the below existing reports."""
+            )
             self.check_unlock_send.set_sensitive(False)
             self.btn_send.set_tooltip_text(prevent_text)
             self.label_notice.set_text(prevent_text)
 
         elif len(__similar_reports) > 0:
-            '''
+            """
             If there are similar reports, show the box_related and
             append them to list_reports. Otherwise, make the btn_send
             sensitive, so the user can send the report.
-            '''
+            """
             i = 0
             for issue in __similar_reports:
                 self.list_reports.add(SimilarReportEntry(issue))
@@ -140,7 +142,12 @@ class CrashReportDialog(Adw.Window):
         """
         similar_issues = []
         api_url = "https://api.github.com/repos/bottlesdevs/Bottles/issues?filter=all&state=all"
-        with contextlib.suppress(urllib.error.HTTPError, urllib.error.URLError, json.JSONDecodeError, TypeError):
+        with contextlib.suppress(
+            urllib.error.HTTPError,
+            urllib.error.URLError,
+            json.JSONDecodeError,
+            TypeError,
+        ):
             with urllib.request.urlopen(api_url) as r:
                 data = r.read().decode("utf-8")
                 data = json.loads(data)
@@ -152,7 +159,7 @@ class CrashReportDialog(Adw.Window):
 
         return similar_issues
 
-    '''Run executable with args'''
+    """Run executable with args"""
 
     def __open_github(self, widget, log):
         """
