@@ -31,3 +31,6 @@ if [ -f "/run/.containerenv" ]; then
     echo "Looks like you are running in a container, but you don't have flatpak or host-spawn installed."
     echo "Nothing to do here."
 fi
+
+run_host
+exit $?
