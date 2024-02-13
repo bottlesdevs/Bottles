@@ -249,13 +249,18 @@ class InstallerManager:
                 return False
 
         logging.info(f"Executing installer script…")
-        subprocess.Popen(
+        result = subprocess.run(
             f"bash -c '{script}'",
             shell=True,
             cwd=ManagerUtils.get_bottle_path(config),
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        ).communicate()
+            capture_output=True,
+        )
+        logging.info(f"Output: \n{result.stdout.decode()}\n")
+        if result.returncode != 0:
+            # an error happened!
+            err_msg = "Status: FAIL \nError: %s\nCode: %s" % (result.stderr.decode(), result.returncode)
+            logging.error(err_msg)
+            # raise Exception(err_msg) #Raise blocking error
         logging.info(f"Finished executing installer script.")
 
     @staticmethod
