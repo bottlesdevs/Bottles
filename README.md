@@ -20,9 +20,6 @@
     <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg">
   </a>
   <br>
-  <a href="https://github.com/bottlesdevs/Bottles/actions">
-    <img src="https://github.com/bottlesdevs/Bottles/workflows/Build%20release%20packages/badge.svg">
-  </a>
   <a href="https://stopthemingmy.app" title="Please do not theme this app">
     <img src="https://stopthemingmy.app/badge.svg">
   </a>
