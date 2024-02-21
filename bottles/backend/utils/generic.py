@@ -94,7 +94,7 @@ def sort_by_version(_list: list, extra_check: str = "async"):
     def natural_keys(text):
         result = [int(re.search(extra_check, text) is None)]
         result.extend(
-            [int(t) if t.isdigit() else t.lower() for t in re.split("(\d+)", text)]
+            [int(t) if t.isdigit() else t.lower() for t in re.split(r"(\d+)", text)]
         )
         return result
 
