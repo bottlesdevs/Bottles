@@ -71,7 +71,14 @@ class BottlePickerDialog(Adw.ApplicationWindow):
         if row:
             self.destroy()
             subprocess.Popen(
-                ["bottles-cli", "run", "-b", row.bottle, "-e", self.arg_exe]
+                [
+                    "bottles-cli",
+                    "run",
+                    "-b",
+                    f'"{row.bottle}"',
+                    "-e",
+                    f'"{self.arg_exe}"',
+                ]
             )
 
     def __open(self, *_args):
