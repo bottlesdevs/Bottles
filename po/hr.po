@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-01-22 08:01+0000\n"
+"PO-Revision-Date: 2024-02-25 02:02+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -2615,10 +2615,12 @@ msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
 msgstr ""
+"Ovaj program radi s primjetnim greškama, ali te greške ne utječu na "
+"funkcionalnost aplikacije."
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
-msgstr ""
+msgstr "Ovaj program radi s manjim greškama."
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
@@ -3043,16 +3045,15 @@ msgstr ".. i još mnogo toga što možeš pronaći instaliranjem programa Butelj
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
-msgstr ""
+msgstr "Aktualiziraj informacije metapodataka"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Fixed \"Add to Steam\" button"
-msgstr "Dodaj u Steam"
+msgstr "Ispravljen gumb „Dodaj u Steam”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
@@ -3063,9 +3064,8 @@ msgid "Fixed Patool double extraction failing"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "Verzija komponente"
+msgstr "Isparvna verzija"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Fix crash when creating a bottle"
@@ -3073,7 +3073,7 @@ msgstr "Ispravljena greška prilikom stvaranja butelje"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "Velika promjena: Redizajn New Bottle sučelja"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Quality of life improvements:"
@@ -3113,16 +3113,17 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "Ispravljeni razni problemi u vezi s kodiranjem teksta"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
+"Ispravljena greška prilikom preuzimanja ako Bottles nije pokrenut putem "
+"terminala"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "Datum stvaranja"
+msgstr "Ispravljen datum verzije"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
