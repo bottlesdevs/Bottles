@@ -1030,7 +1030,7 @@ class Manager(metaclass=Singleton):
                 fcntl.ioctl(fd, FS_IOC_GETFLAGS, arg, True)
                 arg[0] |= FS_CASEFOLD_FL
                 fcntl.ioctl(fd, FS_IOC_SETFLAGS, arg, True)
-            except:
+            except OSError:
                 logging.info(f"Cannot set casefold flag for directory: {directory}")
             os.close(fd)
         else:
