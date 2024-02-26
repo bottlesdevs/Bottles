@@ -23,10 +23,12 @@ import shutil
 import subprocess
 import time
 import uuid
+import fcntl
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
 from typing import Union, Any, Dict, List, Optional
+from array import array
 
 import pathvalidate
 
@@ -1015,6 +1017,25 @@ class Manager(metaclass=Singleton):
 
         return Result(status=True, data={"config": config})
 
+    @staticmethod
+    def __chattr_f(directory: str):
+        FS_IOC_GETFLAGS = 0x80086601
+        FS_IOC_SETFLAGS = 0x40086602
+        FS_CASEFOLD_FL = 0x40000000
+
+        if os.path.isdir(directory) and len(os.listdir(directory)) == 0:
+            fd = os.open(directory, os.O_RDONLY)
+            try:
+                arg = array('L', [0])
+                fcntl.ioctl(fd, FS_IOC_GETFLAGS, arg, True)
+                arg[0] |= FS_CASEFOLD_FL
+                fcntl.ioctl(fd, FS_IOC_SETFLAGS, arg, True)
+            except:
+                logging.info(f"Cannot set casefold flag for directory: {directory}")
+            os.close(fd)
+        else:
+            logging.info(f"Directory does not exist or is not empty: {directory}")
+
     def create_bottle_from_config(self, config: BottleConfig) -> bool:
         """Create a bottle from a config object."""
         logging.info(f"Creating new {config.Name} bottle from config…")
@@ -1072,6 +1093,11 @@ class Manager(metaclass=Singleton):
             config.Name = f"{config.Name}__{rnd}"
             config.Path = f"{config.Path}__{rnd}"
             os.makedirs(bottle_path)
+
+        # Pre-create drive_c directory and set the case-fold flag
+        bottle_drive_c = os.path.join(bottle_path, "drive_c")
+        os.makedirs(bottle_drive_c)
+        self.__chattr_f(bottle_drive_c)
 
         # write the bottle config file
         saved = config.dump(os.path.join(bottle_path, "bottle.yml"))
@@ -1236,6 +1262,10 @@ class Manager(metaclass=Singleton):
         # create the bottle directory
         try:
             os.makedirs(bottle_complete_path)
+             # Pre-create drive_c directory and set the case-fold flag
+            bottle_drive_c = os.path.join(bottle_complete_path, "drive_c")
+            os.makedirs(bottle_drive_c)
+            self.__chattr_f(bottle_drive_c)
         except:
             logging.error(
                 f"Failed to create bottle directory: {bottle_complete_path}", jn=True
