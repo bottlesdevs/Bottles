@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-03-06 16:01+0000\n"
-"Last-Translator: Kryotek <weblate@kryotek.mozmail.com>\n"
+"PO-Revision-Date: 2024-03-10 16:47+0000\n"
+"Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
 "Language: it\n"
@@ -223,7 +223,7 @@ msgstr "Sviluppatori di Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr "Albano Battistella"
+msgstr "crediti_traduttore"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -405,7 +405,7 @@ msgstr "Ambiente"
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr "Runner"
+msgstr "Avviatore"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
@@ -635,7 +635,7 @@ msgstr "La versione del layer di compatibilità Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
-msgstr "Aggiornamento del runner e dei componenti, attendere…"
+msgstr "Aggiornamento dell'avviatore e dei componenti, attendere…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
@@ -1122,7 +1122,7 @@ msgid ""
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
 "Questi sono percorsi dal tuo sistema host che sono mappati e riconosciuti "
-"come dispositivi dal runner (ad es. C: D:…)."
+"come dispositivi dall'avviatore (ad es. C: D:…)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -2017,7 +2017,7 @@ msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
-"Bottles usa dei runner di compatibilità per fornire ambienti di lavoro "
+"Bottles usa degli avviatori di compatibilità per fornire ambienti di lavoro "
 "equivalenti a Windows isolati e containerizzati in cui vengono eseguiti i "
 "programmi."
 
@@ -2150,11 +2150,12 @@ msgstr "Directory che contiene i dati delle tue Bottiglie."
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
-msgstr "Runner"
+msgstr "Avviatori"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr "Bottles è in modalità offline, quindi i runner non sono disponibili."
+msgstr ""
+"Bottles è in modalità offline, quindi gli avviatori non sono disponibili."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2400,14 +2401,14 @@ msgstr "_Elimina"
 
 #: bottles/frontend/views/bottle_details.py:521
 msgid "Missing Runner"
-msgstr "Runner mancante"
+msgstr "Avviatore mancante"
 
 #: bottles/frontend/views/bottle_details.py:522
 msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
-"Manca il runner richiesto da questa bottiglia. Installalo tramite le "
+"Manca l'avviatore richiesto da questa bottiglia. Installalo tramite le "
 "preferenze in Bottles o scegline uno nuovo per eseguire le applicazioni."
 
 #: bottles/frontend/views/bottle_details.py:597
@@ -2919,7 +2920,7 @@ msgstr "Release candidate"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle release candidate for runners."
-msgstr "Attiva/disattiva le release candidate per i runners."
+msgstr "Attiva/disattiva le release candidate per gli avviatori."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
@@ -2935,7 +2936,7 @@ msgid ""
 "candidate for runners."
 msgstr ""
 "Attiva/disattiva funzioni sperimentali come il versionamento, gli "
-"installatori e i Release candidate per i runner."
+"installatori e i Release candidate per gli avviatori."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
