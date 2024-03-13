@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-12-19 22:12+0000\n"
+"PO-Revision-Date: 2024-02-25 02:02+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.3\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -140,16 +140,16 @@ msgstr "Nema promjena"
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "Uspješno je stvoreno novo stanje [{0}]!"
+msgstr "Novo stanje [{0}] je uspješno stvoreno!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr "Popis stanja je uspješno učitan!"
+msgstr "Popis stanja je uspješno dohvaćen!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "Uspješno je obnovljeno novo stanje [{0}]!"
+msgstr "Stanje [{0}] je uspješno obnovljeno!!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
@@ -689,13 +689,15 @@ msgstr "Prikaz"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr ""
+msgstr "Deep Learning Super Sampling"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"Povećaj performancu nauštrb vizualnih prikaza koristeći DXVK-NVAPI. Radi "
+"samo na novijim NVIDIA GPU-ovima."
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
@@ -703,40 +705,42 @@ msgstr "FidelityFX Super Resolution"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "Povećaj performansu na račun vizualnih prikaza. Radi samo na Vulkanu."
+msgstr "Povećaj performancu nauštrb vizualnih prikaza. Radi samo za Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
 msgstr "Upravljaj FidelityFX Super Resolution postavkama"
 
 #: bottles/frontend/ui/details-preferences.blp:125
-#, fuzzy
 msgid "Discrete Graphics"
-msgstr "Diskretni grafički procesor"
+msgstr "Dodatna grafička kartica"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Koristi dodatnu grafičku karticu za povećanje performance nauštrb potrošnje "
+"energije."
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "Efekti naknadne obrade"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
+"Dodaj razne efekte naknadne obrade koristeći vkBasalt. Radi samo s Vulkan "
+"API-em."
 
 #: bottles/frontend/ui/details-preferences.blp:138
-#, fuzzy
 msgid "Manage Post-Processing Layer settings"
-msgstr "Upravljaj vmtouch postavkama"
+msgstr "Upravljaj postavkama slojeva naknadne obrade"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "Upravljaj načinom prikaza igri na ekranu pomoću Gamescopea."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
@@ -748,12 +752,12 @@ msgstr "Napredne postavke prikaza"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
-msgstr "Izvođenje"
+msgstr "Performanca"
 
 #: bottles/frontend/ui/details-preferences.blp:188
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
-"Aktiviraj sinkronizaciju za povećavanje performanse višejezgrenih procesora."
+"Aktiviraj sinkronizaciju za povećavanje performance višejezgrenih procesora."
 
 #: bottles/frontend/ui/details-preferences.blp:189
 msgid "Synchronization"
@@ -776,25 +780,27 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.blp:202
-#, fuzzy
 msgid "Monitor Performance"
-msgstr "Izvođenje"
+msgstr "Prati performancu"
 
 #: bottles/frontend/ui/details-preferences.blp:203
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
+"Prikaži informacije praćenja kao što su broj sličica u sekundi, temperature, "
+"CPU/GPU opterećenje i više na OpenGL-u i Vulkanu koristeći MangoHud."
 
 #: bottles/frontend/ui/details-preferences.blp:211
-#, fuzzy
 msgid "Feral GameMode"
-msgstr "Modus igranja"
+msgstr "Feral GameMode"
 
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
+"Primijeni niz optimiziranja na tvom uređaju. Može poboljšati performancu "
+"igri."
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
@@ -805,6 +811,8 @@ msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Poboljšaj vrijeme učitavanja pri višestrukom pokretanju igre. Pokretanje "
+"igre će trajati duže pri prvom pokretanju."
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
@@ -910,15 +918,15 @@ msgid "Manage Drives"
 msgstr "Upravljaj pogonima"
 
 #: bottles/frontend/ui/details-preferences.blp:381
-#, fuzzy
 msgid "Automatic Snapshots"
-msgstr "Automatsko verzioniranje"
+msgstr "Automatske snimke"
 
 #: bottles/frontend/ui/details-preferences.blp:382
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
 msgstr ""
+"Automatski stvori snimke prije instaliranja softvera ili mijenjanja postavki."
 
 #: bottles/frontend/ui/details-preferences.blp:391
 msgid "Compression"
@@ -957,9 +965,8 @@ msgid "No Snapshots Found"
 msgstr "Nijedna snimka nije pronađena"
 
 #: bottles/frontend/ui/details-versioning.blp:19
-#, fuzzy
 msgid "Create your first snapshot to start saving states of your preferences."
-msgstr "Stvori prvo stanje za početak korištenja verzioniranja."
+msgstr "Stvori svoju prvu snimku za spremanje stanja tvojih postavki."
 
 #: bottles/frontend/ui/details-versioning.blp:54
 msgid "A short comment"
@@ -1232,9 +1239,8 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr "Ograničenje frekvencije kad prozor nije aktivan"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "Koristi cijele brojeve za skaliranje"
+msgstr "Povećanje sa cijelim brojevima"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1314,7 +1320,7 @@ msgstr "Preglednik dnevnika"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr ""
+msgstr "Promijeni razinu zapisivanja."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
@@ -1480,7 +1486,6 @@ msgid "The new bottle versioning system has landed."
 msgstr "Uveden je novi sustav verzioniranja butelja."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:83
-#, fuzzy
 msgid ""
 "Bottles has a whole new Versioning System that is not backwards compatible.\n"
 "\n"
@@ -1499,13 +1504,13 @@ msgstr ""
 "\n"
 "Da bismo nastavili koristiti verzioniranje, moramo ponovo inicijalizirati "
 "repozitorij butelje. To neće izbrisati podatke iz tvoje butelje, ali će "
-"izbrisati sva postojeća stanja i stvoriti novo.\n"
+"izbrisati sve postojeće snimke i stvoriti novu butelju.\n"
 "\n"
 "Ako se moraš vratiti na jedno prethodno stanje prije nastavljanja, zatvori "
-"ovaj prozor i obnovi stanje, a zatim ponovo otvori butelju za ponovno "
+"ovaj prozor i obnovi snimku, a zatim ponovo otvori butelju za ponovno "
 "prikazivanje ovog prozora.\n"
 "\n"
-"Stari sustav bit će ukinut u jednom od sljedećih izdanja."
+"Stari sustav će se ukinuti u jednom od sljedećih izdanja."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
@@ -1518,7 +1523,7 @@ msgstr "Gotovo! Pokreni Butelje ponovo."
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
 msgid "Post-Processing Effects Settings"
-msgstr ""
+msgstr "Postavke efekata naknadne obrade"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
@@ -1664,7 +1669,7 @@ msgid ""
 msgstr ""
 "Minimalna FXAA kvaliteta praga rubova minimalna je vrijednost tamnih piksela "
 "koje FXAA algoritam zanemaruje. Korištenjem većih vrijednosti, FXAA će "
-"zanemariti piksele ispod navedene vrijednosti i može povećati performansu."
+"zanemariti piksele ispod navedene vrijednosti i može povećati performancu."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
 msgid ""
@@ -1680,7 +1685,7 @@ msgid ""
 "detect more edges at the expense of performance."
 msgstr ""
 "SMAA prag određuje osjetljivost otkrivanja rubova. Manje vrijednosti "
-"otkrivaju više rubova nauštrb performanci."
+"otkrivaju više rubova nauštrb performance."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:547
 msgid ""
@@ -1942,23 +1947,20 @@ msgid "Architecture"
 msgstr "Arhitektura"
 
 #: bottles/frontend/ui/new.blp:137
-#, fuzzy
 msgid "32-bit should only be used if strictly necessary."
-msgstr ""
-"Preporučujemo koristiti 32-bitnu verziju samo ako je izričito potrebno."
+msgstr "Koristi 32-bitnu verziju samo ako je izričito potrebno."
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
 msgstr "Izvezi prilagođenu konfiguraciju."
 
 #: bottles/frontend/ui/new.blp:176
-#, fuzzy
 msgid "Bottle Directory"
-msgstr "Odaberi jednu mapu"
+msgstr "Direktorij butelje"
 
 #: bottles/frontend/ui/new.blp:177
 msgid "Directory that will contain the data of this bottle."
-msgstr ""
+msgstr "Direktorij koji će sadržati podatke ove butelje."
 
 #: bottles/frontend/ui/new.blp:249
 msgid "_Close"
@@ -2003,7 +2005,6 @@ msgid "We need a few more minutes to set everything up…"
 msgstr "Trebamo još par minuta kako bismo sve postavili …"
 
 #: bottles/frontend/ui/onboard.blp:105
-#, fuzzy
 msgid "All Ready!"
 msgstr "Sve je spremno!"
 
@@ -2116,13 +2117,12 @@ msgid "Advanced"
 msgstr "Napredno"
 
 #: bottles/frontend/ui/preferences.blp:131
-#, fuzzy
 msgid "Bottles Directory"
-msgstr "Odaberi jednu mapu"
+msgstr "Direktorij za Butelje"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr ""
+msgstr "Direktorij koji sadrži podatke tvoje Butelje."
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
@@ -2131,6 +2131,7 @@ msgstr "Pokretači"
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
 msgstr ""
+"„Bottles” radi u izvanmrežnom načinu rada, stoga pokretači nisu dostupni."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2146,7 +2147,7 @@ msgstr "DLL komponente"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr ""
+msgstr "„Bottles” radi u izvanmrežnom načinu rada, stoga DLL-ovi nisu dostupni."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2186,12 +2187,10 @@ msgid "In early development."
 msgstr "U ranoj fazi razvoja."
 
 #: bottles/frontend/ui/program-entry.blp:19
-#, fuzzy
 msgid "Launch with Terminal"
 msgstr "Pokreni s terminalom"
 
 #: bottles/frontend/ui/program-entry.blp:25
-#, fuzzy
 msgid "Browse Path"
 msgstr "Pregledaj stazu"
 
@@ -2200,9 +2199,8 @@ msgid "Change Launch Options…"
 msgstr "Promijeni opcije pokretanja …"
 
 #: bottles/frontend/ui/program-entry.blp:43
-#, fuzzy
 msgid "Add to Library"
-msgstr "Dodaj u moju biblioteku"
+msgstr "Dodaj u biblioteku"
 
 #: bottles/frontend/ui/program-entry.blp:47
 msgid "Add Desktop Entry"
@@ -2293,9 +2291,8 @@ msgstr "„{0}” dodan"
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "Odaberi butelju"
+msgstr "Odaberi izvršnu datoteku"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2308,7 +2305,7 @@ msgstr "Sakrij skrivene programe"
 #: bottles/frontend/views/bottle_details.py:383
 #: bottles/frontend/widgets/library.py:156
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\"…"
 msgstr "Pokreće se „{0}” …"
 
@@ -2345,19 +2342,18 @@ msgid "Select the location where to save the backup archive"
 msgstr "Odaberi mjesto za spremanje arhive sigurnosne kopije"
 
 #: bottles/frontend/views/bottle_details.py:435
-#, fuzzy
 msgid "Backup"
-msgstr "Sigurnosna kopija {0}"
+msgstr "Sigurnosna kopija"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
 msgid "Backup created for \"{0}\""
-msgstr "Sigurnosna kopija spremljena za „{0}”"
+msgstr "Sigurnosna kopija stvorena za „{0}”"
 
 #: bottles/frontend/views/bottle_details.py:442
 #, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr "Neuspjelo spremanje sigurnosne kopije za „{0}”"
+msgstr "Sigurnosna kopija neuspjela za „{0}”"
 
 #: bottles/frontend/views/bottle_details.py:501
 msgid "Are you sure you want to permanently delete \"{}\"?"
@@ -2374,61 +2370,57 @@ msgid "_Delete"
 msgstr "_Izbriši"
 
 #: bottles/frontend/views/bottle_details.py:521
-#, fuzzy
 msgid "Missing Runner"
-msgstr "Wine pokretači"
+msgstr "Nedostaje pokretač"
 
 #: bottles/frontend/views/bottle_details.py:522
 msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
+"Zatraženi pokretač ove butelje nedostaje. Instaliraj ga u postavkama ili "
+"odaberi jedan novi za pokretanje aplikacija."
 
 #: bottles/frontend/views/bottle_details.py:597
-#, fuzzy
 msgid "Are you sure you want to force stop all processes?"
-msgstr "Stvarno želiš izbrisati ovu butelju i sve datoteke?"
+msgstr "Stvarno želiš prisilno prekinuti sve procese?"
 
 #: bottles/frontend/views/bottle_details.py:598
 msgid "This can cause data loss, corruption, and programs to malfunction."
-msgstr ""
+msgstr "To može prouzročiti gubitak podataka, oštećenje i kvarove programa."
 
 #: bottles/frontend/views/bottle_details.py:601
 msgid "Force _Stop"
-msgstr ""
+msgstr "_Prisili prekid"
 
 #: bottles/frontend/views/bottle_preferences.py:195
-#, fuzzy
 msgid "This feature is unavailable on your system."
 msgstr "Ova funkcija nije dostupna na tvom sustavu."
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} Za dodavanje ove funkcije pokreni flatpak instalaciju"
 
 #: bottles/frontend/views/bottle_preferences.py:246
-#, fuzzy
 msgid "This bottle name is already in use."
-msgstr "Ime sadrži posebne znakove ili se već koristi."
+msgstr "Ime butelje se već koristi."
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "Radna mapa"
+msgstr "Odaberi radni direktorij"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
-msgstr ""
+msgstr "Direktorij koji sadrži podatke od „{}”."
 
 #: bottles/frontend/views/bottle_preferences.py:746
-#, fuzzy
 msgid "Are you sure you want to delete all snapshots?"
-msgstr "Stvarno želiš izbrisati ovu butelju i sve datoteke?"
+msgstr "Stvarno želiš izbrisati sve snimke?"
 
 #: bottles/frontend/views/bottle_preferences.py:747
 msgid "This will delete all snapshots but keep your files."
-msgstr ""
+msgstr "Ovo će izbrisati sve snimke, ali će zadržati tvoje datoteke."
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2480,7 +2472,7 @@ msgstr "--"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "Pokreni izvršnu datoteku u „{self.config.Name}”"
 
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
@@ -2502,23 +2494,20 @@ msgid "Fetched {0} of {1} packages"
 msgstr "Preuzeto {0} od {1} paketa"
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "Odaberi jednu mapu"
+msgstr "Odaberi direktorij butelje"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
 msgstr "Stvaranje butelje …"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "Stvori novu butelju"
+msgstr "Neuspjelo stvaranje butelje"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "Neuspjelo stvaranje butelje zbog jedne ili više grešaka."
 
 #. Show success
 #: bottles/frontend/views/new.py:232
@@ -2528,16 +2517,15 @@ msgstr "Butelja je stvorena"
 #: bottles/frontend/views/new.py:233
 #, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr "„{0}” je uspješno stvoreno."
+msgstr "„{0}” je uspješno stvoren."
 
 #: bottles/frontend/views/preferences.py:142
 msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "Steam nije pronađen ili Butelje nema potrebne dozvole."
 
 #: bottles/frontend/views/preferences.py:176
-#, fuzzy
 msgid "Select Bottles Path"
-msgstr "Odaberi butelju"
+msgstr "Odaberi stazu za „Butelje”"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
@@ -2596,9 +2584,9 @@ msgid "Manifest for {0}"
 msgstr "Manifest za {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "„{0}” instalirano"
+msgstr "„{0}” deinstalirano"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
@@ -2627,14 +2615,16 @@ msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
 msgstr ""
+"Ovaj program radi s primjetnim greškama, ali te greške ne utječu na "
+"funkcionalnost aplikacije."
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
-msgstr ""
+msgstr "Ovaj program radi s manjim greškama."
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
-msgstr ""
+msgstr "Ovaj program radi savršeno."
 
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
@@ -2643,12 +2633,12 @@ msgstr "Pregled za {0}"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "Pokreće se „{0}” …"
+msgstr "Prekida se „{0}” …"
 
 #: bottles/frontend/widgets/program.py:190
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
 msgstr "Pokreće se „{0}” sa Steamom …"
 
@@ -2673,17 +2663,17 @@ msgid "\"{0}\" renamed to \"{1}\""
 msgstr "„{0}” preimenovan u „{1}”"
 
 #: bottles/frontend/widgets/program.py:297
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
-msgstr "Ikona programa na radnoj površini stvorena za „{0}”"
+msgstr "Unos na radnoj površini stvoren za „{0}”"
 
 #: bottles/frontend/widgets/program.py:313
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your library"
 msgstr "„{0}” dodan u tvoju biblioteku"
 
 #: bottles/frontend/widgets/program.py:331
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your Steam library"
 msgstr "„{0}” dodan u tvoju Steam biblioteku"
 
@@ -2701,14 +2691,12 @@ msgstr ""
 "izvještaja."
 
 #: bottles/frontend/windows/display.py:102
-#, fuzzy
 msgid "Updating display settings, please wait…"
-msgstr "Aktualiziranje verzije Windowsa, pričekaj …"
+msgstr "Aktualiziranje postavki prikaza. Pričekaj …"
 
 #: bottles/frontend/windows/display.py:114
-#, fuzzy
 msgid "Display settings updated"
-msgstr "Postavke prikaza"
+msgstr "Postavke prikaza su aktualizirana"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
@@ -2738,7 +2726,6 @@ msgid "Copy to clipboard"
 msgstr "Kopiraj u međuspremnik"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
 msgstr "Odaberi datoteku resursa"
 
@@ -2786,9 +2773,8 @@ msgid "This setting is different from the bottle's default."
 msgstr "Ova se postavka razlikuje od standardne postavke butelje."
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "Odaberi datoteku"
+msgstr "Odaberi skripta"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
@@ -2803,11 +2789,10 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
-#, fuzzy
 msgid "Run Windows Software"
 msgstr "Pokreći Windows softver"
 
@@ -3060,16 +3045,15 @@ msgstr ".. i još mnogo toga što možeš pronaći instaliranjem programa Butelj
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
-msgstr ""
+msgstr "Aktualiziraj informacije metapodataka"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Fixed \"Add to Steam\" button"
-msgstr "Dodaj u Steam"
+msgstr "Ispravljen gumb „Dodaj u Steam”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
@@ -3080,9 +3064,8 @@ msgid "Fixed Patool double extraction failing"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "Verzija komponente"
+msgstr "Isparvna verzija"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Fix crash when creating a bottle"
@@ -3090,7 +3073,7 @@ msgstr "Ispravljena greška prilikom stvaranja butelje"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "Velika promjena: Redizajn New Bottle sučelja"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Quality of life improvements:"
@@ -3114,9 +3097,8 @@ msgid "Adding shortcut to Steam resulted an error"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
-#, fuzzy
 msgid "Importing backups resulted an error"
-msgstr "Uvoz sigurnosne kopije: {0}"
+msgstr "Uvoz sigurnosnih kopija koje su prouzročile grešku"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
@@ -3131,16 +3113,17 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "Ispravljeni razni problemi u vezi s kodiranjem teksta"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
+"Ispravljena greška prilikom preuzimanja ako Bottles nije pokrenut putem "
+"terminala"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "Datum stvaranja"
+msgstr "Ispravljen datum verzije"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
