@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-08-16 04:48+0000\n"
+"PO-Revision-Date: 2024-03-21 06:01+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -26,7 +26,7 @@ msgstr "パスが設定されていません"
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
 msgid "Backup {0}"
-msgstr "バックアップ{0}"
+msgstr "バックアップ {0}"
 
 #: bottles/backend/managers/backup.py:101
 #, python-brace-format
@@ -61,15 +61,15 @@ msgstr "見つかったテンプレートを適用しています…"
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1197
 msgid "The Wine config is being updated…"
-msgstr "WINE設定を更新しています…"
+msgstr "WINE 設定を更新しています…"
 
 #: bottles/backend/managers/manager.py:1199
 msgid "Wine config updated!"
-msgstr "WINE設定を更新しました！"
+msgstr "WINE 設定を更新しました!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Flatpakとして実行中、ユーザーディレクトリをサンドボックス化しています…"
+msgstr "Flatpak として実行中、ユーザーディレクトリをサンドボックス化しています…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
@@ -77,11 +77,11 @@ msgstr "ユーザーディレクトリをサンドボックス化しています
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
-msgstr "Windowsのバージョンを設定しています…"
+msgstr "Windows のバージョンを設定しています…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
-msgstr "CMDのデフォルト設定を適用しています…"
+msgstr "CMD のデフォルト設定を適用しています…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
@@ -102,15 +102,15 @@ msgstr "(!) レシピが見つからないか有効ではありません…"
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
-msgstr "DXVKをインストールしています…"
+msgstr "DXVK をインストールしています…"
 
 #: bottles/backend/managers/manager.py:1317
 msgid "Installing VKD3D…"
-msgstr "VKD3Dをインストールしています…"
+msgstr "VKD3D をインストールしています…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Installing DXVK-NVAPI…"
-msgstr "DXVK-NVAPIをインストールしています…"
+msgstr "DXVK-NVAPI をインストールしています…"
 
 #: bottles/backend/managers/manager.py:1335
 #, python-format
@@ -140,16 +140,16 @@ msgstr "コミットする項目なし"
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "新しい状態 [{0}] を正常に作成しました！"
+msgstr "新しい状態 [{0}] を正常に作成しました!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr "状態一覧を正常に取得しました！"
+msgstr "状態一覧を正常に取得しました!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "状態 {0} を正常に復元しました！"
+msgstr "状態 {0} を正常に復元しました!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
@@ -173,7 +173,7 @@ msgstr "実行可能ファイルのパス"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr "lnkパス"
+msgstr "lnk パス"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
@@ -202,29 +202,29 @@ msgstr "[更新] リクエストを受信しました。"
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "寄付"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "サードパーティーのライブラリと Special Thanks"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "スポンサーと資金提供"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "Copyright © 2017 Bottles の開発者"
+msgstr "Copyright © 2017 Bottles Developers"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
 msgid "Bottles Developers"
-msgstr "Bottles の開発者"
+msgstr "Bottles Developers"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "Ryo Nakano"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -294,9 +294,8 @@ msgstr "この依存関係をダウンロードしてインストールします
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
-msgstr ""
-"インストールエラーが発生しました。Bottlesを再起動してクラッシュレポートを読み"
-"取るか、ターミナルから実行して出力を読み取ります。"
+msgstr "インストールエラーが発生しました。Bottles を再起動してクラッシュレポートを読"
+"み取るか、ターミナルから実行して出力を読み取ります。"
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -353,7 +352,7 @@ msgstr "ボトルを削除…"
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "セカンダリーメニュー"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
@@ -435,6 +434,10 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"実行可能ファイルを実行するには\"実行可能ファイルを実行…\"を、"
+"プログラム一覧に実行可能ファイルを追加するには\"ショートカットを追加…\"を、コ"
+"ミュニティーがキュレーションしたプログラムをインストールするには\"プログラム"
+"をインストール…\"をクリックします。"
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -539,11 +542,11 @@ msgstr "依存関係を検索…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "オフラインです :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Bottles はオフラインモードで実行中です。依存関係は利用できません。"
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -645,7 +648,7 @@ msgstr "Direct3D 9/10/11 を Vulkan に変換することで、互換性を向�
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
-msgstr "DXVKを更新しています。お待ちください…"
+msgstr "DXVK を更新しています。お待ちください…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:266
@@ -658,7 +661,7 @@ msgstr "Direct3D 12 を Vulkan に変換することで、互換性を向上し�
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
-msgstr "VKD3Dを更新しています。お待ちください…"
+msgstr "VKD3D を更新しています。お待ちください…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
@@ -667,7 +670,7 @@ msgstr "DXVK NVAPI"
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "DXVK-NVAPIを更新しています。お待ちください…"
+msgstr "DXVK-NVAPI を更新しています。お待ちください…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
@@ -675,21 +678,16 @@ msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
-#, fuzzy
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
-msgstr ""
-"NVIDIA Reflex の代替機能です。アンチチートソフトウェアによっては検出する可能"
-"性があります。"
+msgstr "反応速度を上げます。アンチチートソフトウェアに検出される可能性があります。"
 
 #: bottles/frontend/ui/details-preferences.blp:71
-#, fuzzy
 msgid "Updating LatencyFleX, please wait…"
-msgstr "DXVKを更新しています。お待ちください…"
+msgstr "LatencyFleX を更新しています。お待ちください…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
-#, fuzzy
 msgid "Display"
-msgstr "ディスプレイの設定"
+msgstr "ディスプレイ"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
@@ -745,16 +743,15 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
-msgstr "Gamescope設定を管理"
+msgstr "Gamescope 設定を管理"
 
 #: bottles/frontend/ui/details-preferences.blp:171
-#, fuzzy
 msgid "Advanced Display Settings"
-msgstr "ディスプレイの設定"
+msgstr "高度なディスプレイ設定"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
-msgstr "パフォーマンス優先"
+msgstr "パフォーマンス"
 
 #: bottles/frontend/ui/details-preferences.blp:188
 msgid "Enable synchronization to increase performance of multicore processors."
@@ -781,15 +778,15 @@ msgid "Futex2"
 msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.blp:202
-#, fuzzy
 msgid "Monitor Performance"
-msgstr "パフォーマンス優先"
+msgstr "パフォーマンスを監視"
 
 #: bottles/frontend/ui/details-preferences.blp:203
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
-msgstr ""
+msgstr "MangoHud を使い、フレームレート、温度、CPU/GPU 負荷などのモニタリング情報を "
+"OpenGL と Vulkan 上に表示します。"
 
 #: bottles/frontend/ui/details-preferences.blp:211
 #, fuzzy
@@ -803,50 +800,47 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
-msgstr ""
+msgstr "ゲームファイルをプリロード"
 
 #: bottles/frontend/ui/details-preferences.blp:222
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
-msgstr ""
+msgstr "ゲームを複数回起動した場合の読み込み時間を改善します。初回起動時間は長くなり"
+"ます。"
 
 #: bottles/frontend/ui/details-preferences.blp:226
-#, fuzzy
 msgid "Manage vmtouch settings"
-msgstr "Gamescope設定を管理"
+msgstr "vmtouch 設定を管理"
 
 #: bottles/frontend/ui/details-preferences.blp:241
-#, fuzzy
 msgid "OBS Game Capture"
-msgstr "OBS Vulkanキャプチャ"
+msgstr "OBS ゲームキャプチャ"
 
 #: bottles/frontend/ui/details-preferences.blp:242
-#, fuzzy
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr ""
-"すべてのプログラムに対し、OBSゲームキャプチャーを使用するかどうかを切り替えま"
-"す。"
+msgstr "Vulkan と OpenGL を使う全プログラムに対し、OBS "
+"ゲームキャプチャの使用有無を設定します。"
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
-msgstr ""
+msgstr "互換性"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 msgid "Windows Version"
-msgstr "Windowsのバージョン"
+msgstr "Windows のバージョン"
 
 #: bottles/frontend/ui/details-preferences.blp:257
 msgid "Updating Windows version, please wait…"
-msgstr "Windowsのバージョンを更新しています。お待ちください…"
+msgstr "Windows のバージョンを更新しています。お待ちください…"
 
 #: bottles/frontend/ui/details-preferences.blp:266
 msgid "Language"
-msgstr ""
+msgstr "言語"
 
 #: bottles/frontend/ui/details-preferences.blp:267
 msgid "Choose the language to use with programs."
-msgstr ""
+msgstr "このプログラムで使用する言語を選択してください。"
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Dedicated Sandbox"
@@ -864,7 +858,7 @@ msgstr "サンドボックスのパーミッションを管理"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr "Bottlesのランタイム"
+msgstr "Bottles ランタイム"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 #, fuzzy
@@ -877,7 +871,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Steamのランタイム"
+msgstr "Steam のランタイム"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 #, fuzzy
@@ -911,7 +905,7 @@ msgstr "(デフォルト)"
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
 #: bottles/frontend/ui/dialog-dll-overrides.blp:12
 msgid "DLL Overrides"
-msgstr "DLLのオーバーライド"
+msgstr "DLL のオーバーライド"
 
 #: bottles/frontend/ui/details-preferences.blp:357
 #: bottles/frontend/ui/dialog-env-vars.blp:20
@@ -923,9 +917,8 @@ msgid "Manage Drives"
 msgstr "ドライブを管理"
 
 #: bottles/frontend/ui/details-preferences.blp:381
-#, fuzzy
 msgid "Automatic Snapshots"
-msgstr "バージョン管理"
+msgstr "自動スナップショット"
 
 #: bottles/frontend/ui/details-preferences.blp:382
 msgid ""
@@ -934,9 +927,8 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:391
-#, fuzzy
 msgid "Compression"
-msgstr "コンポーネントのバージョン"
+msgstr "圧縮"
 
 #: bottles/frontend/ui/details-preferences.blp:392
 msgid ""
@@ -946,16 +938,15 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
-msgstr ""
+msgstr "除外パターンを使う"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr ""
+msgstr "スナップショットから除外するパス。"
 
 #: bottles/frontend/ui/details-preferences.blp:405
-#, fuzzy
 msgid "Manage Patterns"
-msgstr "ランナーを管理"
+msgstr "パターンを管理"
 
 #: bottles/frontend/ui/details-taskmanager.blp:17
 msgid "Refresh"
@@ -966,14 +957,12 @@ msgid "Stop process"
 msgstr "プロセスを停止"
 
 #: bottles/frontend/ui/details-versioning.blp:18
-#, fuzzy
 msgid "No Snapshots Found"
-msgstr "バックアップはありません"
+msgstr "スナップショットが見つかりません"
 
 #: bottles/frontend/ui/details-versioning.blp:19
-#, fuzzy
 msgid "Create your first snapshot to start saving states of your preferences."
-msgstr "最初のバックアップを作成して、バージョン管理を始めましょう。"
+msgstr "最初のスナップショットを作成して、設定状態の保存を開始しましょう。"
 
 #: bottles/frontend/ui/details-versioning.blp:54
 msgid "A short comment"
@@ -1024,7 +1013,7 @@ msgstr "新しいボトルを作成"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr "Bottlesクラッシュレポート"
+msgstr "Bottles クラッシュレポート"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1047,9 +1036,8 @@ msgstr "不具合を報告"
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
-msgstr ""
-"前回、Bottlesはクラッシュしました。開発者がこの不具合を修正できるよう、以下の"
-"スタックトレースと一緒に報告してください。"
+msgstr "前回、Bottles はクラッシュしました。開発者がこの不具合を修正できるよう、以下"
+"のスタックトレースと一緒に報告してください。"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
 msgid ""
@@ -1090,9 +1078,8 @@ msgstr "終了"
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
-msgstr ""
-"ダイナミックリンクライブラリは、組み込み (Wineが提供)またはネイティブ (プログ"
-"ラムが提供) から指定できます。"
+msgstr "ダイナミックリンクライブラリは、組み込み (Wine が提供) またはネイティブ "
+"(プログラムが提供) から指定できます。"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
@@ -1166,27 +1153,25 @@ msgstr "既存の変数"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "除外パターン"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
-msgstr ""
+msgstr "ディレクトリをバージョン管理の対象外にするパターンを定義します。"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
-#, fuzzy
 msgid "Pattern"
-msgstr "ドライブレター"
+msgstr "パターン"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:37
-#, fuzzy
 msgid "Existing Patterns"
-msgstr "既存のドライブ"
+msgstr "既存のパターン"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
-msgstr "Gamescopeの設定"
+msgstr "Gamescope の設定"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:30
 #: bottles/frontend/ui/dialog-launch-options.blp:32
@@ -1197,10 +1182,9 @@ msgstr "保存"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "ゲームの表示方法を管理します。"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
-#, fuzzy
 msgid "Game Resolution"
 msgstr "ゲームの解像度"
 
@@ -1219,9 +1203,8 @@ msgid "Height"
 msgstr "高さ"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
-#, fuzzy
 msgid "Window Resolution"
-msgstr "Windowsのバージョン"
+msgstr "Windows の解像度"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:82
 msgid ""
@@ -1231,25 +1214,21 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
-msgstr ""
+msgstr "その他"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
-#, fuzzy
 msgid "Frame Rate Limit"
-msgstr "フレームレート制限 (例: 60)"
+msgstr "フレームレート制限"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
-#, fuzzy
 msgid "Frame Rate Limit When Unfocused"
-msgstr "フレームレート制限 (非フォーカス時)"
+msgstr "非フォーカス時のフレームレート制限"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "スケーリングに整数値を使う"
+msgstr "整数スケーリング"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
-#, fuzzy
 msgid "Window Type"
 msgstr "ウィンドウの種類"
 
@@ -1263,7 +1242,7 @@ msgstr "全画面"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr "インストールを続行してもよろしいですか？"
+msgstr "インストールを続行してもよろしいですか?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
 msgid "Start Installation"
@@ -1281,7 +1260,7 @@ msgstr "続行"
 
 #: bottles/frontend/ui/dialog-installer.blp:127
 msgid "Completed!"
-msgstr "完了しました！"
+msgstr "完了しました!"
 
 #: bottles/frontend/ui/dialog-installer.blp:130
 msgid "Show Programs"
@@ -1289,7 +1268,7 @@ msgstr "プログラムを表示"
 
 #: bottles/frontend/ui/dialog-installer.blp:148
 msgid "Installation Failed!"
-msgstr "インストールに失敗しました！"
+msgstr "インストールに失敗しました!"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
@@ -1301,7 +1280,7 @@ msgstr "すべてのメッセージ"
 
 #: bottles/frontend/ui/dialog-journal.blp:13
 msgid "Critical"
-msgstr ""
+msgstr "致命的"
 
 #: bottles/frontend/ui/dialog-journal.blp:17
 msgid "Errors"
@@ -1325,7 +1304,7 @@ msgstr "ジャーナルブラウザー"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr ""
+msgstr "ログレベルを変更します。"
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
@@ -1393,9 +1372,8 @@ msgid "Proton Disclaimer"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:21
-#, fuzzy
 msgid "Use Proton"
-msgstr "ProtonDB"
+msgstr "Proton を使う"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:35
 msgid ""
@@ -1414,7 +1392,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
-msgstr ""
+msgstr "了解しました。"
 
 #: bottles/frontend/ui/dialog-rename.blp:7
 msgid "Rename"
@@ -1505,7 +1483,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
-msgstr ""
+msgstr "完了しました!　Bottles を再起動してください。"
 
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
@@ -1693,7 +1671,7 @@ msgstr "ネイティブが利用できなければ組み込みを使う"
 
 #: bottles/frontend/ui/dll-override-entry.blp:12
 msgid "Disabled"
-msgstr ""
+msgstr "無効"
 
 #: bottles/frontend/ui/dll-override-entry.blp:20
 #: bottles/frontend/ui/drive-entry.blp:12
@@ -1725,14 +1703,12 @@ msgid "Manager"
 msgstr "タスクマネージャー"
 
 #: bottles/frontend/ui/importer-entry.blp:38
-#, fuzzy
 msgid "This Wine prefix was already imported in Bottles."
-msgstr "このWine環境はBottlesにインポート済みです。"
+msgstr "この Wine 環境は Bottles にインポート済みです。"
 
 #: bottles/frontend/ui/importer.blp:22
-#, fuzzy
 msgid "Import a Bottle backup"
-msgstr "Bottlesのバックアップをインポート"
+msgstr "Bottles のバックアップをインポート"
 
 #: bottles/frontend/ui/importer.blp:28
 msgid "Search again for prefixes"
@@ -1747,6 +1723,9 @@ msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
+"外部の環境が見つかりません。Bottles にアクセス権限はありますか?\n"
+"バックアップからボトルをインポートするには、上部のアイコンを使用してください"
+"。"
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
@@ -1761,32 +1740,28 @@ msgid "Read Review…"
 msgstr "レビューを読む…"
 
 #: bottles/frontend/ui/installer-entry.blp:34
-#, fuzzy
 msgid "Installer name"
-msgstr "インストーラー"
+msgstr "インストーラーの名前"
 
 #: bottles/frontend/ui/installer-entry.blp:35
-#, fuzzy
 msgid "Installer description"
-msgstr "インストーラー"
+msgstr "インストーラーの説明"
 
 #: bottles/frontend/ui/installer-entry.blp:42
 msgid "Unknown"
-msgstr ""
+msgstr "不明"
 
 #: bottles/frontend/ui/installer-entry.blp:51
-#, fuzzy
 msgid "Install this Program"
 msgstr "このプログラムをインストール"
 
 #: bottles/frontend/ui/installer-entry.blp:69
-#, fuzzy
 msgid "Program Menu"
-msgstr "プログラム"
+msgstr "プログラムメニュー"
 
 #: bottles/frontend/ui/library-entry.blp:36
 msgid "No Thumbnail"
-msgstr ""
+msgstr "サムネイルなし"
 
 #: bottles/frontend/ui/library-entry.blp:57
 msgid "Launch"
@@ -1795,7 +1770,7 @@ msgstr "起動"
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
 msgid "Launch with Steam"
-msgstr "Steamを使って起動"
+msgstr "Steam を使って起動"
 
 #: bottles/frontend/ui/library-entry.blp:108
 msgid "Item name"
@@ -1854,7 +1829,7 @@ msgstr "Steam Proton"
 #: bottles/frontend/ui/list.blp:42 bottles/frontend/windows/main_window.py:191
 #: data/com.usebottles.bottles.metainfo.xml.in:7
 msgid "Bottles"
-msgstr "Bottles"
+msgstr "ボトル"
 
 #: bottles/frontend/ui/list.blp:49
 msgid "Create New Bottle…"
@@ -1862,11 +1837,11 @@ msgstr "新しいボトルを作成…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
-msgstr "検索結果はありません"
+msgstr "検索結果なし"
 
 #: bottles/frontend/ui/list.blp:64
 msgid "Try a different search."
-msgstr "別の単語を入力してみてください。"
+msgstr "別の単語をお試しください。"
 
 #: bottles/frontend/ui/loading.blp:13
 msgid "Starting up…"
@@ -1923,7 +1898,7 @@ msgstr "アーキテクチャ"
 
 #: bottles/frontend/ui/new.blp:137
 msgid "32-bit should only be used if strictly necessary."
-msgstr "特に理由がなければ、32bitの使用をお勧めします。"
+msgstr "特に理由がなければ 32bit をお使いください。"
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
@@ -1943,7 +1918,7 @@ msgstr "閉じる(_C)"
 
 #: bottles/frontend/ui/new.blp:281
 msgid "This name is unavailable, please try another."
-msgstr "この名前は利用できません、ほかの名前をお試しください。"
+msgstr "この名前は利用できません、他の名前をお試しください。"
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
@@ -1952,22 +1927,23 @@ msgstr "戻る"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
-msgstr "Bottlesへようこそ"
+msgstr "Bottles へようこそ"
 
 #: bottles/frontend/ui/onboard.blp:60
 msgid "Run Windows Software on Linux."
-msgstr "Linux上でWindowsソフトウェアを実行します。"
+msgstr "Linux 上で Windows ソフトウェアを実行します。"
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
-msgstr "Bottles 内で Windows を実行します"
+msgstr "ボトルの中で Windows を実行します"
 
 #: bottles/frontend/ui/onboard.blp:66
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
-msgstr ""
+msgstr "Bottles は、互換ランナーを使用することで、分離・コンテナ化された Windows "
+"風のプログラム動作環境を提供します。"
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
@@ -1979,7 +1955,7 @@ msgstr "セットアップはあと数分で完了します…"
 
 #: bottles/frontend/ui/onboard.blp:105
 msgid "All Ready!"
-msgstr "完了しました！"
+msgstr "完了しました!"
 
 #: bottles/frontend/ui/onboard.blp:114
 msgid "Please Finish the setup first"
@@ -2013,7 +1989,7 @@ msgstr "ダークモード"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
-msgstr "Bottlesがダークテーマを使用するかどうかを設定します。"
+msgstr "Bottles がダークテーマを使用するかどうか。"
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
@@ -2021,7 +1997,7 @@ msgstr "更新日を表示"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
-msgstr "ボトル一覧に更新日を表示するかどうかを設定します。"
+msgstr "ボトル一覧に更新日を表示するかどうか。"
 
 #: bottles/frontend/ui/preferences.blp:42
 #: data/com.usebottles.bottles.gschema.xml:46
@@ -2038,15 +2014,15 @@ msgstr "一時ファイル"
 
 #: bottles/frontend/ui/preferences.blp:53
 msgid "Clean temp files when Bottles launches?"
-msgstr "Bottlesの起動時、一時ファイルをクリーンアップするかどうかの設定です。"
+msgstr "Bottles の起動時、一時ファイルをクリーンアップするかどうか"
 
 #: bottles/frontend/ui/preferences.blp:62
 msgid "Close Bottles After Starting a Program"
-msgstr "プログラム起動後にBottlesを閉じる"
+msgstr "プログラム起動後に Bottles を閉じる"
 
 #: bottles/frontend/ui/preferences.blp:63
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "ファイルマネージャーからプログラムを起動した後、Bottlesを終了します。"
+msgstr "ファイルマネージャーからプログラムを起動した後、Bottles を終了します。"
 
 #: bottles/frontend/ui/preferences.blp:73
 msgid "Integrations"
@@ -2054,50 +2030,47 @@ msgstr "統合"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr "Steam Proton環境"
+msgstr "Steam Proton 環境"
 
 #: bottles/frontend/ui/preferences.blp:77
-#, fuzzy
 msgid "List and manage Steam Proton prefixes."
-msgstr "Steam Proton環境"
+msgstr "Steam Proton 環境を一覧表示し管理します。"
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "プログラム一覧に Steam アプリを表示"
 
 #: bottles/frontend/ui/preferences.blp:98
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "ボトルに Windows 用 Steam のインストールが必要です。"
 
 #: bottles/frontend/ui/preferences.blp:107
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "プログラム一覧に Epic Games を表示"
 
 #: bottles/frontend/ui/preferences.blp:108
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "ボトルに Epic Games Store のインストールが必要です。"
 
 #: bottles/frontend/ui/preferences.blp:117
 msgid "List Ubisoft Games in Programs List"
-msgstr ""
+msgstr "プログラム一覧に Ubisoft ゲームを表示"
 
 #: bottles/frontend/ui/preferences.blp:118
-#, fuzzy
 msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr "このボトルのバージョン管理はアクティブです。"
+msgstr "ボトルに Ubisoft Connect のインストールが必要です。"
 
 #: bottles/frontend/ui/preferences.blp:128
 msgid "Advanced"
 msgstr "高度な設定"
 
 #: bottles/frontend/ui/preferences.blp:131
-#, fuzzy
 msgid "Bottles Directory"
-msgstr "ディレクトリを選択"
+msgstr "ボトルのディレクトリ"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr ""
+msgstr "ボトルのデータを含むディレクトリ。"
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
@@ -2105,7 +2078,7 @@ msgstr "ランナー"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr ""
+msgstr "Bottles はオフラインモードで実行中です。ランナーは利用できません。"
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2117,11 +2090,11 @@ msgstr "不安定版のランナーを表示します。"
 
 #: bottles/frontend/ui/preferences.blp:224
 msgid "DLL Components"
-msgstr "DLLコンポーネント"
+msgstr "DLL コンポーネント"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr ""
+msgstr "Bottles はオフラインモードで実行中です。DLL は利用できません。"
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2148,7 +2121,8 @@ msgstr "実験的な機能"
 msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
-msgstr ""
+msgstr "これらの機能は目下開発中で不安定なことがあります。バグや破壊の可能性を理解の"
+"うえ使用してください。"
 
 #: bottles/frontend/ui/preferences.blp:303
 msgid "Sandbox per bottle"
@@ -2159,7 +2133,6 @@ msgid "In early development."
 msgstr "開発初期段階の機能です。"
 
 #: bottles/frontend/ui/program-entry.blp:19
-#, fuzzy
 msgid "Launch with Terminal"
 msgstr "ターミナルを使って起動"
 
@@ -2173,7 +2146,6 @@ msgid "Change Launch Options…"
 msgstr "プログラム起動オプションを変更…"
 
 #: bottles/frontend/ui/program-entry.blp:43
-#, fuzzy
 msgid "Add to Library"
 msgstr "ライブラリに追加"
 
@@ -2183,7 +2155,7 @@ msgstr "デスクトップエントリを追加"
 
 #: bottles/frontend/ui/program-entry.blp:51
 msgid "Add to Steam"
-msgstr "Steamに追加"
+msgstr "Steam に追加"
 
 #: bottles/frontend/ui/program-entry.blp:55
 msgid "Rename…"
@@ -2207,19 +2179,16 @@ msgstr "プログラム名"
 
 #. Translators: id as identification
 #: bottles/frontend/ui/state-entry.blp:8
-#, fuzzy
 msgid "State id"
-msgstr "バックアップはありません"
+msgstr "状態 ID"
 
 #: bottles/frontend/ui/state-entry.blp:9
-#, fuzzy
 msgid "State comment"
-msgstr "簡潔なコメント"
+msgstr "状態コメント"
 
 #: bottles/frontend/ui/state-entry.blp:16
-#, fuzzy
 msgid "Restore this Snapshot"
-msgstr "この状態を復元します"
+msgstr "このスナップショットを復元"
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
@@ -2250,7 +2219,7 @@ msgstr "ヘルプ"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:96
 msgid "About Bottles"
-msgstr "Bottlesについて"
+msgstr "Bottles について"
 
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
@@ -2290,7 +2259,7 @@ msgstr "\"{0}\" を起動しています…"
 
 #: bottles/frontend/views/bottle_details.py:413
 msgid "Be Aware of Sandbox"
-msgstr ""
+msgstr "サンドボックスについての注意"
 
 #: bottles/frontend/views/bottle_details.py:414
 msgid ""
@@ -2298,12 +2267,16 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
+"Bottles はサンドボックス内 (ユーザーを安全にするために権限が制限された環境) "
+"で実行しています。プログラムを実行できない場合、"
+"プログラムをボトル内に移動して "
+"(上部の3点アイコン)、そこから起動してみてください。"
 
 #: bottles/frontend/views/bottle_details.py:416
 #: bottles/frontend/views/bottle_details.py:525
 #: bottles/frontend/windows/main_window.py:223
 msgid "_Dismiss"
-msgstr ""
+msgstr "閉じる(_D)"
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
@@ -2318,34 +2291,32 @@ msgid "Select the location where to save the backup archive"
 msgstr "バックアップアーカイブの保存先を選択してください"
 
 #: bottles/frontend/views/bottle_details.py:435
-#, fuzzy
 msgid "Backup"
-msgstr "バックアップ{0}"
+msgstr "バックアップ"
 
 #: bottles/frontend/views/bottle_details.py:440
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup created for \"{0}\""
-msgstr "'{0}'のバックアップを作成しました。"
+msgstr "\"{0}\" のバックアップを作成しました"
 
 #: bottles/frontend/views/bottle_details.py:442
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr "'{0}'のバックアップに失敗しました。"
+msgstr "\"{0}\" のバックアップに失敗しました"
 
 #: bottles/frontend/views/bottle_details.py:501
-#, fuzzy
 msgid "Are you sure you want to permanently delete \"{}\"?"
-msgstr "このボトルとすべてのファイルを削除してもよろしいですか？"
+msgstr "\"{}\"を完全に削除してもよろしいですか?"
 
 #: bottles/frontend/views/bottle_details.py:502
 msgid ""
 "This will permanently delete all programs and settings associated with it."
-msgstr ""
+msgstr "これはすべてのプログラムと関連する設定を完全に削除します。"
 
 #: bottles/frontend/views/bottle_details.py:505
 #: bottles/frontend/views/bottle_preferences.py:750
 msgid "_Delete"
-msgstr ""
+msgstr "削除(_D)"
 
 #: bottles/frontend/views/bottle_details.py:521
 #, fuzzy
@@ -2359,26 +2330,24 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/views/bottle_details.py:597
-#, fuzzy
 msgid "Are you sure you want to force stop all processes?"
-msgstr "このボトルとすべてのファイルを削除してもよろしいですか？"
+msgstr "すべてのプロセスを強制終了してもよろしいですか?"
 
 #: bottles/frontend/views/bottle_details.py:598
 msgid "This can cause data loss, corruption, and programs to malfunction."
-msgstr ""
+msgstr "データの消滅、破壊、プログラムの異常動作の原因となる可能性があります。"
 
 #: bottles/frontend/views/bottle_details.py:601
 msgid "Force _Stop"
-msgstr ""
+msgstr "強制終了(_S)"
 
 #: bottles/frontend/views/bottle_preferences.py:195
-#, fuzzy
 msgid "This feature is unavailable on your system."
 msgstr "この機能はお使いのシステムでは利用できません。"
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} この機能を追加するには、以下を実行してください。flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
 msgid "This bottle name is already in use."
@@ -2386,26 +2355,24 @@ msgstr "このボトル名はすでに使用中です。"
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "カレントディレクトリ"
+msgstr "カレントディレクトリを選択"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
-msgstr ""
+msgstr "\"{}\" のデータを含むディレクトリ。"
 
 #: bottles/frontend/views/bottle_preferences.py:746
-#, fuzzy
 msgid "Are you sure you want to delete all snapshots?"
-msgstr "このボトルとすべてのファイルを削除してもよろしいですか？"
+msgstr "すべてのスナップショットを削除してもよろしいですか？"
 
 #: bottles/frontend/views/bottle_preferences.py:747
 msgid "This will delete all snapshots but keep your files."
-msgstr ""
+msgstr "すべてのスナップショットを削除しますが、ファイルは保持します。"
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
+msgstr "新しい状態を作成するには、新しいバージョン管理システムに移行してください。"
 
 #: bottles/frontend/views/details.py:153
 msgid "Installers"
@@ -2475,23 +2442,20 @@ msgid "Fetched {0} of {1} packages"
 msgstr ""
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "ディレクトリを選択"
+msgstr "ボトルのディレクトリを選択"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
 msgstr "ボトルを作成しています…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "新しいボトルを作成"
+msgstr "ボトルを作成できませんでした"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "1つかそれ以上のエラーにより、ボトルの作成に失敗しました。"
 
 #. Show success
 #: bottles/frontend/views/new.py:232
@@ -2505,7 +2469,7 @@ msgstr "\"{0}\" を正常に作成しました。"
 
 #: bottles/frontend/views/preferences.py:142
 msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
+msgstr "Steam が見つからないか、Bottle に権限がありません。"
 
 #: bottles/frontend/views/preferences.py:176
 msgid "Select Bottles Path"
@@ -2526,7 +2490,7 @@ msgstr ""
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
-msgstr ""
+msgstr "再起動(_R)"
 
 #: bottles/frontend/views/preferences.py:243
 msgid "Based on Valve's Wine, includes staging and Proton patches."
@@ -2562,27 +2526,27 @@ msgstr "インストールしています…"
 #: bottles/frontend/widgets/installer.py:81
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr "{0}のマニフェスト"
+msgstr "{0} のマニフェスト"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "{0}をインストールしました。"
+msgstr "\"{0}\" をアンインストールしました"
 
 #: bottles/frontend/widgets/dependency.py:174
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" installed"
-msgstr "{0}をインストールしました。"
+msgstr "\"{0}\" をインストールしました"
 
 #: bottles/frontend/widgets/dependency.py:188
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "'{0}'をインストールしました。"
+msgstr "\"{0}\" のインストールに失敗しました"
 
 #: bottles/frontend/widgets/importer.py:68
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" imported"
-msgstr "'{0}'をインポートしました。"
+msgstr "\"{0}\" をインポートしました"
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
@@ -2608,7 +2572,7 @@ msgstr ""
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
 msgid "Review for {0}"
-msgstr "{0}のレビュー"
+msgstr "{0} のレビュー"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
@@ -2622,39 +2586,39 @@ msgid "Launching \"{0}\" with Steam…"
 msgstr "Steam を使って \"{0}\" を起動しています…"
 
 #: bottles/frontend/widgets/program.py:214
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr "'{0}'を非表示にしました。"
+msgstr "\"{0}\" を非表示にしました"
 
 #: bottles/frontend/widgets/program.py:216
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" showed"
-msgstr "'{0}'を表示しました。"
+msgstr "\"{0}\" を表示しました"
 
 #: bottles/frontend/widgets/program.py:242
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" removed"
-msgstr "'{0}'を削除しました。"
+msgstr "\"{0}\" を削除しました"
 
 #: bottles/frontend/widgets/program.py:274
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr "'{0}'を'{1}'に名前変更しました。"
+msgstr "\"{0}\" を \"{1}\" に名前変更しました"
 
 #: bottles/frontend/widgets/program.py:297
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
-msgstr "'{0}'のデスクトップエントリを作成しました"
+msgstr "\"{0}\" のデスクトップエントリを作成しました"
 
 #: bottles/frontend/widgets/program.py:313
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your library"
-msgstr "'{0}' をライブラリに追加しました"
+msgstr "\"{0}\" をライブラリに追加しました"
 
 #: bottles/frontend/widgets/program.py:331
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your Steam library"
-msgstr "'{0}' をSteamライブラリに追加しました"
+msgstr "\"{0}\" を Steam ライブラリに追加しました"
 
 #: bottles/frontend/windows/crash.py:33
 msgid "Show report"
@@ -2669,14 +2633,12 @@ msgstr ""
 "            以下の既存の報告の中から選んでフィードバックを報告してください。"
 
 #: bottles/frontend/windows/display.py:102
-#, fuzzy
 msgid "Updating display settings, please wait…"
-msgstr "Windowsのバージョンを更新しています。お待ちください…"
+msgstr "ディスプレイ設定を更新しています。お待ちください…"
 
 #: bottles/frontend/windows/display.py:114
-#, fuzzy
 msgid "Display settings updated"
-msgstr "ディスプレイの設定"
+msgstr "ディスプレイ設定を更新しました"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
@@ -2692,7 +2654,7 @@ msgstr "環境変数が未定義です。"
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
-msgstr "実行パターンが未定義です。"
+msgstr "除外パターンが未定義です。"
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -2705,7 +2667,6 @@ msgid "Copy to clipboard"
 msgstr "クリップボードにコピー"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
 msgstr "リソースファイルを選択"
 
@@ -2773,7 +2734,7 @@ msgstr "@APP_NAME@"
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
 msgid "Run Windows Software"
-msgstr "Windowsソフトウェアを実行します"
+msgstr "Windows ソフトウェアを実行します"
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
@@ -2781,11 +2742,11 @@ msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
-msgstr "Flatpak版への移行"
+msgstr "Flatpak 版への移行"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr "Flatpak版への移行ダイアログを表示／非表示にします。"
+msgstr "Flatpak 版への移行ダイアログを表示／非表示にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
@@ -2797,7 +2758,7 @@ msgstr "ダームテーマを強制的に使用します。"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr "リスト内の更新日を切り替えます"
+msgstr "リスト内の更新日を表示／非表示にします"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
@@ -2805,31 +2766,27 @@ msgstr "ボトルリストの更新日を表示／非表示にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Steam アプリの表示"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "リスト内の更新日を切り替えます"
+msgstr "Steam アプリを表示／非表示にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:26
-#, fuzzy
 msgid "Epic Games listing"
-msgstr "例: Epic Gamesストア"
+msgstr "Epic Games の表示"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "リスト内の更新日を切り替えます"
+msgstr "Epic Games を表示／非表示にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "Ubisoft Connect の表示"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Toggle ubisoft connect listing."
-msgstr "リスト内の更新日を切り替えます"
+msgstr "Ubisoft Connect を表示／非表示にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
@@ -2885,11 +2842,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
-msgstr "Steam Protonへの対応"
+msgstr "Steam Proton への対応"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Steam Proton環境への対応機能を有効／無効にします。"
+msgstr "Steam Proton 環境への対応機能を有効／無効にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:sandbox"
@@ -2901,21 +2858,19 @@ msgstr "実験的なサンドボックスをボトル単位で有効／無効に
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
-msgstr "Bottlesを自動的に閉じる"
+msgstr "Bottles を自動的に閉じる"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
-msgstr ""
-"ファイルマネージャから実行可能ファイルを起動した後、Bottlesを閉じます。"
+msgstr "ファイルマネージャから実行可能ファイルを起動した後、Bottles を閉じます。"
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "サンドボックス警告を表示"
 
 #: data/com.usebottles.bottles.gschema.xml:87
-#, fuzzy
 msgid "Toggle sandbox warning."
-msgstr "リスト内の更新日を切り替えます"
+msgstr "サンドボックス警告を表示／非表示にします。"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid "Run Windows software on Linux with Bottles!"
@@ -3047,14 +3002,12 @@ msgid "Fixed Patool double extraction failing"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "コンポーネントのバージョン"
+msgstr "バージョンを修正"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "ボトルの作成中にエラーが発生しました。"
+msgstr "ボトル作成時にクラッシュする不具合を修正"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
