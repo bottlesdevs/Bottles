@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-03-21 06:01+0000\n"
+"PO-Revision-Date: 2024-03-22 13:01+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -924,7 +924,8 @@ msgstr "自動スナップショット"
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
-msgstr ""
+msgstr "ソフトウェアインストール前や設定変更前に、自動的にスナップショットを作成しま"
+"す。"
 
 #: bottles/frontend/ui/details-preferences.blp:391
 msgid "Compression"
@@ -934,7 +935,8 @@ msgstr "圧縮"
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
-msgstr ""
+msgstr "スナップショットを圧縮して、領域を削減します。スナップショットの作成が遅くな"
+"ります。"
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
@@ -1061,7 +1063,7 @@ msgstr "高度なオプション"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:13
 msgid "Incomplete package"
-msgstr ""
+msgstr "不完全なパッケージ"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
 msgid ""
@@ -1425,23 +1427,20 @@ msgid "e.g.: -opengl -SkipBuildPatchPrereq"
 msgstr "例: -opengl -SkipBuildPatchPrereq"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
-#, fuzzy
 msgid "Sandbox Settings"
-msgstr "Gamescopeの設定"
+msgstr "サンドボックスの設定"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
-msgstr ""
+msgstr "ネットワークを共有"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:34
-#, fuzzy
 msgid "Share Sound"
-msgstr "バックアップはありません"
+msgstr "サウンドを共有"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:16
-#, fuzzy
 msgid "Upgrade Needed"
-msgstr "アップグレード"
+msgstr "アップグレードが必要"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:38
 #: bottles/frontend/ui/onboard.blp:81
@@ -1449,18 +1448,16 @@ msgid "Continue"
 msgstr "続行"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:47
-#, fuzzy
 msgid "Launch upgrade"
-msgstr "アップグレードを確認する"
+msgstr "アップグレードを起動"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
-#, fuzzy
 msgid "New Versioning System"
-msgstr "バージョン管理"
+msgstr "新しいバージョン管理"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
 msgid "The new bottle versioning system has landed."
-msgstr ""
+msgstr "新しいボトル用バージョン管理システムが利用可能になりました。"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:83
 msgid ""
@@ -1479,7 +1476,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
-msgstr ""
+msgstr "リポジトリを再初期化…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
@@ -1693,14 +1690,12 @@ msgstr "ファイルを表示"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
 msgid "Wine prefix name"
-msgstr "Wine自体のFIXMEコメントをログ出力"
+msgstr "Wine 環境の名前"
 
 #: bottles/frontend/ui/importer-entry.blp:28
-#, fuzzy
 msgid "Manager"
-msgstr "タスクマネージャー"
+msgstr "マネージャー"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
@@ -1813,9 +1808,8 @@ msgstr "ここで実行"
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
-msgstr ""
-"このボトルは破損しているようです。設定ファイルがありません。新しい設定を作成"
-"することで、解決を試みることができます。"
+msgstr "このボトルはしているようです。設定ファイルがありません。新しい設定を作成する"
+"ことで、解決を試みることができます。"
 
 #: bottles/frontend/ui/list.blp:12
 msgid "Search your bottles…"
@@ -1849,12 +1843,11 @@ msgstr "起動しています…"
 
 #: bottles/frontend/ui/local-resource-entry.blp:4
 msgid "This resource is missing."
-msgstr "このリソースは破損しています。"
+msgstr "このリソースは不足しています。"
 
 #: bottles/frontend/ui/local-resource-entry.blp:8
-#, fuzzy
 msgid "Browse"
-msgstr "C: を開く"
+msgstr "表示"
 
 #: bottles/frontend/ui/new.blp:32
 msgid "C_reate"
@@ -1881,9 +1874,8 @@ msgid "Custom"
 msgstr "カスタム"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "ディレクトリを選択"
+msgstr "ユーザーディレクトリを共有"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -2137,7 +2129,6 @@ msgid "Launch with Terminal"
 msgstr "ターミナルを使って起動"
 
 #: bottles/frontend/ui/program-entry.blp:25
-#, fuzzy
 msgid "Browse Path"
 msgstr "パスを表示"
 
@@ -2306,7 +2297,7 @@ msgstr "\"{0}\" のバックアップに失敗しました"
 
 #: bottles/frontend/views/bottle_details.py:501
 msgid "Are you sure you want to permanently delete \"{}\"?"
-msgstr "\"{}\"を完全に削除してもよろしいですか?"
+msgstr "\"{}\" を完全に削除してもよろしいですか?"
 
 #: bottles/frontend/views/bottle_details.py:502
 msgid ""
@@ -2319,9 +2310,8 @@ msgid "_Delete"
 msgstr "削除(_D)"
 
 #: bottles/frontend/views/bottle_details.py:521
-#, fuzzy
 msgid "Missing Runner"
-msgstr "ワインランナー"
+msgstr "不足しているランナー"
 
 #: bottles/frontend/views/bottle_details.py:522
 msgid ""
@@ -2718,14 +2708,13 @@ msgid "Select Script"
 msgstr "スクリプトを選択"
 
 #: bottles/frontend/windows/main_window.py:220
-#, fuzzy
 msgid "Custom Bottles Path not Found"
-msgstr "ボトルパスのカスタマイズ (再起動が必要)"
+msgstr "カスタムボトルパスが見つかりません"
 
 #: bottles/frontend/windows/main_window.py:221
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
+msgstr "デフォルトのパスを代わりに使います。指定パスにあるボトルは表示されません。"
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
