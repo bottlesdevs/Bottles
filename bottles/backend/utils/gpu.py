@@ -32,12 +32,13 @@ class GPUVendors(Enum):
     NVIDIA = "nvidia"
     INTEL = "intel"
 
+
 # noinspection PyTypeChecker
 class GPUUtils:
     __vendors = {
         "nvidia": "NVIDIA Corporation",
         "amd": "Advanced Micro Devices, Inc.",
-        "intel": "Intel Corporation"
+        "intel": "Intel Corporation",
     }
 
     def __init__(self):
@@ -50,7 +51,7 @@ class GPUUtils:
                 f"lspci | grep '{self.__vendors[_vendor]}'",
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                shell=True
+                shell=True,
             )
             stdout, stderr = _proc.communicate()
 
@@ -75,7 +76,7 @@ class GPUUtils:
             "lsmod | grep nouveau",
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            shell=True
+            shell=True,
         )
         stdout, stderr = _proc.communicate()
         if len(stdout) > 0:
@@ -85,15 +86,9 @@ class GPUUtils:
 
     def get_gpu(self):
         checks = {
-            "nvidia": {
-                "query": "(VGA|3D).*NVIDIA"
-            },
-            "amd": {
-                "query": "(VGA|3D).*AMD/ATI"
-            },
-            "intel": {
-                "query": "(VGA|3D).*Intel"
-            }
+            "nvidia": {"query": "(VGA|3D).*NVIDIA"},
+            "amd": {"query": "(VGA|3D).*AMD/ATI"},
+            "intel": {"query": "(VGA|3D).*Intel"},
         }
         gpus = {
             "nvidia": {
@@ -101,34 +96,24 @@ class GPUUtils:
                 "envs": {
                     "__NV_PRIME_RENDER_OFFLOAD": "1",
                     "__GLX_VENDOR_LIBRARY_NAME": "nvidia",
-                    "__VK_LAYER_NV_optimus": "NVIDIA_only"
+                    "__VK_LAYER_NV_optimus": "NVIDIA_only",
                 },
                 "icd": self.vk.get_vk_icd("nvidia", as_string=True),
-                "nvngx_path": get_nvidia_dll_path()
+                "nvngx_path": get_nvidia_dll_path(),
             },
             "amd": {
                 "vendor": "amd",
-                "envs": {
-                    "DRI_PRIME": "1"
-                },
-                "icd": self.vk.get_vk_icd("amd", as_string=True)
+                "envs": {"DRI_PRIME": "1"},
+                "icd": self.vk.get_vk_icd("amd", as_string=True),
             },
             "intel": {
                 "vendor": "intel",
-                "envs": {
-                    "DRI_PRIME": "1"
-                },
-                "icd": self.vk.get_vk_icd("intel", as_string=True)
-            }
+                "envs": {"DRI_PRIME": "1"},
+                "icd": self.vk.get_vk_icd("intel", as_string=True),
+            },
         }
         found = []
-        result = {
-            "vendors": {},
-            "prime": {
-                "integrated": None,
-                "discrete": None
-            }
-        }
+        result = {"vendors": {}, "prime": {"integrated": None, "discrete": None}}
 
         if self.is_nouveau():
             gpus["nvidia"]["envs"] = {"DRI_PRIME": "1"}
@@ -140,7 +125,7 @@ class GPUUtils:
                 f"lspci | grep -iP '{_query}'",
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                shell=True
+                shell=True,
             )
             stdout, stderr = _proc.communicate()
             if len(stdout) > 0:
@@ -164,7 +149,7 @@ class GPUUtils:
             f"lspci | grep -iP '{vendor.value}'",
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            shell=True
+            shell=True,
         )
         stdout, stderr = _proc.communicate()
         return len(stdout) > 0

@@ -35,6 +35,7 @@ class ConnectionUtils:
     Bottle's website. If the connection is offline, the user will be
     notified and False will be returned, otherwise True.
     """
+
     _status: Optional[bool] = None
     last_check = None
 
@@ -61,7 +62,7 @@ class ConnectionUtils:
         if self.do_check_connection:
             return pycurl.E_OK
         else:
-            self.aborted_connections+=1
+            self.aborted_connections += 1
             return pycurl.E_ABORTED_BY_CALLBACK
 
     def stop_check(self, res: Result):
@@ -77,11 +78,11 @@ class ConnectionUtils:
 
         try:
             c = pycurl.Curl()
-            c.setopt(c.URL, 'https://ping.usebottles.com')
+            c.setopt(c.URL, "https://ping.usebottles.com")
             c.setopt(c.FOLLOWLOCATION, True)
             c.setopt(c.NOBODY, True)
             c.setopt(c.NOPROGRESS, False)
-            c.setopt(c.XFERINFOFUNCTION, self.__curl_progress) 
+            c.setopt(c.XFERINFOFUNCTION, self.__curl_progress)
             c.perform()
 
             if c.getinfo(pycurl.HTTP_CODE) != 200:
@@ -92,11 +93,17 @@ class ConnectionUtils:
         except Exception:
             logging.warning("Connection status: offline …")
             if show_notification:
-                SignalManager.send(Signals.GNotification, Result(True, Notification(
-                    title="Bottles",
-                    text=_("You are offline, unable to download."),
-                    image="network-wireless-disabled-symbolic"
-                )))
+                SignalManager.send(
+                    Signals.GNotification,
+                    Result(
+                        True,
+                        Notification(
+                            title="Bottles",
+                            text=_("You are offline, unable to download."),
+                            image="network-wireless-disabled-symbolic",
+                        ),
+                    ),
+                )
             self.last_check = datetime.now()
             self.status = False
         finally:

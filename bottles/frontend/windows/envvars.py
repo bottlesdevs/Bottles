@@ -20,9 +20,9 @@ from gi.repository import Gtk, GLib, Adw
 from bottles.frontend.utils.gtk import GtkUtils
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/env-var-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/env-var-entry.ui")
 class EnvVarEntry(Adw.EntryRow):
-    __gtype_name__ = 'EnvVarEntry'
+    __gtype_name__ = "EnvVarEntry"
 
     # region Widgets
     btn_remove = Gtk.Template.Child()
@@ -53,7 +53,7 @@ class EnvVarEntry(Adw.EntryRow):
             config=self.config,
             key=self.env[0],
             value=self.get_text(),
-            scope="Environment_Variables"
+            scope="Environment_Variables",
         )
 
     def __remove(self, *_args):
@@ -66,14 +66,14 @@ class EnvVarEntry(Adw.EntryRow):
             key=self.env[0],
             value=False,
             remove=True,
-            scope="Environment_Variables"
+            scope="Environment_Variables",
         )
         self.parent.group_vars.remove(self)
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-env-vars.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-env-vars.ui")
 class EnvVarsDialog(Adw.Window):
-    __gtype_name__ = 'EnvVarsDialog'
+    __gtype_name__ = "EnvVarsDialog"
 
     # region Widgets
     entry_name = Gtk.Template.Child()
@@ -96,7 +96,9 @@ class EnvVarsDialog(Adw.Window):
         self.entry_name.connect("apply", self.__save_var)
 
     def __validate(self, *_args):
-        self.__valid_name = GtkUtils.validate_entry(self.entry_name)
+        self.__valid_name = GtkUtils.validate_entry(
+            self.entry_name, lambda envvar: envvar.startswith("WINEDLLOVERRIDES")
+        )
 
     def __save_var(self, *_args):
         """
@@ -111,7 +113,7 @@ class EnvVarsDialog(Adw.Window):
 
         env_name = self.entry_name.get_text()
         env_value = "value"
-        split_value = env_name.rsplit('=', 1)
+        split_value = env_name.split("=", 1)
         if len(split_value) == 2:
             env_name = split_value[0]
             env_value = split_value[1]
@@ -119,7 +121,7 @@ class EnvVarsDialog(Adw.Window):
             config=self.config,
             key=env_name,
             value=env_value,
-            scope="Environment_Variables"
+            scope="Environment_Variables",
         )
         _entry = EnvVarEntry(parent=self, env=[env_name, env_value])
         GLib.idle_add(self.group_vars.add, _entry)

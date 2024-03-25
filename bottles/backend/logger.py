@@ -30,16 +30,11 @@ class Logger(logging.getLoggerClass()):
     This class is a wrapper for the logging module. It provides
     custom formats for the log messages.
     """
-    __color_map = {
-        "debug": 37,
-        "info": 36,
-        "warning": 33,
-        "error": 31,
-        "critical": 41
-    }
+
+    __color_map = {"debug": 37, "info": 36, "warning": 33, "error": 31, "critical": 41}
     __format_log = {
-        'fmt': '\033[80m%(asctime)s \033[1m(%(levelname)s)\033[0m %(message)s \033[0m',
-        'datefmt': '%H:%M:%S',
+        "fmt": "\033[80m%(asctime)s \033[1m(%(levelname)s)\033[0m %(message)s \033[0m",
+        "datefmt": "%H:%M:%S",
     }
 
     def __color(self, level, message: str):
@@ -61,25 +56,35 @@ class Logger(logging.getLoggerClass()):
         self.root.addHandler(handler)
 
     def debug(self, message, **kwargs):
-        self.root.debug(self.__color("debug", message), )
+        self.root.debug(
+            self.__color("debug", message),
+        )
 
     def info(self, message, jn=False, **kwargs):
-        self.root.info(self.__color("info", message), )
+        self.root.info(
+            self.__color("info", message),
+        )
         if jn:
             JournalManager.write(JournalSeverity.INFO, message)
 
     def warning(self, message, jn=True, **kwargs):
-        self.root.warning(self.__color("warning", message), )
+        self.root.warning(
+            self.__color("warning", message),
+        )
         if jn:
             JournalManager.write(JournalSeverity.WARNING, message)
 
     def error(self, message, jn=True, **kwargs):
-        self.root.error(self.__color("error", message), )
+        self.root.error(
+            self.__color("error", message),
+        )
         if jn:
             JournalManager.write(JournalSeverity.ERROR, message)
 
     def critical(self, message, jn=True, **kwargs):
-        self.root.critical(self.__color("critical", message), )
+        self.root.critical(
+            self.__color("critical", message),
+        )
         if jn:
             JournalManager.write(JournalSeverity.CRITICAL, message)
 
@@ -101,8 +106,7 @@ class Logger(logging.getLoggerClass()):
 
         # we write the same to the journal for convenience
         JournalManager.write(
-            severity=JournalSeverity.CRASH,
-            message="A crash has been detected."
+            severity=JournalSeverity.CRASH, message="A crash has been detected."
         )
 
     def set_silent(self):

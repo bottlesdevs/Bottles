@@ -31,9 +31,9 @@ from bottles.frontend.utils.gtk import GtkUtils
 logging = Logger()
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/library-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/library-entry.ui")
 class LibraryEntry(Gtk.Box):
-    __gtype_name__ = 'LibraryEntry'
+    __gtype_name__ = "LibraryEntry"
 
     # region Widgets
     btn_run = Gtk.Template.Child()
@@ -55,7 +55,7 @@ class LibraryEntry(Gtk.Box):
         self.library = library
         self.window = library.window
         self.manager = library.window.manager
-        self.name = entry['name']
+        self.name = entry["name"]
         self.uuid = uuid
         self.entry = entry
         self.config = self.__get_config()
@@ -68,17 +68,17 @@ class LibraryEntry(Gtk.Box):
 
         self.program = self.__get_program()
 
-        if len(entry['name']) >= 15:
-            name = entry['name'][:13] + "…"
+        if len(entry["name"]) >= 15:
+            name = entry["name"][:13] + "…"
         else:
-            name = entry['name']
+            name = entry["name"]
 
         self.label_name.set_text(name)
-        self.label_bottle.set_text(entry['bottle']['name'])
+        self.label_bottle.set_text(entry["bottle"]["name"])
         self.label_no_cover.set_label(self.name)
 
-        if entry.get('thumbnail'):
-            path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
+        if entry.get("thumbnail"):
+            path = ThumbnailManager.get_path(self.config, entry["thumbnail"])
 
             if path is None:
                 # redownloading *should* never fail as it was successfully downloaded before
@@ -87,9 +87,9 @@ class LibraryEntry(Gtk.Box):
                 result = library_manager.download_thumbnail(self.uuid, self.config)
                 if result:
                     entry = library_manager.get_library().get(uuid)
-                    path = ThumbnailManager.get_path(self.config, entry['thumbnail'])
+                    path = ThumbnailManager.get_path(self.config, entry["thumbnail"])
 
-            if path is not None: 
+            if path is not None:
                 # Gtk.Picture.set_pixbuf deprecated in GTK 4.12
                 texture = Gdk.Texture.new_from_filename(path)
                 self.img_cover.set_paintable(texture)
@@ -107,15 +107,19 @@ class LibraryEntry(Gtk.Box):
 
     def __get_config(self):
         bottles = self.manager.local_bottles
-        if self.entry['bottle']['name'] in bottles:
-            return bottles[self.entry['bottle']['name']]
+        if self.entry["bottle"]["name"] in bottles:
+            return bottles[self.entry["bottle"]["name"]]
         parent = self.get_parent()
         if parent:
             parent.remove(self)  # TODO: Remove from list
 
     def __get_program(self):
         programs = self.manager.get_programs(self.config)
-        programs = [p for p in programs if p["id"] == self.entry["id"] or p["name"] == self.entry["name"]]
+        programs = [
+            p
+            for p in programs
+            if p["id"] == self.entry["id"] or p["name"] == self.entry["name"]
+        ]
         if len(programs) == 0:
             return None  # TODO: remove entry from library
         return programs[0]
@@ -128,7 +132,9 @@ class LibraryEntry(Gtk.Box):
             case bool():
                 status = result
             case _:
-                logging.error(f"result should be Result or bool, but it was {type(result)}")
+                logging.error(
+                    f"result should be Result or bool, but it was {type(result)}"
+                )
                 status = False
 
         self.btn_remove.set_visible(status)
@@ -147,25 +153,25 @@ class LibraryEntry(Gtk.Box):
                 winedbg.wait_for_process,
                 callback=self.__reset_buttons,
                 name=self.program["executable"],
-                timeout=5
+                timeout=5,
             )
 
         RunAsync(
             winedbg.is_process_alive,
             callback=set_watcher,
-            name=self.program["executable"]
+            name=self.program["executable"],
         )
 
     def __remove_entry(self, *args):
         self.library.remove_entry(self)
 
     def run_executable(self, widget, with_terminal=False):
-        self.window.show_toast(_("Launching \"{0}\"…").format(self.program["name"]))
+        self.window.show_toast(_('Launching "{0}"…').format(self.program["name"]))
         RunAsync(
             WineExecutor.run_program,
             callback=self.__reset_buttons,
             config=self.config,
-            program=self.program
+            program=self.program,
         )
         self.__reset_buttons()
 
@@ -173,7 +179,7 @@ class LibraryEntry(Gtk.Box):
         self.manager.steam_manager.launch_app(self.config.CompatData)
 
     def stop_process(self, widget):
-        self.window.show_toast(_("Stopping \"{0}\"…").format(self.program["name"]))
+        self.window.show_toast(_('Stopping "{0}"…').format(self.program["name"]))
         winedbg = WineDbg(self.config)
         winedbg.kill_process(name=self.program["executable"])
         self.__reset_buttons(True)

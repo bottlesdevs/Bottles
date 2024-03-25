@@ -63,24 +63,24 @@ class WinRegister:
             for reg in regs:
 
                 if cur_line <= 2:
-                    '''
+                    """
                     Skip the first 4 lines which are the
                     register header.
-                    '''
+                    """
                     cur_line += 1
                     continue
 
                 for line in reg.split("\n"):
-                    '''
+                    """
                     Following checks will check the line format, when
                     one check succeed, continue to the next line.
-                    '''
+                    """
 
                     if line.startswith("["):
-                        '''
+                        """
                         Check if line format corresponds to a key, if
                         true, create a new key in the dictionary.
-                        '''
+                        """
                         key = line.strip("[]")
                         if any(key.startswith(ex) for ex in exclude):
                             key = None
@@ -89,15 +89,15 @@ class WinRegister:
                         _dict[key] = {}
                         continue
                     elif line not in ["", "\n"]:
-                        '''
+                        """
                         Check if line format corresponds to a value, if
                         true get key and value and append to last key.
-                        '''
+                        """
                         if key is None:
                             continue
 
                         _key = line.split("=")[0]
-                        _value = line[len(_key) + 1:]
+                        _value = line[len(_key) + 1 :]
                         _dict[key][_key] = _value
                         continue
 
@@ -114,7 +114,7 @@ class WinRegister:
         self.diff = diff
         return diff
 
-    def __get_diff(self, register: 'WinRegister'):
+    def __get_diff(self, register: "WinRegister"):
         """Return the difference between the current register and the given one."""
         diff = {}
         other_reg = register.reg_dict
@@ -146,9 +146,9 @@ class WinRegister:
             self.reg_dict[key] = diff[key]
 
         if os.path.exists(self.path):
-            '''
+            """
             Make a backup before overwriting the register.
-            '''
+            """
             os.rename(self.path, f"{self.path}.{uuid.uuid4()}.bak")
 
         with open(self.path, "w") as reg:

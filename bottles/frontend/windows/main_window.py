@@ -51,9 +51,9 @@ from bottles.frontend.windows.onboard import OnboardDialog
 logging = Logger()
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/window.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/window.ui")
 class MainWindow(Adw.ApplicationWindow):
-    __gtype_name__ = 'MainWindow'
+    __gtype_name__ = "MainWindow"
 
     # region Widgets
     stack_main = Gtk.Template.Child()
@@ -81,7 +81,9 @@ class MainWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs, default_width=width, default_height=height)
 
         self.disable_onboard = False
-        self.utils_conn = ConnectionUtils(force_offline=self.settings.get_boolean("force-offline"))
+        self.utils_conn = ConnectionUtils(
+            force_offline=self.settings.get_boolean("force-offline")
+        )
         self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
@@ -99,8 +101,7 @@ class MainWindow(Adw.ApplicationWindow):
 
         # Populate stack
         self.stack_main.add_named(
-            child=self.page_loading,
-            name="page_loading"
+            child=self.page_loading, name="page_loading"
         ).set_visible(False)
         self.headerbar.add_css_class("flat")
 
@@ -112,14 +113,22 @@ class MainWindow(Adw.ApplicationWindow):
         # backend signal handlers
         self.task_syncer = TaskSyncer(self)
         SignalManager.connect(Signals.TaskAdded, self.task_syncer.task_added_handler)
-        SignalManager.connect(Signals.TaskRemoved, self.task_syncer.task_removed_handler)
-        SignalManager.connect(Signals.TaskUpdated, self.task_syncer.task_updated_handler)
-        SignalManager.connect(Signals.NetworkStatusChanged, self.network_changed_handler)
+        SignalManager.connect(
+            Signals.TaskRemoved, self.task_syncer.task_removed_handler
+        )
+        SignalManager.connect(
+            Signals.TaskUpdated, self.task_syncer.task_updated_handler
+        )
+        SignalManager.connect(
+            Signals.NetworkStatusChanged, self.network_changed_handler
+        )
         SignalManager.connect(Signals.GNotification, self.g_notification_handler)
         SignalManager.connect(Signals.GShowUri, self.g_show_uri_handler)
 
         self.__on_start()
-        logging.info("Bottles Started!", )
+        logging.info(
+            "Bottles Started!",
+        )
 
     @Gtk.Template.Callback()
     def on_close_request(self, *args):
@@ -169,7 +178,9 @@ class MainWindow(Adw.ApplicationWindow):
         def set_manager(result: Manager, error=None):
             self.manager = result
 
-            tmp_runners = [x for x in self.manager.runners_available if not x.startswith('sys-')]
+            tmp_runners = [
+                x for x in self.manager.runners_available if not x.startswith("sys-")
+            ]
             if len(tmp_runners) == 0:
                 self.show_onboard_view()
 
@@ -186,49 +197,63 @@ class MainWindow(Adw.ApplicationWindow):
             self.main_leaf.get_page(self.page_importer).set_navigatable(False)
 
             self.stack_main.add_titled(
-                child=self.page_list,
-                name="page_list",
-                title=_("Bottles")
+                child=self.page_list, name="page_list", title=_("Bottles")
             ).set_icon_name("com.usebottles.bottles-symbolic")
             self.stack_main.add_titled(
-                child=self.page_library,
-                name="page_library",
-                title=_("Library")
+                child=self.page_library, name="page_library", title=_("Library")
             ).set_icon_name("library-symbolic")
 
             self.page_list.search_bar.set_key_capture_widget(self)
-            self.btn_search.bind_property('active', self.page_list.search_bar, 'search-mode-enabled',
-                                          GObject.BindingFlags.BIDIRECTIONAL)
+            self.btn_search.bind_property(
+                "active",
+                self.page_list.search_bar,
+                "search-mode-enabled",
+                GObject.BindingFlags.BIDIRECTIONAL,
+            )
 
-            if self.stack_main.get_child_by_name(self.settings.get_string("startup-view")) is None:
+            if (
+                self.stack_main.get_child_by_name(
+                    self.settings.get_string("startup-view")
+                )
+                is None
+            ):
                 self.stack_main.set_visible_child_name("page_list")
 
             self.settings.bind(
                 "startup-view",
                 self.stack_main,
                 "visible-child-name",
-                Gio.SettingsBindFlags.DEFAULT
+                Gio.SettingsBindFlags.DEFAULT,
             )
 
             self.lock_ui(False)
             self.headerbar.get_style_context().remove_class("flat")
 
-            user_defined_bottles_path = self.manager.data_mgr.get(UserDataKeys.CustomBottlesPath)
+            user_defined_bottles_path = self.manager.data_mgr.get(
+                UserDataKeys.CustomBottlesPath
+            )
             if user_defined_bottles_path and Paths.bottles != user_defined_bottles_path:
                 dialog = Adw.MessageDialog.new(
                     self,
                     _("Custom Bottles Path not Found"),
-                    _("Falling back to default path. No bottles from the given path will be listed.")
+                    _(
+                        "Falling back to default path. No bottles from the given path will be listed."
+                    ),
                 )
                 dialog.add_response("cancel", _("_Dismiss"))
                 dialog.present()
 
         def get_manager():
             if self.utils_conn.check_connection():
-                SignalManager.connect(Signals.RepositoryFetched, self.page_loading.add_fetched)
-            
-            # do not redo connection if aborted connection 
-            mng = Manager(g_settings=self.settings, check_connection=self.utils_conn.aborted_connections == 0) 
+                SignalManager.connect(
+                    Signals.RepositoryFetched, self.page_loading.add_fetched
+                )
+
+            # do not redo connection if aborted connection
+            mng = Manager(
+                g_settings=self.settings,
+                check_connection=self.utils_conn.aborted_connections == 0,
+            )
             return mng
 
         self.check_core_deps()
@@ -320,13 +345,14 @@ class MainWindow(Adw.ApplicationWindow):
         for w in widgets:
             w.set_visible(not status)
 
-    def show_toast(self,
-                   message,
-                   timeout=3,
-                   action_label=None,
-                   action_callback=None,
-                   dismissed_callback=None
-                   ) -> Adw.Toast:
+    def show_toast(
+        self,
+        message,
+        timeout=3,
+        action_label=None,
+        action_callback=None,
+        dismissed_callback=None,
+    ) -> Adw.Toast:
 
         toast = Adw.Toast.new(message)
         toast.props.timeout = timeout

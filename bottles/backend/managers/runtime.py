@@ -28,7 +28,7 @@ class RuntimeManager:
     def get_runtimes(_filter: str = "bottles"):
         runtimes = {
             "bottles": RuntimeManager.__get_bottles_runtime(),
-            "steam": RuntimeManager.__get_steam_runtime()
+            "steam": RuntimeManager.__get_steam_runtime(),
         }
 
         if _filter == "steam":
@@ -47,11 +47,11 @@ class RuntimeManager:
                 if "EasyAntiCheatRuntime" in p or "BattlEyeRuntime" in p:
                     continue
                 env += f":{p}"
-                
+
         else:
             return False
 
-        ld = os.environ.get('LD_LIBRARY_PATH')
+        ld = os.environ.get("LD_LIBRARY_PATH")
         if ld:
             env += f":{ld}"
 
@@ -115,10 +115,7 @@ class RuntimeManager:
 
     @staticmethod
     def __get_bottles_runtime():
-        paths = [
-            "/app/etc/runtime",
-            Paths.runtimes
-        ]
+        paths = ["/app/etc/runtime", Paths.runtimes]
         structure = ["lib", "lib32"]
 
         return RuntimeManager.__get_runtime(paths, structure)
@@ -126,6 +123,7 @@ class RuntimeManager:
     @staticmethod
     def __get_steam_runtime():
         from bottles.backend.managers.steam import SteamManager
+
         available_runtimes = {}
         steam_manager = SteamManager(check_only=True)
 
@@ -135,16 +133,24 @@ class RuntimeManager:
         lookup = {
             "sniper": {
                 "name": "sniper",
-                "entry_point": os.path.join(steam_manager.steam_path, "steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point"),
+                "entry_point": os.path.join(
+                    steam_manager.steam_path,
+                    "steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point",
+                ),
             },
             "soldier": {
                 "name": "soldier",
-                "entry_point": os.path.join(steam_manager.steam_path, "steamapps/common/SteamLinuxRuntime_soldier/_v2-entry-point"),
+                "entry_point": os.path.join(
+                    steam_manager.steam_path,
+                    "steamapps/common/SteamLinuxRuntime_soldier/_v2-entry-point",
+                ),
             },
             "scout": {
                 "name": "scout",
-                "entry_point": os.path.join(steam_manager.steam_path, "ubuntu12_32/steam-runtime/run.sh"),
-            }
+                "entry_point": os.path.join(
+                    steam_manager.steam_path, "ubuntu12_32/steam-runtime/run.sh"
+                ),
+            },
         }
 
         for name, data in lookup.items():

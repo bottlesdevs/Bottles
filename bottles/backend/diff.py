@@ -7,12 +7,8 @@ class Diff:
     This class is no more used by the application, it's just a
     reference for future implementations.
     """
-    __ignored = [
-        "dosdevices",
-        "users",
-        "bottle.yml",
-        "storage"
-    ]
+
+    __ignored = ["dosdevices", "users", "bottle.yml", "storage"]
 
     @staticmethod
     def hashify(path: str) -> dict:
@@ -26,10 +22,10 @@ class Diff:
         _files = {}
 
         if path[-1] != os.sep:
-            '''
+            """
             Be sure to add a trailing slash at the end of the path to
             prevent the correct path name in the result.
-            '''
+            """
             path += os.sep
 
         for root, dirs, files in os.walk(path):
@@ -71,8 +67,4 @@ class Diff:
             elif parent[f] != child[f]:
                 changed.append(f)
 
-        return {
-            "added": added,
-            "removed": removed,
-            "changed": changed
-        }
+        return {"added": added, "removed": removed, "changed": changed}

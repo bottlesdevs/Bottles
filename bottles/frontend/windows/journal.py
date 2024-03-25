@@ -20,9 +20,9 @@ from gi.repository import Gtk, Adw
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-journal.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-journal.ui")
 class JournalDialog(Adw.Window):
-    __gtype_name__ = 'JournalDialog'
+    __gtype_name__ = "JournalDialog"
 
     # region Widgets
     tree_view = Gtk.Template.Child()
@@ -43,12 +43,16 @@ class JournalDialog(Adw.Window):
         self.store = Gtk.ListStore(str, str, str)
 
         # connect signals
-        self.search_entry.connect('search-changed', self.on_search_changed)
-        self.btn_all.connect('clicked', self.filter_results, "")
-        self.btn_critical.connect('clicked', self.filter_results, JournalSeverity.CRITICAL)
-        self.btn_error.connect('clicked', self.filter_results, JournalSeverity.ERROR)
-        self.btn_warning.connect('clicked', self.filter_results, JournalSeverity.WARNING)
-        self.btn_info.connect('clicked', self.filter_results, JournalSeverity.INFO)
+        self.search_entry.connect("search-changed", self.on_search_changed)
+        self.btn_all.connect("clicked", self.filter_results, "")
+        self.btn_critical.connect(
+            "clicked", self.filter_results, JournalSeverity.CRITICAL
+        )
+        self.btn_error.connect("clicked", self.filter_results, JournalSeverity.ERROR)
+        self.btn_warning.connect(
+            "clicked", self.filter_results, JournalSeverity.WARNING
+        )
+        self.btn_info.connect("clicked", self.filter_results, JournalSeverity.INFO)
 
         self.populate_tree_view()
 
@@ -56,29 +60,39 @@ class JournalDialog(Adw.Window):
         self.store.clear()
 
         colors = {
-            JournalSeverity.CRITICAL: '#db1600',
-            JournalSeverity.ERROR: '#db6600',
-            JournalSeverity.WARNING: '#dba100',
-            JournalSeverity.INFO: '#3283a8',
-            JournalSeverity.CRASH: '#db1600',
+            JournalSeverity.CRITICAL: "#db1600",
+            JournalSeverity.ERROR: "#db6600",
+            JournalSeverity.WARNING: "#dba100",
+            JournalSeverity.INFO: "#3283a8",
+            JournalSeverity.CRASH: "#db1600",
         }
 
         for _, value in self.journal:
-            if query.lower() in value['message'].lower() \
-                    and (severity == "" or severity == value['severity']):
-                self.store.append([
-                    '<span foreground="{}"><b>{}</b></span>'.format(
-                        colors[value['severity']], value['severity'].capitalize()),
-                    value['timestamp'],
-                    value['message']
-                ])
+            if query.lower() in value["message"].lower() and (
+                severity == "" or severity == value["severity"]
+            ):
+                self.store.append(
+                    [
+                        '<span foreground="{}"><b>{}</b></span>'.format(
+                            colors[value["severity"]], value["severity"].capitalize()
+                        ),
+                        value["timestamp"],
+                        value["message"],
+                    ]
+                )
 
         self.tree_view.set_model(self.store)
         self.tree_view.set_search_column(1)
 
-        self.tree_view.append_column(Gtk.TreeViewColumn('Severity', Gtk.CellRendererText(), markup=0))
-        self.tree_view.append_column(Gtk.TreeViewColumn('Timestamp', Gtk.CellRendererText(), text=1))
-        self.tree_view.append_column(Gtk.TreeViewColumn('Message', Gtk.CellRendererText(), text=2))
+        self.tree_view.append_column(
+            Gtk.TreeViewColumn("Severity", Gtk.CellRendererText(), markup=0)
+        )
+        self.tree_view.append_column(
+            Gtk.TreeViewColumn("Timestamp", Gtk.CellRendererText(), text=1)
+        )
+        self.tree_view.append_column(
+            Gtk.TreeViewColumn("Message", Gtk.CellRendererText(), text=2)
+        )
 
     def on_search_changed(self, entry):
         self.populate_tree_view(entry.get_text())

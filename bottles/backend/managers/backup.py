@@ -18,9 +18,8 @@
 import os
 import shutil
 import tarfile
-from gettext import gettext as _
-
 import pathvalidate
+from gettext import gettext as _
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
@@ -35,6 +34,48 @@ logging = Logger()
 
 
 class BackupManager:
+    @staticmethod
+    def _validate_path(path: str) -> bool:
+        """Validate if the path is not None or empty."""
+        if not path:
+            logging.error(_("No path specified"))
+            return False
+        return True
+
+    @staticmethod
+    def _create_tarfile(
+        source_path: str, destination_path: str, exclude_filter=None
+    ) -> bool:
+        """Helper function to create a tar.gz file from a source path."""
+        try:
+            with tarfile.open(destination_path, "w:gz") as tar:
+                os.chdir(os.path.dirname(source_path))
+                tar.add(os.path.basename(source_path), filter=exclude_filter)
+            return True
+        except (FileNotFoundError, PermissionError, tarfile.TarError, ValueError) as e:
+            logging.error(f"Error creating backup: {e}")
+            return False
+
+    @staticmethod
+    def _safe_extract_tarfile(tar_path: str, extract_path: str) -> bool:
+        """
+        Safely extract a tar.gz file to avoid directory traversal
+        vulnerabilities.
+        """
+        try:
+            with tarfile.open(tar_path, "r:gz") as tar:
+                # Validate each member
+                for member in tar.getmembers():
+                    member_path = os.path.abspath(
+                        os.path.join(extract_path, member.name)
+                    )
+                    if not member_path.startswith(os.path.abspath(extract_path)):
+                        raise Exception("Detected path traversal attempt in tar file")
+                tar.extractall(path=extract_path)
+            return True
+        except (tarfile.TarError, Exception) as e:
+            logging.error(f"Error extracting backup: {e}")
+            return False
 
     @staticmethod
     def export_backup(config: BottleConfig, scope: str, path: str) -> Result:
@@ -44,43 +85,35 @@ class BackupManager:
         Config will only export the bottle configuration, full will export
         the full bottle in tar.gz format.
         """
-        if path in [None, ""]:
-            logging.error(_("No path specified"))
+        if not BackupManager._validate_path(path):
             return Result(status=False)
 
-        logging.info(f"New {scope} backup for [{config.Name}] in [{path}]")
+        logging.info(f"Exporting {scope} backup for [{config.Name}] to [{path}]")
 
         if scope == "config":
             backup_created = config.dump(path).status
         else:
             task_id = TaskManager.add(Task(title=_("Backup {0}").format(config.Name)))
             bottle_path = ManagerUtils.get_bottle_path(config)
-            try:
-                with tarfile.open(path, "w:gz") as tar:
-                    parent = os.path.dirname(bottle_path)
-                    folder = os.path.basename(bottle_path)
-                    os.chdir(parent)
-                    tar.add(folder, filter=BackupManager.exclude_filter)
-                backup_created = True
-            except (FileNotFoundError, PermissionError, tarfile.TarError, ValueError):
-                logging.error(f"Error creating backup for [{config.Name}]")
-                backup_created = False
-            finally:
-                TaskManager.remove(task_id)
+            backup_created = BackupManager._create_tarfile(
+                bottle_path, path, exclude_filter=BackupManager.exclude_filter
+            )
+            TaskManager.remove(task_id)
 
         if backup_created:
-            logging.info(f"New backup saved in path: {path}.", jn=True)
+            logging.info(f"Backup successfully saved to: {path}.")
             return Result(status=True)
-
-        logging.error(f"Failed to save backup in path: {path}.")
-        return Result(status=False)
+        else:
+            logging.error("Failed to save backup.")
+            return Result(status=False)
 
     @staticmethod
-    def exclude_filter(tarinfo):
-        """Filter which excludes some unwanted files from the backup."""
+    def exclude_filter(tarinfo: tarfile.TarInfo) -> tarfile.TarInfo:
+        """
+        Filter which excludes some unwanted files from the backup.
+        """
         if "dosdevices" in tarinfo.name:
             return None
-
         return tarinfo
 
     @staticmethod
@@ -91,126 +124,95 @@ class BackupManager:
         Config will make a new bottle reproducing the configuration, full will
         import the full bottle from a tar.gz file.
         """
-        if not path:
-            logging.error(_("No path specified"))
+        if not BackupManager._validate_path(path):
             return Result(status=False)
 
-        manager = Manager()
-
-        backup_name = os.path.basename(path)
-        import_status = False
-
-        task_id = TaskManager.add(Task(title=_("Importing backup: {0}").format(backup_name)))
-        logging.info(f"Importing backup: {backup_name}")
+        logging.info(f"Importing backup from: {path}")
 
         if scope == "config":
-            '''
-            If the backup type is "config", the backup will be used
-            to replicate the bottle configuration, else the backup
-            will be used to extract the bottle's directory.
-            '''
-            if backup_name.endswith(".yml"):
-                backup_name = backup_name[:-4]
-
-            config_load = BottleConfig.load(path)
-            if config_load.status and manager.create_bottle_from_config(config_load.data):
-                import_status = True
-            else:
-                import_status = False
+            return BackupManager._import_config_backup(path)
         else:
-            if backup_name.endswith(".tar.gz"):
-                backup_name = backup_name[:-7]
-
-            if backup_name.lower().startswith("backup_"):
-                # remove the "backup_" prefix if it exists
-                backup_name = backup_name[7:]
-
-            try:
-                with tarfile.open(path, "r:gz") as tar:
-                    def is_within_directory(directory, target):
-
-                        abs_directory = os.path.abspath(directory)
-                        abs_target = os.path.abspath(target)
-
-                        prefix = os.path.commonprefix([abs_directory, abs_target])
-
-                        return prefix == abs_directory
-
-                    def safe_extract(_tar, _path=".", members=None, *, numeric_owner=False):
-
-                        for member in _tar.getmembers():
-                            member_path = os.path.join(_path, member.name)
-                            if not is_within_directory(_path, member_path):
-                                raise Exception("Attempted Path Traversal in Tar File")
-
-                        _tar.extractall(_path, members, numeric_owner=numeric_owner)
-
-                    safe_extract(tar, Paths.bottles)
-                import_status = True
-            except (FileNotFoundError, PermissionError, tarfile.TarError):
-                import_status = False
-
-        TaskManager.remove(task_id)
-
-        if import_status:
-            manager.update_bottles()
-            logging.info(f"Backup imported: {path}", jn=True)
-            return Result(status=True)
-
-        logging.error(f"Failed importing backup: {backup_name}")
-        return Result(status=False)
+            return BackupManager._import_full_backup(path)
 
     @staticmethod
-    def duplicate_bottle(config, name) -> Result:
-        """Duplicates the bottle with the specified new name."""
-        logging.info(f"Duplicating bottle: {config.Name} to {name}")
-
-        path = pathvalidate.sanitize_filename(name, platform="universal")
-        source = ManagerUtils.get_bottle_path(config)
-        dest = os.path.join(Paths.bottles, path)
-
-        source_drive = os.path.join(source, "drive_c")
-        dest_drive = os.path.join(dest, "drive_c")
-
-        source_config = os.path.join(source, "bottle.yml")
-        dest_config = os.path.join(dest, "bottle.yml")
-
-        if not os.path.exists(dest):
-            os.makedirs(dest)
-
-        regs = [
-            "system.reg",
-            "user.reg",
-            "userdef.reg"
-        ]
-
-        try:
-            for reg in regs:
-                source_reg = os.path.join(source, reg)
-                dest_reg = os.path.join(dest, reg)
-                if os.path.exists(source_reg):
-                    shutil.copyfile(source_reg, dest_reg)
-
-            shutil.copyfile(source_config, dest_config)
-
-            with open(dest_config, "r") as config_file:
-                config = yaml.load(config_file)
-                config["Name"] = name
-                config["Path"] = path
-
-            with open(dest_config, "w") as config_file:
-                yaml.dump(config, config_file, indent=4)
-
-            shutil.copytree(
-                src=source_drive,
-                dst=dest_drive,
-                ignore=shutil.ignore_patterns(".*"),
-                symlinks=True,
-                ignore_dangling_symlinks=True
-            )
-        except (FileNotFoundError, PermissionError, OSError):
-            logging.error(f"Failed duplicate bottle: {name}")
+    def _import_config_backup(path: str) -> Result:
+        task_id = TaskManager.add(Task(title=_("Importing config backup")))
+        config_load = BottleConfig.load(path)
+        manager = Manager()
+        if config_load.status and manager.create_bottle_from_config(config_load.data):
+            TaskManager.remove(task_id)
+            logging.info("Config backup imported successfully.")
+            return Result(status=True)
+        else:
+            TaskManager.remove(task_id)
+            logging.error("Failed to import config backup.")
             return Result(status=False)
 
-        logging.info(f"Bottle {name} duplicated.", jn=True)
-        return Result(status=True)
+    @staticmethod
+    def _import_full_backup(path: str) -> Result:
+        task_id = TaskManager.add(Task(title=_("Importing full backup")))
+        if BackupManager._safe_extract_tarfile(path, Paths.bottles):
+            Manager().update_bottles()
+            TaskManager.remove(task_id)
+            logging.info("Full backup imported successfully.")
+            return Result(status=True)
+        else:
+            TaskManager.remove(task_id)
+            logging.error("Failed to import full backup.")
+            return Result(status=False)
+
+    @staticmethod
+    def duplicate_bottle(config: BottleConfig, name: str) -> Result:
+        """
+        Duplicates the bottle with the specified new name.
+        """
+        logging.info(f"Duplicating bottle: {config.Name} as {name}")
+
+        sanitized_name = pathvalidate.sanitize_filename(name, platform="universal")
+        source_path = ManagerUtils.get_bottle_path(config)
+        destination_path = os.path.join(Paths.bottles, sanitized_name)
+
+        return BackupManager._duplicate_bottle_directory(
+            config, source_path, destination_path, name
+        )
+
+    @staticmethod
+    def _duplicate_bottle_directory(
+        config: BottleConfig, source_path: str, destination_path: str, new_name: str
+    ) -> Result:
+        try:
+            if not os.path.exists(destination_path):
+                os.makedirs(destination_path)
+            for item in [
+                "drive_c",
+                "system.reg",
+                "user.reg",
+                "userdef.reg",
+                "bottle.yml",
+            ]:
+                source_item = os.path.join(source_path, item)
+                destination_item = os.path.join(destination_path, item)
+                if os.path.isdir(source_item):
+                    shutil.copytree(
+                        source_item,
+                        destination_item,
+                        ignore=shutil.ignore_patterns(".*"),
+                        symlinks=True,
+                    )
+                elif os.path.isfile(source_item):
+                    shutil.copy(source_item, destination_item)
+
+            # Update the bottle configuration
+            config_path = os.path.join(destination_path, "bottle.yml")
+            with open(config_path) as config_file:
+                config_data = yaml.load(config_file)
+            config_data["Name"] = new_name
+            config_data["Path"] = destination_path
+            with open(config_path, "w") as config_file:
+                yaml.dump(config_data, config_file, indent=4)
+
+            logging.info(f"Bottle duplicated successfully as {new_name}.")
+            return Result(status=True)
+        except (FileNotFoundError, PermissionError, OSError) as e:
+            logging.error(f"Error duplicating bottle: {e}")
+            return Result(status=False)

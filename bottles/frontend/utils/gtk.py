@@ -27,7 +27,11 @@ class GtkUtils:
     @staticmethod
     def validate_entry(entry, extend=None) -> bool:
         text = entry.get_text()
-        if re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text) or len(text) == 0 or text.isspace():
+        if (
+            re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text)
+            or len(text) == 0
+            or text.isspace()
+        ):
             entry.add_css_class("error")
             return False
 
@@ -45,8 +49,10 @@ class GtkUtils:
         def wrapper(*args, **kwargs):
             _tmp = []
             if kwargs:
-                for _, param in list(signature(func).parameters.items())[len(args):]:
-                    _tmp.append(kwargs[param.name] if param.name in kwargs else param.default)
+                for _, param in list(signature(func).parameters.items())[len(args) :]:
+                    _tmp.append(
+                        kwargs[param.name] if param.name in kwargs else param.default
+                    )
                 args = args + tuple(_tmp)
             return GLib.idle_add(func, *args)
 

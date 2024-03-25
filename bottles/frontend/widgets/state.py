@@ -23,9 +23,9 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/state-entry.ui")
 class StateEntry(Adw.ActionRow):
-    __gtype_name__ = 'StateEntry'
+    __gtype_name__ = "StateEntry"
 
     # region Widgets
     btn_restore = Gtk.Template.Child()
@@ -46,7 +46,9 @@ class StateEntry(Adw.ActionRow):
         if config.Versioning:
             self.state_name = "#{} - {}".format(
                 state[0],
-                datetime.strptime(state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f").strftime("%d %B %Y, %H:%M")
+                datetime.strptime(
+                    state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f"
+                ).strftime("%d %B %Y, %H:%M"),
             )
 
             self.set_subtitle(self.state[1]["Comment"])
@@ -55,7 +57,9 @@ class StateEntry(Adw.ActionRow):
         else:
             self.state_name = "{} - {}".format(
                 state[0],
-                datetime.fromtimestamp(state[1]["timestamp"]).strftime("%d %B %Y, %H:%M")
+                datetime.fromtimestamp(state[1]["timestamp"]).strftime(
+                    "%d %B %Y, %H:%M"
+                ),
             )
             self.set_subtitle(state[1]["message"])
             if active:
@@ -78,7 +82,9 @@ class StateEntry(Adw.ActionRow):
         self.spinner.start()
 
         def _after():
-            self.window.page_details.view_versioning.update(None, self.config)  # update states
+            self.window.page_details.view_versioning.update(
+                None, self.config
+            )  # update states
             self.manager.update_bottles()  # update bottles
 
         RunAsync(
@@ -86,7 +92,7 @@ class StateEntry(Adw.ActionRow):
             callback=self.set_completed,
             config=self.config,
             state_id=self.state[0],
-            after=_after
+            after=_after,
         )
 
     @GtkUtils.run_in_main_loop

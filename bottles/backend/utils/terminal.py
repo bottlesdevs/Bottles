@@ -17,6 +17,7 @@
 
 import os
 import subprocess
+import shlex
 
 from bottles.backend.logger import Logger
 
@@ -29,6 +30,7 @@ class TerminalUtils:
     It will loop all the "supported" terminals to find the one
     that is available, so it will be used to launch the command.
     """
+
     colors = {
         "default": "#00ffff #2b2d2e",
         "debug": "#ff9800 #2e2c2b",
@@ -37,21 +39,21 @@ class TerminalUtils:
 
     terminals = [
         # Part of Flatpak package
-        ['easyterm.py', '-d -p "%s" -c %s'],
+        ["easyterm.py", '-d -p "%s" -c %s'],
         # Third party
-        ['foot', '%s'],
-        ['kitty', '%s'],
-        ['tilix', '-- %s'],
+        ["foot", "%s"],
+        ["kitty", "%s"],
+        ["tilix", "-- %s"],
         # Desktop environments
-        ['xfce4-terminal', '-e %s'],
-        ['konsole', '--noclose -e %s'],
-        ['gnome-terminal', '-- %s'],
-        ['kgx', '-e %s'],
-        ['mate-terminal', '--command %s'],
-        ['qterminal', '--execute %s'],
-        ['lxterminal', '-e %s'],
+        ["xfce4-terminal", "-e %s"],
+        ["konsole", "--noclose -e %s"],
+        ["gnome-terminal", "-- %s"],
+        ["kgx", "-e %s"],
+        ["mate-terminal", "--command %s"],
+        ["qterminal", "--execute %s"],
+        ["lxterminal", "-e %s"],
         # Fallback
-        ['xterm', '-e %s'],
+        ["xterm", "-e %s"],
     ]
 
     def __init__(self):
@@ -63,11 +65,15 @@ class TerminalUtils:
             return True
 
         for terminal in self.terminals:
-            terminal_check = subprocess.Popen(
-                f"command -v {terminal[0]} > /dev/null && echo 1 || echo 0",
-                shell=True,
-                stdout=subprocess.PIPE
-            ).communicate()[0].decode("utf-8")
+            terminal_check = (
+                subprocess.Popen(
+                    f"command -v {terminal[0]} > /dev/null && echo 1 || echo 0",
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                )
+                .communicate()[0]
+                .decode("utf-8")
+            )
 
             if "1" in terminal_check:
                 self.terminal = terminal
@@ -87,24 +93,26 @@ class TerminalUtils:
             colors = "default"
 
         colors = self.colors[colors]
+        command = shlex.quote(command)
 
-        if self.terminal[0] == 'easyterm.py':
-            command = ' '.join(self.terminal) % (colors, f'bash -c "{command}"')
+        if self.terminal[0] == "easyterm.py":
+            command = " ".join(self.terminal) % (
+                colors,
+                shlex.quote(f"bash -c {command}"),
+            )
             if "ENABLE_BASH" in os.environ:
-                command = ' '.join(self.terminal) % (colors, f"bash")
-        elif self.terminal[0] in ['kgx', 'xfce4-terminal']:
-            command = ' '.join(self.terminal) % "'sh -c %s'" % f'"{command}"'
-        elif self.terminal[0] in ['kitty', 'foot', 'konsole', 'gnome-terminal']:
-            command = ' '.join(self.terminal) % "sh -c %s" % f'"{command}"'
+                command = " ".join(self.terminal) % (colors, f"bash")
+        elif self.terminal[0] in ["xfce4-terminal"]:
+            command = " ".join(self.terminal) % "'sh -c %s'" % f"{command}"
+        elif self.terminal[0] in ["kitty", "foot", "konsole", "gnome-terminal"]:
+            command = " ".join(self.terminal) % "sh -c %s" % f"{command}"
         else:
-            command = ' '.join(self.terminal) % "bash -c %s" % f'"{command}"'
+            command = " ".join(self.terminal) % "bash -c %s" % f"{command}"
+
+        logging.info(f"Command: {command}")
 
         subprocess.Popen(
-            command,
-            shell=True,
-            env=env,
-            stdout=subprocess.PIPE,
-            cwd=cwd
+            command, shell=True, env=env, stdout=subprocess.PIPE, cwd=cwd
         ).communicate()[0].decode("utf-8")
 
         return True
@@ -112,7 +120,4 @@ class TerminalUtils:
     def launch_snake(self):
         snake_path = os.path.dirname(os.path.realpath(__file__))
         snake_path = os.path.join(snake_path, "snake.py")
-        self.execute(
-            command="python %s" % snake_path,
-            colors="easter"
-        )
+        self.execute(command="python %s" % snake_path, colors="easter")

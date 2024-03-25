@@ -63,10 +63,7 @@ class HealthChecker:
         self.bottles_envs = self.get_bottles_envs()
         self.check_system_info()
         self.disk = self.get_disk_data()
-        self.ram = {
-            "MemTotal": "n/a",
-            "MemAvailable": "n/a"
-        }
+        self.ram = {"MemTotal": "n/a", "MemAvailable": "n/a"}
         self.get_ram_data()
 
         if "FLATPAK_ID" not in os.environ:
@@ -141,6 +138,7 @@ class HealthChecker:
     def check_icoextract():
         try:
             import icoextract
+
             return True
         except ModuleNotFoundError:
             return False
@@ -149,6 +147,7 @@ class HealthChecker:
     def check_pefile():
         try:
             import pefile
+
             return True
         except ModuleNotFoundError:
             return False
@@ -157,6 +156,7 @@ class HealthChecker:
     def check_markdown():
         try:
             import markdown
+
             return True
         except ModuleNotFoundError:
             return False
@@ -165,6 +165,7 @@ class HealthChecker:
     def check_orjson():
         try:
             import orjson
+
             return True
         except ModuleNotFoundError:
             return False
@@ -187,6 +188,7 @@ class HealthChecker:
     def check_FVS():
         try:
             from fvs.repo import FVSRepo
+
             return True
         except ModuleNotFoundError:
             return False
@@ -197,14 +199,12 @@ class HealthChecker:
             "TESTING_REPOS",
             "LOCAL_INSTALLERS",
             "LOCAL_COMPONENTS",
-            "LOCAL_DEPENDENCIES"
+            "LOCAL_DEPENDENCIES",
         ]
 
         for _look in look:
             if _look in os.environ:
-                return {
-                    _look: os.environ[_look]
-                }
+                return {_look: os.environ[_look]}
 
     def check_system_info(self):
         self.kernel = os.uname().sysname
@@ -212,19 +212,22 @@ class HealthChecker:
 
     def get_disk_data(self):
         disk_data = self.file_utils.get_disk_size(False)
-        return {
-            "Total": disk_data["total"],
-            "Free": disk_data["free"]
-        }
+        return {"Total": disk_data["total"], "Free": disk_data["free"]}
 
     def get_ram_data(self):
         with contextlib.suppress(FileNotFoundError, PermissionError):
-            with open('/proc/meminfo') as file:
+            with open("/proc/meminfo") as file:
                 for line in file:
-                    if 'MemTotal' in line:
-                        self.ram["MemTotal"] = self.file_utils.get_human_size_legacy(float(line.split()[1])*1024.0)
-                    if 'MemAvailable' in line:
-                        self.ram["MemAvailable"] = self.file_utils.get_human_size_legacy(float(line.split()[1])*1024.0)
+                    if "MemTotal" in line:
+                        self.ram["MemTotal"] = self.file_utils.get_human_size_legacy(
+                            float(line.split()[1]) * 1024.0
+                        )
+                    if "MemAvailable" in line:
+                        self.ram["MemAvailable"] = (
+                            self.file_utils.get_human_size_legacy(
+                                float(line.split()[1]) * 1024.0
+                            )
+                        )
 
     def get_results(self, plain: bool = False):
         results = {
@@ -237,13 +240,10 @@ class HealthChecker:
                 "Wayland": self.wayland,
             },
             "Graphics": self.gpus,
-            "Kernel": {
-                "Type": self.kernel,
-                "Version": self.kernel_version
-            },
+            "Kernel": {"Type": self.kernel, "Version": self.kernel_version},
             "Disk": self.disk,
             "RAM": self.ram,
-            "Bottles_envs": self.bottles_envs
+            "Bottles_envs": self.bottles_envs,
         }
 
         if "FLATPAK_ID" not in os.environ:
@@ -258,7 +258,7 @@ class HealthChecker:
                 "markdown": self.markdown,
                 "ImageMagick": self.ImageMagick,
                 "FVS": self.FVS,
-                "xdpyinfo": self.xdpyinfo
+                "xdpyinfo": self.xdpyinfo,
             }
 
         if plain:
@@ -273,7 +273,9 @@ class HealthChecker:
 
         for k, v in self.get_results()["Tools and Libraries"].items():
             if v is False:
-                logging.error(f"Core dependency {k} not found, Bottles can't be started.")
+                logging.error(
+                    f"Core dependency {k} not found, Bottles can't be started."
+                )
                 result = False
 
         return result

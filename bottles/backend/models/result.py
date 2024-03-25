@@ -16,7 +16,7 @@
 #
 from typing import TypeVar, Generic
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class Result(Generic[T]):
@@ -30,12 +30,7 @@ class Result(Generic[T]):
     data: T = None
     message: str = ""
 
-    def __init__(
-            self,
-            status: bool = False,
-            data: T = None,
-            message: str = ""
-    ):
+    def __init__(self, status: bool = False, data: T = None, message: str = ""):
         self.status = status
         self.data = data
         self.message = message

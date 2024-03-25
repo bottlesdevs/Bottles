@@ -18,9 +18,9 @@
 from gi.repository import Gtk, Adw
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-rename.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-rename.ui")
 class RenameDialog(Adw.Window):
-    __gtype_name__ = 'RenameDialog'
+    __gtype_name__ = "RenameDialog"
 
     # region Widgets
     entry_name = Gtk.Template.Child()

@@ -26,8 +26,8 @@ def dump(data, stream=None, **kwargs):
 def load(stream, Loader=SafeLoader):
     """
     Load a YAML stream.
-    Note: This function is a replacement for PyYAML's safe_load() function, 
-          using the CLoader class instead of the default Loader, to achieve 
+    Note: This function is a replacement for PyYAML's safe_load() function,
+          using the CLoader class instead of the default Loader, to achieve
           the best performance.
     """
     return _yaml.load(stream, Loader=Loader)
