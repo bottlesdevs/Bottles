@@ -1073,6 +1073,11 @@ class Manager(metaclass=Singleton):
             config.Path = f"{config.Path}__{rnd}"
             os.makedirs(bottle_path)
 
+        # Pre-create drive_c directory and set the case-fold flag
+        bottle_drive_c = os.path.join(bottle_path, "drive_c")
+        os.makedirs(bottle_drive_c)
+        FileUtils.chattr_f(bottle_drive_c)
+
         # write the bottle config file
         saved = config.dump(os.path.join(bottle_path, "bottle.yml"))
         if not saved.status:
@@ -1236,6 +1241,10 @@ class Manager(metaclass=Singleton):
         # create the bottle directory
         try:
             os.makedirs(bottle_complete_path)
+            # Pre-create drive_c directory and set the case-fold flag
+            bottle_drive_c = os.path.join(bottle_complete_path, "drive_c")
+            os.makedirs(bottle_drive_c)
+            FileUtils.chattr_f(bottle_drive_c)
         except:
             logging.error(
                 f"Failed to create bottle directory: {bottle_complete_path}", jn=True

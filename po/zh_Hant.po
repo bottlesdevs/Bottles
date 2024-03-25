@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-06 20:51+0000\n"
-"Last-Translator: csc-chicken <k2205940@gmail.com>\n"
+"PO-Revision-Date: 2024-02-08 06:09+0000\n"
+"Last-Translator: shamo3qk <x976631@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -51,7 +51,7 @@ msgstr "無法建立暫時填充用的目錄/檔案。"
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr "正在產生酒瓶設定檔…"
+msgstr "正在產生bottle設定檔…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
@@ -68,7 +68,7 @@ msgstr "WINE 設定檔已更新！"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "在Flatpak環境執行，正將使用者目錄進行沙盒隔離…"
+msgstr "在 Flatpak 環境執行，正將使用者目錄進行沙盒隔離…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
@@ -227,7 +227,7 @@ msgstr ""
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr "版本"
+msgstr "元件版本"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
@@ -418,7 +418,7 @@ msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
-msgstr "執行檔案…"
+msgstr "運行可執行檔…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
@@ -457,11 +457,11 @@ msgstr "正在設定酒瓶。"
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr "相依項目"
+msgstr "相依套件"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
-msgstr "安裝程式的相依套件。"
+msgstr "為程式安裝相依套件。"
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
@@ -481,7 +481,7 @@ msgstr "工作管理員"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr "管理正在執行的程式。"
+msgstr "管理執行中的程式。"
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -505,7 +505,7 @@ msgstr "編輯內部註冊表。"
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr "舊版Wine工具"
+msgstr "舊版 Wine 工具"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
@@ -530,17 +530,17 @@ msgstr "控制台"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr "搜尋相依項目…"
+msgstr "搜尋相依套件…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "您已離線 :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Bottles 正在離線模式下執行，因此相依套件將無法存取。"
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -555,7 +555,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
-msgstr "回報問題或是遺失的相依項目。"
+msgstr "回報問題或是遺失的相依套件。"
 
 #: bottles/frontend/ui/details-dependencies.blp:77
 msgid "Report Missing Dependency"
@@ -563,7 +563,7 @@ msgstr "回報遺失的相依套件"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
 msgid "Read Documentation."
-msgstr "閱讀說明文件。"
+msgstr "閱讀文檔。"
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
@@ -595,7 +595,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
-msgstr "沒有找到安裝檔"
+msgstr "沒有找到安裝程式"
 
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
@@ -620,7 +620,7 @@ msgstr "組件"
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr "Wine相容層的版本。"
+msgstr "Wine 相容層的版本。"
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
@@ -633,7 +633,7 @@ msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 9/10/11 compatibility by translating it to Vulkan."
-msgstr "轉譯成Vulkan，改善對Direct3D 9/10/11的相容性。"
+msgstr "將 Direct3D 9/10/11 轉譯成 Vulkan，以改善相容性。"
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
@@ -646,7 +646,7 @@ msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr "轉譯成Vulkan以改善Direct3D 12的相容性。"
+msgstr "將 Direct3D 12 轉譯成 Vulkan，以改善相容性。"
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
@@ -672,7 +672,7 @@ msgstr "改進反應速度。可能會被某些反作弊程式偵測到。"
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
-msgstr "正在更新LatencyFleX，請稍候…"
+msgstr "正在更新 LatencyFleX，請稍候…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
@@ -686,19 +686,19 @@ msgstr "深度學習超級採樣"
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
-msgstr "使用DXVK-NVAPI，犧牲視覺效果換取性能。儘支援新款Nvidia GPU。"
+msgstr "使用 DXVK-NVAPI，犧牲視覺效果換取性能。僅支援 NVIDIA Turing+ GPUs。"
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX Super Resolution"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "犧牲視覺效果換取性能。僅在Vulkan平台有效。"
+msgstr "犧牲視覺效果換取性能。僅在 Vulkan 平台有效。"
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "管理 FidelityFX Super Resolution 設定"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
@@ -708,28 +708,28 @@ msgstr "獨立顯示卡"
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
-msgstr "使用獨立顯示卡提升性能，增加耗電量。"
+msgstr "以增加耗電量為代價，使用獨立顯示卡提升性能。"
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr "後製效果"
+msgstr "後製特效"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
-msgstr "使用vkBasalt加入多種後製特效。僅Vulkan平台有效。"
+msgstr "使用 vkBasalt 加入多種後製特效。僅在 Vulkan 平台有效。"
 
 #: bottles/frontend/ui/details-preferences.blp:138
 msgid "Manage Post-Processing Layer settings"
-msgstr "管理後製特效層的設定"
+msgstr "管理後製層的設定"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr "管理遊戲透過Gamescope的顯示方式。"
+msgstr "管理遊戲透過 Gamescope 的顯示方式。"
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
-msgstr "管理Gamescope設定"
+msgstr "管理 Gamescope 設定"
 
 #: bottles/frontend/ui/details-preferences.blp:171
 msgid "Advanced Display Settings"
@@ -771,8 +771,8 @@ msgstr "監測效能"
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
-msgstr "利用MangoHud，在OpenGL和Vulkan應用程式顯示影格率、溫度、CPU/"
-"GPU負載等監測資訊。"
+msgstr "利用 MangoHud，在 OpenGL 和 Vulkan 應用程式顯示影格率、溫度、CPU/"
+"GPUMangoHud負載等監測資訊。"
 
 #: bottles/frontend/ui/details-preferences.blp:211
 msgid "Feral GameMode"
@@ -795,15 +795,15 @@ msgstr "改善多次啟動遊戲的載入速度。遊戲初次啟動時間會變
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
-msgstr "管理vmtouch設定"
+msgstr "管理 vmtouch 設定"
 
 #: bottles/frontend/ui/details-preferences.blp:241
 msgid "OBS Game Capture"
-msgstr "OBS遊戲擷取"
+msgstr "OBS 遊戲擷取"
 
 #: bottles/frontend/ui/details-preferences.blp:242
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr "為所有Vulkan和OpenGL程式切換 OBS 遊戲擷取。"
+msgstr "切換所有 Vulkan 和 OpenGL 程式的 OBS 遊戲擷取。"
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
@@ -840,7 +840,7 @@ msgstr "管理沙盒權限"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr "Bottles 執行環境"
+msgstr "Bottles Runtime"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 msgid ""
@@ -850,13 +850,13 @@ msgstr "新增額外函式庫以增加相容性。若遇到問題請將此選項
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Steam執行時間"
+msgstr "Steam Runtime"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
-msgstr "新增額外函式庫以增加Steam遊戲相容性。若遇到問題請將此選項關閉。"
+msgstr "提供額外函式庫以增加 Steam 遊戲相容性。若遇到問題請將此選項關閉。"
 
 #: bottles/frontend/ui/details-preferences.blp:315
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -918,7 +918,7 @@ msgstr "使用排除模式"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr "排除快照中的路徑。"
+msgstr "為快照排除路徑。"
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
@@ -989,7 +989,7 @@ msgstr "鑄造新酒瓶"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr "回報酒瓶崩潰"
+msgstr "Bottles 崩潰回報"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1076,7 +1076,7 @@ msgstr "硬碟"
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
-msgstr "這些是您主機系統映射到和給執行器辨識的路徑(例如 C: D:....)。"
+msgstr "這些是由您的主機系統映射和被執行器辨識的路徑(例如 C: D:....)。"
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1135,7 +1135,7 @@ msgstr "排除樣式"
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
-msgstr "定義用來避免一些目錄被記錄到版本裡的樣式。"
+msgstr "定義樣式，將目錄排除於版本控制。"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
 msgid "Pattern"
@@ -1147,7 +1147,7 @@ msgstr "現存的樣式"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
-msgstr "Gamescope設定"
+msgstr "Gamescope 設定"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:30
 #: bottles/frontend/ui/dialog-launch-options.blp:32
@@ -1180,7 +1180,7 @@ msgstr "高度"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
 msgid "Window Resolution"
-msgstr "Windows解析度"
+msgstr "視窗解析度"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:82
 msgid ""
@@ -1201,9 +1201,8 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr "非聚焦時的影格率"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "使用整數縮放"
+msgstr "整數縮放"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1404,7 +1403,7 @@ msgstr "執行"
 
 #: bottles/frontend/ui/dialog-run-args.blp:44
 msgid "Write below the arguments to be passed to the executable."
-msgstr "請在下方輸入要傳遞給執行檔的引述。"
+msgstr "請在下方輸入要傳遞給執行檔的引數。"
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
@@ -1486,7 +1485,7 @@ msgstr "預設"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:48
 msgid "Default Settings"
-msgstr "顯示設定"
+msgstr "預設設定"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
@@ -1703,7 +1702,7 @@ msgstr "匯入酒瓶備份"
 
 #: bottles/frontend/ui/importer.blp:28
 msgid "Search again for prefixes"
-msgstr "再次搜尋Wineprefix"
+msgstr "再次搜尋 Wineprefixes"
 
 #: bottles/frontend/ui/importer.blp:38
 msgid "No Prefixes Found"
@@ -1714,7 +1713,7 @@ msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"找不到外部prefix。請確認Bottles是否有存取權限？\n"
+"找不到外部 prefixes。請確認 Bottles 是否有存取權限？\n"
 "\n"
 "請使用上方圖示從備份匯入酒瓶。"
 
@@ -1839,7 +1838,7 @@ msgstr "啟動中…"
 
 #: bottles/frontend/ui/local-resource-entry.blp:4
 msgid "This resource is missing."
-msgstr "遺失這項資源。"
+msgstr "這項資源已遺失。"
 
 #: bottles/frontend/ui/local-resource-entry.blp:8
 msgid "Browse"
@@ -1884,7 +1883,8 @@ msgid ""
 "This makes the user directory discoverable in the bottle, at the risk of "
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
-msgstr ""
+msgstr "這使得使用者目錄可以在酒瓶中被發現，從而面臨與 Windows "
+"軟體共享個人資訊的風險。建立酒瓶後此選項無法變更。"
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
@@ -1896,19 +1896,16 @@ msgid "32-bit should only be used if strictly necessary."
 msgstr "如果沒有特別的需求，我們建議不要使用 32 位元。"
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "匯出配置…"
+msgstr "匯入自訂配置"
 
 #: bottles/frontend/ui/new.blp:176
-#, fuzzy
 msgid "Bottle Directory"
-msgstr "Bottles的目錄"
+msgstr "Bottle 目錄"
 
 #: bottles/frontend/ui/new.blp:177
-#, fuzzy
 msgid "Directory that will contain the data of this bottle."
-msgstr "用於存放您Bottles資料的目錄。"
+msgstr "用於存放此 bottle 資料的目錄。"
 
 #: bottles/frontend/ui/new.blp:249
 #, fuzzy
@@ -1916,9 +1913,8 @@ msgid "_Close"
 msgstr "關閉"
 
 #: bottles/frontend/ui/new.blp:281
-#, fuzzy
 msgid "This name is unavailable, please try another."
-msgstr "您的系統無法使用這個功能。"
+msgstr "此名稱無法使用，請重新命名。"
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
@@ -1931,12 +1927,12 @@ msgstr "歡迎來到 Bottles"
 
 #: bottles/frontend/ui/onboard.blp:60
 msgid "Run Windows Software on Linux."
-msgstr "在Linux上執行Windows軟體。"
+msgstr "在 Linux 上執行 Windows 軟體。"
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
-msgstr "Bottles裡的Windows"
+msgstr "Bottles 中的 Windows"
 
 #: bottles/frontend/ui/onboard.blp:66
 msgid ""
@@ -1985,11 +1981,11 @@ msgstr "外觀"
 
 #: bottles/frontend/ui/preferences.blp:17
 msgid "Dark Mode"
-msgstr "黑暗模式"
+msgstr "闇黑模式"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
-msgstr "Bottles 是否要使用黑暗配色。"
+msgstr "Bottles 是否要使用黯黑配色。"
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
@@ -1997,7 +1993,7 @@ msgstr "顯示更新日期"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
-msgstr "是否應該在酒瓶列表中顯示更新日期。"
+msgstr "是否在 bottle 列表中顯示更新日期。"
 
 #: bottles/frontend/ui/preferences.blp:42
 #: data/com.usebottles.bottles.gschema.xml:46
@@ -2034,7 +2030,7 @@ msgstr "Steam Proton Prefixes"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
-msgstr "列出和管理Steam Proton Prefixes。"
+msgstr "列出和管理 Steam Proton Prefixes。"
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
@@ -2066,11 +2062,11 @@ msgstr "進階"
 
 #: bottles/frontend/ui/preferences.blp:131
 msgid "Bottles Directory"
-msgstr "Bottles的目錄"
+msgstr "Bottles 的目錄"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr "用於存放您Bottles資料的目錄。"
+msgstr "用於存放您 Bottles 資料的目錄。"
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
@@ -2078,7 +2074,7 @@ msgstr "執行器"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr ""
+msgstr "Bottles 正在離線模式下執行，因此無法使用執行器。"
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2094,7 +2090,7 @@ msgstr "DLL 組件"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr ""
+msgstr "Bottles 正在離線模式下執行，因此無法使用 DLLs。"
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2121,7 +2117,7 @@ msgstr "實驗性功能"
 msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
-msgstr "此功能正在積極開發中，可能不穩定，含有許多臭蟲，可能造成毀損。"
+msgstr "此功能正在積極開發中，可能不穩定，臭蟲和毀損是可預期的。"
 
 #: bottles/frontend/ui/preferences.blp:303
 msgid "Sandbox per bottle"
@@ -2235,9 +2231,8 @@ msgstr "「{0}」已新增"
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "選取酒瓶"
+msgstr "選取可執行檔"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2322,9 +2317,8 @@ msgstr "缺少執行器"
 msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
-msgstr ""
-"此酒瓶所需的執行器已遺失。從Bottles的偏好設定重新安裝執行器，或是選擇新的執行"
-"器用於執行應用程式。"
+msgstr "此酒瓶所需的執行器已遺失。從 Bottles "
+"的偏好設定重新安裝執行器，或是選擇新的執行器用於執行應用程式。"
 
 #: bottles/frontend/views/bottle_details.py:597
 msgid "Are you sure you want to force stop all processes?"
@@ -2353,9 +2347,8 @@ msgstr "名稱含有特殊字元，或是已經被使用。"
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "工作目錄"
+msgstr "選擇工作目錄"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
@@ -2415,18 +2408,18 @@ msgstr "選擇配置文件"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
-msgstr "無／全"
+msgstr "N/A"
 
 #. Set tooltip text
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "在 {self.config.Name} 中執行檔案"
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "正在啟動「{0}」…"
+msgstr "正在啟動「{1}」中的「{0}」…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2443,9 +2436,8 @@ msgid "Fetched {0} of {1} packages"
 msgstr "已取得 {0} 個軟體包，共 {1} 個"
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "Bottles的目錄"
+msgstr "選取 Bottle 的目錄"
 
 #: bottles/frontend/views/new.py:176
 #, fuzzy
@@ -2453,13 +2445,12 @@ msgid "Creating Bottle…"
 msgstr "正在鑄造酒瓶…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "鑄造新酒瓶"
+msgstr "鑄造酒瓶失敗"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "由於一個或多個錯誤，無法建立酒瓶。"
 
 #. Show success
 #: bottles/frontend/views/new.py:232
@@ -2721,20 +2712,19 @@ msgstr "安裝程式因不明錯誤安裝失敗"
 #: bottles/frontend/windows/launchoptions.py:56
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "{0} 原本就已經為此酒瓶停用了。"
+msgstr "{0} 已在此酒瓶停用。"
 
 #: bottles/frontend/windows/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
 msgstr "此設定與酒瓶的預設設定不一致。"
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "選取硬碟路徑"
+msgstr "選取腳本"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
-msgstr "找不到自訂的酒瓶路徑"
+msgstr "找不到自訂的 Bottles 路徑"
 
 #: bottles/frontend/windows/main_window.py:221
 msgid ""
@@ -2743,12 +2733,12 @@ msgstr "退回使用預設路徑。提供路徑中的酒瓶不會被列出。"
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
 msgid "Run Windows Software"
-msgstr "執行 Windows軟體"
+msgstr "執行 Windows 軟體"
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
@@ -2764,11 +2754,11 @@ msgstr "觸發 Flatpak 遷移對話框。"
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr "黑暗主題"
+msgstr "闇黑主題"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr "強制使用黑暗主題。"
+msgstr "強制使用闇黑主題。"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -2776,7 +2766,7 @@ msgstr "在列表中切換更新日期"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr "在容器列表中切換更新日期。"
+msgstr "切換 bottles 的更新日期顯示。"
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
@@ -2788,7 +2778,7 @@ msgstr "切換 Steam 應用程式列表。"
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr "Epic Games 遊戲列表"
+msgstr "Epic Games 應用程式列表"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
@@ -2796,7 +2786,7 @@ msgstr "切換 Epic Games 應用程式列表。"
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr "Ubisoft Connect 列表"
+msgstr "Ubisoft Connect 應用程式列表"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."
@@ -2824,7 +2814,7 @@ msgstr "顯示通知。"
 
 #: data/com.usebottles.bottles.gschema.xml:51
 msgid "Temp cleaning"
-msgstr "暫存清理"
+msgstr "暫存清理中"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid "Clean the temp path when booting the system."
@@ -2836,7 +2826,7 @@ msgstr "發佈"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle release candidate for runners."
-msgstr "為執行器切換發佈。"
+msgstr "切換候選版本執行器的顯示。"
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
@@ -2850,7 +2840,7 @@ msgstr "選擇該程式應在何種檢視下啟動。"
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
-msgstr "切換實驗性功能，例如版本控制與安裝程序。為執行器發佈候選。"
+msgstr "切換實驗性功能，例如版本控制、安裝程式、候選版本的執行器。"
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
@@ -2858,11 +2848,11 @@ msgstr "Steam Proton 支援"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
-msgstr "切換 Steam Proton 的 prefix 支援。"
+msgstr "切換 Steam Proton prefixes 的支援。"
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:sandbox"
-msgstr "實驗性：沙盒"
+msgstr "實驗性功能：沙盒"
 
 #: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Sandbox per bottle."
@@ -2984,11 +2974,11 @@ msgstr "……與更多待你安裝 Bottles 後發掘！"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
-msgstr ""
+msgstr "更新詮釋資料資訊"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
-msgstr ""
+msgstr "新增更多更新資訊和正確的發行說明版本"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 #, fuzzy
@@ -3032,7 +3022,7 @@ msgstr "新增自定義執行檔路徑"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
-msgstr ""
+msgstr "錯誤修正:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
@@ -3045,7 +3035,7 @@ msgstr "匯入備份：{0}"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
-msgstr ""
+msgstr "當使用wine-ge-custom時, Steam執行時間將會自動啟用"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
