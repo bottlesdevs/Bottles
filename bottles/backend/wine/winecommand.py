@@ -604,9 +604,9 @@ class WineCommand:
             if params.gamescope_borderless:
                 gamescope_cmd.append("-b")
             if params.gamescope_scaling:
-                gamescope_cmd.append("-n")
+                gamescope_cmd.append("-S integer")
             if params.fsr:
-                gamescope_cmd.append("-U")
+                gamescope_cmd.append("-F fsr")
                 # Upscaling sharpness is from 0 to 20. There are 5 FSR upscaling levels,
                 # so multiply by 4 to reach 20
                 gamescope_cmd.append(

@@ -219,7 +219,7 @@ class ComponentManager:
             file_path = os.path.join(Paths.temp, rename)
             os.rename(temp_dest, file_path)
 
-        if checksum:
+        if checksum and not os.environ.get("BOTTLES_SKIP_CHECKSUM"):
             """
             Compare the checksum of the downloaded file with the one
             provided by the caller. If they don't match, remove the
