@@ -33,7 +33,8 @@ class UbisoftConnectManager:
         paths = [
             os.path.join(
                 ManagerUtils.get_bottle_path(config),
-                "drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/cache/configuration/configurations")
+                "drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/cache/configuration/configurations",
+            )
         ]
 
         for path in paths:
@@ -59,11 +60,14 @@ class UbisoftConnectManager:
         key: Optional[str] = None
         appid: Optional[str] = None
         thumb: Optional[str] = None
-        reg_key = "register: HKEY_LOCAL_MACHINE\\SOFTWARE\\Ubisoft\\Launcher\\Installs\\"
+        reg_key = (
+            "register: HKEY_LOCAL_MACHINE\\SOFTWARE\\Ubisoft\\Launcher\\Installs\\"
+        )
         conf_path = UbisoftConnectManager.find_conf_path(config)
         games_path = os.path.join(
             ManagerUtils.get_bottle_path(config),
-            "drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/games")
+            "drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/games",
+        )
 
         if conf_path is None:
             return []
@@ -76,11 +80,7 @@ class UbisoftConnectManager:
                     _key = r.replace("name:", "").strip()
                     if _key != "" and _key not in found.keys():
                         key = _key
-                        found[key] = {
-                            "name": None,
-                            "appid": None,
-                            "thumb_image": None
-                        }
+                        found[key] = {"name": None, "appid": None, "thumb_image": None}
 
                 elif key and r.startswith("- shortcut_name:"):
                     _name = r.replace("- shortcut_name:", "").strip()
@@ -88,7 +88,9 @@ class UbisoftConnectManager:
                         name = _name
                         found[key]["name"] = name
 
-                elif key and found[key]["name"] is None and r.startswith("display_name:"):
+                elif (
+                    key and found[key]["name"] is None and r.startswith("display_name:")
+                ):
                     name = r.replace("display_name:", "").strip()
                     found[key]["name"] = name
 
@@ -104,22 +106,28 @@ class UbisoftConnectManager:
                     key, name, appid, thumb = None, None, None, None
 
             for k, v in found.items():
-                if v["name"] is None or not os.path.exists(os.path.join(games_path, v["name"])):
+                if v["name"] is None or not os.path.exists(
+                    os.path.join(games_path, v["name"])
+                ):
                     continue
 
                 _args = f"uplay://launch/{v['appid']}/0"
                 _path = "C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\UbisoftConnect.exe"
                 _executable = _path.split("\\")[-1]
                 _folder = ManagerUtils.get_exe_parent_dir(config, _path)
-                _thumb = "" if v['thumb_image'] is None else f"ubisoft:{v['thumb_image']}"
-                games.append({
-                    "executable": _path,
-                    "arguments": _args,
-                    "name": v["name"],
-                    "thumb": _thumb,
-                    "path": _path,
-                    "folder": _folder,
-                    "icon": "com.usebottles.bottles-program",
-                    "id": str(uuid.uuid4()),
-                })
+                _thumb = (
+                    "" if v["thumb_image"] is None else f"ubisoft:{v['thumb_image']}"
+                )
+                games.append(
+                    {
+                        "executable": _path,
+                        "arguments": _args,
+                        "name": v["name"],
+                        "thumb": _thumb,
+                        "path": _path,
+                        "folder": _folder,
+                        "icon": "com.usebottles.bottles-program",
+                        "id": str(uuid.uuid4()),
+                    }
+                )
         return games

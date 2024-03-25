@@ -32,7 +32,8 @@ class OriginManager:
         paths = [
             os.path.join(
                 ManagerUtils.get_bottle_path(config),
-                "drive_c/ProgramData/Origin/LocalContent")
+                "drive_c/ProgramData/Origin/LocalContent",
+            )
         ]
 
         for path in paths:

@@ -27,7 +27,7 @@ class MessageDialog(Gtk.MessageDialog):
             destroy_with_parent=True,
             message_type=Gtk.MessageType.WARNING,
             buttons=Gtk.ButtonsType.OK_CANCEL,
-            text=message
+            text=message,
         )
         self.set_transient_for(window)
         self.set_modal(True)
@@ -73,14 +73,14 @@ class SourceDialog(Adw.Window):
             highlight_syntax=True,
             highlight_matching_brackets=True,
             style_scheme=style_scheme_manager.get_scheme("oblivion"),
-            language=lang_manager.get_language(self.lang)
+            language=lang_manager.get_language(self.lang),
         )
         source_view = GtkSource.View(
             buffer=source_buffer,
             show_line_numbers=True,
             show_line_marks=True,
             tab_width=4,
-            monospace=True
+            monospace=True,
         )
         source_buffer = source_view.get_buffer()
 
@@ -192,4 +192,3 @@ class WebDialog(Adw.Window):
     def __copy_text(self, widget):
         clipboard = Gdk.Display.get_clipboard(Gdk.Display.get_default())
         clipboard.set_content(Gdk.ContentProvider.new_for_value(self.message))
-

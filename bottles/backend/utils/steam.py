@@ -25,6 +25,7 @@ from bottles.backend.utils import vdf
 
 logging = Logger()
 
+
 class SteamUtils:
 
     @staticmethod
@@ -59,11 +60,9 @@ class SteamUtils:
 
         f = open(toolmanifest, "r", errors="replace")
         data = SteamUtils.parse_vdf(f.read())
-        compat_layer_name = data.get("manifest", {}) \
-            .get("compatmanager_layer_name", {})
+        compat_layer_name = data.get("manifest", {}).get("compatmanager_layer_name", {})
 
-        commandline = data.get("manifest", {}) \
-            .get("commandline", {})
+        commandline = data.get("manifest", {}).get("commandline", {})
 
         return "proton" in compat_layer_name or "proton" in commandline
 
@@ -80,8 +79,7 @@ class SteamUtils:
         runtime = "scout"
         f = open(toolmanifest, "r", errors="replace")
         data = SteamUtils.parse_vdf(f.read())
-        tool_appid = data.get("manifest", {}) \
-            .get("require_tool_appid", {})
+        tool_appid = data.get("manifest", {}).get("require_tool_appid", {})
 
         if "1628350" in tool_appid:
             runtime = "sniper"
@@ -101,7 +99,9 @@ class SteamUtils:
         elif os.path.isdir(os.path.join(path, f"files")):
             dist_directory = os.path.join(path, f"files")
         else:
-            logging.warning(f"No /dist or /files sub-directory was found under this Proton directory: {path}")
+            logging.warning(
+                f"No /dist or /files sub-directory was found under this Proton directory: {path}"
+            )
 
         return dist_directory
 

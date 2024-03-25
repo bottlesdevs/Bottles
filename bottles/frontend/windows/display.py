@@ -30,9 +30,9 @@ logging = Logger()
 renderers = ["gl", "gdi", "vulkan"]
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-display.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-display.ui")
 class DisplayDialog(Adw.Window):
-    __gtype_name__ = 'DisplayDialog'
+    __gtype_name__ = "DisplayDialog"
 
     # Region Widgets
     btn_save = Gtk.Template.Child()
@@ -46,7 +46,9 @@ class DisplayDialog(Adw.Window):
     spin_dpi = Gtk.Template.Child()
     combo_renderer = Gtk.Template.Child()
 
-    def __init__(self, parent_window, config, details, queue, widget, spinner_display, **kwargs):
+    def __init__(
+        self, parent_window, config, details, queue, widget, spinner_display, **kwargs
+    ):
         super().__init__(**kwargs)
         self.set_transient_for(parent_window)
 
@@ -66,7 +68,9 @@ class DisplayDialog(Adw.Window):
     def __update(self, config):
         self.parameters = config.Parameters
 
-        self.expander_virtual_desktop.set_enable_expansion(self.parameters.virtual_desktop)
+        self.expander_virtual_desktop.set_enable_expansion(
+            self.parameters.virtual_desktop
+        )
         self.switch_mouse_capture.set_active(self.parameters.fullscreen_capture)
         self.switch_take_focus.set_active(self.parameters.take_focus)
         self.switch_mouse_warp.set_active(self.parameters.mouse_warp)
@@ -114,7 +118,10 @@ class DisplayDialog(Adw.Window):
                 self.window.show_toast(_("Display settings updated"))
             self.queue.end_task()
 
-        if self.expander_virtual_desktop.get_enable_expansion() != self.parameters.virtual_desktop:
+        if (
+            self.expander_virtual_desktop.get_enable_expansion()
+            != self.parameters.virtual_desktop
+        ):
             """Toggle virtual desktop"""
 
             @GtkUtils.run_in_main_loop
@@ -123,7 +130,7 @@ class DisplayDialog(Adw.Window):
                     config=self.config,
                     key="virtual_desktop",
                     value=self.expander_virtual_desktop.get_enable_expansion(),
-                    scope="Parameters"
+                    scope="Parameters",
                 ).data["config"]
                 complete_queue()
 
@@ -133,10 +140,13 @@ class DisplayDialog(Adw.Window):
                 task_func=rk.toggle_virtual_desktop,
                 callback=update,
                 state=self.expander_virtual_desktop.get_enable_expansion(),
-                resolution=resolution
+                resolution=resolution,
             )
 
-        if self.expander_virtual_desktop.get_enable_expansion() == True and resolution != self.parameters.virtual_desktop_res:
+        if (
+            self.expander_virtual_desktop.get_enable_expansion() == True
+            and resolution != self.parameters.virtual_desktop_res
+        ):
             """Set virtual desktop resolution"""
 
             @GtkUtils.run_in_main_loop
@@ -145,7 +155,7 @@ class DisplayDialog(Adw.Window):
                     config=self.config,
                     key="virtual_desktop_res",
                     value=resolution,
-                    scope="Parameters"
+                    scope="Parameters",
                 ).data["config"]
                 complete_queue()
 
@@ -156,7 +166,7 @@ class DisplayDialog(Adw.Window):
                     task_func=rk.toggle_virtual_desktop,
                     callback=update,
                     state=True,
-                    resolution=resolution
+                    resolution=resolution,
                 )
 
         if self.switch_mouse_warp.get_active() != self.parameters.mouse_warp:
@@ -168,7 +178,7 @@ class DisplayDialog(Adw.Window):
                     config=self.config,
                     key="mouse_warp",
                     value=self.switch_mouse_warp.get_active(),
-                    scope="Parameters"
+                    scope="Parameters",
                 ).data["config"]
                 complete_queue()
 
@@ -178,7 +188,7 @@ class DisplayDialog(Adw.Window):
             RunAsync(
                 rk.set_mouse_warp,
                 callback=update,
-                state=self.switch_mouse_warp.get_active()
+                state=self.switch_mouse_warp.get_active(),
             )
 
         if self.spin_dpi.get_value() != self.parameters.custom_dpi:
@@ -187,10 +197,7 @@ class DisplayDialog(Adw.Window):
             @GtkUtils.run_in_main_loop
             def update(result, error=False):
                 self.config = self.manager.update_config(
-                    config=self.config,
-                    key="custom_dpi",
-                    value=dpi,
-                    scope="Parameters"
+                    config=self.config, key="custom_dpi", value=dpi, scope="Parameters"
                 ).data["config"]
                 complete_queue()
 
@@ -198,11 +205,7 @@ class DisplayDialog(Adw.Window):
             rk = RegKeys(self.config)
             dpi = int(self.spin_dpi.get_value())
 
-            RunAsync(
-                rk.set_dpi,
-                callback=update,
-                value=dpi
-            )
+            RunAsync(rk.set_dpi, callback=update, value=dpi)
 
         if renderers[self.combo_renderer.get_selected()] != self.parameters.renderer:
             """Set renderer"""
@@ -213,7 +216,7 @@ class DisplayDialog(Adw.Window):
                     config=self.config,
                     key="renderer",
                     value=renderer,
-                    scope="Parameters"
+                    scope="Parameters",
                 ).data["config"]
                 complete_queue()
 
@@ -221,11 +224,7 @@ class DisplayDialog(Adw.Window):
             rk = RegKeys(self.config)
             renderer = renderers[self.combo_renderer.get_selected()]
 
-            RunAsync(
-                rk.set_renderer,
-                callback=update,
-                value=renderer
-            )
+            RunAsync(rk.set_renderer, callback=update, value=renderer)
 
         def toggle_x11_reg_key(state, rkey, ckey):
             """Update x11 registry keys"""
@@ -233,10 +232,7 @@ class DisplayDialog(Adw.Window):
             @GtkUtils.run_in_main_loop
             def update(result, error=False):
                 self.config = self.manager.update_config(
-                    config=self.config,
-                    key=ckey,
-                    value=state,
-                    scope="Parameters"
+                    config=self.config, key=ckey, value=state, scope="Parameters"
                 ).data["config"]
                 complete_queue()
 
@@ -249,15 +245,23 @@ class DisplayDialog(Adw.Window):
                 callback=update,
                 key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
                 value=rkey,
-                data=_rule
+                data=_rule,
             )
 
         if self.switch_mouse_capture.get_active() != self.parameters.fullscreen_capture:
-            toggle_x11_reg_key(self.switch_mouse_capture.get_active(), "GrabFullscreen", "fullscreen_capture")
+            toggle_x11_reg_key(
+                self.switch_mouse_capture.get_active(),
+                "GrabFullscreen",
+                "fullscreen_capture",
+            )
         if self.switch_take_focus.get_active() != self.parameters.take_focus:
-            toggle_x11_reg_key(self.switch_take_focus.get_active(), "UseTakeFocus", "take_focus")
+            toggle_x11_reg_key(
+                self.switch_take_focus.get_active(), "UseTakeFocus", "take_focus"
+            )
         if self.switch_decorated.get_active() != self.parameters.decorated:
-            toggle_x11_reg_key(self.switch_decorated.get_active(), "Decorated", "decorated")
+            toggle_x11_reg_key(
+                self.switch_decorated.get_active(), "Decorated", "decorated"
+            )
 
         """Close window"""
         self.close()

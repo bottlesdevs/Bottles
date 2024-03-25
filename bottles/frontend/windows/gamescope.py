@@ -18,9 +18,9 @@
 from gi.repository import Gtk, GLib, Adw
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-gamescope.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-gamescope.ui")
 class GamescopeDialog(Adw.Window):
-    __gtype_name__ = 'GamescopeDialog'
+    __gtype_name__ = "GamescopeDialog"
 
     # region Widgets
     spin_width = Gtk.Template.Child()
@@ -85,26 +85,27 @@ class GamescopeDialog(Adw.Window):
         self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)
 
     def __idle_save(self, *_args):
-        settings = {"gamescope_game_width": self.spin_width.get_value(),
-                    "gamescope_game_height": self.spin_height.get_value(),
-                    "gamescope_window_width": self.spin_gamescope_width.get_value(),
-                    "gamescope_window_height": self.spin_gamescope_height.get_value(),
-                    "gamescope_fps": self.spin_fps_limit.get_value(),
-                    "gamescope_fps_no_focus": self.spin_fps_limit_no_focus.get_value(),
-                    "gamescope_scaling": self.switch_scaling.get_active(),
-                    "gamescope_borderless": self.toggle_borderless.get_active(),
-                    "gamescope_fullscreen": self.toggle_fullscreen.get_active()}
+        settings = {
+            "gamescope_game_width": self.spin_width.get_value(),
+            "gamescope_game_height": self.spin_height.get_value(),
+            "gamescope_window_width": self.spin_gamescope_width.get_value(),
+            "gamescope_window_height": self.spin_gamescope_height.get_value(),
+            "gamescope_fps": self.spin_fps_limit.get_value(),
+            "gamescope_fps_no_focus": self.spin_fps_limit_no_focus.get_value(),
+            "gamescope_scaling": self.switch_scaling.get_active(),
+            "gamescope_borderless": self.toggle_borderless.get_active(),
+            "gamescope_fullscreen": self.toggle_fullscreen.get_active(),
+        }
 
         for setting in settings.keys():
             self.manager.update_config(
                 config=self.config,
                 key=setting,
                 value=settings[setting],
-                scope="Parameters"
+                scope="Parameters",
             )
 
         self.destroy()
 
     def __save(self, *_args):
         GLib.idle_add(self.__idle_save)
-

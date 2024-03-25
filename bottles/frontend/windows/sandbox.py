@@ -18,9 +18,9 @@
 from gi.repository import Gtk, Adw
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-sandbox.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-sandbox.ui")
 class SandboxDialog(Adw.Window):
-    __gtype_name__ = 'SandboxDialog'
+    __gtype_name__ = "SandboxDialog"
 
     # region Widgets
     switch_net = Gtk.Template.Child()
@@ -44,10 +44,7 @@ class SandboxDialog(Adw.Window):
 
     def __set_flag(self, widget, state, flag):
         self.config = self.manager.update_config(
-            config=self.config,
-            key=flag,
-            value=state,
-            scope="Sandbox"
+            config=self.config, key=flag, value=state, scope="Sandbox"
         ).data["config"]
 
     def __update(self, config):

@@ -1,4 +1,5 @@
 """This file originated from Lutris (https://github.com/lutris/lutris/blob/master/lutris/util/nvidia.py)"""
+
 """Nvidia library detection from Proton"""
 
 import os
@@ -28,6 +29,7 @@ class LinkMap(Structure):
         /* Plus additional fields private to the implementation */
     };
     """
+
     _fields_ = [("l_addr", c_void_p), ("l_name", c_char_p), ("l_ld", c_void_p)]
 
 
@@ -60,7 +62,8 @@ def get_nvidia_glx_path():
     if (
         dlinfo_func(
             libglx_nvidia._handle, RTLD_DI_LINKMAP, addressof(glx_nvidia_info_ptr)
-        ) != 0
+        )
+        != 0
     ):
         logging.error("Unable to read Nvidia information")
         return None
@@ -89,7 +92,9 @@ def get_nvidia_dll_path():
     background on the chosen method of DLL discovery.
     """
     from bottles.backend.utils.gpu import GPUUtils, GPUVendors
-    if not GPUUtils.is_gpu(GPUVendors.NVIDIA): return None
+
+    if not GPUUtils.is_gpu(GPUVendors.NVIDIA):
+        return None
 
     libglx_path = get_nvidia_glx_path()
     if not libglx_path:

@@ -21,9 +21,9 @@ from bottles.backend.utils.manager import ManagerUtils
 from gettext import gettext as _
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-launch-options.ui")
 class LaunchOptionsDialog(Adw.Window):
-    __gtype_name__ = 'LaunchOptionsDialog'
+    __gtype_name__ = "LaunchOptionsDialog"
     __gsignals__ = {
         "options-saved": (GObject.SIGNAL_RUN_FIRST, None, (object,)),
     }
@@ -79,7 +79,8 @@ class LaunchOptionsDialog(Adw.Window):
         self.set_transient_for(self.window)
 
         # set widget defaults
-        self.entry_arguments.set_text(program.get("arguments", ""))
+        if program.get("arguments") not in ["", None]:
+            self.entry_arguments.set_text(program.get("arguments"))
 
         # keeps track of toggled switches
         self.toggled = {}
@@ -99,11 +100,13 @@ class LaunchOptionsDialog(Adw.Window):
         self.entry_arguments.connect("activate", self.__save)
 
         # set overrides status
-        self.global_dxvk  = program_dxvk = config.Parameters.dxvk
+        self.global_dxvk = program_dxvk = config.Parameters.dxvk
         self.global_vkd3d = program_vkd3d = config.Parameters.vkd3d
         self.global_nvapi = program_nvapi = config.Parameters.dxvk_nvapi
         self.global_fsr = program_fsr = config.Parameters.fsr
-        self.global_virt_desktop = program_virt_desktop = config.Parameters.virtual_desktop
+        self.global_virt_desktop = program_virt_desktop = (
+            config.Parameters.virtual_desktop
+        )
 
         if self.program.get("dxvk") is not None:
             program_dxvk = self.program.get("dxvk")
@@ -128,41 +131,33 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_virt_desktop.set_active(program_virt_desktop)
 
         self.switch_dxvk.connect(
-            "state-set",
-            self.__check_override,
-            self.action_dxvk,
-            "dxvk"
+            "state-set", self.__check_override, self.action_dxvk, "dxvk"
         )
         self.switch_vkd3d.connect(
-            "state-set",
-            self.__check_override,
-            self.action_vkd3d,
-            "vkd3d"
+            "state-set", self.__check_override, self.action_vkd3d, "vkd3d"
         )
         self.switch_nvapi.connect(
-            "state-set",
-            self.__check_override,
-            self.action_nvapi,
-            "dxvk_nvapi"
+            "state-set", self.__check_override, self.action_nvapi, "dxvk_nvapi"
         )
         self.switch_fsr.connect(
-            "state-set",
-            self.__check_override,
-            self.action_fsr,
-            "fsr"
+            "state-set", self.__check_override, self.action_fsr, "fsr"
         )
         self.switch_virt_desktop.connect(
             "state-set",
             self.__check_override,
             self.action_virt_desktop,
-            "virtual_desktop"
+            "virtual_desktop",
         )
 
         if program.get("script") not in ["", None]:
             self.action_script.set_subtitle(program["script"])
             self.btn_script_reset.set_visible(True)
 
-        if program.get("folder") not in ["", None, ManagerUtils.get_exe_parent_dir(self.config, self.program["path"])]:
+        if program.get("folder") not in [
+            "",
+            None,
+            ManagerUtils.get_exe_parent_dir(self.config, self.program["path"]),
+        ]:
             self.action_cwd.set_subtitle(program["folder"])
             self.btn_cwd_reset.set_visible(True)
 
@@ -193,14 +188,16 @@ class LaunchOptionsDialog(Adw.Window):
         self.__set_override("vkd3d", program_vkd3d, self.global_vkd3d)
         self.__set_override("dxvk_nvapi", program_nvapi, self.global_nvapi)
         self.__set_override("fsr", program_fsr, self.global_fsr)
-        self.__set_override("virtual_desktop", program_virt_desktop, self.global_virt_desktop)
+        self.__set_override(
+            "virtual_desktop", program_virt_desktop, self.global_virt_desktop
+        )
         self.program["arguments"] = self.entry_arguments.get_text()
 
         self.config = self.manager.update_config(
             config=self.config,
             key=self.program["id"],
             value=self.program,
-            scope="External_Programs"
+            scope="External_Programs",
         ).data["config"]
 
         self.emit("options-saved", self.config)
@@ -224,7 +221,7 @@ class LaunchOptionsDialog(Adw.Window):
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Script"),
             parent=self.window,
-            action=Gtk.FileChooserAction.OPEN
+            action=Gtk.FileChooserAction.OPEN,
         )
 
         dialog.set_modal(True)
@@ -250,7 +247,7 @@ class LaunchOptionsDialog(Adw.Window):
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Working Directory"),
             parent=self.window,
-            action=Gtk.FileChooserAction.SELECT_FOLDER
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
         )
 
         dialog.set_modal(True)
@@ -261,7 +258,9 @@ class LaunchOptionsDialog(Adw.Window):
         """
         This function reset the script path.
         """
-        self.program["folder"] = ManagerUtils.get_exe_parent_dir(self.config, self.program["path"])
+        self.program["folder"] = ManagerUtils.get_exe_parent_dir(
+            self.config, self.program["path"]
+        )
         self.action_cwd.set_subtitle(self.__default_cwd_msg)
         self.btn_cwd_reset.set_visible(False)
 

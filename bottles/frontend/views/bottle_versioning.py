@@ -27,9 +27,9 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.state import StateEntry
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/details-versioning.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/details-versioning.ui")
 class VersioningView(Adw.PreferencesPage):
-    __gtype_name__ = 'DetailsVersioning'
+    __gtype_name__ = "DetailsVersioning"
     __registry = []
 
     # region Widgets
@@ -79,22 +79,21 @@ class VersioningView(Adw.PreferencesPage):
         if states is None:
             states = self.versioning_manager.list_states(config)
             if not config.Versioning:
-                active = states.data.get('state_id')
-                states = states.data.get('states')
+                active = states.data.get("state_id")
+                states = states.data.get("states")
 
         self.config = config
         self.list_states.set_sensitive(False)
 
         if self.config.Versioning:
             self.btn_add.set_sensitive(False)
-            self.btn_add.set_tooltip_text(_("Please migrate to the new Versioning system to create new states."))
+            self.btn_add.set_tooltip_text(
+                _("Please migrate to the new Versioning system to create new states.")
+            )
 
         def new_state(_state, active):
             entry = StateEntry(
-                parent=self,
-                config=self.config,
-                state=_state,
-                active=active
+                parent=self, config=self.config, state=_state, active=active
             )
             self.__registry.append(entry)
             self.list_states.append(entry)
@@ -131,7 +130,7 @@ class VersioningView(Adw.PreferencesPage):
 
         self.btn_save.set_sensitive(check)
         self.entry_state_message.set_icon_from_icon_name(
-            1, '' if check else 'dialog-warning-symbolic"'
+            1, "" if check else 'dialog-warning-symbolic"'
         )
 
     def add_state(self, widget):
@@ -146,7 +145,9 @@ class VersioningView(Adw.PreferencesPage):
         def update(result, error):
             self.window.show_toast(result.message)
             if result.ok:
-                self.update(states=result.data.get('states'), active=result.data.get('state_id'))
+                self.update(
+                    states=result.data.get("states"), active=result.data.get("state_id")
+                )
 
         message = self.entry_state_message.get_text()
         if message != "":
@@ -154,7 +155,7 @@ class VersioningView(Adw.PreferencesPage):
                 task_func=self.versioning_manager.create_state,
                 callback=update,
                 config=self.config,
-                message=message
+                message=message,
             )
             self.entry_state_message.set_text("")
             self.pop_state.popdown()

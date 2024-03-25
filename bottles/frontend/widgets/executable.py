@@ -29,14 +29,12 @@ class ExecButton(Gtk.Button):
         self.config = config
         self.data = data
 
-        self.set_label(data.get('name'))
-        self.connect('clicked', self.on_clicked)
+        self.set_label(data.get("name"))
+        self.connect("clicked", self.on_clicked)
 
     def on_clicked(self, widget):
         executor = WineExecutor(
-            self.config,
-            exec_path=self.data.get("file"),
-            args=self.data.get("args")
+            self.config, exec_path=self.data.get("file"), args=self.data.get("args")
         )
         RunAsync(executor.run)
         self.parent.pop_run.popdown()  # workaround #1640

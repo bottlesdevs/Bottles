@@ -7,6 +7,9 @@
   <name>Bottles</name>
   <summary>Run Windows Software</summary>
   <developer_name translatable="no">Bottles Contributors</developer_name>
+  <developer id="com.usebottles">
+    <name translatable="no">Bottles Contributors</name>
+  </developer>
   <description>
     <p>Bottles lets you run Windows software on Linux, such as applications and games. It introduces a workflow that helps you organize by categorizing each software to your liking. Bottles provides several tools and integrations to help you manage and optimize your applications.</p>
     <p>Features:</p>
@@ -64,6 +67,15 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="51.11" date="2024-02-18">
+      <description translatable="no">
+        <p>Fix running programs via CLI</p>
+        <p>Fix handling of empty program arguments</p>
+        <p>Removed obsolete faudio dependency from the environment</p>
+        <p>Update translations</p>
+        <p>Various bug fixes and refactoring</p>
+      </description>
+    </release>
     <release version="51.10" date="2023-09-27">
       <description translatable="no">
         <p>Clean FSR settings</p>

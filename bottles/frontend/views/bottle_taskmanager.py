@@ -26,9 +26,9 @@ from bottles.backend.wine.winedbg import WineDbg
 from bottles.frontend.utils.gtk import GtkUtils
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/details-taskmanager.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/details-taskmanager.ui")
 class TaskManagerView(Gtk.ScrolledWindow):
-    __gtype_name__ = 'TaskManagerView'
+    __gtype_name__ = "TaskManagerView"
 
     # region Widgets
     treeview_processes = Gtk.Template.Child()
@@ -63,9 +63,9 @@ class TaskManagerView(Gtk.ScrolledWindow):
             "Threads",
             # "Parent"
         ]:
-            '''
+            """
             For each column, add it to the treeview_processes
-            '''
+            """
             column = Gtk.TreeViewColumn(column, cell_renderer, text=i)
             self.treeview_processes.append_column(column)
             i += 1
@@ -109,18 +109,16 @@ class TaskManagerView(Gtk.ScrolledWindow):
         def update_processes(processes: list, *_args):
             if len(processes) > 0:
                 for process in processes:
-                    self.liststore_processes.append([
-                        process.get("pid"),
-                        process.get("name", "n/a"),
-                        process.get("threads", "0"),
-                        # process.get("parent", "0")
-                    ])
+                    self.liststore_processes.append(
+                        [
+                            process.get("pid"),
+                            process.get("name", "n/a"),
+                            process.get("threads", "0"),
+                            # process.get("parent", "0")
+                        ]
+                    )
 
-        RunAsync(
-            task_func=fetch_processes,
-            callback=update_processes,
-            config=config
-        )
+        RunAsync(task_func=fetch_processes, callback=update_processes, config=config)
 
     def sensitive_update(self, widget):
         @GtkUtils.run_in_main_loop
@@ -129,10 +127,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
 
         self.btn_update.set_sensitive(False)
         RunAsync(
-            task_func=self.update,
-            callback=reset,
-            widget=False,
-            config=self.config
+            task_func=self.update, callback=reset, widget=False, config=self.config
         )
 
     def kill_process(self, widget):
@@ -152,15 +147,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
             self.liststore_processes.remove(treeiter)
 
         if winebridge.is_available():
-            RunAsync(
-                task_func=winebridge.kill_proc,
-                callback=reset,
-                pid=pid
-            )
+            RunAsync(task_func=winebridge.kill_proc, callback=reset, pid=pid)
         else:
             winedbg = WineDbg(self.config)
-            RunAsync(
-                task_func=winedbg.kill_process,
-                callback=reset,
-                pid=pid
-            )
+            RunAsync(task_func=winedbg.kill_process, callback=reset, pid=pid)

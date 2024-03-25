@@ -1,4 +1,3 @@
-
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.wineserver import WineServer
@@ -11,15 +10,12 @@ class WineBoot(WineProgram):
     command = "wineboot"
 
     def send_status(self, status: int):
-        states = {
-            -1: "force",
-            0: "-k",
-            1: "-r",
-            2: "-s",
-            3: "-u",
-            4: "-i"
+        states = {-1: "force", 0: "-k", 1: "-r", 2: "-s", 3: "-u", 4: "-i"}
+        envs = {
+            "WINEDEBUG": "-all",
+            "DISPLAY": ":3.0",
+            "WINEDLLOVERRIDES": "winemenubuilder=d",
         }
-        envs = {"WINEDEBUG": "-all", "DISPLAY": ":3.0", "WINEDLLOVERRIDES": "winemenubuilder=d"}
 
         if status == 0 and not WineServer(self.config).is_alive():
             logging.info("There is no running wineserver.")
@@ -31,7 +27,7 @@ class WineBoot(WineProgram):
                 args=args,
                 environment=envs,
                 communicate=True,
-                action_name=f"send_status({states[status]})"
+                action_name=f"send_status({states[status]})",
             )
         else:
             raise ValueError(f"[{status}] is not a valid status for wineboot!")
@@ -41,7 +37,7 @@ class WineBoot(WineProgram):
 
     def kill(self, force_if_stalled: bool = False):
         self.send_status(0)
-        
+
         if force_if_stalled:
             wineserver = WineServer(self.config)
             if wineserver.is_alive():

@@ -16,6 +16,7 @@
 
 from gi.repository import Gtk
 
+
 def add_executable_filters(dialog):
     filter = Gtk.FileFilter()
     filter.set_name(_("Supported Executables"))
@@ -28,6 +29,7 @@ def add_executable_filters(dialog):
 
     dialog.add_filter(filter)
 
+
 def add_yaml_filters(dialog):
     filter = Gtk.FileFilter()
     filter.set_name("YAML")
@@ -38,6 +40,7 @@ def add_yaml_filters(dialog):
     filter.add_pattern("*.yaml")
 
     dialog.add_filter(filter)
+
 
 def add_all_filters(dialog):
     filter = Gtk.FileFilter()

@@ -87,16 +87,14 @@ class DependencyManager:
             the dependency.
             """
             self.__manager.versioning_manager.create_state(
-                config=config,
-                message=f"Before installing {dependency[0]}"
+                config=config, message=f"Before installing {dependency[0]}"
             )
 
         task_id = TaskManager.add(Task(title=dependency[0]))
 
-        logging.info("Installing dependency [%s] in bottle [%s]." % (
-            dependency[0],
-            config.Name
-        ), )
+        logging.info(
+            "Installing dependency [%s] in bottle [%s]." % (dependency[0], config.Name),
+        )
         manifest = self.get_dependency(dependency[0])
         if not manifest:
             """
@@ -105,8 +103,7 @@ class DependencyManager:
             """
             TaskManager.remove(task_id)
             return Result(
-                status=False,
-                message=f"Cannot find manifest for {dependency[0]}."
+                status=False, message=f"Cannot find manifest for {dependency[0]}."
             )
 
         if manifest.get("Dependencies"):
@@ -137,7 +134,7 @@ class DependencyManager:
                 TaskManager.remove(task_id)
                 return Result(
                     status=False,
-                    message=f"One or more steps failed for {dependency[0]}."
+                    message=f"One or more steps failed for {dependency[0]}.",
                 )
             if not res.data.get("uninstaller"):
                 uninstaller = False
@@ -150,13 +147,10 @@ class DependencyManager:
             dependencies = [dependency[0]]
 
             if config.Installed_Dependencies:
-                dependencies = config.Installed_Dependencies + \
-                               [dependency[0]]
+                dependencies = config.Installed_Dependencies + [dependency[0]]
 
             self.__manager.update_config(
-                config=config,
-                key="Installed_Dependencies",
-                value=dependencies
+                config=config, key="Installed_Dependencies", value=dependencies
             )
 
         if manifest.get("Uninstaller"):
@@ -169,10 +163,7 @@ class DependencyManager:
 
         if dependency[0] not in config.Installed_Dependencies:
             self.__manager.update_config(
-                config,
-                dependency[0],
-                uninstaller,
-                "Uninstallers"
+                config, dependency[0], uninstaller, "Uninstallers"
             )
 
         # Remove entry from task manager
@@ -181,20 +172,10 @@ class DependencyManager:
         # Hide installation button and show remove button
         logging.info(f"Dependency installed: {dependency[0]} in {config.Name}", jn=True)
         if not uninstaller:
-            return Result(
-                status=True,
-                data={"uninstaller": False}
-            )
-        return Result(
-            status=True,
-            data={"uninstaller": True}
-        )
+            return Result(status=True, data={"uninstaller": False})
+        return Result(status=True, data={"uninstaller": True})
 
-    def __perform_steps(
-            self,
-            config: BottleConfig,
-            step: dict
-    ) -> Result:
+    def __perform_steps(self, config: BottleConfig, step: dict) -> Result:
         """
         This method execute a step in the bottle (e.g. changing the Windows
         version, installing fonts, etc.)
@@ -243,51 +224,27 @@ class DependencyManager:
                 return Result(status=False)
 
         if step["action"] == "register_dll":
-            self.__step_register_dll(
-                config=config,
-                step=step
-            )
+            self.__step_register_dll(config=config, step=step)
 
         if step["action"] == "override_dll":
-            self.__step_override_dll(
-                config=config,
-                step=step
-            )
+            self.__step_override_dll(config=config, step=step)
 
         if step["action"] == "set_register_key":
-            self.__step_set_register_key(
-                config=config,
-                step=step
-            )
+            self.__step_set_register_key(config=config, step=step)
 
         if step["action"] == "register_font":
-            self.__step_register_font(
-                config=config,
-                step=step
-            )
+            self.__step_register_font(config=config, step=step)
 
         if step["action"] == "replace_font":
-            self.__step_replace_font(
-                config=config,
-                step=step
-            )
+            self.__step_replace_font(config=config, step=step)
 
         if step["action"] == "set_windows":
-            self.__step_set_windows(
-                config=config,
-                step=step
-            )
+            self.__step_set_windows(config=config, step=step)
 
         if step["action"] == "use_windows":
-            self.__step_use_windows(
-                config=config,
-                step=step
-            )
+            self.__step_use_windows(config=config, step=step)
 
-        return Result(
-            status=True,
-            data={"uninstaller": uninstaller}
-        )
+        return Result(status=True, data={"uninstaller": uninstaller})
 
     @staticmethod
     def __get_real_dest(config: BottleConfig, dest: str) -> Union[str, bool]:
@@ -327,7 +284,7 @@ class DependencyManager:
             download_url=step.get("url"),
             file=step.get("file_name"),
             rename=step.get("rename"),
-            checksum=step.get("file_checksum")
+            checksum=step.get("file_checksum"),
         )
 
         return download
@@ -342,7 +299,7 @@ class DependencyManager:
             download_url=step.get("url"),
             file=step.get("file_name"),
             rename=step.get("rename"),
-            checksum=step.get("file_checksum")
+            checksum=step.get("file_checksum"),
         )
         file = step.get("file_name")
         if step.get("rename"):
@@ -358,7 +315,7 @@ class DependencyManager:
                 config,
                 exec_path=file,
                 args=step.get("arguments"),
-                environment=step.get("environment")
+                environment=step.get("environment"),
             )
             executor.run()
             winedbg.wait_for_process(file)
@@ -392,7 +349,7 @@ class DependencyManager:
                 download_url=step.get("url"),
                 file=step.get("file_name"),
                 rename=step.get("rename"),
-                checksum=step.get("file_checksum")
+                checksum=step.get("file_checksum"),
             )
 
             if download:
@@ -402,9 +359,7 @@ class DependencyManager:
                     file = step.get("file_name")
 
                 if not CabExtract().run(
-                        path=os.path.join(Paths.temp, file),
-                        name=file,
-                        destination=dest
+                    path=os.path.join(Paths.temp, file), name=file, destination=dest
                 ):
                     return False
             else:
@@ -415,16 +370,12 @@ class DependencyManager:
             path = path.replace("temp/", f"{Paths.temp}/")
 
             if step.get("rename"):
-                file_path = os.path.splitext(
-                    f"{step.get('rename')}")[0]
+                file_path = os.path.splitext(f"{step.get('rename')}")[0]
             else:
-                file_path = os.path.splitext(
-                    f"{step.get('file_name')}")[0]
+                file_path = os.path.splitext(f"{step.get('file_name')}")[0]
 
             if not CabExtract().run(
-                    f"{path}/{step.get('file_name')}",
-                    file_path,
-                    destination=dest
+                f"{path}/{step.get('file_name')}", file_path, destination=dest
             ):
                 return False
 
@@ -452,9 +403,7 @@ class DependencyManager:
             return dest
 
         res = CabExtract().run(
-            path=os.path.join(Paths.temp, source),
-            files=[file_name],
-            destination=dest
+            path=os.path.join(Paths.temp, source), files=[file_name], destination=dest
         )
 
         if rename:
@@ -463,10 +412,7 @@ class DependencyManager:
             if os.path.exists(os.path.join(dest, rename)):
                 os.remove(os.path.join(dest, rename))
 
-            shutil.move(
-                os.path.join(dest, _file_name),
-                os.path.join(dest, rename)
-            )
+            shutil.move(os.path.join(dest, _file_name), os.path.join(dest, rename))
 
         if not res:
             return False
@@ -478,7 +424,7 @@ class DependencyManager:
             download_url=step.get("url"),
             file=step.get("file_name"),
             rename=step.get("rename"),
-            checksum=step.get("file_checksum")
+            checksum=step.get("file_checksum"),
         )
 
         if not download:
@@ -496,8 +442,12 @@ class DependencyManager:
 
         os.makedirs(archive_path)
         try:
-            patoolib.extract_archive(os.path.join(Paths.temp, file), outdir=archive_path)
-            if archive_path.endswith(".tar") and os.path.isfile(os.path.join(archive_path, os.path.basename(archive_path))):
+            patoolib.extract_archive(
+                os.path.join(Paths.temp, file), outdir=archive_path
+            )
+            if archive_path.endswith(".tar") and os.path.isfile(
+                os.path.join(archive_path, os.path.basename(archive_path))
+            ):
                 tar_path = os.path.join(archive_path, os.path.basename(archive_path))
                 patoolib.extract_archive(tar_path, outdir=archive_path)
         except Exception as e:
@@ -563,7 +513,9 @@ class DependencyManager:
                     try:
                         shutil.copyfile(_path, _dest)
                     except shutil.SameFileError:
-                        logging.info(f"{_name} already exists at the same version, skipping.")
+                        logging.info(
+                            f"{_name} already exists at the same version, skipping."
+                        )
             else:
                 _name = step.get("file_name")
                 _dest = os.path.join(dest, _name)
@@ -575,7 +527,9 @@ class DependencyManager:
                 try:
                     shutil.copyfile(os.path.join(path, _name), _dest)
                 except shutil.SameFileError:
-                    logging.info(f"{_name} already exists at the same version, skipping.")
+                    logging.info(
+                        f"{_name} already exists at the same version, skipping."
+                    )
 
         except Exception as e:
             print(e)
@@ -607,23 +561,24 @@ class DependencyManager:
 
             for dll in dlls:
                 dll_name = os.path.splitext(os.path.basename(dll))[0]
-                bundle["HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides"].append({
-                    "value": dll_name,
-                    "data": step.get("type")
-                })
+                bundle["HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides"].append(
+                    {"value": dll_name, "data": step.get("type")}
+                )
 
             reg.import_bundle(bundle)
             return True
 
         if step.get("bundle"):
-            _bundle = {"HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides": step.get("bundle")}
+            _bundle = {
+                "HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides": step.get("bundle")
+            }
             reg.import_bundle(_bundle)
             return True
 
         reg.add(
             key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
             value=step.get("dll"),
-            data=step.get("type")
+            data=step.get("type"),
         )
         return True
 
@@ -635,7 +590,7 @@ class DependencyManager:
             key=step.get("key"),
             value=step.get("value"),
             data=step.get("data"),
-            value_type=step.get("type")
+            value_type=step.get("type"),
         )
         return True
 
@@ -646,7 +601,7 @@ class DependencyManager:
         reg.add(
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts",
             value=step.get("name"),
-            data=step.get("file")
+            data=step.get("file"),
         )
         return True
 
@@ -666,7 +621,7 @@ class DependencyManager:
                 key="HKEY_CURRENT_USER\\Software\\Wine\\Fonts\\Replacements",
                 value=r,
                 value_type="",
-                data=target_font
+                data=target_font,
             )
             for r in replaces
         ]

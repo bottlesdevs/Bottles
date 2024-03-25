@@ -72,7 +72,9 @@ class DependencyEntry(Adw.ActionRow):
             self.btn_remove.set_visible(False)
             self.btn_reinstall.set_visible(False)
             self.btn_err.set_visible(True)
-            self.btn_err.set_tooltip_text(_("This dependency is not compatible with this bottle architecture."))
+            self.btn_err.set_tooltip_text(
+                _("This dependency is not compatible with this bottle architecture.")
+            )
 
         # populate widgets
         self.set_title(dependency[0])
@@ -113,9 +115,8 @@ class DependencyEntry(Adw.ActionRow):
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
             message=self.manager.dependency_manager.get_dependency(
-                name=self.dependency[0],
-                plain=True
-            )
+                name=self.dependency[0], plain=True
+            ),
         ).present()
 
     def open_license(self, _widget):
@@ -176,9 +177,11 @@ class DependencyEntry(Adw.ActionRow):
             uninstaller = result.data.get("uninstaller")
             removed = result.data.get("removed") or False
             if removed:
-                self.window.show_toast(_("\"{0}\" uninstalled").format(self.dependency[0]))
+                self.window.show_toast(
+                    _('"{0}" uninstalled').format(self.dependency[0])
+                )
             else:
-                self.window.show_toast(_("\"{0}\" installed").format(self.dependency[0]))
+                self.window.show_toast(_('"{0}" installed').format(self.dependency[0]))
             self.set_installed(uninstaller, removed)
             return
         self.set_err()
@@ -193,7 +196,7 @@ class DependencyEntry(Adw.ActionRow):
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
         self.get_parent().set_sensitive(True)
-        self.window.show_toast(_("\"{0}\" failed to install").format(self.dependency[0]))
+        self.window.show_toast(_('"{0}" failed to install').format(self.dependency[0]))
 
     def set_installed(self, installer=True, removed=False):
         """

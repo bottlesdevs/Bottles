@@ -24,9 +24,9 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/onboard.ui")
 class OnboardDialog(Adw.Window):
-    __gtype_name__ = 'OnboardDialog'
+    __gtype_name__ = "OnboardDialog"
     __installing = False
     __settings = Gtk.Settings.get_default()
 
@@ -45,12 +45,7 @@ class OnboardDialog(Adw.Window):
     label_skip = Gtk.Template.Child()
     # endregion
 
-    carousel_pages = [
-        "welcome",
-        "bottles",
-        "download",
-        "finish"
-    ]
+    carousel_pages = ["welcome", "bottles", "download", "finish"]
     images = [
         "/com/usebottles/bottles/images/images/bottles-welcome.svg",
         "/com/usebottles/bottles/images/images/bottles-welcome-night.svg",
@@ -66,12 +61,14 @@ class OnboardDialog(Adw.Window):
 
         # connect signals
         self.connect("close-request", self.__quit)
-        self.carousel.connect('page-changed', self.__page_changed)
+        self.carousel.connect("page-changed", self.__page_changed)
         self.btn_close.connect("clicked", self.__close_window)
         self.btn_back.connect("clicked", self.__previous_page)
         self.btn_next.connect("clicked", self.__next_page)
         self.btn_install.connect("clicked", self.__install_runner)
-        self.__settings.connect("notify::gtk-application-prefer-dark-theme", self.__theme_changed)
+        self.__settings.connect(
+            "notify::gtk-application-prefer-dark-theme", self.__theme_changed
+        )
 
         self.btn_close.set_sensitive(False)
 
@@ -81,7 +78,9 @@ class OnboardDialog(Adw.Window):
         self.__page_changed()
 
     def __theme_changed(self, settings, key):
-        self.img_welcome.set_from_resource(self.images[settings.get_property("gtk-application-prefer-dark-theme")])
+        self.img_welcome.set_from_resource(
+            self.images[settings.get_property("gtk-application-prefer-dark-theme")]
+        )
 
     def __get_page(self, index):
         return self.carousel_pages[index]
@@ -139,7 +138,7 @@ class OnboardDialog(Adw.Window):
             task_func=self.manager.checks,
             callback=set_completed,
             install_latest=True,
-            first_run=True
+            first_run=True,
         )
 
     def __previous_page(self, widget=False):
@@ -155,7 +154,7 @@ class OnboardDialog(Adw.Window):
     def pulse(self):
         # This function update the progress bar every 1s.
         while True:
-            time.sleep(.5)
+            time.sleep(0.5)
             self.progressbar.pulse()
 
     def __close_window(self, widget):

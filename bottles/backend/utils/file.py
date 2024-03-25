@@ -19,9 +19,10 @@ import hashlib
 import os
 import shutil
 import time
+import fcntl
 from pathlib import Path
 from typing import Union
-
+from array import array
 
 class FileUtils:
     """
@@ -47,9 +48,9 @@ class FileUtils:
     @staticmethod
     def use_insensitive_ext(string):
         """Converts a glob pattern into a case-insensitive glob pattern"""
-        ext = string.split('.')[1]
+        ext = string.split(".")[1]
         globlist = ["[%s%s]" % (c.lower(), c.upper()) for c in ext]
-        return '*.%s' % ''.join(globlist)
+        return "*.%s" % "".join(globlist)
 
     @staticmethod
     def get_human_size(size: float) -> str:
@@ -63,12 +64,12 @@ class FileUtils:
     @staticmethod
     def get_human_size_legacy(size: float) -> str:
         """Returns a human readable size from a given float size"""
-        for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
+        for unit in ["", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
             if abs(size) < 1024.0:
-                return "%3.1f%s%s" % (size, unit, 'B')
+                return "%3.1f%s%s" % (size, unit, "B")
             size /= 1024.0
 
-        return "%.1f%s%s" % (size, 'Yi', 'B')
+        return "%.1f%s%s" % (size, "Yi", "B")
 
     def get_path_size(self, path: str, human: bool = True) -> Union[str, float]:
         """
@@ -76,7 +77,7 @@ class FileUtils:
         human-readable size.
         """
         p = Path(path)
-        size = sum(f.stat().st_size for f in p.glob('**/*') if f.is_file())
+        size = sum(f.stat().st_size for f in p.glob("**/*") if f.is_file())
 
         if human:
             return self.get_human_size(size)
@@ -88,7 +89,7 @@ class FileUtils:
         Returns the size of the disk. If human is True, returns as a
         human-readable size.
         """
-        disk_total, disk_used, disk_free = shutil.disk_usage('/')
+        disk_total, disk_used, disk_free = shutil.disk_usage("/")
 
         if human:
             disk_total = self.get_human_size(disk_total)
@@ -102,7 +103,7 @@ class FileUtils:
         }
 
     @staticmethod
-    def wait_for_files(files: list, timeout: int = .5) -> bool:
+    def wait_for_files(files: list, timeout: int = 0.5) -> bool:
         """Wait for a file to be created or modified."""
         for file in files:
             if not os.path.isfile(file):
@@ -112,3 +113,25 @@ class FileUtils:
                 time.sleep(timeout)
 
         return True
+
+    @staticmethod
+    def chattr_f(directory: str) -> bool:
+        FS_IOC_GETFLAGS = 0x80086601
+        FS_IOC_SETFLAGS = 0x40086602
+        FS_CASEFOLD_FL = 0x40000000
+
+        success = True
+        if os.path.isdir(directory) and len(os.listdir(directory)) == 0:
+            fd = os.open(directory, os.O_RDONLY)
+            try:
+                arg = array('L', [0])
+                fcntl.ioctl(fd, FS_IOC_GETFLAGS, arg, True)
+                arg[0] |= FS_CASEFOLD_FL
+                fcntl.ioctl(fd, FS_IOC_SETFLAGS, arg, True)
+            except OSError:
+                success = False
+            os.close(fd)
+        else:
+            success = False
+
+        return success

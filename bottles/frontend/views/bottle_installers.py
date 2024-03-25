@@ -26,9 +26,9 @@ from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.widgets.installer import InstallerEntry
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/details-installers.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/details-installers.ui")
 class InstallersView(Adw.Bin):
-    __gtype_name__ = 'DetailsInstallers'
+    __gtype_name__ = "DetailsInstallers"
     __registry = []
 
     # region Widgets
@@ -57,7 +57,7 @@ class InstallersView(Adw.Bin):
 
         self.search_bar.set_key_capture_widget(self.window)
         self.btn_help.connect("clicked", open_doc_url, "bottles/installers")
-        self.entry_search.connect('changed', self.__search_installers)
+        self.entry_search.connect("changed", self.__search_installers)
 
     def __search_installers(self, *_args):
         """
@@ -65,10 +65,7 @@ class InstallersView(Adw.Bin):
         text written in the search entry.
         """
         terms = self.entry_search.get_text()
-        self.list_installers.set_filter_func(
-            self.__filter_installers,
-            terms
-        )
+        self.list_installers.set_filter_func(self.__filter_installers, terms)
 
     @staticmethod
     def __filter_installers(row, terms=None):
@@ -97,9 +94,7 @@ class InstallersView(Adw.Bin):
 
         def new_installer(_installer):
             entry = InstallerEntry(
-                window=self.window,
-                config=self.config,
-                installer=_installer
+                window=self.window, config=self.config, installer=_installer
             )
             self.list_installers.append(entry)
             self.__registry.append(entry)
@@ -111,7 +106,7 @@ class InstallersView(Adw.Bin):
             self.list_installers.set_sensitive(result.status)
 
         def process_installers():
-            time.sleep(.5)  # workaround for freezing bug on bottle load
+            time.sleep(0.5)  # workaround for freezing bug on bottle load
             GLib.idle_add(self.empty_list)
 
             if len(installers) == 0:
