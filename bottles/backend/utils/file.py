@@ -19,9 +19,10 @@ import hashlib
 import os
 import shutil
 import time
+import fcntl
 from pathlib import Path
 from typing import Union
-
+from array import array
 
 class FileUtils:
     """
@@ -112,3 +113,25 @@ class FileUtils:
                 time.sleep(timeout)
 
         return True
+
+    @staticmethod
+    def chattr_f(directory: str) -> bool:
+        FS_IOC_GETFLAGS = 0x80086601
+        FS_IOC_SETFLAGS = 0x40086602
+        FS_CASEFOLD_FL = 0x40000000
+
+        success = True
+        if os.path.isdir(directory) and len(os.listdir(directory)) == 0:
+            fd = os.open(directory, os.O_RDONLY)
+            try:
+                arg = array('L', [0])
+                fcntl.ioctl(fd, FS_IOC_GETFLAGS, arg, True)
+                arg[0] |= FS_CASEFOLD_FL
+                fcntl.ioctl(fd, FS_IOC_SETFLAGS, arg, True)
+            except OSError:
+                success = False
+            os.close(fd)
+        else:
+            success = False
+
+        return success
