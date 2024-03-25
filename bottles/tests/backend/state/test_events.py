@@ -1,10 +1,12 @@
 """EventManager tests"""
+
 import time
 from enum import Enum
 from threading import Thread
 import pytest
 
 from bottles.backend.state import EventManager
+
 
 class Events(Enum):
     SimpleEvent = "simple.event"
@@ -14,8 +16,9 @@ class Events(Enum):
     DoneSingleton = "done_singleton.event"
     CorrectFlagDone = "correct_flag_done.event"
 
+
 def approx_time(start, target):
-    epsilon = 0.010 # 5 ms window
+    epsilon = 0.010  # 5 ms window
     variation = time.time() - start - target
     result = -epsilon / 2 <= variation <= epsilon / 2
     if not result:
@@ -24,8 +27,10 @@ def approx_time(start, target):
         print(f"Variation: {variation}")
     return result
 
+
 def test_simple_event():
     start_time = time.time()
+
     def t1_func():
         EventManager.wait(Events.SimpleEvent)
 
@@ -46,9 +51,11 @@ def test_wait_after_done_event():
     EventManager.wait(Events.WaitAfterDone)
     assert approx_time(start_time, 0)
 
+
 @pytest.mark.filterwarnings("error")
 def test_set_reset():
     start_time = time.time()
+
     def t1_func():
         start_time_t1 = time.time()
         EventManager.wait(Events.SetResetEvent)
@@ -87,6 +94,7 @@ def test_set_reset():
     t1.join()
     assert approx_time(start_time, 0.3)
 
+
 def test_event_singleton_wait():
     EventManager._EVENTS = {}
 
@@ -112,6 +120,7 @@ def test_event_singleton_wait():
     t2.join()
     t3.join()
 
+
 def test_event_singleton_done_reset():
     EventManager._EVENTS = {}
 
@@ -124,6 +133,7 @@ def test_event_singleton_done_reset():
 
     EventManager.reset(Events.DoneSingleton)
     assert len(EventManager._EVENTS) == 1
+
 
 def test_correct_internal_flag():
     EventManager.done(Events.CorrectFlagDone)

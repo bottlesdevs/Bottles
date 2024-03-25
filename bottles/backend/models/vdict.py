@@ -23,7 +23,7 @@
 from collections import Counter
 import collections.abc as _c
 
-_iter_values = 'values'
+_iter_values = "values"
 _range = range
 _string_type = str
 
@@ -61,7 +61,9 @@ class VDFDict(dict):
 
         if data is not None:
             if not isinstance(data, (list, dict)):
-                raise ValueError("Expected data to be list of pairs or dict, got %s" % type(data))
+                raise ValueError(
+                    "Expected data to be list of pairs or dict, got %s" % type(data)
+                )
             self.update(data)
 
     def __repr__(self):
@@ -204,13 +206,13 @@ class VDFDict(dict):
         return _iView(self)
 
     def get_all_for(self, key):
-        """ Returns all values of the given key """
+        """Returns all values of the given key"""
         if not isinstance(key, _string_type):
             raise TypeError("Key needs to be a string.")
         return [self[(idx, key)] for idx in _range(self.__kcount[key])]
 
     def remove_all_for(self, key):
-        """ Removes all items with the given key """
+        """Removes all items with the given key"""
         if not isinstance(key, _string_type):
             raise TypeError("Key need to be a string.")
 

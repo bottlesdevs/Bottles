@@ -28,9 +28,9 @@ from bottles.backend.wine.executor import WineExecutor
 from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/list-entry.ui")
 class BottleViewEntry(Adw.ActionRow):
-    __gtype_name__ = 'BottleViewEntry'
+    __gtype_name__ = "BottleViewEntry"
 
     Adw.init()
 
@@ -56,23 +56,25 @@ class BottleViewEntry(Adw.ActionRow):
         self.config = config
         self.label_env_context = self.label_env.get_style_context()
 
-        '''Format update date'''
+        """Format update date"""
         update_date = _("N/A")
         if self.config.Update_Date:
             try:
-                temp_date = datetime.strptime(self.config.Update_Date, "%Y-%m-%d %H:%M:%S.%f")
+                temp_date = datetime.strptime(
+                    self.config.Update_Date, "%Y-%m-%d %H:%M:%S.%f"
+                )
                 update_date = temp_date.strftime("%d %B, %Y %H:%M:%S")
             except ValueError:
                 update_date = _("N/A")
 
-        '''Check runner type by name'''
+        """Check runner type by name"""
         if self.config.Runner.startswith("lutris"):
             self.runner_type = "wine"
         else:
             self.runner_type = "proton"
 
         # connect signals
-        activate_handler = self.connect('activated', self.show_details)
+        activate_handler = self.connect("activated", self.show_details)
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_repair.connect("clicked", self.repair)
         self.btn_run_executable.connect("clicked", self.run_executable)
@@ -84,13 +86,12 @@ class BottleViewEntry(Adw.ActionRow):
         if self.window.settings.get_boolean("update-date"):
             self.set_subtitle(update_date)
         self.label_env.set_text(_(self.config.Environment))
-        self.label_env_context.add_class(
-            "tag-%s" % self.config.Environment.lower())
+        self.label_env_context.add_class("tag-%s" % self.config.Environment.lower())
 
         # Set tooltip text
-        self.btn_run.set_tooltip_text(_(f"Run executable in \"{self.config.Name}\""))
+        self.btn_run.set_tooltip_text(_(f'Run executable in "{self.config.Name}"'))
 
-        '''If config is broken'''
+        """If config is broken"""
         if self.config.get("Broken"):
             for w in [self.btn_repair, self.icon_damaged]:
                 w.set_visible(True)
@@ -99,26 +100,24 @@ class BottleViewEntry(Adw.ActionRow):
             self.btn_run.set_sensitive(False)
             self.handler_block_by_func(self.show_details)
 
-    '''Repair bottle'''
+    """Repair bottle"""
 
     def repair(self, widget):
         self.disable()
-        RunAsync(
-            task_func=self.manager.repair_bottle,
-            config=self.config
-        )
+        RunAsync(task_func=self.manager.repair_bottle, config=self.config)
 
-    '''Display file dialog for executable'''
+    """Display file dialog for executable"""
 
     def run_executable(self, *_args):
         def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
-            self.window.show_toast(_("Launching \"{0}\" in \"{1}\"…").format(
-                    dialog.get_file().get_basename(),
-                    self.config.Name)
+            self.window.show_toast(
+                _('Launching "{0}" in "{1}"…').format(
+                    dialog.get_file().get_basename(), self.config.Name
                 )
+            )
 
             path = dialog.get_file().get_path()
             _executor = WineExecutor(self.config, exec_path=path)
@@ -128,7 +127,7 @@ class BottleViewEntry(Adw.ActionRow):
             title=_("Select Executable"),
             action=Gtk.FileChooserAction.OPEN,
             parent=self.window,
-            accept_label=_("Run")
+            accept_label=_("Run"),
         )
 
         add_executable_filters(dialog)
@@ -148,9 +147,9 @@ class BottleViewEntry(Adw.ActionRow):
         self.set_visible(False)
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/list.ui")
 class BottleView(Adw.Bin):
-    __gtype_name__ = 'BottleView'
+    __gtype_name__ = "BottleView"
     __bottles = {}
 
     # region Widgets
@@ -176,10 +175,12 @@ class BottleView(Adw.Bin):
 
         # connect signals
         self.btn_create.connect("clicked", self.window.show_add_view)
-        self.entry_search.connect('changed', self.__search_bottles)
+        self.entry_search.connect("changed", self.__search_bottles)
 
         # backend signals
-        SignalManager.connect(Signals.ManagerLocalBottlesLoaded, self.backend_local_bottle_loaded)
+        SignalManager.connect(
+            Signals.ManagerLocalBottlesLoaded, self.backend_local_bottle_loaded
+        )
 
         self.update_bottles()
 
@@ -189,10 +190,7 @@ class BottleView(Adw.Bin):
         text written in the search entry.
         """
         terms = widget.get_text()
-        self.list_bottles.set_filter_func(
-            self.__filter_bottles,
-            terms
-        )
+        self.list_bottles.set_filter_func(self.__filter_bottles, terms)
 
     @staticmethod
     def __filter_bottles(row, terms=None):
@@ -234,8 +232,9 @@ class BottleView(Adw.Bin):
                 self.group_steam.set_visible(True)
                 self.group_bottles.set_title(_("Your Bottles"))
 
-        if (self.arg_bottle is not None and self.arg_bottle in local_bottles.keys()) \
-                or (show is not None and show in local_bottles.keys()):
+        if (
+            self.arg_bottle is not None and self.arg_bottle in local_bottles.keys()
+        ) or (show is not None and show in local_bottles.keys()):
             _config = None
             if self.arg_bottle:
                 _config = local_bottles[self.arg_bottle]

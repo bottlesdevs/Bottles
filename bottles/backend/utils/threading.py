@@ -32,9 +32,12 @@ class RunAsync(threading.Thread):
     It takes a function, a callback and a list of arguments as input.
     """
 
-    def __init__(self, task_func, callback=None, daemon=True, *args: Any, **kwargs: Any):
+    def __init__(
+        self, task_func, callback=None, daemon=True, *args: Any, **kwargs: Any
+    ):
         if "DEBUG_MODE" in os.environ:
             import faulthandler
+
             faulthandler.enable()
 
         logging.debug(
@@ -58,13 +61,15 @@ class RunAsync(threading.Thread):
         try:
             result = self.task_func(*args, **kwargs)
         except Exception as exception:
-            logging.error(f"Error while running async job: {self.task_func}\n"
-                          f"Exception: {exception}")
+            logging.error(
+                f"Error while running async job: {self.task_func}\n"
+                f"Exception: {exception}"
+            )
 
             error = exception
             _ex_type, _ex_value, trace = sys.exc_info()
             traceback.print_tb(trace)
-            traceback_info = '\n'.join(traceback.format_tb(trace))
+            traceback_info = "\n".join(traceback.format_tb(trace))
 
             logging.write_log([str(exception), traceback_info])
         self.callback(result, error)
@@ -74,6 +79,16 @@ class RunAsync(threading.Thread):
         def inner(*args, **kwargs):
             # Here we add None in the arguments so that callback=None,
             # but we still pass all the required argument to the function called
-            RunAsync(func, *((None, True,) + args), **kwargs)
+            RunAsync(
+                func,
+                *(
+                    (
+                        None,
+                        True,
+                    )
+                    + args
+                ),
+                **kwargs,
+            )
 
         return inner

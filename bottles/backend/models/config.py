@@ -148,7 +148,7 @@ class BottleConfig(DictCompatMixIn):
     data: dict = field(default_factory=dict)  # possible keys: "config", ...
     RunnerPath: str = ""
 
-    def dump(self, file: Union[str, IO], mode='w', encoding=None, indent=4) -> Result:
+    def dump(self, file: Union[str, IO], mode="w", encoding=None, indent=4) -> Result:
         """
         Dump config to file
 
@@ -169,7 +169,7 @@ class BottleConfig(DictCompatMixIn):
             f.close()
 
     @classmethod
-    def load(cls, file: Union[str, IO], mode='r') -> Result[Optional['BottleConfig']]:
+    def load(cls, file: Union[str, IO], mode="r") -> Result[Optional["BottleConfig"]]:
         """
         Load config from file
 
@@ -186,7 +186,9 @@ class BottleConfig(DictCompatMixIn):
 
             data = yaml.load(f)
             if not isinstance(data, dict):
-                raise TypeError("Config data should be dict type, but it was %s" % type(data))
+                raise TypeError(
+                    "Config data should be dict type, but it was %s" % type(data)
+                )
 
             filled = cls._fill_with(data)
             if not filled.status:
@@ -197,10 +199,11 @@ class BottleConfig(DictCompatMixIn):
             logging.exception(e)
             return Result(False, message=str(e))
         finally:
-            if f: f.close()
+            if f:
+                f.close()
 
     @classmethod
-    def _fill_with(cls, data: dict) -> Result[Optional['BottleConfig']]:
+    def _fill_with(cls, data: dict) -> Result[Optional["BottleConfig"]]:
         """fill with dict"""
         try:
             data = data.copy()
@@ -209,11 +212,10 @@ class BottleConfig(DictCompatMixIn):
             params = BottleParams(**data.pop("Parameters", {}))
             sandbox_param = BottleSandboxParams(**data.pop("Sandbox", {}))
 
-            return Result(True, data=BottleConfig(
-                Parameters=params,
-                Sandbox=sandbox_param,
-                **data
-            ))
+            return Result(
+                True,
+                data=BottleConfig(Parameters=params, Sandbox=sandbox_param, **data),
+            )
         except Exception as e:
             logging.exception(e)
             return Result(False, message=repr(e))
@@ -232,8 +234,12 @@ class BottleConfig(DictCompatMixIn):
         # migrate old fsr_level key to fsr_sharpening_strength
         # TODO: remove after some time
         if "fsr_level" in data["Parameters"]:
-            logging.warning("Migrating config key 'fsr_level' to 'fsr_sharpening_strength'")
-            data["Parameters"]["fsr_sharpening_strength"] = data["Parameters"].pop("fsr_level")
+            logging.warning(
+                "Migrating config key 'fsr_level' to 'fsr_sharpening_strength'"
+            )
+            data["Parameters"]["fsr_sharpening_strength"] = data["Parameters"].pop(
+                "fsr_level"
+            )
 
         # migrate typo fields
         if "DXVK_NVAPI" in data:
@@ -266,6 +272,8 @@ class BottleConfig(DictCompatMixIn):
                     v = cls._filter(v, field_type)
                 new_data[k] = v
             else:
-                logging.warning("Skipping unexpected config '%s' in %s" % (k, clazz.__name__))
+                logging.warning(
+                    "Skipping unexpected config '%s' in %s" % (k, clazz.__name__)
+                )
 
         return new_data

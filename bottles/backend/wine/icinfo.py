@@ -1,4 +1,3 @@
-
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 
@@ -17,23 +16,20 @@ class Icinfo(WineProgram):
         if not res.ready:
             return {}
 
-        res = [r.strip() for r in res.split('\n')[1:]]
+        res = [r.strip() for r in res.split("\n")[1:]]
         _res = {}
         _latest = None
 
         for r in res:
             if not r:
                 continue
-            k, v = r.split(':')
-            if r.startswith('vidc.'):
+            k, v = r.split(":")
+            if r.startswith("vidc."):
                 _latest = k
                 _res[k] = {}
-                _res[k]['name'] = k
-                _res[k]['description'] = v
+                _res[k]["name"] = k
+                _res[k]["description"] = v
             else:
                 _res[_latest][k] = v
 
         return _res
-
-
-        

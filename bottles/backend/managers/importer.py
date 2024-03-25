@@ -45,7 +45,9 @@ class ImportManager:
         playonlinux_results = glob(f"{TrdyPaths.playonlinux}/*/")
         bottlesv1_results = glob(f"{TrdyPaths.bottlesv1}/*/")
 
-        results = wine_standard + lutris_results + playonlinux_results + bottlesv1_results
+        results = (
+            wine_standard + lutris_results + playonlinux_results + bottlesv1_results
+        )
 
         # count results
         is_wine = len(wine_standard)
@@ -68,24 +70,22 @@ class ImportManager:
 
             # check the drive_c path exists
             if os.path.isdir(os.path.join(wineprefix, "drive_c")):
-                wineprefix_lock = os.path.isfile(os.path.join(wineprefix, "bottle.lock"))
+                wineprefix_lock = os.path.isfile(
+                    os.path.join(wineprefix, "bottle.lock")
+                )
                 importer_wineprefixes.append(
                     {
                         "Name": wineprefix_name,
                         "Manager": wineprefix_manager,
                         "Path": wineprefix,
-                        "Lock": wineprefix_lock
-                    })
+                        "Lock": wineprefix_lock,
+                    }
+                )
             i += 1
 
         logging.info(f"Found {len(importer_wineprefixes)} wine prefixes…")
 
-        return Result(
-            status=True,
-            data={
-                "wineprefixes": importer_wineprefixes
-            }
-        )
+        return Result(status=True, data={"wineprefixes": importer_wineprefixes})
 
     def import_wineprefix(self, wineprefix: dict) -> Result:
         """Import wineprefix from external manager and convert in a bottle"""
@@ -103,7 +103,7 @@ class ImportManager:
 
         # create lockfile in source path
         logging.info(f"Creating lock file in {wineprefix['Path']}…")
-        open(f'{wineprefix.get("Path")}/bottle.lock', 'a').close()
+        open(f'{wineprefix.get("Path")}/bottle.lock', "a").close()
 
         # copy wineprefix files in the new bottle
         command = f"cp -a {wineprefix.get('Path')}/* {bottle_complete_path}/"

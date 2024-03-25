@@ -45,21 +45,25 @@ class DataManager:
 
     def __get_data(self):
         try:
-            with open(self.__p_data, 'r') as s:
+            with open(self.__p_data, "r") as s:
                 self.__data = yaml.load(s)
                 if self.__data is None:
                     raise AttributeError
         except FileNotFoundError:
-            logging.error('Data file not found. Creating new one.', )
+            logging.error(
+                "Data file not found. Creating new one.",
+            )
             self.__create_data_file()
         except AttributeError:
-            logging.error('Data file is empty. Creating new one.', )
+            logging.error(
+                "Data file is empty. Creating new one.",
+            )
             self.__create_data_file()
 
     def __create_data_file(self):
         if not os.path.exists(Paths.base):
             os.makedirs(Paths.base)
-        with open(self.__p_data, 'w') as s:
+        with open(self.__p_data, "w") as s:
             yaml.dump(Samples.data, s)
         self.__get_data()
 
@@ -81,7 +85,7 @@ class DataManager:
                 self.__data[key] = value
 
         with contextlib.suppress(FileNotFoundError):
-            with open(self.__p_data, 'w') as s:
+            with open(self.__p_data, "w") as s:
                 yaml.dump(self.__data, s)
 
     def remove(self, key):
@@ -89,7 +93,7 @@ class DataManager:
         if self.__data.get(key):
             del self.__data[key]
             with contextlib.suppress(FileNotFoundError):
-                with open(self.__p_data, 'w') as s:
+                with open(self.__p_data, "w") as s:
                     yaml.dump(self.__data, s)
 
     def get(self, key):

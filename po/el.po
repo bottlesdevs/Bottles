@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2022-09-10 07:36+0000\n"
-"Last-Translator: Fotios Kolytoumpas <fotis.kolytoumpas@gmail.com>\n"
+"PO-Revision-Date: 2024-03-07 18:01+0000\n"
+"Last-Translator: Giannis Vassilopoulos <jv23040320@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bottles/bottles/el/"
 ">\n"
 "Language: el\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -155,21 +155,20 @@ msgid "Restoring state {} …"
 msgstr ""
 
 #: bottles/backend/managers/versioning.py:162
-#, fuzzy
 msgid "State not found"
-msgstr "Πειράματα:εγκαταστάτες"
+msgstr "Η κατάσταση δεν βρέθηκε"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "Η κατάσταση {} είναι ήδη ενεργή"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
-msgstr ""
+msgstr "Εμφάνιση έκδοσης"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
-msgstr ""
+msgstr "Εκτελέσιμη διαδρομή"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
@@ -186,47 +185,45 @@ msgstr ""
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Μη έγκυρος σύνδεσμος (σύνταξη: bottles:run/<bottle>/<πρόγραμμα>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr ""
+msgstr "[Έξοδος] το αίτημα ελήφθη."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
-msgstr ""
+msgstr "[Βοήθεια] Το αίτημα ελήφθη."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "[Ανανέωση] Το αίτημα ελήφθη."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Δωρεά"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Βιβλιοθήκες τρίτων και Ειδικές ευχαριστίες"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Χορηγούμενο και ιδρυθέν από"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
-#, fuzzy
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "© 2017-2021 - Προγραμματιστές του Bottles"
+msgstr "Πνευματικά δικαιώματα © 2017 - Οι προγραμματιστές του Bottles"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
-#, fuzzy
 msgid "Bottles Developers"
-msgstr "© 2017-2021 - Προγραμματιστές του Bottles"
+msgstr "Προγραμματιστές του Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "μεταφραστές"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -239,20 +236,17 @@ msgid "Uninstall"
 msgstr "Απεγκατάσταση"
 
 #: bottles/frontend/ui/component-entry.blp:23
-#, fuzzy
 msgid "Browse Files"
-msgstr "Εξερεύνηση αρχείων"
+msgstr "Περιήγηση αρχείων"
 
 #: bottles/frontend/ui/component-entry.blp:34
-#, fuzzy
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"Η εγκατάσταση απέτυχε. Αυτό μπορεί να οφείλεται σε σφάλμα του repository, "
-"μερική λήψη ή αναντιστοιχία αθροίσματος ελέγχου.\n"
-"\n"
-"Πατήστε για να προσπαθήσετε ξανά."
+"Η εγκατάσταση απέτυχε. Αυτό μπορεί να οφείλεται σε σφάλμα του αποθετηρίου, "
+"μερική λήψη ή αναντιστοιχία αθροίσματος ελέγχου. Πατήστε για να προσπαθήσετε "
+"ξανά."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -278,24 +272,23 @@ msgstr "Επανεγκατάσταση"
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Αναφορά σφάλματος…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
-msgstr ""
+msgstr "Όνομα εξάρτησης"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
 msgid "Dependency description"
-msgstr ""
+msgstr "Περιγραφή εξάρτησης"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr ""
+msgstr "Κατηγορία"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
-#, fuzzy
 msgid "Download & Install this Dependency"
-msgstr "Λήψη & εγκατάσταση αυτού του dependency"
+msgstr "Λήψη & εγκατάσταση αυτής της εξάρτησης"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
@@ -303,38 +296,35 @@ msgid ""
 "run it via terminal to read the output."
 msgstr ""
 "Παρουσιάστηκε σφάλμα κατά την εγκατάσταση. Επανεκκινήστε το Bottles για να "
-"διαβάσετε την αναφορά crash ή εκτελέστε το μέσω τερματικού για να διαβάσετε "
-"την έξοδο."
+"διαβάσετε την αναφορά τερματικού σφάλματος ή εκτελέστε το μέσω τερματικού "
+"για να διαβάσετε την έξοδο."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr ""
+msgstr "Επιλογές εξαρτήσεων"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
 msgstr "Αντιμετώπιση προβλημάτων"
 
 #: bottles/frontend/ui/details-bottle.blp:24
-#, fuzzy
 msgid "Browse Files…"
-msgstr "Εξερεύνηση αρχείων"
+msgstr "Περιήγηση αρχείων…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
-#, fuzzy
 msgid "Duplicate Bottle…"
-msgstr "Διπλοτυπία αυτού του bottle"
+msgstr "Διπλοτυπία αυτού του bottle…"
 
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr ""
-"Αυτός είναι ο πλήρες φάκελος του bottle σας, συμπεριλαμβανομένων των "
+"Αυτός είναι ο πλήρης φάκελος του bottle σας, συμπεριλαμβανομένων των "
 "προσωπικών αρχείων."
 
 #: bottles/frontend/ui/details-bottle.blp:33
-#, fuzzy
 msgid "Full Backup…"
-msgstr "Πλήρες αντίγραφο ασφαλείας"
+msgstr "Πλήρες αντίγραφο ασφαλείας…"
 
 #: bottles/frontend/ui/details-bottle.blp:37
 #: bottles/frontend/ui/importer.blp:68
@@ -346,31 +336,27 @@ msgstr ""
 "ένα νέο αλλά χωρίς προσωπικά αρχεία."
 
 #: bottles/frontend/ui/details-bottle.blp:38
-#, fuzzy
 msgid "Export Configuration…"
-msgstr "Εξαγωγή διαμόρφωσης"
+msgstr "Εξαγωγή διαμόρφωσης…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
-#, fuzzy
 msgid "Show Hidden Programs"
-msgstr "Προγράμματα"
+msgstr "Εμφάνιση κρυμμένων προγραμμάτων"
 
 #: bottles/frontend/ui/details-bottle.blp:49
-#, fuzzy
 msgid "Search for new programs"
-msgstr "Προγράμματα"
+msgstr "Αναζήτηση για νέα προγράμματα"
 
 #: bottles/frontend/ui/details-bottle.blp:56
-#, fuzzy
 msgid "Delete Bottle…"
-msgstr "Διαγραφή bottle"
+msgstr "Διαγραφή bottle…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "Δευτερεύουσες επιλογές"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 #, fuzzy
@@ -396,7 +382,7 @@ msgstr "Επανεκκίνηση"
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr ""
+msgstr "Επιλογές εκκίνησης"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 #, fuzzy
@@ -405,12 +391,11 @@ msgstr "Εκτέλεση μέσω τερματικού"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "Σύρσιμο αρχείων προς εκτέλεση"
 
 #: bottles/frontend/ui/details-bottle.blp:164
-#, fuzzy
 msgid "My bottle"
-msgstr "Bottles"
+msgstr "Το δικό μου bottle"
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
@@ -425,7 +410,7 @@ msgstr "Περιβάλλον"
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr "Δρομέας"
+msgstr "Εκτελεστής"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
@@ -443,9 +428,8 @@ msgid "0"
 msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
-#, fuzzy
 msgid "Run Executable…"
-msgstr "Εκτέλεση εφαρμογής"
+msgstr "Εκτέλεση αρχείου…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
@@ -457,62 +441,64 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Κάντε κλικ στο \"Εκτέλεση αρχείου\" για να εκτελέσετε ένα αρχείο, "
+"\"Δημιουργία συντομεύσεων...\" για να προσθέσετε ένα εκτελέσιμο αρχείο στη "
+"λίστα των Προγραμμάτων ή \"Εγκατάσταση προγραμμάτων\" για να εγκαταστήσετε "
+"προγράμματα που θεραπεύονται από την κοινότητα."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
-msgstr ""
+msgstr "Δημιουργία συντομεύσεων…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
-#, fuzzy
 msgid "Install Programs…"
-msgstr "Πειράματα:εγκαταστάτες"
+msgstr "Εγκατάσταση προγραμμάτων"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
-msgstr ""
+msgstr "Επιλογές"
 
 #: bottles/frontend/ui/details-bottle.blp:350
 #: bottles/frontend/views/details.py:141
 msgid "Settings"
-msgstr ""
+msgstr "Ρυθμίσεις"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr ""
+msgstr "Διαμόρφωση ρυθμίσεων του bottle."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr ""
+msgstr "Εξαρτήσεις"
 
 #: bottles/frontend/ui/details-bottle.blp:361
-#, fuzzy
 msgid "Install dependencies for programs."
-msgstr "Εγκατάσταση εξάρτησης: %s…"
+msgstr "Εγκατάσταση εξαρτήσεων προγραμμάτων."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "Στιγμιότυπα"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
-msgstr ""
+msgstr "Δημιουργία και διαχείριση κατάστασης του bottle."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
 #: bottles/frontend/views/details.py:157
 msgid "Task Manager"
-msgstr ""
+msgstr "Διαχείριση εργασιών"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr ""
+msgstr "Διαχείριση εκτελούμενων προγραμμάτων."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
-msgstr ""
+msgstr "Εργαλεία"
 
 #: bottles/frontend/ui/details-bottle.blp:394
 #, fuzzy
@@ -538,7 +524,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
-msgstr ""
+msgstr "Εξερευνητής"
 
 #: bottles/frontend/ui/details-bottle.blp:435
 #, fuzzy
@@ -548,30 +534,31 @@ msgstr "Εντοπισμός σφαλμάτων"
 #: bottles/frontend/ui/details-bottle.blp:444
 #: bottles/frontend/ui/importer.blp:69 bottles/frontend/ui/new.blp:145
 msgid "Configuration"
-msgstr ""
+msgstr "Διαμόρφωση"
 
 #: bottles/frontend/ui/details-bottle.blp:453
-#, fuzzy
 msgid "Uninstaller"
-msgstr "Πειράματα:εγκαταστάτες"
+msgstr "Απεγκαταστάτης"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
-msgstr ""
+msgstr "Πίνακας ελέγχου"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr ""
+msgstr "Εύρεση εξαρτήσεων…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Βρίσκεστε εκτός σύνδεσης :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr ""
+"Το Bottles εκτελείται χωρίς σύνδεση στο διαδίκτυο, οπότε οι εξαρτήσεις δεν "
+"είναι διαθέσιμες."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -580,20 +567,24 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Οι εξαρτήσεις είναι πόροι που βελτιώσουν τη συμβατότητα του λογισμικού "
+"Windows.\n"
+"\n"
+"Τα αρχεία σε αυτή τη σελίδα παρέχονται από τρίτους με άδεια ιδιοκτησίας. Με "
+"την εγκατάσταση τους, συμφωνείτε με τους αντίστοιχους όρους αδειοδότησης "
+"τους."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
 msgstr "Αναφορά προβλήματος η έλειψης εξάρτησης."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
-#, fuzzy
 msgid "Report Missing Dependency"
-msgstr "Αναφορά προβλήματος η έλειψης εξάρτησης."
+msgstr "Αναφορά έλλειψης εξάρτησης"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
-#, fuzzy
 msgid "Read Documentation."
-msgstr "Διαβάστε οδηγείες"
+msgstr "Διαβάστε οδηγίες."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
@@ -605,11 +596,11 @@ msgstr ""
 #: bottles/frontend/ui/details-installers.blp:61
 #: bottles/frontend/ui/window.blp:46
 msgid "Search"
-msgstr ""
+msgstr "Εύρεση"
 
 #: bottles/frontend/ui/details-installers.blp:9
 msgid "Search for Programs…"
-msgstr ""
+msgstr "Εύρεση προγραμμάτων…"
 
 #: bottles/frontend/ui/details-installers.blp:15
 msgid ""
@@ -620,36 +611,35 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/details-installers.blp:29
-#, fuzzy
 msgid "No Installers Found"
-msgstr "Πειράματα:εγκαταστάτες"
+msgstr "Δε βρέθηκαν προγράμματα εγκατάστασης"
 
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
+"Το αποθετήριο δεν είναι προσβάσιμο ή κανένα πρόγραμμα εγκατάστασης δεν είναι "
+"συμβατό με αυτό το bottle."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
 #: bottles/frontend/ui/preferences.blp:81
-#, fuzzy
 msgid "Read Documentation"
-msgstr "Διαβάστε οδηγείες"
+msgstr "Διαβάστε οδηγίες"
 
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52
 msgid "Name"
-msgstr ""
+msgstr "Όνομα"
 
 #: bottles/frontend/ui/details-preferences.blp:11
-#, fuzzy
 msgid "Components"
-msgstr "Εκδοση Windows"
+msgstr "Εξαρτήματα"
 
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "Η έκδοση του στρώματος συμβατότητας Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
@@ -1147,9 +1137,8 @@ msgid "Duplicate"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-duplicate.blp:49
-#, fuzzy
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Συμπληρώστε ένα όνομα για το bottle σας"
+msgstr "Συμπληρώστε ένα όνομα για το bottle σας."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:69
 msgid "Duplicating…"
@@ -1845,9 +1834,8 @@ msgid "This bottle looks damaged."
 msgstr ""
 
 #: bottles/frontend/ui/list-entry.blp:55
-#, fuzzy
 msgid "Execute in this Bottle"
-msgstr "Το Versioning είναι ενεργό σε αυτό το bottle."
+msgstr "Το Versioning είναι ενεργό σε αυτό το bottle"
 
 #: bottles/frontend/ui/list-entry.blp:69
 msgid "Run Here"
@@ -1946,9 +1934,8 @@ msgid "32-bit should only be used if strictly necessary."
 msgstr ""
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Εξαγωγή διαμόρφωσης"
+msgstr "Εισαγωγή διαμόρφωσης."
 
 #: bottles/frontend/ui/new.blp:176
 #, fuzzy
@@ -1977,9 +1964,8 @@ msgid "Welcome to Bottles"
 msgstr ""
 
 #: bottles/frontend/ui/onboard.blp:60
-#, fuzzy
 msgid "Run Windows Software on Linux."
-msgstr "Τρέξτε λογισμικό των Windows σε Linux με το Bottles!"
+msgstr "Εκτέλεση λογισμικού των Windows σε Linux."
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
@@ -2067,10 +2053,8 @@ msgid "Clean temp files when Bottles launches?"
 msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:62
-#, fuzzy
 msgid "Close Bottles After Starting a Program"
-msgstr ""
-"Kλείσιμο Bottles μετα την εκκίνηση προγραμμάτος απο τη διαχείρηση αρχείων."
+msgstr "Κλείσιμο των Bottles μετά από εκκίνηση προγράμματος."
 
 #: bottles/frontend/ui/preferences.blp:63
 #, fuzzy
@@ -2709,9 +2693,8 @@ msgid "Display settings updated"
 msgstr ""
 
 #: bottles/frontend/windows/dlloverrides.py:136
-#, fuzzy
 msgid "No overrides found."
-msgstr "Υπερισχύσεις DLL"
+msgstr "Δε βρέθηκαν υπερισχύσεις."
 
 #: bottles/frontend/windows/drives.py:71
 #, fuzzy
@@ -2719,14 +2702,12 @@ msgid "Select Drive Path"
 msgstr "Διαγραφή bottle"
 
 #: bottles/frontend/windows/envvars.py:131
-#, fuzzy
 msgid "No environment variables defined."
-msgstr "Προσθέστε μεταβλητές περιβάλλοντος γρήγορα"
+msgstr "Δεν έχουν οριστεί μεταβλητές περιβάλλοντος."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
-#, fuzzy
 msgid "No exclusion patterns defined."
-msgstr "Προσθέστε μεταβλητές περιβάλλοντος γρήγορα"
+msgstr "Δεν έχουν προστεθεί κανόνες αποκλεισμού."
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -2778,9 +2759,9 @@ msgid "Installer failed with unknown error"
 msgstr ""
 
 #: bottles/frontend/windows/launchoptions.py:56
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "Το Versioning ενεργοποιήθηκε για αυτό το bottle"
+msgstr "{0} είναι ήδη απενεργοποιημένο για αυτό το bottle."
 
 #: bottles/frontend/windows/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
@@ -2845,27 +2826,24 @@ msgid "Steam apps listing"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Toggle steam apps listing."
-msgstr "Ενεργοποίηση/Απενεργοποίηση ημερομηνίας αναβάθμισης στη λίστα"
+msgstr "Εμφάνιση λίστας εφαρμογών steam."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Toggle epic games listing."
-msgstr "Ενεργοποίηση/Απενεργοποίηση ημερομηνίας αναβάθμισης στη λίστα"
+msgstr "Εμφάνιση λίστας παιχνιδιών epic."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Toggle ubisoft connect listing."
-msgstr "Ενεργοποίηση/Απενεργοποίηση ημερομηνίας αναβάθμισης στη λίστα"
+msgstr "Εμφάνιση λίστας συνδέσεων ubisoft."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"

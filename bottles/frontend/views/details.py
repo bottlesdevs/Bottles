@@ -34,14 +34,14 @@ from bottles.frontend.views.bottle_versioning import VersioningView
 from bottles.frontend.views.bottle_taskmanager import TaskManagerView
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/details.ui")
 class DetailsView(Adw.Bin):
     """
     This class is the starting point for all the pages concerning the
     bottle (details, preferences, dependencies ..).
     """
 
-    __gtype_name__ = 'Details'
+    __gtype_name__ = "Details"
     __pages = {}
 
     # region Widgets
@@ -84,14 +84,14 @@ class DetailsView(Adw.Bin):
 
         self.btn_back.connect("clicked", self.go_back)
         self.btn_back_sidebar.connect("clicked", self.go_back_sidebar)
-        self.window.main_leaf.connect('notify::visible-child', self.unload_view)
+        self.window.main_leaf.connect("notify::visible-child", self.unload_view)
         self.default_actions.append(self.view_bottle.actions)
 
         # region signals
-        self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
-        self.btn_operations.connect('activate', self.__on_operations_toggled)
-        self.btn_operations.connect('notify::visible', self.__spin_tasks_toggle)
-        self.leaflet.connect('notify::folded', self.__on_leaflet_folded)
+        self.stack_bottle.connect("notify::visible-child", self.__on_page_change)
+        self.btn_operations.connect("activate", self.__on_operations_toggled)
+        self.btn_operations.connect("notify::visible", self.__spin_tasks_toggle)
+        self.leaflet.connect("notify::folded", self.__on_leaflet_folded)
         # endregion
 
         RunAsync(self.build_pages)
@@ -117,7 +117,7 @@ class DetailsView(Adw.Bin):
         self.window.toggle_selection_mode(False)
         page = self.stack_bottle.get_visible_child_name()
 
-        self.set_title(self.__pages[page]['title'], self.__pages[page]['description'])
+        self.set_title(self.__pages[page]["title"], self.__pages[page]["description"])
         if page == "dependencies":
             self.set_actions(self.view_dependencies.actions)
             self.view_dependencies.update(config=self.config)
@@ -156,7 +156,7 @@ class DetailsView(Adw.Bin):
             "taskmanager": {
                 "title": _("Task Manager"),
                 "description": "",
-            }
+            },
         }
 
         if self.config.Environment == "Steam":
@@ -179,8 +179,8 @@ class DetailsView(Adw.Bin):
 
     def set_actions(self, widget: Gtk.Widget = None):
         """
-            This function is used to set the actions buttons in the headerbar.
-            """
+        This function is used to set the actions buttons in the headerbar.
+        """
         while self.box_actions.get_first_child():
             self.box_actions.remove(self.box_actions.get_first_child())
 

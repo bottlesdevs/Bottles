@@ -20,9 +20,9 @@
 from gi.repository import Gtk, GLib, Adw
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-vmtouch.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-vmtouch.ui")
 class VmtouchDialog(Adw.Window):
-    __gtype_name__ = 'VmtouchDialog'
+    __gtype_name__ = "VmtouchDialog"
 
     # region Widgets
     switch_cache_cwd = Gtk.Template.Child()
@@ -56,11 +56,10 @@ class VmtouchDialog(Adw.Window):
                 config=self.config,
                 key=setting,
                 value=settings[setting],
-                scope="Parameters"
+                scope="Parameters",
             )
 
         self.destroy()
 
     def __save(self, *_args):
         GLib.idle_add(self.__idle_save)
-

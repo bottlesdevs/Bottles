@@ -35,7 +35,7 @@ class ImageMagickUtils:
         cmd = f"identify '{self.path}'"
 
         try:
-            res = subprocess.check_output(['bash', "-c", cmd])
+            res = subprocess.check_output(["bash", "-c", cmd])
         except:
             return []
 
@@ -50,7 +50,15 @@ class ImageMagickUtils:
                 continue
         return assets
 
-    def convert(self, dest: str, asset_size: int = 256, resize: int = 256, flatten: bool = True, alpha: bool = True, fallback: bool = True):
+    def convert(
+        self,
+        dest: str,
+        asset_size: int = 256,
+        resize: int = 256,
+        flatten: bool = True,
+        alpha: bool = True,
+        fallback: bool = True,
+    ):
         if not self.__validate_path(dest):
             raise FileExistsError("Destination path already exists")
 

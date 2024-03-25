@@ -12,12 +12,12 @@ class Start(WineProgram):
     command = "start"
 
     def run(
-            self,
-            file: str,
-            terminal: bool = True,
-            args: str = "",
-            environment: Optional[dict] = None,
-            cwd: Optional[str] = None
+        self,
+        file: str,
+        terminal: bool = True,
+        args: str = "",
+        environment: Optional[dict] = None,
+        cwd: Optional[str] = None,
     ):
         winepath = WinePath(self.config)
 
@@ -39,5 +39,5 @@ class Start(WineProgram):
             environment=environment,
             cwd=cwd,
             minimal=False,
-            action_name="run"
+            action_name="run",
         )

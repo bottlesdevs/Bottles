@@ -34,7 +34,8 @@ class EpicGamesStoreManager:
         paths = [
             os.path.join(
                 ManagerUtils.get_bottle_path(config),
-                "drive_c/ProgramData/Epic/UnrealEngineLauncher/LauncherInstalled.dat")
+                "drive_c/ProgramData/Epic/UnrealEngineLauncher/LauncherInstalled.dat",
+            )
         ]
 
         for path in paths:
@@ -67,17 +68,21 @@ class EpicGamesStoreManager:
                 _uri = f"-com.epicgames.launcher://apps/{game['AppName']}?action=launch&silent=true"
                 _args = f"-opengl -SkipBuildPatchPrereq {_uri}"
                 _name = game["InstallLocation"].split("\\")[-1]
-                _path = "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\" \
-                        "EpicGamesLauncher.exe"
+                _path = (
+                    "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\"
+                    "EpicGamesLauncher.exe"
+                )
                 _executable = _path.split("\\")[-1]
                 _folder = ManagerUtils.get_exe_parent_dir(config, _path)
-                games.append({
-                    "executable": _path,
-                    "arguments": _args,
-                    "name": _name,
-                    "path": _path,
-                    "folder": _folder,
-                    "icon": "com.usebottles.bottles-program",
-                    "id": str(uuid.uuid4()),
-                })
+                games.append(
+                    {
+                        "executable": _path,
+                        "arguments": _args,
+                        "name": _name,
+                        "path": _path,
+                        "folder": _folder,
+                        "icon": "com.usebottles.bottles-program",
+                        "id": str(uuid.uuid4()),
+                    }
+                )
         return games

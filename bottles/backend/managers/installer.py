@@ -57,9 +57,7 @@ class InstallerManager:
 
     @lru_cache
     def get_installer(
-            self,
-            installer_name: str,
-            plain: bool = False
+        self, installer_name: str, plain: bool = False
     ) -> Union[str, dict, bool]:
         """
         Return an installer manifest from the repository. Use the plain
@@ -116,11 +114,11 @@ class InstallerManager:
         return True
 
     def __install_dependencies(
-            self,
-            config: BottleConfig,
-            dependencies: list,
-            step_fn: callable,
-            is_final: bool = False
+        self,
+        config: BottleConfig,
+        dependencies: list,
+        step_fn: callable,
+        is_final: bool = False,
     ):
         """Install a list of dependencies"""
         _config = config
@@ -153,7 +151,9 @@ class InstallerManager:
 
                 _f = os.path.join(bottle_path, "drive_c", f)
                 if not os.path.exists(_f):
-                    logging.error(f"During checks, file {_f} was not found, assuming it is not installed. Aborting.")
+                    logging.error(
+                        f"During checks, file {_f} was not found, assuming it is not installed. Aborting."
+                    )
                     return False
 
         return True
@@ -180,7 +180,7 @@ class InstallerManager:
                         st.get("url"),
                         st.get("file_name"),
                         st.get("rename"),
-                        checksum=st.get("file_checksum")
+                        checksum=st.get("file_checksum"),
                     )
                 else:
                     download = True
@@ -204,7 +204,9 @@ class InstallerManager:
                     )
                     executor.run()
                 else:
-                    logging.error(f"Failed to download {st.get('file_name')}, or checksum failed.")
+                    logging.error(
+                        f"Failed to download {st.get('file_name')}, or checksum failed."
+                    )
                     return False
         return True
 
@@ -221,7 +223,7 @@ class InstallerManager:
                 config,
                 command=command.get("command"),
                 arguments=command.get("arguments"),
-                minimal=command.get("minimal")
+                minimal=command.get("minimal"),
             )
             _winecommand.run()
 
@@ -231,11 +233,9 @@ class InstallerManager:
             "!bottle_path": ManagerUtils.get_bottle_path(config),
             "!bottle_drive": f"{ManagerUtils.get_bottle_path(config)}/drive_c",
             "!bottle_name": config.Name,
-            "!bottle_arch": config.Arch
+            "!bottle_arch": config.Arch,
         }
-        preventions = {
-            "bottle.yml": "Bottle configuration cannot be modified."
-        }
+        preventions = {"bottle.yml": "Bottle configuration cannot be modified."}
         script = step.get("script")
 
         for key, value in placeholders.items():
@@ -243,7 +243,9 @@ class InstallerManager:
 
         for key, value in preventions.items():
             if script.find(key) != -1:
-                logging.error(value, )
+                logging.error(
+                    value,
+                )
                 return False
 
         logging.info(f"Executing installer script…")
@@ -252,7 +254,7 @@ class InstallerManager:
             shell=True,
             cwd=ManagerUtils.get_bottle_path(config),
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
+            stderr=subprocess.PIPE,
         ).communicate()
         logging.info(f"Finished executing installer script.")
 
@@ -281,19 +283,27 @@ class InstallerManager:
 
         if "dxvk" in new_params and isinstance(new_params["dxvk"], bool):
             if new_params["dxvk"] != config.Parameters.dxvk:
-                self.__manager.install_dll_component(_config, "dxvk", remove=not new_params["dxvk"])
+                self.__manager.install_dll_component(
+                    _config, "dxvk", remove=not new_params["dxvk"]
+                )
 
         if "vkd3d" in new_params and isinstance(new_params["vkd3d"], bool):
             if new_params["vkd3d"] != config.Parameters.vkd3d:
-                self.__manager.install_dll_component(_config, "vkd3d", remove=not new_params["vkd3d"])
+                self.__manager.install_dll_component(
+                    _config, "vkd3d", remove=not new_params["vkd3d"]
+                )
 
         if "dxvk_nvapi" in new_params and isinstance(new_params["dxvk_nvapi"], bool):
             if new_params["dxvk_nvapi"] != config.Parameters.dxvk_nvapi:
-                self.__manager.install_dll_component(_config, "nvapi", remove=not new_params["dxvk_nvapi"])
+                self.__manager.install_dll_component(
+                    _config, "nvapi", remove=not new_params["dxvk_nvapi"]
+                )
 
         if "latencyflex" in new_params and isinstance(new_params["latencyflex"], bool):
             if new_params["latencyflex"] != config.Parameters.latencyflex:
-                self.__manager.install_dll_component(_config, "latencyflex", remove=not new_params["latencyflex"])
+                self.__manager.install_dll_component(
+                    _config, "latencyflex", remove=not new_params["latencyflex"]
+                )
 
         # avoid sync type change if not set to "wine"
         if "sync" in new_params and config.Parameters.sync != "wine":
@@ -301,10 +311,7 @@ class InstallerManager:
 
         for k, v in new_params.items():
             self.__manager.update_config(
-                config=config,
-                key=k,
-                value=v,
-                scope="Parameters"
+                config=config, key=k, value=v, scope="Parameters"
             )
 
     def count_steps(self, installer) -> dict:
@@ -333,9 +340,12 @@ class InstallerManager:
     def has_local_resources(self, installer):
         manifest = self.get_installer(installer[0])
         steps = manifest.get("Steps", [])
-        exe_msi_steps = [s for s in steps
-                         if s.get("action", "") in ["install_exe", "install_msi"]
-                         and s.get("url", "") == "local"]
+        exe_msi_steps = [
+            s
+            for s in steps
+            if s.get("action", "") in ["install_exe", "install_msi"]
+            and s.get("url", "") == "local"
+        ]
 
         if len(exe_msi_steps) == 0:
             return []
@@ -343,8 +353,14 @@ class InstallerManager:
         files = [s.get("file_name", "") for s in exe_msi_steps]
         return files
 
-    def install(self, config: BottleConfig, installer: dict, step_fn: callable, is_final: bool = True,
-                local_resources: Optional[dict] = None):
+    def install(
+        self,
+        config: BottleConfig,
+        installer: dict,
+        step_fn: callable,
+        is_final: bool = True,
+        local_resources: Optional[dict] = None,
+    ):
         manifest = self.get_installer(installer[0])
         _config = config
 
@@ -366,18 +382,27 @@ class InstallerManager:
             for i in installers:
                 if not self.install(config, i, step_fn, False):
                     logging.error("Failed to install dependent installer(s)")
-                    return Result(False, data={"message": "Failed to install dependent installer(s)"})
+                    return Result(
+                        False,
+                        data={"message": "Failed to install dependent installer(s)"},
+                    )
 
         # ask for local resources
         if local_resources:
             if not self.__process_local_resources(local_resources, installer):
-                return Result(False, data={"message": "Local resources not found or invalid"})
+                return Result(
+                    False, data={"message": "Local resources not found or invalid"}
+                )
 
         # install dependencies
         if dependencies:
             logging.info("Installing dependencies")
-            if not self.__install_dependencies(_config, dependencies, step_fn, is_final):
-                return Result(False, data={"message": "Dependencies installation failed."})
+            if not self.__install_dependencies(
+                _config, dependencies, step_fn, is_final
+            ):
+                return Result(
+                    False, data={"message": "Dependencies installation failed."}
+                )
 
         # set parameters
         if parameters:
@@ -394,7 +419,9 @@ class InstallerManager:
                 step_fn()
 
             if not self.__perform_steps(_config, steps):
-                return Result(False, data={"message": "Installer is not well configured."})
+                return Result(
+                    False, data={"message": "Installer is not well configured."}
+                )
 
         # execute checks
         if checks:
@@ -402,12 +429,19 @@ class InstallerManager:
             if is_final:
                 step_fn()
                 if not self.__perform_checks(_config, checks):
-                    return Result(False, data={"message": "Checks failed, the program is not installed."})
+                    return Result(
+                        False,
+                        data={
+                            "message": "Checks failed, the program is not installed."
+                        },
+                    )
 
         # register executable
-        if executable['path'].startswith("userdir/"):
+        if executable["path"].startswith("userdir/"):
             _userdir = WineUtils.get_user_dir(bottle)
-            executable['path'] = executable['path'].replace("userdir/", f"/users/{_userdir}/")
+            executable["path"] = executable["path"].replace(
+                "userdir/", f"/users/{_userdir}/"
+            )
 
         _path = f'C:\\{executable["path"]}'.replace("/", "\\")
         _uuid = str(uuid.uuid4())
@@ -416,7 +450,7 @@ class InstallerManager:
             "arguments": executable.get("arguments", ""),
             "name": executable["name"],
             "path": _path,
-            "id": _uuid
+            "id": _uuid,
         }
 
         if "dxvk" in executable:
@@ -426,7 +460,9 @@ class InstallerManager:
         if "dxvk_nvapi" in executable:
             _program["dxvk_nvapi"] = executable["dxvk_nvapi"]
 
-        duplicates = [k for k, v in config.External_Programs.items() if v["path"] == _path]
+        duplicates = [
+            k for k, v in config.External_Programs.items() if v["path"] == _path
+        ]
         ext = config.External_Programs
 
         if duplicates:
@@ -434,25 +470,22 @@ class InstallerManager:
                 del ext[d]
             ext[_uuid] = _program
             self.__manager.update_config(
-                config=config,
-                key="External_Programs",
-                value=ext
+                config=config, key="External_Programs", value=ext
             )
         else:
             self.__manager.update_config(
-                config=config,
-                key=_uuid,
-                value=_program,
-                scope="External_Programs"
+                config=config, key=_uuid, value=_program, scope="External_Programs"
             )
 
         # create Desktop entry
         bottles_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
-        icon_path = os.path.join(bottles_icons_path, executable.get('icon'))
+        icon_path = os.path.join(bottles_icons_path, executable.get("icon"))
         ManagerUtils.create_desktop_entry(_config, _program, False, icon_path)
 
         if is_final:
             step_fn()
 
-        logging.info(f"Program installed: {manifest['Name']} in {config.Name}.", jn=True)
+        logging.info(
+            f"Program installed: {manifest['Name']} in {config.Name}.", jn=True
+        )
         return Result(True)

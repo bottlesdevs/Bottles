@@ -23,9 +23,9 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/local-resource-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/local-resource-entry.ui")
 class LocalResourceEntry(Adw.ActionRow):
-    __gtype_name__ = 'LocalResourceEntry'
+    __gtype_name__ = "LocalResourceEntry"
 
     # region Widgets
     btn_path = Gtk.Template.Child()
@@ -69,9 +69,9 @@ class LocalResourceEntry(Adw.ActionRow):
         dialog.show()
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-installer.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-installer.ui")
 class InstallerDialog(Adw.Window):
-    __gtype_name__ = 'InstallerDialog'
+    __gtype_name__ = "InstallerDialog"
     __sections = {}
     __steps = 0
     __current_step = 0
@@ -110,13 +110,18 @@ class InstallerDialog(Adw.Window):
             "params": _("Configuring the bottle…"),
             "steps": _("Processing installer steps…"),
             "exe": _("Installing the {}…".format(installer[1].get("Name"))),
-            "checks": _("Performing final checks…")
+            "checks": _("Performing final checks…"),
         }
 
         self.status_init.set_title(installer[1].get("Name"))
-        self.install_status_page.set_title(_("Installing {0}…").format(installer[1].get("Name")))
+        self.install_status_page.set_title(
+            _("Installing {0}…").format(installer[1].get("Name"))
+        )
         self.status_installed.set_description(
-            _("{0} is now available in the programs view.").format(installer[1].get("Name")))
+            _("{0} is now available in the programs view.").format(
+                installer[1].get("Name")
+            )
+        )
         self.__set_icon()
 
         self.btn_install.connect("clicked", self.__check_resources)
@@ -143,7 +148,9 @@ class InstallerDialog(Adw.Window):
             self.img_icon_install.set_visible(False)
 
     def __check_resources(self, *_args):
-        self.__local_resources = self.manager.installer_manager.has_local_resources(self.installer)
+        self.__local_resources = self.manager.installer_manager.has_local_resources(
+            self.installer
+        )
         if len(self.__local_resources) == 0:
             self.__install()
             return
@@ -174,7 +181,7 @@ class InstallerDialog(Adw.Window):
             config=self.config,
             installer=self.installer,
             step_fn=self.next_step,
-            local_resources=self.__final_resources
+            local_resources=self.__final_resources,
         )
 
     def __installed(self):

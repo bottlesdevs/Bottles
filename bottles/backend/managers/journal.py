@@ -28,6 +28,7 @@ from bottles.backend.utils import yaml
 
 class JournalSeverity:
     """Represents the severity of a journal entry."""
+
     DEBUG = "debug"
     INFO = "info"
     WARNING = "warning"
@@ -63,7 +64,12 @@ class JournalManager:
             return {}
 
         try:
-            journal = {k: v for k, v in sorted(journal.items(), key=lambda item: item[1]["timestamp"], reverse=True)}
+            journal = {
+                k: v
+                for k, v in sorted(
+                    journal.items(), key=lambda item: item[1]["timestamp"], reverse=True
+                )
+            }
         except (KeyError, TypeError):
             journal = {}
 
@@ -80,7 +86,9 @@ class JournalManager:
             if event.get("timestamp", None) is None:
                 latest_datetime = datetime.strptime(latest, "%Y-%m-%d %H:%M:%S")
             else:
-                latest_datetime = datetime.strptime(event["timestamp"], "%Y-%m-%d %H:%M:%S")
+                latest_datetime = datetime.strptime(
+                    event["timestamp"], "%Y-%m-%d %H:%M:%S"
+                )
                 latest = event["timestamp"]
 
             if latest_datetime < datetime.now() - timedelta(days=30):
@@ -149,7 +157,9 @@ class JournalManager:
             end = start + timedelta(days=1)
 
         for event_id, event in journal.items():
-            timestamp = datetime.strptime(event["timestamp"], "%Y-%m-%d %H:%M:%S").date()
+            timestamp = datetime.strptime(
+                event["timestamp"], "%Y-%m-%d %H:%M:%S"
+            ).date()
 
             if start <= timestamp <= end:
                 _journal[event_id] = event
@@ -175,7 +185,7 @@ class JournalManager:
         journal[event_id] = {
             "severity": severity,
             "message": message,
-            "timestamp": now.strftime("%Y-%m-%d %H:%M:%S")
+            "timestamp": now.strftime("%Y-%m-%d %H:%M:%S"),
         }
         JournalManager.__save_journal(journal)
         JournalManager.__clean_old()

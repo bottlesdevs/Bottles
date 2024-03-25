@@ -19,7 +19,9 @@ class WineProgram:
 
     def __init__(self, config: BottleConfig, silent=False):
         if not isinstance(config, BottleConfig):
-            raise TypeError("config should be BottleConfig type, but it was %s" % type(config))
+            raise TypeError(
+                "config should be BottleConfig type, but it was %s" % type(config)
+            )
         self.config = config
         self.silent = silent
 
@@ -35,14 +37,14 @@ class WineProgram:
         return command
 
     def launch(
-            self,
-            args: Union[tuple, str] | None = None,
-            terminal: bool = False,
-            minimal: bool = True,
-            communicate: bool = False,
-            environment: Optional[dict] = None,
-            cwd: Optional[str] = None,
-            action_name: str = "launch"
+        self,
+        args: Union[tuple, str] | None = None,
+        terminal: bool = False,
+        minimal: bool = True,
+        communicate: bool = False,
+        environment: Optional[dict] = None,
+        cwd: Optional[str] = None,
+        action_name: str = "launch",
     ):
         if environment is None:
             environment = {}
@@ -67,7 +69,7 @@ class WineProgram:
             colors=self.colors,
             environment=environment,
             cwd=cwd,
-            arguments=program_args
+            arguments=program_args,
         ).run()
         return res
 
