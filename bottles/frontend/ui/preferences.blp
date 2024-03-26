@@ -17,11 +17,13 @@ template $PreferencesWindow: Adw.PreferencesWindow {
         title: _('Dark Mode');
         subtitle: _('Whether Bottles should use the dark color scheme.');
         visible: false;
+        notify::active => $on_dark_mode_toggled();
       }
 
       Adw.SwitchRow switch_update_date {
         title: _('Show Update Date');
         subtitle: _('Whether to show the update date in the bottle list.');
+        notify::active => $on_switch_update_date_toggled();
       }
     }
 
@@ -31,16 +33,19 @@ template $PreferencesWindow: Adw.PreferencesWindow {
       Adw.SwitchRow switch_notifications {
         title: _('Notifications');
         subtitle: _('Show notifications for downloads and installs.');
+        notify::active => $on_switch_notifications_toggled();
       }
 
       Adw.SwitchRow switch_temp {
         title: _('Temp Files');
         subtitle: _('Clean temp files when Bottles launches?');
+        notify::active => $on_switch_temp_toggled();
       }
 
       Adw.SwitchRow switch_auto_close {
         title: _('Close Bottles After Starting a Program');
         subtitle: _('Close Bottles after starting a program from the file manager.');
+        notify::active => $on_switch_auto_close_toggled();
       }
     }
 
@@ -50,6 +55,7 @@ template $PreferencesWindow: Adw.PreferencesWindow {
       Adw.SwitchRow switch_steam {
         title: _('Steam Proton Prefixes');
         subtitle: _('List and manage Steam Proton prefixes.');
+        notify::active => $on_switch_steam_toggled();
 
         Button btn_steam_proton_doc {
           tooltip-text: _('Read Documentation');
@@ -66,16 +72,19 @@ template $PreferencesWindow: Adw.PreferencesWindow {
       Adw.SwitchRow switch_steam_programs {
         title: _('List Steam Apps in Programs List');
         subtitle: _('Requires Steam for Windows installed in the bottle.');
+        notify::active => $on_switch_steam_programs_toggled();
       }
 
       Adw.SwitchRow switch_epic_games {
         title: _('List Epic Games in Programs List');
         subtitle: _('Requires Epic Games Store installed in the bottle.');
+        notify::active => $on_switch_epic_games_toggled();
       }
 
       Adw.SwitchRow switch_ubisoft_connect {
         title: _('List Ubisoft Games in Programs List');
         subtitle: _('Requires Ubisoft Connect installed in the bottle.');
+        notify::active => $on_switch_ubisoft_connect_toggled();
       }
     }
 
@@ -85,11 +94,13 @@ template $PreferencesWindow: Adw.PreferencesWindow {
       Adw.SwitchRow switch_release_candidate {
         title: _('Pre-Release');
         subtitle: _('Display unstable versions of runners and components.');
+        notify::active => $on_switch_release_candidate_toggled();
       }
 
       Adw.SwitchRow switch_force_offline {
         title: _('Force Offline Mode');
         subtitle: _('Force disable any network activity even with available network connection.');
+        notify::active => $on_switch_force_offline_toggled();
       }
 
       Adw.ActionRow {

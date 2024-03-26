@@ -40,18 +40,30 @@ class PreferencesWindow(Adw.PreferencesWindow):
     dlls_stack = Gtk.Template.Child()
     dlls_spinner = Gtk.Template.Child()
 
+    # Appearance
     switch_theme = Gtk.Template.Child()
-    switch_notifications = Gtk.Template.Child()
-    switch_force_offline = Gtk.Template.Child()
-    switch_temp = Gtk.Template.Child()
-    switch_release_candidate = Gtk.Template.Child()
-    switch_steam = Gtk.Template.Child()
-    switch_sandbox = Gtk.Template.Child()
-    switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
+
+    # General
+    switch_notifications = Gtk.Template.Child()
+    switch_temp = Gtk.Template.Child()
+    switch_auto_close = Gtk.Template.Child()
+
+    # Integrations
+    switch_steam = Gtk.Template.Child()
+    btn_steam_proton_doc = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
     switch_epic_games = Gtk.Template.Child()
     switch_ubisoft_connect = Gtk.Template.Child()
+
+    # Advanced
+    switch_release_candidate = Gtk.Template.Child()
+    switch_force_offline = Gtk.Template.Child()
+    btn_bottles_path = Gtk.Template.Child()
+    btn_bottles_path_reset = Gtk.Template.Child()
+    label_bottles_path = Gtk.Template.Child()
+
+    switch_sandbox = Gtk.Template.Child()
     list_winebridge = Gtk.Template.Child()
     list_runtimes = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
@@ -59,11 +71,66 @@ class PreferencesWindow(Adw.PreferencesWindow):
     list_vkd3d = Gtk.Template.Child()
     list_nvapi = Gtk.Template.Child()
     list_latencyflex = Gtk.Template.Child()
-    btn_bottles_path = Gtk.Template.Child()
-    btn_bottles_path_reset = Gtk.Template.Child()
-    label_bottles_path = Gtk.Template.Child()
-    btn_steam_proton_doc = Gtk.Template.Child()
+
     pref_core = Gtk.Template.Child()
+
+    @Gtk.Template.Callback()
+    def on_dark_mode_toggled(self, *args):
+        is_dark = self.switch_theme.get_active()
+        self.settings.set_boolean("dark-theme", is_dark)
+        Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK if is_dark
+                                                        else Adw.ColorScheme.DEFAULT)
+
+    @Gtk.Template.Callback()
+    def on_switch_update_date_toggled(self, *args):
+        show_update_date = self.switch_update_date.get_active()
+        self.settings.set_boolean("update-date", show_update_date)
+        self.window.page_list.update_bottles()
+    
+    @Gtk.Template.Callback()
+    def on_switch_notifications_toggled(self, *args):
+        self.settings.set_boolean("notifications",
+                                  self.switch_notifications.get_active())
+    
+    @Gtk.Template.Callback()
+    def on_switch_temp_toggled(self, *args):
+        self.settings.set_boolean("temp", self.switch_temp.get_active())
+
+    @Gtk.Template.Callback()
+    def on_switch_auto_close_toggled(self, *args):
+        self.settings.set_boolean("auto-close-bottles",
+                                  self.switch_auto_close.get_active())
+    
+    @Gtk.Template.Callback()
+    def on_switch_steam_toggled(self, *args):
+        self.settings.set_boolean("steam-proton-support",
+                                  self.switch_steam.get_active())
+    
+    @Gtk.Template.Callback()
+    def on_switch_steam_programs_toggled(self, *args):
+        self.settings.set_boolean("steam-programs",
+                                  self.switch_steam_programs.get_active())
+        
+    @Gtk.Template.Callback()
+    def on_switch_epic_games_toggled(self, *args):
+        self.settings.set_boolean("epic-games",
+                                  self.switch_epic_games.get_active())
+    
+    @Gtk.Template.Callback()
+    def on_switch_ubisoft_connect_toggled(self, *args):
+        self.settings.set_boolean("ubisoft-connect",
+                                  self.switch_ubisoft_connect.get_active())
+
+    @Gtk.Template.Callback()
+    def on_switch_release_candidate_toggled(self, *args):
+        self.settings.set_boolean("release-candidate",
+                                  self.switch_release_candidate.get_active())
+        self.ui_update()
+    
+    @Gtk.Template.Callback()
+    def on_switch_force_offline_toggled(self, *args):
+        self.settings.set_boolean("force-offline",
+                                  self.switch_force_offline.get_active())
 
     # endregion
 
@@ -80,7 +147,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         if "FLATPAK_ID" in os.environ:
             self.remove(self.pref_core)
-
+        
+        self.load_settings()
         self.current_bottles_path = self.data.get(UserDataKeys.CustomBottlesPath)
         if self.current_bottles_path:
             self.label_bottles_path.set_label(
@@ -90,72 +158,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         # bind widgets
         self.settings.bind(
-            "dark-theme",
-            self.switch_theme,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT
-        )
-        self.settings.bind(
-            "notifications",
-            self.switch_notifications,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "force-offline",
-            self.switch_force_offline,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "temp", self.switch_temp, "active", Gio.SettingsBindFlags.DEFAULT
-        )
-        # Connect RC signal to another func
-        self.settings.bind(
-            "release-candidate",
-            self.switch_release_candidate,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "steam-proton-support",
-            self.switch_steam,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
             "experiments-sandbox",
             self.switch_sandbox,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "auto-close-bottles",
-            self.switch_auto_close,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "update-date",
-            self.switch_update_date,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "steam-programs",
-            self.switch_steam_programs,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "epic-games",
-            self.switch_epic_games,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "ubisoft-connect",
-            self.switch_ubisoft_connect,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
@@ -177,9 +181,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         RunAsync(self.ui_update)
 
         # connect signals
-        self.settings.connect("changed::dark-theme", self.__toggle_night)
-        self.settings.connect("changed::release-candidate", self.__toggle_rc)
-        self.settings.connect("changed::update-date", self.__toggle_update_date)
         self.btn_bottles_path.connect("clicked", self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect("clicked", self.__reset_bottles_path)
         self.btn_steam_proton_doc.connect("clicked", self.__open_steam_proton_doc)
@@ -193,6 +194,20 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         if not self.style_manager.get_system_supports_color_schemes():
             self.switch_theme.set_visible(True)
+
+    def load_settings(self):
+        self.switch_theme.set_active(self.settings.get_boolean("dark-theme"))
+        self.switch_update_date.set_active(self.settings.get_boolean("update-date"))
+        self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
+        self.switch_temp.set_active(self.settings.get_boolean("temp"))
+        self.switch_auto_close.set_active(self.settings.get_boolean("auto-close-bottles"))
+        self.switch_steam.set_active(self.settings.get_boolean("steam-proton-support"))
+        self.switch_steam_programs.set_active(self.settings.get_boolean("steam-programs"))
+        self.switch_epic_games.set_active(self.settings.get_boolean("epic-games"))
+        self.switch_ubisoft_connect.set_active(self.settings.get_boolean("ubisoft-connect"))
+        self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
+        self.switch_force_offline.set_active(self.settings.get_boolean("force-offline"))
+        self.switch_sandbox.set_active(self.settings.get_boolean("experiments-sandbox"))
 
     def empty_list(self):
         for w in self.__registry:
@@ -212,18 +227,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
             GLib.idle_add(self.populate_latencyflex_list)
 
             GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
-
-    def __toggle_night(self, widget, state):
-        if self.settings.get_boolean("dark-theme"):
-            Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK)
-        else:
-            Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
-
-    def __toggle_update_date(self, widget, state):
-        self.window.page_list.update_bottles()
-
-    def __toggle_rc(self, widget, state):
-        self.ui_update()
 
     def __open_steam_proton_doc(self, widget):
         webbrowser.open(
