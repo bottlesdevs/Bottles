@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-06-26 04:41+0000\n"
-"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
+"PO-Revision-Date: 2024-03-27 16:01+0000\n"
+"Last-Translator: Heru Setiawan <herusetiawan3@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
 "bottles/id/>\n"
 "Language: id\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.18.1\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -278,9 +278,8 @@ msgid "Dependency name"
 msgstr "Nama dependensi"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
-#, fuzzy
 msgid "Dependency description"
-msgstr "Deskripsi lingkungan"
+msgstr "Deskripsi dependensi"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
@@ -297,7 +296,7 @@ msgid ""
 "run it via terminal to read the output."
 msgstr ""
 "Terjadi kesalahan pemasangan. Muat ulang Bottles untuk membaca laporan "
-"kerusakan atau jalankan melalui terminal untuk membaca keluaran."
+"kerusakan atau jalankan melalui terminal untuk membaca luaran."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 #, fuzzy
@@ -305,8 +304,9 @@ msgid "Dependency Menu"
 msgstr "Dependensi"
 
 #: bottles/frontend/ui/details-bottle.blp:16
+#, fuzzy
 msgid "Troubleshooting"
-msgstr "Memecahkan masalah"
+msgstr "Pemecahan masalah"
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
@@ -327,12 +327,13 @@ msgstr "Cadangkan semua…"
 
 #: bottles/frontend/ui/details-bottle.blp:37
 #: bottles/frontend/ui/importer.blp:68
+#, fuzzy
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
 "Ini hanya konfigurasi bottle, sangat cocok jika Anda ingin membuat yang baru "
-"tetapi tanpa file pribadi."
+"tetapi tanpa berkas pribadi."
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
@@ -356,8 +357,9 @@ msgstr "Hapus Bottle…"
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
+#, fuzzy
 msgid "Secondary Menu"
-msgstr ""
+msgstr "Menu Sekunder"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 #, fuzzy
@@ -387,9 +389,8 @@ msgid "Launch Options"
 msgstr "Ubah Pilihan Peluncuran"
 
 #: bottles/frontend/ui/details-bottle.blp:135
-#, fuzzy
 msgid "Run in Terminal"
-msgstr "Jalankan dengan terminal…"
+msgstr "Jalankan dengan Terminal…"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 #, fuzzy
@@ -398,7 +399,7 @@ msgstr "Jatuhkan berkas untuk di eksekusi"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
-msgstr "Bottleku"
+msgstr "Bottle-ku"
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
@@ -412,8 +413,9 @@ msgstr "Lingkungan"
 #: bottles/frontend/ui/details-bottle.blp:201
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
+#, fuzzy
 msgid "Runner"
-msgstr "Runner"
+msgstr "Pelaju"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
@@ -439,20 +441,25 @@ msgid "Programs"
 msgstr "Program"
 
 #: bottles/frontend/ui/details-bottle.blp:275
+#, fuzzy
 msgid ""
 "Click \"Run Executable…\" to run an executable, \"Add Shortcuts…\" to add an "
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Klik \"Jalankan Berkas Eksekusi...\" untuk menjalankan program, \"Tambah "
+"Pintasan...\" untuk menambah berkas eksekusi ke daftar program, atau \"Pasang"
+" Program...\" untuk memasang program yang telah dikurasi oleh komunitas."
 
 #: bottles/frontend/ui/details-bottle.blp:298
+#, fuzzy
 msgid "Add Shortcuts…"
-msgstr "Menambahkan Pintasan…"
+msgstr "Tambah Pintasan…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 #, fuzzy
 msgid "Install Programs…"
-msgstr "Program yang terpasang"
+msgstr "Pasang Program…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
@@ -462,12 +469,12 @@ msgstr "Opsi"
 #: bottles/frontend/views/details.py:141
 #, fuzzy
 msgid "Settings"
-msgstr "Pengaturan Layar"
+msgstr "Pengaturan"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 #, fuzzy
 msgid "Configure bottle settings."
-msgstr "Membuat bottle…"
+msgstr "Atur setelan bottle."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
@@ -477,18 +484,18 @@ msgstr "Dependensi"
 #: bottles/frontend/ui/details-bottle.blp:361
 #, fuzzy
 msgid "Install dependencies for programs."
-msgstr "Program yang terpasang"
+msgstr "Pasang dependensi program."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
+#, fuzzy
 msgid "Snapshots"
-msgstr ""
+msgstr "Snapshot"
 
 #: bottles/frontend/ui/details-bottle.blp:371
-#, fuzzy
 msgid "Create and manage bottle states."
-msgstr "Simpan keadaan bottle."
+msgstr "Buat dan atur keadaan bottle."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
@@ -497,8 +504,9 @@ msgid "Task Manager"
 msgstr "Pengelola Tugas"
 
 #: bottles/frontend/ui/details-bottle.blp:381
+#, fuzzy
 msgid "Manage running programs."
-msgstr ""
+msgstr "Kelola program berjalan."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -521,9 +529,8 @@ msgid "Edit the internal registry."
 msgstr "Edit registri internal."
 
 #: bottles/frontend/ui/details-bottle.blp:413
-#, fuzzy
 msgid "Legacy Wine Tools"
-msgstr "Peralatan Lampau"
+msgstr "Peralatan Wine Lampau"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
@@ -532,7 +539,7 @@ msgstr "Penjelajah Berkas"
 #: bottles/frontend/ui/details-bottle.blp:435
 #, fuzzy
 msgid "Debugger"
-msgstr "Debug"
+msgstr "Debugger"
 
 #: bottles/frontend/ui/details-bottle.blp:444
 #: bottles/frontend/ui/importer.blp:69 bottles/frontend/ui/new.blp:145
@@ -555,20 +562,22 @@ msgstr "Mencari dependensi…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Anda sedang luring :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
+#, fuzzy
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Bottles berjalan dalam mode luring, dependensi tidak ditemukan."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
-#, fuzzy
 msgid ""
 "Dependencies are resources that improve compatibility of Windows software.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Dependensi adalah sumber daya yang meningkatkan kompabilitas perangkat lunak "
+"Windows.\n"
 "Berkas di laman ini disediakan dengan jenis lisensi proprietari. Dengan "
 "memasangnya, Anda telah menyetujui persyaratan lisensi yang digunakan."
 
@@ -579,12 +588,11 @@ msgstr "Laporkan masalah atau dependensi yang hilang."
 #: bottles/frontend/ui/details-dependencies.blp:77
 #, fuzzy
 msgid "Report Missing Dependency"
-msgstr "Laporkan dependensi yang hilang"
+msgstr "Laporkan Dependensi yang Hilang"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
-#, fuzzy
 msgid "Read Documentation."
-msgstr "Baca dokumentasi"
+msgstr "Baca Dokumentasi."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
@@ -599,8 +607,9 @@ msgid "Search"
 msgstr "Cari"
 
 #: bottles/frontend/ui/details-installers.blp:9
+#, fuzzy
 msgid "Search for Programs…"
-msgstr "Cari program yang terpasang…"
+msgstr "Cari Program Terpasang…"
 
 #: bottles/frontend/ui/details-installers.blp:15
 #, fuzzy
