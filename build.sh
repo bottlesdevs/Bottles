@@ -2,9 +2,26 @@
 # @name FlatPakBuildScript
 # @brief This script provides functionality to build and run this project as a flatpak package, from either a host, or a container environment.
 # @example
-#   ./build.sh
+#   1. This command will build, and run the flatpak package as the current user, and display the help message for the bottles-cli command:
+#
+#     ./build.sh build -r -u -c bottles-cli -a --help
+#
+#   2. This command will run the flatpak package as the current user, and run bottles in GUI-interactive mode:
+#
+#   ./build.sh run -r -u -c bottles
+#
+#   3. This command will display the help message for the build action:
+#
+#   ./build.sh build -h
 
 set -eo pipefail
+
+BUILD=false
+RUN=false
+USERMODE=false
+AARGS=false
+BARGS=()
+COMMAND=""
 
 # @description Colored output for error messages
 # @arg $1 string Message
@@ -67,6 +84,168 @@ function error_trap() {
     exit ${exit_code}
 }
 trap 'error_trap ${LINENO} $?' ERR
+
+# @description Display usage information
+# @arg $1 string Action
+# @exitcode 0
+# @stdout Usage information
+function usage() {
+    local action
+    action="${1}"
+    action=$(echo "${action}" | tr '[:lower:]' '[:upper:]')
+    echo "Bottles Flatpak Build Script"
+    case "${action}" in
+        BUILD)
+            echo "Usage: $0 ACTION [OPTIONS] [ARGS]"
+            echo -e "\nHelp for build action:\n"
+            echo "  This action builds the flatpak package"
+            echo -e "\nOptions:\n"
+            echo "  -h, -help: Display this help message"
+            echo "  -u, --user: Build the flatpak package as the current user"
+            echo "  -r, --run: Run the flatpak package after building"
+            echo "  -c, --command [COMMAND]: Pass a command to the run action"
+            echo "  -a, --args [ARGS]: Pass additional arguments to the run action"
+            ;;
+        RUN)
+            echo "Usage: $0 ACTION [OPTIONS] [ARGS]"
+            echo -e "\nHelp for run action:\n"
+            echo "  This action runs the flatpak package"
+            echo -e "\nOptions:\n"
+            echo "  -h, --help: Display this help message"
+            echo "  -u, --user: Run the flatpak package as the current user"
+            echo "  -c, --command [COMMAND]: Pass a command to the run action"
+            echo "  -a, --args [ARGS]: Pass additional arguments to the run action"
+            ;;
+        *)
+            echo "Usage: $0 ACTION [OPTIONS]"
+            echo -e "\nActions:\n"
+            echo "  build: Build the flatpak package"
+            echo "  run: Run the flatpak package"
+            echo -e "\nOptions:\n"
+            echo "  -h, --help: Display this help message"
+            echo -e "\nYou can get help for a specific action by running: $0 ACTION -h|--help\n"
+            ;;
+    esac
+    exit 0
+}
+
+# @description Parse command line arguments
+# @arg $@ string Command line arguments
+# @exitcode 0 If the arguments are parsed successfully
+# @stdout: Usage if the command line arguments fail to parse
+function parse_args() {
+    if [ $# -eq 0 ]; then
+        usage
+    fi
+    if [ $# -lt 1 ]; then
+        error "No action provided"
+        usage
+    fi
+    local action
+    action="${1}"
+    if [ "${action}" = "-h" ] || [ "${action}" = "--help" ]; then
+        usage
+    fi
+    action=$(echo "${action}" | tr '[:lower:]' '[:upper:]')
+    shift 1
+    case "${action}" in
+        BUILD)
+            BUILD=true
+            while [ $# -gt 0 ]; do
+                if [ "$AARGS" = true ]; then
+                    BARGS+=("$1")
+                else
+                    case "$1" in
+                        -h|--help)
+                            usage "BUILD"
+                            ;;
+                        -r|--run)
+                            RUN=true
+                            ;;
+                        -u|--user)
+                            USERMODE=true
+                            ;;
+                        -c|--command)
+                            COMMAND="$2"
+                            shift 1
+                            ;;
+                        -a|--args)
+                            AARGS=true
+                            ;;
+                        *)
+                            error "Invalid argument: $1"
+                            usage "BUILD"
+                            ;;
+                    esac
+                fi
+                shift 1
+            done
+            ;;
+        RUN)
+            RUN=true
+            while [ $# -gt 0 ]; do
+                if [ "$AARGS" = true ]; then
+                    BARGS+=("$1")
+                else
+                    case "$1" in
+                        -h|--help)
+                            usage "RUN"
+                            ;;
+                        -r|--run)
+                            RUN=true
+                            ;;
+                        -u|--user)
+                            USERMODE=true
+                            ;;
+                        -c|--command)
+                            COMMAND="$2"
+                            shift 1
+                            ;;
+                        -a | --args)
+                            AARGS=true
+                            ;;
+                        *)
+                            error "Invalid argument: $1"
+                            usage "RUN"
+                            ;;
+                    esac
+                fi
+                shift 1
+            done
+            ;;
+        *)
+            error "Invalid action: ${action}"
+            usage
+            ;;
+    esac
+}
+
+# @description Get the user mode flag
+# @exitcode 0
+# @stdout User mode flag
+function __user_mode() {
+    if [ "${USERMODE}" = true ]; then
+        echo -ne "--user "
+    fi
+}
+
+# @description Get the passed-through command line arguments
+# @exitcode 0
+# @stdout Command line arguments
+function __bargs() {
+     if [ ${#BARGS[@]} -gt 0 ]; then
+         echo -ne " ${BARGS[*]}"
+     fi
+}
+
+# @description Get the passed-through command
+# @exitcode 0
+# @stdout Command
+function __command() {
+    if [ -n "${COMMAND}" ]; then
+        echo -ne "--command=${COMMAND} "
+    fi
+}
 
 # @description Check if a command exists
 # @arg $1 string Command name
@@ -138,11 +317,13 @@ function check_flatpak_repository() {
         err "No repository URI provided"
         return 1
     fi
-    if ! exec_flatpak --user remote-list | grep -qi "${repository}"; then
+    # shellcheck disable=SC2046
+    if ! exec_flatpak $(__user_mode)remote-list | grep -qi "${repository}"; then
         warning "Flatpak repository ${repository} does not exist"
         return 1
     fi
-    if ! exec_flatpak --user remote-list | grep -qi "${uri}"; then
+    # shellcheck disable=SC2046
+    if ! exec_flatpak $(__user_mode)remote-list | grep -qi "${uri}"; then
         warning "Flatpak repository ${repository} URI does not match"
         return 1
     fi
@@ -162,7 +343,8 @@ function check_flatpak_package() {
         err "No package name provided"
         return 1
     fi
-    if ! exec_flatpak --user list | grep -qi "${package}"; then
+    # shellcheck disable=SC2046
+    if ! exec_flatpak $(__user_mode)list | grep -qi "${package}"; then
         warning "Flatpak package ${package} is not installed"
         return 1
     fi
@@ -193,7 +375,8 @@ function install_flatpak_repository() {
         return 0
     fi
     info "Adding flatpak repository: ${repository}"
-    if ! exec_flatpak --user remote-add --if-not-exists ${repository} ${uri}; then
+    # shellcheck disable=SC2046
+    if ! exec_flatpak $(__user_mode)remote-add --if-not-exists ${repository} ${uri}; then
         err "Failed to add flatpak repository ${repository}"
         return 1
     else
@@ -218,7 +401,8 @@ function install_flatpak_package() {
         return 0
     fi
     info "Installing flatpak package: ${package}"
-    if ! exec_flatpak install --user flathub "${package}" -y; then
+    # shellcheck disable=SC2046
+    if ! exec_flatpak install $(__user_mode)flathub "${package}" -y; then
         err "Failed to install flatpak package ${package}"
         return 1
     else
@@ -253,7 +437,8 @@ function build_flatpak() {
     install_flatpak_repository "flathub" "https://flathub.org/repo/flathub.flatpakrepo"
     install_flatpak_package "org.flatpak.Builder"
     info "Building flatpak package using configuration: ${package_config}..."
-    if ! exec_flatpak run org.flatpak.Builder --install --install-deps-from=flathub --default-branch=master --force-clean --user build-dir ${package_config}; then
+    # shellcheck disable=SC2046
+    if ! exec_flatpak run org.flatpak.Builder --install --install-deps-from=flathub --default-branch=master --force-clean $(__user_mode) build-dir ${package_config}; then
         err "Failed to build flatpak package"
         return 1
     else
@@ -277,14 +462,20 @@ function run_flatpak() {
     if ! check_flatpak_package "${package_name}"; then
         return 1
     fi
-    if ! exec_flatpak run "${package_name}" ; then
+    # shellcheck disable=SC2046
+    if ! exec_flatpak run $(__command)$(__user_mode)"${package_name}"$(__bargs); then
         err "Failed to test-run flatpak package"
         return 1
     else
-        success "Flatpak package test-ran successfully"
+        success "Flatpak package ran successfully"
         return 0
     fi
 }
 
-build_flatpak "com.usebottles.bottles.yml"
-run_flatpak "com.usebottles.bottles"
+parse_args "$@"
+if [ "${BUILD}" = true ]; then
+    build_flatpak "com.usebottles.bottles.yml"
+fi
+if [ "${RUN}" = true ]; then
+    run_flatpak "com.usebottles.bottles"
+fi
