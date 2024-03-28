@@ -80,7 +80,7 @@ function success() {
 function error_trap() {
     local line_number=$1
     local exit_code=$2
-    error "Error at line ${line_number}; exit code: ${exit_code}"
+    err "Error at line ${line_number}; exit code: ${exit_code}"
     exit ${exit_code}
 }
 trap 'error_trap ${LINENO} $?' ERR

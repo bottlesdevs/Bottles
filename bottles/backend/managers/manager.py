@@ -118,7 +118,7 @@ class Manager(metaclass=Singleton):
         self.is_cli = is_cli
         self.settings = g_settings or GSettingsStub
         self.utils_conn = ConnectionUtils(
-            force_offline=self.is_cli or self.settings.get_boolean("force-offline")
+            force_offline=self.settings.get_boolean("force-offline")
         )
         self.data_mgr = DataManager()
         _offline = True
@@ -141,7 +141,7 @@ class Manager(metaclass=Singleton):
         if self.repository_manager.aborted_connections > 0:
             self.utils_conn.status = False
             _offline = True
-
+    
         times["RepositoryManager"] = time.time()
         self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
@@ -153,10 +153,10 @@ class Manager(metaclass=Singleton):
         self.steam_manager = SteamManager()
         times["SteamManager"] = time.time()
 
-        if not self.is_cli:
-            times.update(self.checks(install_latest=False, first_run=True).data)
-        else:
+        if self.is_cli is True:
             logging.set_silent()
+        
+        times.update(self.checks(install_latest=False, first_run=True).data)
 
         if "BOOT_TIME" in os.environ:
             _temp_times = times.copy()
@@ -956,6 +956,8 @@ class Manager(metaclass=Singleton):
         ):
             self.steam_manager.update_bottles()
             self.local_bottles.update(self.steam_manager.list_prefixes())
+        
+        EventManager.done(Events.BottlesFetching)
 
     # Update parameters in bottle config
     def update_config(
