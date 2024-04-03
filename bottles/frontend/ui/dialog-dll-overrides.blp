@@ -14,11 +14,41 @@ template DLLOverridesDialog : .AdwPreferencesWindow {
       .AdwEntryRow entry_row {
         title: _("New Override");
         show-apply-button: true;
+
+        [suffix]
+        MenuButton menu_invalid_override {
+          valign: center;
+          tooltip-text: _("Show Information");
+          icon-name: "warning-symbolic";
+          popover: popover_invalid_override;
+          visible: false;
+
+          styles [
+            "flat",
+          ]
+        }
       }
     }
 
     .AdwPreferencesGroup group_overrides {
       title: _("Overrides");
     }
+  }
+}
+
+Popover popover_invalid_override {
+  Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("This override is already managed by Bottles.");
   }
 }

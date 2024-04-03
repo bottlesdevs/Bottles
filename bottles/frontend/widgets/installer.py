@@ -23,9 +23,9 @@ from bottles.frontend.windows.generic import SourceDialog
 from bottles.frontend.windows.installer import InstallerDialog
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/installer-entry.ui")
 class InstallerEntry(Adw.ActionRow):
-    __gtype_name__ = 'InstallerEntry'
+    __gtype_name__ = "InstallerEntry"
 
     # region Widgets
     btn_install = Gtk.Template.Child()
@@ -46,15 +46,19 @@ class InstallerEntry(Adw.ActionRow):
         self.installer = installer
 
         grade_descriptions = {
-            "Bronze": _("This application may work poorly. The installer was configured to provide the best possible experience, but expect glitches, instability and lack of working features."),
-            "Silver": _("This program works with noticeable glitches, but these glitches do not affect the application's functionality."),
+            "Bronze": _(
+                "This application may work poorly. The installer was configured to provide the best possible experience, but expect glitches, instability and lack of working features."
+            ),
+            "Silver": _(
+                "This program works with noticeable glitches, but these glitches do not affect the application's functionality."
+            ),
             "Gold": _("This program works with minor glitches."),
             "Platinum": _("This program works perfectly."),
         }
 
         name = installer[1].get("Name")
         description = installer[1].get("Description")
-        grade = installer[1].get('Grade')
+        grade = installer[1].get("Grade")
         grade_description = grade_descriptions[grade]
 
         # populate widgets
@@ -73,23 +77,24 @@ class InstallerEntry(Adw.ActionRow):
     def __open_manifest(self, widget):
         """Open installer manifest"""
         plain_manifest = self.manager.installer_manager.get_installer(
-            installer_name=self.installer[0],
-            plain=True
+            installer_name=self.installer[0], plain=True
         )
         SourceDialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.installer[0]),
-            message=plain_manifest
+            message=plain_manifest,
         ).present()
 
     def __open_review(self, widget):
         """Open review"""
-        plain_text = self.manager.installer_manager.get_review(self.installer[0], parse=False)
+        plain_text = self.manager.installer_manager.get_review(
+            self.installer[0], parse=False
+        )
         SourceDialog(
             parent=self.window,
             title=_("Review for {0}").format(self.installer[0]),
             message=plain_text,
-            lang="markdown"
+            lang="markdown",
         ).present()
 
     @staticmethod

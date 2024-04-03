@@ -28,9 +28,9 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.windows.generic import SourceDialog
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dependency-entry.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/dependency-entry.ui")
 class DependencyEntry(Adw.ActionRow):
-    __gtype_name__ = 'DependencyEntry'
+    __gtype_name__ = "DependencyEntry"
 
     # region Widgets
     label_category = Gtk.Template.Child()
@@ -56,16 +56,25 @@ class DependencyEntry(Adw.ActionRow):
         self.queue = window.page_details.queue
 
         if plain:
-            '''
+            """
             If the dependency is plain, treat it as a placeholder, it
             can be used to display "fake" elements on the list
-            '''
+            """
             self.set_title(dependency)
             self.set_subtitle("")
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(False)
             self.btn_reinstall.set_visible(True)
             return
+
+        if self.config.Arch not in dependency[1].get("Arch", "win64_win32"):
+            self.btn_install.set_visible(False)
+            self.btn_remove.set_visible(False)
+            self.btn_reinstall.set_visible(False)
+            self.btn_err.set_visible(True)
+            self.btn_err.set_tooltip_text(
+                _("This dependency is not compatible with this bottle architecture.")
+            )
 
         # populate widgets
         self.set_title(dependency[0])
@@ -80,24 +89,24 @@ class DependencyEntry(Adw.ActionRow):
         self.btn_license.connect("clicked", self.open_license)
 
         if dependency[0] in self.config.Installed_Dependencies:
-            '''
+            """
             If the dependency is installed, hide the btn_install
             button and show the btn_remove button
-            '''
+            """
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(True)
             self.btn_reinstall.set_visible(True)
 
         if dependency[0] in self.config.Uninstallers.keys():
-            '''
+            """
             If the dependency has no uninstaller, disable the
             btn_remove button
-            '''
+            """
             uninstaller = self.config.Uninstallers[dependency[0]]
             if uninstaller in [False, "NO_UNINSTALLER"]:
                 self.btn_remove.set_sensitive(False)
 
-    def open_manifest(self, widget):
+    def open_manifest(self, _widget):
         """
         This function pop up a dialog with the manifest
         of the dependency
@@ -106,12 +115,11 @@ class DependencyEntry(Adw.ActionRow):
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
             message=self.manager.dependency_manager.get_dependency(
-                name=self.dependency[0],
-                plain=True
-            )
+                name=self.dependency[0], plain=True
+            ),
         ).present()
 
-    def open_license(self, widget):
+    def open_license(self, _widget):
         """
         This function pop up a dialog with the license
         of the dependency
@@ -121,7 +129,7 @@ class DependencyEntry(Adw.ActionRow):
         )
         webbrowser.open(manifest["License_url"])
 
-    def install_dependency(self, widget):
+    def install_dependency(self, _widget):
         """
         This function install the dependency in the bottle, it
         will also prevent user from installing other dependencies
@@ -142,12 +150,12 @@ class DependencyEntry(Adw.ActionRow):
             dependency=self.dependency,
         )
 
-    def remove_dependency(self, widget):
+    def remove_dependency(self, _widget):
         """
         This function remove the dependency from the bottle
         configuration
         """
-        widget.set_sensitive(False)
+        _widget.set_sensitive(False)
         RunAsync(
             task_func=self.manager.remove_dependency,
             callback=self.set_install_status,
@@ -169,10 +177,13 @@ class DependencyEntry(Adw.ActionRow):
             uninstaller = result.data.get("uninstaller")
             removed = result.data.get("removed") or False
             if removed:
-                self.window.show_toast(_("\"{0}\" uninstalled").format(self.dependency[0]))
+                self.window.show_toast(
+                    _('"{0}" uninstalled').format(self.dependency[0])
+                )
             else:
-                self.window.show_toast(_("\"{0}\" installed").format(self.dependency[0]))
-            return self.set_installed(uninstaller, removed)
+                self.window.show_toast(_('"{0}" installed').format(self.dependency[0]))
+            self.set_installed(uninstaller, removed)
+            return
         self.set_err()
 
     def set_err(self):
@@ -185,7 +196,7 @@ class DependencyEntry(Adw.ActionRow):
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
         self.get_parent().set_sensitive(True)
-        self.window.show_toast(_("\"{0}\" failed to install").format(self.dependency[0]))
+        self.window.show_toast(_('"{0}" failed to install').format(self.dependency[0]))
 
     def set_installed(self, installer=True, removed=False):
         """

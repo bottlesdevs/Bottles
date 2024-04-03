@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os, subprocess
+import os, subprocess, shlex
 from typing import Union, TextIO
 from typing import TextIO
 
@@ -24,6 +24,7 @@ from bottles.backend.models.vdict import VDFDict
 from bottles.backend.utils import vdf
 
 logging = Logger()
+
 
 class SteamUtils:
 
@@ -59,11 +60,9 @@ class SteamUtils:
 
         f = open(toolmanifest, "r", errors="replace")
         data = SteamUtils.parse_vdf(f.read())
-        compat_layer_name = data.get("manifest", {}) \
-            .get("compatmanager_layer_name", {})
+        compat_layer_name = data.get("manifest", {}).get("compatmanager_layer_name", {})
 
-        commandline = data.get("manifest", {}) \
-            .get("commandline", {})
+        commandline = data.get("manifest", {}).get("commandline", {})
 
         return "proton" in compat_layer_name or "proton" in commandline
 
@@ -80,8 +79,7 @@ class SteamUtils:
         runtime = "scout"
         f = open(toolmanifest, "r", errors="replace")
         data = SteamUtils.parse_vdf(f.read())
-        tool_appid = data.get("manifest", {}) \
-            .get("require_tool_appid", {})
+        tool_appid = data.get("manifest", {}).get("require_tool_appid", {})
 
         if "1628350" in tool_appid:
             runtime = "sniper"
@@ -101,6 +99,38 @@ class SteamUtils:
         elif os.path.isdir(os.path.join(path, f"files")):
             dist_directory = os.path.join(path, f"files")
         else:
-            logging.warning(f"No /dist or /files sub-directory was found under this Proton directory: {path}")
+            logging.warning(
+                f"No /dist or /files sub-directory was found under this Proton directory: {path}"
+            )
 
         return dist_directory
+
+    @staticmethod
+    def handle_launch_options(launch_options: str) -> tuple[str, str, str]:
+        """
+        Handle launch options. Supports the %command% pattern.
+        Return prefix, arguments, and environment variables.
+        """
+        env_vars = {}
+        prefix, args = "", ""
+        if "%command%" in launch_options:
+            _c = launch_options.split("%command%")
+            prefix = _c[0] if len(_c) > 0 else ""
+            args = _c[1] if len(_c) > 1 else ""
+        else:
+            args = launch_options
+
+        try:
+            prefix_list = shlex.split(prefix.strip())
+        except ValueError:
+            prefix_list = prefix.split(shlex.quote(prefix.strip()))
+
+        for p in prefix_list.copy():
+            if "=" in p:
+                k, v = p.split("=", 1)
+                v = shlex.quote(v) if " " in v else v
+                env_vars[k] = v
+                prefix_list.remove(p)
+
+        prefix = " ".join(prefix_list)
+        return prefix, args, env_vars

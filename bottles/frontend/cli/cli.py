@@ -543,6 +543,12 @@ class CLI:
         _executable = self.args.executable
         _cwd = None
         _script = None
+        _program_dxvk = None
+        _program_vkd3d = None
+        _program_dxvk_nvapi = None
+        _program_fsr = None
+        _program_virt_desktop = None
+
         mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
 
@@ -552,12 +558,6 @@ class CLI:
 
         bottle = mng.local_bottles[_bottle]
         programs = mng.get_programs(bottle)
-        _dxvk = bottle.Parameters.dxvk
-        _vkd3d = bottle.Parameters.vkd3d
-        _nvapi = bottle.Parameters.dxvk_nvapi
-        _fsr = bottle.Parameters.fsr
-        _pulse = bottle.Parameters.pulseaudio_latency
-        _virt_desktop = bottle.Parameters.virtual_desktop
 
         if _program is not None:
             if _executable is not None:
@@ -570,23 +570,17 @@ class CLI:
 
             program = [p for p in programs if p["name"] == _program][0]
             _executable = program.get("path", "")
-            if _keep:
-                _args = program.get("arguments", "") + " " + _args
+            _program_args = program.get("arguments")
+            if _keep and _program_args:
+                _args = _program_args + " " + _args
             _cwd = program.get("folder", "")
             _script = program.get("script", None)
 
-            if program.get("dxvk") != _dxvk:
-                _dxvk = program.get("dxvk")
-            if program.get("vkd3d") != _vkd3d:
-                _vkd3d = program.get("vkd3d")
-            if program.get("dxvk_nvapi") != _nvapi:
-                _nvapi = program.get("dxvk_nvapi")
-            if program.get("fsr") != _fsr:
-                _fsr = program.get("fsr")
-            if program.get("pulseaudio_latency") != _pulse:
-                _pulse = program.get("pulseaudio_latency")
-            if program.get("virtual_desktop") != _virt_desktop:
-                _virt_desktop = program.get("virtual_desktop")
+            _program_dxvk = program.get("dxvk")
+            _program_vkd3d = program.get("vkd3d")
+            _program_dxvk_nvapi = program.get("dxvk_nvapi")
+            _program_fsr = program.get("fsr")
+            _program_virt_desktop = program.get("virtual_desktop")
 
         WineExecutor(
             bottle,
@@ -594,11 +588,11 @@ class CLI:
             args=_args,
             cwd=_cwd,
             post_script=_script,
-            override_dxvk=_dxvk,
-            override_vkd3d=_vkd3d,
-            override_nvapi=_nvapi,
-            override_fsr=_fsr,
-            override_virt_desktop=_virt_desktop
+            program_dxvk=_program_dxvk,
+            program_vkd3d=_program_vkd3d,
+            program_nvapi=_program_dxvk_nvapi,
+            program_fsr=_program_fsr,
+            program_virt_desktop=_program_virt_desktop
         ).run_cli()
 
     # endregion

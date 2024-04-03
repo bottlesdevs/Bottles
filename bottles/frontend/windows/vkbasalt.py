@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-'''
+"""
 Terminologies:
 --------------
 cas: Contrast Adaptive Sharpening
@@ -23,7 +23,7 @@ dls: Denoised Luma Sharpening
 fxaa: Fast Approximate Anti-Aliasing
 smaa: Subpixel Morphological Anti-Aliasing
 clut (or lut): Color LookUp Table
-'''
+"""
 
 import os
 from gi.repository import Gtk, GLib, Adw
@@ -32,6 +32,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.logger import Logger
 
 logging = Logger()
+
 
 class VkBasaltSettings:
     default = False
@@ -53,9 +54,10 @@ class VkBasaltSettings:
     lut_file_path = False
     exec = False
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-vkbasalt.ui')
+
+@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-vkbasalt.ui")
 class VkBasaltDialog(Adw.Window):
-    __gtype_name__ = 'VkBasaltDialog'
+    __gtype_name__ = "VkBasaltDialog"
 
     # Region Widgets
     switch_default = Gtk.Template.Child()
@@ -86,7 +88,9 @@ class VkBasaltDialog(Adw.Window):
         self.window = parent_window
         self.manager = parent_window.manager
         self.config = config
-        conf = os.path.join(ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf") # Configuration file location
+        conf = os.path.join(
+            ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf"
+        )  # Configuration file location
 
         self.effects = {
             "cas": self.expander_cas,
@@ -220,11 +224,20 @@ class VkBasaltDialog(Adw.Window):
             [VkBasaltSettings.dls_sharpness, self.spin_dls_sharpness],
             [VkBasaltSettings.dls_denoise, self.spin_dls_denoise],
             [VkBasaltSettings.fxaa_subpixel_quality, self.spin_fxaa_subpixel_quality],
-            [VkBasaltSettings.fxaa_quality_edge_threshold, self.spin_fxaa_quality_edge_threshold],
-            [VkBasaltSettings.fxaa_quality_edge_threshold_min, self.spin_fxaa_quality_edge_threshold_min],
+            [
+                VkBasaltSettings.fxaa_quality_edge_threshold,
+                self.spin_fxaa_quality_edge_threshold,
+            ],
+            [
+                VkBasaltSettings.fxaa_quality_edge_threshold_min,
+                self.spin_fxaa_quality_edge_threshold_min,
+            ],
             [VkBasaltSettings.smaa_threshold, self.spin_smaa_threshold],
             [VkBasaltSettings.smaa_max_search_steps, self.spin_smaa_max_search_steps],
-            [VkBasaltSettings.smaa_max_search_steps_diagonal, self.spin_smaa_max_search_steps_diagonal],
+            [
+                VkBasaltSettings.smaa_max_search_steps_diagonal,
+                self.spin_smaa_max_search_steps_diagonal,
+            ],
             [VkBasaltSettings.smaa_corner_rounding, self.spin_smaa_corner_rounding],
         ]
         return subeffects
@@ -240,12 +253,23 @@ class VkBasaltDialog(Adw.Window):
         VkBasaltSettings.cas_sharpness = self.spin_cas_sharpness.get_value()
         VkBasaltSettings.dls_sharpness = self.spin_dls_sharpness.get_value()
         VkBasaltSettings.dls_denoise = self.spin_dls_denoise.get_value()
-        VkBasaltSettings.fxaa_subpixel_quality = self.spin_fxaa_subpixel_quality.get_value()
-        VkBasaltSettings.fxaa_quality_edge_threshold = self.spin_fxaa_quality_edge_threshold.get_value()
-        VkBasaltSettings.fxaa_quality_edge_threshold_min = self.spin_fxaa_quality_edge_threshold_min.get_value()
+        VkBasaltSettings.fxaa_subpixel_quality = (
+            self.spin_fxaa_subpixel_quality.get_value()
+        )
+        VkBasaltSettings.fxaa_quality_edge_threshold = (
+            self.spin_fxaa_quality_edge_threshold.get_value()
+        )
+        VkBasaltSettings.fxaa_quality_edge_threshold_min = (
+            self.spin_fxaa_quality_edge_threshold_min.get_value()
+        )
         VkBasaltSettings.smaa_threshold = self.spin_smaa_threshold.get_value()
         VkBasaltSettings.smaa_edge_detection = self.smaa_edge_detection
-        VkBasaltSettings.smaa_corner_rounding = self.spin_smaa_corner_rounding.get_value()
-        VkBasaltSettings.smaa_max_search_steps = self.spin_smaa_max_search_steps.get_value()
-        VkBasaltSettings.smaa_max_search_steps_diagonal = self.spin_smaa_max_search_steps_diagonal.get_value()
-
+        VkBasaltSettings.smaa_corner_rounding = (
+            self.spin_smaa_corner_rounding.get_value()
+        )
+        VkBasaltSettings.smaa_max_search_steps = (
+            self.spin_smaa_max_search_steps.get_value()
+        )
+        VkBasaltSettings.smaa_max_search_steps_diagonal = (
+            self.spin_smaa_max_search_steps_diagonal.get_value()
+        )

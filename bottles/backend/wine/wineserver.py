@@ -47,9 +47,9 @@ class WineServer(WineProgram):
             stderr=subprocess.PIPE,
             shell=True,
             cwd=bottle,
-            env=env
+            env=env,
         )
-        time.sleep(.5)
+        time.sleep(0.5)
         if res.poll() is None:
             res.kill()  # kill the process to avoid zombie incursion
             return True
@@ -77,7 +77,7 @@ class WineServer(WineProgram):
             stderr=subprocess.PIPE,
             shell=True,
             cwd=bottle,
-            env=env
+            env=env,
         ).wait()
 
     def kill(self, signal: int = -1):
@@ -86,9 +86,7 @@ class WineServer(WineProgram):
             args += str(signal)
 
         self.launch(
-            args=args,
-            communicate=True,
-            action_name="sending signal to the wine server"
+            args=args, communicate=True, action_name="sending signal to the wine server"
         )
 
     def force_kill(self):

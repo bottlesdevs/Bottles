@@ -26,9 +26,9 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.importer import ImporterEntry
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/importer.ui')
+@Gtk.Template(resource_path="/com/usebottles/bottles/importer.ui")
 class ImporterView(Adw.Bin):
-    __gtype_name__ = 'ImporterView'
+    __gtype_name__ = "ImporterView"
 
     # region Widgets
     list_prefixes = Gtk.Template.Child()
@@ -81,10 +81,7 @@ class ImporterView(Adw.Bin):
 
         widget.set_sensitive(False)
 
-        RunAsync(
-            self.import_manager.search_wineprefixes,
-            callback=update
-        )
+        RunAsync(self.import_manager.search_wineprefixes, callback=update)
 
     @GtkUtils.run_in_main_loop
     def __finish(self, result, error=False):
@@ -117,12 +114,15 @@ class ImporterView(Adw.Bin):
             title=_("Select a Backup Archive"),
             action=Gtk.FileChooserAction.OPEN,
             parent=self.window,
-            accept_label=_("Import")
+            accept_label=_("Import"),
         )
 
         filter = Gtk.FileFilter()
         filter.set_name("GNU Gzip Archive")
-        filter.add_mime_type("application/gzip")
+        # TODO: Investigate why `filter.add_mime_type(...)` does not show filter in all distributions.
+        # Intended MIME types are:
+        #   - `application/gzip`
+        filter.add_pattern("*.gz")
 
         dialog.add_filter(filter)
         add_all_filters(dialog)
@@ -154,7 +154,7 @@ class ImporterView(Adw.Bin):
             title=_("Select a Configuration File"),
             action=Gtk.FileChooserAction.OPEN,
             parent=self.window,
-            accept_label=_("Import")
+            accept_label=_("Import"),
         )
 
         add_yaml_filters(dialog)

@@ -29,11 +29,7 @@ class WineBridge(WineProgram):
         if not self.__wineserver_status:
             return processes
 
-        res = self.launch(
-            args=args,
-            communicate=True,
-            action_name="get_procs"
-        )
+        res = self.launch(args=args, communicate=True, action_name="get_procs")
         if not res.ready:
             return processes
 
@@ -47,35 +43,25 @@ class WineBridge(WineProgram):
             if len(r) < 3:
                 continue
 
-            processes.append({
-                "pid": r[1],
-                "threads": r[2],
-                "name": r[0],
-                # "parent": r[3]
-            })
+            processes.append(
+                {
+                    "pid": r[1],
+                    "threads": r[2],
+                    "name": r[0],
+                    # "parent": r[3]
+                }
+            )
 
         return processes
 
     def kill_proc(self, pid: str):
         args = f"killProc {pid}"
-        return self.launch(
-            args=args,
-            communicate=True,
-            action_name="kill_proc"
-        )
+        return self.launch(args=args, communicate=True, action_name="kill_proc")
 
     def kill_proc_by_name(self, name: str):
         args = f"killProcByName {name}"
-        return self.launch(
-            args=args,
-            communicate=True,
-            action_name="kill_proc_by_name"
-        )
+        return self.launch(args=args, communicate=True, action_name="kill_proc_by_name")
 
     def run_exe(self, exec_path: str):
         args = f"runExe {exec_path}"
-        return self.launch(
-            args=args,
-            communicate=True,
-            action_name="run_exe"
-        )
+        return self.launch(args=args, communicate=True, action_name="run_exe")

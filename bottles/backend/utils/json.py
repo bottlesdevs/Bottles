@@ -1,4 +1,5 @@
 """This should be a drop-in replacement for the json module built in CPython"""
+
 import json
 import json as _json
 from typing import Optional, IO, Any, Type
@@ -26,8 +27,11 @@ def loads(s: str | bytes) -> Any:
 
 
 def dump(
-        obj: Any, fp: IO[str], *,
-        indent: Optional[str | int] = None, cls: Optional[Type[_json.JSONEncoder]] = None
+    obj: Any,
+    fp: IO[str],
+    *,
+    indent: Optional[str | int] = None,
+    cls: Optional[Type[_json.JSONEncoder]] = None
 ) -> None:
     """
     Serialize obj as a JSON formatted stream to fp (a .write()-supporting file-like object).
@@ -42,7 +46,12 @@ def dump(
     return _json.dump(obj, fp, indent=indent, cls=cls)
 
 
-def dumps(obj: Any, *, indent: Optional[str | int] = None, cls: Optional[Type[_json.JSONEncoder]] = None) -> str:
+def dumps(
+    obj: Any,
+    *,
+    indent: Optional[str | int] = None,
+    cls: Optional[Type[_json.JSONEncoder]] = None
+) -> str:
     """
     Serialize obj to a JSON formatted str.
 

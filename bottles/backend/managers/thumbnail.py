@@ -25,7 +25,7 @@ logging = Logger()
 
 
 class ThumbnailManager:
-    
+
     @staticmethod
     def get_path(config: BottleConfig, uri: str):
         if uri.startswith("grid:"):
@@ -36,15 +36,15 @@ class ThumbnailManager:
         #     return ThumbnailManager.__load_origin(config, uri)
         logging.error("Unknown URI: " + uri)
         return None
-    
+
     @staticmethod
     def __load_grid(config: BottleConfig, uri: str):
         bottle_path = ManagerUtils.get_bottle_path(config)
         file_name = uri[5:]
-        path = os.path.join(bottle_path, 'grids', file_name)
+        path = os.path.join(bottle_path, "grids", file_name)
 
         if not os.path.exists(path):
             logging.error("Grid not found: " + path)
             return None
-            
+
         return path

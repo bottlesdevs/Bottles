@@ -45,11 +45,11 @@ class LibraryManager:
         Loads data from the library.yml file.
         """
         if not os.path.exists(self.library_path):
-            logging.warning('Library file not found, creating new one')
+            logging.warning("Library file not found, creating new one")
             self.__library = {}
             self.save_library()
         else:
-            with open(self.library_path, 'r') as library_file:
+            with open(self.library_path, "r") as library_file:
                 self.__library = yaml.load(library_file)
 
         if self.__library is None:
@@ -67,30 +67,32 @@ class LibraryManager:
         Adds a new entry to the library.yml file.
         """
         if self.__already_in_library(data):
-            logging.warning(f'Entry already in library, nothing to add: {data}')
+            logging.warning(f"Entry already in library, nothing to add: {data}")
             return
 
         _uuid = str(uuid.uuid4())
-        logging.info(f'Adding new entry to library: {_uuid}')
+        logging.info(f"Adding new entry to library: {_uuid}")
 
         if not data.get("thumbnail"):
-            data['thumbnail'] = SteamGridDBManager.get_game_grid(data['name'], config)
+            data["thumbnail"] = SteamGridDBManager.get_game_grid(data["name"], config)
 
         self.__library[_uuid] = data
         self.save_library()
 
     def download_thumbnail(self, _uuid: str, config: BottleConfig):
         if not self.__library.get(_uuid):
-            logging.warning(f'Entry not found in library, can\'t download thumbnail: {_uuid}')
+            logging.warning(
+                f"Entry not found in library, can't download thumbnail: {_uuid}"
+            )
             return False
 
         data = self.__library.get(_uuid)
-        value = SteamGridDBManager.get_game_grid(data['name'], config)
+        value = SteamGridDBManager.get_game_grid(data["name"], config)
 
         if not value:
             return False
 
-        self.__library[_uuid]['thumbnail'] = value
+        self.__library[_uuid]["thumbnail"] = value
         self.save_library()
         return True
 
@@ -99,7 +101,7 @@ class LibraryManager:
         Checks if the entry UUID is already in the library.yml file.
         """
         for k, v in self.__library.items():
-            if v['id'] == data['id']:
+            if v["id"] == data["id"]:
                 return True
 
         return False
@@ -109,21 +111,21 @@ class LibraryManager:
         Removes an entry from the library.yml file.
         """
         if self.__library.get(_uuid):
-            logging.info(f'Removing entry from library: {_uuid}')
+            logging.info(f"Removing entry from library: {_uuid}")
             del self.__library[_uuid]
             self.save_library()
             return
-        logging.warning(f'Entry not found in library, nothing to remove: {_uuid}')
+        logging.warning(f"Entry not found in library, nothing to remove: {_uuid}")
 
     def save_library(self, silent=False):
         """
         Saves the library.yml file.
         """
-        with open(self.library_path, 'w') as library_file:
+        with open(self.library_path, "w") as library_file:
             yaml.dump(self.__library, library_file)
-            
+
         if not silent:
-            logging.info(f'Library saved')
+            logging.info(f"Library saved")
 
     def get_library(self):
         """

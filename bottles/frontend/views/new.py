@@ -77,10 +77,7 @@ class NewView(Adw.Window):
         self.runner = None
         self.default_string = _("(Default)")
 
-        self.arch = {
-            "win64": "64-bit",
-            "win32": "32-bit"
-        }
+        self.arch = {"win64": "64-bit", "win32": "32-bit"}
 
         # connect signals
         self.check_custom.connect("toggled", self.__set_group)
@@ -106,7 +103,7 @@ class NewView(Adw.Window):
         self.entry_name.grab_focus()
 
     def __set_group(self, *_args) -> None:
-        """ Checks the state of combo_environment and updates group_custom accordingly. """
+        """Checks the state of combo_environment and updates group_custom accordingly."""
         self.group_custom.set_sensitive(self.check_custom.get_active())
 
     def __check_entry_name(self, *_args) -> None:
@@ -125,6 +122,7 @@ class NewView(Adw.Window):
         Opens a file chooser dialog to select the configuration file
         in yaml format.
         """
+
         def set_path(_dialog, response: Gtk.ResponseType):
             if response == Gtk.ResponseType.ACCEPT:
                 self.btn_choose_env_reset.set_visible(True)
@@ -145,7 +143,8 @@ class NewView(Adw.Window):
         dialog.show()
 
     def __choose_path(self, *_args) -> None:
-        """ Opens a file chooser dialog to select the directory. """
+        """Opens a file chooser dialog to select the directory."""
+
         def set_path(_dialog, response: Gtk.ResponseType) -> None:
             if response == Gtk.ResponseType.ACCEPT:
                 self.btn_choose_path_reset.set_visible(True)
@@ -156,7 +155,7 @@ class NewView(Adw.Window):
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Bottle Directory"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            parent=self.window
+            parent=self.window,
         )
 
         dialog.set_modal(True)
@@ -164,7 +163,7 @@ class NewView(Adw.Window):
         dialog.show()
 
     def create_bottle(self, *_args) -> None:
-        """ Starts creating the bottle. """
+        """Starts creating the bottle."""
         # set widgets states
         self.is_closable = False
         self.btn_cancel.set_visible(False)
@@ -177,7 +176,9 @@ class NewView(Adw.Window):
         self.status_statuses.set_description(_("This could take a while."))
 
         if self.check_custom.get_active():
-            self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
+            self.runner = self.manager.runners_available[
+                self.combo_runner.get_selected()
+            ]
 
         RunAsync(
             task_func=self.manager.create_bottle,
@@ -190,7 +191,7 @@ class NewView(Adw.Window):
             dxvk=self.manager.dxvk_available[0],
             sandbox=self.switch_sandbox.get_state(),
             fn_logger=self.update_output,
-            custom_environment=self.env_recipe_path
+            custom_environment=self.env_recipe_path,
         )
 
     @GtkUtils.run_in_main_loop
@@ -205,10 +206,10 @@ class NewView(Adw.Window):
 
     @GtkUtils.run_in_main_loop
     def finish(self, result, error=None) -> None:
-        """ Updates widgets based on whether it succeeded or failed. """
+        """Updates widgets based on whether it succeeded or failed."""
 
         def send_notification(notification: Gio.Notification) -> None:
-            """ Sends notification if out of focus. """
+            """Sends notification if out of focus."""
             if not self.is_active():
                 self.app.send_notification(None, notification)
 
@@ -230,9 +231,9 @@ class NewView(Adw.Window):
 
         # Show success
         title = _("Bottle Created")
-        description = _("\"{0}\" was created successfully.").format(
-                self.entry_name.get_text()
-            )
+        description = _('"{0}" was created successfully.').format(
+            self.entry_name.get_text()
+        )
 
         notification.set_title(title)
         notification.set_body(description)
@@ -271,7 +272,7 @@ class NewView(Adw.Window):
         self.label_choose_path.set_label(self.default_string)
 
     def do_close_request(self, *_args) -> bool:
-        """ Close window if a new bottle is not being created """
+        """Close window if a new bottle is not being created"""
         if self.is_closable is False:
             # TODO: Implement AdwMessageDialog to prompt the user if they are
             # SURE they want to cancel creation. For now, the window will not

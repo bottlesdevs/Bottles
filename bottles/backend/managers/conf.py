@@ -7,7 +7,12 @@ from bottles.backend.utils import yaml, json
 
 class ConfigManager(object):
 
-    def __init__(self, config_file: Optional[str] = None, config_type: str = 'ini', config_string: Optional[str] = None):
+    def __init__(
+        self,
+        config_file: Optional[str] = None,
+        config_type: str = "ini",
+        config_string: Optional[str] = None,
+    ):
         self.config_file = config_file
         self.config_string = config_string
         self.config_type = config_type
@@ -18,7 +23,9 @@ class ConfigManager(object):
         self.config_dict = self.read()
 
         if self.config_file is not None and self.config_string is not None:
-            raise ValueError('Passing both config_file and config_string is not allowed')
+            raise ValueError(
+                "Passing both config_file and config_string is not allowed"
+            )
 
     def checks(self):
         """Checks if the configuration file exists, if not, create it."""
@@ -26,36 +33,36 @@ class ConfigManager(object):
             base_path = os.path.dirname(self.config_file)
             os.makedirs(base_path, exist_ok=True)
 
-            with open(self.config_file, 'w') as f:
-                f.write('')
+            with open(self.config_file, "w") as f:
+                f.write("")
 
     def read(self):
         if self.config_file is not None:
             """Reads the configuration file and returns it as a dictionary"""
-            if self.config_type == 'ini':
+            if self.config_type == "ini":
                 config = ConfigParser()
                 config.read(self.config_file)
                 # noinspection PyProtectedMember
                 res = config._sections
-            elif self.config_type == 'json':
-                with open(self.config_file, 'r') as f:
+            elif self.config_type == "json":
+                with open(self.config_file, "r") as f:
                     res = json.load(f)
-            elif self.config_type == 'yaml' or self.config_type == 'yml':
-                with open(self.config_file, 'r') as f:
+            elif self.config_type == "yaml" or self.config_type == "yml":
+                with open(self.config_file, "r") as f:
                     res = yaml.load(f)
             else:
-                raise ValueError('Invalid configuration type')
+                raise ValueError("Invalid configuration type")
         elif self.config_string is not None:
-            if self.config_type == 'ini':
+            if self.config_type == "ini":
                 config = ConfigParser()
                 config.read_string(self.config_string)
                 res = config._sections
-            elif self.config_type == 'json':
+            elif self.config_type == "json":
                 res = json.loads(self.config_string)
-            elif self.config_type == 'yaml' or self.config_type == 'yml':
+            elif self.config_type == "yaml" or self.config_type == "yml":
                 res = yaml.load(self.config_string)
             else:
-                raise ValueError('Invalid configuration type')
+                raise ValueError("Invalid configuration type")
         else:
             res = None
 
@@ -67,12 +74,12 @@ class ConfigManager(object):
 
     def write_json(self):
         """Writes the configuration to a JSON file"""
-        with open(self.config_file, 'w') as f:
+        with open(self.config_file, "w") as f:
             json.dump(self.config_dict, f, indent=4)
 
     def write_yaml(self):
         """Writes the configuration to a YAML file"""
-        with open(self.config_file, 'w') as f:
+        with open(self.config_file, "w") as f:
             yaml.dump(self.config_dict, f)
 
     def write_ini(self):
@@ -85,24 +92,24 @@ class ConfigManager(object):
             for key, value in self.config_dict[section].items():
                 config.set(section, key, value)
 
-        with open(self.config_file, 'w') as f:
+        with open(self.config_file, "w") as f:
             config.write(f)
 
     def write_dict(self, config_file: Optional[str] = None):
         if self.config_file is None and config_file is None:
-            raise ValueError('No config path specified')
+            raise ValueError("No config path specified")
         elif self.config_file is None and config_file is not None:
             self.config_file = config_file
 
         """Writes the configuration to the file"""
-        if self.config_type == 'ini':
+        if self.config_type == "ini":
             self.write_ini()
-        elif self.config_type == 'json':
+        elif self.config_type == "json":
             self.write_json()
-        elif self.config_type == 'yaml':
+        elif self.config_type == "yaml":
             self.write_yaml()
         else:
-            raise ValueError('Invalid configuration type')
+            raise ValueError("Invalid configuration type")
 
     def merge_dict(self, changes: dict):
         """Merges a dictionary into the configuration"""
