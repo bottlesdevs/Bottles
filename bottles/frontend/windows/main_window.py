@@ -197,7 +197,7 @@ class MainWindow(Adw.ApplicationWindow):
             self.main_leaf.get_page(self.page_importer).set_navigatable(False)
 
             self.stack_main.add_titled(
-                child=self.page_list, name="page_list", title=_("Bottles")
+                child=self.page_list, name="page_list", title=C_("generic-noun", "Bottles")
             ).set_icon_name("com.usebottles.bottles-symbolic")
             self.stack_main.add_titled(
                 child=self.page_library, name="page_library", title=_("Library")
