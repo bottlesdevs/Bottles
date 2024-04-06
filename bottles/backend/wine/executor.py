@@ -33,6 +33,7 @@ class WineExecutor:
         environment: Optional[dict] = None,
         move_file: bool = False,
         move_upd_fn: callable = None,
+        pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
         monitoring: Optional[list] = None,
         program_dxvk: Optional[bool] = None,
@@ -60,6 +61,7 @@ class WineExecutor:
         self.terminal = terminal
         self.cwd = self.__get_cwd(cwd)
         self.environment = environment
+        self.pre_script = pre_script
         self.post_script = post_script
         self.monitoring = monitoring
         self.use_virt_desktop = program_virt_desktop
@@ -112,7 +114,8 @@ class WineExecutor:
             exec_path=program.get("path"),
             args=program.get("arguments"),
             cwd=program.get("folder"),
-            post_script=program.get("script"),
+            pre_script=program.get("pre_script"),
+            post_script=program.get("post_script"),
             terminal=terminal,
             program_dxvk=program.get("dxvk"),
             program_vkd3d=program.get("vkd3d"),
@@ -264,6 +267,7 @@ class WineExecutor:
             cwd=self.cwd,
             environment=self.environment,
             communicate=True,
+            pre_script=self.pre_script,
             post_script=self.post_script,
         )
         res = winecmd.run()
@@ -300,6 +304,8 @@ class WineExecutor:
             terminal=self.terminal,
             args=self.args,
             environment=self.environment,
+            pre_script=self.pre_script,
+            post_script=self.post_script,
             cwd=self.cwd,
         )
         self.__set_monitors()
