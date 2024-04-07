@@ -593,8 +593,6 @@ class WineCommand:
         if pre_script is not None:
             command = f"sh '{pre_script}' ; {command}"
 
-        print("Command: %s" % command)
-
         return command
 
     def _get_gamescope_cmd(self, return_steam_cmd: bool = False) -> str:
