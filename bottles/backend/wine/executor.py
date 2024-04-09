@@ -202,6 +202,8 @@ class WineExecutor:
             terminal=self.terminal,
             args=self.args,
             environment=self.environment,
+            pre_script=self.pre_script,
+            post_script=self.post_script,
             cwd=self.cwd,
         )
         return Result(status=True, data={"output": res})
