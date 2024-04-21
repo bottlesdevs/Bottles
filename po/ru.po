@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-03-02 07:55+0000\n"
-"Last-Translator: Hikeri <wfddsdf432df@googlemail.com>\n"
+"PO-Revision-Date: 2024-04-21 13:07+0000\n"
+"Last-Translator: Gleb <carhub2010@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
 "Language: ru\n"
@@ -103,11 +103,11 @@ msgstr "(!) Рецепт не найден или недействителен�
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
-msgstr "Установка DXVK …"
+msgstr "Установка DXVK…"
 
 #: bottles/backend/managers/manager.py:1317
 msgid "Installing VKD3D…"
-msgstr "Установка VKD3D …"
+msgstr "Установка VKD3D…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Installing DXVK-NVAPI…"
@@ -225,7 +225,7 @@ msgstr "Разработчики Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr "lenemter"
+msgstr "lenemter, carhub"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -248,7 +248,7 @@ msgid ""
 msgstr ""
 "Не удалось выполнить установку. Это может быть связано с ошибкой "
 "репозитория, неполной загрузкой или несоответствием контрольной суммы. "
-"Нажмите для повторения попытки."
+"Нажмите, чтобы повторить снова."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -406,7 +406,7 @@ msgstr "Среда"
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr "Пускатель"
+msgstr "Раннер"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
@@ -543,7 +543,7 @@ msgstr "Поиск зависимостей…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr "Вы офлайн:("
+msgstr "Вы офлайн :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
@@ -635,7 +635,7 @@ msgstr "Версия слоя совместимости Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
-msgstr "Обновление пускателя и компонентов, пожалуйста, подождите…"
+msgstr "Обновление раннера и компонентов, пожалуйста, подождите…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
@@ -744,7 +744,7 @@ msgstr "Управление параметрами слоя постобраб�
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
 msgstr ""
-"Управление того, как игры должны отображаться на экране использую Gamescope."
+"Управление того, как игры должны отображаться на экране используют Gamescope."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
@@ -761,8 +761,8 @@ msgstr "Скорость"
 #: bottles/frontend/ui/details-preferences.blp:188
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
-"Включить синхронизацию для повышения производительности многоядерных "
-"процессоров."
+"Включить синхронизацию для повышения производительности на многоядерных "
+"процессорах."
 
 #: bottles/frontend/ui/details-preferences.blp:189
 msgid "Synchronization"
@@ -826,11 +826,11 @@ msgstr "Управление настройками vmtouch"
 
 #: bottles/frontend/ui/details-preferences.blp:241
 msgid "OBS Game Capture"
-msgstr "Захват игры OBS"
+msgstr "Захват игры через OBS"
 
 #: bottles/frontend/ui/details-preferences.blp:242
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr "Включить захват игр OBS для всех Vulkan и OpenGL программ."
+msgstr "Включить захват игр через OBS для всех Vulkan и OpenGL программ."
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
@@ -1202,7 +1202,7 @@ msgstr "Сохранить"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr "Управление того, как игры должны оторбражаться."
+msgstr "Управление того, как игры должны отображаться."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
@@ -1230,8 +1230,7 @@ msgstr "Разрешение окна"
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
-msgstr ""
-"Повышает разрешение при использовании разрешения выше, чем разрешение игры."
+msgstr "Повышает разрешение при использовании разрешения выше, чем игровое."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
@@ -1376,7 +1375,7 @@ msgstr "Выбрать каталог"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:114
 msgid "These settings will override the default settings for this executable."
-msgstr "Эти настройки будут переопределять умолчальные для данной программы."
+msgstr "Эти настройки будут переопределять стандартные для данной программы."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:115
 msgid "Preferences Overrides"
@@ -1412,7 +1411,7 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
-"Внимание! Использование пускачей на основе Proton в бутылках не для Steam "
+"Внимание! Использование раннеров на основе Proton в бутылках не для Steam "
 "может вызвать проблемы и помешать их правильной работе.\n"
 "\n"
 "Рекомендуем использовать Wine-GE — специальную версию Proton, "
@@ -1421,7 +1420,7 @@ msgstr ""
 "Продолжение автоматически активирует среду выполнения Steam (если она "
 "присутствует в системе и обнаружена Bottles), чтобы разрешить ей доступ к "
 "необходимым библиотекам и уменьшить проблемы совместимости. Имейте в виду, "
-"что GloriousEggroll (поставщик пускача) не несет ответственности ни за какие "
+"что GloriousEggroll (поставщик раннера) не несет ответственности ни за какие "
 "проблемы, и просим не сообщать ему о них."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
@@ -1857,7 +1856,7 @@ msgstr "В этой бутылке активировано версиониро
 
 #: bottles/frontend/ui/list-entry.blp:42
 msgid "This bottle looks damaged."
-msgstr "Бутылка выглядит повреждённой."
+msgstr "Кажется, бутылка повреждена."
 
 #: bottles/frontend/ui/list-entry.blp:55
 msgid "Execute in this Bottle"
@@ -1872,7 +1871,7 @@ msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
-"Бутылка выглядит повреждённой: отсутствует файл конфигурации. Можно "
+"Кажется, бутылка повреждена: отсутствует файл конфигурации. Можно "
 "попробовать решить проблему, создав новую конфигурацию."
 
 #: bottles/frontend/ui/list.blp:12
@@ -1923,11 +1922,11 @@ msgstr "Название бутылки"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
-msgstr "Приложения"
+msgstr "_Приложение"
 
 #: bottles/frontend/ui/new.blp:88
 msgid "_Gaming"
-msgstr "Игры"
+msgstr "_Игры"
 
 #: bottles/frontend/ui/new.blp:101
 msgid "C_ustom"
@@ -1948,7 +1947,7 @@ msgid ""
 "changed after the bottle has been created."
 msgstr ""
 "Это делает папку пользователя доступной в бутылке с риском доступа к "
-"персональной информации Window приложениям. Эта настройка не может быть "
+"персональной информации Windows приложениям. Эта настройка не может быть "
 "изменена после создания бутылки."
 
 #: bottles/frontend/ui/new.blp:136
@@ -1957,7 +1956,7 @@ msgstr "Архитектура"
 
 #: bottles/frontend/ui/new.blp:137
 msgid "32-bit should only be used if strictly necessary."
-msgstr "32-бит должно быть использованотолько когда необходимо."
+msgstr "32-битная архитектура должна быть использована только когда необходимо."
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
@@ -1973,11 +1972,11 @@ msgstr "Папка, которая будет содержать данные э
 
 #: bottles/frontend/ui/new.blp:249
 msgid "_Close"
-msgstr "Закрыть"
+msgstr "_Закрыть"
 
 #: bottles/frontend/ui/new.blp:281
 msgid "This name is unavailable, please try another."
-msgstr "Это иия недоступно, попробуйте другое имя."
+msgstr "Это имя недоступно, попробуйте другое."
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
@@ -2002,8 +2001,8 @@ msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
-"В Bottles используются пускатели, предоставляющие изолированную Windows-"
-"среду, в которой запускаются программы."
+"В Bottles используются раннеры, предоставляющие изолированную Windows-среду, "
+"в которой запускаются программы."
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
@@ -2074,7 +2073,7 @@ msgstr "Очищать временные файлы"
 
 #: bottles/frontend/ui/preferences.blp:53
 msgid "Clean temp files when Bottles launches?"
-msgstr "Очищать временные файлы при запуске Bottles?"
+msgstr "Очищать временные файлы при запуске Bottles"
 
 #: bottles/frontend/ui/preferences.blp:62
 msgid "Close Bottles After Starting a Program"
@@ -2134,7 +2133,7 @@ msgstr "Каталог, который содержит данные ваших 
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
-msgstr "Пускатели"
+msgstr "Раннеры"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
@@ -2379,14 +2378,14 @@ msgstr "_Удалить"
 
 #: bottles/frontend/views/bottle_details.py:521
 msgid "Missing Runner"
-msgstr "Пускатель отсутствует"
+msgstr "Раннер отсутствует"
 
 #: bottles/frontend/views/bottle_details.py:522
 msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
-"Пускатель, который был запрошен этой бутылкой, отсутствует. Установить его "
+"Раннер, который был запрошен этой бутылкой, отсутствует. Установите его "
 "через настройки Bottles или выберите новый для запуска приложений."
 
 #: bottles/frontend/views/bottle_details.py:597
@@ -2435,7 +2434,7 @@ msgstr "Это удалит все снимки, но сохранит ваши 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
 msgstr ""
-"Для создания новых состояний перейдите на новую систему версионирования ."
+"Для создания новых состояний перейдите на новую систему версионирования."
 
 #: bottles/frontend/views/details.py:153
 msgid "Installers"
@@ -2625,7 +2624,7 @@ msgid ""
 "working features."
 msgstr ""
 "Эта программа может работать плохо. Установщик был настроен, чтобы "
-"предоставить наилучший опыт работы, но ожидайте ошибки, нестабильности и "
+"предоставить наилучший опыт работы, но ожидайте ошибки, нестабильность и "
 "отсутствие рабочих функций."
 
 #: bottles/frontend/widgets/installer.py:50
@@ -2899,7 +2898,7 @@ msgstr "Предварительная версия"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle release candidate for runners."
-msgstr "Использовать предварительную версию для пускателей."
+msgstr "Использовать предварительную версию для раннеров."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
@@ -2923,7 +2922,7 @@ msgstr "Поддержка Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Доступ к префиксам Steam Proton."
+msgstr "Поддержка префиксов Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:sandbox"
@@ -3067,11 +3066,11 @@ msgstr "Добавлено больше информации об обновле
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Fixed \"Add to Steam\" button"
-msgstr "Испралена кнопка «Добавить в Steam»"
+msgstr "Исправлена кнопка «Добавить в Steam»"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr "Исправлена ошибка, из-за который BottleConfig не серилиазовался"
+msgstr "Исправлена ошибка, из-за которой BottleConfig не подлежал сериализации"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
@@ -3116,7 +3115,7 @@ msgstr "Импорт резервной копии вызывал ошибку"
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
-"Среда выполнения Steam теперь автоматически включена при испольщовании wine-"
+"Среда выполнения Steam теперь автоматически включена при использовании wine-"
 "ge-custom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
