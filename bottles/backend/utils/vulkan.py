@@ -53,7 +53,7 @@ class VulkanUtils:
                             if filecmp.cmp(nvidia_loader, file):
                                 should_skip = True
                                 continue
-                        except FileNotFoundError:
+                        except:
                             pass
                     if not should_skip:
                         loaders["nvidia"] += [file]
