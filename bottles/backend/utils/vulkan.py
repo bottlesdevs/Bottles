@@ -27,7 +27,7 @@ class VulkanUtils:
         "/usr/share/vulkan",
         "/etc/vulkan",
         "/usr/local/share/vulkan",
-        "/usr/local/etc/vulkan"
+        "/usr/local/etc/vulkan",
     ]
     if "FLATPAK_ID" in os.environ:
         __vk_icd_dirs += [
@@ -39,11 +39,7 @@ class VulkanUtils:
         self.loaders = self.__get_vk_icd_loaders()
 
     def __get_vk_icd_loaders(self):
-        loaders = {
-            "nvidia": [],
-            "amd": [],
-            "intel": []
-        }
+        loaders = {"nvidia": [], "amd": [], "intel": []}
 
         for _dir in self.__vk_icd_dirs:
             _files = glob(f"{_dir}/icd.d/*.json", recursive=True)
@@ -51,11 +47,14 @@ class VulkanUtils:
             for file in _files:
                 if "nvidia" in file.lower():
                     # Workaround for nvidia flatpak bug: https://github.com/flathub/org.freedesktop.Platform.GL.nvidia/issues/112
-                    should_skip=False
+                    should_skip = False
                     for nvidia_loader in loaders["nvidia"]:
-                        if filecmp.cmp(nvidia_loader, file):
-                            should_skip=True
-                            continue
+                        try:
+                            if filecmp.cmp(nvidia_loader, file):
+                                should_skip = True
+                                continue
+                        except FileNotFoundError:
+                            pass
                     if not should_skip:
                         loaders["nvidia"] += [file]
                 elif "amd" in file.lower() or "radeon" in file.lower():
@@ -66,11 +65,7 @@ class VulkanUtils:
         return loaders
 
     def get_vk_icd(self, vendor: str, as_string=False):
-        vendors = [
-            "nvidia",
-            "amd",
-            "intel"
-        ]
+        vendors = ["nvidia", "amd", "intel"]
         icd = []
 
         if vendor in vendors:
@@ -90,11 +85,12 @@ class VulkanUtils:
         if shutil.which("vulkaninfo") is None:
             return "vulkaninfo tool not found"
 
-        res = subprocess.Popen(
-            "vulkaninfo",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            shell=True
-        ).communicate()[0].decode("utf-8")
+        res = (
+            subprocess.Popen(
+                "vulkaninfo", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True
+            )
+            .communicate()[0]
+            .decode("utf-8")
+        )
 
         return res
