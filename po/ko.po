@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-05-14 03:00+0000\n"
-"Last-Translator: honnip <me@honnip.page>\n"
+"PO-Revision-Date: 2024-05-23 20:40+0000\n"
+"Last-Translator: 김민재 <initpy314@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bottles/bottles/"
 "ko/>\n"
 "Language: ko\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -135,21 +135,21 @@ msgstr "버전 관리의 초기 상태를 만드는 중…"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
-msgstr ""
+msgstr "커밋할 내용이 없습니다"
 
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "새로운 상태 [{0}] 가 성공적으로 생성되었습니다!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr ""
+msgstr "상태 목록이 성공적으로 검색되었습니다!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr ""
+msgstr "상태 {0} 이 성공적으로 복구되었습니다!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
@@ -173,7 +173,7 @@ msgstr "실행 파일 경로"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr ""
+msgstr "링크 경로"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
@@ -225,7 +225,7 @@ msgstr "Bottles 개발자"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "번역에 도움을 주신 분들"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -848,13 +848,11 @@ msgid "Bottles Runtime"
 msgstr "보틀 런타임"
 
 #: bottles/frontend/ui/details-preferences.blp:296
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
-msgstr ""
-"더 많은 호환성을 위해 추가 라이브러리 번들을 제공합니다,\n"
-"문제가 발생하면 비활성화하십시오."
+msgstr "더 많은 호환성을 위해 추가 라이브러리 번들을 제공합니다. 문제가 발생하면 "
+"비활성화하십시오."
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
@@ -3137,7 +3135,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "그리고 더, 더, 더 많이!"
 
 #~ msgid "Calculating…"
 #~ msgstr "계산중…"
