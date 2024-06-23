@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-03-27 16:01+0000\n"
-"Last-Translator: shamo3qk <x976631@gmail.com>\n"
+"PO-Revision-Date: 2024-06-24 05:09+0000\n"
+"Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-rc\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -690,7 +690,7 @@ msgstr "使用 DXVK-NVAPI，犧牲視覺效果換取性能。僅支援 NVIDIA Tu
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr "FidelityFX Super Resolution"
+msgstr "FidelityFX 超級解析度"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
@@ -840,7 +840,7 @@ msgstr "管理沙盒權限"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr "Bottles Runtime"
+msgstr "Bottles 執行環境"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 msgid ""
@@ -850,7 +850,7 @@ msgstr "新增額外函式庫以增加相容性。若遇到問題請將此選項
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Steam Runtime"
+msgstr "Steam 執行環境"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
@@ -1713,9 +1713,8 @@ msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"找不到外部 prefixes。請確認 Bottles 是否有存取權限？\n"
-"\n"
-"請使用上方圖示從備份匯入酒瓶。"
+"找不到外部前綴。Bottles 可以存取它們嗎？\n"
+"使用頂部的圖示從備份匯入酒瓶。"
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
@@ -1869,9 +1868,8 @@ msgid "Custom"
 msgstr "自訂"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "選擇目錄"
+msgstr "分享使用者目錄"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1886,13 +1884,12 @@ msgid "Architecture"
 msgstr "架構"
 
 #: bottles/frontend/ui/new.blp:137
-#, fuzzy
 msgid "32-bit should only be used if strictly necessary."
-msgstr "如果沒有特別的需求，我們建議不要使用 32 位元。"
+msgstr "僅在絕對必要時才使用 32 位元。"
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
-msgstr "匯入自訂配置"
+msgstr "匯入自訂配置。"
 
 #: bottles/frontend/ui/new.blp:176
 msgid "Bottle Directory"
@@ -2020,7 +2017,7 @@ msgstr "整合"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr "Steam Proton Prefixes"
+msgstr "Steam Proton 前綴"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
@@ -2384,7 +2381,6 @@ msgid "Importing backup…"
 msgstr "正在匯入備份…"
 
 #: bottles/frontend/views/importer.py:119
-#, fuzzy
 msgid "Select a Backup Archive"
 msgstr "選擇備份封存檔"
 
@@ -2660,7 +2656,6 @@ msgid "Copy to clipboard"
 msgstr "複製到剪貼簿"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
 msgstr "選擇資源檔案"
 
