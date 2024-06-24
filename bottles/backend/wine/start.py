@@ -17,6 +17,8 @@ class Start(WineProgram):
         terminal: bool = True,
         args: str = "",
         environment: Optional[dict] = None,
+        pre_script: Optional[str] = None,
+        post_script: Optional[str] = None,
         cwd: Optional[str] = None,
     ):
         winepath = WinePath(self.config)
@@ -37,6 +39,8 @@ class Start(WineProgram):
             communicate=True,
             terminal=terminal,
             environment=environment,
+            pre_script=pre_script,
+            post_script=post_script,
             cwd=cwd,
             minimal=False,
             action_name="run",
