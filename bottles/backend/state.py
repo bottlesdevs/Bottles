@@ -19,9 +19,11 @@ class Events(Enum):
     ComponentsFetching = "components.fetching"
     DependenciesFetching = "dependencies.fetching"
     InstallersFetching = "installers.fetching"
+    BottlesFetching = "bottles.fetching"
     ComponentsOrganizing = "components.organizing"
     DependenciesOrganizing = "dependencies.organizing"
     InstallersOrganizing = "installers.organizing"
+    BottlesOrganizing = "bottles.organizing"
 
 
 class Signals(Enum):
