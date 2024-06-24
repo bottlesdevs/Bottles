@@ -52,7 +52,7 @@ class ComponentManager:
         self.__utils_conn = manager.utils_conn
 
     @lru_cache
-    def get_component(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
+    def get_component(self, name: str, plain: bool = False) -> dict:
         return self.__repo.get(name, plain)
 
     def fetch_catalog(self) -> dict:
@@ -170,14 +170,14 @@ class ComponentManager:
             """
             c = pycurl.Curl()
             try:
-                c.setopt(c.URL, download_url)
-                c.setopt(c.FOLLOWLOCATION, True)
-                c.setopt(c.HTTPHEADER, ["User-Agent: curl/7.79.1"])
-                c.setopt(c.NOBODY, True)
+                c.setopt(c.URL, download_url)  # type: ignore
+                c.setopt(c.FOLLOWLOCATION, True)  # type: ignore
+                c.setopt(c.HTTPHEADER, ["User-Agent: curl/7.79.1"])  # type: ignore
+                c.setopt(c.NOBODY, True)  # type: ignore
                 c.perform()
 
-                req_code = c.getinfo(c.RESPONSE_CODE)
-                download_url = c.getinfo(c.EFFECTIVE_URL)
+                req_code = c.getinfo(c.RESPONSE_CODE)  # type: ignore
+                download_url = c.getinfo(c.EFFECTIVE_URL)  # type: ignore
             except pycurl.error:
                 logging.exception(f"Failed to download [{download_url}]")
                 TaskManager.remove(task_id)
@@ -243,7 +243,7 @@ class ComponentManager:
         return True
 
     @staticmethod
-    def extract(name: str, component: str, archive: str) -> True:
+    def extract(name: str, component: str, archive: str) -> bool:
         """Extract a component from an archive."""
 
         if component in ["runner", "runner:proton"]:
@@ -405,7 +405,11 @@ class ComponentManager:
             logging.error(f"Unknown component type: {component_type}")
             return
 
-        if not os.path.isdir(os.path.join(path, dest)):
+        if (
+            source is not None
+            and dest is not None
+            and not os.path.isdir(os.path.join(path, dest))
+        ):
             shutil.move(src=os.path.join(path, source), dst=os.path.join(path, dest))
 
     def is_in_use(self, component_type: str, component_name: str):

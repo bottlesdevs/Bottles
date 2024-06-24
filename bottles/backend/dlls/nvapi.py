@@ -37,7 +37,7 @@ class NVAPIComponent(DLLComponent):
 
     @staticmethod
     def get_override_keys() -> str:
-        # Bottles does not override (_)nvngx
+        # NOTE: Bottles does not override (_)nvngx
         return "nvapi,nvapi64"
 
     @staticmethod
@@ -75,14 +75,16 @@ class NVAPIComponent(DLLComponent):
 
         # If the system dll is different than the one in the bottle, reinstall them
         # Nvidia driver updates can change this DLL, so this should be checked at each startup
-        if md5sum(os.path.join(nvngx_path_bottle, "nvngx.dll")) != md5sum(
-            os.path.join(get_nvidia_dll_path(), "nvngx.dll")
-        ):
-            NVAPIComponent(bottle_config.NVAPI).install(bottle_config)
-            return
+        nvidia_dll_path = get_nvidia_dll_path()
+        if nvidia_dll_path is not None:
+            if md5sum(os.path.join(nvngx_path_bottle, "nvngx.dll")) != md5sum(
+                os.path.join(nvidia_dll_path, "nvngx.dll")
+            ):
+                NVAPIComponent(bottle_config.NVAPI).install(bottle_config)
+                return
 
-        if md5sum(os.path.join(nvngx_path_bottle, "_nvngx.dll")) != md5sum(
-            os.path.join(get_nvidia_dll_path(), "_nvngx.dll")
-        ):
-            NVAPIComponent(bottle_config.NVAPI).install(bottle_config)
-            return
+            if md5sum(os.path.join(nvngx_path_bottle, "_nvngx.dll")) != md5sum(
+                os.path.join(nvidia_dll_path, "_nvngx.dll")
+            ):
+                NVAPIComponent(bottle_config.NVAPI).install(bottle_config)
+                return
