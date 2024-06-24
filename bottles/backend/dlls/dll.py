@@ -57,7 +57,7 @@ class DLLComponent:
             logging.error(
                 f'DLL(s) "{self.dlls[None]}" path haven\'t been found, ignoring...'
             )
-            return
+            return False
 
         for path in self.dlls:
             _path = os.path.join(self.base_path, path)
