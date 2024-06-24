@@ -135,7 +135,7 @@ class DLLComponent:
         reg.import_bundle(bundle)
 
     @staticmethod
-    def __get_sys_path(config: BottleConfig, path: str):
+    def __get_sys_path(config: BottleConfig, path: str) -> str:
         if config.Arch == Arch.WIN32:
             if path in ["x32", "x86"]:
                 return "system32"
@@ -146,7 +146,7 @@ class DLLComponent:
                 return "system32"
             if path in ["x32", "x86"]:
                 return "syswow64"
-        return None
+        return ""
 
     def __install_dll(
         self, config: BottleConfig, path: str, dll: str, remove: bool = False
@@ -157,7 +157,7 @@ class DLLComponent:
         source = os.path.join(self.base_path, path, dll)
         path = self.__get_sys_path(config, path)
 
-        if path is not None:
+        if path != "":
             target = os.path.join(bottle, path, dll_name)
         else:
             target = None
