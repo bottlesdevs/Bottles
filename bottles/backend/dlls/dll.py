@@ -33,7 +33,7 @@ class DLLComponent:
     base_path: str
     dlls: dict = {}
     checked_dlls: dict = {}
-    version: str = None
+    version: str = ""
 
     def __init__(self, version: str):
         self.version = version
