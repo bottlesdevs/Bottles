@@ -468,6 +468,8 @@ class WineCommand:
             runner = f"{runner}64"
 
         runner = runner.replace(" ", "\\ ")
+        runner = runner.replace("(", "\\(")
+        runner = runner.replace(")", "\\)")
 
         return runner, runner_runtime
 
