@@ -1228,12 +1228,6 @@ class Manager(metaclass=Singleton):
             bottle_name_path = f"{bottle_name_path}__{rnd}"
             bottle_complete_path = f"{bottle_complete_path}__{rnd}"
 
-        # define registers that should be awaited
-        reg_files = [
-            os.path.join(bottle_complete_path, "system.reg"),
-            os.path.join(bottle_complete_path, "user.reg"),
-        ]
-
         # create the bottle directory
         try:
             os.makedirs(bottle_complete_path)
@@ -1348,6 +1342,12 @@ class Manager(metaclass=Singleton):
                     with contextlib.suppress(IOError, OSError):
                         os.unlink(link)
                         os.makedirs(link)
+
+        # define registers that should be awaited
+        reg_files = [
+            os.path.join(bottle_complete_path, "system.reg"),
+            os.path.join(bottle_complete_path, "user.reg"),
+        ]
 
         # wait for registry files to be created
         FileUtils.wait_for_files(reg_files)
