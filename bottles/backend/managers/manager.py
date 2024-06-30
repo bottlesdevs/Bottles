@@ -1060,18 +1060,14 @@ class Manager(metaclass=Singleton):
         # create the bottle path
         bottle_path = os.path.join(Paths.bottles, config.Name)
 
-        if not os.path.exists(bottle_path):
-            """
-            If the bottle does not exist, create it, else
-            append a random number to the name.
-            """
-            os.makedirs(bottle_path)
-        else:
+        # If the bottle exists append a random number to the name.
+        if os.path.exists(bottle_path):
             rnd = random.randint(100, 200)
             bottle_path = f"{bottle_path}__{rnd}"
             config.Name = f"{config.Name}__{rnd}"
             config.Path = f"{config.Path}__{rnd}"
-            os.makedirs(bottle_path)
+
+        os.makedirs(bottle_path)
 
         # Pre-create drive_c directory and set the case-fold flag
         bottle_drive_c = os.path.join(bottle_path, "drive_c")
