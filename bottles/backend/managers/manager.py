@@ -36,6 +36,7 @@ from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
+from bottles.backend.managers.btrfssubvolume import BtrfsSubvolumeManager
 from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.dependency import DependencyManager
@@ -145,6 +146,7 @@ class Manager(metaclass=Singleton):
         times["RepositoryManager"] = time.time()
         self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
+        self.btrfs_subvolume_manager = BtrfsSubvolumeManager(self)
         self.component_manager = ComponentManager(self, _offline)
         self.installer_manager = InstallerManager(self, _offline)
         self.dependency_manager = DependencyManager(self, _offline)
