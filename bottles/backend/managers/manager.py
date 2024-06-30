@@ -1069,7 +1069,8 @@ class Manager(metaclass=Singleton):
             config.Name = f"{config.Name}__{rnd}"
             config.Path = f"{config.Path}__{rnd}"
 
-        os.makedirs(bottle_path)
+        if not self.btrfs_subvolume_manager.create_bottle_as_subvolume(bottle_path):
+            os.makedirs(bottle_path)
 
         # Pre-create drive_c directory and set the case-fold flag
         bottle_drive_c = os.path.join(bottle_path, "drive_c")
@@ -1232,14 +1233,15 @@ class Manager(metaclass=Singleton):
 
         # create the bottle directory
         try:
-            os.makedirs(bottle_complete_path)
+            if not self.btrfs_subvolume_manager.create_bottle_as_subvolume(bottle_complete_path):
+                os.makedirs(bottle_complete_path)
             # Pre-create drive_c directory and set the case-fold flag
             bottle_drive_c = os.path.join(bottle_complete_path, "drive_c")
             os.makedirs(bottle_drive_c)
             FileUtils.chattr_f(bottle_drive_c)
-        except:
+        except RuntimeError as e:
             logging.error(
-                f"Failed to create bottle directory: {bottle_complete_path}", jn=True
+                f"Failed to create bottle directory '{bottle_complete_path}' {e}", jn=True
             )
             log_update(_("Failed to create bottle directory."))
             return Result(False)
