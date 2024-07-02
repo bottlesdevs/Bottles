@@ -27,6 +27,19 @@ def _delete_subvolume(path):
             error.add_note(f"Fallback to 'shutil.rmtree()' failed with: '{e}'")
             raise error
 
+def try_create_bottle_snapshots_handle(bottle_path):
+    """Try to create a bottle snapshots handle.
+
+    Checks if the bottle states can be stored as btrfs snapshots and if no
+    states have been stored by FVS versioning system. Returns
+    BottleSnapshotsHandle, if checks succeed, None otherwise.
+    """
+    if not btrfsutil.is_subvolume(bottle_path):
+        return None
+    if os.path.exists(os.path.join(bottle_path, ".fvs")):
+        return None
+    return BottleSnapshotsHandle(bottle_path)
+
 class BottleSnapshotsHandle:
     """Handle the snapshots of a single bottle created as btrfs subvolume.
     """
@@ -36,8 +49,8 @@ class BottleSnapshotsHandle:
     def __init__(self, bottle_path):
         """Internal should not be called directly.
 
-        Use BtrfsSubvolumeManager.create_bottle_snapshots_handle() to
-        potentially create an instance.
+        Use try_create_bottle_snapshots_handle() to potentially create an
+        instance.
         """
         self._bottle_path = bottle_path
         bottles_dir, bottle_name = os.path.split(bottle_path)
@@ -125,17 +138,3 @@ class BtrfsSubvolumeManager:
             return False
         else:
             return True
-
-    @staticmethod
-    def create_bottle_snapshots_handle(bottle_path):
-        """Try to create a bottle snapshots handle.
-
-        Checks if the bottle states can be stored as btrfs snapshots and if no
-        states have been stored by FVS versioning system. Returns
-        BottleSnapshotsHandle, if checks succeed, None otherwise.
-        """
-        if not btrfsutil.is_subvolume(bottle_path):
-            return None
-        if os.path.exists(os.path.join(bottle_path, ".fvs")):
-            return None
-        return BottleSnapshotsHandle(bottle_path)
