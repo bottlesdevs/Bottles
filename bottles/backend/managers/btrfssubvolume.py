@@ -1,8 +1,14 @@
-import functools
+import errno
+from functools import cached_property
 import os
 import os.path
 import shutil
+
+# TODO Properly document and update dependency to libbtrfsutil
+# https://github.com/kdave/btrfs-progs/tree/master/libbtrfsutil
 import btrfsutil
+
+from bottles.backend.models.result import Result
 
 # Internal subvolumes created at initialization time:
 _internal_subvolumes = [
@@ -13,17 +19,16 @@ def _delete_subvolume(path):
     try:
         btrfsutil.delete_subvolume(path)
     except btrfsutil.BtrfsUtilError as error:
-        if not error.btrfsutilerror() == btrfsutil.ERROR_SNAP_DESTROY_FAILED or not issubclass(error, PermissionError):
+        if not error.btrfsutilerror == btrfsutil.ERROR_SNAP_DESTROY_FAILED or not error.errno == errno.EPERM:
             raise
         try:
             # Try to delete the subvolume as a normal directory tree. This is
-            # in particular needed, when the btrfs filesystem is not mounted
-            # with 'user_subvol_rm_allowed' option.
+            # in particular needed, if the btrfs filesystem is not mounted with
+            # 'user_subvol_rm_allowed' option.
             btrfsutil.set_subvolume_read_only(path, False)
             shutil.rmtree(path)
         except Exception as e:
-            # Raise the first error with some appended notes
-            error.add_note(f"Subvolume path: '{path}' ")
+            # Raise the first error with some appended note
             error.add_note(f"Fallback to 'shutil.rmtree()' failed with: '{e}'")
             raise error
 
@@ -57,15 +62,15 @@ class BottleSnapshotsHandle:
         self._snapshots_directory = os.path.join(bottles_dir, "BottlesSnapshots", bottle_name)
 
     # Lazily created
-    @functools.cached_property
-    def _snapshot(self):
+    @cached_property
+    def _snapshots(self):
         dict_snapshots = {}
         if os.path.exists(self._snapshots_directory):
             for snapshot in os.listdir(self._snapshots_directory):
                 if not btrfsutil.is_subvolume(os.path.join(self._snapshots_directory, snapshot)):
                     continue
                 snapshot_id, separator, description = snapshot.partition("_")
-                if empty(separator):
+                if len(separator) == 0:
                     continue
                 dict_snapshots[int(snapshot_id)] = description
         return dict_snapshots
@@ -77,18 +82,19 @@ class BottleSnapshotsHandle:
         """
         return self._snapshots.copy()
 
-    def _snapshot_path(self, snapshot_id: int, description: str):
+    def _snapshot_path2(self, snapshot_id: int, description: str):
         return os.path.join(self._snapshots_directory, f"{snapshot_id}_{description}")
 
     def _snapshot_path(self, snapshot_id: int):
-        return self._snapshot_path(snapshot_id, self._snapshots[snapshot_id])
+        return self._snapshot_path2(snapshot_id, self._snapshots[snapshot_id])
 
-    def create_snapshot(self, description: str):
-        snapshot_id = max(self._snapshots.get_keys(), default=-1) + 1
-        snapshot_path = self._snapshot_path(snapshot_id, description)
+    def create_snapshot(self, description: str) -> int:
+        snapshot_id = max(self._snapshots.keys(), default=-1) + 1
+        snapshot_path = self._snapshot_path2(snapshot_id, description)
         os.makedirs(self._snapshots_directory, exist_ok=True)
         btrfsutil.create_snapshot(self._bottle_path, snapshot_path, read_only=True)
         self._snapshots[snapshot_id] = description
+        return snapshot_id
 
     def set_state(self, snapshot_id: int):
         """Restore the bottle state from a snapshot.
@@ -106,10 +112,79 @@ class BottleSnapshotsHandle:
             os.rename(source_path, destination_path)
         _delete_subvolume(tmp_bottle_path)
 
+def try_create_bottle_snapshots_versioning_wrapper(bottle_path):
+    handle = try_create_bottle_snapshots_handle(bottle_path)
+    if not handle:
+        return None
+    return BottleSnapshotsVersioningWrapper(handle)
+
+class BottleSnapshotsVersioningWrapper:
+    def __init__(self, handle: BottleSnapshotsHandle):
+        self._handle = handle
+
+    def convert_states(self):
+        states = {}
+        for snapshot_id, description in self._handle.snapshots().items():
+            # TODO: return meaningful timestamps
+            states[snapshot_id] = {"message": description, "timestamp": 0}
+        return states
+
+    def is_initialized(self):
+        # Nothing to initialize
+        return true
+
+    def re_initialize(self):
+        # Nothing to initialize
+        pass
+
+    def update_system(self):
+        # Nothing to update
+        pass
+
+    def create_state(self, message: str) -> Result:
+        newly_created_snapshot_id = self._handle.create_snapshot(message)
+        return Result(
+                status=True,
+                data={"state_id": newly_created_snapshot_id, "states": self.convert_states()},
+                message="Created new BTRFS snapshot",
+        )
+
+    def list_states(self) -> Result:
+        # TODO Save active state id
+        active_state_id = -1
+        return Result(
+                status=True,
+                data={"state_id": active_state_id, "states": self.convert_states()},
+                message="Retrieved list of states",
+        )
+        
+    def set_state(
+        self, state_id: int, after: callable
+    ) -> Result:
+        self._handle.set_state(state_id)
+        if after:
+            after()
+        return Result(True)
+
+    def get_state_files(
+        self, state_id: int, plain: bool = False
+    ) -> dict:
+        raise NotImplementedError
+
+    def get_index(self):
+        raise NotImplementedError
+
 class BtrfsSubvolumeManager:
     """
     Manager to handle bottles created as btrfs subvolume.
     """
+
+    # TODO ask in the GUI, if a bottle should be created as subvolume.
+    # TODO duplicate bottles as subvolumes. Nice to have, using lightweight
+    # subvolume cloning, if the source bottle is a subvolume.
+    # TODO Add logging
+    # TODO Better error handling
+    # TODO Refactoring
 
     def __init__(
         self,

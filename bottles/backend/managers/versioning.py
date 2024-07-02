@@ -30,6 +30,7 @@ from fvs.exceptions import (
 from fvs.repo import FVSRepo
 
 from bottles.backend.logger import Logger
+from bottles.backend.managers.btrfssubvolume import try_create_bottle_snapshots_versioning_wrapper, BottleSnapshotsVersioningWrapper
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import TaskManager, Task
@@ -54,9 +55,14 @@ class VersioningManager:
 
     @staticmethod
     def is_initialized(config: BottleConfig):
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        bottle_snapshots_wrapper = try_create_bottle_snapshots_versioning_wrapper(bottle_path)
+        if bottle_snapshots_wrapper:
+            return bottle_snapshots_wrapper.is_initialized()
+
         try:
             repo = FVSRepo(
-                repo_path=ManagerUtils.get_bottle_path(config),
+                repo_path=bottle_path,
                 use_compression=config.Parameters.versioning_compression,
                 no_init=True,
             )
@@ -66,20 +72,35 @@ class VersioningManager:
 
     @staticmethod
     def re_initialize(config: BottleConfig):
-        fvs_path = os.path.join(ManagerUtils.get_bottle_path(config), ".fvs")
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        bottle_snapshots_wrapper = try_create_bottle_snapshots_versioning_wrapper(bottle_path)
+        if bottle_snapshots_wrapper:
+            return bottle_snapshots_wrapper.re_initialize()
+
+        fvs_path = os.path.join(bottle_path, ".fvs")
         if os.path.exists(fvs_path):
             shutil.rmtree(fvs_path)
 
     def update_system(self, config: BottleConfig):
-        states_path = os.path.join(ManagerUtils.get_bottle_path(config), "states")
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        bottle_snapshots_wrapper = try_create_bottle_snapshots_versioning_wrapper(bottle_path)
+        if bottle_snapshots_wrapper:
+            return bottle_snapshots_wrapper.update_system()
+
+        states_path = os.path.join(bottle_path, "states")
         if os.path.exists(states_path):
             shutil.rmtree(states_path)
         return self.manager.update_config(config, "Versioning", False)
 
     def create_state(self, config: BottleConfig, message: str = "No message"):
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        bottle_snapshots_wrapper = try_create_bottle_snapshots_versioning_wrapper(bottle_path)
+        if bottle_snapshots_wrapper:
+            return bottle_snapshots_wrapper.create_state(message)
+
         patterns = self.__get_patterns(config)
         repo = FVSRepo(
-            repo_path=ManagerUtils.get_bottle_path(config),
+            repo_path=bottle_path,
             use_compression=config.Parameters.versioning_compression,
         )
         task_id = TaskManager.add(Task(title=_("Committing state …")))
@@ -103,10 +124,15 @@ class VersioningManager:
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.
         """
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        bottle_snapshots_wrapper = try_create_bottle_snapshots_versioning_wrapper(bottle_path)
+        if bottle_snapshots_wrapper:
+            return bottle_snapshots_wrapper.list_states()
+
         if not config.Versioning:
             try:
                 repo = FVSRepo(
-                    repo_path=ManagerUtils.get_bottle_path(config),
+                    repo_path=bottle_path,
                     use_compression=config.Parameters.versioning_compression,
                 )
             except FVSStateNotFound:
@@ -124,7 +150,6 @@ class VersioningManager:
                 data={"state_id": repo.active_state_id, "states": repo.states},
             )
 
-        bottle_path = ManagerUtils.get_bottle_path(config)
         states = {}
 
         try:
@@ -141,10 +166,15 @@ class VersioningManager:
     def set_state(
         self, config: BottleConfig, state_id: int, after: callable = None
     ) -> Result:
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        bottle_snapshots_wrapper = try_create_bottle_snapshots_versioning_wrapper(bottle_path)
+        if bottle_snapshots_wrapper:
+            return bottle_snapshots_wrapper.set_state(state_id, after)
+
         if not config.Versioning:
             patterns = self.__get_patterns(config)
             repo = FVSRepo(
-                repo_path=ManagerUtils.get_bottle_path(config),
+                repo_path=bottle_path,
                 use_compression=config.Parameters.versioning_compression,
             )
             res = Result(
@@ -168,7 +198,6 @@ class VersioningManager:
             TaskManager.remove(task_id)
             return res
 
-        bottle_path = ManagerUtils.get_bottle_path(config)
         logging.info(f"Restoring to state: [{state_id}]")
 
         # get bottle and state indexes
@@ -238,10 +267,15 @@ class VersioningManager:
         Return the files.yml content of the state. Use the plain argument
         to return the content as plain text.
         """
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        bottle_snapshots_wrapper = try_create_bottle_snapshots_versioning_wrapper(bottle_path)
+        if bottle_snapshots_wrapper:
+            return bottle_snapshots_wrapper.get_state_files(state_id, plain)
+
         try:
             file = open(
                 "%s/states/%s/files.yml"
-                % (ManagerUtils.get_bottle_path(config), state_id)
+                % (bottle_path, state_id)
             )
             files = file.read() if plain else yaml.load(file.read())
             file.close()
@@ -254,6 +288,10 @@ class VersioningManager:
     def get_index(config: BottleConfig):
         """List all files in a bottle and return as dict."""
         bottle_path = ManagerUtils.get_bottle_path(config)
+        bottle_snapshots_wrapper = try_create_bottle_snapshots_versioning_wrapper(bottle_path)
+        if bottle_snapshots_wrapper:
+            return bottle_snapshots_wrapper.get_index()
+
         cur_index = {"Update_Date": str(datetime.now()), "Files": []}
         for file in glob("%s/drive_c/**" % bottle_path, recursive=True):
             if not os.path.isfile(file):
