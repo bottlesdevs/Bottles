@@ -1,3 +1,4 @@
+import functools
 import os
 import os.path
 import shutil
@@ -42,7 +43,10 @@ class BottleSnapshotsHandle:
         bottles_dir, bottle_name = os.path.split(bottle_path)
         self._snapshots_directory = os.path.join(bottles_dir, "BottlesSnapshots", bottle_name)
 
-        self._snapshots = {}
+    # Lazily created
+    @functools.cached_property
+    def _snapshot(self):
+        dict_snapshots = {}
         if os.path.exists(self._snapshots_directory):
             for snapshot in os.listdir(self._snapshots_directory):
                 if not btrfsutil.is_subvolume(os.path.join(self._snapshots_directory, snapshot)):
@@ -50,7 +54,8 @@ class BottleSnapshotsHandle:
                 snapshot_id, separator, description = snapshot.partition("_")
                 if empty(separator):
                     continue
-                self._snapshots[int(snapshot_id)] = description
+                dict_snapshots[int(snapshot_id)] = description
+        return dict_snapshots
 
     def snapshots(self) -> dict:
         """A dictionary of all available snapshots.
