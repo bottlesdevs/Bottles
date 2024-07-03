@@ -467,7 +467,7 @@ class WineCommand:
         if arch == "win64":
             runner = f"{runner}64"
 
-        runner = runner.replace(" ", "\\ ")
+        runner = shlex.quote(runner)
 
         return runner, runner_runtime
 
