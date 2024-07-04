@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-12-23 11:10+0000\n"
-"Last-Translator: 刘韬 <lyuutau@outlook.com>\n"
+"PO-Revision-Date: 2024-07-04 01:18+0000\n"
+"Last-Translator: road <luzixuan2022@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -521,7 +521,7 @@ msgstr "配置"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr "卸载器"
+msgstr "卸载程序"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
@@ -582,16 +582,17 @@ msgid "Search for Programs…"
 msgstr "搜索程序…"
 
 #: bottles/frontend/ui/details-installers.blp:15
+#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"安装由我们的社区精选的程序。\n"
+"安装由我们社区精选的程序。\n"
 "\n"
-"此页面上的文件由第三方在专有产权许可证下提供。安装它们，即表示你同意它们各自"
-"的许可条款。"
+"此页面上的文件由第三方在专有产权许可证下提供。安装它们即表示你同意它们各自的"
+"许可条款。"
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
@@ -645,8 +646,9 @@ msgid "VKD3D"
 msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
+#, fuzzy
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr "通过将它翻译为 Vulkan 改进 Direct3D 12 兼容性。"
+msgstr "通过将Direct3D 12编译为Vulkan来改善兼容性。"
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
@@ -659,7 +661,7 @@ msgstr "DXVK-NVAPI"
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "正在更新 DXVK-NVAPI，请稍等…"
+msgstr "正在更新 DXVK-NVAPI，请稍后…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
@@ -667,8 +669,9 @@ msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
+#, fuzzy
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
-msgstr "提高响应度。某些反作弊程序可以检测到它。"
+msgstr "提高响应度，某些反作弊程序可以检测到它。"
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
@@ -699,7 +702,7 @@ msgstr "以视效为代价提升性能。仅对 Vulkan 有效。"
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr "管理 FidelityFX 超级分辨率设置"
+msgstr "管理 FidelityFX 超分辨率设置"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
@@ -772,7 +775,7 @@ msgstr "监视性能"
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
-msgstr "使用 MangoHud 显示帧率，温度，CPU/GPU 负载和更多关于 OpenGL 和 Vulkan "
+msgstr "使用 MangoHud 显示帧率、温度、CPU/GPU 负载和更多 OpenGL 和 Vulkan "
 "的监控信息。"
 
 #: bottles/frontend/ui/details-preferences.blp:211
@@ -782,7 +785,7 @@ msgstr "Feral 游戏模式"
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
-msgstr "对设备应用一组优化。可以提高游戏性能。"
+msgstr "对设备应用一组优化，可以提高游戏性能。"
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
@@ -792,7 +795,7 @@ msgstr "预加载游戏文件"
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
-msgstr "提高多次启动游戏时的加载时间。游戏第一次启动会花更长的时间。"
+msgstr "减少多次启动游戏时的加载时间。游戏第一次启动会花更长的时间。"
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
@@ -816,7 +819,7 @@ msgstr "Windows 版本"
 
 #: bottles/frontend/ui/details-preferences.blp:257
 msgid "Updating Windows version, please wait…"
-msgstr "正在更新 Windows 版本，请稍等…"
+msgstr "正在更新 Windows 版本，请稍侯…"
 
 #: bottles/frontend/ui/details-preferences.blp:266
 msgid "Language"
@@ -911,7 +914,7 @@ msgstr "压缩"
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
-msgstr "压缩快照，减少快照占用的空间。这会降低创建快照的速度。"
+msgstr "压缩快照以减少快照占用的空间。这会降低创建快照的速度。"
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
