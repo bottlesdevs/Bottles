@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2022-07-06 18:18+0000\n"
+"PO-Revision-Date: 2024-07-06 18:26+0000\n"
 "Last-Translator: Andrija Djakovic <bozika331@yahoo.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/bottles/bottles/"
 "sr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -135,8 +135,9 @@ msgid "Committing state …"
 msgstr "Ажурирам стања…"
 
 #: bottles/backend/managers/versioning.py:90
+#, fuzzy
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Ништа за почињање"
 
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
@@ -165,7 +166,7 @@ msgstr "Ниједно Стање Није нађено"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "Стање {} је већ активно стање"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
@@ -206,15 +207,15 @@ msgstr "[Освежи] захтев примљен."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Донирајте"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Библиотеке Треће Стране и Посебно Хвала"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Спонзорисано и Финансирано од"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
@@ -230,7 +231,7 @@ msgstr "© 2017-2022 - Програмери \"Флаша\""
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "преводиоци_заслуге"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -292,7 +293,7 @@ msgstr "Зависне датотеке"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr ""
+msgstr "Категорија"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 #, fuzzy
@@ -365,7 +366,7 @@ msgstr "Обриши Флашу…"
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "Секундарни Мени"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 #, fuzzy
@@ -400,7 +401,7 @@ msgstr "Покрени у Терминалу…"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "Превучите фајлове да би их покренули"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
@@ -450,10 +451,13 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Кликните \"Покрени Извршни фајл...\" да покренете Извршни фајл, \"Додајте "
+"Пречице...\" да додате извршни фајл на листу Програма, или \"Инсталирај "
+"Програме...\" да инсталирате програме одабране од стране заједнице."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
-msgstr ""
+msgstr "Додајте Пречице…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 #, fuzzy
@@ -473,7 +477,7 @@ msgstr "Подешавања Екрана"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr ""
+msgstr "Подеси поставке флаша."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
@@ -489,7 +493,7 @@ msgstr "Инсталирај овај програм"
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "Снимци"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 #, fuzzy
@@ -504,7 +508,7 @@ msgstr "Менаџер Задатака"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr ""
+msgstr "Управљај покренутим програмима."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -561,11 +565,11 @@ msgstr "Тражим зависне датотеке…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Офлајн си :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Флаше су покренуте у офлајн моду, зависне ставке су недоступне."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 #, fuzzy
@@ -649,7 +653,7 @@ msgstr "Компоненте"
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "Верзија слоја компатибилности Вајна."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
@@ -662,7 +666,7 @@ msgstr "ДКСВК"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 9/10/11 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Побољшај компатибилност Direct3D 9/10/11 превођењем у Вулкан."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
@@ -675,7 +679,7 @@ msgstr "ВКД3Д"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Побољшај компатибилност Direct3D 12 превођењем у Вулкан."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
@@ -715,17 +719,19 @@ msgstr "Подешавања Екрана"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr ""
+msgstr "Дубоко Учење и Супер Семплинг"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"Појачај перформансе на штету визуелних ефектата користећи DXVK-NVAPI. Ради "
+"само на новијим НВИДИА графичким картицама."
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX Супер Резолуција"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 #, fuzzy
@@ -734,7 +740,7 @@ msgstr "Побољшава перформансе уз цену повећане
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "Управљај поставкама FidelityFX Супер Резолуције"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 #, fuzzy
@@ -746,15 +752,19 @@ msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Користи дискретну графичку картицу да појачаш перформансе на штету потрошње "
+"енергије."
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "Ефекти Накнадне Обраде"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
+"Додај разнолике ефекте накнадне обраде користећи vkBasalt. Ради само на "
+"Вулкан-у."
 
 #: bottles/frontend/ui/details-preferences.blp:138
 #, fuzzy
@@ -764,6 +774,8 @@ msgstr "Управљај подешавањима Гејмскопа"
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
 msgstr ""
+"Управљај тиме како би игре требале бити приказане на екрану користећи "
+"Gamescope."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
@@ -812,6 +824,9 @@ msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
+"Приказуј мониторинг информације попут брзине кадрова, температуре, "
+"оптерећења процесора/графичке картице и осталог на ОпенГЛ-у и Вулкан-у "
+"користећи МангоХад."
 
 #: bottles/frontend/ui/details-preferences.blp:211
 #, fuzzy
@@ -821,17 +836,19 @@ msgstr "ГејмМод"
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
-msgstr ""
+msgstr "Примени сет побољшања на твој уређај. Може поправити перформансе игри."
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
-msgstr ""
+msgstr "Предучитај Фајлове Игре"
 
 #: bottles/frontend/ui/details-preferences.blp:222
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Побољшај време учитавања када се игра покреће више пута. Игри ће требати "
+"дуже да се покрене први пут."
 
 #: bottles/frontend/ui/details-preferences.blp:226
 #, fuzzy
@@ -850,7 +867,7 @@ msgstr "Укључи хватање игре ОБС-ом за све прогр�
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
-msgstr ""
+msgstr "Компатибилност"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 msgid "Windows Version"
@@ -953,7 +970,7 @@ msgstr "Верзије"
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
-msgstr ""
+msgstr "Аутоматски направи снимак пре инсталирања софтвера или мењања поставки."
 
 #: bottles/frontend/ui/details-preferences.blp:391
 #, fuzzy
@@ -965,14 +982,15 @@ msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
+"Компресуј снимке ради смањивања места. Ово ће успорити прављење снимака."
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
-msgstr ""
+msgstr "Користите Обрасце Изузетака"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr ""
+msgstr "Изузми путање у снимцима."
 
 #: bottles/frontend/ui/details-preferences.blp:405
 #, fuzzy
@@ -1018,7 +1036,7 @@ msgstr "Детаљи о Флаши"
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
 msgid "Go Back"
-msgstr ""
+msgstr "Иди Назад"
 
 #: bottles/frontend/ui/details.blp:75
 msgid "Operations"
@@ -1103,7 +1121,7 @@ msgstr "Напредне опције"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:13
 msgid "Incomplete package"
-msgstr ""
+msgstr "Непотпун пакет"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
 msgid ""
@@ -1111,10 +1129,12 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
+"Ова верзија Флаша делује да не пружа све потребне основне зависне ставке, "
+"молим контактирајте одржаваоца пакета или користите званичну верзију."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
-msgstr ""
+msgstr "Изађи"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:11
 msgid ""
@@ -1175,7 +1195,7 @@ msgstr "Правим дупликат…"
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/views/new.py:177
 msgid "This could take a while."
-msgstr ""
+msgstr "Ово може потрајати."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
@@ -1199,13 +1219,15 @@ msgstr "Постојеће Варијабле"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "Обрасци Изузетака"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
+"Дефиниши обрасце који ће бити коришћени за спречавање појединих "
+"директоријума да буду верзионисани."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
 #, fuzzy
@@ -1230,7 +1252,7 @@ msgstr "Сачувај"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "Управљај како да игре буду приказане."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 #, fuzzy
@@ -1239,7 +1261,7 @@ msgstr "Резолуција игре"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr ""
+msgstr "Користи резолуцију видео игре као референцу у пикселима."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
