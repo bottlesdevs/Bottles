@@ -26,8 +26,9 @@ from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import TaskManager, Task
+from bottles.backend.state import TaskManager, Task, Status
 from bottles.backend.utils import yaml
+from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
@@ -41,6 +42,47 @@ class BackupManager:
             logging.error(_("No path specified"))
             return False
         return True
+
+    @staticmethod
+    def _create_tarfile_external(
+        source_path: str, destination_path: str, task: Task
+    ):
+        """ Creates tarball backup using external tar command. """
+
+        bottle_size = FileUtils.get_path_size(source_path, human=True)
+
+        try:
+            import subprocess
+            with subprocess.Popen([
+                "tar", "--create", "--gzip",
+                f"--file=\"{destination_path}\"",
+                f"--directory="{source_path}\"",
+                "--exclude=\"dosdevices\"",
+                "."
+            ]) as tar_pid:
+                match tar_pid.poll():
+                    case None:
+                        # Maybe better to have a distinct gettext translation template
+                        # for showing backup size and total size properly.
+                        # _("Progress {0} / {1}").format(backup_size, bottle_size)
+                        backup_size = FileUtils.get_path_size(destination_path, human=True)
+                        task.stream_update(
+                            received_size=backup_size,
+                            total_size=bottle_size,
+                            # We never set another status as BackupManager.export_backup is doing the Task cleanup
+                            status=Status.RUNNING
+                        )
+                    case 0:
+                        task.subtitle = "Backup completed"
+                    case _:
+                        logging.error(f"Error creating backup: {e}")
+                # Not ideal but Popen.wait() with a timeout value does roughly the same
+                # and it would make us have to handle TimeoutExpired exceptions specially.
+                time.sleep(0.5)
+            return True
+        except (FileNotFoundError, PermissionError, CalledProcessError, ValueError) as e:
+            logging.error(f"Error creating backup: {e}")
+            return False
 
     @staticmethod
     def _create_tarfile(
@@ -95,9 +137,17 @@ class BackupManager:
         else:
             task_id = TaskManager.add(Task(title=_("Backup {0}").format(config.Name)))
             bottle_path = ManagerUtils.get_bottle_path(config)
-            backup_created = BackupManager._create_tarfile(
-                bottle_path, path, exclude_filter=BackupManager.exclude_filter
-            )
+            try:
+                # Rather poor test to see if tar is available
+                os.Popen(["tar", "--version"]).wait(3)
+                backup_created = BackupManager._create_tarfile_external(
+                    bottle_path, path, task_id)
+                logging.info(f"Backup created using tar")
+            except FileNotFoundError as e:
+                logging.info(f"Backup using tar failed, falling back to original.")
+                backup_created = BackupManager._create_tarfile(
+                    bottle_path, path, exclude_filter=BackupManager.exclude_filter
+                )
             TaskManager.remove(task_id)
 
         if backup_created:
