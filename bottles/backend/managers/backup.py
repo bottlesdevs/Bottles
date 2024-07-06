@@ -54,9 +54,11 @@ class BackupManager:
         try:
             import subprocess
             with subprocess.Popen([
-                "tar", "czf",
-                destination_path, source_path,
-                "--exclude=dosdevices"
+                "tar", "--create", "--gzip",
+                f"--file=\"{destination_path}\"",
+                f"--directory="{source_path}\"",
+                "--exclude=\"dosdevices\"",
+                "."
             ]) as tar_pid:
                 match tar_pid.poll():
                     case None:
