@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-07-06 18:26+0000\n"
+"PO-Revision-Date: 2024-07-07 11:31+0000\n"
 "Last-Translator: Andrija Djakovic <bozika331@yahoo.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/bottles/bottles/"
 "sr/>\n"
@@ -1266,12 +1266,12 @@ msgstr "Користи резолуцију видео игре као рефе�
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
 msgid "Width"
-msgstr ""
+msgstr "Ширина"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:64
 #: bottles/frontend/ui/dialog-gamescope.blp:101
 msgid "Height"
-msgstr ""
+msgstr "Висина"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
 #, fuzzy
@@ -1283,10 +1283,12 @@ msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
+"Скалирај резолуцију приликом коришћења резолуције веће од резолуције игре у "
+"пикселима."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Разно"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
 #, fuzzy
@@ -1318,7 +1320,7 @@ msgstr "Цео екран"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr ""
+msgstr "Желите ли да наставите са инсталацијом?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
 #, fuzzy
@@ -1335,7 +1337,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
-msgstr ""
+msgstr "Наставити"
 
 #: bottles/frontend/ui/dialog-installer.blp:127
 #, fuzzy
@@ -1354,7 +1356,7 @@ msgstr "Инсталирај Изабрано"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
-msgstr ""
+msgstr "Нешто је пошло наопако."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1386,7 +1388,7 @@ msgstr "Џурнал Прегледач"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr ""
+msgstr "Промени ниво Логовања."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
@@ -1453,7 +1455,7 @@ msgstr "Виртуелна Радна површина"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Одрицање од одговорности за Протон"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:21
 #, fuzzy
@@ -1474,10 +1476,21 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"Пажња, коришћење покретача заснованих на Протон-у у не-Стим флашама може "
+"изазвати проблеме и спречити их да се понашају исправно.\n"
+"\n"
+"Препоручујемо коришћење Вајн-ГЕ, верзију Протон-а намењену за покретање ван "
+"Стим-а.\n"
+"\n"
+"Ако наставите, аутоматски ћете омогућити Стим покретач (ако је присутан у "
+"систему и откривен од стране Флаша) како бисте омогућили приступ неопходним "
+"библиотекама и ограничили проблеме с компатибилношћу. Знајте да "
+"GloriousEggroll, провајдер покретача није одговоран за било какве проблеме и "
+"молимо вас да их не пријављујете њима."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
-msgstr ""
+msgstr "Разумем."
 
 #: bottles/frontend/ui/dialog-rename.blp:7
 msgid "Rename"
@@ -1516,7 +1529,7 @@ msgstr "Подешавања Гејмскопа"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
-msgstr ""
+msgstr "Подели Мрежу"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:34
 #, fuzzy
@@ -1535,7 +1548,7 @@ msgstr "Настави"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:47
 msgid "Launch upgrade"
-msgstr ""
+msgstr "Покрени надоградњу"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
 #, fuzzy
@@ -1544,7 +1557,7 @@ msgstr "Верзије"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
 msgid "The new bottle versioning system has landed."
-msgstr ""
+msgstr "Нови систем верзија за флаше је стигао."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:83
 msgid ""
@@ -1560,6 +1573,18 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"Флаше имају потпуно нов Систем Верзија који није компатибилан с претходним "
+"верзијама.\n"
+"\n"
+"Да наставите са коришћењем система верзија, морамо да поново иницијализујемо "
+"репозиторијум флаша. Ово неће обрисати податке из твоје флаше, али ће "
+"обрисати све постојеће снимке и направити нове.\n"
+"\n"
+"Ако морате да се вратите на претходни снимак пре него наставите, затворите "
+"прозор и повратите снимак, затим поново отворите флаше да бисте поново "
+"приказали овај прозор.\n"
+"\n"
+"Стари систем ће бити прекинут у једном од следећих издања."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
