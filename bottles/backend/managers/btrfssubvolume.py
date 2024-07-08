@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 import errno
 from functools import cached_property
 import os
@@ -45,6 +46,11 @@ def try_create_bottle_snapshots_handle(bottle_path):
         return None
     return BottleSnapshotsHandle(bottle_path)
 
+@dataclass(frozen=True)
+class SnapshotMetaData:
+    description: str
+    timestamp: float = 0.0
+
 class BottleSnapshotsHandle:
     """Handle the snapshots of a single bottle created as btrfs subvolume.
     """
@@ -66,19 +72,22 @@ class BottleSnapshotsHandle:
     def _snapshots(self):
         dict_snapshots = {}
         if os.path.exists(self._snapshots_directory):
-            for snapshot in os.listdir(self._snapshots_directory):
-                if not btrfsutil.is_subvolume(os.path.join(self._snapshots_directory, snapshot)):
-                    continue
-                snapshot_id, separator, description = snapshot.partition("_")
-                if len(separator) == 0:
-                    continue
-                dict_snapshots[int(snapshot_id)] = description
+            with os.scandir(self._snapshots_directory) as it:
+                for snapshot in it:
+                    if not snapshot.is_dir(follow_symlinks=False):
+                        continue
+                    if not btrfsutil.is_subvolume(snapshot.path):
+                        continue
+                    snapshot_id, separator, description = snapshot.name.partition("_")
+                    if len(separator) == 0:
+                        continue
+                    dict_snapshots[int(snapshot_id)] = SnapshotMetaData(description, timestamp=snapshot.stat().st_mtime)
         return dict_snapshots
 
     def snapshots(self) -> dict:
         """A dictionary of all available snapshots.
 
-        Returns a dictionary from snapshot ID (int) to description (str).
+        Returns a dictionary from snapshot ID (int) to SnapshotMetaData.
         """
         return self._snapshots.copy()
 
@@ -86,14 +95,15 @@ class BottleSnapshotsHandle:
         return os.path.join(self._snapshots_directory, f"{snapshot_id}_{description}")
 
     def _snapshot_path(self, snapshot_id: int):
-        return self._snapshot_path2(snapshot_id, self._snapshots[snapshot_id])
+        return self._snapshot_path2(snapshot_id, self._snapshots[snapshot_id].description)
 
     def create_snapshot(self, description: str) -> int:
         snapshot_id = max(self._snapshots.keys(), default=-1) + 1
         snapshot_path = self._snapshot_path2(snapshot_id, description)
         os.makedirs(self._snapshots_directory, exist_ok=True)
         btrfsutil.create_snapshot(self._bottle_path, snapshot_path, read_only=True)
-        self._snapshots[snapshot_id] = description
+        stat = os.stat(snapshot_path)
+        self._snapshots[snapshot_id] = SnapshotMetaData(description, stat.st_mtime)
         return snapshot_id
 
     def set_state(self, snapshot_id: int):
@@ -124,9 +134,8 @@ class BottleSnapshotsVersioningWrapper:
 
     def convert_states(self):
         states = {}
-        for snapshot_id, description in self._handle.snapshots().items():
-            # TODO: return meaningful timestamps
-            states[snapshot_id] = {"message": description, "timestamp": 0}
+        for snapshot_id, metadata in self._handle.snapshots().items():
+            states[snapshot_id] = {"message": metadata.description, "timestamp": metadata.timestamp}
         return states
 
     def is_initialized(self):
