@@ -97,6 +97,20 @@ class BottleSnapshotsHandle:
     def _snapshot_path(self, snapshot_id: int):
         return self._snapshot_path2(snapshot_id, self._snapshots[snapshot_id].description)
 
+    def _active_snapshot_id_path(self):
+        return os.path.join(self._bottle_path, ".active_state_id")
+
+    def _save_active_snapshot_id(self, active_state_id: int):
+        with open(self._active_snapshot_id_path(), "w") as file:
+            file.write(str(active_state_id))
+
+    def read_active_snapshot_id(self) -> int:
+        try:
+            with open(self._active_snapshot_id_path(), "r") as file:
+                return int(file.read())
+        except OSError as error:
+            return -1
+        
     def create_snapshot(self, description: str) -> int:
         snapshot_id = max(self._snapshots.keys(), default=-1) + 1
         snapshot_path = self._snapshot_path2(snapshot_id, description)
@@ -104,6 +118,7 @@ class BottleSnapshotsHandle:
         btrfsutil.create_snapshot(self._bottle_path, snapshot_path, read_only=True)
         stat = os.stat(snapshot_path)
         self._snapshots[snapshot_id] = SnapshotMetaData(description, stat.st_mtime)
+        self._save_active_snapshot_id(snapshot_id)
         return snapshot_id
 
     def set_state(self, snapshot_id: int):
@@ -121,6 +136,7 @@ class BottleSnapshotsHandle:
             os.rmdir(destination_path)
             os.rename(source_path, destination_path)
         _delete_subvolume(tmp_bottle_path)
+        self._save_active_snapshot_id(snapshot_id)
 
 def try_create_bottle_snapshots_versioning_wrapper(bottle_path):
     handle = try_create_bottle_snapshots_handle(bottle_path)
@@ -159,8 +175,7 @@ class BottleSnapshotsVersioningWrapper:
         )
 
     def list_states(self) -> Result:
-        # TODO Save active state id
-        active_state_id = -1
+        active_state_id = self._handle.read_active_snapshot_id()
         return Result(
                 status=True,
                 data={"state_id": active_state_id, "states": self.convert_states()},
