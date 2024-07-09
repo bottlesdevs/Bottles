@@ -91,6 +91,7 @@ def is_glibc_min_available():
 
 
 def sort_by_version(_list: list, extra_check: str = "async"):
+    """Sort a list of strings by version."""
     def natural_keys(text):
         result = [int(re.search(extra_check, text) is None)]
         result.extend(
@@ -112,6 +113,71 @@ def get_mime(path: str):
 
 
 def random_string(length: int):
+    """Generate a random string of given length."""
     return "".join(
         random.choice(string.ascii_uppercase + string.digits) for _ in range(length)
     )
+
+def glob_to_re(pat: str) -> re.Pattern[str]:
+    """Convert a glob (UNIX-like) match pattern to a regular expression."""
+    i, n = 0, len(pat)
+    res = ''
+    while i < n:
+        c = pat[i]
+        i = i+1
+        if c == '*':
+            j = i
+            if j < n and pat[j] == '*':
+                res = res + '.*'
+                i = j+1
+            else:
+                res = res + '[^/]*'
+        elif c == '?':
+            res = res + '[^/]'
+        elif c == '[':
+            j = i
+            if j < n and pat[j] == '!':
+                j = j+1
+            if j < n and pat[j] == ']':
+                j = j+1
+            while j < n and pat[j] != ']':
+                j = j+1
+            if j >= n:
+                res = res + '\\['
+            else:
+                stuff = pat[i:j]
+                if '--' not in stuff:
+                    stuff = stuff.replace('\\', r'\\')
+                else:
+                    chunks = []
+                    k = i+2 if pat[i] == '!' else i+1
+                    while True:
+                        k = pat.find('-', k, j)
+                        if k < 0:
+                            break
+                        chunks.append(pat[i:k])
+                        i = k+1
+                        k = k+3
+                    chunks.append(pat[i:j])
+                    stuff = '-'.join(s.replace('\\', r'\\').replace('-', r'\-')
+                                    for s in chunks)
+                stuff = re.sub(r'([&~|])', r'\\\1', stuff)
+                i = j+1
+                if stuff[0] == '!':
+                    stuff = '^/' + stuff[1:]
+                elif stuff[0] in ('^', '['):
+                    stuff = '\\' + stuff
+                res = '%s[%s]' % (res, stuff)
+        else:
+            res = res + re.escape(c)
+    return re.compile(r'(?s:%s)\Z' % res)
+
+
+def glob_filter(objects: list | dict | str, pattern: str) -> list | dict | str | None:
+    """Filter objects by a glob (UNIX-like) pattern."""
+    if isinstance(objects, dict):
+        return {k: v for k, v in objects.items() if re.match(glob_to_re(pattern), k)}
+    elif isinstance(objects, list):
+        return [i for i in objects if re.match(glob_to_re(pattern), i)]
+    elif isinstance(objects, str):
+        return objects if re.match(glob_to_re(pattern), objects) else None

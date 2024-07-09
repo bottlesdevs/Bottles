@@ -19,12 +19,12 @@
 
 
 import argparse
+from math import e
 import os
 import signal
 import sys
 import uuid
 import warnings
-
 import gi
 
 warnings.filterwarnings("ignore")  # suppress GTK warnings
@@ -44,6 +44,8 @@ from bottles.frontend.params import APP_ID
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
+from bottles.backend.state import Events, EventManager
+from bottles.backend.utils.generic import glob_filter
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.control import Control
@@ -78,12 +80,9 @@ class CLI:
         info_parser = subparsers.add_parser("info", help="Show information about Bottles")
         info_parser.add_argument('type', choices=['bottles-path', 'health-check'], help="Type of information")
 
-        list_parser = subparsers.add_parser("list", help="List entities")
-        list_parser.add_argument('type', choices=['bottles', 'components'], help="Type of entity")
-        list_parser.add_argument("-f", "--filter", help="Filter bottles and components (e.g. '-f 'environment:gaming')")
-
-        programs_parser = subparsers.add_parser("programs", help="List programs")
-        programs_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+        list_parser = subparsers.add_parser("list", help="List Entities", description="You can specify multiple filters, depending on the entity type, seperated by a comma (,).  Glob expressions are also supported for fuzzy UNIX-like matching in your filter.\n\nFor example, if you'd like to filter a bottle by its name, and then by its windows version, use:\n\n    -f name:mybottle*,winversion:win1*\n\nWhich should show you Windows 10, and Windows 11 variants of your bottle.")
+        list_parser.add_argument('type', choices=['bottles', 'components', 'dependencies', 'programs'], help="Type of entity")
+        list_parser.add_argument("-f", "--filter", help="Apply a complex filter to the results (e.g. '-f 'environment:gaming,arch:win64,name:mydep* ...')")
 
         add_parser = subparsers.add_parser("add", help="Add program")
         add_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
@@ -169,10 +168,10 @@ class CLI:
                 self.list_bottles(c_filter=_filter)
             elif _type == "components":
                 self.list_components(c_filter=_filter)
-
-        # PROGRAMS parser
-        elif self.args.command == "programs":
-            self.list_programs()
+            elif _type == "dependencies":
+                self.list_dependencies(c_filter=_filter)
+            elif _type == "programs":
+                self.list_programs(c_filter=_filter)
 
         # TOOLS parser
         elif self.args.command == "tools":
@@ -227,31 +226,65 @@ class CLI:
 
     # region LIST
     def list_bottles(self, c_filter=None):
+        """List bottles with optional complex filters."""
         mng = Manager(g_settings=self.settings, is_cli=True)
-        mng.check_bottles()
+
+        connected = mng.utils_conn.status
+        if connected is False:
+            sys.stderr.write("No internet connection\n")
+            exit(1)
+
+        EventManager.wait(Events.BottlesFetching)
         bottles = mng.local_bottles
 
-        if c_filter and c_filter.startswith("environment:"):
-            environment = c_filter.split(":")[1].lower()
-            bottles = [name for name, bottle in bottles.items() if bottle.Environment.lower() == environment]
-
+        if c_filter is not None:
+            for a_filter in c_filter.split(","):
+                if a_filter.startswith("arch:"):
+                    arch = str(a_filter.split(":")[1]).lower()
+                    bottles = {name: bottle for name, bottle in bottles.items()
+                            if glob_filter(bottle.Arch.lower(), arch)}
+                elif a_filter.startswith("environment:"):
+                    environment = str(a_filter.split(":")[1]).lower()
+                    bottles = {name: bottle for name, bottle in bottles.items()
+                            if glob_filter(bottle.Environment.lower(), environment)}
+                elif a_filter.startswith("runner:"):
+                    runner = str(a_filter.split(":")[1]).lower()
+                    bottles = {name: bottle for name, bottle in bottles.items()
+                            if glob_filter(bottle.Runner.lower(), runner)}
+                elif a_filter.startswith("winversion:"):
+                    winversion = str(a_filter.split(":")[1]).lower()
+                    bottles = {name: bottle for name, bottle in bottles.items()
+                            if glob_filter(bottle.Windows.lower(), winversion)}
+                elif a_filter.startswith("name:"):
+                    name = str(a_filter.split(":")[1]).lower()
+                    bottles = {k: bottle for k, bottle in bottles.items()
+                            if glob_filter(bottle.Name, name)}
+                else:
+                    sys.stderr.write(f"Invalid filter: {a_filter}\n")
+                    exit(1)
+        
+        EventManager.done(Events.BottlesOrganizing)
+        
         if self.args.json:
             sys.stdout.write(json.dumps(bottles))
             exit(0)
 
         if len(bottles) > 0:
-            sys.stdout.write(f"Found {len(bottles)} bottles:\n")
+            sys.stdout.write(f"Found {len(bottles)} bottle(s):\n")
             for b in bottles:
                 sys.stdout.write(f"- {b}\n")
 
-    def list_components(self, c_filter=None):
-        mng = Manager(g_settings=self.settings, is_cli=True)
-        mng.check_runners(False)
-        mng.check_dxvk(False)
-        mng.check_vkd3d(False)
-        mng.check_nvapi(False)
-        mng.check_latencyflex(False)
 
+    def list_components(self, c_filter=None):
+        """List components with optional complex filters."""
+        mng = Manager(g_settings=self.settings, is_cli=True)
+
+        connected = mng.utils_conn.status
+        if connected is False:
+            sys.stderr.write("No internet connection\n")
+            exit(1)
+        
+        EventManager.wait(Events.ComponentsOrganizing)
         components = {
             "runners": mng.runners_available,
             "dxvk": mng.dxvk_available,
@@ -260,44 +293,177 @@ class CLI:
             "latencyflex": mng.latencyflex_available
         }
 
-        if c_filter and c_filter.startswith("category:"):
-            category = c_filter.split(":")[1].lower()
-            if category in components:
-                components = {category: components[category]}
+        # NEW: Apply multiple filters, with glob expression support
+        if c_filter is not None:
+            for a_filter in c_filter.split(",") if len(c_filter.split(",")) > 0 else [c_filter]:
+                if a_filter.startswith("category:"):
+                    category = str(a_filter.split(":")[1]).lower()
+                    components = {k: v for k, v in components.items()
+                                  if glob_filter(k.lower(), category) is not None}
+                elif a_filter.startswith("name:"):
+                    name = str(a_filter.split(":")[1]).lower()
+                    # NOTE: This has to be done because the components dict contains lists of strings or bools.
+                    #       If you want a less messy solutiion, commit one.
+                    components = {k: glob_filter([vv for vv in v if not isinstance(v, bool) and len(v) > 0], name) for k, v in components.items()
+                                  if len(glob_filter([vv for vv in v if not isinstance(v, bool) and len(v) > 0], name)) > 0}
+                else:
+                    sys.stderr.write(f"Invalid filter: {a_filter}\n")
+                    exit(1)
 
         if self.args.json:
             sys.stdout.write(json.dumps(components))
             exit(0)
 
         for c in components:
-            sys.stdout.write(f"Found {len(components[c])} {c}\n")
+            sys.stdout.write(f"Found {len(components[c])} {c}:\n")
             for i in components[c]:
                 sys.stdout.write(f"- {i}\n")
+    
+
+    def list_dependencies(self, c_filter=None):
+        """List dependencies with optional complex filters."""
+        mng = Manager(g_settings=self.settings, is_cli=True)
+
+        connected = mng.utils_conn.status
+        if connected is False:
+            sys.stderr.write("No internet connection\n")
+            exit(1)
+        
+        EventManager.wait(Events.DependenciesOrganizing)
+        catalog = mng.supported_dependencies
+        if len(catalog) == 0:
+            exit(1)
+
+        # NEW: Apply multiple filters, with glob expression support
+        if c_filter is not None:
+            for a_filter in c_filter.split(",") if len(c_filter.split(",")) > 0 else [c_filter]:
+                if a_filter.startswith("arch:"):
+                    arch = str(a_filter.split(":")[1]).lower()
+                    catalog = dict(sorted(
+                        {name: item for name, item in catalog.items()
+                            if glob_filter(str(catalog[name].get('Arch', 'win64')).lower(), arch.lower()) is not None}.items(),
+                        reverse=False
+                    ))
+                    catalog = dict(sorted(catalog.items()))
+                elif a_filter.startswith("category:"):
+                    category = str(a_filter.split(":")[1]).lower()
+                    catalog = dict(sorted(
+                        {name: item for name, item in catalog.items() 
+                            if glob_filter(str(catalog[name].get('Category', 'uncategorized')).lower(), category.lower())}.items(),
+                        reverse=False
+                    ))
+                    catalog = dict(sorted(catalog.items()))
+                elif a_filter.startswith("description:"):
+                    description = str(a_filter.split(":")[1]).lower()
+                    catalog = dict(sorted(
+                        {name: item for name, item in catalog.items()
+                            if glob_filter(str(catalog[name].get('Description', '')).lower(), description.lower())}.items(),
+                        reverse=False
+                    ))
+                    catalog = dict(sorted(catalog.items()))
+                elif a_filter.startswith("name:"):
+                    name = str(a_filter.split(":")[1]).lower()
+                    catalog = dict(sorted(
+                        {name: item for name, item in catalog.items()
+                            if glob_filter(str(name).lower(), name)}.items(),
+                        reverse=False
+                    ))
+                    catalog = dict(sorted(catalog.items()))
+                else:
+                    sys.stderr.write(f"Invalid filter: {a_filter}\n")
+                    exit(1)
+        
+        if self.args.json:
+            sys.stdout.write(json.dumps(catalog))
+            exit(0)
+
+        for cat in sorted(set([catalog[c]['Category'] for c in catalog])):
+            ccs = [c for c in catalog if catalog[c]['Category'] == cat]
+            cc_len = len(ccs)
+            sys.stdout.write(f"Found {cc_len} {cat}:\n")
+            for cc in ccs:
+                cc_name = str(cc).ljust(20)
+                cc_desc = str(catalog[cc]['Description']).ljust(50)
+                sys.stdout.write(f"- {cc_name} {cc_desc}\n")
 
     # endregion
 
     # region PROGRAMS
-    def list_programs(self):
+    def list_programs(self, c_filter=None):
+        """List programs with optional complex filters."""
         mng = Manager(g_settings=self.settings, is_cli=True)
-        mng.check_bottles()
-        _bottle = self.args.bottle
-
-        if _bottle not in mng.local_bottles:
-            sys.stderr.write(f"Bottle {_bottle} not found\n")
+        
+        connected = mng.utils_conn.status
+        if connected is False:
+            sys.stderr.write("No internet connection\n")
             exit(1)
+        
+        EventManager.wait(Events.BottlesFetching)
+        bottles = mng.local_bottles
 
-        bottle = mng.local_bottles[_bottle]
-        programs = mng.get_programs(bottle)
-        programs = [p for p in programs if not p.get("removed", False)]
+        w_filters = None
+        if c_filter is not None:
+            c_filters = c_filter.split(",") if len(c_filter.split(",")) > 0 else [c_filter]
+            w_filters = c_filters.copy() if len(c_filters) > 0 else []
+            for a_filter in c_filters:
+                if a_filter.startswith("arch:"):
+                    arch = str(a_filter.split(":")[1]).lower()
+                    bottles = {name: bottle for name, bottle in bottles.items()
+                            if glob_filter(bottle.Arch.lower(), arch)}
+                    w_filters.remove(a_filter)
+                elif a_filter.startswith("environment:"):
+                    environment = str(a_filter.split(":")[1]).lower()
+                    bottles = {name: bottle for name, bottle in bottles.items()
+                            if glob_filter(bottle.Environment.lower(), environment)}
+                    w_filters.remove(a_filter)
+                elif a_filter.startswith("runner:"):
+                    runner = str(a_filter.split(":")[1]).lower()
+                    bottles = {name: bottle for name, bottle in bottles.items()
+                            if glob_filter(bottle.Runner.lower(), runner)}
+                    w_filters.remove(a_filter)
+                elif a_filter.startswith("winversion:"):
+                    winversion = str(a_filter.split(":")[1]).lower()
+                    bottles = {name: bottle for name, bottle in bottles.items()
+                            if glob_filter(bottle.Windows.lower(), winversion)}
+                    w_filters.remove(a_filter)
+                elif a_filter.startswith("bottle:"):
+                    name = str(a_filter.split(":")[1]).lower()
+                    bottles = {k: bottle for k, bottle in bottles.items()
+                            if glob_filter(bottle.Name, name)}
+                    w_filters.remove(a_filter)
+                else:
+                    continue
+
+            EventManager.done(Events.BottlesOrganizing)
+
+        programs = {name: [p for p in mng.get_programs(bottle) if not p.get("removed", False)] for name, bottle in bottles.items()}
+        if w_filters is not None:
+            for a_filter in w_filters:
+                if a_filter.startswith("name:"):
+                    name = str(a_filter.split(":")[1]).lower()
+                    programs = {k: [p for p in v if glob_filter(p.get("name", "untitled").lower(), name)] for k, v in programs.items()}
+                if a_filter.startswith("path:"):
+                    path = str(a_filter.split(":")[1]).lower()
+                    programs = {k: [p for p in v if glob_filter(p.get("path", "").lower(), path)] for k, v in programs.items()}
+                if a_filter.startswith("executable:"):
+                    executable = str(a_filter.split(":")[1]).lower()
+                    programs = {k: [p for p in v if glob_filter(p.get("executable", "program.exe").lower(), executable)] for k, v in programs.items()}
+                else:
+                    sys.stderr.write(f"Invalid filter: {a_filter}\n")
+                    exit(1)
 
         if self.args.json:
             sys.stdout.write(json.dumps(programs))
             exit(0)
 
-        if len(programs) > 0:
-            sys.stdout.write(f"Found {len(programs)} programs:\n")
-            for p in programs:
-                sys.stdout.write(f"- {p['name']}\n")
+        if len(programs.keys()) > 0:
+            for p, v in programs.items():
+                sys.stdout.write(f"Found {len(programs[p])} program(s) in {p}:\n")
+                for i in v:
+                    c_name = str(i.get("name", "untitled")).ljust(16)
+                    c_exec = str(i.get("executable", "program.exe")).ljust(20)
+                    c_path = str(i.get("path", "")).ljust(60)
+                    sys.stdout.write(f"- {c_name} {c_exec} {c_path}\n")
 
     # endregion
 
