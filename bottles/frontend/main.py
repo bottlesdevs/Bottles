@@ -29,7 +29,7 @@ gi.require_version("GtkSource", "5")
 # gi.require_version("Xdp", "1.0")
 # gi.require_version("XdpGtk4", "1.0")
 
-from gi.repository import Gtk, Gio, GLib, GObject, Adw
+from gi.repository import Gtk, Gio, GLib, GObject, Adw  # type: ignore
 
 from bottles.frontend.params import *
 from bottles.backend.logger import Logger
@@ -179,8 +179,14 @@ class Bottles(Adw.Application):
             for a in sys.argv:
                 if a.endswith((".exe", ".msi", ".bat", ".lnk")):
                     self.arg_exe = a
+                    logging.info(
+                        _("Launching with executable: {0}").format(a),
+                    )
 
         uri = commands.lookup_value(GLib.OPTION_REMAINING)
+        logging.info(
+            _("Launching with URI: {0}").format(uri),
+        )
         if uri:
             return self.__process_uri(uri)
 
@@ -193,12 +199,18 @@ class Bottles(Adw.Application):
         e.g. xdg-open bottles:run/<bottle>/<program>
         """
         uri = uri[0]
-        if os.path.exists(uri):
+
+        try:
             from bottles.frontend.windows.bottlepicker import BottlePickerDialog
 
             dialog = BottlePickerDialog(application=self, arg_exe=uri)
             dialog.present()
             return 0
+        except Exception as e:
+            logging.error(
+                _("Error while processing URI: {0}").format(e),
+            )
+            pass
 
         _wrong_uri_error = _("Invalid URI (syntax: bottles:run/<bottle>/<program>)")
         if (
@@ -228,6 +240,10 @@ class Bottles(Adw.Application):
         """
         This function is called when the application is activated.
         """
+
+        logging.info(
+            _("[Activate] request received."),
+        )
 
         # create the main window
         Adw.Application.do_activate(self)

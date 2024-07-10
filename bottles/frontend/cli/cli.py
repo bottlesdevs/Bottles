@@ -28,7 +28,7 @@ import warnings
 import gi
 
 warnings.filterwarnings("ignore")  # suppress GTK warnings
-gi.require_version('Gtk', '4.0')
+gi.require_version("Gtk", "4.0")
 
 APP_VERSION = "@APP_VERSION@"
 pkgdatadir = "@pkgdatadir@"
@@ -69,83 +69,169 @@ class CLI:
     def __init__(self):
         # self.__clear()
 
-        self.parser = argparse.ArgumentParser(description="Bottles is a tool to manage your bottles")
-        self.parser.add_argument("-v", "--version", action="version", version=f"Bottles {APP_VERSION}")
-        self.parser.add_argument("-j", "--json", action="store_true", help="Outputs in JSON format")
+        self.parser = argparse.ArgumentParser(
+            description="Bottles is a tool to manage your bottles"
+        )
+        self.parser.add_argument(
+            "-v", "--version", action="version", version=f"Bottles {APP_VERSION}"
+        )
+        self.parser.add_argument(
+            "-j", "--json", action="store_true", help="Outputs in JSON format"
+        )
 
-        subparsers = self.parser.add_subparsers(dest='command', help='sub-command help')
+        subparsers = self.parser.add_subparsers(dest="command", help="sub-command help")
 
-        info_parser = subparsers.add_parser("info", help="Show information about Bottles")
-        info_parser.add_argument('type', choices=['bottles-path', 'health-check'], help="Type of information")
+        info_parser = subparsers.add_parser(
+            "info", help="Show information about Bottles"
+        )
+        info_parser.add_argument(
+            "type", choices=["bottles-path", "health-check"], help="Type of information"
+        )
 
         list_parser = subparsers.add_parser("list", help="List entities")
-        list_parser.add_argument('type', choices=['bottles', 'components'], help="Type of entity")
-        list_parser.add_argument("-f", "--filter", help="Filter bottles and components (e.g. '-f 'environment:gaming')")
+        list_parser.add_argument(
+            "type", choices=["bottles", "components"], help="Type of entity"
+        )
+        list_parser.add_argument(
+            "-f",
+            "--filter",
+            help="Filter bottles and components (e.g. '-f 'environment:gaming')",
+        )
 
         programs_parser = subparsers.add_parser("programs", help="List programs")
-        programs_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+        programs_parser.add_argument(
+            "-b", "--bottle", help="Bottle name", required=True
+        )
 
         add_parser = subparsers.add_parser("add", help="Add program")
         add_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
         add_parser.add_argument("-n", "--name", help="Program name", required=True)
         add_parser.add_argument("-p", "--path", help="Program path", required=True)
         add_parser.add_argument("-l", "--launch-options", help="Program launch options")
-        add_parser.add_argument("--no-dxvk", action="store_true", help="Disable DXVK for the program")
-        add_parser.add_argument("--no-vkd3d", action="store_true", help="Disable VKD3D for the program")
-        add_parser.add_argument("--no-dxvk-nvapi", action="store_true", help="Disable DXVK Nvapi for the program")
+        add_parser.add_argument(
+            "--no-dxvk", action="store_true", help="Disable DXVK for the program"
+        )
+        add_parser.add_argument(
+            "--no-vkd3d", action="store_true", help="Disable VKD3D for the program"
+        )
+        add_parser.add_argument(
+            "--no-dxvk-nvapi",
+            action="store_true",
+            help="Disable DXVK Nvapi for the program",
+        )
 
         tools_parser = subparsers.add_parser("tools", help="Launch Wine tools")
-        tools_parser.add_argument('tool', choices=['cmd', 'winecfg', 'uninstaller', 'regedit', 'taskmgr', 'control',
-                                                   'explorer'], help="Tool to launch")
+        tools_parser.add_argument(
+            "tool",
+            choices=[
+                "cmd",
+                "winecfg",
+                "uninstaller",
+                "regedit",
+                "taskmgr",
+                "control",
+                "explorer",
+            ],
+            help="Tool to launch",
+        )
         tools_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
 
         reg_parser = subparsers.add_parser("reg", help="Manage registry")
-        reg_parser.add_argument('action', choices=['add', 'edit', 'del'], help="Action to perform")
+        reg_parser.add_argument(
+            "action", choices=["add", "edit", "del"], help="Action to perform"
+        )
         reg_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
         reg_parser.add_argument("-k", "--key", help="Registry key", required=True)
         reg_parser.add_argument("-v", "--value", help="Registry value", required=True)
         reg_parser.add_argument("-d", "--data", help="Data to be set")
-        reg_parser.add_argument("-t", "--key-type", help="Data type",
-                                choices=['REG_DWORD', 'REG_SZ', 'REG_BINARY', 'REG_MULTI_SZ'])
+        reg_parser.add_argument(
+            "-t",
+            "--key-type",
+            help="Data type",
+            choices=["REG_DWORD", "REG_SZ", "REG_BINARY", "REG_MULTI_SZ"],
+        )
 
         edit_parser = subparsers.add_parser("edit", help="Edit a bottle configuration")
         edit_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
-        edit_parser.add_argument("--params", help="Set parameters (e.g. '-p dxvk:true')")
-        edit_parser.add_argument("--env-var",
-                                 help="Add new environment variable (e.g. '-env-var WINEDEBUG=-all')")
-        edit_parser.add_argument("--win", help="Change Windows version (e.g. '--win win7')")
-        edit_parser.add_argument("--runner", help="Change Runner (e.g. '--runner caffe-7.2')")
-        edit_parser.add_argument("--dxvk", help="Change DXVK (e.g. '--dxvk dxvk-1.9.0')")
-        edit_parser.add_argument("--vkd3d", help="Change VKD3D (e.g. '--vkd3d vkd3d-proton-2.6')")
-        edit_parser.add_argument("--nvapi", help="Change DXVK-Nvapi (e.g. '--nvapi dxvk-nvapi-1.9.0')")
-        edit_parser.add_argument("--latencyflex", help="Change LatencyFleX (e.g. '--latencyflex latencyflex-v0.1.0')")
+        edit_parser.add_argument(
+            "--params", help="Set parameters (e.g. '-p dxvk:true')"
+        )
+        edit_parser.add_argument(
+            "--env-var",
+            help="Add new environment variable (e.g. '-env-var WINEDEBUG=-all')",
+        )
+        edit_parser.add_argument(
+            "--win", help="Change Windows version (e.g. '--win win7')"
+        )
+        edit_parser.add_argument(
+            "--runner", help="Change Runner (e.g. '--runner caffe-7.2')"
+        )
+        edit_parser.add_argument(
+            "--dxvk", help="Change DXVK (e.g. '--dxvk dxvk-1.9.0')"
+        )
+        edit_parser.add_argument(
+            "--vkd3d", help="Change VKD3D (e.g. '--vkd3d vkd3d-proton-2.6')"
+        )
+        edit_parser.add_argument(
+            "--nvapi", help="Change DXVK-Nvapi (e.g. '--nvapi dxvk-nvapi-1.9.0')"
+        )
+        edit_parser.add_argument(
+            "--latencyflex",
+            help="Change LatencyFleX (e.g. '--latencyflex latencyflex-v0.1.0')",
+        )
 
         new_parser = subparsers.add_parser("new", help="Create a new bottle")
         new_parser.add_argument("--bottle-name", help="Bottle name", required=True)
-        new_parser.add_argument("--environment", help="Environment to apply (gaming|application|custom)", required=True)
-        new_parser.add_argument("--custom-environment", help="Path to a custom environment.yml file")
+        new_parser.add_argument(
+            "--environment",
+            help="Environment to apply (gaming|application|custom)",
+            required=True,
+        )
+        new_parser.add_argument(
+            "--custom-environment", help="Path to a custom environment.yml file"
+        )
         new_parser.add_argument("--arch", help="Architecture (win32|win64)")
         new_parser.add_argument("--runner", help="Name of the runner to be used")
         new_parser.add_argument("--dxvk", help="Name of the dxvk to be used")
         new_parser.add_argument("--vkd3d", help="Name of the vkd3d to be used")
         new_parser.add_argument("--nvapi", help="Name of the dxvk-nvapi to be used")
-        new_parser.add_argument("--latencyflex", help="Name of the latencyflex to be used")
+        new_parser.add_argument(
+            "--latencyflex", help="Name of the latencyflex to be used"
+        )
 
         run_parser = subparsers.add_parser("run", help="Run a program")
         run_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
         run_parser.add_argument("-e", "--executable", help="Path to the executable")
         run_parser.add_argument("-p", "--program", help="Program to run")
-        run_parser.add_argument("--args-replace", action='store_false', dest='keep_args',
-                                help="Replace current program arguments, instead of append")
-        run_parser.add_argument("args", nargs="*", action="extend", help="Arguments to pass to the executable")
+        run_parser.add_argument(
+            "--args-replace",
+            action="store_false",
+            dest="keep_args",
+            help="Replace current program arguments, instead of append",
+        )
+        run_parser.add_argument(
+            "args",
+            nargs="*",
+            action="extend",
+            help="Arguments to pass to the executable",
+        )
 
-        standalone_parser = subparsers.add_parser("standalone", help="Generate a standalone script to launch commands "
-                                                                     "without passing trough Bottles")
-        standalone_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+        standalone_parser = subparsers.add_parser(
+            "standalone",
+            help="Generate a standalone script to launch commands "
+            "without passing trough Bottles",
+        )
+        standalone_parser.add_argument(
+            "-b", "--bottle", help="Bottle name", required=True
+        )
 
-        shell_parser = subparsers.add_parser("shell", help="Launch commands in a Wine shell")
+        shell_parser = subparsers.add_parser(
+            "shell", help="Launch commands in a Wine shell"
+        )
         shell_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
-        shell_parser.add_argument("-i", "--input", help="Command to execute", required=True)
+        shell_parser.add_argument(
+            "-i", "--input", help="Command to execute", required=True
+        )
 
         self.__process_args()
 
@@ -233,7 +319,11 @@ class CLI:
 
         if c_filter and c_filter.startswith("environment:"):
             environment = c_filter.split(":")[1].lower()
-            bottles = [name for name, bottle in bottles.items() if bottle.Environment.lower() == environment]
+            bottles = [
+                name
+                for name, bottle in bottles.items()
+                if bottle.Environment.lower() == environment
+            ]
 
         if self.args.json:
             sys.stdout.write(json.dumps(bottles))
@@ -257,7 +347,7 @@ class CLI:
             "dxvk": mng.dxvk_available,
             "vkd3d": mng.vkd3d_available,
             "nvapi": mng.nvapi_available,
-            "latencyflex": mng.latencyflex_available
+            "latencyflex": mng.latencyflex_available,
         }
 
         if c_filter and c_filter.startswith("category:"):
@@ -376,7 +466,9 @@ class CLI:
             "path": _path,
             "dxvk": not _no_dxvk if _no_dxvk else bottle.Parameters.dxvk,
             "vkd3d": not _no_vkd3d if _no_vkd3d else bottle.Parameters.vkd3d,
-            "dxvk_nvapi": not _no_dxvk_nvapi if _no_dxvk_nvapi else bottle.Parameters.dxvk_nvapi,
+            "dxvk_nvapi": (
+                not _no_dxvk_nvapi if _no_dxvk_nvapi else bottle.Parameters.dxvk_nvapi
+            ),
         }
         mng.update_config(bottle, _uuid, _program, scope="External_Programs")
         sys.stdout.write(f"'{_name}' added to '{bottle.Name}'!")
@@ -529,7 +621,7 @@ class CLI:
             nvapi=_nvapi,
             latencyflex=_latencyflex,
             arch=_arch,
-            custom_environment=_custom_environment
+            custom_environment=_custom_environment,
         )
 
     # endregion
@@ -552,7 +644,15 @@ class CLI:
         mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
 
-        if _bottle not in mng.local_bottles:
+        if _bottle.startswith('"') and _bottle.endswith('"'):
+            _bottle = _bottle[1:-1]
+        elif _bottle.startswith("'") and _bottle.endswith("'"):
+            _bottle = _bottle[1:-1]
+
+        for b in mng.local_bottles.keys():
+            if b == _bottle:
+                break
+        else:
             sys.stderr.write(f"Bottle {_bottle} not found\n")
             exit(1)
 
@@ -582,6 +682,12 @@ class CLI:
             _program_fsr = program.get("fsr")
             _program_virt_desktop = program.get("virtual_desktop")
 
+        _executable = _executable.replace("file://", "")
+        if _executable.startswith('"') and _executable.endswith('"'):
+            _executable = _executable[1:-1]
+        elif _executable.startswith("'") and _executable.endswith("'"):
+            _executable = _executable[1:-1]
+
         WineExecutor(
             bottle,
             exec_path=_executable,
@@ -592,7 +698,7 @@ class CLI:
             program_vkd3d=_program_vkd3d,
             program_nvapi=_program_dxvk_nvapi,
             program_fsr=_program_fsr,
-            program_virt_desktop=_program_virt_desktop
+            program_virt_desktop=_program_virt_desktop,
         ).run_cli()
 
     # endregion
@@ -633,7 +739,9 @@ class CLI:
         winecommand = WineCommand(config=bottle, command='"$@"')
         env = winecommand.get_env(return_clean_env=True)
         cmd = winecommand.get_cmd('"$@"', return_clean_cmd=True)
-        winecommand.command.replace("/usr/lib/extensions/vulkan/MangoHud/bin/mangohud", "")
+        winecommand.command.replace(
+            "/usr/lib/extensions/vulkan/MangoHud/bin/mangohud", ""
+        )
 
         if os.path.isfile(standalone_path):
             os.remove(standalone_path)
@@ -649,5 +757,5 @@ class CLI:
         sys.stdout.write("Re-generate after every bottle change.\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli = CLI()
