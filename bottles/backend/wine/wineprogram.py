@@ -43,6 +43,8 @@ class WineProgram:
         minimal: bool = True,
         communicate: bool = False,
         environment: Optional[dict] = None,
+        pre_script: Optional[str] = None,
+        post_script: Optional[str] = None,
         cwd: Optional[str] = None,
         action_name: str = "launch",
     ):
@@ -68,6 +70,8 @@ class WineProgram:
             communicate=communicate,
             colors=self.colors,
             environment=environment,
+            pre_script=pre_script,
+            post_script=post_script,
             cwd=cwd,
             arguments=program_args,
         ).run()
