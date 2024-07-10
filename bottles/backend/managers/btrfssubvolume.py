@@ -190,14 +190,6 @@ class BottleSnapshotsVersioningWrapper:
             after()
         return Result(True)
 
-    def get_state_files(
-        self, state_id: int, plain: bool = False
-    ) -> dict:
-        raise NotImplementedError
-
-    def get_index(self):
-        raise NotImplementedError
-
 class BtrfsSubvolumeManager:
     """
     Manager to handle bottles created as btrfs subvolume.
