@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from enum import Enum
 import errno
 from functools import cached_property
 import os
@@ -10,8 +11,6 @@ import btrfsutil
 from bottles.backend.models.result import Result
 
 # TODO ask in the GUI, if a bottle should be created as subvolume.
-# TODO duplicate bottles as subvolumes. Nice to have, using lightweight
-# subvolume cloning, if the source bottle is a subvolume.
 # TODO Add logging
 
 # Internal subvolumes created at initialization time:
@@ -57,6 +56,47 @@ def create_bottle_as_subvolume(bottle_path) -> bool:
         return False
     else:
         return True
+
+class DuplicateResult(Enum):
+    NOTHING = 1
+    EMPTY_SUBVOLUMES = 2
+    SNAPSHOTS_FROM_SOURCE = 3
+
+    def destination_directories_created(self) -> bool:
+        return not self == DuplicateResult.NOTHING
+
+    def bottle_contents_is_duplicated(self) -> bool:
+        return self == DuplicateResult.SNAPSHOTS_FROM_SOURCE
+
+def duplicate_bottle_as_subvolume(source_path, destination_path) -> DuplicateResult:
+    def create_bare_destination() -> DuplicateResult:
+        if create_bottle_as_subvolume(destination_path):
+            return DuplicateResult.EMPTY_SUBVOLUMES
+        else:
+            return DuplicateResult.NOTHING
+
+    if not btrfsutil.is_subvolume(source_path):
+        return create_bare_destination()
+    else:
+        try:
+            btrfsutil.create_snapshot(source_path, destination_path, read_only=False)
+        except btrfsutil.BtrfsUtilError as error:
+            match error.btrfsutilerror:
+                case btrfsutil.ERROR_NOT_BTRFS:
+                    return DuplicateResult.NOTHING
+                case btrfsutil.ERROR_SNAP_CREATE_FAILED:
+                    return create_bare_destination()
+                case other:
+                    raise error
+        for internal_subvolume in _internal_subvolumes:
+            internal_source_path = os.path.join(source_path, internal_subvolume)
+            if not btrfsutil.is_subvolume(internal_source_path):
+                continue
+            internal_destination_path = os.path.join(destination_path, internal_subvolume)
+            if os.path.isdir(internal_destination_path):
+                os.rmdir(internal_destination_path)
+            btrfsutil.create_snapshot(internal_source_path, internal_destination_path, read_only=False)
+        return DuplicateResult.SNAPSHOTS_FROM_SOURCE
 
 def try_create_bottle_snapshots_handle(bottle_path):
     """Try to create a bottle snapshots handle.

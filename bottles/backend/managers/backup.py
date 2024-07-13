@@ -24,6 +24,7 @@ from gettext import gettext as _
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
+from bottles.backend.models.btrfssubvolume import duplicate_bottle_as_subvolume, DuplicateResult
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import TaskManager, Task
@@ -185,26 +186,28 @@ class BackupManager:
         config: BottleConfig, source_path: str, destination_path: str, new_name: str
     ) -> Result:
         try:
-            if not os.path.exists(destination_path):
+            duplicate_result = duplicate_bottle_as_subvolume(source_path, destination_path)
+            if not duplicate_result.destination_directories_created():
                 os.makedirs(destination_path)
-            for item in [
-                "drive_c",
-                "system.reg",
-                "user.reg",
-                "userdef.reg",
-                "bottle.yml",
-            ]:
-                source_item = os.path.join(source_path, item)
-                destination_item = os.path.join(destination_path, item)
-                if os.path.isdir(source_item):
-                    shutil.copytree(
-                        source_item,
-                        destination_item,
-                        ignore=shutil.ignore_patterns(".*"),
-                        symlinks=True,
-                    )
-                elif os.path.isfile(source_item):
-                    shutil.copy(source_item, destination_item)
+            if not duplicate_result.bottle_contents_is_duplicated():
+                for item in [
+                    "drive_c",
+                    "system.reg",
+                    "user.reg",
+                    "userdef.reg",
+                    "bottle.yml",
+                ]:
+                    source_item = os.path.join(source_path, item)
+                    destination_item = os.path.join(destination_path, item)
+                    if os.path.isdir(source_item):
+                        shutil.copytree(
+                            source_item,
+                            destination_item,
+                            ignore=shutil.ignore_patterns(".*"),
+                            symlinks=True,
+                        )
+                    elif os.path.isfile(source_item):
+                        shutil.copy(source_item, destination_item)
 
             # Update the bottle configuration
             config_path = os.path.join(destination_path, "bottle.yml")
