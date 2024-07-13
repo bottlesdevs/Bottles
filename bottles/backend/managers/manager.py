@@ -1557,6 +1557,7 @@ class Manager(metaclass=Singleton):
 
         logging.info(f"Removing the bottle…")
         path = ManagerUtils.get_bottle_path(config)
+        self.btrfs_subvolume_manager.delete_all_snapshots(path)
         subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
 
         self.update_bottles(silent=True)

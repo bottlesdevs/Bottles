@@ -83,8 +83,6 @@ class BottleSnapshotsHandle:
     """Handle the snapshots of a single bottle created as btrfs subvolume.
     """
 
-    # TODO delete the snapshots, when the bottle get's deleted
-
     def __init__(self, bottle_path):
         """Internal should not be called directly.
 
@@ -165,6 +163,15 @@ class BottleSnapshotsHandle:
             os.rename(source_path, destination_path)
         _delete_subvolume(tmp_bottle_path)
         self._save_active_snapshot_id(snapshot_id)
+
+    def delete_all_snapshots(self) -> None:
+        for snapshot_id, metadata in self._snapshots.items():
+            snapshot_path = self._snapshot_path2(snapshot_id, metadata.description)
+            _delete_subvolume(snapshot_path)
+        try:
+            os.rmdir(self._snapshots_directory)
+        except FileNotFoundError:
+            pass
 
 def try_create_bottle_snapshots_versioning_wrapper(bottle_path):
     handle = try_create_bottle_snapshots_handle(bottle_path)
