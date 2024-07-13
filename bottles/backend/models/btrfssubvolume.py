@@ -13,7 +13,6 @@ from bottles.backend.models.result import Result
 # TODO duplicate bottles as subvolumes. Nice to have, using lightweight
 # subvolume cloning, if the source bottle is a subvolume.
 # TODO Add logging
-# TODO Better error handling
 
 # Internal subvolumes created at initialization time:
 _internal_subvolumes = [
@@ -151,7 +150,11 @@ class BottleSnapshotsHandle:
         tmp_bottle_path = f"{self._bottle_path}-tmp"
         snapshot_path = self._snapshot_path(snapshot_id)
         os.rename(self._bottle_path, tmp_bottle_path)
-        btrfsutil.create_snapshot(snapshot_path, self._bottle_path, read_only=False)
+        try:
+            btrfsutil.create_snapshot(snapshot_path, self._bottle_path, read_only=False)
+        except btrfsutil.BtrfsUtilError as error:
+            os.rename(tmp_bottle_path, self._bottle_path)
+            raise error
         for internal_subvolume in _internal_subvolumes:
             source_path = os.path.join(tmp_bottle_path, internal_subvolume)
             if not os.path.exists(source_path) or not btrfsutil.is_subvolume(source_path):
