@@ -5,8 +5,6 @@ import os
 import os.path
 import shutil
 
-# TODO Properly document and update dependency to libbtrfsutil
-# https://github.com/kdave/btrfs-progs/tree/master/libbtrfsutil
 import btrfsutil
 
 from bottles.backend.models.result import Result
