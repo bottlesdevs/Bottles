@@ -20,7 +20,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 
 # The implementations doing the actual work
-from bottles.backend.managers.btrfssubvolume import try_create_bottle_snapshots_versioning_wrapper, BottleSnapshotsVersioningWrapper
+from bottles.backend.models.btrfssubvolume import try_create_bottle_snapshots_versioning_wrapper, BottleSnapshotsVersioningWrapper
 from bottles.backend.models.fvs_versioning import BottleFvsVersioning
 
 # noinspection PyTypeChecker

@@ -3,6 +3,7 @@ modelsdir = join_paths(pkgdatadir, 'bottles/backend/models')
 
 bottles_sources = [
   '__init__.py',
+  'btrfssubvolume.py',
   'fvs_versioning.py',
   'result.py',
   'samples.py',
