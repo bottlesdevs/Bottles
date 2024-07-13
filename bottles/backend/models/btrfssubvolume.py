@@ -86,7 +86,7 @@ def duplicate_bottle_as_subvolume(source_path, destination_path) -> DuplicateRes
                     return DuplicateResult.NOTHING
                 case btrfsutil.ERROR_SNAP_CREATE_FAILED:
                     return create_bare_destination()
-                case other:
+                case _:
                     raise error
         for internal_subvolume in _internal_subvolumes:
             internal_source_path = os.path.join(source_path, internal_subvolume)
@@ -171,9 +171,9 @@ class BottleSnapshotsHandle:
         try:
             with open(self._active_snapshot_id_path(), "r") as file:
                 return int(file.read())
-        except OSError as error:
+        except OSError:
             return -1
-        
+ 
     def create_snapshot(self, description: str) -> int:
         snapshot_id = max(self._snapshots.keys(), default=-1) + 1
         snapshot_path = self._snapshot_path2(snapshot_id, description)
@@ -232,7 +232,7 @@ class BottleSnapshotsVersioningWrapper:
 
     def is_initialized(self):
         # Nothing to initialize
-        return true
+        return True
 
     def re_initialize(self):
         # Nothing to initialize
@@ -257,7 +257,7 @@ class BottleSnapshotsVersioningWrapper:
                 data={"state_id": active_state_id, "states": self.convert_states()},
                 message="Retrieved list of states",
         )
-        
+
     def set_state(
         self, state_id: int, after: callable
     ) -> Result:
@@ -265,4 +265,3 @@ class BottleSnapshotsVersioningWrapper:
         if after:
             after()
         return Result(True)
-
