@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-03-18 22:01+0000\n"
-"Last-Translator: Frey Luna <mlu98@proton.me>\n"
+"PO-Revision-Date: 2024-07-16 09:38+0000\n"
+"Last-Translator: Piotr Wieczorek <wieczorek.piotr.praga@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bottles/bottles/"
 "pl/>\n"
 "Language: pl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -952,15 +952,16 @@ msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
+"Skompresuj migawki, aby ograniczyć zajmowane miejsce. Spowoduje to "
+"spowolnienie procesu tworzenia migawek."
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
 msgstr "Użyj wzorów odrzuceń"
 
 #: bottles/frontend/ui/details-preferences.blp:402
-#, fuzzy
 msgid "Exclude paths in snapshots."
-msgstr "Odrzuć ścieżki od wersjonowania wykorzystując wzory"
+msgstr "Wyklucz ścieżki z migawek."
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
@@ -975,14 +976,12 @@ msgid "Stop process"
 msgstr "Zatrzymaj proces"
 
 #: bottles/frontend/ui/details-versioning.blp:18
-#, fuzzy
 msgid "No Snapshots Found"
-msgstr "Nie znaleziono zapisanych stanów"
+msgstr "Nie znaleziono żadnych migawek"
 
 #: bottles/frontend/ui/details-versioning.blp:19
-#, fuzzy
 msgid "Create your first snapshot to start saving states of your preferences."
-msgstr "Utwórz pierwszy stan, aby rozpocząć korzystanie z wersjonowania."
+msgstr "Utwórz pierwszą migawkę, aby zacząć zapisywać stan swoich ustawień."
 
 #: bottles/frontend/ui/details-versioning.blp:54
 msgid "A short comment"
@@ -993,9 +992,8 @@ msgid "Save the bottle state."
 msgstr "Zapisz stan butelki."
 
 #: bottles/frontend/ui/details-versioning.blp:78
-#, fuzzy
 msgid "Create new Snapshot"
-msgstr "Stwórz nowy stan"
+msgstr "Utwórz nową migawkę"
 
 #: bottles/frontend/ui/details.blp:16
 msgid "Details"
@@ -1254,14 +1252,12 @@ msgid "Frame Rate Limit"
 msgstr "Limit liczby klatek na sekundę"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
-#, fuzzy
 msgid "Frame Rate Limit When Unfocused"
-msgstr "Limit klatek (gdy okno nie ma obecnie fokusu)"
+msgstr "Ograniczenie liczby klatek na sekundę, gdy aplikacja jest nieaktywna"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "Użyj skalowania całkowitego"
+msgstr "Skalowanie Całkowite"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
