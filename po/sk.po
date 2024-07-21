@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-04-03 09:13+0000\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"PO-Revision-Date: 2024-07-21 21:41+0000\n"
+"Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/bottles/bottles/"
 "sk/>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -26,12 +26,12 @@ msgstr "Nie je určená žiadna cesta"
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
 msgid "Backup {0}"
-msgstr ""
+msgstr "Záloha {0}"
 
 #: bottles/backend/managers/backup.py:101
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr ""
+msgstr "Importujem zálohu: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
@@ -47,7 +47,7 @@ msgstr "Zlyhalo vytvorenie adresára pre fľašu."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Nepodarilo sa vytvoriť zástupcu adresára/súboru."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
@@ -60,202 +60,204 @@ msgstr "Šablóna nájdená, aplikuje sa…"
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1197
 msgid "The Wine config is being updated…"
-msgstr ""
+msgstr "Konfiguráca Wine sa aktualizuje…"
 
 #: bottles/backend/managers/manager.py:1199
 msgid "Wine config updated!"
-msgstr ""
+msgstr "Konfigurácia Wine bola aktualizovaná!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr ""
+msgstr "Spúšťam ako Flatpak, v sandboxe používateľa…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Konfigurujem sandbox pre priečinok používateľa…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "Nastavujem verziu Windows…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Aplikujem predvolené nastavenia CMD…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
-msgstr ""
+msgstr "Optimalizácia prostredia…"
 
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "Aplikujem prostredie: [{0}]…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Používam vlastný recept prostredia…"
 
 #: bottles/backend/managers/manager.py:1292
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Recept nie je možné nájsť alebo je neplatný…"
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "Inštalujem DXVK…"
 
 #: bottles/backend/managers/manager.py:1317
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "Inštalujem VKD3D…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "Inštalujem DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1335
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "Inštalujem závislosti: %s…"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "Vytváram nultý stav verzovacieho stavu…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
-msgstr ""
+msgstr "Dokončujem…"
 
 #: bottles/backend/managers/manager.py:1364
 msgid "Caching template…"
-msgstr ""
+msgstr "Ukladanie šablóny do medzipamäte…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
-msgstr ""
+msgstr "Spúšťam commit pre stav…"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Nie je čo na commitovanie"
 
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "Nový stav [{0}] bol úspešne vytvorený!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr ""
+msgstr "Zoznam stavov bol úspešne načítaný!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr ""
+msgstr "Stav {0} bol úspešne obnovený!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr ""
+msgstr "Obnovujem stav {}…"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
-msgstr ""
+msgstr "Stav nebol nájdený"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "Stav {} je už aktívnym stavom"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
-msgstr ""
+msgstr "Zobraziť verziu"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
-msgstr ""
+msgstr "Cesta ku spustiteľnému súboru"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr ""
+msgstr "Cesta .lnk"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
 msgid "Bottle name"
-msgstr ""
+msgstr "Názov fľaše"
 
 #: bottles/frontend/main.py:144
 msgid "Pass arguments"
-msgstr ""
+msgstr "Odovzdať argumenty"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Neplatná adresa URI (syntax: bottles:run/<flasa>/<program>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr ""
+msgstr "[Ukončiť] žiadosť bola prijatá."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
-msgstr ""
+msgstr "[Pomocník] žiadosť bola prijatá."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "[Obnoviť] žiadosť bola prijatá."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Podporiť"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Knižnice tretích strán a špeciálne poďakovania"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Sponzorované a financované"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr ""
+msgstr "Autorské práva © 2017 vývojari Bottles"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
 msgid "Bottles Developers"
-msgstr ""
+msgstr "Vývojári Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "Jose Riha <jose1711@gmail.com>"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr ""
+msgstr "Verzia súčasti"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
 #: bottles/frontend/ui/program-entry.blp:77
 msgid "Uninstall"
-msgstr ""
+msgstr "Odinštalovať"
 
 #: bottles/frontend/ui/component-entry.blp:23
 msgid "Browse Files"
-msgstr ""
+msgstr "Prehliadať súbory"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
+"Inštalácia skončila neúspechom. Dôvodom môže byť chyba repozitára, neúplne "
+"preberanie alebo nezhodujúci sa kontrolný súčet. Stlačte pre nový pokus."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
-msgstr ""
+msgstr "Stiahnuť a nainštalovať"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
-msgstr ""
+msgstr "Zobraziť manifest"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
@@ -263,59 +265,61 @@ msgstr "Licencia"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
-msgstr ""
+msgstr "Preinštalovať"
 
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Nahlásiť problém…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
-msgstr ""
+msgstr "Meno závislosti"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
 msgid "Dependency description"
-msgstr ""
+msgstr "Popis závislosti"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr ""
+msgstr "Kategória"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr ""
+msgstr "Stiahnuť a nainštalovať túto závislosť"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"Došlo k chybe pri inštalácii. Reštartujte Bottles a prečítajte si hlásenie o "
+"páde alebo ho spustite v termináli a prečítajte si výstup."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr ""
+msgstr "Ponuka závislostí"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Riešenie problémov"
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
-msgstr ""
+msgstr "Prehliadať súbory…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
-msgstr ""
+msgstr "Duplikovať Fľašu…"
 
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
+msgstr "Toto je úplný archív vašej Fľaše, vrátane osobných súborov."
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
-msgstr ""
+msgstr "Úplná záloha…"
 
 #: bottles/frontend/ui/details-bottle.blp:37
 #: bottles/frontend/ui/importer.blp:68
@@ -323,103 +327,105 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
+"Toto je iba konfigurácia Fľaše, je to perfektné, ak chcete vytvoriť novú "
+"Fľašu, ale bez osobných súborov."
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr ""
+msgstr "Konfigurácia exportu…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
 msgid "Show Hidden Programs"
-msgstr ""
+msgstr "Zobraziť skryté programy"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
-msgstr ""
+msgstr "Vyhľadávanie nových programov"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
-msgstr ""
+msgstr "Odstrániť Fľašu…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "Vedľajšia ponuka"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr ""
+msgstr "Vynútiť zastavenie všetkých procesov"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Simulovať systémové vypnutie Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
-msgstr ""
+msgstr "Vypnúť"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Simulovať reštartovanie systému Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
-msgstr ""
+msgstr "Reštartovať"
 
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr ""
+msgstr "Možnosti spúšťania"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
-msgstr ""
+msgstr "Spustiť v termináli"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "Presunutím súborov nad toto okno ich spustíte"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
-msgstr ""
+msgstr "Moja Fľaša"
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
-msgstr ""
+msgstr "Windows x64"
 
 #: bottles/frontend/ui/details-bottle.blp:189
 #: bottles/frontend/ui/list-entry.blp:12 bottles/frontend/ui/new.blp:71
 msgid "Environment"
-msgstr ""
+msgstr "Prostredie"
 
 #: bottles/frontend/ui/details-bottle.blp:201
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr ""
+msgstr "Spúšťač"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "Pri tejto Fľaši je povolené správa verzií"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr ""
+msgstr "Pri tejto Fľaši je aktívna správa verzií."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
-msgstr ""
+msgstr "Spustiť spustiteľný súbor…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
-msgstr ""
+msgstr "Programy"
 
 #: bottles/frontend/ui/details-bottle.blp:275
 msgid ""
@@ -427,46 +433,50 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Kliknutím na „Spustiť spustiteľný súbor…“ spustíte spustiteľný súbor, "
+"kliknutím na „Pridať zástupcu“ pridáte spustiteľný súbor do zoznamu "
+"Programov alebo kliknutím na „Inštalovať programy…“ nainštalujete komunitou "
+"spravované programy."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
-msgstr ""
+msgstr "Pridať skratky…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 msgid "Install Programs…"
-msgstr ""
+msgstr "Inštalovať programy…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
-msgstr ""
+msgstr "Možnosti"
 
 #: bottles/frontend/ui/details-bottle.blp:350
 #: bottles/frontend/views/details.py:141
 msgid "Settings"
-msgstr ""
+msgstr "Nastavenia"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr ""
+msgstr "Konfigurovať nastavenia Fľaše."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr ""
+msgstr "Závislosti"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
-msgstr ""
+msgstr "Inštalovať závislosti pre programy."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "Snímky"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
-msgstr ""
+msgstr "Vytvorte a spravujte stavy Fliaš."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
@@ -476,44 +486,44 @@ msgstr "Správca úloh"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr ""
+msgstr "Správa bežiacich programov."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
-msgstr ""
+msgstr "Nástroje"
 
 #: bottles/frontend/ui/details-bottle.blp:394
 msgid "Command Line"
-msgstr ""
+msgstr "Príkazový riadok"
 
 #: bottles/frontend/ui/details-bottle.blp:395
 msgid "Run commands inside the Bottle."
-msgstr ""
+msgstr "Spustiť príkazy vo vnútri Fľaše."
 
 #: bottles/frontend/ui/details-bottle.blp:404
 msgid "Registry Editor"
-msgstr ""
+msgstr "Editor registrov"
 
 #: bottles/frontend/ui/details-bottle.blp:405
 msgid "Edit the internal registry."
-msgstr ""
+msgstr "Upraviť interný register."
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr ""
+msgstr "Staré nástroje Wine"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
-msgstr ""
+msgstr "Prehliadač"
 
 #: bottles/frontend/ui/details-bottle.blp:435
 msgid "Debugger"
-msgstr ""
+msgstr "Ladiaci program"
 
 #: bottles/frontend/ui/details-bottle.blp:444
 #: bottles/frontend/ui/importer.blp:69 bottles/frontend/ui/new.blp:145
 msgid "Configuration"
-msgstr ""
+msgstr "Konfigurácia"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
@@ -525,17 +535,17 @@ msgstr "Ovládací panel"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr ""
+msgstr "Hľadať závislosti…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Ste offline :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Fľaše sú spustené v režime offline a závislosti tak nie sú dostupné."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -544,34 +554,39 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Závislosti sú prostriedky, ktoré zlepšujú kompatibilitu softvéru systému "
+"WIndows.\n"
+"\n"
+"Súbory na tejto stránke sú poskytované tretími stranami pod proprietárnou "
+"licenciou. Ich inštaláciou vyjadrujete súhlas s podmienkami tejto licencie."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
-msgstr ""
+msgstr "Nahlásiť chýbajúcu závislosť."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
 msgid "Report Missing Dependency"
-msgstr ""
+msgstr "Nahlásiť chýbajúcu závislosť"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
 msgid "Read Documentation."
-msgstr ""
+msgstr "Prečítajte si dokumentáciu."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
 #: bottles/frontend/ui/details-versioning.blp:37
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentácia"
 
 #: bottles/frontend/ui/details-dependencies.blp:92
 #: bottles/frontend/ui/details-installers.blp:61
 #: bottles/frontend/ui/window.blp:46
 msgid "Search"
-msgstr ""
+msgstr "Hľadať"
 
 #: bottles/frontend/ui/details-installers.blp:9
 msgid "Search for Programs…"
-msgstr ""
+msgstr "Hľadať programy…"
 
 #: bottles/frontend/ui/details-installers.blp:15
 msgid ""
@@ -580,52 +595,58 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Nainštalujte programy vytvorené našou komunitou.\n"
+"\n"
+"Súbory na tejto stránke sú poskytované tretími stranami pod proprietárnou "
+"licenciou. Inštaláciou položky súhlasíte s podmienkami tejto licencie."
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
-msgstr ""
+msgstr "Neboli nájdené žiadne inštalátory"
 
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
+"Repozitár je buď nedostupný alebo nie je s touto Fľašou kompatibilný žiaden "
+"inštalátor."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
 #: bottles/frontend/ui/preferences.blp:81
 msgid "Read Documentation"
-msgstr ""
+msgstr "Prečítajte si dokumentáciu"
 
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52
 msgid "Name"
-msgstr ""
+msgstr "Meno"
 
 #: bottles/frontend/ui/details-preferences.blp:11
 msgid "Components"
-msgstr ""
+msgstr "Komponenty"
 
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "Verzia vrstvy kompatibility Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Aktualizujem spúšťače a komponenty, čakajte prosím…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
 msgid "DXVK"
-msgstr ""
+msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 9/10/11 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Zlepšenie kompatibility Direct3D 9/10/11 prevodom do Vulkanu."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
-msgstr ""
+msgstr "Aktualizujem DXVK, čakajte prosím…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:266
@@ -826,9 +847,8 @@ msgstr ""
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "Fľaše"
+msgstr "Behové prostredie Bottles"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 msgid ""
@@ -838,7 +858,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr ""
+msgstr "Behové prostredie Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
@@ -2049,7 +2069,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:287
 msgid "Runtime"
-msgstr ""
+msgstr "Behové prostredie"
 
 #: bottles/frontend/ui/preferences.blp:291
 msgid "WineBridge"
