@@ -200,6 +200,21 @@ class Bottles(Adw.Application):
         """
         uri = uri[0]
 
+        if uri.startswith("bottles:run/"):
+            if len(uri.split("/")) != 3:
+                logging.error(
+                    _("Invalid URI (syntax: bottles:run/<bottle>/<program>)")
+                )
+                return False
+            
+            uri = uri.replace("bottles:run/", "")
+            bottle, program = uri.split("/")
+
+            import subprocess
+
+            subprocess.Popen(["bottles-cli", "run", "-b", bottle, "-p", program])
+            return 0
+
         try:
             from bottles.frontend.windows.bottlepicker import BottlePickerDialog
 
@@ -210,23 +225,7 @@ class Bottles(Adw.Application):
             logging.error(
                 _("Error while processing URI: {0}").format(e),
             )
-            pass
-
-        _wrong_uri_error = _("Invalid URI (syntax: bottles:run/<bottle>/<program>)")
-        if (
-            not len(uri) > 0
-            or not uri.startswith("bottles:run/")
-            or len(uri.split("/")) != 3
-        ):
-            print(_wrong_uri_error)
             return False
-
-        uri = uri.replace("bottles:run/", "")
-        bottle, program = uri.split("/")
-
-        import subprocess
-
-        subprocess.Popen(["bottles-cli", "run", "-b", bottle, "-p", program])
 
     def do_startup(self):
         """
