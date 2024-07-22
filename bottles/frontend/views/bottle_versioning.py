@@ -135,8 +135,8 @@ class VersioningView(Adw.PreferencesPage):
 
     def add_state(self, widget):
         """
-        This function create ask the versioning manager to
-        create a new bottle state with the given message.
+        This function asks the versioning manager to create a new bottle state
+        with the given message.
         """
         if not self.btn_save.get_sensitive():
             return
