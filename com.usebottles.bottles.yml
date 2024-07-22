@@ -175,6 +175,26 @@ modules:
           type: git
           tag-pattern: ^xdpyinfo-([\d.]+)$
 
+  # btrfs-progs contains the btrfsutil library with it's Python bindings
+  - name: btrfs-progs
+    buildsystem: simple
+    build-commands:
+      - ./autogen.sh
+      - ./configure --prefix=/app --enable-python --disable-documentation --disable-lzo
+      - make -j
+      - make install
+      # Unfortunately with `make install_python` the `btrfsutil` Python-module
+      # still can not be imported. It needs this ugly hack:
+      - cp -a libbtrfsutil/python/btrfsutil.cpython-311-x86_64-linux-gnu.so /app/lib/python3.11/site-packages
+    sources:
+      - type: git
+        url: https://github.com/kdave/btrfs-progs
+        tag: v6.9.2
+        commit: b0e5ef4cf7c8b473119e0d487a26b96058e8f80d
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
   # Libraries
   # ----------------------------------------------------------------------------
 
