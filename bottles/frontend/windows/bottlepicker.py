@@ -27,7 +27,7 @@ from bottles.frontend.params import APP_ID
 class BottleEntry(Adw.ActionRow):
     def __init__(self, config: BottleConfig):
         super().__init__()
-        self.bottle = config.Path
+        self.bottle = config.Name
         self.set_title(config.Name)
 
 
