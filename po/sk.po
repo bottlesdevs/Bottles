@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-07-29 20:43+0000\n"
+"PO-Revision-Date: 2024-07-30 08:34+0000\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/bottles/bottles/"
 "sk/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
-msgstr "Nie je určená žiadna cesta"
+msgstr "Nevybrali ste žiadnu cestu"
 
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
@@ -680,7 +680,7 @@ msgstr "LatencyFleX"
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
 msgstr ""
-"Zvýšte rýchlosť odozvy. Môže byť zistený niektorými anti-cheat systémami."
+"Zvýšte rýchlosť odozvy. Môže byť detegovaný niektorými anti-cheat systémami."
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
@@ -709,7 +709,7 @@ msgstr "Dokonalé rozlíšenie FidelityFX"
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
 msgstr ""
-"Zlepšite výkon na úrok vizuálnej stránky. Funguje iba v prostredí Vulkan."
+"Zlepšite výkon na úkor vizuálnej stránky. Funguje iba v prostredí Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
@@ -793,9 +793,8 @@ msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
-"Pomocou aplikácie MangoHug môžete sledovať informácie ako je snímková "
-"frekvencia, teplota, zaťaženie CPU/GPU a ďalšie informácie týkajúce sa "
-"OpenGL a Vulkanu."
+"Pomocou aplikácie MangoHug sledujte informácie ako je snímková frekvencia, "
+"teplota, zaťaženie CPU/GPU a ďalšie údaje týkajúce sa OpenGL a Vulkanu."
 
 #: bottles/frontend/ui/details-preferences.blp:211
 msgid "Feral GameMode"
@@ -815,8 +814,8 @@ msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
-"Zlepšiť čas načítania pri viacnásobnom spúšťaní hry. Prvé spustenie hry bude "
-"trvať dlhšie."
+"Zlepšite čas načítania pri viacnásobnom spúšťaní hry. Prvé spustenie hry "
+"bude trvať dlhšie."
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
@@ -829,7 +828,8 @@ msgstr "Zachytávanie hry pomocou OBS"
 #: bottles/frontend/ui/details-preferences.blp:242
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
 msgstr ""
-"Prepnúť funkciu zachytávania hry OBS pre všetky programy Vulkan a OpenGL."
+"Zapnite/vypnite funkciu zachytávania hry OBS pre všetky programy Vulkan a "
+"OpenGL."
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
@@ -931,7 +931,7 @@ msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
 msgstr ""
-"Automatické vytváranie snímkov pred inštaláciou softvéru alebo zmenou "
+"Automaticky vytvárajte snímky pred inštaláciou softvéru alebo zmenou "
 "nastavení."
 
 #: bottles/frontend/ui/details-preferences.blp:391
@@ -948,11 +948,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
-msgstr "Použiť vzory vylúčenia"
+msgstr "Používať vzory vylúčenia"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr "Vylúčenie ciest v snímkoch."
+msgstr "Vylúčte cesty zo snímok."
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
@@ -2040,7 +2040,7 @@ msgstr "Všeobecné"
 
 #: bottles/frontend/ui/preferences.blp:14
 msgid "Appearance"
-msgstr "Vzhľad"
+msgstr "Zobrazenie"
 
 #: bottles/frontend/ui/preferences.blp:17
 msgid "Dark Mode"
@@ -2052,11 +2052,11 @@ msgstr "Či majú Bottles používať tmavý farebný motív."
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
-msgstr "Zobraziť dátum aktualizácie"
+msgstr "Zobrazovať dátum aktualizácie"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
-msgstr "Či sa má v zoznam Fliaš zobrazovať dátum aktualizácie."
+msgstr "Či sa má v zozname Fliaš zobrazovať dátum aktualizácie."
 
 #: bottles/frontend/ui/preferences.blp:42
 #: data/com.usebottles.bottles.gschema.xml:46
@@ -2065,7 +2065,7 @@ msgstr "Upozornenia"
 
 #: bottles/frontend/ui/preferences.blp:43
 msgid "Show notifications for downloads and installs."
-msgstr "Zobraziť oznámenia o stiahnutiach a inštaláciach."
+msgstr "Zobrazovať oznámenia o stiahnutiach a inštaláciách."
 
 #: bottles/frontend/ui/preferences.blp:52
 msgid "Temp Files"
@@ -2093,7 +2093,7 @@ msgstr "Prefixy Steam Protonu"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
-msgstr "Zoznam a správa prefixov služby Steam Proton."
+msgstr "Zobrazovať a spravovať prefixy služby Steam Proton."
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
@@ -2190,7 +2190,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:303
 msgid "Sandbox per bottle"
-msgstr "Sandbox pre Fľašu"
+msgstr "Samostatný sandbox pre Fľaše"
 
 #: bottles/frontend/ui/preferences.blp:304
 msgid "In early development."
@@ -2296,7 +2296,7 @@ msgstr "Aktualizované: %s"
 #: bottles/frontend/views/bottle_details.py:267
 #, python-brace-format
 msgid "\"{0}\" added"
-msgstr "„{0}“ pridané"
+msgstr "„{0}“ bolo pridané"
 
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
@@ -2390,8 +2390,8 @@ msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
-"Chýba spúšťač vyžadovaný touto Fľašou. Nainštalujte ho v predvoľbách Fliaš "
-"alebo vyberte nový, ktorý bude aplikáciu spúšťať."
+"Chýba spúšťač vyžadovaný touto Fľašou. Nainštalujte ho v nastaveniach "
+"Bottles alebo vyberte nový, ktorý bude aplikáciu spúšťať."
 
 #: bottles/frontend/views/bottle_details.py:597
 msgid "Are you sure you want to force stop all processes?"
@@ -2509,7 +2509,7 @@ msgstr "Načítaných {0} z {1} balíčkov"
 
 #: bottles/frontend/views/new.py:157
 msgid "Select Bottle Directory"
-msgstr "Vyberte adresár pre Fľaše"
+msgstr "Vyberte adresár pre Fľašu"
 
 #: bottles/frontend/views/new.py:176
 msgid "Creating Bottle…"
