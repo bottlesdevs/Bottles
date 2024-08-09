@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2022-07-06 18:18+0000\n"
-"Last-Translator: Alvar Lagerlöf <alvar.lagerlof@gmail.com>\n"
+"PO-Revision-Date: 2024-08-09 16:17+0000\n"
+"Last-Translator: Karl Jonasson <karl.a.jonasson01@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bottles/bottles/"
 "sv/>\n"
 "Language: sv\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -135,7 +135,7 @@ msgstr "Uppdaterar tillstånd …"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Inget att tillämpa"
 
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
@@ -143,9 +143,8 @@ msgid "New state [{0}] created successfully!"
 msgstr "Ett nytt tillstånd [{0}] har skapats!"
 
 #: bottles/backend/managers/versioning.py:123
-#, fuzzy
 msgid "States list retrieved successfully!"
-msgstr "Ett nytt tillstånd [{0}] har skapats!"
+msgstr "Tillståndslistan hämtades framgångsrikt"
 
 #: bottles/backend/managers/versioning.py:153
 #, fuzzy, python-brace-format
@@ -153,9 +152,8 @@ msgid "State {0} restored successfully!"
 msgstr "Ett nytt tillstånd [{0}] har skapats!"
 
 #: bottles/backend/managers/versioning.py:155
-#, fuzzy
 msgid "Restoring state {} …"
-msgstr "Återställer status: [{0}]"
+msgstr "Återställer läge {}…"
 
 #: bottles/backend/managers/versioning.py:162
 #, fuzzy
@@ -164,7 +162,7 @@ msgstr "Inga lägen hittades"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "Läge {} är redan det aktiva läget"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
@@ -205,15 +203,15 @@ msgstr "[Uppdatera] begäran mottagen."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Donera"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Tredjepartsbibliotek och Speciellt Tack"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Sponsrat och Finansierat av"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
@@ -291,7 +289,7 @@ msgstr "Miljöbeskrivning"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 #, fuzzy
@@ -365,7 +363,7 @@ msgstr "Ta bort flaskan…"
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "Andrahandsmeny"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 #, fuzzy
@@ -394,13 +392,12 @@ msgid "Launch Options"
 msgstr "Startalternativ"
 
 #: bottles/frontend/ui/details-bottle.blp:135
-#, fuzzy
 msgid "Run in Terminal"
-msgstr "Starta i terminal…"
+msgstr "Kör i Terminal"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "Släpp filer för att exekvera dem"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
@@ -453,12 +450,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
-msgstr ""
+msgstr "Lägg till genvägar…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
-#, fuzzy
 msgid "Install Programs…"
-msgstr "Installera detta program"
+msgstr "Installera Program…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 #, fuzzy
@@ -472,9 +468,8 @@ msgid "Settings"
 msgstr "Skärm-inställningar"
 
 #: bottles/frontend/ui/details-bottle.blp:351
-#, fuzzy
 msgid "Configure bottle settings."
-msgstr "Skapar butelj …"
+msgstr "Konfigurera flaskinställningar."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
@@ -482,15 +477,14 @@ msgid "Dependencies"
 msgstr "Beroenden"
 
 #: bottles/frontend/ui/details-bottle.blp:361
-#, fuzzy
 msgid "Install dependencies for programs."
-msgstr "Installera detta program"
+msgstr "Installera programberoenden."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "Ögonblicksbilder"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 #, fuzzy
@@ -505,7 +499,7 @@ msgstr "Aktivitetshanterare"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr ""
+msgstr "Hantera körande program."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -562,20 +556,21 @@ msgstr "Letar efter beroenden…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Du är frånkopplad :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Bottles kör i frånkopplat läge, så beroenden är inte tillgängliga."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
-#, fuzzy
 msgid ""
 "Dependencies are resources that improve compatibility of Windows software.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Beroenden är resurser som förbättrar kompatibiliteten med Windowsmjukvara.\n"
+"\n"
 "Filerna på den här sidan tillhandahålls av tredje part under en egen licens. "
 "Genom att installera dem godkänner du deras respektive licensvillkor."
 
@@ -589,9 +584,8 @@ msgid "Report Missing Dependency"
 msgstr "Rapportera ett beroende som saknas"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
-#, fuzzy
 msgid "Read Documentation."
-msgstr "Läs dokumentation"
+msgstr "Läs dokumentation."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
@@ -650,7 +644,7 @@ msgstr "Komponenter"
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "Versionen av Wine's kompatibilitetslager."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
@@ -680,6 +674,7 @@ msgstr "VKD3D"
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
 msgstr ""
+"Förbättra Direct3D 12 kompatibilitet genom att översätta det till Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
@@ -749,15 +744,19 @@ msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Använd det dedikerade grafikkortet för att öka prestandan med påföljden av "
+"ökad strömförbrukning."
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "Efterbehandlingseffekter"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
+"Lägg till diverse efterbehandlingseffekter med vkBasalt. Funkar bara på "
+"Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:138
 #, fuzzy
@@ -766,7 +765,7 @@ msgstr "Hantera inställningar för Wine-undersystem."
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "Hantera hur spel ska visas på skärmen med Gamescope."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"

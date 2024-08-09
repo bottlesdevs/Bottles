@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-02-08 06:09+0000\n"
-"Last-Translator: shamo3qk <x976631@gmail.com>\n"
+"PO-Revision-Date: 2024-07-18 19:28+0000\n"
+"Last-Translator: OliverTzeng <olivertzengolivertzeng@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -51,7 +51,7 @@ msgstr "無法建立暫時填充用的目錄/檔案。"
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr "正在產生bottle設定檔…"
+msgstr "正在產生酒瓶設定檔…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
@@ -223,7 +223,7 @@ msgstr "Bottles 開發者"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "銘謝翻譯者"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -582,14 +582,13 @@ msgid "Search for Programs…"
 msgstr "搜尋程式…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"安裝由社群維護的程式，免去手動設定。\n"
+"建議安裝社群所推出的軟體以免去手動設定。\n"
 "\n"
 "此頁面的檔案由第三方以專有軟體授權提供。安裝即代表您同意授權條款。"
 
@@ -690,7 +689,7 @@ msgstr "使用 DXVK-NVAPI，犧牲視覺效果換取性能。僅支援 NVIDIA Tu
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr "FidelityFX Super Resolution"
+msgstr "FidelityFX 超級解析度"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
@@ -840,7 +839,7 @@ msgstr "管理沙盒權限"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr "Bottles Runtime"
+msgstr "Bottles 執行環境"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 msgid ""
@@ -850,7 +849,7 @@ msgstr "新增額外函式庫以增加相容性。若遇到問題請將此選項
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Steam Runtime"
+msgstr "Steam 執行環境"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
@@ -1713,9 +1712,8 @@ msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"找不到外部 prefixes。請確認 Bottles 是否有存取權限？\n"
-"\n"
-"請使用上方圖示從備份匯入酒瓶。"
+"找不到外部前綴。Bottles 可以存取它們嗎？\n"
+"使用頂部的圖示從備份匯入酒瓶。"
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
@@ -1820,9 +1818,8 @@ msgid "Bottles"
 msgstr "Bottles"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "鑄造新酒瓶"
+msgstr "鑄造新酒瓶…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
@@ -1845,7 +1842,6 @@ msgid "Browse"
 msgstr "瀏覽"
 
 #: bottles/frontend/ui/new.blp:32
-#, fuzzy
 msgid "C_reate"
 msgstr "創建"
 
@@ -1855,17 +1851,14 @@ msgid "Bottle Name"
 msgstr "酒瓶名稱"
 
 #: bottles/frontend/ui/new.blp:75
-#, fuzzy
 msgid "_Application"
 msgstr "應用程式"
 
 #: bottles/frontend/ui/new.blp:88
-#, fuzzy
 msgid "_Gaming"
 msgstr "遊戲"
 
 #: bottles/frontend/ui/new.blp:101
-#, fuzzy
 msgid "C_ustom"
 msgstr "自訂"
 
@@ -1874,9 +1867,8 @@ msgid "Custom"
 msgstr "自訂"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "選擇目錄"
+msgstr "分享使用者目錄"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1891,13 +1883,12 @@ msgid "Architecture"
 msgstr "架構"
 
 #: bottles/frontend/ui/new.blp:137
-#, fuzzy
 msgid "32-bit should only be used if strictly necessary."
-msgstr "如果沒有特別的需求，我們建議不要使用 32 位元。"
+msgstr "僅在絕對必要時才使用 32 位元。"
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
-msgstr "匯入自訂配置"
+msgstr "匯入自訂配置。"
 
 #: bottles/frontend/ui/new.blp:176
 msgid "Bottle Directory"
@@ -1905,10 +1896,9 @@ msgstr "Bottle 目錄"
 
 #: bottles/frontend/ui/new.blp:177
 msgid "Directory that will contain the data of this bottle."
-msgstr "用於存放此 bottle 資料的目錄。"
+msgstr "用於存放此 酒瓶 資料的目錄。"
 
 #: bottles/frontend/ui/new.blp:249
-#, fuzzy
 msgid "_Close"
 msgstr "關閉"
 
@@ -1993,7 +1983,7 @@ msgstr "顯示更新日期"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
-msgstr "是否在 bottle 列表中顯示更新日期。"
+msgstr "是否在 酒瓶 列表中顯示更新日期。"
 
 #: bottles/frontend/ui/preferences.blp:42
 #: data/com.usebottles.bottles.gschema.xml:46
@@ -2026,7 +2016,7 @@ msgstr "整合"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr "Steam Proton Prefixes"
+msgstr "Steam Proton 前綴"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
@@ -2281,9 +2271,8 @@ msgid "Select the location where to save the backup archive"
 msgstr "選擇儲存備份封存檔的位置"
 
 #: bottles/frontend/views/bottle_details.py:435
-#, fuzzy
 msgid "Backup"
-msgstr "備份 {0}"
+msgstr "備份"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
@@ -2341,9 +2330,8 @@ msgid "{} To add this feature, please run flatpak install"
 msgstr "{} 欲新增此功能，請執行flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
-#, fuzzy
 msgid "This bottle name is already in use."
-msgstr "名稱含有特殊字元，或是已經被使用。"
+msgstr "此名稱已被使用。"
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
@@ -2392,7 +2380,6 @@ msgid "Importing backup…"
 msgstr "正在匯入備份…"
 
 #: bottles/frontend/views/importer.py:119
-#, fuzzy
 msgid "Select a Backup Archive"
 msgstr "選擇備份封存檔"
 
@@ -2402,7 +2389,6 @@ msgid "Import"
 msgstr "匯入"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
-#, fuzzy
 msgid "Select a Configuration File"
 msgstr "選擇配置文件"
 
@@ -2440,7 +2426,6 @@ msgid "Select Bottle Directory"
 msgstr "選取 Bottle 的目錄"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
 msgstr "正在鑄造酒瓶…"
 
@@ -2467,9 +2452,8 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "找不到 Steam，或者是 Bottles 沒有足夠權限。"
 
 #: bottles/frontend/views/preferences.py:176
-#, fuzzy
 msgid "Select Bottles Path"
-msgstr "選取酒瓶"
+msgstr "選取酒瓶的存放路徑"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
@@ -2531,9 +2515,9 @@ msgid "Manifest for {0}"
 msgstr "{0} 的清單"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "「{0}」已安裝"
+msgstr "「{0}」已解除安裝"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
@@ -2671,7 +2655,6 @@ msgid "Copy to clipboard"
 msgstr "複製到剪貼簿"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
 msgstr "選擇資源檔案"
 
@@ -2766,7 +2749,7 @@ msgstr "在列表中切換更新日期"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr "切換 bottles 的更新日期顯示。"
+msgstr "切換 酒瓶 的更新日期顯示。"
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
@@ -2981,35 +2964,33 @@ msgid "Add more update information and correct release notes version"
 msgstr "新增更多更新資訊和正確的發行說明版本"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Fixed \"Add to Steam\" button"
-msgstr "新增到 Steam"
+msgstr "修正「新增到 Steam」按鈕"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr ""
+msgstr "修改 BottleConfig 無法排序的問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "修復 Patool 雙重壓縮"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "版本"
+msgstr "正確版本"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "鑄造酒瓶時發生錯誤。"
+msgstr "修正建立酒瓶時所發生錯誤"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "重大改動：重新設計新 Bottle 介面"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
+#, fuzzy
 msgid "Quality of life improvements:"
-msgstr ""
+msgstr "重大的改良："
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
@@ -3029,9 +3010,8 @@ msgid "Adding shortcut to Steam resulted an error"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
-#, fuzzy
 msgid "Importing backups resulted an error"
-msgstr "匯入備份：{0}"
+msgstr "匯入備份時發生錯誤"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
@@ -3045,16 +3025,15 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "修正文字編碼問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "創建日期"
+msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
