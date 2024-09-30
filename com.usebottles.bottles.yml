@@ -2,7 +2,7 @@ id: com.usebottles.bottles
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 base: org.winehq.Wine
-base-version: stable-23.08
+base-version: stable-24.08
 runtime-version: &runtime-version '47'
 command: bottles
 
@@ -28,7 +28,6 @@ inherit-extensions:
   - org.freedesktop.Platform.ffmpeg_full.i386
   - org.winehq.Wine.gecko
   - org.winehq.Wine.mono
-  - org.winehq.Wine.DLLs
 
 add-extensions:
   org.gnome.Platform.Compat.i386:
