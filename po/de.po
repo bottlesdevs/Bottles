@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-02-06 06:01+0000\n"
+"PO-Revision-Date: 2024-04-21 13:07+0000\n"
 "Last-Translator: David <dawin@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -143,24 +143,24 @@ msgstr "Neuen Zustand [{0}] erfolgreich erstellt!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr "Statusliste erfolgreich abgerufen!"
+msgstr "Liste der Zustände erfolgreich abgerufen!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "Status {0} erfolgreich wiederhergestellt!"
+msgstr "Zustand {0} erfolgreich wiederhergestellt!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr "Wiederherstellung des Status von {} …"
+msgstr "Zustand {} wiederherstellen…"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
-msgstr "Status nicht gefunden"
+msgstr "Zustand nicht gefunden"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr "Status {} ist bereits der aktive Status"
+msgstr "Zustand {} ist bereits der aktive Zustand"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
@@ -358,7 +358,7 @@ msgstr "Sekundäres Menü"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr "Alle Prozesse beenden"
+msgstr "Stoppen aller Prozesse erzwingen"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
@@ -383,7 +383,7 @@ msgstr "Startoptionen"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
-msgstr "Im Terminal starten"
+msgstr "Im Terminal ausführen"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
@@ -530,7 +530,7 @@ msgstr "Konfiguration"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr "Deinstallationsprogramm"
+msgstr "Deinstallateur"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
@@ -723,14 +723,14 @@ msgstr "Verwalte die FidelityFX Super Resolution-Einstellungen"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
-msgstr "Dedizierte Graphikkarte"
+msgstr "Dedizierte Grafikkarte"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
-"Dedizierte Graphikkarte nutzen. Verbessert die Performance zu Lasten des "
+"Dedizierte Grafikkarte nutzen. Verbessert die Performance zu Lasten des "
 "Stromverbrauchs."
 
 #: bottles/frontend/ui/details-preferences.blp:135
@@ -972,7 +972,7 @@ msgstr "Neu laden"
 
 #: bottles/frontend/ui/details-taskmanager.blp:22
 msgid "Stop process"
-msgstr "Prozess beenden"
+msgstr "Prozess stoppen"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 msgid "No Snapshots Found"
@@ -1181,14 +1181,14 @@ msgstr "Vorhandene Variablen"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
 msgid "Exclusion Patterns"
-msgstr "Ausschlusspattern"
+msgstr "Ausschlussmuster"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
-"Definiere Pattern, die verwendet werden, um zu verhindern, dass einige "
+"Definiere Muster, die verwendet werden, um zu verhindern, dass einige "
 "Verzeichnisse versioniert werden."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
@@ -1266,7 +1266,7 @@ msgstr "Fenstertyp"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:166
 msgid "Borderless"
-msgstr "Randlos"
+msgstr "Rahmenlos"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:172
 msgid "Fullscreen"
@@ -1733,7 +1733,7 @@ msgstr "SMAA-Eckenabrundung gibt die Stärke der Abrundung von Kantenecken an."
 
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
-msgstr "Integrierte (Wine)"
+msgstr "Eingebaut (Wine)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:9
 msgid "Native (Windows)"
@@ -1741,11 +1741,11 @@ msgstr "Nativ (Windows)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:10
 msgid "Builtin, then Native"
-msgstr "Integrierte, dann Nativ"
+msgstr "Eingebaut, dann Nativ"
 
 #: bottles/frontend/ui/dll-override-entry.blp:11
 msgid "Native, then Builtin"
-msgstr "Nativ, dann Integrierte"
+msgstr "Nativ, dann eingebaut"
 
 #: bottles/frontend/ui/dll-override-entry.blp:12
 msgid "Disabled"
@@ -2762,7 +2762,7 @@ msgstr "Keine Umgebungsvariablen definiert."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
-msgstr "Keine Ausschlusspattern definiert."
+msgstr "Keine Ausschlussmuster definiert."
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -2810,7 +2810,7 @@ msgstr "{0} ist jetzt in der Programmansicht verfügbar."
 
 #: bottles/frontend/windows/installer.py:166
 msgid "Installer failed with unknown error"
-msgstr "Installationsprogramm fehlgeschlagen mit einem unbekannten Fehler"
+msgstr "Installateur schlug mit unbekanntem Fehler fehl"
 
 #: bottles/frontend/windows/launchoptions.py:56
 #, python-brace-format
@@ -2875,7 +2875,7 @@ msgstr "De(-aktiviere) das Aktualisierungsdatum in der Bottles-Liste."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr "Steam"
+msgstr "Auflistung der Steam-Apps"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."

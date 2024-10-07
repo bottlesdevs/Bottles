@@ -92,7 +92,7 @@ class WineCommand:
         config: BottleConfig,
         command: str,
         terminal: bool = False,
-        arguments: str = False,
+        arguments: str = "",
         environment: dict = {},
         communicate: bool = False,
         cwd: Optional[str] = None,
@@ -468,7 +468,7 @@ class WineCommand:
         if arch == "win64":
             runner = f"{runner}64"
 
-        runner = runner.replace(" ", "\\ ")
+        runner = shlex.quote(runner)  # type: ignore
 
         return runner, runner_runtime
 

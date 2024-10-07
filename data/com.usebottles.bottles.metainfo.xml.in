@@ -67,6 +67,29 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="51.13" date="2024-07-10">
+      <description translatable="no">
+        <p>Fixed crash on starting executables via the file manager [#3427]</p>
+      </description>
+    </release>
+    <release version="51.12" date="2024-07-09">
+      <description translatable="no">
+        <p>Support d3d8 vya dxvk</p>
+        <p>Removed @lru_cache decorator from the Paths class, plus minor typing fixes</p>
+        <p>Fixed crash on startup [#3329]</p>
+        <p>Updated GNOME runtime in manifest</p>
+        <p>Moved chattr_f function to appropriate class</p>
+        <p>Improved performance by using case-fold for drive_c when available</p>
+        <p>Fixed Gamescope options arguments</p>
+        <p>Added option to skip checksum when installing dependencies [#3278]</p>
+        <p>Fixed issue where bottles with spaces in name couldn't be run through bottle picker [#3287]</p>
+        <p>Fixed issue where kgx Launch with terminal was not working [#3289]</p>
+        <p>Repaired SyntaxWarning in generic.py (invalid escape sequence '\d') when starting bottles from CLI</p>
+        <p>Fixed misspelled media type (application/x-ms-dos-executable)</p>
+        <p>Switched to add_pattern from add_mime_type to resolve file filter issues on certain Linux distributions</p>
+        <p>Added TryExec to desktop entry</p>
+      </description>
+    </release>
     <release version="51.11" date="2024-02-18">
       <description translatable="no">
         <p>Fix running programs via CLI</p>

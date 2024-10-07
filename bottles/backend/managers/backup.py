@@ -108,7 +108,7 @@ class BackupManager:
             return Result(status=False)
 
     @staticmethod
-    def exclude_filter(tarinfo: tarfile.TarInfo) -> tarfile.TarInfo:
+    def exclude_filter(tarinfo: tarfile.TarInfo) -> tarfile.TarInfo | None:
         """
         Filter which excludes some unwanted files from the backup.
         """
@@ -139,7 +139,11 @@ class BackupManager:
         task_id = TaskManager.add(Task(title=_("Importing config backup")))
         config_load = BottleConfig.load(path)
         manager = Manager()
-        if config_load.status and manager.create_bottle_from_config(config_load.data):
+        if (
+            config_load.status
+            and config_load.data
+            and manager.create_bottle_from_config(config_load.data)
+        ):
             TaskManager.remove(task_id)
             logging.info("Config backup imported successfully.")
             return Result(status=True)

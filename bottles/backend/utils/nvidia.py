@@ -78,7 +78,7 @@ def get_nvidia_glx_path():
     try:
         libglx_nvidia_path = os.fsdecode(glx_nvidia_info.l_name)
     except UnicodeDecodeError as ex:
-        logging.error("Error decoding the Nvidia library path: %s", ex)
+        logging.error("Error decoding the Nvidia library path: %s", ex)  # type: ignore
         return None
 
     # Follow any symlinks to the actual file
@@ -100,7 +100,9 @@ def get_nvidia_dll_path():
     if not libglx_path:
         logging.warning("Unable to locate libGLX_nvidia")
         return None
+
     nvidia_wine_dir = os.path.join(os.path.dirname(libglx_path), "nvidia/wine")
     if os.path.exists(os.path.join(nvidia_wine_dir, "nvngx.dll")):
         return nvidia_wine_dir
+
     return None

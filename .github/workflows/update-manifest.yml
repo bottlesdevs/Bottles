@@ -11,6 +11,7 @@ on:
 env:
   PR_BRANCH: pr/ci-manifest/${{ github.ref_name }}
   FEDC_ARGS: --update --require-important-update --commit-only --never-fork "bottles-repository/com.usebottles.bottles.yml"
+  UPDATE_PYTHON: false
 
 jobs:
   update-manifest:
@@ -36,7 +37,7 @@ jobs:
           git config user.name "github-actions[bot]"
           pur -r requirements.txt
           pur -r requirements.dev.txt
-          req2flatpak --requirements-file requirements.txt --yaml --target-platforms 311-x86_64 -o com.usebottles.bottles.pypi-deps.yaml
+          req2flatpak --requirements-file requirements.txt --yaml --target-platforms 312-x86_64 -o com.usebottles.bottles.pypi-deps.yaml
           git diff ${{ github.ref_name }} --exit-code requirements.txt requirements.dev.txt com.usebottles.bottles.pypi-deps.yaml
           updated=$?
           if [ $updated -ne 0 ]; then
@@ -49,6 +50,7 @@ jobs:
         run: |
           remove_important_update_only=$(sed 's/--require-important-update//g' <<< '${{ env.FEDC_ARGS }}')
           echo "FEDC_ARGS=$remove_important_update_only" >> $GITHUB_ENV
+          echo "UPDATE_PYTHON=true" >> $GITHUB_ENV
 
       - uses: docker://ghcr.io/flathub/flatpak-external-data-checker:latest
         env:
@@ -69,7 +71,7 @@ jobs:
           git push -f --set-upstream origin ${{ env.PR_BRANCH }}
           git diff ${{ github.ref_name }} --exit-code com.usebottles.bottles.yml
           updated=$?
-          if [ $updated -ne 0 ]; then
+          if [ $updated -ne 0 ] || [ "${{ env.UPDATE_PYTHON }}" = true ]; then
             gh pr create --title ":robot:: Update manifest (important)" --body ":wrench: One or more modules marked as 'important' have been updated." --head ${{ env.PR_BRANCH }} --base ${{ github.ref_name }}
             exit 0
           fi

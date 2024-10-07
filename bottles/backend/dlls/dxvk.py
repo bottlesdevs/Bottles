@@ -21,13 +21,13 @@ from bottles.backend.utils.manager import ManagerUtils
 
 class DXVKComponent(DLLComponent):
     dlls = {
-        "x32": ["d3d9.dll", "d3d10core.dll", "d3d11.dll", "dxgi.dll"],
-        "x64": ["d3d9.dll", "d3d10core.dll", "d3d11.dll", "dxgi.dll"],
+        "x32": ["d3d8.dll", "d3d9.dll", "d3d10core.dll", "d3d11.dll", "dxgi.dll"],
+        "x64": ["d3d8.dll", "d3d9.dll", "d3d10core.dll", "d3d11.dll", "dxgi.dll"],
     }
 
     @staticmethod
     def get_override_keys() -> str:
-        return "d3d9,d3d10core,d3d11,dxgi"
+        return "d3d8,d3d9,d3d10core,d3d11,dxgi"
 
     @staticmethod
     def get_base_path(version: str) -> str:

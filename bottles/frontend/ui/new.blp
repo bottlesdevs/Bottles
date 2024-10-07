@@ -68,12 +68,13 @@ template NewView : .AdwWindow {
             }
           }
 
-          .AdwPreferencesGroup {
+         .AdwPreferencesGroup {
             title: _("Environment");
 
             .AdwActionRow application {
               activatable-widget: "check_application";
               title: _("_Application");
+              subtitle: _( "Optimized for productivity software. Can run apps that might need DirectX, but not guaranteed. Includes basic fonts and essential Wine components." );
               icon-name: "applications-engineering-symbolic";
               use-underline: true;
 
@@ -87,6 +88,7 @@ template NewView : .AdwWindow {
             .AdwActionRow gaming {
               activatable-widget: "check_gaming";
               title: _("_Gaming");
+              subtitle: _( "Optimized for games, game engines, and 3D apps. Includes DirectX, Vulkan, and enhanced performance settings." );
               icon-name: "input-gaming-symbolic";
               use-underline: true;
 
@@ -100,6 +102,7 @@ template NewView : .AdwWindow {
             .AdwActionRow custom {
               activatable-widget: "check_custom";
               title: _("C_ustom");
+              subtitle: _( "A clean slate. You can customize everything for advanced use cases." );
               icon-name: "applications-science-symbolic";
               use-underline: true;
 
@@ -282,3 +285,4 @@ Popover popover_duplicate {
     label: _("This name is unavailable, please try another.");
   }
 }
+
