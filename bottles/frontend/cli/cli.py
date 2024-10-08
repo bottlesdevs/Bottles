@@ -634,7 +634,8 @@ class CLI:
         _args = " ".join(self.args.args)
         _executable = self.args.executable
         _cwd = None
-        _script = None
+        _pre_script = None
+        _post_script = None
         _program_dxvk = None
         _program_vkd3d = None
         _program_dxvk_nvapi = None
@@ -674,7 +675,8 @@ class CLI:
             if _keep and _program_args:
                 _args = _program_args + " " + _args
             _cwd = program.get("folder", "")
-            _script = program.get("script", None)
+            _pre_script = program.get("pre_script", None)
+            _post_script = program.get("post_script", None)
 
             _program_dxvk = program.get("dxvk")
             _program_vkd3d = program.get("vkd3d")
@@ -693,7 +695,8 @@ class CLI:
             exec_path=_executable,
             args=_args,
             cwd=_cwd,
-            post_script=_script,
+            pre_script=_pre_script,
+            post_script=_post_script,
             program_dxvk=_program_dxvk,
             program_vkd3d=_program_vkd3d,
             program_nvapi=_program_dxvk_nvapi,
