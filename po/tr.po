@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-08-21 06:00+0000\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"PO-Revision-Date: 2024-08-01 18:09+0000\n"
+"Last-Translator: Ulvican Kahya <ulvicankahya@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -294,7 +294,7 @@ msgid ""
 "run it via terminal to read the output."
 msgstr ""
 "Kurulum hatası oluştu. Çökme Raporunu okumak için Şişeler'i yeniden başlatın "
-"veya çıktıyı okumak için uçbirim ile çalıştırın."
+"ya da çıktıyı okumak için uçbirim ile çalıştırın."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -857,7 +857,7 @@ msgstr "Bu şişe için kısıtlı/yönetilen bir ortam kullanın."
 
 #: bottles/frontend/ui/details-preferences.blp:279
 msgid "Manage the Sandbox Permissions"
-msgstr "Sandbox izinlerini yönet"
+msgstr "Korumalı Alan İzinlerini Yönet"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
@@ -2078,11 +2078,11 @@ msgstr "Şişeler başlatıldığında geçici dosyalar temizlensin mi?"
 
 #: bottles/frontend/ui/preferences.blp:62
 msgid "Close Bottles After Starting a Program"
-msgstr "Bir Programı Başlattıktan Sonra Bottles'ı Kapat"
+msgstr "Bir Programı Başlattıktan Sonra Şişeler'i Kapat"
 
 #: bottles/frontend/ui/preferences.blp:63
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "Dosya yöneticisinden bir program başlattıktan sonra Bottles'ı kapat."
+msgstr "Dosya yöneticisinden bir program başlattıktan sonra Şişeler'i kapat."
 
 #: bottles/frontend/ui/preferences.blp:73
 msgid "Integrations"
@@ -2188,7 +2188,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:303
 msgid "Sandbox per bottle"
-msgstr "Şişe başına kum havuzu kullan"
+msgstr "Şişe başına korumalı alan kullan"
 
 #: bottles/frontend/ui/preferences.blp:304
 msgid "In early development."
@@ -2319,7 +2319,7 @@ msgstr "\"{0}\" başlatılıyor…"
 
 #: bottles/frontend/views/bottle_details.py:413
 msgid "Be Aware of Sandbox"
-msgstr "Kum Havuzunun Farkında Olun"
+msgstr "Korumalı Alanın Farkında Olun"
 
 #: bottles/frontend/views/bottle_details.py:414
 msgid ""
@@ -2327,9 +2327,9 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
-"Bottles, sizi güvende tutmak için gerekli olan kısıtlı izin ortamı olan bir "
-"sandbox'ta çalışmaktadır. Program çalışmazsa, şişenin içine girmeyi düşünün ("
-"üstteki 3 nokta simgesi), ardından oradan başlatın."
+"Şişeler, sizi güvende tutmak için gerekli olan kısıtlı izin ortamı olan "
+"korumalı alanda çalışmaktadır. Program çalışmazsa, şişenin içine girmeyi "
+"düşünün (üstteki 3 nokta simgesi), ardından oradan başlatın."
 
 #: bottles/frontend/views/bottle_details.py:416
 #: bottles/frontend/views/bottle_details.py:525
@@ -2536,11 +2536,11 @@ msgstr "Steam bulunamadı veya Şişeler'in yeterli izni yok."
 
 #: bottles/frontend/views/preferences.py:176
 msgid "Select Bottles Path"
-msgstr "Şişe Yolunu Seçin"
+msgstr "Şişe Yolunu Seç"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
-msgstr "Bottles yeniden başlat?"
+msgstr "Şişeler Yeniden Başlatılsın Mı?"
 
 #: bottles/frontend/views/preferences.py:199
 msgid ""
@@ -2768,7 +2768,7 @@ msgstr "Son kontroller yapılıyor…"
 #: bottles/frontend/windows/installer.py:117
 #, python-brace-format
 msgid "Installing {0}…"
-msgstr "Kuruluyor {0}…"
+msgstr "{0} kuruluyor…"
 
 #: bottles/frontend/windows/installer.py:119
 #, python-brace-format
@@ -2800,8 +2800,7 @@ msgstr "Özel Şişeler Yolu Bulunamadı"
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
 msgstr ""
-"Varsayılan yola geri dönülüyor. Verilen yoldaki hiçbir şişe "
-"listelenmeyecektir."
+"Öntanımlı yola geri dönülüyor. Verilen yoldaki hiçbir şişe listelenmeyecek."
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
@@ -2814,7 +2813,7 @@ msgstr "Windows yazılımlarını çalıştırın"
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
-msgstr "wine;windows;"
+msgstr "wine;windows;bottles;"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -2838,7 +2837,7 @@ msgstr "Listede güncelleme tarihini göster/gizle"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr "Şişe listesinde güncelleme tarihini göster/gizle."
+msgstr "Şişeler listesinde güncelleme tarihini göster/gizle."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
@@ -2926,15 +2925,15 @@ msgstr "Steam Proton önekleri desteğini aç/kapat."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:sandbox"
-msgstr "Deneyler:kum havuzu"
+msgstr "Experiments:sandbox"
 
 #: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Şişe başına deneysel Kum Kutusunu değiştir."
+msgstr "Şişe başına deneysel Korumalı Alanı değiştir."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
-msgstr "Şişeler'i otomatik olarak kapat"
+msgstr "Şişeler'i kendiliğinden kapat"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
@@ -2948,7 +2947,7 @@ msgstr "Korumalı alan uyarısını göster"
 
 #: data/com.usebottles.bottles.gschema.xml:87
 msgid "Toggle sandbox warning."
-msgstr "Sandbox uyarılarını aç/kapa."
+msgstr "Korumalı alan uyarısını aç/kapat."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid "Run Windows software on Linux with Bottles!"
@@ -3129,17 +3128,17 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr "Metin kodlamasıyla ilgili çeşitli sorunları düzeltin"
+msgstr "Metin kodlamasıyla ilgili çeşitli sorunlar düzeltildi"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
-"Bottles terminalden çalıştırılmadığında indirme sırasında oluşan hatayı "
-"düzeltme"
+"Şişeler uçbirimden çalıştırılmadığında indirme sırasında oluşan hata "
+"düzeltildi"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
 msgid "Correct version date"
-msgstr "Doğru sürüm tarihi"
+msgstr "Sürüm tarihi düzeltildi"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
@@ -3187,7 +3186,7 @@ msgstr "Yapı sisteminde iyileştirme"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr "Oyun için şişe oluştururken VKD3D'yi varsayılan olarak etkinleştirme"
+msgstr "Oyun için şişe oluştururken VKD3D'yi öntanımlı olarak etkinleştir"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"

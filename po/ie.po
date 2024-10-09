@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-01-09 21:50+0000\n"
+"PO-Revision-Date: 2024-09-16 08:09+0000\n"
 "Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
 "Language-Team: Occidental <https://hosted.weblate.org/projects/bottles/"
 "bottles/ie/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -84,12 +84,12 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
-msgstr ""
+msgstr "Optimisation del ambientie…"
 
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "Applicante un ambientie: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
@@ -223,7 +223,7 @@ msgstr "Developpatores de Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "OIS <mistresssilvara@hotmail.com>, 2023-24"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -391,7 +391,7 @@ msgstr "Win64"
 #: bottles/frontend/ui/details-bottle.blp:189
 #: bottles/frontend/ui/list-entry.blp:12 bottles/frontend/ui/new.blp:71
 msgid "Environment"
-msgstr ""
+msgstr "Ambientie"
 
 #: bottles/frontend/ui/details-bottle.blp:201
 #: bottles/frontend/ui/details-preferences.blp:14
@@ -717,7 +717,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "Gerer li parametres de Gamescope"
 
 #: bottles/frontend/ui/details-preferences.blp:171
 msgid "Advanced Display Settings"
@@ -741,11 +741,11 @@ msgstr "Sistema"
 
 #: bottles/frontend/ui/details-preferences.blp:194
 msgid "Esync"
-msgstr ""
+msgstr "Esinc"
 
 #: bottles/frontend/ui/details-preferences.blp:195
 msgid "Fsync"
-msgstr ""
+msgstr "Fsinc"
 
 #: bottles/frontend/ui/details-preferences.blp:196
 msgid "Futex2"
@@ -782,7 +782,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
-msgstr ""
+msgstr "Gerer li parametres de vmtouch"
 
 #: bottles/frontend/ui/details-preferences.blp:241
 msgid "OBS Game Capture"
@@ -1179,9 +1179,8 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "Integrationes"
+msgstr "Integral scale"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1211,7 +1210,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
-msgstr ""
+msgstr "Continuar"
 
 #: bottles/frontend/ui/dialog-installer.blp:127
 msgid "Completed!"
@@ -1227,7 +1226,7 @@ msgstr "Installation ne successat!"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
-msgstr ""
+msgstr "Alquó ha fallit."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -1255,7 +1254,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
-msgstr ""
+msgstr "Navigator del diarium"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
@@ -1271,7 +1270,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-launch-options.blp:43
 msgid "Custom Arguments"
-msgstr ""
+msgstr "Personalisat argumentes"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:46
 msgid "Command Arguments"
@@ -1363,7 +1362,7 @@ msgstr "Nov nómine"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 msgid "Run With Arguments"
-msgstr ""
+msgstr "Lansar con argumentes"
 
 #: bottles/frontend/ui/dialog-run-args.blp:34
 #: bottles/frontend/views/bottle_details.py:401
@@ -1377,11 +1376,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "p.ex.: -opengl -SkipBuildPatchPrereq"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
 msgid "Sandbox Settings"
-msgstr ""
+msgstr "Parametres del sandbux"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
@@ -1406,7 +1405,7 @@ msgstr "Comensar actualisation"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
 msgid "New Versioning System"
-msgstr ""
+msgstr "Nov sistema de versiones"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
 msgid "The new bottle versioning system has landed."
@@ -1603,7 +1602,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
-msgstr ""
+msgstr "Intern (Wine)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:9
 msgid "Native (Windows)"
@@ -1611,11 +1610,11 @@ msgstr "Nativ (Windows)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:10
 msgid "Builtin, then Native"
-msgstr ""
+msgstr "Intern ante nativ"
 
 #: bottles/frontend/ui/dll-override-entry.blp:11
 msgid "Native, then Builtin"
-msgstr ""
+msgstr "Nativ ante intern"
 
 #: bottles/frontend/ui/dll-override-entry.blp:12
 msgid "Disabled"
@@ -1642,7 +1641,7 @@ msgstr "Navigar li files"
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
 msgid "Wine prefix name"
-msgstr ""
+msgstr "Nómine del prefixe de Wine"
 
 #: bottles/frontend/ui/importer-entry.blp:28
 msgid "Manager"
@@ -1662,7 +1661,7 @@ msgstr ""
 
 #: bottles/frontend/ui/importer.blp:38
 msgid "No Prefixes Found"
-msgstr ""
+msgstr "Null prefixes trovat"
 
 #: bottles/frontend/ui/importer.blp:39
 msgid ""
@@ -1680,7 +1679,7 @@ msgstr "Monstrar li manifeste…"
 
 #: bottles/frontend/ui/installer-entry.blp:20
 msgid "Read Review…"
-msgstr ""
+msgstr "Leer li recensie…"
 
 #: bottles/frontend/ui/installer-entry.blp:34
 msgid "Installer name"
@@ -1696,7 +1695,7 @@ msgstr "Ínconosset"
 
 #: bottles/frontend/ui/installer-entry.blp:51
 msgid "Install this Program"
-msgstr ""
+msgstr "Installar ti programma"
 
 #: bottles/frontend/ui/installer-entry.blp:69
 msgid "Program Menu"
@@ -1713,7 +1712,7 @@ msgstr "Lansar"
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
 msgid "Launch with Steam"
-msgstr ""
+msgstr "Lansar med Steam"
 
 #: bottles/frontend/ui/library-entry.blp:108
 msgid "Item name"
@@ -1721,7 +1720,7 @@ msgstr "Nómine del elemente"
 
 #: bottles/frontend/ui/library-entry.blp:132
 msgid "Remove from Library"
-msgstr ""
+msgstr "Remover ex li biblioteca"
 
 #: bottles/frontend/ui/library-entry.blp:143
 msgid "Stop"
@@ -1750,7 +1749,7 @@ msgstr ""
 
 #: bottles/frontend/ui/list-entry.blp:69
 msgid "Run Here"
-msgstr ""
+msgstr "Lansar ci"
 
 #: bottles/frontend/ui/list-entry.blp:75
 msgid ""
@@ -1760,7 +1759,7 @@ msgstr ""
 
 #: bottles/frontend/ui/list.blp:12
 msgid "Search your bottles…"
-msgstr ""
+msgstr "Serchar vor botelles…"
 
 #: bottles/frontend/ui/list.blp:28
 msgid "Steam Proton"
@@ -1773,13 +1772,12 @@ msgid "Bottles"
 msgstr "Botelles"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "Crear un nov botelle"
+msgstr "Crear un nov botelle…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
-msgstr ""
+msgstr "Null resultates trovat"
 
 #: bottles/frontend/ui/list.blp:64
 msgid "Try a different search."
@@ -1798,9 +1796,8 @@ msgid "Browse"
 msgstr "Trovar"
 
 #: bottles/frontend/ui/new.blp:32
-#, fuzzy
 msgid "C_reate"
-msgstr "Crear"
+msgstr "C_rear"
 
 #: bottles/frontend/ui/new.blp:53
 #, fuzzy
@@ -1808,28 +1805,24 @@ msgid "Bottle Name"
 msgstr "Nómine del botelle"
 
 #: bottles/frontend/ui/new.blp:75
-#, fuzzy
 msgid "_Application"
-msgstr "Application"
+msgstr "_Application"
 
 #: bottles/frontend/ui/new.blp:88
-#, fuzzy
 msgid "_Gaming"
-msgstr "Ludes"
+msgstr "_Ludes"
 
 #: bottles/frontend/ui/new.blp:101
-#, fuzzy
 msgid "C_ustom"
-msgstr "Personalisat"
+msgstr "P_ersonalisat"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
 msgstr "Personalisat"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "Selecter un fólder"
+msgstr "Fólder comun del usator"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1852,18 +1845,16 @@ msgid "Import a custom configuration."
 msgstr "Exportar li configuration…"
 
 #: bottles/frontend/ui/new.blp:176
-#, fuzzy
 msgid "Bottle Directory"
-msgstr "Fólder de botelles"
+msgstr "Fólder de botelle"
 
 #: bottles/frontend/ui/new.blp:177
 msgid "Directory that will contain the data of this bottle."
 msgstr ""
 
 #: bottles/frontend/ui/new.blp:249
-#, fuzzy
 msgid "_Close"
-msgstr "Cluder"
+msgstr "_Cluder"
 
 #: bottles/frontend/ui/new.blp:281
 msgid "This name is unavailable, please try another."
@@ -1876,7 +1867,7 @@ msgstr "Precedent"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
-msgstr ""
+msgstr "Benevenit al Botelles"
 
 #: bottles/frontend/ui/onboard.blp:60
 msgid "Run Windows Software on Linux."
@@ -1885,7 +1876,7 @@ msgstr ""
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
-msgstr ""
+msgstr "Windows in li Botelles"
 
 #: bottles/frontend/ui/onboard.blp:66
 msgid ""
@@ -1978,7 +1969,7 @@ msgstr "Integrationes"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr ""
+msgstr "Prefixes de Proton de Steam"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
@@ -2081,7 +2072,7 @@ msgstr ""
 
 #: bottles/frontend/ui/program-entry.blp:19
 msgid "Launch with Terminal"
-msgstr ""
+msgstr "Lansar med li terminal"
 
 #: bottles/frontend/ui/program-entry.blp:25
 msgid "Browse Path"
@@ -2093,7 +2084,7 @@ msgstr ""
 
 #: bottles/frontend/ui/program-entry.blp:43
 msgid "Add to Library"
-msgstr ""
+msgstr "Adjunter al biblioteca"
 
 #: bottles/frontend/ui/program-entry.blp:47
 msgid "Add Desktop Entry"
@@ -2101,7 +2092,7 @@ msgstr ""
 
 #: bottles/frontend/ui/program-entry.blp:51
 msgid "Add to Steam"
-msgstr ""
+msgstr "Adjunter a Steam"
 
 #: bottles/frontend/ui/program-entry.blp:55
 msgid "Rename…"
@@ -2117,7 +2108,7 @@ msgstr "Monstar li programma"
 
 #: bottles/frontend/ui/program-entry.blp:70
 msgid "Remove from List"
-msgstr ""
+msgstr "Remover ex li liste"
 
 #: bottles/frontend/ui/program-entry.blp:83
 msgid "Program name"
@@ -2182,9 +2173,8 @@ msgstr "«{0}» sta adjuntet"
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "Selecter un botelle"
+msgstr "Selecter un executibile"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2295,9 +2285,8 @@ msgstr ""
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "Fólder de labor"
+msgstr "Selecter li fólder de labor"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
@@ -2389,9 +2378,8 @@ msgid "Select Bottle Directory"
 msgstr "Fólder de botelles"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
-msgstr "Remover li botelle…"
+msgstr "Creante li botelle…"
 
 #: bottles/frontend/views/new.py:221
 #, fuzzy
@@ -2475,9 +2463,9 @@ msgid "Manifest for {0}"
 msgstr "Manifeste de {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "«{0}» sta installat"
+msgstr "«{0}» sta desinstallat"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
@@ -2524,7 +2512,7 @@ msgstr "Recension por {0}"
 #: bottles/frontend/widgets/program.py:194
 #, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr ""
+msgstr "Stoppante «{0}»…"
 
 #: bottles/frontend/widgets/program.py:190
 #, python-brace-format
@@ -2534,12 +2522,12 @@ msgstr "Lansante «{0}» med Steam…"
 #: bottles/frontend/widgets/program.py:214
 #, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr ""
+msgstr "«{0}» sta celat"
 
 #: bottles/frontend/widgets/program.py:216
 #, python-brace-format
 msgid "\"{0}\" showed"
-msgstr ""
+msgstr "«{0}» sta monstrat"
 
 #: bottles/frontend/widgets/program.py:242
 #, python-brace-format
@@ -2611,7 +2599,6 @@ msgid "Copy to clipboard"
 msgstr "Copiar al Paperiere"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
 msgstr "Selecter un file de ressurse"
 
@@ -2659,9 +2646,8 @@ msgid "This setting is different from the bottle's default."
 msgstr ""
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "Selecter un rute del unité"
+msgstr "Selecter un scripte"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
@@ -2674,7 +2660,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
@@ -2711,7 +2697,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Liste de applicationes de Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
@@ -2719,7 +2705,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr ""
+msgstr "Liste de applicationes de Epic"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
@@ -2727,7 +2713,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "Liste de Ubisoft Connect"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."
@@ -2785,7 +2771,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
-msgstr ""
+msgstr "Supporte de Proton de Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
@@ -2959,7 +2945,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
-msgstr ""
+msgstr "Correction de defectes:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"

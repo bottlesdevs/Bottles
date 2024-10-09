@@ -74,7 +74,7 @@ class BottleViewEntry(Adw.ActionRow):
             self.runner_type = "proton"
 
         # connect signals
-        activate_handler = self.connect("activated", self.show_details)
+        self.connect("activated", self.show_details)
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_repair.connect("clicked", self.repair)
         self.btn_run_executable.connect("clicked", self.run_executable)
@@ -191,6 +191,7 @@ class BottleView(Adw.Bin):
         """
         terms = widget.get_text()
         self.list_bottles.set_filter_func(self.__filter_bottles, terms)
+        self.list_steam.set_filter_func(self.__filter_bottles, terms)
 
     @staticmethod
     def __filter_bottles(row, terms=None):

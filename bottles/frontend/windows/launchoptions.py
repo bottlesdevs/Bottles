@@ -18,7 +18,10 @@
 from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.logger import Logger
 from gettext import gettext as _
+
+logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-launch-options.ui")
@@ -31,12 +34,15 @@ class LaunchOptionsDialog(Adw.Window):
     # region Widgets
     entry_arguments = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
-    btn_script = Gtk.Template.Child()
-    btn_script_reset = Gtk.Template.Child()
+    btn_pre_script = Gtk.Template.Child()
+    btn_pre_script_reset = Gtk.Template.Child()
+    btn_post_script = Gtk.Template.Child()
+    btn_post_script_reset = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
     btn_reset_defaults = Gtk.Template.Child()
-    action_script = Gtk.Template.Child()
+    action_pre_script = Gtk.Template.Child()
+    action_post_script = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
@@ -50,7 +56,8 @@ class LaunchOptionsDialog(Adw.Window):
     action_virt_desktop = Gtk.Template.Child()
     # endregion
 
-    __default_script_msg = _("Choose a script which should be executed after run.")
+    __default_pre_script_msg = _("Choose a script which should be executed before run.")
+    __default_post_script_msg = _("Choose a script which should be executed after run.")
     __default_cwd_msg = _("Choose from where start the program.")
     __msg_disabled = _("{0} is disabled globally for this bottle.")
     __msg_override = _("This setting overrides the bottle's global setting.")
@@ -92,8 +99,10 @@ class LaunchOptionsDialog(Adw.Window):
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
-        self.btn_script.connect("clicked", self.__choose_script)
-        self.btn_script_reset.connect("clicked", self.__reset_script)
+        self.btn_pre_script.connect("clicked", self.__choose_pre_script)
+        self.btn_pre_script_reset.connect("clicked", self.__reset_pre_script)
+        self.btn_post_script.connect("clicked", self.__choose_post_script)
+        self.btn_post_script_reset.connect("clicked", self.__reset_post_script)
         self.btn_cwd.connect("clicked", self.__choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
         self.btn_reset_defaults.connect("clicked", self.__reset_defaults)
@@ -149,9 +158,13 @@ class LaunchOptionsDialog(Adw.Window):
             "virtual_desktop",
         )
 
-        if program.get("script") not in ["", None]:
-            self.action_script.set_subtitle(program["script"])
-            self.btn_script_reset.set_visible(True)
+        if program.get("pre_script") not in ["", None]:
+            self.action_pre_script.set_subtitle(program["pre_script"])
+            self.btn_pre_script_reset.set_visible(True)
+
+        if program.get("post_script") not in ["", None]:
+            self.action_post_script.set_subtitle(program["post_script"])
+            self.btn_post_script_reset.set_visible(True)
 
         if program.get("folder") not in [
             "",
@@ -207,31 +220,80 @@ class LaunchOptionsDialog(Adw.Window):
     def __save(self, *_args):
         GLib.idle_add(self.__idle_save)
 
-    def __choose_script(self, *_args):
-        def set_path(dialog, response):
-            if response != Gtk.ResponseType.ACCEPT:
-                self.action_script.set_subtitle(self.__default_script_msg)
-                return
+    def __choose_pre_script(self, *_args):
+        def set_path(dialog, result):
 
-            file_path = dialog.get_file().get_path()
-            self.program["script"] = file_path
-            self.action_script.set_subtitle(file_path)
-            self.btn_script_reset.set_visible(True)
+            try:
+                file = dialog.open_finish(result)
 
-        dialog = Gtk.FileChooserNative.new(
-            title=_("Select Script"),
-            parent=self.window,
-            action=Gtk.FileChooserAction.OPEN,
-        )
+                if file is None:
+                    self.action_pre_script.set_subtitle(
+                        self.__default_pre_script_msg)
+                    return
 
+                file_path = file.get_path()
+
+                self.program["pre_script"] = file_path
+                self.action_pre_script.set_subtitle(file_path)
+                self.btn_pre_script_reset.set_visible(True)
+
+            except GLib.Error as error:
+                # also thrown when dialog has been cancelled
+                if error.code == 2:
+                    # error 2 seems to be 'dismiss' or 'cancel'
+                    if self.program["pre_script"] is None or self.program["pre_script"] == "":
+                        self.action_pre_script.set_subtitle(
+                            self.__default_pre_script_msg)
+                else:
+                    # something else happened...
+                    logging.warning("Error selecting pre-run script: %s" % error)
+                    pass
+
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title("Select Pre-run Script")
         dialog.set_modal(True)
-        dialog.connect("response", set_path)
-        dialog.show()
+        dialog.open(parent=self.window, callback=set_path)
 
-    def __reset_script(self, *_args):
-        self.program["script"] = ""
-        self.action_script.set_subtitle(self.__default_script_msg)
-        self.btn_script_reset.set_visible(False)
+    def __choose_post_script(self, *_args):
+        def set_path(dialog, result):
+
+            try:
+                file = dialog.open_finish(result)
+
+                if file is None:
+                    self.action_post_script.set_subtitle(
+                        self.__default_post_script_msg)
+                    return
+
+                file_path = file.get_path()
+                self.program["post_script"] = file_path
+                self.action_post_script.set_subtitle(file_path)
+                self.btn_post_script_reset.set_visible(True)
+            except GLib.Error as error:
+                # also thrown when dialog has been cancelled
+                if error.code == 2:
+                    # error 2 seems to be 'dismiss' or 'cancel'
+                    if self.program["post_script"] is None or self.program["post_script"] == "":
+                        self.action_pre_script.set_subtitle(
+                            self.__default_pre_script_msg)
+                else:
+                    # something else happened...
+                    logging.warning("Error selecting post-run script: %s" % error)
+
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title("Select Post-run Script")
+        dialog.set_modal(True)
+        dialog.open(parent=self.window, callback=set_path)
+
+    def __reset_pre_script(self, *_args):
+        self.program["pre_script"] = ""
+        self.action_pre_script.set_subtitle(self.__default_pre_script_msg)
+        self.btn_pre_script_reset.set_visible(False)
+
+    def __reset_post_script(self, *_args):
+        self.program["post_script"] = ""
+        self.action_post_script.set_subtitle(self.__default_post_script_msg)
+        self.btn_post_script_reset.set_visible(False)
 
     def __choose_cwd(self, *_args):
         def set_path(dialog, response):
