@@ -74,7 +74,7 @@ class BottleViewEntry(Adw.ActionRow):
             self.runner_type = "proton"
 
         # connect signals
-        activate_handler = self.connect("activated", self.show_details)
+        self.connect("activated", self.show_details)
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_repair.connect("clicked", self.repair)
         self.btn_run_executable.connect("clicked", self.run_executable)
