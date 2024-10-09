@@ -1,4 +1,15 @@
 win_versions = {
+    "win11": {
+        "CSDVersion": "",
+        "CSDVersionHex": "0",
+        "CurrentBuild": "22000",
+        "CurrentBuildNumber": "22000",
+        "CurrentVersion": "10.0",
+        "CurrentMinorVersionNumber": "0",
+        "CurrentMajorVersionNumber": "a",  # 10
+        "ProductType": "WinNT",
+        "ProductName": "Microsoft Windows 11",
+    },
     "win10": {
         "CSDVersion": "",
         "CSDVersionHex": "0",
