@@ -191,6 +191,7 @@ class BottleView(Adw.Bin):
         """
         terms = widget.get_text()
         self.list_bottles.set_filter_func(self.__filter_bottles, terms)
+        self.list_steam.set_filter_func(self.__filter_bottles, terms)
 
     @staticmethod
     def __filter_bottles(row, terms=None):
