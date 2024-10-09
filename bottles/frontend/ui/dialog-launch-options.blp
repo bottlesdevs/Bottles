@@ -47,15 +47,15 @@ template LaunchOptionsDialog : .AdwWindow {
           tooltip-text: _("e.g.: VAR=value %command% -example1 -example2 -example3=hello");
         }
 
-        .AdwActionRow action_script {
-          activatable-widget: "btn_script";
-          title: _("Post-run Script");
-          subtitle: _("Choose a script which should be executed after run.");
+        .AdwActionRow action_pre_script {
+          activatable-widget: "btn_pre_script";
+          title: _("Pre-run Script");
+          subtitle: _("Choose a script which should be executed before run.");
 
           Box {
             spacing: 6;
 
-            Button btn_script_reset {
+            Button btn_pre_script_reset {
               tooltip-text: _("Reset to Default");
               valign: center;
               visible: false;
@@ -66,7 +66,38 @@ template LaunchOptionsDialog : .AdwWindow {
               ]
             }
 
-            Button btn_script {
+            Button btn_pre_script {
+              tooltip-text: _("Choose a Script");
+              valign: center;
+              icon-name: "document-open-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+          }
+        }
+
+        .AdwActionRow action_post_script {
+          activatable-widget: "btn_post_script";
+          title: _("Post-run Script");
+          subtitle: _("Choose a script which should be executed after run.");
+
+          Box {
+            spacing: 6;
+
+            Button btn_post_script_reset {
+              tooltip-text: _("Reset to Default");
+              valign: center;
+              visible: false;
+              icon-name: "edit-undo-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+
+            Button btn_post_script {
               tooltip-text: _("Choose a Script");
               valign: center;
               icon-name: "document-open-symbolic";

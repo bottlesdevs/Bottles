@@ -2,8 +2,8 @@ id: com.usebottles.bottles
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 base: org.winehq.Wine
-base-version: stable-23.08
-runtime-version: &runtime-version '46'
+base-version: stable-24.08
+runtime-version: &runtime-version '47'
 command: bottles
 
 finish-args:
@@ -28,7 +28,6 @@ inherit-extensions:
   - org.freedesktop.Platform.ffmpeg_full.i386
   - org.winehq.Wine.gecko
   - org.winehq.Wine.mono
-  - org.winehq.Wine.DLLs
 
 add-extensions:
   org.gnome.Platform.Compat.i386:
@@ -143,8 +142,8 @@ modules:
     sources: &gamemode_sources
       - type: git
         url: https://github.com/FeralInteractive/gamemode
-        tag: 1.8.1
-        commit: 5180d89e66830d87f69687b95fb86f622552b94b
+        tag: 1.8.2
+        commit: c54d6d4243b0dd0afcb49f2c9836d432da171a2b
         x-checker-data:
           type: git
           is-important: true
@@ -187,8 +186,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ImageMagick/ImageMagick
-        tag: 7.1.1-31
-        commit: 2f6d2de838390a054af74822e80d74b7799633cb
+        tag: 7.1.1-38
+        commit: b0ab92265bab638e6ecd2f18b45977c38771c671
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+-[\d]+)$
@@ -201,8 +200,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/flatpak/libportal
-        tag: 0.7.1
-        commit: e9ed3a50cdde321eaf42361212480a66eb94a57a
+        tag: 0.8.1
+        commit: 26c15008cbe579f57f89468384f8efc033f25f6f
         x-checker-data:
           type: git
           is-important: true
@@ -213,8 +212,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.gnome.org/jwestman/blueprint-compiler
-        tag: v0.12.0
-        commit: 66b43c36cf1017c878762007373964a096b3d2a5
+        tag: v0.14.0
+        commit: 8e10fcf8692108b9d4ab78f41086c5d7773ef864
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -257,8 +256,8 @@ modules:
         sources:
           - type: git
             url: https://gitlab.gnome.org/GNOME/vte
-            tag: 0.76.1
-            commit: 2b413dab1dcc6a5d4ff200ad0703240a81c82d06
+            tag: 0.78.0
+            commit: 00c99e846bf83536f978b4fe5dc2c8a6983b8a94
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
