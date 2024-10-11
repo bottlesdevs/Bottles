@@ -107,7 +107,9 @@ class WineCommand:
         self.arguments = arguments
         self.cwd = self._get_cwd(cwd)
         self.runner, self.runner_runtime = self._get_runner_info()
-        self.command = self.get_cmd(command, pre_script, post_script, environment=_environment)
+        self.command = self.get_cmd(
+            command, pre_script, post_script, environment=_environment
+        )
         self.terminal = terminal
         self.env = self.get_env(_environment)
         self.communicate = communicate
@@ -182,6 +184,9 @@ class WineCommand:
         gpu = GPUUtils().get_gpu()
         is_nvidia = DisplayUtils.check_nvidia_device()
         ld = []
+
+        # Bottle Path as environment variable
+        env.add("BOTTLE", config.Path)
 
         # Bottle environment variables
         if config.Environment_Variables:
