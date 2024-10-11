@@ -30,6 +30,7 @@ gresource_path = f"{pkgdatadir}/bottles.gresource"
 sys.path.insert(1, pkgdatadir)
 
 # Remove GTK_THEME variable to prevent breakages
+# REF: https://github.com/bottlesdevs/Bottles/pull/2886
 os.unsetenv("GTK_THEME")
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
