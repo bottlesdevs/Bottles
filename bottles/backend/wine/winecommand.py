@@ -160,6 +160,9 @@ class WineCommand:
         arch = config.Arch
         params = config.Parameters
 
+        # Bottle Path as environment variable
+        env.add("BOTTLE", config.Path)
+
         if None in [arch, params]:
             return env.get()["envs"]
 
@@ -184,9 +187,6 @@ class WineCommand:
         gpu = GPUUtils().get_gpu()
         is_nvidia = DisplayUtils.check_nvidia_device()
         ld = []
-
-        # Bottle Path as environment variable
-        env.add("BOTTLE", config.Path)
 
         # Bottle environment variables
         if config.Environment_Variables:

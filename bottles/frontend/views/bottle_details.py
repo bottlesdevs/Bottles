@@ -79,6 +79,7 @@ class BottleView(Adw.PreferencesPage):
     btn_reboot = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_forcestop = Gtk.Template.Child()
+    btn_nv_forcestop = Gtk.Template.Child()
     btn_update = Gtk.Template.Child()
     btn_toggle_removed = Gtk.Template.Child()
     btn_backup_config = Gtk.Template.Child()
@@ -139,6 +140,7 @@ class BottleView(Adw.PreferencesPage):
         self.btn_shutdown.connect("clicked", self.wineboot, 2)
         self.btn_reboot.connect("clicked", self.wineboot, 1)
         self.btn_forcestop.connect("clicked", self.wineboot, 0)
+        self.btn_nv_forcestop.connect("clicked", self.wineboot, -2)
         self.btn_update.connect("clicked", self.__scan_programs)
         self.btn_toggle_removed.connect("clicked", self.__toggle_removed)
         self.btn_backup_config.connect("clicked", self.__backup, "config")
@@ -630,7 +632,7 @@ the Bottles preferences or choose a new one to run applications."
         wineboot = WineBoot(self.config)
         widget.set_sensitive(False)
 
-        if status == 0:
+        if status in [-2, 0]:
             dialog = Adw.MessageDialog.new(
                 self.window,
                 _("Are you sure you want to force stop all processes?"),
