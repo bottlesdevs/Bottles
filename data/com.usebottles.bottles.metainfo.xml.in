@@ -67,6 +67,21 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="51.14" date="2024-10-12">
+      <description translatable="no">
+        <p>New "Native" Force Stop all Processes option</p>
+        <p>Provide bottle Path as env var</p>
+        <p>Fix "bottles:run/" uri processing (#3444)</p>
+        <p>Ability to search steam managed bottles</p>
+        <p>Fix bottles with a different name and path weren't runnable through bottle picker (#3451)</p>
+        <p>Win11 support</p>
+        <p>Add Pre-Run script to launch options (#3336)</p>
+        <p>Updated GNOME Runtime to 47</p>
+        <p>Provide subtitles for envs</p>
+        <p>Support for personal repos (#3464)/p>
+        <p>Update translations</p>
+      </description>
+    </release>
     <release version="51.13" date="2024-07-10">
       <description translatable="no">
         <p>Fixed crash on starting executables via the file manager [#3427]</p>
@@ -74,7 +89,7 @@
     </release>
     <release version="51.12" date="2024-07-09">
       <description translatable="no">
-        <p>Support d3d8 vya dxvk</p>
+        <p>Support d3d8 via dxvk</p>
         <p>Removed @lru_cache decorator from the Paths class, plus minor typing fixes</p>
         <p>Fixed crash on startup [#3329]</p>
         <p>Updated GNOME runtime in manifest</p>
