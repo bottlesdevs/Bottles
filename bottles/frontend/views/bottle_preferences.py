@@ -471,6 +471,7 @@ class PreferencesView(Adw.PreferencesPage):
         # versions in the current structure, we will fix this in the future
         # with the new Bottles Backend.
         self.windows_versions = {
+            "win11": "Windows 11",
             "win10": "Windows 10",
             "win81": "Windows 8.1",
             "win8": "Windows 8",
