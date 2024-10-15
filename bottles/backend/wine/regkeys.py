@@ -4,6 +4,7 @@ from bottles.backend.models.enum import Arch
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.wineboot import WineBoot
+from bottles.backend.wine.winecfg import WineCfg
 
 logging = Logger()
 
@@ -13,6 +14,16 @@ class RegKeys:
     def __init__(self, config: BottleConfig):
         self.config = config
         self.reg = Reg(self.config)
+
+    def lg_set_windows(self, version: str):
+        """
+        Legacy method to change Windows version in a bottle using
+        the Wine Configuration tool.
+        """
+        winecfg = WineCfg(self.config)
+        res = winecfg.set_windows_version(version)
+        if not res.ok:
+            raise ValueError(f"Failed to set Windows version to {version}")
 
     def set_windows(self, version: str):
         """

@@ -819,7 +819,7 @@ class Manager(metaclass=Singleton):
 
         def process_bottle(bottle):
             _name = bottle
-            _bottle = os.path.join(Paths.bottles, bottle)
+            _bottle = str(os.path.join(Paths.bottles, bottle))
             _placeholder = os.path.join(_bottle, "placeholder.yml")
             _config = os.path.join(_bottle, "bottle.yml")
 
@@ -852,7 +852,7 @@ class Manager(metaclass=Singleton):
 
             # Check if the path in the bottle config corresponds to the folder name
             # if not, change the config to reflect the folder name
-            # if the folder name is "illegal" accross all platforms, rename the folder
+            # if the folder name is "illegal" across all platforms, rename the folder
 
             # "universal" platform works for all filesystem/OSes
             sane_name = pathvalidate.sanitize_filepath(_name, platform="universal")
@@ -864,7 +864,9 @@ class Manager(metaclass=Singleton):
                     if sane_name != _name:
                         # This hopefully doesn't happen, but it's managed
                         logging.warning(f"Broken path in bottle {_name}, fixing...")
-                        shutil.move(_bottle, os.path.join(Paths.bottles, sane_name))
+                        shutil.move(
+                            _bottle, str(os.path.join(Paths.bottles, sane_name))
+                        )
                         # Restart the process bottle function. Normally, can't be recursive!
                         process_bottle(sane_name)
                         return
@@ -1112,8 +1114,7 @@ class Manager(metaclass=Singleton):
                 res = self.dependency_manager.install(config, dep)
                 if not res.ok:
                     logging.error(
-                        _("Failed to install dependency: %s")
-                        % dep.get("Description", "n/a"),
+                        _("Failed to install dependency: %s") % dependency,
                         jn=True,
                     )
                     return False
@@ -1364,7 +1365,7 @@ class Manager(metaclass=Singleton):
             if (
                 "soda" not in runner_name.lower() and "caffe" not in runner_name.lower()
             ):  # Caffe/Soda came with win10 by default
-                rk.set_windows(config.Windows)
+                rk.lg_set_windows(config.Windows)
                 wineboot.update()
 
             FileUtils.wait_for_files(reg_files)
