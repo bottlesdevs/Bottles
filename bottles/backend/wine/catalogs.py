@@ -4,7 +4,7 @@ win_versions = {
         "CSDVersionHex": "0",
         "CurrentBuild": "22000",
         "CurrentBuildNumber": "22000",
-        "CurrentVersion": "10.0",
+        "CurrentVersion": "6.3",
         "CurrentMinorVersionNumber": "0",
         "CurrentMajorVersionNumber": "a",  # 10
         "ProductType": "WinNT",
@@ -13,9 +13,9 @@ win_versions = {
     "win10": {
         "CSDVersion": "",
         "CSDVersionHex": "0",
-        "CurrentBuild": "17763",
-        "CurrentBuildNumber": "17763",
-        "CurrentVersion": "10.0",
+        "CurrentBuild": "19043",
+        "CurrentBuildNumber": "19043",
+        "CurrentVersion": "6.3",
         "CurrentMinorVersionNumber": "0",
         "CurrentMajorVersionNumber": "a",  # 10
         "ProductType": "WinNT",

@@ -74,7 +74,10 @@ class WineProgram:
             post_script=post_script,
             cwd=cwd,
             arguments=program_args,
-        ).run()
+        )
+
+        # logging.info("Executing command:", res.command)
+        res = res.run()
         return res
 
     def launch_terminal(self, args: Optional[str] = None):

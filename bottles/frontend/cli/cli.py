@@ -551,7 +551,7 @@ class CLI:
             mng.update_config(bottle, k, v, scope="Environment_Variables")
 
         if _win is not None:
-            RegKeys(bottle).set_windows(_win)
+            RegKeys(bottle).lg_set_windows(_win)
 
         if _runner is not None:
             Runner.runner_update(bottle, mng, _runner)

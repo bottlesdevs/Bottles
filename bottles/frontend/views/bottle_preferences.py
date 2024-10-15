@@ -1008,7 +1008,7 @@ class PreferencesView(Adw.PreferencesPage):
                     config=self.config, key="Windows", value=windows_version
                 ).data["config"]
 
-                RunAsync(rk.set_windows, callback=update, version=windows_version)
+                RunAsync(rk.lg_set_windows, callback=update, version=windows_version)
                 break
 
     def __set_language(self, *_args):
