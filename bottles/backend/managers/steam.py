@@ -20,6 +20,7 @@ import os
 import shlex
 import shutil
 import uuid
+from crc32c import crc32c
 from datetime import datetime
 from functools import lru_cache
 from glob import glob
@@ -522,7 +523,8 @@ class SteamManager:
     def add_shortcut(self, program_name: str, program_path: str):
         logging.info(f"Adding shortcut for {program_name}")
         cmd = "xdg-open"
-        args = "bottles:run/'{0}'/'{1}'"
+        args = f"bottles:run/'{self.config.Name}'/'{program_name}'"
+        appid = crc32c(str.encode(self.config.Name + program_name)) | 0x80000000
 
         if self.userdata_path is None:
             logging.warning("Userdata path is not set")
@@ -530,13 +532,13 @@ class SteamManager:
 
         confs = glob(os.path.join(self.userdata_path, "*/config/"))
         shortcut = {
-            "appid": 3123456789 - 0x100000000,
+            "appid": appid - 0x100000000,
             "AppName": program_name,
             "Exe": cmd,
             "StartDir": ManagerUtils.get_bottle_path(self.config),
             "icon": ManagerUtils.extract_icon(self.config, program_name, program_path),
             "ShortcutPath": "",
-            "LaunchOptions": args.format(self.config.Name, program_name),
+            "LaunchOptions": args,
             "IsHidden": 0,
             "AllowDesktopConfig": 1,
             "AllowOverlay": 1,
@@ -566,7 +568,6 @@ class SteamManager:
                 f.write(vdf.binary_dumps(_shortcuts))
         
         import shutil
-        appid = shortcut["appid"] + 0x100000000
         base_path = os.path.join(c, f"grid/{appid}")
         shutil.copy("grid1.jpg", f"{base_path}.jpg")
         shutil.copy("grid2.jpg", f"{base_path}p.jpg")
