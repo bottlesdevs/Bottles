@@ -43,7 +43,6 @@ class SteamGridDBManager:
         try:
             #url = f"https://steamgrid.usebottles.com/api/search/{name}/{asset_type}"
             url = f"http://127.0.0.1:8000/api/search/{name}/{asset_type}"
-            print(url)
             res = requests.get(url)
         except:
             return
@@ -86,4 +85,4 @@ class SteamGridDBManager:
         except Exception:
             return
 
-        return f"grid:{filename}"
+        return filename
