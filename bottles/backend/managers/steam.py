@@ -28,6 +28,7 @@ from pathlib import Path
 from typing import Union, Dict, Optional
 
 from bottles.backend.globals import Paths
+from bottles.backend.managers.steamgriddb import SteamGridDBManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
@@ -567,13 +568,16 @@ class SteamManager:
             with open(os.path.join(c, "shortcuts.vdf"), "wb") as f:
                 f.write(vdf.binary_dumps(_shortcuts))
         
-        import shutil
-        base_path = os.path.join(c, f"grid/{appid}")
-        shutil.copy("grid1.jpg", f"{base_path}.jpg")
-        shutil.copy("grid2.jpg", f"{base_path}p.jpg")
-        shutil.copy("hero.jpg", f"{base_path}_hero.jpg")
-        shutil.copy("logo.png", f"{base_path}_logo.png")
-        shutil.copy("icon.png", f"{base_path}_icon.png")
+            asset_suffixes = {
+                "grids": "p",
+                "hgrids": "",
+                "heroes": "_hero",
+                "logos": "_logo",
+                "icons": "_icon",
+            }
+            for asset_type, suffix, in asset_suffixes.items():
+                base_filename = f"{appid}{suffix}"
+                SteamGridDBManager.get_steam_game_asset(program_name, asset_type, c, base_filename)
 
         logging.info(f"Added shortcut for {program_name}")
         return Result(True)
