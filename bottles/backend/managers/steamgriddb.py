@@ -69,6 +69,8 @@ class SteamGridDBManager:
                 f.write(r.content)
         except Exception:
             return
+        
+        return f"grid:{filename}"
     
     @staticmethod
     def __save_asset_to_steam(url: str, assets_path: str, base_filename: str):
