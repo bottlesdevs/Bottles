@@ -552,6 +552,24 @@ class SteamManager:
         }
 
         for c in confs:
+            logging.info(f"Searching SteamGridDB for {program_name} assets…")
+            asset_suffixes = {
+                "grids": "p",
+                "hgrids": "",
+                "heroes": "_hero",
+                "logos": "_logo",
+                "icons": "_icon",
+            }
+            for asset_type, suffix, in asset_suffixes.items():
+                base_filename = f"{appid}{suffix}"
+                filename = SteamGridDBManager.get_steam_game_asset(program_name, asset_type, c, base_filename)                
+                if filename:
+                    if asset_type == "icons":
+                        shortcut["icon"] = os.path.join(c, "grid", filename)
+
+                    s = asset_type[:-1] if asset_type != "heroes" else "hero"
+                    logging.info(f"Added {s.capitalize()} asset ({filename})")
+
             _shortcuts = {}
             _existing = {}
 
@@ -567,21 +585,6 @@ class SteamManager:
 
             with open(os.path.join(c, "shortcuts.vdf"), "wb") as f:
                 f.write(vdf.binary_dumps(_shortcuts))
-        
-            logging.info(f"Searching SteamGridDB for {program_name} assets…")
-            asset_suffixes = {
-                "grids": "p",
-                "hgrids": "",
-                "heroes": "_hero",
-                "logos": "_logo",
-                "icons": "_icon",
-            }
-            for asset_type, suffix, in asset_suffixes.items():
-                base_filename = f"{appid}{suffix}"
-                filename = SteamGridDBManager.get_steam_game_asset(program_name, asset_type, c, base_filename)
-                if filename:
-                    s = asset_type[:-1] if asset_type != "heroes" else "hero"
-                    logging.info(f"Added {s.capitalize()} asset ({filename})")
 
         logging.info(f"Added shortcut for {program_name}")
         return Result(True)
