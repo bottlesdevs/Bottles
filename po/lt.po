@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2022-06-20 16:30+0000\n"
-"Last-Translator: Tillo <tl082i3l9o@gmail.com>\n"
+"PO-Revision-Date: 2024-10-27 02:15+0000\n"
+"Last-Translator: arnas <Arnas@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/bottles/"
 "bottles/lt/>\n"
 "Language: lt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
 "19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
 "1 : 2);\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 5.8.2-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -28,7 +28,7 @@ msgstr ""
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
 msgid "Backup {0}"
-msgstr ""
+msgstr "Atsarginė kopija {0}"
 
 #: bottles/backend/managers/backup.py:101
 #, python-brace-format
@@ -37,11 +37,11 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "Nepavyko įdiegti komponentų, bandyta 3 kartus."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Trūksta reikalingų komponentų. Diegiama…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
@@ -53,11 +53,11 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr ""
+msgstr "Generuojama „bottle“ konfigūracija…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
-msgstr ""
+msgstr "Rastas šablonas, pritaikoma…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1197
@@ -66,7 +66,7 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1199
 msgid "Wine config updated!"
-msgstr ""
+msgstr "Wine konfigūracija atnaujinta!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
@@ -78,45 +78,45 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "Nustatoma Windows versija…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Pritaikomi numatytieji CMD nustatymai…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
-msgstr ""
+msgstr "Vykdoma aplinkos optimizacija…"
 
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "Pritaikoma aplinka: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Naudojamas pritaikytos aplinkos receptas…"
 
 #: bottles/backend/managers/manager.py:1292
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Receptas nerastas arba klaidingas…"
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "Diegiama DXVK…"
 
 #: bottles/backend/managers/manager.py:1317
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "Diegiama VKD3D…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "Diegiama DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1335
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "Diegiama priklausomybė: %s …"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
@@ -124,11 +124,11 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
-msgstr ""
+msgstr "Užbaigiama…"
 
 #: bottles/backend/managers/manager.py:1364
 msgid "Caching template…"
-msgstr ""
+msgstr "Išsaugomas šablonas…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
@@ -141,24 +141,24 @@ msgstr ""
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "Nauja būsena [{0}] sėkmingai sukurta!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr ""
+msgstr "Sėkmingai gautas būsenų sąrašas!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr ""
+msgstr "Būsena {0} sėkmingai atkurta!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr ""
+msgstr "Atkuriama būsena {} …"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
-msgstr ""
+msgstr "Būsena nerasta"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
@@ -166,7 +166,7 @@ msgstr ""
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
-msgstr ""
+msgstr "Rodyti versiją"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
@@ -174,28 +174,28 @@ msgstr ""
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr ""
+msgstr "lnk path"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
 msgid "Bottle name"
-msgstr ""
+msgstr "„Bottle“ pavadinimas"
 
 #: bottles/frontend/main.py:144
 msgid "Pass arguments"
-msgstr ""
+msgstr "Siųsti argumentus"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Klaidingas URI (syntax: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr ""
+msgstr "[Quit] Prašymas gautas."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
-msgstr ""
+msgstr "[Help] Prašymas gautas."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
@@ -203,25 +203,25 @@ msgstr ""
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Aukoti"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Trečiųjų šalių bibliotekos bei ypatingas Ačiū"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Remia ir finansuoja"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr ""
+msgstr "Saugomos autorinės teisės © 2017 Bottles kūrėjai"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
 msgid "Bottles Developers"
-msgstr ""
+msgstr "„Bottles“ kūrėjai"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
@@ -229,17 +229,17 @@ msgstr ""
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr ""
+msgstr "Komponento versija"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
 #: bottles/frontend/ui/program-entry.blp:77
 msgid "Uninstall"
-msgstr ""
+msgstr "Išinstaliuoti"
 
 #: bottles/frontend/ui/component-entry.blp:23
 msgid "Browse Files"
-msgstr ""
+msgstr "Naršyti failus"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
@@ -282,7 +282,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
@@ -293,6 +293,8 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"Iškilo diegimo klaida. Perkraukite „Bottles“ jei norite skaityti klaidos "
+"ataskaitą, arba paleiskite per terminalą norint matyti išvestį."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -304,7 +306,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
-msgstr ""
+msgstr "Naršyti failus…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
@@ -328,20 +330,20 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr ""
+msgstr "Eksportuoti konfigūraciją…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
 msgid "Show Hidden Programs"
-msgstr ""
+msgstr "Rodyti paslėptas programas"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
-msgstr ""
+msgstr "Ieškoti naujų programų"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
-msgstr ""
+msgstr "Ištrinti Bottle…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
@@ -351,32 +353,32 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr ""
+msgstr "Priverstinai sustabdyti visus procesus"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Windows sistemos išjungimo simuliacija."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
-msgstr ""
+msgstr "Išjungti"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Windows sistemos perkrovimo simuliacija."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
-msgstr ""
+msgstr "Perkrauti"
 
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr ""
+msgstr "Paleidimo nustatymai"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
-msgstr ""
+msgstr "Paleisti terminale"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
@@ -384,16 +386,16 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
-msgstr ""
+msgstr "Mano bottle"
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: bottles/frontend/ui/details-bottle.blp:189
 #: bottles/frontend/ui/list-entry.blp:12 bottles/frontend/ui/new.blp:71
 msgid "Environment"
-msgstr ""
+msgstr "Aplinka"
 
 #: bottles/frontend/ui/details-bottle.blp:201
 #: bottles/frontend/ui/details-preferences.blp:14
@@ -404,16 +406,16 @@ msgstr ""
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "Įjungta versijos kontrolė šiam bottle"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr ""
+msgstr "Šio bottle versijos kontrolė yra aktyvi."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
@@ -421,7 +423,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
-msgstr ""
+msgstr "Programos"
 
 #: bottles/frontend/ui/details-bottle.blp:275
 msgid ""
@@ -955,9 +957,8 @@ msgid "Operations"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:4
-#, fuzzy
 msgid "Select Bottle"
-msgstr "Bottles"
+msgstr "Pasirinkti Bottle"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:16
 #: bottles/frontend/ui/dialog-proton-alert.blp:16
@@ -1945,7 +1946,7 @@ msgstr ""
 #: bottles/frontend/ui/preferences.blp:42
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Notifications"
-msgstr ""
+msgstr "Pranešimai"
 
 #: bottles/frontend/ui/preferences.blp:43
 msgid "Show notifications for downloads and installs."
@@ -2058,7 +2059,7 @@ msgstr ""
 #: bottles/frontend/ui/preferences.blp:297
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Experiments"
-msgstr ""
+msgstr "Eksperimentai"
 
 #: bottles/frontend/ui/preferences.blp:300
 msgid ""
@@ -2177,9 +2178,8 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "Bottles"
+msgstr "Pasirinkti Executable"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2412,9 +2412,8 @@ msgid "Select Bottles Path"
 msgstr "Bottles"
 
 #: bottles/frontend/views/preferences.py:198
-#, fuzzy
 msgid "Relaunch Bottles?"
-msgstr "Bottles"
+msgstr "Perkrauti Bottles?"
 
 #: bottles/frontend/views/preferences.py:199
 msgid ""
@@ -2603,9 +2602,8 @@ msgid "Copy to clipboard"
 msgstr ""
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
-msgstr "Bottles"
+msgstr "Pasirinkite išteklių failą"
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
@@ -2639,7 +2637,7 @@ msgstr ""
 
 #: bottles/frontend/windows/installer.py:166
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "Įvyko diegimo klaida dėl nežinomos priežasties"
 
 #: bottles/frontend/windows/launchoptions.py:56
 #, python-brace-format
@@ -2651,9 +2649,8 @@ msgid "This setting is different from the bottle's default."
 msgstr ""
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "Bottles"
+msgstr "Pasirinkite Script"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
@@ -2670,7 +2667,6 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
-#, fuzzy
 msgid "Run Windows Software"
 msgstr "Paleisti Windows programas"
 
@@ -2688,11 +2684,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr ""
+msgstr "Tamsus rėžimas"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "Priverstinai naudoti tamsųjį rėžimą."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -2744,7 +2740,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
-msgstr ""
+msgstr "Rodyti pranešimus."
 
 #: data/com.usebottles.bottles.gschema.xml:51
 msgid "Temp cleaning"
@@ -2756,7 +2752,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Release Candidate"
-msgstr ""
+msgstr "Paleisti kandidatą"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle release candidate for runners."
@@ -2764,11 +2760,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
-msgstr ""
+msgstr "Paleidimo vaizdas"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
-msgstr ""
+msgstr "Pasirinkti kurį vaizdą matysite pradėjus aplikaciją."
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
@@ -2794,7 +2790,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
-msgstr ""
+msgstr "Automatiškai išjungti Bottles"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
