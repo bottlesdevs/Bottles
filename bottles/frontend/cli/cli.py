@@ -660,6 +660,10 @@ class CLI:
         bottle = mng.local_bottles[_bottle]
         programs = mng.get_programs(bottle)
 
+        if _executable is None and _program is None:
+            sys.stderr.write(f"Please specify either --executable or --program\n")
+            exit(1)
+
         if _program is not None:
             if _executable is not None:
                 sys.stderr.write(f"Cannot specify both --program and --executable\n")
