@@ -97,6 +97,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.toggled["vkd3d"] = False
         self.toggled["dxvk_nvapi"] = False
         self.toggled["fsr"] = False
+        self.toggled["gamescope"] = False
         self.toggled["virtual_desktop"] = False
 
         # connect signals
@@ -159,7 +160,7 @@ class LaunchOptionsDialog(Adw.Window):
             "state-set", self.__check_override, self.action_fsr, "fsr"
         )
         self.switch_gamescope.connect(
-            "state-set", self.__check_override, self.action_gamescope, "fsr"
+            "state-set", self.__check_override, self.action_gamescope, "gamescope"
         )
         self.switch_virt_desktop.connect(
             "state-set",

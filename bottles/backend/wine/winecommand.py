@@ -107,6 +107,10 @@ class WineCommand:
         self.arguments = arguments
         self.cwd = self._get_cwd(cwd)
         self.runner, self.runner_runtime = self._get_runner_info()
+        self.gamescope_activated = (
+            self.config.Parameters.gamescope
+            or environment.get("GAMESCOPE", "0") == "1"
+        )
         self.command = self.get_cmd(
             command, pre_script, post_script, environment=_environment
         )
@@ -330,7 +334,7 @@ class WineCommand:
         if (
             params.mangohud
             and not self.minimal
-            and not (gamescope_available and params.gamescope)
+            and not (gamescope_available and self.gamescope_activated)
         ):
             env.add("MANGOHUD", "1")
             env.add("MANGOHUD_DLSYM", "1")
@@ -506,13 +510,13 @@ class WineCommand:
                 else:
                     command = f"gamemode {command}"
 
-            if mangohud_available and params.mangohud and not params.gamescope:
+            if mangohud_available and params.mangohud and not self.gamescope_activated:
                 if not return_steam_cmd:
                     command = f"{mangohud_available} {command}"
                 else:
                     command = f"mangohud {command}"
 
-            if gamescope_available and params.gamescope:
+            if gamescope_available and self.gamescope_activated:
                 gamescope_run = tempfile.NamedTemporaryFile(mode="w", suffix=".sh").name
 
                 # Create temporary sh script in /tmp where Gamescope will execute it
@@ -605,7 +609,7 @@ class WineCommand:
         params = config.Parameters
         gamescope_cmd = []
 
-        if gamescope_available and params.gamescope:
+        if gamescope_available and self.gamescope_activated:
             gamescope_cmd = [gamescope_available]
             if return_steam_cmd:
                 gamescope_cmd = ["gamescope"]
