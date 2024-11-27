@@ -40,6 +40,7 @@ class WineExecutor:
         program_vkd3d: Optional[bool] = None,
         program_nvapi: Optional[bool] = None,
         program_fsr: Optional[bool] = None,
+        program_gamescope: Optional[bool] = None,
         program_virt_desktop: Optional[bool] = None,
     ):
         logging.info("Launching an executable…")
@@ -121,6 +122,7 @@ class WineExecutor:
             program_vkd3d=program.get("vkd3d"),
             program_nvapi=program.get("dxvk_nvapi"),
             program_fsr=program.get("fsr"),
+            program_gamescope=program.get("fsr"),
             program_virt_desktop=program.get("virtual_desktop"),
         ).run()
 
