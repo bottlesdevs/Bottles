@@ -65,6 +65,7 @@ class WineExecutor:
         self.pre_script = pre_script
         self.post_script = post_script
         self.monitoring = monitoring
+        self.use_gamescope = program_gamescope
         self.use_virt_desktop = program_virt_desktop
 
         env_dll_overrides = []
@@ -96,6 +97,9 @@ class WineExecutor:
                 self.environment["WINE_FULLSCREEN_FSR_MODE"] = str(
                     self.config.Parameters.fsr_quality_mode
                 )
+        
+        if program_gamescope is not None and program_gamescope != self.config.Parameters.gamescope:
+            self.environment["GAMESCOPE"] = "1" if program_gamescope else "0"
 
         if env_dll_overrides:
             if "WINEDLLOVERRIDES" in self.environment:
@@ -122,7 +126,7 @@ class WineExecutor:
             program_vkd3d=program.get("vkd3d"),
             program_nvapi=program.get("dxvk_nvapi"),
             program_fsr=program.get("fsr"),
-            program_gamescope=program.get("fsr"),
+            program_gamescope=program.get("gamescope"),
             program_virt_desktop=program.get("virtual_desktop"),
         ).run()
 
@@ -234,6 +238,8 @@ class WineExecutor:
         #         data={"output": res}
         #     )
         winepath = WinePath(self.config)
+        if self.use_gamescope:
+            return self.__launch_with_gamescope()
         if self.use_virt_desktop:
             if winepath.is_unix(self.exec_path):
                 self.exec_path = winepath.to_windows(self.exec_path)
@@ -329,6 +335,9 @@ class WineExecutor:
         )
         self.__set_monitors()
         return Result(status=res.status, data={"output": res.data})
+
+    def __launch_with_gamescope(self):
+        self.__launch_exe()
 
     @staticmethod
     def __launch_dll():
