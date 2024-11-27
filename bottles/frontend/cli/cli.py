@@ -640,6 +640,7 @@ class CLI:
         _program_vkd3d = None
         _program_dxvk_nvapi = None
         _program_fsr = None
+        _program_gamescope = None
         _program_virt_desktop = None
 
         mng = Manager(g_settings=self.settings, is_cli=True)
@@ -682,6 +683,7 @@ class CLI:
             _program_vkd3d = program.get("vkd3d")
             _program_dxvk_nvapi = program.get("dxvk_nvapi")
             _program_fsr = program.get("fsr")
+            _program_gamescope = program.get("gamescope")
             _program_virt_desktop = program.get("virtual_desktop")
 
         _executable = _executable.replace("file://", "")
@@ -701,6 +703,7 @@ class CLI:
             program_vkd3d=_program_vkd3d,
             program_nvapi=_program_dxvk_nvapi,
             program_fsr=_program_fsr,
+            program_gamescope=_program_gamescope,
             program_virt_desktop=_program_virt_desktop,
         ).run_cli()
 
