@@ -108,8 +108,8 @@ class WineCommand:
         self.cwd = self._get_cwd(cwd)
         self.runner, self.runner_runtime = self._get_runner_info()
         self.gamescope_activated = (
-            self.config.Parameters.gamescope
-            or environment.get("GAMESCOPE", "0") == "1"
+            environment["GAMESCOPE"] == "1" if "GAMESCOPE" in environment
+            else self.config.Parameters.gamescope
         )
         self.command = self.get_cmd(
             command, pre_script, post_script, environment=_environment
