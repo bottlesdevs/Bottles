@@ -238,8 +238,6 @@ class WineExecutor:
         #         data={"output": res}
         #     )
         winepath = WinePath(self.config)
-        if self.use_gamescope:
-            return self.__launch_with_gamescope()
         if self.use_virt_desktop:
             if winepath.is_unix(self.exec_path):
                 self.exec_path = winepath.to_windows(self.exec_path)
@@ -335,9 +333,6 @@ class WineExecutor:
         )
         self.__set_monitors()
         return Result(status=res.status, data={"output": res.data})
-
-    def __launch_with_gamescope(self):
-        self.__launch_exe()
 
     @staticmethod
     def __launch_dll():
