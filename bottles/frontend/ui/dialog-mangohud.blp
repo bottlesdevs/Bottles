@@ -1,0 +1,52 @@
+using Gtk 4.0;
+
+template MangoHudDialog : .AdwWindow {
+ default-width: "500";
+  modal: true;
+
+  title:_("MangoHud Settings");
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      [end]
+      Button btn_save {
+        label: _("Save");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    .AdwPreferencesPage {
+      .AdwPreferencesGroup {
+        .AdwActionRow {
+          title: _("Display On Game Start");
+          activatable-widget: "display_on_game_start";
+
+          Switch display_on_game_start {
+            valign: center;
+          }
+        }
+      }
+    }
+  }
+}
