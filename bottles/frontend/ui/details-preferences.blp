@@ -209,6 +209,16 @@ template $DetailsPreferences: Adw.PreferencesPage {
       title: _("Monitor Performance");
       subtitle: _("Display monitoring information such as framerate, temperatures, CPU/GPU load and more on OpenGL and Vulkan using MangoHud.");
 
+      Button btn_manage_mangohud {
+        tooltip-text: _("Manage MangoHud settings");
+        valign: center;
+        icon-name: "applications-system-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
       Switch switch_mangohud {
         valign: center;
       }
