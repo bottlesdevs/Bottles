@@ -338,6 +338,8 @@ class WineCommand:
         ):
             env.add("MANGOHUD", "1")
             env.add("MANGOHUD_DLSYM", "1")
+            if not params.mangohud_display_on_game_start:
+                env.add("MANGOHUD_CONFIG", "no_display")
 
         # vkBasalt environment variables
         if params.vkbasalt and not self.minimal:
