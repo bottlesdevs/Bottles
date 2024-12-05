@@ -40,6 +40,7 @@ template MangoHudDialog : .AdwWindow {
       .AdwPreferencesGroup {
         .AdwActionRow {
           title: _("Display On Game Start");
+          subtitle: _("Display HUD as soon as the game starts. Can be toggled in-game (default keybind: [⇧ Right Shift] + [F12]).");
           activatable-widget: "display_on_game_start";
 
           Switch display_on_game_start {
