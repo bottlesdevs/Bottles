@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Adw 1;
 
 Popover pop_actions {
   styles [
@@ -12,24 +13,24 @@ Popover pop_actions {
     margin-start: 6;
     margin-end: 6;
 
-    .GtkModelButton btn_manifest {
+    $GtkModelButton btn_manifest {
       text: _("Show Manifest…");
     }
 
-    .GtkModelButton btn_review {
+    $GtkModelButton btn_review {
       text: _("Read Review…");
     }
 
     Separator {}
 
-    .GtkModelButton btn_report {
+    $GtkModelButton btn_report {
       text: _("Report a Bug…");
     }
   }
 }
 
-template InstallerEntry:.AdwActionRow {
-  activatable-widget: "btn_install";
+template $InstallerEntry: Adw.ActionRow {
+  activatable-widget: btn_install;
   title: _("Installer name");
   subtitle: _("Installer description");
 

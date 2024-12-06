@@ -1,6 +1,7 @@
 using Gtk 4.0;
+using Adw 1;
 
-template DetailsDependencies:.AdwBin {
+template $DetailsDependencies: Adw.Bin {
   Box {
     orientation: vertical;
 
@@ -16,7 +17,7 @@ template DetailsDependencies:.AdwBin {
       StackPage {
         name: "page_offline";
 
-        child:.AdwStatusPage {
+        child: Adw.StatusPage {
           icon-name: "network-error-symbolic";
           title: _("You're offline :(");
           vexpand: true;
@@ -28,7 +29,7 @@ template DetailsDependencies:.AdwBin {
       StackPage {
         name: "page_loading";
 
-        child:.AdwStatusPage {
+        child: Adw.StatusPage {
           vexpand: true;
           hexpand: true;
 
@@ -41,8 +42,8 @@ template DetailsDependencies:.AdwBin {
       StackPage {
         name: "page_deps";
 
-        child:.AdwPreferencesPage {
-          .AdwPreferencesGroup {
+        child: Adw.PreferencesPage {
+          Adw.PreferencesGroup {
             description: _("Dependencies are resources that improve compatibility of Windows software.\n\nFiles on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.");
 
             ListBox list_dependencies {
@@ -71,12 +72,12 @@ Popover pop_context {
     margin-start: 6;
     margin-end: 6;
 
-    .GtkModelButton btn_report {
+    $GtkModelButton btn_report {
       tooltip-text: _("Report a problem or a missing dependency.");
       text: _("Report Missing Dependency");
     }
 
-    .GtkModelButton btn_help {
+    $GtkModelButton btn_help {
       tooltip-text: _("Read Documentation.");
       text: _("Documentation");
     }

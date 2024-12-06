@@ -1,18 +1,19 @@
 using Gtk 4.0;
+using Adw 1;
 
-template DuplicateDialog:.AdwWindow {
+template $DuplicateDialog: Adw.Window {
   modal: true;
-  default-width: "400";
-  default-height: "400";
+  default-width: 400;
+  default-height: 400;
   destroy-with-parent: true;
 
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {
+    Adw.HeaderBar {
       show-end-title-buttons: false;
 
-      title-widget:.AdwWindowTitle {
+      title-widget: Adw.WindowTitle {
         title: _("Duplicate Bottle");
       };
 
@@ -42,11 +43,11 @@ template DuplicateDialog:.AdwWindow {
     }
 
     Stack stack_switcher {
-      .AdwPreferencesPage page_name {
-        .AdwPreferencesGroup {
+      Adw.PreferencesPage page_name {
+        Adw.PreferencesGroup {
           description: _("Enter a name for the duplicate of the Bottle.");
 
-          .AdwEntryRow entry_name {
+          Adw.EntryRow entry_name {
             title: _("Name");
           }
         }
@@ -88,7 +89,7 @@ template DuplicateDialog:.AdwWindow {
       StackPage {
         name: "page_duplicated";
 
-        child:.AdwStatusPage page_duplicated {
+        child: Adw.StatusPage page_duplicated {
           icon-name: "object-select-symbolic";
           title: _("Bottle Duplicated");
         };

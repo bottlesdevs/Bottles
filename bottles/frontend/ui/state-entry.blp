@@ -1,7 +1,8 @@
 using Gtk 4.0;
+using Adw 1;
 
-template StateEntry:.AdwActionRow {
-  activatable-widget: "btn_restore";
+template $StateEntry: Adw.ActionRow {
+  activatable-widget: btn_restore;
 
   /* Translators: id as identification */
   title: _("State id");

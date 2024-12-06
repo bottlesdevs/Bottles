@@ -1,14 +1,15 @@
 using Gtk 4.0;
+using Adw 1;
 
-template ProtonAlertDialog:.AdwWindow {
+template $ProtonAlertDialog: Adw.Window {
   title: _("Proton Disclaimer");
-  default-width: "500";
-  default-height: "380";
+  default-width: 500;
+  default-height: 380;
 
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {
+    Adw.HeaderBar {
       show-end-title-buttons: false;
 
       [start]

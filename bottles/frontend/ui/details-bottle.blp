@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Adw 1;
 
 Popover pop_context {
   styles [
@@ -12,44 +13,44 @@ Popover pop_context {
     margin-end: 6;
     orientation: vertical;
 
-    .GtkModelButton btn_flatpak_doc {
+    $GtkModelButton btn_flatpak_doc {
       text: _("Troubleshooting");
       tooltip-text: "https://docs.usebottles.com/flatpak/black-screen-or-silent-crash";
     }
 
     Separator {}
 
-    .GtkModelButton btn_browse {
+    $GtkModelButton btn_browse {
       text: _("Browse Files…");
     }
 
-    .GtkModelButton btn_duplicate {
+    $GtkModelButton btn_duplicate {
       text: _("Duplicate Bottle…");
     }
 
-    .GtkModelButton btn_backup_full {
+    $GtkModelButton btn_backup_full {
       tooltip-text: _("This is the complete archive of your bottle, including personal files.");
       text: _("Full Backup…");
     }
 
-    .GtkModelButton btn_backup_config {
+    $GtkModelButton btn_backup_config {
       tooltip-text: _("This is just the bottle configuration, it\'s perfect if you want to create a new one but without personal files.");
       text: _("Export Configuration…");
     }
 
     Separator {}
 
-    .GtkModelButton btn_toggle_removed {
+    $GtkModelButton btn_toggle_removed {
       text: _("Show Hidden Programs");
     }
 
-    .GtkModelButton btn_update {
+    $GtkModelButton btn_update {
       text: _("Search for new programs");
     }
 
     Separator {}
 
-    .GtkModelButton btn_delete {
+    $GtkModelButton btn_delete {
       text: _("Delete Bottle…");
     }
   }
@@ -83,20 +84,20 @@ Popover pop_power {
     margin-start: 6;
     margin-end: 6;
 
-    .GtkModelButton btn_forcestop {
+    $GtkModelButton btn_forcestop {
       text: _("Force Stop all Processes");
     }
 
-    .GtkModelButton btn_nv_forcestop {
+    $GtkModelButton btn_nv_forcestop {
       text: _("Force Stop all Processes (Native method)");
     }
 
-    .GtkModelButton btn_shutdown {
+    $GtkModelButton btn_shutdown {
       tooltip-text: _("Simulate a Windows system shutdown.");
       text: _("Shutdown");
     }
 
-    .GtkModelButton btn_reboot {
+    $GtkModelButton btn_reboot {
       tooltip-text: _("Simulate a Windows system reboot.");
       text: _("Reboot");
     }
@@ -139,13 +140,13 @@ Popover popover_exec_settings {
   }
 }
 
-template DetailsBottle:.AdwPreferencesPage {
+template $DetailsBottle: Adw.PreferencesPage {
   Overlay drop_overlay {
     visible: false;
 
     [overlay]
-    .AdwStatusPage {
-      icon-name: system-run-symbolic;
+    Adw.StatusPage {
+      icon-name: "system-run-symbolic";
       title: _("Drop files to execute them");
 
       styles [
@@ -154,7 +155,7 @@ template DetailsBottle:.AdwPreferencesPage {
     }
   }
 
-  .AdwPreferencesGroup {
+  Adw.PreferencesGroup {
     Box {
       orientation: vertical;
 
@@ -234,7 +235,7 @@ template DetailsBottle:.AdwPreferencesPage {
     }
   }
 
-  .AdwPreferencesGroup {
+  Adw.PreferencesGroup {
     Box {
       spacing: 6;
       halign: center;
@@ -272,14 +273,14 @@ template DetailsBottle:.AdwPreferencesPage {
     }
   }
 
-  .AdwPreferencesGroup group_programs {
+  Adw.PreferencesGroup group_programs {
     title: _("Programs");
 
-    .AdwActionRow row_no_programs {
+    Adw.ActionRow row_no_programs {
       subtitle: _("Click \"Run Executable…\" to run an executable, \"Add Shortcuts…\" to add an executable to the Programs list, or \"Install Programs…\" to install programs curated by the community.");
     }
 
-    .AdwPreferencesRow bottom_bar {
+    Adw.PreferencesRow bottom_bar {
       activatable: false;
       focusable: false;
 
@@ -349,10 +350,10 @@ template DetailsBottle:.AdwPreferencesPage {
     }
   }
 
-  .AdwPreferencesGroup group_options {
+  Adw.PreferencesGroup group_options {
     title: _("Options");
 
-    .AdwActionRow row_preferences {
+    Adw.ActionRow row_preferences {
       activatable: true;
       title: _("Settings");
       subtitle: _("Configure bottle settings.");
@@ -362,7 +363,7 @@ template DetailsBottle:.AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_dependencies {
+    Adw.ActionRow row_dependencies {
       activatable: true;
       title: _("Dependencies");
       subtitle: _("Install dependencies for programs.");
@@ -372,7 +373,7 @@ template DetailsBottle:.AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_snapshots {
+    Adw.ActionRow row_snapshots {
       activatable: true;
       title: _("Snapshots");
       subtitle: _("Create and manage bottle states.");
@@ -382,7 +383,7 @@ template DetailsBottle:.AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_taskmanager {
+    Adw.ActionRow row_taskmanager {
       activatable: true;
       title: _("Task Manager");
       subtitle: _("Manage running programs.");
@@ -393,10 +394,10 @@ template DetailsBottle:.AdwPreferencesPage {
     }
   }
 
-  .AdwPreferencesGroup group_utilities {
+  Adw.PreferencesGroup group_utilities {
     title: _("Tools");
 
-    .AdwActionRow row_cmd {
+    Adw.ActionRow row_cmd {
       activatable: true;
       title: _("Command Line");
       subtitle: _("Run commands inside the Bottle.");
@@ -406,7 +407,7 @@ template DetailsBottle:.AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_regedit {
+    Adw.ActionRow row_regedit {
       activatable: true;
       title: _("Registry Editor");
       subtitle: _("Edit the internal registry.");
@@ -416,10 +417,10 @@ template DetailsBottle:.AdwPreferencesPage {
       }
     }
 
-    .AdwExpanderRow {
+    Adw.ExpanderRow {
       title: _("Legacy Wine Tools");
 
-      .AdwActionRow row_explorer {
+      Adw.ActionRow row_explorer {
         activatable: true;
         title: _("Explorer");
 
@@ -428,7 +429,7 @@ template DetailsBottle:.AdwPreferencesPage {
         }
       }
 
-      .AdwActionRow row_taskmanager_legacy {
+      Adw.ActionRow row_taskmanager_legacy {
         activatable: true;
         title: _("Task Manager");
 
@@ -437,7 +438,7 @@ template DetailsBottle:.AdwPreferencesPage {
         }
       }
 
-      .AdwActionRow row_debug {
+      Adw.ActionRow row_debug {
         activatable: true;
         title: _("Debugger");
 
@@ -446,7 +447,7 @@ template DetailsBottle:.AdwPreferencesPage {
         }
       }
 
-      .AdwActionRow row_winecfg {
+      Adw.ActionRow row_winecfg {
         activatable: true;
         title: _("Configuration");
 
@@ -455,7 +456,7 @@ template DetailsBottle:.AdwPreferencesPage {
         }
       }
 
-      .AdwActionRow row_uninstaller {
+      Adw.ActionRow row_uninstaller {
         activatable: true;
         title: _("Uninstaller");
 
@@ -464,7 +465,7 @@ template DetailsBottle:.AdwPreferencesPage {
         }
       }
 
-      .AdwActionRow row_controlpanel {
+      Adw.ActionRow row_controlpanel {
         activatable: true;
         title: _("Control Panel");
 

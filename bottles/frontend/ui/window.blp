@@ -1,12 +1,13 @@
 using Gtk 4.0;
+using Adw 1;
 
-template MainWindow:.AdwApplicationWindow {
+template $MainWindow: Adw.ApplicationWindow {
   title: "Bottles";
   icon-name: "com.usebottles.bottles";
-  close-request => on_close_request();
+  close-request => $on_close_request();
 
-  .AdwToastOverlay toasts {
-    .AdwLeaflet main_leaf {
+  Adw.ToastOverlay toasts {
+    Adw.Leaflet main_leaf {
       can-unfold: false;
       can-navigate-back: false;
 
@@ -14,9 +15,9 @@ template MainWindow:.AdwApplicationWindow {
         orientation: vertical;
 
         HeaderBar headerbar {
-          title-widget:.AdwViewSwitcherTitle view_switcher_title {
+          title-widget: Adw.ViewSwitcherTitle view_switcher_title {
             title: "Bottles";
-            stack: "stack_main";
+            stack: stack_main;
           };
 
           Button btn_add {
@@ -55,12 +56,12 @@ template MainWindow:.AdwApplicationWindow {
 
         SearchBar searchbar {}
 
-        .AdwViewStack stack_main {
+        Adw.ViewStack stack_main {
           vexpand: true;
         }
 
-        .AdwViewSwitcherBar view_switcher_bar {
-          stack: "stack_main";
+        Adw.ViewSwitcherBar view_switcher_bar {
+          stack: stack_main;
           reveal: bind view_switcher_title.title-visible;
         }
       }
