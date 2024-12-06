@@ -1,14 +1,15 @@
 using Gtk 4.0;
+using Adw 1;
 
-template LaunchOptionsDialog:.AdwWindow {
+template $LaunchOptionsDialog: Adw.Window {
   modal: true;
-  default-width: "500";
+  default-width: 500;
   title: _("Launch Options");
 
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {
+    Adw.HeaderBar {
       show-end-title-buttons: false;
 
       [start]
@@ -37,18 +38,18 @@ template LaunchOptionsDialog:.AdwWindow {
       }
     }
 
-    .AdwPreferencesPage {
-      .AdwPreferencesGroup {
+    Adw.PreferencesPage {
+      Adw.PreferencesGroup {
         description: _("Those arguments will be passed at launch.");
         title: _("Custom Arguments");
 
-        .AdwEntryRow entry_arguments {
+        Adw.EntryRow entry_arguments {
           title: _("Command Arguments");
           tooltip-text: _("e.g.: VAR=value %command% -example1 -example2 -example3=hello");
         }
 
-        .AdwActionRow action_pre_script {
-          activatable-widget: "btn_pre_script";
+        Adw.ActionRow action_pre_script {
+          activatable-widget: btn_pre_script;
           title: _("Pre-run Script");
           subtitle: _("Choose a script which should be executed before run.");
 
@@ -78,8 +79,8 @@ template LaunchOptionsDialog:.AdwWindow {
           }
         }
 
-        .AdwActionRow action_post_script {
-          activatable-widget: "btn_post_script";
+        Adw.ActionRow action_post_script {
+          activatable-widget: btn_post_script;
           title: _("Post-run Script");
           subtitle: _("Choose a script which should be executed after run.");
 
@@ -109,8 +110,8 @@ template LaunchOptionsDialog:.AdwWindow {
           }
         }
 
-        .AdwActionRow action_cwd {
-          activatable-widget: "btn_cwd";
+        Adw.ActionRow action_cwd {
+          activatable-widget: btn_cwd;
           title: _("Working Directory");
           subtitle: _("Choose from where start the program.");
 
@@ -141,7 +142,7 @@ template LaunchOptionsDialog:.AdwWindow {
         }
       }
 
-      .AdwPreferencesGroup {
+      Adw.PreferencesGroup {
         description: _("These settings will override the default settings for this executable.");
         title: _("Preferences Overrides");
 
@@ -156,35 +157,35 @@ template LaunchOptionsDialog:.AdwWindow {
           ]
         }
 
-        .AdwActionRow action_dxvk {
+        Adw.ActionRow action_dxvk {
           title: "DXVK";
-          activatable-widget: "switch_dxvk";
+          activatable-widget: switch_dxvk;
 
           Switch switch_dxvk {
             valign: center;
           }
         }
 
-        .AdwActionRow action_vkd3d {
+        Adw.ActionRow action_vkd3d {
           title: "VKD3D";
-          activatable-widget: "switch_vkd3d";
+          activatable-widget: switch_vkd3d;
 
           Switch switch_vkd3d {
             valign: center;
           }
         }
 
-        .AdwActionRow action_nvapi {
+        Adw.ActionRow action_nvapi {
           title: "DLSS (DXVK-NVAPI)";
-          activatable-widget: "switch_nvapi";
+          activatable-widget: switch_nvapi;
 
           Switch switch_nvapi {
             valign: center;
           }
         }
 
-        .AdwActionRow action_fsr {
-          activatable-widget: "switch_fsr";
+        Adw.ActionRow action_fsr {
+          activatable-widget: switch_fsr;
           title: "FSR";
 
           Switch switch_fsr {
@@ -192,18 +193,18 @@ template LaunchOptionsDialog:.AdwWindow {
           }
         }
 
-        .AdwActionRow action_gamescope {
+        Adw.ActionRow action_gamescope {
           title: _("Gamescope");
-          activatable-widget: "switch_gamescope";
+          activatable-widget: switch_gamescope;
 
           Switch switch_gamescope {
             valign: center;
           }
         }
 
-        .AdwActionRow action_virt_desktop {
+        Adw.ActionRow action_virt_desktop {
           title: _("Virtual Desktop");
-          activatable-widget: "switch_virt_desktop";
+          activatable-widget: switch_virt_desktop;
 
           Switch switch_virt_desktop {
             valign: center;

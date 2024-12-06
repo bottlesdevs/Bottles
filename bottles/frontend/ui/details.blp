@@ -1,7 +1,8 @@
 using Gtk 4.0;
+using Adw 1;
 
-template Details:.AdwBin {
-  .AdwLeaflet leaflet {
+template $Details: Adw.Bin {
+  Adw.Leaflet leaflet {
     can-navigate-back: true;
     can-unfold: false;
     hexpand: true;
@@ -9,10 +10,10 @@ template Details:.AdwBin {
     Box {
       orientation: vertical;
 
-      .AdwHeaderBar sidebar_headerbar {
+      Adw.HeaderBar sidebar_headerbar {
         show-end-title-buttons: false;
 
-        title-widget:.AdwWindowTitle sidebar_title {
+        title-widget: Adw.WindowTitle sidebar_title {
           title: _("Details");
         };
 
@@ -29,7 +30,7 @@ template Details:.AdwBin {
       Box default_view {}
     }
 
-    .AdwLeafletPage {
+    Adw.LeafletPage {
       navigatable: false;
 
       child: Separator panel_separator {
@@ -44,10 +45,10 @@ template Details:.AdwBin {
     Box content {
       orientation: vertical;
 
-      .AdwHeaderBar content_headerbar {
+      Adw.HeaderBar content_headerbar {
         show-start-title-buttons: false;
 
-        title-widget:.AdwWindowTitle content_title {};
+        title-widget: Adw.WindowTitle content_title {};
 
         [start]
         Button btn_back_sidebar {

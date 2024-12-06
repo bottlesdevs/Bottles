@@ -1,9 +1,10 @@
 using Gtk 4.0;
+using Adw 1;
 
-template SandboxDialog:.AdwWindow {
+template $SandboxDialog: Adw.Window {
   modal: true;
   deletable: true;
-  default-width: "550";
+  default-width: 550;
   title: _("Sandbox Settings");
 
   ShortcutController {
@@ -16,22 +17,22 @@ template SandboxDialog:.AdwWindow {
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {}
+    Adw.HeaderBar {}
 
-    .AdwPreferencesPage {
-      .AdwPreferencesGroup {
-        .AdwActionRow {
+    Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        Adw.ActionRow {
           title: _("Share Network");
-          activatable-widget: "switch_net";
+          activatable-widget: switch_net;
 
           Switch switch_net {
             valign: center;
           }
         }
 
-        .AdwActionRow {
+        Adw.ActionRow {
           title: _("Share Sound");
-          activatable-widget: "switch_sound";
+          activatable-widget: switch_sound;
 
           Switch switch_sound {
             valign: center;

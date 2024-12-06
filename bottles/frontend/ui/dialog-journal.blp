@@ -1,42 +1,43 @@
 using Gtk 4.0;
+using Adw 1;
 
 Popover pop_menu {
   Box {
     orientation: vertical;
     spacing: 3;
 
-    .GtkModelButton btn_all {
+    $GtkModelButton btn_all {
       text: _("All messages");
     }
 
-    .GtkModelButton btn_critical {
+    $GtkModelButton btn_critical {
       text: _("Critical");
     }
 
-    .GtkModelButton btn_error {
+    $GtkModelButton btn_error {
       text: _("Errors");
     }
 
-    .GtkModelButton btn_warning {
+    $GtkModelButton btn_warning {
       text: _("Warnings");
     }
 
-    .GtkModelButton btn_info {
+    $GtkModelButton btn_info {
       text: _("Info");
     }
   }
 }
 
-template JournalDialog:.AdwWindow {
-  default-width: "800";
-  default-height: "600";
+template $JournalDialog: Adw.Window {
+  default-width: 800;
+  default-height: 600;
   destroy-with-parent: true;
 
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {
-      title-widget:.AdwWindowTitle {
+    Adw.HeaderBar {
+      title-widget: Adw.WindowTitle {
         title: _("Journal Browser");
       };
 
