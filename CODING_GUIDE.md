@@ -5,7 +5,7 @@
 #### Build & install
 
 ```bash
-flatpak-builder --install --user --force-clean ./.flatpak-builder/out com.usebottles.bottles.yml
+flatpak-builder --install --user --force-clean ./.flatpak-builder/out ./build-aux/com.usebottles.bottles.json
 ```
 
 #### Run
