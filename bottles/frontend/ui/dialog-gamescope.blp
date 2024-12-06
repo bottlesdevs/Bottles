@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template GamescopeDialog : .AdwWindow {
+template GamescopeDialog:.AdwWindow {
   modal: true;
   default-width: "550";
   title: _("Gamescope Settings");
@@ -50,13 +50,11 @@ template GamescopeDialog : .AdwWindow {
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_width {
+
+            adjustment: Adjustment spin_width {
               step-increment: 1;
               upper: 7680;
-            }
-
-            ;
+            };
           }
         }
 
@@ -66,13 +64,11 @@ template GamescopeDialog : .AdwWindow {
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_height {
+
+            adjustment: Adjustment spin_height {
               step-increment: 1;
               upper: 7680;
-            }
-
-            ;
+            };
           }
         }
       }
@@ -87,13 +83,11 @@ template GamescopeDialog : .AdwWindow {
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_gamescope_width {
+
+            adjustment: Adjustment spin_gamescope_width {
               step-increment: 1;
               upper: 7680;
-            }
-
-            ;
+            };
           }
         }
 
@@ -103,13 +97,11 @@ template GamescopeDialog : .AdwWindow {
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_gamescope_height {
+
+            adjustment: Adjustment spin_gamescope_height {
               step-increment: 1;
               upper: 7680;
-            }
-
-            ;
+            };
           }
         }
       }
@@ -123,13 +115,11 @@ template GamescopeDialog : .AdwWindow {
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_fps_limit {
+
+            adjustment: Adjustment spin_fps_limit {
               step-increment: 1;
               upper: 244;
-            }
-
-            ;
+            };
           }
         }
 
@@ -139,13 +129,11 @@ template GamescopeDialog : .AdwWindow {
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_fps_limit_no_focus {
+
+            adjustment: Adjustment spin_fps_limit_no_focus {
               step-increment: 1;
               upper: 244;
-            }
-
-            ;
+            };
           }
         }
 

@@ -29,8 +29,7 @@ Popover pop_actions {
       text: _("Uninstall");
     }
 
-    Separator {
-    }
+    Separator {}
 
     .GtkModelButton btn_report {
       text: _("Report a Bug…");
@@ -38,7 +37,7 @@ Popover pop_actions {
   }
 }
 
-template DependencyEntry : .AdwActionRow {
+template DependencyEntry:.AdwActionRow {
   title: _("Dependency name");
   activatable-widget: "btn_install";
   subtitle: _("Dependency description");

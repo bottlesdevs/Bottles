@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template PreferencesWindow : Adw.PreferencesWindow {
+template PreferencesWindow: Adw.PreferencesWindow {
   title: _("Preferences");
   modal: true;
   default-width: 750;
@@ -193,8 +193,7 @@ template PreferencesWindow : Adw.PreferencesWindow {
       StackPage {
         name: "installers_offline";
 
-        child:
-        Adw.StatusPage {
+        child: Adw.StatusPage {
           icon-name: "network-error-symbolic";
           title: _("You're offline :(");
           vexpand: true;
@@ -206,8 +205,7 @@ template PreferencesWindow : Adw.PreferencesWindow {
       StackPage {
         name: "installers_loading";
 
-        child:
-        Adw.StatusPage {
+        child: Adw.StatusPage {
           vexpand: true;
           hexpand: true;
 
@@ -220,8 +218,7 @@ template PreferencesWindow : Adw.PreferencesWindow {
       StackPage {
         name: "installers_list";
 
-        child:
-        Adw.PreferencesPage {
+        child: Adw.PreferencesPage {
           Adw.PreferencesGroup list_runners {
             vexpand: true;
             hexpand: true;
@@ -241,8 +238,7 @@ template PreferencesWindow : Adw.PreferencesWindow {
       StackPage {
         name: "dlls_offline";
 
-        child:
-        Adw.StatusPage {
+        child: Adw.StatusPage {
           icon-name: "network-error-symbolic";
           title: _("You're offline :(");
           vexpand: true;
@@ -254,8 +250,7 @@ template PreferencesWindow : Adw.PreferencesWindow {
       StackPage {
         name: "dlls_loading";
 
-        child:
-        Adw.StatusPage {
+        child: Adw.StatusPage {
           vexpand: true;
           hexpand: true;
 
@@ -268,8 +263,7 @@ template PreferencesWindow : Adw.PreferencesWindow {
       StackPage {
         name: "dlls_list";
 
-        child:
-        Adw.PreferencesPage {
+        child: Adw.PreferencesPage {
           Adw.PreferencesGroup list_dxvk {
             title: _("DXVK");
           }

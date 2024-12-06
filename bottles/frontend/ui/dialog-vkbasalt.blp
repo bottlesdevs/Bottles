@@ -1,12 +1,11 @@
 using Gtk 4.0;
 
-template VkBasaltDialog : .AdwWindow {
+template VkBasaltDialog:.AdwWindow {
   default-width: "500";
   default-height: "500";
   modal: true;
 
   /* Translators: vkBasalt is a Vulkan post processing layer for Linux */
-
   title: _("Post-Processing Effects Settings");
 
   ShortcutController {
@@ -79,14 +78,12 @@ template VkBasaltDialog : .AdwWindow {
               numeric: true;
               valign: center;
               digits: 2;
-              adjustment:
-              Adjustment spin_cas_sharpness {
+
+              adjustment: Adjustment spin_cas_sharpness {
                 lower: -1.0;
                 step-increment: 0.1;
                 upper: 1.0;
-              }
-
-              ;
+              };
             }
           }
         }
@@ -95,7 +92,6 @@ template VkBasaltDialog : .AdwWindow {
           show-enable-switch: true;
 
           /* Translators: Luma is not translatable */
-
           title: _("Denoised Luma Sharpening");
 
           .AdwActionRow {
@@ -116,13 +112,11 @@ template VkBasaltDialog : .AdwWindow {
               numeric: true;
               valign: center;
               digits: 2;
-              adjustment:
-              Adjustment spin_dls_sharpness {
+
+              adjustment: Adjustment spin_dls_sharpness {
                 step-increment: 0.1;
                 upper: 1.0;
-              }
-
-              ;
+              };
             }
           }
 
@@ -144,13 +138,11 @@ template VkBasaltDialog : .AdwWindow {
               numeric: true;
               valign: center;
               digits: 2;
-              adjustment:
-              Adjustment spin_dls_denoise {
+
+              adjustment: Adjustment spin_dls_denoise {
                 step-increment: 0.1;
                 upper: 1.0;
-              }
-
-              ;
+              };
             }
           }
         }
@@ -177,13 +169,11 @@ template VkBasaltDialog : .AdwWindow {
               numeric: true;
               valign: center;
               digits: 2;
-              adjustment:
-              Adjustment spin_fxaa_subpixel_quality {
+
+              adjustment: Adjustment spin_fxaa_subpixel_quality {
                 step-increment: 0.1;
                 upper: 1.0;
-              }
-
-              ;
+              };
             }
           }
 
@@ -205,13 +195,11 @@ template VkBasaltDialog : .AdwWindow {
               numeric: true;
               valign: center;
               digits: 2;
-              adjustment:
-              Adjustment spin_fxaa_quality_edge_threshold {
+
+              adjustment: Adjustment spin_fxaa_quality_edge_threshold {
                 step-increment: 0.1;
                 upper: 1.0;
-              }
-
-              ;
+              };
             }
           }
 
@@ -233,13 +221,11 @@ template VkBasaltDialog : .AdwWindow {
               numeric: true;
               valign: center;
               digits: 2;
-              adjustment:
-              Adjustment spin_fxaa_quality_edge_threshold_min {
+
+              adjustment: Adjustment spin_fxaa_quality_edge_threshold_min {
                 step-increment: 0.01;
                 upper: 0.1;
-              }
-
-              ;
+              };
             }
           }
         }
@@ -298,13 +284,11 @@ template VkBasaltDialog : .AdwWindow {
               numeric: true;
               valign: center;
               digits: 2;
-              adjustment:
-              Adjustment spin_smaa_threshold {
+
+              adjustment: Adjustment spin_smaa_threshold {
                 step-increment: 0.05;
                 upper: 0.5;
-              }
-
-              ;
+              };
             }
           }
 
@@ -325,13 +309,11 @@ template VkBasaltDialog : .AdwWindow {
             SpinButton {
               numeric: true;
               valign: center;
-              adjustment:
-              Adjustment spin_smaa_max_search_steps {
+
+              adjustment: Adjustment spin_smaa_max_search_steps {
                 step-increment: 10;
                 upper: 112;
-              }
-
-              ;
+              };
             }
           }
 
@@ -352,13 +334,11 @@ template VkBasaltDialog : .AdwWindow {
             SpinButton {
               numeric: true;
               valign: center;
-              adjustment:
-              Adjustment spin_smaa_max_search_steps_diagonal {
+
+              adjustment: Adjustment spin_smaa_max_search_steps_diagonal {
                 step-increment: 2;
                 upper: 20;
-              }
-
-              ;
+              };
             }
           }
 
@@ -379,13 +359,11 @@ template VkBasaltDialog : .AdwWindow {
             SpinButton {
               numeric: true;
               valign: center;
-              adjustment:
-              Adjustment spin_smaa_corner_rounding {
+
+              adjustment: Adjustment spin_smaa_corner_rounding {
                 step-increment: 10;
                 upper: 100;
-              }
-
-              ;
+              };
             }
           }
         }

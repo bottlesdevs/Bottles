@@ -1,14 +1,11 @@
 using Gtk 4.0;
 
-template ImporterView : .AdwBin {
+template ImporterView:.AdwBin {
   Box {
     orientation: vertical;
 
     HeaderBar headerbar {
-      title-widget: .AdwWindowTitle window_title {
-      }
-
-      ;
+      title-widget:.AdwWindowTitle window_title {};
 
       [start]
       Button btn_back {

@@ -32,8 +32,7 @@ Popover pop_actions {
       ]
     }
 
-    Separator {
-    }
+    Separator {}
 
     .GtkModelButton btn_launch_options {
       text: _("Change Launch Options…");
@@ -55,8 +54,7 @@ Popover pop_actions {
       text: _("Rename…");
     }
 
-    Separator {
-    }
+    Separator {}
 
     .GtkModelButton btn_hide {
       text: _("Hide Program");
@@ -70,8 +68,7 @@ Popover pop_actions {
       text: _("Remove from List");
     }
 
-    Separator {
-    }
+    Separator {}
 
     .GtkModelButton btn_uninstall {
       text: _("Uninstall");
@@ -79,7 +76,7 @@ Popover pop_actions {
   }
 }
 
-template ProgramEntry : .AdwActionRow {
+template ProgramEntry:.AdwActionRow {
   title: _("Program name");
 
   Box {

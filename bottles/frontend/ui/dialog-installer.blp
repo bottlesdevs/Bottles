@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template InstallerDialog : .AdwWindow {
+template InstallerDialog:.AdwWindow {
   modal: true;
   deletable: true;
   default-width: "500";
@@ -10,10 +10,7 @@ template InstallerDialog : .AdwWindow {
     orientation: vertical;
 
     .AdwHeaderBar {
-      title-widget: .AdwWindowTitle window_title {
-      }
-
-      ;
+      title-widget:.AdwWindowTitle window_title {};
 
       styles [
         "flat",
@@ -25,8 +22,8 @@ template InstallerDialog : .AdwWindow {
 
       StackPage page_init {
         name: "page_init";
-        child: 
-        Box {
+
+        child: Box {
           orientation: vertical;
           spacing: 10;
           valign: center;
@@ -51,15 +48,13 @@ template InstallerDialog : .AdwWindow {
               ]
             }
           }
-        }
-
-        ;
+        };
       }
 
       StackPage page_resources {
         name: "page_resources";
-        child: 
-        .AdwPreferencesPage {
+
+        child:.AdwPreferencesPage {
           .AdwPreferencesGroup group_resources {
             description: _("This installer requires some local resources which cannot be provided otherwise.");
           }
@@ -76,15 +71,13 @@ template InstallerDialog : .AdwWindow {
               "suggested-action",
             ]
           }
-        }
-
-        ;
+        };
       }
 
       StackPage page_install {
         name: "page_install";
-        child: 
-        Box {
+
+        child: Box {
           margin-top: 10;
           margin-start: 10;
           margin-bottom: 10;
@@ -114,15 +107,13 @@ template InstallerDialog : .AdwWindow {
               ]
             }
           }
-        }
-
-        ;
+        };
       }
 
       StackPage page_installed {
         name: "page_installed";
-        child: 
-        .AdwStatusPage status_installed {
+
+        child:.AdwStatusPage status_installed {
           icon-name: "selection-mode-symbolic";
           title: _("Completed!");
 
@@ -135,21 +126,17 @@ template InstallerDialog : .AdwWindow {
               "suggested-action",
             ]
           }
-        }
-
-        ;
+        };
       }
 
       StackPage page_error {
         name: "page_error";
-        child: 
-        .AdwStatusPage status_error {
+
+        child:.AdwStatusPage status_error {
           icon-name: "dialog-warning-symbolic";
           title: _("Installation Failed!");
           description: _("Something went wrong.");
-        }
-
-        ;
+        };
       }
     }
   }

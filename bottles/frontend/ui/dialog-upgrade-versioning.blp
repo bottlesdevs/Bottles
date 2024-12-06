@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template UpgradeVersioningDialog : .AdwWindow {
+template UpgradeVersioningDialog:.AdwWindow {
   modal: true;
   default-width: "500";
   default-height: "400";
@@ -11,12 +11,10 @@ template UpgradeVersioningDialog : .AdwWindow {
 
     .AdwHeaderBar {
       show-end-title-buttons: false;
-      title-widget:
-      .AdwWindowTitle {
-        title: _("Upgrade Needed");
-      }
 
-      ;
+      title-widget:.AdwWindowTitle {
+        title: _("Upgrade Needed");
+      };
 
       Button btn_cancel {
         label: _("_Cancel");
@@ -60,36 +58,32 @@ template UpgradeVersioningDialog : .AdwWindow {
     Stack stack_switcher {
       StackPage {
         name: "page_status";
-        child:
-        .AdwStatusPage status_page {
+
+        child:.AdwStatusPage status_page {
           icon-name: "preferences-system-time-symbolic";
           title: _("New Versioning System");
           vexpand: true;
           hexpand: true;
           description: _("The new bottle versioning system has landed.");
-        }
-
-        ;
+        };
       }
 
       StackPage {
         name: "page_info";
-        child:
-        Label {
+
+        child: Label {
           margin-top: 10;
           margin-start: 10;
           margin-end: 10;
           wrap: true;
           label: _("Bottles has a whole new Versioning System that is not backwards compatible.\n\nTo continue using versioning we need to re-initialize the bottle repository. This will not delete data from your bottle but will delete all existing snapshots and create a new one.\n\nIf you need to go back to a previous snapshot before continuing, close this window and restore the snapshot, then reopen the bottle to show this window again.\n\nThe old system will be discontinued in one of the next releases.");
-        }
-
-        ;
+        };
       }
 
       StackPage {
         name: "page_upgrading";
-        child:
-        Box page_upgrading {
+
+        child: Box page_upgrading {
           margin-top: 24;
           margin-bottom: 24;
           orientation: vertical;
@@ -118,22 +112,18 @@ template UpgradeVersioningDialog : .AdwWindow {
             margin-top: 24;
             margin-bottom: 12;
           }
-        }
-
-        ;
+        };
       }
 
       StackPage {
         name: "page_finish";
-        child:
-        .AdwStatusPage page_finish {
+
+        child:.AdwStatusPage page_finish {
           vexpand: true;
           hexpand: true;
           icon-name: "object-select-symbolic";
           title: _("Done! Please restart Bottles.");
-        }
-
-        ;
+        };
       }
     }
   }

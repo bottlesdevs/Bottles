@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template SandboxDialog : .AdwWindow {
+template SandboxDialog:.AdwWindow {
   modal: true;
   deletable: true;
   default-width: "550";
@@ -16,8 +16,7 @@ template SandboxDialog : .AdwWindow {
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {
-    }
+    .AdwHeaderBar {}
 
     .AdwPreferencesPage {
       .AdwPreferencesGroup {

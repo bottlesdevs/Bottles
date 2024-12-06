@@ -20,8 +20,7 @@ Popover pop_actions {
       text: _("Read Review…");
     }
 
-    Separator {
-    }
+    Separator {}
 
     .GtkModelButton btn_report {
       text: _("Report a Bug…");
@@ -29,7 +28,7 @@ Popover pop_actions {
   }
 }
 
-template InstallerEntry : .AdwActionRow {
+template InstallerEntry:.AdwActionRow {
   activatable-widget: "btn_install";
   title: _("Installer name");
   subtitle: _("Installer description");

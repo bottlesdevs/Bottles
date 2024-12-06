@@ -1,12 +1,11 @@
 using Gtk 4.0;
 
-template TaskManagerView : ScrolledWindow {
+template TaskManagerView: ScrolledWindow {
   TreeView treeview_processes {
     enable-grid-lines: horizontal;
 
     [internal-child selection]
-    TreeSelection {
-    }
+    TreeSelection {}
   }
 }
 

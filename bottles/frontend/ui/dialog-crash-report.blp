@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template CrashReportDialog : .AdwWindow {
+template CrashReportDialog:.AdwWindow {
   resizable: false;
   deletable: true;
   modal: true;
@@ -81,8 +81,7 @@ template CrashReportDialog : .AdwWindow {
           ]
         }
 
-        .AdwPreferencesGroup list_reports {
-        }
+        .AdwPreferencesGroup list_reports {}
 
         Expander {
           CheckButton check_unlock_send {

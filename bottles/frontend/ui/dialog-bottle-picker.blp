@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template BottlePickerDialog : .AdwApplicationWindow {
+template BottlePickerDialog:.AdwApplicationWindow {
   title: _("Select Bottle");
   default-width: "450";
   default-height: "450";
@@ -30,8 +30,7 @@ template BottlePickerDialog : .AdwApplicationWindow {
       hexpand: true;
       vexpand: true;
 
-      ListBox list_bottles {
-      }
+      ListBox list_bottles {}
     }
 
     Button btn_open {

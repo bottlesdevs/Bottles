@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template DetailsDependencies : .AdwBin {
+template DetailsDependencies:.AdwBin {
   Box {
     orientation: vertical;
 
@@ -16,8 +16,7 @@ template DetailsDependencies : .AdwBin {
       StackPage {
         name: "page_offline";
 
-        child:
-        .AdwStatusPage {
+        child:.AdwStatusPage {
           icon-name: "network-error-symbolic";
           title: _("You're offline :(");
           vexpand: true;
@@ -28,8 +27,8 @@ template DetailsDependencies : .AdwBin {
 
       StackPage {
         name: "page_loading";
-        child:
-        .AdwStatusPage {
+
+        child:.AdwStatusPage {
           vexpand: true;
           hexpand: true;
 
@@ -41,8 +40,8 @@ template DetailsDependencies : .AdwBin {
 
       StackPage {
         name: "page_deps";
-        child:
-        .AdwPreferencesPage {
+
+        child:.AdwPreferencesPage {
           .AdwPreferencesGroup {
             description: _("Dependencies are resources that improve compatibility of Windows software.\n\nFiles on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.");
 

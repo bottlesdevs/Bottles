@@ -1,85 +1,82 @@
 using Gtk 4.0;
 
-template DetailsPreferences : .AdwPreferencesPage {
+template DetailsPreferences:.AdwPreferencesPage {
   .AdwPreferencesGroup group_details {
     .AdwEntryRow entry_name {
       title: _("Name");
       show-apply-button: true;
     }
   }
+
   .AdwPreferencesGroup {
     title: _("Components");
 
     .AdwComboRow combo_runner {
-        title: _("Runner");
-        subtitle: _("The version of the Wine compatibility layer.");
-        Spinner spinner_runner {
-          tooltip-text: _("Updating Runner and components, please wait…");
-          valign: center;
-          visible: false;
-        }
+      title: _("Runner");
+      subtitle: _("The version of the Wine compatibility layer.");
 
-        model:
-          StringList str_list_runner {};
-      }
-
-      .AdwComboRow combo_dxvk {
-        title: _("DXVK");
-        subtitle: _("Improve Direct3D 9/10/11 compatibility by translating it to Vulkan.");
-        Spinner spinner_dxvk {
-          tooltip-text: _("Updating DXVK, please wait…");
-          valign: center;
-          visible: false;
-        }
-
-        model:
-          StringList str_list_dxvk {};
-      }
-
-      .AdwComboRow combo_vkd3d {
-        title: _("VKD3D");
-        subtitle: _("Improve Direct3D 12 compatibility by translating it to Vulkan.");
-        Spinner spinner_vkd3d {
-          tooltip-text: _("Updating VKD3D, please wait…");
-          valign: center;
-          visible: false;
-        }
-
-        model:
-          StringList str_list_vkd3d {
-          };
-      }
-
-      .AdwComboRow combo_nvapi {
-        title: _("DXVK NVAPI");
+      Spinner spinner_runner {
+        tooltip-text: _("Updating Runner and components, please wait…");
+        valign: center;
         visible: false;
-
-        Spinner spinner_nvapi {
-          tooltip-text: _("Updating DXVK-NVAPI, please wait…");
-          valign: center;
-          visible: false;
-        }
-
-        model:
-          StringList str_list_nvapi {};
       }
 
-      .AdwComboRow combo_latencyflex {
-        title: _("LatencyFleX");
-        subtitle: _("Increase responsiveness. Can be detected by some anti-cheat software.");
-        Spinner spinner_latencyflex {
-          tooltip-text: _("Updating LatencyFleX, please wait…");
-          valign: center;
-          visible: false;
-        }
+      model: StringList str_list_runner {};
+    }
 
-        model:
-          StringList str_list_latencyflex {
-          }
+    .AdwComboRow combo_dxvk {
+      title: _("DXVK");
+      subtitle: _("Improve Direct3D 9/10/11 compatibility by translating it to Vulkan.");
 
-        ;
+      Spinner spinner_dxvk {
+        tooltip-text: _("Updating DXVK, please wait…");
+        valign: center;
+        visible: false;
       }
+
+      model: StringList str_list_dxvk {};
+    }
+
+    .AdwComboRow combo_vkd3d {
+      title: _("VKD3D");
+      subtitle: _("Improve Direct3D 12 compatibility by translating it to Vulkan.");
+
+      Spinner spinner_vkd3d {
+        tooltip-text: _("Updating VKD3D, please wait…");
+        valign: center;
+        visible: false;
+      }
+
+      model: StringList str_list_vkd3d {};
+    }
+
+    .AdwComboRow combo_nvapi {
+      title: _("DXVK NVAPI");
+      visible: false;
+
+      Spinner spinner_nvapi {
+        tooltip-text: _("Updating DXVK-NVAPI, please wait…");
+        valign: center;
+        visible: false;
+      }
+
+      model: StringList str_list_nvapi {};
+    }
+
+    .AdwComboRow combo_latencyflex {
+      title: _("LatencyFleX");
+      subtitle: _("Increase responsiveness. Can be detected by some anti-cheat software.");
+
+      Spinner spinner_latencyflex {
+        tooltip-text: _("Updating LatencyFleX, please wait…");
+        valign: center;
+        visible: false;
+      }
+
+      model: StringList str_list_latencyflex {};
+    }
   }
+
   .AdwPreferencesGroup {
     title: _("Display");
 
@@ -104,6 +101,7 @@ template DetailsPreferences : .AdwPreferencesPage {
       activatable-widget: "switch_fsr";
       title: _("FidelityFX Super Resolution");
       subtitle: _("Increase performance at the expense of visuals. Only works on Vulkan.");
+
       Button btn_manage_fsr {
         tooltip-text: _("Manage FidelityFX Super Resolution settings");
         valign: center;
@@ -134,6 +132,7 @@ template DetailsPreferences : .AdwPreferencesPage {
       activatable-widget: "switch_vkbasalt";
       title: _("Post-Processing Effects");
       subtitle: _("Add various post-processing effects using vkBasalt. Only works on Vulkan.");
+
       Button btn_manage_vkbasalt {
         tooltip-text: _("Manage Post-Processing Layer settings");
         valign: center;
@@ -147,48 +146,55 @@ template DetailsPreferences : .AdwPreferencesPage {
       Switch switch_vkbasalt {
         valign: center;
       }
-    } 
+    }
+
     .AdwActionRow {
       activatable-widget: "switch_gamescope";
       title: "Gamescope";
       subtitle: _("Manage how games should be displayed on the screen using Gamescope.");
 
-        Button btn_manage_gamescope {
-          tooltip-text: _("Manage Gamescope settings");
-          valign: center;
-          icon-name: "applications-system-symbolic";
+      Button btn_manage_gamescope {
+        tooltip-text: _("Manage Gamescope settings");
+        valign: center;
+        icon-name: "applications-system-symbolic";
 
-          styles [
-            "flat",
-          ]
-        }
-
-        Switch switch_gamescope {
-          valign: center;
-        }
+        styles [
+          "flat",
+        ]
       }
+
+      Switch switch_gamescope {
+        valign: center;
+      }
+    }
+
     .AdwActionRow row_manage_display {
       title: _("Advanced Display Settings");
       activatable: true;
+
       Spinner spinner_display {
         valign: center;
         margin-end: 6;
       }
+
       Image {
         icon-name: "go-next-symbolic";
-        styles ["dim-label"]
+
+        styles [
+          "dim-label"
+        ]
       }
     }
   }
+
   .AdwPreferencesGroup {
     title: _("Performance");
-
 
     .AdwComboRow combo_sync {
       tooltip-text: _("Enable synchronization to increase performance of multicore processors.");
       title: _("Synchronization");
-      model:
-      StringList {
+
+      model: StringList {
         strings [
           _("System"),
           _("Esync"),
@@ -196,6 +202,7 @@ template DetailsPreferences : .AdwPreferencesPage {
         ]
       };
     }
+
     .AdwActionRow {
       activatable-widget: "switch_mangohud";
       title: _("Monitor Performance");
@@ -205,7 +212,8 @@ template DetailsPreferences : .AdwPreferencesPage {
         valign: center;
       }
     }
-        .AdwActionRow {
+
+    .AdwActionRow {
       activatable-widget: "switch_gamemode";
       title: _("Feral GameMode");
       subtitle: _("Apply a set of optimizations to your device. Can improve game performance.");
@@ -235,6 +243,7 @@ template DetailsPreferences : .AdwPreferencesPage {
         valign: center;
       }
     }
+
     .AdwActionRow {
       activatable-widget: "switch_obsvkc";
       title: _("OBS Game Capture");
@@ -264,8 +273,8 @@ template DetailsPreferences : .AdwPreferencesPage {
     .AdwComboRow combo_language {
       title: _("Language");
       subtitle: _("Choose the language to use with programs.");
-      model:
-      StringList str_list_languages {};
+
+      model: StringList str_list_languages {};
     }
 
     .AdwActionRow row_sandbox {
@@ -305,6 +314,7 @@ template DetailsPreferences : .AdwPreferencesPage {
       title: _("Steam Runtime");
       subtitle: _("Provide a bundle of extra libraries for more compatibility with Steam games. Disable it if you run into issues.");
       visible: false;
+
       Switch switch_steam_runtime {
         valign: center;
       }
@@ -313,6 +323,7 @@ template DetailsPreferences : .AdwPreferencesPage {
     .AdwActionRow row_cwd {
       title: _("Working Directory");
       activatable-widget: btn_cwd;
+
       Button btn_cwd_reset {
         tooltip-text: _("Reset to Default");
         valign: center;
@@ -347,7 +358,10 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       Image {
         icon-name: "go-next-symbolic";
-        styles ["dim-label"]
+
+        styles [
+          "dim-label"
+        ]
       }
     }
 
@@ -357,7 +371,10 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       Image {
         icon-name: "go-next-symbolic";
-        styles ["dim-label"]
+
+        styles [
+          "dim-label"
+        ]
       }
     }
 
@@ -367,7 +384,10 @@ template DetailsPreferences : .AdwPreferencesPage {
 
       Image {
         icon-name: "go-next-symbolic";
-        styles ["dim-label"]
+
+        styles [
+          "dim-label"
+        ]
       }
     }
   }

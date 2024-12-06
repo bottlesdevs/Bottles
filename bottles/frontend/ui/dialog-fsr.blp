@@ -1,9 +1,8 @@
 using Gtk 4.0;
 
-template FsrDialog : .AdwWindow {
+template FsrDialog:.AdwWindow {
   default-width: "500";
   modal: true;
-
   title: _("FidelityFX Super Resolution Settings");
 
   ShortcutController {
@@ -37,14 +36,11 @@ template FsrDialog : .AdwWindow {
     }
 
     .AdwPreferencesPage {
-
       .AdwPreferencesGroup {
         .AdwComboRow combo_quality_mode {
           title: "Quality Mode";
-          model:
-          StringList str_list_quality_mode {}
 
-          ;
+          model: StringList str_list_quality_mode {};
         }
 
         .AdwActionRow {
@@ -53,13 +49,11 @@ template FsrDialog : .AdwWindow {
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_sharpening_strength {
+
+            adjustment: Adjustment spin_sharpening_strength {
               step-increment: 1;
               upper: 5;
-            }
-
-            ;
+            };
           }
         }
       }

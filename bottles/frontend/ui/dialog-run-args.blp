@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template RunArgsDialog : Window {
+template RunArgsDialog: Window {
   modal: true;
   default-width: 550;
   destroy-with-parent: true;
@@ -8,12 +8,10 @@ template RunArgsDialog : Window {
   [titlebar]
   HeaderBar {
     show-title-buttons: false;
-    title-widget: 
-    .AdwWindowTitle {
-      title: _("Run With Arguments");
-    }
 
-    ;
+    title-widget:.AdwWindowTitle {
+      title: _("Run With Arguments");
+    };
 
     [start]
     Button btn_cancel {
