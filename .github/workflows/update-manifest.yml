@@ -10,7 +10,7 @@ on:
 
 env:
   PR_BRANCH: pr/ci-manifest/${{ github.ref_name }}
-  FEDC_ARGS: --update --require-important-update --commit-only --never-fork "bottles-repository/com.usebottles.bottles.yml"
+  FEDC_ARGS: --update --require-important-update --commit-only --never-fork "bottles-repository/build-aux/com.usebottles.bottles.json"
   UPDATE_PYTHON: false
 
 jobs:
@@ -69,7 +69,7 @@ jobs:
         run: |
           git checkout -B ${{ env.PR_BRANCH }}
           git push -f --set-upstream origin ${{ env.PR_BRANCH }}
-          git diff ${{ github.ref_name }} --exit-code com.usebottles.bottles.yml
+          git diff ${{ github.ref_name }} --exit-code build-aux/com.usebottles.bottles.json
           updated=$?
           if [ $updated -ne 0 ] || [ "${{ env.UPDATE_PYTHON }}" = true ]; then
             gh pr create --title ":robot:: Update manifest (important)" --body ":wrench: One or more modules marked as 'important' have been updated." --head ${{ env.PR_BRANCH }} --base ${{ github.ref_name }}

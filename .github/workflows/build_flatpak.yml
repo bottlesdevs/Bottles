@@ -8,12 +8,12 @@ jobs:
     name: "build-packages"
     runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:gnome-44
+      image: bilelmoussaoui/flatpak-github-actions:gnome-nightly
       options: --privileged
     steps:
     - uses: actions/checkout@v4
     - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: bottles.flatpak
-        manifest-path: com.usebottles.bottles.yml
+        manifest-path: build-aux/com.usebottles.bottles.json
         cache-key: flatpak-builder-${{ github.sha }}
