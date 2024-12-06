@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template NewView : .AdwWindow {
+template NewView:.AdwWindow {
   modal: true;
   resizable: false;
   default-width: "600";
@@ -44,13 +44,13 @@ template NewView : .AdwWindow {
 
       StackPage {
         name: "page_create";
-        child:
-        .AdwPreferencesPage {
+
+        child:.AdwPreferencesPage {
           title: _("Create New Bottle");
 
           .AdwPreferencesGroup {
             .AdwEntryRow entry_name {
-	            use-markup: false;
+              use-markup: false;
               title: _("Name");
 
               [suffix]
@@ -68,13 +68,13 @@ template NewView : .AdwWindow {
             }
           }
 
-         .AdwPreferencesGroup {
+          .AdwPreferencesGroup {
             title: _("Environment");
 
             .AdwActionRow application {
               activatable-widget: "check_application";
               title: _("_Application");
-              subtitle: _( "Optimized for productivity software. Can run apps that might need DirectX, but not guaranteed. Includes basic fonts and essential Wine components." );
+              subtitle: _("Optimized for productivity software. Can run apps that might need DirectX, but not guaranteed. Includes basic fonts and essential Wine components.");
               icon-name: "applications-engineering-symbolic";
               use-underline: true;
 
@@ -88,7 +88,7 @@ template NewView : .AdwWindow {
             .AdwActionRow gaming {
               activatable-widget: "check_gaming";
               title: _("_Gaming");
-              subtitle: _( "Optimized for games, game engines, and 3D apps. Includes DirectX, Vulkan, and enhanced performance settings." );
+              subtitle: _("Optimized for games, game engines, and 3D apps. Includes DirectX, Vulkan, and enhanced performance settings.");
               icon-name: "input-gaming-symbolic";
               use-underline: true;
 
@@ -102,7 +102,7 @@ template NewView : .AdwWindow {
             .AdwActionRow custom {
               activatable-widget: "check_custom";
               title: _("C_ustom");
-              subtitle: _( "A clean slate. You can customize everything for advanced use cases." );
+              subtitle: _("A clean slate. You can customize everything for advanced use cases.");
               icon-name: "applications-science-symbolic";
               use-underline: true;
 
@@ -131,18 +131,15 @@ template NewView : .AdwWindow {
             .AdwComboRow combo_runner {
               title: _("Runner");
               subtitle: _("The version of the Wine compatibility layer.");
-              model: StringList str_list_runner {}
 
-              ;
+              model: StringList str_list_runner {};
             }
 
             .AdwComboRow combo_arch {
               title: _("Architecture");
               subtitle: _("32-bit should only be used if strictly necessary.");
-              model:
-                StringList str_list_arch {}
 
-              ;
+              model: StringList str_list_arch {};
             }
 
             .AdwActionRow {
@@ -207,45 +204,43 @@ template NewView : .AdwWindow {
               }
             }
           }
-        }
-
-        ;
+        };
       }
 
       StackPage {
         name: "page_statuses";
-        child:
-        .AdwStatusPage status_statuses {
+
+        child:.AdwStatusPage status_statuses {
           title: "Status";
-          child:
-          Box {
+
+          child: Box {
             orientation: vertical;
             spacing: 36;
 
-              ScrolledWindow scrolled_output {
-                margin-start: 50;
-                margin-end: 50;
-                min-content-height: 200;
-                overflow: hidden;
+            ScrolledWindow scrolled_output {
+              margin-start: 50;
+              margin-end: 50;
+              min-content-height: 200;
+              overflow: hidden;
 
-                Label label_output {
-                  hexpand: true;
-                  valign: fill;
-                  wrap: true;
-                  selectable: true;
-                  xalign: 0;
-                  yalign: 0;
-
-                  styles [
-                    "monospace",
-                    "terminal",
-                  ]
-                }
+              Label label_output {
+                hexpand: true;
+                valign: fill;
+                wrap: true;
+                selectable: true;
+                xalign: 0;
+                yalign: 0;
 
                 styles [
-                  "card",
+                  "monospace",
+                  "terminal",
                 ]
               }
+
+              styles [
+                "card",
+              ]
+            }
 
             Button btn_close {
               valign: center;
@@ -258,12 +253,8 @@ template NewView : .AdwWindow {
                 "pill",
               ]
             }
-          }
-
-          ;
-        }
-
-        ;
+          };
+        };
       }
     }
   }
@@ -285,4 +276,3 @@ Popover popover_duplicate {
     label: _("This name is unavailable, please try another.");
   }
 }
-

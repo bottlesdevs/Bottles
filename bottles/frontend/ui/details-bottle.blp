@@ -17,8 +17,7 @@ Popover pop_context {
       tooltip-text: "https://docs.usebottles.com/flatpak/black-screen-or-silent-crash";
     }
 
-    Separator {
-    }
+    Separator {}
 
     .GtkModelButton btn_browse {
       text: _("Browse Files…");
@@ -38,8 +37,7 @@ Popover pop_context {
       text: _("Export Configuration…");
     }
 
-    Separator {
-    }
+    Separator {}
 
     .GtkModelButton btn_toggle_removed {
       text: _("Show Hidden Programs");
@@ -49,8 +47,7 @@ Popover pop_context {
       text: _("Search for new programs");
     }
 
-    Separator {
-    }
+    Separator {}
 
     .GtkModelButton btn_delete {
       text: _("Delete Bottle…");
@@ -108,32 +105,31 @@ Popover pop_power {
 
 Popover popover_exec_settings {
   width-request: 300;
-  
+
   Box {
     orientation: vertical;
     margin-top: 6;
     margin-bottom: 6;
     margin-start: 6;
     margin-end: 6;
-    
+
     Label {
       halign: start;
       margin-bottom: 12;
       label: _("Launch Options");
-      
+
       styles [
         "heading"
       ]
     }
 
-    Entry exec_arguments {
-    }
+    Entry exec_arguments {}
 
     Separator {
       margin-top: 12;
       margin-bottom: 12;
     }
-    
+
     CheckButton exec_terminal {
       Label {
         label: _("Run in Terminal");
@@ -143,9 +139,10 @@ Popover popover_exec_settings {
   }
 }
 
-template DetailsBottle : .AdwPreferencesPage {
+template DetailsBottle:.AdwPreferencesPage {
   Overlay drop_overlay {
     visible: false;
+
     [overlay]
     .AdwStatusPage {
       icon-name: system-run-symbolic;
@@ -156,6 +153,7 @@ template DetailsBottle : .AdwPreferencesPage {
       ]
     }
   }
+
   .AdwPreferencesGroup {
     Box {
       orientation: vertical;
@@ -167,7 +165,7 @@ template DetailsBottle : .AdwPreferencesPage {
         max-width-chars: 30;
         label: _("My bottle");
         wrap-mode: word_char;
-      	use-markup: false;
+        use-markup: false;
 
         styles [
           "title-1",
@@ -244,6 +242,7 @@ template DetailsBottle : .AdwPreferencesPage {
       Button btn_execute {
         Box {
           spacing: 6;
+
           Image {
             icon-name: "media-playback-start-symbolic";
           }
@@ -264,7 +263,7 @@ template DetailsBottle : .AdwPreferencesPage {
           valign: center;
           icon-name: "applications-system-symbolic";
           popover: popover_exec_settings;
-          
+
           styles [
             "circular",
           ]
@@ -279,26 +278,28 @@ template DetailsBottle : .AdwPreferencesPage {
     .AdwActionRow row_no_programs {
       subtitle: _("Click \"Run Executable…\" to run an executable, \"Add Shortcuts…\" to add an executable to the Programs list, or \"Install Programs…\" to install programs curated by the community.");
     }
-    
+
     .AdwPreferencesRow bottom_bar {
-      activatable: false;      
+      activatable: false;
       focusable: false;
 
       Box {
         Button add_shortcuts {
           hexpand: true;
+
           Box {
             halign: center;
+
             Image {
               icon-name: "list-add-symbolic";
             }
-            
+
             Separator {
               styles [
                 "spacer"
               ]
             }
-            
+
             Label {
               label: _("Add Shortcuts…");
             }
@@ -308,18 +309,19 @@ template DetailsBottle : .AdwPreferencesPage {
             "flat"
           ]
         }
-        
-        Separator {
-        }
-        
+
+        Separator {}
+
         Button install_programs {
           hexpand: true;
+
           Box {
             halign: center;
+
             Image {
               icon-name: "folder-download-symbolic";
             }
-          
+
             Separator {
               styles [
                 "spacer"
@@ -330,17 +332,17 @@ template DetailsBottle : .AdwPreferencesPage {
               label: _("Install Programs…");
             }
           }
-          
+
           styles [
             "flat"
           ]
         }
-        
+
         styles [
           "linked"
         ]
       }
-      
+
       styles [
         "bottom-bar"
       ]
@@ -349,46 +351,46 @@ template DetailsBottle : .AdwPreferencesPage {
 
   .AdwPreferencesGroup group_options {
     title: _("Options");
-      
-      .AdwActionRow row_preferences {
-        activatable: true;
-        title: _("Settings");
-        subtitle: _("Configure bottle settings.");
 
-        Image {
-          icon-name: "go-next-symbolic";
-        }
+    .AdwActionRow row_preferences {
+      activatable: true;
+      title: _("Settings");
+      subtitle: _("Configure bottle settings.");
+
+      Image {
+        icon-name: "go-next-symbolic";
       }
-      
-      .AdwActionRow row_dependencies {
-        activatable: true;
-        title: _("Dependencies");
-        subtitle: _("Install dependencies for programs.");
+    }
 
-        Image {
-          icon-name: "go-next-symbolic";
-        }
+    .AdwActionRow row_dependencies {
+      activatable: true;
+      title: _("Dependencies");
+      subtitle: _("Install dependencies for programs.");
+
+      Image {
+        icon-name: "go-next-symbolic";
       }
+    }
 
-      .AdwActionRow row_snapshots {
-        activatable: true;
-        title: _("Snapshots");
-        subtitle: _("Create and manage bottle states.");
+    .AdwActionRow row_snapshots {
+      activatable: true;
+      title: _("Snapshots");
+      subtitle: _("Create and manage bottle states.");
 
-        Image {
-          icon-name: "go-next-symbolic";
-        }
+      Image {
+        icon-name: "go-next-symbolic";
       }
+    }
 
-      .AdwActionRow row_taskmanager {
-        activatable: true;
-        title: _("Task Manager");
-        subtitle: _("Manage running programs.");
+    .AdwActionRow row_taskmanager {
+      activatable: true;
+      title: _("Task Manager");
+      subtitle: _("Manage running programs.");
 
-        Image {
-          icon-name: "go-next-symbolic";
-        }
+      Image {
+        icon-name: "go-next-symbolic";
       }
+    }
   }
 
   .AdwPreferencesGroup group_utilities {

@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template BottleView : .AdwBin {
+template BottleView:.AdwBin {
   ScrolledWindow {
     Box {
       hexpand: true;
@@ -42,8 +42,8 @@ template BottleView : .AdwBin {
         title: _("Bottles");
         hexpand: true;
         vexpand: true;
-        child: 
-        Button btn_create {
+
+        child: Button btn_create {
           valign: center;
           halign: center;
           label: _("Create New Bottle…");
@@ -52,9 +52,7 @@ template BottleView : .AdwBin {
             "suggested-action",
             "pill",
           ]
-        }
-
-        ;
+        };
       }
 
       .AdwStatusPage no_bottles_found {

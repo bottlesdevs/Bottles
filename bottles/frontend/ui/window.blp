@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template MainWindow : .AdwApplicationWindow {
+template MainWindow:.AdwApplicationWindow {
   title: "Bottles";
   icon-name: "com.usebottles.bottles";
   close-request => on_close_request();
@@ -14,20 +14,17 @@ template MainWindow : .AdwApplicationWindow {
         orientation: vertical;
 
         HeaderBar headerbar {
-          title-widget: .AdwViewSwitcherTitle view_switcher_title {
+          title-widget:.AdwViewSwitcherTitle view_switcher_title {
             title: "Bottles";
             stack: "stack_main";
-          }
-
-          ;
+          };
 
           Button btn_add {
             tooltip-text: _("Create New Bottle");
             icon-name: "list-add-symbolic";
           }
 
-          Box box_actions {
-          }
+          Box box_actions {}
 
           styles [
             "titlebar",
@@ -54,20 +51,18 @@ template MainWindow : .AdwApplicationWindow {
             tooltip-text: _("You don\'t seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.");
             icon-name: "network-error-symbolic";
           }
-
         }
 
-        SearchBar searchbar {
-        }
+        SearchBar searchbar {}
 
         .AdwViewStack stack_main {
           vexpand: true;
         }
 
-	      .AdwViewSwitcherBar view_switcher_bar {
-	        stack: "stack_main";
-	        reveal: bind view_switcher_title.title-visible;
-	      }
+        .AdwViewSwitcherBar view_switcher_bar {
+          stack: "stack_main";
+          reveal: bind view_switcher_title.title-visible;
+        }
       }
     }
   }

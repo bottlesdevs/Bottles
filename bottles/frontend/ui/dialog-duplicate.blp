@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template DuplicateDialog : .AdwWindow {
+template DuplicateDialog:.AdwWindow {
   modal: true;
   default-width: "400";
   default-height: "400";
@@ -11,12 +11,10 @@ template DuplicateDialog : .AdwWindow {
 
     .AdwHeaderBar {
       show-end-title-buttons: false;
-      title-widget: 
-      .AdwWindowTitle {
-        title: _("Duplicate Bottle");
-      }
 
-      ;
+      title-widget:.AdwWindowTitle {
+        title: _("Duplicate Bottle");
+      };
 
       Button btn_cancel {
         label: _("_Cancel");
@@ -56,8 +54,8 @@ template DuplicateDialog : .AdwWindow {
 
       StackPage {
         name: "page_duplicating";
-        child: 
-        Box page_duplicating {
+
+        child: Box page_duplicating {
           margin-top: 24;
           margin-bottom: 24;
           orientation: vertical;
@@ -84,20 +82,16 @@ template DuplicateDialog : .AdwWindow {
             margin-top: 24;
             margin-bottom: 12;
           }
-        }
-
-        ;
+        };
       }
 
       StackPage {
         name: "page_duplicated";
-        child: 
-        .AdwStatusPage page_duplicated {
+
+        child:.AdwStatusPage page_duplicated {
           icon-name: "object-select-symbolic";
           title: _("Bottle Duplicated");
-        }
-
-        ;
+        };
       }
     }
   }

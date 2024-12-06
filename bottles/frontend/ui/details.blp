@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template Details : .AdwBin {
+template Details:.AdwBin {
   .AdwLeaflet leaflet {
     can-navigate-back: true;
     can-unfold: false;
@@ -11,40 +11,34 @@ template Details : .AdwBin {
 
       .AdwHeaderBar sidebar_headerbar {
         show-end-title-buttons: false;
-        title-widget: 
-        .AdwWindowTitle sidebar_title {
-          title: _("Details");
-        }
 
-        ;
+        title-widget:.AdwWindowTitle sidebar_title {
+          title: _("Details");
+        };
 
         [start]
         Button btn_back {
           icon-name: "go-previous-symbolic";
           tooltip-text: _("Go Back");
         }
-        
+
         [end]
-        Box default_actions {
-        }
+        Box default_actions {}
       }
 
-      Box default_view {
-      }
+      Box default_view {}
     }
 
     .AdwLeafletPage {
       navigatable: false;
-      child: 
-      Separator panel_separator {
+
+      child: Separator panel_separator {
         orientation: vertical;
 
         styles [
           "sidebar",
         ]
-      }
-
-      ;
+      };
     }
 
     Box content {
@@ -52,11 +46,8 @@ template Details : .AdwBin {
 
       .AdwHeaderBar content_headerbar {
         show-start-title-buttons: false;
-        title-widget: 
-        .AdwWindowTitle content_title {
-        }
 
-        ;
+        title-widget:.AdwWindowTitle content_title {};
 
         [start]
         Button btn_back_sidebar {
@@ -66,8 +57,7 @@ template Details : .AdwBin {
         }
 
         [end]
-        Box box_actions {
-        }
+        Box box_actions {}
 
         [end]
         MenuButton btn_operations {
@@ -75,8 +65,7 @@ template Details : .AdwBin {
           tooltip-text: _("Operations");
           popover: pop_tasks;
 
-          Spinner spinner_tasks {
-          }
+          Spinner spinner_tasks {}
 
           styles [
             "flat",

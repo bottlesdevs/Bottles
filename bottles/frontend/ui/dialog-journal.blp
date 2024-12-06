@@ -27,7 +27,7 @@ Popover pop_menu {
   }
 }
 
-template JournalDialog : .AdwWindow {
+template JournalDialog:.AdwWindow {
   default-width: "800";
   default-height: "600";
   destroy-with-parent: true;
@@ -36,11 +36,9 @@ template JournalDialog : .AdwWindow {
     orientation: vertical;
 
     .AdwHeaderBar {
-      title-widget: .AdwWindowTitle {
+      title-widget:.AdwWindowTitle {
         title: _("Journal Browser");
-      }
-
-      ;
+      };
 
       [title]
       Box {
@@ -74,8 +72,7 @@ template JournalDialog : .AdwWindow {
         vexpand: true;
 
         [internal-child selection]
-        TreeSelection {
-        }
+        TreeSelection {}
       }
     }
   }
