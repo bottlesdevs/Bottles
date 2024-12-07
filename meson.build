@@ -16,7 +16,8 @@ devel = get_option('devel')
 
 if devel == true
 	APP_VERSION += '-' + run_command(
-		'git', 'rev-parse', '--short', 'HEAD'
+		'git', 'rev-parse', '--short', 'HEAD',
+		check: true
 	).stdout().strip()
 	APP_NAME += ' (Development)'
 	APP_ID += '.' + 'Devel'
