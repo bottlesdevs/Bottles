@@ -26,10 +26,10 @@ from os import path
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("GtkSource", "5")
-# gi.require_version("Xdp", "1.0")
+gi.require_version("Xdp", "1.0")
 # gi.require_version("XdpGtk4", "1.0")
 
-from gi.repository import Gtk, Gio, GLib, GObject, Adw  # type: ignore
+from gi.repository import Gtk, Gio, GLib, GObject, Adw, Xdp  # type: ignore
 
 from bottles.frontend.params import *
 from bottles.backend.logger import Logger
@@ -250,6 +250,13 @@ class Bottles(Adw.Application):
         if not win:
             win = MainWindow(application=self, arg_bottle=self.arg_bottle)
         self.win = win
+
+        # Be VERY explicit that non-sandboxed environments are unsupported
+        if not Xdp.Portal.running_under_sandbox():
+            logging.error(_("Bottles is only supported within a sandboxed format. Official sources of Bottles are available at:"))
+            logging.error("https://usebottles.com/download/")
+            quit(1)
+
         win.present()
 
     def __quit(self, *args):
