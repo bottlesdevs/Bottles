@@ -25,13 +25,16 @@ params_file = configure_file(
 
 fs = import('fs')
 
+if not fs.is_file('/' + '.flatpak-info')
+  error('file does not exist')
+endif
+
 bottles_sources = [
   '__init__.py',
   'main.py',
   'const.py',
   'operation.py',
   params_file,
-  '/' + '.flatpak-info',
 ]
 
 if get_option('devel')
