@@ -12,9 +12,9 @@ project(
 APP_NAME = 'Bottles'
 APP_ID = 'com.usebottles.bottles'
 APP_VERSION = meson.project_version()
-devel = get_option('devel')
+PROFILE = get_option('profile')
 
-if devel == true
+if PROFILE == 'development'
 	APP_VERSION += '-' + run_command(
 		'git', 'rev-parse', '--short', 'HEAD',
 		check: true

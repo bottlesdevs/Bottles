@@ -33,7 +33,6 @@ from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals, Notification
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
-from bottles.frontend.const import *
 from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import *
 from bottles.frontend.utils.gtk import GtkUtils
@@ -88,7 +87,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
 
-        if BUILD_TYPE == "devel":
+        if PROFILE == "development":
             self.add_css_class("devel")
 
         # Set night theme according to user settings

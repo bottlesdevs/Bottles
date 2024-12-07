@@ -32,15 +32,8 @@ endif
 bottles_sources = [
   '__init__.py',
   'main.py',
-  'const.py',
   'operation.py',
   params_file,
 ]
-
-if get_option('devel')
-  bottles_sources += [
-    'devel/const.py',
-  ]
-endif
 
 install_data(bottles_sources, install_dir: frontenddir)
