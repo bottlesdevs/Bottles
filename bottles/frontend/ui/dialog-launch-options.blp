@@ -192,6 +192,15 @@ template LaunchOptionsDialog : .AdwWindow {
           }
         }
 
+        .AdwActionRow action_gamescope {
+          title: _("Gamescope");
+          activatable-widget: "switch_gamescope";
+
+          Switch switch_gamescope {
+            valign: center;
+          }
+        }
+
         .AdwActionRow action_virt_desktop {
           title: _("Virtual Desktop");
           activatable-widget: "switch_virt_desktop";

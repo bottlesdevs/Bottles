@@ -47,6 +47,7 @@ class Samples:
         "WINE_FULLSCREEN_FSR": ("fsr", True),
         "WINE_FULLSCREEN_FSR_STRENGTH": ("fsr_sharpening_strength", 2),
         "WINE_FULLSCREEN_FSR_MODE": ("fsr_quality_mode", "none"),
+        "GAMESCOPE": ("gamescope", False),
         "DRI_PRIME": ("discrete_gpu", True),
         "__NV_PRIME_RENDER_OFFLOAD": ("discrete_gpu", True),
         "PULSE_LATENCY_MSEC": ("pulseaudio_latency", True),
