@@ -73,6 +73,7 @@ class BottleParams(DictCompatMixIn):
     vkd3d: bool = False
     latencyflex: bool = False
     mangohud: bool = False
+    mangohud_display_on_game_start: bool = True
     obsvkc: bool = False
     vkbasalt: bool = False
     gamemode: bool = False

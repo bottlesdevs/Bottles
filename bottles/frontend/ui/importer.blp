@@ -1,14 +1,12 @@
 using Gtk 4.0;
+using Adw 1;
 
-template ImporterView : .AdwBin {
+template $ImporterView: Adw.Bin {
   Box {
     orientation: vertical;
 
     HeaderBar headerbar {
-      title-widget: .AdwWindowTitle window_title {
-      }
-
-      ;
+      title-widget: Adw.WindowTitle window_title {};
 
       [start]
       Button btn_back {
@@ -31,15 +29,15 @@ template ImporterView : .AdwBin {
       }
     }
 
-    .AdwPreferencesPage {
-      .AdwStatusPage status_page {
+    Adw.PreferencesPage {
+      Adw.StatusPage status_page {
         vexpand: true;
         icon-name: "document-save-symbolic";
         title: _("No Prefixes Found");
         description: _("No external prefixes were found. Does Bottles have access to them?\nUse the icon on the top to import a bottle from a backup.");
       }
 
-      .AdwPreferencesGroup group_prefixes {
+      Adw.PreferencesGroup group_prefixes {
         visible: false;
 
         ListBox list_prefixes {
@@ -64,12 +62,12 @@ Popover pop_backup {
     margin-start: 6;
     margin-end: 6;
 
-    .GtkModelButton btn_import_config {
+    $GtkModelButton btn_import_config {
       tooltip-text: _("This is just the bottle configuration, it\'s perfect if you want to create a new one but without personal files.");
       text: _("Configuration");
     }
 
-    .GtkModelButton btn_import_full {
+    $GtkModelButton btn_import_full {
       tooltip-text: _("This is the complete archive of your bottle, including personal files.");
       text: _("Full Archive");
     }

@@ -1,18 +1,18 @@
 using Gtk 4.0;
+using Adw 1;
 
-template DLLEntry : .AdwComboRow {
+template $DLLEntry: Adw.ComboRow {
   title: "DLL Name";
-  model: 
-  StringList {
+
+  model: StringList {
     strings [
-    _("Builtin (Wine)"), 
-    _("Native (Windows)"), 
-    _("Builtin, then Native"), 
-    _("Native, then Builtin"), 
-    _("Disabled")
+      _("Builtin (Wine)"),
+      _("Native (Windows)"),
+      _("Builtin, then Native"),
+      _("Native, then Builtin"),
+      _("Disabled")
     ]
-  }
-  ;
+  };
 
   Button btn_remove {
     valign: center;

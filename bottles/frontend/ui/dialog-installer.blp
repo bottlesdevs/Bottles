@@ -1,19 +1,17 @@
 using Gtk 4.0;
+using Adw 1;
 
-template InstallerDialog : .AdwWindow {
+template $InstallerDialog: Adw.Window {
   modal: true;
   deletable: true;
-  default-width: "500";
-  default-height: "600";
+  default-width: 500;
+  default-height: 600;
 
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {
-      title-widget: .AdwWindowTitle window_title {
-      }
-
-      ;
+    Adw.HeaderBar {
+      title-widget: Adw.WindowTitle window_title {};
 
       styles [
         "flat",
@@ -25,8 +23,8 @@ template InstallerDialog : .AdwWindow {
 
       StackPage page_init {
         name: "page_init";
-        child: 
-        Box {
+
+        child: Box {
           orientation: vertical;
           spacing: 10;
           valign: center;
@@ -36,7 +34,7 @@ template InstallerDialog : .AdwWindow {
             halign: center;
           }
 
-          .AdwStatusPage status_init {
+          Adw.StatusPage status_init {
             description: _("Do you want to proceed with the installation?");
             hexpand: true;
             vexpand: true;
@@ -51,16 +49,14 @@ template InstallerDialog : .AdwWindow {
               ]
             }
           }
-        }
-
-        ;
+        };
       }
 
       StackPage page_resources {
         name: "page_resources";
-        child: 
-        .AdwPreferencesPage {
-          .AdwPreferencesGroup group_resources {
+
+        child: Adw.PreferencesPage {
+          Adw.PreferencesGroup group_resources {
             description: _("This installer requires some local resources which cannot be provided otherwise.");
           }
 
@@ -76,15 +72,13 @@ template InstallerDialog : .AdwWindow {
               "suggested-action",
             ]
           }
-        }
-
-        ;
+        };
       }
 
       StackPage page_install {
         name: "page_install";
-        child: 
-        Box {
+
+        child: Box {
           margin-top: 10;
           margin-start: 10;
           margin-bottom: 10;
@@ -98,7 +92,7 @@ template InstallerDialog : .AdwWindow {
             margin-bottom: 2;
           }
 
-          .AdwStatusPage install_status_page {
+          Adw.StatusPage install_status_page {
             title: "name";
             description: _("This could take a while.");
 
@@ -114,15 +108,13 @@ template InstallerDialog : .AdwWindow {
               ]
             }
           }
-        }
-
-        ;
+        };
       }
 
       StackPage page_installed {
         name: "page_installed";
-        child: 
-        .AdwStatusPage status_installed {
+
+        child: Adw.StatusPage status_installed {
           icon-name: "selection-mode-symbolic";
           title: _("Completed!");
 
@@ -135,21 +127,17 @@ template InstallerDialog : .AdwWindow {
               "suggested-action",
             ]
           }
-        }
-
-        ;
+        };
       }
 
       StackPage page_error {
         name: "page_error";
-        child: 
-        .AdwStatusPage status_error {
+
+        child: Adw.StatusPage status_error {
           icon-name: "dialog-warning-symbolic";
           title: _("Installation Failed!");
           description: _("Something went wrong.");
-        }
-
-        ;
+        };
       }
     }
   }

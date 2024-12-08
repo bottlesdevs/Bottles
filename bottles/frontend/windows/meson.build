@@ -15,6 +15,7 @@ bottles_sources = [
   'gamescope.py',
   'vkbasalt.py',
   'fsr.py',
+  'mangohud.py',
   'display.py',
   'generic_cli.py',
   'journal.py',

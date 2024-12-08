@@ -1,6 +1,7 @@
 using Gtk 4.0;
+using Adw 1;
 
-template DetailsInstallers : .AdwBin {
+template $DetailsInstallers: Adw.Bin {
   Box {
     orientation: vertical;
 
@@ -10,8 +11,8 @@ template DetailsInstallers : .AdwBin {
       }
     }
 
-    .AdwPreferencesPage pref_page {
-      .AdwPreferencesGroup {
+    Adw.PreferencesPage pref_page {
+      Adw.PreferencesGroup {
         description: _("Install programs curated by our community.\n\nFiles on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.");
 
         ListBox list_installers {
@@ -24,7 +25,7 @@ template DetailsInstallers : .AdwBin {
       }
     }
 
-    .AdwStatusPage status_page {
+    Adw.StatusPage status_page {
       icon-name: "system-software-install-symbolic";
       title: _("No Installers Found");
       vexpand: true;
@@ -46,7 +47,7 @@ Popover pop_context {
     margin-start: 6;
     margin-end: 6;
 
-    .GtkModelButton btn_help {
+    $GtkModelButton btn_help {
       tooltip-text: _("Read Documentation");
       text: _("Documentation");
     }

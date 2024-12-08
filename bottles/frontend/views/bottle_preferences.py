@@ -50,6 +50,7 @@ from bottles.frontend.windows.envvars import EnvVarsDialog
 from bottles.frontend.windows.exclusionpatterns import ExclusionPatternsDialog
 from bottles.frontend.windows.fsr import FsrDialog
 from bottles.frontend.windows.gamescope import GamescopeDialog
+from bottles.frontend.windows.mangohud import MangoHudDialog
 from bottles.frontend.windows.protonalert import ProtonAlertDialog
 from bottles.frontend.windows.sandbox import SandboxDialog
 from bottles.frontend.windows.vkbasalt import VkBasaltDialog
@@ -67,6 +68,7 @@ class PreferencesView(Adw.PreferencesPage):
     btn_manage_gamescope = Gtk.Template.Child()
     btn_manage_vkbasalt = Gtk.Template.Child()
     btn_manage_fsr = Gtk.Template.Child()
+    btn_manage_mangohud = Gtk.Template.Child()
     btn_manage_sandbox = Gtk.Template.Child()
     btn_manage_versioning_patterns = Gtk.Template.Child()
     btn_manage_vmtouch = Gtk.Template.Child()
@@ -145,6 +147,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_manage_vkbasalt.connect("clicked", self.__show_vkbasalt_settings)
         self.btn_manage_fsr.connect("clicked", self.__show_fsr_settings)
+        self.btn_manage_mangohud.connect("clicked", self.__show_mangohud_settings)
         self.btn_manage_sandbox.connect("clicked", self.__show_sandbox_settings)
         self.btn_manage_versioning_patterns.connect(
             "clicked", self.__show_exclusionpatterns_settings
@@ -203,6 +206,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkbasalt.set_sensitive(vkbasalt_available)
         self.btn_manage_vkbasalt.set_sensitive(vkbasalt_available)
         self.switch_mangohud.set_sensitive(mangohud_available)
+        self.btn_manage_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         self.switch_vmtouch.set_sensitive(vmtouch_available)
         _not_available = _("This feature is unavailable on your system.")
@@ -263,8 +267,10 @@ class PreferencesView(Adw.PreferencesPage):
                     f"{_flatpak_not_available} {_flatpak_pkg_name['mangohud']}"
                 )
                 self.switch_mangohud.set_tooltip_text(_mangohud_not_available)
+                self.btn_manage_mangohud.set_tooltip_text(_mangohud_not_available)
             else:
                 self.switch_mangohud.set_tooltip_text(_not_available)
+                self.btn_manage_mangohud.set_tooltip_text(_not_available)
 
         if not obs_vkc_available:
             if "FLATPAK_ID" in os.environ:
@@ -586,6 +592,10 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __show_fsr_settings(self, widget):
         new_window = FsrDialog(parent_window=self.window, config=self.config)
+        new_window.present()
+    
+    def __show_mangohud_settings(self, widget):
+        new_window = MangoHudDialog(parent_window=self.window, config=self.config)
         new_window.present()
 
     def __show_display_settings(self, widget):

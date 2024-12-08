@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Adw 1;
 
 Popover pop_actions {
   styles [
@@ -12,35 +13,34 @@ Popover pop_actions {
     margin-end: 6;
     orientation: vertical;
 
-    .GtkModelButton btn_manifest {
+    $GtkModelButton btn_manifest {
       text: _("Show Manifest");
     }
 
-    .GtkModelButton btn_license {
+    $GtkModelButton btn_license {
       text: _("License");
     }
 
-    .GtkModelButton btn_reinstall {
+    $GtkModelButton btn_reinstall {
       text: _("Reinstall");
       visible: false;
     }
 
-    .GtkModelButton btn_remove {
+    $GtkModelButton btn_remove {
       text: _("Uninstall");
     }
 
-    Separator {
-    }
+    Separator {}
 
-    .GtkModelButton btn_report {
+    $GtkModelButton btn_report {
       text: _("Report a Bug…");
     }
   }
 }
 
-template DependencyEntry : .AdwActionRow {
+template $DependencyEntry: Adw.ActionRow {
   title: _("Dependency name");
-  activatable-widget: "btn_install";
+  activatable-widget: btn_install;
   subtitle: _("Dependency description");
 
   Box box_actions {

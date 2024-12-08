@@ -1,8 +1,9 @@
 using Gtk 4.0;
+using Adw 1;
 
-template GamescopeDialog : .AdwWindow {
+template $GamescopeDialog: Adw.Window {
   modal: true;
-  default-width: "550";
+  default-width: 550;
   title: _("Gamescope Settings");
 
   ShortcutController {
@@ -15,7 +16,7 @@ template GamescopeDialog : .AdwWindow {
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {
+    Adw.HeaderBar {
       show-end-title-buttons: false;
 
       [start]
@@ -35,130 +36,118 @@ template GamescopeDialog : .AdwWindow {
       }
     }
 
-    .AdwPreferencesPage {
-      .AdwPreferencesGroup {
+    Adw.PreferencesPage {
+      Adw.PreferencesGroup {
         description: _("Manage how games should be displayed.");
       }
 
-      .AdwPreferencesGroup {
+      Adw.PreferencesGroup {
         title: _("Game Resolution");
         description: _("Uses the resolution of the video game as a reference in pixels.");
 
-        .AdwActionRow {
+        Adw.ActionRow {
           title: _("Width");
 
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_width {
+
+            adjustment: Adjustment spin_width {
               step-increment: 1;
               upper: 7680;
-            }
-
-            ;
+            };
           }
         }
 
-        .AdwActionRow {
+        Adw.ActionRow {
           title: _("Height");
 
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_height {
+
+            adjustment: Adjustment spin_height {
               step-increment: 1;
               upper: 7680;
-            }
-
-            ;
+            };
           }
         }
       }
 
-      .AdwPreferencesGroup {
+      Adw.PreferencesGroup {
         title: _("Window Resolution");
         description: _("Upscales the resolution when using a resolution higher than the game resolution in pixels.");
 
-        .AdwActionRow {
+        Adw.ActionRow {
           title: _("Width");
 
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_gamescope_width {
+
+            adjustment: Adjustment spin_gamescope_width {
               step-increment: 1;
               upper: 7680;
-            }
-
-            ;
+            };
           }
         }
 
-        .AdwActionRow {
+        Adw.ActionRow {
           title: _("Height");
 
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_gamescope_height {
+
+            adjustment: Adjustment spin_gamescope_height {
               step-increment: 1;
               upper: 7680;
-            }
-
-            ;
+            };
           }
         }
       }
 
-      .AdwPreferencesGroup {
+      Adw.PreferencesGroup {
         title: _("Miscellaneous");
 
-        .AdwActionRow {
+        Adw.ActionRow {
           title: _("Frame Rate Limit");
 
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_fps_limit {
+
+            adjustment: Adjustment spin_fps_limit {
               step-increment: 1;
               upper: 244;
-            }
-
-            ;
+            };
           }
         }
 
-        .AdwActionRow {
+        Adw.ActionRow {
           title: _("Frame Rate Limit When Unfocused");
 
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_fps_limit_no_focus {
+
+            adjustment: Adjustment spin_fps_limit_no_focus {
               step-increment: 1;
               upper: 244;
-            }
-
-            ;
+            };
           }
         }
 
-        .AdwActionRow {
+        Adw.ActionRow {
           title: _("Integer Scaling");
-          activatable-widget: "switch_scaling";
+          activatable-widget: switch_scaling;
 
           Switch switch_scaling {
             valign: center;
           }
         }
 
-        .AdwActionRow {
+        Adw.ActionRow {
           title: _("Window Type");
 
           Box {

@@ -1,90 +1,88 @@
 using Gtk 4.0;
+using Adw 1;
 
-template DetailsPreferences : .AdwPreferencesPage {
-  .AdwPreferencesGroup group_details {
-    .AdwEntryRow entry_name {
+template $DetailsPreferences: Adw.PreferencesPage {
+  Adw.PreferencesGroup group_details {
+    Adw.EntryRow entry_name {
       title: _("Name");
       show-apply-button: true;
     }
   }
-  .AdwPreferencesGroup {
+
+  Adw.PreferencesGroup {
     title: _("Components");
 
-    .AdwComboRow combo_runner {
-        title: _("Runner");
-        subtitle: _("The version of the Wine compatibility layer.");
-        Spinner spinner_runner {
-          tooltip-text: _("Updating Runner and components, please wait…");
-          valign: center;
-          visible: false;
-        }
+    Adw.ComboRow combo_runner {
+      title: _("Runner");
+      subtitle: _("The version of the Wine compatibility layer.");
 
-        model:
-          StringList str_list_runner {};
-      }
-
-      .AdwComboRow combo_dxvk {
-        title: _("DXVK");
-        subtitle: _("Improve Direct3D 9/10/11 compatibility by translating it to Vulkan.");
-        Spinner spinner_dxvk {
-          tooltip-text: _("Updating DXVK, please wait…");
-          valign: center;
-          visible: false;
-        }
-
-        model:
-          StringList str_list_dxvk {};
-      }
-
-      .AdwComboRow combo_vkd3d {
-        title: _("VKD3D");
-        subtitle: _("Improve Direct3D 12 compatibility by translating it to Vulkan.");
-        Spinner spinner_vkd3d {
-          tooltip-text: _("Updating VKD3D, please wait…");
-          valign: center;
-          visible: false;
-        }
-
-        model:
-          StringList str_list_vkd3d {
-          };
-      }
-
-      .AdwComboRow combo_nvapi {
-        title: _("DXVK NVAPI");
+      Spinner spinner_runner {
+        tooltip-text: _("Updating Runner and components, please wait…");
+        valign: center;
         visible: false;
-
-        Spinner spinner_nvapi {
-          tooltip-text: _("Updating DXVK-NVAPI, please wait…");
-          valign: center;
-          visible: false;
-        }
-
-        model:
-          StringList str_list_nvapi {};
       }
 
-      .AdwComboRow combo_latencyflex {
-        title: _("LatencyFleX");
-        subtitle: _("Increase responsiveness. Can be detected by some anti-cheat software.");
-        Spinner spinner_latencyflex {
-          tooltip-text: _("Updating LatencyFleX, please wait…");
-          valign: center;
-          visible: false;
-        }
+      model: StringList str_list_runner {};
+    }
 
-        model:
-          StringList str_list_latencyflex {
-          }
+    Adw.ComboRow combo_dxvk {
+      title: _("DXVK");
+      subtitle: _("Improve Direct3D 9/10/11 compatibility by translating it to Vulkan.");
 
-        ;
+      Spinner spinner_dxvk {
+        tooltip-text: _("Updating DXVK, please wait…");
+        valign: center;
+        visible: false;
       }
+
+      model: StringList str_list_dxvk {};
+    }
+
+    Adw.ComboRow combo_vkd3d {
+      title: _("VKD3D");
+      subtitle: _("Improve Direct3D 12 compatibility by translating it to Vulkan.");
+
+      Spinner spinner_vkd3d {
+        tooltip-text: _("Updating VKD3D, please wait…");
+        valign: center;
+        visible: false;
+      }
+
+      model: StringList str_list_vkd3d {};
+    }
+
+    Adw.ComboRow combo_nvapi {
+      title: _("DXVK NVAPI");
+      visible: false;
+
+      Spinner spinner_nvapi {
+        tooltip-text: _("Updating DXVK-NVAPI, please wait…");
+        valign: center;
+        visible: false;
+      }
+
+      model: StringList str_list_nvapi {};
+    }
+
+    Adw.ComboRow combo_latencyflex {
+      title: _("LatencyFleX");
+      subtitle: _("Increase responsiveness. Can be detected by some anti-cheat software.");
+
+      Spinner spinner_latencyflex {
+        tooltip-text: _("Updating LatencyFleX, please wait…");
+        valign: center;
+        visible: false;
+      }
+
+      model: StringList str_list_latencyflex {};
+    }
   }
-  .AdwPreferencesGroup {
+
+  Adw.PreferencesGroup {
     title: _("Display");
 
-    .AdwActionRow row_nvapi {
-      activatable-widget: "switch_nvapi";
+    Adw.ActionRow row_nvapi {
+      activatable-widget: switch_nvapi;
       title: _("Deep Learning Super Sampling");
       subtitle: _("Increase performance at the expense of visuals using DXVK-NVAPI. Only works on newer NVIDIA GPUs.");
       visible: false;
@@ -100,10 +98,11 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow {
-      activatable-widget: "switch_fsr";
+    Adw.ActionRow {
+      activatable-widget: switch_fsr;
       title: _("FidelityFX Super Resolution");
       subtitle: _("Increase performance at the expense of visuals. Only works on Vulkan.");
+
       Button btn_manage_fsr {
         tooltip-text: _("Manage FidelityFX Super Resolution settings");
         valign: center;
@@ -119,9 +118,9 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_discrete {
+    Adw.ActionRow row_discrete {
       visible: false;
-      activatable-widget: "switch_discrete";
+      activatable-widget: switch_discrete;
       title: _("Discrete Graphics");
       subtitle: _("Use the discrete graphics card to increase performance at the expense of power consumption.");
 
@@ -130,10 +129,11 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_vkbasalt {
-      activatable-widget: "switch_vkbasalt";
+    Adw.ActionRow row_vkbasalt {
+      activatable-widget: switch_vkbasalt;
       title: _("Post-Processing Effects");
       subtitle: _("Add various post-processing effects using vkBasalt. Only works on Vulkan.");
+
       Button btn_manage_vkbasalt {
         tooltip-text: _("Manage Post-Processing Layer settings");
         valign: center;
@@ -147,48 +147,55 @@ template DetailsPreferences : .AdwPreferencesPage {
       Switch switch_vkbasalt {
         valign: center;
       }
-    } 
-    .AdwActionRow {
-      activatable-widget: "switch_gamescope";
+    }
+
+    Adw.ActionRow {
+      activatable-widget: switch_gamescope;
       title: "Gamescope";
       subtitle: _("Manage how games should be displayed on the screen using Gamescope.");
 
-        Button btn_manage_gamescope {
-          tooltip-text: _("Manage Gamescope settings");
-          valign: center;
-          icon-name: "applications-system-symbolic";
+      Button btn_manage_gamescope {
+        tooltip-text: _("Manage Gamescope settings");
+        valign: center;
+        icon-name: "applications-system-symbolic";
 
-          styles [
-            "flat",
-          ]
-        }
-
-        Switch switch_gamescope {
-          valign: center;
-        }
+        styles [
+          "flat",
+        ]
       }
-    .AdwActionRow row_manage_display {
+
+      Switch switch_gamescope {
+        valign: center;
+      }
+    }
+
+    Adw.ActionRow row_manage_display {
       title: _("Advanced Display Settings");
       activatable: true;
+
       Spinner spinner_display {
         valign: center;
         margin-end: 6;
       }
+
       Image {
         icon-name: "go-next-symbolic";
-        styles ["dim-label"]
+
+        styles [
+          "dim-label"
+        ]
       }
     }
   }
-  .AdwPreferencesGroup {
+
+  Adw.PreferencesGroup {
     title: _("Performance");
 
-
-    .AdwComboRow combo_sync {
+    Adw.ComboRow combo_sync {
       tooltip-text: _("Enable synchronization to increase performance of multicore processors.");
       title: _("Synchronization");
-      model:
-      StringList {
+
+      model: StringList {
         strings [
           _("System"),
           _("Esync"),
@@ -196,17 +203,29 @@ template DetailsPreferences : .AdwPreferencesPage {
         ]
       };
     }
-    .AdwActionRow {
-      activatable-widget: "switch_mangohud";
+
+    Adw.ActionRow {
+      activatable-widget: switch_mangohud;
       title: _("Monitor Performance");
       subtitle: _("Display monitoring information such as framerate, temperatures, CPU/GPU load and more on OpenGL and Vulkan using MangoHud.");
+
+      Button btn_manage_mangohud {
+        tooltip-text: _("Manage MangoHud settings");
+        valign: center;
+        icon-name: "applications-system-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
 
       Switch switch_mangohud {
         valign: center;
       }
     }
-        .AdwActionRow {
-      activatable-widget: "switch_gamemode";
+
+    Adw.ActionRow {
+      activatable-widget: switch_gamemode;
       title: _("Feral GameMode");
       subtitle: _("Apply a set of optimizations to your device. Can improve game performance.");
 
@@ -215,8 +234,8 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow {
-      activatable-widget: "switch_vmtouch";
+    Adw.ActionRow {
+      activatable-widget: switch_vmtouch;
       title: _("Preload Game Files");
       subtitle: _("Improve loading time when launching the game multiple times. The game will take longer to start for the first time.");
 
@@ -235,8 +254,9 @@ template DetailsPreferences : .AdwPreferencesPage {
         valign: center;
       }
     }
-    .AdwActionRow {
-      activatable-widget: "switch_obsvkc";
+
+    Adw.ActionRow {
+      activatable-widget: switch_obsvkc;
       title: _("OBS Game Capture");
       subtitle: _("Toggle OBS Game Capture for all Vulkan and OpenGL programs.");
 
@@ -246,10 +266,10 @@ template DetailsPreferences : .AdwPreferencesPage {
     }
   }
 
-  .AdwPreferencesGroup {
+  Adw.PreferencesGroup {
     title: _("Compatibility");
 
-    .AdwComboRow combo_windows {
+    Adw.ComboRow combo_windows {
       title: _("Windows Version");
 
       Spinner spinner_windows {
@@ -261,15 +281,15 @@ template DetailsPreferences : .AdwPreferencesPage {
       model: StringList str_list_windows {};
     }
 
-    .AdwComboRow combo_language {
+    Adw.ComboRow combo_language {
       title: _("Language");
       subtitle: _("Choose the language to use with programs.");
-      model:
-      StringList str_list_languages {};
+
+      model: StringList str_list_languages {};
     }
 
-    .AdwActionRow row_sandbox {
-      activatable-widget: "switch_sandbox";
+    Adw.ActionRow row_sandbox {
+      activatable-widget: switch_sandbox;
       visible: false;
       title: _("Dedicated Sandbox");
       subtitle: _("Use a restricted/managed environment for this bottle.");
@@ -289,8 +309,8 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_runtime {
-      activatable-widget: "switch_runtime";
+    Adw.ActionRow row_runtime {
+      activatable-widget: switch_runtime;
       title: _("Bottles Runtime");
       subtitle: _("Provide a bundle of extra libraries for more compatibility. Disable it if you run into issues.");
       visible: false;
@@ -300,19 +320,21 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_steam_runtime {
-      activatable-widget: "switch_steam_runtime";
+    Adw.ActionRow row_steam_runtime {
+      activatable-widget: switch_steam_runtime;
       title: _("Steam Runtime");
       subtitle: _("Provide a bundle of extra libraries for more compatibility with Steam games. Disable it if you run into issues.");
       visible: false;
+
       Switch switch_steam_runtime {
         valign: center;
       }
     }
 
-    .AdwActionRow row_cwd {
+    Adw.ActionRow row_cwd {
       title: _("Working Directory");
       activatable-widget: btn_cwd;
+
       Button btn_cwd_reset {
         tooltip-text: _("Reset to Default");
         valign: center;
@@ -341,42 +363,51 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow row_overrides {
+    Adw.ActionRow row_overrides {
       activatable: true;
       title: _("DLL Overrides");
 
       Image {
         icon-name: "go-next-symbolic";
-        styles ["dim-label"]
+
+        styles [
+          "dim-label"
+        ]
       }
     }
 
-    .AdwActionRow row_env_variables {
+    Adw.ActionRow row_env_variables {
       activatable: true;
       title: _("Environment Variables");
 
       Image {
         icon-name: "go-next-symbolic";
-        styles ["dim-label"]
+
+        styles [
+          "dim-label"
+        ]
       }
     }
 
-    .AdwActionRow row_drives {
+    Adw.ActionRow row_drives {
       activatable: true;
       title: _("Manage Drives");
 
       Image {
         icon-name: "go-next-symbolic";
-        styles ["dim-label"]
+
+        styles [
+          "dim-label"
+        ]
       }
     }
   }
 
-  .AdwPreferencesGroup {
+  Adw.PreferencesGroup {
     title: _("Snapshots");
 
-    .AdwActionRow {
-      activatable-widget: "switch_auto_versioning";
+    Adw.ActionRow {
+      activatable-widget: switch_auto_versioning;
       title: _("Automatic Snapshots");
       subtitle: _("Automatically create snapshots before installing software or changing settings.");
 
@@ -385,8 +416,8 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow {
-      activatable-widget: "switch_versioning_compression";
+    Adw.ActionRow {
+      activatable-widget: switch_versioning_compression;
       title: _("Compression");
       subtitle: _("Compress snapshots to reduce space. This will slow down the creation of snapshots.");
 
@@ -395,8 +426,8 @@ template DetailsPreferences : .AdwPreferencesPage {
       }
     }
 
-    .AdwActionRow {
-      activatable-widget: "switch_versioning_patterns";
+    Adw.ActionRow {
+      activatable-widget: switch_versioning_patterns;
       title: _("Use Exclusion Patterns");
       subtitle: _("Exclude paths in snapshots.");
 

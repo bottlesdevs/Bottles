@@ -54,7 +54,7 @@ There are two methods to build Bottles. The first and longer method is using `or
 
 1. Install [`org.flatpak.Builder`](https://github.com/flathub/org.flatpak.Builder) from Flathub
 1. Clone `https://github.com/bottlesdevs/Bottles.git` (or your fork)
-1. Run `flatpak run org.flatpak.Builder --install --install-deps-from=flathub --default-branch=master --force-clean build-dir com.usebottles.bottles.yml` in the terminal from the root of the repository (use `--user` if necessary)
+1. Run `flatpak run org.flatpak.Builder --install --install-deps-from=flathub --default-branch=master --force-clean build-dir build-aux/com.usebottles.bottles.json` in the terminal from the root of the repository (use `--user` if necessary)
 1. Run `flatpak run com.usebottles.bottles//master` to launch it
 
 ### Meson
