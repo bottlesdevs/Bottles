@@ -1,15 +1,15 @@
 #!/bin/sh
 
 run_flatpak() {
-  flatpak-spawn --host flatpak-builder -v build com.usebottles.bottles.yml --user --install --force-clean && flatpak-spawn --host flatpak run com.usebottles.bottles
+  flatpak-spawn --host flatpak-builder -v build build-aux/com.usebottles.bottles.json --user --install --force-clean && flatpak-spawn --host flatpak run com.usebottles.bottles
 }
 
 run_host() {
-  flatpak-builder build -v com.usebottles.bottles.yml --user --install --force-clean && flatpak run com.usebottles.bottles
+  flatpak-builder build -v build-aux/com.usebottles.bottles.json --user --install --force-clean && flatpak run com.usebottles.bottles
 }
 
 run_container() {
-  host-spawn flatpak-builder build -v com.usebottles.bottles.yml --user --install --force-clean && host-spawn flatpak run com.usebottles.bottles
+  host-spawn flatpak-builder build -v build-aux/com.usebottles.bottles.json --user --install --force-clean && host-spawn flatpak run com.usebottles.bottles
 }
 
 if [ -x "$(command -v flatpak-spawn)" ]; then

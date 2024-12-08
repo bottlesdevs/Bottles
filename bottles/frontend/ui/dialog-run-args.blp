@@ -1,6 +1,7 @@
 using Gtk 4.0;
+using Adw 1;
 
-template RunArgsDialog : Window {
+template $RunArgsDialog: Window {
   modal: true;
   default-width: 550;
   destroy-with-parent: true;
@@ -8,12 +9,10 @@ template RunArgsDialog : Window {
   [titlebar]
   HeaderBar {
     show-title-buttons: false;
-    title-widget: 
-    .AdwWindowTitle {
-      title: _("Run With Arguments");
-    }
 
-    ;
+    title-widget: Adw.WindowTitle {
+      title: _("Run With Arguments");
+    };
 
     [start]
     Button btn_cancel {
@@ -39,11 +38,11 @@ template RunArgsDialog : Window {
     }
   }
 
-  .AdwPreferencesPage {
-    .AdwPreferencesGroup {
+  Adw.PreferencesPage {
+    Adw.PreferencesGroup {
       description: _("Write below the arguments to be passed to the executable.");
 
-      .AdwEntryRow entry_args {
+      Adw.EntryRow entry_args {
         title: _("e.g.: -opengl -SkipBuildPatchPrereq");
       }
     }

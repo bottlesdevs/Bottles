@@ -1,14 +1,34 @@
 using Gtk 4.0;
+using Adw 1;
 
-.AdwAboutWindow about_window {
+Adw.AboutWindow about_window {
   modal: true;
   copyright: _("Copyright © 2017 Bottles Developers");
   website: "https://usebottles.com";
   issue-url: "https://github.com/bottlesdevs/Bottles/issues";
   support-url: "https://forum.usebottles.com";
-  license-type: "gpl-3-0-only";
+  license-type: gpl_3_0_only;
   developer-name: _("Bottles Developers");
-  developers: "Mirko Brombin https://github.com/mirkobrombin\nhthre7 https://github.com/hthre7\nKekun https://github.com/Kekun\nSonny Piers https://github.com/sonnyp\nBrainBlasted https://github.com/BrainBlasted\nFrancesco Masala <mail@francescomasala.me>\nHari Rana (TheEvilSkeleton) https://theevilskeleton.gitlab.io\naxtlos https://axtloss.github.io\nOro https://github.com/orowith2os\ngregorni https://gitlab.com/gregorni";
+
+  developers: [
+    "Mirko Brombin https://github.com/mirkobrombin",
+    "hthre7 https://github.com/hthre7",
+    "Kekun https://github.com/Kekun",
+    "Sonny Piers https://github.com/sonnyp",
+    "BrainBlasted https://github.com/BrainBlasted",
+    "Francesco Masala <mail@francescomasala.me>",
+    "Hari Rana (TheEvilSkeleton) https://theevilskeleton.gitlab.io",
+    "axtlos https://axtloss.github.io",
+    "Oro https://github.com/orowith2os",
+    "gregorni https://gitlab.com/gregorni"
+  ];
+
   translator-credits: _("translator_credits");
-  artists: "Marco Montini https://github.com/marckniack\nNoëlle https://github.com/jannuary\nAlvar Lagerlöf https://github.com/alvarlagerlof\nEzekiel Smith https://github.com/ZekeSmith";
+
+  artists: [
+    "Marco Montini https://github.com/marckniack",
+    "Noëlle https://github.com/jannuary",
+    "Alvar Lagerlöf https://github.com/alvarlagerlof",
+    "Ezekiel Smith https://github.com/ZekeSmith"
+  ];
 }

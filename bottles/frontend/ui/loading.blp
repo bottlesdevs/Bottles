@@ -1,6 +1,7 @@
 using Gtk 4.0;
+using Adw 1;
 
-template LoadingView : .AdwBin {
+template $LoadingView: Adw.Bin {
   WindowHandle {
     hexpand: true;
     vexpand: true;
@@ -8,7 +9,7 @@ template LoadingView : .AdwBin {
     Box {
       orientation: vertical;
 
-      .AdwStatusPage {
+      Adw.StatusPage {
         icon-name: "com.usebottles.bottles";
         title: _("Starting up…");
         hexpand: true;

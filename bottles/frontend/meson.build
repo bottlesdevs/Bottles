@@ -23,12 +23,15 @@ params_file = configure_file(
     configuration: conf
 )
 
+fs = import('fs')
+
 bottles_sources = [
   '__init__.py',
   'main.py',
   'const.py',
   'operation.py',
   params_file,
+  '/' + '.flatpak-info',
 ]
 
 if get_option('devel')

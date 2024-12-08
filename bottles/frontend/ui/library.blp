@@ -1,10 +1,11 @@
 using Gtk 4.0;
+using Adw 1;
 
-template LibraryView : .AdwBin {
+template $LibraryView: Adw.Bin {
   Box {
     orientation: vertical;
 
-    .AdwStatusPage status_page {
+    Adw.StatusPage status_page {
       vexpand: true;
       hexpand: true;
       icon-name: "library-symbolic";
@@ -17,7 +18,7 @@ template LibraryView : .AdwBin {
       vexpand: true;
 
       FlowBox main_flow {
-        max-children-per-line: bind LibraryView.items_per_line;
+        max-children-per-line: bind template.items_per_line;
         row-spacing: 5;
         column-spacing: 5;
         halign: center;

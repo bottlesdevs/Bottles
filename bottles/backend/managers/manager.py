@@ -729,6 +729,7 @@ class Manager(metaclass=Singleton):
                     "vkd3d": _program.get("vkd3d"),
                     "dxvk_nvapi": _program.get("dxvk_nvapi"),
                     "fsr": _program.get("fsr"),
+                    "gamescope": _program.get("gamescope"),
                     "pulseaudio_latency": _program.get("pulseaudio_latency"),
                     "virtual_desktop": _program.get("virtual_desktop"),
                     "removed": _program.get("removed"),
