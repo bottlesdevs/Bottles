@@ -22,6 +22,7 @@ from gi.repository import Gtk, Adw
 from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.params import APP_ID
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/loading.ui")
@@ -33,10 +34,12 @@ class LoadingView(Adw.Bin):
     label_fetched = Gtk.Template.Child()
     label_downloading = Gtk.Template.Child()
     btn_go_offline = Gtk.Template.Child()
+    loading_status_page = Gtk.Template.Child()
     # endregion
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.loading_status_page.set_icon_name(APP_ID)
         self.btn_go_offline.connect("clicked", self.go_offline)
 
     @GtkUtils.run_in_main_loop

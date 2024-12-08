@@ -10,7 +10,9 @@ project(
 
 
 APP_NAME = 'Bottles'
-APP_ID = 'com.usebottles.bottles'
+DEVELOPER_ID = 'com.usebottles'
+BASE_ID = DEVELOPER_ID + '.' + meson.project_name()
+APP_ID = BASE_ID
 APP_VERSION = meson.project_version()
 PROFILE = get_option('profile')
 
