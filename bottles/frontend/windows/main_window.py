@@ -69,7 +69,7 @@ class MainWindow(Adw.ApplicationWindow):
 
     # Common variables
     previous_page = ""
-    settings = Gio.Settings.new(APP_ID)
+    settings = Gio.Settings.new(BASE_ID)
     argument_executed = False
 
     def __init__(self, arg_bottle, **kwargs):
@@ -86,6 +86,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
+        self.set_icon_name(APP_ID)
 
         if PROFILE == "development":
             self.add_css_class("devel")
@@ -219,7 +220,7 @@ class MainWindow(Adw.ApplicationWindow):
 
             self.stack_main.add_titled(
                 child=self.page_list, name="page_list", title=_("Bottles")
-            ).set_icon_name("com.usebottles.bottles-symbolic")
+            ).set_icon_name(f"{APP_ID}-symbolic")
             self.stack_main.add_titled(
                 child=self.page_library, name="page_library", title=_("Library")
             ).set_icon_name("library-symbolic")
