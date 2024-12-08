@@ -899,16 +899,17 @@ class Manager(metaclass=Singleton):
                 )
             self.local_bottles[config.Name] = config
 
+            real_path = ManagerUtils.get_bottle_path(config)
             for p in [
-                os.path.join(_bottle, "cache", "dxvk_state"),
-                os.path.join(_bottle, "cache", "gl_shader"),
-                os.path.join(_bottle, "cache", "mesa_shader"),
-                os.path.join(_bottle, "cache", "vkd3d_shader"),
+                os.path.join(real_path, "cache", "dxvk_state"),
+                os.path.join(real_path, "cache", "gl_shader"),
+                os.path.join(real_path, "cache", "mesa_shader"),
+                os.path.join(real_path, "cache", "vkd3d_shader"),
             ]:
                 if not os.path.exists(p):
                     os.makedirs(p)
 
-            for c in os.listdir(_bottle):
+            for c in os.listdir(real_path):
                 c = str(c)
                 if c.endswith(".dxvk-cache"):
                     # NOTE: the following code tries to create the caching directories
@@ -916,30 +917,30 @@ class Manager(metaclass=Singleton):
                     #       is no need to create them again.
                     try:
                         shutil.move(
-                            os.path.join(_bottle, c),
-                            os.path.join(_bottle, "cache", "dxvk_state"),
+                            os.path.join(real_path, c),
+                            os.path.join(real_path, "cache", "dxvk_state"),
                         )
                     except shutil.Error:
                         pass
                 elif "vkd3d-proton.cache" in c:
                     try:
                         shutil.move(
-                            os.path.join(_bottle, c),
-                            os.path.join(_bottle, "cache", "vkd3d_shader"),
+                            os.path.join(real_path, c),
+                            os.path.join(real_path, "cache", "vkd3d_shader"),
                         )
                     except shutil.Error:
                         pass
                 elif c == "GLCache":
                     try:
                         shutil.move(
-                            os.path.join(_bottle, c),
-                            os.path.join(_bottle, "cache", "gl_shader"),
+                            os.path.join(real_path, c),
+                            os.path.join(real_path, "cache", "gl_shader"),
                         )
                     except shutil.Error:
                         pass
 
             if config.Parameters.dxvk_nvapi:
-                NVAPIComponent.check_bottle_nvngx(_bottle, config)
+                NVAPIComponent.check_bottle_nvngx(real_path, config)
 
         for b in bottles:
             """
