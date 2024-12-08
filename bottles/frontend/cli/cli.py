@@ -692,20 +692,7 @@ class CLI:
         elif _executable.startswith("'") and _executable.endswith("'"):
             _executable = _executable[1:-1]
 
-        WineExecutor(
-            bottle,
-            exec_path=_executable,
-            args=_args,
-            cwd=_cwd,
-            pre_script=_pre_script,
-            post_script=_post_script,
-            program_dxvk=_program_dxvk,
-            program_vkd3d=_program_vkd3d,
-            program_nvapi=_program_dxvk_nvapi,
-            program_fsr=_program_fsr,
-            program_gamescope=_program_gamescope,
-            program_virt_desktop=_program_virt_desktop,
-        ).run_cli()
+        WineExecutor.run_program(bottle, program)
 
     # endregion
 
