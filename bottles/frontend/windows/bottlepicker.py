@@ -21,7 +21,7 @@ from gi.repository import Gtk, Adw, Gio
 
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
-from bottles.frontend.params import APP_ID
+from bottles.frontend.params import BASE_ID
 
 
 class BottleEntry(Adw.ActionRow):
@@ -36,7 +36,7 @@ class BottlePickerDialog(Adw.ApplicationWindow):
     """This class should not be called from the application GUI, only from CLI."""
 
     __gtype_name__ = "BottlePickerDialog"
-    settings = Gio.Settings.new(APP_ID)
+    settings = Gio.Settings.new(BASE_ID)
     Adw.init()
 
     # region Widgets

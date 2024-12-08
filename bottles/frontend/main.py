@@ -81,7 +81,7 @@ class Bottles(Adw.Application):
 
     def __init__(self):
         super().__init__(
-            application_id="com.usebottles.bottles",
+            application_id=APP_ID,
             flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
             register_session=True,
         )
