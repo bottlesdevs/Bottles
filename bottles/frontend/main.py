@@ -81,7 +81,8 @@ class Bottles(Adw.Application):
 
     def __init__(self):
         super().__init__(
-            application_id="com.usebottles.bottles",
+            application_id=APP_ID,
+            resource_base_path="/com/usebottles/bottles",
             flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
             register_session=True,
         )

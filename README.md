@@ -54,15 +54,15 @@ There are two methods to build Bottles. The first and longer method is using `or
 
 1. Install [`org.flatpak.Builder`](https://github.com/flathub/org.flatpak.Builder) from Flathub
 1. Clone `https://github.com/bottlesdevs/Bottles.git` (or your fork)
-1. Run `flatpak run org.flatpak.Builder --install --install-deps-from=flathub --default-branch=master --force-clean build-dir build-aux/com.usebottles.bottles.json` in the terminal from the root of the repository (use `--user` if necessary)
-1. Run `flatpak run com.usebottles.bottles//master` to launch it
+1. Run `flatpak run org.flatpak.Builder --install --install-deps-from=flathub --default-branch=master --force-clean build-dir build-aux/com.usebottles.bottles.Devel.json` in the terminal from the root of the repository (use `--user` if necessary)
+1. Run `flatpak run com.usebottles.bottles.Devel` to launch it
 
 ### Meson
 
 Since Bottles is primarily and officially distributed as a Flatpak, we only provide instructions to directly build it inside a Flatpak environment:
 
 1. Download and install the latest build of Bottles: [bottles-x86_64.zip](https://nightly.link/bottlesdevs/Bottles/workflows/build_flatpak/main/bottles-x86_64.zip). Unzip it, and run `flatpak install bottles.flatpak` (use `--user` if necessary)
-2. Run `flatpak run -d --filesystem=$PWD --command=bash com.usebottles.bottles//master` from the root of the repository, followed by `./utils/install.sh`. This will build Bottles and install it under the `build/` directory.
+2. Run `flatpak run -d --filesystem=$PWD --command=bash com.usebottles.bottles.Devel` from the root of the repository, followed by `./utils/install.sh`. This will build Bottles and install it under the `build/` directory.
 3. Run `./build/bin/bottles` to launch Bottles
 
 Due to GNOME Builder limitations, Builder cannot build Bottles for the time being; see [GNOME/gnome-builder#2061](https://gitlab.gnome.org/GNOME/gnome-builder/-/issues/2061) for more context. This is the best workaround we can provide.

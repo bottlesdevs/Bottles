@@ -33,7 +33,6 @@ from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals, Notification
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
-from bottles.frontend.const import *
 from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import *
 from bottles.frontend.utils.gtk import GtkUtils
@@ -70,7 +69,7 @@ class MainWindow(Adw.ApplicationWindow):
 
     # Common variables
     previous_page = ""
-    settings = Gio.Settings.new(APP_ID)
+    settings = Gio.Settings.new(BASE_ID)
     argument_executed = False
 
     def __init__(self, arg_bottle, **kwargs):
@@ -87,8 +86,9 @@ class MainWindow(Adw.ApplicationWindow):
         self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
+        self.set_icon_name(APP_ID)
 
-        if BUILD_TYPE == "devel":
+        if PROFILE == "development":
             self.add_css_class("devel")
 
         # Set night theme according to user settings
@@ -220,7 +220,7 @@ class MainWindow(Adw.ApplicationWindow):
 
             self.stack_main.add_titled(
                 child=self.page_list, name="page_list", title=_("Bottles")
-            ).set_icon_name("com.usebottles.bottles-symbolic")
+            ).set_icon_name(f"{APP_ID}-symbolic")
             self.stack_main.add_titled(
                 child=self.page_library, name="page_library", title=_("Library")
             ).set_icon_name("library-symbolic")

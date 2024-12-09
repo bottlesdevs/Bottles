@@ -1,1 +1,9 @@
-option('devel', type : 'boolean', value : false)
+option (
+    'profile',
+    type: 'combo',
+    choices: [
+        'default',
+        'development'
+    ],
+    value: 'default'
+)

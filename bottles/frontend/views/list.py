@@ -26,6 +26,7 @@ from bottles.backend.state import Signals, SignalManager
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
+from bottles.frontend.params import APP_ID
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/list-entry.ui")
@@ -181,6 +182,8 @@ class BottleView(Adw.Bin):
         SignalManager.connect(
             Signals.ManagerLocalBottlesLoaded, self.backend_local_bottle_loaded
         )
+
+        self.bottle_status.set_icon_name(f"{APP_ID}-symbolic")
 
         self.update_bottles()
 
