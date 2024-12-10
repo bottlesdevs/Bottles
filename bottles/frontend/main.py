@@ -87,7 +87,7 @@ class Bottles(Adw.Application):
             register_session=True,
         )
         self.__create_action("quit", self.__quit, ["<primary>q", "<primary>w"])
-        self.__create_action("about", self.__show_about_window)
+        self.__create_action("about", self.__show_about_dialog)
         self.__create_action("import", self.__show_importer_view, ["<primary>i"])
         self.__create_action("preferences", self.__show_preferences, ["<primary>comma"])
         self.__create_action("help", self.__help, ["F1"])
@@ -293,7 +293,7 @@ class Bottles(Adw.Application):
     def __show_importer_view(self, widget=False, *args):
         self.win.main_leaf.set_visible_child(self.win.page_importer)
 
-    def __show_about_window(self, *_args):
+    def __show_about_dialog(self, *_args):
         developers = [
           "Mirko Brombin https://github.com/mirkobrombin",
           "hthre7 https://github.com/hthre7",
@@ -314,16 +314,16 @@ class Bottles(Adw.Application):
           "Ezekiel Smith https://github.com/ZekeSmith"
         ]
 
-        about_window = Adw.AboutWindow.new_from_appdata("/com/usebottles/bottles/appdata", f"{APP_MAJOR_VERSION}.0")
-        about_window.set_developers(developers)
-        about_window.set_translator_credits(_("translator_credits"))
-        about_window.set_artists(artists)
-        about_window.set_debug_info(HealthChecker().get_results(plain=True))
-        about_window.add_link(_("Donate"), "https://usebottles.com/funding")
-        about_window.set_copyright(
-          _("Copyright © 2017 {developer_name}").format(developer_name=about_window.get_developer_name())
+        about_dialog = Adw.AboutDialog.new_from_appdata("/com/usebottles/bottles/appdata", f"{APP_MAJOR_VERSION}.0")
+        about_dialog.set_developers(developers)
+        about_dialog.set_translator_credits(_("translator_credits"))
+        about_dialog.set_artists(artists)
+        about_dialog.set_debug_info(HealthChecker().get_results(plain=True))
+        about_dialog.add_link(_("Donate"), "https://usebottles.com/funding")
+        about_dialog.set_copyright(
+          _("Copyright © 2017 {developer_name}").format(developer_name=about_dialog.get_developer_name())
         )
-        about_window.add_acknowledgement_section(
+        about_dialog.add_acknowledgement_section(
             _("Third-Party Libraries and Special Thanks"),
             [
                 "DXVK https://github.com/doitsujin/dxvk",
@@ -349,7 +349,7 @@ class Bottles(Adw.Application):
                 "pathvalidate https://github.com/thombashi/pathvalidate",
             ],
         )
-        about_window.add_acknowledgement_section(
+        about_dialog.add_acknowledgement_section(
             _("Sponsored and Funded by"),
             [
                 "JetBrains https://www.jetbrains.com/?from=bottles",
@@ -359,8 +359,7 @@ class Bottles(Adw.Application):
                 "Community ❤️ https://usebottles.com/funding",
             ],
         )
-        about_window.set_transient_for(self.win)
-        about_window.present()
+        about_dialog.present(self.win)
 
     def __create_action(self, name, callback, shortcuts=None, param=None):
         """Add an application action.
