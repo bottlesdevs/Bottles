@@ -14,6 +14,9 @@ DEVELOPER_ID = 'com.usebottles'
 BASE_ID = DEVELOPER_ID + '.' + meson.project_name()
 APP_ID = BASE_ID
 APP_VERSION = meson.project_version()
+_version_array = APP_VERSION.split('.')
+APP_MAJOR_VERSION = _version_array[0]
+APP_MINOR_VERSION = _version_array[1]
 PROFILE = get_option('profile')
 
 if PROFILE == 'development'
