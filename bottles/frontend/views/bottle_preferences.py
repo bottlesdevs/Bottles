@@ -929,7 +929,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_steam_rules(self):
         """Set the Steam Environment specific rules"""
-        status = False if self.config.Environment == "Steam" else True
+        status = self.config.Environment != "Steam"
 
         for w in [
             self.row_discrete,
