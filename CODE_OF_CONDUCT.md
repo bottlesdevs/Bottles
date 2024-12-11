@@ -123,4 +123,3 @@ Additional language was incorporated and modified from the following Codes of Co
  * [Mozilla Community Participation Guidelines](https://www.mozilla.org/en-US/about/governance/policies/participation/) is licensed [Creative Commons Attribution-ShareAlike 3.0 Unported License](https://creativecommons.org/licenses/by-sa/3.0/).
  * [Python Mentors Code of Conduct](http://pythonmentors.com/)
  * [Speak Up! Community Code of Conduct](http://web.archive.org/web/20141109123859/http://speakup.io/coc.html), licensed under a [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/)
-

@@ -51,7 +51,6 @@ class Proc:
 
 
 class ProcUtils:
-
     @staticmethod
     def get_procs():
         procs = []
