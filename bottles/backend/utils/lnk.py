@@ -21,7 +21,6 @@ from functools import lru_cache
 
 
 class LnkUtils:
-
     @staticmethod
     @lru_cache
     def get_data(path):
@@ -53,7 +52,7 @@ class LnkUtils:
             length = struct.unpack("I", content[last_pos:position])[0]
 
             """
-            Skip 12 bytes (LinkInfoHeaderSize, LinkInfoFlags and 
+            Skip 12 bytes (LinkInfoHeaderSize, LinkInfoFlags and
             VolumeIDOffset)
             """
             position += 0x0C

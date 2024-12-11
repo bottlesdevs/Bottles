@@ -17,7 +17,6 @@
 
 import sys
 import gi
-import os
 import gettext
 import locale
 import webbrowser
@@ -31,7 +30,7 @@ gi.require_version("Xdp", "1.0")
 
 from gi.repository import Gtk, Gio, GLib, GObject, Adw  # type: ignore
 
-from bottles.frontend.params import *
+from bottles.frontend.params import APP_ICON, APP_ID, APP_NAME, APP_VERSION
 from bottles.backend.logger import Logger
 from bottles.frontend.windows.main_window import MainWindow
 from bottles.frontend.views.preferences import PreferencesWindow
@@ -41,8 +40,8 @@ logging = Logger()
 
 # region Translations
 """
-This code snippet searches for and uploads translations to different 
-directories, depending on your production or development environment. 
+This code snippet searches for and uploads translations to different
+directories, depending on your production or development environment.
 The function _() can be used to create and retrieve translations.
 """
 share_dir = path.join(sys.prefix, "share")
@@ -203,11 +202,9 @@ class Bottles(Adw.Application):
 
         if uri.startswith("bottles:run/"):
             if len(uri.split("/")) != 3:
-                logging.error(
-                    _("Invalid URI (syntax: bottles:run/<bottle>/<program>)")
-                )
+                logging.error(_("Invalid URI (syntax: bottles:run/<bottle>/<program>)"))
                 return False
-            
+
             uri = uri.replace("bottles:run/", "")
             bottle, program = uri.split("/")
 

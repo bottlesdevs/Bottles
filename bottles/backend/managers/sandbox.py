@@ -23,7 +23,6 @@ from typing import Optional
 
 
 class SandboxManager:
-
     def __init__(
         self,
         envs: Optional[dict] = None,

@@ -593,7 +593,7 @@ class PreferencesView(Adw.PreferencesPage):
     def __show_fsr_settings(self, widget):
         new_window = FsrDialog(parent_window=self.window, config=self.config)
         new_window.present()
-    
+
     def __show_mangohud_settings(self, widget):
         new_window = MangoHudDialog(parent_window=self.window, config=self.config)
         new_window.present()

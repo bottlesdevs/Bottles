@@ -14,7 +14,6 @@ from bottles.backend.utils import yaml
 
 # noinspection PyDataclass
 class DictCompatMixIn:
-
     @staticmethod
     def yaml_serialize_handler(dumper, data):
         dict_repr = data.to_dict()

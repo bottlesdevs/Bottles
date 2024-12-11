@@ -108,7 +108,8 @@ class WineCommand:
         self.cwd = self._get_cwd(cwd)
         self.runner, self.runner_runtime = self._get_runner_info()
         self.gamescope_activated = (
-            environment["GAMESCOPE"] == "1" if "GAMESCOPE" in environment
+            environment["GAMESCOPE"] == "1"
+            if "GAMESCOPE" in environment
             else self.config.Parameters.gamescope
         )
         self.command = self.get_cmd(
@@ -189,7 +190,7 @@ class WineCommand:
 
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
-        is_nvidia = DisplayUtils.check_nvidia_device()
+        DisplayUtils.check_nvidia_device()
         ld = []
 
         # Bottle environment variables

@@ -36,7 +36,7 @@ class LibraryView(Adw.Bin):
     style_provider = Gtk.CssProvider()
     # endregion
 
-    items_per_line = GObject.property(type=int, default=0)
+    items_per_line = GObject.property(type=int, default=0)  # type: ignore
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)

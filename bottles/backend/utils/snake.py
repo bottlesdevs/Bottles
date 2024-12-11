@@ -20,7 +20,7 @@ class Snake:
         self.food = [0, 0]
         self.score = 0
         self.life = 3
-        self.direction = 'RIGHT'
+        self.direction = "RIGHT"
 
         self.generate_food()
 
@@ -28,36 +28,40 @@ class Snake:
         self.food = [int(random.random() * 20), int(random.random() * 20)]
         while self.food in self.snake:
             bounds = self.stdscr.getmaxyx()
-            self.food = [int(random.random() * (bounds[0] - 2)) + 1, int(random.random() * (bounds[1] - 2)) + 1]
+            self.food = [
+                int(random.random() * (bounds[0] - 2)) + 1,
+                int(random.random() * (bounds[1] - 2)) + 1,
+            ]
 
     def draw(self):
         self.stdscr.clear()
         self.stdscr.box()
         self.stdscr.addstr(
-            self.stdscr.getmaxyx()[0] - 1, self.stdscr.getmaxyx()[1] // 2 - len(str(self.score)) // 2,
-            f'Score: {self.score}',
-            curses.color_pair(3)
+            self.stdscr.getmaxyx()[0] - 1,
+            self.stdscr.getmaxyx()[1] // 2 - len(str(self.score)) // 2,
+            f"Score: {self.score}",
+            curses.color_pair(3),
         )
 
         for i, j in self.snake:
             try:
-                self.stdscr.addstr(i, j, '◍', curses.color_pair(1))
+                self.stdscr.addstr(i, j, "◍", curses.color_pair(1))
             except:
                 self.__is_running = False
 
-        self.stdscr.addstr(self.food[0], self.food[1], '🍎', curses.color_pair(2))
+        self.stdscr.addstr(self.food[0], self.food[1], "🍎", curses.color_pair(2))
         self.stdscr.refresh()
 
     def move(self):
         new_head = [self.snake[0][0], self.snake[0][1]]
 
-        if self.direction == 'UP':
+        if self.direction == "UP":
             new_head[0] -= 1
-        elif self.direction == 'DOWN':
+        elif self.direction == "DOWN":
             new_head[0] += 1
-        elif self.direction == 'LEFT':
+        elif self.direction == "LEFT":
             new_head[1] -= 1
-        elif self.direction == 'RIGHT':
+        elif self.direction == "RIGHT":
             new_head[1] += 1
 
         self.snake.insert(0, new_head)
@@ -70,19 +74,19 @@ class Snake:
 
     def get_input(self):
         key = self.stdscr.getch()
-        if key == curses.KEY_UP and self.direction != 'DOWN':
-            self.direction = 'UP'
-        elif key == curses.KEY_DOWN and self.direction != 'UP':
-            self.direction = 'DOWN'
-        elif key == curses.KEY_LEFT and self.direction != 'RIGHT':
-            self.direction = 'LEFT'
-        elif key == curses.KEY_RIGHT and self.direction != 'LEFT':
-            self.direction = 'RIGHT'
-        elif key == ord('q'):
+        if key == curses.KEY_UP and self.direction != "DOWN":
+            self.direction = "UP"
+        elif key == curses.KEY_DOWN and self.direction != "UP":
+            self.direction = "DOWN"
+        elif key == curses.KEY_LEFT and self.direction != "RIGHT":
+            self.direction = "LEFT"
+        elif key == curses.KEY_RIGHT and self.direction != "LEFT":
+            self.direction = "RIGHT"
+        elif key == ord("q"):
             exit()
 
     def get_result(self):
-        return f'Your score is {self.score}'
+        return f"Your score is {self.score}"
 
     def run(self):
         self.__is_running = True
@@ -103,36 +107,36 @@ def main(stdscr):
     result = snake.get_result()
 
 
-if __name__ == '__main__':
-    os.system('clear')
+if __name__ == "__main__":
+    os.system("clear")
     logo = """
 .▄▄ ·  ▐ ▄  ▄▄▄· ▄ •▄ ▄▄▄ .
 ▐█ ▀. •█▌▐█▐█ ▀█ █▌▄▌▪▀▄.▀·
 ▄▀▀▀█▄▐█▐▐▌▄█▀▀█ ▐▀▀▄·▐▀▀▪▄
 ▐█▄▪▐███▐█▌▐█ ▪▐▌▐█.█▌▐█▄▄▌
- ▀▀▀▀ ▀▀ █▪ ▀  ▀ ·▀  ▀ ▀▀▀ 
+ ▀▀▀▀ ▀▀ █▪ ▀  ▀ ·▀  ▀ ▀▀▀
 """
     print(logo)
-    print('\u2550' * 27)
+    print("\u2550" * 27)
     print("""
 1. Play
 2. Exit
 """)
-    print('\u2550' * 27)
+    print("\u2550" * 27)
     print("\nDo you want to play a game? (1/2)\n")
     choice = input()
-    if choice == '1':
+    if choice == "1":
         curses.wrapper(main)
-        os.system('tput reset')
+        os.system("tput reset")
 
-        print('\u2554' + '\u2550' * (len(result) + 2) + '\u2557')
-        print('\u2551' + " " + result + " " + '\u2551')
-        print('\u255a' + '\u2550' * (len(result) + 2) + '\u255d')
+        print("\u2554" + "\u2550" * (len(result) + 2) + "\u2557")
+        print("\u2551" + " " + result + " " + "\u2551")
+        print("\u255a" + "\u2550" * (len(result) + 2) + "\u255d")
         print("Start again? (y/n)")
 
-        if input() == 'y':
+        if input() == "y":
             os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
         else:
             exit()
-    elif choice == '2':
+    elif choice == "2":
         exit()
