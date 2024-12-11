@@ -37,10 +37,15 @@ appstream_file = i18n.merge_file(
 )
 
 gnome.compile_resources('data',
-  'data.gresource.xml',
+  configure_file(
+      input: 'data.gresource.xml.in',
+      output: 'data.gresource.xml',
+      configuration: conf,
+  ),
   gresource_bundle: true,
   install: true,
-  install_dir: pkgdatadir
+  install_dir: pkgdatadir,
+  dependencies: [appstream_file]
 )
 
 appstream_util = find_program('appstream-util', required: false)

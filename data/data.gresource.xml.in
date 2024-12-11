@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
+  <gresource prefix="/com/usebottles/bottles">
+    <file preprocess="xml-stripblanks" alias="appdata">@APP_ID@.metainfo.xml</file>
+  </gresource>
   <gresource prefix="/com/usebottles/bottles/icons/scalable/actions">
     <file preprocess="xml-stripblanks" alias="bottles-steam-symbolic.svg">icons/hicolor/symbolic/apps/bottles-steam-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="external-link-symbolic.svg">icons/hicolor/symbolic/actions/external-link-symbolic.svg</file>
