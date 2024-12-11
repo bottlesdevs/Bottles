@@ -31,13 +31,13 @@ class FsrDialog(Adw.Window):
     str_list_quality_mode = Gtk.Template.Child()
     spin_sharpening_strength = Gtk.Template.Child()
 
-    def __init__(self, parent_window, config, **kwargs):
+    def __init__(self, window, config, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(parent_window)
+        self.set_transient_for(window)
 
         # Common variables and references
-        self.window = parent_window
-        self.manager = parent_window.manager
+        self.window = window
+        self.manager = window.manager
         self.config = config
         self.quality_mode = {
             "none": _("None"),

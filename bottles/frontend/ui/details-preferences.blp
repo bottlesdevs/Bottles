@@ -35,7 +35,11 @@ template $DetailsPreferences: Adw.PreferencesPage {
         visible: false;
       }
 
-      model: StringList str_list_dxvk {};
+      model: StringList str_list_dxvk {
+        strings [
+          _("Disabled"),
+        ]
+      };
     }
 
     Adw.ComboRow combo_vkd3d {
@@ -48,7 +52,11 @@ template $DetailsPreferences: Adw.PreferencesPage {
         visible: false;
       }
 
-      model: StringList str_list_vkd3d {};
+      model: StringList str_list_vkd3d {
+        strings [
+          _("Disabled"),
+        ]
+      };
     }
 
     Adw.ComboRow combo_nvapi {
@@ -74,7 +82,11 @@ template $DetailsPreferences: Adw.PreferencesPage {
         visible: false;
       }
 
-      model: StringList str_list_latencyflex {};
+      model: StringList str_list_latencyflex {
+        strings [
+          _("Disabled")
+        ]
+      };
     }
   }
 
