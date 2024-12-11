@@ -191,7 +191,7 @@ class MainWindow(Adw.ApplicationWindow):
     def update_library(self):
         GLib.idle_add(self.page_library.update)
 
-    def set_title(self, title, subtitle: str = ""):
+    def title(self, title, subtitle: str = ""):
         self.view_switcher_title.set_title(title)
         self.view_switcher_title.set_subtitle(subtitle)
 
@@ -389,7 +389,7 @@ class MainWindow(Adw.ApplicationWindow):
         action_label=None,
         action_callback=None,
         dismissed_callback=None,
-    ) -> Adw.Toast:
+    ) -> None:
 
         toast = Adw.Toast.new(message)
         toast.props.timeout = timeout
