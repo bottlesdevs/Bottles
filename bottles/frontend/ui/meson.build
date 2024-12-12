@@ -2,7 +2,6 @@ pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.proje
 gnome = import('gnome')
 blueprints = custom_target('blueprints',
   input: files(
-    'about.blp',
     'component-entry.blp',
     'dependency-entry.blp',
     'details-bottle.blp',

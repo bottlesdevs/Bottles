@@ -77,7 +77,9 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.borderless, .borderless button.combo, .borderless button {
+.borderless,
+.borderless button.combo,
+.borderless button {
   border: 0;
   background-color: transparent;
   background-image: none;
@@ -85,7 +87,8 @@
   box-shadow: none;
 }
 
-.plain button.combo, .plain-label {
+.plain button.combo,
+.plain-label {
   opacity: .8;
 }
 
@@ -107,7 +110,7 @@ entry.heading_1 {
 /* This will be removed when all themes will fix .suggested-action with .circular:
    https://gitlab.gnome.org/GNOME/gtk/-/commit/83eeeb6a19b3b7671a82605bc99cd85974d5c78e */
 .circular-button {
-    border-radius: 20px;
+  border-radius: 20px;
 }
 
 /* Grades */
@@ -115,14 +118,17 @@ entry.heading_1 {
   background-color: #c9c9c9;
   color: #6b6b6b;
 }
+
 .grade-Gold {
   background-color: #f2edde;
   color: #8d7637;
 }
+
 .grade-Silver {
   background-color: #e8e8e8;
   color: #6b6b6b;
 }
+
 .grade-Bronze {
   background-color: #dbbfa3;
   color: #5a3f1a;
@@ -148,7 +154,7 @@ entry.heading_1 {
 }
 
 /* programs bottom bar */
-.bottom-bar > box > button > box {
+.bottom-bar>box>button>box {
   margin-top: 12px;
   margin-bottom: 12px;
 }
@@ -157,18 +163,23 @@ entry.heading_1 {
   padding: 0px;
 }
 
-.bottom-bar > box > button:first-child {
+.bottom-bar>box>button:first-child {
   border-radius: 0px 0 0 12px;
 }
 
-.bottom-bar > box > button:last-child {
+.bottom-bar>box>button:last-child {
   border-radius: 0 0 12px 0;
 }
 
-.dragndrop_overlay { 
+.dragndrop_overlay {
   background: rgba(41, 65, 94, 0.2);
 }
 
 progressbar.installer {
   line-height: 2.0;
+}
+
+/* Donate button */
+.donate {
+  color: #c91c6a
 }

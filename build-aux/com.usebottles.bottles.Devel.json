@@ -59,16 +59,6 @@
             "autodelete": false
         }
     },
-    "x-compat-i386-opts": {
-        "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-        "ldflags": "-L/app/lib32",
-        "append-path": "/usr/lib/sdk/toolchain-i386/bin",
-        "env": {
-            "CC": "i686-unknown-linux-gnu-gcc",
-            "CXX": "i686-unknown-linux-gnu-g++"
-        },
-        "libdir": "/app/lib32"
-    },
     "sdk-extensions": [
         "org.gnome.Sdk.Compat.i386",
         "org.freedesktop.Sdk.Extension.toolchain-i386"
@@ -134,7 +124,7 @@
             ],
             "modules": [
                 {
-                    "name": "vulkan-tools",
+                    "name": "vulkan-headers",
                     "buildsystem": "cmake-ninja",
                     "sources": [
                         {
@@ -148,84 +138,6 @@
                             }
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "name": "gamemode",
-            "buildsystem": "meson",
-            "config-opts": [
-                "-Dwith-examples=false",
-                "-Dwith-util=false",
-                "-Dwith-sd-bus-provider=no-daemon"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/FeralInteractive/gamemode",
-                    "tag": "1.8.2",
-                    "commit": "c54d6d4243b0dd0afcb49f2c9836d432da171a2b",
-                    "x-checker-data": {
-                        "type": "git",
-                        "is-important": true,
-                        "tag-pattern": "^([\\d.]+)$"
-                    }
-                }
-            ]
-        },
-        {
-            "name": "gamemode-32bit",
-            "build-options": {
-                "arch": {
-                    "x86_64": {
-                        "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-                        "ldflags": "-L/app/lib32",
-                        "append-path": "/usr/lib/sdk/toolchain-i386/bin",
-                        "env": {
-                            "CC": "i686-unknown-linux-gnu-gcc",
-                            "CXX": "i686-unknown-linux-gnu-g++"
-                        },
-                        "libdir": "/app/lib32"
-                    }
-                }
-            },
-            "buildsystem": "meson",
-            "config-opts": [
-                "-Dwith-examples=false",
-                "-Dwith-util=false",
-                "-Dwith-sd-bus-provider=no-daemon"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/FeralInteractive/gamemode",
-                    "tag": "1.8.2",
-                    "commit": "c54d6d4243b0dd0afcb49f2c9836d432da171a2b",
-                    "x-checker-data": {
-                        "type": "git",
-                        "is-important": true,
-                        "tag-pattern": "^([\\d.]+)$"
-                    }
-                }
-            ]
-        },
-        {
-            "name": "gamemoderun",
-            "buildsystem": "simple",
-            "build-commands": [
-                "install -Dm755 data/gamemoderun -t /app/bin"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/FeralInteractive/gamemode",
-                    "tag": "1.8.2",
-                    "commit": "c54d6d4243b0dd0afcb49f2c9836d432da171a2b",
-                    "x-checker-data": {
-                        "type": "git",
-                        "is-important": true,
-                        "tag-pattern": "^([\\d.]+)$"
-                    }
                 }
             ]
         },
@@ -247,6 +159,7 @@
         },
         {
             "name": "ImageMagick",
+            "buildsystem": "autotools",
             "config-opts": [
                 "--disable-static",
                 "--disable-docs",
@@ -270,8 +183,11 @@
             "name": "libportal",
             "buildsystem": "meson",
             "config-opts": [
-                "-Ddocs=false",
-                "-Dbackend-gtk4=enabled"
+                "-Dbackend-gtk3=disabled",
+                "-Dbackend-gtk4=enabled",
+                "-Dportal-tests=false",
+                "-Dvapi=false",
+                "-Ddocs=false"
             ],
             "sources": [
                 {
@@ -347,7 +263,6 @@
                     "name": "vte",
                     "buildsystem": "meson",
                     "config-opts": [
-                        "-Ddocs=false",
                         "-Dvapi=false"
                     ],
                     "sources": [
