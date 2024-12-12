@@ -46,6 +46,13 @@ template $MainWindow: Adw.ApplicationWindow {
           }
 
           [end]
+          ToggleButton btn_donate {
+            tooltip-text: _("Donate");
+            icon-name: "emblem-favorite-symbolic";
+            visible: true;
+          }
+
+          [end]
           Button btn_noconnection {
             visible: false;
             tooltip-text: _("You don\'t seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.");
