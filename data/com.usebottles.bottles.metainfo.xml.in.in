@@ -67,6 +67,21 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="51.16" date="2024-12-12">
+      <description translatable="no">
+        <p>Fixed an issue where clicking on a snapshot instantly started the restore process</p>
+        <p>Fixed a crash in bottles-cli when neither --executable nor --program was specified</p>
+        <p>Fixed an issue where launch options were not honored when applications were launched from Desktop Entries</p>
+        <p>Added an option to alphabetize the programs list</p>
+        <p>Fixed an issue where deleting a bottle created on a different drive did not delete cache directories</p>
+        <p>Added a functional minimal MangoHud settings window</p>
+        <p>Improved Flatpak manifest and added checks for Flatpak environments</p>
+        <p>Added an error dialog when running outside of sandboxed formats</p>
+        <p>Reworked data files and allowed custom app IDs</p>
+        <p>Bumped Meson requirement and ported the "devel" option to combo options</p>
+        <p>Improved formatting and functionality in Blueprint and UI files</p>
+      </description>
+    </release>
     <release version="51.15" date="2024-10-14">
       <description translatable="no">
         <p>Fixed a bug where the "win11" option was not available</p>
