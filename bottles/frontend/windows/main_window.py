@@ -58,7 +58,6 @@ class MainWindow(Adw.ApplicationWindow):
     stack_main = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     btn_search = Gtk.Template.Child()
-    btn_donate = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
@@ -92,8 +91,6 @@ class MainWindow(Adw.ApplicationWindow):
         if PROFILE == "development":
             self.add_css_class("devel")
 
-        self.btn_donate.add_css_class("donate")
-
         # Set night theme according to user settings
         if self.settings.get_boolean("dark-theme"):
             manager = Adw.StyleManager.get_default()
@@ -101,30 +98,23 @@ class MainWindow(Adw.ApplicationWindow):
 
         # Be VERY explicit that non-sandboxed environments are unsupported
         if not Xdp.Portal.running_under_sandbox():
-
             def response(dialog, response, *args):
                 if response == "close":
                     quit(1)
 
-            body = _(
-                "Bottles is only supported within a sandboxed environment. Official sources of Bottles are available at"
-            )
+            body = _("Bottles is only supported within a sandboxed environment. Official sources of Bottles are available at")
             download_url = "usebottles.com/download"
 
             error_dialog = Adw.AlertDialog.new(
                 _("Unsupported Environment"),
-                f"{body} <a href='https://{download_url}' title='https://{download_url}'>{download_url}.</a>",
+                f"{body} <a href='https://{download_url}' title='https://{download_url}'>{download_url}.</a>"
             )
 
             error_dialog.add_response("close", _("Close"))
             error_dialog.set_body_use_markup(True)
             error_dialog.connect("response", response)
             error_dialog.present(self)
-            logging.error(
-                _(
-                    "Bottles is only supported within a sandboxed format. Official sources of Bottles are available at:"
-                )
-            )
+            logging.error(_("Bottles is only supported within a sandboxed format. Official sources of Bottles are available at:"))
             logging.error("https://usebottles.com/download/")
             return
 
@@ -138,11 +128,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.headerbar.add_css_class("flat")
 
         # Signal connections
-        self.btn_donate.connect(
-            "clicked",
-            self.open_url,
-            "https://usebottles.com/funding/",
-        )
         self.btn_add.connect("clicked", self.show_add_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
