@@ -696,6 +696,8 @@ class CLI:
             sys.stderr.write("No executable specified or found\n")
             exit(1)
 
+        WineExecutor.run_program(bottle, program)
+
     # endregion
 
     # region SHELL
