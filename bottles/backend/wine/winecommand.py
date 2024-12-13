@@ -107,6 +107,10 @@ class WineCommand:
         self.arguments = arguments
         self.cwd = self._get_cwd(cwd)
         self.runner, self.runner_runtime = self._get_runner_info()
+        self.gamescope_activated = (
+            environment["GAMESCOPE"] == "1" if "GAMESCOPE" in environment
+            else self.config.Parameters.gamescope
+        )
         self.command = self.get_cmd(
             command, pre_script, post_script, environment=_environment
         )
@@ -330,10 +334,12 @@ class WineCommand:
         if (
             params.mangohud
             and not self.minimal
-            and not (gamescope_available and params.gamescope)
+            and not (gamescope_available and self.gamescope_activated)
         ):
             env.add("MANGOHUD", "1")
             env.add("MANGOHUD_DLSYM", "1")
+            if not params.mangohud_display_on_game_start:
+                env.add("MANGOHUD_CONFIG", "no_display")
 
         # vkBasalt environment variables
         if params.vkbasalt and not self.minimal:
@@ -506,22 +512,20 @@ class WineCommand:
                 else:
                     command = f"gamemode {command}"
 
-            if mangohud_available and params.mangohud and not params.gamescope:
+            if mangohud_available and params.mangohud and not self.gamescope_activated:
                 if not return_steam_cmd:
                     command = f"{mangohud_available} {command}"
                 else:
                     command = f"mangohud {command}"
 
-            if gamescope_available and params.gamescope:
+            if gamescope_available and self.gamescope_activated:
                 gamescope_run = tempfile.NamedTemporaryFile(mode="w", suffix=".sh").name
 
                 # Create temporary sh script in /tmp where Gamescope will execute it
                 file = [f"#!/usr/bin/env sh\n"]
+                file.append(f"{command} $@")
                 if mangohud_available and params.mangohud:
-                    file.append(f"{command}&\nmangoapp")
-                else:
-                    file.append(command)
-
+                    file.append(f" &\nmangoapp")
                 with open(gamescope_run, "w") as f:
                     f.write("".join(file))
 
@@ -605,7 +609,7 @@ class WineCommand:
         params = config.Parameters
         gamescope_cmd = []
 
-        if gamescope_available and params.gamescope:
+        if gamescope_available and self.gamescope_activated:
             gamescope_cmd = [gamescope_available]
             if return_steam_cmd:
                 gamescope_cmd = ["gamescope"]

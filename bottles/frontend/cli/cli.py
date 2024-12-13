@@ -640,6 +640,7 @@ class CLI:
         _program_vkd3d = None
         _program_dxvk_nvapi = None
         _program_fsr = None
+        _program_gamescope = None
         _program_virt_desktop = None
 
         mng = Manager(g_settings=self.settings, is_cli=True)
@@ -682,27 +683,18 @@ class CLI:
             _program_vkd3d = program.get("vkd3d")
             _program_dxvk_nvapi = program.get("dxvk_nvapi")
             _program_fsr = program.get("fsr")
+            _program_gamescope = program.get("gamescope")
             _program_virt_desktop = program.get("virtual_desktop")
 
-        _executable = _executable.replace("file://", "")
-        if _executable.startswith('"') and _executable.endswith('"'):
-            _executable = _executable[1:-1]
-        elif _executable.startswith("'") and _executable.endswith("'"):
-            _executable = _executable[1:-1]
-
-        WineExecutor(
-            bottle,
-            exec_path=_executable,
-            args=_args,
-            cwd=_cwd,
-            pre_script=_pre_script,
-            post_script=_post_script,
-            program_dxvk=_program_dxvk,
-            program_vkd3d=_program_vkd3d,
-            program_nvapi=_program_dxvk_nvapi,
-            program_fsr=_program_fsr,
-            program_virt_desktop=_program_virt_desktop,
-        ).run_cli()
+        if _executable:
+            _executable = _executable.replace("file://", "")
+            if _executable.startswith('"') and _executable.endswith('"'):
+                _executable = _executable[1:-1]
+            elif _executable.startswith("'") and _executable.endswith("'"):
+                _executable = _executable[1:-1]
+        else:
+            sys.stderr.write("No executable specified or found\n")
+            exit(1)
 
     # endregion
 

@@ -1,9 +1,9 @@
 using Gtk 4.0;
+using Adw 1;
 
-template FsrDialog : .AdwWindow {
-  default-width: "500";
+template $FsrDialog: Adw.Window {
+  default-width: 500;
   modal: true;
-
   title: _("FidelityFX Super Resolution Settings");
 
   ShortcutController {
@@ -16,7 +16,7 @@ template FsrDialog : .AdwWindow {
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {
+    Adw.HeaderBar {
       show-start-title-buttons: false;
       show-end-title-buttons: false;
 
@@ -36,30 +36,25 @@ template FsrDialog : .AdwWindow {
       }
     }
 
-    .AdwPreferencesPage {
-
-      .AdwPreferencesGroup {
-        .AdwComboRow combo_quality_mode {
+    Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        Adw.ComboRow combo_quality_mode {
           title: "Quality Mode";
-          model:
-          StringList str_list_quality_mode {}
 
-          ;
+          model: StringList str_list_quality_mode {};
         }
 
-        .AdwActionRow {
+        Adw.ActionRow {
           title: _("Sharpening Strength");
 
           SpinButton {
             numeric: true;
             valign: center;
-            adjustment:
-            Adjustment spin_sharpening_strength {
+
+            adjustment: Adjustment spin_sharpening_strength {
               step-increment: 1;
               upper: 5;
-            }
-
-            ;
+            };
           }
         }
       }

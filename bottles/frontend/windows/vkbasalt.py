@@ -80,13 +80,13 @@ class VkBasaltDialog(Adw.Window):
     spin_smaa_corner_rounding = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
 
-    def __init__(self, parent_window, config, **kwargs):
+    def __init__(self, window, config, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(parent_window)
+        self.set_transient_for(window)
 
         # Common variables and references
-        self.window = parent_window
-        self.manager = parent_window.manager
+        self.window = window
+        self.manager = window.manager
         self.config = config
         conf = os.path.join(
             ManagerUtils.get_bottle_path(self.config), "vkBasalt.conf"

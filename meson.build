@@ -1,7 +1,7 @@
 project(
 	'bottles',
-	version: '51.15',
-	meson_version: '>= 0.59.0',
+	version: '51.16',
+	meson_version: '>= 1.5.0',
 	default_options: [
 		'warning_level=2',
 	],
@@ -10,13 +10,19 @@ project(
 
 
 APP_NAME = 'Bottles'
-APP_ID = 'com.usebottles.bottles'
+DEVELOPER_ID = 'com.usebottles'
+BASE_ID = DEVELOPER_ID + '.' + meson.project_name()
+APP_ID = BASE_ID
 APP_VERSION = meson.project_version()
-devel = get_option('devel')
+_version_array = APP_VERSION.split('.')
+APP_MAJOR_VERSION = _version_array[0]
+APP_MINOR_VERSION = _version_array[1]
+PROFILE = get_option('profile')
 
-if devel == true
+if PROFILE == 'development'
 	APP_VERSION += '-' + run_command(
-		'git', 'rev-parse', '--short', 'HEAD'
+		'git', 'rev-parse', '--short', 'HEAD',
+		check: true
 	).stdout().strip()
 	APP_NAME += ' (Development)'
 	APP_ID += '.' + 'Devel'

@@ -21,7 +21,7 @@ import webbrowser
 from gettext import gettext as _
 from typing import Optional
 
-from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk
+from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk, Xdp
 
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
@@ -33,7 +33,6 @@ from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals, Notification
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
-from bottles.frontend.const import *
 from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import *
 from bottles.frontend.utils.gtk import GtkUtils
@@ -59,6 +58,7 @@ class MainWindow(Adw.ApplicationWindow):
     stack_main = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     btn_search = Gtk.Template.Child()
+    btn_donate = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
@@ -70,7 +70,7 @@ class MainWindow(Adw.ApplicationWindow):
 
     # Common variables
     previous_page = ""
-    settings = Gio.Settings.new(APP_ID)
+    settings = Gio.Settings.new(BASE_ID)
     argument_executed = False
 
     def __init__(self, arg_bottle, **kwargs):
@@ -87,14 +87,46 @@ class MainWindow(Adw.ApplicationWindow):
         self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
+        self.set_icon_name(APP_ID)
 
-        if BUILD_TYPE == "devel":
+        if PROFILE == "development":
             self.add_css_class("devel")
+
+        self.btn_donate.add_css_class("donate")
 
         # Set night theme according to user settings
         if self.settings.get_boolean("dark-theme"):
             manager = Adw.StyleManager.get_default()
             manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+
+        # Be VERY explicit that non-sandboxed environments are unsupported
+        if not Xdp.Portal.running_under_sandbox():
+
+            def response(dialog, response, *args):
+                if response == "close":
+                    quit(1)
+
+            body = _(
+                "Bottles is only supported within a sandboxed environment. Official sources of Bottles are available at"
+            )
+            download_url = "usebottles.com/download"
+
+            error_dialog = Adw.AlertDialog.new(
+                _("Unsupported Environment"),
+                f"{body} <a href='https://{download_url}' title='https://{download_url}'>{download_url}.</a>",
+            )
+
+            error_dialog.add_response("close", _("Close"))
+            error_dialog.set_body_use_markup(True)
+            error_dialog.connect("response", response)
+            error_dialog.present(self)
+            logging.error(
+                _(
+                    "Bottles is only supported within a sandboxed format. Official sources of Bottles are available at:"
+                )
+            )
+            logging.error("https://usebottles.com/download/")
+            return
 
         # Loading view
         self.page_loading = LoadingView()
@@ -106,6 +138,11 @@ class MainWindow(Adw.ApplicationWindow):
         self.headerbar.add_css_class("flat")
 
         # Signal connections
+        self.btn_donate.connect(
+            "clicked",
+            self.open_url,
+            "https://usebottles.com/funding/",
+        )
         self.btn_add.connect("clicked", self.show_add_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
@@ -198,7 +235,7 @@ class MainWindow(Adw.ApplicationWindow):
 
             self.stack_main.add_titled(
                 child=self.page_list, name="page_list", title=_("Bottles")
-            ).set_icon_name("com.usebottles.bottles-symbolic")
+            ).set_icon_name(f"{APP_ID}-symbolic")
             self.stack_main.add_titled(
                 child=self.page_library, name="page_library", title=_("Library")
             ).set_icon_name("library-symbolic")

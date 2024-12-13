@@ -1,10 +1,10 @@
 using Gtk 4.0;
-using Adw 1;
 
-template $VmtouchDialog: Adw.Window {
+template MangoHudDialog : .AdwWindow {
+ default-width: "500";
   modal: true;
-  default-width: 550;
-  title: _("Vmtouch Settings");
+
+  title:_("MangoHud Settings");
 
   ShortcutController {
     Shortcut {
@@ -16,11 +16,11 @@ template $VmtouchDialog: Adw.Window {
   Box {
     orientation: vertical;
 
-    Adw.HeaderBar {
+    .AdwHeaderBar {
+      show-start-title-buttons: false;
       show-end-title-buttons: false;
 
-      [start]
-      Button btn_cancel {
+      Button {
         label: _("_Cancel");
         use-underline: true;
         action-name: "window.close";
@@ -36,16 +36,14 @@ template $VmtouchDialog: Adw.Window {
       }
     }
 
-    Adw.PreferencesPage {
-      Adw.PreferencesGroup {
-        title: _("Files to cache");
-        description: _("Select which files should be cached alongside the main executable.");
+    .AdwPreferencesPage {
+      .AdwPreferencesGroup {
+        .AdwActionRow {
+          title: _("Display On Game Start");
+          subtitle: _("Display HUD as soon as the game starts. Can be toggled in-game (default keybind: [⇧ Right Shift] + [F12]).");
+          activatable-widget: "display_on_game_start";
 
-        Adw.ActionRow {
-          title: _("Cache work directory");
-          activatable-widget: switch_cache_cwd;
-
-          Switch switch_cache_cwd {
+          Switch display_on_game_start {
             valign: center;
           }
         }

@@ -1,6 +1,7 @@
 using Gtk 4.0;
+using Adw 1;
 
-template BottleView : .AdwBin {
+template $BottleView: Adw.Bin {
   ScrolledWindow {
     Box {
       hexpand: true;
@@ -13,8 +14,8 @@ template BottleView : .AdwBin {
         }
       }
 
-      .AdwPreferencesPage pref_page {
-        .AdwPreferencesGroup group_bottles {
+      Adw.PreferencesPage pref_page {
+        Adw.PreferencesGroup group_bottles {
           ListBox list_bottles {
             selection-mode: none;
 
@@ -24,7 +25,7 @@ template BottleView : .AdwBin {
           }
         }
 
-        .AdwPreferencesGroup group_steam {
+        Adw.PreferencesGroup group_steam {
           title: _("Steam Proton");
 
           ListBox list_steam {
@@ -37,13 +38,12 @@ template BottleView : .AdwBin {
         }
       }
 
-      .AdwStatusPage bottle_status {
-        icon-name: "com.usebottles.bottles-symbolic";
+      Adw.StatusPage bottle_status {
         title: _("Bottles");
         hexpand: true;
         vexpand: true;
-        child: 
-        Button btn_create {
+
+        child: Button btn_create {
           valign: center;
           halign: center;
           label: _("Create New Bottle…");
@@ -52,12 +52,10 @@ template BottleView : .AdwBin {
             "suggested-action",
             "pill",
           ]
-        }
-
-        ;
+        };
       }
 
-      .AdwStatusPage no_bottles_found {
+      Adw.StatusPage no_bottles_found {
         visible: false;
         icon-name: "system-search-symbolic";
         title: _("No Results Found");

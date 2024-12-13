@@ -1,6 +1,6 @@
 using Gtk 4.0;
 
-template LibraryEntry : Box {
+template $LibraryEntry: Box {
   orientation: vertical;
   width-request: 128;
   height-request: 348;
@@ -31,7 +31,6 @@ template LibraryEntry : Box {
         hexpand: true;
         vexpand: true;
         label: _("No Thumbnail");
-
         wrap: true;
         wrap-mode: word_char;
 
@@ -108,6 +107,7 @@ template LibraryEntry : Box {
             label: _("Item name");
             max-width-chars: 20;
             ellipsize: middle;
+
             styles [
               "title",
             ]
@@ -118,6 +118,7 @@ template LibraryEntry : Box {
             label: _("Bottle name");
             max-width-chars: 20;
             ellipsize: middle;
+
             styles [
               "caption",
             ]

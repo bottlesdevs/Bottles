@@ -23,18 +23,17 @@ params_file = configure_file(
     configuration: conf
 )
 
+fs = import('fs')
+
+if not fs.is_file('/' + '.flatpak-info')
+  error('file does not exist')
+endif
+
 bottles_sources = [
   '__init__.py',
   'main.py',
-  'const.py',
   'operation.py',
   params_file,
 ]
-
-if get_option('devel')
-  bottles_sources += [
-    'devel/const.py',
-  ]
-endif
 
 install_data(bottles_sources, install_dir: frontenddir)

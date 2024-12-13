@@ -1,15 +1,16 @@
 conf = configuration_data()
 conf.set('APP_ID', APP_ID)
+conf.set('BASE_ID', BASE_ID)
 conf.set('APP_NAME', APP_NAME)
-
-desktop_file = configure_file(
-        input:  'com.usebottles.bottles.desktop.in.in',
-       output:  'com.usebottles.bottles.desktop.in',
-    configuration: conf)
+conf.set('DEVELOPER_ID', DEVELOPER_ID)
 
 desktop = i18n.merge_file(
-  input: desktop_file,
-  output: 'com.usebottles.bottles.desktop',
+  input: configure_file(
+    input:  BASE_ID + '.desktop.in.in',
+    output:  BASE_ID + '.desktop.in',
+    configuration: conf
+  ),
+  output: APP_ID + '.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -24,11 +25,27 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'com.usebottles.bottles.metainfo.xml.in',
-  output: 'com.usebottles.bottles.metainfo.xml',
+  input: configure_file(
+    input: BASE_ID + '.' + 'metainfo.xml.in.in',
+    output: BASE_ID + '.' + 'metainfo.xml.in',
+    configuration: conf
+  ),
+  output: APP_ID + '.' + 'metainfo.xml',
   po_dir: '../po',
   install: true,
-  install_dir: join_paths(get_option('datadir'), 'metainfo')
+  install_dir: get_option('datadir') / 'metainfo'
+)
+
+gnome.compile_resources('data',
+  configure_file(
+      input: 'data.gresource.xml.in',
+      output: 'data.gresource.xml',
+      configuration: conf,
+  ),
+  gresource_bundle: true,
+  install: true,
+  install_dir: pkgdatadir,
+  dependencies: [appstream_file]
 )
 
 appstream_util = find_program('appstream-util', required: false)
@@ -49,27 +66,4 @@ if compile_schemas.found()
   )
 endif
 
-install_data(
-    join_paths('icons/hicolor/scalable/apps', APP_ID + '.' + 'svg'),
-    install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/scalable/apps')
-)
-
-install_data(
-    join_paths('icons/symbolic/scalable/apps/com.usebottles.bottles-symbolic.svg'),
-    install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/symbolic/apps')
-)
-
-install_data(
-    join_paths('icons/hicolor/scalable/apps/com.usebottles.bottles-program.svg'),
-    install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/scalable/apps')
-)
-
-install_data(
-    join_paths('icons/symbolic/scalable/apps/bottle-symbolic.svg'),
-    install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/symbolic/apps')
-)
-
-install_data(
-    join_paths('icons/symbolic/scalable/apps/bottles-steam-symbolic.svg'),
-    install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/symbolic/apps')
-)
+subdir('icons')

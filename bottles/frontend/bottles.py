@@ -26,7 +26,8 @@ APP_VERSION = "@APP_VERSION@"
 pkgdatadir = "@pkgdatadir@"
 localedir = "@localedir@"
 # noinspection DuplicatedCode
-gresource_path = f"{pkgdatadir}/bottles.gresource"
+data_gresource_path = f"{pkgdatadir}/data.gresource"
+bottles_gresource_path = f"{pkgdatadir}/bottles.gresource"
 sys.path.insert(1, pkgdatadir)
 
 # Remove GTK_THEME variable to prevent breakages
@@ -39,9 +40,11 @@ gettext.install("bottles", localedir)
 if __name__ == "__main__":
     from gi.repository import Gio
 
-    resource = Gio.Resource.load(gresource_path)
+    data_resource = Gio.Resource.load(data_gresource_path)
+    bottles_resource = Gio.Resource.load(bottles_gresource_path)
     # noinspection PyProtectedMember
-    resource._register()
+    data_resource._register()
+    bottles_resource._register()
 
     from bottles.frontend import main
 

@@ -2,7 +2,6 @@ pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.proje
 gnome = import('gnome')
 blueprints = custom_target('blueprints',
   input: files(
-    'about.blp',
     'component-entry.blp',
     'dependency-entry.blp',
     'details-bottle.blp',
@@ -31,6 +30,7 @@ blueprints = custom_target('blueprints',
     'dialog-display.blp',
     'dialog-vmtouch.blp',
     'dialog-fsr.blp',
+    'dialog-mangohud.blp',
     'dll-override-entry.blp',
     'drive-entry.blp',
     'env-var-entry.blp',

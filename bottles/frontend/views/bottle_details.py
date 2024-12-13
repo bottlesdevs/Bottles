@@ -330,6 +330,7 @@ class BottleView(Adw.PreferencesPage):
         def process_programs():
             wineserver_status = WineServer(self.config).is_alive()
             programs = self.manager.get_programs(self.config)
+            programs = sorted(programs, key=lambda p: p.get("name", "").lower())
             handled = 0
 
             if self.config.Environment == "Steam":

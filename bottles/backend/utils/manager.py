@@ -43,10 +43,10 @@ class ManagerUtils:
 
     @staticmethod
     def open_filemanager(
-            config: Optional[BottleConfig] = None,
-            path_type: str = "bottle",
-            component: str = "",
-            custom_path: str = ""
+        config: Optional[BottleConfig] = None,
+        path_type: str = "bottle",
+        component: str = "",
+        custom_path: str = "",
     ):
         logging.info("Opening the file manager in the path …")
         path = ""
@@ -85,6 +85,10 @@ class ManagerUtils:
     def get_bottle_path(config: BottleConfig) -> str:
         if config.Environment == "Steam":
             return os.path.join(Paths.steam, config.CompatData)
+
+        if config.Custom_Path:
+            return config.Path
+
         return os.path.join(Paths.bottles, config.Path)
 
     @staticmethod
@@ -119,18 +123,16 @@ class ManagerUtils:
 
     @staticmethod
     def move_file_to_bottle(
-            file_path: str,
-            config: BottleConfig,
-            fn_update: callable = None
+        file_path: str, config: BottleConfig, fn_update: callable = None
     ) -> Union[str, bool]:
         logging.info(f"Adding file {file_path} to the bottle …")
         bottle_path = ManagerUtils.get_bottle_path(config)
 
         if not os.path.exists(f"{bottle_path}/storage"):
-            '''
+            """
             If the storage folder does not exist for the bottle,
             create it before moving the file.
-            '''
+            """
             os.makedirs(f"{bottle_path}/storage")
 
         file_name = os.path.basename(file_path)
@@ -166,6 +168,7 @@ class ManagerUtils:
     @staticmethod
     def extract_icon(config: BottleConfig, program_name: str, program_path: str) -> str:
         from bottles.backend.wine.winepath import WinePath
+
         winepath = WinePath(config)
         icon = "com.usebottles.bottles-program"
         bottle_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
@@ -202,8 +205,13 @@ class ManagerUtils:
         return icon
 
     @staticmethod
-    def create_desktop_entry(config, program: dict, skip_icon: bool = False, custom_icon: str = "",
-                             use_xdp: bool = False) -> bool:
+    def create_desktop_entry(
+        config,
+        program: dict,
+        skip_icon: bool = False,
+        custom_icon: str = "",
+        use_xdp: bool = False,
+    ) -> bool:
         if not os.path.exists(Paths.applications) and not use_xdp:
             return False
 
@@ -216,23 +224,23 @@ class ManagerUtils:
             cmd_cli = "flatpak run --command=bottles-cli com.usebottles.bottles"
 
         if not skip_icon and not custom_icon:
-            icon = ManagerUtils.extract_icon(config, program.get("name"), program.get("path"))
+            icon = ManagerUtils.extract_icon(
+                config, program.get("name"), program.get("path")
+            )
         elif custom_icon:
             icon = custom_icon
 
         if not use_xdp:
             file_name_template = "%s/%s--%s--%s.desktop"
-            existing_files = glob(file_name_template % (
-                Paths.applications,
-                config.Name,
-                program.get("name"),
-                "*"
-            ))
+            existing_files = glob(
+                file_name_template
+                % (Paths.applications, config.Name, program.get("name"), "*")
+            )
             desktop_file = file_name_template % (
                 Paths.applications,
                 config.Name,
                 program.get("name"),
-                datetime.now().timestamp()
+                datetime.now().timestamp(),
             )
 
             if existing_files:
@@ -242,7 +250,9 @@ class ManagerUtils:
             with open(desktop_file, "w") as f:
                 f.write(f"[Desktop Entry]\n")
                 f.write(f"Name={program.get('name')}\n")
-                f.write(f"Exec={cmd_cli} run -p {shlex.quote(program.get('name'))} -b '{config.get('Name')}' -- %u\n")
+                f.write(
+                    f"Exec={cmd_cli} run -p {shlex.quote(program.get('name'))} -b '{config.get('Name')}' -- %u\n"
+                )
                 f.write(f"Type=Application\n")
                 f.write(f"Terminal=false\n")
                 f.write(f"Categories=Application;\n")
@@ -296,75 +306,80 @@ class ManagerUtils:
     def browse_wineprefix(wineprefix: dict):
         """Presents a dialog to browse the wineprefix."""
         ManagerUtils.open_filemanager(
-            path_type="custom",
-            custom_path=wineprefix.get("Path")
+            path_type="custom", custom_path=wineprefix.get("Path")
         )
 
     @staticmethod
-    def get_languages(from_name=None, from_locale=None, from_index=None, get_index=False, get_locales=False):
+    def get_languages(
+        from_name=None,
+        from_locale=None,
+        from_index=None,
+        get_index=False,
+        get_locales=False,
+    ):
         locales = [
-            'sys',
-            'bg_BG',
-            'cs_CZ',
-            'da_DK',
-            'de_DE',
-            'el_GR',
-            'en_US',
-            'es_ES',
-            'et_EE',
-            'fi_FI',
-            'fr_FR',
-            'hr_HR',
-            'hu_HU',
-            'it_IT',
-            'lt_LT',
-            'lv_LV',
-            'nl_NL',
-            'no_NO',
-            'pl_PL',
-            'pt_PT',
-            'ro_RO',
-            'ru_RU',
-            'sk_SK',
-            'sl_SI',
-            'sv_SE',
-            'tr_TR',
-            'zh_CN',
-            'ja_JP',
-            'zh_TW',
-            'ko_KR'
+            "sys",
+            "bg_BG",
+            "cs_CZ",
+            "da_DK",
+            "de_DE",
+            "el_GR",
+            "en_US",
+            "es_ES",
+            "et_EE",
+            "fi_FI",
+            "fr_FR",
+            "hr_HR",
+            "hu_HU",
+            "it_IT",
+            "lt_LT",
+            "lv_LV",
+            "nl_NL",
+            "no_NO",
+            "pl_PL",
+            "pt_PT",
+            "ro_RO",
+            "ru_RU",
+            "sk_SK",
+            "sl_SI",
+            "sv_SE",
+            "tr_TR",
+            "zh_CN",
+            "ja_JP",
+            "zh_TW",
+            "ko_KR",
         ]
         names = [
-            _('System'),
-            _('Bulgarian'),
-            _('Czech'),
-            _('Danish'),
-            _('German'),
-            _('Greek'),
-            _('English'),
-            _('Spanish'),
-            _('Estonian'),
-            _('Finnish'),
-            _('French'),
-            _('Croatian'),
-            _('Hungarian'),
-            _('Italian'),
-            _('Lithuanian'),
-            _('Latvian'),
-            _('Dutch'),
-            _('Norwegian'),
-            _('Polish'),
-            _('Portuguese'),
-            _('Romanian'),
-            _('Russian'),
-            _('Slovak'),
-            _('Slovenian'),
-            _('Swedish'),
-            _('Turkish'),
-            _('Chinese'),
-            _('Japanese'),
-            _('Taiwanese'),
-            _('Korean')
+            _("System"),
+            _("Bulgarian"),
+            _("Czech"),
+            _("Danish"),
+            _("German"),
+            _("Greek"),
+            _("English"),
+            _("Spanish"),
+            _("Estonian"),
+            _("Finnish"),
+            _("French"),
+            _("Croatian"),
+            _("Hungarian"),
+            _("Italian"),
+            _("Lithuanian"),
+            _("Latvian"),
+            _("Dutch"),
+            _("Norwegian"),
+            _("Polish"),
+            _("Portuguese"),
+            _("Romanian"),
+            _("Russian"),
+            _("Slovak"),
+            _("Slovenian"),
+            _("Swedish"),
+            _("Turkish"),
+            _("Chinese"),
+            _("Japanese"),
+            _("Taiwanese"),
+            _("Korean"),
         ]
 
         if from_name and from_locale:
