@@ -366,13 +366,37 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_language.handler_block_by_func(self.__set_language)
         self.combo_windows.handler_block_by_func(self.__set_windows)
 
-        self.str_list_runner.splice(0, self.str_list_runner.get_n_items(), self.manager.runners_available)
-        self.str_list_nvapi.splice(0, self.str_list_nvapi.get_n_items(), self.manager.nvapi_available)
-        self.str_list_languages.splice(0, self.str_list_languages.get_n_items(), ManagerUtils.get_languages())
+        for string_list in [
+            self.str_list_runner,
+            self.str_list_dxvk,
+            self.str_list_vkd3d,
+            self.str_list_nvapi,
+            self.str_list_latencyflex,
+            self.str_list_languages,
+            self.str_list_windows,
+        ]:
+            string_list.splice(0, string_list.get_n_items())
 
-        self.str_list_dxvk.splice(1, self.str_list_dxvk.get_n_items() - 1, self.manager.dxvk_available)
-        self.str_list_vkd3d.splice(1, self.str_list_vkd3d.get_n_items() - 1, self.manager.vkd3d_available)
-        self.str_list_latencyflex.splice(1, self.str_list_latencyflex.get_n_items() - 1, self.manager.latencyflex_available)
+        self.str_list_dxvk.append("Disabled")
+        self.str_list_vkd3d.append("Disabled")
+        self.str_list_latencyflex.append("Disabled")
+        for index, dxvk in enumerate(self.manager.dxvk_available):
+            self.str_list_dxvk.append(dxvk)
+
+        for index, vkd3d in enumerate(self.manager.vkd3d_available):
+            self.str_list_vkd3d.append(vkd3d)
+
+        for index, runner in enumerate(self.manager.runners_available):
+            self.str_list_runner.append(runner)
+
+        for index, nvapi in enumerate(self.manager.nvapi_available):
+            self.str_list_nvapi.append(nvapi)
+
+        for index, latencyflex in enumerate(self.manager.latencyflex_available):
+            self.str_list_latencyflex.append(latencyflex)
+
+        for lang in ManagerUtils.get_languages():
+            self.str_list_languages.append(lang)
 
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
@@ -464,37 +488,49 @@ class PreferencesView(Adw.PreferencesPage):
             "winxp": "Windows XP",
         }
 
-        sync_types = [
-            "wine",
-            "esync",
-            "fsync",
-        ]
-
         if self.config.Arch == Arch.WIN32:
             self.windows_versions["win98"] = "Windows 98"
             self.windows_versions["win95"] = "Windows 95"
 
-        self.str_list_windows.splice(0, self.str_list_windows.get_n_items(), list(self.windows_versions.values()))
-        self.combo_windows.set_selected(list(self.windows_versions.keys()).index(self.config.Windows))
-        self.combo_nvapi.set_selected(self.manager.nvapi_available.index(self.config.NVAPI))
-        self.combo_sync.set_selected(sync_types.index(parameters.sync))
+        for index, windows_version in enumerate(self.windows_versions):
+            self.str_list_windows.append(self.windows_versions[windows_version])
+            if windows_version == self.config.Windows:
+                self.combo_windows.set_selected(index)
         # endregion
 
         parameters = self.config.Parameters
 
-        # self.combo_windows.set_selected(self.manager.dxvk_available.index(self.config.DXVK))
+        _dxvk = self.config.DXVK
         if parameters.dxvk:
-            self.combo_dxvk.set_selected(self.manager.dxvk_available.index(self.config.DXVK) + 1)
+            if _dxvk in self.manager.dxvk_available:
+                if _i_dxvk := self.manager.dxvk_available.index(_dxvk) + 1:
+                    self.combo_dxvk.set_selected(_i_dxvk)
         else:
             self.combo_dxvk.set_selected(0)
 
+        _vkd3d = self.config.VKD3D
         if parameters.vkd3d:
-            self.combo_vkd3d.set_selected(self.manager.vkd3d_available.index(self.config.VKD3D) + 1)
+            if _vkd3d in self.manager.vkd3d_available:
+                if _i_vkd3d := self.manager.vkd3d_available.index(_vkd3d) + 1:
+                    self.combo_vkd3d.set_selected(_i_vkd3d)
         else:
             self.combo_vkd3d.set_selected(0)
 
+        _nvapi = self.config.NVAPI
+        if _nvapi in self.manager.nvapi_available:
+            if _i_nvapi := self.manager.nvapi_available.index(_nvapi):
+                self.combo_nvapi.set_selected(_i_nvapi)
+
+        _latencyflex = self.config.LatencyFleX
         if parameters.latencyflex:
-            self.combo_latencyflex.set_selected(self.manager.latencyflex_available.index(self.config.LatencyFleX) + 1)
+            if _latencyflex in self.manager.latencyflex_available:
+                if (
+                    _i_latencyflex := self.manager.latencyflex_available.index(
+                        _latencyflex
+                    )
+                    + 1
+                ):
+                    self.combo_latencyflex.set_selected(_i_latencyflex)
         else:
             self.combo_latencyflex.set_selected(0)
 
@@ -502,6 +538,15 @@ class PreferencesView(Adw.PreferencesPage):
         if _runner in self.manager.runners_available:
             if _i_runner := self.manager.runners_available.index(_runner):
                 self.combo_runner.set_selected(_i_runner)
+
+        sync_types = [
+            "wine",
+            "esync",
+            "fsync",
+        ]
+        for sync in sync_types:
+            if sync == parameters.sync:
+                self.combo_sync.set_selected(sync_types.index(sync))
 
         # unlock functions connected to the widgets
         self.switch_mangohud.handler_unblock_by_func(self.__toggle_feature)
