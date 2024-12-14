@@ -160,6 +160,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkbasalt.connect("state-set", self.__toggle_feature, "vkbasalt")
         self.switch_fsr.connect("state-set", self.__toggle_feature, "fsr")
         self.switch_nvapi.connect("state-set", self.__toggle_nvapi)
+        # self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
         self.switch_gamemode.connect("state-set", self.__toggle_feature, "gamemode")
         self.switch_gamescope.connect("state-set", self.__toggle_feature, "gamescope")
         self.switch_sandbox.connect("state-set", self.__toggle_feature, "sandbox")
@@ -481,6 +482,7 @@ class PreferencesView(Adw.PreferencesPage):
 
         parameters = self.config.Parameters
 
+        # self.combo_windows.set_selected(self.manager.dxvk_available.index(self.config.DXVK))
         if parameters.dxvk:
             self.combo_dxvk.set_selected(self.manager.dxvk_available.index(self.config.DXVK) + 1)
         else:
