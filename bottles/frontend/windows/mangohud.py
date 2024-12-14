@@ -29,13 +29,13 @@ class MangoHudDialog(Adw.Window):
     btn_save = Gtk.Template.Child()
     display_on_game_start = Gtk.Template.Child()
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, parent_window, config, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(window)
+        self.set_transient_for(parent_window)
 
         # Common variables and references
-        self.window = window
-        self.manager = window.manager
+        self.window = parent_window
+        self.manager = parent_window.manager
         self.config = config
 
         # Connect signals

@@ -140,19 +140,19 @@ class PreferencesView(Adw.PreferencesPage):
         self.details = details
 
         # region signals
+        self.row_overrides.connect("activated", self.__show_dll_overrides_view)
+        self.row_env_variables.connect("activated", self.__show_environment_variables)
+        self.row_drives.connect("activated", self.__show_drives)
         self.row_manage_display.connect("activated", self.__show_display_settings)
-        self.row_overrides.connect("activated", self.__show_feature_dialog, DLLOverridesDialog)
-        self.row_env_variables.connect("activated", self.__show_feature_dialog, EnvVarsDialog)
-        self.row_drives.connect("activated", self.__show_feature_dialog, DrivesDialog)
-        self.btn_manage_gamescope.connect("clicked", self.__show_feature_dialog, GamescopeDialog)
-        self.btn_manage_vkbasalt.connect("clicked", self.__show_feature_dialog, VkBasaltDialog)
-        self.btn_manage_fsr.connect("clicked", self.__show_feature_dialog, FsrDialog)
-        self.btn_manage_mangohud.connect("clicked", self.__show_feature_dialog, MangoHudDialog)
-        self.btn_manage_sandbox.connect("clicked", self.__show_feature_dialog, SandboxDialog)
-        self.btn_manage_vmtouch.connect("clicked", self.__show_feature_dialog, VmtouchDialog)
+        self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
+        self.btn_manage_vkbasalt.connect("clicked", self.__show_vkbasalt_settings)
+        self.btn_manage_fsr.connect("clicked", self.__show_fsr_settings)
+        self.btn_manage_mangohud.connect("clicked", self.__show_mangohud_settings)
+        self.btn_manage_sandbox.connect("clicked", self.__show_sandbox_settings)
         self.btn_manage_versioning_patterns.connect(
-            "clicked", self.__show_feature_dialog, ExclusionPatternsDialog
+            "clicked", self.__show_exclusionpatterns_settings
         )
+        self.btn_manage_vmtouch.connect("clicked", self.__show_vmtouch_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.reset_cwd, True)
         self.switch_mangohud.connect("state-set", self.__toggle_mangohud)
@@ -582,6 +582,22 @@ class PreferencesView(Adw.PreferencesPage):
 
         self.__set_steam_rules()
 
+    def __show_gamescope_settings(self, widget):
+        new_window = GamescopeDialog(window=self.window, config=self.config)
+        new_window.present()
+
+    def __show_vkbasalt_settings(self, widget):
+        new_window = VkBasaltDialog(parent_window=self.window, config=self.config)
+        new_window.present()
+
+    def __show_fsr_settings(self, widget):
+        new_window = FsrDialog(parent_window=self.window, config=self.config)
+        new_window.present()
+    
+    def __show_mangohud_settings(self, widget):
+        new_window = MangoHudDialog(parent_window=self.window, config=self.config)
+        new_window.present()
+
     def __show_display_settings(self, widget):
         new_window = DisplayDialog(
             parent_window=self.window,
@@ -593,10 +609,26 @@ class PreferencesView(Adw.PreferencesPage):
         )
         new_window.present()
 
-    def __show_feature_dialog(self, _widget: Gtk.Widget, dialog: Adw.Window) -> None:
-        """Present dialog of a specific feature."""
-        window = dialog(window=self.window, config=self.config)
-        window.present()
+    def __show_exclusionpatterns_settings(self, widget):
+        new_window = ExclusionPatternsDialog(window=self.window, config=self.config)
+        new_window.present()
+
+    def __show_sandbox_settings(self, widget):
+        new_window = SandboxDialog(window=self.window, config=self.config)
+        new_window.present()
+
+    def __show_drives(self, widget):
+        new_window = DrivesDialog(window=self.window, config=self.config)
+        new_window.present()
+
+    def __show_environment_variables(self, widget=False):
+        """Show the environment variables dialog"""
+        new_window = EnvVarsDialog(window=self.window, config=self.config)
+        new_window.present()
+
+    def __show_vmtouch_settings(self, widget):
+        new_window = VmtouchDialog(window=self.window, config=self.config)
+        new_window.present()
 
     def __set_sync_type(self, *_args):
         """
@@ -998,6 +1030,11 @@ class PreferencesView(Adw.PreferencesPage):
             key="Language",
             value=language[0],
         ).data["config"]
+
+    def __show_dll_overrides_view(self, widget=False):
+        """Show the DLL overrides view"""
+        new_window = DLLOverridesDialog(window=self.window, config=self.config)
+        new_window.present()
 
     @GtkUtils.run_in_main_loop
     def set_dxvk_status(self, status=None, error=None, pending=False):
