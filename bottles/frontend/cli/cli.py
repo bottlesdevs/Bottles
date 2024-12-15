@@ -686,17 +686,23 @@ class CLI:
             _program_gamescope = program.get("gamescope")
             _program_virt_desktop = program.get("virtual_desktop")
 
-        if _executable:
+            WineExecutor.run_program(bottle, program | {"arguments": _args})
+
+        elif _executable:
             _executable = _executable.replace("file://", "")
             if _executable.startswith('"') and _executable.endswith('"'):
                 _executable = _executable[1:-1]
             elif _executable.startswith("'") and _executable.endswith("'"):
                 _executable = _executable[1:-1]
-        else:
-            sys.stderr.write("No executable specified or found\n")
-            exit(1)
 
-        WineExecutor.run_program(bottle, program)
+            WineExecutor(
+                bottle,
+                exec_path=_executable,
+                args=_args,
+            ).run_cli()
+        else:
+            sys.stderr.write("No program or executable specified, you must use either --program or --executable\n")
+            exit(1)
 
     # endregion
 
