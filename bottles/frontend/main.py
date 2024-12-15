@@ -81,12 +81,13 @@ class Bottles(Adw.Application):
 
     def __init__(self):
         super().__init__(
-            application_id="com.usebottles.bottles",
+            application_id=APP_ID,
+            resource_base_path="/com/usebottles/bottles",
             flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
             register_session=True,
         )
         self.__create_action("quit", self.__quit, ["<primary>q", "<primary>w"])
-        self.__create_action("about", self.__show_about_window)
+        self.__create_action("about", self.__show_about_dialog)
         self.__create_action("import", self.__show_importer_view, ["<primary>i"])
         self.__create_action("preferences", self.__show_preferences, ["<primary>comma"])
         self.__create_action("help", self.__help, ["F1"])
@@ -292,34 +293,37 @@ class Bottles(Adw.Application):
     def __show_importer_view(self, widget=False, *args):
         self.win.main_leaf.set_visible_child(self.win.page_importer)
 
-    def __show_about_window(self, *_args):
-        release_notes = """
-            <p>Redesign New Bottle interface</p>
-            <p>Quality of life improvements:</p>
-            <ul>
-              <li>Replace emote-love icon with library in library page</li>
-              <li>Display toast for "Run Executable"</li>
-              <li>Runners are sorted according through a priority list; from the highest to the lowest priority: Soda, Caffe, Vaniglia, Lutris, others</li>
-              <li>Bottles can now be named without any character restrictions</li>
-              <li>Notifications will be sent when a bottle has been created (will only happen when unfocused)</li>
-            </ul>
-            <p>Bug fixes:</p>
-            <ul>
-              <li>Adding shortcut to Steam resulted an error</li>
-              <li>Importing backups resulted an error</li>
-              <li>Steam Runtime automatically enabled when using wine-ge-custom</li>
-              <li>Various library related fixes, like empty covers, and crashes related to missing entries</li>
-              <li>Fix various issues related to text encoding</li>
-            </ul>
-        """
-        builder = Gtk.Builder.new_from_resource("/com/usebottles/bottles/about.ui")
-        about_window = builder.get_object("about_window")
-        about_window.set_debug_info(HealthChecker().get_results(plain=True))
-        about_window.add_link(_("Donate"), "https://usebottles.com/funding")
-        about_window.set_version(APP_VERSION)
-        about_window.set_application_name(APP_NAME)
-        about_window.set_application_icon(APP_ICON)
-        about_window.add_acknowledgement_section(
+    def __show_about_dialog(self, *_args):
+        developers = [
+          "Mirko Brombin https://github.com/mirkobrombin",
+          "hthre7 https://github.com/hthre7",
+          "Kekun https://github.com/Kekun",
+          "Sonny Piers https://github.com/sonnyp",
+          "BrainBlasted https://github.com/BrainBlasted",
+          "Francesco Masala <mail@francescomasala.me>",
+          "Hari Rana (TheEvilSkeleton) https://theevilskeleton.gitlab.io",
+          "axtlos https://axtloss.github.io",
+          "Oro https://github.com/orowith2os",
+          "gregorni https://gitlab.com/gregorni"
+        ]
+
+        artists = [
+          "Marco Montini https://github.com/marckniack",
+          "Noëlle https://github.com/jannuary",
+          "Alvar Lagerlöf https://github.com/alvarlagerlof",
+          "Ezekiel Smith https://github.com/ZekeSmith"
+        ]
+
+        about_dialog = Adw.AboutDialog.new_from_appdata("/com/usebottles/bottles/appdata", f"{APP_MAJOR_VERSION}.0")
+        about_dialog.set_developers(developers)
+        about_dialog.set_translator_credits(_("translator_credits"))
+        about_dialog.set_artists(artists)
+        about_dialog.set_debug_info(HealthChecker().get_results(plain=True))
+        about_dialog.add_link(_("Donate"), "https://usebottles.com/funding")
+        about_dialog.set_copyright(
+          _("Copyright © 2017 {developer_name}").format(developer_name=about_dialog.get_developer_name())
+        )
+        about_dialog.add_acknowledgement_section(
             _("Third-Party Libraries and Special Thanks"),
             [
                 "DXVK https://github.com/doitsujin/dxvk",
@@ -345,7 +349,7 @@ class Bottles(Adw.Application):
                 "pathvalidate https://github.com/thombashi/pathvalidate",
             ],
         )
-        about_window.add_acknowledgement_section(
+        about_dialog.add_acknowledgement_section(
             _("Sponsored and Funded by"),
             [
                 "JetBrains https://www.jetbrains.com/?from=bottles",
@@ -355,10 +359,7 @@ class Bottles(Adw.Application):
                 "Community ❤️ https://usebottles.com/funding",
             ],
         )
-        about_window.set_release_notes(release_notes)
-        about_window.set_release_notes_version("51.0")
-        about_window.set_transient_for(self.win)
-        about_window.present()
+        about_dialog.present(self.win)
 
     def __create_action(self, name, callback, shortcuts=None, param=None):
         """Add an application action.
