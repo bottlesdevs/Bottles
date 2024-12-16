@@ -130,6 +130,7 @@ class ComponentEntry(Adw.ActionRow):
             path_type=self.component_type, component=self.name
         )
 
+    @GtkUtils.run_in_main_loop
     def update_progress(
         self,
         received_size: int = 0,
