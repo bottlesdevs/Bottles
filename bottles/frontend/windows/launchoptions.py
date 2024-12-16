@@ -19,6 +19,7 @@ from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.logger import Logger
+from bottles.frontend.utils.filters import add_disc_image_filters, add_all_filters
 from gettext import gettext as _
 
 logging = Logger()
@@ -355,34 +356,28 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_cwd_reset.set_visible(False)
     
     def __choose_disc_image(self, *_args):
-        def set_path(dialog, result):
-            try:
-                file = dialog.open_finish(result)
-                if file is None:
-                    self.action_disc_image.set_subtitle(
-                        self.__default_disc_image_msg)
-                    return
-                
-                disc_image = file.get_path()
-                self.program["disc_image"] = disc_image
-                self.action_disc_image.set_subtitle(disc_image)
-                self.btn_disc_image_reset.set_visible(True)
+        def set_path(dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                self.action_disc_image.set_subtitle(self.__default_disc_image_msg)
+                return
 
-            except GLib.Error as error:
-                # also thrown when dialog has been cancelled
-                if error.code == 2:
-                    # error 2 seems to be 'dismiss' or 'cancel'
-                    if self.program["disc_image"] is None or self.program["disc_image"] == "":
-                        self.action_disc_image.set_subtitle(
-                            self.__default_disc_image_msg)
-                else:
-                    # something else happened...
-                    logging.warning("Error selecting disc image script: %s" % error)            
+            disc_image = dialog.get_file().get_path()
+            self.program["disc_image"] = disc_image
+            self.action_disc_image.set_subtitle(disc_image)
+            self.btn_disc_image_reset.set_visible(True)
 
-        dialog = Gtk.FileDialog.new()
-        dialog.set_title("Select CD/DVD Image")
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select a CD/DVD Image"),
+            action=Gtk.FileChooserAction.OPEN,
+            parent=self.window,
+            accept_label=_("Select"),
+        )
+
+        add_disc_image_filters(dialog)
+        add_all_filters(dialog)
         dialog.set_modal(True)
-        dialog.open(parent=self.window, callback=set_path)
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def __reset_disc_image(self, *_args):
         self.program["disc_image"] = ""
