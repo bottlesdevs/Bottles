@@ -40,13 +40,13 @@ class LaunchOptionsDialog(Adw.Window):
     btn_post_script_reset = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
-    btn_disk_image = Gtk.Template.Child()
-    btn_disk_image_reset = Gtk.Template.Child()
+    btn_disc_image = Gtk.Template.Child()
+    btn_disc_image_reset = Gtk.Template.Child()
     btn_reset_defaults = Gtk.Template.Child()
     action_pre_script = Gtk.Template.Child()
     action_post_script = Gtk.Template.Child()
     action_cwd = Gtk.Template.Child()
-    action_disk_image = Gtk.Template.Child()
+    action_disc_image = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
@@ -111,8 +111,8 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_post_script_reset.connect("clicked", self.__reset_post_script)
         self.btn_cwd.connect("clicked", self.__choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
-        self.btn_disk_image.connect("clicked", self.__choose_disk_image)
-        self.btn_disk_image_reset.connect("clicked", self.__reset_disk_image)
+        self.btn_disc_image.connect("clicked", self.__choose_disc_image)
+        self.btn_disc_image_reset.connect("clicked", self.__reset_disc_image)
         self.btn_reset_defaults.connect("clicked", self.__reset_defaults)
         self.entry_arguments.connect("activate", self.__save)
 
@@ -190,9 +190,9 @@ class LaunchOptionsDialog(Adw.Window):
             self.action_cwd.set_subtitle(program["folder"])
             self.btn_cwd_reset.set_visible(True)
         
-        if program.get("disk_image") not in ["", None]:
-            self.action_disk_image.set_subtitle(program["disk_image"])
-            self.btn_disk_image_reset.set_visible(True)
+        if program.get("disc_image") not in ["", None]:
+            self.action_disc_image.set_subtitle(program["disc_image"])
+            self.btn_disc_image_reset.set_visible(True)
 
         self.__set_disabled_switches()
 
@@ -353,10 +353,10 @@ class LaunchOptionsDialog(Adw.Window):
         self.action_cwd.set_subtitle(self.__default_cwd_msg)
         self.btn_cwd_reset.set_visible(False)
     
-    def __choose_disk_image(self, *_args):
+    def __choose_disc_image(self, *_args):
         pass
 
-    def __reset_disk_image(self, *_args):
+    def __reset_disc_image(self, *_args):
         pass
 
     def __reset_defaults(self, *_args):

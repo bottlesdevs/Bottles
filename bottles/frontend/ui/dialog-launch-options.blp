@@ -141,15 +141,15 @@ template $LaunchOptionsDialog: Adw.Window {
           }
         }
 
-        Adw.ActionRow action_disk_image {
-          activatable-widget: btn_disk_image;
+        Adw.ActionRow action_disc_image {
+          activatable-widget: btn_disc_image;
           title: _("CD/DVD Image");
-          subtitle: _("Choose an optical disk image to be mounted.");
+          subtitle: _("Choose an optical disc image to be mounted.");
 
           Box {
             spacing: 6;
 
-            Button btn_disk_image_reset {
+            Button btn_disc_image_reset {
               tooltip-text: _("Reset to Default");
               valign: center;
               visible: false;
@@ -160,8 +160,8 @@ template $LaunchOptionsDialog: Adw.Window {
               ]
             }
 
-            Button btn_disk_image {
-              tooltip-text: _("Choose a Disk Image");
+            Button btn_disc_image {
+              tooltip-text: _("Choose a Disc Image");
               valign: center;
               icon-name: "document-open-symbolic";
 
