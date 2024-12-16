@@ -15,6 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+from string import ascii_uppercase
+
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.wine.drives import Drives
@@ -91,33 +93,7 @@ class DriveEntry(Adw.ActionRow):
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-drives.ui")
 class DrivesDialog(Adw.Window):
     __gtype_name__ = "DrivesDialog"
-    __alphabet = [
-        "A",
-        "B",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N",
-        "O",
-        "P",
-        "Q",
-        "R",
-        "S",
-        "T",
-        "U",
-        "V",
-        "W",
-        "X",
-        "Y",
-        "Z",
-    ]
+    __alphabet = list(ascii_uppercase)
 
     # region Widgets
     combo_letter = Gtk.Template.Child()
