@@ -380,7 +380,7 @@ class LaunchOptionsDialog(Adw.Window):
         dialog.show()
 
     def __reset_disc_image(self, *_args):
-        self.program["disc_image"] = ""
+        self.program["disc_image"] = None
         self.action_disc_image.set_subtitle(self.__default_disc_image_msg)
         self.btn_disc_image_reset.set_visible(False)
 
