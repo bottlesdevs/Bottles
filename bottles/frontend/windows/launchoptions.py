@@ -19,6 +19,7 @@ from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.logger import Logger
+from bottles.frontend.utils.filters import add_all_filters, add_soundfont_filters
 from gettext import gettext as _
 
 logging = Logger()
@@ -366,6 +367,8 @@ class LaunchOptionsDialog(Adw.Window):
             action=Gtk.FileChooserAction.OPEN,
         )
 
+        add_soundfont_filters(dialog)
+        add_all_filters(dialog)
         dialog.set_modal(True)
         dialog.connect("response", set_path)
         dialog.show()

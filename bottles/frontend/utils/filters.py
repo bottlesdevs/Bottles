@@ -30,6 +30,15 @@ def add_executable_filters(dialog):
     dialog.add_filter(filter)
 
 
+def add_soundfont_filters(dialog):
+    filter = Gtk.FileFilter()
+    filter.set_name(_("Supported SoundFonts"))
+    filter.add_pattern("*.sf2")
+    filter.add_pattern("*.sf3")
+
+    dialog.add_filter(filter)
+
+
 def add_yaml_filters(dialog):
     filter = Gtk.FileFilter()
     filter.set_name("YAML")

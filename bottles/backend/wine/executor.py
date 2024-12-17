@@ -123,7 +123,7 @@ class WineExecutor:
             cwd=program.get("folder"),
             pre_script=program.get("pre_script"),
             post_script=program.get("post_script"),
-            midi_soundfont=program.get["midi_soundfont"],
+            midi_soundfont=program.get("midi_soundfont"),
             terminal=terminal,
             program_dxvk=program.get("dxvk"),
             program_vkd3d=program.get("vkd3d"),
