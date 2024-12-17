@@ -1,6 +1,7 @@
 import os
 import shutil
 import stat
+import string
 import subprocess
 import tempfile
 import shlex
@@ -25,6 +26,7 @@ from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.steam import SteamUtils
+from bottles.backend.wine.drives import Drives
 
 logging = Logger()
 
@@ -606,6 +608,7 @@ class WineCommand:
             command = f"sh '{pre_script}' ; {command}"
         
         if disc_image is not None:
+            # Mount/unmount disc image on temp mount point
             mount_point = "/tmp/bottles/disc"
             command = f"""
                 flatpak-spawn --host mkdir -p '{mount_point}'
@@ -613,6 +616,15 @@ class WineCommand:
                 {command}
                 flatpak-spawn --host fusermount -uz '{mount_point}' # -z for lazy unmount
             """
+
+            # Assign path to first free drive letter
+            drives = Drives(self.config)
+            alphabet = string.ascii_uppercase
+            letter = next(
+                c for c in alphabet
+                if c >= "D" and not drives.get_drive(c)
+            )
+            drives.set_drive_path(letter, mount_point)
 
         return command
 
