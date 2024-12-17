@@ -20,6 +20,7 @@ class Start(WineProgram):
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
         cwd: Optional[str] = None,
+        disc_image: Optional[str] = None,
     ):
         winepath = WinePath(self.config)
 
@@ -42,6 +43,7 @@ class Start(WineProgram):
             pre_script=pre_script,
             post_script=post_script,
             cwd=cwd,
+            disc_image=disc_image,
             minimal=False,
             action_name="run",
         )

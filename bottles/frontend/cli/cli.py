@@ -669,6 +669,7 @@ class CLI:
             program.get("pre_script", None)
             program.get("post_script", None)
             program.get("folder", None)
+            program.get("disc_image", None)
 
             program.get("dxvk")
             program.get("vkd3d")

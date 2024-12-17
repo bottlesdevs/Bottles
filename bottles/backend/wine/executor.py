@@ -34,6 +34,7 @@ class WineExecutor:
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
         cwd: Optional[str] = None,
+        disc_image: Optional[str] = None,
         monitoring: Optional[list] = None,
         program_dxvk: Optional[bool] = None,
         program_vkd3d: Optional[bool] = None,
@@ -63,6 +64,7 @@ class WineExecutor:
         self.pre_script = pre_script
         self.post_script = post_script
         self.cwd = self.__get_cwd(cwd)
+        self.disc_image = disc_image
         self.monitoring = monitoring
         self.use_gamescope = program_gamescope
         self.use_virt_desktop = program_virt_desktop
@@ -123,6 +125,7 @@ class WineExecutor:
             pre_script=program.get("pre_script"),
             post_script=program.get("post_script"),
             cwd=program.get("folder"),
+            disc_image=program.get("disc_image"),
             terminal=terminal,
             program_dxvk=program.get("dxvk"),
             program_vkd3d=program.get("vkd3d"),
@@ -213,6 +216,7 @@ class WineExecutor:
             pre_script=self.pre_script,
             post_script=self.post_script,
             cwd=self.cwd,
+            disc_image=self.disc_image,
         )
         return Result(status=True, data={"output": res})
 
@@ -279,6 +283,7 @@ class WineExecutor:
             pre_script=self.pre_script,
             post_script=self.post_script,
             cwd=self.cwd,
+            disc_image=self.disc_image
         )
         res = winecmd.run()
         self.__set_monitors()
@@ -317,6 +322,7 @@ class WineExecutor:
             pre_script=self.pre_script,
             post_script=self.post_script,
             cwd=self.cwd,
+            disc_image=self.disc_image,
         )
         self.__set_monitors()
         return Result(status=True, data={"output": res})
