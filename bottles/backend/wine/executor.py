@@ -12,6 +12,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.explorer import Explorer
+from bottles.backend.wine.midi import MIDI
 from bottles.backend.wine.msiexec import MsiExec
 from bottles.backend.wine.start import Start
 from bottles.backend.wine.winecommand import WineCommand
@@ -71,6 +72,9 @@ class WineExecutor:
         self.use_virt_desktop = program_virt_desktop
 
         env_dll_overrides = []
+
+        if midi_soundfont is not None:
+            MIDI.write_current_instrument_set(self.config, midi_soundfont)
 
         # None = use global DXVK value
         if program_dxvk is not None:
