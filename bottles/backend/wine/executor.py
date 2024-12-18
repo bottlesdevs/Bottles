@@ -103,7 +103,7 @@ class WineExecutor:
                 self.environment["WINE_FULLSCREEN_FSR_MODE"] = str(
                     self.config.Parameters.fsr_quality_mode
                 )
-        
+
         if program_gamescope is not None and program_gamescope != self.config.Parameters.gamescope:
             self.environment["GAMESCOPE"] = "1" if program_gamescope else "0"
 
