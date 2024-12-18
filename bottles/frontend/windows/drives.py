@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from string import ascii_uppercase
+import string
 
 from gi.repository import Gtk, GLib, Adw
 
@@ -93,7 +93,7 @@ class DriveEntry(Adw.ActionRow):
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-drives.ui")
 class DrivesDialog(Adw.Window):
     __gtype_name__ = "DrivesDialog"
-    __alphabet = list(ascii_uppercase)
+    __alphabet = list(string.ascii_uppercase)
 
     # region Widgets
     combo_letter = Gtk.Template.Child()
