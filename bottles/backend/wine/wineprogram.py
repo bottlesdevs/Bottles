@@ -46,6 +46,7 @@ class WineProgram:
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
         cwd: Optional[str] = None,
+        midi_soundfont: Optional[str] = None,
         action_name: str = "launch",
     ):
         if environment is None:
@@ -73,6 +74,7 @@ class WineProgram:
             pre_script=pre_script,
             post_script=post_script,
             cwd=cwd,
+            midi_soundfont=midi_soundfont,
             arguments=program_args,
         )
 

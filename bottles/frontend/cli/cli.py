@@ -636,6 +636,7 @@ class CLI:
         _cwd = None
         _pre_script = None
         _post_script = None
+        _midi_soundfont = None
         _program_dxvk = None
         _program_vkd3d = None
         _program_dxvk_nvapi = None
@@ -678,6 +679,7 @@ class CLI:
             _cwd = program.get("folder", "")
             _pre_script = program.get("pre_script", None)
             _post_script = program.get("post_script", None)
+            _midi_soundfont = program.get("midi_soundfont", None)
 
             _program_dxvk = program.get("dxvk")
             _program_vkd3d = program.get("vkd3d")

@@ -100,6 +100,7 @@ class WineCommand:
         minimal: bool = False,  # avoid gamemode/gamescope usage
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
+        midi_soundfont: Optional[str] = None,
     ):
         _environment = environment.copy()
         self.config = self._get_config(config)
@@ -112,7 +113,7 @@ class WineCommand:
             else self.config.Parameters.gamescope
         )
         self.command = self.get_cmd(
-            command, pre_script, post_script, environment=_environment
+            command, pre_script, post_script, midi_soundfont, environment=_environment
         )
         self.terminal = terminal
         self.env = self.get_env(_environment)
@@ -488,6 +489,7 @@ class WineCommand:
         command,
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
+        midi_soundfont: Optional[str] = None,
         return_steam_cmd: bool = False,
         return_clean_cmd: bool = False,
         environment: Optional[dict] = None,
@@ -601,6 +603,21 @@ class WineCommand:
 
         if pre_script is not None:
             command = f"sh '{pre_script}' ; {command}"
+
+        if midi_soundfont is not None:
+            command = f"""
+                # start fluidsynth in dedicated terminal
+                # (as, for some reason, fluidsynth doesn't like being run with &)
+                fluidsynth="fluidsynth --server --audio-driver=pipewire '{midi_soundfont}'"
+                flatpak-spawn --host gnome-terminal -- bash -c "$fluidsynth"
+
+                # save PID to individually kill process afterwards
+                fluidsynth_pid=$(flatpak-spawn --host pidof fluidsynth | cut -d " " -f 1)
+
+                {command}
+
+                flatpak-spawn --host kill $fluidsynth_pid
+            """
 
         return command
 
