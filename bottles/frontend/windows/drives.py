@@ -41,10 +41,8 @@ class DriveEntry(Adw.ActionRow):
         self.config = parent.config
         self.drive = drive
 
-        """
-        Set the env var name as ActionRow title and set the
-        entry_value to its value
-        """
+        # Set env var name as ActionRow's title
+        # and entry_value as its value
         self.set_title(self.drive[0])
         self.set_subtitle(self.drive[1])
 
@@ -57,10 +55,7 @@ class DriveEntry(Adw.ActionRow):
         self.btn_remove.connect("clicked", self.__remove)
 
     def __choose_path(self, *_args):
-        """
-        Open the file chooser dialog and set the path to the
-        selected file
-        """
+        """Open file chooser dialog and set path pointing to the selected one"""
 
         def set_path(_dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
@@ -81,10 +76,7 @@ class DriveEntry(Adw.ActionRow):
         dialog.show()
 
     def __remove(self, *_args):
-        """
-        Remove the drive from the bottle configuration and
-        destroy the widget
-        """
+        """Remove drive from bottle's configuration and destroy its widget"""
         Drives(self.config).remove_drive(self.drive[0])
         self.parent.list_drives.remove(self)
         self.parent.add_combo_letter(self.drive[0])
@@ -93,7 +85,7 @@ class DriveEntry(Adw.ActionRow):
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-drives.ui")
 class DrivesDialog(Adw.Window):
     __gtype_name__ = "DrivesDialog"
-    __alphabet = set(string.ascii_uppercase)
+    __alphabet = string.ascii_uppercase
 
     # region Widgets
     combo_letter = Gtk.Template.Child()
@@ -112,16 +104,13 @@ class DrivesDialog(Adw.Window):
         self.manager = window.manager
         self.config = config
 
-        self.__populate_drives_list()
-        self.__populate_combo_letters()
-
+        self.__populate_combo_and_drives()
+        
         # connect signals
         self.btn_save.connect("clicked", self.__save)
 
     def __save(self, *_args):
-        """
-        This function add a new drive to the bottle configuration
-        """
+        """Add a new drive to bottle's configuration"""
         index = self.combo_letter.get_selected()
         drive_letter = self.str_list_letters.get_string(index)
         _entry = DriveEntry(parent=self, drive=[drive_letter, ""])
@@ -129,21 +118,21 @@ class DrivesDialog(Adw.Window):
         GLib.idle_add(self.list_drives.add, _entry)
         self.str_list_letters.remove(index)
 
-    def __populate_drives_list(self):
+    def __populate_combo_and_drives(self):
         """
-        This function populate the list of drives
-        with the existing ones from the bottle configuration
+        Populate lists of combo letters and drives
+        based on the existing ones from bottle's configuration
         """
         drives = Drives(self.config).get_all()
-        for letter, drive in drives.items():
-            _entry = DriveEntry(parent=self, drive=[letter, drive])
-            GLib.idle_add(self.list_drives.add, _entry)
-
-    def __populate_combo_letters(self):
-        drives = Drives(self.config).get_all()
-        for letter in sorted(self.__alphabet - drives.keys()):
-            self.str_list_letters.append(letter)
-            self.btn_save.set_sensitive(True)
+        for letter in self.__alphabet:
+            if letter not in drives:
+                # Add to combo letters
+                self.str_list_letters.append(letter)
+                self.btn_save.set_sensitive(True)
+            else:
+                # Add to drives list
+                _entry = DriveEntry(parent=self, drive=[letter, drives[letter]])
+                GLib.idle_add(self.list_drives.add, _entry)
 
     def add_combo_letter(self, letter: str):
         idx_new = next(
