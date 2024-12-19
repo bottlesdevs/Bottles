@@ -22,7 +22,7 @@ from functools import lru_cache
 from glob import glob
 from typing import Union
 
-import patoolib
+import patoolib  # type: ignore [import-untyped]
 
 from bottles.backend.cabextract import CabExtract
 from bottles.backend.globals import Paths
