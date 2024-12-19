@@ -79,7 +79,6 @@ class MainWindow(Adw.ApplicationWindow):
 
         super().__init__(**kwargs, default_width=width, default_height=height)
 
-        self.disable_onboard = False
         self.utils_conn = ConnectionUtils(
             force_offline=self.settings.get_boolean("force-offline")
         )
@@ -121,7 +120,7 @@ class MainWindow(Adw.ApplicationWindow):
             error_dialog.present(self)
             logging.error(
                 _(
-                    "Bottles is only supported within a sandboxed format. Official sources of Bottles are available at:"
+                    "Bottles is only supported within a sandboxed environment. Official sources of Bottles are available at"
                 )
             )
             logging.error("https://usebottles.com/download/")
@@ -292,7 +291,6 @@ class MainWindow(Adw.ApplicationWindow):
             )
             return mng
 
-        self.check_core_deps()
         self.show_loading_view()
         RunAsync(get_manager, callback=set_manager)
 
@@ -326,9 +324,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_loading")
 
     def show_onboard_view(self, widget=False):
-        if self.disable_onboard:
-            return
-
         onboard_window = OnboardDialog(self)
         onboard_window.present()
 
@@ -405,11 +400,6 @@ class MainWindow(Adw.ApplicationWindow):
             toast.connect("dismissed", dismissed_callback)
 
         self.toasts.add_toast(toast)
-
-    def check_core_deps(self):
-        if "FLATPAK_ID" not in os.environ and not HealthChecker().has_core_deps():
-            self.disable_onboard = True
-            DependenciesCheckDialog(self).present()
 
     def __on_page_changed(self, stack, *args):
         is_bottles_list = stack.get_visible_child_name() == "page_list"

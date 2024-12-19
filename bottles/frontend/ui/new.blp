@@ -119,16 +119,6 @@ template $NewView: Adw.Window {
             title: _("Custom");
             sensitive: false;
 
-            Adw.ActionRow row_sandbox {
-              title: _("Share User Directory");
-              subtitle: _("This makes the user directory discoverable in the bottle, at the risk of sharing personal information to Windows software. This option cannot be changed after the bottle has been created.");
-              activatable-widget: switch_sandbox;
-
-              Switch switch_sandbox {
-                valign: center;
-              }
-            }
-
             Adw.ComboRow combo_runner {
               title: _("Runner");
               subtitle: _("The version of the Wine compatibility layer.");
