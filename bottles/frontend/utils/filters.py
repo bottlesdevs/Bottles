@@ -14,46 +14,43 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gio, GObject, Gtk
 
 
 def add_executable_filters(dialog):
-    filter = Gtk.FileFilter()
-    filter.set_name(_("Supported Executables"))
     # TODO: Investigate why `filter.add_mime_type(...)` does not show filter in all distributions.
     # Intended MIME types are:
     #   - `application/x-ms-dos-executable`
     #   - `application/x-msi`
-    filter.add_pattern("*.exe")
-    filter.add_pattern("*.msi")
-
-    dialog.add_filter(filter)
+    __set_filter(dialog, _("Supported Executables"), "*.exe", "*.msi")
 
 
 def add_soundfont_filters(dialog):
-    filter = Gtk.FileFilter()
-    filter.set_name(_("Supported SoundFonts"))
-    filter.add_pattern("*.sf2")
-    filter.add_pattern("*.sf3")
-
-    dialog.add_filter(filter)
+    __set_filter(dialog, _("Supported SoundFonts"), "*.sf2", ".sf3")
 
 
 def add_yaml_filters(dialog):
-    filter = Gtk.FileFilter()
-    filter.set_name("YAML")
     # TODO: Investigate why `filter.add_mime_type(...)` does not show filter in all distributions.
     # Intended MIME types are:
     #   - `application/yaml`
-    filter.add_pattern("*.yml")
-    filter.add_pattern("*.yaml")
-
-    dialog.add_filter(filter)
+    __set_filter(dialog, "YAML", "*.yaml", ".yml")
 
 
 def add_all_filters(dialog):
-    filter = Gtk.FileFilter()
-    filter.set_name(_("All Files"))
-    filter.add_pattern("*")
+    __set_filter(dialog, _("All Files"), "*")
 
-    dialog.add_filter(filter)
+
+def __set_filter(dialog: GObject.Object, name: str, *patterns: str):
+    filter = Gtk.FileFilter()
+    filter.set_name(name)
+    for pattern in patterns:
+        filter.add_pattern(pattern)
+    
+    if isinstance(dialog, Gtk.FileDialog):
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+        filters.append(filter)
+        dialog.set_filters(filters)
+    elif isinstance(dialog, Gtk.FileChooserNative):
+        dialog.add_filter(filter)
+    else:
+        raise TypeError
