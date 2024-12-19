@@ -29,7 +29,7 @@ class InstallerRepo(Repo):
             return self.get_manifest(url, plain)
         return False
 
-    def get_review(self, name: str) -> Union[str, bool]:
+    def get_review(self, name: str) -> Union[str, dict, bool]:
         if name in self.catalog:
             return self.get_manifest(f"{self.url}/Reviews/{name}.md", plain=True)
         return False

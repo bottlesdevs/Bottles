@@ -20,7 +20,7 @@ from typing import Optional
 from functools import wraps
 from inspect import signature
 
-from gi.repository import GLib, Gtk
+from gi.repository import GLib, Gtk, GObject
 
 
 class GtkUtils:
@@ -59,7 +59,7 @@ class GtkUtils:
         return wrapper
 
     @staticmethod
-    def get_parent_window() -> Optional[Gtk.Widget]:
+    def get_parent_window() -> Optional[GObject.Object]:
         """Retrieve the parent window from a widget."""
         toplevels = Gtk.Window.get_toplevels()
         return toplevels.get_item(0)

@@ -69,7 +69,7 @@ class ConnectionUtils:
         if res.status:
             self.do_check_connection = False
 
-    def check_connection(self, show_notification=False) -> bool:
+    def check_connection(self, show_notification=False) -> Optional[bool]:
         """check network status, send result through signal NetworkReady and return"""
         if self.force_offline or "FORCE_OFFLINE" in os.environ:
             logging.info("Forcing offline mode")
