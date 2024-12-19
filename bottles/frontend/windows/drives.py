@@ -87,13 +87,13 @@ class DriveEntry(Adw.ActionRow):
         """
         Drives(self.config).remove_drive(self.drive[0])
         self.parent.list_drives.remove(self)
-        self.parent.add_combo_letter(self.drive[0])
+        self.parent.update_combo_letters()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-drives.ui")
 class DrivesDialog(Adw.Window):
     __gtype_name__ = "DrivesDialog"
-    __alphabet = list(string.ascii_uppercase)
+    __alphabet = set(string.ascii_uppercase)
 
     # region Widgets
     combo_letter = Gtk.Template.Child()
@@ -113,7 +113,7 @@ class DrivesDialog(Adw.Window):
         self.config = config
 
         self.__populate_drives_list()
-        self.__populate_combo_letter()
+        self.__populate_combo_letters()
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
@@ -138,27 +138,15 @@ class DrivesDialog(Adw.Window):
         for drive in drives:
             _entry = DriveEntry(parent=self, drive=[drive, drives[drive]])
             GLib.idle_add(self.list_drives.add, _entry)
-            if drive in self.__alphabet:
-                self.__alphabet.pop(self.__alphabet.index(drive))
 
-    def __populate_combo_letter(self):
+    def __populate_combo_letters(self):
         drives = Drives(self.config).get_all()
+        for letter in sorted(self.__alphabet - drives.keys()):
+            self.str_list_letters.append(letter)
+            self.btn_save.set_sensitive(True)
+
+    def update_combo_letters(self):
+        idx = self.combo_letter.get_selected()
         self.str_list_letters.splice(0, self.str_list_letters.get_n_items())
-
-        for letter in self.__alphabet:
-            if letter not in drives:
-                self.str_list_letters.append(letter)
-                self.btn_save.set_sensitive(True)
-
-        self.combo_letter.set_selected(0)
-
-    def add_combo_letter(self, letter):
-        list_copy = list(map(lambda item: item.get_string(), self.str_list_letters))
-
-        self.str_list_letters.splice(0, self.str_list_letters.get_n_items())
-
-        for item in self.__alphabet:
-            if item in list_copy or item == letter:
-                self.str_list_letters.append(item)
-
-        self.combo_letter.set_selected(0)
+        self.__populate_combo_letters()
+        self.combo_letter.set_selected(idx)
