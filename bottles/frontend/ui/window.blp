@@ -46,10 +46,9 @@ template $MainWindow: Adw.ApplicationWindow {
           }
 
           [end]
-          ToggleButton btn_donate {
+          Button btn_donate {
             tooltip-text: _("Donate");
             icon-name: "emblem-favorite-symbolic";
-            visible: true;
           }
 
           [end]
@@ -87,6 +86,11 @@ menu primary_menu {
     item {
       label: _("Preferences");
       action: "app.preferences";
+    }
+
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "win.show-help-overlay";
     }
 
     item {

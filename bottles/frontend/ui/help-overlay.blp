@@ -1,0 +1,45 @@
+using Gtk 4.0;
+
+ShortcutsWindow help_overlay {
+  modal: true;
+
+  ShortcutsSection {
+    section-name: "shortcuts";
+    max-height: 10;
+
+    ShortcutsGroup {
+      title: C_("shortcut window", "General");
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "New Bottle");
+        action-name: "app.new";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Import Bottle");
+        action-name: "app.import";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Preferences");
+        action-name: "app.preferences";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Documentation");
+        action-name: "app.help";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Show Shortcuts");
+        action-name: "win.show-help-overlay";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Quit");
+        action-name: "app.quit";
+      }
+
+    }
+  }
+}

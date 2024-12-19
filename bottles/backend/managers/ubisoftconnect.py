@@ -24,7 +24,6 @@ from bottles.backend.utils.manager import ManagerUtils
 
 
 class UbisoftConnectManager:
-
     @staticmethod
     def find_conf_path(config: BottleConfig) -> Union[str, None]:
         """

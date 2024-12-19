@@ -235,13 +235,11 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __choose_pre_script(self, *_args):
         def set_path(dialog, result):
-
             try:
                 file = dialog.open_finish(result)
 
                 if file is None:
-                    self.action_pre_script.set_subtitle(
-                        self.__default_pre_script_msg)
+                    self.action_pre_script.set_subtitle(self.__default_pre_script_msg)
                     return
 
                 file_path = file.get_path()
@@ -254,13 +252,16 @@ class LaunchOptionsDialog(Adw.Window):
                 # also thrown when dialog has been cancelled
                 if error.code == 2:
                     # error 2 seems to be 'dismiss' or 'cancel'
-                    if self.program["pre_script"] is None or self.program["pre_script"] == "":
+                    if (
+                        self.program["pre_script"] is None
+                        or self.program["pre_script"] == ""
+                    ):
                         self.action_pre_script.set_subtitle(
-                            self.__default_pre_script_msg)
+                            self.__default_pre_script_msg
+                        )
                 else:
                     # something else happened...
                     logging.warning("Error selecting pre-run script: %s" % error)
-                    pass
 
         dialog = Gtk.FileDialog.new()
         dialog.set_title("Select Pre-run Script")
@@ -269,13 +270,11 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __choose_post_script(self, *_args):
         def set_path(dialog, result):
-
             try:
                 file = dialog.open_finish(result)
 
                 if file is None:
-                    self.action_post_script.set_subtitle(
-                        self.__default_post_script_msg)
+                    self.action_post_script.set_subtitle(self.__default_post_script_msg)
                     return
 
                 file_path = file.get_path()
@@ -286,9 +285,13 @@ class LaunchOptionsDialog(Adw.Window):
                 # also thrown when dialog has been cancelled
                 if error.code == 2:
                     # error 2 seems to be 'dismiss' or 'cancel'
-                    if self.program["post_script"] is None or self.program["post_script"] == "":
+                    if (
+                        self.program["post_script"] is None
+                        or self.program["post_script"] == ""
+                    ):
                         self.action_pre_script.set_subtitle(
-                            self.__default_pre_script_msg)
+                            self.__default_pre_script_msg
+                        )
                 else:
                     # something else happened...
                     logging.warning("Error selecting post-run script: %s" % error)
@@ -309,25 +312,33 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_post_script_reset.set_visible(False)
 
     def __choose_cwd(self, *_args):
-        def set_path(dialog, response):
-            if response != Gtk.ResponseType.ACCEPT:
-                self.action_cwd.set_subtitle(self.__default_cwd_msg)
-                return
+        def set_path(dialog, result):
+            try:
+                directory = dialog.select_folder_finish(result)
 
-            directory_path = dialog.get_file().get_path()
-            self.program["folder"] = directory_path
-            self.action_cwd.set_subtitle(directory_path)
-            self.btn_cwd_reset.set_visible(True)
+                if directory is None:
+                    self.action_cwd.set_subtitle(self.__default_cwd_msg)
+                    return
 
-        dialog = Gtk.FileChooserNative.new(
-            title=_("Select Working Directory"),
-            parent=self.window,
-            action=Gtk.FileChooserAction.SELECT_FOLDER,
-        )
+                directory_path = directory.get_path()
+                self.program["folder"] = directory_path
+                self.action_cwd.set_subtitle(directory_path)
+                self.btn_cwd_reset.set_visible(True)
+            except GLib.Error as error:
+                # also thrown when dialog has been cancelled
+                if error.code == 2:
+                    # error 2 seems to be 'dismiss' or 'cancel'
+                    if self.program["folder"] is None or self.program["folder"] == "":
+                        self.action_cwd.set_subtitle(self.__default_cwd_msg)
+                else:
+                    # something else happened...
+                    logging.warning("Error selecting folder: %s" % error)
+                    raise
 
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title(_("Select Working Directory"))
         dialog.set_modal(True)
-        dialog.connect("response", set_path)
-        dialog.show()
+        dialog.select_folder(parent=self.window, callback=set_path)
 
     def __reset_cwd(self, *_args):
         """
