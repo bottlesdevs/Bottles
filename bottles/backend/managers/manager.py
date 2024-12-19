@@ -1312,50 +1312,42 @@ class Manager(metaclass=Singleton):
         wineboot.init()
         log_update(_("Wine config updated!"))
 
-        if "FLATPAK_ID" in os.environ or sandbox:
-            """
-            If running as Flatpak, or sandbox flag is set to True, unlink home
-            directories and make them as folders.
-            """
-            if "FLATPAK_ID":
-                log_update(_("Running as Flatpak, sandboxing userdir…"))
-            if sandbox:
-                log_update(_("Sandboxing userdir…"))
+        log_update(_("Sandboxing user directory…"))
 
-            userdir = f"{bottle_complete_path}/drive_c/users"
-            if os.path.exists(userdir):
-                # userdir may not exists when unpacking a template, safely
-                # ignore as it will be created on first winebot.
-                links = []
-                for user in os.listdir(userdir):
-                    _user_dir = os.path.join(userdir, user)
+        userdir = f"{bottle_complete_path}/drive_c/users"
+        if os.path.exists(userdir):
+            # userdir may not exists when unpacking a template, safely
+            # ignore as it will be created on first winebot.
+            links = []
+            for user in os.listdir(userdir):
+                _user_dir = os.path.join(userdir, user)
 
-                    if os.path.isdir(_user_dir):
-                        for _dir in os.listdir(_user_dir):
-                            _dir_path = os.path.join(_user_dir, _dir)
+                if os.path.isdir(_user_dir):
+                    for _dir in os.listdir(_user_dir):
+                        _dir_path = os.path.join(_user_dir, _dir)
+                        if os.path.islink(_dir_path):
+                            links.append(_dir_path)
+
+                    _documents_dir = os.path.join(_user_dir, "Documents")
+                    if os.path.isdir(_documents_dir):
+                        for _dir in os.listdir(_documents_dir):
+                            _dir_path = os.path.join(_documents_dir, _dir)
                             if os.path.islink(_dir_path):
                                 links.append(_dir_path)
 
-                        _documents_dir = os.path.join(_user_dir, "Documents")
-                        if os.path.isdir(_documents_dir):
-                            for _dir in os.listdir(_documents_dir):
-                                _dir_path = os.path.join(_documents_dir, _dir)
-                                if os.path.islink(_dir_path):
-                                    links.append(_dir_path)
+                    _win_dir = os.path.join(
+                        _user_dir, "AppData", "Roaming", "Microsoft", "Windows"
+                    )
+                    if os.path.isdir(_win_dir):
+                        for _dir in os.listdir(_win_dir):
+                            _dir_path = os.path.join(_win_dir, _dir)
+                            if os.path.islink(_dir_path):
+                                links.append(_dir_path)
 
-                        _win_dir = os.path.join(
-                            _user_dir, "AppData", "Roaming", "Microsoft", "Windows"
-                        )
-                        if os.path.isdir(_win_dir):
-                            for _dir in os.listdir(_win_dir):
-                                _dir_path = os.path.join(_win_dir, _dir)
-                                if os.path.islink(_dir_path):
-                                    links.append(_dir_path)
-
-                for link in links:
-                    with contextlib.suppress(IOError, OSError):
-                        os.unlink(link)
-                        os.makedirs(link)
+            for link in links:
+                with contextlib.suppress(IOError, OSError):
+                    os.unlink(link)
+                    os.makedirs(link)
 
         # wait for registry files to be created
         FileUtils.wait_for_files(reg_files)
