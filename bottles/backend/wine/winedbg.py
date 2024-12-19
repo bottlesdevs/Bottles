@@ -113,7 +113,7 @@ class WineDbg(WineProgram):
         """
         Check if a process is running on the wineprefix.
         """
-        if not self.__wineserver_status:
+        if not self.__wineserver_status():
             return False
 
         processes = self.get_processes()
