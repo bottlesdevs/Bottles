@@ -141,8 +141,6 @@ class SandboxManager:
     def get_cmd(self, cmd: str):
         if "FLATPAK_ID" in os.environ:
             _cmd = self.__get_flatpak_spawn(cmd)
-        else:
-            _cmd = self.__get_bwrap(cmd)
 
         return " ".join(_cmd)
 

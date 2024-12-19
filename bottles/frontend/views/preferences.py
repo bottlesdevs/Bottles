@@ -53,8 +53,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_steam_programs = Gtk.Template.Child()
     switch_epic_games = Gtk.Template.Child()
     switch_ubisoft_connect = Gtk.Template.Child()
-    list_winebridge = Gtk.Template.Child()
-    list_runtimes = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
@@ -66,7 +64,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
     btn_bottles_path_reset = Gtk.Template.Child()
     label_bottles_path = Gtk.Template.Child()
     btn_steam_proton_doc = Gtk.Template.Child()
-    pref_core = Gtk.Template.Child()
 
     # endregion
 
@@ -80,9 +77,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.manager = window.manager
         self.data = DataManager()
         self.style_manager = Adw.StyleManager.get_default()
-
-        if "FLATPAK_ID" in os.environ:
-            self.remove(self.pref_core)
 
         self.current_bottles_path = self.data.get(UserDataKeys.CustomBottlesPath)
         if self.current_bottles_path:
@@ -169,10 +163,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         if not self.manager.utils_conn.status:
             self.installers_stack.set_visible_child_name("installers_offline")
             self.dlls_stack.set_visible_child_name("dlls_offline")
-
-        # populate components lists
-        self.populate_runtimes_list()
-        self.populate_winebridge_list()
 
         RunAsync(self.ui_update)
 
@@ -318,18 +308,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
             _entry = ComponentEntry(self.window, component, component_type)
             list_component.add(_entry)
             self.__registry.append(_entry)
-
-    def populate_runtimes_list(self):
-        for runtime in self.manager.supported_runtimes.items():
-            self.list_runtimes.add(
-                ComponentEntry(self.window, runtime, "runtime", is_upgradable=True)
-            )
-
-    def populate_winebridge_list(self):
-        for bridge in self.manager.supported_winebridge.items():
-            self.list_winebridge.add(
-                ComponentEntry(self.window, bridge, "winebridge", is_upgradable=True)
-            )
 
     def populate_dxvk_list(self):
         self.__populate_component_list(
