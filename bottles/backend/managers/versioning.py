@@ -23,13 +23,13 @@ from glob import glob
 
 from typing import Any, Union
 
-from fvs.exceptions import (
+from fvs.exceptions import (  # type: ignore [import-untyped]
     FVSNothingToCommit,
     FVSStateNotFound,
     FVSNothingToRestore,
     FVSStateZeroNotDeletable,
 )
-from fvs.repo import FVSRepo
+from fvs.repo import FVSRepo  # type: ignore [import-untyped]
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig

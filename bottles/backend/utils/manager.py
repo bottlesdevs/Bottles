@@ -22,7 +22,7 @@ from gettext import gettext as _
 from glob import glob
 from typing import Union, Optional
 
-import icoextract
+import icoextract  # type: ignore [import-untyped]
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
