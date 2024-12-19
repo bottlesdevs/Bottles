@@ -633,15 +633,6 @@ class CLI:
         _keep = self.args.keep_args
         _args = " ".join(self.args.args)
         _executable = self.args.executable
-        _cwd = None
-        _pre_script = None
-        _post_script = None
-        _program_dxvk = None
-        _program_vkd3d = None
-        _program_dxvk_nvapi = None
-        _program_fsr = None
-        _program_gamescope = None
-        _program_virt_desktop = None
 
         mng = Manager(g_settings=self.settings, is_cli=True)
         mng.checks()
@@ -675,16 +666,16 @@ class CLI:
             _program_args = program.get("arguments")
             if _keep and _program_args:
                 _args = _program_args + " " + _args
-            _cwd = program.get("folder", "")
-            _pre_script = program.get("pre_script", None)
-            _post_script = program.get("post_script", None)
+            program.get("folder", "")
+            program.get("pre_script", None)
+            program.get("post_script", None)
 
-            _program_dxvk = program.get("dxvk")
-            _program_vkd3d = program.get("vkd3d")
-            _program_dxvk_nvapi = program.get("dxvk_nvapi")
-            _program_fsr = program.get("fsr")
-            _program_gamescope = program.get("gamescope")
-            _program_virt_desktop = program.get("virtual_desktop")
+            program.get("dxvk")
+            program.get("vkd3d")
+            program.get("dxvk_nvapi")
+            program.get("fsr")
+            program.get("gamescope")
+            program.get("virtual_desktop")
 
             WineExecutor.run_program(bottle, program | {"arguments": _args})
 
@@ -701,7 +692,9 @@ class CLI:
                 args=_args,
             ).run_cli()
         else:
-            sys.stderr.write("No program or executable specified, you must use either --program or --executable\n")
+            sys.stderr.write(
+                "No program or executable specified, you must use either --program or --executable\n"
+            )
             exit(1)
 
     # endregion

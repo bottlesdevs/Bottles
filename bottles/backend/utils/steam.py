@@ -15,8 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os, subprocess, shlex
-from typing import Union, TextIO
+import os
+import shlex
+from typing import TextIO
 from typing import TextIO
 
 from bottles.backend.logger import Logger
@@ -27,7 +28,6 @@ logging = Logger()
 
 
 class SteamUtils:
-
     @staticmethod
     def parse_acf(data: str) -> VDFDict:
         """

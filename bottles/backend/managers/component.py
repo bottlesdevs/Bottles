@@ -20,7 +20,7 @@ import os
 import shutil
 import tarfile
 from functools import lru_cache
-from typing import Union, Optional
+from typing import Optional
 
 import pycurl
 
@@ -45,7 +45,6 @@ logging = Logger()
 
 # noinspection PyTypeChecker
 class ComponentManager:
-
     def __init__(self, manager, offline: bool = False):
         self.__manager = manager
         self.__repo = manager.repository_manager.get_repo("components", offline)

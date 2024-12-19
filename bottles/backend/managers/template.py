@@ -34,7 +34,6 @@ logging = Logger()
 
 
 class TemplateManager:
-
     @staticmethod
     def new(env: str, config: BottleConfig):
         env = env.lower()

@@ -25,7 +25,6 @@ logging = Logger()
 
 
 class ThumbnailManager:
-
     @staticmethod
     def get_path(config: BottleConfig, uri: str):
         if uri.startswith("grid:"):

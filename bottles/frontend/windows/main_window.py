@@ -34,7 +34,7 @@ from bottles.backend.state import SignalManager, Signals, Notification
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.operation import TaskSyncer
-from bottles.frontend.params import *
+from bottles.frontend.params import APP_ID, BASE_ID, PROFILE
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.details import DetailsView
 from bottles.frontend.views.importer import ImporterView
@@ -74,7 +74,6 @@ class MainWindow(Adw.ApplicationWindow):
     argument_executed = False
 
     def __init__(self, arg_bottle, **kwargs):
-
         width = self.settings.get_int("window-width")
         height = self.settings.get_int("window-height")
 
@@ -390,7 +389,6 @@ class MainWindow(Adw.ApplicationWindow):
         action_callback=None,
         dismissed_callback=None,
     ) -> None:
-
         toast = Adw.Toast.new(message)
         toast.props.timeout = timeout
 

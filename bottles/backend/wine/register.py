@@ -23,7 +23,6 @@ from bottles.backend.utils import json
 
 
 class WinRegister:
-
     def __init__(self):
         self.path = None
         self.diff = {}
@@ -61,7 +60,6 @@ class WinRegister:
             print("Total keys:", len(regs))
 
             for reg in regs:
-
                 if cur_line <= 2:
                     """
                     Skip the first 4 lines which are the
@@ -120,13 +118,11 @@ class WinRegister:
         other_reg = register.reg_dict
 
         for key in self.reg_dict:
-
             if key not in other_reg:
                 diff[key] = self.reg_dict[key]
                 continue
 
             for _key in self.reg_dict[key]:
-
                 if _key not in other_reg[key]:
                     diff[key] = self.reg_dict[key]
                     break
