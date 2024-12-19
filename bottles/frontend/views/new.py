@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 from gettext import gettext as _
 from gi.repository import Gtk, Adw, Pango, Gio
 
@@ -48,13 +47,11 @@ class NewView(Adw.Window):
     btn_choose_path_reset = Gtk.Template.Child()
     label_choose_path = Gtk.Template.Child()
     status_statuses = Gtk.Template.Child()
-    switch_sandbox = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
     scrolled_output = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
     str_list_arch = Gtk.Template.Child()
-    row_sandbox = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     shortcut_escape = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
@@ -95,9 +92,6 @@ class NewView(Adw.Window):
         self.label_choose_path.set_label(self.default_string)
         self.str_list_runner.splice(0, 0, self.manager.runners_available)
         self.str_list_arch.splice(0, 0, list(self.arch.values()))
-
-        # Hide row_sandbox if under Flatpak
-        self.row_sandbox.set_visible(not os.environ.get("FLATPAK_ID"))
 
         # focus on the entry_name
         self.entry_name.grab_focus()
@@ -189,7 +183,6 @@ class NewView(Adw.Window):
             runner=self.runner,
             arch=list(self.arch)[self.combo_arch.get_selected()],
             dxvk=self.manager.dxvk_available[0],
-            sandbox=self.switch_sandbox.get_state(),
             fn_logger=self.update_output,
             custom_environment=self.env_recipe_path,
         )
