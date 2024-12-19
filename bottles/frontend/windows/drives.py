@@ -137,7 +137,7 @@ class DrivesDialog(Adw.Window):
     def add_combo_letter(self, letter: str):
         idx_new = next(
             (i for i, c in enumerate(self.str_list_letters) if c.get_string() > letter),
-            self.str_list_letters.get_n_items()
+            self.str_list_letters.get_n_items(),
         )
         self.str_list_letters.splice(idx_new, 0, letter)
 
