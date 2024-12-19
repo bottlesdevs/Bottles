@@ -87,7 +87,7 @@ class DriveEntry(Adw.ActionRow):
         """
         Drives(self.config).remove_drive(self.drive[0])
         self.parent.list_drives.remove(self)
-        self.parent.update_combo_letters()
+        self.parent.add_combo_letter(self.drive[0])
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-drives.ui")
@@ -135,8 +135,8 @@ class DrivesDialog(Adw.Window):
         with the existing ones from the bottle configuration
         """
         drives = Drives(self.config).get_all()
-        for drive in drives:
-            _entry = DriveEntry(parent=self, drive=[drive, drives[drive]])
+        for letter, drive in drives.items():
+            _entry = DriveEntry(parent=self, drive=[letter, drive])
             GLib.idle_add(self.list_drives.add, _entry)
 
     def __populate_combo_letters(self):
@@ -145,8 +145,10 @@ class DrivesDialog(Adw.Window):
             self.str_list_letters.append(letter)
             self.btn_save.set_sensitive(True)
 
-    def update_combo_letters(self):
-        idx = self.combo_letter.get_selected()
-        self.str_list_letters.splice(0, self.str_list_letters.get_n_items())
-        self.__populate_combo_letters()
-        self.combo_letter.set_selected(idx)
+    def add_combo_letter(self, letter: str):
+        idx_new = next(
+            (i for i, c in enumerate(self.str_list_letters) if c.get_string() > letter),
+            self.str_list_letters.get_n_items()
+        )
+        self.str_list_letters.splice(idx_new, 0, letter)
+
