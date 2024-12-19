@@ -323,7 +323,7 @@ class LaunchOptionsDialog(Adw.Window):
                     raise
 
         dialog = Gtk.FileDialog.new()
-        dialog.set_title("Select Working Directory")
+        dialog.set_title(_("Select Working Directory"))
         dialog.set_modal(True)
         dialog.select_folder(parent=self.window, callback=set_path)
 
