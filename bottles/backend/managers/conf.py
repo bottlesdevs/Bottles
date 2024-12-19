@@ -6,7 +6,6 @@ from bottles.backend.utils import yaml, json
 
 
 class ConfigManager(object):
-
     def __init__(
         self,
         config_file: Optional[str] = None,

@@ -8,7 +8,6 @@ logging = Logger()
 
 
 class Drives:
-
     def __init__(self, config: BottleConfig):
         self.config = config
         bottle = ManagerUtils.get_bottle_path(self.config)

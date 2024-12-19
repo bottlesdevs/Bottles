@@ -1,14 +1,21 @@
 import sys
 import subprocess
 
-git_diff_raw = subprocess.run("git diff --name-only origin/main | grep \"\.py$\"", capture_output=True, shell=True, check=False)
+git_diff_raw = subprocess.run(
+    'git diff --name-only origin/main | grep "\.py$"',
+    capture_output=True,
+    shell=True,
+    check=False,
+)
 
 git_diff = git_diff_raw.stdout.decode("ascii").splitlines()
 
 if len(git_diff) == 0:
     sys.exit(0)
 
-pylint_result = subprocess.run("pylint bottles", capture_output=True, shell=True, check=False)
+pylint_result = subprocess.run(
+    "pylint bottles", capture_output=True, shell=True, check=False
+)
 
 should_print = False
 for l in pylint_result.stdout.decode("ascii").splitlines():

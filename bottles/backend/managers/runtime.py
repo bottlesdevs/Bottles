@@ -22,7 +22,6 @@ from bottles.backend.globals import Paths
 
 
 class RuntimeManager:
-
     @staticmethod
     @lru_cache
     def get_runtimes(_filter: str = "bottles"):

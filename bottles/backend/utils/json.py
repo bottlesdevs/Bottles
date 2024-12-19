@@ -31,7 +31,7 @@ def dump(
     fp: IO[str],
     *,
     indent: Optional[str | int] = None,
-    cls: Optional[Type[_json.JSONEncoder]] = None
+    cls: Optional[Type[_json.JSONEncoder]] = None,
 ) -> None:
     """
     Serialize obj as a JSON formatted stream to fp (a .write()-supporting file-like object).
@@ -50,7 +50,7 @@ def dumps(
     obj: Any,
     *,
     indent: Optional[str | int] = None,
-    cls: Optional[Type[_json.JSONEncoder]] = None
+    cls: Optional[Type[_json.JSONEncoder]] = None,
 ) -> str:
     """
     Serialize obj to a JSON formatted str.

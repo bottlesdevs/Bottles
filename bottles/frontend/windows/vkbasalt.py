@@ -146,7 +146,6 @@ class VkBasaltDialog(Adw.Window):
 
     # Save file
     def __idle_save(self, *args):
-
         conf = ManagerUtils.get_bottle_path(self.config)
 
         # Apply default settings and close the dialog if default setting is enabled

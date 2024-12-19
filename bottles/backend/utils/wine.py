@@ -2,7 +2,6 @@ import os
 
 
 class WineUtils:
-
     @staticmethod
     def get_user_dir(prefix_path: str):
         ignored = ["Public"]
