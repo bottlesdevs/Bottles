@@ -18,7 +18,7 @@
 from datetime import datetime
 from gettext import gettext as _
 
-from gi.repository import Gtk, GLib, Adw
+from gi.repository import Gtk, GLib, Adw, Xdp
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
@@ -135,7 +135,9 @@ class BottleViewEntry(Adw.ActionRow):
         add_all_filters(dialog)
         dialog.set_modal(True)
         dialog.connect("response", set_path)
-        dialog.show()
+
+        if Xdp.Portal.running_under_sandbox():
+            dialog.show()
 
     def show_details(self, widget=None, config=None):
         if config is None:
