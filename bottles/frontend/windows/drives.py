@@ -105,7 +105,7 @@ class DrivesDialog(Adw.Window):
         self.config = config
 
         self.__populate_combo_and_drives()
-        
+
         # connect signals
         self.btn_save.connect("clicked", self.__save)
 
@@ -140,4 +140,3 @@ class DrivesDialog(Adw.Window):
             self.str_list_letters.get_n_items(),
         )
         self.str_list_letters.splice(idx_new, 0, letter)
-
