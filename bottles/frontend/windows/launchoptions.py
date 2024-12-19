@@ -348,30 +348,44 @@ class LaunchOptionsDialog(Adw.Window):
             self.config, self.program["path"]
         )
         self.action_cwd.set_subtitle(self.__default_cwd_msg)
-        self.btn_cwd_reset.set_visible(False)
+        self.btn_cwd_reset.set_visible(False)        
 
     def __choose_midi_soundfont(self, *_args):
-        def set_path(dialog, response):
-            if response != Gtk.ResponseType.ACCEPT:
-                self.action_midi_soundfont.set_subtitle(self.__default_midi_soundfont_msg)
-                return
+        
+        def set_path(dialog, result):
+            
+            try:
+                file = dialog.open_finish(result)
+                if file is None:
+                    self.action_midi_soundfont.set_subtitle(
+                        self.__default_midi_soundfont_msg)
+                    return
 
-            directory_path = dialog.get_file().get_path()
-            self.program["midi_soundfont"] = directory_path
-            self.action_midi_soundfont.set_subtitle(directory_path)
-            self.btn_midi_soundfont_reset.set_visible(True)
+                file_path = file.get_path()
+                self.program["midi_soundfont"] = file_path
+                self.action_midi_soundfont.set_subtitle(file_path)
+                self.btn_midi_soundfont_reset.set_visible(True)
+                
+            except GLib.Error as error:
+                # also thrown when dialog has been cancelled
+                if error.code == 2:
+                    # error 2 seems to be 'dismiss' or 'cancel'
+                    if self.program["midi_soundfont"] in (None, ""):
+                        self.action_midi_soundfont.set_subtitle(
+                            self.__default_midi_soundfont_msg
+                        )
+                else:
+                    # something else happened...
+                    logging.warning("Error selecting SoundFont file: %s" % error)
 
-        dialog = Gtk.FileChooserNative.new(
-            title=_("Select SoundFont"),
-            parent=self.window,
-            action=Gtk.FileChooserAction.OPEN,
-        )
-
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title(_("Select MIDI SoundFont"))
+        dialog.set_modal(True)
+        
         add_soundfont_filters(dialog)
         add_all_filters(dialog)
-        dialog.set_modal(True)
-        dialog.connect("response", set_path)
-        dialog.show()
+        
+        dialog.open(parent=self.window, callback=set_path)
 
     def __reset_midi_soundfont(self, *_args):
         self.program["midi_soundfont"] = None
