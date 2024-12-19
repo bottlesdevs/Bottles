@@ -17,8 +17,7 @@
 
 import os
 import shlex
-from typing import TextIO
-from typing import TextIO
+from typing import TextIO, Optional
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.vdict import VDFDict
@@ -67,7 +66,7 @@ class SteamUtils:
         return "proton" in compat_layer_name or "proton" in commandline
 
     @staticmethod
-    def get_associated_runtime(path: str) -> str:
+    def get_associated_runtime(path: str) -> Optional[str]:
         """
         Get the associated runtime of a Proton directory.
         """
@@ -106,7 +105,7 @@ class SteamUtils:
         return dist_directory
 
     @staticmethod
-    def handle_launch_options(launch_options: str) -> tuple[str, str, str]:
+    def handle_launch_options(launch_options: str) -> tuple[str, str, dict[str, str]]:
         """
         Handle launch options. Supports the %command% pattern.
         Return prefix, arguments, and environment variables.

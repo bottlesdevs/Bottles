@@ -192,7 +192,7 @@ class SteamManager:
 
     @staticmethod
     @lru_cache
-    def get_runner_path(pfx_path: str) -> Union[tuple, None]:
+    def get_runner_path(pfx_path: str) -> Optional[str]:
         """Get runner path from config_info file"""
         config_info = os.path.join(pfx_path, "config_info")
 
