@@ -20,6 +20,7 @@ import os
 import shlex
 import shutil
 import uuid
+from crc32c import crc32c
 from datetime import datetime
 from functools import lru_cache
 from glob import glob
@@ -27,6 +28,7 @@ from pathlib import Path
 from typing import Union, Dict, Optional
 
 from bottles.backend.globals import Paths
+from bottles.backend.managers.steamgriddb import SteamGridDBManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
@@ -522,7 +524,8 @@ class SteamManager:
     def add_shortcut(self, program_name: str, program_path: str):
         logging.info(f"Adding shortcut for {program_name}")
         cmd = "xdg-open"
-        args = "bottles:run/'{0}'/'{1}'"
+        args = f"bottles:run/'{self.config.Name}'/'{program_name}'"
+        appid = crc32c(str.encode(self.config.Name + program_name)) | 0x80000000
 
         if self.userdata_path is None:
             logging.warning("Userdata path is not set")
@@ -530,12 +533,13 @@ class SteamManager:
 
         confs = glob(os.path.join(self.userdata_path, "*/config/"))
         shortcut = {
+            "appid": appid - 0x100000000,
             "AppName": program_name,
             "Exe": cmd,
             "StartDir": ManagerUtils.get_bottle_path(self.config),
             "icon": ManagerUtils.extract_icon(self.config, program_name, program_path),
             "ShortcutPath": "",
-            "LaunchOptions": args.format(self.config.Name, program_name),
+            "LaunchOptions": args,
             "IsHidden": 0,
             "AllowDesktopConfig": 1,
             "AllowOverlay": 1,
@@ -548,6 +552,24 @@ class SteamManager:
         }
 
         for c in confs:
+            logging.info(f"Searching SteamGridDB for {program_name} assets…")
+            asset_suffixes = {
+                "grids": "p",
+                "hgrids": "",
+                "heroes": "_hero",
+                "logos": "_logo",
+                "icons": "_icon",
+            }
+            for asset_type, suffix, in asset_suffixes.items():
+                base_filename = f"{appid}{suffix}"
+                filename = SteamGridDBManager.get_steam_game_asset(program_name, asset_type, c, base_filename)                
+                if filename:
+                    if asset_type == "icons":
+                        shortcut["icon"] = os.path.join(c, "grid", filename)
+
+                    s = asset_type[:-1] if asset_type != "heroes" else "hero"
+                    logging.info(f"Added {s.capitalize()} asset ({filename})")
+
             _shortcuts = {}
             _existing = {}
 
