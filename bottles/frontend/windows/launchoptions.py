@@ -302,12 +302,12 @@ class LaunchOptionsDialog(Adw.Window):
         dialog.open(parent=self.window, callback=set_path)
 
     def __reset_pre_script(self, *_args):
-        self.program["pre_script"] = ""
+        self.program["pre_script"] = None
         self.action_pre_script.set_subtitle(self.__default_pre_script_msg)
         self.btn_pre_script_reset.set_visible(False)
 
     def __reset_post_script(self, *_args):
-        self.program["post_script"] = ""
+        self.program["post_script"] = None
         self.action_post_script.set_subtitle(self.__default_post_script_msg)
         self.btn_post_script_reset.set_visible(False)
 
