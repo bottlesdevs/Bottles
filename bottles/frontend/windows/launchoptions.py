@@ -169,19 +169,19 @@ class LaunchOptionsDialog(Adw.Window):
             "virtual_desktop",
         )
 
-        if program.get("pre_script") not in ["", None]:
+        if program.get("pre_script") not in ("", None):
             self.action_pre_script.set_subtitle(program["pre_script"])
             self.btn_pre_script_reset.set_visible(True)
 
-        if program.get("post_script") not in ["", None]:
+        if program.get("post_script") not in ("", None):
             self.action_post_script.set_subtitle(program["post_script"])
             self.btn_post_script_reset.set_visible(True)
 
-        if program.get("folder") not in [
+        if program.get("folder") not in (
             "",
             None,
             ManagerUtils.get_exe_parent_dir(self.config, self.program["path"]),
-        ]:
+        ):
             self.action_cwd.set_subtitle(program["folder"])
             self.btn_cwd_reset.set_visible(True)
 
@@ -252,10 +252,7 @@ class LaunchOptionsDialog(Adw.Window):
                 # also thrown when dialog has been cancelled
                 if error.code == 2:
                     # error 2 seems to be 'dismiss' or 'cancel'
-                    if (
-                        self.program["pre_script"] is None
-                        or self.program["pre_script"] == ""
-                    ):
+                    if self.program["pre_script"] not in (None, ""):
                         self.action_pre_script.set_subtitle(
                             self.__default_pre_script_msg
                         )
@@ -285,10 +282,7 @@ class LaunchOptionsDialog(Adw.Window):
                 # also thrown when dialog has been cancelled
                 if error.code == 2:
                     # error 2 seems to be 'dismiss' or 'cancel'
-                    if (
-                        self.program["post_script"] is None
-                        or self.program["post_script"] == ""
-                    ):
+                    if self.program["post_script"] not in (None, ""):
                         self.action_pre_script.set_subtitle(
                             self.__default_pre_script_msg
                         )
@@ -328,7 +322,7 @@ class LaunchOptionsDialog(Adw.Window):
                 # also thrown when dialog has been cancelled
                 if error.code == 2:
                     # error 2 seems to be 'dismiss' or 'cancel'
-                    if self.program["folder"] is None or self.program["folder"] == "":
+                    if self.program["folder"] not in (None, ""):
                         self.action_cwd.set_subtitle(self.__default_cwd_msg)
                 else:
                     # something else happened...

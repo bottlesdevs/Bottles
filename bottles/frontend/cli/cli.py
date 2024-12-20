@@ -666,9 +666,9 @@ class CLI:
             _program_args = program.get("arguments")
             if _keep and _program_args:
                 _args = _program_args + " " + _args
-            program.get("folder", "")
             program.get("pre_script", None)
             program.get("post_script", None)
+            program.get("folder", None)
 
             program.get("dxvk")
             program.get("vkd3d")

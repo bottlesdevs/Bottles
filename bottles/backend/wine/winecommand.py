@@ -95,11 +95,11 @@ class WineCommand:
         arguments: str = "",
         environment: dict = {},
         communicate: bool = False,
-        cwd: Optional[str] = None,
         colors: str = "default",
         minimal: bool = False,  # avoid gamemode/gamescope usage
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
+        cwd: Optional[str] = None,
     ):
         _environment = environment.copy()
         self.config = self._get_config(config)
