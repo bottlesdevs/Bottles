@@ -20,7 +20,7 @@ import os
 import re
 from gettext import gettext as _
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw, Xdp
 
 from bottles.backend.globals import (
     gamemode_available,
@@ -78,7 +78,6 @@ class PreferencesView(Adw.PreferencesPage):
     row_discrete = Gtk.Template.Child()
     row_vkbasalt = Gtk.Template.Child()
     row_manage_display = Gtk.Template.Child()
-    row_runtime = Gtk.Template.Child()
     row_steam_runtime = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
     label_cwd = Gtk.Template.Child()
@@ -95,7 +94,6 @@ class PreferencesView(Adw.PreferencesPage):
     switch_gamemode = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
-    switch_runtime = Gtk.Template.Child()
     switch_steam_runtime = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     switch_versioning_compression = Gtk.Template.Child()
@@ -138,6 +136,63 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = config
         self.queue = details.queue
         self.details = details
+
+        if not gamemode_available or not Xdp.Portal.running_under_sandbox():
+            return
+
+        _not_available = _("This feature is unavailable on your system.")
+        _flatpak_not_available = _(
+            "{} To add this feature, please run flatpak install"
+        ).format(_not_available)
+        _gamescope_pkg_name = "org.freedesktop.Platform.VulkanLayer.gamescope"
+        _vkbasalt_pkg_name = "org.freedesktop.Platform.VulkanLayer.vkBasalt"
+        _mangohud_pkg_name = "org.freedesktop.Platform.VulkanLayer.MangoHud"
+        _obsvkc_pkg_name = "com.obsproject.Studio.Plugin.OBSVkCapture"
+        _flatpak_pkg_name = {
+            "gamescope": (
+                f"{_gamescope_pkg_name}//{base_version}"
+                if base_version
+                else _gamescope_pkg_name
+            ),
+            "vkbasalt": (
+                f"{_vkbasalt_pkg_name}//{base_version}"
+                if base_version
+                else _vkbasalt_pkg_name
+            ),
+            "mangohud": (
+                f"{_mangohud_pkg_name}//{base_version}"
+                if base_version
+                else _mangohud_pkg_name
+            ),
+            "obsvkc": _obsvkc_pkg_name,
+        }
+
+        if not gamescope_available:
+            _gamescope_not_available = (
+                f"{_flatpak_not_available} {_flatpak_pkg_name['gamescope']}"
+            )
+            self.switch_gamescope.set_tooltip_text(_gamescope_not_available)
+            self.btn_manage_gamescope.set_tooltip_text(_gamescope_not_available)
+
+        if not vkbasalt_available:
+            _vkbasalt_not_available = (
+                f"{_flatpak_not_available} {_flatpak_pkg_name['vkbasalt']}"
+            )
+            self.switch_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
+            self.btn_manage_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
+
+        if not mangohud_available:
+            _mangohud_not_available = (
+                f"{_flatpak_not_available} {_flatpak_pkg_name['mangohud']}"
+            )
+            self.switch_mangohud.set_tooltip_text(_mangohud_not_available)
+            self.btn_manage_mangohud.set_tooltip_text(_mangohud_not_available)
+
+        if not obs_vkc_available:
+            _obsvkc_not_available = (
+                f"{_flatpak_not_available} {_flatpak_pkg_name['obsvkc']}"
+            )
+            self.switch_obsvkc.set_tooltip_text(_obsvkc_not_available)
 
         # region signals
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
@@ -190,11 +245,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.row_nvapi.set_visible(is_nvidia_gpu)
         self.combo_nvapi.set_visible(is_nvidia_gpu)
 
-        """Set Bottles Runtime row to visible when Bottles is not running inside Flatpak"""
-        if "FLATPAK_ID" not in os.environ and RuntimeManager.get_runtimes("bottles"):
-            self.row_runtime.set_visible(True)
-            self.switch_runtime.connect("state-set", self.__toggle_runtime)
-
         if RuntimeManager.get_runtimes("steam"):
             self.row_steam_runtime.set_visible(True)
             self.switch_steam_runtime.connect("state-set", self.__toggle_steam_runtime)
@@ -209,80 +259,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         self.switch_vmtouch.set_sensitive(vmtouch_available)
-        _not_available = _("This feature is unavailable on your system.")
-        _flatpak_not_available = _(
-            "{} To add this feature, please run flatpak install"
-        ).format(_not_available)
-        _gamescope_pkg_name = "org.freedesktop.Platform.VulkanLayer.gamescope"
-        _vkbasalt_pkg_name = "org.freedesktop.Platform.VulkanLayer.vkBasalt"
-        _mangohud_pkg_name = "org.freedesktop.Platform.VulkanLayer.MangoHud"
-        _obsvkc_pkg_name = "com.obsproject.Studio.Plugin.OBSVkCapture"
-        _flatpak_pkg_name = {
-            "gamescope": (
-                f"{_gamescope_pkg_name}//{base_version}"
-                if base_version
-                else _gamescope_pkg_name
-            ),
-            "vkbasalt": (
-                f"{_vkbasalt_pkg_name}//{base_version}"
-                if base_version
-                else _vkbasalt_pkg_name
-            ),
-            "mangohud": (
-                f"{_mangohud_pkg_name}//{base_version}"
-                if base_version
-                else _mangohud_pkg_name
-            ),
-            "obsvkc": _obsvkc_pkg_name,
-        }
-
-        if not gamemode_available:
-            self.switch_gamemode.set_tooltip_text(_not_available)
-
-        if not gamescope_available:
-            if "FLATPAK_ID" in os.environ:
-                _gamescope_not_available = (
-                    f"{_flatpak_not_available} {_flatpak_pkg_name['gamescope']}"
-                )
-                self.switch_gamescope.set_tooltip_text(_gamescope_not_available)
-                self.btn_manage_gamescope.set_tooltip_text(_gamescope_not_available)
-            else:
-                self.switch_gamescope.set_tooltip_text(_not_available)
-                self.btn_manage_gamescope.set_tooltip_text(_not_available)
-
-        if not vkbasalt_available:
-            if "FLATPAK_ID" in os.environ:
-                _vkbasalt_not_available = (
-                    f"{_flatpak_not_available} {_flatpak_pkg_name['vkbasalt']}"
-                )
-                self.switch_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
-                self.btn_manage_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
-            else:
-                self.switch_vkbasalt.set_tooltip_text(_not_available)
-                self.btn_manage_vkbasalt.set_tooltip_text(_not_available)
-
-        if not mangohud_available:
-            if "FLATPAK_ID" in os.environ:
-                _mangohud_not_available = (
-                    f"{_flatpak_not_available} {_flatpak_pkg_name['mangohud']}"
-                )
-                self.switch_mangohud.set_tooltip_text(_mangohud_not_available)
-                self.btn_manage_mangohud.set_tooltip_text(_mangohud_not_available)
-            else:
-                self.switch_mangohud.set_tooltip_text(_not_available)
-                self.btn_manage_mangohud.set_tooltip_text(_not_available)
-
-        if not obs_vkc_available:
-            if "FLATPAK_ID" in os.environ:
-                _obsvkc_not_available = (
-                    f"{_flatpak_not_available} {_flatpak_pkg_name['obsvkc']}"
-                )
-                self.switch_obsvkc.set_tooltip_text(_obsvkc_not_available)
-            else:
-                self.switch_obsvkc.set_tooltip_text(_not_available)
-
-        if not vmtouch_available:
-            self.switch_vmtouch.set_tooltip_text(_not_available)
 
     def __check_entry_name(self, *_args):
         if self.entry_name.get_text() != self.config.Name:
@@ -428,7 +404,6 @@ class PreferencesView(Adw.PreferencesPage):
             self.__toggle_versioning_patterns
         )
         with contextlib.suppress(TypeError):
-            self.switch_runtime.handler_block_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
@@ -450,7 +425,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_versioning_patterns.set_active(
             parameters.versioning_exclusion_patterns
         )
-        self.switch_runtime.set_active(parameters.use_runtime)
         self.switch_steam_runtime.set_active(parameters.use_steam_runtime)
         self.switch_vmtouch.set_active(parameters.vmtouch)
 
@@ -568,7 +542,6 @@ class PreferencesView(Adw.PreferencesPage):
             self.__toggle_versioning_patterns
         )
         with contextlib.suppress(TypeError):
-            self.switch_runtime.handler_unblock_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_unblock_by_func(
                 self.__toggle_steam_runtime
             )
