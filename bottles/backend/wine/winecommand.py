@@ -597,10 +597,10 @@ class WineCommand:
                     del extracted_env["WINEDLLOVERRIDES"]
                 environment.update(extracted_env)
 
-        if post_script is not None:
+        if post_script not in (None, ""):
             command = f"{command} ; sh '{post_script}'"
 
-        if pre_script is not None:
+        if pre_script not in (None, ""):
             command = f"sh '{pre_script}' ; {command}"
 
         return command
