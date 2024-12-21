@@ -252,7 +252,7 @@ class LaunchOptionsDialog(Adw.Window):
                 # also thrown when dialog has been cancelled
                 if error.code == 2:
                     # error 2 seems to be 'dismiss' or 'cancel'
-                    if self.program["pre_script"] not in (None, ""):
+                    if self.program["pre_script"] in (None, ""):
                         self.action_pre_script.set_subtitle(
                             self.__default_pre_script_msg
                         )
@@ -282,7 +282,7 @@ class LaunchOptionsDialog(Adw.Window):
                 # also thrown when dialog has been cancelled
                 if error.code == 2:
                     # error 2 seems to be 'dismiss' or 'cancel'
-                    if self.program["post_script"] not in (None, ""):
+                    if self.program["post_script"] in (None, ""):
                         self.action_pre_script.set_subtitle(
                             self.__default_pre_script_msg
                         )
@@ -322,7 +322,7 @@ class LaunchOptionsDialog(Adw.Window):
                 # also thrown when dialog has been cancelled
                 if error.code == 2:
                     # error 2 seems to be 'dismiss' or 'cancel'
-                    if self.program["folder"] not in (None, ""):
+                    if self.program["folder"] in (None, ""):
                         self.action_cwd.set_subtitle(self.__default_cwd_msg)
                 else:
                     # something else happened...
