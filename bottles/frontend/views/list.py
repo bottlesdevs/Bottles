@@ -37,14 +37,7 @@ class BottlesBottleRow(Adw.ActionRow):
 
     # region Widgets
     btn_run = Gtk.Template.Child()
-    btn_repair = Gtk.Template.Child()
-    btn_run_executable = Gtk.Template.Child()
-    details_image = Gtk.Template.Child()
     label_env = Gtk.Template.Child()
-    label_state = Gtk.Template.Child()
-    icon_damaged = Gtk.Template.Child()
-    grid_versioning = Gtk.Template.Child()
-    spinner = Gtk.Template.Child()
 
     # endregion
 
@@ -55,9 +48,8 @@ class BottlesBottleRow(Adw.ActionRow):
         self.window = window
         self.manager = window.manager
         self.config = config
-        self.label_env_context = self.label_env.get_style_context()
 
-        """Format update date"""
+        # Format update date
         update_date = _("N/A")
         if self.config.Update_Date:
             try:
@@ -68,7 +60,7 @@ class BottlesBottleRow(Adw.ActionRow):
             except ValueError:
                 update_date = _("N/A")
 
-        """Check runner type by name"""
+        # Check runner type by name
         if self.config.Runner.startswith("lutris"):
             self.runner_type = "wine"
         else:
@@ -77,39 +69,19 @@ class BottlesBottleRow(Adw.ActionRow):
         # connect signals
         self.connect("activated", self.show_details)
         self.btn_run.connect("clicked", self.run_executable)
-        self.btn_repair.connect("clicked", self.repair)
-        self.btn_run_executable.connect("clicked", self.run_executable)
 
         # populate widgets
-        self.grid_versioning.set_visible(self.config.Versioning)
-        self.label_state.set_text(str(self.config.State))
         self.set_title(self.config.Name)
         if self.window.settings.get_boolean("update-date"):
             self.set_subtitle(update_date)
         self.label_env.set_text(_(self.config.Environment))
-        self.label_env_context.add_class("tag-%s" % self.config.Environment.lower())
+        self.label_env.add_css_class("tag-%s" % self.config.Environment.lower())
 
         # Set tooltip text
         self.btn_run.set_tooltip_text(_(f'Run executable in "{self.config.Name}"'))
 
-        """If config is broken"""
-        if self.config.get("Broken"):
-            for w in [self.btn_repair, self.icon_damaged]:
-                w.set_visible(True)
-                w.set_sensitive(True)
-
-            self.btn_run.set_sensitive(False)
-            self.handler_block_by_func(self.show_details)
-
-    """Repair bottle"""
-
-    def repair(self, widget):
-        self.disable()
-        RunAsync(task_func=self.manager.repair_bottle, config=self.config)
-
-    """Display file dialog for executable"""
-
     def run_executable(self, *_args):
+        """Display file dialog for executable"""
         if not Xdp.Portal.running_under_sandbox():
             return
 
@@ -202,9 +174,7 @@ class BottleView(Adw.Bin):
     @staticmethod
     def __filter_bottles(row, terms=None):
         text = row.get_title().lower()
-        if terms.lower() in text:
-            return True
-        return False
+        return terms.lower() in text
 
     def idle_update_bottles(self, show=False):
         self.__bottles = {}
@@ -215,13 +185,10 @@ class BottleView(Adw.Bin):
             self.list_steam.remove(self.list_steam.get_first_child())
 
         local_bottles = self.window.manager.local_bottles
+        is_empty_local_bottles = len(local_bottles) == 0
 
-        if len(local_bottles) == 0:
-            self.pref_page.set_visible(False)
-            self.bottle_status.set_visible(True)
-        else:
-            self.pref_page.set_visible(True)
-            self.bottle_status.set_visible(False)
+        self.pref_page.set_visible(not is_empty_local_bottles)
+        self.bottle_status.set_visible(is_empty_local_bottles)
 
         for name, config in local_bottles.items():
             _entry = BottlesBottleRow(self.window, config)
