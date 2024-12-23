@@ -29,9 +29,9 @@ from bottles.frontend.utils.filters import add_executable_filters, add_all_filte
 from bottles.frontend.params import APP_ID
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/list-entry.ui")
-class BottleViewEntry(Adw.ActionRow):
-    __gtype_name__ = "BottleViewEntry"
+@Gtk.Template(resource_path="/com/usebottles/bottles/bottle-row.ui")
+class BottlesBottleRow(Adw.ActionRow):
+    __gtype_name__ = "BottlesBottleRow"
 
     Adw.init()
 
@@ -224,7 +224,7 @@ class BottleView(Adw.Bin):
             self.bottle_status.set_visible(False)
 
         for name, config in local_bottles.items():
-            _entry = BottleViewEntry(self.window, config)
+            _entry = BottlesBottleRow(self.window, config)
             self.__bottles[config.Path] = _entry
 
             if config.Environment != "Steam":
