@@ -155,7 +155,7 @@ class BottleView(Adw.Bin):
 
         # backend signals
         SignalManager.connect(
-            Signals.ManagerLocalBottlesLoaded, self.backend_local_bottle_loaded
+            Signals.ManagerLocalBottlesLoaded, self.update_bottles_list
         )
 
         self.bottle_status.set_icon_name(APP_ID)
@@ -176,7 +176,7 @@ class BottleView(Adw.Bin):
         text = row.get_title().lower()
         return terms.lower() in text
 
-    def idle_update_bottles_list(self, show=False):
+    def update_bottles_list(self, *args) -> None:
         self.__bottles = {}
         while self.list_bottles.get_first_child():
             self.list_bottles.remove(self.list_bottles.get_first_child())
@@ -206,26 +206,9 @@ class BottleView(Adw.Bin):
                 self.group_steam.set_visible(True)
                 self.group_bottles.set_title(_("Your Bottles"))
 
-        if (
-            self.arg_bottle is not None and self.arg_bottle in local_bottles.keys()
-        ) or (show is not None and show in local_bottles.keys()):
-            _config = None
-            if self.arg_bottle:
-                _config = local_bottles[self.arg_bottle]
-            if show:
-                _config = local_bottles[show]
-            if not _config:
-                raise NotImplementedError("neither 'arg_bottle' nor 'show' are set")
-
-            self.window.page_details.view_preferences.update_combo_components()
-            self.window.show_details_view(config=_config)
-            self.arg_bottle = None
-
-    def backend_local_bottle_loaded(self, _: Result):
-        self.update_bottles_list()
-
-    def update_bottles_list(self, show=False):
-        GLib.idle_add(self.idle_update_bottles_list, show)
+    def show_page(self, page: str) -> None:
+        if config := self.window.manager.local_bottles.get(page):
+            self.window.show_details_view(config=config)
 
     def disable_bottle(self, config):
         self.__bottles[config.Path].disable()
