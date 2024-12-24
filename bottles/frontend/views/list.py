@@ -158,7 +158,7 @@ class BottleView(Adw.Bin):
             Signals.ManagerLocalBottlesLoaded, self.backend_local_bottle_loaded
         )
 
-        self.bottle_status.set_icon_name(f"{APP_ID}-symbolic")
+        self.bottle_status.set_icon_name(APP_ID)
 
         self.update_bottles()
 
