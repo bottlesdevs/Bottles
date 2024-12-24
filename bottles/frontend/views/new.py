@@ -243,7 +243,9 @@ class NewView(Adw.Window):
         # Ask the manager to check for new bottles,
         # then update the user bottles' list.
         self.manager.check_bottles()
-        self.window.page_list.update_bottles(show=result.data.get("config").get("Path"))
+        self.window.page_list.update_bottles_list(
+            show=result.data.get("config").get("Path")
+        )
 
     def __radio_get_active(self) -> str:
         # TODO: Remove this ugly zig zag and find a better way to set the environment
