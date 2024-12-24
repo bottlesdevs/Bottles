@@ -160,7 +160,7 @@ class BottleView(Adw.Bin):
 
         self.bottle_status.set_icon_name(APP_ID)
 
-        self.update_bottles()
+        self.update_bottles_list()
 
     def __search_bottles(self, widget, event=None, data=None):
         """
@@ -176,7 +176,7 @@ class BottleView(Adw.Bin):
         text = row.get_title().lower()
         return terms.lower() in text
 
-    def idle_update_bottles(self, show=False):
+    def idle_update_bottles_list(self, show=False):
         self.__bottles = {}
         while self.list_bottles.get_first_child():
             self.list_bottles.remove(self.list_bottles.get_first_child())
@@ -222,10 +222,10 @@ class BottleView(Adw.Bin):
             self.arg_bottle = None
 
     def backend_local_bottle_loaded(self, _: Result):
-        self.update_bottles()
+        self.update_bottles_list()
 
-    def update_bottles(self, show=False):
-        GLib.idle_add(self.idle_update_bottles, show)
+    def update_bottles_list(self, show=False):
+        GLib.idle_add(self.idle_update_bottles_list, show)
 
     def disable_bottle(self, config):
         self.__bottles[config.Path].disable()
