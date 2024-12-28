@@ -78,7 +78,7 @@ class BottlesBottleRow(Adw.ActionRow):
         self.label_env.add_css_class("tag-%s" % self.config.Environment.lower())
 
         # Set tooltip text
-        self.button_run.set_tooltip_text(_(f'Run executable in "{self.config.Name}"'))
+        self.button_run.set_tooltip_text(_(f"Run executable in “{self.config.Name}”"))
 
     def run_executable(self, *_args):
         """Display file dialog for executable"""
@@ -90,7 +90,7 @@ class BottlesBottleRow(Adw.ActionRow):
                 return
 
             self.window.show_toast(
-                _('Launching "{0}" in "{1}"…').format(
+                _("Launching “{0}” in “{1}”…").format(
                     dialog.get_file().get_basename(), self.config.Name
                 )
             )
