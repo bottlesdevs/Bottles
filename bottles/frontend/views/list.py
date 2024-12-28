@@ -36,7 +36,7 @@ class BottlesBottleRow(Adw.ActionRow):
     Adw.init()
 
     # region Widgets
-    btn_run = Gtk.Template.Child()
+    button_run = Gtk.Template.Child()
     label_env = Gtk.Template.Child()
 
     # endregion
@@ -68,7 +68,7 @@ class BottlesBottleRow(Adw.ActionRow):
 
         # connect signals
         self.connect("activated", self.show_details)
-        self.btn_run.connect("clicked", self.run_executable)
+        self.button_run.connect("clicked", self.run_executable)
 
         # populate widgets
         self.set_title(self.config.Name)
@@ -78,7 +78,7 @@ class BottlesBottleRow(Adw.ActionRow):
         self.label_env.add_css_class("tag-%s" % self.config.Environment.lower())
 
         # Set tooltip text
-        self.btn_run.set_tooltip_text(_(f'Run executable in "{self.config.Name}"'))
+        self.button_run.set_tooltip_text(_(f'Run executable in "{self.config.Name}"'))
 
     def run_executable(self, *_args):
         """Display file dialog for executable"""
