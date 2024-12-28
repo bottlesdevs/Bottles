@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-09-20 00:40+0000\n"
+"PO-Revision-Date: 2024-12-28 12:02+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/bottles/bottles/"
 "fa/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -26,7 +26,7 @@ msgstr "هیچ مسیری مشخّص نشده"
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
 msgid "Backup {0}"
-msgstr ""
+msgstr "پشتیبان گیری از {0}"
 
 #: bottles/backend/managers/backup.py:101
 #, python-brace-format
@@ -155,9 +155,8 @@ msgid "Restoring state {} …"
 msgstr ""
 
 #: bottles/backend/managers/versioning.py:162
-#, fuzzy
 msgid "State not found"
-msgstr "حذف کننده"
+msgstr "وضعیت پیدا نشد"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
@@ -214,15 +213,13 @@ msgstr ""
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
-#, fuzzy
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "© ۲۰۱۷-۲۰۲۲ - توسعه دهندگان Bottles"
+msgstr "حق رونوشت © ۲۰۱۷ توسعه دهندگان بطری‌ها"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
-#, fuzzy
 msgid "Bottles Developers"
-msgstr "© ۲۰۱۷-۲۰۲۲ - توسعه دهندگان Bottles"
+msgstr "توسعه دهندگان بطری‌ها"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
@@ -239,9 +236,8 @@ msgid "Uninstall"
 msgstr "حذف نصب"
 
 #: bottles/frontend/ui/component-entry.blp:23
-#, fuzzy
 msgid "Browse Files"
-msgstr "مرور فایل ها"
+msgstr "مرور پرونده‌ها"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
@@ -251,7 +247,7 @@ msgstr ""
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
-msgstr "دانلود و نصب"
+msgstr "بارگیری و نصب"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
@@ -287,9 +283,8 @@ msgid "Category"
 msgstr "دسته"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
-#, fuzzy
 msgid "Download & Install this Dependency"
-msgstr "دانلود و نصب وابستگی‌ها"
+msgstr "بارگیری و نصب وابستگی‌ها"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
@@ -335,14 +330,12 @@ msgstr "برون‌ریزی پیکربندی…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
-#, fuzzy
 msgid "Show Hidden Programs"
-msgstr "نمایش/مخفی سازی برنامه های حذف شده"
+msgstr "نمایش برنامه‌های نهفته"
 
 #: bottles/frontend/ui/details-bottle.blp:49
-#, fuzzy
 msgid "Search for new programs"
-msgstr "جست و جو برای برنامه های نصب شده"
+msgstr "جست‌وجوی برنامه‌های جدید"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
@@ -376,23 +369,20 @@ msgstr "راه اندازی مجدد"
 
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
-#, fuzzy
 msgid "Launch Options"
-msgstr "گزینه های پیشرفته"
+msgstr "گزینه‌های اجرا"
 
 #: bottles/frontend/ui/details-bottle.blp:135
-#, fuzzy
 msgid "Run in Terminal"
-msgstr "اجرا با ترمینال"
+msgstr "اجرا در پایانه"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
 msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:164
-#, fuzzy
 msgid "My bottle"
-msgstr "حذف Bottle"
+msgstr "بطری‌هایم"
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
@@ -592,9 +582,8 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/details-installers.blp:29
-#, fuzzy
 msgid "No Installers Found"
-msgstr "حذف کننده"
+msgstr "هیچ نصب کننده‌ای پیدا نشد"
 
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
@@ -604,9 +593,8 @@ msgstr ""
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
 #: bottles/frontend/ui/preferences.blp:81
-#, fuzzy
 msgid "Read Documentation"
-msgstr "مطالعه مستندات"
+msgstr "خواندن مستندات"
 
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52
@@ -629,7 +617,7 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
 msgid "DXVK"
-msgstr ""
+msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
@@ -642,7 +630,7 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:266
 msgid "VKD3D"
-msgstr ""
+msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
@@ -664,16 +652,15 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:71
-#, fuzzy
 msgid "Updating LatencyFleX, please wait…"
-msgstr "در حال بروزرسانی نسخه ویندوز، لطفا صبر کنید…"
+msgstr "به‌روز رساندن LatencyFleX. لطفاً شکیبا باشید…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
@@ -702,9 +689,8 @@ msgid "Manage FidelityFX Super Resolution settings"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:125
-#, fuzzy
 msgid "Discrete Graphics"
-msgstr "گرافیک"
+msgstr "گرافیک اختصاصی"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
@@ -734,9 +720,8 @@ msgid "Manage Gamescope settings"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:171
-#, fuzzy
 msgid "Advanced Display Settings"
-msgstr "تنظیمات نمایش"
+msgstr "تنظیمات نمایش پیش‌رفته"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
@@ -756,20 +741,19 @@ msgstr "سیستم"
 
 #: bottles/frontend/ui/details-preferences.blp:194
 msgid "Esync"
-msgstr ""
+msgstr "Esync"
 
 #: bottles/frontend/ui/details-preferences.blp:195
 msgid "Fsync"
-msgstr ""
+msgstr "Fsync"
 
 #: bottles/frontend/ui/details-preferences.blp:196
 msgid "Futex2"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:202
-#, fuzzy
 msgid "Monitor Performance"
-msgstr "عملکرد"
+msgstr "عملکرد نمایشگر"
 
 #: bottles/frontend/ui/details-preferences.blp:203
 msgid ""
@@ -778,9 +762,8 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:211
-#, fuzzy
 msgid "Feral GameMode"
-msgstr "استفاده از GameMode"
+msgstr "حالت بازی Feral"
 
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
@@ -814,9 +797,8 @@ msgid "Compatibility"
 msgstr "سازگاری"
 
 #: bottles/frontend/ui/details-preferences.blp:254
-#, fuzzy
 msgid "Windows Version"
-msgstr "نسخه ویندوز"
+msgstr "نگارش ویندوز"
 
 #: bottles/frontend/ui/details-preferences.blp:257
 msgid "Updating Windows version, please wait…"
@@ -874,9 +856,8 @@ msgstr ""
 #: bottles/frontend/ui/dialog-launch-options.blp:90
 #: bottles/frontend/ui/new.blp:150 bottles/frontend/ui/new.blp:181
 #: bottles/frontend/ui/preferences.blp:136
-#, fuzzy
 msgid "Reset to Default"
-msgstr "بطری‌ها"
+msgstr "بازنشانی به پیش‌گزیده"
 
 #: bottles/frontend/ui/details-preferences.blp:339
 #: bottles/frontend/ui/preferences.blp:157 bottles/frontend/views/new.py:78
@@ -892,19 +873,16 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:357
 #: bottles/frontend/ui/dialog-env-vars.blp:20
-#, fuzzy
 msgid "Environment Variables"
-msgstr "افزودن سریع متغییر های محیطی"
+msgstr "متغیّرهای محیطی"
 
 #: bottles/frontend/ui/details-preferences.blp:367
-#, fuzzy
 msgid "Manage Drives"
-msgstr "مدیریت درایو ها"
+msgstr "مدیریت گرداننده‌ها"
 
 #: bottles/frontend/ui/details-preferences.blp:381
-#, fuzzy
 msgid "Automatic Snapshots"
-msgstr "نسخه سازی بطری‌ها ( اختیاری )"
+msgstr "عکس‌های فوری خودکار"
 
 #: bottles/frontend/ui/details-preferences.blp:382
 msgid ""
@@ -931,9 +909,8 @@ msgid "Exclude paths in snapshots."
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:405
-#, fuzzy
 msgid "Manage Patterns"
-msgstr "مدیریت درایو ها"
+msgstr "مدیریت الگوها"
 
 #: bottles/frontend/ui/details-taskmanager.blp:17
 msgid "Refresh"
@@ -944,9 +921,8 @@ msgid "Stop process"
 msgstr "توقّف فرایند"
 
 #: bottles/frontend/ui/details-versioning.blp:18
-#, fuzzy
 msgid "No Snapshots Found"
-msgstr "حذف کننده"
+msgstr "هیچ عکس فوری‌ای پیدا نشد"
 
 #: bottles/frontend/ui/details-versioning.blp:19
 msgid "Create your first snapshot to start saving states of your preferences."
@@ -961,9 +937,8 @@ msgid "Save the bottle state."
 msgstr ""
 
 #: bottles/frontend/ui/details-versioning.blp:78
-#, fuzzy
 msgid "Create new Snapshot"
-msgstr "بطری‌ها"
+msgstr "ایجاد عکس فوری جدید"
 
 #: bottles/frontend/ui/details.blp:16
 msgid "Details"
@@ -971,18 +946,16 @@ msgstr "جزییات"
 
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
-#, fuzzy
 msgid "Go Back"
-msgstr "برگشت"
+msgstr "بازگشت"
 
 #: bottles/frontend/ui/details.blp:75
 msgid "Operations"
 msgstr "عملیات"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:4
-#, fuzzy
 msgid "Select Bottle"
-msgstr "حذف Bottle"
+msgstr "گزینش بطری"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:16
 #: bottles/frontend/ui/dialog-proton-alert.blp:16
@@ -998,9 +971,8 @@ msgstr "گزینش"
 #: bottles/frontend/ui/dialog-bottle-picker.blp:38
 #: bottles/frontend/ui/new.blp:9 bottles/frontend/ui/new.blp:49
 #: bottles/frontend/ui/window.blp:25
-#, fuzzy
 msgid "Create New Bottle"
-msgstr "بطری‌ها"
+msgstr "ایجاد بطری جدید"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
@@ -1021,9 +993,8 @@ msgid "_Cancel"
 msgstr "_لغو"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
-#, fuzzy
 msgid "Send Report"
-msgstr "ارسال گزارش"
+msgstr "فرستادن گزارش"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:44
 msgid ""
@@ -1069,9 +1040,8 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
-#, fuzzy
 msgid "New Override"
-msgstr "متغیر جدید"
+msgstr "پایمالی جدید"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:21
 msgid "Overrides"
@@ -1089,21 +1059,19 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
-msgstr ""
+msgstr "حرف"
 
 #: bottles/frontend/ui/dialog-drives.blp:49
-#, fuzzy
 msgid "Existing Drives"
-msgstr "درایو های موجود"
+msgstr "گرداننده‌های موجود"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:16
-#, fuzzy
 msgid "Duplicate Bottle"
-msgstr "حذف Bottle"
+msgstr "تکثیر بطری"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:38
 msgid "Duplicate"
-msgstr ""
+msgstr "تکثیر"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:49
 msgid "Enter a name for the duplicate of the Bottle."
@@ -1111,18 +1079,18 @@ msgstr "ورود نامی برای دوقلوی بطری."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:69
 msgid "Duplicating…"
-msgstr ""
+msgstr "تکثیر کردن…"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:78
 #: bottles/frontend/ui/dialog-installer.blp:103
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/views/new.py:177
 msgid "This could take a while."
-msgstr ""
+msgstr "ممکن است کمی طول بکشد."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
-msgstr ""
+msgstr "بطری تکثیر شد"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:28
 msgid ""
@@ -1135,9 +1103,8 @@ msgid "Variable Name"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-env-vars.blp:37
-#, fuzzy
 msgid "Existing Variables"
-msgstr "درایو های موجود"
+msgstr "متغیّرهای موجود"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
 msgid "Exclusion Patterns"
@@ -1154,9 +1121,8 @@ msgid "Pattern"
 msgstr "الگو"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:37
-#, fuzzy
 msgid "Existing Patterns"
-msgstr "درایو های موجود"
+msgstr "الگوهای موجود"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
@@ -1174,9 +1140,8 @@ msgid "Manage how games should be displayed."
 msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
-#, fuzzy
 msgid "Game Resolution"
-msgstr "رزولوشن بازی"
+msgstr "وضوح بازی"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
 msgid "Uses the resolution of the video game as a reference in pixels."
@@ -1185,17 +1150,16 @@ msgstr ""
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
 msgid "Width"
-msgstr "عرض"
+msgstr "پهنا"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:64
 #: bottles/frontend/ui/dialog-gamescope.blp:101
 msgid "Height"
-msgstr "ارتفاع"
+msgstr "بلندا"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
-#, fuzzy
 msgid "Window Resolution"
-msgstr "نسخه ویندوز"
+msgstr "وضوح پنجره"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:82
 msgid ""
@@ -1216,18 +1180,16 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "پیکربندی"
+msgstr "مقیاس بندی صحیح"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
-#, fuzzy
 msgid "Window Type"
-msgstr "نوع پنجره"
+msgstr "گونهٔ پنجره"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:166
 msgid "Borderless"
-msgstr ""
+msgstr "بی‌حاشیه"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:172
 msgid "Fullscreen"
@@ -1256,9 +1218,8 @@ msgid "Completed!"
 msgstr "کامل شده!"
 
 #: bottles/frontend/ui/dialog-installer.blp:130
-#, fuzzy
 msgid "Show Programs"
-msgstr "برنامه ها"
+msgstr "نمایش برنامه‌ها"
 
 #: bottles/frontend/ui/dialog-installer.blp:148
 msgid "Installation Failed!"
@@ -1266,12 +1227,11 @@ msgstr "نصب شکست خورد!"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
-msgstr ""
+msgstr "چیزی اشتباه پیش رفت."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
-#, fuzzy
 msgid "All messages"
-msgstr "حذف پیغام"
+msgstr "همهٔ پیام‌ها"
 
 #: bottles/frontend/ui/dialog-journal.blp:13
 msgid "Critical"
@@ -1333,9 +1293,8 @@ msgid "Choose a script which should be executed after run."
 msgstr ""
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
-#, fuzzy
 msgid "Choose a Script"
-msgstr "انتخاب مسیر"
+msgstr "گزینش کدنوشته"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:84
 #: bottles/frontend/windows/launchoptions.py:55
@@ -1344,9 +1303,8 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-launch-options.blp:101
 #: bottles/frontend/ui/drive-entry.blp:22
-#, fuzzy
 msgid "Choose a Directory"
-msgstr "انتخاب مسیر"
+msgstr "گزینش شاخه"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:114
 msgid "These settings will override the default settings for this executable."
@@ -1357,9 +1315,8 @@ msgid "Preferences Overrides"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-launch-options.blp:119
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
-msgstr "بطری‌ها"
+msgstr "بازنشانی به پیش‌گزیدهٔ بطری‌ها"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:165
 msgid "Virtual Desktop"
@@ -1401,9 +1358,8 @@ msgid "Choose a new name for the selected program."
 msgstr ""
 
 #: bottles/frontend/ui/dialog-rename.blp:33
-#, fuzzy
 msgid "New Name"
-msgstr "نام"
+msgstr "نام جدید"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 msgid "Run With Arguments"
@@ -1424,23 +1380,20 @@ msgid "e.g.: -opengl -SkipBuildPatchPrereq"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
-#, fuzzy
 msgid "Sandbox Settings"
-msgstr "تنظیمات نمایش"
+msgstr "تنظیمات گودال ماسه"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-sandbox.blp:34
-#, fuzzy
 msgid "Share Sound"
-msgstr "حذف کننده"
+msgstr "هم‌رسانی صدا"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:16
-#, fuzzy
 msgid "Upgrade Needed"
-msgstr "ارتقا"
+msgstr "نیازمند ارتقا"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:38
 #: bottles/frontend/ui/onboard.blp:81
@@ -1492,9 +1445,8 @@ msgid "Default"
 msgstr "پیش‌گزیده"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:48
-#, fuzzy
 msgid "Default Settings"
-msgstr "تنظیمات نمایش"
+msgstr "تنظیمات پیش‌گزیده"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
@@ -1541,9 +1493,8 @@ msgid "Fast Approximate Anti-Aliasing"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:163
-#, fuzzy
 msgid "Subpixel Quality"
-msgstr "کیفیت فوق العاده"
+msgstr "کیفیت زیرپیکسل"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:191
 msgid "Quality Edge Threshold"
@@ -1677,7 +1628,7 @@ msgstr "برداشتن"
 
 #: bottles/frontend/ui/drive-entry.blp:5
 msgid "/point/to/path"
-msgstr ""
+msgstr "/point/to/path"
 
 #: bottles/frontend/ui/env-var-entry.blp:4
 #: bottles/frontend/ui/exclusion-pattern-entry.blp:4
@@ -1710,9 +1661,8 @@ msgid "Search again for prefixes"
 msgstr ""
 
 #: bottles/frontend/ui/importer.blp:38
-#, fuzzy
 msgid "No Prefixes Found"
-msgstr "برنامه ها"
+msgstr "هیج پیشوندی پیدا نشد"
 
 #: bottles/frontend/ui/importer.blp:39
 msgid ""
@@ -1733,14 +1683,12 @@ msgid "Read Review…"
 msgstr ""
 
 #: bottles/frontend/ui/installer-entry.blp:34
-#, fuzzy
 msgid "Installer name"
-msgstr "حذف کننده"
+msgstr "نام نصب کننده"
 
 #: bottles/frontend/ui/installer-entry.blp:35
-#, fuzzy
 msgid "Installer description"
-msgstr "حذف کننده"
+msgstr "شرح نصب کننده"
 
 #: bottles/frontend/ui/installer-entry.blp:42
 msgid "Unknown"
@@ -1751,9 +1699,8 @@ msgid "Install this Program"
 msgstr ""
 
 #: bottles/frontend/ui/installer-entry.blp:69
-#, fuzzy
 msgid "Program Menu"
-msgstr "برنامه ها"
+msgstr "فهرست برنامه‌ها"
 
 #: bottles/frontend/ui/library-entry.blp:36
 msgid "No Thumbnail"
@@ -1769,14 +1716,12 @@ msgid "Launch with Steam"
 msgstr "اجرا با استیم"
 
 #: bottles/frontend/ui/library-entry.blp:108
-#, fuzzy
 msgid "Item name"
-msgstr "تغییر نام"
+msgstr "نام مورد"
 
 #: bottles/frontend/ui/library-entry.blp:132
-#, fuzzy
 msgid "Remove from Library"
-msgstr "حذف از برنامه ها"
+msgstr "برداشتن از کتابخانه"
 
 #: bottles/frontend/ui/library-entry.blp:143
 msgid "Stop"
@@ -1856,9 +1801,8 @@ msgid "C_reate"
 msgstr "_ایجاد"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
-msgstr "بطری‌ها"
+msgstr "نام بطری"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
@@ -1866,7 +1810,7 @@ msgstr "_برنامه"
 
 #: bottles/frontend/ui/new.blp:88
 msgid "_Gaming"
-msgstr "_بازی کردن"
+msgstr "با_زی"
 
 #: bottles/frontend/ui/new.blp:101
 msgid "C_ustom"
@@ -1877,9 +1821,8 @@ msgid "Custom"
 msgstr "سفارشی"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "انتخاب مسیر"
+msgstr "هم‌رسانی شاخهٔ کاربر"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1901,9 +1844,8 @@ msgid "Import a custom configuration."
 msgstr "درون‌ریزی پیکربندی سفارشی."
 
 #: bottles/frontend/ui/new.blp:176
-#, fuzzy
 msgid "Bottle Directory"
-msgstr "انتخاب مسیر"
+msgstr "شاخهٔ بطری"
 
 #: bottles/frontend/ui/new.blp:177
 msgid "Directory that will contain the data of this bottle."
@@ -1924,7 +1866,7 @@ msgstr "پیشین"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
-msgstr ""
+msgstr "به بطری‌ها خوش آمدید"
 
 #: bottles/frontend/ui/onboard.blp:60
 msgid "Run Windows Software on Linux."
@@ -1932,9 +1874,8 @@ msgstr "اجرای نرم‌افزارهای ویندوزی روی گنو/لین
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
-#, fuzzy
 msgid "Windows in Bottles"
-msgstr "نوع پنجره"
+msgstr "ویندوز در بطری‌ها"
 
 #: bottles/frontend/ui/onboard.blp:66
 msgid ""
@@ -1981,9 +1922,8 @@ msgid "Appearance"
 msgstr "ظاهر"
 
 #: bottles/frontend/ui/preferences.blp:17
-#, fuzzy
 msgid "Dark Mode"
-msgstr "قالب تاریک"
+msgstr "حالت تاریک"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
@@ -2007,9 +1947,8 @@ msgid "Show notifications for downloads and installs."
 msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:52
-#, fuzzy
 msgid "Temp Files"
-msgstr "پاکسازی فایل‌های موقت"
+msgstr "پرونده‌های موقّتی"
 
 #: bottles/frontend/ui/preferences.blp:53
 msgid "Clean temp files when Bottles launches?"
@@ -2064,9 +2003,8 @@ msgid "Advanced"
 msgstr "پیشرفته"
 
 #: bottles/frontend/ui/preferences.blp:131
-#, fuzzy
 msgid "Bottles Directory"
-msgstr "انتخاب مسیر"
+msgstr "شاخهٔ بطری‌ها"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
@@ -2098,7 +2036,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "DXVK-NVAPI"
 
 #: bottles/frontend/ui/preferences.blp:283
 msgid "Core"
@@ -2132,61 +2070,53 @@ msgid "In early development."
 msgstr ""
 
 #: bottles/frontend/ui/program-entry.blp:19
-#, fuzzy
 msgid "Launch with Terminal"
-msgstr "اجرا با ترمینال"
+msgstr "اجرا در پایانه"
 
 #: bottles/frontend/ui/program-entry.blp:25
-#, fuzzy
 msgid "Browse Path"
-msgstr "مرور فایل ها"
+msgstr "مرور مسیر"
 
 #: bottles/frontend/ui/program-entry.blp:39
 msgid "Change Launch Options…"
 msgstr "تغییر گزینه‌های اجرا…"
 
 #: bottles/frontend/ui/program-entry.blp:43
-#, fuzzy
 msgid "Add to Library"
-msgstr "افزودن به کتابخانه من"
+msgstr "افزودن به کتابخانه"
 
 #: bottles/frontend/ui/program-entry.blp:47
 msgid "Add Desktop Entry"
-msgstr ""
+msgstr "افزودن مدخل میزکار"
 
 #: bottles/frontend/ui/program-entry.blp:51
 msgid "Add to Steam"
-msgstr ""
+msgstr "افزودن به استیم"
 
 #: bottles/frontend/ui/program-entry.blp:55
 msgid "Rename…"
 msgstr "تغییر نام…"
 
 #: bottles/frontend/ui/program-entry.blp:62
-#, fuzzy
 msgid "Hide Program"
-msgstr "برنامه ها"
+msgstr "نهفتن برنامه"
 
 #: bottles/frontend/ui/program-entry.blp:66
-#, fuzzy
 msgid "Show Program"
-msgstr "برنامه ها"
+msgstr "نمایش برنامه"
 
 #: bottles/frontend/ui/program-entry.blp:70
-#, fuzzy
 msgid "Remove from List"
-msgstr "حذف از برنامه ها"
+msgstr "برداشتن از سیاهه"
 
 #: bottles/frontend/ui/program-entry.blp:83
-#, fuzzy
 msgid "Program name"
-msgstr "برنامه ها"
+msgstr "نام برنامه"
 
 #. Translators: id as identification
 #: bottles/frontend/ui/state-entry.blp:8
-#, fuzzy
 msgid "State id"
-msgstr "حذف کننده"
+msgstr "شناسهٔ وضعیت"
 
 #: bottles/frontend/ui/state-entry.blp:9
 msgid "State comment"
@@ -2227,33 +2157,31 @@ msgstr "دربارهٔ بطری‌ها"
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
-msgstr ""
+msgstr "پروندهٔ «{0}» از نوع exe یا msi نیست"
 
 #: bottles/frontend/views/bottle_details.py:207
 #, python-format
 msgid "Updated: %s"
-msgstr "بروز شده: %s"
+msgstr "به‌روز شده: %s"
 
 #: bottles/frontend/views/bottle_details.py:267
 #, python-brace-format
 msgid "\"{0}\" added"
-msgstr ""
+msgstr "«{0}» افزوده شد"
 
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "حذف Bottle"
+msgstr "گزینش پروندهٔ اجرایی"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
 msgstr "افزودن"
 
 #: bottles/frontend/views/bottle_details.py:346
-#, fuzzy
 msgid "Hide Hidden Programs"
-msgstr "نمایش/مخفی سازی برنامه های حذف شده"
+msgstr "نهفتن برنامه‌های نهفته"
 
 #: bottles/frontend/views/bottle_details.py:383
 #: bottles/frontend/widgets/library.py:156
@@ -2355,9 +2283,8 @@ msgstr ""
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "انتخاب مسیر"
+msgstr "گزینش شاخهٔ کاری"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
@@ -2410,9 +2337,8 @@ msgid "Import"
 msgstr "درون‌ریزی"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
-#, fuzzy
 msgid "Select a Configuration File"
-msgstr "پیکربندی"
+msgstr "گزینش پروندهٔ پیکربندی"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
@@ -2430,9 +2356,8 @@ msgid "Launching \"{0}\" in \"{1}\"…"
 msgstr "اجرای «{0}» در «{1}»…"
 
 #: bottles/frontend/views/list.py:235
-#, fuzzy
 msgid "Your Bottles"
-msgstr "بطری‌ها"
+msgstr "بطری‌هایتان"
 
 #: bottles/frontend/views/loading.py:41
 #, python-brace-format
@@ -2445,18 +2370,16 @@ msgid "Fetched {0} of {1} packages"
 msgstr ""
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "انتخاب مسیر"
+msgstr "گزینش شاخهٔ بطری"
 
 #: bottles/frontend/views/new.py:176
 msgid "Creating Bottle…"
 msgstr "ایجاد کردن بطری…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "بطری‌ها"
+msgstr "ناتواتن در ایجاد بطری"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
@@ -2464,9 +2387,8 @@ msgstr ""
 
 #. Show success
 #: bottles/frontend/views/new.py:232
-#, fuzzy
 msgid "Bottle Created"
-msgstr "بطری‌ها"
+msgstr "بطری ایجاد شد"
 
 #: bottles/frontend/views/new.py:233
 #, python-brace-format
@@ -2478,13 +2400,12 @@ msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr ""
 
 #: bottles/frontend/views/preferences.py:176
-#, fuzzy
 msgid "Select Bottles Path"
-msgstr "حذف Bottle"
+msgstr "گزینش مسیر بطری‌ها"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
-msgstr "احرای دوبارهٔ بطری‌ها؟"
+msgstr "اجرای دوبارهٔ بطری‌ها؟"
 
 #: bottles/frontend/views/preferences.py:199
 msgid ""
@@ -2638,23 +2559,20 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/windows/display.py:102
-#, fuzzy
 msgid "Updating display settings, please wait…"
-msgstr "در حال بروزرسانی نسخه ویندوز، لطفا صبر کنید…"
+msgstr "به‌روز کردن تنظیمات نمایش. لطفاُ شکیبا باشید…"
 
 #: bottles/frontend/windows/display.py:114
-#, fuzzy
 msgid "Display settings updated"
-msgstr "تنظیمات نمایش"
+msgstr "تنظیمات نمایش به‌روز شد"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
 msgstr ""
 
 #: bottles/frontend/windows/drives.py:71
-#, fuzzy
 msgid "Select Drive Path"
-msgstr "حذف Bottle"
+msgstr "گزینش مسیر گرداننده"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
@@ -2675,9 +2593,8 @@ msgid "Copy to clipboard"
 msgstr ""
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
-msgstr "حذف Bottle"
+msgstr "گزینش پروندهٔ منبع"
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
@@ -2723,9 +2640,8 @@ msgid "This setting is different from the bottle's default."
 msgstr ""
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "حذف Bottle"
+msgstr "گزینش کدنوشته"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
@@ -2742,9 +2658,8 @@ msgstr "بطری‌ها"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
-#, fuzzy
 msgid "Run Windows Software"
-msgstr "اجرای نرم‌افزار ویندوز"
+msgstr "اجرای نرم‌افزارهای ویندوزی"
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
@@ -2756,15 +2671,15 @@ msgstr "مهاجرت فلت‌پک"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr ""
+msgstr "تغییر وضعیت گفت‌وگوی مهاحرت فلت‌پک."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr "قالب تاریک"
+msgstr "زمینهٔ تاریک"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr "اجبار به استفاده از قالب تاریک."
+msgstr "اجبار به استفاده از زمینهٔ تاریک."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -2857,9 +2772,8 @@ msgid "Toggle Steam Proton prefixes support."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:76
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "آزمایشات:steam"
+msgstr "آزمایش‌ها:گودال ماسه"
 
 #: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Sandbox per bottle."
@@ -2883,7 +2797,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "اجرای نرم‌افزارهای وندوز روی لینوکس با بطری‌ها!"
+msgstr "اجرای نرم‌افزارهای ویندوزی روی گنو/لینوکس با بطری‌ها!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:12
 msgid "Bottle software and enjoy at your leisure!"
@@ -2971,13 +2885,12 @@ msgid "Import Wine prefixes from other managers"
 msgstr "وارد کردن پیشوندهای Wine از دیگر مدیران"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:34
-#, fuzzy
 msgid "Bottles versioning"
-msgstr "نسخه سازی بطری‌ها ( اختیاری )"
+msgstr "نگارش بطری‌ها"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:35
 msgid "... and much more that you can find by installing Bottles!"
-msgstr "... و بسیاری دیگر که با نصب بطری‌ها می‌توانید پیدا کنید"
+msgstr "... و ویژگی‌های دیگری که می‌توان با نصب بطری‌ها یافت!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
@@ -3000,9 +2913,8 @@ msgid "Fixed Patool double extraction failing"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "نمایش نسخه"
+msgstr "نگارش درست"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Fix crash when creating a bottle"
@@ -3055,9 +2967,8 @@ msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "تاریخ ایجاد"
+msgstr "تاریخ نگارش درست"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
