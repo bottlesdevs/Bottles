@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-04-21 13:07+0000\n"
-"Last-Translator: David <dawin@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2024-12-30 04:00+0000\n"
+"Last-Translator: Florian Schaupp <fschaupp@hotmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -1033,7 +1033,7 @@ msgstr "Neue Bottle erstellen"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr "Bottles Absturzbericht"
+msgstr "Bottles-Absturzbericht"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1241,8 +1241,8 @@ msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
-"Erhöht die Auflösung, wenn eine Auflösung verwendet wird, die höher ist als "
-"die Spielauflösung in Pixel."
+"Erhöht die Auflösung, wenn eine höhere Auflösung als die Spielauflösung in "
+"Pixel verwendet wird."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
@@ -1935,7 +1935,6 @@ msgid "C_reate"
 msgstr "E_rstellen"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
 msgstr "Bottle-Name"
 
@@ -3130,7 +3129,7 @@ msgstr "Absturz beim Erstellen einer Bottle behoben"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr "Große Änderung: Neugestaltung der neuen Bottles oberfläche"
+msgstr "Große Änderung: Neugestaltung der neuen Bottles Oberfläche"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Quality of life improvements:"
@@ -3138,7 +3137,7 @@ msgstr "Verbesserung der Nutzererfahrung:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "Herz-Emoji durch Bibliothek Icon auf der Bibliothek Seite ersetzt"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
@@ -3150,7 +3149,7 @@ msgstr "Fehlerbehebungen:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "Beim Hinzufügen der Steam-Verknüpfung ist ein Fehler aufgetreten"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
@@ -3166,6 +3165,8 @@ msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"Diverse Reparaturen betreffend die Bibliothek, beispielsweise leere Symbole "
+"oder Abstürze aufgrund fehlenden Einträgen"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
@@ -3183,7 +3184,7 @@ msgstr "Korrektes Versionsdatum"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
+msgstr "NVIDIA bezogene, kritische Fehler auf nicht-NVIDIA Systemen ausblenden"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
@@ -3220,6 +3221,8 @@ msgstr "Weitere Variablen für die Skripterstellung des Installationsprogramms"
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"Korrektur des Einrichtungs-Dialogs. Dieser hat \"Alles Bereit\" angezeigt, "
+"obwohl die Einrichtung noch nicht abgeschlossen war"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
