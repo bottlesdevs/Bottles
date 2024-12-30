@@ -95,11 +95,11 @@ class WineCommand:
         arguments: str = "",
         environment: dict = {},
         communicate: bool = False,
-        cwd: Optional[str] = None,
         colors: str = "default",
         minimal: bool = False,  # avoid gamemode/gamescope usage
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
+        cwd: Optional[str] = None,
         midi_soundfont: Optional[str] = None,
     ):
         _environment = environment.copy()
@@ -109,7 +109,8 @@ class WineCommand:
         self.cwd = self._get_cwd(cwd)
         self.runner, self.runner_runtime = self._get_runner_info()
         self.gamescope_activated = (
-            environment["GAMESCOPE"] == "1" if "GAMESCOPE" in environment
+            environment["GAMESCOPE"] == "1"
+            if "GAMESCOPE" in environment
             else self.config.Parameters.gamescope
         )
         self.command = self.get_cmd(
@@ -190,7 +191,7 @@ class WineCommand:
 
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
-        is_nvidia = DisplayUtils.check_nvidia_device()
+        DisplayUtils.check_nvidia_device()
         ld = []
 
         # Bottle environment variables
@@ -598,10 +599,10 @@ class WineCommand:
                     del extracted_env["WINEDLLOVERRIDES"]
                 environment.update(extracted_env)
 
-        if post_script is not None:
+        if post_script not in (None, ""):
             command = f"{command} ; sh '{post_script}'"
 
-        if pre_script is not None:
+        if pre_script not in (None, ""):
             command = f"sh '{pre_script}' ; {command}"
 
         return command

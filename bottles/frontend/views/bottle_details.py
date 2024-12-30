@@ -15,13 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 import uuid
 from datetime import datetime
 from gettext import gettext as _
 from typing import List, Optional
 
-from gi.repository import Gtk, Gio, Adw, Gdk, GLib
+from gi.repository import Gtk, Gio, Adw, Gdk, GLib, Xdp
 
 from bottles.backend.managers.backup import BackupManager
 from bottles.backend.models.config import BottleConfig
@@ -149,13 +148,6 @@ class BottleView(Adw.PreferencesPage):
         self.btn_flatpak_doc.connect(
             "clicked", open_doc_url, "flatpak/black-screen-or-silent-crash"
         )
-
-        if "FLATPAK_ID" in os.environ:
-            """
-            If Flatpak, show the btn_flatpak_doc widget to reach
-            the documentation on how to expose directories
-            """
-            self.btn_flatpak_doc.set_visible(True)
 
     def __change_page(self, _widget, page_name):
         """
@@ -433,21 +425,20 @@ class BottleView(Adw.PreferencesPage):
             dialog.connect("response", execute)
             dialog.show()
 
-        if "FLATPAK_ID" in os.environ and self.window.settings.get_boolean(
-            "show-sandbox-warning"
-        ):
-            dialog = Adw.MessageDialog.new(
-                self.window,
-                _("Be Aware of Sandbox"),
-                _(
-                    "Bottles is running in a sandbox, a restricted permission environment needed to keep you safe. If the program won't run, consider moving inside the bottle (3 dots icon on the top), then launch from there."
-                ),
-            )
-            dialog.add_response("ok", _("_Dismiss"))
-            dialog.connect("response", show_chooser)
-            dialog.present()
-        else:
-            show_chooser()
+        if Xdp.Portal.running_under_sandbox():
+            if self.window.settings.get_boolean("show-sandbox-warning"):
+                dialog = Adw.MessageDialog.new(
+                    self.window,
+                    _("Be Aware of Sandbox"),
+                    _(
+                        "Bottles is running in a sandbox, a restricted permission environment needed to keep you safe. If the program won't run, consider moving inside the bottle (3 dots icon on the top), then launch from there."
+                    ),
+                )
+                dialog.add_response("dismiss", _("_Dismiss"))
+                dialog.connect("response", show_chooser)
+                dialog.present()
+            else:
+                show_chooser()
 
     def __backup(self, widget, backup_type):
         """

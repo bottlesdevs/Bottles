@@ -23,7 +23,6 @@ from gi.repository import GLib
 
 
 class GtkUtils:
-
     @staticmethod
     def validate_entry(entry, extend=None) -> bool:
         text = entry.get_text()

@@ -34,7 +34,7 @@ from bottles.backend.state import SignalManager, Signals, Notification
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.operation import TaskSyncer
-from bottles.frontend.params import *
+from bottles.frontend.params import APP_ID, BASE_ID, PROFILE
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.details import DetailsView
 from bottles.frontend.views.importer import ImporterView
@@ -74,13 +74,11 @@ class MainWindow(Adw.ApplicationWindow):
     argument_executed = False
 
     def __init__(self, arg_bottle, **kwargs):
-
         width = self.settings.get_int("window-width")
         height = self.settings.get_int("window-height")
 
         super().__init__(**kwargs, default_width=width, default_height=height)
 
-        self.disable_onboard = False
         self.utils_conn = ConnectionUtils(
             force_offline=self.settings.get_boolean("force-offline")
         )
@@ -122,7 +120,7 @@ class MainWindow(Adw.ApplicationWindow):
             error_dialog.present(self)
             logging.error(
                 _(
-                    "Bottles is only supported within a sandboxed format. Official sources of Bottles are available at:"
+                    "Bottles is only supported within a sandboxed environment. Official sources of Bottles are available at"
                 )
             )
             logging.error("https://usebottles.com/download/")
@@ -191,7 +189,7 @@ class MainWindow(Adw.ApplicationWindow):
     def update_library(self):
         GLib.idle_add(self.page_library.update)
 
-    def set_title(self, title, subtitle: str = ""):
+    def title(self, title, subtitle: str = ""):
         self.view_switcher_title.set_title(title)
         self.view_switcher_title.set_subtitle(subtitle)
 
@@ -293,7 +291,6 @@ class MainWindow(Adw.ApplicationWindow):
             )
             return mng
 
-        self.check_core_deps()
         self.show_loading_view()
         RunAsync(get_manager, callback=set_manager)
 
@@ -327,9 +324,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_loading")
 
     def show_onboard_view(self, widget=False):
-        if self.disable_onboard:
-            return
-
         onboard_window = OnboardDialog(self)
         onboard_window.present()
 
@@ -389,8 +383,7 @@ class MainWindow(Adw.ApplicationWindow):
         action_label=None,
         action_callback=None,
         dismissed_callback=None,
-    ) -> Adw.Toast:
-
+    ) -> None:
         toast = Adw.Toast.new(message)
         toast.props.timeout = timeout
 
@@ -407,11 +400,6 @@ class MainWindow(Adw.ApplicationWindow):
             toast.connect("dismissed", dismissed_callback)
 
         self.toasts.add_toast(toast)
-
-    def check_core_deps(self):
-        if "FLATPAK_ID" not in os.environ and not HealthChecker().has_core_deps():
-            self.disable_onboard = True
-            DependenciesCheckDialog(self).present()
 
     def __on_page_changed(self, stack, *args):
         is_bottles_list = stack.get_visible_child_name() == "page_list"

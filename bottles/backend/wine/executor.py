@@ -23,19 +23,18 @@ logging = Logger()
 
 
 class WineExecutor:
-
     def __init__(
         self,
         config: BottleConfig,
         exec_path: str,
         args: str = "",
         terminal: bool = False,
-        cwd: Optional[str] = None,
         environment: Optional[dict] = None,
         move_file: bool = False,
         move_upd_fn: callable = None,
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
+        cwd: Optional[str] = None,
         midi_soundfont: Optional[str] = None,
         monitoring: Optional[list] = None,
         program_dxvk: Optional[bool] = None,
@@ -62,11 +61,10 @@ class WineExecutor:
         self.exec_path = shlex.quote(exec_path)
         self.args = args
         self.terminal = terminal
-        self.cwd = self.__get_cwd(cwd)
         self.environment = environment
         self.pre_script = pre_script
         self.post_script = post_script
-        self.midi_soundfont = midi_soundfont
+        self.cwd = self.__get_cwd(cwd)
         self.monitoring = monitoring
         self.use_gamescope = program_gamescope
         self.use_virt_desktop = program_virt_desktop
@@ -104,7 +102,10 @@ class WineExecutor:
                     self.config.Parameters.fsr_quality_mode
                 )
 
-        if program_gamescope is not None and program_gamescope != self.config.Parameters.gamescope:
+        if (
+            program_gamescope is not None
+            and program_gamescope != self.config.Parameters.gamescope
+        ):
             self.environment["GAMESCOPE"] = "1" if program_gamescope else "0"
 
         if env_dll_overrides:
@@ -124,9 +125,9 @@ class WineExecutor:
             config=config,
             exec_path=program.get("path"),
             args=program.get("arguments"),
-            cwd=program.get("folder"),
             pre_script=program.get("pre_script"),
             post_script=program.get("post_script"),
+            cwd=program.get("folder"),
             midi_soundfont=program.get("midi_soundfont"),
             terminal=terminal,
             program_dxvk=program.get("dxvk"),
@@ -280,11 +281,11 @@ class WineExecutor:
             command=self.exec_path,
             arguments=self.args,
             terminal=self.terminal,
-            cwd=self.cwd,
             environment=self.environment,
             communicate=True,
             pre_script=self.pre_script,
             post_script=self.post_script,
+            cwd=self.cwd,
             midi_soundfont=self.midi_soundfont,
         )
         res = winecmd.run()

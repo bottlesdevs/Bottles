@@ -10,7 +10,6 @@ logging = Logger()
 
 
 class RegKeys:
-
     def __init__(self, config: BottleConfig):
         self.config = config
         self.reg = Reg(self.config)

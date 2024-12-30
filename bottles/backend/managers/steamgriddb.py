@@ -27,7 +27,6 @@ logging = Logger()
 
 
 class SteamGridDBManager:
-
     @staticmethod
     def get_game_grid(name: str, config: BottleConfig):
         try:

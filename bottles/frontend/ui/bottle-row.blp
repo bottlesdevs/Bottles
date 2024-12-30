@@ -1,0 +1,34 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $BottlesBottleRow: Adw.ActionRow {
+  activatable: true;
+  use-markup: false;
+
+  Box {
+    spacing: 6;
+
+    Label label_env {
+      valign: center;
+
+      styles [
+        "tag",
+        "caption",
+      ]
+    }
+  }
+
+  Button button_run {
+    halign: center;
+    valign: center;
+    icon-name: "system-run-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+
+  Image {
+    icon-name: "go-next-symbolic";
+  }
+}

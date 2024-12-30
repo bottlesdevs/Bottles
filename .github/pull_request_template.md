@@ -1,5 +1,5 @@
 # Description
-Please include a summary of the change and which issue is fixed (if available). 
+Please include a summary of the change and which issue is fixed (if available).
 Please also include relevant motivation and context.
 
 Fixes #(issue)
@@ -11,7 +11,7 @@ Fixes #(issue)
 - [ ] This change requires a documentation update
 
 # How Has This Been Tested?
-Please describe the tests that you ran to verify your changes. 
+Please describe the tests that you ran to verify your changes.
 Provide instructions so we can reproduce.
 - [ ] Test A
 - [ ] Test B

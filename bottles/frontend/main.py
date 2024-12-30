@@ -17,7 +17,6 @@
 
 import sys
 import gi
-import os
 import gettext
 import locale
 import webbrowser
@@ -31,7 +30,7 @@ gi.require_version("Xdp", "1.0")
 
 from gi.repository import Gtk, Gio, GLib, GObject, Adw  # type: ignore
 
-from bottles.frontend.params import *
+from bottles.frontend.params import APP_ID, APP_MAJOR_VERSION, APP_VERSION
 from bottles.backend.logger import Logger
 from bottles.frontend.windows.main_window import MainWindow
 from bottles.frontend.views.preferences import PreferencesWindow
@@ -41,8 +40,8 @@ logging = Logger()
 
 # region Translations
 """
-This code snippet searches for and uploads translations to different 
-directories, depending on your production or development environment. 
+This code snippet searches for and uploads translations to different
+directories, depending on your production or development environment.
 The function _() can be used to create and retrieve translations.
 """
 share_dir = path.join(sys.prefix, "share")
@@ -91,6 +90,7 @@ class Bottles(Adw.Application):
         self.__create_action("import", self.__show_importer_view, ["<primary>i"])
         self.__create_action("preferences", self.__show_preferences, ["<primary>comma"])
         self.__create_action("help", self.__help, ["F1"])
+        self.__create_action("new", self.__new_bottle, ["<primary>n"])
 
         self.__register_arguments()
 
@@ -203,11 +203,9 @@ class Bottles(Adw.Application):
 
         if uri.startswith("bottles:run/"):
             if len(uri.split("/")) != 3:
-                logging.error(
-                    _("Invalid URI (syntax: bottles:run/<bottle>/<program>)")
-                )
+                logging.error(_("Invalid URI (syntax: bottles:run/<bottle>/<program>)"))
                 return False
-            
+
             uri = uri.replace("bottles:run/", "")
             bottle, program = uri.split("/")
 
@@ -290,38 +288,45 @@ class Bottles(Adw.Application):
         preferences_window = PreferencesWindow(self.win)
         preferences_window.present()
 
+    def __new_bottle(self, *args):
+        self.win.show_add_view()
+
     def __show_importer_view(self, widget=False, *args):
         self.win.main_leaf.set_visible_child(self.win.page_importer)
 
     def __show_about_dialog(self, *_args):
         developers = [
-          "Mirko Brombin https://github.com/mirkobrombin",
-          "hthre7 https://github.com/hthre7",
-          "Kekun https://github.com/Kekun",
-          "Sonny Piers https://github.com/sonnyp",
-          "BrainBlasted https://github.com/BrainBlasted",
-          "Francesco Masala <mail@francescomasala.me>",
-          "Hari Rana (TheEvilSkeleton) https://theevilskeleton.gitlab.io",
-          "axtlos https://axtloss.github.io",
-          "Oro https://github.com/orowith2os",
-          "gregorni https://gitlab.com/gregorni"
+            "Mirko Brombin https://github.com/mirkobrombin",
+            "hthre7 https://github.com/hthre7",
+            "Kekun https://github.com/Kekun",
+            "Sonny Piers https://github.com/sonnyp",
+            "BrainBlasted https://github.com/BrainBlasted",
+            "Francesco Masala <mail@francescomasala.me>",
+            "Hari Rana (TheEvilSkeleton) https://theevilskeleton.gitlab.io",
+            "axtlos https://axtloss.github.io",
+            "Oro https://github.com/orowith2os",
+            "gregorni https://gitlab.com/gregorni",
         ]
 
         artists = [
-          "Marco Montini https://github.com/marckniack",
-          "Noëlle https://github.com/jannuary",
-          "Alvar Lagerlöf https://github.com/alvarlagerlof",
-          "Ezekiel Smith https://github.com/ZekeSmith"
+            "Marco Montini https://github.com/marckniack",
+            "Noëlle https://github.com/jannuary",
+            "Alvar Lagerlöf https://github.com/alvarlagerlof",
+            "Ezekiel Smith https://github.com/ZekeSmith",
         ]
 
-        about_dialog = Adw.AboutDialog.new_from_appdata("/com/usebottles/bottles/appdata", f"{APP_MAJOR_VERSION}.0")
+        about_dialog = Adw.AboutDialog.new_from_appdata(
+            "/com/usebottles/bottles/appdata", f"{APP_MAJOR_VERSION}.0"
+        )
         about_dialog.set_developers(developers)
         about_dialog.set_translator_credits(_("translator_credits"))
         about_dialog.set_artists(artists)
         about_dialog.set_debug_info(HealthChecker().get_results(plain=True))
         about_dialog.add_link(_("Donate"), "https://usebottles.com/funding")
         about_dialog.set_copyright(
-          _("Copyright © 2017 {developer_name}").format(developer_name=about_dialog.get_developer_name())
+            _("Copyright © 2017 {developer_name}").format(
+                developer_name=about_dialog.get_developer_name()
+            )
         )
         about_dialog.add_acknowledgement_section(
             _("Third-Party Libraries and Special Thanks"),

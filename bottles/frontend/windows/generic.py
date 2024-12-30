@@ -20,7 +20,6 @@ from gettext import gettext as _
 
 
 class MessageDialog(Gtk.MessageDialog):
-
     def __init__(self, window, message=_("An error has occurred."), log=False):
         Gtk.MessageDialog.__init__(
             self,
@@ -46,7 +45,6 @@ class MessageDialog(Gtk.MessageDialog):
 
 
 class SourceDialog(Adw.Window):
-
     def __init__(self, parent, title, message, buttons=None, lang="yaml", **kwargs):
         super().__init__(**kwargs)
         if buttons is None:
@@ -111,7 +109,6 @@ class SourceDialog(Adw.Window):
 
 
 class TextDialog(Adw.Window):
-
     def __init__(self, parent, title, message, **kwargs):
         super().__init__(**kwargs)
         self.set_default_size(700, 700)

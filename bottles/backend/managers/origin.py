@@ -23,7 +23,6 @@ from bottles.backend.utils.manager import ManagerUtils
 
 
 class OriginManager:
-
     @staticmethod
     def find_manifests_path(config: BottleConfig) -> Union[str, None]:
         """

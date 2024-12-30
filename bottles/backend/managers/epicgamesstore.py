@@ -25,7 +25,6 @@ from bottles.backend.utils.manager import ManagerUtils
 
 
 class EpicGamesStoreManager:
-
     @staticmethod
     def find_dat_path(config: BottleConfig) -> Union[str, None]:
         """

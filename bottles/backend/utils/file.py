@@ -24,6 +24,7 @@ from pathlib import Path
 from typing import Union
 from array import array
 
+
 class FileUtils:
     """
     This class provide some useful methods to work with files.
@@ -124,7 +125,7 @@ class FileUtils:
         if os.path.isdir(directory) and len(os.listdir(directory)) == 0:
             fd = os.open(directory, os.O_RDONLY)
             try:
-                arg = array('L', [0])
+                arg = array("L", [0])
                 fcntl.ioctl(fd, FS_IOC_GETFLAGS, arg, True)
                 arg[0] |= FS_CASEFOLD_FL
                 fcntl.ioctl(fd, FS_IOC_SETFLAGS, arg, True)
