@@ -1,42 +1,42 @@
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.wine.reg import Reg
 
-class MIDI:
-    instruments = {}
+__active_soundfonts = {}
 
-    @staticmethod
-    def get_instrument_set(soundfont_path: str) -> int:
+
+class SoundFont:
+    """Encapsulates a SoundFont (.sf2, .sf3) file."""
+
+    @classmethod
+    def find_or_create(cls, soundfont_path: str) -> SoundFont:
         """
-        Get instrument set ID for given soundfont file.
-        If not found, create a new one with the first vacant ID.
+        Search for SoundFont among active ones.
+        If nonexistent, create and add it to dict.
         """
+        if soundfont_path not in __active_soundfonts:
+            __active_soundfonts[soundfont_path] = cls(soundfont_path)
+        return __active_soundfonts[soundfont_path]
 
-        for idx, path in MIDI.instruments.items():
-            if path == soundfont_path:
-                return idx
+    def __init__(self, soundfont_path: str):
+        """Build new SoundFont object from file path."""
+        self.soundfont_path = soundfont_path
+        self.instrument_set_id = self.__get_vacant_id()
 
-        def get_vacant_id() -> int:
-            n = len(MIDI.instruments)
-            for idx in range(n):
-                if idx not in MIDI.instruments:
-                    return idx
-            return n
+    def __get_vacant_id() -> int:
+        """Get smallest ID currently not being used by a SoundFont."""
+        n = len(__active_soundfonts)
+        active_ids = [sf.instrument_id for sf in __active_soundfonts]
+        return min(range(n + 1), key=(lambda i: i not in active_ids))
 
-        idx_new = get_vacant_id()
-        MIDI.instruments[idx_new] = soundfont_path
-
-        return idx_new
-
-    @staticmethod
-    def write_current_instrument_set(config: BottleConfig, soundfont_path: str):
-        """Set program MIDI mapping to point to the right instrument set on launch."""
-
-        idx = MIDI.get_instrument_set(soundfont_path)
-
+    def register_as_current(self, config: BottleConfig):
+        """
+        Write this SoundFont's ID to registry as the current instrument set,
+        making Wine's MIDI mapping load it on program startup.
+        """
         reg = Reg(config)
         reg.add(
             key="HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Multimedia\\MIDIMap",
             value="CurrentInstrument",
-            data=f"#{idx}",
+            data=f"#{self.instrument_set_id}",
             value_type="REG_SZ",
         )
