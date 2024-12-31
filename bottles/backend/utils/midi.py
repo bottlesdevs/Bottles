@@ -1,4 +1,4 @@
-import fluidsynth
+import fluidsynth  # type: ignore[import-not-found]
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
