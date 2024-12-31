@@ -45,7 +45,7 @@ def __set_filter(dialog: GObject.Object, name: str, *patterns: str):
     filter.set_name(name)
     for pattern in patterns:
         filter.add_pattern(pattern)
-    
+
     if isinstance(dialog, Gtk.FileDialog):
         filters = dialog.get_filters() or Gio.ListStore.new(Gtk.FileFilter)
         filters.append(filter)

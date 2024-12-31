@@ -3,6 +3,8 @@ import shlex
 import uuid
 from typing import Union, Optional
 
+import fluidsynth
+
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
@@ -10,9 +12,9 @@ from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.midi import SoundFont
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.explorer import Explorer
-from bottles.backend.wine.midi import MIDI
 from bottles.backend.wine.msiexec import MsiExec
 from bottles.backend.wine.start import Start
 from bottles.backend.wine.winecommand import WineCommand
@@ -65,14 +67,23 @@ class WineExecutor:
         self.pre_script = pre_script
         self.post_script = post_script
         self.cwd = self.__get_cwd(cwd)
+        self.midi_soundfont = midi_soundfont
         self.monitoring = monitoring
         self.use_gamescope = program_gamescope
         self.use_virt_desktop = program_virt_desktop
 
         env_dll_overrides = []
 
-        if midi_soundfont is not None:
-            MIDI.write_current_instrument_set(self.config, midi_soundfont)
+        if (soundfont_path := midi_soundfont) not in (None, ""):
+            self.soundfont = SoundFont.find_or_create(soundfont_path)
+            self.soundfont.register_as_current(self.config)
+
+            # Start FluidSynth MIDI synthetizer server
+            fs = fluidsynth.Synth()
+            fs.start()
+            sfid = fs.sfload(soundfont_path)
+            fs.program_select(0, sfid, 0, 0)
+            self.fluidsynth = fs
 
         # None = use global DXVK value
         if program_dxvk is not None:
