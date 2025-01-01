@@ -56,7 +56,6 @@ class BottlesNewBottleDialog(Adw.Dialog):
     str_list_arch = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
-    group_custom = Gtk.Template.Child()
     menu_duplicate = Gtk.Template.Child()
 
     # endregion
@@ -79,7 +78,6 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.arch = {"win64": "64-bit", "win32": "32-bit"}
 
         # connect signals
-        self.check_custom.connect("toggled", self.__set_group)
         self.btn_cancel.connect("clicked", self.__close_dialog)
         self.btn_close.connect("clicked", self.__close_dialog)
         self.btn_create.connect("clicked", self.create_bottle)
@@ -94,10 +92,6 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.label_choose_path.set_label(self.default_string)
         self.str_list_runner.splice(0, 0, self.manager.runners_available)
         self.str_list_arch.splice(0, 0, list(self.arch.values()))
-
-    def __set_group(self, *_args: Any) -> None:
-        """Checks the state of combo_environment and updates group_custom accordingly."""
-        self.group_custom.set_sensitive(self.check_custom.get_active())
 
     def __check_entry_name(self, *_args: Any) -> None:
         is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
