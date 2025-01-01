@@ -725,6 +725,7 @@ class Manager(metaclass=Singleton):
                     "pre_script": _program.get("pre_script"),
                     "post_script": _program.get("post_script"),
                     "folder": _program.get("folder", program_folder),
+                    "disc_image": _program.get("disc_image"),
                     "dxvk": _program.get("dxvk"),
                     "vkd3d": _program.get("vkd3d"),
                     "dxvk_nvapi": _program.get("dxvk_nvapi"),

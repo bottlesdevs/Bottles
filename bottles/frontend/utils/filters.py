@@ -42,6 +42,18 @@ def add_yaml_filters(dialog):
     dialog.add_filter(filter)
 
 
+def add_disc_image_filters(dialog):
+    filter = Gtk.FileFilter()
+    filter.set_name(_("Optical Disc Image"))
+    filter.add_pattern("*.bin")
+    filter.add_pattern("*.cue")
+    filter.add_pattern("*.img")
+    filter.add_pattern("*.iso")
+    filter.add_pattern("*.mds")
+
+    dialog.add_filter(filter)
+
+
 def add_all_filters(dialog):
     filter = Gtk.FileFilter()
     filter.set_name(_("All Files"))

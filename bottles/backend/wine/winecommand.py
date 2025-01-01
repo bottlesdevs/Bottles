@@ -1,6 +1,7 @@
 import os
 import shutil
 import stat
+import string
 import subprocess
 import tempfile
 import shlex
@@ -25,6 +26,7 @@ from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.steam import SteamUtils
+from bottles.backend.wine.drives import Drives
 
 logging = Logger()
 
@@ -100,6 +102,7 @@ class WineCommand:
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
         cwd: Optional[str] = None,
+        disc_image: Optional[str] = None,
     ):
         _environment = environment.copy()
         self.config = self._get_config(config)
@@ -113,7 +116,7 @@ class WineCommand:
             else self.config.Parameters.gamescope
         )
         self.command = self.get_cmd(
-            command, pre_script, post_script, environment=_environment
+            command, pre_script, post_script, disc_image, environment=_environment
         )
         self.terminal = terminal
         self.env = self.get_env(_environment)
@@ -489,6 +492,7 @@ class WineCommand:
         command,
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
+        disc_image: Optional[str] = None,
         return_steam_cmd: bool = False,
         return_clean_cmd: bool = False,
         environment: Optional[dict] = None,
@@ -602,6 +606,22 @@ class WineCommand:
 
         if pre_script not in (None, ""):
             command = f"sh '{pre_script}' ; {command}"
+
+        if disc_image is not None:
+            # Mount/unmount disc image on temp mount point
+            mount_point = "/tmp/bottles/disc"
+            command = f"""
+                flatpak-spawn --host mkdir -p '{mount_point}'
+                flatpak-spawn --host fuseiso '{disc_image}' '{mount_point}'
+                {command}
+                flatpak-spawn --host fusermount -uz '{mount_point}' # -z for lazy unmount
+            """
+
+            # Assign path to first free drive letter
+            drives = Drives(self.config)
+            alphabet = string.ascii_uppercase
+            letter = next(c for c in alphabet if c >= "D" and not drives.get_drive(c))
+            drives.set_drive_path(letter, mount_point)
 
         return command
 
