@@ -106,9 +106,9 @@ template $BottlesNewBottleDialog: Adw.Dialog {
             }
           }
 
-          Adw.PreferencesGroup group_custom {
+          Adw.PreferencesGroup {
             title: _("Custom");
-            sensitive: false;
+            sensitive: bind check_custom.active;
 
             Adw.ComboRow combo_runner {
               title: _("Runner");
