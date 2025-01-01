@@ -17,7 +17,7 @@
 
 from gettext import gettext as _
 from typing import Any, Optional
-from gi.repository import Gtk, Adw, Pango, Gio
+from gi.repository import Gtk, Adw, Pango, Gio, Xdp
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.threading import RunAsync
@@ -61,12 +61,15 @@ class BottlesNewBottleDialog(Adw.Dialog):
 
     # endregion
 
-    def __init__(self, window: Adw.ApplicationWindow, **kwargs: Any) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         # common variables and references
-        self.app = window.app
-        self.window = window
-        self.manager = window.manager
+        self.window = GtkUtils.get_parent_window()
+        if not self.window or not Xdp.Portal.running_under_sandbox():
+            return
+
+        self.app = self.window.get_application()
+        self.manager = self.window.manager
         self.new_bottle_config = BottleConfig()
         self.env_recipe_path = None
         self.custom_path = ""
