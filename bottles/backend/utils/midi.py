@@ -46,7 +46,7 @@ class FluidSynth:
             "Starting new FluidSynth server with SoundFont"
             f" #{self.instrument_set_id} ('{self.soundfont_path}')…"
         )
-        synth = fluidsynth.Synth()
+        synth = fluidsynth.Synth(channels=16)
         synth.start()
         sfid = synth.sfload(self.soundfont_path)
         synth.program_select(0, sfid, 0, 0)
