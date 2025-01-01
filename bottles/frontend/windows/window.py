@@ -329,7 +329,7 @@ class BottlesWindow(Adw.ApplicationWindow):
 
     def show_add_view(self, widget=False):
         new_bottle_dialog = BottlesNewBottleDialog(self)
-        new_bottle_dialog.present()
+        new_bottle_dialog.present(self)
 
     def show_list_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_list")
