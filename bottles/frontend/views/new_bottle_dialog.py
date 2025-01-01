@@ -27,7 +27,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/new-bottle-dialog.ui")
-class BottlesNewBottleDialog(Adw.Window):
+class BottlesNewBottleDialog(Adw.Dialog):
     __gtype_name__ = "BottlesNewBottleDialog"
 
     # region Widgets
@@ -55,7 +55,6 @@ class BottlesNewBottleDialog(Adw.Window):
     combo_arch = Gtk.Template.Child()
     str_list_arch = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
-    shortcut_escape = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
     group_custom = Gtk.Template.Child()
     menu_duplicate = Gtk.Template.Child()
@@ -64,7 +63,6 @@ class BottlesNewBottleDialog(Adw.Window):
 
     def __init__(self, window: Adw.ApplicationWindow, **kwargs: Any) -> None:
         super().__init__(**kwargs)
-        self.set_transient_for(window)
         # common variables and references
         self.app = window.app
         self.window = window
@@ -72,7 +70,6 @@ class BottlesNewBottleDialog(Adw.Window):
         self.new_bottle_config = BottleConfig()
         self.env_recipe_path = None
         self.custom_path = ""
-        self.is_closable = True
         self.runner = None
         self.default_string = _("(Default)")
 
@@ -80,8 +77,8 @@ class BottlesNewBottleDialog(Adw.Window):
 
         # connect signals
         self.check_custom.connect("toggled", self.__set_group)
-        self.btn_cancel.connect("clicked", self.do_close_request)
-        self.btn_close.connect("clicked", self.do_close_request)
+        self.btn_cancel.connect("clicked", self.__close_dialog)
+        self.btn_close.connect("clicked", self.__close_dialog)
         self.btn_create.connect("clicked", self.create_bottle)
         self.btn_choose_env.connect("clicked", self.__choose_env_recipe)
         self.btn_choose_env_reset.connect("clicked", self.__reset_env_recipe)
@@ -94,9 +91,6 @@ class BottlesNewBottleDialog(Adw.Window):
         self.label_choose_path.set_label(self.default_string)
         self.str_list_runner.splice(0, 0, self.manager.runners_available)
         self.str_list_arch.splice(0, 0, list(self.arch.values()))
-
-        # focus on the entry_name
-        self.entry_name.grab_focus()
 
     def __set_group(self, *_args: Any) -> None:
         """Checks the state of combo_environment and updates group_custom accordingly."""
@@ -161,12 +155,11 @@ class BottlesNewBottleDialog(Adw.Window):
     def create_bottle(self, *_args: Any) -> None:
         """Starts creating the bottle."""
         # set widgets states
-        self.is_closable = False
+        self.set_can_close(False)
         self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
         self.set_title("")
         self.headerbar.add_css_class("flat")
-        self.shortcut_escape.set_action(None)
         self.stack_create.set_visible_child_name("page_statuses")
         self.status_statuses.set_title(_("Creating Bottle…"))
         self.status_statuses.set_description(_("This could take a while."))
@@ -205,11 +198,11 @@ class BottlesNewBottleDialog(Adw.Window):
 
         def send_notification(notification: Gio.Notification) -> None:
             """Sends notification if out of focus."""
-            if not self.is_active():
+            if not self.window.is_active():
                 self.app.send_notification(None, notification)
 
         self.status_statuses.set_description(None)
-        self.is_closable = True
+        self.set_can_close(True)
         notification = Gio.Notification()
 
         # Show error if bottle unsuccessfully builds
@@ -267,13 +260,9 @@ class BottlesNewBottleDialog(Adw.Window):
         self.custom_path = ""
         self.label_choose_path.set_label(self.default_string)
 
-    def do_close_request(self, *_args) -> bool:
-        """Close window if a new bottle is not being created"""
-        if self.is_closable is False:
-            # TODO: Implement AdwMessageDialog to prompt the user if they are
-            # SURE they want to cancel creation. For now, the window will not
-            # react if the user attempts to close the window while a bottle
-            # is being created in a feature update
-            return True
+    def __close_dialog(self, *_args: Any) -> None:
+        # TODO: Implement AdwMessageDialog to prompt the user if they are
+        # SURE they want to cancel creation. For now, the window will not
+        # react if the user attempts to close the window while a bottle
+        # is being created in a feature update
         self.close()
-        return False

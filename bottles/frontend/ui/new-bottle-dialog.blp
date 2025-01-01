@@ -1,20 +1,11 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $BottlesNewBottleDialog: Adw.Window {
-  modal: true;
-  resizable: false;
-  default-width: 600;
-  default-height: 500;
-  hide-on-close: true;
+template $BottlesNewBottleDialog: Adw.Dialog {
+  content-width: 600;
+  content-height: 500;
   title: _("Create New Bottle");
-
-  ShortcutController {
-    Shortcut shortcut_escape {
-      trigger: "Escape";
-      action: "action(window.close)";
-    }
-  }
+  focus-widget: entry_name;
 
   Box {
     orientation: vertical;
