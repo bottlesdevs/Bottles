@@ -26,7 +26,7 @@ def add_executable_filters(dialog):
 
 
 def add_soundfont_filters(dialog):
-    __set_filter(dialog, _("Supported SoundFonts"), "*.sf2", ".sf3")
+    __set_filter(dialog, _("Supported SoundFonts"), "*.sf2", "*.sf3")
 
 
 def add_yaml_filters(dialog):
