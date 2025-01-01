@@ -63,52 +63,34 @@ template $BottlesNewBottleDialog: Adw.Dialog {
           Adw.PreferencesGroup {
             title: _("Environment");
 
-            Adw.ActionRow application {
-              activatable-widget: check_application;
+            $BottlesCheckRow application {
               title: _("_Application");
               subtitle: _("Optimized for productivity software. Can run apps that might need DirectX, but not guaranteed. Includes basic fonts and essential Wine components.");
               icon-name: "applications-engineering-symbolic";
               use-underline: true;
-
-              [prefix]
-              CheckButton check_application {
-                valign: center;
-                active: true;
-              }
+              active: true;
             }
 
-            Adw.ActionRow gaming {
-              activatable-widget: check_gaming;
+            $BottlesCheckRow gaming {
               title: _("_Gaming");
               subtitle: _("Optimized for games, game engines, and 3D apps. Includes DirectX, Vulkan, and enhanced performance settings.");
               icon-name: "input-gaming-symbolic";
               use-underline: true;
-
-              [prefix]
-              CheckButton check_gaming {
-                valign: center;
-                group: check_application;
-              }
+              group: application;
             }
 
-            Adw.ActionRow custom {
-              activatable-widget: check_custom;
+            $BottlesCheckRow custom {
               title: _("C_ustom");
               subtitle: _("A clean slate. You can customize everything for advanced use cases.");
               icon-name: "applications-science-symbolic";
               use-underline: true;
-
-              [prefix]
-              CheckButton check_custom {
-                valign: center;
-                group: check_application;
-              }
+              group: application;
             }
           }
 
           Adw.PreferencesGroup {
             title: _("Custom");
-            sensitive: bind check_custom.active;
+            sensitive: bind custom.active;
 
             Adw.ComboRow combo_runner {
               title: _("Runner");

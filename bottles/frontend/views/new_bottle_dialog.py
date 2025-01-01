@@ -17,13 +17,32 @@
 
 from gettext import gettext as _
 from typing import Any, Optional
-from gi.repository import Gtk, Adw, Pango, Gio, Xdp
+from gi.repository import Gtk, Adw, Pango, Gio, Xdp, GObject
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.models.result import Result
 from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 from bottles.frontend.utils.gtk import GtkUtils
+
+
+@Gtk.Template(resource_path="/com/usebottles/bottles/check-row.ui")
+class BottlesCheckRow(Adw.ActionRow):
+    """An `AdwActionRow` with a designated `GtkCheckButton` as prefix."""
+
+    __gtype_name__ = "BottlesCheckRow"
+
+    check_button = Gtk.Template.Child()
+
+    active = GObject.Property(type=bool, default=False)
+
+    # Add row’s check button to the group
+    group = GObject.Property(
+        # FIXME: Supposed to be a BottlesCheckRow widget type.
+        type=Adw.ActionRow,
+        default=None,
+        setter=lambda self, group: self.check_button.set_group(group.check_button),
+    )
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/new-bottle-dialog.ui")
@@ -34,9 +53,6 @@ class BottlesNewBottleDialog(Adw.Dialog):
     application = Gtk.Template.Child()
     gaming = Gtk.Template.Child()
     custom = Gtk.Template.Child()
-    check_application = Gtk.Template.Child()
-    check_gaming = Gtk.Template.Child()
-    check_custom = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     stack_create = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
@@ -161,7 +177,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.status_statuses.set_title(_("Creating Bottle…"))
         self.status_statuses.set_description(_("This could take a while."))
 
-        if self.check_custom.get_active():
+        if self.custom.active:
             self.runner = self.manager.runners_available[
                 self.combo_runner.get_selected()
             ]
@@ -241,9 +257,9 @@ class BottlesNewBottleDialog(Adw.Dialog):
     def __radio_get_active(self) -> str:
         # TODO: Remove this ugly zig zag and find a better way to set the environment
         # https://docs.gtk.org/gtk4/class.CheckButton.html#grouping
-        if self.check_application.get_active():
+        if self.application.active:
             return "application"
-        if self.check_gaming.get_active():
+        if self.gaming.active:
             return "gaming"
         return "custom"
 
