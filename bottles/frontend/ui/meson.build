@@ -3,6 +3,7 @@ gnome = import('gnome')
 blueprints = custom_target('blueprints',
   input: files(
     'component-entry.blp',
+    'check-row.blp',
     'dependency-entry.blp',
     'details-bottle.blp',
     'details-dependencies.blp',
