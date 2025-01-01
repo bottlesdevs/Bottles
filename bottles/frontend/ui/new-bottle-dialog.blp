@@ -7,7 +7,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
   title: _("Create New Bottle");
   focus-widget: entry_name;
 
-  Box {
+  child: Box {
     orientation: vertical;
 
     Adw.HeaderBar headerbar {
@@ -125,7 +125,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
               Button btn_choose_env {
                 valign: center;
 
-                Box {
+                child: Box {
                   spacing: 6;
 
                   Image {
@@ -133,7 +133,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
                   }
 
                   Label label_choose_env {}
-                }
+                };
               }
             }
 
@@ -156,7 +156,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
               Button btn_choose_path {
                 valign: center;
 
-                Box {
+                child: Box {
                   spacing: 6;
 
                   Image {
@@ -164,7 +164,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
                   }
 
                   Label label_choose_path {}
-                }
+                };
               }
             }
           }
@@ -187,7 +187,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
               min-content-height: 200;
               overflow: hidden;
 
-              Label label_output {
+              child: Label label_output {
                 hexpand: true;
                 valign: fill;
                 wrap: true;
@@ -199,7 +199,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
                   "monospace",
                   "terminal",
                 ]
-              }
+              };
 
               styles [
                 "card",
@@ -221,11 +221,11 @@ template $BottlesNewBottleDialog: Adw.Dialog {
         };
       }
     }
-  }
+  };
 }
 
 Popover popover_duplicate {
-  Label {
+  child: Label {
     margin-start: 6;
     margin-end: 6;
     margin-top: 6;
@@ -238,5 +238,5 @@ Popover popover_duplicate {
     use-markup: true;
     max-width-chars: 40;
     label: _("This name is unavailable, please try another.");
-  }
+  };
 }
