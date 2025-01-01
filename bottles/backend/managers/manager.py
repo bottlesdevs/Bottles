@@ -725,6 +725,7 @@ class Manager(metaclass=Singleton):
                     "pre_script": _program.get("pre_script"),
                     "post_script": _program.get("post_script"),
                     "folder": _program.get("folder", program_folder),
+                    "midi_soundfont": _program.get("midi_soundfont"),
                     "dxvk": _program.get("dxvk"),
                     "vkd3d": _program.get("vkd3d"),
                     "dxvk_nvapi": _program.get("dxvk_nvapi"),

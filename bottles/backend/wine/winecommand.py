@@ -100,6 +100,7 @@ class WineCommand:
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
         cwd: Optional[str] = None,
+        midi_soundfont: Optional[str] = None,
     ):
         _environment = environment.copy()
         self.config = self._get_config(config)
@@ -113,7 +114,7 @@ class WineCommand:
             else self.config.Parameters.gamescope
         )
         self.command = self.get_cmd(
-            command, pre_script, post_script, environment=_environment
+            command, pre_script, post_script, midi_soundfont, environment=_environment
         )
         self.terminal = terminal
         self.env = self.get_env(_environment)
@@ -489,6 +490,7 @@ class WineCommand:
         command,
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
+        midi_soundfont: Optional[str] = None,
         return_steam_cmd: bool = False,
         return_clean_cmd: bool = False,
         environment: Optional[dict] = None,
