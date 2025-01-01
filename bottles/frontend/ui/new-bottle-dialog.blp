@@ -7,37 +7,36 @@ template $BottlesNewBottleDialog: Adw.Dialog {
   title: _("Create New Bottle");
   focus-widget: entry_name;
 
-  child: Box {
-    orientation: vertical;
+  child: Stack stack_create {
+    transition-type: crossfade;
 
-    Adw.HeaderBar headerbar {
-      show-start-title-buttons: false;
-      show-end-title-buttons: false;
+    StackPage {
+      name: "page_create";
 
-      Button btn_cancel {
-        label: _("_Cancel");
-        use-underline: true;
-      }
+      child: Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {
+          show-start-title-buttons: false;
+          show-end-title-buttons: false;
 
-      [end]
-      Button btn_create {
-        label: _("C_reate");
-        use-underline: true;
-        sensitive: false;
+          Button btn_cancel {
+            label: _("_Cancel");
+            use-underline: true;
+          }
 
-        styles [
-          "suggested-action",
-        ]
-      }
-    }
+          [end]
+          Button btn_create {
+            label: _("C_reate");
+            use-underline: true;
+            sensitive: false;
 
-    Stack stack_create {
-      transition-type: crossfade;
+            styles [
+              "suggested-action",
+            ]
+          }
+        }
 
-      StackPage {
-        name: "page_create";
-
-        child: Adw.PreferencesPage {
+        content: Adw.PreferencesPage {
           title: _("Create New Bottle");
 
           Adw.PreferencesGroup {
@@ -169,49 +168,59 @@ template $BottlesNewBottleDialog: Adw.Dialog {
             }
           }
         };
-      }
+      };
+    }
 
-      StackPage {
-        name: "page_statuses";
+    StackPage {
+      name: "page_creating";
 
-        child: Adw.StatusPage status_statuses {
-          title: "Status";
+      child: WindowHandle {
+        child: Adw.StatusPage {
+          title: _("Creating Bottle…");
+          description: _("This could take a while.");
 
-          child: Box {
-            orientation: vertical;
-            spacing: 36;
+          child: ScrolledWindow scrolled_output {
+            margin-start: 50;
+            margin-end: 50;
+            min-content-height: 200;
+            overflow: hidden;
 
-            ScrolledWindow scrolled_output {
-              margin-start: 50;
-              margin-end: 50;
-              min-content-height: 200;
-              overflow: hidden;
-
-              child: Label label_output {
-                hexpand: true;
-                valign: fill;
-                wrap: true;
-                selectable: true;
-                xalign: 0;
-                yalign: 0;
-
-                styles [
-                  "monospace",
-                  "terminal",
-                ]
-              };
+            child: Label label_output {
+              hexpand: true;
+              valign: fill;
+              wrap: true;
+              selectable: true;
+              xalign: 0;
+              yalign: 0;
 
               styles [
-                "card",
+                "monospace",
+                "terminal",
               ]
-            }
+            };
+
+            styles [
+              "card",
+            ]
+          };
+        };
+      };
+    }
+
+    StackPage {
+      name: "page_completed";
+
+      child: WindowHandle {
+        child: Adw.StatusPage status_page_status {
+          child: Box {
+            orientation: vertical;
+            spacing: 12;
 
             Button btn_close {
               valign: center;
               halign: center;
               label: _("_Close");
               use-underline: true;
-              visible: false;
 
               styles [
                 "pill",
@@ -219,7 +228,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
             }
           };
         };
-      }
+      };
     }
   };
 }

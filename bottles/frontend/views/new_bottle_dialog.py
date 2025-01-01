@@ -61,16 +61,15 @@ class BottlesNewBottleDialog(Adw.Dialog):
     btn_choose_env = Gtk.Template.Child()
     btn_choose_env_reset = Gtk.Template.Child()
     label_choose_env = Gtk.Template.Child()
+    status_page_status = Gtk.Template.Child()
     btn_choose_path = Gtk.Template.Child()
     btn_choose_path_reset = Gtk.Template.Child()
     label_choose_path = Gtk.Template.Child()
-    status_statuses = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
     scrolled_output = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
     str_list_arch = Gtk.Template.Child()
-    headerbar = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
     menu_duplicate = Gtk.Template.Child()
 
@@ -169,13 +168,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         """Starts creating the bottle."""
         # set widgets states
         self.set_can_close(False)
-        self.btn_cancel.set_visible(False)
-        self.btn_create.set_visible(False)
-        self.set_title("")
-        self.headerbar.add_css_class("flat")
-        self.stack_create.set_visible_child_name("page_statuses")
-        self.status_statuses.set_title(_("Creating Bottle…"))
-        self.status_statuses.set_description(_("This could take a while."))
+        self.stack_create.set_visible_child_name("page_creating")
 
         if self.custom.active:
             self.runner = self.manager.runners_available[
@@ -214,20 +207,24 @@ class BottlesNewBottleDialog(Adw.Dialog):
             if not self.window.is_active():
                 self.app.send_notification(None, notification)
 
-        self.status_statuses.set_description(None)
         self.set_can_close(True)
+        self.stack_create.set_visible_child_name("page_completed")
         notification = Gio.Notification()
 
         # Show error if bottle unsuccessfully builds
         if not result or not result.status or error:
             title = _("Unable to Create Bottle")
-            self.btn_cancel.set_visible(False)
-            self.btn_close.set_visible(True)
             notification.set_title(title)
             notification.set_body(_("Bottle failed to create with one or more errors."))
-            self.status_statuses.set_title(title)
+            self.status_page_status.set_title(title)
             self.btn_close.get_style_context().add_class("destructive-action")
             send_notification(notification)
+
+            # Display error logs in the result page
+            self.scrolled_output.unparent()
+            box = self.status_page_status.get_child()
+            box.prepend(self.scrolled_output)
+
             return
 
         # Show success
@@ -240,12 +237,10 @@ class BottlesNewBottleDialog(Adw.Dialog):
         notification.set_body(description)
 
         self.new_bottle_config = result.data.get("config")
-        self.scrolled_output.set_visible(False)
-        self.btn_close.set_visible(True)
         self.btn_close.get_style_context().add_class("suggested-action")
-        self.status_statuses.set_icon_name("selection-mode-symbolic")
-        self.status_statuses.set_title(title)
-        self.status_statuses.set_description(description)
+        self.status_page_status.set_icon_name("selection-mode-symbolic")
+        self.status_page_status.set_title(title)
+        self.status_page_status.set_description(description)
         send_notification(notification)
 
         # Ask the manager to check for new bottles,
