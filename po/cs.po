@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-09-16 08:09+0000\n"
-"Last-Translator: Zezik <zezik@duck.com>\n"
+"PO-Revision-Date: 2024-12-19 20:43+0000\n"
+"Last-Translator: vikdevelop <vikdevelop@proton.me>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
 ">\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Generator: Weblate 5.9.2-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -3061,24 +3061,23 @@ msgstr "Opraveno tlačítko \"Přidat do Steamu\""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr ""
+msgstr "Opraven problém, kde BottleConfig nemohl být serializován"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "Opraveno selhání dvojité extrakce Patool"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
 msgid "Correct version"
 msgstr "Správná verze"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "Při vytváření láhve se vyskytla chyba."
+msgstr "Vyřešen pád programu při vytváření láhve"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "Hlavní změna: Změna designu Hlavního Uživatelského Rozhraní Lahví"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Quality of life improvements:"
@@ -3086,12 +3085,11 @@ msgstr "Drobná vylepšení uživatelského rozhraní:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "Nahrazení ikony emotikony lásky ikonou knihovny na stránce knihovny"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
-#, fuzzy
 msgid "Add toast for \"Run Executable\""
-msgstr "Přidání vlastní cesty ke spustitelnému souboru"
+msgstr "Přidat vyskakovací okno pro \"Spustit spustitelný soubor\""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
@@ -3099,7 +3097,7 @@ msgstr "Opravy chyb:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "Přidání zástupce do služby Steam vedlo k chybě"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
@@ -3114,6 +3112,8 @@ msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"Různé opravy související s knihovnami, například prázdné obálky a pády "
+"související s chybějícími položkami"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
@@ -3130,6 +3130,7 @@ msgstr "Správné datum verze"
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
 msgstr ""
+"Skrytí kritických chyb souvisejících s NVIDIA v systémech jiných než NVIDIA"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
@@ -3141,7 +3142,7 @@ msgstr "Instalace závislostí je rychlejší a stabilnější"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
-msgstr ""
+msgstr "Kontrola stavu obsahuje více informací pro rychlejší ladění"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
@@ -3153,19 +3154,21 @@ msgstr "Oprava chyby při stahování komponenty"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "Zlepšení kódu backendu zamezením spin-locku"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "Více proměnných pro skriptování instalátoru"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"Oprava dialogového okna na palubě zobrazujícího „Vše připraveno“, i když ve "
+"skutečnosti připraveno nebylo"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "Vylepšení v build systému"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
@@ -3173,13 +3176,15 @@ msgstr "Automatické povolení VKD3D při tvorbě Lahve pro hry"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
-msgstr ""
+msgstr "Oprava pádů při čtení souborů služby Steam se špatným kódováním"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"Oprava komponent, které se po instalaci/odinstalaci správně neaktualizují v "
+"uživatelském rozhraní"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"

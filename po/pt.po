@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-09-29 12:15+0000\n"
-"Last-Translator: Marcos <marcosdavi436@gmail.com>\n"
+"PO-Revision-Date: 2024-12-30 04:00+0000\n"
+"Last-Translator: Diego Siqueira <diegopereirasiqueira@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bottles/"
 "bottles/pt/>\n"
 "Language: pt\n"
@@ -17,12 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
-#, fuzzy
 msgid "No path specified"
-msgstr "Caminho não especificado"
+msgstr "Nenhum caminho especificado"
 
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
@@ -1930,7 +1929,6 @@ msgid "C_reate"
 msgstr "C_riar"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
 msgstr "Nome do Bottle"
 
@@ -2576,21 +2574,23 @@ msgstr "_Reiniciar"
 
 #: bottles/frontend/views/preferences.py:243
 msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
+msgstr "Baseado no Valve's Wine, inclui testes e patches Proton."
 
 #: bottles/frontend/views/preferences.py:244
 msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
+msgstr "Baseado no Wine upstream, inclui testes e patches Proton."
 
 #: bottles/frontend/views/preferences.py:247
 msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
+msgstr "Baseado no Wine upstream, inclui testes e patches de teste."
 
 #: bottles/frontend/views/preferences.py:248
 msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
+"Baseado no Valve's Wine, inclui patches específicos de teste, Proton e "
+"Steam. Requer que o Steam Runtime esteja ativado."
 
 #: bottles/frontend/views/preferences.py:250
 msgid "Other"
@@ -3112,7 +3112,7 @@ msgstr "Melhorias na qualidade de vida:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "Substitua o ícone emote-love pela biblioteca na página da biblioteca"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
@@ -3124,7 +3124,7 @@ msgstr "Correções de bugs:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "Adicionar atalho ao Steam resultou em erro"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
@@ -3141,6 +3141,8 @@ msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"Várias correções relacionadas à biblioteca, como capas vazias e falhas "
+"relacionadas a entradas ausentes"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
@@ -3158,6 +3160,8 @@ msgstr "Data correta da versão"
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
 msgstr ""
+"Ocultar erros críticos relacionados à NVIDIA em sistemas que não sejam da "
+"NVIDIA"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
@@ -3194,6 +3198,8 @@ msgstr "Mais variáveis para o script do instalador"
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"Correção da caixa de diálogo integrada mostrando \"Tudo pronto\" quando na "
+"verdade não estava pronto"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
