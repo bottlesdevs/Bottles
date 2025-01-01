@@ -108,6 +108,33 @@ template $GamescopeDialog: Adw.Window {
       }
 
       Adw.PreferencesGroup {
+        title: _("FSR");
+
+        Adw.ActionRow {
+          title: _("Enable");
+          activatable-widget: switch_fsr;
+
+          Switch switch_fsr {
+            valign: center;
+          }
+        }
+
+        Adw.ActionRow {
+          title: _("Sharpening Strength");
+
+          SpinButton {
+            numeric: true;
+            valign: center;
+
+            adjustment: Adjustment spin_sharpening_strength {
+              step-increment: 4;
+              upper: 20;
+            };
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
         title: _("Miscellaneous");
 
         Adw.ActionRow {
