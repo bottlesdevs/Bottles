@@ -1,3 +1,4 @@
+import gc
 import os
 import shlex
 import uuid
@@ -72,9 +73,10 @@ class WineExecutor:
 
         env_dll_overrides = []
 
+        self.fluidsynth = None
         if (soundfont_path := midi_soundfont) not in (None, ""):
-            # FluidSynth is bounded to Executor object as a member
-            # to control the MIDI server's lifetime (deleted when zero references)
+            # FluidSynth instance is bound to WineExecutor as a member to control
+            # the former's lifetime (deleted when no more references from executors)
             self.fluidsynth = FluidSynth.find_or_create(soundfont_path)
             self.fluidsynth.register_as_current(config)
 
@@ -363,3 +365,10 @@ class WineExecutor:
         winedbg = WineDbg(self.config, silent=True)
         for m in self.monitoring:
             winedbg.wait_for_process(name=m)
+
+    def __del__(self):
+        """On exit, kill FluidSynth instance if this was the last executor using it."""
+        if self.fluidsynth:
+            ref_count = len(gc.get_referrers(self.fluidsynth))
+            if ref_count == 2:
+                self.fluidsynth.delete()
