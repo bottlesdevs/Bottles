@@ -606,7 +606,7 @@ class WineCommand:
 
         if pre_script not in (None, ""):
             command = f"sh '{pre_script}' ; {command}"
-        
+
         if disc_image is not None:
             # Mount/unmount disc image on temp mount point
             mount_point = "/tmp/bottles/disc"
@@ -620,10 +620,7 @@ class WineCommand:
             # Assign path to first free drive letter
             drives = Drives(self.config)
             alphabet = string.ascii_uppercase
-            letter = next(
-                c for c in alphabet
-                if c >= "D" and not drives.get_drive(c)
-            )
+            letter = next(c for c in alphabet if c >= "D" and not drives.get_drive(c))
             drives.set_drive_path(letter, mount_point)
 
         return command

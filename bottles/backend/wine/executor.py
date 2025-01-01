@@ -283,7 +283,7 @@ class WineExecutor:
             pre_script=self.pre_script,
             post_script=self.post_script,
             cwd=self.cwd,
-            disc_image=self.disc_image
+            disc_image=self.disc_image,
         )
         res = winecmd.run()
         self.__set_monitors()

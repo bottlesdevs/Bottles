@@ -191,7 +191,7 @@ class LaunchOptionsDialog(Adw.Window):
         ):
             self.action_cwd.set_subtitle(program["folder"])
             self.btn_cwd_reset.set_visible(True)
-        
+
         if program.get("disc_image") not in ["", None]:
             self.action_disc_image.set_subtitle(program["disc_image"])
             self.btn_disc_image_reset.set_visible(True)
@@ -354,7 +354,7 @@ class LaunchOptionsDialog(Adw.Window):
         )
         self.action_cwd.set_subtitle(self.__default_cwd_msg)
         self.btn_cwd_reset.set_visible(False)
-    
+
     def __choose_disc_image(self, *_args):
         def set_path(dialog, response):
             if response != Gtk.ResponseType.ACCEPT:
