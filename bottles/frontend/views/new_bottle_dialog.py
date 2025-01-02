@@ -102,6 +102,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.btn_choose_path.connect("clicked", self.__choose_path)
         self.btn_choose_path_reset.connect("clicked", self.__reset_path)
         self.entry_name.connect("changed", self.__check_entry_name)
+        self.entry_name.connect("entry-activated", self.__entry_activated)
         self.environment_list_box.connect(
             "row-activated",
             lambda _, row: self.set_property("selected-environment", row.environment),
@@ -132,6 +133,10 @@ class BottlesNewBottleDialog(Adw.Dialog):
             self.entry_name.add_css_class("error")
         else:
             self.entry_name.remove_css_class("error")
+
+    def __entry_activated(self, *_args: Any) -> None:
+        if not any(self.__check_validity()):
+            self.create_bottle()
 
     def __choose_env_recipe(self, *_args: Any) -> None:
         """
