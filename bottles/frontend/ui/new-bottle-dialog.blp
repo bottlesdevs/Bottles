@@ -60,8 +60,6 @@ template $BottlesNewBottleDialog: Adw.Dialog {
           }
 
           Adw.PreferencesGroup {
-            title: _("Environment");
-
             ListBox environment_list_box {
               selection-mode: none;
 
@@ -99,52 +97,19 @@ template $BottlesNewBottleDialog: Adw.Dialog {
           }
 
           Adw.PreferencesGroup {
-            title: _("Custom");
-            sensitive: bind custom.active;
+            Adw.ComboRow combo_arch {
+              title: _("Architecture");
+              subtitle: _("32-bit should only be used if strictly necessary.");
+              visible: bind custom.active;
+
+              model: StringList str_list_arch {};
+            }
 
             Adw.ComboRow combo_runner {
               title: _("Runner");
               subtitle: _("The version of the Wine compatibility layer.");
 
               model: StringList str_list_runner {};
-            }
-
-            Adw.ComboRow combo_arch {
-              title: _("Architecture");
-              subtitle: _("32-bit should only be used if strictly necessary.");
-
-              model: StringList str_list_arch {};
-            }
-
-            Adw.ActionRow {
-              title: _("Configuration");
-              subtitle: _("Import a custom configuration.");
-              activatable-widget: btn_choose_env;
-
-              Button btn_choose_env_reset {
-                tooltip-text: _("Reset to Default");
-                valign: center;
-                visible: false;
-                icon-name: "edit-undo-symbolic";
-
-                styles [
-                  "flat",
-                ]
-              }
-
-              Button btn_choose_env {
-                valign: center;
-
-                child: Box {
-                  spacing: 6;
-
-                  Image {
-                    icon-name: "document-open-symbolic";
-                  }
-
-                  Label label_choose_env {}
-                };
-              }
             }
 
             Adw.ActionRow {
@@ -174,6 +139,38 @@ template $BottlesNewBottleDialog: Adw.Dialog {
                   }
 
                   Label label_choose_path {}
+                };
+              }
+            }
+
+            Adw.ActionRow {
+              title: _("Configuration");
+              subtitle: _("Import a custom configuration.");
+              activatable-widget: btn_choose_env;
+              visible: bind custom.active;
+
+              Button btn_choose_env_reset {
+                tooltip-text: _("Reset to Default");
+                valign: center;
+                visible: false;
+                icon-name: "edit-undo-symbolic";
+
+                styles [
+                  "flat",
+                ]
+              }
+
+              Button btn_choose_env {
+                valign: center;
+
+                child: Box {
+                  spacing: 6;
+
+                  Image {
+                    icon-name: "document-open-symbolic";
+                  }
+
+                  Label label_choose_env {}
                 };
               }
             }
