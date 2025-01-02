@@ -240,7 +240,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
             notification.set_title(title)
             notification.set_body(_("Bottle failed to create with one or more errors."))
             self.status_page_status.set_title(title)
-            self.btn_close.get_style_context().add_class("destructive-action")
+            self.btn_close.add_css_class("destructive-action")
             send_notification(notification)
 
             # Display error logs in the result page
@@ -260,7 +260,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         notification.set_body(description)
 
         self.new_bottle_config = result.data.get("config")
-        self.btn_close.get_style_context().add_class("suggested-action")
+        self.btn_close.add_css_class("suggested-action")
         self.status_page_status.set_icon_name("selection-mode-symbolic")
         self.status_page_status.set_title(title)
         self.status_page_status.set_description(description)
