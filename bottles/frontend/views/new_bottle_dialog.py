@@ -35,6 +35,7 @@ class BottlesCheckRow(Adw.ActionRow):
     check_button = Gtk.Template.Child()
 
     active = GObject.Property(type=bool, default=False)
+    environment = GObject.Property(type=str, default=None)
 
     # Add row’s check button to the group
     group = GObject.Property(
@@ -50,9 +51,6 @@ class BottlesNewBottleDialog(Adw.Dialog):
     __gtype_name__ = "BottlesNewBottleDialog"
 
     # region Widgets
-    application = Gtk.Template.Child()
-    gaming = Gtk.Template.Child()
-    custom = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     stack_create = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
@@ -72,6 +70,9 @@ class BottlesNewBottleDialog(Adw.Dialog):
     str_list_arch = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
     menu_duplicate = Gtk.Template.Child()
+    environment_list_box = Gtk.Template.Child()
+
+    selected_environment = GObject.Property(type=str, default=None)
 
     # endregion
 
@@ -101,12 +102,20 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.btn_choose_path.connect("clicked", self.__choose_path)
         self.btn_choose_path_reset.connect("clicked", self.__reset_path)
         self.entry_name.connect("changed", self.__check_entry_name)
+        self.environment_list_box.connect(
+            "row-activated",
+            lambda _, row: self.set_property("selected-environment", row.environment),
+        )
 
         # Populate widgets
         self.label_choose_env.set_label(self.default_string)
         self.label_choose_path.set_label(self.default_string)
         self.str_list_runner.splice(0, 0, self.manager.runners_available)
         self.str_list_arch.splice(0, 0, list(self.arch.values()))
+
+        self.selected_environment = (
+            self.environment_list_box.get_first_child().environment
+        )
 
     def __check_entry_name(self, *_args: Any) -> None:
         is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
@@ -170,7 +179,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.set_can_close(False)
         self.stack_create.set_visible_child_name("page_creating")
 
-        if self.custom.active:
+        if self.selected_environment == "active":
             self.runner = self.manager.runners_available[
                 self.combo_runner.get_selected()
             ]
@@ -180,7 +189,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
             callback=self.finish,
             name=self.entry_name.get_text(),
             path=self.custom_path,
-            environment=self.__radio_get_active(),
+            environment=self.selected_environment,
             runner=self.runner,
             arch=list(self.arch)[self.combo_arch.get_selected()],
             dxvk=self.manager.dxvk_available[0],
@@ -248,15 +257,6 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.manager.check_bottles()
         self.window.page_list.update_bottles_list()
         self.window.page_list.show_page(self.new_bottle_config.get("Path"))
-
-    def __radio_get_active(self) -> str:
-        # TODO: Remove this ugly zig zag and find a better way to set the environment
-        # https://docs.gtk.org/gtk4/class.CheckButton.html#grouping
-        if self.application.active:
-            return "application"
-        if self.gaming.active:
-            return "gaming"
-        return "custom"
 
     def __reset_env_recipe(self, *_args: Any) -> None:
         self.btn_choose_env_reset.set_visible(False)
