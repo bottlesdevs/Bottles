@@ -16,10 +16,12 @@
 #
 
 from gettext import gettext as _
+from typing import Any, Optional
 from gi.repository import Gtk, Adw, Pango, Gio
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.threading import RunAsync
+from bottles.backend.models.result import Result
 from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 from bottles.frontend.utils.gtk import GtkUtils
 
@@ -60,7 +62,7 @@ class BottlesNewBottleDialog(Adw.Window):
 
     # endregion
 
-    def __init__(self, window, **kwargs):
+    def __init__(self, window: Adw.ApplicationWindow, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.set_transient_for(window)
         # common variables and references
@@ -96,11 +98,11 @@ class BottlesNewBottleDialog(Adw.Window):
         # focus on the entry_name
         self.entry_name.grab_focus()
 
-    def __set_group(self, *_args) -> None:
+    def __set_group(self, *_args: Any) -> None:
         """Checks the state of combo_environment and updates group_custom accordingly."""
         self.group_custom.set_sensitive(self.check_custom.get_active())
 
-    def __check_entry_name(self, *_args) -> None:
+    def __check_entry_name(self, *_args: Any) -> None:
         is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
         is_invalid = is_duplicate or self.entry_name.get_text() == ""
         self.btn_create.set_sensitive(not is_invalid)
@@ -111,7 +113,7 @@ class BottlesNewBottleDialog(Adw.Window):
         else:
             self.entry_name.remove_css_class("error")
 
-    def __choose_env_recipe(self, *_args) -> None:
+    def __choose_env_recipe(self, *_args: Any) -> None:
         """
         Opens a file chooser dialog to select the configuration file
         in yaml format.
@@ -136,7 +138,7 @@ class BottlesNewBottleDialog(Adw.Window):
         dialog.connect("response", set_path)
         dialog.show()
 
-    def __choose_path(self, *_args) -> None:
+    def __choose_path(self, *_args: Any) -> None:
         """Opens a file chooser dialog to select the directory."""
 
         def set_path(_dialog, response: Gtk.ResponseType) -> None:
@@ -156,7 +158,7 @@ class BottlesNewBottleDialog(Adw.Window):
         dialog.connect("response", set_path)
         dialog.show()
 
-    def create_bottle(self, *_args) -> None:
+    def create_bottle(self, *_args: Any) -> None:
         """Starts creating the bottle."""
         # set widgets states
         self.is_closable = False
@@ -198,7 +200,7 @@ class BottlesNewBottleDialog(Adw.Window):
         self.label_output.set_text(text)
 
     @GtkUtils.run_in_main_loop
-    def finish(self, result, error=None) -> None:
+    def finish(self, result: Optional[Result], error=None) -> None:
         """Updates widgets based on whether it succeeded or failed."""
 
         def send_notification(notification: Gio.Notification) -> None:
@@ -255,12 +257,12 @@ class BottlesNewBottleDialog(Adw.Window):
             return "gaming"
         return "custom"
 
-    def __reset_env_recipe(self, _widget: Gtk.Button) -> None:
+    def __reset_env_recipe(self, *_args: Any) -> None:
         self.btn_choose_env_reset.set_visible(False)
         self.env_recipe_path = None
         self.label_choose_env.set_label(self.default_string)
 
-    def __reset_path(self, _widget: Gtk.Button) -> None:
+    def __reset_path(self, *_args: Any) -> None:
         self.btn_choose_path_reset.set_visible(False)
         self.custom_path = ""
         self.label_choose_path.set_label(self.default_string)
