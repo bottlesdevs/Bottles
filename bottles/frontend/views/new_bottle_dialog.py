@@ -94,6 +94,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.arch = {"win64": "64-bit", "win32": "32-bit"}
 
         # connect signals
+        self.window.connect("notify::is-active", self.__remove_notifications)
         self.btn_cancel.connect("clicked", self.__close_dialog)
         self.btn_close.connect("clicked", self.__close_dialog)
         self.btn_create.connect("clicked", self.create_bottle)
@@ -137,6 +138,9 @@ class BottlesNewBottleDialog(Adw.Dialog):
     def __entry_activated(self, *_args: Any) -> None:
         if not any(self.__check_validity()):
             self.create_bottle()
+
+    def __remove_notifications(self, *_args: Any) -> None:
+        self.app.withdraw_notification("bottle-created-completed")
 
     def __choose_env_recipe(self, *_args: Any) -> None:
         """
@@ -224,7 +228,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         def send_notification(notification: Gio.Notification) -> None:
             """Sends notification if out of focus."""
             if not self.window.is_active():
-                self.app.send_notification(None, notification)
+                self.app.send_notification("bottle-created-completed", notification)
 
         self.set_can_close(True)
         self.stack_create.set_visible_child_name("page_completed")
@@ -279,6 +283,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.label_choose_path.set_label(self.default_string)
 
     def __close_dialog(self, *_args: Any) -> None:
+        self.window.disconnect_by_func(self.__remove_notifications)
         # TODO: Implement AdwMessageDialog to prompt the user if they are
         # SURE they want to cancel creation. For now, the window will not
         # react if the user attempts to close the window while a bottle
