@@ -117,9 +117,14 @@ class BottlesNewBottleDialog(Adw.Dialog):
             self.environment_list_box.get_first_child().environment
         )
 
-    def __check_entry_name(self, *_args: Any) -> None:
+    def __check_validity(self, *_args: Any) -> tuple[bool, bool]:
+        is_empty = self.entry_name.get_text() == ""
         is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
-        is_invalid = is_duplicate or self.entry_name.get_text() == ""
+        return (is_empty, is_duplicate)
+
+    def __check_entry_name(self, *_args: Any) -> None:
+        is_empty, is_duplicate = self.__check_validity()
+        is_invalid = is_empty or is_duplicate
         self.btn_create.set_sensitive(not is_invalid)
         self.menu_duplicate.set_visible(is_duplicate)
 
