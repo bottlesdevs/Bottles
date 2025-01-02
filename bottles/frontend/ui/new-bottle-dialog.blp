@@ -62,28 +62,39 @@ template $BottlesNewBottleDialog: Adw.Dialog {
           Adw.PreferencesGroup {
             title: _("Environment");
 
-            $BottlesCheckRow application {
-              title: _("_Application");
-              subtitle: _("Optimized for productivity software. Can run apps that might need DirectX, but not guaranteed. Includes basic fonts and essential Wine components.");
-              icon-name: "applications-engineering-symbolic";
-              use-underline: true;
-              active: true;
-            }
+            ListBox environment_list_box {
+              selection-mode: none;
 
-            $BottlesCheckRow gaming {
-              title: _("_Gaming");
-              subtitle: _("Optimized for games, game engines, and 3D apps. Includes DirectX, Vulkan, and enhanced performance settings.");
-              icon-name: "input-gaming-symbolic";
-              use-underline: true;
-              group: application;
-            }
+              styles [
+                "boxed-list",
+              ]
 
-            $BottlesCheckRow custom {
-              title: _("C_ustom");
-              subtitle: _("A clean slate. You can customize everything for advanced use cases.");
-              icon-name: "applications-science-symbolic";
-              use-underline: true;
-              group: application;
+              $BottlesCheckRow application {
+                title: _("_Application");
+                environment: "application";
+                subtitle: _("Optimized for productivity software. Can run apps that might need DirectX, but not guaranteed. Includes basic fonts and essential Wine components.");
+                icon-name: "applications-engineering-symbolic";
+                use-underline: true;
+                active: true;
+              }
+
+              $BottlesCheckRow {
+                title: _("_Gaming");
+                environment: "gaming";
+                subtitle: _("Optimized for games, game engines, and 3D apps. Includes DirectX, Vulkan, and enhanced performance settings.");
+                icon-name: "input-gaming-symbolic";
+                use-underline: true;
+                group: application;
+              }
+
+              $BottlesCheckRow custom {
+                title: _("C_ustom");
+                environment: "custom";
+                subtitle: _("A clean slate. You can customize everything for advanced use cases.");
+                icon-name: "applications-science-symbolic";
+                use-underline: true;
+                group: application;
+              }
             }
           }
 
