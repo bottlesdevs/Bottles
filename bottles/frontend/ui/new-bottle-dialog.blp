@@ -70,7 +70,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
               $BottlesCheckRow application {
                 title: _("_Application");
                 environment: "application";
-                subtitle: _("Optimized for productivity software. Can run apps that might need DirectX, but not guaranteed. Includes basic fonts and essential Wine components.");
+                subtitle: _("Optimized for productivity software");
                 icon-name: "applications-engineering-symbolic";
                 use-underline: true;
                 active: true;
@@ -79,7 +79,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
               $BottlesCheckRow {
                 title: _("_Gaming");
                 environment: "gaming";
-                subtitle: _("Optimized for games, game engines, and 3D apps. Includes DirectX, Vulkan, and enhanced performance settings.");
+                subtitle: _("Optimized for games, game engines, and 3D apps");
                 icon-name: "input-gaming-symbolic";
                 use-underline: true;
                 group: application;
@@ -88,7 +88,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
               $BottlesCheckRow custom {
                 title: _("C_ustom");
                 environment: "custom";
-                subtitle: _("A clean slate. You can customize everything for advanced use cases.");
+                subtitle: _("A clean state intended for specific use cases");
                 icon-name: "applications-science-symbolic";
                 use-underline: true;
                 group: application;
@@ -99,7 +99,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
           Adw.PreferencesGroup {
             Adw.ComboRow combo_arch {
               title: _("Architecture");
-              subtitle: _("32-bit should only be used if strictly necessary.");
+              subtitle: _("64-bit is recommended for most users");
               visible: bind custom.active;
 
               model: StringList str_list_arch {};
@@ -107,14 +107,14 @@ template $BottlesNewBottleDialog: Adw.Dialog {
 
             Adw.ComboRow combo_runner {
               title: _("Runner");
-              subtitle: _("The version of the Wine compatibility layer.");
+              subtitle: _("Provider and version of the compatibility layer");
 
               model: StringList str_list_runner {};
             }
 
             Adw.ActionRow {
               title: _("Bottle Directory");
-              subtitle: _("Directory that will contain the data of this bottle.");
+              subtitle: _("Location where the bottle's data is stored");
               activatable-widget: btn_choose_path;
 
               Button btn_choose_path_reset {
@@ -144,8 +144,7 @@ template $BottlesNewBottleDialog: Adw.Dialog {
             }
 
             Adw.ActionRow {
-              title: _("Configuration");
-              subtitle: _("Import a custom configuration.");
+              title: _("Import Configuration");
               activatable-widget: btn_choose_env;
               visible: bind custom.active;
 
