@@ -249,7 +249,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
 
         # Show success
         title = _("Bottle Created")
-        description = _('"{0}" was created successfully.').format(
+        description = _("“{0}” was created successfully.").format(
             self.entry_name.get_text()
         )
 
