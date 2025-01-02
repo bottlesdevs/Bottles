@@ -193,10 +193,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.set_can_close(False)
         self.stack_create.set_visible_child_name("page_creating")
 
-        if self.selected_environment == "active":
-            self.runner = self.manager.runners_available[
-                self.combo_runner.get_selected()
-            ]
+        self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
         RunAsync(
             task_func=self.manager.create_bottle,
