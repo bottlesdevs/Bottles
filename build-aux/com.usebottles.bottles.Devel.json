@@ -4,7 +4,7 @@
     "runtime": "org.gnome.Platform",
     "base": "org.winehq.Wine",
     "base-version": "stable-24.08",
-    "runtime-version": "47",
+    "runtime-version": "master",
     "command": "bottles",
     "finish-args": [
         "--allow=devel",
@@ -33,11 +33,11 @@
     "add-extensions": {
         "org.gnome.Platform.Compat.i386": {
             "directory": "lib/i386-linux-gnu",
-            "version": "47"
+            "version": "master"
         },
         "org.gnome.Platform.Compat.i386.Debug": {
             "directory": "lib/debug/lib/i386-linux-gnu",
-            "version": "47",
+            "version": "master",
             "no-autodownload": true
         },
         "com.valvesoftware.Steam.CompatibilityTool": {
