@@ -51,8 +51,8 @@ logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/window.ui")
-class MainWindow(Adw.ApplicationWindow):
-    __gtype_name__ = "MainWindow"
+class BottlesWindow(Adw.ApplicationWindow):
+    __gtype_name__ = "BottlesWindow"
 
     # region Widgets
     stack_main = Gtk.Template.Child()

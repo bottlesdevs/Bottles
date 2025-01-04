@@ -27,7 +27,7 @@ bottles_sources = [
   'exclusionpatterns.py',
   'upgradeversioning.py',
   'vmtouch.py',
-  'main_window.py',
+  'window.py',
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)
