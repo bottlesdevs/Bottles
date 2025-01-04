@@ -18,6 +18,7 @@
 import os
 import uuid
 import requests
+from requests.exceptions import RequestException, HTTPError
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -43,10 +44,14 @@ class SteamGridDBManager:
         name: str, asset_type: str, config_path: str, base_filename: str
     ):
         try:
-            # url = f"https://steamgrid.usebottles.com/api/search/{name}/{asset_type}"
-            url = f"http://127.0.0.1:8000/api/search/{name}/{asset_type}"
+            # url = f"https://steamgrid.usebottles.com/api/search/{name}"
+            url = f"http://127.0.0.1:8000/api/search/{name}"
+            if asset_type:
+                url += f"/{asset_type}"
             res = requests.get(url)
-        except:
+            res.raise_for_status()
+        except (RequestException, HTTPError) as e:
+            logging.error(str(e))
             return
 
         if res.status_code == 200:
