@@ -32,7 +32,7 @@ from gi.repository import Gtk, Gio, GLib, GObject, Adw  # type: ignore
 
 from bottles.frontend.params import APP_ID, APP_MAJOR_VERSION, APP_VERSION
 from bottles.backend.logger import Logger
-from bottles.frontend.windows.main_window import MainWindow
+from bottles.frontend.windows.window import BottlesWindow
 from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.backend.health import HealthChecker
 
@@ -247,7 +247,7 @@ class Bottles(Adw.Application):
         Adw.Application.do_activate(self)
         win = self.props.active_window
         if not win:
-            win = MainWindow(application=self, arg_bottle=self.arg_bottle)
+            win = BottlesWindow(application=self, arg_bottle=self.arg_bottle)
         self.win = win
 
         win.present()
