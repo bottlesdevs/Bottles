@@ -20,7 +20,7 @@ import os
 import shlex
 import shutil
 import uuid
-from crc32c import crc32c
+from binascii import crc32
 from datetime import datetime
 from functools import lru_cache
 from glob import glob
@@ -525,7 +525,7 @@ class SteamManager:
         logging.info(f"Adding shortcut for {program_name}")
         cmd = "xdg-open"
         args = f"bottles:run/'{self.config.Name}'/'{program_name}'"
-        appid = crc32c(str.encode(self.config.Name + program_name)) | 0x80000000
+        appid = crc32(str.encode(self.config.Name + program_name)) | 0x80000000
 
         if self.userdata_path is None:
             logging.warning("Userdata path is not set")
@@ -560,9 +560,14 @@ class SteamManager:
                 "logos": "_logo",
                 "icons": "_icon",
             }
-            for asset_type, suffix, in asset_suffixes.items():
+            for (
+                asset_type,
+                suffix,
+            ) in asset_suffixes.items():
                 base_filename = f"{appid}{suffix}"
-                filename = SteamGridDBManager.get_steam_game_asset(program_name, asset_type, c, base_filename)                
+                filename = SteamGridDBManager.get_steam_game_asset(
+                    program_name, asset_type, c, base_filename
+                )
                 if filename:
                     if asset_type == "icons":
                         shortcut["icon"] = os.path.join(c, "grid", filename)

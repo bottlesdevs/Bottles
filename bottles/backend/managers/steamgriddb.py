@@ -37,11 +37,13 @@ class SteamGridDBManager:
 
         if res.status_code == 200:
             return SteamGridDBManager.__save_grid(res.json(), config)
-    
+
     @staticmethod
-    def get_steam_game_asset(name: str, asset_type: str, config_path: str, base_filename: str):
+    def get_steam_game_asset(
+        name: str, asset_type: str, config_path: str, base_filename: str
+    ):
         try:
-            #url = f"https://steamgrid.usebottles.com/api/search/{name}/{asset_type}"
+            # url = f"https://steamgrid.usebottles.com/api/search/{name}/{asset_type}"
             url = f"http://127.0.0.1:8000/api/search/{name}/{asset_type}"
             res = requests.get(url)
         except:
@@ -49,7 +51,9 @@ class SteamGridDBManager:
 
         if res.status_code == 200:
             assets_path = os.path.join(config_path, "grid")
-            return SteamGridDBManager.__save_asset_to_steam(res.json(), assets_path, base_filename)
+            return SteamGridDBManager.__save_asset_to_steam(
+                res.json(), assets_path, base_filename
+            )
 
     @staticmethod
     def __save_grid(url: str, config: BottleConfig):
@@ -67,9 +71,9 @@ class SteamGridDBManager:
                 f.write(r.content)
         except Exception:
             return
-        
+
         return f"grid:{filename}"
-    
+
     @staticmethod
     def __save_asset_to_steam(url: str, assets_path: str, base_filename: str):
         if not os.path.exists(assets_path):
