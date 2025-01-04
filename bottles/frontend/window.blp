@@ -5,7 +5,7 @@ template $BottlesWindow: Adw.ApplicationWindow {
   title: "Bottles";
   close-request => $on_close_request();
 
-  Adw.ToastOverlay toasts {
+  content: Adw.ToastOverlay toasts {
     Adw.Leaflet main_leaf {
       can-unfold: false;
       can-navigate-back: false;
@@ -71,7 +71,7 @@ template $BottlesWindow: Adw.ApplicationWindow {
         }
       }
     }
-  }
+  };
 }
 
 menu primary_menu {
