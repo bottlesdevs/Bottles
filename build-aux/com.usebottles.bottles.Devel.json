@@ -303,6 +303,49 @@
             ]
         },
         {
+            "name": "libsass",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/lazka/libsass.git",
+                    "commit": "aac79dccd3c8f7e8f22125f87a119f3b1ee9d487"
+                }
+            ]
+        },
+        {
+            "name": "sassc",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/lazka/sassc.git",
+                    "commit": "a1950c2d95ea4c051feb90bb1f43559fbb54bf36"
+                }
+            ]
+        },
+        {
+            "name": "libadwaita",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Dexamples=false",
+                "-Dtests=false"
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig",
+                "/libexec",
+                "/share/dbus-1"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libadwaita.git",
+                    "commit": "f5f0e7ce69405846a8f8bdad11cef2e2a7e99010"
+                }
+            ]
+        },
+        {
             "name": "bottles",
             "builddir": true,
             "buildsystem": "meson",
