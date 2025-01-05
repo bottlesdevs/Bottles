@@ -8,11 +8,11 @@ jobs:
     name: "build-packages"
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/bottlesdevs/flatpak-github-actions:gnome-nightly-with-wine
+      image: bilelmoussaoui/flatpak-github-actions:gnome-47
       options: --privileged
     steps:
     - uses: actions/checkout@v4
-    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+    - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: bottles.flatpak
         manifest-path: build-aux/com.usebottles.bottles.Devel.json
