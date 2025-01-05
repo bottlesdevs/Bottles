@@ -524,36 +524,7 @@ class SteamManager:
         SignalManager.send(Signals.GShowUri, Result(data=uri))
 
     def add_shortcut(self, program_name: str, program_path: str):
-        logging.info(f"Adding shortcut for {program_name}")
-        cmd = "xdg-open"
-        args = f"bottles:run/'{self.config.Name}'/'{program_name}'"
-        appid = crc32(str.encode(self.config.Name + program_name)) | 0x80000000
-
-        if self.userdata_path is None:
-            logging.warning("Userdata path is not set")
-            return Result(False)
-
-        confs = glob(os.path.join(self.userdata_path, "*/config/"))
-        shortcut = {
-            "appid": appid - 0x100000000,
-            "AppName": program_name,
-            "Exe": cmd,
-            "StartDir": ManagerUtils.get_bottle_path(self.config),
-            "icon": ManagerUtils.extract_icon(self.config, program_name, program_path),
-            "ShortcutPath": "",
-            "LaunchOptions": args,
-            "IsHidden": 0,
-            "AllowDesktopConfig": 1,
-            "AllowOverlay": 1,
-            "OpenVR": 0,
-            "Devkit": 0,
-            "DevkitGameID": "",
-            "DevkitOverrideAppID": "",
-            "LastPlayTime": 0,
-            "tags": {"0": "Bottles"},
-        }
-
-        for conf in confs:
+        def __add_to_user_conf(conf: str) -> bool:
             logging.info(f"Searching SteamGridDB for {program_name} assets…")
             asset_suffixes = {
                 "grids": "p",
@@ -594,6 +565,44 @@ class SteamManager:
 
             except (OSError, IOError) as e:
                 logging.error(e)
+                return False
 
-        logging.info(f"Added shortcut for {program_name}")
-        return Result(True)
+            return True
+
+        logging.info(f"Adding shortcut for {program_name}")
+        cmd = "xdg-open"
+        args = f"bottles:run/'{self.config.Name}'/'{program_name}'"
+        appid = crc32(str.encode(self.config.Name + program_name)) | 0x80000000
+
+        if self.userdata_path is None:
+            logging.warning("Userdata path is not set")
+            return Result(False)
+
+        confs = glob(os.path.join(self.userdata_path, "*/config/"))
+        shortcut = {
+            "appid": appid - 0x100000000,
+            "AppName": program_name,
+            "Exe": cmd,
+            "StartDir": ManagerUtils.get_bottle_path(self.config),
+            "icon": ManagerUtils.extract_icon(self.config, program_name, program_path),
+            "ShortcutPath": "",
+            "LaunchOptions": args,
+            "IsHidden": 0,
+            "AllowDesktopConfig": 1,
+            "AllowOverlay": 1,
+            "OpenVR": 0,
+            "Devkit": 0,
+            "DevkitGameID": "",
+            "DevkitOverrideAppID": "",
+            "LastPlayTime": 0,
+            "tags": {"0": "Bottles"},
+        }
+
+        ok = False
+        for conf in confs:
+            ok |= __add_to_user_conf(conf)
+
+        if ok:
+            logging.info(f"Added shortcut for {program_name}")
+
+        return Result(ok)
