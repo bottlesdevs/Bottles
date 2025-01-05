@@ -4,8 +4,13 @@
   <project_license>GPL-3.0-only</project_license>
   <id>@APP_ID@</id>
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
+
   <name>Bottles</name>
+  <name xml:lang="hu">Palackok</name>
+
   <summary>Run Windows Software</summary>
+  <summary xml:lang="hu">Windows szoftver futtatása</summary>
+
   <developer_name translatable="no">Bottles Contributors</developer_name>
   <developer id="@DEVELOPER_ID@">
     <name translatable="no">Bottles Contributors</name>
@@ -22,6 +27,17 @@
       <li>Integrated task manager to manage and monitor processes</li>
       <li>Backup and restore</li>
     </ul>
+    <p xml:lang="hu">A Palackok lehetővé teszi Windows-szoftverek, például alkalmazások és játékok futtatását Linuxon. Bevezet egy munkafolyamatot, amely az egyes szoftverek tetszés szerinti kategorizálásával segíti a rendszerezést. A Palackok számos eszközt és integrációt kínál az alkalmazások kezeléséhez és optimalizálásához.</p>
+    <p xml:lang="hu">Jellemzők:</p>
+    <ul>
+      <li xml:lang="hu">Használjon előre konfigurált környezeteket alapként</li>
+      <li xml:lang="hu">Cserélje ki a futószalagokat bármelyik palackra</li>
+      <li xml:lang="hu">Különféle optimalizálások és lehetőségek a játékhoz</li>
+      <li xml:lang="hu">Javítsa meg, ha a szoftver vagy a palack elromlik</li>
+      <li xml:lang="hu">Különféle ismert függőségek telepítése</li>
+      <li xml:lang="hu">Integrált feladatkezelő a folyamatok kezeléséhez és figyeléséhez</li>
+      <li xml:lang="hu">Biztonsági mentés és visszaállítás</li>
+    </ul>
   </description>
   <provides>
     <mediatype>application/x-ms-dos-executable</mediatype>
@@ -32,21 +48,33 @@
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/screenshot.png</image>
+      <caption>Bottles</caption>
+      <caption xml:lang="hu">Palackok</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/1.png</image>
+      <caption>Application, gaming, and custom bottles</caption>
+      <caption xml:lang="hu">Alkalmazás, játék és egyéni palackok</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/2.png</image>
+      <caption>Details</caption>
+      <caption xml:lang="hu">Részletek</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/3.png</image>
+      <caption>Settings</caption>
+      <caption xml:lang="hu">Beállítások</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/4.png</image>
+      <caption>Dependencies</caption>
+      <caption xml:lang="hu">Függőségek</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/appstream/5.png</image>
+      <caption>Snapshots</caption>
+      <caption xml:lang="hu">Pillanatképek</caption>
     </screenshot>
   </screenshots>
   <translation type="gettext">@APP_ID@</translation>
