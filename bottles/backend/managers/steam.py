@@ -27,6 +27,8 @@ from glob import glob
 from pathlib import Path
 from typing import Union, Dict, Optional
 
+from requests.exceptions import HTTPError, RequestException
+
 from bottles.backend.globals import Paths
 from bottles.backend.managers.steamgriddb import SteamGridDBManager
 from bottles.backend.models.config import BottleConfig
@@ -551,7 +553,7 @@ class SteamManager:
             "tags": {"0": "Bottles"},
         }
 
-        for c in confs:
+        for conf in confs:
             logging.info(f"Searching SteamGridDB for {program_name} assets…")
             asset_suffixes = {
                 "grids": "p",
@@ -560,36 +562,38 @@ class SteamManager:
                 "logos": "_logo",
                 "icons": "_icon",
             }
-            for (
-                asset_type,
-                suffix,
-            ) in asset_suffixes.items():
+            for asset_type, suffix in asset_suffixes.items():
                 base_filename = f"{appid}{suffix}"
-                filename = SteamGridDBManager.get_steam_game_asset(
-                    program_name, asset_type, c, base_filename
-                )
-                if filename:
-                    if asset_type == "icons":
-                        shortcut["icon"] = os.path.join(c, "grid", filename)
+                asset_path = os.path.join(conf, "grid", base_filename)
+                try:
+                    filename = SteamGridDBManager.get_steam_game_asset(
+                        program_name, asset_path, asset_type, reraise_exceptions=True
+                    )
+                except HTTPError:
+                    # Usually missing asset (404), keep trying for the rest
+                    continue
+                except:
+                    # Unreachable host or issue saving files, nothing we can do
+                    break
 
-                    s = asset_type[:-1] if asset_type != "heroes" else "hero"
-                    logging.info(f"Added {s.capitalize()} asset ({filename})")
+                if asset_type == "icons":
+                    shortcut["icon"] = os.path.join(conf, "grid", filename)
 
-            _shortcuts = {}
-            _existing = {}
+                s = asset_type[:-1] if asset_type != "heroes" else "hero"
+                logging.info(f"Added {s.capitalize()} asset ({filename})")
 
-            if os.path.exists(os.path.join(c, "shortcuts.vdf")):
-                with open(os.path.join(c, "shortcuts.vdf"), "rb") as f:
-                    try:
-                        _existing = vdf.binary_loads(f.read()).get("shortcuts", {})
-                    except:
-                        continue
+            try:
+                with open(os.path.join(conf, "shortcuts.vdf"), "rb") as f:
+                    _existing = vdf.binary_loads(f.read()).get("shortcuts", {})
 
-            _all = list(_existing.values()) + [shortcut]
-            _shortcuts = {"shortcuts": {str(i): s for i, s in enumerate(_all)}}
+                _all = list(_existing.values()) + [shortcut]
+                _shortcuts = {"shortcuts": {str(i): s for i, s in enumerate(_all)}}
 
-            with open(os.path.join(c, "shortcuts.vdf"), "wb") as f:
-                f.write(vdf.binary_dumps(_shortcuts))
+                with open(os.path.join(conf, "shortcuts.vdf"), "wb") as f:
+                    f.write(vdf.binary_dumps(_shortcuts))
+
+            except (OSError, IOError) as e:
+                logging.error(e)
 
         logging.info(f"Added shortcut for {program_name}")
         return Result(True)

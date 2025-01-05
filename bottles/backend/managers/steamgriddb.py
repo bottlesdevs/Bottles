@@ -16,9 +16,10 @@
 #
 
 import os
-import uuid
+from typing import Optional
+
 import requests
-from requests.exceptions import RequestException, HTTPError
+from requests.exceptions import HTTPError, RequestException
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -28,70 +29,42 @@ logging = Logger()
 
 
 class SteamGridDBManager:
-    @staticmethod
-    def get_game_grid(name: str, config: BottleConfig):
-        try:
-            url = f"https://steamgrid.usebottles.com/api/search/{name}"
-            res = requests.get(url)
-        except:
-            return
-
-        if res.status_code == 200:
-            return SteamGridDBManager.__save_grid(res.json(), config)
-
-    @staticmethod
     def get_steam_game_asset(
-        name: str, asset_type: str, config_path: str, base_filename: str
-    ):
+        program_name: str,
+        asset_path: str,
+        asset_type: Optional[str] = None,
+        reraise_exceptions: bool = False,
+    ) -> Optional[str]:
         try:
-            # url = f"https://steamgrid.usebottles.com/api/search/{name}"
-            url = f"http://127.0.0.1:8000/api/search/{name}"
+            # url = f"https://steamgrid.usebottles.com/api/search/{program_name}"
+            url = f"http://127.0.0.1:8000/api/search/{program_name}"
             if asset_type:
-                url += f"/{asset_type}"
-            res = requests.get(url)
+                url = f"{url}/{asset_type}"
+            res = requests.get(url, timeout=5)
             res.raise_for_status()
-        except (RequestException, HTTPError) as e:
-            logging.error(str(e))
-            return
+            filename = SteamGridDBManager.__save_asset_to_steam(res.json(), asset_path)
 
-        if res.status_code == 200:
-            assets_path = os.path.join(config_path, "grid")
-            return SteamGridDBManager.__save_asset_to_steam(
-                res.json(), assets_path, base_filename
-            )
-
-    @staticmethod
-    def __save_grid(url: str, config: BottleConfig):
-        grids_path = os.path.join(ManagerUtils.get_bottle_path(config), "grids")
-        if not os.path.exists(grids_path):
-            os.makedirs(grids_path)
-
-        ext = url.split(".")[-1]
-        filename = str(uuid.uuid4()) + "." + ext
-        path = os.path.join(grids_path, filename)
-
-        try:
-            r = requests.get(url)
-            with open(path, "wb") as f:
-                f.write(r.content)
-        except Exception:
-            return
-
-        return f"grid:{filename}"
-
-    @staticmethod
-    def __save_asset_to_steam(url: str, assets_path: str, base_filename: str):
-        if not os.path.exists(assets_path):
-            os.makedirs(assets_path)
-
-        try:
-            r = requests.get(url)
-            ext = url.rpartition(".")[-1]
-            filename = f"{base_filename}.{ext}"
-            path = os.path.join(assets_path, filename)
-            with open(path, "wb") as f:
-                f.write(r.content)
-        except Exception:
-            return
+        except Exception as e:
+            if isinstance(e, HTTPError):
+                logging.warning(str(e))
+            else:
+                logging.error(str(e))
+            if reraise_exceptions:
+                raise
 
         return filename
+
+    @staticmethod
+    def __save_asset_to_steam(url: str, asset_path: str) -> str:
+        asset_dir = os.path.dirname(asset_path)
+        if not os.path.exists(asset_dir):
+            os.makedirs(asset_dir)
+
+        res = requests.get(url)
+        res.raise_for_status()
+        ext = os.path.splitext(url)[-1]
+        asset_path += ext
+        with open(asset_path, "wb") as img:
+            img.write(res.content)
+
+        return os.path.basename(asset_path)
