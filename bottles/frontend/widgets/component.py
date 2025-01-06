@@ -93,6 +93,10 @@ class ComponentEntry(Adw.ActionRow):
 
             return self.update_progress(status=Status.FAILED)
 
+        @GtkUtils.run_in_main_loop
+        def async_func(*args, **kwargs):
+            return self.update_progress(*args, **kwargs)
+
         self.btn_download.set_visible(False)
         self.btn_cancel.set_visible(False)  # TODO: unimplemented
         self.box_download_status.set_visible(True)
@@ -102,7 +106,7 @@ class ComponentEntry(Adw.ActionRow):
             callback=async_callback,
             component_type=self.component_type,
             component_name=self.name,
-            func=self.update_progress,
+            func=async_func,
         )
 
     def uninstall(self, widget):
