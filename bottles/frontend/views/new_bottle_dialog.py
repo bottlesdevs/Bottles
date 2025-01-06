@@ -17,7 +17,7 @@
 
 from gettext import gettext as _
 from typing import Any, Optional
-from gi.repository import Gtk, Adw, Pango, Gio, Xdp, GObject
+from gi.repository import Gtk, Adw, Pango, Gio, Xdp, GObject, GLib
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.threading import RunAsync
@@ -148,44 +148,56 @@ class BottlesNewBottleDialog(Adw.Dialog):
         in yaml format.
         """
 
-        def set_path(_dialog, response: Gtk.ResponseType):
-            if response == Gtk.ResponseType.ACCEPT:
-                self.btn_choose_env_reset.set_visible(True)
-                self.env_recipe_path = dialog.get_file().get_path()
-                self.label_choose_env.set_label(dialog.get_file().get_basename())
-                self.label_choose_env.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+        def set_path(dialog, result):
+            try:
+                file = dialog.open_finish(result)
+            except GLib.Error:
+                return
 
-        dialog = Gtk.FileChooserNative.new(
-            title=_("Select a Configuration File"),
-            action=Gtk.FileChooserAction.OPEN,
-            parent=self.window,
-        )
+            self.btn_choose_env_reset.set_visible(True)
+            self.env_recipe_path = file.get_path()
+            self.label_choose_env.set_label(file.get_basename())
+            self.label_choose_env.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
 
-        add_yaml_filters(dialog)
-        add_all_filters(dialog)
-        dialog.set_modal(True)
-        dialog.connect("response", set_path)
-        dialog.show()
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+
+        yaml_filter = Gtk.FileFilter()
+        yaml_filter.set_name("YAML")
+        yaml_filter.add_mime_type("application/yaml")
+
+        all_filter = Gtk.FileFilter()
+        all_filter.set_name(_("All Files"))
+        all_filter.add_pattern("*")
+
+        filters.append(yaml_filter)
+        filters.append(all_filter)
+
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title(_("Select Configuration"))
+        dialog.set_filters(filters)
+
+        dialog.open(self.window, callback=set_path)
 
     def __choose_path(self, *_args: Any) -> None:
         """Opens a file chooser dialog to select the directory."""
 
-        def set_path(_dialog, response: Gtk.ResponseType) -> None:
-            if response == Gtk.ResponseType.ACCEPT:
-                self.btn_choose_path_reset.set_visible(True)
-                self.custom_path = dialog.get_file().get_path()
-                self.label_choose_path.set_label(dialog.get_file().get_basename())
-                self.label_choose_path.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+        def set_path(dialog, result):
+            try:
+                folder = dialog.select_folder_finish(result)
+            except GLib.Error:
+                return
 
-        dialog = Gtk.FileChooserNative.new(
-            title=_("Select Bottle Directory"),
-            action=Gtk.FileChooserAction.SELECT_FOLDER,
-            parent=self.window,
-        )
+            self.custom_path = folder.get_path()
+            print(folder.get_basename())
 
+            self.btn_choose_path_reset.set_visible(True)
+            self.label_choose_path.set_label(folder.get_basename())
+            self.label_choose_path.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title(_("Select Directory"))
         dialog.set_modal(True)
-        dialog.connect("response", set_path)
-        dialog.show()
+        dialog.select_folder(parent=self.window, callback=set_path)
 
     def create_bottle(self, *_args: Any) -> None:
         """Starts creating the bottle."""
