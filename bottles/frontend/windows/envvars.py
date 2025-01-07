@@ -91,7 +91,7 @@ class EnvVarEntry(Adw.EntryRow):
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-env-vars.ui")
-class EnvVarsDialog(Adw.Window):
+class EnvVarsDialog(Adw.Dialog):
     __gtype_name__ = "EnvVarsDialog"
 
     # region Widgets
@@ -101,7 +101,6 @@ class EnvVarsDialog(Adw.Window):
 
     def __init__(self, window, config, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(window)
 
         # common variables and references
         self.window = window
@@ -113,6 +112,9 @@ class EnvVarsDialog(Adw.Window):
         # connect signals
         self.entry_new_var.connect("changed", self.__validate)
         self.entry_new_var.connect("apply", self.__save_var)
+
+    def present(self):
+        return super().present(self.window)
 
     def __validate(self, *_args):
         self.__valid_name = GtkUtils.validate_entry(
