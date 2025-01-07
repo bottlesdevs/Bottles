@@ -15,28 +15,26 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import re
 from typing import Optional
 from functools import wraps
 from inspect import signature
 
 from gi.repository import GLib, Gtk
 
+from bottles.frontend.utils.sh import ShUtils
+
 
 class GtkUtils:
     @staticmethod
     def validate_entry(entry, extend=None) -> bool:
-        text = entry.get_text()
-        if (
-            re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text)
-            or len(text) == 0
-            or text.isspace()
-        ):
+        var_assignment = entry.get_text()
+        var_name = ShUtils.split_assignment(var_assignment)[0]
+        if "=" not in var_assignment or not ShUtils.is_name(var_name):
             entry.add_css_class("error")
             return False
 
         if extend is not None:
-            if extend(text):
+            if not extend(var_name):
                 entry.add_css_class("error")
                 return False
 

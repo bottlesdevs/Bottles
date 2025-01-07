@@ -24,17 +24,15 @@ template $EnvVarsDialog: Adw.Window {
 
     Adw.PreferencesPage {
       Adw.PreferencesGroup {
-        description: _("Environment variables are dynamic-named value that can affect the way running processes will behave on your bottle.");
+        description: _("Environment variables are dynamic-named values that can affect the way running processes will behave in your bottle");
 
-        Adw.EntryRow entry_name {
-          title: _("Variable Name");
+        Adw.EntryRow entry_new_var {
+          title: _("New Variable");
           show-apply-button: true;
         }
       }
 
-      Adw.PreferencesGroup group_vars {
-        title: _("Existing Variables");
-      }
+      Adw.PreferencesGroup group_vars {}
     }
   }
 }

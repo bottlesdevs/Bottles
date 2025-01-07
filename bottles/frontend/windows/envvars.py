@@ -18,6 +18,7 @@
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.utils.sh import ShUtils
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/env-var-entry.ui")
@@ -36,11 +37,10 @@ class EnvVarEntry(Adw.EntryRow):
         self.manager = parent.window.manager
         self.config = parent.config
         self.env = env
-
-        self.set_title(self.env[0])
-        self.set_text(self.env[1])
+        self.set_text("=".join(self.env))
 
         # connect signals
+        self.connect("changed", self.__validate)
         self.connect("apply", self.__save)
         self.btn_remove.connect("clicked", self.__remove)
 
@@ -49,17 +49,32 @@ class EnvVarEntry(Adw.EntryRow):
         Change the env var value according to the
         user input and update the bottle configuration
         """
+        if not self.__valid_name:
+            return
+
+        new_name, new_value = ShUtils.split_assignment(self.get_text())
         self.manager.update_config(
             config=self.config,
-            key=self.env[0],
-            value=self.get_text(),
+            key=new_name,
+            value=new_value,
             scope="Environment_Variables",
         )
+        if new_name != self.env[0]:
+            self.__remove_config()
+
+        self.env = (new_name, new_value)
 
     def __remove(self, *_args):
         """
         Remove the env var from the bottle configuration and
         destroy the widget
+        """
+        self.__remove_config()
+        self.parent.group_vars.remove(self)
+
+    def __remove_config(self, *_args):
+        """
+        Remove the env var from the bottle configuration
         """
         self.manager.update_config(
             config=self.config,
@@ -68,7 +83,11 @@ class EnvVarEntry(Adw.EntryRow):
             remove=True,
             scope="Environment_Variables",
         )
-        self.parent.group_vars.remove(self)
+
+    def __validate(self, *_args):
+        self.__valid_name = GtkUtils.validate_entry(
+            self, lambda var_name: not var_name == "WINEDLLOVERRIDES"
+        )
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-env-vars.ui")
@@ -76,7 +95,7 @@ class EnvVarsDialog(Adw.Window):
     __gtype_name__ = "EnvVarsDialog"
 
     # region Widgets
-    entry_name = Gtk.Template.Child()
+    entry_new_var = Gtk.Template.Child()
     group_vars = Gtk.Template.Child()
     # endregion
 
@@ -92,13 +111,16 @@ class EnvVarsDialog(Adw.Window):
         self.__populate_vars_list()
 
         # connect signals
-        self.entry_name.connect("changed", self.__validate)
-        self.entry_name.connect("apply", self.__save_var)
+        self.entry_new_var.connect("changed", self.__validate)
+        self.entry_new_var.connect("apply", self.__save_var)
 
     def __validate(self, *_args):
         self.__valid_name = GtkUtils.validate_entry(
-            self.entry_name, lambda envvar: envvar.startswith("WINEDLLOVERRIDES")
+            self.entry_new_var, lambda var_name: not var_name == "WINEDLLOVERRIDES"
         )
+
+        if not self.entry_new_var.get_text():
+            self.entry_new_var.remove_css_class("error")
 
     def __save_var(self, *_args):
         """
@@ -106,26 +128,19 @@ class EnvVarsDialog(Adw.Window):
         bottle configuration
         """
         if not self.__valid_name:
-            self.entry_name.set_text("")
-            self.entry_name.remove_css_class("error")
-            self.__valid_name = True
             return
 
-        env_name = self.entry_name.get_text()
-        env_value = "value"
-        split_value = env_name.split("=", 1)
-        if len(split_value) == 2:
-            env_name = split_value[0]
-            env_value = split_value[1]
+        new_name, new_value = ShUtils.split_assignment(self.entry_new_var.get_text())
         self.manager.update_config(
             config=self.config,
-            key=env_name,
-            value=env_value,
+            key=new_name,
+            value=new_value,
             scope="Environment_Variables",
         )
-        _entry = EnvVarEntry(parent=self, env=[env_name, env_value])
-        GLib.idle_add(self.group_vars.add, _entry)
-        self.entry_name.set_text("")
+        _entry = EnvVarEntry(parent=self, env=(new_name, new_value))
+        self.group_vars.set_description()
+        self.group_vars.add(_entry)
+        self.entry_new_var.set_text("")
 
     def __populate_vars_list(self):
         """
@@ -134,10 +149,9 @@ class EnvVarsDialog(Adw.Window):
         """
         envs = self.config.Environment_Variables.items()
         if len(envs) == 0:
-            self.group_vars.set_description(_("No environment variables defined."))
+            self.group_vars.set_description(_("No environment variables defined"))
             return
 
-        self.group_vars.set_description("")
         for env in envs:
             _entry = EnvVarEntry(parent=self, env=env)
-            GLib.idle_add(self.group_vars.add, _entry)
+            self.group_vars.add(_entry)
