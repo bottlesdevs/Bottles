@@ -15,26 +15,25 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from typing import Union
 from bottles.backend.repos.repo import Repo
 
 
 class InstallerRepo(Repo):
     name = "installers"
 
-    def get(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
+    def get(self, name: str, plain: bool = False) -> str | dict | bool:
         if name in self.catalog:
             entry = self.catalog[name]
             url = f"{self.url}/{entry['Category']}/{name}.yml"
             return self.get_manifest(url, plain)
         return False
 
-    def get_review(self, name: str) -> Union[str, dict, bool]:
+    def get_review(self, name: str) -> str | dict | bool:
         if name in self.catalog:
             return self.get_manifest(f"{self.url}/Reviews/{name}.md", plain=True)
         return False
 
-    def get_icon(self, name: str) -> Union[str, bytes, None]:
+    def get_icon(self, name: str) -> str | bytes | None:
         if name in self.catalog:
             entry = self.catalog[name]
             icon = entry.get("Icon")

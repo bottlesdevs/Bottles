@@ -15,14 +15,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from typing import Union
 from bottles.backend.repos.repo import Repo
 
 
 class DependencyRepo(Repo):
     name = "dependencies"
 
-    def get(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
+    def get(self, name: str, plain: bool = False) -> str | dict | bool:
         if name in self.catalog:
             entry = self.catalog[name]
             url = f"{self.url}/{entry['Category']}/{name}.yml"

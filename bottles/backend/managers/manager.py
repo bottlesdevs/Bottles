@@ -26,7 +26,7 @@ import uuid
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
-from typing import Union, Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 import pathvalidate
 
@@ -592,7 +592,7 @@ class Manager(metaclass=Singleton):
 
     def __check_component(
         self, component_type: str, install_latest: bool = True
-    ) -> Union[bool, list]:
+    ) -> bool | list:
         components = {
             "dxvk": {
                 "available": self.dxvk_available,

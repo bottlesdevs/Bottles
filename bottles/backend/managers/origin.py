@@ -16,7 +16,6 @@
 #
 
 import os
-from typing import Union
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
@@ -24,7 +23,7 @@ from bottles.backend.utils.manager import ManagerUtils
 
 class OriginManager:
     @staticmethod
-    def find_manifests_path(config: BottleConfig) -> Union[str, None]:
+    def find_manifests_path(config: BottleConfig) -> str | None:
         """
         Finds the Origin manifests path.
         """

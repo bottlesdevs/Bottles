@@ -2,7 +2,7 @@ import dataclasses
 from enum import Enum
 from gettext import gettext as _
 from threading import Lock as PyLock, Event as PyEvent
-from typing import Dict, Callable, Optional, Union, Protocol, List
+from typing import Dict, Callable, Optional, Protocol, List
 from uuid import UUID, uuid4
 
 from bottles.backend.logger import Logger
@@ -210,7 +210,7 @@ class TaskManager:
         return uniq
 
     @classmethod
-    def remove(cls, task: Union[UUID, Task]):
+    def remove(cls, task: UUID | Task):
         if isinstance(task, Task):
             task = task.task_id
         cls._TASKS.pop(task)

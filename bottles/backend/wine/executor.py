@@ -1,7 +1,7 @@
 import os
 import shlex
 import uuid
-from typing import Union, Optional
+from typing import Optional
 
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
@@ -132,7 +132,7 @@ class WineExecutor:
             program_virt_desktop=program.get("virtual_desktop"),
         ).run()
 
-    def __get_cwd(self, cwd: str) -> Union[str, None]:
+    def __get_cwd(self, cwd: str) -> str | None:
         winepath = WinePath(self.config)
         if cwd in [None, ""]:
             path = self.exec_path
