@@ -24,7 +24,7 @@ from datetime import datetime
 from functools import lru_cache
 from glob import glob
 from pathlib import Path
-from typing import Union, Dict, Optional
+from typing import Dict, Optional
 
 from bottles.backend.globals import Paths
 from bottles.backend.models.config import BottleConfig
@@ -66,7 +66,7 @@ class SteamManager:
             self.localconfig = self.__get_local_config()
             self.library_folders = self.__get_library_folders()
 
-    def __find_steam_path(self) -> Union[str, None]:
+    def __find_steam_path(self) -> str | None:
         if self.is_windows and self.config:
             paths = [
                 os.path.join(
@@ -101,7 +101,7 @@ class SteamManager:
         return None
 
     @staticmethod
-    def get_acf_data(libraryfolder: str, app_id: str) -> Union[dict, None]:
+    def get_acf_data(libraryfolder: str, app_id: str) -> dict | None:
         acf_path = os.path.join(libraryfolder, f"steamapps/appmanifest_{app_id}.acf")
         if not os.path.isfile(acf_path):
             return None
@@ -111,7 +111,7 @@ class SteamManager:
 
         return data
 
-    def __get_local_config_path(self) -> Union[str, None]:
+    def __get_local_config_path(self) -> str | None:
         if self.userdata_path is None:
             return None
 
@@ -122,7 +122,7 @@ class SteamManager:
 
         return confs[0]
 
-    def __get_library_folders(self) -> Union[list, None]:
+    def __get_library_folders(self) -> list | None:
         if not self.steamapps_path:
             return None
 
@@ -153,7 +153,7 @@ class SteamManager:
         return library_folders if len(library_folders) > 0 else None
 
     @lru_cache
-    def get_appid_library_path(self, appid: str) -> Union[str, None]:
+    def get_appid_library_path(self, appid: str) -> str | None:
         if self.library_folders is None:
             return None
 

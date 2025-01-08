@@ -18,7 +18,7 @@ import os
 import subprocess
 import uuid
 from functools import lru_cache
-from typing import Union, Optional
+from typing import Optional
 
 import markdown
 import pycurl
@@ -57,7 +57,7 @@ class InstallerManager:
     @lru_cache
     def get_installer(
         self, installer_name: str, plain: bool = False
-    ) -> Union[str, dict, bool]:
+    ) -> str | dict | bool:
         """
         Return an installer manifest from the repository. Use the plain
         argument to get the manifest as plain text.

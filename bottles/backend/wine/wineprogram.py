@@ -1,5 +1,5 @@
 import os
-from typing import Union, Optional
+from typing import Optional
 
 from bottles.backend.logger import Logger
 from bottles.backend.globals import Paths
@@ -38,7 +38,7 @@ class WineProgram:
 
     def launch(
         self,
-        args: Union[tuple, str] | None = None,
+        args: tuple | str | None = None,
         terminal: bool = False,
         minimal: bool = True,
         communicate: bool = False,

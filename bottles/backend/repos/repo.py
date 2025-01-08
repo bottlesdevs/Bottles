@@ -16,7 +16,6 @@
 #
 
 from io import BytesIO
-from typing import Union
 
 import pycurl
 
@@ -63,7 +62,7 @@ class Repo:
             logging.error(f"Cannot fetch {self.name} repository index.")
             return {}
 
-    def get_manifest(self, url: str, plain: bool = False) -> Union[str, dict, bool]:
+    def get_manifest(self, url: str, plain: bool = False) -> str | dict | bool:
         try:
             buffer = BytesIO()
 

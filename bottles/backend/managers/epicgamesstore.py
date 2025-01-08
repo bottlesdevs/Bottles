@@ -17,7 +17,6 @@
 
 import os
 import uuid
-from typing import Union
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import json
@@ -26,7 +25,7 @@ from bottles.backend.utils.manager import ManagerUtils
 
 class EpicGamesStoreManager:
     @staticmethod
-    def find_dat_path(config: BottleConfig) -> Union[str, None]:
+    def find_dat_path(config: BottleConfig) -> str | None:
         """
         Finds the Epic Games dat file path.
         """

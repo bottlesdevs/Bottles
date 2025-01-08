@@ -3,7 +3,7 @@ import logging
 import os
 from dataclasses import dataclass, field, replace, asdict, is_dataclass
 from io import IOBase
-from typing import List, Dict, Union, Optional, ItemsView, Container, IO
+from typing import List, Dict, Optional, ItemsView, Container, IO
 
 from bottles.backend.models.result import Result
 from bottles.backend.utils import yaml
@@ -148,7 +148,7 @@ class BottleConfig(DictCompatMixIn):
     data: dict = field(default_factory=dict)  # possible keys: "config", ...
     RunnerPath: str = ""
 
-    def dump(self, file: Union[str, IO], mode="w", encoding=None, indent=4) -> Result:
+    def dump(self, file: str | IO, mode="w", encoding=None, indent=4) -> Result:
         """
         Dump config to file
 
@@ -169,7 +169,7 @@ class BottleConfig(DictCompatMixIn):
             f.close()
 
     @classmethod
-    def load(cls, file: Union[str, IO], mode="r") -> Result[Optional["BottleConfig"]]:
+    def load(cls, file: str | IO, mode="r") -> Result[Optional["BottleConfig"]]:
         """
         Load config from file
 

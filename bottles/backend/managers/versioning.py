@@ -21,7 +21,7 @@ from datetime import datetime
 from gettext import gettext as _
 from glob import glob
 
-from typing import Any, Union
+from typing import Any
 
 from fvs.exceptions import (  # type: ignore [import-untyped]
     FVSNothingToCommit,
@@ -102,7 +102,7 @@ class VersioningManager:
 
     def list_states(
         self, config: BottleConfig
-    ) -> Union[dict[str, Any], Result[dict[str, Any]]]:
+    ) -> dict[str, Any] | Result[dict[str, Any]]:
         """
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.
@@ -237,7 +237,7 @@ class VersioningManager:
     @staticmethod
     def get_state_files(
         config: BottleConfig, state_id: int, plain: bool = False
-    ) -> Union[str, Any]:
+    ) -> str | Any:
         """
         Return the files.yml content of the state. Use the plain argument
         to return the content as plain text.
