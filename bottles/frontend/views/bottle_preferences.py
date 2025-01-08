@@ -195,39 +195,54 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_obsvkc.set_tooltip_text(_obsvkc_not_available)
 
         # region signals
-        self.row_overrides.connect("activated", self.__show_dll_overrides_view)
-        self.row_env_variables.connect("activated", self.__show_environment_variables)
-        self.row_drives.connect("activated", self.__show_drives)
         self.row_manage_display.connect("activated", self.__show_display_settings)
-        self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
-        self.btn_manage_vkbasalt.connect("clicked", self.__show_vkbasalt_settings)
-        self.btn_manage_fsr.connect("clicked", self.__show_fsr_settings)
-        self.btn_manage_mangohud.connect("clicked", self.__show_mangohud_settings)
-        self.btn_manage_sandbox.connect("clicked", self.__show_sandbox_settings)
-        self.btn_manage_versioning_patterns.connect(
-            "clicked", self.__show_exclusionpatterns_settings
+        self.row_overrides.connect(
+            "activated", self.__show_feature_dialog, DLLOverridesDialog
         )
-        self.btn_manage_vmtouch.connect("clicked", self.__show_vmtouch_settings)
+        self.row_env_variables.connect(
+            "activated", self.__show_feature_dialog, EnvVarsDialog
+        )
+        self.row_drives.connect("activated", self.__show_feature_dialog, DrivesDialog)
+        self.btn_manage_gamescope.connect(
+            "clicked", self.__show_feature_dialog, GamescopeDialog
+        )
+        self.btn_manage_vkbasalt.connect(
+            "clicked", self.__show_feature_dialog, VkBasaltDialog
+        )
+        self.btn_manage_fsr.connect("clicked", self.__show_feature_dialog, FsrDialog)
+        self.btn_manage_mangohud.connect(
+            "clicked", self.__show_feature_dialog, MangoHudDialog
+        )
+        self.btn_manage_sandbox.connect(
+            "clicked", self.__show_feature_dialog, SandboxDialog
+        )
+        self.btn_manage_vmtouch.connect(
+            "clicked", self.__show_feature_dialog, VmtouchDialog
+        )
+        self.btn_manage_versioning_patterns.connect(
+            "clicked", self.__show_feature_dialog, ExclusionPatternsDialog
+        )
         self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.reset_cwd, True)
-        self.switch_mangohud.connect("state-set", self.__toggle_mangohud)
-        self.switch_obsvkc.connect("state-set", self.__toggle_obsvkc)
-        self.switch_vkbasalt.connect("state-set", self.__toggle_vkbasalt)
-        self.switch_fsr.connect("state-set", self.__toggle_fsr)
+        self.switch_mangohud.connect("state-set", self.__toggle_feature, "mangohud")
+        self.switch_obsvkc.connect("state-set", self.__toggle_feature, "obsvkc")
+        self.switch_vkbasalt.connect("state-set", self.__toggle_feature, "vkbasalt")
+        self.switch_fsr.connect("state-set", self.__toggle_feature, "fsr")
         self.switch_nvapi.connect("state-set", self.__toggle_nvapi)
-        # self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
-        self.switch_gamemode.connect("state-set", self.__toggle_gamemode)
-        self.switch_gamescope.connect("state-set", self.__toggle_gamescope)
-        self.switch_sandbox.connect("state-set", self.__toggle_sandbox)
-        self.switch_discrete.connect("state-set", self.__toggle_discrete_gpu)
+        self.switch_gamemode.connect("state-set", self.__toggle_feature, "gamemode")
+        self.switch_gamescope.connect("state-set", self.__toggle_feature, "gamescope")
+        self.switch_sandbox.connect("state-set", self.__toggle_feature, "sandbox")
+        self.switch_discrete.connect("state-set", self.__toggle_feature, "discrete_gpu")
         self.switch_versioning_compression.connect(
             "state-set", self.__toggle_versioning_compression
         )
-        self.switch_auto_versioning.connect("state-set", self.__toggle_auto_versioning)
-        self.switch_versioning_patterns.connect(
-            "state-set", self.__toggle_versioning_patterns
+        self.switch_auto_versioning.connect(
+            "state-set", self.__toggle_feature, "versioning_automatic"
         )
-        self.switch_vmtouch.connect("state-set", self.__toggle_vmtouch)
+        self.switch_versioning_patterns.connect(
+            "state-set", self.__toggle_feature, "versioning_exclusion_patterns"
+        )
+        self.switch_vmtouch.connect("state-set", self.__toggle_feature, "vmtouch")
         self.combo_runner.connect("notify::selected", self.__set_runner)
         self.combo_dxvk.connect("notify::selected", self.__set_dxvk)
         self.combo_vkd3d.connect("notify::selected", self.__set_vkd3d)
@@ -247,7 +262,9 @@ class PreferencesView(Adw.PreferencesPage):
 
         if RuntimeManager.get_runtimes("steam"):
             self.row_steam_runtime.set_visible(True)
-            self.switch_steam_runtime.connect("state-set", self.__toggle_steam_runtime)
+            self.switch_steam_runtime.connect(
+                "state-set", self.__toggle_feature, "use_steam_runtime"
+            )
 
         """Toggle some utilities according to its availability"""
         self.switch_gamemode.set_sensitive(gamemode_available)
@@ -387,24 +404,22 @@ class PreferencesView(Adw.PreferencesPage):
         parameters = self.config.Parameters
 
         # temporary lock functions connected to the widgets
-        self.switch_mangohud.handler_block_by_func(self.__toggle_mangohud)
+        self.switch_mangohud.handler_block_by_func(self.__toggle_feature)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
-        self.switch_vkbasalt.handler_block_by_func(self.__toggle_vkbasalt)
-        self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
-        self.switch_obsvkc.handler_block_by_func(self.__toggle_obsvkc)
-        self.switch_gamemode.handler_block_by_func(self.__toggle_gamemode)
-        self.switch_gamescope.handler_block_by_func(self.__toggle_gamescope)
-        self.switch_sandbox.handler_block_by_func(self.__toggle_sandbox)
-        self.switch_discrete.handler_block_by_func(self.__toggle_discrete_gpu)
+        self.switch_vkbasalt.handler_block_by_func(self.__toggle_feature)
+        self.switch_fsr.handler_block_by_func(self.__toggle_feature)
+        self.switch_obsvkc.handler_block_by_func(self.__toggle_feature)
+        self.switch_gamemode.handler_block_by_func(self.__toggle_feature)
+        self.switch_gamescope.handler_block_by_func(self.__toggle_feature)
+        self.switch_sandbox.handler_block_by_func(self.__toggle_feature)
+        self.switch_discrete.handler_block_by_func(self.__toggle_feature)
         self.switch_versioning_compression.handler_block_by_func(
             self.__toggle_versioning_compression
         )
-        self.switch_auto_versioning.handler_block_by_func(self.__toggle_auto_versioning)
-        self.switch_versioning_patterns.handler_block_by_func(
-            self.__toggle_versioning_patterns
-        )
+        self.switch_auto_versioning.handler_block_by_func(self.__toggle_feature)
+        self.switch_versioning_patterns.handler_block_by_func(self.__toggle_feature)
         with contextlib.suppress(TypeError):
-            self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
+            self.switch_steam_runtime.handler_block_by_func(self.__toggle_feature)
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
@@ -523,28 +538,22 @@ class PreferencesView(Adw.PreferencesPage):
                 self.combo_sync.set_selected(sync_types.index(sync))
 
         # unlock functions connected to the widgets
-        self.switch_mangohud.handler_unblock_by_func(self.__toggle_mangohud)
+        self.switch_mangohud.handler_unblock_by_func(self.__toggle_feature)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
-        self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_vkbasalt)
-        self.switch_fsr.handler_unblock_by_func(self.__toggle_fsr)
-        self.switch_obsvkc.handler_unblock_by_func(self.__toggle_obsvkc)
-        self.switch_gamemode.handler_unblock_by_func(self.__toggle_gamemode)
-        self.switch_gamescope.handler_unblock_by_func(self.__toggle_gamescope)
-        self.switch_sandbox.handler_unblock_by_func(self.__toggle_sandbox)
-        self.switch_discrete.handler_unblock_by_func(self.__toggle_discrete_gpu)
+        self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_feature)
+        self.switch_fsr.handler_unblock_by_func(self.__toggle_feature)
+        self.switch_obsvkc.handler_unblock_by_func(self.__toggle_feature)
+        self.switch_gamemode.handler_unblock_by_func(self.__toggle_feature)
+        self.switch_gamescope.handler_unblock_by_func(self.__toggle_feature)
+        self.switch_sandbox.handler_unblock_by_func(self.__toggle_feature)
+        self.switch_discrete.handler_unblock_by_func(self.__toggle_feature)
         self.switch_versioning_compression.handler_unblock_by_func(
             self.__toggle_versioning_compression
         )
-        self.switch_auto_versioning.handler_unblock_by_func(
-            self.__toggle_auto_versioning
-        )
-        self.switch_versioning_patterns.handler_unblock_by_func(
-            self.__toggle_versioning_patterns
-        )
+        self.switch_auto_versioning.handler_unblock_by_func(self.__toggle_feature)
+        self.switch_versioning_patterns.handler_unblock_by_func(self.__toggle_feature)
         with contextlib.suppress(TypeError):
-            self.switch_steam_runtime.handler_unblock_by_func(
-                self.__toggle_steam_runtime
-            )
+            self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_feature)
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
@@ -554,22 +563,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_language.handler_unblock_by_func(self.__set_language)
 
         self.__set_steam_rules()
-
-    def __show_gamescope_settings(self, widget):
-        new_window = GamescopeDialog(window=self.window, config=self.config)
-        new_window.present()
-
-    def __show_vkbasalt_settings(self, widget):
-        new_window = VkBasaltDialog(parent_window=self.window, config=self.config)
-        new_window.present()
-
-    def __show_fsr_settings(self, widget):
-        new_window = FsrDialog(parent_window=self.window, config=self.config)
-        new_window.present()
-
-    def __show_mangohud_settings(self, widget):
-        new_window = MangoHudDialog(parent_window=self.window, config=self.config)
-        new_window.present()
 
     def __show_display_settings(self, widget):
         new_window = DisplayDialog(
@@ -582,26 +575,16 @@ class PreferencesView(Adw.PreferencesPage):
         )
         new_window.present()
 
-    def __show_exclusionpatterns_settings(self, widget):
-        new_window = ExclusionPatternsDialog(window=self.window, config=self.config)
-        new_window.present()
+    def __show_feature_dialog(self, _widget: Gtk.Widget, dialog: Adw.Window) -> None:
+        """Present dialog of a specific feature."""
+        window = dialog(window=self.window, config=self.config)
+        window.present()
 
-    def __show_sandbox_settings(self, widget):
-        new_window = SandboxDialog(window=self.window, config=self.config)
-        new_window.present()
-
-    def __show_drives(self, widget):
-        new_window = DrivesDialog(window=self.window, config=self.config)
-        new_window.present()
-
-    def __show_environment_variables(self, widget=False):
-        """Show the environment variables dialog"""
-        new_window = EnvVarsDialog(window=self.window, config=self.config)
-        new_window.present()
-
-    def __show_vmtouch_settings(self, widget):
-        new_window = VmtouchDialog(window=self.window, config=self.config)
-        new_window.present()
+    def __toggle_feature(self, _widget: Gtk.Widget, state: bool, key: str) -> None:
+        """Toggle a specific feature."""
+        self.config = self.manager.update_config(
+            config=self.config, key=key, value=state, scope="Parameters"
+        ).data["config"]
 
     def __set_sync_type(self, *_args):
         """
@@ -624,30 +607,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_sync.set_sensitive(True)
         self.queue.end_task()
 
-    def __toggle_mangohud(self, widget, state):
-        """Toggle the Mangohud for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="mangohud", value=state, scope="Parameters"
-        ).data["config"]
-
-    def __toggle_obsvkc(self, widget, state):
-        """Toggle the OBS Vulkan capture for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="obsvkc", value=state, scope="Parameters"
-        ).data["config"]
-
-    def __toggle_vkbasalt(self, widget, state):
-        """Toggle the vkBasalt for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="vkbasalt", value=state, scope="Parameters"
-        ).data["config"]
-
-    def __toggle_fsr(self, widget, state):
-        """Toggle the FSR for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="fsr", value=state, scope="Parameters"
-        ).data["config"]
-
     def __toggle_nvapi(self, widget=False, state=False):
         """Install/Uninstall NVAPI from the bottle"""
         self.queue.add_task()
@@ -661,45 +620,7 @@ class PreferencesView(Adw.PreferencesPage):
             remove=not state,
         )
 
-        self.config = self.manager.update_config(
-            config=self.config, key="dxvk_nvapi", value=state, scope="Parameters"
-        ).data["config"]
-
-    def __toggle_gamemode(self, widget=False, state=False):
-        """Toggle the gamemode for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="gamemode", value=state, scope="Parameters"
-        ).data["config"]
-
-    def __toggle_gamescope(self, widget=False, state=False):
-        """Toggle the gamescope for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="gamescope", value=state, scope="Parameters"
-        ).data["config"]
-
-    def __toggle_sandbox(self, widget=False, state=False):
-        """Toggle the sandbox for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="sandbox", value=state, scope="Parameters"
-        ).data["config"]
-
-    def __toggle_runtime(self, widget, state):
-        """Toggle the Bottles runtime for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="use_runtime", value=state, scope="Parameters"
-        ).data["config"]
-
-    def __toggle_steam_runtime(self, widget, state):
-        """Toggle the Steam runtime for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="use_steam_runtime", value=state, scope="Parameters"
-        ).data["config"]
-
-    def __toggle_discrete_gpu(self, widget, state):
-        """Toggle the discrete GPU for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="discrete_gpu", value=state, scope="Parameters"
-        ).data["config"]
+        self.__toggle_feature(widget=None, state=state, key="dxvk_nvapi")
 
     def __toggle_versioning_compression(self, widget, state):
         """Toggle the versioning compression for current bottle"""
@@ -733,30 +654,6 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             update()
 
-    def __toggle_auto_versioning(self, widget, state):
-        """Toggle the auto versioning for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="versioning_automatic",
-            value=state,
-            scope="Parameters",
-        ).data["config"]
-
-    def __toggle_versioning_patterns(self, widget, state):
-        """Toggle the versioning patterns for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config,
-            key="versioning_exclusion_patterns",
-            value=state,
-            scope="Parameters",
-        ).data["config"]
-
-    def __toggle_vmtouch(self, widget=False, state=False):
-        """Toggle vmtouch for current bottle"""
-        self.config = self.manager.update_config(
-            config=self.config, key="vmtouch", value=state, scope="Parameters"
-        ).data["config"]
-
     def __set_runner(self, *_args):
         """Set the runner to use for the bottle"""
 
@@ -787,11 +684,11 @@ class PreferencesView(Adw.PreferencesPage):
                     self.config = result.data["config"]
                 if self.config.Parameters.use_steam_runtime:
                     self.switch_steam_runtime.handler_block_by_func(
-                        self.__toggle_steam_runtime
+                        self.__toggle_feature
                     )
                     self.switch_steam_runtime.set_active(True)
                     self.switch_steam_runtime.handler_unblock_by_func(
-                        self.__toggle_steam_runtime
+                        self.__toggle_feature
                     )
 
             set_widgets_status(True)
@@ -1004,11 +901,6 @@ class PreferencesView(Adw.PreferencesPage):
             value=language[0],
         ).data["config"]
 
-    def __show_dll_overrides_view(self, widget=False):
-        """Show the DLL overrides view"""
-        new_window = DLLOverridesDialog(window=self.window, config=self.config)
-        new_window.present()
-
     @GtkUtils.run_in_main_loop
     def set_dxvk_status(self, status=None, error=None, pending=False):
         """Set the dxvk status"""
@@ -1064,7 +956,7 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_steam_rules(self):
         """Set the Steam Environment specific rules"""
-        status = False if self.config.Environment == "Steam" else True
+        status = self.config.Environment != "Steam"
 
         for w in [
             self.row_discrete,

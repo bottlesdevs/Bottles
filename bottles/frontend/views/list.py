@@ -29,22 +29,15 @@ from bottles.frontend.utils.filters import add_executable_filters, add_all_filte
 from bottles.frontend.params import APP_ID
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/list-entry.ui")
-class BottleViewEntry(Adw.ActionRow):
-    __gtype_name__ = "BottleViewEntry"
+@Gtk.Template(resource_path="/com/usebottles/bottles/bottle-row.ui")
+class BottlesBottleRow(Adw.ActionRow):
+    __gtype_name__ = "BottlesBottleRow"
 
     Adw.init()
 
     # region Widgets
-    btn_run = Gtk.Template.Child()
-    btn_repair = Gtk.Template.Child()
-    btn_run_executable = Gtk.Template.Child()
-    details_image = Gtk.Template.Child()
+    button_run = Gtk.Template.Child()
     label_env = Gtk.Template.Child()
-    label_state = Gtk.Template.Child()
-    icon_damaged = Gtk.Template.Child()
-    grid_versioning = Gtk.Template.Child()
-    spinner = Gtk.Template.Child()
 
     # endregion
 
@@ -55,9 +48,8 @@ class BottleViewEntry(Adw.ActionRow):
         self.window = window
         self.manager = window.manager
         self.config = config
-        self.label_env_context = self.label_env.get_style_context()
 
-        """Format update date"""
+        # Format update date
         update_date = _("N/A")
         if self.config.Update_Date:
             try:
@@ -68,7 +60,7 @@ class BottleViewEntry(Adw.ActionRow):
             except ValueError:
                 update_date = _("N/A")
 
-        """Check runner type by name"""
+        # Check runner type by name
         if self.config.Runner.startswith("lutris"):
             self.runner_type = "wine"
         else:
@@ -76,40 +68,20 @@ class BottleViewEntry(Adw.ActionRow):
 
         # connect signals
         self.connect("activated", self.show_details)
-        self.btn_run.connect("clicked", self.run_executable)
-        self.btn_repair.connect("clicked", self.repair)
-        self.btn_run_executable.connect("clicked", self.run_executable)
+        self.button_run.connect("clicked", self.run_executable)
 
         # populate widgets
-        self.grid_versioning.set_visible(self.config.Versioning)
-        self.label_state.set_text(str(self.config.State))
         self.set_title(self.config.Name)
         if self.window.settings.get_boolean("update-date"):
             self.set_subtitle(update_date)
         self.label_env.set_text(_(self.config.Environment))
-        self.label_env_context.add_class("tag-%s" % self.config.Environment.lower())
+        self.label_env.add_css_class("tag-%s" % self.config.Environment.lower())
 
         # Set tooltip text
-        self.btn_run.set_tooltip_text(_(f'Run executable in "{self.config.Name}"'))
-
-        """If config is broken"""
-        if self.config.get("Broken"):
-            for w in [self.btn_repair, self.icon_damaged]:
-                w.set_visible(True)
-                w.set_sensitive(True)
-
-            self.btn_run.set_sensitive(False)
-            self.handler_block_by_func(self.show_details)
-
-    """Repair bottle"""
-
-    def repair(self, widget):
-        self.disable()
-        RunAsync(task_func=self.manager.repair_bottle, config=self.config)
-
-    """Display file dialog for executable"""
+        self.button_run.set_tooltip_text(_(f"Run executable in “{self.config.Name}”"))
 
     def run_executable(self, *_args):
+        """Display file dialog for executable"""
         if not Xdp.Portal.running_under_sandbox():
             return
 
@@ -118,7 +90,7 @@ class BottleViewEntry(Adw.ActionRow):
                 return
 
             self.window.show_toast(
-                _('Launching "{0}" in "{1}"…').format(
+                _("Launching “{0}” in “{1}”…").format(
                     dialog.get_file().get_basename(), self.config.Name
                 )
             )
@@ -183,12 +155,12 @@ class BottleView(Adw.Bin):
 
         # backend signals
         SignalManager.connect(
-            Signals.ManagerLocalBottlesLoaded, self.backend_local_bottle_loaded
+            Signals.ManagerLocalBottlesLoaded, self.update_bottles_list
         )
 
-        self.bottle_status.set_icon_name(f"{APP_ID}-symbolic")
+        self.bottle_status.set_icon_name(APP_ID)
 
-        self.update_bottles()
+        self.update_bottles_list()
 
     def __search_bottles(self, widget, event=None, data=None):
         """
@@ -202,11 +174,9 @@ class BottleView(Adw.Bin):
     @staticmethod
     def __filter_bottles(row, terms=None):
         text = row.get_title().lower()
-        if terms.lower() in text:
-            return True
-        return False
+        return terms.lower() in text
 
-    def idle_update_bottles(self, show=False):
+    def update_bottles_list(self, *args) -> None:
         self.__bottles = {}
         while self.list_bottles.get_first_child():
             self.list_bottles.remove(self.list_bottles.get_first_child())
@@ -215,16 +185,13 @@ class BottleView(Adw.Bin):
             self.list_steam.remove(self.list_steam.get_first_child())
 
         local_bottles = self.window.manager.local_bottles
+        is_empty_local_bottles = len(local_bottles) == 0
 
-        if len(local_bottles) == 0:
-            self.pref_page.set_visible(False)
-            self.bottle_status.set_visible(True)
-        else:
-            self.pref_page.set_visible(True)
-            self.bottle_status.set_visible(False)
+        self.pref_page.set_visible(not is_empty_local_bottles)
+        self.bottle_status.set_visible(is_empty_local_bottles)
 
         for name, config in local_bottles.items():
-            _entry = BottleViewEntry(self.window, config)
+            _entry = BottlesBottleRow(self.window, config)
             self.__bottles[config.Path] = _entry
 
             if config.Environment != "Steam":
@@ -239,26 +206,9 @@ class BottleView(Adw.Bin):
                 self.group_steam.set_visible(True)
                 self.group_bottles.set_title(_("Your Bottles"))
 
-        if (
-            self.arg_bottle is not None and self.arg_bottle in local_bottles.keys()
-        ) or (show is not None and show in local_bottles.keys()):
-            _config = None
-            if self.arg_bottle:
-                _config = local_bottles[self.arg_bottle]
-            if show:
-                _config = local_bottles[show]
-            if not _config:
-                raise NotImplementedError("neither 'arg_bottle' nor 'show' are set")
-
-            self.window.page_details.view_preferences.update_combo_components()
-            self.window.show_details_view(config=_config)
-            self.arg_bottle = None
-
-    def backend_local_bottle_loaded(self, _: Result):
-        self.update_bottles()
-
-    def update_bottles(self, show=False):
-        GLib.idle_add(self.idle_update_bottles, show)
+    def show_page(self, page: str) -> None:
+        if config := self.window.manager.local_bottles.get(page):
+            self.window.show_details_view(config=config)
 
     def disable_bottle(self, config):
         self.__bottles[config.Path].disable()

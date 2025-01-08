@@ -1,0 +1,289 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $BottlesNewBottleDialog: Adw.Dialog {
+  content-width: 500;
+  content-height: 500;
+  title: _("Create New Bottle");
+  focus-widget: entry_name;
+
+  child: Stack stack_create {
+    transition-type: crossfade;
+
+    StackPage {
+      name: "page_create";
+
+      child: Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {
+          show-start-title-buttons: false;
+          show-end-title-buttons: false;
+
+          Button btn_cancel {
+            label: _("_Cancel");
+            use-underline: true;
+          }
+
+          [end]
+          Button btn_create {
+            label: _("C_reate");
+            use-underline: true;
+            sensitive: false;
+
+            styles [
+              "suggested-action",
+            ]
+          }
+        }
+
+        content: Adw.PreferencesPage {
+          title: _("Create New Bottle");
+
+          Adw.PreferencesGroup {
+            Adw.EntryRow entry_name {
+              use-markup: false;
+              title: _("Name");
+
+              [suffix]
+              MenuButton menu_duplicate {
+                valign: center;
+                tooltip-text: _("Show Information");
+                icon-name: "warning-symbolic";
+                popover: popover_duplicate;
+                visible: false;
+
+                styles [
+                  "flat",
+                ]
+              }
+            }
+          }
+
+          Adw.PreferencesGroup {
+            ListBox environment_list_box {
+              selection-mode: none;
+
+              styles [
+                "boxed-list",
+              ]
+
+              $BottlesCheckRow application {
+                title: _("_Application");
+                environment: "application";
+                subtitle: _("Optimized for productivity software");
+                icon-name: "applications-engineering-symbolic";
+                use-underline: true;
+                active: true;
+              }
+
+              $BottlesCheckRow {
+                title: _("_Gaming");
+                environment: "gaming";
+                subtitle: _("Optimized for games, game engines, and 3D apps");
+                icon-name: "input-gaming-symbolic";
+                use-underline: true;
+                group: application;
+              }
+
+              $BottlesCheckRow custom {
+                title: _("C_ustom");
+                environment: "custom";
+                subtitle: _("A clean state intended for specific use cases");
+                icon-name: "applications-science-symbolic";
+                use-underline: true;
+                group: application;
+              }
+            }
+          }
+
+          Adw.PreferencesGroup {
+            Adw.ComboRow combo_arch {
+              title: _("Architecture");
+              subtitle: _("64-bit is recommended for most users");
+              visible: bind custom.active;
+
+              model: StringList str_list_arch {};
+            }
+
+            Adw.ComboRow combo_runner {
+              title: _("Runner");
+              subtitle: _("Provider and version of the compatibility layer");
+
+              model: StringList str_list_runner {};
+            }
+
+            Adw.ActionRow {
+              title: _("Bottle Directory");
+              subtitle: _("Location where the bottle's data is stored");
+              activatable-widget: btn_choose_path;
+
+              Button btn_choose_path_reset {
+                tooltip-text: _("Reset to Default");
+                valign: center;
+                visible: false;
+                icon-name: "edit-undo-symbolic";
+
+                styles [
+                  "flat",
+                ]
+              }
+
+              Button btn_choose_path {
+                valign: center;
+
+                child: Box {
+                  spacing: 6;
+
+                  Image {
+                    icon-name: "document-open-symbolic";
+                  }
+
+                  Label label_choose_path {}
+                };
+              }
+            }
+
+            Adw.ActionRow {
+              title: _("Import Configuration");
+              activatable-widget: btn_choose_env;
+              visible: bind custom.active;
+
+              Button btn_choose_env_reset {
+                tooltip-text: _("Reset to Default");
+                valign: center;
+                visible: false;
+                icon-name: "edit-undo-symbolic";
+
+                styles [
+                  "flat",
+                ]
+              }
+
+              Button btn_choose_env {
+                valign: center;
+
+                child: Box {
+                  spacing: 6;
+
+                  Image {
+                    icon-name: "document-open-symbolic";
+                  }
+
+                  Label label_choose_env {}
+                };
+              }
+            }
+          }
+        };
+      };
+    }
+
+    StackPage {
+      name: "page_creating";
+
+      child: WindowHandle {
+        child: ScrolledWindow {
+          child: Adw.Clamp {
+            maximum-size: 475;
+
+            child: Box {
+              orientation: vertical;
+              margin-top: 36;
+              margin-bottom: 36;
+              spacing: 30;
+
+              Box {
+                orientation: vertical;
+                margin-top: 36;
+
+                Label {
+                  label: _("Creating Bottle…");
+
+                  styles [
+                    "title",
+                    "title-1",
+                  ]
+                }
+
+                Label {
+                  label: _("This could take a while.");
+
+                  styles [
+                    "body",
+                    "description",
+                  ]
+                }
+              }
+
+              ScrolledWindow scrolled_output {
+                margin-start: 12;
+                margin-end: 12;
+                overflow: hidden;
+
+                child: Label label_output {
+                  vexpand: true;
+                  hexpand: true;
+                  valign: fill;
+                  wrap: true;
+                  selectable: true;
+                  xalign: 0;
+                  yalign: 0;
+
+                  styles [
+                    "monospace",
+                    "terminal",
+                  ]
+                };
+
+                styles [
+                  "card",
+                ]
+              }
+            };
+          };
+        };
+      };
+    }
+
+    StackPage {
+      name: "page_completed";
+
+      child: WindowHandle {
+        child: Adw.StatusPage status_page_status {
+          child: Box {
+            orientation: vertical;
+            spacing: 12;
+
+            Button btn_close {
+              valign: center;
+              halign: center;
+              label: _("_Close");
+              use-underline: true;
+
+              styles [
+                "pill",
+              ]
+            }
+          };
+        };
+      };
+    }
+  };
+}
+
+Popover popover_duplicate {
+  child: Label {
+    margin-start: 6;
+    margin-end: 6;
+    margin-top: 6;
+    margin-bottom: 6;
+    xalign: 0;
+    wrap: true;
+    wrap-mode: word_char;
+    ellipsize: none;
+    lines: 4;
+    use-markup: true;
+    max-width-chars: 40;
+    label: _("This name is unavailable, please try another.");
+  };
+}

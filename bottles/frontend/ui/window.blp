@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $MainWindow: Adw.ApplicationWindow {
+template $BottlesWindow: Adw.ApplicationWindow {
   title: "Bottles";
   close-request => $on_close_request();
 
@@ -77,14 +77,14 @@ template $MainWindow: Adw.ApplicationWindow {
 menu primary_menu {
   section {
     item {
-      label: _("Import…");
+      label: _("_Import…");
       action: "app.import";
     }
   }
 
   section {
     item {
-      label: _("Preferences");
+      label: _("_Preferences");
       action: "app.preferences";
     }
 
@@ -94,12 +94,12 @@ menu primary_menu {
     }
 
     item {
-      label: _("Help");
+      label: _("_Help");
       action: "app.help";
     }
 
     item {
-      label: _("About Bottles");
+      label: _("_About Bottles");
       action: "app.about";
     }
   }

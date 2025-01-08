@@ -16,10 +16,11 @@
 #
 
 import re
+from typing import Optional
 from functools import wraps
 from inspect import signature
 
-from gi.repository import GLib
+from gi.repository import GLib, Gtk, GObject
 
 
 class GtkUtils:
@@ -56,3 +57,9 @@ class GtkUtils:
             return GLib.idle_add(func, *args)
 
         return wrapper
+
+    @staticmethod
+    def get_parent_window() -> Optional[GObject.Object]:
+        """Retrieve the parent window from a widget."""
+        toplevels = Gtk.Window.get_toplevels()
+        return toplevels.get_item(0)

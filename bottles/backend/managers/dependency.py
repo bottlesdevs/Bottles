@@ -20,9 +20,8 @@ import shutil
 import traceback
 from functools import lru_cache
 from glob import glob
-from typing import Union
 
-import patoolib
+import patoolib  # type: ignore [import-untyped]
 
 from bottles.backend.cabextract import CabExtract
 from bottles.backend.globals import Paths
@@ -50,7 +49,7 @@ class DependencyManager:
         self.__utils_conn = manager.utils_conn
 
     @lru_cache
-    def get_dependency(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
+    def get_dependency(self, name: str, plain: bool = False) -> str | dict | bool:
         return self.__repo.get(name, plain)
 
     @lru_cache
@@ -246,7 +245,7 @@ class DependencyManager:
         return Result(status=True, data={"uninstaller": uninstaller})
 
     @staticmethod
-    def __get_real_dest(config: BottleConfig, dest: str) -> Union[str, bool]:
+    def __get_real_dest(config: BottleConfig, dest: str) -> str | bool:
         """This function return the real destination path."""
         bottle = ManagerUtils.get_bottle_path(config)
         _dest = dest

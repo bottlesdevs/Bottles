@@ -17,7 +17,6 @@
 
 import webbrowser
 from gettext import gettext as _
-from typing import Union
 
 from gi.repository import Gtk, Adw
 
@@ -134,7 +133,7 @@ class ProgramEntry(Adw.ActionRow):
         dialog.connect("options-saved", update)
 
     @GtkUtils.run_in_main_loop
-    def __reset_buttons(self, result: Union[bool, Result] = False, _error=False):
+    def __reset_buttons(self, result: bool | Result = False, _error=False):
         status = False
         if isinstance(result, Result):
             status = result.status

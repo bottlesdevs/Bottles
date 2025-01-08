@@ -1,7 +1,8 @@
 using Gtk 4.0;
+using Adw 1;
 
-template MangoHudDialog : .AdwWindow {
- default-width: "500";
+template $MangoHudDialog : Adw.Window {
+ default-width: 500;
   modal: true;
 
   title:_("MangoHud Settings");
@@ -16,7 +17,7 @@ template MangoHudDialog : .AdwWindow {
   Box {
     orientation: vertical;
 
-    .AdwHeaderBar {
+    Adw.HeaderBar {
       show-start-title-buttons: false;
       show-end-title-buttons: false;
 
@@ -36,12 +37,12 @@ template MangoHudDialog : .AdwWindow {
       }
     }
 
-    .AdwPreferencesPage {
-      .AdwPreferencesGroup {
-        .AdwActionRow {
+    Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        Adw.ActionRow {
           title: _("Display On Game Start");
           subtitle: _("Display HUD as soon as the game starts. Can be toggled in-game (default keybind: [⇧ Right Shift] + [F12]).");
-          activatable-widget: "display_on_game_start";
+          activatable-widget: display_on_game_start;
 
           Switch display_on_game_start {
             valign: center;

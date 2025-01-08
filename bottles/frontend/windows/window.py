@@ -41,7 +41,7 @@ from bottles.frontend.views.importer import ImporterView
 from bottles.frontend.views.library import LibraryView
 from bottles.frontend.views.list import BottleView
 from bottles.frontend.views.loading import LoadingView
-from bottles.frontend.views.new import NewView
+from bottles.frontend.views.new_bottle_dialog import BottlesNewBottleDialog
 from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.windows.crash import CrashReportDialog
 from bottles.frontend.windows.depscheck import DependenciesCheckDialog
@@ -51,8 +51,8 @@ logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/window.ui")
-class MainWindow(Adw.ApplicationWindow):
-    __gtype_name__ = "MainWindow"
+class BottlesWindow(Adw.ApplicationWindow):
+    __gtype_name__ = "BottlesWindow"
 
     # region Widgets
     stack_main = Gtk.Template.Child()
@@ -328,8 +328,8 @@ class MainWindow(Adw.ApplicationWindow):
         onboard_window.present()
 
     def show_add_view(self, widget=False):
-        new_window = NewView(self)
-        new_window.present()
+        new_bottle_dialog = BottlesNewBottleDialog()
+        new_bottle_dialog.present(self)
 
     def show_list_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_list")

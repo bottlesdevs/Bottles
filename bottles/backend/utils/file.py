@@ -21,7 +21,6 @@ import shutil
 import time
 import fcntl
 from pathlib import Path
-from typing import Union
 from array import array
 
 
@@ -72,7 +71,7 @@ class FileUtils:
 
         return "%.1f%s%s" % (size, "Yi", "B")
 
-    def get_path_size(self, path: str, human: bool = True) -> Union[str, float]:
+    def get_path_size(self, path: str, human: bool = True) -> str | float:
         """
         Returns the size of a given path. If human is True, returns as a
         human-readable size.

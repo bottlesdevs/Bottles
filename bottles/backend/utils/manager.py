@@ -20,9 +20,9 @@ import shutil
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
-from typing import Union, Optional
+from typing import Optional
 
-import icoextract
+import icoextract  # type: ignore [import-untyped]
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
@@ -124,7 +124,7 @@ class ManagerUtils:
     @staticmethod
     def move_file_to_bottle(
         file_path: str, config: BottleConfig, fn_update: callable = None
-    ) -> Union[str, bool]:
+    ) -> str | bool:
         logging.info(f"Adding file {file_path} to the bottle …")
         bottle_path = ManagerUtils.get_bottle_path(config)
 

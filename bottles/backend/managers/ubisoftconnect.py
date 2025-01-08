@@ -17,7 +17,7 @@
 
 import os
 import uuid
-from typing import Union, Optional
+from typing import Optional
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
@@ -25,7 +25,7 @@ from bottles.backend.utils.manager import ManagerUtils
 
 class UbisoftConnectManager:
     @staticmethod
-    def find_conf_path(config: BottleConfig) -> Union[str, None]:
+    def find_conf_path(config: BottleConfig) -> str | None:
         """
         Finds the Ubisoft Connect configurations file path.
         """
