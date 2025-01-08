@@ -59,7 +59,11 @@ template $BottlesWindow: Adw.ApplicationWindow {
           }
         }
 
-        SearchBar searchbar {}
+        SearchBar search_bar {
+          SearchEntry entry_search {
+            placeholder-text: _("Search your bottles…");
+          }
+        }
 
         Adw.ViewStack stack_main {
           vexpand: true;

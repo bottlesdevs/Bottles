@@ -65,6 +65,8 @@ class BottlesWindow(Adw.ApplicationWindow):
     view_switcher_bar = Gtk.Template.Child()
     main_leaf = Gtk.Template.Child()
     toasts = Gtk.Template.Child()
+    entry_search = Gtk.Template.Child()
+    search_bar = Gtk.Template.Child()
     # endregion
 
     # Common variables
@@ -143,6 +145,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.btn_add.connect("clicked", self.show_add_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
+        self.entry_search.connect("changed", self.__search_bottles)
 
         # backend signal handlers
         self.task_syncer = TaskSyncer(self)
@@ -237,10 +240,10 @@ class BottlesWindow(Adw.ApplicationWindow):
                 child=self.page_library, name="page_library", title=_("Library")
             ).set_icon_name("library-symbolic")
 
-            self.page_list.search_bar.set_key_capture_widget(self)
+            self.search_bar.set_key_capture_widget(self)
             self.btn_search.bind_property(
                 "active",
-                self.page_list.search_bar,
+                self.search_bar,
                 "search-mode-enabled",
                 GObject.BindingFlags.BIDIRECTIONAL,
             )
@@ -294,6 +297,16 @@ class BottlesWindow(Adw.ApplicationWindow):
         RunAsync(get_manager, callback=set_manager)
 
         self.check_crash_log()
+
+    def __search_bottles(self, widget, event=None, data=None):
+        terms = widget.get_text()
+        self.page_list.list_bottles.set_filter_func(self.__filter_bottles, terms)
+        self.page_list.list_steam.set_filter_func(self.__filter_bottles, terms)
+
+    @staticmethod
+    def __filter_bottles(row, terms=None):
+        text = row.get_title().lower()
+        return terms.lower() in text
 
     def send_notification(self, title, text, image="", ignore_user=False):
         """

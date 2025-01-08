@@ -136,8 +136,6 @@ class BottlesListView(Adw.Bin):
     pref_page = Gtk.Template.Child()
     bottle_status = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
-    entry_search = Gtk.Template.Child()
-    search_bar = Gtk.Template.Child()
     no_bottles_found = Gtk.Template.Child()
 
     # endregion
@@ -151,7 +149,6 @@ class BottlesListView(Adw.Bin):
 
         # connect signals
         self.btn_create.connect("clicked", self.window.show_add_view)
-        self.entry_search.connect("changed", self.__search_bottles)
 
         # backend signals
         SignalManager.connect(
@@ -161,20 +158,6 @@ class BottlesListView(Adw.Bin):
         self.bottle_status.set_icon_name(APP_ID)
 
         self.update_bottles_list()
-
-    def __search_bottles(self, widget, event=None, data=None):
-        """
-        This function search in the list of bottles the
-        text written in the search entry.
-        """
-        terms = widget.get_text()
-        self.list_bottles.set_filter_func(self.__filter_bottles, terms)
-        self.list_steam.set_filter_func(self.__filter_bottles, terms)
-
-    @staticmethod
-    def __filter_bottles(row, terms=None):
-        text = row.get_title().lower()
-        return terms.lower() in text
 
     def update_bottles_list(self, *args) -> None:
         self.__bottles = {}
