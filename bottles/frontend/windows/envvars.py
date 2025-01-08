@@ -19,8 +19,11 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, GLib, Adw
 
+from bottles.backend.logger import Logger
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.utils.sh import ShUtils
+
+logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/env-var-entry.ui")
@@ -45,6 +48,23 @@ class EnvVarEntry(Adw.EntryRow):
         self.connect("changed", self.__validate)
         self.connect("apply", self.__save)
         self.btn_remove.connect("clicked", self.__remove)
+
+        try:
+            widget = (
+                self.get_child().get_first_child().get_next_sibling().get_first_child()
+            )
+            while isinstance(widget, Gtk.Label):
+                widget.set_visible(False)
+                widget = widget.get_next_sibling()
+
+            if isinstance(widget, Gtk.Text):
+                widget.set_valign(Gtk.Align.CENTER)
+            else:
+                raise RuntimeError("Could not find widget Gtk.Text")
+        except Exception as e:
+            logging.error(
+                f"{type(e)}: {e}\nEnvVarEntry could not find text widget. Did AdwEntryRow change it's widget tree?"
+            )
 
     def __save(self, *_args):
         """
