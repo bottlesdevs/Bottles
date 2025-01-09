@@ -27,8 +27,8 @@ logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/env-var-entry.ui")
-class EnvVarEntry(Adw.EntryRow):
-    __gtype_name__ = "EnvVarEntry"
+class EnvironmentVariableEntryRow(Adw.EntryRow):
+    __gtype_name__ = "EnvironmentVariableEntryRow"
 
     # region Widgets
     btn_remove = Gtk.Template.Child()
@@ -63,7 +63,7 @@ class EnvVarEntry(Adw.EntryRow):
                 raise RuntimeError("Could not find widget Gtk.Text")
         except Exception as e:
             logging.error(
-                f"{type(e)}: {e}\nEnvVarEntry could not find text widget. Did AdwEntryRow change it's widget tree?"
+                f"{type(e)}: {e}\nEnvironmentVariableEntryRow could not find text widget. Did AdwEntryRow change it's widget tree?"
             )
 
     def __save(self, *_args):
@@ -113,8 +113,8 @@ class EnvVarEntry(Adw.EntryRow):
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-env-vars.ui")
-class EnvVarsDialog(Adw.Dialog):
-    __gtype_name__ = "EnvVarsDialog"
+class EnvironmentVariablesDialog(Adw.Dialog):
+    __gtype_name__ = "EnvironmentVariablesDialog"
 
     # region Widgets
     entry_new_var = Gtk.Template.Child()
@@ -161,7 +161,7 @@ class EnvVarsDialog(Adw.Dialog):
             value=new_value,
             scope="Environment_Variables",
         )
-        _entry = EnvVarEntry(parent=self, env=(new_name, new_value))
+        _entry = EnvironmentVariableEntryRow(parent=self, env=(new_name, new_value))
         self.group_vars.set_description()
         self.group_vars.add(_entry)
         self.entry_new_var.set_text("")
@@ -177,5 +177,5 @@ class EnvVarsDialog(Adw.Dialog):
             return
 
         for env in envs:
-            _entry = EnvVarEntry(parent=self, env=env)
+            _entry = EnvironmentVariableEntryRow(parent=self, env=env)
             self.group_vars.add(_entry)
