@@ -141,7 +141,7 @@ class ComponentEntry(Adw.ActionRow):
         status: Optional[Status] = None,
     ):
         if status == Status.FAILED:
-            logging.error(f"Component installation failed")
+            logging.error("Component installation failed")
             self.set_err()
             return False
 

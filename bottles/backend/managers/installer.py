@@ -247,7 +247,7 @@ class InstallerManager:
                 )
                 return False
 
-        logging.info(f"Executing installer script…")
+        logging.info("Executing installer script…")
         subprocess.Popen(
             f"bash -c '{script}'",
             shell=True,
@@ -255,7 +255,7 @@ class InstallerManager:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         ).communicate()
-        logging.info(f"Finished executing installer script.")
+        logging.info("Finished executing installer script.")
 
     @staticmethod
     def __step_update_config(config: BottleConfig, step: dict):

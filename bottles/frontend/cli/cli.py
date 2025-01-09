@@ -497,7 +497,7 @@ class CLI:
 
         if _action in ["add", "edit"]:
             if _data is None or _key_type not in allowed_types:
-                sys.stderr.write(f"Missing or invalid data or key type\n")
+                sys.stderr.write("Missing or invalid data or key type\n")
                 exit(1)
             Reg(bottle).add(_key, _value, _data, _key_type)
         elif _action == "del":
@@ -655,7 +655,7 @@ class CLI:
 
         if _program is not None:
             if _executable is not None:
-                sys.stderr.write(f"Cannot specify both --program and --executable\n")
+                sys.stderr.write("Cannot specify both --program and --executable\n")
                 exit(1)
 
             if _program not in [p["name"] for p in programs]:
@@ -744,7 +744,7 @@ class CLI:
             os.remove(standalone_path)
 
         with open(standalone_path, "w") as f:
-            f.write(f"#!/bin/bash\n")
+            f.write("#!/bin/bash\n")
             for k, v in env.items():
                 f.write(f"export {k}='{v}'\n")
             f.write(f"{cmd}\n")

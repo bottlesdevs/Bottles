@@ -137,7 +137,7 @@ class SteamManager:
             _library_folders = SteamUtils.parse_vdf(f.read())
 
         if _library_folders is None or not _library_folders.get("libraryfolders"):
-            logging.warning(f"Could not parse libraryfolders.vdf")
+            logging.warning("Could not parse libraryfolders.vdf")
             return None
 
         for _, folder in _library_folders["libraryfolders"].items():
@@ -172,7 +172,7 @@ class SteamManager:
             data = SteamUtils.parse_vdf(f.read())
 
         if data is None:
-            logging.warning(f"Could not parse localconfig.vdf")
+            logging.warning("Could not parse localconfig.vdf")
             return {}
 
         return data
@@ -188,7 +188,7 @@ class SteamManager:
         with open(self.localconfig_path, "w") as f:
             SteamUtils.to_vdf(VDFDict(new_data), f)
 
-        logging.info(f"Steam config saved")
+        logging.info("Steam config saved")
 
     @staticmethod
     @lru_cache

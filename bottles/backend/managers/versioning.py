@@ -251,7 +251,7 @@ class VersioningManager:
             file.close()
             return files
         except (OSError, IOError, yaml.YAMLError):
-            logging.error(f"Could not read the state files file.")
+            logging.error("Could not read the state files file.")
             return {}
 
     @staticmethod

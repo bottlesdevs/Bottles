@@ -125,7 +125,7 @@ class LibraryManager:
             yaml.dump(self.__library, library_file)
 
         if not silent:
-            logging.info(f"Library saved")
+            logging.info("Library saved")
 
     def get_library(self):
         """
