@@ -17,6 +17,8 @@
 
 import string
 
+from gettext import gettext as _
+
 from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.wine.drives import Drives

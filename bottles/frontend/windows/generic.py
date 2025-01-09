@@ -178,7 +178,7 @@ class WebDialog(Adw.Window):
         btn_copy.connect("clicked", self.__copy_text)
         btn_copy.set_tooltip_text(_("Copy to clipboard"))
 
-        webview.load_html(self.message, "file://")
+        # webview.load_html(self.message, "file://")
         # scrolled.append(webview)
 
         box.append(headerbar)

@@ -116,10 +116,10 @@ class VkBasaltDialog(Adw.Window):
 
             # Check if subeffects are used
             for conf in subeffects:
-                if conf[0] != None:
+                if conf[0] is not None:
                     conf[1].set_value(float(conf[0]))
 
-            if VkBasaltSettings.smaa_edge_detection != None:
+            if VkBasaltSettings.smaa_edge_detection is not None:
                 if VkBasaltSettings.smaa_edge_detection == "color":
                     self.toggle_color.set_active(True)
                     self.smaa_edge_detection = "color"
@@ -186,7 +186,7 @@ class VkBasaltDialog(Adw.Window):
     # Enable and disable other buttons depending on default button when necessary
     def __default(self, widget, state):
         self.group_effects.set_sensitive(not state)
-        if self.check_effects_states() == False:
+        if not self.check_effects_states():
             self.btn_save.set_sensitive(state)
 
     # Change edge detection type

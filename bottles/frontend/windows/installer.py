@@ -17,6 +17,7 @@
 
 import urllib.request
 
+from gettext import gettext as _
 from gi.repository import Gtk, GLib, Gio, GdkPixbuf, Adw
 
 from bottles.backend.utils.threading import RunAsync
