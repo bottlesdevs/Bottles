@@ -1531,11 +1531,11 @@ class Manager(metaclass=Singleton):
             logging.error("Empty path found. Disasters unavoidable.")
             return False
 
-        logging.info(f"Removing applications installed with the bottle…")
+        logging.info("Removing applications installed with the bottle…")
         for inst in glob(f"{Paths.applications}/{config.Name}--*"):
             os.remove(inst)
 
-        logging.info(f"Removing library entries associated with this bottle…")
+        logging.info("Removing library entries associated with this bottle…")
         library_manager = LibraryManager()
         entries = library_manager.get_library().copy()
         for _uuid, entry in entries.items():
@@ -1543,7 +1543,7 @@ class Manager(metaclass=Singleton):
                 library_manager.remove_from_library(_uuid)
 
         if config.Custom_Path:
-            logging.info(f"Removing placeholder…")
+            logging.info("Removing placeholder…")
             with contextlib.suppress(FileNotFoundError):
                 os.remove(
                     os.path.join(
@@ -1551,7 +1551,7 @@ class Manager(metaclass=Singleton):
                     )
                 )
 
-        logging.info(f"Removing the bottle…")
+        logging.info("Removing the bottle…")
         path = ManagerUtils.get_bottle_path(config)
         subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
 

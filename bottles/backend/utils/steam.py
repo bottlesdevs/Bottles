@@ -53,7 +53,7 @@ class SteamUtils:
         """
         Checks if a directory is a Proton directory.
         """
-        toolmanifest = os.path.join(path, f"toolmanifest.vdf")
+        toolmanifest = os.path.join(path, "toolmanifest.vdf")
         if not os.path.isfile(toolmanifest):
             return False
 
@@ -70,7 +70,7 @@ class SteamUtils:
         """
         Get the associated runtime of a Proton directory.
         """
-        toolmanifest = os.path.join(path, f"toolmanifest.vdf")
+        toolmanifest = os.path.join(path, "toolmanifest.vdf")
         if not os.path.isfile(toolmanifest):
             logging.error(f"toolmanifest.vdf not found in Proton directory: {path}")
             return None
@@ -93,10 +93,10 @@ class SteamUtils:
         Get the sub-directory containing the wine libraries and binaries.
         """
         dist_directory = path
-        if os.path.isdir(os.path.join(path, f"dist")):
-            dist_directory = os.path.join(path, f"dist")
-        elif os.path.isdir(os.path.join(path, f"files")):
-            dist_directory = os.path.join(path, f"files")
+        if os.path.isdir(os.path.join(path, "dist")):
+            dist_directory = os.path.join(path, "dist")
+        elif os.path.isdir(os.path.join(path, "files")):
+            dist_directory = os.path.join(path, "files")
         else:
             logging.warning(
                 f"No /dist or /files sub-directory was found under this Proton directory: {path}"

@@ -190,7 +190,7 @@ class WineExecutor:
         if _exec.endswith(".dll"):
             return "dll"
 
-        logging.warning(f"Not a common executable type, trying to launch it anyway.")
+        logging.warning("Not a common executable type, trying to launch it anyway.")
         return "unsupported"
 
     def run_cli(self):

@@ -465,7 +465,7 @@ class WineCommand:
             Additionally, check for its corresponding runtime.
             """
             runner_runtime = SteamUtils.get_associated_runtime(runner)
-            runner = os.path.join(SteamUtils.get_dist_directory(runner), f"bin/wine")
+            runner = os.path.join(SteamUtils.get_dist_directory(runner), "bin/wine")
 
         elif runner.startswith("sys-"):
             """
@@ -523,10 +523,10 @@ class WineCommand:
                 gamescope_run = tempfile.NamedTemporaryFile(mode="w", suffix=".sh").name
 
                 # Create temporary sh script in /tmp where Gamescope will execute it
-                file = [f"#!/usr/bin/env sh\n"]
+                file = ["#!/usr/bin/env sh\n"]
                 file.append(f"{command} $@")
                 if mangohud_available and params.mangohud:
-                    file.append(f" &\nmangoapp")
+                    file.append(" &\nmangoapp")
                 with open(gamescope_run, "w") as f:
                     f.write("".join(file))
 
@@ -756,7 +756,7 @@ class WineCommand:
             # UnicodeDecodeError: codec mismatch
             # LookupError: unknown codec name
             # TypeError: codec is None
-            logging.warning(f"stdout decoding failed")
+            logging.warning("stdout decoding failed")
             rv = str(stdout_data)[2:-1]  # trim b''
 
         # "ShellExecuteEx" exception may occur while executing command,
