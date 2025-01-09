@@ -2,3 +2,12 @@
 log_cli = true
 log_cli_level = "INFO"
 log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+
+[tool.ruff]
+exclude = [
+	"bottles/backend/utils/nvidia.py",
+	"bottles/backend/utils/vdf.py",
+]
+
+[tool.ruff.lint]
+ignore = ["F401", "F402", "E722", "E741"]

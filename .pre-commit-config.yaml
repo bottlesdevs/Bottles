@@ -16,8 +16,8 @@ repos:
 -   repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.8.2
     hooks:
-    # -   id: ruff
-    #     args: [ "--fix" ]
+    -   id: ruff
+        args: [ "--fix" ]
     -   id: ruff-format
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
