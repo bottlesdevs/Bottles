@@ -46,7 +46,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.windows.display import DisplayDialog
 from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
 from bottles.frontend.windows.drives import DrivesDialog
-from bottles.frontend.windows.envvars import EnvVarsDialog
+from bottles.frontend.windows.envvars import EnvironmentVariablesDialog
 from bottles.frontend.windows.exclusionpatterns import ExclusionPatternsDialog
 from bottles.frontend.windows.fsr import FsrDialog
 from bottles.frontend.windows.gamescope import GamescopeDialog
@@ -200,7 +200,7 @@ class PreferencesView(Adw.PreferencesPage):
             "activated", self.__show_feature_dialog, DLLOverridesDialog
         )
         self.row_env_variables.connect(
-            "activated", self.__show_feature_dialog, EnvVarsDialog
+            "activated", self.__show_feature_dialog, EnvironmentVariablesDialog
         )
         self.row_drives.connect("activated", self.__show_feature_dialog, DrivesDialog)
         self.btn_manage_gamescope.connect(
