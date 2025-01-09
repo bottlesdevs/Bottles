@@ -144,7 +144,7 @@ class DisplayDialog(Adw.Window):
             )
 
         if (
-            self.expander_virtual_desktop.get_enable_expansion() == True
+            self.expander_virtual_desktop.get_enable_expansion()
             and resolution != self.parameters.virtual_desktop_res
         ):
             """Set virtual desktop resolution"""

@@ -38,6 +38,7 @@ sys.path.insert(1, pkgdatadir)
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
+# ruff: noqa: E402
 from gi.repository import Gio
 
 from bottles.frontend.params import APP_ID

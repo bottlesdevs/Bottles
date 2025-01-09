@@ -63,7 +63,7 @@ class CrashReportDialog(Adw.Window):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
-        if type(log) == list:
+        if type(log) is list:
             log = "".join(log)
 
         # connect signals

@@ -22,19 +22,21 @@ import locale
 import webbrowser
 from os import path
 
+from bottles.backend.logger import Logger
+from bottles.backend.health import HealthChecker
+from bottles.frontend.params import APP_ID, APP_MAJOR_VERSION, APP_VERSION
+
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("GtkSource", "5")
 gi.require_version("Xdp", "1.0")
 # gi.require_version("XdpGtk4", "1.0")
 
-from gi.repository import Gtk, Gio, GLib, GObject, Adw  # type: ignore
-
-from bottles.frontend.params import APP_ID, APP_MAJOR_VERSION, APP_VERSION
-from bottles.backend.logger import Logger
+# ruff: noqa: E402
+from gi.repository import Gio, GLib, GObject, Adw  # type: ignore
 from bottles.frontend.windows.window import BottlesWindow
 from bottles.frontend.views.preferences import PreferencesWindow
-from bottles.backend.health import HealthChecker
+
 
 logging = Logger()
 

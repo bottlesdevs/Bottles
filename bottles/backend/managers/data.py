@@ -79,7 +79,7 @@ class DataManager:
             else:
                 self.__data[key] = value
         else:
-            if of_type == list:
+            if of_type is list:
                 self.__data[key] = [value]
             else:
                 self.__data[key] = value

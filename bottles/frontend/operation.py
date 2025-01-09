@@ -17,13 +17,10 @@
 from typing import Dict
 from uuid import UUID
 
-import gi
+from gi.repository import Gtk, Adw
 
 from bottles.backend.models.result import Result
 from bottles.backend.state import TaskManager
-
-gi.require_version("Adw", "1")
-from gi.repository import Gtk, Adw
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/task-entry.ui")
