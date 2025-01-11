@@ -92,7 +92,7 @@ class EnvironmentVariableEntryRow(Adw.EntryRow):
         destroy the widget
         """
         self.__remove_config()
-        self.parent.group_vars.remove(self)
+        self.parent.remove_entry(self)
 
     def __remove_config(self, *_args):
         """
@@ -166,15 +166,21 @@ class EnvironmentVariablesDialog(Adw.Dialog):
         self.group_vars.add(_entry)
         self.entry_new_var.set_text("")
 
+    def remove_entry(self, _entry):
+        self.group_vars.remove(_entry)
+        self.__set_description()
+
+    def __set_description(self):
+        if len(self.config.Environment_Variables.items()) == 0:
+            self.group_vars.set_description(_("No environment variables defined"))
+
     def __populate_vars_list(self):
         """
         This function populate the list of env vars
         with the existing ones from the bottle configuration
         """
         envs = self.config.Environment_Variables.items()
-        if len(envs) == 0:
-            self.group_vars.set_description(_("No environment variables defined"))
-            return
+        self.__set_description()
 
         for env in envs:
             _entry = EnvironmentVariableEntryRow(parent=self, env=env)
