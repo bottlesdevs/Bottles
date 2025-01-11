@@ -29,15 +29,26 @@ class GtkUtils:
     def validate_entry(entry, extend=None) -> bool:
         var_assignment = entry.get_text()
         var_name = ShUtils.split_assignment(var_assignment)[0]
-        if "=" not in var_assignment or not ShUtils.is_name(var_name):
+        if var_name and not ShUtils.is_name(var_name):
+            entry.set_show_apply_button(False)
+            entry.set_show_apply_button(True)
             entry.add_css_class("error")
+            return False
+
+        if not var_name or "=" not in var_assignment:
+            entry.set_show_apply_button(False)
+            entry.set_show_apply_button(True)
+            entry.remove_css_class("error")
             return False
 
         if extend is not None:
             if not extend(var_name):
+                entry.set_show_apply_button(False)
+                entry.set_show_apply_button(True)
                 entry.add_css_class("error")
                 return False
 
+        entry.set_show_apply_button(True)
         entry.remove_css_class("error")
         return True
 
