@@ -111,6 +111,9 @@ class EnvironmentVariableEntryRow(Adw.EntryRow):
             self, lambda var_name: not var_name == "WINEDLLOVERRIDES"
         )
 
+        if not self.__valid_name:
+            self.add_css_class("error")
+
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-env-vars.ui")
 class EnvironmentVariablesDialog(Adw.Dialog):
@@ -142,9 +145,6 @@ class EnvironmentVariablesDialog(Adw.Dialog):
         self.__valid_name = GtkUtils.validate_entry(
             self.entry_new_var, lambda var_name: not var_name == "WINEDLLOVERRIDES"
         )
-
-        if not self.entry_new_var.get_text():
-            self.entry_new_var.remove_css_class("error")
 
     def __save_var(self, *_args):
         """
