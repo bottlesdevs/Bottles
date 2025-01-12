@@ -11,7 +11,7 @@ bottles_sources = [
   'launchoptions.py',
   'onboard.py',
   'rename.py',
-  'drives.py',
+  'drives_dialog.py',
   'gamescope.py',
   'vkbasalt.py',
   'fsr.py',
