@@ -1,6 +1,6 @@
-# dlloverrides.py
+# dll_overrides_dialog.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ class DLLEntry(Adw.ComboRow):
         self.get_parent().remove(self)
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-dll-overrides.ui")
+@Gtk.Template(resource_path="/com/usebottles/bottles/dll-overrides-dialog.ui")
 class DLLOverridesDialog(Adw.PreferencesWindow):
     __gtype_name__ = "DLLOverridesDialog"
 
