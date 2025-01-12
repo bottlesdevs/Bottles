@@ -1,6 +1,6 @@
-# taskmanager.py
+# details_task_manager_view.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,9 +26,9 @@ from bottles.backend.wine.winedbg import WineDbg
 from bottles.frontend.utils.gtk import GtkUtils
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/details-taskmanager.ui")
-class TaskManagerView(Gtk.ScrolledWindow):
-    __gtype_name__ = "TaskManagerView"
+@Gtk.Template(resource_path="/com/usebottles/bottles/details-task-manager-view.ui")
+class DetailsTaskManagerView(Gtk.ScrolledWindow):
+    __gtype_name__ = "DetailsTaskManagerView"
 
     # region Widgets
     treeview_processes = Gtk.Template.Child()

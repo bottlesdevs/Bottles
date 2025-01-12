@@ -31,7 +31,7 @@ from bottles.frontend.views.bottle_installers import InstallersView
 from bottles.frontend.views.bottle_dependencies import DependenciesView
 from bottles.frontend.views.details_preferences_page import DetailsPreferencesPage
 from bottles.frontend.views.bottle_versioning import VersioningView
-from bottles.frontend.views.bottle_taskmanager import TaskManagerView
+from bottles.frontend.views.details_task_manager_view import DetailsTaskManagerView
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/bottle-details-view.ui")
@@ -80,7 +80,7 @@ class BottleDetailsView(Adw.Bin):
         self.view_dependencies = DependenciesView(self, config)
         self.view_preferences = DetailsPreferencesPage(self, config)
         self.view_versioning = VersioningView(self, config)
-        self.view_taskmanager = TaskManagerView(self, config)
+        self.view_taskmanager = DetailsTaskManagerView(self, config)
 
         self.btn_back.connect("clicked", self.go_back)
         self.btn_back_sidebar.connect("clicked", self.go_back_sidebar)
