@@ -279,7 +279,9 @@ class BottleView(Adw.PreferencesPage):
         add_executable_filters(dialog)
         add_all_filters(dialog)
         dialog.set_modal(True)
-        dialog.set_current_folder(Gio.File.new_for_path(ManagerUtils.get_bottle_path(self.config)))
+        dialog.set_current_folder(
+            Gio.File.new_for_path(ManagerUtils.get_bottle_path(self.config))
+        )
         dialog.connect("response", set_path)
         dialog.show()
 
