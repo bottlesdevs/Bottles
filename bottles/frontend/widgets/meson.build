@@ -9,7 +9,7 @@ bottles_sources = [
   'installer.py',
   'program.py',
   'state.py',
-  'component.py',
+  'component_entry_row.py',
   'library.py',
 ]
 
