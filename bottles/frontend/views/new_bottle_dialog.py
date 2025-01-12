@@ -47,8 +47,8 @@ class BottlesCheckRow(Adw.ActionRow):
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/new-bottle-dialog.ui")
-class BottlesNewBottleDialog(Adw.Dialog):
-    __gtype_name__ = "BottlesNewBottleDialog"
+class NewBottleDialog(Adw.Dialog):
+    __gtype_name__ = "NewBottleDialog"
 
     # region Widgets
     entry_name = Gtk.Template.Child()
