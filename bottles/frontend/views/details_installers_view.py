@@ -1,6 +1,6 @@
-# bottle_installers.py
+# details_installers_view.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottle Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,9 +26,9 @@ from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.widgets.installer import InstallerEntry
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/details-installers.ui")
-class InstallersView(Adw.Bin):
-    __gtype_name__ = "DetailsInstallers"
+@Gtk.Template(resource_path="/com/usebottles/bottles/details-installers-view.ui")
+class DetailsInstallersView(Adw.Bin):
+    __gtype_name__ = "DetailsInstallersView"
     __registry = []
 
     # region Widgets
