@@ -3,7 +3,7 @@ dialogsdir = join_paths(pkgdatadir, 'bottles/frontend/windows')
 
 bottles_sources = [
   '__init__.py',
-  'crash.py',
+  'crash_report_dialog.py',
   'dlloverrides.py',
   'duplicate.py',
   'envvars.py',

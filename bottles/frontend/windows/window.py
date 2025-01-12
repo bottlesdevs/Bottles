@@ -43,7 +43,7 @@ from bottles.frontend.views.list import BottleView
 from bottles.frontend.views.loading import LoadingView
 from bottles.frontend.views.new_bottle_dialog import NewBottleDialog
 from bottles.frontend.views.preferences import PreferencesWindow
-from bottles.frontend.windows.crash import CrashReportDialog
+from bottles.frontend.windows.crash_report_dialog import CrashReportDialog
 from bottles.frontend.windows.depscheck import DependenciesCheckDialog
 from bottles.frontend.windows.onboard import OnboardDialog
 
