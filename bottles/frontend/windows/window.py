@@ -41,7 +41,7 @@ from bottles.frontend.views.importer import ImporterView
 from bottles.frontend.views.library import LibraryView
 from bottles.frontend.views.list import BottleView
 from bottles.frontend.views.loading import LoadingView
-from bottles.frontend.views.new_bottle_dialog import BottlesNewBottleDialog
+from bottles.frontend.views.new_bottle_dialog import NewBottleDialog
 from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.windows.crash import CrashReportDialog
 from bottles.frontend.windows.depscheck import DependenciesCheckDialog
@@ -328,7 +328,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         onboard_window.present()
 
     def show_add_view(self, widget=False):
-        new_bottle_dialog = BottlesNewBottleDialog()
+        new_bottle_dialog = NewBottleDialog()
         new_bottle_dialog.present(self)
 
     def show_list_view(self, widget=False):
