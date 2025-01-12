@@ -1,6 +1,6 @@
-# component.py
+# component_entry_row.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,9 +29,9 @@ from bottles.frontend.utils.gtk import GtkUtils
 logging = Logger()
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/component-entry.ui")
-class ComponentEntry(Adw.ActionRow):
-    __gtype_name__ = "ComponentEntry"
+@Gtk.Template(resource_path="/com/usebottles/bottles/component-entry-row.ui")
+class ComponentEntryRow(Adw.ActionRow):
+    __gtype_name__ = "ComponentEntryRow"
     __gsignals__ = {
         "component-installed": (GObject.SIGNAL_RUN_FIRST, None, ()),
         "component-error": (GObject.SIGNAL_RUN_FIRST, None, ()),

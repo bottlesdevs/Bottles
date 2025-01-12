@@ -26,7 +26,10 @@ from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.state import EventManager, Events
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.utils.generic import sort_by_version
-from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
+from bottles.frontend.widgets.component_entry_row import (
+    ComponentEntryRow,
+    ComponentExpander,
+)
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/preferences.ui")
@@ -305,7 +308,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         for component in supported_component_items:
             if not self.__display_unstable_candidate(component):
                 continue
-            _entry = ComponentEntry(self.window, component, component_type)
+            _entry = ComponentEntryRow(self.window, component, component_type)
             list_component.add(_entry)
             self.__registry.append(_entry)
 
@@ -355,7 +358,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             if not self.__display_unstable_candidate(supported_runner):
                 continue
 
-            _entry = ComponentEntry(self.window, supported_runner, runner_type)
+            _entry = ComponentEntryRow(self.window, supported_runner, runner_type)
             for identifiable_runner in identifiable_runners_struct:
                 if _runner_name.startswith(identifiable_runner["prefix"]):
                     while (
@@ -369,7 +372,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
                         == identifiable_runner["offline_runners"][0][0]
                     ):
                         offline_runner = identifiable_runner["offline_runners"].pop(0)
-                        _offline_entry = ComponentEntry(
+                        _offline_entry = ComponentEntryRow(
                             self.window, offline_runner, runner_type
                         )
                         identifiable_runner["expander"].add_row(_offline_entry)
@@ -382,7 +385,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         for identifiable_runner in identifiable_runners_struct:
             while identifiable_runner["offline_runners"]:
                 offline_runner = identifiable_runner["offline_runners"].pop(0)
-                _offline_entry = ComponentEntry(
+                _offline_entry = ComponentEntryRow(
                     self.window, offline_runner, runner_type
                 )
                 identifiable_runner["expander"].add_row(_offline_entry)
