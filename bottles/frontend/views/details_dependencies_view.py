@@ -1,6 +1,6 @@
-# bottle_installers.py
+# details_dependencies_view.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,9 +28,9 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.dependency_entry_row import DependencyEntryRow
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/details-dependencies.ui")
-class DependenciesView(Adw.Bin):
-    __gtype_name__ = "DetailsDependencies"
+@Gtk.Template(resource_path="/com/usebottles/bottles/details-dependencies-view.ui")
+class DetailsDependenciesView(Adw.Bin):
+    __gtype_name__ = "DetailsDependenciesView"
     __registry = []
 
     # region Widgets
