@@ -46,9 +46,8 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.windows.display_dialog import DisplayDialog
 from bottles.frontend.windows.dll_overrides_dialog import DLLOverridesDialog
 from bottles.frontend.windows.drives_dialog import DrivesDialog
-from bottles.frontend.windows.drives import DrivesDialog
 from bottles.frontend.windows.envvars import EnvironmentVariablesDialog
-from bottles.frontend.windows.exclusionpatterns import ExclusionPatternsDialog
+from bottles.frontend.windows.exclusion_patterns_dialog import ExclusionPatternsDialog
 from bottles.frontend.windows.fsr import FsrDialog
 from bottles.frontend.windows.gamescope import GamescopeDialog
 from bottles.frontend.windows.mangohud import MangoHudDialog

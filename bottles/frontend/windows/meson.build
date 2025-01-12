@@ -24,7 +24,7 @@ bottles_sources = [
   'sandbox.py',
   'installer.py',
   'dependencies_check_dialog.py',
-  'exclusionpatterns.py',
+  'exclusion_patterns_dialog.py',
   'upgradeversioning.py',
   'vmtouch.py',
   'window.py',
