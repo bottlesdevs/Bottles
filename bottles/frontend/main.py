@@ -222,7 +222,7 @@ class Bottles(Adw.Application):
             return 0
 
         try:
-            from bottles.frontend.windows.bottlepicker import BottlePickerDialog
+            from bottles.frontend.windows.bottle_picker_dialog import BottlePickerDialog
 
             dialog = BottlePickerDialog(application=self, arg_exe=uri)
             dialog.present()

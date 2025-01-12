@@ -1,6 +1,6 @@
-# bottlepicker.py
+# bottle_picker_dialog.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ class BottleEntry(Adw.ActionRow):
         self.set_title(config.Name)
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-bottle-picker.ui")
+@Gtk.Template(resource_path="/com/usebottles/bottles/bottle-picker-dialog.ui")
 class BottlePickerDialog(Adw.ApplicationWindow):
     """This class should not be called from the application GUI, only from CLI."""
 
