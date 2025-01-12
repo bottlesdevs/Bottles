@@ -11,7 +11,7 @@ bottles_sources = [
   'importer.py',
   'loading.py',
 
-  'bottle_details.py',
+  'bottle_details_page.py',
   'bottle_installers.py',
   'bottle_dependencies.py',
   'bottle_preferences.py',

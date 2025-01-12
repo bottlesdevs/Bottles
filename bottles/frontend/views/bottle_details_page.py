@@ -1,6 +1,6 @@
-# bottle_details.py
+# bottle_details_page.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,9 +46,9 @@ from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/details-bottle.ui")
-class BottleView(Adw.PreferencesPage):
-    __gtype_name__ = "DetailsBottle"
+@Gtk.Template(resource_path="/com/usebottles/bottles/bottle-details-page.ui")
+class BottleDetailsPage(Adw.PreferencesPage):
+    __gtype_name__ = "BottleDetailsPage"
     __registry = []
 
     # region Widgets
