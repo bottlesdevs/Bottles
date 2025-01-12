@@ -12,7 +12,7 @@ bottles_sources = [
   'onboard.py',
   'rename.py',
   'drives_dialog.py',
-  'gamescope.py',
+  'gamescope_dialog.py',
   'vkbasalt.py',
   'fsr.py',
   'mangohud.py',
