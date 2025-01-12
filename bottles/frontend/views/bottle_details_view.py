@@ -1,6 +1,6 @@
-# details.py
+# bottle_details_view.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,14 +34,14 @@ from bottles.frontend.views.bottle_versioning import VersioningView
 from bottles.frontend.views.bottle_taskmanager import TaskManagerView
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/details.ui")
-class DetailsView(Adw.Bin):
+@Gtk.Template(resource_path="/com/usebottles/bottles/bottle-details-view.ui")
+class BottleDetailsView(Adw.Bin):
     """
     This class is the starting point for all the pages concerning the
     bottle (details, preferences, dependencies ..).
     """
 
-    __gtype_name__ = "Details"
+    __gtype_name__ = "BottleDetailsView"
     __pages = {}
 
     # region Widgets
@@ -98,7 +98,7 @@ class DetailsView(Adw.Bin):
 
     def set_title(self, title, subtitle: str = ""):
         """
-        This function is used to set the title of the DetailsView
+        This function is used to set the title of the BottleDetailsView
         headerbar.
         """
         self.content_title.set_title(title)

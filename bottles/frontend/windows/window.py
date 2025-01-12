@@ -36,7 +36,7 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import APP_ID, BASE_ID, PROFILE
 from bottles.frontend.utils.gtk import GtkUtils
-from bottles.frontend.views.details import DetailsView
+from bottles.frontend.views.bottle_details_view import BottleDetailsView
 from bottles.frontend.views.importer import ImporterView
 from bottles.frontend.views.library import LibraryView
 from bottles.frontend.views.list import BottleView
@@ -220,7 +220,7 @@ class BottlesWindow(Adw.ApplicationWindow):
                 self.show_onboard_view()
 
             # Pages
-            self.page_details = DetailsView(self)
+            self.page_details = BottleDetailsView(self)
             self.page_list = BottleView(self, arg_bottle=self.arg_bottle)
             self.page_importer = ImporterView(self)
             self.page_library = LibraryView(self)
