@@ -37,7 +37,7 @@ from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import APP_ID, BASE_ID, PROFILE
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.bottle_details_view import BottleDetailsView
-from bottles.frontend.views.importer import ImporterView
+from bottles.frontend.views.importer_view import ImporterView
 from bottles.frontend.views.library import LibraryView
 from bottles.frontend.views.list import BottleView
 from bottles.frontend.views.loading import LoadingView
