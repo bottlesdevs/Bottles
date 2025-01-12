@@ -5,7 +5,7 @@ bottles_sources = [
   '__init__.py',
   'crash_report_dialog.py',
   'dll_overrides_dialog.py',
-  'duplicate.py',
+  'duplicate_dialog.py',
   'envvars.py',
   'generic.py',
   'launchoptions.py',
