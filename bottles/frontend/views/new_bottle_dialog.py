@@ -27,10 +27,10 @@ from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/check-row.ui")
-class BottlesCheckRow(Adw.ActionRow):
+class CheckRow(Adw.ActionRow):
     """An `AdwActionRow` with a designated `GtkCheckButton` as prefix."""
 
-    __gtype_name__ = "BottlesCheckRow"
+    __gtype_name__ = "CheckRow"
 
     check_button = Gtk.Template.Child()
 
@@ -39,7 +39,7 @@ class BottlesCheckRow(Adw.ActionRow):
 
     # Add row’s check button to the group
     group = GObject.Property(
-        # FIXME: Supposed to be a BottlesCheckRow widget type.
+        # FIXME: Supposed to be a CheckRow widget type.
         type=Adw.ActionRow,
         default=None,
         setter=lambda self, group: self.check_button.set_group(group.check_button),
