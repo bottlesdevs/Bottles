@@ -42,7 +42,7 @@ from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.program import ProgramEntry
-from bottles.frontend.windows.duplicate import DuplicateDialog
+from bottles.frontend.windows.duplicate_dialog import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
 
 
