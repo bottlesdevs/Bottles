@@ -30,7 +30,7 @@ from bottles.frontend.views.bottle_details_page import BottleDetailsPage
 from bottles.frontend.views.bottle_installers import InstallersView
 from bottles.frontend.views.bottle_dependencies import DependenciesView
 from bottles.frontend.views.details_preferences_page import DetailsPreferencesPage
-from bottles.frontend.views.bottle_versioning import VersioningView
+from bottles.frontend.views.details_versioning_page import DetailsVersioningPage
 from bottles.frontend.views.details_task_manager_view import DetailsTaskManagerView
 
 
@@ -79,7 +79,7 @@ class BottleDetailsView(Adw.Bin):
         self.view_installers = InstallersView(self, config)
         self.view_dependencies = DependenciesView(self, config)
         self.view_preferences = DetailsPreferencesPage(self, config)
-        self.view_versioning = VersioningView(self, config)
+        self.view_versioning = DetailsVersioningPage(self, config)
         self.view_taskmanager = DetailsTaskManagerView(self, config)
 
         self.btn_back.connect("clicked", self.go_back)
