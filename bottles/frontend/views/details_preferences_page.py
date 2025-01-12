@@ -43,7 +43,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.frontend.utils.gtk import GtkUtils
-from bottles.frontend.windows.display import DisplayDialog
+from bottles.frontend.windows.display_dialog import DisplayDialog
 from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
 from bottles.frontend.windows.drives import DrivesDialog
 from bottles.frontend.windows.envvars import EnvironmentVariablesDialog

@@ -16,7 +16,7 @@ bottles_sources = [
   'vkbasalt.py',
   'fsr.py',
   'mangohud.py',
-  'display.py',
+  'display_dialog.py',
   'generic_cli.py',
   'journal.py',
   'bottle_picker_dialog.py',
