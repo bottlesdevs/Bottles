@@ -49,7 +49,7 @@ from bottles.frontend.windows.drives_dialog import DrivesDialog
 from bottles.frontend.windows.envvars import EnvironmentVariablesDialog
 from bottles.frontend.windows.exclusion_patterns_dialog import ExclusionPatternsDialog
 from bottles.frontend.windows.fsr import FsrDialog
-from bottles.frontend.windows.gamescope import GamescopeDialog
+from bottles.frontend.windows.gamescope_dialog import GamescopeDialog
 from bottles.frontend.windows.mangohud import MangoHudDialog
 from bottles.frontend.windows.protonalert import ProtonAlertDialog
 from bottles.frontend.windows.sandbox import SandboxDialog
