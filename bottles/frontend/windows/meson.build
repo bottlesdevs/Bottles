@@ -14,7 +14,7 @@ bottles_sources = [
   'drives_dialog.py',
   'gamescope_dialog.py',
   'vkbasalt.py',
-  'fsr.py',
+  'fsr_dialog.py',
   'mangohud.py',
   'display_dialog.py',
   'generic_cli.py',
