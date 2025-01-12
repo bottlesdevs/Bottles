@@ -14,7 +14,7 @@ bottles_sources = [
   'bottle_details_page.py',
   'bottle_installers.py',
   'bottle_dependencies.py',
-  'bottle_preferences.py',
+  'details_preferences_page.py',
   'bottle_versioning.py',
   'bottle_taskmanager.py'
 ]

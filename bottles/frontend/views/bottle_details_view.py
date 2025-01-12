@@ -29,7 +29,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.bottle_details_page import BottleDetailsPage
 from bottles.frontend.views.bottle_installers import InstallersView
 from bottles.frontend.views.bottle_dependencies import DependenciesView
-from bottles.frontend.views.bottle_preferences import PreferencesView
+from bottles.frontend.views.details_preferences_page import DetailsPreferencesPage
 from bottles.frontend.views.bottle_versioning import VersioningView
 from bottles.frontend.views.bottle_taskmanager import TaskManagerView
 
@@ -78,7 +78,7 @@ class BottleDetailsView(Adw.Bin):
         self.view_bottle = BottleDetailsPage(self, config)
         self.view_installers = InstallersView(self, config)
         self.view_dependencies = DependenciesView(self, config)
-        self.view_preferences = PreferencesView(self, config)
+        self.view_preferences = DetailsPreferencesPage(self, config)
         self.view_versioning = VersioningView(self, config)
         self.view_taskmanager = TaskManagerView(self, config)
 

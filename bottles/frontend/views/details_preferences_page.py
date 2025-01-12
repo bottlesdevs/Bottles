@@ -1,6 +1,6 @@
-# bottle_preferences.py
+# details_preferences_page.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,9 +60,9 @@ logging = Logger()
 
 
 # noinspection PyUnusedLocal
-@Gtk.Template(resource_path="/com/usebottles/bottles/details-preferences.ui")
-class PreferencesView(Adw.PreferencesPage):
-    __gtype_name__ = "DetailsPreferences"
+@Gtk.Template(resource_path="/com/usebottles/bottles/details-preferences-page.ui")
+class DetailsPreferencesPage(Adw.PreferencesPage):
+    __gtype_name__ = "DetailsPreferencesPage"
 
     # region Widgets
     btn_manage_gamescope = Gtk.Template.Child()
