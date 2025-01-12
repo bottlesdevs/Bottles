@@ -5,7 +5,7 @@ bottles_sources = [
   '__init__.py',
   'dependency_entry_row.py',
   'executable.py',
-  'importer.py',
+  'importer_row.py',
   'installer.py',
   'program.py',
   'state.py',

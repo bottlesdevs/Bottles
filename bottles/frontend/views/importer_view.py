@@ -23,7 +23,7 @@ from bottles.backend.managers.backup import BackupManager
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 from bottles.frontend.utils.gtk import GtkUtils
-from bottles.frontend.widgets.importer import ImporterEntry
+from bottles.frontend.widgets.importer_row import ImporterRow
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/importer-view.ui")
@@ -77,7 +77,7 @@ class ImporterView(Adw.Bin):
                     self.list_prefixes.remove(_w)
 
                 for prefix in result.data.get("wineprefixes"):
-                    self.list_prefixes.append(ImporterEntry(self, prefix))
+                    self.list_prefixes.append(ImporterRow(self, prefix))
 
         widget.set_sensitive(False)
 
