@@ -4,7 +4,7 @@ blueprints = custom_target('blueprints',
   input: files(
     'component-entry-row.blp',
     'check-row.blp',
-    'dependency-entry.blp',
+    'dependency-entry-row.blp',
     'details-bottle.blp',
     'details-dependencies.blp',
     'details-installers.blp',

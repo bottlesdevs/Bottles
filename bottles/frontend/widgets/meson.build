@@ -3,7 +3,7 @@ widgetsdir = join_paths(pkgdatadir, 'bottles/frontend/widgets')
 
 bottles_sources = [
   '__init__.py',
-  'dependency.py',
+  'dependency_entry_row.py',
   'executable.py',
   'importer.py',
   'installer.py',
