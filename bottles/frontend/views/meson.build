@@ -6,7 +6,7 @@ bottles_sources = [
   'new_bottle_dialog.py',
   'list.py',
   'library.py',
-  'details.py',
+  'bottle_details_view.py',
   'preferences.py',
   'importer.py',
   'loading.py',
