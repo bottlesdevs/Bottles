@@ -28,7 +28,7 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.bottle_details_page import BottleDetailsPage
 from bottles.frontend.views.bottle_installers import InstallersView
-from bottles.frontend.views.bottle_dependencies import DependenciesView
+from bottles.frontend.views.details_dependencies_view import DetailsDependenciesView
 from bottles.frontend.views.details_preferences_page import DetailsPreferencesPage
 from bottles.frontend.views.details_versioning_page import DetailsVersioningPage
 from bottles.frontend.views.details_task_manager_view import DetailsTaskManagerView
@@ -77,7 +77,7 @@ class BottleDetailsView(Adw.Bin):
 
         self.view_bottle = BottleDetailsPage(self, config)
         self.view_installers = InstallersView(self, config)
-        self.view_dependencies = DependenciesView(self, config)
+        self.view_dependencies = DetailsDependenciesView(self, config)
         self.view_preferences = DetailsPreferencesPage(self, config)
         self.view_versioning = DetailsVersioningPage(self, config)
         self.view_taskmanager = DetailsTaskManagerView(self, config)
