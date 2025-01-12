@@ -26,7 +26,7 @@ from bottles.backend.models.config import BottleConfig
 
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
-from bottles.frontend.views.bottle_details import BottleView
+from bottles.frontend.views.bottle_details_page import BottleDetailsPage
 from bottles.frontend.views.bottle_installers import InstallersView
 from bottles.frontend.views.bottle_dependencies import DependenciesView
 from bottles.frontend.views.bottle_preferences import PreferencesView
@@ -75,7 +75,7 @@ class BottleDetailsView(Adw.Bin):
         self.config = config
         self.queue = QueueManager(add_fn=self.lock_back, end_fn=self.unlock_back)
 
-        self.view_bottle = BottleView(self, config)
+        self.view_bottle = BottleDetailsPage(self, config)
         self.view_installers = InstallersView(self, config)
         self.view_dependencies = DependenciesView(self, config)
         self.view_preferences = PreferencesView(self, config)
