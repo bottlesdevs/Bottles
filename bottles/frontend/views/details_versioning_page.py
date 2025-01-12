@@ -1,6 +1,6 @@
-# bottle_versioning.py
+# details_versioning_page.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,9 +27,9 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.state import StateEntry
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/details-versioning.ui")
-class VersioningView(Adw.PreferencesPage):
-    __gtype_name__ = "DetailsVersioning"
+@Gtk.Template(resource_path="/com/usebottles/bottles/details-versioning-page.ui")
+class DetailsVersioningPage(Adw.PreferencesPage):
+    __gtype_name__ = "DetailsVersioningPage"
     __registry = []
 
     # region Widgets
