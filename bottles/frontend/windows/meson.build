@@ -23,7 +23,7 @@ bottles_sources = [
   'protonalert.py',
   'sandbox.py',
   'installer.py',
-  'depscheck.py',
+  'dependencies_check_dialog.py',
   'exclusionpatterns.py',
   'upgradeversioning.py',
   'vmtouch.py',
