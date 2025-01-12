@@ -30,8 +30,8 @@ from bottles.frontend.params import APP_ID
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/bottle-row.ui")
-class BottlesBottleRow(Adw.ActionRow):
-    __gtype_name__ = "BottlesBottleRow"
+class BottleRow(Adw.ActionRow):
+    __gtype_name__ = "BottleRow"
 
     Adw.init()
 
@@ -191,7 +191,7 @@ class BottleView(Adw.Bin):
         self.bottle_status.set_visible(is_empty_local_bottles)
 
         for name, config in local_bottles.items():
-            _entry = BottlesBottleRow(self.window, config)
+            _entry = BottleRow(self.window, config)
             self.__bottles[config.Path] = _entry
 
             if config.Environment != "Steam":
