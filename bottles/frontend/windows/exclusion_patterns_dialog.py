@@ -20,9 +20,9 @@ from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/exclusion-pattern-entry.ui")
-class ExclusionPatternEntry(Adw.ActionRow):
-    __gtype_name__ = "ExclusionPatternEntry"
+@Gtk.Template(resource_path="/com/usebottles/bottles/exclusion-pattern-row.ui")
+class ExclusionPatternRow(Adw.ActionRow):
+    __gtype_name__ = "ExclusionPatternRow"
 
     # region Widgets
     btn_remove = Gtk.Template.Child()
@@ -91,7 +91,7 @@ class ExclusionPatternsDialog(Adw.Window):
             key="Versioning_Exclusion_Patterns",
             value=self.config.Versioning_Exclusion_Patterns + [pattern],
         )
-        _entry = ExclusionPatternEntry(self, pattern)
+        _entry = ExclusionPatternRow(self, pattern)
         GLib.idle_add(self.group_patterns.add, _entry)
         self.entry_name.set_text("")
 
@@ -107,5 +107,5 @@ class ExclusionPatternsDialog(Adw.Window):
 
         self.group_patterns.set_description("")
         for pattern in patterns:
-            _entry = ExclusionPatternEntry(self, pattern)
+            _entry = ExclusionPatternRow(self, pattern)
             GLib.idle_add(self.group_patterns.add, _entry)
