@@ -25,7 +25,7 @@ from bottles.backend.state import EventManager, Events
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.utils.gtk import GtkUtils
-from bottles.frontend.widgets.dependency import DependencyEntry
+from bottles.frontend.widgets.dependency_entry_row import DependencyEntryRow
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/details-dependencies.ui")
@@ -107,7 +107,7 @@ class DependenciesView(Adw.Bin):
         self.stack.set_visible_child_name("page_loading")
 
         def new_dependency(dependency, plain=False):
-            entry = DependencyEntry(
+            entry = DependencyEntryRow(
                 window=self.window,
                 config=self.config,
                 dependency=dependency,
