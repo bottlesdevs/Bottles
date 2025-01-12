@@ -67,7 +67,7 @@ template $NewBottleDialog: Adw.Dialog {
                 "boxed-list",
               ]
 
-              $BottlesCheckRow application {
+              $CheckRow application {
                 title: _("_Application");
                 environment: "application";
                 subtitle: _("Optimized for productivity software");
@@ -76,7 +76,7 @@ template $NewBottleDialog: Adw.Dialog {
                 active: true;
               }
 
-              $BottlesCheckRow {
+              $CheckRow {
                 title: _("_Gaming");
                 environment: "gaming";
                 subtitle: _("Optimized for games, game engines, and 3D apps");
@@ -85,7 +85,7 @@ template $NewBottleDialog: Adw.Dialog {
                 group: application;
               }
 
-              $BottlesCheckRow custom {
+              $CheckRow custom {
                 title: _("C_ustom");
                 environment: "custom";
                 subtitle: _("A clean state intended for specific use cases");
