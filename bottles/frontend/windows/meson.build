@@ -20,7 +20,7 @@ bottles_sources = [
   'generic_cli.py',
   'journal_dialog.py',
   'bottle_picker_dialog.py',
-  'protonalert.py',
+  'proton_alert_dialog.py',
   'sandbox.py',
   'installer_dialog.py',
   'dependencies_check_dialog.py',
