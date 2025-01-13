@@ -20,7 +20,7 @@ from gettext import gettext as _
 import webbrowser
 
 from bottles.frontend.windows.generic import SourceDialog
-from bottles.frontend.windows.installer import InstallerDialog
+from bottles.frontend.windows.installer_dialog import InstallerDialog
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/installer-row.ui")
