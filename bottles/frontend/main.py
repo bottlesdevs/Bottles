@@ -39,8 +39,8 @@ gi.require_version("Xdp", "1.0")
 
 # ruff: noqa: E402
 from gi.repository import Gio, GLib, GObject, Adw  # type: ignore
-from bottles.frontend.windows.window import BottlesWindow
-from bottles.frontend.views.preferences import PreferencesWindow
+from bottles.frontend.window import BottlesWindow
+from bottles.frontend.preferences import PreferencesWindow
 
 
 logging = Logger()
@@ -222,7 +222,7 @@ class Bottles(Adw.Application):
             return 0
 
         try:
-            from bottles.frontend.windows.bottle_picker_dialog import BottlePickerDialog
+            from bottles.frontend.bottle_picker_dialog import BottlePickerDialog
 
             dialog = BottlePickerDialog(application=self, arg_exe=uri)
             dialog.present()
