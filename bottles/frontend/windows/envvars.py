@@ -49,6 +49,15 @@ class EnvironmentVariableEntryRow(Adw.EntryRow):
         self.connect("apply", self.__save)
         self.btn_remove.connect("clicked", self.__remove)
 
+        self.__customize_layout()
+
+    def __customize_layout(self):
+        """
+        Align text input field vertically. Hide unused labels and make layout
+        changes as needed to display the text correctly. We manually traverse
+        AdwEntryRow's widget tree to make these changes because it does not
+        offer options for these customizations on its public API
+        """
         try:
             widget = (
                 self.get_child().get_first_child().get_next_sibling().get_first_child()
@@ -68,8 +77,8 @@ class EnvironmentVariableEntryRow(Adw.EntryRow):
 
     def __save(self, *_args):
         """
-        Change the env var value according to the
-        user input and update the bottle configuration
+        Change the environment variable value according to the user input and
+        update the bottle configuration
         """
         if not self.__valid_name:
             return
@@ -88,16 +97,14 @@ class EnvironmentVariableEntryRow(Adw.EntryRow):
 
     def __remove(self, *_args):
         """
-        Remove the env var from the bottle configuration and
+        Remove the environment variable from the bottle configuration and
         destroy the widget
         """
         self.__remove_config()
         self.parent.remove_entry(self)
 
     def __remove_config(self, *_args):
-        """
-        Remove the env var from the bottle configuration
-        """
+        """Remove the environment variable from the bottle configuration"""
         self.manager.update_config(
             config=self.config,
             key=self.env[0],
@@ -147,10 +154,7 @@ class EnvironmentVariablesDialog(Adw.Dialog):
         )
 
     def __save_var(self, *_args):
-        """
-        This function save the new env var to the
-        bottle configuration
-        """
+        """Save the new environment variable to the bottle configuration"""
         if not self.__valid_name:
             return
 
@@ -176,8 +180,8 @@ class EnvironmentVariablesDialog(Adw.Dialog):
 
     def __populate_vars_list(self):
         """
-        This function populate the list of env vars
-        with the existing ones from the bottle configuration
+        Populate the list of environment variables with the existing ones from
+        the bottle configuration
         """
         envs = self.config.Environment_Variables.items()
         self.__set_description()
