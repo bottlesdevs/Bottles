@@ -39,7 +39,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.bottle_details_view import BottleDetailsView
 from bottles.frontend.views.importer_view import ImporterView
 from bottles.frontend.views.library_view import LibraryView
-from bottles.frontend.views.list import BottleView
+from bottles.frontend.views.bottles_list_view import BottlesListView
 from bottles.frontend.views.loading import LoadingView
 from bottles.frontend.views.new_bottle_dialog import NewBottleDialog
 from bottles.frontend.views.preferences import PreferencesWindow
@@ -221,7 +221,7 @@ class BottlesWindow(Adw.ApplicationWindow):
 
             # Pages
             self.page_details = BottleDetailsView(self)
-            self.page_list = BottleView(self, arg_bottle=self.arg_bottle)
+            self.page_list = BottlesListView(self, arg_bottle=self.arg_bottle)
             self.page_importer = ImporterView(self)
             self.page_library = LibraryView(self)
 
