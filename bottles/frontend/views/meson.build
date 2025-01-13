@@ -4,7 +4,7 @@ viewsdir = join_paths(pkgdatadir, 'bottles/frontend/views')
 bottles_sources = [
   '__init__.py',
   'new_bottle_dialog.py',
-  'list.py',
+  'bottles_list_view.py',
   'library_view.py',
   'bottle_details_view.py',
   'preferences.py',

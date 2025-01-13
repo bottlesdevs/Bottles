@@ -1,6 +1,6 @@
-# list.py
+# bottles_list_view.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -123,9 +123,9 @@ class BottleRow(Adw.ActionRow):
         self.set_visible(False)
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/list.ui")
-class BottleView(Adw.Bin):
-    __gtype_name__ = "BottleView"
+@Gtk.Template(resource_path="/com/usebottles/bottles/bottles-list-view.ui")
+class BottlesListView(Adw.Bin):
+    __gtype_name__ = "BottlesListView"
     __bottles = {}
 
     # region Widgets
