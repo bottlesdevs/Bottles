@@ -10,7 +10,7 @@ bottles_sources = [
   'generic.py',
   'launch_options_dialog.py',
   'onboard_dialog.py',
-  'rename.py',
+  'rename_program_dialog.py',
   'drives_dialog.py',
   'gamescope_dialog.py',
   'vkbasalt.py',

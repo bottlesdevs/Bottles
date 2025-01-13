@@ -30,7 +30,7 @@ from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.windows.launch_options_dialog import LaunchOptionsDialog
-from bottles.frontend.windows.rename import RenameDialog
+from bottles.frontend.windows.rename_program_dialog import RenameProgramDialog
 
 
 # noinspection PyUnusedLocal
@@ -275,7 +275,9 @@ class ProgramRow(Adw.ActionRow):
 
             RunAsync(async_work, callback=ui_update)
 
-        dialog = RenameDialog(self.window, on_save=func, name=self.program["name"])
+        dialog = RenameProgramDialog(
+            self.window, on_save=func, name=self.program["name"]
+        )
         dialog.present()
 
     def browse_program_folder(self, _widget):
