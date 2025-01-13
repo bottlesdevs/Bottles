@@ -41,7 +41,7 @@ from bottles.backend.wine.wineserver import WineServer
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
 from bottles.frontend.utils.gtk import GtkUtils
-from bottles.frontend.widgets.program import ProgramEntry
+from bottles.frontend.widgets.program_row import ProgramRow
 from bottles.frontend.windows.duplicate_dialog import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
 
@@ -308,7 +308,7 @@ class BottleDetailsPage(Adw.PreferencesPage):
                 check_boot = wineserver_status
 
             self.add_program(
-                ProgramEntry(
+                ProgramRow(
                     self.window,
                     self.config,
                     _program,
