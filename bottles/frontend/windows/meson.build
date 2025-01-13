@@ -8,7 +8,7 @@ bottles_sources = [
   'duplicate_dialog.py',
   'environment_variables_dialog.py',
   'generic.py',
-  'launchoptions.py',
+  'launch_options_dialog.py',
   'onboard_dialog.py',
   'rename.py',
   'drives_dialog.py',
