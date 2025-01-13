@@ -13,7 +13,7 @@ bottles_sources = [
   'rename_program_dialog.py',
   'drives_dialog.py',
   'gamescope_dialog.py',
-  'vkbasalt.py',
+  'vkbasalt_dialog.py',
   'fsr_dialog.py',
   'mangohud_dialog.py',
   'display_dialog.py',

@@ -1,6 +1,6 @@
-# vkbasalt.py
+# vkbasalt_dialog.py
 #
-# Copyright 2022 Hari Rana / TheEvilSkeleton <theevilskeleton@riseup.net>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,7 +55,7 @@ class VkBasaltSettings:
     exec = False
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-vkbasalt.ui")
+@Gtk.Template(resource_path="/com/usebottles/bottles/vkbasalt-dialog.ui")
 class VkBasaltDialog(Adw.Window):
     __gtype_name__ = "VkBasaltDialog"
 
