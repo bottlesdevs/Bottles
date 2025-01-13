@@ -23,9 +23,9 @@ from bottles.backend.models.result import Result
 from bottles.backend.state import TaskManager
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/task-entry.ui")
-class TaskEntry(Adw.ActionRow):
-    __gtype_name__ = "TaskEntry"
+@Gtk.Template(resource_path="/com/usebottles/bottles/task-row.ui")
+class TaskRow(Adw.ActionRow):
+    __gtype_name__ = "TaskRow"
 
     # region Widgets
     btn_cancel = Gtk.Template.Child()
@@ -52,14 +52,14 @@ class TaskEntry(Adw.ActionRow):
 class TaskSyncer:
     """Keep task list updated with backend TaskManager"""
 
-    _TASK_WIDGETS: Dict[UUID, TaskEntry] = {}
+    _TASK_WIDGETS: Dict[UUID, TaskRow] = {}
 
     def __init__(self, window):
         self.window = window
 
-    def _new_widget(self, title, cancellable=True) -> TaskEntry:
-        """create TaskEntry widget & add to task list"""
-        task_entry = TaskEntry(self.window, title, cancellable)
+    def _new_widget(self, title, cancellable=True) -> TaskRow:
+        """create TaskRow widget & add to task list"""
+        task_entry = TaskRow(self.window, title, cancellable)
         self.window.page_details.list_tasks.append(task_entry)
         return task_entry
 
