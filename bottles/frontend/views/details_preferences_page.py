@@ -53,7 +53,7 @@ from bottles.frontend.windows.exclusion_patterns_dialog import ExclusionPatterns
 from bottles.frontend.windows.fsr_dialog import FsrDialog
 from bottles.frontend.windows.gamescope_dialog import GamescopeDialog
 from bottles.frontend.windows.mangohud_dialog import MangoHudDialog
-from bottles.frontend.windows.protonalert import ProtonAlertDialog
+from bottles.frontend.windows.proton_alert_dialog import ProtonAlertDialog
 from bottles.frontend.windows.sandbox import SandboxDialog
 from bottles.frontend.windows.vkbasalt import VkBasaltDialog
 from bottles.frontend.windows.vmtouch import VmtouchDialog

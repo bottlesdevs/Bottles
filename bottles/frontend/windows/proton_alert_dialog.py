@@ -1,6 +1,6 @@
-# protonalert.py
+# proton_alert_dialog.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 from gi.repository import Gtk, Adw
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-proton-alert.ui")
+@Gtk.Template(resource_path="/com/usebottles/bottles/proton-alert-dialog.ui")
 class ProtonAlertDialog(Adw.Window):
     __gtype_name__ = "ProtonAlertDialog"
     __resources = {}
