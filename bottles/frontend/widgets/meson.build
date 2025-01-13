@@ -8,7 +8,7 @@ bottles_sources = [
   'importer_row.py',
   'installer_row.py',
   'program_row.py',
-  'state.py',
+  'state_row.py',
   'component_entry_row.py',
   'library.py',
 ]

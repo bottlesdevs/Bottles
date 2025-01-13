@@ -24,7 +24,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.utils.gtk import GtkUtils
-from bottles.frontend.widgets.state import StateEntry
+from bottles.frontend.widgets.state_row import StateRow
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/details-versioning-page.ui")
@@ -92,7 +92,7 @@ class DetailsVersioningPage(Adw.PreferencesPage):
             )
 
         def new_state(_state, active):
-            entry = StateEntry(
+            entry = StateRow(
                 parent=self, config=self.config, state=_state, active=active
             )
             self.__registry.append(entry)
