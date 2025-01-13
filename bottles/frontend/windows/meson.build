@@ -9,7 +9,7 @@ bottles_sources = [
   'envvars.py',
   'generic.py',
   'launchoptions.py',
-  'onboard.py',
+  'onboard_dialog.py',
   'rename.py',
   'drives_dialog.py',
   'gamescope_dialog.py',

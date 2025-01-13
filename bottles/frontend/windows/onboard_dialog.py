@@ -1,6 +1,6 @@
-# onboard.py
+# onboard_dialog.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/onboard.ui")
+@Gtk.Template(resource_path="/com/usebottles/bottles/onboard-dialog.ui")
 class OnboardDialog(Adw.Window):
     __gtype_name__ = "OnboardDialog"
     __installing = False
