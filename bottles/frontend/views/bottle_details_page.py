@@ -43,7 +43,7 @@ from bottles.frontend.utils.filters import add_executable_filters, add_all_filte
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.widgets.program_row import ProgramRow
 from bottles.frontend.windows.duplicate_dialog import DuplicateDialog
-from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
+from bottles.frontend.windows.upgrade_versioning_dialog import UpgradeVersioningDialog
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/bottle-details-page.ui")

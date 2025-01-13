@@ -25,7 +25,7 @@ bottles_sources = [
   'installer_dialog.py',
   'dependencies_check_dialog.py',
   'exclusion_patterns_dialog.py',
-  'upgradeversioning.py',
+  'upgrade_versioning_dialog.py',
   'vmtouch.py',
   'window.py',
 ]
