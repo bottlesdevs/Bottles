@@ -1,6 +1,6 @@
-# loading.py
+# loading_view.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.params import APP_ID
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/loading.ui")
+@Gtk.Template(resource_path="/com/usebottles/bottles/loading-view.ui")
 class LoadingView(Adw.Bin):
     __gtype_name__ = "LoadingView"
     __fetched = 0

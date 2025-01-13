@@ -40,7 +40,7 @@ from bottles.frontend.views.bottle_details_view import BottleDetailsView
 from bottles.frontend.views.importer_view import ImporterView
 from bottles.frontend.views.library_view import LibraryView
 from bottles.frontend.views.bottles_list_view import BottlesListView
-from bottles.frontend.views.loading import LoadingView
+from bottles.frontend.views.loading_view import LoadingView
 from bottles.frontend.views.new_bottle_dialog import NewBottleDialog
 from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.windows.crash_report_dialog import CrashReportDialog
