@@ -1,6 +1,6 @@
-# rename.py
+# rename_program_dialog.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,9 +18,9 @@
 from gi.repository import Gtk, Adw
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-rename.ui")
-class RenameDialog(Adw.Window):
-    __gtype_name__ = "RenameDialog"
+@Gtk.Template(resource_path="/com/usebottles/bottles/rename-program-dialog.ui")
+class RenameProgramDialog(Adw.Window):
+    __gtype_name__ = "RenameProgramDialog"
 
     # region Widgets
     entry_name = Gtk.Template.Child()
