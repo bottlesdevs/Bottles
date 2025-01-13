@@ -23,7 +23,7 @@ from bottles.backend.models.result import Result
 
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
-from bottles.frontend.widgets.installer import InstallerEntry
+from bottles.frontend.widgets.installer_row import InstallerRow
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/details-installers-view.ui")
@@ -93,7 +93,7 @@ class DetailsInstallersView(Adw.Bin):
         self.list_installers.set_sensitive(False)
 
         def new_installer(_installer):
-            entry = InstallerEntry(
+            entry = InstallerRow(
                 window=self.window, config=self.config, installer=_installer
             )
             self.list_installers.append(entry)

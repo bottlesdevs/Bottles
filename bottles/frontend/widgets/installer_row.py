@@ -1,6 +1,6 @@
-# installer.py
+# installer_row.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,9 +23,9 @@ from bottles.frontend.windows.generic import SourceDialog
 from bottles.frontend.windows.installer import InstallerDialog
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/installer-entry.ui")
-class InstallerEntry(Adw.ActionRow):
-    __gtype_name__ = "InstallerEntry"
+@Gtk.Template(resource_path="/com/usebottles/bottles/installer-row.ui")
+class InstallerRow(Adw.ActionRow):
+    __gtype_name__ = "InstallerRow"
 
     # region Widgets
     btn_install = Gtk.Template.Child()
