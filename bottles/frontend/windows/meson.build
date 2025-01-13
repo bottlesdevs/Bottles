@@ -18,7 +18,7 @@ bottles_sources = [
   'mangohud.py',
   'display_dialog.py',
   'generic_cli.py',
-  'journal.py',
+  'journal_dialog.py',
   'bottle_picker_dialog.py',
   'protonalert.py',
   'sandbox.py',
