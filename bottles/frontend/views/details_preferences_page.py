@@ -56,7 +56,7 @@ from bottles.frontend.windows.mangohud_dialog import MangoHudDialog
 from bottles.frontend.windows.proton_alert_dialog import ProtonAlertDialog
 from bottles.frontend.windows.sandbox_dialog import SandboxDialog
 from bottles.frontend.windows.vkbasalt_dialog import VkBasaltDialog
-from bottles.frontend.windows.vmtouch import VmtouchDialog
+from bottles.frontend.windows.vmtouch_dialog import VmtouchDialog
 
 logging = Logger()
 
