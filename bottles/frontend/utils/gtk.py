@@ -30,27 +30,34 @@ class GtkUtils:
         var_assignment = entry.get_text()
         var_name = ShUtils.split_assignment(var_assignment)[0]
         if var_name and not ShUtils.is_name(var_name):
-            entry.set_show_apply_button(False)
-            entry.set_show_apply_button(True)
+            GtkUtils.reset_entry_apply_button(entry)
             entry.add_css_class("error")
             return False
 
         if not var_name or "=" not in var_assignment:
-            entry.set_show_apply_button(False)
-            entry.set_show_apply_button(True)
+            GtkUtils.reset_entry_apply_button(entry)
             entry.remove_css_class("error")
             return False
 
         if extend is not None:
             if not extend(var_name):
-                entry.set_show_apply_button(False)
-                entry.set_show_apply_button(True)
+                GtkUtils.reset_entry_apply_button(entry)
                 entry.add_css_class("error")
                 return False
 
         entry.set_show_apply_button(True)
         entry.remove_css_class("error")
         return True
+
+    @staticmethod
+    def reset_entry_apply_button(entry) -> None:
+        """
+        Reset the apply_button within AdwEntryRow to hide it without disabling
+        the functionality. This is needed because the widget does not provide
+        an API to control when the button is displayed without disabling it
+        """
+        entry.set_show_apply_button(False)
+        entry.set_show_apply_button(True)
 
     @staticmethod
     def run_in_main_loop(func):
