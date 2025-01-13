@@ -1,6 +1,6 @@
-# envvars.py
+# environment_variables_dialog.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -122,7 +122,7 @@ class EnvironmentVariableEntryRow(Adw.EntryRow):
             self.add_css_class("error")
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-env-vars.ui")
+@Gtk.Template(resource_path="/com/usebottles/bottles/environment-variables-dialog.ui")
 class EnvironmentVariablesDialog(Adw.Dialog):
     __gtype_name__ = "EnvironmentVariablesDialog"
 
