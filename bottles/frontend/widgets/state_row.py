@@ -1,6 +1,6 @@
-# state.py
+# state_row.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,9 +24,9 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/state-entry.ui")
-class StateEntry(Adw.ActionRow):
-    __gtype_name__ = "StateEntry"
+@Gtk.Template(resource_path="/com/usebottles/bottles/state-row.ui")
+class StateRow(Adw.ActionRow):
+    __gtype_name__ = "StateRow"
 
     # region Widgets
     btn_restore = Gtk.Template.Child()
