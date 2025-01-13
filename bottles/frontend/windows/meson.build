@@ -21,7 +21,7 @@ bottles_sources = [
   'journal_dialog.py',
   'bottle_picker_dialog.py',
   'proton_alert_dialog.py',
-  'sandbox.py',
+  'sandbox_dialog.py',
   'installer_dialog.py',
   'dependencies_check_dialog.py',
   'exclusion_patterns_dialog.py',
