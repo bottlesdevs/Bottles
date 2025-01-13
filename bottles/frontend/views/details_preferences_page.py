@@ -52,7 +52,7 @@ from bottles.frontend.windows.environment_variables_dialog import (
 from bottles.frontend.windows.exclusion_patterns_dialog import ExclusionPatternsDialog
 from bottles.frontend.windows.fsr_dialog import FsrDialog
 from bottles.frontend.windows.gamescope_dialog import GamescopeDialog
-from bottles.frontend.windows.mangohud import MangoHudDialog
+from bottles.frontend.windows.mangohud_dialog import MangoHudDialog
 from bottles.frontend.windows.protonalert import ProtonAlertDialog
 from bottles.frontend.windows.sandbox import SandboxDialog
 from bottles.frontend.windows.vkbasalt import VkBasaltDialog

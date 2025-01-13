@@ -1,6 +1,6 @@
-# mangohud.py
+# mangohud_dialog.py
 #
-# Copyright 2022 Bottles Contributors
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@ from bottles.backend.logger import Logger
 logging = Logger()
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/dialog-mangohud.ui")
+@Gtk.Template(resource_path="/com/usebottles/bottles/mangohud-dialog.ui")
 class MangoHudDialog(Adw.Window):
     __gtype_name__ = "MangoHudDialog"
 
