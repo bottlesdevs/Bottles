@@ -24,9 +24,9 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/local-resource-entry.ui")
-class LocalResourceEntry(Adw.ActionRow):
-    __gtype_name__ = "LocalResourceEntry"
+@Gtk.Template(resource_path="/com/usebottles/bottles/local-resource-row.ui")
+class LocalResourceRow(Adw.ActionRow):
+    __gtype_name__ = "LocalResourceRow"
 
     # region Widgets
     btn_path = Gtk.Template.Child()
@@ -157,7 +157,7 @@ class InstallerDialog(Adw.Window):
             return
 
         for resource in self.__local_resources:
-            _entry = LocalResourceEntry(self, resource)
+            _entry = LocalResourceRow(self, resource)
             GLib.idle_add(self.group_resources.add, _entry)
 
         self.btn_proceed.set_visible(True)
