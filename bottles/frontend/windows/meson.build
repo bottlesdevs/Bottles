@@ -22,7 +22,7 @@ bottles_sources = [
   'bottle_picker_dialog.py',
   'protonalert.py',
   'sandbox.py',
-  'installer.py',
+  'installer_dialog.py',
   'dependencies_check_dialog.py',
   'exclusion_patterns_dialog.py',
   'upgradeversioning.py',
