@@ -9,7 +9,7 @@ bottles_sources = [
   'bottle_details_view.py',
   'preferences.py',
   'importer_view.py',
-  'loading.py',
+  'loading_view.py',
 
   'bottle_details_page.py',
   'details_installers_view.py',
