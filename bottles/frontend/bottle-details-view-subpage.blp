@@ -2,7 +2,7 @@ using Gtk 4.0;
 using Adw 1;
 
 template $BottleDetailsViewSubpage: Adw.NavigationPage {
-  title: "Subpage";
+  title: bind content_title.title;
   tag: "subpage";
 
   child: Adw.ToolbarView {
