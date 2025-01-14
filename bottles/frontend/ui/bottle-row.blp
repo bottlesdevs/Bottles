@@ -5,17 +5,13 @@ template $BottlesBottleRow: Adw.ActionRow {
   activatable: true;
   use-markup: false;
 
-  Box {
-    spacing: 6;
+  Adw.WrapBox wrap_box {
+    valign: center;
 
-    Label label_env {
-      valign: center;
-
-      styles [
-        "tag",
-        "caption",
-      ]
-    }
+    styles [
+      "tag",
+      "caption",
+    ]
   }
 
   Button button_run {

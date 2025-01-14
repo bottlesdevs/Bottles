@@ -37,7 +37,7 @@ class BottlesBottleRow(Adw.ActionRow):
 
     # region Widgets
     button_run = Gtk.Template.Child()
-    label_env = Gtk.Template.Child()
+    wrap_box = Gtk.Template.Child()
 
     # endregion
 
@@ -74,8 +74,8 @@ class BottlesBottleRow(Adw.ActionRow):
         self.set_title(self.config.Name)
         if self.window.settings.get_boolean("update-date"):
             self.set_subtitle(update_date)
-        self.label_env.set_text(_(self.config.Environment))
-        self.label_env.add_css_class("tag-%s" % self.config.Environment.lower())
+
+        self.wrap_box.append(Gtk.Label.new(self.config.Environment))
 
         # Set tooltip text
         self.button_run.set_tooltip_text(_(f"Run executable in “{self.config.Name}”"))
