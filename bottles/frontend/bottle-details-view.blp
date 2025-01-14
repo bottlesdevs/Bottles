@@ -1,8 +1,11 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $BottleDetailsView: Adw.Bin {
-  Adw.Leaflet leaflet {
+template $BottleDetailsView: Adw.NavigationPage {
+  title: _("Details");
+  tag: "details";
+
+  child: Adw.Leaflet leaflet {
     can-navigate-back: true;
     can-unfold: false;
     hexpand: true;
@@ -16,12 +19,6 @@ template $BottleDetailsView: Adw.Bin {
         title-widget: Adw.WindowTitle sidebar_title {
           title: _("Details");
         };
-
-        [start]
-        Button btn_back {
-          icon-name: "go-previous-symbolic";
-          tooltip-text: _("Go Back");
-        }
 
         [end]
         Box default_actions {}
@@ -50,13 +47,6 @@ template $BottleDetailsView: Adw.Bin {
 
         title-widget: Adw.WindowTitle content_title {};
 
-        [start]
-        Button btn_back_sidebar {
-          icon-name: "go-previous-symbolic";
-          tooltip-text: _("Go Back");
-          visible: false;
-        }
-
         [end]
         Box box_actions {}
 
@@ -80,7 +70,7 @@ template $BottleDetailsView: Adw.Bin {
         vexpand: true;
       }
     }
-  }
+  };
 }
 
 Popover pop_tasks {

@@ -299,7 +299,7 @@ class Bottles(Adw.Application):
         self.win.show_add_view()
 
     def __show_importer_view(self, widget=False, *args):
-        self.win.main_leaf.set_visible_child(self.win.page_importer)
+        self.win.main_leaf.push(self.win.page_importer)
 
     def __show_about_dialog(self, *_args):
         developers = [

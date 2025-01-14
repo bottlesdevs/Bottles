@@ -27,7 +27,7 @@ from bottles.frontend.importer_row import ImporterRow
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/importer-view.ui")
-class ImporterView(Adw.Bin):
+class ImporterView(Adw.NavigationPage):
     __gtype_name__ = "ImporterView"
 
     # region Widgets

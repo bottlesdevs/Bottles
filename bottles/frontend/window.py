@@ -227,11 +227,8 @@ class BottlesWindow(Adw.ApplicationWindow):
             self.page_importer = ImporterView(self)
             self.page_library = LibraryView(self)
 
-            self.main_leaf.append(self.page_details)
-            self.main_leaf.append(self.page_importer)
-
-            self.main_leaf.get_page(self.page_details).set_navigatable(False)
-            self.main_leaf.get_page(self.page_importer).set_navigatable(False)
+            self.main_leaf.add(self.page_details)
+            self.main_leaf.add(self.page_importer)
 
             self.stack_main.add_titled(
                 child=self.page_list, name="page_list", title=_("Bottles")
@@ -328,7 +325,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.main_leaf.navigate(direction=Adw.NavigationDirection.BACK)
 
     def show_details_view(self, widget=False, config: BottleConfig | None = None):
-        self.main_leaf.set_visible_child(self.page_details)
+        self.main_leaf.push(self.page_details)
         self.page_details.set_config(config or BottleConfig())
 
     def show_loading_view(self, widget=False):
@@ -347,7 +344,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_list")
 
     def show_importer_view(self, widget=False):
-        self.main_leaf.set_visible_child(self.page_importer)
+        self.main_leaf.push(self.page_importer)
 
     def show_prefs_view(self, widget=False, view=0):
         preferences_window = PreferencesWindow(self)

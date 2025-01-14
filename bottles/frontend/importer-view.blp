@@ -1,8 +1,11 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $ImporterView: Adw.Bin {
-  Box {
+template $ImporterView: Adw.NavigationPage {
+  title: _("Import");
+  tag: "import";
+
+  child: Box {
     orientation: vertical;
 
     HeaderBar headerbar {
@@ -47,7 +50,7 @@ template $ImporterView: Adw.Bin {
         }
       }
     }
-  }
+  };
 }
 
 Popover pop_backup {

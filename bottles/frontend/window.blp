@@ -6,73 +6,74 @@ template $BottlesWindow: Adw.ApplicationWindow {
   close-request => $on_close_request();
 
   content: Adw.ToastOverlay toasts {
-    Adw.Leaflet main_leaf {
-      can-unfold: false;
-      can-navigate-back: false;
+    Adw.NavigationView main_leaf {
+      Adw.NavigationPage {
+        tag: "overview-page";
+        title: _("Overview");
+        child: Box {
+          orientation: vertical;
 
-      Box {
-        orientation: vertical;
+          HeaderBar headerbar {
+            title-widget: Adw.ViewSwitcherTitle view_switcher_title {
+              title: "Bottles";
+              stack: stack_main;
+            };
 
-        HeaderBar headerbar {
-          title-widget: Adw.ViewSwitcherTitle view_switcher_title {
-            title: "Bottles";
+            Button btn_add {
+              tooltip-text: _("Create New Bottle");
+              icon-name: "list-add-symbolic";
+            }
+
+            Box box_actions {}
+
+            styles [
+              "titlebar",
+            ]
+
+            [end]
+            MenuButton {
+              icon-name: "open-menu-symbolic";
+              menu-model: primary_menu;
+              tooltip-text: _("Main Menu");
+              primary: true;
+            }
+
+            [end]
+            ToggleButton btn_search {
+              tooltip-text: _("Search");
+              icon-name: "system-search-symbolic";
+              visible: false;
+            }
+
+            [end]
+            Button btn_donate {
+              tooltip-text: _("Donate");
+              icon-name: "emblem-favorite-symbolic";
+            }
+
+            [end]
+            Button btn_noconnection {
+              visible: false;
+              tooltip-text: _("You don\'t seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.");
+              icon-name: "network-error-symbolic";
+            }
+          }
+
+          SearchBar search_bar {
+            SearchEntry entry_search {
+              placeholder-text: _("Search your bottles…");
+            }
+          }
+
+          Adw.ViewStack stack_main {
+            vexpand: true;
+          }
+
+          Adw.ViewSwitcherBar view_switcher_bar {
             stack: stack_main;
-          };
-
-          Button btn_add {
-            tooltip-text: _("Create New Bottle");
-            icon-name: "list-add-symbolic";
+            reveal: bind view_switcher_title.title-visible;
           }
-
-          Box box_actions {}
-
-          styles [
-            "titlebar",
-          ]
-
-          [end]
-          MenuButton {
-            icon-name: "open-menu-symbolic";
-            menu-model: primary_menu;
-            tooltip-text: _("Main Menu");
-            primary: true;
-          }
-
-          [end]
-          ToggleButton btn_search {
-            tooltip-text: _("Search");
-            icon-name: "system-search-symbolic";
-            visible: false;
-          }
-
-          [end]
-          Button btn_donate {
-            tooltip-text: _("Donate");
-            icon-name: "emblem-favorite-symbolic";
-          }
-
-          [end]
-          Button btn_noconnection {
-            visible: false;
-            tooltip-text: _("You don\'t seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.");
-            icon-name: "network-error-symbolic";
-          }
-        }
-
-        SearchBar search_bar {
-          SearchEntry entry_search {
-            placeholder-text: _("Search your bottles…");
-          }
-        }
-
-        Adw.ViewStack stack_main {
-          vexpand: true;
-        }
-
-        Adw.ViewSwitcherBar view_switcher_bar {
-          stack: stack_main;
-          reveal: bind view_switcher_title.title-visible;
-        }
+        };
       }
     }
   };
