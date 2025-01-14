@@ -33,63 +33,47 @@ from bottles.frontend.details_versioning_page import DetailsVersioningPage
 from bottles.frontend.details_task_manager_view import DetailsTaskManagerView
 
 
-@Gtk.Template(resource_path="/com/usebottles/bottles/bottle-details-view.ui")
-class BottleDetailsView(Adw.NavigationPage):
-    """
-    This class is the starting point for all the pages concerning the
-    bottle (details, preferences, dependencies ..).
-    """
+@Gtk.Template(resource_path="/com/usebottles/bottles/bottle-details-view-subpage.ui")
+class BottleDetailsViewSubpage(Adw.NavigationPage):
+    __gtype_name__ = "BottleDetailsViewSubpage"
 
-    __gtype_name__ = "BottleDetailsView"
-    __pages = {}
-
-    # region Widgets
-    leaflet = Gtk.Template.Child()
-    default_view = Gtk.Template.Child()
-    stack_bottle = Gtk.Template.Child()
-    sidebar_headerbar = Gtk.Template.Child()
-    content_headerbar = Gtk.Template.Child()
-    default_actions = Gtk.Template.Child()
-    box_actions = Gtk.Template.Child()
-    content_title = Gtk.Template.Child()
-    btn_operations = Gtk.Template.Child()
-    list_tasks = Gtk.Template.Child()
-    pop_tasks = Gtk.Template.Child()
     spinner_tasks = Gtk.Template.Child()
+    pop_tasks = Gtk.Template.Child()
+    list_tasks = Gtk.Template.Child()
+    btn_operations = Gtk.Template.Child()
+    content_title = Gtk.Template.Child()
+    box_actions = Gtk.Template.Child()
+    content_headerbar = Gtk.Template.Child()
+    stack_bottle = Gtk.Template.Child()
 
     # endregion
 
-    def __init__(self, window, config: BottleConfig | None = None, **kwargs):
+    def __init__(
+        self, details_view, window, config: BottleConfig | None = None, **kwargs
+    ):
         super().__init__(**kwargs)
 
-        # common variables and references
-        if config is None:
-            config = BottleConfig()
-
+        self.details_view = details_view
         self.window = window
-        self.manager = window.manager
-        self.versioning_manager = window.manager.versioning_manager
         self.config = config
-        self.queue = QueueManager(add_fn=self.lock_back, end_fn=self.unlock_back)
 
-        self.view_bottle = BottleDetailsPage(self, config)
-        self.view_installers = DetailsInstallersView(self, config)
-        self.view_dependencies = DetailsDependenciesView(self, config)
-        self.view_preferences = DetailsPreferencesPage(self, config)
-        self.view_versioning = DetailsVersioningPage(self, config)
-        self.view_taskmanager = DetailsTaskManagerView(self, config)
-
-        self.window.main_leaf.connect("notify::visible-child", self.unload_view)
-        self.default_actions.append(self.view_bottle.actions)
-
-        # region signals
-        self.stack_bottle.connect("notify::visible-child", self.__on_page_change)
         self.btn_operations.connect("activate", self.__on_operations_toggled)
         self.btn_operations.connect("notify::visible", self.__spin_tasks_toggle)
-        self.leaflet.connect("notify::folded", self.__on_leaflet_folded)
-        # endregion
+        self.stack_bottle.connect("notify::visible-child", self.__on_page_change)
 
         RunAsync(self.build_pages)
+
+    def __spin_tasks_toggle(self, widget, *_args):
+        if widget.get_visible():
+            self.spinner_tasks.start()
+            self.spinner_tasks.set_visible(True)
+        else:
+            self.spinner_tasks.stop()
+            self.spinner_tasks.set_visible(False)
+
+    def __on_operations_toggled(self, widget):
+        if not self.list_tasks.get_first_child():
+            widget.set_visible(False)
 
     def set_title(self, title, subtitle: str = ""):
         """
@@ -99,10 +83,19 @@ class BottleDetailsView(Adw.NavigationPage):
         self.content_title.set_title(title)
         self.content_title.set_subtitle(subtitle)
 
-    def __on_leaflet_folded(self, widget, *_args):
-        folded = widget.get_folded()
-        self.sidebar_headerbar.set_show_end_title_buttons(folded)
-        self.content_headerbar.set_show_start_title_buttons(folded)
+    def set_actions(self, widget: Gtk.Widget = None):
+        """
+        This function is used to set the actions buttons in the headerbar.
+        """
+        while self.box_actions.get_first_child():
+            self.box_actions.remove(self.box_actions.get_first_child())
+
+        if widget:
+            self.box_actions.append(widget)
+
+    def unload_view(self, *_args):
+        while self.stack_bottle.get_first_child():
+            self.stack_bottle.remove(self.stack_bottle.get_first_child())
 
     def __on_page_change(self, *_args):
         """
@@ -158,7 +151,7 @@ class BottleDetailsView(Adw.NavigationPage):
 
         def ui_update():
             if self.view_bottle.get_parent() is None:
-                self.default_view.append(self.view_bottle)
+                self.details_view.default_view.append(self.view_bottle)
 
             self.stack_bottle.add_named(self.view_preferences, "preferences")
             self.stack_bottle.add_named(self.view_dependencies, "dependencies")
@@ -171,15 +164,52 @@ class BottleDetailsView(Adw.NavigationPage):
 
         GLib.idle_add(ui_update)
 
-    def set_actions(self, widget: Gtk.Widget = None):
-        """
-        This function is used to set the actions buttons in the headerbar.
-        """
-        while self.box_actions.get_first_child():
-            self.box_actions.remove(self.box_actions.get_first_child())
 
-        if widget:
-            self.box_actions.append(widget)
+@Gtk.Template(resource_path="/com/usebottles/bottles/bottle-details-view.ui")
+class BottleDetailsView(Adw.NavigationPage):
+    """
+    This class is the starting point for all the pages concerning the
+    bottle (details, preferences, dependencies ..).
+    """
+
+    __gtype_name__ = "BottleDetailsView"
+    __pages = {}
+
+    # region Widgets
+    default_view = Gtk.Template.Child()
+    sidebar_headerbar = Gtk.Template.Child()
+    default_actions = Gtk.Template.Child()
+
+    # endregion
+
+    def __init__(self, window, config: BottleConfig | None = None, **kwargs):
+        super().__init__(**kwargs)
+
+        # common variables and references
+        if config is None:
+            config = BottleConfig()
+
+        self.window = window
+        self.manager = window.manager
+        self.versioning_manager = window.manager.versioning_manager
+        self.config = config
+        self.queue = QueueManager(add_fn=self.lock_back, end_fn=self.unlock_back)
+
+        self.details_view_subpage = BottleDetailsViewSubpage(self, window, config)
+        self.details_view_subpage.view_bottle = BottleDetailsPage(self, config)
+        self.details_view_subpage.view_installers = DetailsInstallersView(self, config)
+        self.details_view_subpage.view_dependencies = DetailsDependenciesView(
+            self, config
+        )
+        self.details_view_subpage.view_preferences = DetailsPreferencesPage(
+            self, config
+        )
+        self.details_view_subpage.view_versioning = DetailsVersioningPage(self, config)
+        self.details_view_subpage.view_taskmanager = DetailsTaskManagerView(
+            self, config
+        )
+
+        self.default_actions.append(self.details_view_subpage.view_bottle.actions)
 
     def set_config(self, config: BottleConfig):
         """
@@ -191,38 +221,17 @@ class BottleDetailsView(Adw.NavigationPage):
         self.config = config
 
         # update widgets data with bottle configuration
-        self.view_bottle.set_config(config=config)
-        self.view_preferences.set_config(config=config)
-        self.view_taskmanager.set_config(config=config)
-        self.view_installers.update(config=config)
-        self.view_versioning.update(config=config)
-
-    def __on_operations_toggled(self, widget):
-        if not self.list_tasks.get_first_child():
-            widget.set_visible(False)
-
-    def __spin_tasks_toggle(self, widget, *_args):
-        if widget.get_visible():
-            self.spinner_tasks.start()
-            self.spinner_tasks.set_visible(True)
-        else:
-            self.spinner_tasks.stop()
-            self.spinner_tasks.set_visible(False)
-
-    def go_back(self, _widget=False):
-        self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
-
-    def unload_view(self, *_args):
-        while self.stack_bottle.get_first_child():
-            self.stack_bottle.remove(self.stack_bottle.get_first_child())
+        self.details_view_subpage.view_bottle.set_config(config=config)
+        self.details_view_subpage.view_preferences.set_config(config=config)
+        self.details_view_subpage.view_taskmanager.set_config(config=config)
+        self.details_view_subpage.view_installers.update(config=config)
+        self.details_view_subpage.view_versioning.update(config=config)
 
     @GtkUtils.run_in_main_loop
-    def lock_back(self):
-        ...
+    def lock_back(self): ...
 
     @GtkUtils.run_in_main_loop
-    def unlock_back(self):
-        ...
+    def unlock_back(self): ...
 
     def update_runner_label(self, runner: str):
-        self.view_bottle.label_runner.set_text(runner)
+        self.details_view_subpage.view_bottle.label_runner.set_text(runner)

@@ -115,7 +115,7 @@ class BottleRow(Adw.ActionRow):
     def show_details(self, widget=None, config=None):
         if config is None:
             config = self.config
-        self.window.page_details.view_preferences.update_combo_components()
+        self.window.page_details.details_view_subpage.view_preferences.update_combo_components()
         self.window.show_details_view(config=config)
 
     def disable(self):

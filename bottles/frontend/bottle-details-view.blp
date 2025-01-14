@@ -5,89 +5,18 @@ template $BottleDetailsView: Adw.NavigationPage {
   title: _("Details");
   tag: "details";
 
-  child: Adw.Leaflet leaflet {
-    can-navigate-back: true;
-    can-unfold: false;
-    hexpand: true;
-
-    Box {
-      orientation: vertical;
-
-      Adw.HeaderBar sidebar_headerbar {
-        show-end-title-buttons: false;
-
-        title-widget: Adw.WindowTitle sidebar_title {
-          title: _("Details");
-        };
-
-        [end]
-        Box default_actions {}
-      }
-
-      Box default_view {}
-    }
-
-    Adw.LeafletPage {
-      navigatable: false;
-
-      child: Separator panel_separator {
-        orientation: vertical;
-
-        styles [
-          "sidebar",
-        ]
-      };
-    }
-
-    Box content {
-      orientation: vertical;
-
-      Adw.HeaderBar content_headerbar {
-        show-start-title-buttons: false;
-
-        title-widget: Adw.WindowTitle content_title {};
-
-        [end]
-        Box box_actions {}
-
-        [end]
-        MenuButton btn_operations {
-          visible: false;
-          tooltip-text: _("Operations");
-          popover: pop_tasks;
-
-          Spinner spinner_tasks {}
-
-          styles [
-            "flat",
-          ]
-        }
-      }
-
-      Stack stack_bottle {
-        transition-type: crossfade;
-        hexpand: true;
-        vexpand: true;
-      }
-    }
-  };
-}
-
-Popover pop_tasks {
-  Box {
+  child: Box {
     orientation: vertical;
-    spacing: 3;
 
-    Box {
-      orientation: vertical;
+    Adw.HeaderBar sidebar_headerbar {
+      title-widget: Adw.WindowTitle sidebar_title {
+        title: _("Details");
+      };
 
-      ListBox list_tasks {
-        selection-mode: none;
-
-        styles [
-          "content",
-        ]
-      }
+      [end]
+      Box default_actions {}
     }
-  }
+
+    Box default_view {}
+  };
 }

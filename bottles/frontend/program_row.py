@@ -65,7 +65,7 @@ class ProgramRow(Adw.ActionRow):
 
         # common variables and references
         self.window = window
-        self.view_bottle = window.page_details.view_bottle
+        self.view_bottle = window.page_details.details_view_subpage.view_bottle
         self.manager = window.manager
         self.config = config
         self.program = program
