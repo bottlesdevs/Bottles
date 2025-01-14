@@ -5,9 +5,8 @@ template $BottleDetailsViewSubpage: Adw.NavigationPage {
   title: "Subpage";
   tag: "subpage";
 
-  child: Box content {
-    orientation: vertical;
-
+  child: Adw.ToolbarView {
+    [top]
     Adw.HeaderBar content_headerbar {
       show-start-title-buttons: false;
 
@@ -30,11 +29,9 @@ template $BottleDetailsViewSubpage: Adw.NavigationPage {
       }
     }
 
-    Stack stack_bottle {
+    content: Stack stack_bottle {
       transition-type: crossfade;
-      hexpand: true;
-      vexpand: true;
-    }
+    };
   };
 }
 
