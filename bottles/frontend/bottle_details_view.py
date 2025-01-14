@@ -101,7 +101,6 @@ class BottleDetailsViewSubpage(Adw.NavigationPage):
         """
         Update headerbar title according to the current page.
         """
-        self.window.toggle_selection_mode(False)
         page = self.stack_bottle.get_visible_child_name()
 
         self.set_title(self.__pages[page]["title"], self.__pages[page]["description"])

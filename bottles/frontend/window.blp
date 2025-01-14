@@ -5,17 +5,24 @@ template $BottlesWindow: Adw.ApplicationWindow {
   title: "Bottles";
   close-request => $on_close_request();
 
+  Adw.Breakpoint {
+    condition ("max-width: 450sp")
+    setters {
+      headerbar.title-widget: null;
+      view_switcher_bar.reveal: true;
+    }
+  }
+
   content: Adw.ToastOverlay toasts {
     Adw.NavigationView main_leaf {
       Adw.NavigationPage {
         tag: "overview-page";
         title: _("Overview");
-        child: Box {
-          orientation: vertical;
-
-          HeaderBar headerbar {
-            title-widget: Adw.ViewSwitcherTitle view_switcher_title {
-              title: "Bottles";
+        child: Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar headerbar {
+            title-widget: Adw.ViewSwitcher view_switcher_title {
+              policy: wide;
               stack: stack_main;
             };
 
@@ -25,10 +32,6 @@ template $BottlesWindow: Adw.ApplicationWindow {
             }
 
             Box box_actions {}
-
-            styles [
-              "titlebar",
-            ]
 
             [end]
             MenuButton {
@@ -59,19 +62,20 @@ template $BottlesWindow: Adw.ApplicationWindow {
             }
           }
 
+          [top]
           SearchBar search_bar {
             SearchEntry entry_search {
               placeholder-text: _("Search your bottles…");
             }
           }
 
-          Adw.ViewStack stack_main {
-            vexpand: true;
-          }
+          content: Adw.ViewStack stack_main {
+            enable-transitions: true;
+          };
 
+          [bottom]
           Adw.ViewSwitcherBar view_switcher_bar {
             stack: stack_main;
-            reveal: bind view_switcher_title.title-visible;
           }
         };
       }

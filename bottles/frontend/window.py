@@ -60,9 +60,7 @@ class BottlesWindow(Adw.ApplicationWindow):
     btn_donate = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
-    headerbar = Gtk.Template.Child()
     view_switcher_title = Gtk.Template.Child()
-    view_switcher_bar = Gtk.Template.Child()
     main_leaf = Gtk.Template.Child()
     toasts = Gtk.Template.Child()
     entry_search = Gtk.Template.Child()
@@ -134,7 +132,6 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.stack_main.add_named(
             child=self.page_loading, name="page_loading"
         ).set_visible(False)
-        self.headerbar.add_css_class("flat")
 
         # Signal connections
         self.btn_donate.connect(
@@ -261,7 +258,6 @@ class BottlesWindow(Adw.ApplicationWindow):
             )
 
             self.lock_ui(False)
-            self.headerbar.get_style_context().remove_class("flat")
 
             user_defined_bottles_path = self.manager.data_mgr.get(
                 UserDataKeys.CustomBottlesPath
@@ -367,13 +363,6 @@ class BottlesWindow(Adw.ApplicationWindow):
 
             if crash_log:
                 CrashReportDialog(self, crash_log).present()
-
-    def toggle_selection_mode(self, status: bool = True):
-        context = self.headerbar.get_style_context()
-        if status:
-            context.add_class("selection-mode")
-        else:
-            context.remove_class("selection-mode")
 
     def lock_ui(self, status: bool = True):
         widgets = [
