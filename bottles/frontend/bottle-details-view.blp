@@ -5,18 +5,13 @@ template $BottleDetailsView: Adw.NavigationPage {
   title: _("Details");
   tag: "details";
 
-  child: Box {
-    orientation: vertical;
-
-    Adw.HeaderBar sidebar_headerbar {
-      title-widget: Adw.WindowTitle sidebar_title {
-        title: _("Details");
-      };
-
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
       [end]
       Box default_actions {}
     }
 
-    Box default_view {}
+    content: Box default_view {};
   };
 }

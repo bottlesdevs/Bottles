@@ -176,7 +176,6 @@ class BottleDetailsView(Adw.NavigationPage):
 
     # region Widgets
     default_view = Gtk.Template.Child()
-    sidebar_headerbar = Gtk.Template.Child()
     default_actions = Gtk.Template.Child()
 
     # endregion
