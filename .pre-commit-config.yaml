@@ -13,6 +13,12 @@ repos:
         args: ["--autofix", "--no-sort-keys", "--indent", "4"]
     -   id: check-added-large-files
 
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v3.19.1
+    hooks:
+    -   id: pyupgrade
+        args: ["--py312-plus"]
+
 -   repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.8.2
     hooks:
