@@ -67,6 +67,20 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="51.18" date="2025-01-14">
+      <description translatable="no">
+        <ul>
+          <li>Add Ctrl+N shortcut for creating a new bottle</li>
+          <li>Add Shortcuts window</li>
+          <li>Remove support for the runtime sandbox</li>
+          <li>Add mnemonics in main menu</li>
+          <li>Polish and rework the new bottle dialog</li>
+          <li>Polish and rework the environment variables dialog</li>
+          <li>Fix CSS warnings in the terminal</li>
+          <li>Fix bug where Bottles would not start when running the --executable flag in the terminal</li>
+        </ul>
+      </description>
+    </release>
     <release version="51.17" date="2024-12-14">
       <description translatable="no">
         <p>Fixed a regression that makes the bottle's preferences page blank in some cases</p>
