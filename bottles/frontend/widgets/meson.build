@@ -10,7 +10,7 @@ bottles_sources = [
   'program_row.py',
   'state_row.py',
   'component_entry_row.py',
-  'library.py',
+  'library_entry.py',
 ]
 
 install_data(bottles_sources, install_dir: widgetsdir)
