@@ -22,7 +22,7 @@ from gi.repository import Gtk, Adw, GObject
 
 from bottles.backend.managers.library import LibraryManager
 from bottles.frontend.utils.gtk import GtkUtils
-from bottles.frontend.widgets.library import LibraryEntry
+from bottles.frontend.widgets.library_entry import LibraryEntry
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/library-view.ui")
