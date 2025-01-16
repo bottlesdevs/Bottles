@@ -63,10 +63,15 @@ template $BottlesWindow: Adw.ApplicationWindow {
           }
 
           [top]
-          SearchBar search_bar {
-            SearchEntry entry_search {
-              placeholder-text: _("Search your bottles…");
-            }
+          Adw.Clamp {
+            maximum-size: 400;
+
+            child: SearchBar search_bar {
+              SearchEntry entry_search {
+                hexpand: true;
+                placeholder-text: _("Search your bottles…");
+              }
+            };
           }
 
           content: Adw.ViewStack stack_main {
