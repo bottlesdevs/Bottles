@@ -1,4 +1,3 @@
-from typing import Optional
 from datetime import datetime
 
 from bottles.backend.logger import Logger
@@ -29,7 +28,7 @@ class Xcopy(WineProgram):
         include_hidden_and_sys_files: bool = False,
         continue_if_error: bool = False,
         copy_attributes: bool = False,
-        after_date: Optional[datetime] = None,
+        after_date: datetime | None = None,
     ):
         args = f"{source} {dest} /i"
 

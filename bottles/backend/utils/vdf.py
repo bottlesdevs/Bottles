@@ -294,15 +294,14 @@ def _dump_gen(data, pretty=False, escaped=True, level=0):
             key = _escape(key)
 
         if isinstance(value, Mapping):
-            yield '%s"%s"\n%s{\n' % (line_indent, key, line_indent)
-            for chunk in _dump_gen(value, pretty, escaped, level + 1):
-                yield chunk
+            yield f'{line_indent}"{key}"\n{line_indent}{{\n'
+            yield from _dump_gen(value, pretty, escaped, level + 1)
             yield "%s}\n" % line_indent
         else:
             if escaped and isinstance(value, string_type):
                 value = _escape(value)
 
-            yield '%s"%s" "%s"\n' % (line_indent, key, value)
+            yield f'{line_indent}"{key}" "{value}"\n'
 
 
 # binary VDF
@@ -520,8 +519,7 @@ def _binary_dump_gen(obj, level=0, alt_format=False):
 
         if isinstance(value, Mapping):
             yield BIN_NONE + key + BIN_NONE
-            for chunk in _binary_dump_gen(value, level + 1, alt_format=alt_format):
-                yield chunk
+            yield from _binary_dump_gen(value, level + 1, alt_format=alt_format)
         elif isinstance(value, UINT_64):
             yield BIN_UINT64 + key + BIN_NONE + uint64.pack(value)
         elif isinstance(value, INT_64):

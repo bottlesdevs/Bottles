@@ -14,7 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-from typing import Dict
 from uuid import UUID
 
 from gi.repository import Gtk, Adw
@@ -52,7 +51,7 @@ class TaskRow(Adw.ActionRow):
 class TaskSyncer:
     """Keep task list updated with backend TaskManager"""
 
-    _TASK_WIDGETS: Dict[UUID, TaskRow] = {}
+    _TASK_WIDGETS: dict[UUID, TaskRow] = {}
 
     def __init__(self, window):
         self.window = window

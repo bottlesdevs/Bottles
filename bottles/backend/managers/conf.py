@@ -1,16 +1,15 @@
 import os
 from configparser import ConfigParser
-from typing import Optional
 
 from bottles.backend.utils import yaml, json
 
 
-class ConfigManager(object):
+class ConfigManager:
     def __init__(
         self,
-        config_file: Optional[str] = None,
+        config_file: str | None = None,
         config_type: str = "ini",
-        config_string: Optional[str] = None,
+        config_string: str | None = None,
     ):
         self.config_file = config_file
         self.config_string = config_string
@@ -44,10 +43,10 @@ class ConfigManager(object):
                 # noinspection PyProtectedMember
                 res = config._sections
             elif self.config_type == "json":
-                with open(self.config_file, "r") as f:
+                with open(self.config_file) as f:
                     res = json.load(f)
             elif self.config_type == "yaml" or self.config_type == "yml":
-                with open(self.config_file, "r") as f:
+                with open(self.config_file) as f:
                     res = yaml.load(f)
             else:
                 raise ValueError("Invalid configuration type")
@@ -94,7 +93,7 @@ class ConfigManager(object):
         with open(self.config_file, "w") as f:
             config.write(f)
 
-    def write_dict(self, config_file: Optional[str] = None):
+    def write_dict(self, config_file: str | None = None):
         if self.config_file is None and config_file is None:
             raise ValueError("No config path specified")
         elif self.config_file is None and config_file is not None:

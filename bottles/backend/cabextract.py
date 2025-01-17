@@ -19,7 +19,6 @@ import os
 import shlex
 import shutil
 import subprocess
-from typing import Optional
 
 from bottles.backend.logger import Logger
 
@@ -47,7 +46,7 @@ class CabExtract:
         self,
         path: str,
         name: str = "",
-        files: Optional[list] = None,
+        files: list | None = None,
         destination: str = "",
     ):
         if files is None:

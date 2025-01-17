@@ -102,15 +102,15 @@ class VDFDict(dict):
                 raise KeyError("%s doesn't exist" % repr(key))
         else:
             raise TypeError("Expected either a str or tuple for key")
-        super(VDFDict, self).__setitem__(key, value)
+        super().__setitem__(key, value)
         self.__kcount[key[1]] += 1
 
     def __getitem__(self, key):
-        return super(VDFDict, self).__getitem__(self._normalize_key(key))
+        return super().__getitem__(self._normalize_key(key))
 
     def __delitem__(self, key):
         key = self._normalize_key(key)
-        result = super(VDFDict, self).__delitem__(key)
+        result = super().__delitem__(key)
 
         start_idx = self.__omap.index(key)
         del self.__omap[start_idx]
@@ -124,8 +124,8 @@ class VDFDict(dict):
                 if self.__omap[idx][1] == skey:
                     oldkey = self.__omap[idx]
                     newkey = (dup_idx, skey)
-                    super(VDFDict, self).__setitem__(newkey, self[oldkey])
-                    super(VDFDict, self).__delitem__(oldkey)
+                    super().__setitem__(newkey, self[oldkey])
+                    super().__delitem__(oldkey)
                     self.__omap[idx] = newkey
 
                     dup_idx += 1
@@ -142,7 +142,7 @@ class VDFDict(dict):
         return iter(self.iterkeys())
 
     def __contains__(self, key):
-        return super(VDFDict, self).__contains__(self._normalize_key(key))
+        return super().__contains__(self._normalize_key(key))
 
     def __eq__(self, other):
         if isinstance(other, VDFDict):
@@ -154,12 +154,12 @@ class VDFDict(dict):
         return not self.__eq__(other)
 
     def clear(self):
-        super(VDFDict, self).clear()
+        super().clear()
         self.__kcount.clear()
         self.__omap = list()
 
     def get(self, key, *_args):
-        return super(VDFDict, self).get(self._normalize_key(key), *_args)
+        return super().get(self._normalize_key(key), *_args)
 
     def setdefault(self, key, default=None):
         if key not in self:
@@ -217,7 +217,7 @@ class VDFDict(dict):
             raise TypeError("Key need to be a string.")
 
         for idx in _range(self.__kcount[key]):
-            super(VDFDict, self).__delitem__((idx, key))
+            super().__delitem__((idx, key))
 
         self.__omap = list(filter(lambda x: x[1] != key, self.__omap))
 

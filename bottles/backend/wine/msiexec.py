@@ -1,5 +1,3 @@
-from typing import Optional
-
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 
@@ -15,8 +13,8 @@ class MsiExec(WineProgram):
         pkg_path: str,  # or product code
         args: str = "",
         terminal: bool = False,
-        cwd: Optional[str] = None,
-        environment: Optional[dict] = None,
+        cwd: str | None = None,
+        environment: dict | None = None,
     ):
         args = f"/i {pkg_path} {args}"
 
@@ -43,7 +41,7 @@ class MsiExec(WineProgram):
         all_computer_registry_keys: bool = False,
         all_shortcuts: bool = False,
         recache: bool = False,
-        cwd: Optional[str] = None,
+        cwd: str | None = None,
     ):
         """
         NOTICE: I have not been able to use the repair in any way, it seems to show
@@ -78,13 +76,13 @@ class MsiExec(WineProgram):
             args=args, communicate=True, minimal=True, cwd=cwd, action_name="repair"
         )
 
-    def uninstall(self, pkg_path: str, cwd: Optional[str] = None):
+    def uninstall(self, pkg_path: str, cwd: str | None = None):
         args = f"/x {pkg_path}"
         self.launch(
             args=args, communicate=True, minimal=True, cwd=cwd, action_name="uninstall"
         )
 
-    def apply_patch(self, patch: str, update: bool = False, cwd: Optional[str] = None):
+    def apply_patch(self, patch: str, update: bool = False, cwd: str | None = None):
         args = f"/p {patch}"
         if update:
             args = f" /update {patch}"
@@ -94,7 +92,7 @@ class MsiExec(WineProgram):
         )
 
     def uninstall_patch(
-        self, patch: str, product: Optional[str] = None, cwd: Optional[str] = None
+        self, patch: str, product: str | None = None, cwd: str | None = None
     ):
         args = f"/uninstall {patch}"
         if product:
@@ -108,7 +106,7 @@ class MsiExec(WineProgram):
             action_name="uninstall_patch",
         )
 
-    def register_module(self, module: str, cwd: Optional[str] = None):
+    def register_module(self, module: str, cwd: str | None = None):
         args = f"/y {module}"
         self.launch(
             args=args,
@@ -118,7 +116,7 @@ class MsiExec(WineProgram):
             action_name="register_module",
         )
 
-    def unregister_module(self, module: str, cwd: Optional[str] = None):
+    def unregister_module(self, module: str, cwd: str | None = None):
         args = f"/z {module}"
         self.launch(
             args=args,

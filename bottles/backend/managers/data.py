@@ -45,7 +45,7 @@ class DataManager:
 
     def __get_data(self):
         try:
-            with open(self.__p_data, "r") as s:
+            with open(self.__p_data) as s:
                 self.__data = yaml.load(s)
                 if self.__data is None:
                     raise AttributeError

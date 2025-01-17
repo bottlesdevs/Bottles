@@ -16,7 +16,7 @@
 #
 
 from gettext import gettext as _
-from typing import Any, Optional
+from typing import Any
 from gi.repository import Gtk, Adw, Pango, Gio, Xdp, GObject, GLib
 
 from bottles.backend.models.config import BottleConfig
@@ -231,7 +231,7 @@ class NewBottleDialog(Adw.Dialog):
         self.label_output.set_text(text)
 
     @GtkUtils.run_in_main_loop
-    def finish(self, result: Optional[Result], error=None) -> None:
+    def finish(self, result: Result | None, error=None) -> None:
         """Updates widgets based on whether it succeeded or failed."""
 
         def send_notification(notification: Gio.Notification) -> None:

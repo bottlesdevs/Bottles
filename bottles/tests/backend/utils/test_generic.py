@@ -1,5 +1,3 @@
-from typing import Optional
-
 import pytest
 
 from bottles.backend.utils.generic import detect_encoding
@@ -21,7 +19,7 @@ from bottles.backend.utils.generic import detect_encoding
         ("", None, "utf-8"),
     ],
 )
-def test_detect_encoding(text: str, hint: Optional[str], codec: Optional[str]):
+def test_detect_encoding(text: str, hint: str | None, codec: str | None):
     text_bytes = text.encode(codec)
     guess = detect_encoding(text_bytes, hint)
     assert guess.lower() == codec.lower()

@@ -18,7 +18,6 @@
 import shutil
 import sys
 import time
-from typing import Optional
 
 import requests
 
@@ -38,7 +37,7 @@ class Downloader:
     """
 
     def __init__(
-        self, url: str, file: str, update_func: Optional[TaskStreamUpdateHandler] = None
+        self, url: str, file: str, update_func: TaskStreamUpdateHandler | None = None
     ):
         self.start_time = None
         self.url = url

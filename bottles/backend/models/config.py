@@ -3,7 +3,8 @@ import logging
 import os
 from dataclasses import dataclass, field, replace, asdict, is_dataclass
 from io import IOBase
-from typing import List, Dict, Optional, ItemsView, Container, IO
+from typing import Optional, IO
+from collections.abc import ItemsView, Container
 
 from bottles.backend.models.result import Result
 from bottles.backend.utils import yaml
@@ -135,9 +136,9 @@ class BottleConfig(DictCompatMixIn):
     Parameters: BottleParams = field(default_factory=BottleParams)
     Sandbox: BottleSandboxParams = field(default_factory=BottleSandboxParams)
     Environment_Variables: dict = field(default_factory=dict)
-    Installed_Dependencies: List[str] = field(default_factory=list)
+    Installed_Dependencies: list[str] = field(default_factory=list)
     DLL_Overrides: dict = field(default_factory=dict)
-    External_Programs: Dict[str, dict] = field(default_factory=dict)
+    External_Programs: dict[str, dict] = field(default_factory=dict)
     Uninstallers: dict = field(default_factory=dict)
     session_arguments: str = ""
     run_in_terminal: bool = False
@@ -272,8 +273,6 @@ class BottleConfig(DictCompatMixIn):
                     v = cls._filter(v, field_type)
                 new_data[k] = v
             else:
-                logging.warning(
-                    "Skipping unexpected config '%s' in %s" % (k, clazz.__name__)
-                )
+                logging.warning(f"Skipping unexpected config '{k}' in {clazz.__name__}")
 
         return new_data

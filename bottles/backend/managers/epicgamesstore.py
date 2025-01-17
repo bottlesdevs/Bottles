@@ -59,7 +59,7 @@ class EpicGamesStoreManager:
         if dat_path is None:
             return []
 
-        with open(dat_path, "r") as dat:
+        with open(dat_path) as dat:
             data = json.load(dat)
 
             for game in data["InstallationList"]:

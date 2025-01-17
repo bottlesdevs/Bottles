@@ -20,7 +20,6 @@ import random
 import re
 import string
 import subprocess
-from typing import Optional
 
 import chardet
 
@@ -42,7 +41,7 @@ def validate_url(url: str):
     return re.match(regex, url) is not None
 
 
-def detect_encoding(text: bytes, locale_hint: str = None) -> Optional[str]:
+def detect_encoding(text: bytes, locale_hint: str = None) -> str | None:
     """
     Detect the encoding of a text by its bytes. Return None if it
     can't be detected.

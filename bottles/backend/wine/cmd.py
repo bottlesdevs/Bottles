@@ -1,5 +1,3 @@
-from typing import Optional
-
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 
@@ -15,8 +13,8 @@ class CMD(WineProgram):
         batch: str,
         terminal: bool = True,
         args: str = "",
-        environment: Optional[dict] = None,
-        cwd: Optional[str] = None,
+        environment: dict | None = None,
+        cwd: str | None = None,
     ):
         args = f"/c {batch} {args}"
 

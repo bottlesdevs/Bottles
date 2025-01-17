@@ -2,7 +2,7 @@
 
 import json
 import json as _json
-from typing import Optional, IO, Any, Type
+from typing import IO, Any
 
 from bottles.backend.models.config import DictCompatMixIn
 
@@ -30,8 +30,8 @@ def dump(
     obj: Any,
     fp: IO[str],
     *,
-    indent: Optional[str | int] = None,
-    cls: Optional[Type[_json.JSONEncoder]] = None,
+    indent: str | int | None = None,
+    cls: type[_json.JSONEncoder] | None = None,
 ) -> None:
     """
     Serialize obj as a JSON formatted stream to fp (a .write()-supporting file-like object).
@@ -49,8 +49,8 @@ def dump(
 def dumps(
     obj: Any,
     *,
-    indent: Optional[str | int] = None,
-    cls: Optional[Type[_json.JSONEncoder]] = None,
+    indent: str | int | None = None,
+    cls: type[_json.JSONEncoder] | None = None,
 ) -> str:
     """
     Serialize obj to a JSON formatted str.

@@ -17,7 +17,6 @@
 
 import os
 import uuid
-from typing import Optional
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
@@ -56,9 +55,9 @@ class UbisoftConnectManager:
         """
         found = {}
         games = []
-        key: Optional[str] = None
-        appid: Optional[str] = None
-        thumb: Optional[str] = None
+        key: str | None = None
+        appid: str | None = None
+        thumb: str | None = None
         reg_key = (
             "register: HKEY_LOCAL_MACHINE\\SOFTWARE\\Ubisoft\\Launcher\\Installs\\"
         )
@@ -71,7 +70,7 @@ class UbisoftConnectManager:
         if conf_path is None:
             return []
 
-        with open(conf_path, "r", encoding="iso-8859-15") as c:
+        with open(conf_path, encoding="iso-8859-15") as c:
             for r in c.readlines():
                 r = r.strip()
 

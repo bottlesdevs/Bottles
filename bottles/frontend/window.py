@@ -19,7 +19,6 @@ import contextlib
 import os
 import webbrowser
 from gettext import gettext as _
-from typing import Optional
 
 from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk, Xdp
 
@@ -315,7 +314,7 @@ class BottlesWindow(Adw.ApplicationWindow):
     def go_back(self, *_args):
         self.main_leaf.navigate(direction=Adw.NavigationDirection.BACK)
 
-    def show_details_view(self, widget=False, config: Optional[BottleConfig] = None):
+    def show_details_view(self, widget=False, config: BottleConfig | None = None):
         self.main_leaf.set_visible_child(self.page_details)
         self.page_details.set_config(config or BottleConfig())
 
@@ -352,7 +351,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         log_path = f"{xdg_data_home}/bottles/crash.log"
 
         with contextlib.suppress(FileNotFoundError):
-            with open(log_path, "r") as log_file:
+            with open(log_path) as log_file:
                 crash_log = log_file.readlines()
                 os.remove(log_path)
 

@@ -18,7 +18,6 @@
 import uuid
 from datetime import datetime
 from gettext import gettext as _
-from typing import List, Optional
 
 from gi.repository import Gtk, Gio, Adw, Gdk, GLib, Xdp
 
@@ -164,7 +163,7 @@ class BottleDetailsPage(Adw.PreferencesPage):
 
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
         self.drop_overlay.set_visible(False)
-        files: List[Gio.File] = value.get_files()
+        files: list[Gio.File] = value.get_files()
         args = ""
         file = files[0]
         if (
@@ -286,7 +285,7 @@ class BottleDetailsPage(Adw.PreferencesPage):
         dialog.show()
 
     def update_programs(
-        self, config: Optional[BottleConfig] = None, force_add: dict = None
+        self, config: BottleConfig | None = None, force_add: dict = None
     ):
         """
         This function update the programs lists.

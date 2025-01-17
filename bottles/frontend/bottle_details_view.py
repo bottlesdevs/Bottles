@@ -17,7 +17,6 @@
 
 
 from gettext import gettext as _
-from typing import Optional
 
 from gi.repository import Gtk, Adw, GLib
 
@@ -62,7 +61,7 @@ class BottleDetailsView(Adw.Bin):
 
     # endregion
 
-    def __init__(self, window, config: Optional[BottleConfig] = None, **kwargs):
+    def __init__(self, window, config: BottleConfig | None = None, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references

@@ -49,7 +49,7 @@ class LibraryManager:
             self.__library = {}
             self.save_library()
         else:
-            with open(self.library_path, "r") as library_file:
+            with open(self.library_path) as library_file:
                 self.__library = yaml.load(library_file)
 
         if self.__library is None:

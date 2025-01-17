@@ -155,9 +155,7 @@ class VersioningManager:
                 status=True,
                 message=_("State {0} restored successfully!").format(state_id),
             )
-            task_id = TaskManager.add(
-                Task(title=_("Restoring state {} …".format(state_id)))
-            )
+            task_id = TaskManager.add(Task(title=_(f"Restoring state {state_id} …")))
             try:
                 repo.restore_state(state_id, ignore=patterns)
             except FVSStateNotFound:
@@ -204,25 +202,27 @@ class VersioningManager:
 
         # perform file updates
         for file in remove_files:
-            os.remove("%s/drive_c/%s" % (bottle_path, file["file"]))
+            os.remove("{}/drive_c/{}".format(bottle_path, file["file"]))
 
         for file in add_files:
-            source = "%s/states/%s/drive_c/%s" % (
+            source = "{}/states/{}/drive_c/{}".format(
                 bottle_path,
                 str(state_id),
                 file["file"],
             )
-            target = "%s/drive_c/%s" % (bottle_path, file["file"])
+            target = "{}/drive_c/{}".format(bottle_path, file["file"])
             shutil.copy2(source, target)
 
         for file in edit_files:
             for i in search_sources:
-                source = "%s/states/%s/drive_c/%s" % (bottle_path, str(i), file["file"])
+                source = "{}/states/{}/drive_c/{}".format(
+                    bottle_path, str(i), file["file"]
+                )
                 if os.path.isfile(source):
                     checksum = FileUtils().get_checksum(source)
                     if file["checksum"] == checksum:
                         break
-                target = "%s/drive_c/%s" % (bottle_path, file["file"])
+                target = "{}/drive_c/{}".format(bottle_path, file["file"])
                 shutil.copy2(source, target)
 
         # update State in bottle config
@@ -250,7 +250,7 @@ class VersioningManager:
             files = file.read() if plain else yaml.load(file.read())
             file.close()
             return files
-        except (OSError, IOError, yaml.YAMLError):
+        except (OSError, yaml.YAMLError):
             logging.error("Could not read the state files file.")
             return {}
 
