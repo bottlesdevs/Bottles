@@ -1,7 +1,6 @@
 import re
 import time
 import subprocess
-from typing import Optional
 
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
@@ -80,7 +79,7 @@ class WineDbg(WineProgram):
             time.sleep(timeout)
         return True
 
-    def kill_process(self, pid: Optional[str] = None, name: Optional[str] = None):
+    def kill_process(self, pid: str | None = None, name: str | None = None):
         """
         Kill a process by its PID or name.
         """
@@ -109,7 +108,7 @@ class WineDbg(WineProgram):
                 if p["name"] == name:
                     self.kill_process(p["pid"], name)
 
-    def is_process_alive(self, pid: Optional[str] = None, name: Optional[str] = None):
+    def is_process_alive(self, pid: str | None = None, name: str | None = None):
         """
         Check if a process is running on the wineprefix.
         """

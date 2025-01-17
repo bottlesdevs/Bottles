@@ -20,7 +20,6 @@ import shutil
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
-from typing import Optional
 
 import icoextract  # type: ignore [import-untyped]
 
@@ -43,7 +42,7 @@ class ManagerUtils:
 
     @staticmethod
     def open_filemanager(
-        config: Optional[BottleConfig] = None,
+        config: BottleConfig | None = None,
         path_type: str = "bottle",
         component: str = "",
         custom_path: str = "",
@@ -152,7 +151,7 @@ class ManagerUtils:
                                 fn_update(_size)
                     fn_update(1)
             return file_new_path
-        except (OSError, IOError):
+        except OSError:
             logging.error(f"Could not copy file {file_path} to the bottle.")
             return False
 

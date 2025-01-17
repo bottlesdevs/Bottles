@@ -1,5 +1,3 @@
-from typing import Optional
-
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 
@@ -15,10 +13,10 @@ class Explorer(WineProgram):
         desktop: str = "shell",
         width: int = 0,
         height: int = 0,
-        program: Optional[str] = None,
-        args: Optional[str] = None,
-        environment: Optional[dict] = None,
-        cwd: Optional[str] = None,
+        program: str | None = None,
+        args: str | None = None,
+        environment: dict | None = None,
+        cwd: str | None = None,
     ):
         _args = f"/desktop={desktop}"
 

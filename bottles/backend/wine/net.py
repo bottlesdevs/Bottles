@@ -1,5 +1,3 @@
-from typing import Optional
-
 from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 
@@ -10,7 +8,7 @@ class Net(WineProgram):
     program = "Wine Services manager"
     command = "net"
 
-    def start(self, name: Optional[str] = None):
+    def start(self, name: str | None = None):
         args = "start"
 
         if name is not None:
@@ -18,7 +16,7 @@ class Net(WineProgram):
 
         return self.launch(args=args, communicate=True, action_name="start")
 
-    def stop(self, name: Optional[str] = None):
+    def stop(self, name: str | None = None):
         args = "stop"
 
         if name is not None:
@@ -26,7 +24,7 @@ class Net(WineProgram):
 
         return self.launch(args=args, communicate=True, action_name="stop")
 
-    def use(self, name: Optional[str] = None):
+    def use(self, name: str | None = None):
         # this command has no documentation, not tested yet
         args = "use"
 

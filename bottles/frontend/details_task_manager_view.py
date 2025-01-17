@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from typing import Optional
 
 from gi.repository import Gtk
 
@@ -83,14 +82,14 @@ class DetailsTaskManagerView(Gtk.ScrolledWindow):
             return
         self.btn_kill.set_sensitive(True)
 
-    def update(self, widget=False, config: Optional[BottleConfig] = None):
+    def update(self, widget=False, config: BottleConfig | None = None):
         """
         This function scan for new processed and update the
         liststore_processes with the new data
         """
         self.liststore_processes.clear()
 
-        def fetch_processes(config: Optional[BottleConfig] = None):
+        def fetch_processes(config: BottleConfig | None = None):
             if config is None:
                 config = BottleConfig()
             self.config = config

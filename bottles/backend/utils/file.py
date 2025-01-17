@@ -49,7 +49,7 @@ class FileUtils:
     def use_insensitive_ext(string):
         """Converts a glob pattern into a case-insensitive glob pattern"""
         ext = string.split(".")[1]
-        globlist = ["[%s%s]" % (c.lower(), c.upper()) for c in ext]
+        globlist = [f"[{c.lower()}{c.upper()}]" for c in ext]
         return "*.%s" % "".join(globlist)
 
     @staticmethod
@@ -66,10 +66,10 @@ class FileUtils:
         """Returns a human readable size from a given float size"""
         for unit in ["", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
             if abs(size) < 1024.0:
-                return "%3.1f%s%s" % (size, unit, "B")
+                return "{:3.1f}{}{}".format(size, unit, "B")
             size /= 1024.0
 
-        return "%.1f%s%s" % (size, "Yi", "B")
+        return "{:.1f}{}{}".format(size, "Yi", "B")
 
     def get_path_size(self, path: str, human: bool = True) -> str | float:
         """

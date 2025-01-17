@@ -20,7 +20,6 @@ import os
 import shutil
 import tarfile
 from functools import lru_cache
-from typing import Optional
 
 import pycurl
 
@@ -131,7 +130,7 @@ class ComponentManager:
         file: str,
         rename: str = "",
         checksum: str = "",
-        func: Optional[TaskStreamUpdateHandler] = None,
+        func: TaskStreamUpdateHandler | None = None,
     ) -> bool:
         """Download a component from the Bottles repository."""
 
@@ -274,7 +273,7 @@ class ComponentManager:
             root_dir = tar.getnames()[0]
             tar.extractall(path)
             tar.close()
-        except (tarfile.TarError, IOError, EOFError):
+        except (tarfile.TarError, OSError, EOFError):
             with contextlib.suppress(FileNotFoundError):
                 os.remove(os.path.join(Paths.temp, archive))
             with contextlib.suppress(FileNotFoundError):
@@ -301,7 +300,7 @@ class ComponentManager:
         self,
         component_type: str,
         component_name: str,
-        func: Optional[TaskStreamUpdateHandler] = None,
+        func: TaskStreamUpdateHandler | None = None,
     ):
         """
         This function is used to install a component. It automatically

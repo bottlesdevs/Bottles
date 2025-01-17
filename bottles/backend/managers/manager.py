@@ -26,7 +26,7 @@ import uuid
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import pathvalidate
 
@@ -91,7 +91,7 @@ class Manager(metaclass=Singleton):
     vkd3d_available = []
     nvapi_available = []
     latencyflex_available = []
-    local_bottles: Dict[str, BottleConfig] = {}
+    local_bottles: dict[str, BottleConfig] = {}
     supported_runtimes = {}
     supported_winebridge = {}
     supported_wine_runners = {}
@@ -413,7 +413,7 @@ class Manager(metaclass=Singleton):
 
         if len(self.runners_available) > 0:
             logging.info(
-                "Runners found:\n - {0}".format("\n - ".join(self.runners_available))
+                "Runners found:\n - {}".format("\n - ".join(self.runners_available))
             )
 
         tmp_runners = [x for x in self.runners_available if not x.startswith("sys-")]
@@ -464,7 +464,7 @@ class Manager(metaclass=Singleton):
         manifest = os.path.join(Paths.runtimes, runtime, "manifest.yml")
 
         if os.path.exists(manifest):
-            with open(manifest, "r") as f:
+            with open(manifest) as f:
                 data = yaml.load(f)
                 version = data.get("version")
                 if version:
@@ -493,7 +493,7 @@ class Manager(metaclass=Singleton):
 
         version_file = os.path.join(Paths.winebridge, "VERSION")
         if os.path.exists(version_file):
-            with open(version_file, "r") as f:
+            with open(version_file) as f:
                 version = f.read().strip()
                 if version:
                     self.winebridge_available = [f"winebridge-{version}"]
@@ -630,7 +630,7 @@ class Manager(metaclass=Singleton):
 
         if len(component["available"]) > 0:
             logging.info(
-                "{0}s found:\n - {1}".format(
+                "{}s found:\n - {}".format(
                     component_type.capitalize(), "\n - ".join(component["available"])
                 )
             )
@@ -663,7 +663,7 @@ class Manager(metaclass=Singleton):
         except ValueError:
             return sorted(component["available"], reverse=True)
 
-    def get_programs(self, config: BottleConfig) -> List[dict]:
+    def get_programs(self, config: BottleConfig) -> list[dict]:
         """
         Get the list of programs (both from the drive and the user defined
         in the bottle configuration file).
@@ -825,7 +825,7 @@ class Manager(metaclass=Singleton):
             _config = os.path.join(_bottle, "bottle.yml")
 
             if os.path.exists(_placeholder):
-                with open(_placeholder, "r") as f:
+                with open(_placeholder) as f:
                     try:
                         placeholder_yaml = yaml.load(f)
                         if placeholder_yaml.get("Path"):
@@ -951,7 +951,7 @@ class Manager(metaclass=Singleton):
 
         if len(self.local_bottles) > 0 and not silent:
             logging.info(
-                "Bottles found:\n - {0}".format("\n - ".join(self.local_bottles))
+                "Bottles found:\n - {}".format("\n - ".join(self.local_bottles))
             )
 
         if (
@@ -1138,7 +1138,7 @@ class Manager(metaclass=Singleton):
         sandbox: bool = False,
         fn_logger: callable = None,
         arch: str = "win64",
-        custom_environment: Optional[str] = None,
+        custom_environment: str | None = None,
     ) -> Result[dict]:
         """
         Create a new bottle from the given arguments.
@@ -1392,7 +1392,7 @@ class Manager(metaclass=Singleton):
             env = Samples.environments[environment.lower()]
         elif custom_environment:
             try:
-                with open(custom_environment, "r") as f:
+                with open(custom_environment) as f:
                     env = yaml.load(f.read())
                     logging.warning("Using a custom environment recipe…")
                     log_update(_("(!) Using a custom environment recipe…"))

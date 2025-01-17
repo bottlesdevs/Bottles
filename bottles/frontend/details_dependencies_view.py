@@ -16,7 +16,6 @@
 #
 
 import time
-from typing import Optional
 
 from gi.repository import Gtk, GLib, Adw
 
@@ -91,7 +90,7 @@ class DetailsDependenciesView(Adw.Bin):
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, _widget=False, config: Optional[BottleConfig] = None):
+    def update(self, _widget=False, config: BottleConfig | None = None):
         """
         This function update the dependencies list with the
         supported by the manager.

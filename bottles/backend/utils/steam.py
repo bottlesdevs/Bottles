@@ -17,7 +17,7 @@
 
 import os
 import shlex
-from typing import TextIO, Optional
+from typing import TextIO
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.vdict import VDFDict
@@ -57,7 +57,7 @@ class SteamUtils:
         if not os.path.isfile(toolmanifest):
             return False
 
-        f = open(toolmanifest, "r", errors="replace")
+        f = open(toolmanifest, errors="replace")
         data = SteamUtils.parse_vdf(f.read())
         compat_layer_name = data.get("manifest", {}).get("compatmanager_layer_name", {})
 
@@ -66,7 +66,7 @@ class SteamUtils:
         return "proton" in compat_layer_name or "proton" in commandline
 
     @staticmethod
-    def get_associated_runtime(path: str) -> Optional[str]:
+    def get_associated_runtime(path: str) -> str | None:
         """
         Get the associated runtime of a Proton directory.
         """
@@ -76,7 +76,7 @@ class SteamUtils:
             return None
 
         runtime = "scout"
-        f = open(toolmanifest, "r", errors="replace")
+        f = open(toolmanifest, errors="replace")
         data = SteamUtils.parse_vdf(f.read())
         tool_appid = data.get("manifest", {}).get("require_tool_appid", {})
 

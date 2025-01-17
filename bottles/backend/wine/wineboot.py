@@ -67,7 +67,7 @@ class WineBoot(WineProgram):
             for pid in os.listdir("/proc"):
                 if pid.isdigit():
                     try:
-                        with open(f"/proc/{pid}/environ", "r") as env_file:
+                        with open(f"/proc/{pid}/environ") as env_file:
                             env_vars = env_file.read()
                             if f"BOTTLE={self.config.Path}" in env_vars:
                                 os.kill(int(pid), signal.SIGTERM)

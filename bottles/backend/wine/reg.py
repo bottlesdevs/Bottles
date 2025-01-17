@@ -4,7 +4,6 @@ import os
 import uuid
 from datetime import datetime
 from itertools import groupby
-from typing import List, Dict, Optional
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
@@ -28,13 +27,13 @@ class Reg(WineProgram):
     program = "Wine Registry CLI"
     command = "reg"
 
-    def bulk_add(self, regs: List[RegItem]):
+    def bulk_add(self, regs: list[RegItem]):
         """Import multiple registries at once, with v5.00 reg file"""
         config = self.config
         logging.info(f"Importing {len(regs)} Key(s) to {config.Name} registry")
         winedbg = WineDbg(config)
 
-        mapping: Dict[str, List[RegItem]] = {
+        mapping: dict[str, list[RegItem]] = {
             k: list(v) for k, v in groupby(regs, lambda x: x.key)
         }
         reg_file_header = "Windows Registry Editor Version 5.00\n\n"
@@ -74,17 +73,19 @@ class Reg(WineProgram):
         )
         logging.info(res.data)
 
-    def add(self, key: str, value: str, data: str, value_type: Optional[str] = None):
+    def add(self, key: str, value: str, data: str, value_type: str | None = None):
         config = self.config
         logging.info(
             f"Adding Key: [{key}] with Value: [{value}] and "
             f"Data: [{data}] in {config.Name} registry"
         )
         winedbg = WineDbg(config)
-        args = "add '%s' /v '%s' /d '%s' /f" % (key, value, data)
+        args = f"add '{key}' /v '{value}' /d '{data}' /f"
 
         if value_type is not None:
-            args = "add '%s' /v '%s' /t %s /d '%s' /f" % (key, value, value_type, data)
+            args = "add '{}' /v '{}' /t {} /d '{}' /f".format(
+                key, value, value_type, data
+            )
 
         # avoid conflicts when executing async
         winedbg.wait_for_process("reg.exe")
@@ -99,7 +100,7 @@ class Reg(WineProgram):
             f"Removing Value: [{key}] from Key: [{value}] in " f"{config.Name} registry"
         )
         winedbg = WineDbg(config)
-        args = "delete '%s' /v %s /f" % (key, value)
+        args = f"delete '{key}' /v {value} /f"
 
         # avoid conflicts when executing async
         winedbg.wait_for_process("reg.exe")

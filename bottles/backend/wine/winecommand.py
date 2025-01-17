@@ -4,7 +4,6 @@ import stat
 import subprocess
 import tempfile
 import shlex
-from typing import Optional
 
 from bottles.backend.globals import (
     Paths,
@@ -97,9 +96,9 @@ class WineCommand:
         communicate: bool = False,
         colors: str = "default",
         minimal: bool = False,  # avoid gamemode/gamescope usage
-        pre_script: Optional[str] = None,
-        post_script: Optional[str] = None,
-        cwd: Optional[str] = None,
+        pre_script: str | None = None,
+        post_script: str | None = None,
+        cwd: str | None = None,
     ):
         _environment = environment.copy()
         self.config = self._get_config(config)
@@ -156,7 +155,7 @@ class WineCommand:
 
     def get_env(
         self,
-        environment: Optional[dict] = None,
+        environment: dict | None = None,
         return_steam_env: bool = False,
         return_clean_env: bool = False,
     ) -> dict:
@@ -487,11 +486,11 @@ class WineCommand:
     def get_cmd(
         self,
         command,
-        pre_script: Optional[str] = None,
-        post_script: Optional[str] = None,
+        pre_script: str | None = None,
+        post_script: str | None = None,
         return_steam_cmd: bool = False,
         return_clean_cmd: bool = False,
-        environment: Optional[dict] = None,
+        environment: dict | None = None,
     ) -> str:
         config = self.config
         params = config.Parameters
@@ -536,7 +535,7 @@ class WineCommand:
                 )
                 logging.info(f"Running Gamescope command: '{command}'")
                 logging.info(f"{gamescope_run} contains:")
-                with open(gamescope_run, "r") as f:
+                with open(gamescope_run) as f:
                     logging.info(f"\n\n{f.read()}")
 
                 # Set file as executable
@@ -686,7 +685,7 @@ class WineCommand:
             share_sound=self.config.Sandbox.share_sound,
         )
 
-    def run(self) -> Result[Optional[str]]:
+    def run(self) -> Result[str | None]:
         """
         Run command with pre-configured parameters
 

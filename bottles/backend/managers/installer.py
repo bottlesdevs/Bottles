@@ -18,7 +18,6 @@ import os
 import subprocess
 import uuid
 from functools import lru_cache
-from typing import Optional
 
 import markdown
 import pycurl
@@ -358,7 +357,7 @@ class InstallerManager:
         installer: dict,
         step_fn: callable,
         is_final: bool = True,
-        local_resources: Optional[dict] = None,
+        local_resources: dict | None = None,
     ):
         manifest = self.get_installer(installer[0])
         _config = config

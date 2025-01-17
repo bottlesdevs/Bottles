@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from typing import Optional
 from functools import wraps
 from inspect import signature
 
@@ -75,7 +74,7 @@ class GtkUtils:
         return wrapper
 
     @staticmethod
-    def get_parent_window() -> Optional[GObject.Object]:
+    def get_parent_window() -> GObject.Object | None:
         """Retrieve the parent window from a widget."""
         toplevels = Gtk.Window.get_toplevels()
         return toplevels.get_item(0)

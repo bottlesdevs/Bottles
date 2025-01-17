@@ -16,7 +16,6 @@
 #
 
 from gettext import gettext as _
-from typing import Optional
 
 from gi.repository import Gtk, GObject, Adw
 
@@ -138,7 +137,7 @@ class ComponentEntryRow(Adw.ActionRow):
         self,
         received_size: int = 0,
         total_size: int = 0,
-        status: Optional[Status] = None,
+        status: Status | None = None,
     ):
         if status == Status.FAILED:
             logging.error("Component installation failed")

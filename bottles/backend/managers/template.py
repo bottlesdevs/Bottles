@@ -104,7 +104,7 @@ class TemplateManager:
             logging.error(f"Template {template_uuid} is too small!")
             result = False
 
-        with open(os.path.join(template_path, "template.yml"), "r") as f:
+        with open(os.path.join(template_path, "template.yml")) as f:
             template = yaml.load(f)
             if template["uuid"] != template_uuid:
                 logging.error(f"Template {template_uuid} has invalid uuid!")
@@ -114,7 +114,7 @@ class TemplateManager:
 
     @staticmethod
     def get_template_manifest(template: str):
-        with open(os.path.join(Paths.templates, template, "template.yml"), "r") as f:
+        with open(os.path.join(Paths.templates, template, "template.yml")) as f:
             return yaml.load(f)
 
     @staticmethod

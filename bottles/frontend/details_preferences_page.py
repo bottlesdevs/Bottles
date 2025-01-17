@@ -456,7 +456,7 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
         self.entry_name.set_text(config.Name)
 
         self.row_cwd.set_subtitle(
-            _('Directory that contains the data of "{}".'.format(config.Name))
+            _(f'Directory that contains the data of "{config.Name}".')
         )
 
         self.combo_language.set_selected(

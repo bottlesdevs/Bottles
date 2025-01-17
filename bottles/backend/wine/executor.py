@@ -1,7 +1,6 @@
 import os
 import shlex
 import uuid
-from typing import Optional
 
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
@@ -28,19 +27,19 @@ class WineExecutor:
         exec_path: str,
         args: str = "",
         terminal: bool = False,
-        environment: Optional[dict] = None,
+        environment: dict | None = None,
         move_file: bool = False,
         move_upd_fn: callable = None,
-        pre_script: Optional[str] = None,
-        post_script: Optional[str] = None,
-        cwd: Optional[str] = None,
-        monitoring: Optional[list] = None,
-        program_dxvk: Optional[bool] = None,
-        program_vkd3d: Optional[bool] = None,
-        program_nvapi: Optional[bool] = None,
-        program_fsr: Optional[bool] = None,
-        program_gamescope: Optional[bool] = None,
-        program_virt_desktop: Optional[bool] = None,
+        pre_script: str | None = None,
+        post_script: str | None = None,
+        cwd: str | None = None,
+        monitoring: list | None = None,
+        program_dxvk: bool | None = None,
+        program_vkd3d: bool | None = None,
+        program_nvapi: bool | None = None,
+        program_fsr: bool | None = None,
+        program_gamescope: bool | None = None,
+        program_virt_desktop: bool | None = None,
     ):
         logging.info("Launching an executable…")
         self.config = config
@@ -345,7 +344,7 @@ class WineExecutor:
         if not self.monitoring:
             return
 
-        logging.info("Starting {} monitors".format(len(self.monitoring)))
+        logging.info(f"Starting {len(self.monitoring)} monitors")
 
         winedbg = WineDbg(self.config, silent=True)
         for m in self.monitoring:

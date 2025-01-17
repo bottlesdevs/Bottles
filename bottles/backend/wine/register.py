@@ -17,7 +17,6 @@
 
 import os
 import uuid
-from typing import Optional
 
 from bottles.backend.utils import json
 
@@ -40,7 +39,7 @@ class WinRegister:
 
     def __get_header(self):
         """Return the header of the registry file."""
-        with open(self.path, "r") as reg:
+        with open(self.path) as reg:
             header = reg.readlines(2)
             return header
 
@@ -101,7 +100,7 @@ class WinRegister:
 
         return _dict
 
-    def compare(self, path: Optional[str] = None, register: object = None):
+    def compare(self, path: str | None = None, register: object = None):
         """Compare the current register with the given path or register."""
         if path is not None:
             register = WinRegister().new(path)
@@ -133,7 +132,7 @@ class WinRegister:
 
         return diff
 
-    def update(self, diff: Optional[dict] = None):
+    def update(self, diff: dict | None = None):
         """Update the current register with the given diff."""
         if diff is None:
             diff = self.diff  # use last diff

@@ -18,7 +18,6 @@
 import os
 from datetime import datetime
 from gettext import gettext as _
-from typing import Optional
 
 import pycurl
 
@@ -36,7 +35,7 @@ class ConnectionUtils:
     notified and False will be returned, otherwise True.
     """
 
-    _status: Optional[bool] = None
+    _status: bool | None = None
     last_check = None
 
     def __init__(self, force_offline=False, **kwargs):
@@ -47,7 +46,7 @@ class ConnectionUtils:
         SignalManager.connect(Signals.ForceStopNetworking, self.stop_check)
 
     @property
-    def status(self) -> Optional[bool]:
+    def status(self) -> bool | None:
         return self._status
 
     @status.setter
@@ -69,7 +68,7 @@ class ConnectionUtils:
         if res.status:
             self.do_check_connection = False
 
-    def check_connection(self, show_notification=False) -> Optional[bool]:
+    def check_connection(self, show_notification=False) -> bool | None:
         """check network status, send result through signal NetworkReady and return"""
         if self.force_offline or "FORCE_OFFLINE" in os.environ:
             logging.info("Forcing offline mode")

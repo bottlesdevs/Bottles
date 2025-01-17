@@ -91,7 +91,9 @@ class DependencyManager:
         task_id = TaskManager.add(Task(title=dependency[0]))
 
         logging.info(
-            "Installing dependency [%s] in bottle [%s]." % (dependency[0], config.Name),
+            "Installing dependency [{}] in bottle [{}].".format(
+                dependency[0], config.Name
+            ),
         )
         manifest = self.get_dependency(dependency[0])
         if not manifest:

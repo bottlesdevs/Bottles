@@ -45,7 +45,7 @@ class RunAsync(threading.Thread):
             f"(from main thread: {threading.current_thread() is threading.main_thread()})."
         )
 
-        super(RunAsync, self).__init__(target=self.__target, args=args, kwargs=kwargs)
+        super().__init__(target=self.__target, args=args, kwargs=kwargs)
 
         self.task_func = task_func
 

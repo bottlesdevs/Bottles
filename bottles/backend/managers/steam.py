@@ -24,7 +24,6 @@ from datetime import datetime
 from functools import lru_cache
 from glob import glob
 from pathlib import Path
-from typing import Dict, Optional
 
 from bottles.backend.globals import Paths
 from bottles.backend.models.config import BottleConfig
@@ -51,7 +50,7 @@ class SteamManager:
 
     def __init__(
         self,
-        config: Optional[BottleConfig] = None,
+        config: BottleConfig | None = None,
         is_windows: bool = False,
         check_only: bool = False,
     ):
@@ -106,7 +105,7 @@ class SteamManager:
         if not os.path.isfile(acf_path):
             return None
 
-        with open(acf_path, "r", errors="replace") as f:
+        with open(acf_path, errors="replace") as f:
             data = SteamUtils.parse_acf(f.read())
 
         return data
@@ -133,7 +132,7 @@ class SteamManager:
             logging.warning("Could not find the libraryfolders.vdf file")
             return None
 
-        with open(library_folders_path, "r", errors="replace") as f:
+        with open(library_folders_path, errors="replace") as f:
             _library_folders = SteamUtils.parse_vdf(f.read())
 
         if _library_folders is None or not _library_folders.get("libraryfolders"):
@@ -168,7 +167,7 @@ class SteamManager:
         if self.localconfig_path is None:
             return {}
 
-        with open(self.localconfig_path, "r", errors="replace") as f:
+        with open(self.localconfig_path, errors="replace") as f:
             data = SteamUtils.parse_vdf(f.read())
 
         if data is None:
@@ -192,14 +191,14 @@ class SteamManager:
 
     @staticmethod
     @lru_cache
-    def get_runner_path(pfx_path: str) -> Optional[str]:
+    def get_runner_path(pfx_path: str) -> str | None:
         """Get runner path from config_info file"""
         config_info = os.path.join(pfx_path, "config_info")
 
         if not os.path.isfile(config_info):
             return None
 
-        with open(config_info, "r") as f:
+        with open(config_info) as f:
             lines = f.readlines()
             if len(lines) < 10:
                 logging.error(
@@ -273,7 +272,7 @@ class SteamManager:
 
         return apps
 
-    def list_prefixes(self) -> Dict[str, BottleConfig]:
+    def list_prefixes(self) -> dict[str, BottleConfig]:
         apps = self.list_apps_ids()
         prefixes = {}
 
@@ -391,7 +390,7 @@ class SteamManager:
 
         return apps[prefix]
 
-    def get_launch_options(self, prefix: str, app_conf: Optional[dict] = None) -> {}:
+    def get_launch_options(self, prefix: str, app_conf: dict | None = None) -> {}:
         if app_conf is None:
             app_conf = self.get_app_config(prefix)
 

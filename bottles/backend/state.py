@@ -2,7 +2,8 @@ import dataclasses
 from enum import Enum
 from gettext import gettext as _
 from threading import Lock as PyLock, Event as PyEvent
-from typing import Dict, Callable, Optional, Protocol, List
+from typing import Protocol
+from collections.abc import Callable
 from uuid import UUID, uuid4
 
 from bottles.backend.logger import Logger
@@ -59,12 +60,12 @@ class TaskStreamUpdateHandler(Protocol):
         self,
         received_size: int = 0,
         total_size: int = 0,
-        status: Optional[Status] = None,
+        status: Status | None = None,
     ) -> None: ...
 
 
 class SignalHandler(Protocol):
-    def __call__(self, data: Optional[Result] = None) -> None: ...
+    def __call__(self, data: Result | None = None) -> None: ...
 
 
 @dataclasses.dataclass
@@ -76,7 +77,7 @@ class Notification:
 
 @dataclasses.dataclass(init=False)
 class Task:
-    _task_id: Optional[UUID] = None  # should only be set by TaskManager
+    _task_id: UUID | None = None  # should only be set by TaskManager
     title: str = "Task"
     _subtitle: str = ""
     hidden: bool = False  # hide from UI
@@ -95,7 +96,7 @@ class Task:
         self.cancellable = cancellable
 
     @property
-    def task_id(self) -> Optional[UUID]:
+    def task_id(self) -> UUID | None:
         return self._task_id
 
     @task_id.setter
@@ -119,7 +120,7 @@ class Task:
         self,
         received_size: int = 0,
         total_size: int = 0,
-        status: Optional[Status] = None,
+        status: Status | None = None,
     ):
         """This is a default subtitle updating handler for streaming downloading progress"""
         match status:
@@ -138,7 +139,7 @@ class Task:
 
 
 class LockManager:
-    _LOCKS: Dict[Locks, PyLock] = {}
+    _LOCKS: dict[Locks, PyLock] = {}
 
     @classmethod
     def lock(cls, name: Locks):
@@ -168,7 +169,7 @@ class EventManager:
     Wait for an event that has already been set, will immediately return.
     """
 
-    _EVENTS: Dict[Events, PyEvent] = {}
+    _EVENTS: dict[Events, PyEvent] = {}
 
     @classmethod
     def wait(cls, event: Events):
@@ -194,10 +195,10 @@ class EventManager:
 class TaskManager:
     """Long-running tasks are registered here, for tracking and display them on UI"""
 
-    _TASKS: Dict[UUID, Task] = {}  # {UUID4: Task}
+    _TASKS: dict[UUID, Task] = {}  # {UUID4: Task}
 
     @classmethod
-    def get(cls, task_id: UUID) -> Optional[Task]:
+    def get(cls, task_id: UUID) -> Task | None:
         return cls._TASKS.get(task_id)
 
     @classmethod
@@ -220,7 +221,7 @@ class TaskManager:
 class SignalManager:
     """sync backend state to frontend via registered signal handlers"""
 
-    _SIGNALS: Dict[Signals, List[SignalHandler]] = {}
+    _SIGNALS: dict[Signals, list[SignalHandler]] = {}
 
     @classmethod
     def connect(cls, signal: Signals, handler: SignalHandler) -> None:
@@ -228,7 +229,7 @@ class SignalManager:
         cls._SIGNALS[signal].append(handler)
 
     @classmethod
-    def send(cls, signal: Signals, data: Optional[Result] = None) -> None:
+    def send(cls, signal: Signals, data: Result | None = None) -> None:
         """
         Send signal
         should only be called by backend logic
