@@ -26,14 +26,14 @@ repos:
         args: [ "--fix" ]
     -   id: ruff-format
 
+-   repo: https://github.com/PyCQA/autoflake
+    rev: v2.3.1
+    hooks:
+    -   id: autoflake
+
 -   repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.13.0
     hooks:
     -   id: mypy
         args: ["--pretty"]
         additional_dependencies: ["pygobject-stubs", "types-PyYAML", "types-Markdown", "types-requests", "types-pycurl", "types-chardet", "pytest-stub", "types-orjson", "pathvalidate", "requirements-parser", "icoextract", "fvs", "patool", "git+https://gitlab.com/TheEvilSkeleton/vkbasalt-cli.git@main"]
-
--   repo: https://github.com/PyCQA/autoflake
-    rev: v2.3.1
-    hooks:
-    -   id: autoflake
