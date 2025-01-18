@@ -30,7 +30,6 @@ from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals, Notification
-from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import APP_ID, BASE_ID, PROFILE
@@ -78,9 +77,6 @@ class BottlesWindow(Adw.ApplicationWindow):
 
         super().__init__(**kwargs, default_width=width, default_height=height)
 
-        self.utils_conn = ConnectionUtils(
-            force_offline=self.settings.get_boolean("force-offline")
-        )
         self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
@@ -141,7 +137,6 @@ class BottlesWindow(Adw.ApplicationWindow):
             "https://usebottles.com/funding/",
         )
         self.btn_add.connect("clicked", self.show_add_view)
-        self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
 
         # backend signal handlers
@@ -191,15 +186,6 @@ class BottlesWindow(Adw.ApplicationWindow):
     def title(self, title, subtitle: str = ""):
         self.view_switcher_title.set_title(title)
         self.view_switcher_title.set_subtitle(subtitle)
-
-    def check_for_connection(self, status):
-        """
-        This method checks if the client has an internet connection.
-        If true, the manager checks will be performed, unlocking all the
-        features locked for no internet connection.
-        """
-        if self.utils_conn.check_connection():
-            self.manager.checks(install_latest=False, first_run=True)
 
     def __on_start(self):
         """
@@ -278,16 +264,8 @@ class BottlesWindow(Adw.ApplicationWindow):
                 dialog.present()
 
         def get_manager():
-            if self.utils_conn.check_connection():
-                SignalManager.connect(
-                    Signals.RepositoryFetched, self.page_loading.add_fetched
-                )
-
             # do not redo connection if aborted connection
-            mng = Manager(
-                g_settings=self.settings,
-                check_connection=self.utils_conn.aborted_connections == 0,
-            )
+            mng = Manager(g_settings=self.settings)
             return mng
 
         self.show_loading_view()

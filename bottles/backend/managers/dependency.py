@@ -43,10 +43,9 @@ logging = Logger()
 
 
 class DependencyManager:
-    def __init__(self, manager, offline: bool = False):
+    def __init__(self, manager):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("dependencies", offline)
-        self.__utils_conn = manager.utils_conn
+        self.__repo = manager.repository_manager.get_repo("dependencies")
 
     @lru_cache
     def get_dependency(self, name: str, plain: bool = False) -> str | dict | bool:
@@ -59,8 +58,6 @@ class DependencyManager:
         and return these as a dictionary. It also returns an empty dictionary
         if there are no dependencies or fails to fetch them.
         """
-        if not self.__utils_conn.check_connection():
-            return {}
 
         catalog = {}
         index = self.__repo.catalog
