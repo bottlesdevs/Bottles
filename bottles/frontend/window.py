@@ -69,6 +69,7 @@ class BottlesWindow(Adw.ApplicationWindow):
     previous_page = ""
     settings = Gio.Settings.new(BASE_ID)
     argument_executed = False
+    manager = Manager(settings)
 
     def __init__(self, arg_bottle, **kwargs):
         width = self.settings.get_int("window-width")
@@ -76,7 +77,6 @@ class BottlesWindow(Adw.ApplicationWindow):
 
         super().__init__(**kwargs, default_width=width, default_height=height)
 
-        self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
         self.set_icon_name(APP_ID)
@@ -120,7 +120,65 @@ class BottlesWindow(Adw.ApplicationWindow):
             logging.error("https://usebottles.com/download/")
             return
 
-        self.headerbar.add_css_class("flat")
+        tmp_runners = [
+            x for x in self.manager.runners_available if not x.startswith("sys-")
+        ]
+        if len(tmp_runners) == 0:
+            self.show_onboard_view()
+
+        # Pages
+        self.page_details = BottleDetailsView(self)
+        self.page_list = BottlesListView(self)
+        self.page_importer = ImporterView(self)
+        self.page_library = LibraryView(self)
+
+        self.main_leaf.append(self.page_details)
+        self.main_leaf.append(self.page_importer)
+
+        self.main_leaf.get_page(self.page_details).set_navigatable(False)
+        self.main_leaf.get_page(self.page_importer).set_navigatable(False)
+
+        self.stack_main.add_titled(
+            child=self.page_list, name="page_list", title=_("Bottles")
+        ).set_icon_name(f"{APP_ID}-symbolic")
+        self.stack_main.add_titled(
+            child=self.page_library, name="page_library", title=_("Library")
+        ).set_icon_name("library-symbolic")
+
+        self.page_list.search_bar.set_key_capture_widget(self)
+        self.btn_search.bind_property(
+            "active",
+            self.page_list.search_bar,
+            "search-mode-enabled",
+            GObject.BindingFlags.BIDIRECTIONAL,
+        )
+
+        self.stack_main.set_visible_child_name("page_list")
+
+        self.settings.bind(
+            "startup-view",
+            self.stack_main,
+            "visible-child-name",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+
+        self.lock_ui(False)
+
+        user_defined_bottles_path = self.manager.data_mgr.get(
+            UserDataKeys.CustomBottlesPath
+        )
+        if user_defined_bottles_path and Paths.bottles != user_defined_bottles_path:
+            dialog = Adw.MessageDialog.new(
+                self,
+                _("Custom Bottles Path not Found"),
+                _(
+                    "Falling back to default path. No bottles from the given path will be listed."
+                ),
+            )
+            dialog.add_response("cancel", _("_Dismiss"))
+            dialog.present()
+
+        self.check_crash_log()
 
         # Signal connections
         self.btn_donate.connect(
@@ -146,7 +204,6 @@ class BottlesWindow(Adw.ApplicationWindow):
         SignalManager.connect(Signals.GNotification, self.g_notification_handler)
         SignalManager.connect(Signals.GShowUri, self.g_show_uri_handler)
 
-        self.__on_start()
         logging.info(
             "Bottles Started!",
         )
@@ -178,93 +235,6 @@ class BottlesWindow(Adw.ApplicationWindow):
     def title(self, title, subtitle: str = ""):
         self.view_switcher_title.set_title(title)
         self.view_switcher_title.set_subtitle(subtitle)
-
-    def __on_start(self):
-        """
-        This method is called before the window is shown. This check if there
-        is at least one local runner installed. If not, the user will be
-        prompted with the onboard dialog.
-        """
-
-        @GtkUtils.run_in_main_loop
-        def set_manager(result: Manager, error=None):
-            self.manager = result
-
-            tmp_runners = [
-                x for x in self.manager.runners_available if not x.startswith("sys-")
-            ]
-            if len(tmp_runners) == 0:
-                self.show_onboard_view()
-
-            # Pages
-            self.page_details = BottleDetailsView(self)
-            self.page_list = BottlesListView(self, arg_bottle=self.arg_bottle)
-            self.page_importer = ImporterView(self)
-            self.page_library = LibraryView(self)
-
-            self.main_leaf.append(self.page_details)
-            self.main_leaf.append(self.page_importer)
-
-            self.main_leaf.get_page(self.page_details).set_navigatable(False)
-            self.main_leaf.get_page(self.page_importer).set_navigatable(False)
-
-            self.stack_main.add_titled(
-                child=self.page_list, name="page_list", title=_("Bottles")
-            ).set_icon_name(f"{APP_ID}-symbolic")
-            self.stack_main.add_titled(
-                child=self.page_library, name="page_library", title=_("Library")
-            ).set_icon_name("library-symbolic")
-
-            self.page_list.search_bar.set_key_capture_widget(self)
-            self.btn_search.bind_property(
-                "active",
-                self.page_list.search_bar,
-                "search-mode-enabled",
-                GObject.BindingFlags.BIDIRECTIONAL,
-            )
-
-            if (
-                self.stack_main.get_child_by_name(
-                    self.settings.get_string("startup-view")
-                )
-                is None
-            ):
-                self.stack_main.set_visible_child_name("page_list")
-
-            self.settings.bind(
-                "startup-view",
-                self.stack_main,
-                "visible-child-name",
-                Gio.SettingsBindFlags.DEFAULT,
-            )
-
-            self.lock_ui(False)
-            self.headerbar.get_style_context().remove_class("flat")
-
-            user_defined_bottles_path = self.manager.data_mgr.get(
-                UserDataKeys.CustomBottlesPath
-            )
-            if user_defined_bottles_path and Paths.bottles != user_defined_bottles_path:
-                dialog = Adw.MessageDialog.new(
-                    self,
-                    _("Custom Bottles Path not Found"),
-                    _(
-                        "Falling back to default path. No bottles from the given path will be listed."
-                    ),
-                )
-                dialog.add_response("cancel", _("_Dismiss"))
-                dialog.present()
-
-        def get_manager():
-            # do not redo connection if aborted connection
-            mng = Manager(
-                g_settings=self.settings
-            )
-            return mng
-
-        RunAsync(get_manager, callback=set_manager)
-
-        self.check_crash_log()
 
     def send_notification(self, title, text, image="", ignore_user=False):
         """
