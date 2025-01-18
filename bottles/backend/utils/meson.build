@@ -21,7 +21,6 @@ bottles_sources = [
   'yaml.py',
   'nvidia.py',
   'threading.py',
-  'connection.py',
   'gsettings_stub.py',
   'json.py',
   'singleton.py'
