@@ -68,3 +68,16 @@ class FluidSynth:
         sfid = synth.sfload(self.soundfont_path)
         synth.program_select(0, sfid, 0, 0)
         self.synth = synth
+
+    def register_as_current(self, config: BottleConfig):
+        """
+        Update Wine registry with this instance's ID, instructing
+        MIDI mapping to load the correct instrument set on program startup.
+        """
+        reg = Reg(config)
+        reg.add(
+            key="HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Multimedia\\MIDIMap",
+            value="CurrentInstrument",
+            data=f"#{self.id}",
+            value_type="REG_SZ",
+        )
