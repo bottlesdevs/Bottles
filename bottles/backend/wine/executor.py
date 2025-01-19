@@ -71,8 +71,9 @@ class WineExecutor:
 
         env_dll_overrides = []
 
+        self.fluidsynth = None
         if (soundfont_path := midi_soundfont) not in (None, ""):
-            FluidSynth(soundfont_path)
+            self.fluidsynth = FluidSynth.find_or_create(soundfont_path)
 
         # None = use global DXVK value
         if program_dxvk is not None:
