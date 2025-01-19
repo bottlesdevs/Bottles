@@ -28,7 +28,7 @@ from bottles.frontend.state_row import StateRow
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/details-versioning-page.ui")
-class DetailsVersioningPage(Adw.PreferencesPage):
+class DetailsVersioningPage(Adw.Bin):
     __gtype_name__ = "DetailsVersioningPage"
     __registry = []
 
@@ -39,8 +39,6 @@ class DetailsVersioningPage(Adw.PreferencesPage):
     btn_save = Gtk.Template.Child()
     btn_help = Gtk.Template.Child()
     entry_state_message = Gtk.Template.Child()
-    status_page = Gtk.Template.Child()
-    pref_page = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
@@ -61,6 +59,8 @@ class DetailsVersioningPage(Adw.PreferencesPage):
         self.btn_save.connect("clicked", self.add_state)
         self.btn_help.connect("clicked", open_doc_url, "bottles/versioning")
         self.entry_state_message.connect("activate", self.add_state)
+
+        self.stack = self.get_child()
 
     def empty_list(self):
         for r in self.__registry:
@@ -99,10 +99,10 @@ class DetailsVersioningPage(Adw.PreferencesPage):
             self.list_states.append(entry)
 
         def callback(result, error=False):
-            self.status_page.set_visible(not result.status)
-            self.pref_page.set_visible(result.status)
-            self.list_states.set_visible(result.status)
-            self.list_states.set_sensitive(result.status)
+            if result.status:
+                self.stack.set_visible_child_name("states-list-page")
+            else:
+                self.stack.set_visible_child_name("empty-page")
 
         def process_states():
             GLib.idle_add(self.empty_list)

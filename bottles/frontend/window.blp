@@ -5,73 +5,87 @@ template $BottlesWindow: Adw.ApplicationWindow {
   title: "Bottles";
   close-request => $on_close_request();
 
-  Adw.ToastOverlay toasts {
-    Adw.Leaflet main_leaf {
-      can-unfold: false;
-      can-navigate-back: false;
-
-      Box {
-        orientation: vertical;
-
-        HeaderBar headerbar {
-          title-widget: Adw.ViewSwitcherTitle view_switcher_title {
-            title: "Bottles";
-            stack: stack_main;
-          };
-
-          Button btn_add {
-            tooltip-text: _("Create New Bottle");
-            icon-name: "list-add-symbolic";
-          }
-
-          Box box_actions {}
-
-          styles [
-            "titlebar",
-          ]
-
-          [end]
-          MenuButton {
-            icon-name: "open-menu-symbolic";
-            menu-model: primary_menu;
-            tooltip-text: _("Main Menu");
-            primary: true;
-          }
-
-          [end]
-          ToggleButton btn_search {
-            tooltip-text: _("Search");
-            icon-name: "system-search-symbolic";
-            visible: false;
-          }
-
-          [end]
-          Button btn_donate {
-            tooltip-text: _("Donate");
-            icon-name: "emblem-favorite-symbolic";
-          }
-
-          [end]
-          Button btn_noconnection {
-            visible: false;
-            tooltip-text: _("You don\'t seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.");
-            icon-name: "network-error-symbolic";
-          }
-        }
-
-        SearchBar searchbar {}
-
-        Adw.ViewStack stack_main {
-          vexpand: true;
-        }
-
-        Adw.ViewSwitcherBar view_switcher_bar {
-          stack: stack_main;
-          reveal: bind view_switcher_title.title-visible;
-        }
-      }
+  Adw.Breakpoint {
+    condition ("max-width: 450sp")
+    setters {
+      headerbar.title-widget: null;
+      view_switcher_bar.reveal: true;
     }
   }
+
+  content: Adw.ToastOverlay toasts {
+    Adw.NavigationView main_leaf {
+      Adw.NavigationPage {
+        tag: "overview-page";
+        title: _("Overview");
+        child: Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar headerbar {
+            title-widget: Adw.ViewSwitcher view_switcher_title {
+              policy: wide;
+              stack: stack_main;
+            };
+
+            Button btn_add {
+              tooltip-text: _("Create New Bottle");
+              icon-name: "list-add-symbolic";
+            }
+
+            Box box_actions {}
+
+            [end]
+            MenuButton {
+              icon-name: "open-menu-symbolic";
+              menu-model: primary_menu;
+              tooltip-text: _("Main Menu");
+              primary: true;
+            }
+
+            [end]
+            ToggleButton btn_search {
+              tooltip-text: _("Search");
+              icon-name: "system-search-symbolic";
+              visible: false;
+            }
+
+            [end]
+            Button btn_donate {
+              tooltip-text: _("Donate");
+              icon-name: "emblem-favorite-symbolic";
+            }
+
+            [end]
+            Button btn_noconnection {
+              visible: false;
+              tooltip-text: _("You don\'t seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.");
+              icon-name: "network-error-symbolic";
+            }
+          }
+
+          [top]
+          Adw.Clamp {
+            maximum-size: 400;
+
+            child: SearchBar search_bar {
+              SearchEntry entry_search {
+                hexpand: true;
+                placeholder-text: _("Search your bottles…");
+              }
+            };
+          }
+
+          content: Adw.ViewStack stack_main {
+            enable-transitions: true;
+          };
+
+          [bottom]
+          Adw.ViewSwitcherBar view_switcher_bar {
+            stack: stack_main;
+          }
+        };
+      }
+    }
+  };
 }
 
 menu primary_menu {

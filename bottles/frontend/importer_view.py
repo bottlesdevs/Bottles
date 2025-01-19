@@ -27,7 +27,7 @@ from bottles.frontend.importer_row import ImporterRow
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/importer-view.ui")
-class ImporterView(Adw.Bin):
+class ImporterView(Adw.NavigationPage):
     __gtype_name__ = "ImporterView"
 
     # region Widgets
@@ -35,9 +35,8 @@ class ImporterView(Adw.Bin):
     btn_find_prefixes = Gtk.Template.Child()
     btn_import_config = Gtk.Template.Child()
     btn_import_full = Gtk.Template.Child()
-    btn_back = Gtk.Template.Child()
     group_prefixes = Gtk.Template.Child()
-    status_page = Gtk.Template.Child()
+    stack = Gtk.Template.Child()
 
     # endregion
 
@@ -50,12 +49,13 @@ class ImporterView(Adw.Bin):
         self.import_manager = window.manager.import_manager
 
         # connect signals
-        self.btn_back.connect("clicked", self.go_back)
         self.btn_find_prefixes.connect("clicked", self.__find_prefixes)
         self.btn_import_full.connect("clicked", self.__import_full_bck)
         self.btn_import_config.connect("clicked", self.__import_config_bck)
 
-    def __find_prefixes(self, widget):
+        self.__find_prefixes()
+
+    def __find_prefixes(self, *args):
         """
         This function remove all entries from the list_prefixes, ask the
         manager to find all prefixes in the system and add them to the list
@@ -63,14 +63,13 @@ class ImporterView(Adw.Bin):
 
         @GtkUtils.run_in_main_loop
         def update(result, error=False):
-            widget.set_sensitive(True)
             if result.ok:
                 wineprefixes = result.data.get("wineprefixes")
                 if len(wineprefixes) == 0:
+                    self.stack.set_visible_child_name("empty-page")
                     return
 
-                self.status_page.set_visible(False)
-                self.group_prefixes.set_visible(True)
+                self.stack.set_visible_child_name("importer-page")
 
                 while self.list_prefixes.get_first_child():
                     _w = self.list_prefixes.get_first_child()
@@ -78,8 +77,6 @@ class ImporterView(Adw.Bin):
 
                 for prefix in result.data.get("wineprefixes"):
                     self.list_prefixes.append(ImporterRow(self, prefix))
-
-        widget.set_sensitive(False)
 
         RunAsync(self.import_manager.search_wineprefixes, callback=update)
 
@@ -162,6 +159,3 @@ class ImporterView(Adw.Bin):
         dialog.set_modal(True)
         dialog.connect("response", set_path)
         dialog.show()
-
-    def go_back(self, *_args):
-        self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)

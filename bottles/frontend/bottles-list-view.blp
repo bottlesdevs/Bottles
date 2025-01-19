@@ -1,68 +1,49 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $BottlesListView: Adw.Bin {
-  ScrolledWindow {
-    Box {
-      hexpand: true;
-      vexpand: true;
-      orientation: vertical;
-
-      SearchBar search_bar {
-        SearchEntry entry_search {
-          placeholder-text: _("Search your bottles…");
-        }
-      }
-
-      Adw.PreferencesPage pref_page {
-        Adw.PreferencesGroup group_bottles {
-          ListBox list_bottles {
-            selection-mode: none;
-
-            styles [
-              "boxed-list",
-            ]
-          }
-        }
-
-        Adw.PreferencesGroup group_steam {
-          title: _("Steam Proton");
-
-          ListBox list_steam {
-            selection-mode: none;
-
-            styles [
-              "boxed-list",
-            ]
-          }
-        }
-      }
-
-      Adw.StatusPage bottle_status {
-        title: _("Bottles");
-        hexpand: true;
-        vexpand: true;
-
-        child: Button btn_create {
-          valign: center;
-          halign: center;
-          label: _("Create New Bottle…");
+template $BottlesListView: Stack {
+  StackPage {
+    name: "bottles-list-page";
+    child: Adw.PreferencesPage {
+      Adw.PreferencesGroup group_bottles {
+        ListBox list_bottles {
+          selection-mode: none;
 
           styles [
-            "suggested-action",
-            "pill",
+            "boxed-list",
           ]
-        };
+        }
       }
 
-      Adw.StatusPage no_bottles_found {
-        visible: false;
-        icon-name: "system-search-symbolic";
-        title: _("No Results Found");
-        description: _("Try a different search.");
-        hexpand: true;
-        vexpand: true;
+      Adw.PreferencesGroup group_steam {
+        title: _("Steam Proton");
+
+        ListBox list_steam {
+          selection-mode: none;
+
+          styles [
+            "boxed-list",
+          ]
+        }
       }
-    }
+    };
+  }
+
+  StackPage {
+    name: "empty-page";
+    child: Adw.StatusPage {
+      title: _("Bottles");
+
+      child: Button create_button {
+        valign: center;
+        halign: center;
+        label: _("Create New Bottle…");
+
+        styles [
+          "suggested-action",
+          "pill",
+        ]
+      };
+    };
   }
 }

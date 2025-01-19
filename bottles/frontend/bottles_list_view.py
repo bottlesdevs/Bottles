@@ -115,7 +115,7 @@ class BottleRow(Adw.ActionRow):
     def show_details(self, widget=None, config=None):
         if config is None:
             config = self.config
-        self.window.page_details.view_preferences.update_combo_components()
+        self.window.page_details.details_view_subpage.view_preferences.update_combo_components()
         self.window.show_details_view(config=config)
 
     def disable(self):
@@ -124,7 +124,7 @@ class BottleRow(Adw.ActionRow):
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/bottles-list-view.ui")
-class BottlesListView(Adw.Bin):
+class BottlesListView(Gtk.Stack):
     __gtype_name__ = "BottlesListView"
     __bottles = {}
 
@@ -133,12 +133,7 @@ class BottlesListView(Adw.Bin):
     list_steam = Gtk.Template.Child()
     group_bottles = Gtk.Template.Child()
     group_steam = Gtk.Template.Child()
-    pref_page = Gtk.Template.Child()
-    bottle_status = Gtk.Template.Child()
-    btn_create = Gtk.Template.Child()
-    entry_search = Gtk.Template.Child()
-    search_bar = Gtk.Template.Child()
-    no_bottles_found = Gtk.Template.Child()
+    create_button = Gtk.Template.Child()
 
     # endregion
 
@@ -150,31 +145,17 @@ class BottlesListView(Adw.Bin):
         self.arg_bottle = arg_bottle
 
         # connect signals
-        self.btn_create.connect("clicked", self.window.show_add_view)
-        self.entry_search.connect("changed", self.__search_bottles)
+        self.create_button.connect("clicked", self.window.show_add_view)
 
         # backend signals
         SignalManager.connect(
             Signals.ManagerLocalBottlesLoaded, self.update_bottles_list
         )
 
-        self.bottle_status.set_icon_name(APP_ID)
+        status_page = self.get_child_by_name("empty-page")
+        status_page.set_icon_name(APP_ID)
 
         self.update_bottles_list()
-
-    def __search_bottles(self, widget, event=None, data=None):
-        """
-        This function search in the list of bottles the
-        text written in the search entry.
-        """
-        terms = widget.get_text()
-        self.list_bottles.set_filter_func(self.__filter_bottles, terms)
-        self.list_steam.set_filter_func(self.__filter_bottles, terms)
-
-    @staticmethod
-    def __filter_bottles(row, terms=None):
-        text = row.get_title().lower()
-        return terms.lower() in text
 
     def update_bottles_list(self, *args) -> None:
         self.__bottles = {}
@@ -187,8 +168,11 @@ class BottlesListView(Adw.Bin):
         local_bottles = self.window.manager.local_bottles
         is_empty_local_bottles = len(local_bottles) == 0
 
-        self.pref_page.set_visible(not is_empty_local_bottles)
-        self.bottle_status.set_visible(is_empty_local_bottles)
+        if is_empty_local_bottles:
+            self.set_visible_child_name("empty-page")
+            return
+
+        self.set_visible_child_name("bottles-list-page")
 
         for name, config in local_bottles.items():
             _entry = BottleRow(self.window, config)

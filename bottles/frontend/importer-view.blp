@@ -1,19 +1,13 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $ImporterView: Adw.Bin {
-  Box {
-    orientation: vertical;
+template $ImporterView: Adw.NavigationPage {
+  title: _("Import");
+  tag: "import";
 
-    HeaderBar headerbar {
-      title-widget: Adw.WindowTitle window_title {};
-
-      [start]
-      Button btn_back {
-        tooltip-text: _("Go Back");
-        icon-name: "go-previous-symbolic";
-      }
-
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
       [end]
       Box box_actions {
         MenuButton btn_import_backup {
@@ -29,25 +23,31 @@ template $ImporterView: Adw.Bin {
       }
     }
 
-    Adw.PreferencesPage {
-      Adw.StatusPage status_page {
-        vexpand: true;
-        icon-name: "document-save-symbolic";
-        title: _("No Prefixes Found");
-        description: _("No external prefixes were found. Does Bottles have access to them?\nUse the icon on the top to import a bottle from a backup.");
+    content: Stack stack {
+      StackPage {
+        name: "importer-page";
+        child: Adw.PreferencesPage {
+          Adw.PreferencesGroup group_prefixes {
+
+            ListBox list_prefixes {
+              styles [
+                "boxed-list",
+              ]
+            }
+          }
+        };
       }
 
-      Adw.PreferencesGroup group_prefixes {
-        visible: false;
-
-        ListBox list_prefixes {
-          styles [
-            "boxed-list",
-          ]
-        }
+      StackPage {
+        name: "empty-page";
+        child: Adw.StatusPage {
+          icon-name: "document-save-symbolic";
+          title: _("No Prefixes Found");
+          description: _("No external prefixes were found. Does Bottles have access to them? Use the icon on the top to import a bottle from a backup.");
+        };
       }
-    }
-  }
+    };
+  };
 }
 
 Popover pop_backup {

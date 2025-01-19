@@ -60,11 +60,11 @@ class BottlesWindow(Adw.ApplicationWindow):
     btn_donate = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
-    headerbar = Gtk.Template.Child()
     view_switcher_title = Gtk.Template.Child()
-    view_switcher_bar = Gtk.Template.Child()
     main_leaf = Gtk.Template.Child()
     toasts = Gtk.Template.Child()
+    entry_search = Gtk.Template.Child()
+    search_bar = Gtk.Template.Child()
     # endregion
 
     # Common variables
@@ -132,7 +132,6 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.stack_main.add_named(
             child=self.page_loading, name="page_loading"
         ).set_visible(False)
-        self.headerbar.add_css_class("flat")
 
         # Signal connections
         self.btn_donate.connect(
@@ -143,6 +142,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.btn_add.connect("clicked", self.show_add_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
+        self.entry_search.connect("changed", self.__search_bottles)
 
         # backend signal handlers
         self.task_syncer = TaskSyncer(self)
@@ -224,11 +224,8 @@ class BottlesWindow(Adw.ApplicationWindow):
             self.page_importer = ImporterView(self)
             self.page_library = LibraryView(self)
 
-            self.main_leaf.append(self.page_details)
-            self.main_leaf.append(self.page_importer)
-
-            self.main_leaf.get_page(self.page_details).set_navigatable(False)
-            self.main_leaf.get_page(self.page_importer).set_navigatable(False)
+            self.main_leaf.add(self.page_details)
+            self.main_leaf.add(self.page_importer)
 
             self.stack_main.add_titled(
                 child=self.page_list, name="page_list", title=_("Bottles")
@@ -237,10 +234,10 @@ class BottlesWindow(Adw.ApplicationWindow):
                 child=self.page_library, name="page_library", title=_("Library")
             ).set_icon_name("library-symbolic")
 
-            self.page_list.search_bar.set_key_capture_widget(self)
+            self.search_bar.set_key_capture_widget(self)
             self.btn_search.bind_property(
                 "active",
-                self.page_list.search_bar,
+                self.search_bar,
                 "search-mode-enabled",
                 GObject.BindingFlags.BIDIRECTIONAL,
             )
@@ -261,7 +258,6 @@ class BottlesWindow(Adw.ApplicationWindow):
             )
 
             self.lock_ui(False)
-            self.headerbar.get_style_context().remove_class("flat")
 
             user_defined_bottles_path = self.manager.data_mgr.get(
                 UserDataKeys.CustomBottlesPath
@@ -295,6 +291,16 @@ class BottlesWindow(Adw.ApplicationWindow):
 
         self.check_crash_log()
 
+    def __search_bottles(self, widget, event=None, data=None):
+        terms = widget.get_text()
+        self.page_list.list_bottles.set_filter_func(self.__filter_bottles, terms)
+        self.page_list.list_steam.set_filter_func(self.__filter_bottles, terms)
+
+    @staticmethod
+    def __filter_bottles(row, terms=None):
+        text = row.get_title().lower()
+        return terms.lower() in text
+
     def send_notification(self, title, text, image="", ignore_user=False):
         """
         This method is used to send a notification to the user using
@@ -315,7 +321,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.main_leaf.navigate(direction=Adw.NavigationDirection.BACK)
 
     def show_details_view(self, widget=False, config: BottleConfig | None = None):
-        self.main_leaf.set_visible_child(self.page_details)
+        self.main_leaf.push(self.page_details)
         self.page_details.set_config(config or BottleConfig())
 
     def show_loading_view(self, widget=False):
@@ -334,7 +340,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_list")
 
     def show_importer_view(self, widget=False):
-        self.main_leaf.set_visible_child(self.page_importer)
+        self.main_leaf.push(self.page_importer)
 
     def show_prefs_view(self, widget=False, view=0):
         preferences_window = PreferencesWindow(self)
@@ -357,13 +363,6 @@ class BottlesWindow(Adw.ApplicationWindow):
 
             if crash_log:
                 CrashReportDialog(self, crash_log).present()
-
-    def toggle_selection_mode(self, status: bool = True):
-        context = self.headerbar.get_style_context()
-        if status:
-            context.add_class("selection-mode")
-        else:
-            context.remove_class("selection-mode")
 
     def lock_ui(self, status: bool = True):
         widgets = [
