@@ -6,6 +6,7 @@ bottles_sources = [
   'display.py',
   'gpu.py',
   'manager.py',
+  'midi.py',
   'vulkan.py',
   'terminal.py',
   'file.py',

@@ -5,7 +5,7 @@ build-commands:
 - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
   --prefix=${FLATPAK_DEST} --no-build-isolation wheel PyYAML pycurl chardet requests
   Markdown icoextract patool pathvalidate FVS orjson pycairo PyGObject charset-normalizer
-  idna urllib3 certifi pefile
+  numpy pyfluidsynth idna urllib3 certifi pefile
 sources:
 - type: file
   url: https://files.pythonhosted.org/packages/f7/2f/cc09899755f94b36e7f570b9f9ca19a5fdff536e2614fd3ac1c28bb777f6/FVS-0.3.4.tar.gz
@@ -39,6 +39,11 @@ sources:
   url: https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl
   sha256: 946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3
 - type: file
+  url: https://files.pythonhosted.org/packages/5b/73/65d2f0b698df1731e851e3295eb29a5ab8aa06f763f7e4188647a809578d/numpy-2.2.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  sha256: 0349b025e15ea9d05c3d63f9657707a4e1d471128a3b1d876c095f328f8ff7f0
+  only-arches:
+  - x86_64
+- type: file
   url: https://files.pythonhosted.org/packages/a0/6b/34e6904ac99df811a06e42d8461d47b6e0c9b86e2fe7ee84934df6e35f0d/orjson-3.10.7-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
   sha256: a0c6a008e91d10a2564edbb6ee5069a9e66df3fbe11c9a005cb411f441fd2c09
   only-arches:
@@ -60,6 +65,9 @@ sources:
   sha256: 3d07c5daef2d0d85949e32ec254ee44232bb57febb0634194379dd14d1ff4f87
   only-arches:
   - x86_64
+- type: file
+  url: https://files.pythonhosted.org/packages/c4/91/4f6b28ac379da306dde66ba6ac170c4a6e7e1506cadc84a9359fe3f237ba/pyfluidsynth-1.3.4-py3-none-any.whl
+  sha256: c6990329db7cfb35f5e65d523dd4f0c971d928e70df3a6bceec8864827edf246
 - type: file
   url: https://files.pythonhosted.org/packages/f9/9b/335f9764261e915ed497fcdeb11df5dfd6f7bf257d4a6a2a686d80da4d54/requests-2.32.3-py3-none-any.whl
   sha256: 70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6
