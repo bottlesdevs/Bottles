@@ -44,10 +44,9 @@ logging = Logger()
 
 # noinspection PyTypeChecker
 class ComponentManager:
-    def __init__(self, manager, offline: bool = False):
+    def __init__(self, manager):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("components", offline)
-        self.__utils_conn = manager.utils_conn
+        self.__repo = manager.repository_manager.get_repo("components")
 
     @lru_cache
     def get_component(self, name: str, plain: bool = False) -> dict:
@@ -58,9 +57,6 @@ class ComponentManager:
         Fetch all components from the Bottles repository, mark the installed
         ones and return a dict with the catalog.
         """
-        if not self.__utils_conn.check_connection():
-            return {}
-
         catalog = {
             "runtimes": {},
             "wine": {},

@@ -36,10 +36,9 @@ logging = Logger()
 
 
 class InstallerManager:
-    def __init__(self, manager, offline: bool = False):
+    def __init__(self, manager):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("installers", offline)
-        self.__utils_conn = manager.utils_conn
+        self.__repo = manager.repository_manager.get_repo("installers")
         self.__component_manager = manager.component_manager
         self.__local_resources = {}
 
@@ -68,8 +67,6 @@ class InstallerManager:
         """Fetch the installers catalog from the repository"""
         catalog = {}
         index = self.__repo.catalog
-        if not self.__utils_conn.check_connection():
-            return {}
 
         for installer in index.items():
             catalog[installer[0]] = installer[1]

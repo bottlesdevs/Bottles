@@ -53,7 +53,6 @@ from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
 from bottles.backend.state import SignalManager, Signals, Events, EventManager
 from bottles.backend.utils import yaml
-from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.gpu import GPUUtils
@@ -106,7 +105,6 @@ class Manager(metaclass=Singleton):
     def __init__(
         self,
         g_settings: Any = None,
-        check_connection: bool = True,
         is_cli: bool = False,
         **kwargs,
     ):
@@ -117,14 +115,8 @@ class Manager(metaclass=Singleton):
         # common variables
         self.is_cli = is_cli
         self.settings = g_settings or GSettingsStub
-        self.utils_conn = ConnectionUtils(
-            force_offline=self.is_cli or self.settings.get_boolean("force-offline")
-        )
         self.data_mgr = DataManager()
-        _offline = True
-
-        if check_connection:
-            _offline = not self.utils_conn.check_connection()
+        _offline = False
 
         # validating user-defined Paths.bottles
         if user_bottles_path := self.data_mgr.get(UserDataKeys.CustomBottlesPath):
@@ -137,17 +129,14 @@ class Manager(metaclass=Singleton):
                 )
 
         # sub-managers
-        self.repository_manager = RepositoryManager(get_index=not _offline)
-        if self.repository_manager.aborted_connections > 0:
-            self.utils_conn.status = False
-            _offline = True
+        self.repository_manager = RepositoryManager()
 
         times["RepositoryManager"] = time.time()
         self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
-        self.component_manager = ComponentManager(self, _offline)
-        self.installer_manager = InstallerManager(self, _offline)
-        self.dependency_manager = DependencyManager(self, _offline)
+        self.component_manager = ComponentManager(self)
+        self.installer_manager = InstallerManager(self)
+        self.dependency_manager = DependencyManager(self)
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
         self.steam_manager = SteamManager()
@@ -420,25 +409,7 @@ class Manager(metaclass=Singleton):
 
         if len(tmp_runners) == 0 and install_latest:
             logging.warning("No managed runners found.")
-
-            if self.utils_conn.check_connection():
-                # if connected, install the latest runner from repository
-                try:
-                    if not self.settings.get_boolean("release-candidate"):
-                        tmp_runners = []
-                        for runner in self.supported_wine_runners.items():
-                            if runner[1]["Channel"] not in ["rc", "unstable"]:
-                                tmp_runners.append(runner)
-                                break
-                        runner_name = next(iter(tmp_runners))[0]
-                    else:
-                        tmp_runners = self.supported_wine_runners
-                        runner_name = next(iter(tmp_runners))
-                    self.component_manager.install("runner", runner_name)
-                except StopIteration:
-                    return False
-            else:
-                return False
+            return False
 
         return True
 
@@ -451,13 +422,6 @@ class Manager(metaclass=Singleton):
         runtimes = os.listdir(Paths.runtimes)
 
         if len(runtimes) == 0:
-            if install_latest and self.utils_conn.check_connection():
-                logging.warning("No runtime found.")
-                try:
-                    version = next(iter(self.supported_runtimes))
-                    return self.component_manager.install("runtime", version)
-                except StopIteration:
-                    return False
             return False
 
         runtime = runtimes[0]  # runtimes cannot be more than one
@@ -480,15 +444,6 @@ class Manager(metaclass=Singleton):
         winebridge = os.listdir(Paths.winebridge)
 
         if len(winebridge) == 0 or update:
-            if install_latest and self.utils_conn.check_connection():
-                logging.warning("No WineBridge found.")
-                try:
-                    version = next(iter(self.supported_winebridge))
-                    self.component_manager.install("winebridge", version)
-                    self.winebridge_available = [version]
-                    return True
-                except StopIteration:
-                    return False
             return False
 
         version_file = os.path.join(Paths.winebridge, "VERSION")
@@ -637,26 +592,7 @@ class Manager(metaclass=Singleton):
 
         if len(component["available"]) == 0 and install_latest:
             logging.warning(f"No {component_type} found.")
-
-            if self.utils_conn.check_connection():
-                # if connected, install the latest component from repository
-                try:
-                    if not self.settings.get_boolean("release-candidate"):
-                        tmp_components = []
-                        for cpnt in component["supported"].items():
-                            if cpnt[1]["Channel"] not in ["rc", "unstable"]:
-                                tmp_components.append(cpnt)
-                                break
-                        component_version = next(iter(tmp_components))[0]
-                    else:
-                        tmp_components = component["supported"]
-                        component_version = next(iter(tmp_components))
-                    self.component_manager.install(component_type, component_version)
-                    component["available"] = [component_version]
-                except StopIteration:
-                    return False
-            else:
-                return False
+            return False
 
         try:
             return sort_by_version(component["available"])
