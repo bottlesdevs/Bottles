@@ -9,6 +9,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.midi import FluidSynth
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.msiexec import MsiExec
@@ -33,6 +34,7 @@ class WineExecutor:
         pre_script: str | None = None,
         post_script: str | None = None,
         cwd: str | None = None,
+        midi_soundfont: str | None = None,
         monitoring: list | None = None,
         program_dxvk: bool | None = None,
         program_vkd3d: bool | None = None,
@@ -62,11 +64,19 @@ class WineExecutor:
         self.pre_script = pre_script
         self.post_script = post_script
         self.cwd = self.__get_cwd(cwd)
+        self.midi_soundfont = midi_soundfont
         self.monitoring = monitoring
         self.use_gamescope = program_gamescope
         self.use_virt_desktop = program_virt_desktop
 
         env_dll_overrides = []
+
+        self.fluidsynth = None
+        if (soundfont_path := midi_soundfont) not in (None, ""):
+            # FluidSynth instance is bound to WineExecutor as a member to control
+            # the former's lifetime (deleted when no more references from executors)
+            self.fluidsynth = FluidSynth.find_or_create(soundfont_path)
+            self.fluidsynth.register_as_current(config)
 
         # None = use global DXVK value
         if program_dxvk is not None:
@@ -122,6 +132,7 @@ class WineExecutor:
             pre_script=program.get("pre_script"),
             post_script=program.get("post_script"),
             cwd=program.get("folder"),
+            midi_soundfont=program.get("midi_soundfont"),
             terminal=terminal,
             program_dxvk=program.get("dxvk"),
             program_vkd3d=program.get("vkd3d"),
@@ -212,6 +223,7 @@ class WineExecutor:
             pre_script=self.pre_script,
             post_script=self.post_script,
             cwd=self.cwd,
+            midi_soundfont=self.midi_soundfont,
         )
         return Result(status=True, data={"output": res})
 
@@ -278,6 +290,7 @@ class WineExecutor:
             pre_script=self.pre_script,
             post_script=self.post_script,
             cwd=self.cwd,
+            midi_soundfont=self.midi_soundfont,
         )
         res = winecmd.run()
         self.__set_monitors()
@@ -316,6 +329,7 @@ class WineExecutor:
             pre_script=self.pre_script,
             post_script=self.post_script,
             cwd=self.cwd,
+            midi_soundfont=self.midi_soundfont,
         )
         self.__set_monitors()
         return Result(status=True, data={"output": res})
@@ -349,3 +363,8 @@ class WineExecutor:
         winedbg = WineDbg(self.config, silent=True)
         for m in self.monitoring:
             winedbg.wait_for_process(name=m)
+
+    def __del__(self):
+        """On exit, kill FluidSynth instance if this was the last executor using it."""
+        if self.fluidsynth:
+            self.fluidsynth.decrement_program_counter()

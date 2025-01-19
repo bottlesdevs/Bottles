@@ -18,6 +18,7 @@ class Start(WineProgram):
         pre_script: str | None = None,
         post_script: str | None = None,
         cwd: str | None = None,
+        midi_soundfont: str | None = None,
     ):
         winepath = WinePath(self.config)
 
@@ -40,6 +41,7 @@ class Start(WineProgram):
             pre_script=pre_script,
             post_script=post_script,
             cwd=cwd,
+            midi_soundfont=midi_soundfont,
             minimal=False,
             action_name="run",
         )
