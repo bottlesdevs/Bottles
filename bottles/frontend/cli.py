@@ -670,6 +670,7 @@ class CLI:
             program.get("pre_script", None)
             program.get("post_script", None)
             program.get("folder", None)
+            program.get("midi_soundfont", None)
 
             program.get("dxvk")
             program.get("vkd3d")
