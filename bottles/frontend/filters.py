@@ -16,7 +16,7 @@
 
 from gettext import gettext as _
 
-from gi.repository import Gtk
+from gi.repository import Gio, GObject, Gtk
 
 
 def add_executable_filters(dialog):
@@ -50,3 +50,21 @@ def add_all_filters(dialog):
     filter.add_pattern("*")
 
     dialog.add_filter(filter)
+
+
+def __set_filter(dialog: GObject.Object, name: str, patterns: list[str]):
+    """Set dialog named file filter from list of extension patterns."""
+
+    filter = Gtk.FileFilter()
+    filter.set_name(name)
+    for pattern in patterns:
+        filter.add_pattern(pattern)
+
+    if isinstance(dialog, Gtk.FileDialog):
+        filters = dialog.get_filters() or Gio.ListStore.new(Gtk.FileFilter)
+        filters.append(filter)
+        dialog.set_filters(filters)
+    elif isinstance(dialog, Gtk.FileChooserNative):
+        dialog.add_filter(filter)
+    else:
+        raise TypeError
