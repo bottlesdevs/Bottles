@@ -73,6 +73,8 @@ class WineExecutor:
 
         self.fluidsynth = None
         if (soundfont_path := midi_soundfont) not in (None, ""):
+            # FluidSynth instance is bound to WineExecutor as a member to control
+            # the former's lifetime (deleted when no more references from executors)
             self.fluidsynth = FluidSynth.find_or_create(soundfont_path)
             self.fluidsynth.register_as_current(config)
 
@@ -361,3 +363,8 @@ class WineExecutor:
         winedbg = WineDbg(self.config, silent=True)
         for m in self.monitoring:
             winedbg.wait_for_process(name=m)
+
+    def __del__(self):
+        """On exit, kill FluidSynth instance if this was the last executor using it."""
+        if self.fluidsynth:
+            self.fluidsynth.decrement_program_counter()

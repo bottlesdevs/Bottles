@@ -16,7 +16,8 @@
 
 from typing import Self
 
-from fluidsynth import Synth  # type: ignore [import-untyped]
+from ctypes import c_void_p
+from fluidsynth import cfunc, Synth  # type: ignore [import-untyped]
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -39,6 +40,7 @@ class FluidSynth:
 
         for fs in cls.__active_instances.values():
             if fs.soundfont_path == soundfont_path:
+                fs.program_count += 1
                 return fs
 
         fs = cls(soundfont_path)
@@ -50,6 +52,7 @@ class FluidSynth:
         self.soundfont_path = soundfont_path
         self.id = self.__get_vacant_id()
         self.__start()
+        self.program_count = 1
 
     @classmethod
     def __get_vacant_id(cls) -> int:
@@ -81,3 +84,27 @@ class FluidSynth:
             data=f"#{self.id}",
             value_type="REG_SZ",
         )
+
+    def decrement_program_counter(self):
+        """Decrement program counter; if it reaches zero, delete this instance."""
+        self.program_count -= 1
+        if self.program_count == 0:
+            self.__delete()
+
+    def __delete(self):
+        """Kill underlying synthetizer and remove FluidSynth instance from dict."""
+
+        def __delete_synth(synth: Synth):
+            """Bind missing function and run deletion routines."""
+            delete_fluid_midi_driver = cfunc(
+                "delete_fluid_midi_driver", c_void_p, ("driver", c_void_p, 1)
+            )
+            delete_fluid_midi_driver(synth.midi_driver)
+            synth.delete()
+
+        logging.info(
+            "Killing FluidSynth server with SoundFont"
+            f" #{self.id} ('{self.soundfont_path}')…"
+        )
+        __delete_synth(self.synth)
+        self.__active_instances.pop(self.id)
