@@ -7,128 +7,133 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-10-27 02:15+0000\n"
-"Last-Translator: arnas <Arnas@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Lithuanian <https://hosted.weblate.org/projects/bottles/"
-"bottles/lt/>\n"
-"Language: lt\n"
+"POT-Creation-Date: 2023-09-27 10:57+0530\n"
+"PO-Revision-Date: 2024-12-28 04:32+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/bottles/bottles/"
+"ka/>\n"
+"Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
-"19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
-"1 : 2);\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
-msgstr ""
+msgstr "ბილიკი მითითებული არაა"
 
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
 msgid "Backup {0}"
-msgstr "Atsarginė kopija {0}"
+msgstr "{0}-ის მარქაფი"
 
-#: bottles/backend/managers/backup.py:101
+#: bottles/backend/managers/backup.py:103
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr ""
 
-#: bottles/backend/managers/manager.py:1057
+#: bottles/backend/managers/manager.py:1076
+#: bottles/backend/managers/manager.py:1396
+#: bottles/backend/managers/manager.py:1397
+#, python-format
+msgid "Failed to install dependency: %s"
+msgstr ""
+
+#: bottles/backend/managers/manager.py:1115
 msgid "Fail to install components, tried 3 times."
-msgstr "Nepavyko įdiegti komponentų, bandyta 3 kartus."
+msgstr ""
 
-#: bottles/backend/managers/manager.py:1068
+#: bottles/backend/managers/manager.py:1126
 msgid "Missing essential components. Installing…"
-msgstr "Trūksta reikalingų komponentų. Diegiama…"
+msgstr ""
 
-#: bottles/backend/managers/manager.py:1145
+#: bottles/backend/managers/manager.py:1203
 msgid "Failed to create bottle directory."
 msgstr ""
 
-#: bottles/backend/managers/manager.py:1157
+#: bottles/backend/managers/manager.py:1215
 msgid "Failed to create placeholder directory/file."
 msgstr ""
 
-#: bottles/backend/managers/manager.py:1162
+#: bottles/backend/managers/manager.py:1220
 msgid "Generating bottle configuration…"
-msgstr "Generuojama „bottle“ konfigūracija…"
+msgstr ""
 
-#: bottles/backend/managers/manager.py:1185
+#: bottles/backend/managers/manager.py:1243
 msgid "Template found, applying…"
-msgstr "Rastas šablonas, pritaikoma…"
+msgstr ""
 
 #. execute wineboot on the bottle path
-#: bottles/backend/managers/manager.py:1197
+#: bottles/backend/managers/manager.py:1255
 msgid "The Wine config is being updated…"
 msgstr ""
 
-#: bottles/backend/managers/manager.py:1199
+#: bottles/backend/managers/manager.py:1257
 msgid "Wine config updated!"
-msgstr "Wine konfigūracija atnaujinta!"
+msgstr ""
 
-#: bottles/backend/managers/manager.py:1207
+#: bottles/backend/managers/manager.py:1265
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr ""
 
-#: bottles/backend/managers/manager.py:1209
+#: bottles/backend/managers/manager.py:1267
 msgid "Sandboxing userdir…"
+msgstr "მომხმარებლის საქაღალდის სენდბოქსი…"
+
+#: bottles/backend/managers/manager.py:1308
+msgid "Setting Windows version…"
 msgstr ""
 
-#: bottles/backend/managers/manager.py:1250
-msgid "Setting Windows version…"
-msgstr "Nustatoma Windows versija…"
-
-#: bottles/backend/managers/manager.py:1260
+#: bottles/backend/managers/manager.py:1318
 msgid "Apply CMD default settings…"
-msgstr "Pritaikomi numatytieji CMD nustatymai…"
-
-#: bottles/backend/managers/manager.py:1268
-msgid "Optimizing environment…"
-msgstr "Vykdoma aplinkos optimizacija…"
-
-#: bottles/backend/managers/manager.py:1279
-#, python-brace-format
-msgid "Applying environment: {0}…"
-msgstr "Pritaikoma aplinka: {0}…"
-
-#: bottles/backend/managers/manager.py:1289
-msgid "(!) Using a custom environment recipe…"
-msgstr "(!) Naudojamas pritaikytos aplinkos receptas…"
-
-#: bottles/backend/managers/manager.py:1292
-msgid "(!) Recipe not not found or not valid…"
-msgstr "(!) Receptas nerastas arba klaidingas…"
-
-#: bottles/backend/managers/manager.py:1309
-msgid "Installing DXVK…"
-msgstr "Diegiama DXVK…"
-
-#: bottles/backend/managers/manager.py:1317
-msgid "Installing VKD3D…"
-msgstr "Diegiama VKD3D…"
+msgstr ""
 
 #: bottles/backend/managers/manager.py:1326
-msgid "Installing DXVK-NVAPI…"
-msgstr "Diegiama DXVK-NVAPI…"
+msgid "Optimizing environment…"
+msgstr "გარემოს ოპტიმიზაცია…"
 
-#: bottles/backend/managers/manager.py:1335
+#: bottles/backend/managers/manager.py:1337
+#, python-brace-format
+msgid "Applying environment: {0}…"
+msgstr ""
+
+#: bottles/backend/managers/manager.py:1347
+msgid "(!) Using a custom environment recipe…"
+msgstr ""
+
+#: bottles/backend/managers/manager.py:1350
+msgid "(!) Recipe not not found or not valid…"
+msgstr ""
+
+#: bottles/backend/managers/manager.py:1367
+msgid "Installing DXVK…"
+msgstr "მიმდინარეობს DXVK-ის დაყენება…"
+
+#: bottles/backend/managers/manager.py:1375
+msgid "Installing VKD3D…"
+msgstr "მიმდინარეობს VKD3D-ის დაყენება…"
+
+#: bottles/backend/managers/manager.py:1384
+msgid "Installing DXVK-NVAPI…"
+msgstr "მიმდინარეობს DXVK-NVAPI-ის დაყენება…"
+
+#: bottles/backend/managers/manager.py:1393
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr "Diegiama priklausomybė: %s …"
+msgstr ""
 
-#: bottles/backend/managers/manager.py:1345
+#: bottles/backend/managers/manager.py:1407
 msgid "Creating versioning state 0…"
 msgstr ""
 
-#: bottles/backend/managers/manager.py:1353
+#: bottles/backend/managers/manager.py:1415
 msgid "Finalizing…"
-msgstr "Užbaigiama…"
+msgstr "დასრულება…"
 
-#: bottles/backend/managers/manager.py:1364
+#: bottles/backend/managers/manager.py:1426
 msgid "Caching template…"
-msgstr "Išsaugomas šablonas…"
+msgstr "მიმდინარეობს ნიმუშის დაკეშვა…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
@@ -141,105 +146,104 @@ msgstr ""
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "Nauja būsena [{0}] sėkmingai sukurta!"
+msgstr ""
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr "Sėkmingai gautas būsenų sąrašas!"
+msgstr ""
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "Būsena {0} sėkmingai atkurta!"
+msgstr ""
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr "Atkuriama būsena {} …"
+msgstr ""
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
-msgstr "Būsena nerasta"
+msgstr ""
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
 msgstr ""
 
-#: bottles/frontend/main.py:112
+#: bottles/frontend/main.py:111
 msgid "Show version"
-msgstr "Rodyti versiją"
+msgstr "ვერსიის ჩვენება"
 
-#: bottles/frontend/main.py:120
+#: bottles/frontend/main.py:119
 msgid "Executable path"
-msgstr ""
+msgstr "გამშვები ფაილის ბილიკი"
 
-#: bottles/frontend/main.py:128
+#: bottles/frontend/main.py:127
 msgid "lnk path"
-msgstr "lnk path"
+msgstr "ბმულის ბილიკი"
 
-#: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
+#: bottles/frontend/main.py:135 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
 msgid "Bottle name"
-msgstr "„Bottle“ pavadinimas"
+msgstr "ბოთლის სახელი"
 
-#: bottles/frontend/main.py:144
+#: bottles/frontend/main.py:143
 msgid "Pass arguments"
-msgstr "Siųsti argumentus"
+msgstr "არგუმენტების გადაცემა"
 
-#: bottles/frontend/main.py:203
+#: bottles/frontend/main.py:202
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "Klaidingas URI (syntax: bottles:run/<bottle>/<program>)"
+msgstr ""
 
-#: bottles/frontend/main.py:244
+#: bottles/frontend/main.py:242
 msgid "[Quit] request received."
-msgstr "[Quit] Prašymas gautas."
+msgstr ""
 
-#: bottles/frontend/main.py:253
+#: bottles/frontend/main.py:252
 msgid "[Help] request received."
-msgstr "[Help] Prašymas gautas."
+msgstr ""
 
-#: bottles/frontend/main.py:261
+#: bottles/frontend/main.py:260
 msgid "[Refresh] request received."
 msgstr ""
 
-#: bottles/frontend/main.py:294
+#: bottles/frontend/main.py:293
 msgid "Donate"
-msgstr "Aukoti"
+msgstr "შემოწირულობა"
 
-#: bottles/frontend/main.py:299
+#: bottles/frontend/main.py:298
 msgid "Third-Party Libraries and Special Thanks"
-msgstr "Trečiųjų šalių bibliotekos bei ypatingas Ačiū"
+msgstr ""
 
-#: bottles/frontend/main.py:325
+#: bottles/frontend/main.py:324
 msgid "Sponsored and Funded by"
-msgstr "Remia ir finansuoja"
+msgstr ""
 
-# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "Saugomos autorinės teisės © 2017 Bottles kūrėjai"
+msgstr ""
 
-# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
 msgid "Bottles Developers"
-msgstr "„Bottles“ kūrėjai"
+msgstr "ბოთლის სასტავი"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "მთარგმნელის_შესახებ"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr "Komponento versija"
+msgstr "კომპონენტის ვერსია"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
 #: bottles/frontend/ui/program-entry.blp:77
 msgid "Uninstall"
-msgstr "Išinstaliuoti"
+msgstr "წაშლა"
 
 #: bottles/frontend/ui/component-entry.blp:23
+#: bottles/frontend/ui/importer-entry.blp:13
 msgid "Browse Files"
-msgstr "Naršyti failus"
+msgstr "ფაილის არჩევა"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
@@ -253,36 +257,36 @@ msgstr ""
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
-msgstr ""
+msgstr "მანიფესტის ჩვენება"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
-msgstr ""
+msgstr "ლიცენზია"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
-msgstr ""
+msgstr "გადაყენება"
 
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr ""
+msgstr "შეცდომის პატაკი…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
-msgstr ""
+msgstr "დამოკიდებულების სახელი"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
 msgid "Dependency description"
-msgstr ""
+msgstr "დამოკიდებულების აღწერა"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr "Kategorija"
+msgstr "კატეგორია"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
@@ -293,24 +297,22 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"Iškilo diegimo klaida. Perkraukite „Bottles“ jei norite skaityti klaidos "
-"ataskaitą, arba paleiskite per terminalą norint matyti išvestį."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr ""
+msgstr "დამოკიდებულების მენიუ"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
-msgstr ""
+msgstr "პრობლემების გადაჭრა"
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
-msgstr "Naršyti failus…"
+msgstr "ფაილების დათვალიერება…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
-msgstr ""
+msgstr "ბოთლის დუბლირება…"
 
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
@@ -319,7 +321,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
-msgstr ""
+msgstr "სრული მარქაფი…"
 
 #: bottles/frontend/ui/details-bottle.blp:37
 #: bottles/frontend/ui/importer.blp:68
@@ -330,55 +332,55 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr "Eksportuoti konfigūraciją…"
+msgstr "კონფიგურაციის გატანა…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
-#: bottles/frontend/views/bottle_details.py:344
+#: bottles/frontend/views/bottle_details.py:347
 msgid "Show Hidden Programs"
-msgstr "Rodyti paslėptas programas"
+msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
-msgstr "Ieškoti naujų programų"
+msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
-msgstr "Ištrinti Bottle…"
+msgstr "ბოთლის წაშლა…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "მეორადი მენიუ"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr "Priverstinai sustabdyti visus procesus"
+msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr "Windows sistemos išjungimo simuliacija."
+msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
-msgstr "Išjungti"
+msgstr "გამორთვა"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr "Windows sistemos perkrovimo simuliacija."
+msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
-msgstr "Perkrauti"
+msgstr "გადატვირთვა"
 
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr "Paleidimo nustatymai"
+msgstr "გაშვების პარამეტრები"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
-msgstr "Paleisti terminale"
+msgstr "ტერმინალში გაშვება"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
@@ -386,7 +388,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
-msgstr "Mano bottle"
+msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
@@ -395,22 +397,22 @@ msgstr "Win64"
 #: bottles/frontend/ui/details-bottle.blp:189
 #: bottles/frontend/ui/list-entry.blp:12 bottles/frontend/ui/new.blp:71
 msgid "Environment"
-msgstr "Aplinka"
+msgstr "გარემო"
 
 #: bottles/frontend/ui/details-bottle.blp:201
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr ""
+msgstr "გამშვები"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr "Įjungta versijos kontrolė šiam bottle"
+msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr "Šio bottle versijos kontrolė yra aktyvi."
+msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
@@ -423,7 +425,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
-msgstr "Programos"
+msgstr "პროგრამები"
 
 #: bottles/frontend/ui/details-bottle.blp:275
 msgid ""
@@ -442,12 +444,12 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
-msgstr ""
+msgstr "მორგება"
 
 #: bottles/frontend/ui/details-bottle.blp:350
 #: bottles/frontend/views/details.py:141
 msgid "Settings"
-msgstr ""
+msgstr "მორგება"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
@@ -456,17 +458,17 @@ msgstr ""
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr ""
+msgstr "დამოკიდებულებები"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
 msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:370
-#: bottles/frontend/ui/details-preferences.blp:377
+#: bottles/frontend/ui/details-preferences.blp:376
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "სწრაფი ასლები"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
@@ -476,7 +478,7 @@ msgstr ""
 #: bottles/frontend/ui/details-bottle.blp:426
 #: bottles/frontend/views/details.py:157
 msgid "Task Manager"
-msgstr ""
+msgstr "ამოცანების მმართველი"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
@@ -484,11 +486,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
-msgstr ""
+msgstr "ხელსაწყოები"
 
 #: bottles/frontend/ui/details-bottle.blp:394
 msgid "Command Line"
-msgstr ""
+msgstr "ბრძანების ველი"
 
 #: bottles/frontend/ui/details-bottle.blp:395
 msgid "Run commands inside the Bottle."
@@ -496,7 +498,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:404
 msgid "Registry Editor"
-msgstr ""
+msgstr "რეესტრის რედაქტორი"
 
 #: bottles/frontend/ui/details-bottle.blp:405
 msgid "Edit the internal registry."
@@ -508,32 +510,32 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
-msgstr ""
+msgstr "გამცილებელი"
 
 #: bottles/frontend/ui/details-bottle.blp:435
 msgid "Debugger"
-msgstr ""
+msgstr "გამმართველი"
 
 #: bottles/frontend/ui/details-bottle.blp:444
 #: bottles/frontend/ui/importer.blp:69 bottles/frontend/ui/new.blp:145
 msgid "Configuration"
-msgstr ""
+msgstr "კონფიგურაცია"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr ""
+msgstr "წაშლის პროგრამა"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
-msgstr ""
+msgstr "მართვის პანელი"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
 msgstr ""
 
 #: bottles/frontend/ui/details-dependencies.blp:22
-#: bottles/frontend/ui/preferences.blp:178
-#: bottles/frontend/ui/preferences.blp:235
+#: bottles/frontend/ui/preferences.blp:199
+#: bottles/frontend/ui/preferences.blp:247
 msgid "You're offline :("
 msgstr ""
 
@@ -565,13 +567,13 @@ msgstr ""
 #: bottles/frontend/ui/details-installers.blp:51
 #: bottles/frontend/ui/details-versioning.blp:37
 msgid "Documentation"
-msgstr ""
+msgstr "დოკუმენტაცია"
 
 #: bottles/frontend/ui/details-dependencies.blp:92
 #: bottles/frontend/ui/details-installers.blp:61
 #: bottles/frontend/ui/window.blp:46
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
 #: bottles/frontend/ui/details-installers.blp:9
 msgid "Search for Programs…"
@@ -596,18 +598,18 @@ msgstr ""
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
-#: bottles/frontend/ui/preferences.blp:81
+#: bottles/frontend/ui/preferences.blp:82
 msgid "Read Documentation"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:6
-#: bottles/frontend/ui/dialog-duplicate.blp:52
+#: bottles/frontend/ui/dialog-duplicate.blp:52 bottles/frontend/ui/new.blp:53
 msgid "Name"
-msgstr ""
+msgstr "სახელი"
 
 #: bottles/frontend/ui/details-preferences.blp:11
 msgid "Components"
-msgstr ""
+msgstr "კომპონენტები"
 
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
@@ -619,9 +621,9 @@ msgid "Updating Runner and components, please wait…"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:27
-#: bottles/frontend/ui/preferences.blp:262
+#: bottles/frontend/ui/preferences.blp:274
 msgid "DXVK"
-msgstr ""
+msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
@@ -632,9 +634,9 @@ msgid "Updating DXVK, please wait…"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:40
-#: bottles/frontend/ui/preferences.blp:266
+#: bottles/frontend/ui/preferences.blp:278
 msgid "VKD3D"
-msgstr ""
+msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
@@ -654,9 +656,9 @@ msgid "Updating DXVK-NVAPI, please wait…"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:68
-#: bottles/frontend/ui/preferences.blp:274
+#: bottles/frontend/ui/preferences.blp:286
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
@@ -668,7 +670,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
-msgstr ""
+msgstr "ჩვენება"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
@@ -729,7 +731,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
-msgstr ""
+msgstr "წარმადობა"
 
 #: bottles/frontend/ui/details-preferences.blp:188
 msgid "Enable synchronization to increase performance of multicore processors."
@@ -737,187 +739,186 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:189
 msgid "Synchronization"
-msgstr ""
+msgstr "სინქრონიზაცია"
 
 #: bottles/frontend/ui/details-preferences.blp:193
 msgid "System"
-msgstr ""
+msgstr "სისტემა"
 
 #: bottles/frontend/ui/details-preferences.blp:194
 msgid "Esync"
-msgstr ""
+msgstr "Esync"
 
 #: bottles/frontend/ui/details-preferences.blp:195
 msgid "Fsync"
-msgstr ""
+msgstr "Fsync"
 
-#: bottles/frontend/ui/details-preferences.blp:196
-msgid "Futex2"
-msgstr ""
-
-#: bottles/frontend/ui/details-preferences.blp:202
+#: bottles/frontend/ui/details-preferences.blp:201
 msgid "Monitor Performance"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:203
+#: bottles/frontend/ui/details-preferences.blp:202
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:211
+#: bottles/frontend/ui/details-preferences.blp:205
+msgid "Manage MangoHud settings"
+msgstr ""
+
+#: bottles/frontend/ui/details-preferences.blp:210
 msgid "Feral GameMode"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:212
+#: bottles/frontend/ui/details-preferences.blp:211
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:221
+#: bottles/frontend/ui/details-preferences.blp:220
 msgid "Preload Game Files"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:222
+#: bottles/frontend/ui/details-preferences.blp:221
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:226
+#: bottles/frontend/ui/details-preferences.blp:225
 msgid "Manage vmtouch settings"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:241
+#: bottles/frontend/ui/details-preferences.blp:240
 msgid "OBS Game Capture"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:242
+#: bottles/frontend/ui/details-preferences.blp:241
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:251
+#: bottles/frontend/ui/details-preferences.blp:250
 msgid "Compatibility"
-msgstr ""
+msgstr "თავსებადობა"
 
-#: bottles/frontend/ui/details-preferences.blp:254
+#: bottles/frontend/ui/details-preferences.blp:253
 msgid "Windows Version"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:257
+#: bottles/frontend/ui/details-preferences.blp:256
 msgid "Updating Windows version, please wait…"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:266
+#: bottles/frontend/ui/details-preferences.blp:265
 msgid "Language"
-msgstr ""
+msgstr "ენა"
 
-#: bottles/frontend/ui/details-preferences.blp:267
+#: bottles/frontend/ui/details-preferences.blp:266
 msgid "Choose the language to use with programs."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:275
+#: bottles/frontend/ui/details-preferences.blp:274
 msgid "Dedicated Sandbox"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:276
+#: bottles/frontend/ui/details-preferences.blp:275
 msgid "Use a restricted/managed environment for this bottle."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:279
+#: bottles/frontend/ui/details-preferences.blp:278
 msgid "Manage the Sandbox Permissions"
 msgstr ""
 
-# Translators: Bottles is a proper noun referring to the app
-#: bottles/frontend/ui/details-preferences.blp:295
+#: bottles/frontend/ui/details-preferences.blp:294
 msgid "Bottles Runtime"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:296
+#: bottles/frontend/ui/details-preferences.blp:295
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:306
+#: bottles/frontend/ui/details-preferences.blp:305
 msgid "Steam Runtime"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:307
+#: bottles/frontend/ui/details-preferences.blp:306
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:315
+#: bottles/frontend/ui/details-preferences.blp:314
 #: bottles/frontend/ui/dialog-launch-options.blp:83
 msgid "Working Directory"
-msgstr ""
+msgstr "სამუშაო საქაღალდე"
 
-#: bottles/frontend/ui/details-preferences.blp:318
+#: bottles/frontend/ui/details-preferences.blp:317
 #: bottles/frontend/ui/dialog-launch-options.blp:59
 #: bottles/frontend/ui/dialog-launch-options.blp:90
 #: bottles/frontend/ui/new.blp:150 bottles/frontend/ui/new.blp:181
-#: bottles/frontend/ui/preferences.blp:136
+#: bottles/frontend/ui/preferences.blp:157
 msgid "Reset to Default"
-msgstr ""
+msgstr "ნაგულისხმებ მნიშვნელობაზე დაბრუნება"
 
-#: bottles/frontend/ui/details-preferences.blp:339
-#: bottles/frontend/ui/preferences.blp:157 bottles/frontend/views/new.py:78
-#: bottles/frontend/views/preferences.py:210
+#: bottles/frontend/ui/details-preferences.blp:338
+#: bottles/frontend/ui/preferences.blp:178 bottles/frontend/views/new.py:78
+#: bottles/frontend/views/preferences.py:221
 msgid "(Default)"
-msgstr ""
+msgstr "(ნაგულისხმევი)"
 
-#: bottles/frontend/ui/details-preferences.blp:347
+#: bottles/frontend/ui/details-preferences.blp:346
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
 #: bottles/frontend/ui/dialog-dll-overrides.blp:12
 msgid "DLL Overrides"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:357
+#: bottles/frontend/ui/details-preferences.blp:356
 #: bottles/frontend/ui/dialog-env-vars.blp:20
 msgid "Environment Variables"
-msgstr ""
+msgstr "გარემოს ცვლადები"
 
-#: bottles/frontend/ui/details-preferences.blp:367
+#: bottles/frontend/ui/details-preferences.blp:366
 msgid "Manage Drives"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:381
+#: bottles/frontend/ui/details-preferences.blp:380
 msgid "Automatic Snapshots"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:382
+#: bottles/frontend/ui/details-preferences.blp:381
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:391
+#: bottles/frontend/ui/details-preferences.blp:390
 msgid "Compression"
-msgstr ""
+msgstr "შეკუმშვა"
 
-#: bottles/frontend/ui/details-preferences.blp:392
+#: bottles/frontend/ui/details-preferences.blp:391
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:401
+#: bottles/frontend/ui/details-preferences.blp:400
 msgid "Use Exclusion Patterns"
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:402
+#: bottles/frontend/ui/details-preferences.blp:401
 msgid "Exclude paths in snapshots."
 msgstr ""
 
-#: bottles/frontend/ui/details-preferences.blp:405
+#: bottles/frontend/ui/details-preferences.blp:404
 msgid "Manage Patterns"
 msgstr ""
 
 #: bottles/frontend/ui/details-taskmanager.blp:17
 msgid "Refresh"
-msgstr ""
+msgstr "განახლება"
 
 #: bottles/frontend/ui/details-taskmanager.blp:22
 msgid "Stop process"
@@ -945,31 +946,31 @@ msgstr ""
 
 #: bottles/frontend/ui/details.blp:16
 msgid "Details"
-msgstr ""
+msgstr "დეტალები"
 
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
 msgid "Go Back"
-msgstr ""
+msgstr "უკან დაბრუნება"
 
 #: bottles/frontend/ui/details.blp:75
 msgid "Operations"
-msgstr ""
+msgstr "ოპერაციები"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:4
 msgid "Select Bottle"
-msgstr "Pasirinkti Bottle"
+msgstr ""
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:16
 #: bottles/frontend/ui/dialog-proton-alert.blp:16
 #: bottles/frontend/ui/dialog-rename.blp:15
 #: bottles/frontend/ui/dialog-run-args.blp:20
 msgid "Cancel"
-msgstr ""
+msgstr "გაუქმება"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:21
 msgid "Select"
-msgstr ""
+msgstr "არჩევა"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:38
 #: bottles/frontend/ui/new.blp:9 bottles/frontend/ui/new.blp:49
@@ -977,7 +978,6 @@ msgstr ""
 msgid "Create New Bottle"
 msgstr ""
 
-# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
 msgstr ""
@@ -988,12 +988,12 @@ msgstr ""
 #: bottles/frontend/ui/dialog-launch-options.blp:16
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:22
 #: bottles/frontend/ui/dialog-vkbasalt.blp:27 bottles/frontend/ui/new.blp:26
-#: bottles/frontend/views/bottle_details.py:504
-#: bottles/frontend/views/bottle_details.py:600
-#: bottles/frontend/views/bottle_preferences.py:749
-#: bottles/frontend/views/preferences.py:201
+#: bottles/frontend/views/bottle_details.py:507
+#: bottles/frontend/views/bottle_details.py:603
+#: bottles/frontend/views/bottle_preferences.py:746
+#: bottles/frontend/views/preferences.py:212
 msgid "_Cancel"
-msgstr ""
+msgstr "_შეწყვეტა"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
 msgid "Send Report"
@@ -1019,7 +1019,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-crash-report.blp:95
 msgid "Advanced options"
-msgstr ""
+msgstr "დამატებითი პარამეტრები"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:13
 msgid "Incomplete package"
@@ -1034,7 +1034,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
-msgstr ""
+msgstr "გასვლა"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:11
 msgid ""
@@ -1048,11 +1048,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:21
 msgid "Overrides"
-msgstr ""
+msgstr "გადაფარავს"
 
 #: bottles/frontend/ui/dialog-drives.blp:7
 msgid "Drives"
-msgstr ""
+msgstr "დისკები"
 
 #: bottles/frontend/ui/dialog-drives.blp:24
 msgid ""
@@ -1062,7 +1062,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
-msgstr ""
+msgstr "წერილი"
 
 #: bottles/frontend/ui/dialog-drives.blp:49
 msgid "Existing Drives"
@@ -1074,7 +1074,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-duplicate.blp:38
 msgid "Duplicate"
-msgstr ""
+msgstr "დუბლირება"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:49
 msgid "Enter a name for the duplicate of the Bottle."
@@ -1082,14 +1082,14 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-duplicate.blp:69
 msgid "Duplicating…"
-msgstr ""
+msgstr "დუბლირება…"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:78
 #: bottles/frontend/ui/dialog-installer.blp:103
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/views/new.py:177
 msgid "This could take a while."
-msgstr ""
+msgstr "საკმაო დრო დასჭირდება."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
@@ -1103,7 +1103,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-env-vars.blp:31
 msgid "Variable Name"
-msgstr ""
+msgstr "ცვლადის სახელი"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:37
 msgid "Existing Variables"
@@ -1111,7 +1111,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "ამოღების ნიმუშები"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
 msgid ""
@@ -1121,7 +1121,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
 msgid "Pattern"
-msgstr ""
+msgstr "შაბლონი"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:37
 msgid "Existing Patterns"
@@ -1136,7 +1136,7 @@ msgstr ""
 #: bottles/frontend/ui/dialog-rename.blp:20
 #: bottles/frontend/ui/dialog-vkbasalt.blp:34
 msgid "Save"
-msgstr ""
+msgstr "შენახვა"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
@@ -1153,12 +1153,12 @@ msgstr ""
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
 msgid "Width"
-msgstr ""
+msgstr "სიგანე"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:64
 #: bottles/frontend/ui/dialog-gamescope.blp:101
 msgid "Height"
-msgstr ""
+msgstr "სიმაღლე"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
 msgid "Window Resolution"
@@ -1172,7 +1172,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
-msgstr ""
+msgstr "სხვადასხვა"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
 msgid "Frame Rate Limit"
@@ -1188,15 +1188,15 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
-msgstr ""
+msgstr "ფანჯრის ტიპი"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:166
 msgid "Borderless"
-msgstr ""
+msgstr "საზღვრების გარეშე"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:172
 msgid "Fullscreen"
-msgstr ""
+msgstr "სრულ ეკრანზე"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
@@ -1214,11 +1214,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
-msgstr ""
+msgstr "გაგრძელება"
 
 #: bottles/frontend/ui/dialog-installer.blp:127
 msgid "Completed!"
-msgstr ""
+msgstr "დასრულდა!"
 
 #: bottles/frontend/ui/dialog-installer.blp:130
 msgid "Show Programs"
@@ -1230,32 +1230,29 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
-msgstr ""
+msgstr "რაღაც მოხდა."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
-msgstr ""
+msgstr "ყველა შეტყობინება"
 
 #: bottles/frontend/ui/dialog-journal.blp:13
 msgid "Critical"
-msgstr ""
+msgstr "კრიტიკული"
 
 #: bottles/frontend/ui/dialog-journal.blp:17
 msgid "Errors"
-msgstr ""
+msgstr "შედომები"
 
 #: bottles/frontend/ui/dialog-journal.blp:21
 msgid "Warnings"
-msgstr ""
+msgstr "გაფრთხილებები"
 
 #: bottles/frontend/ui/dialog-journal.blp:25
 msgid "Info"
-msgstr ""
+msgstr "ინფორმაცია"
 
 #: bottles/frontend/ui/dialog-journal.blp:40
-msgid "Journal browser"
-msgstr ""
-
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
 msgstr ""
@@ -1266,7 +1263,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
-msgstr ""
+msgstr "ყველა"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:42
 msgid "Those arguments will be passed at launch."
@@ -1278,7 +1275,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-launch-options.blp:46
 msgid "Command Arguments"
-msgstr ""
+msgstr "ბრძანების არგუმენტები"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:47
 #, c-format
@@ -1291,7 +1288,7 @@ msgstr ""
 
 #. endregion
 #: bottles/frontend/ui/dialog-launch-options.blp:53
-#: bottles/frontend/windows/launchoptions.py:54
+#: bottles/frontend/windows/launchoptions.py:53
 msgid "Choose a script which should be executed after run."
 msgstr ""
 
@@ -1300,7 +1297,7 @@ msgid "Choose a Script"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-launch-options.blp:84
-#: bottles/frontend/windows/launchoptions.py:55
+#: bottles/frontend/windows/launchoptions.py:54
 msgid "Choose from where start the program."
 msgstr ""
 
@@ -1323,6 +1320,14 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-launch-options.blp:165
 msgid "Virtual Desktop"
+msgstr "ვირტუალური სამუშაო მაგიდა"
+
+#: bottles/frontend/ui/dialog-mangohud.blp:42
+msgid "Display On Game Start"
+msgstr ""
+
+#: bottles/frontend/ui/dialog-mangohud.blp:43
+msgid "Display HUD as soon as the game starts. Can be toggled in-game (default keybind: [⇧ Right Shift] + [F12])."
 msgstr ""
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
@@ -1354,7 +1359,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-rename.blp:7
 msgid "Rename"
-msgstr ""
+msgstr "სახელის გადარქმევა"
 
 #: bottles/frontend/ui/dialog-rename.blp:30
 msgid "Choose a new name for the selected program."
@@ -1362,17 +1367,17 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-rename.blp:33
 msgid "New Name"
-msgstr ""
+msgstr "ახალი სახელი"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 msgid "Run With Arguments"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-run-args.blp:34
-#: bottles/frontend/views/bottle_details.py:401
+#: bottles/frontend/views/bottle_details.py:404
 #: bottles/frontend/views/list.py:131
 msgid "Run"
-msgstr ""
+msgstr "გაშვება"
 
 #: bottles/frontend/ui/dialog-run-args.blp:44
 msgid "Write below the arguments to be passed to the executable."
@@ -1388,7 +1393,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
-msgstr ""
+msgstr "ქსელის გაზიარება"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:34
 msgid "Share Sound"
@@ -1401,7 +1406,7 @@ msgstr ""
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:38
 #: bottles/frontend/ui/onboard.blp:81
 msgid "Continue"
-msgstr ""
+msgstr "გაგრძელება"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:47
 msgid "Launch upgrade"
@@ -1445,11 +1450,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
-msgstr ""
+msgstr "ნაგულისხმევი"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:48
 msgid "Default Settings"
-msgstr ""
+msgstr "ნაგულისხმევი პარამეტრები"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
@@ -1457,7 +1462,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
 msgid "Effects"
-msgstr ""
+msgstr "ეფექტები"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:62
 msgid "Contrast Adaptive Sharpening"
@@ -1466,7 +1471,7 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.blp:65
 #: bottles/frontend/ui/dialog-vkbasalt.blp:102
 msgid "Sharpness"
-msgstr ""
+msgstr "სიმკვეთრე"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:69
 #: bottles/frontend/ui/dialog-vkbasalt.blp:106
@@ -1480,7 +1485,7 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.blp:343
 #: bottles/frontend/ui/dialog-vkbasalt.blp:370 bottles/frontend/ui/new.blp:58
 msgid "Show Information"
-msgstr ""
+msgstr "ინფორმაციის ჩვენება"
 
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
@@ -1489,7 +1494,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
-msgstr ""
+msgstr "ხმაურის მოცილება"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:160
 msgid "Fast Approximate Anti-Aliasing"
@@ -1517,15 +1522,15 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:267
 msgid "Luma"
-msgstr ""
+msgstr "ლუმა"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:273
 msgid "Color"
-msgstr ""
+msgstr "ფერი"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:284
 msgid "Threshold"
-msgstr ""
+msgstr "ზღვარი"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:312
 msgid "Max Search Steps"
@@ -1622,25 +1627,21 @@ msgstr ""
 
 #: bottles/frontend/ui/dll-override-entry.blp:12
 msgid "Disabled"
-msgstr ""
+msgstr "გამორთული"
 
 #: bottles/frontend/ui/dll-override-entry.blp:20
 #: bottles/frontend/ui/drive-entry.blp:12
 msgid "Remove"
-msgstr ""
+msgstr "წაშლა"
 
 #: bottles/frontend/ui/drive-entry.blp:5
 msgid "/point/to/path"
-msgstr ""
+msgstr "/ბილიკი/წერტილამდე"
 
 #: bottles/frontend/ui/env-var-entry.blp:4
 #: bottles/frontend/ui/exclusion-pattern-entry.blp:4
 msgid "Value"
-msgstr ""
-
-#: bottles/frontend/ui/importer-entry.blp:13
-msgid "Browse files"
-msgstr ""
+msgstr "მნიშვნელობა"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
@@ -1649,7 +1650,7 @@ msgstr ""
 
 #: bottles/frontend/ui/importer-entry.blp:28
 msgid "Manager"
-msgstr ""
+msgstr "მმართველი"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
@@ -1687,7 +1688,7 @@ msgstr ""
 
 #: bottles/frontend/ui/installer-entry.blp:34
 msgid "Installer name"
-msgstr ""
+msgstr "დამყენებლის სახელი"
 
 #: bottles/frontend/ui/installer-entry.blp:35
 msgid "Installer description"
@@ -1695,7 +1696,7 @@ msgstr ""
 
 #: bottles/frontend/ui/installer-entry.blp:42
 msgid "Unknown"
-msgstr ""
+msgstr "უცნობი"
 
 #: bottles/frontend/ui/installer-entry.blp:51
 msgid "Install this Program"
@@ -1705,13 +1706,13 @@ msgstr ""
 msgid "Program Menu"
 msgstr ""
 
-#: bottles/frontend/ui/library-entry.blp:36
+#: bottles/frontend/ui/library-entry.blp:33
 msgid "No Thumbnail"
 msgstr ""
 
 #: bottles/frontend/ui/library-entry.blp:57
 msgid "Launch"
-msgstr ""
+msgstr "გაშვება"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1720,7 +1721,7 @@ msgstr ""
 
 #: bottles/frontend/ui/library-entry.blp:108
 msgid "Item name"
-msgstr ""
+msgstr "ჩანაწერის სახელი"
 
 #: bottles/frontend/ui/library-entry.blp:132
 msgid "Remove from Library"
@@ -1728,12 +1729,12 @@ msgstr ""
 
 #: bottles/frontend/ui/library-entry.blp:143
 msgid "Stop"
-msgstr ""
+msgstr "შეჩერება"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:196
 msgid "Library"
-msgstr ""
+msgstr "ბიბლიოთეკა"
 
 #: bottles/frontend/ui/library.blp:12
 msgid "Add items here from your bottle's program list"
@@ -1769,7 +1770,6 @@ msgstr ""
 msgid "Steam Proton"
 msgstr ""
 
-# Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/list.blp:42 bottles/frontend/windows/main_window.py:191
 #: data/com.usebottles.bottles.metainfo.xml.in:7
 msgid "Bottles"
@@ -1781,14 +1781,18 @@ msgstr ""
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
-msgstr ""
+msgstr "შედეგების გარეშე"
 
 #: bottles/frontend/ui/list.blp:64
 msgid "Try a different search."
-msgstr ""
+msgstr "სცადეთ სხვა ძებნა."
 
 #: bottles/frontend/ui/loading.blp:13
 msgid "Starting up…"
+msgstr "გაშვება…"
+
+#: bottles/frontend/ui/loading.blp:22
+msgid "Continue Offline"
 msgstr ""
 
 #: bottles/frontend/ui/local-resource-entry.blp:4
@@ -1797,33 +1801,27 @@ msgstr ""
 
 #: bottles/frontend/ui/local-resource-entry.blp:8
 msgid "Browse"
-msgstr ""
+msgstr "პოვნა"
 
 #: bottles/frontend/ui/new.blp:32
 msgid "C_reate"
-msgstr ""
-
-# Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
-#: bottles/frontend/ui/new.blp:53
-#, fuzzy
-msgid "Bottle Name"
-msgstr "Bottles"
+msgstr "_შექმნა"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
-msgstr ""
+msgstr "_აპლიკაცია"
 
 #: bottles/frontend/ui/new.blp:88
 msgid "_Gaming"
-msgstr ""
+msgstr "_თამაშები"
 
 #: bottles/frontend/ui/new.blp:101
 msgid "C_ustom"
-msgstr ""
+msgstr "მორგებ_ული"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
-msgstr ""
+msgstr "მომხმარებლის"
 
 #: bottles/frontend/ui/new.blp:118
 msgid "Share User Directory"
@@ -1838,7 +1836,7 @@ msgstr ""
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
-msgstr ""
+msgstr "არქიტექტურა"
 
 #: bottles/frontend/ui/new.blp:137
 msgid "32-bit should only be used if strictly necessary."
@@ -1858,7 +1856,7 @@ msgstr ""
 
 #: bottles/frontend/ui/new.blp:249
 msgid "_Close"
-msgstr ""
+msgstr "და_ხურვა"
 
 #: bottles/frontend/ui/new.blp:281
 msgid "This name is unavailable, please try another."
@@ -1866,19 +1864,16 @@ msgstr ""
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
-msgstr ""
+msgstr "წინა"
 
-# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
 msgstr ""
 
 #: bottles/frontend/ui/onboard.blp:60
-#, fuzzy
 msgid "Run Windows Software on Linux."
-msgstr "Paleisti Windows programas"
+msgstr ""
 
-# Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
 msgstr ""
@@ -1905,173 +1900,181 @@ msgstr ""
 msgid "Please Finish the setup first"
 msgstr ""
 
-# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:120
 msgid "Start using Bottles"
 msgstr ""
 
 #: bottles/frontend/ui/onboard.blp:141
 msgid "Next"
-msgstr ""
+msgstr "შემდეგი"
 
-#: bottles/frontend/ui/preferences.blp:4 bottles/frontend/ui/window.blp:86
+#: bottles/frontend/ui/preferences.blp:5 bottles/frontend/ui/window.blp:86
 msgid "Preferences"
-msgstr ""
+msgstr "მორგება"
 
-#: bottles/frontend/ui/preferences.blp:11
-#: bottles/frontend/ui/preferences.blp:39
+#: bottles/frontend/ui/preferences.blp:12
+#: bottles/frontend/ui/preferences.blp:40
 msgid "General"
-msgstr ""
+msgstr "ზოგადი"
 
-#: bottles/frontend/ui/preferences.blp:14
+#: bottles/frontend/ui/preferences.blp:15
 msgid "Appearance"
-msgstr ""
-
-#: bottles/frontend/ui/preferences.blp:17
-msgid "Dark Mode"
-msgstr ""
+msgstr "გარეგნობა"
 
 #: bottles/frontend/ui/preferences.blp:18
+msgid "Dark Mode"
+msgstr "მუქი რეჟიმი"
+
+#: bottles/frontend/ui/preferences.blp:19
 msgid "Whether Bottles should use the dark color scheme."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:28
+#: bottles/frontend/ui/preferences.blp:29
 msgid "Show Update Date"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:29
+#: bottles/frontend/ui/preferences.blp:30
 msgid "Whether to show the update date in the bottle list."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:42
-#: data/com.usebottles.bottles.gschema.xml:46
-msgid "Notifications"
-msgstr "Pranešimai"
-
 #: bottles/frontend/ui/preferences.blp:43
+#: data/com.usebottles.bottles.gschema.xml:51
+msgid "Notifications"
+msgstr "გაფრთხილებები"
+
+#: bottles/frontend/ui/preferences.blp:44
 msgid "Show notifications for downloads and installs."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:52
+#: bottles/frontend/ui/preferences.blp:53
 msgid "Temp Files"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:53
+#: bottles/frontend/ui/preferences.blp:54
 msgid "Clean temp files when Bottles launches?"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:62
+#: bottles/frontend/ui/preferences.blp:63
 msgid "Close Bottles After Starting a Program"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:63
+#: bottles/frontend/ui/preferences.blp:64
 msgid "Close Bottles after starting a program from the file manager."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:73
+#: bottles/frontend/ui/preferences.blp:74
 msgid "Integrations"
-msgstr ""
+msgstr "ინტეგრაციები"
 
-#: bottles/frontend/ui/preferences.blp:76
+#: bottles/frontend/ui/preferences.blp:77
 msgid "Steam Proton Prefixes"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:77
+#: bottles/frontend/ui/preferences.blp:78
 msgid "List and manage Steam Proton prefixes."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:97
+#: bottles/frontend/ui/preferences.blp:98
 msgid "List Steam Apps in Programs List"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:98
+#: bottles/frontend/ui/preferences.blp:99
 msgid "Requires Steam for Windows installed in the bottle."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:107
+#: bottles/frontend/ui/preferences.blp:108
 msgid "List Epic Games in Programs List"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:108
+#: bottles/frontend/ui/preferences.blp:109
 msgid "Requires Epic Games Store installed in the bottle."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:117
+#: bottles/frontend/ui/preferences.blp:118
 msgid "List Ubisoft Games in Programs List"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:118
+#: bottles/frontend/ui/preferences.blp:119
 msgid "Requires Ubisoft Connect installed in the bottle."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:128
+#: bottles/frontend/ui/preferences.blp:129
 msgid "Advanced"
+msgstr "დამატებით"
+
+#: bottles/frontend/ui/preferences.blp:132
+msgid "Pre-Release"
+msgstr "პრერელიზი"
+
+#: bottles/frontend/ui/preferences.blp:133
+msgid "Display unstable versions of runners and components."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:131
+#: bottles/frontend/ui/preferences.blp:142
+msgid "Force Offline Mode"
+msgstr ""
+
+#: bottles/frontend/ui/preferences.blp:143
+msgid ""
+"Force disable any network activity even with available network connection."
+msgstr ""
+
+#: bottles/frontend/ui/preferences.blp:152
 msgid "Bottles Directory"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:132
+#: bottles/frontend/ui/preferences.blp:153
 msgid "Directory that contains the data of your Bottles."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:167
+#: bottles/frontend/ui/preferences.blp:188
 msgid "Runners"
-msgstr ""
+msgstr "გამშვებები"
 
-#: bottles/frontend/ui/preferences.blp:181
+#: bottles/frontend/ui/preferences.blp:202
 msgid "Bottles is running in offline mode, so runners are not available."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:208
-msgid "Pre-Release"
-msgstr ""
-
-#: bottles/frontend/ui/preferences.blp:209
-msgid "Display unstable versions of runners."
-msgstr ""
-
-#: bottles/frontend/ui/preferences.blp:224
+#: bottles/frontend/ui/preferences.blp:236
 msgid "DLL Components"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:238
+#: bottles/frontend/ui/preferences.blp:250
 msgid "Bottles is running in offline mode, so DLLs are not available."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:270
+#: bottles/frontend/ui/preferences.blp:282
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "DXVK-NVAPI"
 
-#: bottles/frontend/ui/preferences.blp:283
+#: bottles/frontend/ui/preferences.blp:295
 msgid "Core"
-msgstr ""
+msgstr "ძირითადი ბირთვული მოდულები"
 
-#: bottles/frontend/ui/preferences.blp:287
+#: bottles/frontend/ui/preferences.blp:299
 msgid "Runtime"
-msgstr ""
+msgstr "გაშვების დრო"
 
-#: bottles/frontend/ui/preferences.blp:291
+#: bottles/frontend/ui/preferences.blp:303
 msgid "WineBridge"
-msgstr ""
+msgstr "WineBridge"
 
-#: bottles/frontend/ui/preferences.blp:297
-#: data/com.usebottles.bottles.gschema.xml:66
+#: bottles/frontend/ui/preferences.blp:309
+#: data/com.usebottles.bottles.gschema.xml:71
 msgid "Experiments"
-msgstr "Eksperimentai"
+msgstr "ექსპერიმენტები"
 
-#: bottles/frontend/ui/preferences.blp:300
+#: bottles/frontend/ui/preferences.blp:312
 msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:303
+#: bottles/frontend/ui/preferences.blp:315
 msgid "Sandbox per bottle"
 msgstr ""
 
-#: bottles/frontend/ui/preferences.blp:304
+#: bottles/frontend/ui/preferences.blp:316
 msgid "In early development."
 msgstr ""
 
@@ -2101,7 +2104,7 @@ msgstr ""
 
 #: bottles/frontend/ui/program-entry.blp:55
 msgid "Rename…"
-msgstr ""
+msgstr "სახელის გადარქმევა…"
 
 #: bottles/frontend/ui/program-entry.blp:62
 msgid "Hide Program"
@@ -2134,11 +2137,11 @@ msgstr ""
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
-msgstr ""
+msgstr "შეტყობინების წაშლა"
 
 #: bottles/frontend/ui/window.blp:40
 msgid "Main Menu"
-msgstr ""
+msgstr "მთავარი მენიუ"
 
 #: bottles/frontend/ui/window.blp:54
 msgid ""
@@ -2149,131 +2152,130 @@ msgstr ""
 
 #: bottles/frontend/ui/window.blp:79
 msgid "Import…"
-msgstr ""
+msgstr "შემოტანა…"
 
 #: bottles/frontend/ui/window.blp:91
 msgid "Help"
-msgstr ""
+msgstr "დახმარება"
 
-# Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:96
 msgid "About Bottles"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:191
+#: bottles/frontend/views/bottle_details.py:193
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:207
+#: bottles/frontend/views/bottle_details.py:209
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "განახლებულია: %s"
 
-#: bottles/frontend/views/bottle_details.py:267
+#: bottles/frontend/views/bottle_details.py:270
 #, python-brace-format
 msgid "\"{0}\" added"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:270
-#: bottles/frontend/views/bottle_details.py:398
+#: bottles/frontend/views/bottle_details.py:273
+#: bottles/frontend/views/bottle_details.py:401
 #: bottles/frontend/views/list.py:128
 msgid "Select Executable"
-msgstr "Pasirinkti Executable"
-
-#: bottles/frontend/views/bottle_details.py:273
-msgid "Add"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:346
+#: bottles/frontend/views/bottle_details.py:276
+msgid "Add"
+msgstr "დამატება"
+
+#: bottles/frontend/views/bottle_details.py:349
 msgid "Hide Hidden Programs"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:383
-#: bottles/frontend/widgets/library.py:156
+#: bottles/frontend/views/bottle_details.py:386
+#: bottles/frontend/widgets/library.py:163
 #: bottles/frontend/widgets/program.py:184
 #, python-brace-format
 msgid "Launching \"{0}\"…"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:413
+#: bottles/frontend/views/bottle_details.py:416
 msgid "Be Aware of Sandbox"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:414
+#: bottles/frontend/views/bottle_details.py:417
 msgid ""
 "Bottles is running in a sandbox, a restricted permission environment needed "
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:416
-#: bottles/frontend/views/bottle_details.py:525
+#: bottles/frontend/views/bottle_details.py:419
+#: bottles/frontend/views/bottle_details.py:528
 #: bottles/frontend/windows/main_window.py:223
 msgid "_Dismiss"
-msgstr ""
+msgstr "_მოცილება"
 
-#: bottles/frontend/views/bottle_details.py:429
+#: bottles/frontend/views/bottle_details.py:432
 msgid "Select the location where to save the backup config"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:431
+#: bottles/frontend/views/bottle_details.py:434
 msgid "Export"
-msgstr ""
+msgstr "გატანა"
 
-#: bottles/frontend/views/bottle_details.py:433
+#: bottles/frontend/views/bottle_details.py:436
 msgid "Select the location where to save the backup archive"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:435
+#: bottles/frontend/views/bottle_details.py:438
 msgid "Backup"
-msgstr ""
+msgstr "მარქაფი"
 
-#: bottles/frontend/views/bottle_details.py:440
+#: bottles/frontend/views/bottle_details.py:443
 #, python-brace-format
 msgid "Backup created for \"{0}\""
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:442
+#: bottles/frontend/views/bottle_details.py:445
 #, python-brace-format
 msgid "Backup failed for \"{0}\""
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:501
+#: bottles/frontend/views/bottle_details.py:504
 msgid "Are you sure you want to permanently delete \"{}\"?"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:502
+#: bottles/frontend/views/bottle_details.py:505
 msgid ""
 "This will permanently delete all programs and settings associated with it."
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:505
-#: bottles/frontend/views/bottle_preferences.py:750
+#: bottles/frontend/views/bottle_details.py:508
+#: bottles/frontend/views/bottle_preferences.py:747
 msgid "_Delete"
-msgstr ""
+msgstr "_წაშლა"
 
-#: bottles/frontend/views/bottle_details.py:521
+#: bottles/frontend/views/bottle_details.py:524
 msgid "Missing Runner"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:522
+#: bottles/frontend/views/bottle_details.py:525
 msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:597
+#: bottles/frontend/views/bottle_details.py:600
 msgid "Are you sure you want to force stop all processes?"
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:598
+#: bottles/frontend/views/bottle_details.py:601
 msgid "This can cause data loss, corruption, and programs to malfunction."
 msgstr ""
 
-#: bottles/frontend/views/bottle_details.py:601
+#: bottles/frontend/views/bottle_details.py:604
 msgid "Force _Stop"
-msgstr ""
+msgstr "ძალით _გაჩერება"
 
 #: bottles/frontend/views/bottle_preferences.py:195
 msgid "This feature is unavailable on your system."
@@ -2288,19 +2290,19 @@ msgid "This bottle name is already in use."
 msgstr ""
 
 #: bottles/frontend/views/bottle_preferences.py:301
-#: bottles/frontend/windows/launchoptions.py:241
+#: bottles/frontend/windows/launchoptions.py:240
 msgid "Select Working Directory"
-msgstr ""
+msgstr "აირჩიეთ სამუშაო საქაღალდე"
 
-#: bottles/frontend/views/bottle_preferences.py:423
+#: bottles/frontend/views/bottle_preferences.py:422
 msgid "Directory that contains the data of \"{}\"."
 msgstr ""
 
-#: bottles/frontend/views/bottle_preferences.py:746
+#: bottles/frontend/views/bottle_preferences.py:743
 msgid "Are you sure you want to delete all snapshots?"
 msgstr ""
 
-#: bottles/frontend/views/bottle_preferences.py:747
+#: bottles/frontend/views/bottle_preferences.py:744
 msgid "This will delete all snapshots but keep your files."
 msgstr ""
 
@@ -2310,7 +2312,7 @@ msgstr ""
 
 #: bottles/frontend/views/details.py:153
 msgid "Installers"
-msgstr ""
+msgstr "დაყენების პროგრამები"
 
 #: bottles/frontend/views/details.py:234
 msgid "Operations in progress, please wait."
@@ -2326,29 +2328,29 @@ msgstr ""
 
 #: bottles/frontend/views/importer.py:94
 msgid "Import failed"
-msgstr ""
+msgstr "შემოტანა ჩავარდა"
 
 #: bottles/frontend/views/importer.py:108
-#: bottles/frontend/views/importer.py:147
+#: bottles/frontend/views/importer.py:145
 msgid "Importing backup…"
 msgstr ""
 
-#: bottles/frontend/views/importer.py:119
+#: bottles/frontend/views/importer.py:117
 msgid "Select a Backup Archive"
 msgstr ""
 
-#: bottles/frontend/views/importer.py:122
-#: bottles/frontend/views/importer.py:161
+#: bottles/frontend/views/importer.py:120
+#: bottles/frontend/views/importer.py:157
 msgid "Import"
-msgstr ""
+msgstr "შემოტანა"
 
-#: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
+#: bottles/frontend/views/importer.py:154 bottles/frontend/views/new.py:136
 msgid "Select a Configuration File"
 msgstr ""
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
-msgstr ""
+msgstr "ა/მ"
 
 #. Set tooltip text
 #: bottles/frontend/views/list.py:91
@@ -2365,20 +2367,19 @@ msgstr ""
 msgid "Your Bottles"
 msgstr ""
 
-#: bottles/frontend/views/loading.py:41
+#: bottles/frontend/views/loading.py:46
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
 msgstr ""
 
-#: bottles/frontend/views/loading.py:42
+#: bottles/frontend/views/loading.py:47
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
 msgstr ""
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "Bottles"
+msgstr ""
 
 #: bottles/frontend/views/new.py:176
 msgid "Creating Bottle…"
@@ -2402,20 +2403,19 @@ msgstr ""
 msgid "\"{0}\" was created successfully."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:142
+#: bottles/frontend/views/preferences.py:134
 msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:176
-#, fuzzy
+#: bottles/frontend/views/preferences.py:187
 msgid "Select Bottles Path"
-msgstr "Bottles"
+msgstr ""
 
-#: bottles/frontend/views/preferences.py:198
+#: bottles/frontend/views/preferences.py:209
 msgid "Relaunch Bottles?"
-msgstr "Perkrauti Bottles?"
+msgstr ""
 
-#: bottles/frontend/views/preferences.py:199
+#: bottles/frontend/views/preferences.py:210
 msgid ""
 "Bottles will need to be relaunched to use this directory.\n"
 "\n"
@@ -2424,39 +2424,56 @@ msgid ""
 "malfunction."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:202
+#: bottles/frontend/views/preferences.py:213
 msgid "_Relaunch"
+msgstr "_თავიდან გაშვება"
+
+#: bottles/frontend/views/preferences.py:306
+msgid "Based on Valve's Wine, includes Staging and Proton patches."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:243
-msgid "Based on Valve's Wine, includes staging and Proton patches."
+#: bottles/frontend/views/preferences.py:307
+msgid "Based on Wine upstream, includes Staging and Proton patches."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:244
-msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
-
-#: bottles/frontend/views/preferences.py:247
-msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
-
-#: bottles/frontend/views/preferences.py:248
+#: bottles/frontend/views/preferences.py:308
 msgid ""
-"Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
-"Requires the Steam Runtime turned on."
+"Based on the most recent bleeding-edge Valve's Proton Experimental Wine, "
+"includes Staging and custom patches. This is meant to be used with non-steam "
+"games outside of Steam."
 msgstr ""
 
-#: bottles/frontend/views/preferences.py:250
-msgid "Other"
+#: bottles/frontend/views/preferences.py:311
+msgid ""
+"Based on Wine upstream, Staging, Staging-TkG and Proton patchset optionally "
+"available."
 msgstr ""
 
-#: bottles/frontend/widgets/component.py:74
+#: bottles/frontend/views/preferences.py:313
+msgid "Based on Wine upstream, includes Staging patches."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:314
+msgid ""
+"Based on most recent bleeding-edge Valve's Proton Experimental, includes "
+"Staging and custom patches. Requires the Steam Runtime turned on."
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:317
+msgid "Other Wine runners"
+msgstr ""
+
+#: bottles/frontend/views/preferences.py:318
+msgid "Other Proton runners"
+msgstr ""
+
+#: bottles/frontend/widgets/component.py:76
 msgid "Upgrade"
-msgstr ""
+msgstr "განახლება"
 
-#: bottles/frontend/widgets/component.py:140
+#: bottles/frontend/widgets/component.py:142
 msgid "Installing…"
-msgstr ""
+msgstr "დაყენება…"
 
 #: bottles/frontend/widgets/dependency.py:107
 #: bottles/frontend/widgets/installer.py:81
@@ -2510,7 +2527,7 @@ msgstr ""
 msgid "Review for {0}"
 msgstr ""
 
-#: bottles/frontend/widgets/library.py:169
+#: bottles/frontend/widgets/library.py:176
 #: bottles/frontend/widgets/program.py:194
 #, python-brace-format
 msgid "Stopping \"{0}\"…"
@@ -2579,31 +2596,30 @@ msgid "No overrides found."
 msgstr ""
 
 #: bottles/frontend/windows/drives.py:71
-#, fuzzy
 msgid "Select Drive Path"
-msgstr "Bottles"
+msgstr ""
 
-#: bottles/frontend/windows/envvars.py:131
+#: bottles/frontend/windows/envvars.py:135
 msgid "No environment variables defined."
 msgstr ""
 
-#: bottles/frontend/windows/exclusionpatterns.py:108
+#: bottles/frontend/windows/exclusionpatterns.py:105
 msgid "No exclusion patterns defined."
 msgstr ""
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
-msgstr ""
+msgstr "აღმოჩენილია შეცდომა."
 
 #: bottles/frontend/windows/generic.py:91
 #: bottles/frontend/windows/generic.py:137
 #: bottles/frontend/windows/generic.py:182
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "ბუფერში კოპირება"
 
 #: bottles/frontend/windows/installer.py:62
 msgid "Select Resource File"
-msgstr "Pasirinkite išteklių failą"
+msgstr ""
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
@@ -2637,20 +2653,20 @@ msgstr ""
 
 #: bottles/frontend/windows/installer.py:166
 msgid "Installer failed with unknown error"
-msgstr "Įvyko diegimo klaida dėl nežinomos priežasties"
+msgstr ""
 
-#: bottles/frontend/windows/launchoptions.py:56
+#: bottles/frontend/windows/launchoptions.py:55
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
 msgstr ""
 
-#: bottles/frontend/windows/launchoptions.py:57
+#: bottles/frontend/windows/launchoptions.py:56
 msgid "This setting is different from the bottle's default."
 msgstr ""
 
-#: bottles/frontend/windows/launchoptions.py:215
+#: bottles/frontend/windows/launchoptions.py:214
 msgid "Select Script"
-msgstr "Pasirinkite Script"
+msgstr ""
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
@@ -2663,12 +2679,12 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
 msgid "Run Windows Software"
-msgstr "Paleisti Windows programas"
+msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
@@ -2684,367 +2700,354 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr "Tamsus rėžimas"
+msgstr "ბნელი თემა"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr "Priverstinai naudoti tamsųjį rėžimą."
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:16
-msgid "Toggle update date in list"
+msgid "Force Offline"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:17
-msgid "Toggle the update date in list of bottles."
+msgid ""
+"\"Force disable any network activity even with available network connection."
+"\""
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:21
-msgid "Steam apps listing"
+msgid "Toggle update date in list"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:22
-msgid "Toggle steam apps listing."
+msgid "Toggle the update date in list of bottles."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:26
-msgid "Epic Games listing"
+msgid "Steam apps listing"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:27
-msgid "Toggle epic games listing."
+msgid "Toggle steam apps listing."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:31
-msgid "Ubisoft Connect listing"
+msgid "Epic Games listing"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:32
-msgid "Toggle ubisoft connect listing."
+msgid "Toggle epic games listing."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:36
-msgid "Window width"
+msgid "Ubisoft Connect listing"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:37
-msgid "Change the window width."
+msgid "Toggle ubisoft connect listing."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:41
-msgid "Window height"
-msgstr ""
+msgid "Window width"
+msgstr "ფანჯრის სიგანე"
 
 #: data/com.usebottles.bottles.gschema.xml:42
+msgid "Change the window width."
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:46
+msgid "Window height"
+msgstr "ფანჯრის სიმაღლე"
+
+#: data/com.usebottles.bottles.gschema.xml:47
 msgid "Change the window height."
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:47
+#: data/com.usebottles.bottles.gschema.xml:52
 msgid "Show notifications."
-msgstr "Rodyti pranešimus."
+msgstr "გაფრთხილებების ჩვენება."
 
-#: data/com.usebottles.bottles.gschema.xml:51
+#: data/com.usebottles.bottles.gschema.xml:56
 msgid "Temp cleaning"
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:52
+#: data/com.usebottles.bottles.gschema.xml:57
 msgid "Clean the temp path when booting the system."
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:56
+#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Release Candidate"
-msgstr "Paleisti kandidatą"
+msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:57
+#: data/com.usebottles.bottles.gschema.xml:62
 msgid "Toggle release candidate for runners."
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:61
+#: data/com.usebottles.bottles.gschema.xml:66
 msgid "Startup view"
-msgstr "Paleidimo vaizdas"
-
-#: data/com.usebottles.bottles.gschema.xml:62
-msgid "Choose which view the application should be started in."
-msgstr "Pasirinkti kurį vaizdą matysite pradėjus aplikaciją."
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:67
+msgid "Choose which view the application should be started in."
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:72
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:71
+#: data/com.usebottles.bottles.gschema.xml:76
 msgid "Steam Proton Support"
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:72
+#: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle Steam Proton prefixes support."
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:76
+#: data/com.usebottles.bottles.gschema.xml:81
 msgid "Experiments:sandbox"
-msgstr ""
+msgstr "ექსპერიმენტული სენდბოქსი"
 
-#: data/com.usebottles.bottles.gschema.xml:77
+#: data/com.usebottles.bottles.gschema.xml:82
 msgid "Toggle experimental Sandbox per bottle."
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:81
-msgid "Automatically close Bottles"
-msgstr "Automatiškai išjungti Bottles"
-
-#: data/com.usebottles.bottles.gschema.xml:82
-msgid "Close Bottles after starting an executable from the file manager."
-msgstr ""
-
 #: data/com.usebottles.bottles.gschema.xml:86
-msgid "Show sandbox warning"
+msgid "Automatically close Bottles"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:87
+msgid "Close Bottles after starting an executable from the file manager."
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:91
+msgid "Show sandbox warning"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:92
 msgid "Toggle sandbox warning."
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
-msgid "Run Windows software on Linux with Bottles!"
+msgid ""
+"Bottles lets you run Windows software on Linux, such as applications and "
+"games. It introduces a workflow that helps you organize by categorizing each "
+"software to your liking. Bottles provides several tools and integrations to "
+"help you manage and optimize your applications."
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:12
-msgid "Bottle software and enjoy at your leisure!"
+msgid "Features:"
+msgstr "თვისებები:"
+
+#: data/com.usebottles.bottles.metainfo.xml.in:14
+msgid "Use pre-configured environments as a base"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:13
-msgid ""
-"Our built-in dependency installation system grants automatic software "
-"compatibility access. Use the download manager to download the official "
-"components: the runner (Wine, Proton), DXVK, dependencies, etc."
+#: data/com.usebottles.bottles.metainfo.xml.in:15
+msgid "Change runners for any bottle"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:16
-msgid ""
-"Bottle versioning keeps your work safe now and lets you restore it later!"
+msgid "Various optimizations and options for gaming"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:17
-msgid "Features:"
+msgid "Repair in case software or bottle is broken"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:18
+msgid "Install various known dependencies"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:19
-msgid "Create bottles using preconfigured environments or create your own"
+msgid "Integrated task manager to manage and monitor processes"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:20
-msgid ""
-"Run executables (.exe/.msi) in your bottles, directly from the context menu "
-"of your file-manager"
+msgid "Backup and restore"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:21
-msgid "Automated detection of applications installed in your bottles"
+#: data/com.usebottles.bottles.metainfo.xml.in:69
+msgid "Fix runners and components from not showing when prereleases are off"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:22
-msgid "Add environment variables quickly"
+#: data/com.usebottles.bottles.metainfo.xml.in:70
+msgid "Fix Steam runtime compatibility with Wine runners"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:23
-msgid "Override DLLs directly from per-bottle preferences"
+#: data/com.usebottles.bottles.metainfo.xml.in:75
+msgid "A few bug fixes"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:24
-msgid "On-the-fly runner change for any Bottle"
+#: data/com.usebottles.bottles.metainfo.xml.in:80
+msgid "Support for the double-DLL VKD3D"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:25
-msgid ""
-"Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
-"compiler, offload … and much more.)"
+#: data/com.usebottles.bottles.metainfo.xml.in:81
+msgid "Updated Flatpak runtime"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:26
-msgid "Automatic installation and management of Wine and Proton runners"
+#: data/com.usebottles.bottles.metainfo.xml.in:82
+msgid "Minor improvement and fixes to the library"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:27
-msgid "Automatic bottle repair in case of breakage"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:28
-msgid "Integrated dependency-installer based on a community-driven repository"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:29
-msgid "Integrated Task manager for Wine processes"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:30
-msgid "Access to ProtonDB and WineHQ for support"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:31
-msgid "System for bringing your configuration to new versions of Bottles"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:32
-msgid "Back up and import bottles"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:33
-msgid "Import Wine prefixes from other managers"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:34
-msgid "Bottles versioning"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:35
-msgid "... and much more that you can find by installing Bottles!"
+#: data/com.usebottles.bottles.metainfo.xml.in:83
+msgid "Fix the Steam link not being correct"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
+msgid "Download stable component by default"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:85
+msgid "Make window remember dimensions"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:90
 msgid "Update metadata information"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:89
+#: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Add more update information and correct release notes version"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:94
+#: data/com.usebottles.bottles.metainfo.xml.in:100
 msgid "Fixed \"Add to Steam\" button"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:95
+#: data/com.usebottles.bottles.metainfo.xml.in:101
 msgid "Fixed BottleConfig being not serializable"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:96
+#: data/com.usebottles.bottles.metainfo.xml.in:102
 msgid "Fixed Patool double extraction failing"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:101
+#: data/com.usebottles.bottles.metainfo.xml.in:107
 msgid "Correct version"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:106
+#: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Fix crash when creating a bottle"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:111
+#: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Major change: Redesign New Bottle interface"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:112
+#: data/com.usebottles.bottles.metainfo.xml.in:118
 msgid "Quality of life improvements:"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:114
-msgid "Replace emote-love icon with library in library page"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:115
-msgid "Add toast for \"Run Executable\""
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:117
-msgid "Bug fixes:"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:119
-msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
-
 #: data/com.usebottles.bottles.metainfo.xml.in:120
-msgid "Importing backups resulted an error"
+msgid "Replace emote-love icon with a library in library page"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
-msgid "Steam Runtime automatically enabled when using wine-ge-custom"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:122
-msgid ""
-"Various library related fixes, like empty covers, and crashes related to "
-"missing entries"
+msgid "Add toast for \"Run Executable\""
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
+msgid "Bug fixes:"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:125
+msgid "Adding a shortcut to Steam resulted in an error"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:126
+msgid "Importing backups resulted an error"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:127
+msgid "Steam Runtime automatically enabled when using wine-ge-custom"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:128
+msgid ""
+"Various library-related fixes, like empty covers, and crashes related to "
+"missing entries"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:129
 msgid "Fix various issues related to text encoding"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:130
+#: data/com.usebottles.bottles.metainfo.xml.in:136
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:137
+#: data/com.usebottles.bottles.metainfo.xml.in:143
 msgid "Correct version date"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:138
-msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:145
-msgid "Gamescope improvements and fixes"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:146
-msgid "Dependency installation is faster and more stable"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:147
-msgid "The health check has more information for faster debugging"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:148
-msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:149
-msgid "Fix crash when downloading a component"
-msgstr ""
-
-#: data/com.usebottles.bottles.metainfo.xml.in:150
-msgid "Backend code improvement by avoiding spin-lock"
+#: data/com.usebottles.bottles.metainfo.xml.in:144
+msgid "Hide NVIDIA-related critical errors on non-NVIDIA systems"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
-msgid "More variables for installer scripting"
+msgid "Gamescope improvements and fixes"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
-msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
+msgid "Dependency installation is faster and more stable"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
-msgid "Improvement to build system"
+msgid "The health check has more information for faster debugging"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
-msgid "Enabling VKD3D by default when creating bottles for gaming"
+msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
-msgid "Fix crashes when reading Steam files with bad encodings"
+msgid "Fix crash when downloading a component"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
+msgid "Backend code improvement by avoiding spin-lock"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:157
+msgid "More variables for installer scripting"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:158
+msgid "Fix onboard dialog showing \"All ready\" while it was not ready"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:159
+msgid "Improvement to build system"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:160
+msgid "Enabling VKD3D by default when creating bottles for gaming"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:161
+msgid "Fix crashes when reading Steam files with bad encodings"
+msgstr ""
+
+#: data/com.usebottles.bottles.metainfo.xml.in:162
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:157
+#: data/com.usebottles.bottles.metainfo.xml.in:163
 msgid "More FSR fixes"
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:158
+#: data/com.usebottles.bottles.metainfo.xml.in:164
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
 
-#: data/com.usebottles.bottles.metainfo.xml.in:159
+#: data/com.usebottles.bottles.metainfo.xml.in:165
 msgid "and many, many, many more!"
 msgstr ""
-
-#~ msgid "Mirko Brombin"
-#~ msgstr "Mirko Brombin"

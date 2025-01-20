@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-05-17 09:01+0000\n"
-"Last-Translator: Ilkka Myller <ilkka@myller.com>\n"
+"PO-Revision-Date: 2025-01-15 00:23+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
 "Language: fi\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -1358,9 +1358,9 @@ msgid "Command Arguments"
 msgstr "Komennon argumentit"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:47
-#, fuzzy, c-format
+#, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "esim .: -esimerkki1 -esimerkki2 -esimerkki3=hei"
+msgstr "esim.: VAR=arvo %command% -esimerkki1 -esimerkki2 -esimerkki3=hei"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:52
 msgid "Post-run Script"
@@ -1770,14 +1770,12 @@ msgid "No Prefixes Found"
 msgstr "Etuliitteitä ei löytynyt"
 
 #: bottles/frontend/ui/importer.blp:39
-#, fuzzy
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"Etuliitteitä ei löytynyt Lutriksesta, PlayOnLinuxista jne.\n"
-"                                    Napsauta yllä olevaa kuvaketta "
-"tuodaksesi pullon varmuuskopiosta"
+"Ulkoisia etuliitteitä ei löytynyt. Onko Bottlesilla pääsy niihin?\n"
+"Käytä yläreunassa olevaa kuvaketta tuodaksesi pullon varmuuskopiosta."
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
@@ -2484,9 +2482,9 @@ msgid "Run executable in \"{self.config.Name}\""
 msgstr "Käynnistetään \"{self.config.Name}\""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Käynnistetään \"{0}\"…"
+msgstr "Käynnistetään \"{0}\" \"{1}\":ssa…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"

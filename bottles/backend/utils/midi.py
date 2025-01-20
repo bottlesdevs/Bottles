@@ -27,7 +27,7 @@ logging = Logger()
 
 
 class FluidSynth:
-    """FluidSynth instance bound to a unique SoundFont (.sf2, .sf3) file path."""
+    """FluidSynth instance bounded to a unique SoundFont (.sf2, .sf3) file."""
 
     __active_instances: dict[int, Self] = {}
 

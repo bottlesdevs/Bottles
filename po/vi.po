@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-04-01 11:01+0000\n"
-"Last-Translator: Hữu Quốc Kiệt Nguyễn <huuquockietn@gmail.com>\n"
+"PO-Revision-Date: 2025-01-08 14:04+0000\n"
+"Last-Translator: rezarria <votanamcb@outlook.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bottles/"
 "bottles/vi/>\n"
 "Language: vi\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -545,7 +545,7 @@ msgstr "Tìm kiếm các gói phụ thuộc…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Bạn hiện đang offline :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
@@ -706,18 +706,16 @@ msgid "FidelityFX Super Resolution"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:106
-#, fuzzy
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "Cải thiện hiệu suất với chi phí sử dụng năng lượng gia tăng."
+msgstr "Cải thiện hiệu suất đồ hoạ. Chỉ dành cho Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:125
-#, fuzzy
 msgid "Discrete Graphics"
-msgstr "GPU chuyên dụng"
+msgstr "GPU chuyên dụng (rời)"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
@@ -726,13 +724,15 @@ msgid ""
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:135
+#, fuzzy
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "Xử lý hậu kỳ"
 
 #: bottles/frontend/ui/details-preferences.blp:136
+#, fuzzy
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
-msgstr ""
+msgstr "Thêm xử lý hậu kỳ với vkBasalt. Chỉ hoạt động trên Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:138
 #, fuzzy
@@ -741,7 +741,7 @@ msgstr "Quản lý thiết đặt Gamescope"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "Quản lý cách các trò chơi hiện thị trên màn hình bằng Gamescope."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
@@ -811,24 +811,24 @@ msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Cải thiện thời gian nạp khi trò chơi chạy nhiều lần. Lần đầu tiên chạy sẽ "
+"tốn nhiều thời gian."
 
 #: bottles/frontend/ui/details-preferences.blp:226
-#, fuzzy
 msgid "Manage vmtouch settings"
-msgstr "Quản lý thiết đặt Gamescope"
+msgstr "Quản lý cài đặt vmtouch"
 
 #: bottles/frontend/ui/details-preferences.blp:241
 msgid "OBS Game Capture"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:242
-#, fuzzy
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr "Tìm kiếm các chương trình đã cài đặt"
+msgstr "Sử dụng OBS Game Capture cho toàn bộ chương trình Vulkan và OpenGL"
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
-msgstr ""
+msgstr "Tương thích"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 #, fuzzy
@@ -841,11 +841,11 @@ msgstr "Đang cập nhật phiên bản Windows, vui lòng đợi…"
 
 #: bottles/frontend/ui/details-preferences.blp:266
 msgid "Language"
-msgstr ""
+msgstr "Ngôn ngữ"
 
 #: bottles/frontend/ui/details-preferences.blp:267
 msgid "Choose the language to use with programs."
-msgstr ""
+msgstr "Chọn ngôn ngữ sẽ được dùng với các chương trình"
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Dedicated Sandbox"
@@ -866,26 +866,24 @@ msgid "Bottles Runtime"
 msgstr "Bottles Runtime"
 
 #: bottles/frontend/ui/details-preferences.blp:296
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
-"Cung cấp một gói thư viện bổ sung để tương thích hơn,\n"
-"vô hiệu hóa nếu bạn gặp sự cố."
+"Cung cấp một gói thư viện bổ sung để tương thích hơn, vô hiệu hóa nếu bạn "
+"gặp sự cố."
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
 msgstr "Steam Runtime"
 
 #: bottles/frontend/ui/details-preferences.blp:307
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
-"Cung cấp một gói thư viện bổ sung để tương thích hơn,\n"
-"vô hiệu hóa nếu bạn gặp sự cố."
+"Cung cấp một gói thư viện bổ sung để tương thích hơn với các trò chơi của "
+"Steam, vô hiệu hóa nếu bạn gặp sự cố."
 
 #: bottles/frontend/ui/details-preferences.blp:315
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -898,22 +896,20 @@ msgstr "Thư mục làm việc"
 #: bottles/frontend/ui/dialog-launch-options.blp:90
 #: bottles/frontend/ui/new.blp:150 bottles/frontend/ui/new.blp:181
 #: bottles/frontend/ui/preferences.blp:136
-#, fuzzy
 msgid "Reset to Default"
-msgstr "Chi tiết Chai"
+msgstr "Tái cài đặt về mặc định"
 
 #: bottles/frontend/ui/details-preferences.blp:339
 #: bottles/frontend/ui/preferences.blp:157 bottles/frontend/views/new.py:78
 #: bottles/frontend/views/preferences.py:210
 msgid "(Default)"
-msgstr ""
+msgstr "(Mặc định)"
 
 #: bottles/frontend/ui/details-preferences.blp:347
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
 #: bottles/frontend/ui/dialog-dll-overrides.blp:12
-#, fuzzy
 msgid "DLL Overrides"
-msgstr "DLL ghi đè"
+msgstr "Ghi đè DLL"
 
 #: bottles/frontend/ui/details-preferences.blp:357
 #: bottles/frontend/ui/dialog-env-vars.blp:20
@@ -922,9 +918,8 @@ msgid "Environment Variables"
 msgstr "Biến môi trường"
 
 #: bottles/frontend/ui/details-preferences.blp:367
-#, fuzzy
 msgid "Manage Drives"
-msgstr "Tình quản lý thực thi"
+msgstr "Quản lý ổ nhớ"
 
 #: bottles/frontend/ui/details-preferences.blp:381
 #, fuzzy
@@ -967,7 +962,7 @@ msgstr "Làm mới"
 
 #: bottles/frontend/ui/details-taskmanager.blp:22
 msgid "Stop process"
-msgstr ""
+msgstr "Dừng tiến trình"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 #, fuzzy
@@ -994,9 +989,8 @@ msgid "Create new Snapshot"
 msgstr "Tạo trạng thái mới"
 
 #: bottles/frontend/ui/details.blp:16
-#, fuzzy
 msgid "Details"
-msgstr "Chi tiết Chai"
+msgstr "Chi tiết"
 
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
@@ -1100,13 +1094,12 @@ msgid "Quit"
 msgstr "Thoát"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:11
-#, fuzzy
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
 "Thư viện Liên kết Động (DLL) có thể được chỉ định là tích hợp (được cung cấp "
-"bởi Wine) hoặc bản địa (được cung cấp bởi chương trình)"
+"bởi Wine) hoặc native (được cung cấp bởi chương trình)"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 #, fuzzy
@@ -1130,7 +1123,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
-msgstr ""
+msgstr "Ký tự"
 
 #: bottles/frontend/ui/dialog-drives.blp:49
 #, fuzzy
@@ -1160,12 +1153,11 @@ msgstr "Đang nhân bản…"
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/views/new.py:177
 msgid "This could take a while."
-msgstr ""
+msgstr "Điều này sẽ tốn kha khá thời gian."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
-#, fuzzy
 msgid "Bottle Duplicated"
-msgstr "Chai được sao chép"
+msgstr "Bottle đã được nhân bản"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:28
 msgid ""
@@ -1177,7 +1169,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-env-vars.blp:31
 msgid "Variable Name"
-msgstr ""
+msgstr "Tên biến"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:37
 #, fuzzy
@@ -1255,7 +1247,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
 msgid "Frame Rate Limit"
-msgstr ""
+msgstr "Giới hạn khung hình"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
 msgid "Frame Rate Limit When Unfocused"
@@ -1273,20 +1265,19 @@ msgstr "Độ rộng của cửa sổ"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:166
 msgid "Borderless"
-msgstr ""
+msgstr "Không viền"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:172
 msgid "Fullscreen"
-msgstr ""
+msgstr "Toàn màn hình"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:45
-#, fuzzy
 msgid "Start Installation"
-msgstr "Hoạt động"
+msgstr "Bắt đầu cài đặt"
 
 #: bottles/frontend/ui/dialog-installer.blp:64
 msgid ""
@@ -1296,7 +1287,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
-msgstr ""
+msgstr "Đã chạy"
 
 #: bottles/frontend/ui/dialog-installer.blp:127
 #, fuzzy
@@ -1318,9 +1309,8 @@ msgid "Something went wrong."
 msgstr ""
 
 #: bottles/frontend/ui/dialog-journal.blp:9
-#, fuzzy
 msgid "All messages"
-msgstr "Xóa tin nhắn"
+msgstr "Toàn bộ tin nhắn"
 
 #: bottles/frontend/ui/dialog-journal.blp:13
 msgid "Critical"
@@ -1411,23 +1401,20 @@ msgid "Preferences Overrides"
 msgstr "Tùy chọn"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:119
-#, fuzzy
 msgid "Reset to Bottle's Defaults"
-msgstr "Chi tiết Chai"
+msgstr "Tái cài đặt về mặc định"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:165
-#, fuzzy
 msgid "Virtual Desktop"
-msgstr "Sử dụng máy tính ảo"
+msgstr "Sử dụng desktop ảo"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
 msgid "Proton Disclaimer"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:21
-#, fuzzy
 msgid "Use Proton"
-msgstr "ProtonDB"
+msgstr "Dùng Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:35
 msgid ""
@@ -1454,12 +1441,11 @@ msgstr "Đổi tên"
 
 #: bottles/frontend/ui/dialog-rename.blp:30
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "Nhập tên mới cho chương trình đang chọn."
 
 #: bottles/frontend/ui/dialog-rename.blp:33
-#, fuzzy
 msgid "New Name"
-msgstr "Tên"
+msgstr "Tên mới"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 #, fuzzy
@@ -1477,23 +1463,20 @@ msgid "Write below the arguments to be passed to the executable."
 msgstr "Viết các đối số sẽ được thực thi dưới đây."
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
-#, fuzzy
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "vd: -opengl -Bỏ_qua_Bản_vá_Trước"
+msgstr "vd: -opengl -SkipBuildPatchPrereq"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
-#, fuzzy
 msgid "Sandbox Settings"
-msgstr "Quản lý thiết đặt Gamescope"
+msgstr "Thiết lập sandbox"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-sandbox.blp:34
-#, fuzzy
 msgid "Share Sound"
-msgstr "Không tìm thấy trạng thái nào"
+msgstr ""
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:16
 msgid "Upgrade Needed"
@@ -1509,9 +1492,8 @@ msgid "Launch upgrade"
 msgstr ""
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
-#, fuzzy
 msgid "New Versioning System"
-msgstr "Trình phiên bản"
+msgstr ""
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
 msgid "The new bottle versioning system has landed."
