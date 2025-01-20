@@ -71,14 +71,13 @@ class BottlesWindow(Adw.ApplicationWindow):
     settings = Gio.Settings.new(BASE_ID)
     argument_executed = False
 
-    def __init__(self, arg_bottle, **kwargs):
+    def __init__(self, **kwargs):
         width = self.settings.get_int("window-width")
         height = self.settings.get_int("window-height")
 
         super().__init__(**kwargs, default_width=width, default_height=height)
 
         self.manager = None
-        self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
         self.set_icon_name(APP_ID)
 
@@ -206,7 +205,7 @@ class BottlesWindow(Adw.ApplicationWindow):
 
             # Pages
             self.page_details = BottleDetailsView(self)
-            self.page_list = BottlesListView(self, arg_bottle=self.arg_bottle)
+            self.page_list = BottlesListView(self)
             self.page_importer = ImporterView(self)
             self.page_library = LibraryView(self)
 

@@ -254,7 +254,7 @@ class Bottles(Adw.Application):
         Adw.Application.do_activate(self)
         win = self.props.active_window
         if not win:
-            win = BottlesWindow(application=self, arg_bottle=self.arg_bottle)
+            win = BottlesWindow(application=self)
         self.win = win
 
         win.present()
