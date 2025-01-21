@@ -29,6 +29,7 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.wine import WineUtils
+from bottles.backend.repos.installer import InstallerRepo
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winecommand import WineCommand
 
@@ -38,9 +39,11 @@ logging = Logger()
 class InstallerManager:
     def __init__(self, manager):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("installers")
         self.__component_manager = manager.component_manager
         self.__local_resources = {}
+
+        url = "https://proxy.usebottles.com/repo/programs/"
+        self.__repo = InstallerRepo(url, "")
 
     @lru_cache
     def get_review(self, installer_name, parse: bool = True) -> str:

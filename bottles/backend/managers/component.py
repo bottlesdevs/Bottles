@@ -38,6 +38,7 @@ from bottles.backend.state import (
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.repos.component import ComponentRepo
 
 logging = Logger()
 
@@ -46,7 +47,9 @@ logging = Logger()
 class ComponentManager:
     def __init__(self, manager):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("components")
+
+        url = "https://proxy.usebottles.com/repo/components/"
+        self.__repo = ComponentRepo(url, "")
 
     @lru_cache
     def get_component(self, name: str, plain: bool = False) -> dict:
