@@ -47,7 +47,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_theme = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
     switch_force_offline = Gtk.Template.Child()
-    switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
     switch_steam = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
@@ -103,9 +102,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.switch_force_offline,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "temp", self.switch_temp, "active", Gio.SettingsBindFlags.DEFAULT
         )
         # Connect RC signal to another func
         self.settings.bind(
