@@ -15,7 +15,6 @@ bottles_sources = [
   'importer.py',
   'conf.py',
   'journal.py',
-  'repository.py',
   'template.py',
   'sandbox.py',
   'steam.py',

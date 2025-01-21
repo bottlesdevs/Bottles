@@ -33,7 +33,6 @@ class Signals(Enum):
     ForceStopNetworking = (
         "LoadingView.stop_networking"  # status(bool): Force Stop network operations
     )
-    RepositoryFetched = "RepositoryManager.repo_fetched"  # status: fetch success or not, data(int): total repositories
     NetworkStatusChanged = (
         "ConnectionUtils.status_changed"  # status(bool): network ready or not
     )
