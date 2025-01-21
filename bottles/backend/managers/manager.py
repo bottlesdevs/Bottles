@@ -1491,38 +1491,6 @@ class Manager(metaclass=Singleton):
         logging.info(f"Deleted the bottle in: {path}")
         return True
 
-    def repair_bottle(self, config: BottleConfig) -> bool:
-        """
-        This function tries to repair a broken bottle, creating a
-        new bottle configuration with the latest runner. Each fixed
-        bottle will use the Custom environment.
-        TODO: will be replaced by the BottlesManager class.
-        """
-        logging.info(f"Trying to repair the bottle: [{config.Name}]…")
-
-        wineboot = WineBoot(config)
-        bottle_path = f"{Paths.bottles}/{config.Name}"
-
-        # create new config with path as name and Custom environment
-        new_config = BottleConfig()
-        new_config.Name = config.Name
-        new_config.Runner = self.get_latest_runner()
-        new_config.Path = config.Name
-        new_config.Environment = "Custom"
-        new_config.Creation_Date = str(datetime.now())
-        new_config.Update_Date = str(datetime.now())
-
-        saved = new_config.dump(os.path.join(bottle_path, "bottle.yml"))
-        if not saved.status:
-            return False
-
-        # Execute wineboot in bottle to generate missing files
-        wineboot.init()
-
-        # Update bottles
-        self.update_bottles()
-        return True
-
     def install_dll_component(
         self,
         config: BottleConfig,
