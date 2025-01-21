@@ -105,7 +105,6 @@ class Manager(metaclass=Singleton):
     def __init__(
         self,
         g_settings: Any = None,
-        is_cli: bool = False,
         **kwargs,
     ):
         super().__init__(**kwargs)
@@ -113,7 +112,6 @@ class Manager(metaclass=Singleton):
         times = {"start": time.time()}
 
         # common variables
-        self.is_cli = is_cli
         self.settings = g_settings or GSettingsStub
         self.data_mgr = DataManager()
         _offline = False
@@ -142,10 +140,7 @@ class Manager(metaclass=Singleton):
         self.steam_manager = SteamManager()
         times["SteamManager"] = time.time()
 
-        if not self.is_cli:
-            times.update(self.checks(install_latest=False, first_run=True).data)
-        else:
-            logging.set_silent()
+        times.update(self.checks(install_latest=False, first_run=True).data)
 
         if "BOOT_TIME" in os.environ:
             _temp_times = times.copy()
@@ -894,7 +889,6 @@ class Manager(metaclass=Singleton):
         if (
             self.settings.get_boolean("steam-proton-support")
             and self.steam_manager.is_steam_supported
-            and not self.is_cli
         ):
             self.steam_manager.update_bottles()
             self.local_bottles.update(self.steam_manager.list_prefixes())
