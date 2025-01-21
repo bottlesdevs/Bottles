@@ -182,7 +182,6 @@ class Manager(metaclass=Singleton):
 
         if first_run:
             self.organize_components()
-            self.__clear_temp()
 
         self.organize_dependencies()
 
@@ -192,18 +191,6 @@ class Manager(metaclass=Singleton):
         rv.data["check_bottles"] = time.time()
 
         return rv
-
-    def __clear_temp(self, force: bool = False):
-        """Clears the temp directory if user setting allows it. Use the force
-        parameter to force clearing the directory.
-        """
-        if self.settings.get_boolean("temp") or force:
-            try:
-                shutil.rmtree(Paths.temp)
-                os.makedirs(Paths.temp, exist_ok=True)
-                logging.info("Temp directory cleaned successfully!")
-            except FileNotFoundError:
-                self.check_app_dirs()
 
     def update_bottles(self, silent: bool = False):
         """Checks for new bottles and update the list view."""
