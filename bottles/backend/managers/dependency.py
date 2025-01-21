@@ -38,6 +38,7 @@ from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.regsvr32 import Regsvr32
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.repos.dependency import DependencyRepo
 
 logging = Logger()
 
@@ -45,7 +46,9 @@ logging = Logger()
 class DependencyManager:
     def __init__(self, manager):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("dependencies")
+
+        url = "https://proxy.usebottles.com/repo/dependencies/"
+        self.__repo = DependencyRepo(url, "")
 
     @lru_cache
     def get_dependency(self, name: str, plain: bool = False) -> str | dict | bool:

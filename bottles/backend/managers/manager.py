@@ -43,7 +43,6 @@ from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.importer import ImportManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.library import LibraryManager
-from bottles.backend.managers.repository import RepositoryManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
@@ -127,9 +126,6 @@ class Manager(metaclass=Singleton):
                 )
 
         # sub-managers
-        self.repository_manager = RepositoryManager()
-
-        times["RepositoryManager"] = time.time()
         self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
         self.component_manager = ComponentManager(self)
