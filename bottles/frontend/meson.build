@@ -75,15 +75,6 @@ gnome.compile_resources('bottles',
 )
 
 configure_file(
-  input: 'cli.py',
-  output: 'bottles-cli',
-  configuration: conf,
-  install: true,
-  install_dir: get_option('bindir'),
-  install_mode: ['rwxr-xr-x']
-)
-
-configure_file(
   input: 'bottles.py',
   output: 'bottles',
   configuration: conf,
