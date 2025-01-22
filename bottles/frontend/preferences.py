@@ -169,13 +169,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.btn_bottles_path_reset.connect("clicked", self.__reset_bottles_path)
         self.btn_steam_proton_doc.connect("clicked", self.__open_steam_proton_doc)
 
-        if not self.manager.steam_manager.is_steam_supported:
-            self.switch_steam.set_sensitive(False)
-            self.action_steam_proton.set_tooltip_text(
-                _("Steam was not found or Bottles does not have enough permissions.")
-            )
-            self.btn_steam_proton_doc.set_visible(True)
-
         if not self.style_manager.get_system_supports_color_schemes():
             self.row_theme.set_visible(True)
 

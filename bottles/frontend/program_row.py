@@ -42,7 +42,6 @@ class ProgramRow(Adw.ActionRow):
     btn_run = Gtk.Template.Child()
     btn_stop = Gtk.Template.Child()
     btn_launch_options = Gtk.Template.Child()
-    btn_launch_steam = Gtk.Template.Child()
     btn_uninstall = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_hide = Gtk.Template.Child()
@@ -71,16 +70,7 @@ class ProgramRow(Adw.ActionRow):
 
         self.set_title(self.program["name"])
 
-        if is_steam:
-            self.set_subtitle("Steam")
-            for w in [self.btn_run, self.btn_stop, self.btn_menu]:
-                w.set_visible(False)
-                w.set_sensitive(False)
-            self.btn_launch_steam.set_visible(True)
-            self.btn_launch_steam.set_sensitive(True)
-            self.set_activatable_widget(self.btn_launch_steam)
-        else:
-            self.executable = program.get("executable", "")
+        self.executable = program.get("executable", "")
 
         if program.get("removed"):
             self.add_css_class("removed")
@@ -90,9 +80,6 @@ class ProgramRow(Adw.ActionRow):
 
         self.btn_hide.set_visible(not program.get("removed"))
         self.btn_unhide.set_visible(program.get("removed"))
-
-        if self.manager.steam_manager.is_steam_supported:
-            self.btn_add_steam.set_visible(True)
 
         library_manager = LibraryManager()
         for _uuid, entry in library_manager.get_library().items():
@@ -105,7 +92,6 @@ class ProgramRow(Adw.ActionRow):
 
         """Signal connections"""
         self.btn_run.connect("clicked", self.run_executable)
-        self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_launch_terminal.connect("clicked", self.run_executable, True)
         self.btn_stop.connect("clicked", self.stop_process)
         self.btn_launch_options.connect("clicked", self.show_launch_options_view)
@@ -177,13 +163,6 @@ class ProgramRow(Adw.ActionRow):
         self.window.show_toast(_('Launching "{0}"…').format(self.program["name"]))
         RunAsync(_run, callback=self.__reset_buttons)
         self.__reset_buttons()
-
-    def run_steam(self, _widget):
-        self.manager.steam_manager.launch_app(self.config.CompatData)
-        self.window.show_toast(
-            _('Launching "{0}" with Steam…').format(self.program["name"])
-        )
-        self.pop_actions.popdown()  # workaround #1640
 
     def stop_process(self, widget):
         self.window.show_toast(_('Stopping "{0}"…').format(self.program["name"]))
