@@ -43,7 +43,6 @@ from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.importer import ImportManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.library import LibraryManager
-from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.models.config import BottleConfig
@@ -130,8 +129,6 @@ class Manager(metaclass=Singleton):
         self.dependency_manager = DependencyManager(self)
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
-        self.steam_manager = SteamManager()
-        times["SteamManager"] = time.time()
 
         times.update(self.checks(install_latest=False, first_run=True).data)
 
@@ -644,17 +641,6 @@ class Manager(metaclass=Singleton):
                     )
                     found.append(executable_name)
 
-            win_steam_manager = SteamManager(config, is_windows=True)
-
-            if (
-                self.settings.get_boolean("steam-programs")
-                and win_steam_manager.is_steam_supported
-            ):
-                programs_names = [p.get("name", "") for p in installed_programs]
-                for app in win_steam_manager.get_installed_apps_as_programs():
-                    if app["name"] not in programs_names:
-                        installed_programs.append(app)
-
             if self.settings.get_boolean(
                 "epic-games"
             ) and EpicGamesStoreManager.is_epic_supported(config):
@@ -819,13 +805,6 @@ class Manager(metaclass=Singleton):
                 "Bottles found:\n - {}".format("\n - ".join(self.local_bottles))
             )
 
-        if (
-            self.settings.get_boolean("steam-proton-support")
-            and self.steam_manager.is_steam_supported
-        ):
-            self.steam_manager.update_bottles()
-            self.local_bottles.update(self.steam_manager.list_prefixes())
-
     # Update parameters in bottle config
     def update_config(
         self,
@@ -878,9 +857,6 @@ class Manager(metaclass=Singleton):
         config.dump(os.path.join(bottle_path, "bottle.yml"))
 
         config.Update_Date = str(datetime.now())
-
-        if config.Environment == "Steam":
-            self.steam_manager.update_bottle(config)
 
         return Result(status=True, data={"config": config})
 

@@ -38,7 +38,6 @@ class LibraryEntry(Gtk.Box):
     # region Widgets
     btn_run = Gtk.Template.Child()
     btn_stop = Gtk.Template.Child()
-    btn_launch_steam = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_bottle = Gtk.Template.Child()
@@ -101,7 +100,6 @@ class LibraryEntry(Gtk.Box):
         motion_ctrl.connect("leave", self.__on_motion_leave)
         self.overlay.add_controller(motion_ctrl)
         self.btn_run.connect("clicked", self.run_executable)
-        self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_stop.connect("clicked", self.stop_process)
         self.btn_remove.connect("clicked", self.__remove_entry)
 
@@ -174,9 +172,6 @@ class LibraryEntry(Gtk.Box):
             program=self.program,
         )
         self.__reset_buttons()
-
-    def run_steam(self, widget):
-        self.manager.steam_manager.launch_app(self.config.CompatData)
 
     def stop_process(self, widget):
         self.window.show_toast(_('Stopping "{0}"…').format(self.program["name"]))

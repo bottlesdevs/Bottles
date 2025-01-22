@@ -547,39 +547,6 @@ class WineCommand:
             if obs_vkc_available and params.obsvkc:
                 command = f"{obs_vkc_available} {command}"
 
-        if params.use_steam_runtime:
-            _rs = RuntimeManager.get_runtimes("steam")
-            _picked = {}
-
-            if _rs:
-                if "sniper" in _rs.keys() and "sniper" in self.runner_runtime:
-                    """
-                    Sniper is the default runtime used by Proton version >= 8.0
-                    """
-                    _picked = _rs["sniper"]
-                elif "soldier" in _rs.keys() and "soldier" in self.runner_runtime:
-                    """
-                    Sniper is the default runtime used by Proton version >= 5.13 and < 8.0
-                    """
-                    _picked = _rs["soldier"]
-                elif "scout" in _rs.keys():
-                    """
-                    For Wine runners, we cannot make assumption about which runtime would suits
-                    them the best, as it would depend on their build environment.
-                    Sniper/Soldier are not backward-compatible, defaulting to Scout should maximize compatibility.
-                    """
-                    _picked = _rs["scout"]
-            else:
-                logging.warning("Steam runtime was requested but not found")
-
-            if _picked:
-                logging.info(f"Using Steam runtime {_picked['name']}")
-                command = f"{_picked['entry_point']} {command}"
-            else:
-                logging.warning(
-                    "Steam runtime was requested and found but there are no valid combinations"
-                )
-
         if self.arguments:
             prefix, suffix, extracted_env = SteamUtils.handle_launch_options(
                 self.arguments
