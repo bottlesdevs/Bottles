@@ -42,7 +42,6 @@ from bottles.frontend.filters import add_executable_filters, add_all_filters
 from bottles.frontend.gtk import GtkUtils
 from bottles.frontend.program_row import ProgramRow
 from bottles.frontend.duplicate_dialog import DuplicateDialog
-from bottles.frontend.upgrade_versioning_dialog import UpgradeVersioningDialog
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/bottle-details-page.ui")
@@ -64,7 +63,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
     row_winecfg = Gtk.Template.Child()
     row_preferences = Gtk.Template.Child()
     row_dependencies = Gtk.Template.Child()
-    row_snapshots = Gtk.Template.Child()
     row_taskmanager = Gtk.Template.Child()
     row_debug = Gtk.Template.Child()
     row_explorer = Gtk.Template.Child()
@@ -123,7 +121,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
         self.popover_exec_settings.connect("closed", self.__run_executable_with_args)
         self.row_preferences.connect("activated", self.__change_page, "preferences")
         self.row_dependencies.connect("activated", self.__change_page, "dependencies")
-        self.row_snapshots.connect("activated", self.__change_page, "versioning")
         self.row_taskmanager.connect("activated", self.__change_page, "taskmanager")
         self.row_winecfg.connect("activated", self.run_winecfg)
         self.row_debug.connect("activated", self.run_debug)
@@ -221,10 +218,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
         self.label_state.set_text(str(self.config.State))
 
         self.__set_steam_rules()
-
-        # check for old versioning system enabled
-        if config.Versioning:
-            self.__upgrade_versioning()
 
         if (
             config.Runner not in self.manager.runners_available
@@ -500,14 +493,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
         choose the new bottle name and perform duplication.
         """
         new_window = DuplicateDialog(self)
-        new_window.present()
-
-    def __upgrade_versioning(self):
-        """
-        This function pop up the upgrade versioning dialog, so the user can
-        upgrade the versioning system from old Bottles built-in to FVS.
-        """
-        new_window = UpgradeVersioningDialog(self)
         new_window.present()
 
     def __confirm_delete(self, widget):
