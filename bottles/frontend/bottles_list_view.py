@@ -130,9 +130,7 @@ class BottlesListView(Adw.Bin):
 
     # region Widgets
     list_bottles = Gtk.Template.Child()
-    list_steam = Gtk.Template.Child()
     group_bottles = Gtk.Template.Child()
-    group_steam = Gtk.Template.Child()
     pref_page = Gtk.Template.Child()
     bottle_status = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
@@ -168,7 +166,6 @@ class BottlesListView(Adw.Bin):
         """
         terms = widget.get_text()
         self.list_bottles.set_filter_func(self.__filter_bottles, terms)
-        self.list_steam.set_filter_func(self.__filter_bottles, terms)
 
     @staticmethod
     def __filter_bottles(row, terms=None):
@@ -180,9 +177,6 @@ class BottlesListView(Adw.Bin):
         while self.list_bottles.get_first_child():
             self.list_bottles.remove(self.list_bottles.get_first_child())
 
-        while self.list_steam.get_first_child():
-            self.list_steam.remove(self.list_steam.get_first_child())
-
         local_bottles = self.window.manager.local_bottles
         is_empty_local_bottles = len(local_bottles) == 0
 
@@ -193,17 +187,7 @@ class BottlesListView(Adw.Bin):
             _entry = BottleRow(self.window, config)
             self.__bottles[config.Path] = _entry
 
-            if config.Environment != "Steam":
-                self.list_bottles.append(_entry)
-            else:
-                self.list_steam.append(_entry)
-
-            if self.list_steam.get_first_child() is None:
-                self.group_steam.set_visible(False)
-                self.group_bottles.set_title("")
-            else:
-                self.group_steam.set_visible(True)
-                self.group_bottles.set_title(_("Your Bottles"))
+            self.list_bottles.append(_entry)
 
     def show_page(self, page: str) -> None:
         if config := self.window.manager.local_bottles.get(page):
