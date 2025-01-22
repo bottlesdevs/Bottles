@@ -157,7 +157,6 @@ class Manager(metaclass=Singleton):
         rv = Result(status=True, data={})
 
         self.check_app_dirs()
-        rv.data["check_app_dirs"] = time.time()
 
         self.check_dxvk(install_latest) or rv.set_status(False)
         rv.data["check_dxvk"] = time.time()
@@ -202,53 +201,7 @@ class Manager(metaclass=Singleton):
         Checks for the existence of the bottles' directories, and creates them
         if they don't exist.
         """
-        if not os.path.isdir(Paths.runners):
-            logging.info("Runners path doesn't exist, creating now.")
-            os.makedirs(Paths.runners, exist_ok=True)
-
-        if not os.path.isdir(Paths.runtimes):
-            logging.info("Runtimes path doesn't exist, creating now.")
-            os.makedirs(Paths.runtimes, exist_ok=True)
-
-        if not os.path.isdir(Paths.winebridge):
-            logging.info("WineBridge path doesn't exist, creating now.")
-            os.makedirs(Paths.winebridge, exist_ok=True)
-
-        if not os.path.isdir(Paths.bottles):
-            logging.info("Bottles path doesn't exist, creating now.")
-            os.makedirs(Paths.bottles, exist_ok=True)
-
-        if (
-            self.settings.get_boolean("steam-proton-support")
-            and self.steam_manager.is_steam_supported
-        ):
-            if not os.path.isdir(Paths.steam):
-                logging.info("Steam path doesn't exist, creating now.")
-                os.makedirs(Paths.steam, exist_ok=True)
-
-        if not os.path.isdir(Paths.dxvk):
-            logging.info("Dxvk path doesn't exist, creating now.")
-            os.makedirs(Paths.dxvk, exist_ok=True)
-
-        if not os.path.isdir(Paths.vkd3d):
-            logging.info("Vkd3d path doesn't exist, creating now.")
-            os.makedirs(Paths.vkd3d, exist_ok=True)
-
-        if not os.path.isdir(Paths.nvapi):
-            logging.info("Nvapi path doesn't exist, creating now.")
-            os.makedirs(Paths.nvapi, exist_ok=True)
-
-        if not os.path.isdir(Paths.templates):
-            logging.info("Templates path doesn't exist, creating now.")
-            os.makedirs(Paths.templates, exist_ok=True)
-
-        if not os.path.isdir(Paths.temp):
-            logging.info("Temp path doesn't exist, creating now.")
-            os.makedirs(Paths.temp, exist_ok=True)
-
-        if not os.path.isdir(Paths.latencyflex):
-            logging.info("LatencyFleX path doesn't exist, creating now.")
-            os.makedirs(Paths.latencyflex, exist_ok=True)
+        map(lambda path: os.makedirs(path, exist_ok=True), Paths.get_components_paths())
 
     @RunAsync.run_async
     def organize_components(self):
