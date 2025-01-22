@@ -46,7 +46,6 @@ from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
-from bottles.backend.managers.versioning import VersioningManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
@@ -126,8 +125,6 @@ class Manager(metaclass=Singleton):
                 )
 
         # sub-managers
-        self.versioning_manager = VersioningManager(self)
-        times["VersioningManager"] = time.time()
         self.component_manager = ComponentManager(self)
         self.installer_manager = InstallerManager(self)
         self.dependency_manager = DependencyManager(self)
@@ -1335,12 +1332,6 @@ class Manager(metaclass=Singleton):
 
         # save bottle config
         config.dump(f"{bottle_complete_path}/bottle.yml")
-
-        if versioning:
-            # create first state if versioning enabled
-            logging.info("Creating versioning state 0…")
-            log_update(_("Creating versioning state 0…"))
-            self.versioning_manager.create_state(config=config, message="First boot")
 
         # set status created and UI usability
         logging.info(f"New bottle created: {bottle_name}", jn=True)

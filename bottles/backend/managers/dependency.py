@@ -78,16 +78,6 @@ class DependencyManager:
         """
         uninstaller = True
 
-        if config.Parameters.versioning_automatic:
-            """
-            If the bottle has the versioning system enabled, we need
-            to create a new version of the bottle, before installing
-            the dependency.
-            """
-            self.__manager.versioning_manager.create_state(
-                config=config, message=f"Before installing {dependency[0]}"
-            )
-
         task_id = TaskManager.add(Task(title=dependency[0]))
 
         logging.info(
