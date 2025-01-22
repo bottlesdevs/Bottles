@@ -21,7 +21,6 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
 from bottles.backend.managers.library import LibraryManager
-from bottles.backend.managers.steam import SteamManager
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
@@ -117,7 +116,6 @@ class ProgramRow(Adw.ActionRow):
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
         self.btn_add_library.connect("clicked", self.add_to_library)
-        self.btn_add_steam.connect("clicked", self.add_to_steam)
         self.btn_remove.connect("clicked", self.remove_program)
 
         if not program.get("removed") and not is_steam and check_boot:
@@ -332,24 +330,3 @@ class ProgramRow(Adw.ActionRow):
 
         self.btn_add_library.set_visible(False)
         RunAsync(add_to_library, update)
-
-    def add_to_steam(self, _widget):
-        def update(result, _error=False):
-            if result.ok:
-                self.window.show_toast(
-                    _('"{0}" added to your Steam library').format(self.program["name"])
-                )
-            else:
-                self.window.show_toast(
-                    _('"{0}" failed adding to your Steam library').format(
-                        self.program["name"]
-                    )
-                )
-
-        steam_manager = SteamManager(self.config)
-        RunAsync(
-            steam_manager.add_shortcut,
-            update,
-            program_name=self.program["name"],
-            program_path=self.program["path"],
-        )
