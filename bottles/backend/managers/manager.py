@@ -36,7 +36,6 @@ from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
-from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.importer import ImportManager
 from bottles.backend.managers.library import LibraryManager
@@ -110,7 +109,6 @@ class Manager(metaclass=Singleton):
         _offline = False
 
         # sub-managers
-        self.dependency_manager = DependencyManager(self)
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
 
@@ -157,8 +155,6 @@ class Manager(metaclass=Singleton):
         self.check_runners(install_latest) or rv.set_status(False)
         rv.data["check_runners"] = time.time()
 
-        self.organize_dependencies()
-
         self.check_bottles()
         rv.data["check_bottles"] = time.time()
 
@@ -175,19 +171,6 @@ class Manager(metaclass=Singleton):
         if they don't exist.
         """
         map(lambda path: os.makedirs(path, exist_ok=True), Paths.get_components_paths())
-
-    @RunAsync.run_async
-    def organize_dependencies(self):
-        """Organizes dependencies into supported_dependencies."""
-        EventManager.wait(Events.DependenciesFetching)
-        catalog = self.dependency_manager.fetch_catalog()
-        if len(catalog) == 0:
-            EventManager.done(Events.DependenciesOrganizing)
-            logging.info("No dependencies found!")
-            return
-
-        self.supported_dependencies = catalog
-        EventManager.done(Events.DependenciesOrganizing)
 
     def remove_dependency(self, config: BottleConfig, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""
@@ -893,19 +876,6 @@ class Manager(metaclass=Singleton):
             """
             self.install_dll_component(config, "vkd3d")
 
-        for dependency in config.Installed_Dependencies:
-            """
-            Install each declared dependency in the new bottle.
-            """
-            if dependency in self.supported_dependencies.keys():
-                dep = [dependency, self.supported_dependencies[dependency]]
-                res = self.dependency_manager.install(config, dep)
-                if not res.ok:
-                    logging.error(
-                        _("Failed to install dependency: %s") % dependency,
-                        jn=True,
-                    )
-                    return False
         logging.info(f"New bottle from config created: {config.Path}")
         self.update_bottles(silent=True)
         return True
@@ -1231,25 +1201,6 @@ class Manager(metaclass=Singleton):
             for dep in env.get("Installed_Dependencies", []):
                 if template and dep in template["config"]["Installed_Dependencies"]:
                     continue
-                if dep in self.supported_dependencies:
-                    _dep = self.supported_dependencies[dep]
-                    log_update(
-                        _("Installing dependency: %s …")
-                        % _dep.get("Description", "n/a")
-                    )
-                    res = self.dependency_manager.install(config, [dep, _dep])
-                    if not res.ok:
-                        logging.error(
-                            _("Failed to install dependency: %s")
-                            % _dep.get("Description", "n/a"),
-                            jn=True,
-                        )
-                        log_update(
-                            _("Failed to install dependency: %s")
-                            % _dep.get("Description", "n/a")
-                        )
-                        return Result(False)
-                    template_updated = True
 
         # save bottle config
         config.dump(f"{bottle_complete_path}/bottle.yml")

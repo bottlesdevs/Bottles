@@ -4,7 +4,6 @@ managersdir = join_paths(pkgdatadir, 'bottles/backend/managers')
 bottles_sources = [
   '__init__.py',
   'backup.py',
-  'dependency.py',
   'library.py',
   'manager.py',
   'runtime.py',
