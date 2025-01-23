@@ -5,7 +5,6 @@ bottles_sources = [
   '__init__.py',
   'backup.py',
   'dependency.py',
-  'installer.py',
   'library.py',
   'manager.py',
   'data.py',
