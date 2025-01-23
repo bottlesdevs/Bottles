@@ -25,7 +25,6 @@ from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk, Xdp
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.logger import Logger
-from bottles.backend.managers.data import UserDataKeys
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
@@ -247,20 +246,6 @@ class BottlesWindow(Adw.ApplicationWindow):
 
             self.lock_ui(False)
             self.headerbar.get_style_context().remove_class("flat")
-
-            user_defined_bottles_path = self.manager.data_mgr.get(
-                UserDataKeys.CustomBottlesPath
-            )
-            if user_defined_bottles_path and Paths.bottles != user_defined_bottles_path:
-                dialog = Adw.MessageDialog.new(
-                    self,
-                    _("Custom Bottles Path not Found"),
-                    _(
-                        "Falling back to default path. No bottles from the given path will be listed."
-                    ),
-                )
-                dialog.add_response("cancel", _("_Dismiss"))
-                dialog.present()
 
         def get_manager():
             # do not redo connection if aborted connection

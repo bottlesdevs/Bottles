@@ -36,7 +36,6 @@ from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
-from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.importer import ImportManager
@@ -108,18 +107,7 @@ class Manager(metaclass=Singleton):
 
         # common variables
         self.settings = g_settings or GSettingsStub
-        self.data_mgr = DataManager()
         _offline = False
-
-        # validating user-defined Paths.bottles
-        if user_bottles_path := self.data_mgr.get(UserDataKeys.CustomBottlesPath):
-            if os.path.exists(user_bottles_path):
-                Paths.bottles = user_bottles_path
-            else:
-                logging.error(
-                    f"Custom bottles path {user_bottles_path} does not exist! "
-                    f"Falling back to default path."
-                )
 
         # sub-managers
         self.dependency_manager = DependencyManager(self)
