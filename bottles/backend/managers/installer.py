@@ -39,7 +39,6 @@ logging = Logger()
 class InstallerManager:
     def __init__(self, manager):
         self.__manager = manager
-        self.__component_manager = manager.component_manager
         self.__local_resources = {}
 
         url = "https://proxy.usebottles.com/repo/programs/"
@@ -171,41 +170,6 @@ class InstallerManager:
             if st.get("action") == "update_config":
                 self.__step_update_config(config, st)
 
-            # Step type: install_exe, install_msi
-            if st["action"] in ["install_exe", "install_msi"]:
-                if st["url"] != "local":
-                    download = self.__component_manager.download(
-                        st.get("url"),
-                        st.get("file_name"),
-                        st.get("rename"),
-                        checksum=st.get("file_checksum"),
-                    )
-                else:
-                    download = True
-
-                if download:
-                    if st["url"] != "local":
-                        if st.get("rename"):
-                            file = st.get("rename")
-                        else:
-                            file = st.get("file_name")
-                        file_path = f"{Paths.temp}/{file}"
-                    else:
-                        file_path = self.__local_resources[st.get("file_name")]
-
-                    executor = WineExecutor(
-                        config,
-                        exec_path=file_path,
-                        args=st.get("arguments"),
-                        environment=st.get("environment"),
-                        monitoring=st.get("monitoring", []),
-                    )
-                    executor.run()
-                else:
-                    logging.error(
-                        f"Failed to download {st.get('file_name')}, or checksum failed."
-                    )
-                    return False
         return True
 
     @staticmethod

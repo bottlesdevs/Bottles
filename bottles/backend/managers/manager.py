@@ -36,7 +36,6 @@ from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
-from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
@@ -124,7 +123,6 @@ class Manager(metaclass=Singleton):
                 )
 
         # sub-managers
-        self.component_manager = ComponentManager(self)
         self.installer_manager = InstallerManager(self)
         self.dependency_manager = DependencyManager(self)
         self.import_manager = ImportManager(self)
@@ -173,9 +171,6 @@ class Manager(metaclass=Singleton):
         self.check_runners(install_latest) or rv.set_status(False)
         rv.data["check_runners"] = time.time()
 
-        if first_run:
-            self.organize_components()
-
         self.organize_dependencies()
 
         self.organize_installers()
@@ -196,26 +191,6 @@ class Manager(metaclass=Singleton):
         if they don't exist.
         """
         map(lambda path: os.makedirs(path, exist_ok=True), Paths.get_components_paths())
-
-    @RunAsync.run_async
-    def organize_components(self):
-        """Get components catalog and organizes into supported_ lists."""
-        EventManager.wait(Events.ComponentsFetching)
-        catalog = self.component_manager.fetch_catalog()
-        if len(catalog) == 0:
-            EventManager.done(Events.ComponentsOrganizing)
-            logging.info("No components found.")
-            return
-
-        self.supported_wine_runners = catalog["wine"]
-        self.supported_proton_runners = catalog["proton"]
-        self.supported_runtimes = catalog["runtimes"]
-        self.supported_winebridge = catalog["winebridge"]
-        self.supported_dxvk = catalog["dxvk"]
-        self.supported_vkd3d = catalog["vkd3d"]
-        self.supported_nvapi = catalog["nvapi"]
-        self.supported_latencyflex = catalog["latencyflex"]
-        EventManager.done(Events.ComponentsOrganizing)
 
     @RunAsync.run_async
     def organize_dependencies(self):
@@ -1014,7 +989,6 @@ class Manager(metaclass=Singleton):
                 self.check_vkd3d()
                 self.check_nvapi()
                 self.check_latencyflex()
-                self.organize_components()
 
                 check_attempts += 1
                 return components_check()
