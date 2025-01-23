@@ -17,7 +17,6 @@
 
 import os
 import shutil
-import traceback
 from functools import lru_cache
 from glob import glob
 
@@ -30,7 +29,6 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.models.result import Result
 from bottles.backend.state import TaskManager, Task
-from bottles.backend.utils.generic import validate_url
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.reg import Reg, RegItem
@@ -177,14 +175,6 @@ class DependencyManager:
         if step["action"] == "delete_dlls":
             self.__step_delete_dlls(config, step)
 
-        if step["action"] == "download_archive":
-            if not self.__step_download_archive(step):
-                return Result(status=False)
-
-        if step["action"] in ["install_exe", "install_msi"]:
-            if not self.__step_install_exe_msi(config=config, step=step):
-                return Result(status=False)
-
         if step["action"] == "uninstall":
             self.__step_uninstall(config=config, file_name=step["file_name"])
 
@@ -196,11 +186,6 @@ class DependencyManager:
         if step["action"] == "get_from_cab":
             uninstaller = False
             if not self.__step_get_from_cab(config=config, step=step):
-                return Result(status=False)
-
-        if step["action"] == "archive_extract":
-            uninstaller = False
-            if not self.__step_archive_extract(step):
                 return Result(status=False)
 
         if step["action"] in ["install_cab_fonts", "install_fonts"]:
@@ -263,56 +248,6 @@ class DependencyManager:
 
         return dest
 
-    def __step_download_archive(self, step: dict):
-        """
-        This function download an archive from the given step.
-        Can be used for any file type (cab, zip, ...). Please don't
-        use this method for exe/msi files as the install_exe already
-        download the exe/msi file before installation.
-        """
-        download = self.__manager.component_manager.download(
-            download_url=step.get("url"),
-            file=step.get("file_name"),
-            rename=step.get("rename"),
-            checksum=step.get("file_checksum"),
-        )
-
-        return download
-
-    def __step_install_exe_msi(self, config: BottleConfig, step: dict) -> bool:
-        """
-        Download and install the .exe or .msi file
-        declared in the step, in a bottle.
-        """
-        winedbg = WineDbg(config)
-        download = self.__manager.component_manager.download(
-            download_url=step.get("url"),
-            file=step.get("file_name"),
-            rename=step.get("rename"),
-            checksum=step.get("file_checksum"),
-        )
-        file = step.get("file_name")
-        if step.get("rename"):
-            file = step.get("rename")
-
-        if download:
-            if step.get("url").startswith("temp/"):
-                _file = step.get("url").replace("temp/", f"{Paths.temp}/")
-                file = f"{_file}/{file}"
-            else:
-                file = f"{Paths.temp}/{file}"
-            executor = WineExecutor(
-                config,
-                exec_path=file,
-                args=step.get("arguments"),
-                environment=step.get("environment"),
-            )
-            executor.run()
-            winedbg.wait_for_process(file)
-            return True
-
-        return False
-
     @staticmethod
     def __step_uninstall(config: BottleConfig, file_name: str) -> bool:
         """
@@ -334,28 +269,7 @@ class DependencyManager:
             logging.error("Destination path not supported!")
             return False
 
-        if validate_url(step["url"]):
-            download = self.__manager.component_manager.download(
-                download_url=step.get("url"),
-                file=step.get("file_name"),
-                rename=step.get("rename"),
-                checksum=step.get("file_checksum"),
-            )
-
-            if download:
-                if step.get("rename"):
-                    file = step.get("rename")
-                else:
-                    file = step.get("file_name")
-
-                if not CabExtract().run(
-                    path=os.path.join(Paths.temp, file), name=file, destination=dest
-                ):
-                    return False
-            else:
-                return False
-
-        elif step["url"].startswith("temp/"):
+        if step["url"].startswith("temp/"):
             path = step["url"]
             path = path.replace("temp/", f"{Paths.temp}/")
 
@@ -405,45 +319,6 @@ class DependencyManager:
             shutil.move(os.path.join(dest, _file_name), os.path.join(dest, rename))
 
         if not res:
-            return False
-        return True
-
-    def __step_archive_extract(self, step: dict):
-        """Download and extract an archive to the temp folder."""
-        download = self.__manager.component_manager.download(
-            download_url=step.get("url"),
-            file=step.get("file_name"),
-            rename=step.get("rename"),
-            checksum=step.get("file_checksum"),
-        )
-
-        if not download:
-            return False
-
-        if step.get("rename"):
-            file = step.get("rename")
-        else:
-            file = step.get("file_name")
-
-        archive_path = os.path.join(Paths.temp, os.path.splitext(file)[0])
-
-        if os.path.exists(archive_path):
-            shutil.rmtree(archive_path)
-
-        os.makedirs(archive_path)
-        try:
-            patoolib.extract_archive(
-                os.path.join(Paths.temp, file), outdir=archive_path
-            )
-            if archive_path.endswith(".tar") and os.path.isfile(
-                os.path.join(archive_path, os.path.basename(archive_path))
-            ):
-                tar_path = os.path.join(archive_path, os.path.basename(archive_path))
-                patoolib.extract_archive(tar_path, outdir=archive_path)
-        except Exception as e:
-            logging.error("Something wrong happened during extraction.")
-            logging.error(f"{e}")
-            logging.error(f"{traceback.format_exc()}")
             return False
         return True
 
