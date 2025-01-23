@@ -7,7 +7,6 @@ bottles_sources = [
   'dependency.py',
   'library.py',
   'manager.py',
-  'data.py',
   'runtime.py',
   'importer.py',
   'conf.py',
