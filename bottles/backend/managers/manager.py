@@ -40,7 +40,6 @@ from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.importer import ImportManager
-from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
@@ -123,7 +122,6 @@ class Manager(metaclass=Singleton):
                 )
 
         # sub-managers
-        self.installer_manager = InstallerManager(self)
         self.dependency_manager = DependencyManager(self)
         self.import_manager = ImportManager(self)
         times["ImportManager"] = time.time()
@@ -173,8 +171,6 @@ class Manager(metaclass=Singleton):
 
         self.organize_dependencies()
 
-        self.organize_installers()
-
         self.check_bottles()
         rv.data["check_bottles"] = time.time()
 
@@ -204,19 +200,6 @@ class Manager(metaclass=Singleton):
 
         self.supported_dependencies = catalog
         EventManager.done(Events.DependenciesOrganizing)
-
-    @RunAsync.run_async
-    def organize_installers(self):
-        """Organizes installers into supported_installers."""
-        EventManager.wait(Events.InstallersFetching)
-        catalog = self.installer_manager.fetch_catalog()
-        if len(catalog) == 0:
-            EventManager.done(Events.InstallersOrganizing)
-            logging.info("No installers found!")
-            return
-
-        self.supported_installers = catalog
-        EventManager.done(Events.InstallersOrganizing)
 
     def remove_dependency(self, config: BottleConfig, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""
