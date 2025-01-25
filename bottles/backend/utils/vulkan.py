@@ -19,7 +19,6 @@ import os
 from glob import glob
 import shutil
 import subprocess
-import filecmp
 
 
 class VulkanUtils:
@@ -46,17 +45,7 @@ class VulkanUtils:
 
             for file in _files:
                 if "nvidia" in file.lower():
-                    # Workaround for nvidia flatpak bug: https://github.com/flathub/org.freedesktop.Platform.GL.nvidia/issues/112
-                    should_skip = False
-                    for nvidia_loader in loaders["nvidia"]:
-                        try:
-                            if filecmp.cmp(nvidia_loader, file):
-                                should_skip = True
-                                continue
-                        except:
-                            pass
-                    if not should_skip:
-                        loaders["nvidia"] += [file]
+                    loaders["nvidia"] += [file]
                 elif "amd" in file.lower() or "radeon" in file.lower():
                     loaders["amd"] += [file]
                 elif "intel" in file.lower():
