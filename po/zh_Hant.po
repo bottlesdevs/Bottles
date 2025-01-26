@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-01-20 13:32+0000\n"
-"Last-Translator: Adrian Lee <adrianleeho@gmail.com>\n"
+"PO-Revision-Date: 2025-01-27 01:01+0000\n"
+"Last-Translator: reimu105 <peter112548@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/bottles/bottles/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -139,7 +139,7 @@ msgstr "沒有東西可以提交"
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "成功建立新狀態版本「{0}」！"
+msgstr "成功建立了新狀態「{0}」！"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
@@ -1313,7 +1313,7 @@ msgstr "選取指令稿"
 #: bottles/frontend/ui/dialog-launch-options.blp:84
 #: bottles/frontend/windows/launchoptions.py:55
 msgid "Choose from where start the program."
-msgstr "選擇從哪裡啟動程式。"
+msgstr "選擇從何處啟動程式。"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:101
 #: bottles/frontend/ui/drive-entry.blp:22
@@ -1837,9 +1837,8 @@ msgid "C_reate"
 msgstr "創建"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
-msgstr "酒瓶名稱"
+msgstr "Bottle 名稱"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
@@ -2749,11 +2748,11 @@ msgstr "切換 Steam 應用程式列表。"
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr "Epic Games 應用程式列表"
+msgstr "Epic Games 遊戲清單"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr "切換 Epic Games 應用程式列表。"
+msgstr "切換 Epic Games 遊戲清單。"
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
@@ -2864,7 +2863,7 @@ msgstr "內建的相依項目安裝系統會授予自動軟件兼容性權限。
 #: data/com.usebottles.bottles.metainfo.xml.in:16
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
-msgstr "Bottle 的版本控制功能使您得以安全作業，並在稍後將其恢復"
+msgstr "Bottle 的版本控制功能使您得以安全作業，並在稍後將其恢復！"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:17
 msgid "Features:"
@@ -2975,18 +2974,16 @@ msgid "Major change: Redesign New Bottle interface"
 msgstr "重大改動：重新設計新 Bottle 介面"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
-#, fuzzy
 msgid "Quality of life improvements:"
-msgstr "重大的改良："
+msgstr "品質改進："
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "在庫頁面中用 emoti-love 圖示取代了庫"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
-#, fuzzy
 msgid "Add toast for \"Run Executable\""
-msgstr "新增自定義執行檔路徑"
+msgstr "新增“運行可執行檔”提示"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
@@ -2994,7 +2991,7 @@ msgstr "錯誤修正:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "添加快捷方式到 Steam 導致了一個錯誤"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
@@ -3008,7 +3005,7 @@ msgstr "當使用wine-ge-custom時, Steam執行時間將會自動啟用"
 msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
-msgstr ""
+msgstr "各種庫相關的修復，例如空白封面，以及和缺失項相關的崩潰"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
@@ -3016,79 +3013,79 @@ msgstr "修正文字編碼問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
-msgstr ""
+msgstr "修正了不是從終端機執行 Bottles 時，下載出錯的問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
 msgid "Correct version date"
-msgstr ""
+msgstr "正確的版本日期"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
+msgstr "在非 NVIDIA 系統上隱藏與 NVIDIA 相關的嚴重錯誤"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "Gamescope 改進和修復"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "依賴安裝更快、更穩定"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
-msgstr ""
+msgstr "健康檢查包含更多信息，以便更快地進行調試"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
-msgstr ""
+msgstr "修復許多 NVAPI 問題使其更加穩定，現在應該能正常工作"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "修復了下載元件時的崩潰"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "透過避免 spin-lock 來改進後端程式碼"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "安裝包腳本編寫有了更多變量"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
-msgstr ""
+msgstr "修正了首次執行本程式時對話方塊顯示」全部就緒「但實際上尚未就緒的問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "改進建置系統"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "創建玩遊戲的 bottles 時預設啟用 VKD3D"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
-msgstr ""
+msgstr "修復了讀取壞編碼的 Steam 檔案時的崩潰"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
-msgstr ""
+msgstr "修正了安裝/卸載後使用者介面中零件未正確更新的問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "更多的 FSR 修復"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
-msgstr ""
+msgstr "修復從“運行可執行檔”啟動程式後關閉的問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "不再贅述其他！"
 
 #~ msgid "Calculating…"
 #~ msgstr "計算中…"
