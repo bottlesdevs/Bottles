@@ -114,15 +114,29 @@
                 {
                     "type": "git",
                     "url": "https://github.com/KhronosGroup/Vulkan-Tools.git",
-                    "tag": "sdk-1.3.261.1",
-                    "commit": "a7da7027ca9fd0901639f02619c226da9c6036f1",
+                    "tag": "vulkan-sdk-1.4.304.0",
+                    "commit": "4c25e78dd87720275ab069de1fe2e005cd528ed9",
                     "x-checker-data": {
                         "type": "git",
-                        "tag-pattern": "^sdk-([\\d.]+)$"
+                        "tag-pattern": "^vulkan-sdk-([\\d.]+)$"
                     }
                 }
             ],
             "modules": [
+                {
+                    "name": "volk",
+                    "buildsystem": "cmake-ninja",
+                    "config-opts": [
+                        "-DVOLK_INSTALL=ON"
+                    ],
+                    "sources": [
+                        {
+                            "type": "archive",
+                            "url": "https://github.com/zeux/volk/archive/refs/tags/1.4.304.tar.gz",
+                            "sha256": "ab3d4a8ccaeb32652259cdd008399504a41792675b0421d90b67729ee274746f"
+                        }
+                    ]
+                },
                 {
                     "name": "vulkan-headers",
                     "buildsystem": "cmake-ninja",
@@ -130,11 +144,11 @@
                         {
                             "type": "git",
                             "url": "https://github.com/KhronosGroup/Vulkan-Headers.git",
-                            "tag": "sdk-1.3.261.1",
-                            "commit": "85c2334e92e215cce34e8e0ed8b2dce4700f4a50",
+                            "tag": "vulkan-sdk-1.4.304.0",
+                            "commit": "d4a196d8c84e032d27f999adcea3075517c1c97f",
                             "x-checker-data": {
                                 "type": "git",
-                                "tag-pattern": "^sdk-([\\d.]+)$"
+                                "tag-pattern": "^vulkan-sdk-([\\d.]+)$"
                             }
                         }
                     ]
