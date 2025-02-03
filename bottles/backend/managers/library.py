@@ -21,11 +21,9 @@ import uuid
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import yaml
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.globals import Paths
 from bottles.backend.managers.steamgriddb import SteamGridDBManager
-
-logging = Logger()
 
 
 class LibraryManager:

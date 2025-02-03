@@ -1,11 +1,8 @@
 import re
 from functools import lru_cache
 
-from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.utils.manager import ManagerUtils
-
-logging = Logger()
 
 
 class WinePath(WineProgram):

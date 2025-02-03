@@ -19,14 +19,11 @@ import os
 from bottles.backend.utils import yaml
 import contextlib
 
-from bottles.backend.logger import Logger
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.params import APP_VERSION
-
-logging = Logger()
 
 
 class HealthChecker:

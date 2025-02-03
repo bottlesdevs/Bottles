@@ -19,11 +19,8 @@ import os
 import uuid
 import requests
 
-from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
-
-logging = Logger()
 
 
 class SteamGridDBManager:

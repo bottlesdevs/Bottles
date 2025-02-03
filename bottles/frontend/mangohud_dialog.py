@@ -16,9 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, GLib, Adw
-from bottles.backend.logger import Logger
-
-logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/mangohud-dialog.ui")

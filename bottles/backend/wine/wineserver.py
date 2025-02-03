@@ -2,13 +2,10 @@ import os
 import subprocess
 import time
 
-from bottles.backend.logger import Logger
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.proc import ProcUtils
 from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.wine.wineprogram import WineProgram
-
-logging = Logger()
 
 
 class WineServer(WineProgram):

@@ -21,11 +21,9 @@ import os
 from bottles.backend.dlls.dll import DLLComponent
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.logger import Logger
+import logging
 
 from bottles.backend.utils.nvidia import get_nvidia_dll_path
-
-logging = Logger()
 
 
 class NVAPIComponent(DLLComponent):

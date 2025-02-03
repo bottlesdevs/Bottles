@@ -31,7 +31,7 @@ from bottles.backend.globals import (
     gamescope_available,
     base_version,
 )
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.models.config import BottleConfig
@@ -56,8 +56,6 @@ from bottles.frontend.proton_alert_dialog import ProtonAlertDialog
 from bottles.frontend.sandbox_dialog import SandboxDialog
 from bottles.frontend.vkbasalt_dialog import VkBasaltDialog
 from bottles.frontend.vmtouch_dialog import VmtouchDialog
-
-logging = Logger()
 
 
 # noinspection PyUnusedLocal

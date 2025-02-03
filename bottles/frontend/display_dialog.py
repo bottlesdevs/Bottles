@@ -19,13 +19,11 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.backend.logger import Logger
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.frontend.gtk import GtkUtils
 
-logging = Logger()
 
 renderers = ["gl", "gdi", "vulkan"]
 

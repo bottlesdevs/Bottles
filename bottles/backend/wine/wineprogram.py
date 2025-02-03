@@ -1,11 +1,9 @@
 import os
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.globals import Paths
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.wine.winecommand import WineCommand
-
-logging = Logger()
 
 
 class WineProgram:
