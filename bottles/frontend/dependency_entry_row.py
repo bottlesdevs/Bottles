@@ -53,7 +53,6 @@ class DependencyEntryRow(Adw.ActionRow):
         self.manager = window.manager
         self.config = config
         self.dependency = dependency
-        self.queue = window.page_details.queue
 
         if plain:
             """
@@ -137,7 +136,6 @@ class DependencyEntryRow(Adw.ActionRow):
         and set the dependency as installed in the bottle
         configuration
         """
-        self.queue.add_task()
         self.get_parent().set_sensitive(False)
         self.btn_install.set_visible(False)
         self.spinner.show()
@@ -170,7 +168,6 @@ class DependencyEntryRow(Adw.ActionRow):
         if the installation is successful, or uninstalled
         if the uninstallation is successful.
         """
-        self.queue.end_task()
         if result is not None and result.status:
             if self.config.Parameters.versioning_automatic:
                 self.window.page_details.view_versioning.update()
