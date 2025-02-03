@@ -38,7 +38,6 @@ from bottles.backend.globals import Paths
 import logging
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.template import TemplateManager
-from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
@@ -561,14 +560,6 @@ class Manager(metaclass=Singleton):
                         }
                     )
                     found.append(executable_name)
-
-            if self.settings.get_boolean(
-                "ubisoft-connect"
-            ) and UbisoftConnectManager.is_uconnect_supported(config):
-                programs_names = [p.get("name", "") for p in installed_programs]
-                for app in UbisoftConnectManager.get_installed_games(config):
-                    if app["name"] not in programs_names:
-                        installed_programs.append(app)
 
         return installed_programs
 
