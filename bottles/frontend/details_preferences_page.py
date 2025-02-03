@@ -33,7 +33,6 @@ from bottles.backend.globals import (
 )
 import logging
 from bottles.backend.managers.library import LibraryManager
-from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.models.result import Result
@@ -241,12 +240,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
         is_nvidia_gpu = GPUUtils.is_gpu(GPUVendors.NVIDIA)
         self.row_nvapi.set_visible(is_nvidia_gpu)
         self.combo_nvapi.set_visible(is_nvidia_gpu)
-
-        if RuntimeManager.get_runtimes("steam"):
-            self.row_steam_runtime.set_visible(True)
-            self.switch_steam_runtime.connect(
-                "state-set", self.__toggle_feature, "use_steam_runtime"
-            )
 
         """Toggle some utilities according to its availability"""
         self.switch_gamemode.set_sensitive(gamemode_available)
