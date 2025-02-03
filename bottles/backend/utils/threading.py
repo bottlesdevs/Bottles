@@ -21,9 +21,7 @@ import threading
 import traceback
 from typing import Any
 
-from bottles.backend.logger import Logger
-
-logging = Logger()
+import logging
 
 
 class RunAsync(threading.Thread):

@@ -20,9 +20,7 @@ import shlex
 import shutil
 import subprocess
 
-from bottles.backend.logger import Logger
-
-logging = Logger()
+import logging
 
 
 class CabExtract:

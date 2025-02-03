@@ -5,7 +5,7 @@ import uuid
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
@@ -17,8 +17,6 @@ from bottles.backend.wine.start import Start
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.winepath import WinePath
-
-logging = Logger()
 
 
 class WineExecutor:

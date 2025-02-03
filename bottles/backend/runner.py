@@ -18,7 +18,7 @@
 import os
 from typing import TYPE_CHECKING
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
@@ -28,8 +28,6 @@ from bottles.backend.wine.wineboot import WineBoot
 
 if TYPE_CHECKING:
     from bottles.backend.managers.manager import Manager
-
-logging = Logger()
 
 
 class Runner:

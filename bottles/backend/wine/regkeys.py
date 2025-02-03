@@ -1,12 +1,9 @@
-from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.winecfg import WineCfg
-
-logging = Logger()
 
 
 class RegKeys:

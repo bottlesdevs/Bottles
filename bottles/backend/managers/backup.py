@@ -22,15 +22,13 @@ import pathvalidate
 from gettext import gettext as _
 
 from bottles.backend.globals import Paths
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import TaskManager, Task
 from bottles.backend.utils import yaml
 from bottles.backend.utils.manager import ManagerUtils
-
-logging = Logger()
 
 
 class BackupManager:

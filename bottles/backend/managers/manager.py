@@ -35,7 +35,7 @@ from bottles.backend.dlls.latencyflex import LatencyFleXComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.importer import ImportManager
 from bottles.backend.managers.library import LibraryManager
@@ -62,8 +62,6 @@ from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.winepath import WinePath
 from bottles.backend.wine.wineserver import WineServer
-
-logging = Logger()
 
 
 class Manager(metaclass=Singleton):
@@ -912,7 +910,7 @@ class Manager(metaclass=Singleton):
             nonlocal check_attempts
 
             if check_attempts > 2:
-                logging.error("Fail to install components, tried 3 times.", jn=True)
+                logging.error("Fail to install components, tried 3 times.")
                 log_update(_("Fail to install components, tried 3 times."))
                 return False
 
@@ -1005,9 +1003,7 @@ class Manager(metaclass=Singleton):
             os.makedirs(bottle_drive_c)
             FileUtils.chattr_f(bottle_drive_c)
         except:
-            logging.error(
-                f"Failed to create bottle directory: {bottle_complete_path}", jn=True
-            )
+            logging.error(f"Failed to create bottle directory: {bottle_complete_path}")
             log_update(_("Failed to create bottle directory."))
             return Result(False)
 
@@ -1021,7 +1017,6 @@ class Manager(metaclass=Singleton):
             except:
                 logging.error(
                     f"Failed to create placeholder directory/file at: {placeholder_dir}",
-                    jn=True,
                 )
                 log_update(_("Failed to create placeholder directory/file."))
                 return Result(False)
@@ -1206,7 +1201,7 @@ class Manager(metaclass=Singleton):
         config.dump(f"{bottle_complete_path}/bottle.yml")
 
         # set status created and UI usability
-        logging.info(f"New bottle created: {bottle_name}", jn=True)
+        logging.info(f"New bottle created: {bottle_name}")
         log_update(_("Finalizing…"))
 
         # wait for all registry changes to be applied

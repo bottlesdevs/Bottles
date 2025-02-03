@@ -5,9 +5,9 @@
 import os
 from ctypes import CDLL, POINTER, Structure, addressof, c_char_p, c_int, c_void_p, cast
 
-from bottles.backend.logger import Logger
+import logging
 
-logging = Logger()
+
 
 RTLD_DI_LINKMAP = 2
 

@@ -21,7 +21,6 @@ bottles_sources = [
   'diff.py',
   'health.py',
   'downloader.py',
-  'logger.py',
   'cabextract.py',
   'state.py',
   params_file

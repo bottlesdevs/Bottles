@@ -25,12 +25,10 @@ import contextlib
 from datetime import datetime
 from pathlib import Path
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.globals import Paths
 from bottles.backend.models.samples import Samples
-
-logging = Logger()
 
 
 class TemplateManager:
@@ -73,7 +71,7 @@ class TemplateManager:
         with open(os.path.join(_path, "template.yml"), "w") as f:
             yaml.dump(template, f)
 
-        logging.info(f"New template {env} created", jn=True)
+        logging.info(f"New template {env} created")
 
         if not TemplateManager.__validate_template(_uuid):
             logging.error("Template validation failed, will retry with next bottle.")

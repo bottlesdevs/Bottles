@@ -22,9 +22,7 @@ from functools import lru_cache
 
 from bottles.backend.utils.nvidia import get_nvidia_dll_path
 from bottles.backend.utils.vulkan import VulkanUtils
-from bottles.backend.logger import Logger
-
-logging = Logger()
+import logging
 
 
 class GPUVendors(Enum):

@@ -2,13 +2,10 @@ import re
 import time
 import subprocess
 
-from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.utils.decorators import cache
-
-logging = Logger()
 
 
 class WineDbg(WineProgram):
