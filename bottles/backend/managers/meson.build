@@ -9,7 +9,6 @@ bottles_sources = [
   'runtime.py',
   'importer.py',
   'conf.py',
-  'journal.py',
   'template.py',
   'sandbox.py',
   'epicgamesstore.py',
