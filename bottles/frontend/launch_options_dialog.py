@@ -18,11 +18,9 @@
 from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.logger import Logger
+import logging
 from bottles.frontend.filters import add_all_filters, add_soundfont_filters
 from gettext import gettext as _
-
-logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/launch-options-dialog.ui")

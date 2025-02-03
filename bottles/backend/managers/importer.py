@@ -22,11 +22,9 @@ import subprocess
 from glob import glob
 from datetime import datetime
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.globals import TrdyPaths, Paths
 from bottles.backend.models.result import Result
-
-logging = Logger()
 
 
 class ImportManager:
@@ -125,5 +123,5 @@ class ImportManager:
         # update bottles view
         self.manager.update_bottles(silent=True)
 
-        logging.info(f"Wine prefix {wineprefix['Name']} imported as bottle.", jn=True)
+        logging.info(f"Wine prefix {wineprefix['Name']} imported as bottle.")
         return Result(True)

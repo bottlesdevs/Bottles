@@ -22,7 +22,7 @@ import locale
 import webbrowser
 from os import path
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.health import HealthChecker
 from bottles.frontend.params import (
     APP_ID,
@@ -42,8 +42,6 @@ from gi.repository import Gio, GLib, GObject, Adw  # type: ignore
 from bottles.frontend.window import BottlesWindow
 from bottles.frontend.preferences import PreferencesWindow
 
-
-logging = Logger()
 
 # region Translations
 """

@@ -13,7 +13,7 @@ from bottles.backend.globals import (
     obs_vkc_available,
     vmtouch_available,
 )
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.managers.sandbox import SandboxManager
 from bottles.backend.models.config import BottleConfig
@@ -24,8 +24,6 @@ from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.steam import SteamUtils
-
-logging = Logger()
 
 
 class WineEnv:

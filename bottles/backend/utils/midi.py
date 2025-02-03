@@ -19,11 +19,9 @@ from typing import Self
 from ctypes import c_void_p
 from fluidsynth import cfunc, Synth  # type: ignore [import-untyped]
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.wine.reg import Reg
-
-logging = Logger()
 
 
 class FluidSynth:

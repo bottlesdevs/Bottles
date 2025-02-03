@@ -6,13 +6,11 @@ from datetime import datetime
 from itertools import groupby
 
 from bottles.backend.globals import Paths
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.utils.generic import random_string
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.wineprogram import WineProgram
-
-logging = Logger()
 
 
 @dataclasses.dataclass

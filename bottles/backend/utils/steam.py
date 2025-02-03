@@ -19,11 +19,9 @@ import os
 import shlex
 from typing import TextIO
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.models.vdict import VDFDict
 from bottles.backend.utils import vdf
-
-logging = Logger()
 
 
 class SteamUtils:

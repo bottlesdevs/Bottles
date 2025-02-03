@@ -6,10 +6,8 @@ from typing import Protocol
 from collections.abc import Callable
 from uuid import UUID, uuid4
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.models.result import Result
-
-logging = Logger()
 
 
 class Locks(Enum):

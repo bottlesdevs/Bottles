@@ -19,7 +19,7 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, Gdk
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.thumbnail import ThumbnailManager
 from bottles.backend.models.result import Result
@@ -27,8 +27,6 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.frontend.gtk import GtkUtils
-
-logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/library-entry.ui")

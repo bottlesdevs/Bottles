@@ -24,7 +24,7 @@ from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk, Xdp
 
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
@@ -43,8 +43,6 @@ from bottles.frontend.preferences import PreferencesWindow
 from bottles.frontend.crash_report_dialog import CrashReportDialog
 from bottles.frontend.dependencies_check_dialog import DependenciesCheckDialog
 from bottles.frontend.onboard_dialog import OnboardDialog
-
-logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/window.ui")
@@ -82,6 +80,7 @@ class BottlesWindow(Adw.ApplicationWindow):
 
         if PROFILE == "development":
             self.add_css_class("devel")
+            logging.getLogger().setLevel(logging.DEBUG)
 
         self.btn_donate.add_css_class("donate")
 
