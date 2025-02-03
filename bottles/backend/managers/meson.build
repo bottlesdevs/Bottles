@@ -9,7 +9,6 @@ bottles_sources = [
   'conf.py',
   'template.py',
   'sandbox.py',
-  'epicgamesstore.py',
   'ubisoftconnect.py',
   'origin.py',
   'steamgriddb.py',

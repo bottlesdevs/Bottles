@@ -36,7 +36,6 @@ from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths
 import logging
-from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
@@ -562,14 +561,6 @@ class Manager(metaclass=Singleton):
                         }
                     )
                     found.append(executable_name)
-
-            if self.settings.get_boolean(
-                "epic-games"
-            ) and EpicGamesStoreManager.is_epic_supported(config):
-                programs_names = [p.get("name", "") for p in installed_programs]
-                for app in EpicGamesStoreManager.get_installed_games(config):
-                    if app["name"] not in programs_names:
-                        installed_programs.append(app)
 
             if self.settings.get_boolean(
                 "ubisoft-connect"
