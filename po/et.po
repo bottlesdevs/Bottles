@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-01-20 13:33+0000\n"
-"Last-Translator: Henri <contact@hen.ee>\n"
+"PO-Revision-Date: 2025-02-04 13:43+0000\n"
+"Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bottles/bottles/"
 "et/>\n"
 "Language: et\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
-msgstr ""
+msgstr "Asukoht on määramata"
 
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
@@ -152,23 +152,23 @@ msgstr ""
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr ""
+msgstr "Taastame olekut {} …"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
-msgstr ""
+msgstr "Olekut ei leidu"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "{} olek on juba aktiivne"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
-msgstr ""
+msgstr "Näita versiooniteavet"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
-msgstr ""
+msgstr "Käivitusfaili asukoht"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
@@ -227,27 +227,30 @@ msgstr ""
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr ""
+msgstr "Komponendi versioon"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
 #: bottles/frontend/ui/program-entry.blp:77
 msgid "Uninstall"
-msgstr ""
+msgstr "Eemalda"
 
 #: bottles/frontend/ui/component-entry.blp:23
 msgid "Browse Files"
-msgstr ""
+msgstr "Sirvi faile"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
+"Paigaldamine ei õnnestunud. See võib olla põhjustatud tarkvarahoidla veast, "
+"poolikuks jäänud allalaadimisest või kontrollsummade mitteklappimisest. "
+"Uuesti proovimiseks klõpsi."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
-msgstr ""
+msgstr "Laadi alla ja paigalda"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
@@ -2456,14 +2459,14 @@ msgid "Manifest for {0}"
 msgstr ""
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "Eemaldaja"
+msgstr "„{0}“ on eemaldatud"
 
 #: bottles/frontend/widgets/dependency.py:174
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" installed"
-msgstr "Eemaldaja"
+msgstr "„{0}“ on paigaldatud"
 
 #: bottles/frontend/widgets/dependency.py:188
 #, python-brace-format
@@ -2662,7 +2665,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
-msgstr "wine;windows;"
+msgstr "wine;windows;proton;"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -2852,8 +2855,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:26
 msgid "Automatic installation and management of Wine and Proton runners"
-msgstr ""
-"Wine'i ja Proton'i käivitajate automaatne installeerimine ning haldamine"
+msgstr "Wine'i ja Proton'i käivitajate automaatne paigaldaja ning haldaja"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:27
 msgid "Automatic bottle repair in case of breakage"
