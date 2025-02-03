@@ -92,7 +92,6 @@ class Bottles(Adw.Application):
         )
         self.__create_action("quit", self.__quit, ["<primary>q", "<primary>w"])
         self.__create_action("about", self.__show_about_dialog)
-        self.__create_action("import", self.__show_importer_view, ["<primary>i"])
         self.__create_action("preferences", self.__show_preferences, ["<primary>comma"])
         self.__create_action("help", self.__help, ["F1"])
         self.__create_action("new", self.__new_bottle, ["<primary>n"])
@@ -295,9 +294,6 @@ class Bottles(Adw.Application):
 
     def __new_bottle(self, *args):
         self.win.show_add_view()
-
-    def __show_importer_view(self, widget=False, *args):
-        self.win.main_leaf.set_visible_child(self.win.page_importer)
 
     def __show_about_dialog(self, *_args):
         developers = [
