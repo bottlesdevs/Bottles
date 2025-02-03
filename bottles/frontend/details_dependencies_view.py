@@ -52,7 +52,6 @@ class DetailsDependenciesView(Adw.Bin):
         self.window = details.window
         self.manager = details.window.manager
         self.config = config
-        self.queue = details.queue
 
         self.ev_controller.connect("key-released", self.__search_dependencies)
 

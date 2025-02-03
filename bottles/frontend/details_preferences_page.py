@@ -129,7 +129,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
         self.window = details.window
         self.manager = details.window.manager
         self.config = config
-        self.queue = details.queue
         self.details = details
 
         if not gamemode_available or not Xdp.Portal.running_under_sandbox():
@@ -541,7 +540,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
             parent_window=self.window,
             config=self.config,
             details=self.details,
-            queue=self.queue,
             widget=widget,
             spinner_display=self.spinner_display,
         )
@@ -570,7 +568,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
             "esync",
             "fsync",
         ]
-        self.queue.add_task()
         self.combo_sync.set_sensitive(False)
         RunAsync(
             self.manager.update_config,
@@ -580,11 +577,9 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
             scope="Parameters",
         )
         self.combo_sync.set_sensitive(True)
-        self.queue.end_task()
 
     def __toggle_nvapi(self, widget=False, state=False):
         """Install/Uninstall NVAPI from the bottle"""
-        self.queue.add_task()
         self.set_nvapi_status(pending=True)
 
         RunAsync(
@@ -648,7 +643,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
                     )
 
             set_widgets_status(True)
-            self.queue.end_task()
 
         set_widgets_status(False)
         runner = self.manager.runners_available[self.combo_runner.get_selected()]
@@ -660,7 +654,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
                 self.combo_runner.handler_unblock_by_func(self.__set_runner)
                 return
 
-            self.queue.add_task()
             RunAsync(
                 Runner.runner_update,
                 callback=update,
@@ -688,7 +681,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
     def __set_dxvk(self, *_args):
         """Set the DXVK version to use for the bottle"""
         self.set_dxvk_status(pending=True)
-        self.queue.add_task()
 
         if (self.combo_dxvk.get_selected()) == 0:
             self.set_dxvk_status(pending=True)
@@ -728,7 +720,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
     def __set_vkd3d(self, *_args):
         """Set the VKD3D version to use for the bottle"""
         self.set_vkd3d_status(pending=True)
-        self.queue.add_task()
 
         if (self.combo_vkd3d.get_selected()) == 0:
             self.set_vkd3d_status(pending=True)
@@ -768,7 +759,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
     def __set_nvapi(self, *_args):
         """Set the NVAPI version to use for the bottle"""
         self.set_nvapi_status(pending=True)
-        self.queue.add_task()
 
         self.switch_nvapi.set_active(True)
 
@@ -790,7 +780,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
 
     def __set_latencyflex(self, *_args):
         """Set the latency flex value"""
-        self.queue.add_task()
         if self.combo_latencyflex.get_selected() == 0:
             RunAsync(
                 task_func=self.manager.install_dll_component,
@@ -830,9 +819,7 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
             self.spinner_windows.stop()
             self.spinner_windows.set_visible(False)
             self.combo_windows.set_sensitive(True)
-            self.queue.end_task()
 
-        self.queue.add_task()
         self.spinner_windows.start()
         self.spinner_windows.set_visible(True)
         self.combo_windows.set_sensitive(False)
@@ -867,7 +854,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
         else:
             self.spinner_dxvk.stop()
             self.spinner_dxvk.set_visible(False)
-            self.queue.end_task()
 
     @GtkUtils.run_in_main_loop
     def set_vkd3d_status(self, status=None, error=None, pending=False):
@@ -879,7 +865,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
         else:
             self.spinner_vkd3d.stop()
             self.spinner_vkd3d.set_visible(False)
-            self.queue.end_task()
 
     @GtkUtils.run_in_main_loop
     def set_nvapi_status(self, status=None, error=None, pending=False):
@@ -896,7 +881,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
             self.spinner_nvapibool.stop()
             self.spinner_nvapi.set_visible(False)
             self.spinner_nvapibool.set_visible(False)
-            self.queue.end_task()
 
     @GtkUtils.run_in_main_loop
     def set_latencyflex_status(self, status=None, error=None, pending=False):
@@ -908,7 +892,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
         else:
             self.spinner_latencyflex.stop()
             self.spinner_latencyflex.set_visible(False)
-            self.queue.end_task()
 
     def __set_steam_rules(self):
         """Set the Steam Environment specific rules"""

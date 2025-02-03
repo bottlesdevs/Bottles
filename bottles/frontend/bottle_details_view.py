@@ -20,7 +20,6 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, Adw, GLib
 
-from bottles.backend.managers.queue import QueueManager
 from bottles.backend.models.config import BottleConfig
 
 from bottles.backend.utils.threading import RunAsync
@@ -69,7 +68,6 @@ class BottleDetailsView(Adw.Bin):
         self.window = window
         self.manager = window.manager
         self.config = config
-        self.queue = QueueManager(add_fn=self.lock_back, end_fn=self.unlock_back)
 
         self.view_bottle = BottleDetailsPage(self, config)
         self.view_dependencies = DetailsDependenciesView(self, config)
