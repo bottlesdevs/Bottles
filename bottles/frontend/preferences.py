@@ -53,7 +53,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
-    switch_ubisoft_connect = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
@@ -128,12 +127,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.bind(
             "steam-programs",
             self.switch_steam_programs,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "ubisoft-connect",
-            self.switch_ubisoft_connect,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
