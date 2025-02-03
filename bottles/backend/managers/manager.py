@@ -37,7 +37,6 @@ from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths
 import logging
 from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
-from bottles.backend.managers.importer import ImportManager
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
@@ -105,10 +104,6 @@ class Manager(metaclass=Singleton):
         # common variables
         self.settings = g_settings or GSettingsStub
         _offline = False
-
-        # sub-managers
-        self.import_manager = ImportManager(self)
-        times["ImportManager"] = time.time()
 
         times.update(self.checks(install_latest=False, first_run=True).data)
 

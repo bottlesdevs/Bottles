@@ -6,7 +6,6 @@ bottles_sources = [
   'backup.py',
   'library.py',
   'manager.py',
-  'importer.py',
   'conf.py',
   'template.py',
   'sandbox.py',
