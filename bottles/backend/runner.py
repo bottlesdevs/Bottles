@@ -19,7 +19,6 @@ import os
 from typing import TYPE_CHECKING
 
 import logging
-from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
@@ -76,18 +75,5 @@ class Runner:
             manager.install_dll_component(config, "nvapi", overrides_only=True)
         if config.Parameters.vkd3d:
             manager.install_dll_component(config, "vkd3d", overrides_only=True)
-
-        """
-        enable Steam runtime if using Proton.
-
-        NOTE: Official Proton runners need to be launched with the Steam Runtime to works
-        properly, since it relies on a lot of libraries that should not be present on
-        the host system. There are some exceptions, like the Soda and Wine-GE runners,
-        which are built to work without the Steam Runtime.
-        """
-        if SteamUtils.is_proton(
-            ManagerUtils.get_runner_path(runner)
-        ) and RuntimeManager.get_runtimes("steam"):
-            manager.update_config(config, "use_steam_runtime", True, "Parameters")
 
         return Result(status=True, data={"config": up_config})
