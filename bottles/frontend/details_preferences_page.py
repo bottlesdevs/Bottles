@@ -32,7 +32,6 @@ from bottles.backend.globals import (
     base_version,
 )
 import logging
-from bottles.backend.managers.library import LibraryManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.models.result import Result
@@ -274,20 +273,7 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
             return
 
         new_name = self.entry_name.get_text()
-        old_name = self.config.Name
-
-        library_manager = LibraryManager()
-        entries = library_manager.get_library()
-
-        for uuid, entry in entries.items():
-            bottle = entry.get("bottle")
-            if bottle.get("name") == old_name:
-                logging.info(f"Updating library entry for {entry.get('name')}")
-                entries[uuid]["bottle"]["name"] = new_name
-                break
-
-        library_manager.__library = entries
-        library_manager.save_library()
+        self.config.Name
 
         self.manager.update_config(config=self.config, key="Name", value=new_name)
 

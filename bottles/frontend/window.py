@@ -34,7 +34,6 @@ from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import APP_ID, BASE_ID, PROFILE
 from bottles.frontend.gtk import GtkUtils
 from bottles.frontend.bottle_details_view import BottleDetailsView
-from bottles.frontend.library_view import LibraryView
 from bottles.frontend.bottles_list_view import BottlesListView
 from bottles.frontend.loading_view import LoadingView
 from bottles.frontend.new_bottle_dialog import NewBottleDialog
@@ -176,9 +175,6 @@ class BottlesWindow(Adw.ApplicationWindow):
 
     # endregion
 
-    def update_library(self):
-        GLib.idle_add(self.page_library.update)
-
     def title(self, title, subtitle: str = ""):
         self.view_switcher_title.set_title(title)
         self.view_switcher_title.set_subtitle(subtitle)
@@ -203,7 +199,6 @@ class BottlesWindow(Adw.ApplicationWindow):
             # Pages
             self.page_details = BottleDetailsView(self)
             self.page_list = BottlesListView(self)
-            self.page_library = LibraryView(self)
 
             self.main_leaf.append(self.page_details)
 
@@ -212,9 +207,6 @@ class BottlesWindow(Adw.ApplicationWindow):
             self.stack_main.add_titled(
                 child=self.page_list, name="page_list", title=_("Bottles")
             ).set_icon_name(f"{APP_ID}-symbolic")
-            self.stack_main.add_titled(
-                child=self.page_library, name="page_library", title=_("Library")
-            ).set_icon_name("library-symbolic")
 
             self.page_list.search_bar.set_key_capture_widget(self)
             self.btn_search.bind_property(
