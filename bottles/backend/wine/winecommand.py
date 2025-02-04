@@ -14,7 +14,6 @@ from bottles.backend.globals import (
     vmtouch_available,
 )
 import logging
-from bottles.backend.managers.sandbox import SandboxManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.display import DisplayUtils
@@ -610,16 +609,6 @@ class WineCommand:
             cwd=self.cwd,
         )
 
-    def _get_sandbox_manager(self) -> SandboxManager:
-        return SandboxManager(
-            envs=self.env,
-            chdir=self.cwd,
-            share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
-            share_paths_ro=[Paths.runners, Paths.temp],
-            share_net=self.config.Sandbox.share_net,
-            share_sound=self.config.Sandbox.share_sound,
-        )
-
     def run(self) -> Result[str | None]:
         """
         Run command with pre-configured parameters
@@ -635,42 +624,28 @@ class WineCommand:
         if vmtouch_available and self.config.Parameters.vmtouch and not self.terminal:
             self._vmtouch_preload()
 
-        sandbox = (
-            self._get_sandbox_manager() if self.config.Parameters.sandbox else None
-        )
-
         # run command in external terminal if terminal is True
         if self.terminal:
-            if sandbox:
-                return Result(
-                    status=TerminalUtils().execute(
-                        sandbox.get_cmd(self.command), self.env, self.colors, self.cwd
-                    )
+            return Result(
+                status=TerminalUtils().execute(
+                    self.command, self.env, self.colors, self.cwd
                 )
-            else:
-                return Result(
-                    status=TerminalUtils().execute(
-                        self.command, self.env, self.colors, self.cwd
-                    )
-                )
+            )
 
         # prepare proc if we are going to execute command internally
         # proc should always be `Popen[bytes]` to make sure
         # stdout_data's type is `bytes`
         proc: subprocess.Popen[bytes]
-        if sandbox:
-            proc = sandbox.run(self.command)
-        else:
-            try:
-                proc = subprocess.Popen(
-                    self.command,
-                    stdout=subprocess.PIPE,
-                    shell=True,
-                    env=self.env,
-                    cwd=self.cwd,
-                )
-            except FileNotFoundError:
-                return Result(False, message="File not found")
+        try:
+            proc = subprocess.Popen(
+                self.command,
+                stdout=subprocess.PIPE,
+                shell=True,
+                env=self.env,
+                cwd=self.cwd,
+            )
+        except FileNotFoundError:
+            return Result(False, message="File not found")
 
         stdout_data, _ = proc.communicate()
 
