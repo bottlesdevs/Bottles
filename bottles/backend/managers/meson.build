@@ -4,7 +4,6 @@ managersdir = join_paths(pkgdatadir, 'bottles/backend/managers')
 bottles_sources = [
   '__init__.py',
   'manager.py',
-  'sandbox.py',
 ]
 
 install_data(bottles_sources, install_dir: managersdir)
