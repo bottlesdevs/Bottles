@@ -5,7 +5,6 @@ bottles_sources = [
   '__init__.py',
   'manager.py',
   'sandbox.py',
-  'steamgriddb.py',
 ]
 
 install_data(bottles_sources, install_dir: managersdir)
