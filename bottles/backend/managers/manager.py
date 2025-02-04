@@ -36,7 +36,6 @@ from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths
 import logging
-from bottles.backend.managers.template import TemplateManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
@@ -1018,18 +1017,7 @@ class Manager(metaclass=Singleton):
         if versioning:
             config.Versioning = True
 
-        # get template
-        template = TemplateManager.get_env_template(environment)
-        template_updated = False
-        if template:
-            log_update(_("Template found, applying…"))
-            TemplateManager.unpack_template(template, config)
-            config.Installed_Dependencies = template["config"]["Installed_Dependencies"]
-            config.Uninstallers = template["config"]["Uninstallers"]
-
         # initialize wineprefix
-        reg = Reg(config)
-        rk = RegKeys(config)
         wineboot = WineBoot(config)
         wineserver = WineServer(config)
 
@@ -1078,37 +1066,6 @@ class Manager(metaclass=Singleton):
         # wait for registry files to be created
         FileUtils.wait_for_files(reg_files)
 
-        # apply Windows version
-        if not template and not custom_environment:
-            logging.info("Setting Windows version…")
-            log_update(_("Setting Windows version…"))
-            if (
-                "soda" not in runner_name.lower() and "caffe" not in runner_name.lower()
-            ):  # Caffe/Soda came with win10 by default
-                rk.lg_set_windows(config.Windows)
-                wineboot.update()
-
-            FileUtils.wait_for_files(reg_files)
-
-            # apply CMD settings
-            logging.info("Setting CMD default settings…")
-            log_update(_("Apply CMD default settings…"))
-            rk.apply_cmd_settings()
-            wineboot.update()
-
-            FileUtils.wait_for_files(reg_files)
-
-            # blacklisting processes
-            logging.info("Optimizing environment…")
-            log_update(_("Optimizing environment…"))
-            _blacklist_dll = ["winemenubuilder.exe"]
-            for _dll in _blacklist_dll:
-                reg.add(
-                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
-                    value=_dll,
-                    data="",
-                )
-
         # apply environment configuration
         logging.info(f"Applying environment: [{environment}]…")
         log_update(_("Applying environment: {0}…").format(environment))
@@ -1137,42 +1094,6 @@ class Manager(metaclass=Singleton):
                 if prm in env.get("Parameters", {}):
                     config.Parameters[prm] = env["Parameters"][prm]
 
-            if (not template and config.Parameters.dxvk) or (
-                template and template["config"]["DXVK"] != dxvk
-            ):
-                # perform dxvk installation if configured
-                logging.info("Installing DXVK…")
-                log_update(_("Installing DXVK…"))
-                self.install_dll_component(config, "dxvk", version=dxvk_name)
-                template_updated = True
-
-            if (
-                not template
-                and config.Parameters.vkd3d
-                or (template and template["config"]["VKD3D"] != vkd3d)
-            ):
-                # perform vkd3d installation if configured
-                logging.info("Installing VKD3D…")
-                log_update(_("Installing VKD3D…"))
-                self.install_dll_component(config, "vkd3d", version=vkd3d_name)
-                template_updated = True
-
-            if (
-                not template
-                and config.Parameters.dxvk_nvapi
-                or (template and template["config"]["NVAPI"] != nvapi)
-            ):
-                if GPUUtils.is_gpu(GPUVendors.NVIDIA):
-                    # perform nvapi installation if configured
-                    logging.info("Installing DXVK-NVAPI…")
-                    log_update(_("Installing DXVK-NVAPI…"))
-                    self.install_dll_component(config, "nvapi", version=nvapi_name)
-                    template_updated = True
-
-            for dep in env.get("Installed_Dependencies", []):
-                if template and dep in template["config"]["Installed_Dependencies"]:
-                    continue
-
         # save bottle config
         config.dump(f"{bottle_complete_path}/bottle.yml")
 
@@ -1185,12 +1106,6 @@ class Manager(metaclass=Singleton):
 
         # perform wineboot
         wineboot.update()
-
-        # caching template
-        if not template or template_updated:
-            logging.info("Caching template…")
-            log_update(_("Caching template…"))
-            TemplateManager.new(environment, config)
 
         return Result(status=True, data={"config": config})
 
