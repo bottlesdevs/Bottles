@@ -36,7 +36,6 @@ from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths
 import logging
-from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
@@ -1236,13 +1235,6 @@ class Manager(metaclass=Singleton):
         logging.info("Removing applications installed with the bottle…")
         for inst in glob(f"{Paths.applications}/{config.Name}--*"):
             os.remove(inst)
-
-        logging.info("Removing library entries associated with this bottle…")
-        library_manager = LibraryManager()
-        entries = library_manager.get_library().copy()
-        for _uuid, entry in entries.items():
-            if entry.get("bottle").get("name") == config.Name:
-                library_manager.remove_from_library(_uuid)
 
         if config.Custom_Path:
             logging.info("Removing placeholder…")
