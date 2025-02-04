@@ -20,7 +20,6 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, Adw
 
-from bottles.backend.managers.library import LibraryManager
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
@@ -50,7 +49,6 @@ class ProgramRow(Adw.ActionRow):
     btn_browse = Gtk.Template.Child()
     btn_add_steam = Gtk.Template.Child()
     btn_add_entry = Gtk.Template.Child()
-    btn_add_library = Gtk.Template.Child()
     btn_launch_terminal = Gtk.Template.Child()
     pop_actions = Gtk.Template.Child()
 
@@ -81,11 +79,6 @@ class ProgramRow(Adw.ActionRow):
         self.btn_hide.set_visible(not program.get("removed"))
         self.btn_unhide.set_visible(program.get("removed"))
 
-        library_manager = LibraryManager()
-        for _uuid, entry in library_manager.get_library().items():
-            if entry.get("id") == program.get("id"):
-                self.btn_add_library.set_visible(False)
-
         external_programs = []
         for v in self.config.External_Programs.values():
             external_programs.append(v["name"])
@@ -101,7 +94,6 @@ class ProgramRow(Adw.ActionRow):
         self.btn_rename.connect("clicked", self.rename_program)
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
-        self.btn_add_library.connect("clicked", self.add_to_library)
         self.btn_remove.connect("clicked", self.remove_program)
 
         if not program.get("removed") and not is_steam and check_boot:
@@ -229,28 +221,11 @@ class ProgramRow(Adw.ActionRow):
                 scope="External_Programs",
             )
 
-            def async_work():
-                library_manager = LibraryManager()
-                entries = library_manager.get_library()
-
-                for uuid, entry in entries.items():
-                    if entry.get("id") == self.program["id"]:
-                        entries[uuid]["name"] = new_name
-                        library_manager.download_thumbnail(uuid, self.config)
-                        break
-
-                library_manager.__library = entries
-                library_manager.save_library()
-
-            @GtkUtils.run_in_main_loop
-            def ui_update(_result, _error):
-                self.window.page_library.update()
-                self.window.show_toast(
-                    _('"{0}" renamed to "{1}"').format(old_name, new_name)
-                )
-                self.update_programs()
-
-            RunAsync(async_work, callback=ui_update)
+            self.window.page_library.update()
+            self.window.show_toast(
+                _('"{0}" renamed to "{1}"').format(old_name, new_name)
+            )
+            self.update_programs()
 
         dialog = RenameProgramDialog(
             self.window, on_save=func, name=self.program["name"]
@@ -284,28 +259,3 @@ class ProgramRow(Adw.ActionRow):
                 "path": self.program["path"],
             },
         )
-
-    def add_to_library(self, _widget):
-        def update(_result, _error=False):
-            self.window.update_library()
-            self.window.show_toast(
-                _('"{0}" added to your library').format(self.program["name"])
-            )
-
-        def add_to_library():
-            self.save_program()  # we need to store it in the bottle configuration to keep the reference
-            library_manager = LibraryManager()
-            library_manager.add_to_library(
-                {
-                    "bottle": {"name": self.config.Name, "path": self.config.Path},
-                    "name": self.program["name"],
-                    "id": str(self.program["id"]),
-                    "icon": ManagerUtils.extract_icon(
-                        self.config, self.program["name"], self.program["path"]
-                    ),
-                },
-                self.config,
-            )
-
-        self.btn_add_library.set_visible(False)
-        RunAsync(add_to_library, update)
