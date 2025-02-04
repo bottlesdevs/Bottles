@@ -7,7 +7,7 @@
   <name>Bottles</name>
   <summary>Run Windows software</summary>
   <developer id="@DEVELOPER_ID@">
-    <name translatable="no">The Bottles Contributors</name>
+    <name translate="no">The Bottles Contributors</name>
   </developer>
   <branding>
     <color type="primary" scheme_preference="light">#f4c8cb</color>
@@ -77,7 +77,7 @@
   </requires>
   <releases>
     <release version="51.18" date="2025-01-14">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>Add Ctrl+N shortcut for creating a new bottle</li>
           <li>Add Shortcuts window</li>
@@ -91,12 +91,12 @@
       </description>
     </release>
     <release version="51.17" date="2024-12-14">
-      <description translatable="no">
+      <description translate="no">
         <p>Fixed a regression that makes the bottle's preferences page blank in some cases</p>
       </description>
     </release>
     <release version="51.16" date="2024-12-12">
-      <description translatable="no">
+      <description translate="no">
         <p>Fixed an issue where clicking on a snapshot instantly started the restore process</p>
         <p>Fixed a crash in bottles-cli when neither --executable nor --program was specified</p>
         <p>Fixed an issue where launch options were not honored when applications were launched from Desktop Entries</p>
@@ -111,12 +111,12 @@
       </description>
     </release>
     <release version="51.15" date="2024-10-14">
-      <description translatable="no">
+      <description translate="no">
         <p>Fixed a bug where the "win11" option was not available</p>
       </description>
     </release>
     <release version="51.14" date="2024-10-12">
-      <description translatable="no">
+      <description translate="no">
         <p>New "Native" Force Stop all Processes option</p>
         <p>Provide bottle Path as env var</p>
         <p>Fix "bottles:run/" uri processing (#3444)</p>
@@ -131,12 +131,12 @@
       </description>
     </release>
     <release version="51.13" date="2024-07-10">
-      <description translatable="no">
+      <description translate="no">
         <p>Fixed crash on starting executables via the file manager [#3427]</p>
       </description>
     </release>
     <release version="51.12" date="2024-07-09">
-      <description translatable="no">
+      <description translate="no">
         <p>Support d3d8 via dxvk</p>
         <p>Removed @lru_cache decorator from the Paths class, plus minor typing fixes</p>
         <p>Fixed crash on startup [#3329]</p>
@@ -154,7 +154,7 @@
       </description>
     </release>
     <release version="51.11" date="2024-02-18">
-      <description translatable="no">
+      <description translate="no">
         <p>Fix running programs via CLI</p>
         <p>Fix handling of empty program arguments</p>
         <p>Removed obsolete faudio dependency from the environment</p>
@@ -163,7 +163,7 @@
       </description>
     </release>
     <release version="51.10" date="2023-09-27">
-      <description translatable="no">
+      <description translate="no">
         <p>Clean FSR settings</p>
         <p>Improve bad connections handling</p>
         <p>Update Flatpak runtime</p>
@@ -172,18 +172,18 @@
       </description>
     </release>
     <release version="51.9" date="2023-08-21">
-      <description translatable="no">
+      <description translate="no">
         <p>Fix runners and components from not showing when prereleases are off</p>
         <p>Fix Steam runtime compatibility with Wine runners</p>
       </description>
     </release>
     <release version="51.8" date="2023-08-21">
-      <description translatable="no">
+      <description translate="no">
         <p>A few bug fixes</p>
       </description>
     </release>
     <release version="51.6" date="2023-05-03">
-      <description translatable="no">
+      <description translate="no">
         <p>Support for the double-DLL VKD3D</p>
         <p>Updated Flatpak runtime</p>
         <p>Minor improvement and fixes to the library</p>
@@ -193,34 +193,34 @@
       </description>
     </release>
     <release version="51.5" date="2023-02-23">
-      <description translatable="no">
+      <description translate="no">
         <p>Update metadata information</p>
       </description>
     </release>
     <release version="51.4" date="2023-02-23">
-      <description translatable="no">
+      <description translate="no">
         <p>Add more update information and correct release notes version</p>
       </description>
     </release>
     <release version="51.3" date="2023-02-23">
-      <description translatable="no">
+      <description translate="no">
         <p>Fixed "Add to Steam" button</p>
         <p>Fixed BottleConfig being not serializable</p>
         <p>Fixed Patool double extraction failing</p>
       </description>
     </release>
     <release version="51.2" date="2023-02-21">
-      <description translatable="no">
+      <description translate="no">
         <p>Correct version</p>
       </description>
     </release>
     <release version="51.1" date="2023-02-20">
-      <description translatable="no">
+      <description translate="no">
         <p>Fix crash when creating a bottle</p>
       </description>
     </release>
     <release version="51.0" date="2023-02-20">
-      <description translatable="no">
+      <description translate="no">
         <p>Major change: Redesign New Bottle interface</p>
         <p>Quality of life improvements:</p>
         <ul>
@@ -238,14 +238,14 @@
       </description>
     </release>
     <release version="50.2" date="2023-01-18">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>Fix error when downloading if Bottles isn't run from terminal</li>
         </ul>
       </description>
     </release>
     <release version="50.1" date="2023-01-15">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>Correct version date</li>
           <li>Hide NVIDIA-related critical errors on non-NVIDIA systems</li>
@@ -253,7 +253,7 @@
       </description>
     </release>
     <release version="50.0" date="2023-01-14">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>Gamescope improvements and fixes</li>
           <li>Dependency installation is faster and more stable</li>
