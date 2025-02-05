@@ -140,37 +140,6 @@ template $LaunchOptionsDialog: Adw.Window {
             }
           }
         }
-
-        Adw.ActionRow action_midi_soundfont {
-          activatable-widget: btn_midi_soundfont;
-          title: _("MIDI SoundFont");
-          subtitle: _("Choose a custom SoundFont for MIDI playback.");
-
-          Box {
-            spacing: 6;
-
-            Button btn_midi_soundfont_reset {
-              tooltip-text: _("Reset to Default");
-              valign: center;
-              visible: false;
-              icon-name: "edit-undo-symbolic";
-
-              styles [
-                "flat",
-              ]
-            }
-
-            Button btn_midi_soundfont {
-              tooltip-text: _("Choose a SoundFont");
-              valign: center;
-              icon-name: "document-open-symbolic";
-
-              styles [
-                "flat",
-              ]
-            }
-          }
-        }
       }
 
       Adw.PreferencesGroup {
