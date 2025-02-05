@@ -129,10 +129,7 @@ class WineCommand:
     def _get_cwd(self, cwd) -> str:
         config = self.config
 
-        if config.Environment == "Steam":
-            bottle = config.Path
-        else:
-            bottle = ManagerUtils.get_bottle_path(config)
+        bottle = ManagerUtils.get_bottle_path(config)
 
         if not cwd:
             """
@@ -152,10 +149,8 @@ class WineCommand:
     def get_env(
         self,
         environment: dict | None = None,
-        return_steam_env: bool = False,
-        return_clean_env: bool = False,
     ) -> dict:
-        env = WineEnv(clean=return_steam_env or return_clean_env)
+        env = WineEnv()
         config = self.config
         arch = config.Arch
         params = config.Parameters
@@ -208,8 +203,7 @@ class WineCommand:
                 dll_overrides.append(f"{k}={v}")
 
         # Default DLL overrides
-        if not return_steam_env:
-            dll_overrides.append("winemenubuilder=''")
+        dll_overrides.append("winemenubuilder=''")
 
         # Get Runner libraries
         if arch == "win64":
@@ -243,7 +237,7 @@ class WineCommand:
                 ld.append(_path)
 
         # Embedded GStreamer environment variables
-        if not env.has("BOTTLES_USE_SYSTEM_GSTREAMER") and not return_steam_env:
+        if not env.has("BOTTLES_USE_SYSTEM_GSTREAMER"):
             gst_env_path = []
             for lib in gst_libs:
                 if os.path.exists(os.path.join(runner_path, lib)):
@@ -252,7 +246,7 @@ class WineCommand:
                 env.add("GST_PLUGIN_SYSTEM_PATH", ":".join(gst_env_path), override=True)
 
         # DXVK environment variables
-        if params.dxvk and not return_steam_env:
+        if params.dxvk:
             env.add("WINE_LARGE_ADDRESS_AWARE", "1")
             env.add(
                 "DXVK_STATE_CACHE_PATH", os.path.join(bottle, "cache", "dxvk_state")
@@ -271,13 +265,13 @@ class WineCommand:
             )
 
         # VKD3D environment variables
-        if params.vkd3d and not return_steam_env:
+        if params.vkd3d:
             env.add(
                 "VKD3D_SHADER_CACHE_PATH", os.path.join(bottle, "cache", "vkd3d_shader")
             )
 
         # LatencyFleX environment variables
-        if params.latencyflex and not return_steam_env:
+        if params.latencyflex:
             _lf_path = ManagerUtils.get_latencyflex_path(config.LatencyFleX)
             _lf_layer_path = os.path.join(
                 _lf_path, "layer/usr/share/vulkan/implicit_layer.d"
@@ -315,7 +309,7 @@ class WineCommand:
                 env.add("OBS_USE_EGL", "1")
 
         # DXVK-Nvapi environment variables
-        if params.dxvk_nvapi and not return_steam_env:
+        if params.dxvk_nvapi:
             # NOTE: users reported that DXVK_ENABLE_NVAPI and DXVK_NVAPIHACK must be set to make
             #       DLSS works. I don't have a GPU compatible with this tech, so I'll trust them
             env.add("DXVK_NVAPIHACK", "0")
@@ -330,11 +324,10 @@ class WineCommand:
             env.add("WINEFSYNC", "1")
 
         # Wine debug level
-        if not return_steam_env:
-            debug_level = "fixme-all"
-            if params.fixme_logs:
-                debug_level = "+fixme-all"
-            env.add("WINEDEBUG", debug_level)
+        debug_level = "fixme-all"
+        if params.fixme_logs:
+            debug_level = "+fixme-all"
+        env.add("WINEDEBUG", debug_level)
 
         # Aco compiler
         # if params["aco_compiler"]:
@@ -352,39 +345,38 @@ class WineCommand:
             env.add("PULSE_LATENCY_MSEC", "60")
 
         # Discrete GPU
-        if not return_steam_env:
-            if params.discrete_gpu:
-                discrete = gpu["prime"]["discrete"]
-                if discrete is not None:
-                    gpu_envs = discrete["envs"]
-                    for p in gpu_envs:
-                        env.add(p, gpu_envs[p])
-                    env.concat("VK_ICD_FILENAMES", discrete["icd"])
+        if params.discrete_gpu:
+            discrete = gpu["prime"]["discrete"]
+            if discrete is not None:
+                gpu_envs = discrete["envs"]
+                for p in gpu_envs:
+                    env.add(p, gpu_envs[p])
+                env.concat("VK_ICD_FILENAMES", discrete["icd"])
 
-            # VK_ICD
-            if not env.has("VK_ICD_FILENAMES"):
-                if gpu["prime"]["integrated"] is not None:
-                    """
-                    System support PRIME but user disabled the discrete GPU
-                    setting (previus check skipped), so using the integrated one.
-                    """
-                    env.concat("VK_ICD_FILENAMES", gpu["prime"]["integrated"]["icd"])
+        # VK_ICD
+        if not env.has("VK_ICD_FILENAMES"):
+            if gpu["prime"]["integrated"] is not None:
+                """
+                System support PRIME but user disabled the discrete GPU
+                setting (previus check skipped), so using the integrated one.
+                """
+                env.concat("VK_ICD_FILENAMES", gpu["prime"]["integrated"]["icd"])
+            else:
+                """
+                System doesn't support PRIME, so using the first result
+                from the gpu vendors list.
+                """
+                if "vendors" in gpu and len(gpu["vendors"]) > 0:
+                    _first = list(gpu["vendors"].keys())[0]
+                    env.concat("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
                 else:
-                    """
-                    System doesn't support PRIME, so using the first result
-                    from the gpu vendors list.
-                    """
-                    if "vendors" in gpu and len(gpu["vendors"]) > 0:
-                        _first = list(gpu["vendors"].keys())[0]
-                        env.concat("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
-                    else:
-                        logging.warning(
-                            "No GPU vendor found, keep going without setting VK_ICD_FILENAMES…"
-                        )
+                    logging.warning(
+                        "No GPU vendor found, keep going without setting VK_ICD_FILENAMES…"
+                    )
 
-            # Add ld to LD_LIBRARY_PATH
-            if ld:
-                env.concat("LD_LIBRARY_PATH", ld)
+        # Add ld to LD_LIBRARY_PATH
+        if ld:
+            env.concat("LD_LIBRARY_PATH", ld)
 
         # Vblank
         # env.add("__GL_SYNC_TO_VBLANK", "0")
@@ -395,11 +387,10 @@ class WineCommand:
         if env.is_empty("WINEDLLOVERRIDES"):
             env.remove("WINEDLLOVERRIDES")
 
-        if not return_steam_env:
-            # Wine prefix
-            env.add("WINEPREFIX", bottle, override=True)
-            # Wine arch
-            env.add("WINEARCH", arch)
+        # Wine prefix
+        env.add("WINEPREFIX", bottle, override=True)
+        # Wine arch
+        env.add("WINEARCH", arch)
 
         return env.get()["envs"]
 
@@ -408,9 +399,6 @@ class WineCommand:
         runner = ManagerUtils.get_runner_path(config.Runner)
         arch = config.Arch
         runner_runtime = ""
-
-        if config.Environment == "Steam":
-            runner = config.RunnerPath
 
         if runner in [None, ""]:
             return "", ""
@@ -438,8 +426,6 @@ class WineCommand:
         pre_script: str | None = None,
         post_script: str | None = None,
         midi_soundfont: str | None = None,
-        return_steam_cmd: bool = False,
-        return_clean_cmd: bool = False,
         environment: dict | None = None,
     ) -> str:
         config = self.config
@@ -449,24 +435,14 @@ class WineCommand:
         if environment is None:
             environment = {}
 
-        if return_clean_cmd:
-            return_steam_cmd = True
-
-        if not return_steam_cmd and not return_clean_cmd:
-            command = f"{runner} {command}"
+        command = f"{runner} {command}"
 
         if not self.minimal:
             if gamemode_available and params.gamemode:
-                if not return_steam_cmd:
-                    command = f"{gamemode_available} {command}"
-                else:
-                    command = f"gamemode {command}"
+                command = f"{gamemode_available} {command}"
 
             if mangohud_available and params.mangohud and not self.gamescope_activated:
-                if not return_steam_cmd:
-                    command = f"{mangohud_available} {command}"
-                else:
-                    command = f"mangohud {command}"
+                command = f"{mangohud_available} {command}"
 
             if gamescope_available and self.gamescope_activated:
                 gamescope_run = tempfile.NamedTemporaryFile(mode="w", suffix=".sh").name
@@ -480,9 +456,7 @@ class WineCommand:
                     f.write("".join(file))
 
                 # Update command
-                command = (
-                    f"{self._get_gamescope_cmd(return_steam_cmd)} -- {gamescope_run}"
-                )
+                command = f"{self._get_gamescope_cmd()} -- {gamescope_run}"
                 logging.info(f"Running Gamescope command: '{command}'")
                 logging.info(f"{gamescope_run} contains:")
                 with open(gamescope_run) as f:
@@ -503,15 +477,13 @@ class WineCommand:
 
         return command
 
-    def _get_gamescope_cmd(self, return_steam_cmd: bool = False) -> str:
+    def _get_gamescope_cmd(self) -> str:
         config = self.config
         params = config.Parameters
         gamescope_cmd = []
 
         if gamescope_available and self.gamescope_activated:
             gamescope_cmd = [gamescope_available]
-            if return_steam_cmd:
-                gamescope_cmd = ["gamescope"]
             if params.gamescope_fullscreen:
                 gamescope_cmd.append("-f")
             if params.gamescope_borderless:
