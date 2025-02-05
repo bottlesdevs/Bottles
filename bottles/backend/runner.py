@@ -22,7 +22,6 @@ import logging
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.wine.wineboot import WineBoot
 
 if TYPE_CHECKING:

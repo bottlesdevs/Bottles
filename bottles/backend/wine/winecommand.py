@@ -21,7 +21,6 @@ from bottles.backend.utils.generic import detect_encoding
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.terminal import TerminalUtils
-from bottles.backend.utils.steam import SteamUtils
 
 
 class WineEnv:
@@ -172,13 +171,6 @@ class WineCommand:
 
         bottle = ManagerUtils.get_bottle_path(config)
         runner_path = ManagerUtils.get_runner_path(config.Runner)
-
-        if config.Environment == "Steam":
-            bottle = config.Path
-            runner_path = config.RunnerPath
-
-        if SteamUtils.is_proton(runner_path):
-            runner_path = SteamUtils.get_dist_directory(runner_path)
 
         # Clean some env variables which can cause trouble
         # ref: <https://github.com/bottlesdevs/Bottles/issues/2127>
@@ -423,16 +415,7 @@ class WineCommand:
         if runner in [None, ""]:
             return "", ""
 
-        if SteamUtils.is_proton(runner):
-            """
-            If the runner is Proton, set the path to /dist or /files
-            based on check if files exists.
-            Additionally, check for its corresponding runtime.
-            """
-            runner_runtime = SteamUtils.get_associated_runtime(runner)
-            runner = os.path.join(SteamUtils.get_dist_directory(runner), "bin/wine")
-
-        elif runner.startswith("sys-"):
+        if runner.startswith("sys-"):
             """
             If the runner type is system, set the runner binary
             path to the system command. Else set it to the full path.
@@ -511,24 +494,6 @@ class WineCommand:
 
             if obs_vkc_available and params.obsvkc:
                 command = f"{obs_vkc_available} {command}"
-
-        if self.arguments:
-            prefix, suffix, extracted_env = SteamUtils.handle_launch_options(
-                self.arguments
-            )
-            if prefix:
-                command = f"{prefix} {command}"
-            if suffix:
-                command = f"{command} {suffix}"
-            if extracted_env:
-                if extracted_env.get("WINEDLLOVERRIDES") and environment.get(
-                    "WINEDLLOVERRIDES"
-                ):
-                    environment["WINEDLLOVERRIDES"] += ";" + extracted_env.get(
-                        "WINEDLLOVERRIDES"
-                    )
-                    del extracted_env["WINEDLLOVERRIDES"]
-                environment.update(extracted_env)
 
         if post_script not in (None, ""):
             command = f"{command} ; sh '{post_script}'"

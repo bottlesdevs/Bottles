@@ -49,7 +49,6 @@ from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.singleton import Singleton
-from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
@@ -192,16 +191,15 @@ class Manager(metaclass=Singleton):
 
         # lock winemenubuilder.exe
         for runner in runners:
-            if not SteamUtils.is_proton(runner):
-                winemenubuilder_paths = [
-                    f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
-                    f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
-                    f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
-                    f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
-                ]
-                for winemenubuilder in winemenubuilder_paths:
-                    if os.path.isfile(winemenubuilder):
-                        os.rename(winemenubuilder, f"{winemenubuilder}.lock")
+            winemenubuilder_paths = [
+                f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
+                f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
+                f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
+                f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
+            ]
+            for winemenubuilder in winemenubuilder_paths:
+                if os.path.isfile(winemenubuilder):
+                    os.rename(winemenubuilder, f"{winemenubuilder}.lock")
 
         # check system wine
         if shutil.which("wine") is not None:
@@ -364,16 +362,7 @@ class Manager(metaclass=Singleton):
 
         if component_type == "runner":
             offline_components = [
-                runner
-                for runner in offline_components
-                if not runner.startswith("sys-")
-                and not SteamUtils.is_proton(ManagerUtils.get_runner_path(runner))
-            ]
-        elif component_type == "runner:proton":
-            offline_components = [
-                runner
-                for runner in offline_components
-                if SteamUtils.is_proton(ManagerUtils.get_runner_path(runner))
+                runner for runner in offline_components if not runner.startswith("sys-")
             ]
 
         if (

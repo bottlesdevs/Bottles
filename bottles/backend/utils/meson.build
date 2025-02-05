@@ -12,7 +12,6 @@ bottles_sources = [
   'file.py',
   'generic.py',
   'wine.py',
-  'steam.py',
   'lnk.py',
   'decorators.py',
   'snake.py',

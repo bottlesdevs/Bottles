@@ -4,7 +4,6 @@ import time
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.proc import ProcUtils
-from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.wine.wineprogram import WineProgram
 
 
@@ -28,13 +27,6 @@ class WineServer(WineProgram):
         bottle = ManagerUtils.get_bottle_path(config)
         runner = ManagerUtils.get_runner_path(config.Runner)
 
-        if config.Environment == "Steam":
-            bottle = config.Path
-            runner = config.RunnerPath
-
-        if SteamUtils.is_proton(runner):
-            runner = SteamUtils.get_dist_directory(runner)
-
         env = os.environ.copy()
         env["WINEPREFIX"] = bottle
         env["PATH"] = f"{runner}/bin:{env['PATH']}"
@@ -56,13 +48,6 @@ class WineServer(WineProgram):
         config = self.config
         bottle = ManagerUtils.get_bottle_path(config)
         runner = ManagerUtils.get_runner_path(config.Runner)
-
-        if config.Environment == "Steam":
-            bottle = config.Path
-            runner = config.RunnerPath
-
-        if SteamUtils.is_proton(runner):
-            runner = SteamUtils.get_dist_directory(runner)
 
         env = os.environ.copy()
         env["WINEPREFIX"] = bottle
