@@ -35,7 +35,6 @@ from bottles.frontend.params import APP_ID, BASE_ID, PROFILE
 from bottles.frontend.gtk import GtkUtils
 from bottles.frontend.bottle_details_view import BottleDetailsView
 from bottles.frontend.bottles_list_view import BottlesListView
-from bottles.frontend.loading_view import LoadingView
 from bottles.frontend.new_bottle_dialog import NewBottleDialog
 from bottles.frontend.preferences import PreferencesWindow
 from bottles.frontend.crash_report_dialog import CrashReportDialog
@@ -116,13 +115,6 @@ class BottlesWindow(Adw.ApplicationWindow):
             logging.error("https://usebottles.com/download/")
             return
 
-        # Loading view
-        self.page_loading = LoadingView()
-
-        # Populate stack
-        self.stack_main.add_named(
-            child=self.page_loading, name="page_loading"
-        ).set_visible(False)
         self.headerbar.add_css_class("flat")
 
         # Signal connections
@@ -239,7 +231,6 @@ class BottlesWindow(Adw.ApplicationWindow):
             mng = Manager(g_settings=self.settings)
             return mng
 
-        self.show_loading_view()
         RunAsync(get_manager, callback=set_manager)
 
         self.check_crash_log()
@@ -266,10 +257,6 @@ class BottlesWindow(Adw.ApplicationWindow):
     def show_details_view(self, widget=False, config: BottleConfig | None = None):
         self.main_leaf.set_visible_child(self.page_details)
         self.page_details.set_config(config or BottleConfig())
-
-    def show_loading_view(self, widget=False):
-        self.lock_ui()
-        self.stack_main.set_visible_child_name("page_loading")
 
     def show_onboard_view(self, widget=False):
         onboard_window = OnboardDialog(self)
