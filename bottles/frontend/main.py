@@ -17,10 +17,8 @@
 
 import sys
 import gi
-import gettext
-import locale
 import webbrowser
-from os import path
+from gettext import gettext as _
 
 import logging
 from bottles.backend.health import HealthChecker
@@ -41,41 +39,6 @@ gi.require_version("Xdp", "1.0")
 from gi.repository import Gio, GLib, GObject, Adw  # type: ignore
 from bottles.frontend.window import BottlesWindow
 from bottles.frontend.preferences import PreferencesWindow
-
-
-# region Translations
-"""
-This code snippet searches for and uploads translations to different
-directories, depending on your production or development environment.
-The function _() can be used to create and retrieve translations.
-"""
-share_dir = path.join(sys.prefix, "share")
-base_dir = "."
-
-if getattr(sys, "frozen", False):
-    base_dir = path.dirname(sys.executable)
-    share_dir = path.join(base_dir, "share")
-elif sys.argv[0]:
-    exec_dir = path.dirname(path.realpath(sys.argv[0]))
-    base_dir = path.dirname(exec_dir)
-    share_dir = path.join(base_dir, "share")
-
-    if not path.exists(share_dir):
-        share_dir = base_dir
-
-locale_dir = path.join(share_dir, "locale")
-
-if not path.exists(locale_dir):  # development
-    locale_dir = path.join(base_dir, "build", "mo")
-
-locale.bindtextdomain("bottles", locale_dir)
-locale.textdomain("bottles")
-gettext.bindtextdomain("bottles", locale_dir)
-gettext.textdomain("bottles")
-_ = gettext.gettext
-
-
-# endregion
 
 
 class Bottles(Adw.Application):
