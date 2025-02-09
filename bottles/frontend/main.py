@@ -248,16 +248,6 @@ class Bottles(Adw.Application):
         )
         webbrowser.open_new_tab("https://docs.usebottles.com")
 
-    def __refresh(self, action=None, param=None):
-        """
-        This function refresh the user bottle list.
-        It is used by the [Ctrl+R] shortcut.
-        """
-        logging.info(
-            _("[Refresh] request received."),
-        )
-        self.win.manager.update_bottles()
-
     def __show_preferences(self, *args):
         preferences_window = PreferencesWindow(self.win)
         preferences_window.present()
