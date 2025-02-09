@@ -341,7 +341,9 @@ class ProgramRow(Adw.ActionRow):
                 )
             else:
                 self.window.show_toast(
-                    _('"{0}" failed adding to your Steam library').format(self.program["name"])
+                    _('"{0}" failed adding to your Steam library').format(
+                        self.program["name"]
+                    )
                 )
 
         steam_manager = SteamManager(self.config)
