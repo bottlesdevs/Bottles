@@ -190,7 +190,7 @@ class BottlesWindow(Adw.ApplicationWindow):
 
             # Pages
             self.page_details = BottleDetailsView(self)
-            self.page_list = BottlesListView(self)
+            self.page_list = BottlesListView()
 
             self.main_leaf.append(self.page_details)
 
