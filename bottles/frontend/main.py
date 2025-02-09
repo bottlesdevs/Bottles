@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 import sys
 import gi
 import webbrowser
@@ -22,6 +23,7 @@ from gettext import gettext as _
 
 import logging
 from bottles.backend.health import HealthChecker
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.params import (
     APP_ID,
     APP_MAJOR_VERSION,
@@ -38,6 +40,7 @@ gi.require_version("Xdp", "1.0")
 # ruff: noqa: E402
 from gi.repository import Gio, GLib, GObject, Adw  # type: ignore
 from bottles.frontend.window import BottlesWindow
+from bottles.backend.bottle import Bottle
 from bottles.frontend.preferences import PreferencesWindow
 
 
@@ -45,6 +48,8 @@ class Bottles(Adw.Application):
     arg_exe = None
     arg_bottle = None
     dark_provider = None
+    local_bottles: dict[str, BottleConfig] = {}
+    bottles_config_dir = os.path.join(GLib.get_user_data_dir(), "bottles", "bottles")
 
     def __init__(self):
         super().__init__(
@@ -60,6 +65,8 @@ class Bottles(Adw.Application):
         self.__create_action("new", self.__new_bottle, ["<primary>n"])
 
         self.__register_arguments()
+
+        self.local_bottles = Bottle.generate_local_bottles_list(self.bottles_config_dir)
 
     def __register_arguments(self):
         """

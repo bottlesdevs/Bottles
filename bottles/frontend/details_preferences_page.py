@@ -277,7 +277,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
 
         self.manager.update_config(config=self.config, key="Name", value=new_name)
 
-        self.manager.update_bottles(silent=True)  # Updates backend bottles list and UI
         self.window.page_library.update()
         self.details.view_bottle.label_name.set_text(self.config.Name)
 
