@@ -3,7 +3,7 @@ import logging
 import os
 from dataclasses import dataclass, field, replace, asdict, is_dataclass
 from io import IOBase
-from typing import Optional, IO
+from typing import IO, Self
 from collections.abc import ItemsView, Container
 
 from bottles.backend.models.result import Result
@@ -170,7 +170,7 @@ class BottleConfig(DictCompatMixIn):
             f.close()
 
     @classmethod
-    def load(cls, file: str | IO, mode="r") -> Result[Optional["BottleConfig"]]:
+    def load(cls, file: str | IO, mode="r") -> Result[Self]:
         """
         Load config from file
 
@@ -204,7 +204,7 @@ class BottleConfig(DictCompatMixIn):
                 f.close()
 
     @classmethod
-    def _fill_with(cls, data: dict) -> Result[Optional["BottleConfig"]]:
+    def _fill_with(cls, data: dict) -> Result[Self | None]:
         """fill with dict"""
         try:
             data = data.copy()
