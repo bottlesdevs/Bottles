@@ -16,6 +16,7 @@ subdir('managers')
 
 bottles_sources = [
   '__init__.py',
+  'bottle.py',
   'globals.py',
   'runner.py',
   'diff.py',
