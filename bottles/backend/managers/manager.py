@@ -143,15 +143,7 @@ class Manager(metaclass=Singleton):
         self.check_runners(install_latest) or rv.set_status(False)
         rv.data["check_runners"] = time.time()
 
-        self.check_bottles()
-        rv.data["check_bottles"] = time.time()
-
         return rv
-
-    def update_bottles(self, silent: bool = False):
-        """Checks for new bottles and update the list view."""
-        self.check_bottles(silent)
-        SignalManager.send(Signals.ManagerLocalBottlesLoaded)
 
     def check_app_dirs(self):
         """
@@ -550,152 +542,6 @@ class Manager(metaclass=Singleton):
 
         return installed_programs
 
-    def check_bottles(self, silent: bool = False):
-        """
-        Check for local bottles and update the local_bottles list.
-        Will also mark the broken ones if the configuration file is missing
-        """
-        bottles = os.listdir(Paths.bottles)
-
-        # Empty local bottles
-        self.local_bottles = {}
-
-        def process_bottle(bottle):
-            _name = bottle
-            _bottle = str(os.path.join(Paths.bottles, bottle))
-            _placeholder = os.path.join(_bottle, "placeholder.yml")
-            _config = os.path.join(_bottle, "bottle.yml")
-
-            if os.path.exists(_placeholder):
-                with open(_placeholder) as f:
-                    try:
-                        placeholder_yaml = yaml.load(f)
-                        if placeholder_yaml.get("Path"):
-                            _config = os.path.join(
-                                placeholder_yaml.get("Path"), "bottle.yml"
-                            )
-                        else:
-                            raise ValueError("Missing Path in placeholder.yml")
-                    except (yaml.YAMLError, ValueError):
-                        return
-
-            config_load = BottleConfig.load(_config)
-
-            if not config_load.status:
-                return
-
-            config = config_load.data
-
-            # Clear Run Executable parameters on new session start
-            if config.session_arguments:
-                config.session_arguments = ""
-
-            if config.run_in_terminal:
-                config.run_in_terminal = False
-
-            # Check if the path in the bottle config corresponds to the folder name
-            # if not, change the config to reflect the folder name
-            # if the folder name is "illegal" across all platforms, rename the folder
-
-            # "universal" platform works for all filesystem/OSes
-            sane_name = pathvalidate.sanitize_filepath(_name, platform="universal")
-            if config.Custom_Path is False:  # There shouldn't be problems with this
-                if config.Path != _name or sane_name != _name:
-                    logging.warning(
-                        'Illegal bottle folder or mismatch between config "Path" and folder name'
-                    )
-                    if sane_name != _name:
-                        # This hopefully doesn't happen, but it's managed
-                        logging.warning(f"Broken path in bottle {_name}, fixing...")
-                        shutil.move(
-                            _bottle, str(os.path.join(Paths.bottles, sane_name))
-                        )
-                        # Restart the process bottle function. Normally, can't be recursive!
-                        process_bottle(sane_name)
-                        return
-
-                    config.Path = sane_name
-                    self.update_config(config=config, key="Path", value=sane_name)
-
-            sample = BottleConfig()
-            miss_keys = sample.keys() - config.keys()
-            for key in miss_keys:
-                logging.warning(f"Key {key} is missing for bottle {_name}, updating…")
-                self.update_config(config=config, key=key, value=sample[key])
-
-            miss_params_keys = sample.Parameters.keys() - config.Parameters.keys()
-
-            for key in miss_params_keys:
-                """
-                For each missing key in the bottle configuration, set
-                it to the default value.
-                """
-                logging.warning(
-                    f"Parameters key {key} is missing for bottle {_name}, updating…"
-                )
-                self.update_config(
-                    config=config,
-                    key=key,
-                    value=sample.Parameters[key],
-                    scope="Parameters",
-                )
-            self.local_bottles[config.Name] = config
-
-            real_path = ManagerUtils.get_bottle_path(config)
-            for p in [
-                os.path.join(real_path, "cache", "dxvk_state"),
-                os.path.join(real_path, "cache", "gl_shader"),
-                os.path.join(real_path, "cache", "mesa_shader"),
-                os.path.join(real_path, "cache", "vkd3d_shader"),
-            ]:
-                if not os.path.exists(p):
-                    os.makedirs(p)
-
-            for c in os.listdir(real_path):
-                c = str(c)
-                if c.endswith(".dxvk-cache"):
-                    # NOTE: the following code tries to create the caching directories
-                    #       if one or more already exist, it will fail silently as there
-                    #       is no need to create them again.
-                    try:
-                        shutil.move(
-                            os.path.join(real_path, c),
-                            os.path.join(real_path, "cache", "dxvk_state"),
-                        )
-                    except shutil.Error:
-                        pass
-                elif "vkd3d-proton.cache" in c:
-                    try:
-                        shutil.move(
-                            os.path.join(real_path, c),
-                            os.path.join(real_path, "cache", "vkd3d_shader"),
-                        )
-                    except shutil.Error:
-                        pass
-                elif c == "GLCache":
-                    try:
-                        shutil.move(
-                            os.path.join(real_path, c),
-                            os.path.join(real_path, "cache", "gl_shader"),
-                        )
-                    except shutil.Error:
-                        pass
-
-            if config.Parameters.dxvk_nvapi:
-                NVAPIComponent.check_bottle_nvngx(real_path, config)
-
-        for b in bottles:
-            """
-            For each bottle add the path name to the `local_bottles` variable
-            and append the config.
-            """
-            process_bottle(b)
-
-        if len(self.local_bottles) > 0 and not silent:
-            logging.info(
-                "Bottles found:\n - {}".format("\n - ".join(self.local_bottles))
-            )
-
     # Update parameters in bottle config
     def update_config(
         self,
@@ -839,7 +685,6 @@ class Manager(metaclass=Singleton):
             self.install_dll_component(config, "vkd3d")
 
         logging.info(f"New bottle from config created: {config.Path}")
-        self.update_bottles(silent=True)
         return True
 
     def create_bottle(
@@ -1152,8 +997,6 @@ class Manager(metaclass=Singleton):
         logging.info("Removing the bottle…")
         path = ManagerUtils.get_bottle_path(config)
         subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
-
-        self.update_bottles(silent=True)
 
         logging.info(f"Deleted the bottle in: {path}")
         return True
