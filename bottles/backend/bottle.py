@@ -17,8 +17,6 @@
 import os
 import yaml
 
-from typing import cast
-
 from bottles.backend.models.config import BottleConfig
 
 
@@ -52,6 +50,6 @@ class Bottle:
             if not config_load.status:
                 raise TypeError(f"Unable to load {bottle_config_file_path}")
 
-            local_bottles[local_bottle] = cast(BottleConfig, config_load.data)
+            local_bottles[local_bottle] = config_load.data
 
         return local_bottles
