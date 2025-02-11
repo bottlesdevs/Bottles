@@ -125,7 +125,6 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
 
         # common variables and references
         self.window = details.window
-        self.manager = details.window.manager
         self.config = config
         self.details = details
 

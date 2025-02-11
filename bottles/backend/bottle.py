@@ -16,9 +16,31 @@
 
 import os
 import yaml
+from dataclasses import dataclass
+from typing import Literal
 
+from bottles.backend.typing import WindowsAPI, VersionedComponent, Environment
 from bottles.backend.models.config import BottleConfig
 
+
+
+
+# BottleConfig(Name='d', Arch='win64', Windows='win10', Runner='sys-wine-10.0', WorkingDir='', DXVK='', NVAPI='', VKD3D='', LatencyFleX='', Path='d', Custom_Path=False, Environment='Application', Creation_Date='', Update_Date='', Versioning=False, Versioning_Exclusion_Patterns=[], State=0, Parameters=BottleParams(dxvk=False, dxvk_nvapi=False, vkd3d=False, latencyflex=False, mangohud=False, mangohud_display_on_game_start=True, obsvkc=False, vkbasalt=False, gamemode=False, gamescope=False, gamescope_game_width=0, gamescope_game_height=0, gamescope_window_width=0, gamescope_window_height=0, gamescope_fps=0, gamescope_fps_no_focus=0, gamescope_scaling=False, gamescope_borderless=False, gamescope_fullscreen=True, sync='wine', fsr=False, fsr_sharpening_strength=2, fsr_quality_mode='none', custom_dpi=96, renderer='gl', discrete_gpu=False, virtual_desktop=False, virtual_desktop_res='1280x720', pulseaudio_latency=False, fullscreen_capture=False, take_focus=False, mouse_warp=True, decorated=True, fixme_logs=False, use_runtime=False, use_eac_runtime=True, use_be_runtime=True, use_steam_runtime=False, sandbox=False, versioning_compression=False, versioning_automatic=False, versioning_exclusion_patterns=False, vmtouch=False, vmtouch_cache_cwd=False), Sandbox=BottleSandboxParams(share_net=False, share_sound=False), Environment_Variables={}, Installed_Dependencies=[], DLL_Overrides={}, External_Programs={}, Uninstallers={}, session_arguments='', run_in_terminal=False, Language='sys', CompatData='', data={}, RunnerPath='')
+@dataclass
+class BottleClass:
+    name: str
+    runner: str
+    environment: Environment
+    mangohud: bool = False
+    vkbasalt: bool = False
+    gamemode: bool = False
+    gamescope: bool = False
+    fidelityfx_super_resolution: bool = False
+    dxvk: VersionedComponent = False
+    nvapi: VersionedComponent = False
+    vkd3d: VersionedComponent = False
+    latencyflex: VersionedComponent = False
+    architecture: WindowsAPI = WindowsAPI.WIN64
 
 class Bottle:
     """Class representing a bottle."""

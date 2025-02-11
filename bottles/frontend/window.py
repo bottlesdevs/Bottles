@@ -25,12 +25,9 @@ from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk, Xdp
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 import logging
-from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import SignalManager, Signals, Notification
 from bottles.backend.utils.threading import RunAsync
-from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import APP_ID, BASE_ID, PROFILE
 from bottles.frontend.gtk import GtkUtils
 from bottles.frontend.bottle_details_view import BottleDetailsView
@@ -126,114 +123,52 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.btn_add.connect("clicked", self.show_add_view)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
 
-        # backend signal handlers
-        self.task_syncer = TaskSyncer(self)
-        SignalManager.connect(Signals.TaskAdded, self.task_syncer.task_added_handler)
-        SignalManager.connect(
-            Signals.TaskRemoved, self.task_syncer.task_removed_handler
-        )
-        SignalManager.connect(
-            Signals.TaskUpdated, self.task_syncer.task_updated_handler
-        )
-        SignalManager.connect(
-            Signals.NetworkStatusChanged, self.network_changed_handler
-        )
-        SignalManager.connect(Signals.GNotification, self.g_notification_handler)
-        SignalManager.connect(Signals.GShowUri, self.g_show_uri_handler)
+        # Pages
+        self.page_details = BottleDetailsView(self)
+        self.page_list = BottlesListView()
 
-        self.__on_start()
-        logging.info(
-            "Bottles Started!",
+        self.main_leaf.append(self.page_details)
+
+        self.main_leaf.get_page(self.page_details).set_navigatable(False)
+
+        self.stack_main.add_titled(
+            child=self.page_list, name="page_list", title=_("Bottles")
+        ).set_icon_name(f"{APP_ID}-symbolic")
+
+        self.page_list.search_bar.set_key_capture_widget(self)
+        self.btn_search.bind_property(
+            "active",
+            self.page_list.search_bar,
+            "search-mode-enabled",
+            GObject.BindingFlags.BIDIRECTIONAL,
         )
+
+        if (
+            self.stack_main.get_child_by_name(self.settings.get_string("startup-view"))
+            is None
+        ):
+            self.stack_main.set_visible_child_name("page_list")
+
+        self.settings.bind(
+            "startup-view",
+            self.stack_main,
+            "visible-child-name",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+
+        self.lock_ui(False)
+        self.headerbar.get_style_context().remove_class("flat")
 
     @Gtk.Template.Callback()
     def on_close_request(self, *args):
         self.settings.set_int("window-width", self.get_width())
         self.settings.set_int("window-height", self.get_height())
 
-    # region Backend signal handlers
-    def network_changed_handler(self, res: Result):
-        GLib.idle_add(self.btn_noconnection.set_visible, not res.status)
-
-    def g_notification_handler(self, res: Result):
-        """handle backend notification request"""
-        notify: Notification = res.data
-        self.send_notification(title=notify.title, text=notify.text, image=notify.image)
-
-    def g_show_uri_handler(self, res: Result):
-        """handle backend show_uri request"""
-        uri: str = res.data
-        Gtk.show_uri(self, uri, Gdk.CURRENT_TIME)
-
     # endregion
 
     def title(self, title, subtitle: str = ""):
         self.view_switcher_title.set_title(title)
         self.view_switcher_title.set_subtitle(subtitle)
-
-    def __on_start(self):
-        """
-        This method is called before the window is shown. This check if there
-        is at least one local runner installed. If not, the user will be
-        prompted with the onboard dialog.
-        """
-
-        @GtkUtils.run_in_main_loop
-        def set_manager(result: Manager, error=None):
-            self.manager = result
-
-            tmp_runners = [
-                x for x in self.manager.runners_available if not x.startswith("sys-")
-            ]
-            if len(tmp_runners) == 0:
-                self.show_onboard_view()
-
-            # Pages
-            self.page_details = BottleDetailsView(self)
-            self.page_list = BottlesListView()
-
-            self.main_leaf.append(self.page_details)
-
-            self.main_leaf.get_page(self.page_details).set_navigatable(False)
-
-            self.stack_main.add_titled(
-                child=self.page_list, name="page_list", title=_("Bottles")
-            ).set_icon_name(f"{APP_ID}-symbolic")
-
-            self.page_list.search_bar.set_key_capture_widget(self)
-            self.btn_search.bind_property(
-                "active",
-                self.page_list.search_bar,
-                "search-mode-enabled",
-                GObject.BindingFlags.BIDIRECTIONAL,
-            )
-
-            if (
-                self.stack_main.get_child_by_name(
-                    self.settings.get_string("startup-view")
-                )
-                is None
-            ):
-                self.stack_main.set_visible_child_name("page_list")
-
-            self.settings.bind(
-                "startup-view",
-                self.stack_main,
-                "visible-child-name",
-                Gio.SettingsBindFlags.DEFAULT,
-            )
-
-            self.lock_ui(False)
-            self.headerbar.get_style_context().remove_class("flat")
-
-        def get_manager():
-            # do not redo connection if aborted connection
-            mng = Manager(g_settings=self.settings)
-            return mng
-
-        RunAsync(get_manager, callback=set_manager)
-
-        self.check_crash_log()
 
     def send_notification(self, title, text, image="", ignore_user=False):
         """
