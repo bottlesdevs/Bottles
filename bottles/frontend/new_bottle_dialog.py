@@ -101,10 +101,19 @@ class NewBottleDialog(Adw.Dialog):
         except FileNotFoundError:
             pass
 
-        self.available_dxvk_versions = self.__get_available_versions_from_component("dxvk")
-        self.available_nvapi_versions = self.__get_available_versions_from_component("nvapi")
-        self.available_vkd3d_versions = self.__get_available_versions_from_component("vkd3d")
-        self.available_runners = self.available_runners + self.__get_available_versions_from_component("runners")
+        self.available_dxvk_versions = self.__get_available_versions_from_component(
+            "dxvk"
+        )
+        self.available_nvapi_versions = self.__get_available_versions_from_component(
+            "nvapi"
+        )
+        self.available_vkd3d_versions = self.__get_available_versions_from_component(
+            "vkd3d"
+        )
+        self.available_runners = (
+            self.available_runners
+            + self.__get_available_versions_from_component("runners")
+        )
 
         self.arch = {"win64": "64-bit", "win32": "32-bit"}
 
@@ -142,7 +151,9 @@ class NewBottleDialog(Adw.Dialog):
         if self.custom_path:
             return self.custom_path
         else:
-            return os.path.join(GLib.get_user_data_dir(), "bottles", self.entry_name.get_text())
+            return os.path.join(
+                GLib.get_user_data_dir(), "bottles", self.entry_name.get_text()
+            )
 
     def __check_validity(self, *_args: Any) -> tuple[bool, bool]:
         is_empty = self.entry_name.get_text() == ""
@@ -229,7 +240,6 @@ class NewBottleDialog(Adw.Dialog):
         # set widgets states
         # self.set_can_close(False) TODO: UNCOMMENT
         self.stack_create.set_visible_child_name("page_creating")
-
 
         config = BottleConfig(
             Name=self.entry_name.get_text(),
