@@ -19,10 +19,12 @@ from enum import Enum
 
 type VersionedComponent = str | Literal[False]
 
+
 class WindowsAPI(Enum):
     WIN64 = "Win64"
     WIN32 = "Win32"
     WIN16 = "Win16"
+
 
 class Environment(Enum):
     APPLICATION = "Application"
