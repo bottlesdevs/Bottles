@@ -37,11 +37,11 @@ jobs:
           git config user.name "github-actions[bot]"
           pur -r requirements.txt
           pur -r requirements.dev.txt
-          req2flatpak --requirements-file requirements.txt --yaml --target-platforms 312-x86_64 -o com.usebottles.bottles.pypi-deps.yaml
-          git diff ${{ github.ref_name }} --exit-code requirements.txt requirements.dev.txt com.usebottles.bottles.pypi-deps.yaml
+          req2flatpak --requirements-file requirements.txt --yaml --target-platforms 312-x86_64 -o pypi-deps.yaml
+          git diff ${{ github.ref_name }} --exit-code requirements.txt requirements.dev.txt pypi-deps.yaml
           updated=$?
           if [ $updated -ne 0 ]; then
-              git add requirements.txt requirements.dev.txt com.usebottles.bottles.pypi-deps.yaml
+              git add requirements.txt requirements.dev.txt pypi-deps
               git commit -m "Update PyPI dependencies"
           fi
 
