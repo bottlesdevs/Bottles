@@ -1,6 +1,4 @@
-from bottles.backend.logger import Logger
-
-logging = Logger()
+import logging
 
 
 class GSettingsStub:

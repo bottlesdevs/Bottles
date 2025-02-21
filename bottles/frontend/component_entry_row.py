@@ -19,13 +19,11 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, GObject, Adw
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.state import Status
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.gtk import GtkUtils
-
-logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/component-entry-row.ui")

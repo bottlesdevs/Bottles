@@ -27,10 +27,6 @@ def add_executable_filters(dialog):
     __set_filter(dialog, _("Supported Executables"), ["*.exe", "*.msi"])
 
 
-def add_soundfont_filters(dialog):
-    __set_filter(dialog, _("Supported SoundFonts"), ["*.sf2", "*.sf3"])
-
-
 def add_yaml_filters(dialog):
     # TODO: Investigate why `filter.add_mime_type(...)` does not show filter in all distributions.
     # Intended MIME types are:

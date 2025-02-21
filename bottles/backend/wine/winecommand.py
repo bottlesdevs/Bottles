@@ -13,9 +13,7 @@ from bottles.backend.globals import (
     obs_vkc_available,
     vmtouch_available,
 )
-from bottles.backend.logger import Logger
-from bottles.backend.managers.runtime import RuntimeManager
-from bottles.backend.managers.sandbox import SandboxManager
+import logging
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.display import DisplayUtils
@@ -23,9 +21,6 @@ from bottles.backend.utils.generic import detect_encoding
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.terminal import TerminalUtils
-from bottles.backend.utils.steam import SteamUtils
-
-logging = Logger()
 
 
 class WineEnv:
@@ -134,10 +129,7 @@ class WineCommand:
     def _get_cwd(self, cwd) -> str:
         config = self.config
 
-        if config.Environment == "Steam":
-            bottle = config.Path
-        else:
-            bottle = ManagerUtils.get_bottle_path(config)
+        bottle = ManagerUtils.get_bottle_path(config)
 
         if not cwd:
             """
@@ -157,10 +149,8 @@ class WineCommand:
     def get_env(
         self,
         environment: dict | None = None,
-        return_steam_env: bool = False,
-        return_clean_env: bool = False,
     ) -> dict:
-        env = WineEnv(clean=return_steam_env or return_clean_env)
+        env = WineEnv()
         config = self.config
         arch = config.Arch
         params = config.Parameters
@@ -176,13 +166,6 @@ class WineCommand:
 
         bottle = ManagerUtils.get_bottle_path(config)
         runner_path = ManagerUtils.get_runner_path(config.Runner)
-
-        if config.Environment == "Steam":
-            bottle = config.Path
-            runner_path = config.RunnerPath
-
-        if SteamUtils.is_proton(runner_path):
-            runner_path = SteamUtils.get_dist_directory(runner_path)
 
         # Clean some env variables which can cause trouble
         # ref: <https://github.com/bottlesdevs/Bottles/issues/2127>
@@ -220,39 +203,7 @@ class WineCommand:
                 dll_overrides.append(f"{k}={v}")
 
         # Default DLL overrides
-        if not return_steam_env:
-            dll_overrides.append("winemenubuilder=''")
-
-        # Get Runtime libraries
-        if (
-            (params.use_runtime or params.use_eac_runtime or params.use_be_runtime)
-            and not self.terminal
-            and not return_steam_env
-        ):
-            _rb = RuntimeManager.get_runtime_env("bottles")
-            if _rb:
-                _eac = RuntimeManager.get_eac()
-                _be = RuntimeManager.get_be()
-
-                if params.use_runtime:
-                    logging.info("Using Bottles runtime")
-                    ld += _rb
-
-                if (
-                    _eac and not self.minimal
-                ):  # NOTE: should check for runner compatibility with "eac" (?)
-                    logging.info("Using EasyAntiCheat runtime")
-                    env.add("PROTON_EAC_RUNTIME", _eac)
-                    dll_overrides.append("easyanticheat_x86,easyanticheat_x64=b,n")
-
-                if (
-                    _be and not self.minimal
-                ):  # NOTE: should check for runner compatibility with "be" (?)
-                    logging.info("Using BattlEye runtime")
-                    env.add("PROTON_BATTLEYE_RUNTIME", _be)
-                    dll_overrides.append("beclient,beclient_x64=b,n")
-            else:
-                logging.warning("Bottles runtime was requested but not found")
+        dll_overrides.append("winemenubuilder=''")
 
         # Get Runner libraries
         if arch == "win64":
@@ -286,7 +237,7 @@ class WineCommand:
                 ld.append(_path)
 
         # Embedded GStreamer environment variables
-        if not env.has("BOTTLES_USE_SYSTEM_GSTREAMER") and not return_steam_env:
+        if not env.has("BOTTLES_USE_SYSTEM_GSTREAMER"):
             gst_env_path = []
             for lib in gst_libs:
                 if os.path.exists(os.path.join(runner_path, lib)):
@@ -295,7 +246,7 @@ class WineCommand:
                 env.add("GST_PLUGIN_SYSTEM_PATH", ":".join(gst_env_path), override=True)
 
         # DXVK environment variables
-        if params.dxvk and not return_steam_env:
+        if params.dxvk:
             env.add("WINE_LARGE_ADDRESS_AWARE", "1")
             env.add(
                 "DXVK_STATE_CACHE_PATH", os.path.join(bottle, "cache", "dxvk_state")
@@ -314,13 +265,13 @@ class WineCommand:
             )
 
         # VKD3D environment variables
-        if params.vkd3d and not return_steam_env:
+        if params.vkd3d:
             env.add(
                 "VKD3D_SHADER_CACHE_PATH", os.path.join(bottle, "cache", "vkd3d_shader")
             )
 
         # LatencyFleX environment variables
-        if params.latencyflex and not return_steam_env:
+        if params.latencyflex:
             _lf_path = ManagerUtils.get_latencyflex_path(config.LatencyFleX)
             _lf_layer_path = os.path.join(
                 _lf_path, "layer/usr/share/vulkan/implicit_layer.d"
@@ -358,7 +309,7 @@ class WineCommand:
                 env.add("OBS_USE_EGL", "1")
 
         # DXVK-Nvapi environment variables
-        if params.dxvk_nvapi and not return_steam_env:
+        if params.dxvk_nvapi:
             # NOTE: users reported that DXVK_ENABLE_NVAPI and DXVK_NVAPIHACK must be set to make
             #       DLSS works. I don't have a GPU compatible with this tech, so I'll trust them
             env.add("DXVK_NVAPIHACK", "0")
@@ -373,11 +324,10 @@ class WineCommand:
             env.add("WINEFSYNC", "1")
 
         # Wine debug level
-        if not return_steam_env:
-            debug_level = "fixme-all"
-            if params.fixme_logs:
-                debug_level = "+fixme-all"
-            env.add("WINEDEBUG", debug_level)
+        debug_level = "fixme-all"
+        if params.fixme_logs:
+            debug_level = "+fixme-all"
+        env.add("WINEDEBUG", debug_level)
 
         # Aco compiler
         # if params["aco_compiler"]:
@@ -395,39 +345,38 @@ class WineCommand:
             env.add("PULSE_LATENCY_MSEC", "60")
 
         # Discrete GPU
-        if not return_steam_env:
-            if params.discrete_gpu:
-                discrete = gpu["prime"]["discrete"]
-                if discrete is not None:
-                    gpu_envs = discrete["envs"]
-                    for p in gpu_envs:
-                        env.add(p, gpu_envs[p])
-                    env.concat("VK_ICD_FILENAMES", discrete["icd"])
+        if params.discrete_gpu:
+            discrete = gpu["prime"]["discrete"]
+            if discrete is not None:
+                gpu_envs = discrete["envs"]
+                for p in gpu_envs:
+                    env.add(p, gpu_envs[p])
+                env.concat("VK_ICD_FILENAMES", discrete["icd"])
 
-            # VK_ICD
-            if not env.has("VK_ICD_FILENAMES"):
-                if gpu["prime"]["integrated"] is not None:
-                    """
-                    System support PRIME but user disabled the discrete GPU
-                    setting (previus check skipped), so using the integrated one.
-                    """
-                    env.concat("VK_ICD_FILENAMES", gpu["prime"]["integrated"]["icd"])
+        # VK_ICD
+        if not env.has("VK_ICD_FILENAMES"):
+            if gpu["prime"]["integrated"] is not None:
+                """
+                System support PRIME but user disabled the discrete GPU
+                setting (previus check skipped), so using the integrated one.
+                """
+                env.concat("VK_ICD_FILENAMES", gpu["prime"]["integrated"]["icd"])
+            else:
+                """
+                System doesn't support PRIME, so using the first result
+                from the gpu vendors list.
+                """
+                if "vendors" in gpu and len(gpu["vendors"]) > 0:
+                    _first = list(gpu["vendors"].keys())[0]
+                    env.concat("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
                 else:
-                    """
-                    System doesn't support PRIME, so using the first result
-                    from the gpu vendors list.
-                    """
-                    if "vendors" in gpu and len(gpu["vendors"]) > 0:
-                        _first = list(gpu["vendors"].keys())[0]
-                        env.concat("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
-                    else:
-                        logging.warning(
-                            "No GPU vendor found, keep going without setting VK_ICD_FILENAMES…"
-                        )
+                    logging.warning(
+                        "No GPU vendor found, keep going without setting VK_ICD_FILENAMES…"
+                    )
 
-            # Add ld to LD_LIBRARY_PATH
-            if ld:
-                env.concat("LD_LIBRARY_PATH", ld)
+        # Add ld to LD_LIBRARY_PATH
+        if ld:
+            env.concat("LD_LIBRARY_PATH", ld)
 
         # Vblank
         # env.add("__GL_SYNC_TO_VBLANK", "0")
@@ -438,11 +387,10 @@ class WineCommand:
         if env.is_empty("WINEDLLOVERRIDES"):
             env.remove("WINEDLLOVERRIDES")
 
-        if not return_steam_env:
-            # Wine prefix
-            env.add("WINEPREFIX", bottle, override=True)
-            # Wine arch
-            env.add("WINEARCH", arch)
+        # Wine prefix
+        env.add("WINEPREFIX", bottle, override=True)
+        # Wine arch
+        env.add("WINEARCH", arch)
 
         return env.get()["envs"]
 
@@ -452,22 +400,10 @@ class WineCommand:
         arch = config.Arch
         runner_runtime = ""
 
-        if config.Environment == "Steam":
-            runner = config.RunnerPath
-
         if runner in [None, ""]:
             return "", ""
 
-        if SteamUtils.is_proton(runner):
-            """
-            If the runner is Proton, set the path to /dist or /files
-            based on check if files exists.
-            Additionally, check for its corresponding runtime.
-            """
-            runner_runtime = SteamUtils.get_associated_runtime(runner)
-            runner = os.path.join(SteamUtils.get_dist_directory(runner), "bin/wine")
-
-        elif runner.startswith("sys-"):
+        if runner.startswith("sys-"):
             """
             If the runner type is system, set the runner binary
             path to the system command. Else set it to the full path.
@@ -490,8 +426,6 @@ class WineCommand:
         pre_script: str | None = None,
         post_script: str | None = None,
         midi_soundfont: str | None = None,
-        return_steam_cmd: bool = False,
-        return_clean_cmd: bool = False,
         environment: dict | None = None,
     ) -> str:
         config = self.config
@@ -501,24 +435,14 @@ class WineCommand:
         if environment is None:
             environment = {}
 
-        if return_clean_cmd:
-            return_steam_cmd = True
-
-        if not return_steam_cmd and not return_clean_cmd:
-            command = f"{runner} {command}"
+        command = f"{runner} {command}"
 
         if not self.minimal:
             if gamemode_available and params.gamemode:
-                if not return_steam_cmd:
-                    command = f"{gamemode_available} {command}"
-                else:
-                    command = f"gamemode {command}"
+                command = f"{gamemode_available} {command}"
 
             if mangohud_available and params.mangohud and not self.gamescope_activated:
-                if not return_steam_cmd:
-                    command = f"{mangohud_available} {command}"
-                else:
-                    command = f"mangohud {command}"
+                command = f"{mangohud_available} {command}"
 
             if gamescope_available and self.gamescope_activated:
                 gamescope_run = tempfile.NamedTemporaryFile(mode="w", suffix=".sh").name
@@ -532,9 +456,7 @@ class WineCommand:
                     f.write("".join(file))
 
                 # Update command
-                command = (
-                    f"{self._get_gamescope_cmd(return_steam_cmd)} -- {gamescope_run}"
-                )
+                command = f"{self._get_gamescope_cmd()} -- {gamescope_run}"
                 logging.info(f"Running Gamescope command: '{command}'")
                 logging.info(f"{gamescope_run} contains:")
                 with open(gamescope_run) as f:
@@ -547,57 +469,6 @@ class WineCommand:
             if obs_vkc_available and params.obsvkc:
                 command = f"{obs_vkc_available} {command}"
 
-        if params.use_steam_runtime:
-            _rs = RuntimeManager.get_runtimes("steam")
-            _picked = {}
-
-            if _rs:
-                if "sniper" in _rs.keys() and "sniper" in self.runner_runtime:
-                    """
-                    Sniper is the default runtime used by Proton version >= 8.0
-                    """
-                    _picked = _rs["sniper"]
-                elif "soldier" in _rs.keys() and "soldier" in self.runner_runtime:
-                    """
-                    Sniper is the default runtime used by Proton version >= 5.13 and < 8.0
-                    """
-                    _picked = _rs["soldier"]
-                elif "scout" in _rs.keys():
-                    """
-                    For Wine runners, we cannot make assumption about which runtime would suits
-                    them the best, as it would depend on their build environment.
-                    Sniper/Soldier are not backward-compatible, defaulting to Scout should maximize compatibility.
-                    """
-                    _picked = _rs["scout"]
-            else:
-                logging.warning("Steam runtime was requested but not found")
-
-            if _picked:
-                logging.info(f"Using Steam runtime {_picked['name']}")
-                command = f"{_picked['entry_point']} {command}"
-            else:
-                logging.warning(
-                    "Steam runtime was requested and found but there are no valid combinations"
-                )
-
-        if self.arguments:
-            prefix, suffix, extracted_env = SteamUtils.handle_launch_options(
-                self.arguments
-            )
-            if prefix:
-                command = f"{prefix} {command}"
-            if suffix:
-                command = f"{command} {suffix}"
-            if extracted_env:
-                if extracted_env.get("WINEDLLOVERRIDES") and environment.get(
-                    "WINEDLLOVERRIDES"
-                ):
-                    environment["WINEDLLOVERRIDES"] += ";" + extracted_env.get(
-                        "WINEDLLOVERRIDES"
-                    )
-                    del extracted_env["WINEDLLOVERRIDES"]
-                environment.update(extracted_env)
-
         if post_script not in (None, ""):
             command = f"{command} ; sh '{post_script}'"
 
@@ -606,15 +477,13 @@ class WineCommand:
 
         return command
 
-    def _get_gamescope_cmd(self, return_steam_cmd: bool = False) -> str:
+    def _get_gamescope_cmd(self) -> str:
         config = self.config
         params = config.Parameters
         gamescope_cmd = []
 
         if gamescope_available and self.gamescope_activated:
             gamescope_cmd = [gamescope_available]
-            if return_steam_cmd:
-                gamescope_cmd = ["gamescope"]
             if params.gamescope_fullscreen:
                 gamescope_cmd.append("-f")
             if params.gamescope_borderless:
@@ -677,16 +546,6 @@ class WineCommand:
             cwd=self.cwd,
         )
 
-    def _get_sandbox_manager(self) -> SandboxManager:
-        return SandboxManager(
-            envs=self.env,
-            chdir=self.cwd,
-            share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
-            share_paths_ro=[Paths.runners, Paths.temp],
-            share_net=self.config.Sandbox.share_net,
-            share_sound=self.config.Sandbox.share_sound,
-        )
-
     def run(self) -> Result[str | None]:
         """
         Run command with pre-configured parameters
@@ -702,42 +561,28 @@ class WineCommand:
         if vmtouch_available and self.config.Parameters.vmtouch and not self.terminal:
             self._vmtouch_preload()
 
-        sandbox = (
-            self._get_sandbox_manager() if self.config.Parameters.sandbox else None
-        )
-
         # run command in external terminal if terminal is True
         if self.terminal:
-            if sandbox:
-                return Result(
-                    status=TerminalUtils().execute(
-                        sandbox.get_cmd(self.command), self.env, self.colors, self.cwd
-                    )
+            return Result(
+                status=TerminalUtils().execute(
+                    self.command, self.env, self.colors, self.cwd
                 )
-            else:
-                return Result(
-                    status=TerminalUtils().execute(
-                        self.command, self.env, self.colors, self.cwd
-                    )
-                )
+            )
 
         # prepare proc if we are going to execute command internally
         # proc should always be `Popen[bytes]` to make sure
         # stdout_data's type is `bytes`
         proc: subprocess.Popen[bytes]
-        if sandbox:
-            proc = sandbox.run(self.command)
-        else:
-            try:
-                proc = subprocess.Popen(
-                    self.command,
-                    stdout=subprocess.PIPE,
-                    shell=True,
-                    env=self.env,
-                    cwd=self.cwd,
-                )
-            except FileNotFoundError:
-                return Result(False, message="File not found")
+        try:
+            proc = subprocess.Popen(
+                self.command,
+                stdout=subprocess.PIPE,
+                shell=True,
+                env=self.env,
+                cwd=self.cwd,
+            )
+        except FileNotFoundError:
+            return Result(False, message="File not found")
 
         stdout_data, _ = proc.communicate()
 

@@ -22,7 +22,7 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, Adw, Gio, GLib
 
-from bottles.backend.managers.data import DataManager, UserDataKeys
+from bottles.backend.globals import Paths
 from bottles.backend.state import EventManager, Events
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.utils.generic import sort_by_version
@@ -47,15 +47,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_theme = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
     switch_force_offline = Gtk.Template.Child()
-    switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
     switch_steam = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
-    switch_epic_games = Gtk.Template.Child()
-    switch_ubisoft_connect = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
@@ -78,15 +75,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.window = window
         self.settings = window.settings
         self.manager = window.manager
-        self.data = DataManager()
         self.style_manager = Adw.StyleManager.get_default()
-
-        self.current_bottles_path = self.data.get(UserDataKeys.CustomBottlesPath)
-        if self.current_bottles_path:
-            self.label_bottles_path.set_label(
-                os.path.basename(self.current_bottles_path)
-            )
-            self.btn_bottles_path_reset.set_visible(True)
 
         # bind widgets
         self.settings.bind(
@@ -103,9 +92,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.switch_force_offline,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "temp", self.switch_temp, "active", Gio.SettingsBindFlags.DEFAULT
         )
         # Connect RC signal to another func
         self.settings.bind(
@@ -144,28 +130,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
-        self.settings.bind(
-            "epic-games",
-            self.switch_epic_games,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "ubisoft-connect",
-            self.switch_ubisoft_connect,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
 
         # setup loading screens
         self.installers_stack.set_visible_child_name("installers_loading")
         self.installers_spinner.start()
         self.dlls_stack.set_visible_child_name("dlls_loading")
         self.dlls_spinner.start()
-
-        if not self.manager.utils_conn.status:
-            self.installers_stack.set_visible_child_name("installers_offline")
-            self.dlls_stack.set_visible_child_name("dlls_offline")
 
         RunAsync(self.ui_update)
 
@@ -176,13 +146,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.btn_bottles_path.connect("clicked", self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect("clicked", self.__reset_bottles_path)
         self.btn_steam_proton_doc.connect("clicked", self.__open_steam_proton_doc)
-
-        if not self.manager.steam_manager.is_steam_supported:
-            self.switch_steam.set_sensitive(False)
-            self.action_steam_proton.set_tooltip_text(
-                _("Steam was not found or Bottles does not have enough permissions.")
-            )
-            self.btn_steam_proton_doc.set_visible(True)
 
         if not self.style_manager.get_system_supports_color_schemes():
             self.row_theme.set_visible(True)
@@ -195,16 +158,15 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.__registry = []
 
     def ui_update(self):
-        if self.manager.utils_conn.status:
-            EventManager.wait(Events.ComponentsOrganizing)
-            GLib.idle_add(self.empty_list)
-            GLib.idle_add(self.populate_runners_list)
-            GLib.idle_add(self.populate_dxvk_list)
-            GLib.idle_add(self.populate_vkd3d_list)
-            GLib.idle_add(self.populate_nvapi_list)
-            GLib.idle_add(self.populate_latencyflex_list)
+        EventManager.wait(Events.ComponentsOrganizing)
+        GLib.idle_add(self.empty_list)
+        GLib.idle_add(self.populate_runners_list)
+        GLib.idle_add(self.populate_dxvk_list)
+        GLib.idle_add(self.populate_vkd3d_list)
+        GLib.idle_add(self.populate_nvapi_list)
+        GLib.idle_add(self.populate_latencyflex_list)
 
-            GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
+        GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
 
     def __toggle_night(self, widget, state):
         if self.settings.get_boolean("dark-theme"):
@@ -230,7 +192,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
             path = dialog.get_file().get_path()
 
-            self.data.set(UserDataKeys.CustomBottlesPath, path)
             self.label_bottles_path.set_label(os.path.basename(path))
             self.btn_bottles_path_reset.set_visible(True)
             self.prompt_restart()
@@ -251,28 +212,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.window.proper_close()
         widget.destroy()
 
-    def prompt_restart(self):
-        if self.current_bottles_path != self.data.get(UserDataKeys.CustomBottlesPath):
-            dialog = Adw.MessageDialog.new(
-                self.window,
-                _("Relaunch Bottles?"),
-                _(
-                    "Bottles will need to be relaunched to use this directory.\n\nBe sure to close every program launched from Bottles before relaunching Bottles, as not doing so can cause data loss, corruption and programs to malfunction."
-                ),
-            )
-            dialog.add_response("dismiss", _("_Cancel"))
-            dialog.add_response("restart", _("_Relaunch"))
-            dialog.set_response_appearance(
-                "restart", Adw.ResponseAppearance.DESTRUCTIVE
-            )
-            dialog.connect("response", self.handle_restart)
-            dialog.present()
-
     def __reset_bottles_path(self, widget):
-        self.data.remove(UserDataKeys.CustomBottlesPath)
         self.btn_bottles_path_reset.set_visible(False)
         self.label_bottles_path.set_label(_("(Default)"))
-        self.prompt_restart()
 
     def __display_unstable_candidate(self, component=["", {"Channel": "unstable"}]):
         return self.window.settings.get_boolean("release-candidate") or component[1][

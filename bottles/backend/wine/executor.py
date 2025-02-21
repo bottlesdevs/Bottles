@@ -5,11 +5,10 @@ import uuid
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils.midi import FluidSynth
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.msiexec import MsiExec
@@ -17,8 +16,6 @@ from bottles.backend.wine.start import Start
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.winepath import WinePath
-
-logging = Logger()
 
 
 class WineExecutor:
@@ -70,13 +67,6 @@ class WineExecutor:
         self.use_virt_desktop = program_virt_desktop
 
         env_dll_overrides = []
-
-        self.fluidsynth = None
-        if (soundfont_path := midi_soundfont) not in (None, ""):
-            # FluidSynth instance is bound to WineExecutor as a member to control
-            # the former's lifetime (deleted when no more references from executors)
-            self.fluidsynth = FluidSynth.find_or_create(soundfont_path)
-            self.fluidsynth.register_as_current(config)
 
         # None = use global DXVK value
         if program_dxvk is not None:
@@ -363,8 +353,3 @@ class WineExecutor:
         winedbg = WineDbg(self.config, silent=True)
         for m in self.monitoring:
             winedbg.wait_for_process(name=m)
-
-    def __del__(self):
-        """On exit, kill FluidSynth instance if this was the last executor using it."""
-        if self.fluidsynth:
-            self.fluidsynth.decrement_program_counter()

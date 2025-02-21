@@ -15,15 +15,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 import sys
 import gi
-import gettext
-import locale
 import webbrowser
-from os import path
+from gettext import gettext as _
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.health import HealthChecker
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.params import (
     APP_ID,
     APP_MAJOR_VERSION,
@@ -40,50 +40,16 @@ gi.require_version("Xdp", "1.0")
 # ruff: noqa: E402
 from gi.repository import Gio, GLib, GObject, Adw  # type: ignore
 from bottles.frontend.window import BottlesWindow
+from bottles.backend.bottle import Bottle
 from bottles.frontend.preferences import PreferencesWindow
-
-
-logging = Logger()
-
-# region Translations
-"""
-This code snippet searches for and uploads translations to different
-directories, depending on your production or development environment.
-The function _() can be used to create and retrieve translations.
-"""
-share_dir = path.join(sys.prefix, "share")
-base_dir = "."
-
-if getattr(sys, "frozen", False):
-    base_dir = path.dirname(sys.executable)
-    share_dir = path.join(base_dir, "share")
-elif sys.argv[0]:
-    exec_dir = path.dirname(path.realpath(sys.argv[0]))
-    base_dir = path.dirname(exec_dir)
-    share_dir = path.join(base_dir, "share")
-
-    if not path.exists(share_dir):
-        share_dir = base_dir
-
-locale_dir = path.join(share_dir, "locale")
-
-if not path.exists(locale_dir):  # development
-    locale_dir = path.join(base_dir, "build", "mo")
-
-locale.bindtextdomain("bottles", locale_dir)
-locale.textdomain("bottles")
-gettext.bindtextdomain("bottles", locale_dir)
-gettext.textdomain("bottles")
-_ = gettext.gettext
-
-
-# endregion
 
 
 class Bottles(Adw.Application):
     arg_exe = None
     arg_bottle = None
     dark_provider = None
+    local_bottles: dict[str, BottleConfig] = {}
+    bottles_config_dir = os.path.join(GLib.get_user_data_dir(), "bottles", "bottles")
 
     def __init__(self):
         super().__init__(
@@ -94,12 +60,13 @@ class Bottles(Adw.Application):
         )
         self.__create_action("quit", self.__quit, ["<primary>q", "<primary>w"])
         self.__create_action("about", self.__show_about_dialog)
-        self.__create_action("import", self.__show_importer_view, ["<primary>i"])
         self.__create_action("preferences", self.__show_preferences, ["<primary>comma"])
         self.__create_action("help", self.__help, ["F1"])
         self.__create_action("new", self.__new_bottle, ["<primary>n"])
 
         self.__register_arguments()
+
+        self.local_bottles = Bottle.generate_local_bottles_list(self.bottles_config_dir)
 
     def __register_arguments(self):
         """
@@ -254,7 +221,7 @@ class Bottles(Adw.Application):
         Adw.Application.do_activate(self)
         win = self.props.active_window
         if not win:
-            win = BottlesWindow(application=self, arg_bottle=self.arg_bottle)
+            win = BottlesWindow(application=self)
         self.win = win
 
         win.present()
@@ -281,25 +248,12 @@ class Bottles(Adw.Application):
         )
         webbrowser.open_new_tab("https://docs.usebottles.com")
 
-    def __refresh(self, action=None, param=None):
-        """
-        This function refresh the user bottle list.
-        It is used by the [Ctrl+R] shortcut.
-        """
-        logging.info(
-            _("[Refresh] request received."),
-        )
-        self.win.manager.update_bottles()
-
     def __show_preferences(self, *args):
         preferences_window = PreferencesWindow(self.win)
         preferences_window.present()
 
     def __new_bottle(self, *args):
         self.win.show_add_view()
-
-    def __show_importer_view(self, widget=False, *args):
-        self.win.main_leaf.set_visible_child(self.win.page_importer)
 
     def __show_about_dialog(self, *_args):
         developers = [

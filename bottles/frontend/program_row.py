@@ -20,8 +20,6 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, Adw
 
-from bottles.backend.managers.library import LibraryManager
-from bottles.backend.managers.steam import SteamManager
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
@@ -43,7 +41,6 @@ class ProgramRow(Adw.ActionRow):
     btn_run = Gtk.Template.Child()
     btn_stop = Gtk.Template.Child()
     btn_launch_options = Gtk.Template.Child()
-    btn_launch_steam = Gtk.Template.Child()
     btn_uninstall = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_hide = Gtk.Template.Child()
@@ -52,7 +49,6 @@ class ProgramRow(Adw.ActionRow):
     btn_browse = Gtk.Template.Child()
     btn_add_steam = Gtk.Template.Child()
     btn_add_entry = Gtk.Template.Child()
-    btn_add_library = Gtk.Template.Child()
     btn_launch_terminal = Gtk.Template.Child()
     pop_actions = Gtk.Template.Child()
 
@@ -72,16 +68,7 @@ class ProgramRow(Adw.ActionRow):
 
         self.set_title(self.program["name"])
 
-        if is_steam:
-            self.set_subtitle("Steam")
-            for w in [self.btn_run, self.btn_stop, self.btn_menu]:
-                w.set_visible(False)
-                w.set_sensitive(False)
-            self.btn_launch_steam.set_visible(True)
-            self.btn_launch_steam.set_sensitive(True)
-            self.set_activatable_widget(self.btn_launch_steam)
-        else:
-            self.executable = program.get("executable", "")
+        self.executable = program.get("executable", "")
 
         if program.get("removed"):
             self.add_css_class("removed")
@@ -92,21 +79,12 @@ class ProgramRow(Adw.ActionRow):
         self.btn_hide.set_visible(not program.get("removed"))
         self.btn_unhide.set_visible(program.get("removed"))
 
-        if self.manager.steam_manager.is_steam_supported:
-            self.btn_add_steam.set_visible(True)
-
-        library_manager = LibraryManager()
-        for _uuid, entry in library_manager.get_library().items():
-            if entry.get("id") == program.get("id"):
-                self.btn_add_library.set_visible(False)
-
         external_programs = []
         for v in self.config.External_Programs.values():
             external_programs.append(v["name"])
 
         """Signal connections"""
         self.btn_run.connect("clicked", self.run_executable)
-        self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_launch_terminal.connect("clicked", self.run_executable, True)
         self.btn_stop.connect("clicked", self.stop_process)
         self.btn_launch_options.connect("clicked", self.show_launch_options_view)
@@ -116,8 +94,6 @@ class ProgramRow(Adw.ActionRow):
         self.btn_rename.connect("clicked", self.rename_program)
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
-        self.btn_add_library.connect("clicked", self.add_to_library)
-        self.btn_add_steam.connect("clicked", self.add_to_steam)
         self.btn_remove.connect("clicked", self.remove_program)
 
         if not program.get("removed") and not is_steam and check_boot:
@@ -179,13 +155,6 @@ class ProgramRow(Adw.ActionRow):
         self.window.show_toast(_('Launching "{0}"…').format(self.program["name"]))
         RunAsync(_run, callback=self.__reset_buttons)
         self.__reset_buttons()
-
-    def run_steam(self, _widget):
-        self.manager.steam_manager.launch_app(self.config.CompatData)
-        self.window.show_toast(
-            _('Launching "{0}" with Steam…').format(self.program["name"])
-        )
-        self.pop_actions.popdown()  # workaround #1640
 
     def stop_process(self, widget):
         self.window.show_toast(_('Stopping "{0}"…').format(self.program["name"]))
@@ -252,28 +221,11 @@ class ProgramRow(Adw.ActionRow):
                 scope="External_Programs",
             )
 
-            def async_work():
-                library_manager = LibraryManager()
-                entries = library_manager.get_library()
-
-                for uuid, entry in entries.items():
-                    if entry.get("id") == self.program["id"]:
-                        entries[uuid]["name"] = new_name
-                        library_manager.download_thumbnail(uuid, self.config)
-                        break
-
-                library_manager.__library = entries
-                library_manager.save_library()
-
-            @GtkUtils.run_in_main_loop
-            def ui_update(_result, _error):
-                self.window.page_library.update()
-                self.window.show_toast(
-                    _('"{0}" renamed to "{1}"').format(old_name, new_name)
-                )
-                self.update_programs()
-
-            RunAsync(async_work, callback=ui_update)
+            self.window.page_library.update()
+            self.window.show_toast(
+                _('"{0}" renamed to "{1}"').format(old_name, new_name)
+            )
+            self.update_programs()
 
         dialog = RenameProgramDialog(
             self.window, on_save=func, name=self.program["name"]
@@ -306,50 +258,4 @@ class ProgramRow(Adw.ActionRow):
                 "executable": self.program["executable"],
                 "path": self.program["path"],
             },
-        )
-
-    def add_to_library(self, _widget):
-        def update(_result, _error=False):
-            self.window.update_library()
-            self.window.show_toast(
-                _('"{0}" added to your library').format(self.program["name"])
-            )
-
-        def add_to_library():
-            self.save_program()  # we need to store it in the bottle configuration to keep the reference
-            library_manager = LibraryManager()
-            library_manager.add_to_library(
-                {
-                    "bottle": {"name": self.config.Name, "path": self.config.Path},
-                    "name": self.program["name"],
-                    "id": str(self.program["id"]),
-                    "icon": ManagerUtils.extract_icon(
-                        self.config, self.program["name"], self.program["path"]
-                    ),
-                },
-                self.config,
-            )
-
-        self.btn_add_library.set_visible(False)
-        RunAsync(add_to_library, update)
-
-    def add_to_steam(self, _widget):
-        def update(result, _error=False):
-            if result.ok:
-                self.window.show_toast(
-                    _('"{0}" added to your Steam library').format(self.program["name"])
-                )
-            else:
-                self.window.show_toast(
-                    _('"{0}" failed adding to your Steam library').format(
-                        self.program["name"]
-                    )
-                )
-
-        steam_manager = SteamManager(self.config)
-        RunAsync(
-            steam_manager.add_shortcut,
-            update,
-            program_name=self.program["name"],
-            program_path=self.program["path"],
         )

@@ -18,9 +18,6 @@
 from gettext import gettext as _
 
 from gi.repository import Gtk, GLib, Adw
-from bottles.backend.logger import Logger
-
-logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/fsr-dialog.ui")

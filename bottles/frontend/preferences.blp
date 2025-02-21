@@ -50,16 +50,6 @@ template $PreferencesWindow: Adw.PreferencesWindow {
       }
 
       Adw.ActionRow {
-        title: _("Temp Files");
-        subtitle: _("Clean temp files when Bottles launches?");
-        activatable-widget: switch_temp;
-
-        Switch switch_temp {
-          valign: center;
-        }
-      }
-
-      Adw.ActionRow {
         title: _("Close Bottles After Starting a Program");
         subtitle: _("Close Bottles after starting a program from the file manager.");
         activatable-widget: switch_auto_close;
@@ -100,26 +90,6 @@ template $PreferencesWindow: Adw.PreferencesWindow {
         activatable-widget: switch_steam_programs;
 
         Switch switch_steam_programs {
-          valign: center;
-        }
-      }
-
-      Adw.ActionRow {
-        title: _("List Epic Games in Programs List");
-        subtitle: _("Requires Epic Games Store installed in the bottle.");
-        activatable-widget: switch_epic_games;
-
-        Switch switch_epic_games {
-          valign: center;
-        }
-      }
-
-      Adw.ActionRow {
-        title: _("List Ubisoft Games in Programs List");
-        subtitle: _("Requires Ubisoft Connect installed in the bottle.");
-        activatable-widget: switch_ubisoft_connect;
-
-        Switch switch_ubisoft_connect {
           valign: center;
         }
       }

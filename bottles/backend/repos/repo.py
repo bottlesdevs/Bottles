@@ -19,12 +19,10 @@ from io import BytesIO
 
 import pycurl
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.state import EventManager, Events
 from bottles.backend.utils import yaml
 from bottles.backend.utils.threading import RunAsync
-
-logging = Logger()
 
 
 class Repo:

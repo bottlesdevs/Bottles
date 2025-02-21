@@ -19,11 +19,9 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.frontend.gtk import GtkUtils
 from bottles.frontend.sh import ShUtils
-
-logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/env-var-entry.ui")

@@ -19,13 +19,11 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.backend.logger import Logger
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.frontend.gtk import GtkUtils
 
-logging = Logger()
 
 renderers = ["gl", "gdi", "vulkan"]
 
@@ -56,7 +54,6 @@ class DisplayDialog(Adw.Window):
         self.window = parent_window
         self.manager = parent_window.manager
         self.config = config
-        self.queue = queue
         self.widget = widget
         self.spinner_display = spinner_display
 
@@ -98,7 +95,6 @@ class DisplayDialog(Adw.Window):
 
         """Queue system"""
         self.started = 0
-        self.queued = 0
         self.completed = 0
 
         def add_queue():
@@ -106,17 +102,10 @@ class DisplayDialog(Adw.Window):
                 self.window.show_toast(_("Updating display settings, please wait…"))
                 self.spinner_display.start()
                 self.started = 1
-            self.queue.add_task()
             self.widget.set_sensitive(False)
-            self.queued += 1
 
         def complete_queue():
             self.completed += 1
-            if self.queued == self.completed:
-                self.widget.set_sensitive(True)
-                self.spinner_display.stop()
-                self.window.show_toast(_("Display settings updated"))
-            self.queue.end_task()
 
         if (
             self.expander_virtual_desktop.get_enable_expansion()

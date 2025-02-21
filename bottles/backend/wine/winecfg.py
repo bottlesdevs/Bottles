@@ -1,11 +1,9 @@
 import os
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.wineboot import WineBoot
-
-logging = Logger()
 
 
 class WineCfg(WineProgram):

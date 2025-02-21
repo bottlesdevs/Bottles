@@ -1,6 +1,6 @@
-# queue.py
+# typing.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 The Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,22 +13,20 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+
+from typing import Literal
+from enum import Enum
+
+type VersionedComponent = str | Literal[False]
 
 
-class QueueManager:
-    __queue = 0
+class WindowsAPI(Enum):
+    WIN64 = "Win64"
+    WIN32 = "Win32"
+    WIN16 = "Win16"
 
-    def __init__(self, end_fn, add_fn=None):
-        self.__add_fn = add_fn
-        self.__end_fn = end_fn
 
-    def add_task(self):
-        self.__queue += 1
-        if self.__add_fn and self.__queue == 1:
-            self.__add_fn()
-
-    def end_task(self):
-        self.__queue -= 1
-        if self.__queue <= 0:
-            self.__end_fn()
+class Environment(Enum):
+    APPLICATION = "Application"
+    GAMING = "Gaming"
+    CUSTOM = "Custom"

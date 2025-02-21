@@ -20,16 +20,13 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, Adw, GLib
 
-from bottles.backend.managers.queue import QueueManager
 from bottles.backend.models.config import BottleConfig
 
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.gtk import GtkUtils
 from bottles.frontend.bottle_details_page import BottleDetailsPage
-from bottles.frontend.details_installers_view import DetailsInstallersView
 from bottles.frontend.details_dependencies_view import DetailsDependenciesView
 from bottles.frontend.details_preferences_page import DetailsPreferencesPage
-from bottles.frontend.details_versioning_page import DetailsVersioningPage
 from bottles.frontend.details_task_manager_view import DetailsTaskManagerView
 
 
@@ -70,15 +67,11 @@ class BottleDetailsView(Adw.Bin):
 
         self.window = window
         self.manager = window.manager
-        self.versioning_manager = window.manager.versioning_manager
         self.config = config
-        self.queue = QueueManager(add_fn=self.lock_back, end_fn=self.unlock_back)
 
         self.view_bottle = BottleDetailsPage(self, config)
-        self.view_installers = DetailsInstallersView(self, config)
         self.view_dependencies = DetailsDependenciesView(self, config)
         self.view_preferences = DetailsPreferencesPage(self, config)
-        self.view_versioning = DetailsVersioningPage(self, config)
         self.view_taskmanager = DetailsTaskManagerView(self, config)
 
         self.btn_back.connect("clicked", self.go_back)
@@ -120,10 +113,6 @@ class BottleDetailsView(Adw.Bin):
         if page == "dependencies":
             self.set_actions(self.view_dependencies.actions)
             self.view_dependencies.update(config=self.config)
-        elif page == "versioning":
-            self.set_actions(self.view_versioning.actions)
-        elif page == "installers":
-            self.set_actions(self.view_installers.actions)
         elif page == "taskmanager":
             self.set_actions(self.view_taskmanager.actions)
         else:
@@ -167,8 +156,6 @@ class BottleDetailsView(Adw.Bin):
 
             self.stack_bottle.add_named(self.view_preferences, "preferences")
             self.stack_bottle.add_named(self.view_dependencies, "dependencies")
-            self.stack_bottle.add_named(self.view_versioning, "versioning")
-            self.stack_bottle.add_named(self.view_installers, "installers")
             self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
 
             if self.view_bottle.actions.get_parent() is None:
@@ -199,8 +186,6 @@ class BottleDetailsView(Adw.Bin):
         self.view_bottle.set_config(config=config)
         self.view_preferences.set_config(config=config)
         self.view_taskmanager.set_config(config=config)
-        self.view_installers.update(config=config)
-        self.view_versioning.update(config=config)
 
         if rebuild_pages:
             self.build_pages()

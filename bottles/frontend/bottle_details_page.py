@@ -21,7 +21,6 @@ from gettext import gettext as _
 
 from gi.repository import Gtk, Gio, Adw, Gdk, GLib, Xdp
 
-from bottles.backend.managers.backup import BackupManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.terminal import TerminalUtils
@@ -41,8 +40,6 @@ from bottles.frontend.common import open_doc_url
 from bottles.frontend.filters import add_executable_filters, add_all_filters
 from bottles.frontend.gtk import GtkUtils
 from bottles.frontend.program_row import ProgramRow
-from bottles.frontend.duplicate_dialog import DuplicateDialog
-from bottles.frontend.upgrade_versioning_dialog import UpgradeVersioningDialog
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/bottle-details-page.ui")
@@ -64,7 +61,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
     row_winecfg = Gtk.Template.Child()
     row_preferences = Gtk.Template.Child()
     row_dependencies = Gtk.Template.Child()
-    row_snapshots = Gtk.Template.Child()
     row_taskmanager = Gtk.Template.Child()
     row_debug = Gtk.Template.Child()
     row_explorer = Gtk.Template.Child()
@@ -80,9 +76,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
     btn_nv_forcestop = Gtk.Template.Child()
     btn_update = Gtk.Template.Child()
     btn_toggle_removed = Gtk.Template.Child()
-    btn_backup_config = Gtk.Template.Child()
-    btn_backup_full = Gtk.Template.Child()
-    btn_duplicate = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
@@ -123,7 +116,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
         self.popover_exec_settings.connect("closed", self.__run_executable_with_args)
         self.row_preferences.connect("activated", self.__change_page, "preferences")
         self.row_dependencies.connect("activated", self.__change_page, "dependencies")
-        self.row_snapshots.connect("activated", self.__change_page, "versioning")
         self.row_taskmanager.connect("activated", self.__change_page, "taskmanager")
         self.row_winecfg.connect("activated", self.run_winecfg)
         self.row_debug.connect("activated", self.run_debug)
@@ -141,9 +133,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
         self.btn_nv_forcestop.connect("clicked", self.wineboot, -2)
         self.btn_update.connect("clicked", self.__scan_programs)
         self.btn_toggle_removed.connect("clicked", self.__toggle_removed)
-        self.btn_backup_config.connect("clicked", self.__backup, "config")
-        self.btn_backup_full.connect("clicked", self.__backup, "full")
-        self.btn_duplicate.connect("clicked", self.__duplicate)
         self.btn_flatpak_doc.connect(
             "clicked", open_doc_url, "flatpak/black-screen-or-silent-crash"
         )
@@ -219,12 +208,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
         self.dot_versioning.set_visible(self.config.Versioning)
         self.grid_versioning.set_visible(self.config.Versioning)
         self.label_state.set_text(str(self.config.State))
-
-        self.__set_steam_rules()
-
-        # check for old versioning system enabled
-        if config.Versioning:
-            self.__upgrade_versioning()
 
         if (
             config.Runner not in self.manager.runners_available
@@ -442,74 +425,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
             else:
                 show_chooser()
 
-    def __backup(self, widget, backup_type):
-        """
-        This function pop up the file chooser where the user
-        can select the path where to export the bottle backup.
-        Use the backup_type param to export config or full.
-        """
-        if backup_type == "config":
-            title = _("Select the location where to save the backup config")
-            hint = f"backup_{self.config.Path}.yml"
-            accept_label = _("Export")
-        else:
-            title = _("Select the location where to save the backup archive")
-            hint = f"backup_{self.config.Path}.tar.gz"
-            accept_label = _("Backup")
-
-        @GtkUtils.run_in_main_loop
-        def finish(result, error=False):
-            if result.ok:
-                self.window.show_toast(
-                    _('Backup created for "{0}"').format(self.config.Name)
-                )
-            else:
-                self.window.show_toast(
-                    _('Backup failed for "{0}"').format(self.config.Name)
-                )
-
-        def set_path(_dialog, response):
-            if response != Gtk.ResponseType.ACCEPT:
-                return
-
-            path = dialog.get_file().get_path()
-
-            RunAsync(
-                task_func=BackupManager.export_backup,
-                callback=finish,
-                config=self.config,
-                scope=backup_type,
-                path=path,
-            )
-
-        dialog = Gtk.FileChooserNative.new(
-            title=title,
-            action=Gtk.FileChooserAction.SAVE,
-            parent=self.window,
-            accept_label=accept_label,
-        )
-
-        dialog.set_modal(True)
-        dialog.connect("response", set_path)
-        dialog.set_current_name(hint)
-        dialog.show()
-
-    def __duplicate(self, widget):
-        """
-        This function pop up the duplicate dialog, so the user can
-        choose the new bottle name and perform duplication.
-        """
-        new_window = DuplicateDialog(self)
-        new_window.present()
-
-    def __upgrade_versioning(self):
-        """
-        This function pop up the upgrade versioning dialog, so the user can
-        upgrade the versioning system from old Bottles built-in to FVS.
-        """
-        new_window = UpgradeVersioningDialog(self)
-        new_window.present()
-
     def __confirm_delete(self, widget):
         """
         This function pop up to delete confirm dialog. If user confirm
@@ -637,10 +552,3 @@ the Bottles preferences or choose a new one to run applications."
             dialog.set_response_appearance("ok", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response", handle_response)
             dialog.present()
-
-    def __set_steam_rules(self):
-        status = False if self.config.Environment == "Steam" else True
-
-        for w in [self.btn_delete, self.btn_backup_full, self.btn_duplicate]:
-            w.set_visible(status)
-            w.set_sensitive(status)
