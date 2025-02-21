@@ -114,8 +114,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/KhronosGroup/Vulkan-Tools.git",
-                    "tag": "vulkan-sdk-1.4.304.0",
-                    "commit": "4c25e78dd87720275ab069de1fe2e005cd528ed9",
+                    "tag": "vulkan-sdk-1.4.309.0",
+                    "commit": "bf9fcd2d62ea9eac52e5351c02e35cb61ec5e873",
                     "x-checker-data": {
                         "type": "git",
                         "tag-pattern": "^vulkan-sdk-([\\d.]+)$"
@@ -144,8 +144,8 @@
                         {
                             "type": "git",
                             "url": "https://github.com/KhronosGroup/Vulkan-Headers.git",
-                            "tag": "vulkan-sdk-1.4.304.0",
-                            "commit": "d4a196d8c84e032d27f999adcea3075517c1c97f",
+                            "tag": "vulkan-sdk-1.4.309.0",
+                            "commit": "952f776f6573aafbb62ea717d871cd1d6816c387",
                             "x-checker-data": {
                                 "type": "git",
                                 "tag-pattern": "^vulkan-sdk-([\\d.]+)$"
@@ -184,8 +184,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/ImageMagick/ImageMagick",
-                    "tag": "7.1.1-43",
-                    "commit": "a2d96f40e707ba54b57e7d98c3277d3ea6611ace",
+                    "tag": "7.1.1-45",
+                    "commit": "37b3453c6222ae6b9f96418dbc70df225929db7e",
                     "x-checker-data": {
                         "type": "git",
                         "tag-pattern": "^([\\d.]+-[\\d]+)$"
@@ -207,8 +207,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/flatpak/libportal",
-                    "tag": "0.9.0",
-                    "commit": "731e7410fa5765e7c4eb76a51140a19637620c13",
+                    "tag": "0.9.1",
+                    "commit": "8f5dc8d192f6e31dafe69e35219e3b707bde71ce",
                     "x-checker-data": {
                         "type": "git",
                         "is-important": true,
@@ -274,6 +274,18 @@
             ],
             "modules": [
                 {
+                    "name": "fast_float",
+                    "buildsystem": "cmake-ninja",
+                    "sources": [
+                        {
+                            "type": "git",
+                            "url": "https://github.com/fastfloat/fast_float.git",
+                            "tag": "v8.0.2",
+                            "commit": "50a80a73ab2ab256ba1c3bf86923ddd8b4202bc7"
+                        }
+                    ]
+                },
+                {
                     "name": "vte",
                     "buildsystem": "meson",
                     "config-opts": [
@@ -281,13 +293,13 @@
                     ],
                     "sources": [
                         {
-                            "type": "git",
-                            "url": "https://gitlab.gnome.org/GNOME/vte",
-                            "tag": "0.78.3",
-                            "commit": "6f293fa50a52c79a47642875a534dacaf3913a55",
+                            "type": "archive",
+                            "url": "https://download.gnome.org/sources/vte/0.79/vte-0.79.91.tar.xz",
+                            "sha256": "adca667d40ae1839ba258b63701cd05fba249303d72258711cc69294b2cb8646",
                             "x-checker-data": {
-                                "type": "git",
-                                "tag-pattern": "^([\\d.]+)$"
+                                "type": "gnome",
+                                "name": "vte",
+                                "stable-only": true
                             }
                         }
                     ]
