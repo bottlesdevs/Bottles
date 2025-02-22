@@ -188,8 +188,7 @@ class InstallerDialog(Adw.Window):
     def __installed(self):
         self.set_deletable(False)
         self.stack.set_visible_child_name("page_installed")
-        self.window.page_details.view_bottle.update_programs()
-        self.window.page_details.go_back_sidebar()
+        self.window.page_details.details_view_subpage.view_bottle.update_programs()
 
     def __error(self, error):
         self.set_deletable(True)
