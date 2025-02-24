@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-02-24 15:19+0000\n"
+"PO-Revision-Date: 2025-02-25 19:12+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bottles/bottles/"
 "et/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -68,11 +68,11 @@ msgstr "Wine'i seadistused on uuendatud!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr ""
+msgstr "Käivitusime Flatpakina, pruugime kasutaja kausta puhul aedikkäitust…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Käivitame kasutaja kausta aedikkäitust…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
@@ -818,7 +818,7 @@ msgstr "Vali rakendustes kasutatav keel."
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "Eraldi aedikkäitus"
 
 #: bottles/frontend/ui/details-preferences.blp:276
 msgid "Use a restricted/managed environment for this bottle."
@@ -826,12 +826,12 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:279
 msgid "Manage the Sandbox Permissions"
-msgstr ""
+msgstr "Halda aedikkäituse õigusi"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr ""
+msgstr "Pudelite käituskeskkond"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 msgid ""
@@ -841,7 +841,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr ""
+msgstr "Steami käituskeskkond"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
@@ -1193,11 +1193,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
-msgstr ""
+msgstr "Akna tüüp"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:166
 msgid "Borderless"
-msgstr ""
+msgstr "Piirjoontetu"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:172
 msgid "Fullscreen"
@@ -1205,17 +1205,19 @@ msgstr "Täisekraanivaade"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr ""
+msgstr "Kas sa soovid jätkata paigaldamist?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
 msgid "Start Installation"
-msgstr ""
+msgstr "Alusta paigaldust"
 
 #: bottles/frontend/ui/dialog-installer.blp:64
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
 msgstr ""
+"See paigaldaja eeldab mõnede kohalike ressursside olemasolu, mida muul "
+"viisil tagada ei saa."
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
@@ -1302,12 +1304,12 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
 msgid "Choose a Script"
-msgstr ""
+msgstr "Vali skript"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:84
 #: bottles/frontend/windows/launchoptions.py:55
 msgid "Choose from where start the program."
-msgstr ""
+msgstr "Vali kust sa soovid programmi käivitada."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:101
 #: bottles/frontend/ui/drive-entry.blp:22
@@ -1389,19 +1391,19 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
 msgid "Sandbox Settings"
-msgstr ""
+msgstr "Aedikkäituse seadistused"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
-msgstr ""
+msgstr "Jaga võrku"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:34
 msgid "Share Sound"
-msgstr ""
+msgstr "Jaga heli"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:16
 msgid "Upgrade Needed"
-msgstr ""
+msgstr "Vajalik on uuendus"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:38
 #: bottles/frontend/ui/onboard.blp:81
@@ -1410,15 +1412,15 @@ msgstr "Jätka"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:47
 msgid "Launch upgrade"
-msgstr ""
+msgstr "Käivita uuendus"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
 msgid "New Versioning System"
-msgstr ""
+msgstr "Uus versioonihalduse süsteem"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
 msgid "The new bottle versioning system has landed."
-msgstr ""
+msgstr "Pudelite uus versioonihalduse süsteem on just avaldatud."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:83
 msgid ""
@@ -1454,11 +1456,11 @@ msgstr "Vaikimisi"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:48
 msgid "Default Settings"
-msgstr ""
+msgstr "Vaikimisi seadistused"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "Efekte kasutatakse vastavalt loendi järjekorrale."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
 msgid "Effects"
@@ -1485,7 +1487,7 @@ msgstr "Teravus"
 #: bottles/frontend/ui/dialog-vkbasalt.blp:343
 #: bottles/frontend/ui/dialog-vkbasalt.blp:370 bottles/frontend/ui/new.blp:58
 msgid "Show Information"
-msgstr ""
+msgstr "Näita teavet"
 
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
@@ -1654,41 +1656,43 @@ msgstr "Wine'i prefiksi nimi"
 
 #: bottles/frontend/ui/importer-entry.blp:28
 msgid "Manager"
-msgstr ""
+msgstr "Haldur"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
-msgstr ""
+msgstr "See Wine'i prefiks on juba Pudelitesse imporditud."
 
 #: bottles/frontend/ui/importer.blp:22
 msgid "Import a Bottle backup"
-msgstr ""
+msgstr "Impordi Pudelite varukoopia"
 
 #: bottles/frontend/ui/importer.blp:28
 msgid "Search again for prefixes"
-msgstr ""
+msgstr "Otsi uuesti prefikseid"
 
 #: bottles/frontend/ui/importer.blp:38
 msgid "No Prefixes Found"
-msgstr ""
+msgstr "Prefikseid ei leidunud"
 
 #: bottles/frontend/ui/importer.blp:39
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
+"Väliseid prefikseid ei leidunud. Kas Pudelitel on neile ligipääs?\n"
+"Ülal leiduvat ikooni võid kasutada varukoopiast importimiseks."
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
-msgstr ""
+msgstr "Täisarhiiv"
 
 #: bottles/frontend/ui/installer-entry.blp:16
 msgid "Show Manifest…"
-msgstr ""
+msgstr "Näita manifesti…"
 
 #: bottles/frontend/ui/installer-entry.blp:20
 msgid "Read Review…"
-msgstr ""
+msgstr "Loe arvustust…"
 
 #: bottles/frontend/ui/installer-entry.blp:34
 msgid "Installer name"
@@ -1721,11 +1725,11 @@ msgstr "Käivita"
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
 msgid "Launch with Steam"
-msgstr ""
+msgstr "Käivita Steamiga"
 
 #: bottles/frontend/ui/library-entry.blp:108
 msgid "Item name"
-msgstr ""
+msgstr "Objekti nimi"
 
 #: bottles/frontend/ui/library-entry.blp:132
 msgid "Remove from Library"
@@ -1746,33 +1750,35 @@ msgstr "Saad siia lisada rakendusi pudeli programmiloendist"
 
 #: bottles/frontend/ui/list-entry.blp:26
 msgid "Versioning is active in this bottle."
-msgstr ""
+msgstr "Versioonihaldus on selle pudeli puhul kasutusel."
 
 #: bottles/frontend/ui/list-entry.blp:42
 msgid "This bottle looks damaged."
-msgstr ""
+msgstr "See pudel tundub olema saanud viga."
 
 #: bottles/frontend/ui/list-entry.blp:55
 msgid "Execute in this Bottle"
-msgstr ""
+msgstr "Käivita selles pudelis"
 
 #: bottles/frontend/ui/list-entry.blp:69
 msgid "Run Here"
-msgstr ""
+msgstr "Käivita siin"
 
 #: bottles/frontend/ui/list-entry.blp:75
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
+"See pudel tundub olema saanud viga, tema seadistused on puudu. Uute "
+"seadistuste loomisega võin ma proovida seda viga parandada."
 
 #: bottles/frontend/ui/list.blp:12
 msgid "Search your bottles…"
-msgstr ""
+msgstr "Otsi oma pudeleid…"
 
 #: bottles/frontend/ui/list.blp:28
 msgid "Steam Proton"
-msgstr ""
+msgstr "Steam Proton"
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/list.blp:42 bottles/frontend/windows/main_window.py:191
@@ -1798,7 +1804,7 @@ msgstr "Käivitame rakendust…"
 
 #: bottles/frontend/ui/local-resource-entry.blp:4
 msgid "This resource is missing."
-msgstr ""
+msgstr "See ressurss on puudu."
 
 #: bottles/frontend/ui/local-resource-entry.blp:8
 msgid "Browse"
@@ -1826,7 +1832,7 @@ msgstr "_Kohandatud"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
-msgstr ""
+msgstr "Kohanadatud"
 
 #: bottles/frontend/ui/new.blp:118
 msgid "Share User Directory"
@@ -1838,6 +1844,9 @@ msgid ""
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
 msgstr ""
+"Sellega teed kasutaja kausta leitavaks pudelis ja sellega suureneb isikliku "
+"teabe jagamise risk Windowsi tarkvaraga. Peale pudeli loomist ei saa seda "
+"eelistust muuta."
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
@@ -1846,10 +1855,11 @@ msgstr "Arhitektuur"
 #: bottles/frontend/ui/new.blp:137
 msgid "32-bit should only be used if strictly necessary."
 msgstr ""
+"32-bitist tarkvara peaksid kasutama vaid siis, kui see tõesti on vajalik."
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
-msgstr ""
+msgstr "Impordi sinu loodud seadistus."
 
 #: bottles/frontend/ui/new.blp:176
 msgid "Bottle Directory"
@@ -1933,19 +1943,19 @@ msgstr "Välimus"
 
 #: bottles/frontend/ui/preferences.blp:17
 msgid "Dark Mode"
-msgstr ""
+msgstr "Tume kujundus"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
-msgstr ""
+msgstr "Kas Pudelid peaksid kasutama tumedat kujundust."
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
-msgstr ""
+msgstr "Näita uuendamise kuupäeva"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "Kas peaksime kuvama pudelite loendis uuenduste kuupäeva."
 
 #: bottles/frontend/ui/preferences.blp:42
 #: data/com.usebottles.bottles.gschema.xml:46
@@ -1954,15 +1964,15 @@ msgstr "Teavitused"
 
 #: bottles/frontend/ui/preferences.blp:43
 msgid "Show notifications for downloads and installs."
-msgstr ""
+msgstr "Näita allalaadimiste ja paigalduste teavitusi."
 
 #: bottles/frontend/ui/preferences.blp:52
 msgid "Temp Files"
-msgstr ""
+msgstr "Ajutised failid"
 
 #: bottles/frontend/ui/preferences.blp:53
 msgid "Clean temp files when Bottles launches?"
-msgstr ""
+msgstr "Kas Pudelite käivitamisel kustutame ajutused failid?"
 
 #: bottles/frontend/ui/preferences.blp:62
 msgid "Close Bottles After Starting a Program"
@@ -1978,35 +1988,35 @@ msgstr "Lõimingud"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr ""
+msgstr "Steam Protoni prefiksid"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
-msgstr ""
+msgstr "Näita ja halda Steam Protoni prefikseid."
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "Näita Steami rakendusi Programmide loendis"
 
 #: bottles/frontend/ui/preferences.blp:98
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "See eeldab, et Steam Windowsi jaoks on pudelisse paigaldatud."
 
 #: bottles/frontend/ui/preferences.blp:107
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "Näita Epic Gamesi rakendusi Programmide loendis"
 
 #: bottles/frontend/ui/preferences.blp:108
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "See eeldab, et Epic Games Store on pudelisse paigaldatud."
 
 #: bottles/frontend/ui/preferences.blp:117
 msgid "List Ubisoft Games in Programs List"
-msgstr ""
+msgstr "Näita Ubisoft Gamesi rakendusi Programmide loendis"
 
 #: bottles/frontend/ui/preferences.blp:118
 msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr ""
+msgstr "See eeldab, et Ubisoft Connect on pudelisse paigaldatud."
 
 #: bottles/frontend/ui/preferences.blp:128
 msgid "Advanced"
@@ -2042,7 +2052,7 @@ msgstr "DLL-komponendid"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr ""
+msgstr "Rakendus Pudelid töötab vallasrežiimis ja seega DLL'id pole saadaval."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2054,7 +2064,7 @@ msgstr "Tuum"
 
 #: bottles/frontend/ui/preferences.blp:287
 msgid "Runtime"
-msgstr ""
+msgstr "Käituskeskkond"
 
 #: bottles/frontend/ui/preferences.blp:291
 msgid "WineBridge"
@@ -2070,26 +2080,28 @@ msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
 msgstr ""
+"Need funktsionaalsused on tõsiselt arendamisel ning nad ei pruugi olla "
+"stabiilsed, seega pigem eelda vigu ja tegevuse katkemist."
 
 #: bottles/frontend/ui/preferences.blp:303
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "Pudelikohane aedikkäitus"
 
 #: bottles/frontend/ui/preferences.blp:304
 msgid "In early development."
-msgstr ""
+msgstr "Varases arendusjärgus."
 
 #: bottles/frontend/ui/program-entry.blp:19
 msgid "Launch with Terminal"
-msgstr ""
+msgstr "Käivita terminaliga"
 
 #: bottles/frontend/ui/program-entry.blp:25
 msgid "Browse Path"
-msgstr ""
+msgstr "Sirvi asukohta"
 
 #: bottles/frontend/ui/program-entry.blp:39
 msgid "Change Launch Options…"
-msgstr ""
+msgstr "Muuda käivitamise valikuid…"
 
 #: bottles/frontend/ui/program-entry.blp:43
 msgid "Add to Library"
@@ -2097,11 +2109,11 @@ msgstr "Lisa rakenduste kogusse"
 
 #: bottles/frontend/ui/program-entry.blp:47
 msgid "Add Desktop Entry"
-msgstr ""
+msgstr "Lisa töölauakirje"
 
 #: bottles/frontend/ui/program-entry.blp:51
 msgid "Add to Steam"
-msgstr ""
+msgstr "Lisa Steami"
 
 #: bottles/frontend/ui/program-entry.blp:55
 msgid "Rename…"
@@ -2150,6 +2162,9 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
+"Tundub, et sinu arvutis on puudu internetiühendus. Ilma selleta sa ei saa "
+"vajalikke lisakomponente alla laadida. Kui internetiühendus on jälle "
+"töökorras, siis klõpsi seda ikooni."
 
 #: bottles/frontend/ui/window.blp:79
 msgid "Import…"
@@ -2202,7 +2217,7 @@ msgstr "Käivitame „{0}“…"
 
 #: bottles/frontend/views/bottle_details.py:413
 msgid "Be Aware of Sandbox"
-msgstr ""
+msgstr "Hoiatus aedikkäituse kohta"
 
 #: bottles/frontend/views/bottle_details.py:414
 msgid ""
@@ -2210,6 +2225,10 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
+"Pudelid töötavad aedikkäituse põhimõttel ja see piiratud õigustega keskkond "
+"tagab sinu andmete turvalisuse. Kui programm ei käivitu, siis proovi teda "
+"teisaldada pudeli sisse (vaata kolme punktiga ikooni ülal) ja käivita siis "
+"sealt."
 
 #: bottles/frontend/views/bottle_details.py:416
 #: bottles/frontend/views/bottle_details.py:525
@@ -2219,7 +2238,7 @@ msgstr "_Loobu"
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
-msgstr ""
+msgstr "Vali asukoht, kuhu soovid salvestada seadistuste varukoopia"
 
 #: bottles/frontend/views/bottle_details.py:431
 msgid "Export"
@@ -2227,11 +2246,11 @@ msgstr "Ekspordi"
 
 #: bottles/frontend/views/bottle_details.py:433
 msgid "Select the location where to save the backup archive"
-msgstr ""
+msgstr "Vali asukoht, kuhu soovid salvestada varukoopia arhiivi"
 
 #: bottles/frontend/views/bottle_details.py:435
 msgid "Backup"
-msgstr ""
+msgstr "Varundus"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
@@ -2300,7 +2319,7 @@ msgstr "Vali töökaust"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
-msgstr ""
+msgstr "Kaust, kus leiduvad „{}“ andmed."
 
 #: bottles/frontend/views/bottle_preferences.py:746
 msgid "Are you sure you want to delete all snapshots?"
@@ -2313,6 +2332,8 @@ msgstr "Sellega kustutad kõik oma hetktõmmised, aga säilitad oma failid."
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
 msgstr ""
+"Uute olekute loomiseks palun tee vajalik uuendus, mis lisab uue "
+"versioonihalduse süsteemi."
 
 #: bottles/frontend/views/details.py:153
 msgid "Installers"
@@ -2320,7 +2341,7 @@ msgstr "Paigaldajad"
 
 #: bottles/frontend/views/details.py:234
 msgid "Operations in progress, please wait."
-msgstr ""
+msgstr "Palun oota, toimingud on pooleli."
 
 #: bottles/frontend/views/details.py:239
 msgid "Return to your bottles."
@@ -2449,6 +2470,8 @@ msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
+"Põhineb Valve'i Wine'il, sealhulgas eelversioon ja Protoni- ja Steami-"
+"kohased paigad. Eeldab, et Steami käituskeskkond on sisse lülitatud."
 
 #: bottles/frontend/views/preferences.py:250
 msgid "Other"
@@ -2789,7 +2812,7 @@ msgstr "Katsed: aedikkäitus"
 
 #: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Sandbox per bottle."
-msgstr ""
+msgstr "Lülita katseline pudelikohane aedikkäitus sisse/välja."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
@@ -2801,11 +2824,11 @@ msgstr "Peale käivitusfaili klõpsimist failihaldurist sulge Pudelid."
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "Näita aedikkäituse kohta hoiatust"
 
 #: data/com.usebottles.bottles.gschema.xml:87
 msgid "Toggle sandbox warning."
-msgstr ""
+msgstr "Lülita aedikkäituse-kohane hoiatus sisse/välja."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid "Run Windows software on Linux with Bottles!"
@@ -2974,6 +2997,8 @@ msgstr ""
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"Wine-ge-custom kasutamisel on Steami käituskeskkond automaatselt sisse "
+"lülitatud"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
