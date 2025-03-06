@@ -78,6 +78,7 @@ class PreferencesView(Adw.PreferencesPage):
     row_discrete = Gtk.Template.Child()
     row_vkbasalt = Gtk.Template.Child()
     row_manage_display = Gtk.Template.Child()
+    row_runtime = Gtk.Template.Child()
     row_steam_runtime = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
     label_cwd = Gtk.Template.Child()
@@ -94,6 +95,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_gamemode = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
+    switch_runtime = Gtk.Template.Child()
     switch_steam_runtime = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     switch_versioning_compression = Gtk.Template.Child()
@@ -167,32 +169,53 @@ class PreferencesView(Adw.PreferencesPage):
             "obsvkc": _obsvkc_pkg_name,
         }
 
+        if not gamemode_available:
+            self.switch_gamemode.set_tooltip_text(_not_available)
+
         if not gamescope_available:
-            _gamescope_not_available = (
-                f"{_flatpak_not_available} {_flatpak_pkg_name['gamescope']}"
-            )
-            self.switch_gamescope.set_tooltip_text(_gamescope_not_available)
-            self.btn_manage_gamescope.set_tooltip_text(_gamescope_not_available)
+            if "FLATPAK_ID" in os.environ:
+                _gamescope_not_available = (
+                    f"{_flatpak_not_available} {_flatpak_pkg_name['gamescope']}"
+                )
+                self.switch_gamescope.set_tooltip_text(_gamescope_not_available)
+                self.btn_manage_gamescope.set_tooltip_text(_gamescope_not_available)
+            else:
+                self.switch_gamescope.set_tooltip_text(_not_available)
+                self.btn_manage_gamescope.set_tooltip_text(_not_available)
 
         if not vkbasalt_available:
-            _vkbasalt_not_available = (
-                f"{_flatpak_not_available} {_flatpak_pkg_name['vkbasalt']}"
-            )
-            self.switch_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
-            self.btn_manage_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
+            if "FLATPAK_ID" in os.environ:
+                _vkbasalt_not_available = (
+                    f"{_flatpak_not_available} {_flatpak_pkg_name['vkbasalt']}"
+                )
+                self.switch_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
+                self.btn_manage_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
+            else:
+                self.switch_vkbasalt.set_tooltip_text(_not_available)
+                self.btn_manage_vkbasalt.set_tooltip_text(_not_available)
 
         if not mangohud_available:
-            _mangohud_not_available = (
-                f"{_flatpak_not_available} {_flatpak_pkg_name['mangohud']}"
-            )
-            self.switch_mangohud.set_tooltip_text(_mangohud_not_available)
-            self.btn_manage_mangohud.set_tooltip_text(_mangohud_not_available)
+            if "FLATPAK_ID" in os.environ:
+                _mangohud_not_available = (
+                    f"{_flatpak_not_available} {_flatpak_pkg_name['mangohud']}"
+                )
+                self.switch_mangohud.set_tooltip_text(_mangohud_not_available)
+                self.btn_manage_mangohud.set_tooltip_text(_mangohud_not_available)
+            else:
+                self.switch_mangohud.set_tooltip_text(_not_available)
+                self.btn_manage_mangohud.set_tooltip_text(_not_available)
 
         if not obs_vkc_available:
-            _obsvkc_not_available = (
-                f"{_flatpak_not_available} {_flatpak_pkg_name['obsvkc']}"
-            )
-            self.switch_obsvkc.set_tooltip_text(_obsvkc_not_available)
+            if "FLATPAK_ID" in os.environ:
+                _obsvkc_not_available = (
+                    f"{_flatpak_not_available} {_flatpak_pkg_name['obsvkc']}"
+                )
+                self.switch_obsvkc.set_tooltip_text(_obsvkc_not_available)
+            else:
+                self.switch_obsvkc.set_tooltip_text(_not_available)
+
+        if not vmtouch_available:
+            self.switch_vmtouch.set_tooltip_text(_not_available)
 
         # region signals
         self.row_manage_display.connect("activated", self.__show_display_settings)

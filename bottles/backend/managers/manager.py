@@ -1312,8 +1312,6 @@ class Manager(metaclass=Singleton):
         wineboot.init()
         log_update(_("Wine config updated!"))
 
-        log_update(_("Sandboxing user directory…"))
-
         userdir = f"{bottle_complete_path}/drive_c/users"
         if os.path.exists(userdir):
             # userdir may not exists when unpacking a template, safely

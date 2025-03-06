@@ -120,7 +120,7 @@ class BottlesWindow(Adw.ApplicationWindow):
             error_dialog.present(self)
             logging.error(
                 _(
-                    "Bottles is only supported within a sandboxed environment. Official sources of Bottles are available at"
+                    "Bottles is only supported within a sandboxed format. Official sources of Bottles are available at:"
                 )
             )
             logging.error("https://usebottles.com/download/")

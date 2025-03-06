@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 import uuid
 from datetime import datetime
 from gettext import gettext as _
@@ -148,6 +149,13 @@ class BottleView(Adw.PreferencesPage):
         self.btn_flatpak_doc.connect(
             "clicked", open_doc_url, "flatpak/black-screen-or-silent-crash"
         )
+
+        if "FLATPAK_ID" in os.environ:
+            """
+            If Flatpak, show the btn_flatpak_doc widget to reach
+            the documentation on how to expose directories
+            """
+            self.btn_flatpak_doc.set_visible(True)
 
     def __change_page(self, _widget, page_name):
         """
