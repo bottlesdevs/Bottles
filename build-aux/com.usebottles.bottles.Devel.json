@@ -295,6 +295,28 @@
             ]
         },
         {
+            "name": "runtime",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/etc/runtime",
+                "cp -a * /app/etc/runtime/"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/bottlesdevs/runtime/releases/download/0.6.3/runtime-0.6.3.tar.gz",
+                    "sha256": "d7749b48927bd782e128e372a1d7085133fbe300eb9193134eb821f61bc5fad6",
+                    "x-checker-data": {
+                        "type": "json",
+                        "is-important": true,
+                        "url": "https://api.github.com/repos/bottlesdevs/runtime/releases/latest",
+                        "version-query": ".tag_name",
+                        "url-query": "https://github.com/bottlesdevs/runtime/releases/download/$version/runtime-$version.tar.gz"
+                    }
+                }
+            ]
+        },
+        {
             "name": "fluidsynth",
             "buildsystem": "cmake-ninja",
             "cleanup": [
