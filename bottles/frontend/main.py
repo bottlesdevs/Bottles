@@ -49,7 +49,8 @@ class Bottles(Adw.Application):
     arg_bottle = None
     dark_provider = None
     local_bottles: dict[str, BottleConfig] = {}
-    bottles_config_dir = os.path.join(GLib.get_user_data_dir(), "bottles", "bottles")
+    bottles_data_dir = os.path.join(GLib.get_user_data_dir(), "bottles")
+    bottles_config_dir = os.path.join(bottles_data_dir, "bottles")
 
     def __init__(self):
         super().__init__(
