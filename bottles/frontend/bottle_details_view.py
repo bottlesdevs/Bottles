@@ -71,7 +71,7 @@ class BottleDetailsView(Adw.Bin):
 
         self.view_bottle = BottleDetailsPage(self, config)
         self.view_dependencies = DetailsDependenciesView(self, config)
-        self.view_preferences = DetailsPreferencesPage(self, config)
+        self.view_preferences = DetailsPreferencesPage()
         self.view_taskmanager = DetailsTaskManagerView(self, config)
 
         self.btn_back.connect("clicked", self.go_back)

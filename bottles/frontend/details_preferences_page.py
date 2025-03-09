@@ -120,13 +120,10 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
 
     # endregion
 
-    def __init__(self, details, config, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        # common variables and references
-        self.window = details.window
-        self.config = config
-        self.details = details
+        self.window = GtkUtils.get_parent_window()
 
         if not gamemode_available or not Xdp.Portal.running_under_sandbox():
             return
@@ -336,19 +333,20 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
         self.str_list_dxvk.append("Disabled")
         self.str_list_vkd3d.append("Disabled")
         self.str_list_latencyflex.append("Disabled")
-        for index, dxvk in enumerate(self.manager.dxvk_available):
+        app = self.window.get_application()
+        for index, dxvk in enumerate(os.path.join(app.bottles_data_dir, "dxvk")):
             self.str_list_dxvk.append(dxvk)
 
-        for index, vkd3d in enumerate(self.manager.vkd3d_available):
+        for index, vkd3d in enumerate(os.path.join(app.bottles_data_dir, "vkd3d")):
             self.str_list_vkd3d.append(vkd3d)
 
-        for index, runner in enumerate(self.manager.runners_available):
+        for index, runner in enumerate(os.path.join(app.bottles_data_dir, "runners")):
             self.str_list_runner.append(runner)
 
-        for index, nvapi in enumerate(self.manager.nvapi_available):
+        for index, nvapi in enumerate(os.path.join(app.bottles_data_dir, "nvapi")):
             self.str_list_nvapi.append(nvapi)
 
-        for index, latencyflex in enumerate(self.manager.latencyflex_available):
+        for index, latencyflex in enumerate(os.path.join(app.bottles_data_dir, "latencyflex")):
             self.str_list_latencyflex.append(latencyflex)
 
         for lang in ManagerUtils.get_languages():

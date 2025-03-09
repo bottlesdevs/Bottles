@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 import uuid
 from datetime import datetime
 from gettext import gettext as _
@@ -98,7 +99,6 @@ class BottleDetailsPage(Adw.PreferencesPage):
 
         # common variables and references
         self.window = details.window
-        self.manager = details.window.manager
         self.stack_bottle = details.stack_bottle
         self.leaflet = details.leaflet
         self.details = details
@@ -209,8 +209,10 @@ class BottleDetailsPage(Adw.PreferencesPage):
         self.grid_versioning.set_visible(self.config.Versioning)
         self.label_state.set_text(str(self.config.State))
 
+        app = self.window.get_application()
+
         if (
-            config.Runner not in self.manager.runners_available
+            config.Runner not in os.listdir(os.path.join(app.bottles_data_dir, "runners"))
             and not self.config.Environment == "Steam"
         ):
             self.__alert_missing_runner()
