@@ -33,7 +33,7 @@ pytest .
 Regenerate PYPI dependency manifest when requirements.txt changed
 
 ```bash
-python ./build-aux/flatpak-pip-generator.py --runtime org.gnome.Sdk -r requirements.txt -o build-aux/pypi-deps --yaml
+python ./build-aux/req2flatpak/req2flatpak.py --requirements-file requirements.txt --yaml --target-platforms 312-x86_64 -o build-aux/pypi-deps.yaml
 ```
 
 ## I18n files

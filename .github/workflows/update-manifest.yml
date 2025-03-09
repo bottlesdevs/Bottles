@@ -37,8 +37,8 @@ jobs:
           git config user.name "github-actions[bot]"
           pur -r requirements.txt
           pur -r requirements.dev.txt
-          req2flatpak --requirements-file requirements.txt --yaml --target-platforms 312-x86_64 -o pypi-deps.yaml
-          git diff ${{ github.ref_name }} --exit-code requirements.txt requirements.dev.txt pypi-deps.yaml
+          req2flatpak --requirements-file requirements.txt --yaml --target-platforms 312-x86_64 -o build-aux/pypi-deps.yaml
+          git diff ${{ github.ref_name }} --exit-code requirements.txt requirements.dev.txt build-aux/pypi-deps.yaml
           updated=$?
           if [ $updated -ne 0 ]; then
               git add requirements.txt requirements.dev.txt pypi-deps
