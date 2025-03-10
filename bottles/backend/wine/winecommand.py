@@ -477,7 +477,7 @@ class WineCommand:
         else:
             runner = f"{runner}/bin/wine"
 
-        if arch == "win64":
+        if arch == "win64" and os.path.exists(f"{runner}64"):
             runner = f"{runner}64"
 
         runner = shlex.quote(runner)  # type: ignore
