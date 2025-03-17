@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-03-17 11:27+0000\n"
+"PO-Revision-Date: 2025-03-17 16:26+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bottles/bottles/"
 "et/>\n"
@@ -706,25 +706,27 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX superresolutsioon"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr ""
+msgstr "Parandab välimuse arvel jõudlust. Toimib vaid Vulkaniga."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "Halda FidelityFX superresolutsiooni seadistusi"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
-msgstr ""
+msgstr "Eraldiseisev graafikakaart"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Kasuta energiakulu arvel jõudluse suurendamiseks eraldiseisvat "
+"graafikakaarti."
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
@@ -785,44 +787,53 @@ msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.blp:202
 msgid "Monitor Performance"
-msgstr ""
+msgstr "Seira jõudlust"
 
 #: bottles/frontend/ui/details-preferences.blp:203
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
+"Kuva MangoHudi abil OpenGLi- ja Vulkani-kohast seireteavet nagu "
+"kaadrisagedus, temperatuurid, protsessori ja graafikaprotsessori koormus "
+"ning muudki."
 
 #: bottles/frontend/ui/details-preferences.blp:211
 msgid "Feral GameMode"
-msgstr ""
+msgstr "Raju mängurežiim (Feral GameMode)"
 
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
+"Kasuta oma arvutis või nutiseadmes vastavalt optimeeritud seadistusi. Võib "
+"parandada mängude jõudlust."
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
-msgstr ""
+msgstr "Eellaadi mänufailid"
 
 #: bottles/frontend/ui/details-preferences.blp:222
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Kui laadid mängu mitu korda, siis sellega paraneb käivitusaeg. Aga esimene "
+"käivituskord kestab kauem."
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
-msgstr ""
+msgstr "Halda vmtouch'i seadistusi"
 
 #: bottles/frontend/ui/details-preferences.blp:241
 msgid "OBS Game Capture"
-msgstr ""
+msgstr "Mängude salvestamine OBSiga"
 
 #: bottles/frontend/ui/details-preferences.blp:242
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
 msgstr ""
+"Lülita sisse kõikide Vulkani- või OpenGLi-põhiste mängude salvestamine "
+"OBSiga."
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
@@ -1041,6 +1052,9 @@ msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"Pudelid jooksis viimati kokku. Palun täida aruanne ja lisa sinna järgnev "
+"pinujäljeg. See võimaldab meil vea põhjust otsida ning võimalusel seda ka "
+"tulevikus vältida."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
 msgid ""
@@ -1049,18 +1063,22 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Me leidsime ühe või enam sarnast (või identset) veaaruannet. Enne uue "
+"veateate lisamist palun kontrolli, et seda pole varasemast juba olemas. Iga "
+"veaaruande töötlemiseks kulub arendajatel märgatavalt aega ning seega palun "
+"väldi topeltveateadete üleslaadimist."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:89
 msgid "I still want to report."
-msgstr ""
+msgstr "Ma siiski soovin veateate üleslaadida."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:95
 msgid "Advanced options"
-msgstr ""
+msgstr "Lisavalikud"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:13
 msgid "Incomplete package"
-msgstr ""
+msgstr "Mittetäielik pakett"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
 msgid ""
@@ -1068,6 +1086,9 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
+"See Pudelite versioon ei tundu sisaldama kõiki vajalikke tuumiksõltuvusi. "
+"Lisateavet saad selle versiooni koostanud süsteemihaldurilt ning "
+"alternatiivina on sul võimalik kasutada ametlikku versiooni."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
@@ -1078,14 +1099,16 @@ msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
+"Dünaamiliselt lingitud teegid (dll-failid) võivad olla keskkonnakohased ("
+"tulevad kaasa Wine'iga) või konkreetse programmi kohased."
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
-msgstr ""
+msgstr "Uus sürjutamine"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:21
 msgid "Overrides"
-msgstr ""
+msgstr "Sürjutamised"
 
 #: bottles/frontend/ui/dialog-drives.blp:7
 msgid "Drives"
@@ -1139,6 +1162,8 @@ msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Keskkonnamuutujad on dünaamilised väärtused, mis võivad mõjutada viisi, "
+"kuidas programmid pudeli sees toimivad."
 
 #: bottles/frontend/ui/dialog-env-vars.blp:31
 msgid "Variable Name"
@@ -1219,15 +1244,15 @@ msgstr "Varia"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
 msgid "Frame Rate Limit"
-msgstr ""
+msgstr "Pildi kaadrisageduse piirang"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
 msgid "Frame Rate Limit When Unfocused"
-msgstr ""
+msgstr "Pildi kaadrisageduse piirang, kui programm pole fookuses"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
 msgid "Integer Scaling"
-msgstr ""
+msgstr "Täisarvuline skaleerimine (Integer Scaling)"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1299,11 +1324,11 @@ msgstr "Infoteade"
 
 #: bottles/frontend/ui/dialog-journal.blp:40
 msgid "Journal browser"
-msgstr ""
+msgstr "Logibrauser"
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
-msgstr ""
+msgstr "Logibrauser"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
@@ -1315,30 +1340,30 @@ msgstr "Kõik"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:42
 msgid "Those arguments will be passed at launch."
-msgstr ""
+msgstr "Need argumendid lisatakse käivitamisel programmile."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:43
 msgid "Custom Arguments"
-msgstr ""
+msgstr "Täiendavad argumendid"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:46
 msgid "Command Arguments"
-msgstr ""
+msgstr "Käsu argumendid"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:47
 #, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "nt.: VAR=value %command% -example1 -example2 -example3=hello"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:52
 msgid "Post-run Script"
-msgstr ""
+msgstr "Käivitusjärgne skript"
 
 #. endregion
 #: bottles/frontend/ui/dialog-launch-options.blp:53
 #: bottles/frontend/windows/launchoptions.py:54
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "Vali skript, mida peaks käivitama peale programmi käivitust."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
 msgid "Choose a Script"
@@ -1356,27 +1381,27 @@ msgstr "Vali kaust"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:114
 msgid "These settings will override the default settings for this executable."
-msgstr ""
+msgstr "Need seadistused sürjutavad selle käivitusfaili vaikimisi seadistused."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:115
 msgid "Preferences Overrides"
-msgstr ""
+msgstr "Eelistuste sürjutamised"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:119
 msgid "Reset to Bottle's Defaults"
-msgstr ""
+msgstr "Lähtesta rakenduse vaikeväärtusteks"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:165
 msgid "Virtual Desktop"
-msgstr ""
+msgstr "Virtuaalne töölaud"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Protoni lahtiütlus vastutusest"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:21
 msgid "Use Proton"
-msgstr ""
+msgstr "Kasuta Protonit"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:35
 msgid ""
@@ -1392,10 +1417,22 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"Palun arvesta, et Protonipõhiste käivitajate kasutamine mitte-Steami "
+"pudelites võib tekitada probleeme ja olukordi, kus nad ei toimi "
+"eesmärgipäraselt.\n"
+"\n"
+"Meie pigem soovitame, et kasuta selle asemel Wine-GE käituskeskonda, mis "
+"olemuselt ongi Protoni variatsioon käivitamiseks ilma Steamita.\n"
+"\n"
+"Kui jätkad, siis ligipääsuks vajalikele teekidele ja ühilduvusprobleemide "
+"vältimiseks lülitatakse Steami käitusteek automaatselt välja (kui ta on "
+"süstemis olemas ja Pudelid suudab ta tuvastada). Palun arvesta, et "
+"GloriousEggroll (selle käivitaja looja) pole vastutav tekkivate probleemide "
+"eest ning palun ära anna neist teada."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
-msgstr ""
+msgstr "Selge, sain aru."
 
 #: bottles/frontend/ui/dialog-rename.blp:7
 msgid "Rename"
@@ -1421,11 +1458,11 @@ msgstr "Käivita"
 
 #: bottles/frontend/ui/dialog-run-args.blp:44
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "Sisesta alljärgnevalt argumendid, mida peaks käivitusfailile lisama."
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "nt.: -opengl -SkipBuildPatchPrereq"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
 msgid "Sandbox Settings"
@@ -1518,7 +1555,7 @@ msgstr "Efektid"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:62
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "Kontrasti adaptiivne teravdamine"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:65
 #: bottles/frontend/ui/dialog-vkbasalt.blp:102
@@ -1663,19 +1700,19 @@ msgstr ""
 
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
-msgstr ""
+msgstr "Lisatud (Wine)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:9
 msgid "Native (Windows)"
-msgstr ""
+msgstr "Omane (Windows)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:10
 msgid "Builtin, then Native"
-msgstr ""
+msgstr "Esmalt lisatud, siis omane"
 
 #: bottles/frontend/ui/dll-override-entry.blp:11
 msgid "Native, then Builtin"
-msgstr ""
+msgstr "Esmalt omane, siis lisatud"
 
 #: bottles/frontend/ui/dll-override-entry.blp:12
 msgid "Disabled"
@@ -2335,6 +2372,8 @@ msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
+"Sellele pudelile vajalik käivitaja on puudu. Paigalda ta Pudelite "
+"eelistustest või vali rakenduste käivitamiseks muu käivitaja."
 
 #: bottles/frontend/views/bottle_details.py:597
 msgid "Are you sure you want to force stop all processes?"
@@ -2356,7 +2395,7 @@ msgstr "See funktsionaalsus pole sinu süsteemis saadaval."
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} Selle funktsionaalsuse lisamiseks palun käivita „flatpak install“"
 
 #: bottles/frontend/views/bottle_preferences.py:246
 msgid "This bottle name is already in use."
@@ -2436,7 +2475,7 @@ msgstr "Käivitame „{self.config.Name}“ programmifaili"
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr ""
+msgstr "Käivitame „{0}“ „{1}“'s…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2445,12 +2484,12 @@ msgstr "Sinu pudelid"
 #: bottles/frontend/views/loading.py:41
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
-msgstr ""
+msgstr "Laadime alla ~{0} pakettidest…"
 
 #: bottles/frontend/views/loading.py:42
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
-msgstr ""
+msgstr "Laaditud {0}/{1} pakettidest"
 
 #: bottles/frontend/views/new.py:157
 msgid "Select Bottle Directory"
@@ -2498,6 +2537,11 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
+"Selle kausta kasutamiseks pead Pudelid uuesti käivitama.\n"
+"\n"
+"Enne Pudelite uuestikäivitust palun kontrolli, et kõik käivitatud programmid "
+"on suletud. Vastasel juhul võivad tekkida andmekadu, failide rikkumine ja/"
+"või programmide töövead."
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
@@ -2506,14 +2550,19 @@ msgstr "_Käivita uuesti"
 #: bottles/frontend/views/preferences.py:243
 msgid "Based on Valve's Wine, includes staging and Proton patches."
 msgstr ""
+"Põhineb Valve'i Wine'i versioonil, sealhulgas on eelversiooni ja Protoni "
+"paigad."
 
 #: bottles/frontend/views/preferences.py:244
 msgid "Based on Wine upstream, includes staging and Proton patches."
 msgstr ""
+"Põhineb Wine'i projekti põhiversioonil, sealhulgas on eelversiooni ja "
+"Protoni paigad."
 
 #: bottles/frontend/views/preferences.py:247
 msgid "Based on Wine upstream, includes staging patches."
 msgstr ""
+"Põhineb Wine'i projekti põhiversioonil, sealhulgas on eelversiooni paigad."
 
 #: bottles/frontend/views/preferences.py:248
 msgid ""
@@ -2525,7 +2574,7 @@ msgstr ""
 
 #: bottles/frontend/views/preferences.py:250
 msgid "Other"
-msgstr ""
+msgstr "Muu"
 
 #: bottles/frontend/widgets/component.py:74
 msgid "Upgrade"
@@ -2539,7 +2588,7 @@ msgstr "Paigaldame…"
 #: bottles/frontend/widgets/installer.py:81
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr ""
+msgstr "Manifest „{0}“ jaoks"
 
 #: bottles/frontend/widgets/dependency.py:172
 #, python-brace-format
@@ -2554,7 +2603,7 @@ msgstr "„{0}“ on paigaldatud"
 #: bottles/frontend/widgets/dependency.py:188
 #, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr ""
+msgstr "„{0}“ paigaldamine ei õnnestunud"
 
 #: bottles/frontend/widgets/importer.py:68
 #, python-brace-format
@@ -2576,30 +2625,32 @@ msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
 msgstr ""
+"Selle programmi töös võib tekkida märgatavaid kiikse, kuid need ei mõjuta "
+"tema funktsionaalsust."
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
-msgstr ""
+msgstr "Selle programmi töös võib tekkida pisikesi kiikse."
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
-msgstr ""
+msgstr "See programm toimib perfektselt."
 
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
 msgid "Review for {0}"
-msgstr ""
+msgstr "„{0}“ arvustus"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
 #, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr ""
+msgstr "„{0}“ on peatamisel…"
 
 #: bottles/frontend/widgets/program.py:190
 #, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
-msgstr ""
+msgstr "„{0}“ on käivitamisel Steamiga…"
 
 #: bottles/frontend/widgets/program.py:214
 #, python-brace-format
@@ -2645,30 +2696,33 @@ msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            See veateade on lisatud juba 5 korda ja enam ei saa seda teha.\n"
+"            Lisa oma tagasiside mõnele allpooltoodud olemasolevale "
+"veateatele."
 
 #: bottles/frontend/windows/display.py:102
 msgid "Updating display settings, please wait…"
-msgstr ""
+msgstr "Uuendame ekraani seadistusi, palun oota…"
 
 #: bottles/frontend/windows/display.py:114
 msgid "Display settings updated"
-msgstr ""
+msgstr "Ekraani seadistused on uuendatud"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
-msgstr ""
+msgstr "Sürjutamisi ei leidunud."
 
 #: bottles/frontend/windows/drives.py:71
 msgid "Select Drive Path"
-msgstr ""
+msgstr "Vali ketta asukoht"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
-msgstr ""
+msgstr "Ühtegi keskkonnamuutujat pole defineeritud."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
-msgstr ""
+msgstr "Ühtegi välistusmustrit pole defineeritud."
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -2682,11 +2736,11 @@ msgstr "Kopeeri lõikelauale"
 
 #: bottles/frontend/windows/installer.py:62
 msgid "Select Resource File"
-msgstr ""
+msgstr "Vali ressursifail"
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
-msgstr ""
+msgstr "Paigaldame Windowsi sõltuvusi…"
 
 #: bottles/frontend/windows/installer.py:110
 msgid "Configuring the bottle…"
@@ -2694,55 +2748,57 @@ msgstr "Konfigureerime pudelit…"
 
 #: bottles/frontend/windows/installer.py:111
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "Läbime sammhaaval paigaldaja tööprotsessi…"
 
 #: bottles/frontend/windows/installer.py:112
 msgid "Installing the {}…"
-msgstr ""
+msgstr "{} on paigaldamisel…"
 
 #: bottles/frontend/windows/installer.py:113
 msgid "Performing final checks…"
-msgstr ""
+msgstr "Teeme lõppkontrolle…"
 
 #: bottles/frontend/windows/installer.py:117
 #, python-brace-format
 msgid "Installing {0}…"
-msgstr ""
+msgstr "{0} on paigaldamisel…"
 
 #: bottles/frontend/windows/installer.py:119
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr ""
+msgstr "{0} on nüüd leitav programmide vaatest."
 
 #: bottles/frontend/windows/installer.py:166
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "Paigaldaja lõpetas töö teadmata vea tõttu"
 
 #: bottles/frontend/windows/launchoptions.py:56
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr ""
+msgstr "{0} on juba selle pudeli jaoks välja lülitatud."
 
 #: bottles/frontend/windows/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "See seadistus on erinev pudeli vaikeseadistustest."
 
 #: bottles/frontend/windows/launchoptions.py:215
 msgid "Select Script"
-msgstr ""
+msgstr "Vali skript"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
-msgstr ""
+msgstr "Sinu lisatud Pudelite asukohta ei leidu"
 
 #: bottles/frontend/windows/main_window.py:221
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
 msgstr ""
+"Kasutame vaikimisi asukohta. Mitteleiduvas asukohas asuvad pudelid on seega "
+"ka loendist puudu."
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
@@ -2755,11 +2811,11 @@ msgstr "wine;windows;proton;"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
-msgstr ""
+msgstr "Üleviimine Flatpakile"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr ""
+msgstr "Näita või peida Flatpakile üleviimise vaade."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
@@ -2771,35 +2827,35 @@ msgstr "Kasuta sundkorras tumedat kujundust."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "Näita loendis uuenduse kuupäeva või peida see"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr ""
+msgstr "Näita pudelite loendis uuenduse kuupäeva või peida see."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "Steami rakenduste loend"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
-msgstr ""
+msgstr "Näita rakenduste loendis Steami rakendusi või peida nad."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr ""
+msgstr "Epic Gamesi rakenduste loend"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr ""
+msgstr "Näita rakenduste loendis Epic Gamesi rakendusi või peida nad."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "Ubisoft Connecti rakenduste loend"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."
-msgstr ""
+msgstr "Näita rakenduste loendis Ubisoft Connecti rakendusi või peida nad."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
@@ -2807,7 +2863,7 @@ msgstr "Akna laius"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 msgid "Change the window width."
-msgstr ""
+msgstr "Muuda akna laiust."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Window height"
@@ -2815,7 +2871,7 @@ msgstr "Akna kõrgus"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Change the window height."
-msgstr ""
+msgstr "Muuda akna kõrgust."
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
@@ -2823,19 +2879,20 @@ msgstr "Näita teavitusi."
 
 #: data/com.usebottles.bottles.gschema.xml:51
 msgid "Temp cleaning"
-msgstr ""
+msgstr "Ajutiste failide kausta tühjendamine"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid "Clean the temp path when booting the system."
 msgstr ""
+"Arvuti või nutiseadme käivitamisel kustuta ajutiste failide kausta sisu."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Release Candidate"
-msgstr ""
+msgstr "Eelversioonid"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle release candidate for runners."
-msgstr "Näita/peida käivitajate eelversioonid."
+msgstr "Näita käivitajate eelversioone või peida nad."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
@@ -2843,21 +2900,23 @@ msgstr "Käivitusvaade"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
-msgstr ""
+msgstr "Vali rakenduse käivitamisel kuvatav vaade."
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
+"Näita katselisi funktsionaalsusi, nagu eri versioonid ja paigaldajad. "
+"Käivitajate puhul on näidatud ka eelversioonid."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
-msgstr ""
+msgstr "Steami Protoni tugi"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
-msgstr ""
+msgstr "Lülita Steami Protoni prefiksite tugi sisse/välja."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:sandbox"
@@ -2869,7 +2928,7 @@ msgstr "Lülita katseline pudelikohane aedikkäitus sisse/välja."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
-msgstr ""
+msgstr "Sulge Pudelid automaatselt"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
