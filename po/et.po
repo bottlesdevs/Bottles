@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-03-17 20:55+0000\n"
+"PO-Revision-Date: 2025-03-17 22:38+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bottles/bottles/"
 "et/>\n"
@@ -870,7 +870,7 @@ msgstr "Halda aedikkäituse õigusi"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr "Pudelite käitusteek"
+msgstr "Bottles'i käitusteek"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 msgid ""
@@ -1028,7 +1028,7 @@ msgstr "Loo uus pudel"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr "Pudelite kokkujooksmise aruanne"
+msgstr "Bottles'i kokkujooksmise aruanne"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1052,7 +1052,7 @@ msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
-"Pudelid jooksis viimati kokku. Palun täida aruanne ja lisa sinna järgnev "
+"Bottles jooksis viimati kokku. Palun täida aruanne ja lisa sinna järgnev "
 "pinujäljeg. See võimaldab meil vea põhjust otsida ning võimalusel seda ka "
 "tulevikus vältida."
 
@@ -1086,7 +1086,7 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
-"See Pudelite versioon ei tundu sisaldama kõiki vajalikke tuumiksõltuvusi. "
+"See Bottles'i versioon ei tundu sisaldama kõiki vajalikke tuumiksõltuvusi. "
 "Lisateavet saad selle versiooni koostanud süsteemihaldurilt ning "
 "alternatiivina on sul võimalik kasutada ametlikku versiooni."
 
@@ -1426,7 +1426,7 @@ msgstr ""
 "\n"
 "Kui jätkad, siis ligipääsuks vajalikele teekidele ja ühilduvusprobleemide "
 "vältimiseks lülitatakse Steami käitusteek automaatselt välja (kui ta on "
-"süstemis olemas ja Pudelid suudab ta tuvastada). Palun arvesta, et "
+"süstemis olemas ja Bottles suudab ta tuvastada). Palun arvesta, et "
 "GloriousEggroll (selle käivitaja looja) pole vastutav tekkivate probleemide "
 "eest ning palun ära anna neist teada."
 
@@ -1511,7 +1511,7 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
-"Pudelites on uus versioonihaldussüsteem, mis pole varasemate versioonidega "
+"Bottles'is on uus versioonihaldussüsteem, mis pole varasemate versioonidega "
 "ühilduv.\n"
 "\n"
 "Versioonihalduse jätkuva kasutamise jaoks me peame uuesti valmenda pudelite "
@@ -1530,7 +1530,7 @@ msgstr "Valmendame uuesti tarkvarahoidlat…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
-msgstr "Valmis! Palun käivita Pudelid uuesti."
+msgstr "Valmis! Palun käivita Bottles uuesti."
 
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
@@ -1579,15 +1579,15 @@ msgstr "Näita teavet"
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "Müraeemaldusega luma teravdus (Denoised Luma Sharpening)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
-msgstr ""
+msgstr "Müraeemaldus"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:160
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "Kiire ligilähedane sakitõrje (Fast Approximate Anti-Aliasing)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:163
 msgid "Subpixel Quality"
@@ -1604,6 +1604,8 @@ msgstr "Kvaliteedi ääre miinimumlävend"
 #: bottles/frontend/ui/dialog-vkbasalt.blp:249
 msgid "Subpixel Morphological Anti-Aliasing"
 msgstr ""
+"Alampikslipõhine morfoloogiline sakitõrje (Subpixel Morphological Anti-"
+"Aliasing)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:252
 msgid "Edge Detection"
@@ -1638,30 +1640,41 @@ msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"CAS-teravus suurendab kaadrite teravust. Suuremad väärtused teevad pildid "
+"teravamaks ning nullist väiksemad väärtused teevad piltide jooned pehmemaks "
+"kui nad loomulikult on."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:428
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"DLS-teravus suurendab kaadrite teravust. Suuremad väärtused teevad pildid "
+"teravamaks."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:445
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"DLS-müraeemaldus vähendab kaadrite müra. Suuremad väärtused teevad piltide "
+"jooned pehmemateks."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:462
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"FXAA-algoritmi alampikslite kvaliteet vähendab diskreetmoonutust "
+"alampikslite tasemel. Suuremad väärtused teevad piltide jooned pehmemateks."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:479
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"FXAA-algoritmi ääre lävend on madalaim kvaliteet, mida FXAA algoritm eeldab. "
+"Suuremad väärtused teevad pildid kontrastsemateks."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:496
 msgid ""
@@ -1669,34 +1682,47 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"FXAA-algoritmi ääre lävendi miinimum on tumedate pikslite miinimumväärtus, "
+"mida FXAA algoritm eirab. Suuremad väärtused võimaldavad FXAA algoritmil "
+"eirata piksleid alla määratud väärtuse ja see võib parandada jõudlust."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"Luma tuvastab ääri mustvalgest lähtepunktist ja Värv tuvastab ääri "
+"värvidepõhiselt. Luma jõudlus on Värvi omast parem."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:530
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"SMAA-algoritmi lävend määratleb ääretuvastuse tundlikkust. Madalamad "
+"väärtused teevad seda paremini, aga see tuleb jõudluse vähenemise arvelt."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:547
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"SMAA-algoritmi otsingusammude ülempiir määrab kui palju rõhtjoones ja "
+"püstjoones otsingusamme tehakse äärte tuvastamiseks."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:564
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"SMAA-algoritmi diagonaalsete otsingusammude ülempiir määrab kui palju "
+"diagonaalis otsingusamme tehakse äärte tuvastamiseks."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:581
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
 msgstr ""
+"SMAA-algoritmi nurkade ümardamine määratleb äärte nurkade ümardamise "
+"tugevust."
 
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
@@ -1747,7 +1773,7 @@ msgstr "Haldur"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
-msgstr "See Wine'i prefiks on juba Pudelitesse imporditud."
+msgstr "See Wine'i prefiks on juba Bottles'isse imporditud."
 
 #: bottles/frontend/ui/importer.blp:22
 msgid "Import a Bottle backup"
@@ -1766,7 +1792,7 @@ msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"Väliseid prefikseid ei leidunud. Kas Pudelitel on neile ligipääs?\n"
+"Väliseid prefikseid ei leidunud. Kas Bottles'il on neile ligipääs?\n"
 "Ülal leiduvat ikooni võid kasutada varukoopiast importimiseks."
 
 #: bottles/frontend/ui/importer.blp:74
@@ -1871,7 +1897,7 @@ msgstr "Steam Proton"
 #: bottles/frontend/ui/list.blp:42 bottles/frontend/windows/main_window.py:191
 #: data/com.usebottles.bottles.metainfo.xml.in:7
 msgid "Bottles"
-msgstr "Pudelid"
+msgstr "Bottles"
 
 #: bottles/frontend/ui/list.blp:49
 msgid "Create New Bottle…"
@@ -1971,7 +1997,7 @@ msgstr "Eelmine"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
-msgstr "Tere tulemast kasutama Rakendust Pudelid"
+msgstr "Tere tulemast kasutama rakendust Bottles"
 
 #: bottles/frontend/ui/onboard.blp:60
 msgid "Run Windows Software on Linux."
@@ -1980,14 +2006,14 @@ msgstr "Käivita Windowsi tarkvara Linuxis."
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
-msgstr "Windows Pudelites"
+msgstr "Windows pudelites"
 
 #: bottles/frontend/ui/onboard.blp:66
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
-"Pudelid kasutavad programmide käivitamiseks ühenduskihti, mis toimib "
+"Bottles kasutab programmide käivitamiseks ühenduskihti, mis toimib "
 "konteineriseeritud Windowsilaadsetes keskkondades."
 
 #: bottles/frontend/ui/onboard.blp:72
@@ -2009,7 +2035,7 @@ msgstr "Palun esmalt lõpeta algseadistus"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:120
 msgid "Start using Bottles"
-msgstr "Alusta Pudelite kasutamist"
+msgstr "Alusta Bottles'i kasutamist"
 
 #: bottles/frontend/ui/onboard.blp:141
 msgid "Next"
@@ -2034,7 +2060,7 @@ msgstr "Tume kujundus"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
-msgstr "Kas Pudelid peaksid kasutama tumedat kujundust."
+msgstr "Kas Bottles peaks kasutama tumedat kujundust."
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
@@ -2059,15 +2085,15 @@ msgstr "Ajutised failid"
 
 #: bottles/frontend/ui/preferences.blp:53
 msgid "Clean temp files when Bottles launches?"
-msgstr "Kas Pudelite käivitamisel kustutame ajutused failid?"
+msgstr "Kas Bottles'i käivitamisel kustutame ajutised failid?"
 
 #: bottles/frontend/ui/preferences.blp:62
 msgid "Close Bottles After Starting a Program"
-msgstr "Peale programmi käivitamist sulge Pudelid"
+msgstr "Peale programmi käivitamist sulge Bottles"
 
 #: bottles/frontend/ui/preferences.blp:63
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "Peale programmi käivitamist failihaldurist sulge Pudelid."
+msgstr "Peale programmi käivitamist failihaldurist sulge Bottles."
 
 #: bottles/frontend/ui/preferences.blp:73
 msgid "Integrations"
@@ -2123,7 +2149,7 @@ msgstr "Käivitajad"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr "Pudelid töötab vallasrežiimis ja seega käivitajad pole saadaval."
+msgstr "Bottles töötab vallasrežiimis ja seega käivitajad pole saadaval."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2139,7 +2165,7 @@ msgstr "DLL-komponendid"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr "Rakendus Pudelid töötab vallasrežiimis ja seega DLL'id pole saadaval."
+msgstr "Rakendus Bottles töötab vallasrežiimis ja seega DLL'id pole saadaval."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2264,7 +2290,7 @@ msgstr "Abiteave"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:96
 msgid "About Bottles"
-msgstr "Rakenduse teave: Pudelid"
+msgstr "Rakenduse teave: Bottles"
 
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
@@ -2312,7 +2338,7 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
-"Pudelid töötavad aedikkäituse põhimõttel ja see piiratud õigustega keskkond "
+"Bottles töötab aedikkäituse põhimõttel ja see piiratud õigustega keskkond "
 "tagab sinu andmete turvalisuse. Kui programm ei käivitu, siis proovi teda "
 "teisaldada pudeli sisse (vaata kolme punktiga ikooni ülal) ja käivita siis "
 "sealt."
@@ -2372,7 +2398,7 @@ msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
-"Sellele pudelile vajalik käivitaja on puudu. Paigalda ta Pudelite "
+"Sellele pudelile vajalik käivitaja on puudu. Paigalda ta Bottles'i "
 "eelistustest või vali rakenduste käivitamiseks muu käivitaja."
 
 #: bottles/frontend/views/bottle_details.py:597
@@ -2519,7 +2545,7 @@ msgstr "„{0}“ pudeli loomine õnnestus."
 
 #: bottles/frontend/views/preferences.py:142
 msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr "Steami ei leidu või pole Pudelitel piisavalt õigusi."
+msgstr "Steami ei leidu või pole Bottles'il piisavalt õigusi."
 
 #: bottles/frontend/views/preferences.py:176
 msgid "Select Bottles Path"
@@ -2527,7 +2553,7 @@ msgstr "Vali pudelite asukoht"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
-msgstr "Kas käivitame pudelid uuesti?"
+msgstr "Kas käivitame Bottles'i uuesti?"
 
 #: bottles/frontend/views/preferences.py:199
 msgid ""
@@ -2537,11 +2563,11 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
-"Selle kausta kasutamiseks pead Pudelid uuesti käivitama.\n"
+"Selle kausta kasutamiseks pead Bottles'i uuesti käivitama.\n"
 "\n"
-"Enne Pudelite uuestikäivitust palun kontrolli, et kõik käivitatud programmid "
-"on suletud. Vastasel juhul võivad tekkida andmekadu, failide rikkumine ja/"
-"või programmide töövead."
+"Enne Bottles'i uuestikäivitust palun kontrolli, et kõik käivitatud "
+"programmid on suletud. Vastasel juhul võivad tekkida andmekadu, failide "
+"rikkumine ja/või programmide töövead."
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
@@ -2787,7 +2813,7 @@ msgstr "Vali skript"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
-msgstr "Sinu lisatud Pudelite asukohta ei leidu"
+msgstr "Sinu lisatud pudelite asukohta ei leidu"
 
 #: bottles/frontend/windows/main_window.py:221
 msgid ""
@@ -2928,11 +2954,11 @@ msgstr "Lülita katseline pudelikohane aedikkäitus sisse/välja."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
-msgstr "Sulge Pudelid automaatselt"
+msgstr "Sulge Bottles automaatselt"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
-msgstr "Peale käivitusfaili klõpsimist failihaldurist sulge Pudelid."
+msgstr "Peale käivitusfaili klõpsimist failihaldurist sulge Bottles."
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
@@ -2944,7 +2970,7 @@ msgstr "Lülita aedikkäituse-kohane hoiatus sisse/välja."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Pudelid võimaldab sul Linuxis käivitada Windowsi tarkvara!"
+msgstr "Bottles võimaldab sul Linuxis käivitada Windowsi tarkvara!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:12
 msgid "Bottle software and enjoy at your leisure!"
@@ -3050,7 +3076,7 @@ msgstr "Pudelite versioonihaldus"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:35
 msgid "... and much more that you can find by installing Bottles!"
-msgstr "... ja palju muud, mida võid avastada Pudelite paigaldamise järel!"
+msgstr "... ja palju muud, mida võid avastada Bottles'i paigaldamise järel!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
@@ -3094,7 +3120,7 @@ msgstr "Südame emoji asendus teekide lehel raamatukogu emojiga"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
-msgstr "„Programmifail on käivitatud“ teade on lisatud"
+msgstr "„Käivita käsufail…“ kohane teade on lisatud"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
@@ -3129,7 +3155,7 @@ msgstr "Tekstide kodeerimisega seotud erinevad veaparandused"
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
-"Allalaadimisel tekkinud vea parandus, kui Pudelid polnud käivitatud "
+"Allalaadimisel tekkinud vea parandus, kui Bottles polnud käivitatud "
 "terminalist"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
@@ -3164,47 +3190,52 @@ msgstr "Komponendi allalaadimisel tekkinud kokkujooksmise veaparandus"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "Taustateenuste koodi parandused vältides protsesside lukustusvigu"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "Täiendavad muutujad kasutamiseks paigaldusskriptides"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"Kasutuselevõtmise töövoos kuvatakse „Kõik on valmis!“ teade nüüd õigel ajal"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "Parandatud kompileerimise süsteem"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "VKD3D on vaikimisi kasutusel pudelite loomisel mängude jaoks"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
 msgstr ""
+"Vigaselt kodeeritud Steami failidest johtuvate kokkujooksimiste parandused"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"Veaparandus olukorrale, kus komponendid polnud kasutajaliideses korrektselt "
+"uuendatud peale paigaldamist/eemaldamist"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "Täiendavad FSR'i parandused"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"Veaparandus, kus „Käivita käsufail…“ valikust käivitatud programm lõpetas töö"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "ja palju, palju, palju enamgi!"
 
 #~ msgid "Renderer"
 #~ msgstr "Renderdaja"
