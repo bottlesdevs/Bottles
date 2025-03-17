@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-03-08 19:22+0000\n"
-"Last-Translator: Henri <contact@hen.ee>\n"
+"PO-Revision-Date: 2025-03-17 11:27+0000\n"
+"Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/bottles/bottles/"
 "et/>\n"
 "Language: et\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -51,7 +51,7 @@ msgstr "Kohatäite kausta või faili loomine ei õnnestunud."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr "Loome pudeli seadistust…"
+msgstr "Loome pudeli konfiguratsiooni…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
@@ -80,45 +80,45 @@ msgstr "Seadistan Windowsi versiooni…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Kohalda käsurea vaikimisi seadistusi…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
-msgstr "Optimiseerin keskkonda…"
+msgstr "Optimeerin keskkonda…"
 
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "Kohaldame keskkonda: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Kasutame sinu loodud keskkonnajuhist…"
 
 #: bottles/backend/managers/manager.py:1292
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Keskkkonnajuhist ei leidu või pole ta kehtiv…"
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
-msgstr "Installeerin DXVK…"
+msgstr "Paigaldan DXVK-teeke…"
 
 #: bottles/backend/managers/manager.py:1317
 msgid "Installing VKD3D…"
-msgstr "Installeerin VKD3D…"
+msgstr "Paigaldan VKD3D-teeke…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Installing DXVK-NVAPI…"
-msgstr "Installeerin DXVK-NVAPI…"
+msgstr "Paigaldan DXVK-NVAPI-teeke…"
 
 #: bottles/backend/managers/manager.py:1335
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "Paigaldame sõltuvust: %s…"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "Loome versiooniolekut 0…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
@@ -130,11 +130,11 @@ msgstr "Salvestan malli vahemällu…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
-msgstr ""
+msgstr "Teeme olekukohast sissekannet versioonihaldusesse…"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Pole midagi versioonihaldusesse lisada"
 
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
@@ -172,7 +172,7 @@ msgstr "Käivitusfaili asukoht"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr ""
+msgstr "lnk asukoht"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
@@ -181,23 +181,23 @@ msgstr "Pudeli nimi"
 
 #: bottles/frontend/main.py:144
 msgid "Pass arguments"
-msgstr ""
+msgstr "Saada argumendid kaasa"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Vigane URI (süntaks peaks olema: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr ""
+msgstr "[Lõpeta] päring on vastuvõetud."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
-msgstr ""
+msgstr "[Abiteave] päring on vastuvõetud."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "[Uuenda andmeid] päring on vastuvõetud."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
@@ -205,11 +205,11 @@ msgstr "Toeta rahaliselt"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Kolmandate osapoolte teegid ja eraldi mainitavad tänuavaldused"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Toetajad ja rahastajad"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
@@ -294,6 +294,8 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"Tekkis paigaldusviga. Kokkujooksmise aruande lugemiseks käivita Pudelid "
+"uuesti või käivita ta terminalist ja vaata väljundit."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -327,10 +329,12 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
+"See on vaid pudeli konfiguratsioon, on täiesti sobilik, kui tahad luua uue "
+"ilma isiklike failideta."
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr "Ekspordi seadistused…"
+msgstr "Ekspordi konfiguratsioon…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
@@ -431,6 +435,9 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Käsufaili käivitamiseks vali „Käivita käsufail…“, „Lisa kiirvalikute sekka…“ "
+"aitab sul käsufaili lisada programmide loendisse ning „Paigalda programme…“ "
+"võimaldab paigaldada kogukonna valitud rakendusi."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -496,15 +503,15 @@ msgstr "Käivita käsud pudeli sees."
 
 #: bottles/frontend/ui/details-bottle.blp:404
 msgid "Registry Editor"
-msgstr ""
+msgstr "Registriredaktor"
 
 #: bottles/frontend/ui/details-bottle.blp:405
 msgid "Edit the internal registry."
-msgstr ""
+msgstr "Muuda sisemist registriandmebaasi."
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr ""
+msgstr "Wine'i tarvikud pärandtarkvarana"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
@@ -512,12 +519,12 @@ msgstr "Sirvija"
 
 #: bottles/frontend/ui/details-bottle.blp:435
 msgid "Debugger"
-msgstr ""
+msgstr "Veaotsingu liides"
 
 #: bottles/frontend/ui/details-bottle.blp:444
 #: bottles/frontend/ui/importer.blp:69 bottles/frontend/ui/new.blp:145
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguratsioon"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
@@ -529,17 +536,17 @@ msgstr "Juhtpaneel"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr ""
+msgstr "Otsi sõltuvusi…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Sa pole võrgus :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Pudelid töötab vallasrežiimis, seega sõltuvused pole saadaval."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -548,18 +555,24 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Sõltuvused on lisatarkvara ja -moodulid, mis parandavad ühilduvust Windowsi "
+"tarkvaraga.\n"
+"\n"
+"Sellel lehel leiduvad failid on loodud kolmandate osapoolte poolt ning nad "
+"on avaldatud suletud ja/või piiravate litsentside alusel. Seda tarkvara "
+"paigaldades nõustud sa vastavate litsentsitingimustega."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
-msgstr ""
+msgstr "Teata veast või puuduvast sõltuvusest."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
 msgid "Report Missing Dependency"
-msgstr ""
+msgstr "Teata puuduvast sõltuvusest"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
 msgid "Read Documentation."
-msgstr ""
+msgstr "Loe dokumentatsiooni."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
@@ -584,21 +597,28 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Paigalda meie kogukonna valitud rakendusi.\n"
+"\n"
+"Sellel lehel leiduvad failid on loodud kolmandate osapoolte poolt ning nad "
+"on avaldatud suletud ja/või piiravate litsentside alusel. Seda tarkvara "
+"paigaldades nõustud sa vastavate litsentsitingimustega."
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
-msgstr ""
+msgstr "Paigaldajaid ei leidunud"
 
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
+"Tarkvarahoidla pole kättesaadav või ükski paigaldaja pole ühilduv selle "
+"pudeliga."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
 #: bottles/frontend/ui/preferences.blp:81
 msgid "Read Documentation"
-msgstr ""
+msgstr "Loe dokumentatsiooni"
 
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52
@@ -625,7 +645,7 @@ msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Parandatud Direct3D 8/9/10/11 ühilduvust transleerides seda Vulkanile."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
@@ -638,7 +658,7 @@ msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Parandatud Direct3D 12 ühilduvust transleerides seda Vulkanile."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
@@ -661,6 +681,8 @@ msgstr "LatencyFleX"
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
 msgstr ""
+"Suurendasime reageerimisvõimet. Mõni pettusevastane tarkvara võib selle "
+"tuvastada."
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
@@ -668,17 +690,19 @@ msgstr "LatencyFleX on uuendamisel, palun oota…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
-msgstr ""
+msgstr "Ekraan"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr ""
+msgstr "Sügavõppe superdiskreetimine (DLSS)"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"Parandab DXVK-NVAPI abil välimuse arvel jõudlust. Toimib vaid uuemate NVIDIA "
+"graafikaprotsessoritega."
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
@@ -704,28 +728,30 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "Järeltöötluse efektid"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
+"Lisa vkBasalti teekide abil erinevaid järeltöötluse efekte. Toimib vaid "
+"Vulkaniga."
 
 #: bottles/frontend/ui/details-preferences.blp:138
 msgid "Manage Post-Processing Layer settings"
-msgstr ""
+msgstr "Halda järeltöötluse kihi seadistusi"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "Halda Gamescope'i abil seda, kuidas mängud on ekraanil kuvatud."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "Halda Gamescope'i seadistusi"
 
 #: bottles/frontend/ui/details-preferences.blp:171
 msgid "Advanced Display Settings"
-msgstr ""
+msgstr "Ekraani lisaseadistused"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
@@ -734,6 +760,8 @@ msgstr "Jõudlus"
 #: bottles/frontend/ui/details-preferences.blp:188
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
+"Suurendamaks jõudlust mitme tuumaga protsessorite puhul, lülita "
+"sünkroniseerimine sisse."
 
 #: bottles/frontend/ui/details-preferences.blp:189
 msgid "Synchronization"
@@ -798,15 +826,15 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
-msgstr ""
+msgstr "Ühilduvus"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 msgid "Windows Version"
-msgstr ""
+msgstr "Windowsi versioon"
 
 #: bottles/frontend/ui/details-preferences.blp:257
 msgid "Updating Windows version, please wait…"
-msgstr ""
+msgstr "Uuendame Windowsi versiooni, palun oota…"
 
 #: bottles/frontend/ui/details-preferences.blp:266
 msgid "Language"
@@ -822,7 +850,7 @@ msgstr "Eraldi aedikkäitus"
 
 #: bottles/frontend/ui/details-preferences.blp:276
 msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
+msgstr "Kasuta selle pudeli jaoks piiratud/hallatud keskkonda."
 
 #: bottles/frontend/ui/details-preferences.blp:279
 msgid "Manage the Sandbox Permissions"
@@ -831,23 +859,27 @@ msgstr "Halda aedikkäituse õigusi"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr "Bottles Runtime"
+msgstr "Pudelite käitusteek"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
+"Parema ühilduvuse nimel lisa täiendav komplekt teeke. Kui tekib vigu, siis "
+"lülita see valik välja."
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Steam'i runtime"
+msgstr "Steam'i käituskeskkond"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
+"Parema ühilduvuse nimel Steami mängudega lisa täiendav komplekt teeke. Kui "
+"tekib vigu, siis lülita see valik välja."
 
 #: bottles/frontend/ui/details-preferences.blp:315
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -860,28 +892,28 @@ msgstr "Töökaust"
 #: bottles/frontend/ui/new.blp:150 bottles/frontend/ui/new.blp:181
 #: bottles/frontend/ui/preferences.blp:136
 msgid "Reset to Default"
-msgstr ""
+msgstr "Lähtesta vaikimisi väärtusteks"
 
 #: bottles/frontend/ui/details-preferences.blp:339
 #: bottles/frontend/ui/preferences.blp:157 bottles/frontend/views/new.py:78
 #: bottles/frontend/views/preferences.py:210
 msgid "(Default)"
-msgstr ""
+msgstr "(Vaikimisi)"
 
 #: bottles/frontend/ui/details-preferences.blp:347
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
 #: bottles/frontend/ui/dialog-dll-overrides.blp:12
 msgid "DLL Overrides"
-msgstr ""
+msgstr "DLLide sürjutamine"
 
 #: bottles/frontend/ui/details-preferences.blp:357
 #: bottles/frontend/ui/dialog-env-vars.blp:20
 msgid "Environment Variables"
-msgstr ""
+msgstr "Keskkonnamuutujad"
 
 #: bottles/frontend/ui/details-preferences.blp:367
 msgid "Manage Drives"
-msgstr ""
+msgstr "Halda kettaid"
 
 #: bottles/frontend/ui/details-preferences.blp:381
 msgid "Automatic Snapshots"
@@ -909,7 +941,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
-msgstr ""
+msgstr "Kasuta välistusmustreid"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
@@ -917,7 +949,7 @@ msgstr "Välista asukohad hetktõmmistest."
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
-msgstr ""
+msgstr "Halda mustreid"
 
 #: bottles/frontend/ui/details-taskmanager.blp:17
 msgid "Refresh"
@@ -985,7 +1017,7 @@ msgstr "Loo uus pudel"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr ""
+msgstr "Pudelite kokkujooksmise aruanne"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1002,7 +1034,7 @@ msgstr "_Katkesta"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
 msgid "Send Report"
-msgstr ""
+msgstr "Saada aruanne"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:44
 msgid ""
@@ -1057,37 +1089,39 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-drives.blp:7
 msgid "Drives"
-msgstr ""
+msgstr "Kettad"
 
 #: bottles/frontend/ui/dialog-drives.blp:24
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
+"Need on sinu alussüsteemi asukohad, mis on pandud vastavusse Windowsi "
+"ketastega ning mida käivitaja oskab kasutada (nt. C: D:…)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
-msgstr ""
+msgstr "Täht"
 
 #: bottles/frontend/ui/dialog-drives.blp:49
 msgid "Existing Drives"
-msgstr ""
+msgstr "Olemasolevad kettad"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:16
 msgid "Duplicate Bottle"
-msgstr ""
+msgstr "Tee pudelist koopia"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:38
 msgid "Duplicate"
-msgstr ""
+msgstr "Tee koopia"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:49
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr ""
+msgstr "Sisesta nimi pudeli koopia jaoks."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:69
 msgid "Duplicating…"
-msgstr ""
+msgstr "Teeme koopiat…"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:78
 #: bottles/frontend/ui/dialog-installer.blp:103
@@ -1098,7 +1132,7 @@ msgstr "Selleks võib natuke aega kuluda."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
-msgstr ""
+msgstr "Pudeli koopia on tehtud"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:28
 msgid ""
@@ -1116,13 +1150,15 @@ msgstr "Olemasolevad muutujad"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "Välistusmustrid"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
+"Kirjelda mustrid või mallid, mille alusel mõned kaustad välistatakse "
+"versioonihaldusest."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
 msgid "Pattern"
@@ -1130,11 +1166,11 @@ msgstr "Muster"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:37
 msgid "Existing Patterns"
-msgstr ""
+msgstr "Olemasolevad mustrid"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
-msgstr ""
+msgstr "Gamescope'i seadistused"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:30
 #: bottles/frontend/ui/dialog-launch-options.blp:32
@@ -1149,11 +1185,11 @@ msgstr "Halda, kuidas mängud peaks olema näidatud."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
-msgstr ""
+msgstr "Mängu resolutsioon"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr ""
+msgstr "Kasutab piksleis märgitud videomängu resolutsiooni viitematerjalina."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
@@ -1167,13 +1203,15 @@ msgstr "Kõrgus"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
 msgid "Window Resolution"
-msgstr ""
+msgstr "Akna resolutsioon"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:82
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
+"Suurendab resolutsiooni, kui sul on kasutusel mängu resolutsioonist suurem "
+"resolutsioon."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
@@ -1269,7 +1307,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr ""
+msgstr "Muuda logimise detailsust."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
@@ -1373,7 +1411,7 @@ msgstr "Uus nimi"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 msgid "Run With Arguments"
-msgstr ""
+msgstr "Käivita nende argumentidega"
 
 #: bottles/frontend/ui/dialog-run-args.blp:34
 #: bottles/frontend/views/bottle_details.py:401
@@ -1436,19 +1474,31 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"Pudelites on uus versioonihaldussüsteem, mis pole varasemate versioonidega "
+"ühilduv.\n"
+"\n"
+"Versioonihalduse jätkuva kasutamise jaoks me peame uuesti valmenda pudelite "
+"tarkvarahoidla. Sellega ei kustu pudelite andmed, küll aga kustuvad kõik "
+"senised hetktõmmised ja luuakse viimasest seisust uus hetktõmmis.\n"
+"\n"
+"Kui sa enne jätkamist soovid kasutusele võtta mõnda varasemat hetktõmmist, "
+"siis sulge see aken, taasta soovitud hetktõmmis ning sama vaate uuesti "
+"nägemiseks ava pudel uuesti.\n"
+"\n"
+"Eemaldame vana versioonihalduse mõnes järgmises rakenduse versioonis."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
-msgstr ""
+msgstr "Valmendame uuesti tarkvarahoidlat…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
-msgstr ""
+msgstr "Valmis! Palun käivita Pudelid uuesti."
 
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
 msgid "Post-Processing Effects Settings"
-msgstr ""
+msgstr "Järeltöötluse efektide seadistused"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
@@ -1769,8 +1819,8 @@ msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
-"See pudel tundub olema saanud viga, tema seadistused on puudu. Uute "
-"seadistuste loomisega võin ma proovida seda viga parandada."
+"See pudel tundub olema saanud viga, tema konfiguratsioon on puudu. Uute "
+"konfiguratsiooni loomisega võin ma proovida seda viga parandada."
 
 #: bottles/frontend/ui/list.blp:12
 msgid "Search your bottles…"
@@ -1859,7 +1909,7 @@ msgstr ""
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
-msgstr "Impordi sinu loodud seadistus."
+msgstr "Impordi sinu loodud konfiguratsioon."
 
 #: bottles/frontend/ui/new.blp:176
 msgid "Bottle Directory"
@@ -2064,7 +2114,7 @@ msgstr "Tuum"
 
 #: bottles/frontend/ui/preferences.blp:287
 msgid "Runtime"
-msgstr "Runtime"
+msgstr "Käituskeskkond"
 
 #: bottles/frontend/ui/preferences.blp:291
 msgid "WineBridge"
@@ -2238,7 +2288,7 @@ msgstr "_Loobu"
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
-msgstr "Vali asukoht, kuhu soovid salvestada seadistuste varukoopia"
+msgstr "Vali asukoht, kuhu soovid salvestada konfiguratsiooni varukoopia"
 
 #: bottles/frontend/views/bottle_details.py:431
 msgid "Export"
@@ -2371,7 +2421,7 @@ msgstr "Impordi"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
 msgid "Select a Configuration File"
-msgstr "Vali seadistuste fail"
+msgstr "Vali konfiguratsioonfail"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
@@ -2381,7 +2431,7 @@ msgstr "[teadmata]"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "Käivitame „{self.config.Name}“ programmifaili"
 
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
@@ -2517,6 +2567,9 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
+"See rakendus võib toimida kehvasti. Paigaldaja on küll konfigureeritud "
+"tagama parimat võimalikku kasutuskogemust, kuid eelda kiikse, ebastabiilsust "
+"ja mittetoimivat funktsionaalsust."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
@@ -2637,7 +2690,7 @@ msgstr ""
 
 #: bottles/frontend/windows/installer.py:110
 msgid "Configuring the bottle…"
-msgstr ""
+msgstr "Konfigureerime pudelit…"
 
 #: bottles/frontend/windows/installer.py:111
 msgid "Processing installer steps…"
@@ -2863,7 +2916,8 @@ msgstr "Omadused:"
 #: data/com.usebottles.bottles.metainfo.xml.in:19
 msgid "Create bottles using preconfigured environments or create your own"
 msgstr ""
-"Loo pudeleid eelseadistatud keskkondade alusel või tekita selline, angu vajad"
+"Loo pudeleid eelkonfigureeritud keskkondade alusel või tekita selline, nagu "
+"vajad"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:20
 msgid ""
@@ -2920,7 +2974,8 @@ msgstr "Ligipääs ProtonDB ja WineHQ kasutajatoele"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:31
 msgid "System for bringing your configuration to new versions of Bottles"
-msgstr "Võimalus oma seadistuste lisamiseks pudelite uutesse versioonidesse"
+msgstr ""
+"Võimalus oma konfiguratsiooni lisamiseks pudelite uutesse versioonidesse"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:32
 msgid "Back up and import bottles"
