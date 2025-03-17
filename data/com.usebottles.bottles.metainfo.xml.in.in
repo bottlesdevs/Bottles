@@ -85,6 +85,14 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="51.21" date="2025-03-16">
+      <description translate="no">
+        <ul>
+          <li>Fix bug where creating a 64-bit bottle would not work</li>
+          <li>Fix bug where clicking the radio button in the new bottle dialog would not set the appropriate environment</li>
+        </ul>
+      </description>
+    </release>
     <release version="51.20" date="2025-03-06">
       <description translate="no">
         <p>Make the preferences dialog open again</p>
