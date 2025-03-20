@@ -142,12 +142,11 @@ class BottlesListView(Adw.Bin):
 
     # endregion
 
-    def __init__(self, window, arg_bottle=None, **kwargs):
+    def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
         self.window = window
-        self.arg_bottle = arg_bottle
 
         # connect signals
         self.btn_create.connect("clicked", self.window.show_add_view)
