@@ -106,8 +106,7 @@ class BottleDetailsPage(Adw.PreferencesPage):
         # common variables and references
         self.window = details.window
         self.manager = details.window.manager
-        self.stack_bottle = details.stack_bottle
-        self.leaflet = details.leaflet
+        self.stack_bottle = details.details_view_subpage.stack_bottle
         self.details = details
         self.config = config
         self.show_hidden = False
@@ -154,10 +153,12 @@ class BottleDetailsPage(Adw.PreferencesPage):
         the page is not available, it will show the "bottle" page.
         """
         if page_name == "taskmanager":
-            self.details.view_taskmanager.update(config=self.config)
+            self.details.details_view_subpage.view_taskmanager.update(
+                config=self.config
+            )
         try:
             self.stack_bottle.set_visible_child_name(page_name)
-            self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
+            self.window.main_leaf.push(self.details.details_view_subpage)
         except:  # pylint: disable=bare-except
             pass
 
