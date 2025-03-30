@@ -4,7 +4,7 @@
     "runtime": "org.gnome.Platform",
     "base": "org.winehq.Wine",
     "base-version": "stable-24.08",
-    "runtime-version": "47",
+    "runtime-version": "48",
     "command": "bottles",
     "finish-args": [
         "--allow=devel",
@@ -33,11 +33,11 @@
     "add-extensions": {
         "org.gnome.Platform.Compat.i386": {
             "directory": "lib/i386-linux-gnu",
-            "version": "47"
+            "version": "48"
         },
         "org.gnome.Platform.Compat.i386.Debug": {
             "directory": "lib/debug/lib/i386-linux-gnu",
-            "version": "47",
+            "version": "48",
             "no-autodownload": true
         },
         "com.valvesoftware.Steam.CompatibilityTool": {
@@ -184,8 +184,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/ImageMagick/ImageMagick",
-                    "tag": "7.1.1-45",
-                    "commit": "37b3453c6222ae6b9f96418dbc70df225929db7e",
+                    "tag": "7.1.1-46",
+                    "commit": "8209e844cf02b5365918da83b2fc811442813080",
                     "x-checker-data": {
                         "type": "git",
                         "tag-pattern": "^([\\d.]+-[\\d]+)$"
@@ -294,8 +294,8 @@
                     "sources": [
                         {
                             "type": "archive",
-                            "url": "https://download.gnome.org/sources/vte/0.79/vte-0.79.91.tar.xz",
-                            "sha256": "adca667d40ae1839ba258b63701cd05fba249303d72258711cc69294b2cb8646",
+                            "url": "https://download.gnome.org/sources/vte/0.80/vte-0.80.0.tar.xz",
+                            "sha256": "267f63739765e568cf8113d0e2ee8f593028946187854bebe268c778e62647c8",
                             "x-checker-data": {
                                 "type": "gnome",
                                 "name": "vte",
@@ -323,52 +323,8 @@
                         "is-important": true,
                         "url": "https://api.github.com/repos/bottlesdevs/runtime/releases/latest",
                         "version-query": ".tag_name",
-                        "url-query": "https://github.com/bottlesdevs/runtime/releases/download/$version/runtime-$version.tar.gz"
+                        "url-query": "\"https://github.com/bottlesdevs/runtime/releases/download/\" + $version + \"/runtime-\" + $version + \".tar.gz\""
                     }
-                }
-            ]
-        },
-        {
-            "name": "libsass",
-            "buildsystem": "meson",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/lazka/libsass.git",
-                    "commit": "aac79dccd3c8f7e8f22125f87a119f3b1ee9d487"
-                }
-            ]
-        },
-        {
-            "name": "sassc",
-            "buildsystem": "meson",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/lazka/sassc.git",
-                    "commit": "a1950c2d95ea4c051feb90bb1f43559fbb54bf36"
-                }
-            ]
-        },
-        {
-            "name": "libadwaita",
-            "buildsystem": "meson",
-            "config-opts": [
-                "-Dexamples=false",
-                "-Dtests=false"
-            ],
-            "cleanup": [
-                "/include",
-                "/lib/pkgconfig",
-                "/libexec",
-                "/share/dbus-1"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/libadwaita.git",
-                    "tag": "1.7.alpha",
-                    "commit": "f4b0068b2ef8db3a582eda08eacbaa8ceac3ef3a"
                 }
             ]
         },
