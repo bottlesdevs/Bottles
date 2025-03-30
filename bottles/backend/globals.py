@@ -60,6 +60,24 @@ class Paths:
                 return True
         return False
 
+    @classmethod
+    def get_components_paths(cls) -> list[str]:
+        """Retrieve list of components' paths."""
+
+        return [
+            cls.temp,
+            cls.runtimes,
+            cls.winebridge,
+            cls.runners,
+            cls.bottles,
+            cls.steam,
+            cls.dxvk,
+            cls.vkd3d,
+            cls.nvapi,
+            cls.latencyflex,
+            cls.templates,
+        ]
+
 
 class TrdyPaths:
     # External managers paths

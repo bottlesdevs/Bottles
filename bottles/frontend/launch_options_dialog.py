@@ -18,11 +18,8 @@
 from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.logger import Logger
-from bottles.frontend.filters import add_all_filters, add_soundfont_filters
+import logging
 from gettext import gettext as _
-
-logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/launch-options-dialog.ui")
@@ -41,12 +38,9 @@ class LaunchOptionsDialog(Adw.Window):
     btn_post_script_reset = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
-    btn_midi_soundfont = Gtk.Template.Child()
-    btn_midi_soundfont_reset = Gtk.Template.Child()
     btn_reset_defaults = Gtk.Template.Child()
     action_pre_script = Gtk.Template.Child()
     action_post_script = Gtk.Template.Child()
-    action_midi_soundfont = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
@@ -65,7 +59,6 @@ class LaunchOptionsDialog(Adw.Window):
     __default_pre_script_msg = _("Choose a script which should be executed before run.")
     __default_post_script_msg = _("Choose a script which should be executed after run.")
     __default_cwd_msg = _("Choose from where start the program.")
-    __default_midi_soundfont_msg = _("Choose a custom SoundFont for MIDI playback.")
     __msg_disabled = _("{0} is disabled globally for this bottle.")
     __msg_override = _("This setting overrides the bottle's global setting.")
 
@@ -111,8 +104,6 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_pre_script_reset.connect("clicked", self.__reset_pre_script)
         self.btn_post_script.connect("clicked", self.__choose_post_script)
         self.btn_post_script_reset.connect("clicked", self.__reset_post_script)
-        self.btn_midi_soundfont.connect("clicked", self.__choose_midi_soundfont)
-        self.btn_midi_soundfont_reset.connect("clicked", self.__reset_midi_soundfont)
         self.btn_cwd.connect("clicked", self.__choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
         self.btn_reset_defaults.connect("clicked", self.__reset_defaults)
@@ -191,10 +182,6 @@ class LaunchOptionsDialog(Adw.Window):
         ):
             self.action_cwd.set_subtitle(program["folder"])
             self.btn_cwd_reset.set_visible(True)
-
-        if program.get("midi_soundfont") not in ["", None]:
-            self.action_midi_soundfont.set_subtitle(program["midi_soundfont"])
-            self.btn_midi_soundfont_reset.set_visible(True)
 
         self.__set_disabled_switches()
 
@@ -354,47 +341,6 @@ class LaunchOptionsDialog(Adw.Window):
         )
         self.action_cwd.set_subtitle(self.__default_cwd_msg)
         self.btn_cwd_reset.set_visible(False)
-
-    def __choose_midi_soundfont(self, *_args):
-        def set_path(dialog, result):
-            try:
-                file = dialog.open_finish(result)
-                if file is None:
-                    self.action_midi_soundfont.set_subtitle(
-                        self.__default_midi_soundfont_msg
-                    )
-                    return
-
-                file_path = file.get_path()
-                self.program["midi_soundfont"] = file_path
-                self.action_midi_soundfont.set_subtitle(file_path)
-                self.btn_midi_soundfont_reset.set_visible(True)
-
-            except GLib.Error as error:
-                # also thrown when dialog has been cancelled
-                if error.code == 2:
-                    # error 2 seems to be 'dismiss' or 'cancel'
-                    if self.program["midi_soundfont"] in (None, ""):
-                        self.action_midi_soundfont.set_subtitle(
-                            self.__default_midi_soundfont_msg
-                        )
-                else:
-                    # something else happened...
-                    logging.warning("Error selecting SoundFont file: %s" % error)
-
-        dialog = Gtk.FileDialog.new()
-        dialog.set_title(_("Select MIDI SoundFont"))
-        dialog.set_modal(True)
-
-        add_soundfont_filters(dialog)
-        add_all_filters(dialog)
-
-        dialog.open(parent=self.window, callback=set_path)
-
-    def __reset_midi_soundfont(self, *_args):
-        self.program["midi_soundfont"] = None
-        self.action_midi_soundfont.set_subtitle(self.__default_midi_soundfont_msg)
-        self.btn_midi_soundfont_reset.set_visible(False)
 
     def __reset_defaults(self, *_args):
         self.switch_dxvk.set_active(self.global_dxvk)

@@ -21,12 +21,10 @@ import time
 
 import requests
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.models.result import Result
 from bottles.backend.state import TaskStreamUpdateHandler
 from bottles.backend.utils.file import FileUtils
-
-logging = Logger()
 
 
 class Downloader:

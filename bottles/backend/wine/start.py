@@ -1,8 +1,5 @@
-from bottles.backend.logger import Logger
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.winepath import WinePath
-
-logging = Logger()
 
 
 class Start(WineProgram):
