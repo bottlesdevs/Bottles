@@ -18,6 +18,7 @@
 from gettext import gettext as _
 from typing import Any
 from gi.repository import Gtk, Adw, Pango, Gio, Xdp, GObject, GLib
+from collections.abc import Sequence
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.threading import RunAsync
@@ -159,15 +160,37 @@ class NewBottleDialog(Adw.Dialog):
             self.label_choose_env.set_label(file.get_basename())
             self.label_choose_env.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
 
+        def create_filter(name: str,
+                          patterns: Sequence[str],
+                          ) -> Gtk.FileFilter:
+            '''Creates a filter with the specified name and patterns
+
+            The use of patterns is particularly notable here as the other
+            strategy for defining filters via `filter.add_mime_type` is
+            strangely inconsistent across different distribtutions, often
+            leaving out filters (sometimes resulting in no filters).
+
+            Until the reasoning for this is determined, it is safest to
+            manually specify the patterns and name. This will ideally be
+            replaced with the `add_mime_type` function once the root cause is
+            discovered.
+            '''
+            filter = Gtk.FileFilter()
+            filter.set_name(name)
+            for pattern in patterns:
+                filter.add_pattern(pattern)
+
+            return filter
+
         filters = Gio.ListStore.new(Gtk.FileFilter)
 
-        yaml_filter = Gtk.FileFilter()
-        yaml_filter.set_name("YAML")
-        yaml_filter.add_mime_type("application/yaml")
-
-        all_filter = Gtk.FileFilter()
-        all_filter.set_name(_("All Files"))
-        all_filter.add_pattern("*")
+        # This filter is intended to be "application/yaml" mime type
+        yaml_filter = create_filter(name="YAML",
+                                    patterns=["*.yaml", "*.yml"],
+                                    )
+        all_filter = create_filter(name=_("All Files"),
+                                   patterns=["*"],
+                                   )
 
         filters.append(yaml_filter)
         filters.append(all_filter)
