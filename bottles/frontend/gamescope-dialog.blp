@@ -168,6 +168,15 @@ template $GamescopeDialog: Adw.Window {
           }
         }
       }
+
+      Adw.PreferencesGroup {
+        title: _("Advanced Settings");
+        description: _("Additional Gamescope flags to be appended.");
+        Adw.EntryRow advanced_options {
+          title: _("flags");
+          show-apply-button: false;
+        }
+      }
     }
   }
 }

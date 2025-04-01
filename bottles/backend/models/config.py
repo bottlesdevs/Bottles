@@ -87,6 +87,7 @@ class BottleParams(DictCompatMixIn):
     gamescope_scaling: bool = False
     gamescope_borderless: bool = False
     gamescope_fullscreen: bool = True
+    gamescope_advanced: str = ""
     sync: str = "wine"
     fsr: bool = False
     fsr_sharpening_strength: int = 2
