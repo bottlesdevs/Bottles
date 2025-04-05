@@ -1,24 +1,32 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $DetailsVersioningPage: Adw.PreferencesPage {
-  Adw.PreferencesPage pref_page {
-    Adw.PreferencesGroup {
-      ListBox list_states {
-        selection-mode: none;
+template $DetailsVersioningPage: Adw.Bin {
+  child: Stack {
+    StackPage {
+      name: "states-list-page";
+      child: Adw.PreferencesPage {
+        Adw.PreferencesGroup {
+          ListBox list_states {
+            selection-mode: none;
 
-        styles [
-          "boxed-list",
-        ]
-      }
+            styles [
+              "boxed-list",
+            ]
+          }
+        }
+      };
     }
-  }
 
-  Adw.StatusPage status_page {
-    icon-name: "preferences-system-time-symbolic";
-    title: _("No Snapshots Found");
-    description: _("Create your first snapshot to start saving states of your preferences.");
-  }
+    StackPage {
+      name: "empty-page";
+      child: Adw.StatusPage {
+        icon-name: "preferences-system-time-symbolic";
+        title: _("No Snapshots Found");
+        description: _("Create your first snapshot to start saving states of your preferences.");
+      };
+    }
+  };
 }
 
 Popover pop_context {

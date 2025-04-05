@@ -1,0 +1,55 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $BottleDetailsViewSubpage: Adw.NavigationPage {
+  title: bind content_title.title;
+  tag: "subpage";
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar content_headerbar {
+      show-start-title-buttons: false;
+
+      title-widget: Adw.WindowTitle content_title {};
+
+      [end]
+      Box box_actions {}
+
+      [end]
+      MenuButton btn_operations {
+        visible: false;
+        tooltip-text: _("Operations");
+        popover: pop_tasks;
+
+        Spinner spinner_tasks {}
+
+        styles [
+          "flat",
+        ]
+      }
+    }
+
+    content: Stack stack_bottle {
+      transition-type: crossfade;
+    };
+  };
+}
+
+Popover pop_tasks {
+  Box {
+    orientation: vertical;
+    spacing: 3;
+
+    Box {
+      orientation: vertical;
+
+      ListBox list_tasks {
+        selection-mode: none;
+
+        styles [
+          "content",
+        ]
+      }
+    }
+  }
+}
