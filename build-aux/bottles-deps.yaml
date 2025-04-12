@@ -1,0 +1,181 @@
+name: bottles-deps
+modules:
+  - name: vmtouch
+    buildsystem: simple
+    sources:
+    - type: git
+      url: https://github.com/hoytech/vmtouch
+      commit: af86e27675843b3c7e4ddfee66ddbaf44eff43c4
+      x-checker-data:
+        type: json
+        url: https://api.github.com/repos/hoytech/vmtouch/commits
+        commit-query: first( .[].sha )
+        timestamp-query: first( .[].commit.committer.date )
+    build-commands:
+    - make
+    - make install PREFIX=/app
+  - name: vulkan-tools
+    buildsystem: cmake-ninja
+    config-opts:
+    - -DGLSLANG_INSTALL_DIR=/app
+    - -DVULKAN_HEADERS_INSTALL_DIR=/app
+    - -DCMAKE_BUILD_TYPE=Release
+    sources:
+    - type: git
+      url: https://github.com/KhronosGroup/Vulkan-Tools.git
+      tag: vulkan-sdk-1.4.309.0
+      commit: bf9fcd2d62ea9eac52e5351c02e35cb61ec5e873
+      x-checker-data:
+        type: git
+        tag-pattern: ^vulkan-sdk-([\d.]+)$
+    modules:
+    - name: volk
+      buildsystem: cmake-ninja
+      config-opts:
+      - -DVOLK_INSTALL=ON
+      sources:
+      - type: archive
+        url: https://github.com/zeux/volk/archive/refs/tags/1.4.304.tar.gz
+        sha256: ab3d4a8ccaeb32652259cdd008399504a41792675b0421d90b67729ee274746f
+    - name: vulkan-headers
+      buildsystem: cmake-ninja
+      sources:
+      - type: git
+        url: https://github.com/KhronosGroup/Vulkan-Headers.git
+        tag: vulkan-sdk-1.4.309.0
+        commit: 952f776f6573aafbb62ea717d871cd1d6816c387
+        x-checker-data:
+          type: git
+          tag-pattern: ^vulkan-sdk-([\d.]+)$
+  - name: xdpyinfo
+    buildsystem: autotools
+    sources:
+    - type: git
+      url: https://gitlab.freedesktop.org/xorg/app/xdpyinfo.git
+      tag: xdpyinfo-1.3.4
+      commit: ea4083ccb2a5ce4252acabeb2eb7bf49f7be25e0
+      x-checker-data:
+        type: git
+        tag-pattern: ^xdpyinfo-([\d.]+)$
+  - name: ImageMagick
+    buildsystem: autotools
+    config-opts:
+    - --disable-static
+    - --disable-docs
+    - --with-hdri
+    - --with-pic
+    sources:
+    - type: git
+      url: https://github.com/ImageMagick/ImageMagick
+      tag: 7.1.1-46
+      commit: 8209e844cf02b5365918da83b2fc811442813080
+      x-checker-data:
+        type: git
+        tag-pattern: ^([\d.]+-[\d]+)$
+  - name: libportal
+    buildsystem: meson
+    config-opts:
+    - -Dbackend-gtk3=disabled
+    - -Dbackend-gtk4=enabled
+    - -Dportal-tests=false
+    - -Dvapi=false
+    - -Ddocs=false
+    sources:
+    - type: git
+      url: https://github.com/flatpak/libportal
+      tag: 0.9.1
+      commit: 8f5dc8d192f6e31dafe69e35219e3b707bde71ce
+      x-checker-data:
+        type: git
+        is-important: true
+        tag-pattern: ^([\d.]+)$
+  - name: blueprint-compiler
+    buildsystem: meson
+    sources:
+    - type: git
+      url: https://gitlab.gnome.org/jwestman/blueprint-compiler
+      tag: v0.16.0
+      commit: 04ef0944db56ab01307a29aaa7303df6067cb3c0
+      x-checker-data:
+        type: git
+        tag-pattern: ^v([\d.]+)$
+  - name: vkbasalt-cli
+    buildsystem: simple
+    build-commands:
+    - python3 setup.py install --prefix=/app --root=/
+    sources:
+    - type: git
+      url: https://gitlab.com/TheEvilSkeleton/vkbasalt-cli
+      tag: v3.1.1
+      commit: bba740f77357cfa3558f02f6b8decd8f5a8eaf4e
+      x-checker-data:
+        type: git
+        is-important: true
+        tag-pattern: ^v([\d.]+)$
+  - name: EasyTerm
+    buildsystem: simple
+    build-commands:
+    - python3 setup.py install --prefix=/app --root=/
+    sources:
+    - type: git
+      url: https://github.com/bottlesdevs/EasyTerm
+      tag: 0.2.0
+      commit: 6fbeab0470df55aeab141a45763147440b2f0290
+      x-checker-data:
+        type: git
+        is-important: true
+        tag-pattern: ^([\d.]+)$
+    modules:
+    - name: fast_float
+      buildsystem: cmake-ninja
+      sources:
+      - type: git
+        url: https://github.com/fastfloat/fast_float.git
+        tag: v8.0.2
+        commit: 50a80a73ab2ab256ba1c3bf86923ddd8b4202bc7
+    - name: vte
+      buildsystem: meson
+      config-opts:
+      - -Dvapi=false
+      sources:
+      - type: archive
+        url: https://download.gnome.org/sources/vte/0.80/vte-0.80.0.tar.xz
+        sha256: 267f63739765e568cf8113d0e2ee8f593028946187854bebe268c778e62647c8
+        x-checker-data:
+          type: gnome
+          name: vte
+          stable-only: true
+  - name: runtime
+    buildsystem: simple
+    build-commands:
+    - mkdir -p /app/etc/runtime
+    - cp -a * /app/etc/runtime/
+    sources:
+    - type: archive
+      url: https://github.com/bottlesdevs/runtime/releases/download/0.6.3/runtime-0.6.3.tar.gz
+      sha256: d7749b48927bd782e128e372a1d7085133fbe300eb9193134eb821f61bc5fad6
+      x-checker-data:
+        type: json
+        is-important: true
+        url: https://api.github.com/repos/bottlesdevs/runtime/releases/latest
+        version-query: .tag_name
+        url-query: '"https://github.com/bottlesdevs/runtime/releases/download/" + $version + "/runtime-" + $version + ".tar.gz"'
+  - name: fluidsynth
+    buildsystem: cmake-ninja
+    cleanup:
+    - /bin
+    - /include
+    - /lib/cmake
+    - /lib/pkgconfig
+    - /share/man
+    - '*.so'
+    sources:
+    - type: archive
+      url: https://github.com/FluidSynth/fluidsynth/archive/v2.4.4.tar.gz
+      sha256: fc492a255f453e65ac5b99a25e6ffbe0fbd64d6a4fe824bacd68de16fe8af7ba
+      x-checker-data:
+        type: json
+        is-important: true
+        url: https://api.github.com/repos/FluidSynth/fluidsynth/releases/latest
+        version-query: .tag_name
+        url-query: '"https://github.com/FluidSynth/fluidsynth/archive/" + $version + ".tar.gz"'
