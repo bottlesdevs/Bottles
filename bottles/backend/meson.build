@@ -16,14 +16,15 @@ subdir('managers')
 
 bottles_sources = [
   '__init__.py',
+  'bottle.py',
   'globals.py',
   'runner.py',
   'diff.py',
   'health.py',
   'downloader.py',
-  'logger.py',
   'cabextract.py',
   'state.py',
+  'typing.py',
   params_file
 ]
 

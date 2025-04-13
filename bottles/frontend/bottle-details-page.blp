@@ -24,20 +24,6 @@ Popover pop_context {
       text: _("Browse Files…");
     }
 
-    $GtkModelButton btn_duplicate {
-      text: _("Duplicate Bottle…");
-    }
-
-    $GtkModelButton btn_backup_full {
-      tooltip-text: _("This is the complete archive of your bottle, including personal files.");
-      text: _("Full Backup…");
-    }
-
-    $GtkModelButton btn_backup_config {
-      tooltip-text: _("This is just the bottle configuration, it\'s perfect if you want to create a new one but without personal files.");
-      text: _("Export Configuration…");
-    }
-
     Separator {}
 
     $GtkModelButton btn_toggle_removed {
@@ -367,16 +353,6 @@ template $BottleDetailsPage: Adw.PreferencesPage {
       activatable: true;
       title: _("Dependencies");
       subtitle: _("Install dependencies for programs.");
-
-      Image {
-        icon-name: "go-next-symbolic";
-      }
-    }
-
-    Adw.ActionRow row_snapshots {
-      activatable: true;
-      title: _("Snapshots");
-      subtitle: _("Create and manage bottle states.");
 
       Image {
         icon-name: "go-next-symbolic";

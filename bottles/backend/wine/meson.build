@@ -29,7 +29,6 @@ bottles_sources = [
   'drives.py',
   'eject.py',
   'expand.py',
-  'hh.py',
   'icinfo.py',
   'notepad.py',
   'oleview.py',

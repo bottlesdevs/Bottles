@@ -24,14 +24,12 @@ from glob import glob
 import icoextract  # type: ignore [import-untyped]
 
 from bottles.backend.globals import Paths
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.generic import get_mime
 from bottles.backend.utils.imagemagick import ImageMagickUtils
-
-logging = Logger()
 
 
 class ManagerUtils:

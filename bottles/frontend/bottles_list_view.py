@@ -25,6 +25,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.state import Signals, SignalManager
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
+from bottles.frontend.gtk import GtkUtils
 from bottles.frontend.filters import add_executable_filters, add_all_filters
 from bottles.frontend.params import APP_ID
 
@@ -41,12 +42,11 @@ class BottleRow(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config: BottleConfig, **kwargs):
+    def __init__(self, config: BottleConfig, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
+        self.window = GtkUtils.get_parent_window()
         self.config = config
 
         # Format update date
@@ -130,9 +130,7 @@ class BottlesListView(Adw.Bin):
 
     # region Widgets
     list_bottles = Gtk.Template.Child()
-    list_steam = Gtk.Template.Child()
     group_bottles = Gtk.Template.Child()
-    group_steam = Gtk.Template.Child()
     pref_page = Gtk.Template.Child()
     bottle_status = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
@@ -142,21 +140,15 @@ class BottlesListView(Adw.Bin):
 
     # endregion
 
-    def __init__(self, window, arg_bottle=None, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.arg_bottle = arg_bottle
+        self.window = GtkUtils.get_parent_window()
 
         # connect signals
         self.btn_create.connect("clicked", self.window.show_add_view)
         self.entry_search.connect("changed", self.__search_bottles)
-
-        # backend signals
-        SignalManager.connect(
-            Signals.ManagerLocalBottlesLoaded, self.update_bottles_list
-        )
 
         self.bottle_status.set_icon_name(APP_ID)
 
@@ -169,7 +161,6 @@ class BottlesListView(Adw.Bin):
         """
         terms = widget.get_text()
         self.list_bottles.set_filter_func(self.__filter_bottles, terms)
-        self.list_steam.set_filter_func(self.__filter_bottles, terms)
 
     @staticmethod
     def __filter_bottles(row, terms=None):
@@ -177,38 +168,21 @@ class BottlesListView(Adw.Bin):
         return terms.lower() in text
 
     def update_bottles_list(self, *args) -> None:
-        self.__bottles = {}
+        application = self.window.get_application()
         while self.list_bottles.get_first_child():
             self.list_bottles.remove(self.list_bottles.get_first_child())
 
-        while self.list_steam.get_first_child():
-            self.list_steam.remove(self.list_steam.get_first_child())
-
-        local_bottles = self.window.manager.local_bottles
-        is_empty_local_bottles = len(local_bottles) == 0
+        is_empty_local_bottles = len(application.local_bottles) == 0
 
         self.pref_page.set_visible(not is_empty_local_bottles)
         self.bottle_status.set_visible(is_empty_local_bottles)
 
-        for name, config in local_bottles.items():
-            _entry = BottleRow(self.window, config)
-            self.__bottles[config.Path] = _entry
+        for name, config in application.local_bottles.items():
+            _entry = BottleRow(config)
 
-            if config.Environment != "Steam":
-                self.list_bottles.append(_entry)
-            else:
-                self.list_steam.append(_entry)
-
-            if self.list_steam.get_first_child() is None:
-                self.group_steam.set_visible(False)
-                self.group_bottles.set_title("")
-            else:
-                self.group_steam.set_visible(True)
-                self.group_bottles.set_title(_("Your Bottles"))
+            self.list_bottles.append(_entry)
 
     def show_page(self, page: str) -> None:
-        if config := self.window.manager.local_bottles.get(page):
+        application = self.window.get_application()
+        if config := application.local_bottles.get(page):
             self.window.show_details_view(config=config)
-
-    def disable_bottle(self, config):
-        self.__bottles[config.Path].disable()

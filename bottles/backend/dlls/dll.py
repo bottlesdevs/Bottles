@@ -20,13 +20,11 @@ import shutil
 from abc import abstractmethod
 from copy import deepcopy
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.reg import Reg
-
-logging = Logger()
 
 
 class DLLComponent:
