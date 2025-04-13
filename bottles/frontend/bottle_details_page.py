@@ -212,7 +212,8 @@ class BottleDetailsPage(Adw.PreferencesPage):
         app = self.window.get_application()
 
         if (
-            config.Runner not in os.listdir(os.path.join(app.bottles_data_dir, "runners"))
+            config.Runner
+            not in os.listdir(os.path.join(app.bottles_data_dir, "runners"))
             and not self.config.Environment == "Steam"
         ):
             self.__alert_missing_runner()

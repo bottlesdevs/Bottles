@@ -346,7 +346,9 @@ class DetailsPreferencesPage(Adw.PreferencesPage):
         for index, nvapi in enumerate(os.path.join(app.bottles_data_dir, "nvapi")):
             self.str_list_nvapi.append(nvapi)
 
-        for index, latencyflex in enumerate(os.path.join(app.bottles_data_dir, "latencyflex")):
+        for index, latencyflex in enumerate(
+            os.path.join(app.bottles_data_dir, "latencyflex")
+        ):
             self.str_list_latencyflex.append(latencyflex)
 
         for lang in ManagerUtils.get_languages():
