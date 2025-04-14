@@ -30,7 +30,6 @@ from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals, Notification
-from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.operation import TaskSyncer
 from bottles.frontend.params import APP_ID, BASE_ID, PROFILE
@@ -39,7 +38,6 @@ from bottles.frontend.bottle_details_view import BottleDetailsView
 from bottles.frontend.importer_view import ImporterView
 from bottles.frontend.library_view import LibraryView
 from bottles.frontend.bottles_list_view import BottlesListView
-from bottles.frontend.loading_view import LoadingView
 from bottles.frontend.new_bottle_dialog import NewBottleDialog
 from bottles.frontend.preferences import PreferencesWindow
 from bottles.frontend.crash_report_dialog import CrashReportDialog
@@ -71,6 +69,7 @@ class BottlesWindow(Adw.ApplicationWindow):
     previous_page = ""
     settings = Gio.Settings.new(BASE_ID)
     argument_executed = False
+    manager = Manager(settings)
 
     def __init__(self, arg_bottle, **kwargs):
         width = self.settings.get_int("window-width")
@@ -78,10 +77,6 @@ class BottlesWindow(Adw.ApplicationWindow):
 
         super().__init__(**kwargs, default_width=width, default_height=height)
 
-        self.utils_conn = ConnectionUtils(
-            force_offline=self.settings.get_boolean("force-offline")
-        )
-        self.manager = None
         self.arg_bottle = arg_bottle
         self.app = kwargs.get("application")
         self.set_icon_name(APP_ID)
@@ -125,14 +120,65 @@ class BottlesWindow(Adw.ApplicationWindow):
             logging.error("https://usebottles.com/download/")
             return
 
-        # Loading view
-        self.page_loading = LoadingView()
+        tmp_runners = [
+            x for x in self.manager.runners_available if not x.startswith("sys-")
+        ]
+        if len(tmp_runners) == 0:
+            self.show_onboard_view()
 
-        # Populate stack
-        self.stack_main.add_named(
-            child=self.page_loading, name="page_loading"
-        ).set_visible(False)
-        self.headerbar.add_css_class("flat")
+        # Pages
+        self.page_details = BottleDetailsView(self)
+        self.page_list = BottlesListView(self)
+        self.page_importer = ImporterView(self)
+        self.page_library = LibraryView(self)
+
+        self.main_leaf.append(self.page_details)
+        self.main_leaf.append(self.page_importer)
+
+        self.main_leaf.get_page(self.page_details).set_navigatable(False)
+        self.main_leaf.get_page(self.page_importer).set_navigatable(False)
+
+        self.stack_main.add_titled(
+            child=self.page_list, name="page_list", title=_("Bottles")
+        ).set_icon_name(f"{APP_ID}-symbolic")
+        self.stack_main.add_titled(
+            child=self.page_library, name="page_library", title=_("Library")
+        ).set_icon_name("library-symbolic")
+
+        self.page_list.search_bar.set_key_capture_widget(self)
+        self.btn_search.bind_property(
+            "active",
+            self.page_list.search_bar,
+            "search-mode-enabled",
+            GObject.BindingFlags.BIDIRECTIONAL,
+        )
+
+        self.stack_main.set_visible_child_name("page_list")
+
+        self.settings.bind(
+            "startup-view",
+            self.stack_main,
+            "visible-child-name",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+
+        self.lock_ui(False)
+
+        user_defined_bottles_path = self.manager.data_mgr.get(
+            UserDataKeys.CustomBottlesPath
+        )
+        if user_defined_bottles_path and Paths.bottles != user_defined_bottles_path:
+            dialog = Adw.MessageDialog.new(
+                self,
+                _("Custom Bottles Path not Found"),
+                _(
+                    "Falling back to default path. No bottles from the given path will be listed."
+                ),
+            )
+            dialog.add_response("cancel", _("_Dismiss"))
+            dialog.present()
+
+        self.check_crash_log()
 
         # Signal connections
         self.btn_donate.connect(
@@ -141,7 +187,6 @@ class BottlesWindow(Adw.ApplicationWindow):
             "https://usebottles.com/funding/",
         )
         self.btn_add.connect("clicked", self.show_add_view)
-        self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
 
         # backend signal handlers
@@ -159,7 +204,6 @@ class BottlesWindow(Adw.ApplicationWindow):
         SignalManager.connect(Signals.GNotification, self.g_notification_handler)
         SignalManager.connect(Signals.GShowUri, self.g_show_uri_handler)
 
-        self.__on_start()
         logging.info(
             "Bottles Started!",
         )
@@ -192,109 +236,6 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.view_switcher_title.set_title(title)
         self.view_switcher_title.set_subtitle(subtitle)
 
-    def check_for_connection(self, status):
-        """
-        This method checks if the client has an internet connection.
-        If true, the manager checks will be performed, unlocking all the
-        features locked for no internet connection.
-        """
-        if self.utils_conn.check_connection():
-            self.manager.checks(install_latest=False, first_run=True)
-
-    def __on_start(self):
-        """
-        This method is called before the window is shown. This check if there
-        is at least one local runner installed. If not, the user will be
-        prompted with the onboard dialog.
-        """
-
-        @GtkUtils.run_in_main_loop
-        def set_manager(result: Manager, error=None):
-            self.manager = result
-
-            tmp_runners = [
-                x for x in self.manager.runners_available if not x.startswith("sys-")
-            ]
-            if len(tmp_runners) == 0:
-                self.show_onboard_view()
-
-            # Pages
-            self.page_details = BottleDetailsView(self)
-            self.page_list = BottlesListView(self, arg_bottle=self.arg_bottle)
-            self.page_importer = ImporterView(self)
-            self.page_library = LibraryView(self)
-
-            self.main_leaf.append(self.page_details)
-            self.main_leaf.append(self.page_importer)
-
-            self.main_leaf.get_page(self.page_details).set_navigatable(False)
-            self.main_leaf.get_page(self.page_importer).set_navigatable(False)
-
-            self.stack_main.add_titled(
-                child=self.page_list, name="page_list", title=_("Bottles")
-            ).set_icon_name(f"{APP_ID}-symbolic")
-            self.stack_main.add_titled(
-                child=self.page_library, name="page_library", title=_("Library")
-            ).set_icon_name("library-symbolic")
-
-            self.page_list.search_bar.set_key_capture_widget(self)
-            self.btn_search.bind_property(
-                "active",
-                self.page_list.search_bar,
-                "search-mode-enabled",
-                GObject.BindingFlags.BIDIRECTIONAL,
-            )
-
-            if (
-                self.stack_main.get_child_by_name(
-                    self.settings.get_string("startup-view")
-                )
-                is None
-            ):
-                self.stack_main.set_visible_child_name("page_list")
-
-            self.settings.bind(
-                "startup-view",
-                self.stack_main,
-                "visible-child-name",
-                Gio.SettingsBindFlags.DEFAULT,
-            )
-
-            self.lock_ui(False)
-            self.headerbar.get_style_context().remove_class("flat")
-
-            user_defined_bottles_path = self.manager.data_mgr.get(
-                UserDataKeys.CustomBottlesPath
-            )
-            if user_defined_bottles_path and Paths.bottles != user_defined_bottles_path:
-                dialog = Adw.MessageDialog.new(
-                    self,
-                    _("Custom Bottles Path not Found"),
-                    _(
-                        "Falling back to default path. No bottles from the given path will be listed."
-                    ),
-                )
-                dialog.add_response("cancel", _("_Dismiss"))
-                dialog.present()
-
-        def get_manager():
-            if self.utils_conn.check_connection():
-                SignalManager.connect(
-                    Signals.RepositoryFetched, self.page_loading.add_fetched
-                )
-
-            # do not redo connection if aborted connection
-            mng = Manager(
-                g_settings=self.settings,
-                check_connection=self.utils_conn.aborted_connections == 0,
-            )
-            return mng
-
-        self.show_loading_view()
-        RunAsync(get_manager, callback=set_manager)
-
-        self.check_crash_log()
-
     def send_notification(self, title, text, image="", ignore_user=False):
         """
         This method is used to send a notification to the user using
@@ -317,10 +258,6 @@ class BottlesWindow(Adw.ApplicationWindow):
     def show_details_view(self, widget=False, config: BottleConfig | None = None):
         self.main_leaf.set_visible_child(self.page_details)
         self.page_details.set_config(config or BottleConfig())
-
-    def show_loading_view(self, widget=False):
-        self.lock_ui()
-        self.stack_main.set_visible_child_name("page_loading")
 
     def show_onboard_view(self, widget=False):
         onboard_window = OnboardDialog(self)
