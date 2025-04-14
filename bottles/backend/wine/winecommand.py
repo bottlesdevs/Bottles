@@ -223,37 +223,6 @@ class WineCommand:
         if not return_steam_env:
             dll_overrides.append("winemenubuilder=''")
 
-        # Get Runtime libraries
-        if (
-            (params.use_runtime or params.use_eac_runtime or params.use_be_runtime)
-            and not self.terminal
-            and not return_steam_env
-        ):
-            _rb = RuntimeManager.get_runtime_env("bottles")
-            if _rb:
-                _eac = RuntimeManager.get_eac()
-                _be = RuntimeManager.get_be()
-
-                if params.use_runtime:
-                    logging.info("Using Bottles runtime")
-                    ld += _rb
-
-                if (
-                    _eac and not self.minimal
-                ):  # NOTE: should check for runner compatibility with "eac" (?)
-                    logging.info("Using EasyAntiCheat runtime")
-                    env.add("PROTON_EAC_RUNTIME", _eac)
-                    dll_overrides.append("easyanticheat_x86,easyanticheat_x64=b,n")
-
-                if (
-                    _be and not self.minimal
-                ):  # NOTE: should check for runner compatibility with "be" (?)
-                    logging.info("Using BattlEye runtime")
-                    env.add("PROTON_BATTLEYE_RUNTIME", _be)
-                    dll_overrides.append("beclient,beclient_x64=b,n")
-            else:
-                logging.warning("Bottles runtime was requested but not found")
-
         # Get Runner libraries
         if arch == "win64":
             runner_libs = [
