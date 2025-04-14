@@ -59,11 +59,13 @@ class TaskSyncer:
     def _new_widget(self, title, cancellable=True) -> TaskRow:
         """create TaskRow widget & add to task list"""
         task_entry = TaskRow(self.window, title, cancellable)
-        self.window.page_details.list_tasks.append(task_entry)
+        self.window.page_details.details_view_subpage.list_tasks.append(task_entry)
         return task_entry
 
     def _set_task_btn_visible(self, visible: bool):
-        self.window.page_details.btn_operations.set_visible(visible)
+        self.window.page_details.details_view_subpage.btn_operations.set_visible(
+            visible
+        )
 
     def task_added_handler(self, res: Result):
         """handler for Signals.TaskAdded"""
@@ -86,7 +88,9 @@ class TaskSyncer:
         if task_id not in self._TASK_WIDGETS:
             return
 
-        self.window.page_details.list_tasks.remove(self._TASK_WIDGETS[task_id])
+        self.window.page_details.details_view_subpage.list_tasks.remove(
+            self._TASK_WIDGETS[task_id]
+        )
         del self._TASK_WIDGETS[task_id]
 
         if len(self._TASK_WIDGETS) == 0:
