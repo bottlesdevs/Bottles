@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-07-18 19:28+0000\n"
-"Last-Translator: OliverTzeng <olivertzengolivertzeng@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
-"bottles/bottles/zh_Hant/>\n"
+"PO-Revision-Date: 2025-01-27 01:01+0000\n"
+"Last-Translator: reimu105 <peter112548@gmail.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
+"projects/bottles/bottles/zh_Hant/>\n"
 "Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -139,7 +139,7 @@ msgstr "沒有東西可以提交"
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "成功建立新狀態版本「{0}」！"
+msgstr "成功建立了新狀態「{0}」！"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
@@ -243,8 +243,7 @@ msgstr "瀏覽檔案"
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
-msgstr ""
-"安裝失敗。這可能是因為存儲庫錯誤、下載不完全或是校驗碼不合。點擊來再試一次。"
+msgstr "安裝失敗。這可能是因為存儲庫錯誤、下載不完全或是校驗碼不合。點擊來再試一次。"
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -291,9 +290,8 @@ msgstr "下載與安裝相依套件"
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
-msgstr ""
-"發生了一個安裝錯誤。重啟 Bottles 以閱讀崩潰回報，或者透過終端機執行以閱讀輸"
-"出。"
+msgstr "發生了一個安裝錯誤。重啟 Bottles "
+"以閱讀崩潰回報，或者透過終端機執行以閱讀輸出。"
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -429,8 +427,7 @@ msgid ""
 "Click \"Run Executable…\" to run an executable, \"Add Shortcuts…\" to add an "
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
-msgstr ""
-"按「啟動執行檔...」執行程式。按「新增捷徑...」將執行檔新增至程式列表，或是按"
+msgstr "按「啟動執行檔...」執行程式。按「新增捷徑...」將執行檔新增至程式列表，或是按"
 "「安裝程式...」安裝社群維護的程式。"
 
 #: bottles/frontend/ui/details-bottle.blp:298
@@ -1011,8 +1008,7 @@ msgstr "送出報告"
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
-msgstr ""
-"前次開啟時酒瓶崩潰。請填寫以下表單，附上問題發生時的回溯報告，協助我們偵測問"
+msgstr "前次開啟時酒瓶崩潰。請填寫以下表單，附上問題發生時的回溯報告，協助我們偵測問"
 "題並防止日後再度發生。"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
@@ -1023,8 +1019,8 @@ msgid ""
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
 "我們找到了一或多個類似(或相同)的報告。請在提交前仔細確認該問題是否已經有人回"
-"報。每份報告皆需要開發者仔細診斷，請尊重他們的工作並確認您沒有提交重複的報"
-"告。"
+"報。每份報告皆需要開發者仔細診斷，請尊重他們的工作並確認您沒有提交重複的報告"
+"。"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:89
 msgid "I still want to report."
@@ -1043,8 +1039,7 @@ msgid ""
 "This version of Bottles does not seem to provide all the necessary core "
 "dependencies, please contact the package maintainer or use an official "
 "version."
-msgstr ""
-"這個版本的Bottles似乎沒有提供所有必要的核心相依套件，請與您的套件維護者聯繫或"
+msgstr "這個版本的Bottles似乎沒有提供所有必要的核心相依套件，請與您的套件維護者聯繫或"
 "是使用來自Bottles的官方版本。"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
@@ -1055,9 +1050,8 @@ msgstr "結束"
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
-msgstr ""
-"動態連結函式庫 (DLL) 可以選擇使用內建的（由 Wine 提供）或原生的（由程式提"
-"供）。"
+msgstr "動態連結函式庫 (DLL) 可以選擇使用內建的（由 Wine "
+"提供）或原生的（由程式提供）。"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
@@ -1319,7 +1313,7 @@ msgstr "選取指令稿"
 #: bottles/frontend/ui/dialog-launch-options.blp:84
 #: bottles/frontend/windows/launchoptions.py:55
 msgid "Choose from where start the program."
-msgstr "選擇從哪裡啟動程式。"
+msgstr "選擇從何處啟動程式。"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:101
 #: bottles/frontend/ui/drive-entry.blp:22
@@ -1364,15 +1358,15 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
-"請注意，在非 Steam 的酒瓶裡使用基於 Proton 的執行器可能會造成問題，使其無法正"
-"常運作。\n"
+"請注意，在非 Steam 的酒瓶裡使用基於 Proton "
+"的執行器可能會造成問題，使其無法正常運作。\n"
 "\n"
 "我們建議改用 Wine-GE，一個為在 Steam 環境外執行而修改過的 Proton 版本。\n"
 "\n"
-"如果繼續，Bottles 將會自動啟用 Steam 執行環境（除非 Bottles 偵測不到或是它沒"
-"有安裝），來確保 Proton 能使用它需要的函式庫並降低相容性問題發生的機率。也請"
-"注意提供這個執行器的人，GloriousEggroll，不負任何問題的責任，並請不要將問題回"
-"報給他。"
+"如果繼續，Bottles 將會自動啟用 Steam 執行環境（除非 Bottles "
+"偵測不到或是它沒有安裝），來確保 Proton "
+"能使用它需要的函式庫並降低相容性問題發生的機率。也請注意提供這個執行器的人，G"
+"loriousEggroll，不負任何問題的責任，並請不要將問題回報給他。"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1460,8 +1454,8 @@ msgstr ""
 "欲使用新版本控制系統，我們需要重新初始化酒瓶的儲存庫。此操作不會刪除酒瓶的資"
 "料，但是將刪除所有快照，並建立新的快照。\n"
 "\n"
-"如果你需要使用之前的快照，請關閉此視窗並回復快照，再重新開啟酒瓶開啟此視"
-"窗。\n"
+"如果你需要使用之前的快照，請關閉此視窗並回復快照，再重新開啟酒瓶開啟此視窗。"
+"\n"
 "\n"
 "下一版本將會放棄使用舊版的版本控制系統。"
 
@@ -1578,8 +1572,7 @@ msgstr "最大圓角湊整"
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
-msgstr ""
-"CAS銳化用於增加影格的銳利度。數值越高影格越銳利，而數值低於0會讓影格低於原本"
+msgstr "CAS銳化用於增加影格的銳利度。數值越高影格越銳利，而數值低於0會讓影格低於原本"
 "的銳利度。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:428
@@ -1604,17 +1597,15 @@ msgstr "FXAA子畫素渲染品質用於降低子畫素渲染的疊影。數值�
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
-msgstr ""
-"FXAA邊緣閾值為套用FXAA演算法所需的最低對比度。數值越高影格的對比度越高。"
+msgstr "FXAA邊緣閾值為套用FXAA演算法所需的最低對比度。數值越高影格的對比度越高。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:496
 msgid ""
 "FXAA quality edge threshold minimum is the minimum value of dark pixels that "
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
-msgstr ""
-"最低的FXAA品質邊緣閾值是FXAA演算法忽略的最低黑暗像素的最小數值。數值越高，"
-"FXAA會忽略該數值以下的像素，並提昇性能。"
+msgstr "最低的FXAA品質邊緣閾值是FXAA演算法忽略的最低黑暗像素的最小數值。數值越高，FXA"
+"A會忽略該數值以下的像素，並提昇性能。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
 msgid ""
@@ -1846,9 +1837,8 @@ msgid "C_reate"
 msgstr "創建"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
-msgstr "酒瓶名稱"
+msgstr "Bottle 名稱"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
@@ -1928,8 +1918,7 @@ msgstr "Bottles 中的 Windows"
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
-msgstr ""
-"Bottles會在程式執行時使用相容執行器，提供隔離的、沙盒式的Windows類似環境。"
+msgstr "Bottles會在程式執行時使用相容執行器，提供隔離的、沙盒式的Windows類似環境。"
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
@@ -2187,8 +2176,7 @@ msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
 "the connection."
-msgstr ""
-"您似乎並未連上網路。沒了它，便不能下載必要組件。請在重建連結之後按此圖示。"
+msgstr "您似乎並未連上網路。沒了它，便不能下載必要組件。請在重建連結之後按此圖示。"
 
 #: bottles/frontend/ui/window.blp:79
 msgid "Import…"
@@ -2539,9 +2527,8 @@ msgid ""
 "This application may work poorly. The installer was configured to provide "
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
-msgstr ""
-"此應用程式或許會運作不良。安裝程式已經最佳化，但程式執行仍會碰到錯誤且不穩"
-"定，並有功能無法運作。"
+msgstr "此應用程式或許會運作不良。安裝程式已經最佳化，但程式執行仍會碰到錯誤且不穩定"
+"，並有功能無法運作。"
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
@@ -2761,11 +2748,11 @@ msgstr "切換 Steam 應用程式列表。"
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr "Epic Games 應用程式列表"
+msgstr "Epic Games 遊戲清單"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr "切換 Epic Games 應用程式列表。"
+msgstr "切換 Epic Games 遊戲清單。"
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
@@ -2870,14 +2857,13 @@ msgid ""
 "Our built-in dependency installation system grants automatic software "
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
-msgstr ""
-"內建的相依項目安裝系統會授予自動軟件兼容性權限。使用下載管理員以取得官方組"
-"件：執行器（Wine, Proton）、DXVK、相依項目等。"
+msgstr "內建的相依項目安裝系統會授予自動軟件兼容性權限。使用下載管理員以取得官方組件"
+"：執行器（Wine, Proton）、DXVK、相依項目等。"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:16
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
-msgstr "Bottle 的版本控制功能使您得以安全作業，並在稍後將其恢復"
+msgstr "Bottle 的版本控制功能使您得以安全作業，並在稍後將其恢復！"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:17
 msgid "Features:"
@@ -2988,18 +2974,16 @@ msgid "Major change: Redesign New Bottle interface"
 msgstr "重大改動：重新設計新 Bottle 介面"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
-#, fuzzy
 msgid "Quality of life improvements:"
-msgstr "重大的改良："
+msgstr "品質改進："
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "在庫頁面中用 emoti-love 圖示取代了庫"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
-#, fuzzy
 msgid "Add toast for \"Run Executable\""
-msgstr "新增自定義執行檔路徑"
+msgstr "新增“運行可執行檔”提示"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
@@ -3007,7 +2991,7 @@ msgstr "錯誤修正:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "添加快捷方式到 Steam 導致了一個錯誤"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
@@ -3021,7 +3005,7 @@ msgstr "當使用wine-ge-custom時, Steam執行時間將會自動啟用"
 msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
-msgstr ""
+msgstr "各種庫相關的修復，例如空白封面，以及和缺失項相關的崩潰"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
@@ -3029,79 +3013,79 @@ msgstr "修正文字編碼問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
-msgstr ""
+msgstr "修正了不是從終端機執行 Bottles 時，下載出錯的問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
 msgid "Correct version date"
-msgstr ""
+msgstr "正確的版本日期"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
+msgstr "在非 NVIDIA 系統上隱藏與 NVIDIA 相關的嚴重錯誤"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "Gamescope 改進和修復"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "依賴安裝更快、更穩定"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
-msgstr ""
+msgstr "健康檢查包含更多信息，以便更快地進行調試"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
-msgstr ""
+msgstr "修復許多 NVAPI 問題使其更加穩定，現在應該能正常工作"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "修復了下載元件時的崩潰"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "透過避免 spin-lock 來改進後端程式碼"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "安裝包腳本編寫有了更多變量"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
-msgstr ""
+msgstr "修正了首次執行本程式時對話方塊顯示」全部就緒「但實際上尚未就緒的問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "改進建置系統"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "創建玩遊戲的 bottles 時預設啟用 VKD3D"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
-msgstr ""
+msgstr "修復了讀取壞編碼的 Steam 檔案時的崩潰"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
-msgstr ""
+msgstr "修正了安裝/卸載後使用者介面中零件未正確更新的問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "更多的 FSR 修復"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
-msgstr ""
+msgstr "修復從“運行可執行檔”啟動程式後關閉的問題"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "不再贅述其他！"
 
 #~ msgid "Calculating…"
 #~ msgstr "計算中…"
