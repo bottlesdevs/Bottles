@@ -112,6 +112,81 @@ modules:
         type: git
         is-important: true
         tag-pattern: ^v([\d.]+)$
+  # NTLM components
+  - name: samba
+    buildsystem: autotools
+    config-opts:
+      - --prefix=/app
+      - --sbindir=/app/bin
+      - --libdir=/app/lib
+
+      - --enable-fhs
+      - --disable-python
+
+      - --without-acl-support
+      - --without-ad-dc
+      - --without-ads
+      - --without-json
+      - --without-ldap
+      - --without-pam
+      - --without-systemd
+    build-options:
+      env:
+        PERL5LIB: "/app/lib/perl5/"
+        PERL_MM_OPT: INSTALL_BASE=/app
+    sources:
+      - type: archive
+        url: https://samba.org/samba/ftp/stable/samba-4.22.1.tar.gz
+        sha256: 6a1f89f1ab25916e255f1c2c3a4a88235a854af2eca40bb9d9bba7545b684a0a
+        x-checker-data:
+          type: anitya
+          project-id: 4758
+          stable-only: true
+          url-template: https://samba.org/samba/ftp/stable/samba-$version.tar.gz
+    modules:
+      - name: lmdb
+        sources:
+          - type: git
+            url: https://git.openldap.org/openldap/openldap.git
+            tag: LMDB_0.9.33
+            x-checker-data:
+              type: git
+              tag-pattern: ^LMDB_([\d.]+)$
+        no-autogen: true
+        make-install-args:
+          - prefix=/app
+        subdir: libraries/liblmdb
+      - name: parse-yapp
+        buildsystem: simple
+        build-commands:
+          - perl Makefile.PL
+          - make
+          - make install
+        build-options:
+          env:
+            PERL5LIB: "/app/lib/perl5/"
+            PERL_MM_OPT: INSTALL_BASE=/app
+        cleanup:
+          - "*"
+        sources:
+          - type: archive
+            url: https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-1.21.tar.gz
+            sha256: 3810e998308fba2e0f4f26043035032b027ce51ce5c8a52a8b8e340ca65f13e5
+            x-checker-data:
+              type: anitya
+              project-id: 3197
+              stable-only: true
+              url-template: https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-$version.tar.gz
+
+      - name: rpcsvc-proto
+        buildsystem: autotools
+        sources:
+          - type: git
+            url: https://github.com/thkukuk/rpcsvc-proto.git
+            tag: v1.4.4
+            x-checker-data:
+              type: git
+              tag-pattern: ^v([\d.]+)$
   - name: EasyTerm
     buildsystem: simple
     build-commands:
