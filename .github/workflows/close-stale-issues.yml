@@ -1,0 +1,82 @@
+name: Close stale issues
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  close_stale_issues:
+    runs-on: ubuntu-latest
+    env:
+      DEBUG_MODE: 'false'
+
+    steps:
+      - name: Generate list of stale issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const issues = await github.paginate(
+              github.rest.issues.listForRepo,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: "open",
+                per_page: 100,
+              }
+            );
+            const now = new Date();
+            const threshold = process.env.DEBUG_MODE === 'true'
+              ? new Date(now.getTime() - 60 * 1000)
+              : new Date(new Date(now).setMonth(now.getMonth() - 1));
+            const staleIssues = issues.filter(issue =>
+              !issue.pull_request && new Date(issue.updated_at) < threshold
+            );
+            const list = staleIssues.map(i => `#${i.number} - ${i.title}`).join('\n') || 'No stale issues found.';
+            fs.writeFileSync('stale_issues.txt', list);
+            core.info(list);
+
+      - name: Upload stale issue list
+        uses: actions/upload-artifact@v4
+        with:
+          name: stale-issues
+          path: stale_issues.txt
+
+      - name: Close stale issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issues = await github.paginate(
+              github.rest.issues.listForRepo,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: "open",
+                per_page: 100,
+              }
+            );
+            const now = new Date();
+            const threshold = process.env.DEBUG_MODE === 'true'
+              ? new Date(now.getTime() - 60 * 1000)
+              : new Date(new Date(now).setMonth(now.getMonth() - 1));
+            const closed = [];
+            for (const issue of issues) {
+              if (!issue.pull_request && new Date(issue.updated_at) < threshold) {
+                core.info(`Closing issue #${issue.number} - ${issue.title}`);
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `This issue has been automatically closed as part of a cleanup process to help the team manage issues more effectively.\n\nIf the problem still persists, feel free to comment and we will gladly reopen it.`
+                });
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  state: "closed",
+                });
+                closed.push(`#${issue.number} - ${issue.title}`);
+              }
+            }
+            core.info(closed.length ? `Closed ${closed.length} issue(s):\n${closed.join('\n')}` : 'No issues were closed.');
