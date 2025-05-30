@@ -1,10 +1,8 @@
 import os
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
-
-logging = Logger()
 
 
 class Drives:

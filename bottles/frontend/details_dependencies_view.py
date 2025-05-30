@@ -52,7 +52,6 @@ class DetailsDependenciesView(Adw.Bin):
         self.window = details.window
         self.manager = details.window.manager
         self.config = config
-        self.queue = details.queue
 
         self.ev_controller.connect("key-released", self.__search_dependencies)
 
@@ -63,9 +62,6 @@ class DetailsDependenciesView(Adw.Bin):
             "clicked", open_doc_url, "contribute/missing-dependencies"
         )
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
-
-        if not self.manager.utils_conn.status:
-            self.stack.set_visible_child_name("page_offline")
 
         self.spinner_loading.start()
 
@@ -100,9 +96,6 @@ class DetailsDependenciesView(Adw.Bin):
         self.config = config
 
         # Not sure if it's the best place to make this check
-        if not self.manager.utils_conn.status:
-            return
-
         self.stack.set_visible_child_name("page_loading")
 
         def new_dependency(dependency, plain=False):
