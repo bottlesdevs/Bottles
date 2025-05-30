@@ -163,10 +163,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.dlls_stack.set_visible_child_name("dlls_loading")
         self.dlls_spinner.start()
 
-        if not self.manager.utils_conn.status:
-            self.installers_stack.set_visible_child_name("installers_offline")
-            self.dlls_stack.set_visible_child_name("dlls_offline")
-
         RunAsync(self.ui_update)
 
         # connect signals
@@ -195,16 +191,15 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.__registry = []
 
     def ui_update(self):
-        if self.manager.utils_conn.status:
-            EventManager.wait(Events.ComponentsOrganizing)
-            GLib.idle_add(self.empty_list)
-            GLib.idle_add(self.populate_runners_list)
-            GLib.idle_add(self.populate_dxvk_list)
-            GLib.idle_add(self.populate_vkd3d_list)
-            GLib.idle_add(self.populate_nvapi_list)
-            GLib.idle_add(self.populate_latencyflex_list)
+        EventManager.wait(Events.ComponentsOrganizing)
+        GLib.idle_add(self.empty_list)
+        GLib.idle_add(self.populate_runners_list)
+        GLib.idle_add(self.populate_dxvk_list)
+        GLib.idle_add(self.populate_vkd3d_list)
+        GLib.idle_add(self.populate_nvapi_list)
+        GLib.idle_add(self.populate_latencyflex_list)
 
-            GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
+        GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
 
     def __toggle_night(self, widget, state):
         if self.settings.get_boolean("dark-theme"):
