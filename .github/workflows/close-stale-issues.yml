@@ -12,7 +12,7 @@ jobs:
       DEBUG_MODE: 'false'
 
     steps:
-      - name: Generate list of stale issues
+      - name: Fetch and list stale issues
         uses: actions/github-script@v7
         with:
           script: |
@@ -30,10 +30,21 @@ jobs:
             const threshold = process.env.DEBUG_MODE === 'true'
               ? new Date(now.getTime() - 60 * 1000)
               : new Date(new Date(now).setMonth(now.getMonth() - 1));
-            const staleIssues = issues.filter(issue =>
-              !issue.pull_request && new Date(issue.updated_at) < threshold
-            );
-            const list = staleIssues.map(i => `#${i.number} - ${i.title}`).join('\n') || 'No stale issues found.';
+            const stale = [];
+            for (const issue of issues) {
+              if (issue.pull_request) continue;
+              const comments = await github.paginate(
+                github.rest.issues.listComments,
+                { owner: context.repo.owner, repo: context.repo.repo, issue_number: issue.number, per_page: 100 }
+              );
+              const lastDate = comments.length
+                ? new Date(comments[comments.length - 1].created_at)
+                : new Date(issue.updated_at);
+              if (lastDate < threshold) {
+                stale.push(`#${issue.number} - ${issue.title}`);
+              }
+            }
+            const list = stale.join('\n') || 'No stale issues found.';
             fs.writeFileSync('stale_issues.txt', list);
             core.info(list);
 
@@ -62,7 +73,15 @@ jobs:
               : new Date(new Date(now).setMonth(now.getMonth() - 1));
             const closed = [];
             for (const issue of issues) {
-              if (!issue.pull_request && new Date(issue.updated_at) < threshold) {
+              if (issue.pull_request) continue;
+              const comments = await github.paginate(
+                github.rest.issues.listComments,
+                { owner: context.repo.owner, repo: context.repo.repo, issue_number: issue.number, per_page: 100 }
+              );
+              const lastDate = comments.length
+                ? new Date(comments[comments.length - 1].created_at)
+                : new Date(issue.updated_at);
+              if (lastDate < threshold) {
                 core.info(`Closing issue #${issue.number} - ${issue.title}`);
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
