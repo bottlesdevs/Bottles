@@ -327,7 +327,20 @@ class SteamManager:
                 )
                 continue
 
-            _conf = BottleConfig()
+            _bottle_yml = os.path.join(Paths.steam, _dir_name, "bottle.yml")
+
+            if os.path.isfile(_bottle_yml):
+                _bottle_load = BottleConfig.load(_bottle_yml)
+                if _bottle_load.status and _bottle_load.data:
+                    _conf = _bottle_load.data
+                else:
+                    logging.warning(
+                        f"Failed to load BottleConfig from {_bottle_yml}, creating a new one"
+                    )
+                    _conf = BottleConfig()
+            else:
+                _conf = BottleConfig()
+
             _conf.Name = _acf["AppState"].get("name", "Unknown")
             _conf.Environment = "Steam"
             _conf.CompatData = _dir_name
