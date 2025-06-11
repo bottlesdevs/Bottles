@@ -23,6 +23,8 @@ from glob import glob
 
 import icoextract  # type: ignore [import-untyped]
 
+from bottles.backend.params import APP_ID
+
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -30,6 +32,11 @@ from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.generic import get_mime
 from bottles.backend.utils.imagemagick import ImageMagickUtils
+
+import uuid
+from gi.repository import GLib, Gio, Gtk, Xdp, XdpGtk4
+
+portal = Xdp.Portal()
 
 logging = Logger()
 
@@ -210,6 +217,7 @@ class ManagerUtils:
         skip_icon: bool = False,
         custom_icon: str = "",
         use_xdp: bool = False,
+        window: Gtk.Window = None,
     ) -> bool:
         if not os.path.exists(Paths.applications) and not use_xdp:
             return False
@@ -265,41 +273,49 @@ class ManagerUtils:
                 f.write(f"Exec={cmd_legacy} -b '{config.get('Name')}'\n")
 
             return True
-        '''
-        WIP: the following code is not working yet, it raises an error:
-             GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod
-        import uuid
-        from gi.repository import Gio, Xdp
 
-        portal = Xdp.Portal()
+        def prepare_install_cb (self, result):
+            ret = portal.dynamic_launcher_prepare_install_finish(result)
+            id = f"{config.get('Name')}.{program.get('name')}"
+            sum_type = GLib.ChecksumType.SHA1
+            exec = "bottles-cli run -p {} -b '{}' -- %u".format(
+                shlex.quote(program.get('name')), config.get('Name')
+            )
+            portal.dynamic_launcher_install(
+                ret["token"],
+                "{}.App_{}.desktop".format(
+                    APP_ID, GLib.compute_checksum_for_string(sum_type, id, -1)
+                ),
+                """[Desktop Entry]
+                Exec={}
+                Type=Application
+                Terminal=false
+                Categories=Application;
+                Comment=Launch {} using Bottles.
+                StartupWMClass={}""".format(
+                    exec, program.get("name"), program.get("name")
+                )
+                #TODO: Desktop Actions Configure missing
+                #[Desktop Action Configure]
+                #Name=Configure in Bottles
+                #Exec={}
+            )
+        #TODO: Require xdp>=1.20.1
         if icon == "com.usebottles.bottles-program":
-            _icon = Gio.BytesIcon.new(icon.encode("utf-8"))
+            icon += ".svg"
+            _icon = Gio.File.new_for_uri(
+                f"resource:/com/usebottles/bottles/icons/scalable/apps/{icon}"
+            )
         else:
-            _icon = Gio.FileIcon.new(Gio.File.new_for_path(icon))
-        icon_v = _icon.serialize()
-        token = portal.dynamic_launcher_request_install_token(program.get("name"), icon_v)
-        portal.dynamic_launcher_install(
-            token,
-            f"com.usebottles.bottles.{config.get('Name')}.{program.get('name')}.{str(uuid.uuid4())}.desktop",
-            """
-            [Desktop Entry]
-            Exec={}
-            Type=Application
-            Terminal=false
-            Categories=Application;
-            Comment=Launch {} using Bottles.
-            Actions=Configure;
-            [Desktop Action Configure]
-            Name=Configure in Bottles
-            Exec={}
-            """.format(
-                f"{cmd_cli} run -p {shlex.quote(program.get('name'))} -b '{config.get('Path')}'",
-                program.get("name"),
-                f"{cmd_legacy} -b '{config.get('Name')}'"
-            ).encode("utf-8")
-        )
-        '''
-        return False
+            _icon = Gio.File.new_for_path(icon)
+        icon_v = Gio.BytesIcon.new(_icon.load_bytes()[0]).serialize()
+        portal.dynamic_launcher_prepare_install(XdpGtk4.parent_new_gtk(window),
+                                                program.get("name"), icon_v,
+                                                Xdp.LauncherType.APPLICATION,
+                                                None, True, False, None,
+                                                prepare_install_cb)
+        #TODO: Rework to delay showing the toast
+        return True
 
     @staticmethod
     def browse_wineprefix(wineprefix: dict):
