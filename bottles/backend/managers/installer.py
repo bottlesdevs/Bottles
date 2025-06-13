@@ -478,7 +478,7 @@ class InstallerManager:
         # create Desktop entry
         bottles_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
         icon_path = os.path.join(bottles_icons_path, executable.get("icon"))
-        ManagerUtils.create_desktop_entry(_config, _program, False, icon_path)
+        ManagerUtils.create_desktop_entry(_config, _program, False, icon_path, True)
 
         if is_final:
             step_fn()
