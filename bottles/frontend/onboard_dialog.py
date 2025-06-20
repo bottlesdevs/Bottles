@@ -25,7 +25,7 @@ from bottles.frontend.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/onboard-dialog.ui")
-class OnboardDialog(Adw.Window):
+class OnboardDialog(Adw.Dialog):
     __gtype_name__ = "OnboardDialog"
     __installing = False
     __settings = Gtk.Settings.get_default()
@@ -53,16 +53,14 @@ class OnboardDialog(Adw.Window):
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(window)
 
         # common variables and references
         self.window = window
         self.manager = window.manager
 
         # connect signals
-        self.connect("close-request", self.__quit)
         self.carousel.connect("page-changed", self.__page_changed)
-        self.btn_close.connect("clicked", self.__close_window)
+        self.btn_close.connect("clicked", self.__close_dialog)
         self.btn_back.connect("clicked", self.__previous_page)
         self.btn_next.connect("clicked", self.__next_page)
         self.btn_install.connect("clicked", self.__install_runner)
@@ -131,7 +129,6 @@ class OnboardDialog(Adw.Window):
         self.carousel.set_allow_long_swipes(False)
         self.carousel.set_allow_mouse_drag(False)
         self.carousel.set_allow_scroll_wheel(False)
-        self.set_deletable(False)
 
         RunAsync(self.pulse)
         RunAsync(
@@ -157,5 +154,5 @@ class OnboardDialog(Adw.Window):
             time.sleep(0.5)
             self.progressbar.pulse()
 
-    def __close_window(self, widget):
-        self.destroy()
+    def __close_dialog(self, widget):
+        self.force_close()

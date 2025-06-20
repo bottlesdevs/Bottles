@@ -324,7 +324,7 @@ class BottlesWindow(Adw.ApplicationWindow):
 
     def show_onboard_view(self, widget=False):
         onboard_window = OnboardDialog(self)
-        onboard_window.present()
+        onboard_window.present(self)
 
     def show_add_view(self, widget=False):
         new_bottle_dialog = NewBottleDialog()
