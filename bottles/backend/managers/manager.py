@@ -359,12 +359,26 @@ class Manager(metaclass=Singleton):
         
         if os.path.isdir(Paths.steam_runners):
             steam_runners = glob(f"{Paths.steam_runners}/*/")
+            for runner in steam_runners.copy():
+                if not SteamUtils.is_proton(runner):
+                    logging.warning(
+                        f"Found non-Proton runner in Steam Runners: {runner}. "
+                        "This is not supported and will be ignored."
+                    )
+                    steam_runners.remove(runner)
         else:
             logging.info("Steam Runners path doesn't exist, skipping.")
             steam_runners = []
 
         if os.path.isdir(Paths.usr_steam_runners):
             usr_steam_runners = glob(f"{Paths.usr_steam_runners}/*/")
+            for runner in usr_steam_runners.copy():
+                if not SteamUtils.is_proton(runner):
+                    logging.warning(
+                        f"Found non-Proton runner in usr Steam Runners: {runner}. "
+                        "This is not supported and will be ignored."
+                    )
+                    usr_steam_runners.remove(runner)
         else:
             logging.info("System Steam Runners path doesn't exist, skipping.")
             usr_steam_runners = []
