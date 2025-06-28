@@ -356,6 +356,17 @@ class Manager(metaclass=Singleton):
         winemenubuilder tool.
         """
         runners = glob(f"{Paths.runners}/*/")
+        
+        if os.path.isdir(Paths.steam_runners):
+            steam_runners = glob(f"{Paths.steam_runners}/*/")
+        else:
+            logging.info("Steam Runners path doesn't exist, skipping.")
+
+        if os.path.isdir(Paths.usr_steam_runners):
+            usr_steam_runners = glob(f"{Paths.usr_steam_runners}/*/")
+        else:
+            logging.info("System Steam Runners path doesn't exist, skipping.")
+        
         self.runners_available, runners_available = [], []
 
         # lock winemenubuilder.exe
@@ -390,6 +401,16 @@ class Manager(metaclass=Singleton):
             _runner = os.path.basename(os.path.normpath(runner))
             runners_available.append(_runner)
 
+        # check steam runners
+        for runner in steam_runners:
+            _runner = f"steam-{os.path.basename(os.path.normpath(runner)}"
+            runners_available.append(_runner)
+
+        # check steam runners
+        for runner in usr_steam_runners:
+            _runner = f"usr-steam-{os.path.basename(os.path.normpath(runner)}"
+            runners_available.append(_runner)
+
         runners_available = self.__sort_runners(runners_available, "")
 
         runners_order = {
@@ -397,6 +418,8 @@ class Manager(metaclass=Singleton):
             "caffe": [],
             "vaniglia": [],
             "lutris": [],
+            "steam": [],
+            "usr-steam": [],
             "others": [],
             "sys-": [],
         }
