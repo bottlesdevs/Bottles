@@ -39,6 +39,8 @@ class Paths:
     runtimes = f"{base}/runtimes"
     winebridge = f"{base}/winebridge"
     runners = f"{base}/runners"
+    sys_steam_proton_runners = "/usr/share/steam/compatibilitytools.d/"
+    user_steam_proton_runners = f"{xdg_data_home}/Steam/compatibilitytools.d/"
     bottles = f"{base}/bottles"
     steam = f"{base}/steam"
     dxvk = f"{base}/dxvk"
