@@ -361,11 +361,13 @@ class Manager(metaclass=Singleton):
             steam_runners = glob(f"{Paths.steam_runners}/*/")
         else:
             logging.info("Steam Runners path doesn't exist, skipping.")
+            steam_runners = []
 
         if os.path.isdir(Paths.usr_steam_runners):
             usr_steam_runners = glob(f"{Paths.usr_steam_runners}/*/")
         else:
             logging.info("System Steam Runners path doesn't exist, skipping.")
+            usr_steam_runners = []
         
         self.runners_available, runners_available = [], []
 
