@@ -403,12 +403,12 @@ class Manager(metaclass=Singleton):
 
         # check steam runners
         for runner in steam_runners:
-            _runner = f"steam-{os.path.basename(os.path.normpath(runner)}"
+            _runner = f"steam-{os.path.basename(os.path.normpath(runner))}"
             runners_available.append(_runner)
 
         # check steam runners
         for runner in usr_steam_runners:
-            _runner = f"usr-steam-{os.path.basename(os.path.normpath(runner)}"
+            _runner = f"usr-steam-{os.path.basename(os.path.normpath(runner))}"
             runners_available.append(_runner)
 
         runners_available = self.__sort_runners(runners_available, "")
