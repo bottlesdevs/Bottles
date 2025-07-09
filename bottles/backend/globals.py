@@ -26,6 +26,11 @@ class Paths:
         "XDG_DATA_HOME", os.path.join(Path.home(), ".local/share")
     )
 
+    if os.path.isdir("/run/host"):
+        host = "/run/host"
+    else:
+        host = "/"
+
     # Icon paths
     icons_user = f"{xdg_data_home}/icons"
 
@@ -39,6 +44,8 @@ class Paths:
     runtimes = f"{base}/runtimes"
     winebridge = f"{base}/winebridge"
     runners = f"{base}/runners"
+    steam_runners = f"{xdg_data_home}/Steam/compatibilitytools.d/"
+    usr_steam_runners = f"{host}/usr/share/steam/compatibilitytools.d/"
     bottles = f"{base}/bottles"
     steam = f"{base}/steam"
     dxvk = f"{base}/dxvk"
