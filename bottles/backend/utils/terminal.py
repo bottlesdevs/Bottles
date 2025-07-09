@@ -19,9 +19,7 @@ import os
 import subprocess
 import shlex
 
-from bottles.backend.logger import Logger
-
-logging = Logger()
+import logging
 
 
 class TerminalUtils:

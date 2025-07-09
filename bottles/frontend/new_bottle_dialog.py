@@ -15,6 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
+import subprocess
+
 from gettext import gettext as _
 from typing import Any
 from gi.repository import Gtk, Adw, Pango, Gio, Xdp, GObject, GLib
@@ -84,12 +87,33 @@ class NewBottleDialog(Adw.Dialog):
             return
 
         self.app = self.window.get_application()
-        self.manager = self.window.manager
         self.new_bottle_config = BottleConfig()
+        self.available_runners = []
+        self.available_dxvk_versions = []
         self.env_recipe_path = None
         self.custom_path = ""
-        self.runner = None
         self.default_string = _("(Default)")
+
+        try:
+            wine_version = subprocess.check_output(["wine", "--version"], text=True)
+            wine_version = "sys-" + wine_version.split("\n")[0].split(" ")[0]
+            self.available_runners.append(wine_version)
+        except FileNotFoundError:
+            pass
+
+        self.available_dxvk_versions = self.__get_available_versions_from_component(
+            "dxvk"
+        )
+        self.available_nvapi_versions = self.__get_available_versions_from_component(
+            "nvapi"
+        )
+        self.available_vkd3d_versions = self.__get_available_versions_from_component(
+            "vkd3d"
+        )
+        self.available_runners = (
+            self.available_runners
+            + self.__get_available_versions_from_component("runners")
+        )
 
         self.arch = {"win64": "64-bit", "win32": "32-bit"}
 
@@ -112,16 +136,28 @@ class NewBottleDialog(Adw.Dialog):
         # Populate widgets
         self.label_choose_env.set_label(self.default_string)
         self.label_choose_path.set_label(self.default_string)
-        self.str_list_runner.splice(0, 0, self.manager.runners_available)
+        self.str_list_runner.splice(0, 0, self.available_runners)
         self.str_list_arch.splice(0, 0, list(self.arch.values()))
 
         self.selected_environment = (
             self.environment_list_box.get_first_child().environment
         )
 
+    def __get_available_versions_from_component(self, component: str) -> list[str]:
+        component_dir = os.path.join(GLib.get_user_data_dir(), "bottles", component)
+        return os.listdir(component_dir)
+
+    def __get_path(self) -> str:
+        if self.custom_path:
+            return self.custom_path
+        else:
+            return os.path.join(
+                GLib.get_user_data_dir(), "bottles", self.entry_name.get_text()
+            )
+
     def __check_validity(self, *_args: Any) -> tuple[bool, bool]:
         is_empty = self.entry_name.get_text() == ""
-        is_duplicate = self.entry_name.get_text() in self.manager.local_bottles
+        is_duplicate = self.entry_name.get_text() in self.app.local_bottles
         return (is_empty, is_duplicate)
 
     def __check_entry_name(self, *_args: Any) -> None:
@@ -202,23 +238,32 @@ class NewBottleDialog(Adw.Dialog):
     def create_bottle(self, *_args: Any) -> None:
         """Starts creating the bottle."""
         # set widgets states
-        self.set_can_close(False)
+        # self.set_can_close(False) TODO: UNCOMMENT
         self.stack_create.set_visible_child_name("page_creating")
 
-        self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
-
-        RunAsync(
-            task_func=self.manager.create_bottle,
-            callback=self.finish,
-            name=self.entry_name.get_text(),
-            path=self.custom_path,
-            environment=self.selected_environment,
-            runner=self.runner,
-            arch=list(self.arch)[self.combo_arch.get_selected()],
-            dxvk=self.manager.dxvk_available[0],
-            fn_logger=self.update_output,
-            custom_environment=self.env_recipe_path,
+        config = BottleConfig(
+            Name=self.entry_name.get_text(),
+            Arch=list(self.arch)[self.combo_arch.get_selected()],
+            Runner=self.available_runners[self.combo_runner.get_selected()],
+            Custom_Path=bool(self.custom_path),
+            Path=os.path.join(self.custom_path, self.entry_name.get_text()),
+            Environment=self.selected_environment,
         )
+
+        print(config)
+
+        # RunAsync(
+        #     task_func=self.manager.create_bottle,
+        #     callback=self.finish,
+        #     name=self.entry_name.get_text(),
+        #     path=self.custom_path,
+        #     environment=self.selected_environment,
+        #     runner=runner,
+        #     arch=list(self.arch)[self.combo_arch.get_selected()],
+        #     dxvk=self.available_dxvk_versions[0],
+        #     fn_logger=self.update_output,
+        #     custom_environment=self.env_recipe_path,
+        # )
 
     @GtkUtils.run_in_main_loop
     def update_output(self, text: str) -> None:

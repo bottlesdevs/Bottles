@@ -1,10 +1,8 @@
 import os
 
-from bottles.backend.logger import Logger
+import logging
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.wineserver import WineServer
-
-logging = Logger()
 
 
 class WineBridge(WineProgram):

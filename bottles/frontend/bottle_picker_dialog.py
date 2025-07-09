@@ -50,7 +50,7 @@ class BottlePickerDialog(Adw.ApplicationWindow):
     def __init__(self, arg_exe, **kwargs):
         super().__init__(**kwargs)
         self.arg_exe = arg_exe
-        mng = Manager(g_settings=self.settings, is_cli=True)
+        mng = Manager(g_settings=self.settings)
         mng.check_bottles()
         bottles = mng.local_bottles
 
