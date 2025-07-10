@@ -1544,11 +1544,11 @@ class Manager(metaclass=Singleton):
                 library_manager.remove_from_library(_uuid)
 
         if config.Custom_Path:
-            logging.info("Removing placeholder…")
+            logging.info("Removing placeholder folder…")
             with contextlib.suppress(FileNotFoundError):
-                os.remove(
+                shutil.rmtree(
                     os.path.join(
-                        Paths.bottles, os.path.basename(config.Path), "placeholder.yml"
+                        Paths.bottles, os.path.basename(config.Path)
                     )
                 )
 
