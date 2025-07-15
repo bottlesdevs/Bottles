@@ -92,8 +92,15 @@ class ManagerUtils:
 
     @staticmethod
     def get_runner_path(runner: str) -> str:
+        if runner.startswith("steam-"):
+            return f"{Paths.steam_runners}/{runner.removeprefix("steam-")}"
+
+        if runner.startswith("usr-steam"):
+            return f"{Paths.usr_steam_runners}/{runner.removeprefix("usr-steam-")}"
+
         if runner.startswith("sys-"):
             return runner
+
         return f"{Paths.runners}/{runner}"
 
     @staticmethod
