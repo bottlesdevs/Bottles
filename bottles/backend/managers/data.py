@@ -28,6 +28,8 @@ logging = Logger()
 
 class UserDataKeys:
     CustomBottlesPath = "custom_bottles_path"
+    RunCounter = "run_counter"
+    FundingDismissed = "funding_dialog_dismissed"
 
 
 class DataManager:
