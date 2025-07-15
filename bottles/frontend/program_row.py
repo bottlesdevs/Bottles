@@ -306,6 +306,8 @@ class ProgramRow(Adw.ActionRow):
                 "executable": self.program["executable"],
                 "path": self.program["path"],
             },
+            use_xdp=True,
+            window=self.window,
         )
 
     def add_to_library(self, _widget):
