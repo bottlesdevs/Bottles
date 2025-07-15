@@ -640,6 +640,8 @@ class WineCommand:
                 gamescope_cmd.append(f"-W {params.gamescope_window_width}")
             if params.gamescope_window_height > 0:
                 gamescope_cmd.append(f"-H {params.gamescope_window_height}")
+            if params.gamescope_advanced:
+                gamescope_cmd.append(params.gamescope_advanced)
 
         return " ".join(gamescope_cmd)
 
