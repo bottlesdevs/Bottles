@@ -172,6 +172,23 @@ class JournalManager:
         return journal.get(event_id, None)
 
     @staticmethod
+    def first_event_date():
+        """Return the timestamp of the oldest event as datetime."""
+        journal = JournalManager.__get_journal()
+        first = None
+        for event in journal.values():
+            timestamp = event.get("timestamp")
+            if not timestamp:
+                continue
+            try:
+                ts = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+            except (ValueError, TypeError):
+                continue
+            if first is None or ts < first:
+                first = ts
+        return first
+
+    @staticmethod
     def write(severity: JournalSeverity, message: str):
         """Write an event to the journal."""
         journal = JournalManager.__get_journal()
