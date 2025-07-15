@@ -1,6 +1,5 @@
 class Samples:
     data = {
-        "run_counter": 0,
         "funding_dialog_dismissed": False,
     }
     environments = {

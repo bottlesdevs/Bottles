@@ -17,7 +17,7 @@
 
 import contextlib
 import os
-from datetime import datetime, timedelta
+
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
@@ -29,7 +29,6 @@ logging = Logger()
 
 class UserDataKeys:
     CustomBottlesPath = "custom_bottles_path"
-    RunCounter = "run_counter"
     FundingDismissed = "funding_dialog_dismissed"
 
 
@@ -45,7 +44,6 @@ class DataManager:
 
     def __init__(self):
         self.__get_data()
-        self.__maybe_set_run_counter()
 
     def __get_data(self):
         try:
@@ -71,19 +69,6 @@ class DataManager:
             yaml.dump(Samples.data, s)
         self.__get_data()
 
-    def __maybe_set_run_counter(self):
-        """Initialize run counter for old installations."""
-        try:
-            mtime = os.path.getmtime(self.__p_data)
-        except FileNotFoundError:
-            return
-
-        if datetime.now() - datetime.fromtimestamp(mtime) > timedelta(days=7):
-            runs = self.__data.get(UserDataKeys.RunCounter)
-            if not runs:
-                self.__data[UserDataKeys.RunCounter] = 7
-                with open(self.__p_data, "w") as s:
-                    yaml.dump(self.__data, s)
 
     def list(self):
         """Returns the whole data dictionary."""

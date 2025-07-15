@@ -25,7 +25,10 @@ from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk, Xdp
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.logger import Logger
+from datetime import datetime, timedelta
+
 from bottles.backend.managers.data import DataManager, UserDataKeys
+from bottles.backend.managers.journal import JournalManager
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
@@ -79,11 +82,13 @@ class BottlesWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs, default_width=width, default_height=height)
 
         self.data_mgr = DataManager()
-        runs = self.data_mgr.get(UserDataKeys.RunCounter) or 0
-        runs += 1
-        self.data_mgr.set(UserDataKeys.RunCounter, runs)
-        self._show_funding = runs == 2 and not self.data_mgr.get(
-            UserDataKeys.FundingDismissed
+        first_event = JournalManager.first_event_date()
+        days_old = 0
+        if first_event:
+            days_old = (datetime.now() - first_event).days
+
+        self._show_funding = (
+            days_old >= 7 and not self.data_mgr.get(UserDataKeys.FundingDismissed)
         )
 
         self.utils_conn = ConnectionUtils(
