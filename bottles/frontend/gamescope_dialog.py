@@ -32,6 +32,7 @@ class GamescopeDialog(Adw.Window):
     switch_scaling = Gtk.Template.Child()
     toggle_borderless = Gtk.Template.Child()
     toggle_fullscreen = Gtk.Template.Child()
+    advanced_options = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
 
@@ -83,6 +84,8 @@ class GamescopeDialog(Adw.Window):
 
         self.toggle_borderless.handler_unblock_by_func(self.__change_wtype)
         self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)
+        
+        self.advanced_options.set_text(parameters.gamescope_advanced)
 
     def __idle_save(self, *_args):
         settings = {
@@ -95,6 +98,7 @@ class GamescopeDialog(Adw.Window):
             "gamescope_scaling": self.switch_scaling.get_active(),
             "gamescope_borderless": self.toggle_borderless.get_active(),
             "gamescope_fullscreen": self.toggle_fullscreen.get_active(),
+            "gamescope_advanced": self.advanced_options.get_text(),
         }
 
         for setting in settings.keys():
