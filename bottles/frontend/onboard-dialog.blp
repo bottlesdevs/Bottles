@@ -1,17 +1,18 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $OnboardDialog: Adw.Window {
-  resizable: false;
-  deletable: true;
-  modal: true;
-  default-width: 550;
-  default-height: 550;
+template $OnboardDialog: Adw.Dialog {
+  content-width: 550;
+  content-height: 550;
+  can-close: false;
 
   Box {
     orientation: vertical;
 
     Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
       title-widget: Adw.CarouselIndicatorDots {
         carousel: carousel;
         orientation: horizontal;
