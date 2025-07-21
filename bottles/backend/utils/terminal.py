@@ -103,7 +103,7 @@ class TerminalUtils:
             if "ENABLE_BASH" in os.environ:
                 command = " ".join(self.terminal) % (colors, "bash")
         elif self.terminal[0] in ["xfce4-terminal"]:
-            command = " ".join(self.terminal) % "'sh -c %s'" % f"{command}"
+            command = " ".join(self.terminal) % "\"sh -c %s\"" % f"{command}"
         elif self.terminal[0] in ["kitty", "foot", "konsole", "gnome-terminal"]:
             command = " ".join(self.terminal) % "sh -c %s" % f"{command}"
         else:
