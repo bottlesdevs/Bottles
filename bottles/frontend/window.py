@@ -25,7 +25,10 @@ from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk, Xdp
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.logger import Logger
-from bottles.backend.managers.data import UserDataKeys
+from datetime import datetime
+
+from bottles.backend.managers.data import DataManager, UserDataKeys
+from bottles.backend.managers.journal import JournalManager
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
@@ -77,6 +80,16 @@ class BottlesWindow(Adw.ApplicationWindow):
         height = self.settings.get_int("window-height")
 
         super().__init__(**kwargs, default_width=width, default_height=height)
+
+        self.data_mgr = DataManager()
+        first_event = JournalManager.first_event_date()
+        days_old = 0
+        if first_event:
+            days_old = (datetime.now() - first_event).days
+
+        self._show_funding = days_old >= 7 and not self.data_mgr.get(
+            UserDataKeys.FundingDismissed
+        )
 
         self.utils_conn = ConnectionUtils(
             force_offline=self.settings.get_boolean("force-offline")
@@ -163,6 +176,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         logging.info(
             "Bottles Started!",
         )
+        GLib.idle_add(self.__maybe_show_funding_dialog)
 
     @Gtk.Template.Callback()
     def on_close_request(self, *args):
@@ -357,6 +371,30 @@ class BottlesWindow(Adw.ApplicationWindow):
 
             if crash_log:
                 CrashReportDialog(self, crash_log).present()
+
+    def __maybe_show_funding_dialog(self):
+        if not self._show_funding:
+            return
+
+        dialog = Adw.MessageDialog.new(
+            self,
+            _("Support Bottles"),
+            _(
+                "With over 3 million installations, Bottles is built by and for its community."
+                "\nA donation today helps secure its future and keep it truly independent."
+            ),
+        )
+        dialog.add_response("donate", _("Donate"))
+        dialog.add_response("dismiss", _("Don't Show Again"))
+        dialog.set_response_appearance("donate", Adw.ResponseAppearance.SUGGESTED)
+        dialog.connect("response", self.__funding_response)
+        dialog.present()
+
+    def __funding_response(self, dialog, response):
+        if response == "donate":
+            self.open_url(None, "https://usebottles.com/funding/")
+        self.data_mgr.set(UserDataKeys.FundingDismissed, True)
+        dialog.destroy()
 
     def toggle_selection_mode(self, status: bool = True):
         context = self.headerbar.get_style_context()

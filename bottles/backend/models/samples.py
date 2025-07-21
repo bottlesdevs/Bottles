@@ -1,5 +1,7 @@
 class Samples:
-    data = {}
+    data = {
+        "funding_dialog_dismissed": False,
+    }
     environments = {
         "gaming": {
             "Runner": "wine",
