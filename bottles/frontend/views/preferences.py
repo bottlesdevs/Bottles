@@ -210,7 +210,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
 
     def __toggle_update_date(self, widget, state):
-        self.window.page_list.update_bottles()
+        self.window.page_list.update_bottles_list()
 
     def __toggle_rc(self, widget, state):
         self.ui_update()
