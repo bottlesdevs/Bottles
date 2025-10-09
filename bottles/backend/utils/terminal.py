@@ -44,6 +44,7 @@ class TerminalUtils:
         ["foot", "%s"],
         ["kitty", "%s"],
         ["tilix", "-- %s"],
+        ["st", "-e %s"],
         # Desktop environments
         ["xfce4-terminal", "-e %s"],
         ["konsole", "--noclose -e %s"],
