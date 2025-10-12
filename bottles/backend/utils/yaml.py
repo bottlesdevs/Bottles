@@ -1,6 +1,6 @@
 import yaml as _yaml
 
-from bottles.backend.models.config import BottleConfig
+from typing import Type
 
 try:
     from yaml import CSafeLoader as SafeLoader, CSafeDumper as SafeDumper
@@ -8,8 +8,9 @@ except ImportError:
     from yaml import SafeLoader, SafeDumper
 
 YAMLError = _yaml.YAMLError
-SafeDumper.add_representer(BottleConfig, BottleConfig.yaml_serialize_handler)
 
+def register_dataclass(dataclass_type: Type) -> None:
+    SafeDumper.add_representer(dataclass_type, dataclass_type.yaml_serialize_handler)
 
 def dump(data, stream=None, **kwargs):
     """

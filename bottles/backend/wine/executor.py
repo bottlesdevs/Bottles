@@ -2,7 +2,7 @@ import os
 import re
 import shlex
 import uuid
-from typing import Optional
+from typing import Optional, Pattern
 
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
@@ -23,7 +23,15 @@ logging = Logger()
 
 
 class WineExecutor:
-    _PLACEHOLDER_PATTERN = re.compile(r"%([A-Z_]+)%")
+    _PLACEHOLDER_PATTERN: Pattern[str] = re.compile(r"%([A-Z_]+)%")
+    _KNOWN_PLACEHOLDERS: set[str] = {
+        "PROGRAM_NAME",
+        "PROGRAM_PATH",
+        "PROGRAM_DIR",
+        "BOTTLE_NAME",
+        "BOTTLE_PATH",
+    }
+    
     def __init__(
         self,
         config: BottleConfig,
@@ -148,7 +156,13 @@ class WineExecutor:
     @staticmethod
     def _build_placeholder_map(config: BottleConfig, program: dict) -> dict[str, str]:
         program_path = program.get("path", "") or ""
-        program_dir = program.get("folder") or ""
+        program_dir_raw = program.get("folder")
+        program_dir = program_dir_raw or ""
+        if isinstance(program_dir_raw, str):
+            matches = WineExecutor._PLACEHOLDER_PATTERN.findall(program_dir_raw)
+            if any(match in WineExecutor._KNOWN_PLACEHOLDERS for match in matches):
+                # ignore unresolved placeholders that reference known tokens
+                program_dir = ""
         if not program_dir and isinstance(program_path, str) and program_path:
             program_dir = os.path.dirname(program_path)
 

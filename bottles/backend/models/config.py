@@ -111,10 +111,10 @@ class BottleParams(DictCompatMixIn):
     versioning_exclusion_patterns: bool = False
     vmtouch: bool = False
     vmtouch_cache_cwd: bool = False
-
-
+    
 @dataclass
 class BottleConfig(DictCompatMixIn):
+    _yaml_registered = False
     Name: str = ""
     Arch: str = "win64"  # Enum, Use bottles.backend.models.enum.Arch
     Windows: str = "win10"
@@ -158,6 +158,7 @@ class BottleConfig(DictCompatMixIn):
         :param encoding: file content encoding, default is None(Decide by Python IO)
         :param indent: file indent width, default is 4
         """
+        self._ensure_yaml_registration()
         f = file if isinstance(file, IOBase) else open(file, mode=mode)
         try:
             yaml.dump(self.to_dict(), f, indent=indent, encoding=encoding)
@@ -277,3 +278,12 @@ class BottleConfig(DictCompatMixIn):
                 )
 
         return new_data
+
+    def __post_init__(self) -> None:
+        self._ensure_yaml_registration()
+
+    @classmethod
+    def _ensure_yaml_registration(cls) -> None:
+        if not cls._yaml_registered:
+            yaml.register_dataclass(cls)
+            cls._yaml_registered = True
