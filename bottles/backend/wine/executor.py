@@ -33,6 +33,8 @@ class WineExecutor:
         move_upd_fn: callable = None,
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
+        pre_script_args: Optional[str] = None,
+        post_script_args: Optional[str] = None,
         cwd: Optional[str] = None,
         monitoring: Optional[list] = None,
         program_dxvk: Optional[bool] = None,
@@ -62,6 +64,8 @@ class WineExecutor:
         self.environment = environment
         self.pre_script = pre_script
         self.post_script = post_script
+        self.pre_script_args = pre_script_args
+        self.post_script_args = post_script_args
         self.cwd = self.__get_cwd(cwd)
         self.monitoring = monitoring
         self.use_gamescope = program_gamescope
@@ -122,6 +126,8 @@ class WineExecutor:
             args=program.get("arguments"),
             pre_script=program.get("pre_script"),
             post_script=program.get("post_script"),
+            pre_script_args=program.get("pre_script_args"),
+            post_script_args=program.get("post_script_args"),
             cwd=program.get("folder"),
             terminal=terminal,
             program_dxvk=program.get("dxvk"),
@@ -212,6 +218,8 @@ class WineExecutor:
             environment=self.environment,
             pre_script=self.pre_script,
             post_script=self.post_script,
+            pre_script_args=self.pre_script_args,
+            post_script_args=self.post_script_args,
             cwd=self.cwd,
         )
         return Result(status=True, data={"output": res})
@@ -278,6 +286,8 @@ class WineExecutor:
             communicate=True,
             pre_script=self.pre_script,
             post_script=self.post_script,
+            pre_script_args=self.pre_script_args,
+            post_script_args=self.post_script_args,
             cwd=self.cwd,
         )
         res = winecmd.run()
@@ -316,6 +326,8 @@ class WineExecutor:
             environment=self.environment,
             pre_script=self.pre_script,
             post_script=self.post_script,
+            pre_script_args=self.pre_script_args,
+            post_script_args=self.post_script_args,
             cwd=self.cwd,
         )
         self.__set_monitors()
