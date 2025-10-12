@@ -1,4 +1,5 @@
 import os
+import re
 import shlex
 import uuid
 from typing import Optional
@@ -22,6 +23,7 @@ logging = Logger()
 
 
 class WineExecutor:
+    _PLACEHOLDER_PATTERN = re.compile(r"%([A-Z_]+)%")
     def __init__(
         self,
         config: BottleConfig,
@@ -120,15 +122,20 @@ class WineExecutor:
         if program is None:
             logging.warning("The program entry is not well formatted.")
 
+        placeholders = cls._build_placeholder_map(config, program or {})
+
+        def _resolve(field: str):
+            return cls._replace_placeholders((program or {}).get(field), placeholders)
+
         return cls(
             config=config,
             exec_path=program.get("path"),
-            args=program.get("arguments"),
-            pre_script=program.get("pre_script"),
-            post_script=program.get("post_script"),
-            pre_script_args=program.get("pre_script_args"),
-            post_script_args=program.get("post_script_args"),
-            cwd=program.get("folder"),
+            args=_resolve("arguments"),
+            pre_script=cls._replace_placeholders(program.get("pre_script"), placeholders),
+            post_script=cls._replace_placeholders(program.get("post_script"), placeholders),
+            pre_script_args=_resolve("pre_script_args"),
+            post_script_args=_resolve("post_script_args"),
+            cwd=_resolve("folder"),
             terminal=terminal,
             program_dxvk=program.get("dxvk"),
             program_vkd3d=program.get("vkd3d"),
@@ -137,6 +144,40 @@ class WineExecutor:
             program_gamescope=program.get("gamescope"),
             program_virt_desktop=program.get("virtual_desktop"),
         ).run()
+
+    @staticmethod
+    def _build_placeholder_map(config: BottleConfig, program: dict) -> dict[str, str]:
+        program_path = program.get("path", "") or ""
+        program_dir = program.get("folder") or ""
+        if not program_dir and isinstance(program_path, str) and program_path:
+            program_dir = os.path.dirname(program_path)
+
+        bottle_path = ""
+        if config:
+            try:
+                bottle_path = ManagerUtils.get_bottle_path(config)
+            except Exception:
+                bottle_path = ""
+
+        placeholders = {
+            "PROGRAM_NAME": program.get("name", ""),
+            "PROGRAM_PATH": program_path,
+            "PROGRAM_DIR": program_dir,
+            "BOTTLE_NAME": getattr(config, "Name", "") or "",
+            "BOTTLE_PATH": bottle_path,
+        }
+        return {key: value for key, value in placeholders.items() if isinstance(value, str)}
+
+    @classmethod
+    def _replace_placeholders(cls, value: Optional[str], placeholders: dict[str, str]) -> Optional[str]:
+        if not isinstance(value, str) or not value:
+            return value
+
+        def _sub(match: re.Match[str]) -> str:
+            key = match.group(1)
+            return placeholders.get(key, match.group(0))
+
+        return cls._PLACEHOLDER_PATTERN.sub(_sub, value)
 
     def __get_cwd(self, cwd: str) -> str | None:
         winepath = WinePath(self.config)
