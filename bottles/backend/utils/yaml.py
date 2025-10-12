@@ -9,8 +9,14 @@ except ImportError:
 
 YAMLError = _yaml.YAMLError
 
+_REGISTERED_DATACLASSES: set[Type] = set()
+
 def register_dataclass(dataclass_type: Type) -> None:
+    """Register a custom representer for dumping dataclasses."""
+    if dataclass_type in _REGISTERED_DATACLASSES:
+        return
     SafeDumper.add_representer(dataclass_type, dataclass_type.yaml_serialize_handler)
+    _REGISTERED_DATACLASSES.add(dataclass_type)
 
 def dump(data, stream=None, **kwargs):
     """
