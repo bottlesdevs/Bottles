@@ -6,6 +6,10 @@ from bottles.backend.managers.manager import Manager
 from bottles.backend.managers.playtime import ProcessSessionTracker
 from bottles.backend.state import SignalManager, Signals
 from bottles.backend.models.result import Result
+from bottles.backend.models.process import (
+    ProcessStartedPayload,
+    ProcessFinishedPayload,
+)
 
 
 class _Settings:
@@ -36,19 +40,21 @@ def test_signals_flow_success():
     with tempfile.TemporaryDirectory() as tmp:
         m = _new_manager(tmp)
 
-        payload = {
-            "launch_id": "test-launch-1",
-            "bottle_id": "b1",
-            "bottle_name": "Bottle",
-            "bottle_path": "/bottle",
-            "program_name": "Game",
-            "program_path": "C:/Game/game.exe",
-        }
-        SignalManager.send(Signals.ProgramStarted, Result(True, payload))
-        SignalManager.send(
-            Signals.ProgramFinished,
-            Result(True, {"launch_id": payload["launch_id"], "status": "success"}),
+        started = ProcessStartedPayload(
+            launch_id="test-launch-1",
+            bottle_id="b1",
+            bottle_name="Bottle",
+            bottle_path="/bottle",
+            program_name="Game",
+            program_path="C:/Game/game.exe",
         )
+        SignalManager.send(Signals.ProgramStarted, Result(True, started))
+        finished = ProcessFinishedPayload(
+            launch_id=started.launch_id,
+            status="success",
+            ended_at=0,
+        )
+        SignalManager.send(Signals.ProgramFinished, Result(True, finished))
 
         con = sqlite3.connect(m.playtime_tracker.db_path)
         cur = con.cursor()
@@ -66,19 +72,21 @@ def test_signals_flow_unknown_failure():
     with tempfile.TemporaryDirectory() as tmp:
         m = _new_manager(tmp)
 
-        payload = {
-            "launch_id": "test-launch-2",
-            "bottle_id": "b1",
-            "bottle_name": "Bottle",
-            "bottle_path": "/bottle",
-            "program_name": "Game",
-            "program_path": "C:/Game/game.exe",
-        }
-        SignalManager.send(Signals.ProgramStarted, Result(True, payload))
-        SignalManager.send(
-            Signals.ProgramFinished,
-            Result(True, {"launch_id": payload["launch_id"], "status": "unknown"}),
+        started = ProcessStartedPayload(
+            launch_id="test-launch-2",
+            bottle_id="b1",
+            bottle_name="Bottle",
+            bottle_path="/bottle",
+            program_name="Game",
+            program_path="C:/Game/game.exe",
         )
+        SignalManager.send(Signals.ProgramStarted, Result(True, started))
+        finished = ProcessFinishedPayload(
+            launch_id=started.launch_id,
+            status="unknown",
+            ended_at=0,
+        )
+        SignalManager.send(Signals.ProgramFinished, Result(True, finished))
 
         con = sqlite3.connect(m.playtime_tracker.db_path)
         cur = con.cursor()
