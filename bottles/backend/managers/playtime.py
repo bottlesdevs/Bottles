@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import atexit
 import hashlib
 import os
 import sqlite3
@@ -60,6 +61,7 @@ class ProcessSessionTracker:
         self.db_path = db_path or Paths.process_metrics
         self.heartbeat_interval = max(1, int(heartbeat_interval))
         self.enabled = bool(enabled)
+        self._closed = False
 
         self._conn = self._connect()
         self._ensure_schema()
@@ -73,6 +75,12 @@ class ProcessSessionTracker:
         )
         if self.enabled:
             self._heartbeat_thread.start()
+
+        # Ensure DB is cleanly closed on process exit
+        try:
+            atexit.register(self._atexit_shutdown)
+        except Exception:
+            pass
 
     def _connect(self) -> sqlite3.Connection:
         os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
@@ -150,14 +158,30 @@ class ProcessSessionTracker:
         self.shutdown()
 
     def shutdown(self) -> None:
+        if self._closed:
+            return
         self._stop_event.set()
         if self._heartbeat_thread.is_alive():
             self._heartbeat_thread.join(timeout=self.heartbeat_interval + 1)
         with self._lock:
             self._tracked.clear()
         try:
-            self._conn.commit()
+            # Perform a final WAL checkpoint to avoid leftover -wal content
+            try:
+                cur = self._conn.cursor()
+                cur.execute("PRAGMA wal_checkpoint(TRUNCATE);")
+                self._conn.commit()
+            except Exception:
+                pass
             self._conn.close()
+        except Exception:
+            pass
+        finally:
+            self._closed = True
+
+    def _atexit_shutdown(self) -> None:
+        try:
+            self.shutdown()
         except Exception:
             pass
 

@@ -293,6 +293,9 @@ class Manager(metaclass=Singleton):
             if not data or not data.data:
                 return
             payload: ProcessStartedPayload = data.data  # type: ignore
+            logging.debug(
+                f"Playtime signal: started launch_id={payload.launch_id} bottle={payload.bottle_name} program={payload.program_name}"
+            )
             res = self.playtime_start(
                 bottle_id=payload.bottle_id,
                 bottle_name=payload.bottle_name,
@@ -316,6 +319,9 @@ class Manager(metaclass=Singleton):
             if sid and sid > 0:
                 status = payload.status
                 ended_at = int(payload.ended_at or time.time())
+                logging.debug(
+                    f"Playtime signal: finished launch_id={payload.launch_id} status={status} sid={sid}"
+                )
                 self.playtime_finish(sid, status=status, ended_at=ended_at)
         except Exception:
             pass
