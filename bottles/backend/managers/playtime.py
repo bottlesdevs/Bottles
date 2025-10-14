@@ -305,6 +305,11 @@ class ProcessSessionTracker:
                 (end_ts, end_ts, duration, status, session_id),
             )
 
+            logging.debug(
+                f"Playtime finalize: id={session_id} bottle_id={bottle_id} program_id={program_id} "
+                f"status={status} duration={duration}s ended_at={end_ts}"
+            )
+
             self._tracked.pop(session_id, None)
 
             self._update_totals(bottle_id=bottle_id, program_id=program_id, cur=cur)
@@ -313,6 +318,7 @@ class ProcessSessionTracker:
     def mark_failure(self, session_id: int, *, status: str) -> None:
         if status not in ("crash", "forced", "unknown"):
             status = "unknown"
+        logging.debug(f"Playtime failure: id={session_id} status={status}")
         self.mark_exit(session_id, status=status)
 
     def recover_open_sessions(self) -> None:
@@ -374,6 +380,10 @@ class ProcessSessionTracker:
                     started_at=ts.started_at,
                     last_seen=now,
                 )
+                logging.debug(
+                    f"Playtime heartbeat: id={ts.session_id} bottle_id={ts.bottle_id} "
+                    f"program_id={ts.program_id} last_seen={now}"
+                )
             self._conn.commit()
 
     def _update_totals(self, *, bottle_id: str, program_id: str, cur: Optional[sqlite3.Cursor] = None) -> None:
@@ -422,6 +432,11 @@ class ProcessSessionTracker:
                 int(sessions_count or 0),
                 int(last_played or 0) if last_played is not None else None,
             ),
+        )
+        logging.debug(
+            f"Playtime totals: bottle_id={bottle_id} program_id={program_id} "
+            f"program_name={program_name} sessions_count={int(sessions_count or 0)} "
+            f"total_seconds={int(total_seconds or 0)} last_played={int(last_played or 0) if last_played is not None else None}"
         )
         # Do not commit here; caller manages transaction boundaries
 
