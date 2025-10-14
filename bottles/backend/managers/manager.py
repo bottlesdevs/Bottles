@@ -52,6 +52,7 @@ from bottles.backend.managers.versioning import VersioningManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
+from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals, Events, EventManager
 from bottles.backend.utils import yaml
 from bottles.backend.utils.connection import ConnectionUtils
@@ -247,18 +248,61 @@ class Manager(metaclass=Singleton):
     # Playtime signal handlers
     _launch_to_session: Dict[str, int] = {}
 
+    # Public Playtime API (wrap tracker with Result)
+    def playtime_start(
+        self,
+        *,
+        bottle_id: str,
+        bottle_name: str,
+        bottle_path: str,
+        program_name: str,
+        program_path: str,
+    ) -> Result[int]:
+        try:
+            sid = self.playtime_tracker.start_session(
+                bottle_id=bottle_id,
+                bottle_name=bottle_name,
+                bottle_path=bottle_path,
+                program_name=program_name,
+                program_path=program_path,
+            )
+            return Result(True, data=sid)
+        except Exception as e:
+            logging.exception(e)
+            return Result(False, message=str(e))
+
+    def playtime_finish(
+        self,
+        session_id: int,
+        *,
+        status: str = "success",
+        ended_at: Optional[int] = None,
+    ) -> Result[None]:
+        try:
+            if status == "success":
+                self.playtime_tracker.mark_exit(session_id, status="success", ended_at=ended_at)
+            else:
+                self.playtime_tracker.mark_failure(session_id, status=status)
+            return Result(True)
+        except Exception as e:
+            logging.exception(e)
+            return Result(False, message=str(e))
+
     def _on_program_started(self, data: Optional[Result] = None) -> None:
         try:
             if not data or not data.data:
                 return
             payload: ProcessStartedPayload = data.data  # type: ignore
-            sid = self.playtime_tracker.start_session(
+            res = self.playtime_start(
                 bottle_id=payload.bottle_id,
                 bottle_name=payload.bottle_name,
                 bottle_path=payload.bottle_path,
                 program_name=payload.program_name,
                 program_path=payload.program_path,
             )
+            if not res.ok:
+                return
+            sid = int(res.data or -1)
             self._launch_to_session[payload.launch_id] = sid
         except Exception:
             pass
@@ -272,10 +316,7 @@ class Manager(metaclass=Singleton):
             if sid and sid > 0:
                 status = payload.status
                 ended_at = int(payload.ended_at or time.time())
-                if status == "success":
-                    self.playtime_tracker.mark_exit(sid, status="success", ended_at=ended_at)
-                else:
-                    self.playtime_tracker.mark_failure(sid, status="unknown")
+                self.playtime_finish(sid, status=status, ended_at=ended_at)
         except Exception:
             pass
 
