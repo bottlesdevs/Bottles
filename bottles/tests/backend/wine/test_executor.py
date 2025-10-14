@@ -38,7 +38,7 @@ def test_replace_placeholders_handles_unknown_tokens():
     assert result == "run-Example-on-Bottle-%UNKNOWN%"
 
 
-def test_run_program_substitutes_placeholders(monkeypatch):
+def test_run_program_substitutes_placeholders(mocker):
     captured: dict[str, object] = {}
 
     def fake_init(
@@ -79,8 +79,8 @@ def test_run_program_substitutes_placeholders(monkeypatch):
     def fake_run(self):
         return Result(True, data=self.captured)
 
-    monkeypatch.setattr(WineExecutor, "__init__", fake_init, raising=False)
-    monkeypatch.setattr(WineExecutor, "run", fake_run, raising=False)
+    mocker.patch.object(WineExecutor, "__init__", fake_init, raising=False)
+    mocker.patch.object(WineExecutor, "run", fake_run, raising=False)
 
     config = _make_config(name="Bottle", path="BottlePath")
     program = {

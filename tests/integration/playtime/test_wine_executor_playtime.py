@@ -7,6 +7,7 @@ from bottles.backend.managers.playtime import ProcessSessionTracker
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winepath import WinePath
+from bottles.backend.models.result import Result
 
 
 class _Settings:
@@ -38,23 +39,21 @@ def _config(name: str) -> BottleConfig:
     return c
 
 
-def test_wine_executor_emits_and_updates_totals(monkeypatch):
+def test_wine_executor_emits_and_updates_totals(mocker):
     with tempfile.TemporaryDirectory() as tmp:
         m = _new_manager(tmp)
 
         # Stub the launch paths to avoid running wine; make them return success Result
-        def _stub_launch(self):
-            from bottles.backend.models.result import Result
-            return Result(True, data={"output": b"ok"})
-
-        monkeypatch.setattr(WineExecutor, "_WineExecutor__launch_with_bridge", _stub_launch)
-        monkeypatch.setattr(WineExecutor, "_WineExecutor__launch_batch", _stub_launch)
-        monkeypatch.setattr(WineExecutor, "_WineExecutor__launch_with_starter", _stub_launch)
-        monkeypatch.setattr(WineExecutor, "_WineExecutor__launch_dll", _stub_launch)
+        _stub_result = Result(True, data={"output": b"ok"})
+        mocker.patch.object(WineExecutor, "_WineExecutor__launch_with_bridge", return_value=_stub_result)
+        mocker.patch.object(WineExecutor, "_WineExecutor__launch_batch", return_value=_stub_result)
+        mocker.patch.object(WineExecutor, "_WineExecutor__launch_with_starter", return_value=_stub_result)
+        mocker.patch.object(WineExecutor, "_WineExecutor__launch_dll", return_value=_stub_result)
 
         # Stub WinePath conversions to avoid system calls / missing libs
-        monkeypatch.setattr(WinePath, "to_unix", lambda self, path: path)
-        monkeypatch.setattr(WinePath, "to_windows", lambda self, path: path)
+        # Instance methods are bound; side_effect receives only the path argument
+        mocker.patch.object(WinePath, "to_unix", side_effect=lambda path: path)
+        mocker.patch.object(WinePath, "to_windows", side_effect=lambda path: path)
 
         execu = WineExecutor(
             config=_config("b1"),
