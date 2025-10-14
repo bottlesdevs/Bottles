@@ -43,6 +43,7 @@ from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.managers.importer import ImportManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.library import LibraryManager
+from bottles.backend.managers.playtime import ProcessSessionTracker
 from bottles.backend.managers.repository import RepositoryManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.template import TemplateManager
@@ -153,6 +154,16 @@ class Manager(metaclass=Singleton):
         self.steam_manager = SteamManager()
         times["SteamManager"] = time.time()
 
+        # Initialize playtime tracker
+        playtime_enabled = self.settings.get_boolean("playtime-enabled")
+        playtime_interval = self.settings.get_int("playtime-heartbeat-interval")
+        self.playtime_tracker = ProcessSessionTracker(
+            enabled=playtime_enabled,
+            heartbeat_interval=playtime_interval if playtime_interval > 0 else 60,
+        )
+        self.playtime_tracker.recover_open_sessions()
+        times["PlaytimeTracker"] = time.time()
+
         if not self.is_cli:
             times.update(self.checks(install_latest=False, first_run=True).data)
         else:
@@ -212,6 +223,14 @@ class Manager(metaclass=Singleton):
         rv.data["check_bottles"] = time.time()
 
         return rv
+
+    def __del__(self):
+        # best-effort shutdown of playtime tracker
+        try:
+            if hasattr(self, "playtime_tracker") and self.playtime_tracker:
+                self.playtime_tracker.shutdown()
+        except Exception:
+            pass
 
     def __clear_temp(self, force: bool = False):
         """Clears the temp directory if user setting allows it. Use the force

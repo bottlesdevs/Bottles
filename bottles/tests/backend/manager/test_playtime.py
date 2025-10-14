@@ -302,3 +302,32 @@ def test_disable_tracking_method():
         assert sid2 == -1
 
 
+def test_start_session_collapses_duplicate_running_session():
+    with tempfile.TemporaryDirectory() as tmp:
+        tracker = _new_tracker(tmp)
+        sid1 = tracker.start_session(
+            bottle_id="b1",
+            bottle_name="Bottle",
+            bottle_path="/bottle",
+            program_name="Game",
+            program_path="C:/Game/game.exe",
+        )
+        # Second start without finalize should return the same session id
+        sid2 = tracker.start_session(
+            bottle_id="b1",
+            bottle_name="Bottle",
+            bottle_path="/bottle",
+            program_name="Game (alias)",
+            program_path="C:/Game/game.exe",
+        )
+        assert sid2 == sid1
+
+        conn = sqlite3.connect(tracker.db_path)
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT COUNT(*) FROM sessions WHERE bottle_id=? AND status='running'",
+            ("b1",),
+        )
+        assert cur.fetchone()[0] == 1
+        tracker.shutdown()
+

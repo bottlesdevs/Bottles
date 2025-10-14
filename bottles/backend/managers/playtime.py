@@ -177,47 +177,83 @@ class ProcessSessionTracker:
 
         program_id = _compute_program_id(bottle_id, program_path)
         base_timestamp = _utc_now_seconds()
-        cur = self._conn.cursor()
-
-        # Rarely, a restart within the same second can reuse the previous timestamp
-        # (schema has a UNIQUE constraint on bottle/program/started_at). We bump the
-        # timestamp deterministically to avoid throwing IntegrityError.
-        retries = 0
-        while True:
-            started_at = base_timestamp + retries
-            try:
-                cur.execute(
-                    """
-                    INSERT INTO sessions (
-                        bottle_id, bottle_name, bottle_path,
-                        program_id, program_name, program_path,
-                        started_at, ended_at, last_seen, duration_seconds,
-                        status
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL, 'running');
-                    """,
-                    (
-                        bottle_id,
-                        bottle_name,
-                        bottle_path,
-                        program_id,
-                        program_name,
-                        program_path,
-                        started_at,
-                        started_at,
-                    ),
-                )
-                break
-            except sqlite3.IntegrityError as exc:
-                if "UNIQUE constraint failed: sessions.bottle_id, sessions.program_id, sessions.started_at" not in str(exc):
-                    raise
-                retries += 1
-                if retries > 5:
-                    raise
-
-        session_id = int(cur.lastrowid)
-        self._conn.commit()
 
         with self._lock:
+            cur = self._conn.cursor()
+
+            # Collapse duplicates: if there is already a running session for this
+            # (bottle_id, program_id), return its session_id instead of creating
+            # a new one. Also ensure it is registered in the in-memory map.
+            cur.execute(
+                """
+                SELECT id, started_at, last_seen, program_name
+                FROM sessions
+                WHERE bottle_id=? AND program_id=? AND status='running'
+                ORDER BY started_at DESC
+                LIMIT 1
+                """,
+                (bottle_id, program_id),
+            )
+            existing = cur.fetchone()
+            if existing is not None:
+                existing_id = int(existing[0])
+                existing_started_at = int(existing[1])
+                existing_last_seen = int(existing[2])
+                existing_program_name = str(existing[3])
+
+                if existing_id not in self._tracked:
+                    self._tracked[existing_id] = _TrackedSession(
+                        session_id=existing_id,
+                        bottle_id=bottle_id,
+                        program_id=program_id,
+                        program_name=existing_program_name,
+                        started_at=existing_started_at,
+                        last_seen=existing_last_seen,
+                    )
+                logging.info(
+                    f"Session already running: id={existing_id} bottle={bottle_name} program={existing_program_name}"
+                )
+                return existing_id
+
+            # Rarely, a restart within the same second can reuse the previous timestamp
+            # (schema has a UNIQUE constraint on bottle/program/started_at). We bump the
+            # timestamp deterministically to avoid throwing IntegrityError.
+            retries = 0
+            while True:
+                started_at = base_timestamp + retries
+                try:
+                    cur.execute(
+                        """
+                        INSERT INTO sessions (
+                            bottle_id, bottle_name, bottle_path,
+                            program_id, program_name, program_path,
+                            started_at, ended_at, last_seen, duration_seconds,
+                            status
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL, 'running');
+                        """,
+                        (
+                            bottle_id,
+                            bottle_name,
+                            bottle_path,
+                            program_id,
+                            program_name,
+                            program_path,
+                            started_at,
+                            started_at,
+                        ),
+                    )
+                    break
+                except sqlite3.IntegrityError as exc:
+                    if "UNIQUE constraint failed: sessions.bottle_id, sessions.program_id, sessions.started_at" not in str(exc):
+                        raise
+                    retries += 1
+                    if retries > 5:
+                        raise
+
+            session_id = int(cur.lastrowid)
+            self._conn.commit()
+
+            # Track in-memory after successful commit
             self._tracked[session_id] = _TrackedSession(
                 session_id=session_id,
                 bottle_id=bottle_id,
@@ -241,37 +277,38 @@ class ProcessSessionTracker:
         if not self.enabled or session_id < 0:
             return
 
-        cur = self._conn.cursor()
-        cur.execute(
-            "SELECT started_at, last_seen, bottle_id, program_id FROM sessions WHERE id=?",
-            (session_id,),
-        )
-        row = cur.fetchone()
-        if not row:
-            logging.error(f"mark_exit: session {session_id} not found")
-            return
-        started_at = int(row[0])
-        last_seen = int(row[1])
-        bottle_id = str(row[2])
-        program_id = str(row[3])
-
-        end_ts = int(ended_at) if ended_at is not None else _utc_now_seconds()
-        duration = max(0, end_ts - started_at)
-
-        cur.execute(
-            """
-            UPDATE sessions
-            SET ended_at=?, last_seen=?, duration_seconds=?, status=?
-            WHERE id=?
-            """,
-            (end_ts, end_ts, duration, status, session_id),
-        )
-        self._conn.commit()
-
         with self._lock:
+            cur = self._conn.cursor()
+            cur.execute(
+                "SELECT started_at, last_seen, bottle_id, program_id FROM sessions WHERE id=?",
+                (session_id,),
+            )
+            row = cur.fetchone()
+            if not row:
+                logging.error(f"mark_exit: session {session_id} not found")
+                return
+            started_at = int(row[0])
+            last_seen = int(row[1])
+            bottle_id = str(row[2])
+            program_id = str(row[3])
+
+            end_ts = int(ended_at) if ended_at is not None else _utc_now_seconds()
+            duration = max(0, end_ts - started_at)
+
+            # Finalize session and update totals atomically
+            cur.execute(
+                """
+                UPDATE sessions
+                SET ended_at=?, last_seen=?, duration_seconds=?, status=?
+                WHERE id=?
+                """,
+                (end_ts, end_ts, duration, status, session_id),
+            )
+
             self._tracked.pop(session_id, None)
 
-        self._update_totals(bottle_id=bottle_id, program_id=program_id)
+            self._update_totals(bottle_id=bottle_id, program_id=program_id, cur=cur)
+            self._conn.commit()
 
     def mark_failure(self, session_id: int, *, status: str) -> None:
         if status not in ("crash", "forced", "unknown"):
@@ -303,7 +340,9 @@ class ProcessSessionTracker:
                     (end_ts, duration, sid),
                 )
                 self._tracked.pop(int(sid), None)
-                self._update_totals(bottle_id=str(bottle_id), program_id=str(program_id))
+                self._update_totals(
+                    bottle_id=str(bottle_id), program_id=str(program_id), cur=cur
+                )
         self._conn.commit()
         logging.info(f"Recovered {len(rows)} running sessions -> forced at last_seen")
 
@@ -337,8 +376,8 @@ class ProcessSessionTracker:
                 )
             self._conn.commit()
 
-    def _update_totals(self, *, bottle_id: str, program_id: str) -> None:
-        cur = self._conn.cursor()
+    def _update_totals(self, *, bottle_id: str, program_id: str, cur: Optional[sqlite3.Cursor] = None) -> None:
+        cur = cur or self._conn.cursor()
         # Compute aggregate for this program from sessions that are not running
         cur.execute(
             """
@@ -384,6 +423,6 @@ class ProcessSessionTracker:
                 int(last_played or 0) if last_played is not None else None,
             ),
         )
-        self._conn.commit()
+        # Do not commit here; caller manages transaction boundaries
 
 
