@@ -71,6 +71,11 @@ from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.winepath import WinePath
 from bottles.backend.wine.wineserver import WineServer
+from bottles.backend.state import SignalManager, Signals
+from bottles.backend.models.process import (
+    ProcessStartedPayload,
+    ProcessFinishedPayload,
+)
 
 logging = Logger()
 
@@ -103,6 +108,7 @@ class Manager(metaclass=Singleton):
     supported_latencyflex = {}
     supported_dependencies = {}
     supported_installers = {}
+    _playtime_signals_connected: bool = False
 
     def __init__(
         self,
@@ -163,6 +169,12 @@ class Manager(metaclass=Singleton):
         )
         self.playtime_tracker.recover_open_sessions()
         times["PlaytimeTracker"] = time.time()
+
+        # Subscribe to playtime signals (connect once per process)
+        if not Manager._playtime_signals_connected:
+            SignalManager.connect(Signals.ProgramStarted, self._on_program_started)
+            SignalManager.connect(Signals.ProgramFinished, self._on_program_finished)
+            Manager._playtime_signals_connected = True
 
         if not self.is_cli:
             times.update(self.checks(install_latest=False, first_run=True).data)
@@ -229,6 +241,41 @@ class Manager(metaclass=Singleton):
         try:
             if hasattr(self, "playtime_tracker") and self.playtime_tracker:
                 self.playtime_tracker.shutdown()
+        except Exception:
+            pass
+
+    # Playtime signal handlers
+    _launch_to_session: Dict[str, int] = {}
+
+    def _on_program_started(self, data: Optional[Result] = None) -> None:
+        try:
+            if not data or not data.data:
+                return
+            payload: ProcessStartedPayload = data.data  # type: ignore
+            sid = self.playtime_tracker.start_session(
+                bottle_id=payload.bottle_id,
+                bottle_name=payload.bottle_name,
+                bottle_path=payload.bottle_path,
+                program_name=payload.program_name,
+                program_path=payload.program_path,
+            )
+            self._launch_to_session[payload.launch_id] = sid
+        except Exception:
+            pass
+
+    def _on_program_finished(self, data: Optional[Result] = None) -> None:
+        try:
+            if not data or not data.data:
+                return
+            payload: ProcessFinishedPayload = data.data  # type: ignore
+            sid = self._launch_to_session.pop(payload.launch_id, -1)
+            if sid and sid > 0:
+                status = payload.status
+                ended_at = int(payload.ended_at or time.time())
+                if status == "success":
+                    self.playtime_tracker.mark_exit(sid, status="success", ended_at=ended_at)
+                else:
+                    self.playtime_tracker.mark_failure(sid, status="unknown")
         except Exception:
             pass
 

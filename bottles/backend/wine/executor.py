@@ -1,4 +1,5 @@
 import os
+import time
 import re
 import shlex
 import uuid
@@ -19,6 +20,11 @@ from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.winepath import WinePath
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.state import SignalManager, Signals
+from bottles.backend.models.process import (
+    ProcessStartedPayload,
+    ProcessFinishedPayload,
+)
 
 logging = Logger()
 
@@ -283,25 +289,28 @@ class WineExecutor:
         return Result(status=True, data={"output": res})
 
     def run(self) -> Result:
-        # Start playtime session (best-effort)
+        # Emit ProgramStarted (best-effort)
+        launch_id = f"{self.config.Name}:{int(time.time()*1000)}:{os.getpid()}"
+        bottle_id = self.config.Name
+        bottle_name = self.config.Name
+        bottle_path = ManagerUtils.get_bottle_path(self.config)
+        program_name = os.path.basename(self._raw_exec_path) if \
+            self._raw_exec_path else "unknown"
+        program_path = self._raw_exec_path or self.exec_path
         try:
-            # Lazy import to avoid circular import during module import
-            from bottles.backend.managers.manager import Manager  # type: ignore
-            bottle_id = self.config.Name
-            bottle_name = self.config.Name
-            bottle_path = ManagerUtils.get_bottle_path(self.config)
-            program_name = os.path.basename(self._raw_exec_path) if \
-                self._raw_exec_path else "unknown"
-            program_path = self._raw_exec_path or self.exec_path
-            self._play_session_id = Manager().playtime_tracker.start_session(
-                bottle_id=bottle_id,
-                bottle_name=bottle_name,
-                bottle_path=bottle_path,
-                program_name=program_name,
-                program_path=program_path,
+            SignalManager.send(
+                Signals.ProgramStarted,
+                Result(True, ProcessStartedPayload(
+                    launch_id=launch_id,
+                    bottle_id=bottle_id,
+                    bottle_name=bottle_name,
+                    bottle_path=bottle_path,
+                    program_name=program_name,
+                    program_path=program_path,
+                )),
             )
         except Exception:
-            self._play_session_id = -1
+            pass
 
         try:
             match self.exec_type:
@@ -319,9 +328,13 @@ class WineExecutor:
                     )
         except Exception as e:
             try:
-                from bottles.backend.managers.manager import Manager  # type: ignore
-                Manager().playtime_tracker.mark_failure(
-                    self._play_session_id, status="unknown"
+                SignalManager.send(
+                    Signals.ProgramFinished,
+                    Result(True, ProcessFinishedPayload(
+                        launch_id=launch_id,
+                        status="unknown",
+                        ended_at=int(time.time()),
+                    )),
                 )
             except Exception:
                 pass
@@ -329,11 +342,14 @@ class WineExecutor:
 
         # Finalize session
         try:
-            from bottles.backend.managers.manager import Manager  # type: ignore
-            if res.status:
-                Manager().playtime_tracker.mark_exit(self._play_session_id, status="success")
-            else:
-                Manager().playtime_tracker.mark_failure(self._play_session_id, status="unknown")
+            SignalManager.send(
+                Signals.ProgramFinished,
+                Result(True, ProcessFinishedPayload(
+                    launch_id=launch_id,
+                    status="success" if res.status else "unknown",
+                    ended_at=int(time.time()),
+                )),
+            )
         except Exception:
             pass
 
