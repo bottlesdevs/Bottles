@@ -79,8 +79,8 @@ def test_run_program_substitutes_placeholders(mocker):
     def fake_run(self):
         return Result(True, data=self.captured)
 
-    mocker.patch.object(WineExecutor, "__init__", fake_init, raising=False)
-    mocker.patch.object(WineExecutor, "run", fake_run, raising=False)
+    mocker.patch.object(WineExecutor, "__init__", fake_init)
+    mocker.patch.object(WineExecutor, "run", fake_run)
 
     config = _make_config(name="Bottle", path="BottlePath")
     program = {
