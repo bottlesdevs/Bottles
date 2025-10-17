@@ -95,13 +95,12 @@ class SandboxManager:
         return _cmd
 
     def __get_flatpak_spawn(self, cmd: str):
-        _cmd = ["flatpak-spawn"]
+        _cmd = ["flatpak-spawn", "--sandbox"]
 
         if self.envs:
             _cmd += [f"--env={k}={shlex.quote(v)}" for k, v in self.envs.items()]
 
         if self.share_host_ro:
-            _cmd.append("--sandbox")
             _cmd.append("--sandbox-expose-path-ro=/")
 
         if self.chdir:
