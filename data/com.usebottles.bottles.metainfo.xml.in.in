@@ -85,6 +85,17 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="51.26" date="2025-10-24">
+      <description translate="no">
+        <ul>
+          <li>Fix: broken CMD action with xfce4-terminal</li>
+          <li>Fix (steam): load BottleConfig from bottle.yml if it exists</li>
+          <li>Fix: ensure the whole placeholder folder gets removed on bottle deletion</li>
+          <li>Added support for st terminal</li>
+          <li>Fix: prevent exception when updating a bottle’s dependency list view</li>
+        </ul>
+      </description>
+    </release>
     <release version="51.24" date="2025-07-15">
       <description translate="no">
         <ul>
