@@ -19,6 +19,7 @@ from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.logger import Logger
+from bottles.frontend.utils.filters import add_disc_image_filters, add_all_filters
 from gettext import gettext as _
 
 logging = Logger()
@@ -40,9 +41,13 @@ class LaunchOptionsDialog(Adw.Window):
     btn_post_script_reset = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
+    btn_disc_image = Gtk.Template.Child()
+    btn_disc_image_reset = Gtk.Template.Child()
     btn_reset_defaults = Gtk.Template.Child()
     action_pre_script = Gtk.Template.Child()
     action_post_script = Gtk.Template.Child()
+    action_cwd = Gtk.Template.Child()
+    action_disc_image = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
@@ -54,13 +59,13 @@ class LaunchOptionsDialog(Adw.Window):
     action_nvapi = Gtk.Template.Child()
     action_fsr = Gtk.Template.Child()
     action_gamescope = Gtk.Template.Child()
-    action_cwd = Gtk.Template.Child()
     action_virt_desktop = Gtk.Template.Child()
     # endregion
 
     __default_pre_script_msg = _("Choose a script which should be executed before run.")
     __default_post_script_msg = _("Choose a script which should be executed after run.")
     __default_cwd_msg = _("Choose from where start the program.")
+    __default_disc_image_msg = _("Choose an optical disc image to be mounted.")
     __msg_disabled = _("{0} is disabled globally for this bottle.")
     __msg_override = _("This setting overrides the bottle's global setting.")
 
@@ -108,6 +113,8 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_post_script_reset.connect("clicked", self.__reset_post_script)
         self.btn_cwd.connect("clicked", self.__choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
+        self.btn_disc_image.connect("clicked", self.__choose_disc_image)
+        self.btn_disc_image_reset.connect("clicked", self.__reset_disc_image)
         self.btn_reset_defaults.connect("clicked", self.__reset_defaults)
         self.entry_arguments.connect("activate", self.__save)
 
@@ -184,6 +191,10 @@ class LaunchOptionsDialog(Adw.Window):
         ):
             self.action_cwd.set_subtitle(program["folder"])
             self.btn_cwd_reset.set_visible(True)
+
+        if program.get("disc_image") not in ["", None]:
+            self.action_disc_image.set_subtitle(program["disc_image"])
+            self.btn_disc_image_reset.set_visible(True)
 
         self.__set_disabled_switches()
 
@@ -343,6 +354,35 @@ class LaunchOptionsDialog(Adw.Window):
         )
         self.action_cwd.set_subtitle(self.__default_cwd_msg)
         self.btn_cwd_reset.set_visible(False)
+
+    def __choose_disc_image(self, *_args):
+        def set_path(dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                self.action_disc_image.set_subtitle(self.__default_disc_image_msg)
+                return
+
+            disc_image = dialog.get_file().get_path()
+            self.program["disc_image"] = disc_image
+            self.action_disc_image.set_subtitle(disc_image)
+            self.btn_disc_image_reset.set_visible(True)
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select a CD/DVD Image"),
+            action=Gtk.FileChooserAction.OPEN,
+            parent=self.window,
+            accept_label=_("Select"),
+        )
+
+        add_disc_image_filters(dialog)
+        add_all_filters(dialog)
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
+
+    def __reset_disc_image(self, *_args):
+        self.program["disc_image"] = None
+        self.action_disc_image.set_subtitle(self.__default_disc_image_msg)
+        self.btn_disc_image_reset.set_visible(False)
 
     def __reset_defaults(self, *_args):
         self.switch_dxvk.set_active(self.global_dxvk)
