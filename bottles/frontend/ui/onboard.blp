@@ -75,6 +75,8 @@ template $OnboardDialog: Adw.Window {
 
           child: Box {
             orientation: vertical;
+            halign: center;
+            spacing: 6;
 
             Button btn_install {
               label: _("Continue");
@@ -85,6 +87,20 @@ template $OnboardDialog: Adw.Window {
                 "suggested-action",
                 "pill",
               ]
+            }
+
+            Label label_progress {
+              visible: false;
+              halign: center;
+            }
+
+            Label label_status {
+              visible: false;
+              halign: center;
+              wrap: true;
+              justify: center;
+              margin-start: 24;
+              margin-end: 24;
             }
 
             ProgressBar progressbar {

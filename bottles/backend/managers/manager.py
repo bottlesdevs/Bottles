@@ -26,7 +26,7 @@ import uuid
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import pathvalidate
 
@@ -171,45 +171,119 @@ class Manager(metaclass=Singleton):
                 last = t
             logging.info(times_str)
 
-    def checks(self, install_latest=False, first_run=False) -> Result:
+    def checks(
+        self,
+        install_latest=False,
+        first_run=False,
+        progress_callback: Optional[Callable[..., None]] = None,
+    ) -> Result:
         logging.info("Performing Bottles checks…")
 
         rv = Result(status=True, data={})
 
-        self.check_app_dirs()
-        rv.data["check_app_dirs"] = time.time()
-
-        self.check_dxvk(install_latest) or rv.set_status(False)
-        rv.data["check_dxvk"] = time.time()
-
-        self.check_vkd3d(install_latest) or rv.set_status(False)
-        rv.data["check_vkd3d"] = time.time()
-
-        self.check_nvapi(install_latest) or rv.set_status(False)
-        rv.data["check_nvapi"] = time.time()
-
-        self.check_latencyflex(install_latest) or rv.set_status(False)
-        rv.data["check_latencyflex"] = time.time()
-
-        self.check_runtimes(install_latest) or rv.set_status(False)
-        rv.data["check_runtimes"] = time.time()
-
-        self.check_winebridge(install_latest) or rv.set_status(False)
-        rv.data["check_winebridge"] = time.time()
-
-        self.check_runners(install_latest) or rv.set_status(False)
-        rv.data["check_runners"] = time.time()
+        steps: List[Tuple[Optional[str], str, Callable[[], bool | None]]] = [
+            ("check_app_dirs", _("Preparing folders…"), self.check_app_dirs),
+            (
+                "check_dxvk",
+                _("Setting up DXVK…"),
+                lambda: self.check_dxvk(install_latest),
+            ),
+            (
+                "check_vkd3d",
+                _("Setting up VKD3D…"),
+                lambda: self.check_vkd3d(install_latest),
+            ),
+            (
+                "check_nvapi",
+                _("Setting up NVAPI…"),
+                lambda: self.check_nvapi(install_latest),
+            ),
+            (
+                "check_latencyflex",
+                _("Setting up LatencyFleX…"),
+                lambda: self.check_latencyflex(install_latest),
+            ),
+            (
+                "check_runtimes",
+                _("Preparing runtimes…"),
+                lambda: self.check_runtimes(install_latest),
+            ),
+            (
+                "check_winebridge",
+                _("Preparing WineBridge…"),
+                lambda: self.check_winebridge(install_latest),
+            ),
+            (
+                "check_runners",
+                _("Preparing runners…"),
+                lambda: self.check_runners(install_latest),
+            ),
+        ]
 
         if first_run:
-            self.organize_components()
-            self.__clear_temp()
+            steps.extend(
+                [
+                    (
+                        None,
+                        _("Organizing components…"),
+                        self.organize_components,
+                    ),
+                    (
+                        None,
+                        _("Cleaning temporary files…"),
+                        self.__clear_temp,
+                    ),
+                ]
+            )
 
-        self.organize_dependencies()
+        steps.extend(
+            [
+                (
+                    None,
+                    _("Organizing dependencies…"),
+                    self.organize_dependencies,
+                ),
+                (
+                    None,
+                    _("Organizing installers…"),
+                    self.organize_installers,
+                ),
+                ("check_bottles", _("Loading bottles…"), self.check_bottles),
+            ]
+        )
 
-        self.organize_installers()
+        total_steps = len(steps)
 
-        self.check_bottles()
-        rv.data["check_bottles"] = time.time()
+        for index, (data_key, description, func) in enumerate(steps, start=1):
+            if progress_callback:
+                try:
+                    progress_callback(
+                        description=description,
+                        current_step=index,
+                        total_steps=total_steps,
+                        completed=False,
+                    )
+                except Exception as error:  # pragma: no cover - defensive
+                    logging.debug(f"Progress callback start failed: {error}")
+
+            result = func()
+
+            if result is False:
+                rv.set_status(False)
+
+            if progress_callback:
+                try:
+                    progress_callback(
+                        description=description,
+                        current_step=index,
+                        total_steps=total_steps,
+                        completed=True,
+                    )
+                except Exception as error:  # pragma: no cover - defensive
+                    logging.debug(f"Progress callback end failed: {error}")
+
+            if data_key:
+                rv.data[data_key] = time.time()
 
         return rv
 

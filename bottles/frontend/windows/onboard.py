@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import time
+from gettext import gettext as _
 
 from gi.repository import Gtk, Adw
 
@@ -28,6 +28,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 class OnboardDialog(Adw.Window):
     __gtype_name__ = "OnboardDialog"
     __installing = False
+    __progress_total = 0
     __settings = Gtk.Settings.get_default()
 
     # region Widgets
@@ -37,6 +38,8 @@ class OnboardDialog(Adw.Window):
     btn_next = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
+    label_progress = Gtk.Template.Child()
+    label_status = Gtk.Template.Child()
     page_welcome = Gtk.Template.Child()
     page_bottles = Gtk.Template.Child()
     page_download = Gtk.Template.Child()
@@ -128,17 +131,21 @@ class OnboardDialog(Adw.Window):
         self.btn_next.set_visible(False)
         self.btn_install.set_visible(False)
         self.progressbar.set_visible(True)
+        self.progressbar.set_fraction(0)
+        self.label_progress.set_visible(False)
+        self.label_status.set_visible(False)
+        self.__progress_total = 0
         self.carousel.set_allow_long_swipes(False)
         self.carousel.set_allow_mouse_drag(False)
         self.carousel.set_allow_scroll_wheel(False)
         self.set_deletable(False)
 
-        RunAsync(self.pulse)
         RunAsync(
             task_func=self.manager.checks,
             callback=set_completed,
             install_latest=True,
             first_run=True,
+            progress_callback=self.__handle_progress,
         )
 
     def __previous_page(self, widget=False):
@@ -151,11 +158,38 @@ class OnboardDialog(Adw.Window):
         next_page = self.carousel.get_nth_page(index + 1)
         self.carousel.scroll_to(next_page, True)
 
-    def pulse(self):
-        # This function update the progress bar every 1s.
-        while True:
-            time.sleep(0.5)
-            self.progressbar.pulse()
+    def __handle_progress(self, **kwargs):
+        self.__update_progress(**kwargs)
+
+    @GtkUtils.run_in_main_loop
+    def __update_progress(
+        self,
+        description: str,
+        current_step: int,
+        total_steps: int,
+        completed: bool,
+    ):
+        if total_steps:
+            self.__progress_total = total_steps
+
+        displayed_step = current_step
+        completed_steps = current_step if completed else max(0, current_step - 1)
+
+        if self.__progress_total:
+            self.progressbar.set_fraction(
+                completed_steps / self.__progress_total
+            )
+            self.progressbar.set_visible(True)
+            self.label_progress.set_visible(True)
+            self.label_progress.set_label(
+                _("Step {current} of {total}").format(
+                    current=displayed_step, total=self.__progress_total
+                )
+            )
+
+        if not completed:
+            self.label_status.set_visible(True)
+            self.label_status.set_label(description)
 
     def __close_window(self, widget):
         self.destroy()
