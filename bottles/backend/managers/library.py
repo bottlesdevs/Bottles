@@ -20,7 +20,7 @@ import uuid
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import yaml
-
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.logger import Logger
 from bottles.backend.globals import Paths
 from bottles.backend.managers.steamgriddb import SteamGridDBManager
@@ -74,7 +74,10 @@ class LibraryManager:
         logging.info(f"Adding new entry to library: {_uuid}")
 
         if not data.get("thumbnail"):
-            data["thumbnail"] = SteamGridDBManager.get_game_grid(data["name"], config)
+            grids_path = os.path.join(ManagerUtils.get_bottle_path(config), "grids")
+            data["thumbnail"] = SteamGridDBManager.get_steam_game_asset(
+                data["name"], grids_path
+            )
 
         self.__library[_uuid] = data
         self.save_library()
@@ -87,7 +90,8 @@ class LibraryManager:
             return False
 
         data = self.__library.get(_uuid)
-        value = SteamGridDBManager.get_game_grid(data["name"], config)
+        os.path.join(ManagerUtils.get_bottle_path(config), "grids")
+        value = SteamGridDBManager.get_steam_game_asset(data["name"], config)
 
         if not value:
             return False

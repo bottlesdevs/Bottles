@@ -16,8 +16,10 @@
 #
 
 import os
-import uuid
+from typing import Optional
+
 import requests
+from requests.exceptions import HTTPError, RequestException
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -27,31 +29,42 @@ logging = Logger()
 
 
 class SteamGridDBManager:
-    @staticmethod
-    def get_game_grid(name: str, config: BottleConfig):
+    def get_steam_game_asset(
+        program_name: str,
+        asset_path: str,
+        asset_type: Optional[str] = None,
+        reraise_exceptions: bool = False,
+    ) -> Optional[str]:
         try:
-            res = requests.get(f"https://steamgrid.usebottles.com/api/search/{name}")
-        except:
-            return
+            # url = f"https://steamgrid.usebottles.com/api/search/{program_name}"
+            url = f"http://127.0.0.1:8000/api/search/{program_name}"
+            if asset_type:
+                url = f"{url}/{asset_type}"
+            res = requests.get(url, timeout=5)
+            res.raise_for_status()
+            filename = SteamGridDBManager.__save_asset_to_steam(res.json(), asset_path)
 
-        if res.status_code == 200:
-            return SteamGridDBManager.__save_grid(res.json(), config)
+        except Exception as e:
+            if isinstance(e, HTTPError):
+                logging.warning(str(e))
+            else:
+                logging.error(str(e))
+            if reraise_exceptions:
+                raise
+
+        return filename
 
     @staticmethod
-    def __save_grid(url: str, config: BottleConfig):
-        grids_path = os.path.join(ManagerUtils.get_bottle_path(config), "grids")
-        if not os.path.exists(grids_path):
-            os.makedirs(grids_path)
+    def __save_asset_to_steam(url: str, asset_path: str) -> str:
+        asset_dir = os.path.dirname(asset_path)
+        if not os.path.exists(asset_dir):
+            os.makedirs(asset_dir)
 
-        ext = url.split(".")[-1]
-        filename = str(uuid.uuid4()) + "." + ext
-        path = os.path.join(grids_path, filename)
+        res = requests.get(url)
+        res.raise_for_status()
+        ext = os.path.splitext(url)[-1]
+        asset_path += ext
+        with open(asset_path, "wb") as img:
+            img.write(res.content)
 
-        try:
-            r = requests.get(url)
-            with open(path, "wb") as f:
-                f.write(r.content)
-        except Exception:
-            return
-
-        return f"grid:{filename}"
+        return os.path.basename(asset_path)

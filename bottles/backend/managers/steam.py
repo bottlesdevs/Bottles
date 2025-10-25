@@ -20,13 +20,17 @@ import os
 import shlex
 import shutil
 import uuid
+from binascii import crc32
 from datetime import datetime
 from functools import lru_cache
 from glob import glob
 from pathlib import Path
 from typing import Dict, Optional
 
+from requests.exceptions import HTTPError, RequestException
+
 from bottles.backend.globals import Paths
+from bottles.backend.managers.steamgriddb import SteamGridDBManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
@@ -532,9 +536,55 @@ class SteamManager:
         SignalManager.send(Signals.GShowUri, Result(data=uri))
 
     def add_shortcut(self, program_name: str, program_path: str):
+        def __add_to_user_conf(conf: str) -> bool:
+            logging.info(f"Searching SteamGridDB for {program_name} assets…")
+            asset_suffixes = {
+                "grids": "p",
+                "hgrids": "",
+                "heroes": "_hero",
+                "logos": "_logo",
+                "icons": "_icon",
+            }
+            for asset_type, suffix in asset_suffixes.items():
+                base_filename = f"{appid}{suffix}"
+                asset_path = os.path.join(conf, "grid", base_filename)
+                try:
+                    filename = SteamGridDBManager.get_steam_game_asset(
+                        program_name, asset_path, asset_type, reraise_exceptions=True
+                    )
+                except HTTPError:
+                    # Usually missing asset (404), keep trying for the rest
+                    continue
+                except:
+                    # Unreachable host or issue saving files, nothing we can do
+                    break
+
+                if asset_type == "icons":
+                    shortcut["icon"] = os.path.join(conf, "grid", filename)
+
+                s = asset_type[:-1] if asset_type != "heroes" else "hero"
+                logging.info(f"Added {s.capitalize()} asset ({filename})")
+
+            try:
+                with open(os.path.join(conf, "shortcuts.vdf"), "rb") as f:
+                    _existing = vdf.binary_loads(f.read()).get("shortcuts", {})
+
+                _all = list(_existing.values()) + [shortcut]
+                _shortcuts = {"shortcuts": {str(i): s for i, s in enumerate(_all)}}
+
+                with open(os.path.join(conf, "shortcuts.vdf"), "wb") as f:
+                    f.write(vdf.binary_dumps(_shortcuts))
+
+            except (OSError, IOError) as e:
+                logging.error(e)
+                return False
+
+            return True
+
         logging.info(f"Adding shortcut for {program_name}")
         cmd = "xdg-open"
-        args = "bottles:run/'{0}'/'{1}'"
+        args = f"bottles:run/'{self.config.Name}'/'{program_name}'"
+        appid = crc32(str.encode(self.config.Name + program_name)) | 0x80000000
 
         if self.userdata_path is None:
             logging.warning("Userdata path is not set")
@@ -542,12 +592,13 @@ class SteamManager:
 
         confs = glob(os.path.join(self.userdata_path, "*/config/"))
         shortcut = {
+            "appid": appid - 0x100000000,
             "AppName": program_name,
             "Exe": cmd,
             "StartDir": ManagerUtils.get_bottle_path(self.config),
             "icon": ManagerUtils.extract_icon(self.config, program_name, program_path),
             "ShortcutPath": "",
-            "LaunchOptions": args.format(self.config.Name, program_name),
+            "LaunchOptions": args,
             "IsHidden": 0,
             "AllowDesktopConfig": 1,
             "AllowOverlay": 1,
@@ -559,22 +610,11 @@ class SteamManager:
             "tags": {"0": "Bottles"},
         }
 
-        for c in confs:
-            _shortcuts = {}
-            _existing = {}
+        ok = False
+        for conf in confs:
+            ok |= __add_to_user_conf(conf)
 
-            if os.path.exists(os.path.join(c, "shortcuts.vdf")):
-                with open(os.path.join(c, "shortcuts.vdf"), "rb") as f:
-                    try:
-                        _existing = vdf.binary_loads(f.read()).get("shortcuts", {})
-                    except:
-                        continue
+        if ok:
+            logging.info(f"Added shortcut for {program_name}")
 
-            _all = list(_existing.values()) + [shortcut]
-            _shortcuts = {"shortcuts": {str(i): s for i, s in enumerate(_all)}}
-
-            with open(os.path.join(c, "shortcuts.vdf"), "wb") as f:
-                f.write(vdf.binary_dumps(_shortcuts))
-
-        logging.info(f"Added shortcut for {program_name}")
-        return Result(True)
+        return Result(ok)
