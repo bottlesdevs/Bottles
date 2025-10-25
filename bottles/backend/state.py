@@ -47,6 +47,12 @@ class Signals(Enum):
     TaskRemoved = "task.removed"
     TaskUpdated = "task.updated"
 
+    # Playtime lifecycle signals
+    ProgramStarted = "Playtime.program_started"
+
+    # ProgramFinished data payload:
+    ProgramFinished = "Playtime.program_finished"
+
 
 class Status(Enum):
     RUNNING = "running"
