@@ -173,6 +173,36 @@ class OnboardDialog(Adw.Dialog):
         completed_steps = current_step if completed else max(0, current_step - 1)
 
         if self.__progress_total:
+            self.progressbar.set_fraction(
+                completed_steps / self.__progress_total
+            )
+            self.progressbar.set_visible(True)
+            self.label_progress.set_visible(True)
+            self.label_progress.set_label(
+                _("Step {current} of {total}").format(
+                    current=displayed_step, total=self.__progress_total
+                )
+            )
+
+        if not completed:
+            self.label_status.set_visible(True)
+            self.label_status.set_label(description)
+
+    @GtkUtils.run_in_main_loop
+    def __update_progress(
+        self,
+        description: str,
+        current_step: int,
+        total_steps: int,
+        completed: bool,
+    ):
+        if total_steps:
+            self.__progress_total = total_steps
+
+        displayed_step = current_step
+        completed_steps = current_step if completed else max(0, current_step - 1)
+
+        if self.__progress_total:
             self.progressbar.set_fraction(completed_steps / self.__progress_total)
             self.progressbar.set_visible(True)
             self.label_progress.set_visible(True)
