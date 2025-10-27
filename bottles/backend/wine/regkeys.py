@@ -224,6 +224,44 @@ class RegKeys:
             }
         )
 
+    def apply_font_smoothing(self, mode: str = "rgb"):
+        """Enable Wine font smoothing using a predefined mode."""
+
+        modes = {
+            "disable": {"smoothing": "0", "orientation": 1, "type": 0},
+            "gray": {"smoothing": "2", "orientation": 1, "type": 1},
+            "bgr": {"smoothing": "2", "orientation": 0, "type": 2},
+            "rgb": {"smoothing": "2", "orientation": 1, "type": 2},
+        }
+
+        if mode not in modes:
+            raise ValueError("Given font smoothing mode is not supported.")
+
+        selected = modes[mode]
+
+        self.reg.import_bundle(
+            {
+                "HKEY_CURRENT_USER\\Control Panel\\Desktop": [
+                    {"value": "FontSmoothing", "data": selected["smoothing"]},
+                    {
+                        "value": "FontSmoothingGamma",
+                        "data": "00000578",
+                        "key_type": "dword",
+                    },
+                    {
+                        "value": "FontSmoothingOrientation",
+                        "data": f"{selected['orientation']:08x}",
+                        "key_type": "dword",
+                    },
+                    {
+                        "value": "FontSmoothingType",
+                        "data": f"{selected['type']:08x}",
+                        "key_type": "dword",
+                    },
+                ]
+            }
+        )
+
     def set_renderer(self, value: str):
         """
         Set what backend to use for wined3d.
