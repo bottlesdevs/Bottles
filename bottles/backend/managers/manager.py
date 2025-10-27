@@ -1444,6 +1444,13 @@ class Manager(metaclass=Singleton):
 
             FileUtils.wait_for_files(reg_files)
 
+            logging.info("Enabling font smoothing…")
+            log_update(_("Enabling font smoothing…"))
+            rk.apply_font_smoothing()
+            wineboot.update()
+
+            FileUtils.wait_for_files(reg_files)
+
             # blacklisting processes
             logging.info("Optimizing environment…")
             log_update(_("Optimizing environment…"))
