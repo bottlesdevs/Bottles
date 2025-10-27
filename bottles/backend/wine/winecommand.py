@@ -681,7 +681,7 @@ class WineCommand:
             envs=self.env,
             chdir=self.cwd,
             share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
-            share_paths_ro=[Paths.runners, Paths.temp],
+            share_paths_ro=[p for p in [Paths.runners, Paths.temp] if p],
             share_net=self.config.Sandbox.share_net,
             share_sound=self.config.Sandbox.share_sound,
         )

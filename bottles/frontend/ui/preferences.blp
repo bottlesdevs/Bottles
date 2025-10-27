@@ -284,22 +284,4 @@ template $PreferencesWindow: Adw.PreferencesWindow {
     }
   }
 
-  Adw.PreferencesPage {
-    icon-name: "applications-science-symbolic";
-    title: _("Experiments");
-
-    Adw.PreferencesGroup {
-      description: _("These features are under heavy development and may be unstable, expect bugs and breakage.");
-
-      Adw.ActionRow {
-        title: _("Sandbox per bottle");
-        subtitle: _("In early development.");
-        activatable-widget: switch_sandbox;
-
-        Switch switch_sandbox {
-          valign: center;
-        }
-      }
-    }
-  }
 }
