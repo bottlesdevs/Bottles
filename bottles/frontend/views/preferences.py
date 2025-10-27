@@ -47,7 +47,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
     switch_steam = Gtk.Template.Child()
-    switch_sandbox = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
@@ -114,12 +113,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.bind(
             "steam-proton-support",
             self.switch_steam,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "experiments-sandbox",
-            self.switch_sandbox,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
