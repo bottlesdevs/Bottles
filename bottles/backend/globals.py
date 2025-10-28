@@ -48,6 +48,7 @@ class Paths:
     latencyflex = f"{base}/latencyflex"
     templates = f"{base}/templates"
     library = f"{base}/library.yml"
+    process_metrics = f"{base}/process_metrics.sqlite"
 
     @staticmethod
     def is_vkbasalt_available():

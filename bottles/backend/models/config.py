@@ -111,8 +111,7 @@ class BottleParams(DictCompatMixIn):
     versioning_exclusion_patterns: bool = False
     vmtouch: bool = False
     vmtouch_cache_cwd: bool = False
-
-
+    
 @dataclass
 class BottleConfig(DictCompatMixIn):
     Name: str = ""
@@ -158,6 +157,7 @@ class BottleConfig(DictCompatMixIn):
         :param encoding: file content encoding, default is None(Decide by Python IO)
         :param indent: file indent width, default is 4
         """
+        yaml.register_dataclass(type(self))
         f = file if isinstance(file, IOBase) else open(file, mode=mode)
         try:
             yaml.dump(self.to_dict(), f, indent=indent, encoding=encoding)
@@ -277,3 +277,4 @@ class BottleConfig(DictCompatMixIn):
                 )
 
         return new_data
+

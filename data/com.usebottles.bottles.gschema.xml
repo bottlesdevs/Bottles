@@ -86,5 +86,15 @@
       <summary>Show sandbox warning</summary>
       <description>Toggle sandbox warning.</description>
     </key>
+    <key type="b" name="playtime-enabled">
+      <default>true</default>
+      <summary>Enable playtime tracking</summary>
+      <description>When true, Bottles records playtime telemetry to a local SQLite database. Disable to stop tracking.</description>
+    </key>
+    <key type="i" name="playtime-heartbeat-interval">
+      <default>60</default>
+      <summary>Playtime heartbeat interval (seconds)</summary>
+      <description>How often to update session heartbeat. Defines max timestamp error for abrupt exits.</description>
+    </key>
 	</schema>
 </schemalist>
