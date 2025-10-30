@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
 "PO-Revision-Date: 2025-10-30 13:46+0000\n"
-"Last-Translator: Jose Riha <jose1711@gmail.com>\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/bottles/bottles/"
 "sk/>\n"
 "Language: sk\n"
@@ -172,7 +172,7 @@ msgstr "Cesta k vykonateľnému súboru"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr "Cesta .lnk"
+msgstr "Cesta odkazu .lnk"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
@@ -223,7 +223,9 @@ msgstr "Vývojári Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr "Jose Riha <jose1711@gmail.com>"
+msgstr ""
+"Jose Riha <jose1711@gmail.com>\n"
+"Dušan Kazik <prescott66@gmail.com>"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -1318,7 +1320,7 @@ msgstr "Informácia"
 
 #: bottles/frontend/ui/dialog-journal.blp:40
 msgid "Journal browser"
-msgstr ""
+msgstr "Prehliadač žurnálu"
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
@@ -1578,7 +1580,7 @@ msgstr "Odšumené doostrenie Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
-msgstr "Odšumiť"
+msgstr "Odstránenie šumu"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:160
 msgid "Fast Approximate Anti-Aliasing"
@@ -1750,7 +1752,7 @@ msgstr "Hodnota"
 
 #: bottles/frontend/ui/importer-entry.blp:13
 msgid "Browse files"
-msgstr ""
+msgstr "Prehliadať súbory"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
@@ -1828,7 +1830,7 @@ msgstr "Spustiť"
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
 msgid "Launch with Steam"
-msgstr "Spustiť pomocou Steamu"
+msgstr "Spustiť pomocou služby Steam"
 
 #: bottles/frontend/ui/library-entry.blp:108
 msgid "Item name"
@@ -1986,11 +1988,11 @@ msgstr "Predchádzajúci"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
-msgstr "Vitajte v Bottles"
+msgstr "Vitajte v aplikácii Fľaše"
 
 #: bottles/frontend/ui/onboard.blp:60
 msgid "Run Windows Software on Linux."
-msgstr "Spúšťajte programy Windows na Linuxe."
+msgstr "Spúšťajte softvér pre systém Windows v systéme Linux."
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
@@ -2098,11 +2100,11 @@ msgstr "Zobrazovať a spravovať prefixy služby Steam Proton."
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
-msgstr "Zobrazovať Steam aplikácie v zozname programov"
+msgstr "Zobrazovať aplikácie služby Steam v zozname programov"
 
 #: bottles/frontend/ui/preferences.blp:98
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr "Vyžaduje Steam pre Windows nainštalovaní vo Fľaši."
+msgstr "Vyžaduje službu Steam pre Windows nainštalovanú vo Fľaši."
 
 #: bottles/frontend/ui/preferences.blp:107
 msgid "List Epic Games in Programs List"
@@ -2148,7 +2150,7 @@ msgstr "Predbežné vydanie"
 
 #: bottles/frontend/ui/preferences.blp:209
 msgid "Display unstable versions of runners."
-msgstr ""
+msgstr "Zobrazí nestabilné verzie spúšťačov."
 
 #: bottles/frontend/ui/preferences.blp:224
 msgid "DLL Components"
@@ -2219,7 +2221,7 @@ msgstr "Pridať položku na plochu"
 
 #: bottles/frontend/ui/program-entry.blp:51
 msgid "Add to Steam"
-msgstr "Pridať do Steamu"
+msgstr "Pridať do služby Steam"
 
 #: bottles/frontend/ui/program-entry.blp:55
 msgid "Rename…"
@@ -2282,7 +2284,7 @@ msgstr "Pomocník"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:96
 msgid "About Bottles"
-msgstr "O programe Bottles"
+msgstr "O aplikácii Fľaše"
 
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
@@ -2404,7 +2406,7 @@ msgstr "Toto môže spôsobiť stratu údajov, poškodenie a nefunkčnosť progr
 
 #: bottles/frontend/views/bottle_details.py:601
 msgid "Force _Stop"
-msgstr "Vynútené zastavenie"
+msgstr "Vynútiť za_stavenie"
 
 #: bottles/frontend/views/bottle_preferences.py:195
 msgid "This feature is unavailable on your system."
@@ -2481,7 +2483,7 @@ msgstr "Vyberte súbor s konfiguráciou"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
-msgstr "N/A"
+msgstr "Nedostupné"
 
 #. Set tooltip text
 #: bottles/frontend/views/list.py:91
@@ -2492,7 +2494,7 @@ msgstr "Spustiť vykonateľný súbor v „{self.config.Name}“"
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Spúšťam „{0}“ v „{1}“…"
+msgstr "Spúšťa sa „{0}“ v „{1}“…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2532,13 +2534,12 @@ msgstr "Fľaša bola vytvorená"
 #: bottles/frontend/views/new.py:233
 #, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr "Úspešne vytvorené „{0}“."
+msgstr "Fľaša „{0}“ bola úspešne vytvorená."
 
 #: bottles/frontend/views/preferences.py:142
 msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr ""
-"Inštalácia Steamu nebola nájdená alebo službe Bottles chýbajú dostatočné "
-"oprávnenia."
+"Služba Steam sa nenašla, alebo aplikácia Fľaše nemá dostatočné oprávnenia."
 
 #: bottles/frontend/views/preferences.py:176
 msgid "Select Bottles Path"
