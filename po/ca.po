@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2022-12-28 22:40+0000\n"
-"Last-Translator: Roger VC <rogervilarasau@gmail.com>\n"
+"PO-Revision-Date: 2025-10-30 14:36+0000\n"
+"Last-Translator: Helena Fabregat <hefabregat@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bottles/bottles/"
 "ca/>\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -225,7 +225,7 @@ msgstr "Desenvolupadors de Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "crèdits_traductors"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -512,9 +512,8 @@ msgid "Edit the internal registry."
 msgstr "Editeu el registre intern."
 
 #: bottles/frontend/ui/details-bottle.blp:413
-#, fuzzy
 msgid "Legacy Wine Tools"
-msgstr "Eines heretades"
+msgstr "Eines de Wine heretades"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
@@ -595,7 +594,6 @@ msgid "Search for Programs…"
 msgstr "Cercar programes…"
 
 #: bottles/frontend/ui/details-installers.blp:15
-#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
@@ -603,7 +601,7 @@ msgid ""
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
 "Els fitxers d’aquesta pàgina són proporcionats per tercers sota una "
-"llicència de propietat. En instal·lar-los, n’esteu d’acord amb els termes de "
+"llicència de propietat. En instal·lar-los, esteu d’acord amb els termes de "
 "llicència."
 
 #: bottles/frontend/ui/details-installers.blp:29
@@ -731,6 +729,8 @@ msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Utilitza la GPU dedicada per tal d'augmentar el rendiment en detriment del "
+"consum d'energia."
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
@@ -755,9 +755,8 @@ msgid "Manage Gamescope settings"
 msgstr "Gestiona els paràmetres del Gamescope"
 
 #: bottles/frontend/ui/details-preferences.blp:171
-#, fuzzy
 msgid "Advanced Display Settings"
-msgstr "Paràmetres de la pantalla"
+msgstr "Paràmetres de la pantalla avançats"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
@@ -792,23 +791,27 @@ msgstr "Futex2"
 #: bottles/frontend/ui/details-preferences.blp:202
 #, fuzzy
 msgid "Monitor Performance"
-msgstr "Rendiment"
+msgstr "Rendiment del monitor"
 
 #: bottles/frontend/ui/details-preferences.blp:203
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
+"Mostra informació de monitoratge com ara fotogrames per segon, temperatura, "
+"càrrega de la CPU/GPU i més a OpenGL i Vulkan a través de MangoHud."
 
 #: bottles/frontend/ui/details-preferences.blp:211
 #, fuzzy
 msgid "Feral GameMode"
-msgstr "GameMode"
+msgstr "Mode de Joc Feral"
 
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
+"Aplicar un conjunt d'optimitzacions a l'aparell. Pot millorar el rendiment "
+"de joc."
 
 #: bottles/frontend/ui/details-preferences.blp:221
 #, fuzzy
@@ -816,10 +819,13 @@ msgid "Preload Game Files"
 msgstr "Carregueu prèviament els fitxers del joc a la memòria RAM"
 
 #: bottles/frontend/ui/details-preferences.blp:222
+#, fuzzy
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Millorar el temps de càrrega en iniciar el joc múltiples vegades. El joc "
+"tardarà més temps per iniciar-se la primera vegada."
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
@@ -837,7 +843,7 @@ msgstr "Commuta la captura de jocs de OBS per a tots els programes."
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
-msgstr ""
+msgstr "Comptabilitat"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 msgid "Windows Version"
@@ -1004,7 +1010,7 @@ msgstr "Detalls de l'ampolla"
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
 msgid "Go Back"
-msgstr ""
+msgstr "Retornar"
 
 #: bottles/frontend/ui/details.blp:75
 msgid "Operations"
@@ -1163,8 +1169,9 @@ msgstr "S’està duplicant…"
 #: bottles/frontend/ui/dialog-installer.blp:103
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/views/new.py:177
+#, fuzzy
 msgid "This could take a while."
-msgstr ""
+msgstr "Aquest procediment podria tardar una estona"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
@@ -1218,8 +1225,9 @@ msgid "Save"
 msgstr "Desar"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
+#, fuzzy
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "Gestiona com voldries que es mostressin els jocs"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
@@ -1233,12 +1241,12 @@ msgstr "Utilitza la resolució del videojoc com a referència."
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
 msgid "Width"
-msgstr ""
+msgstr "Amplada"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:64
 #: bottles/frontend/ui/dialog-gamescope.blp:101
 msgid "Height"
-msgstr ""
+msgstr "Alçada"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
 #, fuzzy
@@ -1286,12 +1294,11 @@ msgstr "Pantalla completa"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr ""
+msgstr "Vols procedir amb la instal·lació?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
-#, fuzzy
 msgid "Start Installation"
-msgstr "Traduccions"
+msgstr "Iniciar instal·lació"
 
 #: bottles/frontend/ui/dialog-installer.blp:64
 msgid ""
@@ -1303,26 +1310,24 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
-msgstr ""
+msgstr "Procedir"
 
 #: bottles/frontend/ui/dialog-installer.blp:127
-#, fuzzy
 msgid "Completed!"
-msgstr "Components"
+msgstr "Completat!"
 
 #: bottles/frontend/ui/dialog-installer.blp:130
-#, fuzzy
 msgid "Show Programs"
-msgstr "Mostra el programa"
+msgstr "Mostra els programes"
 
 #: bottles/frontend/ui/dialog-installer.blp:148
-#, fuzzy
 msgid "Installation Failed!"
-msgstr "Instal·lar seleccionats"
+msgstr "Instal·lació fallida!"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
+#, fuzzy
 msgid "Something went wrong."
-msgstr ""
+msgstr "Quelcom ha anat malament."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
@@ -2479,8 +2484,9 @@ msgid "This feature is unavailable on your system."
 msgstr "Aquesta funció no està disponible al vostre sistema."
 
 #: bottles/frontend/views/bottle_preferences.py:196
+#, fuzzy
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} Per afegir aquesta funcionalitat, executa flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
 #, fuzzy
@@ -2495,7 +2501,7 @@ msgstr "Directori de treball"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
-msgstr ""
+msgstr "Directori que conté les dades de \"{}\"."
 
 #: bottles/frontend/views/bottle_preferences.py:746
 #, fuzzy
@@ -2523,12 +2529,10 @@ msgid "Return to your bottles."
 msgstr "Torna a les vostres ampolles."
 
 #: bottles/frontend/views/importer.py:92
-#, fuzzy
 msgid "Backup imported successfully"
 msgstr "La còpia de seguretat s'ha importat correctament."
 
 #: bottles/frontend/views/importer.py:94
-#, fuzzy
 msgid "Import failed"
 msgstr "La importació ha fallat."
 
@@ -2538,7 +2542,6 @@ msgid "Importing backup…"
 msgstr "S'està important la còpia de seguretat…"
 
 #: bottles/frontend/views/importer.py:119
-#, fuzzy
 msgid "Select a Backup Archive"
 msgstr "Trieu un arxiu de còpia de seguretat"
 
@@ -2548,7 +2551,6 @@ msgid "Import"
 msgstr "Importar"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
-#, fuzzy
 msgid "Select a Configuration File"
 msgstr "Trieu un fitxer de configuració"
 
