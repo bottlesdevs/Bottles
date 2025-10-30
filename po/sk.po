@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-07-31 09:09+0000\n"
+"PO-Revision-Date: 2025-10-30 13:46+0000\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/bottles/bottles/"
 "sk/>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -43,7 +43,7 @@ msgstr "Chýbajú základné súčasti. Inštalujem…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
-msgstr "Zlyhalo vytvorenie adresára pre fľašu."
+msgstr "Zlyhalo vytvorenie adresára pre Fľašu."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
@@ -168,7 +168,7 @@ msgstr "Zobraziť verziu"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
-msgstr "Cesta ku spustiteľnému súboru"
+msgstr "Cesta k vykonateľnému súboru"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
@@ -1114,7 +1114,7 @@ msgid ""
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
 "Jedná sa o cesty z hostiteľského systému, ktoré sú mapované a rozpoznané ako "
-"zariadenia v programe Runner (napr. C:, D:…)."
+"zariadenia v programe spúšťača (napr. C:, D:…)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1376,7 +1376,7 @@ msgstr "Vyberte adresár"
 #: bottles/frontend/ui/dialog-launch-options.blp:114
 msgid "These settings will override the default settings for this executable."
 msgstr ""
-"Tieto nastavenia prepíšu predvolené nastavenia tohto spustiteľného súboru."
+"Tieto nastavenia prepíšu predvolené nastavenia tohto vykonateľného súboru."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:115
 msgid "Preferences Overrides"
@@ -1418,11 +1418,11 @@ msgstr ""
 "Odporúčame miesto toho používať Wine-GE, verziu Protonu určenú pre beh mimo "
 "službu Steam.\n"
 "\n"
-"Pokračovaním automaticky povolíte behové prostredie služby Steam (ak ho v "
-"systéme Bottles nájde), aby mu umožnilo prístup k potrebným knižniciam a "
-"obmedzilo problémy s kompatibilitou. Uvedomte si, že GloriousEggroll, "
-"poskytovateľ spúšťača, nie je zodpovedný za prípadné problémy a prosíme vás, "
-"aby ste mu ich nenahlasovali."
+"Pokračovaním automaticky povolíte behové prostredie služby Steam "
+"(ak ho v systéme Bottles nájde), aby mu umožnilo prístup k potrebným "
+"knižniciam a obmedzilo problémy s kompatibilitou. Uvedomte si, že "
+"GloriousEggroll, poskytovateľ spúšťača, nie je zodpovedný za prípadné "
+"problémy a prosíme vás, aby ste mu ich nenahlasovali."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1452,7 +1452,7 @@ msgstr "Spustiť"
 
 #: bottles/frontend/ui/dialog-run-args.blp:44
 msgid "Write below the arguments to be passed to the executable."
-msgstr "Nižšie napíšte argumenty, ktoré sa majú predať spustiteľnému súboru."
+msgstr "Nižšie napíšte argumenty, ktoré sa majú odovzdať vykonateľnému súboru."
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
@@ -1872,7 +1872,7 @@ msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
-"Táto fľaša vyzerá byť poškodená, konfiguračný súbor chýba. Môžem skúsiť "
+"Táto Fľaša vyzerá byť poškodená, konfiguračný súbor chýba. Môžem skúsiť "
 "vytvoriť novú konfiguráciu."
 
 #: bottles/frontend/ui/list.blp:12
@@ -1918,9 +1918,8 @@ msgid "C_reate"
 msgstr "_Vytvoriť"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
-msgstr "Fľaše"
+msgstr "Názov Fľaše"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
@@ -2304,7 +2303,7 @@ msgstr "„{0}“ bolo pridané"
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
 msgid "Select Executable"
-msgstr "Vyberte spustiteľný (.exe) súbor"
+msgstr "Vyberte vykonateľný súbor"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2488,7 +2487,7 @@ msgstr "N/A"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr "Spustiť spustiteľný súbor v „{self.config.Name}“"
+msgstr "Spustiť vykonateľný súbor v „{self.config.Name}“"
 
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
@@ -2573,21 +2572,23 @@ msgstr ""
 
 #: bottles/frontend/views/preferences.py:244
 msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
+msgstr "Založené na upstreame Wine, obsahuje záplaty pre staging a Proton."
 
 #: bottles/frontend/views/preferences.py:247
 msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
+msgstr "Založené na upstreame Wine, obsahuje záplaty pre staging."
 
 #: bottles/frontend/views/preferences.py:248
 msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
+"Založené na Wine od spoločnosti Valve, obsahuje záplaty pre staging, Proton "
+"a špecifické záplaty pre Steam. Vyžaduje spustený Steam Runtime."
 
 #: bottles/frontend/views/preferences.py:250
 msgid "Other"
-msgstr ""
+msgstr "Iné"
 
 #: bottles/frontend/widgets/component.py:74
 msgid "Upgrade"
@@ -2959,7 +2960,7 @@ msgstr "Spusti Windows softvér na Linuxe s Fľašami!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:12
 msgid "Bottle software and enjoy at your leisure!"
-msgstr ""
+msgstr "Vložte vaše programy do Fľaše a užívajte si ich!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:13
 msgid ""
@@ -2967,11 +2968,16 @@ msgid ""
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
+"Náš integrovaný systém inštalácie závislostí poskytuje automatický prístup "
+"ku kompatibilite softvéru. Použite správcu sťahovania na stiahnutie "
+"oficiálnych súčastí: runner (Wine, Proton), DXVK, závislostí atď."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:16
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
+"Správca verzií Fliaš vám umožní bezpečne zachovať vašu prácu a takisto ju "
+"neskôr obnoviť!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:17
 msgid "Features:"
@@ -2980,74 +2986,81 @@ msgstr "Funkcie:"
 #: data/com.usebottles.bottles.metainfo.xml.in:19
 msgid "Create bottles using preconfigured environments or create your own"
 msgstr ""
+"Vytvorte Fľaše pomocou prednastavených prostredí alebo si vytvorte vlastné"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:20
 msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
+"Spustite vykonateľné súbory (.exe/.msi) vo vašich Fľašiach priamo z "
+"kontextovej ponuky vášho správcu súborov"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:21
 msgid "Automated detection of applications installed in your bottles"
-msgstr ""
+msgstr "Automatická detekcia aplikácií nainštalovaných vo vašich Fľašiach"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:22
 msgid "Add environment variables quickly"
-msgstr ""
+msgstr "Rýchlo pridajte premenné prostredia"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:23
 msgid "Override DLLs directly from per-bottle preferences"
-msgstr ""
+msgstr "Prepisujte DLL súbory priamo z nastavenia jednotlivých Fliaš"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:24
 msgid "On-the-fly runner change for any Bottle"
-msgstr ""
+msgstr "Výmena spúšťača počas behu Fľaše"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:25
 msgid ""
 "Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
 "compiler, offload … and much more.)"
 msgstr ""
+"Rôzne optimalizácie herného výkonu "
+"(esync, fsync, DXVK, keš, kompilátor shaderov, offload ... a veľa ďalších)"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:26
 msgid "Automatic installation and management of Wine and Proton runners"
-msgstr ""
+msgstr "Automatická inštalácia a správa spúšťačov Wine a Proton"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:27
 msgid "Automatic bottle repair in case of breakage"
-msgstr ""
+msgstr "Automatická oprava Fľaše, v prípade, že dôjde k jej rozbitiu"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:28
 msgid "Integrated dependency-installer based on a community-driven repository"
 msgstr ""
+"Integrovaný inštalátor závislostí založený na repozitári spravovanom "
+"komunitou"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:29
 msgid "Integrated Task manager for Wine processes"
-msgstr ""
+msgstr "Integrovaný správca úloh pre procesy Wine"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:30
 msgid "Access to ProtonDB and WineHQ for support"
-msgstr ""
+msgstr "Prístup k ProtonDB a WineHQ pre podporu"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:31
 msgid "System for bringing your configuration to new versions of Bottles"
-msgstr ""
+msgstr "Systém pre prenesenie vašej konfigurácie do nových verzií Fliaš"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:32
 msgid "Back up and import bottles"
-msgstr ""
+msgstr "Zálohujte a importuje Fľaše"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:33
 msgid "Import Wine prefixes from other managers"
-msgstr ""
+msgstr "Importujte Wine prefixy z iných správcov"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:34
 msgid "Bottles versioning"
-msgstr ""
+msgstr "Verzovanie Fliaš"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:35
 msgid "... and much more that you can find by installing Bottles!"
-msgstr ""
+msgstr "... a oveľa viac môžete zistiť tak, že si nainštalujte Fľaše!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
@@ -3087,7 +3100,7 @@ msgstr "Drobné vylepšenia používateľského rozhrania:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "Nahradenie ikony lásky ikonou knižnice na stránke knižnice"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
@@ -3099,7 +3112,7 @@ msgstr "Opravy chýb:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "Pridanie zástupcu do služby Steam viedlo k chybe"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
@@ -3115,6 +3128,8 @@ msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"Rôzne opravy súvisiace s knižnicami, napr. prázdne obálky a pády súvisiace s "
+"chýbajúcimi položkami"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
@@ -3133,6 +3148,7 @@ msgstr "Opravený dátum verzie"
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
 msgstr ""
+"Skrytie kritických chýb súvisiacich s NVIDIA v systémoch iných ako NVIDIA"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
@@ -3167,6 +3183,8 @@ msgstr "Viac premenných pre skripty inštalatéra"
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"Oprava podkladového dialógového okna zobrazujúceho „Všetko je pripravené“, "
+"aj keď v skutočnosti pripravené nebolo"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
