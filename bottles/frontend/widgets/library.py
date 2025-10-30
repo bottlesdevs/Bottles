@@ -31,6 +31,12 @@ from bottles.frontend.utils.gtk import GtkUtils
 logging = Logger()
 
 
+class LibraryEntryInitializationError(Exception):
+    """Raised when a library entry cannot be initialized."""
+
+    pass
+
+
 @Gtk.Template(resource_path="/com/usebottles/bottles/library-entry.ui")
 class LibraryEntry(Gtk.Box):
     __gtype_name__ = "LibraryEntry"
@@ -58,15 +64,28 @@ class LibraryEntry(Gtk.Box):
         self.name = entry["name"]
         self.uuid = uuid
         self.entry = entry
-        self.config = self.__get_config()
+        try:
+            self.config = self.__get_config()
 
-        # This happens when a Library entry is an "orphan" (no bottles associated)
-        if self.config is None:
-            library_manager = LibraryManager()
-            library_manager.remove_from_library(self.uuid)
-            raise Exception
+            if self.config is None:
+                raise LibraryEntryInitializationError(
+                    _(
+                        'The bottle for "{0}" is no longer available. Removing it from the library.'
+                    ).format(self.name)
+                )
 
-        self.program = self.__get_program()
+            self.program = self.__get_program()
+
+            if self.program is None:
+                raise LibraryEntryInitializationError(
+                    _(
+                        'The program "{0}" is no longer available. Removing it from the library.'
+                    ).format(self.name)
+                )
+
+        except LibraryEntryInitializationError as error:
+            self.__handle_initialization_failure(str(error))
+            raise
 
         if len(entry["name"]) >= 15:
             name = entry["name"][:13] + "…"
@@ -107,11 +126,13 @@ class LibraryEntry(Gtk.Box):
 
     def __get_config(self):
         bottles = self.manager.local_bottles
-        if self.entry["bottle"]["name"] in bottles:
-            return bottles[self.entry["bottle"]["name"]]
-        parent = self.get_parent()
-        if parent:
-            parent.remove(self)  # TODO: Remove from list
+        bottle_name = self.entry["bottle"]["name"]
+
+        if bottle_name in bottles:
+            return bottles[bottle_name]
+
+        self.__remove_from_library()
+        return None
 
     def __get_program(self):
         programs = self.manager.get_programs(self.config)
@@ -121,8 +142,19 @@ class LibraryEntry(Gtk.Box):
             if p["id"] == self.entry["id"] or p["name"] == self.entry["name"]
         ]
         if len(programs) == 0:
-            return None  # TODO: remove entry from library
+            self.__remove_from_library()
+            return None
         return programs[0]
+
+    def __remove_from_library(self):
+        library_manager = LibraryManager()
+        library_manager.remove_from_library(self.uuid)
+
+    def __handle_initialization_failure(self, message: str):
+        logging.warning(message, jn=False)
+
+        if hasattr(self.window, "show_toast"):
+            self.window.show_toast(message)
 
     @GtkUtils.run_in_main_loop
     def __reset_buttons(self, result: Result | bool = None, error=False):
