@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-10-30 14:42+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-10-30 14:43+0000\n"
+"Last-Translator: Roger VC <rogervilarasau@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bottles/bottles/"
 "ca/>\n"
 "Language: ca\n"
@@ -203,7 +203,7 @@ msgstr "S'ha rebut la sol·licitud [Actualització]."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Doneu"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
@@ -211,7 +211,7 @@ msgstr "Biblioteques de tercers i agraïments especials"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Patrocinat i Finançat per"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
@@ -466,20 +466,18 @@ msgid "Dependencies"
 msgstr "Dependències"
 
 #: bottles/frontend/ui/details-bottle.blp:361
-#, fuzzy
 msgid "Install dependencies for programs."
-msgstr "Instal·la aquest programa"
+msgstr "Instal·la dependències per a programes."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "Instantànies"
 
 #: bottles/frontend/ui/details-bottle.blp:371
-#, fuzzy
 msgid "Create and manage bottle states."
-msgstr "Deseu l'estat de l'ampolla."
+msgstr "Crea i gestiona els estats de les ampolles."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
@@ -489,7 +487,7 @@ msgstr "Gestor de Tasques"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr ""
+msgstr "Gestiona els programes en funcionament."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -520,9 +518,8 @@ msgid "Explorer"
 msgstr "Explorador"
 
 #: bottles/frontend/ui/details-bottle.blp:435
-#, fuzzy
 msgid "Debugger"
-msgstr "Depurar"
+msgstr "Depurador"
 
 #: bottles/frontend/ui/details-bottle.blp:444
 #: bottles/frontend/ui/importer.blp:69 bottles/frontend/ui/new.blp:145
@@ -545,37 +542,39 @@ msgstr "Cercar dependències…"
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "Esteu fora de línia :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr ""
+"Bottles està corrent en mode fora de línia, així que les dependències no "
+"estan disponibles."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
-#, fuzzy
 msgid ""
 "Dependencies are resources that improve compatibility of Windows software.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Els fitxers d’aquesta pàgina són proporcionats per tercers sota una "
-"llicència de propietat. En instal·lar-los, n’esteu d’acord amb els termes de "
-"llicència."
+"Les dependències són recursos que milloren la compatibilitat del programari "
+"Windows.\n"
+"\n"
+"Els fitxers d'aquesta pàgina són proporcionats per tercers sota una "
+"llicència propietària. En instal·lar-los, vostè accepta els seus respectius "
+"termes de llicència."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
 msgstr "Informar d'un problema o d'una dependència que falta."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
-#, fuzzy
 msgid "Report Missing Dependency"
-msgstr "Informar d'una dependència que falta"
+msgstr "Informa d'una dependència que falta"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
-#, fuzzy
 msgid "Read Documentation."
-msgstr "Llegir documentació"
+msgstr "Llegeix la documentació."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
@@ -633,7 +632,7 @@ msgstr "Components"
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "La versió de la capa de compatibilitat Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
@@ -646,7 +645,7 @@ msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Millora la compatibilitat de Direct3D 8/9/10/11 traduint-ho a Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
@@ -659,16 +658,15 @@ msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Millora la compatibilitat de Direct3D 12 traduint-ho a Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
 msgstr "S'està actualitzant VKD3D, espereu…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
-#, fuzzy
 msgid "DXVK NVAPI"
-msgstr "DXVK-NVAPI"
+msgstr "DXVK NVAPI"
 
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
@@ -681,20 +679,18 @@ msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
-#, fuzzy
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
 msgstr ""
-"Una alternativa a NVIDIA Reflex. Pot ser detectat per alguns anti-trampes."
+"Augmenta la capacitat de resposta. Pot ser detectat per alguns programes "
+"antitrampes."
 
 #: bottles/frontend/ui/details-preferences.blp:71
-#, fuzzy
 msgid "Updating LatencyFleX, please wait…"
-msgstr "S'està actualitzant DXVK, espereu…"
+msgstr "S'està actualitzant LatencyFleX, si us plau espereu…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
-#, fuzzy
 msgid "Display"
-msgstr "Paràmetres de la pantalla"
+msgstr "Pantalla"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
@@ -705,15 +701,16 @@ msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"Augmentar el rendiment a costa dels gràfics mitjançant DXVK-NVAPI. Només "
+"funciona en les targetes gràfiques NVIDIA GPUs més noves."
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:106
-#, fuzzy
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "Millora el rendiment a costa d'un augment de l'ús d'energia."
+msgstr "Augmentar el rendiment a costa dels gràfics. Només funciona a Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
@@ -1448,17 +1445,18 @@ msgid ""
 "you do not report to them."
 msgstr ""
 "Aneu amb compte, utilitzar corredors basats en Proton en ampolles que no "
-"siguin de Steam pot causar problemes i evitar que es comportin "
-"correctament.\n"
+"siguin de Steam pot causar problemes i evitar que es comportin correctament."
+"\n"
 "\n"
 "Us recomanem que utilitzeu Wine-GE, una versió de Proton destinada a "
 "funcionar fora de Steam.\n"
 "\n"
-"Si seguiu, s'habilitarà automàticament el temps d'execució de Steam (si està "
-"present al sistema i detectat per Bottles) per tal de permetre-li accedir a "
-"les biblioteques necessàries i limitar els problemes de compatibilitat. "
-"Tingueu en compte que GloriousEggroll, el proveïdor del corredor, no es fa "
-"responsable de cap problema i us demanem que no els comuniqueu."
+"Si seguiu, s'habilitarà automàticament el temps d'execució de Steam "
+"(si està present al sistema i detectat per Bottles) per tal de permetre-li "
+"accedir a les biblioteques necessàries i limitar els problemes de "
+"compatibilitat. Tingueu en compte que GloriousEggroll, el proveïdor del "
+"corredor, no es fa responsable de cap problema i us demanem que no els "
+"comuniqueu."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -2146,8 +2144,7 @@ msgstr "Tancar Bottles després d'iniciar un programa"
 
 #: bottles/frontend/ui/preferences.blp:63
 msgid "Close Bottles after starting a program from the file manager."
-msgstr ""
-"Tancar Bottles després d'iniciar un programa des del gestor de fitxers."
+msgstr "Tancar Bottles després d'iniciar un programa des del gestor de fitxers."
 
 #: bottles/frontend/ui/preferences.blp:73
 msgid "Integrations"
