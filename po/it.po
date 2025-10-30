@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
 "PO-Revision-Date: 2025-10-30 11:20+0000\n"
-"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
+"Last-Translator: Alessio <alexio-dev@proton.me>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
 "Language: it\n"
@@ -29,42 +29,48 @@ msgid "Backup {0}"
 msgstr "Backup {0}"
 
 #: bottles/backend/managers/backup.py:101
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Importing backup: {0}"
-msgstr "Importazione del backup: {0}"
+msgstr "Sto importando il backup: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
 msgstr "Impossibile installare i componenti, 3 tentativi effettuati."
 
 #: bottles/backend/managers/manager.py:1068
+#, fuzzy
 msgid "Missing essential components. Installing…"
-msgstr "Componenti essenziali mancanti. Installandoli…"
+msgstr "Componenti essenziali mancanti. Li installo…"
 
 #: bottles/backend/managers/manager.py:1145
+#, fuzzy
 msgid "Failed to create bottle directory."
-msgstr "Impossibile creare il percorso della bottiglia."
+msgstr "Impossibile creare la directory."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
 msgstr "Impossibile creare il segnaposto."
 
 #: bottles/backend/managers/manager.py:1162
+#, fuzzy
 msgid "Generating bottle configuration…"
-msgstr "Generazione della configurazione della bottiglia…"
+msgstr "Sto generando la configurazione della bottiglia…"
 
 #: bottles/backend/managers/manager.py:1185
+#, fuzzy
 msgid "Template found, applying…"
-msgstr "Modello trovato, applicandolo…"
+msgstr "Modello trovato, lo applico…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1197
+#, fuzzy
 msgid "The Wine config is being updated…"
-msgstr "La configurazione di Wine sta venendo aggiornata…"
+msgstr "La configurazione di Wine si sta aggiornando…"
 
 #: bottles/backend/managers/manager.py:1199
+#, fuzzy
 msgid "Wine config updated!"
-msgstr "Configurazione di Wine aggiornata!"
+msgstr "La configurazione di Wine è stata aggiornata!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
@@ -75,50 +81,58 @@ msgid "Sandboxing userdir…"
 msgstr "Creazione delle cartelle nella sandbox…"
 
 #: bottles/backend/managers/manager.py:1250
+#, fuzzy
 msgid "Setting Windows version…"
-msgstr "Impostando la versione di Windows…"
+msgstr "Sto impostando la versione di Windows…"
 
 #: bottles/backend/managers/manager.py:1260
+#, fuzzy
 msgid "Apply CMD default settings…"
-msgstr "Applicando le impostazioni predefinite del CMD…"
+msgstr "Sto applicando le impostazioni predefinite del CMD…"
 
 #: bottles/backend/managers/manager.py:1268
+#, fuzzy
 msgid "Optimizing environment…"
-msgstr "Ottimizzazione dell'ambiente…"
+msgstr "Sto ottimizzando l'ambiente…"
 
 #: bottles/backend/managers/manager.py:1279
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "Applicazione dell'ambiente: {0}…"
+msgstr "Sto applicando l'ambiente: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
+#, fuzzy
 msgid "(!) Using a custom environment recipe…"
-msgstr "(!) Utilizzando un ambiente personalizzato…"
+msgstr "(!) Sto utilizzando un ambiente personalizzato…"
 
 #: bottles/backend/managers/manager.py:1292
 msgid "(!) Recipe not not found or not valid…"
 msgstr "(!) Formula non trovata o non valida…"
 
 #: bottles/backend/managers/manager.py:1309
+#, fuzzy
 msgid "Installing DXVK…"
-msgstr "Installazione di DXVK…"
+msgstr "Sto installando DXVK…"
 
 #: bottles/backend/managers/manager.py:1317
+#, fuzzy
 msgid "Installing VKD3D…"
-msgstr "Installazione di VKD3D…"
+msgstr "Sto installando VKD3D…"
 
 #: bottles/backend/managers/manager.py:1326
+#, fuzzy
 msgid "Installing DXVK-NVAPI…"
-msgstr "Installazione di DXVK-NVAPI…"
+msgstr "Sto installando DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1335
-#, python-format
+#, fuzzy, python-format
 msgid "Installing dependency: %s …"
-msgstr "Installazione della dipendenza: %s…"
+msgstr "Sto installando la dipendenza: %s…"
 
 #: bottles/backend/managers/manager.py:1345
+#, fuzzy
 msgid "Creating versioning state 0…"
-msgstr "Creazione dello stato di versione 0…"
+msgstr "Sto creando lo stato della versione 0…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
@@ -126,11 +140,11 @@ msgstr "Conclusione…"
 
 #: bottles/backend/managers/manager.py:1364
 msgid "Caching template…"
-msgstr "Creazione della cache del modello…"
+msgstr "Sto creando la cache del modello…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
-msgstr "Salvataggio dello stato…"
+msgstr "Sto salvando lo stato…"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
@@ -151,20 +165,23 @@ msgid "State {0} restored successfully!"
 msgstr "Stato {0} ripristinato con successo!"
 
 #: bottles/backend/managers/versioning.py:155
+#, fuzzy
 msgid "Restoring state {} …"
-msgstr "Ripristino stato {} …"
+msgstr "Sto ripristinando lo stato {} …"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
 msgstr "Stato non trovato"
 
 #: bottles/backend/managers/versioning.py:168
+#, fuzzy
 msgid "State {} is already the active state"
-msgstr "Lo stato {} è già lo stato attivo"
+msgstr "Lo stato {} è già attivo"
 
 #: bottles/frontend/main.py:112
+#, fuzzy
 msgid "Show version"
-msgstr "Mostra la versione"
+msgstr "Visualizza la versione"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
@@ -180,8 +197,9 @@ msgid "Bottle name"
 msgstr "Nome bottiglia"
 
 #: bottles/frontend/main.py:144
+#, fuzzy
 msgid "Pass arguments"
-msgstr "Passa argomenti"
+msgstr "Evita argomenti"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
@@ -213,8 +231,9 @@ msgstr "Sponsorizzato e finanziato da"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
+#, fuzzy
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "Copyright © 2017-2022 - Sviluppatori di Bottles"
+msgstr "Copyright © 2017 Sviluppatori di Bottles"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
@@ -226,8 +245,9 @@ msgid "translator_credits"
 msgstr "crediti_traduttore"
 
 #: bottles/frontend/ui/component-entry.blp:4
+#, fuzzy
 msgid "Component version"
-msgstr "Versione componente"
+msgstr "Versione del componente"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
@@ -240,17 +260,18 @@ msgid "Browse Files"
 msgstr "Sfoglia file"
 
 #: bottles/frontend/ui/component-entry.blp:34
+#, fuzzy
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"L'installazione non è riuscita. Ciò può essere dovuto a un errore del "
-"repository, a un download parziale o a un errore di checksum. Premere per "
+"L'installazione non è riuscita. Ciò potrebbe dipendere da un errore del "
+"repository, da un download parziale o da un errore di checksum. Clicca per "
 "riprovare."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
-msgstr "Scarica e installa"
+msgstr "Scarica & installa"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
@@ -258,7 +279,7 @@ msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
-msgstr "Mostra manifesto"
+msgstr "Mostra il manifesto"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
@@ -275,11 +296,11 @@ msgstr "Segnala un bug…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
-msgstr "Nome dipendenza"
+msgstr "Nome della dipendenza"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
 msgid "Dependency description"
-msgstr "Descrizione dipendenza"
+msgstr "Descrizione della dipendenza"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
@@ -287,7 +308,7 @@ msgstr "Categoria"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr "Scarica e installa questa dipendenza"
+msgstr "Scarica & installa questa dipendenza"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
@@ -299,7 +320,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr "Menu Dipendenze"
+msgstr "Menu delle Dipendenze"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
@@ -311,7 +332,7 @@ msgstr "Sfoglia file…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
-msgstr "Duplica bottiglia…"
+msgstr "Duplica la bottiglia…"
 
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
@@ -338,16 +359,19 @@ msgstr "Esporta configurazione…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
+#, fuzzy
 msgid "Show Hidden Programs"
-msgstr "Mostra programmi nascosti"
+msgstr "Mostra i programmi nascosti"
 
 #: bottles/frontend/ui/details-bottle.blp:49
+#, fuzzy
 msgid "Search for new programs"
-msgstr "Cerca nuovi programmi"
+msgstr "Cerca i nuovi programmi"
 
 #: bottles/frontend/ui/details-bottle.blp:56
+#, fuzzy
 msgid "Delete Bottle…"
-msgstr "Elimina bottiglia…"
+msgstr "Elimina la bottiglia…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
@@ -405,7 +429,7 @@ msgstr "Ambiente"
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr "Avviatore"
+msgstr "Runner"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
@@ -413,8 +437,9 @@ msgid "Versioning enabled for this bottle"
 msgstr "Versionamento abilitato per questa bottiglia"
 
 #: bottles/frontend/ui/details-bottle.blp:218
+#, fuzzy
 msgid "Versioning is active for this bottle."
-msgstr "Il versionamento è attivo in questa bottiglia."
+msgstr "La gestione delle versioni è attivo in questa bottiglia."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
@@ -422,8 +447,9 @@ msgid "0"
 msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
+#, fuzzy
 msgid "Run Executable…"
-msgstr "Avvia eseguibile…"
+msgstr "Avvia l'eseguibile…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
@@ -435,18 +461,18 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
-"Cliccca \"Avvia Eseguibile...\" per avviare un eseguibile, \"Aggiungi "
-"Collegamenti...\" per aggiungere un eseguibile alla lista dei programmi, "
-"oppure \"Installa Programmi...\" per installare programmi curati dalla "
-"comunità."
+"Cliccca \"Avvia l'Eseguibile...\" per avviare un eseguibile, "
+"\"Aggiungi i Collegamenti...\" per aggiungere un eseguibile alla lista dei "
+"programmi, oppure \"Installa i Programmi...\" per installare i programmi "
+"curati dalla comunità."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
-msgstr "Aggiungi Collegamenti…"
+msgstr "Aggiungi i Collegamenti…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 msgid "Install Programs…"
-msgstr "Installa Programmi…"
+msgstr "Installa i Programmi…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
@@ -458,8 +484,9 @@ msgid "Settings"
 msgstr "Impostazioni"
 
 #: bottles/frontend/ui/details-bottle.blp:351
+#, fuzzy
 msgid "Configure bottle settings."
-msgstr "Configura impostazioni bottiglia."
+msgstr "Configura le impostazioni della bottiglia."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
@@ -467,8 +494,9 @@ msgid "Dependencies"
 msgstr "Dipendenze"
 
 #: bottles/frontend/ui/details-bottle.blp:361
+#, fuzzy
 msgid "Install dependencies for programs."
-msgstr "Installa dipendenze dei programmi."
+msgstr "Installa le dipendenze dei programmi."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
@@ -483,12 +511,14 @@ msgstr "Crea e gestisci gli stati della bottiglia."
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
 #: bottles/frontend/views/details.py:157
+#, fuzzy
 msgid "Task Manager"
-msgstr "Gestione attività"
+msgstr "Gestore attività"
 
 #: bottles/frontend/ui/details-bottle.blp:381
+#, fuzzy
 msgid "Manage running programs."
-msgstr "Gestisci programmi in esecuzione."
+msgstr "Gestisci i programmi in esecuzione."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -499,8 +529,9 @@ msgid "Command Line"
 msgstr "Riga di comando"
 
 #: bottles/frontend/ui/details-bottle.blp:395
+#, fuzzy
 msgid "Run commands inside the Bottle."
-msgstr "Esegui comandi all'interno della bottiglia."
+msgstr "Esegui i comandi all'interno della bottiglia."
 
 #: bottles/frontend/ui/details-bottle.blp:404
 msgid "Registry Editor"
@@ -529,7 +560,7 @@ msgstr "Configurazione"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr "Disinstallatore"
+msgstr "Uninstaller"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
@@ -537,7 +568,7 @@ msgstr "Pannello di controllo"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr "Cerca dipendenze…"
+msgstr "Cerca le dipendenze…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178
@@ -571,8 +602,9 @@ msgid "Report Missing Dependency"
 msgstr "Segnala una dipendenza mancante"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
+#, fuzzy
 msgid "Read Documentation."
-msgstr "Leggi documentazione."
+msgstr "Leggi la documentazione."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
@@ -587,37 +619,42 @@ msgid "Search"
 msgstr "Cerca"
 
 #: bottles/frontend/ui/details-installers.blp:9
+#, fuzzy
 msgid "Search for Programs…"
-msgstr "Cerca programmi…"
+msgstr "Cerca i programmi…"
 
 #: bottles/frontend/ui/details-installers.blp:15
+#, fuzzy
 msgid ""
 "Install programs curated by our community.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Installa programmi curati dalla nostra community.\n"
+"Installa i programmi curati dalla nostra community.\n"
 "\n"
 "I programmi in questa pagina sono distribuiti da terzi con una licenza "
 "proprietaria. Installandoli, accetti i rispettivi termini di servizio."
 
 #: bottles/frontend/ui/details-installers.blp:29
+#, fuzzy
 msgid "No Installers Found"
-msgstr "Nessun installatore trovato"
+msgstr "Nessun Installer trovato"
 
 #: bottles/frontend/ui/details-installers.blp:32
+#, fuzzy
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
-"Il repository non è raggiungibile o nessun installatore è compatibile con "
+"Il repository non è raggiungibile o nessun installer è compatibile con "
 "questa bottiglia."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
 #: bottles/frontend/ui/preferences.blp:81
+#, fuzzy
 msgid "Read Documentation"
-msgstr "Leggi Documentazione"
+msgstr "Leggi la Documentazione"
 
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52
@@ -634,8 +671,9 @@ msgid "The version of the Wine compatibility layer."
 msgstr "La versione del layer di compatibilità Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
+#, fuzzy
 msgid "Updating Runner and components, please wait…"
-msgstr "Aggiornamento dell'avviatore e dei componenti, attendere…"
+msgstr "Sto aggiornamento il runner e i componenti, attendere…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
@@ -647,8 +685,9 @@ msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
 msgstr "Migliora la compatibilità di Direct3D 8/9/10/11 traducendolo in Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:30
+#, fuzzy
 msgid "Updating DXVK, please wait…"
-msgstr "Aggiornamento di DXVK, attendere…"
+msgstr "Sto aggiornando DXVK, attendere…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:266
@@ -660,8 +699,9 @@ msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
 msgstr "Migliora la compatibilità di Direct3D 12 traducendolo in Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:43
+#, fuzzy
 msgid "Updating VKD3D, please wait…"
-msgstr "Aggiornamento di VKD3D, attendere…"
+msgstr "Sto aggiornando VKD3D, attendere…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
@@ -670,7 +710,7 @@ msgstr "DXVK NVAPI"
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "Aggiornamento di DXVK-NVAPI, attendere…"
+msgstr "Sto aggiornando DXVK-NVAPI, attendere…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
@@ -684,8 +724,9 @@ msgstr ""
 "anti-truffa."
 
 #: bottles/frontend/ui/details-preferences.blp:71
+#, fuzzy
 msgid "Updating LatencyFleX, please wait…"
-msgstr "Aggiornamento di LatencyFleX, attendere…"
+msgstr "Sto aggiornando LatencyFleX, attendere…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
