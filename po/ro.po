@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2023-05-25 17:51+0000\n"
+"PO-Revision-Date: 2025-10-30 13:47+0000\n"
 "Last-Translator: Andrea Andre <andrea.tsg19@slmail.me>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ro/>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : "
+"(n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -178,7 +178,7 @@ msgstr "Calea lnk"
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
 msgid "Bottle name"
-msgstr "Numele sticlei"
+msgstr "Numele Sticlei"
 
 #: bottles/frontend/main.py:144
 msgid "Pass arguments"
@@ -238,7 +238,7 @@ msgstr "Dezinstalează"
 
 #: bottles/frontend/ui/component-entry.blp:23
 msgid "Browse Files"
-msgstr "Caută fișiere"
+msgstr "Caută Fișiere"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
@@ -484,7 +484,7 @@ msgstr "Creează și gestionează stările sticlei."
 #: bottles/frontend/ui/details-bottle.blp:426
 #: bottles/frontend/views/details.py:157
 msgid "Task Manager"
-msgstr "Gestionar de activități"
+msgstr "Gestionare activități"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
@@ -529,7 +529,7 @@ msgstr "Configurare"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr "Dezinstalator"
+msgstr "Dezinstalare"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
@@ -791,7 +791,7 @@ msgstr "Fsync"
 
 #: bottles/frontend/ui/details-preferences.blp:196
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.blp:202
 msgid "Monitor Performance"
@@ -877,7 +877,7 @@ msgstr "Gestionează permisiunile mediului izolat"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr "Timp de executare Bottles"
+msgstr "Execuție Bottles"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 msgid ""
@@ -889,7 +889,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Timp de executare Steam"
+msgstr "Execuție Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
@@ -1108,8 +1108,8 @@ msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
-"Bibliotecile de legături dinamice (DLL) pot fi specificate ca integrate ("
-"furnizate de Wine) sau native (furnizate de program)."
+"Bibliotecile de legături dinamice (DLL) pot fi specificate ca integrate "
+"(furnizate de Wine) sau native (furnizate de program)."
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
@@ -1433,11 +1433,11 @@ msgstr ""
 "Recomandăm folosirea Wine-GE, o versiune de Proton menită să funcționeze în "
 "afara Steam.\n"
 "\n"
-"Continuând va activa automat timpul de executare Steam (dacă este prezent în "
-"sistem și este detectat de Bottles) pentru a-i permite să acceseze "
-"bibliotecile necesare și să limiteze problemele de compatibilitate. Reține "
-"că GloriousEggroll, furnizorul executantului, nu este responsabil pentru "
-"nicio problemă și te rugăm să nu le raportezi."
+"Continuând va activa automat timpul de executare Steam "
+"(dacă este prezent în sistem și este detectat de Bottles) pentru a-i permite "
+"să acceseze bibliotecile necesare și să limiteze problemele de "
+"compatibilitate. Reține că GloriousEggroll, furnizorul executantului, nu "
+"este responsabil pentru nicio problemă și te rugăm să nu le raportezi."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -2188,7 +2188,7 @@ msgstr "Nucleu"
 
 #: bottles/frontend/ui/preferences.blp:287
 msgid "Runtime"
-msgstr "Timp de executare"
+msgstr "Execuție"
 
 #: bottles/frontend/ui/preferences.blp:291
 msgid "WineBridge"
@@ -2350,8 +2350,8 @@ msgid ""
 msgstr ""
 "Sticlele funcționează într-un mediu izolat, un mediu cu permisiune limitată, "
 "necesar pentru a te proteja. Dacă programul nu funcționează, există "
-"posibilitatea de a intra în interiorul sticlei (simbolul cu 3 puncte din "
-"partea de sus), apoi pornește-l de acolo."
+"posibilitatea de a intra în interiorul sticlei "
+"(simbolul cu 3 puncte din partea de sus), apoi pornește-l de acolo."
 
 #: bottles/frontend/views/bottle_details.py:416
 #: bottles/frontend/views/bottle_details.py:525
