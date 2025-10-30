@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
 "PO-Revision-Date: 2025-10-30 12:56+0000\n"
-"Last-Translator: ovari <ovari123@zoho.com>\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
 "Language: hu\n"
@@ -51,7 +51,7 @@ msgstr "Nem sikerült létrehozni helykitöltő könyvtárat/fájlt."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr "Palack konfigurációs fájljának generálása…"
+msgstr "Palack konfigurációs fájljának előállítása…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
@@ -68,7 +68,7 @@ msgstr "Wine konfiguráció frissítve!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Futtatás Flatpak-ként, felhasználó mappa homokozóba helyezése…"
+msgstr "Futtatás Flatpakként, felhasználói mappa homokozóba helyezése…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
@@ -80,7 +80,7 @@ msgstr "Windows verzió beállítása…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
-msgstr "CMD alapértelmezett beállítások alkalmazása…"
+msgstr "CMD alapértelmezett beállításainak alkalmazása…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
@@ -118,7 +118,7 @@ msgstr "Függőség telepítése: %s…"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
-msgstr "A 0 verzióállapot létrehozása…"
+msgstr "A 0. verzióállapot létrehozása…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
@@ -143,7 +143,7 @@ msgstr "Az új [{0}] állapot sikeresen létrehozva!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr "Állapotlista sikeresen visszaszerezve!"
+msgstr "Állapotlista sikeresen lekérve!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
@@ -189,7 +189,7 @@ msgstr "Érvénytelen URI (szintaxis: bottles:run/<palack>/<program>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr "[Kilépési] kérelem érkezett."
+msgstr "[Kilépési] kérés érkezett."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
@@ -197,7 +197,7 @@ msgstr "[Segítség] kérés érkezett."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr "[Frissítési] kérelem érkezett."
+msgstr "[Frissítési] kérés érkezett."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
@@ -205,7 +205,7 @@ msgstr "Adományozás"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr "Harmadik felek könyvtárak és külön köszönet"
+msgstr "Külső programkönyvtárak és külön köszönet"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
@@ -223,11 +223,11 @@ msgstr "Palackok fejlesztői"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "Meskó Balázs <mesko.balazs@fsf.hu>, 2025."
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr "Összetevőverzió"
+msgstr "Összetevő-verzió"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
@@ -388,7 +388,7 @@ msgstr "Ejtse ide a fájlokat a futtatáshoz"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
-msgstr "A palackom"
+msgstr "Saját palack"
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
@@ -1118,7 +1118,7 @@ msgid ""
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
 "Ezek a gazdarendszerből származó útvonalak, amelyeket a futtató eszközként "
-"leképez és felismer (pl. C: D:...)."
+"leképez és felismer (például C: D:...)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1351,7 +1351,7 @@ msgstr "Parancs argumentumai"
 #: bottles/frontend/ui/dialog-launch-options.blp:47
 #, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "például: VÁLTOZÓ=érték %parancs% -példa1 -példa2 -példa3=hello"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:52
 msgid "Post-run Script"
@@ -1461,7 +1461,7 @@ msgstr "Írja le a végrehajtható fájlnak átadandó argumentumokat."
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "pl.: -opengl -SkipBuildPatchPrereq"
+msgstr "például: -opengl -SkipBuildPatchPrereq"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
 msgid "Sandbox Settings"
@@ -2269,7 +2269,7 @@ msgstr "A Palackok névjegye"
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
-msgstr "\\\"{0}\\\" nem egy .exe vagy vagy egy .msi fájl"
+msgstr "A(z) „{0}” nem egy .exe vagy .msi fájl"
 
 #: bottles/frontend/views/bottle_details.py:207
 #, python-format
@@ -2515,7 +2515,7 @@ msgstr "Palack létrehozva"
 #: bottles/frontend/views/new.py:233
 #, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr "\\\"{0}\\\" sikeresen létrehozva!"
+msgstr "A(z) „{0}” sikeresen létrehozva."
 
 #: bottles/frontend/views/preferences.py:142
 msgid "Steam was not found or Bottles does not have enough permissions."
@@ -2590,7 +2590,7 @@ msgstr "Jegyzékfájl ehhez: {0}"
 #: bottles/frontend/widgets/dependency.py:172
 #, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "\"{0}\" eltávolítva"
+msgstr "A(z) „{0}” eltávolítva"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
@@ -2652,37 +2652,37 @@ msgstr "\\\"{0}\\\" indítása Steammel…"
 #: bottles/frontend/widgets/program.py:214
 #, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr "\\\"{0}\\\" elrejtve."
+msgstr "A(z) „{0}” elrejtve"
 
 #: bottles/frontend/widgets/program.py:216
 #, python-brace-format
 msgid "\"{0}\" showed"
-msgstr "\\\"{0}\\\" megjelenítve"
+msgstr "A(z) „{0}” megjelenítve"
 
 #: bottles/frontend/widgets/program.py:242
 #, python-brace-format
 msgid "\"{0}\" removed"
-msgstr "\"{0}\" eltávolítva"
+msgstr "A(z) „{0}” eltávolítva"
 
 #: bottles/frontend/widgets/program.py:274
 #, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr "\"{0}\" átnevezve erre: \"{1}\""
+msgstr "A(z) „{0}” átnevezve erre: „{1}”"
 
 #: bottles/frontend/widgets/program.py:297
 #, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
-msgstr "Asztalbejegyzés létrehozva \"{0}\" számára"
+msgstr "Asztalbejegyzés létrehozva a(z) „{0}” számára"
 
 #: bottles/frontend/widgets/program.py:313
 #, python-brace-format
 msgid "\"{0}\" added to your library"
-msgstr "\"{0}\" hozzá lett adva a könyvtárához"
+msgstr "A(z) „{0}” hozzá lett adva a könyvtárához"
 
 #: bottles/frontend/widgets/program.py:331
 #, python-brace-format
 msgid "\"{0}\" added to your Steam library"
-msgstr "\"{0}\" hozzá lett adva a Steam könyvtárához"
+msgstr "A(z) „{0}” hozzá lett adva a Steam könyvtárához"
 
 #: bottles/frontend/windows/crash.py:33
 msgid "Show report"
@@ -2795,7 +2795,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
@@ -3062,7 +3062,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Fixed \"Add to Steam\" button"
-msgstr "\"Hozzáadás Steamhez\" gomb javítva"
+msgstr "„Hozzáadás a Steamhez” gomb javítva"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
@@ -3073,9 +3073,8 @@ msgid "Fixed Patool double extraction failing"
 msgstr "A Patool dupla extrakció hibája javítva"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "Verzió javítása"
+msgstr "Helyes verzió"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Fix crash when creating a bottle"
@@ -3095,7 +3094,7 @@ msgstr "Szívecske ikon cseréje könyvtár ikonra a könyvtár oldalon"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
-msgstr "Értesítés hozzáadása a \"Végrehajtható fájl futtatása\"-hoz"
+msgstr "Értesítés hozzáadása a „Végrehajtható fájl futtatása” lehetőséghez"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
@@ -3132,9 +3131,8 @@ msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr "Hiba javítása letöltéskor, ha a Palackok nem terminálból fut"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "Verzió dátumának javítása"
+msgstr "Verzió helyes dátuma"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
@@ -3173,11 +3171,10 @@ msgid "More variables for installer scripting"
 msgstr "Több változó a telepítő szkripteléséhez"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
-#, fuzzy
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
-"Kezdő párbeszédpanel javítása amely \"Minden kész\"-t mutatott, miközben "
-"valójában nem állt készen"
+"A kezdő párbeszédpanel javítása, amely „Minden kész” állapotot mutatott, "
+"miközben valójában még nem állt készen"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
@@ -3210,8 +3207,8 @@ msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
-"Hiba javítása, amikor egy program bezáródik miután a \"Végrehajtható fájl "
-"futtatása\"-ból lett elindítva"
+"Hiba javítása, amikor egy program bezáródik, miután a „Végrehajtható fájl "
+"futtatása” lehetőséggel elindították"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
