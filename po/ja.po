@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-04-10 16:01+0000\n"
+"PO-Revision-Date: 2025-10-30 12:49+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -47,8 +47,7 @@ msgstr "ボトルのディレクトリを作成できませんでした。"
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr ""
-"プレースホルダーとなるディレクトリまたはファイルを作成できませんでした。"
+msgstr "プレースホルダーとなるディレクトリまたはファイルを作成できませんでした。"
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
@@ -246,8 +245,8 @@ msgid ""
 "download or checksum mismatch. Press to try again."
 msgstr ""
 "インストールに失敗しました。これは、リポジトリエラー、不完全なダウンロード、"
-"またはチェックサムの不一致が原因の可能性があります。押して再試行してくださ"
-"い。"
+"またはチェックサムの不一致が原因の可能性があります。押して再試行してください"
+"。"
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -327,8 +326,7 @@ msgstr "フルバックアップ…"
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
-msgstr ""
-"これは単なるボトル設定なので、個人ファイルなしで新しいボトルを作成したい場合"
+msgstr "これは単なるボトル設定なので、個人ファイルなしで新しいボトルを作成したい場合"
 "に最適です。"
 
 #: bottles/frontend/ui/details-bottle.blp:38
@@ -434,10 +432,10 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
-"実行可能ファイルを実行するには\"実行可能ファイルを実行…\"を、"
-"プログラム一覧に実行可能ファイルを追加するには\"ショートカットを追加…\"を、コ"
-"ミュニティーがキュレーションしたプログラムをインストールするには\"プログラム"
-"をインストール…\"をクリックします。"
+"実行可能ファイルを実行するには\"実行可能ファイルを実行…\"を、プログラム一覧に"
+"実行可能ファイルを追加するには\"ショートカットを追加…\"を、コミュニティーがキ"
+"ュレーションしたプログラムをインストールするには\"プログラムをインストール…\""
+"をクリックします。"
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -609,8 +607,7 @@ msgstr "インストーラーが見つかりませんでした"
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
-"リポジトリに到達できないか、このボトルと互換性のあるインストーラーがありませ"
+msgstr "リポジトリに到達できないか、このボトルと互換性のあるインストーラーがありませ"
 "ん。"
 
 #: bottles/frontend/ui/details-installers.blp:50
@@ -819,8 +816,8 @@ msgstr "OBS ゲームキャプチャ"
 
 #: bottles/frontend/ui/details-preferences.blp:242
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr "Vulkan と OpenGL を使う全プログラムに対し、OBS "
-"ゲームキャプチャの使用有無を設定します。"
+msgstr "Vulkan と OpenGL を使う全プログラムに対し、OBS ゲームキャプチャの使用有無を設"
+"定します。"
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
@@ -1080,8 +1077,8 @@ msgstr "終了"
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
-msgstr "ダイナミックリンクライブラリは、組み込み (Wine が提供) またはネイティブ "
-"(プログラムが提供) から指定できます。"
+msgstr "ダイナミックリンクライブラリは、組み込み (Wine が提供) またはネイティブ (プロ"
+"グラムが提供) から指定できます。"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
@@ -1141,8 +1138,7 @@ msgstr "ボトルを複製しました"
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
-msgstr ""
-"環境変数は動的に与えられる値で、ボトル上の実行中のプロセスの挙動に影響し得ま"
+msgstr "環境変数は動的に与えられる値で、ボトル上の実行中のプロセスの挙動に影響し得ま"
 "す。"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:31
@@ -1934,8 +1930,8 @@ msgstr "ボトルの中で Windows を実行します"
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
-msgstr "Bottles は、互換ランナーを使用することで、分離・コンテナ化された Windows "
-"風のプログラム動作環境を提供します。"
+msgstr "Bottles は、互換ランナーを使用することで、分離・コンテナ化された Windows 風の"
+"プログラム動作環境を提供します。"
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
@@ -2259,9 +2255,8 @@ msgid ""
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
 "Bottles はサンドボックス内 (ユーザーを安全にするために権限が制限された環境) "
-"で実行しています。プログラムを実行できない場合、"
-"プログラムをボトル内に移動して "
-"(上部の3点アイコン)、そこから起動してみてください。"
+"で実行しています。プログラムを実行できない場合、プログラムをボトル内に移動し"
+"て (上部の3点アイコン)、そこから起動してみてください。"
 
 #: bottles/frontend/views/bottle_details.py:416
 #: bottles/frontend/views/bottle_details.py:525
@@ -2825,9 +2820,8 @@ msgstr "アプリケーション起動時に表示する画面を選択します
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
-msgstr ""
-"バージョン管理やインストーラーなどの実験的な機能を有効／無効にします。ラン"
-"ナーのリリース候補です。"
+msgstr "バージョン管理やインストーラーなどの実験的な機能を有効／無効にします。ランナ"
+"ーのリリース候補です。"
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
