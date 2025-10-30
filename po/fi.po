@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
 "PO-Revision-Date: 2025-10-30 12:48+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
 "Language: fi\n"
@@ -180,9 +180,8 @@ msgid "Bottle name"
 msgstr "Pullon nimi"
 
 #: bottles/frontend/main.py:144
-#, fuzzy
 msgid "Pass arguments"
-msgstr "Suorita argumenteilla"
+msgstr "Välitä argumentit"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
@@ -1219,9 +1218,8 @@ msgid "Game Resolution"
 msgstr "Pelin resoluutio"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
-#, fuzzy
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr "Käyttää pelin resoluutiota viitteenä."
+msgstr "Käyttää videopelin resoluutiota referenssinä pikseleinä."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
@@ -1258,9 +1256,8 @@ msgid "Frame Rate Limit When Unfocused"
 msgstr "Kuvan päivitysnopeuden raja, kun ei kohdistettuna"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
-#, fuzzy
 msgid "Integer Scaling"
-msgstr "Käytä kokonaisluvulla skaalausta"
+msgstr "Kokonaisluvun skaalaus"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1331,7 +1328,7 @@ msgstr "Info"
 
 #: bottles/frontend/ui/dialog-journal.blp:40
 msgid "Journal browser"
-msgstr ""
+msgstr "Päiväkirjan selain"
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
@@ -1358,9 +1355,9 @@ msgid "Command Arguments"
 msgstr "Komennon argumentit"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:47
-#, fuzzy, c-format
+#, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "esim .: -esimerkki1 -esimerkki2 -esimerkki3=hei"
+msgstr "esim.: VAR=arvo %command% -esimerkki1 -esimerkki2 -esimerkki3=hei"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:52
 msgid "Post-run Script"
@@ -1425,6 +1422,17 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"Varo, että Proton-pohjaisten suorittajien käyttäminen muissa kuin Steam-"
+"pulloissa voi aiheuttaa ongelmia ja estää niitä toimimasta oikein.\n"
+"\n"
+"Suosittelemme käyttämään Wine-GE:tä, Protonin versiota, joka on tarkoitettu "
+"toimimaan Steamin ulkopuolella.\n"
+"\n"
+"Jatkaminen ottaa automaattisesti käyttöön Steamin ajonajan "
+"(jos se on järjestelmässä ja Bottles havaitsee sen), jotta se voi käyttää "
+"tarvittavia kirjastoja ja rajoittaa yhteensopivuusongelmia. Huomaa, että "
+"GloriousEggroll, suorittajan tarjoaja, ei ole vastuussa mistään ongelmista "
+"ja pyydämme, että et raportoi heille."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1507,6 +1515,18 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"Bottlesissa on kokonaan uusi versiojärjestelmä, joka ei ole taaksepäin "
+"yhteensopiva.\n"
+"\n"
+"Jotta voimme jatkaa versioinnin käyttöä, meidän on alustettava pullovarasto "
+"uudelleen. Tämä ei poista tietoja pullosta, mutta poistaa kaikki olemassa "
+"olevat tilannekuvat ja luo uuden.\n"
+"\n"
+"Jos sinun on palattava edelliseen tilannekuvaan ennen jatkamista, sulje tämä "
+"ikkuna ja palauta tilannevedos ja avaa sitten pullo uudelleen näyttääksesi "
+"tämän ikkunan uudelleen.\n"
+"\n"
+"Vanha järjestelmä lopetetaan jossain seuraavista julkaisuista."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
@@ -1676,7 +1696,6 @@ msgstr ""
 "perusteella. Luma on suorituskykyisempi kuin Color."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:530
-#, fuzzy
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
@@ -1749,9 +1768,8 @@ msgid "Wine prefix name"
 msgstr "Wine-etuliitteen nimi"
 
 #: bottles/frontend/ui/importer-entry.blp:28
-#, fuzzy
 msgid "Manager"
-msgstr "Tehtävienhallinta"
+msgstr "Hallitsin"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
@@ -1770,14 +1788,12 @@ msgid "No Prefixes Found"
 msgstr "Etuliitteitä ei löytynyt"
 
 #: bottles/frontend/ui/importer.blp:39
-#, fuzzy
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"Etuliitteitä ei löytynyt Lutriksesta, PlayOnLinuxista jne.\n"
-"                                    Napsauta yllä olevaa kuvaketta "
-"tuodaksesi pullon varmuuskopiosta"
+"Ulkoisia etuliitteitä ei löytynyt. Onko Bottlesilla pääsy niihin?\n"
+"Käytä yläreunassa olevaa kuvaketta tuodaksesi pullon varmuuskopiosta."
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
@@ -2347,9 +2363,8 @@ msgid "Select the location where to save the backup archive"
 msgstr "Valitse sijainti, johon varmuuskopioarkisto tallennetaan"
 
 #: bottles/frontend/views/bottle_details.py:435
-#, fuzzy
 msgid "Backup"
-msgstr "Varmuuskopio {0}"
+msgstr "Varmuuskopiointi"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
@@ -2431,9 +2446,8 @@ msgid "This will delete all snapshots but keep your files."
 msgstr "Tämä poistaa kaikki tilannevedokset, mutta säilyttää tiedostot."
 
 #: bottles/frontend/views/bottle_versioning.py:90
-#, fuzzy
 msgid "Please migrate to the new Versioning system to create new states."
-msgstr "Luo uudet tilat siirtymällä uuteen versiojärjestelmään."
+msgstr "Siirry uuteen versiojärjestelmään luodaksesi uusia tiloja."
 
 #: bottles/frontend/views/details.py:153
 msgid "Installers"
@@ -2484,9 +2498,9 @@ msgid "Run executable in \"{self.config.Name}\""
 msgstr "Käynnistetään \"{self.config.Name}\""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "Käynnistetään \"{0}\"…"
+msgstr "Käynnistetään \"{0}\" \"{1}\":ssa…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2534,9 +2548,8 @@ msgstr ""
 "Steamia ei löytynyt tai Pullot-sovelluksella ei ole riittävästi oikeuksia."
 
 #: bottles/frontend/views/preferences.py:176
-#, fuzzy
 msgid "Select Bottles Path"
-msgstr "Valitse pullo"
+msgstr "Valitse Bottlesin polku"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
@@ -2647,9 +2660,9 @@ msgid "This program works perfectly."
 msgstr "Tämä ohjelma toimii täydellisesti."
 
 #: bottles/frontend/widgets/installer.py:90
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Review for {0}"
-msgstr "Manifest for {0}"
+msgstr "Arvio {0}:lle"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
@@ -2796,9 +2809,8 @@ msgid "Select Script"
 msgstr "Valitse komentosarja"
 
 #: bottles/frontend/windows/main_window.py:220
-#, fuzzy
 msgid "Custom Bottles Path not Found"
-msgstr "Aikaisessa kehityksessä (vaatii uudelleenkäynnistyksen)."
+msgstr "Mukautettua Bottlesin polkua ei löytynyt"
 
 #: bottles/frontend/windows/main_window.py:221
 msgid ""
@@ -2807,7 +2819,7 @@ msgstr "Palataan oletuspolkuun. Annetun polun pulloja ei luetella."
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
@@ -2899,9 +2911,8 @@ msgid "Release Candidate"
 msgstr "Julkaisuehdokas"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle release candidate for runners."
-msgstr "Muuta julkaisuehdokas ajajia varten"
+msgstr "Vaihda julkaisuehdokas suorittajille."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
@@ -2912,32 +2923,28 @@ msgid "Choose which view the application should be started in."
 msgstr "Valitse, mikä näkymä ladataan sovelluksen käynnistyksen yhteydessä."
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Vaihda kokeelliset ominaisuudet, kuten versiointi ja asennusohjelmat-"
-"julkaisuehdokas ajajia varten"
+"Ota käyttöön kokeelliset ominaisuudet, kuten versiointi ja asennusohjelmat. "
+"Julkaisuehdokas suorittajille."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
 msgstr "Steam Proton -tuki"
 
 #: data/com.usebottles.bottles.gschema.xml:72
-#, fuzzy
 msgid "Toggle Steam Proton prefixes support."
-msgstr "Vaihda kokeellinen versiointiominaisuus"
+msgstr "Vaihda Steam Proton -etuliitetuki päälle."
 
 #: data/com.usebottles.bottles.gschema.xml:76
-#, fuzzy
 msgid "Experiments:sandbox"
-msgstr "Kokeilut"
+msgstr "Kokeet:hiekkalaatikko"
 
 #: data/com.usebottles.bottles.gschema.xml:77
-#, fuzzy
 msgid "Toggle experimental Sandbox per bottle."
-msgstr "Vaihda kokeelliset asennusohjelmat -ominaisuus"
+msgstr "Vaihda kokeellinen hiekkalaatikko pulloa kohti."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
@@ -3063,18 +3070,16 @@ msgid "... and much more that you can find by installing Bottles!"
 msgstr "... ja paljon muuta, mitä löydät asentamalla Pullot!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
-#, fuzzy
 msgid "Update metadata information"
-msgstr "Pullon tiedot"
+msgstr "Päivitä metatietotiedot"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
 msgstr "Lisää päivitystietoja ja julkaisumuistiinpanojen versio"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Fixed \"Add to Steam\" button"
-msgstr "Lisää Steamiin"
+msgstr "Korjattu \"Lisää Steamiin\" -painike"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
@@ -3085,22 +3090,20 @@ msgid "Fixed Patool double extraction failing"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "Komponentin versio"
+msgstr "Oikea versio"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "Virhe pulloa luotaessa."
+msgstr "Korjaa kaatuminen pulloa luotaessa"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "Merkittävä muutos: Uuden pullon käyttöliittymän uudelleensuunnittelu"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Quality of life improvements:"
-msgstr ""
+msgstr "Elämän parannusten laatu:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
@@ -3117,16 +3120,17 @@ msgstr "Bugikorjaukset:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "Pikanäppäimen lisääminen Steamiin johti virheeseen"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
-#, fuzzy
 msgid "Importing backups resulted an error"
-msgstr "Varmuuskopion tuominen: {0}"
+msgstr "Varmuuskopioiden tuominen johti virheeseen"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"Steam Runtime otetaan automaattisesti käyttöön, kun käytössä on wine-ge-"
+"custom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
@@ -3143,13 +3147,14 @@ msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "Luomispäivä"
+msgstr "Oikea versiopäivämäärä"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
 msgstr ""
+"Piilota NVIDIAan liittyvät kriittiset virheet muissa kuin NVIDIA-"
+"järjestelmissä"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
@@ -3157,11 +3162,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "Riippuvuuksien asennus on nopeampi ja vakaampi"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
-msgstr ""
+msgstr "Terveystarkastuksessa on lisätietoja nopeampaa viankorjaamista varten"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
