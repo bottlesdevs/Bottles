@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
 "PO-Revision-Date: 2025-10-30 12:56+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: Raihwy <156463690+Raihwy@users.noreply.github.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
 "Language: hu\n"
@@ -26,7 +26,7 @@ msgstr "Nincs útvonal megadva"
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
 msgid "Backup {0}"
-msgstr "{0} biztonsági mentése"
+msgstr "{0} biztonsági mentés"
 
 #: bottles/backend/managers/backup.py:101
 #, python-brace-format
@@ -39,7 +39,7 @@ msgstr "Nem sikerült telepíteni az összetevőket, 3 alkalommal volt megprób�
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
-msgstr "Alapvető összetevők telepítése. Telepítés…"
+msgstr "Hiányoznak szükséges összetevők. Telepítés…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
@@ -967,9 +967,7 @@ msgstr "Folyamat megszakítása"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 msgid "No Snapshots Found"
-msgstr ""
-"Hozza létre az első pillanatképet, hogy elkezdhesse elmenteni a beállítások "
-"állapotát."
+msgstr "Nincs pillanatkép"
 
 #: bottles/frontend/ui/details-versioning.blp:19
 msgid "Create your first snapshot to start saving states of your preferences."
@@ -1294,7 +1292,7 @@ msgstr "Programok megjelenítése"
 
 #: bottles/frontend/ui/dialog-installer.blp:148
 msgid "Installation Failed!"
-msgstr "Programok megjelenítése"
+msgstr "Telepítés sikertelen!"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
@@ -1637,30 +1635,42 @@ msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"A CAS élesség növeli egy képkocka élességét. A magasabb értékek élesebbé "
+"teszik a képet, míg a 0-nál alacsonyabb értékek simábbá teszik a képet, mint "
+"az eredeti."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:428
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"A DLS élesség növeli egy képkocka élességét. A magasabb értékek élesebbé "
+"teszik a képet."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:445
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"A DLS zajcsökkentés csökkenti a képkocka zaját. A magasabb értékek simábbá "
+"teszik a képet."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:462
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"Az FXAA alpixeles minőség csökkenti az aliasingot az alpixeles szinten. A "
+"magasabb értékek simábbá teszik a képet."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:479
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"Az FXAA élszűrési küszöb a minimális kontrasztmennyiség, amely szükséges az "
+"FXAA algoritmus alkalmazásához. A magasabb értékek nagyobb kontrasztot "
+"eredményeznek a képen."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:496
 msgid ""
@@ -1668,34 +1678,47 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"\"Az FXAA minőség élszűrési küszöb minimum az a legkisebb érték, amely alatt "
+"a sötét pixeleket figyelmen kívül hagyja az FXAA algoritmus. A magasabb "
+"értékeknél az FXAA figyelmen kívül hagyja a megadott érték alatti pixeleket, "
+"ami teljesítményjavulást eredményezhet."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"A Luma a monokróm nézőpont alapján érzékeli az éleket, míg a Color a színek "
+"alapján. A Luma jobban teljesít, mint a Color."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:530
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"Az SMAA küszöbérték meghatározza az élérzékelés érzékenységét. Alacsonyabb "
+"értékek több élt érzékelnek, a teljesítmény rovására."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:547
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"Az SMAA maximális keresési lépések meghatározza, hány vízszintes és "
+"függőleges keresési lépést hajt végre az élkeresés során."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:564
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"Az SMAA maximális diagonális keresési lépések meghatározza, hány diagonális "
+"keresési lépést hajt végre az élkeresés során."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:581
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
 msgstr ""
+"Az SMAA sarok lekerekítés meghatározza a sarkok lekerekítésének erősségét."
 
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
@@ -2540,6 +2563,7 @@ msgid ""
 "malfunction."
 msgstr ""
 "A Palackoknak újra kell indulnia, hogy használni tudja ezt a könyvtárat.\n"
+"\n"
 "Ügyeljen arra, hogy minden Palackokból indított programot bezárt a Palackok "
 "újraindítása előtt, mivel ennek elmulasztása adatvesztést, sérülést és a "
 "programok hibás működését okozhatja."
