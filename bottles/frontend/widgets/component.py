@@ -16,7 +16,8 @@
 #
 
 from gettext import gettext as _
-from typing import Optional
+from threading import Event
+from typing import Dict, Optional
 
 from gi.repository import Gtk, GObject, Adw
 
@@ -45,6 +46,7 @@ class ComponentEntry(Adw.ActionRow):
     btn_cancel = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_task_status = Gtk.Template.Child()
+    spinner = Gtk.Template.Child()
 
     # endregion
 
@@ -60,6 +62,10 @@ class ComponentEntry(Adw.ActionRow):
         self.name = component[0]
         self.component_type = component_type
         self.is_upgradable = is_upgradable
+        self._download_task: Optional[RunAsync] = None
+        self._cancel_event: Optional[Event] = None
+        self._cancelled_during_download = False
+        self._pre_download_visibility: Optional[Dict[str, bool]] = None
 
         # populate widgets
         self.set_title(self.name)
@@ -84,29 +90,61 @@ class ComponentEntry(Adw.ActionRow):
         self.btn_err.connect("clicked", self.download)
         self.btn_remove.connect("clicked", self.uninstall)
         self.btn_browse.connect("clicked", self.run_browse)
+        self.btn_cancel.connect("clicked", self.cancel_download)
 
     def download(self, widget):
         @GtkUtils.run_in_main_loop
         def async_callback(result, error=False):
-            if not result or result.status:
+            self._clear_download_context()
+
+            if self._cancelled_during_download:
+                self._cancelled_during_download = False
+                return False
+
+            if result and getattr(result, "message", "") == "cancelled":
+                self._restore_pre_download_visibility()
+                return False
+
+            if result and getattr(result, "ok", False):
+                self._pre_download_visibility = None
                 return self.set_installed()
 
             return self.update_progress(status=Status.FAILED)
 
         @GtkUtils.run_in_main_loop
-        def async_func(*args, **kwargs):
-            return self.update_progress(*args, **kwargs)
+        def async_func(
+            received_size: int = 0,
+            total_size: int = 0,
+            status: Optional[Status] = None,
+        ):
+            return self.update_progress(
+                received_size=received_size,
+                total_size=total_size,
+                status=status,
+            )
+
+        self._cancel_event = Event()
+        self._cancelled_during_download = False
+        self._pre_download_visibility = {
+            "btn_download": self.btn_download.get_visible(),
+            "btn_browse": self.btn_browse.get_visible(),
+            "btn_remove": self.btn_remove.get_visible(),
+        }
 
         self.btn_download.set_visible(False)
-        self.btn_cancel.set_visible(False)  # TODO: unimplemented
+        self.btn_cancel.set_visible(True)
+        self.btn_cancel.set_sensitive(True)
         self.box_download_status.set_visible(True)
+        self._set_spinner_active(True)
+        self.label_task_status.set_text(_("Calculating…"))
 
-        RunAsync(
+        self._download_task = RunAsync(
             task_func=self.component_manager.install,
             callback=async_callback,
             component_type=self.component_type,
             component_name=self.name,
             func=async_func,
+            cancel_event=self._cancel_event,
         )
 
     def uninstall(self, widget):
@@ -143,11 +181,36 @@ class ComponentEntry(Adw.ActionRow):
         if status == Status.FAILED:
             logging.error("Component installation failed")
             self.set_err()
+            self._clear_download_context()
             return False
 
-        self.box_download_status.set_visible(True)
+        if status == Status.CANCELLED:
+            self._cancelled_during_download = True
+            self._restore_pre_download_visibility()
+            return False
 
-        percent = int(received_size * 100 / total_size)
+        received_size = self._sanitize_progress_value(received_size)
+        total_size = self._sanitize_progress_value(total_size)
+
+        self.box_download_status.set_visible(True)
+        self.btn_cancel.set_visible(True)
+
+        if total_size <= 0:
+            self.label_task_status.set_text(_("Calculating…"))
+            self._set_spinner_active(True)
+            return True
+
+        if self._cancel_event and self._cancel_event.is_set():
+            return False
+
+        self._set_spinner_active(False)
+
+        if total_size == 0:
+            percent = 0
+        else:
+            bounded_received = min(received_size, total_size)
+            percent = int(bounded_received * 100 / total_size)
+
         self.label_task_status.set_text(f"{percent}%")
 
         if percent >= 100:
@@ -158,6 +221,7 @@ class ComponentEntry(Adw.ActionRow):
         self.btn_remove.set_visible(False)
         self.btn_cancel.set_visible(False)
         self.btn_browse.set_visible(False)
+        self._set_spinner_active(False)
         self.btn_err.set_visible(True)
         if msg:
             self.btn_err.set_tooltip_text(msg)
@@ -169,6 +233,7 @@ class ComponentEntry(Adw.ActionRow):
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
         self.btn_cancel.set_visible(False)
+        self._set_spinner_active(False)
         if not self.manager.component_manager.is_in_use(self.component_type, self.name):
             self.btn_remove.set_visible(True)
 
@@ -176,10 +241,73 @@ class ComponentEntry(Adw.ActionRow):
         self.btn_browse.set_visible(False)
         self.btn_err.set_visible(False)
         self.btn_download.set_visible(True)
+        self._set_spinner_active(False)
         if self.name in self.manager.get_offline_components(
             self.component_type, self.name
         ):
             self.set_visible(False)
+
+    def cancel_download(self, widget):
+        if not self._cancel_event or self._cancel_event.is_set():
+            return
+
+        self._cancel_event.set()
+        self.btn_cancel.set_sensitive(False)
+        self.label_task_status.set_text(_("Cancelling…"))
+        self._set_spinner_active(True)
+        if self._download_task:
+            self._download_task.cancel()
+
+    def _restore_pre_download_visibility(self):
+        self._set_spinner_active(False)
+        self.box_download_status.set_visible(False)
+        self.btn_cancel.set_visible(False)
+        self.btn_cancel.set_sensitive(True)
+        self.btn_err.set_visible(False)
+        self.label_task_status.set_text("0%")
+
+        if self._pre_download_visibility:
+            self.btn_download.set_visible(
+                self._pre_download_visibility.get("btn_download", True)
+            )
+            self.btn_browse.set_visible(
+                self._pre_download_visibility.get("btn_browse", False)
+            )
+            self.btn_remove.set_visible(
+                self._pre_download_visibility.get("btn_remove", False)
+            )
+        else:
+            self.btn_download.set_visible(True)
+
+        self._pre_download_visibility = None
+
+    def _set_spinner_active(self, active: bool):
+        if not self.spinner:
+            return
+        self.spinner.set_visible(active)
+        if active:
+            self.spinner.start()
+        else:
+            self.spinner.stop()
+
+    @staticmethod
+    def _sanitize_progress_value(value: Optional[int]) -> int:
+        try:
+            if value is None:
+                return 0
+            coerced = int(value)
+        except (TypeError, ValueError):
+            return 0
+
+        if coerced < 0:
+            return 0
+
+        return coerced
+
+    def _clear_download_context(self):
+        self._set_spinner_active(False)
+        self._cancel_event = None
+        self._download_task = None
 
 
 class ComponentExpander(Adw.ExpanderRow):
