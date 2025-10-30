@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
 "PO-Revision-Date: 2025-10-30 13:16+0000\n"
-"Last-Translator: rezarria <votanamcb@outlook.com>\n"
+"Last-Translator: Nguyễn Đăng Quy <nguyendangquy422@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bottles/"
 "bottles/vi/>\n"
 "Language: vi\n"
@@ -881,7 +881,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Steam Runtime"
+msgstr "Trình thực thi Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
@@ -1001,9 +1001,8 @@ msgid "Operations"
 msgstr "Hoạt động"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:4
-#, fuzzy
 msgid "Select Bottle"
-msgstr "Nhân bản một bottle"
+msgstr "Chọn một Bottle"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:16
 #: bottles/frontend/ui/dialog-proton-alert.blp:16
@@ -1078,7 +1077,7 @@ msgstr "Tùy chọn nâng cao"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:13
 msgid "Incomplete package"
-msgstr ""
+msgstr "Gói không đầy đủ"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
 msgid ""
@@ -1086,6 +1085,9 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
+"Có vẻ như phiên bản Bottles này không cung cấp toàn bộ phần mềm lõi phụ "
+"thuộc cần thiết, vui lòng liên hệ tới người bảo trì gói hoặc dùng một phiên "
+"bản chính thức."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
@@ -1111,13 +1113,15 @@ msgstr "DLL ghi đè"
 
 #: bottles/frontend/ui/dialog-drives.blp:7
 msgid "Drives"
-msgstr ""
+msgstr "Ổ lưu trữ"
 
 #: bottles/frontend/ui/dialog-drives.blp:24
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
+"Hệ thống chủ của bạn có các đường dẫn được trỏ và nhận dạng như thiết bị bởi "
+"Trình thực thi (Ví dụ. C: D:...)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1207,7 +1211,7 @@ msgstr "Lưu"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "Quản lý cách game nên được hiển thị."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 #, fuzzy
@@ -1221,12 +1225,12 @@ msgstr ""
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
 msgid "Width"
-msgstr ""
+msgstr "Chiều rộng"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:64
 #: bottles/frontend/ui/dialog-gamescope.blp:101
 msgid "Height"
-msgstr ""
+msgstr "Chiều cao"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
 #, fuzzy
@@ -1238,6 +1242,8 @@ msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
+"Nâng cấp độ phân giải khi sử dụng độ phân giải cao hơn của game với đơn vị "
+"pixel."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
@@ -1428,6 +1434,19 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"Cẩn trọng khi sử dụng trình thực thi dựa trên Proton với bottles không thuộc "
+"Steam, bởi chúng có thể gây ra vấn đề và ngăn chặn chúng hoạt động bình "
+"thường.\n"
+"\n"
+"Chúng tôi khuyên bạn nên sử dụng Wine-GE, một phiên bản Proton được thiết kế "
+"để chạy bên ngoài Steam.\n"
+"\n"
+"Việc tiếp tục sẽ tự động kích hoạt trình thực thi Steam "
+"(nếu có sẵn trong hệ thống và được Bottles phát hiện) để có thể cho phép nó "
+"truy cập vào các thư viện cần thiết và giới hạn các vấn đề về khả năng tương "
+"thích. Hãy cảnh giác rằng GloriousEggroll, nhà cung cấp trình thực thi, "
+"không chịu trách nhiệm cho bất cứ vấn đề nào và chúng tôi mong bạn không báo "
+"cáo vấn đề này cho họ."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
