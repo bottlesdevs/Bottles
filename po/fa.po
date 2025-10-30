@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-09-20 00:40+0000\n"
-"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
+"PO-Revision-Date: 2025-10-30 14:19+0000\n"
+"Last-Translator: Neoriat <neoriatwasnotfound@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/bottles/bottles/"
 "fa/>\n"
 "Language: fa\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -35,36 +35,36 @@ msgstr "درون ریختن پشتیبان: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "نصب مولفه ها پس از سه بار تلاش با شکست مواجه شد."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "عدم وجود مولفه های ضروری. در حال نصب…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
-msgstr ""
+msgstr "ساخت دایرکتوری باتل با شکست مواجه شد."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "ساخت فایل/دایرکتوری جایگزین با شکست مواجه شد."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr ""
+msgstr "در حال ایجاد پیکربندی باتل…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
-msgstr ""
+msgstr "قالب پیدا شد, در حال اعمال کردن…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1197
 msgid "The Wine config is being updated…"
-msgstr ""
+msgstr "پیکربندی Wine در حال بروزرسانی است…"
 
 #: bottles/backend/managers/manager.py:1199
 msgid "Wine config updated!"
-msgstr ""
+msgstr "پیکربندی Wine بروزرسانی شد!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
@@ -76,28 +76,30 @@ msgstr ""
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "در حال تنظیم نسخه ویندوز…"
 
 #: bottles/backend/managers/manager.py:1260
+#, fuzzy
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "در حال اعمال کردن تنظیمات پیش فرض CMD…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
 msgstr ""
 
 #: bottles/backend/managers/manager.py:1279
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "محیط های در حال اعمال: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
+#, fuzzy
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) در حال استفاده از یک دستور العمل محیط شخصی سازی شده…"
 
 #: bottles/backend/managers/manager.py:1292
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) دستور العمل معتبر پیدا نشد…"
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
@@ -118,7 +120,7 @@ msgstr "نصب کردن وابستگی‌ها: %s…"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "در حال ساختن حال نسخه سازی 0…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
@@ -139,7 +141,7 @@ msgstr ""
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "حال جدید [{0}] با موفقیت ایجاد شد!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
@@ -185,20 +187,21 @@ msgid "Pass arguments"
 msgstr ""
 
 #: bottles/frontend/main.py:203
+#, fuzzy
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "URL غیر معتبر (syntax: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr ""
+msgstr "[Quit] درخواست دریافت شد."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
-msgstr ""
+msgstr "[Help] درخواست دریافت شد."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "[Refresh] درخواست دریافت شد."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
@@ -206,11 +209,12 @@ msgstr "اعانه"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "کتبخانه های ثالث و تشکر ویژه"
 
 #: bottles/frontend/main.py:325
+#, fuzzy
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "حمایت شده توسط"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
@@ -248,6 +252,8 @@ msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
+"نصب با شکست مواجه شد. این میتواند به خاطر یک خطای repository , یا بارگیری "
+"های ناقص و یا checksum mismatch باشد. برای تلاش دوباره کلیک کنید."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -292,10 +298,13 @@ msgid "Download & Install this Dependency"
 msgstr "دانلود و نصب وابستگی‌ها"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
+#, fuzzy
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"یک خطای نصب اتفاق افتاد. Bottles رو ریستارت کنید تا گزارش کرش را بخوانید و "
+"یا از طریق ترمینال اجرایش کنید تا خروجی را بخوانید."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -316,7 +325,7 @@ msgstr "تکثیر بطری…"
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
+msgstr "این یک ارشیو کامل از بطری شماست, که شامل فایل های شخصی هم می شود."
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
@@ -328,6 +337,8 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
+"این فقط پیکربندی بطری شماست که برای ساختن یک بطری جدید بدون فایل های شخصی "
+"مناسب است."
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
@@ -356,11 +367,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr ""
+msgstr "همه پرادزش ها را به صورت اجباری متوقف کن"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "خاموش شدن یک سیستم ویندوزی را شبیه سازی کن."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
@@ -368,7 +379,7 @@ msgstr "خاموش کردن"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "راه اندازی دوباره یک سیستم ویندوزی را شبیه سازی کن."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
@@ -387,7 +398,7 @@ msgstr "اجرا با ترمینال"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "فایلی های که می خواهید اجرا کنید را رها کنید"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 #, fuzzy
@@ -412,11 +423,11 @@ msgstr "اجراگر"
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "نسخه سازی برای این بطری فعال است"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr ""
+msgstr "نسخه سازی برای این بطری فعال است."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
@@ -457,7 +468,7 @@ msgstr "تنظیمات"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr ""
+msgstr "پیکربندی تنظیمات بطری."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
@@ -476,7 +487,7 @@ msgstr "عکس‌های فوری"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
-msgstr ""
+msgstr "ایجاد و مدیریت حالت های بطری."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
@@ -486,7 +497,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr ""
+msgstr "مدیریت برنامه های در حال اجرا."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -510,7 +521,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr ""
+msgstr "استفاده از ابزار های قدیمی واین"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
@@ -545,19 +556,24 @@ msgstr ""
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr ""
+msgstr "Bottles در حال اجرا در حالت افلاین است پس وابستگی ها در دسترس نیستند."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
+#, fuzzy
 msgid ""
 "Dependencies are resources that improve compatibility of Windows software.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"وابستگی ها منابعی هستند که سازگاری برنامه های ویندوزی را بهبود می بخشند.\n"
+"\n"
+"فایل های که در این صفحه هستند توسط اشخاص ثالث با پروانه انحصاری آماده شده "
+"اند. با نصب آنها, شما با بند های پروانه آنها موافقت می کنید."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
-msgstr ""
+msgstr "مشکل یا وابستگی ناموجود را گزارش کنید."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
 msgid "Report Missing Dependency"
@@ -597,9 +613,10 @@ msgid "No Installers Found"
 msgstr "حذف کننده"
 
 #: bottles/frontend/ui/details-installers.blp:32
+#, fuzzy
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
+msgstr "مخزن غیرقابل دسترسی است و یا نصب کننده با این بطری سازگار نیست."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
@@ -620,11 +637,11 @@ msgstr "مولّفه‌ها"
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "نسخه لایه سازگاری واین."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "در حال بروز کردن اجراگر و مولفه ها, لطفا صبر کنید…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
@@ -632,12 +649,13 @@ msgid "DXVK"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:28
+#, fuzzy
 msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "سازگاری Direct3D 8/9/10/10 را با تبدیل کردن آن به Vulkan بهبود ببخشید."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
-msgstr ""
+msgstr "در حال بروز کردن DXVK, لطفا صبر کنید…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:266
@@ -646,11 +664,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "سازگاری Direct3D 12 را با ترجمه کردن آن به Vulkan بهبود ببخشید."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
-msgstr ""
+msgstr "در حال بروز کردن VKD3D, لطفا صبر کنید…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
@@ -659,7 +677,7 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr ""
+msgstr "در حال بروز کردن DXVK-NVAPI, لطفا صبر کنید…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
@@ -669,6 +687,8 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
 msgstr ""
+"پاسخ دهی را افزایش می دهد. احتمال دارد که توسط بعضی از نرم افزار های ضد تقلب "
+"شناسایی شود."
 
 #: bottles/frontend/ui/details-preferences.blp:71
 #, fuzzy
@@ -684,18 +704,22 @@ msgid "Deep Learning Super Sampling"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:89
+#, fuzzy
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"افزایش بازدهی در ازای کیفیت با استفاده کردن از DXVK-NVAPI. فقط در کارت های "
+"گرافیک جدید انویدیا کار می کند."
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:106
+#, fuzzy
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr ""
+msgstr "افزایش بازدهی در ازای کیفیت تصویری. فقط با Vulkan کار می کند"
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
