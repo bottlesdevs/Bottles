@@ -32,7 +32,7 @@ class Drives:
         return None
 
     def set_drive_path(self, letter: str, path: str):
-        """Change a drives path in the bottle"""
+        """Change a drive's path in the bottle"""
         letter = f"{letter}:".lower()
         drive_sym_path = os.path.join(self.dosdevices_path, letter)
         if not os.path.exists(self.dosdevices_path):
