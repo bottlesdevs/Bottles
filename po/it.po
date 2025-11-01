@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-10-31 20:31+0000\n"
-"Last-Translator: Francesco Tieri <fra977502@gmail.com>\n"
+"PO-Revision-Date: 2025-11-01 16:39+0000\n"
+"Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
 "Language: it\n"
@@ -35,7 +35,7 @@ msgstr "Importazione del backup: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
-msgstr "Impossibile installare i componenti, 3 tentativi effettuati."
+msgstr "Impossibile installare i componenti, ho provato 3 volte."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
@@ -89,7 +89,7 @@ msgid "Optimizing environment…"
 msgstr "Ottimizzazione dell'ambiente…"
 
 #: bottles/backend/managers/manager.py:1279
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Applicazione dell'ambiente: {0}…"
 
@@ -120,7 +120,6 @@ msgid "Installing dependency: %s …"
 msgstr "Installazione delle dipendenze: %s…"
 
 #: bottles/backend/managers/manager.py:1345
-#, fuzzy
 msgid "Creating versioning state 0…"
 msgstr "Creazione della versione 0 dello stato…"
 
@@ -167,7 +166,6 @@ msgid "State {} is already the active state"
 msgstr "Lo stato {} è già quello attivo"
 
 #: bottles/frontend/main.py:112
-#, fuzzy
 msgid "Show version"
 msgstr "Visualizza la versione"
 
@@ -256,7 +254,7 @@ msgstr ""
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
-msgstr "Scarica & installa"
+msgstr "Download & installa"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
@@ -293,7 +291,7 @@ msgstr "Categoria"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr "Scarica & installa questa dipendenza"
+msgstr "Download & installa questa dipendenza"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
@@ -301,11 +299,11 @@ msgid ""
 "run it via terminal to read the output."
 msgstr ""
 "Si è verificato un errore di installazione. Riavvia Bottles per leggere il "
-"Crash Report o eseguilo nel terminale per leggere l'output."
+"Crash Report o eseguilo nel terminale per ottenere l'output."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr "Menu delle Dipendenze"
+msgstr "Menu delle dipendenze"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
@@ -411,12 +409,12 @@ msgstr "Ambiente"
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr "Runner"
+msgstr "Avviatore"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr "Versionamento abilitato per questa bottiglia"
+msgstr "Gestione delle versioni abilitato per questa bottiglia"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
@@ -429,7 +427,7 @@ msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
-msgstr "Avvia l'eseguibile…"
+msgstr "Avvia eseguibile…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
@@ -441,18 +439,17 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
-"Cliccca \"Avvia l'Eseguibile...\" per avviare un eseguibile, "
-"\"Aggiungi i Collegamenti...\" per aggiungere un eseguibile alla lista dei "
-"programmi, oppure \"Installa i Programmi...\" per installare i programmi "
-"curati dalla comunità."
+"Clicca \"Avvia eseguibile...\" per avviarlo, \"Aggiungi collegamenti...\" "
+"per aggiungere un eseguibile alla lista dei programmi, oppure "
+"\"Installa programmi...\" per installare i software curati dalla comunità."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
-msgstr "Aggiungi i Collegamenti…"
+msgstr "Aggiungi collegamenti…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 msgid "Install Programs…"
-msgstr "Installa i Programmi…"
+msgstr "Installa programmi…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
@@ -494,7 +491,7 @@ msgstr "Gestore attività"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr "Gestisci i programmi in esecuzione."
+msgstr "Gestisci i processi in esecuzione."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -514,7 +511,7 @@ msgstr "Editor del registro"
 
 #: bottles/frontend/ui/details-bottle.blp:405
 msgid "Edit the internal registry."
-msgstr "Modifica il registro di sistema."
+msgstr "Modifica il registro di sistema di Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
@@ -535,7 +532,7 @@ msgstr "Configurazione"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr ""
+msgstr "Disinstallazione"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
@@ -562,7 +559,7 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Le Dipendenze sono risorse che migliorano la compatibilità di software "
+"Le Dipendenze sono risorse che migliorano la compatibilità del software "
 "Windows.\n"
 "\n"
 "I file in questa pagina sono distribuiti da terzi con una licenza "
@@ -611,10 +608,9 @@ msgstr ""
 #: bottles/frontend/ui/details-installers.blp:29
 #, fuzzy
 msgid "No Installers Found"
-msgstr "Nessun Installer trovato"
+msgstr "Nessun installer trovato"
 
 #: bottles/frontend/ui/details-installers.blp:32
-#, fuzzy
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
@@ -639,12 +635,11 @@ msgstr "Componenti"
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr "La versione del layer di compatibilità Wine."
+msgstr "Versione del layer di compatibilità Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
-#, fuzzy
 msgid "Updating Runner and components, please wait…"
-msgstr "Sto aggiornamento il runner e i componenti, attendere…"
+msgstr "Sto aggiornamento avviatore e componenti, attendere…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
@@ -1096,9 +1091,9 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
-"Questa versione di Bottles non sembra fornire tutte le dipendenze di base "
-"necessari, si prega di contattare il manutentore del pacchetto o di "
-"utilizzare una versione ufficiale."
+"Questa versione di Bottles non sembra fornire tutte le dipendenze "
+"fondamentali; contatta il manutentore del pacchetto od utilizza una versione "
+"ufficiale."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
@@ -1129,8 +1124,8 @@ msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
-"Questi sono percorsi dal tuo sistema host che sono mappati e riconosciuti "
-"come dispositivi dall'avviatore (ad es. C: D:…)."
+"Questi sono percorsi del tuo sistema mappati e riconosciuti come dispositivi "
+"dall'avviatore (C: D:…)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1188,12 +1183,13 @@ msgid "Exclusion Patterns"
 msgstr "Modelli di esclusione"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
+#, fuzzy
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
 "Definire i modelli che verranno usati per impedire che alcune cartelle siano "
-"versionate."
+"soggette a versione."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
 msgid "Pattern"
@@ -1373,7 +1369,7 @@ msgstr "Script post-esecuzione"
 #: bottles/frontend/ui/dialog-launch-options.blp:53
 #: bottles/frontend/windows/launchoptions.py:54
 msgid "Choose a script which should be executed after run."
-msgstr "Scegli uno script che dovrebbe essere eseguito dopo l'avvio."
+msgstr "Scegli lo script che dovrebbe essere eseguito dopo l'avvio."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
 msgid "Choose a Script"
@@ -1429,17 +1425,17 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
-"Attenzione: utilizzare runner basati su Proton all'interno di Bottles non-"
-"Steam può causare problemi e comportamenti errati.\n"
+"Attenzione: utilizzare avviatori basati su Proton all'interno di bottiglie "
+"non-Steam può causare problemi e comportamenti errati.\n"
 "\n"
-"Si raccomanda invece di utilizzare Wine-GE, una versione di Proton pensata "
+"Si raccomanda, invece, di utilizzare Wine-GE, una versione di Proton pensata "
 "per essere eseguita al di fuori di Steam.\n"
 "\n"
 "Proseguendo verrà automaticamente abilitato il runtime di Steam "
 "(se presente nel sistema e rilevato da Bottles) in modo da permettergli di "
 "accedere alle librerie necessarie e limitare eventuali problemi di "
-"compatibilità. GloriousEggroll, l'autore del runner, non è responsabile di "
-"eventuali problemi e chiediamo di non segnalarglieli."
+"compatibilità. GloriousEggroll, autore dell'avviatore, non è responsabile di "
+"eventuali problemi e pertanto evitate di segnalarglieli."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1502,11 +1498,11 @@ msgstr "Avvia aggiornamento"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
 msgid "New Versioning System"
-msgstr "Nuovo Sistema di Versionamento"
+msgstr "Nuovo sistema di controllo delle versioni"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
 msgid "The new bottle versioning system has landed."
-msgstr "Il nuovo sistema di versionamento delle bottiglie è arrivato."
+msgstr "Il nuovo sistema di controllo delle versioni è arrivato."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:83
 msgid ""
@@ -1522,16 +1518,16 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
-"Bottles ha un nuovo sistema di versionamento che non è compatibile con le "
-"versioni precedenti.\n"
+"Bottles ha un nuovo sistema di controllo delle versioni che non è "
+"compatibile con l'implementazione precedente.\n"
 "\n"
-"Per continuare ad usare il versionamento dobbiamo reinizializzare il "
-"repository della bottiglia. Questo non cancellerà nessun dato dalla tua "
-"bottiglia ma eliminerà tutti le istantanee esistenti e ne creerà una nuova.\n"
+"Per continuare ad usare il controllo delle versioni dobbiamo reinizializzare "
+"il repository della bottiglia. Questo non cancellerà nessun dato dalla tua "
+"bottiglia ma eliminerà tutte le istantanee esistenti creandone una nuova.\n"
 "\n"
-"Se devi tornare indietro ad una istantanea precedente prima di continuare, "
-"chiudi questa finestra e ripristinala, poi riapri la bottiglia per mostrare "
-"di nuovo questa finestra.\n"
+"Se devi tornare indietro ad una istantanea precedente, prima di continuare, "
+"chiudi questa finestra e ripristinala; poi riavvia la bottiglia per "
+"visualizzare di nuovo questa finestra.\n"
 "\n"
 "Il vecchio sistema verrà deprecato in una delle prossime versioni."
 
@@ -1874,7 +1870,7 @@ msgstr "Aggiungi elementi qui dalla lista dei programmi della bottiglia"
 
 #: bottles/frontend/ui/list-entry.blp:26
 msgid "Versioning is active in this bottle."
-msgstr "Il versionamento è attivo in questa bottiglia."
+msgstr "Il controllo delle versioni è attivo in questa bottiglia."
 
 #: bottles/frontend/ui/list-entry.blp:42
 msgid "This bottle looks damaged."
@@ -1979,7 +1975,8 @@ msgstr "Architettura"
 #: bottles/frontend/ui/new.blp:137
 msgid "32-bit should only be used if strictly necessary."
 msgstr ""
-"La versione a 32 bit deve essere utilizzata solo se strettamente necessaria."
+"La versione a 32-bit dovrebbe essere utilizzata solo se strettamente "
+"necessaria."
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
@@ -2024,9 +2021,8 @@ msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
-"Bottles usa degli avviatori di compatibilità per fornire ambienti di lavoro "
-"equivalenti a Windows isolati e containerizzati in cui vengono eseguiti i "
-"programmi."
+"Bottles usa avviatori capaci di fornire ambienti di lavoro isolati, "
+"equivalenti a Windows, in cui vengono eseguiti i programmi."
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
@@ -2068,11 +2064,11 @@ msgstr "Aspetto"
 
 #: bottles/frontend/ui/preferences.blp:17
 msgid "Dark Mode"
-msgstr "Aspetto scuro"
+msgstr "Tema scuro"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
-msgstr "Se Bottles deve usare lo schema di colori scuri."
+msgstr "Imposta Bottles per l'uso dei colori scuri."
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
@@ -2089,7 +2085,7 @@ msgstr "Notifiche"
 
 #: bottles/frontend/ui/preferences.blp:43
 msgid "Show notifications for downloads and installs."
-msgstr "Mostra le notifiche per scaricamenti ed installazioni."
+msgstr "Mostra le notifiche per download ed installazioni."
 
 #: bottles/frontend/ui/preferences.blp:52
 msgid "Temp Files"
@@ -2153,7 +2149,7 @@ msgstr "Directory di Bottles"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr "Directory che contiene i dati delle tue Bottiglie."
+msgstr "Directory che contiene i dati delle tue bottiglie."
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
@@ -2170,7 +2166,7 @@ msgstr "Pre-release"
 
 #: bottles/frontend/ui/preferences.blp:209
 msgid "Display unstable versions of runners."
-msgstr "Mostra versioni instabili dei runner."
+msgstr "Mostra versioni instabili degli avviatori."
 
 #: bottles/frontend/ui/preferences.blp:224
 msgid "DLL Components"
@@ -2290,9 +2286,9 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
-"Non sembri essere connesso ad internet. Senza non sarai in grado di "
-"scaricare i componenti essenziali. Clicca questa icona quando sarai "
-"nuovamente connesso."
+"Non sembra esserci connessione ad internet. Senza, non è possibile reperire "
+"i componenti essenziali. Clicca questa icona quando sarai nuovamente "
+"connesso."
 
 #: bottles/frontend/ui/window.blp:79
 msgid "Import…"
@@ -2921,15 +2917,15 @@ msgstr "Pulizia file temporanei"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid "Clean the temp path when booting the system."
-msgstr "Pulisci i file temporanei all'avvio."
+msgstr "Elimina i file temporanei all'avvio."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Release Candidate"
-msgstr "Release candidate"
+msgstr "Release Candidate (RC)"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle release candidate for runners."
-msgstr "Attiva/disattiva le release candidate per gli avviatori."
+msgstr "Attiva/disattiva le RC (release candidate) per gli avviatori."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
@@ -2937,15 +2933,15 @@ msgstr "Schermata di avvio"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
-msgstr "Determina in quale vista deve essere avviata l'applicazione."
+msgstr "Determina in quale modalità avviare l'applicazione."
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Attiva/disattiva funzioni sperimentali come il versionamento, gli "
-"installatori e i Release candidate per gli avviatori."
+"Attiva/disattiva funzioni sperimentali come il controllo delle versioni, gli "
+"installatori e gli avviatori in RC (release candidate)."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
@@ -2993,17 +2989,17 @@ msgid ""
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
-"Il nostro sistema di installazione delle dipendenze integrato consente un "
-"facile accesso a un ampio livello di compatibilità per i programmi. È "
-"possibile scaricare direttamente dal programma componenti ufficiali: il "
-"runner (wine, proton), dxvk, dipendenze, ecc."
+"Il nostro sistema integrato di installazione delle dipendenze garantisce, in "
+"automatico, la compatibilità software. Utilizza il download manager per "
+"ottenere i componenti ufficiali: gli avviatori (Wine, Proton), DXVK le "
+"dipendenze, ecc."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:16
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"Funzionalità come il controllo delle versioni delle bottiglie ti consentono "
-"di mantenere il tuo lavoro al sicuro e ripristinarlo in seguito!"
+"Il controllo delle versioni delle bottiglie ti consente di mantenere il tuo "
+"lavoro al sicuro ora e ripristinarlo in seguito!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:17
 msgid "Features:"
@@ -3037,7 +3033,7 @@ msgstr "Sostituisci le DLL direttamente dalle preferenze della bottiglia"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:24
 msgid "On-the-fly runner change for any Bottle"
-msgstr "Cambia runner in tempo reale per qualsiasi bottiglia"
+msgstr "Cambia avviatore in tempo reale per qualsiasi bottiglia"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:25
 msgid ""
@@ -3045,11 +3041,11 @@ msgid ""
 "compiler, offload … and much more.)"
 msgstr ""
 "Varie ottimizzazioni delle prestazioni dei giochi "
-"(esync, fsync, DXVK, cache, shader compiler, offload… e molto altro.)"
+"(esync, fsync, DXVK, cache, shader compiler, offload … e molto altro.)"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:26
 msgid "Automatic installation and management of Wine and Proton runners"
-msgstr "Gestione e installazione automatica dei runner Wine e Proton"
+msgstr "Gestione e installazione automatica degli avviatori Wine e Proton"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:27
 msgid "Automatic bottle repair in case of breakage"
@@ -3073,7 +3069,7 @@ msgstr "Accesso a ProtonDB e WineHQ per il supporto"
 msgid "System for bringing your configuration to new versions of Bottles"
 msgstr ""
 "Sistema di aggiornamento dei file di configurazione a nuove versioni di "
-"versioni di Bottles"
+"Bottles"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:32
 msgid "Back up and import bottles"
@@ -3085,7 +3081,7 @@ msgstr "Importa configurazioni di Wine da altri gestori"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:34
 msgid "Bottles versioning"
-msgstr "Versionamento di Bottles"
+msgstr "Controllo delle versioni di Bottles"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:35
 msgid "... and much more that you can find by installing Bottles!"
@@ -3115,7 +3111,7 @@ msgstr "Risolto il problema con la doppia estrazione di Patool"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
 msgid "Correct version"
-msgstr "Versione corrente"
+msgstr "Versione corretta"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Fix crash when creating a bottle"
@@ -3146,7 +3142,7 @@ msgstr "Correzioni di bug:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr "L'aggiunta di un collegamento a Steam ha generato un errore"
+msgstr "L'aggiunta del collegamento a Steam ha generato un errore"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
