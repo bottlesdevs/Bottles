@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-10-30 12:51+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-10-31 17:02+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
 "Language: hr\n"
@@ -1911,13 +1911,12 @@ msgid "C_reate"
 msgstr "Stvo_ri"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
 msgstr "Ime butelje"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
-msgstr "_Program"
+msgstr "_Aplikacija"
 
 #: bottles/frontend/ui/new.blp:88
 msgid "_Gaming"
@@ -1941,6 +1940,9 @@ msgid ""
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
 msgstr ""
+"Ovo omogućuje otkrivanje korisničkog direktorija u butelji, uz rizik "
+"dijeljenja osobnih podataka s Windows softverom. Ova se opcija ne može "
+"promijeniti nakon što je butelja stvorena."
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
@@ -2539,6 +2541,11 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
+"Da bi se ovaj direktorij koristio, potrebno je ponovno pokretanje Butelje.\n"
+"\n"
+"Obavezno zatvori sve programe pokrenute putem Butelje prije ponovnog "
+"pokretanja Butelje. U suprotnom može doći do gubitka podataka, oštećenja i "
+"neispravnog rada programa."
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
@@ -2609,6 +2616,9 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
+"Ova aplikacija možda ne radi kako treba. Instalacijski program je "
+"konfiguriran kako bi pružio najbolje moguće iskustvo, ali očekuj greške, "
+"nestabilnost i nefunkcioniranje funkcija."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
@@ -2703,9 +2713,8 @@ msgid "No overrides found."
 msgstr "Nije pronađena nijedan zamjena."
 
 #: bottles/frontend/windows/drives.py:71
-#, fuzzy
 msgid "Select Drive Path"
-msgstr "Odaberi datoteku"
+msgstr "Odaberi stazu diska"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
@@ -2890,7 +2899,7 @@ msgstr "Početni prikaz"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
-msgstr "Odaberi početni prikaz nakon pokretanja programa."
+msgstr "Odaberi početni prikaz nakon pokretanja aplikacije."
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
@@ -2978,7 +2987,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:21
 msgid "Automated detection of applications installed in your bottles"
-msgstr "Automatsko otkrivanje programa koji su instalirani u tvojim buteljama"
+msgstr "Automatsko otkrivanje aplikacija koje su instalirane u tvojim buteljama"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:22
 msgid "Add environment variables quickly"
@@ -3049,6 +3058,7 @@ msgstr "Aktualizirane informacije metapodataka"
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
 msgstr ""
+"Dodaj više informacija o aktualiziranju i ispravi verziju bilješke o izdanju"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Fixed \"Add to Steam\" button"
@@ -3056,11 +3066,11 @@ msgstr "Ispravljen gumb „Dodaj u Steam”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr ""
+msgstr "Ispravljena greška zbog koje se BottleConfig nije mogao serijalizirati"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "Ispravljena greška pri dvostrukom raspakiranju s Patool"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
 msgid "Correct version"
@@ -3080,20 +3090,19 @@ msgstr "Poboljšanja kvalitete života:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "Zamijeni ikonu emotikona ljubavi s bibliotekom na stranici biblioteke"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
-#, fuzzy
 msgid "Add toast for \"Run Executable\""
-msgstr "Dodaj prilagođenu stazu izvršnih datoteka"
+msgstr "Dodaj poruku za „Pokreni izvršnu datoteku”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
-msgstr "Ispravci:"
+msgstr "Ispravci grešaka:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "Dodavanje prečaca na Steam je rezultiralo s greškom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
@@ -3109,6 +3118,8 @@ msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"Razni ispravci vezani uz biblioteku, poput praznih korica i prekida rada "
+"sustava zbog nedostajućih unosa"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
@@ -3126,71 +3137,82 @@ msgstr "Ispravan datum verzije"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
+msgstr "Sakrij kritične greške povezane s NVIDIA na sustavima koji nisu NVIDIA"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "Poboljšanja i ispravci Gamescopea"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "Instalacija ovisnosti je brža i stabilnija"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
-msgstr ""
+msgstr "Provjera ispravnosti ima više informacija za brže otklanjanje grešaka"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
 msgstr ""
+"NVAPI ima mnogo ispravaka i stabilniji je, sada bi trebao ispravno raditi"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "Ispravljen prekid rada programa prilikom preuzimanja komponente"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "Poboljšan kod pozadinskog sustava izbjegavanjem spin-locka"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "Više varijabli za izradu skripta za instalacijski program"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
 msgstr ""
+"Ispravljen je uvodni dijalog na uređaju koji prikazuje „Sve je spremno” iako "
+"zapravo nije bilo spremno"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "Poboljšanje za izgradnju sustava"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
 msgstr ""
+"Aktiviranje VKD3D-a prema zadanim postavkama prilikom izrade butelja za "
+"igranje"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
 msgstr ""
+"Ispravljeni prekidi rada programa prilikom čitanja Steam datoteka s lošim "
+"kodiranjem"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"Ispravljene su komponente koje se nisu ispravno aktualizirale u korisničkom "
+"sučelju nakon instalacije/deinstalacije"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "Još ispravaka za FSR"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"Ispravljen je problem zatvaranja programa nakon što je pokrenut putem „"
+"Pokreni izvršnu datoteku”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "i još puno, puno više!"
 
 #~ msgid "Calculating…"
 #~ msgstr "Izračunavanje …"
