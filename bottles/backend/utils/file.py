@@ -115,6 +115,21 @@ class FileUtils:
         return True
 
     @staticmethod
+    def remove_path(path: str) -> bool:
+        """Remove a file or directory at the given path."""
+        try:
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+            else:
+                os.remove(path)
+        except FileNotFoundError:
+            return False
+        except OSError:
+            return False
+
+        return True
+
+    @staticmethod
     def chattr_f(directory: str) -> bool:
         FS_IOC_GETFLAGS = 0x80086601
         FS_IOC_SETFLAGS = 0x40086602

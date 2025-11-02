@@ -1623,8 +1623,11 @@ class Manager(metaclass=Singleton):
 
         if config.Custom_Path:
             logging.info("Removing placeholder…")
-            with contextlib.suppress(FileNotFoundError):
-                os.remove(os.path.join(Paths.bottles, os.path.basename(config.Path)))
+            placeholder_path = os.path.join(
+                Paths.bottles, os.path.basename(config.Path)
+            )
+            if not FileUtils.remove_path(placeholder_path):
+                logging.debug(f"Failed to remove placeholder at {placeholder_path}")
 
         logging.info("Removing the bottle…")
         path = ManagerUtils.get_bottle_path(config)
