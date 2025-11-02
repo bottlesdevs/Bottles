@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-01 16:39+0000\n"
+"PO-Revision-Date: 2025-11-02 14:14+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
@@ -69,12 +69,11 @@ msgstr "Configurazione di Wine aggiornata!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Esecuzione come Flatpak, creazione delle cartelle nella sandbox …"
+msgstr "Esecuzione come Flatpak, creazione directory utente nella sandbox …"
 
 #: bottles/backend/managers/manager.py:1209
-#, fuzzy
 msgid "Sandboxing userdir…"
-msgstr "Creazione cartelle utente nella sandbox…"
+msgstr "Creazione directory utente nella sandbox…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
@@ -183,7 +182,6 @@ msgid "Bottle name"
 msgstr "Nome bottiglia"
 
 #: bottles/frontend/main.py:144
-#, fuzzy
 msgid "Pass arguments"
 msgstr "Argomenti forniti"
 
@@ -193,7 +191,7 @@ msgstr "URI invalido (sintassi: bottles:run/<bottiglia>/<programma>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr "[Chiudi] richiesta ricevuta."
+msgstr "[Esci] richiesta ricevuta."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
@@ -201,11 +199,11 @@ msgstr "[Aiuto] richiesta ricevuta."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr "[Ricarica] richiesta ricevuta."
+msgstr "[Aggiorna] richiesta ricevuta."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr "Dona"
+msgstr "Donazioni"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
@@ -900,7 +898,7 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.blp:315
 #: bottles/frontend/ui/dialog-launch-options.blp:83
 msgid "Working Directory"
-msgstr "Cartella di lavoro"
+msgstr "Directory di lavoro"
 
 #: bottles/frontend/ui/details-preferences.blp:318
 #: bottles/frontend/ui/dialog-launch-options.blp:59
@@ -908,7 +906,7 @@ msgstr "Cartella di lavoro"
 #: bottles/frontend/ui/new.blp:150 bottles/frontend/ui/new.blp:181
 #: bottles/frontend/ui/preferences.blp:136
 msgid "Reset to Default"
-msgstr "Ripristina predefinito"
+msgstr "Ripristina i valori predefiniti"
 
 #: bottles/frontend/ui/details-preferences.blp:339
 #: bottles/frontend/ui/preferences.blp:157 bottles/frontend/views/new.py:78
@@ -1183,13 +1181,12 @@ msgid "Exclusion Patterns"
 msgstr "Modelli di esclusione"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
-#, fuzzy
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
 msgstr ""
-"Definire i modelli che verranno usati per impedire che alcune cartelle siano "
-"soggette a versione."
+"Definire i modelli che verranno usati per impedire che alcune directory "
+"siano soggette a versione."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
 msgid "Pattern"
@@ -1368,8 +1365,9 @@ msgstr "Script post-esecuzione"
 #. endregion
 #: bottles/frontend/ui/dialog-launch-options.blp:53
 #: bottles/frontend/windows/launchoptions.py:54
+#, fuzzy
 msgid "Choose a script which should be executed after run."
-msgstr "Scegli lo script che dovrebbe essere eseguito dopo l'avvio."
+msgstr "Scegli lo script da eseguire dopo la chiusura."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
 msgid "Choose a Script"
@@ -1383,13 +1381,12 @@ msgstr "Scegli da dove avviare il programma."
 #: bottles/frontend/ui/dialog-launch-options.blp:101
 #: bottles/frontend/ui/drive-entry.blp:22
 msgid "Choose a Directory"
-msgstr "Scegli una cartella"
+msgstr "Scegli una directory"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:114
 msgid "These settings will override the default settings for this executable."
 msgstr ""
-"Queste impostazioni sovrascrivono le impostazioni predefinite di questo "
-"eseguibile."
+"Queste impostazioni sovrascrivono quelle predefinite per questo eseguibile."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:115
 msgid "Preferences Overrides"
@@ -1550,7 +1547,7 @@ msgstr "Predefinito"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:48
 msgid "Default Settings"
-msgstr "Impostazioni Predefinite"
+msgstr "Impostazioni predefinite"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
@@ -2448,7 +2445,7 @@ msgstr "Seleziona Directory di lavoro"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
-msgstr "Cartella che contiene i dati di \"{}\"."
+msgstr "Directory che contiene i dati di \"{}\"."
 
 #: bottles/frontend/views/bottle_preferences.py:746
 msgid "Are you sure you want to delete all snapshots?"
@@ -2651,16 +2648,16 @@ msgid ""
 "working features."
 msgstr ""
 "Questa applicazione potrebbe funzionare male. Il programma di installazione "
-"è stato configurato per fornire la migliore esperienza possibile, ma prevede "
-"problemi, instabilità e mancanza di funzionalità ulteriori."
+"è stato configurato per fornire la migliore esperienza possibile, ma sono "
+"possibili malfunzionamenti, instabilità e mancanza di funzionalità."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
 msgstr ""
-"Questo programma funziona con notevoli problemi, ma questi problemi non "
-"influiscono sulla funzionalità dell'applicazione."
+"Questo programma presenta alcuni difetti evidenti che, tuttavia, non ne "
+"compromettono la funzionalità."
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
@@ -2827,8 +2824,8 @@ msgstr "Percorso bottiglie personalizzate non trovato"
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
 msgstr ""
-"Ritorno al percorso predefinito. Non verrà elencata alcuna bottiglia dal "
-"percorso indicato."
+"Ripristina il percorso predefinito. Non verrà elencata nessuna bottiglia dal "
+"percorso fornito."
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
@@ -3223,8 +3220,8 @@ msgstr "Miglioramento del sistema di costruzione"
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
 msgstr ""
-"Abilitazione di VKD3D per impostazione predefinita durante la creazione di "
-"bottiglie per i giochi"
+"Abilita VKD3D per impostazione predefinita durante la creazione di bottiglie "
+"per i giochi"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
@@ -3235,8 +3232,8 @@ msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
-"Corretti i componenti non aggiornati correttamente nell'interfaccia utente "
-"dopo l'installazione/disinstallazione"
+"Corretti i componenti non aggiornati correttamente nell'interfaccia utente a "
+"seguito di installazione/disinstallazione"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
