@@ -500,7 +500,7 @@ class PreferencesView(Adw.PreferencesPage):
             "win7": "Windows 7",
             "win2008r2": "Windows 2008 R2",
             "win2008": "Windows 2008",
-            # "vista": "Windows Vista", # TODO: implement this in the backend
+            "vista": "Windows Vista",
             "winxp": "Windows XP",
         }
 

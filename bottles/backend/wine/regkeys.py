@@ -34,6 +34,7 @@ class RegKeys:
             - win81 (Microsoft Windows 8.1)
             - win8 (Microsoft Windows 8)
             - win7 (Microsoft Windows 7)
+            - vista (Microsoft Windows Vista)
             - win2008r2 (Microsoft Windows 2008 R1)
             - win2008 (Microsoft Windows 2008)
             - winxp (Microsoft Windows XP)
