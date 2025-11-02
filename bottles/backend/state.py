@@ -57,6 +57,9 @@ class Signals(Enum):
     EagleStep = "Eagle.step"  # data(Result): msg(str)
     EagleFinished = "Eagle.finished"  # data(Result): results(dict)
 
+    # Dynamic launcher portal
+    DesktopEntryCreated = "DesktopEntry.created"
+
 
 class Status(Enum):
     RUNNING = "running"

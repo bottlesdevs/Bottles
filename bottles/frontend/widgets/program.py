@@ -23,6 +23,7 @@ from gi.repository import Adw, Gtk
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.models.result import Result
+from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
@@ -34,6 +35,7 @@ from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
 from bottles.frontend.windows.playtimegraph import PlaytimeGraphDialog
 from bottles.frontend.windows.rename import RenameDialog
 
+from typing import Optional
 
 # noinspection PyUnusedLocal
 @Gtk.Template(resource_path="/com/usebottles/bottles/program-entry.ui")
@@ -348,26 +350,20 @@ class ProgramEntry(Adw.ActionRow):
         self.pop_actions.popdown()  # workaround #1640
 
     def add_entry(self, _widget):
-        @GtkUtils.run_in_main_loop
-        def update(result, _error=False):
-            if not result:
-                webbrowser.open("https://docs.usebottles.com/bottles/programs#flatpak")
-                return
-
-            self.window.show_toast(
-                _('Desktop Entry created for "{0}"').format(self.program["name"])
-            )
-
-        RunAsync(
-            ManagerUtils.create_desktop_entry,
-            callback=update,
+        ManagerUtils.create_desktop_entry(
             config=self.config,
             program={
                 "name": self.program["name"],
                 "executable": self.program["executable"],
                 "path": self.program["path"],
-            },
+            }
         )
+
+        def _on_desktop_entry_created(data: Optional[Result] = None) -> None:
+            self.window.show_toast(
+                _('Desktop Entry created for "{0}"').format(self.program["name"])
+            )
+        SignalManager.connect(Signals.DesktopEntryCreated, _on_desktop_entry_created)
 
     def add_to_library(self, _widget):
         def update(_result, _error=False):
