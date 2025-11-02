@@ -25,7 +25,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/onboard.ui")
-class OnboardDialog(Adw.Window):
+class OnboardDialog(Adw.Dialog):
     __gtype_name__ = "OnboardDialog"
     __installing = False
     __progress_total = 0
@@ -56,16 +56,14 @@ class OnboardDialog(Adw.Window):
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(window)
 
         # common variables and references
         self.window = window
         self.manager = window.manager
 
         # connect signals
-        self.connect("close-request", self.__quit)
         self.carousel.connect("page-changed", self.__page_changed)
-        self.btn_close.connect("clicked", self.__close_window)
+        self.btn_close.connect("clicked", self.__close_dialog)
         self.btn_back.connect("clicked", self.__previous_page)
         self.btn_next.connect("clicked", self.__next_page)
         self.btn_install.connect("clicked", self.__install_runner)
@@ -138,7 +136,6 @@ class OnboardDialog(Adw.Window):
         self.carousel.set_allow_long_swipes(False)
         self.carousel.set_allow_mouse_drag(False)
         self.carousel.set_allow_scroll_wheel(False)
-        self.set_deletable(False)
 
         RunAsync(
             task_func=self.manager.checks,
@@ -176,9 +173,7 @@ class OnboardDialog(Adw.Window):
         completed_steps = current_step if completed else max(0, current_step - 1)
 
         if self.__progress_total:
-            self.progressbar.set_fraction(
-                completed_steps / self.__progress_total
-            )
+            self.progressbar.set_fraction(completed_steps / self.__progress_total)
             self.progressbar.set_visible(True)
             self.label_progress.set_visible(True)
             self.label_progress.set_label(
@@ -191,5 +186,5 @@ class OnboardDialog(Adw.Window):
             self.label_status.set_visible(True)
             self.label_status.set_label(description)
 
-    def __close_window(self, widget):
-        self.destroy()
+    def __close_dialog(self, widget):
+        self.force_close()
