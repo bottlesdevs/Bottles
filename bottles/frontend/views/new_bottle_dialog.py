@@ -15,8 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 from gettext import gettext as _
+from threading import Event
 from typing import Any, Optional
+
+from bottles.backend.state import Task, TaskManager
 from gi.repository import Gtk, Adw, Pango, Gio, Xdp, GObject, GLib
 
 from bottles.backend.models.config import BottleConfig
@@ -24,6 +28,7 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.backend.models.result import Result
 from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
 from bottles.frontend.utils.gtk import GtkUtils
+from pathvalidate import sanitize_filename
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/check-row.ui")
@@ -65,6 +70,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
     label_choose_path = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
     scrolled_output = Gtk.Template.Child()
+    btn_cancel_creating = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
     str_list_arch = Gtk.Template.Child()
@@ -91,6 +97,13 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.runner = None
         self.default_string = _("(Default)")
 
+        self._creation_task: Optional[Task] = None
+        self._creation_job: Optional[RunAsync] = None
+        self._creation_cancel_event: Optional[Event] = None
+        self._cleanup_job: Optional[RunAsync] = None
+        self._cleanup_config: Optional[BottleConfig] = None
+        self._cancel_requested = False
+
         self.arch = {"win64": "64-bit", "win32": "32-bit"}
 
         # connect signals
@@ -98,6 +111,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.btn_cancel.connect("clicked", self.__close_dialog)
         self.btn_close.connect("clicked", self.__close_dialog)
         self.btn_create.connect("clicked", self.create_bottle)
+        self.btn_cancel_creating.connect("clicked", self.__prompt_cancel_confirmation)
         self.btn_choose_env.connect("clicked", self.__choose_env_recipe)
         self.btn_choose_env_reset.connect("clicked", self.__reset_env_recipe)
         self.btn_choose_path.connect("clicked", self.__choose_path)
@@ -204,10 +218,21 @@ class BottlesNewBottleDialog(Adw.Dialog):
         # set widgets states
         self.set_can_close(False)
         self.stack_create.set_visible_child_name("page_creating")
+        self._cancel_requested = False
+        self._cleanup_config = None
+        self.btn_cancel_creating.set_sensitive(True)
+        self.btn_cancel_creating.set_label(_("_Cancel Creation"))
 
         self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
-        RunAsync(
+        self.__clear_creation_task()
+
+        task_title = _("Creating “{0}”").format(self.entry_name.get_text())
+        self._creation_task = Task(title=task_title)
+        TaskManager.add(self._creation_task)
+
+        self._creation_cancel_event = Event()
+        self._creation_job = RunAsync(
             task_func=self.manager.create_bottle,
             callback=self.finish,
             name=self.entry_name.get_text(),
@@ -218,6 +243,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
             dxvk=self.manager.dxvk_available[0],
             fn_logger=self.update_output,
             custom_environment=self.env_recipe_path,
+            cancel_event=self._creation_cancel_event,
         )
 
     @GtkUtils.run_in_main_loop
@@ -227,8 +253,12 @@ class BottlesNewBottleDialog(Adw.Dialog):
         with the previous text.
         """
         current_text = self.label_output.get_text()
-        text = f"{current_text}{text}\n"
-        self.label_output.set_text(text)
+        new_line = text
+        updated_text = f"{current_text}{new_line}\n"
+        self.label_output.set_text(updated_text)
+
+        if self._creation_task is not None and new_line.strip():
+            self._creation_task.subtitle = new_line.strip()
 
     @GtkUtils.run_in_main_loop
     def finish(self, result: Optional[Result], error=None) -> None:
@@ -239,9 +269,24 @@ class BottlesNewBottleDialog(Adw.Dialog):
             if not self.window.is_active():
                 self.app.send_notification("bottle-created-completed", notification)
 
+        result_config = None
+        if result and result.data:
+            result_config = result.data.get("config")
+            if result_config:
+                self.new_bottle_config = result_config
+
+        if self._cancel_requested:
+            if result_config:
+                self._cleanup_config = result_config
+            self.__clear_creation_task()
+            self.__start_cancellation_cleanup()
+            return
+
         self.set_can_close(True)
         self.stack_create.set_visible_child_name("page_completed")
         notification = Gio.Notification()
+
+        self.__clear_creation_task()
 
         # Show error if bottle unsuccessfully builds
         if not result or not result.status or error:
@@ -292,9 +337,123 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.label_choose_path.set_label(self.default_string)
 
     def __close_dialog(self, *_args: Any) -> None:
+        if (
+            self._creation_task is not None
+            and self.stack_create.get_visible_child_name() == "page_creating"
+        ):
+            if self._cancel_requested:
+                return
+            self.__prompt_cancel_confirmation()
+            return
+
+        self.__finalize_close()
+
+    def __prompt_cancel_confirmation(
+        self,
+        _source: Optional[Gtk.Widget] = None,
+    ) -> None:
+        if self._cancel_requested:
+            return
+
+        def handle_response(dialog: Adw.MessageDialog, response: str) -> None:
+            if response == "confirm":
+                self.__cancel_creation()
+            dialog.destroy()
+
+        dialog = Adw.MessageDialog.new(
+            self.window,
+            _("Cancel Bottle Creation?"),
+            _(
+                "Cancelling now will stop the setup once the current step finishes and remove any files created so far."
+            ),
+        )
+        dialog.add_response("keep", _("_Keep Waiting"))
+        dialog.add_response("confirm", _("_Delete and Cancel"))
+        dialog.set_response_appearance("keep", Adw.ResponseAppearance.SUGGESTED)
+        dialog.set_response_appearance("confirm", Adw.ResponseAppearance.DESTRUCTIVE)
+        dialog.set_default_response("keep")
+        dialog.set_close_response("keep")
+        dialog.connect("response", handle_response)
+        dialog.present()
+
+    def __cancel_creation(self) -> None:
+        if self._cancel_requested:
+            return
+
+        self._cancel_requested = True
+        self._cleanup_config = self.__build_cleanup_config()
+        self.set_can_close(False)
+        self.btn_cancel_creating.set_sensitive(False)
+        self.btn_cancel_creating.set_label(_("Cancelling…"))
+
+        if self._creation_task is not None:
+            self._creation_task.subtitle = _("Cancelling…")
+
+        if self._creation_job is not None:
+            self._creation_job.cancel()
+        if self._creation_cancel_event is not None:
+            self._creation_cancel_event.set()
+
+        self.update_output(
+            _("Cancellation requested. Waiting for current step to finish before cleaning up…")
+        )
+
+    def __finalize_close(self) -> None:
         self.window.disconnect_by_func(self.__remove_notifications)
-        # TODO: Implement AdwMessageDialog to prompt the user if they are
-        # SURE they want to cancel creation. For now, the window will not
-        # react if the user attempts to close the window while a bottle
-        # is being created in a feature update
         self.close()
+
+    def __clear_creation_task(self) -> None:
+        if self._creation_task is None:
+            return
+
+        if self._creation_task.task_id and TaskManager.get(self._creation_task.task_id):
+            TaskManager.remove(self._creation_task)
+
+        self._creation_task = None
+        self._creation_job = None
+        self._creation_cancel_event = None
+
+    def __build_cleanup_config(self) -> BottleConfig:
+        config = BottleConfig()
+        name = self.entry_name.get_text()
+        config.Name = name
+        config.Environment = self.selected_environment.capitalize()
+        sanitized = sanitize_filename(name.replace(" ", "-"), platform="universal")
+
+        if self.custom_path:
+            config.Path = os.path.join(self.custom_path, sanitized)
+            config.Custom_Path = True
+        else:
+            config.Path = sanitized
+            config.Custom_Path = False
+
+        return config
+
+    def __start_cancellation_cleanup(self) -> None:
+        if self._cleanup_job is not None:
+            return
+        cleanup_config = self._cleanup_config or self.__build_cleanup_config()
+        self.update_output(_("Removing created files…"))
+        self._cleanup_job = RunAsync(
+            task_func=self.manager.delete_bottle,
+            callback=self.__on_cleanup_finished,
+            config=cleanup_config,
+        )
+
+    @GtkUtils.run_in_main_loop
+    def __on_cleanup_finished(self, success: Optional[bool], error=None) -> None:
+        self._cleanup_job = None
+        self._cleanup_config = None
+
+        if not success or error:
+            self.update_output(
+                _("Unable to remove every file automatically. Check the logs for details."),
+            )
+        else:
+            self.update_output(_("Cleanup completed."))
+
+        self.manager.check_bottles()
+        self.window.page_list.update_bottles_list()
+        self.set_can_close(True)
+        self._cancel_requested = False
+        self.__finalize_close()

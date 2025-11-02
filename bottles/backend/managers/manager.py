@@ -23,6 +23,7 @@ import shutil
 import subprocess
 import time
 import uuid
+from threading import Event
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
@@ -1213,6 +1214,7 @@ class Manager(metaclass=Singleton):
         fn_logger: callable = None,
         arch: str = "win64",
         custom_environment: Optional[str] = None,
+        cancel_event: Optional[Event] = None,
     ) -> Result[dict]:
         """
         Create a new bottle from the given arguments.
@@ -1222,6 +1224,33 @@ class Manager(metaclass=Singleton):
         def log_update(message):
             if fn_logger:
                 fn_logger(message)
+
+        cancellation_announced = False
+
+        cleanup_config = BottleConfig()
+        cleanup_config.Name = name
+        cleanup_config.Environment = environment.capitalize()
+        cleanup_config.Custom_Path = bool(path)
+
+        def is_cancelled() -> bool:
+            return cancel_event is not None and cancel_event.is_set()
+
+        def abort_build(message: Optional[str] = None) -> Result[dict]:
+            nonlocal cancellation_announced
+
+            if not cancellation_announced:
+                log_update(
+                    message
+                    or _("Cancellation requested. Stopping after the current step…")
+                )
+                cancellation_announced = True
+
+            return Result(False, data={"config": cleanup_config})
+
+        def check_cancel(message: Optional[str] = None) -> Optional[Result[dict]]:
+            if not is_cancelled():
+                return None
+            return abort_build(message)
 
         # check for essential components
         check_attempts = 0
@@ -1257,6 +1286,10 @@ class Manager(metaclass=Singleton):
 
         if not components_check():
             return Result(False)
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         # default components versions if not specified
         if not runner:
@@ -1296,9 +1329,17 @@ class Manager(metaclass=Singleton):
             # if no path is specified, use the name as path
             bottle_custom_path = False
             bottle_complete_path = os.path.join(Paths.bottles, bottle_name_path)
+            cleanup_config.Path = bottle_name_path
         else:
             bottle_custom_path = True
             bottle_complete_path = os.path.join(path, bottle_name_path)
+            cleanup_config.Path = bottle_complete_path
+
+        cleanup_config.Custom_Path = bottle_custom_path
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         # if another bottle with same path exists, append a random number
         if os.path.exists(bottle_complete_path):
@@ -1309,6 +1350,11 @@ class Manager(metaclass=Singleton):
             rnd = random.randint(100, 200)
             bottle_name_path = f"{bottle_name_path}__{rnd}"
             bottle_complete_path = f"{bottle_complete_path}__{rnd}"
+
+            if bottle_custom_path:
+                cleanup_config.Path = bottle_complete_path
+            else:
+                cleanup_config.Path = bottle_name_path
 
         # define registers that should be awaited
         reg_files = [
@@ -1330,6 +1376,10 @@ class Manager(metaclass=Singleton):
             log_update(_("Failed to create bottle directory."))
             return Result(False)
 
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         if bottle_custom_path:
             placeholder_dir = os.path.join(Paths.bottles, bottle_name_path)
             try:
@@ -1344,6 +1394,10 @@ class Manager(metaclass=Singleton):
                 )
                 log_update(_("Failed to create placeholder directory/file."))
                 return Result(False)
+
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
 
         # generate bottle configuration
         logging.info("Generating bottle configuration…")
@@ -1366,6 +1420,12 @@ class Manager(metaclass=Singleton):
         if versioning:
             config.Versioning = True
 
+        cleanup_config = config
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         # get template
         template = TemplateManager.get_env_template(environment)
         template_updated = False
@@ -1374,6 +1434,10 @@ class Manager(metaclass=Singleton):
             TemplateManager.unpack_template(template, config)
             config.Installed_Dependencies = template["config"]["Installed_Dependencies"]
             config.Uninstallers = template["config"]["Uninstallers"]
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         # initialize wineprefix
         reg = Reg(config)
@@ -1385,6 +1449,10 @@ class Manager(metaclass=Singleton):
         log_update(_("The Wine config is being updated…"))
         wineboot.init()
         log_update(_("Wine config updated!"))
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         userdir = f"{bottle_complete_path}/drive_c/users"
         if os.path.exists(userdir):
@@ -1421,11 +1489,23 @@ class Manager(metaclass=Singleton):
                     os.unlink(link)
                     os.makedirs(link)
 
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
+
         # wait for registry files to be created
         FileUtils.wait_for_files(reg_files)
 
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         # apply Windows version
         if not template and not custom_environment:
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
+
             logging.info("Setting Windows version…")
             log_update(_("Setting Windows version…"))
             if (
@@ -1467,6 +1547,10 @@ class Manager(metaclass=Singleton):
         log_update(_("Applying environment: {0}…").format(environment))
         env = None
 
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         if environment.lower() not in ["custom"]:
             env = Samples.environments[environment.lower()]
         elif custom_environment:
@@ -1484,15 +1568,26 @@ class Manager(metaclass=Singleton):
 
         if env:
             while wineserver.is_alive():
+                cancel_result = check_cancel()
+                if cancel_result is not None:
+                    return cancel_result
                 time.sleep(1)
 
             for prm in config.Parameters:
                 if prm in env.get("Parameters", {}):
                     config.Parameters[prm] = env["Parameters"][prm]
 
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
+
             if (not template and config.Parameters.dxvk) or (
                 template and template["config"]["DXVK"] != dxvk
             ):
+                cancel_result = check_cancel()
+                if cancel_result is not None:
+                    return cancel_result
+
                 # perform dxvk installation if configured
                 logging.info("Installing DXVK…")
                 log_update(_("Installing DXVK…"))
@@ -1504,6 +1599,10 @@ class Manager(metaclass=Singleton):
                 and config.Parameters.vkd3d
                 or (template and template["config"]["VKD3D"] != vkd3d)
             ):
+                cancel_result = check_cancel()
+                if cancel_result is not None:
+                    return cancel_result
+
                 # perform vkd3d installation if configured
                 logging.info("Installing VKD3D…")
                 log_update(_("Installing VKD3D…"))
@@ -1516,6 +1615,10 @@ class Manager(metaclass=Singleton):
                 or (template and template["config"]["NVAPI"] != nvapi)
             ):
                 if GPUUtils.is_gpu(GPUVendors.NVIDIA):
+                    cancel_result = check_cancel()
+                    if cancel_result is not None:
+                        return cancel_result
+
                     # perform nvapi installation if configured
                     logging.info("Installing DXVK-NVAPI…")
                     log_update(_("Installing DXVK-NVAPI…"))
@@ -1526,6 +1629,10 @@ class Manager(metaclass=Singleton):
                 if template and dep in template["config"]["Installed_Dependencies"]:
                     continue
                 if dep in self.supported_dependencies:
+                    cancel_result = check_cancel()
+                    if cancel_result is not None:
+                        return cancel_result
+
                     _dep = self.supported_dependencies[dep]
                     log_update(
                         _("Installing dependency: %s …")
@@ -1546,10 +1653,18 @@ class Manager(metaclass=Singleton):
                     template_updated = True
 
         # save bottle config
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         config.dump(f"{bottle_complete_path}/bottle.yml")
 
         if versioning:
             # create first state if versioning enabled
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
+
             logging.info("Creating versioning state 0…")
             log_update(_("Creating versioning state 0…"))
             self.versioning_manager.create_state(config=config, message="First boot")
@@ -1561,8 +1676,16 @@ class Manager(metaclass=Singleton):
         # wait for all registry changes to be applied
         FileUtils.wait_for_files(reg_files)
 
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         # perform wineboot
         wineboot.update()
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         # caching template
         if not template or template_updated:
