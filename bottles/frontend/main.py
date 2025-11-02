@@ -72,8 +72,8 @@ if not path.exists(locale_dir):  # development
 
 locale.bindtextdomain("bottles", locale_dir)
 locale.textdomain("bottles")
-gettext.bindtextdomain("bottles", locale_dir)
-gettext.textdomain("bottles")
+gettext.bindtextdomain(APP_ID, locale_dir)
+gettext.textdomain(APP_ID)
 _ = gettext.gettext
 
 

@@ -9,7 +9,7 @@ language_list = fs.read('LINGUAS').strip().split('\n')
 language_list += ['zh_CN', 'zh_HK', 'zh_SG', 'zh_TW']
 
 i18n.gettext(
-	'bottles',
+	APP_ID,
 	install_dir: localedir,
 	preset: 'glib',
 	args: '--from-code=UTF-8',
