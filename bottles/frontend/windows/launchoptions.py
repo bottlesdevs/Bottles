@@ -36,10 +36,8 @@ class LaunchOptionsDialog(Adw.Window):
     btn_save = Gtk.Template.Child()
     btn_pre_script = Gtk.Template.Child()
     btn_pre_script_reset = Gtk.Template.Child()
-    entry_pre_script_args = Gtk.Template.Child()
     btn_post_script = Gtk.Template.Child()
     btn_post_script_reset = Gtk.Template.Child()
-    entry_post_script_args = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
     btn_reset_defaults = Gtk.Template.Child()
@@ -174,16 +172,10 @@ class LaunchOptionsDialog(Adw.Window):
         if program.get("pre_script") not in ("", None):
             self.action_pre_script.set_subtitle(program["pre_script"])
             self.btn_pre_script_reset.set_visible(True)
-            self.entry_pre_script_args.set_visible(True)
-            if program.get("pre_script_args") not in ("", None):
-                self.entry_pre_script_args.set_text(program["pre_script_args"])
 
         if program.get("post_script") not in ("", None):
             self.action_post_script.set_subtitle(program["post_script"])
             self.btn_post_script_reset.set_visible(True)
-            self.entry_post_script_args.set_visible(True)
-            if program.get("post_script_args") not in ("", None):
-                self.entry_post_script_args.set_text(program["post_script_args"])
 
         if program.get("folder") not in (
             "",
@@ -226,11 +218,6 @@ class LaunchOptionsDialog(Adw.Window):
             "virtual_desktop", program_virt_desktop, self.global_virt_desktop
         )
         self.program["arguments"] = self.entry_arguments.get_text()
-        
-        pre_args = self.entry_pre_script_args.get_text()
-        post_args = self.entry_post_script_args.get_text()
-        self.program["pre_script_args"] = pre_args if pre_args else None
-        self.program["post_script_args"] = post_args if post_args else None
 
         self.config = self.manager.update_config(
             config=self.config,
@@ -260,7 +247,6 @@ class LaunchOptionsDialog(Adw.Window):
                 self.program["pre_script"] = file_path
                 self.action_pre_script.set_subtitle(file_path)
                 self.btn_pre_script_reset.set_visible(True)
-                self.entry_pre_script_args.set_visible(True)
 
             except GLib.Error as error:
                 # also thrown when dialog has been cancelled
@@ -292,7 +278,6 @@ class LaunchOptionsDialog(Adw.Window):
                 self.program["post_script"] = file_path
                 self.action_post_script.set_subtitle(file_path)
                 self.btn_post_script_reset.set_visible(True)
-                self.entry_post_script_args.set_visible(True)
             except GLib.Error as error:
                 # also thrown when dialog has been cancelled
                 if error.code == 2:
@@ -312,19 +297,13 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __reset_pre_script(self, *_args):
         self.program["pre_script"] = None
-        self.program["pre_script_args"] = None
         self.action_pre_script.set_subtitle(self.__default_pre_script_msg)
         self.btn_pre_script_reset.set_visible(False)
-        self.entry_pre_script_args.set_visible(False)
-        self.entry_pre_script_args.set_text("")
 
     def __reset_post_script(self, *_args):
         self.program["post_script"] = None
-        self.program["post_script_args"] = None
         self.action_post_script.set_subtitle(self.__default_post_script_msg)
         self.btn_post_script_reset.set_visible(False)
-        self.entry_post_script_args.set_visible(False)
-        self.entry_post_script_args.set_text("")
 
     def __choose_cwd(self, *_args):
         def set_path(dialog, result):

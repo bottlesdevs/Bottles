@@ -99,8 +99,6 @@ class WineCommand:
         minimal: bool = False,  # avoid gamemode/gamescope usage
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
-        pre_script_args: Optional[str] = None,
-        post_script_args: Optional[str] = None,
         cwd: Optional[str] = None,
     ):
         _environment = environment.copy()
@@ -115,7 +113,7 @@ class WineCommand:
             else self.config.Parameters.gamescope
         )
         self.command = self.get_cmd(
-            command, pre_script, post_script, pre_script_args, post_script_args, environment=_environment
+            command, pre_script, post_script, environment=_environment
         )
         self.terminal = terminal
         self.env = self.get_env(_environment)
@@ -491,8 +489,6 @@ class WineCommand:
         command,
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
-        pre_script_args: Optional[str] = None,
-        post_script_args: Optional[str] = None,
         return_steam_cmd: bool = False,
         return_clean_cmd: bool = False,
         environment: Optional[dict] = None,
@@ -602,18 +598,10 @@ class WineCommand:
                 environment.update(extracted_env)
 
         if post_script not in (None, ""):
-            post_cmd_parts = [post_script]
-            if post_script_args not in (None, ""):
-                post_cmd_parts.extend(shlex.split(post_script_args))
-            post_cmd = " ".join(shlex.quote(part) for part in post_cmd_parts)
-            command = f"{command} ; sh {post_cmd}"
+            command = f"{command} ; sh '{post_script}'"
 
         if pre_script not in (None, ""):
-            pre_cmd_parts = [pre_script]
-            if pre_script_args not in (None, ""):
-                pre_cmd_parts.extend(shlex.split(pre_script_args))
-            pre_cmd = " ".join(shlex.quote(part) for part in pre_cmd_parts)
-            command = f"sh {pre_cmd} ; {command}"
+            command = f"sh '{pre_script}' ; {command}"
 
         return command
 
