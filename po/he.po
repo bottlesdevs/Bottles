@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
 "PO-Revision-Date: 2025-11-04 08:51+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Xo <xocodokie@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/bottles/bottles/"
 "he/>\n"
 "Language: he\n"
@@ -44,11 +44,11 @@ msgstr "חסרים רכיבים חיוניים. מותקנים…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
-msgstr "יצירת תיקיית בקבוק נכשלה."
+msgstr "יצירת ספריית בקבוק נכשלה."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr "יצירת תיקיית/קובץ ממלאי מקום נכשלה."
+msgstr "יצירת ספריה/קובץ ממלאי מקום נכשלה."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
@@ -85,12 +85,12 @@ msgstr "החלת הגדרות CMD ברירת מחדל…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
-msgstr "ממטב סביבה…"
+msgstr "הסביבה ממוטבת…"
 
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "מיישם סביבה: {0}…"
+msgstr "הסביבה מוחלת: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
@@ -115,7 +115,7 @@ msgstr "DXVK-NVAPI מותקן…"
 #: bottles/backend/managers/manager.py:1335
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr "חבילות תלות מותקנות: %s …"
+msgstr "חבילת תלות מותקנת: %s …"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
@@ -123,7 +123,7 @@ msgstr "נוצרות גרסאות מצב 0…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
-msgstr "לקראת סיום…"
+msgstr "בתהליך סיום…"
 
 #: bottles/backend/managers/manager.py:1364
 msgid "Caching template…"
@@ -131,7 +131,7 @@ msgstr "התבנית נשמרת במטמון…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
-msgstr "המצב מקובע…"
+msgstr "המצב מקובע …"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
@@ -140,20 +140,20 @@ msgstr "אין מה לקבע"
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "מצב חדש [{0}] נוצר כראוי!"
+msgstr "מצב חדש [{0}] נוצר בהצלחה!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr "רשימת המצבים התקבלה בהצלחה!"
+msgstr "רשימת המצבים אוחזרה בהצלחה!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "מצב {0} שוחזר כראוי!"
+msgstr "מצב {0} שוחזר בהצלחה!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr "מצב {} משוחזר…"
+msgstr "מצב {} משוחזר …"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
@@ -161,7 +161,7 @@ msgstr "המצב לא נמצא"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr "המצב {} הוא כבר העדכני ביותר"
+msgstr "המצב {} הוא כבר המצב הפעיל"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
@@ -169,36 +169,36 @@ msgstr "הצגת גרסה"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
-msgstr "נתיב לקובץ ההרצה \\ האצווה"
+msgstr "נתיב קובץ ההרצה"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr "נתיב דיו"
+msgstr "נתיב lnk"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
 msgid "Bottle name"
-msgstr "כינוי הבקבוק"
+msgstr "שם הבקבוק"
 
 #: bottles/frontend/main.py:144
 msgid "Pass arguments"
-msgstr "העברת פרמטר"
+msgstr "העברת ארגומנטים"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "URI שגוי! (תחביר: bottles:run/<bottle>/<program>)"
+msgstr "URI לא חוקי (תחביר: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr "בקשת [יציאה] נתקבלה"
+msgstr "בקשת [יציאה] התקבלה."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
-msgstr "בקשת [סיוע] נתקבלה."
+msgstr "בקשת [סיוע] התקבלה."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr "בקשת [רענון] נתקבלה."
+msgstr "בקשת [רענון] התקבלה."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
@@ -206,16 +206,16 @@ msgstr "תרומה"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr "תודות מיוחדות, ספריות צד-ג'"
+msgstr "ספריות צד שלישי ותודה מיוחדת"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr "מקודם וממומן ע\"י"
+msgstr "בחסות ובמימון"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "כל הזכויות שמורות © 2017 Bottles Developers"
+msgstr "זכויות יוצרים © 2017 מפתחי Bottles"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
@@ -224,11 +224,11 @@ msgstr "מפתחי Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr "תודות_מתרגמים"
+msgstr "Joe Shachaf, Gilad the Grain, Yaron Shahrabani, xocodokie"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr "גרסת רכיבים"
+msgstr "גרסת רכיב"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
