@@ -1,9 +1,8 @@
 import os
 import time
-import re
 import shlex
 import uuid
-from typing import Optional, Pattern
+from typing import Optional
 
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
