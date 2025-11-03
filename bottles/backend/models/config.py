@@ -157,16 +157,16 @@ class BottleConfig(DictCompatMixIn):
         :param encoding: file content encoding, default is None(Decide by Python IO)
         :param indent: file indent width, default is 4
         """
-        yaml.register_dataclass(type(self))
-        f = file if isinstance(file, IOBase) else open(file, mode=mode)
         try:
-            yaml.dump(self.to_dict(), f, indent=indent, encoding=encoding)
+            if isinstance(file, IOBase):
+                yaml.dump(self.to_dict(), file, indent=indent, encoding=encoding)
+            else:
+                with open(file, mode=mode) as f:
+                    yaml.dump(self.to_dict(), f, indent=indent, encoding=encoding)
             return Result(True)
         except Exception as e:
             logging.exception(e)
             return Result(False, message=str(e))
-        finally:
-            f.close()
 
     @classmethod
     def load(cls, file: str | IO, mode="r") -> Result[Optional["BottleConfig"]]:
@@ -177,14 +177,15 @@ class BottleConfig(DictCompatMixIn):
         :param mode: when param 'file' is filepath, use this mode to open file, otherwise ignored.
                default is 'r'
         """
-        f = None
         try:
-            if not os.path.exists(file):
-                raise FileNotFoundError("Config file not exists")
+            if isinstance(file, IOBase):
+                data = yaml.load(file)
+            else:
+                if not os.path.exists(file):
+                    raise FileNotFoundError("Config file not exists")
 
-            f = file if isinstance(file, IOBase) else open(file, mode=mode)
-
-            data = yaml.load(f)
+                with open(file, mode=mode) as f:
+                    data = yaml.load(f)
             if not isinstance(data, dict):
                 raise TypeError(
                     "Config data should be dict type, but it was %s" % type(data)
@@ -198,9 +199,6 @@ class BottleConfig(DictCompatMixIn):
         except Exception as e:
             logging.exception(e)
             return Result(False, message=str(e))
-        finally:
-            if f:
-                f.close()
 
     @classmethod
     def _fill_with(cls, data: dict) -> Result[Optional["BottleConfig"]]:

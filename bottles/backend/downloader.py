@@ -15,19 +15,26 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 import shutil
 import sys
 import time
+from contextlib import suppress
+from threading import Event
 from typing import Optional
 
 import requests
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.result import Result
-from bottles.backend.state import TaskStreamUpdateHandler
+from bottles.backend.state import Status, TaskStreamUpdateHandler
 from bottles.backend.utils.file import FileUtils
 
 logging = Logger()
+
+
+class DownloadCancelled(Exception):
+    """Raised when a download operation is cancelled."""
 
 
 class Downloader:
@@ -38,12 +45,17 @@ class Downloader:
     """
 
     def __init__(
-        self, url: str, file: str, update_func: Optional[TaskStreamUpdateHandler] = None
+        self,
+        url: str,
+        file: str,
+        update_func: Optional[TaskStreamUpdateHandler] = None,
+        cancel_event: Optional[Event] = None,
     ):
         self.start_time = None
         self.url = url
         self.file = file
         self.update_func = update_func
+        self.cancel_event = cancel_event
 
     def download(self) -> Result:
         """Start the download."""
@@ -59,6 +71,8 @@ class Downloader:
 
                 if total_size != 0:
                     for data in response.iter_content(1024 * 1024):  # 1MB buffer
+                        if self.cancel_event and self.cancel_event.is_set():
+                            raise DownloadCancelled
                         received_size += len(data)
                         file.write(data)
                         if not self.update_func:
@@ -70,6 +84,12 @@ class Downloader:
                     if self.update_func:
                         self.update_func(1, 1)
                         self.__progress(1, 1)
+        except DownloadCancelled:
+            if self.update_func:
+                self.update_func(status=Status.CANCELLED)
+            with suppress(FileNotFoundError):
+                os.remove(self.file)
+            return Result(False, message="cancelled")
         except requests.exceptions.SSLError:
             logging.error(
                 "Download failed due to a SSL error. "

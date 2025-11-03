@@ -40,8 +40,8 @@ class SandboxManager:
         self.envs = envs
         self.chdir = chdir
         self.clear_env = clear_env
-        self.share_paths_ro = share_paths_ro
-        self.share_paths_rw = share_paths_rw
+        self.share_paths_ro = list(share_paths_ro or [])
+        self.share_paths_rw = list(share_paths_rw or [])
         self.share_net = share_net
         self.share_user = share_user
         self.share_host_ro = share_host_ro
@@ -74,7 +74,7 @@ class SandboxManager:
 
         if self.share_paths_rw:
             _cmd += [
-                f"--bind {shlex.quote(p)} {shlex.quote(p)}" for p in self.share_paths_ro
+                f"--bind {shlex.quote(p)} {shlex.quote(p)}" for p in self.share_paths_rw
             ]
 
         if self.share_sound:
@@ -95,21 +95,21 @@ class SandboxManager:
         return _cmd
 
     def __get_flatpak_spawn(self, cmd: str):
-        _cmd = ["flatpak-spawn"]
+        _cmd = ["flatpak-spawn", "--sandbox"]
 
         if self.envs:
             _cmd += [f"--env={k}={shlex.quote(v)}" for k, v in self.envs.items()]
 
-        if self.share_host_ro:
-            _cmd.append("--sandbox")
-            _cmd.append("--sandbox-expose-path-ro=/")
-
-        if self.chdir:
-            _cmd.append(f"--directory={shlex.quote(self.chdir)}")
-            _cmd.append(f"--sandbox-expose-path={shlex.quote(self.chdir)}")
-
         if self.clear_env:
             _cmd.append("--clear-env")
+
+        if self.chdir:
+            quoted_dir = shlex.quote(self.chdir)
+            _cmd.append(f"--directory={quoted_dir}")
+            _cmd.append(f"--sandbox-expose-path={quoted_dir}")
+
+        if self.share_host_ro:
+            _cmd.append("--sandbox-expose-path-ro=/")
 
         if self.share_paths_ro:
             _cmd += [
@@ -122,7 +122,8 @@ class SandboxManager:
                 f"--sandbox-expose-path={shlex.quote(p)}" for p in self.share_paths_rw
             ]
 
-        if not self.share_net:
+        share_net = self.share_net or self.share_bluetooth
+        if not share_net:
             _cmd.append("--no-network")
 
         if self.share_display:

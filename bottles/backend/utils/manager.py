@@ -141,16 +141,29 @@ class ManagerUtils:
 
         logging.info(f"Copying file {file_path} to the bottle …")
         try:
+            if file_size == 0:
+                with open(file_new_path, "wb"):
+                    pass
+                if fn_update:
+                    fn_update(1)
+                return file_new_path
+
+            chunk_size = 64 * 1024
+            bytes_copied = 0
             with open(file_path, "rb") as f_in:
                 with open(file_new_path, "wb") as f_out:
-                    for i in range(file_size):
-                        f_out.write(f_in.read(1))
-                        _size = i / file_size
+                    while True:
+                        chunk = f_in.read(chunk_size)
+                        if not chunk:
+                            break
+                        f_out.write(chunk)
+                        bytes_copied += len(chunk)
 
                         if fn_update:
-                            if _size % 0.1 == 0:
-                                fn_update(_size)
-                    fn_update(1)
+                            fn_update(bytes_copied / file_size)
+
+                    if fn_update:
+                        fn_update(1)
             return file_new_path
         except (OSError, IOError):
             logging.error(f"Could not copy file {file_path} to the bottle.")

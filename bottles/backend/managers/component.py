@@ -20,6 +20,7 @@ import os
 import shutil
 import tarfile
 from functools import lru_cache
+from threading import Event
 from typing import Optional
 
 import pycurl
@@ -132,14 +133,15 @@ class ComponentManager:
         rename: str = "",
         checksum: str = "",
         func: Optional[TaskStreamUpdateHandler] = None,
-    ) -> bool:
+        cancel_event: Optional[Event] = None,
+    ) -> Result:
         """Download a component from the Bottles repository."""
 
         # Check for missing Bottles paths before download
         self.__manager.check_app_dirs()
 
         # Register this file download task to TaskManager
-        task = Task(title=file)
+        task = Task(title=file, cancellable=cancel_event is not None)
         task_id = TaskManager.add(task)
         update_func = task.stream_update if not func else func
 
@@ -148,7 +150,7 @@ class ComponentManager:
             The caller is explicitly requesting a component from
             the /temp directory. Nothing should be downloaded.
             """
-            return True
+            return Result(True)
 
         existing_file = rename if rename else file
         temp_dest = os.path.join(Paths.temp, file)
@@ -180,7 +182,7 @@ class ComponentManager:
             except pycurl.error:
                 logging.exception(f"Failed to download [{download_url}]")
                 TaskManager.remove(task_id)
-                return False
+                return Result(False)
             finally:
                 c.close()
 
@@ -191,17 +193,20 @@ class ComponentManager:
                 False and the download is removed from the download manager.
                 """
                 res = Downloader(
-                    url=download_url, file=temp_dest, update_func=update_func
+                    url=download_url,
+                    file=temp_dest,
+                    update_func=update_func,
+                    cancel_event=cancel_event,
                 ).download()
 
                 if not res.ok:
                     TaskManager.remove(task_id)
-                    return False
+                    return res
 
                 if not os.path.isfile(temp_dest):
                     """Fail if the file is not available in the /temp directory."""
                     TaskManager.remove(task_id)
-                    return False
+                    return Result(False)
 
                 just_downloaded = True
             else:
@@ -209,7 +214,7 @@ class ComponentManager:
                     f"Failed to download [{download_url}] with code: {req_code} != 200"
                 )
                 TaskManager.remove(task_id)
-                return False
+                return Result(False)
 
         file_path = os.path.join(Paths.temp, existing_file)
         if rename and just_downloaded:
@@ -236,10 +241,10 @@ class ComponentManager:
                 logging.error(f"Removing corrupted file [{file}].")
                 os.remove(file_path)
                 TaskManager.remove(task_id)
-                return False
+                return Result(False)
 
         TaskManager.remove(task_id)
-        return True
+        return Result(True)
 
     @staticmethod
     def extract(name: str, component: str, archive: str) -> bool:
@@ -302,6 +307,7 @@ class ComponentManager:
         component_type: str,
         component_name: str,
         func: Optional[TaskStreamUpdateHandler] = None,
+        cancel_event: Optional[Event] = None,
     ):
         """
         This function is used to install a component. It automatically
@@ -322,16 +328,20 @@ class ComponentManager:
             rename=file["rename"],
             checksum=file["file_checksum"],
             func=func,
+            cancel_event=cancel_event,
         )
 
-        if not res:
+        if not res.ok:
             """
             If the download fails, execute the given func passing
             failed=True as a parameter.
             """
             if func:
-                func(status=Status.FAILED)
-            return Result(False)
+                if res.message == "cancelled":
+                    func(status=Status.CANCELLED)
+                else:
+                    func(status=Status.FAILED)
+            return Result(False, message=res.message)
 
         archive = manifest["File"][0]["file_name"]
 

@@ -76,6 +76,17 @@ win_versions = {
         "ProductType": "ServerNT",
         "ProductName": "Microsoft Windows 2008",
     },
+    "vista": {
+        "CSDVersion": "Service Pack 2",
+        "CSDVersionHex": "200",
+        "CurrentBuild": "6002",
+        "CurrentBuildNumber": "6002",
+        "CurrentVersion": "6.0",
+        "CurrentMinorVersionNumber": "0",
+        "CurrentMajorVersionNumber": "6",
+        "ProductType": "WinNT",
+        "ProductName": "Microsoft Windows Vista",
+    },
     "win2003": {
         "CSDVersion": "Service Pack 2",
         "CSDVersionHex": "200",

@@ -23,10 +23,11 @@ import shutil
 import subprocess
 import time
 import uuid
+from threading import Event
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import pathvalidate
 
@@ -171,45 +172,119 @@ class Manager(metaclass=Singleton):
                 last = t
             logging.info(times_str)
 
-    def checks(self, install_latest=False, first_run=False) -> Result:
+    def checks(
+        self,
+        install_latest=False,
+        first_run=False,
+        progress_callback: Optional[Callable[..., None]] = None,
+    ) -> Result:
         logging.info("Performing Bottles checks…")
 
         rv = Result(status=True, data={})
 
-        self.check_app_dirs()
-        rv.data["check_app_dirs"] = time.time()
-
-        self.check_dxvk(install_latest) or rv.set_status(False)
-        rv.data["check_dxvk"] = time.time()
-
-        self.check_vkd3d(install_latest) or rv.set_status(False)
-        rv.data["check_vkd3d"] = time.time()
-
-        self.check_nvapi(install_latest) or rv.set_status(False)
-        rv.data["check_nvapi"] = time.time()
-
-        self.check_latencyflex(install_latest) or rv.set_status(False)
-        rv.data["check_latencyflex"] = time.time()
-
-        self.check_runtimes(install_latest) or rv.set_status(False)
-        rv.data["check_runtimes"] = time.time()
-
-        self.check_winebridge(install_latest) or rv.set_status(False)
-        rv.data["check_winebridge"] = time.time()
-
-        self.check_runners(install_latest) or rv.set_status(False)
-        rv.data["check_runners"] = time.time()
+        steps: List[Tuple[Optional[str], str, Callable[[], bool | None]]] = [
+            ("check_app_dirs", _("Preparing folders…"), self.check_app_dirs),
+            (
+                "check_dxvk",
+                _("Setting up DXVK…"),
+                lambda: self.check_dxvk(install_latest),
+            ),
+            (
+                "check_vkd3d",
+                _("Setting up VKD3D…"),
+                lambda: self.check_vkd3d(install_latest),
+            ),
+            (
+                "check_nvapi",
+                _("Setting up NVAPI…"),
+                lambda: self.check_nvapi(install_latest),
+            ),
+            (
+                "check_latencyflex",
+                _("Setting up LatencyFleX…"),
+                lambda: self.check_latencyflex(install_latest),
+            ),
+            (
+                "check_runtimes",
+                _("Preparing runtimes…"),
+                lambda: self.check_runtimes(install_latest),
+            ),
+            (
+                "check_winebridge",
+                _("Preparing WineBridge…"),
+                lambda: self.check_winebridge(install_latest),
+            ),
+            (
+                "check_runners",
+                _("Preparing runners…"),
+                lambda: self.check_runners(install_latest),
+            ),
+        ]
 
         if first_run:
-            self.organize_components()
-            self.__clear_temp()
+            steps.extend(
+                [
+                    (
+                        None,
+                        _("Organizing components…"),
+                        self.organize_components,
+                    ),
+                    (
+                        None,
+                        _("Cleaning temporary files…"),
+                        self.__clear_temp,
+                    ),
+                ]
+            )
 
-        self.organize_dependencies()
+        steps.extend(
+            [
+                (
+                    None,
+                    _("Organizing dependencies…"),
+                    self.organize_dependencies,
+                ),
+                (
+                    None,
+                    _("Organizing installers…"),
+                    self.organize_installers,
+                ),
+                ("check_bottles", _("Loading bottles…"), self.check_bottles),
+            ]
+        )
 
-        self.organize_installers()
+        total_steps = len(steps)
 
-        self.check_bottles()
-        rv.data["check_bottles"] = time.time()
+        for index, (data_key, description, func) in enumerate(steps, start=1):
+            if progress_callback:
+                try:
+                    progress_callback(
+                        description=description,
+                        current_step=index,
+                        total_steps=total_steps,
+                        completed=False,
+                    )
+                except Exception as error:  # pragma: no cover - defensive
+                    logging.debug(f"Progress callback start failed: {error}")
+
+            result = func()
+
+            if result is False:
+                rv.set_status(False)
+
+            if progress_callback:
+                try:
+                    progress_callback(
+                        description=description,
+                        current_step=index,
+                        total_steps=total_steps,
+                        completed=True,
+                    )
+                except Exception as error:  # pragma: no cover - defensive
+                    logging.debug(f"Progress callback end failed: {error}")
+
+            if data_key:
+                rv.data[data_key] = time.time()
 
         return rv
 
@@ -1141,6 +1216,7 @@ class Manager(metaclass=Singleton):
         fn_logger: callable = None,
         arch: str = "win64",
         custom_environment: Optional[str] = None,
+        cancel_event: Optional[Event] = None,
     ) -> Result[dict]:
         """
         Create a new bottle from the given arguments.
@@ -1150,6 +1226,33 @@ class Manager(metaclass=Singleton):
         def log_update(message):
             if fn_logger:
                 fn_logger(message)
+
+        cancellation_announced = False
+
+        cleanup_config = BottleConfig()
+        cleanup_config.Name = name
+        cleanup_config.Environment = environment.capitalize()
+        cleanup_config.Custom_Path = bool(path)
+
+        def is_cancelled() -> bool:
+            return cancel_event is not None and cancel_event.is_set()
+
+        def abort_build(message: Optional[str] = None) -> Result[dict]:
+            nonlocal cancellation_announced
+
+            if not cancellation_announced:
+                log_update(
+                    message
+                    or _("Cancellation requested. Stopping after the current step…")
+                )
+                cancellation_announced = True
+
+            return Result(False, data={"config": cleanup_config})
+
+        def check_cancel(message: Optional[str] = None) -> Optional[Result[dict]]:
+            if not is_cancelled():
+                return None
+            return abort_build(message)
 
         # check for essential components
         check_attempts = 0
@@ -1185,6 +1288,10 @@ class Manager(metaclass=Singleton):
 
         if not components_check():
             return Result(False)
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         # default components versions if not specified
         if not runner:
@@ -1224,9 +1331,17 @@ class Manager(metaclass=Singleton):
             # if no path is specified, use the name as path
             bottle_custom_path = False
             bottle_complete_path = os.path.join(Paths.bottles, bottle_name_path)
+            cleanup_config.Path = bottle_name_path
         else:
             bottle_custom_path = True
             bottle_complete_path = os.path.join(path, bottle_name_path)
+            cleanup_config.Path = bottle_complete_path
+
+        cleanup_config.Custom_Path = bottle_custom_path
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         # if another bottle with same path exists, append a random number
         if os.path.exists(bottle_complete_path):
@@ -1237,6 +1352,11 @@ class Manager(metaclass=Singleton):
             rnd = random.randint(100, 200)
             bottle_name_path = f"{bottle_name_path}__{rnd}"
             bottle_complete_path = f"{bottle_complete_path}__{rnd}"
+
+            if bottle_custom_path:
+                cleanup_config.Path = bottle_complete_path
+            else:
+                cleanup_config.Path = bottle_name_path
 
         # define registers that should be awaited
         reg_files = [
@@ -1258,6 +1378,10 @@ class Manager(metaclass=Singleton):
             log_update(_("Failed to create bottle directory."))
             return Result(False)
 
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         if bottle_custom_path:
             placeholder_dir = os.path.join(Paths.bottles, bottle_name_path)
             try:
@@ -1272,6 +1396,10 @@ class Manager(metaclass=Singleton):
                 )
                 log_update(_("Failed to create placeholder directory/file."))
                 return Result(False)
+
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
 
         # generate bottle configuration
         logging.info("Generating bottle configuration…")
@@ -1294,6 +1422,12 @@ class Manager(metaclass=Singleton):
         if versioning:
             config.Versioning = True
 
+        cleanup_config = config
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         # get template
         template = TemplateManager.get_env_template(environment)
         template_updated = False
@@ -1302,6 +1436,10 @@ class Manager(metaclass=Singleton):
             TemplateManager.unpack_template(template, config)
             config.Installed_Dependencies = template["config"]["Installed_Dependencies"]
             config.Uninstallers = template["config"]["Uninstallers"]
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         # initialize wineprefix
         reg = Reg(config)
@@ -1313,6 +1451,10 @@ class Manager(metaclass=Singleton):
         log_update(_("The Wine config is being updated…"))
         wineboot.init()
         log_update(_("Wine config updated!"))
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         userdir = f"{bottle_complete_path}/drive_c/users"
         if os.path.exists(userdir):
@@ -1349,11 +1491,23 @@ class Manager(metaclass=Singleton):
                     os.unlink(link)
                     os.makedirs(link)
 
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
+
         # wait for registry files to be created
         FileUtils.wait_for_files(reg_files)
 
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         # apply Windows version
         if not template and not custom_environment:
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
+
             logging.info("Setting Windows version…")
             log_update(_("Setting Windows version…"))
             if (
@@ -1368,6 +1522,13 @@ class Manager(metaclass=Singleton):
             logging.info("Setting CMD default settings…")
             log_update(_("Apply CMD default settings…"))
             rk.apply_cmd_settings()
+            wineboot.update()
+
+            FileUtils.wait_for_files(reg_files)
+
+            logging.info("Enabling font smoothing…")
+            log_update(_("Enabling font smoothing…"))
+            rk.apply_font_smoothing()
             wineboot.update()
 
             FileUtils.wait_for_files(reg_files)
@@ -1388,6 +1549,10 @@ class Manager(metaclass=Singleton):
         log_update(_("Applying environment: {0}…").format(environment))
         env = None
 
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         if environment.lower() not in ["custom"]:
             env = Samples.environments[environment.lower()]
         elif custom_environment:
@@ -1405,15 +1570,26 @@ class Manager(metaclass=Singleton):
 
         if env:
             while wineserver.is_alive():
+                cancel_result = check_cancel()
+                if cancel_result is not None:
+                    return cancel_result
                 time.sleep(1)
 
             for prm in config.Parameters:
                 if prm in env.get("Parameters", {}):
                     config.Parameters[prm] = env["Parameters"][prm]
 
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
+
             if (not template and config.Parameters.dxvk) or (
                 template and template["config"]["DXVK"] != dxvk
             ):
+                cancel_result = check_cancel()
+                if cancel_result is not None:
+                    return cancel_result
+
                 # perform dxvk installation if configured
                 logging.info("Installing DXVK…")
                 log_update(_("Installing DXVK…"))
@@ -1425,6 +1601,10 @@ class Manager(metaclass=Singleton):
                 and config.Parameters.vkd3d
                 or (template and template["config"]["VKD3D"] != vkd3d)
             ):
+                cancel_result = check_cancel()
+                if cancel_result is not None:
+                    return cancel_result
+
                 # perform vkd3d installation if configured
                 logging.info("Installing VKD3D…")
                 log_update(_("Installing VKD3D…"))
@@ -1437,6 +1617,10 @@ class Manager(metaclass=Singleton):
                 or (template and template["config"]["NVAPI"] != nvapi)
             ):
                 if GPUUtils.is_gpu(GPUVendors.NVIDIA):
+                    cancel_result = check_cancel()
+                    if cancel_result is not None:
+                        return cancel_result
+
                     # perform nvapi installation if configured
                     logging.info("Installing DXVK-NVAPI…")
                     log_update(_("Installing DXVK-NVAPI…"))
@@ -1447,6 +1631,10 @@ class Manager(metaclass=Singleton):
                 if template and dep in template["config"]["Installed_Dependencies"]:
                     continue
                 if dep in self.supported_dependencies:
+                    cancel_result = check_cancel()
+                    if cancel_result is not None:
+                        return cancel_result
+
                     _dep = self.supported_dependencies[dep]
                     log_update(
                         _("Installing dependency: %s …")
@@ -1467,10 +1655,18 @@ class Manager(metaclass=Singleton):
                     template_updated = True
 
         # save bottle config
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         config.dump(f"{bottle_complete_path}/bottle.yml")
 
         if versioning:
             # create first state if versioning enabled
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
+
             logging.info("Creating versioning state 0…")
             log_update(_("Creating versioning state 0…"))
             self.versioning_manager.create_state(config=config, message="First boot")
@@ -1482,8 +1678,16 @@ class Manager(metaclass=Singleton):
         # wait for all registry changes to be applied
         FileUtils.wait_for_files(reg_files)
 
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
+
         # perform wineboot
         wineboot.update()
+
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         # caching template
         if not template or template_updated:
@@ -1544,12 +1748,11 @@ class Manager(metaclass=Singleton):
 
         if config.Custom_Path:
             logging.info("Removing placeholder…")
-            with contextlib.suppress(FileNotFoundError):
-                os.remove(
-                    os.path.join(
-                        Paths.bottles, os.path.basename(config.Path), "placeholder.yml"
-                    )
-                )
+            placeholder_path = os.path.join(
+                Paths.bottles, os.path.basename(config.Path)
+            )
+            if not FileUtils.remove_path(placeholder_path):
+                logging.debug(f"Failed to remove placeholder at {placeholder_path}")
 
         logging.info("Removing the bottle…")
         path = ManagerUtils.get_bottle_path(config)

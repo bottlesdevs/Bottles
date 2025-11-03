@@ -52,6 +52,7 @@ class Status(Enum):
     RUNNING = "running"
     DONE = "done"
     FAILED = "failed"
+    CANCELLED = "cancelled"
 
 
 class TaskStreamUpdateHandler(Protocol):
@@ -123,7 +124,7 @@ class Task:
     ):
         """This is a default subtitle updating handler for streaming downloading progress"""
         match status:
-            case Status.DONE | Status.FAILED:
+            case Status.DONE | Status.FAILED | Status.CANCELLED:
                 TaskManager.remove(self)
                 return
             case _:
