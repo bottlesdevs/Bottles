@@ -698,9 +698,6 @@ class WineCommand:
                 False, message="runner or env is not ready, Wine command terminated."
             )
 
-        # Log the final command that will be executed
-        logging.info(f"Executing command: {self.command}")
-
         if vmtouch_available and self.config.Parameters.vmtouch and not self.terminal:
             self._vmtouch_preload()
 
