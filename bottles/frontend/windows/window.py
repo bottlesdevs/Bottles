@@ -88,8 +88,8 @@ class BottlesWindow(Adw.ApplicationWindow):
         if first_event:
             days_old = (datetime.now() - first_event).days
 
-        self._show_funding = (
-            days_old >= 7 and not self.data_mgr.get(UserDataKeys.FundingDismissed)
+        self._show_funding = days_old >= 7 and not self.data_mgr.get(
+            UserDataKeys.FundingDismissed
         )
 
         self.utils_conn = ConnectionUtils(
@@ -104,6 +104,7 @@ class BottlesWindow(Adw.ApplicationWindow):
             self.add_css_class("devel")
 
         self.btn_donate.add_css_class("donate")
+        self.__schedule_donate_icon_swap()
 
         # Set night theme according to user settings
         if self.settings.get_boolean("dark-theme"):
@@ -178,6 +179,40 @@ class BottlesWindow(Adw.ApplicationWindow):
             "Bottles Started!",
         )
         GLib.idle_add(self.__maybe_show_funding_dialog)
+
+    def __schedule_donate_icon_swap(self):
+        GLib.timeout_add_seconds(5, self.__on_donate_icon_timeout)
+
+    def __on_donate_icon_timeout(self):
+        icon_name = self.__resolve_donate_icon_name()
+        if icon_name:
+            self.btn_donate.set_label("")
+            self.btn_donate.set_icon_name(icon_name)
+        return GLib.SOURCE_REMOVE
+
+    def __resolve_donate_icon_name(self) -> Optional[str]:
+        display = self.get_display()
+        icon_theme = None
+        if display is not None:
+            icon_theme = Gtk.IconTheme.get_for_display(display)
+        if icon_theme is None:
+            icon_theme = Gtk.IconTheme.get_default()
+        if icon_theme is None:
+            return None
+
+        try:
+            icon_theme.add_resource_path("/com/usebottles/bottles/icons")
+        except AttributeError:
+            pass
+
+        for icon_name in (
+            "heart-symbolic",
+            "love-symbolic",
+            "emblem-favorite-symbolic",
+        ):
+            if icon_theme.has_icon(icon_name):
+                return icon_name
+        return None
 
     @Gtk.Template.Callback()
     def on_close_request(self, *args):
@@ -339,7 +374,7 @@ class BottlesWindow(Adw.ApplicationWindow):
 
     def show_onboard_view(self, widget=False):
         onboard_window = OnboardDialog(self)
-        onboard_window.present()
+        onboard_window.present(self)
 
     def show_add_view(self, widget=False):
         new_bottle_dialog = BottlesNewBottleDialog()

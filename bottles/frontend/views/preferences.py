@@ -47,7 +47,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
     switch_steam = Gtk.Template.Child()
-    switch_sandbox = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
@@ -114,12 +113,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.bind(
             "steam-proton-support",
             self.switch_steam,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
-            "experiments-sandbox",
-            self.switch_sandbox,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
@@ -210,7 +203,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
 
     def __toggle_update_date(self, widget, state):
-        self.window.page_list.update_bottles()
+        self.window.page_list.update_bottles_list()
 
     def __toggle_rc(self, widget, state):
         self.ui_update()

@@ -51,6 +51,8 @@ class RunAsync(threading.Thread):
 
         self.callback = callback if callback else lambda r, e: None
         self.daemon = daemon
+        self.cancel_event = kwargs.get("cancel_event")
+        self._cancel_requested = False
 
         self.start()
 
@@ -73,6 +75,11 @@ class RunAsync(threading.Thread):
 
             logging.write_log([str(exception), traceback_info])
         self.callback(result, error)
+
+    def cancel(self):
+        self._cancel_requested = True
+        if self.cancel_event and hasattr(self.cancel_event, "set"):
+            self.cancel_event.set()
 
     @staticmethod
     def run_async(func):

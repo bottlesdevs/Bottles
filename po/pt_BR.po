@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-07-05 18:41+0000\n"
-"Last-Translator: Kauã Azevedo da Silva Vicente <Kazevic@pm.me>\n"
+"PO-Revision-Date: 2025-10-30 11:43+0000\n"
+"Last-Translator: Fernando Lopes "
+"<118869201+plasmus777@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -35,7 +36,7 @@ msgstr "Importando backup: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
-msgstr "Falha ao instalar componentes, 3 tentativas."
+msgstr "Falha ao instalar componentes, 3 tentativas foram feitas."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
@@ -51,7 +52,7 @@ msgstr "Falha ao criar diretório/arquivo de espaço reservado."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr "Gerando o arquivo de configuração da garrafa…"
+msgstr "Gerando a configuração da garrafa…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
@@ -80,16 +81,16 @@ msgstr "Configurando a versão do Windows…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
-msgstr "Aplicar definições iniciais do CMD…"
+msgstr "Aplicar configurações padrões do CMD…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
-msgstr "Otimizando o ambiente…"
+msgstr "Otimizando ambiente…"
 
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "Aplicando o ambiente: {0} …"
+msgstr "Aplicando ambiente: {0} …"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
@@ -417,7 +418,7 @@ msgstr "Controle de versão habilitado para essa garrafa"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr "O controle de versão está ativo nesta garrafa."
+msgstr "O controle de versão está ativo para esta garrafa."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
@@ -461,7 +462,7 @@ msgstr "Configurações"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr "Defina as configurações da bottle."
+msgstr "Configure a garrafa."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
@@ -480,7 +481,7 @@ msgstr "Pontos de restauração"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
-msgstr "Crie e gerencie estados de bottle."
+msgstr "Crie e gerencie estados da garrafa."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
@@ -1413,7 +1414,7 @@ msgstr "Substituições de preferências"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:119
 msgid "Reset to Bottle's Defaults"
-msgstr "Restaurar ao Padrão do Bottle"
+msgstr "Restaurar aos padrões da garrafa"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:165
 msgid "Virtual Desktop"
@@ -1447,11 +1448,11 @@ msgstr ""
 "Recomendamos usar o Wine-GE, uma versão do Proton destinada a executar fora "
 "da Steam.\n"
 "\n"
-"Proceder ativará automaticamente o tempo de execução da Steam (se presente "
-"no sistema e detectado pelo Bottles) para permitir o acesso às bibliotecas "
-"necessárias e limitar os problemas de compatibilidade. Esteja ciente de que "
-"GloriousEggroll, o provedor do executor, não é responsável por quaisquer "
-"problemas e pedimos que você não o comunique."
+"Proceder ativará automaticamente o tempo de execução da Steam "
+"(se presente no sistema e detectado pelo Bottles) para permitir o acesso às "
+"bibliotecas necessárias e limitar os problemas de compatibilidade. Esteja "
+"ciente de que GloriousEggroll, o provedor do executor, não é responsável por "
+"quaisquer problemas e pedimos que você não o comunique."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1921,7 +1922,7 @@ msgstr "Proton da Steam"
 #: bottles/frontend/ui/list.blp:42 bottles/frontend/windows/main_window.py:191
 #: data/com.usebottles.bottles.metainfo.xml.in:7
 msgid "Bottles"
-msgstr "Bottles"
+msgstr "Garrafas"
 
 #: bottles/frontend/ui/list.blp:49
 msgid "Create New Bottle…"
@@ -2020,7 +2021,7 @@ msgstr "Anterior"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
-msgstr "Bem-vindo ao Bottles"
+msgstr "Boas vindas ao Bottles"
 
 #: bottles/frontend/ui/onboard.blp:60
 msgid "Run Windows Software on Linux."
@@ -2029,14 +2030,14 @@ msgstr "Execute programas do Windows no Linux."
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
-msgstr "Windows no Bottles"
+msgstr "Windows em Garrafas"
 
 #: bottles/frontend/ui/onboard.blp:66
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
-"Bottles usa executores de compatibilidade para fornecer ambientes "
+"O Bottles usa executores de compatibilidade para fornecer ambientes "
 "semelhantes ao Windows em contêineres isolados onde os programas são "
 "executados."
 
@@ -2366,7 +2367,7 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
-"O Bottles está sendo executado em um sandbox, um ambiente de permissão "
+"O Bottles está sendo executado em uma sandbox, um ambiente de permissão "
 "restrita necessário para mantê-lo seguro. Considere movê-lo para dentro da "
 "garrafa (ícone de 3 pontos na parte superior) e iniciar a partir daí se o "
 "programa não for executado."
@@ -2410,8 +2411,7 @@ msgstr "Tem certeza de que quer excluir \"{}\" para sempre?"
 #: bottles/frontend/views/bottle_details.py:502
 msgid ""
 "This will permanently delete all programs and settings associated with it."
-msgstr ""
-"Isto excluirá para sempre todo programa e configuração associada a ele."
+msgstr "Isto excluirá para sempre todo programa e configuração associada a ele."
 
 #: bottles/frontend/views/bottle_details.py:505
 #: bottles/frontend/views/bottle_preferences.py:750
@@ -2534,7 +2534,7 @@ msgstr "Iniciando \"{0}\" em \"{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
-msgstr "Seus Bottles"
+msgstr "Suas Garrafas"
 
 #: bottles/frontend/views/loading.py:41
 #, python-brace-format
@@ -2574,7 +2574,7 @@ msgstr "\"{0}\" foi criado com sucesso."
 
 #: bottles/frontend/views/preferences.py:142
 msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr "Steam não foi encontrada ou Bottles não tem permissões suficientes."
+msgstr "Steam não foi encontrada ou o Bottles não tem permissões suficientes."
 
 #: bottles/frontend/views/preferences.py:176
 msgid "Select Bottles Path"
@@ -3007,8 +3007,8 @@ msgid ""
 msgstr ""
 "Nosso sistema embutido de instalação de dependências permite acesso "
 "automático à compatibilidade de programas. Use o gerenciador de "
-"transferências para baixar os componentes oficiais: o executor (Wine, "
-"Proton), DXVK, dependências etc."
+"transferências para baixar os componentes oficiais: o executor (Wine, Proton)"
+", DXVK, dependências etc."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:16
 msgid ""
@@ -3055,8 +3055,8 @@ msgid ""
 "Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
 "compiler, offload … and much more.)"
 msgstr ""
-"Várias otimizações para melhor desempenho de jogos (esync, fsync, DXVK, "
-"cache, descarregamento… e muito mais.)"
+"Várias otimizações para melhor desempenho de jogos "
+"(esync, fsync, DXVK, cache, descarregamento… e muito mais.)"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:26
 msgid "Automatic installation and management of Wine and Proton runners"

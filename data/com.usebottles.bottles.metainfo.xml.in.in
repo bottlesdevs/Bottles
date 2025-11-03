@@ -85,6 +85,38 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="52.0" date="2025-11-02">
+      <description translate="no">
+        <ul>
+          <li>General stability and UX improvements</li>
+          <li>Multiple fixes and UI enhancements</li>
+          <li>Ported Onboard Dialog to AdwDialog for better integration with libadwaita</li>
+          <li>Fixed "Is a directory" error (closes #4144)</li>
+          <li>Added support for Windows Vista</li>
+          <li>Added the option to cancel bottle creation</li>
+          <li>The Onboard Dialog now displays which operations are being performed</li>
+          <li>Added the ability to cancel component downloads</li>
+          <li>Enabled the Sandbox feature</li>
+          <li>Improved copy performance by transferring data in chunks instead of byte by byte</li>
+          <li>Fixed an issue where orphaned entries were not removed from the library after uninstalling a program</li>
+          <li>Fixed a bug that prevented the configuration from loading in certain cases</li>
+          <li>Font smoothing is now enabled by default</li>
+          <li>Made the donation button more prominent</li>
+          <li>Resolved a long-standing issue with Weblate — translations are now updating again</li>
+        </ul>
+      </description>
+    </release>
+    <release version="51.26" date="2025-10-24">
+      <description translate="no">
+        <ul>
+          <li>Fix: broken CMD action with xfce4-terminal</li>
+          <li>Fix (steam): load BottleConfig from bottle.yml if it exists</li>
+          <li>Fix: ensure the whole placeholder folder gets removed on bottle deletion</li>
+          <li>Added support for st terminal</li>
+          <li>Fix: prevent exception when updating a bottle’s dependency list view</li>
+        </ul>
+      </description>
+    </release>
     <release version="51.24" date="2025-07-15">
       <description translate="no">
         <ul>

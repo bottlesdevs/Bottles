@@ -500,7 +500,7 @@ class PreferencesView(Adw.PreferencesPage):
             "win7": "Windows 7",
             "win2008r2": "Windows 2008 R2",
             "win2008": "Windows 2008",
-            # "vista": "Windows Vista", # TODO: implement this in the backend
+            "vista": "Windows Vista",
             "winxp": "Windows XP",
         }
 
@@ -998,7 +998,3 @@ class PreferencesView(Adw.PreferencesPage):
         ]:
             w.set_visible(status)
             w.set_sensitive(status)
-
-        self.row_sandbox.set_visible(
-            self.window.settings.get_boolean("experiments-sandbox")
-        )
