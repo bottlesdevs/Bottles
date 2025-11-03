@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-10-30 14:47+0000\n"
-"Last-Translator: Itay Adler <itayadler13@gmail.com>\n"
+"PO-Revision-Date: 2025-11-04 08:51+0000\n"
+"Last-Translator: Xo <xocodokie@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/bottles/bottles/"
 "he/>\n"
 "Language: he\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
-msgstr "לא נבחר נתיב"
+msgstr "לא צוין נתיב"
 
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
@@ -32,15 +32,15 @@ msgstr "גיבוי {0}"
 #: bottles/backend/managers/backup.py:101
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr "גיבוי מיובא: {0}"
+msgstr "מייבא גיבוי: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
-msgstr "התקנת תוספים נכשלה, לאחר 3 נסיונות."
+msgstr "התקנת רכיבים נכשלה, בוצעו 3 ניסיונות."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
-msgstr "תוספים בסיסיים חסרים, מותקנים…"
+msgstr "חסרים רכיבים חיוניים. מתקין…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
@@ -48,11 +48,11 @@ msgstr "יצירת תיקיית בקבוק נכשלה."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "יצירת תיקיית/קובץ מצייני מיקום נכשלה."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr "הגדרות בקבוק נוצרות…"
+msgstr "תצורת בקבוק נוצרת…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
@@ -61,44 +61,44 @@ msgstr "נמצאה תבנית, מיושמת…"
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1197
 msgid "The Wine config is being updated…"
-msgstr "הגדרות WINE מתעדכנות כעת…"
+msgstr "תצורת Wine מתעדכנת…"
 
 #: bottles/backend/managers/manager.py:1199
 msgid "Wine config updated!"
-msgstr "הצלחנו לעדכן את ההגדרות של WINE!"
+msgstr "תצורת Wine עודכנה!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "הרצה כ-FLATPAK, בתהליך בידוד ...USERDIR"
+msgstr "מורץ בתור Flatpak, מבודד את ספריית המשתמש…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "מבודד את ספריית המשתמש…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
-msgstr "מגדיר גרסת ווינדוס…"
+msgstr "מגדיר גרסת Windows…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
-msgstr "יישום הגדרות ברירת-מחדל ל-CMD"
+msgstr "החלת הגדרות CMD ברירת מחדל…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
-msgstr "ממטבים את הסביבה…"
+msgstr "ממטב סביבה…"
 
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "מיישמים סביבה: {0}…"
+msgstr "מיישם סביבה: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
-msgstr "נא לשים לב (!) נעשה שימוש במתכון מותאם-אישית ליצירת הסביבה…"
+msgstr "(!) מתכון לסביבה מותאמת אישית בשימוש…"
 
 #: bottles/backend/managers/manager.py:1292
 msgid "(!) Recipe not not found or not valid…"
-msgstr "אבוי (!) לא מצאנו את המתכון, או שהוא פגום…"
+msgstr "(!) המתכון לא נמצא או לא תקין…"
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
