@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-04 08:52+0000\n"
-"Last-Translator: \"Omer I.S.\" <omeritzicschwartz@gmail.com>\n"
+"PO-Revision-Date: 2025-11-05 05:11+0000\n"
+"Last-Translator: Xo <xocodokie@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/bottles/bottles/"
 "he/>\n"
 "Language: he\n"
@@ -186,7 +186,7 @@ msgstr "העברת ארגומנטים"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "כתובת לא חוקית (תחביר: bottles:run/<bottle>/<program>)"
+msgstr "כתובת URI לא חוקית (תחביר: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
@@ -214,6 +214,7 @@ msgstr "בחסות ובמימון"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
+#, fuzzy
 msgid "Copyright © 2017 Bottles Developers"
 msgstr "זכויות יוצרים © 2017 מפתחי „בקבוקים”"
 
@@ -224,7 +225,7 @@ msgstr "מפתחי „בקבוקים”"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr "Joe Shachaf, Gilad the Grain, Yaron Shahrabani, xocodokie"
+msgstr "Joe Shachaf, Gilad the Grain, Yaron Shahrabani, xocodokie, omeritzics"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -245,8 +246,8 @@ msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"אבוי, ההתקנה כשלה! יש סיכוי שהגענו למצב זה בשל שגיאת ארכיב, הורדה פגומה או "
-"קושי באימות. כדאי לנסות שוב ;)"
+"ההתקנה נכשלה. ייתכן שהסיבה לכך היא שגיאת מאגר מידע, הורדה חלקית או אי־התאמה "
+"של סיכום ביקורת. יש ללחוץ כדי לנסות שוב."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -258,15 +259,15 @@ msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
-msgstr "הצגת מצהר"
+msgstr "הצגת מניפסט"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
-msgstr "רשיון"
+msgstr "רישיון"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
-msgstr "התקנה חוזרת"
+msgstr "התקנה מחדש"
 
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
@@ -275,35 +276,35 @@ msgstr "דיווח על תֶּקֶל…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
-msgstr "שם חבילת-תלות"
+msgstr "שם חבילת תלות"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
 msgid "Dependency description"
-msgstr "תיאור חבילת-תלות"
+msgstr "תיאור חבילת תלות"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr "סוגה"
+msgstr "קטגוריה"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr "הורדה והתקנת חבילת-תלות"
+msgstr "הורדה והתקנת חבילת תלות זו"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"אירעה שגיאה בהתקנה. נא להפעיל מחדש את „בקבוקים” בשביל לעיין בדו״ח הקריסה או "
-"להפעיל אותו במסוף בשביל לקרוא את הפלט."
+"אירעה שגיאת התקנה. נא להפעיל מחדש את Bottles כדי לקרוא את דוח הקריסה או "
+"להריץ את התוכנית דרך מסוף כדי לקרוא את הפלט."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr "תפריט תלויות"
+msgstr "תפריט חבילת תלות"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
-msgstr "ניפוי תקלות"
+msgstr "איתור תקלות"
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
@@ -316,7 +317,7 @@ msgstr "שכפול בקבוק…"
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr "זהו ארכוב מלא של בקבוקך, הכולל בתוכו גם קבצים אישיים."
+msgstr "זהו הארכיון המלא של הבקבוק שלך, כולל קבצים אישיים."
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
@@ -327,11 +328,12 @@ msgstr "גיבוי מלא…"
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
-msgstr "מכיל רק את הגדרת הבקבוק, מושלם ליצירת אחד חדש, בלי קבצים אישיים."
+msgstr ""
+"זוהי רק תצורת הבקבוק, היא מושלמת אם ברצונך ליצור אחד חדש אך ללא קבצים אישיים."
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr "ייצוא הגדרות…"
+msgstr "ייצוא תצורה…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
@@ -340,7 +342,7 @@ msgstr "הצגת תוכניות נסתרות"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
-msgstr "חיפוש אחר תוכנות חדשות"
+msgstr "חיפוש אחר תוכניות חדשות"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
@@ -354,11 +356,11 @@ msgstr "תפריט משני"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr "עצירה מלאה וכפוייה של כל התהליכים הפעילים"
+msgstr "עצירה כפויה של כל התהליכים"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr "דימוי כיבוי מלא של מערכת WINDOWS."
+msgstr "הדמיית כיבוי מערכת Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
@@ -366,16 +368,16 @@ msgstr "כיבוי"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr "דימוי הפעלה מחדש של מערכת WINDOWS."
+msgstr "הדמיית אתחול מערכת Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
-msgstr "הפעלה מחדש"
+msgstr "אתחול"
 
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr "אפשרויות הרצה"
+msgstr "אפשרויות הפעלה"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
@@ -383,7 +385,7 @@ msgstr "הרצה במסוף"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr "גררו לכאן קבצים, ונריץ אותם."
+msgstr "יש לשחרר קבצים כדי להריץ אותם"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
@@ -402,16 +404,16 @@ msgstr "סביבה"
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr "מריץ"
+msgstr "כלי הרצה"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr "רשומת גרסאות זמינה עבור הבקבוק"
+msgstr "ניהול גרסאות מופעל עבור בקבוק זה"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr "רשומת גרסאות פעילה עבור הבקבוק"
+msgstr "רשומת גרסאות פעילה עבור הבקבוק."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
@@ -424,7 +426,7 @@ msgstr "הרצת קובץ הרצה…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
-msgstr "תכונות"
+msgstr "תוכניות"
 
 #: bottles/frontend/ui/details-bottle.blp:275
 msgid ""
@@ -432,9 +434,9 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
-"על מנת להריץ קבצי הרצה, נקיש על \"הרצת קובץ הרצה...\", \"הוספת קיצור דרך\" "
-"כדי להוסיף תוכנה לרשומת התוכנות,  או \"התקנת תוכנות\" על מנת להתקין תוכנות "
-"קהילתיות."
+"יש ללחוץ על \"הרצת קובץ הרצה…\" כדי להריץ קובץ הרצה, \"הוספת קיצורי דרך…\" "
+"כדי להוסיף קובץ הרצה לרשימת התוכניות, או \"התקנת תוכניות…\" כדי להתקין "
+"תוכניות שנאצרו על ידי הקהילה."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -442,7 +444,7 @@ msgstr "הוספת קיצורי דרך…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 msgid "Install Programs…"
-msgstr "התקנת תוכנות…"
+msgstr "התקנת תוכניות…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
@@ -455,16 +457,16 @@ msgstr "הגדרות"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr "הגדרת בקבוק."
+msgstr "קביעת תצורה של הגדרות בקבוק."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr "חבילות-תלות"
+msgstr "חבילות תלות"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
-msgstr "התקנת חבילות-תלות עבור תוכנות"
+msgstr "התקנת חבילות תלות עבור תוכניות."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
@@ -474,17 +476,17 @@ msgstr "תמונות מצב"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
-msgstr "יצירה וניהול מצבי בקבוקים."
+msgstr "יצירה וניהול של מצבי בקבוק."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
 #: bottles/frontend/views/details.py:157
 msgid "Task Manager"
-msgstr "מנהל תהליכים"
+msgstr "מנהל המשימות"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr "ניהול תוכנות פעילות"
+msgstr "ניהול תוכניות פועלות."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -496,19 +498,19 @@ msgstr "שורת פקודה"
 
 #: bottles/frontend/ui/details-bottle.blp:395
 msgid "Run commands inside the Bottle."
-msgstr "הרצת פקודות בתוך הבקבוק"
+msgstr "הרצת פקודות בתוך הבקבוק."
 
 #: bottles/frontend/ui/details-bottle.blp:404
 msgid "Registry Editor"
-msgstr "עורך מרשמה"
+msgstr "עורך רישום"
 
 #: bottles/frontend/ui/details-bottle.blp:405
 msgid "Edit the internal registry."
-msgstr "עריכת המרשמה הפנימית"
+msgstr "עריכת הרישום הפנימי."
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr "כלי עבר WINE"
+msgstr "כלי Wine מדור קודם"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
@@ -525,25 +527,26 @@ msgstr "תצורה"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr "תוכנת הסרת ההתקנה"
+msgstr "כלי להסרת התקנה"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
-msgstr "לוח הבקרה"
+msgstr "לוח בקרה"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr "חיפוש אחר חבילות-תלות…"
+msgstr "חיפוש אחר חבילות תלות…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr "אין לך חיבור לרשת :("
+msgstr "הינך במצב לא מקוון :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr "„בקבוקים” פועל במצב לא מקוון, ולכן תלויות מסוימות אינן זמינות."
+msgstr ""
+"התוכנית Bottles פועלת במצב לא מקוון, לכן חבילות תלות מסוימות אינן זמינות."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -552,10 +555,10 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"חבילות-תלות הינם משאבים המשפרים את התאימות של תוכנות WINDOWS.\n"
+"חבילות תלות הינן משאבים המשפרים את התאימות של תוכנות Windows.\n"
 "\n"
-"קבצים בעמוד זה מובאים לפניכם בידי צדדי-ג' תחת רישיון קנייני. על ידי התקנתם, "
-"הנכם מסכימים לתנאי רישויים."
+"קבצים בעמוד זה מסופקים על ידי צדדים שלישיים תחת רישיון קנייני. התקנתם מעידה "
+"על הסכמתך לתנאי הרישוי המתאימים שלהם."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
@@ -583,7 +586,7 @@ msgstr "חיפוש"
 
 #: bottles/frontend/ui/details-installers.blp:9
 msgid "Search for Programs…"
-msgstr "חיפוש תוכנות…"
+msgstr "חיפוש תוכניות…"
 
 #: bottles/frontend/ui/details-installers.blp:15
 msgid ""
