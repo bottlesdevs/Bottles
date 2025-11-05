@@ -79,6 +79,12 @@ template $LaunchOptionsDialog: Adw.Window {
           }
         }
 
+        Adw.EntryRow entry_pre_script_args {
+          title: _("Pre-run Script Arguments");
+            tooltip-text: _("e.g.: ludusavi restore --force \"Game Name\"");
+          visible: false;
+        }
+
         Adw.ActionRow action_post_script {
           activatable-widget: btn_post_script;
           title: _("Post-run Script");
@@ -108,6 +114,12 @@ template $LaunchOptionsDialog: Adw.Window {
               ]
             }
           }
+        }
+
+        Adw.EntryRow entry_post_script_args {
+          title: _("Post-run Script Arguments");
+            tooltip-text: _("e.g.: ludusavi backup --force \"Game Name\"");
+          visible: false;
         }
 
         Adw.ActionRow action_cwd {

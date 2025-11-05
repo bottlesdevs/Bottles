@@ -19,6 +19,8 @@ class Start(WineProgram):
         environment: Optional[dict] = None,
         pre_script: Optional[str] = None,
         post_script: Optional[str] = None,
+        pre_script_args: Optional[str] = None,
+        post_script_args: Optional[str] = None,
         cwd: Optional[str] = None,
     ):
         winepath = WinePath(self.config)
@@ -41,6 +43,8 @@ class Start(WineProgram):
             environment=environment,
             pre_script=pre_script,
             post_script=post_script,
+            pre_script_args=pre_script_args,
+            post_script_args=post_script_args,
             cwd=cwd,
             minimal=False,
             action_name="run",
