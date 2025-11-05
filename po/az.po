@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-04 08:52+0000\n"
+"PO-Revision-Date: 2025-11-06 18:51+0000\n"
 "Last-Translator: Azad Zeynalov <khazaroslinux@protonmail.com>\n"
 "Language-Team: Azerbaijani <https://hosted.weblate.org/projects/bottles/"
 "bottles/az/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -36,7 +36,7 @@ msgstr "Nüsxə {0} idxal edilir"
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
 msgstr ""
-"3 dəfə yoxlanmağına baxmayaraq komponentlərin quraşdırılması uğursuz oldu"
+"3 dəfə yoxlanmağına baxmayaraq komponentlərin quraşdırılması uğursuz oldu."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
@@ -44,217 +44,219 @@ msgstr "Əsas komponentlərdə çatışmazlıq var. Quraşdırılır…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
-msgstr "Butulka üçün qovluq yaratmaq mümkün olmadı"
+msgstr "Butulka üçün qovluq yaratmaq mümkün olmadı."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Yer tutucu qovluğ/fayl yaradıla bilmədi."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr ""
+msgstr "Butulka konfiqurasiyası yaradılır…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
-msgstr ""
+msgstr "Şablon tapıldı, tətbiq edilir…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1197
 msgid "The Wine config is being updated…"
-msgstr ""
+msgstr "Wine konfiqi yenilənir…"
 
 #: bottles/backend/managers/manager.py:1199
 msgid "Wine config updated!"
-msgstr ""
+msgstr "Wine konfigi yeniləndi!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr ""
+msgstr "Flatpak olaraq işləyir, istifadəçi qovluğu qorunaqlı hala gətirilir…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "İstifadəçi qovluğu qorunaqlı hala gətirilir…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "Windows versiyası təyin olunur…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "CMD standart parametrlərini tətbiq et…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
-msgstr ""
+msgstr "Mühit optimallaşdırılır…"
 
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "Tətbiq olunan mühit: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Xüsusi mühit reseptindən istifadə edilir…"
 
 #: bottles/backend/managers/manager.py:1292
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Resept tapılmadı və ya etibarlı deyil…"
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "DXVK quraşdırılır…"
 
 #: bottles/backend/managers/manager.py:1317
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "VKD3D quraşdırılır…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "DXVK-NVAPI quraşdırılır…"
 
 #: bottles/backend/managers/manager.py:1335
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "Asılılıq quraşdırılır: %s …"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "Versiya vəziyyəti 0 yaradılır…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
-msgstr ""
+msgstr "Bitirilir…"
 
 #: bottles/backend/managers/manager.py:1364
 msgid "Caching template…"
-msgstr ""
+msgstr "Şablon keşlənir…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
-msgstr ""
+msgstr "Statuslar yenilənir …"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Güncəllənəcək bir şey yoxdur"
 
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "Yeni status [{0}] uğurla yaradıldı!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr ""
+msgstr "Status siyahısı uğurla alındı!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr ""
+msgstr "Status {0} uğurla bərpa edildi!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr ""
+msgstr "Status {} bərpa olunur …"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
-msgstr ""
+msgstr "Status tapılmadı"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "Status {} onsuz da aktiv vəziyyətdədir"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
-msgstr ""
+msgstr "Versiyanı göstər"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
-msgstr ""
+msgstr "İcra edilə bilənin yolu"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr ""
+msgstr "lnk yolu"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
 msgid "Bottle name"
-msgstr ""
+msgstr "Butulka adı"
 
 #: bottles/frontend/main.py:144
 msgid "Pass arguments"
-msgstr ""
+msgstr "Arqumentləri ötürün"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Yanlış URI (sintaksis: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr ""
+msgstr "[Çıx] sorğusu qəbul edildi."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
-msgstr ""
+msgstr "[Kömək] sorğusu qəbul edildi."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "[Yenilə] sorğusu qəbul edildi."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
-msgstr ""
+msgstr "Bağışla"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Üçüncü Tərəf Kitabxanalar və Xüsusi Təşəkkürlər"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Sponsor olan və maliyyələşdirən"
 
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr ""
+msgstr "Müəllif Hüququ © 2017 Butulkalar Tərtibatçıları"
 
 #: bottles/frontend/ui/about.blp:10
 msgid "Bottles Developers"
-msgstr ""
+msgstr "Butulkalar Tərtibatçıları"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "tərcüməçilər"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr ""
+msgstr "Komponent versiyası"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
 #: bottles/frontend/ui/program-entry.blp:77
 msgid "Uninstall"
-msgstr ""
+msgstr "Poz"
 
 #: bottles/frontend/ui/component-entry.blp:23
 msgid "Browse Files"
-msgstr ""
+msgstr "Fayllara Bax"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
+"Quraşdırma uğursuz oldu. Bu, depo xətası, yarım yükləmə və ya toplu yoxlama "
+"uyğunsuzluğu ilə bağlı ola bilər. Yenidən yoxlamaq üçün kliklə."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
-msgstr ""
+msgstr "Endir və Yüklə"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
-msgstr ""
+msgstr "Manifesti Göstər"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
@@ -262,59 +264,61 @@ msgstr "Lisenziya"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
-msgstr ""
+msgstr "Yenidən quraşdır"
 
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Xəta Bildir…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
-msgstr ""
+msgstr "Aslılıq adı"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
 msgid "Dependency description"
-msgstr ""
+msgstr "Aslılıq açıqlaması"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr ""
+msgstr "Kateqoriya"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr ""
+msgstr "Bu Aslılığı Endir və Quraşdır"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"Quraşdırma xətası baş verdi. Xəta Hesabatını oxumaq üçün Butulkaları yenidən "
+"başladın və ya çıxış loglarını oxumaq üçün terminal vasitəsilə işə salın."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr ""
+msgstr "Aslılıq Menyusu"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Problemlərin aradan qaldırılması"
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
-msgstr ""
+msgstr "Fayllara Bax…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
-msgstr ""
+msgstr "Butulkanı Çoxalt…"
 
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
+msgstr "Bu, şəxsi fayllar da daxil olmaqla, butulkanızın tam arxividir."
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
-msgstr ""
+msgstr "Tam Yedəkləmə…"
 
 #: bottles/frontend/ui/details-bottle.blp:37
 #: bottles/frontend/ui/importer.blp:68
@@ -322,95 +326,97 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
+"Bu, sadəcə butulka konfiqurasiyasıdır, şəxsi fayllar daxil olmadan yenisini "
+"yaratmaq istəyirsinizsə, idealdır."
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr ""
+msgstr "Konfiqurasiyanı Çölə Çıxar…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
 msgid "Show Hidden Programs"
-msgstr ""
+msgstr "Gizli Proqramları Göstər"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
-msgstr ""
+msgstr "Yeni proqramlar axtarın"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
-msgstr ""
+msgstr "Butulkanı Sil…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "İkinci Dərəcəli Menyu"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr ""
+msgstr "Bütün Prosesləri Məcburi Dayandırın"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Windows sisteminin söndürülməsini simulyasiya et."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
-msgstr ""
+msgstr "Söndür"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Windows sisteminin yenidən başladılmasını simulyasiya edin."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
-msgstr ""
+msgstr "Yenidən başlat"
 
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr ""
+msgstr "Başlatma Seçimləri"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
-msgstr ""
+msgstr "Terminalda icra et"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "Faylları icra etmək üçün buraxın"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
-msgstr ""
+msgstr "Mənim butulkam"
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: bottles/frontend/ui/details-bottle.blp:189
 #: bottles/frontend/ui/list-entry.blp:12 bottles/frontend/ui/new.blp:71
 msgid "Environment"
-msgstr ""
+msgstr "Mühit"
 
 #: bottles/frontend/ui/details-bottle.blp:201
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr ""
+msgstr "İcraedici"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "Bu butulka üçün versiyalama aktivləşdirildi"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr ""
+msgstr "Bu butulka üçün versiyalama aktivdir."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
