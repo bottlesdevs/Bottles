@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-04 08:51+0000\n"
+"PO-Revision-Date: 2025-11-05 18:50+0000\n"
 "Last-Translator: Athanasios <firemastergr1@protonmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/bottles/bottles/el/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -139,7 +139,7 @@ msgstr ""
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "Νέα κατάσταση {0}] Δημιουργήθηκε επιτυχώς!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
@@ -172,7 +172,7 @@ msgstr "Εκτελέσιμη διαδρομή"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr ""
+msgstr "Μονοπάτι Ink"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
@@ -590,7 +590,7 @@ msgstr "Διαβάστε οδηγίες."
 #: bottles/frontend/ui/details-installers.blp:51
 #: bottles/frontend/ui/details-versioning.blp:37
 msgid "Documentation"
-msgstr ""
+msgstr "Τεκμηρίωση"
 
 #: bottles/frontend/ui/details-dependencies.blp:92
 #: bottles/frontend/ui/details-installers.blp:61
@@ -1694,7 +1694,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
-msgstr ""
+msgstr "Ενσωματωμένο (Wine)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:9
 msgid "Native (Windows)"
@@ -1923,7 +1923,7 @@ msgstr "Χρήση GameMode"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
-msgstr ""
+msgstr "Προσαρμοσμένο"
 
 #: bottles/frontend/ui/new.blp:118
 #, fuzzy
@@ -2291,7 +2291,7 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:207
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Αναβαθμίστηκε: %s"
 
 #: bottles/frontend/views/bottle_details.py:267
 #, python-brace-format
@@ -2307,7 +2307,7 @@ msgstr "Διαγραφή bottle"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
-msgstr ""
+msgstr "Προσθήκη"
 
 #: bottles/frontend/views/bottle_details.py:346
 #, fuzzy
@@ -2340,15 +2340,15 @@ msgstr ""
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
-msgstr ""
+msgstr "Επιλέξτε τη θέση αποθήκευσης του αντιγράφου ασφαλείας διαμόρφωσης"
 
 #: bottles/frontend/views/bottle_details.py:431
 msgid "Export"
-msgstr ""
+msgstr "Εξαγωγή"
 
 #: bottles/frontend/views/bottle_details.py:433
 msgid "Select the location where to save the backup archive"
-msgstr ""
+msgstr "Επιλέξτε τη θέση αποθήκευσης της βιβλιοθήκης αντιγράφων ασφαλείας"
 
 #: bottles/frontend/views/bottle_details.py:435
 #, fuzzy
@@ -2476,7 +2476,7 @@ msgstr "Εξαγωγή διαμόρφωσης"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
-msgstr ""
+msgstr "Δ/Υ"
 
 #. Set tooltip text
 #: bottles/frontend/views/list.py:91
@@ -2595,7 +2595,7 @@ msgstr ""
 #: bottles/frontend/widgets/installer.py:81
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr ""
+msgstr "Μανιφέστο για {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
 #, fuzzy, python-brace-format
@@ -2641,7 +2641,7 @@ msgstr ""
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
 msgid "Review for {0}"
-msgstr ""
+msgstr "Ανασκόπηση για {0}"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
@@ -2691,13 +2691,16 @@ msgstr ""
 
 #: bottles/frontend/windows/crash.py:33
 msgid "Show report"
-msgstr ""
+msgstr "Εμφάνιση αναφοράς"
 
 #: bottles/frontend/windows/crash.py:80
 msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            Αυτό το πρόβλημα αναφέρθηκε 5 φορές και δεν μπορεί να "
+"ξαναποσταλθεί.\n"
+"            Γράψτε το σχόλιό σας σε μια από τις υπάρχουσες αναφορές."
 
 #: bottles/frontend/windows/display.py:102
 msgid "Updating display settings, please wait…"
@@ -2726,13 +2729,13 @@ msgstr "Δεν έχουν προστεθεί κανόνες αποκλεισμο
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
-msgstr ""
+msgstr "Εμφανίστηκε ένα σφάλμα."
 
 #: bottles/frontend/windows/generic.py:91
 #: bottles/frontend/windows/generic.py:137
 #: bottles/frontend/windows/generic.py:182
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Αντιφραφή στο πρόχειρο"
 
 #: bottles/frontend/windows/installer.py:62
 #, fuzzy
