@@ -1,4 +1,5 @@
 import os
+import time
 import re
 import shlex
 import uuid
@@ -18,6 +19,12 @@ from bottles.backend.wine.start import Start
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.winepath import WinePath
+from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.state import SignalManager, Signals
+from bottles.backend.models.process import (
+    ProcessStartedPayload,
+    ProcessFinishedPayload,
+)
 
 logging = Logger()
 
@@ -68,6 +75,7 @@ class WineExecutor:
             exec_path = self.__move_file(exec_path, move_upd_fn)
 
         self.exec_type = self.__get_exec_type(exec_path)
+        self._raw_exec_path = exec_path
         self.exec_path = shlex.quote(exec_path)
         self.args = args
         self.terminal = terminal
@@ -80,6 +88,7 @@ class WineExecutor:
         self.monitoring = monitoring
         self.use_gamescope = program_gamescope
         self.use_virt_desktop = program_virt_desktop
+        self._play_session_id = -1
 
         env_dll_overrides = []
 
@@ -280,19 +289,71 @@ class WineExecutor:
         return Result(status=True, data={"output": res})
 
     def run(self) -> Result:
-        match self.exec_type:
-            case "exe" | "msi":
-                return self.__launch_with_bridge()
-            case "batch":
-                return self.__launch_batch()
-            case "lnk" | "unsupported":
-                return self.__launch_with_starter()
-            case "dll":
-                return self.__launch_dll()
-            case _:
-                return Result(
-                    status=False, data={"message": "Unknown executable type."}
+        # Emit ProgramStarted (best-effort)
+        launch_id = f"{self.config.Name}:{int(time.time()*1000)}:{os.getpid()}"
+        bottle_id = self.config.Name
+        bottle_name = self.config.Name
+        bottle_path = ManagerUtils.get_bottle_path(self.config)
+        program_name = os.path.basename(self._raw_exec_path) if \
+            self._raw_exec_path else "unknown"
+        program_path = self._raw_exec_path or self.exec_path
+        try:
+            SignalManager.send(
+                Signals.ProgramStarted,
+                Result(True, ProcessStartedPayload(
+                    launch_id=launch_id,
+                    bottle_id=bottle_id,
+                    bottle_name=bottle_name,
+                    bottle_path=bottle_path,
+                    program_name=program_name,
+                    program_path=program_path,
+                )),
+            )
+        except Exception:
+            pass
+
+        try:
+            match self.exec_type:
+                case "exe" | "msi":
+                    res = self.__launch_with_bridge()
+                case "batch":
+                    res = self.__launch_batch()
+                case "lnk" | "unsupported":
+                    res = self.__launch_with_starter()
+                case "dll":
+                    res = self.__launch_dll()
+                case _:
+                    res = Result(
+                        status=False, data={"message": "Unknown executable type."}
+                    )
+        except Exception as e:
+            try:
+                SignalManager.send(
+                    Signals.ProgramFinished,
+                    Result(True, ProcessFinishedPayload(
+                        launch_id=launch_id,
+                        status="unknown",
+                        ended_at=int(time.time()),
+                    )),
                 )
+            except Exception:
+                pass
+            raise e
+
+        # Finalize session
+        try:
+            SignalManager.send(
+                Signals.ProgramFinished,
+                Result(True, ProcessFinishedPayload(
+                    launch_id=launch_id,
+                    status="success" if res.status else "unknown",
+                    ended_at=int(time.time()),
+                )),
+            )
+        except Exception:
+            pass
+
+        return res
 
     def __launch_with_bridge(self):
         # winebridge = WineBridge(self.config)
