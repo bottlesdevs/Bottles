@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-05 18:18+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2025-11-06 18:51+0000\n"
+"Last-Translator: Xo <xocodokie@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/bottles/bottles/"
 "he/>\n"
 "Language: he\n"
@@ -44,11 +44,11 @@ msgstr "חסרים רכיבים חיוניים. מותקנים…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
-msgstr "יצירת ספריית בקבוק נכשלה."
+msgstr "יצירת תיקיית בקבוק נכשלה."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr "יצירת ספריה/קובץ ממלאי מקום נכשלה."
+msgstr "יצירת תיקייה/קובץ ממלאי מקום נכשלה."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
@@ -1029,8 +1029,8 @@ msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
-"„בקבוקים” קרס בפעם האחרונה. נא למלא דוח בצירוף מעקב הקריאות (traceback) הבא "
-"בשביל לעזור לנו לזהות את הבעיה ולמנוע ממנה להתרחש שוב."
+"התוכנית „בקבוקים” קרסה בפעם האחרונה. נא למלא דוח בצירוף מעקב הקריאות "
+"(traceback) הבא בשביל לעזור לנו לזהות את הבעיה ולמנוע ממנה להתרחש שוב."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
 msgid ""
@@ -1094,7 +1094,7 @@ msgid ""
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
 "אלה הם נתיבים ממערכת המארח שלך אשר ממופים ומזוהים כהתקנים על ידי כלי ההרצה "
-"(למשל ‏C:‎‏ D:‎…)"
+"(למשל ‏C:‎‏ D:‎…)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
@@ -1155,19 +1155,19 @@ msgstr "דפוסי החרגה"
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
-msgstr ""
+msgstr "הגדרת דפוסים אשר ישמשו למניעת ניהול גרסאות של תיקיות מסוימות."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
 msgid "Pattern"
-msgstr ""
+msgstr "דפוס"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:37
 msgid "Existing Patterns"
-msgstr ""
+msgstr "דפוסים קיימים"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
-msgstr ""
+msgstr "הגדרות Gamescope"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:30
 #: bottles/frontend/ui/dialog-launch-options.blp:32
@@ -1178,7 +1178,7 @@ msgstr "שמירה"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "ניהול אופן הצגת משחקים."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
@@ -1186,7 +1186,7 @@ msgstr "רזולוציית משחק"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr ""
+msgstr "הגדרה זו משתמשת ברזולוציה של משחק הוידאו כנקודת ייחוס בפיקסלים."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
@@ -1207,6 +1207,8 @@ msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
+"הגדרה זו משדרגת את הרזולוציה כאשר משתמשים ברזולוציה גבוהה יותר מרזולוציית "
+"המשחק בפיקסלים."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
@@ -1214,15 +1216,15 @@ msgstr "שונות"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
 msgid "Frame Rate Limit"
-msgstr "מגבלת קצב תמוניות (FPS)"
+msgstr "מגבלת קצב פריימים"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
 msgid "Frame Rate Limit When Unfocused"
-msgstr ""
+msgstr "מגבלת קצב פריימים כאשר החלון אינו ממוקד"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
 msgid "Integer Scaling"
-msgstr ""
+msgstr "סילום מספרים שלמים"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
@@ -1230,7 +1232,7 @@ msgstr "סוג חלון"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:166
 msgid "Borderless"
-msgstr ""
+msgstr "ללא שוליים"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:172
 msgid "Fullscreen"
@@ -1238,21 +1240,21 @@ msgstr "מסך מלא"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr "להמשיך בהתקנה?"
+msgstr "האם ברצונך להתקדם עם ההתקנה?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
 msgid "Start Installation"
-msgstr "התחלת ההתקנה"
+msgstr "התחלת התקנה"
 
 #: bottles/frontend/ui/dialog-installer.blp:64
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
-msgstr ""
+msgstr "תוכנית התקנה זו דורשת משאבים מקומיים מסוימים שלא ניתן לספק אחרת."
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
-msgstr "להמשיך"
+msgstr "התקדמות"
 
 #: bottles/frontend/ui/dialog-installer.blp:127
 msgid "Completed!"
@@ -1260,7 +1262,7 @@ msgstr "סיימנו!"
 
 #: bottles/frontend/ui/dialog-installer.blp:130
 msgid "Show Programs"
-msgstr ""
+msgstr "הצגת תוכניות"
 
 #: bottles/frontend/ui/dialog-installer.blp:148
 msgid "Installation Failed!"
@@ -1276,7 +1278,7 @@ msgstr "כל ההודעות"
 
 #: bottles/frontend/ui/dialog-journal.blp:13
 msgid "Critical"
-msgstr ""
+msgstr "קריטי"
 
 #: bottles/frontend/ui/dialog-journal.blp:17
 msgid "Errors"
@@ -1296,11 +1298,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
-msgstr ""
+msgstr "דפדפן יומן"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr ""
+msgstr "שינוי רמת רישום."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
@@ -1308,44 +1310,44 @@ msgstr "הכול"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:42
 msgid "Those arguments will be passed at launch."
-msgstr ""
+msgstr "הארגומנטים האלה יועברו בהפעלה."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:43
 msgid "Custom Arguments"
-msgstr ""
+msgstr "ארגומנטים מותאמים אישית"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:46
 msgid "Command Arguments"
-msgstr ""
+msgstr "ארגומנטים של פקודה"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:47
-#, c-format
+#, c-format, fuzzy
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "למשל: VAR=value %command% -example1 -example2 -example3=hello"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:52
 msgid "Post-run Script"
-msgstr ""
+msgstr "תסריט לאחר הרצה"
 
 #. endregion
 #: bottles/frontend/ui/dialog-launch-options.blp:53
 #: bottles/frontend/windows/launchoptions.py:54
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "בחירת תסריט אותו יש לבצע לאחר הרצה."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
 msgid "Choose a Script"
-msgstr ""
+msgstr "בחירת תסריט"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:84
 #: bottles/frontend/windows/launchoptions.py:55
 msgid "Choose from where start the program."
-msgstr ""
+msgstr "בחירה מאיפה להתחיל את התוכנית."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:101
 #: bottles/frontend/ui/drive-entry.blp:22
 msgid "Choose a Directory"
-msgstr ""
+msgstr "בחירת תיקייה"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:114
 msgid "These settings will override the default settings for this executable."
@@ -1418,7 +1420,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "למשל: -opengl -SkipBuildPatchPrereq"
+msgstr "למשל: ‪-opengl -SkipBuildPatchPrereq‬"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
 msgid "Sandbox Settings"
