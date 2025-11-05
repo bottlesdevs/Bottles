@@ -122,8 +122,7 @@ class SandboxManager:
                 f"--sandbox-expose-path={shlex.quote(p)}" for p in self.share_paths_rw
             ]
 
-        share_net = self.share_net or self.share_bluetooth
-        if not share_net:
+        if not self.share_net:
             _cmd.append("--no-network")
 
         if self.share_display:
