@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-05 05:11+0000\n"
+"PO-Revision-Date: 2025-11-05 18:18+0000\n"
 "Last-Translator: Xo <xocodokie@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/bottles/bottles/"
 "he/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : "
 "((n > 10 && n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -790,7 +790,7 @@ msgstr "Feral GameMode"
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
-msgstr "מיישם סדרת שיפורים וביצועים למכשירך, עשוי לשפר ביצועים."
+msgstr "יישום סדרת מיטובים למכשירך. יכול לשפר ביצועי משחקים."
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
@@ -801,8 +801,8 @@ msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
-"שיפור זמן הטעינה בעת הפעלת המשחק מספר פעמים, אך ההפעלה הראשונית תארך זמן רב "
-"יותר."
+"שיפור זמן הטעינה בעת הפעלת המשחק מספר פעמים. המשחק ייקח יותר זמן להתחיל בפעם "
+"הראשונה."
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
@@ -814,7 +814,7 @@ msgstr "לכידת משחק עם OBS"
 
 #: bottles/frontend/ui/details-preferences.blp:242
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr "הפעלת לכידת משחק עם OBS לכל יישומי vulkan ו- OpenGL."
+msgstr "החלפת מצב \"לכידת משחק עם OBS” עבור כל תוכניות Vulkan ו־OpenGL."
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
@@ -822,7 +822,7 @@ msgstr "תאימות"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 msgid "Windows Version"
-msgstr "גרסת ווינדוס"
+msgstr "גרסת Windows"
 
 #: bottles/frontend/ui/details-preferences.blp:257
 msgid "Updating Windows version, please wait…"
@@ -834,19 +834,19 @@ msgstr "שפה"
 
 #: bottles/frontend/ui/details-preferences.blp:267
 msgid "Choose the language to use with programs."
-msgstr "בחירת השפה לשימוש עם יישומים ותוכנות."
+msgstr "בחירת השפה לשימוש עם תוכניות."
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Dedicated Sandbox"
-msgstr "\"ארגז חול\" ייעודי"
+msgstr "ארגז חול ייעודי"
 
 #: bottles/frontend/ui/details-preferences.blp:276
 msgid "Use a restricted/managed environment for this bottle."
-msgstr "שימוש בסביבה מוגבלת\\מנוהלת עבור הבקבוק."
+msgstr "שימוש בסביבה מוגבלת/מנוהלת עבור בקבוק זה."
 
 #: bottles/frontend/ui/details-preferences.blp:279
 msgid "Manage the Sandbox Permissions"
-msgstr "ניהול הרשאות \"ארגז החול\""
+msgstr "ניהול הרשאות ארגז החול"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
@@ -858,25 +858,24 @@ msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
-"אספקת מקבץ של ספריות נוספות לשיפור התאימות. אם יש בעיות אז כדאי לבטל את "
-"הבחירה."
+"אספקת חבילת ספריות נוספות לשיפור התאימות. יש להשבית זאת אם נתקלת בבעיות."
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "הרצת Steam"
+msgstr "מערכת זמן הריצה של Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
-"אספקת ספריות נוספות לשיפור התאימות עם משחקי Steam. אם יש בעיות אז כדאי לבטל "
-"את הבחירה."
+"אספקת חבילת ספריות נוספות לשיפור התאימות עם משחקי Steam. יש להשבית זאת אם "
+"נתקלת בבעיות."
 
 #: bottles/frontend/ui/details-preferences.blp:315
 #: bottles/frontend/ui/dialog-launch-options.blp:83
 msgid "Working Directory"
-msgstr "נתיב לרשומת פעילות"
+msgstr "תיקיית עבודה"
 
 #: bottles/frontend/ui/details-preferences.blp:318
 #: bottles/frontend/ui/dialog-launch-options.blp:59
@@ -884,24 +883,24 @@ msgstr "נתיב לרשומת פעילות"
 #: bottles/frontend/ui/new.blp:150 bottles/frontend/ui/new.blp:181
 #: bottles/frontend/ui/preferences.blp:136
 msgid "Reset to Default"
-msgstr "שחזור להגדרות ברירת-מחדל"
+msgstr "איפוס לברירת מחדל"
 
 #: bottles/frontend/ui/details-preferences.blp:339
 #: bottles/frontend/ui/preferences.blp:157 bottles/frontend/views/new.py:78
 #: bottles/frontend/views/preferences.py:210
 msgid "(Default)"
-msgstr "(ברירת-מחדל)"
+msgstr "(ברירת מחדל)"
 
 #: bottles/frontend/ui/details-preferences.blp:347
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
 #: bottles/frontend/ui/dialog-dll-overrides.blp:12
 msgid "DLL Overrides"
-msgstr "דריסת קובצי DLL"
+msgstr "דריסות DLL"
 
 #: bottles/frontend/ui/details-preferences.blp:357
 #: bottles/frontend/ui/dialog-env-vars.blp:20
 msgid "Environment Variables"
-msgstr "משתני הסביבה"
+msgstr "משתני סביבה"
 
 #: bottles/frontend/ui/details-preferences.blp:367
 msgid "Manage Drives"
@@ -909,13 +908,13 @@ msgstr "ניהול כוננים"
 
 #: bottles/frontend/ui/details-preferences.blp:381
 msgid "Automatic Snapshots"
-msgstr "לקיחה אוטומטית של תמונות מצב"
+msgstr "תמונות מצב אוטומטיות"
 
 #: bottles/frontend/ui/details-preferences.blp:382
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
-msgstr "לכידת נתוני מערכת חשובים מיד לפני התקנת תוכנות או עדכון הגדרות"
+msgstr "יצירת תמונות מצב באופן אוטומטי לפני התקנת תוכנה או שינוי הגדרות."
 
 #: bottles/frontend/ui/details-preferences.blp:391
 msgid "Compression"
@@ -925,19 +924,20 @@ msgstr "דחיסה"
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
-msgstr "דחיסת נתוני-לכידה כדי להקטין את נפח האחסון. זה ייאט את יצירת הנתונים."
+msgstr ""
+"דחיסת תמונות מצב כדי לצמצם שטח אחסון. הגדרה זו תאט את היצירה של תמונות מצב."
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
-msgstr "השתמש בתבניות ויתור"
+msgstr "שימוש בדפוסי החרגה"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr "וויתור על נתיבי-קבצים בלכידות-נתונים"
+msgstr "החרגת נתיבים בתמונות מצב."
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
-msgstr "ניהול תבניות"
+msgstr "ניהול דפוסים"
 
 #: bottles/frontend/ui/details-taskmanager.blp:17
 msgid "Refresh"
@@ -945,27 +945,28 @@ msgstr "רענון"
 
 #: bottles/frontend/ui/details-taskmanager.blp:22
 msgid "Stop process"
-msgstr "עצירת ההליך"
+msgstr "עצירת תהליך"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 msgid "No Snapshots Found"
-msgstr "לא נמצאו לכידות"
+msgstr "לא נמצאו תמונות מצב"
 
 #: bottles/frontend/ui/details-versioning.blp:19
 msgid "Create your first snapshot to start saving states of your preferences."
-msgstr "צרו את לכידת-הנתונים הראשונה שלכם ושמרו מצבים כפי העדפותיכם"
+msgstr ""
+"יש ליצור את תמונת המצב הראשונה שלך כדי להתחיל לשמור מצבים של ההעדפות שלך."
 
 #: bottles/frontend/ui/details-versioning.blp:54
 msgid "A short comment"
-msgstr "תגובית קצרה"
+msgstr "הערה קצרה"
 
 #: bottles/frontend/ui/details-versioning.blp:58
 msgid "Save the bottle state."
-msgstr "שמור את מצב הבקבוק הנוכחי"
+msgstr "שמירת מצב הבקבוק"
 
 #: bottles/frontend/ui/details-versioning.blp:78
 msgid "Create new Snapshot"
-msgstr "צור לכידת-נתונים חדשה"
+msgstr "יצירת תמונת מצב חדשה"
 
 #: bottles/frontend/ui/details.blp:16
 msgid "Details"
@@ -1021,15 +1022,15 @@ msgstr "_ביטול"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
 msgid "Send Report"
-msgstr "שליחת דיווח"
+msgstr "שליחת דוח"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:44
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
-"„בקבוקים” קרס בפעם האחרונה. נא למלא את דוח התקלה ולצרף אליו את מעקב הקריאות "
-"(traceback) בשביל לעזור לנו לזהות את הבעיה ולמנוע אותה."
+"„בקבוקים” קרס בפעם האחרונה. נא למלא דוח בצירוף מעקב הקריאות (traceback) הבא "
+"בשביל לעזור לנו לזהות את הבעיה ולמנוע ממנה להתרחש שוב."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
 msgid ""
@@ -1038,14 +1039,13 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
-"תודה על הדיווח המעמיק. לצערנו, מצאנו לפחות דיווח נוסף זהה במאגרים. נא לבדוק "
-"בקפידה שהבעיה הזו טרם דווחה לפני הגשת דיווחים נוספים. הגשת דיווחים כפולים "
-"מעמיסה על צוות הפיתוח וגורעת מיעילותו, נא לכבד את פועלם ולוודא שלא להגיש "
-"דיווחים כפולים או כוזבים."
+"מצאנו לפחות דוח אחד דומה (או זהה). נא לבדוק בקפידה שבעיה זו טרם דווחה לפני "
+"הגשת דוח חדש. כל דוח דורש מאמץ מצד המפתחים לאבחן, נא לכבד את פועלם ולוודא "
+"שלא לפרסם כפילויות."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:89
 msgid "I still want to report."
-msgstr "ארצה להמשיך בהליך הדיווח."
+msgstr "ברצוני לדווח למרות זאת."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:95
 msgid "Advanced options"
@@ -1061,7 +1061,7 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
-"נראה שגרסה זו של „בקבוקים” אינה מכילה את כל תלויות הליבה הנדרשות, נא ליצור "
+"נראה שגרסה זו של „בקבוקים” אינה מספקת את כל תלויות הליבה הנדרשות, נא ליצור "
 "קשר עם מתחזק/ת החבילה או להשתמש בגרסה הרשמית."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
@@ -1073,8 +1073,8 @@ msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
-"ניתן להגדיר ספריות דינמיות מקושרות כך שתהיינה מובנות (ומספוקות ע״י מיזם Wine)"
-" או מקומיות (ומסופקות על-ידינו)."
+"ניתן לציין שספריות קישור דינמי (DLL) יהיו מובנות (מספוקות על ידי Wine) או "
+"מקומיות (מסופקות על ידי התוכנית)."
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
