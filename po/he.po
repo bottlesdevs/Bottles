@@ -780,7 +780,7 @@ msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
-"הצגת מידע ניטורי כגון קצב פריימים, טמפרטורה, עומס על המעבדים ועוד על גבי "
+"הצגת מידע ניטורי כגון קצב תמוניות, טמפרטורה, עומס על המעבדים ועוד על גבי "
 "OpenGL ו־Vulkan באמצעות MangoHud."
 
 #: bottles/frontend/ui/details-preferences.blp:211
@@ -1479,10 +1479,20 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"לתוכנית \"בקבוקים\" יש מערכת ניהול גרסאות חדשה לגמרי שאינה תואמת לאחור.\n"
+"\n"
+"כדי להמשיך להשתמש בניהול גרסאות אנו צריכים לאתחל מחדש את מאגר המידע של "
+"הבקבוק. פעולה זו לא תמחק נתונים מהבקבוק שלך אך תמחק את כל תמונות המצב "
+"הקיימות ותיצור אחת חדשה.\n"
+"\n"
+"אם יש צורך לחזור לתמונת מצב קודמת לפני המשך הפעולה, יש לסגור חלון זה ולשחזר "
+"את תמונת המצב, לאחר מכן יש לפתוח מחדש את הבקבוק כדי להציג חלון זה שוב.\n"
+"\n"
+"התמיכה במערכת הישנה תופסק באחד מהשחרורים הבאים."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
-msgstr ""
+msgstr "מאגר המידע מאותחל מחדש…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
@@ -1491,7 +1501,7 @@ msgstr "בוצע! נא להפעיל את \"בקבוקים” מחדש."
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
 msgid "Post-Processing Effects Settings"
-msgstr ""
+msgstr "הגדרות אפקטים לאחר עיבוד"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
@@ -1503,15 +1513,15 @@ msgstr "הגדרות ברירת מחדל"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "האפקטים מיושמים בהתאם לסדר הרשימה."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
 msgid "Effects"
-msgstr ""
+msgstr "אפקטים"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:62
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "חידוד ניגודיות הסתגלותי (CAS)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:65
 #: bottles/frontend/ui/dialog-vkbasalt.blp:102
@@ -1535,89 +1545,99 @@ msgstr "הצגת מידע"
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "חידוד Luma מופחת רעשים"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
-msgstr ""
+msgstr "הפחתת רעשים"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:160
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "החלקת קצוות משוערות מהירה (FXAA)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:163
 msgid "Subpixel Quality"
-msgstr ""
+msgstr "איכות תת־פיקסל"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:191
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "סף איכות קצה"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:219
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "סף איכות קצה מזערי"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:249
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "החלקת קצוות צורנית ברמת תת־פיקסל (SMAA)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:252
 msgid "Edge Detection"
-msgstr ""
+msgstr "זיהוי קצה"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:267
 msgid "Luma"
-msgstr ""
+msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:273
 msgid "Color"
-msgstr ""
+msgstr "צבע"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:284
 msgid "Threshold"
-msgstr ""
+msgstr "סף"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:312
 msgid "Max Search Steps"
-msgstr ""
+msgstr "שלבי חיפוש מרביים"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:339
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "אלכסון שלבי חיפוש מרביים"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:366
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "עיגול פינות מרבי"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:411
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"חדות CAS משפרת את חדות התמונית. ערכים גבוהים יותר הופכים את התמונית לחדה "
+"יותר, בעוד שערכים נמוכים יותר מ־0 הופכים את התמונית לרכה יותר מהמקור."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:428
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"חדות DLS משפרת את חדות התמונית. ערכים גבוהים יותר הופכים את התמונית לחדה "
+"יותר."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:445
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"הפחתת רעשים בעזרת DLSS מפחיתה את רעש התמונית. ערכים גבוהים יותר הופכים את "
+"התמונית לרכה יותר."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:462
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"איכות תת־פיקסל של FXAA מפחיתה קצוות משוננים ברמת התת־פיקסל. ערכים גבוהים "
+"יותר הופכים את התמונית לרכה יותר."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:479
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"סף איכות קצה של FXAA הוא הכמות המזערית של ניגודיות הדרושה ליישום האלגוריתם "
+"של FXAA. ערכים גבוהים יותר גורמים לתמונית להיות בעלת ניגודיות רבה יותר."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:496
 msgid ""
@@ -1625,18 +1645,25 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"סף איכות קצה מזערי של FXAA הוא הערך המזערי של פיקסלים כהים שהאלגוריתם של "
+"FXAA מתעלם מהם. ערכים גבוהים יותר גורמים לאלגוריתם של FXAA להתעלם מפיקסלים "
+"מתחת לערך שצוין ויכולים להוביל לעלייה בביצועים."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"הטכניקה Luma מזהה קצוות מנקודת מבט חד־צבעית, בעוד שהטכניקה \"צבע\" מזהה "
+"קצוות בהתבסס על צבעים. הביצועים של Luma טובים יותר מאלה של \"צבע\"."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:530
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"סף SMAA מציין את הרגישות של זיהוי קצוות. ערכים נמוכים יותר מזהים יותר קצוות "
+"על חשבון הביצועים."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:547
 msgid ""
