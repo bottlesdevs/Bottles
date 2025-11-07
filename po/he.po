@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
 "PO-Revision-Date: 2025-11-07 21:51+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Last-Translator: Xo <xocodokie@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/bottles/bottles/"
 "he/>\n"
 "Language: he\n"
@@ -169,7 +169,7 @@ msgstr "הצגת גרסה"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
-msgstr "נתיב קובץ ההרצה"
+msgstr "נתיב קובץ הפעלה"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
@@ -421,7 +421,7 @@ msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
-msgstr "הרצת קובץ הרצה…"
+msgstr "הרצת קובץ הפעלה…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
@@ -526,7 +526,7 @@ msgstr "תצורה"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr "כלי להסרת התקנה"
+msgstr "תוכנית להסרת התקנה"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
@@ -1351,7 +1351,7 @@ msgstr "בחירת תיקייה"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:114
 msgid "These settings will override the default settings for this executable."
-msgstr "הגדרות אלה ידרסו את הגדרות ברירת המחדל עבור קובץ הרצה זה."
+msgstr "הגדרות אלה ידרסו את הגדרות ברירת המחדל עבור קובץ הפעלה זה."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:115
 msgid "Preferences Overrides"
@@ -1426,7 +1426,7 @@ msgstr "הרצה"
 
 #: bottles/frontend/ui/dialog-run-args.blp:44
 msgid "Write below the arguments to be passed to the executable."
-msgstr "יש לכתוב למטה את הארגומנטים שיש להעביר לקובץ ההרצה."
+msgstr "יש לכתוב למטה את הארגומנטים שיש להעביר לקובץ ההפעלה."
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
@@ -2262,13 +2262,13 @@ msgstr "בוצע עדכון: %s"
 #: bottles/frontend/views/bottle_details.py:267
 #, python-brace-format
 msgid "\"{0}\" added"
-msgstr "בוצעה הוספת \"{0}\""
+msgstr "בוצעה הוספת „{0}”"
 
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
 msgid "Select Executable"
-msgstr "בחירת קובץ הרצה"
+msgstr "בחירת קובץ הפעלה"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2283,7 +2283,7 @@ msgstr "הסתרת תוכניות מוסתרות"
 #: bottles/frontend/widgets/program.py:184
 #, python-brace-format
 msgid "Launching \"{0}\"…"
-msgstr "בתהליך הפעלת \"{0}\"…"
+msgstr "בתהליך הפעלת „{0}”…"
 
 #: bottles/frontend/views/bottle_details.py:413
 msgid "Be Aware of Sandbox"
@@ -2295,9 +2295,9 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
-"התוכנית \"בקבוקים\" מורצת בארגז חול, סביבת הרשאות מוגבלות הדרושה כדי לשמור "
-"על בטיחותך. אם התוכנית לא תרוץ, יש לשקול לעבור לתוך הבקבוק "
-"(סמל 3 נקודות למעלה), ואז להפעיל משם."
+"התוכנית „בקבוקים” מורצת בארגז חול, סביבת הרשאות מוגבלות הדרושה כדי לשמור על "
+"בטיחותך. אם התוכנית לא תרוץ, יש לשקול לעבור לתוך הבקבוק (סמל 3 נקודות למעלה)"
+", ואז להפעיל משם."
 
 #: bottles/frontend/views/bottle_details.py:416
 #: bottles/frontend/views/bottle_details.py:525
@@ -2338,7 +2338,7 @@ msgstr "למחוק את „{}” לצמיתות?"
 #: bottles/frontend/views/bottle_details.py:502
 msgid ""
 "This will permanently delete all programs and settings associated with it."
-msgstr "הפעולה הזאת תמחק את כל התוכניות וההגדרות שמשויכות אליו."
+msgstr "הפעולה הזאת תמחק לצמיתות את כל התוכניות וההגדרות שמשויכות אליו."
 
 #: bottles/frontend/views/bottle_details.py:505
 #: bottles/frontend/views/bottle_preferences.py:750
@@ -2354,8 +2354,8 @@ msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
-"כלי ההרצה המבוקש על ידי בקבוק זה חסר. יש להתקין אותו דרך ההעדפות של "
-"\"בקבוקים\" או לבחור אחד חדש להרצת יישומים."
+"כלי ההרצה המבוקש על ידי בקבוק זה חסר. יש להתקין אותו דרך ההעדפות של „בקבוקים”"
+" או לבחור אחד חדש להרצת יישומים."
 
 #: bottles/frontend/views/bottle_details.py:597
 msgid "Are you sure you want to force stop all processes?"
@@ -2371,11 +2371,11 @@ msgstr "כפיית _עצירה"
 
 #: bottles/frontend/views/bottle_preferences.py:195
 msgid "This feature is unavailable on your system."
-msgstr "היכולת הזאת לא זמינה במערכת שלך."
+msgstr "תכונה זו אינה זמינה במערכת שלך."
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "{} To add this feature, please run flatpak install"
-msgstr "{} כדי להוסיף את היכולת הזאת, נא להריץ flatpak install"
+msgstr "{} כדי להוסיף תכונה זו, נא להריץ flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
 msgid "This bottle name is already in use."
@@ -2400,7 +2400,7 @@ msgstr "הפעולה הזאת תמחק את כל תמונות המצב אבל ת
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
-msgstr "נא להמיר למערכת בקרת הגרסאות החדשה כדי ליצור מצבים חדשים."
+msgstr "נא לעבור למערכת ניהול הגרסאות החדשה כדי ליצור מצבים חדשים."
 
 #: bottles/frontend/views/details.py:153
 msgid "Installers"
@@ -2438,7 +2438,7 @@ msgstr "ייבוא"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
 msgid "Select a Configuration File"
-msgstr "בחירת קובץ הגדרות"
+msgstr "בחירת קובץ תצורה"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
@@ -2448,12 +2448,12 @@ msgstr "לא זמין"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "הרצת קובץ הפעלה ב־„{self.config.Name}”"
 
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr ""
+msgstr "בתהליך הפעלת „{0}\" ב־„{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2462,12 +2462,12 @@ msgstr "הבקבוקים שלך"
 #: bottles/frontend/views/loading.py:41
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
-msgstr "מתבצעת הורדה של ~{0} של חבילות…"
+msgstr "מתבצעת הורדת ‪~{0}‬ של חבילות…"
 
 #: bottles/frontend/views/loading.py:42
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
-msgstr ""
+msgstr "הובאו {0} מתוך {1} חבילות"
 
 #: bottles/frontend/views/new.py:157
 msgid "Select Bottle Directory"
@@ -2475,7 +2475,7 @@ msgstr "בחירת תיקיית בקבוק"
 
 #: bottles/frontend/views/new.py:176
 msgid "Creating Bottle…"
-msgstr ""
+msgstr "מתבצעת יצירת בקבוק…"
 
 #: bottles/frontend/views/new.py:221
 msgid "Unable to Create Bottle"
@@ -2483,29 +2483,29 @@ msgstr "לא ניתן ליצור בקבוק"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "יצירת הבקבוק נכשלה עם שגיאה אחת או יותר."
 
 #. Show success
 #: bottles/frontend/views/new.py:232
 msgid "Bottle Created"
-msgstr ""
+msgstr "הבקבוק נוצר"
 
 #: bottles/frontend/views/new.py:233
 #, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr ""
+msgstr "יצירת „{0}” הושלמה בהצלחה."
 
 #: bottles/frontend/views/preferences.py:142
 msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
+msgstr "היישום Steam לא נמצא או שלתוכנית „בקבוקים” אין מספיק הרשאות."
 
 #: bottles/frontend/views/preferences.py:176
 msgid "Select Bottles Path"
-msgstr ""
+msgstr "בחירת נתיב בקבוקים"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
-msgstr ""
+msgstr "להפעיל את „בקבוקים” מחדש?"
 
 #: bottles/frontend/views/preferences.py:199
 msgid ""
@@ -2515,6 +2515,10 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
+"יהיה צורך להפעיל מחדש את התוכנית „בקבוקים” כדי להשתמש בתיקייה זו.\n"
+"\n"
+"יש להקפיד לסגור כל תוכנית שהופעלה מתוך „בקבוקים” לפני הפעלת „בקבוקים” מחדש, "
+"מכיוון שאי־ביצוע עלול לגרום לאובדן או השחתה של נתונים וכשלים בתוכניות."
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
@@ -2544,37 +2548,37 @@ msgstr ""
 
 #: bottles/frontend/widgets/component.py:74
 msgid "Upgrade"
-msgstr ""
+msgstr "שדרוג"
 
 #: bottles/frontend/widgets/component.py:140
 msgid "Installing…"
-msgstr ""
+msgstr "בתהליך התקנה…"
 
 #: bottles/frontend/widgets/dependency.py:107
 #: bottles/frontend/widgets/installer.py:81
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr ""
+msgstr "מניפסט עבור {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
 #, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr ""
+msgstr "הוסרה התקנת „{0}”"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
 msgid "\"{0}\" installed"
-msgstr ""
+msgstr "התקנת „{0}” הושלמה"
 
 #: bottles/frontend/widgets/dependency.py:188
 #, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr ""
+msgstr "התקנת „{0}” נכשלה"
 
 #: bottles/frontend/widgets/importer.py:68
 #, python-brace-format
 msgid "\"{0}\" imported"
-msgstr ""
+msgstr "ייבוא „{0}” הושלם"
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
@@ -2582,36 +2586,40 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
+"היישום הזה עשוי לעבוד בצורה גרועה. תוכנית ההתקנה הוגדרה לספק את החוויה הטובה "
+"ביותר האפשרית, אבל יש לצפות לתקלות, אי־יציבות והיעדר תכונות שעובדות."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
 msgstr ""
+"תוכנית זו פועלת עם תקלות בולטות, אבל התקלות האלה אינן משפיעות על תפקוד "
+"היישום."
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
-msgstr ""
+msgstr "תוכנית זו פועלת עם תקלות קלות."
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
-msgstr ""
+msgstr "תוכנית זו עובדת באופן מושלם."
 
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
 msgid "Review for {0}"
-msgstr ""
+msgstr "ביקורת עבור {0}"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
 #, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr ""
+msgstr "בתהליך עצירת „{0}”…"
 
 #: bottles/frontend/widgets/program.py:190
 #, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
-msgstr ""
+msgstr "בתהליך פתיחת „{0}” עם Steam…"
 
 #: bottles/frontend/widgets/program.py:214
 #, python-brace-format
@@ -2626,131 +2634,133 @@ msgstr ""
 #: bottles/frontend/widgets/program.py:242
 #, python-brace-format
 msgid "\"{0}\" removed"
-msgstr ""
+msgstr "הסרת „{0}” בוצעה"
 
 #: bottles/frontend/widgets/program.py:274
 #, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr ""
+msgstr "השם „{0}” שונה ל־„{1}”"
 
 #: bottles/frontend/widgets/program.py:297
 #, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
-msgstr ""
+msgstr "נוצר רישום בשולחן העבודה עבור „{0}”"
 
 #: bottles/frontend/widgets/program.py:313
 #, python-brace-format
 msgid "\"{0}\" added to your library"
-msgstr "התוכנית \"{0}\" נוספה לספרייה שלך"
+msgstr "התוכנית „{0}” נוספה לספרייה שלך"
 
 #: bottles/frontend/widgets/program.py:331
 #, python-brace-format
 msgid "\"{0}\" added to your Steam library"
-msgstr "התוכנית \"{0}\" נוספה לספריית Steam שלך"
+msgstr "התוכנית „{0}” נוספה לספריית Steam שלך"
 
 #: bottles/frontend/windows/crash.py:33
 msgid "Show report"
-msgstr ""
+msgstr "הצגת דוח"
 
 #: bottles/frontend/windows/crash.py:80
 msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            בעיה זו דווחה 5 פעמים ולא ניתן לשלוח אותה שוב.\n"
+"            יש לדווח את המשוב שלך באחד מהדוחות הקיימים למטה."
 
 #: bottles/frontend/windows/display.py:102
 msgid "Updating display settings, please wait…"
-msgstr ""
+msgstr "בתהליך עדכון הגדרות תצוגה, נא להמתין…"
 
 #: bottles/frontend/windows/display.py:114
 msgid "Display settings updated"
-msgstr ""
+msgstr "הגדרות התצוגה עודכנו"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
-msgstr ""
+msgstr "לא נמצאו דריסות."
 
 #: bottles/frontend/windows/drives.py:71
 msgid "Select Drive Path"
-msgstr ""
+msgstr "בחירת נתיב כונן"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
-msgstr ""
+msgstr "לא הוגדרו משתני סביבה."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
-msgstr ""
+msgstr "לא הוגדרו דפוסי החרגה."
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
-msgstr ""
+msgstr "אירעה שגיאה."
 
 #: bottles/frontend/windows/generic.py:91
 #: bottles/frontend/windows/generic.py:137
 #: bottles/frontend/windows/generic.py:182
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "העתקה ללוח"
 
 #: bottles/frontend/windows/installer.py:62
 msgid "Select Resource File"
-msgstr ""
+msgstr "בחירת קובץ משאבים"
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
-msgstr ""
+msgstr "מתבצעת התקנת חבילות תלות של Windows…"
 
 #: bottles/frontend/windows/installer.py:110
 msgid "Configuring the bottle…"
-msgstr ""
+msgstr "בתהליך קביעת תצורת הבקבוק…"
 
 #: bottles/frontend/windows/installer.py:111
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "בתהליך עיבוד שלבי תוכנית ההתקנה…"
 
 #: bottles/frontend/windows/installer.py:112
 msgid "Installing the {}…"
-msgstr ""
+msgstr "בתהליך התקנת {}…"
 
 #: bottles/frontend/windows/installer.py:113
 msgid "Performing final checks…"
-msgstr ""
+msgstr "מתבצעות בדיקות אחרונות…"
 
 #: bottles/frontend/windows/installer.py:117
 #, python-brace-format
 msgid "Installing {0}…"
-msgstr ""
+msgstr "בתהליך התקנת {0}…"
 
 #: bottles/frontend/windows/installer.py:119
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr ""
+msgstr "התוכנית {0} זמינה כעת בתצוגת התוכניות."
 
 #: bottles/frontend/windows/installer.py:166
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "תוכנית ההתקנה נכשלה עם שגיאה לא ידועה"
 
 #: bottles/frontend/windows/launchoptions.py:56
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr ""
+msgstr "ההגדרה {0} כבר מושבתת עבור בקבוק זה."
 
 #: bottles/frontend/windows/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "הגדרה זו שונה מברירת המחדל של הבקבוק."
 
 #: bottles/frontend/windows/launchoptions.py:215
 msgid "Select Script"
-msgstr ""
+msgstr "בחירת סקריפט"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
-msgstr ""
+msgstr "נתיב בקבוקים מותאם אישית לא נמצא"
 
 #: bottles/frontend/windows/main_window.py:221
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
+msgstr "בתהליך נסגירה לנתיב ברירת המחדל. לא יופיעו בקבוקים מהנתיב הנתון."
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
@@ -2759,11 +2769,11 @@ msgstr "@שם_היישום@"
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
 msgid "Run Windows Software"
-msgstr ""
+msgstr "הרצת תוכנות Windows"
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
-msgstr ""
+msgstr "‪wine;windows;‬"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -2771,23 +2781,23 @@ msgstr "הגירת Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr ""
+msgstr "החלפת מצב נראות של תיבת הדו־שיח להגירת Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr ""
+msgstr "ערכת נושא כהה"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "כפיית השימוש בערכת נושא כהה."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "החלפת מצב הנראות של תאריך העדכון ברשימה"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr ""
+msgstr "החלפת מצב הנראות של תאריך העדכון ברשימה של בקבוקים."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
