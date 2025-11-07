@@ -331,3 +331,159 @@ def test_start_session_collapses_duplicate_running_session():
         assert cur.fetchone()[0] == 1
         tracker.shutdown()
 
+
+def test_get_totals_returns_program_stats():
+    """Test get_totals retrieves per-program aggregated data."""
+    with tempfile.TemporaryDirectory() as tmp:
+        tracker = _new_tracker(tmp)
+        from bottles.backend.managers.playtime import _compute_program_id
+
+        program_id = _compute_program_id("b1", "/bottle", "C:/Game/game.exe")
+
+        sid = tracker.start_session(
+            bottle_id="b1",
+            bottle_name="Bottle",
+            bottle_path="/bottle",
+            program_name="Game",
+            program_path="C:/Game/game.exe",
+        )
+        time.sleep(1.0)
+        tracker.mark_exit(sid, status="success")
+
+        result = tracker.get_totals("b1", program_id)
+        assert result is not None
+        assert result["bottle_id"] == "b1"
+        assert result["program_id"] == program_id
+        assert result["program_name"] == "Game"
+        assert result["total_seconds"] >= 1
+        assert result["sessions_count"] == 1
+        assert result["last_played"] is not None
+        tracker.shutdown()
+
+
+def test_get_totals_returns_none_when_not_found():
+    """Test get_totals returns None for non-existent program."""
+    with tempfile.TemporaryDirectory() as tmp:
+        tracker = _new_tracker(tmp)
+        result = tracker.get_totals("b1", "nonexistent_program_id")
+        assert result is None
+        tracker.shutdown()
+
+
+def test_get_totals_returns_none_when_disabled():
+    """Test get_totals returns None when tracking is disabled."""
+    with tempfile.TemporaryDirectory() as tmp:
+        tracker = _new_tracker(tmp, enabled=False)
+        result = tracker.get_totals("b1", "any_program_id")
+        assert result is None
+        tracker.shutdown()
+
+
+def test_get_all_program_totals_returns_all_programs():
+    """Test get_all_program_totals retrieves all programs for a bottle."""
+    with tempfile.TemporaryDirectory() as tmp:
+        tracker = _new_tracker(tmp)
+
+        # Create two sessions for different programs in same bottle
+        sid1 = tracker.start_session(
+            bottle_id="b1",
+            bottle_name="Bottle",
+            bottle_path="/bottle",
+            program_name="Game1",
+            program_path="C:/Game1/game1.exe",
+        )
+        time.sleep(0.5)
+        tracker.mark_exit(sid1, status="success")
+
+        sid2 = tracker.start_session(
+            bottle_id="b1",
+            bottle_name="Bottle",
+            bottle_path="/bottle",
+            program_name="Game2",
+            program_path="C:/Game2/game2.exe",
+        )
+        time.sleep(0.5)
+        tracker.mark_exit(sid2, status="success")
+
+        results = tracker.get_all_program_totals("b1")
+        assert len(results) == 2
+        program_names = {r["program_name"] for r in results}
+        assert "Game1" in program_names
+        assert "Game2" in program_names
+        tracker.shutdown()
+
+
+def test_get_all_program_totals_returns_empty_when_disabled():
+    """Test get_all_program_totals returns empty list when disabled."""
+    with tempfile.TemporaryDirectory() as tmp:
+        tracker = _new_tracker(tmp, enabled=False)
+        results = tracker.get_all_program_totals("b1")
+        assert results == []
+        tracker.shutdown()
+
+
+def test_normalize_path_to_windows():
+    """Test path normalization converts Unix paths to Windows format."""
+    from bottles.backend.managers.playtime import _normalize_path_to_windows
+    
+    # Already Windows format - should remain unchanged
+    assert _normalize_path_to_windows("/bottle", "C:\\Program Files\\game.exe") == "C:\\Program Files\\game.exe"
+    assert _normalize_path_to_windows("/bottle", "D:\\Games\\game.exe") == "D:\\Games\\game.exe"
+    
+    # Unix path with drive_c - bottle_path must match the path prefix
+    bottle_path = "/var/home/user/.local/share/bottles/MyBottle"
+    unix_path = "/var/home/user/.local/share/bottles/MyBottle/drive_c/Program Files/game.exe"
+    assert _normalize_path_to_windows(bottle_path, unix_path) == "C:\\Program Files\\game.exe"
+    
+    # Unix path with drive_d - should convert to D:\
+    unix_path_d = "/path/to/bottle/drive_d/Games/game.exe"
+    assert _normalize_path_to_windows("/path/to/bottle", unix_path_d) == "D:\\Games\\game.exe"
+    
+    # Test with different drive letters
+    assert _normalize_path_to_windows("/bottle", "/bottle/drive_z/test.exe") == "Z:\\test.exe"
+
+
+def test_database_stores_normalized_paths():
+    """Test that program_path is stored in normalized Windows format in the database."""
+    with tempfile.TemporaryDirectory() as tmp:
+        tracker = _new_tracker(tmp)
+        
+        bottle_id = "test-bottle"
+        bottle_name = "Test Bottle"
+        bottle_path = "/home/user/.local/share/bottles/TestBottle"
+        
+        # Start session with Unix-format path
+        unix_path = f"{bottle_path}/drive_c/Program Files/TestGame/game.exe"
+        session_id = tracker.start_session(
+            bottle_id=bottle_id,
+            bottle_name=bottle_name,
+            bottle_path=bottle_path,
+            program_name="TestGame",
+            program_path=unix_path,
+        )
+        
+        # Check sessions table has normalized path
+        conn = sqlite3.connect(tracker.db_path)
+        cur = conn.cursor()
+        cur.execute("SELECT program_path FROM sessions WHERE id=?", (session_id,))
+        row = cur.fetchone()
+        assert row is not None
+        stored_path = row[0]
+        # Should be Windows format, not Unix format
+        assert stored_path == "C:\\Program Files\\TestGame\\game.exe"
+        assert not stored_path.startswith("/home/")
+        
+        # Exit session to trigger totals update
+        tracker.mark_exit(session_id, status="success")
+        
+        # Check playtime_totals table also has normalized path
+        cur.execute("SELECT program_path FROM playtime_totals WHERE bottle_id=?", (bottle_id,))
+        row = cur.fetchone()
+        assert row is not None
+        totals_path = row[0]
+        assert totals_path == "C:\\Program Files\\TestGame\\game.exe"
+        assert not totals_path.startswith("/home/")
+        
+        tracker.shutdown()
+
+

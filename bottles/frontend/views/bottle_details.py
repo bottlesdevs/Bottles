@@ -25,6 +25,7 @@ from gi.repository import Gtk, Gio, Adw, Gdk, GLib, Xdp
 
 from bottles.backend.managers.backup import BackupManager
 from bottles.backend.models.config import BottleConfig
+from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.threading import RunAsync
@@ -42,6 +43,7 @@ from bottles.backend.wine.wineserver import WineServer
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.utils.playtime import PlaytimeService
 from bottles.frontend.widgets.program import ProgramEntry
 from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
@@ -113,6 +115,14 @@ class BottleView(Adw.PreferencesPage):
         self.details = details
         self.config = config
         self.show_hidden = False
+        
+        # Initialize playtime service
+        self.playtime_service = PlaytimeService(self.manager)
+        
+        # Playtime signal handling
+        self._playtime_refresh_pending = False
+        self._playtime_refresh_timeout_id = None
+        SignalManager.connect(Signals.ProgramFinished, self._on_program_finished)
 
         self.target.connect("drop", self.on_drop)
         self.add_controller(self.target)
@@ -315,15 +325,19 @@ class BottleView(Adw.PreferencesPage):
             if check_boot is None:
                 check_boot = wineserver_status
 
-            self.add_program(
-                ProgramEntry(
-                    self.window,
-                    self.config,
-                    _program,
-                    is_steam=is_steam,
-                    check_boot=check_boot,
-                )
+            program_widget = ProgramEntry(
+                self.window,
+                self.config,
+                _program,
+                is_steam=is_steam,
+                check_boot=check_boot,
             )
+            
+            # Update playtime subtitle if not Steam program
+            if not is_steam:
+                program_widget.update_playtime(self.playtime_service)
+            
+            self.add_program(program_widget)
 
         if force_add:
             wineserver_status = WineServer(self.config).is_alive()
@@ -384,6 +398,41 @@ class BottleView(Adw.PreferencesPage):
         for r in self.__registry:
             self.group_programs.remove(r)
         self.__registry = []
+
+    def _on_program_finished(self, data=None):
+        """
+        Signal handler for ProgramFinished events.
+        Refreshes playtime display with debouncing.
+        """
+        from bottles.backend.models.result import Result
+        
+        if not data or not isinstance(data, Result) or not data.data:
+            return
+        
+        # Note: We refresh all programs regardless of which one finished
+        # because the payload doesn't include bottle_id and we want to
+        # keep all displays up to date
+        
+        # Cancel any pending refresh
+        if self._playtime_refresh_timeout_id is not None:
+            GLib.source_remove(self._playtime_refresh_timeout_id)
+            self._playtime_refresh_timeout_id = None
+        
+        # Debounce: wait 500ms before refreshing
+        def do_refresh():
+            self._playtime_refresh_timeout_id = None
+            self._playtime_refresh_pending = False
+            
+            # Invalidate cache and refresh all program widgets
+            self.playtime_service.invalidate_cache()
+            for widget in self.__registry:
+                if hasattr(widget, 'update_playtime'):
+                    widget.update_playtime(self.playtime_service)
+            
+            return False
+        
+        self._playtime_refresh_pending = True
+        self._playtime_refresh_timeout_id = GLib.timeout_add(500, do_refresh)
 
     def __run_executable_with_args(self, widget):
         """

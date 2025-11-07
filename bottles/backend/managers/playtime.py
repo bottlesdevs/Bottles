@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import re
 import atexit
 import hashlib
 import os
@@ -11,7 +12,7 @@ import sqlite3
 import threading
 import time
 from dataclasses import dataclass
-from typing import Dict, Optional
+from typing import Any, Dict, List, Optional, TypedDict
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
@@ -21,6 +22,17 @@ logging = Logger()
 
 
 SCHEMA_USER_VERSION = 1
+
+
+class PlaytimeTotalsDict(TypedDict):
+    """Type definition for playtime totals dictionary."""
+    bottle_id: str
+    program_id: str
+    program_name: str
+    program_path: str
+    total_seconds: int
+    sessions_count: int
+    last_played: Optional[int]
 
 
 @dataclass(frozen=True)
@@ -37,9 +49,71 @@ def _utc_now_seconds() -> int:
     return int(time.time())
 
 
-def _compute_program_id(bottle_id: str, program_path: str) -> str:
-    normalized = f"{bottle_id}:{program_path}".encode("utf-8")
-    return hashlib.sha1(normalized).hexdigest()
+def _normalize_path_to_windows(bottle_path: str, program_path: str) -> str:
+    """
+    Normalize a program path to Windows format for portable program_id hashing.
+    
+    This ensures playtime data persists across machines and home directory changes.
+    Copied from WinePath.to_windows(native=True) to avoid needing a BottleConfig object.
+    
+    Args:
+        bottle_path: Full path to the bottle (e.g., /home/user/.local/share/bottles/MyBottle)
+        program_path: Program path (can be Unix or Windows format)
+    
+    Returns:
+        Windows-format path (e.g., C:\\Program Files\\game.exe)
+    """
+    
+    # Already Windows format? (copied from WinePath.is_windows)
+    if ":" in program_path or "\\" in program_path:
+        return program_path
+    
+    # Convert Unix to Windows - copied from WinePath.to_windows(native=True)
+    # BUT: we can't rely on bottle_path matching the path prefix exactly,
+    # so we extract the drive letter and everything after it generically
+    path = program_path
+    
+    if "/drive_" in path:
+        # Extract drive letter and path after drive_X/
+        # Use case-insensitive search but preserve original path case
+        match = re.search(r"/drive_([a-z])/(.+)", path, re.IGNORECASE)
+        if match:
+            drive = match.group(1).upper()
+            rest = match.group(2)  # Keep original case
+            path = f"{drive}:\\{rest.replace('/', chr(92))}"  # chr(92) is backslash
+    elif "/dosdevices/" in path:
+        # Extract drive letter and path after dosdevices/X:/
+        match = re.search(r"/dosdevices/([a-z]):/(.+)", path, re.IGNORECASE)
+        if match:
+            drive = match.group(1).upper()
+            rest = match.group(2)  # Keep original case
+            path = f"{drive}:\\{rest.replace('/', chr(92))}"
+    else:
+        # Just convert slashes
+        path = path.replace("/", "\\")
+    
+    # Clean path (copied from WinePath.__clean_path)
+    return path.replace("\n", " ").replace("\r", " ").replace("\t", " ").strip()
+
+
+def _compute_program_id(bottle_id: str, bottle_path: str, program_path: str) -> str:
+    """
+    Compute a stable program identifier from bottle and program info.
+    
+    Normalizes paths to Windows format for portability across machines.
+    """
+    normalized_path = _normalize_path_to_windows(bottle_path, program_path)
+    combined = f"{bottle_id}:{normalized_path}".encode("utf-8")
+    program_id = hashlib.sha1(combined).hexdigest()
+    
+    # Debug logging to track normalization
+    if program_path != normalized_path:
+        logging.debug(
+            f"Path normalized: '{program_path}' -> '{normalized_path}' "
+            f"(bottle_path={bottle_path}) -> program_id={program_id}"
+        )
+    
+    return program_id
 
 
 class ProcessSessionTracker:
@@ -199,7 +273,9 @@ class ProcessSessionTracker:
             logging.warning("Playtime tracking disabled; start_session is a no-op")
             return -1
 
-        program_id = _compute_program_id(bottle_id, program_path)
+        # Normalize path to Windows format for consistent storage and hashing
+        normalized_path = _normalize_path_to_windows(bottle_path, program_path)
+        program_id = _compute_program_id(bottle_id, bottle_path, program_path)
         base_timestamp = _utc_now_seconds()
 
         with self._lock:
@@ -261,7 +337,7 @@ class ProcessSessionTracker:
                             bottle_path,
                             program_id,
                             program_name,
-                            program_path,
+                            normalized_path,
                             started_at,
                             started_at,
                         ),
@@ -464,4 +540,103 @@ class ProcessSessionTracker:
         )
         # Do not commit here; caller manages transaction boundaries
 
+    def get_totals(
+        self, bottle_id: str, program_id: Optional[str] = None
+    ) -> Optional[PlaytimeTotalsDict]:
+        """
+        Retrieve aggregated playtime totals for a specific program or bottle.
 
+        Args:
+            bottle_id: Identifier of the bottle.
+            program_id: Optional program identifier. If None, returns None
+                       (bottle-wide aggregation not implemented in DB).
+
+        Returns:
+            Dictionary with keys: bottle_id, program_id, program_name, program_path,
+            total_seconds, sessions_count, last_played (epoch int or None).
+            Returns None if no record found or tracking disabled.
+        """
+        if not self.enabled:
+            return None
+
+        with self._lock:
+            cur = self._conn.cursor()
+            if program_id is None:
+                # Bottle-wide aggregate not stored; return None
+                return None
+
+            cur.execute(
+                """
+                SELECT bottle_id, program_id, program_name, program_path,
+                       total_seconds, sessions_count, last_played
+                FROM playtime_totals
+                WHERE bottle_id=? AND program_id=?
+                """,
+                (bottle_id, program_id),
+            )
+            row = cur.fetchone()
+            if row is None:
+                return None
+
+            return {
+                "bottle_id": row[0],
+                "program_id": row[1],
+                "program_name": row[2],
+                "program_path": row[3],
+                "total_seconds": int(row[4]),
+                "sessions_count": int(row[5]),
+                "last_played": int(row[6]) if row[6] is not None else None,
+            }
+
+    def get_all_program_totals(
+        self, bottle_id: Optional[str] = None
+    ) -> List[PlaytimeTotalsDict]:
+        """
+        Retrieve aggregated playtime totals for all programs, optionally filtered by bottle.
+
+        Args:
+            bottle_id: Optional bottle identifier. If None, returns all programs across all bottles.
+
+        Returns:
+            List of dictionaries, each with keys: bottle_id, program_id, program_name,
+            program_path, total_seconds, sessions_count, last_played (epoch int or None).
+            Returns empty list if tracking disabled.
+        """
+        if not self.enabled:
+            return []
+
+        with self._lock:
+            cur = self._conn.cursor()
+            if bottle_id is None:
+                cur.execute(
+                    """
+                    SELECT bottle_id, program_id, program_name, program_path,
+                           total_seconds, sessions_count, last_played
+                    FROM playtime_totals
+                    ORDER BY last_played DESC
+                    """
+                )
+            else:
+                cur.execute(
+                    """
+                    SELECT bottle_id, program_id, program_name, program_path,
+                           total_seconds, sessions_count, last_played
+                    FROM playtime_totals
+                    WHERE bottle_id=?
+                    ORDER BY last_played DESC
+                    """,
+                    (bottle_id,),
+                )
+            rows = cur.fetchall()
+            return [
+                {
+                    "bottle_id": row[0],
+                    "program_id": row[1],
+                    "program_name": row[2],
+                    "program_path": row[3],
+                    "total_seconds": int(row[4]),
+                    "sessions_count": int(row[5]),
+                    "last_played": int(row[6]) if row[6] is not None else None,
+                }
+                for row in rows
+            ]
