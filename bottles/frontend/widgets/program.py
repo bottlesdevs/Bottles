@@ -345,3 +345,32 @@ class ProgramEntry(Adw.ActionRow):
             program_name=self.program["name"],
             program_path=self.program["path"],
         )
+
+    def update_playtime(self, playtime_service):
+        """
+        Update the program subtitle with playtime information.
+        
+        Args:
+            playtime_service: Instance of PlaytimeService to fetch and format data.
+        """
+        if not playtime_service or not playtime_service.is_enabled():
+            return
+
+        program_path = self.program.get("path", "")
+        if not program_path:
+            return
+
+        try:
+            # Use bottle name as bottle_id, matching what backend uses
+            bottle_id = self.config.Name
+            bottle_path = self.config.Path
+            
+            record = playtime_service.get_program_playtime(
+                bottle_id, bottle_path, self.program["name"], program_path
+            )
+            subtitle = playtime_service.format_subtitle(record)
+            self.set_subtitle(subtitle)
+        except Exception as e:
+            from bottles.backend.logger import Logger
+            logging = Logger()
+            logging.error(f"Failed to update playtime for {self.program['name']}: {e}", exc=e)
