@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-02 14:14+0000\n"
+"PO-Revision-Date: 2025-11-12 11:51+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -52,7 +52,7 @@ msgstr "Impossibile creare l'etichetta directory/file."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr "Sto configurando bottle…"
+msgstr "Creazione della configurazione della bottiglia…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
@@ -98,6 +98,7 @@ msgid "(!) Using a custom environment recipe…"
 msgstr "(!) Utilizzo di un ambiente personalizzato…"
 
 #: bottles/backend/managers/manager.py:1292
+#, fuzzy
 msgid "(!) Recipe not not found or not valid…"
 msgstr "(!) Formula non trovata o non valida…"
 
@@ -1768,8 +1769,9 @@ msgstr "Sfoglia file"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
+#, fuzzy
 msgid "Wine prefix name"
-msgstr "Nome del prefisso Wine"
+msgstr "Percorso di Wine"
 
 #: bottles/frontend/ui/importer-entry.blp:28
 msgid "Manager"
@@ -1789,14 +1791,14 @@ msgstr "Cerca nuovamente prefissi"
 
 #: bottles/frontend/ui/importer.blp:38
 msgid "No Prefixes Found"
-msgstr "Nessun prefisso trovato"
+msgstr "Nessun percorso trovato"
 
 #: bottles/frontend/ui/importer.blp:39
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"Non è stato trovato alcun prefisso esterno. Bottles ha accesso ad essi?\n"
+"Non è stato trovato alcun percorso esterno. Bottles ha accesso ad essi?\n"
 "Utilizza l'icona in alto per importare una bottiglia da un backup."
 
 #: bottles/frontend/ui/importer.blp:74
@@ -2327,7 +2329,7 @@ msgstr "Aggiungi"
 
 #: bottles/frontend/views/bottle_details.py:346
 msgid "Hide Hidden Programs"
-msgstr "Nascondere i programmi nascosti"
+msgstr "Escludi i programmi nascosti"
 
 #: bottles/frontend/views/bottle_details.py:383
 #: bottles/frontend/widgets/library.py:156
