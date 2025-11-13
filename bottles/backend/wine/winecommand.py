@@ -81,6 +81,18 @@ class WineEnv:
         return key in self.__env
 
 
+def apply_wayland_preferences(env: "WineEnv", params) -> None:
+    if not getattr(params, "wayland", False):
+        return
+    if DisplayUtils.display_server_type() != "wayland":
+        return
+    wayland_display = os.environ.get("WAYLAND_DISPLAY")
+    if not env.has("WAYLAND_DISPLAY") and wayland_display:
+        env.add("WAYLAND_DISPLAY", wayland_display, override=True)
+    if env.has("WAYLAND_DISPLAY") or wayland_display:
+        env.remove("DISPLAY")
+
+
 class WineCommand:
     """
     This class is used to run a wine command with a custom environment.
@@ -445,6 +457,8 @@ class WineCommand:
             env.add("WINEPREFIX", bottle, override=True)
             # Wine arch
             env.add("WINEARCH", arch)
+
+        apply_wayland_preferences(env, params)
 
         return env.get()["envs"]
 

@@ -95,6 +95,7 @@ class BottleParams(DictCompatMixIn):
     discrete_gpu: bool = False
     virtual_desktop: bool = False
     virtual_desktop_res: str = "1280x720"
+    wayland: bool = False
     pulseaudio_latency: bool = False
     fullscreen_capture: bool = False
     take_focus: bool = False

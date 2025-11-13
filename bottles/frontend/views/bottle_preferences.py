@@ -38,6 +38,7 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.models.result import Result
 from bottles.backend.runner import Runner
+from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils, GPUVendors
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
@@ -77,6 +78,7 @@ class PreferencesView(Adw.PreferencesPage):
     row_nvapi = Gtk.Template.Child()
     row_discrete = Gtk.Template.Child()
     row_vkbasalt = Gtk.Template.Child()
+    row_wayland = Gtk.Template.Child()
     row_manage_display = Gtk.Template.Child()
     row_runtime = Gtk.Template.Child()
     row_steam_runtime = Gtk.Template.Child()
@@ -90,6 +92,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_mangohud = Gtk.Template.Child()
     switch_obsvkc = Gtk.Template.Child()
     switch_vkbasalt = Gtk.Template.Child()
+    switch_wayland = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
@@ -250,6 +253,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.connect("state-set", self.__toggle_feature_cb, "mangohud")
         self.switch_obsvkc.connect("state-set", self.__toggle_feature_cb, "obsvkc")
         self.switch_vkbasalt.connect("state-set", self.__toggle_feature_cb, "vkbasalt")
+        self.switch_wayland.connect("state-set", self.__toggle_wayland)
         self.switch_fsr.connect("state-set", self.__toggle_feature_cb, "fsr")
         self.switch_nvapi.connect("state-set", self.__toggle_nvapi)
         self.switch_gamemode.connect("state-set", self.__toggle_feature_cb, "gamemode")
@@ -303,6 +307,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         self.switch_vmtouch.set_sensitive(vmtouch_available)
+
+        is_wayland_session = DisplayUtils.display_server_type() == "wayland"
+        self.switch_wayland.set_sensitive(is_wayland_session)
 
     def __check_entry_name(self, *_args):
         if self.entry_name.get_text() != self.config.Name:
@@ -434,6 +441,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
         self.switch_vkbasalt.handler_block_by_func(self.__toggle_feature_cb)
+        self.switch_wayland.handler_block_by_func(self.__toggle_wayland)
         self.switch_fsr.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_obsvkc.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_block_by_func(self.__toggle_feature_cb)
@@ -457,6 +465,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.set_active(parameters.mangohud)
         self.switch_obsvkc.set_active(parameters.obsvkc)
         self.switch_vkbasalt.set_active(parameters.vkbasalt)
+        self.switch_wayland.set_active(parameters.wayland)
         self.switch_fsr.set_active(parameters.fsr)
         self.switch_nvapi.set_active(parameters.dxvk_nvapi)
         self.switch_gamemode.set_active(parameters.gamemode)
@@ -568,6 +577,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
         self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_feature_cb)
+        self.switch_wayland.handler_unblock_by_func(self.__toggle_wayland)
         self.switch_fsr.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_feature_cb)
@@ -617,6 +627,11 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_feature_cb(self, _widget: Gtk.Widget, state: bool, key: str) -> None:
         self.__toggle_feature(state=state, key=key)
+
+    def __toggle_wayland(self, _widget: Gtk.Widget, state: bool) -> None:
+        self.__toggle_feature(state=state, key="wayland")
+        rk = RegKeys(self.config)
+        RunAsync(rk.toggle_wayland_driver, state=state)
 
     def __set_sync_type(self, *_args):
         """
