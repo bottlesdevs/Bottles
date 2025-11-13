@@ -52,6 +52,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_steam_programs = Gtk.Template.Child()
     switch_epic_games = Gtk.Template.Child()
     switch_ubisoft_connect = Gtk.Template.Child()
+    combo_audio_driver = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
@@ -76,6 +77,15 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.manager = window.manager
         self.data = DataManager()
         self.style_manager = Adw.StyleManager.get_default()
+
+        self.__audio_driver_values = [
+            "default",
+            "pulse",
+            "alsa",
+            "oss",
+            "disabled",
+        ]
+        self.__updating_audio_driver = False
 
         self.current_bottles_path = self.data.get(UserDataKeys.CustomBottlesPath)
         if self.current_bottles_path:
@@ -145,6 +155,14 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.switch_ubisoft_connect,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
+        )
+
+        self.__sync_audio_driver_selection()
+        self.combo_audio_driver.connect(
+            "notify::selected", self.__on_audio_driver_selected
+        )
+        self.settings.connect(
+            "changed::audio-driver", self.__on_audio_driver_setting_changed
         )
 
         # setup loading screens
@@ -263,6 +281,35 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.btn_bottles_path_reset.set_visible(False)
         self.label_bottles_path.set_label(_("(Default)"))
         self.prompt_restart()
+
+    def __on_audio_driver_setting_changed(self, *_args):
+        GLib.idle_add(self.__sync_audio_driver_selection)
+
+    def __sync_audio_driver_selection(self, *_args):
+        driver = self.settings.get_string("audio-driver")
+        try:
+            index = self.__audio_driver_values.index(driver)
+        except ValueError:
+            index = 0
+
+        self.__updating_audio_driver = True
+        self.combo_audio_driver.set_selected(index)
+        self.__updating_audio_driver = False
+
+    def __on_audio_driver_selected(self, combo, _pspec):
+        if self.__updating_audio_driver:
+            return
+
+        index = combo.get_selected()
+        if index < 0 or index >= len(self.__audio_driver_values):
+            return
+
+        driver = self.__audio_driver_values[index]
+        self.__updating_audio_driver = True
+        self.settings.set_string("audio-driver", driver)
+        self.__updating_audio_driver = False
+
+        RunAsync(self.manager.apply_audio_driver, driver=driver)
 
     def __display_unstable_candidate(self, component=["", {"Channel": "unstable"}]):
         return self.window.settings.get_boolean("release-candidate") or component[1][

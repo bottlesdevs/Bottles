@@ -1,3 +1,5 @@
+from typing import Optional
+
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
@@ -192,6 +194,14 @@ class RegKeys:
             )
         wineboot.update()
 
+    def toggle_wayland_driver(self, state: bool):
+        key = "HKEY_CURRENT_USER\\Software\\Wine\\Drivers"
+        value = "Graphics"
+        if state:
+            self.reg.add(key=key, value=value, data="x11,wayland")
+        else:
+            self.reg.remove(key=key, value=value)
+
     def apply_cmd_settings(self, scheme=None):
         """
         Change settings for the wine command line in a bottle.
@@ -273,6 +283,34 @@ class RegKeys:
         self.reg.add(
             key="HKEY_CURRENT_USER\\Software\\Wine\\Direct3D",
             value="renderer",
+            data=value,
+            value_type="REG_SZ",
+        )
+
+    def set_audio_driver(self, driver: Optional[str]):
+        """
+        Set the Wine audio driver for the bottle.
+        Pass None or "default" to remove the override and restore the default driver.
+        """
+
+        key = "HKEY_CURRENT_USER\\Software\\Wine\\Drivers"
+        if driver in (None, "", "default"):
+            try:
+                self.reg.remove(key=key, value="Audio")
+            except Exception as exc:  # noqa: BLE001 - backend logger handles errors
+                logging.debug(f"Failed to remove audio driver override: {exc}")
+            return
+
+        value = driver.lower()
+        valid = {"pulse", "alsa", "oss", "disabled"}
+        if value not in valid:
+            raise ValueError(
+                f"{driver} is not a valid audio driver ({', '.join(sorted(valid))} or default)"
+            )
+
+        self.reg.add(
+            key=key,
+            value="Audio",
             data=value,
             value_type="REG_SZ",
         )

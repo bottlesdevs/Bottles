@@ -129,6 +129,16 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
+    Adw.ActionRow row_wayland {
+      activatable-widget: switch_wayland;
+      title: _("Wayland (Experimental)");
+      subtitle: _("Force the experimental native Wayland driver instead of Xwayland. Requires a Wayland session.");
+
+      Switch switch_wayland {
+        valign: center;
+      }
+    }
+
     Adw.ActionRow row_vkbasalt {
       activatable-widget: switch_vkbasalt;
       title: _("Post-Processing Effects");

@@ -1210,6 +1210,21 @@ class Manager(metaclass=Singleton):
 
         return Result(status=True, data={"config": config})
 
+    def apply_audio_driver(self, driver: str) -> Result[None]:
+        """Apply the configured audio driver override to every bottle."""
+
+        logging.info(f"Applying audio driver '{driver}' to local bottles…")
+        try:
+            for config in self.local_bottles.values():
+                if not isinstance(config, BottleConfig):
+                    continue
+                RegKeys(config).set_audio_driver(driver)
+        except ValueError as exc:
+            logging.error(str(exc))
+            return Result(False, message=str(exc))
+
+        return Result(True)
+
     def create_bottle_from_config(self, config: BottleConfig) -> bool:
         """Create a bottle from a config object."""
         logging.info(f"Creating new {config.Name} bottle from config…")
@@ -1642,6 +1657,16 @@ class Manager(metaclass=Singleton):
             logging.info("Enabling font smoothing…")
             log_update(_("Enabling font smoothing…"))
             rk.apply_font_smoothing()
+
+            audio_driver = self.settings.get_string("audio-driver")
+            if audio_driver not in ("", "default"):
+                logging.info("Configuring audio driver…")
+                log_update(_("Configuring audio driver…"))
+                try:
+                    rk.set_audio_driver(audio_driver)
+                except ValueError as exc:
+                    logging.warning(str(exc))
+
             wineboot.update()
 
             FileUtils.wait_for_files(reg_files)

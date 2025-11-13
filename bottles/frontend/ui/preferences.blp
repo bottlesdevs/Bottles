@@ -148,6 +148,21 @@ template $PreferencesWindow: Adw.PreferencesWindow {
         }
       }
 
+      Adw.ComboRow combo_audio_driver {
+        title: _("Audio Driver");
+        subtitle: _("Choose which Wine audio driver Bottles should enforce for all bottles.");
+
+        model: StringList {
+          strings [
+            _("System Default"),
+            _("PulseAudio"),
+            _("ALSA"),
+            _("OSS"),
+            _("Disabled"),
+          ]
+        };
+      }
+
       Adw.ActionRow {
         title: _("Bottles Directory");
         subtitle: _("Directory that contains the data of your Bottles.");
