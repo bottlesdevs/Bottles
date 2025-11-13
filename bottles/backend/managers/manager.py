@@ -163,14 +163,17 @@ class Manager(metaclass=Singleton):
         times["SteamManager"] = time.time()
 
         # Initialize playtime tracker
-        playtime_enabled = self.settings.get_boolean("playtime-enabled")
-        playtime_interval = self.settings.get_int("playtime-heartbeat-interval")
-        self.playtime_tracker = ProcessSessionTracker(
-            enabled=playtime_enabled,
-            heartbeat_interval=playtime_interval if playtime_interval > 0 else 60,
-        )
-        self.playtime_tracker.recover_open_sessions()
+        self._initialize_playtime_tracker()
         times["PlaytimeTracker"] = time.time()
+
+        # React to runtime changes in playtime preference when available
+        if hasattr(self.settings, "connect"):
+            try:
+                self.settings.connect(
+                    "changed::playtime-enabled", self._on_playtime_enabled_changed
+                )
+            except Exception:
+                pass
 
         # Subscribe to playtime signals (connect once per process)
         if not Manager._playtime_signals_connected:
@@ -319,6 +322,29 @@ class Manager(metaclass=Singleton):
                 self.playtime_tracker.shutdown()
         except Exception:
             pass
+
+    def _initialize_playtime_tracker(self) -> None:
+        playtime_enabled = self.settings.get_boolean("playtime-enabled")
+        playtime_interval = self.settings.get_int("playtime-heartbeat-interval")
+        tracker = ProcessSessionTracker(
+            enabled=playtime_enabled,
+            heartbeat_interval=playtime_interval if playtime_interval > 0 else 60,
+        )
+        tracker.recover_open_sessions()
+        self.playtime_tracker = tracker
+
+    def _on_playtime_enabled_changed(self, _settings, _key) -> None:
+        enabled = self.settings.get_boolean("playtime-enabled")
+        if not enabled:
+            if getattr(self, "playtime_tracker", None) and self.playtime_tracker.enabled:
+                self._launch_to_session.clear()
+                self.playtime_tracker.disable_tracking()
+            return
+
+        if getattr(self, "playtime_tracker", None) and self.playtime_tracker.enabled:
+            return
+
+        self._initialize_playtime_tracker()
 
     # Playtime signal handlers
     _launch_to_session: Dict[str, int] = {}

@@ -68,6 +68,16 @@ template $PreferencesWindow: Adw.PreferencesWindow {
           valign: center;
         }
       }
+
+      Adw.ActionRow {
+        title: _("Playtime Tracking");
+        subtitle: _("Record playtime statistics for programs launched from Bottles.");
+        activatable-widget: switch_playtime_tracking;
+
+        Switch switch_playtime_tracking {
+          valign: center;
+        }
+      }
     }
 
     Adw.PreferencesGroup {
