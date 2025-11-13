@@ -49,6 +49,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_steam = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
+    switch_playtime_tracking = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
     switch_epic_games = Gtk.Template.Child()
     switch_ubisoft_connect = Gtk.Template.Child()
@@ -101,6 +102,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.bind(
             "notifications",
             self.switch_notifications,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        self.settings.bind(
+            "playtime-enabled",
+            self.switch_playtime_tracking,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
