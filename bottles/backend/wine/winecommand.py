@@ -1,9 +1,10 @@
 import os
+import re
+import shlex
 import shutil
 import stat
 import subprocess
 import tempfile
-import shlex
 from typing import Optional
 
 from bottles.backend.globals import (
@@ -23,8 +24,8 @@ from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.generic import detect_encoding
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.steam import SteamUtils
+from bottles.backend.utils.terminal import TerminalUtils
 
 logging = Logger()
 
@@ -93,6 +94,30 @@ def apply_wayland_preferences(env: "WineEnv", params) -> None:
         env.remove("DISPLAY")
 
 
+def _needs_steam_virtual_gamepad_workaround(runner_name: Optional[str]) -> bool:
+    """Return True if the runner should force SteamVirtualGamepadInfo."""
+
+    if not runner_name:
+        return False
+
+    normalized = runner_name.lower()
+    if not any(
+        prefix in normalized for prefix in ("ge-proton", "proton-ge", "wine-ge", "soda")
+    ):
+        return False
+
+    match = re.search(r"(\d+)", normalized)
+    if not match:
+        return False
+
+    try:
+        major = int(match.group(1))
+    except ValueError:
+        return False
+
+    return major <= 8
+
+
 class WineCommand:
     """
     This class is used to run a wine command with a custom environment.
@@ -127,7 +152,12 @@ class WineCommand:
             else self.config.Parameters.gamescope
         )
         self.command = self.get_cmd(
-            command, pre_script, post_script, pre_script_args, post_script_args, environment=_environment
+            command,
+            pre_script,
+            post_script,
+            pre_script_args,
+            post_script_args,
+            environment=_environment,
         )
         self.terminal = terminal
         self.env = self.get_env(_environment)
@@ -208,6 +238,11 @@ class WineCommand:
         ld = []
 
         # Bottle environment variables
+        if _needs_steam_virtual_gamepad_workaround(config.Runner) and not env.has(
+            "SteamVirtualGamepadInfo"
+        ):
+            env.add("SteamVirtualGamepadInfo", "", override=True)
+
         if config.Environment_Variables:
             for key, value in config.Environment_Variables.items():
                 env.add(key, value, override=True)
