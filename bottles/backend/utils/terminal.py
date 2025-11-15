@@ -16,8 +16,8 @@
 #
 
 import os
-import subprocess
 import shlex
+import subprocess
 
 from bottles.backend.logger import Logger
 
@@ -93,27 +93,38 @@ class TerminalUtils:
         if colors not in self.colors:
             colors = "default"
 
-        colors = self.colors[colors]
+        # comando originale quotato
         command = shlex.quote(command)
+        template = " ".join(self.terminal)
+        term_bin = os.path.basename(self.terminal[0])
 
-        if self.terminal[0] == "easyterm.py":
-            command = " ".join(self.terminal) % (
-                colors,
-                shlex.quote(f"bash -c {command}"),
-            )
+        # EasyTerm: due placeholder, colori + comando
+        if "easyterm" in term_bin:
+            palette = self.colors[colors]
+            cmd_for_shell = shlex.quote(f"bash -c {command}")
             if "ENABLE_BASH" in os.environ:
-                command = " ".join(self.terminal) % (colors, "bash")
-        elif self.terminal[0] in ["xfce4-terminal"]:
-            command = " ".join(self.terminal) % '"sh -c %s"' % f"{command}"
-        elif self.terminal[0] in ["kitty", "foot", "konsole", "gnome-terminal"]:
-            command = " ".join(self.terminal) % "sh -c %s" % f"{command}"
-        else:
-            command = " ".join(self.terminal) % "bash -c %s" % f"{command}"
+                cmd_for_shell = "bash"
+            full_cmd = template % (palette, cmd_for_shell)
 
-        logging.info(f"Command: {command}")
+        # xfce4-terminal: un placeholder
+        elif term_bin == "xfce4-terminal":
+            cmd_for_shell = shlex.quote(f"sh -c {command}")
+            full_cmd = template % cmd_for_shell
+
+        # kitty, foot, konsole, gnome-terminal: un placeholder
+        elif term_bin in ["kitty", "foot", "konsole", "gnome-terminal"]:
+            cmd_for_shell = shlex.quote(f"sh -c {command}")
+            full_cmd = template % cmd_for_shell
+
+        # fallback: un placeholder
+        else:
+            cmd_for_shell = shlex.quote(f"bash -c {command}")
+            full_cmd = template % cmd_for_shell
+
+        logging.info(f"Command: {full_cmd}")
 
         subprocess.Popen(
-            command, shell=True, env=env, stdout=subprocess.PIPE, cwd=cwd
+            full_cmd, shell=True, env=env, stdout=subprocess.PIPE, cwd=cwd
         ).communicate()[0].decode("utf-8")
 
         return True
