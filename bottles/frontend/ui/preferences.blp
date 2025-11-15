@@ -206,6 +206,29 @@ template $PreferencesWindow: Adw.PreferencesWindow {
         }
       }
     }
+
+    Adw.PreferencesGroup {
+      title: _("Repositories");
+      description: _("Override the default repositories Bottles uses when downloading resources.");
+
+      Adw.EntryRow entry_personal_components {
+        title: _("Components Repository");
+        tooltip-text: _("Custom URL for components. Leave empty to use the default endpoint.");
+        show-apply-button: true;
+      }
+
+      Adw.EntryRow entry_personal_dependencies {
+        title: _("Dependencies Repository");
+        tooltip-text: _("Custom URL for dependencies. Leave empty to use the default endpoint.");
+        show-apply-button: true;
+      }
+
+      Adw.EntryRow entry_personal_installers {
+        title: _("Installers Repository");
+        tooltip-text: _("Custom URL for installers. Leave empty to use the default endpoint.");
+        show-apply-button: true;
+      }
+    }
   }
 
   Adw.PreferencesPage {

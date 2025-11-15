@@ -30,6 +30,7 @@ logging = Logger()
 class UserDataKeys:
     CustomBottlesPath = "custom_bottles_path"
     FundingDismissed = "funding_dialog_dismissed"
+    PersonalRepositories = "personal_repositories"
 
 
 class DataManager:

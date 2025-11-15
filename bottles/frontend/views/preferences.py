@@ -65,6 +65,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
     btn_bottles_path_reset = Gtk.Template.Child()
     label_bottles_path = Gtk.Template.Child()
     btn_steam_proton_doc = Gtk.Template.Child()
+    entry_personal_components = Gtk.Template.Child()
+    entry_personal_dependencies = Gtk.Template.Child()
+    entry_personal_installers = Gtk.Template.Child()
 
     # endregion
 
@@ -94,6 +97,21 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 os.path.basename(self.current_bottles_path)
             )
             self.btn_bottles_path_reset.set_visible(True)
+
+        self.__personal_repo_rows = {
+            "components": self.entry_personal_components,
+            "dependencies": self.entry_personal_dependencies,
+            "installers": self.entry_personal_installers,
+        }
+        stored_repositories = self.data.get(UserDataKeys.PersonalRepositories) or {}
+        self.__personal_repo_values = {}
+        for repo_name, row in self.__personal_repo_rows.items():
+            repo_value = stored_repositories.get(repo_name, "")
+            self.__personal_repo_values[repo_name] = repo_value
+            row.set_text(repo_value)
+            row.set_show_apply_button(False)
+            row.connect("apply", self.__on_personal_repo_apply, repo_name)
+            row.connect("changed", self.__on_personal_repo_changed, repo_name)
 
         # bind widgets
         self.settings.bind(
@@ -266,8 +284,13 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.window.proper_close()
         widget.destroy()
 
-    def prompt_restart(self):
-        if self.current_bottles_path != self.data.get(UserDataKeys.CustomBottlesPath):
+    def prompt_restart(self, force=False):
+        needs_restart = force or (
+            self.current_bottles_path
+            != self.data.get(UserDataKeys.CustomBottlesPath)
+        )
+
+        if needs_restart:
             dialog = Adw.MessageDialog.new(
                 self.window,
                 _("Relaunch Bottles?"),
@@ -288,6 +311,34 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.btn_bottles_path_reset.set_visible(False)
         self.label_bottles_path.set_label(_("(Default)"))
         self.prompt_restart()
+
+    def __on_personal_repo_changed(self, row, repo_name):
+        if row.get_text() == self.__personal_repo_values.get(repo_name, ""):
+            row.set_show_apply_button(False)
+        else:
+            row.set_show_apply_button(True)
+
+    def __on_personal_repo_apply(self, row, repo_name):
+        new_value = row.get_text().strip()
+        if new_value == self.__personal_repo_values.get(repo_name, ""):
+            return
+
+        self.__personal_repo_values[repo_name] = new_value
+        self.__persist_personal_repositories()
+        row.set_show_apply_button(False)
+        self.prompt_restart(force=True)
+
+    def __persist_personal_repositories(self):
+        stored_values = {
+            repo_name: value
+            for repo_name, value in self.__personal_repo_values.items()
+            if value
+        }
+
+        if stored_values:
+            self.data.set(UserDataKeys.PersonalRepositories, stored_values)
+        else:
+            self.data.remove(UserDataKeys.PersonalRepositories)
 
     def __on_audio_driver_setting_changed(self, *_args):
         GLib.idle_add(self.__sync_audio_driver_selection)
