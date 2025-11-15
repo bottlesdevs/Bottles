@@ -20,6 +20,7 @@ import os
 import pycurl
 
 from bottles.backend.logger import Logger
+from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.models.result import Result
 from bottles.backend.params import APP_VERSION
 from bottles.backend.repos.component import ComponentRepo
@@ -54,6 +55,7 @@ class RepositoryManager:
         self.do_get_index = True
         self.aborted_connections = 0
         SignalManager.connect(Signals.ForceStopNetworking, self.__stop_index)
+        self.data = DataManager()
 
         self.__check_personals()
         if get_index:
@@ -69,14 +71,21 @@ class RepositoryManager:
     def __check_personals(self):
         _personals = {}
 
-        if "PERSONAL_COMPONENTS" in os.environ:
-            _personals["components"] = os.environ["PERSONAL_COMPONENTS"]
+        stored_personals = self.data.get(UserDataKeys.PersonalRepositories) or {}
+        for repo_name in ("components", "dependencies", "installers"):
+            url = stored_personals.get(repo_name)
+            if url:
+                _personals[repo_name] = url
 
-        if "PERSONAL_DEPENDENCIES" in os.environ:
-            _personals["dependencies"] = os.environ["PERSONAL_DEPENDENCIES"]
+        env_personals = {
+            "components": "PERSONAL_COMPONENTS",
+            "dependencies": "PERSONAL_DEPENDENCIES",
+            "installers": "PERSONAL_INSTALLERS",
+        }
 
-        if "PERSONAL_INSTALLERS" in os.environ:
-            _personals["installers"] = os.environ["PERSONAL_INSTALLERS"]
+        for repo_name, env_var in env_personals.items():
+            if env_var in os.environ and os.environ[env_var]:
+                _personals[repo_name] = os.environ[env_var]
 
         if not _personals:
             return
