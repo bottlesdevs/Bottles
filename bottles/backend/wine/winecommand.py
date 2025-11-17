@@ -342,19 +342,20 @@ class WineCommand:
             ]
             gst_libs = ["lib/gstreamer-1.0", "lib32/gstreamer-1.0"]
 
-        for lib in runner_libs:
-            _path = os.path.join(runner_path, lib)
-            if os.path.exists(_path):
-                ld.append(_path)
+        if not config.Runner.startswith("sys-"):
+            for lib in runner_libs:
+                _path = os.path.join(runner_path, lib)
+                if os.path.exists(_path):
+                    ld.append(_path)
 
-        # Embedded GStreamer environment variables
-        if not env.has("BOTTLES_USE_SYSTEM_GSTREAMER") and not return_steam_env:
-            gst_env_path = []
-            for lib in gst_libs:
-                if os.path.exists(os.path.join(runner_path, lib)):
-                    gst_env_path.append(os.path.join(runner_path, lib))
-            if len(gst_env_path) > 0:
-                env.add("GST_PLUGIN_SYSTEM_PATH", ":".join(gst_env_path), override=True)
+            # Embedded GStreamer environment variables
+            if not env.has("BOTTLES_USE_SYSTEM_GSTREAMER") and not return_steam_env:
+                gst_env_path = []
+                for lib in gst_libs:
+                    if os.path.exists(os.path.join(runner_path, lib)):
+                        gst_env_path.append(os.path.join(runner_path, lib))
+                if len(gst_env_path) > 0:
+                    env.add("GST_PLUGIN_SYSTEM_PATH", ":".join(gst_env_path), override=True)
 
         # DXVK environment variables
         if params.dxvk and not return_steam_env:
