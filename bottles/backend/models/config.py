@@ -278,3 +278,7 @@ class BottleConfig(DictCompatMixIn):
                 )
 
         return new_data
+
+
+# Register custom YAML serializer for BottleConfig
+yaml.register_serializer(BottleConfig)
