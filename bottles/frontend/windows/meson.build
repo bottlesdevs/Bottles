@@ -25,6 +25,7 @@ bottles_sources = [
   'installer.py',
   'depscheck.py',
   'exclusionpatterns.py',
+  'registry_rules.py',
   'upgradeversioning.py',
   'vmtouch.py',
   'window.py',

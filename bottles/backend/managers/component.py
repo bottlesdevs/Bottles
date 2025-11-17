@@ -1,6 +1,6 @@
 # component.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,12 +30,12 @@ from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.models.result import Result
 from bottles.backend.state import (
-    Locks,
-    Task,
-    TaskStreamUpdateHandler,
-    Status,
-    TaskManager,
     LockManager,
+    Locks,
+    Status,
+    Task,
+    TaskManager,
+    TaskStreamUpdateHandler,
 )
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import is_glibc_min_available

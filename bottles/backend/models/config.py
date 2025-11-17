@@ -140,6 +140,7 @@ class BottleConfig(DictCompatMixIn):
     DLL_Overrides: dict = field(default_factory=dict)
     External_Programs: Dict[str, dict] = field(default_factory=dict)
     Uninstallers: dict = field(default_factory=dict)
+    Registry_Rules: list = field(default_factory=list)
     session_arguments: str = ""
     run_in_terminal: bool = False
     Language: str = "sys"  # "sys", "any valid language code"

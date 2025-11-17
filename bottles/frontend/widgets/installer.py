@@ -1,6 +1,6 @@
 # installer.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,9 +15,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from gi.repository import Gtk, Adw
-from gettext import gettext as _
 import webbrowser
+from gettext import gettext as _
+
+from gi.repository import Adw, Gtk
 
 from bottles.frontend.windows.generic import SourceDialog
 from bottles.frontend.windows.installer import InstallerDialog

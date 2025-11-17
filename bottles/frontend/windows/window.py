@@ -1,6 +1,6 @@
 # window.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,22 +18,21 @@
 import contextlib
 import os
 import webbrowser
+from datetime import datetime, timedelta
 from gettext import gettext as _
 from typing import Optional
 
-from gi.repository import Gtk, GLib, Gio, Adw, GObject, Gdk, Xdp
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Xdp
 
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.logger import Logger
-from datetime import datetime, timedelta
-
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.journal import JournalManager
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import SignalManager, Signals, Notification
+from bottles.backend.state import Notification, SignalManager, Signals
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.operation import TaskSyncer

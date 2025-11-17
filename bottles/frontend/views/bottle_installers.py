@@ -1,6 +1,6 @@
 # bottle_installers.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,11 +16,11 @@
 #
 
 import time
-from gi.repository import Gtk, GLib, Adw
+
+from gi.repository import Adw, GLib, Gtk
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.widgets.installer import InstallerEntry

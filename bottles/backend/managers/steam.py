@@ -1,6 +1,6 @@
 # steam.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,17 +27,16 @@ from pathlib import Path
 from typing import Dict, Optional
 
 from bottles.backend.globals import Paths
+from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
 from bottles.backend.models.vdict import VDFDict
-from bottles.backend.state import Signals, SignalManager
+from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils import vdf
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.wine.winecommand import WineCommand
-
-from bottles.backend.logger import Logger
 
 logging = Logger()
 

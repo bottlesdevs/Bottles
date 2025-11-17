@@ -1,6 +1,6 @@
 # loading.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,12 +17,12 @@
 
 from gettext import gettext as _
 
-from gi.repository import Gtk, Adw
+from gi.repository import Adw, Gtk
 
 from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals
-from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.params import APP_ID
+from bottles.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/loading.ui")

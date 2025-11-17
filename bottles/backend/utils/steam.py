@@ -1,6 +1,6 @@
 # steam.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 import os
 import shlex
-from typing import TextIO, Optional
+from typing import Optional, TextIO
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.vdict import VDFDict

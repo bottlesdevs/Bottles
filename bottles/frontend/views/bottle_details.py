@@ -1,6 +1,6 @@
 # bottle_details.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@ from datetime import datetime
 from gettext import gettext as _
 from typing import List, Optional
 
-from gi.repository import Gtk, Gio, Adw, Gdk, GLib, Xdp
+from gi.repository import Adw, Gdk, Gio, GLib, Gtk, Xdp
 
 from bottles.backend.managers.backup import BackupManager
 from bottles.backend.models.config import BottleConfig
@@ -41,7 +41,7 @@ from bottles.backend.wine.winecfg import WineCfg
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.wineserver import WineServer
 from bottles.frontend.utils.common import open_doc_url
-from bottles.frontend.utils.filters import add_executable_filters, add_all_filters
+from bottles.frontend.utils.filters import add_all_filters, add_executable_filters
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.utils.playtime import PlaytimeService
 from bottles.frontend.widgets.program import ProgramEntry
@@ -77,6 +77,7 @@ class BottleView(Adw.PreferencesPage):
     row_controlpanel = Gtk.Template.Child()
     row_uninstaller = Gtk.Template.Child()
     row_regedit = Gtk.Template.Child()
+    row_registry_rules = Gtk.Template.Child()
     btn_shutdown = Gtk.Template.Child()
     btn_reboot = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
@@ -115,10 +116,10 @@ class BottleView(Adw.PreferencesPage):
         self.details = details
         self.config = config
         self.show_hidden = False
-        
+
         # Initialize playtime service
         self.playtime_service = PlaytimeService(self.manager)
-        
+
         # Playtime signal handling
         self._playtime_refresh_pending = False
         self._playtime_refresh_timeout_id = None
@@ -145,6 +146,9 @@ class BottleView(Adw.PreferencesPage):
         self.row_controlpanel.connect("activated", self.run_controlpanel)
         self.row_uninstaller.connect("activated", self.run_uninstaller)
         self.row_regedit.connect("activated", self.run_regedit)
+        self.row_registry_rules.connect(
+            "activated", self.__change_page, "registry_rules"
+        )
         self.btn_browse.connect("clicked", self.run_browse)
         self.btn_delete.connect("clicked", self.__confirm_delete)
         self.btn_shutdown.connect("clicked", self.wineboot, 2)
@@ -332,11 +336,11 @@ class BottleView(Adw.PreferencesPage):
                 is_steam=is_steam,
                 check_boot=check_boot,
             )
-            
+
             # Update playtime subtitle if not Steam program
             if not is_steam:
                 program_widget.update_playtime(self.playtime_service)
-            
+
             self.add_program(program_widget)
 
         if force_add:
@@ -405,32 +409,32 @@ class BottleView(Adw.PreferencesPage):
         Refreshes playtime display with debouncing.
         """
         from bottles.backend.models.result import Result
-        
+
         if not data or not isinstance(data, Result) or not data.data:
             return
-        
+
         # Note: We refresh all programs regardless of which one finished
         # because the payload doesn't include bottle_id and we want to
         # keep all displays up to date
-        
+
         # Cancel any pending refresh
         if self._playtime_refresh_timeout_id is not None:
             GLib.source_remove(self._playtime_refresh_timeout_id)
             self._playtime_refresh_timeout_id = None
-        
+
         # Debounce: wait 500ms before refreshing
         def do_refresh():
             self._playtime_refresh_timeout_id = None
             self._playtime_refresh_pending = False
-            
+
             # Invalidate cache and refresh all program widgets
             self.playtime_service.invalidate_cache()
             for widget in self.__registry:
-                if hasattr(widget, 'update_playtime'):
+                if hasattr(widget, "update_playtime"):
                     widget.update_playtime(self.playtime_service)
-            
+
             return False
-        
+
         self._playtime_refresh_pending = True
         self._playtime_refresh_timeout_id = GLib.timeout_add(500, do_refresh)
 

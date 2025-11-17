@@ -1,6 +1,6 @@
 # manager.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,10 +23,10 @@ import shutil
 import subprocess
 import time
 import uuid
-from threading import Event
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
+from threading import Event
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import pathvalidate
@@ -45,22 +45,25 @@ from bottles.backend.managers.importer import ImportManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.playtime import ProcessSessionTracker
+from bottles.backend.managers.registry_rule import RegistryRuleManager
 from bottles.backend.managers.repository import RepositoryManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.managers.versioning import VersioningManager
 from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.process import (
+    ProcessFinishedPayload,
+    ProcessStartedPayload,
+)
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.models.result import Result
-from bottles.backend.state import SignalManager, Signals, Events, EventManager
+from bottles.backend.state import EventManager, Events, SignalManager, Signals
 from bottles.backend.utils import yaml
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import sort_by_version
-from bottles.backend.utils.gpu import GPUUtils
-from bottles.backend.utils.gpu import GPUVendors
+from bottles.backend.utils.gpu import GPUUtils, GPUVendors
 from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
@@ -73,11 +76,6 @@ from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.winepath import WinePath
 from bottles.backend.wine.wineserver import WineServer
-from bottles.backend.state import SignalManager, Signals
-from bottles.backend.models.process import (
-    ProcessStartedPayload,
-    ProcessFinishedPayload,
-)
 
 logging = Logger()
 
@@ -336,7 +334,10 @@ class Manager(metaclass=Singleton):
     def _on_playtime_enabled_changed(self, _settings, _key) -> None:
         enabled = self.settings.get_boolean("playtime-enabled")
         if not enabled:
-            if getattr(self, "playtime_tracker", None) and self.playtime_tracker.enabled:
+            if (
+                getattr(self, "playtime_tracker", None)
+                and self.playtime_tracker.enabled
+            ):
                 self._launch_to_session.clear()
                 self.playtime_tracker.disable_tracking()
             return
@@ -381,7 +382,9 @@ class Manager(metaclass=Singleton):
     ) -> Result[None]:
         try:
             if status == "success":
-                self.playtime_tracker.mark_exit(session_id, status="success", ended_at=ended_at)
+                self.playtime_tracker.mark_exit(
+                    session_id, status="success", ended_at=ended_at
+                )
             else:
                 self.playtime_tracker.mark_failure(session_id, status=status)
             return Result(True)
@@ -408,6 +411,10 @@ class Manager(metaclass=Singleton):
                 return
             sid = int(res.data or -1)
             self._launch_to_session[payload.launch_id] = sid
+
+            config = self._get_payload_config(payload)
+            if config:
+                RegistryRuleManager.apply_rules(config, trigger="start_program")
         except Exception:
             pass
 
@@ -424,8 +431,27 @@ class Manager(metaclass=Singleton):
                     f"Playtime signal: finished launch_id={payload.launch_id} status={status} sid={sid}"
                 )
                 self.playtime_finish(sid, status=status, ended_at=ended_at)
+
+            config = self._get_payload_config(payload)
+            if config:
+                RegistryRuleManager.apply_rules(config, trigger="stop_program")
         except Exception:
             pass
+
+    def _get_payload_config(self, payload) -> Optional[BottleConfig]:
+        config = self.local_bottles.get(payload.bottle_name)
+        if isinstance(config, BottleConfig):
+            return config
+
+        try:
+            config_path = os.path.join(payload.bottle_path, "bottle.yml")
+        except Exception:
+            return None
+
+        loaded = BottleConfig.load(config_path)
+        if loaded.status:
+            return loaded.data
+        return None
 
     def __clear_temp(self, force: bool = False):
         """Clears the temp directory if user setting allows it. Use the force
@@ -1233,6 +1259,18 @@ class Manager(metaclass=Singleton):
 
         if config.Environment == "Steam":
             self.steam_manager.update_bottle(config)
+
+        component_keys = {
+            "Runner",
+            "DXVK",
+            "VKD3D",
+            "NVAPI",
+            "LatencyFleX",
+            "LatencyFleX_Activated",
+        }
+
+        if key in component_keys or scope in component_keys:
+            RegistryRuleManager.apply_rules(config, trigger="components")
 
         return Result(status=True, data={"config": config})
 

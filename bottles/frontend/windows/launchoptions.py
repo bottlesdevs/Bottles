@@ -1,6 +1,6 @@
 # launchoptions.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,11 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from gi.repository import Gtk, GLib, GObject, Adw
-
-from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.logger import Logger
 from gettext import gettext as _
+
+from gi.repository import Adw, GLib, GObject, Gtk
+
+from bottles.backend.logger import Logger
+from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
 
@@ -226,7 +227,7 @@ class LaunchOptionsDialog(Adw.Window):
             "virtual_desktop", program_virt_desktop, self.global_virt_desktop
         )
         self.program["arguments"] = self.entry_arguments.get_text()
-        
+
         pre_args = self.entry_pre_script_args.get_text()
         post_args = self.entry_post_script_args.get_text()
         self.program["pre_script_args"] = pre_args if pre_args else None

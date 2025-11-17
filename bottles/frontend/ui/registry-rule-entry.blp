@@ -1,0 +1,41 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $RegistryRuleEntry: Adw.ActionRow {
+  valign: center;
+  activatable: false;
+  title: _("Rule name");
+  subtitle: _("Rule details");
+
+  [suffix]
+  Box {
+    spacing: 6;
+
+    Button btn_edit {
+      tooltip-text: _("Edit");
+      icon-name: "document-edit-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Button btn_apply {
+      tooltip-text: _("Apply");
+      icon-name: "media-playback-start-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Button btn_delete {
+      tooltip-text: _("Delete");
+      icon-name: "user-trash-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+  }
+}
