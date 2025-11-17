@@ -1,6 +1,6 @@
 # main.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,15 +15,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import sys
-import gi
 import gettext
 import locale
+import sys
 import webbrowser
 from os import path
 
-from bottles.backend.logger import Logger
+import gi
+
 from bottles.backend.health import HealthChecker
+from bottles.backend.logger import Logger
 from bottles.frontend.params import (
     APP_ID,
     APP_MAJOR_VERSION,
@@ -38,10 +39,10 @@ gi.require_version("Xdp", "1.0")
 # gi.require_version("XdpGtk4", "1.0")
 
 # ruff: noqa: E402
-from gi.repository import Gio, GLib, GObject, Adw  # type: ignore
-from bottles.frontend.windows.window import BottlesWindow
-from bottles.frontend.views.preferences import PreferencesWindow
+from gi.repository import Adw, Gio, GLib, GObject  # type: ignore
 
+from bottles.frontend.views.preferences import PreferencesWindow
+from bottles.frontend.windows.window import BottlesWindow
 
 logging = Logger()
 

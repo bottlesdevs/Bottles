@@ -1,6 +1,6 @@
 # gtk.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,11 +15,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from typing import Optional
 from functools import wraps
 from inspect import signature
+from typing import Optional
 
-from gi.repository import GLib, Gtk, GObject
+from gi.repository import GLib, GObject, Gtk
 
 from bottles.frontend.utils.sh import ShUtils
 

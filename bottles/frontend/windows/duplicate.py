@@ -1,6 +1,6 @@
 # duplicate.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 import time
 
-from gi.repository import Gtk, Adw
+from gi.repository import Adw, Gtk
 
 from bottles.backend.managers.backup import BackupManager
 from bottles.backend.utils.threading import RunAsync

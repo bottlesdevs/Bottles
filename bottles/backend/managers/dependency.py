@@ -1,6 +1,6 @@
 # dependency.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,10 +26,11 @@ import patoolib  # type: ignore [import-untyped]
 from bottles.backend.cabextract import CabExtract
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
+from bottles.backend.managers.registry_rule import RegistryRuleManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.models.result import Result
-from bottles.backend.state import TaskManager, Task
+from bottles.backend.state import Task, TaskManager
 from bottles.backend.utils.generic import validate_url
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.executor import WineExecutor
@@ -77,6 +78,7 @@ class DependencyManager:
         return True if the installation was successful.
         """
         uninstaller = True
+        installed_new = False
 
         if config.Parameters.versioning_automatic:
             """
@@ -150,6 +152,7 @@ class DependencyManager:
             self.__manager.update_config(
                 config=config, key="Installed_Dependencies", value=dependencies
             )
+            installed_new = True
 
         if manifest.get("Uninstaller"):
             """
@@ -163,12 +166,16 @@ class DependencyManager:
             self.__manager.update_config(
                 config, dependency[0], uninstaller, "Uninstallers"
             )
+            installed_new = True
 
         # Remove entry from task manager
         TaskManager.remove(task_id)
 
         # Hide installation button and show remove button
         logging.info(f"Dependency installed: {dependency[0]} in {config.Name}", jn=True)
+
+        if installed_new:
+            RegistryRuleManager.apply_rules(config, trigger="dependencies")
         if not uninstaller:
             return Result(status=True, data={"uninstaller": False})
         return Result(status=True, data={"uninstaller": True})

@@ -1,6 +1,6 @@
 # threading.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -83,6 +83,7 @@ class RunAsync(threading.Thread):
             traceback_info = "\n".join(traceback.format_tb(trace))
 
             logging.write_log([str(exception), traceback_info])
+
         def _dispatch_callback():
             try:
                 self.callback(result, error)
@@ -97,7 +98,10 @@ class RunAsync(threading.Thread):
                 logging.write_log([str(callback_exception), traceback_info])
             return GLib.SOURCE_REMOVE
 
-        if self._callback_in_main_loop and threading.current_thread() is not threading.main_thread():
+        if (
+            self._callback_in_main_loop
+            and threading.current_thread() is not threading.main_thread()
+        ):
             GLib.idle_add(_dispatch_callback)
         else:
             _dispatch_callback()

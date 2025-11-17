@@ -23,6 +23,7 @@ bottles_sources = [
   'ubisoftconnect.py',
   'origin.py',
   'queue.py',
+  'registry_rule.py',
   'steamgriddb.py',
   'thumbnail.py',
   'playtime.py'

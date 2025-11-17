@@ -1,6 +1,6 @@
 # preferences.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,12 +20,12 @@ import subprocess
 import webbrowser
 from gettext import gettext as _
 
-from gi.repository import Gtk, Adw, Gio, GLib
+from gi.repository import Adw, Gio, GLib, Gtk
 
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.state import EventManager, Events
-from bottles.backend.utils.threading import RunAsync
 from bottles.backend.utils.generic import sort_by_version
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
 
@@ -286,8 +286,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def prompt_restart(self, force=False):
         needs_restart = force or (
-            self.current_bottles_path
-            != self.data.get(UserDataKeys.CustomBottlesPath)
+            self.current_bottles_path != self.data.get(UserDataKeys.CustomBottlesPath)
         )
 
         if needs_restart:

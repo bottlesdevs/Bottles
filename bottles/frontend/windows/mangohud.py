@@ -1,6 +1,6 @@
 # mangohud.py
 #
-# Copyright 2022 Bottles Contributors
+# Copyright 2025 Bottles Contributors
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GLib, Adw
+from gi.repository import Adw, GLib, Gtk
+
 from bottles.backend.logger import Logger
 
 logging = Logger()

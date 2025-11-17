@@ -1,0 +1,96 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $RegistryRulesDialog: Adw.Dialog {
+  title: _("Registry Rule");
+  content-width: 540;
+  content-height: 520;
+
+  Box {
+    orientation: vertical;
+
+    Adw.HeaderBar {
+      styles [
+        "flat",
+      ]
+    }
+
+    Adw.PreferencesPage {
+      title: _("Registry Rule");
+
+      Adw.PreferencesGroup {
+        description: _("Define registry keys to apply and when they should trigger.");
+
+        Adw.EntryRow entry_rule_name {
+          title: _("Name");
+          show-apply-button: false;
+        }
+
+        Adw.EntryRow entry_rule_description {
+          title: _("Description");
+          show-apply-button: false;
+        }
+
+        Adw.ExpanderRow row_triggers {
+          title: _("Triggers");
+          subtitle: _("Select when this rule should be applied.");
+
+          Box {
+            orientation: vertical;
+            spacing: 6;
+
+            CheckButton chk_trigger_components {
+              label: _("Component changes");
+            }
+
+            CheckButton chk_trigger_dependencies {
+              label: _("Dependencies changes");
+            }
+
+            CheckButton chk_trigger_start_program {
+              label: _("Start program");
+            }
+
+            CheckButton chk_trigger_stop_program {
+              label: _("Stop program");
+            }
+
+            CheckButton chk_trigger_all {
+              label: _("All triggers");
+            }
+          }
+        }
+
+        Adw.ExpanderRow {
+          title: _("Registry keys");
+          subtitle: _("Paste .reg content to run for this rule.");
+
+          ScrolledWindow {
+            height-request: 220;
+
+            TextView text_keys {
+              monospace: true;
+              wrap-mode: word_char;
+            }
+          }
+        }
+
+        Adw.ActionRow {
+          title: _("Run Once");
+          subtitle: _("Apply this rule only a single time per bottle.");
+          activatable-widget: switch_run_once;
+
+          Switch switch_run_once {
+            valign: center;
+          }
+        }
+
+        Button btn_save_rule {
+          label: _("Save Rule");
+          halign: end;
+          margin-top: 6;
+        }
+      }
+    }
+  }
+}
