@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-10-30 14:27+0000\n"
-"Last-Translator: fawaz006 <fawaz27000@hotmail.com>\n"
+"PO-Revision-Date: 2025-11-19 04:51+0000\n"
+"Last-Translator: Ziad El-sayed <ziadelsayed1797@tutamail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/bottles/bottles/"
 "ar/>\n"
 "Language: ar\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -44,28 +44,28 @@ msgstr "تُثبت بعض المكونات المفقودة…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
-msgstr "فشل تكوين دليل للقارورة."
+msgstr "فشل إنشاء مجلد القارورة."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr "فشل تكوين دليل\\ملف مؤقت."
+msgstr "فشل إنشاء مجلد/ملف العنصر النائب."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr "تكوين قارورة…"
+msgstr "جاري تكوين القارورة…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
-msgstr "تطبيق قالب موجود…"
+msgstr "تم العثور على القالب، يتم التطبيق…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1197
 msgid "The Wine config is being updated…"
-msgstr "يُحدَّث تكوين واين…"
+msgstr "يتم تحديث تكوين Wine…"
 
 #: bottles/backend/managers/manager.py:1199
 msgid "Wine config updated!"
-msgstr "حُدث تكوين واين!"
+msgstr "تم تحديث تكوين واين!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
@@ -77,7 +77,7 @@ msgstr "تحديد آلية الوصول لدليل المستخدم…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
-msgstr "تعيين نسخة Windows…"
+msgstr "تعيين إصدار Windows…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
@@ -85,7 +85,7 @@ msgstr "تعيين إعدادات CMD الافتراضية…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
-msgstr "أمثَلة البيئة…"
+msgstr "جاري تحسين البيئة…"
 
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
@@ -102,28 +102,28 @@ msgstr "(!) لم يعثر على الوصفة أو الوصفة ليست صحي�
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
-msgstr "تثبيت DXVK…"
+msgstr "جاري تثبيت DXVK…"
 
 #: bottles/backend/managers/manager.py:1317
 msgid "Installing VKD3D…"
-msgstr "تثبيت VKD3D…"
+msgstr "جاري تثبيت VKD3D…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Installing DXVK-NVAPI…"
-msgstr "تثبيت DXVK-NVAPI…"
+msgstr "جاري تثبيت DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1335
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr "تثبيت التبعيات: %s …"
+msgstr "جاري تثبيت التبعية: %s …"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
-msgstr "توليد حالة الأصدَرة 0…"
+msgstr "جاري إنشاء حالة الإصدار 0…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
-msgstr "اختتام…"
+msgstr "جاري الانتهاء من…"
 
 #: bottles/backend/managers/manager.py:1364
 msgid "Caching template…"
@@ -140,20 +140,20 @@ msgstr "لا شيء للإيداع"
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "وُلّدت حالة [{0}] جديدة بنجاح!"
+msgstr "تم إنشاء الحالة [{0}] الجديدة بنجاح!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr "جُلبت قائمة الحالات بنجاح!"
+msgstr "تم استرداد قائمة الحالات بنجاح!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "أُعيدت الحالة {0} بنجاح!"
+msgstr "تمت استعادة الحالة {0} بنجاح!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr "إعادة الحالة {} …"
+msgstr "جاري استعادة الحالة {} …"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
@@ -161,7 +161,7 @@ msgstr "لم يُعثر على الحالة"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr "الحالة {} هي بالفعل الحالة الفعّالة"
+msgstr "الحالة {} هي بالفعل الحالة النشطة"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
@@ -191,15 +191,15 @@ msgstr ""
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr "استُلم طلب [إنهاء]."
+msgstr "تم استلام طلب [انهاء]."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
-msgstr "استُلم طلب [مساعدة]."
+msgstr "تم استلام طلب [ مساعدة ]."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr "استلُم طلب [تحديث]."
+msgstr "تم استلام طلب [تحديث]."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
@@ -207,7 +207,7 @@ msgstr "تبرّع"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr "المكتبات التابعة لأطراف ثالثة وشكر خاص"
+msgstr "مكتبات الطرف الثالث وشكر خاص"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
@@ -216,16 +216,16 @@ msgstr "برعاية وتمويل"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "حقوق النشر © 2017 مطوروا «قوارير»"
+msgstr "حقوق الطبع والنشر © 2017 لمطوري Bottles"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
 msgid "Bottles Developers"
-msgstr "مُطوِّروا «قوارير»"
+msgstr "مطوري Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr "علي الجشي <ahj696@hotmail.com>"
+msgstr "زياد السيد - ٢٠٢٥"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -251,7 +251,7 @@ msgstr ""
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
-msgstr "حمّل وثبّت"
+msgstr "تنزيل وتثبيت"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
@@ -263,7 +263,7 @@ msgstr "أظهر البيان"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
-msgstr "رخصة"
+msgstr "الترخيص"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
@@ -272,7 +272,7 @@ msgstr "أعد التثبيت"
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr "بلّغ عن خطأ…"
+msgstr "الإبلاغ عن خطأ…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
@@ -288,15 +288,15 @@ msgstr "الفئة"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr "نزِّل وثبِّت هذه التبعيَّة"
+msgstr "قم بتنزيل وتثبيت هذه التبعية"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or run "
 "it via terminal to read the output."
 msgstr ""
-"حدث خطأ في التثبيت. أعد تشغيل «قوارير» لقراءة تقرير الأعطال أو شغِّله باستخدام "
-"الطرفية لقراءة المُخرَج."
+"حدث خطأ في التثبيت. أعد تشغيل Bottles لقراءة تقرير الأعطال أو قم بتشغيله من "
+"خلال الطرفية لقراءة النتيجة."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -304,7 +304,7 @@ msgstr "قائمة التبعيَّات"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
-msgstr "استكشاف الاخطاء"
+msgstr "استكشاف الأخطاء وإصلاحها"
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
@@ -312,11 +312,11 @@ msgstr "تصفح الملفات…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
-msgstr "قارورة مكررة…"
+msgstr "تكرير القارورة…"
 
 #: bottles/frontend/ui/details-bottle.blp:32 bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr "هذا هو الأرشيف الكامل للقارورة، بما في ذلك الملفات الشخصية."
+msgstr "هذا هو الأرشيف الكامل لقارورتك، بما في ذلك الملفات الشخصية."
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
@@ -327,17 +327,17 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a new "
 "one but without personal files."
 msgstr ""
-"هذا هو ضبط القارورة فقط، وهو مفيد إن أردت تكوين قارورة جديدة بدون ملفات "
-"شخصية."
+"هذه مجرد تهيئة للقارورة، وهي مثالية إذا كنت ترغب في إنشاء واحدة جديدة ولكن "
+"بدون ملفات شخصية."
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr "صدّر الضّبط…"
+msgstr "تصدير التكوين…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
 msgid "Show Hidden Programs"
-msgstr "اعرض البرامج المخفية"
+msgstr "إظهار البرامج المخفية"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
@@ -355,11 +355,11 @@ msgstr "القائمة الفرعية"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr "افرض إيقاف كل العمليات"
+msgstr "إجبار إيقاف جميع العمليات"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr "حاكِ إيقاف تشغيل نظام ويندوز."
+msgstr "محاكاة إيقاف تشغيل نظام Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
@@ -367,7 +367,7 @@ msgstr "إيقاف التشغيل"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr "حاكِ إعادة تشغيل نظام ويندوز."
+msgstr "محاكاة إعادة تشغيل نظام Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
@@ -376,11 +376,11 @@ msgstr "أعد التشغيل"
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr "خيارات بدء التشغيل"
+msgstr "خيارات التشغيل"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
-msgstr "شغّل في الطرفية"
+msgstr "تشغيل في الطرفية"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
@@ -418,7 +418,7 @@ msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
-msgstr "شغل ملفَّ تنفيذ…"
+msgstr "تشغيل ملف التنفيذ…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
@@ -430,9 +430,9 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install programs "
 "curated by the community."
 msgstr ""
-"اضغط على \"شغِّل ملفًا تنفيذيًا...\" لتشغيل ملف تنفيذي، وعلى \"أضِف اختصارات...\" "
-"لإضافة ملف تنفيذي لقائمة البرامج، و على \"ثبِّت برمجيات\" لتثبيت برامج اختارها "
-"المجتمع."
+"انقر على ”تشغيل ملف التنفيذ...“ لتشغيل ملف التنفيذ، أو ”إضافة اختصارات...“ "
+"لإضافة ملف تنفيذ إلى قائمة البرامج، أو ”تثبيت البرامج...“ لتثبيت البرامج "
+"التي تم اختيارها من قبل المجتمع."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -440,7 +440,7 @@ msgstr "أضِف اختصارات…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 msgid "Install Programs…"
-msgstr "ثبِّت برمجيات…"
+msgstr "تثبيت البرامج…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
@@ -452,7 +452,7 @@ msgstr "الإعدادات"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr "اضبط إعدادات القارورة."
+msgstr "ضبط إعدادات القارورة."
 
 #: bottles/frontend/ui/details-bottle.blp:360 bottles/frontend/views/details.py:145
 msgid "Dependencies"
@@ -460,7 +460,7 @@ msgstr "التبعيات"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
-msgstr "ثبِّت تبعيات للبرامج."
+msgstr "تثبيت تبعيات للبرامج."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
@@ -470,7 +470,7 @@ msgstr "اللقطات"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
-msgstr "أنشئ وأدِر حالات القوارير."
+msgstr "إنشاء وإدارة حالات القوارير."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426 bottles/frontend/views/details.py:157
@@ -479,7 +479,7 @@ msgstr "مدير المهام"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr "أدِر البرامج المشغلَّة."
+msgstr "إدارة البرامج المشغلة."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -491,7 +491,7 @@ msgstr "سطر الأوامر"
 
 #: bottles/frontend/ui/details-bottle.blp:395
 msgid "Run commands inside the Bottle."
-msgstr "شغل الأوامر داخل القارورة."
+msgstr "تشغيل الأوامر داخل القارورة."
 
 #: bottles/frontend/ui/details-bottle.blp:404
 msgid "Registry Editor"
@@ -511,7 +511,7 @@ msgstr "المستكشف"
 
 #: bottles/frontend/ui/details-bottle.blp:435
 msgid "Debugger"
-msgstr "المنقِّح"
+msgstr "مصحح الأخطاء"
 
 #: bottles/frontend/ui/details-bottle.blp:444 bottles/frontend/ui/importer.blp:69
 #: bottles/frontend/ui/new.blp:145
@@ -533,11 +533,11 @@ msgstr "ابحث عن التبعيات…"
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178 bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr "أنت غير متَّصل :("
+msgstr "أنت غير متصل بالإنترنت :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr "يعمل «قوارير» دون اتصال، وبسبب ذلك لا تتاح التبعيات."
+msgstr "يعمل Bottles في وضع عدم الاتصال بالإنترنت، لذا فإن التبعيات غير متوفرة."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -546,22 +546,22 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary license. By "
 "installing them, you agree with their respective licensing terms."
 msgstr ""
-"التبعيات هي موارد تعمل على تحسين تكامل برمجيات ويندوز.\n"
+"التبعيات هي موارد تعمل على تحسين توافق برامج Windows.\n"
 "\n"
-"تُوَفر الملفات في هذه الصفحة من قبل أطراف ثالثة تحت تراخيص مغلقة. إنك توافق "
-"على تراخيصهم عبر تثبيتك لهم."
+"الملفات الموجودة في هذه الصفحة مقدمة من أطراف ثالثة بموجب ترخيص ملكية. "
+"بتثبيتها، فإنك توافق على شروط الترخيص الخاصة بها."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
-msgstr "أبلغ عن مشكلة أو تبعية مفقودة."
+msgstr "الإبلاغ عن مشكلة أو عن تبعية مفقودة."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
 msgid "Report Missing Dependency"
-msgstr "بلِّغ عن تبعية مفقودة"
+msgstr "الإبلاغ عن تبعية مفقودة"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
 msgid "Read Documentation."
-msgstr "اقرأ التوثيق."
+msgstr "اقرأ الوثيقة."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
@@ -585,14 +585,14 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary license. By "
 "installing them, you agree with their respective licensing terms."
 msgstr ""
-"ثبِّت برامج اختارها مجتمعنا.\n"
+"قم بتثبيت البرامج التي اختارتها مجتمعنا.\n"
 "\n"
-"تُوفَّر الملفَّات في هذه الصفحة من قبل أطراف ثالثة وفق تراخيص محتكرة. إنك توافق "
-"على تراخيصهم إن ثبَّتها."
+"الملفات الموجودة على هذه الصفحة مقدمة من أطراف ثالثة بموجب ترخيص ملكية. "
+"بتثبيتها، فإنك توافق على شروط الترخيص الخاصة بها."
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
-msgstr "لم يُعثر على مثبتات"
+msgstr "لم يتم العثور على أي برامج تثبيت"
 
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
@@ -616,7 +616,7 @@ msgstr "المكونات"
 
 #: bottles/frontend/ui/details-preferences.blp:15 bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr "إصدار طبقة تكامل واين."
+msgstr "إصدار طبقة توافق Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
@@ -629,11 +629,11 @@ msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
-msgstr "حسِّن تكامل دايركت‌ثري‌دي ١١/١٠/٩ عبر ترجمتها لفولكَن."
+msgstr "تحسين توافق Direct3D 8/9/10/11 عن طريق ترجمته إلى Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
-msgstr "جارٍ تحديث DXVK، يرجى الانتظار…"
+msgstr "جاري تحديث DXVK، يرجى الانتظار…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:266
@@ -642,11 +642,11 @@ msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr "حسِّن تكامل دايركت‌ثري‌دي ١٢ عبر ترجمتها لفولكَن."
+msgstr "تحسين توافق Direct3D 12 عن طريق ترجمته إلى Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
-msgstr "جارٍ تحديث VKD3D، يرجى الانتظار…"
+msgstr "جاري تحديث VKD3D، يرجى الانتظار…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
@@ -655,7 +655,7 @@ msgstr "DXVK NVAPI"
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "جارٍ تحديث DXVK-NVAPI، يرجى الانتظار…"
+msgstr "جاري تحديث DXVK-NVAPI، يرجى الانتظار…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
@@ -664,11 +664,11 @@ msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
-msgstr "حسِّن الاستجابة. يُمكن اكتشافه من بعض برامج مكافحة الغش."
+msgstr "تحسين الاستجابة. يمكن اكتشافه بواسطة بعض برامج مكافحة الغش."
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
-msgstr "جارٍ تحديث LatencyFleX، يرجى الانتظار…"
+msgstr "جاري تحديث LatencyFleX، يرجى الانتظار…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
@@ -683,8 +683,8 @@ msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works on "
 "newer NVIDIA GPUs."
 msgstr ""
-"حسِّن الأداء على حساب الجودة باستخدام DXVK-NVAPI. يعمل هذا على وحدات معالجة "
-"الرسوميات الحديثة من إنفيديا فقط."
+"زيادة الأداء على حساب الجودة باستخدام DXVK-NVAPI. يعمل فقط على أحدث وحدات "
+"معالجة الرسومات من NVIDIA."
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
@@ -692,7 +692,7 @@ msgstr "الدقة الفائقة باستخدام FidelityFX"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "حسِّن الأداء على حساب الجودة. يعمل على فولكَن فقط."
+msgstr "تحسين الأداء على حساب الجودة البصرية. يعمل فقط على Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
@@ -2217,7 +2217,7 @@ msgstr "عَنْ «قوارير»"
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
-msgstr "الملف \"{0}\" ليس ملفَّ exe. أو msi."
+msgstr "الملف ”{0}“ ليس ملف .exe أو .msi"
 
 #: bottles/frontend/views/bottle_details.py:207
 #, python-format
