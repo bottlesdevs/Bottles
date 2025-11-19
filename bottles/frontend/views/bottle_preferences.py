@@ -20,10 +20,9 @@ import os
 import re
 from gettext import gettext as _
 
-from gi.repository import Adw, Gtk, Xdp
+from gi.repository import Adw, Gdk, Gtk, Xdp
 
 from bottles.backend.globals import (
-    base_version,
     gamemode_available,
     gamescope_available,
     mangohud_available,
@@ -78,6 +77,11 @@ class PreferencesView(Adw.PreferencesPage):
     row_nvapi = Gtk.Template.Child()
     row_discrete = Gtk.Template.Child()
     row_vkbasalt = Gtk.Template.Child()
+    row_gamescope = Gtk.Template.Child()
+    row_mangohud = Gtk.Template.Child()
+    row_gamemode = Gtk.Template.Child()
+    row_vmtouch = Gtk.Template.Child()
+    row_obsvkc = Gtk.Template.Child()
     row_wayland = Gtk.Template.Child()
     row_winebridge = Gtk.Template.Child()
     row_manage_display = Gtk.Template.Child()
@@ -148,79 +152,76 @@ class PreferencesView(Adw.PreferencesPage):
             return
 
         _not_available = _("This feature is unavailable on your system.")
-        _flatpak_not_available = _(
-            "{} To add this feature, please run flatpak install"
-        ).format(_not_available)
-        _gamescope_pkg_name = "org.freedesktop.Platform.VulkanLayer.gamescope"
-        _vkbasalt_pkg_name = "org.freedesktop.Platform.VulkanLayer.vkBasalt"
-        _mangohud_pkg_name = "org.freedesktop.Platform.VulkanLayer.MangoHud"
-        _obsvkc_pkg_name = "com.obsproject.Studio.Plugin.OBSVkCapture"
-        _flatpak_pkg_name = {
-            "gamescope": (
-                f"{_gamescope_pkg_name}//{base_version}"
-                if base_version
-                else _gamescope_pkg_name
-            ),
-            "vkbasalt": (
-                f"{_vkbasalt_pkg_name}//{base_version}"
-                if base_version
-                else _vkbasalt_pkg_name
-            ),
-            "mangohud": (
-                f"{_mangohud_pkg_name}//{base_version}"
-                if base_version
-                else _mangohud_pkg_name
-            ),
-            "obsvkc": _obsvkc_pkg_name,
+        _flatpak_not_available = _("{} To add this feature, please run").format(
+            _not_available
+        )
+        self._install_commands = {
+            "gamescope": "flatpak install --user com.obsproject.Studio.Plugin.OBSVkCapture",
+            "vkbasalt": "flatpak install --user org.freedesktop.Platform.VulkanLayer.vkBasalt",
+            "mangohud": "flatpak install --user org.freedesktop.Platform.VulkanLayer.MangoHud",
+            "obsvkc": "flatpak install --user com.obsproject.Studio.Plugin.OBSVkCapture",
         }
+
+        is_flatpak = "FLATPAK_ID" in os.environ
 
         if not gamemode_available:
             self.switch_gamemode.set_tooltip_text(_not_available)
+            self.__add_unavailable_indicator(self.row_gamemode, None)
 
         if not gamescope_available:
-            if "FLATPAK_ID" in os.environ:
-                _gamescope_not_available = (
-                    f"{_flatpak_not_available} {_flatpak_pkg_name['gamescope']}"
-                )
-                self.switch_gamescope.set_tooltip_text(_gamescope_not_available)
-                self.btn_manage_gamescope.set_tooltip_text(_gamescope_not_available)
-            else:
-                self.switch_gamescope.set_tooltip_text(_not_available)
-                self.btn_manage_gamescope.set_tooltip_text(_not_available)
+            _gamescope_command = self._install_commands.get("gamescope")
+            _gamescope_not_available = (
+                f"{_flatpak_not_available} {_gamescope_command}"
+                if is_flatpak
+                else _not_available
+            )
+            self.switch_gamescope.set_tooltip_text(_gamescope_not_available)
+            self.btn_manage_gamescope.set_tooltip_text(_gamescope_not_available)
+            self.__add_unavailable_indicator(
+                self.row_gamescope, _gamescope_command if is_flatpak else None
+            )
 
         if not vkbasalt_available:
-            if "FLATPAK_ID" in os.environ:
-                _vkbasalt_not_available = (
-                    f"{_flatpak_not_available} {_flatpak_pkg_name['vkbasalt']}"
-                )
-                self.switch_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
-                self.btn_manage_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
-            else:
-                self.switch_vkbasalt.set_tooltip_text(_not_available)
-                self.btn_manage_vkbasalt.set_tooltip_text(_not_available)
+            _vkbasalt_command = self._install_commands.get("vkbasalt")
+            _vkbasalt_not_available = (
+                f"{_flatpak_not_available} {_vkbasalt_command}"
+                if is_flatpak
+                else _not_available
+            )
+            self.switch_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
+            self.btn_manage_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
+            self.__add_unavailable_indicator(
+                self.row_vkbasalt, _vkbasalt_command if is_flatpak else None
+            )
 
         if not mangohud_available:
-            if "FLATPAK_ID" in os.environ:
-                _mangohud_not_available = (
-                    f"{_flatpak_not_available} {_flatpak_pkg_name['mangohud']}"
-                )
-                self.switch_mangohud.set_tooltip_text(_mangohud_not_available)
-                self.btn_manage_mangohud.set_tooltip_text(_mangohud_not_available)
-            else:
-                self.switch_mangohud.set_tooltip_text(_not_available)
-                self.btn_manage_mangohud.set_tooltip_text(_not_available)
+            _mangohud_command = self._install_commands.get("mangohud")
+            _mangohud_not_available = (
+                f"{_flatpak_not_available} {_mangohud_command}"
+                if is_flatpak
+                else _not_available
+            )
+            self.switch_mangohud.set_tooltip_text(_mangohud_not_available)
+            self.btn_manage_mangohud.set_tooltip_text(_mangohud_not_available)
+            self.__add_unavailable_indicator(
+                self.row_mangohud, _mangohud_command if is_flatpak else None
+            )
 
         if not obs_vkc_available:
-            if "FLATPAK_ID" in os.environ:
-                _obsvkc_not_available = (
-                    f"{_flatpak_not_available} {_flatpak_pkg_name['obsvkc']}"
-                )
-                self.switch_obsvkc.set_tooltip_text(_obsvkc_not_available)
-            else:
-                self.switch_obsvkc.set_tooltip_text(_not_available)
+            _obsvkc_command = self._install_commands.get("obsvkc")
+            _obsvkc_not_available = (
+                f"{_flatpak_not_available} {_obsvkc_command}"
+                if is_flatpak
+                else _not_available
+            )
+            self.switch_obsvkc.set_tooltip_text(_obsvkc_not_available)
+            self.__add_unavailable_indicator(
+                self.row_obsvkc, _obsvkc_command if is_flatpak else None
+            )
 
         if not vmtouch_available:
             self.switch_vmtouch.set_tooltip_text(_not_available)
+            self.__add_unavailable_indicator(self.row_vmtouch, None)
 
         # region signals
         self.row_manage_display.connect("activated", self.__show_display_settings)
@@ -315,6 +316,74 @@ class PreferencesView(Adw.PreferencesPage):
 
         is_wayland_session = DisplayUtils.display_server_type() == "wayland"
         self.switch_wayland.set_sensitive(is_wayland_session)
+
+    def __create_unavailable_popover(self, command: str | None) -> Gtk.Popover:
+        popover = Gtk.Popover()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        box.set_margin_top(6)
+        box.set_margin_bottom(6)
+        box.set_margin_start(6)
+        box.set_margin_end(6)
+
+        unavailable_label = Gtk.Label(
+            label=_("This feature is unavailable on your system."),
+            xalign=0,
+            wrap=True,
+        )
+        box.append(unavailable_label)
+
+        if command:
+            command_label = Gtk.Label(label=_("To add it, please run:"))
+            command_label.set_xalign(0)
+            box.append(command_label)
+
+            command_box = Gtk.Box(spacing=6)
+            command_box.set_hexpand(True)
+
+            command_entry = Gtk.Entry()
+            command_entry.set_editable(False)
+            command_entry.set_hexpand(True)
+            command_entry.set_text(command)
+            command_entry.add_css_class("monospace")
+            command_entry.set_width_chars(len(command))
+            command_entry.set_focusable(False)
+
+            btn_copy_command = Gtk.Button()
+            btn_copy_command.set_icon_name("edit-copy-symbolic")
+            btn_copy_command.set_tooltip_text(_("Copy command"))
+            btn_copy_command.connect(
+                "clicked", self.__copy_command_to_clipboard, command
+            )
+
+            command_box.append(command_entry)
+            command_box.append(btn_copy_command)
+            box.append(command_box)
+
+        popover.set_child(box)
+        return popover
+
+    def __add_unavailable_indicator(self, row: Adw.ActionRow, command: str | None):
+        if not row:
+            return
+
+        popover = self.__create_unavailable_popover(command)
+        menu_button = Gtk.MenuButton()
+        menu_button.set_valign(Gtk.Align.CENTER)
+        menu_button.set_icon_name("dialog-warning-symbolic")
+        menu_button.set_has_frame(False)
+        menu_button.set_popover(popover)
+        menu_button.set_tooltip_text(_("This feature is unavailable on your system."))
+
+        row.add_suffix(menu_button)
+
+    def __copy_command_to_clipboard(self, _widget, command: str):
+        display = Gdk.Display.get_default()
+        if not display:
+            return
+
+        clipboard = Gdk.Display.get_clipboard(display)
+        clipboard.set_content(Gdk.ContentProvider.new_for_value(command))
+        self.window.show_toast(_("Copied to clipboard"))
 
     def __check_entry_name(self, *_args):
         if self.entry_name.get_text() != self.config.Name:
