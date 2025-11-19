@@ -974,6 +974,7 @@ class Manager(metaclass=Singleton):
                     "gamescope": _program.get("gamescope"),
                     "pulseaudio_latency": _program.get("pulseaudio_latency"),
                     "virtual_desktop": _program.get("virtual_desktop"),
+                    "winebridge": _program.get("winebridge"),
                     "removed": _program.get("removed"),
                     "id": _program.get("id"),
                 }
