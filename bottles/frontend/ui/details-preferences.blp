@@ -329,6 +329,16 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
+    Adw.ActionRow row_winebridge {
+      activatable-widget: switch_winebridge;
+      title: _("Use WineBridge");
+      subtitle: _("Start programs through WineBridge by default for this bottle.");
+
+      Switch switch_winebridge {
+        valign: center;
+      }
+    }
+
     Adw.ActionRow row_steam_runtime {
       activatable-widget: switch_steam_runtime;
       title: _("Steam Runtime");

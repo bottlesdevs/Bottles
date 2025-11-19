@@ -50,12 +50,14 @@ class LaunchOptionsDialog(Adw.Window):
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
+    switch_winebridge = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
     switch_virt_desktop = Gtk.Template.Child()
     action_dxvk = Gtk.Template.Child()
     action_vkd3d = Gtk.Template.Child()
     action_nvapi = Gtk.Template.Child()
     action_fsr = Gtk.Template.Child()
+    action_winebridge = Gtk.Template.Child()
     action_gamescope = Gtk.Template.Child()
     action_cwd = Gtk.Template.Child()
     action_virt_desktop = Gtk.Template.Child()
@@ -77,6 +79,11 @@ class LaunchOptionsDialog(Adw.Window):
         if not self.global_nvapi:
             self.action_nvapi.set_subtitle(self.__msg_disabled.format("DXVK-NVAPI"))
             self.switch_nvapi.set_sensitive(False)
+        if not self.global_winebridge:
+            self.action_winebridge.set_subtitle(
+                self.__msg_disabled.format("WineBridge")
+            )
+            self.switch_winebridge.set_sensitive(False)
 
     def __init__(self, parent, config, program, **kwargs):
         super().__init__(**kwargs)
@@ -102,6 +109,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.toggled["fsr"] = False
         self.toggled["gamescope"] = False
         self.toggled["virtual_desktop"] = False
+        self.toggled["winebridge"] = False
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
@@ -123,6 +131,9 @@ class LaunchOptionsDialog(Adw.Window):
         self.global_virt_desktop = program_virt_desktop = (
             config.Parameters.virtual_desktop
         )
+        self.global_winebridge = program_winebridge = getattr(
+            config.Parameters, "winebridge", True
+        )
 
         if self.program.get("dxvk") is not None:
             program_dxvk = self.program.get("dxvk")
@@ -142,6 +153,9 @@ class LaunchOptionsDialog(Adw.Window):
         if self.program.get("virtual_desktop") is not None:
             program_virt_desktop = self.program.get("virtual_desktop")
             self.action_virt_desktop.set_subtitle(self.__msg_override)
+        if self.program.get("winebridge") is not None:
+            program_winebridge = self.program.get("winebridge")
+            self.action_winebridge.set_subtitle(self.__msg_override)
 
         self.switch_dxvk.set_active(program_dxvk)
         self.switch_vkd3d.set_active(program_vkd3d)
@@ -149,6 +163,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_fsr.set_active(program_fsr)
         self.switch_gamescope.set_active(program_gamescope)
         self.switch_virt_desktop.set_active(program_virt_desktop)
+        self.switch_winebridge.set_active(program_winebridge)
 
         self.switch_dxvk.connect(
             "state-set", self.__check_override, self.action_dxvk, "dxvk"
@@ -170,6 +185,9 @@ class LaunchOptionsDialog(Adw.Window):
             self.__check_override,
             self.action_virt_desktop,
             "virtual_desktop",
+        )
+        self.switch_winebridge.connect(
+            "state-set", self.__check_override, self.action_winebridge, "winebridge"
         )
 
         if program.get("pre_script") not in ("", None):
@@ -217,6 +235,7 @@ class LaunchOptionsDialog(Adw.Window):
         program_fsr = self.switch_fsr.get_state()
         program_gamescope = self.switch_gamescope.get_state()
         program_virt_desktop = self.switch_virt_desktop.get_state()
+        program_winebridge = self.switch_winebridge.get_state()
 
         self.__set_override("dxvk", program_dxvk, self.global_dxvk)
         self.__set_override("vkd3d", program_vkd3d, self.global_vkd3d)
@@ -226,6 +245,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.__set_override(
             "virtual_desktop", program_virt_desktop, self.global_virt_desktop
         )
+        self.__set_override("winebridge", program_winebridge, self.global_winebridge)
         self.program["arguments"] = self.entry_arguments.get_text()
 
         pre_args = self.entry_pre_script_args.get_text()
@@ -373,12 +393,14 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_fsr.set_active(self.global_fsr)
         self.switch_gamescope.set_active(self.global_gamescope)
         self.switch_virt_desktop.set_active(self.global_virt_desktop)
+        self.switch_winebridge.set_active(self.global_winebridge)
         self.action_dxvk.set_subtitle("")
         self.action_vkd3d.set_subtitle("")
         self.action_nvapi.set_subtitle("")
         self.action_fsr.set_subtitle("")
         self.action_gamescope.set_subtitle("")
         self.action_virt_desktop.set_subtitle("")
+        self.action_winebridge.set_subtitle("")
         self.__set_disabled_switches()
         for name in self.toggled:
             self.toggled[name] = None

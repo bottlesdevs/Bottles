@@ -1,7 +1,7 @@
 import os
-import time
 import re
 import shlex
+import time
 import uuid
 from typing import Optional, Pattern
 
@@ -10,21 +10,21 @@ from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.process import (
+    ProcessFinishedPayload,
+    ProcessStartedPayload,
+)
 from bottles.backend.models.result import Result
+from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.msiexec import MsiExec
 from bottles.backend.wine.start import Start
+from bottles.backend.wine.winebridge import WineBridge
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.winepath import WinePath
-from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.state import SignalManager, Signals
-from bottles.backend.models.process import (
-    ProcessStartedPayload,
-    ProcessFinishedPayload,
-)
 
 logging = Logger()
 
@@ -38,7 +38,7 @@ class WineExecutor:
         "BOTTLE_NAME",
         "BOTTLE_PATH",
     }
-    
+
     def __init__(
         self,
         config: BottleConfig,
@@ -60,6 +60,7 @@ class WineExecutor:
         program_fsr: Optional[bool] = None,
         program_gamescope: Optional[bool] = None,
         program_virt_desktop: Optional[bool] = None,
+        program_winebridge: Optional[bool] = None,
     ):
         logging.info("Launching an executable…")
         self.config = config
@@ -88,6 +89,11 @@ class WineExecutor:
         self.monitoring = monitoring
         self.use_gamescope = program_gamescope
         self.use_virt_desktop = program_virt_desktop
+        self.use_winebridge = (
+            program_winebridge
+            if program_winebridge is not None
+            else getattr(self.config.Parameters, "winebridge", True)
+        )
         self._play_session_id = -1
 
         env_dll_overrides = []
@@ -148,8 +154,12 @@ class WineExecutor:
             config=config,
             exec_path=program.get("path"),
             args=_resolve("arguments"),
-            pre_script=cls._replace_placeholders(program.get("pre_script"), placeholders),
-            post_script=cls._replace_placeholders(program.get("post_script"), placeholders),
+            pre_script=cls._replace_placeholders(
+                program.get("pre_script"), placeholders
+            ),
+            post_script=cls._replace_placeholders(
+                program.get("post_script"), placeholders
+            ),
             pre_script_args=_resolve("pre_script_args"),
             post_script_args=_resolve("post_script_args"),
             cwd=_resolve("folder"),
@@ -160,6 +170,7 @@ class WineExecutor:
             program_fsr=program.get("fsr"),
             program_gamescope=program.get("gamescope"),
             program_virt_desktop=program.get("virtual_desktop"),
+            program_winebridge=program.get("winebridge"),
         ).run()
 
     @staticmethod
@@ -189,10 +200,14 @@ class WineExecutor:
             "BOTTLE_NAME": getattr(config, "Name", "") or "",
             "BOTTLE_PATH": bottle_path,
         }
-        return {key: value for key, value in placeholders.items() if isinstance(value, str)}
+        return {
+            key: value for key, value in placeholders.items() if isinstance(value, str)
+        }
 
     @classmethod
-    def _replace_placeholders(cls, value: Optional[str], placeholders: dict[str, str]) -> Optional[str]:
+    def _replace_placeholders(
+        cls, value: Optional[str], placeholders: dict[str, str]
+    ) -> Optional[str]:
         if not isinstance(value, str) or not value:
             return value
 
@@ -290,24 +305,28 @@ class WineExecutor:
 
     def run(self) -> Result:
         # Emit ProgramStarted (best-effort)
-        launch_id = f"{self.config.Name}:{int(time.time()*1000)}:{os.getpid()}"
+        launch_id = f"{self.config.Name}:{int(time.time() * 1000)}:{os.getpid()}"
         bottle_id = self.config.Name
         bottle_name = self.config.Name
         bottle_path = ManagerUtils.get_bottle_path(self.config)
-        program_name = os.path.basename(self._raw_exec_path) if \
-            self._raw_exec_path else "unknown"
+        program_name = (
+            os.path.basename(self._raw_exec_path) if self._raw_exec_path else "unknown"
+        )
         program_path = self._raw_exec_path or self.exec_path
         try:
             SignalManager.send(
                 Signals.ProgramStarted,
-                Result(True, ProcessStartedPayload(
-                    launch_id=launch_id,
-                    bottle_id=bottle_id,
-                    bottle_name=bottle_name,
-                    bottle_path=bottle_path,
-                    program_name=program_name,
-                    program_path=program_path,
-                )),
+                Result(
+                    True,
+                    ProcessStartedPayload(
+                        launch_id=launch_id,
+                        bottle_id=bottle_id,
+                        bottle_name=bottle_name,
+                        bottle_path=bottle_path,
+                        program_name=program_name,
+                        program_path=program_path,
+                    ),
+                ),
             )
         except Exception:
             pass
@@ -330,11 +349,14 @@ class WineExecutor:
             try:
                 SignalManager.send(
                     Signals.ProgramFinished,
-                    Result(True, ProcessFinishedPayload(
-                        launch_id=launch_id,
-                        status="unknown",
-                        ended_at=int(time.time()),
-                    )),
+                    Result(
+                        True,
+                        ProcessFinishedPayload(
+                            launch_id=launch_id,
+                            status="unknown",
+                            ended_at=int(time.time()),
+                        ),
+                    ),
                 )
             except Exception:
                 pass
@@ -344,11 +366,14 @@ class WineExecutor:
         try:
             SignalManager.send(
                 Signals.ProgramFinished,
-                Result(True, ProcessFinishedPayload(
-                    launch_id=launch_id,
-                    status="success" if res.status else "unknown",
-                    ended_at=int(time.time()),
-                )),
+                Result(
+                    True,
+                    ProcessFinishedPayload(
+                        launch_id=launch_id,
+                        status="success" if res.status else "unknown",
+                        ended_at=int(time.time()),
+                    ),
+                ),
             )
         except Exception:
             pass
@@ -356,13 +381,17 @@ class WineExecutor:
         return res
 
     def __launch_with_bridge(self):
-        # winebridge = WineBridge(self.config)
-        # if winebridge.is_available():
-        #     res = winebridge.run_exe(self.exec_path)
-        #     return Result(
-        #         status=True,
-        #         data={"output": res}
-        #     )
+        if self.use_winebridge:
+            winebridge = WineBridge(self.config)
+            if winebridge.is_available():
+                winepath = WinePath(self.config)
+                exec_path = (
+                    winepath.to_windows(self.exec_path, native=True)
+                    if winepath.is_unix(self.exec_path)
+                    else self.exec_path
+                )
+                res = winebridge.run_exe(exec_path)
+                return Result(status=True, data={"output": res})
         winepath = WinePath(self.config)
         if self.use_virt_desktop:
             if winepath.is_unix(self.exec_path):
