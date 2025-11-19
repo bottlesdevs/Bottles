@@ -225,8 +225,11 @@ class ManagerUtils:
         custom_icon: str = "",
         use_xdp: bool = False,
     ) -> bool:
-        if not os.path.exists(Paths.applications) and not use_xdp:
-            return False
+        if not use_xdp:
+            try:
+                os.makedirs(Paths.applications, exist_ok=True)
+            except OSError:
+                return False
 
         cmd_legacy = "bottles"
         cmd_cli = "bottles-cli"
