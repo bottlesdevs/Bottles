@@ -1,6 +1,7 @@
 import os
 
 from bottles.backend.logger import Logger
+from bottles.backend.wine.winepath import WinePath
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.wineserver import WineServer
 
@@ -63,5 +64,7 @@ class WineBridge(WineProgram):
         return self.launch(args=args, communicate=True, action_name="kill_proc_by_name")
 
     def run_exe(self, exec_path: str):
-        args = f"runExe {exec_path}"
+        winepath = WinePath(self.config)
+        exec_path = winepath.to_windows(exec_path)
+        args = f'runExe "{exec_path}"'
         return self.launch(args=args, communicate=True, action_name="run_exe")

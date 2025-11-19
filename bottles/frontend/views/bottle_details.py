@@ -65,6 +65,7 @@ class BottleView(Adw.PreferencesPage):
     popover_exec_settings = Gtk.Template.Child()
     exec_arguments = Gtk.Template.Child()
     exec_terminal = Gtk.Template.Child()
+    exec_winebridge = Gtk.Template.Child()
     row_winecfg = Gtk.Template.Child()
     row_preferences = Gtk.Template.Child()
     row_dependencies = Gtk.Template.Child()
@@ -170,6 +171,8 @@ class BottleView(Adw.PreferencesPage):
             the documentation on how to expose directories
             """
             self.btn_flatpak_doc.set_visible(True)
+
+        self.exec_winebridge.set_active(self.config.Winebridge)
 
     def __change_page(self, _widget, page_name):
         """
@@ -469,6 +472,7 @@ class BottleView(Adw.PreferencesPage):
                     exec_path=dialog.get_file().get_path(),
                     args=self.config.get("session_arguments"),
                     terminal=self.config.get("run_in_terminal"),
+                    program_winebridge=self.exec_winebridge.get_active(),
                 )
 
                 def callback(a, b):

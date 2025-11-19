@@ -1,9 +1,9 @@
 import inspect
 import logging
 import os
-from dataclasses import dataclass, field, replace, asdict, is_dataclass
+from dataclasses import asdict, dataclass, field, is_dataclass, replace
 from io import IOBase
-from typing import List, Dict, Optional, ItemsView, Container, IO
+from typing import IO, Container, Dict, ItemsView, List, Optional
 
 from bottles.backend.models.result import Result
 from bottles.backend.utils import yaml
@@ -106,6 +106,7 @@ class BottleParams(DictCompatMixIn):
     use_eac_runtime: bool = True
     use_be_runtime: bool = True
     use_steam_runtime: bool = False
+    winebridge: bool = True
     sandbox: bool = False
     versioning_compression: bool = False
     versioning_automatic: bool = False
@@ -144,6 +145,7 @@ class BottleConfig(DictCompatMixIn):
     session_arguments: str = ""
     run_in_terminal: bool = False
     Language: str = "sys"  # "sys", "any valid language code"
+    Winebridge: bool = True
 
     # Section - Not Existed in Sample Config but used in code
     CompatData: str = ""
