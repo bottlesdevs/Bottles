@@ -66,5 +66,5 @@ class WineBridge(WineProgram):
     def run_exe(self, exec_path: str):
         winepath = WinePath(self.config)
         exec_path = winepath.to_windows(exec_path, True)
-        args = f'runExe "{exec_path}"'
+        args = f'runExe --shell "{exec_path}"'
         return self.launch(args=args, communicate=True, action_name="run_exe")
