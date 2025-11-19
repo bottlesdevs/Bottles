@@ -365,8 +365,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.manager.update_config(
                 config=self.config, key="WorkingDir", value=dialog.get_file().get_path()
             )
-            self.label_cwd.set_label(os.path.basename(path))
-            self.btn_cwd_reset.set_visible(True)
+            self.__update_working_directory_row(path)
 
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Working Directory"),
@@ -380,8 +379,23 @@ class PreferencesView(Adw.PreferencesPage):
 
     def reset_cwd(self, *_args):
         self.manager.update_config(config=self.config, key="WorkingDir", value="")
-        self.label_cwd.set_label("(Default)")
-        self.btn_cwd_reset.set_visible(False)
+        self.__update_working_directory_row()
+
+    def __update_working_directory_row(self, working_dir=None):
+        """Update the working directory."""
+
+        working_dir = working_dir if working_dir is not None else self.config.WorkingDir
+        has_custom_dir = bool(working_dir)
+
+        if has_custom_dir:
+            basename = os.path.basename(os.path.normpath(working_dir)) or working_dir
+            self.label_cwd.set_label(basename)
+            self.label_cwd.set_tooltip_text(working_dir)
+        else:
+            self.label_cwd.set_label(_("(Default)"))
+            self.label_cwd.set_tooltip_text(None)
+
+        self.btn_cwd_reset.set_visible(has_custom_dir)
 
     def update_combo_components(self):
         """
@@ -492,7 +506,7 @@ class PreferencesView(Adw.PreferencesPage):
 
         self.switch_discrete.set_active(parameters.discrete_gpu)
 
-        self.btn_cwd_reset.set_visible(self.config.WorkingDir)
+        self.__update_working_directory_row()
 
         self.entry_name.set_text(config.Name)
 
