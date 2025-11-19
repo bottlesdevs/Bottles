@@ -716,29 +716,58 @@ class Manager(metaclass=Singleton):
     def check_winebridge(
         self, install_latest: bool = True, update: bool = False
     ) -> bool:
+        def _is_newer(candidate: str, current: str) -> bool:
+            versions = [candidate, current]
+            try:
+                sorted_versions = sort_by_version(list(versions))
+            except ValueError:
+                sorted_versions = sorted(versions, reverse=True)
+            return sorted_versions[0] == candidate and candidate != current
+
         self.winebridge_available = []
         winebridge = os.listdir(Paths.winebridge)
+        latest_supported = None
 
-        if len(winebridge) == 0 or update:
-            if install_latest and self.utils_conn.check_connection():
-                logging.warning("No WineBridge found.")
-                try:
-                    version = next(iter(self.supported_winebridge))
-                    self.component_manager.install("winebridge", version)
-                    self.winebridge_available = [version]
-                    return True
-                except StopIteration:
-                    return False
-            return False
+        if self.supported_winebridge:
+            try:
+                latest_supported = sort_by_version(
+                    list(self.supported_winebridge.keys())
+                )[0]
+            except ValueError:
+                latest_supported = sorted(
+                    list(self.supported_winebridge.keys()), reverse=True
+                )[0]
 
         version_file = os.path.join(Paths.winebridge, "VERSION")
+        installed_identifier = None
         if os.path.exists(version_file):
             with open(version_file, "r") as f:
                 version = f.read().strip()
                 if version:
-                    self.winebridge_available = [f"winebridge-{version}"]
-                    return True
-        return False
+                    installed_identifier = f"winebridge-{version}"
+                    self.winebridge_available = [installed_identifier]
+
+        can_install = install_latest or update
+        needs_latest = False
+        if can_install and latest_supported:
+            needs_latest = (
+                update
+                or len(winebridge) == 0
+                or not installed_identifier
+                or _is_newer(latest_supported, installed_identifier)
+            )
+
+        if needs_latest:
+            if not self.utils_conn.check_connection():
+                return False
+            logging.warning("WineBridge installation/update required.")
+            res = self.component_manager.install("winebridge", latest_supported)
+            if res.ok:
+                self.winebridge_available = [latest_supported]
+                return True
+            return False
+
+        return bool(self.winebridge_available)
 
     def check_dxvk(self, install_latest: bool = True) -> bool:
         res = self.__check_component("dxvk", install_latest)
