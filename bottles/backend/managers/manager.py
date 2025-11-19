@@ -1643,6 +1643,10 @@ class Manager(metaclass=Singleton):
         config.Update_Date = str(datetime.now())
         if versioning:
             config.Versioning = True
+        config.Limit_System_Environment = True
+        config.Inherited_Environment_Variables = (
+            Samples.default_inherited_environment.copy()
+        )
 
         cleanup_config = config
 

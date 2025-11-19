@@ -5,7 +5,7 @@ import shutil
 import stat
 import subprocess
 import tempfile
-from typing import Optional
+from typing import Iterable, Optional
 
 from bottles.backend.globals import (
     Paths,
@@ -38,10 +38,18 @@ class WineEnv:
     __env: dict = {}
     __result: dict = {"envs": {}, "overrides": []}
 
-    def __init__(self, clean: bool = False):
+    def __init__(self, clean: bool = False, allowed_keys: Optional[Iterable[str]] = None):
         self.__env = {}
-        if not clean:
+        if clean:
+            return
+
+        if allowed_keys is None:
             self.__env = os.environ.copy()
+            return
+
+        for key in allowed_keys:
+            if key in os.environ:
+                self.__env[key] = os.environ[key]
 
     def add(self, key, value, override=False):
         if key in self.__env:
@@ -204,8 +212,13 @@ class WineCommand:
         return_steam_env: bool = False,
         return_clean_env: bool = False,
     ) -> dict:
-        env = WineEnv(clean=return_steam_env or return_clean_env)
         config = self.config
+        clean_env = return_steam_env or return_clean_env
+        allowed_env_keys: Optional[Iterable[str]] = None
+        if not clean_env and getattr(config, "Limit_System_Environment", False):
+            allowed_env_keys = config.Inherited_Environment_Variables
+
+        env = WineEnv(clean=clean_env, allowed_keys=allowed_env_keys)
         arch = config.Arch
         params = config.Parameters
 

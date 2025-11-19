@@ -1,9 +1,10 @@
 """Unit tests for WineExecutor placeholder handling"""
 
-from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.config import BottleConfig, BottleParams
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.executor import WineExecutor
+from bottles.backend.wine.winecommand import WineCommand, WineEnv
 
 
 def _make_config(name: str = "TestBottle", path: str = "TestBottlePath") -> BottleConfig:
@@ -63,6 +64,7 @@ def test_run_program_substitutes_placeholders(monkeypatch):
         program_fsr=None,
         program_gamescope=None,
         program_virt_desktop=None,
+        program_winebridge=None,
     ):
         # mimic original __init__ contract enough for run() stub
         self.config = config
@@ -104,3 +106,95 @@ def test_run_program_substitutes_placeholders(monkeypatch):
     assert data["pre_script_args"] == f"--prefix={ManagerUtils.get_bottle_path(config)}"
     assert data["post_script_args"] == "--dir=/games/awesome"
     assert data["cwd"] == "/games/awesome"
+
+
+def test_wine_env_respects_allowed_keys(monkeypatch):
+    monkeypatch.setenv("KEEP_ONLY", "1")
+    monkeypatch.setenv("DROP_ME", "2")
+
+    env = WineEnv(clean=False, allowed_keys=["KEEP_ONLY"])
+    resolved = env.get()["envs"]
+
+    assert resolved["KEEP_ONLY"] == "1"
+    assert "DROP_ME" not in resolved
+
+
+def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
+    bottle_path = tmp_path / "TestBottle"
+    bottle_path.mkdir()
+    runner_path = tmp_path / "runner"
+    for sub in [
+        "lib",
+        "lib64",
+        "lib/wine/x86_64-unix",
+        "lib32/wine/x86_64-unix",
+        "lib32",
+        "lib64/wine/x86_64-unix",
+        "lib/wine/i386-unix",
+        "lib32/wine/i386-unix",
+        "lib64/wine/i386-unix",
+    ]:
+        (runner_path / sub).mkdir(parents=True, exist_ok=True)
+
+    config = BottleConfig(Name="Test", Path=str(bottle_path), Runner="test")
+    params = BottleParams()
+    params.use_runtime = False
+    params.use_eac_runtime = False
+    params.use_be_runtime = False
+    config.Parameters = params
+    config.Limit_System_Environment = True
+    config.Inherited_Environment_Variables = ["DISPLAY"]
+
+    monkeypatch.setenv("DISPLAY", ":1")
+    monkeypatch.setenv("SHOULD_NOT_PASS", "secret")
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle_path),
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_runner_path",
+        lambda _runner: str(runner_path),
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.SteamUtils.is_proton", lambda *_: False
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.DisplayUtils.check_nvidia_device",
+        lambda: None,
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.DisplayUtils.display_server_type",
+        lambda: "x11",
+    )
+
+    def _fake_gpu(self):
+        return {
+            "prime": {
+                "discrete": None,
+                "integrated": {"icd": "/tmp/icd", "envs": {}},
+            },
+            "vendors": {"generic": {"icd": "/tmp/icd", "envs": {}}},
+        }
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.GPUUtils.get_gpu",
+        _fake_gpu,
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.RuntimeManager.get_runtime_env",
+        lambda *_: [],
+    )
+
+    winecmd = WineCommand.__new__(WineCommand)
+    winecmd.config = config
+    winecmd.minimal = True
+    winecmd.arguments = ""
+    winecmd.runner = "/usr/bin/wine"
+    winecmd.runner_runtime = ""
+    winecmd.gamescope_activated = False
+    winecmd.terminal = False
+
+    env = winecmd.get_env()
+    assert env["DISPLAY"] == ":1"
+    assert "SHOULD_NOT_PASS" not in env

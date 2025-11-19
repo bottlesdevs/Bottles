@@ -15,11 +15,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import re
 from gettext import gettext as _
 
-from gi.repository import Adw, GLib, Gtk
+from gi.repository import Adw, Gtk
 
 from bottles.backend.logger import Logger
+from bottles.backend.models.samples import Samples
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.utils.sh import ShUtils
 
@@ -122,6 +124,23 @@ class EnvironmentVariableEntryRow(Adw.EntryRow):
             self.add_css_class("error")
 
 
+@Gtk.Template(resource_path="/com/usebottles/bottles/inherited-env-entry.ui")
+class InheritedEnvironmentVariableRow(Adw.ActionRow):
+    __gtype_name__ = "InheritedEnvironmentVariableRow"
+
+    btn_remove = Gtk.Template.Child()
+
+    def __init__(self, parent, name: str, **kwargs):
+        super().__init__(**kwargs)
+        self.parent = parent
+        self.variable = name
+        self.set_title(name)
+        self.btn_remove.connect("clicked", self.__remove)
+
+    def __remove(self, *_args):
+        self.parent.remove_inherited_entry(self)
+
+
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-env-vars.ui")
 class EnvironmentVariablesDialog(Adw.Dialog):
     __gtype_name__ = "EnvironmentVariablesDialog"
@@ -129,6 +148,11 @@ class EnvironmentVariablesDialog(Adw.Dialog):
     # region Widgets
     entry_new_var = Gtk.Template.Child()
     group_vars = Gtk.Template.Child()
+    group_inherited = Gtk.Template.Child()
+    switch_limit_inherited = Gtk.Template.Child()
+    entry_new_inherited = Gtk.Template.Child()
+    list_inherited = Gtk.Template.Child()
+    label_inherited_empty = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -140,10 +164,19 @@ class EnvironmentVariablesDialog(Adw.Dialog):
         self.config = config
 
         self.__populate_vars_list()
+        self.__populate_inherited_list()
 
         # connect signals
         self.entry_new_var.connect("changed", self.__validate)
         self.entry_new_var.connect("apply", self.__save_var)
+        self.switch_limit_inherited.connect(
+            "notify::active", self.__toggle_inherited_limit
+        )
+        self.entry_new_inherited.connect("changed", self.__validate_inherited)
+        self.entry_new_inherited.connect("apply", self.__save_inherited_var)
+
+        self.__valid_inherited_name = False
+        self.__update_inherited_state()
 
     def present(self):
         return super().present(self.window)
@@ -189,3 +222,98 @@ class EnvironmentVariablesDialog(Adw.Dialog):
         for env in envs:
             _entry = EnvironmentVariableEntryRow(parent=self, env=env)
             self.group_vars.add(_entry)
+
+    def __validate_inherited(self, *_args):
+        def _is_valid(name: str) -> bool:
+            return bool(re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name))
+
+        self.__valid_inherited_name = GtkUtils.validate_entry(
+            self.entry_new_inherited, _is_valid
+        )
+
+    def __toggle_inherited_limit(self, *_args):
+        active = self.switch_limit_inherited.get_active()
+        self.manager.update_config(
+            config=self.config,
+            key="Limit_System_Environment",
+            value=active,
+        )
+        if active and not self.config.Inherited_Environment_Variables:
+            defaults = Samples.default_inherited_environment.copy()
+            self.manager.update_config(
+                config=self.config,
+                key="Inherited_Environment_Variables",
+                value=defaults,
+            )
+        self.__populate_inherited_list()
+        self.__update_inherited_state()
+
+    def __populate_inherited_list(self):
+        self.switch_limit_inherited.set_active(self.config.Limit_System_Environment)
+        child = self.list_inherited.get_first_child()
+        while child:
+            next_child = child.get_next_sibling()
+            self.list_inherited.remove(child)
+            child = next_child
+
+        for name in self.config.Inherited_Environment_Variables:
+            row = InheritedEnvironmentVariableRow(parent=self, name=name)
+            self.list_inherited.append(row)
+
+        self.__update_inherited_placeholder()
+
+    def __update_inherited_placeholder(self):
+        active = self.switch_limit_inherited.get_active()
+        has_values = len(self.config.Inherited_Environment_Variables) > 0
+
+        if active:
+            self.list_inherited.set_visible(has_values)
+            self.label_inherited_empty.set_label(_("No variables selected"))
+            self.label_inherited_empty.set_visible(not has_values)
+        else:
+            self.list_inherited.set_visible(False)
+            self.label_inherited_empty.set_label(
+                _("All system environment variables will be inherited")
+            )
+            self.label_inherited_empty.set_visible(True)
+
+    def __update_inherited_state(self):
+        active = self.switch_limit_inherited.get_active()
+        self.entry_new_inherited.set_sensitive(active)
+        self.list_inherited.set_sensitive(active)
+        self.__update_inherited_placeholder()
+
+    def __save_inherited_var(self, *_args):
+        if not self.switch_limit_inherited.get_active() or not self.__valid_inherited_name:
+            return
+
+        new_name = self.entry_new_inherited.get_text().strip()
+        if not new_name:
+            return
+
+        current = list(self.config.Inherited_Environment_Variables)
+        if new_name in current:
+            self.entry_new_inherited.set_text("")
+            return
+
+        current.append(new_name)
+        self.manager.update_config(
+            config=self.config,
+            key="Inherited_Environment_Variables",
+            value=current,
+        )
+        self.entry_new_inherited.set_text("")
+        self.__populate_inherited_list()
+
+    def remove_inherited_entry(self, entry: InheritedEnvironmentVariableRow):
+        current = [
+            name
+            for name in self.config.Inherited_Environment_Variables
+            if name != entry.variable
+        ]
+        self.manager.update_config(
+            config=self.config,
+            key="Inherited_Environment_Variables",
+            value=current,
+        )
+        self.__populate_inherited_list()
