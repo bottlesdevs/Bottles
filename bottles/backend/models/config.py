@@ -136,7 +136,9 @@ class BottleConfig(DictCompatMixIn):
     State: int = 0
     Parameters: BottleParams = field(default_factory=BottleParams)
     Sandbox: BottleSandboxParams = field(default_factory=BottleSandboxParams)
+    Limit_System_Environment: bool = False
     Environment_Variables: dict = field(default_factory=dict)
+    Inherited_Environment_Variables: List[str] = field(default_factory=list)
     Installed_Dependencies: List[str] = field(default_factory=list)
     DLL_Overrides: dict = field(default_factory=dict)
     External_Programs: Dict[str, dict] = field(default_factory=dict)

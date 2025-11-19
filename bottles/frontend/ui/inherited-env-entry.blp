@@ -1,0 +1,16 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $InheritedEnvironmentVariableRow: Adw.ActionRow {
+  activatable: false;
+
+  Button btn_remove {
+    valign: center;
+    icon-name: "user-trash-symbolic";
+    tooltip-text: _("Remove");
+
+    styles [
+      "flat",
+    ]
+  }
+}
