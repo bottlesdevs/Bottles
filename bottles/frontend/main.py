@@ -85,6 +85,7 @@ class Bottles(Adw.Application):
     arg_exe = None
     arg_bottle = None
     dark_provider = None
+    journal_window = None
 
     def __init__(self):
         super().__init__(
@@ -96,6 +97,7 @@ class Bottles(Adw.Application):
         self.__create_action("quit", self.__quit, ["<primary>q", "<primary>w"])
         self.__create_action("about", self.__show_about_dialog)
         self.__create_action("import", self.__show_importer_view, ["<primary>i"])
+        self.__create_action("journal", self.__show_journal, ["<primary>j"])
         self.__create_action("preferences", self.__show_preferences, ["<primary>comma"])
         self.__create_action("help", self.__help, ["F1"])
         self.__create_action("new", self.__new_bottle, ["<primary>n"])
@@ -301,6 +303,22 @@ class Bottles(Adw.Application):
 
     def __show_importer_view(self, widget=False, *args):
         self.win.main_leaf.set_visible_child(self.win.page_importer)
+
+    def __show_journal(self, *args):
+        from bottles.frontend.windows.journal import JournalDialog
+
+        if self.journal_window:
+            self.journal_window.present()
+            return
+
+        self.journal_window = JournalDialog(application=self)
+        self.journal_window.set_transient_for(self.win)
+        self.journal_window.connect("close-request", self.__on_journal_close)
+        self.journal_window.present()
+
+    def __on_journal_close(self, *_args):
+        self.journal_window = None
+        return False
 
     def __show_about_dialog(self, *_args):
         developers = [

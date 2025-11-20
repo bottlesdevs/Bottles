@@ -15,7 +15,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from gi.repository import Adw, Gtk
+from datetime import datetime
+from gettext import gettext
+
+from gi.repository import Adw, Gtk, Pango
 
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 
@@ -39,8 +42,9 @@ class JournalDialog(Adw.Window):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.journal = JournalManager.get().items()
-        self.store = Gtk.ListStore(str, str, str)
+        self.journal = list(JournalManager.get(period="all").items())
+        self.store = Gtk.ListStore(str, str, str, bool)
+        self.current_severity = ""
 
         # connect signals
         self.search_entry.connect("search-changed", self.on_search_changed)
@@ -54,10 +58,52 @@ class JournalDialog(Adw.Window):
         )
         self.btn_info.connect("clicked", self.filter_results, JournalSeverity.INFO)
 
+        self.__setup_tree_view()
         self.populate_tree_view()
 
-    def populate_tree_view(self, query="", severity=""):
+    def __setup_tree_view(self):
+        self.tree_view.set_model(self.store)
+        self.tree_view.set_search_column(2)
+
+        for column in self.tree_view.get_columns():
+            self.tree_view.remove_column(column)
+
+        severity_renderer = Gtk.CellRendererText()
+        severity_column = Gtk.TreeViewColumn(gettext("Severity"), severity_renderer)
+        severity_column.set_cell_data_func(
+            severity_renderer, self.__get_cell_data_func(0)
+        )
+        severity_column.set_resizable(True)
+        severity_column.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
+        self.tree_view.append_column(severity_column)
+
+        timestamp_renderer = Gtk.CellRendererText()
+        timestamp_column = Gtk.TreeViewColumn(gettext("Timestamp"), timestamp_renderer)
+        timestamp_column.set_cell_data_func(
+            timestamp_renderer, self.__get_cell_data_func(1)
+        )
+        timestamp_column.set_resizable(True)
+        timestamp_column.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
+        self.tree_view.append_column(timestamp_column)
+
+        message_renderer = Gtk.CellRendererText()
+        message_renderer.set_property("ellipsize", Pango.EllipsizeMode.END)
+
+        message_column = Gtk.TreeViewColumn(gettext("Message"), message_renderer)
+        message_column.set_cell_data_func(
+            message_renderer, self.__get_cell_data_func(2)
+        )
+        message_column.set_expand(True)
+        message_column.set_resizable(True)
+        message_column.set_sizing(Gtk.TreeViewColumnSizing.GROW_ONLY)
+        message_column.set_min_width(260)
+        self.tree_view.append_column(message_column)
+
+    def populate_tree_view(self, query="", severity=None):
         self.store.clear()
+
+        if severity is None:
+            severity = self.current_severity
 
         colors = {
             JournalSeverity.CRITICAL: "#db1600",
@@ -67,37 +113,80 @@ class JournalDialog(Adw.Window):
             JournalSeverity.CRASH: "#db1600",
         }
 
+        last_date_label = None
+
         for _, value in self.journal:
-            if query.lower() in value["message"].lower() and (
-                severity == "" or severity == value["severity"]
-            ):
-                self.store.append(
-                    [
-                        '<span foreground="{}"><b>{}</b></span>'.format(
-                            colors[value["severity"]], value["severity"].capitalize()
+            if query.lower() not in value["message"].lower():
+                continue
+
+            if severity not in ("", value["severity"]):
+                continue
+
+            timestamp = value.get("timestamp", "")
+            try:
+                timestamp_dt = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+                date_label = timestamp_dt.strftime("%Y-%m-%d")
+            except (TypeError, ValueError):
+                date_label = ""
+
+            if date_label != last_date_label:
+                self.store.append(["", date_label, "", True])
+                last_date_label = date_label
+
+            self.store.append(
+                [
+                    '<span foreground="{}"><b>{}</b></span>'.format(
+                        colors.get(
+                            value["severity"],
+                            colors.get(JournalSeverity.INFO, "#3283a8"),
                         ),
-                        value["timestamp"],
-                        value["message"],
-                    ]
-                )
-
-        self.tree_view.set_model(self.store)
-        self.tree_view.set_search_column(1)
-
-        self.tree_view.append_column(
-            Gtk.TreeViewColumn("Severity", Gtk.CellRendererText(), markup=0)
-        )
-        self.tree_view.append_column(
-            Gtk.TreeViewColumn("Timestamp", Gtk.CellRendererText(), text=1)
-        )
-        self.tree_view.append_column(
-            Gtk.TreeViewColumn("Message", Gtk.CellRendererText(), text=2)
-        )
+                        value["severity"].capitalize(),
+                    ),
+                    timestamp,
+                    value.get("message", ""),
+                    False,
+                ]
+            )
 
     def on_search_changed(self, entry):
         self.populate_tree_view(entry.get_text())
 
     def filter_results(self, _, severity):
-        self.populate_tree_view(self.search_entry.get_text(), severity)
-        label = severity if severity != "" else "all"
-        self.label_filter.set_text(label.capitalize())
+        self.current_severity = severity
+        self.populate_tree_view(self.search_entry.get_text())
+
+        severity_labels = {
+            JournalSeverity.CRITICAL: gettext("Critical"),
+            JournalSeverity.ERROR: gettext("Errors"),
+            JournalSeverity.WARNING: gettext("Warnings"),
+            JournalSeverity.INFO: gettext("Info"),
+            JournalSeverity.CRASH: gettext("Crashes"),
+        }
+
+        label = severity_labels.get(severity, gettext("All messages"))
+        self.label_filter.set_text(label)
+
+    def __get_cell_data_func(self, column_index):
+        def _cell_data_func(column, renderer, model, iter_, _data=None):
+            self.__populate_cell(renderer, model, iter_, column_index)
+
+        return _cell_data_func
+
+    def __populate_cell(self, renderer, model, iter_, column_index):
+        is_group = model.get_value(iter_, 3)
+
+        renderer.set_property("text", None)
+
+        if is_group:
+            if column_index == 1:
+                renderer.set_property("markup", f"<b>{model.get_value(iter_, 1)}</b>")
+            else:
+                renderer.set_property("text", "")
+            return
+
+        if column_index == 0:
+            renderer.set_property("markup", model.get_value(iter_, 0))
+        elif column_index == 1:
+            renderer.set_property("text", model.get_value(iter_, 1))
+        elif column_index == 2:
+            renderer.set_property("text", model.get_value(iter_, 2))
