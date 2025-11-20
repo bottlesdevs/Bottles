@@ -6,6 +6,7 @@ bottles_sources = [
   'gtk.py',
   'common.py',
   'filters.py',
+  'playtime.py',
   'sh.py',
 ]
 

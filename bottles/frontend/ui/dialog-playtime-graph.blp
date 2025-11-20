@@ -1,0 +1,290 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $PlaytimeGraphDialog: Adw.Window {
+  modal: true;
+  default-height: 600;
+  destroy-with-parent: true;
+  title: _("window-title");
+
+  ShortcutController {
+    scope: managed;
+
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      styles [
+        "flat",
+      ]
+    }
+
+    content: Box {
+      orientation: vertical;
+      halign: center;
+      width-request: 600;
+      vexpand: true;
+
+      Box {
+        orientation: vertical;
+        margin-top: 24;
+        margin-bottom: 24;
+        margin-start: 18;
+        margin-end: 18;
+        spacing: 24;
+        // Current period stats
+        Box {
+          orientation: vertical;
+          spacing: 0;
+
+          styles [
+            "card",
+          ]
+
+          Box {
+            orientation: horizontal;
+            spacing: 12;
+            homogeneous: true;
+            margin-top: 12;
+            margin-bottom: 12;
+            margin-start: 12;
+            margin-end: 12;
+
+            Box {
+              orientation: vertical;
+              spacing: 6;
+
+              Label label_today_time {
+                label: "0m";
+                halign: start;
+
+                styles [
+                  "title-1",
+                ]
+              }
+
+              Label {
+                label: _("Today");
+                halign: start;
+
+                styles [
+                  "dim-label",
+                ]
+              }
+
+              Label label_today_avg {
+                label: _("Average: 0h 0m");
+                halign: start;
+
+                styles [
+                  "caption",
+                  "dim-label",
+                ]
+              }
+            }
+
+            Box {
+              orientation: vertical;
+              spacing: 6;
+
+              Label label_week_time {
+                label: "0h 0m";
+                halign: start;
+
+                styles [
+                  "title-1",
+                ]
+              }
+
+              Label label_week_label {
+                label: _("Weekly");
+                halign: start;
+
+                styles [
+                  "dim-label",
+                ]
+              }
+
+              Label label_week_avg {
+                label: _("Average: 0h 0m");
+                halign: start;
+
+                styles [
+                  "caption",
+                  "dim-label",
+                ]
+              }
+            }
+          }
+        }
+
+        // Chart area with card background
+        Box {
+          orientation: vertical;
+          spacing: 0;
+
+          styles [
+            "card",
+          ]
+
+          Box {
+            orientation: vertical;
+            spacing: 12;
+            margin-top: 12;
+            margin-bottom: 12;
+            margin-start: 12;
+            margin-end: 12;
+            // Bar chart container
+            Box chart_container {
+              orientation: vertical;
+              spacing: 0;
+              valign: end;
+              // PlaytimeChart widget will be added here programmatically
+            }
+
+            Separator {
+              styles [
+                "spacer",
+              ]
+            }
+
+            // Chart navigation
+            Box {
+              orientation: horizontal;
+              spacing: 12;
+
+              Button btn_prev {
+                icon-name: "go-previous-symbolic";
+                valign: center;
+                tooltip-text: _("Previous Week");
+
+                styles [
+                  "circular",
+                ]
+              }
+
+              Label label_date_range {
+                label: "Nov 2 – Nov 8";
+                hexpand: true;
+                halign: center;
+                valign: center;
+
+                styles [
+                  "title-4",
+                ]
+              }
+
+              Button btn_next {
+                icon-name: "go-next-symbolic";
+                valign: center;
+                tooltip-text: _("Next Week");
+
+                styles [
+                  "circular",
+                ]
+              }
+            }
+          }
+        }
+
+        // Total stats
+        Box {
+          orientation: vertical;
+          spacing: 12;
+
+
+          Box {
+            orientation: vertical;
+
+            styles [
+              "card",
+            ]
+
+            Box {
+              orientation: horizontal;
+              spacing: 24;
+              margin-top: 12;
+              margin-bottom: 12;
+              margin-start: 12;
+              margin-end: 12;
+
+              Box {
+                orientation: vertical;
+                spacing: 6;
+
+                Label label_total_time {
+                  label: "0h 0m";
+                  halign: start;
+
+                  styles [
+                    "title-2",
+                  ]
+                }
+
+                Label {
+                  label: _("Total Playtime");
+                  halign: start;
+
+                  styles [
+                    "dim-label",
+                  ]
+                }
+              }
+
+              Box {
+                orientation: vertical;
+                spacing: 6;
+
+                Label label_sessions_count {
+                  label: "0";
+                  halign: start;
+
+                  styles [
+                    "title-2",
+                  ]
+                }
+
+                Label {
+                  label: _("Sessions");
+                  halign: start;
+
+                  styles [
+                    "dim-label",
+                  ]
+                }
+              }
+
+              Box {
+                orientation: vertical;
+                spacing: 6;
+
+                Label label_last_played {
+                  label: _("Never");
+                  halign: start;
+
+                  styles [
+                    "title-2",
+                  ]
+                }
+
+                Label {
+                  label: _("Last Played");
+                  halign: start;
+
+                  styles [
+                    "dim-label",
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+  }
+}
