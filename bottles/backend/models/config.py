@@ -189,7 +189,8 @@ class BottleConfig(DictCompatMixIn):
                 data = yaml.load(file)
             else:
                 if not os.path.exists(file):
-                    raise FileNotFoundError("Config file not exists")
+                    logging.info("Config file %s not found, skipping load", file)
+                    return Result(False, message="Config file not exists")
 
                 with open(file, mode=mode) as f:
                     data = yaml.load(f)
