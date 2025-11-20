@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-12 11:51+0000\n"
+"PO-Revision-Date: 2025-11-21 12:50+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
@@ -562,7 +562,7 @@ msgstr ""
 "Windows.\n"
 "\n"
 "I file in questa pagina sono distribuiti da terzi con una licenza "
-"proprietaria. Installandoli, accetti i rispettivi termini di servizio."
+"proprietaria. Installandoli, accetti i rispettivi termini di licenza."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
@@ -610,6 +610,7 @@ msgid "No Installers Found"
 msgstr "Nessun installer trovato"
 
 #: bottles/frontend/ui/details-installers.blp:32
+#, fuzzy
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
@@ -939,7 +940,7 @@ msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
 msgstr ""
-"Crea automaticamente istantanee prima di installare software o cambiare "
+"Crea automaticamente le istantanee prima di installare software o cambiare "
 "impostazioni."
 
 #: bottles/frontend/ui/details-preferences.blp:391
@@ -1300,7 +1301,7 @@ msgstr "Mostra programmi"
 
 #: bottles/frontend/ui/dialog-installer.blp:148
 msgid "Installation Failed!"
-msgstr "Installazione Fallita!"
+msgstr "Installazione fallita!"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
@@ -2433,8 +2434,7 @@ msgstr "Questa funzione non è disponibile sul tuo sistema."
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
-"{} Per aggiungere questa funzionalità, esegui l'installazione di flatpak"
+msgstr "{} Per aggiungere questa funzionalità, esegui flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
 msgid "This bottle name is already in use."
@@ -3206,6 +3206,7 @@ msgid "Backend code improvement by avoiding spin-lock"
 msgstr "Miglioramento del codice backend evitando lo spin-lock"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
+#, fuzzy
 msgid "More variables for installer scripting"
 msgstr "Più variabili per lo scripting del programma di installazione"
 
