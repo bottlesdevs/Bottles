@@ -20,10 +20,6 @@ Popover pop_context {
 
     Separator {}
 
-    $GtkModelButton btn_browse {
-      text: _("Browse Files…");
-    }
-
     $GtkModelButton btn_duplicate {
       text: _("Duplicate Bottle…");
     }
@@ -306,6 +302,30 @@ template $DetailsBottle: Adw.PreferencesPage {
 
           Label {
             label: _("Run Executable…");
+          }
+        }
+      }
+    }
+
+    Adw.ActionRow {
+      activatable: false;
+      focusable: false;
+      title: _("Browse C:/ drive");
+      subtitle: _("Browse the files of this bottle.");
+
+      [suffix]
+      Button btn_browse {
+        valign: center;
+
+        Box {
+          spacing: 6;
+
+          Image {
+            icon-name: "document-open-symbolic";
+          }
+
+          Label {
+            label: _("Browse");
           }
         }
       }
