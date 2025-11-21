@@ -106,7 +106,7 @@ class BottleParams(DictCompatMixIn):
     use_eac_runtime: bool = True
     use_be_runtime: bool = True
     use_steam_runtime: bool = False
-    winebridge: bool = True
+    winebridge: bool = False
     sandbox: bool = False
     versioning_compression: bool = False
     versioning_automatic: bool = False
@@ -147,7 +147,7 @@ class BottleConfig(DictCompatMixIn):
     session_arguments: str = ""
     run_in_terminal: bool = False
     Language: str = "sys"  # "sys", "any valid language code"
-    Winebridge: bool = True
+    Winebridge: bool = False
 
     # Section - Not Existed in Sample Config but used in code
     CompatData: str = ""

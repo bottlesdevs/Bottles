@@ -124,7 +124,7 @@ class InstallerManager:
 
         for dep in dependencies:
             if is_final:
-                step_fn()
+                step_fn(dep)
 
             if dep in config.Installed_Dependencies:
                 continue

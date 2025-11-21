@@ -381,7 +381,7 @@ class WineExecutor:
         return res
 
     def __launch_with_bridge(self):
-        if self.use_winebridge:
+        if self.use_winebridge and self.exec_type == "exe":
             winebridge = WineBridge(self.config)
             if winebridge.is_available():
                 winepath = WinePath(self.config)
