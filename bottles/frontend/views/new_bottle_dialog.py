@@ -20,15 +20,15 @@ from gettext import gettext as _
 from threading import Event
 from typing import Any, Optional
 
-from bottles.backend.state import Task, TaskManager
-from gi.repository import Gtk, Adw, Pango, Gio, Xdp, GObject, GLib
+from gi.repository import Adw, Gio, GLib, GObject, Gtk, Pango, Xdp
+from pathvalidate import sanitize_filename
 
 from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils.threading import RunAsync
 from bottles.backend.models.result import Result
-from bottles.frontend.utils.filters import add_yaml_filters, add_all_filters
+from bottles.backend.state import Task, TaskManager
+from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.filters import add_all_filters, add_yaml_filters
 from bottles.frontend.utils.gtk import GtkUtils
-from pathvalidate import sanitize_filename
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/check-row.ui")
@@ -68,8 +68,8 @@ class BottlesNewBottleDialog(Adw.Dialog):
     btn_choose_path = Gtk.Template.Child()
     btn_choose_path_reset = Gtk.Template.Child()
     label_choose_path = Gtk.Template.Child()
-    label_output = Gtk.Template.Child()
-    scrolled_output = Gtk.Template.Child()
+    steps_list = Gtk.Template.Child()
+    scrolled_steps = Gtk.Template.Child()
     btn_cancel_creating = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
@@ -103,6 +103,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self._cleanup_job: Optional[RunAsync] = None
         self._cleanup_config: Optional[BottleConfig] = None
         self._cancel_requested = False
+        self._creation_steps: list[Adw.ActionRow] = []
 
         self.arch = {"win64": "64-bit", "win32": "32-bit"}
 
@@ -220,6 +221,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.stack_create.set_visible_child_name("page_creating")
         self._cancel_requested = False
         self._cleanup_config = None
+        self.__reset_creation_steps()
         self.btn_cancel_creating.set_sensitive(True)
         self.btn_cancel_creating.set_label(_("_Cancel Creation"))
 
@@ -249,16 +251,57 @@ class BottlesNewBottleDialog(Adw.Dialog):
     @GtkUtils.run_in_main_loop
     def update_output(self, text: str) -> None:
         """
-        Updates label_output with the given text by concatenating
-        with the previous text.
+        Updates the creation progress list with the given text.
         """
-        current_text = self.label_output.get_text()
-        new_line = text
-        updated_text = f"{current_text}{new_line}\n"
-        self.label_output.set_text(updated_text)
+        new_line = text.rstrip("\n")
 
-        if self._creation_task is not None and new_line.strip():
+        if not new_line.strip():
+            return
+
+        self.__mark_last_step_completed()
+
+        row = self.__create_step_row(new_line)
+        self.steps_list.append(row)
+        self._creation_steps.append(row)
+
+        def _scroll_to_bottom():
+            adj = self.scrolled_steps.get_vadjustment()
+            adj.set_value(adj.get_upper() - adj.get_page_size())
+            return False
+
+        GLib.idle_add(_scroll_to_bottom)
+
+        adjustment = self.scrolled_steps.get_vadjustment()
+        new_value = adjustment.get_upper() - adjustment.get_page_size()
+        adjustment.set_value(max(new_value, adjustment.get_lower()))
+
+        if self._creation_task is not None:
             self._creation_task.subtitle = new_line.strip()
+
+    def __create_step_row(self, text: str) -> Adw.ActionRow:
+        row = Adw.ActionRow(title=text)
+        row.set_activatable(False)
+        row.set_selectable(False)
+
+        check_image = Gtk.Image.new_from_icon_name("selection-mode-symbolic")
+        check_image.add_css_class("accent")
+        check_image.set_visible(False)
+
+        row.add_suffix(check_image)
+        row._completion_icon = check_image  # type: ignore[attr-defined]
+
+        return row
+
+    def __mark_last_step_completed(self) -> None:
+        if not self._creation_steps:
+            return
+
+        self.__set_step_completed(self._creation_steps[-1])
+
+    def __set_step_completed(self, row: Adw.ActionRow) -> None:
+        icon = getattr(row, "_completion_icon", None)
+        if icon:
+            icon.set_visible(True)
 
     @GtkUtils.run_in_main_loop
     def finish(self, result: Optional[Result], error=None) -> None:
@@ -274,6 +317,8 @@ class BottlesNewBottleDialog(Adw.Dialog):
             result_config = result.data.get("config")
             if result_config:
                 self.new_bottle_config = result_config
+
+        self.__mark_last_step_completed()
 
         if self._cancel_requested:
             if result_config:
@@ -298,9 +343,10 @@ class BottlesNewBottleDialog(Adw.Dialog):
             send_notification(notification)
 
             # Display error logs in the result page
-            self.scrolled_output.unparent()
+            self.__mark_last_step_completed()
+            self.scrolled_steps.unparent()
             box = self.status_page_status.get_child()
-            box.prepend(self.scrolled_output)
+            box.prepend(self.scrolled_steps)
 
             return
 
@@ -395,7 +441,9 @@ class BottlesNewBottleDialog(Adw.Dialog):
             self._creation_cancel_event.set()
 
         self.update_output(
-            _("Cancellation requested. Waiting for current step to finish before cleaning up…")
+            _(
+                "Cancellation requested. Waiting for current step to finish before cleaning up…"
+            )
         )
 
     def __finalize_close(self) -> None:
@@ -412,6 +460,15 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self._creation_task = None
         self._creation_job = None
         self._creation_cancel_event = None
+
+    def __reset_creation_steps(self) -> None:
+        self._creation_steps.clear()
+
+        child = self.steps_list.get_first_child()
+        while child is not None:
+            next_child = child.get_next_sibling()
+            self.steps_list.remove(child)
+            child = next_child
 
     def __build_cleanup_config(self) -> BottleConfig:
         config = BottleConfig()
@@ -447,7 +504,9 @@ class BottlesNewBottleDialog(Adw.Dialog):
 
         if not success or error:
             self.update_output(
-                _("Unable to remove every file automatically. Check the logs for details."),
+                _(
+                    "Unable to remove every file automatically. Check the logs for details."
+                ),
             )
         else:
             self.update_output(_("Cleanup completed."))

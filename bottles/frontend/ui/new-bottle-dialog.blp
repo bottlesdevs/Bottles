@@ -215,23 +215,18 @@ template $BottlesNewBottleDialog: Adw.Dialog {
                 }
               }
 
-              ScrolledWindow scrolled_output {
+              ScrolledWindow scrolled_steps {
+                vexpand: true;
+                hexpand: true;
                 margin-start: 12;
                 margin-end: 12;
                 overflow: hidden;
 
-                child: Label label_output {
-                  vexpand: true;
-                  hexpand: true;
-                  valign: fill;
-                  wrap: true;
-                  selectable: true;
-                  xalign: 0;
-                  yalign: 0;
+                child: ListBox steps_list {
+                  selection-mode: none;
 
                   styles [
-                    "monospace",
-                    "terminal",
+                    "boxed-list",
                   ]
                 };
 
