@@ -426,7 +426,8 @@ class PlaytimeService:
             return _("{} days ago").format(delta.days)
 
         glib_dt = GLib.DateTime.new_from_unix_local(int(last_played.timestamp()))
-        return glib_dt.format(_("%b %e, %Y"))
+        formatted = glib_dt.format(_("%b %e, %Y"))
+        return formatted if formatted is not None else ""
 
     def format_subtitle(self, record: Optional[PlaytimeRecord]) -> str:
         """Produce a subtitle string for UI labels."""
