@@ -196,9 +196,15 @@ class InstallerDialog(Adw.Window):
         self.status_error.set_description(error)
         self.stack.set_visible_child_name("page_error")
 
-    def next_step(self):
+    def next_step(self, detail=None):
         """Next step"""
-        phrase = self.__steps_phrases[self.__sections[self.__current_step]]
+        section = self.__sections[self.__current_step]
+
+        if section == "deps" and detail is not None:
+            phrase = _("Installing dependency: {0}").format(detail)
+        else:
+            phrase = self.__steps_phrases[section]
+
         self.progressbar.set_text(phrase)
         self.__current_step += 1
         self.progressbar.set_fraction(self.__current_step * (1 / self.__steps))
