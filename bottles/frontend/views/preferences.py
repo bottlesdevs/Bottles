@@ -57,10 +57,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_ubisoft_connect = Gtk.Template.Child()
     combo_audio_driver = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
-    list_dxvk = Gtk.Template.Child()
-    list_vkd3d = Gtk.Template.Child()
-    list_nvapi = Gtk.Template.Child()
-    list_latencyflex = Gtk.Template.Child()
+    list_dlls = Gtk.Template.Child()
     action_prerelease = Gtk.Template.Child()
     btn_bottles_path = Gtk.Template.Child()
     action_steam_proton = Gtk.Template.Child()
@@ -252,10 +249,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             EventManager.wait(Events.ComponentsOrganizing)
             GLib.idle_add(self.empty_list)
             GLib.idle_add(self.populate_runners_list)
-            GLib.idle_add(self.populate_dxvk_list)
-            GLib.idle_add(self.populate_vkd3d_list)
-            GLib.idle_add(self.populate_nvapi_list)
-            GLib.idle_add(self.populate_latencyflex_list)
+            GLib.idle_add(self.populate_dlls_list)
             GLib.idle_add(self.populate_cache_list)
 
             GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
@@ -420,32 +414,35 @@ class PreferencesWindow(Adw.PreferencesWindow):
                     supported_component_items.insert(i, offline_entry)
                     j += 1
                 i += 1
+        count = 0
         for component in supported_component_items:
             if not self.__display_unstable_candidate(component):
                 continue
             _entry = ComponentEntry(self.window, component, component_type)
-            list_component.add(_entry)
+            if hasattr(list_component, "add_row"):
+                list_component.add_row(_entry)
+            else:
+                list_component.add(_entry)
             self.__registry.append(_entry)
+            count += 1
 
-    def populate_dxvk_list(self):
-        self.__populate_component_list(
-            "dxvk", self.manager.supported_dxvk, self.list_dxvk
-        )
+        return count
 
-    def populate_vkd3d_list(self):
-        self.__populate_component_list(
-            "vkd3d", self.manager.supported_vkd3d, self.list_vkd3d
-        )
+    def populate_dlls_list(self):
+        dll_components = [
+            ("dxvk", self.manager.supported_dxvk, "DXVK"),
+            ("vkd3d", self.manager.supported_vkd3d, "VKD3D"),
+            ("nvapi", self.manager.supported_nvapi, "DXVK-NVAPI"),
+            ("latencyflex", self.manager.supported_latencyflex, "LatencyFleX"),
+        ]
 
-    def populate_nvapi_list(self):
-        self.__populate_component_list(
-            "nvapi", self.manager.supported_nvapi, self.list_nvapi
-        )
-
-    def populate_latencyflex_list(self):
-        self.__populate_component_list(
-            "latencyflex", self.manager.supported_latencyflex, self.list_latencyflex
-        )
+        for component_type, supported_components, title in dll_components:
+            expander = ComponentExpander(title)
+            if self.__populate_component_list(
+                component_type, supported_components, expander
+            ):
+                self.list_dlls.add(expander)
+                self.__registry.append(expander)
 
     def __populate_runners_helper(
         self, runner_type, supported_runners_dict, identifiable_runners_struct

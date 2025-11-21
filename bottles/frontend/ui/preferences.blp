@@ -439,20 +439,9 @@ template $PreferencesWindow: Adw.PreferencesWindow {
         name: "dlls_list";
 
         child: Adw.PreferencesPage {
-          Adw.PreferencesGroup list_dxvk {
-            title: _("DXVK");
-          }
-
-          Adw.PreferencesGroup list_vkd3d {
-            title: _("VKD3D");
-          }
-
-          Adw.PreferencesGroup list_nvapi {
-            title: _("DXVK-NVAPI");
-          }
-
-          Adw.PreferencesGroup list_latencyflex {
-            title: _("LatencyFleX");
+          Adw.PreferencesGroup list_dlls {
+            vexpand: true;
+            hexpand: true;
           }
         };
       }
