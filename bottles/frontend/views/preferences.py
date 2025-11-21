@@ -39,6 +39,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
     installers_spinner = Gtk.Template.Child()
     dlls_stack = Gtk.Template.Child()
     dlls_spinner = Gtk.Template.Child()
+    cache_stack = Gtk.Template.Child()
+    cache_spinner = Gtk.Template.Child()
 
     row_theme = Gtk.Template.Child()
     switch_theme = Gtk.Template.Child()
@@ -68,6 +70,13 @@ class PreferencesWindow(Adw.PreferencesWindow):
     entry_personal_components = Gtk.Template.Child()
     entry_personal_dependencies = Gtk.Template.Child()
     entry_personal_installers = Gtk.Template.Child()
+    template_cache_group = Gtk.Template.Child()
+    label_cache_total_size = Gtk.Template.Child()
+    label_cache_temp_size = Gtk.Template.Child()
+    label_cache_templates_size = Gtk.Template.Child()
+    btn_cache_clear_all = Gtk.Template.Child()
+    btn_cache_clear_temp = Gtk.Template.Child()
+    btn_cache_clear_templates = Gtk.Template.Child()
 
     # endregion
 
@@ -112,6 +121,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
             row.set_show_apply_button(False)
             row.connect("apply", self.__on_personal_repo_apply, repo_name)
             row.connect("changed", self.__on_personal_repo_changed, repo_name)
+
+        self.__cache_registry = []
 
         # bind widgets
         self.settings.bind(
@@ -195,6 +206,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.installers_spinner.start()
         self.dlls_stack.set_visible_child_name("dlls_loading")
         self.dlls_spinner.start()
+        self.cache_stack.set_visible_child_name("cache_loading")
+        self.cache_spinner.start()
 
         if not self.manager.utils_conn.status:
             self.installers_stack.set_visible_child_name("installers_offline")
@@ -209,6 +222,11 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.btn_bottles_path.connect("clicked", self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect("clicked", self.__reset_bottles_path)
         self.btn_steam_proton_doc.connect("clicked", self.__open_steam_proton_doc)
+        self.btn_cache_clear_all.connect("clicked", self.__confirm_clear_all_caches)
+        self.btn_cache_clear_temp.connect("clicked", self.__confirm_clear_temp_cache)
+        self.btn_cache_clear_templates.connect(
+            "clicked", self.__confirm_clear_templates_cache
+        )
 
         if not self.manager.steam_manager.is_steam_supported:
             self.switch_steam.set_sensitive(False)
@@ -219,6 +237,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         if not self.style_manager.get_system_supports_color_schemes():
             self.row_theme.set_visible(True)
+
+        self.populate_cache_list()
 
     def empty_list(self):
         for w in self.__registry:
@@ -236,6 +256,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             GLib.idle_add(self.populate_vkd3d_list)
             GLib.idle_add(self.populate_nvapi_list)
             GLib.idle_add(self.populate_latencyflex_list)
+            GLib.idle_add(self.populate_cache_list)
 
             GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
 
@@ -601,3 +622,191 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 self.__registry.append(runner["expander"])
 
         self.installers_stack.set_visible_child_name("installers_list")
+
+    def populate_cache_list(self):
+        self.cache_stack.set_visible_child_name("cache_loading")
+        self.cache_spinner.start()
+
+        def update_cache_view(result, error=False):
+            self.cache_spinner.stop()
+            if error or result is None:
+                return
+
+            self.cache_stack.set_visible_child_name("cache_list")
+            self.__render_cache_details(result)
+
+        RunAsync(task_func=self.manager.get_cache_details, callback=update_cache_view)
+
+    def __render_cache_details(self, cache_details: dict):
+        temp_cache = cache_details.get("temp", {})
+        templates_cache = cache_details.get("templates", [])
+        templates_size = cache_details.get("templates_size", "0B")
+        total_size = cache_details.get("total_size", "0B")
+
+        self.label_cache_total_size.set_label(total_size)
+        self.label_cache_temp_size.set_label(temp_cache.get("size", "0B"))
+        self.label_cache_templates_size.set_label(templates_size)
+
+        has_any_cache = cache_details.get("total_size_bytes", 0) > 0
+        has_temp_cache = temp_cache.get("size_bytes", 0) > 0
+        has_templates_cache = cache_details.get("templates_size_bytes", 0) > 0
+
+        self.btn_cache_clear_all.set_sensitive(has_any_cache)
+        self.btn_cache_clear_temp.set_sensitive(has_temp_cache)
+        self.btn_cache_clear_templates.set_sensitive(has_templates_cache)
+
+        self.__populate_template_cache_rows(templates_cache)
+
+    def __populate_template_cache_rows(self, templates: list[dict]):
+        for row in self.__cache_registry:
+            parent = row.get_parent()
+            if parent:
+                parent.remove(row)
+        self.__cache_registry = []
+
+        if not templates:
+            empty_row = Adw.ActionRow()
+            empty_row.set_title(_("No templates cached yet."))
+            empty_row.set_subtitle(
+                _(
+                    "Templates are created after you make the first bottle for each environment."
+                )
+            )
+            empty_row.set_activatable(False)
+            empty_row.set_can_focus(False)
+            empty_row.set_sensitive(False)
+            self.template_cache_group.add(empty_row)
+            self.__cache_registry.append(empty_row)
+            return
+
+        for template in templates:
+            row = Adw.ActionRow()
+            row.set_title(self.__format_template_title(template))
+            row.set_subtitle(self.__format_template_subtitle(template))
+            row.set_activatable(False)
+            row.set_can_focus(False)
+
+            size_label = Gtk.Label(label=template.get("size", "0B"))
+            size_label.set_xalign(1.0)
+            size_label.get_style_context().add_class("dim-label")
+            row.add_suffix(size_label)
+
+            btn_remove = Gtk.Button.new_with_label(_("_Delete"))
+            btn_remove.set_use_underline(True)
+            btn_remove.set_valign(Gtk.Align.CENTER)
+            btn_remove.add_css_class("destructive-action")
+            btn_remove.connect("clicked", self.__confirm_clear_template, template)
+            row.add_suffix(btn_remove)
+
+            self.template_cache_group.add(row)
+            self.__cache_registry.append(row)
+
+    def __format_template_title(self, template: dict) -> str:
+        env_label = self.__format_env_label(template.get("env", ""))
+        return _("%s template") % env_label
+
+    def __format_template_subtitle(self, template: dict) -> str:
+        created = template.get("created", "")
+        env_label = self.__format_env_label(template.get("env", ""))
+
+        if created:
+            return _("Cached prefix for the %s environment, created on %s") % (
+                env_label,
+                created,
+            )
+
+        return _("Cached prefix for the %s environment") % env_label
+
+    def __format_env_label(self, env: str) -> str:
+        env_labels = {
+            "gaming": _("Gaming"),
+            "application": _("Software"),
+        }
+
+        env_value = (env or "").lower()
+
+        if env_value in env_labels:
+            return env_labels.get(env_value, env.title())
+
+        return env.title() if env else _("Unknown")
+
+    def __confirm_clear_all_caches(self, widget):
+        widget.set_sensitive(False)
+        self.__confirm_cache_action(
+            title=_("Delete all caches?"),
+            description=_(
+                "Removing every cache will make Bottles re-download resources and rebuild templates, which can take longer."
+            ),
+            action=self.manager.clear_all_caches,
+            button=widget,
+        )
+
+    def __confirm_clear_temp_cache(self, widget):
+        widget.set_sensitive(False)
+        self.__confirm_cache_action(
+            title=_("Delete temp cache?"),
+            description=_(
+                "Clearing the temp cache removes downloaded archives and extracted files, so future installs may take longer."
+            ),
+            action=self.manager.clear_temp_cache,
+            button=widget,
+        )
+
+    def __confirm_clear_templates_cache(self, widget):
+        widget.set_sensitive(False)
+        self.__confirm_cache_action(
+            title=_("Delete all prefix templates?"),
+            description=_(
+                "Removing all prefix templates will slow down the next bottle creation while Bottles rebuilds them."
+            ),
+            action=self.manager.clear_templates_cache,
+            button=widget,
+        )
+
+    def __confirm_clear_template(self, widget, template: dict):
+        widget.set_sensitive(False)
+        env_label = self.__format_env_label(template.get("env", ""))
+        title = _("Delete the %s template?") % env_label
+        description = _(
+            "The next bottle for this environment will take longer to create because Bottles must rebuild the template."
+        )
+
+        self.__confirm_cache_action(
+            title=title,
+            description=description,
+            action=lambda: self.manager.clear_template_cache(template.get("uuid", "")),
+            button=widget,
+        )
+
+    def __confirm_cache_action(self, title: str, description: str, action, button=None):
+        dialog = Adw.MessageDialog.new(
+            self.window,
+            title,
+            description,
+        )
+        dialog.add_response("cancel", _("_Cancel"))
+        dialog.add_response("delete", _("_Delete"))
+        dialog.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
+
+        def handle_response(dlg, response):
+            dlg.destroy()
+            if response != "delete":
+                if button:
+                    button.set_sensitive(True)
+                return
+
+            RunAsync(
+                task_func=action,
+                callback=lambda result, error=False: self.__cache_action_finished(
+                    result, button
+                ),
+            )
+
+        dialog.connect("response", handle_response)
+        dialog.present()
+
+    def __cache_action_finished(self, result, button=None):
+        if button:
+            button.set_sensitive(True)
+
+        self.populate_cache_list()
