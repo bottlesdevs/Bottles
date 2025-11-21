@@ -5,6 +5,7 @@ bottles_sources = [
   '__init__.py',
   'crash.py',
   'dlloverrides.py',
+  'dependency_install.py',
   'duplicate.py',
   'envvars.py',
   'generic.py',

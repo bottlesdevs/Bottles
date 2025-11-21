@@ -25,6 +25,7 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.windows.dependency_install import DependencyInstallDialog
 from bottles.frontend.windows.generic import SourceDialog
 
 
@@ -54,6 +55,7 @@ class DependencyEntry(Adw.ActionRow):
         self.config = config
         self.dependency = dependency
         self.queue = window.page_details.queue
+        self.install_dialog: DependencyInstallDialog | None = None
 
         if plain:
             """
@@ -143,11 +145,16 @@ class DependencyEntry(Adw.ActionRow):
         self.spinner.show()
         self.spinner.start()
 
+        self.install_dialog = DependencyInstallDialog(self.window, self.dependency[0])
+        self.install_dialog.present()
+
         RunAsync(
             task_func=self.manager.dependency_manager.install,
             callback=self.set_install_status,
             config=self.config,
             dependency=self.dependency,
+            progress_cb=self.install_dialog.add_step,
+            progress_progress_cb=self.install_dialog.update_progress,
         )
 
     def remove_dependency(self, _widget):
@@ -170,8 +177,13 @@ class DependencyEntry(Adw.ActionRow):
         if the installation is successful, or uninstalled
         if the uninstallation is successful.
         """
+        success = result is not None and result.status
+        if self.install_dialog:
+            self.install_dialog.finish(success)
+            self.install_dialog = None
+
         self.queue.end_task()
-        if result is not None and result.status:
+        if success:
             if self.config.Parameters.versioning_automatic:
                 self.window.page_details.view_versioning.update()
             uninstaller = result.data.get("uninstaller")
