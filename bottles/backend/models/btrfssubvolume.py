@@ -19,6 +19,7 @@ _internal_subvolumes = [
     ]
 
 def _delete_subvolume(path):
+    btrfsutil.set_subvolume_read_only(path, False)
     try:
         btrfsutil.delete_subvolume(path)
     except btrfsutil.BtrfsUtilError as error:
@@ -28,7 +29,6 @@ def _delete_subvolume(path):
             # Try to delete the subvolume as a normal directory tree. This is
             # in particular needed, if the btrfs filesystem is not mounted with
             # 'user_subvol_rm_allowed' option.
-            btrfsutil.set_subvolume_read_only(path, False)
             shutil.rmtree(path)
         except Exception as e:
             # Raise the first error with some appended note
