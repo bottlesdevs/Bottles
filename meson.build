@@ -1,6 +1,6 @@
 project(
 	'bottles',
-	version: '52.1',
+	version: '60.0',
 	meson_version: '>= 1.5.0',
 	default_options: [
 		'warning_level=2',

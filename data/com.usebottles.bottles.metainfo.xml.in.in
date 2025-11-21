@@ -85,6 +85,39 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="60" date="2025-11-22">
+      <description translate="no">
+        <ul>
+          <li>New bottle details UI</li>
+          <li>New bottle creation dialog</li>
+          <li>Re-introduced the journal browser</li>
+          <li>Ability to manage caches directly from preferences</li>
+          <li>Aligned the DLL Components UI with the Runners UI</li>
+          <li>Improved logging for installers</li>
+          <li>Ask for user consent before updating WineBridge</li>
+          <li>Upgrade to EasyTerm 1.0.0</li>
+          <li>Ability to spawn processes with the new WineBridge</li>
+          <li>Make updating runners, DXVK and other components easier</li>
+          <li>Change repositories URLs via UI</li>
+          <li>Registry Rules system for reusable prefix policies</li>
+          <li>Suggest installation of missing Flatpak extensions</li>
+          <li>Ability to only inherit selected system environment variables</li>
+          <li>Native Wayland support in bottle settings</li>
+          <li>Fixed Steam Deck controls not working in Gaming Mode</li>
+          <li>Remove user tracking</li>
+          <li>Fix: Working directory setting not persisting</li>
+          <li>Fix: Incorrect runExe shell mode enforcement</li>
+          <li>Fix: Path conversion issues with new lines</li>
+          <li>Fix: WineBridge override not being stored</li>
+          <li>Fix: EasyTerm failing to run due to missing GTK env vars</li>
+          <li>Fix: Cannot create Desktop Entry after assigning permissions</li>
+          <li>Fix: Circular import</li>
+          <li>Fix: unclear new environment variable creation</li>
+          <li>Added mailmap entries</li>
+          <li>General bug fixes, cleanups and updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="52.1" date="2025-11-08">
       <description translate="no">
         <ul>
