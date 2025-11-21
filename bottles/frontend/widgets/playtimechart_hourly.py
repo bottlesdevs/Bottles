@@ -226,10 +226,12 @@ class PlaytimeChartHourly(Gtk.Box):
         font_scale = self._get_font_scale()
         ctx.set_font_size(9 * font_scale)  # Slightly smaller for hour labels
 
-        # Display every 6th hour label (0, 6, 12, 18)
+        # Display labels at 1, 6, 12, 18, and 24 (with "h" suffix)
         for i, (x, bar_width) in enumerate(bar_positions):
-            if i % 6 == 0:  # Show label every 6 hours
-                text = str(i)
+            # Show at hours 0 (as "1h"), 5 (as "6h"), 11 (as "12h"), 17 (as "18h"), 23 (as "24h")
+            display_hour = i + 1
+            if display_hour in [1, 6, 12, 18, 24]:
+                text = f"{display_hour}h"
 
                 # Get text dimensions for centering
                 extents = ctx.text_extents(text)

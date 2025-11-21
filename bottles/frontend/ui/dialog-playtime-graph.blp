@@ -22,6 +22,33 @@ template $PlaytimeGraphDialog: Adw.Window {
       styles [
         "flat",
       ]
+      
+      [title]
+      Box {
+        orientation: horizontal;
+        halign: center;
+        spacing: 0;
+        
+        styles [
+          "linked",
+        ]
+        
+        ToggleButton btn_view_day {
+          label: _("Day");
+          active: false;
+        }
+        
+        ToggleButton btn_view_week {
+          label: _("Week");
+          active: true;
+          group: btn_view_day;
+        }
+        
+        ToggleButton btn_view_year {
+          label: _("Year");
+          group: btn_view_day;
+        }
+      }
     }
 
     content: Box {
@@ -45,6 +72,30 @@ template $PlaytimeGraphDialog: Adw.Window {
           styles [
             "card",
           ]
+          
+          Box {
+            orientation: horizontal;
+            margin-top: 12;
+            margin-bottom: 6;
+            margin-start: 12;
+            margin-end: 12;
+            
+            Label label_program_title {
+              label: "Program Name";
+              halign: start;
+              hexpand: true;
+              
+              styles [
+                "title-3",
+              ]
+            }
+          }
+          
+          Separator {
+            styles [
+              "spacer",
+            ]
+          }
 
           Box {
             orientation: horizontal;

@@ -234,10 +234,8 @@ class PlaytimeGraphDialog(Adw.Window):
             )
             
             if record:
-                # Display period total and session count
-                total_hours = period_minutes // 60
-                total_mins = period_minutes % 60
-                self.label_total_time.set_label(_("{}h {}m").format(total_hours, total_mins))  # type: ignore
+                # Display period total and session count with smart formatting
+                self.label_total_time.set_label(self.__format_time(period_minutes))  # type: ignore
                 self.label_sessions_count.set_label(str(session_count))  # type: ignore
                 
                 # Format last played (always global)
