@@ -1,0 +1,118 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WineBridgeUpdateDialog: Adw.Window {
+  modal: true;
+  default-width: 520;
+  default-height: 420;
+  destroy-with-parent: true;
+
+  Box {
+    orientation: vertical;
+
+    Adw.HeaderBar {
+      show-end-title-buttons: false;
+
+      title-widget: Adw.WindowTitle window_title {};
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+
+      [end]
+      Button btn_close {
+        label: _("_Close");
+        use-underline: true;
+        visible: false;
+      }
+
+      [end]
+      Button btn_update {
+        label: _("Update");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Stack stack_switcher {
+      StackPage {
+        name: "page_status";
+
+        child: Box {
+          margin-top: 18;
+          margin-start: 18;
+          margin-end: 18;
+          margin-bottom: 12;
+          orientation: vertical;
+          spacing: 12;
+
+          Adw.StatusPage status_page {
+            icon-name: "software-update-available-symbolic";
+            vexpand: true;
+            hexpand: true;
+          }
+        };
+      }
+
+      StackPage {
+        name: "page_progress";
+
+        child: Adw.StatusPage status_progress {
+          icon-name: "folder-download-symbolic";
+          title: _("Updating WineBridge…");
+          description: _("Please wait while WineBridge is downloading and installing.");
+          vexpand: true;
+          hexpand: true;
+
+          child: Box {
+            orientation: vertical;
+            spacing: 12;
+            halign: center;
+            valign: center;
+
+            Label label_status {
+              wrap: true;
+              xalign: 0.5;
+            }
+
+            ProgressBar progressbar {
+              width-request: 260;
+              show-text: true;
+            }
+          };
+        };
+      }
+
+      StackPage {
+        name: "page_done";
+
+        child: Adw.StatusPage status_done {
+          icon-name: "object-select-symbolic";
+          title: _("WineBridge is up to date");
+          description: _("You can now continue using Bottles with the latest WineBridge release.");
+          vexpand: true;
+          hexpand: true;
+        };
+      }
+
+      StackPage {
+        name: "page_error";
+
+        child: Adw.StatusPage status_error {
+          icon-name: "dialog-error-symbolic";
+          title: _("WineBridge update failed");
+          description: _("Check your connection or try again later.");
+          vexpand: true;
+          hexpand: true;
+        };
+      }
+    }
+  }
+}

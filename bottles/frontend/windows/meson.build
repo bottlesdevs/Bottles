@@ -26,6 +26,7 @@ bottles_sources = [
   'depscheck.py',
   'exclusionpatterns.py',
   'registry_rules.py',
+  'winebridgeupdate.py',
   'upgradeversioning.py',
   'vmtouch.py',
   'window.py',

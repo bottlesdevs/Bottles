@@ -48,6 +48,7 @@ from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.windows.crash import CrashReportDialog
 from bottles.frontend.windows.depscheck import DependenciesCheckDialog
 from bottles.frontend.windows.onboard import OnboardDialog
+from bottles.frontend.windows.winebridgeupdate import WineBridgeUpdateDialog
 
 logging = Logger()
 
@@ -74,6 +75,7 @@ class BottlesWindow(Adw.ApplicationWindow):
     previous_page = ""
     settings = Gio.Settings.new(BASE_ID)
     argument_executed = False
+    _winebridge_dialog_shown = False
 
     def __init__(self, arg_bottle, **kwargs):
         width = self.settings.get_int("window-width")
@@ -96,6 +98,8 @@ class BottlesWindow(Adw.ApplicationWindow):
         )
         self.manager = None
         self.arg_bottle = arg_bottle
+        self._showing_onboard = False
+        self._winebridge_prompt_attempts = 0
         self.app = kwargs.get("application")
         self.set_icon_name(APP_ID)
 
@@ -250,6 +254,42 @@ class BottlesWindow(Adw.ApplicationWindow):
         if self.utils_conn.check_connection():
             self.manager.checks(install_latest=False, first_run=True)
 
+    def __maybe_prompt_winebridge_update(self):
+        if self._winebridge_dialog_shown or self._showing_onboard:
+            return
+
+        if not self.manager:
+            return
+
+        if (
+            not self.manager.supported_winebridge
+            and self._winebridge_prompt_attempts < 5
+        ):
+            self._winebridge_prompt_attempts += 1
+            GLib.timeout_add_seconds(1, self.__maybe_prompt_winebridge_update)
+            return
+
+        status = self.manager.winebridge_update_status()
+        needs_update = status.get("needs_latest", False)
+        missing = status.get("missing", False)
+        latest = status.get("latest_supported")
+        installed = status.get("installed_identifier")
+        offline = not self.utils_conn.check_connection()
+
+        if not (needs_update or missing):
+            return
+
+        self._winebridge_dialog_shown = True
+
+        dialog = WineBridgeUpdateDialog(
+            self,
+            manager=self.manager,
+            latest_version=latest,
+            installed_version=installed,
+            offline=offline,
+        )
+        dialog.present()
+
     def __on_start(self):
         """
         This method is called before the window is shown. This check if there
@@ -265,6 +305,7 @@ class BottlesWindow(Adw.ApplicationWindow):
                 x for x in self.manager.runners_available if not x.startswith("sys-")
             ]
             if len(tmp_runners) == 0:
+                self._showing_onboard = True
                 self.show_onboard_view()
 
             # Pages
@@ -325,6 +366,8 @@ class BottlesWindow(Adw.ApplicationWindow):
                 )
                 dialog.add_response("cancel", _("_Dismiss"))
                 dialog.present()
+
+            GLib.idle_add(self.__maybe_prompt_winebridge_update)
 
         def get_manager():
             if self.utils_conn.check_connection():

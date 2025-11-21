@@ -794,9 +794,7 @@ class Manager(metaclass=Singleton):
                     return True
         return False
 
-    def check_winebridge(
-        self, install_latest: bool = True, update: bool = False
-    ) -> bool:
+    def __winebridge_status(self) -> tuple[Optional[str], Optional[str], bool]:
         def _is_newer(candidate: str, current: str) -> bool:
             versions = [candidate, current]
             try:
@@ -828,17 +826,32 @@ class Manager(metaclass=Singleton):
                     installed_identifier = f"winebridge-{version}"
                     self.winebridge_available = [installed_identifier]
 
-        can_install = install_latest or update
+        missing_installation = len(winebridge) == 0 or not installed_identifier
         needs_latest = False
-        if can_install and latest_supported:
+        if latest_supported:
             needs_latest = (
-                update
-                or len(winebridge) == 0
-                or not installed_identifier
+                missing_installation
                 or _is_newer(latest_supported, installed_identifier)
             )
 
-        if needs_latest:
+        return latest_supported, installed_identifier, needs_latest
+
+    def winebridge_update_status(self) -> dict:
+        latest_supported, installed_identifier, needs_latest = self.__winebridge_status()
+        return {
+            "latest_supported": latest_supported,
+            "installed_identifier": installed_identifier,
+            "needs_latest": needs_latest,
+            "missing": not installed_identifier,
+        }
+
+    def check_winebridge(
+        self, install_latest: bool = True, update: bool = False
+    ) -> bool:
+        latest_supported, installed_identifier, needs_latest = self.__winebridge_status()
+
+        can_install = install_latest or update
+        if can_install and needs_latest and latest_supported:
             if not self.utils_conn.check_connection():
                 return False
             logging.warning("WineBridge installation/update required.")
@@ -846,6 +859,9 @@ class Manager(metaclass=Singleton):
             if res.ok:
                 self.winebridge_available = [latest_supported]
                 return True
+            return False
+
+        if needs_latest and not can_install:
             return False
 
         return bool(self.winebridge_available)
