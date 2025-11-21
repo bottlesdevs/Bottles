@@ -1,4 +1,4 @@
-# playtimechart.py
+# playtimechart_weekly.py
 #
 # Copyright 2025
 #
@@ -16,14 +16,14 @@
 #
 
 """
-PlaytimeChart Widget
+PlaytimeChartWeekly Widget
 
-A reusable chart widget for displaying daily playtime data as a bar chart.
+A chart widget for displaying weekly playtime data as a 7-bar chart.
 Features:
 - Dynamic bar sizing and spacing
 - Grid lines with time labels
 - Tooltips on hover
-- Day labels aligned with bars
+- Day labels aligned with bars (Mon-Sun)
 - Automatic scaling based on data
 """
 
@@ -35,13 +35,13 @@ from gi.repository import Gtk, Adw
 from bottles.frontend.utils.playtime import PlaytimeService
 
 
-class PlaytimeChart(Gtk.Box):
+class PlaytimeChartWeekly(Gtk.Box):
     """
-    A custom widget for rendering playtime bar charts.
+    A custom widget for rendering weekly playtime bar charts (7 days).
 
     Usage:
-        chart = PlaytimeChart()
-        chart.set_daily_data([120, 60, 180, ...])  # Minutes for each day
+        chart = PlaytimeChartWeekly()
+        chart.set_daily_data([120, 60, 180, ...])  # Minutes for each day (Mon-Sun)
     """
 
     def __init__(self, **kwargs: Any) -> None:
