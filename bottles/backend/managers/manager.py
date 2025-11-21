@@ -465,6 +465,87 @@ class Manager(metaclass=Singleton):
             except FileNotFoundError:
                 self.check_app_dirs()
 
+    def get_cache_details(self) -> dict:
+        self.check_app_dirs()
+        file_utils = FileUtils()
+
+        temp_size_bytes = file_utils.get_path_size(Paths.temp, human=False)
+        templates = []
+        templates_size_bytes = 0
+
+        for template in TemplateManager.get_templates():
+            template_uuid = template.get("uuid", "")
+            template_path = os.path.join(Paths.templates, template_uuid)
+
+            size_bytes = file_utils.get_path_size(template_path, human=False)
+            templates_size_bytes += size_bytes
+
+            templates.append(
+                {
+                    "uuid": template_uuid,
+                    "env": template.get("env", ""),
+                    "created": template.get("created", ""),
+                    "size": file_utils.get_human_size(size_bytes),
+                    "size_bytes": size_bytes,
+                }
+            )
+
+        total_size_bytes = temp_size_bytes + templates_size_bytes
+
+        return {
+            "temp": {
+                "path": Paths.temp,
+                "size": file_utils.get_human_size(temp_size_bytes),
+                "size_bytes": temp_size_bytes,
+            },
+            "templates": templates,
+            "templates_size": file_utils.get_human_size(templates_size_bytes),
+            "templates_size_bytes": templates_size_bytes,
+            "total_size": file_utils.get_human_size(total_size_bytes),
+            "total_size_bytes": total_size_bytes,
+        }
+
+    def clear_temp_cache(self) -> Result[None]:
+        try:
+            self.__clear_temp(force=True)
+        except Exception as ex:
+            logging.error(f"Failed to clear temp cache: {ex}")
+            return Result(False, message=str(ex))
+
+        return Result(True)
+
+    def clear_template_cache(self, template_uuid: str) -> Result[None]:
+        self.check_app_dirs()
+        try:
+            TemplateManager.delete_template(template_uuid)
+        except Exception as ex:
+            logging.error(f"Failed to clear template cache: {ex}")
+            return Result(False, message=str(ex))
+
+        return Result(True)
+
+    def clear_templates_cache(self) -> Result[None]:
+        self.check_app_dirs()
+        try:
+            for template in TemplateManager.get_templates():
+                TemplateManager.delete_template(template.get("uuid", ""))
+        except Exception as ex:
+            logging.error(f"Failed to clear templates cache: {ex}")
+            return Result(False, message=str(ex))
+
+        return Result(True)
+
+    def clear_all_caches(self) -> Result[None]:
+        temp_result = self.clear_temp_cache()
+        if not temp_result.ok:
+            return temp_result
+
+        templates_result = self.clear_templates_cache()
+        if not templates_result.ok:
+            return templates_result
+
+        return Result(True)
+
     def update_bottles(self, silent: bool = False):
         """Checks for new bottles and update the list view."""
         self.check_bottles(silent)
