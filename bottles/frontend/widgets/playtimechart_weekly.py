@@ -372,7 +372,7 @@ class PlaytimeChartWeekly(Gtk.Box):
             )
         else:
             ctx.set_source_rgba(0.5, 0.5, 0.5, 0.25)
-        
+
         ctx.set_line_width(1)
 
         pixels_per_hour = height / grid_max_hours
@@ -447,7 +447,7 @@ class PlaytimeChartWeekly(Gtk.Box):
         avg_minutes = sum(daily_data) / len(daily_data) if daily_data else 0
         if avg_minutes > 0:
             avg_y = height - (avg_minutes / grid_max_minutes) * height
-            
+
             # Set dashed line style with theme-aware color
             style_context = self.get_style_context()
             fg_color = style_context.lookup_color("foreground")
@@ -457,14 +457,14 @@ class PlaytimeChartWeekly(Gtk.Box):
                 )
             else:
                 ctx.set_source_rgba(0.5, 0.5, 0.5, 0.6)
-            
+
             ctx.set_line_width(2)
             ctx.set_dash([5, 5])  # 5px dash, 5px gap
-            
+
             ctx.move_to(grid_start_x, avg_y)
             ctx.line_to(grid_end_x, avg_y)
             ctx.stroke()
-            
+
             # Reset dash pattern for subsequent drawing
             ctx.set_dash([])
 

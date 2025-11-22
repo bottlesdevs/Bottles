@@ -164,14 +164,14 @@ class PlaytimeChartMonthly(Gtk.Box):
         # Calculate dynamic bar width for 12 months
         min_padding = 40
         min_spacing = 4
-        
+
         # Calculate space available for bars and spacing
         usable_width = available_chart_width - (2 * min_padding)
-        
+
         # Calculate bar width: distribute space among bars with minimal spacing
         total_spacing = (num_bars - 1) * min_spacing
         dynamic_bar_width = max(int((usable_width - total_spacing) / num_bars), 20)
-        
+
         spacing = min_spacing
 
         # Calculate bar positions
@@ -219,18 +219,18 @@ class PlaytimeChartMonthly(Gtk.Box):
 
         # Month abbreviations (localized)
         month_abbr = [
-            _("J"),   # January
-            _("F"),   # February
-            _("M"),   # March
-            _("A"),   # April
-            _("M"),   # May
-            _("J"),   # June
-            _("J"),   # July
-            _("A"),   # August
-            _("S"),   # September
-            _("O"),   # October
-            _("N"),   # November
-            _("D")    # December
+            _("J"),  # January
+            _("F"),  # February
+            _("M"),  # March
+            _("A"),  # April
+            _("M"),  # May
+            _("J"),  # June
+            _("J"),  # July
+            _("A"),  # August
+            _("S"),  # September
+            _("O"),  # October
+            _("N"),  # November
+            _("D"),  # December
         ]
         bar_positions = self._chart_data["bar_positions"]
 
@@ -332,22 +332,24 @@ class PlaytimeChartMonthly(Gtk.Box):
 
         # Calculate available space for chart (excluding label area on right)
         available_chart_width = width - label_text_width
-        
+
         # Calculate dynamic bar width
         usable_width = available_chart_width - (2 * min_padding)
         total_spacing = (num_bars - 1) * min_spacing
         dynamic_bar_width = max(int((usable_width - total_spacing) / num_bars), 20)
-        
+
         # Calculate actual spacing after accounting for bar widths
         total_bars_width = num_bars * dynamic_bar_width
         remaining_space = available_chart_width - total_bars_width
-        
+
         if num_bars > 1:
-            spacing = remaining_space / (num_bars + 1)  # Space on sides and between bars
+            spacing = remaining_space / (
+                num_bars + 1
+            )  # Space on sides and between bars
             spacing = max(spacing, min_spacing)
         else:
             spacing = (available_chart_width - dynamic_bar_width) / 2
-        
+
         start_x = spacing + label_text_width / 2  # Left padding + centering offset
 
         bar_positions: List[tuple[float, int]] = []
@@ -390,7 +392,7 @@ class PlaytimeChartMonthly(Gtk.Box):
             )
         else:
             ctx.set_source_rgba(0.5, 0.5, 0.5, 0.25)
-        
+
         ctx.set_line_width(1)
 
         pixels_per_hour = height / grid_max_hours
@@ -466,7 +468,7 @@ class PlaytimeChartMonthly(Gtk.Box):
         avg_minutes = sum(daily_data) / len(daily_data) if daily_data else 0
         if avg_minutes > 0:
             avg_y = height - (avg_minutes / grid_max_minutes) * height
-            
+
             # Set dashed line style with theme-aware color
             style_context = self.get_style_context()
             fg_color = style_context.lookup_color("foreground")
@@ -476,14 +478,14 @@ class PlaytimeChartMonthly(Gtk.Box):
                 )
             else:
                 ctx.set_source_rgba(0.5, 0.5, 0.5, 0.6)
-            
+
             ctx.set_line_width(2)
             ctx.set_dash([5, 5])  # 5px dash, 5px gap
-            
+
             ctx.move_to(grid_start_x, avg_y)
             ctx.line_to(grid_end_x, avg_y)
             ctx.stroke()
-            
+
             # Reset dash pattern for subsequent drawing
             ctx.set_dash([])
 

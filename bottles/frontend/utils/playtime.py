@@ -37,7 +37,9 @@ class PlaytimeCache:
         self._ttl = max(0, int(ttl_seconds))
         self._cache: Dict[Tuple[str, Optional[str]], Tuple[PlaytimeRecord, float]] = {}
 
-    def get(self, bottle_id: str, program_id: Optional[str]) -> Optional[PlaytimeRecord]:
+    def get(
+        self, bottle_id: str, program_id: Optional[str]
+    ) -> Optional[PlaytimeRecord]:
         key = (bottle_id, program_id)
         entry = self._cache.get(key)
         if entry is None:
@@ -54,7 +56,9 @@ class PlaytimeCache:
         logging.debug(f"Playtime cache hit: bottle={bottle_id} program_id={program_id}")
         return record
 
-    def set(self, bottle_id: str, program_id: Optional[str], record: PlaytimeRecord) -> None:
+    def set(
+        self, bottle_id: str, program_id: Optional[str], record: PlaytimeRecord
+    ) -> None:
         key = (bottle_id, program_id)
         self._cache[key] = (record, time.time())
         logging.debug(f"Playtime cache set: bottle={bottle_id} program_id={program_id}")
@@ -188,19 +192,16 @@ class PlaytimeService:
         self._cache.clear()
 
     def get_weekly_data(
-        self,
-        bottle_id: str,
-        program_id: str,
-        week_offset: int = 0
+        self, bottle_id: str, program_id: str, week_offset: int = 0
     ) -> List[int]:
         """
         Retrieve weekly playtime data aggregated by day of week.
-        
+
         Args:
             bottle_id: Bottle identifier
             program_id: Program identifier (SHA1 hash)
             week_offset: Week offset from current week (0=current, -1=last week, etc.)
-        
+
         Returns:
             List of 7 integers representing minutes played per day.
             Index 0=Sunday, 1=Monday, ..., 6=Saturday.
@@ -209,47 +210,44 @@ class PlaytimeService:
         if not self.is_enabled():
             logging.debug("Playtime service: tracking disabled")
             return [0] * 7
-        
+
         tracker = self._tracker
         if tracker is None:
             logging.warning("Playtime service: tracker not available")
             return [0] * 7
-        
+
         try:
             get_weekly = getattr(tracker, "get_weekly_playtime", None)
             if not callable(get_weekly):
                 logging.error("Playtime service: get_weekly_playtime method not found")
                 return [0] * 7
-            
+
             data = get_weekly(bottle_id, program_id, week_offset)
             logging.debug(
                 f"Retrieved weekly data: bottle_id={bottle_id} program_id={program_id} "
                 f"week_offset={week_offset} data={data}"
             )
             return data
-            
+
         except Exception as e:
             logging.error(
                 f"Failed to retrieve weekly data: bottle_id={bottle_id} program_id={program_id} "
                 f"week_offset={week_offset}",
-                exc_info=True
+                exc_info=True,
             )
             return [0] * 7
 
     def get_hourly_data(
-        self,
-        bottle_id: str,
-        program_id: str,
-        date_str: str
+        self, bottle_id: str, program_id: str, date_str: str
     ) -> List[int]:
         """
         Retrieve hourly playtime data (24-hour breakdown) for a specific date.
-        
+
         Args:
             bottle_id: Bottle identifier
             program_id: Program identifier (SHA1 hash)
             date_str: Date in 'YYYY-MM-DD' format (e.g., '2025-11-20')
-        
+
         Returns:
             List of 24 integers representing minutes played per hour.
             Index 0=00:00-00:59, 1=01:00-01:59, ..., 23=23:00-23:59.
@@ -258,47 +256,42 @@ class PlaytimeService:
         if not self.is_enabled():
             logging.debug("Playtime service: tracking disabled")
             return [0] * 24
-        
+
         tracker = self._tracker
         if tracker is None:
             logging.warning("Playtime service: tracker not available")
             return [0] * 24
-        
+
         try:
             get_daily = getattr(tracker, "get_daily_playtime", None)
             if not callable(get_daily):
                 logging.error("Playtime service: get_daily_playtime method not found")
                 return [0] * 24
-            
+
             data = get_daily(bottle_id, program_id, date_str)
             logging.debug(
                 f"Retrieved hourly data: bottle_id={bottle_id} program_id={program_id} "
                 f"date={date_str} data={data}"
             )
             return data
-            
+
         except Exception as e:
             logging.error(
                 f"Failed to retrieve hourly data: bottle_id={bottle_id} program_id={program_id} "
                 f"date={date_str}",
-                exc_info=True
+                exc_info=True,
             )
             return [0] * 24
 
-    def get_monthly_data(
-        self,
-        bottle_id: str,
-        program_id: str,
-        year: int
-    ) -> List[int]:
+    def get_monthly_data(self, bottle_id: str, program_id: str, year: int) -> List[int]:
         """
         Retrieve monthly playtime data for a specific year.
-        
+
         Args:
             bottle_id: Bottle identifier
             program_id: Program identifier (SHA1 hash)
             year: Year as integer (e.g., 2025)
-        
+
         Returns:
             List of 12 integers representing minutes played per month.
             Index 0=January, 1=February, ..., 11=December.
@@ -307,42 +300,44 @@ class PlaytimeService:
         if not self.is_enabled():
             logging.debug("Playtime service: tracking disabled")
             return [0] * 12
-        
+
         tracker = self._tracker
         if tracker is None:
             logging.warning("Playtime service: tracker not available")
             return [0] * 12
-        
+
         try:
             get_monthly = getattr(tracker, "get_monthly_playtime", None)
             if not callable(get_monthly):
                 logging.error("Playtime service: get_monthly_playtime method not found")
                 return [0] * 12
-            
+
             data = get_monthly(bottle_id, program_id, year)
             logging.debug(
                 f"Retrieved monthly data: bottle_id={bottle_id} program_id={program_id} "
                 f"year={year} data={data}"
             )
             return data
-            
+
         except Exception as e:
             logging.error(
                 f"Failed to retrieve monthly data: bottle_id={bottle_id} program_id={program_id} "
                 f"year={year}",
-                exc_info=True
+                exc_info=True,
             )
             return [0] * 12
 
-    def get_weekly_session_count(self, bottle_id: str, program_id: str, week_offset: int = 0) -> int:
+    def get_weekly_session_count(
+        self, bottle_id: str, program_id: str, week_offset: int = 0
+    ) -> int:
         """Get the number of sessions for a specific week."""
         if not self.is_enabled():
             return 0
-        
+
         tracker = self._tracker
         if tracker is None:
             return 0
-        
+
         try:
             get_count = getattr(tracker, "get_weekly_session_count", None)
             if not callable(get_count):
@@ -352,15 +347,17 @@ class PlaytimeService:
             logging.error(f"Failed to get weekly session count: {e}", exc_info=True)
             return 0
 
-    def get_daily_session_count(self, bottle_id: str, program_id: str, date_str: str) -> int:
+    def get_daily_session_count(
+        self, bottle_id: str, program_id: str, date_str: str
+    ) -> int:
         """Get the number of sessions for a specific day."""
         if not self.is_enabled():
             return 0
-        
+
         tracker = self._tracker
         if tracker is None:
             return 0
-        
+
         try:
             get_count = getattr(tracker, "get_daily_session_count", None)
             if not callable(get_count):
@@ -370,15 +367,17 @@ class PlaytimeService:
             logging.error(f"Failed to get daily session count: {e}", exc_info=True)
             return 0
 
-    def get_yearly_session_count(self, bottle_id: str, program_id: str, year: int) -> int:
+    def get_yearly_session_count(
+        self, bottle_id: str, program_id: str, year: int
+    ) -> int:
         """Get the number of sessions for a specific year."""
         if not self.is_enabled():
             return 0
-        
+
         tracker = self._tracker
         if tracker is None:
             return 0
-        
+
         try:
             get_count = getattr(tracker, "get_yearly_session_count", None)
             if not callable(get_count):

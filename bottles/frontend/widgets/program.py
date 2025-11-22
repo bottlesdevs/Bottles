@@ -126,7 +126,7 @@ class ProgramEntry(Adw.ActionRow):
 
         if not program.get("removed") and not is_steam and check_boot:
             self.__is_alive()
-        
+
         # Update subtitle with playtime info
         if not is_steam:
             self.__update_subtitle()
@@ -135,20 +135,20 @@ class ProgramEntry(Adw.ActionRow):
         """Update the subtitle with playtime information."""
         try:
             # Create playtime service if tracking is enabled
-            if not hasattr(self.manager, 'playtime_service'):
+            if not hasattr(self.manager, "playtime_service"):
                 self.manager.playtime_service = PlaytimeService(self.manager)
-            
+
             service = self.manager.playtime_service
             if not service.is_enabled():
                 return
-            
+
             # Get bottle path and program path
             bottle_path = ManagerUtils.get_bottle_path(self.config)
             program_path = self.program.get("path", "")
-            
+
             if not program_path:
                 return
-            
+
             # Fetch playtime data
             record = service.get_program_playtime(
                 bottle_id=self.config.Name,
@@ -156,13 +156,14 @@ class ProgramEntry(Adw.ActionRow):
                 program_name=self.program.get("name", "Unknown"),
                 program_path=program_path,
             )
-            
+
             # Always format subtitle (handles both played and never played cases)
             subtitle = service.format_subtitle(record)
             self.set_subtitle(subtitle)
         except Exception as e:
             # Log error but don't break the UI
             import logging
+
             logging.debug(f"Failed to update playtime subtitle: {e}")
             pass
 
@@ -178,17 +179,17 @@ class ProgramEntry(Adw.ActionRow):
     def show_playtime_stats(self, _widget=False):
         """Show the playtime statistics dialog for this program."""
         from bottles.backend.managers.playtime import _compute_program_id
-        
+
         self.pop_actions.popdown()  # Close the menu before opening dialog
-        
+
         program_path = self.program.get("path", "")
         program_id = _compute_program_id(self.config.Name, program_path)
-        
+
         dialog = PlaytimeGraphDialog(
             self,
             program_name=self.program.get("name", "Unknown"),
             program_id=program_id,
-            bottle_id=self.config.Name
+            bottle_id=self.config.Name,
         )
         dialog.present()
 

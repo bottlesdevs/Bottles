@@ -88,11 +88,11 @@ class PlaytimeGraphDialog(Adw.Window):
         """Handle view toggle button clicks."""
         if not button.get_active():
             return
-            
+
         self.current_view = view
         self.current_week_offset = 0  # Reset navigation when switching views
         self.__load_data()
-        
+
         # Update navigation button tooltips based on view
         if view == "week":
             self.btn_prev.set_tooltip_text(_("Previous Week"))  # type: ignore
@@ -119,7 +119,7 @@ class PlaytimeGraphDialog(Adw.Window):
     def __load_data(self) -> None:
         """Load and display playtime data from the database."""
         today = datetime.now()
-        
+
         # Update date range label and navigation based on view
         if self.current_view == "week":
             week_start = (
@@ -132,24 +132,24 @@ class PlaytimeGraphDialog(Adw.Window):
                 week_start.strftime("%b %-d"), week_end.strftime("%b %-d")
             )
             self.btn_next.set_sensitive(self.current_week_offset < 0)  # type: ignore
-            
+
         elif self.current_view == "day":
             target_date = today + timedelta(days=self.current_week_offset)
             date_range = target_date.strftime("%B %-d, %Y")
             self.btn_next.set_sensitive(self.current_week_offset < 0)  # type: ignore
-            
+
         elif self.current_view == "year":
             target_year = today.year + self.current_week_offset
             date_range = str(target_year)
             self.btn_next.set_sensitive(self.current_week_offset < 0)  # type: ignore
-            
+
         self.label_date_range.set_label(date_range)  # type: ignore
 
         # Render bar chart based on current view
         if self.current_view == "week":
             daily_data = self.__get_weekly_data()
             self.__render_chart(daily_data)
-            
+
             # Calculate weekly stats
             # Convert Python's weekday (Mon=0) to SQL's day_of_week (Sun=0)
             # Python: Mon=0, Tue=1, Wed=2, Thu=3, Fri=4, Sat=5, Sun=6
@@ -160,31 +160,37 @@ class PlaytimeGraphDialog(Adw.Window):
             )
             period_minutes = sum(daily_data)
             period_avg_minutes = period_minutes // 7 if period_minutes > 0 else 0
-            period_label = _("This Week") if self.current_week_offset == 0 else _("Weekly")
+            period_label = (
+                _("This Week") if self.current_week_offset == 0 else _("Weekly")
+            )
             avg_label = _("Daily Average: {}")
-            
+
         elif self.current_view == "day":
             hourly_data = self.__get_hourly_data()
             self.__render_chart(hourly_data)
-            
+
             # Calculate daily stats
             today_minutes = sum(hourly_data) if self.current_week_offset == 0 else 0
             period_minutes = sum(hourly_data)
             # Average divides total time by number of hours with data (not zero)
             hours_with_data = sum(1 for minutes in hourly_data if minutes > 0)
-            period_avg_minutes = period_minutes // hours_with_data if hours_with_data > 0 else 0
+            period_avg_minutes = (
+                period_minutes // hours_with_data if hours_with_data > 0 else 0
+            )
             period_label = _("Today") if self.current_week_offset == 0 else _("Daily")
             avg_label = _("Hourly Average: {}")
-            
+
         elif self.current_view == "year":
             monthly_data = self.__get_monthly_data()
             self.__render_chart(monthly_data)
-            
+
             # Calculate yearly stats
             today_minutes = 0  # Not applicable for yearly view
             period_minutes = sum(monthly_data)
             period_avg_minutes = period_minutes // 12 if period_minutes > 0 else 0
-            period_label = _("This Year") if self.current_week_offset == 0 else _("Yearly")
+            period_label = (
+                _("This Year") if self.current_week_offset == 0 else _("Yearly")
+            )
             avg_label = _("Monthly Average: {}")
 
         # Format and display current period stats
@@ -204,7 +210,7 @@ class PlaytimeGraphDialog(Adw.Window):
                 session_count = service.get_weekly_session_count(
                     bottle_id=self.bottle_id,
                     program_id=self.program_id,
-                    week_offset=self.current_week_offset
+                    week_offset=self.current_week_offset,
                 )
             elif self.current_view == "day":
                 target_date = datetime.now() + timedelta(days=self.current_week_offset)
@@ -212,32 +218,32 @@ class PlaytimeGraphDialog(Adw.Window):
                 session_count = service.get_daily_session_count(
                     bottle_id=self.bottle_id,
                     program_id=self.program_id,
-                    date_str=date_str
+                    date_str=date_str,
                 )
             elif self.current_view == "year":
                 target_year = datetime.now().year + self.current_week_offset
                 session_count = service.get_yearly_session_count(
                     bottle_id=self.bottle_id,
                     program_id=self.program_id,
-                    year=target_year
+                    year=target_year,
                 )
             else:
                 session_count = 0
-            
+
             # Get global program record for last played (always global)
             record = service.get_program_playtime(
                 bottle_id=self.bottle_id,
                 bottle_path=None,
                 program_name=self.program_name,
                 program_path=None,
-                program_id=self.program_id
+                program_id=self.program_id,
             )
-            
+
             if record:
                 # Display period total and session count with smart formatting
                 self.label_total_time.set_label(self.__format_time(period_minutes))  # type: ignore
                 self.label_sessions_count.set_label(str(session_count))  # type: ignore
-                
+
                 # Format last played (always global)
                 last_played_text = service.format_last_played(record.last_played)
                 self.label_last_played.set_label(last_played_text)  # type: ignore
@@ -257,50 +263,46 @@ class PlaytimeGraphDialog(Adw.Window):
         # Check if we have required IDs
         if not self.bottle_id or not self.program_id:
             return [0] * 7
-        
+
         # Create service instance and fetch data
         service = PlaytimeService(self.parent.manager)
         daily_data = service.get_weekly_data(
             bottle_id=self.bottle_id,
             program_id=self.program_id,
-            week_offset=self.current_week_offset
+            week_offset=self.current_week_offset,
         )
-        
+
         return daily_data
 
     def __get_hourly_data(self) -> List[int]:
         """Retrieve hourly playtime data for a specific day."""
         if not self.bottle_id or not self.program_id:
             return [0] * 24
-        
+
         # Calculate date based on offset
         target_date = datetime.now() + timedelta(days=self.current_week_offset)
         date_str = target_date.strftime("%Y-%m-%d")
-        
+
         service = PlaytimeService(self.parent.manager)
         hourly_data = service.get_hourly_data(
-            bottle_id=self.bottle_id,
-            program_id=self.program_id,
-            date_str=date_str
+            bottle_id=self.bottle_id, program_id=self.program_id, date_str=date_str
         )
-        
+
         return hourly_data
 
     def __get_monthly_data(self) -> List[int]:
         """Retrieve monthly playtime data for a specific year."""
         if not self.bottle_id or not self.program_id:
             return [0] * 12
-        
+
         # Calculate year based on offset
         target_year = datetime.now().year + self.current_week_offset
-        
+
         service = PlaytimeService(self.parent.manager)
         monthly_data = service.get_monthly_data(
-            bottle_id=self.bottle_id,
-            program_id=self.program_id,
-            year=target_year
+            bottle_id=self.bottle_id, program_id=self.program_id, year=target_year
         )
-        
+
         return monthly_data
 
     def __render_chart(self, data: List[int]) -> None:
@@ -315,13 +317,13 @@ class PlaytimeGraphDialog(Adw.Window):
                 self._chart_weekly = PlaytimeChartWeekly()
             self._chart_weekly.set_daily_data(data)
             self.chart_container.append(self._chart_weekly)  # type: ignore
-            
+
         elif self.current_view == "day":
             if self._chart_hourly is None:
                 self._chart_hourly = PlaytimeChartHourly()
             self._chart_hourly.set_hourly_data(data)
             self.chart_container.append(self._chart_hourly)  # type: ignore
-            
+
         elif self.current_view == "year":
             if self._chart_monthly is None:
                 self._chart_monthly = PlaytimeChartMonthly()
