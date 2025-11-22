@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-10-30 14:19+0000\n"
-"Last-Translator: Gnkalk <github.fngyb@slmail.me>\n"
+"PO-Revision-Date: 2025-11-04 08:51+0000\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/bottles/bottles/"
 "fa/>\n"
 "Language: fa\n"
@@ -79,23 +79,21 @@ msgid "Setting Windows version…"
 msgstr "در حال تنظیم نسخه ویندوز…"
 
 #: bottles/backend/managers/manager.py:1260
-#, fuzzy
 msgid "Apply CMD default settings…"
-msgstr "در حال اعمال کردن تنظیمات پیش فرض CMD…"
+msgstr "اعمال تنظیمات پیش‌گزیدهٔ CMD…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
 msgstr "بهینه سازی محیط…"
 
 #: bottles/backend/managers/manager.py:1279
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "محیط های در حال اعمال: {0}…"
+msgstr "اعمال کردن محیط: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
-#, fuzzy
 msgid "(!) Using a custom environment recipe…"
-msgstr "(!) در حال استفاده از یک دستور العمل محیط شخصی سازی شده…"
+msgstr "(!) استفاده کردن از دستورالعمل نحیط سفارشی…"
 
 #: bottles/backend/managers/manager.py:1292
 msgid "(!) Recipe not not found or not valid…"
@@ -186,9 +184,8 @@ msgid "Pass arguments"
 msgstr "فرستادن آرگومان‌ها"
 
 #: bottles/frontend/main.py:203
-#, fuzzy
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "URL غیر معتبر (syntax: bottles:run/<bottle>/<program>)"
+msgstr "نشانی نامعتبر (نحو: ‪bottles:run/<bottle>/<program>‬)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
@@ -211,9 +208,8 @@ msgid "Third-Party Libraries and Special Thanks"
 msgstr "کتبخانه های ثالث و تشکر ویژه"
 
 #: bottles/frontend/main.py:325
-#, fuzzy
 msgid "Sponsored and Funded by"
-msgstr "حمایت شده توسط"
+msgstr "حمایت و تأمین مالی به دست"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
@@ -293,13 +289,12 @@ msgid "Download & Install this Dependency"
 msgstr "بارگیری و نصب وابستگی‌ها"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
-#, fuzzy
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"یک خطای نصب اتفاق افتاد. Bottles رو ریستارت کنید تا گزارش کرش را بخوانید و "
-"یا از طریق ترمینال اجرایش کنید تا خروجی را بخوانید."
+"نصب به خطا خورد. آغاز دوبارهٔ بطری‌ها برای خواندن گزارش فروپاشی یا اجرایش در "
+"پایانه برای خواندن خروجی."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -532,7 +527,7 @@ msgstr "حذف کننده"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
-msgstr ""
+msgstr "تابلوی واپایش"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
@@ -549,17 +544,16 @@ msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr "Bottles در حال اجرا در حالت افلاین است پس وابستگی ها در دسترس نیستند."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
-#, fuzzy
 msgid ""
 "Dependencies are resources that improve compatibility of Windows software.\n"
 "\n"
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"وابستگی ها منابعی هستند که سازگاری برنامه های ویندوزی را بهبود می بخشند.\n"
+"وابستگی‌ها منابعیند که سازگاری نرم‌افزارهای ویندوزی را بهبود می بخشند.\n"
 "\n"
-"فایل های که در این صفحه هستند توسط اشخاص ثالث با پروانه انحصاری آماده شده "
-"اند. با نصب آنها, شما با بند های پروانه آنها موافقت می کنید."
+"پرونده‌های در این صفحه به دست سوم‌شخص‌ها با پروانهٔ انحصاری فراهم شده‌اند. با "
+"نصبشان با شرایط پروانه‌شان موافقت می‌کنید."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
@@ -602,10 +596,9 @@ msgid "No Installers Found"
 msgstr "هیچ نصب کننده‌ای پیدا نشد"
 
 #: bottles/frontend/ui/details-installers.blp:32
-#, fuzzy
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
-msgstr "مخزن غیرقابل دسترسی است و یا نصب کننده با این بطری سازگار نیست."
+msgstr "مخزن در دسترس نبوده یا نصب‌کننده با این بطری سازگار نیست."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
@@ -690,13 +683,12 @@ msgid "Deep Learning Super Sampling"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:89
-#, fuzzy
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
-"افزایش بازدهی در ازای کیفیت با استفاده کردن از DXVK-NVAPI. فقط در کارت های "
-"گرافیک جدید انویدیا کار می کند."
+"افزایش بازدهی به قیمت کیفیت با استفاده از DXVK-NVAPI. فقط روی کارت‌های "
+"گرافیکی جدید انویدیا کار می‌کند."
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
@@ -739,7 +731,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "مدیریت تنظیمات گیم‌اسکوپ"
 
 #: bottles/frontend/ui/details-preferences.blp:171
 msgid "Advanced Display Settings"
@@ -1384,7 +1376,7 @@ msgstr "نام جدید"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 msgid "Run With Arguments"
-msgstr ""
+msgstr "اجرا با آرگومان"
 
 #: bottles/frontend/ui/dialog-run-args.blp:34
 #: bottles/frontend/views/bottle_details.py:401
@@ -1952,7 +1944,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
-msgstr ""
+msgstr "نمایش زمان به‌روز رسانی"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
@@ -2475,7 +2467,7 @@ msgstr "نصب کردن…"
 #: bottles/frontend/widgets/installer.py:81
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr ""
+msgstr "بیانیه برای {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
 #, python-brace-format
@@ -2521,7 +2513,7 @@ msgstr ""
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
 msgid "Review for {0}"
-msgstr ""
+msgstr "بازبینی برای {0}"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
@@ -2537,17 +2529,17 @@ msgstr "اجرای «{0}» با استیم…"
 #: bottles/frontend/widgets/program.py:214
 #, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr ""
+msgstr "«{0}» نهفته"
 
 #: bottles/frontend/widgets/program.py:216
 #, python-brace-format
 msgid "\"{0}\" showed"
-msgstr ""
+msgstr "«{0}» نمایان"
 
 #: bottles/frontend/widgets/program.py:242
 #, python-brace-format
 msgid "\"{0}\" removed"
-msgstr ""
+msgstr "«{0}» برداشته"
 
 #: bottles/frontend/widgets/program.py:274
 #, python-brace-format
@@ -2601,7 +2593,7 @@ msgstr "هیچ متغیّر محیطی‌ای تعریف نشده."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
-msgstr ""
+msgstr "هیچ الگوی کنار گذاشتنی تعریف نشده."
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -2611,7 +2603,7 @@ msgstr ""
 #: bottles/frontend/windows/generic.py:137
 #: bottles/frontend/windows/generic.py:182
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "رونوشت در تخته‌گیره"
 
 #: bottles/frontend/windows/installer.py:62
 msgid "Select Resource File"
@@ -2959,7 +2951,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
-msgstr ""
+msgstr "رفع اشکال‌ها:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"

@@ -1,6 +1,6 @@
 # importer.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,14 +16,13 @@
 #
 
 import os
-
-from bottles.backend.models.config import BottleConfig
 import subprocess
-from glob import glob
 from datetime import datetime
+from glob import glob
 
+from bottles.backend.globals import Paths, TrdyPaths
 from bottles.backend.logger import Logger
-from bottles.backend.globals import TrdyPaths, Paths
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 
 logging = Logger()
@@ -102,7 +101,7 @@ class ImportManager:
 
         # create lockfile in source path
         logging.info(f"Creating lock file in {wineprefix['Path']}…")
-        open(f'{wineprefix.get("Path")}/bottle.lock', "a").close()
+        open(f"{wineprefix.get('Path')}/bottle.lock", "a").close()
 
         # copy wineprefix files in the new bottle
         command = f"cp -a {wineprefix.get('Path')}/* {bottle_complete_path}/"

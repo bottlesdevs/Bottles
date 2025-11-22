@@ -1,6 +1,6 @@
 # versioning.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,13 +20,12 @@ import shutil
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
-
 from typing import Any
 
 from fvs.exceptions import (  # type: ignore [import-untyped]
     FVSNothingToCommit,
-    FVSStateNotFound,
     FVSNothingToRestore,
+    FVSStateNotFound,
     FVSStateZeroNotDeletable,
 )
 from fvs.repo import FVSRepo  # type: ignore [import-untyped]
@@ -34,7 +33,7 @@ from fvs.repo import FVSRepo  # type: ignore [import-untyped]
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import TaskManager, Task
+from bottles.backend.state import Task, TaskManager
 from bottles.backend.utils import yaml
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.manager import ManagerUtils

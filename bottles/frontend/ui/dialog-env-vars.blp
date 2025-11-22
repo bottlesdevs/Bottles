@@ -20,12 +20,46 @@ template $EnvironmentVariablesDialog: Adw.Dialog {
         description: _("Environment variables are dynamic-named values that can affect the way running processes will behave in your bottle");
 
         Adw.EntryRow entry_new_var {
-          title: _("New Variable");
+          title: _("New Variable (KEY=VALUE)");
           show-apply-button: true;
         }
       }
 
       Adw.PreferencesGroup group_vars {}
+
+      Adw.PreferencesGroup group_inherited {
+        title: _("System Environment");
+        description: _("Control which variables from your system are visible to programs inside this bottle");
+
+        Adw.SwitchRow switch_limit_inherited {
+          title: _("Limit system environment");
+          subtitle: _("Only inherit the variables listed below");
+        }
+
+        Adw.EntryRow entry_new_inherited {
+          title: _("Add variable");
+          show-apply-button: true;
+        }
+
+        Gtk.ListBox list_inherited {
+          selection-mode: none;
+          margin-top: 6;
+
+          styles [
+            "boxed-list",
+          ]
+        }
+
+        Gtk.Label label_inherited_empty {
+          wrap: true;
+
+          styles [
+            "dim-label",
+          ]
+
+          label: _("No variables selected");
+        }
+      }
     }
   }
 }

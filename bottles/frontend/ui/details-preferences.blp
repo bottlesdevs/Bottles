@@ -129,6 +129,16 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
+    Adw.ActionRow row_wayland {
+      activatable-widget: switch_wayland;
+      title: _("Wayland (Experimental)");
+      subtitle: _("Force the experimental native Wayland driver instead of Xwayland. Requires a Wayland session.");
+
+      Switch switch_wayland {
+        valign: center;
+      }
+    }
+
     Adw.ActionRow row_vkbasalt {
       activatable-widget: switch_vkbasalt;
       title: _("Post-Processing Effects");
@@ -149,7 +159,7 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
-    Adw.ActionRow {
+    Adw.ActionRow row_gamescope {
       activatable-widget: switch_gamescope;
       title: "Gamescope";
       subtitle: _("Manage how games should be displayed on the screen using Gamescope.");
@@ -204,7 +214,7 @@ template $DetailsPreferences: Adw.PreferencesPage {
       };
     }
 
-    Adw.ActionRow {
+    Adw.ActionRow row_mangohud {
       activatable-widget: switch_mangohud;
       title: _("Monitor Performance");
       subtitle: _("Display monitoring information such as framerate, temperatures, CPU/GPU load and more on OpenGL and Vulkan using MangoHud.");
@@ -224,7 +234,7 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
-    Adw.ActionRow {
+    Adw.ActionRow row_gamemode {
       activatable-widget: switch_gamemode;
       title: _("Feral GameMode");
       subtitle: _("Apply a set of optimizations to your device. Can improve game performance.");
@@ -234,7 +244,7 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
-    Adw.ActionRow {
+    Adw.ActionRow row_vmtouch {
       activatable-widget: switch_vmtouch;
       title: _("Preload Game Files");
       subtitle: _("Improve loading time when launching the game multiple times. The game will take longer to start for the first time.");
@@ -255,7 +265,7 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
-    Adw.ActionRow {
+    Adw.ActionRow row_obsvkc {
       activatable-widget: switch_obsvkc;
       title: _("OBS Game Capture");
       subtitle: _("Toggle OBS Game Capture for all Vulkan and OpenGL programs.");
@@ -315,6 +325,16 @@ template $DetailsPreferences: Adw.PreferencesPage {
       visible: false;
 
       Switch switch_runtime {
+        valign: center;
+      }
+    }
+
+    Adw.ActionRow row_winebridge {
+      activatable-widget: switch_winebridge;
+      title: _("Use WineBridge");
+      subtitle: _("Start programs through WineBridge by default for this bottle.");
+
+      Switch switch_winebridge {
         valign: center;
       }
     }

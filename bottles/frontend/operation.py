@@ -1,6 +1,6 @@
 # operation.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 from typing import Dict
 from uuid import UUID
 
-from gi.repository import Gtk, Adw
+from gi.repository import Adw, Gtk
 
 from bottles.backend.models.result import Result
 from bottles.backend.state import TaskManager

@@ -1,6 +1,6 @@
 # vmtouch.py
 #
-# Copyright 2022 axtlos <axtlos@tar.black>
+# Copyright 2025 axtlos <axtlos@tar.black>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-only
 
-from gi.repository import Gtk, GLib, Adw
+from gi.repository import Adw, GLib, Gtk
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-vmtouch.ui")

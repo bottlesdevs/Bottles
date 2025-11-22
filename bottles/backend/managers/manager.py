@@ -1,6 +1,6 @@
 # manager.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,10 +23,10 @@ import shutil
 import subprocess
 import time
 import uuid
-from threading import Event
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
+from threading import Event
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import pathvalidate
@@ -45,22 +45,25 @@ from bottles.backend.managers.importer import ImportManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.playtime import ProcessSessionTracker
+from bottles.backend.managers.registry_rule import RegistryRuleManager
 from bottles.backend.managers.repository import RepositoryManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.ubisoftconnect import UbisoftConnectManager
 from bottles.backend.managers.versioning import VersioningManager
 from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.process import (
+    ProcessFinishedPayload,
+    ProcessStartedPayload,
+)
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.models.result import Result
-from bottles.backend.state import SignalManager, Signals, Events, EventManager
+from bottles.backend.state import EventManager, Events, SignalManager, Signals
 from bottles.backend.utils import yaml
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import sort_by_version
-from bottles.backend.utils.gpu import GPUUtils
-from bottles.backend.utils.gpu import GPUVendors
+from bottles.backend.utils.gpu import GPUUtils, GPUVendors
 from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
@@ -73,11 +76,6 @@ from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.winepath import WinePath
 from bottles.backend.wine.wineserver import WineServer
-from bottles.backend.state import SignalManager, Signals
-from bottles.backend.models.process import (
-    ProcessStartedPayload,
-    ProcessFinishedPayload,
-)
 
 logging = Logger()
 
@@ -163,14 +161,17 @@ class Manager(metaclass=Singleton):
         times["SteamManager"] = time.time()
 
         # Initialize playtime tracker
-        playtime_enabled = self.settings.get_boolean("playtime-enabled")
-        playtime_interval = self.settings.get_int("playtime-heartbeat-interval")
-        self.playtime_tracker = ProcessSessionTracker(
-            enabled=playtime_enabled,
-            heartbeat_interval=playtime_interval if playtime_interval > 0 else 60,
-        )
-        self.playtime_tracker.recover_open_sessions()
+        self._initialize_playtime_tracker()
         times["PlaytimeTracker"] = time.time()
+
+        # React to runtime changes in playtime preference when available
+        if hasattr(self.settings, "connect"):
+            try:
+                self.settings.connect(
+                    "changed::playtime-enabled", self._on_playtime_enabled_changed
+                )
+            except Exception:
+                pass
 
         # Subscribe to playtime signals (connect once per process)
         if not Manager._playtime_signals_connected:
@@ -320,6 +321,32 @@ class Manager(metaclass=Singleton):
         except Exception:
             pass
 
+    def _initialize_playtime_tracker(self) -> None:
+        playtime_enabled = self.settings.get_boolean("playtime-enabled")
+        playtime_interval = self.settings.get_int("playtime-heartbeat-interval")
+        tracker = ProcessSessionTracker(
+            enabled=playtime_enabled,
+            heartbeat_interval=playtime_interval if playtime_interval > 0 else 60,
+        )
+        tracker.recover_open_sessions()
+        self.playtime_tracker = tracker
+
+    def _on_playtime_enabled_changed(self, _settings, _key) -> None:
+        enabled = self.settings.get_boolean("playtime-enabled")
+        if not enabled:
+            if (
+                getattr(self, "playtime_tracker", None)
+                and self.playtime_tracker.enabled
+            ):
+                self._launch_to_session.clear()
+                self.playtime_tracker.disable_tracking()
+            return
+
+        if getattr(self, "playtime_tracker", None) and self.playtime_tracker.enabled:
+            return
+
+        self._initialize_playtime_tracker()
+
     # Playtime signal handlers
     _launch_to_session: Dict[str, int] = {}
 
@@ -355,7 +382,9 @@ class Manager(metaclass=Singleton):
     ) -> Result[None]:
         try:
             if status == "success":
-                self.playtime_tracker.mark_exit(session_id, status="success", ended_at=ended_at)
+                self.playtime_tracker.mark_exit(
+                    session_id, status="success", ended_at=ended_at
+                )
             else:
                 self.playtime_tracker.mark_failure(session_id, status=status)
             return Result(True)
@@ -382,6 +411,10 @@ class Manager(metaclass=Singleton):
                 return
             sid = int(res.data or -1)
             self._launch_to_session[payload.launch_id] = sid
+
+            config = self._get_payload_config(payload)
+            if config:
+                RegistryRuleManager.apply_rules(config, trigger="start_program")
         except Exception:
             pass
 
@@ -398,8 +431,27 @@ class Manager(metaclass=Singleton):
                     f"Playtime signal: finished launch_id={payload.launch_id} status={status} sid={sid}"
                 )
                 self.playtime_finish(sid, status=status, ended_at=ended_at)
+
+            config = self._get_payload_config(payload)
+            if config:
+                RegistryRuleManager.apply_rules(config, trigger="stop_program")
         except Exception:
             pass
+
+    def _get_payload_config(self, payload) -> Optional[BottleConfig]:
+        config = self.local_bottles.get(payload.bottle_name)
+        if isinstance(config, BottleConfig):
+            return config
+
+        try:
+            config_path = os.path.join(payload.bottle_path, "bottle.yml")
+        except Exception:
+            return None
+
+        loaded = BottleConfig.load(config_path)
+        if loaded.status:
+            return loaded.data
+        return None
 
     def __clear_temp(self, force: bool = False):
         """Clears the temp directory if user setting allows it. Use the force
@@ -412,6 +464,87 @@ class Manager(metaclass=Singleton):
                 logging.info("Temp directory cleaned successfully!")
             except FileNotFoundError:
                 self.check_app_dirs()
+
+    def get_cache_details(self) -> dict:
+        self.check_app_dirs()
+        file_utils = FileUtils()
+
+        temp_size_bytes = file_utils.get_path_size(Paths.temp, human=False)
+        templates = []
+        templates_size_bytes = 0
+
+        for template in TemplateManager.get_templates():
+            template_uuid = template.get("uuid", "")
+            template_path = os.path.join(Paths.templates, template_uuid)
+
+            size_bytes = file_utils.get_path_size(template_path, human=False)
+            templates_size_bytes += size_bytes
+
+            templates.append(
+                {
+                    "uuid": template_uuid,
+                    "env": template.get("env", ""),
+                    "created": template.get("created", ""),
+                    "size": file_utils.get_human_size(size_bytes),
+                    "size_bytes": size_bytes,
+                }
+            )
+
+        total_size_bytes = temp_size_bytes + templates_size_bytes
+
+        return {
+            "temp": {
+                "path": Paths.temp,
+                "size": file_utils.get_human_size(temp_size_bytes),
+                "size_bytes": temp_size_bytes,
+            },
+            "templates": templates,
+            "templates_size": file_utils.get_human_size(templates_size_bytes),
+            "templates_size_bytes": templates_size_bytes,
+            "total_size": file_utils.get_human_size(total_size_bytes),
+            "total_size_bytes": total_size_bytes,
+        }
+
+    def clear_temp_cache(self) -> Result[None]:
+        try:
+            self.__clear_temp(force=True)
+        except Exception as ex:
+            logging.error(f"Failed to clear temp cache: {ex}")
+            return Result(False, message=str(ex))
+
+        return Result(True)
+
+    def clear_template_cache(self, template_uuid: str) -> Result[None]:
+        self.check_app_dirs()
+        try:
+            TemplateManager.delete_template(template_uuid)
+        except Exception as ex:
+            logging.error(f"Failed to clear template cache: {ex}")
+            return Result(False, message=str(ex))
+
+        return Result(True)
+
+    def clear_templates_cache(self) -> Result[None]:
+        self.check_app_dirs()
+        try:
+            for template in TemplateManager.get_templates():
+                TemplateManager.delete_template(template.get("uuid", ""))
+        except Exception as ex:
+            logging.error(f"Failed to clear templates cache: {ex}")
+            return Result(False, message=str(ex))
+
+        return Result(True)
+
+    def clear_all_caches(self) -> Result[None]:
+        temp_result = self.clear_temp_cache()
+        if not temp_result.ok:
+            return temp_result
+
+        templates_result = self.clear_templates_cache()
+        if not templates_result.ok:
+            return templates_result
+
+        return Result(True)
 
     def update_bottles(self, silent: bool = False):
         """Checks for new bottles and update the list view."""
@@ -661,32 +794,77 @@ class Manager(metaclass=Singleton):
                     return True
         return False
 
-    def check_winebridge(
-        self, install_latest: bool = True, update: bool = False
-    ) -> bool:
+    def __winebridge_status(self) -> tuple[Optional[str], Optional[str], bool]:
+        def _is_newer(candidate: str, current: str) -> bool:
+            versions = [candidate, current]
+            try:
+                sorted_versions = sort_by_version(list(versions))
+            except ValueError:
+                sorted_versions = sorted(versions, reverse=True)
+            return sorted_versions[0] == candidate and candidate != current
+
         self.winebridge_available = []
         winebridge = os.listdir(Paths.winebridge)
+        latest_supported = None
 
-        if len(winebridge) == 0 or update:
-            if install_latest and self.utils_conn.check_connection():
-                logging.warning("No WineBridge found.")
-                try:
-                    version = next(iter(self.supported_winebridge))
-                    self.component_manager.install("winebridge", version)
-                    self.winebridge_available = [version]
-                    return True
-                except StopIteration:
-                    return False
-            return False
+        if self.supported_winebridge:
+            try:
+                latest_supported = sort_by_version(
+                    list(self.supported_winebridge.keys())
+                )[0]
+            except ValueError:
+                latest_supported = sorted(
+                    list(self.supported_winebridge.keys()), reverse=True
+                )[0]
 
         version_file = os.path.join(Paths.winebridge, "VERSION")
+        installed_identifier = None
         if os.path.exists(version_file):
             with open(version_file, "r") as f:
                 version = f.read().strip()
                 if version:
-                    self.winebridge_available = [f"winebridge-{version}"]
-                    return True
-        return False
+                    installed_identifier = f"winebridge-{version}"
+                    self.winebridge_available = [installed_identifier]
+
+        missing_installation = len(winebridge) == 0 or not installed_identifier
+        needs_latest = False
+        if latest_supported:
+            needs_latest = (
+                missing_installation
+                or _is_newer(latest_supported, installed_identifier)
+            )
+
+        return latest_supported, installed_identifier, needs_latest
+
+    def winebridge_update_status(self) -> dict:
+        latest_supported, installed_identifier, needs_latest = self.__winebridge_status()
+        return {
+            "latest_supported": latest_supported,
+            "installed_identifier": installed_identifier,
+            "needs_latest": needs_latest,
+            "missing": not installed_identifier,
+        }
+
+    def check_winebridge(
+        self, install_latest: bool = True, update: bool = False
+    ) -> bool:
+        latest_supported, installed_identifier, needs_latest = self.__winebridge_status()
+
+        can_install = install_latest or update
+        if can_install and needs_latest and latest_supported:
+            if not self.utils_conn.check_connection():
+                return False
+            logging.warning("WineBridge installation/update required.")
+            res = self.component_manager.install("winebridge", latest_supported)
+            if res.ok:
+                self.winebridge_available = [latest_supported]
+                return True
+            return False
+
+        if needs_latest and not can_install:
+            return False
+
+        return bool(self.winebridge_available)
 
     def check_dxvk(self, install_latest: bool = True) -> bool:
         res = self.__check_component("dxvk", install_latest)
@@ -922,6 +1100,7 @@ class Manager(metaclass=Singleton):
                     "gamescope": _program.get("gamescope"),
                     "pulseaudio_latency": _program.get("pulseaudio_latency"),
                     "virtual_desktop": _program.get("virtual_desktop"),
+                    "winebridge": _program.get("winebridge"),
                     "removed": _program.get("removed"),
                     "id": _program.get("id"),
                 }
@@ -1208,7 +1387,34 @@ class Manager(metaclass=Singleton):
         if config.Environment == "Steam":
             self.steam_manager.update_bottle(config)
 
+        component_keys = {
+            "Runner",
+            "DXVK",
+            "VKD3D",
+            "NVAPI",
+            "LatencyFleX",
+            "LatencyFleX_Activated",
+        }
+
+        if key in component_keys or scope in component_keys:
+            RegistryRuleManager.apply_rules(config, trigger="components")
+
         return Result(status=True, data={"config": config})
+
+    def apply_audio_driver(self, driver: str) -> Result[None]:
+        """Apply the configured audio driver override to every bottle."""
+
+        logging.info(f"Applying audio driver '{driver}' to local bottles…")
+        try:
+            for config in self.local_bottles.values():
+                if not isinstance(config, BottleConfig):
+                    continue
+                RegKeys(config).set_audio_driver(driver)
+        except ValueError as exc:
+            logging.error(str(exc))
+            return Result(False, message=str(exc))
+
+        return Result(True)
 
     def create_bottle_from_config(self, config: BottleConfig) -> bool:
         """Create a bottle from a config object."""
@@ -1534,6 +1740,10 @@ class Manager(metaclass=Singleton):
         config.Update_Date = str(datetime.now())
         if versioning:
             config.Versioning = True
+        config.Limit_System_Environment = True
+        config.Inherited_Environment_Variables = (
+            Samples.default_inherited_environment.copy()
+        )
 
         cleanup_config = config
 
@@ -1642,6 +1852,16 @@ class Manager(metaclass=Singleton):
             logging.info("Enabling font smoothing…")
             log_update(_("Enabling font smoothing…"))
             rk.apply_font_smoothing()
+
+            audio_driver = self.settings.get_string("audio-driver")
+            if audio_driver not in ("", "default"):
+                logging.info("Configuring audio driver…")
+                log_update(_("Configuring audio driver…"))
+                try:
+                    rk.set_audio_driver(audio_driver)
+                except ValueError as exc:
+                    logging.warning(str(exc))
+
             wineboot.update()
 
             FileUtils.wait_for_files(reg_files)

@@ -1,8 +1,26 @@
-"""Frontend playtime utilities and formatting helpers."""
+# playtime.py
+#
+# Copyright 2025 Bottles Contributors
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, in version 3 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+"""
+Playtime frontend service: retrieval, caching, and formatting of playtime data.
+"""
 
 from __future__ import annotations
 
-import sqlite3
 import time
 from dataclasses import dataclass
 from datetime import datetime, timedelta
@@ -13,6 +31,7 @@ from gi.repository import GLib
 
 from bottles.backend.logger import Logger
 from bottles.backend.managers.playtime import _compute_program_id
+
 
 logging = Logger()
 
@@ -33,40 +52,35 @@ class PlaytimeRecord:
 class PlaytimeCache:
     """Simple in-memory cache with TTL and manual invalidation."""
 
-    def __init__(self, ttl_seconds: int = 30) -> None:
-        self._ttl = max(0, int(ttl_seconds))
-        self._cache: Dict[Tuple[str, Optional[str]], Tuple[PlaytimeRecord, float]] = {}
+    def __init__(self, ttl_seconds: int = 30):
+        self.ttl_seconds = ttl_seconds
+        self._cache: Dict[Tuple[str, str], Tuple[PlaytimeRecord, float]] = {}
 
-    def get(
-        self, bottle_id: str, program_id: Optional[str]
-    ) -> Optional[PlaytimeRecord]:
+    def get(self, bottle_id: str, program_id: str) -> Optional[PlaytimeRecord]:
         key = (bottle_id, program_id)
-        entry = self._cache.get(key)
-        if entry is None:
-            return None
+        if key in self._cache:
+            record, timestamp = self._cache[key]
+            if time.time() - timestamp < self.ttl_seconds:
+                logging.debug(
+                    f"Playtime cache hit: bottle={bottle_id} program_id={program_id}"
+                )
+                return record
+            else:
+                del self._cache[key]
+                logging.debug(
+                    f"Playtime cache expired: bottle={bottle_id} program_id={program_id}"
+                )
+        return None
 
-        record, timestamp = entry
-        if self._ttl and time.time() - timestamp > self._ttl:
-            self._cache.pop(key, None)
-            logging.debug(
-                f"Playtime cache expired: bottle={bottle_id} program_id={program_id}"
-            )
-            return None
-
-        logging.debug(f"Playtime cache hit: bottle={bottle_id} program_id={program_id}")
-        return record
-
-    def set(
-        self, bottle_id: str, program_id: Optional[str], record: PlaytimeRecord
-    ) -> None:
+    def set(self, bottle_id: str, program_id: str, record: PlaytimeRecord) -> None:
         key = (bottle_id, program_id)
         self._cache[key] = (record, time.time())
         logging.debug(f"Playtime cache set: bottle={bottle_id} program_id={program_id}")
 
-    def invalidate(self, bottle_id: str, program_id: Optional[str]) -> None:
+    def invalidate(self, bottle_id: str, program_id: str) -> None:
         key = (bottle_id, program_id)
         if key in self._cache:
-            self._cache.pop(key, None)
+            del self._cache[key]
             logging.debug(
                 f"Playtime cache invalidated: bottle={bottle_id} program_id={program_id}"
             )
@@ -77,119 +91,162 @@ class PlaytimeCache:
 
 
 class PlaytimeService:
-    """Frontend service for accessing and formatting playtime data."""
+    """
+    Frontend service for accessing and formatting playtime data.
 
-    def __init__(self, manager, ttl_seconds: int = 30) -> None:
-        self._manager = manager
-        self._cache = PlaytimeCache(ttl_seconds=ttl_seconds)
+    Provides caching, retrieval, and human-readable formatting for playtime metrics.
+    """
+
+    def __init__(self, manager):
+        """
+        Initialize the playtime service.
+
+        Args:
+            manager: The Manager instance with playtime_tracker attribute.
+        """
+        self.manager = manager
+        self.cache = PlaytimeCache(ttl_seconds=30)
 
     def is_enabled(self) -> bool:
-        tracker = self._tracker
-        return bool(tracker and getattr(tracker, "enabled", False))
+        """Check if playtime tracking is currently enabled."""
+        try:
+            return self.manager.playtime_tracker.enabled
+        except AttributeError:
+            return False
 
     def get_program_playtime(
-        self,
-        bottle_id: str,
-        bottle_path: Optional[str],
-        program_name: str,
-        program_path: Optional[str],
-        program_id: Optional[str] = None,
+        self, bottle_id: str, bottle_path: str, program_name: str, program_path: str
     ) -> Optional[PlaytimeRecord]:
-        """Retrieve playtime data for a specific program."""
+        """
+        Retrieve playtime data for a specific program.
 
+        Args:
+            bottle_id: The bottle identifier.
+            bottle_path: The bottle's full path (for path normalization).
+            program_name: The program display name.
+            program_path: The program executable path (used to compute program_id).
+
+        Returns:
+            PlaytimeRecord if data exists, None otherwise.
+        """
         if not self.is_enabled():
             logging.debug("Playtime service: tracking disabled")
             return None
 
-        tracker = self._tracker
-        if tracker is None:
-            return None
-
-        computed_program_id = program_id or self._compute_program_id(
-            bottle_id, bottle_path, program_path
+        program_id = _compute_program_id(bottle_id, bottle_path, program_path)
+        logging.debug(
+            f"Computed program_id: {program_id} for bottle={bottle_id}, path={program_path}"
         )
-        if computed_program_id is None:
-            return None
 
-        cached = self._cache.get(bottle_id, computed_program_id)
+        # Check cache first
+        cached = self.cache.get(bottle_id, program_id)
         if cached is not None:
             return cached
 
-        data = self._fetch_program_totals(tracker, bottle_id, computed_program_id)
-        if not data:
-            return None
+        # Fetch from backend
+        try:
+            logging.debug(
+                f"Calling backend get_totals(bottle_id={bottle_id}, program_id={program_id})"
+            )
+            data = self.manager.playtime_tracker.get_totals(bottle_id, program_id)
+            logging.debug(f"Backend returned: {data}")
+            if data is None:
+                logging.debug(f"No playtime data found for {program_name}")
+                return None
 
-        record = PlaytimeRecord(
-            bottle_id=bottle_id,
-            program_id=computed_program_id,
-            program_name=data.get("program_name") or program_name,
-            program_path=data.get("program_path") or program_path,
-            total_seconds=int(data.get("total_seconds", 0)),
-            sessions_count=int(data.get("sessions_count", 0)),
-            last_played=self._parse_timestamp(data.get("last_played")),
-        )
-        self._cache.set(bottle_id, computed_program_id, record)
-        return record
+            record = PlaytimeRecord(
+                bottle_id=data["bottle_id"],
+                program_id=data["program_id"],
+                program_name=data["program_name"],
+                program_path=data.get("program_path"),
+                total_seconds=data["total_seconds"],
+                sessions_count=data["sessions_count"],
+                last_played=(
+                    datetime.fromtimestamp(data["last_played"])
+                    if data["last_played"] is not None
+                    else None
+                ),
+            )
+            logging.debug(f"Created record: {record}")
+            self.cache.set(bottle_id, program_id, record)
+            return record
+        except Exception as e:
+            logging.error(f"Failed to fetch playtime for {program_name}: {e}", exc=e)
+            return None
 
     def get_bottle_playtime(self, bottle_id: str) -> Optional[PlaytimeRecord]:
-        """Aggregate playtime data for an entire bottle."""
+        """
+        Retrieve aggregated playtime data for an entire bottle.
 
+        Aggregates all programs within the bottle client-side.
+
+        Args:
+            bottle_id: The bottle identifier.
+
+        Returns:
+            PlaytimeRecord with aggregated totals, or None if no data.
+        """
         if not self.is_enabled():
-            logging.debug("Playtime service: tracking disabled")
             return None
 
-        tracker = self._tracker
-        if tracker is None:
+        try:
+            programs = self.manager.playtime_tracker.get_all_program_totals(bottle_id)
+            if not programs:
+                return None
+
+            total_seconds = sum(p["total_seconds"] for p in programs)
+            total_sessions = sum(p["sessions_count"] for p in programs)
+            last_played_timestamps = [
+                p["last_played"] for p in programs if p["last_played"] is not None
+            ]
+            last_played = (
+                datetime.fromtimestamp(max(last_played_timestamps))
+                if last_played_timestamps
+                else None
+            )
+
+            # Use first program's bottle_name if available
+            bottle_name = (
+                programs[0].get("bottle_name", bottle_id) if programs else bottle_id
+            )
+
+            return PlaytimeRecord(
+                bottle_id=bottle_id,
+                program_id=None,
+                program_name=bottle_name,
+                program_path=None,
+                total_seconds=total_seconds,
+                sessions_count=total_sessions,
+                last_played=last_played,
+            )
+        except Exception as e:
+            logging.error(
+                f"Failed to aggregate bottle playtime for {bottle_id}: {e}", exc=e
+            )
             return None
-
-        cached = self._cache.get(bottle_id, None)
-        if cached is not None:
-            return cached
-
-        programs = self._fetch_all_program_totals(tracker, bottle_id)
-        if not programs:
-            return None
-
-        total_seconds = sum(int(p.get("total_seconds", 0)) for p in programs)
-        total_sessions = sum(int(p.get("sessions_count", 0)) for p in programs)
-
-        timestamps: List[datetime] = []
-        for program in programs:
-            parsed = self._parse_timestamp(program.get("last_played"))
-            if parsed is not None:
-                timestamps.append(parsed)
-
-        record = PlaytimeRecord(
-            bottle_id=bottle_id,
-            program_id=None,
-            program_name=programs[0].get("bottle_name", bottle_id),
-            program_path=None,
-            total_seconds=total_seconds,
-            sessions_count=total_sessions,
-            last_played=max(timestamps) if timestamps else None,
-        )
-        self._cache.set(bottle_id, None, record)
-        return record
 
     def invalidate_program(
-        self,
-        bottle_id: str,
-        bottle_path: Optional[str],
-        program_path: Optional[str],
-        program_id: Optional[str] = None,
+        self, bottle_id: str, bottle_path: str, program_path: str
     ) -> None:
-        """Invalidate cached data for a single program."""
+        """
+        Invalidate cached data for a specific program.
 
-        target_program_id = program_id or self._compute_program_id(
-            bottle_id, bottle_path, program_path
-        )
-        if target_program_id is not None:
-            self._cache.invalidate(bottle_id, target_program_id)
+        Args:
+            bottle_id: The bottle identifier.
+            bottle_path: The bottle's full path (for path normalization).
+            program_path: The program executable path.
+        """
+        program_id = _compute_program_id(bottle_id, bottle_path, program_path)
+        self.cache.invalidate(bottle_id, program_id)
 
     def invalidate_cache(self) -> None:
-        """Clear all cached playtime data."""
+        """
+        Clear all cached playtime data.
 
-        self._cache.clear()
+        Use this when you need to force a refresh of all playtime displays,
+        such as after a program finishes running.
+        """
+        self.cache.clear()
 
     def get_weekly_data(
         self, bottle_id: str, program_id: str, week_offset: int = 0
@@ -211,13 +268,8 @@ class PlaytimeService:
             logging.debug("Playtime service: tracking disabled")
             return [0] * 7
 
-        tracker = self._tracker
-        if tracker is None:
-            logging.warning("Playtime service: tracker not available")
-            return [0] * 7
-
         try:
-            get_weekly = getattr(tracker, "get_weekly_playtime", None)
+            get_weekly = getattr(self.manager.playtime_tracker, "get_weekly_playtime", None)
             if not callable(get_weekly):
                 logging.error("Playtime service: get_weekly_playtime method not found")
                 return [0] * 7
@@ -257,13 +309,8 @@ class PlaytimeService:
             logging.debug("Playtime service: tracking disabled")
             return [0] * 24
 
-        tracker = self._tracker
-        if tracker is None:
-            logging.warning("Playtime service: tracker not available")
-            return [0] * 24
-
         try:
-            get_daily = getattr(tracker, "get_daily_playtime", None)
+            get_daily = getattr(self.manager.playtime_tracker, "get_daily_playtime", None)
             if not callable(get_daily):
                 logging.error("Playtime service: get_daily_playtime method not found")
                 return [0] * 24
@@ -301,13 +348,8 @@ class PlaytimeService:
             logging.debug("Playtime service: tracking disabled")
             return [0] * 12
 
-        tracker = self._tracker
-        if tracker is None:
-            logging.warning("Playtime service: tracker not available")
-            return [0] * 12
-
         try:
-            get_monthly = getattr(tracker, "get_monthly_playtime", None)
+            get_monthly = getattr(self.manager.playtime_tracker, "get_monthly_playtime", None)
             if not callable(get_monthly):
                 logging.error("Playtime service: get_monthly_playtime method not found")
                 return [0] * 12
@@ -334,12 +376,8 @@ class PlaytimeService:
         if not self.is_enabled():
             return 0
 
-        tracker = self._tracker
-        if tracker is None:
-            return 0
-
         try:
-            get_count = getattr(tracker, "get_weekly_session_count", None)
+            get_count = getattr(self.manager.playtime_tracker, "get_weekly_session_count", None)
             if not callable(get_count):
                 return 0
             return get_count(bottle_id, program_id, week_offset)
@@ -354,12 +392,8 @@ class PlaytimeService:
         if not self.is_enabled():
             return 0
 
-        tracker = self._tracker
-        if tracker is None:
-            return 0
-
         try:
-            get_count = getattr(tracker, "get_daily_session_count", None)
+            get_count = getattr(self.manager.playtime_tracker, "get_daily_session_count", None)
             if not callable(get_count):
                 return 0
             return get_count(bottle_id, program_id, date_str)
@@ -374,12 +408,8 @@ class PlaytimeService:
         if not self.is_enabled():
             return 0
 
-        tracker = self._tracker
-        if tracker is None:
-            return 0
-
         try:
-            get_count = getattr(tracker, "get_yearly_session_count", None)
+            get_count = getattr(self.manager.playtime_tracker, "get_yearly_session_count", None)
             if not callable(get_count):
                 return 0
             return get_count(bottle_id, program_id, year)
@@ -389,185 +419,107 @@ class PlaytimeService:
 
     @staticmethod
     def format_playtime(total_seconds: int) -> str:
-        """Format seconds into a human-readable playtime string."""
+        """
+        Format playtime duration in human-readable form.
 
+        Uses Python's timedelta for proper time formatting.
+
+        Rules:
+        - < 60s: "<1m"
+        - < 3600s: "MMm"
+        - < 86400s: "Hh MMm"
+        - >= 86400s: "Dd HHh"
+
+        Args:
+            total_seconds: Total accumulated playtime in seconds.
+
+        Returns:
+            Formatted string.
+        """
         if total_seconds < 60:
             return "<1m"
 
         td = timedelta(seconds=total_seconds)
+
         if total_seconds < 3600:
+            # Less than an hour: show minutes only
             minutes = td.seconds // 60
             return f"{minutes}m"
-        if total_seconds < 86400:
+        elif total_seconds < 86400:
+            # Less than a day: show hours and minutes
             hours = td.seconds // 3600
             minutes = (td.seconds % 3600) // 60
             return f"{hours}h {minutes:02d}m"
-
-        days = td.days
-        hours = td.seconds // 3600
-        return f"{days}d {hours:02d}h"
+        else:
+            # A day or more: show days and hours
+            days = td.days
+            hours = td.seconds // 3600
+            return f"{days}d {hours:02d}h"
 
     @staticmethod
     def format_last_played(last_played: Optional[datetime]) -> str:
-        """Format the last played timestamp with friendly labels."""
+        """
+        Format last played timestamp in human-readable form.
 
+        Rules:
+        - None: "Never"
+        - Today: "Today"
+        - Yesterday: "Yesterday"
+        - < 7 days: "N days ago"
+        - Else: locale-aware date format
+
+        Args:
+            last_played: The datetime of last play session, or None.
+
+        Returns:
+            Formatted string.
+        """
         if last_played is None:
             return _("Never")
 
         now = datetime.now()
         delta = now - last_played
 
+        # Same day
         if last_played.date() == now.date():
             return _("Today")
+
+        # Yesterday
         if last_played.date() == (now - timedelta(days=1)).date():
             return _("Yesterday")
-        if delta.days < 7:
-            return _("{} days ago").format(delta.days)
 
-        glib_dt = GLib.DateTime.new_from_unix_local(int(last_played.timestamp()))
-        formatted = glib_dt.format(_("%b %e, %Y"))
-        return formatted if formatted is not None else ""
+        # Within last 7 days
+        if delta.days < 7:
+            # Translators: %d is the number of days
+            return _("%d days ago") % delta.days
+
+        # Older - use locale-aware format
+        # Use locale's default date format via strftime with %x
+        return last_played.strftime("%x")
 
     def format_subtitle(self, record: Optional[PlaytimeRecord]) -> str:
-        """Produce a subtitle string for UI labels."""
+        """
+        Generate a formatted subtitle string for display.
 
+        Args:
+            record: The playtime record, or None.
+
+        Returns:
+            Formatted subtitle like "Last Played: Today – Playtime: 1h 23m"
+            or "Never Played" if no data.
+        """
         if record is None or record.sessions_count == 0:
             return _("Never Played")
 
         last_played_str = self.format_last_played(record.last_played)
         playtime_str = self.format_playtime(record.total_seconds)
 
+        # Escape for Pango markup to handle characters like < and >
         last_played_escaped = GLib.markup_escape_text(last_played_str)
         playtime_escaped = GLib.markup_escape_text(playtime_str)
+
+        # Translators: %s placeholders are for date and playtime duration
         return _("Last Played: %s – Playtime: %s") % (
             last_played_escaped,
             playtime_escaped,
         )
-
-    @property
-    def _tracker(self):
-        return getattr(self._manager, "playtime_tracker", None)
-
-    @staticmethod
-    def _compute_program_id(
-        bottle_id: str,
-        bottle_path: Optional[str],
-        program_path: Optional[str],
-    ) -> Optional[str]:
-        if not program_path:
-            return None
-
-        # New signature: _compute_program_id(bottle_id, program_path)
-        return _compute_program_id(bottle_id, program_path)
-
-    def _fetch_program_totals(
-        self, tracker, bottle_id: str, program_id: str
-    ) -> Optional[Dict[str, object]]:
-        get_totals = getattr(tracker, "get_totals", None)
-        if callable(get_totals):
-            try:
-                data = get_totals(bottle_id, program_id)
-            except TypeError:
-                data = get_totals(bottle_id=bottle_id, program_id=program_id)
-            if data:
-                return dict(data)
-
-        return self._read_program_totals_from_db(tracker, bottle_id, program_id)
-
-    def _fetch_all_program_totals(
-        self, tracker, bottle_id: str
-    ) -> List[Dict[str, object]]:
-        get_all = getattr(tracker, "get_all_program_totals", None)
-        if callable(get_all):
-            try:
-                programs = get_all(bottle_id)
-            except TypeError:
-                programs = get_all(bottle_id=bottle_id)
-            if programs:
-                return list(programs)
-
-        return self._read_all_program_totals_from_db(tracker, bottle_id)
-
-    @staticmethod
-    def _read_program_totals_from_db(
-        tracker, bottle_id: str, program_id: str
-    ) -> Optional[Dict[str, object]]:
-        db_path = getattr(tracker, "db_path", None)
-        if not db_path:
-            return None
-
-        connection = None
-        try:
-            connection = sqlite3.connect(db_path)
-            connection.row_factory = sqlite3.Row
-            cursor = connection.cursor()
-            cursor.execute(
-                """
-                SELECT bottle_id, bottle_name, program_id, program_name, program_path,
-                       total_seconds, sessions_count, last_played
-                FROM playtime_totals
-                WHERE bottle_id=? AND program_id=?
-                LIMIT 1
-                """,
-                (bottle_id, program_id),
-            )
-            row = cursor.fetchone()
-            return dict(row) if row else None
-        except sqlite3.Error as exc:
-            logging.error(
-                "Playtime service failed to read totals for bottle=%s program_id=%s: %s",
-                bottle_id,
-                program_id,
-                exc,
-                exc_info=True,
-            )
-            return None
-        finally:
-            if connection is not None:
-                connection.close()
-
-    @staticmethod
-    def _read_all_program_totals_from_db(
-        tracker, bottle_id: str
-    ) -> List[Dict[str, object]]:
-        db_path = getattr(tracker, "db_path", None)
-        if not db_path:
-            return []
-
-        connection = None
-        try:
-            connection = sqlite3.connect(db_path)
-            connection.row_factory = sqlite3.Row
-            cursor = connection.cursor()
-            cursor.execute(
-                """
-                SELECT bottle_id, bottle_name, program_id, program_name, program_path,
-                       total_seconds, sessions_count, last_played
-                FROM playtime_totals
-                WHERE bottle_id=?
-                """,
-                (bottle_id,),
-            )
-            rows = cursor.fetchall()
-            return [dict(row) for row in rows]
-        except sqlite3.Error as exc:
-            logging.error(
-                "Playtime service failed to read totals for bottle=%s: %s",
-                bottle_id,
-                exc,
-                exc_info=True,
-            )
-            return []
-        finally:
-            if connection is not None:
-                connection.close()
-
-    @staticmethod
-    def _parse_timestamp(value: Optional[object]) -> Optional[datetime]:
-        if value in (None, "", 0):
-            return None
-
-        try:
-            return datetime.fromtimestamp(int(value))
-        except (ValueError, OSError, TypeError):
-            return None

@@ -20,10 +20,6 @@ Popover pop_context {
 
     Separator {}
 
-    $GtkModelButton btn_browse {
-      text: _("Browse Files…");
-    }
-
     $GtkModelButton btn_duplicate {
       text: _("Duplicate Bottle…");
     }
@@ -137,6 +133,13 @@ Popover popover_exec_settings {
         margin-start: 6;
       }
     }
+
+    CheckButton exec_winebridge {
+      Label {
+        label: _("Run using Winebridge");
+        margin-start: 6;
+      }
+    }
   }
 }
 
@@ -156,79 +159,110 @@ template $DetailsBottle: Adw.PreferencesPage {
   }
 
   Adw.PreferencesGroup {
-    Box {
-      orientation: vertical;
-
-      Label label_name {
-        halign: center;
-        justify: center;
-        wrap: true;
-        max-width-chars: 30;
-        label: _("My bottle");
-        wrap-mode: word_char;
-        use-markup: false;
-
-        styles [
-          "title-1",
-        ]
-      }
+    Adw.Clamp {
+      maximum-size: 720;
 
       Box {
-        spacing: 6;
-        halign: center;
+        orientation: vertical;
+        spacing: 12;
 
-        Label label_arch {
-          label: _("Win64");
-
-          styles [
-            "heading",
-          ]
-        }
-
-        Label {
-          label: "·";
-        }
-
-        Label label_environment {
-          label: _("Environment");
-
-          styles [
-            "heading",
-          ]
-        }
-
-        Label {
-          label: "·";
-        }
-
-        Label label_runner {
-          label: _("Runner");
-
-          styles [
-            "heading",
-          ]
-        }
-
-        Label dot_versioning {
-          label: "·";
-        }
-
-        Grid grid_versioning {
-          tooltip-text: _("Versioning enabled for this bottle");
+        Label label_name {
           halign: center;
-          valign: center;
+          justify: center;
+          wrap: true;
+          max-width-chars: 30;
+          label: _("My bottle");
+          wrap-mode: word_char;
+          use-markup: false;
 
-          Image img_versioning {
-            tooltip-text: _("Versioning is active for this bottle.");
-            halign: center;
-            valign: center;
-            icon-name: "view-wrapped-symbolic";
+          styles [
+            "title-1",
+          ]
+        }
+
+        Box {
+          spacing: 6;
+          halign: center;
+
+          Box {
+            spacing: 6;
+
+            styles [
+              "tag",
+            ]
+
+            Label label_arch {
+              label: _("Win64");
+
+              styles [
+                "heading",
+              ]
+            }
           }
 
-          Label label_state {
+          Box {
+            spacing: 6;
+
+            styles [
+              "tag",
+            ]
+
+            Label label_environment {
+              label: _("Environment");
+
+              styles [
+                "heading",
+              ]
+            }
+          }
+
+          Box {
+            spacing: 6;
+
+            styles [
+              "tag",
+            ]
+
+            Label label_runner {
+              label: _("Runner");
+
+              styles [
+                "heading",
+              ]
+            }
+          }
+
+          Label dot_versioning {
+            label: "·";
+          }
+
+          Grid grid_versioning {
+            tooltip-text: _("Versioning enabled for this bottle");
             halign: center;
             valign: center;
-            label: _("0");
+            column-spacing: 6;
+
+            styles [
+              "tag",
+              "tag-versioning",
+            ]
+
+            Image img_versioning {
+              tooltip-text: _("Versioning is active for this bottle.");
+              halign: center;
+              valign: center;
+              icon-name: "view-wrapped-symbolic";
+            }
+
+            Label label_state {
+              halign: center;
+              valign: center;
+              label: _("0");
+
+              styles [
+                "heading",
+              ]
+            }
           }
         }
       }
@@ -236,11 +270,29 @@ template $DetailsBottle: Adw.PreferencesPage {
   }
 
   Adw.PreferencesGroup {
-    Box {
-      spacing: 6;
-      halign: center;
+    title: _("Quick actions");
 
+    Adw.ActionRow {
+      activatable: false;
+      focusable: false;
+      title: _("Launch executable");
+      subtitle: _("Run a program now or adjust its launch options.");
+
+      [suffix]
+      MenuButton btn_exec_settings {
+        valign: center;
+        icon-name: "applications-system-symbolic";
+        popover: popover_exec_settings;
+
+        styles [
+          "flat",
+        ]
+      }
+
+      [suffix]
       Button btn_execute {
+        valign: center;
+
         Box {
           spacing: 6;
 
@@ -252,22 +304,29 @@ template $DetailsBottle: Adw.PreferencesPage {
             label: _("Run Executable…");
           }
         }
-
-        styles [
-          "pill",
-          "suggested-action",
-        ]
       }
+    }
 
-      Box {
-        MenuButton btn_exec_settings {
-          valign: center;
-          icon-name: "applications-system-symbolic";
-          popover: popover_exec_settings;
+    Adw.ActionRow {
+      activatable: false;
+      focusable: false;
+      title: _("Browse C:/ drive");
+      subtitle: _("Browse the files of this bottle.");
 
-          styles [
-            "circular",
-          ]
+      [suffix]
+      Button btn_browse {
+        valign: center;
+
+        Box {
+          spacing: 6;
+
+          Image {
+            icon-name: "document-open-symbolic";
+          }
+
+          Label {
+            label: _("Browse");
+          }
         }
       }
     }
@@ -350,6 +409,14 @@ template $DetailsBottle: Adw.PreferencesPage {
     }
   }
 
+  Adw.PreferencesGroup group_updates {
+    title: _("Updates");
+
+    Adw.ActionRow row_no_updates {
+      subtitle: _("All components for this bottle are up to date.");
+    }
+  }
+
   Adw.PreferencesGroup group_options {
     title: _("Options");
 
@@ -367,6 +434,16 @@ template $DetailsBottle: Adw.PreferencesPage {
       activatable: true;
       title: _("Dependencies");
       subtitle: _("Install dependencies for programs.");
+
+      Image {
+        icon-name: "go-next-symbolic";
+      }
+    }
+
+    Adw.ActionRow row_registry_rules {
+      activatable: true;
+      title: _("Registry Rules");
+      subtitle: _("Manage reusable registry tweaks.");
 
       Image {
         icon-name: "go-next-symbolic";

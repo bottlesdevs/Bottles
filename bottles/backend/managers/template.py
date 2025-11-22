@@ -1,6 +1,6 @@
 # template.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,20 +15,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
-
-from bottles.backend.models.config import BottleConfig
-from bottles.backend.utils import yaml
-import uuid
-import shutil
 import contextlib
+import os
+import shutil
+import uuid
 from datetime import datetime
 from pathlib import Path
 
-from bottles.backend.logger import Logger
-from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.globals import Paths
+from bottles.backend.logger import Logger
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.samples import Samples
+from bottles.backend.utils import yaml
+from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
 
@@ -53,7 +52,7 @@ class TemplateManager:
         delattr(config, "Creation_Date")
         delattr(config, "Update_Date")
 
-        ignored = ["dosdevices", "states", ".fvs", "*.yml" ".*"]
+        ignored = ["dosdevices", "states", ".fvs", "*.yml.*"]
 
         _path = os.path.join(Paths.templates, _uuid)
         logging.info("Copying files …")

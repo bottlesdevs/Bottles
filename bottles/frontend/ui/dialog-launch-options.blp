@@ -196,6 +196,15 @@ template $LaunchOptionsDialog: Adw.Window {
           }
         }
 
+        Adw.ActionRow action_winebridge {
+          title: "WineBridge";
+          activatable-widget: switch_winebridge;
+
+          Switch switch_winebridge {
+            valign: center;
+          }
+        }
+
         Adw.ActionRow action_fsr {
           activatable-widget: switch_fsr;
           title: "FSR";

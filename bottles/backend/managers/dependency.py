@@ -1,6 +1,6 @@
 # dependency.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,16 +20,20 @@ import shutil
 import traceback
 from functools import lru_cache
 from glob import glob
+from typing import Callable, Optional
+
+from gettext import gettext as _
 
 import patoolib  # type: ignore [import-untyped]
 
 from bottles.backend.cabextract import CabExtract
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
+from bottles.backend.managers.registry_rule import RegistryRuleManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.models.result import Result
-from bottles.backend.state import TaskManager, Task
+from bottles.backend.state import Status, Task, TaskManager
 from bottles.backend.utils.generic import validate_url
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.executor import WineExecutor
@@ -71,12 +75,97 @@ class DependencyManager:
         catalog = dict(sorted(catalog.items()))
         return catalog
 
-    def install(self, config: BottleConfig, dependency: list) -> Result:
+    @staticmethod
+    def __notify_progress(
+        callback: Optional[Callable[[str], None]], message: str, task: Optional[Task] = None
+    ) -> None:
+        if not message:
+            return
+
+        if task is not None:
+            task.subtitle = message
+
+        if callback:
+            callback(message)
+
+    @staticmethod
+    def __notify_progress_fraction(
+        callback: Optional[Callable[[Optional[float]], None]], fraction: Optional[float]
+    ) -> None:
+        if callback:
+            callback(fraction)
+
+    @staticmethod
+    def __build_progress_handler(
+        task: Optional[Task],
+        progress_cb: Optional[Callable[[Optional[float]], None]],
+    ) -> Callable[[int, int, Optional[Status]], None]:
+        def handler(
+            received_size: int = 0,
+            total_size: int = 0,
+            status: Optional[Status] = None,
+        ) -> None:
+            if task is not None:
+                task.stream_update(received_size, total_size, status)
+
+            if progress_cb is None:
+                return
+
+            if status in [Status.DONE, Status.FAILED, Status.CANCELLED]:
+                progress_cb(None)
+                return
+
+            if total_size:
+                progress_cb(received_size / total_size)
+
+        return handler
+
+    @staticmethod
+    def __describe_step(step: dict) -> str:
+        action = step.get("action", "step")
+        file_name = step.get("rename") or step.get("file_name")
+
+        descriptions = {
+            "download_archive": _("Downloading {0}…").format(
+                file_name or _("archive")
+            ),
+            "install_exe": _("Running {0}…").format(file_name or _("installer")),
+            "install_msi": _("Running {0}…").format(file_name or _("installer")),
+            "install_cab_fonts": _("Installing fonts…"),
+            "install_fonts": _("Installing fonts…"),
+            "cab_extract": _("Extracting {0}…").format(file_name or _("package")),
+            "get_from_cab": _("Extracting {0} from cabinet…").format(
+                file_name or _("files")
+            ),
+            "archive_extract": _("Unpacking archive…"),
+            "copy_dll": _("Copying files…"),
+            "copy_file": _("Copying files…"),
+            "delete_dlls": _("Cleaning previous files…"),
+            "register_dll": _("Registering libraries…"),
+            "override_dll": _("Updating DLL overrides…"),
+            "set_register_key": _("Writing registry keys…"),
+            "register_font": _("Registering fonts…"),
+            "replace_font": _("Replacing fonts…"),
+            "set_windows": _("Adjusting Windows version…"),
+            "use_windows": _("Applying Windows version…"),
+            "uninstall": _("Running uninstaller…"),
+        }
+
+        return descriptions.get(action, _("Running {0}…").format(action.replace("_", " ")))
+
+    def install(
+        self,
+        config: BottleConfig,
+        dependency: list,
+        progress_cb: Optional[Callable[[str], None]] = None,
+        progress_progress_cb: Optional[Callable[[Optional[float]], None]] = None,
+    ) -> Result:
         """
         Install a given dependency in a bottle. It will
         return True if the installation was successful.
         """
         uninstaller = True
+        installed_new = False
 
         if config.Parameters.versioning_automatic:
             """
@@ -89,6 +178,11 @@ class DependencyManager:
             )
 
         task_id = TaskManager.add(Task(title=dependency[0]))
+        task = TaskManager.get(task_id)
+
+        self.__notify_progress(
+            progress_cb, _("Preparing installation…"), task=task
+        )
 
         logging.info(
             "Installing dependency [%s] in bottle [%s]." % (dependency[0], config.Name),
@@ -114,7 +208,17 @@ class DependencyManager:
                     continue
                 if _ext_dep in self.__manager.supported_dependencies:
                     _dep = self.__manager.supported_dependencies[_ext_dep]
-                    _res = self.install(config, [_ext_dep, _dep])
+                    self.__notify_progress(
+                        progress_cb,
+                        _("Installing prerequisite “{0}”…").format(_ext_dep),
+                        task=task,
+                    )
+                    _res = self.install(
+                        config,
+                        [_ext_dep, _dep],
+                        progress_cb=progress_cb,
+                        progress_progress_cb=progress_progress_cb,
+                    )
                     if not _res.status:
                         return _res
 
@@ -127,7 +231,17 @@ class DependencyManager:
             if config.Arch not in arch:
                 continue
 
-            res = self.__perform_steps(config, step)
+            description = self.__describe_step(step)
+            self.__notify_progress(progress_cb, description, task=task)
+            self.__notify_progress_fraction(progress_progress_cb, None)
+
+            res = self.__perform_steps(
+                config,
+                step,
+                task=task,
+                progress_cb=progress_cb,
+                progress_progress_cb=progress_progress_cb,
+            )
             if not res.ok:
                 TaskManager.remove(task_id)
                 return Result(
@@ -150,6 +264,7 @@ class DependencyManager:
             self.__manager.update_config(
                 config=config, key="Installed_Dependencies", value=dependencies
             )
+            installed_new = True
 
         if manifest.get("Uninstaller"):
             """
@@ -163,17 +278,32 @@ class DependencyManager:
             self.__manager.update_config(
                 config, dependency[0], uninstaller, "Uninstallers"
             )
+            installed_new = True
 
         # Remove entry from task manager
         TaskManager.remove(task_id)
 
         # Hide installation button and show remove button
         logging.info(f"Dependency installed: {dependency[0]} in {config.Name}", jn=True)
+
+        if installed_new:
+            RegistryRuleManager.apply_rules(config, trigger="dependencies")
+        self.__notify_progress_fraction(progress_progress_cb, None)
+        self.__notify_progress(
+            progress_cb, _("Finalizing installation…"), task=task
+        )
         if not uninstaller:
             return Result(status=True, data={"uninstaller": False})
         return Result(status=True, data={"uninstaller": True})
 
-    def __perform_steps(self, config: BottleConfig, step: dict) -> Result:
+    def __perform_steps(
+        self,
+        config: BottleConfig,
+        step: dict,
+        task: Optional[Task] = None,
+        progress_cb: Optional[Callable[[str], None]] = None,
+        progress_progress_cb: Optional[Callable[[Optional[float]], None]] = None,
+    ) -> Result:
         """
         This method execute a step in the bottle (e.g. changing the Windows
         version, installing fonts, etc.)
@@ -186,11 +316,19 @@ class DependencyManager:
             self.__step_delete_dlls(config, step)
 
         if step["action"] == "download_archive":
-            if not self.__step_download_archive(step):
+            if not self.__step_download_archive(
+                step, task=task, progress_progress_cb=progress_progress_cb
+            ):
                 return Result(status=False)
 
         if step["action"] in ["install_exe", "install_msi"]:
-            if not self.__step_install_exe_msi(config=config, step=step):
+            if not self.__step_install_exe_msi(
+                config=config,
+                step=step,
+                task=task,
+                progress_cb=progress_cb,
+                progress_progress_cb=progress_progress_cb,
+            ):
                 return Result(status=False)
 
         if step["action"] == "uninstall":
@@ -198,7 +336,9 @@ class DependencyManager:
 
         if step["action"] == "cab_extract":
             uninstaller = False
-            if not self.__step_cab_extract(step=step):
+            if not self.__step_cab_extract(
+                step=step, task=task, progress_progress_cb=progress_progress_cb
+            ):
                 return Result(status=False)
 
         if step["action"] == "get_from_cab":
@@ -208,7 +348,9 @@ class DependencyManager:
 
         if step["action"] == "archive_extract":
             uninstaller = False
-            if not self.__step_archive_extract(step):
+            if not self.__step_archive_extract(
+                step, task=task, progress_progress_cb=progress_progress_cb
+            ):
                 return Result(status=False)
 
         if step["action"] in ["install_cab_fonts", "install_fonts"]:
@@ -271,33 +413,51 @@ class DependencyManager:
 
         return dest
 
-    def __step_download_archive(self, step: dict):
+    def __step_download_archive(
+        self,
+        step: dict,
+        task: Optional[Task] = None,
+        progress_progress_cb: Optional[Callable[[Optional[float]], None]] = None,
+    ):
         """
         This function download an archive from the given step.
         Can be used for any file type (cab, zip, ...). Please don't
         use this method for exe/msi files as the install_exe already
         download the exe/msi file before installation.
         """
+        progress_handler = self.__build_progress_handler(task, progress_progress_cb)
         download = self.__manager.component_manager.download(
             download_url=step.get("url"),
             file=step.get("file_name"),
             rename=step.get("rename"),
             checksum=step.get("file_checksum"),
+            func=progress_handler,
+            task=task,
         )
 
         return download
 
-    def __step_install_exe_msi(self, config: BottleConfig, step: dict) -> bool:
+    def __step_install_exe_msi(
+        self,
+        config: BottleConfig,
+        step: dict,
+        task: Optional[Task] = None,
+        progress_cb: Optional[Callable[[str], None]] = None,
+        progress_progress_cb: Optional[Callable[[Optional[float]], None]] = None,
+    ) -> bool:
         """
         Download and install the .exe or .msi file
         declared in the step, in a bottle.
         """
         winedbg = WineDbg(config)
+        progress_handler = self.__build_progress_handler(task, progress_progress_cb)
         download = self.__manager.component_manager.download(
             download_url=step.get("url"),
             file=step.get("file_name"),
             rename=step.get("rename"),
             checksum=step.get("file_checksum"),
+            func=progress_handler,
+            task=task,
         )
         file = step.get("file_name")
         if step.get("rename"):
@@ -317,6 +477,12 @@ class DependencyManager:
             )
             executor.run()
             winedbg.wait_for_process(file)
+
+            if progress_progress_cb:
+                progress_progress_cb(None)
+
+            if progress_cb:
+                progress_cb(_("Installer completed."))
             return True
 
         return False
@@ -330,7 +496,12 @@ class DependencyManager:
         Uninstaller(config).from_name(file_name)
         return True
 
-    def __step_cab_extract(self, step: dict):
+    def __step_cab_extract(
+        self,
+        step: dict,
+        task: Optional[Task] = None,
+        progress_progress_cb: Optional[Callable[[Optional[float]], None]] = None,
+    ):
         """
         This function download and extract a Windows Cabinet to the
         temp folder.
@@ -343,11 +514,14 @@ class DependencyManager:
             return False
 
         if validate_url(step["url"]):
+            progress_handler = self.__build_progress_handler(task, progress_progress_cb)
             download = self.__manager.component_manager.download(
                 download_url=step.get("url"),
                 file=step.get("file_name"),
                 rename=step.get("rename"),
                 checksum=step.get("file_checksum"),
+                func=progress_handler,
+                task=task,
             )
 
             if download:
@@ -416,13 +590,21 @@ class DependencyManager:
             return False
         return True
 
-    def __step_archive_extract(self, step: dict):
+    def __step_archive_extract(
+        self,
+        step: dict,
+        task: Optional[Task] = None,
+        progress_progress_cb: Optional[Callable[[Optional[float]], None]] = None,
+    ):
         """Download and extract an archive to the temp folder."""
+        progress_handler = self.__build_progress_handler(task, progress_progress_cb)
         download = self.__manager.component_manager.download(
             download_url=step.get("url"),
             file=step.get("file_name"),
             rename=step.get("rename"),
             checksum=step.get("file_checksum"),
+            func=progress_handler,
+            task=task,
         )
 
         if not download:

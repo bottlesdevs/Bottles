@@ -1,6 +1,6 @@
 # steam.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -122,8 +122,7 @@ class SandboxManager:
                 f"--sandbox-expose-path={shlex.quote(p)}" for p in self.share_paths_rw
             ]
 
-        share_net = self.share_net or self.share_bluetooth
-        if not share_net:
+        if not self.share_net:
             _cmd.append("--no-network")
 
         if self.share_display:

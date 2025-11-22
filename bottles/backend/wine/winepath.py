@@ -2,8 +2,8 @@ import re
 from functools import lru_cache
 
 from bottles.backend.logger import Logger
-from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.wine.wineprogram import WineProgram
 
 logging = Logger()
 
@@ -42,6 +42,8 @@ class WinePath(WineProgram):
 
     @lru_cache
     def to_windows(self, path: str, native: bool = False):
+        path = re.sub(r"\s+", " ", path).strip()
+
         if native:
             bottle_path = ManagerUtils.get_bottle_path(self.config)
             if "/drive_" in path:

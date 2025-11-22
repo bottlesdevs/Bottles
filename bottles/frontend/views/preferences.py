@@ -1,6 +1,6 @@
 # preferences.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,12 +20,12 @@ import subprocess
 import webbrowser
 from gettext import gettext as _
 
-from gi.repository import Gtk, Adw, Gio, GLib
+from gi.repository import Adw, Gio, GLib, Gtk
 
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.state import EventManager, Events
-from bottles.backend.utils.threading import RunAsync
 from bottles.backend.utils.generic import sort_by_version
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
 
@@ -39,6 +39,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
     installers_spinner = Gtk.Template.Child()
     dlls_stack = Gtk.Template.Child()
     dlls_spinner = Gtk.Template.Child()
+    cache_stack = Gtk.Template.Child()
+    cache_spinner = Gtk.Template.Child()
 
     row_theme = Gtk.Template.Child()
     switch_theme = Gtk.Template.Child()
@@ -49,21 +51,29 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_steam = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
-    switch_playtime = Gtk.Template.Child()
+    switch_playtime_tracking = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
     switch_epic_games = Gtk.Template.Child()
     switch_ubisoft_connect = Gtk.Template.Child()
+    combo_audio_driver = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
-    list_dxvk = Gtk.Template.Child()
-    list_vkd3d = Gtk.Template.Child()
-    list_nvapi = Gtk.Template.Child()
-    list_latencyflex = Gtk.Template.Child()
+    list_dlls = Gtk.Template.Child()
     action_prerelease = Gtk.Template.Child()
     btn_bottles_path = Gtk.Template.Child()
     action_steam_proton = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
     label_bottles_path = Gtk.Template.Child()
     btn_steam_proton_doc = Gtk.Template.Child()
+    entry_personal_components = Gtk.Template.Child()
+    entry_personal_dependencies = Gtk.Template.Child()
+    entry_personal_installers = Gtk.Template.Child()
+    template_cache_group = Gtk.Template.Child()
+    label_cache_total_size = Gtk.Template.Child()
+    label_cache_temp_size = Gtk.Template.Child()
+    label_cache_templates_size = Gtk.Template.Child()
+    btn_cache_clear_all = Gtk.Template.Child()
+    btn_cache_clear_temp = Gtk.Template.Child()
+    btn_cache_clear_templates = Gtk.Template.Child()
 
     # endregion
 
@@ -78,12 +88,38 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.data = DataManager()
         self.style_manager = Adw.StyleManager.get_default()
 
+        self.__audio_driver_values = [
+            "default",
+            "pulse",
+            "alsa",
+            "oss",
+            "disabled",
+        ]
+        self.__updating_audio_driver = False
+
         self.current_bottles_path = self.data.get(UserDataKeys.CustomBottlesPath)
         if self.current_bottles_path:
             self.label_bottles_path.set_label(
                 os.path.basename(self.current_bottles_path)
             )
             self.btn_bottles_path_reset.set_visible(True)
+
+        self.__personal_repo_rows = {
+            "components": self.entry_personal_components,
+            "dependencies": self.entry_personal_dependencies,
+            "installers": self.entry_personal_installers,
+        }
+        stored_repositories = self.data.get(UserDataKeys.PersonalRepositories) or {}
+        self.__personal_repo_values = {}
+        for repo_name, row in self.__personal_repo_rows.items():
+            repo_value = stored_repositories.get(repo_name, "")
+            self.__personal_repo_values[repo_name] = repo_value
+            row.set_text(repo_value)
+            row.set_show_apply_button(False)
+            row.connect("apply", self.__on_personal_repo_apply, repo_name)
+            row.connect("changed", self.__on_personal_repo_changed, repo_name)
+
+        self.__cache_registry = []
 
         # bind widgets
         self.settings.bind(
@@ -92,6 +128,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.bind(
             "notifications",
             self.switch_notifications,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        self.settings.bind(
+            "playtime-enabled",
+            self.switch_playtime_tracking,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
@@ -130,12 +172,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
             Gio.SettingsBindFlags.DEFAULT,
         )
         self.settings.bind(
-            "playtime-enabled",
-            self.switch_playtime,
-            "active",
-            Gio.SettingsBindFlags.DEFAULT,
-        )
-        self.settings.bind(
             "steam-programs",
             self.switch_steam_programs,
             "active",
@@ -154,11 +190,21 @@ class PreferencesWindow(Adw.PreferencesWindow):
             Gio.SettingsBindFlags.DEFAULT,
         )
 
+        self.__sync_audio_driver_selection()
+        self.combo_audio_driver.connect(
+            "notify::selected", self.__on_audio_driver_selected
+        )
+        self.settings.connect(
+            "changed::audio-driver", self.__on_audio_driver_setting_changed
+        )
+
         # setup loading screens
         self.installers_stack.set_visible_child_name("installers_loading")
         self.installers_spinner.start()
         self.dlls_stack.set_visible_child_name("dlls_loading")
         self.dlls_spinner.start()
+        self.cache_stack.set_visible_child_name("cache_loading")
+        self.cache_spinner.start()
 
         if not self.manager.utils_conn.status:
             self.installers_stack.set_visible_child_name("installers_offline")
@@ -173,6 +219,11 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.btn_bottles_path.connect("clicked", self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect("clicked", self.__reset_bottles_path)
         self.btn_steam_proton_doc.connect("clicked", self.__open_steam_proton_doc)
+        self.btn_cache_clear_all.connect("clicked", self.__confirm_clear_all_caches)
+        self.btn_cache_clear_temp.connect("clicked", self.__confirm_clear_temp_cache)
+        self.btn_cache_clear_templates.connect(
+            "clicked", self.__confirm_clear_templates_cache
+        )
 
         if not self.manager.steam_manager.is_steam_supported:
             self.switch_steam.set_sensitive(False)
@@ -183,6 +234,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         if not self.style_manager.get_system_supports_color_schemes():
             self.row_theme.set_visible(True)
+
+        self.populate_cache_list()
 
     def empty_list(self):
         for w in self.__registry:
@@ -196,10 +249,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
             EventManager.wait(Events.ComponentsOrganizing)
             GLib.idle_add(self.empty_list)
             GLib.idle_add(self.populate_runners_list)
-            GLib.idle_add(self.populate_dxvk_list)
-            GLib.idle_add(self.populate_vkd3d_list)
-            GLib.idle_add(self.populate_nvapi_list)
-            GLib.idle_add(self.populate_latencyflex_list)
+            GLib.idle_add(self.populate_dlls_list)
+            GLib.idle_add(self.populate_cache_list)
 
             GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
 
@@ -248,8 +299,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.window.proper_close()
         widget.destroy()
 
-    def prompt_restart(self):
-        if self.current_bottles_path != self.data.get(UserDataKeys.CustomBottlesPath):
+    def prompt_restart(self, force=False):
+        needs_restart = force or (
+            self.current_bottles_path != self.data.get(UserDataKeys.CustomBottlesPath)
+        )
+
+        if needs_restart:
             dialog = Adw.MessageDialog.new(
                 self.window,
                 _("Relaunch Bottles?"),
@@ -270,6 +325,63 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.btn_bottles_path_reset.set_visible(False)
         self.label_bottles_path.set_label(_("(Default)"))
         self.prompt_restart()
+
+    def __on_personal_repo_changed(self, row, repo_name):
+        if row.get_text() == self.__personal_repo_values.get(repo_name, ""):
+            row.set_show_apply_button(False)
+        else:
+            row.set_show_apply_button(True)
+
+    def __on_personal_repo_apply(self, row, repo_name):
+        new_value = row.get_text().strip()
+        if new_value == self.__personal_repo_values.get(repo_name, ""):
+            return
+
+        self.__personal_repo_values[repo_name] = new_value
+        self.__persist_personal_repositories()
+        row.set_show_apply_button(False)
+        self.prompt_restart(force=True)
+
+    def __persist_personal_repositories(self):
+        stored_values = {
+            repo_name: value
+            for repo_name, value in self.__personal_repo_values.items()
+            if value
+        }
+
+        if stored_values:
+            self.data.set(UserDataKeys.PersonalRepositories, stored_values)
+        else:
+            self.data.remove(UserDataKeys.PersonalRepositories)
+
+    def __on_audio_driver_setting_changed(self, *_args):
+        GLib.idle_add(self.__sync_audio_driver_selection)
+
+    def __sync_audio_driver_selection(self, *_args):
+        driver = self.settings.get_string("audio-driver")
+        try:
+            index = self.__audio_driver_values.index(driver)
+        except ValueError:
+            index = 0
+
+        self.__updating_audio_driver = True
+        self.combo_audio_driver.set_selected(index)
+        self.__updating_audio_driver = False
+
+    def __on_audio_driver_selected(self, combo, _pspec):
+        if self.__updating_audio_driver:
+            return
+
+        index = combo.get_selected()
+        if index < 0 or index >= len(self.__audio_driver_values):
+            return
+
+        driver = self.__audio_driver_values[index]
+        self.__updating_audio_driver = True
+        self.settings.set_string("audio-driver", driver)
+        self.__updating_audio_driver = False
+
+        RunAsync(self.manager.apply_audio_driver, driver=driver)
 
     def __display_unstable_candidate(self, component=["", {"Channel": "unstable"}]):
         return self.window.settings.get_boolean("release-candidate") or component[1][
@@ -302,32 +414,35 @@ class PreferencesWindow(Adw.PreferencesWindow):
                     supported_component_items.insert(i, offline_entry)
                     j += 1
                 i += 1
+        count = 0
         for component in supported_component_items:
             if not self.__display_unstable_candidate(component):
                 continue
             _entry = ComponentEntry(self.window, component, component_type)
-            list_component.add(_entry)
+            if hasattr(list_component, "add_row"):
+                list_component.add_row(_entry)
+            else:
+                list_component.add(_entry)
             self.__registry.append(_entry)
+            count += 1
 
-    def populate_dxvk_list(self):
-        self.__populate_component_list(
-            "dxvk", self.manager.supported_dxvk, self.list_dxvk
-        )
+        return count
 
-    def populate_vkd3d_list(self):
-        self.__populate_component_list(
-            "vkd3d", self.manager.supported_vkd3d, self.list_vkd3d
-        )
+    def populate_dlls_list(self):
+        dll_components = [
+            ("dxvk", self.manager.supported_dxvk, "DXVK"),
+            ("vkd3d", self.manager.supported_vkd3d, "VKD3D"),
+            ("nvapi", self.manager.supported_nvapi, "DXVK-NVAPI"),
+            ("latencyflex", self.manager.supported_latencyflex, "LatencyFleX"),
+        ]
 
-    def populate_nvapi_list(self):
-        self.__populate_component_list(
-            "nvapi", self.manager.supported_nvapi, self.list_nvapi
-        )
-
-    def populate_latencyflex_list(self):
-        self.__populate_component_list(
-            "latencyflex", self.manager.supported_latencyflex, self.list_latencyflex
-        )
+        for component_type, supported_components, title in dll_components:
+            expander = ComponentExpander(title)
+            if self.__populate_component_list(
+                component_type, supported_components, expander
+            ):
+                self.list_dlls.add(expander)
+                self.__registry.append(expander)
 
     def __populate_runners_helper(
         self, runner_type, supported_runners_dict, identifiable_runners_struct
@@ -504,3 +619,191 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 self.__registry.append(runner["expander"])
 
         self.installers_stack.set_visible_child_name("installers_list")
+
+    def populate_cache_list(self):
+        self.cache_stack.set_visible_child_name("cache_loading")
+        self.cache_spinner.start()
+
+        def update_cache_view(result, error=False):
+            self.cache_spinner.stop()
+            if error or result is None:
+                return
+
+            self.cache_stack.set_visible_child_name("cache_list")
+            self.__render_cache_details(result)
+
+        RunAsync(task_func=self.manager.get_cache_details, callback=update_cache_view)
+
+    def __render_cache_details(self, cache_details: dict):
+        temp_cache = cache_details.get("temp", {})
+        templates_cache = cache_details.get("templates", [])
+        templates_size = cache_details.get("templates_size", "0B")
+        total_size = cache_details.get("total_size", "0B")
+
+        self.label_cache_total_size.set_label(total_size)
+        self.label_cache_temp_size.set_label(temp_cache.get("size", "0B"))
+        self.label_cache_templates_size.set_label(templates_size)
+
+        has_any_cache = cache_details.get("total_size_bytes", 0) > 0
+        has_temp_cache = temp_cache.get("size_bytes", 0) > 0
+        has_templates_cache = cache_details.get("templates_size_bytes", 0) > 0
+
+        self.btn_cache_clear_all.set_sensitive(has_any_cache)
+        self.btn_cache_clear_temp.set_sensitive(has_temp_cache)
+        self.btn_cache_clear_templates.set_sensitive(has_templates_cache)
+
+        self.__populate_template_cache_rows(templates_cache)
+
+    def __populate_template_cache_rows(self, templates: list[dict]):
+        for row in self.__cache_registry:
+            parent = row.get_parent()
+            if parent:
+                parent.remove(row)
+        self.__cache_registry = []
+
+        if not templates:
+            empty_row = Adw.ActionRow()
+            empty_row.set_title(_("No templates cached yet."))
+            empty_row.set_subtitle(
+                _(
+                    "Templates are created after you make the first bottle for each environment."
+                )
+            )
+            empty_row.set_activatable(False)
+            empty_row.set_can_focus(False)
+            empty_row.set_sensitive(False)
+            self.template_cache_group.add(empty_row)
+            self.__cache_registry.append(empty_row)
+            return
+
+        for template in templates:
+            row = Adw.ActionRow()
+            row.set_title(self.__format_template_title(template))
+            row.set_subtitle(self.__format_template_subtitle(template))
+            row.set_activatable(False)
+            row.set_can_focus(False)
+
+            size_label = Gtk.Label(label=template.get("size", "0B"))
+            size_label.set_xalign(1.0)
+            size_label.get_style_context().add_class("dim-label")
+            row.add_suffix(size_label)
+
+            btn_remove = Gtk.Button.new_with_label(_("_Delete"))
+            btn_remove.set_use_underline(True)
+            btn_remove.set_valign(Gtk.Align.CENTER)
+            btn_remove.add_css_class("destructive-action")
+            btn_remove.connect("clicked", self.__confirm_clear_template, template)
+            row.add_suffix(btn_remove)
+
+            self.template_cache_group.add(row)
+            self.__cache_registry.append(row)
+
+    def __format_template_title(self, template: dict) -> str:
+        env_label = self.__format_env_label(template.get("env", ""))
+        return _("%s template") % env_label
+
+    def __format_template_subtitle(self, template: dict) -> str:
+        created = template.get("created", "")
+        env_label = self.__format_env_label(template.get("env", ""))
+
+        if created:
+            return _("Cached prefix for the %s environment, created on %s") % (
+                env_label,
+                created,
+            )
+
+        return _("Cached prefix for the %s environment") % env_label
+
+    def __format_env_label(self, env: str) -> str:
+        env_labels = {
+            "gaming": _("Gaming"),
+            "application": _("Software"),
+        }
+
+        env_value = (env or "").lower()
+
+        if env_value in env_labels:
+            return env_labels.get(env_value, env.title())
+
+        return env.title() if env else _("Unknown")
+
+    def __confirm_clear_all_caches(self, widget):
+        widget.set_sensitive(False)
+        self.__confirm_cache_action(
+            title=_("Delete all caches?"),
+            description=_(
+                "Removing every cache will make Bottles re-download resources and rebuild templates, which can take longer."
+            ),
+            action=self.manager.clear_all_caches,
+            button=widget,
+        )
+
+    def __confirm_clear_temp_cache(self, widget):
+        widget.set_sensitive(False)
+        self.__confirm_cache_action(
+            title=_("Delete temp cache?"),
+            description=_(
+                "Clearing the temp cache removes downloaded archives and extracted files, so future installs may take longer."
+            ),
+            action=self.manager.clear_temp_cache,
+            button=widget,
+        )
+
+    def __confirm_clear_templates_cache(self, widget):
+        widget.set_sensitive(False)
+        self.__confirm_cache_action(
+            title=_("Delete all prefix templates?"),
+            description=_(
+                "Removing all prefix templates will slow down the next bottle creation while Bottles rebuilds them."
+            ),
+            action=self.manager.clear_templates_cache,
+            button=widget,
+        )
+
+    def __confirm_clear_template(self, widget, template: dict):
+        widget.set_sensitive(False)
+        env_label = self.__format_env_label(template.get("env", ""))
+        title = _("Delete the %s template?") % env_label
+        description = _(
+            "The next bottle for this environment will take longer to create because Bottles must rebuild the template."
+        )
+
+        self.__confirm_cache_action(
+            title=title,
+            description=description,
+            action=lambda: self.manager.clear_template_cache(template.get("uuid", "")),
+            button=widget,
+        )
+
+    def __confirm_cache_action(self, title: str, description: str, action, button=None):
+        dialog = Adw.MessageDialog.new(
+            self.window,
+            title,
+            description,
+        )
+        dialog.add_response("cancel", _("_Cancel"))
+        dialog.add_response("delete", _("_Delete"))
+        dialog.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
+
+        def handle_response(dlg, response):
+            dlg.destroy()
+            if response != "delete":
+                if button:
+                    button.set_sensitive(True)
+                return
+
+            RunAsync(
+                task_func=action,
+                callback=lambda result, error=False: self.__cache_action_finished(
+                    result, button
+                ),
+            )
+
+        dialog.connect("response", handle_response)
+        dialog.present()
+
+    def __cache_action_finished(self, result, button=None):
+        if button:
+            button.set_sensitive(True)
+
+        self.populate_cache_list()

@@ -1,6 +1,6 @@
 # display.py
 #
-# Copyright 2022 Bottles Developers
+# Copyright 2025 Bottles Developers
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 from gettext import gettext as _
 
-from gi.repository import Gtk, GLib, Adw
+from gi.repository import Adw, GLib, Gtk
 
 from bottles.backend.logger import Logger
 from bottles.backend.utils.threading import RunAsync

@@ -1,6 +1,6 @@
 # backup.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,15 +18,16 @@
 import os
 import shutil
 import tarfile
-import pathvalidate
 from gettext import gettext as _
+
+import pathvalidate
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import TaskManager, Task
+from bottles.backend.state import Task, TaskManager
 from bottles.backend.utils import yaml
 from bottles.backend.utils.manager import ManagerUtils
 

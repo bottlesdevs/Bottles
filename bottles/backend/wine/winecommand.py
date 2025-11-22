@@ -1,10 +1,11 @@
 import os
+import re
+import shlex
 import shutil
 import stat
 import subprocess
 import tempfile
-import shlex
-from typing import Optional
+from typing import Iterable, Optional
 
 from bottles.backend.globals import (
     Paths,
@@ -23,8 +24,8 @@ from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.generic import detect_encoding
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.steam import SteamUtils
+from bottles.backend.utils.terminal import TerminalUtils
 
 logging = Logger()
 
@@ -37,10 +38,18 @@ class WineEnv:
     __env: dict = {}
     __result: dict = {"envs": {}, "overrides": []}
 
-    def __init__(self, clean: bool = False):
+    def __init__(self, clean: bool = False, allowed_keys: Optional[Iterable[str]] = None):
         self.__env = {}
-        if not clean:
+        if clean:
+            return
+
+        if allowed_keys is None:
             self.__env = os.environ.copy()
+            return
+
+        for key in allowed_keys:
+            if key in os.environ:
+                self.__env[key] = os.environ[key]
 
     def add(self, key, value, override=False):
         if key in self.__env:
@@ -81,6 +90,42 @@ class WineEnv:
         return key in self.__env
 
 
+def apply_wayland_preferences(env: "WineEnv", params) -> None:
+    if not getattr(params, "wayland", False):
+        return
+    if DisplayUtils.display_server_type() != "wayland":
+        return
+    wayland_display = os.environ.get("WAYLAND_DISPLAY")
+    if not env.has("WAYLAND_DISPLAY") and wayland_display:
+        env.add("WAYLAND_DISPLAY", wayland_display, override=True)
+    if env.has("WAYLAND_DISPLAY") or wayland_display:
+        env.remove("DISPLAY")
+
+
+def _needs_steam_virtual_gamepad_workaround(runner_name: Optional[str]) -> bool:
+    """Return True if the runner should force SteamVirtualGamepadInfo."""
+
+    if not runner_name:
+        return False
+
+    normalized = runner_name.lower()
+    if not any(
+        prefix in normalized for prefix in ("ge-proton", "proton-ge", "wine-ge", "soda")
+    ):
+        return False
+
+    match = re.search(r"(\d+)", normalized)
+    if not match:
+        return False
+
+    try:
+        major = int(match.group(1))
+    except ValueError:
+        return False
+
+    return major <= 8
+
+
 class WineCommand:
     """
     This class is used to run a wine command with a custom environment.
@@ -115,7 +160,12 @@ class WineCommand:
             else self.config.Parameters.gamescope
         )
         self.command = self.get_cmd(
-            command, pre_script, post_script, pre_script_args, post_script_args, environment=_environment
+            command,
+            pre_script,
+            post_script,
+            pre_script_args,
+            post_script_args,
+            environment=_environment,
         )
         self.terminal = terminal
         self.env = self.get_env(_environment)
@@ -162,8 +212,13 @@ class WineCommand:
         return_steam_env: bool = False,
         return_clean_env: bool = False,
     ) -> dict:
-        env = WineEnv(clean=return_steam_env or return_clean_env)
         config = self.config
+        clean_env = return_steam_env or return_clean_env
+        allowed_env_keys: Optional[Iterable[str]] = None
+        if not clean_env and getattr(config, "Limit_System_Environment", False):
+            allowed_env_keys = config.Inherited_Environment_Variables
+
+        env = WineEnv(clean=clean_env, allowed_keys=allowed_env_keys)
         arch = config.Arch
         params = config.Parameters
 
@@ -196,6 +251,11 @@ class WineCommand:
         ld = []
 
         # Bottle environment variables
+        if _needs_steam_virtual_gamepad_workaround(config.Runner) and not env.has(
+            "SteamVirtualGamepadInfo"
+        ):
+            env.add("SteamVirtualGamepadInfo", "", override=True)
+
         if config.Environment_Variables:
             for key, value in config.Environment_Variables.items():
                 env.add(key, value, override=True)
@@ -445,6 +505,8 @@ class WineCommand:
             env.add("WINEPREFIX", bottle, override=True)
             # Wine arch
             env.add("WINEARCH", arch)
+
+        apply_wayland_preferences(env, params)
 
         return env.get()["envs"]
 

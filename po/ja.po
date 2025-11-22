@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-10-30 12:50+0000\n"
-"Last-Translator: Deleted User <noreply+36432@weblate.org>\n"
+"PO-Revision-Date: 2025-11-11 05:51+0000\n"
+"Last-Translator: camegone <kuroneko0308kw@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -694,49 +694,50 @@ msgstr ""
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
-msgstr ""
+msgstr "DXVK-NVAPI を使用し、画質を犠牲にしてパフォーマンスを向上させます。新しい "
+"NVIDIA の GPU でしか動作しません。"
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
 msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:106
-#, fuzzy
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "電力使用量の増加を犠牲にしてパフォーマンスを向上させます。"
+msgstr "電力使用量の増加を犠牲にしてパフォーマンスを向上させます。Vulkan でしか動きま"
+"せん。"
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "FidelityFX Super Resolution の設定を変更"
 
 #: bottles/frontend/ui/details-preferences.blp:125
-#, fuzzy
 msgid "Discrete Graphics"
-msgstr "ディスクリートGPU"
+msgstr "ディスクリート GPU"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
-msgstr ""
+msgstr "ディスクリート (独立した) グラフィックカードを使用して、省電力性を犠牲にして"
+"パフォーマンスを上げます。"
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "ポストプロセス効果"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
-msgstr ""
+msgstr "vkBasalt を使用して、様々な後付の効果を追加します。Vulkan でしか動きません。"
 
 #: bottles/frontend/ui/details-preferences.blp:138
-#, fuzzy
 msgid "Manage Post-Processing Layer settings"
-msgstr "Gamescope設定を管理"
+msgstr "ポストプロセスのレイヤー設定を変更"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "Gamescope を使用しているときに、ゲームがどのようにスクリーンに表示されるかを"
+"設定します。"
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
@@ -786,14 +787,14 @@ msgstr "MangoHud を使い、フレームレート、温度、CPU/GPU 負荷な�
 "OpenGL と Vulkan 上に表示します。"
 
 #: bottles/frontend/ui/details-preferences.blp:211
-#, fuzzy
 msgid "Feral GameMode"
-msgstr "ゲームモード"
+msgstr "Feral ゲームモード"
 
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
-msgstr ""
+msgstr "お使いのデバイスにいくつかの最適化を施します。ゲームのパフォーマンスを向上さ"
+"せることがあります。"
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
@@ -841,14 +842,13 @@ msgstr "このプログラムで使用する言語を選択してください。
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "専用のサンドボックス"
 
 #: bottles/frontend/ui/details-preferences.blp:276
 msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
+msgstr "このボトルで、制限、管理された環境を使用します。"
 
 #: bottles/frontend/ui/details-preferences.blp:279
-#, fuzzy
 msgid "Manage the Sandbox Permissions"
 msgstr "サンドボックスのパーミッションを管理"
 
@@ -858,7 +858,6 @@ msgid "Bottles Runtime"
 msgstr "Bottles ランタイム"
 
 #: bottles/frontend/ui/details-preferences.blp:296
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
@@ -867,15 +866,14 @@ msgstr "互換性の向上のために、追加のライブラリ郡を提供し
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "Steam のランタイム"
+msgstr "Steam ランタイム"
 
 #: bottles/frontend/ui/details-preferences.blp:307
-#, fuzzy
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
-msgstr "互換性の向上のために、追加のライブラリ郡を提供します。不具合が発生する場合は"
-"無効にしてください。"
+msgstr "Steam ゲームの互換性の向上のために、追加のライブラリ郡を提供します。不具合が"
+"発生する場合は無効にしてください。"
 
 #: bottles/frontend/ui/details-preferences.blp:315
 #: bottles/frontend/ui/dialog-launch-options.blp:83
@@ -1066,6 +1064,8 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
+"このバージョンの Bottles には必須の依存関係が不足しているようです。パッケージ"
+"の管理者に不具合を報告するか、公式のバージョンを使用してください。"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
@@ -1365,7 +1365,7 @@ msgstr "仮想デスクトップ"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "Proton についての注意"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:21
 msgid "Use Proton"
@@ -1479,7 +1479,7 @@ msgstr "完了しました!　Bottles を再起動してください。"
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
 msgid "Post-Processing Effects Settings"
-msgstr ""
+msgstr "ポストプロセス効果の設定"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
@@ -1491,11 +1491,11 @@ msgstr "デフォルトの設定"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "効果はリストの順番に応じて適用されます。"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
 msgid "Effects"
-msgstr ""
+msgstr "効果"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:62
 msgid "Contrast Adaptive Sharpening"

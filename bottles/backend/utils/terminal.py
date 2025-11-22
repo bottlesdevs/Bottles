@@ -1,6 +1,6 @@
 # terminal.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,8 +16,8 @@
 #
 
 import os
-import subprocess
 import shlex
+import subprocess
 
 from bottles.backend.logger import Logger
 
@@ -90,31 +90,81 @@ class TerminalUtils:
             logging.warning("Terminal not supported.")
             return False
 
+        if self.terminal is None:
+            logging.warning("No terminal available.")
+            return False
+
         if colors not in self.colors:
             colors = "default"
 
-        colors = self.colors[colors]
+        command = str(command)
         command = shlex.quote(command)
 
-        if self.terminal[0] == "easyterm.py":
-            command = " ".join(self.terminal) % (
-                colors,
-                shlex.quote(f"bash -c {command}"),
-            )
+        terminal = self.terminal
+        template = " ".join(terminal)
+        term_bin = os.path.basename(terminal[0])
+
+        if "FLATPAK_ID" in os.environ and "easyterm" in term_bin:
+            ld = env.get("LD_LIBRARY_PATH", "")
+            base = "/app/lib:/app/lib64"
+            env["LD_LIBRARY_PATH"] = base + (":" + ld if ld else "")
+
+        if "easyterm" in term_bin:
+            for k in [
+                "GI_TYPELIB_PATH",
+                "GI_MODULE_DIR",
+                "GSETTINGS_SCHEMA_DIR",
+                "XDG_DATA_DIRS",
+                "XDG_DATA_HOME",
+                "LD_LIBRARY_PATH",
+            ]:
+                if k in os.environ:
+                    env[k] = os.environ[k]
+
+            palette = self.colors[colors]
+            cmd_for_shell = shlex.quote(f"bash -c {command}")
             if "ENABLE_BASH" in os.environ:
-                command = " ".join(self.terminal) % (colors, "bash")
-        elif self.terminal[0] in ["xfce4-terminal"]:
-            command = " ".join(self.terminal) % '"sh -c %s"' % f"{command}"
-        elif self.terminal[0] in ["kitty", "foot", "konsole", "gnome-terminal"]:
-            command = " ".join(self.terminal) % "sh -c %s" % f"{command}"
+                cmd_for_shell = "bash"
+            try:
+                full_cmd = template % (palette, cmd_for_shell)
+            except Exception:
+                full_cmd = f"{template} {palette} {cmd_for_shell}"
+
+        elif term_bin == "xfce4-terminal":
+            cmd_for_shell = shlex.quote(f"sh -c {command}")
+            try:
+                full_cmd = template % cmd_for_shell
+            except Exception:
+                full_cmd = f"{template} {cmd_for_shell}"
+
+        elif term_bin in ["kitty", "foot", "konsole", "gnome-terminal"]:
+            cmd_for_shell = shlex.quote(f"sh -c {command}")
+            try:
+                full_cmd = template % cmd_for_shell
+            except Exception:
+                full_cmd = f"{template} {cmd_for_shell}"
+
         else:
-            command = " ".join(self.terminal) % "bash -c %s" % f"{command}"
+            cmd_for_shell = shlex.quote(f"bash -c {command}")
+            try:
+                full_cmd = template % cmd_for_shell
+            except Exception:
+                full_cmd = f"{template} {cmd_for_shell}"
 
-        logging.info(f"Command: {command}")
+        logging.info(f"Command: {full_cmd}")
 
-        subprocess.Popen(
-            command, shell=True, env=env, stdout=subprocess.PIPE, cwd=cwd
-        ).communicate()[0].decode("utf-8")
+        try:
+            proc_out = subprocess.Popen(
+                full_cmd, shell=True, env=env, stdout=subprocess.PIPE, cwd=cwd
+            ).communicate()[0]
+            if proc_out:
+                try:
+                    proc_out.decode("utf-8")
+                except Exception:
+                    pass
+        except Exception:
+            logging.warning("Failed to launch terminal command.")
+            return False
 
         return True
 

@@ -21,10 +21,14 @@ from typing import Optional, List, Any
 
 from gi.repository import Gtk, Adw
 
+from bottles.backend.logger import Logger
 from bottles.frontend.utils.playtime import PlaytimeService
 from bottles.frontend.widgets.playtimechart_weekly import PlaytimeChartWeekly
 from bottles.frontend.widgets.playtimechart_hourly import PlaytimeChartHourly
 from bottles.frontend.widgets.playtimechart_monthly import PlaytimeChartMonthly
+
+
+logging = Logger()
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-playtime-graph.ui")
@@ -239,21 +243,27 @@ class PlaytimeGraphDialog(Adw.Window):
                 session_count = 0
 
             # Get global program record for last played (always global)
-            record = service.get_program_playtime(
-                bottle_id=self.bottle_id,
-                bottle_path=None,
-                program_name=self.program_name,
-                program_path=None,
-                program_id=self.program_id,
-            )
+            # Since we already have program_id, get totals directly from backend
+            totals_data = None
+            try:
+                totals_data = self.parent.window.manager.playtime_tracker.get_totals(
+                    self.bottle_id, self.program_id
+                )
+            except Exception as e:
+                logging.debug(f"Failed to get totals: {e}")
 
-            if record:
+            if totals_data:
                 # Display period total and session count with smart formatting
                 self.label_total_time.set_label(self.__format_time(period_minutes))  # type: ignore
                 self.label_sessions_count.set_label(str(session_count))  # type: ignore
 
                 # Format last played (always global)
-                last_played_text = service.format_last_played(record.last_played)
+                last_played = (
+                    datetime.fromtimestamp(totals_data["last_played"])
+                    if totals_data.get("last_played")
+                    else None
+                )
+                last_played_text = service.format_last_played(last_played)
                 self.label_last_played.set_label(last_played_text)  # type: ignore
             else:
                 # No data available

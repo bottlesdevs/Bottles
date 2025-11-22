@@ -81,6 +81,11 @@
       <summary>Automatically close Bottles</summary>
       <description>Close Bottles after starting an executable from the file manager.</description>
     </key>
+    <key type="s" name="audio-driver">
+      <default>'default'</default>
+      <summary>Wine audio driver</summary>
+      <description>Select which Wine audio driver should be enforced for all bottles. Use "default" to leave the driver unchanged.</description>
+    </key>
     <key type="b" name="show-sandbox-warning">
       <default>true</default>
       <summary>Show sandbox warning</summary>

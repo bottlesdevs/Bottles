@@ -1,0 +1,63 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DetailsRegistryRules: Adw.Bin {
+  Box {
+    orientation: vertical;
+
+    SearchBar search_bar {
+      SearchEntry entry_search {
+        placeholder-text: _("Search for rules…");
+      }
+    }
+
+    Stack stack {
+      transition-type: crossfade;
+
+      StackPage {
+        name: "page_empty";
+
+        child: Adw.StatusPage {
+          icon-name: "document-open-symbolic";
+          title: _("No rules yet");
+          description: _("Create a registry rule to reuse your tweaks across bottles.");
+          vexpand: true;
+          hexpand: true;
+        };
+      }
+
+      StackPage {
+        name: "page_rules";
+
+        child: Adw.PreferencesPage {
+          Adw.PreferencesGroup {
+            description: _("Registry rules are stored locally and can be applied to bottles on demand.");
+
+            ListBox list_rules {
+              selection-mode: none;
+
+              styles [
+                "boxed-list",
+              ]
+            }
+          }
+        };
+      }
+    }
+  }
+}
+
+Box actions {
+  spacing: 6;
+
+  ToggleButton btn_search {
+    active: bind search_bar.search-mode-enabled no-sync-create bidirectional;
+    tooltip-text: _("Search");
+    icon-name: "system-search-symbolic";
+  }
+
+  Button btn_add_rule {
+    icon-name: "list-add-symbolic";
+    tooltip-text: _("New Rule");
+  }
+}

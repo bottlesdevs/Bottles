@@ -1,0 +1,90 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DependencyInstallDialog: Adw.Window {
+  modal: true;
+  deletable: false;
+  default-width: 500;
+  default-height: 600;
+
+  Box {
+    orientation: vertical;
+    spacing: 18;
+    margin-top: 18;
+    margin-bottom: 18;
+    margin-start: 18;
+    margin-end: 18;
+
+    Adw.HeaderBar {
+      title-widget: Adw.WindowTitle window_title {};
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Box {
+      orientation: vertical;
+      spacing: 6;
+
+      Label label_title {
+          wrap: true;
+          xalign: 0;
+
+          styles [
+          "title",
+          "title-1",
+          ]
+      }
+
+      Label label_status {
+          wrap: true;
+          xalign: 0;
+
+          styles [
+          "body",
+          ]
+      }
+    }
+
+    ProgressBar progress_download {
+      show-text: true;
+      visible: false;
+    }
+
+    ScrolledWindow {
+      vexpand: true;
+      hexpand: true;
+      overflow: hidden;
+
+      child: ListBox steps_list {
+          selection-mode: none;
+
+          styles [
+          "boxed-list",
+          ]
+      };
+
+      styles [
+          "card",
+      ]
+    }
+
+    Box {
+      halign: end;
+      spacing: 8;
+
+      Spinner spinner_progress {}
+
+      Button btn_close {
+        label: _("_Close");
+        use-underline: true;
+        sensitive: false;
+
+        styles [
+        "suggested-action",
+        ]
+      }
+    }
+  }
+}

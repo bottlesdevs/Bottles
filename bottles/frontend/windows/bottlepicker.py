@@ -1,6 +1,6 @@
 # bottlepicker.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 
 import subprocess
 
-from gi.repository import Gtk, Adw, Gio
+from gi.repository import Adw, Gio, Gtk
 
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig

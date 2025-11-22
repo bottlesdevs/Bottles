@@ -1,9 +1,9 @@
 import inspect
 import logging
 import os
-from dataclasses import dataclass, field, replace, asdict, is_dataclass
+from dataclasses import asdict, dataclass, field, is_dataclass, replace
 from io import IOBase
-from typing import List, Dict, Optional, ItemsView, Container, IO
+from typing import IO, Container, Dict, ItemsView, List, Optional
 
 from bottles.backend.models.result import Result
 from bottles.backend.utils import yaml
@@ -95,6 +95,7 @@ class BottleParams(DictCompatMixIn):
     discrete_gpu: bool = False
     virtual_desktop: bool = False
     virtual_desktop_res: str = "1280x720"
+    wayland: bool = False
     pulseaudio_latency: bool = False
     fullscreen_capture: bool = False
     take_focus: bool = False
@@ -105,6 +106,7 @@ class BottleParams(DictCompatMixIn):
     use_eac_runtime: bool = True
     use_be_runtime: bool = True
     use_steam_runtime: bool = False
+    winebridge: bool = False
     sandbox: bool = False
     versioning_compression: bool = False
     versioning_automatic: bool = False
@@ -134,14 +136,18 @@ class BottleConfig(DictCompatMixIn):
     State: int = 0
     Parameters: BottleParams = field(default_factory=BottleParams)
     Sandbox: BottleSandboxParams = field(default_factory=BottleSandboxParams)
+    Limit_System_Environment: bool = False
     Environment_Variables: dict = field(default_factory=dict)
+    Inherited_Environment_Variables: List[str] = field(default_factory=list)
     Installed_Dependencies: List[str] = field(default_factory=list)
     DLL_Overrides: dict = field(default_factory=dict)
     External_Programs: Dict[str, dict] = field(default_factory=dict)
     Uninstallers: dict = field(default_factory=dict)
+    Registry_Rules: list = field(default_factory=list)
     session_arguments: str = ""
     run_in_terminal: bool = False
     Language: str = "sys"  # "sys", "any valid language code"
+    Winebridge: bool = False
 
     # Section - Not Existed in Sample Config but used in code
     CompatData: str = ""
@@ -183,7 +189,8 @@ class BottleConfig(DictCompatMixIn):
                 data = yaml.load(file)
             else:
                 if not os.path.exists(file):
-                    raise FileNotFoundError("Config file not exists")
+                    logging.info("Config file %s not found, skipping load", file)
+                    return Result(False, message="Config file not exists")
 
                 with open(file, mode=mode) as f:
                     data = yaml.load(f)
@@ -276,3 +283,7 @@ class BottleConfig(DictCompatMixIn):
                 )
 
         return new_data
+
+
+# Register custom YAML serializer for BottleConfig
+yaml.register_serializer(BottleConfig)

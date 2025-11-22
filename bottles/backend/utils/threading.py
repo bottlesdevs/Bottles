@@ -1,6 +1,6 @@
 # threading.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,6 +21,8 @@ import threading
 import traceback
 from typing import Any
 
+from gi.repository import GLib
+
 from bottles.backend.logger import Logger
 
 logging = Logger()
@@ -33,7 +35,12 @@ class RunAsync(threading.Thread):
     """
 
     def __init__(
-        self, task_func, callback=None, daemon=True, *args: Any, **kwargs: Any
+        self,
+        task_func,
+        callback=None,
+        daemon=True,
+        *args: Any,
+        **kwargs: Any,
     ):
         if "DEBUG_MODE" in os.environ:
             import faulthandler
@@ -44,6 +51,8 @@ class RunAsync(threading.Thread):
             f"Running async job [{task_func}] "
             f"(from main thread: {threading.current_thread() is threading.main_thread()})."
         )
+
+        self._callback_in_main_loop = kwargs.pop("callback_in_main_loop", True)
 
         super(RunAsync, self).__init__(target=self.__target, args=args, kwargs=kwargs)
 
@@ -74,7 +83,28 @@ class RunAsync(threading.Thread):
             traceback_info = "\n".join(traceback.format_tb(trace))
 
             logging.write_log([str(exception), traceback_info])
-        self.callback(result, error)
+
+        def _dispatch_callback():
+            try:
+                self.callback(result, error)
+            except Exception as callback_exception:
+                logging.error(
+                    "Error while running async callback: "
+                    f"{self.callback}\nException: {callback_exception}"
+                )
+                _ex_type, _ex_value, trace = sys.exc_info()
+                traceback.print_tb(trace)
+                traceback_info = "\n".join(traceback.format_tb(trace))
+                logging.write_log([str(callback_exception), traceback_info])
+            return GLib.SOURCE_REMOVE
+
+        if (
+            self._callback_in_main_loop
+            and threading.current_thread() is not threading.main_thread()
+        ):
+            GLib.idle_add(_dispatch_callback)
+        else:
+            _dispatch_callback()
 
     def cancel(self):
         self._cancel_requested = True

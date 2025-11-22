@@ -1,6 +1,6 @@
 # installer_manager.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -124,7 +124,7 @@ class InstallerManager:
 
         for dep in dependencies:
             if is_final:
-                step_fn()
+                step_fn(dep)
 
             if dep in config.Installed_Dependencies:
                 continue
@@ -442,7 +442,7 @@ class InstallerManager:
                 "userdir/", f"/users/{_userdir}/"
             )
 
-        _path = f'C:\\{executable["path"]}'.replace("/", "\\")
+        _path = f"C:\\{executable['path']}".replace("/", "\\")
         _uuid = str(uuid.uuid4())
         _program = {
             "executable": executable["file"],

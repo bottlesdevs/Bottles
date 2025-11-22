@@ -1,6 +1,6 @@
 # details.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,19 +19,19 @@
 from gettext import gettext as _
 from typing import Optional
 
-from gi.repository import Gtk, Adw, GLib
+from gi.repository import Adw, GLib, Gtk
 
 from bottles.backend.managers.queue import QueueManager
 from bottles.backend.models.config import BottleConfig
-
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.views.bottle_dependencies import DependenciesView
 from bottles.frontend.views.bottle_details import BottleView
 from bottles.frontend.views.bottle_installers import InstallersView
-from bottles.frontend.views.bottle_dependencies import DependenciesView
 from bottles.frontend.views.bottle_preferences import PreferencesView
-from bottles.frontend.views.bottle_versioning import VersioningView
+from bottles.frontend.views.bottle_registry_rules import RegistryRulesView
 from bottles.frontend.views.bottle_taskmanager import TaskManagerView
+from bottles.frontend.views.bottle_versioning import VersioningView
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/details.ui")
@@ -78,6 +78,7 @@ class DetailsView(Adw.Bin):
         self.view_bottle = BottleView(self, config)
         self.view_installers = InstallersView(self, config)
         self.view_dependencies = DependenciesView(self, config)
+        self.view_registry_rules = RegistryRulesView(self, config)
         self.view_preferences = PreferencesView(self, config)
         self.view_versioning = VersioningView(self, config)
         self.view_taskmanager = TaskManagerView(self, config)
@@ -121,6 +122,9 @@ class DetailsView(Adw.Bin):
         if page == "dependencies":
             self.set_actions(self.view_dependencies.actions)
             self.view_dependencies.update(config=self.config)
+        elif page == "registry_rules":
+            self.set_actions(self.view_registry_rules.actions)
+            self.view_registry_rules.update(config=self.config)
         elif page == "versioning":
             self.set_actions(self.view_versioning.actions)
         elif page == "installers":
@@ -143,6 +147,10 @@ class DetailsView(Adw.Bin):
             },
             "dependencies": {
                 "title": _("Dependencies"),
+                "description": "",
+            },
+            "registry_rules": {
+                "title": _("Registry Rules"),
                 "description": "",
             },
             "versioning": {
@@ -168,6 +176,7 @@ class DetailsView(Adw.Bin):
 
             self.stack_bottle.add_named(self.view_preferences, "preferences")
             self.stack_bottle.add_named(self.view_dependencies, "dependencies")
+            self.stack_bottle.add_named(self.view_registry_rules, "registry_rules")
             self.stack_bottle.add_named(self.view_versioning, "versioning")
             self.stack_bottle.add_named(self.view_installers, "installers")
             self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
@@ -201,6 +210,7 @@ class DetailsView(Adw.Bin):
         self.view_preferences.set_config(config=config)
         self.view_taskmanager.set_config(config=config)
         self.view_installers.update(config=config)
+        self.view_registry_rules.update(config=config)
         self.view_versioning.update(config=config)
 
         if rebuild_pages:

@@ -1,6 +1,6 @@
 # vkbasalt.py
 #
-# Copyright 2022 Hari Rana / TheEvilSkeleton <theevilskeleton@riseup.net>
+# Copyright 2025 Hari Rana / TheEvilSkeleton <theevilskeleton@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,10 +26,12 @@ clut (or lut): Color LookUp Table
 """
 
 import os
-from gi.repository import Gtk, GLib, Adw
-from vkbasalt.lib import parse, ParseConfig  # type: ignore [import-untyped]
-from bottles.backend.utils.manager import ManagerUtils
+
+from gi.repository import Adw, GLib, Gtk
+from vkbasalt.lib import ParseConfig, parse  # type: ignore [import-untyped]
+
 from bottles.backend.logger import Logger
+from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
 

@@ -8,6 +8,7 @@ bottles_sources = [
   'vdict.py',
   'config.py',
   'enum.py',
+  'registry_rule.py',
   'process.py'
 ]
 

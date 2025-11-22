@@ -2,7 +2,7 @@
 
 # cli.in
 #
-# Copyright 2020 brombinmirko <send@mirko.pm>
+# Copyright 2020 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,26 +41,28 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 # ruff: noqa: E402
 from gi.repository import Gio
 
-from bottles.frontend.params import APP_ID
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
+from bottles.backend.managers.registry_rule import RegistryRuleManager
 from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.registry_rule import RegistryRule
+from bottles.backend.runner import Runner
+from bottles.backend.utils import json, yaml
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.control import Control
 from bottles.backend.wine.executor import WineExecutor
-from bottles.backend.wine.winecommand import WineCommand
+from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.reg import Reg
-from bottles.backend.wine.winepath import WinePath
 from bottles.backend.wine.regedit import Regedit
+from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.taskmgr import Taskmgr
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winecfg import WineCfg
-from bottles.backend.wine.explorer import Explorer
-from bottles.backend.wine.regkeys import RegKeys
-from bottles.backend.runner import Runner
-from bottles.backend.utils import json
-from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.wine.winecommand import WineCommand
+from bottles.backend.wine.winepath import WinePath
+from bottles.frontend.params import APP_ID
 
 
 # noinspection DuplicatedCode
@@ -150,6 +152,42 @@ class CLI:
             "--key-type",
             help="Data type",
             choices=["REG_DWORD", "REG_SZ", "REG_BINARY", "REG_MULTI_SZ"],
+        )
+
+        reg_rules_parser = subparsers.add_parser(
+            "reg-rules", help="Manage reusable registry rules"
+        )
+        reg_rules_parser.add_argument(
+            "action",
+            choices=["list", "apply", "set", "delete"],
+            help="Action to perform",
+        )
+        reg_rules_parser.add_argument(
+            "-b", "--bottle", help="Bottle name", required=False
+        )
+        reg_rules_parser.add_argument("--name", help="Rule name")
+        reg_rules_parser.add_argument(
+            "--bundle",
+            help="Path to a YAML file describing the registry bundle",
+        )
+        reg_rules_parser.add_argument(
+            "--description", help="Description for the rule", default=""
+        )
+        reg_rules_parser.add_argument(
+            "--triggers",
+            help="Comma separated triggers (runner_change, components, dependencies)",
+        )
+        reg_rules_parser.add_argument(
+            "--run-once", action="store_true", help="Apply only once"
+        )
+        reg_rules_parser.add_argument(
+            "--trigger",
+            help="Trigger context to filter rules when applying",
+        )
+        reg_rules_parser.add_argument(
+            "--rules",
+            nargs="*",
+            help="Specific rule names to apply",
         )
 
         edit_parser = subparsers.add_parser("edit", help="Edit a bottle configuration")
@@ -272,6 +310,9 @@ class CLI:
         # REG parser
         elif self.args.command == "reg":
             self.manage_reg()
+
+        elif self.args.command == "reg-rules":
+            self.manage_reg_rules()
 
         # EDIT parser
         elif self.args.command == "edit":
@@ -502,6 +543,84 @@ class CLI:
             Reg(bottle).add(_key, _value, _data, _key_type)
         elif _action == "del":
             Reg(bottle).remove(_key, _value)
+
+    # endregion
+
+    # region REG RULES
+    def manage_reg_rules(self):
+        _action = self.args.action
+
+        mng = None
+
+        if _action != "apply":
+            if not self.args.bottle:
+                sys.stderr.write("--bottle is required for this action\n")
+                exit(1)
+            mng = Manager(g_settings=self.settings, is_cli=True)
+            mng.check_bottles()
+            if self.args.bottle not in mng.local_bottles:
+                sys.stderr.write(f"Bottle {self.args.bottle} not found\n")
+                exit(1)
+            bottle = mng.local_bottles[self.args.bottle]
+
+        if _action == "list":
+            rules = RegistryRuleManager.list_rules(bottle)
+            if self.args.json:
+                sys.stdout.write(json.dumps([rule.to_dict() for rule in rules]))
+            else:
+                for rule in rules:
+                    triggers = ", ".join(rule.triggers) if rule.triggers else "-"
+                    sys.stdout.write(
+                        f"{rule.name}: {rule.description} (triggers: {triggers})\n"
+                    )
+            return
+
+        if _action == "set":
+            if not self.args.name or not self.args.bundle:
+                sys.stderr.write("--name and --bundle are required\n")
+                exit(1)
+
+            with open(self.args.bundle, "r") as bundle_file:
+                bundle_text = bundle_file.read()
+
+            triggers = []
+            if self.args.triggers:
+                triggers = [t.strip() for t in self.args.triggers.split(",") if t]
+
+            rule = RegistryRule(
+                name=self.args.name,
+                description=self.args.description,
+                keys=bundle_text,
+                triggers=triggers,
+                run_once=self.args.run_once,
+            )
+            RegistryRuleManager.upsert_rule(mng, bottle, rule)
+            return
+
+        if _action == "delete":
+            if not self.args.name:
+                sys.stderr.write("--name is required\n")
+                exit(1)
+            RegistryRuleManager.delete_rule(mng, bottle, self.args.name)
+            return
+
+        if _action == "apply":
+            if not self.args.bottle:
+                sys.stderr.write("--bottle is required\n")
+                exit(1)
+
+            mng = Manager(g_settings=self.settings, is_cli=True)
+            mng.check_bottles()
+            if self.args.bottle not in mng.local_bottles:
+                sys.stderr.write(f"Bottle {self.args.bottle} not found\n")
+                exit(1)
+
+            RegistryRuleManager.apply_rules(
+                mng.local_bottles[self.args.bottle],
+                rule_names=self.args.rules,
+                trigger=self.args.trigger,
+            )
+            return
 
     # endregion
 

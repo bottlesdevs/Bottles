@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-10-30 14:47+0000\n"
-"Last-Translator: Itay Adler <itayadler13@gmail.com>\n"
+"PO-Revision-Date: 2025-11-11 05:51+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/bottles/bottles/"
 "he/>\n"
 "Language: he\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : "
 "((n > 10 && n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
-msgstr "לא נבחר נתיב"
+msgstr "לא צוין נתיב"
 
 #: bottles/backend/managers/backup.py:56
 #, python-brace-format
@@ -32,15 +32,15 @@ msgstr "גיבוי {0}"
 #: bottles/backend/managers/backup.py:101
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr "גיבוי מיובא: {0}"
+msgstr "מייבא גיבוי: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
-msgstr "התקנת תוספים נכשלה, לאחר 3 נסיונות."
+msgstr "התקנת רכיבים נכשלה, בוצעו 3 ניסיונות."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
-msgstr "תוספים בסיסיים חסרים, מותקנים…"
+msgstr "חסרים רכיבים חיוניים. מותקנים…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
@@ -48,11 +48,11 @@ msgstr "יצירת תיקיית בקבוק נכשלה."
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "יצירת תיקייה/קובץ ממלאי מקום נכשלה."
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
-msgstr "הגדרות בקבוק נוצרות…"
+msgstr "נוצרת תצורת בקבוק…"
 
 #: bottles/backend/managers/manager.py:1185
 msgid "Template found, applying…"
@@ -61,107 +61,107 @@ msgstr "נמצאה תבנית, מיושמת…"
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1197
 msgid "The Wine config is being updated…"
-msgstr "הגדרות WINE מתעדכנות כעת…"
+msgstr "תצורת Wine מתעדכנת…"
 
 #: bottles/backend/managers/manager.py:1199
 msgid "Wine config updated!"
-msgstr "הצלחנו לעדכן את ההגדרות של WINE!"
+msgstr "תצורת Wine עודכנה!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "הרצה כ-FLATPAK, בתהליך בידוד ...USERDIR"
+msgstr "מורץ בתור Flatpak, מבודד את ספריית המשתמש…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "מבודד את ספריית המשתמש…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
-msgstr "מגדיר גרסת ווינדוס…"
+msgstr "מגדיר גרסת Windows…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
-msgstr "יישום הגדרות ברירת-מחדל ל-CMD"
+msgstr "החלת הגדרות CMD ברירת מחדל…"
 
 #: bottles/backend/managers/manager.py:1268
 msgid "Optimizing environment…"
-msgstr "ממטבים את הסביבה…"
+msgstr "הסביבה ממוטבת…"
 
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "מיישמים סביבה: {0}…"
+msgstr "הסביבה מיושמת: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
-msgstr "נא לשים לב (!) נעשה שימוש במתכון מותאם-אישית ליצירת הסביבה…"
+msgstr "(!) מתכון לסביבה מותאמת אישית בשימוש…"
 
 #: bottles/backend/managers/manager.py:1292
 msgid "(!) Recipe not not found or not valid…"
-msgstr "אבוי (!) לא מצאנו את המתכון, או שהוא פגום…"
+msgstr "(!) המתכון לא נמצא או לא תקין…"
 
 #: bottles/backend/managers/manager.py:1309
 msgid "Installing DXVK…"
-msgstr "מתקינים את DXVK…"
+msgstr "DXVK מותקן…"
 
 #: bottles/backend/managers/manager.py:1317
 msgid "Installing VKD3D…"
-msgstr "מתקינים את VKD3D…"
+msgstr "VKD3D מותקן…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Installing DXVK-NVAPI…"
-msgstr "מתקינים את DXVK-NVAPI…"
+msgstr "DXVK-NVAPI מותקן…"
 
 #: bottles/backend/managers/manager.py:1335
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr "מתקינים חבילות-תלות: %s …"
+msgstr "חבילת תלות מותקנת: %s …"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
-msgstr "יוצרים גרסאות מצב 0…"
+msgstr "נוצרות גרסאות מצב 0…"
 
 #: bottles/backend/managers/manager.py:1353
 msgid "Finalizing…"
-msgstr "עוד רגע מסיימים :)"
+msgstr "בתהליך סיום…"
 
 #: bottles/backend/managers/manager.py:1364
 msgid "Caching template…"
-msgstr "טומנים את התבנית…"
+msgstr "התבנית נשמרת במטמון…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
-msgstr "מקבעים מצב…"
+msgstr "המצב מקובע …"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
-msgstr "אין מה לקבע!"
+msgstr "אין מה לקבע"
 
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "יצרנו מצב חדש {0} כהלכה!"
+msgstr "מצב חדש [{0}] נוצר בהצלחה!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr "השגנו את רשומות המצבים!"
+msgstr "רשימת המצבים אוחזרה בהצלחה!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "שחזרנו למצב {0} כהלכה!"
+msgstr "מצב {0} שוחזר בהצלחה!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr "משחזרים מצב {} …"
+msgstr "מצב {} משוחזר …"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
-msgstr "לא מצאנו את המצב *-*"
+msgstr "המצב לא נמצא"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr "זה כבר המצב {} העדכני ביותר!"
+msgstr "המצב {} הוא כבר המצב הפעיל"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
@@ -169,36 +169,36 @@ msgstr "הצגת גרסה"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
-msgstr "נתיב לקובץ ההרצה \\ האצווה"
+msgstr "נתיב קובץ הפעלה"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
-msgstr "נתיב דיו"
+msgstr "נתיב lnk"
 
 #: bottles/frontend/main.py:136 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
 msgid "Bottle name"
-msgstr "כינוי הבקבוק"
+msgstr "שם הבקבוק"
 
 #: bottles/frontend/main.py:144
 msgid "Pass arguments"
-msgstr "העברת פרמטר"
+msgstr "העברת ארגומנטים"
 
 #: bottles/frontend/main.py:203
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr "URI שגוי! (תחביר: bottles:run/<bottle>/<program>)"
+msgstr "כתובת URI לא חוקית (תחביר: ‪bottles:run/<בקבוק>/<‎תוכנית>‬)"
 
 #: bottles/frontend/main.py:244
 msgid "[Quit] request received."
-msgstr "בקשת [יציאה] נתקבלה"
+msgstr "בקשת [יציאה] התקבלה."
 
 #: bottles/frontend/main.py:253
 msgid "[Help] request received."
-msgstr "בקשת [סיוע] נתקבלה."
+msgstr "בקשת [סיוע] התקבלה."
 
 #: bottles/frontend/main.py:261
 msgid "[Refresh] request received."
-msgstr "בקשת [רענון] נתקבלה."
+msgstr "בקשת [רענון] התקבלה."
 
 #: bottles/frontend/main.py:294
 msgid "Donate"
@@ -206,29 +206,29 @@ msgstr "תרומה"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr "תודות מיוחדות, ספריות צד-ג'"
+msgstr "ספריות צד שלישי ותודה מיוחדת"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
-msgstr "מקודם וממומן ע\"י"
+msgstr "בחסות ובמימון"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "כל הזכויות שמורות © 2017 Bottles Developers"
+msgstr "כל הזכויות שמורות © 2017 למפתחי „בקבוקים”"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
 msgid "Bottles Developers"
-msgstr "מפתחי Bottles"
+msgstr "מפתחי „בקבוקים”"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr "תודות_מתרגמים"
+msgstr "Joe Shachaf, Gilad the Grain, Yaron Shahrabani, xocodokie, omeritzics"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr "גרסת רכיבים"
+msgstr "גרסת רכיב"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
@@ -245,8 +245,8 @@ msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"אבוי, ההתקנה כשלה! יש סיכוי שהגענו למצב זה בשל שגיאת ארכיב, הורדה פגומה או "
-"קושי באימות. כדאי לנסות שוב ;)"
+"ההתקנה נכשלה. ייתכן שהסיבה לכך היא שגיאת מאגר מידע, הורדה חלקית או אי־התאמה "
+"של סיכום ביקורת. יש ללחוץ כדי לנסות שוב."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -258,15 +258,15 @@ msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
-msgstr "הצגת מצהר"
+msgstr "הצגת מניפסט"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
-msgstr "רשיון"
+msgstr "רישיון"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
-msgstr "התקנה חוזרת"
+msgstr "התקנה מחדש"
 
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
@@ -275,35 +275,35 @@ msgstr "דיווח על תֶּקֶל…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
-msgstr "שם חבילת-תלות"
+msgstr "שם חבילת תלות"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
 msgid "Dependency description"
-msgstr "תיאור חבילת-תלות"
+msgstr "תיאור חבילת תלות"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr "סוגה"
+msgstr "קטגוריה"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr "הורדה והתקנת חבילת-תלות"
+msgstr "הורדה והתקנת חבילת תלות זו"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"אבוי, תקלת התקנה התרחשה. אפשר לאתחל את Bottles כדי לחזות בדו\"ח הקריסה או "
-"להריצו במסוף כדי לקרוא את הפלט"
+"אירעה שגיאת התקנה. נא להפעיל מחדש את „בקבוקים” כדי לקרוא את דוח הקריסה או "
+"להריץ את התוכנית דרך מסוף כדי לקרוא את הפלט."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr "תפריט תלויות"
+msgstr "תפריט חבילת תלות"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
-msgstr "ניפוי תקלות"
+msgstr "איתור תקלות"
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
@@ -316,7 +316,7 @@ msgstr "שכפול בקבוק…"
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr "זהו ארכוב מלא של בקבוקך, הכולל בתוכו גם קבצים אישיים."
+msgstr "זהו הארכיון המלא של הבקבוק שלך, כולל קבצים אישיים."
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
@@ -327,11 +327,12 @@ msgstr "גיבוי מלא…"
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
-msgstr "מכיל רק את הגדרת הבקבוק, מושלם ליצירת אחד חדש, בלי קבצים אישיים."
+msgstr ""
+"זוהי רק תצורת הבקבוק, היא מושלמת אם ברצונך ליצור אחד חדש אך ללא קבצים אישיים."
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr "ייצוא הגדרות…"
+msgstr "ייצוא תצורה…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
@@ -340,7 +341,7 @@ msgstr "הצגת תוכניות נסתרות"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
-msgstr "חיפוש אחר תוכנות חדשות"
+msgstr "חיפוש אחר תוכניות חדשות"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
@@ -354,11 +355,11 @@ msgstr "תפריט משני"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr "עצירה מלאה וכפוייה של כל התהליכים הפעילים"
+msgstr "עצירה כפויה של כל התהליכים"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr "דימוי כיבוי מלא של מערכת WINDOWS."
+msgstr "הדמיית כיבוי מערכת Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
@@ -366,16 +367,16 @@ msgstr "כיבוי"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr "דימוי הפעלה מחדש של מערכת WINDOWS."
+msgstr "הדמיית אתחול מערכת Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
-msgstr "הפעלה מחדש"
+msgstr "אתחול"
 
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr "אפשרויות הרצה"
+msgstr "אפשרויות הפעלה"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
@@ -383,7 +384,7 @@ msgstr "הרצה במסוף"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr "גררו לכאן קבצים, ונריץ אותם."
+msgstr "יש לשחרר קבצים כדי להריץ אותם"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
@@ -402,16 +403,16 @@ msgstr "סביבה"
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr "מריץ"
+msgstr "כלי הרצה"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr "רשומת גרסאות זמינה עבור הבקבוק"
+msgstr "ניהול גרסאות מופעל עבור בקבוק זה"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr "רשומת גרסאות פעילה עבור הבקבוק"
+msgstr "רשומת גרסאות פעילה עבור הבקבוק."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
@@ -420,11 +421,11 @@ msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
-msgstr "הרצת קובץ הרצה…"
+msgstr "הרצת קובץ הפעלה…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
-msgstr "תכונות"
+msgstr "תוכניות"
 
 #: bottles/frontend/ui/details-bottle.blp:275
 msgid ""
@@ -432,9 +433,9 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
-"על מנת להריץ קבצי הרצה, נקיש על \"הרצת קובץ הרצה...\", \"הוספת קיצור דרך\" "
-"כדי להוסיף תוכנה לרשומת התוכנות,  או \"התקנת תוכנות\" על מנת להתקין תוכנות "
-"קהילתיות."
+"יש ללחוץ על „הרצת קובץ הפעלה…” כדי להריץ קובץ הפעלה, „הוספת קיצורי דרך…” כדי "
+"להוסיף קובץ הפעלה לרשימת התוכניות, או „התקנת תוכניות…” כדי להתקין תוכניות "
+"שנאצרו על ידי הקהילה."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -442,7 +443,7 @@ msgstr "הוספת קיצורי דרך…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 msgid "Install Programs…"
-msgstr "התקנת תוכנות…"
+msgstr "התקנת תוכניות…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
@@ -455,16 +456,16 @@ msgstr "הגדרות"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr "הגדרת בקבוק."
+msgstr "קביעת תצורה של הגדרות בקבוק."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr "חבילות-תלות"
+msgstr "חבילות תלות"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
-msgstr "התקנת חבילות-תלות עבור תוכנות"
+msgstr "התקנת חבילות תלות עבור תוכניות."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
@@ -474,17 +475,17 @@ msgstr "תמונות מצב"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
-msgstr "יצירה וניהול מצבי בקבוקים."
+msgstr "יצירה וניהול של מצבי בקבוק."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
 #: bottles/frontend/views/details.py:157
 msgid "Task Manager"
-msgstr "מנהל תהליכים"
+msgstr "מנהל המשימות"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr "ניהול תוכנות פעילות"
+msgstr "ניהול תוכניות פועלות."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -496,19 +497,19 @@ msgstr "שורת פקודה"
 
 #: bottles/frontend/ui/details-bottle.blp:395
 msgid "Run commands inside the Bottle."
-msgstr "הרצת פקודות בתוך הבקבוק"
+msgstr "הרצת פקודות בתוך הבקבוק."
 
 #: bottles/frontend/ui/details-bottle.blp:404
 msgid "Registry Editor"
-msgstr "עורך מרשמה"
+msgstr "עורך רישום"
 
 #: bottles/frontend/ui/details-bottle.blp:405
 msgid "Edit the internal registry."
-msgstr "עריכת המרשמה הפנימית"
+msgstr "עריכת הרישום הפנימי."
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr "כלי עבר WINE"
+msgstr "כלי Wine מדור קודם"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
@@ -525,26 +526,26 @@ msgstr "תצורה"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
-msgstr "תוכנת הסרת ההתקנה"
+msgstr "תוכנית להסרת התקנה"
 
 #: bottles/frontend/ui/details-bottle.blp:462
 msgid "Control Panel"
-msgstr "לוח הבקרה"
+msgstr "לוח בקרה"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr "חיפוש אחר חבילות-תלות…"
+msgstr "חיפוש אחר חבילות תלות…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
-#, fuzzy
 msgid "You're offline :("
-msgstr "איפה האינטרנט?!"
+msgstr "הינך במצב לא מקוון :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
-msgstr "הבקבוק פועל במצב לא-מקוון, לכן חבילות-תלות לא תהיינה זמינות"
+msgstr ""
+"התוכנית „בקבוקים” פועלת במצב לא מקוון, לכן חבילות תלות מסוימות אינן זמינות."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -553,28 +554,28 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"חבילות-תלות הינם משאבים המשפרים את התאימות של תוכנות WINDOWS.\n"
+"חבילות תלות הינן משאבים המשפרים את התאימות של תוכנות Windows.\n"
 "\n"
-"קבצים בעמוד זה מובאים לפניכם בידי צדדי-ג' תחת רישיון קנייני. על ידי התקנתם, "
-"הנכם מסכימים לתנאי רישויים."
+"קבצים בעמוד זה מסופקים על ידי צדדים שלישיים תחת רישיון קנייני. התקנתם מעידה "
+"על הסכמתך לתנאי הרישוי המתאימים שלהם."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
-msgstr "דיווח על בעיה או חבילת-תלות חסרה"
+msgstr "דיווח על בעיה או חבילת תלות חסרה."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
 msgid "Report Missing Dependency"
-msgstr "דיווח על חבילת-תלות חסרה"
+msgstr "דיווח על חבילת תלות חסרה"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
 msgid "Read Documentation."
-msgstr "קריאת תיעוד-עזר"
+msgstr "לקריאת התיעוד."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
 #: bottles/frontend/ui/details-versioning.blp:37
 msgid "Documentation"
-msgstr "תיעוד-עזר"
+msgstr "תיעוד"
 
 #: bottles/frontend/ui/details-dependencies.blp:92
 #: bottles/frontend/ui/details-installers.blp:61
@@ -584,7 +585,7 @@ msgstr "חיפוש"
 
 #: bottles/frontend/ui/details-installers.blp:9
 msgid "Search for Programs…"
-msgstr "חיפוש תוכנות…"
+msgstr "חיפוש אחר תוכניות…"
 
 #: bottles/frontend/ui/details-installers.blp:15
 msgid ""
@@ -593,25 +594,25 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"התקנת תוכנות קהילתיות.\n"
+"התקנת תוכניות שנאצרו על ידי קהילתנו.\n"
 "\n"
-"הקבצים בעמוד זה מובאים לפניכם בידי צדדי-ג' תחת רישיון קנייני. על ידי התקנתם, "
-"הנכם מסכימים לתנאי רישויים."
+"קבצים בעמוד זה מסופקים על ידי צדדים שלישיים תחת רישיון קנייני. התקנתם מעידה "
+"על הסכמתך לתנאי הרישוי המתאימים שלהם."
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
-msgstr "לא מצאנו תוכנות התקנה *-*"
+msgstr "לא נמצאו תוכניות התקנה"
 
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
-msgstr "הארכיב לא זמין כרגע או שאין מתקין הנתמך בידי הבקבוק"
+msgstr "מאגר המידע אינו ניתן להשגה או שאף תוכנית התקנה אינה תואמת לבקבוק זה."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
 #: bottles/frontend/ui/preferences.blp:81
 msgid "Read Documentation"
-msgstr "קריאת תיעוד-עזר"
+msgstr "לקריאת התיעוד"
 
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52
@@ -625,11 +626,11 @@ msgstr "רכיבים"
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr "גרסאת שכבת התאימות WINE."
+msgstr "גרסת שכבת התאימות של Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
-msgstr "מעדכן את המריץ ועוד שלל רכיבים פנימיים, רק רגע…"
+msgstr "כלי ההרצה והרכיבים מתעדכנים, נא להמתין…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
@@ -638,11 +639,11 @@ msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "שיפור התאימות לגרסה 8/9/10/11 של Direct3D בעזרת המרתו ל־Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
-msgstr "מעדכנים את DXVK, רק עוד רגע…"
+msgstr "הרכיב DXVK מתעדכן, נא להמתין…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:266
@@ -651,11 +652,11 @@ msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr "שיפור תאימות Direct3D 12 ע\"י תרגום ל- Vulkan."
+msgstr "שיפור התאימות לגרסה 12 של Direct3D בעזרת המרתו ל־Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
-msgstr "מעדכנים את VKD3D, רק עוד רגע…"
+msgstr "הרכיב VKD3D מתעדכן, נא להמתין…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
@@ -664,7 +665,7 @@ msgstr "DXVK NVAPI"
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "מעדכנים את DXVK-NVAPI, רק עוד רגע…"
+msgstr "הרכיב DXVK-NVAPI מתעדכן, נא להמתין…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
@@ -673,11 +674,11 @@ msgstr "LatencyFleX"
 
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
-msgstr "משפר תגובתיות, ניתן לזיהוי על-ידי תוכנות מניעת רמאויות מסויימות."
+msgstr "משפר תגובתיות. ניתן לזיהוי על ידי תוכנות נגד רמאות מסוימות."
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
-msgstr "מעדכנים את LatencyFleX, רק עוד רגע…"
+msgstr "הרכיב LatencyFleX מתעדכן, נא להמתין…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
@@ -685,65 +686,62 @@ msgstr "מסך"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr "למידה מעמיקה עם דיגום מורחב"
+msgstr "סופר־דגימה בלמידה עמוקה (DLSS)"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
-"שיפור הביצועים הכרוך בפיחות גרפי תוך שימוש ב- DXVK-NVAPI. זמין אך ורק ברכיבי "
-"NVIDIA חדשים יותר."
+"שיפור הביצועים על חשבון החזות באמצעות DXVK-NVAPI. עובד רק על מעבדים גרפיים "
+"חדשים יותר של NVIDIA."
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr "FidelityFX רזולוציה משופרת"
+msgstr "רזולוציית סופר FidelityFX"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr "שיפור הביצועים במחיר פיחות הגרפיקה. זמין אך ורק ב-Vulkan."
+msgstr "שיפור הביצועים על חשבון החזות. עובד רק על Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr "ניהול והגדרת רזולוציה משופרת FidelityFX"
+msgstr "ניהול הגדרות רזולוציית סופר FidelityFX"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
-msgstr "גרפיקה בדידים"
+msgstr "גרפיקה נפרדת"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
-msgstr ""
-"השימוש בגרפיקה בבדידים מועיל כאשר מעוניינים לשפר ביצועים, במחיר צריכת חשמל "
-"מוגברת"
+msgstr "יש להשתמש בכרטיס מסך נפרד כדי לשפר ביצועים על חשבון צריכת חשמל."
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr "אפקטים לאחר-העיבוד"
+msgstr "אפקטים לאחר עיבוד"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
-msgstr ""
-"הוספת מיני אפקטים לאחר-העיבוד תוך שימש ב- vkBasalt. זמין אך ורק ב- Vulkan."
+msgstr "הוספת אפקטים שונים לאחר העיבוד באמצעות vkBasalt. עובד רק על Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:138
 msgid "Manage Post-Processing Layer settings"
-msgstr "הגדרה וניהול של שכבות שלאחר-העיבוד"
+msgstr "ניהול הגדרות שכבה לאחר עיבוד"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr "ניהול כיצד משחקים יוצגו על המסך, תוך שימוש ב- Gamescope."
+msgstr "ניהול כיצד יש להציג משחקים על המסך באמצעות Gamescope."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
-msgstr "ניהול הגדרות תצורה ל-Gamescope."
+msgstr "ניהול הגדרות Gamescope"
 
 #: bottles/frontend/ui/details-preferences.blp:171
 msgid "Advanced Display Settings"
-msgstr "הגדרות תצוגה מורחבות."
+msgstr "הגדרות תצוגה מתקדמות"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
@@ -751,7 +749,7 @@ msgstr "ביצועים"
 
 #: bottles/frontend/ui/details-preferences.blp:188
 msgid "Enable synchronization to increase performance of multicore processors."
-msgstr "הפעלת הסנכרון, כך שהביצועים ישופרו במעבדים בעלי מספר ליבות."
+msgstr "הפעלת סנכרון כדי לשפר ביצועים של מעבדים מרובי ליבות."
 
 #: bottles/frontend/ui/details-preferences.blp:189
 msgid "Synchronization"
@@ -771,19 +769,19 @@ msgstr "Fsync"
 
 #: bottles/frontend/ui/details-preferences.blp:196
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.blp:202
 msgid "Monitor Performance"
-msgstr "ביצועי המסך"
+msgstr "ניטור ביצועים"
 
 #: bottles/frontend/ui/details-preferences.blp:203
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
-"הצגת מידע סטטיסטי (קצב רענון, מעלות, עומס על המעבדים ושלל רכיבים נוספים) על "
-"גבי OpenGL ו-Vulkan תוך שימוש ב- MangoHud."
+"הצגת מידע ניטורי כגון קצב תמוניות, טמפרטורה, עומס על המעבדים ועוד על גבי "
+"OpenGL ו־Vulkan באמצעות MangoHud."
 
 #: bottles/frontend/ui/details-preferences.blp:211
 msgid "Feral GameMode"
@@ -792,7 +790,7 @@ msgstr "Feral GameMode"
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
-msgstr "מיישם סדרת שיפורים וביצועים למכשירך, עשוי לשפר ביצועים."
+msgstr "יישום סדרת מיטובים למכשירך. יכול לשפר ביצועי משחקים."
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
@@ -803,8 +801,8 @@ msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
-"שיפור זמן הטעינה בעת הפעלת המשחק מספר פעמים, אך ההפעלה הראשונית תארך זמן רב "
-"יותר."
+"שיפור זמן הטעינה בעת הפעלת המשחק מספר פעמים. למשחק ייקח זמן רב יותר להתחיל "
+"בפעם הראשונה."
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
@@ -816,7 +814,7 @@ msgstr "לכידת משחק עם OBS"
 
 #: bottles/frontend/ui/details-preferences.blp:242
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr "הפעלת לכידת משחק עם OBS לכל יישומי vulkan ו- OpenGL."
+msgstr "החלפת מצב „לכידת משחק עם OBS” עבור כל תוכניות Vulkan ו־OpenGL."
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
@@ -824,12 +822,11 @@ msgstr "תאימות"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 msgid "Windows Version"
-msgstr "גרסת ווינדוס"
+msgstr "גרסת Windows"
 
 #: bottles/frontend/ui/details-preferences.blp:257
-#, fuzzy
 msgid "Updating Windows version, please wait…"
-msgstr "מעדכנים את גרסת ה- ווינדוס, רק עוד רגע…"
+msgstr "גרסת Windows מתעדכנת, נא להמתין…"
 
 #: bottles/frontend/ui/details-preferences.blp:266
 msgid "Language"
@@ -837,49 +834,48 @@ msgstr "שפה"
 
 #: bottles/frontend/ui/details-preferences.blp:267
 msgid "Choose the language to use with programs."
-msgstr "בחירת השפה לשימוש עם יישומים ותוכנות."
+msgstr "בחירת השפה לשימוש עם תוכניות."
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Dedicated Sandbox"
-msgstr "\"ארגז חול\" ייעודי"
+msgstr "ארגז חול ייעודי"
 
 #: bottles/frontend/ui/details-preferences.blp:276
 msgid "Use a restricted/managed environment for this bottle."
-msgstr "שימוש בסביבה מוגבלת\\מנוהלת עבור הבקבוק."
+msgstr "שימוש בסביבה מוגבלת/מנוהלת עבור בקבוק זה."
 
 #: bottles/frontend/ui/details-preferences.blp:279
 msgid "Manage the Sandbox Permissions"
-msgstr "ניהול הרשאות \"ארגז החול\""
+msgstr "ניהול הרשאות ארגז החול"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid "Bottles Runtime"
-msgstr "סביבת הרצה עבור הבקבוק"
+msgstr "מערכת זמן הריצה של „בקבוקים”"
 
 #: bottles/frontend/ui/details-preferences.blp:296
 msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
-"אספקת מקבץ של ספריות נוספות לשיפור התאימות. אם יש בעיות אז כדאי לבטל את "
-"הבחירה."
+"אספקת חבילת ספריות נוספות לשיפור התאימות. יש להשבית זאת אם נתקלת בבעיות."
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
-msgstr "הרצת Steam"
+msgstr "מערכת זמן הריצה של Steam"
 
 #: bottles/frontend/ui/details-preferences.blp:307
 msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
-"אספקת ספריות נוספות לשיפור התאימות עם משחקי Steam. אם יש בעיות אז כדאי לבטל "
-"את הבחירה."
+"אספקת חבילת ספריות נוספות לשיפור התאימות עם משחקי Steam. יש להשבית זאת אם "
+"נתקלת בבעיות."
 
 #: bottles/frontend/ui/details-preferences.blp:315
 #: bottles/frontend/ui/dialog-launch-options.blp:83
 msgid "Working Directory"
-msgstr "נתיב לרשומת פעילות"
+msgstr "תיקיית עבודה"
 
 #: bottles/frontend/ui/details-preferences.blp:318
 #: bottles/frontend/ui/dialog-launch-options.blp:59
@@ -887,24 +883,24 @@ msgstr "נתיב לרשומת פעילות"
 #: bottles/frontend/ui/new.blp:150 bottles/frontend/ui/new.blp:181
 #: bottles/frontend/ui/preferences.blp:136
 msgid "Reset to Default"
-msgstr "שחזור להגדרות ברירת-מחדל"
+msgstr "איפוס לברירת מחדל"
 
 #: bottles/frontend/ui/details-preferences.blp:339
 #: bottles/frontend/ui/preferences.blp:157 bottles/frontend/views/new.py:78
 #: bottles/frontend/views/preferences.py:210
 msgid "(Default)"
-msgstr "(ברירת-מחדל)"
+msgstr "(ברירת מחדל)"
 
 #: bottles/frontend/ui/details-preferences.blp:347
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
 #: bottles/frontend/ui/dialog-dll-overrides.blp:12
 msgid "DLL Overrides"
-msgstr "דריסת קבצי DLL"
+msgstr "דריסות DLL"
 
 #: bottles/frontend/ui/details-preferences.blp:357
 #: bottles/frontend/ui/dialog-env-vars.blp:20
 msgid "Environment Variables"
-msgstr "משתני הסביבה"
+msgstr "משתני סביבה"
 
 #: bottles/frontend/ui/details-preferences.blp:367
 msgid "Manage Drives"
@@ -912,13 +908,13 @@ msgstr "ניהול כוננים"
 
 #: bottles/frontend/ui/details-preferences.blp:381
 msgid "Automatic Snapshots"
-msgstr ""
+msgstr "תמונות מצב אוטומטיות"
 
 #: bottles/frontend/ui/details-preferences.blp:382
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
-msgstr "לכידת נתוני מערכת חשובים מיד לפני התקנת תוכנות או עדכון הגדרות"
+msgstr "יצירת תמונות מצב באופן אוטומטי לפני התקנת תוכנה או שינוי הגדרות."
 
 #: bottles/frontend/ui/details-preferences.blp:391
 msgid "Compression"
@@ -928,19 +924,20 @@ msgstr "דחיסה"
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
-msgstr "דחיסת נתוני-לכידה כדי להקטין את נפח האחסון. זה ייאט את יצירת הנתונים."
+msgstr ""
+"דחיסת תמונות מצב כדי לצמצם שטח אחסון. הגדרה זו תאט את היצירה של תמונות מצב."
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
-msgstr "השתמש בתבניות ויתור"
+msgstr "שימוש בדפוסי החרגה"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr "וויתור על נתיבי-קבצים בלכידות-נתונים"
+msgstr "החרגת נתיבים בתמונות מצב."
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
-msgstr "ניהול תבניות"
+msgstr "ניהול דפוסים"
 
 #: bottles/frontend/ui/details-taskmanager.blp:17
 msgid "Refresh"
@@ -948,27 +945,28 @@ msgstr "רענון"
 
 #: bottles/frontend/ui/details-taskmanager.blp:22
 msgid "Stop process"
-msgstr "עצירת ההליך"
+msgstr "עצירת תהליך"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 msgid "No Snapshots Found"
-msgstr "לא נמצאו לכידות"
+msgstr "לא נמצאו תמונות מצב"
 
 #: bottles/frontend/ui/details-versioning.blp:19
 msgid "Create your first snapshot to start saving states of your preferences."
-msgstr "צרו את לכידת-הנתונים הראשונה שלכם ושמרו מצבים כפי העדפותיכם"
+msgstr ""
+"יש ליצור את תמונת המצב הראשונה שלך כדי להתחיל לשמור מצבים של ההעדפות שלך."
 
 #: bottles/frontend/ui/details-versioning.blp:54
 msgid "A short comment"
-msgstr "תגובית קצרה"
+msgstr "הערה קצרה"
 
 #: bottles/frontend/ui/details-versioning.blp:58
 msgid "Save the bottle state."
-msgstr "שמור את מצב הבקבוק הנוכחי"
+msgstr "שמירת מצב הבקבוק."
 
 #: bottles/frontend/ui/details-versioning.blp:78
 msgid "Create new Snapshot"
-msgstr "צור לכידת-נתונים חדשה"
+msgstr "יצירת תמונת מצב חדשה"
 
 #: bottles/frontend/ui/details.blp:16
 msgid "Details"
@@ -1007,7 +1005,7 @@ msgstr "יצירת בקבוק חדש"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr "דיווח קריסה ל-Bottles"
+msgstr "דוח קריסה של „בקבוקים”"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1024,15 +1022,15 @@ msgstr "_ביטול"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
 msgid "Send Report"
-msgstr "שליחת דיווח"
+msgstr "שליחת דוח"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:44
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
-"אבוי! קרסנו בעת האחרונה. אנא עזרו לנו בניפוי התקלה ומניעתה בעתיד  ע\"י מילוי "
-"טופס השחזור המצורף."
+"התוכנית „בקבוקים” קרסה בפעם האחרונה. נא למלא דוח בצירוף מעקב הקריאות "
+"(traceback) הבא בשביל לעזור לנו לזהות את הבעיה ולמנוע ממנה לקרות שוב."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
 msgid ""
@@ -1041,14 +1039,13 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
-"תודה על הדיווח המעמיק. לצערינו, מצאנו לפחות דיווח נוסף זהה במאגרים. בדקו "
-"בקפדנות שהבעיה הזו טרם דווחה לפני הגשת דיווחים נוספים. הגשת דיווחים כפולים "
-"מעמיסה על צוות הפיתוח וגורעת מייעילותם, אנא כבדו את פועלם וודאו שאינכם "
-"מגישים דיווחים כפולים או כוזבים."
+"מצאנו לפחות דוח אחד דומה (או זהה). נא לבדוק בקפידה שבעיה זו טרם דווחה לפני "
+"הגשת דוח חדש. כל דוח דורש מאמץ מצד המפתחים לאבחן, נא לכבד את פועלם ולוודא "
+"שלא לפרסם כפילויות."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:89
 msgid "I still want to report."
-msgstr "ברצוני להמשיך בהליך הדיווח"
+msgstr "ארצה לדווח למרות זאת."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:95
 msgid "Advanced options"
@@ -1056,7 +1053,7 @@ msgstr "אפשרויות מתקדמות"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:13
 msgid "Incomplete package"
-msgstr "חבילה לא שלמה"
+msgstr "חבילה חלקית"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
 msgid ""
@@ -1064,8 +1061,8 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
-"מסתמן שגירסה זו איננה מכילה חלק מחבילות-התלות הנחוצות, אנא צרו קשר עם המפיץ "
-"למידע נוסף ופתרון התקלה, או שקלו להשתמש בהפצה רשמית של גירסה זו."
+"נראה שגרסה זו של „בקבוקים” אינה מספקת את כל תלויות הליבה הנדרשות, נא ליצור "
+"קשר עם מתחזק/ת החבילה או להשתמש בגרסה הרשמית."
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
@@ -1076,8 +1073,8 @@ msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
-"ניתן להגדיר ספריות דינמיות מקושרות כך שתהיינה מובנות "
-"(ומספוקות ע\"י מיזם WINE) או מקומיות (ומסופקות על-ידינו)."
+"ניתן לציין שספריות קישור דינמי (DLL) תהיינה מובנות (תסופקנה על ידי Wine) או "
+"מקומיות (תסופקנה על ידי התוכנית)."
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
@@ -1096,200 +1093,204 @@ msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
-"אלה הם נתיבי כוננים וחומרה נוספת שזוהתה ע\"י המערכת שלך. הם נוספו כמיקומים "
-"בידי כלי ההרצה"
+"אלה הם נתיבים ממערכת המארח שלך אשר ממופים ומזוהים כהתקנים על ידי כלי ההרצה "
+"(למשל ‏C:‎‏ D:‎…)."
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
-msgstr ""
+msgstr "אות"
 
 #: bottles/frontend/ui/dialog-drives.blp:49
 msgid "Existing Drives"
-msgstr ""
+msgstr "כוננים קיימים"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:16
 msgid "Duplicate Bottle"
-msgstr ""
+msgstr "שכפול בקבוק"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:38
 msgid "Duplicate"
-msgstr ""
+msgstr "שכפול"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:49
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr ""
+msgstr "יש להזין שם עבור השכפול של הבקבוק."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:69
 msgid "Duplicating…"
-msgstr ""
+msgstr "משכפל…"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:78
 #: bottles/frontend/ui/dialog-installer.blp:103
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/views/new.py:177
 msgid "This could take a while."
-msgstr ""
+msgstr "זה עשוי לקחת זמן מה."
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
-msgstr ""
+msgstr "הבקבוק שוכפל"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:28
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"משתני סביבה הם ערכים בעלי שם דינמי אשר יכולים להשפיע על האופן שבו תהליכים "
+"פועלים יתנהגו בבקבוק שלך."
 
 #: bottles/frontend/ui/dialog-env-vars.blp:31
 msgid "Variable Name"
-msgstr ""
+msgstr "שם משתנה"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:37
 msgid "Existing Variables"
-msgstr ""
+msgstr "משתנים קיימים"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
 msgid "Exclusion Patterns"
-msgstr ""
+msgstr "דפוסי החרגה"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
-msgstr ""
+msgstr "הגדרת דפוסים אשר ישמשו למניעת ניהול גרסאות של תיקיות מסוימות."
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
 msgid "Pattern"
-msgstr ""
+msgstr "דפוס"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:37
 msgid "Existing Patterns"
-msgstr ""
+msgstr "דפוסים קיימים"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
-msgstr ""
+msgstr "הגדרות Gamescope"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:30
 #: bottles/frontend/ui/dialog-launch-options.blp:32
 #: bottles/frontend/ui/dialog-rename.blp:20
 #: bottles/frontend/ui/dialog-vkbasalt.blp:34
 msgid "Save"
-msgstr ""
+msgstr "שמירה"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
-msgstr ""
+msgstr "ניהול אופן הצגת משחקים."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:44
 msgid "Game Resolution"
-msgstr ""
+msgstr "רזולוציית משחק"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr ""
+msgstr "הגדרה זו משתמשת ברזולוציה של משחק הווידאו כנקודת ייחוס בפיקסלים."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
 msgid "Width"
-msgstr ""
+msgstr "רוחב"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:64
 #: bottles/frontend/ui/dialog-gamescope.blp:101
 msgid "Height"
-msgstr ""
+msgstr "גובה"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:81
 msgid "Window Resolution"
-msgstr ""
+msgstr "רזולוציית חלון"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:82
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
 msgstr ""
+"הגדרה זו משדרגת את הרזולוציה כאשר משתמשים ברזולוציה גבוהה יותר מרזולוציית "
+"המשחק בפיקסלים."
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
-msgstr ""
+msgstr "שונות"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:121
 msgid "Frame Rate Limit"
-msgstr ""
+msgstr "מגבלת קצב תמוניות"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:137
 msgid "Frame Rate Limit When Unfocused"
-msgstr ""
+msgstr "מגבלת קצב תמוניות כאשר החלון אינו ממוקד"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
 msgid "Integer Scaling"
-msgstr ""
+msgstr "סילום מספרים שלמים"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
-msgstr ""
+msgstr "סוג חלון"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:166
 msgid "Borderless"
-msgstr ""
+msgstr "ללא שוליים"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:172
 msgid "Fullscreen"
-msgstr ""
+msgstr "מסך מלא"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr ""
+msgstr "האם להתקדם עם ההתקנה?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
 msgid "Start Installation"
-msgstr ""
+msgstr "התחלת התקנה"
 
 #: bottles/frontend/ui/dialog-installer.blp:64
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
-msgstr ""
+msgstr "תוכנית התקנה זו דורשת משאבים מקומיים מסוימים שלא ניתן לספק אחרת."
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
-msgstr ""
+msgstr "התקדמות"
 
 #: bottles/frontend/ui/dialog-installer.blp:127
 msgid "Completed!"
-msgstr ""
+msgstr "סיימנו!"
 
 #: bottles/frontend/ui/dialog-installer.blp:130
 msgid "Show Programs"
-msgstr ""
+msgstr "הצגת תוכניות"
 
 #: bottles/frontend/ui/dialog-installer.blp:148
 msgid "Installation Failed!"
-msgstr ""
+msgstr "ההתקנה נכשלה!"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
-msgstr ""
+msgstr "משהו השתבש."
 
 #: bottles/frontend/ui/dialog-journal.blp:9
 msgid "All messages"
-msgstr ""
+msgstr "כל ההודעות"
 
 #: bottles/frontend/ui/dialog-journal.blp:13
 msgid "Critical"
-msgstr ""
+msgstr "קריטי"
 
 #: bottles/frontend/ui/dialog-journal.blp:17
 msgid "Errors"
-msgstr ""
+msgstr "שגיאות"
 
 #: bottles/frontend/ui/dialog-journal.blp:21
 msgid "Warnings"
-msgstr ""
+msgstr "אזהרות"
 
 #: bottles/frontend/ui/dialog-journal.blp:25
 msgid "Info"
-msgstr ""
+msgstr "מידע"
 
 #: bottles/frontend/ui/dialog-journal.blp:40
 msgid "Journal browser"
@@ -1297,80 +1298,80 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
-msgstr ""
+msgstr "דפדפן יומן"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr ""
+msgstr "שינוי רמת רישום."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
-msgstr ""
+msgstr "הכול"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:42
 msgid "Those arguments will be passed at launch."
-msgstr ""
+msgstr "הארגומנטים האלה יועברו בהפעלה."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:43
 msgid "Custom Arguments"
-msgstr ""
+msgstr "ארגומנטים מותאמים אישית"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:46
 msgid "Command Arguments"
-msgstr ""
+msgstr "ארגומנטים של פקודה"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:47
 #, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "למשל: ‪משתנה=‎ערך %‎פקודה% -‎דוגמה1 -‎דוגמה2 -‎דוגמה3=‎שלום‬"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:52
 msgid "Post-run Script"
-msgstr ""
+msgstr "סקריפט לאחר הרצה"
 
 #. endregion
 #: bottles/frontend/ui/dialog-launch-options.blp:53
 #: bottles/frontend/windows/launchoptions.py:54
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "בחירת סקריפט לביצוע לאחר הרצה."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
 msgid "Choose a Script"
-msgstr ""
+msgstr "בחירת סקריפט"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:84
 #: bottles/frontend/windows/launchoptions.py:55
 msgid "Choose from where start the program."
-msgstr ""
+msgstr "בחירה מאיפה להתחיל את התוכנית."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:101
 #: bottles/frontend/ui/drive-entry.blp:22
 msgid "Choose a Directory"
-msgstr ""
+msgstr "בחירת תיקייה"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:114
 msgid "These settings will override the default settings for this executable."
-msgstr ""
+msgstr "הגדרות אלה ידרסו את הגדרות ברירת המחדל עבור קובץ הפעלה זה."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:115
 msgid "Preferences Overrides"
-msgstr ""
+msgstr "דריסות של העדפות"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:119
 msgid "Reset to Bottle's Defaults"
-msgstr ""
+msgstr "שחזור לברירות המחדל של „בקבוקים”"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:165
 msgid "Virtual Desktop"
-msgstr ""
+msgstr "שולחן עבודה וירטואלי"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
 msgid "Proton Disclaimer"
-msgstr ""
+msgstr "כתב ויתור של Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:21
 msgid "Use Proton"
-msgstr ""
+msgstr "שימוש ב־Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:35
 msgid ""
@@ -1386,73 +1387,83 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"זהירות, שימוש בכלי הרצה מבוססי Proton בבקבוקים שאינם של Steam יכול לגרום "
+"לבעיות ולמנוע מהם להתנהג כראוי.\n"
+"\n"
+"אנו ממליצים להשתמש בכלי ההרצה Wine-GE במקום זאת, שהוא גרסת Proton שנועדה "
+"לרוץ מחוץ ל־Steam.\n"
+"\n"
+"המשך ההליך יפעיל באופן אוטומטי את מערכת זמן הריצה של Steam "
+"(אם קיימת במערכת ומזוהה על ידי „בקבוקים”) על מנת לאפשר לכלי ההרצה לגשת "
+"לספריות הנדרשות ולצמצם בעיות תאימות. חשוב לדעת ש־GloriousEggroll, הספק של "
+"כלי ההרצה, אינו אחראי לשום בעיה ואנו מבקשים שלא לדווח אליו."
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
-msgstr ""
+msgstr "הבנתי."
 
 #: bottles/frontend/ui/dialog-rename.blp:7
 msgid "Rename"
-msgstr ""
+msgstr "שינוי שם"
 
 #: bottles/frontend/ui/dialog-rename.blp:30
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "בחירת שם חדש עבור התוכנית שנבחרה."
 
 #: bottles/frontend/ui/dialog-rename.blp:33
 msgid "New Name"
-msgstr ""
+msgstr "שם חדש"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 msgid "Run With Arguments"
-msgstr ""
+msgstr "הרצה עם ארגומנטים"
 
 #: bottles/frontend/ui/dialog-run-args.blp:34
 #: bottles/frontend/views/bottle_details.py:401
 #: bottles/frontend/views/list.py:131
 msgid "Run"
-msgstr ""
+msgstr "הרצה"
 
 #: bottles/frontend/ui/dialog-run-args.blp:44
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "יש לכתוב למטה את הארגומנטים שיש להעביר לקובץ ההפעלה."
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "למשל: ‪-opengl -SkipBuildPatchPrereq‬"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
 msgid "Sandbox Settings"
-msgstr ""
+msgstr "הגדרות ארגז חול"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
-msgstr ""
+msgstr "שיתוף רשת"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:34
 msgid "Share Sound"
-msgstr ""
+msgstr "שיתוף שמע"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:16
 msgid "Upgrade Needed"
-msgstr ""
+msgstr "נחוץ שדרוג"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:38
 #: bottles/frontend/ui/onboard.blp:81
 msgid "Continue"
-msgstr ""
+msgstr "המשך"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:47
 msgid "Launch upgrade"
-msgstr ""
+msgstr "הפעלת השדרוג"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
 msgid "New Versioning System"
-msgstr ""
+msgstr "מערכת ניהול גרסאות חדשה"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
 msgid "The new bottle versioning system has landed."
-msgstr ""
+msgstr "המערכת לניהול גרסאות בקבוק החדשה נחתה."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:83
 msgid ""
@@ -1468,44 +1479,54 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"לתוכנית „בקבוקים” יש מערכת ניהול גרסאות חדשה לגמרי שאינה תואמת לאחור.\n"
+"\n"
+"כדי להמשיך להשתמש בניהול גרסאות יש לאתחל מחדש את מאגר המידע של הבקבוק. פעולה "
+"זו לא תמחק נתונים מהבקבוק שלך אך תמחק את כל תמונות המצב הקיימות ותיצור אחת "
+"חדשה.\n"
+"\n"
+"אם צריך לחזור לתמונת מצב קודמת לפני המשך הפעולה, יש לסגור חלון זה ולשחזר את "
+"תמונת המצב, לאחר מכן יש לפתוח מחדש את הבקבוק כדי להציג חלון זה שוב.\n"
+"\n"
+"התמיכה במערכת הישנה תופסק באחד מהשחרורים הבאים."
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
-msgstr ""
+msgstr "מאגר המידע מאותחל מחדש…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
-msgstr ""
+msgstr "בוצע! נא להפעיל את „בקבוקים” מחדש."
 
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
 msgid "Post-Processing Effects Settings"
-msgstr ""
+msgstr "הגדרות אפקטים לאחר עיבוד"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
-msgstr ""
+msgstr "ברירת מחדל"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:48
 msgid "Default Settings"
-msgstr ""
+msgstr "הגדרות ברירת מחדל"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
-msgstr ""
+msgstr "האפקטים מיושמים בהתאם לסדר הרשימה."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
 msgid "Effects"
-msgstr ""
+msgstr "אפקטים"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:62
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "חידוד ניגודיות הסתגלותי (CAS)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:65
 #: bottles/frontend/ui/dialog-vkbasalt.blp:102
 msgid "Sharpness"
-msgstr ""
+msgstr "חדות"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:69
 #: bottles/frontend/ui/dialog-vkbasalt.blp:106
@@ -1519,94 +1540,104 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.blp:343
 #: bottles/frontend/ui/dialog-vkbasalt.blp:370 bottles/frontend/ui/new.blp:58
 msgid "Show Information"
-msgstr ""
+msgstr "הצגת מידע"
 
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "חידוד לומה מופחת רעשים"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
-msgstr ""
+msgstr "הפחתת רעשים"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:160
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "החלקת קצוות משוערות מהירה (FXAA)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:163
 msgid "Subpixel Quality"
-msgstr ""
+msgstr "איכות תת־פיקסל"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:191
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "סף איכות קצה"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:219
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "סף איכות קצה מזערי"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:249
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "החלקת קצוות צורנית ברמת תת־פיקסל (SMAA)"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:252
 msgid "Edge Detection"
-msgstr ""
+msgstr "זיהוי קצה"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:267
 msgid "Luma"
-msgstr ""
+msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:273
 msgid "Color"
-msgstr ""
+msgstr "צבע"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:284
 msgid "Threshold"
-msgstr ""
+msgstr "סף"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:312
 msgid "Max Search Steps"
-msgstr ""
+msgstr "שלבי חיפוש מרביים"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:339
 msgid "Max Search Steps Diagonal"
-msgstr ""
+msgstr "שלבי חיפוש אלכסוניים מרביים"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:366
 msgid "Max Corner Rounding"
-msgstr ""
+msgstr "עיגול פינות מרבי"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:411
 msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"חדות CAS משפרת את חדות התמונית. ערכים גבוהים יותר הופכים את התמונית לחדה "
+"יותר, בעוד שערכים נמוכים יותר מ־0 הופכים את התמונית לרכה יותר מהמקור."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:428
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"חדות DLS משפרת את חדות התמונית. ערכים גבוהים יותר הופכים את התמונית לחדה "
+"יותר."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:445
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"הפחתת רעשים בעזרת DLSS מפחיתה את רעש התמונית. ערכים גבוהים יותר הופכים את "
+"התמונית לרכה יותר."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:462
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"איכות תת־פיקסל של FXAA מפחיתה קצוות משוננים ברמת התת־פיקסל. ערכים גבוהים "
+"יותר הופכים את התמונית לרכה יותר."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:479
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"סף איכות קצה של FXAA הוא הכמות המזערית של ניגודיות הדרושה ליישום האלגוריתם "
+"של FXAA. ערכים גבוהים יותר גורמים לתמונית להיות בעלת ניגודיות רבה יותר."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:496
 msgid ""
@@ -1614,257 +1645,272 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"סף איכות קצה מזערי של FXAA הוא הערך המזערי של פיקסלים כהים שהאלגוריתם של "
+"FXAA מתעלם מהם. ערכים גבוהים יותר גורמים לאלגוריתם של FXAA להתעלם מפיקסלים "
+"מתחת לערך שצוין ויכולים להוביל לעלייה בביצועים."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"הטכניקה Luma מזהה קצוות מנקודת מבט חד־צבעית, בעוד שהטכניקה „צבע” מזהה קצוות "
+"בהתבסס על צבעים. הביצועים של Luma טובים יותר מאלה של „צבע”."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:530
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"סף של SMAA מציין את הרגישות של זיהוי קצוות. ערכים נמוכים יותר מזהים יותר "
+"קצוות על חשבון הביצועים."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:547
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"שלבי חיפוש מרביים של SMAA הוא הערך שמציין כמה שלבי חיפוש אופקיים ואנכיים "
+"מבוצעים בעת חיפוש קצוות."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:564
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"שלבי חיפוש אלכסוניים מרביים של SMAA הוא הערך שמציין כמה שלבי חיפוש אנכיים "
+"מבוצעים בעת חיפוש קצוות."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:581
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
-msgstr ""
+msgstr "עיגול פינות של SMAA מציין את החוזק של עיגול פינות של קצוות."
 
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
-msgstr ""
+msgstr "מובנה (Wine)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:9
 msgid "Native (Windows)"
-msgstr ""
+msgstr "מקומי (Windows)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:10
 msgid "Builtin, then Native"
-msgstr ""
+msgstr "„מובנה”, ואז „מקומי”"
 
 #: bottles/frontend/ui/dll-override-entry.blp:11
 msgid "Native, then Builtin"
-msgstr ""
+msgstr "„מקומי”, ואז „מובנה”"
 
 #: bottles/frontend/ui/dll-override-entry.blp:12
 msgid "Disabled"
-msgstr ""
+msgstr "מושבת"
 
 #: bottles/frontend/ui/dll-override-entry.blp:20
 #: bottles/frontend/ui/drive-entry.blp:12
 msgid "Remove"
-msgstr ""
+msgstr "הסרה"
 
 #: bottles/frontend/ui/drive-entry.blp:5
 msgid "/point/to/path"
-msgstr ""
+msgstr "‪/הצבעה/על/נתיב‬"
 
 #: bottles/frontend/ui/env-var-entry.blp:4
 #: bottles/frontend/ui/exclusion-pattern-entry.blp:4
 msgid "Value"
-msgstr ""
+msgstr "ערך"
 
 #: bottles/frontend/ui/importer-entry.blp:13
 msgid "Browse files"
-msgstr ""
+msgstr "עיון בקבצים"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
 msgid "Wine prefix name"
-msgstr ""
+msgstr "שם קידומת Wine"
 
 #: bottles/frontend/ui/importer-entry.blp:28
 msgid "Manager"
-msgstr ""
+msgstr "מנהל"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
-msgstr ""
+msgstr "קידומת Wine זו כבר יובאה אל „בקבוקים”."
 
 #: bottles/frontend/ui/importer.blp:22
 msgid "Import a Bottle backup"
-msgstr ""
+msgstr "ייבוא גיבוי בקבוק"
 
 #: bottles/frontend/ui/importer.blp:28
 msgid "Search again for prefixes"
-msgstr ""
+msgstr "חיפוש חוזר אחר קידומות"
 
 #: bottles/frontend/ui/importer.blp:38
 msgid "No Prefixes Found"
-msgstr ""
+msgstr "לא נמצאו קידומות"
 
 #: bottles/frontend/ui/importer.blp:39
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
+"לא נמצאו קידומות חיצוניות. האם לתוכנית „בקבוקים” יש גישה אליהן?\n"
+"יש להשתמש בסמל למעלה כדי לייבא בקבוק מגיבוי."
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
-msgstr ""
+msgstr "ארכיון מלא"
 
 #: bottles/frontend/ui/installer-entry.blp:16
 msgid "Show Manifest…"
-msgstr ""
+msgstr "הצגת מניפסט…"
 
 #: bottles/frontend/ui/installer-entry.blp:20
 msgid "Read Review…"
-msgstr ""
+msgstr "קריאת ביקורת…"
 
 #: bottles/frontend/ui/installer-entry.blp:34
 msgid "Installer name"
-msgstr ""
+msgstr "שם תוכנית התקנה"
 
 #: bottles/frontend/ui/installer-entry.blp:35
 msgid "Installer description"
-msgstr ""
+msgstr "תיאור תוכנית התקנה"
 
 #: bottles/frontend/ui/installer-entry.blp:42
 msgid "Unknown"
-msgstr ""
+msgstr "לא ידוע"
 
 #: bottles/frontend/ui/installer-entry.blp:51
 msgid "Install this Program"
-msgstr ""
+msgstr "התקנת תוכנית זו"
 
 #: bottles/frontend/ui/installer-entry.blp:69
 msgid "Program Menu"
-msgstr ""
+msgstr "תפריט תוכנית"
 
 #: bottles/frontend/ui/library-entry.blp:36
 msgid "No Thumbnail"
-msgstr ""
+msgstr "אין תמונה ממוזערת"
 
 #: bottles/frontend/ui/library-entry.blp:57
 msgid "Launch"
-msgstr ""
+msgstr "הפעלה"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
 msgid "Launch with Steam"
-msgstr ""
+msgstr "הפעלה עם Steam"
 
 #: bottles/frontend/ui/library-entry.blp:108
 msgid "Item name"
-msgstr ""
+msgstr "שם פריט"
 
 #: bottles/frontend/ui/library-entry.blp:132
 msgid "Remove from Library"
-msgstr ""
+msgstr "הסרה מהספרייה"
 
 #: bottles/frontend/ui/library-entry.blp:143
 msgid "Stop"
-msgstr ""
+msgstr "עצירה"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:196
 msgid "Library"
-msgstr ""
+msgstr "ספרייה"
 
 #: bottles/frontend/ui/library.blp:12
 msgid "Add items here from your bottle's program list"
-msgstr ""
+msgstr "יש להוסיף פריטים כאן מרשימת התוכניות של הבקבוק שלך"
 
 #: bottles/frontend/ui/list-entry.blp:26
 msgid "Versioning is active in this bottle."
-msgstr ""
+msgstr "ניהול גרסאות פעיל בבקבוק זה."
 
 #: bottles/frontend/ui/list-entry.blp:42
 msgid "This bottle looks damaged."
-msgstr ""
+msgstr "בקבוק זה נראה פגום."
 
 #: bottles/frontend/ui/list-entry.blp:55
 msgid "Execute in this Bottle"
-msgstr ""
+msgstr "ביצוע בבקבוק זה"
 
 #: bottles/frontend/ui/list-entry.blp:69
 msgid "Run Here"
-msgstr ""
+msgstr "הרצה כאן"
 
 #: bottles/frontend/ui/list-entry.blp:75
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
+"בקבוק זה נראה פגום, קובץ התצורה שלו חסר. ניתן לנסות לתקן זאת על ידי יצירת "
+"תצורה חדשה."
 
 #: bottles/frontend/ui/list.blp:12
 msgid "Search your bottles…"
-msgstr ""
+msgstr "חיפוש הבקבוקים שלך…"
 
 #: bottles/frontend/ui/list.blp:28
 msgid "Steam Proton"
-msgstr ""
+msgstr "Steam Proton"
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/list.blp:42 bottles/frontend/windows/main_window.py:191
 #: data/com.usebottles.bottles.metainfo.xml.in:7
 msgid "Bottles"
-msgstr ""
+msgstr "בקבוקים"
 
 #: bottles/frontend/ui/list.blp:49
 msgid "Create New Bottle…"
-msgstr ""
+msgstr "יצירת בקבוק חדש…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
-msgstr ""
+msgstr "לא נמצאו תוצאות"
 
 #: bottles/frontend/ui/list.blp:64
 msgid "Try a different search."
-msgstr ""
+msgstr "יש לנסות חיפוש שונה."
 
 #: bottles/frontend/ui/loading.blp:13
 msgid "Starting up…"
-msgstr ""
+msgstr "מתחילים…"
 
 #: bottles/frontend/ui/local-resource-entry.blp:4
 msgid "This resource is missing."
-msgstr ""
+msgstr "משאב זה חסר."
 
 #: bottles/frontend/ui/local-resource-entry.blp:8
 msgid "Browse"
-msgstr ""
+msgstr "עיון"
 
 #: bottles/frontend/ui/new.blp:32
 msgid "C_reate"
-msgstr ""
+msgstr "י_צירה"
 
 #: bottles/frontend/ui/new.blp:53
 msgid "Bottle Name"
-msgstr ""
+msgstr "שם הבקבוק"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
-msgstr ""
+msgstr "_יישום"
 
 #: bottles/frontend/ui/new.blp:88
 msgid "_Gaming"
-msgstr ""
+msgstr "_גיימינג"
 
 #: bottles/frontend/ui/new.blp:101
 msgid "C_ustom"
-msgstr ""
+msgstr "_התאמה אישית"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
-msgstr ""
+msgstr "התאמה אישית"
 
 #: bottles/frontend/ui/new.blp:118
 msgid "Share User Directory"
-msgstr ""
+msgstr "שיתוף תיקיית משתמש"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1872,197 +1918,201 @@ msgid ""
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
 msgstr ""
+"אפשרות זו הופכת את תיקיית המשתמש לניתנת לגילוי בבקבוק, בסיכון של שיתוף מידע "
+"אישי עם תוכנות Windows. אפשרות זו אינה ניתנת לשינוי לאחר שהבקבוק נוצר."
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
-msgstr ""
+msgstr "ארכיטקטורה"
 
 #: bottles/frontend/ui/new.blp:137
 msgid "32-bit should only be used if strictly necessary."
-msgstr ""
+msgstr "יש להשתמש ב־32 סיביות רק אם הדבר הכרחי בהחלט."
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
-msgstr ""
+msgstr "ייבוא תצורה מותאמת אישית."
 
 #: bottles/frontend/ui/new.blp:176
 msgid "Bottle Directory"
-msgstr ""
+msgstr "תיקייה בקבוק"
 
 #: bottles/frontend/ui/new.blp:177
 msgid "Directory that will contain the data of this bottle."
-msgstr ""
+msgstr "תיקייה שתכלול את כל הנתונים של בקבוק זה."
 
 #: bottles/frontend/ui/new.blp:249
 msgid "_Close"
-msgstr ""
+msgstr "_סגירה"
 
 #: bottles/frontend/ui/new.blp:281
 msgid "This name is unavailable, please try another."
-msgstr ""
+msgstr "שם זה אינו זמין, נא לנסות אחד אחר."
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
-msgstr ""
+msgstr "הקודם"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:59
 msgid "Welcome to Bottles"
-msgstr ""
+msgstr "ברוך בואך אל „בקבוקים”"
 
 #: bottles/frontend/ui/onboard.blp:60
 msgid "Run Windows Software on Linux."
-msgstr ""
+msgstr "הרצת תוכנות Windows על לינוקס."
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
-msgstr ""
+msgstr "‫Windows‬ בבקבוקים"
 
 #: bottles/frontend/ui/onboard.blp:66
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
+"התוכנית „בקבוקים” משתמשת בכלי הרצה של תאימות כדי לספק סביבות דמויות Windows "
+"המבודדות במכולות בהן תוכניות רצות."
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
-msgstr ""
+msgstr "כמעט בוצע"
 
 #: bottles/frontend/ui/onboard.blp:73
 msgid "We need a few more minutes to set everything up…"
-msgstr ""
+msgstr "אנחנו צריכים עוד כמה דקות בשביל להגדיר את הכול…"
 
 #: bottles/frontend/ui/onboard.blp:105
 msgid "All Ready!"
-msgstr ""
+msgstr "הכול מוכן!"
 
 #: bottles/frontend/ui/onboard.blp:114
 msgid "Please Finish the setup first"
-msgstr ""
+msgstr "נא לסיים את ההתקנה קודם"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:120
 msgid "Start using Bottles"
-msgstr ""
+msgstr "התחלת השימוש ב„בקבוקים”"
 
 #: bottles/frontend/ui/onboard.blp:141
 msgid "Next"
-msgstr ""
+msgstr "הבא"
 
 #: bottles/frontend/ui/preferences.blp:4 bottles/frontend/ui/window.blp:86
 msgid "Preferences"
-msgstr ""
+msgstr "העדפות"
 
 #: bottles/frontend/ui/preferences.blp:11
 #: bottles/frontend/ui/preferences.blp:39
 msgid "General"
-msgstr ""
+msgstr "כללי"
 
 #: bottles/frontend/ui/preferences.blp:14
 msgid "Appearance"
-msgstr ""
+msgstr "מראה"
 
 #: bottles/frontend/ui/preferences.blp:17
 msgid "Dark Mode"
-msgstr ""
+msgstr "מצב כהה"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
-msgstr ""
+msgstr "האם על „בקבוקים” להשתמש בערכת הצבעים הכהה."
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
-msgstr ""
+msgstr "הצגת תאריך עדכון"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "האם יש להציג את תאריך העדכון ברשימת הבקבוקים."
 
 #: bottles/frontend/ui/preferences.blp:42
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Notifications"
-msgstr ""
+msgstr "התראות"
 
 #: bottles/frontend/ui/preferences.blp:43
 msgid "Show notifications for downloads and installs."
-msgstr ""
+msgstr "הצגת התראות עבור הורדות והתקנות."
 
 #: bottles/frontend/ui/preferences.blp:52
 msgid "Temp Files"
-msgstr ""
+msgstr "קבצים זמניים"
 
 #: bottles/frontend/ui/preferences.blp:53
 msgid "Clean temp files when Bottles launches?"
-msgstr ""
+msgstr "לנקות קבצים זמניים כאשר התוכנית „בקבוקים” מופעלת?"
 
 #: bottles/frontend/ui/preferences.blp:62
 msgid "Close Bottles After Starting a Program"
-msgstr ""
+msgstr "סגירת התוכנית „בקבוקים” לאחר פתיחת תוכנית"
 
 #: bottles/frontend/ui/preferences.blp:63
 msgid "Close Bottles after starting a program from the file manager."
-msgstr ""
+msgstr "סגירת התוכנית „בקבוקים” לאחר פתיחת תוכנית ממנהל הקבצים."
 
 #: bottles/frontend/ui/preferences.blp:73
 msgid "Integrations"
-msgstr ""
+msgstr "שילובים"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr ""
+msgstr "קידומות Steam Proton"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
-msgstr ""
+msgstr "הצגת רשימה וניהול של קידומות Steam Proton."
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "רישום יישומי Steam ברשימת התוכניות"
 
 #: bottles/frontend/ui/preferences.blp:98
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "אפשרות זו דורשת התקנת Steam עבור Windows בבקבוק."
 
 #: bottles/frontend/ui/preferences.blp:107
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "רישום משחקי Epic ברשימת התוכניות"
 
 #: bottles/frontend/ui/preferences.blp:108
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "אפשרות זו דורשת התקנת Epic Games Store בבקבוק."
 
 #: bottles/frontend/ui/preferences.blp:117
 msgid "List Ubisoft Games in Programs List"
-msgstr ""
+msgstr "רישום משחקי Ubisoft ברשימת התוכניות"
 
 #: bottles/frontend/ui/preferences.blp:118
 msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr ""
+msgstr "אפשרות זו דורשת התקנת Ubisoft Connect בבקבוק."
 
 #: bottles/frontend/ui/preferences.blp:128
 msgid "Advanced"
-msgstr ""
+msgstr "מתקדם"
 
 #: bottles/frontend/ui/preferences.blp:131
 msgid "Bottles Directory"
-msgstr ""
+msgstr "תיקיית בקבוקים"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr ""
+msgstr "תיקייה שמכילה את הנתונים של הבקבוקים שלך."
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
-msgstr ""
+msgstr "כלי הרצה"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr ""
+msgstr "התוכנית „בקבוקים” רצה במצב לא מקוון, לכן כלי הרצה אינם זמינים."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
-msgstr ""
+msgstr "קדם־שחרור"
 
 #: bottles/frontend/ui/preferences.blp:209
 msgid "Display unstable versions of runners."
@@ -2070,111 +2120,112 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:224
 msgid "DLL Components"
-msgstr ""
+msgstr "רכיבי DLL"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr ""
+msgstr "התוכנית „בקבוקים” רצה במצב לא מקוון, לכן קובצי DLL אינם זמינים."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "DXVK-NVAPI"
 
 #: bottles/frontend/ui/preferences.blp:283
 msgid "Core"
-msgstr ""
+msgstr "ליבה"
 
 #: bottles/frontend/ui/preferences.blp:287
 msgid "Runtime"
-msgstr ""
+msgstr "מערכת זמן ריצה"
 
 #: bottles/frontend/ui/preferences.blp:291
 msgid "WineBridge"
-msgstr ""
+msgstr "WineBridge"
 
 #: bottles/frontend/ui/preferences.blp:297
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Experiments"
-msgstr ""
+msgstr "ניסויים"
 
 #: bottles/frontend/ui/preferences.blp:300
 msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
 msgstr ""
+"תכונות אלה נמצאות תחת פיתוח כבד ועשויות להיות לא יציבות, יש לצפות לתקלות."
 
 #: bottles/frontend/ui/preferences.blp:303
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "ארגז חול לכל בקבוק"
 
 #: bottles/frontend/ui/preferences.blp:304
 msgid "In early development."
-msgstr ""
+msgstr "בפיתוח מוקדם."
 
 #: bottles/frontend/ui/program-entry.blp:19
 msgid "Launch with Terminal"
-msgstr ""
+msgstr "הפעלה עם מסוף"
 
 #: bottles/frontend/ui/program-entry.blp:25
 msgid "Browse Path"
-msgstr ""
+msgstr "עיון בנתיב"
 
 #: bottles/frontend/ui/program-entry.blp:39
 msgid "Change Launch Options…"
-msgstr ""
+msgstr "שינוי הגדרות הפעלה…"
 
 #: bottles/frontend/ui/program-entry.blp:43
 msgid "Add to Library"
-msgstr ""
+msgstr "הוספה לספרייה"
 
 #: bottles/frontend/ui/program-entry.blp:47
 msgid "Add Desktop Entry"
-msgstr ""
+msgstr "הוספת רישום בשולחן העבודה"
 
 #: bottles/frontend/ui/program-entry.blp:51
 msgid "Add to Steam"
-msgstr ""
+msgstr "הוספה ל־Steam"
 
 #: bottles/frontend/ui/program-entry.blp:55
 msgid "Rename…"
-msgstr ""
+msgstr "שינוי שם…"
 
 #: bottles/frontend/ui/program-entry.blp:62
 msgid "Hide Program"
-msgstr ""
+msgstr "הסתרת תוכנית"
 
 #: bottles/frontend/ui/program-entry.blp:66
 msgid "Show Program"
-msgstr ""
+msgstr "הצגת תוכנית"
 
 #: bottles/frontend/ui/program-entry.blp:70
 msgid "Remove from List"
-msgstr ""
+msgstr "הסרה מהרשימה"
 
 #: bottles/frontend/ui/program-entry.blp:83
 msgid "Program name"
-msgstr ""
+msgstr "שם תוכנית"
 
 #. Translators: id as identification
 #: bottles/frontend/ui/state-entry.blp:8
 msgid "State id"
-msgstr ""
+msgstr "מזהה מצב"
 
 #: bottles/frontend/ui/state-entry.blp:9
 msgid "State comment"
-msgstr ""
+msgstr "הערת מצב"
 
 #: bottles/frontend/ui/state-entry.blp:16
 msgid "Restore this Snapshot"
-msgstr ""
+msgstr "שחזור תמונת מצב זו"
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
-msgstr ""
+msgstr "מחיקת הודעה"
 
 #: bottles/frontend/ui/window.blp:40
 msgid "Main Menu"
-msgstr ""
+msgstr "תפריט ראשי"
 
 #: bottles/frontend/ui/window.blp:54
 msgid ""
@@ -2182,59 +2233,61 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
+"נראה שאין חיבור לאינטרנט. בלעדיו לא יהיה ניתן להוריד רכיבים חיוניים. יש "
+"ללחוץ על סמל זה כשהחיבור חודש."
 
 #: bottles/frontend/ui/window.blp:79
 msgid "Import…"
-msgstr ""
+msgstr "ייבוא…"
 
 #: bottles/frontend/ui/window.blp:91
 msgid "Help"
-msgstr ""
+msgstr "עזרה"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:96
 msgid "About Bottles"
-msgstr ""
+msgstr "על „בקבוקים”"
 
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
-msgstr ""
+msgstr "הקובץ „{0}” אינו קובץ ‪.exe‬ או ‪.msi‬"
 
 #: bottles/frontend/views/bottle_details.py:207
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "בוצע עדכון: %s"
 
 #: bottles/frontend/views/bottle_details.py:267
 #, python-brace-format
 msgid "\"{0}\" added"
-msgstr ""
+msgstr "בוצעה הוספת „{0}”"
 
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
 msgid "Select Executable"
-msgstr ""
+msgstr "בחירת קובץ הפעלה"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
-msgstr ""
+msgstr "הוספה"
 
 #: bottles/frontend/views/bottle_details.py:346
 msgid "Hide Hidden Programs"
-msgstr ""
+msgstr "הסתרת תוכניות מוסתרות"
 
 #: bottles/frontend/views/bottle_details.py:383
 #: bottles/frontend/widgets/library.py:156
 #: bottles/frontend/widgets/program.py:184
 #, python-brace-format
 msgid "Launching \"{0}\"…"
-msgstr ""
+msgstr "בתהליך הפעלת „{0}”…"
 
 #: bottles/frontend/views/bottle_details.py:413
 msgid "Be Aware of Sandbox"
-msgstr ""
+msgstr "יש להיות מודע לארגז החול"
 
 #: bottles/frontend/views/bottle_details.py:414
 msgid ""
@@ -2242,214 +2295,217 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
+"התוכנית „בקבוקים” מורצת בארגז חול, סביבת הרשאות מוגבלות הדרושה כדי לשמור על "
+"בטיחותך. אם התוכנית לא תרוץ, יש לשקול לעבור לתוך הבקבוק (סמל 3 נקודות למעלה)"
+", ואז להפעיל משם."
 
 #: bottles/frontend/views/bottle_details.py:416
 #: bottles/frontend/views/bottle_details.py:525
 #: bottles/frontend/windows/main_window.py:223
 msgid "_Dismiss"
-msgstr ""
+msgstr "_דחייה"
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
-msgstr ""
+msgstr "נא לבחור לאן לשמור את הגדרות הגיבוי"
 
 #: bottles/frontend/views/bottle_details.py:431
 msgid "Export"
-msgstr ""
+msgstr "ייצוא"
 
 #: bottles/frontend/views/bottle_details.py:433
 msgid "Select the location where to save the backup archive"
-msgstr ""
+msgstr "נא לבחור לאן לשמור את ארכיון הגיבוי"
 
 #: bottles/frontend/views/bottle_details.py:435
 msgid "Backup"
-msgstr ""
+msgstr "גיבוי"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
 msgid "Backup created for \"{0}\""
-msgstr ""
+msgstr "נוצר גיבוי עבור „{0}”"
 
 #: bottles/frontend/views/bottle_details.py:442
 #, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr ""
+msgstr "הגיבוי של „{0}” נכשל"
 
 #: bottles/frontend/views/bottle_details.py:501
 msgid "Are you sure you want to permanently delete \"{}\"?"
-msgstr ""
+msgstr "למחוק את „{}” לצמיתות?"
 
 #: bottles/frontend/views/bottle_details.py:502
 msgid ""
 "This will permanently delete all programs and settings associated with it."
-msgstr ""
+msgstr "הפעולה הזאת תמחק את כל התוכניות וההגדרות שמשויכות אליו לצמיתות."
 
 #: bottles/frontend/views/bottle_details.py:505
 #: bottles/frontend/views/bottle_preferences.py:750
 msgid "_Delete"
-msgstr ""
+msgstr "מ_חיקה"
 
 #: bottles/frontend/views/bottle_details.py:521
 msgid "Missing Runner"
-msgstr ""
+msgstr "כלי הרצה חסר"
 
 #: bottles/frontend/views/bottle_details.py:522
 msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
+"כלי ההרצה המבוקש על ידי בקבוק זה חסר. יש להתקין אותו דרך ההעדפות של „בקבוקים”"
+" או לבחור אחד חדש להרצת יישומים."
 
 #: bottles/frontend/views/bottle_details.py:597
 msgid "Are you sure you want to force stop all processes?"
-msgstr ""
+msgstr "לעצור את כל התהליכים בכוח?"
 
 #: bottles/frontend/views/bottle_details.py:598
 msgid "This can cause data loss, corruption, and programs to malfunction."
-msgstr ""
+msgstr "עלול לגרום לאובדן או השחתה של נתונים וכשלים בתוכניות."
 
 #: bottles/frontend/views/bottle_details.py:601
 msgid "Force _Stop"
-msgstr ""
+msgstr "כפיית _עצירה"
 
 #: bottles/frontend/views/bottle_preferences.py:195
 msgid "This feature is unavailable on your system."
-msgstr ""
+msgstr "תכונה זו אינה זמינה במערכת שלך."
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} כדי להוסיף תכונה זו, נא להריץ flatpak install"
 
 #: bottles/frontend/views/bottle_preferences.py:246
 msgid "This bottle name is already in use."
-msgstr ""
+msgstr "שם הבקבוק הזה כבר בשימוש."
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
 msgid "Select Working Directory"
-msgstr ""
+msgstr "בחירת תיקיית עבודה"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
-msgstr ""
+msgstr "תיקייה שמכילה את הנתונים של „{}”."
 
 #: bottles/frontend/views/bottle_preferences.py:746
 msgid "Are you sure you want to delete all snapshots?"
-msgstr ""
+msgstr "למחוק את כל תמונות המצב?"
 
 #: bottles/frontend/views/bottle_preferences.py:747
 msgid "This will delete all snapshots but keep your files."
-msgstr ""
+msgstr "הפעולה הזאת תמחק את כל תמונות המצב אבל תשאיר את הקבצים שלך."
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
+msgstr "נא לעבור למערכת ניהול הגרסאות החדשה כדי ליצור מצבים חדשים."
 
 #: bottles/frontend/views/details.py:153
 msgid "Installers"
-msgstr ""
+msgstr "תוכניות התקנה"
 
 #: bottles/frontend/views/details.py:234
 msgid "Operations in progress, please wait."
-msgstr ""
+msgstr "מתבצעות פעולות, נא להמתין."
 
 #: bottles/frontend/views/details.py:239
 msgid "Return to your bottles."
-msgstr ""
+msgstr "חזרה לבקבוקים שלך."
 
 #: bottles/frontend/views/importer.py:92
 msgid "Backup imported successfully"
-msgstr ""
+msgstr "הגיבוי יובא בהצלחה"
 
 #: bottles/frontend/views/importer.py:94
 msgid "Import failed"
-msgstr ""
+msgstr "הייבוא נכשל"
 
 #: bottles/frontend/views/importer.py:108
 #: bottles/frontend/views/importer.py:147
 msgid "Importing backup…"
-msgstr ""
+msgstr "הגיבוי מיובא…"
 
 #: bottles/frontend/views/importer.py:119
 msgid "Select a Backup Archive"
-msgstr ""
+msgstr "נא לבחור ארכיון גיבוי"
 
 #: bottles/frontend/views/importer.py:122
 #: bottles/frontend/views/importer.py:161
 msgid "Import"
-msgstr ""
+msgstr "ייבוא"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
 msgid "Select a Configuration File"
-msgstr ""
+msgstr "בחירת קובץ תצורה"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
-msgstr ""
+msgstr "לא זמין"
 
 #. Set tooltip text
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "הרצת קובץ הפעלה ב־„{self.config.Name}”"
 
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr ""
+msgstr "בתהליך הפעלת „{0}\" ב־„{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
-msgstr ""
+msgstr "הבקבוקים שלך"
 
 #: bottles/frontend/views/loading.py:41
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
-msgstr ""
+msgstr "מתבצעת הורדת ‪~{0}‬ של חבילות…"
 
 #: bottles/frontend/views/loading.py:42
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
-msgstr ""
+msgstr "הובאו {0} מתוך {1} חבילות"
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "יצירת תיקיית בקבוק נכשלה."
+msgstr "בחירת תיקיית בקבוק"
 
 #: bottles/frontend/views/new.py:176
 msgid "Creating Bottle…"
-msgstr ""
+msgstr "מתבצעת יצירת בקבוק…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "יצירת תיקיית בקבוק נכשלה."
+msgstr "לא ניתן ליצור בקבוק"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "יצירת הבקבוק נכשלה עם שגיאה אחת או יותר."
 
 #. Show success
 #: bottles/frontend/views/new.py:232
 msgid "Bottle Created"
-msgstr ""
+msgstr "הבקבוק נוצר"
 
 #: bottles/frontend/views/new.py:233
 #, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr ""
+msgstr "יצירת „{0}” הושלמה בהצלחה."
 
 #: bottles/frontend/views/preferences.py:142
 msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
+msgstr "היישום Steam לא נמצא או שלתוכנית „בקבוקים” אין מספיק הרשאות."
 
 #: bottles/frontend/views/preferences.py:176
 msgid "Select Bottles Path"
-msgstr ""
+msgstr "בחירת נתיב בקבוקים"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
-msgstr ""
+msgstr "להפעיל את „בקבוקים” מחדש?"
 
 #: bottles/frontend/views/preferences.py:199
 msgid ""
@@ -2459,10 +2515,14 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
+"יהיה צורך להפעיל מחדש את התוכנית „בקבוקים” כדי להשתמש בתיקייה זו.\n"
+"\n"
+"יש להקפיד לסגור כל תוכנית שהופעלה מתוך „בקבוקים” לפני הפעלת „בקבוקים” מחדש, "
+"מכיוון שאי־ביצוע עלול לגרום לאובדן או השחתה של נתונים וכשלים בתוכניות."
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
-msgstr ""
+msgstr "ה_פעלה מחדש"
 
 #: bottles/frontend/views/preferences.py:243
 msgid "Based on Valve's Wine, includes staging and Proton patches."
@@ -2488,37 +2548,37 @@ msgstr ""
 
 #: bottles/frontend/widgets/component.py:74
 msgid "Upgrade"
-msgstr ""
+msgstr "שדרוג"
 
 #: bottles/frontend/widgets/component.py:140
 msgid "Installing…"
-msgstr ""
+msgstr "בתהליך התקנה…"
 
 #: bottles/frontend/widgets/dependency.py:107
 #: bottles/frontend/widgets/installer.py:81
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr ""
+msgstr "מניפסט עבור {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
 #, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr ""
+msgstr "הוסרה התקנת „{0}”"
 
 #: bottles/frontend/widgets/dependency.py:174
 #, python-brace-format
 msgid "\"{0}\" installed"
-msgstr ""
+msgstr "התקנת „{0}” הושלמה"
 
 #: bottles/frontend/widgets/dependency.py:188
 #, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr ""
+msgstr "התקנת „{0}” נכשלה"
 
 #: bottles/frontend/widgets/importer.py:68
 #, python-brace-format
 msgid "\"{0}\" imported"
-msgstr ""
+msgstr "ייבוא „{0}” הושלם"
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
@@ -2526,318 +2586,326 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
+"היישום הזה עשוי לעבוד בצורה גרועה. תוכנית ההתקנה הוגדרה לספק את החוויה הטובה "
+"ביותר האפשרית, אבל יש לצפות לתקלות, אי־יציבות והיעדר תכונות שעובדות."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
 msgstr ""
+"תוכנית זו פועלת עם תקלות בולטות, אבל התקלות האלה אינן משפיעות על תפקוד "
+"היישום."
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
-msgstr ""
+msgstr "תוכנית זו פועלת עם תקלות קלות."
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
-msgstr ""
+msgstr "תוכנית זו עובדת באופן מושלם."
 
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
 msgid "Review for {0}"
-msgstr ""
+msgstr "ביקורת עבור {0}"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
 #, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr ""
+msgstr "בתהליך עצירת „{0}”…"
 
 #: bottles/frontend/widgets/program.py:190
 #, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
-msgstr ""
+msgstr "בתהליך פתיחת „{0}” עם Steam…"
 
 #: bottles/frontend/widgets/program.py:214
 #, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr ""
+msgstr "„{0}” מוסתרת"
 
 #: bottles/frontend/widgets/program.py:216
 #, python-brace-format
 msgid "\"{0}\" showed"
-msgstr ""
+msgstr "„{0}” מופיעה"
 
 #: bottles/frontend/widgets/program.py:242
 #, python-brace-format
 msgid "\"{0}\" removed"
-msgstr ""
+msgstr "הסרת „{0}” בוצעה"
 
 #: bottles/frontend/widgets/program.py:274
 #, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr ""
+msgstr "השם „{0}” שונה ל־„{1}”"
 
 #: bottles/frontend/widgets/program.py:297
 #, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
-msgstr ""
+msgstr "נוצר רישום בשולחן העבודה עבור „{0}”"
 
 #: bottles/frontend/widgets/program.py:313
 #, python-brace-format
 msgid "\"{0}\" added to your library"
-msgstr ""
+msgstr "התוכנית „{0}” נוספה לספרייה שלך"
 
 #: bottles/frontend/widgets/program.py:331
 #, python-brace-format
 msgid "\"{0}\" added to your Steam library"
-msgstr ""
+msgstr "התוכנית „{0}” נוספה לספריית Steam שלך"
 
 #: bottles/frontend/windows/crash.py:33
 msgid "Show report"
-msgstr ""
+msgstr "הצגת דוח"
 
 #: bottles/frontend/windows/crash.py:80
 msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            בעיה זו דווחה 5 פעמים ולא ניתן לשלוח אותה שוב.\n"
+"            יש לדווח את המשוב שלך באחד מהדוחות הקיימים למטה."
 
 #: bottles/frontend/windows/display.py:102
 msgid "Updating display settings, please wait…"
-msgstr ""
+msgstr "בתהליך עדכון הגדרות תצוגה, נא להמתין…"
 
 #: bottles/frontend/windows/display.py:114
 msgid "Display settings updated"
-msgstr ""
+msgstr "הגדרות התצוגה עודכנו"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
-msgstr ""
+msgstr "לא נמצאו דריסות."
 
 #: bottles/frontend/windows/drives.py:71
 msgid "Select Drive Path"
-msgstr ""
+msgstr "בחירת נתיב כונן"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
-msgstr ""
+msgstr "לא הוגדרו משתני סביבה."
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
 msgid "No exclusion patterns defined."
-msgstr ""
+msgstr "לא הוגדרו דפוסי החרגה."
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
-msgstr ""
+msgstr "אירעה שגיאה."
 
 #: bottles/frontend/windows/generic.py:91
 #: bottles/frontend/windows/generic.py:137
 #: bottles/frontend/windows/generic.py:182
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "העתקה ללוח"
 
 #: bottles/frontend/windows/installer.py:62
 msgid "Select Resource File"
-msgstr ""
+msgstr "בחירת קובץ משאבים"
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
-msgstr ""
+msgstr "מתבצעת התקנת חבילות תלות של Windows…"
 
 #: bottles/frontend/windows/installer.py:110
 msgid "Configuring the bottle…"
-msgstr ""
+msgstr "בתהליך קביעת תצורת הבקבוק…"
 
 #: bottles/frontend/windows/installer.py:111
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "בתהליך עיבוד שלבי תוכנית ההתקנה…"
 
 #: bottles/frontend/windows/installer.py:112
 msgid "Installing the {}…"
-msgstr ""
+msgstr "בתהליך התקנת {}…"
 
 #: bottles/frontend/windows/installer.py:113
 msgid "Performing final checks…"
-msgstr ""
+msgstr "מתבצעות בדיקות אחרונות…"
 
 #: bottles/frontend/windows/installer.py:117
 #, python-brace-format
 msgid "Installing {0}…"
-msgstr ""
+msgstr "בתהליך התקנת {0}…"
 
 #: bottles/frontend/windows/installer.py:119
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr ""
+msgstr "התוכנית {0} זמינה כעת בתצוגת התוכניות."
 
 #: bottles/frontend/windows/installer.py:166
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "תוכנית ההתקנה נכשלה עם שגיאה לא ידועה"
 
 #: bottles/frontend/windows/launchoptions.py:56
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr ""
+msgstr "ההגדרה {0} כבר מושבתת עבור בקבוק זה."
 
 #: bottles/frontend/windows/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "הגדרה זו שונה מברירת המחדל של הבקבוק."
 
 #: bottles/frontend/windows/launchoptions.py:215
 msgid "Select Script"
-msgstr ""
+msgstr "בחירת סקריפט"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
-msgstr ""
+msgstr "נתיב בקבוקים מותאם אישית לא נמצא"
 
 #: bottles/frontend/windows/main_window.py:221
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
+msgstr "בתהליך נסגירה לנתיב ברירת המחדל. לא יופיעו בקבוקים מהנתיב הנתון."
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@שם_היישום@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
 msgid "Run Windows Software"
-msgstr ""
+msgstr "הרצת תוכנות Windows"
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
-msgstr ""
+msgstr "‪wine;windows;‬"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
-msgstr ""
+msgstr "הגירת Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr ""
+msgstr "החלפת מצב הנראות של תיבת דו־השיח להגירת Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr ""
+msgstr "ערכת נושא כהה"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "כפיית השימוש בערכת נושא כהה."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "החלפת מצב הנראות של תאריך העדכון ברשימה"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr ""
+msgstr "החלפת מצב הנראות של תאריך העדכון ברשימה של בקבוקים."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "רשימת יישומי Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
-msgstr ""
+msgstr "החלפת מצב החשיפה של רשימת יישומי Steam."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr ""
+msgstr "רשימת Epic Games"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
-msgstr ""
+msgstr "החלפת מצב החשיפה של רשימת Epic Games."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "רשימת Ubisoft Connect"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."
-msgstr ""
+msgstr "החלפת מצב החשיפה של רשימת Ubisoft Connect."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
-msgstr ""
+msgstr "רוחב חלון"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 msgid "Change the window width."
-msgstr ""
+msgstr "שינוי רוחב החלון."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Window height"
-msgstr ""
+msgstr "גובה חלון"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Change the window height."
-msgstr ""
+msgstr "שינוי גובה החלון."
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Show notifications."
-msgstr ""
+msgstr "הצגת התראות."
 
 #: data/com.usebottles.bottles.gschema.xml:51
 msgid "Temp cleaning"
-msgstr ""
+msgstr "ניקוי קבצים זמניים"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid "Clean the temp path when booting the system."
-msgstr ""
+msgstr "ניקוי הנתיב של הקבצים הזמניים בעת אתחול המערכת."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Release Candidate"
-msgstr ""
+msgstr "בעמדה לשחרור"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle release candidate for runners."
-msgstr ""
+msgstr "החלפת מצב הנראות של כלי הרצה בעמדה לשחרור."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Startup view"
-msgstr ""
+msgstr "תצוגת הפעלה"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Choose which view the application should be started in."
-msgstr ""
+msgstr "נא לבחור באיזו תצוגה יש להפעיל את היישום."
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
+"החלפת מצב ההפעלה של תכונות ניסיוניות כגון ניהול גרסאות, תוכניות התקנה וכלי "
+"הרצה בעמדה לשחרור."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
-msgstr ""
+msgstr "תמיכה ב־Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
-msgstr ""
+msgstr "החלפת מצב התמיכה בקידומות Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:76
 msgid "Experiments:sandbox"
-msgstr ""
+msgstr "ניסויים:ארגז חול"
 
 #: data/com.usebottles.bottles.gschema.xml:77
 msgid "Toggle experimental Sandbox per bottle."
-msgstr ""
+msgstr "החלפת מצב ההפעלה של ארגז חול ניסיוני לכל בקבוק."
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Automatically close Bottles"
-msgstr ""
+msgstr "סגירת „בקבוקים” באופן אוטומטי"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Close Bottles after starting an executable from the file manager."
-msgstr ""
+msgstr "סגירת „בקבוקים” לאחר הפעלת קובץ הפעלה ממנהל הקבצים."
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "הצגת אזהרת ארגז חול"
 
 #: data/com.usebottles.bottles.gschema.xml:87
 msgid "Toggle sandbox warning."
-msgstr ""
+msgstr "החלפת מצב הנראות של אזהרת ארגז חול."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid "Run Windows software on Linux with Bottles!"
@@ -2861,7 +2929,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:17
 msgid "Features:"
-msgstr ""
+msgstr "תכונות:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:19
 msgid "Create bottles using preconfigured environments or create your own"
@@ -2937,39 +3005,39 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
-msgstr ""
+msgstr "עדכון פרטי נתוני־על"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
-msgstr ""
+msgstr "הוספת מידע נוסף על עדכונים וגרסה נכונה של הערות שחרור"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Fixed \"Add to Steam\" button"
-msgstr ""
+msgstr "הלחצן „הוספה ל־Steam” תוקן"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr ""
+msgstr "בעיית סדר של BottleConfig תוקנה"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "הכשל בחילוץ כפול של Patool תוקן"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
 msgid "Correct version"
-msgstr ""
+msgstr "גרסה נכונה"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
 msgid "Fix crash when creating a bottle"
-msgstr ""
+msgstr "תוקנה קריסה ביצירת בקבוק"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "שינוי עיקרי: עיצוב מחדש של ממשק בקבוק חדש"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Quality of life improvements:"
-msgstr ""
+msgstr "שיפורי איכות חיים:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
@@ -2977,11 +3045,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
-msgstr ""
+msgstr "נוספה הודעה קופצת עבור „הרצת קובץ הפעלה”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
-msgstr ""
+msgstr "תיקוני תקלות:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
@@ -2989,11 +3057,13 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
-msgstr ""
+msgstr "ייבוא גיבויים הוביל לשגיאה"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"מערכת זמן הריצה של Steam מופעלת באופן אוטומטי בעת שימוש בכלי ההרצה wine-ge-"
+"custom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
@@ -3003,15 +3073,15 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "תיקון מגוון בעיות הקשורות לקידוד טקסט"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
-msgstr ""
+msgstr "תיקון שגיאה בעת הורדה אם התוכנית „בקבוקים” לא מורצת ממסוף"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
 msgid "Correct version date"
-msgstr ""
+msgstr "תאריך גרסה נכון"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
@@ -3019,31 +3089,31 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "שיפורים ותיקונים של Gamescope"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "התקנת חבילות תלות מהירה ויציבה יותר"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
-msgstr ""
+msgstr "בדיקת הבריאות כוללת מידע נוסף לניפוי שגיאות מהיר יותר"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
-msgstr ""
+msgstr "לרכיב NVAPI יש המון והוא יציב יותר, אמור לעבוד עכשיו כראוי"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "תיקון קריסה בעת הורדת רכיב"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "שיפור קוד קצה אחורי על ידי הימנעות מנעילת סביב"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "משתנים נוספים עבור כתיבת סקריפטים של תוכניות התקנה"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
@@ -3051,35 +3121,35 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "שיפור לבניית מערכת"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "הפעלת VKD3D כברירת מחדל בעת יצירת בקבוקים עבור גיימינג"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
-msgstr ""
+msgstr "תיקון קריסות בעת קריאת קבצי Steam עם קידודים מקולקלים"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
-msgstr ""
+msgstr "תיקון עדכון לקוי של רכיבים בממשק המשתמש לאחר התקנה/הסרת התקנה"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "תיקוני FSR נוספים"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
-msgstr ""
+msgstr "תיקון הבעיה כאשר תוכנית נסגרת לאחר שהיא הופעלה מ„הרצת קובץ הפעלה”"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "ועוד הרבה, הרבה, הרבה יותר!"
 
 #, fuzzy
 #~ msgid "Fix installer completion @jntesteves"

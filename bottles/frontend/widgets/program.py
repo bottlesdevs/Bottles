@@ -1,6 +1,6 @@
 # program.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 import webbrowser
 from gettext import gettext as _
 
-from gi.repository import Gtk, Adw
+from gi.repository import Adw, Gtk
 
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.steam import SteamManager
@@ -179,11 +179,13 @@ class ProgramEntry(Adw.ActionRow):
     def show_playtime_stats(self, _widget=False):
         """Show the playtime statistics dialog for this program."""
         from bottles.backend.managers.playtime import _compute_program_id
+        from bottles.backend.utils.manager import ManagerUtils
 
         self.pop_actions.popdown()  # Close the menu before opening dialog
 
         program_path = self.program.get("path", "")
-        program_id = _compute_program_id(self.config.Name, program_path)
+        bottle_path = ManagerUtils.get_bottle_path(self.config)
+        program_id = _compute_program_id(self.config.Name, bottle_path, program_path)
 
         dialog = PlaytimeGraphDialog(
             self,
@@ -406,3 +408,35 @@ class ProgramEntry(Adw.ActionRow):
             program_name=self.program["name"],
             program_path=self.program["path"],
         )
+
+    def update_playtime(self, playtime_service):
+        """
+        Update the program subtitle with playtime information.
+
+        Args:
+            playtime_service: Instance of PlaytimeService to fetch and format data.
+        """
+        if not playtime_service or not playtime_service.is_enabled():
+            return
+
+        program_path = self.program.get("path", "")
+        if not program_path:
+            return
+
+        try:
+            # Use bottle name as bottle_id, matching what backend uses
+            bottle_id = self.config.Name
+            bottle_path = self.config.Path
+
+            record = playtime_service.get_program_playtime(
+                bottle_id, bottle_path, self.program["name"], program_path
+            )
+            subtitle = playtime_service.format_subtitle(record)
+            self.set_subtitle(subtitle)
+        except Exception as e:
+            from bottles.backend.logger import Logger
+
+            logging = Logger()
+            logging.error(
+                f"Failed to update playtime for {self.program['name']}: {e}", exc=e
+            )

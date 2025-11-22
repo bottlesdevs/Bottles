@@ -1,6 +1,6 @@
 # installer.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 
 import urllib.request
-
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, Gio, GdkPixbuf, Adw
+
+from gi.repository import Adw, GdkPixbuf, Gio, GLib, Gtk
 
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
@@ -196,9 +196,15 @@ class InstallerDialog(Adw.Window):
         self.status_error.set_description(error)
         self.stack.set_visible_child_name("page_error")
 
-    def next_step(self):
+    def next_step(self, detail=None):
         """Next step"""
-        phrase = self.__steps_phrases[self.__sections[self.__current_step]]
+        section = self.__sections[self.__current_step]
+
+        if section == "deps" and detail is not None:
+            phrase = _("Installing dependency: {0}").format(detail)
+        else:
+            phrase = self.__steps_phrases[section]
+
         self.progressbar.set_text(phrase)
         self.__current_step += 1
         self.progressbar.set_fraction(self.__current_step * (1 / self.__steps))

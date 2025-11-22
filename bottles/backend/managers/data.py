@@ -1,6 +1,6 @@
 # data.py
 #
-# Copyright 2022 brombinmirko <send@mirko.pm>
+# Copyright 2025 mirkobrombin <brombin94@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@
 import contextlib
 import os
 
-
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.models.samples import Samples
@@ -30,6 +29,7 @@ logging = Logger()
 class UserDataKeys:
     CustomBottlesPath = "custom_bottles_path"
     FundingDismissed = "funding_dialog_dismissed"
+    PersonalRepositories = "personal_repositories"
 
 
 class DataManager:
@@ -68,7 +68,6 @@ class DataManager:
         with open(self.__p_data, "w") as s:
             yaml.dump(Samples.data, s)
         self.__get_data()
-
 
     def list(self):
         """Returns the whole data dictionary."""
