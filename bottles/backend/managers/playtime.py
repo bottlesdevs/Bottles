@@ -26,6 +26,7 @@ SCHEMA_USER_VERSION = 1
 
 class PlaytimeTotalsDict(TypedDict):
     """Type definition for playtime totals dictionary."""
+
     bottle_id: str
     program_id: str
     program_name: str
@@ -52,27 +53,27 @@ def _utc_now_seconds() -> int:
 def _normalize_path_to_windows(bottle_path: str, program_path: str) -> str:
     """
     Normalize a program path to Windows format for portable program_id hashing.
-    
+
     This ensures playtime data persists across machines and home directory changes.
     Copied from WinePath.to_windows(native=True) to avoid needing a BottleConfig object.
-    
+
     Args:
         bottle_path: Full path to the bottle (e.g., /home/user/.local/share/bottles/MyBottle)
         program_path: Program path (can be Unix or Windows format)
-    
+
     Returns:
         Windows-format path (e.g., C:\\Program Files\\game.exe)
     """
-    
+
     # Already Windows format? (copied from WinePath.is_windows)
     if ":" in program_path or "\\" in program_path:
         return program_path
-    
+
     # Convert Unix to Windows - copied from WinePath.to_windows(native=True)
     # BUT: we can't rely on bottle_path matching the path prefix exactly,
     # so we extract the drive letter and everything after it generically
     path = program_path
-    
+
     if "/drive_" in path:
         # Extract drive letter and path after drive_X/
         # Use case-insensitive search but preserve original path case
@@ -91,7 +92,7 @@ def _normalize_path_to_windows(bottle_path: str, program_path: str) -> str:
     else:
         # Just convert slashes
         path = path.replace("/", "\\")
-    
+
     # Clean path (copied from WinePath.__clean_path)
     return path.replace("\n", " ").replace("\r", " ").replace("\t", " ").strip()
 
@@ -99,20 +100,20 @@ def _normalize_path_to_windows(bottle_path: str, program_path: str) -> str:
 def _compute_program_id(bottle_id: str, bottle_path: str, program_path: str) -> str:
     """
     Compute a stable program identifier from bottle and program info.
-    
+
     Normalizes paths to Windows format for portability across machines.
     """
     normalized_path = _normalize_path_to_windows(bottle_path, program_path)
     combined = f"{bottle_id}:{normalized_path}".encode("utf-8")
     program_id = hashlib.sha1(combined).hexdigest()
-    
+
     # Debug logging to track normalization
     if program_path != normalized_path:
         logging.debug(
             f"Path normalized: '{program_path}' -> '{normalized_path}' "
             f"(bottle_path={bottle_path}) -> program_id={program_id}"
         )
-    
+
     return program_id
 
 
@@ -352,7 +353,7 @@ class ProcessSessionTracker:
                     if retries > 5:
                         raise
 
-            session_id = int(cur.lastrowid)
+            session_id = int(cur.lastrowid) if cur.lastrowid is not None else 0
             self._conn.commit()
 
             # Track in-memory after successful commit

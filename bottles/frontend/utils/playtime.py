@@ -269,7 +269,9 @@ class PlaytimeService:
             return [0] * 7
 
         try:
-            get_weekly = getattr(self.manager.playtime_tracker, "get_weekly_playtime", None)
+            get_weekly = getattr(
+                self.manager.playtime_tracker, "get_weekly_playtime", None
+            )
             if not callable(get_weekly):
                 logging.error("Playtime service: get_weekly_playtime method not found")
                 return [0] * 7
@@ -279,7 +281,7 @@ class PlaytimeService:
                 f"Retrieved weekly data: bottle_id={bottle_id} program_id={program_id} "
                 f"week_offset={week_offset} data={data}"
             )
-            return data
+            return list(data) if isinstance(data, list) else [0] * 7
 
         except Exception:
             logging.error(
@@ -310,7 +312,9 @@ class PlaytimeService:
             return [0] * 24
 
         try:
-            get_daily = getattr(self.manager.playtime_tracker, "get_daily_playtime", None)
+            get_daily = getattr(
+                self.manager.playtime_tracker, "get_daily_playtime", None
+            )
             if not callable(get_daily):
                 logging.error("Playtime service: get_daily_playtime method not found")
                 return [0] * 24
@@ -320,7 +324,7 @@ class PlaytimeService:
                 f"Retrieved hourly data: bottle_id={bottle_id} program_id={program_id} "
                 f"date={date_str} data={data}"
             )
-            return data
+            return list(data) if isinstance(data, list) else [0] * 24
 
         except Exception:
             logging.error(
@@ -349,7 +353,9 @@ class PlaytimeService:
             return [0] * 12
 
         try:
-            get_monthly = getattr(self.manager.playtime_tracker, "get_monthly_playtime", None)
+            get_monthly = getattr(
+                self.manager.playtime_tracker, "get_monthly_playtime", None
+            )
             if not callable(get_monthly):
                 logging.error("Playtime service: get_monthly_playtime method not found")
                 return [0] * 12
@@ -359,7 +365,7 @@ class PlaytimeService:
                 f"Retrieved monthly data: bottle_id={bottle_id} program_id={program_id} "
                 f"year={year} data={data}"
             )
-            return data
+            return list(data) if isinstance(data, list) else [0] * 12
 
         except Exception:
             logging.error(
@@ -377,10 +383,13 @@ class PlaytimeService:
             return 0
 
         try:
-            get_count = getattr(self.manager.playtime_tracker, "get_weekly_session_count", None)
+            get_count = getattr(
+                self.manager.playtime_tracker, "get_weekly_session_count", None
+            )
             if not callable(get_count):
                 return 0
-            return get_count(bottle_id, program_id, week_offset)
+            result = get_count(bottle_id, program_id, week_offset)
+            return int(result) if isinstance(result, (int, float)) else 0
         except Exception as e:
             logging.error(f"Failed to get weekly session count: {e}", exc_info=True)
             return 0
@@ -393,10 +402,13 @@ class PlaytimeService:
             return 0
 
         try:
-            get_count = getattr(self.manager.playtime_tracker, "get_daily_session_count", None)
+            get_count = getattr(
+                self.manager.playtime_tracker, "get_daily_session_count", None
+            )
             if not callable(get_count):
                 return 0
-            return get_count(bottle_id, program_id, date_str)
+            result = get_count(bottle_id, program_id, date_str)
+            return int(result) if isinstance(result, (int, float)) else 0
         except Exception as e:
             logging.error(f"Failed to get daily session count: {e}", exc_info=True)
             return 0
@@ -409,10 +421,13 @@ class PlaytimeService:
             return 0
 
         try:
-            get_count = getattr(self.manager.playtime_tracker, "get_yearly_session_count", None)
+            get_count = getattr(
+                self.manager.playtime_tracker, "get_yearly_session_count", None
+            )
             if not callable(get_count):
                 return 0
-            return get_count(bottle_id, program_id, year)
+            result = get_count(bottle_id, program_id, year)
+            return int(result) if isinstance(result, (int, float)) else 0
         except Exception as e:
             logging.error(f"Failed to get yearly session count: {e}", exc_info=True)
             return 0

@@ -147,6 +147,11 @@ class PlaytimeGraphDialog(Adw.Window):
         self.label_date_range.set_label(date_range)  # type: ignore
 
         # Render bar chart based on current view
+        period_minutes = 0
+        period_avg_minutes = 0
+        period_label = ""
+        avg_label = ""
+
         if self.current_view == "week":
             daily_data = self.__get_weekly_data()
             self.__render_chart(daily_data)
@@ -206,7 +211,11 @@ class PlaytimeGraphDialog(Adw.Window):
             )
             has_sub_minute_playtime = session_count > 0
 
-        self.label_today_time.set_label(self.__format_time(today_minutes, allow_less_than_minute=has_sub_minute_playtime))  # type: ignore
+        self.label_today_time.set_label(
+            self.__format_time(
+                today_minutes, allow_less_than_minute=has_sub_minute_playtime
+            )
+        )  # type: ignore
 
         self.label_week_time.set_label(self.__format_time(period_minutes))  # type: ignore
         self.label_week_label.set_label(period_label)  # type: ignore
