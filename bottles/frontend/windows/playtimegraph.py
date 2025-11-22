@@ -34,7 +34,6 @@ class PlaytimeGraphDialog(Adw.Window):
     # region Widgets
     label_program_title: Gtk.Label = Gtk.Template.Child()
     label_today_time: Gtk.Label = Gtk.Template.Child()
-    label_today_avg: Gtk.Label = Gtk.Template.Child()
     label_week_time: Gtk.Label = Gtk.Template.Child()
     label_week_label: Gtk.Label = Gtk.Template.Child()
     label_week_avg: Gtk.Label = Gtk.Template.Child()
@@ -152,8 +151,12 @@ class PlaytimeGraphDialog(Adw.Window):
             self.__render_chart(daily_data)
             
             # Calculate weekly stats
+            # Convert Python's weekday (Mon=0) to SQL's day_of_week (Sun=0)
+            # Python: Mon=0, Tue=1, Wed=2, Thu=3, Fri=4, Sat=5, Sun=6
+            # SQL: Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6
+            today_index = (today.weekday() + 1) % 7
             today_minutes = (
-                daily_data[today.weekday()] if self.current_week_offset == 0 else 0
+                daily_data[today_index] if self.current_week_offset == 0 else 0
             )
             period_minutes = sum(daily_data)
             period_avg_minutes = period_minutes // 7 if period_minutes > 0 else 0
@@ -186,9 +189,6 @@ class PlaytimeGraphDialog(Adw.Window):
 
         # Format and display current period stats
         self.label_today_time.set_label(self.__format_time(today_minutes))  # type: ignore
-        self.label_today_avg.set_label(  # type: ignore
-            avg_label.format(self.__format_time(period_avg_minutes))
-        )
 
         self.label_week_time.set_label(self.__format_time(period_minutes))  # type: ignore
         self.label_week_label.set_label(period_label)  # type: ignore
@@ -330,4 +330,6 @@ class PlaytimeGraphDialog(Adw.Window):
 
     def __format_time(self, minutes: int) -> str:
         """Format minutes into human-readable time string."""
+        if minutes == 0:
+            return _("No Data")
         return PlaytimeService.format_playtime(minutes * 60)

@@ -179,6 +179,8 @@ class ProgramEntry(Adw.ActionRow):
         """Show the playtime statistics dialog for this program."""
         from bottles.backend.managers.playtime import _compute_program_id
         
+        self.pop_actions.popdown()  # Close the menu before opening dialog
+        
         program_path = self.program.get("path", "")
         program_id = _compute_program_id(self.config.Name, program_path)
         

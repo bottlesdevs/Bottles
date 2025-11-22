@@ -22,28 +22,28 @@ template $PlaytimeGraphDialog: Adw.Window {
       styles [
         "flat",
       ]
-      
+
       [title]
       Box {
         orientation: horizontal;
         halign: center;
         spacing: 0;
-        
+
         styles [
           "linked",
         ]
-        
+
         ToggleButton btn_view_day {
           label: _("Day");
           active: false;
         }
-        
+
         ToggleButton btn_view_week {
           label: _("Week");
           active: true;
           group: btn_view_day;
         }
-        
+
         ToggleButton btn_view_year {
           label: _("Year");
           group: btn_view_day;
@@ -54,6 +54,7 @@ template $PlaytimeGraphDialog: Adw.Window {
     content: Box {
       orientation: vertical;
       halign: center;
+      valign: center;
       width-request: 600;
       vexpand: true;
 
@@ -72,30 +73,6 @@ template $PlaytimeGraphDialog: Adw.Window {
           styles [
             "card",
           ]
-          
-          Box {
-            orientation: horizontal;
-            margin-top: 12;
-            margin-bottom: 6;
-            margin-start: 12;
-            margin-end: 12;
-            
-            Label label_program_title {
-              label: "Program Name";
-              halign: start;
-              hexpand: true;
-              
-              styles [
-                "title-3",
-              ]
-            }
-          }
-          
-          Separator {
-            styles [
-              "spacer",
-            ]
-          }
 
           Box {
             orientation: horizontal;
@@ -110,15 +87,6 @@ template $PlaytimeGraphDialog: Adw.Window {
               orientation: vertical;
               spacing: 6;
 
-              Label label_today_time {
-                label: "0m";
-                halign: start;
-
-                styles [
-                  "title-1",
-                ]
-              }
-
               Label {
                 label: _("Today");
                 halign: start;
@@ -128,9 +96,19 @@ template $PlaytimeGraphDialog: Adw.Window {
                 ]
               }
 
-              Label label_today_avg {
-                label: _("Average: 0h 0m");
+              Label label_today_time {
+                label: "0m";
                 halign: start;
+
+                styles [
+                  "title-1",
+                ]
+              }
+
+              Label label_program_title {
+                label: "Program Name";
+                halign: start;
+                hexpand: true;
 
                 styles [
                   "caption",
@@ -143,21 +121,21 @@ template $PlaytimeGraphDialog: Adw.Window {
               orientation: vertical;
               spacing: 6;
 
-              Label label_week_time {
-                label: "0h 0m";
-                halign: start;
-
-                styles [
-                  "title-1",
-                ]
-              }
-
               Label label_week_label {
                 label: _("Weekly");
                 halign: start;
 
                 styles [
                   "dim-label",
+                ]
+              }
+
+              Label label_week_time {
+                label: "0h 0m";
+                halign: start;
+
+                styles [
+                  "title-1",
                 ]
               }
 
@@ -178,6 +156,7 @@ template $PlaytimeGraphDialog: Adw.Window {
         Box {
           orientation: vertical;
           spacing: 0;
+          vexpand: false;
 
           styles [
             "card",
@@ -247,7 +226,6 @@ template $PlaytimeGraphDialog: Adw.Window {
         Box {
           orientation: vertical;
           spacing: 12;
-
 
           Box {
             orientation: vertical;
