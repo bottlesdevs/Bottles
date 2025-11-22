@@ -48,20 +48,17 @@ class PlaytimeChartMonthly(Gtk.Box):
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(orientation=Gtk.Orientation.VERTICAL, **kwargs)
 
-        # Chart data
-        self._daily_data: List[int] = []
+        self._monthly_data: List[int] = []
         self._chart_data: Dict[str, Any] = {}
         self._hover_x: float = 0
         self._hover_y: float = 0
 
-        # Chart configuration
         self._chart_height: int = 200
         self._num_bars: int = 12  # Always show all 12 months
         self._label_area_width: int = 48
         self._grid_padding: int = 20
         self._last_width: int = 0
 
-        # Create UI structure
         self._build_ui()
 
         # Monitor widget allocation changes

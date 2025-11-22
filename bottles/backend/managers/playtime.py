@@ -185,7 +185,6 @@ class ProcessSessionTracker:
         except Exception:
             pass
 
-    # Public API
     def start_session(
         self,
         *,
@@ -377,7 +376,6 @@ class ProcessSessionTracker:
         self._conn.commit()
         logging.info(f"Recovered {len(rows)} running sessions -> forced at last_seen")
 
-    # Internals
     def _heartbeat_loop(self) -> None:
         while not self._stop_event.wait(self.heartbeat_interval):
             try:
@@ -474,7 +472,6 @@ class ProcessSessionTracker:
         )
         # Do not commit here; caller manages transaction boundaries
 
-    # Time-based aggregation queries
     def get_weekly_playtime(
         self, bottle_id: str, program_id: str, week_offset: int = 0
     ) -> list[int]:

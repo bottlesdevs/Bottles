@@ -60,7 +60,6 @@ class PlaytimeGraphDialog(Adw.Window):
         super().__init__(**kwargs)
         self.set_transient_for(parent.window)
 
-        # common variables and references
         self.parent = parent
         self.program_name: str = program_name
         self.program_id: Optional[str] = program_id
@@ -71,7 +70,6 @@ class PlaytimeGraphDialog(Adw.Window):
         self._chart_hourly: Optional[PlaytimeChartHourly] = None
         self._chart_monthly: Optional[PlaytimeChartMonthly] = None
 
-        # Set window title to program name
         self.label_program_title.set_label(program_name)  # type: ignore
 
         # Connect signals
@@ -81,7 +79,6 @@ class PlaytimeGraphDialog(Adw.Window):
         self.btn_view_day.connect("toggled", self.__on_view_toggled, "day")  # type: ignore
         self.btn_view_year.connect("toggled", self.__on_view_toggled, "year")  # type: ignore
 
-        # Load initial data
         self.__load_data()
 
     def __on_view_toggled(self, button: Gtk.ToggleButton, view: str) -> None:
@@ -150,10 +147,7 @@ class PlaytimeGraphDialog(Adw.Window):
             daily_data = self.__get_weekly_data()
             self.__render_chart(daily_data)
 
-            # Calculate weekly stats
-            # Convert Python's weekday (Mon=0) to SQL's day_of_week (Sun=0)
-            # Python: Mon=0, Tue=1, Wed=2, Thu=3, Fri=4, Sat=5, Sun=6
-            # SQL: Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6
+            # Convert Python weekday (Mon=0) to SQL day_of_week (Sun=0)
             today_index = (today.weekday() + 1) % 7
             today_minutes = (
                 daily_data[today_index] if self.current_week_offset == 0 else 0
@@ -184,8 +178,7 @@ class PlaytimeGraphDialog(Adw.Window):
             monthly_data = self.__get_monthly_data()
             self.__render_chart(monthly_data)
 
-            # Calculate yearly stats
-            today_minutes = 0  # Not applicable for yearly view
+            today_minutes = 0
             period_minutes = sum(monthly_data)
             period_avg_minutes = period_minutes // 12 if period_minutes > 0 else 0
             period_label = (
@@ -193,7 +186,6 @@ class PlaytimeGraphDialog(Adw.Window):
             )
             avg_label = _("Monthly Average: {}")
 
-        # Format and display current period stats
         self.label_today_time.set_label(self.__format_time(today_minutes))  # type: ignore
 
         self.label_week_time.set_label(self.__format_time(period_minutes))  # type: ignore
@@ -264,7 +256,6 @@ class PlaytimeGraphDialog(Adw.Window):
         if not self.bottle_id or not self.program_id:
             return [0] * 7
 
-        # Create service instance and fetch data
         service = PlaytimeService(self.parent.manager)
         daily_data = service.get_weekly_data(
             bottle_id=self.bottle_id,

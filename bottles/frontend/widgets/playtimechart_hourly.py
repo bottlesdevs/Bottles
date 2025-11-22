@@ -48,13 +48,11 @@ class PlaytimeChartHourly(Gtk.Box):
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(orientation=Gtk.Orientation.VERTICAL, **kwargs)
 
-        # Chart data
         self._daily_data: List[int] = []
         self._chart_data: Dict[str, Any] = {}
         self._hover_x: float = 0
         self._hover_y: float = 0
 
-        # Chart configuration
         self._chart_height: int = 200
         self._bar_width: int = 28  # Base width, will be calculated dynamically
         self._label_area_width: int = 48
@@ -68,7 +66,6 @@ class PlaytimeChartHourly(Gtk.Box):
         # Monitor widget allocation changes
         self.connect("notify::default-width", self._on_width_changed)
 
-        # Monitor theme changes to update colors
         style_manager = Adw.StyleManager.get_default()
         style_manager.connect("notify::dark", self._on_style_changed)
         style_manager.connect("notify::accent-color", self._on_style_changed)
@@ -100,7 +97,6 @@ class PlaytimeChartHourly(Gtk.Box):
 
     def _build_ui(self) -> None:
         """Build the chart UI structure."""
-        # Main chart container
         self._chart_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self._chart_box.set_spacing(8)
         self._chart_box.set_vexpand(True)
@@ -128,7 +124,6 @@ class PlaytimeChartHourly(Gtk.Box):
 
     def _render_chart(self, max_hours_override: Optional[int] = None) -> None:
         """Render the bar chart with the current data."""
-        # Clear existing content
         while child := self._chart_box.get_first_child():
             self._chart_box.remove(child)
 
@@ -270,7 +265,6 @@ class PlaytimeChartHourly(Gtk.Box):
         for i, minutes in enumerate(daily_data):
             if minutes > 0:
                 bar_x, bar_width = bar_positions[i]
-                # Don't add offset - use bar position directly
                 bar_height = (minutes / grid_max_minutes) * height
                 bar_height = max(bar_height, 4)
                 bar_y = height - bar_height
