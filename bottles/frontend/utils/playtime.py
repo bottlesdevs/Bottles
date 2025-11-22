@@ -229,7 +229,7 @@ class PlaytimeService:
             )
             return data
 
-        except Exception as e:
+        except Exception:
             logging.error(
                 f"Failed to retrieve weekly data: bottle_id={bottle_id} program_id={program_id} "
                 f"week_offset={week_offset}",
@@ -275,7 +275,7 @@ class PlaytimeService:
             )
             return data
 
-        except Exception as e:
+        except Exception:
             logging.error(
                 f"Failed to retrieve hourly data: bottle_id={bottle_id} program_id={program_id} "
                 f"date={date_str}",
@@ -319,7 +319,7 @@ class PlaytimeService:
             )
             return data
 
-        except Exception as e:
+        except Exception:
             logging.error(
                 f"Failed to retrieve monthly data: bottle_id={bottle_id} program_id={program_id} "
                 f"year={year}",

@@ -315,7 +315,6 @@ class ProcessSessionTracker:
                 logging.error(f"mark_exit: session {session_id} not found")
                 return
             started_at = int(row[0])
-            last_seen = int(row[1])
             bottle_id = str(row[2])
             program_id = str(row[3])
 
@@ -359,7 +358,6 @@ class ProcessSessionTracker:
         if not rows:
             return
 
-        now = _utc_now_seconds()
         with self._lock:
             for sid, started_at, last_seen, bottle_id, program_id in rows:
                 end_ts = int(last_seen)
@@ -549,7 +547,7 @@ class ProcessSessionTracker:
                 )
                 return result
 
-        except Exception as e:
+        except Exception:
             logging.error(
                 f"Failed to get weekly playtime: bottle_id={bottle_id} program_id={program_id} "
                 f"week_offset={week_offset}",
@@ -651,7 +649,7 @@ class ProcessSessionTracker:
                 )
                 return result
 
-        except Exception as e:
+        except Exception:
             logging.error(
                 f"Failed to get daily playtime: bottle_id={bottle_id} program_id={program_id} "
                 f"date={date_str}",
@@ -723,7 +721,7 @@ class ProcessSessionTracker:
                 )
                 return result
 
-        except Exception as e:
+        except Exception:
             logging.error(
                 f"Failed to get monthly playtime: bottle_id={bottle_id} program_id={program_id} "
                 f"year={year}",

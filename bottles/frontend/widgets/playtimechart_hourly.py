@@ -166,8 +166,6 @@ class PlaytimeChartHourly(Gtk.Box):
 
         spacing = min_spacing
 
-        # Calculate bar positions
-        total_bars_width = (num_bars * dynamic_bar_width) + ((num_bars - 1) * spacing)
         start_x = min_padding
         chart_width = available_chart_width
 
@@ -291,7 +289,6 @@ class PlaytimeChartHourly(Gtk.Box):
             return
 
         daily_data = self._chart_data["daily_data"]
-        grid_max_hours = self._chart_data["grid_max_hours"]
         grid_max_minutes = self._chart_data["grid_max_minutes"]
 
         # Recalculate bar positions based on actual width
