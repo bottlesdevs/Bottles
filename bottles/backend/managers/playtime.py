@@ -26,6 +26,7 @@ SCHEMA_USER_VERSION = 1
 
 class PlaytimeTotalsDict(TypedDict):
     """Type definition for playtime totals dictionary."""
+
     bottle_id: str
     program_id: str
     program_name: str
@@ -52,27 +53,27 @@ def _utc_now_seconds() -> int:
 def _normalize_path_to_windows(bottle_path: str, program_path: str) -> str:
     """
     Normalize a program path to Windows format for portable program_id hashing.
-    
+
     This ensures playtime data persists across machines and home directory changes.
     Copied from WinePath.to_windows(native=True) to avoid needing a BottleConfig object.
-    
+
     Args:
         bottle_path: Full path to the bottle (e.g., /home/user/.local/share/bottles/MyBottle)
         program_path: Program path (can be Unix or Windows format)
-    
+
     Returns:
         Windows-format path (e.g., C:\\Program Files\\game.exe)
     """
-    
+
     # Already Windows format? (copied from WinePath.is_windows)
     if ":" in program_path or "\\" in program_path:
         return program_path
-    
+
     # Convert Unix to Windows - copied from WinePath.to_windows(native=True)
     # BUT: we can't rely on bottle_path matching the path prefix exactly,
     # so we extract the drive letter and everything after it generically
     path = program_path
-    
+
     if "/drive_" in path:
         # Extract drive letter and path after drive_X/
         # Use case-insensitive search but preserve original path case
@@ -91,7 +92,7 @@ def _normalize_path_to_windows(bottle_path: str, program_path: str) -> str:
     else:
         # Just convert slashes
         path = path.replace("/", "\\")
-    
+
     # Clean path (copied from WinePath.__clean_path)
     return path.replace("\n", " ").replace("\r", " ").replace("\t", " ").strip()
 
@@ -99,20 +100,20 @@ def _normalize_path_to_windows(bottle_path: str, program_path: str) -> str:
 def _compute_program_id(bottle_id: str, bottle_path: str, program_path: str) -> str:
     """
     Compute a stable program identifier from bottle and program info.
-    
+
     Normalizes paths to Windows format for portability across machines.
     """
     normalized_path = _normalize_path_to_windows(bottle_path, program_path)
     combined = f"{bottle_id}:{normalized_path}".encode("utf-8")
     program_id = hashlib.sha1(combined).hexdigest()
-    
+
     # Debug logging to track normalization
     if program_path != normalized_path:
         logging.debug(
             f"Path normalized: '{program_path}' -> '{normalized_path}' "
             f"(bottle_path={bottle_path}) -> program_id={program_id}"
         )
-    
+
     return program_id
 
 
@@ -259,7 +260,6 @@ class ProcessSessionTracker:
         except Exception:
             pass
 
-    # Public API
     def start_session(
         self,
         *,
@@ -344,13 +344,16 @@ class ProcessSessionTracker:
                     )
                     break
                 except sqlite3.IntegrityError as exc:
-                    if "UNIQUE constraint failed: sessions.bottle_id, sessions.program_id, sessions.started_at" not in str(exc):
+                    if (
+                        "UNIQUE constraint failed: sessions.bottle_id, sessions.program_id, sessions.started_at"
+                        not in str(exc)
+                    ):
                         raise
                     retries += 1
                     if retries > 5:
                         raise
 
-            session_id = int(cur.lastrowid)
+            session_id = int(cur.lastrowid) if cur.lastrowid is not None else 0
             self._conn.commit()
 
             # Track in-memory after successful commit
@@ -388,7 +391,6 @@ class ProcessSessionTracker:
                 logging.error(f"mark_exit: session {session_id} not found")
                 return
             started_at = int(row[0])
-            last_seen = int(row[1])
             bottle_id = str(row[2])
             program_id = str(row[3])
 
@@ -432,9 +434,8 @@ class ProcessSessionTracker:
         if not rows:
             return
 
-        now = _utc_now_seconds()
         with self._lock:
-            for (sid, started_at, last_seen, bottle_id, program_id) in rows:
+            for sid, started_at, last_seen, bottle_id, program_id in rows:
                 end_ts = int(last_seen)
                 duration = max(0, end_ts - int(started_at))
                 cur.execute(
@@ -452,7 +453,6 @@ class ProcessSessionTracker:
         self._conn.commit()
         logging.info(f"Recovered {len(rows)} running sessions -> forced at last_seen")
 
-    # Internals
     def _heartbeat_loop(self) -> None:
         while not self._stop_event.wait(self.heartbeat_interval):
             try:
@@ -486,7 +486,9 @@ class ProcessSessionTracker:
                 )
             self._conn.commit()
 
-    def _update_totals(self, *, bottle_id: str, program_id: str, cur: Optional[sqlite3.Cursor] = None) -> None:
+    def _update_totals(
+        self, *, bottle_id: str, program_id: str, cur: Optional[sqlite3.Cursor] = None
+    ) -> None:
         cur = cur or self._conn.cursor()
         # Compute aggregate for this program from sessions that are not running
         cur.execute(
@@ -506,7 +508,14 @@ class ProcessSessionTracker:
         row = cur.fetchone()
         if not row:
             return
-        bottle_name, program_name, program_path, total_seconds, sessions_count, last_played = row
+        (
+            bottle_name,
+            program_name,
+            program_path,
+            total_seconds,
+            sessions_count,
+            last_played,
+        ) = row
 
         cur.execute(
             """
@@ -640,3 +649,377 @@ class ProcessSessionTracker:
                 }
                 for row in rows
             ]
+
+    def get_weekly_playtime(
+        self, bottle_id: str, program_id: str, week_offset: int = 0
+    ) -> list[int]:
+        """
+        Get playtime aggregated by day of week for a specific week.
+
+        Args:
+            bottle_id: Bottle identifier
+            program_id: Program identifier (SHA1 hash of bottle_id:program_path)
+            week_offset: Week offset from current week (0=current, -1=last week, -2=two weeks ago, etc.)
+
+        Returns:
+            List of 7 integers representing minutes played per day, indexed by day of week.
+            Index 0=Sunday, 1=Monday, 2=Tuesday, 3=Wednesday, 4=Thursday, 5=Friday, 6=Saturday.
+            Returns [0, 0, 0, 0, 0, 0, 0] if tracking is disabled or no data found.
+
+        Example:
+            # Get current week's playtime
+            weekly_data = tracker.get_weekly_playtime("bottle1", "abc123def", 0)
+            # Result: [120, 45, 0, 90, 180, 240, 60]  # minutes per day Sun-Sat
+
+            # Get last week's playtime
+            last_week = tracker.get_weekly_playtime("bottle1", "abc123def", -1)
+        """
+        if not self.enabled:
+            logging.debug(
+                "Playtime tracking disabled; get_weekly_playtime returns zeros"
+            )
+            return [0] * 7
+
+        try:
+            with self._lock:
+                cur = self._conn.cursor()
+
+                # Calculate week boundaries using SQLite date functions
+                # 'weekday 0' goes to next Sunday, so use '-7 days' to get to the start of current week
+                # Then add offset*7 to shift to the target week
+                cur.execute(
+                    """
+                    SELECT 
+                        CAST(strftime('%w', started_at, 'unixepoch', 'localtime') AS INTEGER) as day_of_week,
+                        SUM(duration_seconds) as total_seconds
+                    FROM sessions
+                    WHERE 
+                        bottle_id = ? AND 
+                        program_id = ? AND 
+                        status != 'running' AND
+                        date(started_at, 'unixepoch', 'localtime') >= date('now', 'weekday 0', '-7 days', ? || ' days') AND
+                        date(started_at, 'unixepoch', 'localtime') < date('now', 'weekday 0', '-7 days', ? || ' days')
+                    GROUP BY day_of_week
+                """,
+                    (
+                        bottle_id,
+                        program_id,
+                        str(week_offset * 7),
+                        str((week_offset + 1) * 7),
+                    ),
+                )
+
+                # Build result array (7 days, initialized to 0)
+                result = [0] * 7
+                for row in cur.fetchall():
+                    day_of_week = int(row[0])  # 0=Sunday, 6=Saturday
+                    total_seconds = int(row[1] or 0)
+                    result[day_of_week] = total_seconds // 60  # Convert to minutes
+
+                logging.debug(
+                    f"Weekly playtime: bottle_id={bottle_id} program_id={program_id} "
+                    f"week_offset={week_offset} result={result}"
+                )
+                return result
+
+        except Exception:
+            logging.error(
+                f"Failed to get weekly playtime: bottle_id={bottle_id} program_id={program_id} "
+                f"week_offset={week_offset}",
+                exc_info=True,
+            )
+            return [0] * 7
+
+    def get_daily_playtime(
+        self, bottle_id: str, program_id: str, date_str: str
+    ) -> list[int]:
+        """
+        Get playtime aggregated by hour of day (24-hour breakdown) for a specific date.
+
+        Args:
+            bottle_id: Bottle identifier
+            program_id: Program identifier (SHA1 hash of bottle_id:program_path)
+            date_str: Date in 'YYYY-MM-DD' format (e.g., '2025-11-20')
+
+        Returns:
+            List of 24 integers representing minutes played per hour.
+            Index 0=00:00-00:59, 1=01:00-01:59, ..., 23=23:00-23:59.
+            Returns [0]*24 if tracking is disabled or no data found.
+
+        Example:
+            # Get playtime for November 20, 2025, broken down by hour
+            hourly_data = tracker.get_daily_playtime("bottle1", "abc123def", "2025-11-20")
+            # Result: [0, 0, 0, 0, 0, 0, 0, 0, 120, 45, 0, 0, 90, 30, 180, 240, 60, 0, 0, 0, 0, 0, 0, 0]
+        """
+        if not self.enabled:
+            logging.debug(
+                "Playtime tracking disabled; get_daily_playtime returns zeros"
+            )
+            return [0] * 24
+
+        try:
+            with self._lock:
+                cur = self._conn.cursor()
+
+                # Get all sessions for the specific date
+                # We need to split sessions that span multiple hours
+                cur.execute(
+                    """
+                    SELECT 
+                        started_at,
+                        ended_at
+                    FROM sessions
+                    WHERE 
+                        bottle_id = ? AND 
+                        program_id = ? AND 
+                        status != 'running' AND
+                        date(started_at, 'unixepoch', 'localtime') = ?
+                """,
+                    (bottle_id, program_id, date_str),
+                )
+
+                # Initialize 24-hour vector (in minutes, as floats for precision)
+                hourly_minutes = [0.0] * 24
+
+                # Process each session
+                for row in cur.fetchall():
+                    started_at = int(row[0])
+                    ended_at = int(row[1])
+
+                    # Iterate through the session, distributing time across hours
+                    current_timestamp = started_at
+
+                    while current_timestamp < ended_at:
+                        # Calculate which hour we're in
+                        from datetime import datetime
+
+                        dt = datetime.fromtimestamp(current_timestamp)
+                        hour = dt.hour
+
+                        # Calculate end of current hour
+                        next_hour = (
+                            datetime(
+                                dt.year, dt.month, dt.day, dt.hour, 59, 59
+                            ).timestamp()
+                            + 1
+                        )
+
+                        # Calculate time spent in this hour (in seconds)
+                        time_in_hour_seconds = (
+                            min(ended_at, next_hour) - current_timestamp
+                        )
+
+                        # Convert to minutes and add to the hour bucket
+                        hourly_minutes[hour] += time_in_hour_seconds / 60.0
+
+                        # Move to the start of next hour
+                        current_timestamp = next_hour
+
+                # Convert float minutes to integers for the result
+                result = [int(minutes) for minutes in hourly_minutes]
+
+                logging.debug(
+                    f"Daily playtime: bottle_id={bottle_id} program_id={program_id} "
+                    f"date={date_str} result={result}"
+                )
+                return result
+
+        except Exception:
+            logging.error(
+                f"Failed to get daily playtime: bottle_id={bottle_id} program_id={program_id} "
+                f"date={date_str}",
+                exc_info=True,
+            )
+            return [0] * 24
+
+    def get_monthly_playtime(
+        self, bottle_id: str, program_id: str, year: int
+    ) -> list[int]:
+        """
+        Get playtime aggregated by month for a specific year.
+
+        Args:
+            bottle_id: Bottle identifier
+            program_id: Program identifier (SHA1 hash of bottle_id:program_path)
+            year: Year as integer (e.g., 2025)
+
+        Returns:
+            List of 12 integers representing minutes played per month.
+            Index 0=January, 1=February, ..., 11=December.
+            Returns [0]*12 if tracking is disabled or no data found.
+
+        Example:
+            # Get playtime for 2025, broken down by month
+            monthly_data = tracker.get_monthly_playtime("bottle1", "abc123def", 2025)
+            # Result: [120, 450, 800, 900, 1200, 1500, 2000, 1800, 1600, 1400, 1200, 1000]
+        """
+        if not self.enabled:
+            logging.debug(
+                "Playtime tracking disabled; get_monthly_playtime returns zeros"
+            )
+            return [0] * 12
+
+        try:
+            with self._lock:
+                cur = self._conn.cursor()
+
+                # Query sessions for the specific year, grouped by month
+                # strftime('%m', ...) returns month as 01-12
+                cur.execute(
+                    """
+                    SELECT 
+                        CAST(strftime('%m', started_at, 'unixepoch', 'localtime') AS INTEGER) as month,
+                        SUM(duration_seconds) as total_seconds
+                    FROM sessions
+                    WHERE 
+                        bottle_id = ? AND 
+                        program_id = ? AND 
+                        status != 'running' AND
+                        strftime('%Y', started_at, 'unixepoch', 'localtime') = ?
+                    GROUP BY month
+                """,
+                    (bottle_id, program_id, str(year)),
+                )
+
+                # Build result array (12 months, initialized to 0)
+                result = [0] * 12
+                for row in cur.fetchall():
+                    month = int(row[0])  # 1-12 from SQLite
+                    total_seconds = int(row[1] or 0)
+                    result[month - 1] = (
+                        total_seconds // 60
+                    )  # Convert to minutes, adjust to 0-11 indexing
+
+                logging.debug(
+                    f"Monthly playtime: bottle_id={bottle_id} program_id={program_id} "
+                    f"year={year} result={result}"
+                )
+                return result
+
+        except Exception:
+            logging.error(
+                f"Failed to get monthly playtime: bottle_id={bottle_id} program_id={program_id} "
+                f"year={year}",
+                exc_info=True,
+            )
+            return [0] * 12
+
+    def get_weekly_session_count(
+        self, bottle_id: str, program_id: str, week_offset: int = 0
+    ) -> int:
+        """
+        Get the number of sessions for a specific week.
+
+        Args:
+            bottle_id: Bottle identifier
+            program_id: Program identifier (SHA1 hash of bottle_id:program_path)
+            week_offset: Week offset from current week (0=current, -1=last week, etc.)
+
+        Returns:
+            Number of completed sessions in the specified week.
+        """
+        if not self.enabled:
+            return 0
+
+        try:
+            with self._lock:
+                cur = self._conn.cursor()
+                cur.execute(
+                    """
+                    SELECT COUNT(*)
+                    FROM sessions
+                    WHERE 
+                        bottle_id = ? AND 
+                        program_id = ? AND 
+                        status != 'running' AND
+                        date(started_at, 'unixepoch', 'localtime') >= date('now', 'weekday 0', '-7 days', ? || ' days') AND
+                        date(started_at, 'unixepoch', 'localtime') < date('now', 'weekday 0', '-7 days', ? || ' days')
+                """,
+                    (
+                        bottle_id,
+                        program_id,
+                        str(week_offset * 7),
+                        str((week_offset + 1) * 7),
+                    ),
+                )
+
+                return int(cur.fetchone()[0] or 0)
+        except Exception as e:
+            logging.error(f"Failed to get weekly session count: {e}", exc_info=True)
+            return 0
+
+    def get_daily_session_count(
+        self, bottle_id: str, program_id: str, date_str: str
+    ) -> int:
+        """
+        Get the number of sessions for a specific day.
+
+        Args:
+            bottle_id: Bottle identifier
+            program_id: Program identifier
+            date_str: Date in 'YYYY-MM-DD' format
+
+        Returns:
+            Number of completed sessions on the specified date.
+        """
+        if not self.enabled:
+            return 0
+
+        try:
+            with self._lock:
+                cur = self._conn.cursor()
+                cur.execute(
+                    """
+                    SELECT COUNT(*)
+                    FROM sessions
+                    WHERE 
+                        bottle_id = ? AND 
+                        program_id = ? AND 
+                        status != 'running' AND
+                        date(started_at, 'unixepoch', 'localtime') = ?
+                """,
+                    (bottle_id, program_id, date_str),
+                )
+
+                return int(cur.fetchone()[0] or 0)
+        except Exception as e:
+            logging.error(f"Failed to get daily session count: {e}", exc_info=True)
+            return 0
+
+    def get_yearly_session_count(
+        self, bottle_id: str, program_id: str, year: int
+    ) -> int:
+        """
+        Get the number of sessions for a specific year.
+
+        Args:
+            bottle_id: Bottle identifier
+            program_id: Program identifier
+            year: Year (e.g., 2025)
+
+        Returns:
+            Number of completed sessions in the specified year.
+        """
+        if not self.enabled:
+            return 0
+
+        try:
+            with self._lock:
+                cur = self._conn.cursor()
+                cur.execute(
+                    """
+                    SELECT COUNT(*)
+                    FROM sessions
+                    WHERE 
+                        bottle_id = ? AND 
+                        program_id = ? AND 
+                        status != 'running' AND
+                        strftime('%Y', started_at, 'unixepoch', 'localtime') = ?
+                """,
+                    (bottle_id, program_id, str(year)),
+                )
+
+                return int(cur.fetchone()[0] or 0)
+        except Exception as e:
+            logging.error(f"Failed to get yearly session count: {e}", exc_info=True)
+            return 0
