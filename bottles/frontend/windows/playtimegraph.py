@@ -147,11 +147,6 @@ class PlaytimeGraphDialog(Adw.Window):
             daily_data = self.__get_weekly_data()
             self.__render_chart(daily_data)
 
-            # Convert Python weekday (Mon=0) to SQL day_of_week (Sun=0)
-            today_index = (today.weekday() + 1) % 7
-            today_minutes = (
-                daily_data[today_index] if self.current_week_offset == 0 else 0
-            )
             period_minutes = sum(daily_data)
             period_avg_minutes = period_minutes // 7 if period_minutes > 0 else 0
             period_label = (
@@ -163,8 +158,6 @@ class PlaytimeGraphDialog(Adw.Window):
             hourly_data = self.__get_hourly_data()
             self.__render_chart(hourly_data)
 
-            # Calculate daily stats
-            today_minutes = sum(hourly_data) if self.current_week_offset == 0 else 0
             period_minutes = sum(hourly_data)
             # Average divides total time by number of hours with data (not zero)
             hours_with_data = sum(1 for minutes in hourly_data if minutes > 0)
@@ -178,7 +171,6 @@ class PlaytimeGraphDialog(Adw.Window):
             monthly_data = self.__get_monthly_data()
             self.__render_chart(monthly_data)
 
-            today_minutes = 0
             period_minutes = sum(monthly_data)
             period_avg_minutes = period_minutes // 12 if period_minutes > 0 else 0
             period_label = (
@@ -186,7 +178,31 @@ class PlaytimeGraphDialog(Adw.Window):
             )
             avg_label = _("Monthly Average: {}")
 
-        self.label_today_time.set_label(self.__format_time(today_minutes))  # type: ignore
+        # Always get TODAY's playtime regardless of which period is being viewed
+        today_minutes = 0
+        if self.bottle_id and self.program_id:
+            service = PlaytimeService(self.parent.manager)
+            date_str = today.strftime("%Y-%m-%d")
+            hourly_data = service.get_hourly_data(
+                bottle_id=self.bottle_id,
+                program_id=self.program_id,
+                date_str=date_str,
+            )
+            today_minutes = sum(hourly_data)
+
+        # Check if there's sub-minute playtime for today
+        has_sub_minute_playtime = False
+        if today_minutes == 0 and self.bottle_id and self.program_id:
+            service = PlaytimeService(self.parent.manager)
+            date_str = today.strftime("%Y-%m-%d")
+            session_count = service.get_daily_session_count(
+                bottle_id=self.bottle_id,
+                program_id=self.program_id,
+                date_str=date_str,
+            )
+            has_sub_minute_playtime = session_count > 0
+
+        self.label_today_time.set_label(self.__format_time(today_minutes, allow_less_than_minute=has_sub_minute_playtime))  # type: ignore
 
         self.label_week_time.set_label(self.__format_time(period_minutes))  # type: ignore
         self.label_week_label.set_label(period_label)  # type: ignore
@@ -321,8 +337,8 @@ class PlaytimeGraphDialog(Adw.Window):
             self._chart_monthly.set_monthly_data(data)
             self.chart_container.append(self._chart_monthly)  # type: ignore
 
-    def __format_time(self, minutes: int) -> str:
+    def __format_time(self, minutes: int, allow_less_than_minute: bool = False) -> str:
         """Format minutes into human-readable time string."""
         if minutes == 0:
-            return _("No Data")
+            return _("<1m") if allow_less_than_minute else _("No Data")
         return PlaytimeService.format_playtime(minutes * 60)

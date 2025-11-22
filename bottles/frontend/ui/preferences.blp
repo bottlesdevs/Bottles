@@ -68,6 +68,16 @@ template $PreferencesWindow: Adw.PreferencesWindow {
           valign: center;
         }
       }
+
+      Adw.ActionRow {
+        title: _("Playtime Tracking");
+        subtitle: _("Track how long programs run. Restart Bottles for changes to take effect.");
+        activatable-widget: switch_playtime;
+
+        Switch switch_playtime {
+          valign: center;
+        }
+      }
     }
 
     Adw.PreferencesGroup {
