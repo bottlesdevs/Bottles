@@ -504,29 +504,11 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 identifiable_runner["count"] += 1
 
     def populate_runners_list(self):
-        exp_soda = ComponentExpander(
-            "Soda", _("Based on Valve's Wine, includes Staging and Proton patches.")
-        )
-        exp_caffe = ComponentExpander(
-            "Caffe", _("Based on Wine upstream, includes Staging and Proton patches.")
-        )
-        exp_wine_ge = ComponentExpander(
-            "Wine GE",
-            _(
-                "Based on the most recent bleeding-edge Valve's Proton Experimental Wine, "
-                "includes Staging and custom patches. "
-                "This is meant to be used with non-steam games outside of Steam."
-            ),
-        )
         exp_kron4ek = ComponentExpander(
             "Kron4ek",
             _(
                 "Based on Wine upstream, Staging, Staging-TkG and Proton patchset optionally available."
             ),
-        )
-        exp_lutris = ComponentExpander("Lutris")
-        exp_vaniglia = ComponentExpander(
-            "Vaniglia", _("Based on Wine upstream, includes Staging patches.")
         )
         exp_proton_ge = ComponentExpander(
             "Proton GE",
@@ -540,37 +522,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
         exp_other_proton = ComponentExpander(_("Other Proton runners"))
 
         identifiable_wine_runners = [
-            {"prefix": "soda", "count": 0, "expander": exp_soda, "offline_runners": []},
-            {
-                "prefix": "caffe",
-                "count": 0,
-                "expander": exp_caffe,
-                "offline_runners": [],
-            },
-            {
-                "prefix": "vaniglia",
-                "count": 0,
-                "expander": exp_vaniglia,
-                "offline_runners": [],
-            },
-            {
-                "prefix": "wine-ge",
-                "count": 0,
-                "expander": exp_wine_ge,
-                "offline_runners": [],
-            },
             {
                 "prefix": "kron4ek",
                 "count": 0,
                 "expander": exp_kron4ek,
                 "offline_runners": [],
-            },
-            {
-                "prefix": "lutris",
-                "count": 0,
-                "expander": exp_lutris,
-                "offline_runners": [],
-            },
+            }
         ]
         identifiable_proton_runners = [
             {
