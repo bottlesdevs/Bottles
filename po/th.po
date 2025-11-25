@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-10-30 14:27+0000\n"
-"Last-Translator: Moji <moji11642@gmail.com>\n"
+"PO-Revision-Date: 2025-11-25 12:51+0000\n"
+"Last-Translator: Jiraroj Leelarattanawong <legendarybuilder@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/bottles/bottles/th/>"
 "\n"
 "Language: th\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -153,9 +153,8 @@ msgid "State {0} restored successfully!"
 msgstr "สถานะ [{0}] กู้คืนได้เรียบร้อยแล้ว!"
 
 #: bottles/backend/managers/versioning.py:155
-#, fuzzy
 msgid "Restoring state {} …"
-msgstr "กำลังอัปเดตสถานะ…"
+msgstr "กำลังกู้คืน {} …"
 
 #: bottles/backend/managers/versioning.py:162
 #, fuzzy
@@ -469,7 +468,7 @@ msgstr ""
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr "Dependencies"
+msgstr "การใช้งานร่วม"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 #, fuzzy
@@ -587,11 +586,11 @@ msgstr "เอกสาร"
 #: bottles/frontend/ui/details-installers.blp:61
 #: bottles/frontend/ui/window.blp:46
 msgid "Search"
-msgstr ""
+msgstr "ค้นหา"
 
 #: bottles/frontend/ui/details-installers.blp:9
 msgid "Search for Programs…"
-msgstr ""
+msgstr "ค้นหาโปรแกรม…"
 
 #: bottles/frontend/ui/details-installers.blp:15
 msgid ""
@@ -609,6 +608,7 @@ msgstr "ไม่พบตัวติดตั้ง"
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
+"ไม่สามารถเข้าถึงที่เก็บข้อมูลได้หรือไม่มีโปรแกรมติดตั้งใดที่เข้ากันได้กับขวดนี้"
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
@@ -620,7 +620,7 @@ msgstr "เอกสาร"
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52
 msgid "Name"
-msgstr ""
+msgstr "ชื่อ"
 
 #: bottles/frontend/ui/details-preferences.blp:11
 msgid "Components"
@@ -646,12 +646,12 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
-msgstr ""
+msgstr "กำลังอัปเดต DXVK กรุณารอ…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:266
 msgid "VKD3D"
-msgstr ""
+msgstr "วีเคดี3ดี (VKD3D)"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
@@ -659,7 +659,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
-msgstr ""
+msgstr "กำลังอัปเดต VKD3D กรุณารอ…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
@@ -673,7 +673,7 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
 msgid "LatencyFleX"
-msgstr "LatencyFleX"
+msgstr "ลาเทนซี่เฟล็กซ์ (LatencyFleX)"
 
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
@@ -2250,9 +2250,9 @@ msgstr "ซ่อนโปรแกรม"
 #: bottles/frontend/views/bottle_details.py:383
 #: bottles/frontend/widgets/library.py:156
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\"…"
-msgstr "เปิดด้วยเทอร์มินัล…"
+msgstr "กำลังเปิด \"{0}\"…"
 
 #: bottles/frontend/views/bottle_details.py:413
 msgid "Be Aware of Sandbox"
@@ -2425,9 +2425,9 @@ msgid "Run executable in \"{self.config.Name}\""
 msgstr ""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "เปิดด้วยเทอร์มินัล…"
+msgstr "กำลังเปิด \"{0}\" ใน \"{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2587,14 +2587,14 @@ msgstr "รีวิวสำหรับ {0}"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "เปิดด้วยเทอร์มินัล…"
+msgstr "กำลังหยุด \"{0}\"…"
 
 #: bottles/frontend/widgets/program.py:190
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
-msgstr "เปิดด้วยเทอร์มินัล"
+msgstr "กำลังเปิด \"{0}\" ด้วย Steam…"
 
 #: bottles/frontend/widgets/program.py:214
 #, fuzzy, python-brace-format
@@ -2707,9 +2707,9 @@ msgid "Performing final checks…"
 msgstr ""
 
 #: bottles/frontend/windows/installer.py:117
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing {0}…"
-msgstr "กำลังติดตั้ง…"
+msgstr "กำลังติดตั้ง {0}…"
 
 #: bottles/frontend/windows/installer.py:119
 #, python-brace-format
