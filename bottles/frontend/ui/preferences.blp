@@ -235,43 +235,45 @@ template $PreferencesWindow: Adw.PreferencesWindow {
     icon-name: "system-run-symbolic";
     title: _("Runners");
 
-    Stack installers_stack {
-      transition-type: crossfade;
+    Adw.PreferencesGroup {
+      Stack installers_stack {
+        transition-type: crossfade;
 
-      StackPage {
-        name: "installers_offline";
+        StackPage {
+          name: "installers_offline";
 
-        child: Adw.StatusPage {
-          icon-name: "network-error-symbolic";
-          title: _("You're offline :(");
-          vexpand: true;
-          hexpand: true;
-          description: _("Bottles is running in offline mode, so runners are not available.");
-        };
-      }
-
-      StackPage {
-        name: "installers_loading";
-
-        child: Adw.StatusPage {
-          vexpand: true;
-          hexpand: true;
-
-          Spinner installers_spinner {
-            valign: center;
-          }
-        };
-      }
-
-      StackPage {
-        name: "installers_list";
-
-        child: Adw.PreferencesPage {
-          Adw.PreferencesGroup list_runners {
+          child: Adw.StatusPage {
+            icon-name: "network-error-symbolic";
+            title: _("You're offline :(");
             vexpand: true;
             hexpand: true;
-          }
-        };
+            description: _("Bottles is running in offline mode, so runners are not available.");
+          };
+        }
+
+        StackPage {
+          name: "installers_loading";
+
+          child: Adw.StatusPage {
+            vexpand: true;
+            hexpand: true;
+
+            Spinner installers_spinner {
+              valign: center;
+            }
+          };
+        }
+
+        StackPage {
+          name: "installers_list";
+
+          child: Adw.PreferencesPage {
+            Adw.PreferencesGroup list_runners {
+              vexpand: true;
+              hexpand: true;
+            }
+          };
+        }
       }
     }
   }
@@ -280,172 +282,176 @@ template $PreferencesWindow: Adw.PreferencesWindow {
     icon-name: "folder-open-symbolic";
     title: _("Cache");
 
-    Stack cache_stack {
-      transition-type: crossfade;
+    Adw.PreferencesGroup {
+      Stack cache_stack {
+       transition-type: crossfade;
 
-      StackPage {
-        name: "cache_loading";
+       StackPage {
+         name: "cache_loading";
 
-        child: Adw.StatusPage {
-          vexpand: true;
-          hexpand: true;
+         child: Adw.StatusPage {
+           vexpand: true;
+           hexpand: true;
 
-          Spinner cache_spinner {
-            valign: center;
-          }
-        };
-      }
+           Spinner cache_spinner {
+             valign: center;
+           }
+         };
+       }
 
-      StackPage {
-        name: "cache_list";
+       StackPage {
+         name: "cache_list";
 
-        child: Adw.PreferencesPage {
-          Adw.PreferencesGroup {
-            title: _("Overview");
-            description: _("Manage cached files used to speed up downloads and bottle creation.");
+         child: Adw.PreferencesPage {
+           Adw.PreferencesGroup {
+             title: _("Overview");
+             description: _("Manage cached files used to speed up downloads and bottle creation.");
 
-            Adw.ActionRow row_cache_all {
-              title: _("All caches");
-              subtitle: _("Remove every cached download and template. Bottles will recreate them when required, which may take longer.");
-              activatable-widget: btn_cache_clear_all;
+             Adw.ActionRow row_cache_all {
+               title: _("All caches");
+               subtitle: _("Remove every cached download and template. Bottles will recreate them when required, which may take longer.");
+               activatable-widget: btn_cache_clear_all;
 
-              [suffix]
-              Box {
-                spacing: 6;
+               [suffix]
+               Box {
+                 spacing: 6;
 
-                Label label_cache_total_size {
-                  xalign: 1.0;
-                  styles [
-                    "dim-label"
-                    ]
-                }
+                 Label label_cache_total_size {
+                   xalign: 1.0;
+                   styles [
+                     "dim-label"
+                     ]
+                 }
 
-                Button btn_cache_clear_all {
-                  label: _("_Delete All");
-                  use-underline: true;
-                  valign: center;
+                 Button btn_cache_clear_all {
+                   label: _("_Delete All");
+                   use-underline: true;
+                   valign: center;
 
-                  styles [
-                    "destructive-action",
-                  ]
-                }
-              }
-            }
-          }
+                   styles [
+                     "destructive-action",
+                   ]
+                 }
+               }
+             }
+           }
 
-          Adw.PreferencesGroup {
-            title: _("Temp files");
-            description: _("Includes archives and extracted resources downloaded for runners, dependencies, and installers.");
+           Adw.PreferencesGroup {
+             title: _("Temp files");
+             description: _("Includes archives and extracted resources downloaded for runners, dependencies, and installers.");
 
-            Adw.ActionRow row_cache_temp {
-              title: _("Temp cache");
-              subtitle: _("Clearing this cache can increase download times because resources must be fetched again.");
-              activatable-widget: btn_cache_clear_temp;
+             Adw.ActionRow row_cache_temp {
+               title: _("Temp cache");
+               subtitle: _("Clearing this cache can increase download times because resources must be fetched again.");
+               activatable-widget: btn_cache_clear_temp;
 
-              [suffix]
-              Box {
-                spacing: 6;
+               [suffix]
+               Box {
+                 spacing: 6;
 
-                Label label_cache_temp_size {
-                  xalign: 1.0;
-                  styles [
-                    "dim-label"
-                    ]
-                }
+                 Label label_cache_temp_size {
+                   xalign: 1.0;
+                   styles [
+                     "dim-label"
+                     ]
+                 }
 
-                Button btn_cache_clear_temp {
-                  label: _("_Delete");
-                  use-underline: true;
-                  valign: center;
+                 Button btn_cache_clear_temp {
+                   label: _("_Delete");
+                   use-underline: true;
+                   valign: center;
 
-                  styles [
-                    "destructive-action",
-                  ]
-                }
-              }
-            }
-          }
+                   styles [
+                     "destructive-action",
+                   ]
+                 }
+               }
+             }
+           }
 
-          Adw.PreferencesGroup template_cache_group {
-            title: _("Prefix templates");
-            description: _("These caches store ready-made prefixes for each environment so new bottles start faster.");
+           Adw.PreferencesGroup template_cache_group {
+             title: _("Prefix templates");
+             description: _("These caches store ready-made prefixes for each environment so new bottles start faster.");
 
-            Adw.ActionRow row_cache_templates_all {
-              title: _("All prefix templates");
-              subtitle: _("Remove every cached prefix template. Bottles will rebuild them when a new bottle is created, which may take longer.");
-              activatable-widget: btn_cache_clear_templates;
+             Adw.ActionRow row_cache_templates_all {
+               title: _("All prefix templates");
+               subtitle: _("Remove every cached prefix template. Bottles will rebuild them when a new bottle is created, which may take longer.");
+               activatable-widget: btn_cache_clear_templates;
 
-              [suffix]
-              Box {
-                spacing: 6;
+               [suffix]
+               Box {
+                 spacing: 6;
 
-                Label label_cache_templates_size {
-                  xalign: 1.0;
-                  styles [
-                    "dim-label"
-                    ]
-                }
+                 Label label_cache_templates_size {
+                   xalign: 1.0;
+                   styles [
+                     "dim-label"
+                     ]
+                 }
 
-                Button btn_cache_clear_templates {
-                  label: _("_Delete");
-                  use-underline: true;
-                  valign: center;
+                 Button btn_cache_clear_templates {
+                   label: _("_Delete");
+                   use-underline: true;
+                   valign: center;
 
-                  styles [
-                    "destructive-action",
-                  ]
-                }
-              }
-            }
-          }
-        };
-      }
-    }
+                   styles [
+                     "destructive-action",
+                   ]
+                 }
+               }
+             }
+           }
+         };
+       }
+     }
+   }
   }
 
   Adw.PreferencesPage {
     icon-name: "applications-games-symbolic";
     title: _("DLL Components");
 
-    Stack dlls_stack {
-      transition-type: crossfade;
+    Adw.PreferencesGroup {
+      Stack dlls_stack {
+       transition-type: crossfade;
 
-      StackPage {
-        name: "dlls_offline";
+       StackPage {
+         name: "dlls_offline";
 
-        child: Adw.StatusPage {
-          icon-name: "network-error-symbolic";
-          title: _("You're offline :(");
-          vexpand: true;
-          hexpand: true;
-          description: _("Bottles is running in offline mode, so DLLs are not available.");
-        };
-      }
+         child: Adw.StatusPage {
+           icon-name: "network-error-symbolic";
+           title: _("You're offline :(");
+           vexpand: true;
+           hexpand: true;
+           description: _("Bottles is running in offline mode, so DLLs are not available.");
+         };
+       }
 
-      StackPage {
-        name: "dlls_loading";
+       StackPage {
+         name: "dlls_loading";
 
-        child: Adw.StatusPage {
-          vexpand: true;
-          hexpand: true;
+         child: Adw.StatusPage {
+           vexpand: true;
+           hexpand: true;
 
-          Spinner dlls_spinner {
-            valign: center;
-          }
-        };
-      }
+           Spinner dlls_spinner {
+             valign: center;
+           }
+         };
+       }
 
-      StackPage {
-        name: "dlls_list";
+       StackPage {
+         name: "dlls_list";
 
-        child: Adw.PreferencesPage {
-          Adw.PreferencesGroup list_dlls {
-            vexpand: true;
-            hexpand: true;
-          }
-        };
-      }
-    }
+         child: Adw.PreferencesPage {
+           Adw.PreferencesGroup list_dlls {
+             vexpand: true;
+             hexpand: true;
+           }
+         };
+       }
+     }
+   }
   }
 
 }
