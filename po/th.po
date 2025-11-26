@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-25 21:55+0000\n"
+"PO-Revision-Date: 2025-11-27 05:01+0000\n"
 "Last-Translator: Jiraroj Leelarattanawong <legendarybuilder@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/bottles/bottles/th/>"
 "\n"
@@ -160,7 +160,7 @@ msgstr "ไม่พบสถานะ"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "State {} อยู่ในสถานะพร้อมใช้งาน"
 
 #: bottles/frontend/main.py:112
 msgid "Show version"
@@ -205,7 +205,7 @@ msgstr "บริจาค"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "ไลบรารีภายนอก และขอขอบคุณเป็นพิเศษ"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
@@ -213,19 +213,17 @@ msgstr "ได้รับการสนับสนุนและทุนส
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
-#, fuzzy
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "© 2017-2025 - ผู้พัฒนา Bottles"
+msgstr "สงวนลิขสิทธิ์ © 2017 ทีมพัฒนา Bottles"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
-#, fuzzy
 msgid "Bottles Developers"
-msgstr "© 2017-2022 - ผู้พัฒนา Bottles"
+msgstr "ทีมพัฒนา Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "เครดิตผู้แปล"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -238,7 +236,6 @@ msgid "Uninstall"
 msgstr "ถอนการติดตั้ง"
 
 #: bottles/frontend/ui/component-entry.blp:23
-#, fuzzy
 msgid "Browse Files"
 msgstr "เรียกดูไฟล์"
 
@@ -247,6 +244,8 @@ msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
+"การติดตั้งล้มเหลว อาจเกิดจากข้อผิดพลาดของที่เก็บข้อมูล การดาวน์โหลดไม่ครบถ้วน "
+"หรือการตรวจสอบความถูกต้องไม่ตรงกัน กดเพื่อลองอีกครั้ง"
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -262,7 +261,7 @@ msgstr "แสดง Manifest"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
-msgstr "สัญญาอนุญาต"
+msgstr "ลิขสิทธิ์"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
@@ -274,18 +273,16 @@ msgid "Report a Bug…"
 msgstr "รายงานบั๊ก…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
-#, fuzzy
 msgid "Dependency name"
-msgstr "Dependencies"
+msgstr "ชื่อส่วนที่เกี่ยวพันอยู่"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
-#, fuzzy
 msgid "Dependency description"
-msgstr "Dependencies"
+msgstr "รายละเอียด Dependency"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr ""
+msgstr "หมวดหมู่"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 #, fuzzy
@@ -297,11 +294,12 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"เกิดข้อผิดพลาดในการติดตั้ง รีสตาร์ท Bottles เพื่ออ่านรายงานข้อขัดข้อง "
+"หรือรันผ่านเทอร์มินัลเพื่ออ่านผลลัพธ์"
 
 #: bottles/frontend/ui/dependency-entry.blp:93
-#, fuzzy
 msgid "Dependency Menu"
-msgstr "Dependencies"
+msgstr "เมนู Dependency"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
@@ -318,7 +316,7 @@ msgstr "โคลนขวด…"
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
+msgstr "นี่คือที่เก็บ bottle สมบูรณ์ของคุณ รวมถึงไฟล์ส่วนตัวด้วย"
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
@@ -330,6 +328,7 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
+"นี่เป็นเพียงการกำหนดค่า bottle เท่านั้น ซึ่งเหมาะอย่างยิ่งหากคุณต้องการสร้างใหม่แต่ไม่มีไฟล์ส่วนตัว"
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
@@ -337,28 +336,26 @@ msgstr "ส่งออกการตั้งค่า…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
-#, fuzzy
 msgid "Show Hidden Programs"
-msgstr "แสดงโปรแกรม"
+msgstr "แสดงโปรแกรมที่ซ่อนไว้"
 
 #: bottles/frontend/ui/details-bottle.blp:49
-#, fuzzy
 msgid "Search for new programs"
-msgstr "แสดงโปรแกรม"
+msgstr "ค้นหาโปรแกรมใหม่"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
-msgstr "ลบขวด…"
+msgstr "ลบ Bottle…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "เมนูรอง"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr ""
+msgstr "บังคับหยุดทุกขั้นตอน"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
@@ -379,20 +376,19 @@ msgstr "รีบูต"
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr ""
+msgstr "ตัวเลือกการเปิดตัว"
 
 #: bottles/frontend/ui/details-bottle.blp:135
-#, fuzzy
 msgid "Run in Terminal"
-msgstr "เปิดด้วยเทอร์มินัล…"
+msgstr "รันใน Terminal"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "หย่อนไฟล์เพื่อดำเนินการ"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
-msgstr "ขวดของฉัน"
+msgstr "Bottle ของฉัน"
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
@@ -438,49 +434,49 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"คลิก \"เรียกใช้ไฟล์ปฏิบัติการ...\" เพื่อรันไฟล์ปฏิบัติการ, คลิก \"เพิ่มทางลัด...\" "
+"เพื่อเพิ่มไฟล์ปฏิบัติการลงในรายการโปรแกรม หรือคลิก \"ติดตั้งโปรแกรม...\" "
+"เพื่อติดตั้งโปรแกรมที่คัดสรรโดยชุมชน"
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
-msgstr ""
+msgstr "เพิ่มทางลัด…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
-#, fuzzy
 msgid "Install Programs…"
-msgstr "กำลังติดตั้ง…"
+msgstr "ติดตั้งโปรแกรม…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
-msgstr ""
+msgstr "ตัวเลือก"
 
 #: bottles/frontend/ui/details-bottle.blp:350
 #: bottles/frontend/views/details.py:141
-#, fuzzy
 msgid "Settings"
-msgstr "กำลังนำค่าเริ่มต้นของ CMD มาใช้…"
+msgstr "การตั้งค่า"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr ""
+msgstr "การกำหนดการตั้งค่า bottle"
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr "การใช้งานร่วม"
+msgstr "Dependencies"
 
 #: bottles/frontend/ui/details-bottle.blp:361
-#, fuzzy
 msgid "Install dependencies for programs."
-msgstr "กำลังติดตั้ง Dependency: %s…"
+msgstr "ติดตั้ง dependencies สำหรับโปรแกรม"
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:377
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "สแนปช็อต"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
-msgstr ""
+msgstr "สร้างและจัดการสถานะ bottle"
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
@@ -490,7 +486,7 @@ msgstr "ตัวจัดการงาน"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr ""
+msgstr "จัดโปรแกรมที่ใช้งานอยู่"
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
@@ -502,11 +498,11 @@ msgstr "คอมมานด์ไลน์"
 
 #: bottles/frontend/ui/details-bottle.blp:395
 msgid "Run commands inside the Bottle."
-msgstr "รันคำสั่งในขวด"
+msgstr "รันคำสั่งภายใน Bottle"
 
 #: bottles/frontend/ui/details-bottle.blp:404
 msgid "Registry Editor"
-msgstr "ตัวแก้ Registry"
+msgstr "ตัวแก้ไข Registry"
 
 #: bottles/frontend/ui/details-bottle.blp:405
 msgid "Edit the internal registry."
@@ -514,21 +510,20 @@ msgstr "แก้ไข Registry ภายใน"
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr ""
+msgstr "เครื่อง Legacy Wine"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
-msgstr ""
+msgstr "ตัวสำรวจ"
 
 #: bottles/frontend/ui/details-bottle.blp:435
-#, fuzzy
 msgid "Debugger"
-msgstr "ดีบั๊ก"
+msgstr "ตัวแก้ไขบั๊ก"
 
 #: bottles/frontend/ui/details-bottle.blp:444
 #: bottles/frontend/ui/importer.blp:69 bottles/frontend/ui/new.blp:145
 msgid "Configuration"
-msgstr ""
+msgstr "การกำหนดค่า"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
@@ -540,17 +535,18 @@ msgstr "แผงควบคุม"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr "ค้นหา Dependencies…"
+msgstr "ค้นหา dependencies…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:178
 #: bottles/frontend/ui/preferences.blp:235
 msgid "You're offline :("
-msgstr ""
+msgstr "คุณออฟไลน์อยู่ :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr ""
+"Bottles กำลังทำงานในโหมดออฟไลน์ ดังนั้นจึงไม่สามารถใช้งาน dependencies ได้"
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -559,19 +555,22 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Dependencies คือทรัพยากรที่ช่วยเพิ่มความเข้ากันได้ของซอฟต์แวร์ Windows\n"
+"\n"
+"ไฟล์ในหน้านี้จัดทำขึ้นภายนอกภายใต้ลิขสิทธิ์ที่เป็นกรรมสิทธิ์ การติดตั้งไฟล์เหล่านี้ "
+"หมายความว่าคุณยอมรับข้อกำหนดสิทธิ์การใช้งานที่เกี่ยวข้อง"
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
-msgstr ""
+msgstr "แจ้งปัญหา หรือ dependency ที่หายไป"
 
 #: bottles/frontend/ui/details-dependencies.blp:77
 msgid "Report Missing Dependency"
-msgstr ""
+msgstr "แจ้ง Dependency ที่หายไป"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
-#, fuzzy
 msgid "Read Documentation."
-msgstr "เอกสาร"
+msgstr "อ่านเอกสารข้อมูล"
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
@@ -596,6 +595,10 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"ติดตั้งโปรแกรมที่คัดสรรโดยชุมชนของเรา\n"
+"\n"
+"ไฟล์ในหน้านี้จัดทำขึ้นภายนอกภายใต้ลิขสิทธิ์ที่เป็นกรรมสิทธิ์ การติดตั้งไฟล์เหล่านี้ "
+"หมายความว่าคุณยอมรับข้อกำหนดสิทธิ์การใช้งานที่เกี่ยวข้อง"
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
@@ -605,14 +608,13 @@ msgstr "ไม่พบตัวติดตั้ง"
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
-"ไม่สามารถเข้าถึงที่เก็บข้อมูลได้หรือไม่มีโปรแกรมติดตั้งใดที่เข้ากันได้กับขวดนี้"
+"ไม่สามารถเข้าถึงที่เก็บข้อมูลได้หรือไม่มีตัวติดตั้งที่เข้ากันได้กับ bottle นี้"
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
 #: bottles/frontend/ui/preferences.blp:81
-#, fuzzy
 msgid "Read Documentation"
-msgstr "เอกสาร"
+msgstr "อ่านเอกสารข้อมูล"
 
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52
@@ -621,25 +623,25 @@ msgstr "ชื่อ"
 
 #: bottles/frontend/ui/details-preferences.blp:11
 msgid "Components"
-msgstr ""
+msgstr "ส่วนประกอบ"
 
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "เวอร์ชันของเลเยอร์ความเข้ากันได้ของ Wine"
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "กำลังอัปเดต Runner และส่วนประกอบ กรุณารอ…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
 msgid "DXVK"
-msgstr ""
+msgstr "ดีเอ็กซ์วีเค (DXVK)"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "ปรับปรุงความเข้ากันได้ของ Direct3D 8/9/10/11 โดยการแปลเป็น Vulkan"
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
@@ -652,7 +654,7 @@ msgstr "วีเคดี3ดี (VKD3D)"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "ปรับปรุงความเข้ากันได้ของ Direct3D 12 โดยการแปลเป็น Vulkan"
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
@@ -660,12 +662,12 @@ msgstr "กำลังอัปเดต VKD3D กรุณารอ…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
-msgstr ""
+msgstr "ดีเอ็กซ์วีเค เอ็นวีเอพีไอ (DXVK NVAPI)"
 
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr ""
+msgstr "กำลังอัปเดต DXVK-NVAPI กรุณารอ…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
@@ -674,96 +676,98 @@ msgstr "ลาเทนซี่เฟล็กซ์ (LatencyFleX)"
 
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
-msgstr ""
+msgstr "การเพิ่มการตอบสนอง สามารถตรวจพบได้โดยซอฟต์แวร์ป้องกันการโกงบางประเภท"
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
-msgstr ""
+msgstr "กำลังอัปเดต LatencyFleX กรุณารอ…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
-msgstr ""
+msgstr "การแสดงผล"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr ""
+msgstr "การเรียนรู้เชิงลึกแบบการสุ่มซูเปอร์"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"เพิ่มประสิทธิภาพโดยแลกกับภาพด้วย DXVK-NVAPI ใช้งานได้เฉพาะกับ GPU NVIDIA รุ่นใหม่เท่านั้น"
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "ความละเอียดสูง FidelityFX"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr ""
+msgstr "เพิ่มประสิทธิภาพโดยแลกกับภาพ ใช้งานได้บน Vulkan เท่านั้น"
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "จัดการการตั้งค่าความละเอียดสูง FidelityFX"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
-msgstr ""
+msgstr "กราฟิกแบบแยก"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
-msgstr ""
+msgstr "ใช้การ์ดจอแยกเพื่อเพิ่มประสิทธิภาพการทำงานโดยแลกกับการใช้พลังงาน"
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "เอฟเฟกต์หลังการประมวลผล"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
+"เพิ่มเอฟเฟกต์หลังการประมวลผลด้วยการใช้ vkBasalt ใช้งานได้บน Vulkan เท่านั้น"
 
 #: bottles/frontend/ui/details-preferences.blp:138
 msgid "Manage Post-Processing Layer settings"
-msgstr ""
+msgstr "การจัดการตั้งค่าเลเยอร์หลังการประมวลผล"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "จัดการวิธีการแสดงเกมบนหน้าจอโดยใช้ Gamescope"
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "การจัดการตั้งค่า Gamescope"
 
 #: bottles/frontend/ui/details-preferences.blp:171
 msgid "Advanced Display Settings"
-msgstr ""
+msgstr "การตั้งค่าการแสดงผลขั้นสูง"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
-msgstr ""
+msgstr "ประสิทธิภาพ"
 
 #: bottles/frontend/ui/details-preferences.blp:188
 msgid "Enable synchronization to increase performance of multicore processors."
-msgstr ""
+msgstr "เปิดใช้งานการซิงโครไนซ์เพื่อเพิ่มประสิทธิภาพของหน่วยประมวลผลหลายแกน"
 
 #: bottles/frontend/ui/details-preferences.blp:189
 msgid "Synchronization"
-msgstr ""
+msgstr "การซิงโครไนซ์"
 
 #: bottles/frontend/ui/details-preferences.blp:193
 msgid "System"
-msgstr ""
+msgstr "ระบบ"
 
 #: bottles/frontend/ui/details-preferences.blp:194
 msgid "Esync"
-msgstr ""
+msgstr "อีซิงก์ (Esync)"
 
 #: bottles/frontend/ui/details-preferences.blp:195
 msgid "Fsync"
-msgstr ""
+msgstr "เอฟซิงก์ (Fsync)"
 
 #: bottles/frontend/ui/details-preferences.blp:196
 msgid "Futex2"
@@ -771,48 +775,52 @@ msgstr "Futex2"
 
 #: bottles/frontend/ui/details-preferences.blp:202
 msgid "Monitor Performance"
-msgstr ""
+msgstr "ประสิทธิภาพของจอภาพ"
 
 #: bottles/frontend/ui/details-preferences.blp:203
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
+"แสดงข้อมูลการมอนิเตอร์ เช่น เฟรมเรต อุณหภูมิ การทำงานของ CPU/GPU และอื่น ๆ บน OpenGL "
+"และ Vulkan โดยใช้ MangoHud"
 
 #: bottles/frontend/ui/details-preferences.blp:211
 msgid "Feral GameMode"
-msgstr ""
+msgstr "โหมดเกมป่าเถื่อน"
 
 #: bottles/frontend/ui/details-preferences.blp:212
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
+"ใช้ชุดการปรับแต่งประสิทธิภาพกับอุปกรณ์ของคุณ เพื่อปรับปรุงประสิทธิภาพการเล่นเกม"
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
-msgstr ""
+msgstr "เตรียมโหลดไฟล์เกม"
 
 #: bottles/frontend/ui/details-preferences.blp:222
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"ปรับปรุงเวลาในการโหลดเมื่อเปิดเกมซ้ำหลายครั้ง เกมจะใช้เวลานานขึ้นในการเริ่มต้นครั้งแรก"
 
 #: bottles/frontend/ui/details-preferences.blp:226
 msgid "Manage vmtouch settings"
-msgstr ""
+msgstr "การจัดการตั้งค่า vmtouch"
 
 #: bottles/frontend/ui/details-preferences.blp:241
 msgid "OBS Game Capture"
-msgstr ""
+msgstr "การบันทึกเกม OBS"
 
 #: bottles/frontend/ui/details-preferences.blp:242
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr ""
+msgstr "สลับการบันทึกเกม OBS สำหรับโปรแกรม Vulkan และ OpenGL ทั้งหมด"
 
 #: bottles/frontend/ui/details-preferences.blp:251
 msgid "Compatibility"
-msgstr ""
+msgstr "ความเข้ากันได้"
 
 #: bottles/frontend/ui/details-preferences.blp:254
 msgid "Windows Version"
@@ -820,27 +828,27 @@ msgstr "เวอร์ชันของวินโดวส์"
 
 #: bottles/frontend/ui/details-preferences.blp:257
 msgid "Updating Windows version, please wait…"
-msgstr ""
+msgstr "กำลังอัปเดตเวอร์ชั่นวินโดวส์ กรุณารอ…"
 
 #: bottles/frontend/ui/details-preferences.blp:266
 msgid "Language"
-msgstr ""
+msgstr "ภาษา"
 
 #: bottles/frontend/ui/details-preferences.blp:267
 msgid "Choose the language to use with programs."
-msgstr ""
+msgstr "เลือกภาษาที่ใช้ในโปรแกรม"
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "แซนด์บ็อกซ์เฉพาะ"
 
 #: bottles/frontend/ui/details-preferences.blp:276
 msgid "Use a restricted/managed environment for this bottle."
-msgstr ""
+msgstr "ใช้สภาพแวดล้อมที่จำกัด/จัดการสำหรับ bottle นี้"
 
 #: bottles/frontend/ui/details-preferences.blp:279
 msgid "Manage the Sandbox Permissions"
-msgstr ""
+msgstr "การจัดการอนุญาตแซนด์บ็อกซ์"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/details-preferences.blp:295
@@ -852,6 +860,7 @@ msgid ""
 "Provide a bundle of extra libraries for more compatibility. Disable it if "
 "you run into issues."
 msgstr ""
+"จัดเตรียมชุดไลบรารีเสริมเพื่อความเข้ากันได้ที่มากขึ้น ปิดใช้งานหากพบปัญหา"
 
 #: bottles/frontend/ui/details-preferences.blp:306
 msgid "Steam Runtime"
@@ -862,11 +871,12 @@ msgid ""
 "Provide a bundle of extra libraries for more compatibility with Steam games. "
 "Disable it if you run into issues."
 msgstr ""
+"จัดเตรียมชุดไลบรารีเสริมเพื่อความเข้ากันได้ที่มากขึ้นด้วย Steam ปิดใช้งานหากพบปัญหา"
 
 #: bottles/frontend/ui/details-preferences.blp:315
 #: bottles/frontend/ui/dialog-launch-options.blp:83
 msgid "Working Directory"
-msgstr ""
+msgstr "ไดเรกทอรีการทำงาน"
 
 #: bottles/frontend/ui/details-preferences.blp:318
 #: bottles/frontend/ui/dialog-launch-options.blp:59
@@ -874,110 +884,105 @@ msgstr ""
 #: bottles/frontend/ui/new.blp:150 bottles/frontend/ui/new.blp:181
 #: bottles/frontend/ui/preferences.blp:136
 msgid "Reset to Default"
-msgstr ""
+msgstr "รีเซ็ตเป็นค่าเริ่มต้น"
 
 #: bottles/frontend/ui/details-preferences.blp:339
 #: bottles/frontend/ui/preferences.blp:157 bottles/frontend/views/new.py:78
 #: bottles/frontend/views/preferences.py:210
 msgid "(Default)"
-msgstr ""
+msgstr "(ค่าเริ่มต้น)"
 
 #: bottles/frontend/ui/details-preferences.blp:347
 #: bottles/frontend/ui/dialog-dll-overrides.blp:7
 #: bottles/frontend/ui/dialog-dll-overrides.blp:12
 msgid "DLL Overrides"
-msgstr ""
+msgstr "การแทนที่ DLL"
 
 #: bottles/frontend/ui/details-preferences.blp:357
 #: bottles/frontend/ui/dialog-env-vars.blp:20
 msgid "Environment Variables"
-msgstr ""
+msgstr "สภาพแวดล้อมตัวแปร"
 
 #: bottles/frontend/ui/details-preferences.blp:367
 msgid "Manage Drives"
-msgstr ""
+msgstr "การจัดการไดร์ฟ"
 
 #: bottles/frontend/ui/details-preferences.blp:381
-#, fuzzy
 msgid "Automatic Snapshots"
-msgstr "ระบบเวอร์ชัน"
+msgstr "สแน็ปช็อตอัตโนมัติ"
 
 #: bottles/frontend/ui/details-preferences.blp:382
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
-msgstr ""
+msgstr "สร้างสแน็ปช็อตอัตโนมัติก่อนการติดตั้งซอฟต์แวร์หรือเปลี่ยนแปลงการตั้งค่า"
 
 #: bottles/frontend/ui/details-preferences.blp:391
-#, fuzzy
 msgid "Compression"
-msgstr "เวอร์ชันของชิ้นส่วน"
+msgstr "การบีบอัด"
 
 #: bottles/frontend/ui/details-preferences.blp:392
 msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
-msgstr ""
+msgstr "บีบอัดสแนปช็อตเพื่อลดพื้นที่ ซึ่งจะทำให้การสร้างสแนปช็อตช้าลง"
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Use Exclusion Patterns"
-msgstr ""
+msgstr "ใช้รูปแบบการยกเว้น"
 
 #: bottles/frontend/ui/details-preferences.blp:402
 msgid "Exclude paths in snapshots."
-msgstr ""
+msgstr "ยกเว้นเส้นทางในสแนปช็อต"
 
 #: bottles/frontend/ui/details-preferences.blp:405
 msgid "Manage Patterns"
-msgstr ""
+msgstr "จัดการรูปแบบ"
 
 #: bottles/frontend/ui/details-taskmanager.blp:17
 msgid "Refresh"
-msgstr ""
+msgstr "รีเฟรช"
 
 #: bottles/frontend/ui/details-taskmanager.blp:22
 msgid "Stop process"
-msgstr ""
+msgstr "หยุดกระบวนการ"
 
 #: bottles/frontend/ui/details-versioning.blp:18
-#, fuzzy
 msgid "No Snapshots Found"
-msgstr "ไม่พบสถานะ"
+msgstr "ไม่พบสแนปช็อต"
 
 #: bottles/frontend/ui/details-versioning.blp:19
 msgid "Create your first snapshot to start saving states of your preferences."
-msgstr ""
+msgstr "สร้างสแนปช็อตแรกเพื่อเริ่มการบันทึกสถานะการตั้งค่าของคุณ"
 
 #: bottles/frontend/ui/details-versioning.blp:54
 msgid "A short comment"
-msgstr ""
+msgstr "ความคิดเห็นย่อ"
 
 #: bottles/frontend/ui/details-versioning.blp:58
 msgid "Save the bottle state."
-msgstr ""
+msgstr "บันทึกสถานะ bottle"
 
 #: bottles/frontend/ui/details-versioning.blp:78
-#, fuzzy
 msgid "Create new Snapshot"
-msgstr "โคลนขวด"
+msgstr "สร้างสแนปช็อตใหม่"
 
 #: bottles/frontend/ui/details.blp:16
 msgid "Details"
-msgstr ""
+msgstr "รายละเอียด"
 
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
 msgid "Go Back"
-msgstr ""
+msgstr "ย้อนกลับ"
 
 #: bottles/frontend/ui/details.blp:75
 msgid "Operations"
-msgstr ""
+msgstr "การดำเนินงาน"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:4
-#, fuzzy
 msgid "Select Bottle"
-msgstr "ลบขวด…"
+msgstr "เลือก Bottle"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:16
 #: bottles/frontend/ui/dialog-proton-alert.blp:16
@@ -993,14 +998,13 @@ msgstr "เลือก"
 #: bottles/frontend/ui/dialog-bottle-picker.blp:38
 #: bottles/frontend/ui/new.blp:9 bottles/frontend/ui/new.blp:49
 #: bottles/frontend/ui/window.blp:25
-#, fuzzy
 msgid "Create New Bottle"
-msgstr "โคลนขวด"
+msgstr "สร้าง Bottle ใหม่"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr ""
+msgstr "แจ้งรายงานปัญหา Bottles"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1012,20 +1016,20 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:600
 #: bottles/frontend/views/bottle_preferences.py:749
 #: bottles/frontend/views/preferences.py:201
-#, fuzzy
 msgid "_Cancel"
-msgstr "ยกเลิก"
+msgstr "_ยกเลิก"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
-#, fuzzy
 msgid "Send Report"
-msgstr "แสดงรายงาน"
+msgstr "ส่งรายงาน"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:44
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"Bottles หยุดการทำงานครั้งที่แล้ว "
+"กรุณากรอกรายงานพร้อมแนบข้อมูลติดตามย้อนกลับเพื่อช่วยเราระบุปัญหาที่ป้องกันไม่ให้เกิดขึ้นซ้ำอีก"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
 msgid ""
@@ -1034,18 +1038,22 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"เราพบรายงานที่คล้ายคลึงกัน (หรือเหมือนกันทุกประการ) อย่างน้อยหนึ่งรายงาน "
+"โปรดตรวจสอบอย่างละเอียดว่ารายงานดังกล่าวยังไม่มีการรายงานเข้ามาก่อนที่จะส่งรายงานฉบับใหม่ "
+"รายงานแต่ละฉบับต้องใช้ความพยายามของนักพัฒนาในการวินิจฉัย "
+"โปรดเคารพผลงานของพวกเขาและตรวจสอบให้แน่ใจว่าคุณไม่ได้โพสต์รายงานซ้ำซ้อน"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:89
 msgid "I still want to report."
-msgstr ""
+msgstr "ฉันยืนยันการส่งรายงาน"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:95
 msgid "Advanced options"
-msgstr ""
+msgstr "ตัวเลือกขั้นสูง"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:13
 msgid "Incomplete package"
-msgstr ""
+msgstr "แพ็กเกจไม่สมบูรณ์"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
 msgid ""
@@ -1053,69 +1061,75 @@ msgid ""
 "dependencies, please contact the package maintainer or use an official "
 "version."
 msgstr ""
+"Bottles เวอร์ชันนี้ดูเหมือนจะไม่ได้จัดเตรียม dependency ที่จำเป็นทั้งหมด "
+"โปรดติดต่อผู้ดูแลแพ็คเกจหรือใช้เวอร์ชันอย่างเป็นทางการ"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
-msgstr ""
+msgstr "ออก"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:11
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
+"ไลบรารีลิงก์ไดนามิกสามารถระบุให้เป็นแบบสร้างขึ้นในตัว (จัดทำโดย Wine) หรือแบบเนทีฟ "
+"(จัดทำโดยโปรแกรม) ได้"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
-msgstr ""
+msgstr "การแทรกแซงใหม่"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:21
 msgid "Overrides"
-msgstr ""
+msgstr "การแทรกแซง"
 
 #: bottles/frontend/ui/dialog-drives.blp:7
 msgid "Drives"
-msgstr ""
+msgstr "ไดร์ฟ"
 
 #: bottles/frontend/ui/dialog-drives.blp:24
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:…)."
 msgstr ""
+"เหล่านี้เป็นเส้นทางจากระบบในเครื่องของคุณที่ถูกจับคู่และรู้จักว่าเป็นอุปกรณ์โดยผู้ดำเนินการ "
+"(เช่น C: D:…)"
 
 #: bottles/frontend/ui/dialog-drives.blp:27
 msgid "Letter"
-msgstr ""
+msgstr "ตัวอักษร"
 
 #: bottles/frontend/ui/dialog-drives.blp:49
 msgid "Existing Drives"
-msgstr ""
+msgstr "ไดร์ฟที่มีอยู่"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:16
 msgid "Duplicate Bottle"
-msgstr "โคลนขวด"
+msgstr "สร้าง Bottle ซ้ำ"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:38
 msgid "Duplicate"
-msgstr ""
+msgstr "ทำซ้ำ"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:49
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr ""
+msgstr "ตั้งชื่อ Bottle ที่สร้างซ้ำ"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:69
 msgid "Duplicating…"
-msgstr ""
+msgstr "กำลังสร้างซ้ำ…"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:78
 #: bottles/frontend/ui/dialog-installer.blp:103
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:112
 #: bottles/frontend/views/new.py:177
 msgid "This could take a while."
-msgstr ""
+msgstr "ขั้นตอนนี้อาจใช้เวลาสักครู่"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:97
 msgid "Bottle Duplicated"
-msgstr ""
+msgstr "Bottle สร้างซ้ำเรียบร้อย"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:28
 msgid ""
