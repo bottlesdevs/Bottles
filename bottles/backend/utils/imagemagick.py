@@ -85,4 +85,4 @@ class ImageMagickUtils:
             cmd += " -flatten"
 
         cmd += f" '{dest}'"
-        subprocess.Popen(["bash", "-c", cmd])
+        subprocess.run(["bash", "-c", cmd])
