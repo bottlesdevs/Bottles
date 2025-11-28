@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-27 05:01+0000\n"
+"PO-Revision-Date: 2025-11-28 16:00+0000\n"
 "Last-Translator: Xusi Fons <xusi@keemail.me>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bottles/bottles/"
 "ca/>\n"
@@ -601,6 +601,8 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Instal·la programes seleccionats per la nostra comunitat.\n"
+"\n"
 "Els fitxers d’aquesta pàgina són proporcionats per tercers sota una "
 "llicència de propietat. En instal·lar-los, esteu d’acord amb els termes de "
 "llicència."
@@ -1631,7 +1633,7 @@ msgstr "Passos màxims de cerca"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:339
 msgid "Max Search Steps Diagonal"
-msgstr "Diagonal màxima de passos de cerca"
+msgstr "Passos màxims de cerca diagonal"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:366
 msgid "Max Corner Rounding"
@@ -1719,6 +1721,8 @@ msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"El màxim de passos de cerca diagonals SMAA especifica quants passos de cerca "
+"diagonals es produeixen al cercar vores."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:581
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
@@ -1766,7 +1770,6 @@ msgstr "Exploreu els fitxers"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
 msgid "Wine prefix name"
 msgstr "Nom del prefix del Wine"
 
@@ -1775,14 +1778,12 @@ msgid "Manager"
 msgstr "Gestor"
 
 #: bottles/frontend/ui/importer-entry.blp:38
-#, fuzzy
 msgid "This Wine prefix was already imported in Bottles."
-msgstr "Aquest prefix de Wine ja s'havia imporatat al Bottles."
+msgstr "Aquest prefix de Wine ja s'havia importat al Bottles."
 
 #: bottles/frontend/ui/importer.blp:22
-#, fuzzy
 msgid "Import a Bottle backup"
-msgstr "Importar copia de seguretat de Bottles"
+msgstr "Importeu una còpia de seguretat del Bottles"
 
 #: bottles/frontend/ui/importer.blp:28
 msgid "Search again for prefixes"
@@ -1793,14 +1794,13 @@ msgid "No Prefixes Found"
 msgstr "No s'ha trobat cap prefix"
 
 #: bottles/frontend/ui/importer.blp:39
-#, fuzzy
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
-"No s'ha trobat cap prefix de Lutris, PlayOnLinux, etc.\n"
+"No s'han trobat prefixes externs. Té el Bottles permís per accedir?\n"
 "Utilitzeu la icona de la part superior per importar una ampolla des d'una "
-"còpia de seguretat"
+"còpia de seguretat."
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
@@ -1827,23 +1827,20 @@ msgid "Unknown"
 msgstr "Desconegut"
 
 #: bottles/frontend/ui/installer-entry.blp:51
-#, fuzzy
 msgid "Install this Program"
-msgstr "Instal·la aquest programa"
+msgstr "Instal·leu aquest programa"
 
 #: bottles/frontend/ui/installer-entry.blp:69
-#, fuzzy
 msgid "Program Menu"
-msgstr "Nom del programa"
+msgstr "Menú del programa"
 
 #: bottles/frontend/ui/library-entry.blp:36
 msgid "No Thumbnail"
-msgstr ""
+msgstr "Cap miniatura"
 
 #: bottles/frontend/ui/library-entry.blp:57
-#, fuzzy
 msgid "Launch"
-msgstr "Opcions de llançament"
+msgstr "Llanceu"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1856,11 +1853,11 @@ msgstr "Nom de l'element"
 
 #: bottles/frontend/ui/library-entry.blp:132
 msgid "Remove from Library"
-msgstr "Suprimeix de la biblioteca"
+msgstr "Suprimeix de la Biblioteca"
 
 #: bottles/frontend/ui/library-entry.blp:143
 msgid "Stop"
-msgstr ""
+msgstr "Para"
 
 #: bottles/frontend/ui/library.blp:11
 #: bottles/frontend/windows/main_window.py:196
@@ -1880,7 +1877,6 @@ msgid "This bottle looks damaged."
 msgstr "Aquesta ampolla sembla malmesa."
 
 #: bottles/frontend/ui/list-entry.blp:55
-#, fuzzy
 msgid "Execute in this Bottle"
 msgstr "Executa en aquesta ampolla"
 
@@ -1911,9 +1907,8 @@ msgid "Bottles"
 msgstr "Bottles"
 
 #: bottles/frontend/ui/list.blp:49
-#, fuzzy
 msgid "Create New Bottle…"
-msgstr "Crea una ampolla nova"
+msgstr "Crea una ampolla nova…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
@@ -1936,9 +1931,8 @@ msgid "Browse"
 msgstr "Navega"
 
 #: bottles/frontend/ui/new.blp:32
-#, fuzzy
 msgid "C_reate"
-msgstr "Crea"
+msgstr "_Crea"
 
 #: bottles/frontend/ui/new.blp:53
 #, fuzzy
@@ -1946,28 +1940,24 @@ msgid "Bottle Name"
 msgstr "Nom de l'ampolla"
 
 #: bottles/frontend/ui/new.blp:75
-#, fuzzy
 msgid "_Application"
-msgstr "Aplicació"
+msgstr "_Aplicació"
 
 #: bottles/frontend/ui/new.blp:88
-#, fuzzy
 msgid "_Gaming"
-msgstr "Jocs"
+msgstr "_Jocs"
 
 #: bottles/frontend/ui/new.blp:101
-#, fuzzy
 msgid "C_ustom"
-msgstr "Personalitzat"
+msgstr "_Personalitzat"
 
 #: bottles/frontend/ui/new.blp:114
 msgid "Custom"
 msgstr "Personalitzat"
 
 #: bottles/frontend/ui/new.blp:118
-#, fuzzy
 msgid "Share User Directory"
-msgstr "Trieu un directori"
+msgstr "Compartiu el directori d'usuari"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1975,39 +1965,37 @@ msgid ""
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
 msgstr ""
+"Açò fa que el directori d'usuari siga visible a l'ampolla, exposant la "
+"informació personal al programari de Windows. Aquesta opció no es pot "
+"canviar una vegada creeu l'ampolla."
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
 msgstr "Arquitectura"
 
 #: bottles/frontend/ui/new.blp:137
-#, fuzzy
 msgid "32-bit should only be used if strictly necessary."
-msgstr "Recomanem utilitzar 32 bits només si és estrictament necessari."
+msgstr "Sols es deurien utilitzar 32 bits si és estrictament necessari."
 
 #: bottles/frontend/ui/new.blp:146
-#, fuzzy
 msgid "Import a custom configuration."
-msgstr "Exportar la configuració…"
+msgstr "Importa una configuració personalitzada."
 
 #: bottles/frontend/ui/new.blp:176
-#, fuzzy
 msgid "Bottle Directory"
-msgstr "Trieu un directori"
+msgstr "Directori de l'ampolla"
 
 #: bottles/frontend/ui/new.blp:177
 msgid "Directory that will contain the data of this bottle."
-msgstr ""
+msgstr "Directori que contindrà les dades d'aquesta ampolla."
 
 #: bottles/frontend/ui/new.blp:249
-#, fuzzy
 msgid "_Close"
-msgstr "Tanca"
+msgstr "_Tanca"
 
 #: bottles/frontend/ui/new.blp:281
-#, fuzzy
 msgid "This name is unavailable, please try another."
-msgstr "Aquesta funció no està disponible al vostre sistema."
+msgstr "Aquest nom no està disponible. Si us plau, proveu un altre."
 
 #: bottles/frontend/ui/onboard.blp:34
 msgid "Previous"
@@ -2019,9 +2007,8 @@ msgid "Welcome to Bottles"
 msgstr "Us donem la benvinguda al Bottles"
 
 #: bottles/frontend/ui/onboard.blp:60
-#, fuzzy
 msgid "Run Windows Software on Linux."
-msgstr "Executeu programari de Windows en Linux amb el Bottles!"
+msgstr "Executeu programari de Windows al Linux."
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/onboard.blp:65
@@ -2045,7 +2032,6 @@ msgid "We need a few more minutes to set everything up…"
 msgstr "Necessitem uns minuts més per configurar-ho tot…"
 
 #: bottles/frontend/ui/onboard.blp:105
-#, fuzzy
 msgid "All Ready!"
 msgstr "Tot a punt!"
 
@@ -2157,13 +2143,12 @@ msgid "Advanced"
 msgstr "Avançat"
 
 #: bottles/frontend/ui/preferences.blp:131
-#, fuzzy
 msgid "Bottles Directory"
-msgstr "Trieu un directori"
+msgstr "Directori d'ampolles"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
-msgstr ""
+msgstr "Directori que conté les dades de les vostres ampolles."
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
@@ -2172,6 +2157,8 @@ msgstr "Corredors"
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
 msgstr ""
+"Bottles s'està executant fora de línia, per tant els corredors no es troben "
+"disponibles."
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
@@ -2188,6 +2175,8 @@ msgstr "Components DLL"
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
 msgstr ""
+"Bottles s'està executant fora de línia, per tant els fitxers DLLs no es "
+"troben disponibles."
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
@@ -2227,12 +2216,10 @@ msgid "In early development."
 msgstr "En desenvolupament inicial."
 
 #: bottles/frontend/ui/program-entry.blp:19
-#, fuzzy
 msgid "Launch with Terminal"
-msgstr "Inicia amb un terminal"
+msgstr "Llanceu en un terminal"
 
 #: bottles/frontend/ui/program-entry.blp:25
-#, fuzzy
 msgid "Browse Path"
 msgstr "Explora el camí"
 
@@ -2241,9 +2228,8 @@ msgid "Change Launch Options…"
 msgstr "Canvia les opcions d’inici…"
 
 #: bottles/frontend/ui/program-entry.blp:43
-#, fuzzy
 msgid "Add to Library"
-msgstr "Afegeix a La meva biblioteca"
+msgstr "Afig a la Biblioteca"
 
 #: bottles/frontend/ui/program-entry.blp:47
 msgid "Add Desktop Entry"
@@ -2251,7 +2237,7 @@ msgstr "Afegeix una entrada d’escriptori"
 
 #: bottles/frontend/ui/program-entry.blp:51
 msgid "Add to Steam"
-msgstr "Afegeix a l’Steam"
+msgstr "Afig a l’Steam"
 
 #: bottles/frontend/ui/program-entry.blp:55
 msgid "Rename…"
@@ -2283,9 +2269,8 @@ msgid "State comment"
 msgstr "Comentari d'estat"
 
 #: bottles/frontend/ui/state-entry.blp:16
-#, fuzzy
 msgid "Restore this Snapshot"
-msgstr "Restaura aquest estat"
+msgstr "Restaura aquesta instantània"
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
@@ -2293,7 +2278,7 @@ msgstr "Suprimeix el missatge"
 
 #: bottles/frontend/ui/window.blp:40
 msgid "Main Menu"
-msgstr ""
+msgstr "Menú principal"
 
 #: bottles/frontend/ui/window.blp:54
 msgid ""
@@ -2306,13 +2291,12 @@ msgstr ""
 "connexió."
 
 #: bottles/frontend/ui/window.blp:79
-#, fuzzy
 msgid "Import…"
-msgstr "Importar"
+msgstr "Importeu…"
 
 #: bottles/frontend/ui/window.blp:91
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:96
@@ -2322,7 +2306,7 @@ msgstr "Quant al Bottles"
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
 msgid "File \"{0}\" is not a .exe or .msi file"
-msgstr ""
+msgstr "El fitxer \"{0}\" no és un .exe o .msi"
 
 #: bottles/frontend/views/bottle_details.py:207
 #, python-format
@@ -2330,35 +2314,32 @@ msgid "Updated: %s"
 msgstr "Actualitzat: %s"
 
 #: bottles/frontend/views/bottle_details.py:267
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added"
-msgstr "\"{0}\" afegit."
+msgstr "\"{0}\" afegit"
 
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "Seleccioneu ampolla"
+msgstr "Seleccioneu l'executable"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
 msgstr "Afegeix"
 
 #: bottles/frontend/views/bottle_details.py:346
-#, fuzzy
 msgid "Hide Hidden Programs"
-msgstr "Amaga el programa"
+msgstr "Amaga els programes ocults"
 
 #: bottles/frontend/views/bottle_details.py:383
 #: bottles/frontend/widgets/library.py:156
 #: bottles/frontend/widgets/program.py:184
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\"…"
-msgstr "S'està iniciant '{0}'…"
+msgstr "Llançant '{0}'…"
 
 #: bottles/frontend/views/bottle_details.py:413
-#, fuzzy
 msgid "Be Aware of Sandbox"
 msgstr "Tingueu en compte l'espai aïllat"
 
@@ -2377,7 +2358,7 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:525
 #: bottles/frontend/windows/main_window.py:223
 msgid "_Dismiss"
-msgstr ""
+msgstr "_Descarta"
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
@@ -2392,92 +2373,88 @@ msgid "Select the location where to save the backup archive"
 msgstr "Seleccioneu la ubicació on voleu desar l'arxiu de còpia de seguretat"
 
 #: bottles/frontend/views/bottle_details.py:435
-#, fuzzy
 msgid "Backup"
-msgstr "Còpia de seguretat {0}"
+msgstr "Còpia de seguretat"
 
 #: bottles/frontend/views/bottle_details.py:440
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup created for \"{0}\""
-msgstr "Còpia de seguretat creada per a '{0}'."
+msgstr "Còpia de seguretat creada per a \"{0}\""
 
 #: bottles/frontend/views/bottle_details.py:442
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup failed for \"{0}\""
-msgstr "La còpia de seguretat ha fallat per a \"{0}\"."
+msgstr "La còpia de seguretat ha fallat per a \"{0}\""
 
 #: bottles/frontend/views/bottle_details.py:501
-#, fuzzy
 msgid "Are you sure you want to permanently delete \"{}\"?"
-msgstr "Esteu segur que voleu suprimir aquesta ampolla i tots els fitxers?"
+msgstr "Segur que voleu suprimir \"{}\" permanentment?"
 
 #: bottles/frontend/views/bottle_details.py:502
 msgid ""
 "This will permanently delete all programs and settings associated with it."
-msgstr ""
+msgstr "Açò suprimirà tots els programes i les seves configuracions associades."
 
 #: bottles/frontend/views/bottle_details.py:505
 #: bottles/frontend/views/bottle_preferences.py:750
 msgid "_Delete"
-msgstr ""
+msgstr "_Suprimeix"
 
 #: bottles/frontend/views/bottle_details.py:521
-#, fuzzy
 msgid "Missing Runner"
-msgstr "Corredor"
+msgstr "No s'ha trobat un corredor"
 
 #: bottles/frontend/views/bottle_details.py:522
 msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
+"No s'ha el corredor demana't per aquesta ampolla. Instal·la'l fent ús de les "
+"preferències del Bottles o escull un nou per a executar aplicacions."
 
 #: bottles/frontend/views/bottle_details.py:597
-#, fuzzy
 msgid "Are you sure you want to force stop all processes?"
-msgstr "Esteu segur que voleu suprimir aquesta ampolla i tots els fitxers?"
+msgstr "Segur que voleu forçar la parada de tots els processos?"
 
 #: bottles/frontend/views/bottle_details.py:598
 msgid "This can cause data loss, corruption, and programs to malfunction."
 msgstr ""
+"Açò pot produir pèrdua o corrupció de dades i fer que els programes no "
+"funcionen correctament."
 
 #: bottles/frontend/views/bottle_details.py:601
 msgid "Force _Stop"
-msgstr ""
+msgstr "_Parada forçada"
 
 #: bottles/frontend/views/bottle_preferences.py:195
-#, fuzzy
 msgid "This feature is unavailable on your system."
 msgstr "Aquesta funció no està disponible al vostre sistema."
 
 #: bottles/frontend/views/bottle_preferences.py:196
-#, fuzzy
 msgid "{} To add this feature, please run flatpak install"
-msgstr "{} Per afegir aquesta funcionalitat, executa flatpak install"
+msgstr "{} Per afegir aquesta funcionalitat, executa 'flatpak install'"
 
 #: bottles/frontend/views/bottle_preferences.py:246
-#, fuzzy
 msgid "This bottle name is already in use."
-msgstr "El nom té caràcters especials o ja està en ús."
+msgstr "El nom de l'ampolla ja està en ús."
 
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
-#, fuzzy
 msgid "Select Working Directory"
-msgstr "Directori de treball"
+msgstr "Seleccioneu el directori de treball"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
 msgstr "Directori que conté les dades de \"{}\"."
 
 #: bottles/frontend/views/bottle_preferences.py:746
-#, fuzzy
 msgid "Are you sure you want to delete all snapshots?"
-msgstr "Esteu segur que voleu suprimir aquesta ampolla i tots els fitxers?"
+msgstr "Segur que voleu suprimir totes les instantànies?"
 
 #: bottles/frontend/views/bottle_preferences.py:747
 msgid "This will delete all snapshots but keep your files."
 msgstr ""
+"Açò suprimirà totes les instantànies però mantindrà els vostres fitxers."
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2497,11 +2474,11 @@ msgstr "Torna a les vostres ampolles."
 
 #: bottles/frontend/views/importer.py:92
 msgid "Backup imported successfully"
-msgstr "La còpia de seguretat s'ha importat correctament."
+msgstr "La còpia de seguretat s'ha importat correctament"
 
 #: bottles/frontend/views/importer.py:94
 msgid "Import failed"
-msgstr "La importació ha fallat."
+msgstr "La importació ha fallat"
 
 #: bottles/frontend/views/importer.py:108
 #: bottles/frontend/views/importer.py:147
@@ -2529,12 +2506,12 @@ msgstr "N/D"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "Inicia l'executable en \"{self.config.Name}\""
 
 #: bottles/frontend/views/list.py:118
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" in \"{1}\"…"
-msgstr "S'està iniciant '{0}'…"
+msgstr "Llançant \"{0}\" en \"{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
@@ -2551,48 +2528,42 @@ msgid "Fetched {0} of {1} packages"
 msgstr "S'han obtingut {0} dels paquets {1}"
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "Trieu un directori"
+msgstr "Seleccioneu el directori de l'ampolla"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
-msgstr "Creant una ampolla…"
+msgstr "Creant l'ampolla…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "Crea una ampolla nova"
+msgstr "No ha sigut possible crear l'ampolla"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "Un o més errors han impedir crear l'ampolla."
 
 #. Show success
 #: bottles/frontend/views/new.py:232
-#, fuzzy
 msgid "Bottle Created"
 msgstr "S’ha creat l’ampolla"
 
 #: bottles/frontend/views/new.py:233
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr "Nou estat [{0}] creat correctament!"
+msgstr "\"{0}\" creat satisfactòriament."
 
 #: bottles/frontend/views/preferences.py:142
 msgid "Steam was not found or Bottles does not have enough permissions."
 msgstr "No s'ha trobat Steam o Bottles no té prou permisos."
 
 #: bottles/frontend/views/preferences.py:176
-#, fuzzy
 msgid "Select Bottles Path"
-msgstr "Seleccioneu ampolla"
+msgstr "Seleccioneu el camí de les ampolles"
 
 #: bottles/frontend/views/preferences.py:198
-#, fuzzy
 msgid "Relaunch Bottles?"
-msgstr "Seleccioneu ampolla"
+msgstr "Rellançar Bottles?"
 
 #: bottles/frontend/views/preferences.py:199
 msgid ""
@@ -2602,10 +2573,15 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
+"Bottles necessitarà ser rellançat per a utilitzar aquest directori.\n"
+"\n"
+"Assegureu-se de tancat tots els programes llançats des del Bottles abans de "
+"rellançar Bottles, no fer-ho podria causar pèrdua o corrupció de dades i un "
+"funcionament incorrecte dels programes."
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
-msgstr ""
+msgstr "_Rellançar"
 
 #: bottles/frontend/views/preferences.py:243
 #, fuzzy
@@ -2645,24 +2621,24 @@ msgid "Manifest for {0}"
 msgstr "Manifest per a {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "{0} instal·lat."
+msgstr "\"{0}\" desinstal·lat"
 
 #: bottles/frontend/widgets/dependency.py:174
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" installed"
-msgstr "{0} instal·lat."
+msgstr "\"{0}\" instal·lat"
 
 #: bottles/frontend/widgets/dependency.py:188
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "'{0}' no s'ha pogut instal·lar."
+msgstr "\"{0}\" no s'ha pogut instal·lar"
 
 #: bottles/frontend/widgets/importer.py:68
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" imported"
-msgstr "'{0}' importat."
+msgstr "\"{0}\" importat"
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
@@ -2670,20 +2646,25 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
+"Aquest aplicació pot funcionar malament. L'instal·lador ha sigut configurat "
+"per a proporcionar la millor experiència possible, però podeu esperar "
+"errors, inestabilitat i característiques disfuncionals."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
 msgstr ""
+"Aquest programa funciona amb errors notables, però aquests errors no afecten "
+"la funcionalitat de l'aplicació."
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
-msgstr ""
+msgstr "Aquest programa funciona amb errors petits."
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
-msgstr ""
+msgstr "Aquest programa funciona perfectament."
 
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
@@ -2692,49 +2673,49 @@ msgstr "Ressenya per a {0}"
 
 #: bottles/frontend/widgets/library.py:169
 #: bottles/frontend/widgets/program.py:194
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Stopping \"{0}\"…"
-msgstr "S'està iniciant '{0}'…"
+msgstr "Parant \"{0}\"…"
 
 #: bottles/frontend/widgets/program.py:190
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Launching \"{0}\" with Steam…"
-msgstr "S'està llançant '{0}' amb Steam…"
+msgstr "S'està llançant \"{0}\" amb Steam…"
 
 #: bottles/frontend/widgets/program.py:214
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr "'{0}' amagat."
+msgstr "\"{0}\" amagat"
 
 #: bottles/frontend/widgets/program.py:216
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" showed"
-msgstr "\"{0}\" mostrat."
+msgstr "\"{0}\" mostrat"
 
 #: bottles/frontend/widgets/program.py:242
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" removed"
-msgstr "'{0}' eliminat."
+msgstr "\"{0}\" suprimit"
 
 #: bottles/frontend/widgets/program.py:274
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr "'{0}' reanomenat a '{1}'."
+msgstr "\"{0}\" reanomenat a \"{1}\""
 
 #: bottles/frontend/widgets/program.py:297
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
-msgstr "Entrada d'escriptori creada per a '{0}'"
+msgstr "Entrada d'escriptori creada per a \"{0}\""
 
 #: bottles/frontend/widgets/program.py:313
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your library"
-msgstr "S'ha afegit '{0}' a la vostra biblioteca"
+msgstr "S'ha afegit \"{0}\" a la vostra biblioteca"
 
 #: bottles/frontend/widgets/program.py:331
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your Steam library"
-msgstr "S'ha afegit '{0}' a la vostra biblioteca de Steam"
+msgstr "S'ha afegit \"{0}\" a la vostra biblioteca de Steam"
 
 #: bottles/frontend/windows/crash.py:33
 msgid "Show report"
@@ -2751,23 +2732,20 @@ msgstr ""
 "continuació."
 
 #: bottles/frontend/windows/display.py:102
-#, fuzzy
 msgid "Updating display settings, please wait…"
-msgstr "S'està actualitzant la versió de Windows, espereu…"
+msgstr "S'estan actualitzant els paràmetres de la pantalla, espereu…"
 
 #: bottles/frontend/windows/display.py:114
-#, fuzzy
 msgid "Display settings updated"
-msgstr "Paràmetres de la pantalla"
+msgstr "Paràmetres de la pantalla actualitzats"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
 msgstr "No s'han trobat substitucions."
 
 #: bottles/frontend/windows/drives.py:71
-#, fuzzy
 msgid "Select Drive Path"
-msgstr "Seleccioneu un fitxer"
+msgstr "Seleccioneu el camí de la unitat"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
@@ -2788,7 +2766,6 @@ msgid "Copy to clipboard"
 msgstr "Copiar al portapapers"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
 msgstr "Seleccioneu el fitxer de recursos"
 
@@ -2836,9 +2813,8 @@ msgid "This setting is different from the bottle's default."
 msgstr "Aquest paràmetre és diferent del valor per defecte de l’ampolla."
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "Seleccioneu un fitxer"
+msgstr "Seleccioneu un guió"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
@@ -2848,14 +2824,14 @@ msgstr "No s'ha trobat el camí de les ampolles personalitzades"
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
 msgstr ""
+"Tornant al camí per defecte. Cap ampolla del camí proporcionat serà llistada."
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
-#, fuzzy
 msgid "Run Windows Software"
 msgstr "Executeu programari de Windows"
 
@@ -2905,7 +2881,7 @@ msgstr "Commuta la llista de Epic Games."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "Llistat d'Ubisoft Connect"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."
@@ -2991,7 +2967,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "Mostra l'avís d'espai aïllat"
 
 #: data/com.usebottles.bottles.gschema.xml:87
 msgid "Toggle sandbox warning."
@@ -3109,69 +3085,67 @@ msgstr "... i molt més que podeu trobar instal·lant Bottles!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
-msgstr ""
+msgstr "Actualitza la informació de les metadades"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
 msgstr ""
+"Afig més informació de l'actualització i corregeix les anotacions del "
+"llançament de versió"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Fixed \"Add to Steam\" button"
-msgstr "Afegeix a l’Steam"
+msgstr "S'ha arreglat el botó \"Afig a l'Steam\""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr ""
+msgstr "S'ha afegit serialització a la configuració d'ampolles"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "S'ha arreglat l'error d'extracció doble del Patool"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "Versió del component"
+msgstr "Versió correcta"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "S'ha produït un error en crear l'ampolla."
+msgstr "S'ha arreglat un tancament inesperat en crear una ampolla"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "Canvi major: Redisseny de la interfície al crear una ampolla nova"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
-#, fuzzy
 msgid "Quality of life improvements:"
-msgstr "Millores menors en la interfície d'usuari"
+msgstr "Millores en qualitat de vida:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
-#, fuzzy
 msgid "Add toast for \"Run Executable\""
-msgstr "Afegir un camí executable personalitzat"
+msgstr "Afig una notificació per a \"Iniciar l'executable\""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
-msgstr ""
+msgstr "Correcció d'errors:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
-#, fuzzy
 msgid "Importing backups resulted an error"
-msgstr "S'està important la còpia de seguretat: {0}"
+msgstr "Importar còpies de seguretat resultava en un error"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
 msgstr ""
+"L'entorn d'execució de Steam s'habilita automàticament al utilitzar wine-ge-"
+"custom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
@@ -3182,15 +3156,18 @@ msgstr ""
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
 msgstr ""
+"S'han arreglat diversos problemes relacionats amb la codificació dels "
+"caràcters"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
 msgstr ""
+"S'ha arreglat un error al baixar fitxers quan el Bottles no s'executa al "
+"terminal"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "Versió del component"
+msgstr "Data de la versió correcta"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
@@ -3198,31 +3175,33 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "Millores i correccions del Gamescope"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "La instal·lació de dependències ara es més ràpida i estable"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
-msgstr ""
+msgstr "La comprovació de salut conté més informació per a depurar més ràpid"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
 msgstr ""
+"S'han arreglat molts errors del NVAPI i ara és més estable, deuria funcionar "
+"correctament"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "S'ha arreglat un tancament inesperat al baixar un component"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "El codi de l'aplicació de fons s'ha millorat evitant un spinlock"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "Més variables per a guionitzar instal·lacions"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
@@ -3230,35 +3209,40 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "Millores al sistema de compilació"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "S'ha habilitat el VKD3D per defecte al crear ampolles per a jocs"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
 msgstr ""
+"S'han arreglar tancaments inesperats al llegir fitxers d'Steam mal codificats"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"S'arregla un problema que impedia actualitzar els components correctament a "
+"la interfície després d'instal·lar o desinstal·lar"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "Més correccions del FidelityFX"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"S'ha arreglat un problema al tancar un programa després de llançar-lo amb "
+"\"Iniciar l'executable\""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "i moltes, moltes, moltes més!"
 
 #~ msgid "Calculating…"
 #~ msgstr "S'està calculant…"
