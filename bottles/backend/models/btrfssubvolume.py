@@ -51,9 +51,12 @@ def create_bottle_as_subvolume(bottle_path) -> bool:
             path = os.path.join(bottle_path, internal_subvolume)
             btrfsutil.create_subvolume(path)
     except btrfsutil.BtrfsUtilError as error:
-        if not error.btrfsutilerror == btrfsutil.ERROR_NOT_BTRFS:
-            raise
-        return False
+        if error.btrfsutilerror == btrfsutil.ERROR_NOT_BTRFS:
+            return False
+        if error.errno == errno.ENOTTY:
+            # ENOTTY: Inappropriate ioctl for device
+            return False
+        raise
     else:
         return True
 
