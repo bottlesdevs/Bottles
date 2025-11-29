@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-28 16:00+0000\n"
+"PO-Revision-Date: 2025-11-29 16:00+0000\n"
 "Last-Translator: Jiraroj Leelarattanawong <legendarybuilder@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/bottles/bottles/th/>"
 "\n"
@@ -285,7 +285,6 @@ msgid "Category"
 msgstr "หมวดหมู่"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
-#, fuzzy
 msgid "Download & Install this Dependency"
 msgstr "ดาวน์โหลดและติดตั้ง Dependency นี้"
 
@@ -411,9 +410,8 @@ msgid "Versioning enabled for this bottle"
 msgstr "เปิดใช้งานระบบเวอร์ชันสำหรับขวดนี้"
 
 #: bottles/frontend/ui/details-bottle.blp:218
-#, fuzzy
 msgid "Versioning is active for this bottle."
-msgstr "ระบบเวอร์ชันเปิดใช้งานแล้วในขวดนี้"
+msgstr "ระบบเวอร์ชันเปิดใช้งานแล้วใน bottle นี้"
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
@@ -462,7 +460,7 @@ msgstr "การกำหนดการตั้งค่า bottle"
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr "Dependencies"
+msgstr "ไฟล์ Dependencies"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
@@ -1136,6 +1134,7 @@ msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"ตัวแปรแวดล้อมเป็นชื่อชนิดแปรผันซึ่งมีผลต่อวิธีการทำงานของการประมวลผลของ bottle ของคุณได้"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:31
 msgid "Variable Name"
@@ -1153,7 +1152,7 @@ msgstr "รูปแบบการแยกออก"
 msgid ""
 "Define patterns that will be used to prevent some directories to being "
 "versioned."
-msgstr ""
+msgstr "กำหนดรูปแบบซึ่งจะใช้เพื่อป้องกันบางไดเรกทอรี่ในการกำหนดเวอร์ชั่น"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:31
 msgid "Pattern"
@@ -1184,7 +1183,7 @@ msgstr "ความละเอียดเกม"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:45
 msgid "Uses the resolution of the video game as a reference in pixels."
-msgstr ""
+msgstr "ใช้ความละเอียดของวิดีโอเกมเป็นตัวอ้างอิงในพิกเซล"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:48
 #: bottles/frontend/ui/dialog-gamescope.blp:85
@@ -1204,7 +1203,7 @@ msgstr "ความละเอียดหน้าต่าง"
 msgid ""
 "Upscales the resolution when using a resolution higher than the game "
 "resolution in pixels."
-msgstr ""
+msgstr "เพิ่มความละเอียดเมื่อมีการกำหนดความละเอียดที่สูงกว่าในเกมเป็นพิกเซล"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:118
 msgid "Miscellaneous"
@@ -1220,12 +1219,11 @@ msgstr "จำกัดเฟรมเรตเมื่อหลุดโฟก
 
 #: bottles/frontend/ui/dialog-gamescope.blp:153
 msgid "Integer Scaling"
-msgstr ""
+msgstr "ตัวเลขการขยาย"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
-#, fuzzy
 msgid "Window Type"
-msgstr "ความสูงของหน้าต่าง"
+msgstr "ประเภทของหน้าต่าง"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:166
 msgid "Borderless"
@@ -1247,7 +1245,7 @@ msgstr "เริ่มการติดตั้ง"
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
-msgstr ""
+msgstr "ตัวติดตั้งนี้จำเป็นต้องใช้ทรัพยากรบางอย่างในเครื่องซึ่งสามารถพบได้"
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
@@ -1320,7 +1318,7 @@ msgstr "คำสั่งตัวแปรอ้างอิง"
 #: bottles/frontend/ui/dialog-launch-options.blp:47
 #, c-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "เช่น: VAR=value %command% -example1 -example2 -example3=hello"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:52
 msgid "Post-run Script"
@@ -1333,7 +1331,6 @@ msgid "Choose a script which should be executed after run."
 msgstr "เลือกสคริปต์ที่จะเรียกใช้หลังจากการรัน"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
-#, fuzzy
 msgid "Choose a Script"
 msgstr "เลือกสคริปต์"
 
@@ -1385,6 +1382,15 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"โปรดระวัง การใช้รันเนอร์พื้นฐาน Proton ใน bottles ที่ไม่ใช่ Steam "
+"อาจทำให้เกิดปัญหาและทำให้ทำงานไม่ถูกต้อง\n"
+"\n"
+"เราขอแนะนำให้ใช้ Wine-GE แทน ซึ่งเป็น Proton เวอร์ชันที่ออกแบบมาเพื่อใช้งานนอก Steam\n"
+"\n"
+"การดำเนินการนี้จะเปิดใช้งานรันไทม์ Steam โดยอัตโนมัติ (หากมีอยู่ในระบบและ Bottles ตรวจพบ) "
+"เพื่อให้สามารถเข้าถึงไลบรารีที่จำเป็นและจำกัดปัญหาความเข้ากันได้ โปรดทราบว่า "
+"GloriousEggroll ซึ่งเป็นผู้ให้บริการรันเนอร์ จะไม่รับผิดชอบต่อปัญหาใด ๆ "
+"และเราขอให้คุณอย่ารายงานปัญหาดังกล่าว"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1414,11 +1420,11 @@ msgstr "รัน"
 
 #: bottles/frontend/ui/dialog-run-args.blp:44
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "เขียนอาร์กิวเมนต์ด้านล่างเพื่อส่งไปยังไฟล์ปฏิบัติการ"
 
 #: bottles/frontend/ui/dialog-run-args.blp:47
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "เช่น: -opengl -SkipBuildPatchPrereq"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
 msgid "Sandbox Settings"
@@ -1467,10 +1473,20 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"Bottles มีระบบการกำหนดเวอร์ชันใหม่ทั้งหมดซึ่งไม่สามารถใช้งานร่วมกับเวอร์ชันก่อนหน้าได้\n"
+"\n"
+"เพื่อใช้งานการกำหนดเวอร์ชันต่อเนื่อง เราจำเป็นต้องเริ่มต้นพื้นที่เก็บข้อมูลของ Bottle อีกครั้ง "
+"การดำเนินการนี้จะไม่ลบข้อมูลใน Bottle ของคุณ แต่จะลบสแนปช็อตที่มีอยู่ทั้งหมดและสร้างสแนปช็อตใหม่"
+"\n"
+"\n"
+"หากคุณต้องการกลับไปยังสแนปช็อตก่อนหน้าเพื่อดำเนินการต่อ ให้ปิดหน้าต่างนี้และกู้คืนสแนปช็อต จากนั้นเปิ"
+"ด bottle ขึ้นมาใหม่เพื่อแสดงหน้าต่างนี้อีกครั้ง\n"
+"\n"
+"ระบบเก่าจะถูกยกเลิกในการเผยแพร่ถัดไป"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
-msgstr ""
+msgstr "กำลังเริ่มต้น Repository อีกครั้ง…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
@@ -1499,12 +1515,12 @@ msgstr "เอฟเฟกต์"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:62
 msgid "Contrast Adaptive Sharpening"
-msgstr ""
+msgstr "การปรับความคมชัดแบบความคม"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:65
 #: bottles/frontend/ui/dialog-vkbasalt.blp:102
 msgid "Sharpness"
-msgstr ""
+msgstr "ความคมชัด"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:69
 #: bottles/frontend/ui/dialog-vkbasalt.blp:106
@@ -1517,46 +1533,45 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.blp:316
 #: bottles/frontend/ui/dialog-vkbasalt.blp:343
 #: bottles/frontend/ui/dialog-vkbasalt.blp:370 bottles/frontend/ui/new.blp:58
-#, fuzzy
 msgid "Show Information"
-msgstr "แสดงการแจ้งเตือน"
+msgstr "แสดงข้อมูล"
 
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
 msgid "Denoised Luma Sharpening"
-msgstr ""
+msgstr "การทำให้ความชัด Luma แบบลดเสียงรบกวน"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
-msgstr ""
+msgstr "ลดคลื่นรบกวน"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:160
 msgid "Fast Approximate Anti-Aliasing"
-msgstr ""
+msgstr "การป้องกันรอยหยักแบบประมาณการอย่างเร็ว"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:163
 msgid "Subpixel Quality"
-msgstr ""
+msgstr "คุณภาพพิกเซลรอง"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:191
 msgid "Quality Edge Threshold"
-msgstr ""
+msgstr "เกณฑ์ขอบคุณภาพ"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:219
 msgid "Quality Edge Threshold Minimum"
-msgstr ""
+msgstr "เกณฑ์ขั้นต่ำขอบคุณภาพ"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:249
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr ""
+msgstr "การป้องกันรอยหยักทางสัณฐานวิทยาแบบพิกเซลรอง"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:252
 msgid "Edge Detection"
-msgstr "การตรวจจับเส้นขอบ"
+msgstr "การตรวจจับขอบ"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:267
 msgid "Luma"
-msgstr ""
+msgstr "ความสว่าง Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:273
 msgid "Color"
@@ -1564,7 +1579,7 @@ msgstr "สี"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:284
 msgid "Threshold"
-msgstr ""
+msgstr "เกณฑ์"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:312
 msgid "Max Search Steps"
@@ -1583,30 +1598,37 @@ msgid ""
 "CAS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper, whereas values lower than 0 make the frame softer than native."
 msgstr ""
+"ความคมชัดของ CAS จะเพิ่มความคมชัดของเฟรม ค่าที่สูงขึ้นจะทำให้เฟรมคมชัดขึ้น ในขณะที่ค่าที่ต่ำกว่า "
+"0 จะทำให้เฟรมนุ่มนวลกว่าค่าดั้งเดิม"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:428
 msgid ""
 "DLS sharpness increases the sharpness of a frame. Higher values make the "
 "frame sharper."
 msgstr ""
+"ความคมชัดของ DLS ช่วยเพิ่มความคมชัดของเฟรม ค่าที่สูงขึ้นจะทำให้เฟรมคมชัดยิ่งขึ้น"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:445
 msgid ""
 "DLS denoise decreases the noise of a frame. Higher values make the frame "
 "softer."
 msgstr ""
+"การลดคลื่นรบกวน DLS จะช่วยลดเสียงรบกวนของเฟรม ค่าที่สูงขึ้นจะทำให้เฟรมนุ่มนวลขึ้น"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:462
 msgid ""
 "FXAA subpixel quality decreases aliasing at the subpixel level. Higher "
 "values make the frame softer."
 msgstr ""
+"คุณภาพพิกเซลรอง FXAA จะลดการเกิดรอยหยักที่ระดับพิกเซลรอง ค่าที่สูงขึ้นจะทำให้เฟรมดูนุ่มนวลขึ้น"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:479
 msgid ""
 "FXAA edge threshold is the minimum amount of contrast required to apply the "
 "FXAA algorithm. Higher values make the frame have more contrast."
 msgstr ""
+"เกณฑ์ขอบ FXAA คือ ค่าคอนทราสต์ขั้นต่ำที่จำเป็นต่อการใช้อัลกอริทึม FXAA "
+"ค่าที่สูงขึ้นจะทำให้เฟรมมีคอนทราสต์มากขึ้น"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:496
 msgid ""
@@ -1614,50 +1636,60 @@ msgid ""
 "are ignored by the FXAA algorithm. Higher values make FXAA ignore pixels "
 "below the specified value and can lead to a performance increase."
 msgstr ""
+"เกณฑ์คุณภาพขอบ FXAA ขั้นต่ำ คือ ค่าต่ำสุดของพิกเซลมืดที่อัลกอริทึม FXAA ละเว้น ค่าที่สูงขึ้นจะทำให้ "
+"FXAA ละเว้นพิกเซลที่ต่ำกว่าค่าที่กำหนด และอาจนำไปสู่การเพิ่มประสิทธิภาพ"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:513
 msgid ""
 "Luma detects edges from a monochrome perspective, whereas Color detects "
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
+"Luma ตรวจจับขอบจากมุมมองขาวดำ ในขณะที่ Color ตรวจจับขอบจากสี Luma มีประสิทธิภาพมากกว่า "
+"Color"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:530
 msgid ""
 "SMAA threshold specifies the sensitivity of edge detection. Lower values "
 "detect more edges at the expense of performance."
 msgstr ""
+"เกณฑ์ SMAA กำหนดความไวในการตรวจจับขอบ ค่าที่ต่ำกว่าจะตรวจจับขอบได้มากขึ้น "
+"แต่ประสิทธิภาพกลับลดลง"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:547
 msgid ""
 "SMAA max search steps specifies how many horizontal and vertical search "
 "steps are performed when searching for edges."
 msgstr ""
+"ขั้นตอนการค้นหาสูงสุดของ SMAA "
+"ระบุจำนวนขั้นตอนการค้นหาแนวนอนและแนวตั้งที่ดำเนินการเมื่อค้นหาขอบ"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:564
 msgid ""
 "SMAA max diagonal search steps specifies how many diagonal search steps are "
 "performed when searching for edges."
 msgstr ""
+"ขั้นตอนการค้นหาแนวทแยงสูงสุดของ SMAA "
+"ระบุจำนวนขั้นตอนการค้นหาแนวทแยงที่จะดำเนินการเมื่อค้นหาขอบ"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:581
 msgid "SMAA corner rounding specifies the strength of rounding edge corners."
-msgstr ""
+msgstr "การทำมุมมน SMAA กำหนดความเข้มของการทำมุมขอบ"
 
 #: bottles/frontend/ui/dll-override-entry.blp:8
 msgid "Builtin (Wine)"
-msgstr ""
+msgstr "บิวท์อิน (Wine)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:9
 msgid "Native (Windows)"
-msgstr ""
+msgstr "ดั้งเดิม (วินโดวส์)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:10
 msgid "Builtin, then Native"
-msgstr ""
+msgstr "บิวท์อิน แล้วจึงเป็นดั้งเดิม"
 
 #: bottles/frontend/ui/dll-override-entry.blp:11
 msgid "Native, then Builtin"
-msgstr ""
+msgstr "ดั้งเดิม แล้วจึงเป็นบิวท์อิน"
 
 #: bottles/frontend/ui/dll-override-entry.blp:12
 msgid "Disabled"
@@ -1684,39 +1716,39 @@ msgstr "เรียกดูไฟล์"
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
 msgid "Wine prefix name"
-msgstr ""
+msgstr "คำนำหน้า Wine"
 
 #: bottles/frontend/ui/importer-entry.blp:28
-#, fuzzy
 msgid "Manager"
-msgstr "ตัวจัดการงาน"
+msgstr "ตัวจัดการ"
 
 #: bottles/frontend/ui/importer-entry.blp:38
 msgid "This Wine prefix was already imported in Bottles."
-msgstr ""
+msgstr "คำนำหน้า Wine นำเข้า Bottles แล้ว"
 
 #: bottles/frontend/ui/importer.blp:22
-#, fuzzy
 msgid "Import a Bottle backup"
-msgstr "กำลังนำเข้าแบ็กอัป…"
+msgstr "นำเข้าข้อมูลสำรอง Bottle"
 
 #: bottles/frontend/ui/importer.blp:28
 msgid "Search again for prefixes"
-msgstr ""
+msgstr "ค้นหาคำนำหน้าอีกครั้ง"
 
 #: bottles/frontend/ui/importer.blp:38
 msgid "No Prefixes Found"
-msgstr "ไม่พบ Prefixes"
+msgstr "ไม่พบคำนำหน้า"
 
 #: bottles/frontend/ui/importer.blp:39
 msgid ""
 "No external prefixes were found. Does Bottles have access to them?\n"
 "Use the icon on the top to import a bottle from a backup."
 msgstr ""
+"ไม่พบคำนำหน้าภายนอก Bottles เข้าถึงคำนำหน้าเหล่านี้ได้หรือไม่?\n"
+"ใช้ไอคอนด้านบนเพื่อนำเข้า bottle จากข้อมูลสำรอง"
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
-msgstr ""
+msgstr "เก็บถาวรทั้งหมด"
 
 #: bottles/frontend/ui/installer-entry.blp:16
 msgid "Show Manifest…"
@@ -1724,7 +1756,7 @@ msgstr "แสดง Manifest…"
 
 #: bottles/frontend/ui/installer-entry.blp:20
 msgid "Read Review…"
-msgstr ""
+msgstr "อ่านรีวิว…"
 
 #: bottles/frontend/ui/installer-entry.blp:34
 msgid "Installer name"
@@ -1810,7 +1842,7 @@ msgstr "ค้นหา bottles ของคุณ…"
 
 #: bottles/frontend/ui/list.blp:28
 msgid "Steam Proton"
-msgstr ""
+msgstr "เครื่องมือ Steam Proton"
 
 # Translators: Bottles is a generic noun here, referring to wine prefixes and is to be translated
 #: bottles/frontend/ui/list.blp:42 bottles/frontend/windows/main_window.py:191
@@ -1877,6 +1909,9 @@ msgid ""
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
 msgstr ""
+"การดำเนินการนี้ทำให้ไดเรกทอรีของผู้ใช้สามารถค้นพบได้ใน bottle "
+"โดยความเสี่ยงที่ข้อมูลส่วนบุคคลอาจถูกแชร์ไปยังซอฟต์แวร์ Windows "
+"จึงทำให้ตัวเลือกนี้ไม่สามารถเปลี่ยนแปลงได้หลังจากสร้าง bottle แล้ว"
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
@@ -1896,7 +1931,7 @@ msgstr "ไดเรกทอรี Bottle"
 
 #: bottles/frontend/ui/new.blp:177
 msgid "Directory that will contain the data of this bottle."
-msgstr ""
+msgstr "ไดเรกทอรีที่ประกอบด้วยข้อมูล bottle นี้"
 
 #: bottles/frontend/ui/new.blp:249
 msgid "_Close"
@@ -1929,6 +1964,8 @@ msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
+"Bottles ใช้รันเนอร์ที่เข้ากันได้เพื่อจัดเตรียมสภาพแวดล้อมแบบคอนเทนเนอร์แบบแยกส่วนคล้ายกับ "
+"Windows ที่โปรแกรมต่าง ๆ สามารถรันได้"
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
@@ -1974,7 +2011,7 @@ msgstr "โหมดมืด"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
-msgstr ""
+msgstr "ไม่ว่าอย่างไร Bottles ก็ควรใช้โทนสีเข้ม"
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
@@ -1982,7 +2019,7 @@ msgstr "แสดงวันที่อัปเดต"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "ไม่ว่าอย่างไรก็ต้องแสดงวันที่อัปเดตในรายการ bottle"
 
 #: bottles/frontend/ui/preferences.blp:42
 #: data/com.usebottles.bottles.gschema.xml:46
@@ -2015,35 +2052,35 @@ msgstr "การผนวก"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr ""
+msgstr "คำนำหน้า Steam Proton"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
-msgstr ""
+msgstr "แสดงและจัดการคำนำหน้า Steam Proton"
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
-msgstr ""
+msgstr "แสดงแอป Steam ในรายการโปรแกรม"
 
 #: bottles/frontend/ui/preferences.blp:98
 msgid "Requires Steam for Windows installed in the bottle."
-msgstr ""
+msgstr "จำเป็นต้องติดตั้ง Steam สำหรับวินโดวส์ใน bottle"
 
 #: bottles/frontend/ui/preferences.blp:107
 msgid "List Epic Games in Programs List"
-msgstr ""
+msgstr "แสดงรายการเกม Epic ในรายการโปรแกรม"
 
 #: bottles/frontend/ui/preferences.blp:108
 msgid "Requires Epic Games Store installed in the bottle."
-msgstr ""
+msgstr "จำเป็นต้องติดตั้งร้านค้าเกม Epic ใน bottle"
 
 #: bottles/frontend/ui/preferences.blp:117
 msgid "List Ubisoft Games in Programs List"
-msgstr ""
+msgstr "แสดงรายการเกม Ubisoft ในรายการโปรแกรม"
 
 #: bottles/frontend/ui/preferences.blp:118
 msgid "Requires Ubisoft Connect installed in the bottle."
-msgstr "ต้องติดตั้ง Ubisoft Connect ใน bottle"
+msgstr "จำเป็นต้องติดตั้ง Ubisoft Connect ใน bottle"
 
 #: bottles/frontend/ui/preferences.blp:128
 msgid "Advanced"
@@ -2059,15 +2096,15 @@ msgstr "ไดเรกทอรีที่ประกอบด้วยข้
 
 #: bottles/frontend/ui/preferences.blp:167
 msgid "Runners"
-msgstr ""
+msgstr "รันเนอร์"
 
 #: bottles/frontend/ui/preferences.blp:181
 msgid "Bottles is running in offline mode, so runners are not available."
-msgstr ""
+msgstr "Bottles ทำงานในโหมดออฟไลน์ ดังนั้น จึงไม่พบรันเนอร์"
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
-msgstr ""
+msgstr "เผยแพร่ก่อน"
 
 #: bottles/frontend/ui/preferences.blp:209
 msgid "Display unstable versions of runners."
@@ -2075,19 +2112,19 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:224
 msgid "DLL Components"
-msgstr ""
+msgstr "ส่วนประกอบ DLL"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
-msgstr ""
+msgstr "Bottles ทำงานอยู่ในโหมดออฟไลน์ ดังนั้น จึงไม่พบ DLL"
 
 #: bottles/frontend/ui/preferences.blp:270
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "ดีเอ็กซ์วีเค-เอ็นวีเอพีไอ (DXVK-NVAPI)"
 
 #: bottles/frontend/ui/preferences.blp:283
 msgid "Core"
-msgstr ""
+msgstr "แกน"
 
 #: bottles/frontend/ui/preferences.blp:287
 msgid "Runtime"
@@ -2095,7 +2132,7 @@ msgstr "รันไทม์"
 
 #: bottles/frontend/ui/preferences.blp:291
 msgid "WineBridge"
-msgstr ""
+msgstr "ไวน์บริดจ์ (WineBridge)"
 
 #: bottles/frontend/ui/preferences.blp:297
 #: data/com.usebottles.bottles.gschema.xml:66
@@ -2107,14 +2144,15 @@ msgid ""
 "These features are under heavy development and may be unstable, expect bugs "
 "and breakage."
 msgstr ""
+"คุณสมบัติเหล่านี้อยู่ระหว่างการพัฒนาอย่างหนักและอาจไม่เสถียร คาดว่าจะมีข้อบกพร่องและการเสียหาย"
 
 #: bottles/frontend/ui/preferences.blp:303
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "แซนด์บ็อกซ์ต่อ bottle"
 
 #: bottles/frontend/ui/preferences.blp:304
 msgid "In early development."
-msgstr ""
+msgstr "ในช่วงต้นของการพัฒนา"
 
 #: bottles/frontend/ui/program-entry.blp:19
 msgid "Launch with Terminal"
@@ -2134,7 +2172,7 @@ msgstr "เพิ่มไปยังไลบรารี"
 
 #: bottles/frontend/ui/program-entry.blp:47
 msgid "Add Desktop Entry"
-msgstr ""
+msgstr "เพิ่มทางเข้าเดสก์ท็อป"
 
 #: bottles/frontend/ui/program-entry.blp:51
 msgid "Add to Steam"
@@ -2171,7 +2209,7 @@ msgstr "ความคิดเห็น State"
 
 #: bottles/frontend/ui/state-entry.blp:16
 msgid "Restore this Snapshot"
-msgstr ""
+msgstr "กู้คืนสแน็ปช็อตนี้"
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
@@ -2214,25 +2252,23 @@ msgid "Updated: %s"
 msgstr "อัปเดตแล้ว: %s"
 
 #: bottles/frontend/views/bottle_details.py:267
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added"
-msgstr "เพิ่ม '{0}' แล้ว"
+msgstr "\"{0}\" เพิ่มแล้ว"
 
 #: bottles/frontend/views/bottle_details.py:270
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
-#, fuzzy
 msgid "Select Executable"
-msgstr "ลบขวด…"
+msgstr "เลือกไฟล์ที่รันได้"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
 msgstr "เพิ่ม"
 
 #: bottles/frontend/views/bottle_details.py:346
-#, fuzzy
 msgid "Hide Hidden Programs"
-msgstr "ซ่อนโปรแกรม"
+msgstr "ซ่อนโปรแกรมที่ซ่อนไว้"
 
 #: bottles/frontend/views/bottle_details.py:383
 #: bottles/frontend/widgets/library.py:156
@@ -2243,7 +2279,7 @@ msgstr "กำลังเปิด \"{0}\"…"
 
 #: bottles/frontend/views/bottle_details.py:413
 msgid "Be Aware of Sandbox"
-msgstr ""
+msgstr "ระวังแซนด์บ็อกซ์"
 
 #: bottles/frontend/views/bottle_details.py:414
 msgid ""
@@ -2251,6 +2287,9 @@ msgid ""
 "to keep you safe. If the program won't run, consider moving inside the "
 "bottle (3 dots icon on the top), then launch from there."
 msgstr ""
+"Bottles กำลังทำงานอยู่ในแซนด์บ็อกซ์ "
+"ซึ่งเป็นสภาพแวดล้อมแบบจำกัดสิทธิ์การใช้งานที่จำเป็นต่อความปลอดภัยของคุณ หากโปรแกรมไม่ทำงาน "
+"ให้พิจารณาย้ายเข้าไปอยู่ใน bottle (ไอคอน 3 จุดที่ด้านบน) แล้วจึงเปิดใช้งานจากตรงนั้น"
 
 #: bottles/frontend/views/bottle_details.py:416
 #: bottles/frontend/views/bottle_details.py:525
@@ -2307,15 +2346,16 @@ msgid ""
 "The runner requested by this bottle is missing. Install it through the "
 "Bottles preferences or choose a new one to run applications."
 msgstr ""
+"รันเนอร์ที่ร้องขอโดย bottle นี้หายไป ให้ติดตั้งผ่านการตั้งค่าของ Bottles "
+"หรือเลือกรันเนอร์ใหม่เพื่อรันแอปพลิเคชัน"
 
 #: bottles/frontend/views/bottle_details.py:597
-#, fuzzy
 msgid "Are you sure you want to force stop all processes?"
-msgstr "คุณแน่ใจหรือไม่ที่จะลบขวดนี้และไฟล์ทั้งหมด?"
+msgstr "คุณแน่ใจที่จะบังคับหยุดทุกกระบวนการใช่หรือไม่?"
 
 #: bottles/frontend/views/bottle_details.py:598
 msgid "This can cause data loss, corruption, and programs to malfunction."
-msgstr ""
+msgstr "ขั้นตอนนี้สามารถเป็นเหตุให้ข้อมูลสูญหาย ระบบฟัง และโปรแกรมทำงานผิดปกติ"
 
 #: bottles/frontend/views/bottle_details.py:601
 msgid "Force _Stop"
@@ -2327,7 +2367,7 @@ msgstr "ไม่มีฟีเจอร์นี้ในระบบของ
 
 #: bottles/frontend/views/bottle_preferences.py:196
 msgid "{} To add this feature, please run flatpak install"
-msgstr ""
+msgstr "{} ในการเพิ่มฟีเจอร์นี้ โปรดรันตัวติดตั้ง flatpak"
 
 #: bottles/frontend/views/bottle_preferences.py:246
 msgid "This bottle name is already in use."
@@ -2352,7 +2392,7 @@ msgstr "ขั้นตอนนี้จะลบทุกสแน็ปช็
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
-msgstr ""
+msgstr "โปรดย้ายไปในระบบเวอร์ชั่นใหม่เพื่อสร้างสถานะใหม่"
 
 #: bottles/frontend/views/details.py:153
 msgid "Installers"
@@ -2380,9 +2420,8 @@ msgid "Importing backup…"
 msgstr "กำลังนำเข้าข้อมูลสำรอง…"
 
 #: bottles/frontend/views/importer.py:119
-#, fuzzy
 msgid "Select a Backup Archive"
-msgstr "เลือกไฟล์แบ็กอัป"
+msgstr "เลือกคลังสำรองข้อมูล"
 
 #: bottles/frontend/views/importer.py:122
 #: bottles/frontend/views/importer.py:161
@@ -2390,7 +2429,6 @@ msgid "Import"
 msgstr "นำเข้า"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
-#, fuzzy
 msgid "Select a Configuration File"
 msgstr "เลือกไฟล์การตั้งค่า"
 
@@ -2402,7 +2440,7 @@ msgstr "N/A"
 #: bottles/frontend/views/list.py:91
 #, python-brace-format
 msgid "Run executable in \"{self.config.Name}\""
-msgstr ""
+msgstr "เรียกใช้ไฟล์ปฏิบัติการใน \"{self.config.Name}\""
 
 #: bottles/frontend/views/list.py:118
 #, python-brace-format
@@ -2411,64 +2449,55 @@ msgstr "กำลังเปิด \"{0}\" ใน \"{1}\"…"
 
 #: bottles/frontend/views/list.py:235
 msgid "Your Bottles"
-msgstr "ขวดของคุณ"
+msgstr "Bottles ของคุณ"
 
 #: bottles/frontend/views/loading.py:41
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
-msgstr ""
+msgstr "ดาวน์โหลด ~{0} ของแพ็กเกจ…"
 
 #: bottles/frontend/views/loading.py:42
 #, python-brace-format
 msgid "Fetched {0} of {1} packages"
-msgstr ""
+msgstr "ดึงข้อมูล {0} ของ {1} แพ็กเกจ"
 
 #: bottles/frontend/views/new.py:157
-#, fuzzy
 msgid "Select Bottle Directory"
-msgstr "รันไทม์ Bottles"
+msgstr "เลือกไดเรกทอรี Bottle"
 
 #: bottles/frontend/views/new.py:176
-#, fuzzy
 msgid "Creating Bottle…"
-msgstr "โคลนขวด"
+msgstr "กำลังสร้าง Bottle…"
 
 #: bottles/frontend/views/new.py:221
-#, fuzzy
 msgid "Unable to Create Bottle"
-msgstr "โคลนขวด"
+msgstr "ไม่สามารถสร้าง Bottle"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
-msgstr ""
+msgstr "การสร้าง Bottle ล้มเหลวด้วยข้อผิดพลาดหนึ่งรายการหรือมากกว่านั้น"
 
 #. Show success
 #: bottles/frontend/views/new.py:232
-#, fuzzy
 msgid "Bottle Created"
-msgstr "ชื่อขวด"
+msgstr "Bottle สร้างแล้ว"
 
 #: bottles/frontend/views/new.py:233
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" was created successfully."
-msgstr "สรา้งสถานะ [{0}] ใหม่เรียบร้อยแล้ว!"
+msgstr "\"{0}\" สร้างเสร็จแล้วเรียบร้อยแล้ว"
 
 #: bottles/frontend/views/preferences.py:142
-#, fuzzy
 msgid "Steam was not found or Bottles does not have enough permissions."
-msgstr ""
-"ไม่พบ Steam หรือ Bottles ไม่มีสิทธิ์มากพอ ดู https://docs.usebottles.com/flatpak/"
-"cant-enable-steam-proton-manager"
+msgstr "ไม่พบ Steam หรือ Bottles มีสิทธิ์ไม่เพียงพอ"
 
 #: bottles/frontend/views/preferences.py:176
-#, fuzzy
 msgid "Select Bottles Path"
-msgstr "ลบขวด…"
+msgstr "เลือกเส้นทาง Bottles"
 
 #: bottles/frontend/views/preferences.py:198
-#, fuzzy
 msgid "Relaunch Bottles?"
-msgstr "ลบขวด…"
+msgstr "เปิด Bottles อีกครั้ง?"
 
 #: bottles/frontend/views/preferences.py:199
 msgid ""
@@ -2478,10 +2507,14 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
+"Bottles จำเป็นต้องเปิดใหม่เพื่อใช้ไดเรกทอรีนี้\n"
+"\n"
+"ให้แน่ใจว่าปิดทุกโปรแกรมที่เปิดจาก Bottles ก่อนเปิด Bottles ใหม่ หาไม่แล้วอาจทำให้ข้อมูลสู"
+"ญหาย ระบบพัง และโปรแกรมทำงานผิดปกติได้"
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
-msgstr ""
+msgstr "_เปิดใหม่"
 
 #: bottles/frontend/views/preferences.py:243
 msgid "Based on Valve's Wine, includes staging and Proton patches."
@@ -2520,24 +2553,24 @@ msgid "Manifest for {0}"
 msgstr "Manifest สำหรับ {0}"
 
 #: bottles/frontend/widgets/dependency.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" uninstalled"
-msgstr "ติดตั้ง {0} แล้ว"
+msgstr "\"{0}\" ถอนออกแล้ว"
 
 #: bottles/frontend/widgets/dependency.py:174
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" installed"
-msgstr "ติดตั้ง {0} แล้ว"
+msgstr "\"{0}\" ติดตั้งแล้ว"
 
 #: bottles/frontend/widgets/dependency.py:188
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" failed to install"
-msgstr "ติดตั้ง '{0}' แล้ว"
+msgstr "\"{0}\" ติดตั้งผิดพลาด"
 
 #: bottles/frontend/widgets/importer.py:68
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" imported"
-msgstr "นำเข้า '{0}' แล้ว"
+msgstr "\"{0}\" นำเข้าแล้ว"
 
 #: bottles/frontend/widgets/installer.py:49
 msgid ""
@@ -2545,20 +2578,24 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
+"แอปพลิเคชันนี้อาจทำงานได้ไม่ดี ตัวติดตั้งได้รับการกำหนดค่าเพื่อมอบประสบการณ์ที่ดีที่สุดเท่าที่จะเป็นไปได้"
+" แต่อาจพบปัญหา ความไม่เสถียร และฟีเจอร์ที่ใช้งานได้ไม่เต็มที่"
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
 msgstr ""
+"โปรแกรมนี้ทำงานได้แม้จะมีข้อผิดพลาดที่สังเกตได้ "
+"แต่ข้อผิดพลาดเหล่านี้ไม่ส่งผลกระทบต่อการทำงานของแอปพลิเคชัน"
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
-msgstr ""
+msgstr "โปรแกรมนี้ทำงานพร้อมกับข้อผิดพลาดเล็กน้อย"
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
-msgstr ""
+msgstr "โปรแกรมนี้ทำงานสมบูรณ์แบบ"
 
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
@@ -2577,39 +2614,39 @@ msgid "Launching \"{0}\" with Steam…"
 msgstr "กำลังเปิด \"{0}\" ด้วย Steam…"
 
 #: bottles/frontend/widgets/program.py:214
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" hidden"
-msgstr "'{0}' ถูกซ่อน"
+msgstr "\"{0}\" ถูกซ่อน"
 
 #: bottles/frontend/widgets/program.py:216
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" showed"
-msgstr "แสดง '{0}' แล้ว"
+msgstr "\"{0}\" แสดงแล้ว"
 
 #: bottles/frontend/widgets/program.py:242
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" removed"
-msgstr "'{0}' ถูกนำออกแล้ว"
+msgstr "\"{0}\" ลบแล้ว"
 
 #: bottles/frontend/widgets/program.py:274
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" renamed to \"{1}\""
-msgstr "'{0}' ถูกเปลี่ยนชื่อเป็น '{1}'"
+msgstr "\"{0}\" แก้ไขชื่อเป็น \"{1}\""
 
 #: bottles/frontend/widgets/program.py:297
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Desktop Entry created for \"{0}\""
-msgstr "สร้าง Desktop entry สำหรับ '{0}' แล้ว"
+msgstr "สร้างทางเข้าเดสก์ท็อปแล้วสำหรับ \"{0}\""
 
 #: bottles/frontend/widgets/program.py:313
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your library"
-msgstr "เพิ่ม '{0}' ในไลบรารีแล้ว"
+msgstr "\"{0}\" เพิ่มในไลบรารีคุณแล้ว"
 
 #: bottles/frontend/widgets/program.py:331
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "\"{0}\" added to your Steam library"
-msgstr "เพิ่ม '{0}' ในไลบรารี Steam แล้ว"
+msgstr "\"{0}\" เพิ่มในไลบรารี Steam คุณแล้ว"
 
 #: bottles/frontend/windows/crash.py:33
 msgid "Show report"
@@ -2625,29 +2662,27 @@ msgstr ""
 
 #: bottles/frontend/windows/display.py:102
 msgid "Updating display settings, please wait…"
-msgstr ""
+msgstr "กำลังอัปเดตการตั้งค่าแสดงผล กรุณารอสักครู่…"
 
 #: bottles/frontend/windows/display.py:114
 msgid "Display settings updated"
-msgstr ""
+msgstr "การตั้งค่าแสดงผลอัปเดตแล้ว"
 
 #: bottles/frontend/windows/dlloverrides.py:136
 msgid "No overrides found."
-msgstr "ไม่พบ overrides"
+msgstr "ไม่พบการแทรกแซง"
 
 #: bottles/frontend/windows/drives.py:71
-#, fuzzy
 msgid "Select Drive Path"
-msgstr "ลบขวด…"
+msgstr "เลือกเส้นทางไดร์ฟ"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
-msgstr "ไม่ได้กำหนด Environment variables"
+msgstr "ไม่ได้กำหนดตัวแปรแวดล้อม"
 
 #: bottles/frontend/windows/exclusionpatterns.py:108
-#, fuzzy
 msgid "No exclusion patterns defined."
-msgstr "ไม่ได้กำหนด Environment variables"
+msgstr "ไม่ได้กำหนดการยกเว้นรูปแบบ"
 
 #: bottles/frontend/windows/generic.py:24
 msgid "An error has occurred."
@@ -2660,31 +2695,28 @@ msgid "Copy to clipboard"
 msgstr "คัดลอกไปยังคลิปบอร์ด"
 
 #: bottles/frontend/windows/installer.py:62
-#, fuzzy
 msgid "Select Resource File"
 msgstr "เลือกไฟล์ทรัพยากร"
 
 #: bottles/frontend/windows/installer.py:109
-#, fuzzy
 msgid "Installing Windows dependencies…"
-msgstr "กำลังติดตั้ง Dependency: %s…"
+msgstr "กำลังติดตั้งไฟล์ที่เกี่ยวข้องของวินโดวส์…"
 
 #: bottles/frontend/windows/installer.py:110
 msgid "Configuring the bottle…"
-msgstr ""
+msgstr "กำลังกำหนดค่า bottle…"
 
 #: bottles/frontend/windows/installer.py:111
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "กำลังประมวลผลขั้นตอนตัวติดตั้ง…"
 
 #: bottles/frontend/windows/installer.py:112
-#, fuzzy
 msgid "Installing the {}…"
-msgstr "กำลังติดตั้ง…"
+msgstr "กำลังติดตั้ง {}…"
 
 #: bottles/frontend/windows/installer.py:113
 msgid "Performing final checks…"
-msgstr ""
+msgstr "กำลังดำเนินการตรวจสอบขั้นสุดท้าย…"
 
 #: bottles/frontend/windows/installer.py:117
 #, python-brace-format
@@ -2694,7 +2726,7 @@ msgstr "กำลังติดตั้ง {0}…"
 #: bottles/frontend/windows/installer.py:119
 #, python-brace-format
 msgid "{0} is now available in the programs view."
-msgstr ""
+msgstr "{0} พร้อมใช้งานในมุมมองโปรแกรมแล้ว"
 
 #: bottles/frontend/windows/installer.py:166
 msgid "Installer failed with unknown error"
@@ -2703,33 +2735,31 @@ msgstr "ตัวติดตั้งล้มเหลวด้วยข้อ
 #: bottles/frontend/windows/launchoptions.py:56
 #, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "{0} ถูกปิดการใช้งานสำหรับขวดนี้แล้ว"
+msgstr "{0} ถูกปิดการใช้งานสำหรับ bottle นี้แล้ว"
 
 #: bottles/frontend/windows/launchoptions.py:57
 msgid "This setting is different from the bottle's default."
-msgstr "การตั้งค่านี้ต่างจากค่าเริ่มต้นของขวด"
+msgstr "การตั้งค่านี้ต่างจากค่าเริ่มต้นของ bottle"
 
 #: bottles/frontend/windows/launchoptions.py:215
-#, fuzzy
 msgid "Select Script"
-msgstr "ลบขวด…"
+msgstr "เลือกสคริปต์"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
-msgstr ""
+msgstr "ไม่พบเส้นทาง Bottles ปรับแต่งเอง"
 
 #: bottles/frontend/windows/main_window.py:221
 msgid ""
 "Falling back to default path. No bottles from the given path will be listed."
-msgstr ""
+msgstr "ย้อนกลับไปยังเส้นทางเริ่มต้น ไม่พบรายการ bottles จากเส้นทางที่แจ้งไว้"
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr ""
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
-#, fuzzy
 msgid "Run Windows Software"
 msgstr "รันซอฟต์แวร์วินโดวส์"
 
@@ -2779,12 +2809,11 @@ msgstr "เปิดหรือปิดการแสดงแอปพลิ
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "แสดงรายการ Ubisoft Connect"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Toggle ubisoft connect listing."
-msgstr "เปิดหรือปิดการแสดงแอปพลิเคชันจาก Steam"
+msgstr "สลับรายการเชื่อมต่อ ubisoft"
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Window width"
@@ -2863,12 +2892,11 @@ msgstr "ปิด Bottles หลังจากเปิด Executable จาก
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "แสดงการแจ้งเตือนแซนด์บ็อกซ์"
 
 #: data/com.usebottles.bottles.gschema.xml:87
-#, fuzzy
 msgid "Toggle sandbox warning."
-msgstr "เปิดหรือปิดการแสดงแอปพลิเคชันจาก Steam"
+msgstr "สลับการแจ้งเตือนแซนด์บ็อกซ์"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid "Run Windows software on Linux with Bottles!"
@@ -2976,41 +3004,39 @@ msgstr "และอื่น ๆ อีกมากมายให้ค้น�
 
 #: data/com.usebottles.bottles.metainfo.xml.in:84
 msgid "Update metadata information"
-msgstr ""
+msgstr "อัปเดตข้อมูล metadata"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:89
 msgid "Add more update information and correct release notes version"
-msgstr ""
+msgstr "เพิ่มข้อมูลอัปเดตเพิ่มเติมและเวอร์ชันบันทึกการเผยแพร่ที่ถูกต้อง"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
 msgid "Fixed \"Add to Steam\" button"
-msgstr ""
+msgstr "แก้ไขปุ่ม \"เพิ่มไปยัง Steam\" แล้ว"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
-msgstr ""
+msgstr "แก้ไข BottleConfig ที่ไม่สามารถทำการเรียงลำดับได้"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr ""
+msgstr "แก้ไขการสกัด Patool ล้มเหลวสองครั้ง"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
-#, fuzzy
 msgid "Correct version"
-msgstr "เวอร์ชันของชิ้นส่วน"
+msgstr "เวอร์ชันที่ถูกต้อง"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:106
-#, fuzzy
 msgid "Fix crash when creating a bottle"
-msgstr "พบข้อผิดพลาดในการสร้างขวด"
+msgstr "แก้ไขข้อผิดพลาดเมื่อสร้าง bottle"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr ""
+msgstr "การเปลี่ยนแปลงหลัก: ออกแบบอินเทอร์เฟซ Bottle ใหม่"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Quality of life improvements:"
-msgstr ""
+msgstr "การปรับปรุงคุณภาพชีวิต:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
@@ -3018,24 +3044,23 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
-msgstr ""
+msgstr "เพิ่มการยินดีสำหรับ \"เรียกใช้ไฟล์ปฏิบัติการ\""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:117
 msgid "Bug fixes:"
-msgstr ""
+msgstr "แก้ไขบั๊ก:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
-#, fuzzy
 msgid "Importing backups resulted an error"
-msgstr "กำลังนำเข้าแบ็กอัป: {0}"
+msgstr "การนำเข้าข้อมูลสำรองเกิดข้อผิดพลาด"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:121
 msgid "Steam Runtime automatically enabled when using wine-ge-custom"
-msgstr ""
+msgstr "เปิดใช้งานรันไทม์ Steam อัตโนมัติเมื่อใช้งาน wine-ge-custom"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:122
 msgid ""
@@ -3045,16 +3070,15 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
-msgstr ""
+msgstr "แก้ไขปัญหาต่าง ๆ ที่เกี่ยวข้องกับการเข้ารหัสข้อความ"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:130
 msgid "Fix error when downloading if Bottles isn't run from terminal"
-msgstr ""
+msgstr "แก้ไขข้อผิดพลาดเมื่อดาวน์โหลดหากไม่ได้รัน Bottles จาก terminal"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:137
-#, fuzzy
 msgid "Correct version date"
-msgstr "เวอร์ชันของชิ้นส่วน"
+msgstr "วันที่เวอร์ชันที่ถูกต้อง"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
@@ -3062,31 +3086,32 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
-msgstr ""
+msgstr "การปรับปรุงและแก้ไข Gamescope"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:146
 msgid "Dependency installation is faster and more stable"
-msgstr ""
+msgstr "การติดตั้ง Dependency นั้นรวดเร็ว และมีความเสถียรมาก"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:147
 msgid "The health check has more information for faster debugging"
-msgstr ""
+msgstr "การตรวจสุขภาพระบบจะทำให้มีข้อมูลที่มากพอสำหรับการแก้ไขบั๊กที่เร็วขึ้น"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:148
 msgid "NVAPI has a lot of fixes and is more stable, should now work properly"
 msgstr ""
+"NVAPI มีการแก้ไขมากมาย และเสถียรมากกว่า ซึ่งปัจจุบันน่าจะทำงานได้สมบูรณ์แล้ว"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:149
 msgid "Fix crash when downloading a component"
-msgstr ""
+msgstr "แก้ไขข้อผิดพลาดเมื่อดาวน์โหลดส่วนประกอบ"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:150
 msgid "Backend code improvement by avoiding spin-lock"
-msgstr ""
+msgstr "การปรับปรุงโค้ดหลังบ้านด้วยการหลีกเลี่ยง spin-lock"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
 msgid "More variables for installer scripting"
-msgstr ""
+msgstr "ตัวแปรเพิ่มเติมสำหรับสคริปต์ตัวติดตั้ง"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
@@ -3094,35 +3119,36 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
-msgstr ""
+msgstr "การปรับปรุงระบบการสร้าง"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "เปิดใช้งาน VKD3D ค่าเริ่มต้นเมื่อมีการสร้าง bottles สำหรับการเล่นเกม"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
-msgstr ""
+msgstr "แก้ไขข้อผิดพลาดเมื่ออ่านไฟล์ Steam ที่มีการเข้ารหัสไม่ถูกต้อง"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:156
 msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
-msgstr ""
+msgstr "แก้ไขส่วนประกอบที่อัปเดตไม่ถูกต้องใน UI หลังการติดตั้ง/ถอนการติดตั้ง"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:157
 msgid "More FSR fixes"
-msgstr ""
+msgstr "แก้ไข FSR เพิ่มเติม"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:158
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"แก้ไขปัญหาเมื่อโปรแกรมปิดลงหลังจากเปิดใช้งานจาก \"เรียกใช้ไฟล์ปฏิบัติการ\""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:159
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "และอื่น ๆ อีกมากมาย!"
 
 #~ msgid "Calculating…"
 #~ msgstr "กำลังคำนวณ…"
