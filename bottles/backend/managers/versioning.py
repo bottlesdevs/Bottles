@@ -15,6 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+from typing import Any
+
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
@@ -28,7 +30,7 @@ class VersioningManager:
     def __init__(self, manager):
         self.manager = manager
 
-    def _get_bottle_versioning_system(self, config: BottleConfig):
+    def _get_bottle_versioning_system(self, config: BottleConfig) -> BottleSnapshotsVersioningWrapper | BottleFvsVersioning:
         bottle_path = ManagerUtils.get_bottle_path(config)
         bottle_snapshots_wrapper = try_create_bottle_snapshots_versioning_wrapper(bottle_path)
         if bottle_snapshots_wrapper:
@@ -37,11 +39,11 @@ class VersioningManager:
             self.manager.update_config(config, key, value)
         return BottleFvsVersioning(config, bottle_path, update_config)
 
-    def is_initialized(self, config: BottleConfig):
+    def is_initialized(self, config: BottleConfig) -> bool:
         bottle_versioning_system = self._get_bottle_versioning_system(config)
         return bottle_versioning_system.is_initialized()
 
-    def re_initialize(self, config: BottleConfig):
+    def re_initialize(self, config: BottleConfig) -> None:
         bottle_versioning_system = self._get_bottle_versioning_system(config)
         return bottle_versioning_system.re_initialize()
 
@@ -53,7 +55,7 @@ class VersioningManager:
         bottle_versioning_system = self._get_bottle_versioning_system(config)
         return bottle_versioning_system.create_state(message)
 
-    def list_states(self, config: BottleConfig) -> Result:
+    def list_states(self, config: BottleConfig) -> dict[str, Any] | Result[dict[str, Any]]:
         bottle_versioning_system = self._get_bottle_versioning_system(config)
         return bottle_versioning_system.list_states()
 

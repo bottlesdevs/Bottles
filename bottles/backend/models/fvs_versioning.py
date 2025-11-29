@@ -20,6 +20,7 @@ import shutil
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
+from typing import Any
 
 from fvs.exceptions import (  # type: ignore [import-untyped]
     FVSNothingToCommit,
@@ -97,7 +98,7 @@ class BottleFvsVersioning:
             data={"state_id": repo.active_state_id, "states": repo.states},
         )
 
-    def list_states(self) -> Result:
+    def list_states(self) -> dict[str, Any] | Result[dict[str, Any]]:
         """
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.
@@ -229,7 +230,7 @@ class BottleFvsVersioning:
 
     def get_state_files(
         self, state_id: int, plain: bool = False
-    ) -> dict:
+    ) -> str | Any:
         """
         Return the files.yml content of the state. Use the plain argument
         to return the content as plain text.
@@ -243,7 +244,7 @@ class BottleFvsVersioning:
             file.close()
             return files
         except (OSError, IOError, yaml.YAMLError):
-            logging.error(f"Could not read the state files file.")
+            logging.error("Could not read the state files file.")
             return {}
 
     def get_index(self):
