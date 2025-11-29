@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-11 05:51+0000\n"
+"PO-Revision-Date: 2025-11-25 12:51+0000\n"
 "Last-Translator: camegone <kuroneko0308kw@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -1504,7 +1504,7 @@ msgstr ""
 #: bottles/frontend/ui/dialog-vkbasalt.blp:65
 #: bottles/frontend/ui/dialog-vkbasalt.blp:102
 msgid "Sharpness"
-msgstr ""
+msgstr "シャープネス"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:69
 #: bottles/frontend/ui/dialog-vkbasalt.blp:106
@@ -1528,7 +1528,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
-msgstr ""
+msgstr "デノイズ"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:160
 msgid "Fast Approximate Anti-Aliasing"
@@ -1565,11 +1565,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:284
 msgid "Threshold"
-msgstr ""
+msgstr "閾値"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:312
 msgid "Max Search Steps"
-msgstr ""
+msgstr "最大の検索ステップ"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:339
 msgid "Max Search Steps Diagonal"
@@ -1877,6 +1877,9 @@ msgid ""
 "sharing personal information to Windows software. This option cannot be "
 "changed after the bottle has been created."
 msgstr ""
+"これを有効にするとユーザーディレクトリがボトル内で使用可能になり、Windows ソ"
+"フトウェアと個人的なデータを共有するリスクがあります。この設定はボトルを作成"
+"後には変更できません。"
 
 #: bottles/frontend/ui/new.blp:136
 msgid "Architecture"
@@ -2470,6 +2473,11 @@ msgid ""
 "Bottles, as not doing so can cause data loss, corruption and programs to "
 "malfunction."
 msgstr ""
+"このディレクトリを使用するには、ボトルを再起動する必要があります。\n"
+"\n"
+"ボトルを再起動する前に、ボトルを使用して起動した全てのプログラムを終了してい"
+"ることを確認してください。そうしないと、データの消失や破損、プログラムの誤作"
+"動を引き起こすことがあります。"
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
@@ -2542,15 +2550,16 @@ msgstr ""
 msgid ""
 "This program works with noticeable glitches, but these glitches do not "
 "affect the application's functionality."
-msgstr ""
+msgstr "このプログラムの動作に不具合が発生します。しかし、これらの不具合はプログラム"
+"の機能性には問題ありません。"
 
 #: bottles/frontend/widgets/installer.py:51
 msgid "This program works with minor glitches."
-msgstr ""
+msgstr "このプログラムの動作に軽微な不具合が発生します。"
 
 #: bottles/frontend/widgets/installer.py:52
 msgid "This program works perfectly."
-msgstr ""
+msgstr "このプログラムは完璧に動作します。"
 
 #: bottles/frontend/widgets/installer.py:90
 #, python-brace-format
