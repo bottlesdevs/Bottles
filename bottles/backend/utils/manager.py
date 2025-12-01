@@ -263,11 +263,12 @@ class ManagerUtils:
                 for file in existing_files:
                     os.remove(file)
 
+            # [Bug-]issue #4247 (single- to double-quotes in Desktop Entry spec -> "The Exec key"):
             with open(desktop_file, "w") as f:
                 f.write("[Desktop Entry]\n")
                 f.write(f"Name={program.get('name')}\n")
                 f.write(
-                    f"Exec={cmd_cli} run -p {shlex.quote(program.get('name'))} -b '{config.get('Name')}' -- %u\n"
+                    f"Exec={cmd_cli} run -p \"{program.get('name')}\" -b \"{config.get('Name')}\" -- %u\n"
                 )
                 f.write("Type=Application\n")
                 f.write("Terminal=false\n")
@@ -279,7 +280,7 @@ class ManagerUtils:
                 f.write("Actions=Configure;\n")
                 f.write("[Desktop Action Configure]\n")
                 f.write("Name=Configure in Bottles\n")
-                f.write(f"Exec={cmd_legacy} -b '{config.get('Name')}'\n")
+                f.write(f"Exec={cmd_legacy} -b \"{config.get('Name')}\"\n")
 
             return True
         '''
