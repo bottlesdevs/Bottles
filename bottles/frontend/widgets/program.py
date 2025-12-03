@@ -29,7 +29,9 @@ from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.utils.playtime import PlaytimeService
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
+from bottles.frontend.windows.playtimegraph import PlaytimeGraphDialog
 from bottles.frontend.windows.rename import RenameDialog
 
 
@@ -43,6 +45,7 @@ class ProgramEntry(Adw.ActionRow):
     btn_run = Gtk.Template.Child()
     btn_stop = Gtk.Template.Child()
     btn_launch_options = Gtk.Template.Child()
+    btn_playtime_stats = Gtk.Template.Child()
     btn_launch_steam = Gtk.Template.Child()
     btn_uninstall = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
@@ -110,6 +113,7 @@ class ProgramEntry(Adw.ActionRow):
         self.btn_launch_terminal.connect("clicked", self.run_executable, True)
         self.btn_stop.connect("clicked", self.stop_process)
         self.btn_launch_options.connect("clicked", self.show_launch_options_view)
+        self.btn_playtime_stats.connect("clicked", self.show_playtime_stats)
         self.btn_uninstall.connect("clicked", self.uninstall_program)
         self.btn_hide.connect("clicked", self.hide_program)
         self.btn_unhide.connect("clicked", self.hide_program)
@@ -123,6 +127,46 @@ class ProgramEntry(Adw.ActionRow):
         if not program.get("removed") and not is_steam and check_boot:
             self.__is_alive()
 
+        # Update subtitle with playtime info
+        if not is_steam:
+            self.__update_subtitle()
+
+    def __update_subtitle(self):
+        """Update the subtitle with playtime information."""
+        try:
+            # Create playtime service if tracking is enabled
+            if not hasattr(self.manager, "playtime_service"):
+                self.manager.playtime_service = PlaytimeService(self.manager)
+
+            service = self.manager.playtime_service
+            if not service.is_enabled():
+                return
+
+            # Get bottle path and program path
+            bottle_path = ManagerUtils.get_bottle_path(self.config)
+            program_path = self.program.get("path", "")
+
+            if not program_path:
+                return
+
+            # Fetch playtime data
+            record = service.get_program_playtime(
+                bottle_id=self.config.Name,
+                bottle_path=bottle_path,
+                program_name=self.program.get("name", "Unknown"),
+                program_path=program_path,
+            )
+
+            # Always format subtitle (handles both played and never played cases)
+            subtitle = service.format_subtitle(record)
+            self.set_subtitle(subtitle)
+        except Exception as e:
+            # Log error but don't break the UI
+            import logging
+
+            logging.debug(f"Failed to update playtime subtitle: {e}")
+            pass
+
     def show_launch_options_view(self, _widget=False):
         def update(_widget, config):
             self.config = config
@@ -131,6 +175,25 @@ class ProgramEntry(Adw.ActionRow):
         dialog = LaunchOptionsDialog(self, self.config, self.program)
         dialog.present()
         dialog.connect("options-saved", update)
+
+    def show_playtime_stats(self, _widget=False):
+        """Show the playtime statistics dialog for this program."""
+        from bottles.backend.managers.playtime import _compute_program_id
+        from bottles.backend.utils.manager import ManagerUtils
+
+        self.pop_actions.popdown()  # Close the menu before opening dialog
+
+        program_path = self.program.get("path", "")
+        bottle_path = ManagerUtils.get_bottle_path(self.config)
+        program_id = _compute_program_id(self.config.Name, bottle_path, program_path)
+
+        dialog = PlaytimeGraphDialog(
+            self,
+            program_name=self.program.get("name", "Unknown"),
+            program_id=program_id,
+            bottle_id=self.config.Name,
+        )
+        dialog.present()
 
     @GtkUtils.run_in_main_loop
     def __reset_buttons(self, result: bool | Result = False, _error=False):
