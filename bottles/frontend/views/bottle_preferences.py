@@ -492,9 +492,9 @@ class PreferencesView(Adw.PreferencesPage):
         ]:
             string_list.splice(0, string_list.get_n_items())
 
-        self.str_list_dxvk.append("Disabled")
-        self.str_list_vkd3d.append("Disabled")
-        self.str_list_latencyflex.append("Disabled")
+        self.str_list_dxvk.append(_("Disabled"))
+        self.str_list_vkd3d.append(_("Disabled"))
+        self.str_list_latencyflex.append(_("Disabled"))
         for index, dxvk in enumerate(self.manager.dxvk_available):
             self.str_list_dxvk.append(dxvk)
 
