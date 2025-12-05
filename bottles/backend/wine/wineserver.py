@@ -40,7 +40,8 @@ class WineServer(WineProgram):
 
         env = os.environ.copy()
         env["WINEPREFIX"] = bottle
-        env["PATH"] = f"{runner}/bin:{env['PATH']}"
+        if not config.Runner.startswith("sys-"):
+            env["PATH"] = f"{runner}/bin:{env['PATH']}"
         res = subprocess.Popen(
             "wineserver -w",
             stdout=subprocess.PIPE,
