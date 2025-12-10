@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
 "PO-Revision-Date: 2025-12-11 12:00+0000\n"
-"Last-Translator: Nguyen Hoang Ky <nhktmdzhg@gmail.com>\n"
+"Last-Translator: Loc Huynh <huynhloc.contact@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bottles/"
 "bottles/vi/>\n"
 "Language: vi\n"
@@ -68,7 +68,7 @@ msgstr "Cấu hình Wine đã cập nhật!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Chạy qua Flatpak, Sandboxing thư mục người dùng…"
+msgstr "Chạy qua Flatpak, sandboxing thư mục người dùng…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
@@ -205,7 +205,7 @@ msgstr "Quyên góp"
 
 #: bottles/frontend/main.py:299
 msgid "Third-Party Libraries and Special Thanks"
-msgstr "Thư viện của bên thứ ba và Đặc Biệt Cảm Ơn"
+msgstr "Thư viện bên thứ ba và Lời cảm ơn đặc biệt"
 
 #: bottles/frontend/main.py:325
 msgid "Sponsored and Funded by"
@@ -223,7 +223,10 @@ msgstr "Nhà phát triển Bottles"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr "phiên dịch viên_đóng góp"
+msgstr ""
+"Vietnam Linux L10n <https://github.com/linux-l10n-vi>\n"
+"Loc Huynh <https://github.com/hthienloc>\n"
+"Ky Nguyen <https://github.com/nhktmdzhg>"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
@@ -286,15 +289,15 @@ msgstr "Thể loại"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr "Tải xuống và Cài đặt gói phụ thuộc này"
+msgstr "Tải xuống & Cài đặt gói phụ thuộc này"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"Xảy ra lỗi cài đặt. Khởi động lại các Bottles để đọc Báo cáo sự cố hoặc chạy "
-"nó qua terminal để đọc đầu ra."
+"Xảy ra lỗi cài đặt. Khởi động lại Bottles để đọc Báo cáo sự cố hoặc chạy nó "
+"qua terminal để đọc đầu ra."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -337,7 +340,7 @@ msgstr "Xuất Cấu hình…"
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:344
 msgid "Show Hidden Programs"
-msgstr "Hiện Chương Trình Ẩn"
+msgstr "Hiện Chương trình ẩn"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
@@ -376,7 +379,7 @@ msgstr "Khởi động lại"
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr "Tùy chọn Khởi chạy"
+msgstr "Khởi chạy Tùy chọn"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
@@ -433,9 +436,9 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
-"Nhấp vào \"Thực thi chương trình…\" để chạy tệp thực thi, \"Thêm lối tắt...\""
-" để thêm tệp thực thi vào danh sách Chương trình hoặc "
-"\"Cài đặt chương trình…\" để cài đặt các chương trình do cộng đồng quản lý."
+"Nhấp vào \"Thực thi chương trình…\" để chạy tệp thực thi, \"Thêm lối "
+"tắt...\" để thêm tệp thực thi vào Danh sách chương trình hoặc \"Cài đặt "
+"chương trình…\" để cài đặt các chương trình do cộng đồng quản lý."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -697,7 +700,7 @@ msgstr "Màn hình"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr "Học sâu siêu mẫu"
+msgstr "Deep Learning Super Sampling"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
@@ -1018,12 +1021,12 @@ msgstr "Chọn"
 #: bottles/frontend/ui/new.blp:9 bottles/frontend/ui/new.blp:49
 #: bottles/frontend/ui/window.blp:25
 msgid "Create New Bottle"
-msgstr "Tạo Bottle Mới"
+msgstr "Tạo Bottle mới"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr "Báo Cáo Sự Cố Bottles"
+msgstr "Báo cáo sự cố Bottles"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1036,11 +1039,11 @@ msgstr "Báo Cáo Sự Cố Bottles"
 #: bottles/frontend/views/bottle_preferences.py:749
 #: bottles/frontend/views/preferences.py:201
 msgid "_Cancel"
-msgstr "_Hủy Bỏ"
+msgstr "_Hủy bỏ"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
 msgid "Send Report"
-msgstr "Gửi Báo Cáo"
+msgstr "Gửi báo cáo"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:44
 msgid ""
@@ -1098,11 +1101,11 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
-msgstr "Ghi đè Mới"
+msgstr "Ghi đè mới"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:21
 msgid "Overrides"
-msgstr "Ghi Đè"
+msgstr "Ghi đè"
 
 #: bottles/frontend/ui/dialog-drives.blp:7
 msgid "Drives"
@@ -1122,11 +1125,11 @@ msgstr "Chữ cái"
 
 #: bottles/frontend/ui/dialog-drives.blp:49
 msgid "Existing Drives"
-msgstr "Ổ Đĩa Hiện Có"
+msgstr "Ổ đĩa hiện có"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:16
 msgid "Duplicate Bottle"
-msgstr "Nhân Bản Bottle"
+msgstr "Nhân bản Bottle"
 
 #: bottles/frontend/ui/dialog-duplicate.blp:38
 msgid "Duplicate"
@@ -1165,11 +1168,11 @@ msgstr "Tên biến"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:37
 msgid "Existing Variables"
-msgstr "Biến Hiện Có"
+msgstr "Biến hiện có"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:20
 msgid "Exclusion Patterns"
-msgstr "Mẫu Loại Trừ"
+msgstr "Mẫu loại trừ"
 
 #: bottles/frontend/ui/dialog-exclusion-patterns.blp:28
 msgid ""
@@ -1281,15 +1284,15 @@ msgstr "Đã chạy"
 
 #: bottles/frontend/ui/dialog-installer.blp:127
 msgid "Completed!"
-msgstr "Hoàn Thành!"
+msgstr "Hoàn thành!"
 
 #: bottles/frontend/ui/dialog-installer.blp:130
 msgid "Show Programs"
-msgstr "Hiển Thị Chương Trình"
+msgstr "Hiện chương trình"
 
 #: bottles/frontend/ui/dialog-installer.blp:148
 msgid "Installation Failed!"
-msgstr "Cài Đặt Không Thành Công!"
+msgstr "Cài đặt không thành công!"
 
 #: bottles/frontend/ui/dialog-installer.blp:149
 msgid "Something went wrong."
@@ -1301,7 +1304,7 @@ msgstr "Toàn bộ tin nhắn"
 
 #: bottles/frontend/ui/dialog-journal.blp:13
 msgid "Critical"
-msgstr "Nghiêm Trọng"
+msgstr "Nghiêm trọng"
 
 #: bottles/frontend/ui/dialog-journal.blp:17
 msgid "Errors"
@@ -1309,11 +1312,11 @@ msgstr "Lỗi"
 
 #: bottles/frontend/ui/dialog-journal.blp:21
 msgid "Warnings"
-msgstr "Cảnh Báo"
+msgstr "Cảnh báo"
 
 #: bottles/frontend/ui/dialog-journal.blp:25
 msgid "Info"
-msgstr "Thông Tin"
+msgstr "Thông tin"
 
 #: bottles/frontend/ui/dialog-journal.blp:40
 msgid "Journal browser"
@@ -1321,15 +1324,15 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
-msgstr "Trình duyệt Nhật ký"
+msgstr "Trình duyệt nhật ký"
 
 #: bottles/frontend/ui/dialog-journal.blp:53
 msgid "Change Logging Level."
-msgstr "Thay Đổi Cấp Độ Ghi Nhật Ký."
+msgstr "Thay đổi cấp độ ghi nhật ký."
 
 #: bottles/frontend/ui/dialog-journal.blp:57
 msgid "All"
-msgstr "Tất Cả"
+msgstr "Tất cả"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:42
 msgid "Those arguments will be passed at launch."
@@ -1337,11 +1340,11 @@ msgstr "Những đối số này được truyền khi khởi chạy."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:43
 msgid "Custom Arguments"
-msgstr "Đối số Tùy chỉnh"
+msgstr "Đối số tùy chỉnh"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:46
 msgid "Command Arguments"
-msgstr "Đối Số Lệnh"
+msgstr "Đối số lệnh"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:47
 #, c-format
@@ -1350,7 +1353,7 @@ msgstr "ví dụ: VAR=value %command% -example1 -example2 -example3=hello"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:52
 msgid "Post-run Script"
-msgstr "Lệnh Sau Khi Chạy"
+msgstr "Lệnh sau khi chạy"
 
 #. endregion
 #: bottles/frontend/ui/dialog-launch-options.blp:53
@@ -1360,7 +1363,7 @@ msgstr "Chọn một đoạn mã sẽ được thực thi sau khi chạy."
 
 #: bottles/frontend/ui/dialog-launch-options.blp:70
 msgid "Choose a Script"
-msgstr "Chọn một Lệnh"
+msgstr "Chọn một lệnh"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:84
 #: bottles/frontend/windows/launchoptions.py:55
@@ -1370,7 +1373,7 @@ msgstr "Chọn thư mục để chạy chương trình."
 #: bottles/frontend/ui/dialog-launch-options.blp:101
 #: bottles/frontend/ui/drive-entry.blp:22
 msgid "Choose a Directory"
-msgstr "Chọn một Thư Mục"
+msgstr "Chọn một thư mục"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:114
 msgid "These settings will override the default settings for this executable."
@@ -1378,11 +1381,11 @@ msgstr "Các cài đặt này sẽ ghi đè cài đặt mặc định cho tệp 
 
 #: bottles/frontend/ui/dialog-launch-options.blp:115
 msgid "Preferences Overrides"
-msgstr "Ghi Đè Tùy Chọn"
+msgstr "Ghi đè tùy chọn"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:119
 msgid "Reset to Bottle's Defaults"
-msgstr "Đặt lại về Mặc định của Bottle"
+msgstr "Đặt lại về mặc định của Bottle"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:165
 msgid "Virtual Desktop"
@@ -1390,7 +1393,7 @@ msgstr "Sử dụng desktop ảo"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:4
 msgid "Proton Disclaimer"
-msgstr "Tuyên Bố Từ Chối Trách Nhiệm Về Proton"
+msgstr "Tuyên bố miễn trừ trách nhiệm Proton"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:21
 msgid "Use Proton"
@@ -1441,7 +1444,7 @@ msgstr "Tên mới"
 
 #: bottles/frontend/ui/dialog-run-args.blp:13
 msgid "Run With Arguments"
-msgstr "Chạy Với Đối Số"
+msgstr "Chạy với đối số"
 
 #: bottles/frontend/ui/dialog-run-args.blp:34
 #: bottles/frontend/views/bottle_details.py:401
@@ -1463,20 +1466,20 @@ msgstr "Thiết lập sandbox"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
-msgstr "Chia Sẻ Mạng"
+msgstr "Chia sẻ mạng"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:34
 msgid "Share Sound"
-msgstr "Chia Sẻ Âm Thanh"
+msgstr "Chia sẻ âm thanh"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:16
 msgid "Upgrade Needed"
-msgstr "Cần Nâng Cấp"
+msgstr "Cần nâng cấp"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:38
 #: bottles/frontend/ui/onboard.blp:81
 msgid "Continue"
-msgstr "Tiếp Tục"
+msgstr "Tiếp tục"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:47
 msgid "Launch upgrade"
@@ -1484,7 +1487,7 @@ msgstr "Khởi chạy nâng cấp"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:66
 msgid "New Versioning System"
-msgstr "Hệ Thống Phiên Bản Mới"
+msgstr "Hệ thống phiên bản mới"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:69
 msgid "The new bottle versioning system has landed."
@@ -1504,7 +1507,7 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
-"Bottles có Hệ Thống Phiên Bản hoàn toàn mới không tương thích ngược.\n"
+"Bottles có Hệ thống phiên bản mới hoàn toàn không tương thích ngược.\n"
 "\n"
 "Để tiếp tục sử dụng phiên bản, chúng ta cần khởi tạo lại kho lưu trữ bottle. "
 "Thao tác này sẽ không xóa dữ liệu khỏi bottle của bạn nhưng sẽ xóa tất cả "
@@ -1517,7 +1520,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
-msgstr "Đang Khởi Tạo Lại Kho Lưu Trữ…"
+msgstr "Đang khởi tạo lại kho lưu trữ…"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:133
 msgid "Done! Please restart Bottles."
@@ -1526,15 +1529,15 @@ msgstr "Xong! Vui lòng khởi động lại Bottles."
 #. Translators: vkBasalt is a Vulkan post processing layer for Linux
 #: bottles/frontend/ui/dialog-vkbasalt.blp:10
 msgid "Post-Processing Effects Settings"
-msgstr "Cài Đặt Hiệu Ứng Hậu kỳ"
+msgstr "Cài đặt hiệu ứng hậu kỳ"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:44
 msgid "Default"
-msgstr "Mặc Định"
+msgstr "Mặc định"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:48
 msgid "Default Settings"
-msgstr "Cài Đặt Mặc Định"
+msgstr "Cài đặt mặc định"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:57
 msgid "Effects are applied according to the list order."
@@ -1542,16 +1545,16 @@ msgstr "Các hiệu ứng được áp dụng theo thứ tự danh sách."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:58
 msgid "Effects"
-msgstr "Hiệu Ứng"
+msgstr "Hiệu ứng"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:62
 msgid "Contrast Adaptive Sharpening"
-msgstr "Làm Sắc Nét Thích Ứng Tương Phản"
+msgstr "Làm sắc nét thích ứng tương phản"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:65
 #: bottles/frontend/ui/dialog-vkbasalt.blp:102
 msgid "Sharpness"
-msgstr "Độ Sắc Nét"
+msgstr "Độ sắc nét"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:69
 #: bottles/frontend/ui/dialog-vkbasalt.blp:106
@@ -1565,40 +1568,40 @@ msgstr "Độ Sắc Nét"
 #: bottles/frontend/ui/dialog-vkbasalt.blp:343
 #: bottles/frontend/ui/dialog-vkbasalt.blp:370 bottles/frontend/ui/new.blp:58
 msgid "Show Information"
-msgstr "Hiển Thị Thông Tin"
+msgstr "Hiển thị thông tin"
 
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
 msgid "Denoised Luma Sharpening"
-msgstr "Làm Sắc Nét Luma Khử Nhiễu"
+msgstr "Làm sắc nét Luma khử nhiễu"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:130
 msgid "Denoise"
-msgstr "Khử Nhiễu"
+msgstr "Khử nhiễu"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:160
 msgid "Fast Approximate Anti-Aliasing"
-msgstr "Khử Răng Cưa Gần Đúng Nhanh"
+msgstr "Khử răng cưa gần đúng nhanh"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:163
 msgid "Subpixel Quality"
-msgstr "Chất Lượng Pixel Phụ"
+msgstr "Chất lượng pixel phụ"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:191
 msgid "Quality Edge Threshold"
-msgstr "Ngưỡng Cạnh Chất Lượng"
+msgstr "Ngưỡng cạnh chất lượng"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:219
 msgid "Quality Edge Threshold Minimum"
-msgstr "Ngưỡng Cạnh Chất Lượng Tối Thiểu"
+msgstr "Ngưỡng cạnh chất lượng tối thiểu"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:249
 msgid "Subpixel Morphological Anti-Aliasing"
-msgstr "Khử Răng Cưa Hình Thái Subpixel"
+msgstr "Khử răng cưa hình thái Subpixel"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:252
 msgid "Edge Detection"
-msgstr "Phát Hiện Cạnh"
+msgstr "Phát hiện cạnh"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:267
 msgid "Luma"
@@ -1606,7 +1609,7 @@ msgstr "Luma"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:273
 msgid "Color"
-msgstr "Màu Sắc"
+msgstr "Màu sắc"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:284
 msgid "Threshold"
@@ -1614,15 +1617,15 @@ msgstr "Ngưỡng"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:312
 msgid "Max Search Steps"
-msgstr "Các Bước Tìm Kiếm Tối Đa"
+msgstr "Các bước tìm kiếm tối đa"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:339
 msgid "Max Search Steps Diagonal"
-msgstr "Đường Chéo Các Bước Tìm Kiếm Tối Đa"
+msgstr "Đường chéo các bước tìm kiếm tối đa"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:366
 msgid "Max Corner Rounding"
-msgstr "Làm Tròn Góc Tối Đa"
+msgstr "Làm tròn góc tối đa"
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:411
 msgid ""
@@ -1721,15 +1724,15 @@ msgstr "Có sẵn (Windows)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:10
 msgid "Builtin, then Native"
-msgstr "Tích Hợp sau đó mới là Có Sẵn"
+msgstr "Tích hợp sau đó mới là Có sẵn"
 
 #: bottles/frontend/ui/dll-override-entry.blp:11
 msgid "Native, then Builtin"
-msgstr "Có Sẵn sau đó mới là Tích Hợp"
+msgstr "Có sẵn sau đó mới là Tích hợp"
 
 #: bottles/frontend/ui/dll-override-entry.blp:12
 msgid "Disabled"
-msgstr "Vô Hiệu Hóa"
+msgstr "Tắt"
 
 #: bottles/frontend/ui/dll-override-entry.blp:20
 #: bottles/frontend/ui/drive-entry.blp:12
@@ -1743,7 +1746,7 @@ msgstr "/trỏ/đến/đường dẫn"
 #: bottles/frontend/ui/env-var-entry.blp:4
 #: bottles/frontend/ui/exclusion-pattern-entry.blp:4
 msgid "Value"
-msgstr "Giá Trị"
+msgstr "Giá trị"
 
 #: bottles/frontend/ui/importer-entry.blp:13
 msgid "Browse files"
@@ -1772,7 +1775,7 @@ msgstr "Tìm kiếm lại tiền tố"
 
 #: bottles/frontend/ui/importer.blp:38
 msgid "No Prefixes Found"
-msgstr "Không Tìm Thấy Tiền Tố"
+msgstr "Không tìm thấy tiền tố"
 
 #: bottles/frontend/ui/importer.blp:39
 msgid ""
@@ -1785,15 +1788,15 @@ msgstr ""
 
 #: bottles/frontend/ui/importer.blp:74
 msgid "Full Archive"
-msgstr "Nén Đầy Đủ"
+msgstr "Lưu trữ đầy đủ"
 
 #: bottles/frontend/ui/installer-entry.blp:16
 msgid "Show Manifest…"
-msgstr "Hiển Thị Bản Kê Khai…"
+msgstr "Hiển thị bản kê khai…"
 
 #: bottles/frontend/ui/installer-entry.blp:20
 msgid "Read Review…"
-msgstr "Đọc Đánh Giá…"
+msgstr "Đọc đánh giá…"
 
 #: bottles/frontend/ui/installer-entry.blp:34
 msgid "Installer name"
@@ -1805,23 +1808,23 @@ msgstr "Mô tả trình cài đặt"
 
 #: bottles/frontend/ui/installer-entry.blp:42
 msgid "Unknown"
-msgstr "Không Xác Định"
+msgstr "Không xác định"
 
 #: bottles/frontend/ui/installer-entry.blp:51
 msgid "Install this Program"
-msgstr "Cài đặt Chương Trình này"
+msgstr "Cài đặt chương trình này"
 
 #: bottles/frontend/ui/installer-entry.blp:69
 msgid "Program Menu"
-msgstr "Menu Chương Trình"
+msgstr "Menu chương trình"
 
 #: bottles/frontend/ui/library-entry.blp:36
 msgid "No Thumbnail"
-msgstr "Không Có Hình Thu Nhỏ"
+msgstr "Không có hình thu nhỏ"
 
 #: bottles/frontend/ui/library-entry.blp:57
 msgid "Launch"
-msgstr "Khởi Chạy"
+msgstr "Khởi chạy"
 
 #: bottles/frontend/ui/library-entry.blp:70
 #: bottles/frontend/ui/program-entry.blp:89
@@ -1834,7 +1837,7 @@ msgstr "Tên mục"
 
 #: bottles/frontend/ui/library-entry.blp:132
 msgid "Remove from Library"
-msgstr "Xóa khỏi Thư Viện"
+msgstr "Xóa khỏi Thư viện"
 
 #: bottles/frontend/ui/library-entry.blp:143
 msgid "Stop"
@@ -1863,7 +1866,7 @@ msgstr "Thực thi trong Bottle này"
 
 #: bottles/frontend/ui/list-entry.blp:69
 msgid "Run Here"
-msgstr "Chạy Tại đây"
+msgstr "Chạy tại đây"
 
 #: bottles/frontend/ui/list-entry.blp:75
 msgid ""
@@ -1889,11 +1892,11 @@ msgstr "Bottles"
 
 #: bottles/frontend/ui/list.blp:49
 msgid "Create New Bottle…"
-msgstr "Tạo Bottle Mới…"
+msgstr "Tạo Bottle mới…"
 
 #: bottles/frontend/ui/list.blp:63
 msgid "No Results Found"
-msgstr "Không Tìm Thấy Kết Quả"
+msgstr "Không tìm thấy kết quả"
 
 #: bottles/frontend/ui/list.blp:64
 msgid "Try a different search."
@@ -1922,7 +1925,7 @@ msgstr "Tên chai"
 
 #: bottles/frontend/ui/new.blp:75
 msgid "_Application"
-msgstr "_Ứng Dụng"
+msgstr "Ứng _dụng"
 
 #: bottles/frontend/ui/new.blp:88
 msgid "_Gaming"
@@ -1938,7 +1941,7 @@ msgstr "Tùy chỉnh"
 
 #: bottles/frontend/ui/new.blp:118
 msgid "Share User Directory"
-msgstr "Chia Sẻ Thư Mục Người Dùng"
+msgstr "Chia sẻ thư mục người dùng"
 
 #: bottles/frontend/ui/new.blp:119
 msgid ""
@@ -1964,7 +1967,7 @@ msgstr "Nhập cấu hình tùy chỉnh."
 
 #: bottles/frontend/ui/new.blp:176
 msgid "Bottle Directory"
-msgstr "Thư Mục Bottle"
+msgstr "Thư mục Bottle"
 
 #: bottles/frontend/ui/new.blp:177
 msgid "Directory that will contain the data of this bottle."
@@ -1972,7 +1975,7 @@ msgstr "Thư mục sẽ chứa dữ liệu của bottle này."
 
 #: bottles/frontend/ui/new.blp:249
 msgid "_Close"
-msgstr "_Đóng"
+msgstr "Đó_ng"
 
 #: bottles/frontend/ui/new.blp:281
 msgid "This name is unavailable, please try another."
@@ -2006,7 +2009,7 @@ msgstr ""
 
 #: bottles/frontend/ui/onboard.blp:72
 msgid "Almost Done"
-msgstr "Gần Xong"
+msgstr "Gần xong"
 
 #: bottles/frontend/ui/onboard.blp:73
 msgid "We need a few more minutes to set everything up…"
@@ -2014,11 +2017,11 @@ msgstr "Chúng ta cần thêm vài phút để thiết lập mọi thứ…"
 
 #: bottles/frontend/ui/onboard.blp:105
 msgid "All Ready!"
-msgstr "Tất Cả Đã Sẵn Sàng!"
+msgstr "Tất cả đã sẵn sàng!"
 
 #: bottles/frontend/ui/onboard.blp:114
 msgid "Please Finish the setup first"
-msgstr "Vui lòng Hoàn Tất thiết lập trước"
+msgstr "Vui lòng hoàn tất thiết lập trước"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:120
@@ -2040,23 +2043,23 @@ msgstr "Tổng quan"
 
 #: bottles/frontend/ui/preferences.blp:14
 msgid "Appearance"
-msgstr "Giao Diện"
+msgstr "Giao diện"
 
 #: bottles/frontend/ui/preferences.blp:17
 msgid "Dark Mode"
-msgstr "Chế Độ Tối"
+msgstr "Chế độ tối"
 
 #: bottles/frontend/ui/preferences.blp:18
 msgid "Whether Bottles should use the dark color scheme."
-msgstr "Liệu Bottles có nên sử dụng gam màu tối hay không."
+msgstr "Bottles có nên sử dụng gam màu tối hay không."
 
 #: bottles/frontend/ui/preferences.blp:28
 msgid "Show Update Date"
-msgstr "Hiển Thị Ngày Cập Nhật"
+msgstr "Hiện ngày cập nhật"
 
 #: bottles/frontend/ui/preferences.blp:29
 msgid "Whether to show the update date in the bottle list."
-msgstr "Có hiển thị ngày cập nhật trong danh sách bottle."
+msgstr "Hiện ngày cập nhật trong danh sách bottle hay không."
 
 #: bottles/frontend/ui/preferences.blp:42
 #: data/com.usebottles.bottles.gschema.xml:46
@@ -2073,11 +2076,11 @@ msgstr "Tệp tạm thời"
 
 #: bottles/frontend/ui/preferences.blp:53
 msgid "Clean temp files when Bottles launches?"
-msgstr "Làm sạch các tập tin tạm thời khi khởi chạy Bottles?"
+msgstr "Làm sạch các tệp tạm thời khi khởi chạy Bottles?"
 
 #: bottles/frontend/ui/preferences.blp:62
 msgid "Close Bottles After Starting a Program"
-msgstr "Đóng Bottles Sau Khi Bắt Đầu một Chương Trình"
+msgstr "Đóng Bottles sau khi bắt đầu một chương trình"
 
 #: bottles/frontend/ui/preferences.blp:63
 msgid "Close Bottles after starting a program from the file manager."
@@ -2085,11 +2088,11 @@ msgstr "Đóng Bottles sau khi bắt đầu chương trình từ trình quản l
 
 #: bottles/frontend/ui/preferences.blp:73
 msgid "Integrations"
-msgstr "Tích Hợp"
+msgstr "Tích hợp"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr "Tiền Tố Proton Steam"
+msgstr "Tiền tố Proton Steam"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
@@ -2097,7 +2100,7 @@ msgstr "Liệt kê và quản lý tiền tố Steam Proton."
 
 #: bottles/frontend/ui/preferences.blp:97
 msgid "List Steam Apps in Programs List"
-msgstr "Liệt Kê Các Ứng Dụng Steam trong Danh Sách Chương Trình"
+msgstr "Liệt kê các ứng dụng Steam trong Danh sách chương trình"
 
 #: bottles/frontend/ui/preferences.blp:98
 msgid "Requires Steam for Windows installed in the bottle."
@@ -2105,7 +2108,7 @@ msgstr "Yêu cầu cài đặt Steam cho Windows trong bottle."
 
 #: bottles/frontend/ui/preferences.blp:107
 msgid "List Epic Games in Programs List"
-msgstr "Liệt Kê Epic Games trong Danh Sách Chương Trình"
+msgstr "Liệt kê Epic Games trong Danh sách chương trình"
 
 #: bottles/frontend/ui/preferences.blp:108
 msgid "Requires Epic Games Store installed in the bottle."
@@ -2121,11 +2124,11 @@ msgstr "Yêu cầu cài đặt Ubisoft Connect trong bottle."
 
 #: bottles/frontend/ui/preferences.blp:128
 msgid "Advanced"
-msgstr "Nâng Cao"
+msgstr "Nâng cao"
 
 #: bottles/frontend/ui/preferences.blp:131
 msgid "Bottles Directory"
-msgstr "Thư Mục Bottles"
+msgstr "Thư mục Bottles"
 
 #: bottles/frontend/ui/preferences.blp:132
 msgid "Directory that contains the data of your Bottles."
@@ -2141,7 +2144,7 @@ msgstr "Bottles đang chạy ở chế độ ngoại tuyến nên không có tr�
 
 #: bottles/frontend/ui/preferences.blp:208
 msgid "Pre-Release"
-msgstr "Trước Khi Phát Hành"
+msgstr "Trước khi phát hành"
 
 #: bottles/frontend/ui/preferences.blp:209
 msgid "Display unstable versions of runners."
@@ -2149,7 +2152,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:224
 msgid "DLL Components"
-msgstr "Thành Phần DLL"
+msgstr "Thành phần DLL"
 
 #: bottles/frontend/ui/preferences.blp:238
 msgid "Bottles is running in offline mode, so DLLs are not available."
@@ -2202,15 +2205,15 @@ msgstr "Duyệt đường dẫn"
 
 #: bottles/frontend/ui/program-entry.blp:39
 msgid "Change Launch Options…"
-msgstr "Thay Đổi Tùy Chọn Khởi Chạy…"
+msgstr "Thay đổi tùy chọn khởi chạy…"
 
 #: bottles/frontend/ui/program-entry.blp:43
 msgid "Add to Library"
-msgstr "Thêm vào Thư Viện"
+msgstr "Thêm vào Thư viện"
 
 #: bottles/frontend/ui/program-entry.blp:47
 msgid "Add Desktop Entry"
-msgstr "Thêm Mục Nhập Trên Desktop"
+msgstr "Thêm mục nhập trên Desktop"
 
 #: bottles/frontend/ui/program-entry.blp:51
 msgid "Add to Steam"
@@ -2218,19 +2221,19 @@ msgstr "Thêm vào Steam"
 
 #: bottles/frontend/ui/program-entry.blp:55
 msgid "Rename…"
-msgstr "Đổi Tên…"
+msgstr "Đổi tên…"
 
 #: bottles/frontend/ui/program-entry.blp:62
 msgid "Hide Program"
-msgstr "Ẩn Chương Trình"
+msgstr "Ẩn chương trình"
 
 #: bottles/frontend/ui/program-entry.blp:66
 msgid "Show Program"
-msgstr "Hiển Thị Chương Trình"
+msgstr "Hiện chương trình"
 
 #: bottles/frontend/ui/program-entry.blp:70
 msgid "Remove from List"
-msgstr "Xóa khỏi Danh Sách"
+msgstr "Xóa khỏi Danh sách"
 
 #: bottles/frontend/ui/program-entry.blp:83
 msgid "Program name"
@@ -2255,7 +2258,7 @@ msgstr "Xóa tin nhắn"
 
 #: bottles/frontend/ui/window.blp:40
 msgid "Main Menu"
-msgstr "Menu Chính"
+msgstr "Menu chính"
 
 #: bottles/frontend/ui/window.blp:54
 msgid ""
@@ -2263,9 +2266,9 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
-"Bạn dường như không kết nối với internet. Không có nó, bạn sẽ không thể tải "
-"xuống các thành phần thiết yếu. Nhấp vào biểu tượng này khi bạn đã thiết lập "
-"lại kết nối."
+"Bạn hình như không kết nối với internet. Nếu không kết nối, bạn sẽ không thể "
+"tải xuống các thành phần thiết yếu. Nhấp vào biểu tượng này khi bạn đã thiết "
+"lập lại kết nối."
 
 #: bottles/frontend/ui/window.blp:79
 msgid "Import…"
@@ -2273,12 +2276,12 @@ msgstr "Nhập…"
 
 #: bottles/frontend/ui/window.blp:91
 msgid "Help"
-msgstr "Trợ Giúp"
+msgstr "Trợ giúp"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/window.blp:96
 msgid "About Bottles"
-msgstr "Về Bottles"
+msgstr "Giới thiệu về Bottles"
 
 #: bottles/frontend/views/bottle_details.py:191
 #, python-brace-format
@@ -2299,7 +2302,7 @@ msgstr "\"{0}\" đã thêm"
 #: bottles/frontend/views/bottle_details.py:398
 #: bottles/frontend/views/list.py:128
 msgid "Select Executable"
-msgstr "Chọn Tệp có thể thực thi"
+msgstr "Chọn tệp có thể thực thi"
 
 #: bottles/frontend/views/bottle_details.py:273
 msgid "Add"
@@ -2307,7 +2310,7 @@ msgstr "Thêm"
 
 #: bottles/frontend/views/bottle_details.py:346
 msgid "Hide Hidden Programs"
-msgstr "Ẩn Chương Trình Bị Ẩn"
+msgstr "Ẩn chương trình bị ẩn"
 
 #: bottles/frontend/views/bottle_details.py:383
 #: bottles/frontend/widgets/library.py:156
@@ -2318,7 +2321,7 @@ msgstr "Đang khởi chạy \"{0}\"…"
 
 #: bottles/frontend/views/bottle_details.py:413
 msgid "Be Aware of Sandbox"
-msgstr "Hãy Cảnh Giác với sandbox"
+msgstr "Hãy cảnh giác với Sandbox"
 
 #: bottles/frontend/views/bottle_details.py:414
 msgid ""
@@ -2335,7 +2338,7 @@ msgstr ""
 #: bottles/frontend/views/bottle_details.py:525
 #: bottles/frontend/windows/main_window.py:223
 msgid "_Dismiss"
-msgstr "_Bỏ Qua"
+msgstr "_Bỏ qua"
 
 #: bottles/frontend/views/bottle_details.py:429
 msgid "Select the location where to save the backup config"
@@ -2351,7 +2354,7 @@ msgstr "Chọn vị trí để lưu tệp nén sao lưu"
 
 #: bottles/frontend/views/bottle_details.py:435
 msgid "Backup"
-msgstr "Sao Lưu"
+msgstr "Sao lưu"
 
 #: bottles/frontend/views/bottle_details.py:440
 #, python-brace-format
@@ -2381,7 +2384,7 @@ msgstr "_Xóa"
 
 #: bottles/frontend/views/bottle_details.py:521
 msgid "Missing Runner"
-msgstr "Thiếu Trình Thực Thi"
+msgstr "Thiếu trình thực thi"
 
 #: bottles/frontend/views/bottle_details.py:522
 msgid ""
@@ -2401,7 +2404,7 @@ msgstr "Điều này có thể gây mất dữ liệu, hỏng hóc và chương 
 
 #: bottles/frontend/views/bottle_details.py:601
 msgid "Force _Stop"
-msgstr "Buộc _Dừng"
+msgstr "Buộc _dừng"
 
 #: bottles/frontend/views/bottle_preferences.py:195
 msgid "This feature is unavailable on your system."
@@ -2418,7 +2421,7 @@ msgstr "Tên bottle này đã được sử dụng."
 #: bottles/frontend/views/bottle_preferences.py:301
 #: bottles/frontend/windows/launchoptions.py:241
 msgid "Select Working Directory"
-msgstr "Chọn Thư Mục Làm Việc"
+msgstr "Chọn thư mục làm việc"
 
 #: bottles/frontend/views/bottle_preferences.py:423
 msgid "Directory that contains the data of \"{}\"."
@@ -2473,7 +2476,7 @@ msgstr "Nhập"
 
 #: bottles/frontend/views/importer.py:158 bottles/frontend/views/new.py:136
 msgid "Select a Configuration File"
-msgstr "Chọn một Tệp Cấu Hình"
+msgstr "Chọn một Tệp cấu hình"
 
 #: bottles/frontend/views/list.py:60 bottles/frontend/views/list.py:66
 msgid "N/A"
@@ -2510,11 +2513,11 @@ msgstr "Chọn thư mục Bottle"
 
 #: bottles/frontend/views/new.py:176
 msgid "Creating Bottle…"
-msgstr "Đang Tạo Bottle…"
+msgstr "Đang tạo Bottle…"
 
 #: bottles/frontend/views/new.py:221
 msgid "Unable to Create Bottle"
-msgstr "Không Thể Tạo Bottle"
+msgstr "Không thể tạo Bottle"
 
 #: bottles/frontend/views/new.py:225
 msgid "Bottle failed to create with one or more errors."
@@ -2523,7 +2526,7 @@ msgstr "Không thể tạo bottle do một hoặc nhiều lỗi."
 #. Show success
 #: bottles/frontend/views/new.py:232
 msgid "Bottle Created"
-msgstr "Bottle Được Tạo"
+msgstr "Bottle được tạo"
 
 #: bottles/frontend/views/new.py:233
 #, python-brace-format
@@ -2536,11 +2539,11 @@ msgstr "Không tìm thấy Steam hoặc Bottles không có đủ quyền."
 
 #: bottles/frontend/views/preferences.py:176
 msgid "Select Bottles Path"
-msgstr "Chọn Đường Dẫn Bottles"
+msgstr "Chọn đường dẫn Bottles"
 
 #: bottles/frontend/views/preferences.py:198
 msgid "Relaunch Bottles?"
-msgstr "Khởi Động Lại Bottles?"
+msgstr "Khởi động lại Bottles?"
 
 #: bottles/frontend/views/preferences.py:199
 msgid ""
@@ -2558,7 +2561,7 @@ msgstr ""
 
 #: bottles/frontend/views/preferences.py:202
 msgid "_Relaunch"
-msgstr "_Khởi Chạy Lại"
+msgstr "_Khởi chạy lại"
 
 #: bottles/frontend/views/preferences.py:243
 msgid "Based on Valve's Wine, includes staging and Proton patches."
@@ -2584,7 +2587,7 @@ msgstr "Khác"
 
 #: bottles/frontend/widgets/component.py:74
 msgid "Upgrade"
-msgstr "Nâng Cấp"
+msgstr "Nâng cấp"
 
 #: bottles/frontend/widgets/component.py:140
 msgid "Installing…"
@@ -2720,7 +2723,7 @@ msgstr "Không tìm thấy ghi đè."
 
 #: bottles/frontend/windows/drives.py:71
 msgid "Select Drive Path"
-msgstr "Chọn Đường Dẫn Ổ Đĩa"
+msgstr "Chọn đường dẫn ổ đĩa"
 
 #: bottles/frontend/windows/envvars.py:131
 msgid "No environment variables defined."
@@ -2738,11 +2741,11 @@ msgstr "Một lỗi đã xảy ra."
 #: bottles/frontend/windows/generic.py:137
 #: bottles/frontend/windows/generic.py:182
 msgid "Copy to clipboard"
-msgstr "Sao chép vào bảng tạm"
+msgstr "Sao chép vào bộ nhớ tạm"
 
 #: bottles/frontend/windows/installer.py:62
 msgid "Select Resource File"
-msgstr "Chọn Tệp Tài Nguyên"
+msgstr "Chọn tệp tài nguyên"
 
 #: bottles/frontend/windows/installer.py:109
 msgid "Installing Windows dependencies…"
@@ -2793,7 +2796,7 @@ msgstr "Chọn Lệnh"
 
 #: bottles/frontend/windows/main_window.py:220
 msgid "Custom Bottles Path not Found"
-msgstr "Không Tìm Thấy Đường Dẫn Bottles Tùy Chỉnh"
+msgstr "Không tìm thấy đường dẫn Bottles tùy chỉnh"
 
 #: bottles/frontend/windows/main_window.py:221
 msgid ""
@@ -2804,12 +2807,12 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in.in:3
 msgid "@APP_NAME@"
-msgstr "@TÊN_APP@"
+msgstr "@APP_NAME@"
 
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
 msgid "Run Windows Software"
-msgstr "Chạy Phần Mềm Windows"
+msgstr "Chạy phần mềm Windows"
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
@@ -2821,7 +2824,7 @@ msgstr "Di chuyển sang Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr "Bật / Tắt hộp thoại di chuyển sang Flatpak."
+msgstr "Bật/Tắt hộp thoại di chuyển sang Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
@@ -2833,11 +2836,11 @@ msgstr "Buộc sử dụng chủ đề tối."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr "Kích hoạt / Vô hiệu hóa ngày cập nhật trong danh sách"
+msgstr "Bật/Tắt ngày cập nhật trong danh sách"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr "Bật/tắt ngày cập nhật trong danh sách bottles."
+msgstr "Bật/Tắt ngày cập nhật trong danh sách bottles."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
@@ -2912,8 +2915,8 @@ msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Kích hoạt / hủy kích hoạt các tính năng thử nghiệm như quản lý hoặc trình "
-"cài đặt phiên bản. Phát hành ứng viên cho trình thực thi."
+"Bật/Tắt các tính năng thử nghiệm như quản lý hoặc trình cài đặt phiên bản. "
+"Phát hành ứng viên cho trình thực thi."
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
@@ -3085,7 +3088,7 @@ msgstr "Khắc phục sự cố khi tạo bottle"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:111
 msgid "Major change: Redesign New Bottle interface"
-msgstr "Thay đổi lớn: Thiết kế lại giao diện Bottle Mới"
+msgstr "Thay đổi lớn: Thiết kế lại giao diện Bottle mới"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:112
 msgid "Quality of life improvements:"
