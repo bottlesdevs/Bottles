@@ -156,10 +156,10 @@ class PreferencesView(Adw.PreferencesPage):
             _not_available
         )
         self._install_commands = {
-            "gamescope": "flatpak install --user com.obsproject.Studio.Plugin.OBSVkCapture",
-            "vkbasalt": "flatpak install --user org.freedesktop.Platform.VulkanLayer.vkBasalt",
-            "mangohud": "flatpak install --user org.freedesktop.Platform.VulkanLayer.MangoHud",
-            "obsvkc": "flatpak install --user com.obsproject.Studio.Plugin.OBSVkCapture",
+            "gamescope": "flatpak install flathub com.obsproject.Studio.Plugin.OBSVkCapture",
+            "vkbasalt": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.vkBasalt",
+            "mangohud": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud",
+            "obsvkc": "flatpak install flathub com.obsproject.Studio.Plugin.OBSVkCapture",
         }
 
         is_flatpak = "FLATPAK_ID" in os.environ
