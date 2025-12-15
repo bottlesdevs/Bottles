@@ -156,7 +156,7 @@ class PreferencesView(Adw.PreferencesPage):
             _not_available
         )
         self._install_commands = {
-            "gamescope": "flatpak install --user com.obsproject.Studio.Plugin.OBSVkCapture",
+            "gamescope": "flatpak install --user org.freedesktop.Platform.VulkanLayer.gamescope",
             "vkbasalt": "flatpak install --user org.freedesktop.Platform.VulkanLayer.vkBasalt",
             "mangohud": "flatpak install --user org.freedesktop.Platform.VulkanLayer.MangoHud",
             "obsvkc": "flatpak install --user com.obsproject.Studio.Plugin.OBSVkCapture",
