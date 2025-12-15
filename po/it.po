@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-12-06 08:00+0000\n"
+"PO-Revision-Date: 2025-12-16 07:00+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.15.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -607,14 +607,13 @@ msgstr ""
 #: bottles/frontend/ui/details-installers.blp:29
 #, fuzzy
 msgid "No Installers Found"
-msgstr "Nessun installer trovato"
+msgstr "Nessun installatore trovato"
 
 #: bottles/frontend/ui/details-installers.blp:32
-#, fuzzy
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
-"Il repository non è raggiungibile o nessun installer è compatibile con "
+"Il repository non è raggiungibile o nessun installatore è compatibile con "
 "questa bottiglia."
 
 #: bottles/frontend/ui/details-installers.blp:50
@@ -2649,9 +2648,9 @@ msgid ""
 "the best possible experience, but expect glitches, instability and lack of "
 "working features."
 msgstr ""
-"Questa applicazione potrebbe funzionare male. Il programma di installazione "
-"è stato configurato per fornire la migliore esperienza possibile, ma sono "
-"possibili malfunzionamenti, instabilità e mancanza di funzionalità."
+"Questa applicazione potrebbe funzionare male. L'installatore è stato "
+"configurato per fornire la migliore esperienza possibile, ma sono possibili "
+"malfunzionamenti, instabilità e mancanza di funzionalità."
 
 #: bottles/frontend/widgets/installer.py:50
 msgid ""
@@ -2802,8 +2801,9 @@ msgid "{0} is now available in the programs view."
 msgstr "{0} è ora disponibile nella vista programmi."
 
 #: bottles/frontend/windows/installer.py:166
+#, fuzzy
 msgid "Installer failed with unknown error"
-msgstr "L'installazione è fallita con un errore sconosciuto"
+msgstr "Errore sconosciuto dell'installatore"
 
 #: bottles/frontend/windows/launchoptions.py:56
 #, python-brace-format
@@ -3206,8 +3206,9 @@ msgid "Backend code improvement by avoiding spin-lock"
 msgstr "Miglioramento del codice backend evitando lo spin-lock"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
+#, fuzzy
 msgid "More variables for installer scripting"
-msgstr "Ulteriori variabili per lo script di installazione"
+msgstr "Ulteriori variabili per lo script dell'installatore"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
