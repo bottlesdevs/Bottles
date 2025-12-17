@@ -30,6 +30,7 @@ class GamescopeDialog(Adw.Window):
     spin_fps_limit = Gtk.Template.Child()
     spin_fps_limit_no_focus = Gtk.Template.Child()
     switch_scaling = Gtk.Template.Child()
+    entry_custom_options = Gtk.Template.Child()
     toggle_borderless = Gtk.Template.Child()
     toggle_fullscreen = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
@@ -80,6 +81,7 @@ class GamescopeDialog(Adw.Window):
         self.switch_scaling.set_active(parameters.gamescope_scaling)
         self.toggle_borderless.set_active(parameters.gamescope_borderless)
         self.toggle_fullscreen.set_active(parameters.gamescope_fullscreen)
+        self.entry_custom_options.set_text(parameters.gamescope_custom_options)
 
         self.toggle_borderless.handler_unblock_by_func(self.__change_wtype)
         self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)
@@ -95,6 +97,7 @@ class GamescopeDialog(Adw.Window):
             "gamescope_scaling": self.switch_scaling.get_active(),
             "gamescope_borderless": self.toggle_borderless.get_active(),
             "gamescope_fullscreen": self.toggle_fullscreen.get_active(),
+            "gamescope_custom_options": self.entry_custom_options.get_text(),
         }
 
         for setting in settings.keys():

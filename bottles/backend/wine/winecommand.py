@@ -688,6 +688,8 @@ class WineCommand:
             gamescope_cmd = [gamescope_available]
             if return_steam_cmd:
                 gamescope_cmd = ["gamescope"]
+            if params.gamescope_custom_options:
+                gamescope_cmd.append(params.gamescope_custom_options)
             if params.gamescope_fullscreen:
                 gamescope_cmd.append("-f")
             if params.gamescope_borderless:
