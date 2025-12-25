@@ -106,6 +106,6 @@ class ConnectionUtils:
                 )
             self.last_check = datetime.now()
             self.status = False
-        finally:
-            self.do_check_connection = True
-            return self.status
+        
+        self.do_check_connection = True
+        return self.status
