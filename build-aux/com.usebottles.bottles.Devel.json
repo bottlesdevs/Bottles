@@ -169,6 +169,29 @@
       ]
     },
     {
+      "name": "btrfs-progs",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/kdave/btrfs-progs",
+          "tag": "v6.17.1",
+          "commit": "06981428c08f78f019a2f4956407fd84b495e21e",
+          "x-checker-data": {
+            "type": "git",
+            "tag-pattern": "^v([\\d.]+)$"
+          }
+        }
+      ],
+      "buildsystem": "simple",
+      "build-commands": [
+        "./autogen.sh",
+        "./configure --prefix=/app --enable-python --disable-documentation --disable-lzo",
+        "make -j",
+        "make install",
+        "make install_python"
+      ]
+    },
+    {
       "name": "libportal",
       "buildsystem": "meson",
       "config-opts": [
