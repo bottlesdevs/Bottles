@@ -45,6 +45,7 @@ class TerminalUtils:
         ["kitty", "%s"],
         ["tilix", "-- %s"],
         ["st", "-e %s"],
+        ["wezterm", "-e -- %s"],
         # Desktop environments
         ["xfce4-terminal", "-e %s"],
         ["konsole", "--noclose -e %s"],
@@ -137,7 +138,7 @@ class TerminalUtils:
             except Exception:
                 full_cmd = f"{template} {cmd_for_shell}"
 
-        elif term_bin in ["kitty", "foot", "konsole", "gnome-terminal"]:
+        elif term_bin in ["kitty", "foot", "konsole", "gnome-terminal", "wezterm"]:
             cmd_for_shell = shlex.quote(f"sh -c {command}")
             try:
                 full_cmd = template % cmd_for_shell
