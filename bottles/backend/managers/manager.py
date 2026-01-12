@@ -37,6 +37,7 @@ from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
+from bottles.backend.managers.btrfssubvolume import BtrfsSubvolumeManager
 from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.dependency import DependencyManager
@@ -152,6 +153,7 @@ class Manager(metaclass=Singleton):
         times["RepositoryManager"] = time.time()
         self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
+        self.btrfs_subvolume_manager = BtrfsSubvolumeManager(self)
         self.component_manager = ComponentManager(self, _offline)
         self.installer_manager = InstallerManager(self, _offline)
         self.dependency_manager = DependencyManager(self, _offline)
@@ -1461,17 +1463,14 @@ class Manager(metaclass=Singleton):
         # create the bottle path
         bottle_path = os.path.join(Paths.bottles, config.Name)
 
-        if not os.path.exists(bottle_path):
-            """
-            If the bottle does not exist, create it, else
-            append a random number to the name.
-            """
-            os.makedirs(bottle_path)
-        else:
+        # If the bottle exists append a random number to the name.
+        if os.path.exists(bottle_path):
             rnd = random.randint(100, 200)
             bottle_path = f"{bottle_path}__{rnd}"
             config.Name = f"{config.Name}__{rnd}"
             config.Path = f"{config.Path}__{rnd}"
+
+        if not self.btrfs_subvolume_manager.create_bottle_as_subvolume(bottle_path):
             os.makedirs(bottle_path)
 
         # Pre-create drive_c directory and set the case-fold flag
@@ -1685,14 +1684,15 @@ class Manager(metaclass=Singleton):
 
         # create the bottle directory
         try:
-            os.makedirs(bottle_complete_path)
+            if not self.btrfs_subvolume_manager.create_bottle_as_subvolume(bottle_complete_path):
+                os.makedirs(bottle_complete_path)
             # Pre-create drive_c directory and set the case-fold flag
             bottle_drive_c = os.path.join(bottle_complete_path, "drive_c")
             os.makedirs(bottle_drive_c)
             FileUtils.chattr_f(bottle_drive_c)
-        except:
+        except RuntimeError as e:
             logging.error(
-                f"Failed to create bottle directory: {bottle_complete_path}", jn=True
+                f"Failed to create bottle directory '{bottle_complete_path}' {e}", jn=True
             )
             log_update(_("Failed to create bottle directory."))
             return Result(False)
@@ -2089,6 +2089,7 @@ class Manager(metaclass=Singleton):
 
         logging.info("Removing the bottle…")
         path = ManagerUtils.get_bottle_path(config)
+        self.btrfs_subvolume_manager.delete_all_snapshots(path)
         subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
 
         self.update_bottles(silent=True)
