@@ -50,6 +50,29 @@ class GtkUtils:
         return True
 
     @staticmethod
+    def validate_env_var_name(entry, extend=None) -> bool:
+        var_assignment = entry.get_text()
+        if var_assignment and not ShUtils.is_name(var_assignment):
+            GtkUtils.reset_entry_apply_button(entry)
+            entry.add_css_class("error")
+            return False
+
+        if not var_assignment:
+            GtkUtils.reset_entry_apply_button(entry)
+            entry.remove_css_class("error")
+            return False
+
+        if extend is not None:
+            if not extend(var_assignment):
+                GtkUtils.reset_entry_apply_button(entry)
+                entry.add_css_class("error")
+                return False
+
+        entry.set_show_apply_button(True)
+        entry.remove_css_class("error")
+        return True
+
+    @staticmethod
     def reset_entry_apply_button(entry) -> None:
         """
         Reset the apply_button within AdwEntryRow to hide it without disabling
