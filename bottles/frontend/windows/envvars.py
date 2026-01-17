@@ -224,12 +224,7 @@ class EnvironmentVariablesDialog(Adw.Dialog):
             self.group_vars.add(_entry)
 
     def __validate_inherited(self, *_args):
-        def _is_valid(name: str) -> bool:
-            return bool(re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name))
-
-        self.__valid_inherited_name = GtkUtils.validate_entry(
-            self.entry_new_inherited, _is_valid
-        )
+        self.__valid_inherited_name = GtkUtils.validate_env_var_name(self.entry_new_inherited)
 
     def __toggle_inherited_limit(self, *_args):
         active = self.switch_limit_inherited.get_active()
