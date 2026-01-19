@@ -85,9 +85,9 @@ class GPUUtils:
 
     def get_gpu(self):
         checks = {
-            "nvidia": {"query": "(VGA|3D).*NVIDIA"},
-            "amd": {"query": "(VGA|3D).*AMD/ATI"},
-            "intel": {"query": "(VGA|3D).*Intel"},
+            "nvidia": {"query": "(VGA|3D|Display).*NVIDIA"},
+            "amd": {"query": "(VGA|3D|Display).*AMD/ATI"},
+            "intel": {"query": "(VGA|3D|Display).*Intel"},
         }
         gpus = {
             "nvidia": {
