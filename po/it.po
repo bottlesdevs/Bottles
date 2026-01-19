@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-12-16 07:00+0000\n"
+"PO-Revision-Date: 2026-01-20 08:01+0000\n"
 "Last-Translator: Pierfrancesco Passerini <p.passerini@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.1-dev\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -46,7 +46,6 @@ msgid "Failed to create bottle directory."
 msgstr "Creazione della directory della bottiglia fallita."
 
 #: bottles/backend/managers/manager.py:1157
-#, fuzzy
 msgid "Failed to create placeholder directory/file."
 msgstr "Impossibile creare l'etichetta directory/file."
 
@@ -93,12 +92,10 @@ msgid "Applying environment: {0}…"
 msgstr "Applicazione dell'ambiente: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
-#, fuzzy
 msgid "(!) Using a custom environment recipe…"
 msgstr "(!) Utilizzo di un ambiente personalizzato…"
 
 #: bottles/backend/managers/manager.py:1292
-#, fuzzy
 msgid "(!) Recipe not not found or not valid…"
 msgstr "(!) Configurazione non trovata o non valida…"
 
@@ -605,7 +602,6 @@ msgstr ""
 "proprietaria. Installandoli, accetti i rispettivi termini di licenza."
 
 #: bottles/frontend/ui/details-installers.blp:29
-#, fuzzy
 msgid "No Installers Found"
 msgstr "Nessun installatore trovato"
 
@@ -1366,7 +1362,6 @@ msgstr "Script post-esecuzione"
 #. endregion
 #: bottles/frontend/ui/dialog-launch-options.blp:53
 #: bottles/frontend/windows/launchoptions.py:54
-#, fuzzy
 msgid "Choose a script which should be executed after run."
 msgstr "Scegli lo script da eseguire dopo la chiusura."
 
@@ -1769,7 +1764,6 @@ msgstr "Sfoglia file"
 
 #. Translators: A Wine prefix is a separate environment (C:\ drive) for the Wine program
 #: bottles/frontend/ui/importer-entry.blp:21
-#, fuzzy
 msgid "Wine prefix name"
 msgstr "Percorso di Wine"
 
@@ -2801,9 +2795,10 @@ msgid "{0} is now available in the programs view."
 msgstr "{0} è ora disponibile nella vista programmi."
 
 #: bottles/frontend/windows/installer.py:166
-#, fuzzy
 msgid "Installer failed with unknown error"
-msgstr "Errore sconosciuto dell'installatore"
+msgstr ""
+"L’installatore non è riuscito a completare l’operazione a causa di un errore "
+"sconosciuto"
 
 #: bottles/frontend/windows/launchoptions.py:56
 #, python-brace-format
@@ -3206,7 +3201,6 @@ msgid "Backend code improvement by avoiding spin-lock"
 msgstr "Miglioramento del codice backend evitando lo spin-lock"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:151
-#, fuzzy
 msgid "More variables for installer scripting"
 msgstr "Ulteriori variabili per lo script dell'installatore"
 
