@@ -145,16 +145,24 @@ class EagleManager:
                 logging.info(f"[Eagle] Blocking neighbor scan for portal path: {path}")
                 return False
 
-            unsafe_dirs = {
-                GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DOWNLOAD),
-                GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP),
-                GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DOCUMENTS),
-                GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_TEMPLATES),
-                GLib.get_home_dir()
-            }
+            unsafe_dirs = set()
+            home = GLib.get_home_dir()
+            if home:
+                unsafe_dirs.add(os.path.realpath(home))
+                for d in ["Downloads", "Desktop", "Documents", "Templates"]:
+                    unsafe_dirs.add(os.path.realpath(os.path.join(home, d)))
 
-            unsafe_paths = {os.path.realpath(p) for p in unsafe_dirs if p}
-            if path in unsafe_paths or path == os.path.realpath(os.path.expanduser("~")):
+            for xdg_type in [
+                GLib.UserDirectory.DIRECTORY_DOWNLOAD,
+                GLib.UserDirectory.DIRECTORY_DESKTOP,
+                GLib.UserDirectory.DIRECTORY_DOCUMENTS,
+                GLib.UserDirectory.DIRECTORY_TEMPLATES
+            ]:
+                xdg_path = GLib.get_user_special_dir(xdg_type)
+                if xdg_path:
+                    unsafe_dirs.add(os.path.realpath(xdg_path))
+
+            if path in unsafe_dirs or path == os.path.realpath(os.path.expanduser("~")):
                 logging.info(f"[Eagle] Neighbor scan blocked for unsafe path: {path}")
                 return False
                 
