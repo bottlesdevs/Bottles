@@ -61,6 +61,7 @@ blueprints = custom_target('blueprints',
     'window.blp',
     'details-preferences.blp',
     'help-overlay.blp',
+    'eagle.blp',
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],)

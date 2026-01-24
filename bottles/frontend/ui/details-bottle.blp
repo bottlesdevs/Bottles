@@ -310,6 +310,30 @@ template $DetailsBottle: Adw.PreferencesPage {
     Adw.ActionRow {
       activatable: false;
       focusable: false;
+      title: _("Analyze with Eagle (Beta)");
+      subtitle: _("Eagle will extract and analyze as much details as possible of an executable to provide you with a compatibility report.");
+
+      [suffix]
+      Button btn_eagle {
+        valign: center;
+
+        Box {
+          spacing: 6;
+
+          Image {
+            icon-name: "com.usebottles.eagle-symbolic";
+          }
+
+          Label {
+            label: _("Analyse…");
+          }
+        }
+      }
+    }
+
+    Adw.ActionRow {
+      activatable: false;
+      focusable: false;
       title: _("Browse C:/ drive");
       subtitle: _("Browse the files of this bottle.");
 

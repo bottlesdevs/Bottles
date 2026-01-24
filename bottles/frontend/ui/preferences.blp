@@ -173,6 +173,18 @@ template $PreferencesWindow: Adw.PreferencesWindow {
         };
       }
 
+      Adw.SpinRow spin_eagle_limit {
+        title: _("Eagle Deep Scan Limit");
+        subtitle: _("Maximum binaries to analyze when extracting installers.");
+        adjustment: Adjustment {
+          lower: 10;
+          upper: 200;
+          step-increment: 10;
+          page-increment: 50;
+          value: 50;
+        };
+      }
+
       Adw.ActionRow {
         title: _("Bottles Directory");
         subtitle: _("Directory that contains the data of your Bottles.");

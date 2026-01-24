@@ -17,7 +17,8 @@ bottles_sources = [
   'bottle_registry_rules.py',
   'bottle_preferences.py',
   'bottle_versioning.py',
-  'bottle_taskmanager.py'
+  'bottle_taskmanager.py',
+  'eagle.py'
 ]
 
 install_data(bottles_sources, install_dir: viewsdir)

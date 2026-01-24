@@ -53,6 +53,10 @@ class Signals(Enum):
     # ProgramFinished data payload:
     ProgramFinished = "Playtime.program_finished"
 
+    # Eagle analysis signals
+    EagleStep = "Eagle.step"  # data(Result): msg(str)
+    EagleFinished = "Eagle.finished"  # data(Result): results(dict)
+
 
 class Status(Enum):
     RUNNING = "running"

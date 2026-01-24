@@ -1,0 +1,114 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $EagleView : Gtk.Box {
+  orientation: vertical;
+
+  Adw.Banner banner_disclaimer {
+    title: _("Suggestions are based on technical analysis and do not guarantee compatibility.");
+    revealed: false;
+  }
+
+  Adw.ViewStack stack {
+    vexpand: true;
+
+    Adw.ViewStackPage {
+      name: "console";
+      child: Gtk.Box {
+        orientation: vertical;
+        spacing: 12;
+        margin-top: 24;
+        margin-bottom: 24;
+        margin-start: 24;
+        margin-end: 24;
+
+        Adw.StatusPage {
+          title: _("Analysing Executable");
+          description: _("Eagle is inspecting the binary structure, dependencies and patterns.");
+          icon-name: "com.usebottles.eagle-symbolic";
+          vexpand: false;
+        }
+
+        Gtk.ScrolledWindow scrolled_steps {
+          vexpand: true;
+          styles ["card"]
+
+          Gtk.ListBox steps_list {
+            selection-mode: none;
+            styles ["boxed-list"]
+          }
+        }
+      };
+    }
+
+    Adw.ViewStackPage {
+      name: "results";
+      child: Adw.PreferencesPage {
+        Adw.PreferencesGroup group_results {
+          title: _("Analysis Results");
+          description: _("Binary details and detected frameworks.");
+        }
+
+        Adw.PreferencesGroup group_warnings {
+          title: _("Compatibility Warnings");
+          description: _("Issues that may prevent this program from running.");
+          visible: false;
+
+          Gtk.ListBox list_warnings {
+            selection-mode: none;
+            styles ["boxed-list"]
+          }
+        }
+
+        Adw.PreferencesGroup group_dependencies {
+          title: _("Recommended Dependencies");
+          description: _("Libraries or runtimes required by this program.");
+          visible: false;
+
+          Gtk.ListBox list_dependencies {
+            selection-mode: none;
+            styles ["boxed-list"]
+          }
+        }
+
+        Adw.PreferencesGroup {
+          title: _("Optimizations");
+          description: _("Suggested configuration overrides for this program.");
+
+          Gtk.ListBox list_suggestions {
+            selection-mode: none;
+            styles ["boxed-list"]
+          }
+        }
+
+        Adw.PreferencesGroup group_files {
+          title: _("Extraction Details");
+          description: _("Files analyzed during deep scan.");
+          visible: false;
+
+          Adw.ExpanderRow label_files {
+            title: _("Analysed Files");
+            icon-name: "text-x-generic-symbolic";
+          }
+        }
+      };
+    }
+  }
+
+  Gtk.ActionBar {
+    revealed: bind btn_launch.visible;
+    [start]
+    Gtk.Button btn_report {
+      icon-name: "document-properties-symbolic";
+      tooltip-text: _("View Full Report");
+      visible: false;
+      styles ["flat"]
+    }
+    [center]
+    Gtk.Button btn_launch {
+      label: _("Add and Launch Program");
+      visible: false;
+      styles ["suggested-action", "pill"]
+    }
+  }
+}
