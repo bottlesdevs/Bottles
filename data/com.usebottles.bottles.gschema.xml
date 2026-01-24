@@ -101,5 +101,10 @@
       <summary>Playtime heartbeat interval (seconds)</summary>
       <description>How often to update session heartbeat. Defines max timestamp error for abrupt exits.</description>
     </key>
+    <key type="i" name="eagle-scan-limit">
+      <default>50</default>
+      <summary>Eagle deep scan limit</summary>
+      <description>Maximum number of binaries to scan when analysing installers. Higher values provide more thorough analysis but take longer.</description>
+    </key>
 	</schema>
 </schemalist>

@@ -66,6 +66,7 @@ class BottleView(Adw.PreferencesPage):
     install_programs = Gtk.Template.Child()
     add_shortcuts = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
+    btn_eagle = Gtk.Template.Child()
     popover_exec_settings = Gtk.Template.Child()
     exec_arguments = Gtk.Template.Child()
     exec_terminal = Gtk.Template.Child()
@@ -141,6 +142,7 @@ class BottleView(Adw.PreferencesPage):
         self.add_shortcuts.connect("clicked", self.add)
         self.install_programs.connect("clicked", self.__change_page, "installers")
         self.btn_execute.connect("clicked", self.run_executable)
+        self.btn_eagle.connect("clicked", self.run_eagle)
         self.popover_exec_settings.connect("closed", self.__run_executable_with_args)
         self.row_preferences.connect("activated", self.__change_page, "preferences")
         self.row_dependencies.connect("activated", self.__change_page, "dependencies")
@@ -798,8 +800,7 @@ class BottleView(Adw.PreferencesPage):
                     self.config,
                     exec_path=dialog.get_file().get_path(),
                     args=self.config.get("session_arguments"),
-                    terminal=self.config.get("run_in_terminal"),
-                    program_winebridge=self.exec_winebridge.get_active(),
+                    terminal=self.config.run_in_terminal,
                 )
 
                 def callback(a, b):
@@ -817,6 +818,9 @@ class BottleView(Adw.PreferencesPage):
             add_executable_filters(dialog)
             add_all_filters(dialog)
             dialog.set_modal(True)
+            dialog.set_current_folder(
+                Gio.File.new_for_path(ManagerUtils.get_bottle_path(self.config))
+            )
             dialog.connect("response", execute)
             dialog.show()
 
@@ -830,10 +834,41 @@ class BottleView(Adw.PreferencesPage):
                     ),
                 )
                 dialog.add_response("dismiss", _("_Dismiss"))
-                dialog.connect("response", show_chooser)
+                dialog.connect("response", lambda *args: show_chooser())
                 dialog.present()
             else:
                 show_chooser()
+        else:
+            show_chooser()
+
+    def run_eagle(self, _widget):
+        """
+        Pops up a dialog to select an executable for Eagle analysis.
+        """
+
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
+
+            path = _dialog.get_file().get_path()
+            self.details.view_eagle.analyze(path)
+            self.__change_page(None, "eagle")
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select Executable for Eagle Analysis"),
+            action=Gtk.FileChooserAction.OPEN,
+            parent=self.window,
+            accept_label=_("Analyse"),
+        )
+
+        add_executable_filters(dialog)
+        add_all_filters(dialog)
+        dialog.set_modal(True)
+        dialog.set_current_folder(
+            Gio.File.new_for_path(ManagerUtils.get_bottle_path(self.config))
+        )
+        dialog.connect("response", set_path)
+        dialog.show()
 
     def __backup(self, widget, backup_type):
         """

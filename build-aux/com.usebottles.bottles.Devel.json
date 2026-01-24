@@ -83,6 +83,48 @@
     "mkdir -p /app/share/vulkan/implicit_layer.d/"
   ],
   "modules": [
+    {
+      "name": "yara",
+      "buildsystem": "autotools",
+      "config-opts": [
+        "--disable-static",
+        "--enable-cuckoo",
+        "--enable-magic",
+        "--enable-dotnet"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/VirusTotal/yara",
+          "tag": "v4.5.5",
+          "x-checker-data": {
+            "type": "git",
+            "tag-pattern": "^v([\\d.]+)$"
+          }
+        }
+      ],
+      "modules": [
+        {
+          "name": "jansson",
+          "buildsystem": "cmake-ninja",
+          "config-opts": [
+            "-DJANSSON_BUILD_DOCS=OFF",
+            "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+          ],
+          "sources": [
+            {
+              "type": "git",
+              "url": "https://github.com/akheron/jansson",
+              "tag": "v2.14.1",
+              "x-checker-data": {
+                "type": "git",
+                "tag-pattern": "^v([\\d.]+)$"
+              }
+            }
+          ]
+        }
+      ]
+    },
     "pypi-deps.yaml",
     {
       "name": "vmtouch",
@@ -100,13 +142,17 @@
           }
         }
       ],
-      "build-commands": ["make", "make install PREFIX=/app"]
+      "build-commands": [
+        "make",
+        "make install PREFIX=/app"
+      ]
     },
-
     {
       "name": "vulkan-tools",
       "buildsystem": "cmake-ninja",
-      "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+      "config-opts": [
+        "-DCMAKE_BUILD_TYPE=Release"
+      ],
       "sources": [
         {
           "type": "git",
@@ -195,7 +241,9 @@
     {
       "name": "vkbasalt-cli",
       "buildsystem": "simple",
-      "build-commands": ["python3 setup.py install --prefix=/app --root=/"],
+      "build-commands": [
+        "python3 setup.py install --prefix=/app --root=/"
+      ],
       "sources": [
         {
           "type": "git",
@@ -213,7 +261,9 @@
     {
       "name": "EasyTerm",
       "buildsystem": "simple",
-      "build-commands": ["python3 setup.py install --prefix=/app --root=/"],
+      "build-commands": [
+        "python3 setup.py install --prefix=/app --root=/"
+      ],
       "sources": [
         {
           "type": "git",
@@ -243,7 +293,9 @@
         {
           "name": "vte",
           "buildsystem": "meson",
-          "config-opts": ["-Dvapi=false"],
+          "config-opts": [
+            "-Dvapi=false"
+          ],
           "sources": [
             {
               "type": "archive",
@@ -285,7 +337,9 @@
       "name": "bottles",
       "builddir": true,
       "buildsystem": "meson",
-      "config-opts": ["-Dprofile=development"],
+      "config-opts": [
+        "-Dprofile=development"
+      ],
       "sources": [
         {
           "type": "dir",

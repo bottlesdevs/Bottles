@@ -32,6 +32,7 @@ from bottles.frontend.views.bottle_preferences import PreferencesView
 from bottles.frontend.views.bottle_registry_rules import RegistryRulesView
 from bottles.frontend.views.bottle_taskmanager import TaskManagerView
 from bottles.frontend.views.bottle_versioning import VersioningView
+from bottles.frontend.views.eagle import EagleView
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/details.ui")
@@ -82,6 +83,7 @@ class DetailsView(Adw.Bin):
         self.view_preferences = PreferencesView(self, config)
         self.view_versioning = VersioningView(self, config)
         self.view_taskmanager = TaskManagerView(self, config)
+        self.view_eagle = EagleView(self, config)
 
         self.btn_back.connect("clicked", self.go_back)
         self.btn_back_sidebar.connect("clicked", self.go_back_sidebar)
@@ -165,6 +167,10 @@ class DetailsView(Adw.Bin):
                 "title": _("Task Manager"),
                 "description": "",
             },
+            "eagle": {
+                "title": _("Eagle Analysis"),
+                "description": "",
+            },
         }
 
         if self.config.Environment == "Steam":
@@ -180,6 +186,7 @@ class DetailsView(Adw.Bin):
             self.stack_bottle.add_named(self.view_versioning, "versioning")
             self.stack_bottle.add_named(self.view_installers, "installers")
             self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
+            self.stack_bottle.add_named(self.view_eagle, "eagle")
 
             if self.view_bottle.actions.get_parent() is None:
                 self.set_actions(self.view_bottle.actions)

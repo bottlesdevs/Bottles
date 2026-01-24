@@ -56,6 +56,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_epic_games = Gtk.Template.Child()
     switch_ubisoft_connect = Gtk.Template.Child()
     combo_audio_driver = Gtk.Template.Child()
+    spin_eagle_limit = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dlls = Gtk.Template.Child()
     action_prerelease = Gtk.Template.Child()
@@ -190,6 +191,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
             Gio.SettingsBindFlags.DEFAULT,
         )
 
+        self.spin_eagle_limit.set_value(self.settings.get_int("eagle-scan-limit"))
+        self.spin_eagle_limit.connect("notify::value", self.__on_eagle_limit_changed)
+
         self.__sync_audio_driver_selection()
         self.combo_audio_driver.connect(
             "notify::selected", self.__on_audio_driver_selected
@@ -265,6 +269,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def __toggle_rc(self, widget, state):
         self.ui_update()
+
+    def __on_eagle_limit_changed(self, spin_row, _pspec):
+        self.settings.set_int("eagle-scan-limit", int(spin_row.get_value()))
 
     def __open_steam_proton_doc(self, widget):
         webbrowser.open(

@@ -5,7 +5,7 @@ build-commands:
   - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
     --prefix=${FLATPAK_DEST} --no-build-isolation wheel PyYAML pycurl chardet requests
     Markdown icoextract patool pathvalidate FVS orjson pycairo PyGObject charset-normalizer
-    idna urllib3 certifi pefile
+    idna urllib3 certifi pefile yara-python
 sources:
   - type: file
     url: https://files.pythonhosted.org/packages/f7/2f/cc09899755f94b36e7f570b9f9ca19a5fdff536e2614fd3ac1c28bb777f6/FVS-0.3.4.tar.gz
@@ -65,3 +65,6 @@ sources:
   - type: file
     url: https://files.pythonhosted.org/packages/1b/d1/9babe2ccaecff775992753d8686970b1e2755d21c8a63be73aba7a4e7d77/wheel-0.44.0-py3-none-any.whl
     sha256: 2376a90c98cc337d18623527a97c31797bd02bad0033d41547043a1cbfbe448f
+  - type: file
+    url: https://files.pythonhosted.org/packages/2f/3a/0d2970e76215ab7a835ebf06ba0015f98a9d8e11b9969e60f1ca63f04ba5/yara_python-4.5.1.tar.gz
+    sha256: 52ab24422b021ae648be3de25090cbf9e6c6caa20488f498860d07f7be397930

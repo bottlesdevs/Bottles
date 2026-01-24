@@ -26,7 +26,9 @@ bottles_sources = [
   'registry_rule.py',
   'steamgriddb.py',
   'thumbnail.py',
-  'playtime.py'
+  'playtime.py',
+  'eagle.py'
 ]
 
 install_data(bottles_sources, install_dir: managersdir)
+install_data('eagle.yar', install_dir: managersdir)
