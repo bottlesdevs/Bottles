@@ -28,7 +28,9 @@ logging = Logger()
 
 class UserDataKeys:
     CustomBottlesPath = "custom_bottles_path"
-    FundingDismissed = "funding_dialog_dismissed"
+    FundingDismissed = "funding_dialog_dismissed_next"
+    LastFundingPrompt = "last_funding_prompt_date"
+    FundingPromptCount = "funding_prompt_count"
     PersonalRepositories = "personal_repositories"
 
 
@@ -98,6 +100,6 @@ class DataManager:
                 with open(self.__p_data, "w") as s:
                     yaml.dump(self.__data, s)
 
-    def get(self, key):
+    def get(self, key, default=None):
         """Returns the value of a key in the data dictionary."""
-        return self.__data.get(key)
+        return self.__data.get(key, default)
