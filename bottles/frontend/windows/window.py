@@ -49,6 +49,7 @@ from bottles.frontend.windows.crash import CrashReportDialog
 from bottles.frontend.windows.depscheck import DependenciesCheckDialog
 from bottles.frontend.windows.onboard import OnboardDialog
 from bottles.frontend.windows.winebridgeupdate import WineBridgeUpdateDialog
+from bottles.frontend.windows.funding import FundingDialog
 
 logging = Logger()
 
@@ -84,14 +85,14 @@ class BottlesWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs, default_width=width, default_height=height)
 
         self.data_mgr = DataManager()
-        first_event = JournalManager.first_event_date()
-        days_old = 0
-        if first_event:
-            days_old = (datetime.now() - first_event).days
-
-        self._show_funding = days_old >= 7 and not self.data_mgr.get(
-            UserDataKeys.FundingDismissed
-        )
+        self.data_mgr = DataManager()
+        self._show_funding = False
+        if not self.data_mgr.get(UserDataKeys.FundingDismissed, False):
+            last_prompt = self.data_mgr.get(UserDataKeys.LastFundingPrompt, "")
+            today = datetime.now().strftime("%Y-%m-%d")
+            
+            if last_prompt != today:
+                self._show_funding = True
 
         self.utils_conn = ConnectionUtils(
             force_offline=self.settings.get_boolean("force-offline")
@@ -454,24 +455,20 @@ class BottlesWindow(Adw.ApplicationWindow):
         if not self._show_funding:
             return
 
-        dialog = Adw.MessageDialog.new(
-            self,
-            _("Support Bottles"),
-            _(
-                "With over 3 million installations, Bottles is built by and for its community."
-                "\nA donation today helps secure its future and keep it truly independent."
-            ),
-        )
-        dialog.add_response("donate", _("Donate"))
-        dialog.add_response("dismiss", _("Don't Show Again"))
-        dialog.set_response_appearance("donate", Adw.ResponseAppearance.SUGGESTED)
+        count = self.data_mgr.get(UserDataKeys.FundingPromptCount) or 0
+        self.data_mgr.set(UserDataKeys.FundingPromptCount, count + 1)
+        
+        today = datetime.now().strftime("%Y-%m-%d")
+        self.data_mgr.set(UserDataKeys.LastFundingPrompt, today)
+
+        dialog = FundingDialog(self, show_dont_show=count >= 7)
         dialog.connect("response", self.__funding_response)
         dialog.present()
 
     def __funding_response(self, dialog, response):
-        if response == "donate":
-            self.open_url(None, "https://usebottles.com/funding/")
-        self.data_mgr.set(UserDataKeys.FundingDismissed, True)
+        if response == "dismiss":
+            self.data_mgr.set(UserDataKeys.FundingDismissed, True)
+
         dialog.destroy()
 
     def toggle_selection_mode(self, status: bool = True):
