@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-27 10:57+0530\n"
-"PO-Revision-Date: 2026-01-27 03:05+0000\n"
+"PO-Revision-Date: 2026-01-27 15:28+0000\n"
 "Last-Translator: Amadɣas <massiin@proton.me>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/bottles/bottles/"
 "kab/>\n"
@@ -75,11 +75,11 @@ msgstr "Tawila n Wine yettwaleqqem!"
 
 #: bottles/backend/managers/manager.py:1265
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Aselkem am Flatpak, aɛzel n ukaram n useqdac deg ufrag…"
+msgstr "Aselkem am Flatpak, aɛzel n ukaram n useqdac deg tnaka n ijdi…"
 
 #: bottles/backend/managers/manager.py:1267
 msgid "Sandboxing userdir…"
-msgstr "Aɛzel n ukaram n useqdac deg ufrag…"
+msgstr "Aɛzel n ukaram n useqdac deg tnaka n ijdi…"
 
 #: bottles/backend/managers/manager.py:1308
 msgid "Setting Windows version…"
@@ -766,7 +766,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:201
 msgid "Monitor Performance"
-msgstr ""
+msgstr "Amsefrak n tmellit"
 
 #: bottles/frontend/ui/details-preferences.blp:202
 msgid ""
@@ -776,7 +776,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:205
 msgid "Manage MangoHud settings"
-msgstr ""
+msgstr "Sefrek iɣewwaṛen n MangoHud"
 
 #: bottles/frontend/ui/details-preferences.blp:210
 msgid "Feral GameMode"
@@ -786,52 +786,55 @@ msgstr ""
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
+"Snes asbadu n isekkayen i yibenk-ik·im. Yezmer ad yesnerni timellit n wurar."
 
 #: bottles/frontend/ui/details-preferences.blp:220
 msgid "Preload Game Files"
-msgstr ""
+msgstr "Sali-d ifuyla n wurar"
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Snerni akud n usali mi ara yekker wurar s wagut n tikkal. Urar-nni ad yeṭṭef "
+"aṭas n wakud i usenker tikkelt tamezwarut."
 
 #: bottles/frontend/ui/details-preferences.blp:225
 msgid "Manage vmtouch settings"
-msgstr ""
+msgstr "Sefrek iɣewwaṛen vmtouch"
 
 #: bottles/frontend/ui/details-preferences.blp:240
 msgid "OBS Game Capture"
-msgstr ""
+msgstr "Tuṭṭfa n wurar OBS"
 
 #: bottles/frontend/ui/details-preferences.blp:241
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr ""
+msgstr "Qluqel Tuṭṭfa n wurar OBS i akk n wahilen Vulkan akked OpenGL."
 
 #: bottles/frontend/ui/details-preferences.blp:250
 msgid "Compatibility"
-msgstr ""
+msgstr "Amṣada"
 
 #: bottles/frontend/ui/details-preferences.blp:253
 msgid "Windows Version"
-msgstr ""
+msgstr "Lqem n Windows"
 
 #: bottles/frontend/ui/details-preferences.blp:256
 msgid "Updating Windows version, please wait…"
-msgstr ""
+msgstr "Aleqqem n lqem n Windows, ma ulac aɣilif arǧu…"
 
 #: bottles/frontend/ui/details-preferences.blp:265
 msgid "Language"
-msgstr ""
+msgstr "Tutlayt"
 
 #: bottles/frontend/ui/details-preferences.blp:266
 msgid "Choose the language to use with programs."
-msgstr ""
+msgstr "Fren tutlayt ara tesqedceḍ s wahilen."
 
 #: bottles/frontend/ui/details-preferences.blp:274
 msgid "Dedicated Sandbox"
-msgstr ""
+msgstr "Tanaka n ijdi yettwaṭṭfen"
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Use a restricted/managed environment for this bottle."
@@ -839,7 +842,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:278
 msgid "Manage the Sandbox Permissions"
-msgstr ""
+msgstr "Sefrek tisirag n tnaka n ijdi"
 
 #: bottles/frontend/ui/details-preferences.blp:294
 msgid "Bottles Runtime"
@@ -923,7 +926,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:390
 msgid "Compression"
-msgstr ""
+msgstr "Asekkussem"
 
 #: bottles/frontend/ui/details-preferences.blp:391
 msgid ""
@@ -945,11 +948,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-taskmanager.blp:17
 msgid "Refresh"
-msgstr ""
+msgstr "Sismeḍ"
 
 #: bottles/frontend/ui/details-taskmanager.blp:22
 msgid "Stop process"
-msgstr ""
+msgstr "Ḥbes akala"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 msgid "No Snapshots Found"
@@ -961,11 +964,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-versioning.blp:54
 msgid "A short comment"
-msgstr ""
+msgstr "Awennit awezlan"
 
 #: bottles/frontend/ui/details-versioning.blp:58
 msgid "Save the bottle state."
-msgstr ""
+msgstr "Sekles addad n tqerɛet."
 
 #: bottles/frontend/ui/details-versioning.blp:78
 msgid "Create new Snapshot"
@@ -973,41 +976,41 @@ msgstr ""
 
 #: bottles/frontend/ui/details.blp:16
 msgid "Details"
-msgstr ""
+msgstr "Ifatusen"
 
 #: bottles/frontend/ui/details.blp:24 bottles/frontend/ui/details.blp:64
 #: bottles/frontend/ui/importer.blp:15
 msgid "Go Back"
-msgstr ""
+msgstr "Uɣal ɣer deffir"
 
 #: bottles/frontend/ui/details.blp:75
 msgid "Operations"
-msgstr ""
+msgstr "Timhalin"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:4
 msgid "Select Bottle"
-msgstr ""
+msgstr "Fren Taqerɛet"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:16
 #: bottles/frontend/ui/dialog-proton-alert.blp:16
 #: bottles/frontend/ui/dialog-rename.blp:15
 #: bottles/frontend/ui/dialog-run-args.blp:20
 msgid "Cancel"
-msgstr ""
+msgstr "Sefsex"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:21
 msgid "Select"
-msgstr ""
+msgstr "Fren"
 
 #: bottles/frontend/ui/dialog-bottle-picker.blp:38
 #: bottles/frontend/ui/new.blp:9 bottles/frontend/ui/new.blp:49
 #: bottles/frontend/ui/window.blp:25
 msgid "Create New Bottle"
-msgstr ""
+msgstr "Snulfu-d Taqerɛet tamaynut"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:8
 msgid "Bottles Crash Report"
-msgstr ""
+msgstr "Aneqis n uɣelluy n tqreɛtin"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:18
 #: bottles/frontend/ui/dialog-duplicate.blp:22
@@ -1020,11 +1023,11 @@ msgstr ""
 #: bottles/frontend/views/bottle_preferences.py:746
 #: bottles/frontend/views/preferences.py:212
 msgid "_Cancel"
-msgstr ""
+msgstr "_Sefsex"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:25
 msgid "Send Report"
-msgstr ""
+msgstr "Azen aneqqis"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:44
 msgid ""
@@ -1042,15 +1045,15 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-crash-report.blp:89
 msgid "I still want to report."
-msgstr ""
+msgstr "Mazal-iyi bɣiɣ ad fkeɣ aneqqis."
 
 #: bottles/frontend/ui/dialog-crash-report.blp:95
 msgid "Advanced options"
-msgstr ""
+msgstr "Tinefrunin tinaẓiyin"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:13
 msgid "Incomplete package"
-msgstr ""
+msgstr "Akemmus ur yemmid ara"
 
 #: bottles/frontend/ui/dialog-deps-check.blp:14
 msgid ""
@@ -1061,13 +1064,15 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-deps-check.blp:18
 msgid "Quit"
-msgstr ""
+msgstr "Ffeɣ"
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:11
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
+"Timkarḍiyin useɣwen asmussan zemrent ad ttwasmersent akken ad ilint d "
+"tusliɣt (sɣur Wine) neɣ aneṣli (yettunefken-d sɣur ahil)."
 
 #: bottles/frontend/ui/dialog-dll-overrides.blp:15
 msgid "New Override"
@@ -1416,7 +1421,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-sandbox.blp:7
 msgid "Sandbox Settings"
-msgstr ""
+msgstr "Iɣewwaṛen n tnaka n ijdi"
 
 #: bottles/frontend/ui/dialog-sandbox.blp:25
 msgid "Share Network"
@@ -2099,7 +2104,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:315
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "Tanaka n ijdi i yal taqerɛet"
 
 #: bottles/frontend/ui/preferences.blp:316
 msgid "In early development."
@@ -2227,7 +2232,7 @@ msgstr ""
 
 #: bottles/frontend/views/bottle_details.py:416
 msgid "Be Aware of Sandbox"
-msgstr ""
+msgstr "Ili-k·m d win yessnen i Tnaka n ijdi"
 
 #: bottles/frontend/views/bottle_details.py:417
 msgid ""
@@ -2835,11 +2840,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:81
 msgid "Experiments:sandbox"
-msgstr ""
+msgstr "Tirmatin: tanaka n ijdi"
 
 #: data/com.usebottles.bottles.gschema.xml:82
 msgid "Toggle experimental Sandbox per bottle."
-msgstr ""
+msgstr "Qluqel Tanaka n ijdi tarmitant i tqerɛet."
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Automatically close Bottles"
@@ -2851,11 +2856,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:91
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "Sken alɣu n tnaka n ijdi"
 
 #: data/com.usebottles.bottles.gschema.xml:92
 msgid "Toggle sandbox warning."
-msgstr ""
+msgstr "Qluqel alɣu n tnaka n ijdi."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid ""
