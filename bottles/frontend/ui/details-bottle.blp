@@ -55,6 +55,18 @@ Popover pop_context {
 Box actions {
   spacing: 6;
 
+  Box box_backup_progress {
+    visible: false;
+    spacing: 4;
+    tooltip-text: _("Backup in progress…");
+
+    Spinner spinner_backup {}
+
+    Label label_backup_progress {
+      styles ["dim-label", "caption"]
+    }
+  }
+
   MenuButton {
     always-show-arrow: true;
     popover: pop_power;

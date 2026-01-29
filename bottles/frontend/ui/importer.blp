@@ -16,6 +16,20 @@ template $ImporterView: Adw.Bin {
 
       [end]
       Box box_actions {
+        spacing: 6;
+
+        Box box_import_progress {
+          visible: false;
+          spacing: 4;
+          tooltip-text: _("Import in progress…");
+
+          Spinner spinner_import {}
+
+          Label label_import_progress {
+            styles ["dim-label", "caption"]
+          }
+        }
+
         MenuButton btn_import_backup {
           tooltip-text: _("Import a Bottle backup");
           popover: pop_backup;

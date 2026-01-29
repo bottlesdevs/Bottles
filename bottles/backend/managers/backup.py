@@ -19,6 +19,7 @@ import os
 import shutil
 import tarfile
 from gettext import gettext as _
+from typing import Callable, Optional
 
 import pathvalidate
 
@@ -34,6 +35,46 @@ from bottles.backend.utils.manager import ManagerUtils
 logging = Logger()
 
 
+class ProgressTrackingFilter:
+    """
+    A filter wrapper that tracks uncompressed bytes being added to the tar
+    and reports progress via a Task.
+    """
+
+    def __init__(
+        self,
+        total_size: int,
+        task: Optional[Task] = None,
+        base_filter: Optional[Callable] = None,
+    ):
+        self._total_size = total_size
+        self._task = task
+        self._base_filter = base_filter
+        self._processed = 0
+        self._last_percent = -1
+
+    def __call__(self, tarinfo: tarfile.TarInfo) -> Optional[tarfile.TarInfo]:
+        # Apply base filter first
+        if self._base_filter:
+            tarinfo = self._base_filter(tarinfo)
+            if tarinfo is None:
+                return None
+
+        # Track progress based on file size being added
+        if tarinfo.isfile():
+            self._processed += tarinfo.size
+            self._update_progress()
+
+        return tarinfo
+
+    def _update_progress(self):
+        if self._task and self._total_size > 0:
+            percent = min(int(self._processed * 100 / self._total_size), 99)
+            if percent != self._last_percent:
+                self._last_percent = percent
+                self._task.subtitle = f"{percent}%"
+
+
 class BackupManager:
     @staticmethod
     def _validate_path(path: str) -> bool:
@@ -44,35 +85,118 @@ class BackupManager:
         return True
 
     @staticmethod
+    def _calculate_dir_size(
+        path: str, exclude_filter: Optional[Callable] = None
+    ) -> int:
+        """
+        Calculate the total size of a directory, respecting the exclude filter.
+        """
+        total_size = 0
+        for dirpath, dirnames, filenames in os.walk(path):
+            # Apply exclude filter logic to directories
+            if exclude_filter:
+                # Check if this directory should be excluded
+                rel_path = os.path.relpath(dirpath, os.path.dirname(path))
+                mock_info = type("TarInfo", (), {"name": rel_path})()
+                if exclude_filter(mock_info) is None:
+                    dirnames.clear()  # Don't descend into excluded directories
+                    continue
+
+            for filename in filenames:
+                filepath = os.path.join(dirpath, filename)
+                # Apply exclude filter to files
+                if exclude_filter:
+                    rel_path = os.path.relpath(filepath, os.path.dirname(path))
+                    mock_info = type("TarInfo", (), {"name": rel_path})()
+                    if exclude_filter(mock_info) is None:
+                        continue
+                try:
+                    total_size += os.path.getsize(filepath)
+                except (OSError, FileNotFoundError):
+                    pass
+        return total_size
+
+    @staticmethod
     def _create_tarfile(
-        source_path: str, destination_path: str, exclude_filter=None
+        source_path: str,
+        destination_path: str,
+        exclude_filter: Optional[Callable] = None,
+        task: Optional[Task] = None,
     ) -> bool:
         """Helper function to create a tar.gz file from a source path."""
         try:
+            # Calculate total size for progress tracking
+            total_size = 0
+            if task:
+                task.subtitle = _("Calculating…")
+                total_size = BackupManager._calculate_dir_size(
+                    source_path, exclude_filter
+                )
+
+            os.chdir(os.path.dirname(source_path))
+
+            # Create progress-tracking filter if task is provided
+            if task and total_size > 0:
+                progress_filter = ProgressTrackingFilter(
+                    total_size, task, exclude_filter
+                )
+                active_filter = progress_filter
+            else:
+                active_filter = exclude_filter
+
             with tarfile.open(destination_path, "w:gz") as tar:
-                os.chdir(os.path.dirname(source_path))
-                tar.add(os.path.basename(source_path), filter=exclude_filter)
+                tar.add(os.path.basename(source_path), filter=active_filter)
+
+            if task:
+                task.subtitle = "100%"
+
             return True
         except (FileNotFoundError, PermissionError, tarfile.TarError, ValueError) as e:
             logging.error(f"Error creating backup: {e}")
             return False
 
     @staticmethod
-    def _safe_extract_tarfile(tar_path: str, extract_path: str) -> bool:
+    def _safe_extract_tarfile(
+        tar_path: str, extract_path: str, task: Optional[Task] = None
+    ) -> bool:
         """
         Safely extract a tar.gz file to avoid directory traversal
         vulnerabilities.
         """
         try:
             with tarfile.open(tar_path, "r:gz") as tar:
-                # Validate each member
-                for member in tar.getmembers():
+                members = tar.getmembers()
+
+                # Validate all members first
+                for member in members:
                     member_path = os.path.abspath(
                         os.path.join(extract_path, member.name)
                     )
                     if not member_path.startswith(os.path.abspath(extract_path)):
                         raise Exception("Detected path traversal attempt in tar file")
-                tar.extractall(path=extract_path)
+
+                if task:
+                    # Calculate total size for progress
+                    total_size = sum(m.size for m in members if m.isfile())
+                    extracted_size = 0
+                    last_percent = -1
+
+                    for member in members:
+                        tar.extract(member, path=extract_path)
+                        if member.isfile():
+                            extracted_size += member.size
+                            percent = (
+                                min(int(extracted_size * 100 / total_size), 99)
+                                if total_size > 0
+                                else 0
+                            )
+                            if percent != last_percent:
+                                last_percent = percent
+                                task.subtitle = f"{percent}%"
+                    task.subtitle = "100%"
+                else:
+                    tar.extractall(path=extract_path)
+
             return True
         except (tarfile.TarError, Exception) as e:
             logging.error(f"Error extracting backup: {e}")
@@ -94,10 +218,14 @@ class BackupManager:
         if scope == "config":
             backup_created = config.dump(path).status
         else:
-            task_id = TaskManager.add(Task(title=_("Backup {0}").format(config.Name)))
+            task = Task(title=_("Backup {0}").format(config.Name))
+            task_id = TaskManager.add(task)
             bottle_path = ManagerUtils.get_bottle_path(config)
             backup_created = BackupManager._create_tarfile(
-                bottle_path, path, exclude_filter=BackupManager.exclude_filter
+                bottle_path,
+                path,
+                exclude_filter=BackupManager.exclude_filter,
+                task=task,
             )
             TaskManager.remove(task_id)
 
@@ -155,8 +283,9 @@ class BackupManager:
 
     @staticmethod
     def _import_full_backup(path: str) -> Result:
-        task_id = TaskManager.add(Task(title=_("Importing full backup")))
-        if BackupManager._safe_extract_tarfile(path, Paths.bottles):
+        task = Task(title=_("Importing full backup"))
+        task_id = TaskManager.add(task)
+        if BackupManager._safe_extract_tarfile(path, Paths.bottles, task=task):
             Manager().update_bottles()
             TaskManager.remove(task_id)
             logging.info("Full backup imported successfully.")

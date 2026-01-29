@@ -17,9 +17,10 @@
 
 from gettext import gettext as _
 
-from gi.repository import Adw, Gtk
+from gi.repository import Adw, GLib, Gtk
 
 from bottles.backend.managers.backup import BackupManager
+from bottles.backend.state import SignalManager, Signals, TaskManager
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.filters import add_all_filters, add_yaml_filters
 from bottles.frontend.utils.gtk import GtkUtils
@@ -38,6 +39,9 @@ class ImporterView(Adw.Bin):
     btn_back = Gtk.Template.Child()
     group_prefixes = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
+    box_import_progress = Gtk.Template.Child()
+    spinner_import = Gtk.Template.Child()
+    label_import_progress = Gtk.Template.Child()
 
     # endregion
 
@@ -54,6 +58,12 @@ class ImporterView(Adw.Bin):
         self.btn_find_prefixes.connect("clicked", self.__find_prefixes)
         self.btn_import_full.connect("clicked", self.__import_full_bck)
         self.btn_import_config.connect("clicked", self.__import_config_bck)
+
+        # Import progress tracking
+        self._import_task_id = None
+        SignalManager.connect(Signals.TaskAdded, self._on_task_added)
+        SignalManager.connect(Signals.TaskRemoved, self._on_task_removed)
+        SignalManager.connect(Signals.TaskUpdated, self._on_task_updated)
 
     def __find_prefixes(self, widget):
         """
@@ -162,6 +172,57 @@ class ImporterView(Adw.Bin):
         dialog.set_modal(True)
         dialog.connect("response", set_path)
         dialog.show()
+
+    def _on_task_added(self, data=None):
+        """Signal handler for TaskAdded events. Shows progress if import task."""
+        if not data or not data.data:
+            return
+
+        task_id = data.data
+        task = TaskManager.get(task_id)
+        if not task:
+            return
+
+        # Check if this is an import task
+        if task.title == _("Importing full backup"):
+            self._import_task_id = task_id
+            GLib.idle_add(self._show_import_progress)
+
+    def _on_task_removed(self, data=None):
+        """Signal handler for TaskRemoved events. Hides progress if import task."""
+        if not data or not data.data:
+            return
+
+        task_id = data.data
+        if task_id == self._import_task_id:
+            self._import_task_id = None
+            GLib.idle_add(self._hide_import_progress)
+
+    def _on_task_updated(self, data=None):
+        """Signal handler for TaskUpdated events. Updates progress label."""
+        if not data or not data.data:
+            return
+
+        task_id = data.data
+        if task_id == self._import_task_id:
+            task = TaskManager.get(task_id)
+            if task and task.subtitle:
+                GLib.idle_add(self._update_import_progress, task.subtitle)
+
+    def _show_import_progress(self):
+        """Show the import progress indicator."""
+        self.label_import_progress.set_text("")
+        self.box_import_progress.set_visible(True)
+        self.spinner_import.start()
+
+    def _hide_import_progress(self):
+        """Hide the import progress indicator."""
+        self.spinner_import.stop()
+        self.box_import_progress.set_visible(False)
+
+    def _update_import_progress(self, text: str):
+        """Update the import progress label."""
+        self.label_import_progress.set_text(text)
 
     def go_back(self, *_args):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)

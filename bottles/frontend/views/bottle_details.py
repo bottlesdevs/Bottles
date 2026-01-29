@@ -28,7 +28,7 @@ from bottles.backend.managers.backup import BackupManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.runner import Runner
-from bottles.backend.state import SignalManager, Signals
+from bottles.backend.state import SignalManager, Signals, TaskManager
 from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.terminal import TerminalUtils
@@ -106,6 +106,9 @@ class BottleView(Adw.PreferencesPage):
     row_no_updates = Gtk.Template.Child()
     bottom_bar = Gtk.Template.Child()
     drop_overlay = Gtk.Template.Child()
+    box_backup_progress = Gtk.Template.Child()
+    spinner_backup = Gtk.Template.Child()
+    label_backup_progress = Gtk.Template.Child()
     # endregion
 
     content = Gdk.ContentFormats.new_for_gtype(Gdk.FileList)
@@ -133,6 +136,12 @@ class BottleView(Adw.PreferencesPage):
         self._playtime_refresh_pending = False
         self._playtime_refresh_timeout_id = None
         SignalManager.connect(Signals.ProgramFinished, self._on_program_finished)
+
+        # Backup progress tracking
+        self._backup_task_id = None
+        SignalManager.connect(Signals.TaskAdded, self._on_task_added)
+        SignalManager.connect(Signals.TaskRemoved, self._on_task_removed)
+        SignalManager.connect(Signals.TaskUpdated, self._on_task_updated)
 
         self.target.connect("drop", self.on_drop)
         self.add_controller(self.target)
@@ -449,6 +458,58 @@ class BottleView(Adw.PreferencesPage):
 
         self._playtime_refresh_pending = True
         self._playtime_refresh_timeout_id = GLib.timeout_add(500, do_refresh)
+
+    def _on_task_added(self, data=None):
+        """Signal handler for TaskAdded events. Shows spinner if backup task starts."""
+        if not data or not data.data:
+            return
+
+        task_id = data.data
+        task = TaskManager.get(task_id)
+        if not task:
+            return
+
+        # Check if this is a backup task for our bottle
+        backup_title = _("Backup {0}").format(self.config.Name)
+        if task.title == backup_title:
+            self._backup_task_id = task_id
+            GLib.idle_add(self._show_backup_progress)
+
+    def _on_task_removed(self, data=None):
+        """Signal handler for TaskRemoved events. Hides spinner if backup task."""
+        if not data or not data.data:
+            return
+
+        task_id = data.data
+        if task_id == self._backup_task_id:
+            self._backup_task_id = None
+            GLib.idle_add(self._hide_backup_progress)
+
+    def _on_task_updated(self, data=None):
+        """Signal handler for TaskUpdated events. Updates progress label."""
+        if not data or not data.data:
+            return
+
+        task_id = data.data
+        if task_id == self._backup_task_id:
+            task = TaskManager.get(task_id)
+            if task and task.subtitle:
+                GLib.idle_add(self._update_backup_progress, task.subtitle)
+
+    def _show_backup_progress(self):
+        """Show the backup progress indicator."""
+        self.label_backup_progress.set_text("")
+        self.box_backup_progress.set_visible(True)
+        self.spinner_backup.start()
+
+    def _hide_backup_progress(self):
+        """Hide the backup progress indicator."""
+        self.spinner_backup.stop()
+        self.box_backup_progress.set_visible(False)
+
+    def _update_backup_progress(self, text: str):
+        """Update the backup progress label."""
+        self.label_backup_progress.set_text(text)
 
     def populate_updates(self):
         for row in self.__update_rows:
