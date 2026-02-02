@@ -36,7 +36,7 @@ from bottles.backend.state import Notification, SignalManager, Signals
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.operation import TaskSyncer
-from bottles.frontend.params import APP_ID, BASE_ID, PROFILE
+from bottles.frontend.params import APP_ID, PROFILE
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.details import DetailsView
 from bottles.frontend.views.importer import ImporterView
@@ -74,7 +74,7 @@ class BottlesWindow(Adw.ApplicationWindow):
 
     # Common variables
     previous_page = ""
-    settings = Gio.Settings.new(BASE_ID)
+    settings = Gio.Settings.new(APP_ID)
     argument_executed = False
     _winebridge_dialog_shown = False
 
