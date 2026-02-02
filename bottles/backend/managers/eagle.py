@@ -32,6 +32,7 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals
 from bottles.backend.logger import Logger
+from bottles.backend.params import APP_ID
 
 from gi.repository import Gio, GLib
 
@@ -403,7 +404,7 @@ class EagleManager:
                 
                 extracted_files, extract_dir = self._extract_installer(executable_path, "MSI")
                 if extracted_files:
-                    settings = Gio.Settings.new("com.usebottles.bottles")
+                    settings = Gio.Settings.new(APP_ID)
                     scan_limit = settings.get_int("eagle-scan-limit")
                     files_to_scan = extracted_files[:scan_limit]
                     for i, ef in enumerate(files_to_scan):
@@ -658,7 +659,7 @@ class EagleManager:
                 self._send_step("Analysing Electron archive...")
                 extracted_asar_files, asar_extract_dir = self._extract_asar(asar_path)
                 if extracted_asar_files:
-                    settings = Gio.Settings.new("com.usebottles.bottles")
+                    settings = Gio.Settings.new(APP_ID)
                     scan_limit = settings.get_int("eagle-scan-limit")
                     for i, ef in enumerate(extracted_asar_files[:scan_limit]):
                         fname = os.path.basename(ef)
@@ -729,7 +730,7 @@ class EagleManager:
                             main_exe = max(exe_files, key=os.path.getsize)
                             self._send_step(f"Scanning main binary: {os.path.basename(main_exe)}")
 
-                            settings = Gio.Settings.new("com.usebottles.bottles")
+                            settings = Gio.Settings.new(APP_ID)
                             scan_limit = settings.get_int("eagle-scan-limit")
                             files_to_scan = extracted_files[:scan_limit]
                             
