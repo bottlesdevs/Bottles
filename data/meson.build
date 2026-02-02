@@ -55,7 +55,11 @@ if appstream_util.found()
   )
 endif
 
-install_data('com.usebottles.bottles.gschema.xml',
+configure_file(
+  input: 'com.usebottles.bottles.gschema.xml',
+  output: '@0@.gschema.xml'.format(APP_ID),
+  configuration: conf,
+  install: true,
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 
