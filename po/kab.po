@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-27 10:57+0530\n"
-"PO-Revision-Date: 2026-01-31 12:01+0000\n"
+"PO-Revision-Date: 2026-02-02 11:01+0000\n"
 "Last-Translator: Amadɣas <massiin@proton.me>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/bottles/bottles/"
 "kab/>\n"
@@ -42,11 +42,11 @@ msgstr "Ur izmir ara ad isebded aḍaraɛ: %s"
 
 #: bottles/backend/managers/manager.py:1115
 msgid "Fail to install components, tried 3 times."
-msgstr "ur yeddi ara usebded n yisudas, yeɛreḍ 3 n tikkal."
+msgstr "ur yeddi ara usebded n yisegran, yeɛreḍ 3 n tikkal."
 
 #: bottles/backend/managers/manager.py:1126
 msgid "Missing essential components. Installing…"
-msgstr "Xuṣṣen isuddas ilaqen. Asbeddi…"
+msgstr "Xuṣṣen isegran ilaqen. Asbeddi…"
 
 #: bottles/backend/managers/manager.py:1203
 msgid "Failed to create bottle directory."
@@ -232,7 +232,7 @@ msgstr ""
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr ""
+msgstr "Lqem n yisegran"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
@@ -600,71 +600,71 @@ msgstr ""
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
-msgstr ""
+msgstr "Ulac imsebdeden yettwafen"
 
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
+msgstr "Asarsay ur yettwawaḍ ara neɣ ulac amsebded yemṣadan akked tqerɛet-a."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
 #: bottles/frontend/ui/preferences.blp:82
 msgid "Read Documentation"
-msgstr ""
+msgstr "Ɣeṛ tasemlit"
 
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52 bottles/frontend/ui/new.blp:53
 msgid "Name"
-msgstr ""
+msgstr "Isem"
 
 #: bottles/frontend/ui/details-preferences.blp:11
 msgid "Components"
-msgstr ""
+msgstr "isegran"
 
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "lqem n umṣada n tissi Wine."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Aleqqem umsedday akked isegran, ttxil-k·m arǧu…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:274
 msgid "DXVK"
-msgstr ""
+msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Asnerni n umṣada n Direct3D 8/9/10/11 s usuqel-is ɣer Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
-msgstr ""
+msgstr "Aleqqem n DXVK, ttxil-k·m arǧu…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:278
 msgid "VKD3D"
-msgstr ""
+msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Asnerni n umṣada n Direct3D 12 s usuqel-is ɣer Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
-msgstr ""
+msgstr "Aleqqem n VKD3D, ttxil-k·m arǧu…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
-msgstr ""
+msgstr "DXVK NVAPI"
 
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr ""
+msgstr "Aleqqem n DXVK-NVAPI, ttxil-k·m arǧu…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:286
@@ -677,11 +677,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
-msgstr ""
+msgstr "Aleqqem n LatencyFleX, ttxil-k·m arǧu…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
-msgstr ""
+msgstr "Beqqeḍ"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
@@ -695,7 +695,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "Tabadut tafellayt FidelityFX"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
@@ -703,11 +703,11 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "sefrek iɣewwaṛen n tbadut tafellayt FidelityFX"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
-msgstr ""
+msgstr "Takarḍa tudlift"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
@@ -717,32 +717,33 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "Isemda n uglezsefser"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
+"Rnu agut isemda n uglezsefser s useqdec vkBasalt. Iteddu kan ɣef Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:138
 msgid "Manage Post-Processing Layer settings"
-msgstr ""
+msgstr "Sefrek iɣewwaṛen n tissi uglezsefser"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
-msgstr ""
+msgstr "Sefrek amek ara ttwabeqqeḍen wuraren deg ugdil s useqdec n Gamescope."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "sefrek iɣewwaṛen Gamescope"
 
 #: bottles/frontend/ui/details-preferences.blp:171
 msgid "Advanced Display Settings"
-msgstr ""
+msgstr "Iɣewwaṛen inaẓiyen n ubeqqeḍ"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
-msgstr ""
+msgstr "Timellit"
 
 #: bottles/frontend/ui/details-preferences.blp:188
 msgid "Enable synchronization to increase performance of multicore processors."
@@ -908,11 +909,11 @@ msgstr ""
 #: bottles/frontend/ui/details-preferences.blp:356
 #: bottles/frontend/ui/dialog-env-vars.blp:20
 msgid "Environment Variables"
-msgstr ""
+msgstr "imuttiyen n twennaḍt"
 
 #: bottles/frontend/ui/details-preferences.blp:366
 msgid "Manage Drives"
-msgstr ""
+msgstr "Sefrek imeɣriyen"
 
 #: bottles/frontend/ui/details-preferences.blp:380
 msgid "Automatic Snapshots"
@@ -1161,14 +1162,14 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:6
 msgid "Gamescope Settings"
-msgstr ""
+msgstr "Iɣewwaṛen n Gamescope"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:30
 #: bottles/frontend/ui/dialog-launch-options.blp:32
 #: bottles/frontend/ui/dialog-rename.blp:20
 #: bottles/frontend/ui/dialog-vkbasalt.blp:34
 msgid "Save"
-msgstr ""
+msgstr "Sekles"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:40
 msgid "Manage how games should be displayed."
@@ -1222,23 +1223,23 @@ msgstr ""
 
 #: bottles/frontend/ui/dialog-gamescope.blp:162
 msgid "Window Type"
-msgstr ""
+msgstr "Anaw n usfaylu"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:166
 msgid "Borderless"
-msgstr ""
+msgstr "War iran"
 
 #: bottles/frontend/ui/dialog-gamescope.blp:172
 msgid "Fullscreen"
-msgstr ""
+msgstr "Agdil aččuran"
 
 #: bottles/frontend/ui/dialog-installer.blp:40
 msgid "Do you want to proceed with the installation?"
-msgstr ""
+msgstr "Tebɣiḍ ad tkemmleḍ asebded?"
 
 #: bottles/frontend/ui/dialog-installer.blp:45
 msgid "Start Installation"
-msgstr ""
+msgstr "Senker asebded"
 
 #: bottles/frontend/ui/dialog-installer.blp:64
 msgid ""
@@ -2078,7 +2079,7 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:236
 msgid "DLL Components"
-msgstr ""
+msgstr "Isegran DLL"
 
 #: bottles/frontend/ui/preferences.blp:250
 msgid "Bottles is running in offline mode, so DLLs are not available."
@@ -3087,17 +3088,20 @@ msgid ""
 "Fix components not updated correctly in the UI after installation/"
 "uninstallation"
 msgstr ""
+"Seɣti isegran ur ttwaleqqemen ara akken iwata deg ugrudem n useqdac seld "
+"asebded/tukksa n usebded"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:163
 msgid "More FSR fixes"
-msgstr ""
+msgstr "Ugar n iseɣtiyen FSR"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:164
 msgid ""
 "Fix the issue when a program closes after it was launched from \"Run "
 "executable\""
 msgstr ""
+"Seɣti ugur mi ara yemdel wahil deffir ma yettusenkred seg \"Selkem amselkam\""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:165
 msgid "and many, many, many more!"
-msgstr ""
+msgstr "akked aṭas, aṭas, aṭas ugar!"
