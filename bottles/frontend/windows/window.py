@@ -85,14 +85,23 @@ class BottlesWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs, default_width=width, default_height=height)
 
         self.data_mgr = DataManager()
-        self.data_mgr = DataManager()
         self._show_funding = False
-        if not self.data_mgr.get(UserDataKeys.FundingDismissed, False):
+        
+        show_funding_setting = self.settings.get_boolean("show-funding")
+        dismissed = self.data_mgr.get(UserDataKeys.FundingDismissed, False)
+        
+        if show_funding_setting and not dismissed:
             last_prompt = self.data_mgr.get(UserDataKeys.LastFundingPrompt, "")
-            today = datetime.now().strftime("%Y-%m-%d")
             
-            if last_prompt != today:
+            if not last_prompt:
                 self._show_funding = True
+            else:
+                try:
+                    last_date = datetime.strptime(last_prompt, "%Y-%m-%d")
+                    if datetime.now() - last_date >= timedelta(days=7):
+                        self._show_funding = True
+                except ValueError:
+                    self._show_funding = True
 
         self.utils_conn = ConnectionUtils(
             force_offline=self.settings.get_boolean("force-offline")
@@ -468,6 +477,7 @@ class BottlesWindow(Adw.ApplicationWindow):
     def __funding_response(self, dialog, response):
         if response == "dismiss":
             self.data_mgr.set(UserDataKeys.FundingDismissed, True)
+            self.settings.set_boolean("show-funding", False)
 
         dialog.destroy()
 

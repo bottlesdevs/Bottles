@@ -50,6 +50,16 @@ template $PreferencesWindow: Adw.PreferencesWindow {
       }
 
       Adw.ActionRow {
+        title: _("Show Funding Dialog");
+        subtitle: _("Whether to show the funding dialog to support Bottles development.");
+        activatable-widget: switch_show_funding;
+
+        Switch switch_show_funding {
+          valign: center;
+        }
+      }
+
+      Adw.ActionRow {
         title: _("Temp Files");
         subtitle: _("Clean temp files when Bottles launches?");
         activatable-widget: switch_temp;
