@@ -45,6 +45,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     row_theme = Gtk.Template.Child()
     switch_theme = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
+    switch_show_funding = Gtk.Template.Child()
     switch_force_offline = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
@@ -129,6 +130,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.bind(
             "notifications",
             self.switch_notifications,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        self.settings.bind(
+            "show-funding",
+            self.switch_show_funding,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
