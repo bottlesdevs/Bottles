@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-27 10:57+0530\n"
-"PO-Revision-Date: 2026-01-10 12:01+0000\n"
+"PO-Revision-Date: 2026-02-09 20:53+0000\n"
 "Last-Translator: Flynn <cirilla@tuta.io>\n"
 "Language-Team: Cornish <https://hosted.weblate.org/projects/bottles/bottles/"
 "kw/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "1000000 == 100000) ? 2 : ((n % 100 == 3 || n % 100 == 23 || n % 100 == 43 || "
 "n % 100 == 63 || n % 100 == 83) ? 3 : ((n != 1 && (n % 100 == 1 || n % 100 "
 "== 21 || n % 100 == 41 || n % 100 == 61 || n % 100 == 81)) ? 4 : 5))));\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -60,214 +60,216 @@ msgstr "Fyllis dhe gul restrenva Botel."
 
 #: bottles/backend/managers/manager.py:1215
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Y fyllis gul restren/restrenva ensampel."
 
 #: bottles/backend/managers/manager.py:1220
 msgid "Generating bottle configuration…"
-msgstr ""
+msgstr "Ow dinythi selyans botel…"
 
 #: bottles/backend/managers/manager.py:1243
 msgid "Template found, applying…"
-msgstr ""
+msgstr "Ensampel kava, ow gweytha…"
 
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1255
 msgid "The Wine config is being updated…"
-msgstr ""
+msgstr "An selyans Gwin yw ow nowedhi…"
 
 #: bottles/backend/managers/manager.py:1257
 msgid "Wine config updated!"
-msgstr ""
+msgstr "Selyans Gwin nowedhys!"
 
 #: bottles/backend/managers/manager.py:1265
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr ""
+msgstr "Owth eksekutya avel Flatpak, ow synsi usyer restrenva…"
 
 #: bottles/backend/managers/manager.py:1267
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Ow synsi usyer restrenva…"
 
 #: bottles/backend/managers/manager.py:1308
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "Ow gorra versyon Windows…"
 
 #: bottles/backend/managers/manager.py:1318
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Gweytha settyansow defowt CMD…"
 
 #: bottles/backend/managers/manager.py:1326
 msgid "Optimizing environment…"
-msgstr ""
+msgstr "Ow gwellhe kerghynnedh…"
 
 #: bottles/backend/managers/manager.py:1337
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr ""
+msgstr "Ow gweytha kerghynnedh: {0}…"
 
 #: bottles/backend/managers/manager.py:1347
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Ow devnydhya recayt kerghynnedh…"
 
 #: bottles/backend/managers/manager.py:1350
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Recayt ankavas po anewn…"
 
 #: bottles/backend/managers/manager.py:1367
 msgid "Installing DXVK…"
-msgstr ""
+msgstr "Ow lea DXVK…"
 
 #: bottles/backend/managers/manager.py:1375
 msgid "Installing VKD3D…"
-msgstr ""
+msgstr "Ow lea VKD3D…"
 
 #: bottles/backend/managers/manager.py:1384
 msgid "Installing DXVK-NVAPI…"
-msgstr ""
+msgstr "Ow lea DXVK-NVAPI…"
 
 #: bottles/backend/managers/manager.py:1393
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr ""
+msgstr "Ow lea medhelweyth serghek: %s …"
 
 #: bottles/backend/managers/manager.py:1407
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "Ow gul studh versyans 0…"
 
 #: bottles/backend/managers/manager.py:1415
 msgid "Finalizing…"
-msgstr ""
+msgstr "Ow finsya…"
 
 #: bottles/backend/managers/manager.py:1426
 msgid "Caching template…"
-msgstr ""
+msgstr "Ow gwitha ensampel…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
-msgstr ""
+msgstr "Owth omri studh …"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
-msgstr ""
+msgstr "Tra vyth rag omri"
 
 #: bottles/backend/managers/versioning.py:96
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr ""
+msgstr "Studh nowydh [{0}] gwrys yn sewen!"
 
 #: bottles/backend/managers/versioning.py:123
 msgid "States list retrieved successfully!"
-msgstr ""
+msgstr "Rol studhyow kerghys yn sewen!"
 
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr ""
+msgstr "Studh {0} daswrys yn sewen!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
-msgstr ""
+msgstr "Ow daskor studh {} …"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
-msgstr ""
+msgstr "Studh na kavas"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
-msgstr ""
+msgstr "Studh {} yw an studh byw seulabrys"
 
 #: bottles/frontend/main.py:111
 msgid "Show version"
-msgstr ""
+msgstr "Diskwedhes versyon"
 
 #: bottles/frontend/main.py:119
 msgid "Executable path"
-msgstr ""
+msgstr "Tyller eksekutadow"
 
 #: bottles/frontend/main.py:127
 msgid "lnk path"
-msgstr ""
+msgstr "tyller lnk"
 
 #: bottles/frontend/main.py:135 bottles/frontend/ui/library-entry.blp:118
 #: bottles/frontend/ui/list-entry.blp:5
 msgid "Bottle name"
-msgstr ""
+msgstr "Hanow botel"
 
 #: bottles/frontend/main.py:143
 msgid "Pass arguments"
-msgstr ""
+msgstr "Passya oberadowyow"
 
 #: bottles/frontend/main.py:202
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "URI anewn (syntaks: bottles:run/<bottle>/<program>)"
 
 #: bottles/frontend/main.py:242
 msgid "[Quit] request received."
-msgstr ""
+msgstr "Govyn [Kwytya] degemerys."
 
 #: bottles/frontend/main.py:252
 msgid "[Help] request received."
-msgstr ""
+msgstr "Govyn [Gweres] degemerys."
 
 #: bottles/frontend/main.py:260
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "Govyn [Disegha] degemerys."
 
 #: bottles/frontend/main.py:293
 msgid "Donate"
-msgstr ""
+msgstr "Argevri"
 
 #: bottles/frontend/main.py:298
 msgid "Third-Party Libraries and Special Thanks"
-msgstr ""
+msgstr "Medhelweyth Parti-Tressa ha Gras Arbennik"
 
 #: bottles/frontend/main.py:324
 msgid "Sponsored and Funded by"
-msgstr ""
+msgstr "Arghasa gans"
 
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr ""
+msgstr "Gwirbryntyans © Awtours Botellow"
 
 #: bottles/frontend/ui/about.blp:10
 msgid "Bottles Developers"
-msgstr ""
+msgstr "Awtours Botellow"
 
 #: bottles/frontend/ui/about.blp:12
 msgid "translator_credits"
-msgstr ""
+msgstr "Flynn"
 
 #: bottles/frontend/ui/component-entry.blp:4
 msgid "Component version"
-msgstr ""
+msgstr "Versyon darn"
 
 #: bottles/frontend/ui/component-entry.blp:12
 #: bottles/frontend/ui/dependency-entry.blp:29
 #: bottles/frontend/ui/program-entry.blp:77
 msgid "Uninstall"
-msgstr ""
+msgstr "Dilea"
 
 #: bottles/frontend/ui/component-entry.blp:23
 #: bottles/frontend/ui/importer-entry.blp:13
 msgid "Browse Files"
-msgstr ""
+msgstr "Peuri Restrennow"
 
 #: bottles/frontend/ui/component-entry.blp:34
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
+"An leyans fyllis. Hemma yw martesen drefen unn error repositori, iskarg "
+"andhien po checksomm na owth omdhesedha. Tava rag assaya arta."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
-msgstr ""
+msgstr "Iskarga & Lea"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
-msgstr ""
+msgstr "Diskwedhes Rol"
 
 #: bottles/frontend/ui/dependency-entry.blp:20
 msgid "License"
@@ -275,59 +277,62 @@ msgstr "Kummyas"
 
 #: bottles/frontend/ui/dependency-entry.blp:24
 msgid "Reinstall"
-msgstr ""
+msgstr "Daslea"
 
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Derivas unn Kudyn…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
-msgstr ""
+msgstr "Hanow medhelweyth serghek"
 
 #: bottles/frontend/ui/dependency-entry.blp:44
 msgid "Dependency description"
-msgstr ""
+msgstr "Deskrifans medhelweyth serghek"
 
 #: bottles/frontend/ui/dependency-entry.blp:51
 msgid "Category"
-msgstr ""
+msgstr "Klass"
 
 #: bottles/frontend/ui/dependency-entry.blp:64
 msgid "Download & Install this Dependency"
-msgstr ""
+msgstr "Iskarga & Lea an Medhelweyth Serghek ma"
 
 #: bottles/frontend/ui/dependency-entry.blp:79
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"Yma error leyans error. Dastalleth Botellow rag redya an Derivas Droglam po "
+"eksekutya yth dre termynal rag redya an eskorrans."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr ""
+msgstr "Rol Medhelweyth Serghek"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Prevessans"
 
 #: bottles/frontend/ui/details-bottle.blp:24
 msgid "Browse Files…"
-msgstr ""
+msgstr "Peuri Restrennow…"
 
 #: bottles/frontend/ui/details-bottle.blp:28
 msgid "Duplicate Bottle…"
-msgstr ""
+msgstr "Dasskrifa Botel…"
 
 #: bottles/frontend/ui/details-bottle.blp:32
 #: bottles/frontend/ui/importer.blp:73
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr ""
+"Hemma yw an kovskrif dien a dha botel, ow komprehendya restrennow personel."
 
 #: bottles/frontend/ui/details-bottle.blp:33
 msgid "Full Backup…"
-msgstr ""
+msgstr "Backup Leun…"
 
 #: bottles/frontend/ui/details-bottle.blp:37
 #: bottles/frontend/ui/importer.blp:68
@@ -335,107 +340,109 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
+"Hemma yw an selyans botel hepken, yth yw perfydh mar ty mynnes gul unn "
+"selyans nowydh mes neb restrennow personel."
 
 #: bottles/frontend/ui/details-bottle.blp:38
 msgid "Export Configuration…"
-msgstr ""
+msgstr "Esperthi Selyans…"
 
 #: bottles/frontend/ui/details-bottle.blp:45
 #: bottles/frontend/views/bottle_details.py:347
 msgid "Show Hidden Programs"
-msgstr ""
+msgstr "Diskwedhes Towlennow Kudh"
 
 #: bottles/frontend/ui/details-bottle.blp:49
 msgid "Search for new programs"
-msgstr ""
+msgstr "Hwilas rag towlennow nowydh"
 
 #: bottles/frontend/ui/details-bottle.blp:56
 msgid "Delete Bottle…"
-msgstr ""
+msgstr "Dilea Botel…"
 
 #: bottles/frontend/ui/details-bottle.blp:73
 #: bottles/frontend/ui/details-dependencies.blp:99
 #: bottles/frontend/ui/details-installers.blp:68
 msgid "Secondary Menu"
-msgstr ""
+msgstr "Rol Nessa"
 
 #: bottles/frontend/ui/details-bottle.blp:90
 msgid "Force Stop all Processes"
-msgstr ""
+msgstr "Ynia Astel oll Argerdh"
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Gwruthyl Hevelebyans a marowheans system Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
-msgstr ""
+msgstr "Marowhe"
 
 #: bottles/frontend/ui/details-bottle.blp:99
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Gwruthyl Hevelebyans a dastalleth system Windows."
 
 #: bottles/frontend/ui/details-bottle.blp:100
 msgid "Reboot"
-msgstr ""
+msgstr "Dastalleth"
 
 #: bottles/frontend/ui/details-bottle.blp:118
 #: bottles/frontend/ui/dialog-launch-options.blp:6
 msgid "Launch Options"
-msgstr ""
+msgstr "Dewisyow Lonch"
 
 #: bottles/frontend/ui/dialog-launch-options.blp:53
 msgid "Pre-run Script"
-msgstr ""
+msgstr "Skrif Rageksekutya"
 
 #: bottles/frontend/ui/details-bottle.blp:135
 msgid "Run in Terminal"
-msgstr ""
+msgstr "Eksekutya yn Termynal"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr ""
+msgstr "Droppya retsrennow rag eksekutya y's"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
-msgstr ""
+msgstr "Ow botel"
 
 #: bottles/frontend/ui/details-bottle.blp:177
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: bottles/frontend/ui/details-bottle.blp:189
 #: bottles/frontend/ui/list-entry.blp:12 bottles/frontend/ui/new.blp:71
 msgid "Environment"
-msgstr ""
+msgstr "Kerghynnedh"
 
 #: bottles/frontend/ui/details-bottle.blp:201
 #: bottles/frontend/ui/details-preferences.blp:14
 #: bottles/frontend/ui/new.blp:128
 msgid "Runner"
-msgstr ""
+msgstr "Eksekutyer"
 
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "Versyans byw rag an botel ma"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
-msgstr ""
+msgstr "Verysans yw byw rag an botel ma."
 
 #: bottles/frontend/ui/details-bottle.blp:227
 #: bottles/frontend/ui/list-entry.blp:31
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: bottles/frontend/ui/details-bottle.blp:247
 msgid "Run Executable…"
-msgstr ""
+msgstr "Eksekutya Eksekutadow…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
-msgstr ""
+msgstr "Towelennow"
 
 #: bottles/frontend/ui/details-bottle.blp:275
 msgid ""
@@ -443,46 +450,49 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
+"Klyckya \"Eksekutya Eksekutadow…\" rag eksekutya unn eksekutya, \"Addya "
+"Berrhensyow…\" rag addya unn eksekutadow dhe'n rol Towlennow, po \"Lea "
+"Towlennow…\" rag lea towlennow dyghtya gans an kemeneth."
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
-msgstr ""
+msgstr "Addya Berrhensyow…"
 
 #: bottles/frontend/ui/details-bottle.blp:325
 msgid "Install Programs…"
-msgstr ""
+msgstr "Lea Towlennow…"
 
 #: bottles/frontend/ui/details-bottle.blp:346
 msgid "Options"
-msgstr ""
+msgstr "Dewisyow"
 
 #: bottles/frontend/ui/details-bottle.blp:350
 #: bottles/frontend/views/details.py:141
 msgid "Settings"
-msgstr ""
+msgstr "Settyansow"
 
 #: bottles/frontend/ui/details-bottle.blp:351
 msgid "Configure bottle settings."
-msgstr ""
+msgstr "Selya settyansow botel."
 
 #: bottles/frontend/ui/details-bottle.blp:360
 #: bottles/frontend/views/details.py:145
 msgid "Dependencies"
-msgstr ""
+msgstr "Medhelweyth Serghek"
 
 #: bottles/frontend/ui/details-bottle.blp:361
 msgid "Install dependencies for programs."
-msgstr ""
+msgstr "Lea medhelweyth serghek rag towlennow."
 
 #: bottles/frontend/ui/details-bottle.blp:370
 #: bottles/frontend/ui/details-preferences.blp:376
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "Gwelyow"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
-msgstr ""
+msgstr "Gul ha dyghtya studhyow botel."
 
 #: bottles/frontend/ui/details-bottle.blp:380
 #: bottles/frontend/ui/details-bottle.blp:426
@@ -492,44 +502,44 @@ msgstr "Dyghtyer Oberennow"
 
 #: bottles/frontend/ui/details-bottle.blp:381
 msgid "Manage running programs."
-msgstr ""
+msgstr "Dyghtya towlennow owth eksekutya."
 
 #: bottles/frontend/ui/details-bottle.blp:390
 msgid "Tools"
-msgstr ""
+msgstr "Toulys"
 
 #: bottles/frontend/ui/details-bottle.blp:394
 msgid "Command Line"
-msgstr ""
+msgstr "Arghadow-Linen"
 
 #: bottles/frontend/ui/details-bottle.blp:395
 msgid "Run commands inside the Bottle."
-msgstr ""
+msgstr "Eksekutya arghadowyow y'n Botel."
 
 #: bottles/frontend/ui/details-bottle.blp:404
 msgid "Registry Editor"
-msgstr ""
+msgstr "Chanjyell Kovskrifla"
 
 #: bottles/frontend/ui/details-bottle.blp:405
 msgid "Edit the internal registry."
-msgstr ""
+msgstr "Golsegi an kovskrifla pervedhek."
 
 #: bottles/frontend/ui/details-bottle.blp:413
 msgid "Legacy Wine Tools"
-msgstr ""
+msgstr "Toulys Gwin Koth"
 
 #: bottles/frontend/ui/details-bottle.blp:417
 msgid "Explorer"
-msgstr ""
+msgstr "Furyer"
 
 #: bottles/frontend/ui/details-bottle.blp:435
 msgid "Debugger"
-msgstr ""
+msgstr "Prevesser"
 
 #: bottles/frontend/ui/details-bottle.blp:444
 #: bottles/frontend/ui/importer.blp:69 bottles/frontend/ui/new.blp:145
 msgid "Configuration"
-msgstr ""
+msgstr "Selyans"
 
 #: bottles/frontend/ui/details-bottle.blp:453
 msgid "Uninstaller"
@@ -541,17 +551,19 @@ msgstr "Panel Kontrol"
 
 #: bottles/frontend/ui/details-dependencies.blp:9
 msgid "Search for dependencies…"
-msgstr ""
+msgstr "Hwilas medhelweyth serghek…"
 
 #: bottles/frontend/ui/details-dependencies.blp:22
 #: bottles/frontend/ui/preferences.blp:199
 #: bottles/frontend/ui/preferences.blp:247
 msgid "You're offline :("
-msgstr ""
+msgstr "Os ta dhywarlinen :("
 
 #: bottles/frontend/ui/details-dependencies.blp:25
 msgid "Bottles is running in offline mode, so dependencies are not available."
 msgstr ""
+"Botellow yw owth eksekutya yn fordh dhywarlinen, ytho medhelweyth serghek yw "
+"ankavadow."
 
 #: bottles/frontend/ui/details-dependencies.blp:47
 msgid ""
@@ -560,34 +572,39 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Medhelweyth serghek yw asnodhow rag gwellhe kesplegadewder a medhelweyth "
+"Windows.\n"
+"\n"
+"Restrennow war'n folen ma yw provys gans partiow tressa y'n leshyans "
+"perghenogel. Gans ow lea y's, ty assentya gans aga termys leshyans i."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
-msgstr ""
+msgstr "Derivas unn kudyn po medhelweyth fyllel."
 
 #: bottles/frontend/ui/details-dependencies.blp:77
 msgid "Report Missing Dependency"
-msgstr ""
+msgstr "Derivas Medhelweyth Fyllel"
 
 #: bottles/frontend/ui/details-dependencies.blp:81
 msgid "Read Documentation."
-msgstr ""
+msgstr "Redya Kowethlyvrow."
 
 #: bottles/frontend/ui/details-dependencies.blp:82
 #: bottles/frontend/ui/details-installers.blp:51
 #: bottles/frontend/ui/details-versioning.blp:37
 msgid "Documentation"
-msgstr ""
+msgstr "Kowethlyrow"
 
 #: bottles/frontend/ui/details-dependencies.blp:92
 #: bottles/frontend/ui/details-installers.blp:61
 #: bottles/frontend/ui/window.blp:46
 msgid "Search"
-msgstr ""
+msgstr "Hwilas"
 
 #: bottles/frontend/ui/details-installers.blp:9
 msgid "Search for Programs…"
-msgstr ""
+msgstr "Hwilas Towlennow…"
 
 #: bottles/frontend/ui/details-installers.blp:15
 msgid ""
@@ -596,74 +613,80 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Lea towlennow dyghtys gans agan kemeneth.\n"
+"\n"
+"Restrennow war'n folen ma yw provys gans partiow tressa y'n leshyans "
+"perghenogel. Gans ow lea y's, ty assentya gans aga termys leshyans i."
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
-msgstr ""
+msgstr "Leyoryon Kavas Vyth"
 
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
+"An repositori yw anhedhadow po leyer vyth yw kesplegadow gans an botel ma."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
 #: bottles/frontend/ui/preferences.blp:82
 msgid "Read Documentation"
-msgstr ""
+msgstr "Redya Kowethlyvrow"
 
 #: bottles/frontend/ui/details-preferences.blp:6
 #: bottles/frontend/ui/dialog-duplicate.blp:52 bottles/frontend/ui/new.blp:53
 msgid "Name"
-msgstr ""
+msgstr "Hanow"
 
 #: bottles/frontend/ui/details-preferences.blp:11
 msgid "Components"
-msgstr ""
+msgstr "Darnow"
 
 #: bottles/frontend/ui/details-preferences.blp:15
 #: bottles/frontend/ui/new.blp:129
 msgid "The version of the Wine compatibility layer."
-msgstr ""
+msgstr "An versyon a'n gwiskas kesplegadewder Gwin."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Ow nowedhi Eksekutyer ha darnow, gortos mar pleg…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:274
 msgid "DXVK"
-msgstr ""
+msgstr "DXVK"
 
 #: bottles/frontend/ui/details-preferences.blp:28
 msgid "Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan."
 msgstr ""
+"Gwellhe kesplegadewder Direct3D 8/9/10/11 gans ow treylya yth dhe Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:30
 msgid "Updating DXVK, please wait…"
-msgstr ""
+msgstr "Ow nowedhi DXVK, gortos mar pleg…"
 
 #: bottles/frontend/ui/details-preferences.blp:40
 #: bottles/frontend/ui/preferences.blp:278
 msgid "VKD3D"
-msgstr ""
+msgstr "VKD3D"
 
 #: bottles/frontend/ui/details-preferences.blp:41
 msgid "Improve Direct3D 12 compatibility by translating it to Vulkan."
-msgstr ""
+msgstr "Gwellhe kesplegadewder Direct3D 12 gans ow treylya yth dhe Vulkan."
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
-msgstr ""
+msgstr "Ow nowedhi VKD3D, gortos mar pleg…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
-msgstr ""
+msgstr "DXVK NVAPI"
 
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr ""
+msgstr "Ow nowedhi DXVK-NVAPI, gortos mar pleg…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:286
@@ -673,160 +696,176 @@ msgstr "LatencyFleX"
 #: bottles/frontend/ui/details-preferences.blp:69
 msgid "Increase responsiveness. Can be detected by some anti-cheat software."
 msgstr ""
+"Kressya gorthebedewder. A yll bos helerghys gans nebes medhelweyth "
+"gorthhygans."
 
 #: bottles/frontend/ui/details-preferences.blp:71
 msgid "Updating LatencyFleX, please wait…"
-msgstr ""
+msgstr "Ow nowedhi LatencyFleX, gortos mar pleg…"
 
 #: bottles/frontend/ui/details-preferences.blp:84
 msgid "Display"
-msgstr ""
+msgstr "Displetyans"
 
 #: bottles/frontend/ui/details-preferences.blp:88
 msgid "Deep Learning Super Sampling"
-msgstr ""
+msgstr "Deep Learning Super Sampling"
 
 #: bottles/frontend/ui/details-preferences.blp:89
 msgid ""
 "Increase performance at the expense of visuals using DXVK-NVAPI. Only works "
 "on newer NVIDIA GPUs."
 msgstr ""
+"Kressya gwrythyans orth kost gwel ow devnydhya DXVK-NVAPI. Oberi war GPUs "
+"NVIDIA nowedha hepken."
 
 #: bottles/frontend/ui/details-preferences.blp:105
 msgid "FidelityFX Super Resolution"
-msgstr ""
+msgstr "FidelityFX Ughbraster"
 
 #: bottles/frontend/ui/details-preferences.blp:106
 msgid "Increase performance at the expense of visuals. Only works on Vulkan."
-msgstr ""
+msgstr "Kressya gwrythyans orth kost gwel. Oberi war Vulkan hepken."
 
 #: bottles/frontend/ui/details-preferences.blp:108
 msgid "Manage FidelityFX Super Resolution settings"
-msgstr ""
+msgstr "Dyghtya settyansow FidelityFX Ughbraster"
 
 #: bottles/frontend/ui/details-preferences.blp:125
 msgid "Discrete Graphics"
-msgstr ""
+msgstr "Grafek Synsys"
 
 #: bottles/frontend/ui/details-preferences.blp:126
 msgid ""
 "Use the discrete graphics card to increase performance at the expense of "
 "power consumption."
 msgstr ""
+"Devnydhya an karten grafek synsys rag kressya gwrythyans orth kost "
+"konsumyans batri."
 
 #: bottles/frontend/ui/details-preferences.blp:135
 msgid "Post-Processing Effects"
-msgstr ""
+msgstr "Effeythyow Wosa-Dyghtya"
 
 #: bottles/frontend/ui/details-preferences.blp:136
 msgid ""
 "Add various post-processing effects using vkBasalt. Only works on Vulkan."
 msgstr ""
+"Addya effeythyow wosa-dyghtya divers ow devnydhya vkBasalt. Oberi war Vulkan "
+"hepken."
 
 #: bottles/frontend/ui/details-preferences.blp:138
 msgid "Manage Post-Processing Layer settings"
-msgstr ""
+msgstr "Dyghtya settyansow Gwiskas Wosa-Dyghtya"
 
 #: bottles/frontend/ui/details-preferences.blp:154
 msgid "Manage how games should be displayed on the screen using Gamescope."
 msgstr ""
+"Dyghtya fatel gwariow kodh bos diskwedhys war'n skrin ow devnydhya Gamescope."
 
 #: bottles/frontend/ui/details-preferences.blp:157
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "Dyghtya settyansow Gamescope"
 
 #: bottles/frontend/ui/details-preferences.blp:171
 msgid "Advanced Display Settings"
-msgstr ""
+msgstr "Settyansow Displetyans Avonsys"
 
 #: bottles/frontend/ui/details-preferences.blp:184
 msgid "Performance"
-msgstr ""
+msgstr "Gwreythyans"
 
 #: bottles/frontend/ui/details-preferences.blp:188
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
+"Gallosegi kettermynyegans rag kressya gwreythyans a argerdhoryon "
+"lieskolonnen."
 
 #: bottles/frontend/ui/details-preferences.blp:189
 msgid "Synchronization"
-msgstr ""
+msgstr "Kettermynyegans"
 
 #: bottles/frontend/ui/details-preferences.blp:193
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: bottles/frontend/ui/details-preferences.blp:194
 msgid "Esync"
-msgstr ""
+msgstr "Esync"
 
 #: bottles/frontend/ui/details-preferences.blp:195
 msgid "Fsync"
-msgstr ""
+msgstr "Fsync"
 
 #: bottles/frontend/ui/details-preferences.blp:201
 msgid "Monitor Performance"
-msgstr ""
+msgstr "Helerghi Gwreythyans"
 
 #: bottles/frontend/ui/details-preferences.blp:202
 msgid ""
 "Display monitoring information such as framerate, temperatures, CPU/GPU load "
 "and more on OpenGL and Vulkan using MangoHud."
 msgstr ""
+"Diskwedhes kedhlow helerghyans kepar ha fram-kevradh, tempredhow, karg CPU/"
+"GPU ha moy war OpenGL ha Vulkan ow devnydhya MangoHud."
 
 #: bottles/frontend/ui/details-preferences.blp:205
 msgid "Manage MangoHud settings"
-msgstr ""
+msgstr "Dyghtya settyansow MangoHud"
 
 #: bottles/frontend/ui/details-preferences.blp:210
 msgid "Feral GameMode"
-msgstr ""
+msgstr "Feral GameMode"
 
 #: bottles/frontend/ui/details-preferences.blp:211
 msgid ""
 "Apply a set of optimizations to your device. Can improve game performance."
 msgstr ""
+"Gweytha unn sett a gwellheans dhe dha devis. A yll gwellhe gwreythyans gwari."
 
 #: bottles/frontend/ui/details-preferences.blp:220
 msgid "Preload Game Files"
-msgstr ""
+msgstr "Ragkarga Restrennow Gwari"
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid ""
 "Improve loading time when launching the game multiple times. The game will "
 "take longer to start for the first time."
 msgstr ""
+"Gwellhe termyn ow karga pan ow lonchya an gwari termyn liesplek. An gwari a "
+"wra kemeres termyn moy rag dalleth rag an termyn kynsa."
 
 #: bottles/frontend/ui/details-preferences.blp:225
 msgid "Manage vmtouch settings"
-msgstr ""
+msgstr "Dyghtya settyansow vmtouch"
 
 #: bottles/frontend/ui/details-preferences.blp:240
 msgid "OBS Game Capture"
-msgstr ""
+msgstr "OBS Game Capture"
 
 #: bottles/frontend/ui/details-preferences.blp:241
 msgid "Toggle OBS Game Capture for all Vulkan and OpenGL programs."
-msgstr ""
+msgstr "Dewis OBS Game Capture rag oll towlennow Vulkan hag OpenGL."
 
 #: bottles/frontend/ui/details-preferences.blp:250
 msgid "Compatibility"
-msgstr ""
+msgstr "Kesplegadewder"
 
 #: bottles/frontend/ui/details-preferences.blp:253
 msgid "Windows Version"
-msgstr ""
+msgstr "Versyon Windows"
 
 #: bottles/frontend/ui/details-preferences.blp:256
 msgid "Updating Windows version, please wait…"
-msgstr ""
+msgstr "Ow nowedhi versyon Windows, gortos mar pleg…"
 
 #: bottles/frontend/ui/details-preferences.blp:265
 msgid "Language"
-msgstr ""
+msgstr "Yeth"
 
 #: bottles/frontend/ui/details-preferences.blp:266
 msgid "Choose the language to use with programs."
-msgstr ""
+msgstr "Dewis an yeth rag devnydh gans towlennow."
 
 #: bottles/frontend/ui/details-preferences.blp:274
 msgid "Dedicated Sandbox"
@@ -842,7 +881,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:294
 msgid "Bottles Runtime"
-msgstr ""
+msgstr "Kerghynnedh Botellow"
 
 #: bottles/frontend/ui/details-preferences.blp:295
 msgid ""
@@ -1898,7 +1937,7 @@ msgstr ""
 
 #: bottles/frontend/ui/onboard.blp:60
 msgid "Run Windows Software on Linux."
-msgstr ""
+msgstr "Eksekutya Medhelweyth Windows war Linux."
 
 #: bottles/frontend/ui/onboard.blp:65
 msgid "Windows in Bottles"
@@ -2710,7 +2749,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in.in:4
 #: data/com.usebottles.bottles.metainfo.xml.in:8
 msgid "Run Windows Software"
-msgstr ""
+msgstr "Eksekutya Medhelweyth Windows"
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
