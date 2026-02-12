@@ -48,7 +48,6 @@ from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
 from bottles.frontend.windows.drives import DrivesDialog
 from bottles.frontend.windows.envvars import EnvironmentVariablesDialog
 from bottles.frontend.windows.exclusionpatterns import ExclusionPatternsDialog
-from bottles.frontend.windows.fsr import FsrDialog
 from bottles.frontend.windows.gamescope import GamescopeDialog
 from bottles.frontend.windows.mangohud import MangoHudDialog
 from bottles.frontend.windows.protonalert import ProtonAlertDialog
@@ -67,7 +66,6 @@ class PreferencesView(Adw.PreferencesPage):
     # region Widgets
     btn_manage_gamescope = Gtk.Template.Child()
     btn_manage_vkbasalt = Gtk.Template.Child()
-    btn_manage_fsr = Gtk.Template.Child()
     btn_manage_mangohud = Gtk.Template.Child()
     btn_manage_sandbox = Gtk.Template.Child()
     btn_manage_versioning_patterns = Gtk.Template.Child()
@@ -99,7 +97,6 @@ class PreferencesView(Adw.PreferencesPage):
     switch_vkbasalt = Gtk.Template.Child()
     switch_wayland = Gtk.Template.Child()
     switch_winebridge = Gtk.Template.Child()
-    switch_fsr = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
@@ -238,7 +235,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_vkbasalt.connect(
             "clicked", self.__show_feature_dialog, VkBasaltDialog
         )
-        self.btn_manage_fsr.connect("clicked", self.__show_feature_dialog, FsrDialog)
         self.btn_manage_mangohud.connect(
             "clicked", self.__show_feature_dialog, MangoHudDialog
         )
@@ -260,7 +256,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_winebridge.connect(
             "state-set", self.__toggle_feature_cb, "winebridge"
         )
-        self.switch_fsr.connect("state-set", self.__toggle_feature_cb, "fsr")
         self.switch_nvapi.connect("state-set", self.__toggle_nvapi)
         self.switch_gamemode.connect("state-set", self.__toggle_feature_cb, "gamemode")
         self.switch_gamescope.connect(
@@ -531,7 +526,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkbasalt.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_wayland.handler_block_by_func(self.__toggle_wayland)
         self.switch_winebridge.handler_block_by_func(self.__toggle_feature_cb)
-        self.switch_fsr.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_obsvkc.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_gamescope.handler_block_by_func(self.__toggle_feature_cb)
@@ -556,7 +550,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkbasalt.set_active(parameters.vkbasalt)
         self.switch_wayland.set_active(parameters.wayland)
         self.switch_winebridge.set_active(parameters.winebridge)
-        self.switch_fsr.set_active(parameters.fsr)
         self.switch_nvapi.set_active(parameters.dxvk_nvapi)
         self.switch_gamemode.set_active(parameters.gamemode)
         self.switch_gamescope.set_active(parameters.gamescope)
@@ -669,7 +662,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_wayland.handler_unblock_by_func(self.__toggle_wayland)
         self.switch_winebridge.handler_unblock_by_func(self.__toggle_feature_cb)
-        self.switch_fsr.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_gamescope.handler_unblock_by_func(self.__toggle_feature_cb)

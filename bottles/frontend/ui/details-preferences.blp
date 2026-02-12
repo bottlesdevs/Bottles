@@ -98,26 +98,6 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
-    Adw.ActionRow {
-      activatable-widget: switch_fsr;
-      title: _("FidelityFX Super Resolution");
-      subtitle: _("Increase performance at the expense of visuals. Only works on Vulkan.");
-
-      Button btn_manage_fsr {
-        tooltip-text: _("Manage FidelityFX Super Resolution settings");
-        valign: center;
-        icon-name: "applications-system-symbolic";
-
-        styles [
-          "flat",
-        ]
-      }
-
-      Switch switch_fsr {
-        valign: center;
-      }
-    }
-
     Adw.ActionRow row_discrete {
       visible: false;
       activatable-widget: switch_discrete;
