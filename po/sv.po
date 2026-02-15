@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2026-01-11 16:01+0000\n"
+"PO-Revision-Date: 2026-02-15 15:17+0000\n"
 "Last-Translator: Daniel Wiik <d.wiik@outlook.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bottles/bottles/"
 "sv/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -130,7 +130,7 @@ msgstr "Cachar mall…"
 
 #: bottles/backend/managers/versioning.py:83
 msgid "Committing state …"
-msgstr "Slutgiltigt tillstånd …"
+msgstr "Uppdaterar tillstånd…"
 
 #: bottles/backend/managers/versioning.py:90
 msgid "Nothing to commit"
@@ -148,7 +148,7 @@ msgstr "Tillståndslistan hämtades framgångsrikt!"
 #: bottles/backend/managers/versioning.py:153
 #, python-brace-format
 msgid "State {0} restored successfully!"
-msgstr "State {0} återställs framgångsrikt!"
+msgstr "Tillstånd [{0}] har återställts!"
 
 #: bottles/backend/managers/versioning.py:155
 msgid "Restoring state {} …"
@@ -156,7 +156,7 @@ msgstr "Återställer läge {}…"
 
 #: bottles/backend/managers/versioning.py:162
 msgid "State not found"
-msgstr "Inga lägen hittades"
+msgstr "Inga tillstånd hittades"
 
 #: bottles/backend/managers/versioning.py:168
 msgid "State {} is already the active state"
@@ -214,7 +214,7 @@ msgstr "Sponsrat och Finansierat av"
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:5
 msgid "Copyright © 2017 Bottles Developers"
-msgstr "© 2017-2022 - Bottles utvecklare"
+msgstr "© 2017-2022 - Utvecklarna av Bottles"
 
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/about.blp:10
