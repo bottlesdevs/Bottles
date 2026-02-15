@@ -1310,7 +1310,7 @@ class Manager(metaclass=Singleton):
             if config.Parameters.dxvk_nvapi:
                 NVAPIComponent.check_bottle_nvngx(real_path, config)
 
-        for b in bottles:
+        for b in sorted(bottles):
             """
             For each bottle add the path name to the `local_bottles` variable
             and append the config.
