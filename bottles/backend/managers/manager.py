@@ -705,6 +705,7 @@ class Manager(metaclass=Singleton):
             )
             version = "sys-" + version.split("\n")[0].split(" ")[0]
             runners_available.append(version)
+            runners_available.append("sys-wine-current")
 
         # check bottles runners
         for runner in runners:
