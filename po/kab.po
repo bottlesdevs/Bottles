@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-27 10:57+0530\n"
-"PO-Revision-Date: 2026-02-13 13:09+0000\n"
-"Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-02-18 12:09+0000\n"
+"Last-Translator: Amadɣas <massiin@proton.me>\n"
 "Language-Team: Kabyle <https://hosted.weblate.org/projects/bottles/bottles/"
 "kab/>\n"
 "Language: kab\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -479,7 +479,7 @@ msgstr "Sbedd iḍaraɛen i wahilen."
 #: bottles/frontend/ui/details-preferences.blp:376
 #: bottles/frontend/views/details.py:149
 msgid "Snapshots"
-msgstr ""
+msgstr "Tuṭṭfiwin"
 
 #: bottles/frontend/ui/details-bottle.blp:371
 msgid "Create and manage bottle states."
@@ -921,13 +921,14 @@ msgstr "Sefrek imeɣriyen"
 
 #: bottles/frontend/ui/details-preferences.blp:380
 msgid "Automatic Snapshots"
-msgstr ""
+msgstr "Tuṭṭfiwin s wudem awurman"
 
 #: bottles/frontend/ui/details-preferences.blp:381
 msgid ""
 "Automatically create snapshots before installing software or changing "
 "settings."
 msgstr ""
+"Asnulfu awurman n tuṭṭfiwin send asbeddi n useɣẓan neɣ asnifel n yiɣewwaṛen."
 
 #: bottles/frontend/ui/details-preferences.blp:390
 msgid "Compression"
@@ -938,6 +939,8 @@ msgid ""
 "Compress snapshots to reduce space. This will slow down the creation of "
 "snapshots."
 msgstr ""
+"Sekussem tuṭṭfiwin i usenɣes n tallunt yettwasqedcen. Aya ad yessenqes "
+"tamhelt n usnulfu n tuṭṭfiwin."
 
 #: bottles/frontend/ui/details-preferences.blp:400
 msgid "Use Exclusion Patterns"
@@ -945,7 +948,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:401
 msgid "Exclude paths in snapshots."
-msgstr ""
+msgstr "Stixer iberdan deg tuṭṭfiwin."
 
 #: bottles/frontend/ui/details-preferences.blp:404
 msgid "Manage Patterns"
@@ -961,11 +964,13 @@ msgstr "Ḥbes akala"
 
 #: bottles/frontend/ui/details-versioning.blp:18
 msgid "No Snapshots Found"
-msgstr ""
+msgstr "Ulac tuṭṭfiwin yettwafen"
 
 #: bottles/frontend/ui/details-versioning.blp:19
 msgid "Create your first snapshot to start saving states of your preferences."
 msgstr ""
+"Snulfu-d tuṭṭfa-inek·m tamezwarut i wakken ad tebduḍ asekles n waddad n "
+"ismenyifen-ik·im."
 
 #: bottles/frontend/ui/details-versioning.blp:54
 msgid "A short comment"
@@ -977,7 +982,7 @@ msgstr "Sekles addad n tqerɛet."
 
 #: bottles/frontend/ui/details-versioning.blp:78
 msgid "Create new Snapshot"
-msgstr ""
+msgstr "Snulfu-d Tuṭṭfa tamaynut"
 
 #: bottles/frontend/ui/details.blp:16
 msgid "Details"
@@ -2185,7 +2190,7 @@ msgstr "Awennit n waddad"
 
 #: bottles/frontend/ui/state-entry.blp:16
 msgid "Restore this Snapshot"
-msgstr ""
+msgstr "Err-d Tuṭṭfa-agi"
 
 #: bottles/frontend/ui/task-entry.blp:19
 msgid "Delete message"
@@ -2363,11 +2368,11 @@ msgstr "Akaram igebren isefka n \"{}\"."
 
 #: bottles/frontend/views/bottle_preferences.py:743
 msgid "Are you sure you want to delete all snapshots?"
-msgstr ""
+msgstr "D tidet tebɣiḍ ad tekkseḍ akk tuṭṭfiwin?"
 
 #: bottles/frontend/views/bottle_preferences.py:744
 msgid "This will delete all snapshots but keep your files."
-msgstr ""
+msgstr "Ayagi ad yekkes akk tuṭṭfiwin maca ad yeḥrez ifuyla-inek·m."
 
 #: bottles/frontend/views/bottle_versioning.py:90
 msgid "Please migrate to the new Versioning system to create new states."
@@ -2984,7 +2989,7 @@ msgstr "Err asfaylu ad yecfu ɣef tisekta"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:90
 msgid "Update metadata information"
-msgstr ""
+msgstr "Leqqem talɣut n yiɣefisefka"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Add more update information and correct release notes version"
