@@ -52,7 +52,7 @@ class TemplateManager:
         delattr(config, "Creation_Date")
         delattr(config, "Update_Date")
 
-        ignored = ["dosdevices", "states", ".fvs", "*.yml.*"]
+        ignored = ["dosdevices", "states", ".fvs", "*.yml", ".*"]
 
         _path = os.path.join(Paths.templates, _uuid)
         logging.info("Copying files …")
