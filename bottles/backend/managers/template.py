@@ -124,7 +124,7 @@ class TemplateManager:
         for template in templates:
             if os.path.exists(os.path.join(Paths.templates, template, "template.yml")):
                 _manifest = TemplateManager.get_template_manifest(template)
-                if _manifest is not None:
+                if _manifest is not None and _manifest["uuid"] == template:
                     res.append(_manifest)
 
         return res
