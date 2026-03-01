@@ -206,7 +206,9 @@ class ManagerUtils:
                 os.remove(ico_dest)
 
             ico.export_icon(ico_dest_temp)
-            if get_mime(ico_dest_temp) == "image/vnd.microsoft.icon":
+            # Some ICO files are incorrectly identified as TARGA
+            # See https://bugs.astron.com/view.php?id=723
+            if get_mime(ico_dest_temp) in ["image/vnd.microsoft.icon", "image/x-tga"]:
                 if not ico_dest_temp.endswith(".ico"):
                     shutil.move(ico_dest_temp, f"{ico_dest_temp}.ico")
                     ico_dest_temp = f"{ico_dest_temp}.ico"
