@@ -165,14 +165,21 @@ class ComponentManager:
         temp_dest = os.path.join(Paths.temp, file)
         just_downloaded = False
 
-        if os.path.isfile(os.path.join(Paths.temp, existing_file)):
+        file_path = os.path.join(Paths.temp, existing_file)
+        if os.path.isfile(file_path):
             """
             Check if the file already exists in the /temp directory.
-            If so, then skip the download process and set the update_func
-            to completed.
+            If it's a 0-byte empty file, remove it to allow a fresh download.
+            Otherwise, skip the download.
             """
-            logging.warning(f"File [{existing_file}] already exists in temp, skipping.")
-        else:
+            if os.path.getsize(file_path) == 0:
+                logging.warning(f"File [{existing_file}] is a 0-byte empty file. Removing to force re-download.")
+                os.remove(file_path)
+            else:
+                logging.warning(f"File [{existing_file}] already exists in temp, skipping.")
+                return Result(True)
+        
+        if not os.path.isfile(file_path):
             """
             As some urls can be redirect, we need to take care of this
             and make sure to use the final url. This check should be
