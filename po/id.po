@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2026-01-17 04:01+0000\n"
-"Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
+"PO-Revision-Date: 2026-03-12 15:09+0000\n"
+"Last-Translator: CoreXGit <aulia.ikbal09@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
 "bottles/id/>\n"
 "Language: id\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -60,15 +60,15 @@ msgstr "Templat ditemukan, menerapkan…"
 #. execute wineboot on the bottle path
 #: bottles/backend/managers/manager.py:1197
 msgid "The Wine config is being updated…"
-msgstr "Konfigurasi WINE sedang diperbaharui…"
+msgstr "Konfigurasi Wine sedang diperbarui…"
 
 #: bottles/backend/managers/manager.py:1199
 msgid "Wine config updated!"
-msgstr "Konfigurasi WINE diperbaharui!"
+msgstr "Konfigurasi Wine telah diperbarui!"
 
 #: bottles/backend/managers/manager.py:1207
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Jalankan sebagai Flatpak, membuat berkas pengguna sebagai sandbox…"
+msgstr "Berjalan sebagai Flatpak, membuat berkas pengguna sebagai sandbox…"
 
 #: bottles/backend/managers/manager.py:1209
 msgid "Sandboxing userdir…"
@@ -76,7 +76,7 @@ msgstr "Mensandbox berkas pengguna…"
 
 #: bottles/backend/managers/manager.py:1250
 msgid "Setting Windows version…"
-msgstr "Pengaturan versi Windows…"
+msgstr "Mengatur versi Windows…"
 
 #: bottles/backend/managers/manager.py:1260
 msgid "Apply CMD default settings…"
@@ -168,7 +168,7 @@ msgstr "Tampilkan versi"
 
 #: bottles/frontend/main.py:120
 msgid "Executable path"
-msgstr "Eksekusi jalur"
+msgstr "Jalur eksekusi"
 
 #: bottles/frontend/main.py:128
 msgid "lnk path"
@@ -270,7 +270,7 @@ msgstr "Pasang kembali"
 #: bottles/frontend/ui/dependency-entry.blp:36
 #: bottles/frontend/ui/installer-entry.blp:27
 msgid "Report a Bug…"
-msgstr "Laporkan sebuah kekutu…"
+msgstr "Laporkan bug…"
 
 #: bottles/frontend/ui/dependency-entry.blp:42
 msgid "Dependency name"
@@ -294,7 +294,7 @@ msgid ""
 "run it via terminal to read the output."
 msgstr ""
 "Terjadi kesalahan pemasangan. Muat ulang Bottles untuk membaca laporan "
-"kerusakan atau jalankan melalui terminal untuk membaca luaran."
+"kerusakan atau jalankan melalui terminal untuk membaca outputnya."
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -408,7 +408,7 @@ msgstr "Runner"
 #: bottles/frontend/ui/details-bottle.blp:213
 #: bottles/frontend/ui/list-entry.blp:21
 msgid "Versioning enabled for this bottle"
-msgstr "Versi diaktifkan untuk bottles ini"
+msgstr "Versi diaktifkan untuk bottle ini"
 
 #: bottles/frontend/ui/details-bottle.blp:218
 msgid "Versioning is active for this bottle."
@@ -608,7 +608,7 @@ msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
 "Repositori tidak dapat dijangkau atau tidak ada penginstal yang kompatibel "
-"dengan bottles ini."
+"dengan bottle ini."
 
 #: bottles/frontend/ui/details-installers.blp:50
 #: bottles/frontend/ui/details-versioning.blp:36
@@ -854,7 +854,7 @@ msgstr "Pilih bahasa yang akan digunakan dengan program."
 
 #: bottles/frontend/ui/details-preferences.blp:275
 msgid "Dedicated Sandbox"
-msgstr "Kotak Pasir Khusus"
+msgstr "Sandbox Khusus"
 
 #: bottles/frontend/ui/details-preferences.blp:276
 msgid "Use a restricted/managed environment for this bottle."
@@ -2924,7 +2924,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
-msgstr "DUkungan Steam Proton"
+msgstr "Dukungan Steam Proton"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
