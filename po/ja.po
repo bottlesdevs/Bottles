@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-25 12:51+0000\n"
+"PO-Revision-Date: 2026-03-06 09:09+0000\n"
 "Last-Translator: camegone <kuroneko0308kw@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -1249,6 +1249,8 @@ msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
 msgstr ""
+"このインストーラーは、その他の手段が用意されていないため、いくつかの"
+"ローカルリソースを要求しています。"
 
 #: bottles/frontend/ui/dialog-installer.blp:68
 msgid "Proceed"
@@ -1385,6 +1387,17 @@ msgid ""
 "the runner's provider, is not responsible for any problems and we ask that "
 "you do not report to them."
 msgstr ""
+"注意、Proton ベースのランナーを Steam 以外のボトルで使用することは不具合の原"
+"因になったり正常動作を妨げたりすることがあります。\n"
+"\n"
+"代わりに、Wine-GE を使用することを推奨します。これは Steam 以外の環境で動かす"
+"ことを意図した Proton のバージョンです。\n"
+"\n"
+"続行すると自動的に Steam のランタイムが自動的に有効になります。 (システムで"
+"インストール済みでボトルに検出されている場合)これは必要なライブラリへの"
+"アクセスを可能にし、互換性の問題を少なくするために行われます。ランナーの提供"
+"者、GloriousEggroll はこの問題に関する責任を持っていないことに注意し、彼らへ"
+"の不具合報告は行わないようにしてください。"
 
 #: bottles/frontend/ui/dialog-proton-alert.blp:43
 msgid "I got it."
@@ -1517,9 +1530,8 @@ msgstr "シャープネス"
 #: bottles/frontend/ui/dialog-vkbasalt.blp:316
 #: bottles/frontend/ui/dialog-vkbasalt.blp:343
 #: bottles/frontend/ui/dialog-vkbasalt.blp:370 bottles/frontend/ui/new.blp:58
-#, fuzzy
 msgid "Show Information"
-msgstr "ボトルの情報"
+msgstr "情報を表示"
 
 #. Translators: Luma is not translatable
 #: bottles/frontend/ui/dialog-vkbasalt.blp:99
