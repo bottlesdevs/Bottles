@@ -361,17 +361,10 @@ class WineCommand:
         if params.dxvk and not return_steam_env:
             env.add("WINE_LARGE_ADDRESS_AWARE", "1")
             env.add(
-                "DXVK_STATE_CACHE_PATH", os.path.join(bottle, "cache", "dxvk_state")
+                "DXVK_SHADER_CACHE_PATH", os.path.join(bottle, "cache", "dxvk_shader")
             )
             env.add("STAGING_SHARED_MEMORY", "1")
             env.add("__GL_SHADER_DISK_CACHE", "1")
-            env.add(
-                "__GL_SHADER_DISK_CACHE_SKIP_CLEANUP", "1"
-            )  # should not be needed anymore
-            env.add(
-                "__GL_SHADER_DISK_CACHE_PATH",
-                os.path.join(bottle, "cache", "gl_shader"),
-            )
             env.add(
                 "MESA_SHADER_CACHE_DIR", os.path.join(bottle, "cache", "mesa_shader")
             )
