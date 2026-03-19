@@ -20,8 +20,11 @@ from gettext import gettext as _
 
 from gi.repository import Adw, Gtk
 
+import os
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.backend.managers.manager import ManagerUtils
+from bottles.backend.models.config import BottleConfig
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/state-entry.ui")
@@ -29,9 +32,12 @@ class StateEntry(Adw.ActionRow):
     __gtype_name__ = "StateEntry"
 
     # region Widgets
+    label_hash = Gtk.Template.Child()
+    label_branch = Gtk.Template.Child()
+    label_date = Gtk.Template.Child()
+    label_comment = Gtk.Template.Child()
     btn_restore = Gtk.Template.Child()
     spinner = Gtk.Template.Child()
-
     # endregion
 
     def __init__(self, parent, config, state, active, **kwargs):
@@ -44,29 +50,33 @@ class StateEntry(Adw.ActionRow):
         self.queue = parent.window.page_details.queue
         self.state = state
 
-        if config.Versioning:
-            self.state_name = "#{} - {}".format(
-                state[0],
-                datetime.strptime(
-                    state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f"
-                ).strftime("%d %B %Y, %H:%M"),
-            )
+        hash_id = str(state[0])[:7] if len(str(state[0])) > 7 else str(state[0])
+        self.label_hash.set_text(hash_id)
 
-            self.set_subtitle(self.state[1]["Comment"])
-            if state[0] == config.State:
+        branch_name = state[1].get("Branch", "")
+        if branch_name:
+            self.label_branch.set_text(branch_name)
+            self.label_branch.set_visible(True)
+
+        if config.Versioning:
+            date_str = datetime.strptime(
+                state[1]["Creation_Date"], "%Y-%m-%d %H:%M:%S.%f"
+            ).strftime("%d %B %Y, %H:%M")
+
+            self.label_date.set_text(date_str)
+            self.label_comment.set_text(state[1].get("Comment", ""))
+            
+            if str(state[0]) == str(config.State):
                 self.add_css_class("current-state")
         else:
-            self.state_name = "{} - {}".format(
-                state[0],
-                datetime.fromtimestamp(state[1]["timestamp"]).strftime(
-                    "%d %B %Y, %H:%M"
-                ),
+            date_str = datetime.fromtimestamp(state[1]["timestamp"]).strftime(
+                "%d %B %Y, %H:%M"
             )
-            self.set_subtitle(state[1]["message"])
+            self.label_date.set_text(date_str)
+            self.label_comment.set_text(state[1].get("message", ""))
+            
             if active:
                 self.add_css_class("current-state")
-
-        self.set_title(self.state_name)
         self.config = config
         self.versioning_manager = self.manager.versioning_manager
 
@@ -81,12 +91,18 @@ class StateEntry(Adw.ActionRow):
         def handle_response(dialog, response_id):
             if response_id == "ok":
                 self.queue.add_task()
-                self.parent.set_sensitive(False)
-                self.spinner.show()
-                self.spinner.start()
+                
+                versioning_view = getattr(self.window.page_details, "view_versioning", None)
+                if versioning_view and hasattr(versioning_view, "_set_busy"):
+                    versioning_view._set_busy(True, _("Restoring state..."))
+                else:
+                    self.parent.set_sensitive(False)
+                    self.spinner.show()
+                    self.spinner.start()
 
                 def _after():
-                    self.window.page_details.view_versioning.update(None, self.config)
+                    if versioning_view and hasattr(versioning_view, "update"):
+                        versioning_view.update()
                     self.manager.update_bottles()
 
                 RunAsync(
@@ -118,11 +134,20 @@ class StateEntry(Adw.ActionRow):
         """
         if not self.config.Versioning and result.message:
             self.window.show_toast(result.message)
-        self.spinner.stop()
-        self.spinner.hide()
+            
+        versioning_view = getattr(self.window.page_details, "view_versioning", None)
+        if versioning_view and hasattr(versioning_view, "_set_busy"):
+            versioning_view._set_busy(False)
+        else:
+            self.spinner.stop()
+            self.spinner.hide()
+            self.parent.set_sensitive(True)
+            
         self.btn_restore.set_visible(False)
-        self.parent.set_sensitive(True)
         self.queue.end_task()
-        self.manager.update_bottles()
-        config = self.manager.local_bottles[self.config.Path]
-        self.window.page_details.set_config(config)
+        
+        bottle_config_path = os.path.join(ManagerUtils.get_bottle_path(self.config), "bottle.yml")
+        config_load = BottleConfig.load(bottle_config_path)
+        if config_load.status:
+            self.manager.local_bottles[self.config.Name] = config_load.data
+            self.window.page_details.set_config(config_load.data)

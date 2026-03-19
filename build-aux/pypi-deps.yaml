@@ -4,12 +4,9 @@ buildsystem: simple
 build-commands:
   - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
     --prefix=${FLATPAK_DEST} --no-build-isolation wheel PyYAML pycurl chardet requests
-    Markdown icoextract patool pathvalidate FVS orjson pycairo PyGObject charset-normalizer
+    Markdown icoextract patool pathvalidate orjson pycairo PyGObject charset-normalizer
     idna urllib3 certifi pefile yara-python
 sources:
-  - type: file
-    url: https://files.pythonhosted.org/packages/f7/2f/cc09899755f94b36e7f570b9f9ca19a5fdff536e2614fd3ac1c28bb777f6/FVS-0.3.4.tar.gz
-    sha256: c987741f37706ea07d91ec498c145162676ca16b59b5c8c2351cf464954ce422
   - type: file
     url: https://files.pythonhosted.org/packages/3f/08/83871f3c50fc983b88547c196d11cf8c3340e37c32d2e9d6152abe2c61f7/Markdown-3.7-py3-none-any.whl
     sha256: 7eb6df5690b81a1d7942992c97fad2938e956e79df20cbc6186e9c3a77b1c803

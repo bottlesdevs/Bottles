@@ -180,13 +180,14 @@ class DetailsView(Adw.Bin):
             if self.view_bottle.get_parent() is None:
                 self.default_view.append(self.view_bottle)
 
-            self.stack_bottle.add_named(self.view_preferences, "preferences")
-            self.stack_bottle.add_named(self.view_dependencies, "dependencies")
-            self.stack_bottle.add_named(self.view_registry_rules, "registry_rules")
-            self.stack_bottle.add_named(self.view_versioning, "versioning")
-            self.stack_bottle.add_named(self.view_installers, "installers")
-            self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
-            self.stack_bottle.add_named(self.view_eagle, "eagle")
+            if self.view_preferences.get_parent() is None:
+                self.stack_bottle.add_named(self.view_preferences, "preferences")
+                self.stack_bottle.add_named(self.view_dependencies, "dependencies")
+                self.stack_bottle.add_named(self.view_registry_rules, "registry_rules")
+                self.stack_bottle.add_named(self.view_versioning, "versioning")
+                self.stack_bottle.add_named(self.view_installers, "installers")
+                self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
+                self.stack_bottle.add_named(self.view_eagle, "eagle")
 
             if self.view_bottle.actions.get_parent() is None:
                 self.set_actions(self.view_bottle.actions)

@@ -1,0 +1,17 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $VersioningBranchDialog: Adw.PreferencesDialog {
+  title: _("Create Branch");
+
+  Adw.PreferencesPage {
+    Adw.PreferencesGroup {
+      description: _("A branch is an independent workspace where you can make changes without affecting the main timeline.");
+
+      Adw.EntryRow entry_name {
+        title: _("Branch Name");
+        show-apply-button: true;
+      }
+    }
+  }
+}

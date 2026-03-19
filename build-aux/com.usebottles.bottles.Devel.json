@@ -64,7 +64,8 @@
   },
   "sdk-extensions": [
     "org.freedesktop.Sdk.Compat.i386",
-    "org.freedesktop.Sdk.Extension.toolchain-i386"
+    "org.freedesktop.Sdk.Extension.toolchain-i386",
+    "org.freedesktop.Sdk.Extension.golang"
   ],
   "cleanup": [
     "/include",
@@ -125,6 +126,7 @@
         }
       ]
     },
+    "fvs2.yaml",
     "pypi-deps.yaml",
     {
       "name": "vmtouch",

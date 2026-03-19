@@ -1,0 +1,36 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $VersioningSettingsDialog: Adw.Window {
+  modal: true;
+  deletable: true;
+  default-width: 550;
+  title: _("Snapshot Settings");
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    Adw.HeaderBar {}
+
+    Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        Adw.ActionRow {
+          activatable-widget: switch_auto_versioning;
+          title: _("Automatic Snapshots");
+          subtitle: _("Automatically create snapshots before installing software or changing settings.");
+
+          Switch switch_auto_versioning {
+            valign: center;
+          }
+        }
+      }
+    }
+  }
+}

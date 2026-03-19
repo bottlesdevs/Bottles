@@ -17,6 +17,7 @@ conf.set('pkgdatadir', pkgdatadir)
 
 subdir('backend')
 subdir('frontend')
+subdir('fvs')
 
 bottles_sources = [
   '__init__.py',

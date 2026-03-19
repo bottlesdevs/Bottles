@@ -1,0 +1,41 @@
+name: fvs2
+buildsystem: simple
+build-options:
+  append-path: /usr/lib/sdk/golang/bin
+build-commands:
+  - cd fvs2 && go build -mod=vendor -o /app/bin/fvs2 ./cmd/fvs2
+sources:
+  - type: git
+    url: https://github.com/fvs-lab/fvs2.git
+    tag: v0.1.3
+    commit: 42776c1fa53548ed1fc8ff994d37ede4c7e5de3d
+    dest: fvs2
+  - type: git
+    url: https://github.com/fvs-lab/core.git
+    tag: v0.0.1
+    commit: 305bcbe730ec54649414bc41a424044ef38c37a4
+    dest: fvs2/vendor/fvs-v2-core
+  - type: file
+    path: fvs2-modules.txt
+    dest: fvs2/vendor
+    dest-filename: modules.txt
+  - dest: fvs2/vendor/github.com/mirkobrombin/go-cli-builder/v2
+    sha256: c3b117897d1d1fb8f0acd7882116c57d0b2681924808fd74780c00df61d8700a
+    strip-components: 4
+    type: archive
+    url: https://proxy.golang.org/github.com/mirkobrombin/go-cli-builder/v2/@v/v2.0.5.zip
+  - dest: fvs2/vendor/github.com/zeebo/blake3
+    sha256: 65aaa3487c097fa0140f52041e8e6fe8214c244a29223fd4caaa60986192a08f
+    strip-components: 3
+    type: archive
+    url: https://proxy.golang.org/github.com/zeebo/blake3/@v/v0.2.4.zip
+  - dest: fvs2/vendor/github.com/klauspost/cpuid/v2
+    sha256: d5584d6e63855131440308e71f91ec54d391a50e9653f6c09a39d15610e0d0bc
+    strip-components: 4
+    type: archive
+    url: https://proxy.golang.org/github.com/klauspost/cpuid/v2/@v/v2.0.12.zip
+  - dest: fvs2/vendor/github.com/mirkobrombin/go-foundation
+    sha256: 7a04058dbd8d49516dcc622eb216dcff22c4da1e812acfb7882e740c756b1ea0
+    strip-components: 3
+    type: archive
+    url: https://proxy.golang.org/github.com/mirkobrombin/go-foundation/@v/v0.2.0.zip

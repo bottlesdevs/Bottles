@@ -1,0 +1,19 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $VersioningManageBranchesDialog: Adw.PreferencesDialog {
+  title: _("Manage Branches");
+  width-request: 450;
+  height-request: 400;
+  Adw.PreferencesPage {
+    Adw.PreferencesGroup {
+      ListBox list_branches {
+        selection-mode: none;
+
+        styles [
+          "boxed-list",
+        ]
+      }
+    }
+  }
+}
