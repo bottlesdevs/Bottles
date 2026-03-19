@@ -4,9 +4,55 @@ using Adw 1;
 template $StateEntry: Adw.ActionRow {
   activatable-widget: btn_restore;
 
-  /* Translators: id as identification */
-  title: _("State id");
-  subtitle: _("State comment");
+  [prefix]
+  Box {
+    spacing: 12;
+    margin-top: 12;
+    margin-bottom: 12;
+    margin-start: 12;
+
+    Box {
+      orientation: vertical;
+      spacing: 4;
+      valign: center;
+
+      Label label_comment {
+        halign: start;
+        ellipsize: end;
+        styles [
+          "heading"
+        ]
+      }
+
+      Box {
+        spacing: 8;
+
+        Label label_hash {
+          styles [
+            "monospace",
+            "accent",
+            "caption"
+          ]
+        }
+
+        Label label_date {
+          halign: start;
+          styles [
+            "dim-label",
+            "caption"
+          ]
+        }
+
+        Label label_branch {
+          visible: false;
+          styles [
+            "tag",
+            "caption"
+          ]
+        }
+      }
+    }
+  }
 
   Spinner spinner {
     visible: false;
@@ -22,3 +68,4 @@ template $StateEntry: Adw.ActionRow {
     ]
   }
 }
+

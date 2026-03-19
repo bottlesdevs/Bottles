@@ -1,0 +1,17 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $VersioningCommitDialog: Adw.PreferencesDialog {
+  title: _("Create Snapshot");
+
+  Adw.PreferencesPage {
+    Adw.PreferencesGroup {
+      description: _("A snapshot saves the current state of your bottle, so you can restore it later if something goes wrong.");
+
+      Adw.EntryRow entry_message {
+        title: _("Commit Message");
+        show-apply-button: true;
+      }
+    }
+  }
+}

@@ -32,6 +32,10 @@ bottles_sources = [
   'upgradeversioning.py',
   'vmtouch.py',
   'window.py',
+  'versioning_settings.py',
+  'versioning_commit.py',
+  'versioning_branch.py',
+  'versioning_manage_branches.py',
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)

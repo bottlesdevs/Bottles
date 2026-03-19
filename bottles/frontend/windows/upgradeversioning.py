@@ -60,9 +60,9 @@ class UpgradeVersioningDialog(Adw.Window):
 
         RunAsync(self.pulse)
         RunAsync(
-            self.parent.manager.versioning_manager.update_system,
-            self.finish,
-            self.config,
+            task_func=self.parent.manager.versioning_manager.update_system,
+            callback=self.finish,
+            config=self.config,
         )
 
     def __proceed(self, widget):

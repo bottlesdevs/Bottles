@@ -22,13 +22,13 @@ from gettext import gettext as _
 from glob import glob
 from typing import Any
 
-from fvs.exceptions import (  # type: ignore [import-untyped]
+from bottles.fvs.exceptions import (
     FVSNothingToCommit,
     FVSNothingToRestore,
     FVSStateNotFound,
     FVSStateZeroNotDeletable,
 )
-from fvs.repo import FVSRepo  # type: ignore [import-untyped]
+from bottles.fvs.repo import FVSRepo
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -55,26 +55,57 @@ class VersioningManager:
 
     @staticmethod
     def is_initialized(config: BottleConfig):
-        try:
-            repo = FVSRepo(
-                repo_path=ManagerUtils.get_bottle_path(config),
-                use_compression=config.Parameters.versioning_compression,
-                no_init=True,
-            )
-        except FileNotFoundError:
-            return False
-        return not repo.has_no_states
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        # Check for FVS2
+        if os.path.exists(os.path.join(bottle_path, ".fvs2")):
+            return True
+        return False
+
+    @staticmethod
+    def needs_migration(config: BottleConfig):
+        """
+        Check if the bottle uses a legacy versioning system.
+        Legacy systems are identified by the presence of:
+        - .fvs/ folder (FVS v1)
+        - states/states.yml (internal legacy system)
+        """
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        
+        # Check for FVS v1
+        if os.path.exists(os.path.join(bottle_path, ".fvs")):
+            return True
+            
+        # Check for absolute legacy (internal)
+        if os.path.exists(os.path.join(bottle_path, "states", "states.yml")):
+            return True
+            
+        # Fallback to config flag if any (and FVS2 is NOT there yet)
+        if config.Versioning and not os.path.exists(os.path.join(bottle_path, ".fvs2")):
+            return True
+            
+        return False
 
     @staticmethod
     def re_initialize(config: BottleConfig):
-        fvs_path = os.path.join(ManagerUtils.get_bottle_path(config), ".fvs")
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        
+        # Clean up FVS v1
+        fvs_path = os.path.join(bottle_path, ".fvs")
         if os.path.exists(fvs_path):
             shutil.rmtree(fvs_path)
-
-    def update_system(self, config: BottleConfig):
-        states_path = os.path.join(ManagerUtils.get_bottle_path(config), "states")
+            
+        # Clean up absolute legacy
+        states_path = os.path.join(bottle_path, "states")
         if os.path.exists(states_path):
             shutil.rmtree(states_path)
+            
+        # Clean up FVS2 for a fresh start
+        fvs2_path = os.path.join(bottle_path, ".fvs2")
+        if os.path.exists(fvs2_path):
+            shutil.rmtree(fvs2_path)
+
+    def update_system(self, config: BottleConfig):
+        self.re_initialize(config)
         return self.manager.update_config(config, "Versioning", False)
 
     def create_state(self, config: BottleConfig, message: str = "No message"):
@@ -90,28 +121,31 @@ class VersioningManager:
             TaskManager.remove(task_id)
             return Result(status=False, message=_("Nothing to commit"))
 
+        repo._refresh()
         TaskManager.remove(task_id)
         return Result(
             status=True,
             message=_("New state [{0}] created successfully!").format(
                 repo.active_state_id
             ),
-            data={"state_id": repo.active_state_id, "states": repo.states},
+            data={"state_id": repo.active_state_id, "states": repo.states, "branches": repo.branches, "active_branch": repo.active_branch},
         )
 
     def list_states(
-        self, config: BottleConfig
+        self, config: BottleConfig, check_dirty: bool = False
     ) -> dict[str, Any] | Result[dict[str, Any]]:
         """
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.
         """
-        if not config.Versioning:
+        if not self.needs_migration(config):
             try:
                 repo = FVSRepo(
                     repo_path=ManagerUtils.get_bottle_path(config),
                     use_compression=config.Parameters.versioning_compression,
                 )
+                if check_dirty:
+                    repo.check_dirty()
             except FVSStateNotFound:
                 logging.warning(
                     "The FVS repository may be corrupted, trying to re-initialize it"
@@ -121,10 +155,12 @@ class VersioningManager:
                     repo_path=ManagerUtils.get_bottle_path(config),
                     use_compression=config.Parameters.versioning_compression,
                 )
+                if check_dirty:
+                    repo.check_dirty()
             return Result(
                 status=True,
                 message=_("States list retrieved successfully!"),
-                data={"state_id": repo.active_state_id, "states": repo.states},
+                data={"state_id": repo.active_state_id, "states": repo.states, "branches": repo.branches, "active_branch": repo.active_branch, "dirty": repo.dirty, "changed_files": repo.changed_files},
             )
 
         bottle_path = ManagerUtils.get_bottle_path(config)
@@ -142,9 +178,9 @@ class VersioningManager:
         return states
 
     def set_state(
-        self, config: BottleConfig, state_id: int, after: callable = None
+        self, config: BottleConfig, state_id: str | int, after: callable = None
     ) -> Result:
-        if not config.Versioning:
+        if not self.needs_migration(config):
             patterns = self.__get_patterns(config)
             repo = FVSRepo(
                 repo_path=ManagerUtils.get_bottle_path(config),
@@ -162,7 +198,7 @@ class VersioningManager:
             except FVSStateNotFound:
                 logging.error(f"State {state_id} not found.")
                 res = Result(status=False, message=_("State not found"))
-            except (FVSNothingToRestore, FVSStateZeroNotDeletable):
+            except (FVSNothingToRestore, FVSStateZeroNotDeletable, FVSNothingToCommit): # Added FVSNothingToCommit just in case
                 logging.error(f"State {state_id} is the active state.")
                 res = Result(
                     status=False,
@@ -181,29 +217,32 @@ class VersioningManager:
         search_sources = list(range(int(state_id) + 1))
         search_sources.reverse()
 
-        # check for removed and changed files
+        # Optimize comparison using dicts for O(1) lookup
+        bottle_files = {f["file"]: f for f in bottle_index.get("Files", [])}
+        state_files = {f["file"]: f for f in state_index.get("Files", [])}
+
         remove_files = []
         edit_files = []
-        for file in bottle_index.get("Files"):
-            if file["file"] not in [f["file"] for f in state_index.get("Files")]:
+        for name, file in bottle_files.items():
+            if name not in state_files:
                 remove_files.append(file)
-            elif file["checksum"] not in [
-                f["checksum"] for f in state_index.get("Files")
-            ]:
+            elif file["checksum"] != state_files[name]["checksum"]:
                 edit_files.append(file)
+
+        add_files = []
+        for name, file in state_files.items():
+            if name not in bottle_files:
+                add_files.append(file)
+
         logging.info(f"[{len(remove_files)}] files to remove.")
         logging.info(f"[{len(edit_files)}] files to replace.")
-
-        # check for new files
-        add_files = []
-        for file in state_index.get("Files"):
-            if file["file"] not in [f["file"] for f in bottle_index.get("Files")]:
-                add_files.append(file)
         logging.info(f"[{len(add_files)}] files to add.")
 
         # perform file updates
         for file in remove_files:
-            os.remove("%s/drive_c/%s" % (bottle_path, file["file"]))
+            file_path = "%s/drive_c/%s" % (bottle_path, file["file"])
+            if os.path.exists(file_path):
+                os.remove(file_path)
 
         for file in add_files:
             source = "%s/states/%s/drive_c/%s" % (
@@ -212,17 +251,20 @@ class VersioningManager:
                 file["file"],
             )
             target = "%s/drive_c/%s" % (bottle_path, file["file"])
-            shutil.copy2(source, target)
+            if os.path.exists(source):
+                os.makedirs(os.path.dirname(target), exist_ok=True)
+                shutil.copy2(source, target)
 
         for file in edit_files:
+            target = "%s/drive_c/%s" % (bottle_path, file["file"])
             for i in search_sources:
                 source = "%s/states/%s/drive_c/%s" % (bottle_path, str(i), file["file"])
                 if os.path.isfile(source):
                     checksum = FileUtils().get_checksum(source)
                     if file["checksum"] == checksum:
+                        os.makedirs(os.path.dirname(target), exist_ok=True)
+                        shutil.copy2(source, target)
                         break
-                target = "%s/drive_c/%s" % (bottle_path, file["file"])
-                shutil.copy2(source, target)
 
         # update State in bottle config
         self.manager.update_config(config, "State", state_id)
@@ -275,3 +317,76 @@ class VersioningManager:
                 }
             )
         return cur_index
+
+    def get_branches(self, config: BottleConfig) -> list:
+        try:
+            repo = FVSRepo(
+                repo_path=ManagerUtils.get_bottle_path(config),
+                use_compression=config.Parameters.versioning_compression,
+            )
+            return repo.branches
+        except Exception as e:
+            logging.error(f"Failed to get FVS branches: {e}")
+            return []
+
+    def get_active_branch(self, config: BottleConfig) -> str:
+        try:
+            repo = FVSRepo(
+                repo_path=ManagerUtils.get_bottle_path(config),
+                use_compression=config.Parameters.versioning_compression,
+            )
+            return repo.active_branch
+        except Exception as e:
+            logging.error(f"Failed to get active FVS branch: {e}")
+            return ""
+
+    def create_branch(self, config: BottleConfig, branch_name: str) -> Result:
+        try:
+            repo = FVSRepo(
+                repo_path=ManagerUtils.get_bottle_path(config),
+                use_compression=config.Parameters.versioning_compression,
+            )
+            repo.create_branch(branch_name)
+            return Result(status=True, message=_("Branch created successfully"))
+        except Exception as e:
+            logging.error(f"Failed to create FVS branch: {e}")
+            return Result(status=False, message=str(e))
+
+    def delete_branch(self, config: BottleConfig, branch_name: str) -> Result:
+        try:
+            repo = FVSRepo(
+                repo_path=ManagerUtils.get_bottle_path(config),
+                use_compression=config.Parameters.versioning_compression,
+            )
+            repo.delete_branch(branch_name)
+            return Result(status=True, message=_("Branch deleted successfully"))
+        except Exception as e:
+            logging.error(f"Failed to delete FVS branch: {e}")
+            return Result(status=False, message=str(e))
+
+    def checkout_branch(self, config: BottleConfig, branch_name: str) -> Result:
+        try:
+            patterns = self.__get_patterns(config)
+            repo = FVSRepo(
+                repo_path=ManagerUtils.get_bottle_path(config),
+                use_compression=config.Parameters.versioning_compression,
+            )
+
+            try:
+                repo.commit(
+                    _("Auto-save before switching to %s") % branch_name,
+                    ignore=patterns,
+                )
+            except FVSNothingToCommit:
+                pass
+
+            repo.checkout(branch_name)
+            repo._refresh()
+
+            if repo.active_state_id:
+                repo.restore_state(repo.active_state_id, ignore=patterns)
+
+            return Result(status=True)
+        except Exception as e:
+            logging.error(f"Failed to checkout FVS branch: {e}")
+            return Result(status=False, message=str(e))

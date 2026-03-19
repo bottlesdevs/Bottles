@@ -51,6 +51,8 @@ from bottles.frontend.utils.playtime import PlaytimeService
 from bottles.frontend.widgets.program import ProgramEntry
 from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
+from bottles.frontend.windows.versioning_settings import VersioningSettingsDialog
+from bottles.fvs.repo import FVSRepo
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/details-bottle.ui")
@@ -98,7 +100,7 @@ class BottleView(Adw.PreferencesPage):
     btn_flatpak_doc = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     dot_versioning = Gtk.Template.Child()
-    grid_versioning = Gtk.Template.Child()
+    btn_versioning_badge = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
     group_updates = Gtk.Template.Child()
     actions = Gtk.Template.Child()
@@ -109,6 +111,7 @@ class BottleView(Adw.PreferencesPage):
     box_backup_progress = Gtk.Template.Child()
     spinner_backup = Gtk.Template.Child()
     label_backup_progress = Gtk.Template.Child()
+    btn_snapshots_settings = Gtk.Template.Child()
     # endregion
 
     content = Gdk.ContentFormats.new_for_gtype(Gdk.FileList)
@@ -156,6 +159,8 @@ class BottleView(Adw.PreferencesPage):
         self.row_preferences.connect("activated", self.__change_page, "preferences")
         self.row_dependencies.connect("activated", self.__change_page, "dependencies")
         self.row_snapshots.connect("activated", self.__change_page, "versioning")
+        self.btn_snapshots_settings.connect("clicked", self.__show_versioning_settings)
+        self.btn_versioning_badge.connect("clicked", self.__change_page, "versioning")
         self.row_taskmanager.connect("activated", self.__change_page, "taskmanager")
         self.row_winecfg.connect("activated", self.run_winecfg)
         self.row_debug.connect("activated", self.run_debug)
@@ -205,6 +210,28 @@ class BottleView(Adw.PreferencesPage):
             self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
         except:  # pylint: disable=bare-except
             pass
+
+    def __show_versioning_settings(self, widget):
+        """Open the Versioning settings dialog."""
+        dialog = VersioningSettingsDialog(window=self.window, config=self.config)
+        dialog.present()
+
+    def __update_fvs2_badge(self, bottle_path):
+        def _fetch():
+            try:
+                repo = FVSRepo(repo_path=bottle_path, no_init=True)
+                branch = repo.active_branch or "main"
+                commit = (repo.active_state_id or "")[:7]
+                return f"{branch}:{commit}" if commit else branch
+            except Exception:
+                return ""
+
+        @GtkUtils.run_in_main_loop
+        def _apply(result, error):
+            if result and not error:
+                self.label_state.set_text(result)
+
+        RunAsync(_fetch, _apply)
 
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
         self.drop_overlay.set_visible(False)
@@ -260,15 +287,24 @@ class BottleView(Adw.PreferencesPage):
         # set environment
         self.label_environment.set_text(_(self.config.Environment))
 
-        # set versioning
-        self.dot_versioning.set_visible(self.config.Versioning)
-        self.grid_versioning.set_visible(self.config.Versioning)
-        self.label_state.set_text(str(self.config.State))
+        # set versioning badge
+        has_old_versioning = self.config.Versioning
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        has_fvs2 = os.path.exists(os.path.join(bottle_path, ".fvs2"))
+        show_badge = has_old_versioning or has_fvs2
+        self.dot_versioning.set_visible(show_badge)
+        self.btn_versioning_badge.set_visible(show_badge)
+
+        if has_old_versioning:
+            self.label_state.set_text(str(self.config.State))
+        elif has_fvs2:
+            self.label_state.set_text("…")
+            self.__update_fvs2_badge(bottle_path)
 
         self.__set_steam_rules()
 
         # check for old versioning system enabled
-        if config.Versioning:
+        if self.manager.versioning_manager.needs_migration(config):
             self.__upgrade_versioning()
 
         if (

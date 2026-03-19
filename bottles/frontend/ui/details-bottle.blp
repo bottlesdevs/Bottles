@@ -248,32 +248,27 @@ template $DetailsBottle: Adw.PreferencesPage {
             label: "·";
           }
 
-          Grid grid_versioning {
-            tooltip-text: _("Versioning enabled for this bottle");
+          Button btn_versioning_badge {
+            tooltip-text: _("View snapshots");
             halign: center;
             valign: center;
-            column-spacing: 6;
 
             styles [
               "tag",
               "tag-versioning",
+              "flat",
             ]
 
-            Image img_versioning {
-              tooltip-text: _("Versioning is active for this bottle.");
-              halign: center;
-              valign: center;
-              icon-name: "view-wrapped-symbolic";
-            }
+            Box {
+              spacing: 6;
 
-            Label label_state {
-              halign: center;
-              valign: center;
-              label: _("0");
+              Image {
+                icon-name: "view-wrapped-symbolic";
+              }
 
-              styles [
-                "heading",
-              ]
+              Label label_state {
+                label: "main";
+              }
             }
           }
         }
@@ -490,6 +485,13 @@ template $DetailsBottle: Adw.PreferencesPage {
       activatable: true;
       title: _("Snapshots");
       subtitle: _("Create and manage bottle states.");
+
+      [suffix]
+      Button btn_snapshots_settings {
+        valign: center;
+        icon-name: "emblem-system-symbolic";
+        styles [ "flat" ]
+      }
 
       Image {
         icon-name: "go-next-symbolic";
