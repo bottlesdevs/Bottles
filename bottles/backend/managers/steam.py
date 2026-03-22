@@ -534,7 +534,7 @@ class SteamManager:
         logging.info(f"Adding shortcut for {program_name}")
         if "FLATPAK_ID" in os.environ:
             cmd = "flatpak"
-            args = f"run {os.environ['FLATPAK_ID']} run -b '{{0}}' -p '{{1}}'"
+            args = f"run --command=bottles-cli {os.environ['FLATPAK_ID']} run -b '{{0}}' -p '{{1}}'"
         else:
             cmd = "bottles-cli"
             args = "run -b '{0}' -p '{1}'"
