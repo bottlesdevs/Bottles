@@ -246,21 +246,37 @@ class ManagerUtils:
             exec = "bottles-cli run -p {} -b '{}' -- %u".format(
                 shlex.quote(program.get('name')), config.get('Name')
             )
-            portal.dynamic_launcher_install(
-                ret["token"],
-                "{}.App_{}.desktop".format(
-                    APP_ID, GLib.compute_checksum_for_string(sum_type, id, -1)
-                ),
-                """[Desktop Entry]
-                Exec={}
-                Type=Application
-                Terminal=false
-                Categories=Application;
-                Comment=Launch {} using Bottles.
-                StartupWMClass={}""".format(
-                    exec, program.get("name"), program.get("name")
+            try:
+                portal.dynamic_launcher_install(
+                    ret["token"],
+                    "{}.App_{}.desktop".format(
+                        APP_ID, GLib.compute_checksum_for_string(sum_type, id, -1)
+                    ),
+                    """[Desktop Entry]
+                    Exec={}
+                    Type=Application
+                    Terminal=false
+                    Categories=Application;
+                    Comment=Launch {} using Bottles.
+                    StartupWMClass={}""".format(
+                        exec, program.get("name"), program.get("name")
+                    )
                 )
-            )
+            except GLib.Error as e:
+                logging.warning(f"Failed to use Dynamic Launcher portal: {e}. Falling back to manual creation.")
+                desktop_dir = os.path.expanduser("~/.local/share/applications")
+                os.makedirs(desktop_dir, exist_ok=True)
+                safe_name = "".join([c for c in program.get("name") if c.isalnum() or c in ("-", "_")])
+                filename = f"bottles-{config.get('Name')}-{safe_name}.desktop"
+                filepath = os.path.join(desktop_dir, filename)
+                content = f"[Desktop Entry]\nExec={exec}\nType=Application\nTerminal=false\nCategories=Application;\nComment=Launch {program.get('name')} using Bottles.\nStartupWMClass={program.get('name')}\nName={program.get('name')}\nIcon={icon}\n"
+                try:
+                    with open(filepath, "w") as f:
+                        f.write(content)
+                    logging.info(f"Fallback desktop entry created at {filepath}. If it doesn't show up, you might need to give Bottles the --filesystem=xdg-data/applications permission.")
+                except Exception as e:
+                    logging.error(f"Failed to write fallback desktop entry: {e}")
+
             SignalManager.send(Signals.DesktopEntryCreated)
 
         if icon != "com.usebottles.bottles-program" and not os.path.exists(icon):
