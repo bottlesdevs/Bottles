@@ -99,7 +99,6 @@ class TerminalUtils:
             colors = "default"
 
         command = str(command)
-        command = shlex.quote(command)
 
         terminal = self.terminal
         template = " ".join(terminal)
@@ -123,7 +122,7 @@ class TerminalUtils:
                     env[k] = os.environ[k]
 
             palette = self.colors[colors]
-            cmd_for_shell = shlex.quote(f"bash -c {command}")
+            cmd_for_shell = f"bash -c {shlex.quote(command)}"
             if "ENABLE_BASH" in os.environ:
                 cmd_for_shell = "bash"
             try:
@@ -132,21 +131,21 @@ class TerminalUtils:
                 full_cmd = f"{template} {palette} {cmd_for_shell}"
 
         elif term_bin == "xfce4-terminal":
-            cmd_for_shell = shlex.quote(f"sh -c {command}")
+            cmd_for_shell = f"sh -c {shlex.quote(command)}"
             try:
                 full_cmd = template % cmd_for_shell
             except Exception:
                 full_cmd = f"{template} {cmd_for_shell}"
 
         elif term_bin in ["kitty", "foot", "konsole", "gnome-terminal", "wezterm"]:
-            cmd_for_shell = shlex.quote(f"sh -c {command}")
+            cmd_for_shell = f"sh -c {shlex.quote(command)}"
             try:
                 full_cmd = template % cmd_for_shell
             except Exception:
                 full_cmd = f"{template} {cmd_for_shell}"
 
         else:
-            cmd_for_shell = shlex.quote(f"bash -c {command}")
+            cmd_for_shell = f"bash -c {shlex.quote(command)}"
             try:
                 full_cmd = template % cmd_for_shell
             except Exception:
