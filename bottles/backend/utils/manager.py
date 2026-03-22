@@ -263,6 +263,10 @@ class ManagerUtils:
             )
             SignalManager.send(Signals.DesktopEntryCreated)
 
+        if icon != "com.usebottles.bottles-program" and not os.path.exists(icon):
+            logging.warning(f"Icon file not found: {icon}. Falling back to default.")
+            icon = "com.usebottles.bottles-program"
+
         if icon == "com.usebottles.bottles-program":
             icon += ".svg"
             _icon = Gio.File.new_for_uri(

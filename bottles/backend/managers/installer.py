@@ -442,13 +442,15 @@ class InstallerManager:
                     )
 
         # register executable
-        if executable["path"].startswith("userdir/"):
+        exec_path = executable.get("path", "")
+        if exec_path.startswith("userdir/"):
             _userdir = WineUtils.get_user_dir(bottle)
-            executable["path"] = executable["path"].replace(
+            exec_path = exec_path.replace(
                 "userdir/", f"/users/{_userdir}/"
             )
+            executable["path"] = exec_path
 
-        _path = f"C:\\{executable['path']}".replace("/", "\\")
+        _path = f"C:\\{exec_path}".replace("/", "\\")
         _uuid = str(uuid.uuid4())
         _program = {
             "executable": executable["file"],
