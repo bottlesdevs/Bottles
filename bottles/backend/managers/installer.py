@@ -96,11 +96,17 @@ class InstallerManager:
                 os.makedirs(bottle_icons_path)
 
             if not os.path.isfile(icon_path):
-                c = pycurl.Curl()
-                c.setopt(c.URL, icon_url)
-                c.setopt(c.WRITEDATA, open(icon_path, "wb"))
-                c.perform()
-                c.close()
+                try:
+                    with open(icon_path, "wb") as f:
+                        c = pycurl.Curl()
+                        c.setopt(c.URL, icon_url)
+                        c.setopt(c.WRITEDATA, f)
+                        c.perform()
+                        c.close()
+                except pycurl.error as e:
+                    logging.error(f"Failed to download icon '{icon_url}': {e}")
+                    if os.path.isfile(icon_path):
+                        os.remove(icon_path)
 
     def __process_local_resources(self, exe_msi_steps, installer):
         files = self.has_local_resources(installer)
