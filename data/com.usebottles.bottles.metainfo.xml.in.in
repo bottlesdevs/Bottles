@@ -85,6 +85,28 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="63.0" date="2026-03-22">
+      <description translate="no">
+        <ul>
+          <li>Migrate internal state management to the new FVS v2</li>
+          <li>Make the bottles library list sort alphanumerically automatically</li>
+          <li>Add HTTP/HTTPS Proxy Support for all downloads and network operations</li>
+          <li>Automatically register manually added fonts into the wine prefix on startup</li>
+          <li>Improve detection and robust availability checks for Gamescope, MangoHud, and OBS Vulkan Capture</li>
+          <li>Added an option to disable both Gamescope Fullscreen and Borderless window modes</li>
+          <li>Significantly improve reliability of Steam shortcuts and desktop entries for Flatpak environments</li>
+          <li>Fix terminal and UI breaking when launching executables with spaces in paths</li>
+          <li>Fix getting stuck at the installing app screen</li>
+          <li>Fix crash when encountering 0-byte ghost files during downloads</li>
+          <li>Resolve issues with some ICO files not converting to PNG</li>
+          <li>Fix ignore rules and typos for templates with mismatched UUIDs</li>
+          <li>Ignore .tmp files when restoring or copying registry backups</li>
+          <li>Handle missing executable paths and icons more gracefully</li>
+          <li>Various code quality enhancements and network refactoring</li>
+          <li>Updated translations from Hosted Weblate</li>
+        </ul>
+      </description>
+    </release>
     <release version="62.0" date="2026-02-16">
       <description translate="no">
         <ul>
