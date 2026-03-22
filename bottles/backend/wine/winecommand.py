@@ -573,7 +573,15 @@ class WineCommand:
                 else:
                     command = f"gamemode {command}"
 
-            if mangohud_available and params.mangohud and not self.gamescope_activated:
+            use_mangohud = False
+            if mangohud_available and params.mangohud:
+                use_mangohud = True
+                if "FLATPAK_ID" in os.environ:
+                    if not os.path.exists("/usr/lib/extensions/vulkan/MangoHud/bin/mangohud"):
+                        logging.warning("MangoHud extension missing or corrupted, ignoring MangoHud.")
+                        use_mangohud = False
+
+            if use_mangohud and not self.gamescope_activated:
                 if not return_steam_cmd:
                     command = f"{mangohud_available} {command}"
                 else:
@@ -585,7 +593,7 @@ class WineCommand:
                 # Create temporary sh script in /tmp where Gamescope will execute it
                 file = ["#!/usr/bin/env sh\n"]
                 file.append(f"{command} $@")
-                if mangohud_available and params.mangohud:
+                if use_mangohud:
                     file.append(" &\nmangoapp")
                 with open(gamescope_run, "w") as f:
                     f.write("".join(file))
