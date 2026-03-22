@@ -301,6 +301,26 @@ class WineExecutor:
             os.path.basename(self._raw_exec_path) if self._raw_exec_path else "unknown"
         )
         program_path = self._raw_exec_path or self.exec_path
+        
+        try:
+            fonts_dir = os.path.join(ManagerUtils.get_bottle_path(self.config), "drive_c", "windows", "Fonts")
+            stamp_file = os.path.join(ManagerUtils.get_bottle_path(self.config), ".fonts_stamp")
+            if os.path.exists(fonts_dir):
+                fonts_mtime = os.path.getmtime(fonts_dir)
+                stamp_mtime = 0.0
+                if os.path.exists(stamp_file):
+                    with open(stamp_file, "r") as f:
+                        stamp_mtime = float(f.read().strip() or 0)
+                
+                if fonts_mtime > stamp_mtime:
+                    logging.info("Fonts directory modified manually, running wineboot to update fonts registry.")
+                    from bottles.backend.wine.wineboot import WineBoot
+                    WineBoot(self.config).launch(update=True)
+                    with open(stamp_file, "w") as f:
+                        f.write(str(fonts_mtime))
+        except Exception as e:
+            logging.debug(f"Failed to check and update fonts: {e}")
+
         try:
             SignalManager.send(
                 Signals.ProgramStarted,
