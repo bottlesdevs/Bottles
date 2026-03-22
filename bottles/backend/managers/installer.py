@@ -99,6 +99,9 @@ class InstallerManager:
                 try:
                     with open(icon_path, "wb") as f:
                         c = pycurl.Curl()
+                        _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
+                        if _proxy:
+                            c.setopt(pycurl.PROXY, _proxy)
                         c.setopt(c.URL, icon_url)
                         c.setopt(c.WRITEDATA, f)
                         c.perform()

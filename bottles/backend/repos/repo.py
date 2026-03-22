@@ -1,3 +1,4 @@
+import os
 # repo.py
 #
 # Copyright 2025 mirkobrombin <brombin94@gmail.com>
@@ -48,6 +49,12 @@ class Repo:
             buffer = BytesIO()
 
             c = pycurl.Curl()
+
+            _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
+
+            if _proxy:
+
+                c.setopt(pycurl.PROXY, _proxy)
             c.setopt(c.URL, index)
             c.setopt(c.FOLLOWLOCATION, True)
             c.setopt(c.WRITEDATA, buffer)
@@ -67,6 +74,12 @@ class Repo:
             buffer = BytesIO()
 
             c = pycurl.Curl()
+
+            _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
+
+            if _proxy:
+
+                c.setopt(pycurl.PROXY, _proxy)
             c.setopt(c.URL, url)
             c.setopt(c.FOLLOWLOCATION, True)
             c.setopt(c.WRITEDATA, buffer)

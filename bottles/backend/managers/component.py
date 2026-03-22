@@ -186,6 +186,9 @@ class ComponentManager:
             skipped for large files (e.g. runners).
             """
             c = pycurl.Curl()
+            _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
+            if _proxy:
+                c.setopt(pycurl.PROXY, _proxy)
             try:
                 c.setopt(c.URL, download_url)  # type: ignore
                 c.setopt(c.FOLLOWLOCATION, True)  # type: ignore
