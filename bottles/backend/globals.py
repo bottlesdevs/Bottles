@@ -75,12 +75,18 @@ class TrdyPaths:
 # check if bottles exists in xdg data path
 os.makedirs(Paths.base, exist_ok=True)
 
+def check_flatpak_extension(cmd: str, path: str):
+    if "FLATPAK_ID" in os.environ:
+        if not os.path.exists(path):
+            return False
+    return shutil.which(cmd) or False
+
 # Check if some tools are available
 gamemode_available = shutil.which("gamemoderun") or False
-gamescope_available = shutil.which("gamescope") or False
+gamescope_available = check_flatpak_extension("gamescope", "/usr/lib/extensions/vulkan/gamescope/bin/gamescope")
 vkbasalt_available = Paths.is_vkbasalt_available()
-mangohud_available = shutil.which("mangohud") or False
-obs_vkc_available = shutil.which("obs-vkcapture") or False
+mangohud_available = check_flatpak_extension("mangohud", "/usr/lib/extensions/vulkan/MangoHud/bin/mangohud")
+obs_vkc_available = check_flatpak_extension("obs-vkcapture", "/usr/lib/extensions/vulkan/OBSVkCapture/bin/obs-vkcapture")
 vmtouch_available = shutil.which("vmtouch") or False
 base_version = ""
 if os.path.isfile("/app/manifest.json"):
