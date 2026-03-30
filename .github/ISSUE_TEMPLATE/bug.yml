@@ -6,8 +6,30 @@ body:
   - type: markdown
     attributes:
       value: |
-        ⚠️ (Update 23 March 2026) **!!!!!!READ HERE, YOUR ISSUE MIGHT BE CLOSED WITHOUT ANY COMMENT!!!!!!** DO NOT OPEN ISSUES FOR WINDOWS PROGRAMS NOT WORKING IN BOTTLES. Bottles is a Wine prefix manager. If a Windows application doesn't work, it could be a Wine problem or a misconfiguration of the Wine prefix. Please visit [WineHQ](https://www.winehq.org) and [ProtonDB](https://www.protondb.com) for more information on the software you are trying to run. For additional support, use the [Programs](https://github.com/bottlesdevs/programs) repository.
-        ⚠️ Do not open issues for bugs outside of [Bottles on Flathub](https://flathub.org/apps/details/com.usebottles.bottles), as we do not support packages from third-party repositories. If you can reproduce the bug(s) using Bottles on Flathub, then we will provide support, otherwise we will close the issue.
+        # 🛑 STOP! READ THIS OR YOUR ISSUE WILL BE CLOSED! 🛑
+
+        ## 🙅 NO ISSUES FOR WINDOWS PROGRAMS NOT WORKING
+        **Bottles is a manager. If a program doesn't work, it's a Wine/Proton issue, NOT a Bottles bug.**
+        Please visit [WineHQ](https://www.winehq.org) and [ProtonDB](https://www.protondb.com).
+
+        ## 🙅 NO ISSUES FOR NON-FLATHUB PACKAGES
+        **We ONLY support the official [Flathub package](https://flathub.org/apps/details/com.usebottles.bottles).**
+
+        ```text
+        *******************************************************************************
+        *                                                                             *
+        *   ⚠️  STOP! READ THIS BEFORE OPENING AN ISSUE OR IT WILL BE CLOSED!  ⚠️   *
+        *                                                                             *
+        *******************************************************************************
+        *                                                                             *
+        *  1. DO NOT OPEN ISSUES FOR WINDOWS PROGRAMS NOT WORKING IN BOTTLES!         *
+        *     (This is usually a Wine/Proton problem, NOT a Bottles bug)              *
+        *                                                                             *
+        *  2. DO NOT OPEN ISSUES FOR BUGS OUTSIDE OF BOTTLES ON FLATHUB!              *
+        *     (We ONLY support the official Flathub package)                         *
+        *                                                                             *
+        *******************************************************************************
+        ```
 
   - type: textarea
     id: what-happened
