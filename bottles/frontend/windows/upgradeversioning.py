@@ -17,8 +17,7 @@
 
 import time
 
-from gi.repository import Adw, Gtk
-
+from gi.repository import Adw, GLib, Gtk
 from bottles.backend.utils.threading import RunAsync
 
 
@@ -42,10 +41,17 @@ class UpgradeVersioningDialog(Adw.Window):
         # common variables and references
         self.parent = parent
         self.config = parent.config
+        self.pulse_id = None
 
         # connect signals
         self.btn_upgrade.connect("clicked", self.__upgrade)
         self.btn_proceed.connect("clicked", self.__proceed)
+        self.connect("destroy", self.__on_destroy)
+
+    def __on_destroy(self, widget):
+        if self.pulse_id:
+            GLib.source_remove(self.pulse_id)
+            self.pulse_id = None
 
     def __upgrade(self, widget):
         """
@@ -58,7 +64,7 @@ class UpgradeVersioningDialog(Adw.Window):
         self.btn_cancel.set_visible(False)
         self.btn_cancel.set_label("Close")
 
-        RunAsync(self.pulse)
+        self.pulse_id = GLib.timeout_add(500, self.pulse)
         RunAsync(
             task_func=self.parent.manager.versioning_manager.update_system,
             callback=self.finish,
@@ -71,12 +77,14 @@ class UpgradeVersioningDialog(Adw.Window):
         self.btn_upgrade.set_visible(True)
 
     def finish(self, result, error=False):
+        if self.pulse_id:
+            GLib.source_remove(self.pulse_id)
+            self.pulse_id = None
         self.btn_cancel.set_visible(True)
         self.parent.manager.update_bottles()
         self.stack_switcher.set_visible_child_name("page_finish")
 
     def pulse(self):
         # This function update the progress bar every half second.
-        while True:
-            time.sleep(0.5)
-            self.progressbar.pulse()
+        self.progressbar.pulse()
+        return True

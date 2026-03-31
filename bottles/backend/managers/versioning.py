@@ -170,9 +170,12 @@ class VersioningManager:
             states_file = open("%s/states/states.yml" % bottle_path)
             states_file_yaml = yaml.load(states_file)
             states_file.close()
-            states = states_file_yaml.get("States")
-            logging.info(f"Found [{len(states)}] states for bottle: [{config.Name}]")
-        except (FileNotFoundError, yaml.YAMLError):
+            if states_file_yaml:
+                states = states_file_yaml.get("States", {})
+                logging.info(f"Found [{len(states)}] states for bottle: [{config.Name}]")
+            else:
+                logging.info(f"No states found for bottle: [{config.Name}]")
+        except (FileNotFoundError, yaml.YAMLError, AttributeError):
             logging.info(f"No states found for bottle: [{config.Name}]")
 
         return states

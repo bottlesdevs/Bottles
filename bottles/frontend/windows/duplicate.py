@@ -17,8 +17,7 @@
 
 import time
 
-from gi.repository import Adw, Gtk
-
+from gi.repository import Adw, GLib, Gtk
 from bottles.backend.managers.backup import BackupManager
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
@@ -44,11 +43,18 @@ class DuplicateDialog(Adw.Window):
         # common variables and references
         self.parent = parent
         self.config = parent.config
+        self.pulse_id = None
 
         self.entry_name.connect("changed", self.__check_entry_name)
 
         # connect signals
         self.btn_duplicate.connect("clicked", self.__duplicate_bottle)
+        self.connect("destroy", self.__on_destroy)
+
+    def __on_destroy(self, widget):
+        if self.pulse_id:
+            GLib.source_remove(self.pulse_id)
+            self.pulse_id = None
 
     def __check_entry_name(self, *_args):
         is_duplicate = self.entry_name.get_text() in self.parent.manager.local_bottles
@@ -69,7 +75,7 @@ class DuplicateDialog(Adw.Window):
         self.btn_duplicate.set_visible(False)
         self.btn_cancel.set_label("Close")
 
-        RunAsync(self.pulse)
+        self.pulse_id = GLib.timeout_add(500, self.pulse)
         name = self.entry_name.get_text()
 
         RunAsync(
@@ -81,12 +87,14 @@ class DuplicateDialog(Adw.Window):
 
     @GtkUtils.run_in_main_loop
     def finish(self, result, error=None):
+        if self.pulse_id:
+            GLib.source_remove(self.pulse_id)
+            self.pulse_id = None
         # TODO: handle result.status == False
         self.parent.manager.update_bottles()
         self.stack_switcher.set_visible_child_name("page_duplicated")
 
     def pulse(self):
         # This function update the progress bar every half second.
-        while True:
-            time.sleep(0.5)
-            self.progressbar.pulse()
+        self.progressbar.pulse()
+        return True
