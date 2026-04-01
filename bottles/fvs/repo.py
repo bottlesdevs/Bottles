@@ -68,18 +68,48 @@ class FVSRepo:
                 if res.returncode != 0 and "already initialized" not in res.stderr:
                     raise RuntimeError(f"Failed to initialize FVS: {res.stderr}")
 
-    def commit(self, message: str, ignore: list = None):
+    def commit(self, message: str, ignore: list = None, task_id: str = None):
         """Create a commit. Does NOT auto-refresh; caller should refresh if needed."""
+        from bottles.backend.state import TaskManager
+        
         with self._lock:
-            args = ["commit", "-m", message]
-            res = self._run_cmd(*args, check=False)
-            if res.returncode != 0:
-                if "nothing to commit" in res.stdout.lower() or "nothing to commit" in res.stderr.lower():
+            args = [self._fvs2, "commit", "-m", message, "-v"]
+            
+            process = subprocess.Popen(
+                args,
+                cwd=self._repo_path,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                bufsize=1,
+                universal_newlines=True
+            )
+            
+            while True:
+                line = process.stdout.readline()
+                if not line and process.poll() is not None:
+                    break
+                if line:
+                    line = line.strip()
+                    if line.startswith("hashing: "):
+                        file_path = line.replace("hashing: ", "")
+                        if task_id:
+                            task = TaskManager.get(task_id)
+                            if task:
+                                task.subtitle = file_path
+            
+            stdout, stderr = process.communicate()
+            
+            if process.returncode != 0:
+                full_stdout = stdout.lower()
+                full_stderr = stderr.lower()
+                if "nothing to commit" in full_stdout or "nothing to commit" in full_stderr:
                     raise FVSNothingToCommit()
-                raise RuntimeError(f"FVS commit failed: {res.stderr}")
+                raise RuntimeError(f"FVS commit failed: {stderr}")
 
-    def restore_state(self, state_id: str, ignore: list = None, reset: bool = True):
+    def restore_state(self, state_id: str, ignore: list = None, reset: bool = True, task_id: str = None):
         """Restore to a state. Does NOT auto-refresh; caller should refresh if needed."""
+        from bottles.backend.state import TaskManager
         with self._lock:
             state_id = str(state_id)
             matched = False
@@ -91,14 +121,38 @@ class FVSRepo:
             if not matched:
                 raise FVSStateNotFound(state_id)
                 
-            args = ["restore", "-s", state_id]
+            args = [self._fvs2, "restore", "-s", state_id, "-v"]
             if reset:
                 args.append("--reset")
-            res = self._run_cmd(*args, check=False)
-            if res.returncode != 0:
-                if "nothing to restore" in res.stderr.lower():
+                
+            process = subprocess.Popen(
+                args,
+                cwd=self._repo_path,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                bufsize=1,
+                universal_newlines=True
+            )
+            
+            while True:
+                line = process.stdout.readline()
+                if not line and process.poll() is not None:
+                    break
+                if line:
+                    line = line.strip()
+                    if line.startswith("restoring: "):
+                        file_path = line.replace("restoring: ", "")
+                        if task_id:
+                            task = TaskManager.get(task_id)
+                            if task:
+                                task.subtitle = file_path
+                                
+            stdout, stderr = process.communicate()
+            if process.returncode != 0:
+                if "nothing to restore" in stderr.lower():
                     raise FVSNothingToRestore()
-                raise RuntimeError(f"FVS restore failed: {res.stderr}")
+                raise RuntimeError(f"FVS restore failed: {stderr}")
 
     def _refresh(self):
         """Fetch status, states and branches in one pass."""
