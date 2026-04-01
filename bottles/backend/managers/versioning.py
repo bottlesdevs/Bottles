@@ -71,6 +71,10 @@ class VersioningManager:
         """
         bottle_path = ManagerUtils.get_bottle_path(config)
         
+        # If FVS2 is already initialized, no migration needed
+        if os.path.exists(os.path.join(bottle_path, ".fvs2")):
+            return False
+
         # Check for FVS v1
         if os.path.exists(os.path.join(bottle_path, ".fvs")):
             return True
@@ -79,8 +83,8 @@ class VersioningManager:
         if os.path.exists(os.path.join(bottle_path, "states", "states.yml")):
             return True
             
-        # Fallback to config flag if any (and FVS2 is NOT there yet)
-        if config.Versioning and not os.path.exists(os.path.join(bottle_path, ".fvs2")):
+        # Fallback to config flag if any
+        if config.Versioning:
             return True
             
         return False
@@ -134,7 +138,7 @@ class VersioningManager:
         )
         task_id = TaskManager.add(Task(title=_("Committing state …")))
         try:
-            repo.commit(message, ignore=patterns)
+            repo.commit(message, ignore=patterns, task_id=task_id)
         except FVSNothingToCommit:
             TaskManager.remove(task_id)
             return Result(status=False, message=_("Nothing to commit"))
@@ -235,7 +239,7 @@ class VersioningManager:
                 Task(title=_("Restoring state {} …".format(state_id)))
             )
             try:
-                repo.restore_state(state_id, ignore=patterns)
+                repo.restore_state(state_id, ignore=patterns, task_id=task_id)
             except FVSStateNotFound:
                 logging.error(f"State {state_id} not found.")
                 res = Result(status=False, message=_("State not found"))
