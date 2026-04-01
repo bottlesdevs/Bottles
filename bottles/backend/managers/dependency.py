@@ -580,11 +580,24 @@ class DependencyManager:
 
         if rename:
             _file_name = file_name.split("/")[-1]
+            _file_name_path = os.path.join(dest, _file_name)
+
+            if not os.path.exists(_file_name_path):
+                files = os.listdir(dest)
+                for f in files:
+                    if f.lower() == _file_name.lower():
+                        _file_name = f
+                        _file_name_path = os.path.join(dest, _file_name)
+                        break
+
+            if not os.path.exists(_file_name_path):
+                logging.error(f"Cannot find extracted file: {_file_name_path}")
+                return False
 
             if os.path.exists(os.path.join(dest, rename)):
                 os.remove(os.path.join(dest, rename))
 
-            shutil.move(os.path.join(dest, _file_name), os.path.join(dest, rename))
+            shutil.move(_file_name_path, os.path.join(dest, rename))
 
         if not res:
             return False
