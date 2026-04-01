@@ -236,6 +236,16 @@ class Bottles(Adw.Application):
             )
             return False
 
+    def do_shutdown(self):
+        """
+        This function is called when the application is shutting down.
+        """
+        logging.info(_("[Shutdown] cleanup starting."))
+        if hasattr(self, "win") and self.win and hasattr(self.win, "manager"):
+            if self.win.manager:
+                self.win.manager.shutdown()
+        Adw.Application.do_shutdown(self)
+
     def do_startup(self):
         """
         This function is called when the application is started.
@@ -270,8 +280,12 @@ class Bottles(Adw.Application):
         logging.info(
             _("[Quit] request received."),
         )
-        self.win.on_close_request()
-        quit()
+        if hasattr(self, "win") and self.win:
+            self.win.on_close_request()
+            if hasattr(self.win, "manager") and self.win.manager:
+                self.win.manager.shutdown()
+
+        self.quit()
 
     @staticmethod
     def __help(action=None, param=None):

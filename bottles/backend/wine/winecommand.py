@@ -805,9 +805,13 @@ class WineCommand:
                     shell=True,
                     env=self.env,
                     cwd=self.cwd,
+                    start_new_session=True,
                 )
             except FileNotFoundError:
                 return Result(False, message="File not found")
+
+        if not self.communicate:
+            return Result(True)
 
         stdout_data, _ = proc.communicate()
 

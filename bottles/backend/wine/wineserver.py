@@ -94,7 +94,6 @@ class WineServer(WineProgram):
         bottle = ManagerUtils.get_bottle_path(self.config)
         procs = ProcUtils.get_by_env(f"WINEPREFIX={bottle}")
         for proc in procs:
-            proc.kill()
+            proc.kill(9)
 
-        if len(procs) == 0:
-            self.kill(9)
+        self.kill(9)
