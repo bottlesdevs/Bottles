@@ -85,6 +85,18 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="63.1" date="2026-04-01">
+      <description translate="no">
+        <ul>
+          <li>Fixed a stuck in startup</li>
+          <li>Improved Bottles shutdown logic to force kill inactive bottles</li>
+          <li>Avoid crashing if Vulkan is not available</li>
+          <li>Updated Bottles' versioning system to FVSv2 0.1.5, improving performance and commit strategy</li>
+          <li>Now Bottles ensures there is enough space before creating a snapshot</li>
+          <li>Fixed a crash in the Dependency Manager due to incorrect path parsing</li>
+        </ul>
+      </description>
+    </release>
     <release version="63.0" date="2026-03-22">
       <description translate="no">
         <ul>
