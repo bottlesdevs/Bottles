@@ -21,6 +21,7 @@ from gi.repository import Adw, GLib, GObject, Gtk
 
 from bottles.backend.logger import Logger
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.vulkan import VulkanUtils
 
 logging = Logger()
 
@@ -68,14 +69,17 @@ class LaunchOptionsDialog(Adw.Window):
     __msg_override = _("This setting overrides the bottle's global setting.")
 
     def __set_disabled_switches(self):
-        if not self.global_dxvk:
-            self.action_dxvk.set_subtitle(self.__msg_disabled.format("DXVK"))
+        vulkan_ok = VulkanUtils.check_support()
+        msg_no_vulkan = _("Vulkan is not available on this system.")
+
+        if not vulkan_ok or not self.global_dxvk:
+            self.action_dxvk.set_subtitle(msg_no_vulkan if not vulkan_ok else self.__msg_disabled.format("DXVK"))
             self.switch_dxvk.set_sensitive(False)
-        if not self.global_vkd3d:
-            self.action_vkd3d.set_subtitle(self.__msg_disabled.format("VKD3D"))
+        if not vulkan_ok or not self.global_vkd3d:
+            self.action_vkd3d.set_subtitle(msg_no_vulkan if not vulkan_ok else self.__msg_disabled.format("VKD3D"))
             self.switch_vkd3d.set_sensitive(False)
-        if not self.global_nvapi:
-            self.action_nvapi.set_subtitle(self.__msg_disabled.format("DXVK-NVAPI"))
+        if not vulkan_ok or not self.global_nvapi:
+            self.action_nvapi.set_subtitle(msg_no_vulkan if not vulkan_ok else self.__msg_disabled.format("DXVK-NVAPI"))
             self.switch_nvapi.set_sensitive(False)
         if not self.global_winebridge:
             self.action_winebridge.set_subtitle(

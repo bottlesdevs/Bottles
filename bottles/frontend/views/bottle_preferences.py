@@ -41,6 +41,7 @@ from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils, GPUVendors
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
+from bottles.backend.utils.vulkan import VulkanUtils
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.windows.display import DisplayDialog
@@ -291,6 +292,16 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         self.switch_vmtouch.set_sensitive(vmtouch_available)
+
+        if not VulkanUtils.check_support():
+            self.combo_dxvk.set_sensitive(False)
+            self.combo_vkd3d.set_sensitive(False)
+            self.combo_nvapi.set_sensitive(False)
+            self.switch_nvapi.set_sensitive(False)
+            self.combo_latencyflex.set_sensitive(False)
+            self.switch_vkbasalt.set_sensitive(False)
+            self.btn_manage_vkbasalt.set_sensitive(False)
+            self.switch_obsvkc.set_sensitive(False)
 
         is_wayland_session = DisplayUtils.display_server_type() == "wayland"
         self.switch_wayland.set_sensitive(is_wayland_session)
