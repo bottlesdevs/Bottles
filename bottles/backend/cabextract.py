@@ -56,7 +56,7 @@ class CabExtract:
         self.path = path
         self.name = name
         self.files = files
-        self.destination = shlex.quote(destination)
+        self.destination = destination
         self.name = self.name.replace(".", "_")
 
         if not self.__checks():
@@ -81,35 +81,34 @@ class CabExtract:
                     if file already exists as a symlink, remove it
                     preventing broken symlinks
                     """
-                    if os.path.exists(os.path.join(self.destination, file)):
-                        if os.path.islink(os.path.join(self.destination, file)):
-                            os.unlink(os.path.join(self.destination, file))
+                    file_path = os.path.join(self.destination, file)
+                    if os.path.exists(file_path):
+                        if os.path.islink(file_path):
+                            os.unlink(file_path)
 
                     command = [
                         self.cabextract_bin,
-                        f"-F '*{file}*'",
-                        f"-d {self.destination}",
-                        f"-q {self.path}",
+                        "-F", f"*{file}*",
+                        "-d", self.destination,
+                        "-q", self.path,
                     ]
-                    command = " ".join(command)
-                    subprocess.Popen(command, shell=True).communicate()
+                    subprocess.run(command, check=False)
 
                     if len(file.split("/")) > 1:
                         _file = file.split("/")[-1]
                         _dir = file.replace(_file, "")
-                        if not os.path.exists(f"{self.destination}/{_file}"):
+                        if not os.path.exists(os.path.join(self.destination, _file)):
                             shutil.move(
-                                f"{self.destination}/{_dir}/{_file}",
-                                f"{self.destination}/{_file}",
+                                os.path.join(self.destination, _dir, _file),
+                                os.path.join(self.destination, _file),
                             )
             else:
                 command_list = [
                     self.cabextract_bin,
-                    f"-d {self.destination}",
-                    f"-q {self.path}",
+                    "-d", self.destination,
+                    "-q", self.path,
                 ]
-                command = " ".join(command_list)
-                subprocess.Popen(command, shell=True).communicate()
+                subprocess.run(command_list, check=False)
 
             logging.info(f"Cabinet {self.name} extracted successfully")
             return True
