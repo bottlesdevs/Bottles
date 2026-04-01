@@ -1441,21 +1441,21 @@ class Manager(metaclass=Singleton):
             If the DXVK is not in the list of available DXVKs, set it to
             highest version which is the first in the list.
             """
-            config.DXVK = self.dxvk_available[0]
+            config.DXVK = self.dxvk_available[0] if self.dxvk_available else ""
 
         if config.VKD3D not in self.vkd3d_available:
             """
             If the VKD3D is not in the list of available VKD3Ds, set it to
             highest version which is the first in the list.
             """
-            config.VKD3D = self.vkd3d_available[0]
+            config.VKD3D = self.vkd3d_available[0] if self.vkd3d_available else ""
 
         if config.NVAPI not in self.nvapi_available:
             """
             If the NVAPI is not in the list of available NVAPIs, set it to
             highest version which is the first in the list.
             """
-            config.NVAPI = self.nvapi_available[0]
+            config.NVAPI = self.nvapi_available[0] if self.nvapi_available else ""
 
         # create the bottle path
         bottle_path = os.path.join(Paths.bottles, config.Name)
@@ -1593,14 +1593,26 @@ class Manager(metaclass=Singleton):
                 logging.error("Missing essential components. Installing…")
                 log_update(_("Missing essential components. Installing…"))
                 self.check_runners()
-                self.check_dxvk()
-                self.check_vkd3d()
-                self.check_nvapi()
-                self.check_latencyflex()
                 self.organize_components()
-
                 check_attempts += 1
                 return components_check()
+
+            needs_install = False
+            if len(self.dxvk_available) == 0:
+                self.check_dxvk()
+                needs_install = True
+            if len(self.vkd3d_available) == 0:
+                self.check_vkd3d()
+                needs_install = True
+            if len(self.nvapi_available) == 0:
+                self.check_nvapi()
+                needs_install = True
+            if len(self.latencyflex_available) == 0:
+                self.check_latencyflex()
+                needs_install = True
+
+            if needs_install:
+                self.organize_components()
 
             return True
 
@@ -1619,22 +1631,22 @@ class Manager(metaclass=Singleton):
 
         if not dxvk:
             # if no dxvk is specified, use the first one from available
-            dxvk = self.dxvk_available[0]
+            dxvk = self.dxvk_available[0] if self.dxvk_available else ""
         dxvk_name = dxvk
 
         if not vkd3d:
             # if no vkd3d is specified, use the first one from available
-            vkd3d = self.vkd3d_available[0]
+            vkd3d = self.vkd3d_available[0] if self.vkd3d_available else ""
         vkd3d_name = vkd3d
 
         if not nvapi:
             # if no nvapi is specified, use the first one from available
-            nvapi = self.nvapi_available[0]
+            nvapi = self.nvapi_available[0] if self.nvapi_available else ""
         nvapi_name = nvapi
 
         if not latencyflex:
             # if no latencyflex is specified, use the first one from available
-            latencyflex = self.latencyflex_available[0]
+            latencyflex = self.latencyflex_available[0] if self.latencyflex_available else ""
         latencyflex_name = latencyflex
 
         # define bottle parameters
@@ -2139,21 +2151,43 @@ class Manager(metaclass=Singleton):
         if exclude is None:
             exclude = []
 
+        # dxvk, vkd3d and nvapi require Vulkan to be present on the host.
+        if not remove and component in ("dxvk", "vkd3d", "nvapi"):
+            from bottles.backend.utils.vulkan import VulkanUtils
+            if not VulkanUtils.check_support():
+                logging.warning(
+                    f"Skipping {component} installation: Vulkan is not available on this system."
+                )
+                return Result(
+                    status=False,
+                    message=_(
+                        f"{component.upper()} requires Vulkan, which is not available on this system."
+                    ),
+                )
+
         if component == "dxvk":
-            _version = version or config.DXVK or self.dxvk_available[0]
+            _version = version or config.DXVK or (self.dxvk_available[0] if self.dxvk_available else "")
+            if not _version:
+                return Result(status=False, message=_("No DXVK version available."))
             manager = DXVKComponent(_version)
         elif component == "vkd3d":
-            _version = version or config.VKD3D or self.vkd3d_available[0]
+            _version = version or config.VKD3D or (self.vkd3d_available[0] if self.vkd3d_available else "")
+            if not _version:
+                return Result(status=False, message=_("No VKD3D version available."))
             manager = VKD3DComponent(_version)
         elif component == "nvapi":
-            _version = version or config.NVAPI or self.nvapi_available[0]
+            _version = version or config.NVAPI or (self.nvapi_available[0] if self.nvapi_available else "")
+            if not _version:
+                return Result(status=False, message=_("No NVAPI version available."))
             manager = NVAPIComponent(_version)
         elif component == "latencyflex":
             _version = version or config.LatencyFleX
             if not _version:
                 if len(self.latencyflex_available) == 0:
                     self.check_latencyflex(install_latest=True)
-                _version = self.latencyflex_available[0]
+                _version = self.latencyflex_available[0] if self.latencyflex_available else ""
+            if not _version:
+                return Result(status=False, message=_("No LatencyFleX version available."))
             manager = LatencyFleXComponent(_version)
         else:
             return Result(

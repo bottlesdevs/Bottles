@@ -19,6 +19,7 @@ import filecmp
 import os
 import shutil
 import subprocess
+from functools import lru_cache
 from glob import glob
 
 
@@ -77,8 +78,28 @@ class VulkanUtils:
         return icd
 
     @staticmethod
-    def check_support():
-        return True
+    @lru_cache(maxsize=1)
+    def check_support() -> bool:
+        """
+        Return True if Vulkan is actually functional on this system.
+        Uses `vulkaninfo --summary` for a lightweight probe that works both
+        on the host and inside the Flatpak sandbox.  Checking only for ICD
+        loader files is not reliable inside Flatpak because the runtime may
+        ship generic loaders even when the GPU does not support Vulkan.
+        """
+        if shutil.which("vulkaninfo") is None:
+            return False
+        try:
+            result = subprocess.run(
+                ["vulkaninfo", "--summary"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=10,
+            )
+            # vulkaninfo exits 0 only when at least one GPU is usable.
+            return result.returncode == 0
+        except (subprocess.TimeoutExpired, OSError):
+            return False
 
     @staticmethod
     def test_vulkan():
