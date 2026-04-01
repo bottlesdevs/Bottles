@@ -39,12 +39,32 @@ class Proc:
     def get_cwd(self):
         return self.__get_data("cwd")
 
-    def get_name(self):
+    def get_stat(self):
         return self.__get_data("stat")
 
-    def kill(self):
+    def get_name(self):
+        stat = self.get_stat()
+        if not stat:
+            return ""
+        # The name is inside parenthesis, e.g. "123 (wineserver) S ..."
+        try:
+            return stat.split("(", 1)[1].split(")", 1)[0]
+        except IndexError:
+            return ""
+
+    def get_state(self):
+        stat = self.get_stat()
+        if not stat:
+            return ""
+        # The state is the field immediately following the closing parenthesis
+        try:
+            return stat.split(")", 1)[1].strip().split(" ", 1)[0]
+        except IndexError:
+            return ""
+
+    def kill(self, signal: int = 15):
         subprocess.Popen(
-            ["kill", str(self.pid)],
+            ["kill", f"-{signal}", str(self.pid)],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
         )

@@ -269,16 +269,28 @@ class ProcessSessionTracker:
         program_name: str,
         program_path: str,
     ) -> int:
-        if not self.enabled:
-            logging.warning("Playtime tracking disabled; start_session is a no-op")
-            return -1
-
         # Normalize path to Windows format for consistent storage and hashing
         normalized_path = _normalize_path_to_windows(bottle_path, program_path)
         program_id = _compute_program_id(bottle_id, bottle_path, program_path)
         base_timestamp = _utc_now_seconds()
 
         with self._lock:
+            # If database tracking is disabled, we only use in-memory tracking.
+            if not self.enabled:
+                session_id = -int(time.time() * 1000) % 2147483647
+                self._tracked[session_id] = _TrackedSession(
+                    session_id=session_id,
+                    bottle_id=bottle_id,
+                    program_id=program_id,
+                    program_name=program_name,
+                    started_at=base_timestamp,
+                    last_seen=base_timestamp,
+                )
+                logging.info(
+                    f"Session tracked (in-memory only): id={session_id} bottle={bottle_name} program={program_name}"
+                )
+                return session_id
+
             cur = self._conn.cursor()
 
             # Collapse duplicates: if there is already a running session for this
@@ -377,10 +389,19 @@ class ProcessSessionTracker:
         status: str = "success",
         ended_at: Optional[int] = None,
     ) -> None:
-        if not self.enabled or session_id < 0:
+        if session_id == -1:
             return
 
         with self._lock:
+            # If tracking was in-memory only, just pop it and return
+            if not self.enabled and session_id in self._tracked:
+                self._tracked.pop(session_id, None)
+                logging.debug(f"Session ended (in-memory only): id={session_id}")
+                return
+
+            if session_id < 0:
+                return
+
             cur = self._conn.cursor()
             cur.execute(
                 "SELECT started_at, last_seen, bottle_id, program_id FROM sessions WHERE id=?",

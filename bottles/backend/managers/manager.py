@@ -2200,3 +2200,58 @@ class Manager(metaclass=Singleton):
             manager.install(config, overrides_only, exclude)
 
         return Result(status=True)
+
+    def shutdown(self):
+        """Cleanup only truly orphaned or stuck bottles."""
+        logging.info("Starting shutdown cleanup …")
+
+        active_bottle_ids = []
+        if hasattr(self, "playtime_tracker"):
+            with self.playtime_tracker._lock:
+                active_bottle_ids = [
+                    s.bottle_id for s in self.playtime_tracker._tracked.values()
+                ]
+            self.playtime_tracker.shutdown()
+
+        protected_prefixes = set()
+        for b_id in active_bottle_ids:
+            if b_id in self.local_bottles:
+                protected_prefixes.add(
+                    ManagerUtils.get_bottle_path(self.local_bottles[b_id])
+                )
+
+        from bottles.backend.utils.proc import ProcUtils
+
+        procs = ProcUtils.get_procs()
+        prefix_to_procs = {}
+
+        for proc in procs:
+            env = proc.get_env()
+            if "WINEPREFIX=" in env:
+                for var in env.split("\x00"):
+                    if var.startswith("WINEPREFIX="):
+                        prefix = var.split("=", 1)[1]
+                        if prefix not in prefix_to_procs:
+                            prefix_to_procs[prefix] = []
+                        prefix_to_procs[prefix].append(proc)
+
+        for prefix, p_list in prefix_to_procs.items():
+            if prefix in protected_prefixes:
+                continue
+
+            for p in p_list:
+                name = p.get_name().lower()
+                state = p.get_state()
+
+                if name != "wineserver" and state != "Z":
+                    logging.info(f"Prefix {prefix} is active (e.g. {name}), protecting.")
+                    protected_prefixes.add(prefix)
+                    break
+
+        for prefix, p_list in prefix_to_procs.items():
+            if prefix in protected_prefixes:
+                continue
+
+            logging.info(f"Cleaning up orphaned/stuck bottle at {prefix} …")
+            for proc in p_list:
+                proc.kill(9)
