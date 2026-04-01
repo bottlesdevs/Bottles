@@ -97,7 +97,7 @@ class HealthChecker:
         self.kernel_version = os.uname().release
 
     def get_disk_data(self):
-        disk_data = self.file_utils.get_disk_size(False)
+        disk_data = self.file_utils.get_disk_size("/", False)
         return {"Total": disk_data["total"], "Free": disk_data["free"]}
 
     def get_ram_data(self):
