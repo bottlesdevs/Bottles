@@ -264,6 +264,14 @@ class VersioningView(Adw.PreferencesPage):
         @GtkUtils.run_in_main_loop
         def update(result, error):
             self._set_busy(False)
+            if result and not result.status and result.message:
+                dialog = Adw.MessageDialog.new(
+                    self.window,
+                    _("Snapshot Failed"),
+                    result.message,
+                )
+                dialog.add_response("ok", _("OK"))
+                dialog.present()
             self.update()
             self._refresh_details_badge()
 
