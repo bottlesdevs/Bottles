@@ -84,12 +84,12 @@ class FileUtils:
 
         return size
 
-    def get_disk_size(self, human: bool = True) -> dict:
+    def get_disk_size(self, path: str = "/", human: bool = True) -> dict:
         """
         Returns the size of the disk. If human is True, returns as a
         human-readable size.
         """
-        disk_total, disk_used, disk_free = shutil.disk_usage("/")
+        disk_total, disk_used, disk_free = shutil.disk_usage(path)
 
         if human:
             disk_total = self.get_human_size(disk_total)
