@@ -233,14 +233,17 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.settings.set_int("window-height", self.get_height())
 
     # region Backend signal handlers
+    @GtkUtils.run_in_main_loop
     def network_changed_handler(self, res: Result):
-        GLib.idle_add(self.btn_noconnection.set_visible, not res.status)
+        self.btn_noconnection.set_visible(not res.status)
 
+    @GtkUtils.run_in_main_loop
     def g_notification_handler(self, res: Result):
         """handle backend notification request"""
         notify: Notification = res.data
         self.send_notification(title=notify.title, text=notify.text, image=notify.image)
 
+    @GtkUtils.run_in_main_loop
     def g_show_uri_handler(self, res: Result):
         """handle backend show_uri request"""
         uri: str = res.data

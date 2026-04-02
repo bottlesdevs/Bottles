@@ -49,6 +49,9 @@ class TaskEntry(Adw.ActionRow):
         self.set_subtitle(subtitle)
 
 
+from bottles.frontend.utils.gtk import GtkUtils
+
+
 class TaskSyncer:
     """Keep task list updated with backend TaskManager"""
 
@@ -66,6 +69,7 @@ class TaskSyncer:
     def _set_task_btn_visible(self, visible: bool):
         self.window.page_details.btn_operations.set_visible(visible)
 
+    @GtkUtils.run_in_main_loop
     def task_added_handler(self, res: Result):
         """handler for Signals.TaskAdded"""
         task_id: UUID = res.data
@@ -73,6 +77,7 @@ class TaskSyncer:
         self._TASK_WIDGETS[task_id] = self._new_widget(task.title, task.cancellable)
         self._set_task_btn_visible(True)
 
+    @GtkUtils.run_in_main_loop
     def task_updated_handler(self, res: Result):
         """handler for Signals.TaskUpdated"""
         task_id: UUID = res.data
@@ -81,6 +86,7 @@ class TaskSyncer:
 
         self._TASK_WIDGETS[task_id].update(subtitle=TaskManager.get(task_id).subtitle)
 
+    @GtkUtils.run_in_main_loop
     def task_removed_handler(self, res: Result):
         """handler for Signals.TaskRemoved"""
         task_id: UUID = res.data
