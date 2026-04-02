@@ -16,6 +16,7 @@
 #
 
 import os
+import time
 import subprocess
 from datetime import datetime
 from threading import Lock
@@ -85,6 +86,7 @@ class FVSRepo:
                 universal_newlines=True
             )
             
+            last_update = 0
             while True:
                 line = process.stdout.readline()
                 if not line and process.poll() is not None:
@@ -92,11 +94,14 @@ class FVSRepo:
                 if line:
                     line = line.strip()
                     if line.startswith("hashing: "):
-                        file_path = line.replace("hashing: ", "")
-                        if task_id:
-                            task = TaskManager.get(task_id)
-                            if task:
-                                task.subtitle = file_path
+                        current_time = time.time()
+                        if current_time - last_update > 0.1:
+                            file_path = line.replace("hashing: ", "")
+                            if task_id:
+                                task = TaskManager.get(task_id)
+                                if task:
+                                    task.subtitle = file_path
+                            last_update = current_time
             
             stdout, stderr = process.communicate()
             
@@ -135,6 +140,7 @@ class FVSRepo:
                 universal_newlines=True
             )
             
+            last_update = 0
             while True:
                 line = process.stdout.readline()
                 if not line and process.poll() is not None:
@@ -142,11 +148,14 @@ class FVSRepo:
                 if line:
                     line = line.strip()
                     if line.startswith("restoring: "):
-                        file_path = line.replace("restoring: ", "")
-                        if task_id:
-                            task = TaskManager.get(task_id)
-                            if task:
-                                task.subtitle = file_path
+                        current_time = time.time()
+                        if current_time - last_update > 0.1:
+                            file_path = line.replace("restoring: ", "")
+                            if task_id:
+                                task = TaskManager.get(task_id)
+                                if task:
+                                    task.subtitle = file_path
+                            last_update = current_time
                                 
             stdout, stderr = process.communicate()
             if process.returncode != 0:
