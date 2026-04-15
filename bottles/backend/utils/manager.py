@@ -243,8 +243,8 @@ class ManagerUtils:
             ret = portal.dynamic_launcher_prepare_install_finish(result)
             id = f"{config.get('Name')}.{program.get('name')}"
             sum_type = GLib.ChecksumType.SHA1
-            exec = "bottles-cli run -p {} -b '{}' -- %u".format(
-                shlex.quote(program.get('name')), config.get('Name')
+            exec = "bottles-cli run -p {} -b {} -- %u".format(
+                shlex.quote(program.get('name')), shlex.quote(config.get('Name'))
             )
             try:
                 portal.dynamic_launcher_install(
