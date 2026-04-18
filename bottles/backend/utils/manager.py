@@ -239,18 +239,78 @@ class ManagerUtils:
         elif custom_icon:
             icon = custom_icon
 
-        def prepare_install_cb (self, result):
-            ret = portal.dynamic_launcher_prepare_install_finish(result)
-            id = f"{config.get('Name')}.{program.get('name')}"
-            sum_type = GLib.ChecksumType.SHA1
-            exec = "bottles-cli run -p {} -b {} -- %u".format(
-                shlex.quote(program.get('name')), shlex.quote(config.get('Name'))
+        def create_manual_fallback(icon_path, exec_cmd):
+            """Create desktop entry manually when portal is unavailable."""
+            safe_name = "".join(
+                [c for c in program.get("name") if c.isalnum() or c in ("-", "_")]
             )
+            filename = f"bottles-{config.get('Name')}-{safe_name}.desktop"
+            content = (
+                f"[Desktop Entry]\n"
+                f"Exec={exec_cmd}\n"
+                f"Type=Application\n"
+                f"Terminal=false\n"
+                f"Categories=Application;\n"
+                f"Comment=Launch {program.get('name')} using Bottles.\n"
+                f"StartupWMClass={program.get('name')}\n"
+                f"Name={program.get('name')}\n"
+                f"Icon={icon_path}\n"
+            )
+
+            # Write to application menu
+            apps_dir = os.path.expanduser("~/.local/share/applications")
+            os.makedirs(apps_dir, exist_ok=True)
+            apps_path = os.path.join(apps_dir, filename)
+            try:
+                with open(apps_path, "w") as f:
+                    f.write(content)
+                logging.info(f"Desktop entry created at {apps_path}")
+            except Exception as e:
+                logging.error(f"Failed to write desktop entry to applications: {e}")
+
+            # Write to desktop surface
+            desktop_dir = GLib.get_user_special_dir(
+                GLib.UserDirectory.DIRECTORY_DESKTOP
+            )
+            if desktop_dir:
+                desktop_path = os.path.join(desktop_dir, filename)
+                try:
+                    with open(desktop_path, "w") as f:
+                        f.write(content)
+                    # Make executable so KDE/GNOME will run it
+                    os.chmod(desktop_path, 0o755)
+                    logging.info(f"Desktop shortcut created at {desktop_path}")
+                except Exception as e:
+                    logging.error(f"Failed to write desktop shortcut: {e}")
+
+            SignalManager.send(Signals.DesktopEntryCreated)
+
+        def prepare_install_cb(self, result):
+            exec_cmd = "bottles-cli run -p {} -b {} -- %u".format(
+                shlex.quote(program.get("name")), shlex.quote(config.get("Name"))
+            )
+
+            # Handle portal preparation failure (e.g., KDE's broken implementation)
+            try:
+                ret = portal.dynamic_launcher_prepare_install_finish(result)
+                if ret is None:
+                    raise GLib.Error("Portal request was rejected or cancelled")
+            except GLib.Error as e:
+                logging.warning(
+                    f"Dynamic Launcher portal preparation failed: {e}. "
+                    "Falling back to manual creation."
+                )
+                create_manual_fallback(icon, exec_cmd)
+                return
+
+            launcher_id = f"{config.get('Name')}.{program.get('name')}"
+            sum_type = GLib.ChecksumType.SHA1
             try:
                 portal.dynamic_launcher_install(
                     ret["token"],
                     "{}.App_{}.desktop".format(
-                        APP_ID, GLib.compute_checksum_for_string(sum_type, id, -1)
+                        APP_ID,
+                        GLib.compute_checksum_for_string(sum_type, launcher_id, -1),
                     ),
                     """[Desktop Entry]
                     Exec={}
@@ -259,25 +319,16 @@ class ManagerUtils:
                     Categories=Application;
                     Comment=Launch {} using Bottles.
                     StartupWMClass={}""".format(
-                        exec, program.get("name"), program.get("name")
-                    )
+                        exec_cmd, program.get("name"), program.get("name")
+                    ),
                 )
+                SignalManager.send(Signals.DesktopEntryCreated)
             except GLib.Error as e:
-                logging.warning(f"Failed to use Dynamic Launcher portal: {e}. Falling back to manual creation.")
-                desktop_dir = os.path.expanduser("~/.local/share/applications")
-                os.makedirs(desktop_dir, exist_ok=True)
-                safe_name = "".join([c for c in program.get("name") if c.isalnum() or c in ("-", "_")])
-                filename = f"bottles-{config.get('Name')}-{safe_name}.desktop"
-                filepath = os.path.join(desktop_dir, filename)
-                content = f"[Desktop Entry]\nExec={exec}\nType=Application\nTerminal=false\nCategories=Application;\nComment=Launch {program.get('name')} using Bottles.\nStartupWMClass={program.get('name')}\nName={program.get('name')}\nIcon={icon}\n"
-                try:
-                    with open(filepath, "w") as f:
-                        f.write(content)
-                    logging.info(f"Fallback desktop entry created at {filepath}. If it doesn't show up, you might need to give Bottles the --filesystem=xdg-data/applications permission.")
-                except Exception as e:
-                    logging.error(f"Failed to write fallback desktop entry: {e}")
-
-            SignalManager.send(Signals.DesktopEntryCreated)
+                logging.warning(
+                    f"Dynamic Launcher portal install failed: {e}. "
+                    "Falling back to manual creation."
+                )
+                create_manual_fallback(icon, exec_cmd)
 
         if icon != "com.usebottles.bottles-program" and not os.path.exists(icon):
             logging.warning(f"Icon file not found: {icon}. Falling back to default.")
@@ -291,11 +342,17 @@ class ManagerUtils:
         else:
             _icon = Gio.File.new_for_path(icon)
         icon_v = Gio.BytesIcon.new(_icon.load_bytes()[0]).serialize()
-        portal.dynamic_launcher_prepare_install(None,
-                                                program.get("name"), icon_v,
-                                                Xdp.LauncherType.APPLICATION,
-                                                None, True, False, None,
-                                                prepare_install_cb)
+        portal.dynamic_launcher_prepare_install(
+            None,
+            program.get("name"),
+            icon_v,
+            Xdp.LauncherType.APPLICATION,
+            None,
+            True,
+            False,
+            None,
+            prepare_install_cb,
+        )
 
     @staticmethod
     def browse_wineprefix(wineprefix: dict):
