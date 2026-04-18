@@ -16,6 +16,8 @@
     "--socket=wayland",
     "--socket=pulseaudio",
     "--device=all",
+    "--filesystem=xdg-data/applications:create",
+    "--filesystem=xdg-desktop:create",
     "--system-talk-name=org.freedesktop.UDisks2",
     "--env=LD_LIBRARY_PATH=/app/lib:/app/lib/i386-linux-gnu",
     "--env=PATH=/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/bin:/usr/lib/extensions/vulkan/OBSVkCapture/bin/:/usr/lib/extensions/vulkan/gamescope/bin/",
