@@ -432,6 +432,10 @@ class WineCommand:
         if params.sync == "fsync":
             env.add("WINEFSYNC", "1")
 
+        # NTsync environment variable
+        if params.sync == "ntsync":
+            env.add("WINENTSYNC", "1")
+
         # Wine debug level
         if not return_steam_env:
             debug_level = "fixme-all"

@@ -549,6 +549,7 @@ class PreferencesView(Adw.PreferencesPage):
         # self.toggle_sync.set_active(parameters["sync"] == "wine")
         # self.toggle_esync.set_active(parameters["sync"] == "esync")
         # self.toggle_fsync.set_active(parameters["sync"] == "fsync")
+        # self.toggle_ntsync.set_active(parameters["sync"] == "ntsync")
 
         self.switch_discrete.set_active(parameters.discrete_gpu)
 
@@ -635,6 +636,7 @@ class PreferencesView(Adw.PreferencesPage):
             "wine",
             "esync",
             "fsync",
+            "ntsync",
         ]
         for sync in sync_types:
             if sync == parameters.sync:
@@ -695,12 +697,13 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_sync_type(self, *_args):
         """
-        Set the sync type (wine, esync, fsync)
+        Set the sync type (wine, esync, fsync, ntsync)
         """
         sync_types = [
             "wine",
             "esync",
             "fsync",
+            "ntsync",
         ]
         self.queue.add_task()
         self.combo_sync.set_sensitive(False)
