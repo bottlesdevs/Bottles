@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import re
 import shlex
 import shutil
 from gettext import gettext as _
@@ -241,10 +242,7 @@ class ManagerUtils:
 
         def create_manual_fallback(icon_path, exec_cmd):
             """Create desktop entry manually when portal is unavailable."""
-            safe_name = "".join(
-                [c for c in program.get("name") if c.isalnum() or c in ("-", "_")]
-            )
-            filename = f"bottles-{config.get('Name')}-{safe_name}.desktop"
+            filename = f"{config.get('Name')}-{program.get('name')}.desktop"
             content = (
                 f"[Desktop Entry]\n"
                 f"Exec={exec_cmd}\n"
@@ -360,6 +358,220 @@ class ManagerUtils:
         ManagerUtils.open_filemanager(
             path_type="custom", custom_path=wineprefix.get("Path")
         )
+
+    @staticmethod
+    def _get_desktop_entry_locations() -> list[str]:
+        """Get the locations where desktop entries may be stored."""
+        locations = [os.path.expanduser("~/.local/share/applications")]
+        desktop_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP)
+        if desktop_dir:
+            locations.append(desktop_dir)
+        return locations
+
+    @staticmethod
+    def update_desktop_entries_on_rename(old_bottle_name: str, new_bottle_name: str):
+        """
+        Update desktop entries when a bottle is renamed.
+
+        Searches for .desktop files by their Exec= line content (looking for
+        bottles-cli with -b 'old_bottle_name'), updates the reference, and
+        renames the file to match the new bottle name.
+        """
+        # Pattern to match bottles-cli command with the old bottle name
+        bottle_pattern = re.compile(
+            r"bottles-cli\s+run\s+.*-b\s+['\"]" + re.escape(old_bottle_name) + r"['\"]"
+        )
+        # Pattern to extract program name from Exec line
+        program_pattern = re.compile(r"-p\s+['\"]([^'\"]+)['\"]")
+
+        for location in ManagerUtils._get_desktop_entry_locations():
+            if not os.path.isdir(location):
+                continue
+
+            for filename in os.listdir(location):
+                if not filename.endswith(".desktop"):
+                    continue
+
+                file_path = os.path.join(location, filename)
+
+                # Skip broken symlinks or non-existent files
+                if not os.path.isfile(file_path):
+                    continue
+
+                try:
+                    with open(file_path, "r") as f:
+                        content = f.read()
+
+                    # Check if this file references the old bottle name
+                    if not bottle_pattern.search(content):
+                        continue
+
+                    # Extract program name for the new filename
+                    program_match = program_pattern.search(content)
+                    program_name = program_match.group(1) if program_match else None
+
+                    # Update the Exec line to reference the new bottle name
+                    content = re.sub(
+                        r"(-b\s+)(['\"])" + re.escape(old_bottle_name) + r"\2",
+                        r"\g<1>\g<2>" + new_bottle_name + r"\2",
+                        content,
+                    )
+
+                    # Determine new file path
+                    if program_name:
+                        new_filename = f"{new_bottle_name}-{program_name}.desktop"
+                        new_path = os.path.join(location, new_filename)
+                    else:
+                        new_path = file_path
+
+                    with open(new_path, "w") as f:
+                        f.write(content)
+
+                    # Preserve executable permission for desktop files
+                    if location == GLib.get_user_special_dir(
+                        GLib.UserDirectory.DIRECTORY_DESKTOP
+                    ):
+                        os.chmod(new_path, 0o755)
+
+                    # Remove old file if we renamed it
+                    if new_path != file_path and os.path.exists(file_path):
+                        os.remove(file_path)
+
+                    if new_path != file_path:
+                        logging.info(
+                            f"Renamed desktop entry: {filename} -> {new_filename}"
+                        )
+                    else:
+                        logging.info(f"Updated desktop entry: {filename}")
+                except Exception as e:
+                    logging.warning(f"Failed to update desktop entry {filename}: {e}")
+
+    @staticmethod
+    def update_desktop_entries_on_program_rename(
+        bottle_name: str,
+        old_program_name: str,
+        new_program_name: str,
+        bottle_path: Optional[str] = None,
+    ):
+        """
+        Update desktop entries when a program is renamed.
+
+        Searches for .desktop files by their Exec= line content (looking for
+        bottles-cli with -p 'old_program_name' and -b 'bottle_name') and updates
+        the references. If bottle_path is provided, also renames the icon file.
+        """
+        # Pattern to match bottles-cli command with the old program name and bottle
+        program_pattern = re.compile(
+            r"bottles-cli\s+run\s+.*-p\s+['\"]"
+            + re.escape(old_program_name)
+            + r"['\"].*-b\s+['\"]"
+            + re.escape(bottle_name)
+            + r"['\"]"
+        )
+
+        # Rename icon file if bottle_path is provided
+        new_icon_path = None
+        if bottle_path:
+            icons_dir = os.path.join(bottle_path, "icons")
+            old_icon_path = os.path.join(icons_dir, f"{old_program_name}.png")
+            new_icon_path = os.path.join(icons_dir, f"{new_program_name}.png")
+            if os.path.exists(old_icon_path):
+                try:
+                    shutil.move(old_icon_path, new_icon_path)
+                    logging.info(
+                        f"Renamed icon: {old_program_name}.png -> {new_program_name}.png"
+                    )
+                except Exception as e:
+                    logging.warning(f"Failed to rename icon file: {e}")
+                    new_icon_path = None
+
+        for location in ManagerUtils._get_desktop_entry_locations():
+            if not os.path.isdir(location):
+                continue
+
+            for filename in os.listdir(location):
+                if not filename.endswith(".desktop"):
+                    continue
+
+                file_path = os.path.join(location, filename)
+
+                # Skip broken symlinks or non-existent files
+                if not os.path.isfile(file_path):
+                    continue
+
+                try:
+                    with open(file_path, "r") as f:
+                        content = f.read()
+
+                    # Check if this file references the old program name in this bottle
+                    if not program_pattern.search(content):
+                        continue
+
+                    # Update the Exec line to reference the new program name
+                    content = re.sub(
+                        r"(-p\s+)(['\"])" + re.escape(old_program_name) + r"\2",
+                        r"\g<1>\g<2>" + new_program_name + r"\2",
+                        content,
+                    )
+
+                    # Update Comment, Name, and StartupWMClass fields
+                    content = re.sub(
+                        r"(Comment=Launch\s+)"
+                        + re.escape(old_program_name)
+                        + r"(\s+using Bottles\.)",
+                        r"\g<1>" + new_program_name + r"\2",
+                        content,
+                    )
+                    content = re.sub(
+                        r"(Name=)" + re.escape(old_program_name) + r"$",
+                        r"\g<1>" + new_program_name,
+                        content,
+                        flags=re.MULTILINE,
+                    )
+                    content = re.sub(
+                        r"(StartupWMClass=)" + re.escape(old_program_name) + r"$",
+                        r"\g<1>" + new_program_name,
+                        content,
+                        flags=re.MULTILINE,
+                    )
+
+                    # Update Icon path if we successfully renamed the icon file
+                    if new_icon_path:
+                        old_icon_pattern = os.path.join(
+                            bottle_path, "icons", f"{old_program_name}.png"
+                        )
+                        content = re.sub(
+                            r"(Icon=)" + re.escape(old_icon_pattern) + r"$",
+                            r"\g<1>" + new_icon_path,
+                            content,
+                            flags=re.MULTILINE,
+                        )
+
+                    # Rename the file to match the new program name
+                    new_filename = f"{bottle_name}-{new_program_name}.desktop"
+                    new_path = os.path.join(location, new_filename)
+
+                    with open(new_path, "w") as f:
+                        f.write(content)
+
+                    # Preserve executable permission for desktop files
+                    if location == GLib.get_user_special_dir(
+                        GLib.UserDirectory.DIRECTORY_DESKTOP
+                    ):
+                        os.chmod(new_path, 0o755)
+
+                    # Remove old file if we renamed it
+                    if new_path != file_path and os.path.exists(file_path):
+                        os.remove(file_path)
+
+                    if new_path != file_path:
+                        logging.info(
+                            f"Renamed desktop entry: {filename} -> {new_filename}"
+                        )
+                    else:
+                        logging.info(f"Updated desktop entry: {filename}")
+                except Exception as e:
+                    logging.warning(f"Failed to update desktop entry {filename}: {e}")
 
     @staticmethod
     def get_languages(
