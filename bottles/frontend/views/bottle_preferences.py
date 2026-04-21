@@ -394,6 +394,9 @@ class PreferencesView(Adw.PreferencesPage):
         new_name = self.entry_name.get_text()
         old_name = self.config.Name
 
+        if new_name == old_name:
+            return
+
         library_manager = LibraryManager()
         entries = library_manager.get_library()
 
@@ -408,6 +411,9 @@ class PreferencesView(Adw.PreferencesPage):
         library_manager.save_library()
 
         self.manager.update_config(config=self.config, key="Name", value=new_name)
+
+        # Update any .desktop files that reference the old bottle name
+        ManagerUtils.update_desktop_entries_on_rename(old_name, new_name)
 
         self.manager.update_bottles(silent=True)  # Updates backend bottles list and UI
         self.window.page_library.update()
