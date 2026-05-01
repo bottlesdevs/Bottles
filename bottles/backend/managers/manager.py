@@ -1147,32 +1147,32 @@ class Manager(metaclass=Singleton):
                     )
                     found.append(executable_name)
 
-            win_steam_manager = SteamManager(config, is_windows=True)
+        win_steam_manager = SteamManager(config, is_windows=True)
 
-            if (
-                self.settings.get_boolean("steam-programs")
-                and win_steam_manager.is_steam_supported
-            ):
-                programs_names = [p.get("name", "") for p in installed_programs]
-                for app in win_steam_manager.get_installed_apps_as_programs():
-                    if app["name"] not in programs_names:
-                        installed_programs.append(app)
+        if (
+            self.settings.get_boolean("steam-programs")
+            and win_steam_manager.is_steam_supported
+        ):
+            programs_names = [p.get("name", "") for p in installed_programs]
+            for app in win_steam_manager.get_installed_apps_as_programs():
+                if app["name"] not in programs_names:
+                    installed_programs.append(app)
 
-            if self.settings.get_boolean(
-                "epic-games"
-            ) and EpicGamesStoreManager.is_epic_supported(config):
-                programs_names = [p.get("name", "") for p in installed_programs]
-                for app in EpicGamesStoreManager.get_installed_games(config):
-                    if app["name"] not in programs_names:
-                        installed_programs.append(app)
+        if self.settings.get_boolean(
+            "epic-games"
+        ) and EpicGamesStoreManager.is_epic_supported(config):
+            programs_names = [p.get("name", "") for p in installed_programs]
+            for app in EpicGamesStoreManager.get_installed_games(config):
+                if app["name"] not in programs_names:
+                    installed_programs.append(app)
 
-            if self.settings.get_boolean(
-                "ubisoft-connect"
-            ) and UbisoftConnectManager.is_uconnect_supported(config):
-                programs_names = [p.get("name", "") for p in installed_programs]
-                for app in UbisoftConnectManager.get_installed_games(config):
-                    if app["name"] not in programs_names:
-                        installed_programs.append(app)
+        if self.settings.get_boolean(
+            "ubisoft-connect"
+        ) and UbisoftConnectManager.is_uconnect_supported(config):
+            programs_names = [p.get("name", "") for p in installed_programs]
+            for app in UbisoftConnectManager.get_installed_games(config):
+                if app["name"] not in programs_names:
+                    installed_programs.append(app)
 
         return installed_programs
 
