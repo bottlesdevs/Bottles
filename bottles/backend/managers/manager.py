@@ -98,6 +98,7 @@ class Manager(metaclass=Singleton):
     nvapi_available = []
     latencyflex_available = []
     local_bottles: Dict[str, BottleConfig] = {}
+    _programs_cache: Dict[str, List[dict]] = {}
     supported_runtimes = {}
     supported_winebridge = {}
     supported_wine_runners = {}
@@ -1038,6 +1039,10 @@ class Manager(metaclass=Singleton):
         if config is None:
             return []
 
+        cache_key = config.Name
+        if cache_key in self._programs_cache:
+            return self._programs_cache[cache_key]
+
         bottle = ManagerUtils.get_bottle_path(config)
         winepath = WinePath(config)
         results = glob(f"{bottle}/drive_c/users/*/Desktop/*.lnk", recursive=True)
@@ -1175,6 +1180,7 @@ class Manager(metaclass=Singleton):
                 if app["name"] not in programs_names:
                     installed_programs.append(app)
 
+        self._programs_cache[cache_key] = installed_programs
         return installed_programs
 
     def check_bottles(self, silent: bool = False):
@@ -1186,6 +1192,7 @@ class Manager(metaclass=Singleton):
 
         # Empty local bottles
         self.local_bottles = {}
+        self._programs_cache = {}
 
         def process_bottle(bottle):
             _name = bottle
@@ -1388,6 +1395,9 @@ class Manager(metaclass=Singleton):
         config.dump(os.path.join(bottle_path, "bottle.yml"))
 
         config.Update_Date = str(datetime.now())
+
+        if scope == "External_Programs":
+            self._programs_cache.pop(config.Name, None)
 
         if config.Environment == "Steam":
             self.steam_manager.update_bottle(config)
