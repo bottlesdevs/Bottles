@@ -130,7 +130,7 @@ class Manager(metaclass=Singleton):
         self.data_mgr = DataManager()
         _offline = True
 
-        if check_connection:
+        if check_connection and not self.is_cli:
             _offline = not self.utils_conn.check_connection()
 
         # validating user-defined Paths.bottles
@@ -328,7 +328,8 @@ class Manager(metaclass=Singleton):
             enabled=playtime_enabled,
             heartbeat_interval=playtime_interval if playtime_interval > 0 else 60,
         )
-        tracker.recover_open_sessions()
+        if not self.is_cli:
+            tracker.recover_open_sessions()
         self.playtime_tracker = tracker
 
     def _on_playtime_enabled_changed(self, _settings, _key) -> None:
