@@ -123,32 +123,38 @@ def test_recovery_same_bottle_different_programs(manager):
 
 def test_cli_manager_init_does_not_recover_live_sessions(temp_xdg_home, test_settings_stub):
     Manager._instances.pop(Manager, None)
-    manager = Manager(g_settings=test_settings_stub, check_connection=False, is_cli=True)
-    tracker = manager.playtime_tracker
-    assert tracker is not None
+    manager = None
+    other_manager = None
 
-    sid = tracker.start_session(
-        bottle_id="b1",
-        bottle_name="Bottle",
-        bottle_path="/bottle",
-        program_name="Game",
-        program_path="C:/Game/game.exe",
-    )
+    try:
+        manager = Manager(g_settings=test_settings_stub, check_connection=False, is_cli=True)
+        tracker = manager.playtime_tracker
+        assert tracker is not None
 
-    Manager._instances.pop(Manager, None)
-    other_manager = Manager(
-        g_settings=test_settings_stub,
-        check_connection=False,
-        is_cli=True,
-    )
+        sid = tracker.start_session(
+            bottle_id="b1",
+            bottle_name="Bottle",
+            bottle_path="/bottle",
+            program_name="Game",
+            program_path="C:/Game/game.exe",
+        )
 
-    con = sqlite3.connect(other_manager.playtime_tracker.db_path)
-    cur = con.cursor()
-    cur.execute("SELECT status FROM sessions WHERE id=?", (sid,))
-    assert cur.fetchone()[0] == "running"
+        Manager._instances.pop(Manager, None)
+        other_manager = Manager(
+            g_settings=test_settings_stub,
+            check_connection=False,
+            is_cli=True,
+        )
 
-    tracker.shutdown()
-    other_manager.playtime_tracker.shutdown()
-    Manager._instances.pop(Manager, None)
+        con = sqlite3.connect(other_manager.playtime_tracker.db_path)
+        cur = con.cursor()
+        cur.execute("SELECT status FROM sessions WHERE id=?", (sid,))
+        assert cur.fetchone()[0] == "running"
+    finally:
+        if manager and getattr(manager, "playtime_tracker", None):
+            manager.playtime_tracker.shutdown()
+        if other_manager and getattr(other_manager, "playtime_tracker", None):
+            other_manager.playtime_tracker.shutdown()
+        Manager._instances.pop(Manager, None)
 
 

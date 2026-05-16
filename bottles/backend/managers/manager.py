@@ -130,7 +130,7 @@ class Manager(metaclass=Singleton):
         self.data_mgr = DataManager()
         _offline = True
 
-        if check_connection and not self.is_cli:
+        if check_connection and not self.utils_conn.force_offline:
             _offline = not self.utils_conn.check_connection()
 
         # validating user-defined Paths.bottles
