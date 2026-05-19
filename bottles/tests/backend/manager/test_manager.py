@@ -47,3 +47,34 @@ def test_manager_cli_skips_connection_check(mocker):
 
     Manager(is_cli=True)
     check_connection.assert_not_called()
+
+
+def test_manager_forced_offline_setting_skips_connection_check(mocker):
+    class ForcedOfflineSettings(GSettingsStub):
+        @staticmethod
+        def get_boolean(key: str) -> bool:
+            if key == "force-offline":
+                return True
+            return GSettingsStub.get_boolean(key)
+
+    class EmptyChecksResult:
+        data = {}
+
+    check_connection = mocker.patch.object(
+        ConnectionUtils,
+        "check_connection",
+        autospec=True,
+        return_value=True,
+    )
+    checks = mocker.patch.object(
+        Manager,
+        "checks",
+        autospec=True,
+        return_value=EmptyChecksResult(),
+    )
+
+    manager = Manager(g_settings=ForcedOfflineSettings(), is_cli=False)
+
+    assert manager.utils_conn.force_offline is True
+    check_connection.assert_not_called()
+    checks.assert_called_once()
