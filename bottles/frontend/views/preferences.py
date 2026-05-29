@@ -256,14 +256,22 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.__registry = []
 
     def ui_update(self):
-        if self.manager.utils_conn.status:
-            EventManager.wait(Events.ComponentsOrganizing)
-            GLib.idle_add(self.empty_list)
-            GLib.idle_add(self.populate_runners_list)
-            GLib.idle_add(self.populate_dlls_list)
-            GLib.idle_add(self.populate_cache_list)
+        # Show locally installed runners/DLLs right away so the pages never get
+        # stuck on the loading spinner when the online catalog is slow or
+        # unreachable (the lists are read from disk, no network needed).
+        def render():
+            self.empty_list()
+            self.populate_runners_list()
+            self.populate_dlls_list()
+            self.populate_cache_list()
+            self.dlls_stack.set_visible_child_name("dlls_list")
 
-            GLib.idle_add(self.dlls_stack.set_visible_child_name, "dlls_list")
+        GLib.idle_add(render)
+
+        if self.manager.utils_conn.status:
+            # then refresh once the online catalog has been organized
+            EventManager.wait(Events.ComponentsOrganizing)
+            GLib.idle_add(render)
 
     def __toggle_night(self, widget, state):
         if self.settings.get_boolean("dark-theme"):
