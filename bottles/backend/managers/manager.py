@@ -147,12 +147,22 @@ class Manager(metaclass=Singleton):
 
         # validating user-defined Paths.bottles
         if user_bottles_path := self.data_mgr.get(UserDataKeys.CustomBottlesPath):
-            if os.path.exists(user_bottles_path):
+            is_portal_path = "/run/user/" in user_bottles_path and "/doc/" in user_bottles_path
+            if is_portal_path:
+                # a transient document portal path is not usable across sessions
+                # and makes startup crash when it is no longer accessible
+                logging.error(
+                    f"Custom bottles path {user_bottles_path} is a temporary "
+                    f"portal path! Falling back to default path."
+                )
+            elif os.path.exists(user_bottles_path) and os.access(
+                user_bottles_path, os.W_OK
+            ):
                 Paths.bottles = user_bottles_path
             else:
                 logging.error(
-                    f"Custom bottles path {user_bottles_path} does not exist! "
-                    f"Falling back to default path."
+                    f"Custom bottles path {user_bottles_path} does not exist or "
+                    f"is not writable! Falling back to default path."
                 )
 
         # sub-managers
