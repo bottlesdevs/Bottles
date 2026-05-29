@@ -16,6 +16,7 @@
 #
 import codecs
 import contextlib
+import os
 import random
 import re
 import string
@@ -88,6 +89,31 @@ def is_glibc_min_available():
     except:
         pass
     return False
+
+
+NTSYNC_DEVICE = "/dev/ntsync"
+# Wine major version from which ntsync is considered usable. Proton uses its
+# own versioning but its leading number still maps to the Wine major.
+NTSYNC_MIN_WINE_VERSION = 10
+
+
+def is_ntsync_available(runner_name: Optional[str] = None) -> bool:
+    """
+    Return True if ntsync can actually be used: the kernel must expose the
+    ntsync device and, when a runner name is given, its Wine base must be
+    recent enough. Used to gracefully fall back when ntsync is unsupported.
+    """
+    if not os.path.exists(NTSYNC_DEVICE):
+        return False
+    if runner_name is None:
+        return True
+    match = re.search(r"(\d+)", runner_name)
+    if not match:
+        return False
+    try:
+        return int(match.group(1)) >= NTSYNC_MIN_WINE_VERSION
+    except ValueError:
+        return False
 
 
 def sort_by_version(_list: list, extra_check: str = "async"):
