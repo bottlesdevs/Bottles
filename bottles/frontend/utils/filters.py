@@ -26,8 +26,11 @@ def add_executable_filters(dialog):
     # Intended MIME types are:
     #   - `application/x-ms-dos-executable`
     #   - `application/x-msi`
-    filter.add_pattern("*.exe")
-    filter.add_pattern("*.msi")
+    # Patterns are case sensitive (GPatternSpec has no character classes), so
+    # add both lower and upper case so files like GAME.EXE are also shown.
+    for ext in ("exe", "msi", "bat", "lnk"):
+        filter.add_pattern(f"*.{ext}")
+        filter.add_pattern(f"*.{ext.upper()}")
 
     dialog.add_filter(filter)
 
