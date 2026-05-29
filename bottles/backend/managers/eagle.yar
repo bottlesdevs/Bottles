@@ -886,3 +886,77 @@ rule Node_Kernel_Driver {
     condition:
         2 of them
 }
+
+// ============================================================
+// Security: malware / infostealer heuristics (advisory only)
+// Designed to require multiple co-occurring strong indicators so
+// legitimate software is very unlikely to trigger a false positive.
+// ============================================================
+
+rule Stealer_Browser_Credential_Exfil {
+    meta:
+        category = "Security"
+        name = "Browser credential stealer"
+        severity = "critical"
+        description = "Reads browser credential or cookie stores and embeds a known data exfiltration endpoint"
+    strings:
+        $c1 = "Login Data" nocase
+        $c2 = "cookies.sqlite" nocase
+        $c3 = "\\User Data\\Default\\" nocase
+        $c4 = "moz_cookies" nocase
+        $c5 = "encrypted_key" nocase
+        $e1 = "api.telegram.org/bot" nocase
+        $e2 = "discord.com/api/webhooks" nocase
+        $e3 = "gofile.io" nocase
+        $e4 = "anonfiles" nocase
+    condition:
+        2 of ($c*) and 1 of ($e*)
+}
+
+rule Stealer_Discord_Token_Grabber {
+    meta:
+        category = "Security"
+        name = "Discord token grabber"
+        severity = "critical"
+        description = "Harvests Discord tokens from local storage and exfiltrates them"
+    strings:
+        $store = "Local Storage\\leveldb" nocase
+        $mfa = "mfa." nocase
+        $tok = /[A-Za-z0-9_-]{24}\.[A-Za-z0-9_-]{6}\.[A-Za-z0-9_-]{27}/
+        $e1 = "discord.com/api/webhooks" nocase
+        $e2 = "api.telegram.org/bot" nocase
+    condition:
+        $store and ($tok or $mfa) and 1 of ($e*)
+}
+
+rule Stealer_CryptoWallet_Theft {
+    meta:
+        category = "Security"
+        name = "Crypto wallet stealer"
+        severity = "critical"
+        description = "Targets cryptocurrency wallet files and embeds a known data exfiltration endpoint"
+    strings:
+        $w1 = "wallet.dat" nocase
+        $w2 = "Exodus\\exodus.wallet" nocase
+        $w3 = "Electrum\\wallets" nocase
+        $w4 = "Ethereum\\keystore" nocase
+        $w5 = "Atomic\\Local Storage" nocase
+        $e1 = "api.telegram.org/bot" nocase
+        $e2 = "discord.com/api/webhooks" nocase
+        $e3 = "gofile.io" nocase
+    condition:
+        2 of ($w*) and 1 of ($e*)
+}
+
+rule Suspicious_Exfil_Channel {
+    meta:
+        category = "Security"
+        name = "Suspicious data exfiltration endpoint"
+        severity = "warning"
+        description = "Embeds a Telegram bot or Discord webhook endpoint commonly abused to exfiltrate stolen data"
+    strings:
+        $e1 = "api.telegram.org/bot" nocase
+        $e2 = "discord.com/api/webhooks" nocase
+    condition:
+        any of them
+}

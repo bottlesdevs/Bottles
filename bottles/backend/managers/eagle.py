@@ -239,7 +239,7 @@ class EagleManager:
                 context_list = context[:20]
 
                 if name not in existing_names:
-                    if category == "Warning":
+                    if category in ("Warning", "Security"):
                         insights[category].append({
                             "name": name,
                             "description": warning_desc,
@@ -247,7 +247,7 @@ class EagleManager:
                             "source": source,
                             "context": context_list
                         })
-                        self._send_step(f"[!] Warning: {name} ({source})")
+                        self._send_step(f"[!] {name} ({source})")
                     else:
                         insights[category].append({
                             "name": name,
@@ -260,6 +260,34 @@ class EagleManager:
             logging.error(f"[Eagle] YARA scan failed on {file_path}: {e}")
 
         return matches
+
+    def security_scan(self, file_path: str) -> list:
+        """
+        Fast, network-free scan that returns only the Security-category YARA
+        matches (potential malware/stealers) for a single file. Used to warn
+        the user before running a program. Returns a list of dicts with
+        rule/name/description/severity, empty if nothing matched.
+        """
+        if self._yara_rules is None or not os.path.isfile(file_path):
+            return []
+
+        findings = []
+        try:
+            for match in self._yara_rules.match(file_path, timeout=30):
+                if match.meta.get("category") != "Security":
+                    continue
+                findings.append(
+                    {
+                        "rule": match.rule,
+                        "name": match.meta.get("name", match.rule),
+                        "description": match.meta.get("description", ""),
+                        "severity": match.meta.get("severity", "warning"),
+                    }
+                )
+        except Exception as e:
+            logging.warning(f"[Eagle] security_scan failed on {file_path}: {e}")
+
+        return findings
 
     def _extract_asar(self, asar_path: str) -> tuple:
         """Extract ASAR archive using pure Python."""
