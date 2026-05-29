@@ -61,6 +61,11 @@ class OnboardDialog(Adw.Dialog):
         self.window = window
         self.manager = window.manager
 
+        # navigation is driven by the Back/Next buttons only; disable swiping
+        # so steps that require completion (e.g. component download) cannot be
+        # skipped by scrolling past them
+        self.carousel.set_interactive(False)
+
         # connect signals
         self.carousel.connect("page-changed", self.__page_changed)
         self.btn_close.connect("clicked", self.__close_dialog)
