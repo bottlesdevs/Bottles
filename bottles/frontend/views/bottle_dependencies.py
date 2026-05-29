@@ -56,6 +56,9 @@ class DependenciesView(Adw.Bin):
         self.queue = details.queue
 
         self.ev_controller.connect("key-released", self.__search_dependencies)
+        # also re-filter on text changes (e.g. clicking the clear icon, which
+        # does not emit a key event) so the list resets correctly
+        self.entry_search.connect("search-changed", self.__search_dependencies)
 
         self.entry_search.add_controller(self.ev_controller)
         self.search_bar.set_key_capture_widget(self.window)
