@@ -21,7 +21,7 @@ from bottles.backend.managers.sandbox import SandboxManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.display import DisplayUtils
-from bottles.backend.utils.generic import detect_encoding
+from bottles.backend.utils.generic import detect_encoding, is_ntsync_available
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.steam import SteamUtils
@@ -434,7 +434,13 @@ class WineCommand:
 
         # Ntsync environment variable
         if params.sync == "ntsync":
-            env.add("WINENTSYNC", "1")
+            if is_ntsync_available(self.runner):
+                env.add("WINENTSYNC", "1")
+            else:
+                logging.warning(
+                    "ntsync requested but unavailable, falling back to fsync"
+                )
+                env.add("WINEFSYNC", "1")
 
         # Wine debug level
         if not return_steam_env:
