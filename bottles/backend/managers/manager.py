@@ -125,8 +125,12 @@ class Manager(metaclass=Singleton):
         # common variables
         self.is_cli = is_cli
         self.settings = g_settings or GSettingsStub
+        # The CLI used to be wired offline unconditionally, which left the
+        # component catalog empty and made bottle creation fail when nothing was
+        # cached locally. Honor the actual force-offline setting instead, so the
+        # CLI can fetch and install components just like the GUI.
         self.utils_conn = ConnectionUtils(
-            force_offline=self.is_cli or self.settings.get_boolean("force-offline")
+            force_offline=self.settings.get_boolean("force-offline")
         )
         self.data_mgr = DataManager()
         _offline = True
