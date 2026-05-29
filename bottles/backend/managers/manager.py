@@ -2221,16 +2221,8 @@ class Manager(metaclass=Singleton):
         if not runner or runner.startswith("sys-"):
             return None
 
-        candidates, component_type = self.__resolve_runner_catalog(runner)
-        if not candidates or not component_type:
-            return None
-
-        try:
-            latest = sort_by_version(candidates.copy())[0]
-        except ValueError:
-            latest = sorted(candidates, reverse=True)[0]
-
-        if not self.__is_version_newer(latest, runner):
+        latest, component_type = self.__latest_runner_for(runner)
+        if not latest:
             return None
 
         return {
@@ -2259,38 +2251,52 @@ class Manager(metaclass=Singleton):
             "latest": latest,
         }
 
-    def __resolve_runner_catalog(self, runner: str) -> Tuple[list, str]:
-        wine_candidates = self.__match_runner_candidates(
-            runner, self.supported_wine_runners
-        )
-        if wine_candidates:
-            return wine_candidates, "runner"
+    def __latest_runner_for(self, runner: str):
+        """Return (latest_runner_name, component_type) for the newest catalog
+        runner that shares the exact family/variant of the given runner, or
+        (None, "") if none is newer. Matching is done on a version-stripped
+        identity so different variants (e.g. kron4ek wine vs staging vs proton)
+        never get mixed up, and versions are compared as integer tuples so
+        10.20 ranks above 10.0."""
+        family, version = self.__runner_identity(runner)
 
-        proton_candidates = self.__match_runner_candidates(
-            runner, self.supported_proton_runners
-        )
-        if proton_candidates:
-            return proton_candidates, "runner:proton"
+        for catalog, component_type in (
+            (self.supported_wine_runners, "runner"),
+            (self.supported_proton_runners, "runner:proton"),
+        ):
+            if not catalog:
+                continue
+            same_family = [
+                (name, self.__runner_identity(name)[1])
+                for name in catalog.keys()
+                if self.__runner_identity(name)[0] == family
+            ]
+            if not same_family:
+                continue
+            # the runner belongs to this catalog; pick the newest same-family
+            # version, only if it is strictly newer than the current one
+            best_name, best_version = None, version
+            for name, candidate_version in same_family:
+                if candidate_version > best_version:
+                    best_name, best_version = name, candidate_version
+            return best_name, (component_type if best_name else "")
 
-        return [], ""
-
-    def __match_runner_candidates(self, runner: str, catalog: dict) -> list:
-        if not catalog:
-            return []
-        family = self.__runner_family(runner)
-        return [name for name in catalog.keys() if name.lower().startswith(family)]
+        return None, ""
 
     @staticmethod
-    def __runner_family(runner: str) -> str:
-        normalized = runner.lower()
-        match = re.search(r"\d", normalized)
-        if match:
-            candidate = normalized[: match.start()].rstrip("-")
-            if candidate:
-                return candidate
-        if "-" in normalized:
-            return normalized.split("-")[0]
-        return normalized
+    def __runner_identity(name: str):
+        """Split a runner name into (family, version_tuple). The version is the
+        first dotted/dashed number group (e.g. 10.20, 8-26); the family is the
+        name with that version removed, so it keeps any variant suffix."""
+        normalized = (name or "").lower()
+        match = re.search(r"\d+(?:[.-]\d+)+", normalized)
+        if not match:
+            return normalized, ()
+        version = tuple(
+            int(part) for part in re.split(r"[.-]", match.group(0))
+        )
+        family = normalized[: match.start()] + normalized[match.end() :]
+        return family, version
 
     @staticmethod
     def __get_latest_supported(supported_dict: dict) -> Optional[str]:
