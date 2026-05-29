@@ -11,6 +11,7 @@ class Samples:
         "LC_ALL",
         "LC_CTYPE",
         "LC_MESSAGES",
+        "MANGOHUD_CONFIG",
         "PATH",
         "PULSE_SERVER",
         "TERM",
