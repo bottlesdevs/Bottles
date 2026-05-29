@@ -59,7 +59,13 @@ from bottles.backend.models.process import (
 )
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.state import EventManager, Events, SignalManager, Signals
+from bottles.backend.state import (
+    EventManager,
+    Events,
+    Notification,
+    SignalManager,
+    Signals,
+)
 from bottles.backend.utils import yaml
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
@@ -1199,20 +1205,25 @@ class Manager(metaclass=Singleton):
         self.local_bottles = {}
         self._programs_cache = {}
 
+        # custom-path bottles whose location is currently unreachable (e.g. an
+        # unmounted drive), so the user can be told instead of them silently
+        # vanishing from the list
+        unavailable = []
+
         def process_bottle(bottle):
             _name = bottle
             _bottle = str(os.path.join(Paths.bottles, bottle))
             _placeholder = os.path.join(_bottle, "placeholder.yml")
             _config = os.path.join(_bottle, "bottle.yml")
+            _placeholder_target = None
 
             if os.path.exists(_placeholder):
                 with open(_placeholder, "r") as f:
                     try:
                         placeholder_yaml = yaml.load(f)
                         if placeholder_yaml.get("Path"):
-                            _config = os.path.join(
-                                placeholder_yaml.get("Path"), "bottle.yml"
-                            )
+                            _placeholder_target = placeholder_yaml.get("Path")
+                            _config = os.path.join(_placeholder_target, "bottle.yml")
                         else:
                             raise ValueError("Missing Path in placeholder.yml")
                     except (yaml.YAMLError, ValueError):
@@ -1221,6 +1232,9 @@ class Manager(metaclass=Singleton):
             config_load = BottleConfig.load(_config)
 
             if not config_load.status:
+                if _placeholder_target:
+                    # the bottle lives on a custom path that is not reachable now
+                    unavailable.append(_name)
                 return
 
             config = config_load.data
@@ -1338,6 +1352,27 @@ class Manager(metaclass=Singleton):
         if len(self.local_bottles) > 0 and not silent:
             logging.info(
                 "Bottles found:\n - {0}".format("\n - ".join(self.local_bottles))
+            )
+
+        if unavailable and not silent and not self.is_cli:
+            logging.warning(
+                "Unavailable bottles (offline location):\n - {0}".format(
+                    "\n - ".join(unavailable)
+                )
+            )
+            SignalManager.send(
+                Signals.GNotification,
+                Result(
+                    True,
+                    Notification(
+                        title="Bottles",
+                        text=_(
+                            "Some bottles are unavailable because their location is "
+                            "offline: {0}"
+                        ).format(", ".join(unavailable)),
+                        image="drive-harddisk-symbolic",
+                    ),
+                ),
             )
 
         if (
