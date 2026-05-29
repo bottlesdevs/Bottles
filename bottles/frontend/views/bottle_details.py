@@ -697,6 +697,11 @@ class BottleView(Adw.PreferencesPage):
         else:
             show_chooser()
 
+    def analyze_with_eagle(self, path):
+        """Open the Eagle analysis view and scan the given executable."""
+        self.details.view_eagle.analyze(path)
+        self.__change_page(None, "eagle")
+
     def run_eagle(self, _widget):
         """
         Pops up a dialog to select an executable for Eagle analysis.
@@ -707,8 +712,7 @@ class BottleView(Adw.PreferencesPage):
                 return
 
             path = _dialog.get_file().get_path()
-            self.details.view_eagle.analyze(path)
-            self.__change_page(None, "eagle")
+            self.analyze_with_eagle(path)
 
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Executable for Eagle Analysis"),
