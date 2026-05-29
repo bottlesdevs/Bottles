@@ -254,6 +254,14 @@ class Bottles(Adw.Application):
         """
         Adw.Application.do_startup(self)
 
+        # log the same environment summary shown in the GUI debug info, so a
+        # terminal run is enough to see what the user is running on
+        try:
+            logging.info(f"Bottles {APP_VERSION}")
+            logging.info(HealthChecker().get_results(plain=True))
+        except Exception as e:
+            logging.debug(f"Could not collect startup environment info: {e}")
+
     def do_activate(self):
         """
         This function is called when the application is activated.
