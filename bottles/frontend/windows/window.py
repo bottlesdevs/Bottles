@@ -64,6 +64,7 @@ class BottlesWindow(Adw.ApplicationWindow):
     btn_search = Gtk.Template.Child()
     btn_donate = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
+    banner_offline = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     view_switcher_title = Gtk.Template.Child()
@@ -170,6 +171,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         )
         self.btn_add.connect("clicked", self.show_add_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
+        self.banner_offline.connect("button-clicked", self.check_for_connection)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
 
         # backend signal handlers
@@ -241,7 +243,7 @@ class BottlesWindow(Adw.ApplicationWindow):
     # region Backend signal handlers
     @GtkUtils.run_in_main_loop
     def network_changed_handler(self, res: Result):
-        self.btn_noconnection.set_visible(not res.status)
+        self.banner_offline.set_revealed(not res.status)
 
     @GtkUtils.run_in_main_loop
     def g_notification_handler(self, res: Result):
@@ -296,14 +298,20 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.view_switcher_title.set_title(title)
         self.view_switcher_title.set_subtitle(subtitle)
 
-    def check_for_connection(self, status):
+    def check_for_connection(self, *_args):
         """
         This method checks if the client has an internet connection.
         If true, the manager checks will be performed, unlocking all the
-        features locked for no internet connection.
+        features locked for no internet connection. Runs off the main loop so
+        the UI stays responsive and the component catalog is refetched, so the
+        runners/components/dependencies tabs work again without a restart.
         """
-        if self.utils_conn.check_connection():
-            self.manager.checks(install_latest=False, first_run=True)
+
+        def task():
+            if self.utils_conn.check_connection():
+                self.manager.checks(install_latest=False, first_run=True)
+
+        RunAsync(task)
 
     def __maybe_prompt_winebridge_update(self):
         if self._winebridge_dialog_shown or self._showing_onboard:

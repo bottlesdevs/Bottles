@@ -59,6 +59,12 @@ template $BottlesWindow: Adw.ApplicationWindow {
           }
         }
 
+        Adw.Banner banner_offline {
+          title: _("You are offline. Some components and dependencies cannot be downloaded.");
+          button-label: _("Try Again");
+          revealed: false;
+        }
+
         SearchBar searchbar {}
 
         Adw.ViewStack stack_main {
