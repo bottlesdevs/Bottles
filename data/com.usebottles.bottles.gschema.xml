@@ -51,6 +51,16 @@
       <summary>Notifications</summary>
       <description>Show notifications.</description>
     </key>
+    <key type="b" name="eagle-security-scan">
+      <default>true</default>
+      <summary>Eagle security scan</summary>
+      <description>Scan executables for malware patterns before running them.</description>
+    </key>
+    <key type="b" name="eagle-crash-detection">
+      <default>true</default>
+      <summary>Eagle crash detection</summary>
+      <description>Offer an Eagle analysis when a program closes right after starting.</description>
+    </key>
     <key type="b" name="temp">
       <default>false</default>
       <summary>Temp cleaning</summary>

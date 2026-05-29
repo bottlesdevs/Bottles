@@ -91,6 +91,30 @@ template $PreferencesWindow: Adw.PreferencesWindow {
     }
 
     Adw.PreferencesGroup {
+      title: _("Eagle");
+
+      Adw.ActionRow row_eagle_security {
+        title: _("Scan Files for Threats");
+        subtitle: _("Check executables for malware patterns before running them.");
+        activatable-widget: switch_eagle_security;
+
+        Switch switch_eagle_security {
+          valign: center;
+        }
+      }
+
+      Adw.ActionRow {
+        title: _("Detect Crashes");
+        subtitle: _("Offer an Eagle analysis when a program closes right after starting.");
+        activatable-widget: switch_eagle_crash;
+
+        Switch switch_eagle_crash {
+          valign: center;
+        }
+      }
+    }
+
+    Adw.PreferencesGroup {
       title: _("Integrations");
 
       Adw.ActionRow action_steam_proton {
