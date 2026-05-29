@@ -1,0 +1,86 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $BottlesBulkUpdateDialog: Adw.Dialog {
+  content-width: 500;
+  content-height: 560;
+  title: _("Update Components");
+
+  child: Stack stack {
+    transition-type: crossfade;
+
+    StackPage {
+      name: "page_select";
+
+      child: Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {
+          show-start-title-buttons: false;
+          show-end-title-buttons: false;
+
+          Button btn_cancel {
+            label: _("_Cancel");
+            use-underline: true;
+          }
+
+          [end]
+          Button btn_apply {
+            label: _("_Update");
+            use-underline: true;
+
+            styles [
+              "suggested-action",
+            ]
+          }
+        }
+
+        content: Adw.PreferencesPage {
+          Adw.PreferencesGroup group_components {
+            title: _("Components");
+            description: _("Update the selected components to the latest version you already have installed.");
+          }
+
+          Adw.PreferencesGroup group_bottles {
+            title: _("Bottles");
+            description: _("Only bottles with an available update are listed.");
+          }
+        };
+      };
+    }
+
+    StackPage {
+      name: "page_progress";
+
+      child: Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {
+          show-start-title-buttons: false;
+          show-end-title-buttons: false;
+          show-title: false;
+        }
+
+        content: Adw.StatusPage status_progress {
+          icon-name: "software-update-available-symbolic";
+          title: _("Updating Components…");
+
+          child: Box {
+            orientation: vertical;
+            halign: center;
+            spacing: 12;
+
+            ProgressBar progress_bar {
+              hexpand: true;
+              width-request: 280;
+            }
+
+            Label label_progress {
+              styles [
+                "dim-label",
+              ]
+            }
+          };
+        };
+      };
+    }
+  };
+}

@@ -16,20 +16,17 @@
 #
 
 import os
-import re
 import uuid
 from datetime import datetime
 from gettext import gettext as _
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk, Xdp
 
 from bottles.backend.managers.backup import BackupManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.runner import Runner
 from bottles.backend.state import SignalManager, Signals, TaskManager
-from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.threading import RunAsync
@@ -552,183 +549,13 @@ class BottleView(Adw.PreferencesPage):
             self.group_updates.remove(row)
         self.__update_rows = []
 
-        updates = self.__collect_component_updates()
+        updates = self.manager.get_component_updates(self.config)
         self.row_no_updates.set_visible(len(updates) == 0)
 
         for update in updates:
             row = self.__build_update_row(update)
             self.group_updates.add(row)
             self.__update_rows.append(row)
-
-    def __collect_component_updates(self) -> List[Dict[str, object]]:
-        updates: List[Dict[str, object]] = []
-
-        runner_update = self.__collect_runner_update()
-        if runner_update:
-            updates.append(runner_update)
-
-        component_meta = {
-            "dxvk": {
-                "title": _("DXVK"),
-                "enabled": self.config.Parameters.dxvk,
-                "current": self.config.DXVK,
-                "supported": self.manager.supported_dxvk,
-            },
-            "vkd3d": {
-                "title": _("VKD3D"),
-                "enabled": self.config.Parameters.vkd3d,
-                "current": self.config.VKD3D,
-                "supported": self.manager.supported_vkd3d,
-            },
-            "nvapi": {
-                "title": _("NVAPI"),
-                "enabled": self.config.Parameters.dxvk_nvapi,
-                "current": self.config.NVAPI,
-                "supported": self.manager.supported_nvapi,
-            },
-            "latencyflex": {
-                "title": _("LatencyFleX"),
-                "enabled": self.config.Parameters.latencyflex,
-                "current": self.config.LatencyFleX,
-                "supported": self.manager.supported_latencyflex,
-            },
-        }
-
-        for component, meta in component_meta.items():
-            entry = self.__collect_dll_component_update(component, meta)
-            if entry:
-                updates.append(entry)
-
-        winebridge_entry = self.__collect_winebridge_update()
-        if winebridge_entry:
-            updates.append(winebridge_entry)
-
-        return updates
-
-    def __collect_dll_component_update(
-        self, component: str, meta: Dict[str, object]
-    ) -> Optional[Dict[str, object]]:
-        if not meta["enabled"] or not meta["current"] or not meta["supported"]:
-            return None
-
-        latest = self.__get_latest_supported(meta["supported"])
-        if not latest or not self.__is_version_newer(latest, meta["current"]):
-            return None
-
-        return {
-            "id": component,
-            "title": meta["title"],
-            "current": meta["current"],
-            "latest": latest,
-            "handler": self.__update_dll_component,
-            "kwargs": {"component": component, "version": latest},
-        }
-
-    def __collect_runner_update(self) -> Optional[Dict[str, object]]:
-        runner = self.config.Runner or ""
-        if not runner or runner.startswith("sys-"):
-            return None
-
-        candidates, component_type = self.__resolve_runner_catalog(runner)
-        if not candidates or not component_type:
-            return None
-
-        try:
-            latest = sort_by_version(candidates.copy())[0]
-        except ValueError:
-            latest = sorted(candidates, reverse=True)[0]
-
-        if not self.__is_version_newer(latest, runner):
-            return None
-
-        return {
-            "id": "runner",
-            "title": _("Runner"),
-            "current": runner,
-            "latest": latest,
-            "handler": self.__update_runner_component,
-            "kwargs": {"runner": latest, "component_type": component_type},
-        }
-
-    def __collect_winebridge_update(self) -> Optional[Dict[str, object]]:
-        if not self.config.Parameters.winebridge:
-            return None
-
-        latest = self.__get_latest_supported(self.manager.supported_winebridge)
-        installed = (
-            self.manager.winebridge_available[0]
-            if self.manager.winebridge_available
-            else None
-        )
-
-        if not latest or not self.__is_version_newer(latest, installed):
-            return None
-
-        return {
-            "id": "winebridge",
-            "title": _("WineBridge"),
-            "current": installed or _("Not installed"),
-            "latest": latest,
-            "handler": self.__update_winebridge_component,
-            "kwargs": {"version": latest},
-        }
-
-    def __resolve_runner_catalog(self, runner: str) -> Tuple[List[str], str]:
-        wine_candidates = self.__match_runner_candidates(
-            runner, self.manager.supported_wine_runners
-        )
-        if wine_candidates:
-            return wine_candidates, "runner"
-
-        proton_candidates = self.__match_runner_candidates(
-            runner, self.manager.supported_proton_runners
-        )
-        if proton_candidates:
-            return proton_candidates, "runner:proton"
-
-        return [], ""
-
-    def __match_runner_candidates(self, runner: str, catalog: dict) -> List[str]:
-        if not catalog:
-            return []
-        family = self.__runner_family(runner)
-        return [
-            name for name in catalog.keys() if name.lower().startswith(family) and name
-        ]
-
-    @staticmethod
-    def __runner_family(runner: str) -> str:
-        normalized = runner.lower()
-        match = re.search(r"\d", normalized)
-        if match:
-            candidate = normalized[: match.start()].rstrip("-")
-            if candidate:
-                return candidate
-        if "-" in normalized:
-            return normalized.split("-")[0]
-        return normalized
-
-    @staticmethod
-    def __get_latest_supported(supported_dict: dict) -> Optional[str]:
-        if not supported_dict:
-            return None
-        keys = list(supported_dict.keys())
-        try:
-            return sort_by_version(keys)[0]
-        except ValueError:
-            return sorted(keys, reverse=True)[0]
-
-    def __is_version_newer(self, latest: str, current: Optional[str]) -> bool:
-        if not latest:
-            return False
-        if not current:
-            return True
-        versions = [latest, current]
-        try:
-            ordered = sort_by_version(versions.copy())
-        except ValueError:
-            ordered = sorted(versions, reverse=True)
-        return ordered[0] == latest and latest != current
 
     def __build_update_row(self, update: Dict[str, object]) -> Adw.ActionRow:
         row = Adw.ActionRow()
@@ -756,9 +583,6 @@ class BottleView(Adw.PreferencesPage):
         spinner.set_visible(True)
         spinner.start()
         button.set_sensitive(False)
-
-        kwargs = dict(update.get("kwargs", {}))
-        kwargs["config"] = self.config
 
         def handle_response(result, error=False):
             spinner.stop()
@@ -796,76 +620,11 @@ class BottleView(Adw.PreferencesPage):
             self.window.show_toast(message)
 
         RunAsync(
-            task_func=update["handler"],
+            task_func=self.manager.apply_component_update,
             callback=handle_response,
-            **kwargs,
+            config=self.config,
+            update=update,
         )
-
-    def __ensure_component_available(self, component: str, version: str) -> Result:
-        availability_attrs = {
-            "dxvk": "dxvk_available",
-            "vkd3d": "vkd3d_available",
-            "nvapi": "nvapi_available",
-            "latencyflex": "latencyflex_available",
-        }
-        available = getattr(self.manager, availability_attrs[component], [])
-        if version in available:
-            return Result(True)
-        return self.manager.component_manager.install(component, version)
-
-    def __update_dll_component(
-        self, *, component: str, version: str, config: BottleConfig
-    ) -> Result:
-        ensure = self.__ensure_component_available(component, version)
-        if not ensure.ok:
-            return ensure
-
-        remove_res = self.manager.install_dll_component(
-            config=config, component=component, remove=True
-        )
-        if not remove_res.ok:
-            return remove_res
-
-        key_map = {
-            "dxvk": "DXVK",
-            "vkd3d": "VKD3D",
-            "nvapi": "NVAPI",
-            "latencyflex": "LatencyFleX",
-        }
-        update_res = self.manager.update_config(
-            config=config, key=key_map[component], value=version
-        )
-        if not update_res.ok:
-            return update_res
-        updated_config = update_res.data["config"]
-
-        install_res = self.manager.install_dll_component(
-            config=updated_config, component=component, version=version
-        )
-        if not install_res.ok:
-            return install_res
-
-        return Result(True, data={"config": updated_config})
-
-    def __update_runner_component(
-        self,
-        *,
-        runner: str,
-        component_type: str,
-        config: BottleConfig,
-    ) -> Result:
-        if runner not in self.manager.runners_available:
-            res = self.manager.component_manager.install(component_type, runner)
-            if not res.ok:
-                return res
-        return Runner.runner_update(config=config, manager=self.manager, runner=runner)
-
-    def __update_winebridge_component(
-        self, *, version: str, config: BottleConfig
-    ) -> Result:
-        if version in self.manager.winebridge_available:
-            return Result(True)
-        return self.manager.component_manager.install("winebridge", version)
 
     def __run_executable_with_args(self, widget):
         """

@@ -19,6 +19,7 @@ import contextlib
 import fnmatch
 import os
 import random
+import re
 import shutil
 import subprocess
 import time
@@ -2082,6 +2083,248 @@ class Manager(metaclass=Singleton):
         if not runners:
             runners = self.__sort_runners(self.runners_available, "")
         return runners[0] if runners else []
+
+    # Config version key for each DLL component that supports upgrades.
+    __dll_component_keys = {
+        "dxvk": "DXVK",
+        "vkd3d": "VKD3D",
+        "nvapi": "NVAPI",
+        "latencyflex": "LatencyFleX",
+    }
+
+    def get_component_updates(self, config: BottleConfig) -> list:
+        """
+        Return the components of a bottle that can be upgraded to a newer
+        version available in the online catalog. Each entry is a dict with
+        id, title, current, latest and (for runners) component_type. Steam
+        bottles are skipped, since they manage their own runner.
+        """
+        updates = []
+
+        if config.Environment == "Steam":
+            return updates
+
+        runner_update = self.__collect_runner_update(config)
+        if runner_update:
+            updates.append(runner_update)
+
+        component_meta = {
+            "dxvk": {
+                "title": _("DXVK"),
+                "enabled": config.Parameters.dxvk,
+                "current": config.DXVK,
+                "supported": self.supported_dxvk,
+            },
+            "vkd3d": {
+                "title": _("VKD3D"),
+                "enabled": config.Parameters.vkd3d,
+                "current": config.VKD3D,
+                "supported": self.supported_vkd3d,
+            },
+            "nvapi": {
+                "title": _("NVAPI"),
+                "enabled": config.Parameters.dxvk_nvapi,
+                "current": config.NVAPI,
+                "supported": self.supported_nvapi,
+            },
+            "latencyflex": {
+                "title": _("LatencyFleX"),
+                "enabled": config.Parameters.latencyflex,
+                "current": config.LatencyFleX,
+                "supported": self.supported_latencyflex,
+            },
+        }
+
+        for component, meta in component_meta.items():
+            if not meta["enabled"] or not meta["current"] or not meta["supported"]:
+                continue
+            latest = self.__get_latest_supported(meta["supported"])
+            if not latest or not self.__is_version_newer(latest, meta["current"]):
+                continue
+            updates.append(
+                {
+                    "id": component,
+                    "title": meta["title"],
+                    "current": meta["current"],
+                    "latest": latest,
+                }
+            )
+
+        winebridge_update = self.__collect_winebridge_update(config)
+        if winebridge_update:
+            updates.append(winebridge_update)
+
+        return updates
+
+    def apply_component_update(self, config: BottleConfig, update: dict) -> Result:
+        """Apply a single update entry returned by get_component_updates,
+        downloading the target version first if it is not installed yet."""
+        component = update["id"]
+
+        if component == "runner":
+            return self.__update_runner_component(
+                config, update["latest"], update["component_type"]
+            )
+        if component == "winebridge":
+            return self.__update_winebridge_component(config, update["latest"])
+        return self.__update_dll_component(config, component, update["latest"])
+
+    def __collect_runner_update(self, config: BottleConfig) -> Optional[dict]:
+        runner = config.Runner or ""
+        if not runner or runner.startswith("sys-"):
+            return None
+
+        candidates, component_type = self.__resolve_runner_catalog(runner)
+        if not candidates or not component_type:
+            return None
+
+        try:
+            latest = sort_by_version(candidates.copy())[0]
+        except ValueError:
+            latest = sorted(candidates, reverse=True)[0]
+
+        if not self.__is_version_newer(latest, runner):
+            return None
+
+        return {
+            "id": "runner",
+            "title": _("Runner"),
+            "current": runner,
+            "latest": latest,
+            "component_type": component_type,
+        }
+
+    def __collect_winebridge_update(self, config: BottleConfig) -> Optional[dict]:
+        if not config.Parameters.winebridge:
+            return None
+
+        latest = self.__get_latest_supported(self.supported_winebridge)
+        installed = (
+            self.winebridge_available[0] if self.winebridge_available else None
+        )
+        if not latest or not self.__is_version_newer(latest, installed):
+            return None
+
+        return {
+            "id": "winebridge",
+            "title": _("WineBridge"),
+            "current": installed or _("Not installed"),
+            "latest": latest,
+        }
+
+    def __resolve_runner_catalog(self, runner: str) -> Tuple[list, str]:
+        wine_candidates = self.__match_runner_candidates(
+            runner, self.supported_wine_runners
+        )
+        if wine_candidates:
+            return wine_candidates, "runner"
+
+        proton_candidates = self.__match_runner_candidates(
+            runner, self.supported_proton_runners
+        )
+        if proton_candidates:
+            return proton_candidates, "runner:proton"
+
+        return [], ""
+
+    def __match_runner_candidates(self, runner: str, catalog: dict) -> list:
+        if not catalog:
+            return []
+        family = self.__runner_family(runner)
+        return [name for name in catalog.keys() if name.lower().startswith(family)]
+
+    @staticmethod
+    def __runner_family(runner: str) -> str:
+        normalized = runner.lower()
+        match = re.search(r"\d", normalized)
+        if match:
+            candidate = normalized[: match.start()].rstrip("-")
+            if candidate:
+                return candidate
+        if "-" in normalized:
+            return normalized.split("-")[0]
+        return normalized
+
+    @staticmethod
+    def __get_latest_supported(supported_dict: dict) -> Optional[str]:
+        if not supported_dict:
+            return None
+        keys = list(supported_dict.keys())
+        try:
+            return sort_by_version(keys)[0]
+        except ValueError:
+            return sorted(keys, reverse=True)[0]
+
+    @staticmethod
+    def __is_version_newer(latest: str, current: Optional[str]) -> bool:
+        if not latest:
+            return False
+        if not current:
+            return True
+        versions = [latest, current]
+        try:
+            ordered = sort_by_version(versions.copy())
+        except ValueError:
+            ordered = sorted(versions, reverse=True)
+        return ordered[0] == latest and latest != current
+
+    def __ensure_component_available(self, component: str, version: str) -> Result:
+        availability_attrs = {
+            "dxvk": "dxvk_available",
+            "vkd3d": "vkd3d_available",
+            "nvapi": "nvapi_available",
+            "latencyflex": "latencyflex_available",
+        }
+        available = getattr(self, availability_attrs[component], [])
+        if version in available:
+            return Result(True)
+        return self.component_manager.install(component, version)
+
+    def __update_dll_component(
+        self, config: BottleConfig, component: str, version: str
+    ) -> Result:
+        ensure = self.__ensure_component_available(component, version)
+        if not ensure.ok:
+            return ensure
+
+        remove_res = self.install_dll_component(
+            config=config, component=component, remove=True
+        )
+        if not remove_res.ok:
+            return remove_res
+
+        update_res = self.update_config(
+            config=config, key=self.__dll_component_keys[component], value=version
+        )
+        if not update_res.ok:
+            return update_res
+        updated_config = update_res.data["config"]
+
+        install_res = self.install_dll_component(
+            config=updated_config, component=component, version=version
+        )
+        if not install_res.ok:
+            return install_res
+
+        return Result(True, data={"config": updated_config})
+
+    def __update_runner_component(
+        self, config: BottleConfig, runner: str, component_type: str
+    ) -> Result:
+        from bottles.backend.runner import Runner
+
+        if runner not in self.runners_available:
+            res = self.component_manager.install(component_type, runner)
+            if not res.ok:
+                return res
+        return Runner.runner_update(config=config, manager=self, runner=runner)
+
+    def __update_winebridge_component(
+        self, config: BottleConfig, version: str
+    ) -> Result:
+        if version in self.winebridge_available:
+            return Result(True)
+        return self.component_manager.install("winebridge", version)
 
     def delete_bottle(self, config: BottleConfig) -> bool:
         """
