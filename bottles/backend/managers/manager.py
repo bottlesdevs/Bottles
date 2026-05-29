@@ -1639,12 +1639,14 @@ class Manager(metaclass=Singleton):
                 log_update(_("Fail to install components, tried 3 times."))
                 return False
 
+            # Only runner, DXVK and VKD3D are truly essential. NVAPI and
+            # LatencyFleX are optional (useless without an NVIDIA GPU / not
+            # always wanted) so a missing or 404 optional component must not
+            # abort bottle creation; they are still attempted below.
             if 0 in [
                 len(self.runners_available),
                 len(self.dxvk_available),
                 len(self.vkd3d_available),
-                len(self.nvapi_available),
-                len(self.latencyflex_available),
             ]:
                 logging.error("Missing essential components. Installing…")
                 log_update(_("Missing essential components. Installing…"))
