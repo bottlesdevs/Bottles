@@ -274,7 +274,12 @@ class WineCommand:
 
         # Language
         if config.Language != "sys":
-            env.add("LC_ALL", config.Language)
+            # ensure an encoding is set (e.g. zh_CN -> zh_CN.UTF-8), otherwise
+            # wine renders non-Latin text as garbage
+            language = config.Language
+            if "." not in language:
+                language = f"{language}.UTF-8"
+            env.add("LC_ALL", language)
 
         # Bottle DLL_Overrides
         if config.DLL_Overrides:
