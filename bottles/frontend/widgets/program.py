@@ -29,6 +29,7 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.wine.wineserver import WineServer
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.utils.playtime import PlaytimeService
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
@@ -254,10 +255,19 @@ class ProgramEntry(Adw.ActionRow):
 
     def stop_process(self, widget):
         self.window.show_toast(_('Stopping "{0}"…').format(self.program["name"]))
-        winedbg = WineDbg(self.config)
         widget.set_sensitive(False)
-        winedbg.kill_process(self.executable)
-        self.__reset_buttons(True)
+
+        def task():
+            if self.config.Parameters.sandbox:
+                # winedbg cannot reach processes running inside the dedicated
+                # sandbox, so stop the bottle's sandbox launchers instead.
+                WineServer(self.config).force_kill()
+            else:
+                WineDbg(self.config).kill_process(self.executable)
+
+        # run off the main loop so the UI never freezes while the (possibly
+        # blocking) stop command runs
+        RunAsync(task, callback=self.__reset_buttons)
 
     @GtkUtils.run_in_main_loop
     def update_programs(self, _result=False, _error=False):

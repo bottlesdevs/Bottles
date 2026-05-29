@@ -18,11 +18,19 @@
 
 import os
 import shlex
+import signal
 import subprocess
 from typing import Optional
 
 
 class SandboxManager:
+    # Track the flatpak-spawn launcher processes per WINEPREFIX so they can be
+    # stopped later. Under `flatpak-spawn --sandbox` the wine processes run in a
+    # separate sandbox instance the host cannot see by scanning /proc, so the
+    # only reliable way to stop them is to kill the launcher process group
+    # (combined with --watch-bus, which makes the sandboxed command exit when
+    # its launcher goes away).
+    _running: dict[str, list[subprocess.Popen]] = {}
     def __init__(
         self,
         envs: Optional[dict] = None,
@@ -95,7 +103,7 @@ class SandboxManager:
         return _cmd
 
     def __get_flatpak_spawn(self, cmd: str):
-        _cmd = ["flatpak-spawn", "--sandbox"]
+        _cmd = ["flatpak-spawn", "--sandbox", "--watch-bus"]
 
         if self.envs:
             _cmd += [f"--env={k}={shlex.quote(v)}" for k, v in self.envs.items()]
@@ -147,10 +155,31 @@ class SandboxManager:
         return " ".join(_cmd)
 
     def run(self, cmd: str) -> subprocess.Popen[bytes]:
-        return subprocess.Popen(
+        proc = subprocess.Popen(
             self.get_cmd(cmd),
             shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             start_new_session=True,
         )
+        prefix = (self.envs or {}).get("WINEPREFIX")
+        if prefix:
+            self._running.setdefault(prefix, []).append(proc)
+        return proc
+
+    @classmethod
+    def terminate_prefix(cls, prefix: str, sig: int = signal.SIGKILL) -> int:
+        """Kill the process group of every sandbox launcher started for the
+        given WINEPREFIX. Returns how many were signalled. Finished launchers
+        are pruned."""
+        killed = 0
+        for proc in cls._running.get(prefix, []):
+            if proc.poll() is not None:
+                continue
+            try:
+                os.killpg(os.getpgid(proc.pid), sig)
+                killed += 1
+            except (ProcessLookupError, PermissionError, OSError):
+                pass
+        cls._running[prefix] = []
+        return killed
