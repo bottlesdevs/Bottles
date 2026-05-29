@@ -321,7 +321,7 @@ class ManagerUtils:
                     Exec={}
                     Type=Application
                     Terminal=false
-                    Categories=Application;
+                    Categories=Game;
                     Comment=Launch {} using Bottles.
                     StartupWMClass={}""".format(
                         exec, program.get("name"), program.get("executable").lower()
@@ -332,9 +332,10 @@ class ManagerUtils:
                 desktop_dir = os.path.expanduser("~/.local/share/applications")
                 os.makedirs(desktop_dir, exist_ok=True)
                 safe_name = "".join([c for c in program.get("name") if c.isalnum() or c in ("-", "_")])
-                filename = f"bottles-{config.get('Name')}-{safe_name}.desktop"
+                safe_bottle = "".join([c for c in config.get("Name") if c.isalnum() or c in ("-", "_")])
+                filename = f"bottles-{safe_bottle}-{safe_name}.desktop"
                 filepath = os.path.join(desktop_dir, filename)
-                content = f"[Desktop Entry]\nExec={exec}\nType=Application\nTerminal=false\nCategories=Application;\nComment=Launch {program.get('name')} using Bottles.\nStartupWMClass={program.get('executable').lower()}\nName={program.get('name')}\nIcon={icon}\n"
+                content = f"[Desktop Entry]\nExec={exec}\nType=Application\nTerminal=false\nCategories=Game;\nComment=Launch {program.get('name')} using Bottles.\nStartupWMClass={program.get('executable').lower()}\nName={program.get('name')}\nIcon={icon}\n"
                 try:
                     with open(filepath, "w") as f:
                         f.write(content)
