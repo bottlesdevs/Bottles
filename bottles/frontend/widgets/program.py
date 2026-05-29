@@ -18,7 +18,7 @@
 import webbrowser
 from gettext import gettext as _
 
-from gi.repository import Adw, Gtk
+from gi.repository import Adw, GLib, Gtk
 
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.steam import SteamManager
@@ -76,7 +76,7 @@ class ProgramEntry(Adw.ActionRow):
         self.config = config
         self.program = program
 
-        self.set_title(self.program["name"])
+        self.set_title(GLib.markup_escape_text(self.program["name"]))
 
         if is_steam:
             self.set_subtitle("Steam")
