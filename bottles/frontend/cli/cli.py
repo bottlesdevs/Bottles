@@ -864,7 +864,7 @@ class CLI:
             os.remove(standalone_path)
 
         with open(standalone_path, "w") as f:
-            f.write("#!/bin/bash\n")
+            f.write("#!/usr/bin/env bash\n")
             for k, v in env.items():
                 f.write(f"export {k}='{v}'\n")
             f.write(f"{cmd}\n")
