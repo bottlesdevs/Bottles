@@ -587,9 +587,15 @@ class WineCommand:
                     command = f"mangohud {command}"
 
             if gamescope_available and self.gamescope_activated:
-                gamescope_run = tempfile.NamedTemporaryFile(mode="w", suffix=".sh").name
+                # Write the script into Bottles' temp dir (shared with the
+                # dedicated sandbox) instead of the system /tmp, otherwise
+                # Gamescope running inside the sandbox cannot see it.
+                os.makedirs(Paths.temp, exist_ok=True)
+                gamescope_run = tempfile.NamedTemporaryFile(
+                    mode="w", suffix=".sh", dir=Paths.temp
+                ).name
 
-                # Create temporary sh script in /tmp where Gamescope will execute it
+                # Create the sh script where Gamescope will execute it
                 file = ["#!/usr/bin/env sh\n"]
                 file.append(f"{command} $@")
                 if mangohud_available and params.mangohud:
