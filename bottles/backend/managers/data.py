@@ -32,6 +32,7 @@ class UserDataKeys:
     LastFundingPrompt = "last_funding_prompt_date"
     FundingPromptCount = "funding_prompt_count"
     PersonalRepositories = "personal_repositories"
+    TrustedExecutables = "trusted_executables"
 
 
 class DataManager:
