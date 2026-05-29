@@ -259,7 +259,7 @@ class ManagerUtils:
                     Categories=Application;
                     Comment=Launch {} using Bottles.
                     StartupWMClass={}""".format(
-                        exec, program.get("name"), program.get("name")
+                        exec, program.get("name"), program.get("executable").lower()
                     )
                 )
             except GLib.Error as e:
@@ -269,7 +269,7 @@ class ManagerUtils:
                 safe_name = "".join([c for c in program.get("name") if c.isalnum() or c in ("-", "_")])
                 filename = f"bottles-{config.get('Name')}-{safe_name}.desktop"
                 filepath = os.path.join(desktop_dir, filename)
-                content = f"[Desktop Entry]\nExec={exec}\nType=Application\nTerminal=false\nCategories=Application;\nComment=Launch {program.get('name')} using Bottles.\nStartupWMClass={program.get('name')}\nName={program.get('name')}\nIcon={icon}\n"
+                content = f"[Desktop Entry]\nExec={exec}\nType=Application\nTerminal=false\nCategories=Application;\nComment=Launch {program.get('name')} using Bottles.\nStartupWMClass={program.get('executable').lower()}\nName={program.get('name')}\nIcon={icon}\n"
                 try:
                     with open(filepath, "w") as f:
                         f.write(content)
