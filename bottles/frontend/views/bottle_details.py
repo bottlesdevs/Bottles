@@ -803,7 +803,17 @@ class BottleView(Adw.PreferencesPage):
 
         def handle_response(_widget, response_id):
             if response_id == "ok":
-                RunAsync(self.manager.delete_bottle, config=self.config)
+
+                def _on_deleted(_result=False, _error=False):
+                    # refresh on the main loop so the list (and its empty state
+                    # when the last bottle is gone) repaints correctly
+                    self.window.page_list.update_bottles_list()
+
+                RunAsync(
+                    self.manager.delete_bottle,
+                    callback=_on_deleted,
+                    config=self.config,
+                )
                 self.window.page_list.disable_bottle(self.config)
             _widget.destroy()
 
