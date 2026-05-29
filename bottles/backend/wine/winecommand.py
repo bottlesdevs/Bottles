@@ -752,11 +752,27 @@ class WineCommand:
         )
 
     def _get_sandbox_manager(self) -> SandboxManager:
+        # Steam/Proton runners live outside Paths.runners (in the Steam data
+        # directory) and rely on their associated Steam Linux Runtime. Expose
+        # the runner root and that runtime, otherwise the runtime's own bwrap
+        # cannot find its entry point inside the dedicated sandbox. Symlinks are
+        # resolved so the real target gets shared, not just the link.
+        share_paths_ro = [Paths.runners, Paths.temp]
+
+        runner_root = (
+            self.config.RunnerPath
+            if self.config.Environment == "Steam" and self.config.RunnerPath
+            else ManagerUtils.get_runner_path(self.config.Runner)
+        )
+        for extra in (runner_root, self.runner_runtime):
+            if extra and not str(extra).startswith("sys-"):
+                share_paths_ro.append(os.path.realpath(extra))
+
         return SandboxManager(
             envs=self.env,
             chdir=self.cwd,
             share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
-            share_paths_ro=[p for p in [Paths.runners, Paths.temp] if p],
+            share_paths_ro=[p for p in share_paths_ro if p],
             share_net=self.config.Sandbox.share_net,
             share_sound=self.config.Sandbox.share_sound,
         )
