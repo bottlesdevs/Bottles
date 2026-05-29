@@ -252,7 +252,7 @@ class ManagerUtils:
                 f"Terminal=false\n"
                 f"Categories=Application;\n"
                 f"Comment=Launch {program.get('name')} using Bottles.\n"
-                f"StartupWMClass={program.get('name')}\n"
+                f"StartupWMClass={program.get('executable').lower()}\n"
                 f"Name={program.get('name')}\n"
                 f"Icon={icon_path}\n"
             )
