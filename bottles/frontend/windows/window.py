@@ -187,6 +187,12 @@ class BottlesWindow(Adw.ApplicationWindow):
         SignalManager.connect(Signals.GNotification, self.g_notification_handler)
         SignalManager.connect(Signals.GShowUri, self.g_show_uri_handler)
 
+        # keep the session awake while one or more programs are running
+        self.__inhibit_cookie = 0
+        self.__running_launches = set()
+        SignalManager.connect(Signals.ProgramStarted, self.__on_program_started)
+        SignalManager.connect(Signals.ProgramFinished, self.__on_program_finished)
+
         self.__on_start()
         logging.info(
             "Bottles Started!",
@@ -248,6 +254,38 @@ class BottlesWindow(Adw.ApplicationWindow):
         """handle backend show_uri request"""
         uri: str = res.data
         Gtk.show_uri(self, uri, Gdk.CURRENT_TIME)
+
+    @GtkUtils.run_in_main_loop
+    def __on_program_started(self, res: Result):
+        """Inhibit session idle while a program is running, so the screen does
+        not blank during controller-only gameplay."""
+        launch_id = getattr(res.data, "launch_id", None)
+        if launch_id is None:
+            return
+        self.__running_launches.add(launch_id)
+
+        if self.__inhibit_cookie:
+            return
+        app = self.get_application()
+        if app:
+            self.__inhibit_cookie = app.inhibit(
+                self,
+                Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND,
+                _("A program is running"),
+            )
+
+    @GtkUtils.run_in_main_loop
+    def __on_program_finished(self, res: Result):
+        launch_id = getattr(res.data, "launch_id", None)
+        if launch_id is not None:
+            self.__running_launches.discard(launch_id)
+
+        if self.__running_launches or not self.__inhibit_cookie:
+            return
+        app = self.get_application()
+        if app:
+            app.uninhibit(self.__inhibit_cookie)
+        self.__inhibit_cookie = 0
 
     # endregion
 
