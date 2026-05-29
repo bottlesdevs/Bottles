@@ -84,6 +84,7 @@ _ = gettext.gettext
 class Bottles(Adw.Application):
     arg_exe = None
     arg_bottle = None
+    arg_args = None
     dark_provider = None
     journal_window = None
 
@@ -182,6 +183,9 @@ class Bottles(Adw.Application):
         if commands.contains("bottle"):
             self.arg_bottle = commands.lookup_value("bottle").get_string()
 
+        if commands.contains("arguments"):
+            self.arg_args = commands.lookup_value("arguments").get_string()
+
         if not self.arg_exe:
             """
             If no executable is specified, look if it was passed without
@@ -200,6 +204,26 @@ class Bottles(Adw.Application):
         )
         if uri:
             return self.__process_uri(uri)
+
+        if self.arg_exe:
+            if self.arg_bottle:
+                cmd = [
+                    "bottles-cli",
+                    "run",
+                    "-b",
+                    self.arg_bottle,
+                    "-e",
+                    self.arg_exe,
+                ]
+                if self.arg_args:
+                    cmd.extend(["-a", self.arg_args])
+                subprocess.Popen(cmd)
+                return 0
+            from bottles.frontend.windows.bottlepicker import BottlePickerDialog
+
+            dialog = BottlePickerDialog(application=self, arg_exe=self.arg_exe)
+            dialog.present()
+            return 0
 
         self.do_activate()
         return 0
