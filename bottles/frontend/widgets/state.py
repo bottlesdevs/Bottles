@@ -100,7 +100,10 @@ class StateEntry(Adw.ActionRow):
                     self.spinner.show()
                     self.spinner.start()
 
+                @GtkUtils.run_in_main_loop
                 def _after():
+                    # runs from the restore worker thread, so bounce the list
+                    # refresh back to the main loop or it will not repaint
                     if versioning_view and hasattr(versioning_view, "update"):
                         versioning_view.update()
                     self.manager.update_bottles()
