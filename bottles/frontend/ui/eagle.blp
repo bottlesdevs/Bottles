@@ -91,6 +91,27 @@ template $EagleView : Gtk.Box {
             icon-name: "text-x-generic-symbolic";
           }
         }
+
+        Adw.PreferencesGroup group_donate {
+          visible: false;
+
+          Adw.ActionRow {
+            title: _("Enjoying Eagle?");
+            subtitle: _("Eagle is part of Bottles, built by volunteers. If it helped you, please consider supporting its development.");
+            icon-name: "heart-symbolic";
+
+            [suffix]
+            Button btn_eagle_donate {
+              valign: center;
+              label: _("Support Bottles");
+
+              styles [
+                "suggested-action",
+                "pill",
+              ]
+            }
+          }
+        }
       };
     }
   }
