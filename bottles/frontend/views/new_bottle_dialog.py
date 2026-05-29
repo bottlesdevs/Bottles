@@ -202,7 +202,24 @@ class BottlesNewBottleDialog(Adw.Dialog):
             except GLib.Error:
                 return
 
-            self.custom_path = folder.get_path()
+            path = folder.get_path()
+            if path and "/run/user/" in path and "/doc/" in path:
+                """
+                Folders reached through the document portal are exposed under a
+                temporary mount that does not survive a reboot. A bottle created
+                there would vanish and break on the next session, so reject the
+                selection and ask the user to pick a regular folder.
+                """
+                self.window.show_toast(
+                    _(
+                        "This folder is only available as a temporary location "
+                        "and would be lost after a reboot. Please choose a "
+                        "different folder."
+                    )
+                )
+                return
+
+            self.custom_path = path
             print(folder.get_basename())
 
             self.btn_choose_path_reset.set_visible(True)
