@@ -4,6 +4,7 @@ import sqlite3
 import time
 from freezegun import freeze_time
 
+from bottles.backend.managers.manager import Manager
 from bottles.backend.managers.playtime import ProcessSessionTracker
 
 
@@ -118,5 +119,42 @@ def test_recovery_same_bottle_different_programs(manager):
     # Two totals rows for the bottle
     cur.execute("SELECT COUNT(*) FROM playtime_totals WHERE bottle_id=?", ("b1",))
     assert cur.fetchone()[0] == 2
+
+
+def test_cli_manager_init_does_not_recover_live_sessions(temp_xdg_home, test_settings_stub):
+    Manager._instances.pop(Manager, None)
+    manager = None
+    other_manager = None
+
+    try:
+        manager = Manager(g_settings=test_settings_stub, check_connection=False, is_cli=True)
+        tracker = manager.playtime_tracker
+        assert tracker is not None
+
+        sid = tracker.start_session(
+            bottle_id="b1",
+            bottle_name="Bottle",
+            bottle_path="/bottle",
+            program_name="Game",
+            program_path="C:/Game/game.exe",
+        )
+
+        Manager._instances.pop(Manager, None)
+        other_manager = Manager(
+            g_settings=test_settings_stub,
+            check_connection=False,
+            is_cli=True,
+        )
+
+        con = sqlite3.connect(other_manager.playtime_tracker.db_path)
+        cur = con.cursor()
+        cur.execute("SELECT status FROM sessions WHERE id=?", (sid,))
+        assert cur.fetchone()[0] == "running"
+    finally:
+        if manager and getattr(manager, "playtime_tracker", None):
+            manager.playtime_tracker.shutdown()
+        if other_manager and getattr(other_manager, "playtime_tracker", None):
+            other_manager.playtime_tracker.shutdown()
+        Manager._instances.pop(Manager, None)
 
 
