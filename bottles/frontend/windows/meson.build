@@ -23,6 +23,7 @@ bottles_sources = [
   'journal.py',
   'bottlepicker.py',
   'protonalert.py',
+  'bulkupdate.py',
   'sandbox.py',
   'installer.py',
   'depscheck.py',

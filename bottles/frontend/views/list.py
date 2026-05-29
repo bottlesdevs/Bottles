@@ -16,13 +16,13 @@
 #
 
 from datetime import datetime
-from gettext import gettext as _
+from gettext import gettext as _, ngettext
 
 from gi.repository import Adw, GLib, Gtk, Xdp
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
-from bottles.backend.state import SignalManager, Signals
+from bottles.backend.state import EventManager, Events, SignalManager, Signals
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.frontend.params import APP_ID
@@ -139,6 +139,7 @@ class BottleView(Adw.Bin):
     entry_search = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
     no_bottles_found = Gtk.Template.Child()
+    update_banner = Gtk.Template.Child()
 
     # endregion
 
@@ -152,6 +153,7 @@ class BottleView(Adw.Bin):
         # connect signals
         self.btn_create.connect("clicked", self.window.show_add_view)
         self.entry_search.connect("changed", self.__search_bottles)
+        self.update_banner.connect("button-clicked", self.__show_bulk_update)
 
         # backend signals
         SignalManager.connect(
@@ -205,6 +207,47 @@ class BottleView(Adw.Bin):
             else:
                 self.group_steam.set_visible(True)
                 self.group_bottles.set_title(_("Your Bottles"))
+
+        self.__update_banner_state(local_bottles)
+
+    def __update_banner_state(self, local_bottles) -> None:
+        """Reveal the home banner when some bottles can update their components.
+
+        The component catalog is fetched asynchronously, so wait for it to be
+        organized in a worker thread before counting, then touch the banner
+        back on the main loop.
+        """
+        configs = list(local_bottles.values())
+
+        def count_updates():
+            EventManager.wait(Events.ComponentsOrganizing)
+            return sum(
+                1
+                for config in configs
+                if self.window.manager.get_component_updates(config)
+            )
+
+        RunAsync(count_updates, callback=self.__apply_banner_state)
+
+    def __apply_banner_state(self, count, error=False) -> None:
+        if not count:
+            self.update_banner.set_revealed(False)
+            return
+
+        self.update_banner.set_title(
+            ngettext(
+                "Component updates are available for {0} bottle.",
+                "Component updates are available for {0} bottles.",
+                count,
+            ).format(count)
+        )
+        self.update_banner.set_revealed(True)
+
+    def __show_bulk_update(self, *_args) -> None:
+        from bottles.frontend.windows.bulkupdate import BottlesBulkUpdateDialog
+
+        dialog = BottlesBulkUpdateDialog(self.window)
+        dialog.present(self.window)
 
     def show_page(self, page: str) -> None:
         if config := self.window.manager.local_bottles.get(page):
