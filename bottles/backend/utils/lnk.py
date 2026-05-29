@@ -71,5 +71,10 @@ class LnkUtils:
 
             try:
                 return content[-1].decode(decode)
-            except UnicodeDecodeError:
-                return None
+            except (UnicodeDecodeError, LookupError):
+                # the system locale may report a codec Python cannot resolve
+                # (e.g. TCVN), so fall back to a tolerant decode
+                try:
+                    return content[-1].decode("utf-16", errors="replace")
+                except (UnicodeDecodeError, LookupError):
+                    return None

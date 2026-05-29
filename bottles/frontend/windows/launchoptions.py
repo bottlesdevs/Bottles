@@ -35,6 +35,7 @@ class LaunchOptionsDialog(Adw.Window):
 
     # region Widgets
     entry_arguments = Gtk.Template.Child()
+    switch_arguments = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_pre_script = Gtk.Template.Child()
     btn_pre_script_reset = Gtk.Template.Child()
@@ -103,6 +104,10 @@ class LaunchOptionsDialog(Adw.Window):
         if program.get("arguments") not in ["", None]:
             self.entry_arguments.set_text(program.get("arguments"))
 
+        arguments_enabled = program.get("arguments_enabled", True)
+        self.switch_arguments.set_active(arguments_enabled)
+        self.entry_arguments.set_sensitive(arguments_enabled)
+
         # keeps track of toggled switches
         self.toggled = {}
         self.toggled["dxvk"] = False
@@ -122,6 +127,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
         self.btn_reset_defaults.connect("clicked", self.__reset_defaults)
         self.entry_arguments.connect("activate", self.__save)
+        self.switch_arguments.connect("notify::active", self.__toggle_arguments)
 
         # set overrides status
         self.global_dxvk = program_dxvk = config.Parameters.dxvk
@@ -238,6 +244,7 @@ class LaunchOptionsDialog(Adw.Window):
         )
         self.__set_override("winebridge", program_winebridge, self.global_winebridge)
         self.program["arguments"] = self.entry_arguments.get_text()
+        self.program["arguments_enabled"] = self.switch_arguments.get_active()
 
         pre_args = self.entry_pre_script_args.get_text()
         post_args = self.entry_post_script_args.get_text()
@@ -257,6 +264,9 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __save(self, *_args):
         GLib.idle_add(self.__idle_save)
+
+    def __toggle_arguments(self, *_args):
+        self.entry_arguments.set_sensitive(self.switch_arguments.get_active())
 
     def __choose_pre_script(self, *_args):
         def set_path(dialog, result):

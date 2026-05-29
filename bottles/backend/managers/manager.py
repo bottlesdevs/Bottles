@@ -19,6 +19,7 @@ import contextlib
 import fnmatch
 import os
 import random
+import re
 import shutil
 import subprocess
 import time
@@ -58,7 +59,13 @@ from bottles.backend.models.process import (
 )
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.state import EventManager, Events, SignalManager, Signals
+from bottles.backend.state import (
+    EventManager,
+    Events,
+    Notification,
+    SignalManager,
+    Signals,
+)
 from bottles.backend.utils import yaml
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
@@ -125,8 +132,12 @@ class Manager(metaclass=Singleton):
         # common variables
         self.is_cli = is_cli
         self.settings = g_settings or GSettingsStub
+        # The CLI used to be wired offline unconditionally, which left the
+        # component catalog empty and made bottle creation fail when nothing was
+        # cached locally. Honor the actual force-offline setting instead, so the
+        # CLI can fetch and install components just like the GUI.
         self.utils_conn = ConnectionUtils(
-            force_offline=self.is_cli or self.settings.get_boolean("force-offline")
+            force_offline=self.settings.get_boolean("force-offline")
         )
         self.data_mgr = DataManager()
         _offline = True
@@ -136,12 +147,22 @@ class Manager(metaclass=Singleton):
 
         # validating user-defined Paths.bottles
         if user_bottles_path := self.data_mgr.get(UserDataKeys.CustomBottlesPath):
-            if os.path.exists(user_bottles_path):
+            is_portal_path = "/run/user/" in user_bottles_path and "/doc/" in user_bottles_path
+            if is_portal_path:
+                # a transient document portal path is not usable across sessions
+                # and makes startup crash when it is no longer accessible
+                logging.error(
+                    f"Custom bottles path {user_bottles_path} is a temporary "
+                    f"portal path! Falling back to default path."
+                )
+            elif os.path.exists(user_bottles_path) and os.access(
+                user_bottles_path, os.W_OK
+            ):
                 Paths.bottles = user_bottles_path
             else:
                 logging.error(
-                    f"Custom bottles path {user_bottles_path} does not exist! "
-                    f"Falling back to default path."
+                    f"Custom bottles path {user_bottles_path} does not exist or "
+                    f"is not writable! Falling back to default path."
                 )
 
         # sub-managers
@@ -1194,20 +1215,25 @@ class Manager(metaclass=Singleton):
         self.local_bottles = {}
         self._programs_cache = {}
 
+        # custom-path bottles whose location is currently unreachable (e.g. an
+        # unmounted drive), so the user can be told instead of them silently
+        # vanishing from the list
+        unavailable = []
+
         def process_bottle(bottle):
             _name = bottle
             _bottle = str(os.path.join(Paths.bottles, bottle))
             _placeholder = os.path.join(_bottle, "placeholder.yml")
             _config = os.path.join(_bottle, "bottle.yml")
+            _placeholder_target = None
 
             if os.path.exists(_placeholder):
                 with open(_placeholder, "r") as f:
                     try:
                         placeholder_yaml = yaml.load(f)
                         if placeholder_yaml.get("Path"):
-                            _config = os.path.join(
-                                placeholder_yaml.get("Path"), "bottle.yml"
-                            )
+                            _placeholder_target = placeholder_yaml.get("Path")
+                            _config = os.path.join(_placeholder_target, "bottle.yml")
                         else:
                             raise ValueError("Missing Path in placeholder.yml")
                     except (yaml.YAMLError, ValueError):
@@ -1216,6 +1242,9 @@ class Manager(metaclass=Singleton):
             config_load = BottleConfig.load(_config)
 
             if not config_load.status:
+                if _placeholder_target:
+                    # the bottle lives on a custom path that is not reachable now
+                    unavailable.append(_name)
                 return
 
             config = config_load.data
@@ -1333,6 +1362,27 @@ class Manager(metaclass=Singleton):
         if len(self.local_bottles) > 0 and not silent:
             logging.info(
                 "Bottles found:\n - {0}".format("\n - ".join(self.local_bottles))
+            )
+
+        if unavailable and not silent and not self.is_cli:
+            logging.warning(
+                "Unavailable bottles (offline location):\n - {0}".format(
+                    "\n - ".join(unavailable)
+                )
+            )
+            SignalManager.send(
+                Signals.GNotification,
+                Result(
+                    True,
+                    Notification(
+                        title="Bottles",
+                        text=_(
+                            "Some bottles are unavailable because their location is "
+                            "offline: {0}"
+                        ).format(", ".join(unavailable)),
+                        image="drive-harddisk-symbolic",
+                    ),
+                ),
             )
 
         if (
@@ -1599,12 +1649,14 @@ class Manager(metaclass=Singleton):
                 log_update(_("Fail to install components, tried 3 times."))
                 return False
 
+            # Only runner, DXVK and VKD3D are truly essential. NVAPI and
+            # LatencyFleX are optional (useless without an NVIDIA GPU / not
+            # always wanted) so a missing or 404 optional component must not
+            # abort bottle creation; they are still attempted below.
             if 0 in [
                 len(self.runners_available),
                 len(self.dxvk_available),
                 len(self.vkd3d_available),
-                len(self.nvapi_available),
-                len(self.latencyflex_available),
             ]:
                 logging.error("Missing essential components. Installing…")
                 log_update(_("Missing essential components. Installing…"))
@@ -2078,6 +2130,254 @@ class Manager(metaclass=Singleton):
         if not runners:
             runners = self.__sort_runners(self.runners_available, "")
         return runners[0] if runners else []
+
+    # Config version key for each DLL component that supports upgrades.
+    __dll_component_keys = {
+        "dxvk": "DXVK",
+        "vkd3d": "VKD3D",
+        "nvapi": "NVAPI",
+        "latencyflex": "LatencyFleX",
+    }
+
+    def get_component_updates(self, config: BottleConfig) -> list:
+        """
+        Return the components of a bottle that can be upgraded to a newer
+        version available in the online catalog. Each entry is a dict with
+        id, title, current, latest and (for runners) component_type. Steam
+        bottles are skipped, since they manage their own runner.
+        """
+        updates = []
+
+        if config.Environment == "Steam":
+            return updates
+
+        runner_update = self.__collect_runner_update(config)
+        if runner_update:
+            updates.append(runner_update)
+
+        component_meta = {
+            "dxvk": {
+                "title": _("DXVK"),
+                "enabled": config.Parameters.dxvk,
+                "current": config.DXVK,
+                "supported": self.supported_dxvk,
+            },
+            "vkd3d": {
+                "title": _("VKD3D"),
+                "enabled": config.Parameters.vkd3d,
+                "current": config.VKD3D,
+                "supported": self.supported_vkd3d,
+            },
+            "nvapi": {
+                "title": _("NVAPI"),
+                "enabled": config.Parameters.dxvk_nvapi,
+                "current": config.NVAPI,
+                "supported": self.supported_nvapi,
+            },
+            "latencyflex": {
+                "title": _("LatencyFleX"),
+                "enabled": config.Parameters.latencyflex,
+                "current": config.LatencyFleX,
+                "supported": self.supported_latencyflex,
+            },
+        }
+
+        for component, meta in component_meta.items():
+            if not meta["enabled"] or not meta["current"] or not meta["supported"]:
+                continue
+            latest = self.__get_latest_supported(meta["supported"])
+            if not latest or not self.__is_version_newer(latest, meta["current"]):
+                continue
+            updates.append(
+                {
+                    "id": component,
+                    "title": meta["title"],
+                    "current": meta["current"],
+                    "latest": latest,
+                }
+            )
+
+        winebridge_update = self.__collect_winebridge_update(config)
+        if winebridge_update:
+            updates.append(winebridge_update)
+
+        return updates
+
+    def apply_component_update(self, config: BottleConfig, update: dict) -> Result:
+        """Apply a single update entry returned by get_component_updates,
+        downloading the target version first if it is not installed yet."""
+        component = update["id"]
+
+        if component == "runner":
+            return self.__update_runner_component(
+                config, update["latest"], update["component_type"]
+            )
+        if component == "winebridge":
+            return self.__update_winebridge_component(config, update["latest"])
+        return self.__update_dll_component(config, component, update["latest"])
+
+    def __collect_runner_update(self, config: BottleConfig) -> Optional[dict]:
+        runner = config.Runner or ""
+        if not runner or runner.startswith("sys-"):
+            return None
+
+        latest, component_type = self.__latest_runner_for(runner)
+        if not latest:
+            return None
+
+        return {
+            "id": "runner",
+            "title": _("Runner"),
+            "current": runner,
+            "latest": latest,
+            "component_type": component_type,
+        }
+
+    def __collect_winebridge_update(self, config: BottleConfig) -> Optional[dict]:
+        if not config.Parameters.winebridge:
+            return None
+
+        latest = self.__get_latest_supported(self.supported_winebridge)
+        installed = (
+            self.winebridge_available[0] if self.winebridge_available else None
+        )
+        if not latest or not self.__is_version_newer(latest, installed):
+            return None
+
+        return {
+            "id": "winebridge",
+            "title": _("WineBridge"),
+            "current": installed or _("Not installed"),
+            "latest": latest,
+        }
+
+    def __latest_runner_for(self, runner: str):
+        """Return (latest_runner_name, component_type) for the newest catalog
+        runner that shares the exact family/variant of the given runner, or
+        (None, "") if none is newer. Matching is done on a version-stripped
+        identity so different variants (e.g. kron4ek wine vs staging vs proton)
+        never get mixed up, and versions are compared as integer tuples so
+        10.20 ranks above 10.0."""
+        family, version = self.__runner_identity(runner)
+
+        for catalog, component_type in (
+            (self.supported_wine_runners, "runner"),
+            (self.supported_proton_runners, "runner:proton"),
+        ):
+            if not catalog:
+                continue
+            same_family = [
+                (name, self.__runner_identity(name)[1])
+                for name in catalog.keys()
+                if self.__runner_identity(name)[0] == family
+            ]
+            if not same_family:
+                continue
+            # the runner belongs to this catalog; pick the newest same-family
+            # version, only if it is strictly newer than the current one
+            best_name, best_version = None, version
+            for name, candidate_version in same_family:
+                if candidate_version > best_version:
+                    best_name, best_version = name, candidate_version
+            return best_name, (component_type if best_name else "")
+
+        return None, ""
+
+    @staticmethod
+    def __runner_identity(name: str):
+        """Split a runner name into (family, version_tuple). The version is the
+        first dotted/dashed number group (e.g. 10.20, 8-26); the family is the
+        name with that version removed, so it keeps any variant suffix."""
+        normalized = (name or "").lower()
+        match = re.search(r"\d+(?:[.-]\d+)+", normalized)
+        if not match:
+            return normalized, ()
+        version = tuple(
+            int(part) for part in re.split(r"[.-]", match.group(0))
+        )
+        family = normalized[: match.start()] + normalized[match.end() :]
+        return family, version
+
+    @staticmethod
+    def __get_latest_supported(supported_dict: dict) -> Optional[str]:
+        if not supported_dict:
+            return None
+        keys = list(supported_dict.keys())
+        try:
+            return sort_by_version(keys)[0]
+        except ValueError:
+            return sorted(keys, reverse=True)[0]
+
+    @staticmethod
+    def __is_version_newer(latest: str, current: Optional[str]) -> bool:
+        if not latest:
+            return False
+        if not current:
+            return True
+        versions = [latest, current]
+        try:
+            ordered = sort_by_version(versions.copy())
+        except ValueError:
+            ordered = sorted(versions, reverse=True)
+        return ordered[0] == latest and latest != current
+
+    def __ensure_component_available(self, component: str, version: str) -> Result:
+        availability_attrs = {
+            "dxvk": "dxvk_available",
+            "vkd3d": "vkd3d_available",
+            "nvapi": "nvapi_available",
+            "latencyflex": "latencyflex_available",
+        }
+        available = getattr(self, availability_attrs[component], [])
+        if version in available:
+            return Result(True)
+        return self.component_manager.install(component, version)
+
+    def __update_dll_component(
+        self, config: BottleConfig, component: str, version: str
+    ) -> Result:
+        ensure = self.__ensure_component_available(component, version)
+        if not ensure.ok:
+            return ensure
+
+        remove_res = self.install_dll_component(
+            config=config, component=component, remove=True
+        )
+        if not remove_res.ok:
+            return remove_res
+
+        update_res = self.update_config(
+            config=config, key=self.__dll_component_keys[component], value=version
+        )
+        if not update_res.ok:
+            return update_res
+        updated_config = update_res.data["config"]
+
+        install_res = self.install_dll_component(
+            config=updated_config, component=component, version=version
+        )
+        if not install_res.ok:
+            return install_res
+
+        return Result(True, data={"config": updated_config})
+
+    def __update_runner_component(
+        self, config: BottleConfig, runner: str, component_type: str
+    ) -> Result:
+        from bottles.backend.runner import Runner
+
+        if runner not in self.runners_available:
+            res = self.component_manager.install(component_type, runner)
+            if not res.ok:
+                return res
+        return Runner.runner_update(config=config, manager=self, runner=runner)
+
+    def __update_winebridge_component(
+        self, config: BottleConfig, version: str
+    ) -> Result:
+        if version in self.winebridge_available:
+            return Result(True)
+        return self.component_manager.install("winebridge", version)
 
     def delete_bottle(self, config: BottleConfig) -> bool:
         """

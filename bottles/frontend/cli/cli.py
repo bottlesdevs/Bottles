@@ -784,6 +784,8 @@ class CLI:
             program = [p for p in programs if p["name"] == _program][0]
             _executable = program.get("path", "")
             _program_args = program.get("arguments")
+            if not program.get("arguments_enabled", True):
+                _program_args = None
             if _keep and _program_args:
                 _args = _program_args + " " + _args
             program.get("pre_script", None)
@@ -862,7 +864,7 @@ class CLI:
             os.remove(standalone_path)
 
         with open(standalone_path, "w") as f:
-            f.write("#!/bin/bash\n")
+            f.write("#!/usr/bin/env bash\n")
             for k, v in env.items():
                 f.write(f"export {k}='{v}'\n")
             f.write(f"{cmd}\n")

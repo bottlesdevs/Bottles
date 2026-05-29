@@ -274,7 +274,12 @@ class WineCommand:
 
         # Language
         if config.Language != "sys":
-            env.add("LC_ALL", config.Language)
+            # ensure an encoding is set (e.g. zh_CN -> zh_CN.UTF-8), otherwise
+            # wine renders non-Latin text as garbage
+            language = config.Language
+            if "." not in language:
+                language = f"{language}.UTF-8"
+            env.add("LC_ALL", language)
 
         # Bottle DLL_Overrides
         if config.DLL_Overrides:
@@ -587,9 +592,15 @@ class WineCommand:
                     command = f"mangohud {command}"
 
             if gamescope_available and self.gamescope_activated:
-                gamescope_run = tempfile.NamedTemporaryFile(mode="w", suffix=".sh").name
+                # Write the script into Bottles' temp dir (shared with the
+                # dedicated sandbox) instead of the system /tmp, otherwise
+                # Gamescope running inside the sandbox cannot see it.
+                os.makedirs(Paths.temp, exist_ok=True)
+                gamescope_run = tempfile.NamedTemporaryFile(
+                    mode="w", suffix=".sh", dir=Paths.temp
+                ).name
 
-                # Create temporary sh script in /tmp where Gamescope will execute it
+                # Create the sh script where Gamescope will execute it
                 file = ["#!/usr/bin/env sh\n"]
                 file.append(f"{command} $@")
                 if mangohud_available and params.mangohud:
@@ -752,11 +763,27 @@ class WineCommand:
         )
 
     def _get_sandbox_manager(self) -> SandboxManager:
+        # Steam/Proton runners live outside Paths.runners (in the Steam data
+        # directory) and rely on their associated Steam Linux Runtime. Expose
+        # the runner root and that runtime, otherwise the runtime's own bwrap
+        # cannot find its entry point inside the dedicated sandbox. Symlinks are
+        # resolved so the real target gets shared, not just the link.
+        share_paths_ro = [Paths.runners, Paths.temp]
+
+        runner_root = (
+            self.config.RunnerPath
+            if self.config.Environment == "Steam" and self.config.RunnerPath
+            else ManagerUtils.get_runner_path(self.config.Runner)
+        )
+        for extra in (runner_root, self.runner_runtime):
+            if extra and not str(extra).startswith("sys-"):
+                share_paths_ro.append(os.path.realpath(extra))
+
         return SandboxManager(
             envs=self.env,
             chdir=self.cwd,
             share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
-            share_paths_ro=[p for p in [Paths.runners, Paths.temp] if p],
+            share_paths_ro=[p for p in share_paths_ro if p],
             share_net=self.config.Sandbox.share_net,
             share_sound=self.config.Sandbox.share_sound,
         )

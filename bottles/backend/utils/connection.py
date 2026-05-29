@@ -86,6 +86,10 @@ class ConnectionUtils:
             c.setopt(c.NOBODY, True)
             c.setopt(c.NOPROGRESS, False)
             c.setopt(c.XFERINFOFUNCTION, self.__curl_progress)
+            # bound the check so a stalled/filtered connection cannot hang the
+            # whole startup; on timeout we simply fall back to offline mode
+            c.setopt(pycurl.CONNECTTIMEOUT, 5)
+            c.setopt(pycurl.TIMEOUT, 10)
             c.perform()
 
             if c.getinfo(pycurl.HTTP_CODE) != 200:

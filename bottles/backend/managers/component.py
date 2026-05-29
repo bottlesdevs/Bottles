@@ -178,7 +178,29 @@ class ComponentManager:
             else:
                 logging.warning(f"File [{existing_file}] already exists in temp, skipping.")
                 return Result(True)
-        
+
+        if not os.path.isfile(file_path):
+            """
+            The same file may already be in temp under a different case, since
+            dependencies reference it inconsistently (e.g. W2KSP4_EN.EXE vs
+            w2ksp4_en.exe). Reuse it instead of downloading it again, verifying
+            the checksum first when one is provided.
+            """
+            reuse = self.__find_temp_file_case_insensitive(existing_file)
+            if reuse and os.path.getsize(reuse) > 0:
+                valid = True
+                if checksum and not os.environ.get("BOTTLES_SKIP_CHECKSUM"):
+                    valid = FileUtils().get_checksum(reuse) == checksum.lower()
+                if valid:
+                    logging.info(
+                        f"Reusing already downloaded file for [{existing_file}] "
+                        f"from [{os.path.basename(reuse)}]."
+                    )
+                    shutil.copy(reuse, file_path)
+                    if not external_task:
+                        TaskManager.remove(task_id)
+                    return Result(True)
+
         if not os.path.isfile(file_path):
             """
             As some urls can be redirect, we need to take care of this
@@ -270,6 +292,19 @@ class ComponentManager:
         if not external_task:
             TaskManager.remove(task_id)
         return Result(True)
+
+    @staticmethod
+    def __find_temp_file_case_insensitive(name: str) -> Optional[str]:
+        """Return the path of a file in the temp directory matching the given
+        name case-insensitively, or None."""
+        target = name.lower()
+        try:
+            for entry in os.listdir(Paths.temp):
+                if entry.lower() == target:
+                    return os.path.join(Paths.temp, entry)
+        except FileNotFoundError:
+            pass
+        return None
 
     @staticmethod
     def extract(name: str, component: str, archive: str) -> bool:

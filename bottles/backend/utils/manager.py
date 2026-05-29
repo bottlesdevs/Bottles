@@ -96,6 +96,71 @@ class ManagerUtils:
         return os.path.join(Paths.bottles, config.Path)
 
     @staticmethod
+    def resolve_portal_path(path: str) -> str:
+        """
+        Resolve a document portal path (/run/user/<uid>/doc/<id>/...) to its real
+        host path through the Documents portal. These paths are transient: the
+        document id changes between sessions, so storing one (e.g. a program
+        shortcut on a read-only filesystem) breaks the entry on the next launch.
+        Returns the original path unchanged on any failure.
+        """
+        if not path or "/run/user/" not in path or "/doc/" not in path:
+            return path
+
+        def _to_str(value) -> str:
+            if isinstance(value, bytes):
+                raw = value
+            elif isinstance(value, (list, tuple)):
+                raw = bytes(value)
+            else:
+                return str(value)
+            return raw.rstrip(b"\x00").decode("utf-8", "replace")
+
+        try:
+            documents = "org.freedesktop.portal.Documents"
+            proxy = Gio.DBusProxy.new_sync(
+                Gio.bus_get_sync(Gio.BusType.SESSION, None),
+                Gio.DBusProxyFlags.DO_NOT_LOAD_PROPERTIES
+                | Gio.DBusProxyFlags.DO_NOT_CONNECT_SIGNALS,
+                None,
+                documents,
+                "/org/freedesktop/portal/documents",
+                documents,
+                None,
+            )
+
+            mount = _to_str(
+                proxy.call_sync(
+                    "GetMountPoint", None, Gio.DBusCallFlags.NONE, -1, None
+                ).unpack()[0]
+            )
+            if not mount or not path.startswith(mount + "/"):
+                return path
+
+            doc_id, _, remainder = path[len(mount) + 1 :].partition("/")
+
+            hosts = proxy.call_sync(
+                "GetHostPaths",
+                GLib.Variant("(as)", ([doc_id],)),
+                Gio.DBusCallFlags.NONE,
+                -1,
+                None,
+            ).unpack()[0]
+            if doc_id not in hosts:
+                return path
+
+            host = _to_str(hosts[doc_id])
+            if remainder and os.path.basename(host) != remainder.rstrip("/"):
+                resolved = os.path.join(host, remainder)
+            else:
+                resolved = host
+
+            return resolved if os.path.exists(resolved) else path
+        except Exception as e:
+            logging.warning(f"Could not resolve document portal path: {e}")
+            return path
+
+    @staticmethod
     def get_runner_path(runner: str) -> str:
         if runner.startswith("sys-"):
             return runner
@@ -244,13 +309,16 @@ class ManagerUtils:
             safe_name = "".join(
                 [c for c in program.get("name") if c.isalnum() or c in ("-", "_")]
             )
-            filename = f"bottles-{config.get('Name')}-{safe_name}.desktop"
+            safe_bottle = "".join(
+                [c for c in config.get("Name") if c.isalnum() or c in ("-", "_")]
+            )
+            filename = f"bottles-{safe_bottle}-{safe_name}.desktop"
             content = (
                 f"[Desktop Entry]\n"
                 f"Exec={exec_cmd}\n"
                 f"Type=Application\n"
                 f"Terminal=false\n"
-                f"Categories=Application;\n"
+                f"Categories=Game;\n"
                 f"Comment=Launch {program.get('name')} using Bottles.\n"
                 f"StartupWMClass={program.get('executable').lower()}\n"
                 f"Name={program.get('name')}\n"
@@ -316,7 +384,7 @@ class ManagerUtils:
                     Exec={}
                     Type=Application
                     Terminal=false
-                    Categories=Application;
+                    Categories=Game;
                     Comment=Launch {} using Bottles.
                     StartupWMClass={}""".format(
                         exec_cmd, program.get("name"), program.get("executable").lower()

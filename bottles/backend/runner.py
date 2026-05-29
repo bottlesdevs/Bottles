@@ -90,6 +90,15 @@ class Runner:
         if SteamUtils.is_proton(
             ManagerUtils.get_runner_path(runner)
         ) and RuntimeManager.get_runtimes("steam"):
-            manager.update_config(config, "use_steam_runtime", True, "Parameters")
+            up_config = manager.update_config(
+                up_config, "use_steam_runtime", True, "Parameters"
+            ).data["config"]
+        else:
+            # not a Proton runner: make sure the Steam Runtime is not left
+            # enabled from a previously selected Proton runner, which would
+            # otherwise break launches with non-Proton runners
+            up_config = manager.update_config(
+                up_config, "use_steam_runtime", False, "Parameters"
+            ).data["config"]
 
         return Result(status=True, data={"config": up_config})

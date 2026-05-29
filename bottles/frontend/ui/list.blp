@@ -14,6 +14,11 @@ template $BottleView: Adw.Bin {
         }
       }
 
+      Adw.Banner update_banner {
+        button-label: _("Review");
+        revealed: false;
+      }
+
       Adw.PreferencesPage pref_page {
         Adw.PreferencesGroup group_bottles {
           ListBox list_bottles {
