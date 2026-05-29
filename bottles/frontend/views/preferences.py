@@ -54,6 +54,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
     switch_playtime_tracking = Gtk.Template.Child()
+    switch_eagle_security = Gtk.Template.Child()
+    switch_eagle_crash = Gtk.Template.Child()
+    row_eagle_security = Gtk.Template.Child()
     switch_steam_programs = Gtk.Template.Child()
     switch_epic_games = Gtk.Template.Child()
     switch_ubisoft_connect = Gtk.Template.Child()
@@ -146,6 +149,23 @@ class PreferencesWindow(Adw.PreferencesWindow):
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
+        self.settings.bind(
+            "eagle-security-scan",
+            self.switch_eagle_security,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        self.settings.bind(
+            "eagle-crash-detection",
+            self.switch_eagle_crash,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        # warn visually (red row) when threat scanning is turned off
+        self.switch_eagle_security.connect(
+            "notify::active", self.__update_eagle_security_style
+        )
+        self.__update_eagle_security_style()
         self.settings.bind(
             "force-offline",
             self.switch_force_offline,
@@ -255,6 +275,18 @@ class PreferencesWindow(Adw.PreferencesWindow):
             if parent:
                 parent.remove(w)
         self.__registry = []
+
+    def __update_eagle_security_style(self, *_args):
+        if self.switch_eagle_security.get_active():
+            self.row_eagle_security.remove_css_class("error")
+            self.row_eagle_security.set_subtitle(
+                _("Check executables for malware patterns before running them.")
+            )
+        else:
+            self.row_eagle_security.add_css_class("error")
+            self.row_eagle_security.set_subtitle(
+                _("Disabled. Executables will run without being checked for threats.")
+            )
 
     def ui_update(self):
         # Show locally installed runners/DLLs right away so the pages never get
