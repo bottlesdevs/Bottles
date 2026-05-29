@@ -326,7 +326,7 @@ class BottleView(Adw.PreferencesPage):
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
-            path = dialog.get_file().get_path()
+            path = ManagerUtils.resolve_portal_path(dialog.get_file().get_path())
             basename = dialog.get_file().get_basename()
 
             _uuid = str(uuid.uuid4())
