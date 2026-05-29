@@ -46,6 +46,12 @@ template $LaunchOptionsDialog: Adw.Window {
         Adw.EntryRow entry_arguments {
           title: _("Command Arguments");
           tooltip-text: _("e.g.: VAR=value %command% -example1 -example2 -example3=hello");
+
+          [suffix]
+          Switch switch_arguments {
+            valign: center;
+            tooltip-text: _("Pass these arguments at launch");
+          }
         }
 
         Adw.ActionRow action_pre_script {

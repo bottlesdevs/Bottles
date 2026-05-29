@@ -139,10 +139,14 @@ class WineExecutor:
         def _resolve(field: str):
             return cls._replace_placeholders((program or {}).get(field), placeholders)
 
+        arguments = _resolve("arguments")
+        if not (program or {}).get("arguments_enabled", True):
+            arguments = ""
+
         return cls(
             config=config,
             exec_path=program.get("path"),
-            args=_resolve("arguments"),
+            args=arguments,
             pre_script=cls._replace_placeholders(
                 program.get("pre_script"), placeholders
             ),
