@@ -60,9 +60,13 @@ class WineExecutor:
         program_gamescope: Optional[bool] = None,
         program_virt_desktop: Optional[bool] = None,
         program_winebridge: Optional[bool] = None,
+        sandbox_override: Optional[str] = None,
     ):
         logging.info("Launching an executable…")
         self.config = config
+        # Per-launch dedicated sandbox override (None / "off" / "legacy"); see
+        # WineCommand for the meaning of each value.
+        self.sandbox_override = sandbox_override
         self.__validate_path(exec_path)
 
         if monitoring is None:
@@ -129,8 +133,24 @@ class WineExecutor:
             else:
                 self.environment["WINEDLLOVERRIDES"] = ";".join(env_dll_overrides)
 
+    @staticmethod
+    def is_unreachable_in_sandbox(path: Optional[str]) -> bool:
+        """A document portal path (/run/user/<uid>/doc/<id>/...) lives outside
+        the bottle and is not carried into the dedicated sandbox, so a program
+        stored there cannot be opened while the sandbox is active. Detect it so
+        the frontend can warn before launching."""
+        if not path:
+            return False
+        return "/run/user/" in path and "/doc/" in path
+
     @classmethod
-    def run_program(cls, config: BottleConfig, program: dict, terminal: bool = False):
+    def run_program(
+        cls,
+        config: BottleConfig,
+        program: dict,
+        terminal: bool = False,
+        sandbox_override: Optional[str] = None,
+    ):
         if program is None:
             logging.warning("The program entry is not well formatted.")
 
@@ -163,6 +183,7 @@ class WineExecutor:
             program_gamescope=program.get("gamescope"),
             program_virt_desktop=program.get("virtual_desktop"),
             program_winebridge=program.get("winebridge"),
+            sandbox_override=sandbox_override,
         ).run()
 
     @staticmethod
@@ -446,6 +467,7 @@ class WineExecutor:
             pre_script_args=self.pre_script_args,
             post_script_args=self.post_script_args,
             cwd=self.cwd,
+            sandbox_override=self.sandbox_override,
         )
         res = winecmd.run()
         self.__set_monitors()

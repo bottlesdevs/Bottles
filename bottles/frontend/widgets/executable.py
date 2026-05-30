@@ -19,6 +19,7 @@ from gi.repository import Gtk
 
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
+from bottles.frontend.utils.sandbox_guard import guard_sandbox_launch
 
 
 class ExecButton(Gtk.Button):
@@ -32,8 +33,16 @@ class ExecButton(Gtk.Button):
         self.connect("clicked", self.on_clicked)
 
     def on_clicked(self, widget):
-        executor = WineExecutor(
-            self.config, exec_path=self.data.get("file"), args=self.data.get("args")
+        def proceed(sandbox_override, exec_path):
+            executor = WineExecutor(
+                self.config,
+                exec_path=exec_path,
+                args=self.data.get("args"),
+                sandbox_override=sandbox_override,
+            )
+            RunAsync(executor.run)
+            self.parent.pop_run.popdown()  # workaround #1640
+
+        guard_sandbox_launch(
+            self.get_root(), self.config, self.data.get("file"), proceed
         )
-        RunAsync(executor.run)
-        self.parent.pop_run.popdown()  # workaround #1640

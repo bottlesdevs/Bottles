@@ -45,6 +45,7 @@ from bottles.frontend.utils.common import open_doc_url
 from bottles.frontend.utils.filters import add_all_filters, add_executable_filters
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.utils.playtime import PlaytimeService
+from bottles.frontend.utils.sandbox_guard import guard_sandbox_launch
 from bottles.frontend.widgets.program import ProgramEntry
 from bottles.frontend.windows.duplicate import DuplicateDialog
 from bottles.frontend.windows.upgradeversioning import UpgradeVersioningDialog
@@ -239,17 +240,22 @@ class BottleView(Adw.PreferencesPage):
             ".exe" in file.get_basename().split("/")[-1]
             or ".msi" in file.get_basename().split("/")[-1]
         ):
-            executor = WineExecutor(
-                self.config,
-                exec_path=file.get_path(),
-                args=args,
-                terminal=self.config.run_in_terminal,
-            )
-
             def callback(a, b):
                 self.update_programs()
 
-            RunAsync(executor.run, callback)
+            def proceed(sandbox_override, exec_path):
+                executor = WineExecutor(
+                    self.config,
+                    exec_path=exec_path,
+                    args=args,
+                    terminal=self.config.run_in_terminal,
+                    sandbox_override=sandbox_override,
+                )
+                RunAsync(executor.run, callback)
+
+            guard_sandbox_launch(
+                self.window, self.config, file.get_path(), proceed
+            )
 
         else:
             self.window.show_toast(
@@ -648,21 +654,27 @@ class BottleView(Adw.PreferencesPage):
                 if response != Gtk.ResponseType.ACCEPT:
                     return
 
-                self.window.show_toast(
-                    _('Launching "{0}"…').format(dialog.get_file().get_basename())
-                )
-
-                executor = WineExecutor(
-                    self.config,
-                    exec_path=dialog.get_file().get_path(),
-                    args=self.config.get("session_arguments"),
-                    terminal=self.config.run_in_terminal,
-                )
+                exec_path = dialog.get_file().get_path()
 
                 def callback(a, b):
                     self.update_programs()
 
-                RunAsync(executor.run, callback)
+                def proceed(sandbox_override, run_path):
+                    self.window.show_toast(
+                        _('Launching "{0}"…').format(
+                            dialog.get_file().get_basename()
+                        )
+                    )
+                    executor = WineExecutor(
+                        self.config,
+                        exec_path=run_path,
+                        args=self.config.get("session_arguments"),
+                        terminal=self.config.run_in_terminal,
+                        sandbox_override=sandbox_override,
+                    )
+                    RunAsync(executor.run, callback)
+
+                guard_sandbox_launch(self.window, self.config, exec_path, proceed)
 
             dialog = Gtk.FileChooserNative.new(
                 title=_("Select Executable"),

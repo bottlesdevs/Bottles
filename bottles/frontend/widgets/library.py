@@ -27,6 +27,7 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.utils.sandbox_guard import guard_sandbox_launch
 
 logging = Logger()
 
@@ -198,14 +199,25 @@ class LibraryEntry(Gtk.Box):
         self.library.remove_entry(self)
 
     def run_executable(self, widget, with_terminal=False):
-        self.window.show_toast(_('Launching "{0}"…').format(self.program["name"]))
-        RunAsync(
-            WineExecutor.run_program,
-            callback=self.__reset_buttons,
-            config=self.config,
-            program=self.program,
+        def proceed(sandbox_override, exec_path):
+            program = self.program
+            if exec_path and exec_path != self.program.get("path"):
+                program = {**self.program, "path": exec_path}
+            self.window.show_toast(
+                _('Launching "{0}"…').format(self.program["name"])
+            )
+            RunAsync(
+                WineExecutor.run_program,
+                callback=self.__reset_buttons,
+                config=self.config,
+                program=program,
+                sandbox_override=sandbox_override,
+            )
+            self.__reset_buttons()
+
+        guard_sandbox_launch(
+            self.window, self.config, self.program.get("path"), proceed
         )
-        self.__reset_buttons()
 
     def run_steam(self, widget):
         self.manager.steam_manager.launch_app(self.config.CompatData)

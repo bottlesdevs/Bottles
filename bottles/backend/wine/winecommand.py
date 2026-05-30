@@ -147,10 +147,15 @@ class WineCommand:
         pre_script_args: Optional[str] = None,
         post_script_args: Optional[str] = None,
         cwd: Optional[str] = None,
+        sandbox_override: Optional[str] = None,
     ):
         _environment = environment.copy()
         self.config = self._get_config(config)
         self.minimal = minimal
+        # Per-launch override of the dedicated sandbox decided in the config:
+        #   None  -> follow the bottle setting
+        #   "off" -> run this launch without the dedicated sandbox
+        self.sandbox_override = sandbox_override
         self.arguments = arguments
         self.cwd = self._get_cwd(cwd)
         self.runner, self.runner_runtime = self._get_runner_info()
@@ -779,10 +784,30 @@ class WineCommand:
             if extra and not str(extra).startswith("sys-"):
                 share_paths_ro.append(os.path.realpath(extra))
 
+        # The working directory may be a transient document portal path
+        # (/run/user/<uid>/doc/<id>/...) which is not reliably reachable inside
+        # the nested sandbox: it can disappear or simply not be accessible to
+        # bwrap's chdir, which would make nothing launch at all. Resolve it to a
+        # real host path and fall back to the bottle path (always exposed and
+        # present) whenever it is not a usable directory.
+        bottle_path = ManagerUtils.get_bottle_path(self.config)
+        chdir = ManagerUtils.resolve_portal_path(self.cwd) if self.cwd else bottle_path
+        if (
+            not chdir
+            or ("/run/user/" in chdir and "/doc/" in chdir)
+            or not os.path.isdir(chdir)
+        ):
+            logging.warning(
+                f"Working directory '{self.cwd}' is not usable inside the "
+                "dedicated sandbox, falling back to the bottle path.",
+                jn=True,
+            )
+            chdir = bottle_path
+
         return SandboxManager(
             envs=self.env,
-            chdir=self.cwd,
-            share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
+            chdir=chdir,
+            share_paths_rw=[bottle_path],
             share_paths_ro=[p for p in share_paths_ro if p],
             share_net=self.config.Sandbox.share_net,
             share_sound=self.config.Sandbox.share_sound,
@@ -806,9 +831,15 @@ class WineCommand:
         if vmtouch_available and self.config.Parameters.vmtouch and not self.terminal:
             self._vmtouch_preload()
 
-        sandbox = (
-            self._get_sandbox_manager() if self.config.Parameters.sandbox else None
-        )
+        use_sandbox = self.config.Parameters.sandbox
+        if self.sandbox_override == "off":
+            use_sandbox = False
+            logging.warning(
+                "Launching without the dedicated sandbox on user request: the "
+                "target is outside the bottle and cannot be reached otherwise.",
+                jn=True,
+            )
+        sandbox = self._get_sandbox_manager() if use_sandbox else None
 
         # run command in external terminal if terminal is True
         if self.terminal:

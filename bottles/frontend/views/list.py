@@ -27,6 +27,7 @@ from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.frontend.params import APP_ID
 from bottles.frontend.utils.filters import add_all_filters, add_executable_filters
+from bottles.frontend.utils.sandbox_guard import guard_sandbox_launch
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/bottle-row.ui")
@@ -89,15 +90,20 @@ class BottlesBottleRow(Adw.ActionRow):
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
-            self.window.show_toast(
-                _("Launching “{0}” in “{1}”…").format(
-                    dialog.get_file().get_basename(), self.config.Name
-                )
-            )
-
             path = dialog.get_file().get_path()
-            _executor = WineExecutor(self.config, exec_path=path)
-            RunAsync(_executor.run)
+
+            def proceed(sandbox_override, run_path):
+                self.window.show_toast(
+                    _("Launching “{0}” in “{1}”…").format(
+                        dialog.get_file().get_basename(), self.config.Name
+                    )
+                )
+                _executor = WineExecutor(
+                    self.config, exec_path=run_path, sandbox_override=sandbox_override
+                )
+                RunAsync(_executor.run)
+
+            guard_sandbox_launch(self.window, self.config, path, proceed)
 
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Executable"),

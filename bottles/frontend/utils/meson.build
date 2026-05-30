@@ -8,6 +8,7 @@ bottles_sources = [
   'filters.py',
   'playtime.py',
   'sh.py',
+  'sandbox_guard.py',
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)
