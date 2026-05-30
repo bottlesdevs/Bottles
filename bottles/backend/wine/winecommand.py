@@ -90,8 +90,8 @@ class WineEnv:
         return key in self.__env
 
 
-def apply_wayland_preferences(env: "WineEnv", params) -> None:
-    if not getattr(params, "wayland", False):
+def apply_wayland_preferences(env: "WineEnv", wayland_activated: bool) -> None:
+    if not wayland_activated:
         return
     if DisplayUtils.display_server_type() != "wayland":
         return
@@ -517,7 +517,12 @@ class WineCommand:
             # Wine arch
             env.add("WINEARCH", arch)
 
-        apply_wayland_preferences(env, params)
+        wayland_activated = (
+            environment.get("WAYLAND") == "1"
+            if "WAYLAND" in environment
+            else getattr(params, "wayland", False)
+        )
+        apply_wayland_preferences(env, wayland_activated)
 
         return env.get()["envs"]
 

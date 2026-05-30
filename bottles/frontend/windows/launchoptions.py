@@ -54,6 +54,7 @@ class LaunchOptionsDialog(Adw.Window):
     switch_winebridge = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
     switch_virt_desktop = Gtk.Template.Child()
+    switch_wayland = Gtk.Template.Child()
     action_dxvk = Gtk.Template.Child()
     action_vkd3d = Gtk.Template.Child()
     action_nvapi = Gtk.Template.Child()
@@ -61,6 +62,7 @@ class LaunchOptionsDialog(Adw.Window):
     action_gamescope = Gtk.Template.Child()
     action_cwd = Gtk.Template.Child()
     action_virt_desktop = Gtk.Template.Child()
+    action_wayland = Gtk.Template.Child()
     # endregion
 
     __default_pre_script_msg = _("Choose a script which should be executed before run.")
@@ -116,6 +118,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.toggled["gamescope"] = False
         self.toggled["virtual_desktop"] = False
         self.toggled["winebridge"] = False
+        self.toggled["wayland"] = False
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
@@ -140,6 +143,9 @@ class LaunchOptionsDialog(Adw.Window):
         self.global_winebridge = program_winebridge = getattr(
             config.Parameters, "winebridge", True
         )
+        self.global_wayland = program_wayland = getattr(
+            config.Parameters, "wayland", False
+        )
 
         if self.program.get("dxvk") is not None:
             program_dxvk = self.program.get("dxvk")
@@ -159,6 +165,9 @@ class LaunchOptionsDialog(Adw.Window):
         if self.program.get("winebridge") is not None:
             program_winebridge = self.program.get("winebridge")
             self.action_winebridge.set_subtitle(self.__msg_override)
+        if self.program.get("wayland") is not None:
+            program_wayland = self.program.get("wayland")
+            self.action_wayland.set_subtitle(self.__msg_override)
 
         self.switch_dxvk.set_active(program_dxvk)
         self.switch_vkd3d.set_active(program_vkd3d)
@@ -166,6 +175,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_gamescope.set_active(program_gamescope)
         self.switch_virt_desktop.set_active(program_virt_desktop)
         self.switch_winebridge.set_active(program_winebridge)
+        self.switch_wayland.set_active(program_wayland)
 
         self.switch_dxvk.connect(
             "state-set", self.__check_override, self.action_dxvk, "dxvk"
@@ -187,6 +197,9 @@ class LaunchOptionsDialog(Adw.Window):
         )
         self.switch_winebridge.connect(
             "state-set", self.__check_override, self.action_winebridge, "winebridge"
+        )
+        self.switch_wayland.connect(
+            "state-set", self.__check_override, self.action_wayland, "wayland"
         )
 
         if program.get("pre_script") not in ("", None):
@@ -234,6 +247,7 @@ class LaunchOptionsDialog(Adw.Window):
         program_gamescope = self.switch_gamescope.get_state()
         program_virt_desktop = self.switch_virt_desktop.get_state()
         program_winebridge = self.switch_winebridge.get_state()
+        program_wayland = self.switch_wayland.get_state()
 
         self.__set_override("dxvk", program_dxvk, self.global_dxvk)
         self.__set_override("vkd3d", program_vkd3d, self.global_vkd3d)
@@ -243,6 +257,7 @@ class LaunchOptionsDialog(Adw.Window):
             "virtual_desktop", program_virt_desktop, self.global_virt_desktop
         )
         self.__set_override("winebridge", program_winebridge, self.global_winebridge)
+        self.__set_override("wayland", program_wayland, self.global_wayland)
         self.program["arguments"] = self.entry_arguments.get_text()
         self.program["arguments_enabled"] = self.switch_arguments.get_active()
 
@@ -394,12 +409,14 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_gamescope.set_active(self.global_gamescope)
         self.switch_virt_desktop.set_active(self.global_virt_desktop)
         self.switch_winebridge.set_active(self.global_winebridge)
+        self.switch_wayland.set_active(self.global_wayland)
         self.action_dxvk.set_subtitle("")
         self.action_vkd3d.set_subtitle("")
         self.action_nvapi.set_subtitle("")
         self.action_gamescope.set_subtitle("")
         self.action_virt_desktop.set_subtitle("")
         self.action_winebridge.set_subtitle("")
+        self.action_wayland.set_subtitle("")
         self.__set_disabled_switches()
         for name in self.toggled:
             self.toggled[name] = None

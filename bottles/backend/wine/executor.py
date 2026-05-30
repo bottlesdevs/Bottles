@@ -60,6 +60,7 @@ class WineExecutor:
         program_gamescope: Optional[bool] = None,
         program_virt_desktop: Optional[bool] = None,
         program_winebridge: Optional[bool] = None,
+        program_wayland: Optional[bool] = None,
         sandbox_override: Optional[str] = None,
     ):
         logging.info("Launching an executable…")
@@ -125,6 +126,12 @@ class WineExecutor:
         ):
             self.environment["GAMESCOPE"] = "1" if program_gamescope else "0"
 
+        if (
+            program_wayland is not None
+            and program_wayland != getattr(self.config.Parameters, "wayland", False)
+        ):
+            self.environment["WAYLAND"] = "1" if program_wayland else "0"
+
         if env_dll_overrides:
             if "WINEDLLOVERRIDES" in self.environment:
                 self.environment["WINEDLLOVERRIDES"] += ";" + ";".join(
@@ -183,6 +190,7 @@ class WineExecutor:
             program_gamescope=program.get("gamescope"),
             program_virt_desktop=program.get("virtual_desktop"),
             program_winebridge=program.get("winebridge"),
+            program_wayland=program.get("wayland"),
             sandbox_override=sandbox_override,
         ).run()
 
