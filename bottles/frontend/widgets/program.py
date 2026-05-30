@@ -37,6 +37,7 @@ from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.wineserver import WineServer
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.utils.playtime import PlaytimeService
+from bottles.frontend.utils.sandbox_guard import guard_sandbox_launch
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
 from bottles.frontend.windows.playtimegraph import PlaytimeGraphDialog
 from bottles.frontend.windows.rename import RenameDialog
@@ -269,31 +270,44 @@ class ProgramEntry(Adw.ActionRow):
     __crash_threshold_seconds = 5
 
     def __launch_program(self, with_terminal=False):
-        timing = {}
+        def proceed(sandbox_override, exec_path):
+            program = self.program
+            if exec_path and exec_path != self.program.get("path"):
+                program = {**self.program, "path": exec_path}
+            timing = {}
 
-        def _run():
-            timing["start"] = time.monotonic()
-            WineExecutor.run_program(self.config, self.program, with_terminal)
-            self.pop_actions.popdown()  # workaround #1640
-            return True
+            def _run():
+                timing["start"] = time.monotonic()
+                WineExecutor.run_program(
+                    self.config,
+                    program,
+                    with_terminal,
+                    sandbox_override=sandbox_override,
+                )
+                self.pop_actions.popdown()  # workaround #1640
+                return True
 
-        def done(result=False, error=False):
-            self.__reset_buttons(result, error)
-            start = timing.get("start")
-            path = self.program.get("path")
-            if (
-                not with_terminal
-                and self.window.settings.get_boolean("eagle-crash-detection")
-                and start is not None
-                and (time.monotonic() - start) < self.__crash_threshold_seconds
-                and path
-                and os.path.isfile(path)
-            ):
-                self.__offer_eagle_scan(path)
+            def done(result=False, error=False):
+                self.__reset_buttons(result, error)
+                start = timing.get("start")
+                path = self.program.get("path")
+                if (
+                    not with_terminal
+                    and self.window.settings.get_boolean("eagle-crash-detection")
+                    and start is not None
+                    and (time.monotonic() - start) < self.__crash_threshold_seconds
+                    and path
+                    and os.path.isfile(path)
+                ):
+                    self.__offer_eagle_scan(path)
 
-        self.window.show_toast(_('Launching "{0}"…').format(self.program["name"]))
-        RunAsync(_run, callback=done)
-        self.__reset_buttons()
+            self.window.show_toast(_('Launching "{0}"…').format(self.program["name"]))
+            RunAsync(_run, callback=done)
+            self.__reset_buttons()
+
+        guard_sandbox_launch(
+            self.window, self.config, self.program.get("path"), proceed
+        )
 
     def __offer_eagle_scan(self, path):
         dialog = Adw.MessageDialog.new(
