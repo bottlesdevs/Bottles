@@ -1307,7 +1307,7 @@ class Manager(metaclass=Singleton):
             try:
                 real_path = ManagerUtils.get_bottle_path(config)
                 for p in [
-                    os.path.join(real_path, "cache", "dxvk_state"),
+                    os.path.join(real_path, "cache", "dxvk_shader"),
                     os.path.join(real_path, "cache", "gl_shader"),
                     os.path.join(real_path, "cache", "mesa_shader"),
                     os.path.join(real_path, "cache", "vkd3d_shader"),
@@ -1324,7 +1324,7 @@ class Manager(metaclass=Singleton):
                         try:
                             shutil.move(
                                 os.path.join(real_path, c),
-                                os.path.join(real_path, "cache", "dxvk_state"),
+                                os.path.join(real_path, "cache", "dxvk_shader"),
                             )
                         except (shutil.Error, OSError):
                             pass
