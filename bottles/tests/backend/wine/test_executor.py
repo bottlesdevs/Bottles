@@ -65,6 +65,8 @@ def test_run_program_substitutes_placeholders(monkeypatch):
         program_gamescope=None,
         program_virt_desktop=None,
         program_winebridge=None,
+        program_wayland=None,
+        sandbox_override=None,
     ):
         # mimic original __init__ contract enough for run() stub
         self.config = config
