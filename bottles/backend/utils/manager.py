@@ -496,9 +496,9 @@ class ManagerUtils:
             _("Slovenian"),
             _("Swedish"),
             _("Turkish"),
-            _("Chinese"),
+            _("Chinese (Simplified)"),
             _("Japanese"),
-            _("Taiwanese"),
+            _("Chinese (Traditional)"),
             _("Korean"),
         ]
 
