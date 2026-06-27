@@ -21,6 +21,7 @@ from gettext import gettext as _
 from typing import Optional
 
 import icoextract  # type: ignore [import-untyped]
+import gi
 
 from bottles.backend.params import APP_ID
 
@@ -32,6 +33,8 @@ from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.generic import get_mime
 from bottles.backend.utils.imagemagick import ImageMagickUtils
 
+gi.require_version("Xdp", "1.0")
+# ruff: noqa: E402
 from gi.repository import GLib, Gio, Xdp
 
 portal = Xdp.Portal()
@@ -306,13 +309,7 @@ class ManagerUtils:
 
         def create_manual_fallback(icon_path, exec_cmd):
             """Create desktop entry manually when portal is unavailable."""
-            safe_name = "".join(
-                [c for c in program.get("name") if c.isalnum() or c in ("-", "_")]
-            )
-            safe_bottle = "".join(
-                [c for c in config.get("Name") if c.isalnum() or c in ("-", "_")]
-            )
-            filename = f"bottles-{safe_bottle}-{safe_name}.desktop"
+            filename = ManagerUtils.get_desktop_entry_filename(config, program)
             content = (
                 f"[Desktop Entry]\n"
                 f"Exec={exec_cmd}\n"
@@ -371,15 +368,10 @@ class ManagerUtils:
                 create_manual_fallback(icon, exec_cmd)
                 return
 
-            launcher_id = f"{config.get('Name')}.{program.get('name')}"
-            sum_type = GLib.ChecksumType.SHA1
             try:
                 portal.dynamic_launcher_install(
                     ret["token"],
-                    "{}.App_{}.desktop".format(
-                        APP_ID,
-                        GLib.compute_checksum_for_string(sum_type, launcher_id, -1),
-                    ),
+                    ManagerUtils.get_desktop_entry_id(config, program),
                     """[Desktop Entry]
                     Exec={}
                     Type=Application
@@ -421,6 +413,60 @@ class ManagerUtils:
             None,
             prepare_install_cb,
         )
+
+    @staticmethod
+    def get_desktop_entry_id(config, program: dict):
+        launcher_id = f"{config.get('Name')}.{program.get('name')}"
+        return "{}.App_{}.desktop".format(
+            APP_ID,
+            GLib.compute_checksum_for_string(
+                GLib.ChecksumType.SHA1,
+                launcher_id,
+                -1,
+            ),
+        )
+
+    @staticmethod
+    def get_desktop_entry_filename(config, program: dict):
+        safe_name = "".join(
+            [c for c in program.get("name") if c.isalnum() or c in ("-", "_")]
+        )
+        safe_bottle = "".join(
+            [c for c in config.get("Name") if c.isalnum() or c in ("-", "_")]
+        )
+        return f"bottles-{safe_bottle}-{safe_name}.desktop"
+
+    @staticmethod
+    def remove_desktop_entry(config, program: dict):
+        desktop_entry_id = ManagerUtils.get_desktop_entry_id(config, program)
+        try:
+            portal.dynamic_launcher_uninstall(desktop_entry_id)
+            logging.info(f"Desktop entry removed: {desktop_entry_id}")
+        except GLib.Error as e:
+            logging.debug(f"Failed to remove desktop entry {desktop_entry_id}: {e}")
+
+        desktop_entry_filename = ManagerUtils.get_desktop_entry_filename(
+            config, program
+        )
+        entry_paths = [
+            os.path.join(
+                os.path.expanduser("~/.local/share/applications"),
+                desktop_entry_filename,
+            )
+        ]
+        desktop_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP)
+        if desktop_dir:
+            entry_paths.append(os.path.join(desktop_dir, desktop_entry_filename))
+
+        for entry_path in entry_paths:
+            if not os.path.exists(entry_path):
+                continue
+
+            try:
+                os.remove(entry_path)
+                logging.info(f"Desktop entry removed: {entry_path}")
+            except OSError as e:
+                logging.warning(f"Failed to remove desktop entry {entry_path}: {e}")
 
     @staticmethod
     def browse_wineprefix(wineprefix: dict):
