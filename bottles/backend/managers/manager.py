@@ -147,7 +147,9 @@ class Manager(metaclass=Singleton):
 
         # validating user-defined Paths.bottles
         if user_bottles_path := self.data_mgr.get(UserDataKeys.CustomBottlesPath):
-            is_portal_path = "/run/user/" in user_bottles_path and "/doc/" in user_bottles_path
+            is_portal_path = (
+                "/run/user/" in user_bottles_path and "/doc/" in user_bottles_path
+            )
             if is_portal_path:
                 # a transient document portal path is not usable across sessions
                 # and makes startup crash when it is no longer accessible
@@ -852,15 +854,16 @@ class Manager(metaclass=Singleton):
         missing_installation = len(winebridge) == 0 or not installed_identifier
         needs_latest = False
         if latest_supported:
-            needs_latest = (
-                missing_installation
-                or _is_newer(latest_supported, installed_identifier)
+            needs_latest = missing_installation or _is_newer(
+                latest_supported, installed_identifier
             )
 
         return latest_supported, installed_identifier, needs_latest
 
     def winebridge_update_status(self) -> dict:
-        latest_supported, installed_identifier, needs_latest = self.__winebridge_status()
+        latest_supported, installed_identifier, needs_latest = (
+            self.__winebridge_status()
+        )
         return {
             "latest_supported": latest_supported,
             "installed_identifier": installed_identifier,
@@ -871,7 +874,9 @@ class Manager(metaclass=Singleton):
     def check_winebridge(
         self, install_latest: bool = True, update: bool = False
     ) -> bool:
-        latest_supported, installed_identifier, needs_latest = self.__winebridge_status()
+        latest_supported, installed_identifier, needs_latest = (
+            self.__winebridge_status()
+        )
 
         can_install = install_latest or update
         if can_install and needs_latest and latest_supported:
@@ -1714,7 +1719,9 @@ class Manager(metaclass=Singleton):
 
         if not latencyflex:
             # if no latencyflex is specified, use the first one from available
-            latencyflex = self.latencyflex_available[0] if self.latencyflex_available else ""
+            latencyflex = (
+                self.latencyflex_available[0] if self.latencyflex_available else ""
+            )
         latencyflex_name = latencyflex
 
         # define bottle parameters
@@ -2238,9 +2245,7 @@ class Manager(metaclass=Singleton):
             return None
 
         latest = self.__get_latest_supported(self.supported_winebridge)
-        installed = (
-            self.winebridge_available[0] if self.winebridge_available else None
-        )
+        installed = self.winebridge_available[0] if self.winebridge_available else None
         if not latest or not self.__is_version_newer(latest, installed):
             return None
 
@@ -2292,9 +2297,7 @@ class Manager(metaclass=Singleton):
         match = re.search(r"\d+(?:[.-]\d+)+", normalized)
         if not match:
             return normalized, ()
-        version = tuple(
-            int(part) for part in re.split(r"[.-]", match.group(0))
-        )
+        version = tuple(int(part) for part in re.split(r"[.-]", match.group(0)))
         family = normalized[: match.start()] + normalized[match.end() :]
         return family, version
 
@@ -2396,6 +2399,9 @@ class Manager(metaclass=Singleton):
             return False
 
         logging.info("Removing applications installed with the bottle…")
+        for program in config.External_Programs.values():
+            ManagerUtils.remove_desktop_entry(config, program)
+
         for inst in glob(f"{Paths.applications}/{config.Name}--*"):
             os.remove(inst)
 
@@ -2470,6 +2476,7 @@ class Manager(metaclass=Singleton):
         # dxvk, vkd3d and nvapi require Vulkan to be present on the host.
         if not remove and component in ("dxvk", "vkd3d", "nvapi"):
             from bottles.backend.utils.vulkan import VulkanUtils
+
             if not VulkanUtils.check_support():
                 logging.warning(
                     f"Skipping {component} installation: Vulkan is not available on this system."
@@ -2482,17 +2489,29 @@ class Manager(metaclass=Singleton):
                 )
 
         if component == "dxvk":
-            _version = version or config.DXVK or (self.dxvk_available[0] if self.dxvk_available else "")
+            _version = (
+                version
+                or config.DXVK
+                or (self.dxvk_available[0] if self.dxvk_available else "")
+            )
             if not _version:
                 return Result(status=False, message=_("No DXVK version available."))
             manager = DXVKComponent(_version)
         elif component == "vkd3d":
-            _version = version or config.VKD3D or (self.vkd3d_available[0] if self.vkd3d_available else "")
+            _version = (
+                version
+                or config.VKD3D
+                or (self.vkd3d_available[0] if self.vkd3d_available else "")
+            )
             if not _version:
                 return Result(status=False, message=_("No VKD3D version available."))
             manager = VKD3DComponent(_version)
         elif component == "nvapi":
-            _version = version or config.NVAPI or (self.nvapi_available[0] if self.nvapi_available else "")
+            _version = (
+                version
+                or config.NVAPI
+                or (self.nvapi_available[0] if self.nvapi_available else "")
+            )
             if not _version:
                 return Result(status=False, message=_("No NVAPI version available."))
             manager = NVAPIComponent(_version)
@@ -2501,9 +2520,13 @@ class Manager(metaclass=Singleton):
             if not _version:
                 if len(self.latencyflex_available) == 0:
                     self.check_latencyflex(install_latest=True)
-                _version = self.latencyflex_available[0] if self.latencyflex_available else ""
+                _version = (
+                    self.latencyflex_available[0] if self.latencyflex_available else ""
+                )
             if not _version:
-                return Result(status=False, message=_("No LatencyFleX version available."))
+                return Result(
+                    status=False, message=_("No LatencyFleX version available.")
+                )
             manager = LatencyFleXComponent(_version)
         else:
             return Result(
@@ -2560,7 +2583,9 @@ class Manager(metaclass=Singleton):
                 state = p.get_state()
 
                 if name != "wineserver" and state != "Z":
-                    logging.info(f"Prefix {prefix} is active (e.g. {name}), protecting.")
+                    logging.info(
+                        f"Prefix {prefix} is active (e.g. {name}), protecting."
+                    )
                     protected_prefixes.add(prefix)
                     break
 

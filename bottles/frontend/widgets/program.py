@@ -44,6 +44,7 @@ from bottles.frontend.windows.rename import RenameDialog
 
 from typing import Optional
 
+
 # noinspection PyUnusedLocal
 @Gtk.Template(resource_path="/com/usebottles/bottles/program-entry.ui")
 class ProgramEntry(Adw.ActionRow):
@@ -449,9 +450,15 @@ class ProgramEntry(Adw.ActionRow):
 
     def uninstall_program(self, _widget):
         uninstaller = Uninstaller(self.config)
+
+        def update(_result=False, _error=False):
+            if not _error:
+                ManagerUtils.remove_desktop_entry(self.config, self.program)
+            self.update_programs()
+
         RunAsync(
             task_func=uninstaller.from_name,
-            callback=self.update_programs,
+            callback=update,
             name=self.program["name"],
         )
 
@@ -478,6 +485,7 @@ class ProgramEntry(Adw.ActionRow):
         ).data["config"]
 
     def remove_program(self, _widget=None):
+        ManagerUtils.remove_desktop_entry(self.config, self.program)
         self.config = self.manager.update_config(
             config=self.config,
             key=self.program["id"],
@@ -540,13 +548,14 @@ class ProgramEntry(Adw.ActionRow):
                 "name": self.program["name"],
                 "executable": self.program["executable"],
                 "path": self.program["path"],
-            }
+            },
         )
 
         def _on_desktop_entry_created(data: Optional[Result] = None) -> None:
             self.window.show_toast(
                 _('Desktop Entry created for "{0}"').format(self.program["name"])
             )
+
         SignalManager.connect(Signals.DesktopEntryCreated, _on_desktop_entry_created)
 
     def add_to_library(self, _widget):
