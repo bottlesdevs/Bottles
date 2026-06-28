@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2025-11-04 08:51+0000\n"
+"PO-Revision-Date: 2026-06-29 14:01+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/bottles/bottles/"
 "fa/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -35,11 +35,11 @@ msgstr "درون ریختن پشتیبان: {0}"
 
 #: bottles/backend/managers/manager.py:1057
 msgid "Fail to install components, tried 3 times."
-msgstr "نصب مولفه ها پس از سه بار تلاش با شکست مواجه شد."
+msgstr "شکست در نصب مولّفه‌ها پس از سه بار تلاش."
 
 #: bottles/backend/managers/manager.py:1068
 msgid "Missing essential components. Installing…"
-msgstr "عدم وجود مولفه های ضروری. در حال نصب…"
+msgstr "نبودن مولّفه‌های ضروری. نصب کردن…"
 
 #: bottles/backend/managers/manager.py:1145
 msgid "Failed to create bottle directory."
@@ -244,8 +244,8 @@ msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"نصب با شکست مواجه شد. این میتواند به خاطر یک خطای repository , یا بارگیری "
-"های ناقص و یا checksum mismatch باشد. برای تلاش دوباره کلیک کنید."
+"نصب شکست خورد. شاید به خاطر خطای مخزن، بارگیری ناقص یا مطابق نبودن جمع‌آزما "
+"باشد. زدن برای تلاش دوباره."
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -359,7 +359,7 @@ msgstr "همه پرادزش ها را به صورت اجباری متوقف کن
 
 #: bottles/frontend/ui/details-bottle.blp:94
 msgid "Simulate a Windows system shutdown."
-msgstr "خاموش شدن یک سیستم ویندوزی را شبیه سازی کن."
+msgstr "شبیه‌سازی خاموشی سامانهٔ ویندوزی."
 
 #: bottles/frontend/ui/details-bottle.blp:95
 msgid "Shutdown"
@@ -384,7 +384,7 @@ msgstr "اجرا در پایانه"
 
 #: bottles/frontend/ui/details-bottle.blp:148
 msgid "Drop files to execute them"
-msgstr "فایلی های که می خواهید اجرا کنید را رها کنید"
+msgstr "انداختن پرونده‌ها برای اجرایشان"
 
 #: bottles/frontend/ui/details-bottle.blp:164
 msgid "My bottle"
@@ -425,7 +425,7 @@ msgstr "اجرای پرونده…"
 
 #: bottles/frontend/ui/details-bottle.blp:272
 msgid "Programs"
-msgstr "برنامه ها"
+msgstr "برنامه‌ها"
 
 #: bottles/frontend/ui/details-bottle.blp:275
 msgid ""
@@ -622,7 +622,7 @@ msgstr "نسخه لایه سازگاری واین."
 
 #: bottles/frontend/ui/details-preferences.blp:17
 msgid "Updating Runner and components, please wait…"
-msgstr "در حال بروز کردن اجراگر و مولفه ها, لطفا صبر کنید…"
+msgstr "به‌روز رسانی اجراگر و مولّفه‌ها. لطفاً شکیبا باشید…"
 
 #: bottles/frontend/ui/details-preferences.blp:27
 #: bottles/frontend/ui/preferences.blp:262
@@ -648,7 +648,7 @@ msgstr "سازگاری Direct3D 12 را با ترجمه کردن آن به Vulka
 
 #: bottles/frontend/ui/details-preferences.blp:43
 msgid "Updating VKD3D, please wait…"
-msgstr "در حال بروز کردن VKD3D, لطفا صبر کنید…"
+msgstr "به‌روز کردن VKD3D. لطفاً شکیبا باشید…"
 
 #: bottles/frontend/ui/details-preferences.blp:54
 msgid "DXVK NVAPI"
@@ -657,7 +657,7 @@ msgstr "DXVK NVAPI"
 #: bottles/frontend/ui/details-preferences.blp:58
 #: bottles/frontend/ui/details-preferences.blp:93
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "در حال بروز کردن DXVK-NVAPI, لطفا صبر کنید…"
+msgstr "به‌روز کردن DXVK-NVAPI. لطفاً شکیبا باشید…"
 
 #: bottles/frontend/ui/details-preferences.blp:68
 #: bottles/frontend/ui/preferences.blp:274
@@ -1624,11 +1624,11 @@ msgstr "بومی (ویندوز)"
 
 #: bottles/frontend/ui/dll-override-entry.blp:10
 msgid "Builtin, then Native"
-msgstr ""
+msgstr "توکار، سپس بومی"
 
 #: bottles/frontend/ui/dll-override-entry.blp:11
 msgid "Native, then Builtin"
-msgstr ""
+msgstr "بومی، سپس توکار"
 
 #: bottles/frontend/ui/dll-override-entry.blp:12
 msgid "Disabled"
@@ -1915,7 +1915,7 @@ msgstr ""
 # Translators: Bottles is a proper noun referring to the app
 #: bottles/frontend/ui/onboard.blp:120
 msgid "Start using Bottles"
-msgstr ""
+msgstr "آغاز استفاده از بطری‌ها"
 
 #: bottles/frontend/ui/onboard.blp:141
 msgid "Next"
@@ -1981,7 +1981,7 @@ msgstr "یکپارچگی‌ها"
 
 #: bottles/frontend/ui/preferences.blp:76
 msgid "Steam Proton Prefixes"
-msgstr ""
+msgstr "پیشوندهای پروتون استیم"
 
 #: bottles/frontend/ui/preferences.blp:77
 msgid "List and manage Steam Proton prefixes."
@@ -2076,11 +2076,11 @@ msgstr ""
 
 #: bottles/frontend/ui/preferences.blp:303
 msgid "Sandbox per bottle"
-msgstr ""
+msgstr "گودال ماسه به ازای هر بطری"
 
 #: bottles/frontend/ui/preferences.blp:304
 msgid "In early development."
-msgstr ""
+msgstr "در ابتدای توسعه."
 
 #: bottles/frontend/ui/program-entry.blp:19
 msgid "Launch with Terminal"
@@ -2615,11 +2615,11 @@ msgstr "نصب کردن وابستگی‌های ویندوزی…"
 
 #: bottles/frontend/windows/installer.py:110
 msgid "Configuring the bottle…"
-msgstr ""
+msgstr "پیکر بندی بطری…"
 
 #: bottles/frontend/windows/installer.py:111
 msgid "Processing installer steps…"
-msgstr ""
+msgstr "پردازش کردن گام‌های نصب کننده…"
 
 #: bottles/frontend/windows/installer.py:112
 msgid "Installing the {}…"
@@ -2627,7 +2627,7 @@ msgstr "نصب کردن {}…"
 
 #: bottles/frontend/windows/installer.py:113
 msgid "Performing final checks…"
-msgstr ""
+msgstr "انجام دادن بررسی‌های نهایی…"
 
 #: bottles/frontend/windows/installer.py:117
 #, python-brace-format
@@ -2676,7 +2676,7 @@ msgstr "اجرای نرم‌افزارهای ویندوزی"
 
 #: data/com.usebottles.bottles.desktop.in.in:13
 msgid "wine;windows;"
-msgstr "wine;windows;واین;ویندوز;"
+msgstr "bottles;wine;windows;واین;ویندوز;"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -2704,7 +2704,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Steam apps listing"
-msgstr ""
+msgstr "سیاهه کردن کاره‌های استیم"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle steam apps listing."
@@ -2712,7 +2712,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Epic Games listing"
-msgstr ""
+msgstr "سیاهه کردن بازی‌های اپیک"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Toggle epic games listing."
@@ -2720,7 +2720,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Ubisoft Connect listing"
-msgstr ""
+msgstr "سیاهه کردن کانکت یوبی‌سافت"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Toggle ubisoft connect listing."
@@ -2778,7 +2778,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
-msgstr ""
+msgstr "پشتیبانی پروتون استیم"
 
 #: data/com.usebottles.bottles.gschema.xml:72
 msgid "Toggle Steam Proton prefixes support."
@@ -2802,11 +2802,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:86
 msgid "Show sandbox warning"
-msgstr ""
+msgstr "نمایش هشدار گودال ماسه"
 
 #: data/com.usebottles.bottles.gschema.xml:87
 msgid "Toggle sandbox warning."
-msgstr ""
+msgstr "تغییر وضعیت هشدار گودال ماسه."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:11
 msgid "Run Windows software on Linux with Bottles!"
@@ -3025,7 +3025,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:154
 msgid "Enabling VKD3D by default when creating bottles for gaming"
-msgstr ""
+msgstr "به کار انداختن یپش‌گزیدهٔ VKD3D هنگام ساختن بطری‌ها برای بازی"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:155
 msgid "Fix crashes when reading Steam files with bad encodings"
