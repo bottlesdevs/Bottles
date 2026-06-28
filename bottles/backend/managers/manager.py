@@ -2395,6 +2395,10 @@ class Manager(metaclass=Singleton):
             logging.error("Empty path found. Disasters unavoidable.")
             return False
 
+        logging.info("Removing desktop entries for programs in this bottle…")
+        for program in config.External_Programs.values():
+            ManagerUtils.remove_desktop_entry(config, program)
+
         logging.info("Removing applications installed with the bottle…")
         for inst in glob(f"{Paths.applications}/{config.Name}--*"):
             os.remove(inst)

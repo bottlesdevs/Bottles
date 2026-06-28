@@ -478,6 +478,7 @@ class ProgramEntry(Adw.ActionRow):
         ).data["config"]
 
     def remove_program(self, _widget=None):
+        ManagerUtils.remove_desktop_entry(self.config, self.program)
         self.config = self.manager.update_config(
             config=self.config,
             key=self.program["id"],

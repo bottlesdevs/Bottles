@@ -423,6 +423,57 @@ class ManagerUtils:
         )
 
     @staticmethod
+    def remove_desktop_entry(config, program: dict):
+        """Remove desktop entries previously created by create_desktop_entry.
+
+        Covers both paths: XDG Dynamic Launcher portal (Flatpak) and the
+        manual fallback that writes directly to ~/.local/share/applications/.
+        """
+        # Portal path
+        launcher_id = f"{config.get('Name')}.{program.get('name')}"
+        sum_type = GLib.ChecksumType.SHA1
+        desktop_file_id = "{}.App_{}.desktop".format(
+            APP_ID,
+            GLib.compute_checksum_for_string(sum_type, launcher_id, -1),
+        )
+        try:
+            portal.dynamic_launcher_uninstall(desktop_file_id)
+            logging.info(f"Removed portal desktop entry: {desktop_file_id}")
+        except GLib.Error as e:
+            logging.debug(f"Portal uninstall skipped for '{desktop_file_id}': {e}")
+
+        # Manual fallback path
+        safe_name = "".join(
+            c for c in program.get("name", "") if c.isalnum() or c in ("-", "_")
+        )
+        safe_bottle = "".join(
+            c for c in config.get("Name", "") if c.isalnum() or c in ("-", "_")
+        )
+        filename = f"bottles-{safe_bottle}-{safe_name}.desktop"
+
+        apps_path = os.path.join(
+            os.path.expanduser("~/.local/share/applications"), filename
+        )
+        if os.path.exists(apps_path):
+            try:
+                os.remove(apps_path)
+                logging.info(f"Removed desktop entry: {apps_path}")
+            except Exception as e:
+                logging.error(f"Failed to remove desktop entry '{apps_path}': {e}")
+
+        desktop_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DESKTOP)
+        if desktop_dir:
+            desktop_path = os.path.join(desktop_dir, filename)
+            if os.path.exists(desktop_path):
+                try:
+                    os.remove(desktop_path)
+                    logging.info(f"Removed desktop shortcut: {desktop_path}")
+                except Exception as e:
+                    logging.error(
+                        f"Failed to remove desktop shortcut '{desktop_path}': {e}"
+                    )
+
+    @staticmethod
     def browse_wineprefix(wineprefix: dict):
         """Presents a dialog to browse the wineprefix."""
         ManagerUtils.open_filemanager(
