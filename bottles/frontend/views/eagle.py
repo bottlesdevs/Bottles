@@ -412,12 +412,13 @@ class EagleView(Gtk.Box):
                     description = item.get("description", "")
                     context = item.get("context", [])
                     source = item.get("source", "")
+                    is_ue_bootstrapper = (name == "Unreal Engine Bootstrapper")
 
                     details_list = []
                     if source and source != "Main Executable":
                         details_list.append(f"Source: {source}")
                     
-                    if context:
+                    if context and not is_ue_bootstrapper:
                         ctx_str = ", ".join(context[:5])
                         if len(context) > 5:
                             ctx_str += "..."
@@ -462,6 +463,14 @@ class EagleView(Gtk.Box):
                 icon = Gtk.Image.new_from_icon_name(icon_name)
                 row.add_prefix(icon)
                 self.list_warnings.append(row)
+
+                if isinstance(item, dict) and is_ue_bootstrapper and context:
+                    shipping_path = context[0]
+                    switch_row = Adw.SwitchRow()
+                    switch_row.set_title(_("Use shipping binary instead"))
+                    switch_row.set_subtitle(os.path.basename(shipping_path))
+                    switch_row._ue_shipping_exe = shipping_path
+                    self.list_warnings.append(switch_row)
         else:
             self.group_warnings.set_visible(False)
 
@@ -519,6 +528,14 @@ class EagleView(Gtk.Box):
             row = row.get_next_sibling()
 
         path = self.target_path
+        child = self.list_warnings.get_first_child()
+        while child:
+            if hasattr(child, "_ue_shipping_exe"):
+                if child.get_active():
+                    path = child._ue_shipping_exe
+                break
+            child = child.get_next_sibling()
+
         basename = os.path.basename(path)
         _uuid = str(uuid.uuid4())
         
