@@ -1986,7 +1986,7 @@ class Manager(metaclass=Singleton):
             except (
                 FileNotFoundError,
                 PermissionError,
-                UnicodeDecodeError,
+                UnicodeError,
                 yaml.YAMLError,
             ):
                 logging.error("Recipe not not found or not valid…")
