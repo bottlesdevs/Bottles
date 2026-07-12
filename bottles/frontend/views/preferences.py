@@ -579,7 +579,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             "Caffe", _("Based on Wine upstream, includes Staging and Proton patches.")
         )
         exp_wine_ge = ComponentExpander(
-            "Wine GE",
+            "wine-GE",
             _(
                 "Based on the most recent bleeding-edge Valve's Proton Experimental Wine, "
                 "includes Staging and custom patches. "
@@ -597,7 +597,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             "Vaniglia", _("Based on Wine upstream, includes Staging patches.")
         )
         exp_proton_ge = ComponentExpander(
-            "Proton GE",
+            "proton-GE",
             _(
                 "Based on most recent bleeding-edge Valve's Proton Experimental, "
                 "includes Staging and custom patches. "
