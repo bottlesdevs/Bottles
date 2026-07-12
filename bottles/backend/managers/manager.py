@@ -1922,7 +1922,10 @@ class Manager(metaclass=Singleton):
             if (
                 "soda" not in runner_name.lower() and "caffe" not in runner_name.lower()
             ):  # Caffe/Soda came with win10 by default
-                rk.lg_set_windows(config.Windows)
+                try:
+                    rk.lg_set_windows(config.Windows)
+                except ValueError as e:
+                    logging.warning(str(e))
                 wineboot.update()
 
             FileUtils.wait_for_files(reg_files)
