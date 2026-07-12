@@ -27,7 +27,7 @@ class Proc:
         try:
             with open(os.path.join("/proc", str(self.pid), data), "rb") as f:
                 return f.read().decode("utf-8")
-        except (FileNotFoundError, PermissionError):
+        except OSError:
             return ""
 
     def get_cmdline(self):
