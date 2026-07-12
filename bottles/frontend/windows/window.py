@@ -308,7 +308,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         """
 
         def task():
-            if self.utils_conn.check_connection():
+            if self.manager and self.utils_conn.check_connection():
                 self.manager.checks(install_latest=False, first_run=True)
 
         RunAsync(task)
