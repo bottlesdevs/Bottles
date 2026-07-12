@@ -380,6 +380,13 @@ class InstallerManager:
         steps = manifest.get("Steps")
         checks = manifest.get("Checks")
 
+        if not isinstance(executable, dict) or not executable.get("file") or not executable.get("name"):
+            logging.error("Installer manifest has no valid Executable block.")
+            return Result(
+                False,
+                data={"message": "Installer is not well configured."},
+            )
+
         # download icon
         if executable.get("icon"):
             self.__download_icon(_config, executable, manifest)
