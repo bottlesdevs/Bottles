@@ -1976,11 +1976,16 @@ class Manager(metaclass=Singleton):
             env = Samples.environments[environment.lower()]
         elif custom_environment:
             try:
-                with open(custom_environment, "r") as f:
+                with open(custom_environment, "r", encoding="utf-8") as f:
                     env = yaml.load(f.read())
                     logging.warning("Using a custom environment recipe…")
                     log_update(_("(!) Using a custom environment recipe…"))
-            except (FileNotFoundError, PermissionError, yaml.YAMLError):
+            except (
+                FileNotFoundError,
+                PermissionError,
+                UnicodeDecodeError,
+                yaml.YAMLError,
+            ):
                 logging.error("Recipe not not found or not valid…")
                 log_update(_("(!) Recipe not not found or not valid…"))
                 return Result(False)
