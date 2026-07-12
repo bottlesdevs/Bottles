@@ -75,6 +75,14 @@ class TrdyPaths:
 # check if bottles exists in xdg data path
 os.makedirs(Paths.base, exist_ok=True)
 
+try:
+    os.getcwd()
+except OSError:
+    try:
+        os.chdir(Paths.base)
+    except OSError:
+        pass
+
 def check_flatpak_extension(cmd: str, path: str):
     if "FLATPAK_ID" in os.environ:
         if not os.path.exists(path):
