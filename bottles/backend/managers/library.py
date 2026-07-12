@@ -73,7 +73,12 @@ class LibraryManager:
         logging.info(f"Adding new entry to library: {_uuid}")
 
         if not data.get("thumbnail"):
-            data["thumbnail"] = SteamGridDBManager.get_game_grid(data["name"], config)
+            try:
+                data["thumbnail"] = SteamGridDBManager.get_game_grid(
+                    data["name"], config
+                )
+            except Exception as e:
+                logging.warning(f"Could not fetch thumbnail: {e}")
 
         self.__library[_uuid] = data
         self.save_library()
