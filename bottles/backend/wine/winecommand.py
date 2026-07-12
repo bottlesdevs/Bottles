@@ -736,12 +736,14 @@ class WineCommand:
     def _vmtouch_preload(self):
         vmtouch_flags = "-t -v -l -d"
         vmtouch_file_size = " -m 1024M"
+        try:
+            last_token = shlex.split(self.command)[-1]
+        except (ValueError, IndexError):
+            last_token = self.command.split(" ")[-1]
         if self.command.find("C:\\") > 0:
-            s = (
-                self.cwd + "/" + (self.command.split(" ")[-1].split("\\")[-1])
-            ).replace("'", "")
+            s = (self.cwd + "/" + last_token.split("\\")[-1]).replace("'", "")
         else:
-            s = self.command.split(" ")[-1]
+            s = last_token
         self.vmtouch_files = shlex.quote(s)
 
         # if self.config.Parameters.vmtouch_cache_cwd:
