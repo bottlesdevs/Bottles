@@ -501,6 +501,21 @@ class ProgramEntry(Adw.ActionRow):
             if new_name == self.program["name"]:
                 return
             old_name = self.program["name"]
+
+            old_program = dict(self.program)
+            old_filename = ManagerUtils.get_desktop_entry_filename(
+                self.config, old_program
+            )
+            entry_dirs = [os.path.expanduser("~/.local/share/applications")]
+            _desktop_dir = GLib.get_user_special_dir(
+                GLib.UserDirectory.DIRECTORY_DESKTOP
+            )
+            if _desktop_dir:
+                entry_dirs.append(_desktop_dir)
+            had_desktop_entry = any(
+                os.path.exists(os.path.join(d, old_filename)) for d in entry_dirs
+            )
+
             self.program["name"] = new_name
             self.manager.update_config(
                 config=self.config,
@@ -508,6 +523,17 @@ class ProgramEntry(Adw.ActionRow):
                 value=self.program,
                 scope="External_Programs",
             )
+
+            if had_desktop_entry:
+                ManagerUtils.remove_desktop_entry(self.config, old_program)
+                ManagerUtils.create_desktop_entry(
+                    config=self.config,
+                    program={
+                        "name": new_name,
+                        "executable": self.program["executable"],
+                        "path": self.program["path"],
+                    },
+                )
 
             def async_work():
                 library_manager = LibraryManager()
