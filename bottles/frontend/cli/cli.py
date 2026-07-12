@@ -60,6 +60,8 @@ from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.taskmgr import Taskmgr
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winecfg import WineCfg
+from bottles.backend.wine.wineboot import WineBoot
+from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.winepath import WinePath
 from bottles.frontend.params import APP_ID
@@ -255,6 +257,11 @@ class CLI:
             help="Arguments to pass to the executable",
         )
 
+        stop_parser = subparsers.add_parser(
+            "stop", help="Stop all processes running in a bottle"
+        )
+        stop_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+
         standalone_parser = subparsers.add_parser(
             "standalone",
             help="Generate a standalone script to launch commands "
@@ -329,6 +336,9 @@ class CLI:
         # SHELL parser
         elif self.args.command == "shell":
             self.run_shell()
+
+        elif self.args.command == "stop":
+            self.stop_bottle()
 
         # STANDALONE parser
         elif self.args.command == "standalone":
@@ -821,6 +831,24 @@ class CLI:
     # endregion
 
     # region SHELL
+    def stop_bottle(self):
+        _bottle = self.args.bottle
+
+        mng = Manager(g_settings=self.settings, is_cli=True)
+        mng.checks()
+
+        if _bottle.startswith(('"', "'")) and _bottle.endswith(('"', "'")):
+            _bottle = _bottle[1:-1]
+
+        if _bottle not in mng.local_bottles:
+            sys.stderr.write(f"Bottle {_bottle} not found\n")
+            exit(1)
+
+        bottle = mng.local_bottles[_bottle]
+        WineBoot(bottle).kill(True)
+        WineServer(bottle).wait()
+        sys.stdout.write(f"Stopped all processes in bottle {_bottle}\n")
+
     def run_shell(self):
         _bottle = self.args.bottle
         _input = self.args.input
