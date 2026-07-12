@@ -825,7 +825,10 @@ class DependencyManager:
     def __step_set_windows(config: BottleConfig, step: dict):
         """Set the Windows version."""
         rk = RegKeys(config)
-        rk.lg_set_windows(step.get("version"))
+        try:
+            rk.lg_set_windows(step.get("version"))
+        except ValueError as e:
+            logging.warning(str(e))
         return True
 
     @staticmethod
