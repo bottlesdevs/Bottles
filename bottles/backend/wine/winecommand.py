@@ -48,6 +48,8 @@ class WineEnv:
             return
 
         for key in allowed_keys:
+            if not isinstance(key, str):
+                continue
             if key in os.environ:
                 self.__env[key] = os.environ[key]
 
@@ -263,6 +265,9 @@ class WineCommand:
 
         if config.Environment_Variables:
             for key, value in config.Environment_Variables.items():
+                if not isinstance(key, str) or not isinstance(value, str):
+                    logging.warning(f"Ignoring malformed environment variable {key!r}")
+                    continue
                 env.add(key, value, override=True)
 
         # Environment variables from argument
