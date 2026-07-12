@@ -148,11 +148,15 @@ class PreferencesView(Adw.PreferencesPage):
         _flatpak_not_available = _("{} To add this feature, please run").format(
             _not_available
         )
+        _add_flathub = (
+            "flatpak remote-add --if-not-exists flathub "
+            "https://flathub.org/repo/flathub.flatpakrepo"
+        )
         self._install_commands = {
-            "gamescope": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.gamescope",
-            "vkbasalt": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.vkBasalt",
-            "mangohud": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud",
-            "obsvkc": "flatpak install flathub com.obsproject.Studio.Plugin.OBSVkCapture",
+            "gamescope": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.gamescope",
+            "vkbasalt": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.vkBasalt",
+            "mangohud": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud",
+            "obsvkc": f"{_add_flathub} && flatpak install flathub com.obsproject.Studio.Plugin.OBSVkCapture",
         }
 
         is_flatpak = "FLATPAK_ID" in os.environ
