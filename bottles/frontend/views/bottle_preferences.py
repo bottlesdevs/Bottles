@@ -632,8 +632,14 @@ class PreferencesView(Adw.PreferencesPage):
 
         _runner = self.config.Runner
         if _runner in self.manager.runners_available:
-            if _i_runner := self.manager.runners_available.index(_runner):
-                self.combo_runner.set_selected(_i_runner)
+            _i_runner = self.manager.runners_available.index(_runner)
+            self.combo_runner.set_selected(_i_runner)
+        elif self.manager.runners_available:
+            _fallback_runner = self.manager.runners_available[0]
+            self.combo_runner.set_selected(0)
+            self.config = self.manager.update_config(
+                config=self.config, key="Runner", value=_fallback_runner
+            ).data["config"]
 
         sync_types = [
             "wine",
