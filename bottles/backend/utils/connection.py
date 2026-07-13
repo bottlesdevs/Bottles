@@ -39,6 +39,12 @@ class ConnectionUtils:
     _status: Optional[bool] = None
     last_check = None
 
+    _check_urls = (
+        "https://ping.usebottles.com",
+        "https://github.com",
+        "https://cloudflare.com",
+    )
+
     def __init__(self, force_offline=False, **kwargs):
         super().__init__(**kwargs)
         self.force_offline = force_offline
@@ -69,6 +75,26 @@ class ConnectionUtils:
         if res.status:
             self.do_check_connection = False
 
+    def __ping(self, url: str) -> bool:
+        c = pycurl.Curl()
+        _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
+        if _proxy:
+            c.setopt(pycurl.PROXY, _proxy)
+        c.setopt(c.URL, url)
+        c.setopt(c.FOLLOWLOCATION, True)
+        c.setopt(c.NOBODY, True)
+        c.setopt(c.NOPROGRESS, False)
+        c.setopt(c.XFERINFOFUNCTION, self.__curl_progress)
+        # bound the check so a stalled/filtered connection cannot hang the
+        # whole startup; on timeout we simply fall back to offline mode
+        c.setopt(pycurl.CONNECTTIMEOUT, 5)
+        c.setopt(pycurl.TIMEOUT, 10)
+        try:
+            c.perform()
+            return c.getinfo(pycurl.HTTP_CODE) == 200
+        finally:
+            c.close()
+
     def check_connection(self, show_notification=False) -> Optional[bool]:
         """check network status, send result through signal NetworkReady and return"""
         if self.force_offline or "FORCE_OFFLINE" in os.environ:
@@ -77,22 +103,18 @@ class ConnectionUtils:
             return False
 
         try:
-            c = pycurl.Curl()
-            _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
-            if _proxy:
-                c.setopt(pycurl.PROXY, _proxy)
-            c.setopt(c.URL, "https://ping.usebottles.com")
-            c.setopt(c.FOLLOWLOCATION, True)
-            c.setopt(c.NOBODY, True)
-            c.setopt(c.NOPROGRESS, False)
-            c.setopt(c.XFERINFOFUNCTION, self.__curl_progress)
-            # bound the check so a stalled/filtered connection cannot hang the
-            # whole startup; on timeout we simply fall back to offline mode
-            c.setopt(pycurl.CONNECTTIMEOUT, 5)
-            c.setopt(pycurl.TIMEOUT, 10)
-            c.perform()
+            online = False
+            for url in self._check_urls:
+                if not self.do_check_connection:
+                    break
+                try:
+                    if self.__ping(url):
+                        online = True
+                        break
+                except Exception:
+                    continue
 
-            if c.getinfo(pycurl.HTTP_CODE) != 200:
+            if not online:
                 raise Exception("Connection status: offline …")
 
             self.last_check = datetime.now()
