@@ -228,6 +228,15 @@ template $LaunchOptionsDialog: Adw.Window {
             valign: center;
           }
         }
+
+        Adw.ActionRow action_wayland {
+          title: _("Wayland (Experimental)");
+          activatable-widget: switch_wayland;
+
+          Switch switch_wayland {
+            valign: center;
+          }
+        }
       }
     }
   }
