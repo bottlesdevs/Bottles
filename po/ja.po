@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2026-03-06 09:09+0000\n"
+"PO-Revision-Date: 2026-04-21 15:13+0000\n"
 "Last-Translator: camegone <kuroneko0308kw@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -1480,6 +1480,18 @@ msgid ""
 "\n"
 "The old system will be discontinued in one of the next releases."
 msgstr ""
+"ボトルは過去のバージョンと互換性がない新たなバージョン付けシステムを採用しま"
+"した。\n"
+"\n"
+"バージョン付けを続けるために、ボトルのリポジトリを最初期化する必要があります"
+"。続行してもボトルの中のデータは失われませんが、現在のスナップショットはすべ"
+"て削除され、新しいものが作られます。\n"
+"\n"
+"もし古いバージョンのスナップショットに復元したい場合、このウィンドウを閉じて"
+"スナップショットを復元して、その後にボトルを再起動してこのウィンドウを再表示"
+"してください。\n"
+"\n"
+"古いシステムは将来のリリースでサポートされません。"
 
 #: bottles/frontend/ui/dialog-upgrade-versioning.blp:103
 msgid "Re-initializing Repository…"
@@ -2432,7 +2444,7 @@ msgstr "自分のボトル"
 #: bottles/frontend/views/loading.py:41
 #, python-brace-format
 msgid "Downloading ~{0} of packages…"
-msgstr ""
+msgstr "ダウンロード中 ~ {0} このパッケージ…"
 
 #: bottles/frontend/views/loading.py:42
 #, python-brace-format
@@ -2987,9 +2999,8 @@ msgid "Add more update information and correct release notes version"
 msgstr ""
 
 #: data/com.usebottles.bottles.metainfo.xml.in:94
-#, fuzzy
 msgid "Fixed \"Add to Steam\" button"
-msgstr "Steamに追加"
+msgstr "「Steamに追加」ボタンを修正"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:95
 msgid "Fixed BottleConfig being not serializable"
