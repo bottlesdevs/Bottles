@@ -57,6 +57,9 @@ class GamescopeDialog(Adw.Window):
         self.__update(config)
 
     def __change_wtype(self, widget, wtype):
+        if not widget.get_active():
+            return
+
         self.toggle_borderless.handler_block_by_func(self.__change_wtype)
         self.toggle_fullscreen.handler_block_by_func(self.__change_wtype)
         if wtype == "b":
