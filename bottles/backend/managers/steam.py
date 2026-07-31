@@ -546,10 +546,10 @@ class SteamManager:
         logging.info(f"Adding shortcut for {program_name}")
         if "FLATPAK_ID" in os.environ:
             cmd = "flatpak"
-            args = f"run --command=bottles-cli {os.environ['FLATPAK_ID']} run -b '{{0}}' -p '{{1}}'"
+            args = f"run --command=bottles-cli {os.environ['FLATPAK_ID']} run -b {{0}} -p {{1}}"
         else:
             cmd = "bottles-cli"
-            args = "run -b '{0}' -p '{1}'"
+            args = "run -b {0} -p {1}"
 
         if self.userdata_path is None:
             logging.warning("Userdata path is not set")
@@ -562,7 +562,9 @@ class SteamManager:
             "StartDir": ManagerUtils.get_bottle_path(self.config),
             "icon": ManagerUtils.extract_icon(self.config, program_name, program_path),
             "ShortcutPath": "",
-            "LaunchOptions": args.format(self.config.Name, program_name),
+            "LaunchOptions": args.format(
+                shlex.quote(self.config.Name), shlex.quote(program_name)
+            ),
             "IsHidden": 0,
             "AllowDesktopConfig": 1,
             "AllowOverlay": 1,
