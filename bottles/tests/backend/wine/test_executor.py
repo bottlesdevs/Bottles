@@ -186,6 +186,52 @@ def test_component_override_bypasses_winebridge(monkeypatch):
     assert result.data["use_winebridge"] is False
 
 
+def test_winebridge_launch_preserves_spaces_in_executable_path(monkeypatch):
+    executable = "/mnt/storage/DO NOT RENAME OR MOVE/Games/Poly Bridge 2.exe"
+    captured = {}
+
+    class FakeWineBridge:
+        def __init__(self, _config):
+            pass
+
+        @staticmethod
+        def is_available():
+            return True
+
+        @staticmethod
+        def run_exe(exec_path):
+            captured["exec_path"] = exec_path
+            return ""
+
+    class FakeWinePath:
+        def __init__(self, _config):
+            pass
+
+        @staticmethod
+        def is_unix(exec_path):
+            return exec_path.startswith("/")
+
+        @staticmethod
+        def to_windows(exec_path, native=False):
+            assert native is True
+            return exec_path.replace("/", "\\")
+
+    monkeypatch.setattr("bottles.backend.wine.executor.WineBridge", FakeWineBridge)
+    monkeypatch.setattr("bottles.backend.wine.executor.WinePath", FakeWinePath)
+
+    executor = WineExecutor.__new__(WineExecutor)
+    executor.config = _make_config()
+    executor.use_winebridge = True
+    executor.exec_type = "exe"
+    executor._raw_exec_path = executable
+    executor.exec_path = f"'{executable}'"
+
+    result = executor._WineExecutor__launch_with_bridge()
+
+    assert result.status is True
+    assert captured["exec_path"] == executable.replace("/", "\\")
+
+
 def test_wine_env_respects_allowed_keys(monkeypatch):
     monkeypatch.setenv("KEEP_ONLY", "1")
     monkeypatch.setenv("DROP_ME", "2")
