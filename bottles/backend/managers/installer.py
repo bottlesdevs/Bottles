@@ -31,6 +31,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.wine import WineUtils
 from bottles.backend.wine.executor import WineExecutor
+from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.winecommand import WineCommand
 
 logging = Logger()
@@ -312,6 +313,9 @@ class InstallerManager:
                 self.__manager.install_dll_component(
                     _config, "latencyflex", remove=not new_params["latencyflex"]
                 )
+
+        if "decorated" in new_params and isinstance(new_params["decorated"], bool):
+            RegKeys(config).set_decorated(new_params["decorated"])
 
         # avoid sync type change if not set to "wine"
         if "sync" in new_params and config.Parameters.sync != "wine":
