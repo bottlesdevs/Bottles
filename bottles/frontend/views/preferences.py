@@ -580,11 +580,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         )
         exp_wine_ge = ComponentExpander(
             "wine-GE",
-            _(
-                "Based on the most recent bleeding-edge Valve's Proton Experimental Wine, "
-                "includes Staging and custom patches. "
-                "This is meant to be used with non-steam games outside of Steam."
-            ),
+            _("Unmaintained. Wine-GE has been archived in favor of umu-launcher."),
         )
         exp_kron4ek = ComponentExpander(
             "Kron4ek",
