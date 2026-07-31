@@ -214,7 +214,10 @@ class BottleView(Adw.Bin):
                 self.group_steam.set_visible(True)
                 self.group_bottles.set_title(_("Your Bottles"))
 
-        self.__update_banner_state(local_bottles)
+        self.update_component_updates_banner()
+
+    def update_component_updates_banner(self) -> None:
+        self.__update_banner_state(self.window.manager.local_bottles)
 
     def __update_banner_state(self, local_bottles) -> None:
         """Reveal the home banner when some bottles can update their components.

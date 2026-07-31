@@ -76,6 +76,16 @@ template $DetailsPreferences: Adw.PreferencesPage {
 
       model: StringList str_list_latencyflex {};
     }
+
+    Adw.ActionRow {
+      activatable-widget: switch_component_updates;
+      title: _("Show Component Updates");
+      subtitle: _("Show runner and component update suggestions for this bottle.");
+
+      Switch switch_component_updates {
+        valign: center;
+      }
+    }
   }
 
   Adw.PreferencesGroup {

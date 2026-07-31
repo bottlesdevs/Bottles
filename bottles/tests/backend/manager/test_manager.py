@@ -6,7 +6,7 @@ import pytest
 
 from bottles.backend.managers import manager as manager_module
 from bottles.backend.managers.manager import Manager
-from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.config import BottleConfig, BottleParams
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.gsettings_stub import GSettingsStub
 
@@ -138,3 +138,47 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
     assert program["gamemode"] is True
     assert program["latencyflex"] is False
     assert program["sync"] == "esync"
+
+
+def test_component_updates_can_be_disabled(mocker):
+    manager = object.__new__(Manager)
+    manager._Manager__collect_runner_update = mocker.Mock()
+    manager._Manager__collect_winebridge_update = mocker.Mock()
+    config = BottleConfig(
+        Parameters=BottleParams(show_component_updates=False),
+    )
+
+    assert Manager.get_component_updates(manager, config) == []
+    manager._Manager__collect_runner_update.assert_not_called()
+    manager._Manager__collect_winebridge_update.assert_not_called()
+
+
+def test_component_update_checks_are_enabled_by_default():
+    manager = object.__new__(Manager)
+    manager.settings = GSettingsStub()
+    manager.supported_wine_runners = {"soda-11.0-1": {}}
+    manager.supported_proton_runners = {}
+    config = BottleConfig(Runner="soda-10.0-1")
+
+    assert config.Parameters.show_component_updates is True
+    assert Manager.get_component_updates(manager, config) == [
+        {
+            "id": "runner",
+            "title": "Runner",
+            "current": "soda-10.0-1",
+            "latest": "soda-11.0-1",
+            "component_type": "runner",
+        }
+    ]
+
+
+def test_custom_runner_is_not_compared_with_an_unrelated_family():
+    manager = object.__new__(Manager)
+    manager.settings = GSettingsStub()
+    manager.supported_wine_runners = {"wine-ge-proton8-27-lol": {}}
+    manager.supported_proton_runners = {}
+
+    assert manager._Manager__latest_runner_for("wine-10.19-staging-tkg-amd64") == (
+        None,
+        "",
+    )
