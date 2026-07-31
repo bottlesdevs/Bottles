@@ -579,6 +579,7 @@ class WineCommand:
         config = self.config
         params = config.Parameters
         runner = self.runner
+        self.steam_runtime_root = ""
 
         if environment is None:
             environment = {}
@@ -662,6 +663,7 @@ class WineCommand:
 
             if _picked:
                 logging.info(f"Using Steam runtime {_picked['name']}")
+                self.steam_runtime_root = os.path.dirname(_picked["entry_point"])
                 command = f"{_picked['entry_point']} {command}"
             else:
                 logging.warning(
@@ -788,7 +790,7 @@ class WineCommand:
             if self.config.Environment == "Steam" and self.config.RunnerPath
             else ManagerUtils.get_runner_path(self.config.Runner)
         )
-        for extra in (runner_root, self.runner_runtime):
+        for extra in (runner_root, self.steam_runtime_root):
             if extra and not str(extra).startswith("sys-"):
                 share_paths_ro.append(os.path.realpath(extra))
 
