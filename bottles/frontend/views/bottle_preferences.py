@@ -96,6 +96,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_vkbasalt = Gtk.Template.Child()
     switch_wayland = Gtk.Template.Child()
     switch_winebridge = Gtk.Template.Child()
+    switch_component_updates = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
@@ -252,6 +253,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_wayland.connect("state-set", self.__toggle_wayland)
         self.switch_winebridge.connect(
             "state-set", self.__toggle_feature_cb, "winebridge"
+        )
+        self.switch_component_updates.connect(
+            "state-set", self.__toggle_component_updates
         )
         self.switch_nvapi.connect("state-set", self.__toggle_nvapi)
         self.switch_gamemode.connect("state-set", self.__toggle_feature_cb, "gamemode")
@@ -524,6 +528,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkbasalt.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_wayland.handler_block_by_func(self.__toggle_wayland)
         self.switch_winebridge.handler_block_by_func(self.__toggle_feature_cb)
+        self.switch_component_updates.handler_block_by_func(
+            self.__toggle_component_updates
+        )
         self.switch_obsvkc.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_gamescope.handler_block_by_func(self.__toggle_feature_cb)
@@ -543,6 +550,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkbasalt.set_active(parameters.vkbasalt)
         self.switch_wayland.set_active(parameters.wayland)
         self.switch_winebridge.set_active(parameters.winebridge)
+        self.switch_component_updates.set_active(parameters.show_component_updates)
         self.switch_nvapi.set_active(parameters.dxvk_nvapi)
         self.switch_gamemode.set_active(parameters.gamemode)
         self.switch_gamescope.set_active(parameters.gamescope)
@@ -657,6 +665,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_wayland.handler_unblock_by_func(self.__toggle_wayland)
         self.switch_winebridge.handler_unblock_by_func(self.__toggle_feature_cb)
+        self.switch_component_updates.handler_unblock_by_func(
+            self.__toggle_component_updates
+        )
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_gamescope.handler_unblock_by_func(self.__toggle_feature_cb)
@@ -698,6 +709,11 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_feature_cb(self, _widget: Gtk.Widget, state: bool, key: str) -> None:
         self.__toggle_feature(state=state, key=key)
+
+    def __toggle_component_updates(self, _widget: Gtk.Widget, state: bool) -> None:
+        self.__toggle_feature(state=state, key="show_component_updates")
+        self.details.view_bottle.populate_updates()
+        self.window.page_list.update_component_updates_banner()
 
     def __toggle_wayland(self, _widget: Gtk.Widget, state: bool) -> None:
         self.__toggle_feature(state=state, key="wayland")
