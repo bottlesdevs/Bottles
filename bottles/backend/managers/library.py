@@ -16,13 +16,21 @@
 #
 
 import os
+import shutil
 import uuid
+
+import gi
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.managers.steamgriddb import SteamGridDBManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import yaml
+from bottles.backend.utils.manager import ManagerUtils
+
+gi.require_version("GdkPixbuf", "2.0")
+# ruff: noqa: E402
+from gi.repository import GdkPixbuf
 
 logging = Logger()
 
@@ -73,6 +81,12 @@ class LibraryManager:
         logging.info(f"Adding new entry to library: {_uuid}")
 
         if not data.get("thumbnail"):
+            for cover in self.__get_local_covers(data, config):
+                data["thumbnail"] = self.import_thumbnail(cover, config)
+                if data["thumbnail"]:
+                    break
+
+        if not data.get("thumbnail"):
             try:
                 data["thumbnail"] = SteamGridDBManager.get_game_grid(
                     data["name"], config
@@ -82,6 +96,78 @@ class LibraryManager:
 
         self.__library[_uuid] = data
         self.save_library()
+
+    @staticmethod
+    def __get_local_covers(data: dict, config: BottleConfig):
+        program = config.External_Programs.get(data["id"], {})
+        program_path = program.get("path")
+
+        if program_path:
+            executable = program_path.replace("\\", "/").rsplit("/", 1)[-1]
+            folder = ManagerUtils.get_exe_parent_dir(config, program_path)
+            yield os.path.join(folder, f"{executable}.png")
+
+        yield os.path.join(ManagerUtils.get_bottle_path(config), "library.png")
+
+    @staticmethod
+    def import_thumbnail(source_path, config: BottleConfig):
+        source_path = os.fspath(source_path)
+        if not os.path.isfile(source_path):
+            return None
+
+        image_format, width, height = GdkPixbuf.Pixbuf.get_file_info(source_path)
+        if image_format is None or width <= 0 or height <= 0:
+            logging.warning(f"Invalid library thumbnail: {source_path}")
+            return None
+
+        extension = os.path.splitext(source_path)[1].lower()
+        grids_path = os.path.join(ManagerUtils.get_bottle_path(config), "grids")
+        filename = f"{uuid.uuid4()}{extension}"
+        destination = os.path.join(grids_path, filename)
+
+        try:
+            os.makedirs(grids_path, exist_ok=True)
+            shutil.copy2(source_path, destination)
+        except OSError as error:
+            logging.warning(f"Could not import library thumbnail: {error}")
+            return None
+
+        return f"grid:{filename}"
+
+    def set_thumbnail(self, _uuid: str, source_path, config: BottleConfig):
+        entry = self.__library.get(_uuid)
+        if entry is None:
+            logging.warning(f"Entry not found in library, can't set thumbnail: {_uuid}")
+            return False
+
+        thumbnail = self.import_thumbnail(source_path, config)
+        if thumbnail is None:
+            return False
+
+        old_thumbnail = entry.get("thumbnail")
+        entry["thumbnail"] = thumbnail
+        self.save_library()
+
+        thumbnail_is_shared = any(
+            uuid != _uuid and item.get("thumbnail") == old_thumbnail
+            for uuid, item in self.__library.items()
+        )
+        if (
+            old_thumbnail
+            and old_thumbnail.startswith("grid:")
+            and not thumbnail_is_shared
+        ):
+            old_filename = old_thumbnail.removeprefix("grid:")
+            if os.path.basename(old_filename) == old_filename:
+                old_path = os.path.join(
+                    ManagerUtils.get_bottle_path(config), "grids", old_filename
+                )
+                try:
+                    os.remove(old_path)
+                except FileNotFoundError:
+                    pass
+
+        return True
 
     def download_thumbnail(self, _uuid: str, config: BottleConfig):
         if not self.__library.get(_uuid):
