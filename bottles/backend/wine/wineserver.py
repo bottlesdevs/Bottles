@@ -35,6 +35,9 @@ class WineServer(WineProgram):
             bottle = config.Path
             runner = config.RunnerPath
 
+        if not os.path.isdir(bottle):
+            return False
+
         if SteamUtils.is_proton(runner):
             runner = SteamUtils.get_dist_directory(runner)
 
@@ -42,14 +45,17 @@ class WineServer(WineProgram):
         env["WINEPREFIX"] = bottle
         if not config.Runner.startswith("sys-"):
             env["PATH"] = f"{runner}/bin:{env['PATH']}"
-        res = subprocess.Popen(
-            "wineserver -w",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            shell=True,
-            cwd=bottle,
-            env=env,
-        )
+        try:
+            res = subprocess.Popen(
+                "wineserver -w",
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                shell=True,
+                cwd=bottle,
+                env=env,
+            )
+        except FileNotFoundError:
+            return False
         time.sleep(0.5)
         if res.poll() is None:
             res.kill()  # kill the process to avoid zombie incursion
