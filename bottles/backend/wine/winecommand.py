@@ -246,6 +246,7 @@ class WineCommand:
             runner_path = config.RunnerPath
 
         if SteamUtils.is_proton(runner_path):
+            SteamUtils.sync_proton_vkd3d(runner_path, bottle, arch)
             runner_path = SteamUtils.get_dist_directory(runner_path)
 
         # Clean some env variables which can cause trouble

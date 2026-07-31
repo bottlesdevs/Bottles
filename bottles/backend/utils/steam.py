@@ -17,6 +17,7 @@
 
 import os
 import shlex
+import shutil
 from typing import Optional, TextIO
 
 from bottles.backend.logger import Logger
@@ -103,6 +104,41 @@ class SteamUtils:
             )
 
         return dist_directory
+
+    @staticmethod
+    def sync_proton_vkd3d(path: str, prefix: str, arch: str) -> None:
+        """Sync Proton's WineD3D dependencies into a Bottles prefix."""
+        dist_directory = SteamUtils.get_dist_directory(path)
+        default_prefix = os.path.join(dist_directory, "share/default_pfx")
+        dlls = ("libvkd3d-1.dll", "libvkd3d-shader-1.dll")
+        directories = [("system32", "system32"), ("syswow64", "syswow64")]
+        if arch == "win32":
+            directories = [("syswow64", "system32")]
+
+        for source_dir, destination_dir in directories:
+            source_dir = os.path.join(default_prefix, "drive_c/windows", source_dir)
+            destination_dir = os.path.join(prefix, "drive_c/windows", destination_dir)
+            for dll in dlls:
+                source = os.path.join(source_dir, dll)
+                if not os.path.isfile(source):
+                    continue
+
+                destination = os.path.join(destination_dir, dll)
+                try:
+                    if os.path.isfile(destination):
+                        source_stat = os.stat(source)
+                        destination_stat = os.stat(destination)
+                        if (
+                            source_stat.st_size == destination_stat.st_size
+                            and source_stat.st_mtime_ns == destination_stat.st_mtime_ns
+                        ):
+                            continue
+                    if os.path.islink(destination):
+                        os.unlink(destination)
+                    os.makedirs(destination_dir, exist_ok=True)
+                    shutil.copy2(source, destination)
+                except OSError as exc:
+                    logging.warning(f"Failed to update {destination}: {exc}")
 
     @staticmethod
     def handle_launch_options(launch_options: str) -> tuple[str, str, dict[str, str]]:

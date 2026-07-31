@@ -276,3 +276,76 @@ def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
     env = winecmd.get_env()
     assert env["DISPLAY"] == ":1"
     assert "SHOULD_NOT_PASS" not in env
+
+
+def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
+    bottle_path = tmp_path / "TestBottle"
+    bottle_path.mkdir()
+    proton_path = tmp_path / "GE-Proton"
+    dist_path = proton_path / "files"
+    for sub in [
+        "share/default_pfx/drive_c/windows/system32",
+        "share/default_pfx/drive_c/windows/syswow64",
+    ]:
+        (dist_path / sub).mkdir(parents=True, exist_ok=True)
+    for dll in ["libvkd3d-1.dll", "libvkd3d-shader-1.dll"]:
+        (dist_path / "share/default_pfx/drive_c/windows/system32" / dll).write_bytes(
+            b"win64"
+        )
+        (dist_path / "share/default_pfx/drive_c/windows/syswow64" / dll).write_bytes(
+            b"win32"
+        )
+    stale_dll = bottle_path / "drive_c/windows/system32/libvkd3d-1.dll"
+    stale_dll.parent.mkdir(parents=True)
+    stale_dll.write_bytes(b"stale")
+
+    config = BottleConfig(Name="Test", Path=str(bottle_path), Runner="GE-Proton")
+    config.Parameters = BottleParams()
+    config.Parameters.use_runtime = False
+    config.Parameters.use_eac_runtime = False
+    config.Parameters.use_be_runtime = False
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle_path),
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_runner_path",
+        lambda _runner: str(proton_path),
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.SteamUtils.is_proton", lambda *_: True
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.SteamUtils.get_dist_directory",
+        lambda _runner: str(dist_path),
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.DisplayUtils.check_nvidia_device",
+        lambda: None,
+    )
+
+    def _fake_gpu(self):
+        return {
+            "prime": {"discrete": None, "integrated": None},
+            "vendors": {},
+        }
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.GPUUtils.get_gpu",
+        _fake_gpu,
+    )
+
+    winecmd = WineCommand.__new__(WineCommand)
+    winecmd.config = config
+    winecmd.minimal = True
+    winecmd.runner = str(dist_path / "bin/wine")
+    winecmd.runner_runtime = "sniper"
+    winecmd.gamescope_activated = False
+    winecmd.terminal = False
+
+    winecmd.get_env(return_clean_env=True)
+
+    for dll in ["libvkd3d-1.dll", "libvkd3d-shader-1.dll"]:
+        assert (bottle_path / "drive_c/windows/system32" / dll).read_bytes() == b"win64"
+        assert (bottle_path / "drive_c/windows/syswow64" / dll).read_bytes() == b"win32"
