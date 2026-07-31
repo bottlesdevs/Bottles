@@ -102,7 +102,7 @@ class TemplateManager:
                 )
                 result = False
 
-        path_size = sum(file.stat().st_size for file in Path(template_path).rglob("*"))
+        path_size = sum(file.lstat().st_size for file in Path(template_path).rglob("*"))
         if path_size < 300000000:
             logging.error(f"Template {template_uuid} is too small!")
             result = False
