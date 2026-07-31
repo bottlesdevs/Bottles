@@ -39,7 +39,7 @@ gi.require_version("Xdp", "1.0")
 # gi.require_version("XdpGtk4", "1.0")
 
 # ruff: noqa: E402
-from gi.repository import Adw, Gio, GLib, GObject  # type: ignore
+from gi.repository import Adw, Gio, GLib, GObject, Gtk  # type: ignore
 
 from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.windows.window import BottlesWindow
@@ -403,6 +403,15 @@ class Bottles(Adw.Application):
         about_dialog.set_artists(artists)
         about_dialog.set_debug_info(HealthChecker().get_results(plain=True))
         about_dialog.add_link(_("Donate"), "https://usebottles.com/funding")
+        about_dialog.add_legal_section(
+            _("Eagle Intelligence Data"),
+            _("Data derived from ProtonDB and winetricks"),
+            Gtk.License.CUSTOM,
+            _(
+                "ProtonDB community reports: ODbL 1.0, contents DbCL 1.0.\n"
+                "winetricks data: LGPL-2.1-or-later."
+            ),
+        )
         about_dialog.set_copyright(
             _("Copyright © 2017 {developer_name}").format(
                 developer_name=about_dialog.get_developer_name()
@@ -432,6 +441,8 @@ class Bottles(Adw.Application):
                 "vmtouch https://github.com/hoytech/vmtouch",
                 "FVS https://github.com/mirkobrombin/FVS",
                 "pathvalidate https://github.com/thombashi/pathvalidate",
+                "protondb-data https://github.com/bdefore/protondb-data",
+                "winetricks https://github.com/Winetricks/winetricks",
             ],
         )
         about_dialog.add_acknowledgement_section(

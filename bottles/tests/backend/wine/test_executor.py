@@ -1,5 +1,6 @@
 """Unit tests for WineExecutor placeholder handling"""
 
+from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.models.config import BottleConfig, BottleParams
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
@@ -61,30 +62,41 @@ def test_run_program_substitutes_placeholders(monkeypatch):
         program_dxvk=None,
         program_vkd3d=None,
         program_nvapi=None,
-        program_fsr=None,
         program_gamescope=None,
         program_virt_desktop=None,
         program_winebridge=None,
+        sandbox_override=None,
     ):
         # mimic original __init__ contract enough for run() stub
         self.config = config
+        self.use_winebridge = (
+            program_winebridge
+            if program_winebridge is not None
+            else config.Parameters.winebridge
+        )
         self.captured = {
+            "config": config,
             "exec_path": exec_path,
             "args": args,
+            "environment": environment,
             "pre_script": pre_script,
             "post_script": post_script,
             "pre_script_args": pre_script_args,
             "post_script_args": post_script_args,
             "cwd": cwd,
+            "program_dxvk": program_dxvk,
+            "program_nvapi": program_nvapi,
         }
 
     def fake_run(self):
+        self.captured["use_winebridge"] = self.use_winebridge
         return Result(True, data=self.captured)
 
     monkeypatch.setattr(WineExecutor, "__init__", fake_init, raising=False)
     monkeypatch.setattr(WineExecutor, "run", fake_run, raising=False)
 
     config = _make_config(name="Bottle", path="BottlePath")
+    config.Parameters.dxvk = True
     program = {
         "name": "Awesome Game",
         "path": "/games/awesome/game.exe",
@@ -94,6 +106,17 @@ def test_run_program_substitutes_placeholders(monkeypatch):
         "post_script": None,
         "post_script_args": "--dir=%PROGRAM_DIR%",
         "folder": "%PROGRAM_DIR%",
+        "environment": {
+            "DXVK_HUD": "fps",
+            "WINEDLLOVERRIDES": "version=n,b",
+            "WINEARCH": "win32",
+            "WINEPREFIX": "/tmp/other",
+        },
+        "dxvk": False,
+        "dxvk_nvapi": True,
+        "gamemode": True,
+        "sync": "esync",
+        "winebridge": True,
     }
 
     result = WineExecutor.run_program(config=config, program=program, terminal=False)
@@ -106,6 +129,61 @@ def test_run_program_substitutes_placeholders(monkeypatch):
     assert data["pre_script_args"] == f"--prefix={ManagerUtils.get_bottle_path(config)}"
     assert data["post_script_args"] == "--dir=/games/awesome"
     assert data["cwd"] == "/games/awesome"
+    assert data["environment"] == {
+        "DXVK_HUD": "fps",
+        "WINEDLLOVERRIDES": "version=n,b",
+    }
+    assert data["program_dxvk"] is False
+    assert data["program_nvapi"] is True
+    assert data["config"] is not config
+    assert data["config"].Parameters.dxvk is True
+    assert data["config"].Parameters.dxvk_nvapi is False
+    assert data["config"].Parameters.gamemode is True
+    assert data["config"].Parameters.sync == "esync"
+    assert data["use_winebridge"] is False
+    assert config.Parameters.dxvk_nvapi is False
+    assert config.Parameters.dxvk is True
+    assert config.Parameters.gamemode is False
+    assert config.Parameters.sync == "wine"
+
+
+def test_program_dxvk_false_adds_builtin_override(tmp_path):
+    executable = tmp_path / "program.exe"
+    executable.touch()
+    config = _make_config()
+    config.Parameters.dxvk = True
+
+    executor = WineExecutor(
+        config=config,
+        exec_path=str(executable),
+        program_dxvk=False,
+    )
+
+    assert executor.environment["WINEDLLOVERRIDES"] == (
+        f"{DXVKComponent.get_override_keys()}=b"
+    )
+
+
+def test_component_override_bypasses_winebridge(monkeypatch):
+    def fake_init(self, **kwargs):
+        self.use_winebridge = kwargs["program_winebridge"]
+
+    def fake_run(self):
+        return Result(True, data={"use_winebridge": self.use_winebridge})
+
+    monkeypatch.setattr(WineExecutor, "__init__", fake_init, raising=False)
+    monkeypatch.setattr(WineExecutor, "run", fake_run, raising=False)
+
+    result = WineExecutor.run_program(
+        config=_make_config(),
+        program={
+            "path": "/games/example.exe",
+            "dxvk": False,
+            "winebridge": True,
+        },
+    )
+
+    assert result.data["use_winebridge"] is False
 
 
 def test_wine_env_respects_allowed_keys(monkeypatch):

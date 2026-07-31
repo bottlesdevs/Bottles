@@ -3,7 +3,7 @@ import re
 import shlex
 import time
 import uuid
-from typing import Optional, Pattern
+from typing import ClassVar, Optional, Pattern
 
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
@@ -30,6 +30,29 @@ logging = Logger()
 
 
 class WineExecutor:
+    _PROGRAM_ENVIRONMENT_DENYLIST: ClassVar[set[str]] = {
+        "WINEARCH",
+        "WINEPREFIX",
+    }
+    _PROGRAM_BOOLEAN_OVERRIDES: ClassVar[set[str]] = {
+        "discrete_gpu",
+        "fsr",
+        "gamemode",
+        "latencyflex",
+    }
+    _PROGRAM_DIRECT_WINE_OVERRIDES: ClassVar[set[str]] = {
+        "dxvk",
+        "dxvk_nvapi",
+        "gamescope",
+        "virtual_desktop",
+        "vkd3d",
+    }
+    _PROGRAM_SYNC_OVERRIDES: ClassVar[set[str]] = {
+        "wine",
+        "esync",
+        "fsync",
+        "ntsync",
+    }
     _PLACEHOLDER_PATTERN: Pattern[str] = re.compile(r"%([A-Z_]+)%")
     _KNOWN_PLACEHOLDERS: set[str] = {
         "PROGRAM_NAME",
@@ -163,10 +186,39 @@ class WineExecutor:
         if not (program or {}).get("arguments_enabled", True):
             arguments = ""
 
-        return cls(
+        environment = (program or {}).get("environment")
+        if not isinstance(environment, dict):
+            environment = {}
+        else:
+            environment = {
+                key: value
+                for key, value in environment.items()
+                if isinstance(key, str)
+                and isinstance(value, str)
+                and key not in cls._PROGRAM_ENVIRONMENT_DENYLIST
+            }
+
+        parameter_overrides = {}
+        for key in cls._PROGRAM_BOOLEAN_OVERRIDES:
+            if key in program and isinstance(program[key], bool):
+                parameter_overrides[key] = program[key]
+        if program.get("sync") in cls._PROGRAM_SYNC_OVERRIDES:
+            parameter_overrides["sync"] = program["sync"]
+        if parameter_overrides:
+            config = config.copy()
+            config.Parameters = config.Parameters.copy()
+            for key, value in parameter_overrides.items():
+                config.Parameters[key] = value
+        direct_wine_override = any(
+            program.get(key) is not None
+            for key in cls._PROGRAM_DIRECT_WINE_OVERRIDES
+        )
+
+        executor = cls(
             config=config,
             exec_path=program.get("path"),
             args=arguments,
+            environment=environment,
             pre_script=cls._replace_placeholders(
                 program.get("pre_script"), placeholders
             ),
@@ -184,7 +236,21 @@ class WineExecutor:
             program_virt_desktop=program.get("virtual_desktop"),
             program_winebridge=program.get("winebridge"),
             sandbox_override=sandbox_override,
-        ).run()
+        )
+        if (
+            executor.use_winebridge
+            and (
+                arguments
+                or environment
+                or parameter_overrides
+                or direct_wine_override
+            )
+        ):
+            logging.info(
+                "Using Wine directly because this program has launch overrides."
+            )
+            executor.use_winebridge = False
+        return executor.run()
 
     @staticmethod
     def _build_placeholder_map(config: BottleConfig, program: dict) -> dict[str, str]:

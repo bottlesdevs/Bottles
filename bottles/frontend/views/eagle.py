@@ -265,6 +265,145 @@ class EagleView(Gtk.Box):
                 "x-office-calendar-symbolic"
             ))
 
+        intel = data.get("intel")
+        if intel:
+            row = Adw.ExpanderRow()
+            row.set_title(_("Eagle Intelligence"))
+            if intel.get("source") == "winetricks":
+                row.set_subtitle(
+                    _("{0}, recognized from curated application metadata").format(
+                        intel["name"],
+                    )
+                )
+            else:
+                row.set_subtitle(
+                    _("{0}, compatibility signals from {1} community reports").format(
+                        intel["name"], intel["reports"]
+                    )
+                )
+            intel_icon = Gtk.Image.new_from_icon_name("network-transmit-receive-symbolic")
+            row.add_prefix(intel_icon)
+
+            badges = Gtk.Box(spacing=6)
+            source_badge = Gtk.Label(label=intel["source"].upper())
+            source_badge.set_valign(Gtk.Align.CENTER)
+            source_badge.add_css_class("tag")
+            source_badge.add_css_class("caption")
+            source_badge.add_css_class("accent")
+            badges.append(source_badge)
+            if intel.get("tier"):
+                tier_badge = Gtk.Label(label=intel["tier"].upper())
+                tier_badge.set_valign(Gtk.Align.CENTER)
+                tier_badge.add_css_class("tag")
+                tier_badge.add_css_class("caption")
+                tier_badge.add_css_class(f"grade-{intel['tier'].title()}")
+                badges.append(tier_badge)
+            row.add_suffix(badges)
+
+            def _add_intel_row(title, subtitle, icon_name, suffix=None):
+                intel_row = Adw.ActionRow()
+                intel_row.set_title(title)
+                intel_row.set_subtitle(subtitle)
+                intel_row.set_subtitle_lines(0)
+                intel_row.add_prefix(Gtk.Image.new_from_icon_name(icon_name))
+                if suffix is not None:
+                    intel_row.add_suffix(suffix)
+                intel_row.add_css_class("property")
+                row.add_row(intel_row)
+
+            match_labels = {
+                "sha256": _("Exact binary hash match"),
+                "imphash": _("Import hash match"),
+                "steam_appid": _("Steam installation match"),
+                "name": _("Exact application name"),
+                "fuzzy": _("Probable application name"),
+            }
+            _add_intel_row(
+                _("Match confidence"),
+                match_labels.get(intel["match"], intel["match"]),
+                "system-search-symbolic",
+            )
+
+            if intel.get("source") != "winetricks":
+                verdict_total = intel["verdict_yes"] + intel["verdict_no"]
+                positive_ratio = (
+                    intel["verdict_yes"] / verdict_total if verdict_total else 0
+                )
+                score = Gtk.LevelBar.new_for_interval(0, 1)
+                score.set_value(positive_ratio)
+                score.set_size_request(110, -1)
+                score.set_valign(Gtk.Align.CENTER)
+                score.set_tooltip_text(
+                    _("{0}% positive verdicts").format(round(positive_ratio * 100))
+                )
+                score.add_css_class("intel-score")
+                _add_intel_row(
+                    _("Community verdict"),
+                    _("{0} positive / {1} negative reports").format(
+                        intel["verdict_yes"],
+                        intel["verdict_no"],
+                    ),
+                    "selection-mode-symbolic",
+                    score,
+                )
+            for name, info in intel.get("env", {}).items():
+                _add_intel_row(
+                    _("Environment Variable"),
+                    f"{name}={info['value']} (x{info['evidence']})",
+                    "utilities-terminal-symbolic",
+                )
+            for dll, info in intel.get("dll_overrides", {}).items():
+                _add_intel_row(
+                    _("DLL Override"),
+                    f"{dll}={info['value']} (x{info['evidence']})",
+                    "application-x-addon-symbolic",
+                )
+            for argument in intel.get("args", []):
+                _add_intel_row(
+                    _("Launch Argument"),
+                    f"{argument['value']} (x{argument['evidence']})",
+                    "system-run-symbolic",
+                )
+            for note in intel.get("notes", []):
+                _add_intel_row(
+                    _("Evidence note"),
+                    note,
+                    "dialog-information-symbolic",
+                )
+
+            for attribution in intel.get("attributions", []):
+                source_button = self.__intel_link_button(
+                    attribution["url"],
+                    _("Open {0} data source").format(attribution["name"]),
+                )
+                _add_intel_row(
+                    _("Source: {0}").format(attribution["name"]),
+                    attribution["dataset"],
+                    "text-x-generic-symbolic",
+                    source_button,
+                )
+                for license_info in attribution["licenses"]:
+                    license_button = self.__intel_link_button(
+                        license_info["url"],
+                        _("Open {0} license").format(license_info["name"]),
+                    )
+                    _add_intel_row(
+                        _("Data license"),
+                        _("{0}: {1}").format(
+                            attribution["name"],
+                            license_info["name"],
+                        ),
+                        "dialog-password-symbolic",
+                        license_button,
+                    )
+            if intel.get("source") == "protondb":
+                _add_intel_row(
+                    _("Rating method"),
+                    _("The tier is calculated by Eagle Intel, not by ProtonDB."),
+                    "applications-science-symbolic",
+                )
+            _add_result(row)
+
         # Category mapping for detected technologies
         CATEGORY_META = {
             "Graphics": {"title": _("Graphics API"), "icon": "video-display-symbolic"},
@@ -501,7 +640,27 @@ class EagleView(Gtk.Box):
             else:
                 row = Adw.SwitchRow()
                 row.set_title(label)
-                row.set_active(item.get("value", False))
+                row.set_subtitle(_("Apply this recommendation"))
+                row.set_active(item.get("apply", bool(item.get("value", False))))
+                row.suggestion_key = key
+                row.suggestion_value = item.get("value", False)
+                component_names = {
+                    "dxvk": "DXVK",
+                    "vkd3d": "VKD3D",
+                    "dxvk_nvapi": "DXVK-NVAPI",
+                }
+                if (
+                    key in component_names
+                    and item.get("value") is True
+                    and not self.config.Parameters[key]
+                ):
+                    row.set_active(False)
+                    row.set_sensitive(False)
+                    row.set_subtitle(
+                        _("Enable {0} for this bottle first").format(
+                            component_names[key]
+                        )
+                    )
                 self.list_suggestions.append(row)
                 has_opts = True
         self.list_suggestions.get_parent().set_visible(has_opts)
@@ -521,11 +680,27 @@ class EagleView(Gtk.Box):
         manager = view_bottle.manager
 
         overrides = {}
+        environment = {}
+        arguments = []
+        dll_overrides = []
         row = self.list_suggestions.get_first_child()
         while row:
-            if hasattr(row, "suggestion_key") and row.suggestion_key:
-                overrides[row.suggestion_key] = row.suggestion_switch.get_active()
+            key = getattr(row, "suggestion_key", None)
+            if key and row.get_active():
+                value = getattr(row, "suggestion_value", True)
+                if key.startswith("intel_env:"):
+                    environment[key.removeprefix("intel_env:")] = value
+                elif key.startswith("intel_dll:"):
+                    dll = key.removeprefix("intel_dll:")
+                    dll_overrides.append(f"{dll}={value}")
+                elif key.startswith("intel_arg:"):
+                    arguments.append(value)
+                else:
+                    overrides[key] = value
             row = row.get_next_sibling()
+
+        if dll_overrides:
+            environment["WINEDLLOVERRIDES"] = ";".join(dll_overrides)
 
         path = self.target_path
         child = self.list_warnings.get_first_child()
@@ -546,8 +721,12 @@ class EagleView(Gtk.Box):
             "id": _uuid,
             "folder": ManagerUtils.get_exe_parent_dir(config, path),
         }
-        
+
         program.update(overrides)
+        if environment:
+            program["environment"] = environment
+        if arguments:
+            program["arguments"] = " ".join(arguments)
         
         config = manager.update_config(
             config=config,
@@ -575,6 +754,21 @@ class EagleView(Gtk.Box):
 
     def __on_donate_clicked(self, _widget) -> None:
         webbrowser.open_new_tab("https://usebottles.com/funding/")
+
+    def __intel_link_button(self, url: str, tooltip: str) -> Gtk.Button:
+        button = Gtk.Button(
+            icon_name="external-link-symbolic",
+            valign=Gtk.Align.CENTER,
+        )
+        button.set_tooltip_text(tooltip)
+        button.update_property([Gtk.AccessibleProperty.LABEL], [tooltip])
+        button.add_css_class("flat")
+        button.target_url = url
+        button.connect("clicked", self.__on_intel_link_clicked)
+        return button
+
+    def __on_intel_link_clicked(self, button) -> None:
+        webbrowser.open_new_tab(button.target_url)
 
     def __on_report_clicked(self, _widget) -> None:
         """
@@ -615,6 +809,38 @@ class EagleView(Gtk.Box):
                 flags.append("ASLR")
             if flags:
                 lines.append(f"- **PE Flags:** {', '.join(flags)}")
+            lines.append("")
+
+        intel = data.get("intel")
+        if intel:
+            lines.append("## Community Intelligence")
+            lines.append(f"- **Application:** {intel['name']}")
+            lines.append(f"- **Source:** {intel['source']}")
+            lines.append(f"- **Match:** {intel['match']}")
+            if intel.get("source") != "winetricks":
+                lines.append(f"- **Tier:** {intel['tier']}")
+                lines.append(f"- **Reports:** {intel['reports']}")
+                lines.append(
+                    f"- **Verdict:** {intel['verdict_yes']} positive / "
+                    f"{intel['verdict_no']} negative"
+                )
+            for note in intel.get("notes", []):
+                lines.append(f"- **Note:** {note}")
+            for attribution in intel.get("attributions", []):
+                lines.append(
+                    f"- **Data credit:** [{attribution['name']}]"
+                    f"({attribution['url']})"
+                )
+                for license_info in attribution["licenses"]:
+                    lines.append(
+                        f"- **Data license ({attribution['name']}):** "
+                        f"[{license_info['name']}]({license_info['url']})"
+                    )
+            if intel.get("source") == "protondb":
+                lines.append(
+                    "- **Tier method:** Calculated by Eagle Intel, "
+                    "not an official ProtonDB rating"
+                )
             lines.append("")
         
         lines.append("## Detected Technologies")
@@ -703,7 +929,8 @@ class EagleView(Gtk.Box):
         if overrides:
             lines.append("## Suggested Overrides")
             for ovr in overrides:
-                status = "[x]" if ovr.get("value") else "[ ]"
+                selected = ovr.get("apply", bool(ovr.get("value")))
+                status = "[x]" if selected else "[ ]"
                 lines.append(f"- {status} {ovr.get('label', 'Unknown')}")
             lines.append("")
         
