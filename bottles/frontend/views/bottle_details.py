@@ -306,14 +306,16 @@ class BottleView(Adw.PreferencesPage):
 
         self.__set_steam_rules()
 
-        # check for old versioning system enabled
-        if self.manager.versioning_manager.needs_migration(config):
-            self.__upgrade_versioning()
-
-        if (
+        missing_runner = (
             config.Runner not in self.manager.runners_available
             and not self.config.Environment == "Steam"
-        ):
+        )
+
+        # check for old versioning system enabled
+        if self.manager.versioning_manager.needs_migration(config):
+            on_close = self.__alert_missing_runner if missing_runner else None
+            self.__upgrade_versioning(on_close)
+        elif missing_runner:
             self.__alert_missing_runner()
 
         # update programs list
@@ -816,12 +818,19 @@ class BottleView(Adw.PreferencesPage):
         new_window = DuplicateDialog(self)
         new_window.present()
 
-    def __upgrade_versioning(self):
+    def __upgrade_versioning(self, on_close=None):
         """
         This function pop up the upgrade versioning dialog, so the user can
         upgrade the versioning system from old Bottles built-in to FVS.
         """
+
+        def handle_close(_dialog):
+            GLib.idle_add(on_close)
+            return False
+
         new_window = UpgradeVersioningDialog(self)
+        if on_close:
+            new_window.connect("close-request", handle_close)
         new_window.present()
 
     def __confirm_delete(self, widget):
