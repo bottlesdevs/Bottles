@@ -2,6 +2,7 @@
 
 from types import SimpleNamespace
 
+import pytest
 from gi.repository import Gio
 
 bottles_resource = Gio.Resource.load("/app/share/bottles/bottles.gresource")
@@ -110,3 +111,30 @@ def test_versioning_upgrade_schedules_follow_up_after_close(monkeypatch):
 
     assert connections[0][1](dialog) is False
     assert events == ["connect", "present", "scheduled", "missing-runner"]
+
+
+@pytest.mark.parametrize("force_update", [False, True])
+def test_update_programs_controls_cache_refresh(monkeypatch, force_update):
+    calls = []
+    config = BottleConfig(Name="Test")
+    manager = SimpleNamespace(
+        get_programs=lambda _config, **kwargs: calls.append(kwargs) or []
+    )
+    view = SimpleNamespace(
+        config=config,
+        manager=manager,
+        empty_list=lambda: None,
+        row_no_programs=SimpleNamespace(set_visible=lambda _visible: None),
+        show_hidden=False,
+    )
+
+    monkeypatch.setattr(bottle_details.GLib, "idle_add", lambda *_args: None)
+    monkeypatch.setattr(
+        bottle_details,
+        "WineServer",
+        lambda _config: SimpleNamespace(is_alive=lambda: False),
+    )
+
+    BottleView.update_programs(view, force_update=force_update)
+
+    assert calls == [{"force_update": force_update}]

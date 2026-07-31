@@ -276,3 +276,36 @@ def test_runner_updates_respect_release_channel(release_candidate, expected):
     assert {update["id"]: update["latest"] for update in updates} == {
         "runner": expected
     }
+
+
+def test_get_programs_can_refresh_cached_results(monkeypatch):
+    class Settings:
+        @staticmethod
+        def get_boolean(_key):
+            return False
+
+    class WindowsPath:
+        @staticmethod
+        def is_windows(_path):
+            return False
+
+    class WindowsSteam:
+        is_steam_supported = False
+
+    cached = [{"name": "Cached program"}]
+    manager = object.__new__(Manager)
+    manager._programs_cache = {"Test": cached}
+    manager.settings = Settings()
+    config = BottleConfig(Name="Test")
+
+    monkeypatch.setattr(manager_module, "glob", lambda *_args, **_kwargs: [])
+    monkeypatch.setattr(manager_module, "WinePath", lambda _config: WindowsPath())
+    monkeypatch.setattr(
+        manager_module.ManagerUtils, "get_bottle_path", lambda _config: "/bottle"
+    )
+    monkeypatch.setattr(
+        manager_module, "SteamManager", lambda *_args, **_kwargs: WindowsSteam()
+    )
+
+    assert Manager.get_programs(manager, config) is cached
+    assert Manager.get_programs(manager, config, force_update=True) == []

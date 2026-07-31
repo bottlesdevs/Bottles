@@ -1057,7 +1057,9 @@ class Manager(metaclass=Singleton):
         except ValueError:
             return sorted(component["available"], reverse=True)
 
-    def get_programs(self, config: BottleConfig) -> List[dict]:
+    def get_programs(
+        self, config: BottleConfig, force_update: bool = False
+    ) -> List[dict]:
         """
         Get the list of programs (both from the drive and the user defined
         in the bottle configuration file).
@@ -1066,7 +1068,7 @@ class Manager(metaclass=Singleton):
             return []
 
         cache_key = config.Name
-        if cache_key in self._programs_cache:
+        if not force_update and cache_key in self._programs_cache:
             return self._programs_cache[cache_key]
 
         bottle = ManagerUtils.get_bottle_path(config)

@@ -241,7 +241,7 @@ class BottleView(Adw.PreferencesPage):
             or ".msi" in file.get_basename().split("/")[-1]
         ):
             def callback(a, b):
-                self.update_programs()
+                self.update_programs(force_update=True)
 
             def proceed(sandbox_override, exec_path):
                 executor = WineExecutor(
@@ -372,7 +372,10 @@ class BottleView(Adw.PreferencesPage):
         dialog.show()
 
     def update_programs(
-        self, config: Optional[BottleConfig] = None, force_add: dict = None
+        self,
+        config: Optional[BottleConfig] = None,
+        force_add: dict = None,
+        force_update: bool = False,
     ):
         """
         This function update the programs lists.
@@ -414,7 +417,9 @@ class BottleView(Adw.PreferencesPage):
 
         def process_programs():
             wineserver_status = WineServer(self.config).is_alive()
-            programs = self.manager.get_programs(self.config)
+            programs = self.manager.get_programs(
+                self.config, force_update=force_update
+            )
             programs = sorted(programs, key=lambda p: p.get("name", "").lower())
             handled = 0
 
@@ -466,7 +471,7 @@ class BottleView(Adw.PreferencesPage):
         self.update_programs(config=self.config)
 
     def __scan_programs(self, widget=False):
-        self.update_programs(config=self.config)
+        self.update_programs(config=self.config, force_update=True)
 
     def empty_list(self):
         """
@@ -673,7 +678,7 @@ class BottleView(Adw.PreferencesPage):
                 exec_path = dialog.get_file().get_path()
 
                 def callback(a, b):
-                    self.update_programs()
+                    self.update_programs(force_update=True)
 
                 def proceed(sandbox_override, run_path):
                     self.window.show_toast(
