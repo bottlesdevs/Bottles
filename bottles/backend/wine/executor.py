@@ -485,9 +485,9 @@ class WineExecutor:
             if winebridge.is_available():
                 winepath = WinePath(self.config)
                 exec_path = (
-                    winepath.to_windows(self.exec_path, native=True)
-                    if winepath.is_unix(self.exec_path)
-                    else self.exec_path
+                    winepath.to_windows(self._raw_exec_path, native=True)
+                    if winepath.is_unix(self._raw_exec_path)
+                    else self._raw_exec_path
                 )
                 res = winebridge.run_exe(exec_path)
                 return Result(status=True, data={"output": res})
