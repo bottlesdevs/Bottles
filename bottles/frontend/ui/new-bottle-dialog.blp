@@ -112,6 +112,11 @@ template $BottlesNewBottleDialog: Adw.Dialog {
               model: StringList str_list_runner {};
             }
 
+            Adw.SwitchRow switch_sandbox {
+              title: _("Dedicated Sandbox");
+              subtitle: _("Run setup and programs in a restricted environment");
+            }
+
             Adw.ActionRow {
               title: _("Bottle Directory");
               subtitle: _("Location where the bottle's data is stored");
