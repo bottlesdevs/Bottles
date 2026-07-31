@@ -216,3 +216,63 @@ def test_custom_runner_is_not_compared_with_an_unrelated_family():
         None,
         "",
     )
+
+
+def _make_update_manager(release_candidate: bool) -> Manager:
+    class Settings:
+        @staticmethod
+        def get_boolean(key: str) -> bool:
+            assert key == "release-candidate"
+            return release_candidate
+
+    manager = object.__new__(Manager)
+    manager.settings = Settings()
+    manager.supported_wine_runners = {}
+    manager.supported_proton_runners = {}
+    manager.supported_dxvk = {}
+    manager.supported_vkd3d = {}
+    manager.supported_nvapi = {}
+    manager.supported_latencyflex = {}
+    manager.supported_winebridge = {}
+    manager.winebridge_available = []
+    return manager
+
+
+@pytest.mark.parametrize("prerelease_channel", ["rc", "unstable"])
+@pytest.mark.parametrize(
+    ("release_candidate", "expected"),
+    [(False, "dxvk-2.7.1"), (True, "dxvk-3.0-1")],
+)
+def test_component_updates_respect_release_channel(
+    prerelease_channel, release_candidate, expected
+):
+    manager = _make_update_manager(release_candidate)
+    manager.supported_dxvk = {
+        "dxvk-3.0-1": {"Channel": prerelease_channel},
+        "dxvk-2.7.1": {"Channel": "stable"},
+    }
+    config = BottleConfig(DXVK="dxvk-2.6.2")
+    config.Parameters.dxvk = True
+
+    updates = Manager.get_component_updates(manager, config)
+
+    assert {update["id"]: update["latest"] for update in updates} == {"dxvk": expected}
+
+
+@pytest.mark.parametrize(
+    ("release_candidate", "expected"),
+    [(False, "soda-9.0-2"), (True, "soda-10.0-1")],
+)
+def test_runner_updates_respect_release_channel(release_candidate, expected):
+    manager = _make_update_manager(release_candidate)
+    manager.supported_wine_runners = {
+        "soda-10.0-1": {"Channel": "unstable"},
+        "soda-9.0-2": {"Channel": "stable"},
+    }
+    config = BottleConfig(Runner="soda-9.0-1")
+
+    updates = Manager.get_component_updates(manager, config)
+
+    assert {update["id"]: update["latest"] for update in updates} == {
+        "runner": expected
+    }

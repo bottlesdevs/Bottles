@@ -2317,6 +2317,7 @@ class Manager(metaclass=Singleton):
             (self.supported_wine_runners, "runner"),
             (self.supported_proton_runners, "runner:proton"),
         ):
+            catalog = self.__filter_update_catalog(catalog)
             if not catalog:
                 continue
             same_family = [
@@ -2349,8 +2350,17 @@ class Manager(metaclass=Singleton):
         family = normalized[: match.start()] + normalized[match.end() :]
         return family, version
 
-    @staticmethod
-    def __get_latest_supported(supported_dict: dict) -> Optional[str]:
+    def __filter_update_catalog(self, catalog: dict) -> dict:
+        if self.settings.get_boolean("release-candidate"):
+            return catalog
+        return {
+            name: component
+            for name, component in catalog.items()
+            if component.get("Channel") not in ("rc", "unstable")
+        }
+
+    def __get_latest_supported(self, supported_dict: dict) -> Optional[str]:
+        supported_dict = self.__filter_update_catalog(supported_dict)
         if not supported_dict:
             return None
         keys = list(supported_dict.keys())
