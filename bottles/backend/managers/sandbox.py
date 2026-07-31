@@ -90,6 +90,9 @@ class SandboxManager:
     def __get_bwrap(self, cmd: str):
         _cmd = ["bwrap"]
 
+        if self.clear_env:
+            _cmd.append("--clearenv")
+
         if self.envs:
             _cmd += [f"--setenv {k} {shlex.quote(v)}" for k, v in self.envs.items()]
 
@@ -99,9 +102,6 @@ class SandboxManager:
         if self.chdir:
             _cmd.append(f"--chdir {shlex.quote(self.chdir)}")
             _cmd.append(f"--bind {shlex.quote(self.chdir)} {shlex.quote(self.chdir)}")
-
-        if self.clear_env:
-            _cmd.append("--clearenv")
 
         if self.share_paths_ro:
             _cmd += [

@@ -350,7 +350,6 @@ def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
     config.Parameters.use_runtime = False
     config.Parameters.use_eac_runtime = False
     config.Parameters.use_be_runtime = False
-
     monkeypatch.setattr(
         "bottles.backend.wine.winecommand.ManagerUtils.get_bottle_path",
         lambda _config: str(bottle_path),
@@ -395,3 +394,40 @@ def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
     for dll in ["libvkd3d-1.dll", "libvkd3d-shader-1.dll"]:
         assert (bottle_path / "drive_c/windows/system32" / dll).read_bytes() == b"win64"
         assert (bottle_path / "drive_c/windows/syswow64" / dll).read_bytes() == b"win32"
+
+
+def test_wayland_sandbox_clears_parent_display(monkeypatch, tmp_path):
+    bottle_path = tmp_path / "TestBottle"
+    bottle_path.mkdir()
+    config = BottleConfig(Name="Test", Path=str(bottle_path), Runner="sys-wine")
+
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    monkeypatch.setenv("DISPLAY", ":0")
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle_path),
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_runner_path",
+        lambda _runner: "sys-wine",
+    )
+
+    winecmd = WineCommand.__new__(WineCommand)
+    winecmd.config = config
+    winecmd.env = {"WAYLAND_DISPLAY": "wayland-0"}
+    winecmd.cwd = str(bottle_path)
+    winecmd.runner_runtime = ""
+    winecmd.steam_runtime_root = None
+
+    command = winecmd._get_sandbox_manager().get_cmd("wine")
+
+    assert "--clear-env" in command
+    assert "--env=WAYLAND_DISPLAY=wayland-0" in command
+    assert "--env=DISPLAY" not in command
+
+    monkeypatch.delenv("FLATPAK_ID")
+    command = winecmd._get_sandbox_manager().get_cmd("wine")
+
+    assert command.index("--clearenv") < command.index(
+        "--setenv WAYLAND_DISPLAY wayland-0"
+    )

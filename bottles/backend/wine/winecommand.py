@@ -815,6 +815,7 @@ class WineCommand:
         return SandboxManager(
             envs=self.env,
             chdir=chdir,
+            clear_env=True,
             share_paths_rw=[bottle_path],
             share_paths_ro=[p for p in share_paths_ro if p],
             share_net=self.config.Sandbox.share_net,
