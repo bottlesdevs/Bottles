@@ -28,6 +28,7 @@ logging = Logger()
 
 class UserDataKeys:
     CustomBottlesPath = "custom_bottles_path"
+    EagleIntelAnnouncementSeen = "eagle_intel_announcement_seen"
     FundingDismissed = "funding_dialog_dismissed_next"
     LastFundingPrompt = "last_funding_prompt_date"
     FundingPromptCount = "funding_prompt_count"

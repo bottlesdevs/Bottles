@@ -47,9 +47,10 @@ from bottles.frontend.views.new_bottle_dialog import BottlesNewBottleDialog
 from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.windows.crash import CrashReportDialog
 from bottles.frontend.windows.depscheck import DependenciesCheckDialog
+from bottles.frontend.windows.eagleintel import EagleIntelDialog
+from bottles.frontend.windows.funding import FundingDialog
 from bottles.frontend.windows.onboard import OnboardDialog
 from bottles.frontend.windows.winebridgeupdate import WineBridgeUpdateDialog
-from bottles.frontend.windows.funding import FundingDialog
 
 logging = Logger()
 
@@ -86,6 +87,9 @@ class BottlesWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs, default_width=width, default_height=height)
 
         self.data_mgr = DataManager()
+        self._show_eagle_intel_announcement = not self.data_mgr.get(
+            UserDataKeys.EagleIntelAnnouncementSeen, False
+        )
         self._show_funding = False
         
         show_funding_setting = self.settings.get_boolean("show-funding")
@@ -110,6 +114,8 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.manager = None
         self.arg_bottle = arg_bottle
         self._showing_onboard = False
+        self._pending_crash_log = None
+        self._show_custom_path_warning = False
         self._winebridge_prompt_attempts = 0
         self.app = kwargs.get("application")
         self.set_icon_name(APP_ID)
@@ -199,7 +205,6 @@ class BottlesWindow(Adw.ApplicationWindow):
         logging.info(
             "Bottles Started!",
         )
-        GLib.idle_add(self.__maybe_show_funding_dialog)
 
     def __schedule_donate_icon_swap(self):
         GLib.timeout_add_seconds(5, self.__on_donate_icon_timeout)
@@ -415,18 +420,12 @@ class BottlesWindow(Adw.ApplicationWindow):
             user_defined_bottles_path = self.manager.data_mgr.get(
                 UserDataKeys.CustomBottlesPath
             )
-            if user_defined_bottles_path and Paths.bottles != user_defined_bottles_path:
-                dialog = Adw.MessageDialog.new(
-                    self,
-                    _("Custom Bottles Path not Found"),
-                    _(
-                        "Falling back to default path. No bottles from the given path will be listed."
-                    ),
-                )
-                dialog.add_response("cancel", _("_Dismiss"))
-                dialog.present()
-
-            GLib.idle_add(self.__maybe_prompt_winebridge_update)
+            self._show_custom_path_warning = bool(
+                user_defined_bottles_path
+                and Paths.bottles != user_defined_bottles_path
+            )
+            if not self._showing_onboard:
+                GLib.idle_add(self.__continue_startup_dialogs)
 
         def get_manager():
             if self.utils_conn.check_connection():
@@ -475,7 +474,12 @@ class BottlesWindow(Adw.ApplicationWindow):
 
     def show_onboard_view(self, widget=False):
         onboard_window = OnboardDialog(self)
+        onboard_window.connect("closed", self.__on_onboard_closed)
         onboard_window.present(self)
+
+    def __on_onboard_closed(self, _dialog):
+        self._showing_onboard = False
+        GLib.idle_add(self.__continue_startup_dialogs)
 
     def show_add_view(self, widget=False):
         new_bottle_dialog = BottlesNewBottleDialog()
@@ -507,12 +511,45 @@ class BottlesWindow(Adw.ApplicationWindow):
                 os.remove(log_path)
 
             if crash_log:
-                CrashReportDialog(self, crash_log).present()
+                self._pending_crash_log = crash_log
+
+    def __continue_startup_dialogs(self):
+        if self._pending_crash_log:
+            crash_log = self._pending_crash_log
+            self._pending_crash_log = None
+            dialog = CrashReportDialog(self, crash_log)
+            dialog.connect("close-request", self.__crash_report_closed)
+            dialog.present()
+            return
+
+        if self._show_custom_path_warning:
+            self._show_custom_path_warning = False
+            dialog = Adw.MessageDialog.new(
+                self,
+                _("Custom Bottles Path not Found"),
+                _(
+                    "Falling back to default path. No bottles from the given path will be listed."
+                ),
+            )
+            dialog.add_response("cancel", _("_Dismiss"))
+            dialog.connect("response", self.__custom_path_response)
+            dialog.present()
+            return
+
+        self.__maybe_show_eagle_intel_dialog()
+
+    def __crash_report_closed(self, _dialog):
+        GLib.idle_add(self.__continue_startup_dialogs)
+
+    def __custom_path_response(self, _dialog, _response):
+        GLib.idle_add(self.__maybe_show_eagle_intel_dialog)
 
     def __maybe_show_funding_dialog(self):
         if not self._show_funding:
+            GLib.idle_add(self.__maybe_prompt_winebridge_update)
             return
 
+        self._show_funding = False
         count = self.data_mgr.get(UserDataKeys.FundingPromptCount) or 0
         self.data_mgr.set(UserDataKeys.FundingPromptCount, count + 1)
         
@@ -523,12 +560,28 @@ class BottlesWindow(Adw.ApplicationWindow):
         dialog.connect("response", self.__funding_response)
         dialog.present()
 
+    def __maybe_show_eagle_intel_dialog(self):
+        if not self._show_eagle_intel_announcement:
+            self.__maybe_show_funding_dialog()
+            return
+
+        self._show_eagle_intel_announcement = False
+        dialog = EagleIntelDialog(self)
+        dialog.connect("response", self.__eagle_intel_response)
+        dialog.present()
+
+    def __eagle_intel_response(self, dialog, _response):
+        self.data_mgr.set(UserDataKeys.EagleIntelAnnouncementSeen, True)
+        dialog.destroy()
+        GLib.idle_add(self.__maybe_show_funding_dialog)
+
     def __funding_response(self, dialog, response):
         if response == "dismiss":
             self.data_mgr.set(UserDataKeys.FundingDismissed, True)
             self.settings.set_boolean("show-funding", False)
 
         dialog.destroy()
+        GLib.idle_add(self.__maybe_prompt_winebridge_update)
 
     def toggle_selection_mode(self, status: bool = True):
         context = self.headerbar.get_style_context()

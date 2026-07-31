@@ -48,6 +48,16 @@ gnome.compile_resources('data',
   dependencies: [appstream_file]
 )
 
+install_data(
+  'eagle-intel.sqlite',
+  install_dir: pkgdatadir,
+)
+
+install_data(
+  'eagle-intel-data-license.txt',
+  install_dir: get_option('datadir') / 'licenses' / APP_ID,
+)
+
 appstream_util = find_program('appstream-util', required: false)
 if appstream_util.found()
   test('Validate appstream file', appstream_util,

@@ -12,6 +12,7 @@ repos:
     -   id: pretty-format-json
         args: ["--autofix", "--no-sort-keys", "--indent", "4"]
     -   id: check-added-large-files
+        exclude: ^data/eagle-intel\.sqlite$
 
 -   repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.8.2

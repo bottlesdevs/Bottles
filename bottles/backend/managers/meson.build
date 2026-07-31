@@ -27,7 +27,8 @@ bottles_sources = [
   'steamgriddb.py',
   'thumbnail.py',
   'playtime.py',
-  'eagle.py'
+  'eagle.py',
+  'intel.py'
 ]
 
 install_data(bottles_sources, install_dir: managersdir)

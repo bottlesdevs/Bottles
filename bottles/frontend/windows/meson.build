@@ -14,6 +14,7 @@ bottles_sources = [
   'playtimegraph.py',
   'rename.py',
   'drives.py',
+  'eagleintel.py',
   'funding.py',
   'gamescope.py',
   'vkbasalt.py',
