@@ -36,6 +36,13 @@ class TerminalUtils:
         "debug": "#ff9800 #2e2c2b",
         "easter": "#0bff00 #2b2e2c",
     }
+    gpu_environment = (
+        "DRI_PRIME",
+        "__NV_PRIME_RENDER_OFFLOAD",
+        "__GLX_VENDOR_LIBRARY_NAME",
+        "__VK_LAYER_NV_optimus",
+        "VK_ICD_FILENAMES",
+    )
 
     terminals = [
         # Part of Flatpak package
@@ -86,6 +93,8 @@ class TerminalUtils:
     def execute(self, command, env=None, colors="default", cwd=None):
         if env is None:
             env = os.environ.copy()
+        else:
+            env = env.copy()
 
         if not self.check_support():
             logging.warning("Terminal not supported.")
@@ -110,6 +119,9 @@ class TerminalUtils:
             env["LD_LIBRARY_PATH"] = base + (":" + ld if ld else "")
 
         if "easyterm" in term_bin:
+            child_gpu_environment = [
+                f"{key}={env.pop(key)}" for key in self.gpu_environment if key in env
+            ]
             for k in [
                 "GI_TYPELIB_PATH",
                 "GI_MODULE_DIR",
@@ -122,9 +134,12 @@ class TerminalUtils:
                     env[k] = os.environ[k]
 
             palette = self.colors[colors]
-            cmd_for_shell = f"bash -c {shlex.quote(command)}"
-            if "ENABLE_BASH" in os.environ:
-                cmd_for_shell = "bash"
+            child_command = (
+                ["bash"] if "ENABLE_BASH" in os.environ else ["bash", "-c", command]
+            )
+            if child_gpu_environment:
+                child_command = ["env", *child_gpu_environment, *child_command]
+            cmd_for_shell = shlex.quote(shlex.join(child_command))
             try:
                 full_cmd = template % (palette, cmd_for_shell)
             except Exception:
