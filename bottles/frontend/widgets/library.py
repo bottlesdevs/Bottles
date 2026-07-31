@@ -17,7 +17,7 @@
 
 from gettext import gettext as _
 
-from gi.repository import Gdk, Gtk
+from gi.repository import Gdk, Gio, GLib, Gtk
 
 from bottles.backend.logger import Logger
 from bottles.backend.managers.library import LibraryManager
@@ -46,6 +46,7 @@ class LibraryEntry(Gtk.Box):
     btn_run = Gtk.Template.Child()
     btn_stop = Gtk.Template.Child()
     btn_launch_steam = Gtk.Template.Child()
+    btn_cover = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_bottle = Gtk.Template.Child()
@@ -122,6 +123,7 @@ class LibraryEntry(Gtk.Box):
         self.overlay.add_controller(motion_ctrl)
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)
+        self.btn_cover.connect("clicked", self.__choose_cover)
         self.btn_stop.connect("clicked", self.stop_process)
         self.btn_remove.connect("clicked", self.__remove_entry)
 
@@ -197,6 +199,46 @@ class LibraryEntry(Gtk.Box):
 
     def __remove_entry(self, *args):
         self.library.remove_entry(self)
+
+    def __choose_cover(self, *_args):
+        def set_cover(dialog, result):
+            try:
+                file = dialog.open_finish(result)
+            except GLib.Error:
+                return
+
+            path = file.get_path()
+            if path is None:
+                self.window.show_toast(_("The cover image could not be opened."))
+                return
+
+            try:
+                Gdk.Texture.new_from_filename(path)
+            except GLib.Error:
+                self.window.show_toast(_("The selected file is not a valid image."))
+                return
+
+            library_manager = LibraryManager()
+            if not library_manager.set_thumbnail(self.uuid, path, self.config):
+                self.window.show_toast(_("The cover image could not be saved."))
+                return
+
+            self.library.update()
+            self.window.show_toast(_("Cover image updated."))
+
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+        image_filter = Gtk.FileFilter()
+        image_filter.set_name(_("Images"))
+        for extension in ("png", "jpg", "jpeg", "webp"):
+            image_filter.add_pattern(f"*.{extension}")
+            image_filter.add_pattern(f"*.{extension.upper()}")
+        filters.append(image_filter)
+
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title(_("Select Cover Image"))
+        dialog.set_filters(filters)
+        dialog.set_default_filter(image_filter)
+        dialog.open(self.window, callback=set_cover)
 
     def run_executable(self, widget, with_terminal=False):
         def proceed(sandbox_override, exec_path):
