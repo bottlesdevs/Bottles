@@ -1,5 +1,9 @@
 """Unit tests for WineExecutor placeholder handling"""
 
+import os
+
+import pytest
+
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.models.config import BottleConfig, BottleParams
 from bottles.backend.models.result import Result
@@ -431,3 +435,65 @@ def test_wayland_sandbox_clears_parent_display(monkeypatch, tmp_path):
     assert command.index("--clearenv") < command.index(
         "--setenv WAYLAND_DISPLAY wayland-0"
     )
+
+
+@pytest.mark.parametrize("use_steam_runtime", [False, True])
+def test_dedicated_sandbox_uses_selected_runtime_path(
+    monkeypatch, tmp_path, use_steam_runtime
+):
+    bottle_path = tmp_path / "TestBottle"
+    bottle_path.mkdir()
+    runner_path = tmp_path / "ge-proton"
+    runner_path.mkdir()
+    runtime_path = tmp_path / "SteamLinuxRuntime_sniper"
+    runtime_path.mkdir()
+    entry_point = runtime_path / "_v2-entry-point"
+    entry_point.touch()
+
+    config = BottleConfig(
+        Name="Test",
+        Path=str(bottle_path),
+        Runner="ge-proton",
+        Environment="Custom",
+    )
+    config.Parameters.use_steam_runtime = use_steam_runtime
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle_path),
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_runner_path",
+        lambda _runner: str(runner_path),
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.resolve_portal_path",
+        lambda path: path,
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.RuntimeManager.get_runtimes",
+        lambda _category: {
+            "sniper": {
+                "name": "sniper",
+                "entry_point": str(entry_point),
+            }
+        },
+    )
+
+    winecmd = WineCommand.__new__(WineCommand)
+    winecmd.config = config
+    winecmd.minimal = True
+    winecmd.arguments = ""
+    winecmd.runner = str(runner_path / "files/bin/wine")
+    winecmd.runner_runtime = "sniper"
+    winecmd.gamescope_activated = False
+    winecmd.cwd = str(bottle_path)
+    winecmd.env = {}
+
+    command = winecmd.get_cmd("cmd")
+    sandbox = winecmd._get_sandbox_manager()
+
+    invalid_runtime_path = os.path.realpath("sniper")
+    assert invalid_runtime_path not in sandbox.share_paths_ro
+    assert (str(runtime_path) in sandbox.share_paths_ro) is use_steam_runtime
+    assert (str(entry_point) in command) is use_steam_runtime
