@@ -6,6 +6,7 @@ from bottles.backend.managers import template as template_module
 from bottles.backend.managers.manager import Manager
 from bottles.backend.managers.template import TemplateManager
 from bottles.backend.models.config import BottleConfig
+from bottles.backend.utils import yaml
 
 
 def test_unpack_missing_template_returns_false(monkeypatch, tmp_path):
@@ -127,3 +128,30 @@ def test_create_bottle_recovers_from_failed_template(monkeypatch, tmp_path):
     assert captured["config"].Uninstallers == {}
     assert not (tmp_path / "Fresh" / "partial-template-file").exists()
     assert (tmp_path / "Fresh" / "drive_c").is_dir()
+
+
+def test_validate_template_does_not_follow_symlinks(monkeypatch, tmp_path):
+    template_uuid = "test-template"
+    template_path = tmp_path / template_uuid
+    (template_path / "drive_c/ProgramData").mkdir(parents=True)
+    windows_path = template_path / "drive_c/windows"
+    windows_path.mkdir()
+
+    large_file = windows_path / "system.dat"
+    large_file.touch()
+
+    mono_path = windows_path / "mono/mono-2.0/lib/mono/4.0"
+    mono_path.mkdir(parents=True)
+    (mono_path / "Mono.Posix.dll").symlink_to("missing-target.dll")
+
+    with (template_path / "template.yml").open("w") as file:
+        yaml.dump({"uuid": template_uuid}, file)
+
+    monkeypatch.setattr(template_module.Paths, "templates", str(tmp_path))
+
+    assert TemplateManager._TemplateManager__validate_template(template_uuid) is False
+
+    with large_file.open("wb") as file:
+        file.truncate(300_000_000)
+
+    assert TemplateManager._TemplateManager__validate_template(template_uuid) is True
