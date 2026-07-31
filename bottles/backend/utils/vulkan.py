@@ -40,7 +40,7 @@ class VulkanUtils:
         self.loaders = self.__get_vk_icd_loaders()
 
     def __get_vk_icd_loaders(self):
-        loaders = {"nvidia": [], "amd": [], "intel": []}
+        loaders = {"nvidia": [], "nouveau": [], "amd": [], "intel": []}
 
         for _dir in self.__vk_icd_dirs:
             _files = glob(f"{_dir}/icd.d/*.json", recursive=True)
@@ -58,6 +58,8 @@ class VulkanUtils:
                             pass
                     if not should_skip:
                         loaders["nvidia"] += [file]
+                elif "nouveau" in file.lower():
+                    loaders["nouveau"] += [file]
                 elif "amd" in file.lower() or "radeon" in file.lower():
                     loaders["amd"] += [file]
                 elif "intel" in file.lower():
@@ -66,7 +68,7 @@ class VulkanUtils:
         return loaders
 
     def get_vk_icd(self, vendor: str, as_string=False):
-        vendors = ["nvidia", "amd", "intel"]
+        vendors = ["nvidia", "nouveau", "amd", "intel"]
         icd = []
 
         if vendor in vendors:

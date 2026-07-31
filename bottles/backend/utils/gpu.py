@@ -116,7 +116,7 @@ class GPUUtils:
 
         if self.is_nouveau():
             gpus["nvidia"]["envs"] = {"DRI_PRIME": "1"}
-            gpus["nvidia"]["icd"] = ""
+            gpus["nvidia"]["icd"] = self.vk.get_vk_icd("nouveau", as_string=True)
 
         for _check in checks:
             _query = checks[_check]["query"]
