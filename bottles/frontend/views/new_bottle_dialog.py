@@ -77,6 +77,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
     str_list_runner = Gtk.Template.Child()
     menu_duplicate = Gtk.Template.Child()
     environment_list_box = Gtk.Template.Child()
+    switch_sandbox = Gtk.Template.Child()
 
     selected_environment = GObject.Property(type=str, default=None)
 
@@ -260,6 +261,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
             runner=self.runner,
             arch=list(self.arch)[self.combo_arch.get_selected()],
             dxvk=self.manager.dxvk_available[0],
+            sandbox=self.switch_sandbox.get_active(),
             fn_logger=self.update_output,
             custom_environment=self.env_recipe_path,
             cancel_event=self._creation_cancel_event,

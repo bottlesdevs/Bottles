@@ -1831,6 +1831,7 @@ class Manager(metaclass=Singleton):
         config.Environment = environment.capitalize()
         config.Creation_Date = str(datetime.now())
         config.Update_Date = str(datetime.now())
+        config.Parameters.sandbox = sandbox
         if versioning:
             config.Versioning = True
         config.Limit_System_Environment = True
