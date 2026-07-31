@@ -1,3 +1,4 @@
+import shlex
 from typing import Optional
 
 from bottles.backend.logger import Logger
@@ -11,20 +12,27 @@ class Uninstaller(WineProgram):
     command = "uninstaller"
 
     def get_uuid(self, name: Optional[str] = None):
-        args = " --list"
+        res = self.launch(args="--list 2>&1", communicate=True, action_name="get_uuid")
 
-        if name is not None:
-            args = f"--list | grep -i '{name}' | cut -f1 -d\\|"
+        if name is None or not res.ready:
+            return res
 
-        return self.launch(args=args, communicate=True, action_name="get_uuid")
+        matches = []
+        for line in res.data.splitlines():
+            uuid, separator, display_name = line.partition("|||")
+            if separator and name.casefold() in display_name.casefold():
+                matches.append(uuid.strip())
+        matches.reverse()
+        res.data = "\n".join(matches)
+        return res
 
     def from_uuid(self, uuid: Optional[str] = None):
         args = ""
 
         if uuid not in [None, ""]:
-            args = f"--remove {uuid}"
+            args = f"--remove {shlex.quote(uuid)}"
 
-        return self.launch(args=args, action_name="from_uuid")
+        return self.launch(args=args, communicate=True, action_name="from_uuid")
 
     def from_name(self, name: str):
         res = self.get_uuid(name)
