@@ -37,6 +37,7 @@ class OnboardDialog(Adw.Dialog):
     btn_back = Gtk.Template.Child()
     btn_next = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
+    btn_cancel = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
     label_progress = Gtk.Template.Child()
     label_status = Gtk.Template.Child()
@@ -72,6 +73,7 @@ class OnboardDialog(Adw.Dialog):
         self.btn_back.connect("clicked", self.__previous_page)
         self.btn_next.connect("clicked", self.__next_page)
         self.btn_install.connect("clicked", self.__install_runner)
+        self.btn_cancel.connect("clicked", self.__close_dialog)
         self.__settings.connect(
             "notify::gtk-application-prefer-dark-theme", self.__theme_changed
         )
@@ -119,20 +121,34 @@ class OnboardDialog(Adw.Dialog):
 
     def __install_runner(self, widget):
         @GtkUtils.run_in_main_loop
-        def set_completed(result: Result, error=False):
-            if result.ok:
+        def set_completed(result: Result | None, error: Exception | None = None):
+            if error is None and result is not None and result.ok:
                 self.label_skip.set_visible(False)
                 self.btn_close.set_sensitive(True)
                 self.__next_page()
             else:
                 self.__installing = False
+                self.set_can_close(True)
+                self.btn_back.set_visible(True)
+                self.btn_install.set_label(_("Try Again"))
                 self.btn_install.set_visible(True)
+                self.btn_cancel.set_visible(True)
                 self.progressbar.set_visible(False)
+                self.label_progress.set_visible(False)
+                self.label_status.set_visible(True)
+                self.label_status.set_label(
+                    _(
+                        "Setup could not be completed. Check your connection and "
+                        "try again, or skip setup for now."
+                    )
+                )
 
         self.__installing = True
+        self.set_can_close(False)
         self.btn_back.set_visible(False)
         self.btn_next.set_visible(False)
         self.btn_install.set_visible(False)
+        self.btn_cancel.set_visible(False)
         self.progressbar.set_visible(True)
         self.progressbar.set_fraction(0)
         self.label_progress.set_visible(False)

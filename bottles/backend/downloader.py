@@ -65,7 +65,12 @@ class Downloader:
                 headers = {
                     "User-Agent": "curl/7.79.1"
                 }  # we fake the user-agent to avoid 403 errors on some servers
-                response = requests.get(self.url, stream=True, headers=headers)
+                response = requests.get(
+                    self.url,
+                    stream=True,
+                    headers=headers,
+                    timeout=(10, 30),
+                )
                 total_size = int(response.headers.get("content-length", 0))
                 received_size = 0
 
@@ -91,12 +96,16 @@ class Downloader:
                 os.remove(self.file)
             return Result(False, message="cancelled")
         except requests.exceptions.SSLError:
+            with suppress(OSError):
+                os.remove(self.file)
             logging.error(
                 "Download failed due to a SSL error. "
                 "Your system may have a wrong date/time or wrong certificates."
             )
             return Result(False, message="Download failed due to a SSL error.")
         except (requests.exceptions.RequestException, OSError):
+            with suppress(OSError):
+                os.remove(self.file)
             logging.error("Download failed! Check your internet connection.")
             return Result(
                 False, message="Download failed! Check your internet connection."
