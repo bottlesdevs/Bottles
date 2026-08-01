@@ -1850,9 +1850,24 @@ class Manager(metaclass=Singleton):
         template_updated = False
         if template:
             log_update(_("Template found, applying…"))
-            TemplateManager.unpack_template(template, config)
-            config.Installed_Dependencies = template["config"]["Installed_Dependencies"]
-            config.Uninstallers = template["config"]["Uninstallers"]
+            if TemplateManager.unpack_template(template, config):
+                config.Installed_Dependencies = template["config"][
+                    "Installed_Dependencies"
+                ]
+                config.Uninstallers = template["config"]["Uninstallers"]
+            else:
+                template = None
+                try:
+                    shutil.rmtree(bottle_complete_path)
+                    os.makedirs(bottle_drive_c)
+                    FileUtils.chattr_f(bottle_drive_c)
+                except OSError:
+                    logging.error(
+                        f"Failed to restore bottle directory: {bottle_complete_path}",
+                        jn=True,
+                    )
+                    log_update(_("Failed to create bottle directory."))
+                    return Result(False)
 
         cancel_result = check_cancel()
         if cancel_result is not None:

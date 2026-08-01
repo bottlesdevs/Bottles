@@ -181,7 +181,7 @@ class TemplateManager:
         return None
 
     @staticmethod
-    def unpack_template(template: dict, config: BottleConfig):
+    def unpack_template(template: dict, config: BottleConfig) -> bool:
         def copy_func(source: str, dest: str):
             if os.path.islink(source):
                 # we don't want symlinks from templates
@@ -192,12 +192,18 @@ class TemplateManager:
         bottle = ManagerUtils.get_bottle_path(config)
         _path = os.path.join(Paths.templates, template["uuid"])
 
-        shutil.copytree(
-            _path,
-            bottle,
-            symlinks=True,
-            dirs_exist_ok=True,
-            ignore=shutil.ignore_patterns(".*"),
-            ignore_dangling_symlinks=True,
-        )
+        try:
+            shutil.copytree(
+                _path,
+                bottle,
+                symlinks=True,
+                dirs_exist_ok=True,
+                ignore=shutil.ignore_patterns(".*"),
+                ignore_dangling_symlinks=True,
+            )
+        except (FileNotFoundError, shutil.Error):
+            logging.error(f"Failed to unpack template: {template['uuid']}")
+            return False
+
         logging.info("Template unpacked successfully!")
+        return True
