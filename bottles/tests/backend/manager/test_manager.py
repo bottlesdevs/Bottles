@@ -5,6 +5,7 @@ import contextlib
 import pytest
 
 from bottles.backend.managers import manager as manager_module
+from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig, BottleParams
 from bottles.backend.utils.connection import ConnectionUtils
@@ -80,6 +81,39 @@ def test_manager_forced_offline_setting_skips_connection_check(mocker):
     assert manager.utils_conn.force_offline is True
     check_connection.assert_not_called()
     checks.assert_called_once()
+
+
+def test_manager_rejects_file_as_custom_bottles_path(monkeypatch, tmp_path):
+    custom_path = tmp_path / "custom-path"
+    custom_path.write_text("")
+    default_path = tmp_path / "bottles"
+
+    for name in (
+        "runners",
+        "runtimes",
+        "winebridge",
+        "dxvk",
+        "vkd3d",
+        "nvapi",
+        "templates",
+        "temp",
+        "latencyflex",
+    ):
+        monkeypatch.setattr(manager_module.Paths, name, str(tmp_path / name))
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(default_path))
+    monkeypatch.setattr(
+        DataManager,
+        "get",
+        lambda _self, key, default=None: (
+            str(custom_path) if key == UserDataKeys.CustomBottlesPath else default
+        ),
+    )
+
+    manager = Manager(check_connection=False, is_cli=True)
+    manager.check_app_dirs()
+
+    assert manager_module.Paths.bottles == str(default_path)
+    assert default_path.is_dir()
 
 
 def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
