@@ -20,7 +20,13 @@ import os
 import shlex
 import signal
 import subprocess
+from configparser import ConfigParser
 from typing import Optional
+
+
+FLATPAK_INFO = "/.flatpak-info"
+FLATPAK_SHARE_INPUT = 1 << 5
+FLATPAK_SHARE_INPUT_VERSION = (1, 17, 1)
 
 
 class SandboxManager:
@@ -31,6 +37,7 @@ class SandboxManager:
     # (combined with --watch-bus, which makes the sandboxed command exit when
     # its launcher goes away).
     _running: dict[str, list[subprocess.Popen]] = {}
+
     def __init__(
         self,
         envs: Optional[dict] = None,
@@ -44,6 +51,7 @@ class SandboxManager:
         share_display: bool = True,
         share_sound: bool = True,
         share_gpu: bool = True,
+        share_input: bool = False,
     ):
         self.envs = envs
         self.chdir = chdir
@@ -56,7 +64,28 @@ class SandboxManager:
         self.share_display = share_display
         self.share_sound = share_sound
         self.share_gpu = share_gpu
+        self.share_input = share_input
         self.__uid = os.environ.get("UID", "1000")
+
+    @staticmethod
+    def supports_input_devices() -> bool:
+        if "FLATPAK_ID" not in os.environ:
+            return os.path.isdir("/dev/input")
+
+        try:
+            info = ConfigParser(interpolation=None)
+            if not info.read(FLATPAK_INFO):
+                return False
+            version = tuple(
+                int(part) for part in info["Instance"]["flatpak-version"].split(".")
+            )
+            devices = info["Context"].get("devices", "").split(";")
+        except (KeyError, ValueError):
+            return False
+
+        return version >= FLATPAK_SHARE_INPUT_VERSION and bool(
+            {"all", "input"}.intersection(devices)
+        )
 
     def __get_bwrap(self, cmd: str):
         _cmd = ["bwrap"]
@@ -92,6 +121,9 @@ class SandboxManager:
 
         if self.share_gpu:
             pass  # not implemented yet
+
+        if not self.share_input and os.path.isdir("/dev/input"):
+            _cmd.append("--tmpfs /dev/input")
 
         if self.share_display:
             _cmd.append("--dev-bind /dev/video0 /dev/video0")
@@ -141,6 +173,9 @@ class SandboxManager:
 
         if self.share_gpu:
             _cmd.append("--sandbox-flag=share-gpu")
+
+        if self.share_input and self.supports_input_devices():
+            _cmd.append(f"--sandbox-flag={FLATPAK_SHARE_INPUT}")
 
         _cmd.append(cmd)
 

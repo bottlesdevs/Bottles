@@ -39,8 +39,16 @@ template $SandboxDialog: Adw.Window {
           }
         }
 
-      }
+        Adw.ActionRow row_input {
+          title: _("Share Input Devices");
+          subtitle: _("Programs in this bottle can read controllers and global keystrokes while enabled.");
+          activatable-widget: switch_input;
 
+          Switch switch_input {
+            valign: center;
+          }
+        }
+      }
     }
   }
 }
