@@ -41,6 +41,7 @@ gi.require_version("Xdp", "1.0")
 # ruff: noqa: E402
 from gi.repository import Adw, Gio, GLib, GObject, Gtk  # type: ignore
 
+from bottles.frontend.utils.gtk import FontScaleManager
 from bottles.frontend.views.preferences import PreferencesWindow
 from bottles.frontend.windows.window import BottlesWindow
 
@@ -284,6 +285,7 @@ class Bottles(Adw.Application):
         See: __register_actions()
         """
         Adw.Application.do_startup(self)
+        self._font_scale_manager = FontScaleManager(Gio.Settings.new(APP_ID))
 
         # log the same environment summary shown in the GUI debug info, so a
         # terminal run is enough to see what the user is running on

@@ -27,6 +27,7 @@ from bottles.backend.state import EventManager, Events
 from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.gtk import FONT_SCALE_VALUES
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
 
@@ -60,6 +61,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_steam_programs = Gtk.Template.Child()
     switch_epic_games = Gtk.Template.Child()
     switch_ubisoft_connect = Gtk.Template.Child()
+    combo_font_scale = Gtk.Template.Child()
     combo_audio_driver = Gtk.Template.Child()
     spin_eagle_limit = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
@@ -102,6 +104,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             "disabled",
         ]
         self.__updating_audio_driver = False
+        self.__updating_font_scale = False
 
         self.current_bottles_path = self.data.get(UserDataKeys.CustomBottlesPath)
         if self.current_bottles_path:
@@ -217,6 +220,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.switch_ubisoft_connect,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
+        )
+
+        self.__sync_font_scale_selection()
+        self.combo_font_scale.connect("notify::selected", self.__on_font_scale_selected)
+        self.settings.connect(
+            "changed::font-scale", self.__on_font_scale_setting_changed
         )
 
         self.spin_eagle_limit.set_value(self.settings.get_int("eagle-scan-limit"))
@@ -420,6 +429,30 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.data.set(UserDataKeys.PersonalRepositories, stored_values)
         else:
             self.data.remove(UserDataKeys.PersonalRepositories)
+
+    def __on_font_scale_setting_changed(self, *_args):
+        GLib.idle_add(self.__sync_font_scale_selection)
+
+    def __sync_font_scale_selection(self, *_args):
+        scale = self.settings.get_double("font-scale")
+        index = min(
+            range(len(FONT_SCALE_VALUES)),
+            key=lambda item: abs(FONT_SCALE_VALUES[item] - scale),
+        )
+
+        self.__updating_font_scale = True
+        self.combo_font_scale.set_selected(index)
+        self.__updating_font_scale = False
+
+    def __on_font_scale_selected(self, combo, _pspec):
+        if self.__updating_font_scale:
+            return
+
+        index = combo.get_selected()
+        if index < 0 or index >= len(FONT_SCALE_VALUES):
+            return
+
+        self.settings.set_double("font-scale", FONT_SCALE_VALUES[index])
 
     def __on_audio_driver_setting_changed(self, *_args):
         GLib.idle_add(self.__sync_audio_driver_selection)
