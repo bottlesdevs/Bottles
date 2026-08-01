@@ -157,14 +157,14 @@ class Manager(metaclass=Singleton):
                     f"Custom bottles path {user_bottles_path} is a temporary "
                     f"portal path! Falling back to default path."
                 )
-            elif os.path.exists(user_bottles_path) and os.access(
+            elif os.path.isdir(user_bottles_path) and os.access(
                 user_bottles_path, os.W_OK
             ):
                 Paths.bottles = user_bottles_path
             else:
                 logging.error(
-                    f"Custom bottles path {user_bottles_path} does not exist or "
-                    f"is not writable! Falling back to default path."
+                    f"Custom bottles path {user_bottles_path} is not a writable "
+                    f"directory! Falling back to default path."
                 )
 
         # sub-managers
