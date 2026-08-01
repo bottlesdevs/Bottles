@@ -1775,6 +1775,15 @@ class Manager(metaclass=Singleton):
             os.path.join(bottle_complete_path, "system.reg"),
             os.path.join(bottle_complete_path, "user.reg"),
         ]
+        prefix_files = reg_files + [
+            os.path.join(
+                bottle_complete_path,
+                "drive_c",
+                "windows",
+                "system32",
+                "kernel32.dll",
+            )
+        ]
 
         # create the bottle directory
         try:
@@ -1882,6 +1891,11 @@ class Manager(metaclass=Singleton):
         # execute wineboot on the bottle path
         log_update(_("The Wine config is being updated…"))
         wineboot.init()
+        if not FileUtils.wait_for_files(prefix_files, timeout=5):
+            logging.error("Wine prefix initialization failed.", jn=True)
+            message = _("Failed to initialize the Wine prefix.")
+            log_update(message)
+            return Result(False, data={"config": config}, message=message)
         log_update(_("Wine config updated!"))
 
         cancel_result = check_cancel()
