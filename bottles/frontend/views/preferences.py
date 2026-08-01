@@ -28,6 +28,10 @@ from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import FONT_SCALE_VALUES
+from bottles.frontend.utils.localization import (
+    UI_LANGUAGES,
+    get_ui_language_environment,
+)
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
 
@@ -61,6 +65,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_steam_programs = Gtk.Template.Child()
     switch_epic_games = Gtk.Template.Child()
     switch_ubisoft_connect = Gtk.Template.Child()
+    combo_ui_language = Gtk.Template.Child()
+    str_list_ui_languages = Gtk.Template.Child()
     combo_font_scale = Gtk.Template.Child()
     combo_audio_driver = Gtk.Template.Child()
     spin_eagle_limit = Gtk.Template.Child()
@@ -104,6 +110,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
             "disabled",
         ]
         self.__updating_audio_driver = False
+        self.__ui_language_values = [code for code, _name in UI_LANGUAGES]
+        self.__updating_ui_language = False
         self.__updating_font_scale = False
 
         self.current_bottles_path = self.data.get(UserDataKeys.CustomBottlesPath)
@@ -220,6 +228,16 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.switch_ubisoft_connect,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
+        )
+
+        for index, (_code, name) in enumerate(UI_LANGUAGES):
+            self.str_list_ui_languages.append(_(name) if index == 0 else name)
+        self.__sync_ui_language_selection()
+        self.combo_ui_language.connect(
+            "notify::selected", self.__on_ui_language_selected
+        )
+        self.settings.connect(
+            "changed::ui-language", self.__on_ui_language_setting_changed
         )
 
         self.__sync_font_scale_selection()
@@ -371,7 +389,10 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def handle_restart(self, widget, response_id):
         if response_id == "restart":
-            subprocess.Popen("sleep 1 && bottles & disown", shell=True)
+            environment = get_ui_language_environment(
+                self.settings.get_string("ui-language")
+            )
+            subprocess.Popen("sleep 1 && bottles & disown", shell=True, env=environment)
             self.window.proper_close()
         widget.destroy()
 
@@ -456,6 +477,37 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def __on_audio_driver_setting_changed(self, *_args):
         GLib.idle_add(self.__sync_audio_driver_selection)
+
+    def __on_ui_language_setting_changed(self, *_args):
+        GLib.idle_add(self.__sync_ui_language_selection)
+
+    def __sync_ui_language_selection(self, *_args):
+        language = self.settings.get_string("ui-language")
+        try:
+            index = self.__ui_language_values.index(language)
+        except ValueError:
+            index = 0
+
+        self.__updating_ui_language = True
+        self.combo_ui_language.set_selected(index)
+        self.__updating_ui_language = False
+
+    def __on_ui_language_selected(self, combo, _pspec):
+        if self.__updating_ui_language:
+            return
+
+        index = combo.get_selected()
+        if index < 0 or index >= len(self.__ui_language_values):
+            return
+
+        language = self.__ui_language_values[index]
+        if language == self.settings.get_string("ui-language"):
+            return
+
+        self.settings.set_string("ui-language", language)
+        self.add_toast(
+            Adw.Toast.new(_("Quit and reopen Bottles to apply the language."))
+        )
 
     def __sync_audio_driver_selection(self, *_args):
         driver = self.settings.get_string("audio-driver")
