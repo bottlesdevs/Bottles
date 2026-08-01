@@ -367,7 +367,19 @@ class SteamManager:
         prefixes = self.list_prefixes()
 
         with contextlib.suppress(FileNotFoundError):
-            shutil.rmtree(Paths.steam)  # generate new configs at start
+            for prefix in os.listdir(Paths.steam):
+                path = os.path.join(Paths.steam, prefix)
+                if (
+                    prefix in prefixes
+                    and os.path.isdir(path)
+                    and not os.path.islink(path)
+                ):
+                    continue
+
+                if os.path.isdir(path) and not os.path.islink(path):
+                    shutil.rmtree(path)
+                else:
+                    os.remove(path)
 
         for _, conf in prefixes.items():
             _bottle = os.path.join(Paths.steam, conf.CompatData)

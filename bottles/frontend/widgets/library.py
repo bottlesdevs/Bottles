@@ -66,6 +66,7 @@ class LibraryEntry(Gtk.Box):
         self.name = entry["name"]
         self.uuid = uuid
         self.entry = entry
+        self.is_steam = entry.get("steam", False)
         try:
             self.config = self.__get_config()
 
@@ -95,8 +96,14 @@ class LibraryEntry(Gtk.Box):
             name = entry["name"]
 
         self.label_name.set_text(name)
-        self.label_bottle.set_text(entry["bottle"]["name"])
+        self.label_bottle.set_text(
+            "Steam" if self.is_steam else entry["bottle"]["name"]
+        )
         self.label_no_cover.set_label(self.name)
+
+        if self.is_steam:
+            self.btn_run.set_visible(False)
+            self.btn_launch_steam.set_visible(True)
 
         if entry.get("thumbnail"):
             path = ThumbnailManager.get_path(self.config, entry["thumbnail"])
@@ -138,6 +145,9 @@ class LibraryEntry(Gtk.Box):
         return None
 
     def __get_program(self):
+        if self.entry.get("steam"):
+            return self.entry
+
         programs = self.manager.get_programs(self.config)
         programs = [
             p
