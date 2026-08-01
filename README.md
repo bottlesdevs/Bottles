@@ -48,14 +48,37 @@ Refer to the [Contributing](CONTRIBUTING.md) page.
 
 ⚠️ Be sure to backup all your data before testing experimental builds of Bottles!
 
-There are two methods to build Bottles. The first and longer method is using `org.flatpak.Builder`, and the second but shorter method is building directly.
+Use the development manifest in this repository when working on Bottles. To build a stable release locally, use the manifest maintained by Flathub.
 
-### org.flatpak.Builder
+### Development Flatpak
 
 1. Install [`org.flatpak.Builder`](https://github.com/flathub/org.flatpak.Builder) from Flathub
 2. Clone `https://github.com/bottlesdevs/Bottles.git` (or your fork)
 3. Run `flatpak run org.flatpak.Builder --install --install-deps-from=flathub --default-branch=master --force-clean build-dir build-aux/com.usebottles.bottles.Devel.json` in the terminal from the root of the repository (use `--user` if necessary)
 4. Run `flatpak run com.usebottles.bottles.Devel` to launch it
+
+### Release Flatpak
+
+The authoritative manifest for the stable package is maintained in the [Flathub repository](https://github.com/flathub/com.usebottles.bottles). It defines the Bottles source, dependencies, runtime, and permissions used for each release.
+
+1. Install [`org.flatpak.Builder`](https://github.com/flathub/org.flatpak.Builder) from Flathub
+2. Clone `https://github.com/flathub/com.usebottles.bottles.git`
+3. Run the following command from the root of the cloned repository:
+
+   ```shell
+   flatpak run org.flatpak.Builder \
+     --user \
+     --install \
+     --install-deps-from=flathub \
+     --default-branch=local \
+     --force-clean \
+     build-dir \
+     com.usebottles.bottles.yml
+   ```
+
+4. Run `flatpak run com.usebottles.bottles//local` to launch it
+
+The `local` branch is installed alongside the Flathub branch. Both use the same application ID and Bottles data directory, so changes made by either build affect the other. To build an older release, use `git log -- com.usebottles.bottles.src.yaml` to find and check out its Flathub commit before running the build command.
 
 ### Meson
 
