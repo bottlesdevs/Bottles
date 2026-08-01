@@ -173,10 +173,14 @@ class ComponentManager:
             Otherwise, skip the download.
             """
             if os.path.getsize(file_path) == 0:
-                logging.warning(f"File [{existing_file}] is a 0-byte empty file. Removing to force re-download.")
+                logging.warning(
+                    f"File [{existing_file}] is a 0-byte empty file. Removing to force re-download."
+                )
                 os.remove(file_path)
             else:
-                logging.warning(f"File [{existing_file}] already exists in temp, skipping.")
+                logging.warning(
+                    f"File [{existing_file}] already exists in temp, skipping."
+                )
                 return Result(True)
 
         if not os.path.isfile(file_path):
@@ -216,6 +220,8 @@ class ComponentManager:
                 c.setopt(c.FOLLOWLOCATION, True)  # type: ignore
                 c.setopt(c.HTTPHEADER, ["User-Agent: curl/7.79.1"])  # type: ignore
                 c.setopt(c.NOBODY, True)  # type: ignore
+                c.setopt(pycurl.CONNECTTIMEOUT, 10)
+                c.setopt(pycurl.TIMEOUT, 30)
                 c.perform()
 
                 req_code = c.getinfo(c.RESPONSE_CODE)  # type: ignore
@@ -412,7 +418,10 @@ class ComponentManager:
             """
             archive = manifest["File"][0]["rename"]
 
-        self.extract(component_name, component_type, archive)
+        if not self.extract(component_name, component_type, archive):
+            if func:
+                func(status=Status.FAILED)
+            return Result(False, message="Component extraction failed.")
 
         """
         Execute Post Install if the component has it defined

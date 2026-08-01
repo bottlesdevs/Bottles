@@ -49,17 +49,19 @@ class Repo:
             buffer = BytesIO()
 
             c = pycurl.Curl()
+            try:
+                _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
 
-            _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
-
-            if _proxy:
-
-                c.setopt(pycurl.PROXY, _proxy)
-            c.setopt(c.URL, index)
-            c.setopt(c.FOLLOWLOCATION, True)
-            c.setopt(c.WRITEDATA, buffer)
-            c.perform()
-            c.close()
+                if _proxy:
+                    c.setopt(pycurl.PROXY, _proxy)
+                c.setopt(c.URL, index)
+                c.setopt(c.FOLLOWLOCATION, True)
+                c.setopt(c.WRITEDATA, buffer)
+                c.setopt(pycurl.CONNECTTIMEOUT, 10)
+                c.setopt(pycurl.TIMEOUT, 30)
+                c.perform()
+            finally:
+                c.close()
 
             index = yaml.load(buffer.getvalue())
             logging.info(f"Catalog {self.name} loaded")
@@ -74,17 +76,19 @@ class Repo:
             buffer = BytesIO()
 
             c = pycurl.Curl()
+            try:
+                _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
 
-            _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
-
-            if _proxy:
-
-                c.setopt(pycurl.PROXY, _proxy)
-            c.setopt(c.URL, url)
-            c.setopt(c.FOLLOWLOCATION, True)
-            c.setopt(c.WRITEDATA, buffer)
-            c.perform()
-            c.close()
+                if _proxy:
+                    c.setopt(pycurl.PROXY, _proxy)
+                c.setopt(c.URL, url)
+                c.setopt(c.FOLLOWLOCATION, True)
+                c.setopt(c.WRITEDATA, buffer)
+                c.setopt(pycurl.CONNECTTIMEOUT, 10)
+                c.setopt(pycurl.TIMEOUT, 30)
+                c.perform()
+            finally:
+                c.close()
 
             res = buffer.getvalue()
 

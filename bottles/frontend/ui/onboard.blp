@@ -90,6 +90,17 @@ template $OnboardDialog: Adw.Dialog {
               ]
             }
 
+            Button btn_cancel {
+              label: _("Skip Setup");
+              use-underline: true;
+              halign: center;
+              visible: false;
+
+              styles [
+                "pill",
+              ]
+            }
+
             Label label_progress {
               visible: false;
               halign: center;
