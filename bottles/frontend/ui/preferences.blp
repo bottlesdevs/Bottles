@@ -25,6 +25,12 @@ template $PreferencesWindow: Adw.PreferencesWindow {
         }
       }
 
+      Adw.ComboRow combo_ui_language {
+        title: _("Language");
+        subtitle: _("Quit and reopen Bottles to apply changes.");
+        model: StringList str_list_ui_languages {};
+      }
+
       Adw.ComboRow combo_font_scale {
         title: _("Text Size");
         subtitle: _("Increase text size relative to the system setting.");
