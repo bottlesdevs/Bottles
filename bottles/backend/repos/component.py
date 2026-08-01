@@ -22,15 +22,25 @@ class ComponentRepo(Repo):
     name = "components"
 
     def get(self, name: str, plain: bool = False) -> str | dict | bool:
-        if name in self.catalog:
-            entry = self.catalog[name]
-            category = entry["Category"]
-            subcategory = entry.get("Sub-category")
+        if not isinstance(name, str) or not name:
+            return False
+        if not isinstance(self.catalog, dict):
+            return False
 
-            if subcategory:
-                url = f"{self.url}/{category}/{subcategory}/{name}.yml"
-            else:
-                url = f"{self.url}/{category}/{name}.yml"
+        entry = self.catalog.get(name)
+        if not isinstance(entry, dict):
+            return False
 
-            return self.get_manifest(url, plain)
-        return False
+        category = entry.get("Category")
+        subcategory = entry.get("Sub-category")
+        if not isinstance(category, str) or not category:
+            return False
+        if subcategory is not None and not isinstance(subcategory, str):
+            return False
+
+        if subcategory:
+            url = f"{self.url}/{category}/{subcategory}/{name}.yml"
+        else:
+            url = f"{self.url}/{category}/{name}.yml"
+
+        return self.get_manifest(url, plain)

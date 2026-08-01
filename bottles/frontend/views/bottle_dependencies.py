@@ -103,10 +103,6 @@ class DependenciesView(Adw.Bin):
             config = BottleConfig()
         self.config = config
 
-        # Not sure if it's the best place to make this check
-        if not self.manager.utils_conn.status:
-            return
-
         self.stack.set_visible_child_name("page_loading")
 
         def new_dependency(dependency, plain=False):
@@ -121,7 +117,12 @@ class DependenciesView(Adw.Bin):
 
         @GtkUtils.run_in_main_loop
         def callback(_result, _error=False):
-            self.stack.set_visible_child_name("page_deps")
+            page = (
+                "page_deps"
+                if self.manager.supported_dependencies or self.manager.utils_conn.status
+                else "page_offline"
+            )
+            self.stack.set_visible_child_name(page)
 
         def process_dependencies():
             time.sleep(0.3)  # workaround for freezing bug on bottle load

@@ -77,6 +77,16 @@ class ComponentEntry(Adw.ActionRow):
                 self.component_type, self.name
             ):
                 self.btn_remove.set_visible(True)
+        elif not self.manager.utils_conn.status and not component[1].get(
+            "Cached", False
+        ):
+            self.btn_err.set_visible(True)
+            self.btn_err.set_sensitive(False)
+            self.btn_err.set_tooltip_text(
+                _(
+                    "This component is not installable offline because its files are not cached."
+                )
+            )
         else:
             self.btn_download.set_visible(True)
             self.btn_browse.set_visible(False)
