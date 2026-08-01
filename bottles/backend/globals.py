@@ -23,6 +23,33 @@ from typing import Dict
 from bottles.backend.utils import json, yaml
 
 
+def _has_windows_unsafe_component(path: str) -> bool:
+    return any(
+        part.endswith((".", " "))
+        for part in Path(os.path.abspath(path)).parts
+        if part != os.path.sep
+    )
+
+
+def _get_wine_compatible_base(path: str) -> str:
+    path = os.path.abspath(path)
+    if not _has_windows_unsafe_component(path):
+        return path
+
+    flatpak_data = "/var/data"
+    try:
+        data_home = os.path.dirname(path)
+        if (
+            "FLATPAK_ID" in os.environ
+            and os.path.isdir(flatpak_data)
+            and os.path.samefile(data_home, flatpak_data)
+        ):
+            return os.path.join(flatpak_data, os.path.relpath(path, data_home))
+    except OSError:
+        pass
+    return path
+
+
 class Paths:
     xdg_data_home = os.environ.get(
         "XDG_DATA_HOME", os.path.join(Path.home(), ".local/share")
@@ -32,7 +59,7 @@ class Paths:
     icons_user = f"{xdg_data_home}/icons"
 
     # Local paths
-    base = f"{xdg_data_home}/bottles"
+    base = _get_wine_compatible_base(f"{xdg_data_home}/bottles")
 
     # User applications path
     applications = f"{xdg_data_home}/applications/"

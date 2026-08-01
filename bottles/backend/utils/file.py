@@ -103,14 +103,15 @@ class FileUtils:
         }
 
     @staticmethod
-    def wait_for_files(files: list, timeout: int = 0.5) -> bool:
-        """Wait for a file to be created or modified."""
-        for file in files:
-            if not os.path.isfile(file):
-                return False
+    def wait_for_files(files: list, timeout: float = 0.5) -> bool:
+        """Wait for all files to exist."""
+        deadline = time.monotonic() + max(timeout, 0)
 
-            while not os.path.exists(file):
-                time.sleep(timeout)
+        while not all(os.path.isfile(file) for file in files):
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                return False
+            time.sleep(min(0.1, remaining))
 
         return True
 
