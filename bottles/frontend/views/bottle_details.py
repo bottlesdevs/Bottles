@@ -417,7 +417,16 @@ class BottleView(Adw.PreferencesPage):
             handled = 0
 
             if self.config.Environment == "Steam":
-                GLib.idle_add(new_program, {"name": self.config.Name}, None, True)
+                GLib.idle_add(
+                    new_program,
+                    {
+                        "name": self.config.Name,
+                        "id": f"steam:{self.config.CompatData}",
+                        "steam": True,
+                    },
+                    None,
+                    True,
+                )
                 handled += 1
 
             for program in programs:

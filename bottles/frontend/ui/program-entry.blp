@@ -100,6 +100,17 @@ template $ProgramEntry: Adw.ActionRow {
       ]
     }
 
+    Button btn_add_steam_library {
+      tooltip-text: _("Add to Library");
+      valign: center;
+      visible: false;
+      icon-name: "library-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+
     Button btn_run {
       valign: center;
       icon-name: "media-playback-start-symbolic";

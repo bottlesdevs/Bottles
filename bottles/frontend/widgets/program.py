@@ -66,6 +66,7 @@ class ProgramEntry(Adw.ActionRow):
     btn_add_steam = Gtk.Template.Child()
     btn_add_entry = Gtk.Template.Child()
     btn_add_library = Gtk.Template.Child()
+    btn_add_steam_library = Gtk.Template.Child()
     btn_launch_terminal = Gtk.Template.Child()
     pop_actions = Gtk.Template.Child()
 
@@ -82,6 +83,7 @@ class ProgramEntry(Adw.ActionRow):
         self.manager = window.manager
         self.config = config
         self.program = program
+        self.is_steam = is_steam
 
         self.set_title(GLib.markup_escape_text(self.program["name"]))
 
@@ -92,6 +94,7 @@ class ProgramEntry(Adw.ActionRow):
                 w.set_sensitive(False)
             self.btn_launch_steam.set_visible(True)
             self.btn_launch_steam.set_sensitive(True)
+            self.btn_add_steam_library.set_visible(True)
             self.set_activatable_widget(self.btn_launch_steam)
         else:
             self.executable = program.get("executable", "")
@@ -112,6 +115,7 @@ class ProgramEntry(Adw.ActionRow):
         for _uuid, entry in library_manager.get_library().items():
             if entry.get("id") == program.get("id"):
                 self.btn_add_library.set_visible(False)
+                self.btn_add_steam_library.set_visible(False)
 
         external_programs = []
         for v in self.config.External_Programs.values():
@@ -131,6 +135,7 @@ class ProgramEntry(Adw.ActionRow):
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
         self.btn_add_library.connect("clicked", self.add_to_library)
+        self.btn_add_steam_library.connect("clicked", self.add_to_library)
         self.btn_add_steam.connect("clicked", self.add_to_steam)
         self.btn_remove.connect("clicked", self.remove_program)
 
@@ -592,21 +597,26 @@ class ProgramEntry(Adw.ActionRow):
             )
 
         def add_to_library():
-            self.save_program()  # we need to store it in the bottle configuration to keep the reference
             library_manager = LibraryManager()
-            library_manager.add_to_library(
-                {
-                    "bottle": {"name": self.config.Name, "path": self.config.Path},
-                    "name": self.program["name"],
-                    "id": str(self.program["id"]),
-                    "icon": ManagerUtils.extract_icon(
-                        self.config, self.program["name"], self.program["path"]
-                    ),
-                },
-                self.config,
-            )
+            data = {
+                "bottle": {"name": self.config.Name, "path": self.config.Path},
+                "name": self.program["name"],
+                "id": str(self.program["id"]),
+            }
+
+            if self.is_steam:
+                data["bottle"]["name"] = self.config.CompatData
+                data["steam"] = True
+            else:
+                self.save_program()
+                data["icon"] = ManagerUtils.extract_icon(
+                    self.config, self.program["name"], self.program["path"]
+                )
+
+            library_manager.add_to_library(data, self.config)
 
         self.btn_add_library.set_visible(False)
+        self.btn_add_steam_library.set_visible(False)
         RunAsync(add_to_library, update)
 
     def add_to_steam(self, _widget):
