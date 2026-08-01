@@ -25,6 +25,22 @@ template $PreferencesWindow: Adw.PreferencesWindow {
         }
       }
 
+      Adw.ComboRow combo_font_scale {
+        title: _("Text Size");
+        subtitle: _("Increase text size relative to the system setting.");
+
+        model: StringList {
+          strings [
+            _("System Default"),
+            "110%",
+            "125%",
+            "150%",
+            "175%",
+            "200%",
+          ]
+        };
+      }
+
       Adw.ActionRow {
         title: _("Show Update Date");
         subtitle: _("Whether to show the update date in the bottle list.");

@@ -19,9 +19,60 @@ from functools import wraps
 from inspect import signature
 from typing import Optional
 
-from gi.repository import GLib, GObject, Gtk
+from gi.repository import Gdk, GLib, GObject, Gtk
 
 from bottles.frontend.utils.sh import ShUtils
+
+
+FONT_SCALE_VALUES = (1.0, 1.1, 1.25, 1.5, 1.75, 2.0)
+
+
+class FontScaleManager:
+    DEFAULT_DPI = 96 * 1024
+
+    def __init__(self, settings, gtk_settings=None, display=None):
+        self.settings = settings
+        self.gtk_settings = gtk_settings or Gtk.Settings.get_default()
+        self.display = display or Gdk.Display.get_default()
+        self._updating = False
+
+        if self.gtk_settings is None:
+            return
+
+        self.settings.connect("changed::font-scale", self._apply)
+        if self.display is not None:
+            self.display.connect_after(
+                "setting-changed", self._on_system_setting_changed
+            )
+        self._apply()
+
+    def _get_current_dpi(self):
+        dpi = self.gtk_settings.get_property("gtk-xft-dpi")
+        return dpi if dpi > 0 else self.DEFAULT_DPI
+
+    def _apply(self, *_args):
+        if self._updating:
+            return
+
+        self._updating = True
+        try:
+            self.gtk_settings.reset_property("gtk-xft-dpi")
+            scale = self.settings.get_double("font-scale")
+            scale = min(FONT_SCALE_VALUES, key=lambda value: abs(value - scale))
+            if self.settings.get_double("font-scale") != scale:
+                self.settings.set_double("font-scale", scale)
+
+            if scale == 1.0:
+                return
+
+            target_dpi = round(self._get_current_dpi() * scale)
+            self.gtk_settings.set_property("gtk-xft-dpi", target_dpi)
+        finally:
+            self._updating = False
+
+    def _on_system_setting_changed(self, _display, setting):
+        if setting == "gtk-xft-dpi":
+            self._apply()
 
 
 class GtkUtils:
