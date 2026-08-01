@@ -819,6 +819,7 @@ class WineCommand:
             share_paths_ro=[p for p in share_paths_ro if p],
             share_net=self.config.Sandbox.share_net,
             share_sound=self.config.Sandbox.share_sound,
+            share_input=self.config.Sandbox.share_input,
         )
 
     def run(self) -> Result[Optional[str]]:

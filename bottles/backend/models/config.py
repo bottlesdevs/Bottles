@@ -61,6 +61,7 @@ class DictCompatMixIn:
 class BottleSandboxParams(DictCompatMixIn):
     share_net: bool = False
     share_sound: bool = False
+    share_input: bool = False
     # share_host_ro: bool = True  # TODO: implement, requires the Bottles runtime (next) for a minimal sandbox
     # share_gpu: bool = True  # TODO: implement
     # share_paths_ro: List[str] = field(default_factory=lambda: [])  # TODO: implement

@@ -15,7 +15,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+from gettext import gettext as _
+
 from gi.repository import Adw, Gtk
+
+from bottles.backend.managers.sandbox import SandboxManager
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-sandbox.ui")
@@ -25,6 +29,8 @@ class SandboxDialog(Adw.Window):
     # region Widgets
     switch_net = Gtk.Template.Child()
     switch_sound = Gtk.Template.Child()
+    row_input = Gtk.Template.Child()
+    switch_input = Gtk.Template.Child()
 
     # endregion
 
@@ -41,6 +47,7 @@ class SandboxDialog(Adw.Window):
         # connect signals
         self.switch_net.connect("state-set", self.__set_flag, "share_net")
         self.switch_sound.connect("state-set", self.__set_flag, "share_sound")
+        self.switch_input.connect("state-set", self.__set_flag, "share_input")
 
     def __set_flag(self, widget, state, flag):
         self.config = self.manager.update_config(
@@ -50,3 +57,9 @@ class SandboxDialog(Adw.Window):
     def __update(self, config):
         self.switch_net.set_active(config.Sandbox.share_net)
         self.switch_sound.set_active(config.Sandbox.share_sound)
+        self.switch_input.set_active(config.Sandbox.share_input)
+        if not SandboxManager.supports_input_devices():
+            self.row_input.set_sensitive(False)
+            self.row_input.set_subtitle(
+                _("Input devices cannot be shared on this system.")
+            )
