@@ -44,12 +44,63 @@ from bottles.backend.utils.manager import ManagerUtils
 logging = Logger()
 
 
+def find_cached_file(
+    name: str, checksum: str = "", checksum_cache: dict | None = None
+) -> Optional[str]:
+    exact_path = os.path.join(Paths.temp, name)
+    paths = [exact_path] if os.path.isfile(exact_path) else []
+    try:
+        paths.extend(
+            os.path.join(Paths.temp, entry)
+            for entry in os.listdir(Paths.temp)
+            if entry.lower() == name.lower()
+            and os.path.join(Paths.temp, entry) != exact_path
+        )
+    except FileNotFoundError:
+        return None
+
+    if checksum is None:
+        checksum = ""
+    if not isinstance(checksum, str):
+        return None
+    checksum = checksum.lower()
+    for path in paths:
+        try:
+            stat = os.stat(path)
+        except OSError:
+            continue
+        if stat.st_size == 0:
+            continue
+        if not checksum or os.environ.get("BOTTLES_SKIP_CHECKSUM"):
+            return path
+
+        cache_key = (path, stat.st_size, stat.st_mtime_ns, checksum)
+        if checksum_cache is not None and cache_key in checksum_cache:
+            if checksum_cache[cache_key]:
+                return path
+            continue
+
+        valid = FileUtils().get_checksum(path) == checksum
+        if checksum_cache is not None:
+            checksum_cache[cache_key] = valid
+        if valid:
+            return path
+    return None
+
+
+def is_cached_file(
+    name: str, checksum: str = "", checksum_cache: dict | None = None
+) -> bool:
+    return find_cached_file(name, checksum, checksum_cache) is not None
+
+
 # noinspection PyTypeChecker
 class ComponentManager:
     def __init__(self, manager, offline: bool = False):
         self.__manager = manager
         self.__repo = manager.repository_manager.get_repo("components", offline)
-        self.__utils_conn = manager.utils_conn
+        self.__offline = offline
+        self.__checksum_cache = {}
 
     @lru_cache
     def get_component(self, name: str, plain: bool = False) -> dict:
@@ -60,9 +111,6 @@ class ComponentManager:
         Fetch all components from the Bottles repository, mark the installed
         ones and return a dict with the catalog.
         """
-        if not self.__utils_conn.check_connection():
-            return {}
-
         catalog = {
             "runtimes": {},
             "wine": {},
@@ -85,6 +133,8 @@ class ComponentManager:
         }
 
         index = self.__repo.catalog
+        if not isinstance(index, dict):
+            return catalog
 
         for component in index.items():
             """
@@ -92,7 +142,16 @@ class ComponentManager:
             catalog and mark it as installed if it is.
             """
 
-            if component[1]["Category"] == "runners":
+            if (
+                not isinstance(component[0], str)
+                or not component[0]
+                or not isinstance(component[1], dict)
+                or not isinstance(component[1].get("Category"), str)
+                or not isinstance(component[1].get("Channel"), str)
+            ):
+                continue
+
+            if component[1].get("Category") == "runners":
                 if "soda" in component[0].lower() or "caffe" in component[0].lower():
                     if not is_glibc_min_available():
                         logging.warning(
@@ -105,16 +164,22 @@ class ComponentManager:
                         )
                         continue
 
-                sub_category = component[1]["Sub-category"]
+                sub_category = component[1].get("Sub-category")
+                if sub_category not in ("wine", "proton"):
+                    continue
                 catalog[sub_category][component[0]] = component[1]
                 if component[0] in components_available[sub_category]:
                     catalog[sub_category][component[0]]["Installed"] = True
                 else:
                     catalog[sub_category][component[0]].pop("Installed", None)
+                    if getattr(self, "_ComponentManager__offline", False):
+                        catalog[sub_category][component[0]]["Cached"] = (
+                            self.is_component_cached(component[0])
+                        )
 
                 continue
 
-            category = component[1]["Category"]
+            category = component[1].get("Category")
             if category not in catalog:
                 continue
 
@@ -123,8 +188,32 @@ class ComponentManager:
                 catalog[category][component[0]]["Installed"] = True
             else:
                 catalog[category][component[0]].pop("Installed", None)
+                if getattr(self, "_ComponentManager__offline", False):
+                    catalog[category][component[0]]["Cached"] = (
+                        self.is_component_cached(component[0])
+                    )
 
         return catalog
+
+    def is_component_cached(self, name: str) -> bool:
+        manifest = self.get_component(name)
+        if not isinstance(manifest, dict):
+            return False
+
+        files = manifest.get("File")
+        if not isinstance(files, list) or not files or not isinstance(files[0], dict):
+            return False
+
+        file = files[0]
+        name = file.get("rename") or file.get("file_name")
+        return bool(
+            name
+            and is_cached_file(
+                name,
+                file.get("file_checksum", ""),
+                getattr(self, "_ComponentManager__checksum_cache", None),
+            )
+        )
 
     def download(
         self,
@@ -159,6 +248,8 @@ class ComponentManager:
             The caller is explicitly requesting a component from
             the /temp directory. Nothing should be downloaded.
             """
+            if not external_task:
+                TaskManager.remove(task_id)
             return Result(True)
 
         existing_file = rename if rename else file
@@ -177,11 +268,20 @@ class ComponentManager:
                     f"File [{existing_file}] is a 0-byte empty file. Removing to force re-download."
                 )
                 os.remove(file_path)
-            else:
+            elif (
+                not checksum
+                or os.environ.get("BOTTLES_SKIP_CHECKSUM")
+                or FileUtils().get_checksum(file_path) == checksum.lower()
+            ):
                 logging.warning(
                     f"File [{existing_file}] already exists in temp, skipping."
                 )
+                if not external_task:
+                    TaskManager.remove(task_id)
                 return Result(True)
+            else:
+                logging.warning(f"File [{existing_file}] is corrupted. Removing it.")
+                os.remove(file_path)
 
         if not os.path.isfile(file_path):
             """
@@ -190,20 +290,25 @@ class ComponentManager:
             w2ksp4_en.exe). Reuse it instead of downloading it again, verifying
             the checksum first when one is provided.
             """
-            reuse = self.__find_temp_file_case_insensitive(existing_file)
-            if reuse and os.path.getsize(reuse) > 0:
-                valid = True
-                if checksum and not os.environ.get("BOTTLES_SKIP_CHECKSUM"):
-                    valid = FileUtils().get_checksum(reuse) == checksum.lower()
-                if valid:
-                    logging.info(
-                        f"Reusing already downloaded file for [{existing_file}] "
-                        f"from [{os.path.basename(reuse)}]."
-                    )
-                    shutil.copy(reuse, file_path)
-                    if not external_task:
-                        TaskManager.remove(task_id)
-                    return Result(True)
+            reuse = find_cached_file(
+                existing_file,
+                checksum,
+                getattr(self, "_ComponentManager__checksum_cache", None),
+            )
+            if reuse:
+                logging.info(
+                    f"Reusing already downloaded file for [{existing_file}] "
+                    f"from [{os.path.basename(reuse)}]."
+                )
+                shutil.copy(reuse, file_path)
+                if not external_task:
+                    TaskManager.remove(task_id)
+                return Result(True)
+
+        if getattr(self, "_ComponentManager__offline", False):
+            if not external_task:
+                TaskManager.remove(task_id)
+            return Result(False, message="File is not available in offline mode.")
 
         if not os.path.isfile(file_path):
             """
@@ -300,19 +405,6 @@ class ComponentManager:
         return Result(True)
 
     @staticmethod
-    def __find_temp_file_case_insensitive(name: str) -> Optional[str]:
-        """Return the path of a file in the temp directory matching the given
-        name case-insensitively, or None."""
-        target = name.lower()
-        try:
-            for entry in os.listdir(Paths.temp):
-                if entry.lower() == target:
-                    return os.path.join(Paths.temp, entry)
-        except FileNotFoundError:
-            pass
-        return None
-
-    @staticmethod
     def extract(name: str, component: str, archive: str) -> bool:
         """Extract a component from an archive."""
 
@@ -382,17 +474,28 @@ class ComponentManager:
         """
         manifest = self.get_component(component_name)
 
-        if not manifest:
+        if not isinstance(manifest, dict):
             return Result(False)
 
+        files = manifest.get("File")
+        if not isinstance(files, list) or not files or not isinstance(files[0], dict):
+            return Result(False, message=f"Invalid manifest for {component_name}.")
+
         logging.info(f"Installing component: [{component_name}].")
-        file = manifest["File"][0]
+        file = files[0]
+        if (
+            not isinstance(file.get("url"), str)
+            or not isinstance(file.get("file_name"), str)
+            or not isinstance(file.get("rename", ""), str)
+            or not isinstance(file.get("file_checksum", ""), str)
+        ):
+            return Result(False, message=f"Invalid manifest for {component_name}.")
 
         res = self.download(
             download_url=file["url"],
             file=file["file_name"],
-            rename=file["rename"],
-            checksum=file["file_checksum"],
+            rename=file.get("rename", ""),
+            checksum=file.get("file_checksum", ""),
             func=func,
             cancel_event=cancel_event,
         )
@@ -409,14 +512,14 @@ class ComponentManager:
                     func(status=Status.FAILED)
             return Result(False, message=res.message)
 
-        archive = manifest["File"][0]["file_name"]
+        archive = file["file_name"]
 
-        if manifest["File"][0]["rename"]:
+        if file.get("rename"):
             """
             If the component has a rename, rename the downloaded file
             to the required name.
             """
-            archive = manifest["File"][0]["rename"]
+            archive = file["rename"]
 
         if not self.extract(component_name, component_type, archive):
             if func:

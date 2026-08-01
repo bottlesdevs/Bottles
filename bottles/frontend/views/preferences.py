@@ -301,10 +301,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         GLib.idle_add(render)
 
-        if self.manager.utils_conn.status:
-            # then refresh once the online catalog has been organized
-            EventManager.wait(Events.ComponentsOrganizing)
-            GLib.idle_add(render)
+        # then refresh once the online or cached catalog has been organized
+        EventManager.wait(Events.ComponentsOrganizing)
+        GLib.idle_add(render)
 
     def __toggle_night(self, widget, state):
         if self.settings.get_boolean("dark-theme"):

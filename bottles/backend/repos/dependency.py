@@ -22,8 +22,18 @@ class DependencyRepo(Repo):
     name = "dependencies"
 
     def get(self, name: str, plain: bool = False) -> str | dict | bool:
-        if name in self.catalog:
-            entry = self.catalog[name]
-            url = f"{self.url}/{entry['Category']}/{name}.yml"
-            return self.get_manifest(url, plain)
-        return False
+        if not isinstance(name, str) or not name:
+            return False
+        if not isinstance(self.catalog, dict):
+            return False
+
+        entry = self.catalog.get(name)
+        if not isinstance(entry, dict):
+            return False
+
+        category = entry.get("Category")
+        if not isinstance(category, str) or not category:
+            return False
+
+        url = f"{self.url}/{category}/{name}.yml"
+        return self.get_manifest(url, plain)
