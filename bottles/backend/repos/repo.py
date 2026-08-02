@@ -34,7 +34,13 @@ logging = Logger()
 class Repo:
     name: str = ""
 
-    def __init__(self, url: str, index: str, offline: bool = False):
+    def __init__(
+        self,
+        url: str,
+        index: str,
+        offline: bool = False,
+        callback_in_main_loop: bool = True,
+    ):
         self.url = url
         self.offline = offline
         self.catalog = None
@@ -43,7 +49,13 @@ class Repo:
             self.catalog = result
             EventManager.done(Events(self.name + ".fetching"))
 
-        RunAsync(self.__get_catalog, callback=set_catalog, index=index, offline=offline)
+        RunAsync(
+            self.__get_catalog,
+            callback=set_catalog,
+            callback_in_main_loop=callback_in_main_loop,
+            index=index,
+            offline=offline,
+        )
 
     def __get_catalog(self, index: str, offline: bool = False):
         cache_path = self.__get_cache_path("catalog.yml")

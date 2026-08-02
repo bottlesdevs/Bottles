@@ -48,6 +48,7 @@ from bottles.backend.managers.registry_rule import RegistryRuleManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.registry_rule import RegistryRule
 from bottles.backend.runner import Runner
+from bottles.backend.state import EventManager, Events
 from bottles.backend.utils import json, yaml
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.cmd import CMD
@@ -388,6 +389,7 @@ class CLI:
 
     def list_components(self, c_filter=None):
         mng = Manager(g_settings=self.settings, is_cli=True)
+        mng.check_app_dirs()
         mng.check_runners(False)
         mng.check_dxvk(False)
         mng.check_vkd3d(False)
@@ -740,9 +742,16 @@ class CLI:
         _nvapi = self.args.nvapi
         _latencyflex = self.args.latencyflex
         mng = Manager(g_settings=self.settings, is_cli=True)
-        mng.checks()
+        mng.checks(install_latest=False, first_run=True)
+        for event in (
+            Events.ComponentsOrganizing,
+            Events.DependenciesOrganizing,
+            Events.InstallersOrganizing,
+        ):
+            EventManager.wait(event)
+        mng.checks(install_latest=True, first_run=False)
 
-        mng.create_bottle(
+        result = mng.create_bottle(
             name=_name,
             environment=_environment,
             runner=_runner,
@@ -753,6 +762,9 @@ class CLI:
             arch=_arch,
             custom_environment=_custom_environment,
         )
+        if not result.ok:
+            sys.stderr.write((result.message or "Bottle creation failed") + "\n")
+            exit(1)
 
     # endregion
 

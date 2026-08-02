@@ -1693,18 +1693,17 @@ class Manager(metaclass=Singleton):
             ]:
                 logging.error("Missing essential components. Installing…")
                 log_update(_("Missing essential components. Installing…"))
-                self.check_runners()
+                if len(self.runners_available) == 0:
+                    self.check_runners()
+                if len(self.dxvk_available) == 0:
+                    self.check_dxvk()
+                if len(self.vkd3d_available) == 0:
+                    self.check_vkd3d()
                 self.organize_components()
                 check_attempts += 1
                 return components_check()
 
             needs_install = False
-            if len(self.dxvk_available) == 0:
-                self.check_dxvk()
-                needs_install = True
-            if len(self.vkd3d_available) == 0:
-                self.check_vkd3d()
-                needs_install = True
             if len(self.nvapi_available) == 0:
                 self.check_nvapi()
                 needs_install = True

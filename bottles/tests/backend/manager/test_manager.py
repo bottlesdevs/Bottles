@@ -2,6 +2,7 @@
 
 import contextlib
 from pathlib import Path
+from threading import Event
 from types import SimpleNamespace
 
 import pytest
@@ -96,7 +97,7 @@ def test_managed_runner_takes_precedence_over_steam_copy(tmp_path, monkeypatch):
     assert ManagerUtils.get_runner_path("GE-Proton10-4") == str(managed)
 
 
-def test_manager_cli_skips_connection_check(mocker):
+def test_manager_cli_checks_connection_when_online(mocker):
     check_connection = mocker.patch.object(
         ConnectionUtils,
         "check_connection",
@@ -105,7 +106,7 @@ def test_manager_cli_skips_connection_check(mocker):
     )
 
     Manager(is_cli=True)
-    check_connection.assert_not_called()
+    check_connection.assert_called_once()
 
 
 def test_manager_forced_offline_setting_skips_connection_check(mocker):
@@ -276,6 +277,40 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
     assert program["latencyflex"] is False
     assert program["sync"] == "esync"
     assert program["hide_console"] is True
+
+
+def test_create_bottle_checks_every_essential_component_before_retry():
+    manager = object.__new__(Manager)
+    manager.runners_available = []
+    manager.dxvk_available = []
+    manager.vkd3d_available = []
+    manager.nvapi_available = ["nvapi"]
+    manager.latencyflex_available = ["latencyflex"]
+    calls = []
+
+    def make_available(name, values):
+        def check():
+            calls.append(name)
+            values.append(name)
+            return True
+
+        return check
+
+    manager.check_runners = make_available("runner", manager.runners_available)
+    manager.check_dxvk = make_available("dxvk", manager.dxvk_available)
+    manager.check_vkd3d = make_available("vkd3d", manager.vkd3d_available)
+    manager.organize_components = lambda: None
+    cancelled = Event()
+    cancelled.set()
+
+    result = manager.create_bottle(
+        name="Test",
+        environment="application",
+        cancel_event=cancelled,
+    )
+
+    assert not result.ok
+    assert calls == ["runner", "dxvk", "vkd3d"]
 
 
 def test_component_updates_can_be_disabled(mocker):

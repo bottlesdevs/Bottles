@@ -61,10 +61,20 @@ class RepositoryManager:
         if get_index:
             self.__get_index()
 
-    def get_repo(self, name: str, offline: bool = False):
+    def get_repo(
+        self,
+        name: str,
+        offline: bool = False,
+        callback_in_main_loop: bool = True,
+    ):
         if name in self.__repositories:
             repo = self.__repositories[name]
-            return repo["cls"](repo["url"], repo["index"], offline=offline)
+            return repo["cls"](
+                repo["url"],
+                repo["index"],
+                offline=offline,
+                callback_in_main_loop=callback_in_main_loop,
+            )
 
         logging.error(f"Repository {name} not found")
 
