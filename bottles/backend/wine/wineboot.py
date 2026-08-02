@@ -22,6 +22,7 @@ class WineBoot(WineProgram):
             "DISPLAY": ":3.0",
             "WINEDLLOVERRIDES": "winemenubuilder=d",
         }
+        forced_dll_overrides = "mscoree=d" if status in (3, 4) else None
 
         # Under a dedicated sandbox the wine processes live in a separate
         # flatpak-spawn instance, so wineboot/wineserver cannot reach them.
@@ -38,6 +39,7 @@ class WineBoot(WineProgram):
             self.launch(
                 args=args,
                 environment=envs,
+                forced_dll_overrides=forced_dll_overrides,
                 communicate=True,
                 action_name=f"send_status({states[status]})",
             )
