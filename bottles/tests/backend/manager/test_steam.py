@@ -1,4 +1,5 @@
 import shlex
+from pathlib import Path
 
 import pytest
 
@@ -73,6 +74,48 @@ def test_installed_game_is_discovered_without_localconfig_entry(tmp_path, monkey
     assert config.Name == "Fallout: New Vegas"
     assert config.Path == str(compatdata_path / "pfx")
     assert config.RunnerPath == str(runner_path)
+
+
+def test_steam_path_skips_directory_without_steam_data(tmp_path, monkeypatch):
+    steam_root = tmp_path / ".steam" / "debian-installation"
+    (steam_root / "steamapps").mkdir(parents=True)
+    config_dir = steam_root / "userdata" / "123" / "config"
+    config_dir.mkdir(parents=True)
+
+    misleading_path = tmp_path / ".local" / "share" / "Steam"
+    misleading_path.parent.mkdir(parents=True)
+    misleading_path.symlink_to(tmp_path / ".steam", target_is_directory=True)
+
+    monkeypatch.setattr(Path, "home", lambda: tmp_path)
+    monkeypatch.setattr(
+        "bottles.backend.managers.steam.ManagerUtils.get_bottle_path",
+        lambda _config: "/bottle",
+    )
+    monkeypatch.setattr(
+        "bottles.backend.managers.steam.ManagerUtils.extract_icon",
+        lambda _config, _name, _path: "icon",
+    )
+
+    manager = SteamManager(BottleConfig(Name="Test"))
+    result = manager.add_shortcut("Game", "/bottle/game.exe")
+
+    assert manager.steam_path == str(steam_root)
+    assert manager.steamapps_path == str(steam_root / "steamapps")
+    assert manager.userdata_path == str(steam_root / "userdata")
+    assert result.ok
+    assert (config_dir / "shortcuts.vdf").is_file()
+
+
+def test_steam_path_keeps_install_without_user_data(tmp_path, monkeypatch):
+    steam_root = (
+        tmp_path / ".var" / "app" / "com.valvesoftware.Steam" / "data" / "Steam"
+    )
+    (steam_root / "ubuntu12_32").mkdir(parents=True)
+    monkeypatch.setattr(Path, "home", lambda: tmp_path)
+
+    manager = SteamManager(check_only=True)
+
+    assert manager.steam_path == str(steam_root)
 
 
 @pytest.mark.parametrize(

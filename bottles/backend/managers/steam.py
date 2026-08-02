@@ -84,10 +84,17 @@ class SteamManager:
                 os.path.join(Path.home(), ".steam"),
             ]
 
-        for path in paths:
-            if os.path.isdir(path):
-                return path
-        return None
+        def steam_data_score(path: str) -> int:
+            return sum(
+                os.path.isdir(os.path.join(path, scope))
+                for scope in ("steamapps", "userdata")
+            )
+
+        return max(
+            (path for path in paths if os.path.isdir(path)),
+            key=steam_data_score,
+            default=None,
+        )
 
     def __get_scoped_path(self, scope: str = "steamapps"):
         """scopes: steamapps, userdata"""
