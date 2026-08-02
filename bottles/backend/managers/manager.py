@@ -1283,6 +1283,8 @@ class Manager(metaclass=Singleton):
                 return
 
             config = config_load.data
+            session_arguments = config.session_arguments
+            run_in_terminal = config.run_in_terminal
 
             # Clear Run Executable parameters on new session start
             if config.session_arguments:
@@ -1337,6 +1339,25 @@ class Manager(metaclass=Singleton):
                     value=sample.Parameters[key],
                     scope="Parameters",
                 )
+
+            system_runners = [
+                runner for runner in self.runners_available if runner.startswith("sys-")
+            ]
+            if (
+                config.Environment != "Steam"
+                and config.Runner.startswith("sys-")
+                and len(system_runners) == 1
+                and config.Runner != system_runners[0]
+            ):
+                logging.info(
+                    f"System Wine changed from {config.Runner} to {system_runners[0]}."
+                )
+                config.Runner = system_runners[0]
+                persisted_config = config.copy()
+                persisted_config.session_arguments = session_arguments
+                persisted_config.run_in_terminal = run_in_terminal
+                persisted_config.dump(_config)
+
             self.local_bottles[config.Name] = config
 
             try:
