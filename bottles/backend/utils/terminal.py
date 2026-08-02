@@ -19,6 +19,7 @@ import os
 import shlex
 import subprocess
 
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 
 logging = Logger()
@@ -46,7 +47,7 @@ class TerminalUtils:
 
     terminals = [
         # Part of Flatpak package
-        ["easyterm.py", '-d -p "%s" -c %s'],
+        ["easyterm.py", '-d -p "%s" -w %s -c %s'],
         # Third party
         ["foot", "%s"],
         ["kitty", "%s"],
@@ -140,10 +141,25 @@ class TerminalUtils:
             if child_gpu_environment:
                 child_command = ["env", *child_gpu_environment, *child_command]
             cmd_for_shell = shlex.quote(shlex.join(child_command))
+            if cwd is None:
+                try:
+                    requested_cwd = os.getcwd()
+                except OSError:
+                    requested_cwd = Paths.base
+            else:
+                requested_cwd = cwd
             try:
-                full_cmd = template % (palette, cmd_for_shell)
+                full_cmd = template % (
+                    palette,
+                    shlex.quote(requested_cwd),
+                    cmd_for_shell,
+                )
             except Exception:
-                full_cmd = f"{template} {palette} {cmd_for_shell}"
+                full_cmd = (
+                    f"{template} {palette} {shlex.quote(requested_cwd)} "
+                    f"{cmd_for_shell}"
+                )
+            cwd = Paths.base
 
         elif term_bin == "xfce4-terminal":
             cmd_for_shell = f"sh -c {shlex.quote(command)}"
