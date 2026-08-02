@@ -150,9 +150,11 @@ class WineCommand:
         post_script_args: Optional[str] = None,
         cwd: Optional[str] = None,
         sandbox_override: Optional[str] = None,
+        forced_dll_overrides: Optional[str] = None,
     ):
         _environment = environment.copy()
         self.config = self._get_config(config)
+        self.forced_dll_overrides = forced_dll_overrides
         self.minimal = minimal
         # Per-launch override of the dedicated sandbox decided in the config:
         #   None  -> follow the bottle setting
@@ -513,6 +515,8 @@ class WineCommand:
         # env.add("vblank_mode", "0")
 
         # DLL Overrides
+        if getattr(self, "forced_dll_overrides", None):
+            dll_overrides.append(self.forced_dll_overrides)
         env.concat("WINEDLLOVERRIDES", dll_overrides, sep=";")
         if env.is_empty("WINEDLLOVERRIDES"):
             env.remove("WINEDLLOVERRIDES")
