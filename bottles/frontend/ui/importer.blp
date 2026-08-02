@@ -30,6 +30,11 @@ template $ImporterView: Adw.Bin {
           }
         }
 
+        Button btn_select_prefixes {
+          tooltip-text: _("Select a Wine prefix folder");
+          icon-name: "folder-open-symbolic";
+        }
+
         MenuButton btn_import_backup {
           tooltip-text: _("Import a Bottle backup");
           popover: pop_backup;
@@ -48,7 +53,7 @@ template $ImporterView: Adw.Bin {
         vexpand: true;
         icon-name: "document-save-symbolic";
         title: _("No Prefixes Found");
-        description: _("No external prefixes were found. Does Bottles have access to them?\nUse the icon on the top to import a bottle from a backup.");
+        description: _("No external prefixes were found. Select their folder to grant Bottles access, or import a bottle backup.");
       }
 
       Adw.PreferencesGroup group_prefixes {
