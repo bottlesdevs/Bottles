@@ -328,6 +328,8 @@ class BackupManager:
         """
         if "dosdevices" in tarinfo.name:
             return None
+        if "lsfg-vk" in tarinfo.name.split("/"):
+            return None
         return tarinfo
 
     @staticmethod

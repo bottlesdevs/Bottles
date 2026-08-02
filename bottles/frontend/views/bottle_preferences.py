@@ -26,6 +26,7 @@ from bottles.backend.globals import (
     gamemode_available,
     gamescope_available,
     hdr_wsi_available,
+    lsfg_vk_available,
     mangohud_available,
     obs_vkc_available,
     vkbasalt_available,
@@ -51,6 +52,7 @@ from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
 from bottles.frontend.windows.drives import DrivesDialog
 from bottles.frontend.windows.envvars import EnvironmentVariablesDialog
 from bottles.frontend.windows.gamescope import GamescopeDialog
+from bottles.frontend.windows.lsfgvk import LsfgVkDialog
 from bottles.frontend.windows.mangohud import MangoHudDialog
 from bottles.frontend.windows.protonalert import ProtonAlertDialog
 from bottles.frontend.windows.sandbox import SandboxDialog
@@ -68,6 +70,7 @@ class PreferencesView(Adw.PreferencesPage):
     # region Widgets
     btn_manage_gamescope = Gtk.Template.Child()
     btn_manage_vkbasalt = Gtk.Template.Child()
+    btn_manage_lsfg_vk = Gtk.Template.Child()
     btn_manage_mangohud = Gtk.Template.Child()
     btn_manage_sandbox = Gtk.Template.Child()
     btn_manage_vmtouch = Gtk.Template.Child()
@@ -76,6 +79,7 @@ class PreferencesView(Adw.PreferencesPage):
     row_nvapi = Gtk.Template.Child()
     row_discrete = Gtk.Template.Child()
     row_vkbasalt = Gtk.Template.Child()
+    row_lsfg_vk = Gtk.Template.Child()
     row_gamescope = Gtk.Template.Child()
     row_mangohud = Gtk.Template.Child()
     row_gamemode = Gtk.Template.Child()
@@ -97,6 +101,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_mangohud = Gtk.Template.Child()
     switch_obsvkc = Gtk.Template.Child()
     switch_vkbasalt = Gtk.Template.Child()
+    switch_lsfg_vk = Gtk.Template.Child()
     switch_wayland = Gtk.Template.Child()
     switch_hdr = Gtk.Template.Child()
     switch_winebridge = Gtk.Template.Child()
@@ -179,6 +184,7 @@ class PreferencesView(Adw.PreferencesPage):
             "gamescope": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.gamescope",
             "hdr": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.HdrWsi",
             "vkbasalt": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.vkBasalt",
+            "lsfg_vk": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08",
             "mangohud": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud",
             "obsvkc": f"{_add_flathub} && flatpak install flathub com.obsproject.Studio.Plugin.OBSVkCapture",
         }
@@ -213,6 +219,19 @@ class PreferencesView(Adw.PreferencesPage):
             self.btn_manage_vkbasalt.set_tooltip_text(_vkbasalt_not_available)
             self.__add_unavailable_indicator(
                 self.row_vkbasalt, _vkbasalt_command if is_flatpak else None
+            )
+
+        if not lsfg_vk_available:
+            _lsfg_vk_command = self._install_commands.get("lsfg_vk")
+            _lsfg_vk_not_available = (
+                f"{_flatpak_not_available} {_lsfg_vk_command}"
+                if is_flatpak
+                else _not_available
+            )
+            self.switch_lsfg_vk.set_tooltip_text(_lsfg_vk_not_available)
+            self.btn_manage_lsfg_vk.set_tooltip_text(_lsfg_vk_not_available)
+            self.__add_unavailable_indicator(
+                self.row_lsfg_vk, _lsfg_vk_command if is_flatpak else None
             )
 
         if not mangohud_available:
@@ -270,6 +289,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_vkbasalt.connect(
             "clicked", self.__show_feature_dialog, VkBasaltDialog
         )
+        self.btn_manage_lsfg_vk.connect(
+            "clicked", self.__show_feature_dialog, LsfgVkDialog
+        )
         self.btn_manage_mangohud.connect(
             "clicked", self.__show_feature_dialog, MangoHudDialog
         )
@@ -284,6 +306,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.connect("state-set", self.__toggle_feature_cb, "mangohud")
         self.switch_obsvkc.connect("state-set", self.__toggle_feature_cb, "obsvkc")
         self.switch_vkbasalt.connect("state-set", self.__toggle_feature_cb, "vkbasalt")
+        self.switch_lsfg_vk.connect("state-set", self.__toggle_feature_cb, "lsfg_vk")
         self.switch_wayland.connect("state-set", self.__toggle_wayland)
         self.switch_hdr.connect("state-set", self.__toggle_hdr)
         self.switch_winebridge.connect(
@@ -322,6 +345,15 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_gamescope.set_sensitive(gamescope_available)
         self.switch_vkbasalt.set_sensitive(vkbasalt_available)
         self.btn_manage_vkbasalt.set_sensitive(vkbasalt_available)
+        _lsfg_vk_supported = lsfg_vk_available and config.Arch != Arch.WIN32
+        self.switch_lsfg_vk.set_sensitive(_lsfg_vk_supported)
+        self.btn_manage_lsfg_vk.set_sensitive(_lsfg_vk_supported)
+        if config.Arch == Arch.WIN32:
+            _lsfg_vk_64_bit_only = _(
+                "lsfg-vk only supports 64-bit Vulkan applications."
+            )
+            self.switch_lsfg_vk.set_tooltip_text(_lsfg_vk_64_bit_only)
+            self.btn_manage_lsfg_vk.set_tooltip_text(_lsfg_vk_64_bit_only)
         self.switch_mangohud.set_sensitive(mangohud_available)
         self.btn_manage_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
@@ -336,6 +368,8 @@ class PreferencesView(Adw.PreferencesPage):
             self.combo_latencyflex.set_sensitive(False)
             self.switch_vkbasalt.set_sensitive(False)
             self.btn_manage_vkbasalt.set_sensitive(False)
+            self.switch_lsfg_vk.set_sensitive(False)
+            self.btn_manage_lsfg_vk.set_sensitive(False)
             self.switch_obsvkc.set_sensitive(False)
 
         is_wayland_session = DisplayUtils.display_server_type() == "wayland"
@@ -563,6 +597,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
         self.switch_vkbasalt.handler_block_by_func(self.__toggle_feature_cb)
+        self.switch_lsfg_vk.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_wayland.handler_block_by_func(self.__toggle_wayland)
         self.switch_hdr.handler_block_by_func(self.__toggle_hdr)
         self.switch_winebridge.handler_block_by_func(self.__toggle_feature_cb)
@@ -586,6 +621,14 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.set_active(parameters.mangohud)
         self.switch_obsvkc.set_active(parameters.obsvkc)
         self.switch_vkbasalt.set_active(parameters.vkbasalt)
+        self.switch_lsfg_vk.set_active(parameters.lsfg_vk)
+        _lsfg_vk_supported = (
+            lsfg_vk_available
+            and config.Arch != Arch.WIN32
+            and VulkanUtils.check_support()
+        )
+        self.switch_lsfg_vk.set_sensitive(_lsfg_vk_supported)
+        self.btn_manage_lsfg_vk.set_sensitive(_lsfg_vk_supported)
         self.switch_wayland.set_active(parameters.wayland)
         self.switch_hdr.set_active(parameters.hdr)
         self.__update_hdr_sensitivity(parameters.hdr)
@@ -703,6 +746,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_mangohud.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
         self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_feature_cb)
+        self.switch_lsfg_vk.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_wayland.handler_unblock_by_func(self.__toggle_wayland)
         self.switch_hdr.handler_unblock_by_func(self.__toggle_hdr)
         self.switch_winebridge.handler_unblock_by_func(self.__toggle_feature_cb)

@@ -11,6 +11,7 @@ from bottles.backend.globals import (
     Paths,
     gamemode_available,
     gamescope_available,
+    lsfg_vk_version,
     mangohud_available,
     obs_vkc_available,
     vmtouch_available,
@@ -23,6 +24,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.generic import detect_encoding, is_ntsync_available
 from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.lsfgvk import get_lsfg_vk_dll_path
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.utils.terminal import TerminalUtils
@@ -178,6 +180,57 @@ def apply_hdr_preferences(env: "WineEnv", params, gamescope_activated: bool) -> 
     if gamescope_activated:
         env.remove("DISABLE_GAMESCOPE_WSI")
         env.add("ENABLE_GAMESCOPE_WSI", "1", override=True)
+
+
+def apply_lsfg_vk_preferences(
+    env: "WineEnv", params, bottle_path: str, version: Optional[int] = None
+) -> None:
+    if version is None:
+        version = lsfg_vk_version
+
+    if not getattr(params, "lsfg_vk", False):
+        return
+
+    dll = get_lsfg_vk_dll_path(bottle_path)
+    try:
+        multiplier = int(getattr(params, "lsfg_vk_multiplier", 2))
+        flow_scale = float(getattr(params, "lsfg_vk_flow_scale", 1.0))
+    except (TypeError, ValueError):
+        multiplier = 0
+        flow_scale = 0
+    enabled = (
+        version in (1, 2)
+        and os.path.isfile(dll)
+        and os.access(dll, os.R_OK)
+        and 2 <= multiplier <= 4
+        and 0.25 <= flow_scale <= 1.0
+    )
+    if not enabled:
+        env.add("DISABLE_LSFG", "1", override=True)
+        env.add("DISABLE_LSFGVK", "1", override=True)
+        return
+
+    multiplier = str(multiplier)
+    flow_scale = str(flow_scale)
+    performance = "1" if getattr(params, "lsfg_vk_performance_mode", False) else "0"
+
+    if version == 2:
+        env.add("DISABLE_LSFG", "1", override=True)
+        env.remove("DISABLE_LSFGVK")
+        env.add("LSFGVK_ENV", "1", override=True)
+        env.add("LSFGVK_DLL_PATH", dll, override=True)
+        env.add("LSFGVK_MULTIPLIER", multiplier, override=True)
+        env.add("LSFGVK_FLOW_SCALE", flow_scale, override=True)
+        env.add("LSFGVK_PERFORMANCE_MODE", performance, override=True)
+        return
+
+    env.remove("DISABLE_LSFG")
+    env.add("DISABLE_LSFGVK", "1", override=True)
+    env.add("LSFG_LEGACY", "1", override=True)
+    env.add("LSFG_DLL_PATH", dll, override=True)
+    env.add("LSFG_MULTIPLIER", multiplier, override=True)
+    env.add("LSFG_FLOW_SCALE", flow_scale, override=True)
+    env.add("LSFG_PERFORMANCE_MODE", performance, override=True)
 
 
 def _needs_steam_virtual_gamepad_workaround(runner_name: Optional[str]) -> bool:
@@ -504,6 +557,13 @@ class WineCommand:
             if os.path.isfile(vkbasalt_conf_path):
                 env.add("VKBASALT_CONFIG_FILE", vkbasalt_conf_path)
             env.add("ENABLE_VKBASALT", "1")
+
+        apply_lsfg_vk_preferences(
+            env,
+            params,
+            bottle,
+            version=lsfg_vk_version if arch != "win32" and not self.minimal else 0,
+        )
 
         # OBS Vulkan Capture environment variables
         if params.obsvkc and not self.minimal:

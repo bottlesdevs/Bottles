@@ -24,6 +24,7 @@ bottles_sources = [
   'connection.py',
   'gsettings_stub.py',
   'json.py',
+  'lsfgvk.py',
   'singleton.py'
 ]
 

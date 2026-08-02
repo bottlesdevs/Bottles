@@ -1,0 +1,134 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $LsfgVkDialog: Adw.Window {
+  modal: true;
+  default-width: 550;
+  default-height: 620;
+  title: _("Frame Generation Settings");
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+    orientation: vertical;
+
+    Adw.HeaderBar {
+      show-end-title-buttons: false;
+
+      [start]
+      Button {
+        label: _("_Cancel");
+        use-underline: true;
+        action-name: "window.close";
+      }
+
+      [end]
+      Button btn_save {
+        label: _("Save");
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        description: _("lsfg-vk requires a legitimate copy of Lossless Scaling. Bottles keeps a private copy inside this bottle and excludes it from backups and duplicates.");
+
+        Adw.ActionRow row_dll {
+          title: _("Lossless Scaling DLL");
+
+          Button btn_reset_dll {
+            tooltip-text: _("Clear DLL path");
+            valign: center;
+            icon-name: "edit-clear-symbolic";
+            visible: false;
+
+            styles [
+              "flat",
+            ]
+          }
+
+          Button btn_choose_dll {
+            tooltip-text: _("Select Lossless.dll");
+            valign: center;
+            icon-name: "document-open-symbolic";
+
+            styles [
+              "flat",
+            ]
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        title: _("Frame Generation");
+        description: _("Use a 64-bit Vulkan application. Disable other Vulkan layers if you encounter problems.");
+
+        Adw.ActionRow {
+          title: _("Multiplier");
+          subtitle: _("Total frames displayed for each rendered frame.");
+
+          SpinButton spin_multiplier {
+            numeric: true;
+            valign: center;
+
+            adjustment: Adjustment {
+              lower: 2;
+              upper: 4;
+              step-increment: 1;
+            };
+          }
+        }
+
+        Adw.ActionRow {
+          title: _("Flow Scale");
+          subtitle: _("Lower values improve performance at the expense of image quality.");
+
+          SpinButton spin_flow_scale {
+            digits: 2;
+            numeric: true;
+            valign: center;
+
+            adjustment: Adjustment {
+              lower: 0.25;
+              upper: 1.0;
+              step-increment: 0.05;
+              page-increment: 0.1;
+            };
+          }
+        }
+
+        Adw.ActionRow {
+          title: _("Performance Mode");
+          subtitle: _("Use a lighter model with a small quality reduction.");
+          activatable-widget: switch_performance_mode;
+
+          Switch switch_performance_mode {
+            valign: center;
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        title: _("Credits and License");
+
+        Adw.ActionRow row_source {
+          title: "lsfg-vk";
+          subtitle: _("MIT for 1.x; GPL-3.0-or-later for 2.x");
+          activatable: true;
+
+          Image {
+            icon-name: "external-link-symbolic";
+          }
+        }
+      }
+    }
+  }
+}
