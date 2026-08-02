@@ -27,6 +27,7 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import Task, TaskManager
 from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.common import format_runner_name
 from bottles.frontend.utils.filters import add_all_filters, add_yaml_filters
 from bottles.frontend.utils.gtk import GtkUtils
 
@@ -128,7 +129,9 @@ class BottlesNewBottleDialog(Adw.Dialog):
         # Populate widgets
         self.label_choose_env.set_label(self.default_string)
         self.label_choose_path.set_label(self.default_string)
-        self.str_list_runner.splice(0, 0, self.manager.runners_available)
+        self.str_list_runner.splice(
+            0, 0, [format_runner_name(r) for r in self.manager.runners_available]
+        )
         self.str_list_arch.splice(0, 0, list(self.arch.values()))
 
         self.selected_environment = (

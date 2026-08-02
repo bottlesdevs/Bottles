@@ -24,6 +24,7 @@ from gi.repository import Adw, GLib, Gtk
 from bottles.backend.managers.queue import QueueManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.common import format_runner_name
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.views.bottle_dependencies import DependenciesView
 from bottles.frontend.views.bottle_details import BottleView
@@ -257,4 +258,4 @@ class DetailsView(Adw.Bin):
         self.btn_back.set_tooltip_text(_("Return to your bottles."))
 
     def update_runner_label(self, runner: str):
-        self.view_bottle.label_runner.set_text(runner)
+        self.view_bottle.label_runner.set_text(format_runner_name(runner))
