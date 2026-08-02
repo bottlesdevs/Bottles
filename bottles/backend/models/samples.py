@@ -20,6 +20,7 @@ class Samples:
         "WAYLAND_DISPLAY",
         "XAUTHORITY",
         "XDG_RUNTIME_DIR",
+        "XMODIFIERS",
     ]
     environments = {
         "gaming": {
