@@ -10,6 +10,7 @@ bottles_sources = [
   'envvars.py',
   'generic.py',
   'launchoptions.py',
+  'lsfgvk.py',
   'onboard.py',
   'playtimegraph.py',
   'rename.py',

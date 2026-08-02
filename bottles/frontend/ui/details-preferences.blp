@@ -159,6 +159,26 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
+    Adw.ActionRow row_lsfg_vk {
+      activatable-widget: switch_lsfg_vk;
+      title: _("Frame Generation (Experimental)");
+      subtitle: _("Generate additional frames with lsfg-vk. Only works with 64-bit Vulkan applications.");
+
+      Button btn_manage_lsfg_vk {
+        tooltip-text: _("Manage lsfg-vk settings");
+        valign: center;
+        icon-name: "applications-system-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Switch switch_lsfg_vk {
+        valign: center;
+      }
+    }
+
     Adw.ActionRow row_gamescope {
       activatable-widget: switch_gamescope;
       title: "Gamescope";

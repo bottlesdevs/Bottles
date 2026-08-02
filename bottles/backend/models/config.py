@@ -105,6 +105,10 @@ class BottleParams(DictCompatMixIn):
     mangohud_display_on_game_start: bool = True
     obsvkc: bool = False
     vkbasalt: bool = False
+    lsfg_vk: bool = False
+    lsfg_vk_multiplier: int = 2
+    lsfg_vk_flow_scale: float = 1.0
+    lsfg_vk_performance_mode: bool = False
     gamemode: bool = False
     gamescope: bool = False
     gamescope_game_width: int = 0

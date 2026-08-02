@@ -414,6 +414,12 @@ class Bottles(Adw.Application):
                 "winetricks data: LGPL-2.1-or-later."
             ),
         )
+        about_dialog.add_legal_section(
+            _("lsfg-vk"),
+            _("Vulkan frame generation layer"),
+            Gtk.License.CUSTOM,
+            _("lsfg-vk 1.x: MIT.\nlsfg-vk 2.x: GPL-3.0-or-later."),
+        )
         about_dialog.set_copyright(
             _("Copyright © 2017 {developer_name}").format(
                 developer_name=about_dialog.get_developer_name()
@@ -432,6 +438,7 @@ class Bottles(Adw.Application):
                 "vkbasalt-cli https://gitlab.com/TheEvilSkeleton/vkbasalt-cli",
                 "GameMode https://github.com/FeralInteractive/gamemode",
                 "Gamescope https://github.com/Plagman/gamescope",
+                "lsfg-vk https://github.com/PancakeTAS/lsfg-vk",
                 "OBS Vulkan/OpenGL capture https://github.com/nowrep/obs-vkcapture",
                 "Wine-TKG https://github.com/Frogging-Family/wine-tkg-git",
                 "Proton https://github.com/ValveSoftware/proton",

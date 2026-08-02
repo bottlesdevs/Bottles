@@ -90,6 +90,31 @@ class Paths:
                 return True
         return False
 
+    @staticmethod
+    def get_lsfg_vk_version():
+        layer_dirs = [
+            path
+            for path in os.environ.get("VK_ADD_LAYER_PATH", "").split(os.pathsep)
+            if path
+        ]
+        layer_dirs += [
+            "/usr/lib/extensions/vulkan/lsfgvk/share/vulkan/implicit_layer.d",
+            f"{Paths.xdg_data_home}/vulkan/implicit_layer.d",
+            "/usr/local/share/vulkan/implicit_layer.d",
+            "/usr/share/vulkan/implicit_layer.d",
+            "/etc/vulkan/implicit_layer.d",
+        ]
+        for version, manifest in (
+            (2, "VkLayer_LSFGVK_frame_generation.json"),
+            (1, "VkLayer_LS_frame_generation.json"),
+        ):
+            if any(
+                os.path.isfile(os.path.join(layer_dir, manifest))
+                for layer_dir in layer_dirs
+            ):
+                return version
+        return 0
+
 
 class TrdyPaths:
     # External managers paths
@@ -123,6 +148,8 @@ hdr_wsi_available = os.path.exists(
     "/usr/lib/extensions/vulkan/HdrWsi/lib/libVkLayer_hdr_wsi.so"
 )
 vkbasalt_available = Paths.is_vkbasalt_available()
+lsfg_vk_version = Paths.get_lsfg_vk_version()
+lsfg_vk_available = bool(lsfg_vk_version)
 mangohud_available = check_flatpak_extension("mangohud", "/usr/lib/extensions/vulkan/MangoHud/bin/mangohud")
 obs_vkc_available = check_flatpak_extension("obs-vkcapture", "/usr/lib/extensions/vulkan/OBSVkCapture/bin/obs-vkcapture")
 vmtouch_available = shutil.which("vmtouch") or False
