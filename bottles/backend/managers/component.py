@@ -619,6 +619,15 @@ class ComponentManager:
                 },
             )
 
+        if (
+            component_type in ["runner", "runner:proton"]
+            and component_name in self.__manager.external_runners
+        ):
+            return Result(
+                False,
+                data={"message": "External runners cannot be removed from Bottles."},
+            )
+
         if component_type in ["runner", "runner:proton"]:
             path = ManagerUtils.get_runner_path(component_name)
 

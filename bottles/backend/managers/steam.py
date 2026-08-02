@@ -40,6 +40,11 @@ from bottles.backend.wine.winecommand import WineCommand
 
 logging = Logger()
 
+STEAM_COMPATIBILITY_TOOL_PATHS = (
+    "/app/share/steam/compatibilitytools.d",
+    "/usr/share/steam/compatibilitytools.d",
+)
+
 
 class SteamManager:
     steamapps_path = None
@@ -65,25 +70,25 @@ class SteamManager:
             self.localconfig = self.__get_local_config()
             self.library_folders = self.__get_library_folders()
 
-    def __find_steam_path(self) -> str | None:
+    def __get_steam_paths(self) -> list[str]:
         if self.is_windows and self.config:
-            paths = [
+            return [
                 os.path.join(
                     ManagerUtils.get_bottle_path(self.config),
                     "drive_c/Program Files (x86)/Steam",
                 )
             ]
-        else:
-            paths = [
-                os.path.join(
-                    Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam"
-                ),
-                os.path.join(Path.home(), ".local/share/Steam"),
-                os.path.join(Path.home(), ".steam/debian-installation"),
-                os.path.join(Path.home(), ".steam/steam"),
-                os.path.join(Path.home(), ".steam"),
-            ]
 
+        return [
+            os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam"),
+            os.path.join(Path.home(), ".local/share/Steam"),
+            os.path.join(Path.home(), ".steam/debian-installation"),
+            os.path.join(Path.home(), ".steam/root"),
+            os.path.join(Path.home(), ".steam/steam"),
+            os.path.join(Path.home(), ".steam"),
+        ]
+
+    def __find_steam_path(self) -> str | None:
         def steam_data_score(path: str) -> int:
             return sum(
                 os.path.isdir(os.path.join(path, scope))
@@ -91,7 +96,7 @@ class SteamManager:
             )
 
         return max(
-            (path for path in paths if os.path.isdir(path)),
+            (path for path in self.__get_steam_paths() if os.path.isdir(path)),
             key=steam_data_score,
             default=None,
         )
@@ -225,6 +230,32 @@ class SteamManager:
                 return None
 
             return proton_path
+
+    def list_compatibility_tools(self) -> Dict[str, str]:
+        """Return Proton runners installed in Steam's compatibility tools path."""
+        tools = {}
+        tools_paths = [
+            os.path.join(steam_path, "compatibilitytools.d")
+            for steam_path in self.__get_steam_paths()
+        ]
+        if not self.is_windows:
+            tools_paths.extend(STEAM_COMPATIBILITY_TOOL_PATHS)
+
+        for tools_path in tools_paths:
+            for path in glob(os.path.join(tools_path, "*/")):
+                try:
+                    if not SteamUtils.is_proton(path):
+                        continue
+                except (OSError, SyntaxError, TypeError, ValueError) as error:
+                    logging.warning(
+                        f"Could not inspect Steam compatibility tool {path}: {error}"
+                    )
+                    continue
+
+                path = os.path.normpath(path)
+                tools.setdefault(os.path.basename(path), path)
+
+        return tools
 
     def list_apps_ids(self) -> dict:
         """List all apps in Steam"""

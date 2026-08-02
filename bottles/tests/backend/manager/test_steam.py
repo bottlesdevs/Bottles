@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from bottles.backend.globals import Paths
+from bottles.backend.managers import steam as steam_module
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import vdf
@@ -170,3 +171,54 @@ def test_steam_shortcut_quotes_apostrophes(
         "-p",
         "Alice's Game",
     ]
+
+
+def test_list_compatibility_tools_keeps_only_valid_proton(tmp_path, monkeypatch):
+    flatpak_steam = (
+        tmp_path / ".var" / "app" / "com.valvesoftware.Steam" / "data" / "Steam"
+    )
+    flatpak_steam.mkdir(parents=True)
+    steam_root = tmp_path / ".local" / "share" / "Steam"
+    tools = steam_root / "compatibilitytools.d"
+    proton = tools / "GE-Proton10-4"
+    proton.mkdir(parents=True)
+    (proton / "toolmanifest.vdf").write_text(
+        '"manifest"\n{\n'
+        '    "commandline" "/proton run"\n'
+        '    "compatmanager_layer_name" "proton"\n'
+        "}\n"
+    )
+    invalid = tools / "Broken-Proton"
+    invalid.mkdir()
+    (invalid / "toolmanifest.vdf").write_text('"manifest"\n{')
+    (tools / "Not-Proton").mkdir()
+    monkeypatch.setattr(Path, "home", lambda: tmp_path)
+    monkeypatch.setattr(steam_module, "STEAM_COMPATIBILITY_TOOL_PATHS", ())
+
+    manager = SteamManager(check_only=True)
+
+    assert manager.steam_path == str(flatpak_steam)
+    assert manager.list_compatibility_tools() == {
+        "GE-Proton10-4": str(proton),
+    }
+
+
+def test_list_compatibility_tools_without_steam(tmp_path, monkeypatch):
+    tools = tmp_path / "flatpak-extension"
+    proton = tools / "GE-Proton10-4"
+    proton.mkdir(parents=True)
+    (proton / "toolmanifest.vdf").write_text(
+        '"manifest"\n{\n'
+        '    "commandline" "/proton run"\n'
+        '    "compatmanager_layer_name" "proton"\n'
+        "}\n"
+    )
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "empty-home")
+    monkeypatch.setattr(steam_module, "STEAM_COMPATIBILITY_TOOL_PATHS", (str(tools),))
+
+    manager = SteamManager(check_only=True)
+
+    assert manager.steam_path is None
+    assert manager.list_compatibility_tools() == {
+        "GE-Proton10-4": str(proton),
+    }
