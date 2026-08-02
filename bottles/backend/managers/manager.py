@@ -77,6 +77,7 @@ from bottles.backend.utils.singleton import Singleton
 from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.utils.wine import WineUtils
+from bottles.backend.wine.drives import Drives
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.uninstaller import Uninstaller
@@ -2150,6 +2151,9 @@ class Manager(metaclass=Singleton):
         cancel_result = check_cancel()
         if cancel_result is not None:
             return cancel_result
+
+        if self.settings.get_boolean("disable-home-drive"):
+            Drives(config).remove_drive("Z")
 
         # caching template
         if not template or template_updated:

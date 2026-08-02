@@ -214,6 +214,16 @@ template $PreferencesWindow: Adw.PreferencesWindow {
         }
       }
 
+      Adw.ActionRow {
+        title: _("Default Z: Drive in New Bottles");
+        subtitle: _("Expose the filesystem, including your home directory, through Z:.");
+        activatable-widget: switch_home_drive;
+
+        Switch switch_home_drive {
+          valign: center;
+        }
+      }
+
       Adw.ComboRow combo_audio_driver {
         title: _("Audio Driver");
         subtitle: _("Choose which Wine audio driver Bottles should enforce for all bottles.");
