@@ -35,6 +35,7 @@ class DependencyEntry(Adw.ActionRow):
 
     # region Widgets
     label_category = Gtk.Template.Child()
+    check_select = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     btn_reinstall = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
@@ -136,6 +137,8 @@ class DependencyEntry(Adw.ActionRow):
             self.btn_manifest.set_sensitive(False)
             self.btn_license.set_sensitive(False)
 
+        self.check_select.set_visible(self.btn_install.get_visible())
+
     def open_manifest(self, _widget):
         """
         This function pop up a dialog with the manifest
@@ -170,6 +173,8 @@ class DependencyEntry(Adw.ActionRow):
         self.queue.add_task()
         self.get_parent().set_sensitive(False)
         self.btn_install.set_visible(False)
+        self.check_select.set_active(False)
+        self.check_select.set_visible(False)
         self.spinner.show()
         self.spinner.start()
 
@@ -233,6 +238,8 @@ class DependencyEntry(Adw.ActionRow):
         """
         self.spinner.stop()
         self.btn_install.set_visible(False)
+        self.check_select.set_active(False)
+        self.check_select.set_visible(False)
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
         self.get_parent().set_sensitive(True)
@@ -252,6 +259,8 @@ class DependencyEntry(Adw.ActionRow):
             self.btn_remove.set_visible(False)
             self.btn_install.set_visible(True)
 
+        self.check_select.set_active(False)
+        self.check_select.set_visible(self.btn_install.get_visible())
         self.btn_reinstall.set_sensitive(True)
 
         with contextlib.suppress(AttributeError):

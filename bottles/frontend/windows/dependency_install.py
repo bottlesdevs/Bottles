@@ -112,16 +112,17 @@ class DependencyInstallDialog(Adw.Window):
         self.progress_download.set_text(f"{percent}%")
 
     @GtkUtils.run_in_main_loop
-    def finish(self, success: bool) -> None:
+    def finish(self, success: bool, message: Optional[str] = None) -> None:
         self.spinner_progress.set_visible(False)
         self.spinner_progress.stop()
         self.progress_download.set_visible(False)
         self.btn_close.set_sensitive(True)
 
-        if success:
-            message = _("{0} installed.").format(self.dependency_name)
-        else:
-            message = _("{0} failed to install.").format(self.dependency_name)
+        if message is None:
+            if success:
+                message = _("{0} installed.").format(self.dependency_name)
+            else:
+                message = _("{0} failed to install.").format(self.dependency_name)
 
         self.label_status.set_label(message)
         self.add_step(message)
