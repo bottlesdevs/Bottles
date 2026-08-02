@@ -16,9 +16,11 @@
 #
 import codecs
 import contextlib
+import functools
 import os
 import random
 import re
+import shlex
 import string
 import subprocess
 from typing import Optional
@@ -92,28 +94,55 @@ def is_glibc_min_available():
 
 
 NTSYNC_DEVICE = "/dev/ntsync"
-# Wine major version from which ntsync is considered usable. Proton uses its
-# own versioning but its leading number still maps to the Wine major.
-NTSYNC_MIN_WINE_VERSION = 10
+NTSYNC_DEVICE_MARKER = b"/dev/ntsync"
 
 
-def is_ntsync_available(runner_name: Optional[str] = None) -> bool:
-    """
-    Return True if ntsync can actually be used: the kernel must expose the
-    ntsync device and, when a runner name is given, its Wine base must be
-    recent enough. Used to gracefully fall back when ntsync is unsupported.
-    """
-    if not os.path.exists(NTSYNC_DEVICE):
-        return False
-    if runner_name is None:
-        return True
-    match = re.search(r"(\d+)", runner_name)
-    if not match:
-        return False
+@functools.lru_cache(maxsize=64)
+def _wineserver_supports_ntsync(path: str, mtime_ns: int, size: int) -> bool:
+    del mtime_ns, size
     try:
-        return int(match.group(1)) >= NTSYNC_MIN_WINE_VERSION
+        with open(path, "rb") as binary:
+            previous = b""
+            while chunk := binary.read(1024 * 1024):
+                data = previous + chunk
+                if NTSYNC_DEVICE_MARKER in data:
+                    return True
+                previous = data[-len(NTSYNC_DEVICE_MARKER) :]
+    except OSError:
+        pass
+    return False
+
+
+def is_ntsync_available(runner: Optional[str] = None) -> bool:
+    """
+    Return True if both the kernel device and runner support ntsync.
+
+    Runner names and Wine versions are not reliable capability indicators:
+    distributions can build a recent Wine without the ntsync headers, while
+    custom runners can backport it. The wineserver contains the device path
+    only when ntsync support was compiled in.
+    """
+    if not os.path.exists(NTSYNC_DEVICE) or not os.access(NTSYNC_DEVICE, os.R_OK):
+        return False
+    if runner is None:
+        return True
+
+    try:
+        runner_parts = shlex.split(runner)
     except ValueError:
         return False
+    if len(runner_parts) != 1:
+        return False
+
+    wineserver = os.path.join(os.path.dirname(runner_parts[0]), "wineserver")
+    try:
+        stat = os.stat(wineserver)
+    except OSError:
+        return False
+
+    return _wineserver_supports_ntsync(
+        os.path.realpath(wineserver), stat.st_mtime_ns, stat.st_size
+    )
 
 
 def sort_by_version(_list: list, extra_check: str = "async"):

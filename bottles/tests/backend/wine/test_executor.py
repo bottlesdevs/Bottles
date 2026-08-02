@@ -9,6 +9,7 @@ from bottles.backend.models.config import BottleConfig, BottleParams
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.wine import winecommand
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winecommand import WineCommand, WineEnv
 
@@ -429,6 +430,32 @@ def test_default_wine_environment_inherits_xmodifiers(monkeypatch):
     env = WineEnv(allowed_keys=Samples.default_inherited_environment)
 
     assert env.get()["envs"]["XMODIFIERS"] == "@im=fcitx"
+
+
+@pytest.mark.parametrize(
+    ("sync", "ntsync_available", "expected"),
+    [
+        ("wine", True, {"WINENTSYNC": "1"}),
+        ("wine", False, {}),
+        ("ntsync", True, {"WINENTSYNC": "1"}),
+        ("ntsync", False, {"WINEFSYNC": "1"}),
+        ("esync", False, {"WINEESYNC": "1"}),
+        ("fsync", False, {"WINEFSYNC": "1"}),
+    ],
+)
+def test_winecommand_applies_selected_sync_environment(
+    monkeypatch, sync, ntsync_available, expected
+):
+    monkeypatch.setattr(
+        winecommand,
+        "is_ntsync_available",
+        lambda _runner: ntsync_available,
+    )
+    env = WineEnv(clean=True)
+
+    WineCommand._apply_sync_environment(env, sync, "/runner/bin/wine")
+
+    assert env.get()["envs"] == expected
 
 
 def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
