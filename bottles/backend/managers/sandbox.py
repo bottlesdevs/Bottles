@@ -174,6 +174,8 @@ class SandboxManager:
         if self.share_gpu:
             _cmd.append("--sandbox-flag=share-gpu")
 
+        _cmd.append("--sandbox-flag=allow-dbus")
+
         if self.share_input and self.supports_input_devices():
             _cmd.append(f"--sandbox-flag={FLATPAK_SHARE_INPUT}")
 
