@@ -442,23 +442,7 @@ class WineCommand:
             env.add("DXVK_NVAPIHACK", "0")
             env.add("DXVK_ENABLE_NVAPI", "1")
 
-        # Esync environment variable
-        if params.sync == "esync":
-            env.add("WINEESYNC", "1")
-
-        # Fsync environment variable
-        if params.sync == "fsync":
-            env.add("WINEFSYNC", "1")
-
-        # Ntsync environment variable
-        if params.sync == "ntsync":
-            if is_ntsync_available(self.runner):
-                env.add("WINENTSYNC", "1")
-            else:
-                logging.warning(
-                    "ntsync requested but unavailable, falling back to fsync"
-                )
-                env.add("WINEFSYNC", "1")
+        self._apply_sync_environment(env, params.sync, self.runner)
 
         # Wine debug level
         if not return_steam_env:
@@ -530,6 +514,21 @@ class WineCommand:
         apply_wayland_preferences(env, params)
 
         return env.get()["envs"]
+
+    @staticmethod
+    def _apply_sync_environment(env: WineEnv, sync: str, runner: str) -> None:
+        if sync == "esync":
+            env.add("WINEESYNC", "1")
+        elif sync == "fsync":
+            env.add("WINEFSYNC", "1")
+        elif sync in ("wine", "ntsync"):
+            if is_ntsync_available(runner):
+                env.add("WINENTSYNC", "1")
+            elif sync == "ntsync":
+                logging.warning(
+                    "ntsync requested but unavailable, falling back to fsync"
+                )
+                env.add("WINEFSYNC", "1")
 
     def _get_runner_info(self) -> tuple[str, str]:
         config = self.config
