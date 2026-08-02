@@ -238,7 +238,7 @@ class ComponentManager:
         # is provided by the caller.
         external_task = task is not None and task.task_id is not None
         if task is None:
-            task = Task(title=file, cancellable=cancel_event is not None)
+            task = Task(title=file, cancel_event=cancel_event)
 
         if task.task_id is None:
             task_id = TaskManager.add(task)

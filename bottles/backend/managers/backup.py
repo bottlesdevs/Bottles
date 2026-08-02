@@ -19,7 +19,9 @@ import os
 import shutil
 import tarfile
 import tempfile
+from concurrent.futures import CancelledError
 from gettext import gettext as _
+from threading import Event
 from typing import Callable, Optional
 
 import pathvalidate
@@ -36,12 +38,35 @@ from bottles.backend.utils.manager import ManagerUtils
 logging = Logger()
 
 
+class _CancellableReader:
+    def __init__(self, stream, cancel_event: Event):
+        self._stream = stream
+        self._cancel_event = cancel_event
+
+    def read(self, size=-1):
+        if self._cancel_event.is_set():
+            raise CancelledError
+        data = self._stream.read(size)
+        if self._cancel_event.is_set():
+            raise CancelledError
+        return data
+
+
 class _BackupTarFile(tarfile.TarFile):
-    def __init__(self, *args, source_path: str, **kwargs):
+    def __init__(
+        self,
+        *args,
+        source_path: str,
+        cancel_event: Optional[Event] = None,
+        **kwargs,
+    ):
         self._source_path = source_path
+        self._cancel_event = cancel_event
         super().__init__(*args, **kwargs)
 
     def add(self, name, arcname=None, recursive=True, *, filter=None):
+        if self._cancel_event and self._cancel_event.is_set():
+            raise CancelledError
         if arcname is None:
             arcname = name
 
@@ -81,6 +106,13 @@ class _BackupTarFile(tarfile.TarFile):
         else:
             self.addfile(tarinfo)
 
+    def addfile(self, tarinfo, fileobj=None):
+        if self._cancel_event and self._cancel_event.is_set():
+            raise CancelledError
+        if fileobj is not None and self._cancel_event is not None:
+            fileobj = _CancellableReader(fileobj, self._cancel_event)
+        return super().addfile(tarinfo, fileobj)
+
     def _skip_missing(self, name, error):
         if os.path.realpath(name) == self._source_path:
             raise error
@@ -98,14 +130,19 @@ class ProgressTrackingFilter:
         total_size: int,
         task: Optional[Task] = None,
         base_filter: Optional[Callable] = None,
+        cancel_event: Optional[Event] = None,
     ):
         self._total_size = total_size
         self._task = task
         self._base_filter = base_filter
+        self._cancel_event = cancel_event
         self._processed = 0
         self._last_percent = -1
 
     def __call__(self, tarinfo: tarfile.TarInfo) -> Optional[tarfile.TarInfo]:
+        if self._cancel_event and self._cancel_event.is_set():
+            raise CancelledError
+
         # Apply base filter first
         if self._base_filter:
             tarinfo = self._base_filter(tarinfo)
@@ -138,13 +175,17 @@ class BackupManager:
 
     @staticmethod
     def _calculate_dir_size(
-        path: str, exclude_filter: Optional[Callable] = None
+        path: str,
+        exclude_filter: Optional[Callable] = None,
+        cancel_event: Optional[Event] = None,
     ) -> int:
         """
         Calculate the total size of a directory, respecting the exclude filter.
         """
         total_size = 0
         for dirpath, dirnames, filenames in os.walk(path):
+            if cancel_event and cancel_event.is_set():
+                raise CancelledError
             # Apply exclude filter logic to directories
             if exclude_filter:
                 # Check if this directory should be excluded
@@ -155,6 +196,8 @@ class BackupManager:
                     continue
 
             for filename in filenames:
+                if cancel_event and cancel_event.is_set():
+                    raise CancelledError
                 filepath = os.path.join(dirpath, filename)
                 # Apply exclude filter to files
                 if exclude_filter:
@@ -174,6 +217,7 @@ class BackupManager:
         destination_path: str,
         exclude_filter: Optional[Callable] = None,
         task: Optional[Task] = None,
+        cancel_event: Optional[Event] = None,
     ) -> bool:
         """Helper function to create a tar.gz file from a source path."""
         temp_path = None
@@ -181,9 +225,13 @@ class BackupManager:
             source_path = os.path.realpath(source_path)
             destination_path = os.path.abspath(destination_path)
             destination_dir = os.path.dirname(destination_path)
-            if (
-                os.path.commonpath((source_path, os.path.realpath(destination_dir)))
-                == source_path
+            destinations = (
+                os.path.realpath(destination_dir),
+                os.path.realpath(destination_path),
+            )
+            if any(
+                os.path.commonpath((source_path, target)) == source_path
+                for target in destinations
             ):
                 logging.error("The backup destination is inside the bottle.")
                 return False
@@ -191,15 +239,18 @@ class BackupManager:
             # Calculate total size for progress tracking
             total_size = 0
             if task:
-                task.subtitle = _("Calculating…")
+                task.subtitle = _("Calculating...")
                 total_size = BackupManager._calculate_dir_size(
-                    source_path, exclude_filter
+                    source_path, exclude_filter, cancel_event
                 )
+
+            if cancel_event and cancel_event.is_set():
+                raise CancelledError
 
             # Create progress-tracking filter if task is provided
             if task and total_size > 0:
                 progress_filter = ProgressTrackingFilter(
-                    total_size, task, exclude_filter
+                    total_size, task, exclude_filter, cancel_event
                 )
                 active_filter = progress_filter
             else:
@@ -216,12 +267,16 @@ class BackupManager:
                     "w:gz",
                     fileobj=temp_file,
                     source_path=source_path,
+                    cancel_event=cancel_event,
                 ) as tar:
                     tar.add(
                         source_path,
                         arcname=os.path.basename(source_path),
                         filter=active_filter,
                     )
+
+            if cancel_event and cancel_event.is_set():
+                raise CancelledError
 
             os.replace(temp_path, destination_path)
             temp_path = None
@@ -230,6 +285,9 @@ class BackupManager:
                 task.subtitle = "100%"
 
             return True
+        except CancelledError:
+            logging.info("Backup cancelled.")
+            return False
         except (OSError, tarfile.TarError, ValueError) as e:
             logging.error(f"Error creating backup: {e}")
             return False
@@ -303,16 +361,24 @@ class BackupManager:
         if scope == "config":
             backup_created = config.dump(path).status
         else:
-            task = Task(title=_("Backup {0}").format(config.Name))
+            task = Task(title=_("Backup {0}").format(config.Name), cancellable=True)
             task_id = TaskManager.add(task)
             bottle_path = ManagerUtils.get_bottle_path(config)
-            backup_created = BackupManager._create_tarfile(
-                bottle_path,
-                path,
-                exclude_filter=BackupManager.exclude_filter,
-                task=task,
-            )
-            TaskManager.remove(task_id)
+            backup_cancelled = False
+            try:
+                backup_created = BackupManager._create_tarfile(
+                    bottle_path,
+                    path,
+                    exclude_filter=BackupManager.exclude_filter,
+                    task=task,
+                    cancel_event=task.cancel_event,
+                )
+                backup_cancelled = not backup_created and task.cancel_event.is_set()
+            finally:
+                TaskManager.remove(task_id)
+
+            if backup_cancelled:
+                return Result(status=False, message="cancelled")
 
         if backup_created:
             logging.info(f"Backup successfully saved to: {path}.")

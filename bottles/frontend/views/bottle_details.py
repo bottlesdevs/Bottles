@@ -780,6 +780,11 @@ class BottleView(Adw.PreferencesPage):
 
         @GtkUtils.run_in_main_loop
         def finish(result, error=False):
+            if result.message == "cancelled":
+                self.window.show_toast(
+                    _('Backup cancelled for "{0}"').format(self.config.Name)
+                )
+                return
             if result.ok:
                 self.window.show_toast(
                     _('Backup created for "{0}"').format(self.config.Name)
