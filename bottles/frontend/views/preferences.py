@@ -53,6 +53,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_notifications = Gtk.Template.Child()
     switch_show_funding = Gtk.Template.Child()
     switch_force_offline = Gtk.Template.Child()
+    switch_home_drive = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
     switch_steam = Gtk.Template.Child()
@@ -182,6 +183,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.switch_force_offline,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
+        )
+        self.settings.bind(
+            "disable-home-drive",
+            self.switch_home_drive,
+            "active",
+            Gio.SettingsBindFlags.INVERT_BOOLEAN,
         )
         self.settings.bind(
             "temp", self.switch_temp, "active", Gio.SettingsBindFlags.DEFAULT

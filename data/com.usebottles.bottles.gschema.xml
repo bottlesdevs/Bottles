@@ -107,6 +107,11 @@
       <summary>Wine audio driver</summary>
       <description>Select which Wine audio driver should be enforced for all bottles. Use "default" to leave the driver unchanged.</description>
     </key>
+    <key type="b" name="disable-home-drive">
+      <default>false</default>
+      <summary>Disable the default Z: drive</summary>
+      <description>Do not expose the filesystem as the Z: drive in new bottles.</description>
+    </key>
     <key type="b" name="show-sandbox-warning">
       <default>true</default>
       <summary>Show sandbox warning</summary>
