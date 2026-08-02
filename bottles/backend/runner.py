@@ -24,6 +24,7 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.steam import SteamUtils
+from bottles.backend.utils.wine import WineUtils
 from bottles.backend.wine.wineboot import WineBoot
 
 if TYPE_CHECKING:
@@ -63,6 +64,12 @@ class Runner:
         # kill wineserver after update
         wineboot.kill(force_if_stalled=True)
 
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        existing_profiles = WineUtils.get_user_profile_ids(bottle_path)
+        if existing_profiles is None:
+            logging.error("Could not inspect the bottle user profiles.")
+            return Result(status=False, data={"config": config})
+
         # update bottle config
         up_config = manager.update_config(
             config=config, key="Runner", value=runner
@@ -70,6 +77,9 @@ class Runner:
 
         # perform a prefix update
         wineboot.update()
+        if not WineUtils.unlink_user_profile_links(bottle_path, existing_profiles):
+            logging.error("Could not unlink the new bottle user profile.")
+            return Result(status=False, data={"config": up_config})
 
         # re-initialize DLLComponents
         if config.Parameters.dxvk:

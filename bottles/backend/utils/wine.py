@@ -1,6 +1,40 @@
+import ctypes
+import errno
 import os
 import pwd
+import secrets
+import stat
 from typing import Optional
+
+
+_DIRECTORY_FLAGS = (
+    os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
+)
+_PREFIX_DIRECTORY_FLAGS = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
+_RENAME_NOREPLACE = 1
+_LIBC = ctypes.CDLL(None, use_errno=True)
+_RENAMEAT2 = _LIBC.renameat2
+_RENAMEAT2.argtypes = [
+    ctypes.c_int,
+    ctypes.c_char_p,
+    ctypes.c_int,
+    ctypes.c_char_p,
+    ctypes.c_uint,
+]
+_RENAMEAT2.restype = ctypes.c_int
+
+
+def _rename_noreplace(directory_fd: int, source: str, destination: str) -> None:
+    result = _RENAMEAT2(
+        directory_fd,
+        os.fsencode(source),
+        directory_fd,
+        os.fsencode(destination),
+        _RENAME_NOREPLACE,
+    )
+    if result != 0:
+        error_number = ctypes.get_errno()
+        raise OSError(error_number, os.strerror(error_number))
 
 
 class WineUtils:
@@ -120,6 +154,247 @@ class WineUtils:
             return False
 
         return True
+
+    @staticmethod
+    def _open_users_directory(prefix_path: str) -> int:
+        prefix_fd = os.open(prefix_path, _PREFIX_DIRECTORY_FLAGS)
+        try:
+            drive_fd = os.open("drive_c", _DIRECTORY_FLAGS, dir_fd=prefix_fd)
+            try:
+                return os.open("users", _DIRECTORY_FLAGS, dir_fd=drive_fd)
+            finally:
+                os.close(drive_fd)
+        finally:
+            os.close(prefix_fd)
+
+    @staticmethod
+    def get_user_profile_ids(prefix_path: str):
+        users_fd = None
+        try:
+            users_fd = WineUtils._open_users_directory(prefix_path)
+            profiles = set()
+            with os.scandir(users_fd) as entries:
+                for entry in entries:
+                    if entry.is_symlink():
+                        continue
+                    if not entry.is_dir(follow_symlinks=False):
+                        continue
+                    entry_stat = entry.stat(follow_symlinks=False)
+                    profiles.add((entry_stat.st_dev, entry_stat.st_ino))
+            return profiles
+        except FileNotFoundError:
+            return set()
+        except OSError:
+            return None
+        finally:
+            if users_fd is not None:
+                os.close(users_fd)
+
+    @staticmethod
+    def _replace_directory_links(directory_fd: int) -> bool:
+        try:
+            with os.scandir(directory_fd) as entries:
+                links = [
+                    (entry.name, entry.stat(follow_symlinks=False))
+                    for entry in entries
+                    if entry.is_symlink()
+                ]
+        except OSError:
+            return False
+
+        replaced_all = True
+        for link_name, link_stat in links:
+            backup_name = None
+            backup_fd = None
+            for _attempt in range(10):
+                candidate = f".bottles-link-{secrets.token_hex(12)}"
+                try:
+                    backup_fd = os.open(
+                        candidate,
+                        os.O_WRONLY | os.O_CREAT | os.O_EXCL,
+                        0o600,
+                        dir_fd=directory_fd,
+                    )
+                    backup_name = candidate
+                    break
+                except FileExistsError:
+                    continue
+                except OSError:
+                    break
+
+            if backup_name is None or backup_fd is None:
+                replaced_all = False
+                continue
+
+            os.close(backup_fd)
+            try:
+                os.rename(
+                    link_name,
+                    backup_name,
+                    src_dir_fd=directory_fd,
+                    dst_dir_fd=directory_fd,
+                )
+            except OSError:
+                replaced_all = False
+                try:
+                    os.unlink(backup_name, dir_fd=directory_fd)
+                except OSError:
+                    pass
+                continue
+
+            try:
+                moved_stat = os.stat(
+                    backup_name,
+                    dir_fd=directory_fd,
+                    follow_symlinks=False,
+                )
+                if not stat.S_ISLNK(moved_stat.st_mode) or (
+                    moved_stat.st_dev,
+                    moved_stat.st_ino,
+                ) != (link_stat.st_dev, link_stat.st_ino):
+                    WineUtils._restore_moved_entry(directory_fd, backup_name, link_name)
+                    replaced_all = False
+                    continue
+            except OSError:
+                WineUtils._restore_moved_entry(directory_fd, backup_name, link_name)
+                replaced_all = False
+                continue
+
+            try:
+                os.mkdir(link_name, dir_fd=directory_fd)
+            except OSError:
+                WineUtils._restore_moved_entry(
+                    directory_fd,
+                    backup_name,
+                    link_name,
+                    discard_symlink_on_conflict=True,
+                )
+                replaced_all = False
+                continue
+
+            try:
+                os.unlink(backup_name, dir_fd=directory_fd)
+            except OSError:
+                WineUtils._restore_moved_entry(
+                    directory_fd,
+                    backup_name,
+                    link_name,
+                    remove_directory=True,
+                    discard_symlink_on_conflict=True,
+                )
+                replaced_all = False
+
+        return replaced_all
+
+    @staticmethod
+    def _restore_moved_entry(
+        directory_fd: int,
+        backup_name: str,
+        entry_name: str,
+        remove_directory: bool = False,
+        discard_symlink_on_conflict: bool = False,
+    ) -> bool:
+        if remove_directory:
+            try:
+                os.rmdir(entry_name, dir_fd=directory_fd)
+            except OSError:
+                if discard_symlink_on_conflict:
+                    try:
+                        os.unlink(backup_name, dir_fd=directory_fd)
+                    except OSError:
+                        pass
+                return False
+
+        try:
+            _rename_noreplace(directory_fd, backup_name, entry_name)
+        except OSError as error:
+            if error.errno == errno.EEXIST and discard_symlink_on_conflict:
+                try:
+                    os.unlink(backup_name, dir_fd=directory_fd)
+                except OSError:
+                    pass
+            return False
+        return True
+
+    @staticmethod
+    def _open_profile_directory(profile_fd: int, parts: tuple[str, ...]):
+        directory_fd = os.dup(profile_fd)
+        try:
+            for part in parts:
+                next_fd = os.open(
+                    part,
+                    _DIRECTORY_FLAGS,
+                    dir_fd=directory_fd,
+                )
+                os.close(directory_fd)
+                directory_fd = next_fd
+            return directory_fd
+        except OSError as error:
+            os.close(directory_fd)
+            if error.errno in {errno.ELOOP, errno.ENOENT, errno.ENOTDIR}:
+                return None
+            raise
+
+    @staticmethod
+    def unlink_user_profile_links(prefix_path: str, existing_profiles=None) -> bool:
+        if existing_profiles is None:
+            existing_profiles = set()
+
+        users_fd = None
+        try:
+            users_fd = WineUtils._open_users_directory(prefix_path)
+            with os.scandir(users_fd) as entries:
+                profile_names = [
+                    entry.name
+                    for entry in entries
+                    if not entry.is_symlink() and entry.is_dir(follow_symlinks=False)
+                ]
+
+            unlinked_all = True
+            for profile_name in profile_names:
+                try:
+                    profile_fd = os.open(
+                        profile_name,
+                        _DIRECTORY_FLAGS,
+                        dir_fd=users_fd,
+                    )
+                except OSError:
+                    unlinked_all = False
+                    continue
+
+                try:
+                    profile_stat = os.fstat(profile_fd)
+                    profile_id = (profile_stat.st_dev, profile_stat.st_ino)
+                    if profile_id in existing_profiles:
+                        continue
+
+                    if not WineUtils._replace_directory_links(profile_fd):
+                        unlinked_all = False
+
+                    nested_directories = [
+                        ("Documents",),
+                        ("AppData", "Roaming", "Microsoft", "Windows"),
+                    ]
+                    for parts in nested_directories:
+                        nested_fd = WineUtils._open_profile_directory(profile_fd, parts)
+                        if nested_fd is None:
+                            continue
+                        try:
+                            if not WineUtils._replace_directory_links(nested_fd):
+                                unlinked_all = False
+                        finally:
+                            os.close(nested_fd)
+                finally:
+                    os.close(profile_fd)
+        except FileNotFoundError:
+            return True
+        except OSError:
+            return False
+        finally:
+            if users_fd is not None:
+                os.close(users_fd)
+
+        return unlinked_all
 
     @staticmethod
     def get_user_dir(prefix_path: str):
