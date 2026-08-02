@@ -11,7 +11,12 @@ from bottles.backend.models.samples import Samples
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine import winecommand
 from bottles.backend.wine.executor import WineExecutor
-from bottles.backend.wine.winecommand import WineCommand, WineEnv
+from bottles.backend.wine.winecommand import (
+    WineCommand,
+    WineEnv,
+    apply_hdr_preferences,
+    apply_wayland_preferences,
+)
 
 
 def _make_config(name: str = "TestBottle", path: str = "TestBottlePath") -> BottleConfig:
@@ -458,6 +463,129 @@ def test_winecommand_applies_selected_sync_environment(
     assert env.get()["envs"] == expected
 
 
+def test_hdr_preferences_enable_dxvk_without_automatic_wayland_layer(monkeypatch):
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.DisplayUtils.display_server_type",
+        lambda: "wayland",
+    )
+    env = WineEnv(clean=True)
+    env.add("WAYLAND_DISPLAY", "wayland-0")
+    params = BottleParams(hdr=True, wayland=True)
+
+    apply_hdr_preferences(env, params, gamescope_activated=False)
+
+    resolved = env.get()["envs"]
+    assert resolved["DXVK_HDR"] == "1"
+    assert "ENABLE_HDR_WSI" not in resolved
+
+
+def test_hdr_preferences_do_not_enable_wayland_layer_for_gamescope():
+    env = WineEnv(clean=True)
+    env.add("ENABLE_HDR_WSI", "1")
+    env.add("DISABLE_GAMESCOPE_WSI", "1")
+    params = BottleParams(hdr=True, wayland=True)
+
+    apply_hdr_preferences(env, params, gamescope_activated=True)
+
+    resolved = env.get()["envs"]
+    assert resolved["DXVK_HDR"] == "1"
+    assert resolved["ENABLE_GAMESCOPE_WSI"] == "1"
+    assert "ENABLE_HDR_WSI" not in resolved
+    assert "DISABLE_GAMESCOPE_WSI" not in resolved
+
+
+def test_gamescope_removes_hdr_wsi_when_hdr_is_disabled():
+    env = WineEnv(clean=True)
+    env.add("ENABLE_HDR_WSI", "1")
+
+    apply_hdr_preferences(env, BottleParams(), gamescope_activated=True)
+
+    assert "ENABLE_HDR_WSI" not in env.get()["envs"]
+
+
+def test_hdr_preferences_require_native_wayland_for_hdr():
+    env = WineEnv(clean=True)
+    params = BottleParams(hdr=True, wayland=False)
+
+    apply_hdr_preferences(env, params, gamescope_activated=False)
+
+    resolved = env.get()["envs"]
+    assert "DXVK_HDR" not in resolved
+    assert "ENABLE_HDR_WSI" not in resolved
+
+
+def test_hdr_preferences_preserve_manual_environment_when_disabled():
+    env = WineEnv(clean=True)
+    env.add("DXVK_HDR", "1")
+    env.add("ENABLE_HDR_WSI", "1")
+
+    apply_hdr_preferences(env, BottleParams(), gamescope_activated=False)
+
+    resolved = env.get()["envs"]
+    assert resolved["DXVK_HDR"] == "1"
+    assert resolved["ENABLE_HDR_WSI"] == "1"
+
+
+def test_proton_hdr_and_wayland_options_are_translated(monkeypatch):
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.DisplayUtils.display_server_type",
+        lambda: "wayland",
+    )
+    env = WineEnv(clean=True)
+    env.add("DISPLAY", ":1")
+    env.add("WAYLAND_DISPLAY", "wayland-0")
+    env.add("PROTON_ENABLE_HDR", "1")
+    env.add("PROTON_ENABLE_WAYLAND", "1")
+    env.add("PROTON_WAYLAND_MONITOR", "DP-1")
+    env.add("WINEDLLOVERRIDES", "version=n")
+    env.add("SteamVirtualGamepadInfo", "device")
+    env.add("SDL_GAMECONTROLLER_IGNORE_DEVICES", "device")
+    env.add("SDL_GAMECONTROLLER_ALLOW_STEAM_VIRTUAL_GAMEPAD", "1")
+    params = BottleParams()
+
+    apply_wayland_preferences(env, params, "/runner/share/X11/locale")
+    apply_hdr_preferences(env, params, gamescope_activated=False)
+
+    resolved = env.get()["envs"]
+    assert "DISPLAY" not in resolved
+    assert resolved["DXVK_HDR"] == "1"
+    assert "ENABLE_HDR_WSI" not in resolved
+    assert resolved["WINEDLLOVERRIDES"] == ("version=n;winex11.drv=d;winewayland.drv=b")
+    assert resolved["WINE_USE_EGL"] == "1"
+    assert resolved["WINE_DISABLE_FULLSCREEN_HACK"] == "1"
+    assert resolved["WINE_MOVE_HACK"] == "1"
+    assert resolved["PROTON_USE_XALIA"] == "0"
+    assert resolved["PROTON_NO_STEAMINPUT"] == "1"
+    assert resolved["WAYLANDDRV_PRIMARY_MONITOR"] == "DP-1"
+    assert resolved["XLOCALEDIR"] == "/runner/share/X11/locale"
+    assert "SteamVirtualGamepadInfo" not in resolved
+    assert "SDL_GAMECONTROLLER_IGNORE_DEVICES" not in resolved
+    assert "SDL_GAMECONTROLLER_ALLOW_STEAM_VIRTUAL_GAMEPAD" not in resolved
+
+
+def test_disabled_proton_options_are_not_translated(monkeypatch):
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.DisplayUtils.display_server_type",
+        lambda: "wayland",
+    )
+    env = WineEnv(clean=True)
+    env.add("DISPLAY", ":1")
+    env.add("WAYLAND_DISPLAY", "wayland-0")
+    env.add("PROTON_ENABLE_HDR", "1")
+    env.add("PROTON_USE_HDR", "0")
+    env.add("PROTON_ENABLE_WAYLAND", "1")
+    env.add("PROTON_USE_WAYLAND", "0")
+    params = BottleParams()
+
+    apply_wayland_preferences(env, params)
+    apply_hdr_preferences(env, params, gamescope_activated=False)
+
+    resolved = env.get()["envs"]
+    assert resolved["DISPLAY"] == ":1"
+    assert "DXVK_HDR" not in resolved
+    assert "ENABLE_HDR_WSI" not in resolved
+
+
 def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
     bottle_path = tmp_path / "TestBottle"
     bottle_path.mkdir()
@@ -480,6 +608,7 @@ def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
     params.use_runtime = False
     params.use_eac_runtime = False
     params.use_be_runtime = False
+    params.hdr = True
     config.Parameters = params
     config.Limit_System_Environment = True
     config.Inherited_Environment_Variables = ["DISPLAY"]
@@ -536,6 +665,7 @@ def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
 
     env = winecmd.get_env()
     assert env["DISPLAY"] == ":1"
+    assert "DXVK_HDR" not in env
     assert "SHOULD_NOT_PASS" not in env
 
 

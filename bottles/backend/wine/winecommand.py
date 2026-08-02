@@ -30,6 +30,10 @@ from bottles.backend.utils.terminal import TerminalUtils
 logging = Logger()
 
 
+def _is_enabled_value(value) -> bool:
+    return value not in (None, "", "0", False)
+
+
 class WineEnv:
     """
     This class is used to store and return a command environment.
@@ -91,9 +95,38 @@ class WineEnv:
     def has(self, key):
         return key in self.__env
 
+    def get_value(self, key):
+        return self.__env.get(key)
 
-def apply_wayland_preferences(env: "WineEnv", params) -> None:
-    if not getattr(params, "wayland", False):
+    def is_enabled(self, key):
+        return _is_enabled_value(self.__env.get(key))
+
+
+def _proton_option_enabled(get_value, option: str) -> bool:
+    for key in (f"PROTON_USE_{option}", f"PROTON_ENABLE_{option}"):
+        value = get_value(key)
+        if value is not None:
+            return _is_enabled_value(value)
+    return False
+
+
+def _wayland_requested(env: "WineEnv", params) -> bool:
+    return getattr(params, "wayland", False) or _proton_option_enabled(
+        env.get_value, "WAYLAND"
+    )
+
+
+def _wayland_available(env: "WineEnv") -> bool:
+    return DisplayUtils.display_server_type() == "wayland" and bool(
+        env.has("WAYLAND_DISPLAY") or os.environ.get("WAYLAND_DISPLAY")
+    )
+
+
+def apply_wayland_preferences(
+    env: "WineEnv", params, xlocale_dir: Optional[str] = None
+) -> None:
+    proton_wayland_enabled = _proton_option_enabled(env.get_value, "WAYLAND")
+    if not _wayland_requested(env, params):
         return
     if DisplayUtils.display_server_type() != "wayland":
         return
@@ -101,7 +134,50 @@ def apply_wayland_preferences(env: "WineEnv", params) -> None:
     if not env.has("WAYLAND_DISPLAY") and wayland_display:
         env.add("WAYLAND_DISPLAY", wayland_display, override=True)
     if env.has("WAYLAND_DISPLAY") or wayland_display:
+        if proton_wayland_enabled:
+            if env.has("PROTON_WAYLAND_MONITOR"):
+                env.add(
+                    "WAYLANDDRV_PRIMARY_MONITOR",
+                    env.get_value("PROTON_WAYLAND_MONITOR"),
+                    override=True,
+                )
+            env.concat(
+                "WINEDLLOVERRIDES",
+                ["winex11.drv=d", "winewayland.drv=b"],
+                sep=";",
+            )
+            env.add("WINE_USE_EGL", "1", override=True)
+            env.add("WINE_DISABLE_FULLSCREEN_HACK", "1", override=True)
+            env.add("WINE_MOVE_HACK", "1")
+            env.add("PROTON_USE_XALIA", "0", override=True)
+            env.add("PROTON_NO_STEAMINPUT", "1", override=True)
+            env.remove("SteamVirtualGamepadInfo")
+            env.remove("SDL_GAMECONTROLLER_IGNORE_DEVICES")
+            env.remove("SDL_GAMECONTROLLER_ALLOW_STEAM_VIRTUAL_GAMEPAD")
+            if xlocale_dir:
+                env.add("XLOCALEDIR", xlocale_dir)
         env.remove("DISPLAY")
+
+
+def apply_hdr_preferences(env: "WineEnv", params, gamescope_activated: bool) -> None:
+    if gamescope_activated:
+        env.remove("ENABLE_HDR_WSI")
+
+    hdr_enabled = getattr(params, "hdr", False) or _proton_option_enabled(
+        env.get_value, "HDR"
+    )
+    if not hdr_enabled:
+        return
+
+    if not gamescope_activated and not (
+        _wayland_requested(env, params) and _wayland_available(env)
+    ):
+        return
+
+    env.add("DXVK_HDR", "1")
+    if gamescope_activated:
+        env.remove("DISABLE_GAMESCOPE_WSI")
+        env.add("ENABLE_GAMESCOPE_WSI", "1", override=True)
 
 
 def _needs_steam_virtual_gamepad_workaround(runner_name: Optional[str]) -> bool:
@@ -511,7 +587,17 @@ class WineCommand:
             # Wine arch
             env.add("WINEARCH", arch)
 
-        apply_wayland_preferences(env, params)
+        xlocale_dir = None
+        if runner_path:
+            candidate = os.path.join(runner_path, "share/X11/locale")
+            if os.path.isdir(candidate):
+                xlocale_dir = candidate
+        apply_wayland_preferences(env, params, xlocale_dir)
+        apply_hdr_preferences(
+            env,
+            params,
+            bool(not self.minimal and gamescope_available and self.gamescope_activated),
+        )
 
         return env.get()["envs"]
 
@@ -587,6 +673,19 @@ class WineCommand:
         if environment is None:
             environment = {}
 
+        launch_prefix, launch_suffix = "", ""
+        if self.arguments:
+            launch_prefix, launch_suffix, launch_environment = (
+                SteamUtils.handle_launch_options(self.arguments)
+            )
+            if launch_environment.get("WINEDLLOVERRIDES") and environment.get(
+                "WINEDLLOVERRIDES"
+            ):
+                environment["WINEDLLOVERRIDES"] += ";" + launch_environment.pop(
+                    "WINEDLLOVERRIDES"
+                )
+            environment.update(launch_environment)
+
         if return_clean_cmd:
             return_steam_cmd = True
 
@@ -624,9 +723,7 @@ class WineCommand:
                     f.write("".join(file))
 
                 # Update command
-                command = (
-                    f"{self._get_gamescope_cmd(return_steam_cmd)} -- {gamescope_run}"
-                )
+                command = f"{self._get_gamescope_cmd(return_steam_cmd, environment)} -- {gamescope_run}"
                 logging.info(f"Running Gamescope command: '{command}'")
                 logging.info(f"{gamescope_run} contains:")
                 with open(gamescope_run, "r") as f:
@@ -674,22 +771,10 @@ class WineCommand:
                 )
 
         if self.arguments:
-            prefix, suffix, extracted_env = SteamUtils.handle_launch_options(
-                self.arguments
-            )
-            if prefix:
-                command = f"{prefix} {command}"
-            if suffix:
-                command = f"{command} {suffix}"
-            if extracted_env:
-                if extracted_env.get("WINEDLLOVERRIDES") and environment.get(
-                    "WINEDLLOVERRIDES"
-                ):
-                    environment["WINEDLLOVERRIDES"] += ";" + extracted_env.get(
-                        "WINEDLLOVERRIDES"
-                    )
-                    del extracted_env["WINEDLLOVERRIDES"]
-                environment.update(extracted_env)
+            if launch_prefix:
+                command = f"{launch_prefix} {command}"
+            if launch_suffix:
+                command = f"{command} {launch_suffix}"
 
         if post_script not in (None, ""):
             post_cmd_parts = [post_script]
@@ -707,7 +792,11 @@ class WineCommand:
 
         return command
 
-    def _get_gamescope_cmd(self, return_steam_cmd: bool = False) -> str:
+    def _get_gamescope_cmd(
+        self,
+        return_steam_cmd: bool = False,
+        environment: Optional[dict] = None,
+    ) -> str:
         config = self.config
         params = config.Parameters
         gamescope_cmd = []
@@ -716,6 +805,16 @@ class WineCommand:
             gamescope_cmd = [gamescope_available]
             if return_steam_cmd:
                 gamescope_cmd = ["gamescope"]
+            effective_environment = config.Environment_Variables.copy()
+            effective_environment.update(environment or {})
+            hdr_enabled = params.hdr or _proton_option_enabled(
+                effective_environment.get, "HDR"
+            )
+            if (
+                hdr_enabled
+                and "--hdr-enabled" not in params.gamescope_custom_options.split()
+            ):
+                gamescope_cmd.append("--hdr-enabled")
             if params.gamescope_custom_options:
                 gamescope_cmd.append(params.gamescope_custom_options)
             if params.gamescope_fullscreen:
