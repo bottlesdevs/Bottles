@@ -37,6 +37,7 @@ from bottles.backend.wine.wineserver import WineServer
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.utils.playtime import PlaytimeService
 from bottles.frontend.utils.sandbox_guard import guard_sandbox_launch
+from bottles.frontend.windows.fileassociations import FileAssociationsDialog
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
 from bottles.frontend.windows.playtimegraph import PlaytimeGraphDialog
 from bottles.frontend.windows.rename import RenameDialog
@@ -62,6 +63,7 @@ class ProgramEntry(Adw.ActionRow):
     btn_browse = Gtk.Template.Child()
     btn_add_steam = Gtk.Template.Child()
     btn_add_entry = Gtk.Template.Child()
+    btn_file_associations = Gtk.Template.Child()
     btn_add_library = Gtk.Template.Child()
     btn_add_steam_library = Gtk.Template.Child()
     btn_launch_terminal = Gtk.Template.Child()
@@ -131,6 +133,7 @@ class ProgramEntry(Adw.ActionRow):
         self.btn_rename.connect("clicked", self.rename_program)
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
+        self.btn_file_associations.connect("clicked", self.show_file_associations)
         self.btn_add_library.connect("clicked", self.add_to_library)
         self.btn_add_steam_library.connect("clicked", self.add_to_library)
         self.btn_add_steam.connect("clicked", self.add_to_steam)
@@ -487,7 +490,13 @@ class ProgramEntry(Adw.ActionRow):
         ).data["config"]
 
     def remove_program(self, _widget=None):
-        ManagerUtils.remove_desktop_entry(self.config, self.program)
+        if not ManagerUtils.remove_desktop_entry(self.config, self.program):
+            self.window.show_toast(
+                _('Could not remove the desktop entry for "{0}"').format(
+                    self.program["name"]
+                )
+            )
+            return
         self.config = self.manager.update_config(
             config=self.config,
             key=self.program["id"],
@@ -505,37 +514,15 @@ class ProgramEntry(Adw.ActionRow):
             old_name = self.program["name"]
 
             old_program = dict(self.program)
-            old_filename = ManagerUtils.get_desktop_entry_filename(
-                self.config, old_program
-            )
-            entry_dirs = [os.path.expanduser("~/.local/share/applications")]
-            _desktop_dir = GLib.get_user_special_dir(
-                GLib.UserDirectory.DIRECTORY_DESKTOP
-            )
-            if _desktop_dir:
-                entry_dirs.append(_desktop_dir)
-            had_desktop_entry = any(
-                os.path.exists(os.path.join(d, old_filename)) for d in entry_dirs
-            )
-
-            self.program["name"] = new_name
-            self.manager.update_config(
-                config=self.config,
-                key=self.program["id"],
-                value=self.program,
-                scope="External_Programs",
-            )
-
-            if had_desktop_entry:
-                ManagerUtils.remove_desktop_entry(self.config, old_program)
-                ManagerUtils.create_desktop_entry(
-                    config=self.config,
-                    program={
-                        "name": new_name,
-                        "executable": self.program["executable"],
-                        "path": self.program["path"],
-                    },
+            had_desktop_entry = ManagerUtils.has_desktop_entry(self.config, old_program)
+            if had_desktop_entry is None:
+                self.window.show_toast(
+                    _('Could not access the desktop entry for "{0}"').format(old_name)
                 )
+                return
+
+            new_program = dict(self.program)
+            new_program["name"] = new_name
 
             def async_work():
                 library_manager = LibraryManager()
@@ -558,7 +545,39 @@ class ProgramEntry(Adw.ActionRow):
                 )
                 self.update_programs()
 
-            RunAsync(async_work, callback=ui_update)
+            def apply_rename():
+                self.program = new_program
+                self.config = self.manager.update_config(
+                    config=self.config,
+                    key=self.program["id"],
+                    value=self.program,
+                    scope="External_Programs",
+                ).data["config"]
+                RunAsync(async_work, callback=ui_update)
+
+            def desktop_entry_failed():
+                self.window.show_toast(
+                    _('Could not update the desktop entry for "{0}"').format(old_name)
+                )
+
+            if not had_desktop_entry:
+                apply_rename()
+                return
+
+            def desktop_entry_created():
+                if not ManagerUtils.remove_desktop_entry(self.config, old_program):
+                    ManagerUtils.remove_desktop_entry(self.config, new_program)
+                    desktop_entry_failed()
+                    return
+                apply_rename()
+
+            ManagerUtils.create_desktop_entry(
+                config=self.config,
+                program=new_program,
+                on_created=desktop_entry_created,
+                on_failed=desktop_entry_failed,
+                on_cancelled=desktop_entry_failed,
+            )
 
         dialog = RenameDialog(self.window, on_save=func, name=self.program["name"])
         dialog.present()
@@ -587,11 +606,7 @@ class ProgramEntry(Adw.ActionRow):
 
         ManagerUtils.create_desktop_entry(
             config=self.config,
-            program={
-                "name": self.program["name"],
-                "executable": self.program["executable"],
-                "path": self.program["path"],
-            },
+            program=self.program,
             callback=_on_desktop_entry_created,
         )
 
@@ -670,6 +685,44 @@ class ProgramEntry(Adw.ActionRow):
                 f"--filesystem=xdg-desktop:create {app_id}"
             )
         return title, description, command
+
+    def show_file_associations(self, _widget):
+        self.pop_actions.popdown()
+
+        def save(extensions):
+            program = dict(self.program)
+            program["file_extensions"] = extensions
+
+            def on_created():
+                self.program = program
+                self.config = self.save_program()
+                self.window.show_toast(
+                    _('File associations updated for "{0}"').format(
+                        self.program["name"]
+                    )
+                )
+
+            def on_failed():
+                self.window.show_toast(
+                    _('Could not update file associations for "{0}"').format(
+                        self.program["name"]
+                    )
+                )
+
+            ManagerUtils.create_desktop_entry(
+                config=self.config,
+                program=program,
+                on_created=on_created,
+                on_failed=on_failed,
+                on_cancelled=on_failed,
+            )
+
+        dialog = FileAssociationsDialog(
+            self.window,
+            self.program.get("file_extensions", []),
+            save,
+        )
+        dialog.present()
 
     def add_to_library(self, _widget):
         def update(_result, _error=False):

@@ -976,11 +976,27 @@ class WineCommand:
             )
             chdir = bottle_path
 
+        share_paths_rw = [bottle_path]
+        for value in (
+            getattr(self, "arguments", ""),
+            getattr(self, "command", ""),
+        ):
+            try:
+                arguments = shlex.split(value)
+            except ValueError:
+                continue
+            for argument in arguments:
+                if (
+                    ManagerUtils.is_portal_document_path(argument)
+                    and argument not in share_paths_rw
+                ):
+                    share_paths_rw.append(argument)
+
         return SandboxManager(
             envs=self.env,
             chdir=chdir,
             clear_env=True,
-            share_paths_rw=[bottle_path],
+            share_paths_rw=share_paths_rw,
             share_paths_ro=[p for p in share_paths_ro if p],
             share_net=self.config.Sandbox.share_net,
             share_sound=self.config.Sandbox.share_sound,

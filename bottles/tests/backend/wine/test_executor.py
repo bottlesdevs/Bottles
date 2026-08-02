@@ -1,6 +1,7 @@
 """Unit tests for WineExecutor placeholder handling"""
 
 import os
+import shlex
 
 import pytest
 
@@ -766,9 +767,10 @@ def test_wayland_sandbox_clears_parent_display(monkeypatch, tmp_path):
 
     command = winecmd._get_sandbox_manager().get_cmd("wine")
 
-    assert "--clear-env" in command
-    assert "--env=WAYLAND_DISPLAY=wayland-0" in command
-    assert "--env=DISPLAY" not in command
+    assert "--clear-env" not in command
+    assert "env -i" in command
+    assert "WAYLAND_DISPLAY=wayland-0" in command
+    assert not any(token.startswith("DISPLAY=") for token in shlex.split(command))
 
     monkeypatch.delenv("FLATPAK_ID")
     command = winecmd._get_sandbox_manager().get_cmd("wine")
@@ -838,3 +840,47 @@ def test_dedicated_sandbox_uses_selected_runtime_path(
     assert invalid_runtime_path not in sandbox.share_paths_ro
     assert (str(runtime_path) in sandbox.share_paths_ro) is use_steam_runtime
     assert (str(entry_point) in command) is use_steam_runtime
+
+
+def test_dedicated_sandbox_shares_forwarded_document_read_write(monkeypatch, tmp_path):
+    bottle_path = tmp_path / "TestBottle"
+    bottle_path.mkdir()
+    document = "/run/user/1000/doc/abc123/My Document.txt"
+    command_document = "/run/user/1000/doc/def456/Batch Document.txt"
+    other_path = "/home/user/Other Document.txt"
+    config = BottleConfig(Name="Test", Path=str(bottle_path), Runner="sys-wine")
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle_path),
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_runner_path",
+        lambda _runner: "sys-wine",
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.resolve_portal_path",
+        lambda path: path,
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.is_portal_document_path",
+        lambda path: path in (document, command_document),
+    )
+
+    winecmd = WineCommand.__new__(WineCommand)
+    winecmd.config = config
+    winecmd.arguments = " ".join(shlex.quote(arg) for arg in (document, other_path))
+    winecmd.command = "cmd /c {} {}".format(
+        shlex.quote("C:\\probe.bat"),
+        shlex.quote(command_document),
+    )
+    winecmd.cwd = str(bottle_path)
+    winecmd.runner_runtime = ""
+    winecmd.steam_runtime_root = None
+    winecmd.env = {}
+
+    sandbox = winecmd._get_sandbox_manager()
+
+    assert document in sandbox.share_paths_rw
+    assert command_document in sandbox.share_paths_rw
+    assert other_path not in sandbox.share_paths_rw

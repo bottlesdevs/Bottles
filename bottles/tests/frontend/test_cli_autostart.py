@@ -3,6 +3,8 @@ from unittest.mock import patch
 
 from gi.repository import Gio
 
+from bottles.backend.models.config import BottleConfig
+
 with patch.object(Gio.Settings, "new", return_value=object()):
     from bottles.frontend.cli import cli as cli_module
 
@@ -87,7 +89,7 @@ def test_autostart_launches_each_enabled_program_by_id(monkeypatch):
 
 
 def test_run_program_selects_exact_program_id(monkeypatch):
-    config = SimpleNamespace(Name="Services")
+    config = BottleConfig(Name="Services")
     FakeManager.configs = {"Services": config}
     launches = []
     monkeypatch.setattr(cli_module, "Manager", FakeManager)

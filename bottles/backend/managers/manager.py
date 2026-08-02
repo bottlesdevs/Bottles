@@ -1161,6 +1161,7 @@ class Manager(metaclass=Singleton):
                     "winebridge": _program.get("winebridge"),
                     "hide_console": _program.get("hide_console"),
                     "autostart": _program.get("autostart", False),
+                    "file_extensions": _program.get("file_extensions", []),
                     "removed": _program.get("removed"),
                     "id": _program.get("id"),
                 }

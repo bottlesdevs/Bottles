@@ -66,6 +66,7 @@ from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.winepath import WinePath
+from bottles.frontend.cli.utils import serialize_arguments
 from bottles.frontend.params import APP_ID
 
 
@@ -802,7 +803,6 @@ class CLI:
         _program = self.args.program
         _program_id = self.args.program_id
         _keep = self.args.keep_args
-        _args = " ".join(self.args.args)
         _executable = self.args.executable
 
         mng = Manager(g_settings=self.settings, is_cli=True)
@@ -822,6 +822,8 @@ class CLI:
 
         bottle = mng.local_bottles[_bottle]
         programs = mng.get_programs(bottle)
+
+        _args = serialize_arguments(self.args.args)
 
         if _program is not None or _program_id is not None:
             if _executable is not None:
