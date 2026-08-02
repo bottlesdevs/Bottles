@@ -171,6 +171,15 @@ template $LaunchOptionsDialog: Adw.Window {
       }
 
       Adw.PreferencesGroup {
+        title: _("Startup");
+
+        Adw.SwitchRow switch_autostart {
+          title: _("Launch at Login");
+          subtitle: _("Start this program automatically when you log in.");
+        }
+      }
+
+      Adw.PreferencesGroup {
         description: _("These settings will override the default settings for this executable.");
         title: _("Preferences Overrides");
 

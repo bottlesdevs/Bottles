@@ -1160,6 +1160,7 @@ class Manager(metaclass=Singleton):
                     "virtual_desktop": _program.get("virtual_desktop"),
                     "winebridge": _program.get("winebridge"),
                     "hide_console": _program.get("hide_console"),
+                    "autostart": _program.get("autostart", False),
                     "removed": _program.get("removed"),
                     "id": _program.get("id"),
                 }

@@ -22,6 +22,7 @@ from gi.repository import Adw, GLib, GObject, Gtk
 from bottles.backend.logger import Logger
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.vulkan import VulkanUtils
+from bottles.frontend.utils.autostart import set_autostart_enabled
 
 logging = Logger()
 
@@ -37,6 +38,7 @@ class LaunchOptionsDialog(Adw.Window):
     entry_arguments = Gtk.Template.Child()
     switch_arguments = Gtk.Template.Child()
     switch_hide_console = Gtk.Template.Child()
+    switch_autostart = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_pre_script = Gtk.Template.Child()
     btn_pre_script_reset = Gtk.Template.Child()
@@ -109,6 +111,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.switch_arguments.set_active(arguments_enabled)
         self.entry_arguments.set_sensitive(arguments_enabled)
         self.switch_hide_console.set_active(program.get("hide_console") is True)
+        self.switch_autostart.set_active(program.get("autostart", False))
 
         # keeps track of toggled switches
         self.toggled = {}
@@ -251,6 +254,7 @@ class LaunchOptionsDialog(Adw.Window):
             self.program["hide_console"] = True
         else:
             self.program.pop("hide_console", None)
+        self.program["autostart"] = self.switch_autostart.get_active()
 
         pre_args = self.entry_pre_script_args.get_text()
         post_args = self.entry_post_script_args.get_text()
@@ -269,7 +273,34 @@ class LaunchOptionsDialog(Adw.Window):
         return
 
     def __save(self, *_args):
-        GLib.idle_add(self.__idle_save)
+        if not self.btn_save.get_sensitive():
+            return
+
+        current_id = self.program.get("id")
+        other_autostart = any(
+            config.Name != self.config.Name or program.get("id") != current_id
+            for config, program in ManagerUtils.get_autostart_programs(
+                self.manager.local_bottles.values()
+            )
+        )
+        before = bool(self.program.get("autostart")) or other_autostart
+        after = self.switch_autostart.get_active() or other_autostart
+        if before == after:
+            GLib.idle_add(self.__idle_save)
+            return
+
+        self.btn_save.set_sensitive(False)
+
+        def sync_finished(success):
+            self.btn_save.set_sensitive(True)
+            if success:
+                GLib.idle_add(self.__idle_save)
+                return
+            self.window.show_toast(
+                _("Bottles could not update the login startup setting.")
+            )
+
+        set_autostart_enabled(self.window, after, sync_finished)
 
     def __toggle_arguments(self, *_args):
         self.entry_arguments.set_sensitive(self.switch_arguments.get_active())
