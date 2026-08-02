@@ -18,6 +18,7 @@
 import os
 import shutil
 import tarfile
+import tempfile
 from gettext import gettext as _
 from typing import Callable, Optional
 
@@ -33,6 +34,57 @@ from bottles.backend.utils import yaml
 from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
+
+
+class _BackupTarFile(tarfile.TarFile):
+    def __init__(self, *args, source_path: str, **kwargs):
+        self._source_path = source_path
+        super().__init__(*args, **kwargs)
+
+    def add(self, name, arcname=None, recursive=True, *, filter=None):
+        if arcname is None:
+            arcname = name
+
+        try:
+            tarinfo = self.gettarinfo(name, arcname)
+        except FileNotFoundError as error:
+            return self._skip_missing(name, error)
+
+        if tarinfo is None:
+            return None
+        if filter is not None:
+            tarinfo = filter(tarinfo)
+            if tarinfo is None:
+                return None
+
+        if tarinfo.isreg():
+            try:
+                source = tarfile.bltn_open(name, "rb")
+            except FileNotFoundError as error:
+                return self._skip_missing(name, error)
+            with source:
+                self.addfile(tarinfo, source)
+        elif tarinfo.isdir():
+            self.addfile(tarinfo)
+            if recursive:
+                try:
+                    entries = sorted(os.listdir(name))
+                except FileNotFoundError as error:
+                    return self._skip_missing(name, error)
+                for entry in entries:
+                    self.add(
+                        os.path.join(name, entry),
+                        os.path.join(arcname, entry),
+                        recursive,
+                        filter=filter,
+                    )
+        else:
+            self.addfile(tarinfo)
+
+    def _skip_missing(self, name, error):
+        if os.path.realpath(name) == self._source_path:
+            raise error
+        logging.warning(f"Skipping file removed during backup: {name}")
 
 
 class ProgressTrackingFilter:
@@ -124,7 +176,18 @@ class BackupManager:
         task: Optional[Task] = None,
     ) -> bool:
         """Helper function to create a tar.gz file from a source path."""
+        temp_path = None
         try:
+            source_path = os.path.realpath(source_path)
+            destination_path = os.path.abspath(destination_path)
+            destination_dir = os.path.dirname(destination_path)
+            if (
+                os.path.commonpath((source_path, os.path.realpath(destination_dir)))
+                == source_path
+            ):
+                logging.error("The backup destination is inside the bottle.")
+                return False
+
             # Calculate total size for progress tracking
             total_size = 0
             if task:
@@ -132,8 +195,6 @@ class BackupManager:
                 total_size = BackupManager._calculate_dir_size(
                     source_path, exclude_filter
                 )
-
-            os.chdir(os.path.dirname(source_path))
 
             # Create progress-tracking filter if task is provided
             if task and total_size > 0:
@@ -144,16 +205,40 @@ class BackupManager:
             else:
                 active_filter = exclude_filter
 
-            with tarfile.open(destination_path, "w:gz") as tar:
-                tar.add(os.path.basename(source_path), filter=active_filter)
+            file_descriptor, temp_path = tempfile.mkstemp(
+                prefix=f".{os.path.basename(destination_path)}.",
+                suffix=".tmp",
+                dir=destination_dir,
+            )
+            with os.fdopen(file_descriptor, "wb") as temp_file:
+                with _BackupTarFile.open(
+                    temp_path,
+                    "w:gz",
+                    fileobj=temp_file,
+                    source_path=source_path,
+                ) as tar:
+                    tar.add(
+                        source_path,
+                        arcname=os.path.basename(source_path),
+                        filter=active_filter,
+                    )
+
+            os.replace(temp_path, destination_path)
+            temp_path = None
 
             if task:
                 task.subtitle = "100%"
 
             return True
-        except (FileNotFoundError, PermissionError, tarfile.TarError, ValueError) as e:
+        except (OSError, tarfile.TarError, ValueError) as e:
             logging.error(f"Error creating backup: {e}")
             return False
+        finally:
+            if temp_path:
+                try:
+                    os.remove(temp_path)
+                except FileNotFoundError:
+                    pass
 
     @staticmethod
     def _safe_extract_tarfile(

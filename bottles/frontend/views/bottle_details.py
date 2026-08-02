@@ -793,7 +793,13 @@ class BottleView(Adw.PreferencesPage):
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
-            path = dialog.get_file().get_path()
+            selected_file = _dialog.get_file()
+            if selected_file is None:
+                return
+
+            path = selected_file.get_path()
+            if path is None:
+                return
 
             RunAsync(
                 task_func=BackupManager.export_backup,
