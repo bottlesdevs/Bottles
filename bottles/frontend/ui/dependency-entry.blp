@@ -43,6 +43,12 @@ template $DependencyEntry: Adw.ActionRow {
   activatable-widget: btn_install;
   subtitle: _("Dependency description");
 
+  [prefix]
+  CheckButton check_select {
+    visible: false;
+    valign: center;
+  }
+
   Box box_actions {
     spacing: 6;
 
