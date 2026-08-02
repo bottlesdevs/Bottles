@@ -273,8 +273,15 @@ class SteamManager:
         return apps
 
     def list_prefixes(self) -> Dict[str, BottleConfig]:
-        apps = self.list_apps_ids()
+        apps = dict(self.list_apps_ids())
         prefixes = {}
+
+        for folder in self.library_folders or []:
+            library_apps = folder.get("apps", {})
+            if not isinstance(library_apps, dict):
+                continue
+            for appid in library_apps:
+                apps.setdefault(str(appid), {})
 
         if len(apps) == 0:
             return {}
