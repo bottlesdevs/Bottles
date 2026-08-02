@@ -54,6 +54,14 @@ def test_flatpak_input_flag_is_added_when_supported(monkeypatch):
     assert "--sandbox-flag=32" in command
 
 
+def test_flatpak_session_bus_is_shared_for_portal_access(monkeypatch):
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+
+    command = SandboxManager().get_cmd("true")
+
+    assert "--sandbox-flag=allow-dbus" in command
+
+
 def test_bwrap_input_devices_are_opt_in(monkeypatch):
     monkeypatch.delenv("FLATPAK_ID", raising=False)
     monkeypatch.setattr(
