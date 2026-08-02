@@ -54,6 +54,16 @@ template $LaunchOptionsDialog: Adw.Window {
           }
         }
 
+        Adw.ActionRow {
+          title: _("Hide Console Window");
+          subtitle: _("Start this program without opening a Windows console.");
+          activatable-widget: switch_hide_console;
+
+          Switch switch_hide_console {
+            valign: center;
+          }
+        }
+
         Adw.ActionRow action_pre_script {
           activatable-widget: btn_pre_script;
           title: _("Pre-run Script");

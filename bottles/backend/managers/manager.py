@@ -1147,6 +1147,7 @@ class Manager(metaclass=Singleton):
                     "pulseaudio_latency": _program.get("pulseaudio_latency"),
                     "virtual_desktop": _program.get("virtual_desktop"),
                     "winebridge": _program.get("winebridge"),
+                    "hide_console": _program.get("hide_console"),
                     "removed": _program.get("removed"),
                     "id": _program.get("id"),
                 }

@@ -46,8 +46,6 @@ def test_replace_placeholders_handles_unknown_tokens():
 
 
 def test_run_program_substitutes_placeholders(monkeypatch):
-    captured: dict[str, object] = {}
-
     def fake_init(
         self,
         *,
@@ -70,6 +68,7 @@ def test_run_program_substitutes_placeholders(monkeypatch):
         program_gamescope=None,
         program_virt_desktop=None,
         program_winebridge=None,
+        program_hide_console=False,
         sandbox_override=None,
     ):
         # mimic original __init__ contract enough for run() stub
@@ -91,6 +90,7 @@ def test_run_program_substitutes_placeholders(monkeypatch):
             "cwd": cwd,
             "program_dxvk": program_dxvk,
             "program_nvapi": program_nvapi,
+            "program_hide_console": program_hide_console,
         }
 
     def fake_run(self):
@@ -122,6 +122,7 @@ def test_run_program_substitutes_placeholders(monkeypatch):
         "gamemode": True,
         "sync": "esync",
         "winebridge": True,
+        "hide_console": True,
     }
 
     result = WineExecutor.run_program(config=config, program=program, terminal=False)
@@ -140,6 +141,7 @@ def test_run_program_substitutes_placeholders(monkeypatch):
     }
     assert data["program_dxvk"] is False
     assert data["program_nvapi"] is True
+    assert data["program_hide_console"] is True
     assert data["config"] is not config
     assert data["config"].Parameters.dxvk is True
     assert data["config"].Parameters.dxvk_nvapi is False
@@ -189,6 +191,179 @@ def test_component_override_bypasses_winebridge(monkeypatch):
     )
 
     assert result.data["use_winebridge"] is False
+
+
+def test_hide_console_bypasses_winebridge(monkeypatch):
+    def fake_init(self, **kwargs):
+        self.use_winebridge = kwargs["program_winebridge"]
+
+    def fake_run(self):
+        return Result(True, data={"use_winebridge": self.use_winebridge})
+
+    monkeypatch.setattr(WineExecutor, "__init__", fake_init, raising=False)
+    monkeypatch.setattr(WineExecutor, "run", fake_run, raising=False)
+
+    result = WineExecutor.run_program(
+        config=_make_config(),
+        program={
+            "path": "/games/example.exe",
+            "hide_console": True,
+            "winebridge": True,
+        },
+    )
+
+    assert result.data["use_winebridge"] is False
+
+
+def test_hide_console_routes_exe_through_start(monkeypatch):
+    calls = []
+
+    class FakeWinePath:
+        def __init__(self, _config):
+            pass
+
+        @staticmethod
+        def is_windows(_path):
+            return False
+
+    def fake_start(self):
+        calls.append("start")
+        return Result(True)
+
+    def fake_exe(self):
+        calls.append("exe")
+        return Result(True)
+
+    monkeypatch.setattr("bottles.backend.wine.executor.WinePath", FakeWinePath)
+    monkeypatch.setattr(
+        WineExecutor,
+        "_WineExecutor__launch_with_starter",
+        fake_start,
+    )
+    monkeypatch.setattr(WineExecutor, "_WineExecutor__launch_exe", fake_exe)
+
+    executor = WineExecutor.__new__(WineExecutor)
+    executor.config = _make_config()
+    executor.use_winebridge = False
+    executor.use_virt_desktop = False
+    executor.hide_console = True
+    executor.exec_type = "exe"
+    executor.exec_path = "/games/example.exe"
+
+    result = executor._WineExecutor__launch_with_bridge()
+
+    assert result.status is True
+    assert calls == ["start"]
+
+
+def test_hide_console_virtual_desktop_uses_background_explorer(monkeypatch):
+    captured = {}
+
+    class FakeExplorer:
+        def __init__(self, _config):
+            pass
+
+        def launch_desktop(self, **kwargs):
+            captured.update(kwargs)
+            return Result(True, data="output")
+
+    monkeypatch.setattr("bottles.backend.wine.executor.Explorer", FakeExplorer)
+
+    executor = WineExecutor.__new__(WineExecutor)
+    executor.config = _make_config()
+    executor.config.Parameters.virtual_desktop_res = "1280x720"
+    executor.exec_path = r"'C:\Program Files\Example\example.exe'"
+    executor.args = "--safe-mode"
+    executor.environment = {"DXVK_HUD": "fps"}
+    executor.cwd = r"C:\Program Files\Example"
+    executor.hide_console = True
+    executor.sandbox_override = "off"
+    executor.monitoring = []
+
+    result = executor._WineExecutor__launch_with_explorer()
+
+    assert result.status is True
+    assert captured["background"] is True
+    assert captured["sandbox_override"] == "off"
+
+
+def test_virtual_desktop_converts_raw_unix_path_before_quoting(monkeypatch):
+    captured = {}
+
+    class FakeWinePath:
+        def __init__(self, _config):
+            pass
+
+        @staticmethod
+        def is_unix(path):
+            captured["checked_path"] = path
+            return True
+
+        @staticmethod
+        def to_windows(path, native=False, sandbox_override=None):
+            captured["converted_path"] = path
+            captured["native"] = native
+            captured["sandbox_override"] = sandbox_override
+            return r"Z:\tmp\Test App.exe"
+
+    def fake_explorer(self):
+        return Result(True, data={"exec_path": self.exec_path})
+
+    monkeypatch.setattr("bottles.backend.wine.executor.WinePath", FakeWinePath)
+    monkeypatch.setattr(
+        WineExecutor,
+        "_WineExecutor__launch_with_explorer",
+        fake_explorer,
+    )
+
+    executor = WineExecutor.__new__(WineExecutor)
+    executor.config = _make_config()
+    executor.use_winebridge = False
+    executor.use_virt_desktop = True
+    executor.hide_console = True
+    executor.exec_type = "exe"
+    executor._raw_exec_path = "/tmp/Test App.exe"
+    executor.exec_path = "'/tmp/Test App.exe'"
+    executor.sandbox_override = "off"
+
+    result = executor._WineExecutor__launch_with_bridge()
+
+    assert result.status is True
+    assert captured["checked_path"] == "/tmp/Test App.exe"
+    assert captured["converted_path"] == "/tmp/Test App.exe"
+    assert captured["native"] is False
+    assert captured["sandbox_override"] == "off"
+    assert result.data["exec_path"] == r"'Z:\tmp\Test App.exe'"
+
+
+def test_windows_executable_cwd_uses_its_parent(monkeypatch):
+    captured = {}
+
+    class FakeWinePath:
+        def __init__(self, _config):
+            pass
+
+        @staticmethod
+        def is_windows(path):
+            return ":" in path
+
+        @staticmethod
+        def to_unix(path, native=False):
+            captured["windows_parent"] = path
+            captured["native"] = native
+            return "/prefix/drive_c/Program Files/Example"
+
+    monkeypatch.setattr("bottles.backend.wine.executor.WinePath", FakeWinePath)
+
+    executor = WineExecutor(
+        config=_make_config(),
+        exec_path=r"C:\Program Files\Example\example.exe",
+    )
+
+    assert captured["windows_parent"] == r"C:\Program Files\Example"
+    assert captured["native"] is True
+    assert executor.cwd == "/prefix/drive_c/Program Files/Example"
+
 
 
 def test_winebridge_launch_preserves_spaces_in_executable_path(monkeypatch):
