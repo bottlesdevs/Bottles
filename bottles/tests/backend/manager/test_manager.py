@@ -83,6 +83,49 @@ def test_manager_forced_offline_setting_skips_connection_check(mocker):
     checks.assert_called_once()
 
 
+def test_check_runners_ignores_failed_system_wine(mocker):
+    run = mocker.patch.object(manager_module.subprocess, "run")
+    run.return_value.returncode = 126
+    run.return_value.stdout = b""
+    mocker.patch.object(manager_module.shutil, "which", return_value="/app/bin/wine")
+    mocker.patch.object(manager_module, "glob", return_value=[])
+    manager = object.__new__(Manager)
+
+    assert manager.check_runners(install_latest=False) is True
+    assert manager.runners_available == []
+
+
+def test_check_runners_ignores_unexecutable_system_wine(mocker):
+    mocker.patch.object(
+        manager_module.subprocess,
+        "run",
+        side_effect=OSError(8, "Exec format error"),
+    )
+    mocker.patch.object(manager_module.shutil, "which", return_value="/app/bin/wine")
+    mocker.patch.object(manager_module, "glob", return_value=[])
+    manager = object.__new__(Manager)
+
+    assert manager.check_runners(install_latest=False) is True
+    assert manager.runners_available == []
+
+
+def test_check_runners_adds_usable_system_wine(mocker):
+    run = mocker.patch.object(manager_module.subprocess, "run")
+    run.return_value.returncode = 0
+    run.return_value.stdout = b"wine-11.0\n"
+    mocker.patch.object(manager_module.shutil, "which", return_value="/app/bin/wine")
+    mocker.patch.object(manager_module, "glob", return_value=[])
+    manager = object.__new__(Manager)
+
+    assert manager.check_runners(install_latest=False) is True
+    assert manager.runners_available == ["sys-wine-11.0"]
+    run.assert_called_once_with(
+        ["/app/bin/wine", "--version"],
+        stdout=manager_module.subprocess.PIPE,
+        stderr=manager_module.subprocess.PIPE,
+    )
+
+
 def test_manager_rejects_file_as_custom_bottles_path(monkeypatch, tmp_path):
     custom_path = tmp_path / "custom-path"
     custom_path.write_text("")
