@@ -77,6 +77,20 @@ class FontScaleManager:
 
 class GtkUtils:
     @staticmethod
+    def create_full_width_string_list_factory() -> Gtk.SignalListItemFactory:
+        factory = Gtk.SignalListItemFactory()
+
+        def setup(_factory, list_item):
+            list_item.set_child(Gtk.Label(xalign=0))
+
+        def bind(_factory, list_item):
+            list_item.get_child().set_label(list_item.get_item().get_string())
+
+        factory.connect("setup", setup)
+        factory.connect("bind", bind)
+        return factory
+
+    @staticmethod
     def validate_entry(entry, extend=None) -> bool:
         var_assignment = entry.get_text()
         var_name = ShUtils.split_assignment(var_assignment)[0]
