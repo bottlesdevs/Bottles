@@ -2,21 +2,51 @@ name: close-issues
 
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
+
+permissions:
+  issues: write
 
 jobs:
-  comment:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions-ecosystem/action-regex-match@v2
-        id: regex-match
+      - uses: actions/github-script@v8
         with:
-          text: ${{ github.event.issue.body }}
-          regex: '[Vv]ersion.*:.*202\d.\d\d?.\d\d?'
-      - if: ${{ steps.regex-match.outputs.match != '' }}
-        name: Close Issue
-        uses: peter-evans/close-issue@v3
-        with:
-          close-reason: not_planned
-          comment: |
-            It seems like you're using an old version of Bottles. Please upgrade to the version from Flathub [here](https://flathub.org/apps/details/com.usebottles.bottles), and try to reproduce the bug.
+          script: |
+            const issue = context.payload.issue
+            const title = issue.title.trim()
+            const titleLength = Array.from(title).length
+            const body = issue.body || ""
+            const labels = new Set(issue.labels.map((label) => (typeof label === "string" ? label : label.name).toLowerCase()))
+            const escape = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+            const hasValue = (heading) => {
+              const match = body.match(new RegExp(`(?:^|\\n)### ${escape(heading)}\\s*\\n([\\s\\S]*?)(?=\\n### |$)`))
+              if (!match) return false
+              const value = match[1].trim()
+              return value !== "" && value !== "_No response_"
+            }
+            let required = []
+            if (labels.has("network issue")) {
+              required = ["Prerequisites", "What happened", "What you expected to happen", "How to reproduce it", "Ping proxy.usebottles.com", "Dig proxy.usebottles.com"]
+            } else if (labels.has("bug") || title.startsWith("[Bug]:")) {
+              required = ["Describe the bug", "To Reproduce", "Package", "Distribution", "Debugging Information"]
+            } else if (labels.has("feature request") || title.startsWith("[Request]:")) {
+              required = ["Tell us the problem or your need", "Describe the solution you'd like"]
+            }
+            const close = async (comment) => {
+              const current = await github.rest.issues.get({ ...context.repo, issue_number: issue.number })
+              if (current.data.state !== "open") return
+              const comments = await github.paginate(github.rest.issues.listComments, { ...context.repo, issue_number: issue.number, per_page: 100 })
+              if (!comments.some((entry) => entry.body === comment && entry.user?.login === "github-actions[bot]")) {
+                await github.rest.issues.createComment({ ...context.repo, issue_number: issue.number, body: comment })
+              }
+              await github.rest.issues.update({ ...context.repo, issue_number: issue.number, state: "closed", state_reason: "not_planned" })
+            }
+            if (titleLength < 10 || required.some((heading) => !hasValue(heading))) {
+              await close("Invalid issue, please follow the template.\n\nhttps://github.com/bottlesdevs/Bottles/issues/new/choose")
+              return
+            }
+            if (/[Vv]ersion.*:.*202\d\.\d{1,2}\.\d{1,2}/.test(body)) {
+              await close("It seems like you're using an old version of Bottles. Please upgrade to the version from Flathub [here](https://flathub.org/apps/details/com.usebottles.bottles), and try to reproduce the bug.")
+            }
