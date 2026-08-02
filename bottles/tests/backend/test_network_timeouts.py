@@ -1,16 +1,20 @@
 from types import SimpleNamespace
 
 import pycurl
+import pytest
 
 from bottles.backend import downloader as downloader_module
 from bottles.backend.downloader import Downloader
 from bottles.backend.globals import Paths
 from bottles.backend.managers import component as component_module
+from bottles.backend.managers import repository as repository_module
 from bottles.backend.managers.component import ComponentManager
+from bottles.backend.managers.repository import RepositoryManager
 from bottles.backend.models.result import Result
 from bottles.backend.repos import repo as repo_module
+from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.repo import Repo
-from bottles.backend.state import Status
+from bottles.backend.state import Signals, Status
 
 
 class FakeCurl:
@@ -192,3 +196,302 @@ def test_component_install_stops_after_extraction_failure(monkeypatch):
 
     assert result.ok is False
     assert statuses == [Status.FAILED]
+
+
+class IndexCurl:
+    URL = pycurl.URL
+    FOLLOWLOCATION = pycurl.FOLLOWLOCATION
+    CONNECTTIMEOUT = pycurl.CONNECTTIMEOUT
+    TIMEOUT = pycurl.TIMEOUT
+    NOPROGRESS = pycurl.NOPROGRESS
+    XFERINFOFUNCTION = pycurl.XFERINFOFUNCTION
+    WRITEDATA = pycurl.WRITEDATA
+    RESPONSE_CODE = pycurl.RESPONSE_CODE
+
+    def __init__(self, outcomes, requests):
+        self.options = {}
+        self.outcomes = outcomes
+        self.requests = requests
+        self.response_code = 0
+        self.closed = False
+
+    def setopt(self, option, value):
+        self.options[option] = value
+
+    def perform(self):
+        url = self.options[pycurl.URL]
+        self.requests.append(url)
+        outcome = self.outcomes.get(url, 404)
+        if isinstance(outcome, Exception):
+            raise outcome
+        if isinstance(outcome, tuple):
+            self.response_code, payload = outcome
+            if pycurl.WRITEDATA in self.options:
+                self.options[pycurl.WRITEDATA].write(payload)
+        else:
+            self.response_code = outcome
+
+    def getinfo(self, option):
+        if option == pycurl.RESPONSE_CODE:
+            return self.response_code
+        return None
+
+    def close(self):
+        self.closed = True
+
+
+class ImmediateAsync:
+    def __init__(self, task_func, **kwargs):
+        task_func(**kwargs)
+
+    def join(self):
+        pass
+
+
+def make_repository_manager(monkeypatch, personal_repositories=None):
+    signals = []
+    for env_var in (
+        "PERSONAL_COMPONENTS",
+        "PERSONAL_DEPENDENCIES",
+        "PERSONAL_INSTALLERS",
+    ):
+        monkeypatch.delenv(env_var, raising=False)
+    monkeypatch.setattr(
+        repository_module,
+        "DataManager",
+        lambda: SimpleNamespace(get=lambda _key: personal_repositories or {}),
+    )
+    monkeypatch.setattr(repository_module.SignalManager, "connect", lambda *_args: None)
+    monkeypatch.setattr(
+        repository_module.SignalManager,
+        "send",
+        lambda signal, result: signals.append((signal, result)),
+    )
+    monkeypatch.setattr(repository_module, "RunAsync", ImmediateAsync)
+    monkeypatch.setattr(repository_module, "APP_VERSION", "64.1")
+    return RepositoryManager(get_index=False), signals
+
+
+def keep_component_repository(manager):
+    repositories = manager._RepositoryManager__repositories
+    repository = repositories["components"]
+    manager._RepositoryManager__repositories = {"components": repository}
+    return repository
+
+
+def test_repository_index_uses_immutable_github_fallback(monkeypatch, tmp_path):
+    manager, signals = make_repository_manager(monkeypatch)
+    repository = keep_component_repository(manager)
+    primary, fallback = repository["sources"]
+    outcomes = {
+        f"{primary}64.1.yml": pycurl.error(pycurl.E_OPERATION_TIMEDOUT, "timed out"),
+        f"{fallback}64.1.yml": 404,
+        f"{fallback}index.yml": (200, b"runtime-0.6.3:\n  Category: runtimes\n"),
+    }
+    requests = []
+    monkeypatch.setattr(
+        repository_module.pycurl,
+        "Curl",
+        lambda: IndexCurl(outcomes, requests),
+    )
+
+    manager._RepositoryManager__get_index()
+
+    assert requests == list(outcomes)
+    assert repository["url"] == fallback
+    assert repository["index"] == f"{fallback}index.yml"
+    assert repository["catalog"] == b"runtime-0.6.3:\n  Category: runtimes\n"
+    assert len(signals) == 1
+    assert signals[0][0] == Signals.RepositoryFetched
+    assert signals[0][1].ok is True
+
+    monkeypatch.setattr(Paths, "temp", str(tmp_path))
+    repo = manager.get_repo("components")
+    assert repo.url == fallback
+    assert repo.catalog == {"runtime-0.6.3": {"Category": "runtimes"}}
+    assert requests == list(outcomes)
+    manifest_url = f"{fallback}/runtimes/runtime-0.6.3.yml"
+    manifest_data = b"Name: Runtime\n"
+    outcomes[manifest_url] = (200, manifest_data)
+    assert repo.get("runtime-0.6.3") == {"Name": "Runtime"}
+    assert requests == list(outcomes)
+    cache_files = list(tmp_path.glob("repositories/components/*/catalog.yml"))
+    assert len(cache_files) == 1
+    assert cache_files[0].read_bytes() == repository["catalog"]
+
+    offline_repo = object.__new__(ComponentRepo)
+    offline_repo.url = primary
+    offline_repo.cache_url = primary
+    offline_repo.offline = True
+    offline_repo.catalog = Repo._Repo__get_catalog(offline_repo, "", offline=True)
+    assert offline_repo.catalog == repo.catalog
+    assert offline_repo.get("runtime-0.6.3") == {"Name": "Runtime"}
+    assert requests == list(outcomes)
+
+
+def test_repository_index_keeps_primary_when_available(monkeypatch):
+    manager, signals = make_repository_manager(monkeypatch)
+    repository = keep_component_repository(manager)
+    primary = repository["sources"][0]
+    requests = []
+    curl = IndexCurl(
+        {f"{primary}64.1.yml": (200, b"entry:\n  Category: test\n")}, requests
+    )
+    monkeypatch.setattr(
+        repository_module.pycurl,
+        "Curl",
+        lambda: curl,
+    )
+
+    manager._RepositoryManager__get_index()
+
+    assert requests == [f"{primary}64.1.yml"]
+    assert repository["url"] == primary
+    assert repository["index"] == f"{primary}64.1.yml"
+    assert repository["catalog"] == b"entry:\n  Category: test\n"
+    assert len(signals) == 1
+    assert signals[0][1].ok is True
+    assert pycurl.NOBODY not in curl.options
+    assert curl.options[pycurl.CONNECTTIMEOUT] == 5
+    assert curl.options[pycurl.TIMEOUT] == 10
+    assert curl.closed is True
+
+
+def test_repository_index_falls_back_after_truncated_transfer(monkeypatch):
+    manager, signals = make_repository_manager(monkeypatch)
+    repository = keep_component_repository(manager)
+    primary, fallback = repository["sources"]
+    outcomes = {
+        f"{primary}64.1.yml": 404,
+        f"{primary}index.yml": pycurl.error(
+            pycurl.E_PARTIAL_FILE, "transfer closed with bytes remaining"
+        ),
+        f"{fallback}64.1.yml": 404,
+        f"{fallback}index.yml": (200, b"entry:\n  Category: test\n"),
+    }
+    requests = []
+    monkeypatch.setattr(
+        repository_module.pycurl,
+        "Curl",
+        lambda: IndexCurl(outcomes, requests),
+    )
+
+    manager._RepositoryManager__get_index()
+
+    assert requests == list(outcomes)
+    assert repository["url"] == fallback
+    assert repository["catalog"] == b"entry:\n  Category: test\n"
+    assert len(signals) == 1
+    assert signals[0][1].ok is True
+
+
+def test_personal_repository_is_exclusive_and_instance_local(monkeypatch):
+    custom = "https://mirror.example.test/components/"
+    manager, signals = make_repository_manager(monkeypatch, {"components": custom})
+    repository = keep_component_repository(manager)
+    outcomes = {f"{custom}64.1.yml": 403}
+    requests = []
+    monkeypatch.setattr(
+        repository_module.pycurl,
+        "Curl",
+        lambda: IndexCurl(outcomes, requests),
+    )
+
+    manager._RepositoryManager__get_index()
+
+    assert requests == list(outcomes)
+    assert repository["sources"] == [custom]
+    assert repository["url"] == custom
+    assert repository["cache_url"] == custom
+    assert len(signals) == 1
+    assert signals[0][1].ok is False
+
+    clean_manager, _signals = make_repository_manager(monkeypatch)
+    clean_repository = clean_manager._RepositoryManager__repositories["components"]
+    assert clean_repository["url"] == "https://proxy.usebottles.com/repo/components/"
+    assert clean_repository["cache_url"] == clean_repository["url"]
+
+
+def test_default_repository_fallbacks_are_commit_pinned(monkeypatch):
+    manager, _signals = make_repository_manager(monkeypatch)
+    repositories = manager._RepositoryManager__repositories
+
+    assert repositories["components"]["sources"][1] == (
+        "https://raw.githubusercontent.com/bottlesdevs/components/"
+        "5038c9e39fc90ed237587ce18796e832f917eab2/"
+    )
+    assert repositories["dependencies"]["sources"][1] == (
+        "https://raw.githubusercontent.com/bottlesdevs/dependencies/"
+        "2c0c19707c252d9ec49f1bf26ac4793fd041332b/"
+    )
+    assert repositories["installers"]["sources"][1] == (
+        "https://raw.githubusercontent.com/bottlesdevs/programs/"
+        "d1160b816ca44a1cc803ab9a0050071517cc1960/"
+    )
+
+
+@pytest.mark.parametrize(
+    "outcome",
+    (403, (200, b"invalid catalog")),
+    ids=("forbidden", "invalid-yaml"),
+)
+def test_repository_index_uses_fallback_after_bad_primary(monkeypatch, outcome):
+    manager, signals = make_repository_manager(monkeypatch)
+    repository = keep_component_repository(manager)
+    primary, fallback = repository["sources"]
+    catalog = b"entry:\n  Category: test\n"
+    outcomes = {
+        f"{primary}64.1.yml": outcome,
+        f"{fallback}64.1.yml": 404,
+        f"{fallback}index.yml": (200, catalog),
+    }
+    requests = []
+    monkeypatch.setattr(
+        repository_module.pycurl,
+        "Curl",
+        lambda: IndexCurl(outcomes, requests),
+    )
+
+    manager._RepositoryManager__get_index()
+
+    assert requests == list(outcomes)
+    assert repository["url"] == fallback
+    assert repository["catalog"] == catalog
+    assert len(signals) == 1
+    assert signals[0][1].ok is True
+
+
+@pytest.mark.parametrize(
+    "primary_outcome,fallback_outcome",
+    (
+        (
+            pycurl.error(pycurl.E_COULDNT_CONNECT, "blocked"),
+            pycurl.error(pycurl.E_COULDNT_CONNECT, "offline"),
+        ),
+        (403, (200, b"invalid catalog")),
+    ),
+    ids=("network-errors", "invalid-candidates"),
+)
+def test_repository_index_reports_one_failure_after_all_sources(
+    monkeypatch, primary_outcome, fallback_outcome
+):
+    manager, signals = make_repository_manager(monkeypatch)
+    repository = keep_component_repository(manager)
+    primary, fallback = repository["sources"]
+    outcomes = {
+        f"{primary}64.1.yml": primary_outcome,
+        f"{fallback}64.1.yml": fallback_outcome,
+    }
+    requests = []
+    monkeypatch.setattr(
+        repository_module.pycurl,
+        "Curl",
+        lambda: IndexCurl(outcomes, requests),
+    )
+
+    manager._RepositoryManager__get_index()
+
+    assert requests == list(outcomes)
+    assert repository["catalog"] is None
+    assert len(signals) == 1
+    assert signals[0][1].ok is False
