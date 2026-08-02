@@ -22,7 +22,7 @@ from datetime import datetime, timedelta
 from gettext import gettext as _
 from typing import Optional
 
-from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Xdp
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Xdp, XdpGtk4
 
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
@@ -260,6 +260,16 @@ class BottlesWindow(Adw.ApplicationWindow):
     def g_show_uri_handler(self, res: Result):
         """handle backend show_uri request"""
         uri: str = res.data
+        if "FLATPAK_ID" in os.environ:
+            Xdp.Portal().open_uri(
+                XdpGtk4.parent_new_gtk(self),
+                uri,
+                Xdp.OpenUriFlags.NONE,
+                None,
+                None,
+            )
+            return
+
         Gtk.show_uri(self, uri, Gdk.CURRENT_TIME)
 
     @GtkUtils.run_in_main_loop
