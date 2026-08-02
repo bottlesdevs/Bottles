@@ -718,18 +718,24 @@ class Manager(metaclass=Singleton):
                         os.rename(winemenubuilder, f"{winemenubuilder}.lock")
 
         # check system wine
-        if shutil.which("wine") is not None:
+        if system_wine := shutil.which("wine"):
             """
             If the Wine command is available, get the runner version
             and add it to the runners_available list.
             """
-            version = (
-                subprocess.Popen("wine --version", stdout=subprocess.PIPE, shell=True)
-                .communicate()[0]
-                .decode("utf-8")
-            )
-            version = "sys-" + version.split("\n")[0].split(" ")[0]
-            runners_available.append(version)
+            try:
+                result = subprocess.run(
+                    [system_wine, "--version"],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                )
+                version = result.stdout.decode("utf-8").split()
+                if result.returncode == 0 and version:
+                    runners_available.append(f"sys-{version[0]}")
+                else:
+                    logging.warning("System Wine version check failed.")
+            except OSError as error:
+                logging.warning(f"System Wine is not executable: {error}")
 
         # check bottles runners
         for runner in runners:
