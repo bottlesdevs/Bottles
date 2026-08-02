@@ -77,6 +77,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.singleton import Singleton
 from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.utils.threading import RunAsync
+from bottles.backend.utils.wine import WineUtils
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.uninstaller import Uninstaller
@@ -1883,6 +1884,14 @@ class Manager(metaclass=Singleton):
         cancel_result = check_cancel()
         if cancel_result is not None:
             return cancel_result
+
+        if not WineUtils.ensure_user_profile_alias(bottle_complete_path):
+            logging.error(
+                "Could not create a shared Wine and Proton user profile.", jn=True
+            )
+            message = _("Failed to prepare the bottle user profile.")
+            log_update(message)
+            return Result(False, data={"config": config}, message=message)
 
         # initialize wineprefix
         reg = Reg(config)
