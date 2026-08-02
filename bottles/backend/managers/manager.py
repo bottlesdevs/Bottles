@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import contextlib
 import fnmatch
 import os
 import random
@@ -1913,44 +1912,26 @@ class Manager(metaclass=Singleton):
         if cancel_result is not None:
             return cancel_result
 
-        userdir = f"{bottle_complete_path}/drive_c/users"
-        if os.path.exists(userdir):
-            # userdir may not exists when unpacking a template, safely
-            # ignore as it will be created on first winebot.
-            links = []
-            for user in os.listdir(userdir):
-                _user_dir = os.path.join(userdir, user)
-
-                if os.path.isdir(_user_dir):
-                    for _dir in os.listdir(_user_dir):
-                        _dir_path = os.path.join(_user_dir, _dir)
-                        if os.path.islink(_dir_path):
-                            links.append(_dir_path)
-
-                    _documents_dir = os.path.join(_user_dir, "Documents")
-                    if os.path.isdir(_documents_dir):
-                        for _dir in os.listdir(_documents_dir):
-                            _dir_path = os.path.join(_documents_dir, _dir)
-                            if os.path.islink(_dir_path):
-                                links.append(_dir_path)
-
-                    _win_dir = os.path.join(
-                        _user_dir, "AppData", "Roaming", "Microsoft", "Windows"
+        if not WineUtils.unlink_user_profile_links(bottle_complete_path):
+            logging.error("Could not sandbox the bottle user directory.", jn=True)
+            message = _("Failed to sandbox the bottle user directory.")
+            log_update(message)
+            created_paths = [bottle_complete_path]
+            if bottle_custom_path:
+                created_paths.append(os.path.join(Paths.bottles, bottle_name_path))
+            for created_path in created_paths:
+                try:
+                    shutil.rmtree(created_path)
+                except OSError:
+                    logging.error(
+                        f"Failed to remove unsafe bottle directory: {created_path}",
+                        jn=True,
                     )
-                    if os.path.isdir(_win_dir):
-                        for _dir in os.listdir(_win_dir):
-                            _dir_path = os.path.join(_win_dir, _dir)
-                            if os.path.islink(_dir_path):
-                                links.append(_dir_path)
+            return Result(False, data={"config": config}, message=message)
 
-            for link in links:
-                with contextlib.suppress(IOError, OSError):
-                    os.unlink(link)
-                    os.makedirs(link)
-
-            cancel_result = check_cancel()
-            if cancel_result is not None:
-                return cancel_result
+        cancel_result = check_cancel()
+        if cancel_result is not None:
+            return cancel_result
 
         # wait for registry files to be created
         FileUtils.wait_for_files(reg_files)

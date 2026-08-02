@@ -181,3 +181,87 @@ def test_create_bottle_rejects_profile_link_outside_prefix(monkeypatch, tmp_path
     assert result.message == "Failed to prepare the bottle user profile."
     assert wineboot_created is False
     assert outside_link.is_symlink()
+
+
+@pytest.mark.parametrize(
+    "cleanup_succeeds,custom_path",
+    [(True, False), (False, False), (False, True)],
+)
+def test_create_bottle_handles_home_directory_links(
+    monkeypatch, tmp_path, cleanup_succeeds, custom_path
+):
+    cancel_event = Event()
+    wait_calls = 0
+    host_documents = tmp_path / "host-documents"
+    host_documents.mkdir()
+    custom_root = tmp_path / "custom"
+    bottle_root = custom_root if custom_path else tmp_path
+    if custom_path:
+        custom_root.mkdir()
+
+    class WineBoot:
+        def __init__(self, _config):
+            pass
+
+        def init(self):
+            profile = bottle_root / "Sandboxed" / "drive_c/users/hostuser"
+            profile.mkdir(parents=True)
+            (profile / "Documents").symlink_to(host_documents)
+
+    def wait_for_files(*_args, **_kwargs):
+        nonlocal wait_calls
+        wait_calls += 1
+        if wait_calls == 2:
+            cancel_event.set()
+        return True
+
+    manager = object.__new__(Manager)
+    manager.runners_available = ["soda-11.0"]
+    manager.dxvk_available = ["dxvk-2.7"]
+    manager.vkd3d_available = ["vkd3d-3.0"]
+    manager.nvapi_available = ["nvapi-1.0"]
+    manager.latencyflex_available = ["latencyflex-1.0"]
+
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(tmp_path))
+    monkeypatch.setattr(manager_module.FileUtils, "chattr_f", lambda _path: None)
+    monkeypatch.setattr(manager_module.FileUtils, "wait_for_files", wait_for_files)
+    monkeypatch.setattr(
+        manager_module.TemplateManager,
+        "get_env_template",
+        lambda _environment: None,
+    )
+    monkeypatch.setattr(manager_module, "Reg", lambda _config: object())
+    monkeypatch.setattr(manager_module, "RegKeys", lambda _config: object())
+    monkeypatch.setattr(manager_module, "WineBoot", WineBoot)
+    monkeypatch.setattr(manager_module, "WineServer", lambda _config: object())
+    if not cleanup_succeeds:
+        monkeypatch.setattr(
+            manager_module.WineUtils,
+            "unlink_user_profile_links",
+            lambda _prefix: False,
+        )
+
+    result = Manager.create_bottle(
+        manager,
+        name="Sandboxed",
+        environment="custom",
+        runner="soda-11.0",
+        dxvk="dxvk-2.7",
+        vkd3d="vkd3d-3.0",
+        nvapi="nvapi-1.0",
+        latencyflex="latencyflex-1.0",
+        path=str(custom_root) if custom_path else "",
+        cancel_event=cancel_event,
+    )
+
+    bottle_path = bottle_root / "Sandboxed"
+    documents = bottle_path / "drive_c/users/hostuser/Documents"
+    assert result.ok is False
+    if cleanup_succeeds:
+        assert documents.is_dir()
+        assert not documents.is_symlink()
+    else:
+        assert result.message == "Failed to sandbox the bottle user directory."
+        assert not bottle_path.exists()
+        if custom_path:
+            assert not (tmp_path / "Sandboxed").exists()
