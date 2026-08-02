@@ -513,6 +513,46 @@ class ManagerUtils:
                 logging.warning(f"Failed to remove desktop entry {entry_path}: {e}")
 
     @staticmethod
+    def get_autostart_programs(configs):
+        programs = []
+        for config in configs:
+            for program in getattr(config, "External_Programs", {}).values():
+                if (
+                    program.get("autostart")
+                    and program.get("id")
+                    and not program.get("removed")
+                ):
+                    programs.append((config, program))
+        return programs
+
+    @staticmethod
+    def set_autostart_entry(enabled: bool) -> bool:
+        autostart_dir = os.path.join(GLib.get_user_config_dir(), "autostart")
+        entry_path = os.path.join(autostart_dir, f"{APP_ID}.autostart.desktop")
+
+        try:
+            if not enabled:
+                if os.path.exists(entry_path):
+                    os.remove(entry_path)
+                return True
+
+            os.makedirs(autostart_dir, exist_ok=True)
+            with open(entry_path, "w", encoding="utf-8") as entry:
+                entry.write(
+                    "[Desktop Entry]\n"
+                    "Type=Application\n"
+                    "Name=Bottles\n"
+                    "Comment=Launch selected Bottles programs\n"
+                    "Exec=bottles-cli autostart\n"
+                    "Terminal=false\n"
+                    "NoDisplay=true\n"
+                )
+            return True
+        except OSError as error:
+            logging.error(f"Failed to update the autostart entry: {error}")
+            return False
+
+    @staticmethod
     def browse_wineprefix(wineprefix: dict):
         """Presents a dialog to browse the wineprefix."""
         ManagerUtils.open_filemanager(

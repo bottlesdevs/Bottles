@@ -21,6 +21,7 @@
 import argparse
 import os
 import signal
+import subprocess
 import sys
 import uuid
 import warnings
@@ -245,6 +246,7 @@ class CLI:
         run_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
         run_parser.add_argument("-e", "--executable", help="Path to the executable")
         run_parser.add_argument("-p", "--program", help="Program to run")
+        run_parser.add_argument("--program-id", help="Stored program identifier")
         run_parser.add_argument(
             "--args-replace",
             action="store_false",
@@ -256,6 +258,10 @@ class CLI:
             nargs="*",
             action="extend",
             help="Arguments to pass to the executable",
+        )
+
+        subparsers.add_parser(
+            "autostart", help="Run programs configured to start at login"
         )
 
         stop_parser = subparsers.add_parser(
@@ -333,6 +339,9 @@ class CLI:
         # RUN parser
         elif self.args.command == "run":
             self.run_program()
+
+        elif self.args.command == "autostart":
+            self.autostart_programs()
 
         # SHELL parser
         elif self.args.command == "shell":
@@ -769,9 +778,29 @@ class CLI:
     # endregion
 
     # region RUN
+    def autostart_programs(self):
+        mng = Manager(g_settings=self.settings, is_cli=True)
+        mng.check_bottles()
+
+        for config, program in ManagerUtils.get_autostart_programs(
+            mng.local_bottles.values()
+        ):
+            subprocess.Popen(
+                [
+                    "bottles-cli",
+                    "run",
+                    "-b",
+                    config.Name,
+                    "--program-id",
+                    str(program["id"]),
+                ],
+                start_new_session=True,
+            )
+
     def run_program(self):
         _bottle = self.args.bottle
         _program = self.args.program
+        _program_id = self.args.program_id
         _keep = self.args.keep_args
         _args = " ".join(self.args.args)
         _executable = self.args.executable
@@ -794,16 +823,27 @@ class CLI:
         bottle = mng.local_bottles[_bottle]
         programs = mng.get_programs(bottle)
 
-        if _program is not None:
+        if _program is not None or _program_id is not None:
             if _executable is not None:
-                sys.stderr.write("Cannot specify both --program and --executable\n")
+                sys.stderr.write(
+                    "Cannot specify --executable with --program or --program-id\n"
+                )
+                exit(1)
+            if _program is not None and _program_id is not None:
+                sys.stderr.write("Cannot specify both --program and --program-id\n")
                 exit(1)
 
-            if _program not in [p["name"] for p in programs]:
-                sys.stderr.write(f"Program {_program} not found\n")
+            if _program_id is not None:
+                matches = [p for p in programs if p.get("id") == _program_id]
+                identifier = _program_id
+            else:
+                matches = [p for p in programs if p["name"] == _program]
+                identifier = _program
+            if not matches:
+                sys.stderr.write(f"Program {identifier} not found\n")
                 exit(1)
 
-            program = [p for p in programs if p["name"] == _program][0]
+            program = matches[0]
             _executable = program.get("path", "")
             _program_args = program.get("arguments")
             if not program.get("arguments_enabled", True):

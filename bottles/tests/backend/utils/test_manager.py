@@ -4,6 +4,7 @@ import shlex
 from types import SimpleNamespace
 
 import pytest
+from gi.repository import GLib
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import manager
@@ -311,3 +312,51 @@ def test_desktop_entry_reports_manual_fallback_failure(monkeypatch, tmp_path):
     assert results[0].status is False
     assert results[0].data == {"method": "manual", "paths": []}
     assert "permission denied" in results[0].message
+
+
+def test_get_autostart_programs_filters_disabled_and_removed_entries():
+    configs = [
+        SimpleNamespace(
+            Name="Services",
+            External_Programs={
+                "enabled": {"id": "enabled", "autostart": True},
+                "disabled": {"id": "disabled", "autostart": False},
+                "removed": {"id": "removed", "autostart": True, "removed": True},
+                "invalid": {"autostart": True},
+            },
+        ),
+        SimpleNamespace(
+            Name="Tools",
+            External_Programs={
+                "tool": {"id": "tool", "autostart": True},
+            },
+        ),
+    ]
+
+    entries = ManagerUtils.get_autostart_programs(configs)
+
+    assert [(config.Name, program["id"]) for config, program in entries] == [
+        ("Services", "enabled"),
+        ("Tools", "tool"),
+    ]
+
+
+def test_set_autostart_entry_for_native_install(tmp_path, monkeypatch):
+    monkeypatch.setattr(GLib, "get_user_config_dir", lambda: str(tmp_path))
+    monkeypatch.setattr(manager, "APP_ID", "com.usebottles.bottles")
+
+    assert ManagerUtils.set_autostart_entry(True)
+
+    entry = tmp_path / "autostart" / "com.usebottles.bottles.autostart.desktop"
+    assert entry.read_text() == (
+        "[Desktop Entry]\n"
+        "Type=Application\n"
+        "Name=Bottles\n"
+        "Comment=Launch selected Bottles programs\n"
+        "Exec=bottles-cli autostart\n"
+        "Terminal=false\n"
+        "NoDisplay=true\n"
+    )
+
+    assert ManagerUtils.set_autostart_entry(False)
+    assert not entry.exists()
