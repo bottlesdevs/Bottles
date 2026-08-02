@@ -102,11 +102,14 @@ class Task:
         subtitle: str = "",
         hidden: bool = False,
         cancellable: bool = False,
+        cancel_event: Optional[PyEvent] = None,
     ):
+        self._task_id = None
         self.title = title
         self.subtitle = subtitle
         self.hidden = hidden
-        self.cancellable = cancellable
+        self.cancellable = cancellable or cancel_event is not None
+        self.cancel_event = cancel_event or PyEvent()
 
     @property
     def task_id(self) -> Optional[UUID]:
@@ -149,6 +152,14 @@ class Task:
 
         percent = int(received_size / total_size * 100)
         self.subtitle = f"{percent}%"
+
+    def request_cancel(self) -> bool:
+        if not self.cancellable:
+            return False
+        if not self.cancel_event.is_set():
+            self.cancel_event.set()
+            self.subtitle = _("Cancelling...")
+        return True
 
 
 class LockManager:
@@ -227,8 +238,14 @@ class TaskManager:
     def remove(cls, task: UUID | Task):
         if isinstance(task, Task):
             task = task.task_id
-        cls._TASKS.pop(task)
+        if cls._TASKS.pop(task, None) is None:
+            return
         SignalManager.send(Signals.TaskRemoved, Result(True, task))
+
+    @classmethod
+    def cancel(cls, task_id: UUID) -> bool:
+        task = cls.get(task_id)
+        return task.request_cancel() if task else False
 
 
 class SignalManager:

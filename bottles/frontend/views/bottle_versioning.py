@@ -264,6 +264,11 @@ class VersioningView(Adw.PreferencesPage):
         @GtkUtils.run_in_main_loop
         def update(result, error):
             self._set_busy(False)
+            if result and result.message == "cancelled":
+                self.window.show_toast(_("Snapshot creation cancelled"))
+                self.update()
+                self._refresh_details_badge()
+                return
             if result and not result.status and result.message:
                 dialog = Adw.MessageDialog.new(
                     self.window,

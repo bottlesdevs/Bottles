@@ -18,7 +18,12 @@
 import os
 import time
 import subprocess
+import json
+import tempfile
+from concurrent.futures import CancelledError
+from contextlib import contextmanager
 from datetime import datetime
+from fcntl import LOCK_EX, LOCK_NB, LOCK_UN, flock
 from threading import Lock
 
 from bottles.fvs.exceptions import (
@@ -38,12 +43,15 @@ FVS2_CMD = "fvs2"
 DEFAULT_BLOCK_SIZE = 1048576  # 1 MiB
 
 class FVSRepo:
+    _REPO_LOCKS = {}
+    _REPO_LOCKS_LOCK = Lock()
+
     def __init__(self, repo_path: str, use_compression: bool = False, no_init: bool = False, block_size: int = DEFAULT_BLOCK_SIZE):
         self._repo_path = repo_path
         self._use_compression = use_compression
         self._block_size = block_size
         self._fvs2 = self._get_fvs2_bin()
-        self._lock = Lock()
+        self._lock = self._get_repo_lock(repo_path)
         
         self.__states = {}
         self.__active_state_id = None
@@ -60,6 +68,125 @@ class FVSRepo:
 
     def _get_fvs2_bin(self):
         return "fvs2"
+
+    @contextmanager
+    def _commit_lock(self, cancel_event=None):
+        lock_path = os.path.join(self._repo_path, ".fvs2", ".bottles.lock")
+        lock_file = open(lock_path, "a+")
+        try:
+            while True:
+                try:
+                    flock(lock_file, LOCK_EX | LOCK_NB)
+                    break
+                except BlockingIOError:
+                    if cancel_event and cancel_event.is_set():
+                        raise CancelledError
+                    time.sleep(0.1)
+            yield
+        finally:
+            flock(lock_file, LOCK_UN)
+            lock_file.close()
+
+    @classmethod
+    def _get_repo_lock(cls, repo_path):
+        repo_path = os.path.realpath(repo_path)
+        with cls._REPO_LOCKS_LOCK:
+            return cls._REPO_LOCKS.setdefault(repo_path, Lock())
+
+    def _commit_metadata_paths(self):
+        meta_path = os.path.join(self._repo_path, ".fvs2")
+        head_path = os.path.join(meta_path, "HEAD.json")
+        index_path = os.path.join(meta_path, "index.json")
+        paths = [head_path]
+
+        try:
+            with open(head_path, "rb") as head_file:
+                head = json.load(head_file)
+        except FileNotFoundError:
+            head = {"type": "branch", "name": "main"}
+
+        if head.get("type") == "branch":
+            branch = head.get("name") or "main"
+            if (
+                not isinstance(branch, str)
+                or ".." in branch
+                or os.path.basename(branch) != branch
+            ):
+                raise RuntimeError("Invalid FVS branch metadata")
+            paths.append(os.path.join(meta_path, "refs", "heads", branch))
+
+        paths.append(index_path)
+        return paths
+
+    def _snapshot_commit_metadata(self):
+        snapshot = {}
+        for path in self._commit_metadata_paths():
+            try:
+                with open(path, "rb") as metadata_file:
+                    snapshot[path] = (
+                        metadata_file.read(),
+                        os.fstat(metadata_file.fileno()).st_mode & 0o777,
+                    )
+            except FileNotFoundError:
+                snapshot[path] = None
+        return snapshot
+
+    def _snapshot_repository_files(self):
+        meta_path = os.path.join(self._repo_path, ".fvs2")
+        files = set()
+        for directory, _subdirectories, filenames in os.walk(meta_path):
+            for filename in filenames:
+                path = os.path.join(directory, filename)
+                files.add(os.path.relpath(path, meta_path))
+        return files
+
+    @staticmethod
+    def _sync_directory(path):
+        directory = os.open(path, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
+        try:
+            os.fsync(directory)
+        finally:
+            os.close(directory)
+
+    def _restore_commit_metadata(self, snapshot):
+        for path, original in snapshot.items():
+            directory = os.path.dirname(path)
+            if original is None:
+                try:
+                    os.remove(path)
+                    self._sync_directory(directory)
+                except FileNotFoundError:
+                    pass
+                continue
+
+            data, mode = original
+            file_descriptor, temp_path = tempfile.mkstemp(
+                prefix=".bottles-cancel-",
+                dir=directory,
+            )
+            try:
+                with os.fdopen(file_descriptor, "wb") as metadata_file:
+                    metadata_file.write(data)
+                    metadata_file.flush()
+                    os.fchmod(metadata_file.fileno(), mode)
+                    os.fsync(metadata_file.fileno())
+                os.replace(temp_path, path)
+                self._sync_directory(directory)
+            finally:
+                try:
+                    os.remove(temp_path)
+                except FileNotFoundError:
+                    pass
+
+    def _discard_cancelled_commit(self, metadata_snapshot, repository_files):
+        self._restore_commit_metadata(metadata_snapshot)
+        meta_path = os.path.join(self._repo_path, ".fvs2")
+        for directory, _subdirectories, filenames in os.walk(meta_path):
+            for filename in filenames:
+                path = os.path.join(directory, filename)
+                relative_path = os.path.relpath(path, meta_path)
+                if relative_path not in repository_files:
+                    os.remove(path)
 
     def _run_cmd(self, *args, check=True):
         cmd = [self._fvs2] + list(args)
@@ -78,11 +205,30 @@ class FVSRepo:
                 if res.returncode != 0 and "already initialized" not in res.stderr:
                     raise RuntimeError(f"Failed to initialize FVS: {res.stderr}")
 
-    def commit(self, message: str, ignore: list = None, task_id: str = None):
+    def commit(
+        self,
+        message: str,
+        ignore: list = None,
+        task_id: str = None,
+        cancel_event=None,
+    ):
         """Create a commit. Does NOT auto-refresh; caller should refresh if needed."""
         from bottles.backend.state import TaskManager
+
+        if cancel_event and cancel_event.is_set():
+            raise CancelledError
         
-        with self._lock:
+        with self._lock, self._commit_lock(cancel_event):
+            metadata_snapshot = (
+                self._snapshot_commit_metadata()
+                if cancel_event is not None
+                else None
+            )
+            repository_files = (
+                self._snapshot_repository_files()
+                if cancel_event is not None
+                else None
+            )
             args = [self._fvs2, "commit", "-m", message, "-v"]
             
             process = subprocess.Popen(
@@ -96,11 +242,29 @@ class FVSRepo:
             )
             
             last_update = 0
-            while True:
-                line = process.stdout.readline()
-                if not line and process.poll() is not None:
-                    break
-                if line:
+            captured_stdout = ""
+            pending_stdout = ""
+
+            def output_text(output):
+                if isinstance(output, bytes):
+                    return output.decode(errors="replace")
+                return output or ""
+
+            def update_progress(output, flush=False):
+                nonlocal captured_stdout, last_update, pending_stdout
+                output = output_text(output)
+                if output.startswith(captured_stdout):
+                    pending_stdout += output[len(captured_stdout):]
+                else:
+                    pending_stdout += output
+                captured_stdout = output
+
+                lines = pending_stdout.splitlines(keepends=True)
+                pending_stdout = ""
+                for line in lines:
+                    if not flush and not line.endswith(("\n", "\r")):
+                        pending_stdout = line
+                        continue
                     line = line.strip()
                     if line.startswith("hashing: "):
                         current_time = time.time()
@@ -111,12 +275,43 @@ class FVSRepo:
                                 if task:
                                     task.subtitle = file_path
                             last_update = current_time
-            
-            stdout, stderr = process.communicate()
+
+            while True:
+                try:
+                    stdout, stderr = process.communicate(timeout=0.1)
+                    update_progress(stdout, flush=True)
+                    break
+                except subprocess.TimeoutExpired as error:
+                    update_progress(error.output)
+                    if not cancel_event or not cancel_event.is_set():
+                        continue
+
+                    try:
+                        process.terminate()
+                    except ProcessLookupError:
+                        pass
+                    try:
+                        stdout, stderr = process.communicate(timeout=1)
+                    except subprocess.TimeoutExpired:
+                        try:
+                            process.kill()
+                        except ProcessLookupError:
+                            pass
+                        stdout, stderr = process.communicate()
+
+                    if process.returncode == 0:
+                        update_progress(stdout, flush=True)
+                        break
+
+                    self._discard_cancelled_commit(
+                        metadata_snapshot,
+                        repository_files,
+                    )
+                    raise CancelledError
             
             if process.returncode != 0:
-                full_stdout = stdout.lower()
-                full_stderr = stderr.lower()
+                full_stdout = output_text(stdout).lower()
+                full_stderr = output_text(stderr).lower()
                 if "nothing to commit" in full_stdout or "nothing to commit" in full_stderr:
                     raise FVSNothingToCommit()
                 raise RuntimeError(f"FVS commit failed: {stderr}")
@@ -124,7 +319,7 @@ class FVSRepo:
     def restore_state(self, state_id: str, ignore: list = None, reset: bool = True, task_id: str = None):
         """Restore to a state. Does NOT auto-refresh; caller should refresh if needed."""
         from bottles.backend.state import TaskManager
-        with self._lock:
+        with self._lock, self._commit_lock():
             state_id = str(state_id)
             matched = False
             for k in self.__states.keys():
@@ -266,21 +461,21 @@ class FVSRepo:
         
     def create_branch(self, branch_name: str):
         """Create a branch. Does NOT auto-refresh; caller should refresh if needed."""
-        with self._lock:
+        with self._lock, self._commit_lock():
             res = self._run_cmd("branch", "create", branch_name, check=False)
             if res.returncode != 0:
                 raise RuntimeError(f"FVS create branch failed: {res.stderr}")
 
     def delete_branch(self, branch_name: str):
         """Delete a branch. Does NOT auto-refresh; caller should refresh if needed."""
-        with self._lock:
+        with self._lock, self._commit_lock():
             res = self._run_cmd("branch", "delete", branch_name, check=False)
             if res.returncode != 0:
                 raise RuntimeError(f"FVS delete branch failed: {res.stderr}")
 
     def checkout(self, target: str):
         """Switch HEAD to a branch. Does NOT auto-refresh; caller should refresh if needed."""
-        with self._lock:
+        with self._lock, self._commit_lock():
             res = self._run_cmd("checkout", target, check=False)
             if res.returncode != 0:
                 raise RuntimeError(f"FVS checkout failed: {res.stderr}")
