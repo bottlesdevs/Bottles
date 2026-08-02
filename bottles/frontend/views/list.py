@@ -30,6 +30,29 @@ from bottles.frontend.utils.filters import add_all_filters, add_executable_filte
 from bottles.frontend.utils.sandbox_guard import guard_sandbox_launch
 
 
+def _bottle_order_id(config: BottleConfig) -> str:
+    group = "steam" if config.Environment == "Steam" else "bottle"
+    return f"{group}:{config.Path}"
+
+
+def _ordered_bottles(configs, configured_order):
+    positions = {bottle_id: index for index, bottle_id in enumerate(configured_order)}
+    fallback = len(positions)
+    return sorted(
+        configs, key=lambda config: positions.get(_bottle_order_id(config), fallback)
+    )
+
+
+def _replace_group_order(configured_order, previous_order, new_order):
+    replacements = iter(new_order)
+    previous = set(previous_order)
+    result = [
+        next(replacements) if item in previous else item for item in configured_order
+    ]
+    result.extend(replacements)
+    return result
+
+
 @Gtk.Template(resource_path="/com/usebottles/bottles/bottle-row.ui")
 class BottlesBottleRow(Adw.ActionRow):
     __gtype_name__ = "BottlesBottleRow"
@@ -38,17 +61,23 @@ class BottlesBottleRow(Adw.ActionRow):
 
     # region Widgets
     button_run = Gtk.Template.Child()
+    button_order = Gtk.Template.Child()
+    button_move_top = Gtk.Template.Child()
+    button_move_up = Gtk.Template.Child()
+    button_move_down = Gtk.Template.Child()
+    button_move_bottom = Gtk.Template.Child()
     wrap_box = Gtk.Template.Child()
 
     # endregion
 
-    def __init__(self, window, config: BottleConfig, **kwargs):
+    def __init__(self, window, config: BottleConfig, reorder_callback=None, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
         self.window = window
         self.manager = window.manager
         self.config = config
+        self.reorder_callback = reorder_callback
 
         # Format update date
         update_date = _("N/A")
@@ -70,6 +99,10 @@ class BottlesBottleRow(Adw.ActionRow):
         # connect signals
         self.connect("activated", self.show_details)
         self.button_run.connect("clicked", self.run_executable)
+        self.button_move_top.connect("clicked", self.__reorder, "top")
+        self.button_move_up.connect("clicked", self.__reorder, "up")
+        self.button_move_down.connect("clicked", self.__reorder, "down")
+        self.button_move_bottom.connect("clicked", self.__reorder, "bottom")
 
         # populate widgets
         self.set_title(self.config.Name)
@@ -80,6 +113,16 @@ class BottlesBottleRow(Adw.ActionRow):
 
         # Set tooltip text
         self.button_run.set_tooltip_text(_(f"Run executable in “{self.config.Name}”"))
+
+    def __reorder(self, _button, position):
+        self.reorder_callback(self, position)
+
+    def set_reorder_state(self, can_move_up, can_move_down, visible):
+        self.button_order.set_visible(visible)
+        self.button_move_top.set_sensitive(can_move_up)
+        self.button_move_up.set_sensitive(can_move_up)
+        self.button_move_down.set_sensitive(can_move_down)
+        self.button_move_bottom.set_sensitive(can_move_down)
 
     def run_executable(self, *_args):
         """Display file dialog for executable"""
@@ -184,7 +227,7 @@ class BottleView(Adw.Bin):
         text = row.get_title().lower()
         return terms.lower() in text
 
-    def update_bottles_list(self, *args) -> None:
+    def update_bottles_list(self, *args, refresh_updates=True) -> None:
         self.__bottles = {}
         while self.list_bottles.get_first_child():
             self.list_bottles.remove(self.list_bottles.get_first_child())
@@ -198,8 +241,11 @@ class BottleView(Adw.Bin):
         self.pref_page.set_visible(not is_empty_local_bottles)
         self.bottle_status.set_visible(is_empty_local_bottles)
 
-        for name, config in local_bottles.items():
-            _entry = BottlesBottleRow(self.window, config)
+        configured_order = self.window.settings.get_strv("bottle-order")
+        configs = _ordered_bottles(list(local_bottles.values()), configured_order)
+
+        for config in configs:
+            _entry = BottlesBottleRow(self.window, config, self.__reorder_bottle)
             self.__bottles[config.Path] = _entry
 
             if config.Environment != "Steam":
@@ -214,7 +260,54 @@ class BottleView(Adw.Bin):
                 self.group_steam.set_visible(True)
                 self.group_bottles.set_title(_("Your Bottles"))
 
-        self.update_component_updates_banner()
+        self.__update_reorder_states(configs)
+
+        if refresh_updates:
+            self.update_component_updates_banner()
+
+    def __reorder_bottle(self, row, position):
+        configured_order = self.window.settings.get_strv("bottle-order")
+        configs = _ordered_bottles(
+            list(self.window.manager.local_bottles.values()), configured_order
+        )
+        group = [
+            config
+            for config in configs
+            if (config.Environment == "Steam") == (row.config.Environment == "Steam")
+        ]
+        index = group.index(row.config)
+        destinations = {
+            "top": 0,
+            "up": max(0, index - 1),
+            "down": min(len(group) - 1, index + 1),
+            "bottom": len(group) - 1,
+        }
+        destination = destinations[position]
+        if destination == index:
+            return
+
+        previous_order = [_bottle_order_id(config) for config in group]
+        group.insert(destination, group.pop(index))
+        new_order = [_bottle_order_id(config) for config in group]
+        self.window.settings.set_strv(
+            "bottle-order",
+            _replace_group_order(configured_order, previous_order, new_order),
+        )
+        self.update_bottles_list(refresh_updates=False)
+
+    def __update_reorder_states(self, configs):
+        for steam_group in (False, True):
+            group = [
+                config
+                for config in configs
+                if (config.Environment == "Steam") == steam_group
+            ]
+            for index, config in enumerate(group):
+                self.__bottles[config.Path].set_reorder_state(
+                    can_move_up=index > 0,
+                    can_move_down=index < len(group) - 1,
+                    visible=len(group) > 1,
+                )
 
     def update_component_updates_banner(self) -> None:
         self.__update_banner_state(self.window.manager.local_bottles)
