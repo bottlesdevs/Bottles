@@ -197,6 +197,39 @@ def test_regular_program_library_entry_is_unchanged(monkeypatch):
     assert captured["updated"] is True
 
 
+def test_uninstall_program_refreshes_cached_programs(monkeypatch):
+    calls = []
+    config = BottleConfig(Name="Games", Path="Games")
+    entry = SimpleNamespace(
+        config=config,
+        program={"name": "Example Game"},
+        view_bottle=SimpleNamespace(
+            update_programs=lambda **kwargs: calls.append(kwargs)
+        ),
+        update_programs=lambda: calls.append({}),
+    )
+
+    monkeypatch.setattr(
+        program_module,
+        "Uninstaller",
+        lambda _config: SimpleNamespace(from_name=lambda _name: None),
+    )
+    monkeypatch.setattr(
+        program_module,
+        "RunAsync",
+        lambda task_func, callback, **_kwargs: callback(None, False),
+    )
+    monkeypatch.setattr(
+        program_module.ManagerUtils,
+        "remove_desktop_entry",
+        lambda _config, _program: None,
+    )
+
+    ProgramEntry.uninstall_program(entry, None)
+
+    assert calls == [{"config": config, "force_update": True}]
+
+
 def test_steam_program_widget_exposes_library_action(monkeypatch):
     captured = {}
 
