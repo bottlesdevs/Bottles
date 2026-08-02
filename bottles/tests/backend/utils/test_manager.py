@@ -196,3 +196,118 @@ def test_desktop_entry_filename_sanitizes_bottle_and_program_names():
         ManagerUtils.get_desktop_entry_filename(config, program)
         == "bottles-TestBottle-GameNameexe.desktop"
     )
+
+
+class FallbackLauncherPortal:
+    def __init__(
+        self,
+        prepare_result=None,
+        prepare_error=None,
+        install_error=None,
+    ):
+        self.prepare_result = prepare_result
+        self.prepare_error = prepare_error
+        self.install_error = install_error
+        self.callback = None
+        self.installed = False
+
+    def dynamic_launcher_prepare_install(self, *args):
+        self.callback = args[-1]
+
+    def dynamic_launcher_prepare_install_finish(self, _result):
+        if self.prepare_error:
+            raise manager.GLib.Error(self.prepare_error)
+        return self.prepare_result
+
+    def dynamic_launcher_install(self, *_args):
+        if self.install_error:
+            raise manager.GLib.Error(self.install_error)
+        self.installed = True
+
+
+def request_desktop_entry(monkeypatch, tmp_path, portal):
+    icon = tmp_path / "icon.svg"
+    icon.write_text("<svg xmlns='http://www.w3.org/2000/svg'/>")
+    results = []
+
+    monkeypatch.setattr(manager, "portal", portal)
+    ManagerUtils.create_desktop_entry(
+        BottleConfig(Name="Test Bottle"),
+        {
+            "name": "Test Program",
+            "executable": "test.exe",
+            "path": "/test.exe",
+        },
+        custom_icon=str(icon),
+        callback=results.append,
+    )
+    portal.callback(None, object())
+    return results
+
+
+def test_desktop_entry_reports_portal_success(monkeypatch, tmp_path):
+    portal = FallbackLauncherPortal(prepare_result={"token": "test-token"})
+
+    results = request_desktop_entry(monkeypatch, tmp_path, portal)
+
+    assert portal.installed is True
+    assert results[0].status is True
+    assert results[0].data == {"method": "portal"}
+
+
+def test_desktop_entry_reports_manual_fallback_paths(monkeypatch, tmp_path):
+    portal = FallbackLauncherPortal(prepare_error="portal unavailable")
+    applications = tmp_path / "applications"
+    monkeypatch.setattr(
+        manager.os.path,
+        "expanduser",
+        lambda path: (
+            str(applications) if path == "~/.local/share/applications" else path
+        ),
+    )
+    monkeypatch.setattr(manager.GLib, "get_user_special_dir", lambda *_args: None)
+
+    results = request_desktop_entry(monkeypatch, tmp_path, portal)
+
+    expected = applications / "bottles-TestBottle-TestProgram.desktop"
+    assert expected.is_file()
+    assert results[0].status is True
+    assert results[0].data == {"method": "manual", "paths": [str(expected)]}
+
+
+def test_desktop_entry_falls_back_when_portal_install_fails(monkeypatch, tmp_path):
+    portal = FallbackLauncherPortal(
+        prepare_result={"token": "test-token"},
+        install_error="install failed",
+    )
+    applications = tmp_path / "applications"
+    monkeypatch.setattr(
+        manager.os.path,
+        "expanduser",
+        lambda path: (
+            str(applications) if path == "~/.local/share/applications" else path
+        ),
+    )
+    monkeypatch.setattr(manager.GLib, "get_user_special_dir", lambda *_args: None)
+
+    results = request_desktop_entry(monkeypatch, tmp_path, portal)
+
+    assert portal.installed is False
+    assert results[0].status is True
+    assert results[0].data["method"] == "manual"
+
+
+def test_desktop_entry_reports_manual_fallback_failure(monkeypatch, tmp_path):
+    portal = FallbackLauncherPortal(prepare_error="portal unavailable")
+
+    def deny_directory_creation(*_args, **_kwargs):
+        raise PermissionError("permission denied")
+
+    monkeypatch.setattr(manager.os, "makedirs", deny_directory_creation)
+    monkeypatch.setattr(manager.GLib, "get_user_special_dir", lambda *_args: None)
+
+    results = request_desktop_entry(monkeypatch, tmp_path, portal)
+
+    assert results[0].status is False
+    assert results[0].data == {"method": "manual", "paths": []}
+    assert "permission denied" in results[0].message
