@@ -8,6 +8,7 @@ from bottles.backend.managers import steam as steam_module
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils import vdf
+from bottles.backend.utils.steam import SteamUtils
 
 
 def _write_vdf(path, data):
@@ -15,6 +16,30 @@ def _write_vdf(path, data):
     with open(path, "w") as vdf_file:
         vdf.dump(data, vdf_file, pretty=True)
 
+
+def _write_ge_proton_prefix(steam_path, appid):
+    runner_path = steam_path / "compatibilitytools.d" / "GE-Proton10-30"
+    _write_vdf(
+        runner_path / "toolmanifest.vdf",
+        {
+            "manifest": {
+                "version": "2",
+                "commandline": "/proton %verb%",
+                "compatmanager_layer_name": "proton",
+            }
+        },
+    )
+
+    compatdata_path = steam_path / "steamapps" / "compatdata" / str(appid)
+    (compatdata_path / "pfx").mkdir(parents=True)
+    config_lines = [
+        "GE-Proton10-30",
+        f"{runner_path}/files/share/fonts/",
+        f"{runner_path}/files/lib/",
+        str(steam_path),
+    ] + [""] * 10
+    (compatdata_path / "config_info").write_text("\n".join(config_lines))
+    return compatdata_path, runner_path
 
 def test_installed_game_is_discovered_without_localconfig_entry(tmp_path, monkeypatch):
     appid = "22380"
@@ -222,3 +247,163 @@ def test_list_compatibility_tools_without_steam(tmp_path, monkeypatch):
     assert manager.list_compatibility_tools() == {
         "GE-Proton10-4": str(proton),
     }
+
+
+def test_ge_proton_runner_path(tmp_path):
+    compatdata_path, runner_path = _write_ge_proton_prefix(tmp_path, "123")
+    SteamManager.get_runner_path.cache_clear()
+
+    assert SteamManager.get_runner_path(str(compatdata_path)) == str(runner_path)
+
+
+@pytest.mark.parametrize("library_name", [None, "SecondaryLibrary"])
+def test_non_steam_ge_proton_prefix_is_detected(tmp_path, monkeypatch, library_name):
+    appid = 4218887470
+    steam_path = tmp_path / "Steam"
+    library_path = tmp_path / library_name if library_name else steam_path
+    compatdata_path, runner_path = _write_ge_proton_prefix(library_path, appid)
+    _write_vdf(
+        steam_path / "steamapps" / "libraryfolders.vdf",
+        {
+            "libraryfolders": {
+                "0": {
+                    "path": str(library_path),
+                    "apps": {},
+                }
+            }
+        },
+    )
+    _write_vdf(
+        steam_path / "userdata" / "123" / "config" / "localconfig.vdf",
+        {"UserLocalConfigStore": {"Software": {"Valve": {"Steam": {"Apps": {}}}}}},
+    )
+    shortcuts_path = steam_path / "userdata" / "123" / "config" / "shortcuts.vdf"
+    shortcuts_path.write_bytes(
+        vdf.binary_dumps(
+            {
+                "shortcuts": {
+                    "0": {
+                        "appid": appid - 2**32,
+                        "AppName": "GE Shortcut",
+                        "Exe": '"/games/example.exe"',
+                        "StartDir": '"/games"',
+                        "LaunchOptions": "",
+                        "LastPlayTime": 0,
+                    }
+                }
+            }
+        )
+    )
+
+    monkeypatch.setattr(
+        SteamManager,
+        "_SteamManager__find_steam_path",
+        lambda _self: str(steam_path),
+    )
+    monkeypatch.setattr(Paths, "steam", str(tmp_path / "bottles-steam"))
+    SteamManager.get_runner_path.cache_clear()
+
+    config = SteamManager().list_prefixes()[str(appid)]
+
+    assert config.Name == "GE Shortcut"
+    assert config.Path == str(compatdata_path / "pfx")
+    assert config.RunnerPath == str(runner_path)
+
+
+def test_non_steam_shortcut_appid_falls_back_to_crc():
+    shortcut = {
+        "Exe": '"/games/example.exe"',
+        "AppName": "GE Shortcut",
+    }
+
+    assert SteamManager._get_shortcut_appid(shortcut) == 3641742335
+
+
+def test_non_steam_launch_options_are_saved_to_shortcuts_vdf(tmp_path):
+    appid = 4218887470
+    config_dir = tmp_path / "userdata" / "123" / "config"
+    config_dir.mkdir(parents=True)
+    shortcuts_path = config_dir / "shortcuts.vdf"
+    unrelated = {
+        "appid": -1,
+        "AppName": "Unrelated",
+        "Exe": '"/games/other.exe"',
+        "LaunchOptions": "--unchanged",
+    }
+    trailing_data = b"steam-extra-data"
+    shortcuts_path.write_bytes(
+        vdf.binary_dumps(
+            {
+                "shortcuts": {
+                    "0": {
+                        "appid": appid - 2**32,
+                        "AppName": "GE Shortcut",
+                        "Exe": '"/games/example.exe"',
+                        "LaunchOptions": "DXVK_HUD=1 %command% --old",
+                    },
+                    "1": unrelated,
+                }
+            }
+        )
+        + trailing_data
+    )
+    manager = object.__new__(SteamManager)
+    manager.userdata_path = str(tmp_path / "userdata")
+    manager.localconfig = {}
+
+    manager.set_launch_options(
+        str(appid),
+        {"command": "gamemoderun", "env_vars": {"FOO": "bar"}},
+    )
+
+    data = vdf.binary_loads(shortcuts_path.read_bytes(), raise_on_remaining=False)[
+        "shortcuts"
+    ]
+    command, args, env_vars = SteamUtils.handle_launch_options(
+        data["0"]["LaunchOptions"]
+    )
+    assert command == "gamemoderun"
+    assert args.strip() == "--old"
+    assert env_vars == {"DXVK_HUD": "1", "FOO": "bar"}
+    assert data["1"] == unrelated
+    assert shortcuts_path.read_bytes().endswith(trailing_data)
+
+
+def test_regular_steam_launch_options_are_saved_to_localconfig(tmp_path):
+    manager = object.__new__(SteamManager)
+    manager.userdata_path = None
+    manager.localconfig_path = str(tmp_path / "localconfig.vdf")
+    manager.localconfig = {
+        "UserLocalConfigStore": {
+            "Software": {
+                "Valve": {
+                    "Steam": {
+                        "Apps": {"123": {"LaunchOptions": "DXVK_HUD=1 %command% --old"}}
+                    }
+                }
+            }
+        }
+    }
+
+    manager.set_launch_options(
+        "123",
+        {"command": "gamemoderun", "env_vars": {"FOO": "bar"}},
+    )
+
+    launch_options = manager.localconfig["UserLocalConfigStore"]["Software"]["Valve"][
+        "Steam"
+    ]["Apps"]["123"]["LaunchOptions"]
+    command, args, env_vars = SteamUtils.handle_launch_options(launch_options)
+    assert command == "gamemoderun"
+    assert args.strip() == "--old"
+    assert env_vars == {"DXVK_HUD": "1", "FOO": "bar"}
+
+
+def test_malformed_shortcuts_file_is_ignored(tmp_path):
+    config_dir = tmp_path / "userdata" / "123" / "config"
+    config_dir.mkdir(parents=True)
+    (config_dir / "shortcuts.vdf").write_bytes(b"not a binary vdf")
+    manager = object.__new__(SteamManager)
+    manager.userdata_path = str(tmp_path / "userdata")
+
+    assert manager.list_shortcuts() == {}
