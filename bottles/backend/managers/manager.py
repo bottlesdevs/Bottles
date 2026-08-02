@@ -101,6 +101,7 @@ class Manager(metaclass=Singleton):
     runtimes_available = []
     winebridge_available = []
     runners_available = []
+    external_runners: set[str] = set()
     dxvk_available = []
     vkd3d_available = []
     nvapi_available = []
@@ -702,6 +703,17 @@ class Manager(metaclass=Singleton):
         winemenubuilder tool.
         """
         runners = glob(f"{Paths.runners}/*/")
+        managed_runners = {
+            os.path.basename(os.path.normpath(runner)) for runner in runners
+        }
+        external_runner_paths = {
+            name: path
+            for name, path in self.steam_manager.list_compatibility_tools().items()
+            if name not in managed_runners
+        }
+        ManagerUtils.set_external_runner_paths(external_runner_paths)
+        self.external_runners = set(external_runner_paths)
+        runners.extend(external_runner_paths.values())
         self.runners_available, runners_available = [], []
 
         # lock winemenubuilder.exe

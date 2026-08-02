@@ -48,6 +48,8 @@ class ManagerUtils:
     directly related to the Manager.
     """
 
+    external_runner_paths: dict[str, str] = {}
+
     @staticmethod
     def open_filemanager(
         config: Optional[BottleConfig] = None,
@@ -177,7 +179,13 @@ class ManagerUtils:
     def get_runner_path(runner: str) -> str:
         if runner.startswith("sys-"):
             return runner
+        if runner in ManagerUtils.external_runner_paths:
+            return ManagerUtils.external_runner_paths[runner]
         return f"{Paths.runners}/{runner}"
+
+    @staticmethod
+    def set_external_runner_paths(runners: dict[str, str]) -> None:
+        ManagerUtils.external_runner_paths = runners.copy()
 
     @staticmethod
     def get_dxvk_path(dxvk: str) -> str:

@@ -1,15 +1,20 @@
 """Core Manager tests"""
 
 import contextlib
+from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
 from bottles.backend.managers import manager as manager_module
+from bottles.backend.managers import steam as steam_module
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.manager import Manager
+from bottles.backend.managers.steam import SteamManager
 from bottles.backend.models.config import BottleConfig, BottleParams
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.gsettings_stub import GSettingsStub
+from bottles.backend.utils.manager import ManagerUtils
 
 
 @pytest.fixture(autouse=True)
@@ -38,6 +43,57 @@ def test_manager_is_singleton():
 
 def test_manager_default_gsettings_stub():
     assert Manager().settings.get_boolean("anything") is False
+
+
+def test_check_runners_discovers_external_steam_proton(tmp_path, monkeypatch):
+    runners = tmp_path / "runners"
+    (runners / "soda-11.0").mkdir(parents=True)
+    external = (
+        tmp_path
+        / ".local"
+        / "share"
+        / "Steam"
+        / "compatibilitytools.d"
+        / "GE-Proton10-4"
+    )
+    external.mkdir(parents=True)
+    (external / "toolmanifest.vdf").write_text(
+        '"manifest"\n{\n'
+        '    "commandline" "/proton run"\n'
+        '    "compatmanager_layer_name" "proton"\n'
+        "}\n"
+    )
+    monkeypatch.setattr(manager_module.Paths, "runners", str(runners))
+    monkeypatch.setattr(manager_module.shutil, "which", lambda _command: None)
+    monkeypatch.setattr(ManagerUtils, "external_runner_paths", {})
+    monkeypatch.setattr(steam_module, "STEAM_COMPATIBILITY_TOOL_PATHS", ())
+    monkeypatch.setattr(Path, "home", lambda: tmp_path)
+    manager = object.__new__(Manager)
+    manager.steam_manager = SteamManager(check_only=True)
+
+    assert manager.check_runners(install_latest=False)
+    assert "GE-Proton10-4" in manager.runners_available
+    assert manager.external_runners == {"GE-Proton10-4"}
+    assert ManagerUtils.get_runner_path("GE-Proton10-4") == str(external)
+
+
+def test_managed_runner_takes_precedence_over_steam_copy(tmp_path, monkeypatch):
+    runners = tmp_path / "runners"
+    managed = runners / "GE-Proton10-4"
+    managed.mkdir(parents=True)
+    external = tmp_path / "Steam" / "compatibilitytools.d" / "GE-Proton10-4"
+    external.mkdir(parents=True)
+    monkeypatch.setattr(manager_module.Paths, "runners", str(runners))
+    monkeypatch.setattr(manager_module.shutil, "which", lambda _command: None)
+    monkeypatch.setattr(ManagerUtils, "external_runner_paths", {})
+    manager = object.__new__(Manager)
+    manager.steam_manager = SimpleNamespace(
+        list_compatibility_tools=lambda: {"GE-Proton10-4": str(external)}
+    )
+
+    assert manager.check_runners(install_latest=False)
+    assert manager.external_runners == set()
+    assert ManagerUtils.get_runner_path("GE-Proton10-4") == str(managed)
 
 
 def test_manager_cli_skips_connection_check(mocker):
@@ -90,6 +146,7 @@ def test_check_runners_ignores_failed_system_wine(mocker):
     mocker.patch.object(manager_module.shutil, "which", return_value="/app/bin/wine")
     mocker.patch.object(manager_module, "glob", return_value=[])
     manager = object.__new__(Manager)
+    manager.steam_manager = SimpleNamespace(list_compatibility_tools=lambda: {})
 
     assert manager.check_runners(install_latest=False) is True
     assert manager.runners_available == []
@@ -104,6 +161,7 @@ def test_check_runners_ignores_unexecutable_system_wine(mocker):
     mocker.patch.object(manager_module.shutil, "which", return_value="/app/bin/wine")
     mocker.patch.object(manager_module, "glob", return_value=[])
     manager = object.__new__(Manager)
+    manager.steam_manager = SimpleNamespace(list_compatibility_tools=lambda: {})
 
     assert manager.check_runners(install_latest=False) is True
     assert manager.runners_available == []
@@ -116,6 +174,7 @@ def test_check_runners_adds_usable_system_wine(mocker):
     mocker.patch.object(manager_module.shutil, "which", return_value="/app/bin/wine")
     mocker.patch.object(manager_module, "glob", return_value=[])
     manager = object.__new__(Manager)
+    manager.steam_manager = SimpleNamespace(list_compatibility_tools=lambda: {})
 
     assert manager.check_runners(install_latest=False) is True
     assert manager.runners_available == ["sys-wine-11.0"]
