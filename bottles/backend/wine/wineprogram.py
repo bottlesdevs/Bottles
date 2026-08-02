@@ -50,6 +50,7 @@ class WineProgram:
         cwd: Optional[str] = None,
         action_name: str = "launch",
         forced_dll_overrides: Optional[str] = None,
+        sandbox_override: Optional[str] = None,
     ):
         if environment is None:
             environment = {}
@@ -80,6 +81,7 @@ class WineProgram:
             post_script_args=post_script_args,
             cwd=cwd,
             arguments=program_args,
+            sandbox_override=sandbox_override,
         )
 
         # logging.info("Executing command:", res.command)

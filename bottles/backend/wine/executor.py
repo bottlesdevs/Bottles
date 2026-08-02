@@ -83,6 +83,7 @@ class WineExecutor:
         program_gamescope: Optional[bool] = None,
         program_virt_desktop: Optional[bool] = None,
         program_winebridge: Optional[bool] = None,
+        program_hide_console: bool = False,
         sandbox_override: Optional[str] = None,
     ):
         logging.info("Launching an executable…")
@@ -115,6 +116,7 @@ class WineExecutor:
         self.monitoring = monitoring
         self.use_gamescope = program_gamescope
         self.use_virt_desktop = program_virt_desktop
+        self.hide_console = program_hide_console
         self.use_winebridge = (
             program_winebridge
             if program_winebridge is not None
@@ -209,9 +211,12 @@ class WineExecutor:
             config.Parameters = config.Parameters.copy()
             for key, value in parameter_overrides.items():
                 config.Parameters[key] = value
-        direct_wine_override = any(
-            program.get(key) is not None
-            for key in cls._PROGRAM_DIRECT_WINE_OVERRIDES
+        direct_wine_override = (
+            any(
+                program.get(key) is not None
+                for key in cls._PROGRAM_DIRECT_WINE_OVERRIDES
+            )
+            or program.get("hide_console") is True
         )
 
         executor = cls(
@@ -235,6 +240,7 @@ class WineExecutor:
             program_gamescope=program.get("gamescope"),
             program_virt_desktop=program.get("virtual_desktop"),
             program_winebridge=program.get("winebridge"),
+            program_hide_console=program.get("hide_console") is True,
             sandbox_override=sandbox_override,
         )
         if (
@@ -299,14 +305,10 @@ class WineExecutor:
     def __get_cwd(self, cwd: str) -> str | None:
         winepath = WinePath(self.config)
         if cwd in [None, ""]:
-            path = self.exec_path
-            if winepath.is_windows(self.exec_path):
-                path = "\\".join(path.split("\\")[:-1])
-                path = winepath.to_unix(path)
-            if path.startswith(("'", '"')):
-                path = path[1:]
-            if path.endswith(("'", '"')):
-                path = path[:-1]
+            path = self._raw_exec_path
+            if winepath.is_windows(path):
+                windows_parent = "\\".join(path.split("\\")[:-1])
+                return winepath.to_unix(windows_parent, native=True)
             return os.path.dirname(path)
         return cwd  # will be set by WineCommand if None
 
@@ -379,6 +381,8 @@ class WineExecutor:
             pre_script_args=self.pre_script_args,
             post_script_args=self.post_script_args,
             cwd=self.cwd,
+            background=self.hide_console,
+            sandbox_override=self.sandbox_override,
         )
         return Result(status=True, data={"output": res})
 
@@ -493,10 +497,27 @@ class WineExecutor:
                 return Result(status=True, data={"output": res})
         winepath = WinePath(self.config)
         if self.use_virt_desktop:
-            if winepath.is_unix(self.exec_path):
-                self.exec_path = winepath.to_windows(self.exec_path)
+            if winepath.is_unix(self._raw_exec_path):
+                raw_path = os.path.realpath(self._raw_exec_path)
+                bottle_path = os.path.realpath(
+                    ManagerUtils.get_bottle_path(self.config)
+                )
+                try:
+                    is_in_bottle = (
+                        os.path.commonpath((raw_path, bottle_path)) == bottle_path
+                    )
+                except ValueError:
+                    is_in_bottle = False
+                windows_path = winepath.to_windows(
+                    raw_path if is_in_bottle else self._raw_exec_path,
+                    native=is_in_bottle,
+                    sandbox_override=self.sandbox_override,
+                )
+                self.exec_path = shlex.quote(windows_path)
             return self.__launch_with_explorer()
-        if winepath.is_windows(self.exec_path):
+        if winepath.is_windows(self.exec_path) or (
+            self.hide_console and self.exec_type == "exe"
+        ):
             return self.__launch_with_starter()
 
         match self.exec_type:
@@ -574,6 +595,8 @@ class WineExecutor:
             pre_script_args=self.pre_script_args,
             post_script_args=self.post_script_args,
             cwd=self.cwd,
+            background=self.hide_console,
+            sandbox_override=self.sandbox_override,
         )
         self.__set_monitors()
         return Result(status=True, data={"output": res})
@@ -589,6 +612,8 @@ class WineExecutor:
             args=self.args,
             environment=self.environment,
             cwd=self.cwd,
+            background=self.hide_console,
+            sandbox_override=self.sandbox_override,
         )
         self.__set_monitors()
         return Result(status=res.status, data={"output": res.data})

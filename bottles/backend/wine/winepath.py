@@ -1,4 +1,6 @@
+import os
 import re
+import shlex
 from functools import lru_cache
 
 from bottles.backend.logger import Logger
@@ -28,24 +30,50 @@ class WinePath(WineProgram):
         return path.replace("\n", " ").replace("\r", " ").replace("\t", " ").strip()
 
     @lru_cache
-    def to_unix(self, path: str, native: bool = False):
+    def to_unix(
+        self,
+        path: str,
+        native: bool = False,
+        sandbox_override: str | None = None,
+    ):
         if native:
-            bottle_path = ManagerUtils.get_bottle_path(self.config)
+            bottle_path = os.path.realpath(
+                self.config.Path
+                if self.config.Environment == "Steam"
+                else ManagerUtils.get_bottle_path(self.config)
+            )
             path = path.replace("\\", "/")
             path = path.replace(
                 path[0:2], f"{bottle_path}/dosdevices/{path[0:2].lower()}"
             )
             return self.__clean_path(path)
-        args = f"--unix '{path}'"
-        res = self.launch(args=args, communicate=True, action_name="--unix")
+        args = f"--unix {shlex.quote(path)}"
+        res = self.launch(
+            args=args,
+            communicate=True,
+            action_name="--unix",
+            sandbox_override=sandbox_override,
+        )
         return self.__clean_path(res.data)
 
     @lru_cache
-    def to_windows(self, path: str, native: bool = False):
-        path = re.sub(r"\s+", " ", path).strip()
+    def to_windows(
+        self,
+        path: str,
+        native: bool = False,
+        sandbox_override: str | None = None,
+    ):
+        path = self.__clean_path(path)
 
         if native:
-            bottle_path = ManagerUtils.get_bottle_path(self.config)
+            if self.is_windows(path):
+                return self.__clean_path(path)
+            bottle_path = os.path.realpath(
+                self.config.Path
+                if self.config.Environment == "Steam"
+                else ManagerUtils.get_bottle_path(self.config)
+            )
+            path = os.path.realpath(path)
             if "/drive_" in path:
                 drive = re.search(r"drive_([a-z])/", path.lower()).group(1)
                 path = path.replace(
@@ -59,18 +87,23 @@ class WinePath(WineProgram):
             path = path.replace("/", "\\")
             return self.__clean_path(path)
 
-        args = f"--windows '{path}'"
-        res = self.launch(args=args, communicate=True, action_name="--windows")
+        args = f"--windows {shlex.quote(path)}"
+        res = self.launch(
+            args=args,
+            communicate=True,
+            action_name="--windows",
+            sandbox_override=sandbox_override,
+        )
         return self.__clean_path(res.data)
 
     @lru_cache
     def to_long(self, path: str):
-        args = f"--long '{path}'"
+        args = f"--long {shlex.quote(path)}"
         res = self.launch(args=args, communicate=True, action_name="--long")
         return self.__clean_path(res.data)
 
     @lru_cache
     def to_short(self, path: str):
-        args = f"--short '{path}'"
+        args = f"--short {shlex.quote(path)}"
         res = self.launch(args=args, communicate=True, action_name="--short")
         return self.__clean_path(res.data)

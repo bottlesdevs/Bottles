@@ -192,6 +192,7 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
                 "gamemode": True,
                 "latencyflex": False,
                 "sync": "esync",
+                "hide_console": True,
             }
         },
     )
@@ -215,6 +216,7 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
     assert program["gamemode"] is True
     assert program["latencyflex"] is False
     assert program["sync"] == "esync"
+    assert program["hide_console"] is True
 
 
 def test_component_updates_can_be_disabled(mocker):

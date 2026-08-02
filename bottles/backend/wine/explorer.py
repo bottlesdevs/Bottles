@@ -19,15 +19,20 @@ class Explorer(WineProgram):
         args: Optional[str] = None,
         environment: Optional[dict] = None,
         cwd: Optional[str] = None,
+        background: bool = False,
+        sandbox_override: Optional[str] = None,
     ):
         _args = f"/desktop={desktop}"
 
         if width and height:
             _args += f",{width}x{height}"
         if program:
-            _args += f" {program}"
+            if background:
+                _args += f" start /b /wait {program}"
+            else:
+                _args += f" {program}"
         if args:
-            _args += args
+            _args += f" {args}"
 
         return self.launch(
             args=_args,
@@ -35,4 +40,5 @@ class Explorer(WineProgram):
             action_name="launch_desktop",
             environment=environment,
             cwd=cwd,
+            sandbox_override=sandbox_override,
         )

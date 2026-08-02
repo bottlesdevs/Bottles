@@ -36,6 +36,7 @@ class LaunchOptionsDialog(Adw.Window):
     # region Widgets
     entry_arguments = Gtk.Template.Child()
     switch_arguments = Gtk.Template.Child()
+    switch_hide_console = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_pre_script = Gtk.Template.Child()
     btn_pre_script_reset = Gtk.Template.Child()
@@ -107,6 +108,7 @@ class LaunchOptionsDialog(Adw.Window):
         arguments_enabled = program.get("arguments_enabled", True)
         self.switch_arguments.set_active(arguments_enabled)
         self.entry_arguments.set_sensitive(arguments_enabled)
+        self.switch_hide_console.set_active(program.get("hide_console") is True)
 
         # keeps track of toggled switches
         self.toggled = {}
@@ -245,6 +247,10 @@ class LaunchOptionsDialog(Adw.Window):
         self.__set_override("winebridge", program_winebridge, self.global_winebridge)
         self.program["arguments"] = self.entry_arguments.get_text()
         self.program["arguments_enabled"] = self.switch_arguments.get_active()
+        if self.switch_hide_console.get_active():
+            self.program["hide_console"] = True
+        else:
+            self.program.pop("hide_console", None)
 
         pre_args = self.entry_pre_script_args.get_text()
         post_args = self.entry_post_script_args.get_text()
