@@ -25,6 +25,7 @@ from gi.repository import Adw, Gdk, Gtk, Xdp
 from bottles.backend.globals import (
     gamemode_available,
     gamescope_available,
+    hdr_wsi_available,
     mangohud_available,
     obs_vkc_available,
     vkbasalt_available,
@@ -81,6 +82,7 @@ class PreferencesView(Adw.PreferencesPage):
     row_vmtouch = Gtk.Template.Child()
     row_obsvkc = Gtk.Template.Child()
     row_wayland = Gtk.Template.Child()
+    row_hdr = Gtk.Template.Child()
     row_winebridge = Gtk.Template.Child()
     row_manage_display = Gtk.Template.Child()
     row_runtime = Gtk.Template.Child()
@@ -96,6 +98,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_obsvkc = Gtk.Template.Child()
     switch_vkbasalt = Gtk.Template.Child()
     switch_wayland = Gtk.Template.Child()
+    switch_hdr = Gtk.Template.Child()
     switch_winebridge = Gtk.Template.Child()
     switch_component_updates = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
@@ -174,6 +177,7 @@ class PreferencesView(Adw.PreferencesPage):
         )
         self._install_commands = {
             "gamescope": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.gamescope",
+            "hdr": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.HdrWsi",
             "vkbasalt": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.vkBasalt",
             "mangohud": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud",
             "obsvkc": f"{_add_flathub} && flatpak install flathub com.obsproject.Studio.Plugin.OBSVkCapture",
@@ -240,6 +244,17 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_vmtouch.set_tooltip_text(_not_available)
             self.__add_unavailable_indicator(self.row_vmtouch, None)
 
+        is_nvidia_gpu = GPUUtils.is_gpu(GPUVendors.NVIDIA)
+        if is_flatpak and is_nvidia_gpu and not hdr_wsi_available:
+            _hdr_command = self._install_commands.get("hdr")
+            _hdr_message = _(
+                "Older NVIDIA drivers require HdrWsi and ENABLE_HDR_WSI=1 for HDR."
+            )
+            self.switch_hdr.set_tooltip_text(_hdr_message)
+            self.__add_unavailable_indicator(
+                self.row_hdr, _hdr_command, message=_hdr_message
+            )
+
         # region signals
         self.row_manage_display.connect("activated", self.__show_display_settings)
         self.row_overrides.connect(
@@ -270,6 +285,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_obsvkc.connect("state-set", self.__toggle_feature_cb, "obsvkc")
         self.switch_vkbasalt.connect("state-set", self.__toggle_feature_cb, "vkbasalt")
         self.switch_wayland.connect("state-set", self.__toggle_wayland)
+        self.switch_hdr.connect("state-set", self.__toggle_hdr)
         self.switch_winebridge.connect(
             "state-set", self.__toggle_feature_cb, "winebridge"
         )
@@ -278,9 +294,7 @@ class PreferencesView(Adw.PreferencesPage):
         )
         self.switch_nvapi.connect("state-set", self.__toggle_nvapi)
         self.switch_gamemode.connect("state-set", self.__toggle_feature_cb, "gamemode")
-        self.switch_gamescope.connect(
-            "state-set", self.__toggle_feature_cb, "gamescope"
-        )
+        self.switch_gamescope.connect("state-set", self.__toggle_gamescope)
         self.switch_sandbox.connect("state-set", self.__toggle_feature_cb, "sandbox")
         self.switch_discrete.connect(
             "state-set", self.__toggle_feature_cb, "discrete_gpu"
@@ -299,7 +313,6 @@ class PreferencesView(Adw.PreferencesPage):
         # endregion
 
         """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
-        is_nvidia_gpu = GPUUtils.is_gpu(GPUVendors.NVIDIA)
         self.row_nvapi.set_visible(is_nvidia_gpu)
         self.combo_nvapi.set_visible(is_nvidia_gpu)
 
@@ -314,7 +327,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         self.switch_vmtouch.set_sensitive(vmtouch_available)
 
-        if not VulkanUtils.check_support():
+        vulkan_supported = VulkanUtils.check_support()
+        if not vulkan_supported:
             self.combo_dxvk.set_sensitive(False)
             self.combo_vkd3d.set_sensitive(False)
             self.combo_nvapi.set_sensitive(False)
@@ -326,8 +340,11 @@ class PreferencesView(Adw.PreferencesPage):
 
         is_wayland_session = DisplayUtils.display_server_type() == "wayland"
         self.switch_wayland.set_sensitive(is_wayland_session)
+        self.__update_hdr_sensitivity()
 
-    def __create_unavailable_popover(self, command: str | None) -> Gtk.Popover:
+    def __create_unavailable_popover(
+        self, command: str | None, message: str | None = None
+    ) -> Gtk.Popover:
         popover = Gtk.Popover()
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         box.set_margin_top(6)
@@ -336,7 +353,7 @@ class PreferencesView(Adw.PreferencesPage):
         box.set_margin_end(6)
 
         unavailable_label = Gtk.Label(
-            label=_("This feature is unavailable on your system."),
+            label=message or _("This feature is unavailable on your system."),
             xalign=0,
             wrap=True,
         )
@@ -372,17 +389,24 @@ class PreferencesView(Adw.PreferencesPage):
         popover.set_child(box)
         return popover
 
-    def __add_unavailable_indicator(self, row: Adw.ActionRow, command: str | None):
+    def __add_unavailable_indicator(
+        self,
+        row: Adw.ActionRow,
+        command: str | None,
+        message: str | None = None,
+    ):
         if not row:
             return
 
-        popover = self.__create_unavailable_popover(command)
+        popover = self.__create_unavailable_popover(command, message)
         menu_button = Gtk.MenuButton()
         menu_button.set_valign(Gtk.Align.CENTER)
         menu_button.set_icon_name("dialog-warning-symbolic")
         menu_button.set_has_frame(False)
         menu_button.set_popover(popover)
-        menu_button.set_tooltip_text(_("This feature is unavailable on your system."))
+        menu_button.set_tooltip_text(
+            message or _("This feature is unavailable on your system.")
+        )
 
         row.add_suffix(menu_button)
 
@@ -540,13 +564,14 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
         self.switch_vkbasalt.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_wayland.handler_block_by_func(self.__toggle_wayland)
+        self.switch_hdr.handler_block_by_func(self.__toggle_hdr)
         self.switch_winebridge.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_component_updates.handler_block_by_func(
             self.__toggle_component_updates
         )
         self.switch_obsvkc.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_block_by_func(self.__toggle_feature_cb)
-        self.switch_gamescope.handler_block_by_func(self.__toggle_feature_cb)
+        self.switch_gamescope.handler_block_by_func(self.__toggle_gamescope)
         self.switch_sandbox.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_discrete.handler_block_by_func(self.__toggle_feature_cb)
         with contextlib.suppress(TypeError):
@@ -562,6 +587,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_obsvkc.set_active(parameters.obsvkc)
         self.switch_vkbasalt.set_active(parameters.vkbasalt)
         self.switch_wayland.set_active(parameters.wayland)
+        self.switch_hdr.set_active(parameters.hdr)
+        self.__update_hdr_sensitivity(parameters.hdr)
         self.switch_winebridge.set_active(parameters.winebridge)
         self.switch_component_updates.set_active(parameters.show_component_updates)
         self.switch_nvapi.set_active(parameters.dxvk_nvapi)
@@ -677,13 +704,14 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
         self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_wayland.handler_unblock_by_func(self.__toggle_wayland)
+        self.switch_hdr.handler_unblock_by_func(self.__toggle_hdr)
         self.switch_winebridge.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_component_updates.handler_unblock_by_func(
             self.__toggle_component_updates
         )
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_feature_cb)
-        self.switch_gamescope.handler_unblock_by_func(self.__toggle_feature_cb)
+        self.switch_gamescope.handler_unblock_by_func(self.__toggle_gamescope)
         self.switch_sandbox.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_discrete.handler_unblock_by_func(self.__toggle_feature_cb)
         with contextlib.suppress(TypeError):
@@ -730,8 +758,34 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_wayland(self, _widget: Gtk.Widget, state: bool) -> None:
         self.__toggle_feature(state=state, key="wayland")
+        self.__update_hdr_sensitivity()
         rk = RegKeys(self.config)
         RunAsync(rk.toggle_wayland_driver, state=state)
+
+    def __toggle_hdr(self, _widget: Gtk.Widget, state: bool) -> None:
+        self.__toggle_feature(state=state, key="hdr")
+        self.__update_hdr_sensitivity(state)
+
+    def __toggle_gamescope(self, _widget: Gtk.Widget, state: bool) -> None:
+        self.__toggle_feature(state=state, key="gamescope")
+        self.__update_hdr_sensitivity()
+
+    def __update_hdr_sensitivity(self, active: bool | None = None) -> None:
+        if active is None:
+            active = self.config.Parameters.hdr
+        self.switch_hdr.set_sensitive(
+            active
+            or (
+                VulkanUtils.check_support()
+                and (
+                    (
+                        DisplayUtils.display_server_type() == "wayland"
+                        and self.config.Parameters.wayland
+                    )
+                    or (gamescope_available and self.config.Parameters.gamescope)
+                )
+            )
+        )
 
     def __set_sync_type(self, *_args):
         """

@@ -129,6 +129,16 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
+    Adw.ActionRow row_hdr {
+      activatable-widget: switch_hdr;
+      title: _("High Dynamic Range");
+      subtitle: _("Expose HDR to games using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1.");
+
+      Switch switch_hdr {
+        valign: center;
+      }
+    }
+
     Adw.ActionRow row_vkbasalt {
       activatable-widget: switch_vkbasalt;
       title: _("Post-Processing Effects");
