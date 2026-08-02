@@ -50,7 +50,11 @@ logging = Logger()
 class DependencyManager:
     def __init__(self, manager, offline: bool = False):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("dependencies", offline)
+        self.__repo = manager.repository_manager.get_repo(
+            "dependencies",
+            offline,
+            callback_in_main_loop=not manager.is_cli,
+        )
         self.__offline = offline
         self.__checksum_cache = {}
 

@@ -40,7 +40,11 @@ logging = Logger()
 class InstallerManager:
     def __init__(self, manager, offline: bool = False):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("installers", offline)
+        self.__repo = manager.repository_manager.get_repo(
+            "installers",
+            offline,
+            callback_in_main_loop=not manager.is_cli,
+        )
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
         self.__local_resources = {}
