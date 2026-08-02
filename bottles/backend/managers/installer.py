@@ -492,6 +492,11 @@ class InstallerManager:
 
         if duplicates:
             for d in duplicates:
+                file_extensions = ext[d].get("file_extensions")
+                if file_extensions:
+                    _program["file_extensions"] = file_extensions
+                    break
+            for d in duplicates:
                 del ext[d]
             ext[_uuid] = _program
             self.__manager.update_config(

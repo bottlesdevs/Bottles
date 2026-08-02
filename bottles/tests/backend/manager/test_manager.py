@@ -253,6 +253,7 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
                 "latencyflex": False,
                 "sync": "esync",
                 "hide_console": True,
+                "file_extensions": [".txt", ".json"],
             }
         },
     )
@@ -277,6 +278,7 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
     assert program["latencyflex"] is False
     assert program["sync"] == "esync"
     assert program["hide_console"] is True
+    assert program["file_extensions"] == [".txt", ".json"]
 
 
 def test_create_bottle_checks_every_essential_component_before_retry():
@@ -311,8 +313,6 @@ def test_create_bottle_checks_every_essential_component_before_retry():
 
     assert not result.ok
     assert calls == ["runner", "dxvk", "vkd3d"]
-
-
 def test_component_updates_can_be_disabled(mocker):
     manager = object.__new__(Manager)
     manager._Manager__collect_runner_update = mocker.Mock()

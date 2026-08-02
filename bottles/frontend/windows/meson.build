@@ -8,6 +8,7 @@ bottles_sources = [
   'dependency_install.py',
   'duplicate.py',
   'envvars.py',
+  'fileassociations.py',
   'generic.py',
   'launchoptions.py',
   'lsfgvk.py',

@@ -1,0 +1,60 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $FileAssociationsDialog: Adw.Dialog {
+  content-width: 560;
+  content-height: 360;
+  title: _("File Associations");
+  focus-widget: entry_extensions;
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+
+      [end]
+      Button btn_save {
+        label: _("_Save");
+        use-underline: true;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    [top]
+    Adw.Banner banner_error {
+      revealed: false;
+    }
+
+    content: Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        title: _("Open With");
+        description: _("Enter file extensions separated by commas. Bottles will make this program available in the system Open With menu without changing your default application.");
+
+        Adw.EntryRow entry_extensions {
+          title: _("File Extensions");
+        }
+      }
+
+      Adw.PreferencesGroup {
+        Adw.ActionRow {
+          title: _("System File Types");
+          subtitle: _("Only extensions already recognized by your system can be associated.");
+
+          [prefix]
+          Image {
+            icon-name: "dialog-information-symbolic";
+          }
+        }
+      }
+    };
+  };
+}

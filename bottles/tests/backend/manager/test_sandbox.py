@@ -62,6 +62,31 @@ def test_flatpak_session_bus_is_shared_for_portal_access(monkeypatch):
     assert "--sandbox-flag=allow-dbus" in command
 
 
+def test_flatpak_clear_environment_uses_env_command(monkeypatch):
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+
+    command = SandboxManager(
+        envs={"PATH": "/usr/bin", "VALUE": "with spaces"},
+        clear_env=True,
+    ).get_cmd("true")
+
+    assert "--clear-env" not in command
+    assert "env -i" in command
+    assert "PATH=/usr/bin" in command
+    assert "'VALUE=with spaces'" in command
+
+
+def test_flatpak_clear_environment_quotes_variable_names(monkeypatch):
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+
+    command = SandboxManager(
+        envs={"VALUE; touch /tmp/not-run": "content"},
+        clear_env=True,
+    ).get_cmd("true")
+
+    assert "'VALUE; touch /tmp/not-run=content'" in command
+
+
 def test_bwrap_input_devices_are_opt_in(monkeypatch):
     monkeypatch.delenv("FLATPAK_ID", raising=False)
     monkeypatch.setattr(

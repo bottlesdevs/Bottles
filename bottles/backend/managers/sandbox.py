@@ -137,11 +137,8 @@ class SandboxManager:
     def __get_flatpak_spawn(self, cmd: str):
         _cmd = ["flatpak-spawn", "--sandbox", "--watch-bus"]
 
-        if self.envs:
+        if self.envs and not self.clear_env:
             _cmd += [f"--env={k}={shlex.quote(v)}" for k, v in self.envs.items()]
-
-        if self.clear_env:
-            _cmd.append("--clear-env")
 
         if self.chdir:
             quoted_dir = shlex.quote(self.chdir)
@@ -178,6 +175,13 @@ class SandboxManager:
 
         if self.share_input and self.supports_input_devices():
             _cmd.append(f"--sandbox-flag={FLATPAK_SHARE_INPUT}")
+
+        if self.clear_env:
+            clean_env = " ".join(
+                shlex.quote(f"{key}={value}")
+                for key, value in (self.envs or {}).items()
+            )
+            cmd = " ".join(part for part in ("env -i", clean_env, cmd) if part)
 
         _cmd.append(cmd)
 
